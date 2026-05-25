@@ -1622,6 +1622,16 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         try:
             themer = Themer(model=llm_model_rt) if llm_model_rt else Themer()
 
+            # If model was automatically changed due to fallback, report it
+            actual_model = themer.model
+            requested_model = llm_model_rt or "qwen3:14b"  # default
+            if actual_model != requested_model:
+                _push(job_id, "progress", json.dumps({
+                    "step": "theme",
+                    "msg": f"Model '{requested_model}' not available — using '{actual_model}' instead",
+                    "info": True,
+                }))
+
             def _theme_cb(batch_num, total_batches, cards_done, total_cards):
                 pct = round(cards_done / total_cards * 100) if total_cards else 0
                 _push(job_id, "progress", json.dumps({
@@ -1644,8 +1654,22 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
-            _push(job_id, "progress", json.dumps({"step": "theme", "msg": f"Theming failed: {e}"}))
-            raise
+            print(f"  [theme] OLLAMA THEMING ERROR (retheme): {e}")
+            traceback.print_exc()
+            _push(job_id, "progress", json.dumps({
+                "step": "theme",
+                "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
+                "warning": True,
+            }))
+            # Don't raise — fall back to plain names like in _run_build
+            themed_cmd = None
+            themed_deck = None
+
+        # Fallback to plain card names if theming failed
+        if themed_cmd is None or themed_deck is None:
+            def _plain(c): return ThemedCard(c["original_name"], c["original_name"], "", "", c)
+            themed_cmd  = _plain(raw_commander)
+            themed_deck = [_plain(c) for c in raw_deck]
 
         # ── Apply user name to commander ──────────────────────────────────────
         if user_name_rt and themed_cmd:
