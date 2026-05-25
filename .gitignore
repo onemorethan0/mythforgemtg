@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Generated output — large and build-specific
+renders/
+generated_art/
+scryfall_cache/
+test_cards/
+test_output/
+*.log
+*.log.err
+
+# Frontend build output (rebuilt with npm run build)
+frontend/dist/
+frontend/node_modules/
+
+# Misc
+*.png
+test_*.py
+test_*.png
+CLAUDE.md
+
+# Stray bat-redirect output (from non-interactive launches)
+bat_stdout.txt
+bat_stderr.txt
+
+# Face upload staging
+face_uploads/

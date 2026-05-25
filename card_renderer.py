@@ -1,0 +1,1131 @@
+"""
+MTG card renderer — real frame PNGs + real fonts + inline SVG symbols.
+
+Render pipeline:
+  1. Build a 1440×2016 canvas (3× for anti-aliasing)
+  2. Composite: black → bg PNG → art image → frame PNG → boxes (name/type bars)
+     → legendary crown (if applicable) → text + mana pips → PT badge
+  3. Downscale to 750×1050 with LANCZOS
+
+The 3× supersampling produces noticeably sharper oracle text and mana symbol
+linework. Output is 750×1050 px (2.5″×3.5″ at 300 DPI), exactly matching the
+PDF exporter's print target — no upscaling quality loss in the final PDF.
+All layout constants derive from _MM so they scale automatically.
+
+Assets in card_assets/ (copied from wingedsheep/mtg-card-generator):
+  frames/      — full-card frame overlays (transparent art + inner areas)
+  bg/          — inner card background
+  boxes/       — name-bar / type-bar strips
+  pt_boxes/    — power/toughness badge
+  legendary_crowns/ — legendary ornament overlay
+  symbols/     — SVG mana & tap symbols (T, W, U, B, R, G, 0-20, X, …)
+  fonts/       — beleren-bold_P1.01.ttf, mplantin.ttf, MPlantin-Italic.ttf
+"""
+from __future__ import annotations
+
+import io
+import math
+import re
+import textwrap
+from functools import lru_cache
+from pathlib import Path
+from typing import Optional
+
+import requests
+from PIL import Image, ImageDraw, ImageFont, ImageOps
+
+# ── Paths ─────────────────────────────────────────────────────────────────────
+_ASSETS   = Path("card_assets")
+_FONTS    = _ASSETS / "fonts"
+_ART_CACHE = Path("scryfall_cache")
+
+# ── Canvas dimensions ─────────────────────────────────────────────────────────
+# Card = 63.5 × 88.9 mm; we render at 3× for anti-aliasing then downscale.
+CARD_W, CARD_H = 750, 1050          # final output (2.5"×3.5" @ 300 DPI — matches PDF exporter, no upscale needed)
+_W2, _H2       = 1440, 2016        # internal 3× canvas (still 3× for AA, ~1.9× downscale to output)
+_MM            = _W2 / 63.5        # px per mm at 3× ≈ 22.68
+
+def _mm(v: float) -> int:
+    return round(v * _MM)
+
+# Asset layout in 3× px  (derived from wingedsheep CSS — all values via _mm())
+_BG_X, _BG_Y   = _mm(2.5),  _mm(2.25)
+_BG_W, _BG_H   = _mm(58.5), _mm(78.0)
+
+_FR_X, _FR_Y   = _mm(2.56), _mm(3.5)
+_FR_W, _FR_H   = _mm(57.33), _mm(79.0)
+
+_ART_X, _ART_Y = _mm(4.4),  _mm(9.55)
+_ART_W, _ART_H = _mm(54.7), _mm(39.9)
+
+_BAR_W, _BAR_H = _mm(53.8), _mm(5.1)
+_BAR_X         = (_W2 - _BAR_W) // 2
+_NAME_Y        = _mm(4.0)
+_TYPE_Y        = _mm(49.9)
+
+_ORA_X         = _mm(4.4)
+_ORA_Y         = _mm(55.6)
+_ORA_W         = _mm(54.7)
+_ORA_H         = _mm(26.0)
+
+_PT_W, _PT_H   = _mm(11.58), _mm(6.2)
+_PT_X          = _W2 - _mm(3.0) - _PT_W
+_PT_Y          = _H2 - _mm(3.8) - _PT_H
+
+_CROWN_W       = _mm(57.0)
+_CROWN_X       = (_W2 - _CROWN_W) // 2
+_CROWN_Y       = _mm(2.5)
+
+# Text positioning inside bars
+_NAME_TY  = _NAME_Y + _BAR_H // 2      # vertical centre of name bar
+_TYPE_TY  = _TYPE_Y + _BAR_H // 2      # vertical centre of type bar
+_NAME_TX  = _BAR_X + _mm(1.5)          # left margin inside name bar
+_NAME_TX_MAX = _BAR_X + _BAR_W - _mm(1.5)
+
+# Oracle text padding inside the text box
+_ORA_PAD  = _mm(1.0)
+
+# ── Colours for text drawn on frame ───────────────────────────────────────────
+_DARK_TEXT  = (10,  8,  4)
+_LIGHT_TEXT = (240, 235, 220)
+
+# Per-key text colours (name/type bar foreground)
+_BAR_FG: dict[str, tuple] = {
+    "U":         _LIGHT_TEXT,
+    "B":         _LIGHT_TEXT,
+    "UB":        _LIGHT_TEXT,
+    "UR":        _LIGHT_TEXT,
+    "BR":        _LIGHT_TEXT,
+    "BG":        _LIGHT_TEXT,
+}
+
+# ── Font helpers ───────────────────────────────────────────────────────────────
+@lru_cache(maxsize=32)
+def _beleren(size: int) -> ImageFont.FreeTypeFont:
+    p = _FONTS / "beleren-bold_P1.01.ttf"
+    if p.exists():
+        return ImageFont.truetype(str(p), size)
+    return ImageFont.load_default(size=size)
+
+@lru_cache(maxsize=32)
+def _mplantin(size: int) -> ImageFont.FreeTypeFont:
+    p = _FONTS / "mplantin.ttf"
+    if p.exists():
+        return ImageFont.truetype(str(p), size)
+    return ImageFont.load_default(size=size)
+
+@lru_cache(maxsize=32)
+def _mplantin_italic(size: int) -> ImageFont.FreeTypeFont:
+    p = _FONTS / "MPlantin-Italic.ttf"
+    if p.exists():
+        return ImageFont.truetype(str(p), size)
+    return ImageFont.load_default(size=size)
+
+# ── SVG → PIL via pixie ───────────────────────────────────────────────────────
+_SYM_CACHE: dict[tuple[str, int], Image.Image] = {}
+
+def _svg_sym(name: str, size: int) -> Optional[Image.Image]:
+    """Rasterise a symbol SVG to a square PIL RGBA image at `size` px."""
+    key = (name.upper(), size)
+    if key in _SYM_CACHE:
+        return _SYM_CACHE[key]
+
+    svg_path = _ASSETS / "symbols" / f"{name.upper()}.svg"
+    if not svg_path.exists():
+        return None
+    try:
+        import pixie, tempfile, os
+        src = pixie.read_image(str(svg_path))
+        # pixie.resize() does NOT modify in-place; create a new target image.
+        # Use a temp file with a unique name so concurrent warm-up calls never
+        # collide (pixie has no in-memory PNG encode path).
+        dst = pixie.Image(size, size)
+        ctx = dst.new_context()
+        ctx.scale(size / src.width, size / src.height)
+        ctx.draw_image(src, 0, 0)
+        fd, tmp_path = tempfile.mkstemp(suffix=".png")
+        os.close(fd)
+        try:
+            dst.write_file(tmp_path)
+            pil = Image.open(tmp_path).convert("RGBA").copy()
+        finally:
+            os.unlink(tmp_path)
+        _SYM_CACHE[key] = pil
+        return pil
+    except Exception as e:
+        print(f"  [renderer] SVG rasterise failed ({name}): {e}")
+        return None
+
+
+def _warm_symbol_cache() -> None:
+    """
+    Pre-rasterise every mana/tap symbol SVG at the two sizes used during rendering:
+      • inline oracle text symbols  → _mm(2.4)
+      • mana-cost pip row           → _mm(3.0)
+
+    Called once at module import so per-card rendering never pays the SVG parse
+    + pixie rasterise cost.  On an RTX 3090 machine this typically takes < 1 s
+    for the ~30 symbols in card_assets/symbols/.
+    """
+    sym_dir = _ASSETS / "symbols"
+    if not sym_dir.exists():
+        return
+    sizes = [_mm(2.4), _mm(3.0)]
+    svgs  = list(sym_dir.glob("*.svg"))
+    if not svgs:
+        return
+    loaded = 0
+    for svg_path in svgs:
+        name = svg_path.stem.upper()
+        for sz in sizes:
+            result = _svg_sym(name, sz)
+            if result is not None:
+                loaded += 1
+    print(f"  [renderer] Symbol cache warmed: {loaded} rasters "
+          f"({len(svgs)} symbols × {len(sizes)} sizes)")
+
+
+# Called once at import time — all subsequent renders hit the dict directly.
+_warm_symbol_cache()
+
+
+# ── Mana parsing ──────────────────────────────────────────────────────────────
+def _parse_mana(mana_str: str) -> list[str]:
+    """Return list of mana symbol codes from a Scryfall mana cost string."""
+    return re.findall(r"\{([^}]+)\}", mana_str)
+
+
+# ── Colour key logic ──────────────────────────────────────────────────────────
+_WUBRG = "WUBRG"
+
+def _sort_colors(colors: list[str]) -> str:
+    return "".join(sorted(colors, key=lambda c: _WUBRG.index(c) if c in _WUBRG else 99))
+
+def _frame_key(colors: list[str], type_line: str) -> str:
+    """Map card colours + type to the asset filename stem."""
+    tl = (type_line or "").lower()
+    if "land" in tl:
+        return "Land"
+    if not colors:
+        if "artifact" in tl:
+            return "Artifact"
+        return "Colourless"
+    if len(colors) == 1:
+        return colors[0]
+    if len(colors) == 2:
+        return _sort_colors(colors)
+    return "Gold"
+
+def _box_key(frame_key: str) -> str:
+    """Map the full frame key to the simpler boxes/pt_boxes filename stem."""
+    if frame_key in ("W","U","B","R","G","Artifact","Colourless","Land"):
+        return frame_key
+    return "Gold"
+
+def _crown_key(frame_key: str) -> str:
+    """Map frame key to legendary crown filename (same folder, same names)."""
+    return frame_key  # legendary_crowns has the same stems as frames
+
+
+# ── Asset loader with caching ─────────────────────────────────────────────────
+_IMG_CACHE: dict[str, Image.Image] = {}
+
+def _load_asset(folder: str, stem: str) -> Optional[Image.Image]:
+    key = f"{folder}/{stem}"
+    if key in _IMG_CACHE:
+        return _IMG_CACHE[key]
+    p = _ASSETS / folder / f"{stem}.png"
+    if not p.exists():
+        # fallback: Gold or Colourless
+        for fallback in ("Gold", "Colourless", "W"):
+            fp = _ASSETS / folder / f"{fallback}.png"
+            if fp.exists():
+                p = fp
+                break
+        else:
+            return None
+    img = Image.open(p).convert("RGBA")
+    _IMG_CACHE[key] = img
+    return img
+
+
+# ── Art fetch ─────────────────────────────────────────────────────────────────
+def _fetch_scryfall_art(url: str, cache_key: str) -> Optional[Image.Image]:
+    if not url:
+        return None
+    _ART_CACHE.mkdir(exist_ok=True)
+    safe   = "".join(c if c.isalnum() else "_" for c in cache_key)[:64]
+    cached = _ART_CACHE / f"{safe}.jpg"
+    if cached.exists():
+        try:
+            # ⚠️ Caller must close() this image after use
+            img = Image.open(cached)
+            # Load image data immediately so file handle can be closed by PIL
+            img.load()
+            return img
+        except Exception:
+            cached.unlink(missing_ok=True)
+    try:
+        r = requests.get(url, timeout=15)
+        if r.status_code == 200:
+            cached.write_bytes(r.content)
+            # ⚠️ Caller must close() this image after use
+            img = Image.open(io.BytesIO(r.content))
+            # Load data immediately to avoid file handle issues
+            img.load()
+            return img
+    except Exception as e:
+        print(f"  [renderer] Scryfall art fetch failed for {cache_key}: {e}")
+    return None
+
+
+# ── Inline-symbol text renderer ───────────────────────────────────────────────
+_SYM_RE = re.compile(r"\{([^}]+)\}")
+
+def _tokenise(text: str) -> list[tuple[str, str]]:
+    """Split text into ('text', str) and ('sym', sym_name) tokens."""
+    tokens: list[tuple[str, str]] = []
+    pos = 0
+    for m in _SYM_RE.finditer(text):
+        if m.start() > pos:
+            tokens.append(("text", text[pos:m.start()]))
+        tokens.append(("sym", m.group(1)))
+        pos = m.end()
+    if pos < len(text):
+        tokens.append(("text", text[pos:]))
+    return tokens
+
+
+def _draw_oracle_text(
+    img: Image.Image,
+    text: str,
+    x: int,
+    y: int,
+    max_w: int,
+    max_h: int,
+    sym_size: int,
+    font_size: int,
+    fg: tuple,
+    center_v: bool = False,
+) -> None:
+    """
+    Render oracle text with inline symbols into `img`.
+    Automatically shrinks font/symbol to fit, or grows them for short text.
+    When center_v=True the rendered block is vertically centred in max_h.
+    """
+    # ── Shrink phase: up to 8 attempts ────────────────────────────────────────
+    for attempt in range(8):
+        fnt_body   = _mplantin(font_size)
+        fnt_italic = _mplantin_italic(font_size)
+        lh = font_size + _mm(0.4)
+
+        lines   = _build_oracle_lines(text, fnt_body, sym_size, max_w)
+        total_h = len(lines) * lh
+
+        if total_h <= max_h or attempt == 7:
+            break
+        font_size = max(int(font_size * 0.88), 12)
+        sym_size  = max(int(sym_size  * 0.88), 12)
+
+    # ── Grow phase: expand for short text so it fills the box nicely ──────────
+    if center_v and total_h < max_h * 0.55:
+        for _ in range(5):
+            new_fs  = min(int(font_size * 1.12), _mm(3.4))
+            new_ss  = min(int(sym_size  * 1.12), _mm(3.4))
+            new_fnt = _mplantin(new_fs)
+            new_lns = _build_oracle_lines(text, new_fnt, new_ss, max_w)
+            new_lh  = new_fs + _mm(0.4)
+            if len(new_lns) * new_lh > max_h * 0.82:
+                break
+            font_size, sym_size = new_fs, new_ss
+            fnt_body   = new_fnt
+            fnt_italic = _mplantin_italic(new_fs)
+            lh         = new_lh
+            lines      = new_lns
+            total_h    = len(lines) * lh
+
+    # ── Vertical centering ────────────────────────────────────────────────────
+    start_y = y + max(0, (max_h - total_h) // 2) if center_v else y
+
+    draw  = ImageDraw.Draw(img)
+    cur_y = start_y
+    for line_tokens, is_reminder in lines:
+        if cur_y + lh > y + max_h:
+            break
+        _draw_line(draw, img, line_tokens, x, cur_y, sym_size,
+                   fnt_italic if is_reminder else fnt_body, fg, lh)
+        cur_y += lh
+
+
+def _draw_flavor_text(
+    img: Image.Image,
+    text: str,
+    x: int,
+    y: int,
+    max_w: int,
+    max_h: int,
+    font_size: int,
+    fg: tuple,
+) -> None:
+    """Render flavor text in italic, vertically centred within the allocated area."""
+    for attempt in range(5):
+        fnt  = _mplantin_italic(font_size)
+        lh   = font_size + _mm(0.35)
+        words = text.split()
+        lines: list[str] = []
+        cur   = ""
+        for w in words:
+            test = f"{cur} {w}".strip()
+            try:
+                w_len = round(fnt.getlength(test))
+            except Exception:
+                w_len = len(test) * (font_size // 2)
+            if w_len <= max_w:
+                cur = test
+            else:
+                if cur:
+                    lines.append(cur)
+                cur = w
+        if cur:
+            lines.append(cur)
+        total_h = len(lines) * lh
+        if total_h <= max_h or attempt == 4:
+            break
+        font_size = max(int(font_size * 0.88), 12)
+
+    start_y = y + max(0, (max_h - total_h) // 2)
+    draw    = ImageDraw.Draw(img)
+    cur_y   = start_y
+    for line in lines:
+        if cur_y + lh > y + max_h:
+            break
+        draw.text((x, cur_y), line, font=fnt, fill=fg)
+        cur_y += lh
+
+
+def _build_oracle_lines(
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    sym_size: int,
+    max_w: int,
+) -> list[tuple[list, bool]]:
+    """Word-wrap oracle text (with symbols) to fit within max_w pixels."""
+    result = []
+    for para in text.split("\n"):
+        if not para.strip():
+            result.append(([], False))
+            continue
+        is_reminder = para.strip().startswith("(")
+        tokens = _tokenise(para)
+        result.extend(_wrap_tokens(tokens, font, sym_size, max_w, is_reminder))
+    return result
+
+
+def _token_width(tok_type: str, tok_val: str, font: ImageFont.FreeTypeFont, sym_size: int) -> int:
+    if tok_type == "sym":
+        return sym_size + 2
+    try:
+        return round(font.getlength(tok_val))
+    except Exception:
+        return len(tok_val) * (font.size // 2)
+
+
+def _wrap_tokens(
+    tokens: list[tuple[str, str]],
+    font: ImageFont.FreeTypeFont,
+    sym_size: int,
+    max_w: int,
+    is_reminder: bool,
+) -> list[tuple[list, bool]]:
+    """Wrap a list of tokens into lines of at most max_w px."""
+    lines   = []
+    cur_line: list[tuple[str, str]] = []
+    cur_w   = 0
+
+    def flush():
+        if cur_line:
+            lines.append((list(cur_line), is_reminder))
+
+    for tok_type, tok_val in tokens:
+        if tok_type == "text":
+            # split on spaces, keeping spaces as part of following word
+            words = re.split(r"(?<= )", tok_val)
+            for word in words:
+                w = _token_width("text", word, font, sym_size)
+                if cur_w + w > max_w and cur_line:
+                    flush()
+                    cur_line = []
+                    cur_w = 0
+                    word = word.lstrip(" ")
+                    w = _token_width("text", word, font, sym_size)
+                cur_line.append(("text", word))
+                cur_w += w
+        else:  # sym
+            w = sym_size + 2
+            if cur_w + w > max_w and cur_line:
+                flush()
+                cur_line = []
+                cur_w = 0
+            cur_line.append(("sym", tok_val))
+            cur_w += w
+
+    flush()
+    return lines
+
+
+def _draw_line(
+    draw: ImageDraw.ImageDraw,
+    img: Image.Image,
+    tokens: list[tuple[str, str]],
+    x: int,
+    y: int,
+    sym_size: int,
+    font: ImageFont.FreeTypeFont,
+    fg: tuple,
+    lh: int,
+) -> None:
+    cx = x
+    sym_y = y + (lh - sym_size) // 2
+    for tok_type, tok_val in tokens:
+        if tok_type == "text":
+            draw.text((cx, y), tok_val, font=font, fill=fg)
+            try:
+                cx += round(font.getlength(tok_val))
+            except Exception:
+                cx += len(tok_val) * (font.size // 2)
+        else:
+            sym_img = _svg_sym(tok_val, sym_size)
+            if sym_img:
+                img.paste(sym_img, (cx, sym_y), sym_img)
+                cx += sym_size + 2
+            else:
+                # fallback: draw a small circle with the symbol letter
+                r = sym_size // 2
+                draw.ellipse([cx, sym_y, cx + sym_size, sym_y + sym_size],
+                             fill=(140, 140, 140))
+                draw.text((cx + r, sym_y + r), tok_val[:2].upper(),
+                          font=_mplantin(max(sym_size - 4, 10)), fill=(255, 255, 255),
+                          anchor="mm")
+                cx += sym_size + 2
+
+
+# ── Mana pip row ──────────────────────────────────────────────────────────────
+def _draw_mana_row(
+    img: Image.Image,
+    pips: list[str],
+    right_x: int,
+    centre_y: int,
+    pip_size: int,
+) -> int:
+    """Draw mana pips right-aligned from right_x. Returns leftmost x used."""
+    cx = right_x
+    for sym in reversed(pips):
+        sym_img = _svg_sym(sym, pip_size)
+        if sym_img:
+            px = cx - pip_size
+            py = centre_y - pip_size // 2
+            img.paste(sym_img, (px, py), sym_img)
+            cx = px - 2
+        else:
+            # fallback coloured circle
+            draw = ImageDraw.Draw(img)
+            px, py = cx - pip_size, centre_y - pip_size // 2
+            draw.ellipse([px, py, px + pip_size, py + pip_size], fill=(140, 140, 140))
+            draw.text((px + pip_size // 2, centre_y), sym[:2].upper(),
+                      font=_beleren(max(pip_size - 8, 10)), fill=(255, 255, 255), anchor="mm")
+            cx = px - 2
+    return cx
+
+
+# ── Border-theme decoration ───────────────────────────────────────────────────
+# Each card gets sparse corner ornaments drawn on a transparent overlay and
+# alpha-composited AFTER the frame but BEFORE oracle text.  The style is derived
+# from a free-text description so users can type anything natural.
+
+_BORDER_THEME_MAP: list[tuple[list[str], str, tuple]] = [
+    (['vine','leaf','forest','nature','plant','druid','grove','growth','garden',
+      'bloom','floral','flower','herb','fern','moss','jungle','swamp','root'],
+     'vine', (55, 130, 45)),
+    (['frost','ice','snow','winter','cold','frozen','crystal','glacier','blizzard','tundra'],
+     'frost', (145, 205, 245)),
+    (['fire','flame','ember','burn','heat','lava','volcano','inferno','blaze','torch','ash','cinder'],
+     'flame', (255, 108, 25)),
+    (['arcane','rune','mystical','spell','wizard','sigil','glyph','eldritch','cosmic','magic',
+      'runic','astral','aether','arcana','mage'],
+     'arcane', (148, 78, 218)),
+    (['circuit','tech','cyber','steam','machine','robot','construct','mechanic','gear',
+      'clock','pipe','punk','neon','wire','matrix'],
+     'circuit', (35, 195, 195)),
+    (['ocean','wave','sea','water','river','lake','tide','coral','nautical','aqua','marine',
+      'flood'],
+     'wave', (28, 115, 195)),
+    (['shadow','dark','void','abyss','night','ghost','skull','bone','death','undead',
+      'crypt','tomb','blood','horror','gothic','dread'],
+     'shadow', (90, 50, 140)),
+]
+_BORDER_THEME_DEFAULT = ('ornate', (198, 162, 48))
+
+
+def _classify_border_theme(desc: str) -> tuple[str, tuple]:
+    t = desc.lower()
+    for keywords, style, rgb in _BORDER_THEME_MAP:
+        if any(k in t for k in keywords):
+            return style, rgb
+    return _BORDER_THEME_DEFAULT
+
+
+# cx, cy = exact corner coordinate; sx/sy = direction signs (+1 = toward card interior)
+# sz = ornament bounding size in px; col = RGBA; lw = line width
+
+def _vine_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                  sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    h = [
+        (cx,                        cy),
+        (cx + sx*int(sz*.28),       cy + sy*int(sz*.07)),
+        (cx + sx*int(sz*.55),       cy + sy*int(sz*.18)),
+        (cx + sx*int(sz*.76),       cy + sy*int(sz*.44)),
+    ]
+    draw.line(h, fill=col, width=lw)
+    r = max(2, lw+1)
+    draw.ellipse([h[-1][0]-r, h[-1][1]-r, h[-1][0]+r, h[-1][1]+r], fill=col)
+    v = [
+        (cx,                        cy),
+        (cx + sx*int(sz*.09),       cy + sy*int(sz*.30)),
+        (cx + sx*int(sz*.20),       cy + sy*int(sz*.58)),
+        (cx + sx*int(sz*.36),       cy + sy*int(sz*.78)),
+    ]
+    draw.line(v, fill=col, width=lw)
+    draw.ellipse([v[-1][0]-r, v[-1][1]-r, v[-1][0]+r, v[-1][1]+r], fill=col)
+    m = h[2]
+    bx = m[0] + sx*int(sz*.14)
+    by = m[1] - sy*int(sz*.22)
+    draw.line([m, (bx, by)], fill=col, width=max(1, lw-1))
+    draw.ellipse([bx-r, by-r, bx+r, by+r], fill=col)
+    cr = int(sz*.13)
+    ac = (cx + sx*int(sz*.14), cy + sy*int(sz*.14))
+    arc_map = {(1,1):(180,270), (-1,1):(270,360), (1,-1):(90,180), (-1,-1):(0,90)}
+    a_s, a_e = arc_map.get((sx, sy), (180, 270))
+    draw.arc([ac[0]-cr, ac[1]-cr, ac[0]+cr, ac[1]+cr], start=a_s, end=a_e,
+             fill=col, width=max(1, lw-1))
+
+
+def _frost_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                   sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    de = (cx + sx*int(sz*.62), cy + sy*int(sz*.62))
+    draw.line([(cx, cy), de], fill=col, width=lw)
+    r = max(1, lw)
+    draw.ellipse([de[0]-r, de[1]-r, de[0]+r, de[1]+r], fill=col)
+    for frac, blen in ((0.35, 0.19), (0.60, 0.14)):
+        px = cx + sx*int(sz*frac);  py = cy + sy*int(sz*frac)
+        bp = int(sz*blen)
+        for sign in (1, -1):
+            draw.line([(px, py), (int(px + sign*sy*bp), int(py - sign*sx*bp))],
+                      fill=col, width=max(1, lw-1))
+    xe = (cx + sx*int(sz*.55), cy)
+    draw.line([(cx, cy), xe], fill=col, width=lw)
+    draw.ellipse([xe[0]-r, xe[1]-r, xe[0]+r, xe[1]+r], fill=col)
+    tick = int(sz*.11)
+    xmid = cx + sx*int(sz*.30)
+    draw.line([(xmid, cy-tick), (xmid, cy+tick)], fill=col, width=max(1, lw-1))
+    ye = (cx, cy + sy*int(sz*.55))
+    draw.line([(cx, cy), ye], fill=col, width=lw)
+    draw.ellipse([ye[0]-r, ye[1]-r, ye[0]+r, ye[1]+r], fill=col)
+    ymid = cy + sy*int(sz*.30)
+    draw.line([(cx-tick, ymid), (cx+tick, ymid)], fill=col, width=max(1, lw-1))
+
+
+def _flame_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                   sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    for i, deg in enumerate((18, 42, 68)):
+        rad = math.radians(deg)
+        ln = int(sz * (0.68 - i*0.08))
+        ex = cx + sx*int(ln*math.cos(rad));  ey = cy + sy*int(ln*math.sin(rad))
+        draw.line([(cx, cy), (ex, ey)], fill=col, width=max(1, lw-(i>0)))
+        r = max(1, lw-1)
+        draw.ellipse([ex-r, ey-r, ex+r, ey+r], fill=col)
+    for rx, ry in ((0.34, 0.18), (0.52, 0.33), (0.22, 0.50), (0.58, 0.14), (0.14, 0.44)):
+        spx = cx + sx*int(sz*rx);  spy = cy + sy*int(sz*ry)
+        draw.ellipse([spx-1, spy-1, spx+2, spy+2], fill=col)
+
+
+def _arcane_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                    sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    arc_r = int(sz*.44)
+    arc_map = {(1,1):(0,90), (-1,1):(90,180), (1,-1):(270,360), (-1,-1):(180,270)}
+    a_s, a_e = arc_map.get((sx, sy), (0, 90))
+    draw.arc([cx-arc_r, cy-arc_r, cx+arc_r, cy+arc_r],
+             start=a_s, end=a_e, fill=col, width=lw)
+    tick = int(sz*.07)
+    for spx, spy in (
+        (cx + sx*arc_r,              cy),
+        (cx,                         cy + sy*arc_r),
+        (cx + sx*int(arc_r*.707),   cy + sy*int(arc_r*.707)),
+    ):
+        draw.line([(spx-tick, spy), (spx+tick, spy)], fill=col, width=max(1, lw-1))
+        draw.line([(spx, spy-tick), (spx, spy+tick)], fill=col, width=max(1, lw-1))
+    r = max(2, lw+1)
+    draw.ellipse([cx-r, cy-r, cx+r, cy+r], fill=col)
+
+
+def _circuit_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                     sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    sq = max(3, lw+1)
+    t1m = (cx + sx*int(sz*.52), cy)
+    t1e = (cx + sx*int(sz*.52), cy + sy*int(sz*.38))
+    draw.line([(cx, cy), t1m, t1e], fill=col, width=lw)
+    for px, py in (t1m, t1e):
+        draw.rectangle([px-sq, py-sq, px+sq, py+sq], fill=col)
+    t2m = (cx, cy + sy*int(sz*.52))
+    t2e = (cx + sx*int(sz*.38), cy + sy*int(sz*.52))
+    draw.line([(cx, cy), t2m, t2e], fill=col, width=lw)
+    for px, py in (t2m, t2e):
+        draw.rectangle([px-sq, py-sq, px+sq, py+sq], fill=col)
+    p1 = (cx + sx*int(sz*.16), cy)
+    p2 = (cx + sx*int(sz*.16), cy + sy*int(sz*.16))
+    p3 = (cx + sx*int(sz*.32), cy + sy*int(sz*.16))
+    draw.line([p1, p2, p3], fill=col, width=max(1, lw-1))
+    draw.rectangle([p3[0]-sq+1, p3[1]-sq+1, p3[0]+sq-1, p3[1]+sq-1], fill=col)
+    for px, py in (t1e, t2e):
+        r = max(3, lw+2)
+        draw.ellipse([px-r, py-r, px+r, py+r], outline=col, width=max(1, lw-1))
+
+
+def _wave_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                  sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    steps = 22
+    pts_x = []
+    for i in range(steps+1):
+        t = i/steps
+        pts_x.append((
+            cx + sx*int(sz*t*.80),
+            cy + sy*int(math.sin(t*math.pi*2.2)*sz*.11 + sz*.09),
+        ))
+    draw.line(pts_x, fill=col, width=lw)
+    pts_y = []
+    for i in range(steps+1):
+        t = i/steps
+        pts_y.append((
+            cx + sx*int(math.sin(t*math.pi*2.2)*sz*.11 + sz*.09),
+            cy + sy*int(sz*t*.80),
+        ))
+    draw.line(pts_y, fill=col, width=lw)
+    r = max(2, lw)
+    for rx, ry in ((0.24, 0.36), (0.44, 0.20), (0.15, 0.54)):
+        dpx = cx + sx*int(sz*rx);  dpy = cy + sy*int(sz*ry)
+        draw.ellipse([dpx-r, dpy-r, dpx+r, dpy+r], fill=col)
+
+
+def _shadow_corner(overlay: Image.Image, cx: int, cy: int,
+                    sx: int, sy: int, sz: int, col: tuple) -> None:
+    draw = ImageDraw.Draw(overlay)
+    base_r = int(sz*.52)
+    base_a = col[3] if len(col) > 3 else 100
+    for step in range(6):
+        r = int(base_r*(1 - step*.13))
+        a = max(0, int(base_a*(.65 - step*.10)))
+        dx = cx + sx*int(sz*step*.04);  dy = cy + sy*int(sz*step*.04)
+        draw.ellipse([dx-r, dy-r, dx+r, dy+r], fill=(*col[:3], a))
+    wisp_a = max(0, int(base_a*.45))
+    for x1r, y1r, x2r, y2r in ((0.28, 0.08, 0.58, 0.38), (0.08, 0.28, 0.38, 0.58)):
+        draw.line([
+            (cx + sx*int(sz*x1r), cy + sy*int(sz*y1r)),
+            (cx + sx*int(sz*x2r), cy + sy*int(sz*y2r)),
+        ], fill=(*col[:3], wisp_a), width=max(1, int(sz*.018)))
+
+
+def _ornate_corner(draw: ImageDraw.ImageDraw, cx: int, cy: int,
+                    sx: int, sy: int, sz: int, col: tuple, lw: int) -> None:
+    bl = int(sz*.64)
+    draw.line([(cx, cy), (cx + sx*bl, cy)], fill=col, width=lw)
+    draw.line([(cx, cy), (cx, cy + sy*bl)], fill=col, width=lw)
+    r = max(2, lw)
+    for frac in (0.28, 0.52, 0.76):
+        hx = cx + sx*int(bl*frac)
+        draw.ellipse([hx-r, cy-r, hx+r, cy+r], fill=col)
+        vy = cy + sy*int(bl*frac)
+        draw.ellipse([cx-r, vy-r, cx+r, vy+r], fill=col)
+    d = int(sz*.10)
+    draw.polygon([(cx, cy-d), (cx+sx*d, cy), (cx, cy+sy*d), (cx-sx*d, cy)], fill=col)
+    sr = int(sz*.20)
+    sac = (cx + sx*int(sz*.14), cy + sy*int(sz*.14))
+    arc_map = {(1,1):(180,270), (-1,1):(270,360), (1,-1):(90,180), (-1,-1):(0,90)}
+    a_s, a_e = arc_map.get((sx, sy), (180, 270))
+    draw.arc([sac[0]-sr, sac[1]-sr, sac[0]+sr, sac[1]+sr],
+             start=a_s, end=a_e, fill=col, width=max(1, lw-1))
+
+
+def _dispatch_corner(
+    overlay: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    style: str,
+    cx: int, cy: int, sx: int, sy: int, sz: int, col: tuple, lw: int,
+) -> None:
+    if   style == 'vine':    _vine_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'frost':   _frost_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'flame':   _flame_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'arcane':  _arcane_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'circuit': _circuit_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'wave':    _wave_corner(draw, cx, cy, sx, sy, sz, col, lw)
+    elif style == 'shadow':  _shadow_corner(overlay, cx, cy, sx, sy, sz, col)
+    else:                    _ornate_corner(draw, cx, cy, sx, sy, sz, col, lw)
+
+
+def _draw_border_theme(
+    canvas: Image.Image,
+    border_theme: str,
+    intensity: float = 0.52,
+) -> None:
+    """Alpha-composite sparse thematic corner ornaments onto the card canvas.
+
+    Called after the card frame is composited but before oracle text is drawn,
+    so decorations sit above the frame chrome and below any text.
+    """
+    if not (border_theme or "").strip():
+        return
+
+    style, rgb = _classify_border_theme(border_theme)
+    alpha = int(255 * min(max(intensity, 0.05), 0.95))
+    col   = (*rgb, alpha)
+    lw    = max(2, _mm(0.13))   # ~3 px internal → ~1.5 px at 750-wide output
+    orn   = _mm(4.2)            # ornament bounding box size
+
+    overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    draw    = ImageDraw.Draw(overlay)
+
+    # Text-box corner ornaments (four corners of the oracle text area)
+    for cx, cy, sx, sy in (
+        (_ORA_X,           _ORA_Y,          1,  1),
+        (_ORA_X + _ORA_W,  _ORA_Y,         -1,  1),
+        (_ORA_X,           _ORA_Y + _ORA_H, 1, -1),
+        (_ORA_X + _ORA_W,  _ORA_Y + _ORA_H,-1, -1),
+    ):
+        _dispatch_corner(overlay, draw, style, cx, cy, sx, sy, orn, col, lw)
+
+    # Outer border corner ornaments — only for styles that look good there
+    if style in ('ornate', 'arcane', 'circuit'):
+        outer_orn = _mm(2.8)
+        outer_col = (*rgb, int(alpha * 0.60))
+        outer_lw  = max(1, lw - 1)
+        for cx, cy, sx, sy in (
+            (_BG_X,           _BG_Y,          1,  1),
+            (_BG_X + _BG_W,   _BG_Y,         -1,  1),
+            (_BG_X,           _BG_Y + _BG_H,  1, -1),
+            (_BG_X + _BG_W,   _BG_Y + _BG_H, -1, -1),
+        ):
+            _dispatch_corner(overlay, draw, style, cx, cy, sx, sy,
+                             outer_orn, outer_col, outer_lw)
+
+    canvas.alpha_composite(overlay)
+
+
+# ── Main render ───────────────────────────────────────────────────────────────
+def render_card(
+    card:         dict,
+    themed_name:  str,
+    oracle_text:  str,
+    art_image:    Optional[Image.Image] = None,
+    set_symbol:   Optional[Image.Image] = None,
+    flavor_text:  str = "",
+    border_theme: str = "",
+) -> Image.Image:
+    """
+    Render a full MTG-style card.
+    Returns a 750×1050 RGBA PIL Image.
+    """
+    colors    = card.get("color_identity", [])
+    type_line = card.get("type_line", "")
+    mana_cost = card.get("mana_cost", "") or ""
+    power     = card.get("power")
+    toughness = card.get("toughness")
+    is_legendary = "Legendary" in (type_line or "")
+
+    fk  = _frame_key(colors, type_line)
+    bk  = _box_key(fk)
+    bar_fg = _BAR_FG.get(fk, _DARK_TEXT)
+
+    # ── 2× canvas ─────────────────────────────────────────────────────────────
+    canvas = Image.new("RGBA", (_W2, _H2), (0, 0, 0, 255))
+
+    # ── Layer 1: inner background ─────────────────────────────────────────────
+    bg_img = _load_asset("bg", fk)
+    if bg_img:
+        bg_scaled = bg_img.resize((_BG_W, _BG_H), Image.LANCZOS)
+        canvas.paste(bg_scaled, (_BG_X, _BG_Y), bg_scaled)
+
+    # ── Layer 2: art image ────────────────────────────────────────────────────
+    if art_image:
+        art = ImageOps.fit(art_image.convert("RGBA"), (_ART_W, _ART_H), Image.LANCZOS)
+    else:
+        # plain dark gradient placeholder
+        art = Image.new("RGBA", (_ART_W, _ART_H), (20, 18, 14, 255))
+        d   = ImageDraw.Draw(art)
+        d.text((_ART_W // 2, _ART_H // 2), themed_name,
+               font=_beleren(_mm(2)), fill=(60, 55, 45, 255), anchor="mm")
+    canvas.paste(art, (_ART_X, _ART_Y))
+
+    # ── Layer 3: frame overlay ────────────────────────────────────────────────
+    frame_img = _load_asset("frames", fk)
+    if frame_img:
+        fr_scaled = frame_img.resize((_FR_W, _FR_H), Image.LANCZOS)
+        canvas.paste(fr_scaled, (_FR_X, _FR_Y), fr_scaled)
+
+    # ── Layer 4: name bar (top-line boxes strip) ──────────────────────────────
+    boxes_img = _load_asset("boxes", bk)
+    if boxes_img:
+        # Boxes PNG contains both name and type bar designs stacked.
+        # top-line = top portion; mid-line (background-position: 0 bottom) = bottom portion
+        boxes_w = _BAR_W
+        boxes_h = round(boxes_img.height * (_BAR_W / boxes_img.width))
+        boxes_scaled = boxes_img.resize((boxes_w, boxes_h), Image.LANCZOS)
+
+        # Name bar: top slice
+        name_slice = boxes_scaled.crop((0, 0, boxes_w, _BAR_H))
+        canvas.paste(name_slice, (_BAR_X, _NAME_Y), name_slice)
+
+        # Type bar: bottom slice (background-position: 0 bottom)
+        type_slice = boxes_scaled.crop((0, boxes_h - _BAR_H, boxes_w, boxes_h))
+        canvas.paste(type_slice, (_BAR_X, _TYPE_Y), type_slice)
+
+    # ── Layer 5: legendary crown ──────────────────────────────────────────────
+    if is_legendary:
+        crown_img = _load_asset("legendary_crowns", _crown_key(fk))
+        if crown_img:
+            crown_h = round(crown_img.height * (_CROWN_W / crown_img.width))
+            crown_scaled = crown_img.resize((_CROWN_W, crown_h), Image.LANCZOS)
+            canvas.paste(crown_scaled, (_CROWN_X, _CROWN_Y), crown_scaled)
+
+    # ── Layer 5.5: border theme decorations ───────────────────────────────────
+    # Composited AFTER the frame chrome but BEFORE any text so decorations
+    # never obscure card rules text or name bars.
+    if border_theme:
+        _draw_border_theme(canvas, border_theme)
+        print(f"  [render_card] Applied border theme: {border_theme!r}")
+
+    draw = ImageDraw.Draw(canvas)
+
+    # ── Layer 6: name text + mana pips ────────────────────────────────────────
+    # Check whether to show an original-card-name subtitle in the name bar
+    original_name = (card.get("name") or "").strip()
+    show_subtitle = bool(original_name and original_name != themed_name.strip())
+
+    pips     = _parse_mana(mana_cost)
+    pip_size = _mm(3.0)          # ≈ 45px at 2× — slightly smaller when subtitle present
+
+    # Vertical anchor for name + pips:
+    #   • Without subtitle → vertical centre of the bar
+    #   • With subtitle    → upper 40 % of the bar, leaving room for subtitle below
+    if show_subtitle:
+        name_cy = _NAME_Y + round(_BAR_H * 0.38)
+    else:
+        name_cy = _NAME_TY   # bar centre
+
+    # Draw pips right-aligned; returns leftmost x used
+    pip_right  = _BAR_X + _BAR_W - _mm(0.5)
+    pip_left_x = _draw_mana_row(canvas, pips, pip_right, name_cy, pip_size)
+    name_max_x = pip_left_x - _mm(0.5)
+
+    # Main (themed) name
+    name_font_size = _mm(2.5) if show_subtitle else _mm(2.7)
+    name_font = _beleren(name_font_size)
+    name_text = themed_name
+    try:
+        while name_font.getlength(name_text) > (name_max_x - _NAME_TX) and len(name_text) > 4:
+            name_text = name_text[:-2] + "…"
+    except Exception:
+        pass
+    draw.text((_NAME_TX, name_cy), name_text,
+              font=name_font, fill=bar_fg, anchor="lm")
+
+    # ── Original card name subtitle ────────────────────────────────────────────
+    if show_subtitle:
+        sub_size = _mm(1.55)      # ~23px at 2× → ~12px at final output
+        sub_font = _mplantin_italic(sub_size)
+        sub_text = original_name
+        sub_max_w = _BAR_W - _mm(2.0)
+        try:
+            while sub_font.getlength(sub_text) > sub_max_w and len(sub_text) > 4:
+                sub_text = sub_text[:-2] + "…"
+        except Exception:
+            pass
+        # Draw centred, anchored to the bottom of the name bar
+        # Use a slightly muted version of bar_fg for visual hierarchy
+        sub_fg = tuple(
+            max(0, min(255, int(c * 0.72 + 128 * 0.28)))
+            for c in bar_fg[:3]
+        )
+        sub_cx = _BAR_X + _BAR_W // 2
+        sub_y  = _NAME_Y + _BAR_H - _mm(0.45)
+        draw.text((sub_cx, sub_y), sub_text,
+                  font=sub_font, fill=sub_fg, anchor="mb")
+
+    # ── Layer 7: type line ────────────────────────────────────────────────────
+    type_font_size = _mm(2.1)    # MPlantin at ~2.1mm
+    type_font = _mplantin(type_font_size)
+    type_text = type_line
+    try:
+        while type_font.getlength(type_text) > (_BAR_W - _mm(8)) and "—" in type_text:
+            type_text = type_text.split("—")[0].strip()
+        while type_font.getlength(type_text) > (_BAR_W - _mm(8)):
+            type_text = type_text[:-2] + "…"
+    except Exception:
+        pass
+
+    # Set symbol (right side of type bar)
+    set_sym_size = _mm(3.2)
+    set_sym_x    = _BAR_X + _BAR_W - set_sym_size - _mm(0.5)
+    set_sym_y    = _TYPE_Y + (_BAR_H - set_sym_size) // 2
+    if set_symbol:
+        ss = set_symbol.convert("RGBA").resize((set_sym_size, set_sym_size), Image.LANCZOS)
+        canvas.paste(ss, (set_sym_x, set_sym_y), ss)
+
+    draw.text((_BAR_X + _mm(1.5), _TYPE_TY), type_text,
+              font=type_font, fill=bar_fg, anchor="lm")
+
+    # ── Layer 8: oracle text + flavor text ───────────────────────────────────
+    oracle_fg  = _DARK_TEXT
+    sym_size   = _mm(2.4)     # inline symbol size
+    body_size  = _mm(2.1)     # MPlantin body font size
+
+    ora_x = _ORA_X + _ORA_PAD
+    ora_y = _ORA_Y + _ORA_PAD
+    ora_w = _ORA_W - 2 * _ORA_PAD
+    ora_h = _ORA_H - 2 * _ORA_PAD
+
+    has_oracle = bool((oracle_text or "").strip())
+    has_flavor = bool((flavor_text or "").strip())
+
+    if has_oracle and has_flavor:
+        # Split: ~68 % rules text, thin separator, ~28 % flavor text
+        rules_h = round(ora_h * 0.68)
+        sep_gap = _mm(1.2)
+        flav_y  = ora_y + rules_h + sep_gap
+        flav_h  = ora_h - rules_h - sep_gap
+    elif has_flavor and not has_oracle:
+        rules_h = 0
+        flav_y  = ora_y
+        flav_h  = ora_h
+    else:
+        rules_h = ora_h
+        flav_y  = 0
+        flav_h  = 0
+
+    if has_oracle:
+        _draw_oracle_text(
+            canvas, oracle_text,
+            ora_x, ora_y, ora_w, rules_h if rules_h else ora_h,
+            sym_size, body_size, oracle_fg,
+            center_v=True,
+        )
+
+    # Decorative separator between rules and flavor text
+    if has_oracle and has_flavor:
+        sep_y = ora_y + rules_h + _mm(0.55)
+        sx1   = ora_x + _mm(3.5)
+        sx2   = ora_x + ora_w - _mm(3.5)
+        draw.line([(sx1, sep_y), (sx2, sep_y)],
+                  fill=(110, 98, 78, 200), width=max(1, round(_mm(0.08))))
+
+    if has_flavor and flav_h > 0:
+        flav_font = _mm(1.85)
+        _draw_flavor_text(
+            canvas, flavor_text,
+            ora_x, flav_y, ora_w, flav_h,
+            flav_font, oracle_fg,
+        )
+
+    # ── Layer 9: P/T badge ────────────────────────────────────────────────────
+    if power is not None and toughness is not None:
+        pt_str = f"{power}/{toughness}"
+        pt_img = _load_asset("pt_boxes", bk)
+        if pt_img:
+            pt_scaled = pt_img.resize((_PT_W, _PT_H), Image.LANCZOS)
+            canvas.paste(pt_scaled, (_PT_X, _PT_Y), pt_scaled)
+        else:
+            draw.rounded_rectangle([_PT_X, _PT_Y, _PT_X + _PT_W, _PT_Y + _PT_H],
+                                   radius=_mm(0.8), fill=(200, 185, 145))
+
+        pt_font = _beleren(_mm(2.0))
+        draw.text((_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),
+                  pt_str, font=pt_font, fill=_DARK_TEXT, anchor="mm")
+
+    # ── Downscale 2× → 1× with LANCZOS ───────────────────────────────────────
+    out = canvas.resize((CARD_W, CARD_H), Image.LANCZOS)
+    return out
+
+
+# ── Batch helpers ─────────────────────────────────────────────────────────────
+def render_deck_thumbnails(
+    commander_tc,
+    deck_tcs: list,
+    theme: str,
+    art_paths: dict[str, Optional[Path]],
+    output_dir: Path,
+    oracle_overrides: Optional[dict[str, str]] = None,
+    flavor_overrides: Optional[dict[str, str]] = None,
+    border_theme: str = "",
+) -> dict[str, Path]:
+    """
+    Render all unique cards as card-frame PNGs.
+    Returns original_name → PNG path.
+
+    oracle_overrides: original_name → processed oracle text (self-refs replaced)
+    flavor_overrides: original_name → Ollama-generated flavor text
+    """
+    from set_symbol import generate_set_symbol
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    sym    = generate_set_symbol(theme)
+    saved: dict[str, Path] = {}
+
+    all_tcs = [commander_tc] + deck_tcs
+    seen: set[str] = set()
+    total = len({tc.original_name for tc in all_tcs})
+    idx   = 0
+
+    for tc in all_tcs:
+        name = tc.original_name
+        if name in seen:
+            continue
+        seen.add(name)
+        idx += 1
+
+        art: Optional[Image.Image] = None
+
+        ap = art_paths.get(name)
+        if ap and Path(ap).exists():
+            art = Image.open(ap)
+        else:
+            scryfall_url = (
+                (tc.card.get("image_uris") or {}).get("art_crop") or
+                (tc.card.get("image_uris") or {}).get("normal", "")
+            )
+            if scryfall_url:
+                art = _fetch_scryfall_art(scryfall_url, name)
+
+        try:
+            safe = "".join(c if c.isalnum() else "_" for c in name)[:48]
+            out  = output_dir / f"{safe}.png"
+
+            # Skip cards already rendered inline during the art-gen phase
+            if out.exists():
+                saved[name] = out
+                print(f"  [renderer] [{idx}/{total}] {'cached':12s}  {name}")
+                continue
+
+            oracle  = (oracle_overrides or {}).get(name) or tc.card.get("oracle_text", "")
+            flavor  = (flavor_overrides or {}).get(name) or ""
+            card_img = render_card(
+                tc.card, tc.themed_name, oracle,
+                art_image=art, set_symbol=sym, flavor_text=flavor,
+                border_theme=border_theme,
+            )
+            card_img.save(out, "PNG")
+            card_img.close()  # Close the rendered card image
+            saved[name] = out
+            print(f"  [renderer] [{idx}/{total}] {'art' if art else 'placeholder':12s}  {name}")
+        finally:
+            # Always close the source art image to prevent handle leak
+            if art is not None:
+                art.close()
+
+    return saved
