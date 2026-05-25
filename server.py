@@ -1620,17 +1620,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         themed_cmd: Optional[ThemedCard]       = None
         themed_deck: Optional[list[ThemedCard]] = None
         try:
+            # Themer init automatically detects model fallback if needed (qwen3:14b → qwen3:32b)
             themer = Themer(model=llm_model_rt) if llm_model_rt else Themer()
-
-            # If model was automatically changed due to fallback, report it
-            actual_model = themer.model
-            requested_model = llm_model_rt or "qwen3:14b"  # default
-            if actual_model != requested_model:
-                _push(job_id, "progress", json.dumps({
-                    "step": "theme",
-                    "msg": f"Model '{requested_model}' not available — using '{actual_model}' instead",
-                    "info": True,
-                }))
 
             def _theme_cb(batch_num, total_batches, cards_done, total_cards):
                 pct = round(cards_done / total_cards * 100) if total_cards else 0
