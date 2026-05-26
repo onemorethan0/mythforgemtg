@@ -37,7 +37,8 @@ Sampler notes (community-tested FLUX dev, 2025):
   euler + beta   — NOT recommended together (beta only shines paired with deis).
   dpm++_2m + sgm_uniform — sharpest detail, best for illustration/concept art.
   deis + beta    — high contrast cinematic look, also excellent for MTG scenes.
-  Current default: dpm++_2m + sgm_uniform, 35 steps, CFG 3.5, 1152x768.
+  Dev default:     dpm++_2m + sgm_uniform, 35 steps, CFG 3.5, 1152x768.
+  Schnell default: euler + simple,          8 steps, CFG 1.0, 1152x768 (no LoRAs — dev-trained).
 """
 from __future__ import annotations
 
@@ -1056,7 +1057,9 @@ def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
                           negative: str = "") -> dict:
     neg = negative or _FLUX_NEGATIVE
     is_schnell = "schnell" in checkpoint.lower()
-    # Schnell: 8 steps / CFG 1.5 / euler + simple   (fast draft quality)
+    # Schnell: 8 steps / CFG 1.0 / euler + simple   (fast draft quality)
+    #   Schnell is even more aggressively distilled than dev — CFG 1.0 is the
+    #   community consensus sweet spot (1.0–1.5 max before over-guidance shows).
     # Dev fp8: 35 steps / CFG 3.5 / dpm++_2m + sgm_uniform
     #   FLUX dev is a guidance-distilled model — guidance is baked into the
     #   weights at training time.  Community-tested sweet spot is CFG 1.0–4.0.
@@ -1065,7 +1068,7 @@ def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
     #   3.5 gives strong prompt adherence without driving the latent out of range.
     #   dpm++_2m + sgm_uniform remains the sharpest combo for illustration detail.
     steps    = 8            if is_schnell else 35
-    cfg      = 1.5          if is_schnell else 3.5
+    cfg      = 1.0          if is_schnell else 3.5
     sampler  = "euler"      if is_schnell else "dpmpp_2m"
     scheduler= "simple"     if is_schnell else "sgm_uniform"
     return {
@@ -1142,7 +1145,7 @@ def _build_pulid_flux_workflow(
     """
     is_schnell = "schnell" in checkpoint.lower()
     steps    = 8            if is_schnell else 35
-    cfg      = 1.5          if is_schnell else 7.0
+    cfg      = 1.0          if is_schnell else 3.5   # same rationale as _build_flux_workflow
     sampler  = "euler"      if is_schnell else "dpmpp_2m"
     scheduler= "simple"     if is_schnell else "sgm_uniform"
     return {
@@ -1628,6 +1631,15 @@ class ImageGen:
         if not _is_flux(self.checkpoint or ""):
             return
 
+        # Schnell is a different distilled architecture — dev-trained LoRAs are
+        # incompatible and produce incoherent output.  Skip LoRA setup entirely;
+        # schnell runs prompt-only.  (Future schnell-native LoRAs can be added
+        # to the catalog with a schnell_ok=True flag to opt back in.)
+        if "schnell" in (self.checkpoint or "").lower():
+            print(f"  [image_gen] FLUX schnell detected — skipping LoRA setup "
+                  f"(dev-trained LoRAs are incompatible with schnell)")
+            return
+
         installed = self._query_model_list("LoraLoader", "lora_name")
         if not installed:
             return
@@ -1969,7 +1981,11 @@ class ImageGen:
             # Insert LoRA nodes into workflow (chains model + clip through each LoRA).
             # Dark-only LoRAs have their strength scaled by self.theme_darkness so
             # light/whimsical themes aren't dragged into grim dark-fantasy territory.
-            if self.active_loras and _is_flux(self.checkpoint):
+            # LoRAs are skipped for schnell — all current LoRAs are dev-trained and
+            # incompatible with schnell's distillation; applying them produces
+            # incoherent output. schnell runs prompt-only.
+            _is_schnell_ckpt = "schnell" in (self.checkpoint or "").lower()
+            if self.active_loras and _is_flux(self.checkpoint) and not _is_schnell_ckpt:
                 scaled: list[dict] = []
                 for entry in self.active_loras:
                     if entry.get("dark_only") and self.theme_darkness < 1.0:
