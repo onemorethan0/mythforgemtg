@@ -221,6 +221,15 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
   const [customPrompts, setCustomPrompts] = useState({})
   const [artStyle, setArtStyle]           = useState(defaultArtStyle || 'mtg_fantasy')
   const [modelSpeed, setModelSpeed]       = useState(defaultModelSpeed || 'quality')
+  const [artStyles, setArtStyles]         = useState([])
+
+  // Fetch available art styles from API on mount
+  useEffect(() => {
+    fetch('/api/art-styles')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setArtStyles(d) })
+      .catch(() => {}) // silently fail if API unavailable
+  }, [])
 
   const commanderSelected = selectedCards.some(c => c.original_name === commanderOriginalName)
   const creaturesSelected = selectedCards.some(c => c.original_name !== commanderOriginalName)
@@ -466,12 +475,15 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
               onChange={e => setArtStyle(e.target.value)}
               style={{ background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '4px 8px', fontSize: 11, fontFamily: 'inherit' }}
             >
-              <option value="mtg_fantasy">MTG Fantasy</option>
-              <option value="photorealism">Photorealism</option>
-              <option value="anime">Anime / Manga</option>
-              <option value="art_nouveau">Art Nouveau</option>
-              <option value="cyberpunk">Cyberpunk</option>
-              <option value="desert_punk">Desert Punk</option>
+              {artStyles.length > 0 ? (
+                artStyles.map(s => (
+                  <option key={s.key} value={s.key} disabled={!s.ready && !s.partial}>
+                    {s.icon} {s.label}{s.ready ? '' : s.partial ? ' (partial)' : ' (missing)'}
+                  </option>
+                ))
+              ) : (
+                <option value="mtg_fantasy">MTG Fantasy</option>
+              )}
             </select>
           </label>
           <label style={{ fontSize: 11, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6 }}>
