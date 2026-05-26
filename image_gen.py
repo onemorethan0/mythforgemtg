@@ -1637,7 +1637,7 @@ class ImageGen:
         """
         Query ComfyUI for installed LoRAs and match them against the active
         preset's LoRA list.  Builds self.active_loras, self.lora_trigger_prefix,
-        and self.active_flux_prefix.  FLUX only — SDXL skipped entirely.
+        and self.active_flux_prefix.  Supports FLUX and SDXL models.
         """
         _all = get_all_presets()
         preset = _all.get(self.art_style, _all.get("mtg_fantasy", next(iter(_all.values()))))
@@ -1655,14 +1655,18 @@ class ImageGen:
         style_label = preset["label"]
         print(f"  [image_gen] Art style: {style_label}")
 
-        if not _is_flux(self.checkpoint or ""):
+        is_flux = _is_flux(self.checkpoint or "")
+        is_sdxl = not is_flux and not _is_sd35(self.checkpoint or "")
+
+        # Skip LoRAs for unsupported model types (neither FLUX nor SDXL)
+        if not is_flux and not is_sdxl:
             return
 
         # Schnell is a different distilled architecture — dev-trained LoRAs are
         # incompatible and produce incoherent output.  Skip LoRA setup entirely;
         # schnell runs prompt-only.  (Future schnell-native LoRAs can be added
         # to the catalog with a schnell_ok=True flag to opt back in.)
-        if "schnell" in (self.checkpoint or "").lower():
+        if is_flux and "schnell" in (self.checkpoint or "").lower():
             print(f"  [image_gen] FLUX schnell detected — skipping LoRA setup "
                   f"(dev-trained LoRAs are incompatible with schnell)")
             return
@@ -1690,7 +1694,8 @@ class ImageGen:
             triggers = [e["trigger"] for e in found if e.get("trigger")]
             self.lora_trigger_prefix = ", ".join(triggers) + ". " if triggers else ""
             labels = [e["label"] for e in found]
-            print(f"  [image_gen] LoRAs active ({len(found)}/{len(preset['loras'])}): "
+            model_type = "SDXL" if is_sdxl else "FLUX"
+            print(f"  [image_gen] LoRAs active ({len(found)}/{len(preset['loras'])}) [{model_type}]: "
                   f"{'; '.join(labels)}")
         if missing_labels:
             print(f"  [image_gen] LoRAs missing for '{style_label}': "
@@ -2012,7 +2017,10 @@ class ImageGen:
             # incompatible with schnell's distillation; applying them produces
             # incoherent output. schnell runs prompt-only.
             _is_schnell_ckpt = "schnell" in (self.checkpoint or "").lower()
-            if self.active_loras and _is_flux(self.checkpoint) and not _is_schnell_ckpt:
+            _is_flux_model = _is_flux(self.checkpoint)
+            _is_sdxl_model = not _is_flux_model and not _is_sd35(self.checkpoint or "")
+
+            if self.active_loras and (_is_flux_model or _is_sdxl_model) and not _is_schnell_ckpt:
                 scaled: list[dict] = []
                 for entry in self.active_loras:
                     if entry.get("dark_only") and self.theme_darkness < 1.0:
@@ -2023,8 +2031,11 @@ class ImageGen:
                         })
                     else:
                         scaled.append(entry)
-                # Checkpoint node is always "1" in FLUX workflows (standard and PuLID)
-                wf = _insert_loras(wf, "1", scaled)
+                # Checkpoint node ID varies by model:
+                #   FLUX workflows: node "1"
+                #   SDXL workflows: node "4"
+                checkpoint_node = "1" if _is_flux_model else "4"
+                wf = _insert_loras(wf, checkpoint_node, scaled)
 
             # Log LoRA chain so we can spot missing/wrong filenames immediately
             lora_nodes = {nid: n for nid, n in wf.items()
