@@ -1017,6 +1017,15 @@ def _run_build(job_id: str, req: BuildRequest):
         # pressure). Let the background task handle VRAM cleanup exclusively.
         if cancel_event.is_set():
             _jobs[job_id]["status"] = "cancelled"
+            # Stamp deck.json so disk state matches — _load_deck_from_disk can
+            # then return the partial deck correctly after a server restart.
+            try:
+                if deck_json_path.exists():
+                    _d = json.loads(deck_json_path.read_text(encoding="utf-8"))
+                    _d["status"] = "cancelled"
+                    deck_json_path.write_text(json.dumps(_d), encoding="utf-8")
+            except Exception:
+                pass
             _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
             return
 
@@ -1452,6 +1461,13 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         # Let the background task (_free_all_vram) handle VRAM cleanup exclusively.
         if cancel_event.is_set():
             _jobs[job_id]["status"] = "cancelled"
+            try:
+                if deck_json_path.exists():
+                    _d = json.loads(deck_json_path.read_text(encoding="utf-8"))
+                    _d["status"] = "cancelled"
+                    deck_json_path.write_text(json.dumps(_d), encoding="utf-8")
+            except Exception:
+                pass
             _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
             return
 
@@ -2135,8 +2151,10 @@ async def list_decks():
             data   = json.loads(p.read_text(encoding="utf-8"))
             job_id = p.parent.name
             status = data.get("status", "done")
-            # Skip purely in-memory building jobs that haven't checkpointed yet
-            if status not in ("done", "rendering"):
+            # Skip purely in-memory building jobs that haven't checkpointed yet.
+            # "cancelled" is included — a cancelled build still has a valid partial
+            # deck worth showing in history.
+            if status not in ("done", "rendering", "cancelled"):
                 continue
             cmd    = data.get("commander", {})
             # Thumbnail: prefer rendered commander art, fall back to scryfall
@@ -2157,7 +2175,7 @@ async def list_decks():
                 "card_count":       len(data.get("deck", [])) + 1,
                 "built_at":         data.get("built_at"),
                 "thumbnail":        thumb,
-                "partial":          status == "rendering",
+                "partial":          status in ("rendering", "cancelled"),
                 "is_copy":          bool(data.get("is_copy")),
                 "copied_from":      data.get("copied_from", ""),
             })
@@ -2465,12 +2483,14 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
             if data.get("status") == "rendering":
+                # "rendering" means art-gen was in flight when the server was
+                # killed — treat as done so the partial deck is loadable.
                 data["status"] = "done"
-                # Persist the corrected status so future reads are consistent.
                 try:
                     p.write_text(json.dumps(data), encoding="utf-8")
                 except Exception:
                     pass
+            # "cancelled" is left as-is so the frontend can show the correct state.
             return data
         except Exception:
             return None
@@ -2500,6 +2520,21 @@ async def get_deck(job_id: str):
             job = disk
         else:
             raise HTTPException(404, "Job not found")
+
+    # A job can be in memory but have no deck data when a build was cancelled
+    # before _jobs[job_id].update(result) ran (that only happens at the very end,
+    # after rendering).  deck.json IS written early (before art gen starts), so
+    # fall through to disk and merge — preserving the in-memory status so the
+    # frontend still sees "cancelled" rather than the disk's "rendering"/"done".
+    if "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if disk:
+            saved_status = job.get("status")          # e.g. "cancelled"
+            _jobs[job_id].update(disk)
+            if saved_status:                           # put the real status back
+                _jobs[job_id]["status"] = saved_status
+            job = _jobs[job_id]
+
     # Accept any state that has a usable payload — done, cancelled mid-build,
     # or rendering. The client gets the partial deck plus a status flag so it
     # can show what was completed instead of a 409 dead-end.
