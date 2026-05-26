@@ -729,6 +729,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 style_guide_hint=_style_meta["style_guide_hint"],
                 themer_medium=_style_meta["themer_medium"],
                 themer_quality=_style_meta["themer_quality"],
+                commander_gender=req.face_gender,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -1840,6 +1841,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         commander_prompt = req.commander_prompt or source_data.get("commander_prompt", "")
         user_name_rt     = req.user_name        or source_data.get("user_name", "")
         llm_model_rt     = req.llm_model        or source_data.get("llm_model")
+        face_gender_rt   = source_data.get("face_gender", "either")
         art_style        = source_data.get("art_style", "mtg_fantasy")
         model_speed      = source_data.get("model_speed", "quality")
         source_deck_slug = source_data.get("deck_slug", "")
@@ -1911,6 +1913,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 style_guide_hint=_style_meta["style_guide_hint"],
                 themer_medium=_style_meta["themer_medium"],
                 themer_quality=_style_meta["themer_quality"],
+                commander_gender=face_gender_rt,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:

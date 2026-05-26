@@ -1167,6 +1167,7 @@ class Themer:
         world_zones:            Optional[list[str]] = None,
         themer_medium:          str = "",
         themer_quality:         str = "",
+        commander_gender:       str = "",
     ) -> list[dict]:
         """
         Process one batch of cards. Returns list of themed dicts.
@@ -1188,7 +1189,8 @@ class Themer:
                             batch_commander_idx=batch_commander_idx,
                             world_zones=world_zones,
                             themer_medium=themer_medium,
-                            themer_quality=themer_quality)
+                            themer_quality=themer_quality,
+                            commander_gender=commander_gender)
         raw    = _ollama_chat(prompt, model=self.model)
         parsed = _parse_batch(raw, cards)
 
@@ -1221,6 +1223,7 @@ class Themer:
                     world_zones=world_zones,
                     themer_medium=themer_medium,
                     themer_quality=themer_quality,
+                    commander_gender=commander_gender,
                 )
                 sub_raw    = _ollama_chat(sub_prompt, model=self.model)
                 sub_parsed = _parse_batch(sub_raw, sub_cards)
@@ -1246,6 +1249,7 @@ class Themer:
         style_guide_hint:   str  = "",   # art style label for the style guide generator (e.g. "flat-colour anime")
         themer_medium:      str  = "",   # medium tag options for batch prompt MEDIUM rule
         themer_quality:     str  = "",   # quality tag options for batch prompt QUALITY rule
+        commander_gender:   str  = "",   # gender constraint: "male", "female", or "" for either
     ) -> tuple[ThemedCard, list[ThemedCard]]:
         """
         Apply theme to commander + 99-card deck.
@@ -1301,6 +1305,7 @@ class Themer:
                 world_zones=world_zones,
                 themer_medium=themer_medium,
                 themer_quality=themer_quality,
+                commander_gender=commander_gender,
             )
             elapsed = time.monotonic() - t0
 
