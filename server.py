@@ -247,6 +247,7 @@ class BuildRequest(BaseModel):
     art_style:         str = "mtg_fantasy"  # LoRA preset key
     generate_art:      bool = False
     model_speed:       str  = "quality"  # "quality" (flux-dev) or "fast" (flux-schnell) or "sd35" (SD 3.5 Large)
+    checkpoint:        Optional[str] = None   # explicit checkpoint filename; None = auto-detect from ComfyUI
     bracket:           int  = 3
     face_key:          Optional[str] = None   # commander face photos
     face_gender:       str = "either"         # "male", "female", or "either"
@@ -261,6 +262,7 @@ class RebuildRequest(BaseModel):
     """Minimal params needed to re-run art gen for an already-themed deck."""
     art_style:   str = "mtg_fantasy"
     model_speed: str = "quality"
+    checkpoint:  Optional[str] = None   # explicit checkpoint; None = auto-detect
     face_key:    Optional[str] = None
     face_gender: str = "either"
     crew_key:    Optional[str] = None
@@ -278,6 +280,7 @@ class RegenCardsRequest(BaseModel):
     cards:       List[CardRegenEntry]
     art_style:   str = "mtg_fantasy"
     model_speed: str = "quality"
+    checkpoint:  Optional[str] = None   # explicit checkpoint; None = auto-detect
     face_key:    Optional[str] = None   # commander face override
     face_gender: str = "either"
     crew_key:    Optional[str] = None   # crew faces override for creature cards
@@ -818,6 +821,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "bracket":          req.bracket,
             "bracket_label":    BRACKET_LABELS.get(req.bracket, str(req.bracket)),
             "art_style":        req.art_style,
+            "checkpoint":       req.checkpoint or "",
             "model_speed":      req.model_speed,
             "generate_art":     req.generate_art,
             "deck_slug":        _deck_slug_base,
@@ -866,7 +870,8 @@ def _run_build(job_id: str, req: BuildRequest):
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
                 with _art_lock:   # serialize: only one build drives ComfyUI at a time
                     try:
-                        gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style)
+                        gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
+                                      checkpoint=req.checkpoint)
                     except Exception as _ge:
                         _push(job_id, "progress", json.dumps({
                             "step": "art",
@@ -1310,7 +1315,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
             with _art_lock:
                 try:
-                    gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style)
+                    gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
+                                  checkpoint=req.checkpoint)
                 except Exception as _ge:
                     _push(job_id, "progress", json.dumps({
                         "step": "art",
@@ -1645,7 +1651,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
 
         _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
         with _art_lock:
-            gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style)
+            gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
+                          checkpoint=req.checkpoint)
             if not gen.available:
                 raise ValueError("ComfyUI not available after acquiring GPU lock")
 
@@ -2719,6 +2726,49 @@ async def get_art_styles():
             "themer_quality":   preset.get("themer_quality", ""),
         })
     return result
+
+
+@app.get("/api/checkpoints")
+async def get_checkpoints():
+    """
+    Return all available checkpoints in ComfyUI.
+    Enables UI dropdown for explicit checkpoint selection.
+    """
+    try:
+        r = requests.get("http://127.0.0.1:8188/object_info/CheckpointLoaderSimple", timeout=5)
+        if r.status_code == 200:
+            ckpts = (
+                r.json()
+                .get("CheckpointLoaderSimple", {})
+                .get("input", {}).get("required", {})
+                .get("ckpt_name", [[]])[0]
+            )
+            # Filter out LTX and unconfirmed models
+            usable = [c for c in ckpts if not c.startswith("LTX") and not c.startswith("Unconfirmed")]
+
+            # Categorize by type
+            result = []
+            for ckpt in sorted(usable):
+                ckpt_lower = ckpt.lower()
+                if "flux" in ckpt_lower or "schnell" in ckpt_lower:
+                    ckpt_type = "FLUX"
+                elif "illustrious" in ckpt_lower or "sdxl" in ckpt_lower or "xl" in ckpt_lower:
+                    ckpt_type = "SDXL"
+                elif "sd 3" in ckpt_lower or "sd3" in ckpt_lower:
+                    ckpt_type = "SD 3.5"
+                else:
+                    ckpt_type = "Unknown"
+
+                result.append({
+                    "filename": ckpt,
+                    "type": ckpt_type,
+                    "label": f"{ckpt} ({ckpt_type})"
+                })
+            return result
+    except Exception:
+        pass
+
+    return []
 
 
 @app.get("/api/comfyui/loras")
