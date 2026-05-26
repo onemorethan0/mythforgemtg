@@ -1560,6 +1560,13 @@ class ImageGen:
 
     def _setup_face_method(self) -> None:
         """Detect best available face-conditioning method and cache model names."""
+        # DISABLED: ReActor has unresolved CUDA issues during inference
+        # Face photos won't be used, but card generation works perfectly
+        # TODO: Debug ReActor CUDA initialization once moved to production server
+        self.face_method = "none"
+        print("  [image_gen] Face method: DISABLED (ReActor CUDA issues)")
+        return
+
         available_nodes = self._get_available_nodes()
 
         for method, required_nodes in _FACE_METHODS.items():
