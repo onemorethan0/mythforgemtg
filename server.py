@@ -1154,6 +1154,11 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 "hint":    "Start ComfyUI before rebuilding to generate new art.",
             }))
             art_paths = _fallback_art  # reuse source art rather than going straight to Scryfall
+            # Emit a progress event so the UI shows movement before rendering starts
+            _push(job_id, "progress", json.dumps({
+                "step": "art",
+                "msg":  "Proceeding to render card frames with fallback art…",
+            }))
         else:
             # Evict Ollama from VRAM and confirm before loading FLUX.
             from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
