@@ -534,6 +534,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
   // ── Rebuild-all / retheme / duplicate state ───────────────────────────────
   const [rebuilding, setRebuilding]   = useState(false)
+  const [showRebuildModal, setShowRebuildModal] = useState(false)
+  const [rebuildArtStyle, setRebuildArtStyle] = useState(deck.art_style || 'mtg_fantasy')
+  const [rebuildModelSpeed, setRebuildModelSpeed] = useState(deck.model_speed || 'quality')
+  const [rebuildArtStyles, setRebuildArtStyles] = useState([])
   const [rethemeing, setRethemeing]   = useState(false)
   const [duplicating, setDuplicating] = useState(false)
   const [dupMsg, setDupMsg]           = useState(null)   // null | {newJobId, name} | 'error'
@@ -541,6 +545,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const evtRef = useRef(null)
 
   if (!deck) return null
+
+  // ── Fetch art styles for rebuild modal ─────────────────────────────────────
+  useEffect(() => {
+    fetch('/api/art-styles')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setRebuildArtStyles(d) })
+      .catch(() => {})
+  }, [])
 
   // ── SSE listener for per-card regen job ───────────────────────────────────
   useEffect(() => {
@@ -625,11 +637,30 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   }
 
   async function handleRebuildAll() {
+    // Show the rebuild options modal
+    setShowRebuildModal(true)
+  }
+
+  async function handleConfirmRebuild() {
     if (rebuilding) return
     setRebuilding(true)
+    setShowRebuildModal(false)
     try {
-      const newJobId = await triggerRebuild(jobId, deck)
-      onRebuild(newJobId)
+      const res = await fetch(`/api/deck/${jobId}/rebuild`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          art_style:   rebuildArtStyle,
+          model_speed: rebuildModelSpeed,
+          face_key:    deck.face_key || null,
+          face_gender: deck.face_gender || 'either',
+          crew_key:    deck.crew_key || null,
+          crew_gender: deck.crew_gender || 'either',
+        }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      onRebuild(data.job_id)
     } catch (err) {
       alert(`Could not start rebuild: ${err.message}`)
       setRebuilding(false)
@@ -977,6 +1008,74 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           savedCrewKey={deck.crew_key || null}
           savedCrewGender={deck.crew_gender || 'either'}
         />
+      )}
+
+      {/* ── Rebuild modal ── */}
+      {showRebuildModal && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 200, padding: 16,
+        }}
+          onClick={e => { if (e.target === e.currentTarget) setShowRebuildModal(false) }}
+        >
+          <div style={{
+            background: '#1c1917', border: '1px solid #44403c', borderRadius: 16,
+            width: '100%', maxWidth: 400, boxShadow: '0 24px 64px rgba(0,0,0,0.6)',
+            padding: 24, display: 'flex', flexDirection: 'column', gap: 16,
+          }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: 16, color: '#fde047', fontWeight: 700 }}>🔄 Rebuild Deck</h3>
+              <div style={{ fontSize: 12, color: '#78716c', marginTop: 4 }}>
+                Generate new card art with different settings
+              </div>
+            </div>
+
+            <div>
+              <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Art Style
+              </label>
+              <select
+                value={rebuildArtStyle}
+                onChange={e => setRebuildArtStyle(e.target.value)}
+                style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
+              >
+                {rebuildArtStyles.length > 0 ? (
+                  rebuildArtStyles.map(s => (
+                    <option key={s.key} value={s.key} disabled={!s.ready && !s.partial}>
+                      {s.icon} {s.label}{s.ready ? '' : s.partial ? ' (partial)' : ' (missing)'}
+                    </option>
+                  ))
+                ) : (
+                  <option value="mtg_fantasy">MTG Fantasy</option>
+                )}
+              </select>
+            </div>
+
+            <div>
+              <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Speed
+              </label>
+              <select
+                value={rebuildModelSpeed}
+                onChange={e => setRebuildModelSpeed(e.target.value)}
+                style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
+              >
+                <option value="quality">Quality (FLUX dev)</option>
+                <option value="fast">Fast (FLUX schnell)</option>
+              </select>
+            </div>
+
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', marginTop: 8 }}>
+              <button onClick={() => setShowRebuildModal(false)} style={{ padding: '6px 16px', borderRadius: 8, fontSize: 12, fontFamily: 'inherit', cursor: 'pointer', fontWeight: 600, border: '1px solid #44403c', background: '#292524', color: '#a8a29e' }}>
+                Cancel
+              </button>
+              <button onClick={handleConfirmRebuild} disabled={rebuilding} style={{ padding: '6px 16px', borderRadius: 8, fontSize: 12, fontFamily: 'inherit', cursor: 'pointer', fontWeight: 600, border: '1px solid #7c3aed', background: '#3b0764', color: '#c4b5fd', opacity: rebuilding ? 0.7 : 1 }}>
+                {rebuilding ? '⏳ Starting…' : '🔄 Rebuild'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       <style>{`
