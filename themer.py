@@ -552,7 +552,10 @@ _SOUL_PATTERNS: list[tuple[str, str, list[str]]] = [
      [r"sacrifice (a |an |target )?(creature|permanent)", r"as an additional cost.{0,30}sacrifice"]),
     # Discard
     ("DISCARD",      "minds stripped bare, secrets torn away, loss and despair",
-     [r"(target player |each player |each opponent )?discards?"]),
+     [r"^(target player|each player|each opponent) discards?",
+      r"\. (target player|each player|each opponent) discards?",
+      r"^discard (your|a) (hand|card)",
+      r"\. discard (your|a) (hand|card)"]),
     # Counter / proliferate
     ("PROLIFERATE",  "power spreading to all, counters multiplying across the field",
      [r"proliferate"]),
