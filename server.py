@@ -652,9 +652,11 @@ def _run_build(job_id: str, req: BuildRequest):
         sym.save(sym_path)
 
         # ── Build result dict helper ──────────────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, has_render: bool = False) -> dict:
+        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
             c = tc.card
             safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
+            # Append deck index to render_key to disambiguate duplicate cards
+            render_key = f"{safe}_{deck_index:03d}"
             # Replace any self-references in oracle text with the themed name
             oracle = _replace_card_self_ref(
                 c.get("oracle_text", ""), tc.original_name, tc.themed_name
@@ -673,7 +675,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 "toughness":     c.get("toughness"),
                 "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
                 "has_render":    has_render,
-                "render_key":    safe,
+                "render_key":    render_key,
             }
 
         # ── Early checkpoint: write deck.json NOW (before art gen + render) ──
@@ -686,8 +688,8 @@ def _run_build(job_id: str, req: BuildRequest):
                            + "_" + job_id[:8])
         checkpoint = {
             "status":           "rendering",   # updated to "done" at the end
-            "commander":        _tc_to_dict(themed_cmd),
-            "deck":             [_tc_to_dict(tc) for tc in themed_deck],
+            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": req.commander_prompt,
@@ -931,8 +933,8 @@ def _run_build(job_id: str, req: BuildRequest):
         # Re-serialize with has_render flags set correctly, then overwrite checkpoint
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, has_render=tc.original_name in saved_imgs) for tc in themed_deck]
+        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
 
         # Overwrite checkpoint with final done state
@@ -1035,9 +1037,10 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             sym.save(sym_path)
 
         # ── Helper (identical to _run_build) ─────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, has_render: bool = False) -> dict:
+        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
             c = tc.card
             safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
+            render_key = f"{safe}_{deck_index:03d}"
             oracle = _replace_card_self_ref(
                 c.get("oracle_text", ""), tc.original_name, tc.themed_name
             )
@@ -1055,7 +1058,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 "toughness":     c.get("toughness"),
                 "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
                 "has_render":    has_render,
-                "render_key":    safe,
+                "render_key":    render_key,
             }
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
@@ -1068,8 +1071,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         deck_json_path = RENDER_DIR / job_id / "deck.json"
         checkpoint = {
             "status":           "rendering",
-            "commander":        _tc_to_dict(themed_cmd),
-            "deck":             [_tc_to_dict(tc) for tc in themed_deck],
+            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": source_data.get("commander_prompt", ""),
@@ -1321,8 +1324,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         # ── Finalize ──────────────────────────────────────────────────────────
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, has_render=tc.original_name in saved_imgs) for tc in themed_deck]
+        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
         deck_json_path.write_text(json.dumps(result), encoding="utf-8")
 
@@ -1778,9 +1781,10 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         }))
 
         # ── Build result dict helper ──────────────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, has_render: bool = False) -> dict:
+        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
             c    = tc.card
             safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
+            render_key = f"{safe}_{deck_index:03d}"
             oracle = _replace_card_self_ref(
                 c.get("oracle_text", ""), tc.original_name, tc.themed_name
             )
@@ -1798,7 +1802,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 "toughness":     c.get("toughness"),
                 "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
                 "has_render":    has_render,
-                "render_key":    safe,
+                "render_key":    render_key,
             }
 
         # ── Early checkpoint ──────────────────────────────────────────────────
@@ -1806,8 +1810,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         stats          = source_data.get("stats", {})
         checkpoint = {
             "status":           "rendering",
-            "commander":        _tc_to_dict(themed_cmd),
-            "deck":             [_tc_to_dict(tc) for tc in themed_deck],
+            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": commander_prompt,
@@ -1853,8 +1857,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         # ── Finalize ──────────────────────────────────────────────────────────
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, has_render=tc.original_name in saved_imgs) for tc in themed_deck]
+        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
         deck_json_path.write_text(json.dumps(result), encoding="utf-8")
 
