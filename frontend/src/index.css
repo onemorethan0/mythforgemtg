@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #0c0a09;
+    color: #f5f5f4;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  }
+}
+
+/* Mana pip colors */
+.mana-W { background:#fef9c3; color:#1c1917; border-color:#fde68a; }
+.mana-U { background:#3b82f6; color:#fff; border-color:#93c5fd; }
+.mana-B { background:#1c1917; color:#d6d3d1; border-color:#57534e; }
+.mana-R { background:#dc2626; color:#fff; border-color:#f87171; }
+.mana-G { background:#16a34a; color:#fff; border-color:#86efac; }
+.mana-C { background:#78716c; color:#fff; border-color:#a8a29e; }
+
+/* SSE progress pulse */
+@keyframes progress-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.progress-active { animation: progress-glow 1.4s ease-in-out infinite; }
+
+/* Card hover overlay */
+.deck-card-tile .deck-card-overlay { opacity: 0; transition: opacity 0.2s; }
+.deck-card-tile:hover .deck-card-overlay { opacity: 1; }

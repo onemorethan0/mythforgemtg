@@ -1,0 +1,154 @@
+INFO:     Started server process [30660]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57704 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:57707 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:57708 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:57709 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:57710 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53993 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53994 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53995 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53996 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53997 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53998 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:53999 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54000 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54001 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54002 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54003 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54008 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54013 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54016 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54018 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54021 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54024 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54025 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54026 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54027 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54028 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54029 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54030 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54031 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54032 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54033 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54034 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54037 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54039 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54042 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54052 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54053 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54054 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63856 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63857 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63858 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63860 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63864 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63867 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63871 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63874 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63877 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63879 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63881 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:63882 - "WebSocket /ws?clientId=99a67ff6524b4a9f9707b11fa809f865" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed

@@ -1,0 +1,187 @@
+"""
+Parses a Scryfall card object for a commander and extracts:
+- Color identity
+- Keyword abilities
+- Mechanical themes (used to steer synergy card selection)
+"""
+from dataclasses import dataclass, field
+from typing import Optional
+
+
+# ── Theme detection ──────────────────────────────────────────────────────────
+# Each theme maps to a list of oracle-text substrings. If any substring appears
+# in the commander's oracle text, the theme is flagged. Order matters for display.
+
+THEME_PATTERNS: dict[str, list[str]] = {
+    # Creature tribes
+    "tribal_dragons":   ["dragon"],
+    "tribal_elves":     ["elf ", "elves"],
+    "tribal_zombies":   ["zombie"],
+    "tribal_humans":    ["human"],
+    "tribal_merfolk":   ["merfolk"],
+    "tribal_vampires":  ["vampire"],
+    "tribal_goblins":   ["goblin"],
+    "tribal_soldiers":  ["soldier"],
+    "tribal_wizards":   ["wizard"],
+    "tribal_spirits":   ["spirit"],
+    "tribal_angels":    ["angel"],
+    "tribal_beasts":    ["beast"],
+    # Mechanical archetypes
+    "tokens":           ["create", "token", "populate", "amass", "fabricate"],
+    "counters":         ["+1/+1 counter", "proliferate", "put a counter on", "-1/-1 counter"],
+    "aristocrats":      ["sacrifice a", "whenever a creature you control dies",
+                         "whenever another creature dies", "pay life"],
+    "reanimator":       ["return target creature card from your graveyard",
+                         "return up to", "from your graveyard to the battlefield",
+                         "reanimate"],
+    "spellslinger":     ["whenever you cast an instant", "whenever you cast a sorcery",
+                         "instant or sorcery spell", "magecraft"],
+    "enchantress":      ["whenever an enchantment enters", "whenever you cast an enchantment",
+                         "enchantment enters the battlefield"],
+    "artifacts":        ["whenever an artifact enters", "whenever you cast an artifact",
+                         "artifact you control"],
+    "voltron":          ["whenever this creature deals combat damage",
+                         "equipped creature", "aura attached"],
+    "draw_matters":     ["whenever you draw a card", "draw a card for each",
+                         "whenever a card is drawn"],
+    "lifegain":         ["whenever you gain life", "each life you gain",
+                         "whenever you gain 1 or more life"],
+    "landfall":         ["whenever a land enters the battlefield under your control",
+                         "landfall"],
+    "graveyard":        ["from your graveyard", "graveyard into your hand",
+                         "when this card is put into your graveyard",
+                         "flashback", "unearth", "delve"],
+    "etb":              ["when this enters", "when ~ enters",
+                         "whenever a creature enters the battlefield under your control",
+                         "whenever a nontoken creature enters"],
+    "energy":           ["energy counter", "gain {e}", "{e},"],
+    "chaos":            ["each player", "each opponent", "random"],
+    "theft":            ["gain control", "under your control until end of turn"],
+    "group_hug":        ["each player draws", "each player gains"],
+    "voltron_combat":   ["first strike", "double strike", "trample", "unblockable",
+                         "can't be blocked"],
+}
+
+THEME_LABELS: dict[str, str] = {
+    "tribal_dragons":   "Dragon Tribal",
+    "tribal_elves":     "Elf Tribal",
+    "tribal_zombies":   "Zombie Tribal",
+    "tribal_humans":    "Human Tribal",
+    "tribal_merfolk":   "Merfolk Tribal",
+    "tribal_vampires":  "Vampire Tribal",
+    "tribal_goblins":   "Goblin Tribal",
+    "tribal_soldiers":  "Soldier Tribal",
+    "tribal_wizards":   "Wizard Tribal",
+    "tribal_spirits":   "Spirit Tribal",
+    "tribal_angels":    "Angel Tribal",
+    "tribal_beasts":    "Beast Tribal",
+    "tokens":           "Token / Go-Wide",
+    "counters":         "Counters / Proliferate",
+    "aristocrats":      "Aristocrats / Sacrifice",
+    "reanimator":       "Reanimator / Graveyard",
+    "spellslinger":     "Spellslinger",
+    "enchantress":      "Enchantress",
+    "artifacts":        "Artifacts / Affinity",
+    "voltron":          "Voltron / Equipment",
+    "draw_matters":     "Draw Matters",
+    "lifegain":         "Lifegain",
+    "landfall":         "Landfall",
+    "graveyard":        "Graveyard Value",
+    "etb":              "ETB / Blink",
+    "energy":           "Energy",
+    "chaos":            "Chaos / Politics",
+    "theft":            "Control / Theft",
+    "group_hug":        "Group Hug",
+    "voltron_combat":   "Combat / Evasion",
+}
+
+# Per-theme Scryfall search fragments (appended to the base color-identity query)
+THEME_SYNERGY_QUERIES: dict[str, str] = {
+    "tribal_dragons":   "type:dragon",
+    "tribal_elves":     "type:elf",
+    "tribal_zombies":   "type:zombie",
+    "tribal_humans":    "type:human",
+    "tribal_merfolk":   "type:merfolk",
+    "tribal_vampires":  "type:vampire",
+    "tribal_goblins":   "type:goblin",
+    "tribal_soldiers":  "type:soldier",
+    "tribal_wizards":   "type:wizard",
+    "tribal_spirits":   "type:spirit",
+    "tribal_angels":    "type:angel",
+    "tribal_beasts":    "type:beast",
+    "tokens":           'otag:token-producer OR (o:"create" o:"token")',
+    "counters":         'otag:counter-manipulation OR o:"proliferate" OR o:"+1/+1 counter"',
+    "aristocrats":      'otag:sacrifice-outlet OR o:"whenever a creature you control dies"',
+    "reanimator":       '(o:"return target creature card from your graveyard" OR o:"reanimate")',
+    "spellslinger":     '(o:"whenever you cast an instant" OR o:"whenever you cast a sorcery" OR otag:magecraft)',
+    "enchantress":      '(type:enchantment OR o:"whenever an enchantment enters")',
+    "artifacts":        '(type:artifact OR o:"whenever an artifact enters")',
+    "voltron":          '(type:equipment OR type:aura OR o:"when equipped")',
+    "draw_matters":     '(o:"whenever you draw a card" OR o:"whenever a card is drawn")',
+    "lifegain":         '(otag:lifegain-payoff OR o:"whenever you gain life")',
+    "landfall":         '(otag:landfall OR o:"whenever a land enters the battlefield under your control")',
+    "graveyard":        '(otag:graveyard-recursion OR o:"from your graveyard" OR o:"flashback")',
+    "etb":              '(otag:etb OR o:"when this enters" OR o:"whenever a creature enters")',
+    "energy":           '(o:"energy counter" OR o:"{e}")',
+    "chaos":            '(o:"each player" o:"random")',
+    "theft":            '(o:"gain control" OR o:"under your control until end of turn")',
+    "group_hug":        '(o:"each player draws" OR o:"each player gains")',
+    "voltron_combat":   '(type:equipment OR o:"double strike" OR o:"trample" OR o:"hexproof")',
+}
+
+
+# ── Commander profile ─────────────────────────────────────────────────────────
+
+@dataclass
+class CommanderProfile:
+    name: str
+    color_identity: list[str]      # e.g. ["U", "B"]
+    oracle_text: str
+    keywords: list[str]            # official MTG keyword abilities
+    themes: list[str]              # detected theme keys
+    mana_value: float
+    type_line: str
+    card: dict = field(repr=False) # raw Scryfall card object
+
+    @property
+    def color_id_str(self) -> str:
+        """Joined color letters, e.g. 'UB'. Empty string = colorless."""
+        return "".join(self.color_identity)
+
+    @property
+    def is_colorless(self) -> bool:
+        return len(self.color_identity) == 0
+
+    @property
+    def is_mono(self) -> bool:
+        return len(self.color_identity) == 1
+
+    def theme_labels(self) -> list[str]:
+        return [THEME_LABELS.get(t, t) for t in self.themes]
+
+
+def _detect_themes(card: dict) -> list[str]:
+    oracle = (card.get("oracle_text") or "").lower()
+    type_line = (card.get("type_line") or "").lower()
+    text = oracle + " " + type_line
+
+    found: list[str] = []
+    for theme, patterns in THEME_PATTERNS.items():
+        for pat in patterns:
+            if pat in text:
+                found.append(theme)
+                break
+    return found
+
+
+def build_commander_profile(card: dict) -> CommanderProfile:
+    return CommanderProfile(
+        name=card["name"],
+        color_identity=card.get("color_identity", []),
+        oracle_text=card.get("oracle_text", ""),
+        keywords=card.get("keywords", []),
+        themes=_detect_themes(card),
+        mana_value=float(card.get("cmc", 0)),
+        type_line=card.get("type_line", ""),
+        card=card,
+    )
