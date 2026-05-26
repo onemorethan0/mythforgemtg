@@ -1258,6 +1258,19 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                         }))
                         traceback.print_exc()
 
+                    # ── Per-card fallback: patch failed cards with ancestor art ───
+                    _patched = 0
+                    for _card_name, _art_path in list(art_paths.items()):
+                        if _art_path is None and _card_name in _fallback_art:
+                            art_paths[_card_name] = _fallback_art[_card_name]
+                            _patched += 1
+                    if _patched:
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art",
+                            "msg":  f"Patched {_patched} failed card(s) with previous FLUX art.",
+                            "warning": True,
+                        }))
+
                     if not any(p for p in art_paths.values()):
                         if _fallback_art:
                             art_paths = _fallback_art
