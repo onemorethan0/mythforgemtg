@@ -25,10 +25,11 @@ import time
 from typing import Optional
 import requests
 
-OLLAMA_BASE     = "http://127.0.0.1:11434"
-OLLAMA_MODEL    = "qwen3:14b"
-BATCH_SIZE      = 8
-REQUEST_TIMEOUT = 180
+OLLAMA_BASE          = "http://127.0.0.1:11434"
+OLLAMA_MODEL         = "qwen3:14b"
+BATCH_SIZE           = 8
+REQUEST_TIMEOUT      = 180
+USE_ENHANCED_PROMPTS = True   # True = dual-anchor v2 pipeline  |  False = legacy v1
 
 # ── Medium-tag stripper ───────────────────────────────────────────────────────
 # Ollama reliably defaults to "dramatic fantasy oil painting, ..." regardless
@@ -489,6 +490,152 @@ def _mechanic_summary(card: dict) -> str:
     return " | ".join(parts) if parts else ""
 
 
+# ── Card soul classifier (v2 enhanced pipeline) ───────────────────────────────
+#
+# Each entry: (role_label, soul_phrase, [oracle_regex_patterns])
+# Patterns are tested against lowercased oracle text (reminder text stripped).
+# First match wins — order from most specific to most general.
+#
+_SOUL_PATTERNS: list[tuple[str, str, list[str]]] = [
+    # Board wipes
+    ("WIPE",         "divine judgment, everything obliterated simultaneously",
+     [r"destroy all", r"exile all creatures", r"each creature .{0,30}(dies|is destroyed)"]),
+    # Single target exile
+    ("EXILE",        "target banished into the void, erased from existence",
+     [r"exile target"]),
+    # Single target destroy
+    ("REMOVAL",      "target eliminated, struck down with finality",
+     [r"destroy target"]),
+    # Direct damage spells
+    ("BURN",         "sudden violent energy striking the target, impact erupting",
+     [r"deals? \d+ damage to (any target|target (creature|player|planeswalker))"]),
+    # Counterspells
+    ("COUNTER",      "spell shattered mid-cast, a moment of denial, magic interrupted",
+     [r"counter target spell", r"counter target (instant|sorcery|creature)"]),
+    # Bounce
+    ("BOUNCE",       "target snapped away, unsummoned, returned to nothing",
+     [r"return target .{0,40} to (its|their) owner.s hand"]),
+    # Reanimation
+    ("REANIMATE",    "rising from death, dragged back from the grave, second life",
+     [r"return .{0,30} from (your |a |the )?(graveyard|exile) to the battlefield",
+      r"put .{0,30} from (your |a |the )?graveyard (onto|into) the battlefield"]),
+    # Mill
+    ("MILL",         "memories dissolving, mind eroded, library crumbling to dust",
+     [r"mill \d+", r"put the top \d+ cards?.{0,20}graveyard"]),
+    # Card draw
+    ("DRAW",         "visions flooding in, arcane revelation, knowledge surging forth",
+     [r"draw \d+ cards?", r"you may draw", r"draw a card"]),
+    # Tutor / search
+    ("TUTOR",        "searching the depths, ancient secret revealed, sought knowledge found",
+     [r"search your library", r"look at the top \d+ cards"]),
+    # Token creation
+    ("TOKEN",        "summoning ritual, conjured forces multiplying, new life called forth",
+     [r"create \d+", r"put \d+ .{0,20}token", r"creates? (a|an) \d*/\d*"]),
+    # Ramp / mana
+    ("RAMP",         "power channeled and amplified, resources surging into the hands",
+     [r"\{t\}.*add .{0,20}mana", r"add \{", r"search.{0,30}basic land",
+      r"puts? .{0,30}land .{0,20}onto the battlefield"]),
+    # Life gain engines
+    ("LIFEGAIN",     "healing radiance pouring in, life energy restored, warmth returning",
+     [r"you gain \d+ life", r"gain \d+ life", r"gains? you \d+ life"]),
+    # Extra turns / near-win conditions
+    ("FINISHER",     "overwhelming game-ending force, the decisive moment, victory at hand",
+     [r"take (an )?extra turn", r"win the game", r"deals? .{0,20}damage to each opponent"]),
+    # Pump / buff
+    ("PUMP",         "power surging into the subject, strength amplified beyond natural limits",
+     [r"(gets?|gain) \+\d+/\+\d+", r"target creature gets? \+"]),
+    # Equipment attach
+    ("EQUIP",        "weapon or armor granted, subject empowered by crafted gear",
+     [r"equip"]),
+    # Sacrifice engines
+    ("SACRIFICE",    "dark ritual, something given to gain greater power",
+     [r"sacrifice (a |an |target )?(creature|permanent)", r"as an additional cost.{0,30}sacrifice"]),
+    # Discard
+    ("DISCARD",      "minds stripped bare, secrets torn away, loss and despair",
+     [r"(target player |each player |each opponent )?discards?"]),
+    # Counter / proliferate
+    ("PROLIFERATE",  "power spreading to all, counters multiplying across the field",
+     [r"proliferate"]),
+]
+
+# CMC → drama level hint injected into soul phrase
+_CMC_WEIGHT: list[tuple[int, str]] = [
+    (7, "game-ending scale"),
+    (5, "powerful, high-stakes"),
+    (3, "mid-range impact"),
+    (1, "quick and precise"),
+]
+
+def _card_soul(card: dict) -> tuple[str, str]:
+    """
+    Returns (role_label, soul_phrase) capturing the card's mechanical identity
+    as an evocative visual directive for the art prompt.
+
+    The soul phrase is intentionally written as a scene seed — a short description
+    of what the card *does* expressed as visual action, not mechanics text.
+    """
+    oracle   = (card.get("oracle_text") or "").lower()
+    oracle   = re.sub(r"\([^)]+\)", "", oracle)          # strip reminder text
+    type_line = (card.get("type_line") or "").lower()
+    keywords  = {k.lower() for k in (card.get("keywords") or [])}
+    cmc       = float(card.get("cmc") or 0)
+    power_raw = card.get("power")
+
+    # ── Type shortcuts (non-spell permanents) ────────────────────────────────
+    if "land" in type_line and "creature" not in type_line:
+        return ("LAND", "a place of power, landscape defining its own identity")
+    if "equipment" in type_line:
+        return ("EQUIPMENT", "weapon or armor granting power, the wielder transformed")
+    if "vehicle" in type_line:
+        return ("VEHICLE", "powerful machine crewed and driven into battle")
+    if "artifact" in type_line and "creature" not in type_line:
+        return ("ARTIFACT", "constructed marvel, engineered power, object of significance")
+    if "enchantment" in type_line and "creature" not in type_line:
+        if "saga" in type_line:
+            return ("SAGA", "unfolding story, sequential events transforming the world")
+        return ("ENCHANTMENT", "persistent magic binding the scene, ethereal energy suffusing")
+
+    # ── Oracle pattern matching ───────────────────────────────────────────────
+    for role, soul, patterns in _SOUL_PATTERNS:
+        for pat in patterns:
+            if re.search(pat, oracle):
+                # Append CMC weight to soul for high-impact spells
+                for threshold, label in _CMC_WEIGHT:
+                    if cmc >= threshold:
+                        return (role, f"{soul}, {label}")
+                return (role, soul)
+
+    # ── Keyword-based creature fallbacks ─────────────────────────────────────
+    if "flying" in keywords:
+        return ("FLIER", "aerial dominance, commanding the skies, wings fully spread")
+    if "annihilator" in keywords:
+        return ("ELDRAZI", "reality-consuming void horror, dimensional destruction")
+    if "haste" in keywords:
+        return ("AGGRO", "explosive sudden violence, striking before defenses can rise")
+    if "deathtouch" in keywords:
+        return ("DEATHTOUCH", "lethal predator, one touch means death, deadly precision")
+    if "lifelink" in keywords:
+        return ("LIFELINK", "life-draining force, energy stolen and absorbed")
+
+    # ── Power/toughness → creature scale ─────────────────────────────────────
+    try:
+        p = int(power_raw or 0)
+        if p >= 7:
+            return ("BEATER", "massive unstoppable force, earth-shaking colossus")
+        if p >= 4:
+            return ("THREAT", "powerful dangerous combatant, a force to be reckoned with")
+        if p <= 1:
+            return ("UTILITY_CREATURE", "small but purposeful, nimble and functional servant")
+    except (ValueError, TypeError):
+        pass
+
+    # ── CMC-based fallback for high-cost spells ───────────────────────────────
+    if cmc >= 6:
+        return ("PAYOFF", "late-game powerhouse, a decisive turning point")
+
+    return ("SPELL", "magical energy released, arcane effect erupting")
+
+
 _DEFAULT_MEDIUM  = '"digital painting," or "fantasy illustration," or "concept art,"'
 _DEFAULT_QUALITY = '"painterly brushwork, vivid colors" or "dramatic lighting, intricate detail" or "painterly, rich texture"'
 
@@ -587,6 +734,125 @@ Return ONLY a JSON array, nothing else. Each object must have:
 - "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world
 
 Cards to process (idx|name|type|mechanics|color_palette):
+{card_block}
+
+JSON array:"""
+
+
+def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
+                     style_guide: str = "", commander_prompt: str = "",
+                     batch_commander_idx: int = -1,
+                     world_zones: Optional[list[str]] = None,
+                     themer_medium: str = "",
+                     themer_quality: str = "") -> str:
+    """
+    Enhanced dual-anchor prompt (v2).
+
+    Core change from v1: every art_prompt must satisfy TWO anchors simultaneously:
+
+      1. MECHANICAL SOUL (col 7) — pre-classified visual essence of what the card DOES.
+         This defines the *action/subject* of the art.  A removal spell must feel like
+         something being destroyed.  A ramp card must feel like power being gathered.
+
+      2. THEME SKIN — the world's visual language clothes the action.  Same destruction,
+         but it looks like Devil May Cry or Feudal Japan or Cyberpunk, not generic fantasy.
+
+    The v1 prompt put theme first and mechanics second; v2 makes them co-equal anchors
+    so card identity is never drowned out by the world aesthetic.
+    """
+    lines = []
+    for i, c in enumerate(cards):
+        tl       = c.get("type_line", "").split("—")[0].strip()
+        mechsum  = _mechanic_summary(c)
+        palette  = _color_palette_hint(c.get("color_identity") or c.get("colors", []))
+        role, soul = _card_soul(c)
+        # Format: idx|name|type|mechanics|color_palette|role|soul
+        lines.append(f'{i}|{c["name"]}|{tl}|{mechsum}|{palette}|{role}|{soul}')
+
+    card_block  = "\n".join(lines)
+    style_block = (
+        f"\nDeck visual style — apply to EVERY art_prompt: {style_guide}"
+        if style_guide else ""
+    )
+    commander_block = ""
+    if commander_prompt and batch_commander_idx >= 0:
+        commander_block = (
+            f"\nCOMMANDER CHARACTER (idx={batch_commander_idx}) — MANDATORY RULE: "
+            f"The commander looks like: {commander_prompt}. "
+            f"For idx={batch_commander_idx} ONLY — the art_prompt MUST physically describe this character. "
+            f"The character description MUST appear immediately after the medium tag, BEFORE any environment or world detail. "
+            f"Format: \"[medium], [describe '{commander_prompt}' visually — appearance, pose, action], "
+            f"[brief world/environment context], [quality tag]\". "
+            f"Do NOT skip the character. Do NOT open with the environment."
+        )
+
+    if world_zones:
+        zone_list = " | ".join(f'"{z}"' for z in world_zones)
+        variety_block = (
+            f"\nVISUAL DIVERSITY — MANDATORY: Every card in this batch MUST be set in a "
+            f"DIFFERENT location. Cycle through these world zones (and invent more if needed): "
+            f"{zone_list}. "
+            f"Vary: indoor/outdoor, time-of-day, weather, ground-level/aerial view, intimate/wide shot."
+        )
+    else:
+        variety_block = (
+            "\nVISUAL DIVERSITY — MANDATORY: Every card must use a DIFFERENT setting, "
+            "time-of-day, and lighting mood. No two cards in the batch should share the same backdrop."
+        )
+
+    return f"""You are creating art prompts for a Magic: The Gathering card set themed around: {theme}
+Commander/protagonist: {commander_name}{style_block}{commander_block}{variety_block}
+
+━━━ DUAL ANCHOR RULE — THE MOST IMPORTANT INSTRUCTION ━━━
+Every art_prompt must satisfy TWO anchors at the same time:
+
+  ANCHOR 1 — MECHANICAL SOUL (column 7): This tells you what the card DOES expressed as a
+  visual action/scene. It defines the subject of the art and what they are doing.
+  The soul MUST be visually present and recognisable. Ask yourself: if you saw only this art,
+  could you guess the card's function? If not, the soul is not present.
+    • REMOVAL/BURN/WIPE cards → something is being destroyed. Show the moment of destruction.
+    • DRAW/TUTOR cards → revelation, visions, knowledge being received or sought.
+    • RAMP/TOKEN cards → creation, summoning, gathering, multiplication.
+    • COUNTER/BOUNCE cards → something being stopped, denied, or reversed.
+    • CREATURE THREATS → the subject's power and presence must be clear and intimidating.
+    • LANDS → the landscape IS the card. Pure environment, no characters needed.
+
+  ANCHOR 2 — THEME SKIN: The "{theme}" world's visual language wraps the soul.
+  Same action, different aesthetic. A "target destroyed" in a Western theme uses a gunshot.
+  In a Devil May Cry theme it's a sword slash with demonic energy. In a fairy tale it's a spell.
+  The theme skin is the COSTUME and SETTING, not the action.
+
+Formula for each card: "[theme-styled medium], [SOUL action in theme-world costume/setting], [quality]"
+Example: Soul=elimination + Theme=Western → "concept art, a gunslinger's bullet striking a bandit dead centre, dust explosion, sun-bleached desert, dramatic lighting, vivid colors"
+Example: Soul=board wipe + Theme=Devil May Cry → "digital painting, Dante's massive sword swing releasing a divine white shockwave that tears through a demon horde simultaneously, hell-lit environment, painterly brushwork"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Return ONLY a JSON array, nothing else. Each object must have:
+- "idx": the card index number
+- "themed_name": base it on what the card DOES (col 4 mechanics + col 6 role) translated into the "{theme}" world.
+    • Legendary Creature / Legendary Planeswalker: "Firstname, Title" — max 6 words, max 3 before comma, max 3 after. Pre-comma MUST be a real-sounding character name. Post-comma reflects the card's ROLE/SOUL, not just its original name.
+    • CRITICAL — NAME UNIQUENESS: Every idx ≥ 1 card needs its own unique pre-comma name. NEVER reuse "{commander_name}" as the first name of any non-commander card.
+    • Legendary non-creature/planeswalker: plain 2–4 word descriptive name, NO comma ("The Ashen Gate", "Void Crucible").
+    • All others: dramatic 2–5 word name, no comma, specific and punchy.
+- "art_prompt": 25-40 words. LANDSCAPE orientation. Strict rules:
+    MEDIUM — start with: {themer_medium or _DEFAULT_MEDIUM}. Always medium first.
+    SOUL — col 7 defines the visual action. It MUST be present. A card with soul "divine judgment, everything obliterated" should show a scene of mass annihilation, not a single warrior standing around.
+    COLOR — col 5 color identity: blend with theme palette. W=holy light/white, U=arcane/cold blue, B=shadow/necrotic, R=fire/aggression, G=nature/growth, colorless=void/chrome.
+    ANATOMY — no isolated floating limbs. Avoid awkward close-up hands unless dramatically intentional.
+    COMPOSITION by ROLE (col 6):
+      CREATURE/PLANESWALKER roles: subject FIRST after medium. "[medium], [character appearance + action], [environment detail], [quality]"
+      REMOVAL/BURN/WIPE/COUNTER: show the moment of impact/denial. Effect FIRST. "[medium], [the spell effect happening], [target/setting], [quality]"
+      DRAW/TUTOR: visions, revelation, light of knowledge. "[medium], [revelation scene], [world setting], [quality]"
+      RAMP/TOKEN: creation and summoning. "[medium], [summoning/gathering scene], [world setting], [quality]"
+      LAND: environment only. Sweeping panorama. No characters. "[medium], [sweeping theme-world landscape], [quality]"
+      ARTIFACT/EQUIPMENT: object centered, dramatically lit. "[medium], [object close-up or in use], [quality]"
+      ENCHANTMENT/SAGA: magical aura, persistent energy. "[medium], [aura/binding scene], [quality]"
+    QUALITY — end with: {themer_quality or _DEFAULT_QUALITY}
+    Art style MUST match deck visual style.
+- "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL, not just generic atmosphere.
+
+Cards to process (idx|name|type|mechanics|color_palette|role|soul):
 {card_block}
 
 JSON array:"""
@@ -788,17 +1054,24 @@ class Themer:
         """
         Process one batch of cards. Returns list of themed dicts.
 
+        Prompt pipeline is controlled by the module-level USE_ENHANCED_PROMPTS flag:
+          True  → _batch_prompt_v2 (dual-anchor: mechanical soul + theme skin)
+          False → _batch_prompt    (v1 legacy: theme-first world immersion)
+
         Retry strategy: if ≥ 50% of cards in this batch return empty art_prompts
         (indicating JSON truncation), split into two half-batches and retry each
         independently.  Half-batches require roughly half the num_predict budget,
         so they virtually never truncate.
         """
-        prompt = _batch_prompt(theme, commander_name, cards, style_guide,
-                               commander_prompt=commander_prompt,
-                               batch_commander_idx=batch_commander_idx,
-                               world_zones=world_zones,
-                               themer_medium=themer_medium,
-                               themer_quality=themer_quality)
+        _prompt_fn = _batch_prompt_v2 if USE_ENHANCED_PROMPTS else _batch_prompt
+        prompt_version = "v2 (dual-anchor)" if USE_ENHANCED_PROMPTS else "v1 (legacy)"
+
+        prompt = _prompt_fn(theme, commander_name, cards, style_guide,
+                            commander_prompt=commander_prompt,
+                            batch_commander_idx=batch_commander_idx,
+                            world_zones=world_zones,
+                            themer_medium=themer_medium,
+                            themer_quality=themer_quality)
         raw    = _ollama_chat(prompt, model=self.model)
         parsed = _parse_batch(raw, cards)
 
@@ -813,7 +1086,7 @@ class Themer:
             empty_count = len(cards)
         if empty_count >= max(1, len(cards) // 2) and len(cards) > 1:
             print(f"  [themer] {empty_count}/{len(cards)} prompts empty — likely truncation. "
-                  f"Retrying as two half-batches...")
+                  f"Retrying as two half-batches ({prompt_version})...")
             mid    = len(cards) // 2
             half_a = cards[:mid]
             half_b = cards[mid:]
@@ -824,7 +1097,7 @@ class Themer:
                            if batch_commander_idx >= mid else -1)
 
             def _retry_half(sub_cards, offset, cmd_idx):
-                sub_prompt = _batch_prompt(
+                sub_prompt = _prompt_fn(
                     theme, commander_name, sub_cards, style_guide,
                     commander_prompt=commander_prompt,
                     batch_commander_idx=cmd_idx,
@@ -887,8 +1160,10 @@ class Themer:
               if len(style_guide) > 120 else f"  [themer] Style guide: {style_guide}")
 
         batches = [all_cards[i:i + BATCH_SIZE] for i in range(0, total, BATCH_SIZE)]
+        pipeline_label = "v2 dual-anchor" if USE_ENHANCED_PROMPTS else "v1 legacy"
         print(f"  Theming {total} cards via Ollama ({self.model}) "
-              f"in {len(batches)} batches (max {BATCH_SIZE}/batch)...")
+              f"in {len(batches)} batches (max {BATCH_SIZE}/batch) "
+              f"[prompt pipeline: {pipeline_label}]...")
 
         for b_idx, batch in enumerate(batches):
             batch_start = b_idx * BATCH_SIZE

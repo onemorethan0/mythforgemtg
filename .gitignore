@@ -24,6 +24,19 @@ test_*.py
 test_*.png
 CLAUDE.md
 
+# Session / internal dev docs (not shipped)
+SESSION_*.md
+*_COMPLETE.md
+DEPLOYMENT_*.md
+FINAL_*.md
+FIXES_*.md
+REVIEW_*.md
+SANITY_*.md
+LORA_*.md
+CODE_REVIEW.md
+BATCH_SIZE_TESTING_PLAN.md
+OPTIMIZATION_RESEARCH*.md
+
 # Stray bat-redirect output (from non-interactive launches)
 bat_stdout.txt
 bat_stderr.txt

@@ -4,13 +4,35 @@ A fully local web app that builds themed 100-card EDH Commander decks with AI-ge
 
 ---
 
+## System Requirements
+
+**Developed & Tested On:**
+- **GPU**: NVIDIA RTX 3090 (24GB VRAM)
+- **CPU**: AMD Ryzen 5800X3D
+- **System RAM**: 32GB
+
+**Performance on RTX 3090 + 32GB:**
+- 100-card build with FLUX Schnell: ~18-20 minutes
+- 100-card build with FLUX Dev (premium quality): ~70-75 minutes
+- Peak memory usage: 2-3 GB system RAM, 12-14 GB VRAM
+
+**Other Systems:**
+- RTX 4080 (16GB): Use FLUX Schnell only, ~20-30% slower
+- RTX 4070 (12GB): Use FLUX Schnell, marginal fit
+- Smaller GPUs: Fallback to Scryfall artwork (no FLUX generation)
+- Mac M-series: CPU-only generation, much slower
+
+See `HARDWARE_OPTIMIZATION_GUIDE.md` for detailed analysis and batch size tuning.
+
+---
+
 ## Services Required
 
 | Service | Port | Purpose |
 |---------|------|---------|
 | FastAPI / Uvicorn | 8000 | Backend API + serves React frontend |
-| Ollama (`qwen2.5:14b`) | 11434 | Card theming, names, flavor text, art prompts |
-| ComfyUI | 8188 | AI image generation (SDXL or FLUX) |
+| Ollama (`qwen3:14b` default) | 11434 | Card theming, names, flavor text, art prompts |
+| ComfyUI | 8188 | AI image generation (FLUX or SDXL) |
 
 Start everything with:
 ```
@@ -92,17 +114,20 @@ card_assets/
 
 ## Card Renderer (`card_renderer.py`)
 
-Renders at **2× resolution (960×1344)** then LANCZOS downscales to **480×672**.
+Renders at **3× resolution (1440×2016)** for supersampled anti-aliasing, then LANCZOS downscales to **750×1050** (2.5″×3.5″ @ 300 DPI — print-ready, no upscaling needed).
 
 Layer order (bottom to top):
 1. Solid black base
 2. Background texture PNG
 3. Card art (ComfyUI-generated or Scryfall fallback, cropped/scaled)
 4. Frame PNG overlay
-5. Boxes PNG — top slice = name bar, bottom slice = type bar
-6. Legendary crown (if applicable)
-7. Text and inline SVG mana pip symbols
-8. Power/toughness badge
+5. **Border theme tint** — optional thematic colour overlay on the frame chrome
+6. Boxes PNG — top slice = name bar, bottom slice = type bar
+7. Legendary crown (if applicable)
+8. Text and inline SVG mana pip symbols
+9. Power/toughness badge
+
+**Border theme:** Each deck can specify a free-text border theme (e.g. `"fire and ash"`, `"arcane runes"`, `"frost crystals"`). The renderer classifies the description into one of 7 colour palettes (flame, frost, arcane, circuit, wave, shadow, vine) and alpha-composites a tinted fill over the full chrome band on all four sides, plus corner ornaments. Intensity survives the 3×→1× LANCZOS downscale because the fill covers the entire chrome width (~22 px at output).
 
 **Subtitle feature:** If the themed card name differs from the original Scryfall name, the original name is drawn in small italic text at the bottom of the name bar. Useful for identifying proxies.
 
@@ -112,13 +137,18 @@ Layer order (bottom to top):
 
 ## Themer (`themer.py`)
 
-Runs against **Ollama `qwen2.5:14b`** locally.
+Runs against **Ollama `qwen3:14b`** locally (auto-falls back to `qwen3:32b` → `qwen2.5-coder:14b` → `gemma4` if the primary model is missing).
 
 1. Generates one deck-wide **style guide** sentence (art medium, palette, lighting, mood)
 2. Processes cards in **batches of 8**, each receiving the style guide
 3. Each card gets: `themed_name`, `art_prompt` (25–40 words), `flavor_text`
 4. Style guide is appended to every `art_prompt` before passing to ComfyUI
 5. Ollama is **unloaded from GPU** after theming so ComfyUI can claim the VRAM
+
+**Prompt pipeline (togglable):** `USE_ENHANCED_PROMPTS` at the top of `themer.py` switches between two pipelines:
+
+- **v1 (legacy):** World-immersion style — prompt wraps card in the theme aesthetic
+- **v2 (dual-anchor, default):** Each card is pre-classified by its mechanical role (`_card_soul()`) producing a `soul_phrase` (e.g. *"divine judgment, everything obliterated simultaneously"* for a boardwipe). The LLM receives both the soul (what the card *does*) and the theme skin (world aesthetic), producing prompts that feel true to both the MTG mechanic and the setting.
 
 **Art prompt rules enforced via system prompt:**
 - No specific color names (palette handled by style guide)
@@ -141,8 +171,35 @@ Auto-detects checkpoint type (FLUX vs SDXL) and best available face method.
 
 **Positive prompt structure:**
 ```
-[SDXL/FLUX prefix] + [gender qualifier if face card] + [art_prompt] + [style guide]
+[style flux_prefix] + [gender qualifier if face card] + [art_prompt] + [style guide]
 ```
+
+### Art Style Presets
+
+Each preset is a curated LoRA stack with its own prompt prefix, negative prompt, and themer hints. LoRAs are auto-detected by filename fragment — drop the `.safetensors` file in `ComfyUI/models/loras/` and it activates automatically.
+
+| Key | Label | Icon | LoRA file(s) |
+|-----|-------|------|--------------|
+| `mtg_fantasy` | MTG Fantasy | ⚔️ | `df_style_v1.1.safetensors`, `aidmaMTGCard-FLUX-V0.1.safetensors` |
+| `photorealism` | Photorealism | 📷 | `xlabs_realism_lora.safetensors` |
+| `cyberpunk` | Cyberpunk | 🌆 | `neon_noir_*.safetensors` |
+| `desert_punk` | Desert Punk | 🏜️ | `retrofuture_*.safetensors` |
+| `anime` | Anime / Manga | 🎌 | `flatcolor_anime_flux.safetensors` — flat cel-shaded |
+| `anime_illustrated` | Anime Illustrated | ✨ | `semi_realistic_anime_flux.safetensors` — detailed shading & depth |
+| `anime_soft` | Anime Artbook | 🌸 | `softserve_anime_flux.safetensors` — painterly artbook quality |
+| `art_nouveau` | Art Nouveau | 🌿 | `mucha_style_flux.safetensors` |
+| `gothic_horror` | Gothic Horror | 🦇 | `Dark_Gothic_Horror*.safetensors`, `Dark_Haunted_Fantasy*.safetensors` |
+| `watercolor` | Watercolor | 🎨 | `WATERCOLOR-lora*.safetensors` |
+| `steampunk` | Steampunk | ⚙️ | `SteampunkIllustration_v1.safetensors` |
+| `oil_painting` | Oil Painting | 🖼️ | *(no LoRA — prompt-only)* |
+| `pixel_art` | Pixel Art | 🕹️ | `Pixel_Art_FLUX.safetensors` |
+| `eldritch` | Eldritch Horror | 👁️ | `Eldritch_Comics_for_Flux*.safetensors` |
+| `stained_glass` | Stained Glass | 🪟 | `Stained_Glass_Style.safetensors` |
+
+**Anime style guide:**
+- 🎌 **Anime / Manga** — flat colour, cel-shaded, clean linework. Classic 2D TV animation look.
+- ✨ **Anime Illustrated** — semi-realistic anime; highly detailed facial features, realistic lighting, rich depth. ([civitai.com/models/754435](https://civitai.com/models/754435))
+- 🌸 **Anime Artbook** — soft painterly rendering, artbook/key-visual quality. ([huggingface.co/alvdansen/softserve_anime](https://huggingface.co/alvdansen/softserve_anime))
 
 **Face conditioning methods** (auto-detected, best available wins):
 | Method | Requirement | Quality |
@@ -177,6 +234,7 @@ Auto-detects checkpoint type (FLUX vs SDXL) and best available face method.
 |--------|----------|-------------|
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
 | GET | `/api/playstyles` | List all 15 playstyle options |
+| GET | `/api/art-styles` | List all art style presets + LoRA install status |
 | GET | `/api/face-method` | Probe which face engine ComfyUI supports |
 | POST | `/api/upload-face` | Upload 1–5 face reference photos |
 | POST | `/api/deck/build` | Start async deck build → `{job_id}` |
@@ -185,6 +243,10 @@ Auto-detects checkpoint type (FLUX vs SDXL) and best available face method.
 | GET | `/api/deck/{job_id}` | Full deck payload once complete |
 | GET | `/api/deck/{job_id}/card-image/{key}` | Rendered card proxy PNG |
 | GET | `/api/deck/{job_id}/set-symbol` | Deck set emblem PNG |
+| POST | `/api/deck/{job_id}/retheme` | Re-run Ollama theming, reuse existing art |
+| POST | `/api/deck/{job_id}/rebuild` | Re-generate card art, keep existing themes |
+| POST | `/api/deck/{job_id}/regen-cards` | Regenerate art for specific cards only |
+| POST | `/api/deck/{job_id}/cancel` | Cancel an in-progress build |
 | GET | `/api/deck/{job_id}/export/zip` | Download all card PNGs as ZIP |
 | GET | `/api/deck/{job_id}/export/pdf` | Download print-ready PDF |
 

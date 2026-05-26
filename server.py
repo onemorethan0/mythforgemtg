@@ -1094,14 +1094,66 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         # ── Art generation ────────────────────────────────────────────────────
         art_paths: dict[str, Optional[Path]] = {}
 
+        # Pre-build a fallback art_paths from the source deck's existing FLUX art.
+        # Used when ComfyUI is unavailable so the rebuild can preserve previously
+        # generated art instead of falling all the way back to Scryfall images.
+        # Walks up the rebuilt_from/rethemed_from chain to find actual art files
+        # even when intermediate rebuilds didn't generate art.
+        def _collect_art_from_slug(slug: str) -> dict[str, Optional[Path]]:
+            """Return {original_name: path} for all art PNGs in generated_art/{slug}/."""
+            result: dict[str, Optional[Path]] = {}
+            if not slug:
+                return result
+            art_dir = Path("generated_art") / slug
+            for _tc in [themed_cmd] + list(themed_deck):
+                _safe = "".join(ch if ch.isalnum() else "_" for ch in _tc.original_name)[:48]
+                _p = art_dir / f"{_safe}.png"
+                if _p.exists():
+                    result[_tc.original_name] = _p
+            return result
+
+        def _find_ancestor_art(data: dict, depth: int = 0) -> tuple[dict, str]:
+            """Walk rebuilt_from/rethemed_from chain, return first non-empty art dict + slug."""
+            if depth > 5:
+                return {}, ""
+            slug = data.get("deck_slug", "")
+            found = _collect_art_from_slug(slug)
+            if found:
+                return found, slug
+            # Try parent deck
+            parent_id = data.get("rebuilt_from") or data.get("rethemed_from")
+            if parent_id:
+                parent_path = RENDER_DIR / parent_id / "deck.json"
+                if parent_path.exists():
+                    try:
+                        parent_data = json.loads(parent_path.read_text(encoding="utf-8"))
+                        return _find_ancestor_art(parent_data, depth + 1)
+                    except Exception:
+                        pass
+            return {}, ""
+
+        _fallback_art, _fallback_slug = _find_ancestor_art(source_data)
+
+        if _fallback_art:
+            _push(job_id, "progress", json.dumps({
+                "step": "art",
+                "msg":  f"Found {len(_fallback_art)} existing art file(s) (from {_fallback_slug}) — will reuse if new art gen is skipped.",
+            }))
+
         health = ImageGen.health_check()
         if not health["ok"]:
+            _fallback_msg = (
+                f"Reusing {len(_fallback_art)} existing art images from {_fallback_slug}."
+                if _fallback_art else
+                "No existing art found — cards will use Scryfall images."
+            )
             _push(job_id, "progress", json.dumps({
                 "step":    "art",
-                "msg":     f"⚠ Art generation skipped — {health['message']}",
+                "msg":     f"⚠ ComfyUI not available — {health['message']}. {_fallback_msg}",
                 "warning": True,
-                "hint":    health.get("hint", ""),
+                "hint":    "Start ComfyUI before rebuilding to generate new art.",
             }))
+            art_paths = _fallback_art  # reuse source art rather than going straight to Scryfall
         else:
             # Evict Ollama from VRAM and confirm before loading FLUX.
             from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
@@ -1207,12 +1259,21 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                         traceback.print_exc()
 
                     if not any(p for p in art_paths.values()):
-                        _push(job_id, "progress", json.dumps({
-                            "step":    "art",
-                            "msg":     "⚠ No art generated — falling back to Scryfall art for all cards.",
-                            "warning": True,
-                            "hint":    "Check ComfyUI's console for errors.",
-                        }))
+                        if _fallback_art:
+                            art_paths = _fallback_art
+                            _push(job_id, "progress", json.dumps({
+                                "step":    "art",
+                                "msg":     f"⚠ ComfyUI produced no art — reusing {len(_fallback_art)} existing art images from previous build.",
+                                "warning": True,
+                                "hint":    "Check ComfyUI's console for errors. Existing FLUX art preserved.",
+                            }))
+                        else:
+                            _push(job_id, "progress", json.dumps({
+                                "step":    "art",
+                                "msg":     "⚠ No art generated and no existing art found — falling back to Scryfall art for all cards.",
+                                "warning": True,
+                                "hint":    "Check ComfyUI's console for errors.",
+                            }))
 
         # ── Early-exit on cancel ──────────────────────────────────────────────
         # Skip VRAM freeing and render if cancelled (same reason as in /api/deck/build).

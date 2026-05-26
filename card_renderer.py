@@ -773,47 +773,107 @@ def _dispatch_corner(
 def _draw_border_theme(
     canvas: Image.Image,
     border_theme: str,
-    intensity: float = 0.52,
+    intensity: float = 0.72,
 ) -> None:
-    """Alpha-composite sparse thematic corner ornaments onto the card canvas.
+    """Alpha-composite a thematic border decoration onto the card canvas.
 
-    Called after the card frame is composited but before oracle text is drawn,
-    so decorations sit above the frame chrome and below any text.
+    Visual layers:
+      1. A FILLED band that covers the entire frame chrome perimeter, tinting
+         it with the theme colour.  The chrome spans from BG_X to ART_X on
+         each side (~22 px at output) — we fill it entirely so the effect
+         survives the 3×→1× LANCZOS downscale and is immediately visible.
+      2. Corner ornaments (style-specific) drawn over the chrome at each corner.
+      3. Subtler corner ornaments at the oracle text-box corners.
+
+    Called after the frame chrome is composited but before text is drawn.
     """
     if not (border_theme or "").strip():
         return
 
     style, rgb = _classify_border_theme(border_theme)
     alpha = int(255 * min(max(intensity, 0.05), 0.95))
-    col   = (*rgb, alpha)
-    lw    = max(2, _mm(0.13))   # ~3 px internal → ~1.5 px at 750-wide output
-    orn   = _mm(4.2)            # ornament bounding box size
+
+    # ── Geometry: frame chrome dimensions ────────────────────────────────────
+    # The chrome band runs between the outer card edge (BG_X/BG_Y) and the
+    # inner content area (ART_X / just above ORA_Y+ORA_H).
+    # We fill this band completely so it's visible after downscaling.
+    chrome_h = _ART_X - _BG_X        # horizontal chrome width  ≈ 43 px at 3×
+    chrome_v_top = _ART_Y - _BG_Y    # vertical chrome height (top) ≈ 166 px
+    # The oracle text-box can extend to or past the BG bottom edge — clamp it.
+    bg_bottom   = _BG_Y + _BG_H
+    ora_bottom  = _ORA_Y + _ORA_H
+    chrome_v_bot = bg_bottom - ora_bottom   # may be ≤ 0 if oracle runs to edge
+
+    # ── Layer 1: chrome band fill ─────────────────────────────────────────────
+    # Draw four filled rectangles, one for each side of the chrome band.
+    # Each rect is fully opaque at the inner face and blends outward so the
+    # coloured overlay tints the chrome without obliterating its texture.
+    fill_col   = (*rgb, int(alpha * 0.68))  # main chrome tint
 
     overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     draw    = ImageDraw.Draw(overlay)
 
-    # Text-box corner ornaments (four corners of the oracle text area)
+    # Left band
+    draw.rectangle([_BG_X, _BG_Y, _BG_X + chrome_h, bg_bottom],
+                   fill=fill_col)
+    # Right band
+    draw.rectangle([_BG_X + _BG_W - chrome_h, _BG_Y,
+                    _BG_X + _BG_W,              bg_bottom],
+                   fill=fill_col)
+    # Top band (between the left/right bands)
+    draw.rectangle([_BG_X + chrome_h,          _BG_Y,
+                    _BG_X + _BG_W - chrome_h,  _BG_Y + chrome_v_top],
+                   fill=fill_col)
+    # Bottom band — only draw if oracle box doesn't reach the card edge
+    if chrome_v_bot > 0:
+        draw.rectangle([_BG_X + chrome_h,          ora_bottom,
+                        _BG_X + _BG_W - chrome_h,  bg_bottom],
+                       fill=fill_col)
+
+    # Thin bright inner-edge line (inner face of the chrome, where it meets art)
+    inner_lw = max(5, _mm(0.22))   # ~5 px at 3× → ~2.5 px at output
+    inner_col = (*rgb, min(255, int(alpha * 1.2)))
+    # Horizontal inner lines
+    draw.line([(_BG_X, _BG_Y + chrome_v_top),
+               (_BG_X + _BG_W, _BG_Y + chrome_v_top)],
+              fill=inner_col, width=inner_lw)
+    if chrome_v_bot > 0:
+        draw.line([(_BG_X, ora_bottom),
+                   (_BG_X + _BG_W, ora_bottom)],
+                  fill=inner_col, width=inner_lw)
+    # Vertical inner lines
+    draw.line([(_BG_X + chrome_h, _BG_Y),
+               (_BG_X + chrome_h, bg_bottom)],
+              fill=inner_col, width=inner_lw)
+    draw.line([(_BG_X + _BG_W - chrome_h, _BG_Y),
+               (_BG_X + _BG_W - chrome_h, bg_bottom)],
+              fill=inner_col, width=inner_lw)
+
+    # ── Layer 2: corner ornaments at all four outer card corners ──────────────
+    corner_lw  = max(5, _mm(0.22))
+    corner_orn = _mm(9.0)   # ~204 px at 3× → ~106 px at output
+    corner_col = (*rgb, int(alpha * 0.92))
+    for cx, cy, sx, sy in (
+        (_BG_X,           _BG_Y,          1,  1),
+        (_BG_X + _BG_W,   _BG_Y,         -1,  1),
+        (_BG_X,           _BG_Y + _BG_H,  1, -1),
+        (_BG_X + _BG_W,   _BG_Y + _BG_H, -1, -1),
+    ):
+        _dispatch_corner(overlay, draw, style, cx, cy, sx, sy,
+                         corner_orn, corner_col, corner_lw)
+
+    # ── Layer 3: oracle text-box corner ornaments ─────────────────────────────
+    text_col = (*rgb, int(alpha * 0.55))
+    text_orn  = _mm(5.5)
+    text_lw   = max(4, _mm(0.18))
     for cx, cy, sx, sy in (
         (_ORA_X,           _ORA_Y,          1,  1),
         (_ORA_X + _ORA_W,  _ORA_Y,         -1,  1),
         (_ORA_X,           _ORA_Y + _ORA_H, 1, -1),
         (_ORA_X + _ORA_W,  _ORA_Y + _ORA_H,-1, -1),
     ):
-        _dispatch_corner(overlay, draw, style, cx, cy, sx, sy, orn, col, lw)
-
-    # Outer border corner ornaments — only for styles that look good there
-    if style in ('ornate', 'arcane', 'circuit'):
-        outer_orn = _mm(2.8)
-        outer_col = (*rgb, int(alpha * 0.60))
-        outer_lw  = max(1, lw - 1)
-        for cx, cy, sx, sy in (
-            (_BG_X,           _BG_Y,          1,  1),
-            (_BG_X + _BG_W,   _BG_Y,         -1,  1),
-            (_BG_X,           _BG_Y + _BG_H,  1, -1),
-            (_BG_X + _BG_W,   _BG_Y + _BG_H, -1, -1),
-        ):
-            _dispatch_corner(overlay, draw, style, cx, cy, sx, sy,
-                             outer_orn, outer_col, outer_lw)
+        _dispatch_corner(overlay, draw, style, cx, cy, sx, sy,
+                         text_orn, text_col, text_lw)
 
     canvas.alpha_composite(overlay)
 

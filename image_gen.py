@@ -447,6 +447,91 @@ _LORA_PRESETS: dict[str, dict] = {
         ],
     },
 
+    # ── Semi-realistic anime illustration ────────────────────────────────────────
+    # Bridges anime aesthetics with photorealistic rendering for high-detail
+    # card art — expressive anime eyes, realistic skin textures, dynamic lighting.
+    # Unlike the flat-colour anime preset, this produces rich shading and depth.
+    # LoRA: Flux Semi-Realistic Anime Art Style (civitai.com/models/754435)
+    #   18 MB · no trigger word required · Very Positive (266 reviews)
+    #   Save as: semi_realistic_anime_flux.safetensors
+    "anime_illustrated": {
+        "label":       "Anime Illustrated",
+        "description": "Semi-realistic anime — expressive characters with detailed shading, depth, and dynamic lighting. High detail, not flat.",
+        "icon":        "✨",
+        "style_guide_hint":  "semi-realistic anime illustration, detailed shading, expressive eyes, dynamic lighting, rich backgrounds, high detail",
+        "themer_medium":     '"anime illustration," or "semi-realistic anime art," or "detailed anime concept art,"',
+        "themer_quality":    '"detailed shading, expressive anime style" or "semi-realistic anime, dynamic lighting" or "high detail anime illustration, rich color depth"',
+        "flux_prefix": (
+            "Semi-realistic anime illustration, highly detailed anime art style. "
+            "Expressive anime eyes, rich volumetric lighting, detailed character rendering. "
+            "Dynamic composition, vivid saturated colors, intricate background detail. "
+            "High quality digital anime illustration, not flat, not cel-shaded. "
+        ),
+        "face_prefix_medium": "Semi-realistic anime portrait illustration",
+        "face_prefix_quality": "detailed anime face, expressive eyes, realistic skin shading, dynamic lighting",
+        "negative_prompt": (
+            "photograph, photo, photorealistic, hyperrealistic, "
+            "3d render, cgi, octane render, unreal engine, "
+            "flat colour, cel-shaded, flat shading, no shading, "
+            "bad hands, extra fingers, bad anatomy, deformed, "
+            "watermark, text, border, card frame, out of frame, cropped, nsfw"
+        ),
+        "loras": [
+            {
+                "fragments":      ["semi_realistic_anime", "semirealistic_anime", "semi-realistic_anime"],
+                "trigger":        "semi-realistic",
+                "model_strength": 0.85,
+                "clip_strength":  0.85,
+                "dark_only":      False,
+                "label":          "Semi-Realistic Anime (Flux)",
+                "download_url":   "https://civitai.com/models/754435",
+                "download_note":  "Save as semi_realistic_anime_flux.safetensors",
+            },
+        ],
+    },
+
+    # ── Soft anime artbook style ──────────────────────────────────────────────────
+    # Polished anime illustration — soft lighting, clean painterly rendering,
+    # closer to key-animation artbook quality than flat TV anime.
+    # LoRA: SoftServe Anime by Araminta (HuggingFace, free, no login required)
+    #   Download: huggingface.co/alvdansen/softserve_anime
+    #   Save as: softserve_anime_flux.safetensors
+    "anime_soft": {
+        "label":       "Anime Artbook",
+        "description": "Soft artbook-quality anime — clean polished illustration, gentle lighting, painterly character rendering.",
+        "icon":        "🌸",
+        "style_guide_hint":  "anime artbook illustration style, soft painterly rendering, clean polished anime art, gentle volumetric lighting",
+        "themer_medium":     '"anime illustration," or "anime artbook art," or "anime key visual,"',
+        "themer_quality":    '"soft painterly anime, polished illustration" or "clean anime artbook style, gentle lighting" or "anime key visual quality, rich color"',
+        "flux_prefix": (
+            "sftsrv style illustration, anime artbook illustration. "
+            "Soft painterly anime rendering, polished clean linework with gentle volumetric lighting. "
+            "Rich backgrounds, anime key-visual quality. "
+            "Warm saturated colors, smooth detailed shading. "
+        ),
+        "face_prefix_medium": "Anime artbook portrait, sftsrv style illustration",
+        "face_prefix_quality": "clean detailed anime face, soft lighting, expressive eyes, polished illustration",
+        "negative_prompt": (
+            "photograph, photo, photorealistic, hyperrealistic, "
+            "3d render, cgi, octane render, unreal engine, "
+            "flat colour, cel-shaded, harsh flat shading, "
+            "bad hands, extra fingers, bad anatomy, deformed, "
+            "watermark, text, border, card frame, out of frame, cropped, nsfw"
+        ),
+        "loras": [
+            {
+                "fragments":      ["softserve_anime", "softserve", "soft_serve_anime"],
+                "trigger":        "sftsrv style illustration",
+                "model_strength": 0.90,
+                "clip_strength":  0.90,
+                "dark_only":      False,
+                "label":          "SoftServe Anime (Araminta)",
+                "download_url":   "https://huggingface.co/alvdansen/softserve_anime",
+                "download_note":  "Download flux_dev_lora.safetensors → rename to softserve_anime_flux.safetensors",
+            },
+        ],
+    },
+
     # ── Art Nouveau / Mucha ────────────────────────────────────────────────────
     "art_nouveau": {
         "label":       "Art Nouveau",
