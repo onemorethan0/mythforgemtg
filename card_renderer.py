@@ -1104,7 +1104,17 @@ def render_card(
             draw.rounded_rectangle([_PT_X, _PT_Y, _PT_X + _PT_W, _PT_Y + _PT_H],
                                    radius=_mm(0.8), fill=(200, 185, 145))
 
-        pt_font = _beleren(_mm(2.0))
+        # Scale font size based on P/T string length to fill space visually
+        # "1/1" (3 chars) → 2.0mm, "10/10" (5 chars) → 1.6mm, "13/12" (5 chars) → 1.6mm
+        pt_len = len(pt_str)
+        if pt_len <= 3:
+            pt_font_size = _mm(2.0)
+        elif pt_len == 4:
+            pt_font_size = _mm(1.8)
+        else:  # 5+ characters
+            pt_font_size = _mm(1.5)
+
+        pt_font = _beleren(pt_font_size)
         draw.text((_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),
                   pt_str, font=pt_font, fill=_DARK_TEXT, anchor="mm")
 
