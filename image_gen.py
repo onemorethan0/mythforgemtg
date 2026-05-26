@@ -28,21 +28,16 @@ MTG art LoRAs (optional — place .safetensors in ComfyUI/models/loras/):
        https://civitai.com/models/567735?modelVersionId=797974
        Trained on MTG card compositions — enforces card-art framing and color palette.
 
-    3. PainterlyFantasiaFlux.safetensors  (~18 MB,  strength 0.25, trigger: Digital painting style…)
-       https://civitai.com/models/1145521?modelVersionId=1288358
-       Brushstroke + impasto texture — fights FLUX's photorealism tendency.
-       Kept LOW (0.25) — full strength causes soft/blurry output.
-
-    4. shakker_dark_fantasy.safetensors   (~38 MB,  strength 0.65, no trigger needed)
+    3. shakker_dark_fantasy.safetensors   (~38 MB,  strength 0.65, no trigger needed)
        ALREADY DOWNLOADED — Shakker-Labs dark fantasy atmospheric lighting.
 
-  Combined model strength sum ≈ 2.75 — within safe range for FLUX multi-LoRA stacking.
+  Combined model strength sum ≈ 2.00 — within safe range for FLUX multi-LoRA stacking.
 
 Sampler notes (community-tested FLUX dev, 2025):
   euler + beta   — NOT recommended together (beta only shines paired with deis).
   dpm++_2m + sgm_uniform — sharpest detail, best for illustration/concept art.
   deis + beta    — high contrast cinematic look, also excellent for MTG scenes.
-  Current default: dpm++_2m + sgm_uniform, 35 steps, CFG 7.0, 1152x768.
+  Current default: dpm++_2m + sgm_uniform, 35 steps, CFG 3.5, 1152x768.
 """
 from __future__ import annotations
 
@@ -163,7 +158,7 @@ _SDXL_PREFIX = (
 # the style token is weighted highest by CLIP attention.
 _FLUX_PREFIX = (
     "Digital painting, fantasy illustration, concept art. "
-    "Crisp linework, sharp focus, highly detailed, intricate textures. "
+    "Painterly brushwork, rich textured surface, highly detailed. "
     "Vivid saturated colors, cinematic lighting, dramatic shadows. "
     "Wide landscape composition, subject fully centered and in frame. "
     "Any visible hands have exactly five fingers each. "
@@ -223,16 +218,6 @@ _LORA_PRESETS: dict[str, dict] = {
                 "label":          "MTG Compositions",
                 "download_url":   "https://civitai.com/models/567735",
                 "download_note":  "aidmaMTGCard-FLUX-V0.1.safetensors",
-            },
-            {
-                "fragments":      ["painterly"],
-                "trigger":        "Digital painting style, brushstrokes",
-                "model_strength": 0.25,
-                "clip_strength":  0.25,
-                "dark_only":      False,
-                "label":          "Painterly Texture",
-                "download_url":   "https://civitai.com/models/1145521",
-                "download_note":  "PainterlyFantasiaFlux.safetensors",
             },
             {
                 "fragments":      ["shakker"],
@@ -1072,13 +1057,15 @@ def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
     neg = negative or _FLUX_NEGATIVE
     is_schnell = "schnell" in checkpoint.lower()
     # Schnell: 8 steps / CFG 1.5 / euler + simple   (fast draft quality)
-    # Dev fp8: 35 steps / CFG 7.0 / dpm++_2m + sgm_uniform
-    #   35 steps adds fine texture and edge crispness.
-    #   CFG 7.0 (up from 5.5) forces sharper edges, crisper linework, and
-    #   better prompt adherence without over-saturating at 1152x768.
+    # Dev fp8: 35 steps / CFG 3.5 / dpm++_2m + sgm_uniform
+    #   FLUX dev is a guidance-distilled model — guidance is baked into the
+    #   weights at training time.  Community-tested sweet spot is CFG 1.0–4.0.
+    #   CFG 7.0 caused latent NaN/overflow artifacts (overexposed white frames,
+    #   pink/magenta blobs) and over-saturated incoherent compositions.
+    #   3.5 gives strong prompt adherence without driving the latent out of range.
     #   dpm++_2m + sgm_uniform remains the sharpest combo for illustration detail.
     steps    = 8            if is_schnell else 35
-    cfg      = 1.5          if is_schnell else 7.0
+    cfg      = 1.5          if is_schnell else 3.5
     sampler  = "euler"      if is_schnell else "dpmpp_2m"
     scheduler= "simple"     if is_schnell else "sgm_uniform"
     return {
