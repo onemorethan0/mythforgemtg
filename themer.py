@@ -838,7 +838,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     • CRITICAL — NAME UNIQUENESS: Every idx ≥ 1 card needs its own unique pre-comma name. NEVER reuse "{commander_name}" as the first name of any non-commander card.
     • Legendary non-creature/planeswalker: plain 2–4 word descriptive name, NO comma ("The Ashen Gate", "Void Crucible").
     • All others: dramatic 2–5 word name, no comma, specific and punchy.
-- "art_prompt": 25-40 words. LANDSCAPE orientation. Strict rules:
+- "art_prompt": 35-50 words. LANDSCAPE orientation. Strict rules:
     MEDIUM — start with: {themer_medium or _DEFAULT_MEDIUM}. Always medium first.
     SOUL — col 7 defines the visual action. It MUST be present. A card with soul "divine judgment, everything obliterated" should show a scene of mass annihilation, not a single warrior standing around.
     COLOR — col 5 color identity: blend with theme palette. W=holy light/white, U=arcane/cold blue, B=shadow/necrotic, R=fire/aggression, G=nature/growth, colorless=void/chrome.
@@ -853,6 +853,8 @@ Return ONLY a JSON array, nothing else. Each object must have:
       ENCHANTMENT/SAGA: magical aura, persistent energy. "[medium], [aura/binding scene], [quality]"
     QUALITY — end with: {themer_quality or _DEFAULT_QUALITY}
     Art style MUST match deck visual style.
+    ORDER: Put the MECHANICAL SOUL first after the medium (this is what the card DOES), then
+    add theme/environment details. Soul-first ordering helps image models prioritize card identity.
 - "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL, not just generic atmosphere.
 
 Cards to process (idx|name|type|mechanics|color_palette|role|soul):

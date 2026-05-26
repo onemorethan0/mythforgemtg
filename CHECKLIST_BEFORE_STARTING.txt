@@ -1,0 +1,70 @@
+═══════════════════════════════════════════════════════════════════════════════
+  MTG COMMANDER DECK BUILDER — CHECKLIST BEFORE STARTING
+═══════════════════════════════════════════════════════════════════════════════
+
+ONE TIME ONLY (First Launch):
+─────────────────────────────────────────────────────────────────────────────
+
+□ 1. Edit paths_config.ps1
+     • Open in any text editor
+     • Update 5 path variables to match your system:
+       - $global:PythonExe = your Python 3.14 path
+       - $global:ComfyPythonExe = your ComfyUI venv python
+       - $global:ComfyMainPy = your ComfyUI main.py path
+       - $global:ComfyBaseDir = your ComfyUI folder
+       - $global:DeckBuilderDir = this project folder
+     • Save
+
+□ 2. Verify paths_config.ps1
+     • Open PowerShell in this directory
+     • Run: . .\paths_config.ps1; Test-ConfigPaths
+     • You should see: $true (all paths exist)
+
+□ 3. (Optional) Install CUDA Toolkit 12.x for face conditioning
+     • Download from: https://developer.nvidia.com/cuda-downloads
+     • Install with admin privileges
+     • Restart computer
+     • If you skip this: face photos won't be used, but cards will still generate
+
+EVERY TIME YOU USE THE APP:
+─────────────────────────────────────────────────────────────────────────────
+
+□ 1. Start: Double-click START.bat
+     • Wait for browser to open at http://localhost:8000
+     • You should see the Commander Forge UI
+
+□ 2. Use: Build decks!
+     • Pick commander → playstyle → (optional) upload face photos → build deck
+     • Watch cards generate in real time
+
+□ 3. Stop: Double-click STOP.bat
+     • Safely shuts down all three services
+     • Frees GPU memory
+     • (Or just close all black cmd windows)
+
+IF SOMETHING GOES WRONG:
+─────────────────────────────────────────────────────────────────────────────
+
+1. Read the error message carefully
+2. Check MAINTENANCE.md → "Troubleshooting by Symptom"
+3. Look for your exact error → follow the fix
+4. Still stuck? Check server.log for details
+
+DOCUMENTATION:
+─────────────────────────────────────────────────────────────────────────────
+
+For Quick Reference:
+  → STARTUP_INSTRUCTIONS.txt (this file!)
+
+For Detailed Setup:
+  → STARTUP_GUIDE.md
+
+For Troubleshooting:
+  → MAINTENANCE.md
+
+For Developers:
+  → DEVELOPMENT_GUIDELINES.md (read before making changes!)
+
+═══════════════════════════════════════════════════════════════════════════════
+                        Ready? Double-click START.bat
+═══════════════════════════════════════════════════════════════════════════════

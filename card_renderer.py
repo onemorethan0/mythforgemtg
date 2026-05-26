@@ -1133,6 +1133,7 @@ def render_deck_thumbnails(
     oracle_overrides: Optional[dict[str, str]] = None,
     flavor_overrides: Optional[dict[str, str]] = None,
     border_theme: str = "",
+    render_keys: Optional[dict[str, str]] = None,
 ) -> dict[str, Path]:
     """
     Render all unique cards as card-frame PNGs.
@@ -1140,6 +1141,7 @@ def render_deck_thumbnails(
 
     oracle_overrides: original_name → processed oracle text (self-refs replaced)
     flavor_overrides: original_name → Ollama-generated flavor text
+    render_keys: optional dict mapping original_name → render_key for PNG filename
     """
     from set_symbol import generate_set_symbol
 
@@ -1174,7 +1176,9 @@ def render_deck_thumbnails(
 
         try:
             safe = "".join(c if c.isalnum() else "_" for c in name)[:48]
-            out  = output_dir / f"{safe}.png"
+            # Use render_key if provided (includes deck index for uniqueness)
+            filename = render_keys.get(name, safe) if render_keys else safe
+            out  = output_dir / f"{filename}.png"
 
             # Skip cards already rendered inline during the art-gen phase
             if out.exists():

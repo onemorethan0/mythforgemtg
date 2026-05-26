@@ -141,7 +141,11 @@ _FLUX_NEGATIVE = (
     "photograph, photo, photorealistic, hyperrealistic, camera, DSLR, "
     "blurry, out of focus, soft focus, hazy, foggy, low resolution, "
     "overexposed, washed out, white background, blown out, pure white, "
-    "watermark, text, border, card frame, out of frame, cropped, nsfw"
+    "watermark, text, border, card frame, out of frame, cropped, nsfw, "
+    # Face-swap artifact guards (prevents 2 torches + black background syndrome)
+    "floating head, headless, no body, face only, torso only, incomplete character, "
+    "looking away, facing away, back turned, no face visible, face hidden, "
+    "empty black background, void, featureless background, blank background"
 )
 
 # ── Positive prompt prefixes ───────────────────────────────────────────────────
@@ -249,25 +253,21 @@ _LORA_PRESETS: dict[str, dict] = {
         "description": "Cinematic photography — sharp portraits, realistic textures, natural lighting.",
         "icon":        "📷",
         "style_guide_hint":  "cinematic photorealistic photography, sharp focus, natural volumetric lighting, film-quality",
-        "themer_medium":     '"photorealistic digital art," or "cinematic photograph," or "hyperrealistic illustration,"',
-        "themer_quality":    '"sharp focus, photorealistic detail" or "cinematic depth of field, volumetric light" or "high definition, lifelike texture"',
+        "themer_medium":     '"cinematic photograph," or "professional photograph," or "detailed photorealistic scene,"',
+        "themer_quality":    '"sharp focus, photorealistic detail, realistic materials" or "film-quality, vivid colors, natural lighting" or "detailed textures, lifelike appearance"',
         # flux_prefix: lead with BRIGHT natural light sources so FLUX doesn't
         # default to underexposed dark output.  "cinematic photography" alone at
         # low CFG can produce near-black frames — anchor on warm volumetric light
         # first, then the style and quality terms.
         "flux_prefix": (
-            "Photorealistic cinematic photography. "
-            "Well-lit scene with natural volumetric light — warm golden hour, "
-            "bright overcast, or crisp studio key light flooding the subject. "
-            "Sharp focus, shallow depth of field, vivid colors, high dynamic range. "
-            "Film-quality composition, subject fully in frame, wide shot. "
-            "Any visible hands have exactly five fingers each. "
+            "Professional photographic quality. Sharp focus, vivid colors, realistic details. "
+            "Well-lit with natural lighting, no dark underexposed areas. Realistic textures and materials. "
         ),
         # face_prefix_medium: overrides the "Painted portrait" default used in
         # generate() for face-conditioned cards.  Must NOT specify "Painted" here —
         # that word directly contradicts the photorealistic style and causes FLUX
         # to produce spiral/contradiction artifacts.
-        "face_prefix_medium": "Photorealistic close-up portrait",
+        "face_prefix_medium": "Photorealistic photograph, close-up portrait, detailed skin texture, professional studio lighting",
         "face_prefix_quality": "sharp photorealistic skin detail, natural lighting on face",
         # Custom negative for photorealism: the default _FLUX_NEGATIVE explicitly
         # lists "photograph, photo, photorealistic, hyperrealistic, camera, DSLR"
@@ -275,14 +275,14 @@ _LORA_PRESETS: dict[str, dict] = {
         # This override removes those terms and instead pushes against underexposure
         # and flat/washed output that FLUX can produce without a realism LoRA.
         "negative_prompt": (
-            "bad hands, extra fingers, four fingers, three fingers, wrong number of fingers, "
-            "bad anatomy, deformed, ugly, "
-            "blurry, out of focus, soft focus, hazy, foggy, low resolution, "
+            "bad hands, extra fingers, wrong number of fingers, malformed hands, "
+            "bad anatomy, deformed, twisted, distorted, "
+            "blurry, out of focus, soft focus, hazy, foggy, low resolution, noise, grain, "
             "underexposed, too dark, pitch black, barely visible, muddy dark colors, "
-            "flat lighting, harsh shadows with no fill, blown out highlights, "
-            "overexposed, washed out, white background, pure white, "
-            "watermark, text, border, card frame, out of frame, cropped, "
-            "cartoon, anime, illustrated, painterly, sketch, drawing, nsfw"
+            "flat lighting, harsh shadows, overexposed, washed out, blown highlights, "
+            "cartoon, anime, illustration, painting, sketch, drawing, digital art, 3d render, cgi, "
+            "filter effects, artistic style, stylized, unrealistic, fantasy, magical effects, "
+            "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
         "loras": [
             {
@@ -1787,6 +1787,8 @@ class ImageGen:
             # VRAMBuffer crash) — check status_str alone, not completed+status_str.
             if status_str in ("error", "failed"):
                 messages = status.get("messages", [])
+                cuda_error_detected = False
+
                 for msg in messages:
                     if not (isinstance(msg, (list, tuple)) and len(msg) >= 2):
                         continue
@@ -1798,18 +1800,41 @@ class ImageGen:
                         exc_msg   = data.get("exception_message", "unknown error")
                         traceback_lines = data.get("traceback", [])
                         tb_tail = "".join(traceback_lines[-5:]) if traceback_lines else ""
+
+                        # ── CUDA/ReActor Error Handling ──────────────────────────
+                        # If ReActor face-swap fails due to missing CUDA, log gracefully
+                        # instead of spamming verbose CUDA error messages.
+                        is_cuda_error = (
+                            "cublasLt64_12" in str(exc_msg) or
+                            "CUDA" in str(exc_type) or
+                            "onnxruntime" in str(exc_msg) and "cuda" in str(exc_msg).lower()
+                        )
+                        is_reactor_error = node_type and "ReActor" in node_type
+
+                        if is_cuda_error and is_reactor_error:
+                            cuda_error_detected = True
+                            print(f"  [image_gen] Face conditioning skipped: CUDA 12.x not available")
+                            print(f"  [image_gen] To enable face swapping, install CUDA Toolkit 12.x from:")
+                            print(f"  [image_gen] https://developer.nvidia.com/cuda-downloads")
+                            # Don't print verbose traceback for CUDA errors
+                            continue
+
+                        # For non-CUDA errors, print full error details
                         print(
                             f"  [image_gen] EXECUTION ERROR in node {node_id} "
                             f"({node_type}): [{exc_type}] {exc_msg}"
                         )
                         if tb_tail:
                             print(f"  [image_gen] traceback tail:\n{tb_tail}")
+
                 if not any(
                     isinstance(m, (list, tuple)) and len(m) >= 2 and m[0] == "execution_error"
                     for m in messages
                 ):
                     print(f"  [image_gen] ComfyUI reports {status_str!r} — "
                           f"messages: {messages[:5]}")
+
+                # Return None to stop waiting (generation failed)
                 return None   # failed — don't wait out the full timeout
 
             # ── Check for output images ───────────────────────────────────────
@@ -1874,42 +1899,34 @@ class ImageGen:
         # self.lora_trigger_prefix is "" when no MTG art LoRAs are installed.
         lora_prefix = self.lora_trigger_prefix
 
-        # Face-conditioned cards must show a clear human face for ReActor/PuLID
-        # to work with. We prepend a strong humanoid portrait directive so the
-        # model always generates a human character regardless of what the themer
-        # described (commanders can be dragons, krakens, etc. — we override that
-        # for the generated portrait so the face swap has something to land on).
-        #
-        # The medium word ("Painted", "Photorealistic", "Anime illustration") is
-        # pulled from the active preset via face_prefix_medium.  Using the wrong
-        # medium here (e.g. "Painted portrait" for a Photorealism preset) creates
-        # a direct contradiction that causes FLUX to produce spiral/swirl artifacts.
-        face_prefix = ""
+        # CRITICAL FIX: Face constraint must cooperate WITH themer's description, not override it.
+        # The old code prepended a contradictory "Painted portrait of a person" that overrode
+        # the mechanical soul (e.g., "destroying enemies"), causing FLUX artifacts (2 torches, black background).
+        # Now: append face requirements AFTER the main description so the soul is established first.
+        face_suffix = ""
         if face_comfy_name:
             _all_presets  = get_all_presets()
             _active_preset = _all_presets.get(self.art_style, {})
-            _fp_medium  = _active_preset.get("face_prefix_medium",  "Painted portrait")
             _fp_quality = _active_preset.get("face_prefix_quality", "painterly skin tones")
 
             if face_gender == "male":
-                _fp_subject = "of a man"
+                _fp_subject = "a man"
             elif face_gender == "female":
-                _fp_subject = "of a woman"
+                _fp_subject = "a woman"
             else:
-                _fp_subject = "of a person"
+                _fp_subject = "a person"
 
-            face_prefix = (
-                f"{_fp_medium} {_fp_subject}, face clearly visible and well-lit, "
-                f"detailed expressive eyes, {_fp_quality}. "
+            # Append AFTER art_prompt so the mechanical soul is established first,
+            # then add face requirements as additional constraints.
+            face_suffix = (
+                f". Character is {_fp_subject} with a clear, well-lit face showing detailed expressive eyes and {_fp_quality}. "
+                f"Face clearly visible, upper body in frame."
             )
+            # ReActor needs a detectable face in the generated image to swap onto.
+            if self.face_method == "reactor":
+                face_suffix += " Subject facing forward, three-quarter view toward camera."
 
-        full_prompt = lora_prefix + prefix + face_prefix + art_prompt
-
-        # ReActor needs a detectable face in the generated image to swap onto.
-        # Append a frontal-face nudge so the subject is facing forward enough
-        # for retinaface_resnet50 to pick up on.
-        if face_comfy_name and self.face_method == "reactor":
-            full_prompt += ", face and upper body visible, three-quarter view toward camera, subject looking forward"
+        full_prompt = lora_prefix + prefix + art_prompt + face_suffix
 
         # Log the final prompt and settings so we can diagnose blurriness/LoRA issues
         print(f"  [image_gen] Prompt ({len(full_prompt)} chars): {full_prompt[:120]}{'...' if len(full_prompt) > 120 else ''}")
@@ -1958,6 +1975,7 @@ class ImageGen:
             if not image_info:
                 return None
             if self._download_image(image_info, save_path):
+                # GPU memory is automatically freed by ComfyUI v0.22+ between prompts
                 return save_path
         except requests.RequestException as e:
             print(f"  [image_gen] RequestException '{filename_stem}': {e}")

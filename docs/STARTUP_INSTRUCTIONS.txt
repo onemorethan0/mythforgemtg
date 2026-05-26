@@ -1,0 +1,225 @@
+================================================================================
+MTG COMMANDER DECK BUILDER — STARTUP INSTRUCTIONS
+================================================================================
+
+EXACT STEPS TO START THE SERVER:
+
+1. FIRST TIME ONLY — Configure your paths:
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   • Open: paths_config.ps1 in a text editor
+
+   • Edit these 4 lines to match YOUR system:
+     Line 7:  $global:PythonExe = "C:\Python314\python.exe"
+              (change to wherever you have Python installed)
+
+     Line 10: $global:ComfyPythonExe = "C:\Users\rvn92\Documents\ComfyUI\.venv\Scripts\python.exe"
+              (path to ComfyUI's Python virtual environment)
+
+     Line 13: $global:ComfyMainPy = "E:\Games\comfy\ComfyUI\resources\ComfyUI\main.py"
+              (where ComfyUI's main.py file is located)
+
+     Line 16: $global:ComfyBaseDir = "C:\Users\rvn92\Documents\ComfyUI"
+              (where ComfyUI stores models, input, output folders)
+
+   • Save the file
+
+   • (OPTIONAL) Validate by opening PowerShell and running:
+     . .\paths_config.ps1
+     Test-ConfigPaths
+
+     It will print "SUCCESS" if all paths are valid, or list missing paths if not.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. TO START THE SERVER:
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   Simply double-click: START.bat
+
+   Expected output:
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   [1/3] Checking Ollama...
+         ✓ Ollama ready
+
+   [2/3] Checking ComfyUI...
+         ✓ ComfyUI ready
+
+   [3/3] Starting FastAPI server...
+         ✓ FastAPI server ready
+
+   ════════════════════════════════════════════════════════
+   ✓ All services started successfully!
+   ════════════════════════════════════════════════════════
+
+   Your browser will automatically open to: http://localhost:8000
+
+   The black command windows that appear are the service processes.
+   DO NOT CLOSE THEM — use STOP.bat instead to shut everything down properly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. WHEN YOU'RE DONE:
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   Simply double-click: STOP.bat
+
+   This will gracefully shut down:
+   • FastAPI backend
+   • ComfyUI (image generation engine)
+   • Ollama (LLM backend)
+
+   All GPU memory is freed and resources are released cleanly.
+
+================================================================================
+WHAT THESE FILES DO:
+================================================================================
+
+MAIN STARTUP SCRIPTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+START.bat
+  • Loads configuration from paths_config.ps1
+  • Checks if Ollama is running (starts if needed)
+  • Checks if ComfyUI is running (starts if needed)
+  • Starts FastAPI backend server
+  • Waits for all three services to be ready
+  • Opens http://localhost:8000 in your browser
+  → Use this for NORMAL startup
+
+STOP.bat
+  • Stops FastAPI backend
+  • Stops ComfyUI and frees GPU memory
+  • Stops Ollama
+  • Verifies all ports are released
+  → Use this for NORMAL shutdown
+
+CONFIGURATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+paths_config.ps1
+  • Central location for ALL service paths
+  • Edit this file ONCE at the beginning with your system paths
+  • Includes validation function: Test-ConfigPaths
+  → All other scripts load and use this configuration
+
+launch_comfyui.ps1
+  • Used internally by START.bat
+  • Launches ComfyUI with proper arguments
+  • Loads configuration from paths_config.ps1
+  → You don't need to run this manually
+
+UTILITY SCRIPTS (Optional):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Located in: utilities/ folder
+
+download_new_loras.ps1
+  • Downloads optional art style LoRAs from CivitAI
+  • Use when you want to add new art styles
+
+move_downloaded_loras.ps1
+  • Moves downloaded LoRA files from Downloads to ComfyUI folder
+  • Restarts the server to activate new styles
+
+complete_flux_dev_download.ps1
+  • Background watcher for FLUX model downloads
+  • Probably not needed (FLUX already downloaded)
+
+================================================================================
+SERVICES AND WHAT THEY DO:
+================================================================================
+
+OLLAMA (Port 11434)
+  Role: Generates themed card names, flavor text, and art prompts
+  Used for: LLM-based card theming and creative descriptions
+  Required: YES
+  If it fails: Install from https://ollama.ai
+              Then: ollama pull qwen3:14b
+
+COMFYUI (Port 8188)
+  Role: Generates custom card artwork using FLUX or SDXL
+  Used for: AI image generation, face-swapping, upscaling
+  Required: YES
+  If it fails: Check paths in paths_config.ps1
+              Verify FLUX checkpoint is downloaded
+              Check for missing CUDA drivers (NVIDIA GPU only)
+
+FASTAPI SERVER (Port 8000)
+  Role: Deck builder backend API + React web frontend
+  Used for: Building decks, managing cards, exporting
+  Required: YES
+  If it fails: Check server.log for error messages
+              Ensure Python 3.11+ is installed
+              Run: pip install -r requirements.txt
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+"Ollama is not running" error?
+  → Install Ollama from https://ollama.ai
+  → Run: ollama pull qwen3:14b
+  → Then run START.bat again
+
+"ComfyUI did not respond" error?
+  → Paths in paths_config.ps1 are wrong
+  → Run: . .\paths_config.ps1; Test-ConfigPaths
+  → Fix any missing paths shown in red
+  → Try START.bat again
+
+"FastAPI did not respond" error?
+  → Check server.log for error details
+  → Is Python installed? python --version
+  → Are dependencies installed? pip install -r requirements.txt
+  → Is port 8000 in use? netstat -ano | findstr :8000
+  → If port is in use: Kill it with taskkill /PID <pid> /F
+
+Port 8000 is already in use?
+  → Solution 1: Edit paths_config.ps1 and change $global:ServerPort = 8001
+  → Solution 2: Kill the old process: taskkill /PID <process_id> /F
+
+Services won't shut down properly?
+  → Use Task Manager to find and kill python.exe processes
+  → Or: taskkill /F /IM python.exe /IM ollama.exe
+
+================================================================================
+TECHNICAL DETAILS:
+================================================================================
+
+Startup Order & Dependencies:
+  1. paths_config.ps1 is loaded (no dependencies)
+  2. Ollama started/checked (must be running before other services)
+  3. ComfyUI started/checked (uses launch_comfyui.ps1)
+  4. FastAPI server started (depends on Ollama + ComfyUI being ready)
+  5. Browser opened when all services are ready
+
+Service Readiness Checks:
+  Ollama:   GET http://127.0.0.1:11434/api/tags         → HTTP 200
+  ComfyUI:  GET http://127.0.0.1:8188/system_stats      → HTTP 200
+  FastAPI:  GET http://127.0.0.1:8000/api/playstyles    → HTTP 200
+
+Timeout Values:
+  Ollama:   15 checks × 2 seconds = 30 seconds max wait
+  ComfyUI:  30 checks × 3 seconds = 90 seconds max wait
+  FastAPI:  15 checks × 2 seconds = 30 seconds max wait
+
+Port Cleanup:
+  START.bat kills any existing process on port 8000 before starting
+  This prevents "Address already in use" errors
+
+Logging:
+  FastAPI logs written to: server.log
+  ComfyUI logs visible in its console window
+  Ollama logs visible in its console window
+
+================================================================================
+QUICK REFERENCE:
+================================================================================
+
+To Start:     Double-click START.bat
+To Stop:      Double-click STOP.bat
+To Configure: Edit paths_config.ps1 with your system paths
+To Validate:  . .\paths_config.ps1; Test-ConfigPaths
+To Access:    http://localhost:8000
+
+For detailed help, see STARTUP_GUIDE.md
+
+================================================================================

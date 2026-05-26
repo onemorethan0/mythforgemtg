@@ -484,6 +484,13 @@ def _free_all_vram(job_id: str = "") -> None:
         _wait_for_ollama_evict(m, job_id)
 
 
+# ── Filename helper ──────────────────────────────────────────────────────────
+
+def _safe_name(name: str) -> str:
+    """Convert a card name to a safe filesystem-friendly string."""
+    return "".join(c if c.isalnum() else "_" for c in name)[:48]
+
+
 # ── Oracle text self-reference helper ────────────────────────────────────────
 
 def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: str) -> str:
@@ -824,11 +831,18 @@ def _run_build(job_id: str, req: BuildRequest):
                                 "last_ok":   success,
                             }))
 
+                        # Pre-compute render_keys for indexed filenames (used in card_done_cb)
+                        _render_keys_inline = {}
+                        _render_keys_inline[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
+                        for i, tc in enumerate(themed_deck, 1):
+                            _render_keys_inline[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
+
                         def _card_done_cb(tc, art_path):
                             """Render this card immediately and push a card_ready SSE event."""
                             name = tc.original_name
-                            safe = "".join(ch if ch.isalnum() else "_" for ch in name)[:48]
-                            out_path = render_out / f"{safe}.png"
+                            # Use indexed render_key format (CardName_000 for commander, CardName_001+ for deck)
+                            render_key = _render_keys_inline.get(name, _safe_name(name))
+                            out_path = render_out / f"{render_key}.png"
                             if not out_path.exists():
                                 try:
                                     from PIL import Image as _PILImage
@@ -851,7 +865,7 @@ def _run_build(job_id: str, req: BuildRequest):
                                     print(f"  [render-inline] {name}: {_re}")
                             if out_path.exists():
                                 _push(job_id, "card_ready", json.dumps({
-                                    "key":  safe,
+                                    "key":  render_key,
                                     "name": tc.themed_name,
                                 }))
 
@@ -921,11 +935,13 @@ def _run_build(job_id: str, req: BuildRequest):
             ) for tc in _all_tcs
         }
         _flavor_ov = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs}
+        # Reuse the render_keys computed earlier (already set in _render_keys_inline)
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov,
             flavor_overrides=_flavor_ov,
             border_theme=req.border_theme or "",
+            render_keys=_render_keys_inline,
         )
         _push(job_id, "progress", json.dumps({"step": "render", "msg": f"Rendered {len(saved_imgs)} card frames"}))
 
@@ -1075,7 +1091,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
-            "commander_prompt": source_data.get("commander_prompt", ""),
+            "commander_prompt": req.commander_prompt or source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
             "bracket":          source_data.get("bracket", 3),
@@ -1185,22 +1201,54 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                     deck_slug = _rebuild_deck_slug
 
                     # Resolve commander face (req overrides stored value)
+                    # CRITICAL FIX: Validate that face photos still exist before generation.
+                    # If photos were deleted/moved, fall back to no face conditioning to avoid
+                    # generic "torches on black background" artifacts from FLUX getting None paths.
                     _face_key = req.face_key or source_data.get("face_key", "")
-                    face_paths: list[Path] = get_face_paths(_face_key) if _face_key else []
-                    if face_paths:
-                        _push(job_id, "progress", json.dumps({
-                            "step": "art",
-                            "msg":  f"Commander face: {len(face_paths)} photo(s) — {gen.face_method_label}",
-                        }))
+                    face_paths: list[Path] = []
+                    if _face_key:
+                        face_paths = get_face_paths(_face_key)
+                        if face_paths:
+                            # Verify paths still exist
+                            valid_face_paths = [p for p in face_paths if p.exists()]
+                            if valid_face_paths and len(valid_face_paths) < len(face_paths):
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "art",
+                                    "msg":  f"⚠ {len(face_paths) - len(valid_face_paths)} face photo(s) missing, using {len(valid_face_paths)}",
+                                    "warning": True,
+                                }))
+                                face_paths = valid_face_paths
+                            elif not valid_face_paths:
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "art",
+                                    "msg":  f"⚠ Face key '{_face_key}' has no valid photos, skipping face conditioning",
+                                    "warning": True,
+                                }))
+                                face_paths = []
+                            elif valid_face_paths:
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "art",
+                                    "msg":  f"Commander face: {len(valid_face_paths)} photo(s) — {gen.face_method_label}",
+                                }))
 
-                    # Resolve crew faces
+                    # Resolve crew faces (same validation)
                     _crew_key = req.crew_key or source_data.get("crew_key", "")
-                    crew_paths: list[Path] = get_face_paths(_crew_key) if _crew_key else []
-                    if crew_paths:
-                        _push(job_id, "progress", json.dumps({
-                            "step": "art",
-                            "msg":  f"Crew photos: {len(crew_paths)} photo(s) for creature cards",
-                        }))
+                    crew_paths: list[Path] = []
+                    if _crew_key:
+                        crew_paths = get_face_paths(_crew_key)
+                        if crew_paths:
+                            valid_crew_paths = [p for p in crew_paths if p.exists()]
+                            if valid_crew_paths and len(valid_crew_paths) < len(crew_paths):
+                                print(f"  [rebuild] Crew photos: {len(valid_crew_paths)}/{len(crew_paths)} valid")
+                                crew_paths = valid_crew_paths
+                            elif not valid_crew_paths:
+                                print(f"  [rebuild] Crew key '{_crew_key}' has no valid photos")
+                                crew_paths = []
+                            elif valid_crew_paths:
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "art",
+                                    "msg":  f"Crew photos: {len(valid_crew_paths)} photo(s) for creature cards",
+                                }))
 
                     _push(job_id, "progress", json.dumps({"step": "art", "msg": "Generating card art (ComfyUI)…"}))
                     _art_start_time = time.time()
@@ -1313,11 +1361,17 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         _all_tcs_rb = [themed_cmd] + list(themed_deck)
         _oracle_ov_rb = {tc.original_name: tc.card.get("oracle_text", "") for tc in _all_tcs_rb}
         _flavor_ov_rb = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs_rb}
+        # Build render_keys mapping for indexed filenames
+        _render_keys_rb = {}
+        _render_keys_rb[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
+        for i, tc in enumerate(themed_deck, 1):
+            _render_keys_rb[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov_rb,
             flavor_overrides=_flavor_ov_rb,
             border_theme=source_data.get("border_theme", ""),
+            render_keys=_render_keys_rb,
         )
         _push(job_id, "progress", json.dumps({"step": "render", "msg": f"Rendered {len(saved_imgs)} card frames"}))
 
@@ -1843,11 +1897,17 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             ) for tc in _all_tcs_rt
         }
         _flavor_ov_rt = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs_rt}
+        # Build render_keys mapping for indexed filenames
+        _render_keys_rt = {}
+        _render_keys_rt[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
+        for i, tc in enumerate(themed_deck, 1):
+            _render_keys_rt[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov_rt,
             flavor_overrides=_flavor_ov_rt,
             border_theme=source_data.get("border_theme", ""),
+            render_keys=_render_keys_rt,
         )
         _push(job_id, "progress", json.dumps({
             "step": "render",

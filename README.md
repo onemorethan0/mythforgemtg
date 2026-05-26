@@ -34,16 +34,88 @@ See `HARDWARE_OPTIMIZATION_GUIDE.md` for detailed analysis and batch size tuning
 | Ollama (`qwen3:14b` default) | 11434 | Card theming, names, flavor text, art prompts |
 | ComfyUI | 8188 | AI image generation (FLUX or SDXL) |
 
-Start everything with:
-```
-start_app.bat
-```
-Then open **http://localhost:8000**
+---
 
-> **Restarting after code changes:** `start_app.bat` skips services it thinks are already running. Kill the old `python.exe server.py` process in Task Manager first, then run the bat, or kill it via PowerShell:
-> ```powershell
-> Get-WmiObject Win32_Process | Where-Object { $_.CommandLine -like "*server.py*" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
-> ```
+## Quick Start
+
+### 1. **Configure Paths** (First Time Only)
+Edit `paths_config.ps1` to match your installation paths:
+```powershell
+$global:PythonExe = "C:\Python314\python.exe"           # Your Python 3.11+ executable
+$global:ComfyPythonExe = "C:\...\ComfyUI\.venv\Scripts\python.exe"  # ComfyUI's venv
+$global:ComfyMainPy = "E:\...\ComfyUI\resources\ComfyUI\main.py"    # ComfyUI entry point
+$global:ComfyBaseDir = "C:\Users\...\Documents\ComfyUI"  # ComfyUI user data directory
+```
+
+All other settings will auto-detect. Run `paths_config.ps1` manually to validate:
+```powershell
+. .\paths_config.ps1; Test-ConfigPaths
+```
+
+### 2. **Start Services**
+**Double-click:**
+```
+START.bat
+```
+
+This script will:
+- ✓ Check if Ollama is running (start if needed)
+- ✓ Check if ComfyUI is running (start if needed)
+- ✓ Start the FastAPI backend server
+- ✓ Wait for all services to be ready
+- ✓ Open your browser to http://localhost:8000
+
+**Expected startup time:** 30-60 seconds (depends on if services need to start)
+
+### 3. **Stop Services** (When Done)
+**Double-click:**
+```
+STOP.bat
+```
+
+This will gracefully stop all three services and free GPU memory.
+
+### 4. **Troubleshooting**
+
+**Port already in use?**
+Edit `paths_config.ps1` and change the port numbers, or:
+```cmd
+netstat -ano | findstr :8000
+taskkill /PID <process_id> /F
+```
+
+**ComfyUI fails to start?**
+- Check that the paths in `paths_config.ps1` are correct
+- Try starting ComfyUI manually: `python main.py --port 8188`
+- Check for missing CUDA drivers (NVIDIA GPU only)
+
+**Ollama is disconnected?**
+- Download & install Ollama: https://ollama.ai
+- Pull the default model: `ollama pull qwen3:14b`
+- Check it's running: `ollama serve`
+
+**FastAPI server not responding?**
+- Check `server.log` for error messages
+- Try restarting: `STOP.bat` → `START.bat`
+- If port 8000 is stuck, restart Windows or use Task Manager to kill Python
+
+---
+
+## Service Dependencies
+
+```
+START.bat
+├─→ Check Ollama (port 11434)
+│   └─→ Start if missing
+├─→ Check ComfyUI (port 8188)
+│   └─→ Launch via launch_comfyui.ps1 if missing
+└─→ Start FastAPI backend (port 8000)
+    └─→ Kill old processes on port 8000 first
+    └─→ Wait for all three services ready
+    └─→ Open browser
+```
+
+Do **NOT** manually close the black cmd windows that pop up — they're the service processes. Use `STOP.bat` to shut everything down cleanly.
 
 ---
 
@@ -288,3 +360,25 @@ Python: `C:\Python314\python.exe`
 - **Scryfall rate limiting** — 150ms sleep between requests. Running multiple builds back-to-back is fine for single-user use.
 - **Art generation is optional** — Toggle `generate_art: false` to skip ComfyUI entirely; Scryfall card art is used as fallback and frames still render.
 - **pixie-python SVG rasterization** — `pixie.Image.resize()` is NOT in-place. Must create a new `pixie.Image(w, h)` as destination, then `ctx.scale() + ctx.draw_image(src, 0, 0)`.
+
+---
+
+## Documentation
+
+See **[docs/](docs/)** for complete documentation:
+
+**Quick Start:**
+- **[CHECKLIST_BEFORE_STARTING.txt](CHECKLIST_BEFORE_STARTING.txt)** — One-page checklist before your first run
+- **[docs/STARTUP_INSTRUCTIONS.txt](docs/STARTUP_INSTRUCTIONS.txt)** — Quick reference card
+
+**For Setup & Troubleshooting:**
+- **[docs/STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md)** — Complete setup with detailed troubleshooting for each service
+- **[docs/MAINTENANCE.md](docs/MAINTENANCE.md)** — Troubleshooting by symptom, optimization, new features
+
+**For Developers:**
+- **[docs/DEVELOPMENT_GUIDELINES.md](docs/DEVELOPMENT_GUIDELINES.md)** — **Mandatory** guidelines for code changes. Read before making any changes.
+- **[docs/HARDWARE_OPTIMIZATION_GUIDE.md](docs/HARDWARE_OPTIMIZATION_GUIDE.md)** — GPU tuning and batch size analysis
+
+**Special Notes:**
+- **CUDA 12.x Required for Face Conditioning** — Download from https://developer.nvidia.com/cuda-downloads
+- **Archive:** [docs/archive/](docs/archive/) contains previous session notes and historical information

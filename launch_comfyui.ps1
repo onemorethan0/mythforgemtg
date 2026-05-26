@@ -1,25 +1,36 @@
 $ErrorActionPreference = 'Stop'
 
-$pythonExe = "C:\Users\rvn92\Documents\ComfyUI\.venv\Scripts\python.exe"
-$mainPy    = "E:\Games\comfy\ComfyUI\resources\ComfyUI\main.py"
-$baseDir   = "C:\Users\rvn92\Documents\ComfyUI"
+# Load configuration from paths_config.ps1
+. (Join-Path $PSScriptRoot "paths_config.ps1")
 
-# Sanity-check before spawning — otherwise start_app.bat's wait loop hangs forever
+$pythonExe = $global:ComfyPythonExe
+$mainPy    = $global:ComfyMainPy
+$baseDir   = $global:ComfyBaseDir
+$port      = $global:ComfyPort
+
+# Sanity-check before spawning — otherwise START.bat's wait loop hangs forever
 if (-not (Test-Path $pythonExe)) {
     Write-Host "  [launch_comfyui] ERROR: Python venv not found at $pythonExe" -ForegroundColor Red
+    Write-Host "                          Check paths_config.ps1" -ForegroundColor Red
     exit 1
 }
 if (-not (Test-Path $mainPy)) {
     Write-Host "  [launch_comfyui] ERROR: ComfyUI main.py not found at $mainPy" -ForegroundColor Red
+    Write-Host "                          Check paths_config.ps1" -ForegroundColor Red
+    exit 1
+}
+if (-not (Test-Path $baseDir)) {
+    Write-Host "  [launch_comfyui] ERROR: ComfyUI base directory not found at $baseDir" -ForegroundColor Red
+    Write-Host "                          Check paths_config.ps1" -ForegroundColor Red
     exit 1
 }
 
 # -WindowStyle Minimized + an explicit title makes the process discoverable by
-# both `taskkill /FI WINDOWTITLE` and the WMI command-line filter in stop_app.bat.
+# both `taskkill /FI WINDOWTITLE` and the WMI command-line filter in STOP.bat.
 $proc = Start-Process -FilePath $pythonExe `
     -ArgumentList @(
         $mainPy,
-        "--port", "8188",
+        "--port", $port.ToString(),
         "--listen", "127.0.0.1",
         "--base-directory", $baseDir,
         "--disable-dynamic-vram"
