@@ -742,6 +742,15 @@ def _run_build(job_id: str, req: BuildRequest):
                 "warning": True,
             }))
 
+        # ── Unload Ollama before proceeding to symbol / art gen ────────────────
+        # Prevents Ollama from competing with ComfyUI for VRAM during art gen.
+        # Do this even if theming failed — Ollama may still be partially resident.
+        if req.generate_art:
+            from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
+            _ollama_model = _llm or _DEFAULT_OLLAMA
+            _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Freeing GPU for art generation…"}))
+            _wait_for_ollama_evict(_ollama_model, job_id)
+
         if themed_cmd is None:
             def _plain(c): return ThemedCard(c["name"], c["name"], "", "", c)
             themed_cmd  = _plain(card)
