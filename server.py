@@ -596,9 +596,14 @@ def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: st
             result = re.sub(rf"\b{re.escape(first_orig)}\b", first_themed, result)
         elif " " in first_orig:
             # No-comma multi-word name — Scryfall uses just the first word as shorthand
-            first_word = first_orig.split()[0]
+            # ("Kaalia of the Vast" → oracle says "Whenever Kaalia attacks").
+            # Mirror that for the themed replacement: use only the first word of the
+            # themed name so "Dante of the Vast" → oracle reads "Whenever Dante attacks",
+            # not "Whenever Dante of the Vast attacks".
+            first_word        = first_orig.split()[0]
+            first_themed_word = first_themed.split()[0]
             if len(first_word) > 2:
-                result = re.sub(rf"\b{re.escape(first_word)}\b", first_themed, result)
+                result = re.sub(rf"\b{re.escape(first_word)}\b", first_themed_word, result)
     return result
 
 
@@ -612,16 +617,27 @@ def _apply_user_name(themed_name: str, user_name: str) -> str:
     Examples:
       "Vex Thornwood, Blade of the Void" + "Dorian"  → "Dorian, Blade of the Void"
       "Vex Thornwood, Blade of the Void" + "Dorian Grey" → "Dorian Grey, Blade of the Void"
-      "Ember Sanctum"  (no comma, non-legendary) + "Dorian" → "Ember Sanctum" (unchanged)
+      "Kaalia of the Vast"               + "Dante"   → "Dante of the Vast"
+      "Kaalia Reborn"                    + "Dante"   → "Dante Reborn"
+      "Ember Sanctum"  (no comma)        + ""        → "Ember Sanctum" (unchanged, no user name)
     """
     user_name = (user_name or "").strip()
     if not user_name:
         return themed_name
     if "," in themed_name:
+        # Standard legendary format: "Firstname, Title" → swap the first-name part
         _, rest = themed_name.split(",", 1)
         return f"{user_name},{rest}"
-    # No comma → keep the generated name (non-legendary flat names don't need replacing)
-    return themed_name
+    # No comma — two failure modes land here:
+    #   1. Theming fell back to the original MTG name ("Kaalia of the Vast")
+    #   2. Ollama ignored the "Firstname, Title" format ("Kaalia Reborn")
+    # In both cases the user explicitly chose a name, so apply it.
+    # Keep any suffix words as a title so "Kaalia of the Vast" → "Dante of the Vast"
+    # rather than silently discarding the user's customisation.
+    words = themed_name.split()
+    if len(words) > 1:
+        return user_name + " " + " ".join(words[1:])
+    return user_name
 
 
 # ── Background deck build ─────────────────────────────────────────────────────
