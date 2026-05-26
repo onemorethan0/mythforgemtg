@@ -205,31 +205,48 @@ tasklist | findstr python  # Should show python.exe processes
 ### Symptom: "CUDA error: cublasLt64_12.dll missing" (face conditioning fails)
 
 **Root cause:**
-ReActor face-swap module requires CUDA Toolkit 12.x, which is not installed on the system.
+ONNXRuntime in ComfyUI venv is compiled for a different CUDA version than what's installed. Version mismatch between CUDA and ONNXRuntime causes DLL load failures.
 
 **Diagnosis:**
 ```powershell
-# Check if CUDA 12.x is installed:
-ls "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.*"
-
-# If directory doesn't exist, CUDA 12.x is not installed
-
 # Check which CUDA version is installed:
-ls "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v*"
-# If only v11.x exists, upgrade to v12.x
+ls "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\"
+# Output: v13.2, v13.1, v12.6, etc. — note the version
+
+# Check ONNXRuntime version in ComfyUI:
+C:\Users\{user}\Documents\ComfyUI\.venv\Scripts\python.exe -c "import onnxruntime; print(onnxruntime.__version__)"
 ```
 
 **Fixes:**
-1. **Install CUDA Toolkit 12.x** (permanent fix):
-   - Download from https://developer.nvidia.com/cuda-downloads
-   - Select Windows 11, x86_64, .exe (network)
-   - Run installer with Admin privileges
-   - Restart computer after installation
 
-2. **Workaround: Disable face conditioning** (temporary):
-   - When building decks, don't upload face photos
-   - Cards will generate with art style but no face swapping
-   - Once CUDA 12.x is installed, face conditioning will work automatically
+**Option 1: If you have CUDA 13.2+ installed** (most common):
+```powershell
+cd "C:\Users\{user}\Documents\ComfyUI\.venv\Scripts"
+# Upgrade ONNXRuntime to CUDA 13.x version
+pip install onnxruntime-gpu==1.18.0 --upgrade --force-reinstall
+# Fix NumPy compatibility
+pip install "numpy<2" --force-reinstall
+```
+Then restart ComfyUI: `STOP.bat` → wait 5s → `START.bat`
+
+**Option 2: If you have CUDA 12.x installed** (older):
+```powershell
+cd "C:\Users\{user}\Documents\ComfyUI\.venv\Scripts"
+# Just fix NumPy, ONNXRuntime is already correct
+pip install "numpy<2" --force-reinstall
+```
+Then restart ComfyUI.
+
+**Option 3: If CUDA is not installed**:
+1. Download CUDA Toolkit 13.2: https://developer.nvidia.com/cuda-downloads
+2. Install with admin privileges
+3. Restart computer
+4. Then use Option 1 above to upgrade ONNXRuntime
+
+**Why this happens:**
+CUDA versions (12.x, 13.x) have different DLL names and locations. ONNXRuntime is compiled for specific CUDA versions. If CUDA version doesn't match ONNXRuntime's target, you get DLL load errors. This is fixed by either:
+- Installing matching CUDA version, OR
+- Upgrading ONNXRuntime to match installed CUDA version
 
 ---
 
