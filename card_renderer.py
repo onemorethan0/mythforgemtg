@@ -988,8 +988,15 @@ def render_card(
     name_font_size = _mm(2.5) if show_subtitle else _mm(2.7)
     name_font = _beleren(name_font_size)
     name_text = themed_name
+    max_name_w = name_max_x - _NAME_TX
     try:
-        while name_font.getlength(name_text) > (name_max_x - _NAME_TX) and len(name_text) > 4:
+        # 1. Shrink font first (down to ~1.4mm / ~53% of default) before truncating
+        min_font_size = _mm(1.4)
+        while name_font.getlength(name_text) > max_name_w and name_font_size > min_font_size:
+            name_font_size = max(int(name_font_size * 0.90), min_font_size)
+            name_font = _beleren(name_font_size)
+        # 2. Only truncate as a last resort if still too wide at minimum font size
+        while name_font.getlength(name_text) > max_name_w and len(name_text) > 4:
             name_text = name_text[:-2] + "…"
     except Exception:
         pass

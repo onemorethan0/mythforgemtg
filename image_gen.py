@@ -812,6 +812,33 @@ _LORA_PRESETS: dict[str, dict] = {
             },
         ],
     },
+
+    # ── Ragnarok Online illustrated card/loading screen style ───────────────────
+    # Optimized for Illustrious XL (SDXL) checkpoint with RO LoRA.
+    # NOTE: Load illustrious-xl-v0.1.safetensors in ComfyUI before building with this preset.
+    "ragnarok_online": {
+        "label":       "Ragnarok Online",
+        "description": "RO illustrated cards & loading screens — rich anime detail, dramatic fantasy adventure, jewel-tone palettes.",
+        "icon":        "⚔️",
+        "style_guide_hint":  "ragnarok online illustration, anime-style fantasy card art, dramatic adventure scenes, rich jewel tones, detailed character-focused compositions",
+        "themer_medium":     '"anime illustration," or "fantasy card art," or "illustrated concept art,"',
+        "themer_quality":    '"detailed anime illustration, rich colors" or "dramatic fantasy card art, jewel-tone palette" or "high-detail illustrated character, vibrant"',
+        # Note: flux_prefix is only used by FLUX; SDXL uses _SDXL_PREFIX.
+        # Including it here for completeness, but it won't affect Illustrious XL output.
+        "flux_prefix": None,
+        "loras": [
+            {
+                "fragments":      ["ro_lora"],
+                "trigger":        "",   # RO LoRA may or may not have a trigger word
+                "model_strength": 0.85,
+                "clip_strength":  0.85,
+                "dark_only":      False,
+                "label":          "Ragnarok Online Style",
+                "download_url":   None,
+                "download_note":  "ro_lora_v1.safetensors (user-trained on Illustrious XL)",
+            },
+        ],
+    },
 }
 
 # ── Public preset metadata (safe for the API — no internal LoRA details) ──────

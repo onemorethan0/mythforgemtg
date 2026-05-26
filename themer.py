@@ -667,7 +667,8 @@ def _batch_prompt(theme: str, commander_name: str, cards: list[dict],
                    batch_commander_idx: int = -1,
                    world_zones: Optional[list[str]] = None,
                    themer_medium: str = "",
-                   themer_quality: str = "") -> str:
+                   themer_quality: str = "",
+                   commander_gender: str = "") -> str:
     """
     batch_commander_idx: local index (0-based within this batch) of the commander card,
                          or -1 if the commander is not in this batch.
@@ -694,9 +695,21 @@ def _batch_prompt(theme: str, commander_name: str, cards: list[dict],
     )
     commander_block = ""
     if commander_prompt and batch_commander_idx >= 0:
+        _gender_note = ""
+        _g = (commander_gender or "").strip().lower()
+        if _g == "male":
+            _gender_note = (
+                " GENDER — this character is MALE: use he/him pronouns and titles like "
+                "'master'/'lord'/'warrior'. NEVER use 'mistress', 'lady', 'she', or 'her'."
+            )
+        elif _g == "female":
+            _gender_note = (
+                " GENDER — this character is FEMALE: use she/her pronouns and titles like "
+                "'mistress'/'lady'. NEVER use 'master', 'lord', 'he', or 'him'."
+            )
         commander_block = (
             f"\nCOMMANDER CHARACTER (idx={batch_commander_idx}): "
-            f"reference appearance — {commander_prompt}. "
+            f"reference appearance — {commander_prompt}.{_gender_note} "
             f"For idx={batch_commander_idx} only: LEAD with the character — 2-3 most distinctive "
             f"appearance traits, placed inside the theme world's setting. "
             f"The card's mechanical action is a subtle scene beat, not the centerpiece. "
@@ -780,7 +793,8 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                      batch_commander_idx: int = -1,
                      world_zones: Optional[list[str]] = None,
                      themer_medium: str = "",
-                     themer_quality: str = "") -> str:
+                     themer_quality: str = "",
+                     commander_gender: str = "") -> str:
     """
     Enhanced dual-anchor prompt (v2).
 
@@ -818,9 +832,21 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     )
     commander_block = ""
     if commander_prompt and batch_commander_idx >= 0:
+        _gender_note = ""
+        _g = (commander_gender or "").strip().lower()
+        if _g == "male":
+            _gender_note = (
+                " GENDER — this character is MALE: use he/him pronouns and titles like "
+                "'master'/'lord'/'warrior'. NEVER use 'mistress', 'lady', 'she', or 'her'."
+            )
+        elif _g == "female":
+            _gender_note = (
+                " GENDER — this character is FEMALE: use she/her pronouns and titles like "
+                "'mistress'/'lady'. NEVER use 'master', 'lord', 'he', or 'him'."
+            )
         commander_block = (
             f"\nCOMMANDER CHARACTER (idx={batch_commander_idx}): "
-            f"reference appearance — {commander_prompt}. "
+            f"reference appearance — {commander_prompt}.{_gender_note} "
             f"For idx={batch_commander_idx} only: LEAD the prompt with the character — pick 2-3 of "
             f"the most distinctive appearance traits and place them early. Anchor the character "
             f"inside the theme world's setting. The card's mechanical effect should be a SUBTLE "
