@@ -815,11 +815,13 @@ _LORA_PRESETS: dict[str, dict] = {
 
     # ── Ragnarok Online illustrated card/loading screen style ───────────────────
     # Optimized for Illustrious XL (SDXL) checkpoint with RO LoRA.
-    # NOTE: Load illustrious-xl-v0.1.safetensors in ComfyUI before building with this preset.
+    # IMPORTANT: This preset REQUIRES Illustrious XL to be loaded in ComfyUI.
+    # The RO LoRA is SDXL-trained and will not work with FLUX models.
     "ragnarok_online": {
         "label":       "Ragnarok Online",
-        "description": "RO illustrated cards & loading screens — rich anime detail, dramatic fantasy adventure, jewel-tone palettes.",
+        "description": "RO illustrated cards & loading screens — rich anime detail, dramatic fantasy adventure, jewel-tone palettes. REQUIRES Illustrious XL (SDXL).",
         "icon":        "⚔️",
+        "required_checkpoint_type": "sdxl",   # Warn if FLUX/SD3.5 is loaded
         "style_guide_hint":  "ragnarok online illustration, anime-style fantasy card art, dramatic adventure scenes, rich jewel tones, detailed character-focused compositions",
         "themer_medium":     '"anime illustration," or "fantasy card art," or "illustrated concept art,"',
         "themer_quality":    '"detailed anime illustration, rich colors" or "dramatic fantasy card art, jewel-tone palette" or "high-detail illustrated character, vibrant"',
@@ -835,7 +837,7 @@ _LORA_PRESETS: dict[str, dict] = {
                 "dark_only":      False,
                 "label":          "Ragnarok Online Style",
                 "download_url":   None,
-                "download_note":  "ro_lora_v1.safetensors (user-trained on Illustrious XL)",
+                "download_note":  "ro_lora_v1.safetensors (SDXL-trained for Illustrious XL)",
             },
         ],
     },
@@ -1657,6 +1659,15 @@ class ImageGen:
 
         is_flux = _is_flux(self.checkpoint or "")
         is_sdxl = not is_flux and not _is_sd35(self.checkpoint or "")
+
+        # Checkpoint type mismatch warning
+        required_type = preset.get("required_checkpoint_type", "").lower()
+        if required_type:
+            checkpoint_type = "flux" if is_flux else ("sdxl" if is_sdxl else "sd3.5")
+            if required_type != checkpoint_type:
+                print(f"  [image_gen] ⚠️  WARNING: '{style_label}' preset requires {required_type.upper()}, "
+                      f"but {checkpoint_type.upper()} is loaded ({self.checkpoint}). "
+                      f"Load {required_type.upper()} checkpoint for best results.")
 
         # Skip LoRAs for unsupported model types (neither FLUX nor SDXL)
         if not is_flux and not is_sdxl:
