@@ -833,13 +833,13 @@ def _draw_border_theme(
     # Thin bright inner-edge line (inner face of the chrome, where it meets art)
     inner_lw = max(5, _mm(0.22))   # ~5 px at 3× → ~2.5 px at output
     inner_col = (*rgb, min(255, int(alpha * 1.2)))
-    # Horizontal inner lines
-    draw.line([(_BG_X, _BG_Y + chrome_v_top),
-               (_BG_X + _BG_W, _BG_Y + chrome_v_top)],
+    # Horizontal inner lines (constrained to span only between vertical bands)
+    draw.line([(_BG_X + chrome_h, _BG_Y + chrome_v_top),
+               (_BG_X + _BG_W - chrome_h, _BG_Y + chrome_v_top)],
               fill=inner_col, width=inner_lw)
     if chrome_v_bot > 0:
-        draw.line([(_BG_X, ora_bottom),
-                   (_BG_X + _BG_W, ora_bottom)],
+        draw.line([(_BG_X + chrome_h, ora_bottom),
+                   (_BG_X + _BG_W - chrome_h, ora_bottom)],
                   fill=inner_col, width=inner_lw)
     # Vertical inner lines
     draw.line([(_BG_X + chrome_h, _BG_Y),
