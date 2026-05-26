@@ -240,13 +240,27 @@ Then restart ComfyUI.
 **Option 3: If CUDA is not installed**:
 1. Download CUDA Toolkit 13.2: https://developer.nvidia.com/cuda-downloads
 2. Install with admin privileges
-3. Restart computer
-4. Then use Option 1 above to upgrade ONNXRuntime
+3. Download and install cuDNN (see below)
+4. Restart computer
+5. Then use Option 1 above to upgrade ONNXRuntime
+
+**CRITICAL: Also Install cuDNN**:
+CUDA alone is not enough. ReActor and ONNXRuntime also need **cuDNN** (CUDA Deep Neural Network library).
+
+1. Go to: https://developer.nvidia.com/cudnn (create free NVIDIA account)
+2. Download: "cuDNN 8.x for CUDA 12.x and 13.x" (Windows .zip, ~300 MB)
+3. Extract the ZIP file (you'll see bin/, lib/, include/ folders)
+4. Copy extracted files to CUDA installation:
+   ```
+   Copy cuDNN/bin/*    → C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\bin\
+   Copy cuDNN/lib/*    → C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\
+   Copy cuDNN/include/* → C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\
+   ```
+5. Restart computer
+6. Restart ComfyUI: `STOP.bat` → wait 5s → `START.bat`
 
 **Why this happens:**
-CUDA versions (12.x, 13.x) have different DLL names and locations. ONNXRuntime is compiled for specific CUDA versions. If CUDA version doesn't match ONNXRuntime's target, you get DLL load errors. This is fixed by either:
-- Installing matching CUDA version, OR
-- Upgrading ONNXRuntime to match installed CUDA version
+CUDA provides GPU compute capabilities. cuDNN provides optimized neural network operations. ONNXRuntime uses both. If either is missing or misconfigured, CUDA execution fails and falls back to CPU (very slow). The error "CUDA_PATH is set but CUDA wasn't able to be loaded" usually means cuDNN is missing, not CUDA.
 
 ---
 
