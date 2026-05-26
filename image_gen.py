@@ -1733,17 +1733,28 @@ class ImageGen:
         last_status_str = None
 
         while time.monotonic() < deadline:
-            # Check cancel event before sleeping
-            if cancel_event is not None and cancel_event.is_set():
-                print(f"  [image_gen] Cancel requested — interrupting ComfyUI prompt {prompt_id}")
-                try:
-                    # Send interrupt to ComfyUI to stop the current generation
-                    requests.post(f"{self.comfy_base}/interrupt", timeout=5)
-                except Exception as e:
-                    print(f"  [image_gen] Interrupt request failed: {e}")
-                return None
-
-            time.sleep(POLL_INTERVAL)
+            # Check cancel event before sleeping.
+            # Use cancel_event.wait() instead of time.sleep() so the sleep is
+            # immediately interrupted the moment cancel is set — no need to wait
+            # up to POLL_INTERVAL seconds before detecting it.
+            if cancel_event is not None:
+                cancel_event.wait(timeout=POLL_INTERVAL)
+                if cancel_event.is_set():
+                    print(f"  [image_gen] Cancel requested — interrupting ComfyUI prompt {prompt_id}")
+                    try:
+                        # Stop the running generation
+                        requests.post(f"{self.comfy_base}/interrupt", timeout=5)
+                    except Exception as e:
+                        print(f"  [image_gen] Interrupt request failed: {e}")
+                    try:
+                        # Clear the ComfyUI queue so no pending jobs start next
+                        requests.post(f"{self.comfy_base}/queue",
+                                      json={"clear": True}, timeout=5)
+                    except Exception:
+                        pass
+                    return None
+            else:
+                time.sleep(POLL_INTERVAL)
             poll_count += 1
             try:
                 r = requests.get(f"{self.comfy_base}/history/{prompt_id}", timeout=5)
@@ -1875,6 +1886,27 @@ class ImageGen:
             print(f"    [_download_image] Exception: {e}")
         return False
 
+    @staticmethod
+    def _is_bad_image(path: Path) -> bool:
+        """
+        Detect overexposed (near-white), blank, or NaN-artifact images produced
+        by ComfyUI.  FLUX dev at high CFG can occasionally output a near-white
+        or monochromatic blob when the latent contains NaN/Inf values.
+
+        Thresholds:
+          mean brightness > 242  — nearly all-white (overexposure)
+          mean stddev < 8        — near-uniform colour (blank or solid-colour blob)
+        """
+        try:
+            from PIL import Image as _PILI, ImageStat as _IStatMod
+            img  = _PILI.open(path).convert("RGB")
+            stat = _IStatMod.Stat(img)
+            mean_br = sum(stat.mean)   / 3
+            mean_sd = sum(stat.stddev) / 3
+            return mean_br > 242 or mean_sd < 8
+        except Exception:
+            return False
+
     # ── Public generation interface ───────────────────────────────────────────
 
     def generate(
@@ -1890,7 +1922,11 @@ class ImageGen:
 
         save_path = Path(f"{filename_stem}.png")
         if save_path.exists():
-            return save_path
+            if not self._is_bad_image(save_path):
+                return save_path
+            # Cached file is a known-bad artifact — delete and regenerate
+            save_path.unlink()
+            print(f"  [image_gen] Stale overexposed/blank image deleted, regenerating: {save_path.name}")
 
         seed   = random.randint(0, 2**32 - 1)
         prefix = self.active_flux_prefix if _is_flux(self.checkpoint) else _SDXL_PREFIX
@@ -1933,35 +1969,35 @@ class ImageGen:
         print(f"  [image_gen] Negative ({len(self.active_negative)} chars): {self.active_negative[:100]}...")
         print(f"  [image_gen] Theme darkness: {self.theme_darkness:.2f}, LoRAs: {len(self.active_loras) if self.active_loras else 0}")
 
-        # Build workflow — face-conditioned if we have a reference.
-        # Pass the preset-specific negative so anime / photorealism etc. can
-        # actively push against FLUX's default photoreal prior.
-        if face_comfy_name and self.face_method != "none":
-            workflow = self._build_face_workflow(full_prompt, seed, face_comfy_name)
-        else:
-            workflow = _build_workflow(self.checkpoint, full_prompt, seed,
-                                       negative=self.active_negative)
+        def _build_and_run(attempt_seed: int) -> Optional[Path]:
+            # Build workflow — face-conditioned if we have a reference.
+            # Pass the preset-specific negative so anime / photorealism etc. can
+            # actively push against FLUX's default photoreal prior.
+            if face_comfy_name and self.face_method != "none":
+                wf = self._build_face_workflow(full_prompt, attempt_seed, face_comfy_name)
+            else:
+                wf = _build_workflow(self.checkpoint, full_prompt, attempt_seed,
+                                     negative=self.active_negative)
 
-        # Insert LoRA nodes into workflow (chains model + clip through each LoRA).
-        # Dark-only LoRAs have their strength scaled by self.theme_darkness so
-        # light/whimsical themes aren't dragged into grim dark-fantasy territory.
-        if self.active_loras and _is_flux(self.checkpoint):
-            scaled: list[dict] = []
-            for entry in self.active_loras:
-                if entry.get("dark_only") and self.theme_darkness < 1.0:
-                    scaled.append({
-                        **entry,
-                        "model_strength": round(entry["model_strength"] * self.theme_darkness, 3),
-                        "clip_strength":  round(entry["clip_strength"]  * self.theme_darkness, 3),
-                    })
-                else:
-                    scaled.append(entry)
-            # Checkpoint node is always "1" in FLUX workflows (standard and PuLID)
-            workflow = _insert_loras(workflow, "1", scaled)
+            # Insert LoRA nodes into workflow (chains model + clip through each LoRA).
+            # Dark-only LoRAs have their strength scaled by self.theme_darkness so
+            # light/whimsical themes aren't dragged into grim dark-fantasy territory.
+            if self.active_loras and _is_flux(self.checkpoint):
+                scaled: list[dict] = []
+                for entry in self.active_loras:
+                    if entry.get("dark_only") and self.theme_darkness < 1.0:
+                        scaled.append({
+                            **entry,
+                            "model_strength": round(entry["model_strength"] * self.theme_darkness, 3),
+                            "clip_strength":  round(entry["clip_strength"]  * self.theme_darkness, 3),
+                        })
+                    else:
+                        scaled.append(entry)
+                # Checkpoint node is always "1" in FLUX workflows (standard and PuLID)
+                wf = _insert_loras(wf, "1", scaled)
 
-        try:
             # Log LoRA chain so we can spot missing/wrong filenames immediately
-            lora_nodes = {nid: n for nid, n in workflow.items()
+            lora_nodes = {nid: n for nid, n in wf.items()
                           if n.get("class_type") == "LoraLoader"}
             if lora_nodes:
                 for nid, n in lora_nodes.items():
@@ -1969,14 +2005,29 @@ class ImageGen:
                     print(f"  [image_gen] LoRA node {nid}: {inp.get('lora_name')}  "
                           f"model={inp.get('strength_model')} clip={inp.get('strength_clip')}")
 
-            prompt_id  = self._queue_prompt(workflow)
-            print(f"  [image_gen] Queued {prompt_id} (face={'yes' if face_comfy_name else 'no'}), waiting...")
-            image_info = self._wait_for_image(prompt_id, cancel_event=cancel_event)
-            if not image_info:
+            pid = self._queue_prompt(wf)
+            print(f"  [image_gen] Queued {pid} (face={'yes' if face_comfy_name else 'no'}), waiting...")
+            img_info = self._wait_for_image(pid, cancel_event=cancel_event)
+            if not img_info:
                 return None
-            if self._download_image(image_info, save_path):
-                # GPU memory is automatically freed by ComfyUI v0.22+ between prompts
+            if self._download_image(img_info, save_path):
                 return save_path
+            return None
+
+        try:
+            result = _build_and_run(seed)
+            if result and self._is_bad_image(result):
+                # First attempt produced overexposed/blank output — retry once with a new seed
+                result.unlink()
+                print(f"  [image_gen] Overexposed/blank on attempt 1, retrying with new seed…")
+                seed2  = random.randint(0, 2**32 - 1)
+                result = _build_and_run(seed2)
+                if result and self._is_bad_image(result):
+                    result.unlink()
+                    print(f"  [image_gen] Both attempts produced bad output — "
+                          f"Scryfall art will be used as fallback for '{filename_stem}'")
+                    return None
+            return result
         except requests.RequestException as e:
             print(f"  [image_gen] RequestException '{filename_stem}': {e}")
         except Exception as e:

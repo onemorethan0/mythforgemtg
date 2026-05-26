@@ -19,6 +19,7 @@ import asyncio
 import io
 import json
 import os
+import re
 import threading
 import time
 import traceback
@@ -31,7 +32,7 @@ from fastapi import FastAPI, BackgroundTasks, File, HTTPException, Request, Uplo
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 
 # ── Local modules ─────────────────────────────────────────────────────────────
 from scryfall_client    import ScryfallClient
@@ -51,11 +52,18 @@ from face_ref           import get_face_paths
 # ── App setup ─────────────────────────────────────────────────────────────────
 app = FastAPI(title="Commander Deck Builder", version="1.0")
 
+# Bind tightly to localhost — this app has no auth layer. If you need
+# LAN access, add an auth header check and expand allow_origins explicitly.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=[
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["Content-Type"],
 )
 
 STATIC_DIR  = Path(__file__).parent / "frontend" / "dist"
@@ -75,6 +83,21 @@ _RATE_LIMIT_BUILD_REQUESTS = 5  # max 5 builds per minute per IP
 # Global art-generation lock — ComfyUI is a single-GPU resource.
 # Only one build may run art gen at a time; concurrent builds queue up here.
 _art_lock = threading.Lock()
+
+# Per-source-deck lock to serialize regen-cards writes to the same deck dir.
+# Without this, two concurrent regen calls on the same deck race their PNG
+# writes and SSE card_ready events.
+_deck_regen_locks: dict[str, threading.Lock] = {}
+_deck_regen_locks_meta_lock = threading.Lock()
+
+def _get_deck_regen_lock(source_job_id: str) -> threading.Lock:
+    """Return (or create) the threading.Lock for a given source deck."""
+    with _deck_regen_locks_meta_lock:
+        lock = _deck_regen_locks.get(source_job_id)
+        if lock is None:
+            lock = threading.Lock()
+            _deck_regen_locks[source_job_id] = lock
+        return lock
 
 # Shared clients (created once)
 _scryfall = ScryfallClient()
@@ -213,11 +236,14 @@ class SearchRequest(BaseModel):
     query: str
 
 class BuildRequest(BaseModel):
-    commander_name:    str
+    commander_name:    str = Field(..., max_length=120)
     playstyle:         str = "auto"
-    art_theme:         str = ""   # overall world/palette theme (shown in deck view)
-    commander_prompt:  str = ""   # specific appearance description for the commander character
-    emblem_prompt:     str = ""   # optional description for the set symbol shape/color
+    # Caps prevent long appearance dumps from polluting the LLM batch prompt and
+    # blowing FLUX's first-N-token attention window (causes "standing portrait"
+    # output with no card action).
+    art_theme:         str = Field("", max_length=400)
+    commander_prompt:  str = Field("", max_length=500)
+    emblem_prompt:     str = Field("", max_length=300)
     art_style:         str = "mtg_fantasy"  # LoRA preset key
     generate_art:      bool = False
     model_speed:       str  = "quality"  # "quality" (flux-dev) or "fast" (flux-schnell) or "sd35" (SD 3.5 Large)
@@ -284,6 +310,13 @@ async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGe
             sent += 1
         job = _jobs.get(job_id, {})
         if job.get("status") in ("done", "error"):
+            # Drain any final messages pushed between the message pump and the
+            # status check — the worker thread may push "done"/"error" after we
+            # already snapshotted msgs above.
+            msgs = _progress.get(job_id, [])
+            while sent < len(msgs):
+                yield msgs[sent]
+                sent += 1
             break
         await asyncio.sleep(0.3)
 
@@ -477,11 +510,59 @@ def _wait_for_ollama_evict(model: str, job_id: str = "") -> bool:
 
 
 def _free_all_vram(job_id: str = "") -> None:
-    """Best-effort: unload both ComfyUI and Ollama, wait for VRAM confirmation."""
-    _wait_for_comfyui_unload(job_id)
+    """
+    Fire-and-forget VRAM cleanup triggered on job cancel.
+
+    Sends unload/eviction requests to ComfyUI and Ollama and returns
+    immediately — deliberately does NOT poll/wait for VRAM to confirm.
+
+    Why fire-and-forget instead of blocking?
+      • _wait_for_comfyui_unload() polls for _VRAM_OLLAMA_CLEAR_GB (18 GB) free,
+        but CUDA's caching allocator keeps freed PyTorch pages resident until
+        torch.cuda.empty_cache() completes, which may never drive vram_free above
+        the threshold within _EVICT_MAX_WAIT (120 s) on --highvram ComfyUI.
+        That 120-second timeout IS the "long hang after cancel" the user sees.
+      • We don't need to gate on VRAM here because nothing is about to load.
+        The *next* build's own pre-flight gate (_wait_for_ollama_evict /
+        _wait_for_vram) already confirms VRAM is clear before loading anything.
+    """
+    # Clear ComfyUI job queue first — interrupt stops the running step but
+    # ComfyUI would immediately start the next queued job otherwise.
+    try:
+        requests.post(
+            "http://127.0.0.1:8188/queue",
+            json={"clear": True},
+            timeout=5,
+        )
+    except Exception:
+        pass
+    # Ask ComfyUI to unload models and run gc (async from ComfyUI's side)
+    try:
+        requests.post(
+            "http://127.0.0.1:8188/free",
+            json={"unload_models": True, "free_memory": True},
+            timeout=5,
+        )
+    except Exception:
+        pass
+    # Send Ollama eviction requests (fire-and-forget — no keep_alive poll)
     loaded = _ollama_loaded_models()
     for m in loaded:
-        _wait_for_ollama_evict(m, job_id)
+        for endpoint in ("/api/generate", "/api/chat"):
+            try:
+                payload = (
+                    {"model": m, "keep_alive": 0}
+                    if endpoint == "/api/generate"
+                    else {"model": m, "keep_alive": 0,
+                          "messages": [{"role": "user", "content": ""}]}
+                )
+                requests.post(
+                    f"http://127.0.0.1:11434{endpoint}",
+                    json=payload,
+                    timeout=5,
+                )
+            except Exception:
+                pass
 
 
 # ── Filename helper ──────────────────────────────────────────────────────────
@@ -496,22 +577,28 @@ def _safe_name(name: str) -> str:
 def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: str) -> str:
     """
     Replace occurrences of a card's original name in its own oracle text with
-    the themed name.  MTG cards often say "When [Card Name] enters…" — this
-    makes those references consistent with the themed card.
-
-    Also handles comma-separated legendary names: if original_name is
-    "Uro, Titan of Nature's Wrath", checks for just "Uro" as well and replaces
-    with the first token of themed_name.
+    the themed name. Uses word boundaries for the first-name pass so a card
+    named "Sol, ..." doesn't mangle unrelated words like "Solitude".
     """
     if not oracle_text or not original_name or not themed_name:
         return oracle_text
-    # Full name replacement first
+    # Full-name replacement (literal — names can contain punctuation that
+    # would need escaping in a regex)
     result = oracle_text.replace(original_name, themed_name)
-    # First-name-only self-references (e.g. "Deals damage equal to Uro's power")
+    # Short-form self-references — Scryfall oracle text uses an abbreviated form:
+    #   • Comma-based names: just the pre-comma part ("Uro, Titan…" → "Uro attacks")
+    #   • No-comma multi-word names: just the first word ("Kaalia of the Vast" → "Kaalia attacks")
     first_orig   = original_name.split(",")[0].strip()
     first_themed = themed_name.split(",")[0].strip()
-    if first_orig and first_orig != original_name and len(first_orig) > 2:
-        result = result.replace(first_orig, first_themed)
+    if first_orig and len(first_orig) > 2:
+        if first_orig != original_name:
+            # Comma-based name — pre-comma part is a distinct short form
+            result = re.sub(rf"\b{re.escape(first_orig)}\b", first_themed, result)
+        elif " " in first_orig:
+            # No-comma multi-word name — Scryfall uses just the first word as shorthand
+            first_word = first_orig.split()[0]
+            if len(first_word) > 2:
+                result = re.sub(rf"\b{re.escape(first_word)}\b", first_themed, result)
     return result
 
 
@@ -1409,9 +1496,16 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
     Pushes ``card_ready`` events (with ``source_job_id``) after each card renders.
     If custom prompts were supplied, updates the source deck.json art_prompt fields
     so the changes persist for future rebuilds.
+
+    Holds a per-source-deck lock for the entire run so concurrent regen calls
+    on the same deck queue up rather than racing PNG writes / SSE events.
     """
     from PIL import Image as _PIL
     from pathlib import Path as _Path
+
+    # Per-deck serialization gate — see _get_deck_regen_lock docstring.
+    _deck_lock = _get_deck_regen_lock(source_job_id)
+    _deck_lock.acquire()
 
     try:
         _jobs[job_id]["status"] = "building"
@@ -1666,6 +1760,13 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _push(job_id, "error", json.dumps({"msg": str(e)}))
         traceback.print_exc()
     finally:
+        # Release the per-deck regen lock before any other cleanup so a queued
+        # concurrent regen on the same deck doesn't wait on this thread's
+        # bookkeeping work.
+        try:
+            _deck_lock.release()
+        except RuntimeError:
+            pass   # already released or never acquired — best-effort
         _jobs.get(job_id, {}).pop("cancel_event", None)
         msgs = _progress.get(job_id)
         if msgs and len(msgs) > 80:
@@ -1999,22 +2100,12 @@ async def autocomplete_commander(q: str = ""):
 
 @app.get("/api/deck/active")
 async def get_active_job():
-    """Return the most-recent building or done job so the UI can auto-reconnect after a refresh."""
-    # Prefer a currently-building job
+    """Return the most-recent in-memory building job so a refresh can reconnect.
+    Does NOT fall back to disk — that auto-loaded random old decks on first visit."""
     building = [(jid, j) for jid, j in _jobs.items() if j.get("status") == "building"]
     if building:
         jid, _ = building[-1]
         return {"job_id": jid, "status": "building"}
-    # In-memory done job
-    done = [(jid, j) for jid, j in _jobs.items() if j.get("status") == "done"]
-    if done:
-        jid, _ = done[-1]
-        return {"job_id": jid, "status": "done"}
-    # Fall back to most-recently modified deck.json on disk (survives restarts)
-    deck_jsons = sorted(RENDER_DIR.glob("*/deck.json"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if deck_jsons:
-        jid = deck_jsons[0].parent.name
-        return {"job_id": jid, "status": "done"}
     return {"job_id": None, "status": "none"}
 
 
@@ -2077,7 +2168,7 @@ async def build_deck(req: BuildRequest, background_tasks: BackgroundTasks, reque
             f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} builds per {_RATE_LIMIT_WINDOW}s"
         )
 
-    job_id = str(uuid.uuid4())[:8]
+    job_id = uuid.uuid4().hex[:16]
     _jobs[job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
     _progress[job_id] = []
     background_tasks.add_task(_run_build, job_id, req)
@@ -2101,10 +2192,11 @@ async def cancel_deck_build(job_id: str, background_tasks: BackgroundTasks):
     ev = job.get("cancel_event")
     if ev and not ev.is_set():
         ev.set()
-        # Start VRAM eviction immediately — don't wait for the build thread.
-        # _free_all_vram is blocking (polls until VRAM clears) so run it in
-        # a background task to avoid holding the HTTP response.
-        background_tasks.add_task(_free_all_vram, job_id)
+        # Only one eviction in flight per job — guard with a flag so we don't
+        # race the build worker's own cleanup.
+        if not job.get("vram_freeing"):
+            job["vram_freeing"] = True
+            background_tasks.add_task(_free_all_vram, job_id)
         return {"status": "cancelling"}
     return {"status": "already done or not cancellable"}
 
@@ -2129,8 +2221,8 @@ async def rebuild_deck(job_id: str, req: RebuildRequest, background_tasks: Backg
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
 
-    new_job_id = str(uuid.uuid4())[:8]
-    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event()}
+    new_job_id = uuid.uuid4().hex[:16]
+    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
     _progress[new_job_id] = []
     background_tasks.add_task(_run_rebuild, new_job_id, job_id, req)
     return {"job_id": new_job_id}
@@ -2160,8 +2252,8 @@ async def regen_cards(job_id: str, req: RegenCardsRequest, background_tasks: Bac
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
 
-    new_job_id = str(uuid.uuid4())[:8]
-    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event()}
+    new_job_id = uuid.uuid4().hex[:16]
+    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
     _progress[new_job_id] = []
     background_tasks.add_task(_run_regen_cards, new_job_id, job_id, req)
     return {"job_id": new_job_id}
@@ -2182,8 +2274,8 @@ async def retheme_deck(job_id: str, req: RethemeRequest, background_tasks: Backg
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
 
-    new_job_id = str(uuid.uuid4())[:8]
-    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event()}
+    new_job_id = uuid.uuid4().hex[:16]
+    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
     _progress[new_job_id] = []
     background_tasks.add_task(_run_retheme, new_job_id, job_id, req)
     return {"job_id": new_job_id}
@@ -2220,7 +2312,7 @@ async def duplicate_deck(job_id: str):
     if data.get("status") not in ("done", "rendering"):
         raise HTTPException(400, "Source deck is not yet complete")
 
-    new_job_id = str(uuid.uuid4())[:8]
+    new_job_id = uuid.uuid4().hex[:16]
     dst_dir    = RENDER_DIR / new_job_id
 
     # Copy the whole render directory (card images, set symbol, deck.json)
@@ -2392,17 +2484,42 @@ async def get_deck(job_id: str):
             job = disk
         else:
             raise HTTPException(404, "Job not found")
-    if job["status"] != "done":
-        raise HTTPException(409, f"Deck not ready — status: {job['status']}")
+    # Accept any state that has a usable payload — done, cancelled mid-build,
+    # or rendering. The client gets the partial deck plus a status flag so it
+    # can show what was completed instead of a 409 dead-end.
+    if job["status"] == "building":
+        raise HTTPException(409, "Deck still building — listen on /events instead")
+    if job["status"] == "error":
+        raise HTTPException(409, f"Deck failed: {job.get('error', 'unknown error')}")
+    # "done", "rendering", "cancelled" → return whatever we have on disk
     return _serializable_job(job)
 
 
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
 async def card_image(job_id: str, render_key: str):
-    path = RENDER_DIR / job_id / "cards" / f"{render_key}.png"
-    if not path.exists():
-        raise HTTPException(404, "Card image not found")
-    return FileResponse(path, media_type="image/png")
+    cards_dir = RENDER_DIR / job_id / "cards"
+    path = cards_dir / f"{render_key}.png"
+    if path.exists():
+        # No-store on partial builds so the browser refetches after regen.
+        return FileResponse(path, media_type="image/png",
+                            headers={"Cache-Control": "no-cache, must-revalidate"})
+    # Legacy deck.json files saved render_key without the _NNN index. Fall
+    # back to any indexed variant we can find for this card. Prevents 404s on
+    # decks built before the indexed-key migration.
+    if cards_dir.exists() and "_" not in render_key.rsplit("_", 1)[-1].lstrip("0"):
+        # Try {render_key}_NNN.png variants
+        for candidate in sorted(cards_dir.glob(f"{render_key}_*.png")):
+            return FileResponse(candidate, media_type="image/png",
+                                headers={"Cache-Control": "no-cache, must-revalidate"})
+    # Also accept the reverse: client requested indexed key but only un-indexed
+    # exists (rare, but happens if the client computes _000 for a legacy deck).
+    if "_" in render_key:
+        bare = render_key.rsplit("_", 1)[0]
+        bare_path = cards_dir / f"{bare}.png"
+        if bare_path.exists():
+            return FileResponse(bare_path, media_type="image/png",
+                                headers={"Cache-Control": "no-cache, must-revalidate"})
+    raise HTTPException(404, "Card image not found")
 
 
 @app.get("/api/deck/{job_id}/set-symbol")
@@ -2643,21 +2760,35 @@ async def upload_face(files: List[UploadFile] = File(...)):
     if len(files) > 15:
         raise HTTPException(400, f"Maximum 15 photos per upload group ({len(files)} received)")
 
-    face_key  = str(uuid.uuid4())[:8]
+    MAX_PER_FILE = 20 * 1024 * 1024   # 20 MB per image
+    MAX_TOTAL    = 60 * 1024 * 1024   # 60 MB total across the upload
+
+    face_key  = uuid.uuid4().hex[:16]
     file_list: list[tuple[str, bytes]] = []
+    total_bytes = 0
     for f in files:
         data = await f.read()
         if not data:
             raise HTTPException(400, f"File '{f.filename}' is empty")
-        if len(data) > 20 * 1024 * 1024:   # 20 MB hard limit per file
+        if len(data) > MAX_PER_FILE:
             raise HTTPException(413, f"File '{f.filename}' exceeds 20 MB limit")
-        # Basic image type check (magic bytes)
-        if not (data[:3] == b'\xff\xd8\xff'           # JPEG
-                or data[:8] == b'\x89PNG\r\n\x1a\n'   # PNG
-                or data[:4] in (b'RIFF', b'webp')      # WebP
-                or data[:4] == b'GIF8'):                # GIF
-            # Soft check — only warn, don't reject (some cameras produce odd headers)
-            print(f"  [upload] {f.filename}: unexpected magic bytes {data[:4]!r} — accepting anyway")
+        total_bytes += len(data)
+        if total_bytes > MAX_TOTAL:
+            raise HTTPException(413, f"Total upload exceeds {MAX_TOTAL // (1024*1024)} MB")
+        # Hard magic-byte check — reject anything that isn't a real image header.
+        is_jpeg = data[:3] == b'\xff\xd8\xff'
+        is_png  = data[:8] == b'\x89PNG\r\n\x1a\n'
+        is_webp = data[:4] == b'RIFF' and data[8:12] == b'WEBP'
+        is_gif  = data[:4] == b'GIF8'
+        if not (is_jpeg or is_png or is_webp or is_gif):
+            raise HTTPException(400, f"File '{f.filename}': not a recognized image (JPEG/PNG/WebP/GIF only)")
+        # Defense in depth: ask PIL to verify the body is a parseable image.
+        try:
+            from PIL import Image as _PILImg
+            _img = _PILImg.open(io.BytesIO(data))
+            _img.verify()
+        except Exception as _ve:
+            raise HTTPException(400, f"File '{f.filename}': image data corrupt or unsupported ({_ve})")
         file_list.append((f.filename or "photo.jpg", data))
 
     from face_ref import save_face_images
@@ -2743,4 +2874,4 @@ if __name__ == "__main__":
     print("Starting Commander Deck Builder API...")
     print("  API:      http://localhost:8000/api/")
     print("  Frontend: http://localhost:8000/")
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=False)

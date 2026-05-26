@@ -14,6 +14,66 @@ This guide covers routine maintenance, troubleshooting, and operational procedur
 4. [Performance Optimization](#performance-optimization)
 5. [Adding New Features](#adding-new-features)
 6. [Version Updates and Dependencies](#version-updates-and-dependencies)
+7. [Known Issues & Quirks](#known-issues--quirks)
+
+---
+
+## Known Issues & Quirks
+
+### Generated card art looks like a portrait, not a card scene
+
+**Symptom**: Cards show the character "standing around" with no action — feels like a headshot rather than a Magic card.
+
+**Root cause**: You wrote a very long `commander_prompt` (hundreds or thousands of characters of "white hair, torn red coat, silver-white bangs..."). The LLM copies that description verbatim into the art_prompt and tacks the card scene on at the end. FLUX/SDXL weights the first ~75 tokens of the prompt most heavily, so all of its attention goes to the character's outfit and none to what the card is doing.
+
+**Fix (new builds)**: Server now caps `commander_prompt` at 500 chars and the themer caps internal use at 250 chars. Builds made after this fix will look correct.
+
+**Fix (existing bad decks)**:
+1. Open the deck and click the card you want to regenerate.
+2. In the regen panel, uncheck "use original prompt" and write a fresh one.
+3. **Priority order**: theme-world setting + character traits LEAD; the card's mechanical action is a subtle scene beat near the end. Don't pile on style adjectives — the LoRA handles visual style.
+4. Keep the prompt under 300 characters.
+
+### Prompt Priority Philosophy
+
+The themer is configured so image models spend their attention budget on **WHO** and **WHERE**, not on stylistic adjectives or on a literal depiction of card mechanics:
+
+1. **Medium tag** (e.g., "digital painting,")
+2. **Theme-world setting + character** (primary — leads the prompt, gets the heaviest attention)
+3. **Mechanical influence** (secondary — a hint of the card's action as a scene detail)
+4. **Single quality tag** (e.g., "vivid colors")
+
+The active LoRA handles visual stylization. Stuffing the prompt with "hyperrealistic, painterly, cinematic, dramatic" wastes token budget that should describe the world and character.
+
+Example good commander prompt (theme-led, character traits anchored, action as a beat):
+> `A neon-drenched Manhattan rooftop at midnight, a white-haired half-demon in a torn red coat stands among rising smoke, twin pistols catching a glint of demon-fire in the distance, dramatic backlight`
+
+Example bad commander prompt (what triggers the awful-art bug):
+> `In Devil May Cry 3, Dante is portrayed as a brash, youthful, and highly athletic half-demon. His iconic design features stark white hair... <continues for 1500 chars>`
+
+### 404 on `card-image/<name>` for older decks
+
+**Symptom**: Deck thumbnails fail to load with 404s on URLs like `/api/deck/{id}/card-image/Kaalia_of_the_Vast` (no `_NNN` suffix).
+
+**Root cause**: Decks built before the indexed-render-key migration saved `render_key` without the `_000`/`_001`/... suffix. The server now saves PNGs with the suffix.
+
+**Fix**: The card-image endpoint now falls back to globbing `{render_key}_*.png` so legacy decks load correctly. If you still see 404s, the PNG file genuinely doesn't exist — try regenerating that card.
+
+### 409 Conflict when opening a deck after cancelling a build
+
+**Symptom**: After cancelling a build, clicking the deck in history returns "Deck not ready — status: cancelled" (HTTP 409) and the deck never opens.
+
+**Root cause**: The `/api/deck/{id}` endpoint was too strict — only accepted `status="done"`. Cancelled/partial builds were locked out for 24 hours until the in-memory job entry expired.
+
+**Fix**: Endpoint now accepts `done`, `rendering`, and `cancelled` — you'll see whatever cards completed before the cancel. Only `building` (still running) and `error` (build failed) return 409.
+
+### Regenerate uses the old (bad) prompt
+
+**Symptom**: You regenerate a card and the new art has the same problems as the old art.
+
+**Root cause**: Regenerate reuses the saved `art_prompt` from `deck.json`. If that saved prompt was bad (e.g. polluted by an oversized `commander_prompt`), regen perpetuates it.
+
+**Fix**: In the regen panel, click "use original prompt" OFF and write a fresh one. The panel's per-card custom prompt field is the override path.
 
 ---
 

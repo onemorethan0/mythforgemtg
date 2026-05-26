@@ -36,6 +36,9 @@ _HUMANOID_TYPES: frozenset[str] = frozenset({
     "hero", "champion", "lord", "queen", "king", "prince", "princess",
     "god", "demigod", "avatar", "bard", "warlock", "sorcerer",
     "alchemist", "investigator", "renegade", "duelist",
+    "elf", "dwarf", "goblin", "orc", "vampire", "zombie", "spirit",
+    "angel", "demon", "faerie", "merfolk", "minotaur", "centaur", "satyr",
+    "giant", "ogre", "troll", "djinn", "efreet", "siren",
 })
 
 

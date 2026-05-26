@@ -146,7 +146,9 @@ function CardGrid({ jobId, cards }) {
 
 function CardThumb({ jobId, card, isLatest }) {
   const [hovered, setHovered] = useState(false)
-  const src = `/api/deck/${jobId}/card-image/${card.key}`
+  // Append a timestamp so re-renders of the same card (e.g. after regen
+  // mid-build) bypass the browser's HTTP cache.
+  const src = `/api/deck/${jobId}/card-image/${card.key}?t=${card.ts || 0}`
   return (
     <div
       style={{ position: 'relative', cursor: 'default' }}
@@ -205,6 +207,14 @@ export default function StepBuilding({ jobId, onDone, onError }) {
   const evtRef    = useRef(null)
   const bottomRef = useRef(null)
 
+  // Keep latest handler refs so the EventSource useEffect (which depends only
+  // on jobId) always calls the current onDone/onError even if the parent
+  // re-renders with new closures.
+  const onDoneRef  = useRef(onDone)
+  const onErrorRef = useRef(onError)
+  useEffect(() => { onDoneRef.current  = onDone  }, [onDone])
+  useEffect(() => { onErrorRef.current = onError }, [onError])
+
   useEffect(() => {
     if (!jobId) return
     const src = new EventSource(`/api/deck/${jobId}/events`)
@@ -231,7 +241,18 @@ export default function StepBuilding({ jobId, onDone, onError }) {
     src.addEventListener('card_ready', e => {
       try {
         const d = JSON.parse(e.data)
-        setReadyCards(prev => [...prev, { key: d.key, name: d.name }])
+        setReadyCards(prev => {
+          // If this card key already exists (e.g. regen mid-build), replace it
+          // with a fresh timestamp so the <img> reloads.
+          const existing = prev.findIndex(c => c.key === d.key)
+          const entry = { key: d.key, name: d.name, ts: Date.now() }
+          if (existing >= 0) {
+            const next = prev.slice()
+            next[existing] = entry
+            return next
+          }
+          return [...prev, entry]
+        })
       } catch {}
     })
 
@@ -254,9 +275,9 @@ export default function StepBuilding({ jobId, onDone, onError }) {
             }
             return r.json()
           })
-          .then(onDone)
-          .catch(err => onError(`Failed to load deck result: ${err.message || err}`))
-      } catch { onError('Bad done event') }
+          .then(onDoneRef.current)
+          .catch(err => onErrorRef.current(`Failed to load deck result: ${err.message || err}`))
+      } catch { onErrorRef.current('Bad done event') }
     })
 
     src.addEventListener('error', e => {
@@ -266,8 +287,8 @@ export default function StepBuilding({ jobId, onDone, onError }) {
       if (!e.data) return
       src.close()
       setStatus('error')
-      try { const d = JSON.parse(e.data); onError(d.msg) }
-      catch { onError('Unknown build error') }
+      try { const d = JSON.parse(e.data); onErrorRef.current(d.msg) }
+      catch { onErrorRef.current('Unknown build error') }
     })
 
     src.onerror = () => {
@@ -280,7 +301,7 @@ export default function StepBuilding({ jobId, onDone, onError }) {
         .then(d => {
           if (d.status === 'error') {
             src.close()
-            onError(d.error || 'Build failed')
+            onErrorRef.current(d.error || 'Build failed')
           } else if (d.status === 'done') {
             src.close()
             fetch(`/api/deck/${jobId}`)
@@ -292,8 +313,8 @@ export default function StepBuilding({ jobId, onDone, onError }) {
                 }
                 return r.json()
               })
-              .then(onDone)
-              .catch(err => onError(`Failed to load deck: ${err.message || err}`))
+              .then(onDoneRef.current)
+              .catch(err => onErrorRef.current(`Failed to load deck: ${err.message || err}`))
           }
           // still building — let EventSource reconnect automatically
         })
