@@ -479,7 +479,7 @@ _LORA_PRESETS: dict[str, dict] = {
         "loras": [
             {
                 "fragments":      ["semi_realistic_anime", "semirealistic_anime", "semi-realistic_anime"],
-                "trigger":        "semi-realistic",
+                "trigger":        "",   # trigger already embedded in flux_prefix
                 "model_strength": 0.85,
                 "clip_strength":  0.85,
                 "dark_only":      False,
@@ -521,13 +521,13 @@ _LORA_PRESETS: dict[str, dict] = {
         "loras": [
             {
                 "fragments":      ["softserve_anime", "softserve", "soft_serve_anime"],
-                "trigger":        "sftsrv style illustration",
+                "trigger":        "",   # trigger already embedded in flux_prefix
                 "model_strength": 0.90,
                 "clip_strength":  0.90,
                 "dark_only":      False,
                 "label":          "SoftServe Anime (Araminta)",
                 "download_url":   "https://huggingface.co/alvdansen/softserve_anime",
-                "download_note":  "Download flux_dev_lora.safetensors → rename to softserve_anime_flux.safetensors",
+                "download_note":  "Download flux_dev_softstyle_araminta_k.safetensors → rename to softserve_anime_flux.safetensors",
             },
         ],
     },
