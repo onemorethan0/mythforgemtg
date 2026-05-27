@@ -1353,22 +1353,38 @@ class Themer:
 
                 if i == 0 and commander_prompt:
                     # Commander card: inject the user's appearance description once,
-                    # before the scene.  Do NOT also include it from raw_prompt —
-                    # Ollama sometimes echoes it back, causing duplication.
-                    # Strip any commander description Ollama may have echoed back.
-                    # Strategy: if scene starts with a close variant of commander_prompt,
-                    # drop it; otherwise prepend cleanly.
-                    cmd_words = commander_prompt.lower().split()[:4]  # first 4 words
+                    # before the scene.  Ollama sometimes echoes it back, causing CLIP
+                    # to see the description twice — diluting the token weights.
+                    # When we detect an echo, strip the first clause from scene (which
+                    # is typically the repeated appearance description) and keep only
+                    # the action/setting content Ollama added after it.
+                    cmd_words = commander_prompt.lower().split()[:4]
                     if cmd_words and all(w in scene.lower() for w in cmd_words[:2]):
-                        # Ollama echoed the commander description — drop Ollama's version
-                        full_prompt = f"{commander_prompt}, {scene}"
+                        # Ollama echoed the commander description as the first clause.
+                        # Strip that clause: everything up to (and including) the first
+                        # comma, period, or semicolon that ends the appearance portion.
+                        _stripped = re.sub(r'^[^,\.;]+[,\.;]\s*', '', scene, count=1).strip()
+                        if len(_stripped) > 20:
+                            # Enough scene content remains after stripping — use it
+                            full_prompt = f"{commander_prompt}, {_stripped}"
+                        else:
+                            # Stripping left too little — fall back to full scene to
+                            # avoid losing Ollama's action content
+                            full_prompt = f"{commander_prompt}, {scene}"
                     else:
+                        # Ollama did not echo — prepend appearance cleanly
                         full_prompt = f"{commander_prompt}, {scene}"
                 else:
                     full_prompt = scene
 
             else:
-                full_prompt = ""
+                # Ollama failed to produce a prompt for this card
+                if i == 0 and commander_prompt:
+                    # Commander with no Ollama output — use the appearance description
+                    # as a minimal prompt rather than silently discarding it
+                    full_prompt = commander_prompt
+                else:
+                    full_prompt = ""
 
             return ThemedCard(
                 original_name=card["name"],

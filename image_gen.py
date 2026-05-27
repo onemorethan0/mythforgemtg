@@ -117,6 +117,9 @@ NEGATIVE_PROMPT = (
     # Composition
     "out of frame, cropped, cut off, "
     "portrait orientation, vertical composition, tilted, skewed, "
+    # First-person / POV prevention
+    "first person view, first-person perspective, pov shot, first person pov, "
+    "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
     # Text / watermarks
     "watermark, signature, text, username, artist name, logo, stamp, "
     # Card-frame artifacts
@@ -141,7 +144,10 @@ _FLUX_NEGATIVE = (
     # Face-swap artifact guards (prevents 2 torches + black background syndrome)
     "floating head, headless, no body, face only, torso only, incomplete character, "
     "looking away, facing away, back turned, no face visible, face hidden, "
-    "empty black background, void, featureless background, blank background"
+    "empty black background, void, featureless background, blank background, "
+    # First-person / POV prevention — FLUX tends toward POV hands when prompts mention wielding/casting
+    "first person view, first-person perspective, pov shot, first person pov, "
+    "hands in foreground, foreground hands, player pov, viewer pov, point of view shot"
 )
 
 # ── Positive prompt prefixes ───────────────────────────────────────────────────
@@ -150,7 +156,7 @@ _SDXL_PREFIX = (
     "masterpiece, best quality, highly detailed, sharp focus, "
     "professional fantasy illustration, artstation trending, concept art, "
     "cinematic lighting, dramatic shadows, rich color palette, "
-    "landscape composition, wide shot, subject fully in frame, no cropping, "
+    "third-person view, character viewed from outside, landscape composition, wide shot, subject fully in frame, no cropping, "
     "anatomically correct hands, five fingers on each hand, "
 )
 
@@ -161,7 +167,7 @@ _FLUX_PREFIX = (
     "Digital painting, fantasy illustration, concept art. "
     "Painterly brushwork, rich textured surface, highly detailed. "
     "Vivid saturated colors, cinematic lighting, dramatic shadows. "
-    "Wide landscape composition, subject fully centered and in frame. "
+    "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
     "Any visible hands have exactly five fingers each. "
 )
 
@@ -248,6 +254,7 @@ _LORA_PRESETS: dict[str, dict] = {
         "flux_prefix": (
             "Professional photographic quality. Sharp focus, vivid colors, realistic details. "
             "Well-lit with natural lighting, no dark underexposed areas. Realistic textures and materials. "
+            "Third-person view, character viewed from outside. "
         ),
         # face_prefix_medium: overrides the "Painted portrait" default used in
         # generate() for face-conditioned cards.  Must NOT specify "Painted" here —
@@ -263,6 +270,8 @@ _LORA_PRESETS: dict[str, dict] = {
         "negative_prompt": (
             "bad hands, extra fingers, wrong number of fingers, malformed hands, "
             "bad anatomy, deformed, twisted, distorted, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "blurry, out of focus, soft focus, hazy, foggy, low resolution, noise, grain, "
             "underexposed, too dark, pitch black, barely visible, muddy dark colors, "
             "flat lighting, harsh shadows, overexposed, washed out, blown highlights, "
@@ -313,7 +322,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Rain-slicked streets mirror the neon glows. Chrome and glass architecture, "
             "holographic overlays, retrofuturistic technology. "
             "Well-lit scene with intense neon color. High detail, sharp focus. "
-            "Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         # Cyberpunk-specific negative: push FLUX away from near-black underexposure.
@@ -322,6 +331,8 @@ _LORA_PRESETS: dict[str, dict] = {
         "negative_prompt": (
             "bad hands, extra fingers, four fingers, three fingers, wrong number of fingers, "
             "bad anatomy, deformed, ugly, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "underexposed, too dark, pitch black, barely visible, muddy dark, dark muddy colors, "
             "dark background, all black, completely black, near black, "
             "overexposed, washed out, blown out, pure white, "
@@ -367,7 +378,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Sun-scorched desert wasteland, cracked red earth, amber dust haze. "
             "Salvaged rust-stained armor, retrofuture survival gear, weathered bone and metal. "
             "Dramatic side lighting, deep shadows, warm ochre and burnt sienna palette. "
-            "High detail, wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. High detail, wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -401,6 +412,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Flat colour anime style image showing, anime illustration, manga art, "
             "cel-shaded, flat colour shading, clean bold linework, vibrant saturated colors, "
             "2D anime aesthetic, expressive anime character design, no photographic detail. "
+            "Third-person view, character viewed from outside. "
         ),
         # face_prefix overrides for anime — "Painted portrait, painterly skin tones"
         # would inject oil-painting language into a cel-shaded anime prompt.
@@ -415,6 +427,8 @@ _LORA_PRESETS: dict[str, dict] = {
             "oil painting, painterly brushwork, impasto, textured brush strokes, "
             "live-action, film still, dslr, depth of field bokeh, "
             "bad hands, extra fingers, bad anatomy, deformed, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
         "loras": [
@@ -452,6 +466,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Expressive anime eyes, rich volumetric lighting, detailed character rendering. "
             "Dynamic composition, vivid saturated colors, intricate background detail. "
             "High quality digital anime illustration, not flat, not cel-shaded. "
+            "Third-person view, character viewed from outside. "
         ),
         "face_prefix_medium": "Semi-realistic anime portrait illustration",
         "face_prefix_quality": "detailed anime face, expressive eyes, realistic skin shading, dynamic lighting",
@@ -460,6 +475,8 @@ _LORA_PRESETS: dict[str, dict] = {
             "3d render, cgi, octane render, unreal engine, "
             "flat colour, cel-shaded, flat shading, no shading, "
             "bad hands, extra fingers, bad anatomy, deformed, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
         "loras": [
@@ -494,6 +511,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Soft painterly anime rendering, polished clean linework with gentle volumetric lighting. "
             "Rich backgrounds, anime key-visual quality. "
             "Warm saturated colors, smooth detailed shading. "
+            "Third-person view, character viewed from outside. "
         ),
         "face_prefix_medium": "Anime artbook portrait, sftsrv style illustration",
         "face_prefix_quality": "clean detailed anime face, soft lighting, expressive eyes, polished illustration",
@@ -502,6 +520,8 @@ _LORA_PRESETS: dict[str, dict] = {
             "3d render, cgi, octane render, unreal engine, "
             "flat colour, cel-shaded, harsh flat shading, "
             "bad hands, extra fingers, bad anatomy, deformed, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
         "loras": [
@@ -529,7 +549,7 @@ _LORA_PRESETS: dict[str, dict] = {
         "flux_prefix": (
             "Alphonse Mucha Style, art nouveau illustration, decorative ornamental border, "
             "flowing organic lines, nature motifs, gold leaf accents, rich jewel tones. "
-            "High detail, intricate composition, subject fully in frame. "
+            "Third-person view, character viewed from outside. High detail, intricate composition, subject fully in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -560,12 +580,14 @@ _LORA_PRESETS: dict[str, dict] = {
             "Deep shadow pools broken by pale candlelight and cold moonbeams. "
             "Muted palette of charcoal, slate, deep violet, and silver moonlight. "
             "Atmospheric and unsettling, cinematic horror mood. "
-            "Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "negative_prompt": (
             "bad hands, extra fingers, four fingers, three fingers, wrong number of fingers, "
             "bad anatomy, deformed, ugly, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "overexposed, washed out, blown out, pure white, "
             "colorful, bright, cheerful, sunny, pastel, vibrant rainbow, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
@@ -608,7 +630,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Flowing organic edges where colors blend and bleed naturally. "
             "Vivid yet soft palette with subtle granulation and gentle color transitions. "
             "Hand-painted watercolor aesthetic with visible brushwork and paper tooth. "
-            "Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -640,7 +662,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Steam venting from ornate machinery, amber gas-lamp glow. "
             "Rich warm tones of burnished gold, deep brown leather, and patina green. "
             "Mechanical detail-rich composition. "
-            "Wide landscape, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -671,7 +693,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Chiaroscuro dramatic lighting — deep warm shadows with bright focal highlights. "
             "Rich jewel tones: deep crimson, burnished gold, deep blue, burnt sienna. "
             "Baroque compositional drama, majestic and timeless. "
-            "Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -702,11 +724,13 @@ _LORA_PRESETS: dict[str, dict] = {
             "SNES-era 16-bit aesthetic with bold readable sprites and crisp pixel edges. "
             "No anti-aliasing, no blur — every element is made of clean distinct pixels. "
             "Vibrant saturated retro game colors. "
-            "Wide composition, subject fully in frame. "
+            "Third-person view, character viewed from outside. Wide composition, subject fully in frame. "
         ),
         "negative_prompt": (
             "bad hands, extra fingers, bad anatomy, deformed, ugly, "
             "photograph, photo, photorealistic, hyperrealistic, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "blurry, out of focus, soft focus, anti-aliased, smooth gradients, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
@@ -738,12 +762,14 @@ _LORA_PRESETS: dict[str, dict] = {
             "Deep space palette: sickly chartreuse, cosmic violet, void black, and pallid bone white. "
             "Oppressive sense of scale and ancient malice. "
             "Tentacles, eyes, and alien architecture woven into impossible shapes. "
-            "Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
             "Any visible hands have exactly five fingers each. "
         ),
         "negative_prompt": (
             "bad hands, extra fingers, four fingers, three fingers, wrong number of fingers, "
             "bad anatomy, deformed, ugly, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
             "overexposed, washed out, blown out, pure white, "
             "bright cheerful colors, pastel, rainbow, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
@@ -787,7 +813,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Each glass segment glows with luminous transmitted light, translucent and vivid. "
             "Gothic rose window aesthetics, divine grandeur. "
             "Flat bold colors within cells, strong graphic composition. "
-            "Wide landscape, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Wide landscape, subject fully centered and in frame. "
         ),
         "loras": [
             {
@@ -814,30 +840,56 @@ _LORA_PRESETS: dict[str, dict] = {
     },
 
     # ── Ragnarok Online illustrated card/loading screen style ───────────────────
-    # Optimized for Illustrious XL (SDXL) checkpoint with RO LoRA.
-    # IMPORTANT: This preset REQUIRES Illustrious XL to be loaded in ComfyUI.
-    # The RO LoRA is SDXL-trained and will not work with FLUX models.
+    # Trained on Illustrious XL (SDXL). ro_lora_v2 — 1374 images, rank 64, alpha 32.
+    # WD14-retagged captions: trigger words lock to front via keep_tokens=2.
+    # IMPORTANT: Requires Illustrious XL loaded in ComfyUI — will not work on FLUX.
     "ragnarok_online": {
         "label":       "Ragnarok Online",
-        "description": "RO illustrated cards & loading screens — rich anime detail, dramatic fantasy adventure, jewel-tone palettes. REQUIRES Illustrious XL (SDXL).",
+        "description": "RO illustrated card art style — anime fantasy, jewel-tone palettes, painterly character portraits. REQUIRES Illustrious XL (SDXL).",
         "icon":        "⚔️",
-        "required_checkpoint_type": "sdxl",   # Warn if FLUX/SD3.5 is loaded
-        "style_guide_hint":  "ragnarok online illustration, anime-style fantasy card art, dramatic adventure scenes, rich jewel tones, detailed character-focused compositions",
-        "themer_medium":     '"anime illustration," or "fantasy card art," or "illustrated concept art,"',
-        "themer_quality":    '"detailed anime illustration, rich colors" or "dramatic fantasy card art, jewel-tone palette" or "high-detail illustrated character, vibrant"',
-        # Note: flux_prefix is only used by FLUX; SDXL uses _SDXL_PREFIX.
-        # Including it here for completeness, but it won't affect Illustrious XL output.
+        "required_checkpoint_type": "sdxl",
+        "style_guide_hint":  "ragnarok online card art style, anime fantasy illustration, vibrant jewel-tone colors, painterly character portraits, detailed fantasy adventure scenes",
+        "themer_medium":     '"anime illustration," or "fantasy card art," or "painted anime portrait,"',
+        "themer_quality":    '"detailed anime illustration, jewel-tone palette" or "painterly fantasy card art, vivid saturated colors" or "high-detail illustrated character, vibrant anime style"',
+        # flux_prefix: not used for SDXL (Illustrious XL uses _SDXL_PREFIX instead).
+        # Triggers are prepended via lora_trigger_prefix, which takes effect before _SDXL_PREFIX.
         "flux_prefix": None,
+        # Custom negative: removes "anime, cartoon" suppression terms that are in the
+        # global NEGATIVE_PROMPT — Illustrious XL IS an anime model, those terms hurt it.
+        "negative_prompt": (
+            "bad hands, extra fingers, missing fingers, fused fingers, too many fingers, "
+            "mutated hands, poorly drawn hands, deformed hands, malformed hands, "
+            "bad anatomy, extra limbs, missing limbs, missing arms, missing legs, "
+            "extra arms, extra legs, disconnected limbs, malformed limbs, gross proportions, "
+            "long neck, elongated neck, twisted body, "
+            "bad face, ugly face, deformed face, poorly drawn face, asymmetrical face, "
+            "first person view, first-person perspective, pov shot, first person pov, "
+            "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
+            "ugly, worst quality, low quality, "
+            "blurry, out of focus, soft focus, "
+            "jpeg artifacts, compression artifacts, pixelated, noisy, grainy, "
+            "overexposed, underexposed, washed out, flat lighting, "
+            "low resolution, draft, unfinished, "
+            "watermark, signature, text, username, artist name, logo, stamp, "
+            "border, frame, card template, card border, card frame, "
+            "duplicate, clone, multiple copies, tiling, collage, "
+            "3d render, cgi, plastic, doll, mannequin, toy, figurine, "
+            "photograph, photo, photorealistic, hyperrealistic, "
+            "nsfw, nude, explicit"
+        ),
+        # face_prefix: for character cards with face conditioning
+        "face_prefix_medium": "Anime illustration portrait, ragnarok online style",
+        "face_prefix_quality": "detailed anime face, expressive eyes, painterly skin tones, vibrant colors",
         "loras": [
             {
-                "fragments":      ["ro_lora"],
-                "trigger":        "",   # RO LoRA may or may not have a trigger word
+                "fragments":      ["ro_lora_v2", "ro_lora"],
+                "trigger":        "ragnarok online style, ro card art",
                 "model_strength": 0.85,
                 "clip_strength":  0.85,
                 "dark_only":      False,
-                "label":          "Ragnarok Online Style",
+                "label":          "Ragnarok Online Style v2",
                 "download_url":   None,
-                "download_note":  "ro_lora_v1.safetensors (SDXL-trained for Illustrious XL)",
+                "download_note":  "ro_lora_v2.safetensors — SDXL LoRA trained on Illustrious XL v0.1",
             },
         ],
     },
@@ -1062,12 +1114,14 @@ def _summarize_comfy_error(resp) -> str:
 
 # ── Standard workflow builders ────────────────────────────────────────────────
 
-def _build_sdxl_workflow(checkpoint: str, positive: str, seed: int) -> dict:
+def _build_sdxl_workflow(checkpoint: str, positive: str, seed: int,
+                          negative: str = "") -> dict:
+    neg = negative or NEGATIVE_PROMPT
     return {
         "4": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": checkpoint}},
         "5": {"class_type": "EmptyLatentImage",        "inputs": {"width": CARD_WIDTH, "height": CARD_HEIGHT, "batch_size": 1}},
-        "6": {"class_type": "CLIPTextEncode",          "inputs": {"text": positive,        "clip": ["4", 1]}},
-        "7": {"class_type": "CLIPTextEncode",          "inputs": {"text": NEGATIVE_PROMPT, "clip": ["4", 1]}},
+        "6": {"class_type": "CLIPTextEncode",          "inputs": {"text": positive, "clip": ["4", 1]}},
+        "7": {"class_type": "CLIPTextEncode",          "inputs": {"text": neg,      "clip": ["4", 1]}},
         "3": {
             "class_type": "KSampler",
             "inputs": {
@@ -1154,7 +1208,7 @@ def _build_workflow(checkpoint: str, positive: str, seed: int,
         return _build_sd35_workflow(checkpoint, positive, seed, negative=negative)
     if _is_flux(checkpoint):
         return _build_flux_workflow(checkpoint, positive, seed, negative=negative)
-    return _build_sdxl_workflow(checkpoint, positive, seed)
+    return _build_sdxl_workflow(checkpoint, positive, seed, negative=negative)
 
 
 # ── Face-conditioning workflow builders ───────────────────────────────────────
@@ -1166,12 +1220,12 @@ def _build_pulid_flux_workflow(
     eva_clip_model: str,
     negative: str = "",
 ) -> dict:
-    neg = negative or _FLUX_NEGATIVE
     """
     FLUX + PuLID face-conditioning workflow.
     ApplyPulidFlux wraps the base model so the KSampler generates
     an image whose subject resembles the reference face.
     """
+    neg = negative or _FLUX_NEGATIVE
     is_schnell = "schnell" in checkpoint.lower()
     steps    = 8            if is_schnell else 35
     cfg      = 1.0          if is_schnell else 3.5   # same rationale as _build_flux_workflow
@@ -1193,8 +1247,15 @@ def _build_pulid_flux_workflow(
                 "pulid":        ["10", 0],
                 "eva_clip":     ["11", 0],
                 "face_image":   ["12", 0],
-                "weight":       0.85,
-                "start_at":     0.0,
+                # weight 0.75: enough identity preservation without over-constraining
+                # composition for non-portrait action scenes.  0.85 caused cramped
+                # layouts on creature cards where the subject is mid-action.
+                "weight":       0.75,
+                # start_at 0.1: lets FLUX establish rough composition (layout, sky, ground)
+                # in the first 3-4 steps before face identity is injected.  Starting at
+                # 0.0 locks everything to the face embedding from step 0, which competes
+                # with the scene composition and produces face-blob artifacts.
+                "start_at":     0.1,
                 "end_at":       1.0,
                 "fusion":       "mean",
                 "fusion_weight": 1.0,
@@ -1221,17 +1282,19 @@ def _build_faceid_sdxl_workflow(
     face_comfy_name: str,
     ipadapter_model: str,
     clip_vision_model: str,
+    negative: str = "",
 ) -> dict:
     """
     SDXL + IP-Adapter FaceID workflow.
     IPAdapterFaceID modifies the model so generated portraits resemble
     the reference face.
     """
+    neg = negative or NEGATIVE_PROMPT
     return {
         "1": {"class_type": "CheckpointLoaderSimple",  "inputs": {"ckpt_name": checkpoint}},
         "2": {"class_type": "EmptyLatentImage",         "inputs": {"width": CARD_WIDTH, "height": CARD_HEIGHT, "batch_size": 1}},
-        "3": {"class_type": "CLIPTextEncode",           "inputs": {"text": positive,        "clip": ["1", 1]}},
-        "4": {"class_type": "CLIPTextEncode",           "inputs": {"text": NEGATIVE_PROMPT, "clip": ["1", 1]}},
+        "3": {"class_type": "CLIPTextEncode",           "inputs": {"text": positive, "clip": ["1", 1]}},
+        "4": {"class_type": "CLIPTextEncode",           "inputs": {"text": neg,      "clip": ["1", 1]}},
         # IP-Adapter FaceID nodes
         "10": {"class_type": "IPAdapterUnifiedLoader",  "inputs": {
             "model":          ["1", 0],
@@ -1334,6 +1397,14 @@ def _append_reactor(
 
 
 # ── ImageGen ──────────────────────────────────────────────────────────────────
+
+class _ReactorCudaError(Exception):
+    """
+    Raised by _wait_for_image when ReActor face-swap fails due to a CUDA 12.x
+    driver mismatch.  Signals generate() to retry the card without face
+    conditioning rather than silently falling back to Scryfall art.
+    """
+
 
 class ImageGen:
     def __init__(self, comfy_base: str = "", checkpoint: Optional[str] = None,
@@ -1569,7 +1640,7 @@ class ImageGen:
             ]
             for lora_dir in possible_paths:
                 if lora_dir.exists():
-                    loras = sorted([f.stem for f in lora_dir.glob("*.safetensors")])
+                    loras = sorted([f.name for f in lora_dir.glob("*.safetensors")])
                     if loras:
                         print(f"  [image_gen] LoRAs loaded from disk (ComfyUI list was empty): {loras}")
                         return loras
@@ -1649,10 +1720,19 @@ class ImageGen:
         if custom_prefix is not None:
             self.active_flux_prefix = custom_prefix
 
-        # Per-preset negative prompt (None / "" → use module default _FLUX_NEGATIVE).
+        # Per-preset negative prompt (None / "" → use model-appropriate default).
         # Anime, photorealism etc. need different negatives to keep FLUX's
         # photoreal prior from overpowering style-specific LoRAs.
-        self.active_negative = preset.get("negative_prompt") or _FLUX_NEGATIVE
+        # SDXL/SD3.5 respond to negatives at high CFG — fall back to the full
+        # NEGATIVE_PROMPT (anatomy + quality terms) rather than _FLUX_NEGATIVE
+        # (which is tuned for FLUX's low-CFG regime and lacks those terms).
+        _preset_neg = preset.get("negative_prompt")
+        if _preset_neg:
+            self.active_negative = _preset_neg
+        elif is_flux:
+            self.active_negative = _FLUX_NEGATIVE
+        else:
+            self.active_negative = NEGATIVE_PROMPT
 
         style_label = preset["label"]
         print(f"  [image_gen] Art style: {style_label}")
@@ -1887,6 +1967,13 @@ class ImageGen:
                     print(f"  [image_gen] ComfyUI reports {status_str!r} — "
                           f"messages: {messages[:5]}")
 
+                # ReActor CUDA error: raise so generate() can retry without face conditioning
+                if cuda_error_detected:
+                    raise _ReactorCudaError(
+                        "ReActor face-swap failed (CUDA 12.x mismatch) — "
+                        "retrying without face conditioning"
+                    )
+
                 # Return None to stop waiting (generation failed)
                 return None   # failed — don't wait out the full timeout
 
@@ -1971,7 +2058,17 @@ class ImageGen:
             print(f"  [image_gen] Stale overexposed/blank image deleted, regenerating: {save_path.name}")
 
         seed   = random.randint(0, 2**32 - 1)
-        prefix = self.active_flux_prefix if _is_flux(self.checkpoint) else _SDXL_PREFIX
+        # For FLUX, always use the preset-specific active_flux_prefix.
+        # For SDXL/SD3.5, use active_flux_prefix only if the preset defined a
+        # custom one (i.e. active_flux_prefix was overridden from _FLUX_PREFIX);
+        # otherwise fall back to _SDXL_PREFIX which is tuned for high-CFG SDXL.
+        if _is_flux(self.checkpoint):
+            prefix = self.active_flux_prefix
+        elif self.active_flux_prefix is not _FLUX_PREFIX:
+            # Preset explicitly set a custom prefix for this SDXL/SD3.5 style
+            prefix = self.active_flux_prefix
+        else:
+            prefix = _SDXL_PREFIX
 
         # LoRA trigger words prepended first so CLIP weights them most heavily.
         # self.lora_trigger_prefix is "" when no MTG art LoRAs are installed.
@@ -2080,6 +2177,20 @@ class ImageGen:
                           f"Scryfall art will be used as fallback for '{filename_stem}'")
                     return None
             return result
+        except _ReactorCudaError as e:
+            # ReActor face-swap failed due to CUDA mismatch — retry this card
+            # without face conditioning so we at least get a styled base image
+            # rather than losing it to Scryfall art entirely.
+            print(f"  [image_gen] {e}")
+            if face_comfy_name:
+                print(f"  [image_gen] Retrying '{filename_stem}' without face conditioning…")
+                return self.generate(
+                    art_prompt, filename_stem,
+                    face_comfy_name=None,
+                    face_gender=face_gender,
+                    cancel_event=cancel_event,
+                )
+            return None
         except requests.RequestException as e:
             print(f"  [image_gen] RequestException '{filename_stem}': {e}")
         except Exception as e:
@@ -2099,6 +2210,7 @@ class ImageGen:
             return _build_faceid_sdxl_workflow(
                 self.checkpoint, positive, seed, face_comfy_name,
                 "", "",  # preset-based, no explicit model file paths needed
+                negative=neg,
             )
         if self.face_method == "reactor":
             base = _build_workflow(self.checkpoint, positive, seed, negative=neg)
@@ -2128,9 +2240,14 @@ class ImageGen:
             return {}
 
         # Compute theme darkness once for the whole deck.
-        hint = (theme_str or
-                (themed_deck[0].art_prompt if themed_deck else "") or
-                deck_name)
+        # Prefer the explicit theme_str (most representative); when absent, sample
+        # the deck name + up to 5 card prompts so a single neutral first-card prompt
+        # doesn't misrepresent a dark or whimsical deck.
+        if theme_str:
+            hint = theme_str
+        else:
+            _sample_prompts = [tc.art_prompt for tc in themed_deck[:5] if tc.art_prompt]
+            hint = " ".join(filter(None, [deck_name] + _sample_prompts))
         self.theme_darkness = _theme_darkness_score(hint)
         if self.theme_darkness < 0.85:
             dark_entries = [e["label"] for e in self.active_loras if e.get("dark_only")]
