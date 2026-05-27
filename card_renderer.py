@@ -985,7 +985,7 @@ def render_card(
     name_max_x = pip_left_x - _mm(0.5)
 
     # Main (themed) name
-    name_font_size = _mm(2.5) if show_subtitle else _mm(2.7)
+    name_font_size = _mm(2.6) if show_subtitle else _mm(2.8)
     name_font = _beleren(name_font_size)
     name_text = themed_name
     max_name_w = name_max_x - _NAME_TX
@@ -1051,7 +1051,7 @@ def render_card(
     # ── Layer 8: oracle text + flavor text ───────────────────────────────────
     oracle_fg  = _DARK_TEXT
     sym_size   = _mm(2.4)     # inline symbol size
-    body_size  = _mm(2.1)     # MPlantin body font size
+    body_size  = _mm(2.2)     # MPlantin body font size
 
     ora_x = _ORA_X + _ORA_PAD
     ora_y = _ORA_Y + _ORA_PAD
