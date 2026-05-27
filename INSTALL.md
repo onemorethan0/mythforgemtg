@@ -129,6 +129,120 @@ Key steps:
 
 The Myth Forge app will connect to ComfyUI automatically on `localhost:8188`.
 
+#### ComfyUI Models & LoRAs
+
+**Checkpoints (Required — Choose at least ONE):**
+
+Model location: `ComfyUI/models/checkpoints/`
+
+- **FLUX.1 Dev** (Recommended for quality)
+  - Download: [HuggingFace](https://huggingface.co/black-forest-labs/FLUX.1-dev)
+  - Size: ~24GB
+  - Quality: Excellent, high detail
+  - Speed: Slower (~30-60s per image)
+
+- **FLUX.1 Schnell** (Fast, good quality)
+  - Download: [HuggingFace](https://huggingface.co/black-forest-labs/FLUX.1-schnell)
+  - Size: ~24GB
+  - Quality: Very good
+  - Speed: Fast (~5-10s per image)
+
+- **Illustrious-XL** (SDXL alternative)
+  - Download: [CivitAI](https://civitai.com/models/296424)
+  - Size: ~7.7GB
+  - Quality: Good for anime/fantasy
+  - Speed: Medium (~15-20s per image)
+
+- **SD 3.5 Large** (Good all-around)
+  - Download: [HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3.5-large)
+  - Size: ~7.7GB
+  - Speed: Medium
+
+**LoRAs (Optional but Recommended):**
+
+Model location: `ComfyUI/models/loras/`
+
+Myth Forge uses LoRAs for different art styles. Download these to `models/loras/`:
+
+1. **MTG v2 Style LoRA** (Core MTG aesthetic)
+   - Download: [CivitAI](https://civitai.com/models/669671)
+   - File: `lora.safetensors` → rename to `mtg_v2_lora.safetensors`
+
+2. **MTG Composition LoRA** (Composition improvement)
+   - Download: [CivitAI](https://civitai.com/models/567735)
+   - File: `lora.safetensors` → rename to `mtg_composition_lora.safetensors`
+
+3. **Realism LoRA** (For realistic art styles)
+   - Download: [CivitAI](https://civitai.com/models/680417)
+   - File: `lora.safetensors` → rename to `xlabs_realism_lora.safetensors`
+
+4. **Darkness LoRA** (Dark/horror aesthetics)
+   - Download: [CivitAI](https://civitai.com/models/300898)
+   - File: `lora.safetensors` → rename to `darkness_lora.safetensors`
+
+5. **Sketch LoRA** (Hand-drawn aesthetics)
+   - Download: [CivitAI](https://civitai.com/models/730615)
+   - File: `lora.safetensors` → rename to `sketch_lora.safetensors`
+
+**Required for Face Conditioning (Optional):**
+
+If you use face photos in card generation:
+
+1. **PuLID Model** (Face conditioning for FLUX)
+   - Installation: Follow [ComfyUI-PuLID](https://github.com/jojopapricardo/ComfyUI-PuLID)
+   - Download: Models from repository
+   - Enables realistic face conditioning on FLUX
+
+2. **ReActor** (Face swap for SDXL)
+   - Installation: Follow [ReActor Node](https://github.com/Gourieff/comfyui-reactor)
+   - Download: inswapper_128.pth model
+   - Enables face replacement on SDXL/SD3.5
+
+**VAE (Optional but improves quality):**
+
+Model location: `ComfyUI/models/vae/`
+
+- **VAE-ft-mse-840000** (For SDXL/SD3.5)
+  - Download: [HuggingFace](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)
+  - Improves detail in generated images
+
+#### Download Instructions
+
+**Using CivitAI (Easiest):**
+
+1. Visit [CivitAI](https://civitai.com)
+2. Search for model name
+3. Click "Download" button
+4. Save to `ComfyUI/models/loras/` (for LoRAs)
+5. Or `ComfyUI/models/checkpoints/` (for checkpoints)
+
+**Using HuggingFace (For larger models):**
+
+```bash
+# Option 1: Use git-lfs (recommended)
+git lfs install
+git clone https://huggingface.co/black-forest-labs/FLUX.1-dev
+# Move to ComfyUI/models/checkpoints/
+
+# Option 2: Download via Python
+huggingface-hub download black-forest-labs/FLUX.1-dev --repo-type model
+```
+
+**After Downloading:**
+
+1. Restart ComfyUI
+2. Models will appear in the UI dropdowns
+3. Myth Forge will auto-detect and use them
+
+#### Quick Setup (Minimal)
+
+Minimum setup to get started:
+1. Install **one checkpoint** (FLUX Schnell recommended for speed)
+2. No LoRAs required — default style will work
+3. Optional: Add LoRAs for better results
+
+Myth Forge works with any combination of models you have installed.
+
 ### GPU Support (Optional)
 
 For faster image generation, install GPU drivers:
