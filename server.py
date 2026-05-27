@@ -582,27 +582,51 @@ def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: st
     Replace occurrences of a card's original name in its own oracle text with
     the themed name. Uses word boundaries for the first-name pass so a card
     named "Sol, ..." doesn't mangle unrelated words like "Solitude".
+    Handles double-faced cards (name1 // name2) by replacing each face's
+    short form individually.
     """
     if not oracle_text or not original_name or not themed_name:
         return oracle_text
-    # Full-name replacement (literal — names can contain punctuation that
-    # would need escaping in a regex)
+
+    first_themed = themed_name.split(",")[0].strip()
+
+    # Full-name replacement first
     result = oracle_text.replace(original_name, themed_name)
+
+    # ── Double-faced cards ("Face A // Face B") ──────────────────────────────
+    # Oracle text only ever refers to one face at a time using just that face's
+    # name (or its pre-comma first part), never the combined "A // B" string.
+    if " // " in original_name:
+        for face in (f.strip() for f in original_name.split(" // ")):
+            # Replace full face name literally
+            result = result.replace(face, first_themed)
+            # Replace pre-comma short form ("Aang, Master of Elements" → "Aang")
+            face_short = face.split(",")[0].strip()
+            if face_short and len(face_short) > 2 and face_short != face:
+                result = re.sub(rf"\b{re.escape(face_short)}\b", first_themed, result)
+            # Replace first-word short form for multi-word no-comma faces
+            # ("Avatar Aang" → "Avatar" is used in "transform Avatar Aang" which
+            #  the literal replace above catches; but standalone "Aang" in text
+            #  needs the first-word pass when there's no comma)
+            elif face_short and " " in face_short:
+                first_word        = face_short.split()[0]
+                first_themed_word = first_themed.split()[0]
+                if len(first_word) > 2:
+                    result = re.sub(rf"\b{re.escape(first_word)}\b", first_themed_word, result)
+        return result
+
+    # ── Single-faced cards ────────────────────────────────────────────────────
     # Short-form self-references — Scryfall oracle text uses an abbreviated form:
     #   • Comma-based names: just the pre-comma part ("Uro, Titan…" → "Uro attacks")
     #   • No-comma multi-word names: just the first word ("Kaalia of the Vast" → "Kaalia attacks")
-    first_orig   = original_name.split(",")[0].strip()
-    first_themed = themed_name.split(",")[0].strip()
+    first_orig = original_name.split(",")[0].strip()
     if first_orig and len(first_orig) > 2:
         if first_orig != original_name:
             # Comma-based name — pre-comma part is a distinct short form
             result = re.sub(rf"\b{re.escape(first_orig)}\b", first_themed, result)
         elif " " in first_orig:
-            # No-comma multi-word name — Scryfall uses just the first word as shorthand
-            # ("Kaalia of the Vast" → oracle says "Whenever Kaalia attacks").
-            # Mirror that for the themed replacement: use only the first word of the
-            # themed name so "Dante of the Vast" → oracle reads "Whenever Dante attacks",
-            # not "Whenever Dante of the Vast attacks".
+            # No-comma multi-word name — use only the first word of the themed
+            # name so "Dante of the Vast" reads "Whenever Dante attacks"
             first_word        = first_orig.split()[0]
             first_themed_word = first_themed.split()[0]
             if len(first_word) > 2:
@@ -1034,11 +1058,30 @@ def _run_build(job_id: str, req: BuildRequest):
             _jobs[job_id]["status"] = "cancelled"
             # Stamp deck.json so disk state matches — _load_deck_from_disk can
             # then return the partial deck correctly after a server restart.
+            # Also backfill has_render flags so the gallery shows whatever art
+            # was generated before cancellation rather than Scryfall fallbacks.
             try:
                 if deck_json_path.exists():
                     _d = json.loads(deck_json_path.read_text(encoding="utf-8"))
                     _d["status"] = "cancelled"
+                    # Scan cards/ dir to fix has_render for partially-rendered decks
+                    _cards_dir = render_out
+                    if _cards_dir.exists():
+                        _rendered = {fp.stem for fp in _cards_dir.glob("*.png")}
+                        if _rendered:
+                            _cmd = _d.get("commander")
+                            if isinstance(_cmd, dict):
+                                _rk = _cmd.get("render_key", "")
+                                if _rk:
+                                    _cmd["has_render"] = _rk in _rendered
+                            for _card in _d.get("deck") or []:
+                                _rk = _card.get("render_key", "")
+                                if _rk:
+                                    _card["has_render"] = _rk in _rendered
                     deck_json_path.write_text(json.dumps(_d), encoding="utf-8")
+                    # Keep in-memory job in sync so current session sees it too
+                    _jobs[job_id].update(_d)
+                    _jobs[job_id]["status"] = "cancelled"
             except Exception:
                 pass
             _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
@@ -2496,6 +2539,10 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
     A deck.json written with status="rendering" means art-gen was in flight
     when the server was killed.  The deck data is valid; we just lack some
     rendered card images.  Normalise to "done" so the deck is loadable.
+
+    Also backfills has_render flags by scanning the cards/ directory so that
+    partial/cancelled builds show whatever art was generated rather than
+    falling back to Scryfall images for everything.
     """
     p = RENDER_DIR / job_id / "deck.json"
     if p.exists():
@@ -2510,6 +2557,26 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
                 except Exception:
                     pass
             # "cancelled" is left as-is so the frontend can show the correct state.
+
+            # Backfill has_render flags: deck.json is written BEFORE art gen
+            # begins so all cards start with has_render=False.  After a cancel
+            # or crash, the PNG files that were rendered inline DO exist on disk
+            # but deck.json was never updated.  Fix this so the gallery shows
+            # the generated art instead of Scryfall fallbacks.
+            cards_dir = RENDER_DIR / job_id / "cards"
+            if cards_dir.exists():
+                rendered = {fp.stem for fp in cards_dir.glob("*.png")}
+                if rendered:
+                    cmd = data.get("commander")
+                    if isinstance(cmd, dict):
+                        rk = cmd.get("render_key", "")
+                        if rk and not cmd.get("has_render"):
+                            cmd["has_render"] = rk in rendered
+                    for card in data.get("deck") or []:
+                        rk = card.get("render_key", "")
+                        if rk and not card.get("has_render"):
+                            card["has_render"] = rk in rendered
+
             return data
         except Exception:
             return None
@@ -2718,6 +2785,8 @@ async def get_art_styles():
             "partial":     any_inst and not all_inst,
             "loras":       loras,
             "custom":      key in custom_keys,
+            # Model type constraint — tells the UI which checkpoint family is required
+            "required_checkpoint_type": preset.get("required_checkpoint_type"),
             # Include full config so the UI can pre-populate the editor
             "flux_prefix":      preset.get("flux_prefix") or "",
             "negative_prompt":  preset.get("negative_prompt", ""),
