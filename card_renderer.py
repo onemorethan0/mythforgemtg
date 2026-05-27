@@ -68,9 +68,9 @@ _ORA_Y         = _mm(55.6)
 _ORA_W         = _mm(54.7)
 _ORA_H         = _mm(26.0)
 
-_PT_W, _PT_H   = _mm(11.58), _mm(6.2)
-_PT_X          = _W2 - _mm(3.0) - _PT_W
-_PT_Y          = _H2 - _mm(3.8) - _PT_H
+_PT_W, _PT_H   = _mm(9.5), _mm(9.5)
+_PT_X          = _W2 - _mm(3.2) - _PT_W
+_PT_Y          = _H2 - _mm(3.5) - _PT_H
 
 _CROWN_W       = _mm(57.0)
 _CROWN_X       = (_W2 - _CROWN_W) // 2
@@ -1112,14 +1112,14 @@ def render_card(
                                    radius=_mm(0.8), fill=(200, 185, 145))
 
         # Scale font size based on P/T string length to fill space visually
-        # "1/1" (3 chars) → 2.0mm, "10/10" (5 chars) → 1.6mm, "13/12" (5 chars) → 1.6mm
+        # "1/1" (3 chars) → 2.3mm, "10/10" (5 chars) → 1.9mm, "13/12" (5 chars) → 1.9mm
         pt_len = len(pt_str)
         if pt_len <= 3:
-            pt_font_size = _mm(2.0)
+            pt_font_size = _mm(2.3)
         elif pt_len == 4:
-            pt_font_size = _mm(1.8)
+            pt_font_size = _mm(2.0)
         else:  # 5+ characters
-            pt_font_size = _mm(1.5)
+            pt_font_size = _mm(1.8)
 
         pt_font = _beleren(pt_font_size)
         draw.text((_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),
