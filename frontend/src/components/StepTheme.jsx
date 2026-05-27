@@ -102,6 +102,7 @@ export default function StepTheme({
   bracket, onBracketChange,
   generateArt, onGenerateArtChange,
   modelSpeed, onModelSpeedChange,
+  checkpoint, onCheckpointChange,
   llmModel, onLlmModelChange,
   faceKey, faceMethod,
   onNext, onBack,
@@ -110,11 +111,20 @@ export default function StepTheme({
   const [hasSchnell, setHasSchnell]     = useState(false)
   const [hasDev, setHasDev]             = useState(false)
   const [hasSd35, setHasSd35]           = useState(false)
+  const [hasSDXL, setHasSDXL]           = useState(false)
   const [comfyOffline, setComfyOffline] = useState(false)
   const [stylePresets, setStylePresets] = useState([])
   const [expandedStyle, setExpandedStyle] = useState(null)
   const [llmModels, setLlmModels]       = useState([])
+  const [checkpoints, setCheckpoints]   = useState([])
   const selected = BRACKETS.find(b => b.n === bracket) || BRACKETS[2]
+
+  // Derived: type of the currently selected checkpoint
+  const activeCheckpointType = (() => {
+    if (!checkpoint || !checkpoints.length) return ''
+    const ckpt = checkpoints.find(c => c.filename === checkpoint)
+    return (ckpt?.type || '').toUpperCase()
+  })()
 
   // ── Custom style builder state ──────────────────────────────────────────────
   const [showBuilder, setShowBuilder]   = useState(false)
@@ -213,21 +223,10 @@ export default function StepTheme({
   // Probe checkpoint availability, LoRA presets, and LLM catalog on mount.
   useEffect(() => {
     let cancelled = false
+    // ComfyUI online/offline status
     fetch('/api/face-method').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
       setComfyOffline(!!d.comfyui_offline)
-      setHasSchnell(!!d.has_schnell)
-      setHasDev(!!d.has_dev)
-      const schnellCkpts = d.checkpoints?.sd35 || []
-      setHasSd35(schnellCkpts.length > 0)
-      // Auto-correct stale model_speed selections if a checkpoint disappeared.
-      if (modelSpeed === 'quality' && !d.has_dev && d.has_schnell) {
-        onModelSpeedChange('fast')
-      } else if (modelSpeed === 'fast' && !d.has_schnell && d.has_dev) {
-        onModelSpeedChange('quality')
-      } else if (modelSpeed === 'sd35' && schnellCkpts.length === 0) {
-        onModelSpeedChange(d.has_dev ? 'quality' : (d.has_schnell ? 'fast' : 'quality'))
-      }
     }).catch(() => {})
     fetch('/api/art-styles').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
@@ -237,8 +236,54 @@ export default function StepTheme({
       if (cancelled || !d) return
       setLlmModels(d)
     }).catch(() => {})
+    fetch('/api/checkpoints').then(r => r.ok ? r.json() : null).then(d => {
+      if (cancelled || !d) return
+      const ckpts = Array.isArray(d) ? d : (d.checkpoints || [])
+      setCheckpoints(ckpts)
+      // Derive model availability — note: SDXL type must NOT count as SD 3.5
+      const hasDev_    = ckpts.some(c => (c.type||'').toUpperCase() === 'FLUX' && !c.filename.toLowerCase().includes('schnell'))
+      const hasSchnell_= ckpts.some(c => c.filename.toLowerCase().includes('schnell'))
+      const hasSDXL_   = ckpts.some(c => (c.type||'').toUpperCase().includes('SDXL'))
+      const hasSd35_   = ckpts.some(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') })
+      setHasDev(hasDev_); setHasSchnell(hasSchnell_); setHasSDXL(hasSDXL_); setHasSd35(hasSd35_)
+      // Auto-correct stale model_speed if that checkpoint type disappeared
+      if (modelSpeed === 'quality' && !hasDev_ && hasSchnell_) onModelSpeedChange('fast')
+      else if (modelSpeed === 'fast' && !hasSchnell_ && hasDev_) onModelSpeedChange('quality')
+      else if (modelSpeed === 'sd35' && !hasSd35_) onModelSpeedChange(hasDev_ ? 'quality' : 'fast')
+    }).catch(() => {})
     return () => { cancelled = true }
   }, [])
+
+  // ── Auto-select checkpoint when art style requires a specific model type ──
+  useEffect(() => {
+    if (!generateArt || !stylePresets.length || !checkpoints.length) return
+    const preset = stylePresets.find(s => s.key === artStyle)
+    if (!preset?.required_checkpoint_type) return
+    const required = preset.required_checkpoint_type.toUpperCase()
+    // Check if current checkpoint already satisfies the requirement
+    const currentCkpt = checkpoints.find(c => c.filename === checkpoint)
+    const currentType = (currentCkpt?.type || '').toUpperCase()
+    if (currentType.includes(required) || currentType === required) return
+    // Auto-select first matching checkpoint
+    const match = checkpoints.find(c => (c.type || '').toUpperCase().includes(required))
+    if (match && onCheckpointChange) onCheckpointChange(match.filename)
+  }, [artStyle, stylePresets, checkpoints, generateArt])
+
+  // ── Sync model_speed when an explicit checkpoint is chosen ───────────────
+  useEffect(() => {
+    if (!checkpoint || !checkpoints.length) return
+    const ckpt = checkpoints.find(c => c.filename === checkpoint)
+    if (!ckpt) return
+    const t = (ckpt.type || '').toUpperCase()
+    if (t.includes('FLUX')) {
+      const isSchnell = ckpt.filename.toLowerCase().includes('schnell')
+      if (isSchnell && modelSpeed !== 'fast') onModelSpeedChange('fast')
+      else if (!isSchnell && modelSpeed !== 'quality') onModelSpeedChange('quality')
+    } else if (t.includes('SD') && !t.includes('SDXL')) {
+      if (modelSpeed !== 'sd35') onModelSpeedChange('sd35')
+    }
+    // SDXL: model_speed irrelevant when checkpoint is explicit — leave as-is
+  }, [checkpoint, checkpoints])
 
   async function handleNext() {
     setLoading(true)
@@ -519,6 +564,8 @@ export default function StepTheme({
                 const isCustom = !!st.custom
                 const statusColor = st.ready ? '#4ade80' : st.partial ? '#eab308' : '#78716c'
                 const statusLabel = st.ready ? '✓ Ready' : st.partial ? '~ Partial' : '○ Prompt-only'
+                const reqType = (st.required_checkpoint_type || '').toUpperCase()
+                const reqColor = reqType.includes('SDXL') ? '#a78bfa' : reqType.includes('FLUX') ? '#22d3ee' : reqType.includes('SD') ? '#818cf8' : null
                 return (
                   <div key={st.key} style={{ position: 'relative' }}>
                     <button
@@ -535,9 +582,14 @@ export default function StepTheme({
                       <div style={{ fontSize: 12, fontWeight: 700, color: isSelected ? (isCustom ? '#38bdf8' : '#eab308') : '#a8a29e', marginBottom: 2, lineHeight: 1.2 }}>
                         {st.label}{isCustom && <span style={{ fontSize: 9, color: '#38bdf8', marginLeft: 4 }}>CUSTOM</span>}
                       </div>
-                      <div style={{ fontSize: 10, color: statusColor, marginBottom: 4 }}>
+                      <div style={{ fontSize: 10, color: statusColor, marginBottom: reqColor ? 2 : 4 }}>
                         {statusLabel}
                       </div>
+                      {reqColor && (
+                        <div style={{ fontSize: 9, color: reqColor, fontWeight: 700, letterSpacing: '0.04em' }}>
+                          {reqType} required
+                        </div>
+                      )}
                     </button>
                     {/* Edit button for custom styles */}
                     {isCustom && (
@@ -865,81 +917,98 @@ export default function StepTheme({
           </div>
         )}
 
-        {/* Speed selector — only shown when art gen is on and ComfyUI is reachable */}
-        {generateArt && !comfyOffline && (hasDev || hasSchnell || hasSd35) && (
-          <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-            {/* Quality (dev) option */}
-            <button
-              onClick={() => onModelSpeedChange('quality')}
-              disabled={!hasDev}
-              style={{
-                flex: 1, padding: '10px 12px', borderRadius: 10, cursor: hasDev ? 'pointer' : 'not-allowed',
-                background: modelSpeed === 'quality' ? '#1c1410' : '#0c0a09',
-                border: `1px solid ${modelSpeed === 'quality' ? '#ca8a04' : '#292524'}`,
-                textAlign: 'left', fontFamily: 'inherit', opacity: hasDev ? 1 : 0.4,
-              }}
-            >
-              <div style={{ fontSize: 13, fontWeight: 700, color: modelSpeed === 'quality' ? '#eab308' : '#a8a29e', marginBottom: 3 }}>
-                ✦ Quality
-              </div>
-              <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Dev · ~30s/card · sharpest detail</div>
-            </button>
+        {/* ── Image model picker ── */}
+        {generateArt && !comfyOffline && checkpoints.length > 0 && (() => {
+          // Determine which button is currently active based on the selected checkpoint
+          const isSchnellActive = checkpoint && checkpoint.toLowerCase().includes('schnell')
+          const isDevActive     = checkpoint && activeCheckpointType.includes('FLUX') && !isSchnellActive
+          const isSDXLActive    = activeCheckpointType.includes('SDXL')
+          const isSd35Active    = activeCheckpointType.includes('SD') && !isSDXLActive
 
-            {/* SD 3.5 Large option */}
-            <button
-              onClick={() => onModelSpeedChange('sd35')}
-              disabled={!hasSd35}
-              style={{
-                flex: 1, padding: '10px 12px', borderRadius: 10, cursor: hasSd35 ? 'pointer' : 'not-allowed',
-                background: modelSpeed === 'sd35' ? '#100a18' : '#0c0a09',
-                border: `1px solid ${modelSpeed === 'sd35' ? '#a78bfa' : '#292524'}`,
-                textAlign: 'left', fontFamily: 'inherit', opacity: hasSd35 ? 1 : 0.5,
-              }}
-            >
-              <div style={{ fontSize: 13, fontWeight: 700, color: modelSpeed === 'sd35' ? '#a78bfa' : '#a8a29e', marginBottom: 3 }}>
-                ✧ SD 3.5
-              </div>
-              <div style={{ fontSize: 11, color: '#57534e' }}>
-                {hasSd35 ? 'SD 3.5 Large · ~30s/card · alt style' : 'SD 3.5 not detected'}
-              </div>
-            </button>
+          const selectDev = () => {
+            const c = checkpoints.find(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('quality') }
+          }
+          const selectSDXL = () => {
+            const c = checkpoints.find(c => (c.type||'').toUpperCase().includes('SDXL'))
+            if (c) { onCheckpointChange(c.filename) }
+          }
+          const selectSd35 = () => {
+            const c = checkpoints.find(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') })
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('sd35') }
+          }
+          const selectSchnell = () => {
+            const c = checkpoints.find(c => c.filename.toLowerCase().includes('schnell'))
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('fast') }
+          }
 
-            {/* Fast (schnell) option */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <button
-                onClick={() => onModelSpeedChange('fast')}
-                disabled={!hasSchnell}
-                style={{
-                  width: '100%', padding: '10px 12px', borderRadius: 10, cursor: hasSchnell ? 'pointer' : 'not-allowed',
-                  background: modelSpeed === 'fast' ? '#0a1008' : '#0c0a09',
-                  border: `1px solid ${modelSpeed === 'fast' ? '#4ade80' : '#292524'}`,
-                  textAlign: 'left', fontFamily: 'inherit', opacity: hasSchnell ? 1 : 0.5,
-                }}
-              >
-                <div style={{ fontSize: 13, fontWeight: 700, color: modelSpeed === 'fast' ? '#4ade80' : '#a8a29e', marginBottom: 3 }}>
-                  ⚡ Fast
-                </div>
-                <div style={{ fontSize: 11, color: '#57534e' }}>
-                  {hasSchnell ? 'FLUX Schnell · ~6s/card · good quality' : 'FLUX Schnell not detected'}
-                </div>
-              </button>
-              {!hasSchnell && (
-                <div style={{ fontSize: 10, color: '#44403c', lineHeight: 1.5, paddingLeft: 2 }}>
-                  Download{' '}
-                  <a
-                    href="https://huggingface.co/Comfy-Org/flux1-schnell/blob/main/flux1-schnell-fp8.safetensors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#78716c', textDecoration: 'underline' }}
-                  >
-                    flux1-schnell-fp8.safetensors
-                  </a>
-                  {' '}→ place in <span style={{ color: '#57534e' }}>ComfyUI/models/checkpoints/</span>
+          return (
+            <div style={{ marginBottom: 20 }}>
+              <label style={s.label}>Image Model</label>
+              <div style={{ display: 'flex', gap: 8 }}>
+
+                {/* FLUX Dev */}
+                {hasDev && (
+                  <button onClick={selectDev} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isDevActive ? '#1c1410' : '#0c0a09',
+                    border: `1px solid ${isDevActive ? '#ca8a04' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isDevActive ? '#eab308' : '#a8a29e', marginBottom: 3 }}>✦ Quality</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Dev · ~30s/card</div>
+                  </button>
+                )}
+
+                {/* Illustrious XL (SDXL) */}
+                {hasSDXL && (
+                  <button onClick={selectSDXL} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isSDXLActive ? '#120a1e' : '#0c0a09',
+                    border: `1px solid ${isSDXLActive ? '#a78bfa' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isSDXLActive ? '#a78bfa' : '#a8a29e', marginBottom: 3 }}>🎨 Illustrious XL</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>SDXL · ~20s/card · LoRA styles</div>
+                  </button>
+                )}
+
+                {/* SD 3.5 */}
+                {hasSd35 && (
+                  <button onClick={selectSd35} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isSd35Active ? '#100a18' : '#0c0a09',
+                    border: `1px solid ${isSd35Active ? '#818cf8' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isSd35Active ? '#818cf8' : '#a8a29e', marginBottom: 3 }}>✧ SD 3.5</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>SD 3.5 Large · ~30s/card</div>
+                  </button>
+                )}
+
+                {/* FLUX Schnell */}
+                {hasSchnell && (
+                  <button onClick={selectSchnell} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isSchnellActive ? '#0a1008' : '#0c0a09',
+                    border: `1px solid ${isSchnellActive ? '#4ade80' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isSchnellActive ? '#4ade80' : '#a8a29e', marginBottom: 3 }}>⚡ Fast</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Schnell · ~6s/card</div>
+                  </button>
+                )}
+
+              </div>
+              {/* Show active checkpoint filename as fine print */}
+              {checkpoint && (
+                <div style={{ fontSize: 10, color: '#44403c', marginTop: 6, paddingLeft: 2 }}>
+                  Using: {checkpoint}
                 </div>
               )}
             </div>
-          </div>
-        )}
+          )
+        })()}
 
         {/* ── LLM model selector ── */}
         {llmModels.length > 0 && (

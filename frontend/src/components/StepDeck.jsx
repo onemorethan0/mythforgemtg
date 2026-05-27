@@ -48,24 +48,6 @@ function exportThemed(deck) {
   a.download = `${deck.commander.themed_name.replace(/[^a-z0-9]/gi, '_')}_themed.txt`; a.click()
 }
 
-async function triggerRebuild(jobId, deck) {
-  const res = await fetch(`/api/deck/${jobId}/rebuild`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      art_style:   deck.art_style   || 'mtg_fantasy',
-      model_speed: deck.model_speed || 'quality',
-      // Explicitly pass stored face/crew keys so the server never has to guess
-      face_key:    deck.face_key    || null,
-      face_gender: deck.face_gender || 'either',
-      crew_key:    deck.crew_key    || null,
-      crew_gender: deck.crew_gender || 'either',
-    }),
-  })
-  if (!res.ok) throw new Error(`Rebuild failed: ${res.status}`)
-  return (await res.json()).job_id
-}
-
 async function triggerRetheme(jobId) {
   const res = await fetch(`/api/deck/${jobId}/retheme`, {
     method: 'POST',
@@ -215,20 +197,27 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs }) {
 
 // ── Regen panel (modal) ────────────────────────────────────────────────────────
 function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultModelSpeed,
+                      defaultCheckpoint,
                       commanderOriginalName, savedFaceKey, savedFaceGender,
                       savedCrewKey, savedCrewGender }) {
   const [useOriginal, setUseOriginal]     = useState(true)
   const [customPrompts, setCustomPrompts] = useState({})
   const [artStyle, setArtStyle]           = useState(defaultArtStyle || 'mtg_fantasy')
   const [modelSpeed, setModelSpeed]       = useState(defaultModelSpeed || 'quality')
+  const [checkpoint, setCheckpoint]       = useState(defaultCheckpoint || null)
   const [artStyles, setArtStyles]         = useState([])
+  const [ckpts, setCkpts]                 = useState([])
 
-  // Fetch available art styles from API on mount
+  // Fetch available art styles and checkpoints from API on mount
   useEffect(() => {
     fetch('/api/art-styles')
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) setArtStyles(d) })
-      .catch(() => {}) // silently fail if API unavailable
+      .catch(() => {})
+    fetch('/api/checkpoints')
+      .then(r => r.ok ? r.json() : [])
+      .then(d => setCkpts(Array.isArray(d) ? d : []))
+      .catch(() => {})
   }, [])
 
   const commanderSelected = selectedCards.some(c => c.original_name === commanderOriginalName)
@@ -294,6 +283,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
       })),
       art_style:   artStyle,
       model_speed: modelSpeed,
+      checkpoint:  checkpoint || null,
       face_key,
       face_gender: savedFaceGender || 'either',
       crew_key,
@@ -486,17 +476,57 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
               )}
             </select>
           </label>
-          <label style={{ fontSize: 11, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6 }}>
-            Speed
-            <select
-              value={modelSpeed}
-              onChange={e => setModelSpeed(e.target.value)}
-              style={{ background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '4px 8px', fontSize: 11, fontFamily: 'inherit' }}
-            >
-              <option value="quality">Quality (FLUX dev)</option>
-              <option value="fast">Fast (FLUX schnell)</option>
-            </select>
-          </label>
+          {/* Model picker */}
+          {ckpts.length > 0 ? (() => {
+            const activeCkpt   = ckpts.find(c => c.filename === checkpoint)
+            const activeType   = (activeCkpt?.type || '').toUpperCase()
+            const isSchnellAct = checkpoint?.toLowerCase().includes('schnell')
+            const isDevAct     = activeType.includes('FLUX') && !isSchnellAct
+            const isSDXLAct    = activeType.includes('SDXL')
+            const isSd35Act    = activeType.includes('SD') && !isSDXLAct && !activeType.includes('FLUX')
+            const hasDev_   = ckpts.some(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))
+            const hasSch_   = ckpts.some(c => c.filename.toLowerCase().includes('schnell'))
+            const hasSDXL_  = ckpts.some(c => (c.type||'').toUpperCase().includes('SDXL'))
+            const hasSd35_  = ckpts.some(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') && !t.includes('FLUX') })
+            const pick = (fn, speed) => { setCheckpoint(fn); if (speed) setModelSpeed(speed) }
+            return (
+              <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+                {hasDev_ && (
+                  <button onClick={() => pick(ckpts.find(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))?.filename, 'quality')}
+                    style={{ ...btnBase, padding: '5px 10px', fontSize: 11, fontWeight: isDevAct ? 700 : 400,
+                      background: isDevAct ? '#1c1410' : '#0c0a09', color: isDevAct ? '#eab308' : '#78716c',
+                      border: `1px solid ${isDevAct ? '#ca8a04' : '#292524'}` }}>✦ Quality</button>
+                )}
+                {hasSDXL_ && (
+                  <button onClick={() => pick(ckpts.find(c => (c.type||'').toUpperCase().includes('SDXL'))?.filename, null)}
+                    style={{ ...btnBase, padding: '5px 10px', fontSize: 11, fontWeight: isSDXLAct ? 700 : 400,
+                      background: isSDXLAct ? '#120a1e' : '#0c0a09', color: isSDXLAct ? '#a78bfa' : '#78716c',
+                      border: `1px solid ${isSDXLAct ? '#a78bfa' : '#292524'}` }}>🎨 Illustrious</button>
+                )}
+                {hasSd35_ && (
+                  <button onClick={() => pick(ckpts.find(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') && !t.includes('FLUX') })?.filename, 'sd35')}
+                    style={{ ...btnBase, padding: '5px 10px', fontSize: 11, fontWeight: isSd35Act ? 700 : 400,
+                      background: isSd35Act ? '#100a18' : '#0c0a09', color: isSd35Act ? '#818cf8' : '#78716c',
+                      border: `1px solid ${isSd35Act ? '#818cf8' : '#292524'}` }}>✧ SD 3.5</button>
+                )}
+                {hasSch_ && (
+                  <button onClick={() => pick(ckpts.find(c => c.filename.toLowerCase().includes('schnell'))?.filename, 'fast')}
+                    style={{ ...btnBase, padding: '5px 10px', fontSize: 11, fontWeight: isSchnellAct ? 700 : 400,
+                      background: isSchnellAct ? '#0a1008' : '#0c0a09', color: isSchnellAct ? '#4ade80' : '#78716c',
+                      border: `1px solid ${isSchnellAct ? '#4ade80' : '#292524'}` }}>⚡ Fast</button>
+                )}
+              </div>
+            )
+          })() : (
+            <label style={{ fontSize: 11, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6 }}>
+              Speed
+              <select value={modelSpeed} onChange={e => setModelSpeed(e.target.value)}
+                style={{ background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '4px 8px', fontSize: 11, fontFamily: 'inherit' }}>
+                <option value="quality">Quality (FLUX dev)</option>
+                <option value="fast">Fast (FLUX schnell)</option>
+              </select>
+            </label>
+          )}
         </div>
 
         {/* Actions */}
@@ -541,16 +571,22 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [rethemeing, setRethemeing]   = useState(false)
   const [duplicating, setDuplicating] = useState(false)
   const [dupMsg, setDupMsg]           = useState(null)   // null | {newJobId, name} | 'error'
+  const [deckCheckpoints, setDeckCheckpoints] = useState([])
+  const [rebuildCheckpoint, setRebuildCheckpoint] = useState(deck.checkpoint || null)
 
   const evtRef = useRef(null)
 
   if (!deck) return null
 
-  // ── Fetch art styles for rebuild modal ─────────────────────────────────────
+  // ── Fetch art styles and checkpoints for rebuild modal ─────────────────────
   useEffect(() => {
     fetch('/api/art-styles')
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) setRebuildArtStyles(d) })
+      .catch(() => {})
+    fetch('/api/checkpoints')
+      .then(r => r.ok ? r.json() : [])
+      .then(d => setDeckCheckpoints(Array.isArray(d) ? d : []))
       .catch(() => {})
   }, [])
 
@@ -652,6 +688,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         body: JSON.stringify({
           art_style:   rebuildArtStyle,
           model_speed: rebuildModelSpeed,
+          checkpoint:  rebuildCheckpoint || null,
           face_key:    deck.face_key || null,
           face_gender: deck.face_gender || 'either',
           crew_key:    deck.crew_key || null,
@@ -861,7 +898,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <button onClick={onReset} style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>New Deck</button>
         </div>
         {/* Duplicate feedback banner */}
-        {dupMsg && dupMsg !== 'error' && !onDuplicate && (
+        {dupMsg && dupMsg !== 'error' && (
           <div style={{ marginTop: 8, padding: '8px 14px', background: '#0c1a2e', border: '1px solid #1e40af', borderRadius: 8, fontSize: 12, color: '#7dd3fc', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span>📋</span>
             <span>Copy created: <strong>{dupMsg.name || dupMsg.newJobId}</strong> — find it in History.</span>
@@ -1002,6 +1039,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           onClose={() => setShowRegenPanel(false)}
           defaultArtStyle={deck.art_style || 'mtg_fantasy'}
           defaultModelSpeed={deck.model_speed || 'quality'}
+          defaultCheckpoint={deck.checkpoint || null}
           commanderOriginalName={deck.commander?.original_name}
           savedFaceKey={deck.face_key || null}
           savedFaceGender={deck.face_gender || 'either'}
@@ -1054,16 +1092,56 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
             <div>
               <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                Speed
+                Image Model
               </label>
-              <select
-                value={rebuildModelSpeed}
-                onChange={e => setRebuildModelSpeed(e.target.value)}
-                style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
-              >
-                <option value="quality">Quality (FLUX dev)</option>
-                <option value="fast">Fast (FLUX schnell)</option>
-              </select>
+              {deckCheckpoints.length > 0 ? (() => {
+                const activeCkpt   = deckCheckpoints.find(c => c.filename === rebuildCheckpoint)
+                const activeType   = (activeCkpt?.type || '').toUpperCase()
+                const isSchnellAct = rebuildCheckpoint?.toLowerCase().includes('schnell')
+                const isDevAct     = activeType.includes('FLUX') && !isSchnellAct
+                const isSDXLAct    = activeType.includes('SDXL')
+                const isSd35Act    = activeType.includes('SD') && !isSDXLAct && !activeType.includes('FLUX')
+                const hasDev_   = deckCheckpoints.some(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))
+                const hasSch_   = deckCheckpoints.some(c => c.filename.toLowerCase().includes('schnell'))
+                const hasSDXL_  = deckCheckpoints.some(c => (c.type||'').toUpperCase().includes('SDXL'))
+                const hasSd35_  = deckCheckpoints.some(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') && !t.includes('FLUX') })
+                const pickRebuild = (fn, speed) => { setRebuildCheckpoint(fn || null); if (speed) setRebuildModelSpeed(speed) }
+                const btnSt = { padding: '8px 12px', borderRadius: 8, fontSize: 11, fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #292524', flex: 1, textAlign: 'left' }
+                return (
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {hasDev_ && (
+                      <button onClick={() => pickRebuild(deckCheckpoints.find(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))?.filename, 'quality')}
+                        style={{ ...btnSt, background: isDevAct ? '#1c1410' : '#0c0a09', color: isDevAct ? '#eab308' : '#a8a29e', borderColor: isDevAct ? '#ca8a04' : '#292524', fontWeight: isDevAct ? 700 : 400 }}>
+                        <div>✦ Quality</div><div style={{ fontSize: 10, color: '#57534e', marginTop: 2 }}>FLUX Dev</div>
+                      </button>
+                    )}
+                    {hasSDXL_ && (
+                      <button onClick={() => pickRebuild(deckCheckpoints.find(c => (c.type||'').toUpperCase().includes('SDXL'))?.filename, null)}
+                        style={{ ...btnSt, background: isSDXLAct ? '#120a1e' : '#0c0a09', color: isSDXLAct ? '#a78bfa' : '#a8a29e', borderColor: isSDXLAct ? '#a78bfa' : '#292524', fontWeight: isSDXLAct ? 700 : 400 }}>
+                        <div>🎨 Illustrious XL</div><div style={{ fontSize: 10, color: '#57534e', marginTop: 2 }}>SDXL</div>
+                      </button>
+                    )}
+                    {hasSd35_ && (
+                      <button onClick={() => pickRebuild(deckCheckpoints.find(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') && !t.includes('FLUX') })?.filename, 'sd35')}
+                        style={{ ...btnSt, background: isSd35Act ? '#100a18' : '#0c0a09', color: isSd35Act ? '#818cf8' : '#a8a29e', borderColor: isSd35Act ? '#818cf8' : '#292524', fontWeight: isSd35Act ? 700 : 400 }}>
+                        <div>✧ SD 3.5</div><div style={{ fontSize: 10, color: '#57534e', marginTop: 2 }}>SD 3.5 Large</div>
+                      </button>
+                    )}
+                    {hasSch_ && (
+                      <button onClick={() => pickRebuild(deckCheckpoints.find(c => c.filename.toLowerCase().includes('schnell'))?.filename, 'fast')}
+                        style={{ ...btnSt, background: isSchnellAct ? '#0a1008' : '#0c0a09', color: isSchnellAct ? '#4ade80' : '#a8a29e', borderColor: isSchnellAct ? '#4ade80' : '#292524', fontWeight: isSchnellAct ? 700 : 400 }}>
+                        <div>⚡ Fast</div><div style={{ fontSize: 10, color: '#57534e', marginTop: 2 }}>FLUX Schnell</div>
+                      </button>
+                    )}
+                  </div>
+                )
+              })() : (
+                <select value={rebuildModelSpeed} onChange={e => setRebuildModelSpeed(e.target.value)}
+                  style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}>
+                  <option value="quality">Quality (FLUX dev)</option>
+                  <option value="fast">Fast (FLUX schnell)</option>
+                </select>
+              )}
             </div>
 
             <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', marginTop: 8 }}>
