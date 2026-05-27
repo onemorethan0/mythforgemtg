@@ -25,6 +25,7 @@ export default function App() {
   const [generateArt, setGenerateArt]         = useState(false)
   const [artStyle, setArtStyle]               = useState('mtg_fantasy')
   const [modelSpeed, setModelSpeed]           = useState('quality')
+  const [checkpoint, setCheckpoint]           = useState('')
   const [llmModel, setLlmModel]               = useState('qwen3:14b')
   const [borderTheme, setBorderTheme] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
@@ -90,7 +91,7 @@ export default function App() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
-    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setLlmModel('qwen3:14b')
+    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:14b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -111,6 +112,7 @@ export default function App() {
         art_style:         artStyle,
         generate_art:      generateArt,
         model_speed:       modelSpeed,
+        checkpoint:        checkpoint || null,
         llm_model:         llmModel || null,
         border_theme:      borderTheme || "",
         face_key:     faceKey  || null,
@@ -162,6 +164,12 @@ export default function App() {
     }
   }
 
+  // ── Resume building handler (reconnect to in-progress build) ───────────────
+  function handleResumeBuilding(jobId) {
+    _setJobId(jobId)
+    setStep(STEP.BUILDING)
+  }
+
   // ── Rebuild handler (re-run art gen from StepDeck) ───────────────────────
   function handleRebuild(newJobId) {
     // Clear the old deck so StepBuilding/StepDeck don't show stale data
@@ -186,9 +194,14 @@ export default function App() {
       <header style={{ borderBottom: '1px solid #292524', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ fontSize: '22px' }}>⚔</span>
-          <span style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '0.15em', color: '#eab308', textTransform: 'uppercase' }}>
-            Commander Forge
-          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <span style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '0.15em', color: '#eab308', textTransform: 'uppercase' }}>
+              Myth Forge
+            </span>
+            <span style={{ fontSize: '10px', letterSpacing: '0.05em', color: '#78716c', fontWeight: '500' }}>
+              by OneMoreThan0
+            </span>
+          </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {step !== STEP.HISTORY && step !== STEP.BUILDING && (
@@ -293,6 +306,8 @@ export default function App() {
             onGenerateArtChange={setGenerateArt}
             modelSpeed={modelSpeed}
             onModelSpeedChange={setModelSpeed}
+            checkpoint={checkpoint}
+            onCheckpointChange={setCheckpoint}
             llmModel={llmModel}
             onLlmModelChange={setLlmModel}
             borderTheme={borderTheme}
@@ -319,6 +334,7 @@ export default function App() {
         {step === STEP.HISTORY && (
           <StepHistory
             onLoad={handleLoadHistoricDeck}
+            onResume={handleResumeBuilding}
             onBack={() => setStep(STEP.COMMANDER)}
           />
         )}

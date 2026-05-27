@@ -94,28 +94,40 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
 }
 
 // ── Single deck card ──────────────────────────────────────────────────────────
-function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected, onToggleSelect }) {
+function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode, selected, onToggleSelect }) {
   const [hov, setHov]         = useState(false)
   const [loading, setLoading] = useState(false)
   const [duping, setDuping]   = useState(false)
   const [dupOk, setDupOk]     = useState(false)
   const [confirm, setConfirm] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const isBuilding = entry.status === 'building'
 
   const bColor = BRACKET_COLORS[entry.bracket] || '#78716c'
   const bLabel = BRACKET_LABELS[entry.bracket] || `B${entry.bracket}`
 
   async function handleLoad() {
-    if (selectMode) { onToggleSelect(entry.job_id); return }
+    if (selectMode) {
+      if (!isBuilding) onToggleSelect(entry.job_id)
+      return
+    }
+    if (isBuilding && onResume) {
+      onResume(entry.job_id)
+      return
+    }
     setLoading(true)
     try {
       const r = await fetch(`/api/deck/${entry.job_id}`)
-      if (!r.ok) throw new Error('not found')
+      if (!r.ok) throw new Error('Deck not found')
       const data = await r.json()
       onLoad(entry.job_id, data)
-    } catch {
-      alert('Failed to load deck — the render data may be missing.')
+    } catch (err) {
       setLoading(false)
+      if (entry.partial) {
+        alert(`This deck is incomplete — ${entry.status === 'building' ? 'it\'s still building. Resume to check progress.' : 'the render data is missing.'}`)
+      } else {
+        alert('Failed to load deck — the render data may be missing.')
+      }
     }
   }
 
@@ -157,6 +169,7 @@ function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected
   const cardStyle = {
     ...s.card,
     ...(selected ? s.cardSel : hov && !selectMode ? s.cardHov : {}),
+    ...(isBuilding ? { borderColor: '#3b82f6', animation: 'pulse-border 2s ease-in-out infinite' } : {}),
     opacity: deleting ? 0.4 : 1,
     transition: 'border-color 0.15s, transform 0.15s, opacity 0.2s',
   }
@@ -176,7 +189,7 @@ function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected
         onMouseLeave={() => setHov(false)}
       >
         {/* Checkbox overlay in select mode */}
-        {selectMode && (
+        {selectMode && !isBuilding && (
           <div style={s.checkWrap} onClick={e => { e.stopPropagation(); onToggleSelect(entry.job_id) }}>
             <input
               type="checkbox"
@@ -195,14 +208,19 @@ function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected
         <div style={s.body}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
             <div style={{ ...s.name, flex: 1 }}>{entry.themed_name || entry.commander_name}</div>
-            {entry.is_copy && (
+            {isBuilding && (
+              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#0c2a4d', color: '#3b82f6', border: '1px solid #1e40af', flexShrink: 0, marginTop: 2, fontWeight: 600, animation: 'pulse-dot 2s ease-in-out infinite' }}>
+                ⚙ building
+              </span>
+            )}
+            {entry.is_copy && !isBuilding && (
               <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#0f172a', color: '#7dd3fc', border: '1px solid #1e40af', flexShrink: 0, marginTop: 2 }}>
                 📋 copy
               </span>
             )}
-            {entry.partial && (
+            {entry.partial && !isBuilding && (
               <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#1c1207', color: '#fbbf24', border: '1px solid #92400e', flexShrink: 0, marginTop: 2 }}>
-                partial
+                📦 partial
               </span>
             )}
           </div>
@@ -222,17 +240,21 @@ function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected
 
           {!selectMode && (
             <div style={s.btnRow}>
-              <button style={{ ...s.loadBtn, opacity: loading ? 0.6 : 1 }} onClick={handleLoad} disabled={loading || duping || deleting}>
-                {loading ? 'Loading…' : 'View & Export →'}
+              <button style={{ ...s.loadBtn, opacity: loading ? 0.6 : 1, background: isBuilding ? '#3b82f6' : 'linear-gradient(180deg,#eab308,#a16207)' }} onClick={handleLoad} disabled={loading || duping || deleting}>
+                {loading ? 'Loading…' : isBuilding ? '▶ Resume Building' : 'View & Export →'}
               </button>
-              <button
-                style={{ ...s.dupBtn, opacity: duping ? 0.6 : 1, color: dupOk ? '#4ade80' : '#7dd3fc', borderColor: dupOk ? '#16a34a' : '#1e40af' }}
-                onClick={handleDuplicate}
-                disabled={duping || loading || deleting}
-                title="Create an independent copy of this deck"
-              >
-                {duping ? '⏳' : dupOk ? '✓' : '📋'}
-              </button>
+              {!isBuilding && (
+                <>
+                  <button
+                    style={{ ...s.dupBtn, opacity: duping ? 0.6 : 1, color: dupOk ? '#4ade80' : '#7dd3fc', borderColor: dupOk ? '#16a34a' : '#1e40af' }}
+                    onClick={handleDuplicate}
+                    disabled={duping || loading || deleting}
+                    title="Create an independent copy of this deck"
+                  >
+                    {duping ? '⏳' : dupOk ? '✓' : '📋'}
+                  </button>
+                </>
+              )}
               <button
                 style={{ ...s.delBtn, opacity: deleting ? 0.5 : 1 }}
                 onClick={handleDelete}
@@ -256,7 +278,7 @@ function DeckCard({ entry, onLoad, onDuplicated, onDeleted, selectMode, selected
 }
 
 // ── History page ──────────────────────────────────────────────────────────────
-export default function StepHistory({ onLoad, onBack }) {
+export default function StepHistory({ onLoad, onResume, onBack }) {
   const [decks, setDecks]         = useState([])
   const [state, setState]         = useState('loading')
   const [selectMode, setSelectMode] = useState(false)
@@ -392,6 +414,7 @@ export default function StepHistory({ onLoad, onBack }) {
               key={entry.job_id}
               entry={entry}
               onLoad={onLoad}
+              onResume={onResume}
               onDuplicated={loadDecks}
               onDeleted={handleDeleted}
               selectMode={selectMode}
@@ -401,6 +424,13 @@ export default function StepHistory({ onLoad, onBack }) {
           ))}
         </div>
       )}
+
+      <style>{`
+        @keyframes pulse-border {
+          0%, 100% { border-color: #3b82f6; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.1); }
+          50% { border-color: #60a5fa; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); }
+        }
+      `}</style>
     </div>
   )
 }

@@ -24,6 +24,13 @@
 }
 .progress-active { animation: progress-glow 1.4s ease-in-out infinite; }
 
+/* Pulse dot animation */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
 /* Card hover overlay */
 .deck-card-tile .deck-card-overlay { opacity: 0; transition: opacity 0.2s; }
 .deck-card-tile:hover .deck-card-overlay { opacity: 1; }
