@@ -211,6 +211,8 @@ def _ensure_frontend_built():
                 print("  [startup] [X] Frontend build timed out (>120s)", flush=True)
             except Exception as e:
                 print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+        else:
+            print("  [startup] [OK] Frontend is up to date", flush=True)
     except Exception as e:
         print(f"  [startup] [!] Could not check frontend build status: {e}", flush=True)
 
@@ -224,6 +226,9 @@ async def startup_event():
     print("="*70, flush=True)
     _ensure_frontend_built()
     _ensure_ollama_models_ready()
+    print("="*70, flush=True)
+    print("FRONTEND READY - If you made code changes, hard refresh your browser:", flush=True)
+    print("  Windows/Linux: Ctrl+Shift+R  |  macOS: Cmd+Shift+R", flush=True)
     print("="*70 + "\n", flush=True)
     sys.stdout.flush()
 
