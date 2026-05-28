@@ -1434,7 +1434,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             # to avoid VRAM contention between different model families.
             if req.checkpoint and not _is_flux(req.checkpoint):
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
-                _unload_comfyui()
+                _wait_for_comfyui_unload(job_id)
 
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
             with _art_lock:
@@ -1776,7 +1776,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         # to avoid VRAM contention between different model families.
         if req.checkpoint and not _is_flux(req.checkpoint):
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
-            _unload_comfyui()
+            _wait_for_comfyui_unload(job_id)
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
