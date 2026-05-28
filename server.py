@@ -3067,10 +3067,10 @@ def _start_ollama() -> None:
     import platform
 
     if _check_service("Ollama", "http://127.0.0.1:11434/api/tags"):
-        print("  ✓ Ollama already running")
+        print("  [OK] Ollama already running")
         return
 
-    print("  ⏳ Ollama not detected, attempting to start...")
+    print("  [..] Ollama not detected, attempting to start...")
     try:
         if platform.system() == "Windows":
             # Try to start Ollama on Windows
@@ -3092,13 +3092,13 @@ def _start_ollama() -> None:
         for attempt in range(15):
             time.sleep(1)
             if _check_service("Ollama", "http://127.0.0.1:11434/api/tags"):
-                print("  ✓ Ollama started successfully")
+                print("  [OK] Ollama started successfully")
                 return
 
-        print("  ⚠ Ollama startup timed out (may still be initializing)")
+        print("  [!] Ollama startup timed out (may still be initializing)")
     except Exception as e:
-        print(f"  ✗ Could not start Ollama: {e}")
-        print(f"    Download & install from: https://ollama.ai")
+        print(f"  [X] Could not start Ollama: {e}")
+        print(f"      Download & install from: https://ollama.ai")
 
 
 def _start_comfyui() -> None:
@@ -3107,10 +3107,10 @@ def _start_comfyui() -> None:
     import sys
 
     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-        print("  ✓ ComfyUI already running")
+        print("  [OK] ComfyUI already running")
         return
 
-    print("  ⏳ ComfyUI not detected, attempting to start...")
+    print("  [..] ComfyUI not detected, attempting to start...")
     try:
         # Look for ComfyUI in common locations
         comfy_paths = [
@@ -3131,17 +3131,17 @@ def _start_comfyui() -> None:
                 for attempt in range(30):
                     time.sleep(1)
                     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-                        print("  ✓ ComfyUI started successfully")
+                        print("  [OK] ComfyUI started successfully")
                         return
 
-                print("  ⚠ ComfyUI startup timed out (may still be initializing)")
+                print("  [!] ComfyUI startup timed out (may still be initializing)")
                 return
 
-        print("  ⚠ ComfyUI not found in standard locations")
-        print(f"    Install from: https://github.com/comfyanonymous/ComfyUI")
-        print(f"    Then run: python ComfyUI/main.py --port 8188")
+        print("  [!] ComfyUI not found in standard locations")
+        print(f"      Install from: https://github.com/comfyanonymous/ComfyUI")
+        print(f"      Then run: python ComfyUI/main.py --port 8188")
     except Exception as e:
-        print(f"  ✗ Could not start ComfyUI: {e}")
+        print(f"  [X] Could not start ComfyUI: {e}")
 
 
 # ── Dev entry ─────────────────────────────────────────────────────────────────
