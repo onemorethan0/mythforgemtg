@@ -43,7 +43,7 @@ from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
 from themer             import Themer, ThemedCard
-from image_gen          import ImageGen
+from image_gen          import ImageGen, _is_flux, _is_sd35, _is_sdxl
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
 from exporter           import build_zip, build_pdf
@@ -2912,16 +2912,15 @@ async def get_checkpoints():
             # Filter out LTX and unconfirmed models
             usable = [c for c in ckpts if not c.startswith("LTX") and not c.startswith("Unconfirmed")]
 
-            # Categorize by type
+            # Categorize by type using the same detection functions as image_gen.py
             result = []
             for ckpt in sorted(usable):
-                ckpt_lower = ckpt.lower()
-                if "flux" in ckpt_lower or "schnell" in ckpt_lower:
+                if _is_flux(ckpt):
                     ckpt_type = "FLUX"
-                elif "illustrious" in ckpt_lower or "sdxl" in ckpt_lower or "xl" in ckpt_lower:
-                    ckpt_type = "SDXL"
-                elif "sd 3" in ckpt_lower or "sd3" in ckpt_lower:
+                elif _is_sd35(ckpt):
                     ckpt_type = "SD 3.5"
+                elif _is_sdxl(ckpt):
+                    ckpt_type = "SDXL"
                 else:
                     ckpt_type = "Unknown"
 
