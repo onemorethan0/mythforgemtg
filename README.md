@@ -1,4 +1,4 @@
-# Commander Forge — MTG Commander Deck Builder
+# Myth Forge — MTG Commander Deck Builder
 
 A fully local web app that builds themed 100-card EDH Commander decks with AI-generated custom card art and proxy frames using real MTG card assets.
 
@@ -38,11 +38,11 @@ See `HARDWARE_OPTIMIZATION_GUIDE.md` for detailed analysis and batch size tuning
 
 ## Quick Start
 
-### 1. **Install** (First Time Only)
+### 1. **First-Time Setup** (One Time Only)
 
 **Windows:**
 ```cmd
-install.bat
+setup.bat
 ```
 
 **Mac/Linux:**
@@ -50,21 +50,40 @@ install.bat
 python install.py
 ```
 
-The installer will:
-- ✓ Check Python 3.8+ and Node.js 18+ are installed
-- ✓ Install Python dependencies (`pip install -r requirements.txt`)
-- ✓ Install frontend dependencies (`npm install`)
-- ✓ Build the frontend (`npm run build`)
+This will:
+- ✓ Install Python dependencies
+- ✓ Install frontend dependencies  
+- ✓ Build the frontend
 - ✓ Create necessary directories
-- ✓ Set up configuration
 
 **Expected time:** 2-5 minutes
 
-### 2. **Start the Server**
+### 2. **Download Models** (One Time Only)
 
 **Windows:**
 ```cmd
-start-mythforge.bat
+manage.bat
+→ Option 7: Download AI Models
+```
+
+**Mac/Linux:**
+```bash
+python download-models.py
+```
+
+Choose which models to download (see [MODELS.md](./MODELS.md) for details).
+
+### 3. **Start the Server**
+
+**Windows (Recommended):**
+```cmd
+manage.bat
+```
+Select Option 1: Start Development Server
+
+**Or directly:**
+```cmd
+dev.bat
 ```
 
 **Mac/Linux:**
@@ -74,9 +93,30 @@ python server.py
 
 Then open your browser to: **http://localhost:8000**
 
-> **Note:** Ollama and ComfyUI should be running on the default ports (11434 and 8188). If they're not running, the app will let you know and you can start them separately.
+### 4. **Check Service Status**
 
-### 3. **Troubleshooting**
+**Windows:**
+```cmd
+manage.bat
+→ Option 3: Check Server Status
+```
+
+Shows status of:
+- ComfyUI (port 8188)
+- Myth Forge (port 8000)
+- Ollama (port 11434)
+
+> **Note:** ComfyUI must be running in a separate window. Ollama auto-starts with the server.
+
+---
+
+## Server Management
+
+**See [SCRIPTS.md](./SCRIPTS.md) for:**
+- Complete menu options
+- Common workflows
+- Troubleshooting
+- Direct command access
 
 **"Port 8000 already in use"?**
 ```cmd
