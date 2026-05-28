@@ -2798,6 +2798,40 @@ async def comfy_status():
     return ImageGen.health_check()
 
 
+@app.get("/api/health")
+async def health_check():
+    """
+    System health check: returns status of ComfyUI and Ollama services.
+    Used by the frontend status indicator in the corner.
+    """
+    from themer import OLLAMA_BASE
+
+    comfyui_status = "up"
+    ollama_status = "up"
+
+    # Check ComfyUI
+    try:
+        r = requests.get("http://127.0.0.1:8188/system_stats", timeout=2)
+        if r.status_code != 200:
+            comfyui_status = "down"
+    except Exception:
+        comfyui_status = "down"
+
+    # Check Ollama
+    try:
+        r = requests.get(f"{OLLAMA_BASE}/api/tags", timeout=2)
+        if r.status_code != 200:
+            ollama_status = "down"
+    except Exception:
+        ollama_status = "down"
+
+    return {
+        "comfyui": comfyui_status,
+        "ollama": ollama_status,
+        "timestamp": time.time()
+    }
+
+
 @app.get("/api/llm-models")
 async def get_llm_models():
     """

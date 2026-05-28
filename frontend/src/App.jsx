@@ -6,6 +6,7 @@ import StepTheme     from './components/StepTheme'
 import StepBuilding  from './components/StepBuilding'
 import StepDeck      from './components/StepDeck'
 import StepHistory   from './components/StepHistory'
+import HealthIndicator from './components/HealthIndicator'
 
 // Step indices
 const STEP = { COMMANDER: 0, PLAYSTYLE: 1, FACE: 2, THEME: 3, BUILDING: 4, DECK: 5, HISTORY: 6 }
@@ -340,6 +341,8 @@ export default function App() {
         )}
 
       </main>
+
+      <HealthIndicator />
     </div>
   )
 }
