@@ -2075,7 +2075,10 @@ class ImageGen:
         if not self.available:
             return None
 
-        save_path = Path(f"{filename_stem}.png")
+        # Sanitize filename_stem to remove Unicode characters (Windows charmap issue)
+        # Replace non-ASCII chars with underscores to ensure Windows can create paths
+        safe_stem = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
+        save_path = Path(f"{safe_stem}.png")
         if save_path.exists():
             if not self._is_bad_image(save_path):
                 return save_path
@@ -2218,9 +2221,11 @@ class ImageGen:
                 )
             return None
         except requests.RequestException as e:
-            print(f"  [image_gen] RequestException '{filename_stem}': {e}")
+            safe_display = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
+            print(f"  [image_gen] RequestException '{safe_display}': {e}")
         except Exception as e:
-            print(f"  [image_gen] Unexpected error '{filename_stem}': {e}")
+            safe_display = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
+            print(f"  [image_gen] Unexpected error '{safe_display}': {e}")
         return None
 
     def _build_face_workflow(self, positive: str, seed: int, face_comfy_name: str) -> dict:
@@ -2358,7 +2363,9 @@ class ImageGen:
         from face_ref import is_human_card
 
         results: dict[str, Optional[Path]] = {}
-        art_dir = Path("generated_art") / deck_name
+        # Sanitize deck_name to remove Unicode characters (Windows charmap issue)
+        safe_deck_name = "".join(c if ord(c) < 128 else "_" for c in deck_name)
+        art_dir = Path("generated_art") / safe_deck_name
         crew_card_idx = 0   # round-robin index into crew_comfy_names
 
         for i, tc in enumerate(queue, 1):
