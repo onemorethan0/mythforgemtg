@@ -38,84 +38,76 @@ See `HARDWARE_OPTIMIZATION_GUIDE.md` for detailed analysis and batch size tuning
 
 ## Quick Start
 
-### 1. **Configure Paths** (First Time Only)
-Edit `paths_config.ps1` to match your installation paths:
-```powershell
-$global:PythonExe = "C:\Python314\python.exe"           # Your Python 3.11+ executable
-$global:ComfyPythonExe = "C:\...\ComfyUI\.venv\Scripts\python.exe"  # ComfyUI's venv
-$global:ComfyMainPy = "E:\...\ComfyUI\resources\ComfyUI\main.py"    # ComfyUI entry point
-$global:ComfyBaseDir = "C:\Users\...\Documents\ComfyUI"  # ComfyUI user data directory
+### 1. **Install** (First Time Only)
+
+**Windows:**
+```cmd
+install.bat
 ```
 
-All other settings will auto-detect. Run `paths_config.ps1` manually to validate:
-```powershell
-. .\paths_config.ps1; Test-ConfigPaths
+**Mac/Linux:**
+```bash
+python install.py
 ```
 
-### 2. **Start Services**
-**Double-click:**
-```
-START.bat
-```
+The installer will:
+- ✓ Check Python 3.8+ and Node.js 18+ are installed
+- ✓ Install Python dependencies (`pip install -r requirements.txt`)
+- ✓ Install frontend dependencies (`npm install`)
+- ✓ Build the frontend (`npm run build`)
+- ✓ Create necessary directories
+- ✓ Set up configuration
 
-This script will:
-- ✓ Check if Ollama is running (start if needed)
-- ✓ Check if ComfyUI is running (start if needed)
-- ✓ Start the FastAPI backend server
-- ✓ Wait for all services to be ready
-- ✓ Open your browser to http://localhost:8000
+**Expected time:** 2-5 minutes
 
-**Expected startup time:** 30-60 seconds (depends on if services need to start)
+### 2. **Start the Server**
 
-### 3. **Stop Services** (When Done)
-**Double-click:**
-```
-STOP.bat
+**Windows:**
+```cmd
+start-mythforge.bat
 ```
 
-This will gracefully stop all three services and free GPU memory.
+**Mac/Linux:**
+```bash
+python server.py
+```
 
-### 4. **Troubleshooting**
+Then open your browser to: **http://localhost:8000**
 
-**Port already in use?**
-Edit `paths_config.ps1` and change the port numbers, or:
+> **Note:** Ollama and ComfyUI should be running on the default ports (11434 and 8188). If they're not running, the app will let you know and you can start them separately.
+
+### 3. **Troubleshooting**
+
+**"Port 8000 already in use"?**
 ```cmd
 netstat -ano | findstr :8000
 taskkill /PID <process_id> /F
 ```
 
-**ComfyUI fails to start?**
-- Check that the paths in `paths_config.ps1` are correct
-- Try starting ComfyUI manually: `python main.py --port 8188`
-- Check for missing CUDA drivers (NVIDIA GPU only)
+**ComfyUI not detected?**
+- Ensure ComfyUI is installed and running on port 8188
+- Start manually: `python ComfyUI/main.py --port 8188`
 
-**Ollama is disconnected?**
+**Ollama not detected?**
 - Download & install Ollama: https://ollama.ai
-- Pull the default model: `ollama pull qwen3:14b`
-- Check it's running: `ollama serve`
+- Pull a model: `ollama pull qwen2:7b`
+- Start: `ollama serve`
 
-**FastAPI server not responding?**
-- Check `server.log` for error messages
-- Try restarting: `STOP.bat` → `START.bat`
-- If port 8000 is stuck, restart Windows or use Task Manager to kill Python
+**Server not responding?**
+- Check `server.log` for errors
+- Ensure Ollama/ComfyUI ports aren't blocked
+- Try stopping and restarting the server
 
 ---
 
-## Service Dependencies
+## Optional: Model & Image Generation Setup
 
-```
-START.bat
-├─→ Check Ollama (port 11434)
-│   └─→ Start if missing
-├─→ Check ComfyUI (port 8188)
-│   └─→ Launch via launch_comfyui.ps1 if missing
-└─→ Start FastAPI backend (port 8000)
-    └─→ Kill old processes on port 8000 first
-    └─→ Wait for all three services ready
-    └─→ Open browser
-```
+See **[MODELS.md](./MODELS.md)** for detailed instructions on downloading:
+- **Checkpoints** (FLUX, SDXL, SD 3.5) for image generation
+- **LoRAs** (MTG v2, Composition, Realism, etc.) for style enhancement
+- **Face conditioning** (PuLID, ReActor) for character art
 
-Do **NOT** manually close the black cmd windows that pop up — they're the service processes. Use `STOP.bat` to shut everything down cleanly.
+The app works with any checkpoint you have installed. Start with FLUX Schnell for good quality and speed.
 
 ---
 
