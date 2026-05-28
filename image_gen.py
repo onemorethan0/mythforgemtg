@@ -1077,6 +1077,13 @@ def _is_sd35(name: str) -> bool:
 def _is_ltx(name: str) -> bool:
     return "ltx" in name.lower()
 
+def _is_sdxl(name: str) -> bool:
+    """SDXL models (including Illustrious, Juggernaut, etc.)
+    Detected by presence of 'sdxl' or common SDXL model names."""
+    n = name.lower()
+    return ("sdxl" in n) or ("illustrious" in n) or ("juggernaut" in n) or \
+           ("realistic" in n and "sd" in n) or ("dreamshaper" in n)
+
 
 def _summarize_comfy_error(resp) -> str:
     """
@@ -1503,7 +1510,8 @@ class ImageGen:
                 schnell = [c for c in flux if "schnell" in c.lower()]
                 dev     = [c for c in flux if "schnell" not in c.lower()]
                 sd35    = [c for c in usable if _is_sd35(c)]
-                return {"dev": dev, "schnell": schnell, "sd35": sd35, "all": flux + sd35}
+                sdxl    = [c for c in usable if _is_sdxl(c) and c not in sd35]  # SDXL but not SD3.5
+                return {"dev": dev, "schnell": schnell, "sd35": sd35, "sdxl": sdxl, "all": flux + sdxl + sd35}
         except Exception:
             pass
         return {"dev": [], "schnell": [], "sd35": [], "all": []}
@@ -1524,8 +1532,10 @@ class ImageGen:
             kind = "FLUX"
         elif _is_sd35(self.checkpoint):
             kind = "SD3.5"
-        else:
+        elif _is_sdxl(self.checkpoint):
             kind = "SDXL"
+        else:
+            kind = "Unknown"
         print(f"  [image_gen] ComfyUI ready — {kind} checkpoint: {self.checkpoint}")
         return True
 
@@ -1746,12 +1756,20 @@ class ImageGen:
         print(f"  [image_gen] Art style: {style_label}")
 
         is_flux = _is_flux(self.checkpoint or "")
-        is_sdxl = not is_flux and not _is_sd35(self.checkpoint or "")
+        is_sd35 = _is_sd35(self.checkpoint or "")
+        is_sdxl = _is_sdxl(self.checkpoint or "")
 
         # Checkpoint type mismatch warning
         required_type = preset.get("required_checkpoint_type", "").lower()
         if required_type:
-            checkpoint_type = "flux" if is_flux else ("sdxl" if is_sdxl else "sd3.5")
+            if is_flux:
+                checkpoint_type = "flux"
+            elif is_sd35:
+                checkpoint_type = "sd3.5"
+            elif is_sdxl:
+                checkpoint_type = "sdxl"
+            else:
+                checkpoint_type = "unknown"
             if required_type != checkpoint_type:
                 print(f"  [image_gen] ⚠️  WARNING: '{style_label}' preset requires {required_type.upper()}, "
                       f"but {checkpoint_type.upper()} is loaded ({self.checkpoint}). "
@@ -2319,8 +2337,10 @@ class ImageGen:
             kind = "FLUX"
         elif _is_sd35(self.checkpoint):
             kind = "SD3.5"
-        else:
+        elif _is_sdxl(self.checkpoint):
             kind = "SDXL"
+        else:
+            kind = "Unknown"
         tags     = []
         if face_comfy_name:   tags.append(f"cmd-face:{self.face_method}")
         if crew_comfy_names:  tags.append(f"crew:{len(crew_comfy_names)} photos")
