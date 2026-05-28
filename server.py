@@ -1423,11 +1423,18 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 "msg":  "Proceeding to render card frames with fallback art…",
             }))
         else:
-            # Evict Ollama from VRAM and confirm before loading FLUX.
+            # Evict Ollama from VRAM and confirm before loading models.
             from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
+            from image_gen import _is_flux
             _evict_rt = source_data.get("llm_model") or _DEFAULT_OLLAMA
             _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rt}) from VRAM…"}))
             _wait_for_ollama_evict(_evict_rt, job_id)
+
+            # If switching to SDXL from FLUX (or vice versa), unload ComfyUI first
+            # to avoid VRAM contention between different model families.
+            if req.checkpoint and not _is_flux(req.checkpoint):
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
+                _unload_comfyui()
 
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
             with _art_lock:
@@ -1758,11 +1765,18 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         if not health["ok"]:
             raise ValueError(f"ComfyUI not available: {health['message']}")
 
-        # Evict Ollama from VRAM and confirm before loading FLUX.
+        # Evict Ollama from VRAM and confirm before loading models.
         from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
+        from image_gen import _is_flux
         _evict_rg = source_data.get("llm_model") or _DEFAULT_OLLAMA
         _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rg}) from VRAM…"}))
         _wait_for_ollama_evict(_evict_rg, job_id)
+
+        # If switching to SDXL from FLUX (or vice versa), unload ComfyUI first
+        # to avoid VRAM contention between different model families.
+        if req.checkpoint and not _is_flux(req.checkpoint):
+            _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
+            _unload_comfyui()
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
