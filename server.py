@@ -1700,11 +1700,18 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         name_map: dict[str, dict] = {}
         for cd in all_stored:
             safe = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
-            key_map[safe]              = cd
+            key_map[safe] = cd
+            if cd.get("render_key"):
+                key_map[cd["render_key"]] = cd   # also index by the full _NNN-suffixed key
             name_map[cd["original_name"]] = cd
 
         # ── Build target list ─────────────────────────────────────────────────
-        to_regen: list[tuple[ThemedCard, str, bool]] = []   # (tc, render_key, has_custom)
+        # Tuple: (tc, render_key, art_safe, has_custom)
+        #   render_key  — full key from deck.json (e.g. "Inquisitor_Greyfax_000"), used as
+        #                 the output PNG filename so it overwrites the existing card image.
+        #   art_safe    — bare sanitised name (no _NNN suffix), used only for the
+        #                 generated_art/ cache path to avoid collisions across rebuilds.
+        to_regen: list[tuple[ThemedCard, str, str, bool]] = []
         for entry in req.cards:
             cd = key_map.get(entry.render_key) or name_map.get(entry.original_name)
             if not cd:
@@ -1714,7 +1721,11 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 }))
                 continue
 
-            safe   = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
+            art_safe = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
+            # Use the deck.json render_key (includes _NNN index) so the saved PNG
+            # overwrites the original rendered file and the card_ready event key
+            # matches what the frontend stores in card.render_key / refreshTs.
+            stored_render_key = cd.get("render_key") or art_safe
             custom = entry.custom_prompt.strip() if entry.custom_prompt and entry.custom_prompt.strip() else ""
             prompt = custom or cd.get("art_prompt", "") or cd["original_name"]
 
@@ -1735,7 +1746,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                     "image_uris":     {"normal": cd["scryfall_img"]} if cd.get("scryfall_img") else {},
                 },
             )
-            to_regen.append((tc, safe, bool(custom)))
+            to_regen.append((tc, stored_render_key, art_safe, bool(custom)))
 
         if not to_regen:
             raise ValueError("No matching cards found to regenerate")
@@ -1839,7 +1850,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
 
             from face_ref import is_human_card as _is_human_card
 
-            for i, (tc, render_key, has_custom) in enumerate(to_regen, 1):
+            for i, (tc, render_key, art_safe, has_custom) in enumerate(to_regen, 1):
                 if cancel_event.is_set():
                     break
 
@@ -1871,7 +1882,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 t0 = time.time()
                 art_path = gen.generate(
                     tc.art_prompt,
-                    str(_Path("generated_art") / deck_slug / render_key),
+                    str(_Path("generated_art") / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
                 )
