@@ -24,6 +24,7 @@ import threading
 import time
 import traceback
 import uuid
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import AsyncGenerator, Optional, List
 
@@ -50,7 +51,50 @@ from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 
 # ── App setup ─────────────────────────────────────────────────────────────────
-app = FastAPI(title="Myth Forge", version="1.0")
+
+# Lifespan context manager for startup/shutdown events
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Handle app startup and shutdown with proper lifecycle management."""
+    # STARTUP
+    import sys
+    print("\n" + "="*70, flush=True)
+    print("MYTH FORGE - STARTUP CHECKS", flush=True)
+    print("="*70, flush=True)
+    sys.stdout.flush()
+
+    # Run startup checks
+    _ensure_frontend_built()
+    sys.stdout.flush()
+    _ensure_ollama_models_ready()
+    sys.stdout.flush()
+
+    print("="*70, flush=True)
+    print("FRONTEND READY - If you made code changes, hard refresh your browser:", flush=True)
+    print("  Windows/Linux: Ctrl+Shift+R  |  macOS: Cmd+Shift+R", flush=True)
+    print("="*70 + "\n", flush=True)
+    sys.stdout.flush()
+
+    # Start periodic cleanup of old jobs in the background
+    async def cleanup_loop():
+        """Run job cleanup every hour."""
+        while True:
+            await asyncio.sleep(3600)  # 1 hour
+            _cleanup_expired_jobs()
+
+    cleanup_task = asyncio.create_task(cleanup_loop())
+
+    # Yield control back to the application
+    yield
+
+    # SHUTDOWN
+    cleanup_task.cancel()
+    try:
+        await cleanup_task
+    except asyncio.CancelledError:
+        pass
+
+app = FastAPI(title="Myth Forge", version="1.0", lifespan=lifespan)
 
 # Bind tightly to localhost — this app has no auth layer. If you need
 # LAN access, add an auth header check and expand allow_origins explicitly.
@@ -215,31 +259,6 @@ def _ensure_frontend_built():
             print("  [startup] [OK] Frontend is up to date", flush=True)
     except Exception as e:
         print(f"  [startup] [!] Could not check frontend build status: {e}", flush=True)
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Run startup checks and start background cleanup when the app starts."""
-    import sys
-    print("\n" + "="*70, flush=True)
-    print("MYTH FORGE - STARTUP CHECKS", flush=True)
-    print("="*70, flush=True)
-    _ensure_frontend_built()
-    _ensure_ollama_models_ready()
-    print("="*70, flush=True)
-    print("FRONTEND READY - If you made code changes, hard refresh your browser:", flush=True)
-    print("  Windows/Linux: Ctrl+Shift+R  |  macOS: Cmd+Shift+R", flush=True)
-    print("="*70 + "\n", flush=True)
-    sys.stdout.flush()
-
-    # Start periodic cleanup of old jobs in the background
-    async def cleanup_loop():
-        """Run job cleanup every hour."""
-        while True:
-            await asyncio.sleep(3600)  # 1 hour
-            _cleanup_expired_jobs()
-
-    asyncio.create_task(cleanup_loop())
 
 
 # ── Ollama model checks (startup) ──────────────────────────────────────────────
