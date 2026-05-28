@@ -3279,9 +3279,9 @@ def _start_comfyui() -> None:
                 cwd=str(comfy_dir),
             )
 
-            # Wait up to 60 seconds — ComfyUI loads models slowly on first run
-            print("  [..] Waiting for ComfyUI to become ready (up to 60s)...")
-            for _ in range(60):
+            # Wait up to 120 seconds — ComfyUI loads all models at startup (~75s on RTX 3090)
+            print("  [..] Waiting for ComfyUI to become ready (up to 120s)...")
+            for _ in range(120):
                 time.sleep(1)
                 if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
                     print("  [OK] ComfyUI started successfully")
