@@ -3242,7 +3242,6 @@ def _start_ollama() -> None:
 def _start_comfyui() -> None:
     """Attempt to start ComfyUI if it's installed but not running."""
     import subprocess
-    import sys
 
     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
         print("  [OK] ComfyUI already running")
@@ -3250,34 +3249,50 @@ def _start_comfyui() -> None:
 
     print("  [..] ComfyUI not detected, attempting to start...")
     try:
-        # Look for ComfyUI in common locations
-        comfy_paths = [
-            "ComfyUI/main.py",
-            "../ComfyUI/main.py",
-            "../../ComfyUI/main.py",
+        # Look for ComfyUI main.py in common locations relative to this file.
+        # Each candidate is (main_py_path, comfyui_root_dir).
+        _here = Path(__file__).parent
+        comfy_candidates = [
+            (_here / "ComfyUI" / "main.py",       _here / "ComfyUI"),
+            (_here / ".." / "ComfyUI" / "main.py", _here / ".." / "ComfyUI"),
+            (_here / ".." / ".." / "ComfyUI" / "main.py", _here / ".." / ".." / "ComfyUI"),
         ]
 
-        for path in comfy_paths:
-            if Path(path).exists():
-                subprocess.Popen(
-                    [sys.executable, path, "--port", "8188"],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                )
+        for main_py, comfy_dir in comfy_candidates:
+            main_py  = main_py.resolve()
+            comfy_dir = comfy_dir.resolve()
+            if not main_py.exists():
+                continue
 
-                # Wait up to 30 seconds for ComfyUI to start
-                for attempt in range(30):
-                    time.sleep(1)
-                    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-                        print("  [OK] ComfyUI started successfully")
-                        return
+            # Use the ComfyUI venv Python so all its dependencies are available.
+            # Fall back to the system Python only if the venv doesn't exist.
+            venv_py = comfy_dir / "venv" / "Scripts" / "python.exe"
+            if not venv_py.exists():
+                venv_py = comfy_dir / "venv" / "bin" / "python"   # Linux/macOS
+            py = str(venv_py) if venv_py.exists() else "python"
 
-                print("  [!] ComfyUI startup timed out (may still be initializing)")
-                return
+            print(f"  [..] Found ComfyUI at: {comfy_dir}")
+            subprocess.Popen(
+                [py, str(main_py), "--listen", "0.0.0.0", "--port", "8188"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                cwd=str(comfy_dir),
+            )
 
-        print("  [!] ComfyUI not found in standard locations")
+            # Wait up to 60 seconds — ComfyUI loads models slowly on first run
+            print("  [..] Waiting for ComfyUI to become ready (up to 60s)...")
+            for _ in range(60):
+                time.sleep(1)
+                if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+                    print("  [OK] ComfyUI started successfully")
+                    return
+
+            print("  [!] ComfyUI startup timed out — it may still be loading models in the background")
+            return
+
+        print("  [!] ComfyUI not found. Expected at: ~/ComfyUI/main.py")
         print(f"      Install from: https://github.com/comfyanonymous/ComfyUI")
-        print(f"      Then run: python ComfyUI/main.py --port 8188")
+        print(f"      Then start it: cd ~/ComfyUI && venv\\Scripts\\python main.py --listen 0.0.0.0 --port 8188")
     except Exception as e:
         print(f"  [X] Could not start ComfyUI: {e}")
 

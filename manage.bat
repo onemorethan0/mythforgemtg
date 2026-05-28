@@ -18,11 +18,12 @@ echo   5. Clean Up Orphaned Processes
 echo   6. First-Time Setup (install dependencies)
 echo   7. Download AI Models
 echo   8. Rebuild Frontend
+echo   9. Start ComfyUI (image generation backend)
 echo.
 echo   0. Exit
 echo.
 
-set /p choice="Choose an option (0-8): "
+set /p choice="Choose an option (0-9): "
 
 if "%choice%"=="1" goto start_dev
 if "%choice%"=="2" goto start_clean
@@ -32,6 +33,7 @@ if "%choice%"=="5" goto cleanup
 if "%choice%"=="6" goto setup
 if "%choice%"=="7" goto download_models
 if "%choice%"=="8" goto rebuild_frontend
+if "%choice%"=="9" goto start_comfyui
 if "%choice%"=="0" goto exit_menu
 
 echo Invalid choice. Please try again.
@@ -179,6 +181,52 @@ cd ..
 echo.
 echo [OK] Frontend rebuilt
 echo [*] Remember to hard refresh browser (Ctrl+Shift+R)
+echo.
+pause
+goto menu
+
+:start_comfyui
+cls
+echo.
+echo ============================================
+echo     Start ComfyUI
+echo ============================================
+echo.
+
+REM Check if already running
+netstat -aon 2>nul | find ":8188" | find "LISTENING" >nul
+if !errorlevel! equ 0 (
+  echo   [OK] ComfyUI is already running on port 8188
+  echo.
+  pause
+  goto menu
+)
+
+REM Find ComfyUI root (two levels up from this script's location)
+set COMFY_DIR=%~dp0..\..\ComfyUI
+if not exist "%COMFY_DIR%\main.py" (
+  echo   [!] ComfyUI not found at: %COMFY_DIR%
+  echo       Expected location: C:\Users\%USERNAME%\ComfyUI
+  echo       Install from: https://github.com/comfyanonymous/ComfyUI
+  echo.
+  pause
+  goto menu
+)
+
+echo   [*] Found ComfyUI at: %COMFY_DIR%
+echo   [*] Starting ComfyUI on port 8188...
+echo   [*] This window will remain open — ComfyUI runs in the background.
+echo.
+
+set COMFY_PYTHON=%COMFY_DIR%\venv\Scripts\python.exe
+if not exist "%COMFY_PYTHON%" (
+  echo   [!] ComfyUI venv not found, using system python
+  set COMFY_PYTHON=python
+)
+
+start "ComfyUI" /D "%COMFY_DIR%" "%COMFY_PYTHON%" main.py --listen 0.0.0.0 --port 8188
+
+echo   [*] ComfyUI launching... check http://localhost:8188 in ~30 seconds.
 echo.
 pause
 goto menu
