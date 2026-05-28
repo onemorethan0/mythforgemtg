@@ -1814,7 +1814,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             # Upload commander face (applied only to commander card)
             face_comfy_name_for_cmd: Optional[str] = None
             commander_in_batch = any(
-                tc.original_name == commander_original_name for tc, _, _ in to_regen
+                tc.original_name == commander_original_name for tc, _, _, _ in to_regen
             )
             if commander_in_batch and effective_face_key and gen.face_method != "none":
                 _fp = get_face_paths(effective_face_key)
