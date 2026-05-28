@@ -3050,10 +3050,111 @@ if STATIC_DIR.exists():
         return FileResponse(index)
 
 
+# ── Startup helpers ──────────────────────────────────────────────────────────
+def _check_service(name: str, url: str, timeout: float = 2.0) -> bool:
+    """Check if a service is running and responding."""
+    try:
+        requests.get(url, timeout=timeout)
+        return True
+    except Exception:
+        return False
+
+
+def _start_ollama() -> None:
+    """Attempt to start Ollama if it's installed but not running."""
+    import subprocess
+    import sys
+    import platform
+
+    if _check_service("Ollama", "http://127.0.0.1:11434/api/tags"):
+        print("  ✓ Ollama already running")
+        return
+
+    print("  ⏳ Ollama not detected, attempting to start...")
+    try:
+        if platform.system() == "Windows":
+            # Try to start Ollama on Windows
+            subprocess.Popen(
+                "ollama serve",
+                shell=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        else:
+            # Mac/Linux
+            subprocess.Popen(
+                ["ollama", "serve"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+
+        # Wait up to 15 seconds for Ollama to start
+        for attempt in range(15):
+            time.sleep(1)
+            if _check_service("Ollama", "http://127.0.0.1:11434/api/tags"):
+                print("  ✓ Ollama started successfully")
+                return
+
+        print("  ⚠ Ollama startup timed out (may still be initializing)")
+    except Exception as e:
+        print(f"  ✗ Could not start Ollama: {e}")
+        print(f"    Download & install from: https://ollama.ai")
+
+
+def _start_comfyui() -> None:
+    """Attempt to start ComfyUI if it's installed but not running."""
+    import subprocess
+    import sys
+
+    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+        print("  ✓ ComfyUI already running")
+        return
+
+    print("  ⏳ ComfyUI not detected, attempting to start...")
+    try:
+        # Look for ComfyUI in common locations
+        comfy_paths = [
+            "ComfyUI/main.py",
+            "../ComfyUI/main.py",
+            "../../ComfyUI/main.py",
+        ]
+
+        for path in comfy_paths:
+            if Path(path).exists():
+                subprocess.Popen(
+                    [sys.executable, path, "--port", "8188"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+
+                # Wait up to 30 seconds for ComfyUI to start
+                for attempt in range(30):
+                    time.sleep(1)
+                    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+                        print("  ✓ ComfyUI started successfully")
+                        return
+
+                print("  ⚠ ComfyUI startup timed out (may still be initializing)")
+                return
+
+        print("  ⚠ ComfyUI not found in standard locations")
+        print(f"    Install from: https://github.com/comfyanonymous/ComfyUI")
+        print(f"    Then run: python ComfyUI/main.py --port 8188")
+    except Exception as e:
+        print(f"  ✗ Could not start ComfyUI: {e}")
+
+
 # ── Dev entry ─────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    print("Starting Commander Deck Builder API...")
+    print("Starting Myth Forge MTG Deck Builder...")
+    print()
+    print("Checking dependencies:")
+    _start_ollama()
+    _start_comfyui()
+    print()
+    print("Server endpoints:")
     print("  API:      http://localhost:8000/api/")
     print("  Frontend: http://localhost:8000/")
+    print()
     uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=False)

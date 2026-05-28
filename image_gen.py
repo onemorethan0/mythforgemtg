@@ -1688,24 +1688,27 @@ class ImageGen:
                 swap_models    = self._query_model_list("ReActorFaceSwap", "swap_model")
                 restore_models = self._query_model_list("ReActorFaceSwap", "face_restore_model")
 
-                # Prefer inswapper_128, fall back to first available
-                swap = next(
-                    (m for m in swap_models if "inswapper_128" in m.lower()),
-                    swap_models[0] if swap_models else "inswapper_128.onnx",
-                )
-                # Prefer codeformer, then GFPGAN, then first available
-                restore = next(
-                    (m for m in restore_models if "codeformer" in m.lower()),
-                    next(
-                        (m for m in restore_models if "gfpgan" in m.lower()),
-                        restore_models[0] if restore_models else "none",
-                    ),
-                )
-                self.face_method = "reactor"
-                self.face_info   = {"swap_model": swap, "restore_model": restore}
-                print(f"  [image_gen] Face method: ReActor  "
-                      f"(swap={swap}, restore={restore})")
-                return
+                # Only use ReActor if we have actual models
+                if swap_models:
+                    # Prefer inswapper_128, fall back to first available
+                    swap = next(
+                        (m for m in swap_models if "inswapper_128" in m.lower()),
+                        swap_models[0],
+                    )
+                    # Prefer codeformer, then GFPGAN, then first available
+                    restore = next(
+                        (m for m in restore_models if "codeformer" in m.lower()),
+                        next(
+                            (m for m in restore_models if "gfpgan" in m.lower()),
+                            restore_models[0] if restore_models else "none",
+                        ),
+                    )
+                    self.face_method = "reactor"
+                    self.face_info   = {"swap_model": swap, "restore_model": restore}
+                    print(f"  [image_gen] Face method: ReActor  "
+                          f"(swap={swap}, restore={restore})")
+                    return
+                # else: ReActorFaceSwap node exists but no models — fall through to try other methods
 
         print("  [image_gen] Face method: none (install PuLID/ReActor for face features)")
 
