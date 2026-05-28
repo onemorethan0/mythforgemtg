@@ -4,47 +4,66 @@ If you see orphaned `python.exe` processes in Task Manager but nothing on the ta
 
 ## Problem
 
-When you start the server multiple times without properly stopping the previous instance, Python processes can become orphaned (running in the background but not visible on the taskbar).
+When you start the Myth Forge server multiple times without properly stopping the previous instance, Python processes can become orphaned (running in the background but not visible on the taskbar).
 
 **Symptoms:**
 - `python.exe` appears in Task Manager
 - No Python windows visible on taskbar
-- Port 8000 already in use error when starting server
+- Port 8000 already in use error when starting Myth Forge
 - Can't connect to server
+
+**Important:** These tools manage ONLY the Myth Forge server on port 8000. ComfyUI (port 8188) and Ollama (port 11434) are separate services and won't be killed.
 
 ## Solutions
 
-### Option 1: Quick Kill (Batch Script)
+### Option 1: Check Status First (Recommended)
 
-**Double-click** `kill-servers.bat` to instantly kill all Python processes:
+**Double-click** `check-servers.bat` to see what's running:
+
+```batch
+check-servers.bat
+```
+
+Shows:
+- ✓ ComfyUI status (port 8188)
+- ✓ Myth Forge status (port 8000)
+- ✓ Ollama status (port 11434)
+- ✓ Any orphaned Python processes
+
+**Do this first to understand the current state.**
+
+### Option 2: Kill Only Myth Forge
+
+**Double-click** `kill-servers.bat` to kill orphaned Myth Forge:
 
 ```batch
 kill-servers.bat
 ```
 
 This:
-- ✓ Finds processes using ports 8000 (Myth Forge) and 8188 (ComfyUI)
-- ✓ Kills them gracefully
-- ✓ Cleans up any orphaned processes
+- ✓ Kills ONLY Myth Forge process on port 8000
+- ✓ Leaves ComfyUI and Ollama running
 - ✓ Safe to run anytime
+- ✓ Cleans up orphaned processes
 
-### Option 2: Clean Start (Batch Script)
+### Option 3: Clean Start (Batch Script) - RECOMMENDED
 
-**Double-click** `start-clean.bat` to kill old instances and start fresh:
+**Double-click** `start-clean.bat` to kill old Myth Forge and start fresh:
 
 ```batch
 start-clean.bat
 ```
 
 This:
-- ✓ Kills any existing Python processes
+- ✓ Kills ONLY the old Myth Forge server (port 8000)
+- ✓ Does NOT touch ComfyUI or Ollama
 - ✓ Waits for cleanup (2 seconds)
-- ✓ Starts the server fresh
+- ✓ Starts Myth Forge fresh
 - ✓ Shows output window so you can see startup
 
-**This is the recommended way to start the server** if you're getting "port already in use" errors.
+**This is the recommended way to start the Myth Forge server.**
 
-### Option 3: Python Cleanup Script
+### Option 4: Python Cleanup Script
 
 Run `kill-servers.py` for more detailed process information:
 
@@ -58,27 +77,65 @@ This:
 - ✓ Only kills server processes (safe)
 - ✓ Shows which processes were killed
 
+## Three Separate Services
+
+Myth Forge requires THREE services to be running:
+
+| Service | Port | Status | How to Start |
+|---------|------|--------|--------------|
+| **ComfyUI** | 8188 | Separate window | Must be started manually |
+| **Ollama** | 11434 | Background | Starts automatically or manually |
+| **Myth Forge** | 8000 | Main app | `start-clean.bat` |
+
 ## Workflow
 
-### When to Use:
+### Quick Start (Every Day):
 
-1. **First time using the app today**: Just run `start-mythforge.bat` normally
-2. **Getting "port already in use" error**: Run `kill-servers.bat`, then try again
-3. **Python processes in Task Manager**: Run `kill-servers.bat`
-4. **General cleanup before restarting**: Run `start-clean.bat`
+1. **Check status**: `check-servers.bat` (see what's running)
+2. **Start ComfyUI**: Open separate terminal/window, run ComfyUI
+3. **Start Myth Forge**: Double-click `start-clean.bat`
+4. **Open browser**: Navigate to `http://localhost:8000`
+5. **Done!** ✓
 
-### Step-by-Step:
+### If Myth Forge Won't Start:
 
 ```
-1. See orphaned python.exe in Task Manager
+1. Double-click: check-servers.bat
    ↓
-2. Double-click kill-servers.bat
+2. See "Myth Forge: ✓ RUNNING" or "✗ NOT RUNNING"?
    ↓
-3. Confirm processes were killed
+3. If ✓ RUNNING but won't work:
+   - Double-click: kill-servers.bat
+   - Wait 2 seconds
    ↓
-4. Start the server normally with start-mythforge.bat
+4. Double-click: start-clean.bat
    ↓
-5. ✓ Myth Forge runs cleanly
+5. ✓ Myth Forge should start cleanly
+```
+
+### Common Scenarios:
+
+**Scenario: Getting "Port 8000 already in use"**
+```
+1. check-servers.bat
+2. See Myth Forge still running
+3. kill-servers.bat
+4. start-clean.bat
+```
+
+**Scenario: Restarting everything**
+```
+1. Close ComfyUI window (Ctrl+C)
+2. kill-servers.bat (kill Myth Forge)
+3. Restart ComfyUI in separate window
+4. start-clean.bat (start Myth Forge)
+```
+
+**Scenario: Daily use**
+```
+- ComfyUI: Already running from yesterday
+- Myth Forge: start-clean.bat
+- Ollama: Auto-starts, no action needed
 ```
 
 ## Task Manager Guide
