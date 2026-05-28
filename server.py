@@ -275,29 +275,6 @@ def _check_ollama_model(model_name: str, base_url: str = "http://127.0.0.1:11434
         return False
 
 
-def _pull_ollama_model(model_name: str, base_url: str = "http://127.0.0.1:11434") -> bool:
-    """Pull (download) an Ollama model."""
-    try:
-        print(f"  [startup] Pulling Ollama model: {model_name}...")
-        response = requests.post(
-            f"{base_url}/api/pull",
-            json={"name": model_name},
-            timeout=600,  # 10 minute timeout for large models
-        )
-        if response.status_code == 200:
-            print(f"  [startup] [OK] Model pulled: {model_name}")
-            return True
-        else:
-            print(f"  [startup] [FAIL] Failed to pull {model_name} (HTTP {response.status_code})")
-            return False
-    except requests.Timeout:
-        print(f"  [startup] [FAIL] Timeout pulling {model_name} - increase timeout or check disk space")
-        return False
-    except Exception as e:
-        print(f"  [startup] [FAIL] Error pulling {model_name}: {e}")
-        return False
-
-
 def _ensure_ollama_models_ready():
     """Check that Ollama is reachable; does NOT pull missing models (would block startup)."""
     import sys
