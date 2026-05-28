@@ -36,6 +36,8 @@ python download-models.py
 
 This interactive script will guide you through downloading recommended models with a few simple choices. It handles everything automatically!
 
+**Note**: If you plan to use the **Ragnarok Online** card art style (anime/fantasy with detailed character portraits), make sure to select **Illustrious XL** when prompted. It's required for that preset.
+
 ---
 
 ## Manual Setup: Download a Checkpoint
@@ -65,11 +67,13 @@ huggingface-cli download black-forest-labs/FLUX.1-schnell \
 3. Save to: `ComfyUI/models/checkpoints/`
 
 ### Option C: Illustrious XL (SDXL)
-**Best for**: Anime/fantasy art styles
+**Best for**: Anime/fantasy art styles, **REQUIRED for Ragnarok Online preset**
 
 1. Visit: https://civitai.com/models/296424/illustrious-xl
 2. Click "Download" button
 3. Save to: `ComfyUI/models/checkpoints/`
+
+**Note**: The Ragnarok Online card art style requires Illustrious XL. If you plan to use that preset, make sure to download this model.
 
 ## Step 2: Download LoRAs (Optional but Recommended)
 

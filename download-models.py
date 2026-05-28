@@ -152,7 +152,7 @@ def main():
     # Ask user what to download
     print_header("Download Options")
     print("""
-1. FLUX Schnell (RECOMMENDED)
+1. FLUX Schnell (RECOMMENDED for most users)
    - Fast generation (5-10 seconds per image)
    - Good quality
    - ~24GB
@@ -162,16 +162,21 @@ def main():
    - Slower (30-60 seconds per image)
    - ~24GB
 
-3. SD 3.5 Large
-   - Good all-around
+3. Illustrious XL (Required for Ragnarok Online style)
+   - Anime/fantasy specialist
+   - SDXL-based model
+   - ~7.7GB
+
+4. SD 3.5 Large
+   - Good all-around quality
    - Medium speed
    - ~7.7GB
 
-4. Skip Checkpoint (use existing)
+5. Skip Checkpoint (use existing)
 
-5. Download All
+6. Download All
 
-Choose option (1-5): """, end="")
+Choose option (1-6): """, end="")
 
     choice = input().strip()
 
@@ -187,22 +192,27 @@ Choose option (1-5): """, end="")
             "filename": "flux1-dev.safetensors",
         },
         "3": {
+            "name": "Illustrious XL",
+            "url": "https://civitai.com/api/download/models/296424",
+            "filename": "illustrious-xl-v0.1.safetensors",
+        },
+        "4": {
             "name": "SD 3.5 Large",
             "url": "https://huggingface.co/stabilityai/stable-diffusion-3.5-large/resolve/main/sd3.5_large.safetensors",
             "filename": "sd3.5_large.safetensors",
         },
     }
 
-    if choice == "5":
+    if choice == "6":
         # Download all
-        for key in ["1", "2", "3"]:
+        for key in ["1", "2", "3", "4"]:
             cp = checkpoints[key]
             print(f"\nDownloading {cp['name']}...")
             download_checkpoint(comfyui_dir, key, cp["url"], cp["filename"])
     elif choice in checkpoints:
         cp = checkpoints[choice]
         download_checkpoint(comfyui_dir, choice, cp["url"], cp["filename"])
-    elif choice != "4":
+    elif choice != "5":
         print_warning("Invalid choice, skipping checkpoint download")
 
     # Ask about LoRAs
