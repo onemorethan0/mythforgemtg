@@ -845,7 +845,7 @@ _LORA_PRESETS: dict[str, dict] = {
     # IMPORTANT: Requires Illustrious XL loaded in ComfyUI — will not work on FLUX.
     "ragnarok_online": {
         "label":       "Ragnarok Online",
-        "description": "RO illustrated card art style — anime fantasy, jewel-tone palettes, painterly character portraits. REQUIRES Illustrious XL (SDXL).",
+        "description": "RO illustrated card art style — anime fantasy, jewel-tone palettes, painterly character portraits. Understands RO card names, job classes, elements, and races. REQUIRES Illustrious XL (SDXL).",
         "icon":        "⚔️",
         "required_checkpoint_type": "sdxl",
         "style_guide_hint":  "ragnarok online card art style, anime fantasy illustration, vibrant jewel-tone colors, painterly character portraits, detailed fantasy adventure scenes",
@@ -882,14 +882,19 @@ _LORA_PRESETS: dict[str, dict] = {
         "face_prefix_quality": "detailed anime face, expressive eyes, painterly skin tones, vibrant colors",
         "loras": [
             {
-                "fragments":      ["ro_lora_v2", "ro_lora"],
+                # v4: trained on 1374 original RO card/promo art (3x repeat) +
+                #     884 Danbooru job-class images (1x repeat).
+                # Captions include card names, element, race (e.g. "poring card, water element, plant race").
+                # Recognizes job classes via "ro promotional art, [job name]" trigger.
+                # Prefers v4 → v3 → v2 → generic fragment fallback.
+                "fragments":      ["ro_lora_v4", "ro_lora_v3", "ro_lora_v2", "ro_lora"],
                 "trigger":        "ragnarok online style, ro card art",
                 "model_strength": 0.85,
                 "clip_strength":  0.85,
                 "dark_only":      False,
-                "label":          "Ragnarok Online Style v2",
+                "label":          "Ragnarok Online Style v4",
                 "download_url":   None,
-                "download_note":  "ro_lora_v2.safetensors — SDXL LoRA trained on Illustrious XL v0.1",
+                "download_note":  "ro_lora_v4.safetensors — trained on Illustrious XL v0.1 with semantic RO card names + Danbooru job classes",
             },
         ],
     },
