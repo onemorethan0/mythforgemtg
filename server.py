@@ -1427,14 +1427,17 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
             from image_gen import _is_flux
             _evict_rt = source_data.get("llm_model") or _DEFAULT_OLLAMA
+
+            # For non-FLUX models (SDXL, SD3.5), unload ComfyUI FIRST so the
+            # subsequent Ollama-eviction VRAM gate can actually pass.  With FLUX
+            # still resident in ComfyUI (~12 GB) the gate never reaches 16 GB and
+            # wastes the full 120-second timeout before giving up.
+            if req.checkpoint and not _is_flux(req.checkpoint):
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
+                _wait_for_comfyui_unload(job_id)
+
             _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rt}) from VRAM…"}))
             _wait_for_ollama_evict(_evict_rt, job_id)
-
-            # If switching to SDXL from FLUX (or vice versa), unload ComfyUI first
-            # to avoid VRAM contention between different model families.
-            if req.checkpoint and not _is_flux(req.checkpoint):
-                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
-                _wait_for_comfyui_unload(job_id)
 
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
             with _art_lock:
@@ -1769,14 +1772,17 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
         from image_gen import _is_flux
         _evict_rg = source_data.get("llm_model") or _DEFAULT_OLLAMA
+
+        # For non-FLUX models (SDXL, SD3.5), unload ComfyUI FIRST so the
+        # subsequent Ollama-eviction VRAM gate can actually pass.  With FLUX
+        # still resident in ComfyUI (~12 GB) the gate never reaches 16 GB and
+        # wastes the full 120-second timeout before giving up.
+        if req.checkpoint and not _is_flux(req.checkpoint):
+            _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
+            _wait_for_comfyui_unload(job_id)
+
         _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rg}) from VRAM…"}))
         _wait_for_ollama_evict(_evict_rg, job_id)
-
-        # If switching to SDXL from FLUX (or vice versa), unload ComfyUI first
-        # to avoid VRAM contention between different model families.
-        if req.checkpoint and not _is_flux(req.checkpoint):
-            _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous models from ComfyUI…"}))
-            _wait_for_comfyui_unload(job_id)
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 

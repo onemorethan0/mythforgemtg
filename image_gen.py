@@ -42,13 +42,23 @@ Sampler notes (community-tested FLUX dev, 2025):
 """
 from __future__ import annotations
 
+import io
 import json
 import random
+import sys
 import time
 from pathlib import Path
 from typing import Optional
 
 import requests
+
+# On Windows the default console encoding is cp1252 which can't represent many
+# Unicode characters that appear in art prompts and log messages (→, —, …, ⚠, etc.).
+# Wrap stdout/stderr with UTF-8 so print() never raises UnicodeEncodeError.
+if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower().replace("-", "") != "utf8":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "buffer") and sys.stderr.encoding.lower().replace("-", "") != "utf8":
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 _COMFY_PORT_CANDIDATES = [8188, 8000, 8001, 8002]   # ports to probe in order
 OUTPUT_TIMEOUT         = 600        # seconds to wait for one image
@@ -2075,10 +2085,7 @@ class ImageGen:
         if not self.available:
             return None
 
-        # Sanitize filename_stem to remove Unicode characters (Windows charmap issue)
-        # Replace non-ASCII chars with underscores to ensure Windows can create paths
-        safe_stem = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
-        save_path = Path(f"{safe_stem}.png")
+        save_path = Path(f"{filename_stem}.png")
         if save_path.exists():
             if not self._is_bad_image(save_path):
                 return save_path
@@ -2221,11 +2228,9 @@ class ImageGen:
                 )
             return None
         except requests.RequestException as e:
-            safe_display = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
-            print(f"  [image_gen] RequestException '{safe_display}': {e}")
+            print(f"  [image_gen] RequestException '{filename_stem}': {e}")
         except Exception as e:
-            safe_display = "".join(c if ord(c) < 128 else "_" for c in filename_stem)
-            print(f"  [image_gen] Unexpected error '{safe_display}': {e}")
+            print(f"  [image_gen] Unexpected error '{filename_stem}': {e}")
         return None
 
     def _build_face_workflow(self, positive: str, seed: int, face_comfy_name: str) -> dict:
@@ -2363,9 +2368,7 @@ class ImageGen:
         from face_ref import is_human_card
 
         results: dict[str, Optional[Path]] = {}
-        # Sanitize deck_name to remove Unicode characters (Windows charmap issue)
-        safe_deck_name = "".join(c if ord(c) < 128 else "_" for c in deck_name)
-        art_dir = Path("generated_art") / safe_deck_name
+        art_dir = Path("generated_art") / deck_name
         crew_card_idx = 0   # round-robin index into crew_comfy_names
 
         for i, tc in enumerate(queue, 1):
