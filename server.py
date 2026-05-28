@@ -50,7 +50,7 @@ from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 
 # ── App setup ─────────────────────────────────────────────────────────────────
-app = FastAPI(title="Commander Deck Builder", version="1.0")
+app = FastAPI(title="Myth Forge", version="1.0")
 
 # Bind tightly to localhost — this app has no auth layer. If you need
 # LAN access, add an auth header check and expand allow_origins explicitly.
@@ -143,13 +143,86 @@ def _cleanup_expired_jobs():
         print(f"  [cleanup] Expired {len(expired)} old job(s) (>{_JOB_TTL_SECONDS//3600}h)")
 
 
+def _ensure_frontend_built():
+    """Check if frontend needs rebuilding and rebuild if necessary.
+
+    Compares modification times of frontend source (src/) and built output (dist/).
+    If any source file is newer than the build, trigger a rebuild.
+    """
+    import subprocess
+    import sys
+
+    frontend_dir = Path(__file__).parent / "frontend"
+    src_dir = frontend_dir / "src"
+    dist_dir = frontend_dir / "dist"
+
+    if not src_dir.exists():
+        print("  [startup] [!] Frontend source not found (frontend/src/)", flush=True)
+        return
+
+    if not dist_dir.exists():
+        print("  [startup] [!] Frontend dist not found — rebuilding...", flush=True)
+        try:
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", "-q", "npm"] if sys.platform == "win32" else None,
+                check=False, cwd=frontend_dir
+            )
+            result = subprocess.run(
+                ["npm", "run", "build"],
+                cwd=frontend_dir,
+                capture_output=True,
+                text=True,
+                timeout=120
+            )
+            if result.returncode == 0:
+                print("  [startup] [OK] Frontend built successfully", flush=True)
+            else:
+                print(f"  [startup] [X] Frontend build failed: {result.stderr[:200]}", flush=True)
+        except Exception as e:
+            print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+        return
+
+    # Check if rebuild needed: if any src file is newer than dist files
+    try:
+        dist_time = max(
+            (f.stat().st_mtime for f in dist_dir.rglob("*") if f.is_file()),
+            default=0
+        )
+        src_time = max(
+            (f.stat().st_mtime for f in src_dir.rglob("*") if f.is_file()),
+            default=0
+        )
+
+        if src_time > dist_time:
+            print("  [startup] [!] Frontend source changed — rebuilding...", flush=True)
+            try:
+                result = subprocess.run(
+                    ["npm", "run", "build"],
+                    cwd=frontend_dir,
+                    capture_output=True,
+                    text=True,
+                    timeout=120
+                )
+                if result.returncode == 0:
+                    print("  [startup] [OK] Frontend rebuilt successfully", flush=True)
+                else:
+                    print(f"  [startup] [X] Frontend build failed: {result.stderr[:200]}", flush=True)
+            except subprocess.TimeoutExpired:
+                print("  [startup] [X] Frontend build timed out (>120s)", flush=True)
+            except Exception as e:
+                print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+    except Exception as e:
+        print(f"  [startup] [!] Could not check frontend build status: {e}", flush=True)
+
+
 @app.on_event("startup")
 async def startup_event():
     """Run startup checks and start background cleanup when the app starts."""
     import sys
     print("\n" + "="*70, flush=True)
-    print("COMMANDER DECK BUILDER - STARTUP CHECKS", flush=True)
+    print("MYTH FORGE - STARTUP CHECKS", flush=True)
     print("="*70, flush=True)
+    _ensure_frontend_built()
     _ensure_ollama_models_ready()
     print("="*70 + "\n", flush=True)
     sys.stdout.flush()
