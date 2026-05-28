@@ -129,7 +129,29 @@ Key steps:
 
 The Myth Forge app will connect to ComfyUI automatically on `localhost:8188`.
 
-#### ComfyUI Models & LoRAs
+#### Automatic Model Download (Recommended)
+
+Use the built-in model downloader for easy setup:
+
+**Windows:**
+```bash
+download-models.bat
+```
+
+**Mac/Linux:**
+```bash
+python download-models.py
+```
+
+This interactive script will guide you through downloading models in just a few steps.
+
+See **[MODELS.md](./MODELS.md)** for more details.
+
+#### Manual Model Download
+
+Alternatively, follow the manual instructions below.
+
+**ComfyUI Models & LoRAs**
 
 **Checkpoints (Required — Choose at least ONE):**
 

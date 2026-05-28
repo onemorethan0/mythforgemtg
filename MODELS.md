@@ -20,9 +20,27 @@ Myth Forge generates MTG card art using:
 
 **Total LoRAs**: ~500MB - 2GB combined
 
-## Step 1: Download a Checkpoint
+## Quick Setup: Automated Model Downloader
 
-Choose ONE checkpoint to start:
+The easiest way to get started:
+
+**Windows:**
+```bash
+download-models.bat
+```
+
+**Mac/Linux:**
+```bash
+python download-models.py
+```
+
+This interactive script will guide you through downloading recommended models with a few simple choices. It handles everything automatically!
+
+---
+
+## Manual Setup: Download a Checkpoint
+
+Or choose ONE checkpoint manually to start:
 
 ### Option A: FLUX 1 Schnell (Recommended for Balance)
 **Best for**: First-time setup, good quality + speed
