@@ -7,15 +7,19 @@ Pipeline:
   3. 3D generation via ComfyUI Hunyuan3D v2 workflow → GLB file
   4. GLB → STL conversion via trimesh
 
-Required ComfyUI models (download once):
-  diffusion_models/  hunyuan3d-dit-v2-0-turbo.safetensors  (DiT, ~2 GB)
-                     https://huggingface.co/tencent/Hunyuan3D-2/resolve/main/hunyuan3d-dit-v2-0-turbo.safetensors
-  vae/               hunyuan3d-vae-v2-0-fp16.safetensors    (VAE, ~400 MB)
-                     https://huggingface.co/tencent/Hunyuan3D-2/resolve/main/hunyuan3d-vae-v2-0-fp16.safetensors
-  clip_vision/       sigclip_vision_patch14_384.safetensors  (CLIP, ~1.9 GB)
-                     https://huggingface.co/Comfy-Org/sigclip_vision_patch14_384/resolve/main/sigclip_vision_patch14_384.safetensors
+Required ComfyUI setup:
+  1. Custom node: ComfyUI-Hunyuan3DWrapper (github.com/kijai/ComfyUI-Hunyuan3DWrapper)
+     Install to ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper
+     Install its requirements: pip install -r requirements.txt (in ComfyUI venv)
+     Install rasterizer wheel: wheels/custom_rasterizer-*torch2100.cuda130*.whl
 
-Alternatively use the download helper:
+  2. DiT model (~2.1 GB — only required model, others auto-download):
+     https://huggingface.co/Kijai/Hunyuan3D-2_safetensors/resolve/main/hunyuan3d-dit-v2-0-fp16.safetensors
+     → ComfyUI/models/diffusion_models/hy3dgen/hunyuan3d-dit-v2-0-fp16.safetensors
+
+  Paint/Delight/VAE models are auto-downloaded by the node on first use.
+
+Download the DiT model:
   python model3d.py --download-models
 """
 from __future__ import annotations
@@ -43,18 +47,17 @@ if hasattr(sys.stderr, "buffer") and sys.stderr.encoding.lower().replace("-", ""
 _COMFY_PORT_CANDIDATES = [8188, 8000, 8001, 8002]
 _COMFY_OUTPUT_DIR = Path(r"C:\Users\rvn92\Documents\ComfyUI\output")
 
-# Hunyuan3D model filenames (user places these in ComfyUI/models/* dirs)
-HUNYUAN3D_DIT_MODEL  = "hunyuan3d-dit-v2-0-turbo.safetensors"   # diffusion_models/
-HUNYUAN3D_VAE_MODEL  = "hunyuan3d-vae-v2-0-fp16.safetensors"    # vae/
-HUNYUAN3D_CLIP_MODEL = "sigclip_vision_patch14_384.safetensors"  # clip_vision/
+# Hunyuan3D DiT model — only required model (others auto-download via diffusers)
+# Path: ComfyUI/models/diffusion_models/hy3dgen/<name>
+# Node loads it as: "hy3dgen\\<name>" (subfolder inside diffusion_models)
+HUNYUAN3D_DIT_MODEL  = "hunyuan3d-dit-v2-0-fp16.safetensors"
 
-# Hunyuan3D v2 generation settings (community-tested, 2025)
-H3D_RESOLUTION    = 64     # latent resolution (higher = more detail, more VRAM)
-H3D_STEPS         = 20     # denoising steps (20 is the Tencent default for turbo)
-H3D_CFG           = 5.0    # classifier-free guidance
-H3D_NUM_CHUNKS    = 8000   # VAE decode chunk size (reduce if OOM)
-H3D_OCTREE_RES    = 256    # octree resolution for VAE decode
-H3D_VOXEL_THRESH  = 0.6    # VoxelToMesh threshold (0.6 = balanced detail/watertight)
+# Hunyuan3D v2 generation settings (from example workflow, 2025)
+H3D_STEPS         = 50     # denoising steps (50 per example workflow)
+H3D_CFG           = 5.5    # classifier-free guidance
+H3D_NUM_CHUNKS    = 32000  # VAE decode chunk size (reduce if OOM)
+H3D_MC_RES        = 384    # marching cubes resolution
+H3D_SCALE_FACTOR  = 1.01   # VAE scale factor
 
 # ComfyUI workflow poll
 _POLL_INTERVAL = 2.0
@@ -167,31 +170,26 @@ def _comfy_models_dir() -> Path:
 def _check_hunyuan3d_models() -> dict:
     """Return which Hunyuan3D models are present on disk."""
     base = _comfy_models_dir()
-    dit  = base / "diffusion_models" / HUNYUAN3D_DIT_MODEL
-    vae  = base / "vae"              / HUNYUAN3D_VAE_MODEL
-    clip = base / "clip_vision"      / HUNYUAN3D_CLIP_MODEL
+    # DiT lives in diffusion_models/hy3dgen/ (node loads it as "hy3dgen\<name>")
+    dit  = base / "diffusion_models" / "hy3dgen" / HUNYUAN3D_DIT_MODEL
     return {
-        "dit":  dit.exists(),
-        "vae":  vae.exists(),
-        "clip": clip.exists(),
-        "all":  dit.exists() and vae.exists() and clip.exists(),
-        "dit_path":  str(dit),
-        "vae_path":  str(vae),
-        "clip_path": str(clip),
+        "dit":      dit.exists(),
+        "all":      dit.exists(),   # VAE/paint/delight auto-download via diffusers
+        "dit_path": str(dit),
+        "note":     "Paint/delight/VAE models auto-download on first use",
     }
 
 
 def _check_comfy_nodes() -> bool:
-    """Return True if Hunyuan3D v2 nodes are available in the running ComfyUI."""
+    """Return True if ComfyUI-Hunyuan3DWrapper nodes are loaded in ComfyUI."""
     base = _comfy_base()
     try:
-        r = requests.get(f"{base}/object_info/Hunyuan3Dv2Conditioning", timeout=5)
+        # Hy3DModelLoader is the main entry node for the wrapper
+        r = requests.get(f"{base}/object_info/Hy3DModelLoader", timeout=5)
         if r.status_code != 200:
             return False
         data = r.json()
-        # Single-node endpoint returns {"Hunyuan3Dv2Conditioning": {...node_info...}}
-        node_info = data.get("Hunyuan3Dv2Conditioning", {})
-        return "input" in node_info
+        return "Hy3DModelLoader" in data and "input" in data.get("Hy3DModelLoader", {})
     except Exception:
         return False
 
@@ -232,103 +230,88 @@ def remove_background(image_path: Path,
 
 def _build_hunyuan3d_workflow(image_comfy_name: str, job_prefix: str) -> dict:
     """
-    Build a ComfyUI workflow that:
-      1. Loads the bg-removed commander image
-      2. Encodes it with CLIP Vision
-      3. Runs Hunyuan3D v2 DiT sampling
-      4. Decodes voxels to mesh
-      5. Converts voxels to mesh
-      6. Saves as GLB
+    Build a ComfyUI API workflow for Hunyuan3D v2 using ComfyUI-Hunyuan3DWrapper nodes.
 
-    image_comfy_name: the filename as registered in ComfyUI /upload/image
-    job_prefix: used as the GLB filename prefix (e.g. "3d/commander_abc123")
+    Node flow:
+      LoadImage → Hy3DModelLoader → Hy3DGenerateMesh → Hy3DVAEDecode
+        → Hy3DPostprocessMesh → Hy3DExportMesh (GLB)
+
+    image_comfy_name: filename registered in ComfyUI /upload/image
+    job_prefix: GLB filename prefix (e.g. "3D/commander_abc123")
     """
     seed = int(time.time() * 1000) % (2**31)
+    # Model path as the node expects: "hy3dgen\<filename>" (subfolder inside diffusion_models)
+    dit_model_path = f"hy3dgen\\{HUNYUAN3D_DIT_MODEL}"
     return {
-        # ── Loaders ────────────────────────────────────────────────────────────
+        # ── Load input image ──────────────────────────────────────────────────
         "1": {
-            "class_type": "UNETLoader",
-            "inputs": {
-                "unet_name":    HUNYUAN3D_DIT_MODEL,
-                "weight_dtype": "fp8_e4m3fn",
-            },
-        },
-        "2": {
-            "class_type": "VAELoader",
-            "inputs": {"vae_name": HUNYUAN3D_VAE_MODEL},
-        },
-        "3": {
-            "class_type": "CLIPVisionLoader",
-            "inputs": {"clip_name": HUNYUAN3D_CLIP_MODEL},
-        },
-        # ── Image load + CLIP vision encode ───────────────────────────────────
-        "4": {
             "class_type": "LoadImage",
             "inputs": {"image": image_comfy_name},
         },
+        # ── Load DiT model ────────────────────────────────────────────────────
+        # attention_mode "sdpa" = scaled dot-product attention (default, efficient)
+        "2": {
+            "class_type": "Hy3DModelLoader",
+            "inputs": {
+                "model":          dit_model_path,
+                "attention_mode": "sdpa",
+                "load_device":    False,
+            },
+        },
+        # ── Scheduler config ─────────────────────────────────────────────────
+        "3": {
+            "class_type": "Hy3DDiffusersSchedulerConfig",
+            "inputs": {
+                "scheduler": "FlowMatchEulerDiscreteScheduler",
+                "shift":     7.0,
+            },
+        },
+        # ── Generate mesh latent ──────────────────────────────────────────────
+        "4": {
+            "class_type": "Hy3DGenerateMesh",
+            "inputs": {
+                "model":     ["2", 0],
+                "image":     ["1", 0],
+                "scheduler": ["3", 0],
+                "guidance":  H3D_CFG,
+                "steps":     H3D_STEPS,
+                "seed":      seed,
+                "seed_mode": "fixed",
+            },
+        },
+        # ── VAE decode latent → mesh ─────────────────────────────────────────
+        # method "mc" = marching cubes (robust, slightly slower than "dc")
         "5": {
-            "class_type": "CLIPVisionEncode",
+            "class_type": "Hy3DVAEDecode",
             "inputs": {
-                "clip_vision": ["3", 0],
-                "image":       ["4", 0],
+                "latent":       ["4", 0],
+                "scale_factor": H3D_SCALE_FACTOR,
+                "resolution":   H3D_MC_RES,
+                "num_chunks":   H3D_NUM_CHUNKS,
+                "start_chunk":  0,
+                "method":       "mc",
             },
         },
-        # ── Hunyuan3D conditioning ─────────────────────────────────────────────
+        # ── Postprocess mesh ─────────────────────────────────────────────────
         "6": {
-            "class_type": "Hunyuan3Dv2Conditioning",
+            "class_type": "Hy3DPostprocessMesh",
             "inputs": {
-                "clip_vision_output": ["5", 0],
+                "mesh":                 ["5", 0],
+                "remove_duplicates":    True,
+                "remove_degenerate":    True,
+                "fill_holes":           True,
+                "smooth_normal":        True,
+                "max_facenum":          200000,
             },
         },
-        # ── Empty latent ───────────────────────────────────────────────────────
+        # ── Export as GLB ────────────────────────────────────────────────────
         "7": {
-            "class_type": "EmptyLatentHunyuan3Dv2",
+            "class_type": "Hy3DExportMesh",
             "inputs": {
-                "resolution": H3D_RESOLUTION,
-                "batch_size": 1,
-            },
-        },
-        # ── KSampler ──────────────────────────────────────────────────────────
-        "8": {
-            "class_type": "KSampler",
-            "inputs": {
-                "model":          ["1", 0],
-                "positive":       ["6", 0],
-                "negative":       ["6", 1],
-                "latent_image":   ["7", 0],
-                "seed":           seed,
-                "steps":          H3D_STEPS,
-                "cfg":            H3D_CFG,
-                "sampler_name":   "euler",
-                "scheduler":      "simple",
-                "denoise":        1.0,
-            },
-        },
-        # ── VAE decode → voxel ────────────────────────────────────────────────
-        "9": {
-            "class_type": "VAEDecodeHunyuan3D",
-            "inputs": {
-                "samples":           ["8", 0],
-                "vae":               ["2", 0],
-                "num_chunks":        H3D_NUM_CHUNKS,
-                "octree_resolution": H3D_OCTREE_RES,
-            },
-        },
-        # ── Voxel → mesh ──────────────────────────────────────────────────────
-        "10": {
-            "class_type": "VoxelToMesh",
-            "inputs": {
-                "voxel":     ["9", 0],
-                "algorithm": "surface net",
-                "threshold": H3D_VOXEL_THRESH,
-            },
-        },
-        # ── Save as GLB ───────────────────────────────────────────────────────
-        "11": {
-            "class_type": "SaveGLB",
-            "inputs": {
-                "mesh":            ["10", 0],
+                "mesh":            ["6", 0],
                 "filename_prefix": job_prefix,
+                "format":          "glb",
+                "save_file":       True,
             },
         },
     }
@@ -552,22 +535,14 @@ class Model3DGen:
                 "models": {},
             }
 
-        # Check model files
+        # Check model files (only DiT is required; paint/delight/VAE auto-download)
         model_status = _check_hunyuan3d_models()
         if not model_status["all"]:
-            missing = []
-            if not model_status["dit"]:
-                missing.append(f"diffusion_models/{HUNYUAN3D_DIT_MODEL}")
-            if not model_status["vae"]:
-                missing.append(f"vae/{HUNYUAN3D_VAE_MODEL}")
-            if not model_status["clip"]:
-                missing.append(f"clip_vision/{HUNYUAN3D_CLIP_MODEL}")
             return {
                 "ok": False,
-                "message": f"Missing Hunyuan3D model file(s): {', '.join(missing)}",
-                "hint": "Run `python model3d.py --download-models` to download the required models.",
+                "message": f"Missing DiT model: diffusion_models/hy3dgen/{HUNYUAN3D_DIT_MODEL}",
+                "hint": "Run `python model3d.py --download-models` to download it.",
                 "models": model_status,
-                "missing": missing,
             }
 
         # Check rembg
@@ -598,22 +573,13 @@ class Model3DGen:
 _MODEL_DOWNLOADS = [
     {
         "name":    HUNYUAN3D_DIT_MODEL,
-        "dest":    f"diffusion_models/{HUNYUAN3D_DIT_MODEL}",
-        "url":     "https://huggingface.co/tencent/Hunyuan3D-2/resolve/main/hunyuan3d-dit-v2-0-turbo.safetensors",
-        "size_mb": 2100,
+        # Kijai's safetensors conversion of the official Tencent fp16 DiT model.
+        # Goes in diffusion_models/hy3dgen/ — node loads it as "hy3dgen\<name>".
+        "dest":    f"diffusion_models/hy3dgen/{HUNYUAN3D_DIT_MODEL}",
+        "url":     "https://huggingface.co/Kijai/Hunyuan3D-2_safetensors/resolve/main/hunyuan3d-dit-v2-0-fp16.safetensors",
+        "size_mb": 4700,
     },
-    {
-        "name":    HUNYUAN3D_VAE_MODEL,
-        "dest":    f"vae/{HUNYUAN3D_VAE_MODEL}",
-        "url":     "https://huggingface.co/tencent/Hunyuan3D-2/resolve/main/hunyuan3d-vae-v2-0-fp16.safetensors",
-        "size_mb": 400,
-    },
-    {
-        "name":    HUNYUAN3D_CLIP_MODEL,
-        "dest":    f"clip_vision/{HUNYUAN3D_CLIP_MODEL}",
-        "url":     "https://huggingface.co/Comfy-Org/sigclip_vision_patch14_384/resolve/main/sigclip_vision_patch14_384.safetensors",
-        "size_mb": 1900,
-    },
+    # Paint/delight/VAE models are auto-downloaded on first use by the node.
 ]
 
 
