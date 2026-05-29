@@ -3469,14 +3469,28 @@ def _start_comfyui() -> None:
 # ── Dev entry ─────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    print("Starting Myth Forge MTG Deck Builder...")
-    print()
-    print("Checking dependencies:")
-    _start_ollama()
-    _start_comfyui()
-    print()
-    print("Server endpoints:")
-    print("  API:      http://localhost:8000/api/")
-    print("  Frontend: http://localhost:8000/")
-    print()
+    print("Starting Myth Forge MTG Deck Builder...", flush=True)
+    print(flush=True)
+
+    # Boot Ollama + ComfyUI in a background daemon thread.  _start_comfyui()
+    # launches ComfyUI and then polls for up to ~2 min for it to come up; running
+    # it inline blocked uvicorn from binding port 8000 whenever ComfyUI wasn't
+    # already running, so the whole app appeared to "fail to start".  The app
+    # already tolerates these services being briefly offline (every build runs a
+    # health check and falls back), so they can warm up in parallel.
+    def _boot_services():
+        try:
+            _start_ollama()
+            _start_comfyui()
+        except Exception as _e:
+            print(f"  [!] Background service startup error: {_e}", flush=True)
+
+    print("Starting Ollama + ComfyUI in the background (server will not wait on them)...", flush=True)
+    threading.Thread(target=_boot_services, name="service-boot", daemon=True).start()
+
+    print(flush=True)
+    print("Server endpoints:", flush=True)
+    print("  API:      http://localhost:8000/api/", flush=True)
+    print("  Frontend: http://localhost:8000/", flush=True)
+    print(flush=True)
     uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=False)
