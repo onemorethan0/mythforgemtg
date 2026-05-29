@@ -422,20 +422,44 @@ async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGe
 # → We warn and wait up to 120 s.  If VRAM doesn't clear in time we abort art
 #   gen rather than letting Windows crash the whole machine.
 
-_VRAM_FLUX_REQUIRED_GB  = 10.0   # minimum free VRAM before loading FLUX+LoRAs
-                                  # FLUX dev fp8 UNet ≈ 8.5 GB + LoRA overhead ≈ 1 GB
-                                  # (was 16.0 for --highvram; NORMAL_VRAM keeps FLUX
-                                  #  resident so much less headroom is needed)
-_VRAM_OLLAMA_CLEAR_GB   = 14.0   # target free VRAM after ComfyUI unload before Ollama
-                                  # Ollama qwen3:14b ≈ 8 GB; after /free VRAM clears to
-                                  # ~16 GB free, 14 GB threshold comfortably met
-                                  # (was 18.0, calibrated for --highvram eviction cycles)
+_VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum FREE VRAM before loading FLUX+LoRAs (system-wide)
+                                  # Peak load: FLUX fp8 UNet ~8.5 GB + T5 ~4.7 GB + LoRAs
+                                  # + ReActor + overhead ≈ 18 GB peak during conditioning.
+                                  # After Ollama (9.89 GB) evicts: ~21 GB free → passes ✓
+                                  # While Ollama still loaded: ~11 GB free → blocks ✓
+                                  # NOTE: now measured by nvidia-smi (system-wide), not
+                                  # ComfyUI's internal pool which was blind to Ollama.
+_VRAM_OLLAMA_CLEAR_GB   = 14.0   # target free VRAM after ComfyUI /free before Ollama loads
+                                  # After FLUX unloads: ~21-22 GB free, threshold met ✓
+                                  # Ollama qwen3:14b needs ~10 GB; 14 GB gives 4 GB headroom
 _EVICT_POLL_INTERVAL    = 3.0    # seconds between VRAM polls (increased from 2.0 for efficiency)
 _EVICT_MAX_WAIT         = 120    # seconds — large models (27B, 23 GB) need up to 60 s
 
 
 def _comfyui_vram_free_gb() -> Optional[float]:
-    """Return free VRAM (GB) reported by ComfyUI /system_stats, or None on error."""
+    """Return actual free GPU VRAM in GB, system-wide (all processes).
+
+    Uses nvidia-smi as the authoritative source because ComfyUI's /system_stats
+    vram_free only reflects ComfyUI's own CUDA allocation pool — it is blind to
+    VRAM held by other processes (e.g. Ollama holding ~10 GB).  Using nvidia-smi
+    prevents false-green VRAM gates that schedule FLUX while Ollama is still
+    resident, causing OOM crashes on the RTX 3090.
+
+    Falls back to ComfyUI's internal view if nvidia-smi is unavailable.
+    """
+    import subprocess
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+            capture_output=True, text=True, timeout=5,
+        )
+        if result.returncode == 0:
+            free_mib = int(result.stdout.strip().split("\n")[0].strip())
+            return free_mib / 1024.0   # MiB → GB
+    except Exception:
+        pass
+
+    # Fallback: ComfyUI's internal view (unreliable when Ollama is also loaded)
     try:
         r = requests.get("http://127.0.0.1:8188/system_stats", timeout=4)
         if r.status_code == 200:
