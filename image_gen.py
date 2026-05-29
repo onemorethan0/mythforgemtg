@@ -1854,6 +1854,12 @@ class ImageGen:
         _all = get_all_presets()
         preset = _all.get(self.art_style, _all.get("mtg_fantasy", next(iter(_all.values()))))
 
+        # Detect checkpoint family up front — the negative-prompt fallback below
+        # and the LoRA-compatibility gates further down both depend on these.
+        is_flux = _is_flux(self.checkpoint or "")
+        is_sd35 = _is_sd35(self.checkpoint or "")
+        is_sdxl = _is_sdxl(self.checkpoint or "")
+
         # Set prompt prefix from preset (None → keep module default _FLUX_PREFIX)
         custom_prefix = preset.get("flux_prefix")
         if custom_prefix is not None:
@@ -1875,10 +1881,6 @@ class ImageGen:
 
         style_label = preset["label"]
         print(f"  [image_gen] Art style: {style_label}")
-
-        is_flux = _is_flux(self.checkpoint or "")
-        is_sd35 = _is_sd35(self.checkpoint or "")
-        is_sdxl = _is_sdxl(self.checkpoint or "")
 
         # Checkpoint type mismatch warning
         required_type = preset.get("required_checkpoint_type", "").lower()
