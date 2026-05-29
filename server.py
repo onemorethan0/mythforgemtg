@@ -129,6 +129,10 @@ _RATE_LIMIT_BUILD_REQUESTS = 5  # max 5 builds per minute per IP
 # Only one build may run art gen at a time; concurrent builds queue up here.
 _art_lock = threading.Lock()
 
+# Serializes ComfyUI auto-start so the startup thread and concurrent builds never
+# spawn duplicate ComfyUI processes (each re-checks "is it up?" inside the lock).
+_comfyui_start_lock = threading.Lock()
+
 # Per-source-deck lock to serialize regen-cards writes to the same deck dir.
 # Without this, two concurrent regen calls on the same deck race their PNG
 # writes and SSE card_ready events.
@@ -1044,6 +1048,10 @@ def _run_build(job_id: str, req: BuildRequest):
         # ── Art generation (optional) ─────────────────────────────────────────
         art_paths: dict[str, Optional[Path]] = {}
         if req.generate_art:
+            # Auto-start ComfyUI if it isn't running (waits for it to load), so a
+            # build doesn't silently fall back to Scryfall art just because the
+            # backend was down. No-op if it's already up or can't be located.
+            _ensure_comfyui_ready(job_id)
             # Pre-flight: explicitly check ComfyUI BEFORE evicting Ollama and
             # taking the GPU lock.  If ComfyUI isn't running we tell the user
             # exactly why with a clear, actionable message — and the build
@@ -1426,6 +1434,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 "msg":  f"Found {len(_fallback_art)} existing art file(s) (from {_fallback_slug}) — will reuse if new art gen is skipped.",
             }))
 
+        # Auto-start ComfyUI if down (no-op if already up / not locatable).
+        _ensure_comfyui_ready(job_id)
         health = ImageGen.health_check()
         if not health["ok"]:
             _fallback_msg = (
@@ -1757,6 +1767,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         effective_crew_gender = req.crew_gender or source_data.get("crew_gender") or "either"
 
         # ── ComfyUI pre-flight ────────────────────────────────────────────────
+        # Auto-start ComfyUI if down (regen needs it — wait for it to load).
+        _ensure_comfyui_ready(job_id)
         health = ImageGen.health_check()
         if not health["ok"]:
             raise ValueError(f"ComfyUI not available: {health['message']}")
@@ -3353,117 +3365,130 @@ def _start_ollama() -> None:
         print(f"      Download & install from: https://ollama.ai")
 
 
-def _start_comfyui() -> None:
-    """
-    Start the ComfyUI Desktop backend using the same command the Electron app uses.
+def _comfyui_desktop_exe() -> Optional[Path]:
+    """Locate the ComfyUI Desktop executable (ComfyUI.exe).
 
-    The ComfyUI Desktop app (E:\\Games\\comfy\\ComfyUI\\ComfyUI.exe) stores its
-    config in %APPDATA%\\ComfyUI\\config.json.  We read that to find:
-      - basePath  → working dir and --base-directory arg
-      - The .venv Python is always at {basePath}\\.venv\\Scripts\\python.exe
-      - main.py is always at {exe_dir}\\resources\\ComfyUI\\main.py
-
-    The shortcut target is resolved via the Windows Shell API to locate the exe.
+    We launch the Desktop *app*, not its bundled main.py, on purpose: the Electron
+    app starts its backend with the correct GPU runtime.  Driving main.py directly
+    risks picking a CPU-only torch env (some installs ship torch==*+cpu), which
+    silently runs generation on the CPU.  The .exe avoids that entirely.
     """
-    import subprocess
     import os
-
-    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-        print("  [OK] ComfyUI already running")
-        return
-
-    print("  [..] ComfyUI not detected, attempting to start...")
+    candidates: list[Path] = []
+    # Optional Start-Menu shortcut resolution (bonus when pywin32 is present).
     try:
-        # ── 1. Read Desktop app config ──────────────────────────────────────
-        appdata = os.environ.get("APPDATA", "")
-        config_path = Path(appdata) / "ComfyUI" / "config.json"
-        extra_cfg   = Path(appdata) / "ComfyUI" / "extra_models_config.yaml"
+        import win32com.client as _w32  # type: ignore
+        lnk = Path(os.environ.get("APPDATA", "")) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
+        if lnk.exists():
+            candidates.append(Path(_w32.Dispatch("WScript.Shell").CreateShortcut(str(lnk)).TargetPath))
+    except Exception:
+        pass
+    localapp = os.environ.get("LOCALAPPDATA", "")
+    candidates += [
+        Path("E:/Games/comfy/ComfyUI/ComfyUI.exe"),
+        Path(localapp) / "Programs" / "@comfyorgcomfyui-electron" / "ComfyUI.exe",
+        Path(localapp) / "Programs" / "comfyui-electron" / "ComfyUI.exe",
+        Path(localapp) / "Programs" / "ComfyUI" / "ComfyUI.exe",
+    ]
+    return next((c for c in candidates if c and c.exists()), None)
 
-        base_dir: Optional[Path] = None
-        exe_dir:  Optional[Path] = None
 
-        if config_path.exists():
-            try:
-                cfg = json.loads(config_path.read_text(encoding="utf-8"))
-                if cfg.get("basePath"):
-                    base_dir = Path(cfg["basePath"])
-            except Exception:
-                pass
+def _ensure_comfyui_normalvram() -> None:
+    """Pin ComfyUI Desktop to --normalvram via %APPDATA%/ComfyUI/config.json.
 
-        # ── 2. Locate main.py via the Start Menu shortcut ───────────────────
-        lnk_path = Path(appdata) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
-        if lnk_path.exists():
-            try:
-                import win32com.client as _w32
-                shell = _w32.Dispatch("WScript.Shell")
-                lnk   = shell.CreateShortcut(str(lnk_path))
-                exe_dir = Path(lnk.TargetPath).parent
-            except Exception:
-                pass
+    The Desktop app launches its own backend and reads startup flags from
+    config.json -> extraArgs (plain CLI flags are NOT honored).  On a 24 GB card
+    --highvram forces the FLUX UNet + ~5 GB T5 encoder + VAE + LoRAs + ReActor
+    models fully-resident, overflowing VRAM so Windows spills to shared system RAM
+    and sampling crawls.  We ensure --normalvram is present and strip --highvram.
+    Best-effort and idempotent; never raises into the caller.
+    """
+    import os
+    cfg_path = Path(os.environ.get("APPDATA", "")) / "ComfyUI" / "config.json"
+    if not cfg_path.exists():
+        return
+    try:
+        cfg  = json.loads(cfg_path.read_text(encoding="utf-8"))
+        args = cfg.get("extraArgs")
+        if not isinstance(args, list):
+            args = []
+        new_args = [a for a in args if a != "--highvram"]
+        if "--normalvram" not in new_args:
+            new_args.append("--normalvram")
+        if new_args != args:
+            cfg["extraArgs"] = new_args
+            cfg_path.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+            print("  [comfyui] Set config.json extraArgs -> --normalvram (was: "
+                  f"{args or 'unset'})", flush=True)
+    except Exception:
+        pass
 
-        if exe_dir is None:
-            # Fallback: well-known path on this machine
-            _candidate = Path("E:/Games/comfy/ComfyUI")
-            if _candidate.exists():
-                exe_dir = _candidate
 
-        main_py = exe_dir / "resources" / "ComfyUI" / "main.py" if exe_dir else None
+def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
+                          launch: bool = True) -> bool:
+    """Ensure ComfyUI is running; auto-start it if it isn't.
 
-        if not main_py or not main_py.exists():
-            print("  [!] ComfyUI Desktop not found — start it manually from the Start Menu.")
-            return
+    Returns True once ComfyUI responds.  If it's down and ``launch`` is True, the
+    install is located and started, then we poll up to ``wait_timeout`` seconds
+    (ComfyUI takes ~60-90s to load models on a 3090).  Progress is streamed over
+    SSE when ``job_id`` is given, so builds show "Starting ComfyUI…" instead of
+    silently stalling.
 
-        if not base_dir or not base_dir.exists():
-            print("  [!] ComfyUI basePath not configured — open ComfyUI Desktop once to finish setup.")
-            return
+    Serialized by _comfyui_start_lock + an inside-lock re-check so the startup
+    thread and any concurrent builds never spawn duplicate ComfyUI processes.
+    """
+    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+        return True
+    if not launch:
+        return False
 
-        venv_py = base_dir / ".venv" / "Scripts" / "python.exe"
-        if not venv_py.exists():
-            venv_py = base_dir / ".venv" / "bin" / "python"   # Linux/macOS fallback
-        if not venv_py.exists():
-            print(f"  [!] ComfyUI venv Python not found at {venv_py}")
-            return
+    def _emit(msg: str) -> None:
+        if job_id:
+            _push(job_id, "progress", json.dumps({"step": "art", "msg": msg}))
+        print(f"  [comfyui] {msg}", flush=True)
 
-        print(f"  [..] Starting ComfyUI Desktop backend...")
-        print(f"       Python : {venv_py}")
-        print(f"       Script : {main_py}")
-        print(f"       BaseDir: {base_dir}")
+    with _comfyui_start_lock:
+        # Another thread may have started it while we waited for the lock.
+        if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+            return True
 
-        cmd = [
-            str(venv_py), str(main_py),
-            "--base-directory",          str(base_dir),
-            "--user-directory",          str(base_dir / "user"),
-            "--input-directory",         str(base_dir / "input"),
-            "--output-directory",        str(base_dir / "output"),
-            "--listen",                  "127.0.0.1",
-            "--port",                    "8188",
-            # --normalvram (not --highvram): on a 24 GB card the FLUX dev fp8 UNet
-            # + T5 text encoder + VAE + LoRAs + ReActor models exceed 24 GB when
-            # forced fully-resident, so Windows WDDM spills several GB to shared
-            # system RAM over PCIe and sampling crawls (5-20x slower). normalvram
-            # keeps the UNet on-GPU for fast sampling but offloads the ~5 GB text
-            # encoder after conditioning, which keeps peak VRAM under the limit.
-            "--normalvram",
-            "--log-stdout",
-        ]
-        if extra_cfg.exists():
-            cmd += ["--extra-model-paths-config", str(extra_cfg)]
+        exe = _comfyui_desktop_exe()
+        if exe is None:
+            _emit("⚠ ComfyUI is not running and ComfyUI Desktop (ComfyUI.exe) could "
+                  "not be located — start ComfyUI manually, then retry.")
+            return False
 
-        subprocess.Popen(cmd, cwd=str(base_dir),
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # Apply the VRAM fix the way the Desktop app honors it, then launch the .exe
+        # (the Electron app boots the backend with the correct GPU runtime).
+        _ensure_comfyui_normalvram()
+        import subprocess
+        _emit("ComfyUI not running — launching ComfyUI Desktop (first load ~60-90s)…")
+        try:
+            subprocess.Popen([str(exe)], cwd=str(exe.parent))
+        except Exception as e:
+            _emit(f"⚠ Could not launch ComfyUI Desktop: {e}")
+            return False
 
-        # Wait up to 120 seconds — ComfyUI loads all models at startup (~90s on RTX 3090)
-        print("  [..] Waiting for ComfyUI to become ready (up to 120s)...")
-        for _ in range(120):
-            time.sleep(1)
-            if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-                print("  [OK] ComfyUI started successfully")
-                return
+        deadline = time.time() + wait_timeout
+        while time.time() < deadline:
+            time.sleep(2)
+            # Short per-poll timeout so a refused/again-down connection returns fast.
+            if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats", timeout=1.5):
+                _emit("✓ ComfyUI is ready.")
+                return True
 
-        print("  [!] ComfyUI startup timed out — it may still be loading in the background")
+        _emit("⚠ ComfyUI did not become ready in time — continuing without it.")
+        return False
 
-    except Exception as e:
-        print(f"  [X] Could not start ComfyUI: {e}")
+
+def _start_comfyui() -> None:
+    """Start ComfyUI at server startup if it isn't already running.
+
+    Thin wrapper over _ensure_comfyui_ready(); the heavy lifting (locating the
+    install, launching, polling) lives there so builds can reuse it.
+    """
+    if _ensure_comfyui_ready():
+        print("  [OK] ComfyUI ready", flush=True)
 
 
 # ── Dev entry ─────────────────────────────────────────────────────────────────
