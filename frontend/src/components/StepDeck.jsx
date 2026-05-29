@@ -572,6 +572,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [duplicating, setDuplicating] = useState(false)
   const [dupMsg, setDupMsg]           = useState(null)   // null | {newJobId, name} | 'error'
   const [deckCheckpoints, setDeckCheckpoints] = useState([])
+
+  // ── 3D Commander generation state ─────────────────────────────────────────
+  const [gen3dState, setGen3dState]     = useState('idle')   // idle|loading|rmbg|trellis|converting|done|error
+  const [gen3dMsg, setGen3dMsg]         = useState('')
+  const [gen3dStlUrl, setGen3dStlUrl]   = useState(null)
+  const [gen3dHealth, setGen3dHealth]   = useState(null)     // null | {ok, message, hint, missing}
   const [rebuildCheckpoint, setRebuildCheckpoint] = useState(deck.checkpoint || null)
 
   const evtRef = useRef(null)
@@ -734,6 +740,84 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     }
   }
 
+  // ── 3D generation handler ────────────────────────────────────────────────
+  async function handleGenerate3D() {
+    if (gen3dState !== 'idle' && gen3dState !== 'error') return
+
+    // Check health first
+    setGen3dState('loading')
+    setGen3dMsg('Checking 3D generation availability…')
+    try {
+      const hRes = await fetch('/api/3d-health')
+      const health = await hRes.json()
+      setGen3dHealth(health)
+      if (!health.ok) {
+        setGen3dState('error')
+        setGen3dMsg(health.message)
+        return
+      }
+    } catch (err) {
+      setGen3dState('error')
+      setGen3dMsg(`Health check failed: ${err.message}`)
+      return
+    }
+
+    // Start generation
+    setGen3dMsg('Queuing 3D generation…')
+    try {
+      const res = await fetch(`/api/deck/${jobId}/generate-3d`, { method: 'POST' })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        const detail = err.detail || {}
+        setGen3dState('error')
+        setGen3dMsg(typeof detail === 'string' ? detail : detail.message || `HTTP ${res.status}`)
+        if (detail.hint) setGen3dHealth(h => ({ ...h, hint: detail.hint }))
+        return
+      }
+      const { job_3d_id } = await res.json()
+
+      // Open SSE stream
+      setGen3dState('rmbg')
+      setGen3dMsg('Removing background…')
+      const es = new EventSource(`/api/deck/${jobId}/3d-status/${job_3d_id}`)
+
+      es.addEventListener('progress', e => {
+        const data = JSON.parse(e.data)
+        const step = data.step || 'rmbg'
+        const stateMap = { rmbg: 'rmbg', trellis: 'trellis', converting: 'converting' }
+        setGen3dState(stateMap[step] || 'trellis')
+        setGen3dMsg(data.msg || '')
+      })
+
+      es.addEventListener('done', e => {
+        const data = JSON.parse(e.data)
+        setGen3dState('done')
+        setGen3dMsg('3D model ready!')
+        setGen3dStlUrl(data.stl_url)
+        es.close()
+      })
+
+      es.addEventListener('error', e => {
+        let msg = 'Generation failed'
+        try { msg = JSON.parse(e.data).msg || msg } catch {}
+        setGen3dState('error')
+        setGen3dMsg(msg)
+        es.close()
+      })
+
+      es.onerror = () => {
+        if (gen3dState !== 'done') {
+          setGen3dState('error')
+          setGen3dMsg('Lost connection to server')
+        }
+        es.close()
+      }
+    } catch (err) {
+      setGen3dState('error')
+      setGen3dMsg(`Request failed: ${err.message}`)
+    }
+  }
+
   // ── Derived data ──────────────────────────────────────────────────────────
   const groups      = groupByType(deck.deck)
   const types       = ['All', ...TYPE_ORDER.filter(t => groups[t]?.length > 0)]
@@ -821,6 +905,120 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>
             <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>
           </div>
+
+          {/* ── 3D Commander Generator ─────────────────────────────────────── */}
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #292524' }}>
+            <div style={{ fontSize: 10, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>3D Print</div>
+
+            {gen3dState === 'idle' || gen3dState === 'error' ? (
+              <div>
+                <button
+                  onClick={handleGenerate3D}
+                  style={{
+                    fontSize: 13, padding: '8px 18px', borderRadius: 8, border: '1px solid #44403c',
+                    background: '#1c1917', color: '#d6d3d1', cursor: 'pointer', fontFamily: 'inherit',
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#292524'}
+                  onMouseLeave={e => e.currentTarget.style.background = '#1c1917'}
+                >
+                  <span style={{ fontSize: 16 }}>🧊</span>
+                  Generate 3D Model (STL)
+                </button>
+                {gen3dState === 'error' && (
+                  <div style={{ marginTop: 8 }}>
+                    <div style={{ fontSize: 12, color: '#f87171', marginBottom: 4 }}>⚠ {gen3dMsg}</div>
+                    {gen3dHealth?.hint && (
+                      <div style={{ fontSize: 11, color: '#57534e' }}>{gen3dHealth.hint}</div>
+                    )}
+                    {gen3dHealth?.missing?.length > 0 && (
+                      <div style={{ marginTop: 6, padding: '8px 10px', background: '#1c1917', borderRadius: 6, border: '1px solid #292524' }}>
+                        <div style={{ fontSize: 11, color: '#78716c', marginBottom: 4 }}>Missing models:</div>
+                        {gen3dHealth.missing.map(m => (
+                          <div key={m} style={{ fontSize: 11, color: '#a8a29e', fontFamily: 'monospace' }}>• {m}</div>
+                        ))}
+                        <div style={{ fontSize: 11, color: '#57534e', marginTop: 4 }}>
+                          Run: <code style={{ color: '#86efac' }}>python model3d.py --download-models</code>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : gen3dState === 'done' ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <a
+                  href={gen3dStlUrl}
+                  download
+                  style={{
+                    fontSize: 13, padding: '8px 18px', borderRadius: 8, border: '1px solid #166534',
+                    background: '#14532d', color: '#86efac', cursor: 'pointer', fontFamily: 'inherit',
+                    display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none',
+                  }}
+                >
+                  <span style={{ fontSize: 16 }}>⬇</span>
+                  Download STL
+                </a>
+                <button
+                  onClick={() => { setGen3dState('idle'); setGen3dStlUrl(null); setGen3dMsg('') }}
+                  style={{ fontSize: 12, padding: '6px 12px', borderRadius: 6, border: '1px solid #292524', background: '#1c1917', color: '#78716c', cursor: 'pointer', fontFamily: 'inherit' }}
+                  title="Generate again with a new random seed"
+                >↺ Regenerate</button>
+              </div>
+            ) : (
+              /* loading / rmbg / trellis / converting */
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                  <div style={{ fontSize: 18, animation: 'spin-slow 1.5s linear infinite' }}>⚙️</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 4 }}>
+                      {gen3dState === 'loading'    && '🔍 Checking system…'}
+                      {gen3dState === 'rmbg'       && '✂️ Removing background…'}
+                      {gen3dState === 'trellis'    && '🧊 Generating 3D mesh (Hunyuan3D v2)…'}
+                      {gen3dState === 'converting' && '🔧 Exporting STL…'}
+                    </div>
+                    {/* Progress steps */}
+                    <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+                      {[
+                        { key: 'rmbg',       label: 'BG Removal',  icon: '✂️' },
+                        { key: 'trellis',    label: '3D Mesh',     icon: '🧊' },
+                        { key: 'converting', label: 'STL Export',  icon: '🔧' },
+                      ].map((step, i) => {
+                        const stepOrder = { loading: -1, rmbg: 0, trellis: 1, converting: 2, done: 3 }
+                        const current  = stepOrder[gen3dState] ?? 0
+                        const mine     = i
+                        const active   = current === mine
+                        const done     = current > mine
+                        return (
+                          <div key={step.key} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                            <div style={{
+                              fontSize: 10, padding: '2px 8px', borderRadius: 10,
+                              background: done ? '#14532d' : active ? '#422006' : '#0c0a09',
+                              border: `1px solid ${done ? '#166534' : active ? '#ca8a04' : '#292524'}`,
+                              color: done ? '#86efac' : active ? '#fde047' : '#57534e',
+                            }}>
+                              {done ? '✓ ' : active ? '⟳ ' : ''}{step.label}
+                            </div>
+                            {i < 2 && <div style={{ width: 16, height: 1, background: '#292524' }} />}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+                {gen3dMsg && (
+                  <div style={{ fontSize: 11, color: '#57534e', fontFamily: 'monospace', marginTop: 4 }}>
+                    {gen3dMsg}
+                  </div>
+                )}
+                <div style={{ fontSize: 11, color: '#57534e', marginTop: 4 }}>
+                  ⏱ 3D mesh generation takes 2–5 minutes on RTX 3090
+                </div>
+              </div>
+            )}
+          </div>
+          {/* ── end 3D generator ──────────────────────────────────────────── */}
         </div>
 
         {/* Stats panel */}

@@ -49,6 +49,7 @@ from set_symbol         import generate_set_symbol
 from exporter           import build_zip, build_pdf
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
+from model3d            import Model3DGen, generate_commander_3d
 
 # ── App setup ─────────────────────────────────────────────────────────────────
 
@@ -133,6 +134,10 @@ _art_lock = threading.Lock()
 # writes and SSE card_ready events.
 _deck_regen_locks: dict[str, threading.Lock] = {}
 _deck_regen_locks_meta_lock = threading.Lock()
+
+# 3D generation job store (separate from main _jobs to keep payloads small)
+_3d_jobs: dict[str, dict] = {}
+_3d_progress: dict[str, list[str]] = {}   # job_3d_id → list of SSE event strings
 
 def _get_deck_regen_lock(source_job_id: str) -> threading.Lock:
     """Return (or create) the threading.Lock for a given source deck."""
@@ -741,6 +746,129 @@ def _apply_user_name(themed_name: str, user_name: str) -> str:
     return user_name
 
 
+# ── Shared build-pipeline helpers ─────────────────────────────────────────────
+# The four _run_* pipelines (build / rebuild / regen / retheme) share a large
+# amount of boilerplate: serializing ThemedCards, reconstructing card dicts from
+# stored deck.json, computing render keys, and the common error/cleanup blocks.
+# These helpers hold that shared logic in one place.  They deliberately do NOT
+# touch VRAM eviction, the _art_lock, or any threading order — that orchestration
+# stays inline in each pipeline because its sequencing is subtle and per-pipeline.
+
+def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
+    """Serialize a ThemedCard to the deck.json card schema.
+
+    The render_key embeds the deck index (000 for commander, 001+ for the rest)
+    so duplicate card names get distinct keys.  Oracle text has the card's own
+    name swapped for its themed name.
+    """
+    c = tc.card
+    return {
+        "original_name": tc.original_name,
+        "themed_name":   tc.themed_name,
+        "art_prompt":    tc.art_prompt,
+        "flavor_text":   tc.flavor_text,
+        "mana_cost":     c.get("mana_cost", ""),
+        "type_line":     c.get("type_line", ""),
+        "oracle_text":   _replace_card_self_ref(
+                             c.get("oracle_text", ""), tc.original_name, tc.themed_name
+                         ),
+        "cmc":           c.get("cmc", 0),
+        "colors":        c.get("color_identity", []),
+        "power":         c.get("power"),
+        "toughness":     c.get("toughness"),
+        "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
+        "has_render":    has_render,
+        "render_key":    f"{_safe_name(tc.original_name)}_{deck_index:03d}",
+    }
+
+
+def _stored_card_to_dict(d: dict) -> dict:
+    """Reconstruct the internal card dict from a stored deck.json entry.
+
+    Inverse of the card portion of _themed_card_to_dict — used by rebuild / regen
+    / retheme to rebuild ThemedCard.card payloads from persisted decks.
+    """
+    return {
+        "name":           d["original_name"],
+        "mana_cost":      d.get("mana_cost", ""),
+        "type_line":      d.get("type_line", ""),
+        "oracle_text":    d.get("oracle_text", ""),
+        "cmc":            d.get("cmc", 0),
+        "color_identity": d.get("colors", []),
+        "power":          d.get("power"),
+        "toughness":      d.get("toughness"),
+        "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
+    }
+
+
+def _load_source_deck(source_job_id: str) -> dict:
+    """Load a saved deck.json by job id (memory path first, then disk loader).
+
+    Raises ValueError if no deck can be found — callers rely on this to abort.
+    """
+    source_path = RENDER_DIR / source_job_id / "deck.json"
+    if source_path.exists():
+        data = json.loads(source_path.read_text(encoding="utf-8"))
+    else:
+        data = _load_deck_from_disk(source_job_id)
+    if not data:
+        raise ValueError(f"Source deck not found: {source_job_id}")
+    return data
+
+
+def _build_render_keys(themed_cmd: ThemedCard, themed_deck: list) -> dict:
+    """Map each card's original_name → indexed render key (commander = 000)."""
+    keys = {themed_cmd.original_name: f"{_safe_name(themed_cmd.original_name)}_000"}
+    for i, tc in enumerate(themed_deck, 1):
+        keys[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
+    return keys
+
+
+def _make_art_progress_cb(job_id: str, start_time: float):
+    """Build the per-card art progress callback used by build/rebuild.
+
+    Computes a rolling ETA from wall-clock average per completed card and pushes
+    an SSE 'art' progress event.
+    """
+    def _cb(card_num, total, card_name, has_face, elapsed, success):
+        wall_elapsed = time.time() - start_time
+        avg_secs = wall_elapsed / card_num if card_num else elapsed
+        _push(job_id, "progress", json.dumps({
+            "step":      "art",
+            "msg":       f"[{card_num}/{total}] {card_name}",
+            "card_num":  card_num,
+            "total":     total,
+            "card_name": card_name,
+            "has_face":  has_face,
+            "pct":       round(card_num / total * 100, 1) if total else 0,
+            "elapsed":   round(wall_elapsed),
+            "eta":       round(avg_secs * (total - card_num)),
+            "last_ok":   success,
+        }))
+    return _cb
+
+
+def _mark_job_error(job_id: str, e: Exception) -> None:
+    """Common 'except' handling for the _run_* pipelines."""
+    _jobs[job_id]["status"] = "error"
+    _jobs[job_id]["error"]  = str(e)
+    _push(job_id, "error", json.dumps({"msg": str(e)}))
+    traceback.print_exc()   # full stack trace to server stdout/log
+
+
+def _finalize_job(job_id: str) -> None:
+    """Common 'finally' cleanup for the _run_* pipelines.
+
+    Drops the (unserializable) cancel_event, caps the per-job SSE buffer so the
+    ETA-ticker spam can't grow without bound, and trims the in-memory job store.
+    """
+    _jobs.get(job_id, {}).pop("cancel_event", None)
+    msgs = _progress.get(job_id)
+    if msgs and len(msgs) > 80:
+        _progress[job_id] = msgs[-80:]
+    _trim_in_memory_jobs()
+
+
 # ── Background deck build ─────────────────────────────────────────────────────
 
 def _run_build(job_id: str, req: BuildRequest):
@@ -831,6 +959,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 themer_medium=_style_meta["themer_medium"],
                 themer_quality=_style_meta["themer_quality"],
                 commander_gender=req.face_gender,
+                lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -872,33 +1001,6 @@ def _run_build(job_id: str, req: BuildRequest):
         sym_path.parent.mkdir(parents=True, exist_ok=True)
         sym.save(sym_path)
 
-        # ── Build result dict helper ──────────────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
-            c = tc.card
-            safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
-            # Append deck index to render_key to disambiguate duplicate cards
-            render_key = f"{safe}_{deck_index:03d}"
-            # Replace any self-references in oracle text with the themed name
-            oracle = _replace_card_self_ref(
-                c.get("oracle_text", ""), tc.original_name, tc.themed_name
-            )
-            return {
-                "original_name": tc.original_name,
-                "themed_name":   tc.themed_name,
-                "art_prompt":    tc.art_prompt,
-                "flavor_text":   tc.flavor_text,
-                "mana_cost":     c.get("mana_cost", ""),
-                "type_line":     c.get("type_line", ""),
-                "oracle_text":   oracle,
-                "cmc":           c.get("cmc", 0),
-                "colors":        c.get("color_identity", []),
-                "power":         c.get("power"),
-                "toughness":     c.get("toughness"),
-                "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
-                "has_render":    has_render,
-                "render_key":    render_key,
-            }
-
         # ── Early checkpoint: write deck.json NOW (before art gen + render) ──
         # Art gen is the longest step (30+ min). If the server crashes or
         # reloads during that step, the themed deck data is preserved here.
@@ -909,8 +1011,8 @@ def _run_build(job_id: str, req: BuildRequest):
                            + "_" + job_id[:8])
         checkpoint = {
             "status":           "rendering",   # updated to "done" at the end
-            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
-            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
+            "commander":        _themed_card_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": req.commander_prompt,
@@ -1026,32 +1128,10 @@ def _run_build(job_id: str, req: BuildRequest):
                         _push(job_id, "progress", json.dumps({"step": "art", "msg": "Generating card art (ComfyUI)..."}))
                         _art_start_time = time.time()
 
-                        def _art_cb(card_num, total, card_name, has_face, elapsed, success):
-                            pct = round(card_num / total * 100, 1) if total else 0
-                            done_so_far = card_num
-                            # Rolling ETA: avg seconds per card × remaining cards
-                            wall_elapsed = time.time() - _art_start_time
-                            avg_secs = wall_elapsed / done_so_far if done_so_far else elapsed
-                            remaining = total - done_so_far
-                            eta_secs  = round(avg_secs * remaining)
-                            _push(job_id, "progress", json.dumps({
-                                "step":      "art",
-                                "msg":       f"[{card_num}/{total}] {card_name}",
-                                "card_num":  card_num,
-                                "total":     total,
-                                "card_name": card_name,
-                                "has_face":  has_face,
-                                "pct":       pct,
-                                "elapsed":   round(wall_elapsed),
-                                "eta":       eta_secs,
-                                "last_ok":   success,
-                            }))
+                        _art_cb = _make_art_progress_cb(job_id, _art_start_time)
 
                         # Pre-compute render_keys for indexed filenames (used in card_done_cb)
-                        _render_keys_inline = {}
-                        _render_keys_inline[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
-                        for i, tc in enumerate(themed_deck, 1):
-                            _render_keys_inline[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
+                        _render_keys_inline = _build_render_keys(themed_cmd, themed_deck)
 
                         def _card_done_cb(tc, art_path):
                             """Render this card immediately and push a card_ready SSE event."""
@@ -1193,8 +1273,8 @@ def _run_build(job_id: str, req: BuildRequest):
         # Re-serialize with has_render flags set correctly, then overwrite checkpoint
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
+        result["commander"] = _themed_card_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_themed_card_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
 
         # Overwrite checkpoint with final done state
@@ -1203,24 +1283,9 @@ def _run_build(job_id: str, req: BuildRequest):
         _push(job_id, "done", json.dumps({"job_id": job_id}))
 
     except Exception as e:
-        _jobs[job_id]["status"] = "error"
-        _jobs[job_id]["error"]  = str(e)
-        _push(job_id, "error", json.dumps({"msg": str(e)}))
-        traceback.print_exc()   # full stack trace to server stdout/log
+        _mark_job_error(job_id, e)
     finally:
-        # The cancel_event is only useful during the build itself.  Drop it
-        # now so it can't leak into JSON responses (it's a threading.Event,
-        # which FastAPI's encoder cannot serialize — this was the cause of
-        # the 500 errors on /api/deck/{job_id} after a successful build).
-        _jobs.get(job_id, {}).pop("cancel_event", None)
-        # Cap the per-job progress buffer (keep most recent events for late SSE
-        # clients to drain). Without this, ETA-ticker spam accumulates forever.
-        msgs = _progress.get(job_id)
-        if msgs and len(msgs) > 80:
-            _progress[job_id] = msgs[-80:]
-        # Cap the in-memory job store. Once deck.json is on disk, /api/deck/{id}
-        # endpoints fall back to disk transparently, so we can drop heavy payloads.
-        _trim_in_memory_jobs()
+        _finalize_job(job_id)
 
 
 # ── Rebuild: re-run art gen for an already-themed deck ───────────────────────
@@ -1239,14 +1304,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         _jobs[job_id]["status"] = "building"
 
         # ── Load source deck ──────────────────────────────────────────────────
-        source_path = RENDER_DIR / source_job_id / "deck.json"
-        if not source_path.exists():
-            disk = _load_deck_from_disk(source_job_id)
-            if not disk:
-                raise ValueError(f"Source deck not found: {source_job_id}")
-            source_data = disk
-        else:
-            source_data = json.loads(source_path.read_text(encoding="utf-8"))
+        source_data = _load_source_deck(source_job_id)
 
         _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Loading saved deck and prompts…"}))
 
@@ -1257,17 +1315,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 themed_name   = d["themed_name"],
                 art_prompt    = d.get("art_prompt", ""),
                 flavor_text   = d.get("flavor_text", ""),
-                card          = {
-                    "name":           d["original_name"],
-                    "mana_cost":      d.get("mana_cost", ""),
-                    "type_line":      d.get("type_line", ""),
-                    "oracle_text":    d.get("oracle_text", ""),
-                    "cmc":            d.get("cmc", 0),
-                    "color_identity": d.get("colors", []),
-                    "power":          d.get("power"),
-                    "toughness":      d.get("toughness"),
-                    "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
-                },
+                card          = _stored_card_to_dict(d),
             )
 
         themed_cmd  = _dict_to_tc(source_data["commander"])
@@ -1296,31 +1344,6 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             sym = generate_set_symbol(art_theme, emblem_prompt=source_data.get("emblem_prompt", ""))
             sym.save(sym_path)
 
-        # ── Helper (identical to _run_build) ─────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
-            c = tc.card
-            safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
-            render_key = f"{safe}_{deck_index:03d}"
-            oracle = _replace_card_self_ref(
-                c.get("oracle_text", ""), tc.original_name, tc.themed_name
-            )
-            return {
-                "original_name": tc.original_name,
-                "themed_name":   tc.themed_name,
-                "art_prompt":    tc.art_prompt,
-                "flavor_text":   tc.flavor_text,
-                "mana_cost":     c.get("mana_cost", ""),
-                "type_line":     c.get("type_line", ""),
-                "oracle_text":   oracle,
-                "cmc":           c.get("cmc", 0),
-                "colors":        c.get("color_identity", []),
-                "power":         c.get("power"),
-                "toughness":     c.get("toughness"),
-                "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
-                "has_render":    has_render,
-                "render_key":    render_key,
-            }
-
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
         # Compute a new deck_slug for the rebuild's art cache directory
@@ -1331,8 +1354,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         deck_json_path = RENDER_DIR / job_id / "deck.json"
         checkpoint = {
             "status":           "rendering",
-            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
-            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
+            "commander":        _themed_card_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": req.commander_prompt or source_data.get("commander_prompt", ""),
@@ -1508,23 +1531,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                     _push(job_id, "progress", json.dumps({"step": "art", "msg": "Generating card art (ComfyUI)…"}))
                     _art_start_time = time.time()
 
-                    def _art_cb(card_num, total, card_name, has_face, elapsed, success):
-                        pct = round(card_num / total * 100, 1) if total else 0
-                        wall_elapsed = time.time() - _art_start_time
-                        avg_secs = wall_elapsed / card_num if card_num else elapsed
-                        eta_secs = round(avg_secs * (total - card_num))
-                        _push(job_id, "progress", json.dumps({
-                            "step":      "art",
-                            "msg":       f"[{card_num}/{total}] {card_name}",
-                            "card_num":  card_num,
-                            "total":     total,
-                            "card_name": card_name,
-                            "has_face":  has_face,
-                            "pct":       pct,
-                            "elapsed":   round(wall_elapsed),
-                            "eta":       eta_secs,
-                            "last_ok":   success,
-                        }))
+                    _art_cb = _make_art_progress_cb(job_id, _art_start_time)
 
                     def _card_done_cb(tc, art_path):
                         name = tc.original_name
@@ -1623,11 +1630,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         _all_tcs_rb = [themed_cmd] + list(themed_deck)
         _oracle_ov_rb = {tc.original_name: tc.card.get("oracle_text", "") for tc in _all_tcs_rb}
         _flavor_ov_rb = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs_rb}
-        # Build render_keys mapping for indexed filenames
-        _render_keys_rb = {}
-        _render_keys_rb[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
-        for i, tc in enumerate(themed_deck, 1):
-            _render_keys_rb[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
+        _render_keys_rb = _build_render_keys(themed_cmd, themed_deck)
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov_rb,
@@ -1640,24 +1643,17 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         # ── Finalize ──────────────────────────────────────────────────────────
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
+        result["commander"] = _themed_card_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_themed_card_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
         deck_json_path.write_text(json.dumps(result), encoding="utf-8")
 
         _push(job_id, "done", json.dumps({"job_id": job_id}))
 
     except Exception as e:
-        _jobs[job_id]["status"] = "error"
-        _jobs[job_id]["error"]  = str(e)
-        _push(job_id, "error", json.dumps({"msg": str(e)}))
-        traceback.print_exc()
+        _mark_job_error(job_id, e)
     finally:
-        _jobs.get(job_id, {}).pop("cancel_event", None)
-        msgs = _progress.get(job_id)
-        if msgs and len(msgs) > 80:
-            _progress[job_id] = msgs[-80:]
-        _trim_in_memory_jobs()
+        _finalize_job(job_id)
 
 
 # ── Per-card regen: regenerate only the requested cards ──────────────────────
@@ -1686,13 +1682,9 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _jobs[job_id]["status"] = "building"
 
         # ── Load source deck ──────────────────────────────────────────────────
+        # source_json_path is kept for the custom-prompt write-back near the end.
         source_json_path = RENDER_DIR / source_job_id / "deck.json"
-        if source_json_path.exists():
-            source_data = json.loads(source_json_path.read_text(encoding="utf-8"))
-        else:
-            source_data = _load_deck_from_disk(source_job_id)
-        if not source_data:
-            raise ValueError(f"Source deck not found: {source_job_id}")
+        source_data = _load_source_deck(source_job_id)
 
         # Index by render_key and by original_name for robust matching
         all_stored = [source_data["commander"]] + source_data["deck"]
@@ -1734,17 +1726,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 themed_name   = cd["themed_name"],
                 art_prompt    = prompt,
                 flavor_text   = cd.get("flavor_text", ""),
-                card          = {
-                    "name":           cd["original_name"],
-                    "mana_cost":      cd.get("mana_cost", ""),
-                    "type_line":      cd.get("type_line", ""),
-                    "oracle_text":    cd.get("oracle_text", ""),
-                    "cmc":            cd.get("cmc", 0),
-                    "color_identity": cd.get("colors", []),
-                    "power":          cd.get("power"),
-                    "toughness":      cd.get("toughness"),
-                    "image_uris":     {"normal": cd["scryfall_img"]} if cd.get("scryfall_img") else {},
-                },
+                card          = _stored_card_to_dict(cd),
             )
             to_regen.append((tc, stored_render_key, art_safe, bool(custom)))
 
@@ -1952,10 +1934,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _push(job_id, "done", json.dumps({"job_id": job_id, "source_job_id": source_job_id}))
 
     except Exception as e:
-        _jobs[job_id]["status"] = "error"
-        _jobs[job_id]["error"]  = str(e)
-        _push(job_id, "error", json.dumps({"msg": str(e)}))
-        traceback.print_exc()
+        _mark_job_error(job_id, e)
     finally:
         # Release the per-deck regen lock before any other cleanup so a queued
         # concurrent regen on the same deck doesn't wait on this thread's
@@ -1964,11 +1943,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             _deck_lock.release()
         except RuntimeError:
             pass   # already released or never acquired — best-effort
-        _jobs.get(job_id, {}).pop("cancel_event", None)
-        msgs = _progress.get(job_id)
-        if msgs and len(msgs) > 80:
-            _progress[job_id] = msgs[-80:]
-        _trim_in_memory_jobs()
+        _finalize_job(job_id)
 
 
 # ── Retheme: re-run Ollama theming, keep existing art ────────────────────────
@@ -1993,13 +1968,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         _jobs[job_id]["status"] = "building"
 
         # ── Load source deck ──────────────────────────────────────────────────
-        source_path = RENDER_DIR / source_job_id / "deck.json"
-        if source_path.exists():
-            source_data = json.loads(source_path.read_text(encoding="utf-8"))
-        else:
-            source_data = _load_deck_from_disk(source_job_id)
-        if not source_data:
-            raise ValueError(f"Source deck not found: {source_job_id}")
+        source_data = _load_source_deck(source_job_id)
 
         art_theme        = req.art_theme        or source_data.get("theme", "")
         commander_prompt = req.commander_prompt or source_data.get("commander_prompt", "")
@@ -2018,19 +1987,10 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         # ── Reconstruct raw card dicts for themer ─────────────────────────────
         # We feed the *original* MTG names back to the themer so it re-invents
         # names from scratch rather than theming already-themed names.
+        # keywords is reset to [] so the themer re-derives mechanics from scratch;
+        # oracle_text may already be themed from a prior pass, which is harmless.
         def _stored_to_raw(d: dict) -> dict:
-            return {
-                "name":           d["original_name"],
-                "mana_cost":      d.get("mana_cost", ""),
-                "type_line":      d.get("type_line", ""),
-                "oracle_text":    d.get("oracle_text", ""),   # may already be themed — OK
-                "cmc":            d.get("cmc", 0),
-                "color_identity": d.get("colors", []),
-                "power":          d.get("power"),
-                "toughness":      d.get("toughness"),
-                "keywords":       [],
-                "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
-            }
+            return {**_stored_card_to_dict(d), "keywords": []}
 
         raw_commander = _stored_to_raw(source_data["commander"])
         raw_deck      = [_stored_to_raw(c) for c in source_data["deck"]]
@@ -2078,6 +2038,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 themer_medium=_style_meta["themer_medium"],
                 themer_quality=_style_meta["themer_quality"],
                 commander_gender=face_gender_rt,
+                lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
@@ -2134,38 +2095,13 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "msg":  f"Found {art_found} existing art image(s) — re-rendering card frames…",
         }))
 
-        # ── Build result dict helper ──────────────────────────────────────────
-        def _tc_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
-            c    = tc.card
-            safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
-            render_key = f"{safe}_{deck_index:03d}"
-            oracle = _replace_card_self_ref(
-                c.get("oracle_text", ""), tc.original_name, tc.themed_name
-            )
-            return {
-                "original_name": tc.original_name,
-                "themed_name":   tc.themed_name,
-                "art_prompt":    tc.art_prompt,
-                "flavor_text":   tc.flavor_text,
-                "mana_cost":     c.get("mana_cost", ""),
-                "type_line":     c.get("type_line", ""),
-                "oracle_text":   oracle,
-                "cmc":           c.get("cmc", 0),
-                "colors":        c.get("color_identity", []),
-                "power":         c.get("power"),
-                "toughness":     c.get("toughness"),
-                "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
-                "has_render":    has_render,
-                "render_key":    render_key,
-            }
-
         # ── Early checkpoint ──────────────────────────────────────────────────
         deck_json_path = RENDER_DIR / job_id / "deck.json"
         stats          = source_data.get("stats", {})
         checkpoint = {
             "status":           "rendering",
-            "commander":        _tc_to_dict(themed_cmd, deck_index=0),
-            "deck":             [_tc_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
+            "commander":        _themed_card_to_dict(themed_cmd, deck_index=0),
+            "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
             "commander_prompt": commander_prompt,
@@ -2197,11 +2133,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             ) for tc in _all_tcs_rt
         }
         _flavor_ov_rt = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs_rt}
-        # Build render_keys mapping for indexed filenames
-        _render_keys_rt = {}
-        _render_keys_rt[themed_cmd.original_name] = f"{_safe_name(themed_cmd.original_name)}_000"
-        for i, tc in enumerate(themed_deck, 1):
-            _render_keys_rt[tc.original_name] = f"{_safe_name(tc.original_name)}_{i:03d}"
+        _render_keys_rt = _build_render_keys(themed_cmd, themed_deck)
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov_rt,
@@ -2217,24 +2149,17 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         # ── Finalize ──────────────────────────────────────────────────────────
         result = dict(checkpoint)
         result["status"]    = "done"
-        result["commander"] = _tc_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
-        result["deck"]      = [_tc_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
+        result["commander"] = _themed_card_to_dict(themed_cmd, deck_index=0, has_render=themed_cmd.original_name in saved_imgs)
+        result["deck"]      = [_themed_card_to_dict(tc, deck_index=i, has_render=tc.original_name in saved_imgs) for i, tc in enumerate(themed_deck, 1)]
         _jobs[job_id].update(result)
         deck_json_path.write_text(json.dumps(result), encoding="utf-8")
 
         _push(job_id, "done", json.dumps({"job_id": job_id}))
 
     except Exception as e:
-        _jobs[job_id]["status"] = "error"
-        _jobs[job_id]["error"]  = str(e)
-        _push(job_id, "error", json.dumps({"msg": str(e)}))
-        traceback.print_exc()
+        _mark_job_error(job_id, e)
     finally:
-        _jobs.get(job_id, {}).pop("cancel_event", None)
-        msgs = _progress.get(job_id)
-        if msgs and len(msgs) > 80:
-            _progress[job_id] = msgs[-80:]
-        _trim_in_memory_jobs()
+        _finalize_job(job_id)
 
 
 # ── Memory hygiene ────────────────────────────────────────────────────────────
@@ -2263,7 +2188,7 @@ def _trim_in_memory_jobs():
 # ── Routes ─────────────────────────────────────────────────────────────────────
 
 @app.post("/api/commander/search")
-async def search_commander(req: SearchRequest):
+def search_commander(req: SearchRequest):
     card = _scryfall.get_card_by_name(req.query, fuzzy=True)
     if not card:
         raise HTTPException(404, f"Commander not found: {req.query}")
@@ -2280,7 +2205,7 @@ async def search_commander(req: SearchRequest):
 
 
 @app.get("/api/commander/autocomplete")
-async def autocomplete_commander(q: str = ""):
+def autocomplete_commander(q: str = ""):
     """Return up to 10 card-name suggestions from Scryfall autocomplete."""
     if len(q.strip()) < 2:
         return {"suggestions": []}
@@ -2782,7 +2707,7 @@ _PROBE_TTL = 8.0   # seconds
 
 
 @app.get("/api/face-method")
-async def face_method():
+def face_method():
     """Probe face-conditioning engine and available checkpoints (cached ~8s)."""
     now = time.time()
     if _probe_cache["data"] and (now - _probe_cache["ts"]) < _PROBE_TTL:
@@ -2819,7 +2744,7 @@ async def face_method():
 
 
 @app.get("/api/comfy-status")
-async def comfy_status():
+def comfy_status():
     """
     Lightweight ComfyUI readiness probe for the UI.  Returns the same dict
     shape used by the build pre-flight so the frontend can warn the user
@@ -2830,7 +2755,7 @@ async def comfy_status():
 
 
 @app.get("/api/health")
-async def health_check():
+def health_check():
     """
     System health check: returns status of ComfyUI and Ollama services.
     Used by the frontend status indicator in the corner.
@@ -2864,7 +2789,7 @@ async def health_check():
 
 
 @app.get("/api/llm-models")
-async def get_llm_models():
+def get_llm_models():
     """
     Return the curated LLM catalog with per-entry installed status.
     The UI uses this to populate the model selector in StepTheme.
@@ -2875,7 +2800,7 @@ async def get_llm_models():
 
 
 @app.get("/api/art-styles")
-async def get_art_styles():
+def get_art_styles():
     """
     Return all LoRA presets with per-LoRA install status.
     The UI uses this to show ready/missing badges and download hints.
@@ -2937,7 +2862,7 @@ async def get_art_styles():
 
 
 @app.get("/api/checkpoints")
-async def get_checkpoints():
+def get_checkpoints():
     """
     Return all available checkpoints in ComfyUI.
     Enables UI dropdown for explicit checkpoint selection.
@@ -2979,7 +2904,7 @@ async def get_checkpoints():
 
 
 @app.get("/api/comfyui/loras")
-async def list_comfyui_loras():
+def list_comfyui_loras():
     """
     Return all LoRA filenames currently installed in ComfyUI.
     Used by the custom-style builder so the user can pick from installed LoRAs.
@@ -3178,6 +3103,195 @@ async def export_pdf(job_id: str):
     )
 
 
+# ── 3D Commander Generation ───────────────────────────────────────────────────
+
+def _push_3d(job_3d_id: str, event: str, data: str):
+    msg = f"event: {event}\ndata: {data}\n\n"
+    _3d_progress.setdefault(job_3d_id, []).append(msg)
+
+
+def _run_3d_generation(job_3d_id: str, deck_job_id: str):
+    """
+    Background thread: run the full commander 3D pipeline.
+    Resolves the commander's raw art, runs rembg + Hunyuan3D v2 + trimesh export.
+    """
+    try:
+        _3d_jobs[job_3d_id]["status"] = "rmbg"
+
+        # ── Locate commander raw art ──────────────────────────────────────────
+        deck_data = _jobs.get(deck_job_id)
+        if not deck_data:
+            deck_path = RENDER_DIR / deck_job_id / "deck.json"
+            if deck_path.exists():
+                deck_data = json.loads(deck_path.read_text(encoding="utf-8"))
+            else:
+                raise ValueError(f"Deck job not found: {deck_job_id}")
+
+        commander = deck_data.get("commander", {})
+        original_name = commander.get("original_name", "")
+        deck_slug     = deck_data.get("deck_slug", "")
+
+        # Try FLUX-generated art first (raw art from generated_art/ dir)
+        art_path: Optional[Path] = None
+        if deck_slug and original_name:
+            safe = "".join(c if c.isalnum() else "_" for c in original_name)[:48]
+            candidate = Path("generated_art") / deck_slug / f"{safe}.png"
+            if candidate.exists():
+                art_path = candidate
+
+        # Fallback: Scryfall image URL → download to temp file
+        if art_path is None:
+            scryfall_url = commander.get("scryfall_img", "")
+            if scryfall_url:
+                _push_3d(job_3d_id, "progress", json.dumps({
+                    "step": "rmbg",
+                    "msg":  "No generated art found — using Scryfall card art as source",
+                }))
+                tmp_dir = RENDER_DIR / deck_job_id
+                tmp_dir.mkdir(parents=True, exist_ok=True)
+                art_path = tmp_dir / "commander_scryfall_src.jpg"
+                r = requests.get(scryfall_url, timeout=30, stream=True)
+                r.raise_for_status()
+                with open(art_path, "wb") as f:
+                    for chunk in r.iter_content(65536):
+                        f.write(chunk)
+            else:
+                raise ValueError("No commander art available (no FLUX art and no Scryfall URL)")
+
+        _push_3d(job_3d_id, "progress", json.dumps({
+            "step": "rmbg",
+            "msg":  f"Source image: {art_path.name}",
+        }))
+
+        # ── Progress callback → SSE ───────────────────────────────────────────
+        def _cb(msg: str):
+            step = "rmbg"
+            if "Hunyuan" in msg or "3D mesh" in msg or "workflow" in msg or "Generating" in msg or "Upload" in msg:
+                step = "trellis"
+                _3d_jobs[job_3d_id]["status"] = "trellis"
+            elif "STL" in msg or "GLB" in msg or "Converting" in msg or "Exporting" in msg:
+                step = "converting"
+                _3d_jobs[job_3d_id]["status"] = "converting"
+            _push_3d(job_3d_id, "progress", json.dumps({"step": step, "msg": msg}))
+
+        # ── Run pipeline ──────────────────────────────────────────────────────
+        output_dir = RENDER_DIR / deck_job_id
+        stl_path = generate_commander_3d(
+            art_path   = art_path,
+            output_dir = output_dir,
+            progress_cb = _cb,
+        )
+
+        _3d_jobs[job_3d_id]["status"]   = "done"
+        _3d_jobs[job_3d_id]["stl_path"] = str(stl_path)
+        _push_3d(job_3d_id, "done", json.dumps({
+            "job_3d_id":   job_3d_id,
+            "stl_url":     f"/api/deck/{deck_job_id}/commander-3d.stl",
+            "size_bytes":  stl_path.stat().st_size,
+        }))
+
+    except Exception as e:
+        _3d_jobs[job_3d_id]["status"] = "error"
+        _3d_jobs[job_3d_id]["error"]  = str(e)
+        _push_3d(job_3d_id, "error", json.dumps({"msg": str(e)}))
+        traceback.print_exc()
+
+
+@app.post("/api/deck/{job_id}/generate-3d")
+async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
+    """
+    Start async 3D model generation for the commander of a completed deck.
+    Returns {job_3d_id} immediately; poll /api/deck/{job_id}/3d-status/{job_3d_id}.
+    """
+    # Verify the deck exists
+    deck_exists = (
+        job_id in _jobs
+        or (RENDER_DIR / job_id / "deck.json").exists()
+    )
+    if not deck_exists:
+        raise HTTPException(status_code=404, detail=f"Deck job not found: {job_id}")
+
+    # Health check — surface missing models with a clear message
+    health = Model3DGen.health_check()
+    if not health["ok"]:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "message": health["message"],
+                "hint":    health["hint"],
+                "missing": health.get("missing", []),
+            },
+        )
+
+    job_3d_id = str(uuid.uuid4())
+    _3d_jobs[job_3d_id] = {
+        "status":       "pending",
+        "deck_job_id":  job_id,
+        "created_at":   time.time(),
+    }
+
+    background_tasks.add_task(_run_3d_generation, job_3d_id, job_id)
+    return JSONResponse({"job_3d_id": job_3d_id})
+
+
+@app.get("/api/deck/{job_id}/3d-status/{job_3d_id}")
+async def stream_3d_status(job_id: str, job_3d_id: str, request: Request):
+    """SSE stream for 3D generation progress."""
+    async def _gen():
+        sent = 0
+        while True:
+            if await request.is_disconnected():
+                break
+            msgs = _3d_progress.get(job_3d_id, [])
+            while sent < len(msgs):
+                yield msgs[sent]
+                sent += 1
+            job = _3d_jobs.get(job_3d_id, {})
+            if job.get("status") in ("done", "error"):
+                msgs = _3d_progress.get(job_3d_id, [])
+                while sent < len(msgs):
+                    yield msgs[sent]
+                    sent += 1
+                break
+            await asyncio.sleep(0.5)
+
+    return StreamingResponse(_gen(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache",
+                                      "X-Accel-Buffering": "no"})
+
+
+@app.get("/api/deck/{job_id}/commander-3d.stl")
+async def download_commander_stl(job_id: str):
+    """Serve the completed commander STL for download."""
+    stl_path = RENDER_DIR / job_id / "commander_3d.stl"
+    if not stl_path.exists():
+        raise HTTPException(status_code=404,
+                            detail="STL not found — generate it first via /generate-3d")
+
+    # Determine a nice download filename from the deck commander name
+    deck_data = _jobs.get(job_id, {})
+    if not deck_data:
+        deck_path = RENDER_DIR / job_id / "deck.json"
+        if deck_path.exists():
+            deck_data = json.loads(deck_path.read_text(encoding="utf-8"))
+
+    cmd_name = deck_data.get("commander", {}).get("themed_name", "commander")
+    safe_cmd = "".join(c if c.isalnum() or c in "- " else "_" for c in cmd_name)[:40].strip()
+    filename = f"{safe_cmd}_3D.stl"
+
+    return FileResponse(
+        stl_path,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@app.get("/api/3d-health")
+async def get_3d_health():
+    """Return Hunyuan3D v2 / rembg availability status."""
+    return JSONResponse(Model3DGen.health_check())
+
+
 # ── Serve React frontend ───────────────────────────────────────────────────────
 if STATIC_DIR.exists():
     app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
@@ -3240,8 +3354,19 @@ def _start_ollama() -> None:
 
 
 def _start_comfyui() -> None:
-    """Attempt to start ComfyUI if it's installed but not running."""
+    """
+    Start the ComfyUI Desktop backend using the same command the Electron app uses.
+
+    The ComfyUI Desktop app (E:\\Games\\comfy\\ComfyUI\\ComfyUI.exe) stores its
+    config in %APPDATA%\\ComfyUI\\config.json.  We read that to find:
+      - basePath  → working dir and --base-directory arg
+      - The .venv Python is always at {basePath}\\.venv\\Scripts\\python.exe
+      - main.py is always at {exe_dir}\\resources\\ComfyUI\\main.py
+
+    The shortcut target is resolved via the Windows Shell API to locate the exe.
+    """
     import subprocess
+    import os
 
     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
         print("  [OK] ComfyUI already running")
@@ -3249,50 +3374,88 @@ def _start_comfyui() -> None:
 
     print("  [..] ComfyUI not detected, attempting to start...")
     try:
-        # Look for ComfyUI main.py in common locations relative to this file.
-        # Each candidate is (main_py_path, comfyui_root_dir).
-        _here = Path(__file__).parent
-        comfy_candidates = [
-            (_here / "ComfyUI" / "main.py",       _here / "ComfyUI"),
-            (_here / ".." / "ComfyUI" / "main.py", _here / ".." / "ComfyUI"),
-            (_here / ".." / ".." / "ComfyUI" / "main.py", _here / ".." / ".." / "ComfyUI"),
-        ]
+        # ── 1. Read Desktop app config ──────────────────────────────────────
+        appdata = os.environ.get("APPDATA", "")
+        config_path = Path(appdata) / "ComfyUI" / "config.json"
+        extra_cfg   = Path(appdata) / "ComfyUI" / "extra_models_config.yaml"
 
-        for main_py, comfy_dir in comfy_candidates:
-            main_py  = main_py.resolve()
-            comfy_dir = comfy_dir.resolve()
-            if not main_py.exists():
-                continue
+        base_dir: Optional[Path] = None
+        exe_dir:  Optional[Path] = None
 
-            # Use the ComfyUI venv Python so all its dependencies are available.
-            # Fall back to the system Python only if the venv doesn't exist.
-            venv_py = comfy_dir / "venv" / "Scripts" / "python.exe"
-            if not venv_py.exists():
-                venv_py = comfy_dir / "venv" / "bin" / "python"   # Linux/macOS
-            py = str(venv_py) if venv_py.exists() else "python"
+        if config_path.exists():
+            try:
+                cfg = json.loads(config_path.read_text(encoding="utf-8"))
+                if cfg.get("basePath"):
+                    base_dir = Path(cfg["basePath"])
+            except Exception:
+                pass
 
-            print(f"  [..] Found ComfyUI at: {comfy_dir}")
-            subprocess.Popen(
-                [py, str(main_py), "--listen", "0.0.0.0", "--port", "8188"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                cwd=str(comfy_dir),
-            )
+        # ── 2. Locate main.py via the Start Menu shortcut ───────────────────
+        lnk_path = Path(appdata) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
+        if lnk_path.exists():
+            try:
+                import win32com.client as _w32
+                shell = _w32.Dispatch("WScript.Shell")
+                lnk   = shell.CreateShortcut(str(lnk_path))
+                exe_dir = Path(lnk.TargetPath).parent
+            except Exception:
+                pass
 
-            # Wait up to 120 seconds — ComfyUI loads all models at startup (~75s on RTX 3090)
-            print("  [..] Waiting for ComfyUI to become ready (up to 120s)...")
-            for _ in range(120):
-                time.sleep(1)
-                if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-                    print("  [OK] ComfyUI started successfully")
-                    return
+        if exe_dir is None:
+            # Fallback: well-known path on this machine
+            _candidate = Path("E:/Games/comfy/ComfyUI")
+            if _candidate.exists():
+                exe_dir = _candidate
 
-            print("  [!] ComfyUI startup timed out — it may still be loading models in the background")
+        main_py = exe_dir / "resources" / "ComfyUI" / "main.py" if exe_dir else None
+
+        if not main_py or not main_py.exists():
+            print("  [!] ComfyUI Desktop not found — start it manually from the Start Menu.")
             return
 
-        print("  [!] ComfyUI not found. Expected at: ~/ComfyUI/main.py")
-        print(f"      Install from: https://github.com/comfyanonymous/ComfyUI")
-        print(f"      Then start it: cd ~/ComfyUI && venv\\Scripts\\python main.py --listen 0.0.0.0 --port 8188")
+        if not base_dir or not base_dir.exists():
+            print("  [!] ComfyUI basePath not configured — open ComfyUI Desktop once to finish setup.")
+            return
+
+        venv_py = base_dir / ".venv" / "Scripts" / "python.exe"
+        if not venv_py.exists():
+            venv_py = base_dir / ".venv" / "bin" / "python"   # Linux/macOS fallback
+        if not venv_py.exists():
+            print(f"  [!] ComfyUI venv Python not found at {venv_py}")
+            return
+
+        print(f"  [..] Starting ComfyUI Desktop backend...")
+        print(f"       Python : {venv_py}")
+        print(f"       Script : {main_py}")
+        print(f"       BaseDir: {base_dir}")
+
+        cmd = [
+            str(venv_py), str(main_py),
+            "--base-directory",          str(base_dir),
+            "--user-directory",          str(base_dir / "user"),
+            "--input-directory",         str(base_dir / "input"),
+            "--output-directory",        str(base_dir / "output"),
+            "--listen",                  "127.0.0.1",
+            "--port",                    "8188",
+            "--highvram",
+            "--log-stdout",
+        ]
+        if extra_cfg.exists():
+            cmd += ["--extra-model-paths-config", str(extra_cfg)]
+
+        subprocess.Popen(cmd, cwd=str(base_dir),
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        # Wait up to 120 seconds — ComfyUI loads all models at startup (~90s on RTX 3090)
+        print("  [..] Waiting for ComfyUI to become ready (up to 120s)...")
+        for _ in range(120):
+            time.sleep(1)
+            if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+                print("  [OK] ComfyUI started successfully")
+                return
+
+        print("  [!] ComfyUI startup timed out — it may still be loading in the background")
+
     except Exception as e:
         print(f"  [X] Could not start ComfyUI: {e}")
 

@@ -53,12 +53,24 @@ from typing import Optional
 import requests
 
 # On Windows the default console encoding is cp1252 which can't represent many
-# Unicode characters that appear in art prompts and log messages (→, —, …, ⚠, etc.).
+# Unicode characters that appear in art prompts and log messages (—, …, ⚠, etc.).
 # Wrap stdout/stderr with UTF-8 so print() never raises UnicodeEncodeError.
-if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower().replace("-", "") != "utf8":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-if hasattr(sys.stderr, "buffer") and sys.stderr.encoding.lower().replace("-", "") != "utf8":
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+# Always rewrap if errors != "replace" so we get lossless fallback even if uvicorn
+# has already set encoding=utf-8 but without the errors= safety net.
+def _ensure_utf8_stdout() -> None:
+    for _attr in ("stdout", "stderr"):
+        _stream = getattr(sys, _attr, None)
+        if _stream is None:
+            continue
+        _enc = getattr(_stream, "encoding", "") or ""
+        _err = getattr(_stream, "errors",   "") or ""
+        if hasattr(_stream, "buffer") and (
+            _enc.lower().replace("-", "") != "utf8" or _err != "replace"
+        ):
+            setattr(sys, _attr,
+                    io.TextIOWrapper(_stream.buffer, encoding="utf-8", errors="replace"))
+
+_ensure_utf8_stdout()
 
 _COMFY_PORT_CANDIDATES = [8188, 8000, 8001, 8002]   # ports to probe in order
 OUTPUT_TIMEOUT         = 600        # seconds to wait for one image
@@ -861,6 +873,62 @@ _LORA_PRESETS: dict[str, dict] = {
         "style_guide_hint":  "ragnarok online card art style, anime fantasy illustration, vibrant jewel-tone colors, painterly character portraits, detailed fantasy adventure scenes",
         "themer_medium":     '"anime illustration," or "fantasy card art," or "painted anime portrait,"',
         "themer_quality":    '"detailed anime illustration, jewel-tone palette" or "painterly fantasy card art, vivid saturated colors" or "high-detail illustrated character, vibrant anime style"',
+        # themer_vocabulary: injected into the batch prompt so Ollama uses the exact
+        # token vocabulary the LoRA was trained on (elements, races, job-class tags).
+        # Format mirrors the training caption schema:
+        #   ragnarok online style, ro card art, [element] element, [race] race, [job tags], ..., [suffix]
+        "themer_vocabulary": (
+            "RAGNAROK ONLINE LoRA VOCABULARY — use these EXACT tokens, they activate trained visual concepts.\n"
+            "\n"
+            "PROMPT STRUCTURE: [medium], [element token], [race token], [job class tag(s)], [scene description], [suffix]\n"
+            "Insert element + race + class tags RIGHT AFTER the medium, BEFORE the scene.\n"
+            "\n"
+            "ELEMENT TOKENS — pick from card's MTG color identity (col 5):\n"
+            "  W (white)     -> holy element\n"
+            "  U (blue)      -> water element   (ethereal/ghost: ghost element)\n"
+            "  B (black)     -> shadow element  (undead creature: undead)\n"
+            "  R (red)       -> fire element\n"
+            "  G (green)     -> earth element   (wind/flying: wind element)\n"
+            "  Colorless     -> neutral element\n"
+            "  Multi-color   -> use dominant color or combine: 'holy fire element', 'water shadow element'\n"
+            "\n"
+            "RACE TOKENS — pick from creature subtype/flavor:\n"
+            "  Angel, Cleric, Divine       -> angel race\n"
+            "  Dragon, Wyvern              -> dragon race\n"
+            "  Beast, Wolf, Bear, Cat      -> brute race\n"
+            "  Zombie, Skeleton, Specter   -> undead race\n"
+            "  Merfolk, Serpent, Fish      -> fish race\n"
+            "  Goblin, Orc, Demon          -> demon race\n"
+            "  Human, Soldier, Knight      -> demihuman race\n"
+            "  Spider, Insect, Bug         -> insect race\n"
+            "  Plant, Saproling, Treefolk  -> plant race\n"
+            "  Elemental, Golem, Construct -> formless race\n"
+            "\n"
+            "JOB CLASS TAGS — match creature archetype (add 1-2 most fitting):\n"
+            "  Armored swordsman          -> knight | lord knight | rune knight\n"
+            "  Holy paladin/defender      -> crusader | paladin | royal guard\n"
+            "  Fire/ice/lightning mage    -> wizard | high wizard | warlock\n"
+            "  Healer, support caster     -> priest | archbishop | acolyte\n"
+            "  Shadow assassin, rogue     -> assassin | guillotine cross | shadow chaser\n"
+            "  Archer, marksman           -> hunter | sniper | ranger\n"
+            "  Martial monk, fist fighter -> monk | champion | sura\n"
+            "  Engineer, inventor         -> mechanic | blacksmith | genetic\n"
+            "  Ninja, shadow warrior      -> ninja | kagerou | oboro\n"
+            "  Gunner, gunslinger         -> gunslinger | rebellion\n"
+            "  Bard, musician             -> bard | clown | minstrel\n"
+            "  Dancer, performer          -> dancer | gypsy | wanderer\n"
+            "  Non-creature (spell/land)  -> omit class tag\n"
+            "\n"
+            "COMPOSITION SUFFIX — always end with one of these:\n"
+            "  'full body portrait, painterly background, saturated colors'\n"
+            "  'full body action pose, vibrant background, jewel-tone palette'\n"
+            "  'card illustration, detailed background, vivid colors'\n"
+            "\n"
+            "EXAMPLE (W/U creature — angel, holy paladin):\n"
+            "  fantasy card art, holy water element, angel race, archbishop, [white-winged healer in a misty shrine, golden light streaming down], full body portrait, painterly background, saturated colors\n"
+            "EXAMPLE (B/R instant — shadow fire, no creature class):\n"
+            "  fantasy card art, shadow fire element, [eruption of dark flame consuming a battlefield ruin at dusk], card illustration, detailed background, vivid colors"
+        ),
         # flux_prefix: not used for SDXL (Illustrious XL uses _SDXL_PREFIX instead).
         # Triggers are prepended via lora_trigger_prefix, which takes effect before _SDXL_PREFIX.
         "flux_prefix": None,
@@ -890,21 +958,60 @@ _LORA_PRESETS: dict[str, dict] = {
         # face_prefix: for character cards with face conditioning
         "face_prefix_medium": "Anime illustration portrait, ragnarok online style",
         "face_prefix_quality": "detailed anime face, expressive eyes, painterly skin tones, vibrant colors",
+        # loras: default/fallback list (used when lora_variants is absent or for
+        # lora_count in STYLE_PRESETS). Points to the illustrated style entries.
         "loras": [
             {
-                # v4: trained on 1374 original RO card/promo art (3x repeat) +
-                #     884 Danbooru job-class images (1x repeat).
-                # Captions include card names, element, race (e.g. "poring card, water element, plant race").
-                # Recognizes job classes via "ro promotional art, [job name]" trigger.
-                # Prefers v4 → v3 → v2 → generic fragment fallback.
-                "fragments":      ["ro_lora_v4", "ro_lora_v3", "ro_lora_v2", "ro_lora"],
+                "fragments":      ["ro_lora_v5", "ro_lora_v4", "ro_lora_v3", "ro_lora_v2", "ro_lora"],
                 "trigger":        "ragnarok online style, ro card art",
                 "model_strength": 0.85,
                 "clip_strength":  0.85,
                 "dark_only":      False,
-                "label":          "Ragnarok Online Style v4",
+                "label":          "Ragnarok Online Style v5",
                 "download_url":   None,
-                "download_note":  "ro_lora_v4.safetensors — trained on Illustrious XL v0.1 with semantic RO card names + Danbooru job classes",
+                "download_note":  "ro_lora_v5.safetensors — Illustrious XL, 1687 official art + 7881 Danbooru job classes, semantic card names",
+            },
+        ],
+        # lora_variants: randomly selects between illustrated style (2/3) and
+        # pixel art sprite style (1/3) on each card generation.
+        "lora_variants": [
+            {
+                "weight": 2,
+                "label":  "Illustrated Style",
+                "loras": [
+                    {
+                        # v5/v4/v3/v2 cascade: illustrated RO card art + job classes.
+                        # Captions include card names, element, race, job tags.
+                        # v5 adds 313 unique GRF card illustrations + more Danbooru data.
+                        "fragments":      ["ro_lora_v5", "ro_lora_v4", "ro_lora_v3", "ro_lora_v2", "ro_lora"],
+                        "trigger":        "ragnarok online style, ro card art",
+                        "model_strength": 0.85,
+                        "clip_strength":  0.85,
+                        "dark_only":      False,
+                        "label":          "Ragnarok Online Style",
+                        "download_url":   None,
+                        "download_note":  "ro_lora_v5.safetensors — train via train_v5.bat",
+                    },
+                ],
+            },
+            {
+                "weight": 1,
+                "label":  "Pixel Art Sprite Style",
+                "loras": [
+                    {
+                        # RO Sprite Pixel Art LoRA by Konan (civitai.com/models/1242746)
+                        # Trained on Illustrious/NoobAI XL — generates classic RO sprite-style
+                        # pixel art characters. Trigger: "pixel, full body, simple background".
+                        "fragments":      ["ro_pixel_sprite", "RagnarokSpriteNoob", "ragnarok_sprite"],
+                        "trigger":        "pixel art, ragnarok online style, full body, simple background, white background",
+                        "model_strength": 0.9,
+                        "clip_strength":  0.9,
+                        "dark_only":      False,
+                        "label":          "RO Pixel Sprite LoRA",
+                        "download_url":   "https://civitai.com/api/download/models/1400677",
+                        "download_note":  "RagnarokSpriteNoob_byKonan.safetensors → rename to ro_pixel_sprite_lora.safetensors",
+                    },
+                ],
             },
         ],
     },
@@ -919,9 +1026,13 @@ STYLE_PRESETS: dict[str, dict] = {
         "lora_count":       len(p["loras"]),
         # Themer vocabulary — passed to themer.theme_deck() so Ollama generates
         # prompts whose medium/quality language matches the active art style.
-        "style_guide_hint": p.get("style_guide_hint", ""),
-        "themer_medium":    p.get("themer_medium", '"digital painting," or "fantasy illustration," or "concept art,"'),
-        "themer_quality":   p.get("themer_quality", '"painterly brushwork, vivid colors" or "dramatic lighting, intricate detail" or "painterly, rich texture"'),
+        "style_guide_hint":   p.get("style_guide_hint", ""),
+        "themer_medium":      p.get("themer_medium", '"digital painting," or "fantasy illustration," or "concept art,"'),
+        "themer_quality":     p.get("themer_quality", '"painterly brushwork, vivid colors" or "dramatic lighting, intricate detail" or "painterly, rich texture"'),
+        # themer_vocabulary: style-specific token vocabulary injected into the LLM
+        # batch prompt (currently only set for ragnarok_online — trains the LLM to use
+        # LoRA-trained concept tokens like "holy element", "angel race", "archbishop").
+        "themer_vocabulary":  p.get("themer_vocabulary", ""),
     }
     for key, p in _LORA_PRESETS.items()
 }
@@ -1802,9 +1913,25 @@ class ImageGen:
         if not installed:
             return
 
+        # ── Variant selection ─────────────────────────────────────────────────
+        # If the preset defines lora_variants (list of {"weight": N, "label": str,
+        # "loras": [...]}) randomly pick one variant proportional to weights.
+        # This lets a single preset produce different visual styles per-card,
+        # e.g. illustrated art 2/3 of the time, pixel art 1/3 of the time.
+        lora_list = preset["loras"]
+        variant_label = ""
+        variants = preset.get("lora_variants")
+        if variants:
+            weights = [v.get("weight", 1) for v in variants]
+            chosen = random.choices(variants, weights=weights, k=1)[0]
+            lora_list = chosen["loras"]
+            variant_label = f" [{chosen.get('label', 'variant')}]"
+            print(f"  [image_gen] LoRA variant selected:{variant_label} "
+                  f"(weights={weights})")
+
         found: list[dict] = []
         missing_labels: list[str] = []
-        for entry in preset["loras"]:
+        for entry in lora_list:
             frags = entry.get("fragments", [entry.get("fragment", "")])
             match = next(
                 (f for f in installed
@@ -1822,7 +1949,7 @@ class ImageGen:
             self.lora_trigger_prefix = ", ".join(triggers) + ". " if triggers else ""
             labels = [e["label"] for e in found]
             model_type = "SDXL" if is_sdxl else "FLUX"
-            print(f"  [image_gen] LoRAs active ({len(found)}/{len(preset['loras'])}) [{model_type}]: "
+            print(f"  [image_gen] LoRAs active ({len(found)}/{len(lora_list)}){variant_label} [{model_type}]: "
                   f"{'; '.join(labels)}")
         if missing_labels:
             print(f"  [image_gen] LoRAs missing for '{style_label}': "
@@ -1845,7 +1972,7 @@ class ImageGen:
                 )
             if r.status_code == 200:
                 name = r.json().get("name")
-                print(f"  [image_gen] Uploaded face → ComfyUI input/{name}")
+                print(f"  [image_gen] Uploaded face -> ComfyUI input/{name}")
                 return name
             else:
                 print(f"  [image_gen] Face upload returned {r.status_code}")
@@ -1946,7 +2073,7 @@ class ImageGen:
 
             # Log status transitions so we know what ComfyUI is doing
             if status_str != last_status_str:
-                print(f"  [image_gen] [{elapsed:.1f}s] ComfyUI status → {status_str!r}")
+                print(f"  [image_gen] [{elapsed:.1f}s] ComfyUI status -> {status_str!r}")
                 last_status_str = status_str
 
             # ── Detect ComfyUI execution errors ──────────────────────────────

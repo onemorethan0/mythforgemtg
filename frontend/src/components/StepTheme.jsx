@@ -10,6 +10,117 @@ const EXAMPLES = [
   'volcanic dragon empire',
 ]
 
+// ── Ragnarok Online specific constants ────────────────────────────────────────
+const RO_THEMES = [
+  'Prontera castle grounds, golden spires, holy light',
+  'Morroc desert ruins, sandstone sphinx, scorched dunes',
+  'Geffen dark magic tower, purple arcane glow, cobblestone streets',
+  'Payon bamboo forest village, cherry blossoms, warm lantern light',
+  'Alberta harbor docks, stormy sea, merchant ships',
+  'Niflheim underworld, eerie fog, bone architecture, twilight',
+  'Lighthalzen industrial laboratory, brass pipes, alchemical glow',
+  'Amatsu samurai palace, cherry blossoms, paper lanterns, moonlight',
+  'Einbroch factory mines, steam vents, iron scaffolding',
+  'Lutie snowfield, toy factory, soft snowfall, festive lights',
+]
+
+const RO_JOB_CLASSES = [
+  {
+    group: 'Novice', color: '#94a3b8',
+    classes: [
+      'Novice',
+      'Super Novice',
+    ],
+  },
+  {
+    group: 'Swordsman', color: '#ef4444',
+    classes: [
+      'Swordsman',
+      'Knight', 'Lord Knight', 'Rune Knight',
+      'Crusader', 'Paladin', 'Royal Guard',
+    ],
+  },
+  {
+    group: 'Mage', color: '#818cf8',
+    classes: [
+      'Mage',
+      'Wizard', 'High Wizard', 'Warlock',
+      'Sage', 'Professor', 'Sorcerer',
+    ],
+  },
+  {
+    group: 'Acolyte', color: '#fbbf24',
+    classes: [
+      'Acolyte',
+      'Priest', 'High Priest', 'Archbishop',
+      'Monk', 'Champion', 'Sura',
+    ],
+  },
+  {
+    group: 'Merchant', color: '#fb923c',
+    classes: [
+      'Merchant',
+      'Blacksmith', 'Whitesmith', 'Mechanic',
+      'Alchemist', 'Creator', 'Genetic',
+    ],
+  },
+  {
+    group: 'Archer', color: '#4ade80',
+    classes: [
+      'Archer',
+      'Hunter', 'Sniper', 'Ranger',
+      'Bard', 'Clown', 'Minstrel',
+      'Dancer', 'Gypsy', 'Wanderer',
+    ],
+  },
+  {
+    group: 'Thief', color: '#a78bfa',
+    classes: [
+      'Thief',
+      'Assassin', 'Assassin Cross', 'Guillotine Cross',
+      'Rogue', 'Stalker', 'Shadow Chaser',
+    ],
+  },
+  {
+    group: 'Taekwon', color: '#38bdf8',
+    classes: [
+      'Taekwon',
+      'Star Gladiator',
+      'Soul Linker',
+    ],
+  },
+  {
+    group: 'Gunslinger', color: '#f472b6',
+    classes: [
+      'Gunslinger',
+      'Rebellion',
+    ],
+  },
+  {
+    group: 'Ninja', color: '#2dd4bf',
+    classes: [
+      'Ninja',
+      'Kagerou',
+      'Oboro',
+    ],
+  },
+  {
+    group: 'Doram', color: '#e879f9',
+    classes: [
+      'Summoner',
+    ],
+  },
+]
+
+const RO_BORDER_PRESETS = [
+  { label: '🏰 Prontera Stone', kw: 'Prontera stone brickwork runes', col: '#fbbf24' },
+  { label: '✦ Arcane Runes',   kw: 'glowing arcane Geffen rune sigils', col: '#818cf8' },
+  { label: '🌸 Amatsu Scroll', kw: 'cherry blossom petal scroll border', col: '#f9a8d4' },
+  { label: '💀 Niflheim Bone', kw: 'bone and shadow wisp underworld', col: '#a78bfa' },
+  { label: '⚙ Lighthalzen',   kw: 'brass gear alchemical circuit border', col: '#22d3ee' },
+  { label: '🌿 Payon Bamboo',  kw: 'bamboo and vine nature border', col: '#4ade80' },
+]
+
 const BRACKETS = [
   {
     n: 1, label: 'Exhibition',
@@ -108,6 +219,7 @@ export default function StepTheme({
   onNext, onBack,
 }) {
   const [loading, setLoading]           = useState(false)
+  const [roJobClass, setRoJobClass]     = useState('')   // currently-pinned RO job class
   const [hasSchnell, setHasSchnell]     = useState(false)
   const [hasDev, setHasDev]             = useState(false)
   const [hasSd35, setHasSd35]           = useState(false)
@@ -118,6 +230,7 @@ export default function StepTheme({
   const [llmModels, setLlmModels]       = useState([])
   const [checkpoints, setCheckpoints]   = useState([])
   const selected = BRACKETS.find(b => b.n === bracket) || BRACKETS[2]
+  const isRO = artStyle === 'ragnarok_online'
 
   // Derived: type of the currently selected checkpoint
   const activeCheckpointType = (() => {
@@ -254,6 +367,16 @@ export default function StepTheme({
     return () => { cancelled = true }
   }, [])
 
+  // ── RO mode: auto-enable art gen + SDXL when ragnarok_online is selected ──
+  useEffect(() => {
+    if (!isRO) return
+    if (!generateArt) onGenerateArtChange(true)
+    if (checkpoints.length) {
+      const sdxlCkpt = checkpoints.find(c => (c.type || '').toUpperCase().includes('SDXL'))
+      if (sdxlCkpt && checkpoint !== sdxlCkpt.filename) onCheckpointChange(sdxlCkpt.filename)
+    }
+  }, [isRO, checkpoints])
+
   // ── Auto-select checkpoint when art style requires a specific model type ──
   useEffect(() => {
     if (!generateArt || !stylePresets.length || !checkpoints.length) return
@@ -284,6 +407,23 @@ export default function StepTheme({
     }
     // SDXL: model_speed irrelevant when checkpoint is explicit — leave as-is
   }, [checkpoint, checkpoints])
+
+  // ── RO job class picker handler ────────────────────────────────────────────
+  function pickRoJobClass(cls) {
+    const newClass = roJobClass === cls ? '' : cls
+    setRoJobClass(newClass)
+    // Remove any previously pinned class from the prompt, then prepend the new one
+    let base = commanderPrompt
+    if (roJobClass) {
+      const escaped = roJobClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      base = base.replace(new RegExp(`\\s*,?\\s*${escaped}\\s*(class|job)?\\s*,?`, 'i'), '').trim().replace(/^,\s*/, '').replace(/,\s*$/, '')
+    }
+    if (newClass) {
+      onCommanderPromptChange(base ? `${newClass} class, ${base}` : `${newClass} class`)
+    } else {
+      onCommanderPromptChange(base)
+    }
+  }
 
   async function handleNext() {
     setLoading(true)
@@ -365,23 +505,51 @@ export default function StepTheme({
         {/* Divider */}
         <div style={{ height: 1, background: '#292524', marginBottom: 20 }} />
 
+        {/* ── RO info banner ── */}
+        {isRO && (
+          <div style={{
+            display: 'flex', gap: 12, padding: '12px 16px', marginBottom: 20,
+            background: '#0a0c14', border: '1px solid #3730a344', borderRadius: 12,
+            borderLeft: '3px solid #818cf8',
+          }}>
+            <span style={{ fontSize: 22, flexShrink: 0 }}>⚔️</span>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#818cf8', marginBottom: 4 }}>
+                Ragnarok Online Mode
+              </div>
+              <div style={{ fontSize: 11, color: '#57534e', lineHeight: 1.6 }}>
+                Illustrious XL + RO LoRA active. Art prompts automatically receive element tokens from mana color identity, race/class tags, and composition suffixes tuned to the training data. Pick a world location below and optionally pin a job class for your commander.
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ── World & Palette theme ── */}
         <div style={s.section}>
-          <label style={s.label}>World &amp; Color Theme</label>
+          <label style={s.label}>{isRO ? 'World Location & Mood' : 'World & Color Theme'}</label>
           <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8 }}>
-            Describe the setting, mood, and palette. Colors here blend with each card's MTG mana identity — a black card in a neon theme stays dark and electric, not pastel.
+            {isRO
+              ? 'Choose an RO world setting. The theme sets the palette and scene context for every card — it blends with each card\'s mana color identity.'
+              : 'Describe the setting, mood, and palette. Colors here blend with each card\'s MTG mana identity — a black card in a neon theme stays dark and electric, not pastel.'
+            }
           </div>
           <textarea
             style={s.textarea}
-            placeholder="e.g. dark gothic necromancer city with bone-white spires and sickly green fog"
+            placeholder={isRO
+              ? 'e.g. Prontera castle grounds, golden spires, holy light streaming through stained glass'
+              : 'e.g. dark gothic necromancer city with bone-white spires and sickly green fog'
+            }
             value={theme}
             onChange={e => onThemeChange(e.target.value)}
             rows={2}
           />
-          <p style={s.exLabel}>Examples (click to use)</p>
+          <p style={s.exLabel}>{isRO ? 'RO World Locations (click to use)' : 'Examples (click to use)'}</p>
           <div style={s.exGrid}>
-            {EXAMPLES.map(ex => (
-              <button key={ex} style={s.exBtn} onClick={() => onThemeChange(ex)}>{ex}</button>
+            {(isRO ? RO_THEMES : EXAMPLES).map(ex => (
+              <button key={ex} style={{
+                ...s.exBtn,
+                ...(isRO && theme === ex ? { background: '#0a0c14', border: '1px solid #818cf8', color: '#818cf8' } : {}),
+              }} onClick={() => onThemeChange(ex)}>{ex}</button>
             ))}
           </div>
         </div>
@@ -396,12 +564,62 @@ export default function StepTheme({
           </div>
           <textarea
             style={{ ...s.textarea, minHeight: 64 }}
-            placeholder={`e.g. scarred warrior in obsidian plate armor with crimson cape and glowing rune tattoos`}
+            placeholder={isRO
+              ? `e.g. Lord Knight in full plate armor, red cape, two-handed sword, heroic stance`
+              : `e.g. scarred warrior in obsidian plate armor with crimson cape and glowing rune tattoos`
+            }
             value={commanderPrompt}
             onChange={e => onCommanderPromptChange(e.target.value)}
             rows={2}
           />
         </div>
+
+        {/* ── RO Job Class Picker ── */}
+        {isRO && (
+          <div style={{ marginBottom: 24 }}>
+            <label style={s.label}>
+              Job Class <span style={{ color: '#57534e', fontWeight: 400 }}>(optional — pins a class to commander art)</span>
+            </label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10 }}>
+              Selecting a class prepends its job tag to the Commander Appearance prompt, anchoring art generation to that class archetype.
+            </div>
+            {RO_JOB_CLASSES.map(({ group, color, classes }) => (
+              <div key={group} style={{ marginBottom: 10 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 5 }}>
+                  {group}
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {classes.map(cls => {
+                    const active = roJobClass === cls
+                    return (
+                      <button
+                        key={cls}
+                        onClick={() => pickRoJobClass(cls)}
+                        style={{
+                          fontSize: 11, padding: '4px 10px',
+                          background: active ? `${color}22` : '#0c0a09',
+                          border: `1px solid ${active ? color : '#44403c'}`,
+                          borderRadius: 20, color: active ? color : '#78716c',
+                          cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.12s',
+                        }}
+                      >
+                        {cls}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+            {roJobClass && (
+              <button
+                onClick={() => pickRoJobClass(roJobClass)}
+                style={{ marginTop: 4, fontSize: 11, color: '#57534e', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              >
+                ✕ Clear job class
+              </button>
+            )}
+          </div>
+        )}
 
         {/* ── Your Name (commander first-name replacement) ── */}
         <div style={s.section}>
@@ -470,7 +688,7 @@ export default function StepTheme({
           />
           {/* Style preview chips */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
-            {[
+            {(isRO ? RO_BORDER_PRESETS : [
               { label: '🌿 Vine',    kw: 'flowering vines and leaves',  col: '#4ade80' },
               { label: '❄ Frost',   kw: 'icy crystalline frost',        col: '#7dd3fc' },
               { label: '🔥 Flame',  kw: 'fire and ember sparks',        col: '#fb923c' },
@@ -479,7 +697,7 @@ export default function StepTheme({
               { label: '🌊 Wave',   kw: 'ocean waves and droplets',      col: '#38bdf8' },
               { label: '🌑 Shadow', kw: 'dark shadow wisps',             col: '#a78bfa' },
               { label: '🏅 Ornate', kw: 'golden baroque scrollwork',     col: '#fbbf24' },
-            ].map(({ label, kw, col }) => (
+            ]).map(({ label, kw, col }) => (
               <button
                 key={kw}
                 onClick={() => onBorderThemeChange(borderTheme === kw ? '' : kw)}
@@ -528,13 +746,19 @@ export default function StepTheme({
             <div style={{ ...s.toggleThumb, left: generateArt ? 18 : 2 }} />
           </button>
           <div style={{ flex: 1 }}>
-            <div style={s.toggleLabel}>Generate card art with ComfyUI FLUX</div>
+            <div style={s.toggleLabel}>
+              {isRO ? 'Generate card art with ComfyUI (Illustrious XL + RO LoRA)' : 'Generate card art with ComfyUI FLUX'}
+            </div>
             <div style={s.toggleSlow}>
               {generateArt && !comfyOffline
-                ? (hasDev && hasSchnell ? 'Dev & Schnell detected' : hasDev ? 'FLUX Dev detected' : hasSchnell ? 'FLUX Schnell detected' : 'Checkpoint detected')
+                ? isRO
+                  ? (hasSDXL ? '✓ Illustrious XL detected — RO LoRA ready' : '⚠ No SDXL checkpoint found — RO LoRA requires Illustrious XL')
+                  : (hasDev && hasSchnell ? 'Dev & Schnell detected' : hasDev ? 'FLUX Dev detected' : hasSchnell ? 'FLUX Schnell detected' : 'Checkpoint detected')
                 : generateArt && comfyOffline
                   ? '⚠ ComfyUI not running — start it before building'
-                  : 'Requires local ComfyUI + FLUX checkpoint.'}
+                  : isRO
+                    ? 'Requires local ComfyUI + Illustrious XL checkpoint.'
+                    : 'Requires local ComfyUI + FLUX checkpoint.'}
             </div>
           </div>
         </div>
