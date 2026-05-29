@@ -602,7 +602,7 @@ def _free_all_vram(job_id: str = "") -> None:
       • _wait_for_comfyui_unload() polls for _VRAM_OLLAMA_CLEAR_GB (18 GB) free,
         but CUDA's caching allocator keeps freed PyTorch pages resident until
         torch.cuda.empty_cache() completes, which may never drive vram_free above
-        the threshold within _EVICT_MAX_WAIT (120 s) on --highvram ComfyUI.
+        the threshold within _EVICT_MAX_WAIT (120 s) while ComfyUI holds models.
         That 120-second timeout IS the "long hang after cancel" the user sees.
       • We don't need to gate on VRAM here because nothing is about to load.
         The *next* build's own pre-flight gate (_wait_for_ollama_evict /
@@ -916,9 +916,9 @@ def _run_build(job_id: str, req: BuildRequest):
             with _art_lock:
                 pass   # block until the lock is free, then release immediately
 
-        # Free ComfyUI FLUX from VRAM before Ollama runs.
-        # With --highvram, FLUX stays resident between builds (~12 GB).
-        # Polling /system_stats ensures VRAM is actually free before Ollama loads.
+        # Free ComfyUI from VRAM before Ollama runs.
+        # ComfyUI can hold the image model resident between builds (~11-12 GB);
+        # polling /system_stats ensures VRAM is actually free before Ollama loads.
         _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Freeing GPU for Ollama…"}))
         _wait_for_comfyui_unload(job_id)
 
@@ -3437,7 +3437,13 @@ def _start_comfyui() -> None:
             "--output-directory",        str(base_dir / "output"),
             "--listen",                  "127.0.0.1",
             "--port",                    "8188",
-            "--highvram",
+            # --normalvram (not --highvram): on a 24 GB card the FLUX dev fp8 UNet
+            # + T5 text encoder + VAE + LoRAs + ReActor models exceed 24 GB when
+            # forced fully-resident, so Windows WDDM spills several GB to shared
+            # system RAM over PCIe and sampling crawls (5-20x slower). normalvram
+            # keeps the UNet on-GPU for fast sampling but offloads the ~5 GB text
+            # encoder after conditioning, which keeps peak VRAM under the limit.
+            "--normalvram",
             "--log-stdout",
         ]
         if extra_cfg.exists():
