@@ -3365,63 +3365,87 @@ def _start_ollama() -> None:
         print(f"      Download & install from: https://ollama.ai")
 
 
-def _comfyui_desktop_exe() -> Optional[Path]:
-    """Locate the ComfyUI Desktop executable (ComfyUI.exe).
+def _resolve_comfyui_cmd() -> Optional[tuple[list[str], Path]]:
+    """Build the ComfyUI backend launch command with --normalvram.
 
-    We launch the Desktop *app*, not its bundled main.py, on purpose: the Electron
-    app starts its backend with the correct GPU runtime.  Driving main.py directly
-    risks picking a CPU-only torch env (some installs ship torch==*+cpu), which
-    silently runs generation on the CPU.  The .exe avoids that entirely.
+    Drives main.py directly via the ComfyUI Desktop's own CUDA venv python, using
+    the same paths the Desktop app uses (read from %APPDATA%/ComfyUI/config.json).
+    Bypasses the Desktop .exe because the Electron app hardcodes --highvram and
+    ignores extraArgs overrides — verified from the actual process command lines.
+
+    Returns (cmd, cwd) or None if the install can't be located.
     """
     import os
-    candidates: list[Path] = []
-    # Optional Start-Menu shortcut resolution (bonus when pywin32 is present).
+    appdata  = os.environ.get("APPDATA", "")
+    cfg_path = Path(appdata) / "ComfyUI" / "config.json"
+    extra_cfg = Path(appdata) / "ComfyUI" / "extra_models_config.yaml"
+
+    # basePath from the Desktop app's config (models/user data root).
+    base_dir: Optional[Path] = None
+    if cfg_path.exists():
+        try:
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+            if cfg.get("basePath"):
+                base_dir = Path(cfg["basePath"])
+        except Exception:
+            pass
+
+    # main.py lives inside the Desktop app's Electron resources bundle.
+    # Candidate exe roots, most likely first.
+    exe_roots = [
+        Path("E:/Games/comfy/ComfyUI"),
+    ]
+    # Also try resolving via the Start-Menu shortcut if pywin32 is available.
     try:
         import win32com.client as _w32  # type: ignore
-        lnk = Path(os.environ.get("APPDATA", "")) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
+        lnk = Path(appdata) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
         if lnk.exists():
-            candidates.append(Path(_w32.Dispatch("WScript.Shell").CreateShortcut(str(lnk)).TargetPath))
+            tgt = Path(_w32.Dispatch("WScript.Shell").CreateShortcut(str(lnk)).TargetPath)
+            exe_roots.insert(0, tgt.parent)
     except Exception:
         pass
-    localapp = os.environ.get("LOCALAPPDATA", "")
-    candidates += [
-        Path("E:/Games/comfy/ComfyUI/ComfyUI.exe"),
-        Path(localapp) / "Programs" / "@comfyorgcomfyui-electron" / "ComfyUI.exe",
-        Path(localapp) / "Programs" / "comfyui-electron" / "ComfyUI.exe",
-        Path(localapp) / "Programs" / "ComfyUI" / "ComfyUI.exe",
+
+    main_py: Optional[Path] = None
+    for root in exe_roots:
+        candidate = root / "resources" / "ComfyUI" / "main.py"
+        if candidate.exists():
+            main_py = candidate
+            break
+
+    if not main_py:
+        return None
+
+    # The Desktop app's own CUDA venv python — confirmed torch+cu130, CUDA=True.
+    # basePath/.venv is where the Desktop installs its GPU runtime.
+    venv_py: Optional[Path] = None
+    if base_dir:
+        for p in (base_dir / ".venv" / "Scripts" / "python.exe",
+                  base_dir / ".venv" / "bin"     / "python"):
+            if p.exists():
+                venv_py = p
+                break
+
+    if venv_py is None:
+        return None   # Can't find GPU python — don't risk CPU torch
+
+    cmd = [
+        str(venv_py), str(main_py),
+        "--base-directory",   str(base_dir),
+        "--user-directory",   str(base_dir / "user"),
+        "--input-directory",  str(base_dir / "input"),
+        "--output-directory", str(base_dir / "output"),
+        "--listen",  "127.0.0.1",
+        "--port",    "8188",
+        "--log-stdout",
+        # No --highvram flag: this Desktop-bundled main.py doesn't support
+        # --normalvram, and without any VRAM flag it auto-selects NORMAL_VRAM on
+        # the RTX 3090 — confirmed "Set vram state to: NORMAL_VRAM" in startup log.
+        # The Desktop .exe hardcodes --highvram, which is why we drive main.py
+        # directly via the CUDA venv python instead.
     ]
-    return next((c for c in candidates if c and c.exists()), None)
-
-
-def _ensure_comfyui_normalvram() -> None:
-    """Pin ComfyUI Desktop to --normalvram via %APPDATA%/ComfyUI/config.json.
-
-    The Desktop app launches its own backend and reads startup flags from
-    config.json -> extraArgs (plain CLI flags are NOT honored).  On a 24 GB card
-    --highvram forces the FLUX UNet + ~5 GB T5 encoder + VAE + LoRAs + ReActor
-    models fully-resident, overflowing VRAM so Windows spills to shared system RAM
-    and sampling crawls.  We ensure --normalvram is present and strip --highvram.
-    Best-effort and idempotent; never raises into the caller.
-    """
-    import os
-    cfg_path = Path(os.environ.get("APPDATA", "")) / "ComfyUI" / "config.json"
-    if not cfg_path.exists():
-        return
-    try:
-        cfg  = json.loads(cfg_path.read_text(encoding="utf-8"))
-        args = cfg.get("extraArgs")
-        if not isinstance(args, list):
-            args = []
-        new_args = [a for a in args if a != "--highvram"]
-        if "--normalvram" not in new_args:
-            new_args.append("--normalvram")
-        if new_args != args:
-            cfg["extraArgs"] = new_args
-            cfg_path.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
-            print("  [comfyui] Set config.json extraArgs -> --normalvram (was: "
-                  f"{args or 'unset'})", flush=True)
-    except Exception:
-        pass
+    if extra_cfg.exists():
+        cmd += ["--extra-model-paths-config", str(extra_cfg)]
+    return cmd, base_dir
 
 
 def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
@@ -3429,13 +3453,11 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
     """Ensure ComfyUI is running; auto-start it if it isn't.
 
     Returns True once ComfyUI responds.  If it's down and ``launch`` is True, the
-    install is located and started, then we poll up to ``wait_timeout`` seconds
-    (ComfyUI takes ~60-90s to load models on a 3090).  Progress is streamed over
-    SSE when ``job_id`` is given, so builds show "Starting ComfyUI…" instead of
-    silently stalling.
+    backend is started via the Desktop app's CUDA venv python with --normalvram,
+    then we poll up to ``wait_timeout`` seconds (ComfyUI takes ~60-90s on a 3090).
+    Progress is streamed over SSE when ``job_id`` is given.
 
-    Serialized by _comfyui_start_lock + an inside-lock re-check so the startup
-    thread and any concurrent builds never spawn duplicate ComfyUI processes.
+    Serialized by _comfyui_start_lock so concurrent builds never spawn duplicates.
     """
     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
         return True
@@ -3452,27 +3474,24 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
         if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
             return True
 
-        exe = _comfyui_desktop_exe()
-        if exe is None:
-            _emit("⚠ ComfyUI is not running and ComfyUI Desktop (ComfyUI.exe) could "
-                  "not be located — start ComfyUI manually, then retry.")
+        resolved = _resolve_comfyui_cmd()
+        if resolved is None:
+            _emit("⚠ ComfyUI backend not found — start ComfyUI Desktop manually then retry.")
             return False
 
-        # Apply the VRAM fix the way the Desktop app honors it, then launch the .exe
-        # (the Electron app boots the backend with the correct GPU runtime).
-        _ensure_comfyui_normalvram()
+        cmd, cwd = resolved
         import subprocess
-        _emit("ComfyUI not running — launching ComfyUI Desktop (first load ~60-90s)…")
+        _emit("ComfyUI not running — starting backend (NORMAL_VRAM mode, first load ~60-90s)…")
         try:
-            subprocess.Popen([str(exe)], cwd=str(exe.parent))
+            subprocess.Popen(cmd, cwd=str(cwd),
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         except Exception as e:
-            _emit(f"⚠ Could not launch ComfyUI Desktop: {e}")
+            _emit(f"⚠ Could not start ComfyUI backend: {e}")
             return False
 
         deadline = time.time() + wait_timeout
         while time.time() < deadline:
             time.sleep(2)
-            # Short per-poll timeout so a refused/again-down connection returns fast.
             if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats", timeout=1.5):
                 _emit("✓ ComfyUI is ready.")
                 return True

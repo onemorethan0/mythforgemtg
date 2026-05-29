@@ -224,7 +224,16 @@ if not exist "%COMFY_PYTHON%" (
   set COMFY_PYTHON=python
 )
 
-start "ComfyUI" /D "%COMFY_DIR%" "%COMFY_PYTHON%" main.py --listen 0.0.0.0 --port 8188
+REM Do NOT pass --highvram: on a 24 GB RTX 3090, FLUX + LoRAs + ReActor overflow
+REM VRAM and spill to system RAM. Without any VRAM flag, ComfyUI auto-selects
+REM NORMAL_VRAM which offloads the T5 encoder after use, keeping within budget.
+set COMFY_BASE=%APPDATA%\ComfyUI
+start "ComfyUI" /D "%COMFY_DIR%" "%COMFY_PYTHON%" main.py ^
+  --base-directory "%COMFY_BASE%" ^
+  --user-directory "%COMFY_BASE%\user" ^
+  --input-directory "%COMFY_BASE%\input" ^
+  --output-directory "%COMFY_BASE%\output" ^
+  --listen 127.0.0.1 --port 8188 --log-stdout
 
 echo   [*] ComfyUI launching... check http://localhost:8188 in ~30 seconds.
 echo.
