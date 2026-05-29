@@ -422,9 +422,14 @@ async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGe
 # → We warn and wait up to 120 s.  If VRAM doesn't clear in time we abort art
 #   gen rather than letting Windows crash the whole machine.
 
-_VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum free VRAM before loading FLUX+LoRAs
-_VRAM_OLLAMA_CLEAR_GB   = 18.0   # target free VRAM after Ollama eviction
-                                  # (24 GB card − 6 GB OS/driver overhead = 18 GB "clear")
+_VRAM_FLUX_REQUIRED_GB  = 10.0   # minimum free VRAM before loading FLUX+LoRAs
+                                  # FLUX dev fp8 UNet ≈ 8.5 GB + LoRA overhead ≈ 1 GB
+                                  # (was 16.0 for --highvram; NORMAL_VRAM keeps FLUX
+                                  #  resident so much less headroom is needed)
+_VRAM_OLLAMA_CLEAR_GB   = 14.0   # target free VRAM after ComfyUI unload before Ollama
+                                  # Ollama qwen3:14b ≈ 8 GB; after /free VRAM clears to
+                                  # ~16 GB free, 14 GB threshold comfortably met
+                                  # (was 18.0, calibrated for --highvram eviction cycles)
 _EVICT_POLL_INTERVAL    = 3.0    # seconds between VRAM polls (increased from 2.0 for efficiency)
 _EVICT_MAX_WAIT         = 120    # seconds — large models (27B, 23 GB) need up to 60 s
 
@@ -534,13 +539,16 @@ def _wait_for_ollama_evict(model: str, job_id: str = "") -> bool:
     model_is_loaded = any(model_base in m for m in loaded_now)
 
     if not model_is_loaded and not loaded_now:
-        # Nothing loaded — VRAM pressure must be from something else (e.g. a
-        # previous ComfyUI run still resident).  Skip Ollama POST, go straight
-        # to VRAM poll so we still gate on physical memory clearing.
+        # Ollama not loaded — nothing to evict.  VRAM pressure (if any) comes from
+        # ComfyUI's own resident models (NORMAL_VRAM keeps FLUX in VRAM between jobs).
+        # That's exactly where we want FLUX — do NOT wait for it to disappear.
+        # ComfyUI is already ready to accept the next generation job.
         if job_id:
-            print(f"  [vram] Ollama idle — skipping keep_alive=0, waiting for VRAM…")
-        return _wait_for_vram(_VRAM_FLUX_REQUIRED_GB, job_id=job_id,
-                              label="pre-FLUX VRAM gate")
+            free_v = _comfyui_vram_free_gb()
+            free_s = f"{free_v:.1f}" if free_v is not None else "?"
+            print(f"  [vram] Ollama not loaded — ComfyUI models resident "
+                  f"({free_s} GB free). Proceeding to generation.")
+        return True
 
     # Send eviction request via both endpoints — models loaded via chat API
     # sometimes don't respond to the /api/generate keep_alive signal alone.
