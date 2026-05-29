@@ -186,6 +186,61 @@ export default function App() {
     setStep(STEP.BUILDING)
   }
 
+  // ── Edit & Rebuild: re-enter the wizard with this deck's settings prefilled ──
+  // Lands on the Theme step (where most regeneration knobs live) with the
+  // commander reconstructed and every parameter pre-populated for editing.
+  // Building from here creates a NEW deck — the original is left untouched.
+  async function handleEditDeck(d) {
+    if (!d) return
+
+    // Reconstruct the commander card the wizard expects from stored deck data.
+    const cmd = d.commander || {}
+    setCommander({
+      name:        cmd.original_name || '',
+      full_name:   cmd.original_name || '',
+      mana_cost:   cmd.mana_cost || '',
+      type_line:   cmd.type_line || '',
+      oracle_text: cmd.oracle_text || '',
+      colors:      cmd.colors || [],
+      image_url:   cmd.scryfall_img || '',
+      legal:       true,
+    })
+
+    // deck.json persists the playstyle LABEL; reverse-map it back to its key
+    // so the Playstyle step shows the original selection. Falls back to 'auto'.
+    let psKey = 'auto'
+    try {
+      const list  = await fetch('/api/playstyles').then(r => r.json())
+      const match = (list || []).find(p => p.label === d.playstyle)
+      if (match) psKey = match.key
+    } catch {}
+    setPlaystyle(psKey)
+
+    setBracket(d.bracket || 3)
+    setTheme(d.theme || '')
+    setCommanderPrompt(d.commander_prompt || '')
+    setUserName(d.user_name || '')
+    setEmblemPrompt(d.emblem_prompt || '')
+    setBorderTheme(d.border_theme || '')
+    setArtStyle(d.art_style || 'mtg_fantasy')
+    setGenerateArt(!!d.generate_art)
+    setModelSpeed(d.model_speed || 'quality')
+    setCheckpoint(d.checkpoint || '')
+    setLlmModel(d.llm_model || 'qwen3:14b')
+    // Preserve face/crew selection in state (the Face step can't re-display an
+    // existing key, so we skip it on re-entry rather than risk nulling it).
+    setFaceKey(d.face_key || null)
+    setFaceMethod(null)
+    setFaceGender(d.face_gender || 'either')
+    setCrewKey(d.crew_key || null)
+    setCrewGender(d.crew_gender || 'either')
+
+    // Fresh build → new job id; clear the old one so we don't reconnect to it.
+    _setJobId(null)
+    setDeck(null)
+    setStep(STEP.THEME)
+  }
+
   // Steps shown in the progress indicator (everything before DECK)
   const showProgress = step >= STEP.COMMANDER && step <= STEP.BUILDING
 
@@ -329,7 +384,7 @@ export default function App() {
         )}
 
         {step === STEP.DECK && (
-          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} />
+          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} />
         )}
 
         {step === STEP.HISTORY && (

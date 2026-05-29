@@ -547,7 +547,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate }) {
+export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit }) {
   const [filter, setFilter]   = useState('All')
   const [view, setView]       = useState('gallery')
 
@@ -1083,6 +1083,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing} title="Re-generate ALL card art with new random seeds"
               style={{ ...btnBase, background: rebuilding ? '#2e1065' : '#3b0764', color: rebuilding ? '#7c3aed' : '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 600, opacity: rebuilding ? 0.7 : 1 }}>
               {rebuilding ? '⏳ Starting…' : '🔄 Rebuild All'}
+            </button>
+          )}
+          {onEdit && (
+            <button
+              onClick={() => onEdit(deck)}
+              disabled={rebuilding || rethemeing || duplicating}
+              title="Re-open the builder with this deck's commander, theme, prompts, art style and all settings pre-filled for editing. Building creates a new deck — this one is kept."
+              style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600 }}
+            >
+              🎛️ Edit &amp; Rebuild
             </button>
           )}
           <button
