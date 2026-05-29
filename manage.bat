@@ -225,15 +225,16 @@ if not exist "%COMFY_PYTHON%" (
 )
 
 REM Do NOT pass --highvram: on a 24 GB RTX 3090, FLUX + LoRAs + ReActor overflow
-REM VRAM and spill to system RAM. Without any VRAM flag, ComfyUI auto-selects
-REM NORMAL_VRAM which offloads the T5 encoder after use, keeping within budget.
+REM VRAM and spill to system RAM. Without it, ComfyUI uses NORMAL_VRAM (fits).
+REM --disable-async-offload: NORMAL_VRAM's async-offload path is buggy in this
+REM ComfyUI build and crashes CLIPTextEncode; disabling it keeps NORMAL_VRAM working.
 set COMFY_BASE=%APPDATA%\ComfyUI
 start "ComfyUI" /D "%COMFY_DIR%" "%COMFY_PYTHON%" main.py ^
   --base-directory "%COMFY_BASE%" ^
   --user-directory "%COMFY_BASE%\user" ^
   --input-directory "%COMFY_BASE%\input" ^
   --output-directory "%COMFY_BASE%\output" ^
-  --listen 127.0.0.1 --port 8188 --log-stdout
+  --listen 127.0.0.1 --port 8188 --log-stdout --disable-async-offload
 
 echo   [*] ComfyUI launching... check http://localhost:8188 in ~30 seconds.
 echo.

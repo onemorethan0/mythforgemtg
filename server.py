@@ -3437,11 +3437,17 @@ def _resolve_comfyui_cmd() -> Optional[tuple[list[str], Path]]:
         "--listen",  "127.0.0.1",
         "--port",    "8188",
         "--log-stdout",
-        # No --highvram flag: this Desktop-bundled main.py doesn't support
-        # --normalvram, and without any VRAM flag it auto-selects NORMAL_VRAM on
-        # the RTX 3090 — confirmed "Set vram state to: NORMAL_VRAM" in startup log.
-        # The Desktop .exe hardcodes --highvram, which is why we drive main.py
-        # directly via the CUDA venv python instead.
+        # No --highvram: the Desktop .exe hardcodes it, which overflows 24 GB
+        # (FLUX + LoRAs + ReActor) and spills ~5 GB to system RAM → slow. Driving
+        # main.py directly lets us use the default NORMAL_VRAM instead (confirmed
+        # "Set vram state to: NORMAL_VRAM" in the log; ~5.7 GB VRAM free at peak).
+        #
+        # --disable-async-offload: NORMAL_VRAM's async weight-offload path is buggy
+        # in this ComfyUI build — it crashes CLIPTextEncode with
+        # "'VRAMBuffer' object has no attribute 'get'" (comfy/ops.py get_cast_buffer).
+        # --highvram dodged it only by never offloading. Disabling async offload
+        # keeps NORMAL_VRAM working; generation verified end-to-end on cuda:0.
+        "--disable-async-offload",
     ]
     if extra_cfg.exists():
         cmd += ["--extra-model-paths-config", str(extra_cfg)]
