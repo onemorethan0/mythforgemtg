@@ -2099,25 +2099,27 @@ class ImageGen:
                         traceback_lines = data.get("traceback", [])
                         tb_tail = "".join(traceback_lines[-5:]) if traceback_lines else ""
 
-                        # ── CUDA/ReActor Error Handling ──────────────────────────
-                        # If ReActor face-swap fails due to missing CUDA, log gracefully
-                        # instead of spamming verbose CUDA error messages.
+                        # ── ReActor Error Handling ───────────────────────────────
+                        # If ReActor fails due to any onnxruntime/CUDA issue, log
+                        # gracefully and retry without face conditioning.
+                        # Note: reactor_swapper.py is patched to CPUExecutionProvider
+                        # to avoid CUDA 12.x vs 13.x DLL mismatch (WinError 1114).
                         is_cuda_error = (
                             "cublasLt64_12" in str(exc_msg) or
+                            "WinError 1114" in str(exc_msg) or
                             "CUDA" in str(exc_type) or
-                            "onnxruntime" in str(exc_msg) and "cuda" in str(exc_msg).lower()
+                            ("onnxruntime" in str(exc_msg) and
+                             ("cuda" in str(exc_msg).lower() or "provider" in str(exc_msg).lower()))
                         )
                         is_reactor_error = node_type and "ReActor" in node_type
 
                         if is_cuda_error and is_reactor_error:
                             cuda_error_detected = True
-                            print(f"  [image_gen] Face conditioning skipped: CUDA 12.x not available")
-                            print(f"  [image_gen] To enable face swapping, install CUDA Toolkit 12.x from:")
-                            print(f"  [image_gen] https://developer.nvidia.com/cuda-downloads")
-                            # Don't print verbose traceback for CUDA errors
+                            print(f"  [image_gen] ReActor error detected — retrying without face conditioning")
+                            print(f"  [image_gen] Error: [{exc_type}] {str(exc_msg)[:120]}")
                             continue
 
-                        # For non-CUDA errors, print full error details
+                        # For non-ReActor/non-CUDA errors, print full error details
                         print(
                             f"  [image_gen] EXECUTION ERROR in node {node_id} "
                             f"({node_type}): [{exc_type}] {exc_msg}"
@@ -2132,11 +2134,10 @@ class ImageGen:
                     print(f"  [image_gen] ComfyUI reports {status_str!r} — "
                           f"messages: {messages[:5]}")
 
-                # ReActor CUDA error: raise so generate() can retry without face conditioning
+                # ReActor error: raise so generate() can retry without face conditioning
                 if cuda_error_detected:
                     raise _ReactorCudaError(
-                        "ReActor face-swap failed (CUDA 12.x mismatch) — "
-                        "retrying without face conditioning"
+                        "ReActor face-swap failed — retrying without face conditioning"
                     )
 
                 # Return None to stop waiting (generation failed)
