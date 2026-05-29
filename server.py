@@ -3105,45 +3105,64 @@ async def upload_face(files: List[UploadFile] = File(...)):
 
 # ── Export endpoints ──────────────────────────────────────────────────────────
 
-@app.get("/api/deck/{job_id}/export/zip")
-async def export_zip(job_id: str):
+def _load_job_for_export(job_id: str) -> dict:
+    """Return a usable job dict for export, loading from disk when needed.
+
+    Mirrors the permissive status logic of GET /api/deck/{job_id}: accepts
+    'done', 'rendering', and 'cancelled' (all have card data on disk).
+    Raises HTTPException for 404, still-building, and error states.
+    """
     job = _jobs.get(job_id)
+    # Fall back to disk for old/evicted jobs (same as the deck GET endpoint)
+    if not job or not job.get("commander"):
+        disk = _load_deck_from_disk(job_id)
+        if disk:
+            if job:
+                _jobs[job_id].update(disk)
+                job = _jobs[job_id]
+            else:
+                job = disk
     if not job:
-        raise HTTPException(404, "Job not found")
-    if job["status"] != "done":
-        raise HTTPException(409, f"Deck not ready — status: {job['status']}")
+        raise HTTPException(404, "Deck not found")
+    status = job.get("status", "")
+    if status == "building":
+        raise HTTPException(409, "Deck still building — try again once it finishes")
+    if status == "error":
+        raise HTTPException(409, f"Deck failed to build: {job.get('error', 'unknown error')}")
+    if not job.get("commander") or not job.get("deck"):
+        raise HTTPException(409, "Deck has no card data yet")
+    return job
+
+
+@app.get("/api/deck/{job_id}/export/zip")
+def export_zip(job_id: str):
+    job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
         data = build_zip(job["commander"], job["deck"], render_dir)
     except Exception as e:
         raise HTTPException(500, f"ZIP export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    filename = f"{safe}_deck.zip"
     return StreamingResponse(
         io.BytesIO(data),
         media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        headers={"Content-Disposition": f'attachment; filename="{safe}_deck.zip"'},
     )
 
 
 @app.get("/api/deck/{job_id}/export/pdf")
-async def export_pdf(job_id: str):
-    job = _jobs.get(job_id)
-    if not job:
-        raise HTTPException(404, "Job not found")
-    if job["status"] != "done":
-        raise HTTPException(409, f"Deck not ready — status: {job['status']}")
+def export_pdf(job_id: str):
+    job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
         data = build_pdf(job["commander"], job["deck"], render_dir)
     except Exception as e:
         raise HTTPException(500, f"PDF export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    filename = f"{safe}_proxies.pdf"
     return StreamingResponse(
         io.BytesIO(data),
         media_type="application/pdf",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        headers={"Content-Disposition": f'attachment; filename="{safe}_proxies.pdf"'},
     )
 
 
