@@ -117,17 +117,16 @@ The app will auto-detect Ollama. If running on a different port/address, update 
 
 ### ComfyUI (For Image Generation)
 
-ComfyUI provides the image generation pipeline using Stable Diffusion, FLUX, and other models.
+ComfyUI provides the image generation pipeline using FLUX, SDXL, and other models.
 
-Follow the official setup guide: [ComfyUI Installation](https://github.com/comfyanonymous/ComfyUI#installation)
+The recommended install is **ComfyUI Desktop** from [https://www.comfy.org](https://www.comfy.org).
 
-Key steps:
-1. Clone the repository
-2. Install Python dependencies
-3. Download required models (Checkpoints, VAE, etc.)
-4. Start ComfyUI
+Myth Forge connects to ComfyUI on `localhost:8188` and auto-starts it on first build if it isn't already running.
 
-The Myth Forge app will connect to ComfyUI automatically on `localhost:8188`.
+> **Important**: Do NOT start ComfyUI Desktop via its `.exe` directly for use with Myth Forge.  
+> The Desktop app hardcodes `--highvram`, which overflows VRAM on 24 GB cards running FLUX + LoRAs + ReActor and causes 5–20× slowdowns.  
+> Use manage.bat **option 9** or let Myth Forge auto-start it — both use the correct flags.  
+> See **[COMFYUI_SETUP.md](./COMFYUI_SETUP.md)** for full technical details.
 
 #### Automatic Model Download (Recommended)
 
@@ -346,9 +345,16 @@ npm install
 2. Try a different port: `python server.py --port 8001`
 
 ### ComfyUI not detected
-- Ensure ComfyUI is running on `localhost:8188`
-- Check that it's accessible: `curl http://localhost:8188/api/`
-- Update the API URL in `server.py` if using a different address
+- Use manage.bat **option 9** to start ComfyUI with the correct flags
+- Or start Myth Forge (`python server.py`) — it auto-starts ComfyUI in the background
+- Check that it's accessible: `curl http://localhost:8188/system_stats`
+- Do NOT start ComfyUI via its Desktop `.exe` — it uses `--highvram` which overflows VRAM
+- See [COMFYUI_SETUP.md](./COMFYUI_SETUP.md) for the full launch configuration
+
+### Image generation is very slow (5+ min per card)
+- ComfyUI was likely started with `--highvram` via the Desktop app
+- Restart ComfyUI using manage.bat option 9 or Myth Forge auto-start
+- Check Task Manager GPU tab — "Shared GPU Memory" > 1 GB indicates VRAM overflow
 
 ### Ollama not detected
 - Ensure Ollama is running
