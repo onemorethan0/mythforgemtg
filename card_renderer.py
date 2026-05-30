@@ -127,9 +127,35 @@ def _mplantin_italic(size: int) -> ImageFont.FreeTypeFont:
 # ── SVG → PIL via pixie ───────────────────────────────────────────────────────
 _SYM_CACHE: dict[tuple[str, int], Image.Image] = {}
 
+# Custom themed mana pips (W/U/B/R/G/C → base RGBA image). When set via
+# set_custom_pips(), these override the stock SVG symbols everywhere a mana
+# symbol is drawn (cost row + inline oracle text). _CUSTOM_GEN versions the
+# resize cache so swapping decks never serves a stale pip.
+_CUSTOM_PIPS: dict[str, Image.Image] = {}
+_CUSTOM_GEN = 0
+
+
+def set_custom_pips(mapping: Optional[dict[str, Image.Image]]) -> None:
+    """Install (or clear, with None/{}) per-deck custom mana pips."""
+    global _CUSTOM_PIPS, _CUSTOM_GEN
+    _CUSTOM_PIPS = dict(mapping) if mapping else {}
+    _CUSTOM_GEN += 1
+
+
 def _svg_sym(name: str, size: int) -> Optional[Image.Image]:
     """Rasterise a symbol SVG to a square PIL RGBA image at `size` px."""
-    key = (name.upper(), size)
+    upper = name.upper()
+    custom = _CUSTOM_PIPS.get(upper)
+    if custom is not None:
+        ckey = (f"__pip{_CUSTOM_GEN}__{upper}", size)
+        cached = _SYM_CACHE.get(ckey)
+        if cached is not None:
+            return cached
+        img = custom.resize((size, size), Image.LANCZOS)
+        _SYM_CACHE[ckey] = img
+        return img
+
+    key = (upper, size)
     if key in _SYM_CACHE:
         return _SYM_CACHE[key]
 

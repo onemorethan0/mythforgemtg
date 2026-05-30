@@ -209,6 +209,7 @@ export default function StepTheme({
   commanderPrompt, onCommanderPromptChange,
   userName, onUserNameChange,
   emblemPrompt, onEmblemPromptChange,
+  customPips, onCustomPipsChange,
   borderTheme, onBorderThemeChange,
   commanderTribe, onCommanderTribeChange,
   artStyle, onArtStyleChange,
@@ -687,6 +688,27 @@ export default function StepTheme({
               <button key={ex} style={s.exBtn} onClick={() => onEmblemPromptChange(ex)}>{ex}</button>
             ))}
           </div>
+
+          {/* ── Custom mana pips ── */}
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginTop: 14, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={!!customPips}
+              onChange={e => onCustomPipsChange(e.target.checked)}
+              style={{ marginTop: 3, width: 16, height: 16, accentColor: '#d97706', cursor: 'pointer' }}
+            />
+            <span>
+              <span style={{ fontSize: 14, color: '#f5f5f4', fontWeight: 600 }}>Custom themed mana pips</span>
+              <span style={{ display: 'block', fontSize: 12, color: '#57534e', marginTop: 2, lineHeight: 1.5 }}>
+                Replace the stock W/U/B/R/G mana symbols with themed pips — each a mana-coloured disc
+                under one shared <em style={{ color: '#a8a29e' }}>black silhouette</em> of your deck's icon
+                (taken from the Set Emblem above, or the theme). Best with a simple, iconic subject like
+                a <em style={{ color: '#a8a29e' }}>cat</em>, <em style={{ color: '#a8a29e' }}>skull</em>, or
+                <em style={{ color: '#a8a29e' }}> sword</em>. Generated with FLUX when ComfyUI is running,
+                otherwise a clean vector fallback.
+              </span>
+            </span>
+          </label>
         </div>
 
         {/* ── Card Border Theme ── */}

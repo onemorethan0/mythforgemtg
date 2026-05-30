@@ -44,8 +44,10 @@ from playstyle          import (
 )
 from themer             import Themer, ThemedCard
 from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl
+import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
+import mana_pips
 from exporter           import build_zip, build_pdf
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
@@ -426,6 +428,7 @@ class BuildRequest(BaseModel):
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
     commander_tribe:   str           = ""     # override creature tribe to reskin; "" = auto-detect
+    custom_pips:       bool          = False  # themed 2-colour mana pips (disc + black silhouette)
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
@@ -955,6 +958,51 @@ def _build_render_keys(themed_cmd: ThemedCard, themed_deck: list) -> dict:
     return keys
 
 
+def _setup_deck_pips(job_id: str, enabled: bool, art_theme: str, subject: str,
+                     source_job_id: str = "") -> bool:
+    """
+    Install (or clear) themed custom mana pips for a deck render.
+
+    Pips are a per-deck override of the stock W/U/B/R/G/C symbols: a mana-colour
+    disc with a single shared black silhouette of the deck's icon. They are
+    generated once per deck and saved under <job>/pips/. On rebuild/regen/retheme
+    the source deck's pips are reused so the silhouette stays identical across
+    operations. Must be called in every render path; passing enabled=False clears
+    any override left by a previous build (state is module-global in card_renderer).
+    """
+    if not enabled:
+        card_renderer.set_custom_pips(None)
+        return False
+    pip_dir = RENDER_DIR / job_id / "pips"
+
+    # Reuse the source deck's pips (keeps the silhouette identical on re-renders).
+    if source_job_id:
+        existing = mana_pips.load_mana_pips(RENDER_DIR / source_job_id / "pips")
+        if existing:
+            pip_dir.mkdir(parents=True, exist_ok=True)
+            for code, img in existing.items():
+                img.save(pip_dir / f"pip_{code}.png", "PNG")
+            card_renderer.set_custom_pips(existing)
+            return True
+
+    # Already generated for this job (e.g. resumed render)?
+    existing = mana_pips.load_mana_pips(pip_dir)
+    if existing:
+        card_renderer.set_custom_pips(existing)
+        return True
+
+    _push(job_id, "progress", json.dumps(
+        {"step": "pips", "msg": "Generating custom mana pips…"}))
+    try:
+        mana_pips.save_mana_pips(art_theme, pip_dir, subject or art_theme)
+        card_renderer.set_custom_pips(mana_pips.load_mana_pips(pip_dir))
+        return True
+    except Exception as e:
+        print(f"  [pips] generation failed, using stock symbols: {e}")
+        card_renderer.set_custom_pips(None)
+        return False
+
+
 def _make_art_progress_cb(job_id: str, start_time: float):
     """Build the per-card art progress callback used by build/rebuild.
 
@@ -1133,6 +1181,16 @@ def _run_build(job_id: str, req: BuildRequest):
         sym_path.parent.mkdir(parents=True, exist_ok=True)
         sym.save(sym_path)
 
+        # ── Custom mana pips (optional) ───────────────────────────────────────
+        # Generated up front so the inline render callback (during art gen) and
+        # the final render pass both pick them up. Best FLUX quality needs
+        # ComfyUI up — ensure it when art is requested; falls back to a procedural
+        # silhouette otherwise.
+        if req.custom_pips and req.generate_art:
+            _ensure_comfyui_ready(job_id)
+        _setup_deck_pips(job_id, req.custom_pips, art_theme,
+                         req.emblem_prompt or "")
+
         # ── Early checkpoint: write deck.json NOW (before art gen + render) ──
         # Art gen is the longest step (30+ min). If the server crashes or
         # reloads during that step, the themed deck data is preserved here.
@@ -1166,6 +1224,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "user_name":        req.user_name or "",
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
+            "custom_pips":      req.custom_pips,
             "built_at":         time.time(),
         }
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
@@ -1484,6 +1543,11 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             sym = generate_set_symbol(art_theme, emblem_prompt=source_data.get("emblem_prompt", ""))
             sym.save(sym_path)
 
+        # Reuse the source deck's custom pips (if it had them) for a consistent look.
+        _rebuild_pips = bool(source_data.get("custom_pips", False))
+        _setup_deck_pips(job_id, _rebuild_pips, art_theme,
+                         source_data.get("emblem_prompt", ""), source_job_id)
+
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
         # Compute a new deck_slug for the rebuild's art cache directory
@@ -1512,6 +1576,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "crew_key":         req.crew_key or source_data.get("crew_key", ""),
             "crew_gender":      req.crew_gender or source_data.get("crew_gender", "either"),
             "border_theme":     source_data.get("border_theme", ""),
+            "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
             "built_at":         time.time(),
         }
@@ -1897,6 +1962,10 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         sym_path   = RENDER_DIR / source_job_id / "set_symbol.png"
         sym        = _PIL.open(sym_path) if sym_path.exists() else None
 
+        # Reuse the source deck's custom pips so regenerated cards match the rest.
+        _setup_deck_pips(source_job_id, bool(source_data.get("custom_pips", False)),
+                         art_theme, source_data.get("emblem_prompt", ""))
+
         # Renders go directly into the SOURCE job's cards/ dir
         render_out = RENDER_DIR / source_job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
@@ -2246,6 +2315,12 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             sym = generate_set_symbol(art_theme, emblem_prompt=source_data.get("emblem_prompt", ""))
             sym.save(sym_path)
 
+        # Reuse the source deck's custom pips (render_deck_thumbnails picks up the
+        # module-global override set here).
+        _retheme_pips = bool(source_data.get("custom_pips", False))
+        _setup_deck_pips(job_id, _retheme_pips, art_theme,
+                         source_data.get("emblem_prompt", ""), source_job_id)
+
         # ── Locate existing raw art images ────────────────────────────────────
         # The raw FLUX outputs live in generated_art/{deck_slug}/{render_key}.png.
         # Build an art_paths dict (keyed by original_name) for render_deck_thumbnails.
@@ -2289,6 +2364,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "user_name":        user_name_rt,
             "llm_model":        llm_model_rt or "",
             "border_theme":     source_data.get("border_theme", ""),
+            "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
         }

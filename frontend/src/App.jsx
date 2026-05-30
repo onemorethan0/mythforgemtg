@@ -26,6 +26,7 @@ export default function App() {
   const [commanderPrompt, setCommanderPrompt] = useState('')
   const [userName, setUserName]               = useState('')
   const [emblemPrompt, setEmblemPrompt]       = useState('')
+  const [customPips, setCustomPips]           = useState(false)
   const [generateArt, setGenerateArt]         = useState(false)
   const [artStyle, setArtStyle]               = useState('mtg_fantasy')
   const [modelSpeed, setModelSpeed]           = useState('quality')
@@ -117,6 +118,7 @@ export default function App() {
         commander_prompt:  commanderPrompt,
         user_name:         userName || null,
         emblem_prompt:     emblemPrompt,
+        custom_pips:       customPips,
         art_style:         artStyle,
         generate_art:      generateArt,
         model_speed:       modelSpeed,
@@ -231,6 +233,7 @@ export default function App() {
     setCommanderPrompt(d.commander_prompt || '')
     setUserName(d.user_name || '')
     setEmblemPrompt(d.emblem_prompt || '')
+    setCustomPips(!!d.custom_pips)
     setBorderTheme(d.border_theme || '')
     setArtStyle(d.art_style || 'mtg_fantasy')
     setGenerateArt(!!d.generate_art)
@@ -366,6 +369,8 @@ export default function App() {
             onUserNameChange={setUserName}
             emblemPrompt={emblemPrompt}
             onEmblemPromptChange={setEmblemPrompt}
+            customPips={customPips}
+            onCustomPipsChange={setCustomPips}
             artStyle={artStyle}
             onArtStyleChange={setArtStyle}
             bracket={bracket}
