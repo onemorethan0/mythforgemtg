@@ -218,6 +218,7 @@ export default function StepTheme({
   checkpoint, onCheckpointChange,
   llmModel, onLlmModelChange,
   faceKey, faceMethod,
+  crewKey, crewPrompt, onCrewPromptChange,
   genSettings,
   onNext, onBack,
 }) {
@@ -576,6 +577,25 @@ export default function StepTheme({
             rows={2}
           />
         </div>
+
+        {/* ── Crew appearance (only when crew photos were uploaded) ── */}
+        {crewKey && onCrewPromptChange && (
+          <div style={s.section}>
+            <label style={s.label}>
+              Crew Appearance <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span>
+            </label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8 }}>
+              Shared appearance notes applied to <strong style={{ color: '#a8a29e' }}>every creature card that uses a crew photo</strong>. Face matching only carries the face, so describe body details here — <strong style={{ color: '#a8a29e' }}>tattoos, scars, piercings, build, signature outfit</strong> (e.g. "muscular, full arm tattoos, leather jacket"). One description covers all crew, so keep it to traits they share.
+            </div>
+            <textarea
+              style={{ ...s.textarea, minHeight: 56 }}
+              placeholder="e.g. athletic build, sleeve tattoos, weathered leather armor"
+              value={crewPrompt || ''}
+              onChange={e => onCrewPromptChange(e.target.value)}
+              rows={2}
+            />
+          </div>
+        )}
 
         {/* ── RO Job Class Picker ── */}
         {isRO && (

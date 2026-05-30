@@ -33,6 +33,7 @@ export default function App() {
   const [llmModel, setLlmModel]               = useState('qwen3:8b')
   const [borderTheme, setBorderTheme] = useState('')
   const [commanderTribe, setCommanderTribe] = useState('')
+  const [crewPrompt, setCrewPrompt] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
   const [faceMethod, setFaceMethod] = useState(null)
   const [faceGender, setFaceGender] = useState('either')
@@ -98,7 +99,7 @@ export default function App() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
-    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setCommanderTribe(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -127,6 +128,7 @@ export default function App() {
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
         crew_gender:  crewGender,
+        crew_prompt:  crewPrompt || "",
         gen_settings: toGenSettingsPayload(genSettings.values),
       }),
     })
@@ -382,6 +384,9 @@ export default function App() {
             onCommanderTribeChange={setCommanderTribe}
             faceKey={faceKey}
             faceMethod={faceMethod}
+            crewKey={crewKey}
+            crewPrompt={crewPrompt}
+            onCrewPromptChange={setCrewPrompt}
             genSettings={genSettings}
             onNext={startBuild}
             onBack={() => setStep(STEP.FACE)}

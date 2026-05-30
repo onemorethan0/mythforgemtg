@@ -421,6 +421,7 @@ class BuildRequest(BaseModel):
     face_gender:       str = "either"         # "male", "female", or "either"
     crew_key:          Optional[str] = None   # crew face photos for creature cards
     crew_gender:       str = "either"         # gender hint for crew faces
+    crew_prompt:       str = ""               # shared appearance notes for crew-faced creatures
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
@@ -437,6 +438,7 @@ class RebuildRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None
     crew_gender: str = "either"
+    crew_prompt: Optional[str] = None   # None → use saved crew_prompt
     gen_settings: Optional[GenSettingsModel] = None
 
 
@@ -1160,6 +1162,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "face_gender":      req.face_gender,
             "crew_key":         req.crew_key or "",
             "crew_gender":      req.crew_gender,
+            "crew_prompt":      req.crew_prompt or "",
             "user_name":        req.user_name or "",
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
@@ -1311,6 +1314,7 @@ def _run_build(job_id: str, req: BuildRequest):
                                 crew_paths=crew_paths or None,
                                 face_gender=req.face_gender,
                                 crew_gender=req.crew_gender,
+                                crew_prompt=req.crew_prompt,
                                 progress_callback=_art_cb,
                                 theme_str=art_theme,
                                 card_done_callback=_card_done_cb,
@@ -1695,6 +1699,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
 
                     _face_gender = req.face_gender or source_data.get("face_gender", "either")
                     _crew_gender = req.crew_gender or source_data.get("crew_gender", "either")
+                    _crew_prompt = (req.crew_prompt if req.crew_prompt is not None
+                                    else source_data.get("crew_prompt", "")) or ""
                     try:
                         art_paths = gen.generate_deck(
                             themed_cmd, themed_deck, deck_slug,
@@ -1702,6 +1708,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                             crew_paths=crew_paths or None,
                             face_gender=_face_gender,
                             crew_gender=_crew_gender,
+                            crew_prompt=_crew_prompt,
                             progress_callback=_art_cb,
                             theme_str=art_theme,
                             card_done_callback=_card_done_cb,

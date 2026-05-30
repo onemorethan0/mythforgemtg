@@ -2664,6 +2664,7 @@ class ImageGen:
         crew_paths: Optional[list[Path]] = None,   # crew photos (multiple people for creature cards)
         face_gender: str = "either",               # gender hint for commander face
         crew_gender: str = "either",               # gender hint for crew faces
+        crew_prompt: str = "",                     # shared appearance notes for crew-faced creatures
         progress_callback=None,                    # callable(i, total, name, has_face, elapsed, success)
         theme_str: str = "",                       # human-readable theme for LoRA darkness scaling
         card_done_callback=None,                   # callable(tc, art_path) — called after each card renders
@@ -2785,6 +2786,7 @@ class ImageGen:
             card_face_name:   Optional[str] = None
             card_face_gender: str           = "either"
 
+            card_uses_crew = False
             if is_cmd and face_comfy_name:
                 card_face_name   = face_comfy_name
                 card_face_gender = face_gender
@@ -2793,15 +2795,24 @@ class ImageGen:
                 card_face_name   = crew_comfy_names[crew_card_idx % len(crew_comfy_names)]
                 card_face_gender = crew_gender
                 crew_card_idx   += 1
+                card_uses_crew   = True
                 face_tag_card    = f"[👥{(crew_card_idx - 1) % len(crew_comfy_names) + 1}]"
             else:
                 face_tag_card = "    "
+
+            # Crew appearance: inject the shared crew notes (tattoos, outfit, etc.)
+            # into crew-faced creature cards — mirrors how commander_prompt carries
+            # the commander's look (face-swap only carries the face, not body art).
+            card_art_prompt = tc.art_prompt
+            if card_uses_crew and crew_prompt.strip():
+                card_art_prompt = (f"{crew_prompt.strip()}, {tc.art_prompt}"
+                                   if tc.art_prompt else crew_prompt.strip())
 
             print(f"  [{i:>3}/{total}] {face_tag_card} {tc.themed_name:<33}", end=" ", flush=True)
 
             t0   = time.monotonic()
             path = self.generate(
-                tc.art_prompt, str(out),
+                card_art_prompt, str(out),
                 face_comfy_name=card_face_name,
                 face_gender=card_face_gender,
                 cancel_event=cancel_event,
