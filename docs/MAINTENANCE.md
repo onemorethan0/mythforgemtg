@@ -1,5 +1,13 @@
 # Maintenance Guide — MTG Commander Deck Builder
 
+> ⚠️ **Startup commands updated.** This guide predates the current launcher and
+> still references a removed system. Translate as you read:
+> - `START.bat` → `manage.bat` (option 1 = start Myth Forge; option 9 = start ComfyUI; Ollama auto-starts) — or just `python server.py`, which auto-starts Ollama + ComfyUI.
+> - `STOP.bat` → `manage.bat` option 4 (stop server) / option 5 (kill orphaned processes).
+> - **Restart ComfyUI** → `manage.bat` option 9 (correct flags — never the Desktop `.exe`; see [COMFYUI_SETUP.md](../COMFYUI_SETUP.md)).
+> - `paths_config.ps1` / `launch_comfyui.ps1` → **gone**; paths now live in the `.bat` scripts and `server.py` (`_ensure_comfyui_ready`).
+> The symptom-based fixes below are still valid; only the start/stop commands changed.
+
 ## Overview
 
 This guide covers routine maintenance, troubleshooting, and operational procedures for the MTG Commander Deck Builder. It's designed to help diagnose issues, optimize performance, and keep the system running smoothly.

@@ -68,7 +68,10 @@ _ORA_Y         = _mm(55.6)
 _ORA_W         = _mm(54.7)
 _ORA_H         = _mm(26.0)
 
-_PT_W, _PT_H   = _mm(9.5), _mm(9.5)
+# P/T badge: real MTG boxes are wider than tall (~15.5×8.3 mm). The pt_boxes
+# assets are 555×296 (≈1.88:1); resizing them into a square squashed the badge,
+# so match the asset's aspect (W/H ≈ 1.88) to keep it rectangular.
+_PT_W, _PT_H   = _mm(15.5), _mm(8.25)
 _PT_X          = _W2 - _mm(3.2) - _PT_W
 _PT_Y          = _H2 - _mm(3.5) - _PT_H
 
@@ -975,7 +978,7 @@ def render_card(
     #   • Without subtitle → vertical centre of the bar
     #   • With subtitle    → upper 40 % of the bar, leaving room for subtitle below
     if show_subtitle:
-        name_cy = _NAME_Y + round(_BAR_H * 0.38)
+        name_cy = _NAME_Y + round(_BAR_H * 0.33)   # upper third — leaves room for subtitle
     else:
         name_cy = _NAME_TY   # bar centre
 
@@ -1021,7 +1024,9 @@ def render_card(
             for c in bar_fg[:3]
         )
         sub_cx = _BAR_X + _BAR_W // 2
-        sub_y  = _NAME_Y + _BAR_H - _mm(0.45)
+        # Seat the subtitle inside the bar (baseline ~0.9 mm above the bottom edge)
+        # so its descenders don't spill onto/below the name-bar border.
+        sub_y  = _NAME_Y + _BAR_H - _mm(0.9)
         draw.text((sub_cx, sub_y), sub_text,
                   font=sub_font, fill=sub_fg, anchor="mb")
 
@@ -1057,6 +1062,11 @@ def render_card(
     ora_y = _ORA_Y + _ORA_PAD
     ora_w = _ORA_W - 2 * _ORA_PAD
     ora_h = _ORA_H - 2 * _ORA_PAD
+
+    # Keep body text clear of the P/T badge (sits bottom-right). End the text
+    # area just above the badge so flavor text never renders underneath it.
+    if power is not None and toughness is not None:
+        ora_h = min(ora_h, (_PT_Y - _mm(1.2)) - ora_y)
 
     has_oracle = bool((oracle_text or "").strip())
     has_flavor = bool((flavor_text or "").strip())

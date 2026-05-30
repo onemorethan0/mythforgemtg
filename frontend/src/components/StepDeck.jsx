@@ -200,8 +200,12 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
                       defaultCheckpoint,
                       commanderOriginalName, savedFaceKey, savedFaceGender,
                       savedCrewKey, savedCrewGender }) {
-  const [useOriginal, setUseOriginal]     = useState(true)
-  const [customPrompts, setCustomPrompts] = useState({})
+  // Per-card prompt state. The LLM art_prompt is immutable; customPrompts holds the
+  // user's separate override text, and useCustom decides which one feeds generation.
+  const [customPrompts, setCustomPrompts] = useState(
+    () => Object.fromEntries(selectedCards.map(c => [c.render_key, c.custom_prompt ?? ''])))
+  const [useCustom, setUseCustom] = useState(
+    () => Object.fromEntries(selectedCards.map(c => [c.render_key, !!c.use_custom])))
   const [artStyle, setArtStyle]           = useState(defaultArtStyle || 'mtg_fantasy')
   const [modelSpeed, setModelSpeed]       = useState(defaultModelSpeed || 'quality')
   const [checkpoint, setCheckpoint]       = useState(defaultCheckpoint || null)
@@ -238,6 +242,22 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
   const crewInputRef                          = useRef(null)
 
   function setPrompt(key, val) { setCustomPrompts(p => ({ ...p, [key]: val })) }
+  // Enabling custom RECALLS the current prompt into the editable box (saved custom
+  // if any, else the AI prompt) so you can tweak it instead of retyping. The AI
+  // art_prompt itself is never modified — this only fills the separate custom field.
+  function recallInto(prev, card) {
+    const cur = prev[card.render_key]
+    if (cur && cur.trim()) return prev
+    return { ...prev, [card.render_key]: card.custom_prompt || card.art_prompt || '' }
+  }
+  function toggleCustom(card, val) {
+    setUseCustom(m => ({ ...m, [card.render_key]: val }))
+    if (val) setCustomPrompts(p => recallInto(p, card))
+  }
+  function setAllCustom(val) {
+    setUseCustom(Object.fromEntries(selectedCards.map(c => [c.render_key, val])))
+    if (val) setCustomPrompts(p => selectedCards.reduce((acc, c) => recallInto(acc, c), { ...p }))
+  }
 
   async function handlePhotoUpload(e, setKey, setMode, setUploading, setErr) {
     const files = Array.from(e.target.files || [])
@@ -279,7 +299,8 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
       cards: selectedCards.map(c => ({
         render_key:    c.render_key,
         original_name: c.original_name,
-        custom_prompt: useOriginal ? null : (customPrompts[c.render_key] ?? null),
+        custom_prompt: customPrompts[c.render_key] ?? '',
+        use_custom:    !!useCustom[c.render_key],
       })),
       art_style:   artStyle,
       model_speed: modelSpeed,
@@ -320,24 +341,26 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
           <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#78716c', fontSize: 18, cursor: 'pointer', padding: 4 }}>✕</button>
         </div>
 
-        {/* Prompt source toggle */}
+        {/* Prompt source — per card below; these set all at once */}
         <div style={{ padding: '14px 22px 0', flexShrink: 0 }}>
-          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Prompt source</div>
+          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+            Prompt source <span style={{ textTransform: 'none', letterSpacing: 0, color: '#57534e' }}>— set all, or choose per card below</span>
+          </div>
           <div style={{ display: 'flex', gap: 6 }}>
             {[
-              { val: true,  label: '📋 Use saved prompts', desc: 'Re-generate with the existing Ollama-crafted prompts' },
-              { val: false, label: '✏️ Custom prompts',     desc: 'Override any card\'s prompt with your own text' },
+              { val: false, label: '📋 All: AI prompts', desc: 'Use the original Ollama-crafted prompt for every selected card' },
+              { val: true,  label: '✏️ All: custom',     desc: 'Use the custom prompt for every selected card' },
             ].map(opt => (
               <button
                 key={String(opt.val)}
-                onClick={() => setUseOriginal(opt.val)}
+                onClick={() => setAllCustom(opt.val)}
                 title={opt.desc}
                 style={{
                   ...btnBase,
-                  padding: '7px 16px', fontWeight: useOriginal === opt.val ? 700 : 400,
-                  background: useOriginal === opt.val ? '#422006' : '#0c0a09',
-                  color:      useOriginal === opt.val ? '#fde047'  : '#78716c',
-                  border:     `1px solid ${useOriginal === opt.val ? '#ca8a04' : '#292524'}`,
+                  padding: '7px 16px', fontWeight: 600,
+                  background: '#0c0a09',
+                  color:      '#a8a29e',
+                  border:     '1px solid #292524',
                 }}
               >{opt.label}</button>
             ))}
@@ -432,25 +455,53 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
                   <span style={{ fontSize: 10, color: '#57534e' }}>({card.original_name})</span>
                 )}
               </div>
-              {useOriginal ? (
-                <div style={{ fontSize: 10, color: '#57534e', lineHeight: 1.5, fontStyle: card.art_prompt ? 'normal' : 'italic' }}>
-                  {card.art_prompt || '(no saved prompt — will fall back to card name)'}
-                </div>
-              ) : (
-                <textarea
-                  value={customPrompts[card.render_key] ?? card.art_prompt ?? ''}
-                  onChange={e => setPrompt(card.render_key, e.target.value)}
-                  placeholder={`Art prompt for ${card.themed_name}…`}
-                  rows={3}
-                  style={{
-                    width: '100%', boxSizing: 'border-box',
-                    background: '#0c0a09', color: '#f5f5f4',
-                    border: '1px solid #44403c', borderRadius: 6,
-                    padding: '7px 10px', fontSize: 11, lineHeight: 1.5,
-                    resize: 'vertical', fontFamily: 'inherit',
-                    outline: 'none',
-                  }}
+              {/* AI (LLM) prompt — always shown, never edited/overwritten */}
+              <div style={{ fontSize: 9, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>AI prompt</div>
+              <div style={{
+                fontSize: 10, color: useCustom[card.render_key] ? '#44403c' : '#a8a29e',
+                lineHeight: 1.5, fontStyle: card.art_prompt ? 'normal' : 'italic',
+                textDecoration: useCustom[card.render_key] ? 'line-through' : 'none',
+              }}>
+                {card.art_prompt || '(no saved prompt — will fall back to card name)'}
+              </div>
+
+              {/* Per-card choice: use a separate custom prompt instead */}
+              <label style={{ display: 'flex', alignItems: 'center', gap: 6, margin: '7px 0 0', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={!!useCustom[card.render_key]}
+                  onChange={e => toggleCustom(card, e.target.checked)}
+                  style={{ accentColor: '#eab308' }}
                 />
+                <span style={{ fontSize: 11, color: useCustom[card.render_key] ? '#fde047' : '#78716c' }}>
+                  Use a custom prompt for this card
+                </span>
+              </label>
+
+              {useCustom[card.render_key] && (
+                <>
+                  <textarea
+                    value={customPrompts[card.render_key] ?? ''}
+                    onChange={e => setPrompt(card.render_key, e.target.value)}
+                    placeholder="Describe the art for this card…"
+                    rows={3}
+                    style={{
+                      width: '100%', boxSizing: 'border-box', marginTop: 6,
+                      background: '#0c0a09', color: '#f5f5f4',
+                      border: '1px solid #44403c', borderRadius: 6,
+                      padding: '7px 10px', fontSize: 11, lineHeight: 1.5,
+                      resize: 'vertical', fontFamily: 'inherit', outline: 'none',
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setPrompt(card.render_key, card.art_prompt || '')}
+                    title="Reload the AI prompt into the box so you can edit from it"
+                    style={{ marginTop: 4, fontSize: 10, color: '#78716c', background: 'none',
+                             border: '1px solid #292524', borderRadius: 5, padding: '3px 8px',
+                             cursor: 'pointer', fontFamily: 'inherit' }}
+                  >↺ Reset to AI prompt</button>
+                </>
               )}
             </div>
           ))}
@@ -780,6 +831,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       setGen3dState('rmbg')
       setGen3dMsg('Removing background…')
       const es = new EventSource(`/api/deck/${jobId}/3d-status/${job_3d_id}`)
+      // Tracks whether a terminal event (done / server-sent error) already
+      // arrived, so the generic onerror connection handler doesn't clobber the
+      // real message when the server closes the stream right after sending it.
+      let settled = false
 
       es.addEventListener('progress', e => {
         const data = JSON.parse(e.data)
@@ -791,6 +846,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
       es.addEventListener('done', e => {
         const data = JSON.parse(e.data)
+        settled = true
         setGen3dState('done')
         setGen3dMsg('3D model ready!')
         setGen3dStlUrl(data.stl_url)
@@ -798,17 +854,24 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       })
 
       es.addEventListener('error', e => {
+        // This listener fires for BOTH a backend-sent `event: error` (which has
+        // e.data) and transport-level failures (no e.data). Only the former is a
+        // real, final result — let transport errors fall through to es.onerror.
+        if (!e.data) return
         let msg = 'Generation failed'
         try { msg = JSON.parse(e.data).msg || msg } catch {}
+        settled = true
         setGen3dState('error')
         setGen3dMsg(msg)
         es.close()
       })
 
       es.onerror = () => {
-        if (gen3dState !== 'done') {
+        // Only a genuine connection drop — if the backend already told us the
+        // outcome, keep that message instead of overwriting with a generic one.
+        if (!settled) {
           setGen3dState('error')
-          setGen3dMsg('Lost connection to server')
+          setGen3dMsg('Lost connection to the server before the 3D job reported a result. Check that the Myth Forge server and ComfyUI are still running.')
         }
         es.close()
       }

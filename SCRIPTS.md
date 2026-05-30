@@ -35,9 +35,12 @@ Select an option:
   6. First-Time Setup (install dependencies)
   7. Download AI Models
   8. Rebuild Frontend
+  9. Start ComfyUI (image generation backend, correct flags)
 
   0. Exit
 ```
+
+> **Option 9 (Start ComfyUI)** launches ComfyUI with the correct flags (no `--highvram`, `--disable-async-offload`). Always use this (or let Myth Forge auto-start ComfyUI) rather than the Desktop `.exe` — see [COMFYUI_SETUP.md](./COMFYUI_SETUP.md).
 
 ---
 

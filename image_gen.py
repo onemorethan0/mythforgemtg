@@ -47,6 +47,7 @@ import json
 import random
 import sys
 import time
+from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Optional
 
@@ -115,6 +116,50 @@ COMFY_BASE = _detect_comfy_base()
 # that comes from asking FLUX to fill a sub-1M-pixel canvas.
 CARD_WIDTH     = 1152
 CARD_HEIGHT    = 768
+
+
+# ── User-configurable generation settings ─────────────────────────────────────
+# Single source of truth for the knobs the frontend "Advanced" panels expose.
+# Defaults here MUST match frontend/src/config/genSettings.js.  Threaded through
+# ImageGen → workflow builders; absent/None fields fall back to model defaults so
+# existing behavior is unchanged when the UI sends nothing.
+@dataclass
+class GenSettings:
+    # FLUX sampler controls (dev only; schnell ignores guidance)
+    guidance:   float          = 3.5     # FluxGuidance value (1.5–5)
+    steps:      Optional[int]  = None     # None → 35 dev / 8 schnell
+    sampler:    Optional[str]  = None     # None → dpmpp_2m dev / euler schnell
+    scheduler:  Optional[str]  = None     # None → sgm_uniform dev / simple schnell
+    # Seed
+    seed_mode:  str            = "random"  # "random" | "fixed"
+    seed:       Optional[int]  = None      # used when seed_mode == "fixed"
+    # LoRA selection/strength overrides (list of {filename, model_strength, clip_strength?})
+    # None → use the art-style preset's default LoRA stack.
+    lora_overrides: Optional[list] = None
+    # Face conditioning
+    face_method: Optional[str] = None      # None=auto | "reactor" | "pulid_flux" | "none"
+    face_weight: Optional[float] = None    # PuLID identity weight (0.5–1.0)
+    # Stability
+    safe_mode:  bool           = False     # lower steps + resolution to reduce crash load
+
+    # Resolved generation resolution (set by ImageGen based on safe_mode)
+    width:      int            = CARD_WIDTH
+    height:     int            = CARD_HEIGHT
+
+    @classmethod
+    def from_dict(cls, d: Optional[dict]) -> "GenSettings":
+        """Build from an arbitrary dict, ignoring unknown keys and bad types."""
+        gs = cls()
+        if not d:
+            return gs
+        for k, v in d.items():
+            if k in cls.__dataclass_fields__ and v is not None:
+                setattr(gs, k, v)
+        return gs
+
+    def resolved(self) -> dict:
+        """A flat dict for logging."""
+        return asdict(self)
 
 # ── Negative prompt (SDXL only — FLUX ignores negatives at low CFG) ───────────
 NEGATIVE_PROMPT = (
@@ -189,7 +234,7 @@ _FLUX_PREFIX = (
     "Digital painting, fantasy illustration, concept art. "
     "Painterly brushwork, rich textured surface, highly detailed. "
     "Vivid saturated colors, cinematic lighting, dramatic shadows. "
-    "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+    "Third-person view, character viewed from outside. Landscape composition. "
     "Any visible hands have exactly five fingers each. "
 )
 
@@ -337,14 +382,20 @@ _LORA_PRESETS: dict[str, dict] = {
         # default to near-black.  "vivid neon palette against deep shadows" was the
         # old wording — FLUX over-weighted "deep shadows" and generated near-black
         # frames.  Now we anchor on luminosity first, then add dark atmosphere second.
+        # NOTE: palette and exact framing are intentionally NOT specified here.
+        # Color is driven per-card by the themer from each card's mana identity
+        # (_color_palette_hint), and composition variety comes from the themer's
+        # per-card scene descriptions.  This prefix only anchors MEDIUM + LUMINOSITY
+        # (to keep FLUX well-exposed — see the cfg/FluxGuidance fix) + card-suitable
+        # orientation.  Baking "electric magenta, cyan, deep blue" and "subject fully
+        # centered" here was overriding the per-card palette and flattening every
+        # card into the same look.
         "flux_prefix": (
             "Digital painting, cyberpunk concept art. "
-            "Vivid glowing neon lights — electric magenta, cyan, deep blue — "
-            "flood the scene with bright colorful illumination. "
-            "Rain-slicked streets mirror the neon glows. Chrome and glass architecture, "
-            "holographic overlays, retrofuturistic technology. "
-            "Well-lit scene with intense neon color. High detail, sharp focus. "
-            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+            "Bright neon-lit illumination, luminous glowing light sources, well-lit scene. "
+            "Chrome and glass architecture, holographic overlays, retrofuturistic technology. "
+            "High detail, sharp focus. "
+            "Third-person view, character viewed from outside, landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         # Cyberpunk-specific negative: push FLUX away from near-black underexposure.
@@ -360,26 +411,71 @@ _LORA_PRESETS: dict[str, dict] = {
             "overexposed, washed out, blown out, pure white, "
             "watermark, text, border, card frame, out of frame, cropped, nsfw"
         ),
+        # LoRA notes: both are dim=2 / alpha=16 FLUX LoRAs (alpha/rank ≈ 8 → potent
+        # even at modest strength), trained with text_encoder_lr=0, so they are
+        # UNET-only and clip_strength patches nothing (left at 0).
+        #
+        # "Neon Noir" (mad-neon-noir) is a SUBJECT/SCENE LoRA, not a pure style one:
+        # it was trained on 1940s-noir people (tags: street, alley, bar, man, woman,
+        # trenchcoat) and at any meaningful strength it overrides the card's actual
+        # character — turning every commander into a fedora-and-trenchcoat detective
+        # regardless of the prompt (confirmed by A/B testing: it still imposed the
+        # trenchcoat even at strength 0.25).  So it is intentionally NOT in the
+        # active stack.  "Cyberpunk Detailer" carries the neon-cyberpunk aesthetic
+        # (cyber-armor, augments, neon detail) while respecting the described subject,
+        # so it leads at 0.55.  To re-introduce a noir mood, add Neon Noir back at a
+        # LOW strength (≤0.2) and expect some loss of subject fidelity.
         "loras": [
+            # PRIMARY style LoRA: Cyberpunk CG (kcyberpunk).  Genuine flux-1-dev,
+            # dim16/alpha16 (scale 1.0 — well-behaved), trained as a STYLE on
+            # cyberpunk CG scenes & characters.  Unlike Neon Noir it does NOT hijack
+            # the subject (verified: a gold/crimson armored knight stayed an armored
+            # knight, fully neon-styled).  Recommended weight 0.6–0.8.
             {
-                "fragments":      ["neon_noir", "neonnoir"],
-                "trigger":        "mad-neon-noir",
-                "model_strength": 0.75,
-                "clip_strength":  0.75,
+                "fragments":      ["kcyberpunk", "cyberpunk_cg", "cyberpunkcg"],
+                "trigger":        "kcyberpunk",
+                "model_strength": 0.7,
+                "clip_strength":  0.0,
                 "dark_only":      False,
-                "label":          "Neon Noir",
-                "download_url":   "https://civitai.com/models/300898",
-                "download_note":  "Save as neon_noir_flux.safetensors",
+                "label":          "Cyberpunk CG",
+                "download_url":   "https://civitai.com/models/1248843",
+                "download_note":  "kcyberpunk-02.safetensors (FLUX.1 D)",
             },
+            # SECONDARY detail layer: adds cyber-augment / neon detail without
+            # dictating the subject.  Kept moderate so it complements, not competes.
             {
                 "fragments":      ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"],
                 "trigger":        "mad-cbrpnk-dtlr",
-                "model_strength": 0.50,
-                "clip_strength":  0.50,
+                "model_strength": 0.4,
+                "clip_strength":  0.0,
                 "dark_only":      False,
                 "label":          "Cyberpunk Detailer",
                 "download_url":   "https://civitai.com/models/730615",
                 "download_note":  "Neon_Cyberpunk_Detailer_FLUX_multi_trigger.safetensors",
+            },
+        ],
+        # Per-card rotation: each card randomly uses one of these two style stacks
+        # for stylistic variety across a deck (CG-realism vs vaporwave neon mood).
+        # Both are clean flux-1-dev STYLE LoRAs that respect the subject.
+        "lora_rotation": [
+            {
+                "label": "Cyberpunk CG",
+                "loras": [
+                    {"fragments": ["kcyberpunk", "cyberpunk_cg"], "trigger": "kcyberpunk",
+                     "model_strength": 0.7, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk CG"},
+                    {"fragments": ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"], "trigger": "mad-cbrpnk-dtlr",
+                     "model_strength": 0.4, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Detailer"},
+                ],
+            },
+            {
+                "label": "Neon Abyss",
+                "loras": [
+                    # bo-neon trained its text encoder (has lora_te keys), so clip_strength matters here.
+                    {"fragments": ["boFLUX_Abyss_Neon", "abyss_neon", "bo-neon", "boflux"], "trigger": "bo-neon",
+                     "model_strength": 0.85, "clip_strength": 0.85, "dark_only": False, "label": "Neon Abyss"},
+                    {"fragments": ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"], "trigger": "mad-cbrpnk-dtlr",
+                     "model_strength": 0.35, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Detailer"},
+                ],
             },
         ],
     },
@@ -400,7 +496,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Sun-scorched desert wasteland, cracked red earth, amber dust haze. "
             "Salvaged rust-stained armor, retrofuture survival gear, weathered bone and metal. "
             "Dramatic side lighting, deep shadows, warm ochre and burnt sienna palette. "
-            "Third-person view, character viewed from outside. High detail, wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. High detail, landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -503,10 +599,17 @@ _LORA_PRESETS: dict[str, dict] = {
         ),
         "loras": [
             {
+                # dim2/alpha16 (≈8× internal scale), trained on only ~15 images, so at
+                # high strength it imposes its default training subject (a ponytail
+                # anime girl) on any card whose prompt doesn't specify a distinct
+                # character. 0.6 keeps the semi-realistic anime *style* (verified the
+                # look survives down to 0.5) while giving the prompt enough authority
+                # to vary the subject. text encoder is untrained → clip_strength is a
+                # no-op, left at 0.
                 "fragments":      ["semi_realistic_anime", "semirealistic_anime", "semi-realistic_anime"],
                 "trigger":        "",   # trigger already embedded in flux_prefix
-                "model_strength": 0.85,
-                "clip_strength":  0.85,
+                "model_strength": 0.6,
+                "clip_strength":  0.0,
                 "dark_only":      False,
                 "label":          "Semi-Realistic Anime (Flux)",
                 "download_url":   "https://civitai.com/models/754435",
@@ -602,7 +705,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Deep shadow pools broken by pale candlelight and cold moonbeams. "
             "Muted palette of charcoal, slate, deep violet, and silver moonlight. "
             "Atmospheric and unsettling, cinematic horror mood. "
-            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "negative_prompt": (
@@ -652,7 +755,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Flowing organic edges where colors blend and bleed naturally. "
             "Vivid yet soft palette with subtle granulation and gentle color transitions. "
             "Hand-painted watercolor aesthetic with visible brushwork and paper tooth. "
-            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -684,7 +787,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Steam venting from ornate machinery, amber gas-lamp glow. "
             "Rich warm tones of burnished gold, deep brown leather, and patina green. "
             "Mechanical detail-rich composition. "
-            "Third-person view, character viewed from outside. Wide landscape, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -715,7 +818,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Chiaroscuro dramatic lighting — deep warm shadows with bright focal highlights. "
             "Rich jewel tones: deep crimson, burnished gold, deep blue, burnt sienna. "
             "Baroque compositional drama, majestic and timeless. "
-            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "loras": [
@@ -784,7 +887,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Deep space palette: sickly chartreuse, cosmic violet, void black, and pallid bone white. "
             "Oppressive sense of scale and ancient malice. "
             "Tentacles, eyes, and alien architecture woven into impossible shapes. "
-            "Third-person view, character viewed from outside. Wide landscape composition, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
         "negative_prompt": (
@@ -835,7 +938,7 @@ _LORA_PRESETS: dict[str, dict] = {
             "Each glass segment glows with luminous transmitted light, translucent and vivid. "
             "Gothic rose window aesthetics, divine grandeur. "
             "Flat bold colors within cells, strong graphic composition. "
-            "Third-person view, character viewed from outside. Wide landscape, subject fully centered and in frame. "
+            "Third-person view, character viewed from outside. Landscape composition. "
         ),
         "loras": [
             {
@@ -1270,32 +1373,39 @@ def _build_sdxl_workflow(checkpoint: str, positive: str, seed: int,
 
 
 def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
-                          negative: str = "") -> dict:
+                          negative: str = "", gen: Optional[GenSettings] = None) -> dict:
+    gen = gen or GenSettings()
     neg = negative or _FLUX_NEGATIVE
     is_schnell = "schnell" in checkpoint.lower()
-    # Schnell: 8 steps / CFG 1.0 / euler + simple   (fast draft quality)
-    #   Schnell is even more aggressively distilled than dev — CFG 1.0 is the
-    #   community consensus sweet spot (1.0–1.5 max before over-guidance shows).
-    # Dev fp8: 35 steps / CFG 3.5 / dpm++_2m + sgm_uniform
-    #   FLUX dev is a guidance-distilled model — guidance is baked into the
-    #   weights at training time.  Community-tested sweet spot is CFG 1.0–4.0.
-    #   CFG 7.0 caused latent NaN/overflow artifacts (overexposed white frames,
-    #   pink/magenta blobs) and over-saturated incoherent compositions.
-    #   3.5 gives strong prompt adherence without driving the latent out of range.
+    # FLUX is GUIDANCE-DISTILLED: it expects its guidance value through a
+    # FluxGuidance conditioning node, NOT classifier-free guidance.  Driving it
+    # with KSampler cfg>1 plus a negative prompt over-guides the latent and
+    # pushes it to a blown-out near-white frame.  This was the cause of the
+    # cyberpunk "overexposed/blank" failures: measured mean brightness ~250
+    # (detector rejects >242) at cfg 3.5, vs ~109 with the fix below — and
+    # lowering LoRA strength alone did NOT fix it, only the sampler change did.
+    #   Correct usage (ComfyUI canonical FLUX): KSampler cfg=1.0 + a FluxGuidance
+    #   node at ~3.5 (community sweet spot 3.0–4.0).  At cfg=1.0 the negative
+    #   prompt is inert (FLUX ignores it) — that is expected and correct; FLUX
+    #   steers from the positive prompt, not negatives.
+    #   Schnell is distilled to ignore guidance entirely, so it runs cfg=1.0
+    #   with no FluxGuidance node at all.
     #   dpm++_2m + sgm_uniform remains the sharpest combo for illustration detail.
-    steps    = 8            if is_schnell else 35
-    cfg      = 1.0          if is_schnell else 3.5
-    sampler  = "euler"      if is_schnell else "dpmpp_2m"
-    scheduler= "simple"     if is_schnell else "sgm_uniform"
-    return {
+    # User-configurable knobs (fall back to model-appropriate defaults).
+    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 35)
+    sampler  = gen.sampler   or              ("euler"  if is_schnell else "dpmpp_2m")
+    scheduler= gen.scheduler or              ("simple" if is_schnell else "sgm_uniform")
+    flux_guidance = gen.guidance     # distilled guidance for dev (ignored by schnell)
+    width, height = gen.width, gen.height
+    wf = {
         "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": checkpoint}},
-        "2": {"class_type": "EmptyLatentImage",       "inputs": {"width": CARD_WIDTH, "height": CARD_HEIGHT, "batch_size": 1}},
+        "2": {"class_type": "EmptyLatentImage",       "inputs": {"width": width, "height": height, "batch_size": 1}},
         "3": {"class_type": "CLIPTextEncode",         "inputs": {"text": positive, "clip": ["1", 1]}},
         "4": {"class_type": "CLIPTextEncode",         "inputs": {"text": neg,      "clip": ["1", 1]}},
         "5": {
             "class_type": "KSampler",
             "inputs": {
-                "seed": seed, "steps": steps, "cfg": cfg,
+                "seed": seed, "steps": steps, "cfg": 1.0,
                 "sampler_name": sampler, "scheduler": scheduler, "denoise": 1.0,
                 "model": ["1", 0], "positive": ["3", 0], "negative": ["4", 0], "latent_image": ["2", 0],
             },
@@ -1303,6 +1413,14 @@ def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
         "6": {"class_type": "VAEDecode", "inputs": {"samples": ["5", 0], "vae": ["1", 2]}},
         "7": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["6", 0]}},
     }
+    if not is_schnell:
+        # Insert FluxGuidance between the positive encode and the sampler.
+        # (_insert_loras only rewires CLIPTextEncode.clip and KSampler.model, so
+        # this node and the KSampler.positive link below survive LoRA chaining.)
+        wf["8"] = {"class_type": "FluxGuidance",
+                   "inputs": {"conditioning": ["3", 0], "guidance": flux_guidance}}
+        wf["5"]["inputs"]["positive"] = ["8", 0]
+    return wf
 
 
 def _build_sd35_workflow(checkpoint: str, positive: str, seed: int,
@@ -1336,11 +1454,11 @@ def _build_sd35_workflow(checkpoint: str, positive: str, seed: int,
 
 
 def _build_workflow(checkpoint: str, positive: str, seed: int,
-                     negative: str = "") -> dict:
+                     negative: str = "", gen: Optional[GenSettings] = None) -> dict:
     if _is_sd35(checkpoint):
         return _build_sd35_workflow(checkpoint, positive, seed, negative=negative)
     if _is_flux(checkpoint):
-        return _build_flux_workflow(checkpoint, positive, seed, negative=negative)
+        return _build_flux_workflow(checkpoint, positive, seed, negative=negative, gen=gen)
     return _build_sdxl_workflow(checkpoint, positive, seed, negative=negative)
 
 
@@ -1352,21 +1470,27 @@ def _build_pulid_flux_workflow(
     pulid_model: str,
     eva_clip_model: str,
     negative: str = "",
+    gen: Optional[GenSettings] = None,
 ) -> dict:
     """
     FLUX + PuLID face-conditioning workflow.
     ApplyPulidFlux wraps the base model so the KSampler generates
     an image whose subject resembles the reference face.
     """
+    gen = gen or GenSettings()
     neg = negative or _FLUX_NEGATIVE
     is_schnell = "schnell" in checkpoint.lower()
-    steps    = 8            if is_schnell else 35
-    cfg      = 1.0          if is_schnell else 3.5   # same rationale as _build_flux_workflow
-    sampler  = "euler"      if is_schnell else "dpmpp_2m"
-    scheduler= "simple"     if is_schnell else "sgm_uniform"
-    return {
+    # See _build_flux_workflow: FLUX uses cfg=1.0 + a FluxGuidance node, never
+    # KSampler cfg>1 (which over-guides to a blown-out white frame).
+    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 35)
+    sampler  = gen.sampler   or              ("euler"  if is_schnell else "dpmpp_2m")
+    scheduler= gen.scheduler or              ("simple" if is_schnell else "sgm_uniform")
+    flux_guidance = gen.guidance     # distilled guidance for dev (ignored by schnell)
+    face_weight = gen.face_weight if gen.face_weight is not None else 0.75
+    width, height = gen.width, gen.height
+    wf = {
         "1":  {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": checkpoint}},
-        "2":  {"class_type": "EmptyLatentImage",       "inputs": {"width": CARD_WIDTH, "height": CARD_HEIGHT, "batch_size": 1}},
+        "2":  {"class_type": "EmptyLatentImage",       "inputs": {"width": width, "height": height, "batch_size": 1}},
         "3":  {"class_type": "CLIPTextEncode",         "inputs": {"text": positive, "clip": ["1", 1]}},
         "4":  {"class_type": "CLIPTextEncode",         "inputs": {"text": neg,      "clip": ["1", 1]}},
         # PuLID face nodes
@@ -1380,10 +1504,11 @@ def _build_pulid_flux_workflow(
                 "pulid":        ["10", 0],
                 "eva_clip":     ["11", 0],
                 "face_image":   ["12", 0],
-                # weight 0.75: enough identity preservation without over-constraining
-                # composition for non-portrait action scenes.  0.85 caused cramped
-                # layouts on creature cards where the subject is mid-action.
-                "weight":       0.75,
+                # weight 0.75 default: enough identity preservation without over-
+                # constraining composition for non-portrait action scenes.  0.85
+                # caused cramped layouts on creature cards mid-action.  User-tunable
+                # via gen.face_weight.
+                "weight":       face_weight,
                 # start_at 0.1: lets FLUX establish rough composition (layout, sky, ground)
                 # in the first 3-4 steps before face identity is injected.  Starting at
                 # 0.0 locks everything to the face embedding from step 0, which competes
@@ -1397,7 +1522,7 @@ def _build_pulid_flux_workflow(
         "5": {
             "class_type": "KSampler",
             "inputs": {
-                "seed": seed, "steps": steps, "cfg": cfg,
+                "seed": seed, "steps": steps, "cfg": 1.0,
                 "sampler_name": sampler, "scheduler": scheduler, "denoise": 1.0,
                 "model":        ["13", 0],   # conditioned model
                 "positive":     ["3",  0],
@@ -1408,6 +1533,12 @@ def _build_pulid_flux_workflow(
         "6": {"class_type": "VAEDecode", "inputs": {"samples": ["5", 0], "vae": ["1", 2]}},
         "7": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["6", 0]}},
     }
+    if not is_schnell:
+        # FluxGuidance node id 14 (PuLID nodes occupy 10–13). Survives LoRA chaining.
+        wf["14"] = {"class_type": "FluxGuidance",
+                    "inputs": {"conditioning": ["3", 0], "guidance": flux_guidance}}
+        wf["5"]["inputs"]["positive"] = ["14", 0]
+    return wf
 
 
 def _build_faceid_sdxl_workflow(
@@ -1541,12 +1672,26 @@ class _ReactorCudaError(Exception):
 
 class ImageGen:
     def __init__(self, comfy_base: str = "", checkpoint: Optional[str] = None,
-                 model_speed: str = "quality", art_style: str = "mtg_fantasy"):
+                 model_speed: str = "quality", art_style: str = "mtg_fantasy",
+                 gen_settings: Optional[GenSettings] = None):
         """
         model_speed: "quality" → prefer flux-dev (slower, sharper)
                      "fast"    → prefer flux-schnell (4-8× faster, lower detail)
         art_style:   preset key from _LORA_PRESETS (e.g. "mtg_fantasy", "cyberpunk")
+        gen_settings: user-configurable knobs (guidance/steps/seed/loras/safe_mode…).
+                      None → defaults (existing behavior).
         """
+        # User-configurable generation settings (guidance, steps, seed, loras, …)
+        self.gen = gen_settings or GenSettings()
+        # Safe mode: shrink the workload that can trip an unstable machine under
+        # combined GPU+CPU load — fewer steps and a smaller canvas.
+        if self.gen.safe_mode:
+            if self.gen.steps is None:
+                self.gen.steps = 28
+            self.gen.width  = 896
+            self.gen.height = 600
+            print("  [image_gen] SAFE MODE on — steps capped, resolution reduced "
+                  f"({self.gen.width}x{self.gen.height})")
         # Re-probe the port every time an ImageGen is created — handles the case
         # where ComfyUI was restarted between builds (port may change).
         if not comfy_base:
@@ -1565,6 +1710,10 @@ class ImageGen:
         # LoRA art style support
         self.active_loras: list[dict] = []     # populated by _setup_loras()
         self.lora_trigger_prefix: str = ""     # trigger words prepended to every prompt
+        # Per-card LoRA rotation pool (populated by _setup_loras from a preset's
+        # "lora_rotation"): list of {label, loras:[resolved], trigger_prefix}.
+        # When non-empty, generate() picks one stack per card for stylistic variety.
+        self._lora_rotation: list[dict] = []
         self.theme_darkness: float = 1.0       # 0.0=light/whimsical → 1.0=dark/neutral
         self.active_flux_prefix: str = _FLUX_PREFIX   # overridden by _setup_loras()
         self.active_negative:    str = _FLUX_NEGATIVE # overridden by _setup_loras()
@@ -1572,6 +1721,11 @@ class ImageGen:
         if self.available:
             self._setup_face_method()
             self._setup_loras()
+            # Log resolved generation settings once per build for easy troubleshooting.
+            try:
+                print(f"  [gen_settings] {json.dumps(self.gen.resolved())}")
+            except Exception:
+                pass
 
     # ── Checkpoint detection ──────────────────────────────────────────────────
 
@@ -1786,9 +1940,22 @@ class ImageGen:
 
     def _setup_face_method(self) -> None:
         """Detect best available face-conditioning method and cache model names."""
+        # User override: explicitly disable face conditioning.
+        if self.gen.face_method == "none":
+            self.face_method = "none"
+            print("  [image_gen] Face method: none (disabled by user setting)")
+            return
+
         available_nodes = self._get_available_nodes()
 
-        for method, required_nodes in _FACE_METHODS.items():
+        # User override: try a specific method first (falls through to auto-detect
+        # if the requested method's nodes/models aren't available).
+        forced = self.gen.face_method
+        methods = list(_FACE_METHODS.items())
+        if forced and forced in _FACE_METHODS:
+            methods.sort(key=lambda kv: kv[0] != forced)
+
+        for method, required_nodes in methods:
             if not all(n in available_nodes for n in required_nodes):
                 continue
 
@@ -1957,6 +2124,68 @@ class ImageGen:
             print(f"  [image_gen] LoRAs missing for '{style_label}': "
                   f"{missing_labels} — preset runs prompt-only for those.")
 
+        # ── User LoRA overrides (from the Advanced "LoRA picker") ───────────────
+        # gen.lora_overrides is a list of {filename, model_strength, clip_strength?,
+        # trigger?}.  When present it REPLACES the preset's default stack so the user
+        # has full control over which installed LoRAs run and at what strength.
+        overrides = self.gen.lora_overrides
+        if overrides:
+            resolved: list[dict] = []
+            for ov in overrides:
+                fn = ov.get("filename")
+                if not fn:
+                    continue
+                # accept exact filename or a fragment match against installed list
+                match = fn if fn in installed else next(
+                    (f for f in installed if fn.lower() in f.lower()), None)
+                if not match:
+                    print(f"  [image_gen] LoRA override not installed, skipping: {fn}")
+                    continue
+                resolved.append({
+                    "filename":       match,
+                    "trigger":        ov.get("trigger", ""),
+                    "model_strength": float(ov.get("model_strength", 0.7)),
+                    "clip_strength":  float(ov.get("clip_strength", 0.0)),
+                    "dark_only":      False,
+                    "label":          ov.get("label", match),
+                })
+            self.active_loras = resolved
+            triggers = [e["trigger"] for e in resolved if e.get("trigger")]
+            self.lora_trigger_prefix = ", ".join(triggers) + ". " if triggers else ""
+            print(f"  [image_gen] LoRA overrides applied ({len(resolved)}): "
+                  f"{[e['label'] for e in resolved]}")
+
+        # ── Per-card LoRA rotation pool ─────────────────────────────────────────
+        # A preset may define "lora_rotation": a list of style stacks. We resolve
+        # each stack's filenames once here; generate() then picks one stack PER CARD
+        # for stylistic variety across a deck.  Skipped when the user supplied
+        # explicit LoRA overrides (their choice wins).
+        rotation_spec = preset.get("lora_rotation")
+        if rotation_spec and not overrides:
+            pool: list[dict] = []
+            for stack in rotation_spec:
+                resolved_stack: list[dict] = []
+                for entry in stack.get("loras", []):
+                    frags = entry.get("fragments", [entry.get("fragment", "")])
+                    match = next((f for f in installed
+                                  if any(fr.lower() in f.lower() for fr in frags)), None)
+                    if match:
+                        resolved_stack.append({**entry, "filename": match})
+                if resolved_stack:
+                    trg = [e["trigger"] for e in resolved_stack if e.get("trigger")]
+                    pool.append({
+                        "label":         stack.get("label", "stack"),
+                        "loras":         resolved_stack,
+                        "trigger_prefix": (", ".join(trg) + ". ") if trg else "",
+                    })
+            if pool:
+                self._lora_rotation = pool
+                # default to the first stack (generate() re-picks per card)
+                self.active_loras       = pool[0]["loras"]
+                self.lora_trigger_prefix = pool[0]["trigger_prefix"]
+                print(f"  [image_gen] LoRA rotation enabled ({len(pool)} stacks): "
+                      f"{[p['label'] for p in pool]}")
+
     # ── ComfyUI helpers ───────────────────────────────────────────────────────
 
     def upload_face_to_comfy(self, image_path: Path) -> Optional[str]:
@@ -2099,25 +2328,27 @@ class ImageGen:
                         traceback_lines = data.get("traceback", [])
                         tb_tail = "".join(traceback_lines[-5:]) if traceback_lines else ""
 
-                        # ── CUDA/ReActor Error Handling ──────────────────────────
-                        # If ReActor face-swap fails due to missing CUDA, log gracefully
-                        # instead of spamming verbose CUDA error messages.
+                        # ── ReActor Error Handling ───────────────────────────────
+                        # If ReActor fails due to any onnxruntime/CUDA issue, log
+                        # gracefully and retry without face conditioning.
+                        # Note: reactor_swapper.py is patched to CPUExecutionProvider
+                        # to avoid CUDA 12.x vs 13.x DLL mismatch (WinError 1114).
                         is_cuda_error = (
                             "cublasLt64_12" in str(exc_msg) or
+                            "WinError 1114" in str(exc_msg) or
                             "CUDA" in str(exc_type) or
-                            "onnxruntime" in str(exc_msg) and "cuda" in str(exc_msg).lower()
+                            ("onnxruntime" in str(exc_msg) and
+                             ("cuda" in str(exc_msg).lower() or "provider" in str(exc_msg).lower()))
                         )
                         is_reactor_error = node_type and "ReActor" in node_type
 
                         if is_cuda_error and is_reactor_error:
                             cuda_error_detected = True
-                            print(f"  [image_gen] Face conditioning skipped: CUDA 12.x not available")
-                            print(f"  [image_gen] To enable face swapping, install CUDA Toolkit 12.x from:")
-                            print(f"  [image_gen] https://developer.nvidia.com/cuda-downloads")
-                            # Don't print verbose traceback for CUDA errors
+                            print(f"  [image_gen] ReActor error detected — retrying without face conditioning")
+                            print(f"  [image_gen] Error: [{exc_type}] {str(exc_msg)[:120]}")
                             continue
 
-                        # For non-CUDA errors, print full error details
+                        # For non-ReActor/non-CUDA errors, print full error details
                         print(
                             f"  [image_gen] EXECUTION ERROR in node {node_id} "
                             f"({node_type}): [{exc_type}] {exc_msg}"
@@ -2132,11 +2363,10 @@ class ImageGen:
                     print(f"  [image_gen] ComfyUI reports {status_str!r} — "
                           f"messages: {messages[:5]}")
 
-                # ReActor CUDA error: raise so generate() can retry without face conditioning
+                # ReActor error: raise so generate() can retry without face conditioning
                 if cuda_error_detected:
                     raise _ReactorCudaError(
-                        "ReActor face-swap failed (CUDA 12.x mismatch) — "
-                        "retrying without face conditioning"
+                        "ReActor face-swap failed — retrying without face conditioning"
                     )
 
                 # Return None to stop waiting (generation failed)
@@ -2210,6 +2440,7 @@ class ImageGen:
         face_comfy_name: Optional[str] = None,   # already-uploaded ComfyUI filename
         face_gender:   str = "either",            # "male", "female", or "either"
         cancel_event=None,                        # threading.Event — set to stop generation mid-run
+        card_type:     str = "",                  # type_line — used to keep people out of Land art
     ) -> Optional[Path]:
         if not self.available:
             return None
@@ -2222,7 +2453,19 @@ class ImageGen:
             save_path.unlink()
             print(f"  [image_gen] Stale overexposed/blank image deleted, regenerating: {save_path.name}")
 
-        seed   = random.randint(0, 2**32 - 1)
+        # Per-card LoRA rotation: pick one style stack for THIS card so a deck
+        # doesn't render every card in an identical LoRA look.
+        if self._lora_rotation:
+            stack = random.choice(self._lora_rotation)
+            self.active_loras        = stack["loras"]
+            self.lora_trigger_prefix = stack["trigger_prefix"]
+            print(f"  [image_gen] LoRA stack for this card: {stack['label']}")
+
+        # Seed: fixed (reproducible) when the user pins one, else random per card.
+        if self.gen.seed_mode == "fixed" and self.gen.seed is not None:
+            seed = int(self.gen.seed)
+        else:
+            seed = random.randint(0, 2**32 - 1)
         # For FLUX, always use the preset-specific active_flux_prefix.
         # For SDXL/SD3.5, use active_flux_prefix only if the preset defined a
         # custom one (i.e. active_flux_prefix was overridden from _FLUX_PREFIX);
@@ -2234,6 +2477,21 @@ class ImageGen:
             prefix = self.active_flux_prefix
         else:
             prefix = _SDXL_PREFIX
+
+        # ── Land cards: the location IS the subject, no people ──────────────────
+        # Every style prefix says "character viewed from outside", which on a Land
+        # makes FLUX insert a person into what should be a pure landscape. For lands
+        # we flip that clause and append a strong no-people directive (with a city /
+        # settlement exception, where structures are the subject — still no figures).
+        is_land = "land" in (card_type or "").lower()
+        land_suffix = ""
+        if is_land:
+            prefix = prefix.replace("character viewed from outside", "no people, no characters")
+            land_suffix = (
+                ". This is a LAND card: the terrain, structures and location ARE the sole subject. "
+                "An unpopulated landscape — no people, no characters, no figures, no creatures in frame. "
+                "If the location is a city or ruins, show the architecture itself from afar, still with no visible people."
+            )
 
         # LoRA trigger words prepended first so CLIP weights them most heavily.
         # self.lora_trigger_prefix is "" when no MTG art LoRAs are installed.
@@ -2258,15 +2516,24 @@ class ImageGen:
 
             # Append AFTER art_prompt so the mechanical soul is established first,
             # then add face requirements as additional constraints.
+            #
+            # IMPORTANT — keep the character ACTIVE. The face still needs to be a clear,
+            # frontal-ish focal point (so PuLID/ReActor can find it), but phrasing it as
+            # "upper body in frame, facing forward toward camera" produced stiff portraits
+            # of a person standing and staring into nothing, overriding the card's action.
+            # So: demand a prominent, well-lit face AND an engaged, mid-action moment.
             face_suffix = (
-                f". Character is {_fp_subject} with a clear, well-lit face showing detailed expressive eyes and {_fp_quality}. "
-                f"Face clearly visible, upper body in frame."
+                f". The subject is {_fp_subject}; their face is a clear, well-lit focal point with "
+                f"detailed expressive eyes and {_fp_quality}, turned toward the viewer at a three-quarter angle. "
+                f"They are actively engaged in the scene — a dynamic, in-motion moment with intent and emotion, "
+                f"NOT a stiff posed portrait and NOT standing blankly staring into the distance."
             )
-            # ReActor needs a detectable face in the generated image to swap onto.
+            # ReActor needs a clearly detectable face to swap onto — keep it unobscured
+            # and large enough, without collapsing the whole image into a head-and-shoulders shot.
             if self.face_method == "reactor":
-                face_suffix += " Subject facing forward, three-quarter view toward camera."
+                face_suffix += " Keep the face unobscured and prominent enough to read clearly."
 
-        full_prompt = lora_prefix + prefix + art_prompt + face_suffix
+        full_prompt = lora_prefix + prefix + art_prompt + face_suffix + land_suffix
 
         # Log the final prompt and settings so we can diagnose blurriness/LoRA issues
         print(f"  [image_gen] Prompt ({len(full_prompt)} chars): {full_prompt[:120]}{'...' if len(full_prompt) > 120 else ''}")
@@ -2281,7 +2548,7 @@ class ImageGen:
                 wf = self._build_face_workflow(full_prompt, attempt_seed, face_comfy_name)
             else:
                 wf = _build_workflow(self.checkpoint, full_prompt, attempt_seed,
-                                     negative=self.active_negative)
+                                     negative=self.active_negative, gen=self.gen)
 
             # Insert LoRA nodes into workflow (chains model + clip through each LoRA).
             # Dark-only LoRAs have their strength scaled by self.theme_darkness so
@@ -2353,6 +2620,7 @@ class ImageGen:
                     art_prompt, filename_stem,
                     face_comfy_name=None,
                     face_gender=face_gender,
+                    card_type=card_type,
                     cancel_event=cancel_event,
                 )
             return None
@@ -2369,7 +2637,7 @@ class ImageGen:
             return _build_pulid_flux_workflow(
                 self.checkpoint, positive, seed, face_comfy_name,
                 self.face_info["pulid"], self.face_info["eva_clip"],
-                negative=neg,
+                negative=neg, gen=self.gen,
             )
         if self.face_method == "ipadapter_faceid":
             return _build_faceid_sdxl_workflow(
@@ -2378,14 +2646,14 @@ class ImageGen:
                 negative=neg,
             )
         if self.face_method == "reactor":
-            base = _build_workflow(self.checkpoint, positive, seed, negative=neg)
+            base = _build_workflow(self.checkpoint, positive, seed, negative=neg, gen=self.gen)
             return _append_reactor(
                 base, face_comfy_name,
                 swap_model=self.face_info.get("swap_model", "inswapper_128.onnx"),
                 restore_model=self.face_info.get("restore_model", "codeformer-v0.1.0.pth"),
             )
         # Should not reach here
-        return _build_workflow(self.checkpoint, positive, seed, negative=neg)
+        return _build_workflow(self.checkpoint, positive, seed, negative=neg, gen=self.gen)
 
     def generate_deck(
         self,
@@ -2537,6 +2805,7 @@ class ImageGen:
                 face_comfy_name=card_face_name,
                 face_gender=card_face_gender,
                 cancel_event=cancel_event,
+                card_type=tc.card.get("type_line", ""),
             )
             elapsed = time.monotonic() - t0
             results[tc.original_name] = path

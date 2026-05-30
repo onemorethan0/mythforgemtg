@@ -43,13 +43,70 @@ from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
 from themer             import Themer, ThemedCard
-from image_gen          import ImageGen, _is_flux, _is_sd35, _is_sdxl
+from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
 from exporter           import build_zip, build_pdf
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 from model3d            import Model3DGen, generate_commander_3d
+
+# ── In-memory log capture ──────────────────────────────────────────────────────
+# Tee stdout/stderr into a bounded ring buffer so the running server's output
+# (startup checks, pipeline prints, tracebacks, uvicorn access logs) can be
+# viewed from inside the app via /api/logs — regardless of how the process was
+# launched (console, redirected file, or detached with no console at all).
+import sys as _sys
+import collections
+from datetime import datetime as _dt
+
+_LOG_BUFFER: "collections.deque[str]" = collections.deque(maxlen=5000)
+
+
+class _TeeStream:
+    """Write-through stream wrapper that mirrors output into _LOG_BUFFER line by line."""
+
+    def __init__(self, original):
+        self._original = original
+        self._partial = ""
+
+    def write(self, text):
+        if self._original is not None:
+            try:
+                self._original.write(text)
+            except Exception:
+                pass
+        self._partial += text
+        while "\n" in self._partial:
+            line, self._partial = self._partial.split("\n", 1)
+            _LOG_BUFFER.append(f"{_dt.now().strftime('%H:%M:%S')} {line}")
+        return len(text)
+
+    def flush(self):
+        if self._original is not None:
+            try:
+                self._original.flush()
+            except Exception:
+                pass
+
+    def isatty(self):
+        # uvicorn's log formatter calls this during config; guard against a
+        # None/detached stdout so logging setup never crashes on launch.
+        try:
+            return bool(self._original) and self._original.isatty()
+        except Exception:
+            return False
+
+    def __getattr__(self, name):
+        return getattr(self._original, name)
+
+
+# Wrap whatever stdout/stderr are at this point (model3d already installed a
+# UTF-8 wrapper on import). Wrapping happens before uvicorn.run() so uvicorn's
+# log handlers bind to the tee and access logs are captured too.
+_sys.stdout = _TeeStream(_sys.stdout)
+_sys.stderr = _TeeStream(_sys.stderr)
+
 
 # ── App setup ─────────────────────────────────────────────────────────────────
 
@@ -128,6 +185,10 @@ _RATE_LIMIT_BUILD_REQUESTS = 5  # max 5 builds per minute per IP
 # Global art-generation lock — ComfyUI is a single-GPU resource.
 # Only one build may run art gen at a time; concurrent builds queue up here.
 _art_lock = threading.Lock()
+
+# Serializes ComfyUI auto-start so the startup thread and concurrent builds never
+# spawn duplicate ComfyUI processes (each re-checks "is it up?" inside the lock).
+_comfyui_start_lock = threading.Lock()
 
 # Per-source-deck lock to serialize regen-cards writes to the same deck dir.
 # Without this, two concurrent regen calls on the same deck race their PNG
@@ -314,6 +375,34 @@ def _ensure_ollama_models_ready():
 class SearchRequest(BaseModel):
     query: str
 
+
+class GenSettingsModel(BaseModel):
+    """User-configurable generation knobs from the frontend Advanced panels.
+    Mirrors image_gen.GenSettings; all optional so omitting it preserves defaults."""
+    guidance:       Optional[float] = None   # FLUX FluxGuidance (1.5–5)
+    steps:          Optional[int]   = None   # sampler steps
+    sampler:        Optional[str]   = None
+    scheduler:      Optional[str]   = None
+    seed_mode:      Optional[str]   = None   # "random" | "fixed"
+    seed:           Optional[int]   = None
+    lora_overrides: Optional[List[dict]] = None  # [{filename, model_strength, clip_strength?, trigger?}]
+    face_method:    Optional[str]   = None   # None=auto | "reactor" | "pulid_flux" | "none"
+    face_weight:    Optional[float] = None
+    safe_mode:      Optional[bool]  = None
+
+
+def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:
+    """Convert the API GenSettingsModel into the image_gen.GenSettings dataclass.
+    None / missing fields fall back to defaults (existing behavior)."""
+    if gs is None:
+        return GenSettings()
+    try:
+        d = gs.model_dump(exclude_none=True)   # pydantic v2
+    except AttributeError:
+        d = {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
+    return GenSettings.from_dict(d)
+
+
 class BuildRequest(BaseModel):
     commander_name:    str = Field(..., max_length=120)
     playstyle:         str = "auto"
@@ -335,6 +424,7 @@ class BuildRequest(BaseModel):
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
+    gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
 class RebuildRequest(BaseModel):
@@ -346,12 +436,14 @@ class RebuildRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None
     crew_gender: str = "either"
+    gen_settings: Optional[GenSettingsModel] = None
 
 
 class CardRegenEntry(BaseModel):
     render_key:    str            # safe-name used in the filename / URL
     original_name: str            # canonical MTG card name for lookup fallback
-    custom_prompt: Optional[str] = None   # None → use saved art_prompt
+    custom_prompt: Optional[str] = None   # user's custom text (stored separately; never clobbers art_prompt)
+    use_custom:    bool = False           # True → feed custom_prompt to generation; False → use LLM art_prompt
 
 
 class RegenCardsRequest(BaseModel):
@@ -364,6 +456,7 @@ class RegenCardsRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None   # crew faces override for creature cards
     crew_gender: str = "either"
+    gen_settings: Optional[GenSettingsModel] = None
 
 
 class RethemeRequest(BaseModel):
@@ -418,15 +511,44 @@ async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGe
 # → We warn and wait up to 120 s.  If VRAM doesn't clear in time we abort art
 #   gen rather than letting Windows crash the whole machine.
 
-_VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum free VRAM before loading FLUX+LoRAs
-_VRAM_OLLAMA_CLEAR_GB   = 18.0   # target free VRAM after Ollama eviction
-                                  # (24 GB card − 6 GB OS/driver overhead = 18 GB "clear")
+_VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum FREE VRAM before loading FLUX+LoRAs (system-wide)
+                                  # Peak load: FLUX fp8 UNet ~8.5 GB + T5 ~4.7 GB + LoRAs
+                                  # + ReActor + overhead ≈ 18 GB peak during conditioning.
+                                  # After Ollama (9.89 GB) evicts: ~21 GB free → passes ✓
+                                  # While Ollama still loaded: ~11 GB free → blocks ✓
+                                  # NOTE: now measured by nvidia-smi (system-wide), not
+                                  # ComfyUI's internal pool which was blind to Ollama.
+_VRAM_OLLAMA_CLEAR_GB   = 14.0   # target free VRAM after ComfyUI /free before Ollama loads
+                                  # After FLUX unloads: ~21-22 GB free, threshold met ✓
+                                  # Ollama qwen3:14b needs ~10 GB; 14 GB gives 4 GB headroom
 _EVICT_POLL_INTERVAL    = 3.0    # seconds between VRAM polls (increased from 2.0 for efficiency)
 _EVICT_MAX_WAIT         = 120    # seconds — large models (27B, 23 GB) need up to 60 s
 
 
 def _comfyui_vram_free_gb() -> Optional[float]:
-    """Return free VRAM (GB) reported by ComfyUI /system_stats, or None on error."""
+    """Return actual free GPU VRAM in GB, system-wide (all processes).
+
+    Uses nvidia-smi as the authoritative source because ComfyUI's /system_stats
+    vram_free only reflects ComfyUI's own CUDA allocation pool — it is blind to
+    VRAM held by other processes (e.g. Ollama holding ~10 GB).  Using nvidia-smi
+    prevents false-green VRAM gates that schedule FLUX while Ollama is still
+    resident, causing OOM crashes on the RTX 3090.
+
+    Falls back to ComfyUI's internal view if nvidia-smi is unavailable.
+    """
+    import subprocess
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+            capture_output=True, text=True, timeout=5,
+        )
+        if result.returncode == 0:
+            free_mib = int(result.stdout.strip().split("\n")[0].strip())
+            return free_mib / 1024.0   # MiB → GB
+    except Exception:
+        pass
+
+    # Fallback: ComfyUI's internal view (unreliable when Ollama is also loaded)
     try:
         r = requests.get("http://127.0.0.1:8188/system_stats", timeout=4)
         if r.status_code == 200:
@@ -530,13 +652,16 @@ def _wait_for_ollama_evict(model: str, job_id: str = "") -> bool:
     model_is_loaded = any(model_base in m for m in loaded_now)
 
     if not model_is_loaded and not loaded_now:
-        # Nothing loaded — VRAM pressure must be from something else (e.g. a
-        # previous ComfyUI run still resident).  Skip Ollama POST, go straight
-        # to VRAM poll so we still gate on physical memory clearing.
+        # Ollama not loaded — nothing to evict.  VRAM pressure (if any) comes from
+        # ComfyUI's own resident models (NORMAL_VRAM keeps FLUX in VRAM between jobs).
+        # That's exactly where we want FLUX — do NOT wait for it to disappear.
+        # ComfyUI is already ready to accept the next generation job.
         if job_id:
-            print(f"  [vram] Ollama idle — skipping keep_alive=0, waiting for VRAM…")
-        return _wait_for_vram(_VRAM_FLUX_REQUIRED_GB, job_id=job_id,
-                              label="pre-FLUX VRAM gate")
+            free_v = _comfyui_vram_free_gb()
+            free_s = f"{free_v:.1f}" if free_v is not None else "?"
+            print(f"  [vram] Ollama not loaded — ComfyUI models resident "
+                  f"({free_s} GB free). Proceeding to generation.")
+        return True
 
     # Send eviction request via both endpoints — models loaded via chat API
     # sometimes don't respond to the /api/generate keep_alive signal alone.
@@ -765,7 +890,9 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
     return {
         "original_name": tc.original_name,
         "themed_name":   tc.themed_name,
-        "art_prompt":    tc.art_prompt,
+        "art_prompt":    tc.art_prompt,    # LLM-generated; treated as immutable
+        "custom_prompt": "",               # user override (kept separate from art_prompt)
+        "use_custom":    False,            # which prompt feeds generation
         "flavor_text":   tc.flavor_text,
         "mana_cost":     c.get("mana_cost", ""),
         "type_line":     c.get("type_line", ""),
@@ -1044,6 +1171,10 @@ def _run_build(job_id: str, req: BuildRequest):
         # ── Art generation (optional) ─────────────────────────────────────────
         art_paths: dict[str, Optional[Path]] = {}
         if req.generate_art:
+            # Auto-start ComfyUI if it isn't running (waits for it to load), so a
+            # build doesn't silently fall back to Scryfall art just because the
+            # backend was down. No-op if it's already up or can't be located.
+            _ensure_comfyui_ready(job_id)
             # Pre-flight: explicitly check ComfyUI BEFORE evicting Ollama and
             # taking the GPU lock.  If ComfyUI isn't running we tell the user
             # exactly why with a clear, actionable message — and the build
@@ -1071,7 +1202,8 @@ def _run_build(job_id: str, req: BuildRequest):
                 with _art_lock:   # serialize: only one build drives ComfyUI at a time
                     try:
                         gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                                      checkpoint=req.checkpoint)
+                                      checkpoint=req.checkpoint,
+                                      gen_settings=_resolve_gen_settings(req.gen_settings))
                     except Exception as _ge:
                         _push(job_id, "progress", json.dumps({
                             "step": "art",
@@ -1426,6 +1558,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 "msg":  f"Found {len(_fallback_art)} existing art file(s) (from {_fallback_slug}) — will reuse if new art gen is skipped.",
             }))
 
+        # Auto-start ComfyUI if down (no-op if already up / not locatable).
+        _ensure_comfyui_ready(job_id)
         health = ImageGen.health_check()
         if not health["ok"]:
             _fallback_msg = (
@@ -1466,7 +1600,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             with _art_lock:
                 try:
                     gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                                  checkpoint=req.checkpoint)
+                                  checkpoint=req.checkpoint,
+                                  gen_settings=_resolve_gen_settings(req.gen_settings))
                 except Exception as _ge:
                     _push(job_id, "progress", json.dumps({
                         "step": "art",
@@ -1718,8 +1853,16 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             # overwrites the original rendered file and the card_ready event key
             # matches what the frontend stores in card.render_key / refreshTs.
             stored_render_key = cd.get("render_key") or art_safe
-            custom = entry.custom_prompt.strip() if entry.custom_prompt and entry.custom_prompt.strip() else ""
-            prompt = custom or cd.get("art_prompt", "") or cd["original_name"]
+            # Pick which prompt feeds generation. The LLM art_prompt is the default
+            # and is NEVER overwritten; the custom prompt is used only when the card
+            # is flagged use_custom and has custom text. The request is authoritative
+            # (custom text falls back to whatever was previously stored for the card).
+            custom = (entry.custom_prompt if entry.custom_prompt is not None
+                      else cd.get("custom_prompt", "")) or ""
+            custom = custom.strip()
+            use_custom = bool(entry.use_custom and custom)
+            prompt = (custom if use_custom else cd.get("art_prompt", "")) \
+                     or cd.get("art_prompt", "") or cd["original_name"]
 
             tc = ThemedCard(
                 original_name = cd["original_name"],
@@ -1757,6 +1900,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         effective_crew_gender = req.crew_gender or source_data.get("crew_gender") or "either"
 
         # ── ComfyUI pre-flight ────────────────────────────────────────────────
+        # Auto-start ComfyUI if down (regen needs it — wait for it to load).
+        _ensure_comfyui_ready(job_id)
         health = ImageGen.health_check()
         if not health["ok"]:
             raise ValueError(f"ComfyUI not available: {health['message']}")
@@ -1782,7 +1927,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
         with _art_lock:
             gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                          checkpoint=req.checkpoint)
+                          checkpoint=req.checkpoint,
+                          gen_settings=_resolve_gen_settings(req.gen_settings))
             if not gen.available:
                 raise ValueError("ComfyUI not available after acquiring GPU lock")
 
@@ -1867,6 +2013,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                     str(_Path("generated_art") / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
+                    card_type=tc.card.get("type_line", ""),
                 )
                 elapsed = time.time() - t0
                 success = art_path is not None
@@ -1909,18 +2056,28 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
             return
 
-        # ── Persist any custom prompts back to the source deck.json ──────────
-        custom_updates = {
-            "".join(ch if ch.isalnum() else "_" for ch in e.original_name)[:48]: e.custom_prompt.strip()
+        # ── Persist custom prompts + the use-custom choice to deck.json ──────
+        # IMPORTANT: never overwrite the LLM-generated art_prompt — store the user's
+        # text in a separate custom_prompt field so both remain available and the
+        # original can always be recovered. Records the per-card use_custom flag too.
+        prompt_updates = {
+            "".join(ch if ch.isalnum() else "_" for ch in e.original_name)[:48]: e
             for e in req.cards
-            if e.custom_prompt and e.custom_prompt.strip()
         }
-        if custom_updates:
+        if prompt_updates:
             updated = dict(source_data)
 
             def _patch_prompt(cd):
                 safe = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
-                return {**cd, "art_prompt": custom_updates[safe]} if safe in custom_updates else cd
+                e = prompt_updates.get(safe)
+                if not e:
+                    return cd
+                patched = {**cd, "use_custom": bool(e.use_custom)}
+                # Only replace stored custom text when new text was supplied;
+                # an empty/None custom_prompt preserves whatever was there.
+                if e.custom_prompt is not None and e.custom_prompt.strip():
+                    patched["custom_prompt"] = e.custom_prompt.strip()
+                return patched
 
             updated["commander"] = _patch_prompt(updated["commander"])
             updated["deck"]      = [_patch_prompt(c) for c in updated["deck"]]
@@ -3061,45 +3218,64 @@ async def upload_face(files: List[UploadFile] = File(...)):
 
 # ── Export endpoints ──────────────────────────────────────────────────────────
 
-@app.get("/api/deck/{job_id}/export/zip")
-async def export_zip(job_id: str):
+def _load_job_for_export(job_id: str) -> dict:
+    """Return a usable job dict for export, loading from disk when needed.
+
+    Mirrors the permissive status logic of GET /api/deck/{job_id}: accepts
+    'done', 'rendering', and 'cancelled' (all have card data on disk).
+    Raises HTTPException for 404, still-building, and error states.
+    """
     job = _jobs.get(job_id)
+    # Fall back to disk for old/evicted jobs (same as the deck GET endpoint)
+    if not job or not job.get("commander"):
+        disk = _load_deck_from_disk(job_id)
+        if disk:
+            if job:
+                _jobs[job_id].update(disk)
+                job = _jobs[job_id]
+            else:
+                job = disk
     if not job:
-        raise HTTPException(404, "Job not found")
-    if job["status"] != "done":
-        raise HTTPException(409, f"Deck not ready — status: {job['status']}")
+        raise HTTPException(404, "Deck not found")
+    status = job.get("status", "")
+    if status == "building":
+        raise HTTPException(409, "Deck still building — try again once it finishes")
+    if status == "error":
+        raise HTTPException(409, f"Deck failed to build: {job.get('error', 'unknown error')}")
+    if not job.get("commander") or not job.get("deck"):
+        raise HTTPException(409, "Deck has no card data yet")
+    return job
+
+
+@app.get("/api/deck/{job_id}/export/zip")
+def export_zip(job_id: str):
+    job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
         data = build_zip(job["commander"], job["deck"], render_dir)
     except Exception as e:
         raise HTTPException(500, f"ZIP export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    filename = f"{safe}_deck.zip"
     return StreamingResponse(
         io.BytesIO(data),
         media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        headers={"Content-Disposition": f'attachment; filename="{safe}_deck.zip"'},
     )
 
 
 @app.get("/api/deck/{job_id}/export/pdf")
-async def export_pdf(job_id: str):
-    job = _jobs.get(job_id)
-    if not job:
-        raise HTTPException(404, "Job not found")
-    if job["status"] != "done":
-        raise HTTPException(409, f"Deck not ready — status: {job['status']}")
+def export_pdf(job_id: str):
+    job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
         data = build_pdf(job["commander"], job["deck"], render_dir)
     except Exception as e:
         raise HTTPException(500, f"PDF export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    filename = f"{safe}_proxies.pdf"
     return StreamingResponse(
         io.BytesIO(data),
         media_type="application/pdf",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        headers={"Content-Disposition": f'attachment; filename="{safe}_proxies.pdf"'},
     )
 
 
@@ -3292,6 +3468,23 @@ async def get_3d_health():
     return JSONResponse(Model3DGen.health_check())
 
 
+@app.get("/api/logs")
+async def get_logs(lines: int = 300):
+    """
+    Return the most recent server log lines from the in-memory ring buffer.
+    Captures stdout/stderr (startup checks, pipeline prints, tracebacks) and
+    uvicorn access logs. `lines` is clamped to [1, 5000].
+    """
+    lines = max(1, min(int(lines), 5000))
+    buf = list(_LOG_BUFFER)
+    recent = buf[-lines:]
+    return JSONResponse({
+        "lines":    recent,
+        "total":    len(buf),
+        "returned": len(recent),
+    })
+
+
 # ── Serve React frontend ───────────────────────────────────────────────────────
 if STATIC_DIR.exists():
     app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
@@ -3353,130 +3546,182 @@ def _start_ollama() -> None:
         print(f"      Download & install from: https://ollama.ai")
 
 
-def _start_comfyui() -> None:
-    """
-    Start the ComfyUI Desktop backend using the same command the Electron app uses.
+def _resolve_comfyui_cmd() -> Optional[tuple[list[str], Path]]:
+    """Build the ComfyUI backend launch command with --normalvram.
 
-    The ComfyUI Desktop app (E:\\Games\\comfy\\ComfyUI\\ComfyUI.exe) stores its
-    config in %APPDATA%\\ComfyUI\\config.json.  We read that to find:
-      - basePath  → working dir and --base-directory arg
-      - The .venv Python is always at {basePath}\\.venv\\Scripts\\python.exe
-      - main.py is always at {exe_dir}\\resources\\ComfyUI\\main.py
+    Drives main.py directly via the ComfyUI Desktop's own CUDA venv python, using
+    the same paths the Desktop app uses (read from %APPDATA%/ComfyUI/config.json).
+    Bypasses the Desktop .exe because the Electron app hardcodes --highvram and
+    ignores extraArgs overrides — verified from the actual process command lines.
 
-    The shortcut target is resolved via the Windows Shell API to locate the exe.
+    Returns (cmd, cwd) or None if the install can't be located.
     """
-    import subprocess
     import os
+    appdata  = os.environ.get("APPDATA", "")
+    cfg_path = Path(appdata) / "ComfyUI" / "config.json"
+    extra_cfg = Path(appdata) / "ComfyUI" / "extra_models_config.yaml"
 
-    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-        print("  [OK] ComfyUI already running")
-        return
+    # basePath from the Desktop app's config (models/user data root).
+    base_dir: Optional[Path] = None
+    if cfg_path.exists():
+        try:
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+            if cfg.get("basePath"):
+                base_dir = Path(cfg["basePath"])
+        except Exception:
+            pass
 
-    print("  [..] ComfyUI not detected, attempting to start...")
+    # main.py lives inside the Desktop app's Electron resources bundle.
+    # Candidate exe roots, most likely first.
+    exe_roots = [
+        Path("E:/Games/comfy/ComfyUI"),
+    ]
+    # Also try resolving via the Start-Menu shortcut if pywin32 is available.
     try:
-        # ── 1. Read Desktop app config ──────────────────────────────────────
-        appdata = os.environ.get("APPDATA", "")
-        config_path = Path(appdata) / "ComfyUI" / "config.json"
-        extra_cfg   = Path(appdata) / "ComfyUI" / "extra_models_config.yaml"
+        import win32com.client as _w32  # type: ignore
+        lnk = Path(appdata) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
+        if lnk.exists():
+            tgt = Path(_w32.Dispatch("WScript.Shell").CreateShortcut(str(lnk)).TargetPath)
+            exe_roots.insert(0, tgt.parent)
+    except Exception:
+        pass
 
-        base_dir: Optional[Path] = None
-        exe_dir:  Optional[Path] = None
+    main_py: Optional[Path] = None
+    for root in exe_roots:
+        candidate = root / "resources" / "ComfyUI" / "main.py"
+        if candidate.exists():
+            main_py = candidate
+            break
 
-        if config_path.exists():
-            try:
-                cfg = json.loads(config_path.read_text(encoding="utf-8"))
-                if cfg.get("basePath"):
-                    base_dir = Path(cfg["basePath"])
-            except Exception:
-                pass
+    if not main_py:
+        return None
 
-        # ── 2. Locate main.py via the Start Menu shortcut ───────────────────
-        lnk_path = Path(appdata) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "ComfyUI.lnk"
-        if lnk_path.exists():
-            try:
-                import win32com.client as _w32
-                shell = _w32.Dispatch("WScript.Shell")
-                lnk   = shell.CreateShortcut(str(lnk_path))
-                exe_dir = Path(lnk.TargetPath).parent
-            except Exception:
-                pass
+    # The Desktop app's own CUDA venv python — confirmed torch+cu130, CUDA=True.
+    # basePath/.venv is where the Desktop installs its GPU runtime.
+    venv_py: Optional[Path] = None
+    if base_dir:
+        for p in (base_dir / ".venv" / "Scripts" / "python.exe",
+                  base_dir / ".venv" / "bin"     / "python"):
+            if p.exists():
+                venv_py = p
+                break
 
-        if exe_dir is None:
-            # Fallback: well-known path on this machine
-            _candidate = Path("E:/Games/comfy/ComfyUI")
-            if _candidate.exists():
-                exe_dir = _candidate
+    if venv_py is None:
+        return None   # Can't find GPU python — don't risk CPU torch
 
-        main_py = exe_dir / "resources" / "ComfyUI" / "main.py" if exe_dir else None
+    cmd = [
+        str(venv_py), str(main_py),
+        "--base-directory",   str(base_dir),
+        "--user-directory",   str(base_dir / "user"),
+        "--input-directory",  str(base_dir / "input"),
+        "--output-directory", str(base_dir / "output"),
+        "--listen",  "127.0.0.1",
+        "--port",    "8188",
+        "--log-stdout",
+        # No --highvram: the Desktop .exe hardcodes it, which overflows 24 GB
+        # (FLUX + LoRAs + ReActor) and spills ~5 GB to system RAM → slow. Driving
+        # main.py directly lets us use the default NORMAL_VRAM instead (confirmed
+        # "Set vram state to: NORMAL_VRAM" in the log; ~5.7 GB VRAM free at peak).
+        #
+        # --disable-async-offload: NORMAL_VRAM's async weight-offload path is buggy
+        # in this ComfyUI build — it crashes CLIPTextEncode with
+        # "'VRAMBuffer' object has no attribute 'get'" (comfy/ops.py get_cast_buffer).
+        # --highvram dodged it only by never offloading. Disabling async offload
+        # keeps NORMAL_VRAM working; generation verified end-to-end on cuda:0.
+        "--disable-async-offload",
+    ]
+    if extra_cfg.exists():
+        cmd += ["--extra-model-paths-config", str(extra_cfg)]
+    return cmd, base_dir
 
-        if not main_py or not main_py.exists():
-            print("  [!] ComfyUI Desktop not found — start it manually from the Start Menu.")
-            return
 
-        if not base_dir or not base_dir.exists():
-            print("  [!] ComfyUI basePath not configured — open ComfyUI Desktop once to finish setup.")
-            return
+def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
+                          launch: bool = True) -> bool:
+    """Ensure ComfyUI is running; auto-start it if it isn't.
 
-        venv_py = base_dir / ".venv" / "Scripts" / "python.exe"
-        if not venv_py.exists():
-            venv_py = base_dir / ".venv" / "bin" / "python"   # Linux/macOS fallback
-        if not venv_py.exists():
-            print(f"  [!] ComfyUI venv Python not found at {venv_py}")
-            return
+    Returns True once ComfyUI responds.  If it's down and ``launch`` is True, the
+    backend is started via the Desktop app's CUDA venv python with --normalvram,
+    then we poll up to ``wait_timeout`` seconds (ComfyUI takes ~60-90s on a 3090).
+    Progress is streamed over SSE when ``job_id`` is given.
 
-        print(f"  [..] Starting ComfyUI Desktop backend...")
-        print(f"       Python : {venv_py}")
-        print(f"       Script : {main_py}")
-        print(f"       BaseDir: {base_dir}")
+    Serialized by _comfyui_start_lock so concurrent builds never spawn duplicates.
+    """
+    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+        return True
+    if not launch:
+        return False
 
-        cmd = [
-            str(venv_py), str(main_py),
-            "--base-directory",          str(base_dir),
-            "--user-directory",          str(base_dir / "user"),
-            "--input-directory",         str(base_dir / "input"),
-            "--output-directory",        str(base_dir / "output"),
-            "--listen",                  "127.0.0.1",
-            "--port",                    "8188",
-            # --normalvram (not --highvram): on a 24 GB card the FLUX dev fp8 UNet
-            # + T5 text encoder + VAE + LoRAs + ReActor models exceed 24 GB when
-            # forced fully-resident, so Windows WDDM spills several GB to shared
-            # system RAM over PCIe and sampling crawls (5-20x slower). normalvram
-            # keeps the UNet on-GPU for fast sampling but offloads the ~5 GB text
-            # encoder after conditioning, which keeps peak VRAM under the limit.
-            "--normalvram",
-            "--log-stdout",
-        ]
-        if extra_cfg.exists():
-            cmd += ["--extra-model-paths-config", str(extra_cfg)]
+    def _emit(msg: str) -> None:
+        if job_id:
+            _push(job_id, "progress", json.dumps({"step": "art", "msg": msg}))
+        print(f"  [comfyui] {msg}", flush=True)
 
-        subprocess.Popen(cmd, cwd=str(base_dir),
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    with _comfyui_start_lock:
+        # Another thread may have started it while we waited for the lock.
+        if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+            return True
 
-        # Wait up to 120 seconds — ComfyUI loads all models at startup (~90s on RTX 3090)
-        print("  [..] Waiting for ComfyUI to become ready (up to 120s)...")
-        for _ in range(120):
-            time.sleep(1)
-            if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
-                print("  [OK] ComfyUI started successfully")
-                return
+        resolved = _resolve_comfyui_cmd()
+        if resolved is None:
+            _emit("⚠ ComfyUI backend not found — start ComfyUI Desktop manually then retry.")
+            return False
 
-        print("  [!] ComfyUI startup timed out — it may still be loading in the background")
+        cmd, cwd = resolved
+        import subprocess
+        _emit("ComfyUI not running — starting backend (NORMAL_VRAM mode, first load ~60-90s)…")
+        try:
+            subprocess.Popen(cmd, cwd=str(cwd),
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception as e:
+            _emit(f"⚠ Could not start ComfyUI backend: {e}")
+            return False
 
-    except Exception as e:
-        print(f"  [X] Could not start ComfyUI: {e}")
+        deadline = time.time() + wait_timeout
+        while time.time() < deadline:
+            time.sleep(2)
+            if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats", timeout=1.5):
+                _emit("✓ ComfyUI is ready.")
+                return True
+
+        _emit("⚠ ComfyUI did not become ready in time — continuing without it.")
+        return False
+
+
+def _start_comfyui() -> None:
+    """Start ComfyUI at server startup if it isn't already running.
+
+    Thin wrapper over _ensure_comfyui_ready(); the heavy lifting (locating the
+    install, launching, polling) lives there so builds can reuse it.
+    """
+    if _ensure_comfyui_ready():
+        print("  [OK] ComfyUI ready", flush=True)
 
 
 # ── Dev entry ─────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    print("Starting Myth Forge MTG Deck Builder...")
-    print()
-    print("Checking dependencies:")
-    _start_ollama()
-    _start_comfyui()
-    print()
-    print("Server endpoints:")
-    print("  API:      http://localhost:8000/api/")
-    print("  Frontend: http://localhost:8000/")
-    print()
+    print("Starting Myth Forge MTG Deck Builder...", flush=True)
+    print(flush=True)
+
+    # Boot Ollama + ComfyUI in a background daemon thread.  _start_comfyui()
+    # launches ComfyUI and then polls for up to ~2 min for it to come up; running
+    # it inline blocked uvicorn from binding port 8000 whenever ComfyUI wasn't
+    # already running, so the whole app appeared to "fail to start".  The app
+    # already tolerates these services being briefly offline (every build runs a
+    # health check and falls back), so they can warm up in parallel.
+    def _boot_services():
+        try:
+            _start_ollama()
+            _start_comfyui()
+        except Exception as _e:
+            print(f"  [!] Background service startup error: {_e}", flush=True)
+
+    print("Starting Ollama + ComfyUI in the background (server will not wait on them)...", flush=True)
+    threading.Thread(target=_boot_services, name="service-boot", daemon=True).start()
+
+    print(flush=True)
+    print("Server endpoints:", flush=True)
+    print("  API:      http://localhost:8000/api/", flush=True)
+    print("  Frontend: http://localhost:8000/", flush=True)
+    print(flush=True)
     uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=False)
