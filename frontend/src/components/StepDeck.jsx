@@ -969,6 +969,23 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>
           </div>
 
+          {/* Playstyle strategy summary */}
+          {deck.playstyle_description && (
+            <div style={{ fontSize: 12.5, color: '#a8a29e', lineHeight: 1.55, marginTop: 12, maxWidth: 460 }}>
+              <span style={{ color: '#fde047', fontWeight: 700 }}>Strategy: </span>{deck.playstyle_description}
+            </div>
+          )}
+          {/* Deck composition one-liner */}
+          {stats?.type_counts && (
+            <div style={{ fontSize: 11.5, color: '#78716c', marginTop: 8, maxWidth: 460 }}>
+              {['Creature','Instant','Sorcery','Artifact','Enchantment','Planeswalker','Land']
+                .filter(t => stats.type_counts[t])
+                .map(t => `${stats.type_counts[t]} ${t.toLowerCase()}${stats.type_counts[t] > 1 ? (t === 'Sorcery' ? ' sorceries' : 's') : ''}`)
+                .join(' · ')}
+              {stats.average_cmc != null && ` · avg MV ${stats.average_cmc.toFixed(1)}`}
+            </div>
+          )}
+
           {/* ── 3D Commander Generator ─────────────────────────────────────── */}
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #292524' }}>
             <div style={{ fontSize: 10, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>3D Print</div>
@@ -1088,7 +1105,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         {stats && (
           <div style={{ width: 200, flexShrink: 0 }}>
             <div style={{ fontSize: 12, color: '#78716c', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Deck Stats</div>
-            <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 4 }}>Avg CMC: <span style={{ color: '#fde047', fontWeight: 700 }}>{stats.avg_cmc?.toFixed(2)}</span></div>
+            <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 4 }}>Avg CMC: <span style={{ color: '#fde047', fontWeight: 700 }}>{(stats.average_cmc ?? stats.avg_cmc)?.toFixed?.(2) ?? '—'}</span></div>
             <div style={{ height: 1, background: '#292524', margin: '10px 0' }} />
             {stats.type_counts && Object.entries(stats.type_counts).map(([type, count]) => (
               <StatBar key={type} label={type} value={count} max={30} color='#ca8a04' />
@@ -1096,6 +1113,23 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {stats.cmc_curve && <div style={{ marginTop: 12 }}><CmcChart curve={stats.cmc_curve} /></div>}
             <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
             <div style={{ fontSize: 12, color: '#a8a29e' }}>Lands: <span style={{ color: '#86efac' }}>{stats.land_count}</span></div>
+            {/* Color identity (mana pip counts) */}
+            {stats.color_pips && Object.keys(stats.color_pips).length > 0 && (
+              <>
+                <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
+                <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Color pips</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {Object.entries(stats.color_pips).map(([c, n]) => (
+                    <span key={c} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11,
+                      padding: '2px 8px', borderRadius: 12,
+                      background: { W:'#3a3526', U:'#0c2748', B:'#2b2735', R:'#3a1414', G:'#11331c', C:'#1c1917' }[c] || '#1c1917',
+                      color:      { W:'#f5e6c8', U:'#7dd3fc', B:'#c4b5fd', R:'#fca5a5', G:'#86efac', C:'#a8a29e' }[c] || '#a8a29e',
+                    }}>{c} {n}</span>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

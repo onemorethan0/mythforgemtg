@@ -20,10 +20,19 @@ Model notes:
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 import requests
+
+# How many theming batches to send to Ollama at once. We always send several
+# concurrently and let the OLLAMA SERVER decide real parallelism: with
+# OLLAMA_NUM_PARALLEL>=N they run in parallel (filling the idle gaps between
+# batches and keeping the GPU busy); with =1 they simply queue (harmless, no gain).
+# Independent of this process's view of OLLAMA_NUM_PARALLEL, which may be stale.
+_THEME_CONCURRENCY = max(1, min(int(os.environ.get("MYTHFORGE_THEME_CONCURRENCY", "3")), 4))
 
 def _quote_user_text(s: str, max_len: int = 1500) -> str:
     """
@@ -42,7 +51,7 @@ def _quote_user_text(s: str, max_len: int = 1500) -> str:
     return cleaned
 
 OLLAMA_BASE          = "http://127.0.0.1:11434"
-OLLAMA_MODEL         = "qwen3:14b"
+OLLAMA_MODEL         = "qwen3:8b"   # smaller/faster default; 14b still selectable
 BATCH_SIZE      = 8
 REQUEST_TIMEOUT = 180
 
@@ -88,11 +97,18 @@ _MEDIUM_PREFIX_RE = re.compile(
 # entry here.  The UI will surface it automatically the next time the page loads.
 LLM_CATALOG: list[dict] = [
     {
+        "key":         "qwen3:8b",
+        "label":       "Qwen3 8B",
+        "size_gb":     5.2,
+        "tier":        "fast",
+        "description": "Default — ~2× faster than 14B with solid JSON + creative output. ~8–12s/batch.",
+    },
+    {
         "key":         "qwen3:14b",
         "label":       "Qwen3 14B",
         "size_gb":     9.3,
-        "tier":        "fast",
-        "description": "Default — reliable JSON, decent creative prose. ~15–20s/batch.",
+        "tier":        "quality",
+        "description": "Higher quality names/flavour than 8B, slower. ~15–20s/batch.",
     },
     {
         "key":         "qwen3.6:latest",
@@ -191,6 +207,27 @@ def _collect_tribes(cards: list[dict], max_tribes: int = 20) -> list[str]:
             if s:
                 counts[s] += 1
     return [t for t, _ in counts.most_common(max_tribes)]
+
+
+def _creature_subtypes(type_line: str) -> list[str]:
+    """Creature subtypes from a type line ('Legendary Creature — Faerie Warlock'
+    -> ['Faerie', 'Warlock']). Empty for non-creatures / typeless cards."""
+    tl = type_line or ""
+    if "creature" not in tl.lower():
+        return []
+    norm = tl.replace(" - ", " — ")
+    if "—" not in norm:
+        return []
+    return [s for s in norm.split("—", 1)[1].strip().split() if s]
+
+
+def _commander_tribe(commander: dict, override: str = "") -> str:
+    """The single tribe to reskin. Uses the user-set override if given, else the
+    commander's primary (first) creature subtype. '' if the commander is typeless."""
+    if override and override.strip():
+        return override.strip().title()
+    subs = _creature_subtypes(commander.get("type_line", ""))
+    return subs[0] if subs else ""
 
 
 def _generate_tribal_map(theme: str, tribes: list[str],
@@ -789,14 +826,22 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     lines = []
     for i, c in enumerate(cards):
         full_tl  = c.get("type_line", "") or ""
-        tl       = full_tl.split("—")[0].strip()
-        # Reskin hint: if this creature's subtype is mapped, tell the LLM the
-        # replacement to depict/name so it's applied consistently deck-wide.
-        if tribal_map and "—" in full_tl.replace(" - ", " — "):
-            subs    = full_tl.replace(" - ", " — ").split("—", 1)[1].strip().split()
-            mapped  = next((tribal_map[s] for s in subs if s in tribal_map), "")
+        head     = full_tl.split("—")[0].strip()
+        norm     = full_tl.replace(" - ", " — ")
+        subs     = norm.split("—", 1)[1].strip().split() if "—" in norm else []
+        _repl    = next(iter(tribal_map.values())) if tribal_map else ""
+        tl       = full_tl  # keep the full type (incl. subtype) visible to the LLM
+        if subs:
+            mapped = next((tribal_map[s] for s in subs if s in tribal_map), "") if tribal_map else ""
             if mapped:
-                tl = f"{tl} [reskin {'/'.join(subs)}→{mapped}: depict & name as {mapped}]"
+                # This creature IS the reskinned tribe — depict & name as the replacement.
+                tl = f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: depict & name as {mapped}]"
+            elif _repl:
+                # A reskin is active but this creature is NOT in that tribe — depict it
+                # as its OWN kind, never as the reskinned creature (stops over-application).
+                tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}; do NOT draw it as a {_repl}]"
+            else:
+                tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}]"
         mechsum  = _mechanic_summary(c)
         palette  = _color_palette_hint(c.get("color_identity") or c.get("colors", []))
         role, soul = _card_soul(c)
@@ -919,6 +964,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     COLOR (like real MTG cards) — the palette is DRIVEN by the card's mana colors in col 5 (W=holy/ivory & gold, U=arcane/cold blue, B=shadow/necrotic purple, R=fire/crimson/aggression, G=nature/verdant growth, colorless=void/chrome/steel). Lead the scene's lighting and dominant hues with col 5. ONLY override toward other hues when the user's WORLD THEME explicitly names colors for characters/creatures — then defer to those for the character while the environment still reads in the card's mana colors. Do not impose a single deck-wide neon palette; each card's color comes from ITS mana colors.
     ANATOMY — no isolated floating limbs. Avoid awkward close-up hands.
     POSE — any character must be MID-ACTION and emotionally engaged: striking, casting, running, reaching, recoiling, commanding, reacting to something in the scene. NEVER a stiff standing portrait, a model posing for the camera, or a figure standing still and staring blankly into the distance. Give them a verb and a target — what are they DOING, and to/with what?
+    CREATURE TYPE — for a creature card, make the creature's KIND visually unmistakable using its type (col 3): a Faerie looks like a faerie, a Goblin like a goblin, a Dragon like a dragon. If the type column carries a [reskin …] tag, depict the REPLACEMENT creature instead of the original (consistently). Weave the creature's kind into the scene rather than tacking it on.
     DO NOT pile on style adjectives — the LoRA handles style.
     COMPOSITION by ROLE (col 6):
       CREATURE/PLANESWALKER: "[medium], [character whose appearance embodies the themed_name, inside theme-world setting], [light hint of action], [quality]"
@@ -1246,6 +1292,7 @@ class Themer:
         themer_quality:     str  = "",   # quality tag options for batch prompt QUALITY rule
         commander_gender:   str  = "",   # gender constraint: "male", "female", or "" for either
         lora_vocabulary:    str  = "",   # style-specific LoRA token vocabulary (e.g. RO element/race/class tags)
+        commander_tribe:    str  = "",   # override for which tribe to reskin; "" = auto-detect from commander
     ) -> tuple[ThemedCard, list[ThemedCard]]:
         """
         Apply theme to commander + 99-card deck.
@@ -1284,18 +1331,23 @@ class Themer:
         print(f"  [themer] Style guide (Ollama context only): {style_guide[:120]}..."
               if len(style_guide) > 120 else f"  [themer] Style guide: {style_guide}")
 
-        # Deck-wide tribal reskin: one consistent mapping of creature types to
-        # theme-fitting replacements, so every Cat (etc.) becomes the same thing
-        # across the whole deck — in names, art, and the displayed type line.
-        print("  Generating tribal reskin map...")
-        tribes     = _collect_tribes(all_cards)
-        tribal_map = _generate_tribal_map(expanded_theme, tribes, model=self.model)
-        if tribal_map:
-            print(f"  [themer] Tribal reskin ({len(tribal_map)}): "
-                  + ", ".join(f"{k}->{v}" for k, v in list(tribal_map.items())[:8])
-                  + (" ..." if len(tribal_map) > 8 else ""))
+        # Tribal reskin: reskin ONLY the COMMANDER's tribe (and cards that share
+        # it), into one theme-fitting replacement applied consistently in names,
+        # art, and the displayed type line. The tribe is the user's override if
+        # given, else the commander's primary creature subtype. Other creatures
+        # keep their original type (and that type is still fed to the art below).
+        ctribe = _commander_tribe(commander, commander_tribe)
+        if ctribe:
+            print(f"  Generating tribal reskin for commander tribe '{ctribe}'...")
+            tribal_map = _generate_tribal_map(expanded_theme, [ctribe], model=self.model)
         else:
-            print("  [themer] Tribal reskin: none (no creature tribes / LLM declined)")
+            tribal_map = {}
+        if tribal_map:
+            print("  [themer] Tribal reskin: "
+                  + ", ".join(f"{k}->{v}" for k, v in tribal_map.items()))
+        else:
+            print(f"  [themer] Tribal reskin: none (commander tribe '{ctribe or '—'}' "
+                  f"not remapped — creatures keep their original types)")
 
         batches = [all_cards[i:i + BATCH_SIZE] for i in range(0, total, BATCH_SIZE)]
         pipeline_label = "v2 dual-anchor"
@@ -1303,18 +1355,15 @@ class Themer:
               f"in {len(batches)} batches (max {BATCH_SIZE}/batch) "
               f"[prompt pipeline: {pipeline_label}]...")
 
-        for b_idx, batch in enumerate(batches):
-            batch_start = b_idx * BATCH_SIZE
-            hi          = batch_start + len(batch) - 1
-            print(f"  Batch {b_idx + 1}/{len(batches)}  "
-                  f"(cards {batch_start}–{hi})...", end=" ", flush=True)
-
-            # Determine if the commander card falls in this batch
-            cmd_local_idx = -1
-            if batch_start == 0:   # commander is always all_cards[0]
-                cmd_local_idx = 0
-
-            t0      = time.monotonic()
+        # Run batches CONCURRENTLY. Each _theme_batch is independent (its own Ollama
+        # request + parse), so a thread pool lets Ollama's continuous batching keep
+        # the GPU busy across the idle gaps (prompt-eval, parse, HTTP) that otherwise
+        # drop utilization to ~0 between sequential batches. Falls back to serial
+        # behavior automatically when OLLAMA_NUM_PARALLEL=1 (requests just queue).
+        def _run_batch(b_idx: int, batch: list):
+            batch_start   = b_idx * BATCH_SIZE
+            cmd_local_idx = 0 if batch_start == 0 else -1   # commander is all_cards[0]
+            t0 = time.monotonic()
             entries = self._theme_batch(
                 expanded_theme, commander["name"], batch, batch_start, style_guide,
                 commander_prompt=commander_prompt,
@@ -1326,17 +1375,27 @@ class Themer:
                 lora_vocabulary=lora_vocabulary,
                 tribal_map=tribal_map,
             )
-            elapsed = time.monotonic() - t0
+            return b_idx, entries, time.monotonic() - t0
 
-            for e in entries:
-                themed_entries[e["idx"]] = e
-            print(f"{elapsed:.1f}s")
-            if progress_callback:
-                try:
-                    cards_done = min((b_idx + 1) * BATCH_SIZE, total)
-                    progress_callback(b_idx + 1, len(batches), cards_done, total)
-                except Exception:
-                    pass
+        workers = max(1, min(_THEME_CONCURRENCY, len(batches)))
+        print(f"  (up to {workers} batches concurrent; OLLAMA_NUM_PARALLEL gates real parallelism)")
+        done = 0
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(_run_batch, b_idx, batch)
+                       for b_idx, batch in enumerate(batches)]
+            for fut in as_completed(futures):
+                b_idx, entries, elapsed = fut.result()
+                for e in entries:                       # dict writes are in this (main) thread
+                    themed_entries[e["idx"]] = e
+                done += 1
+                print(f"  Batch {b_idx + 1}/{len(batches)} done in {elapsed:.1f}s  "
+                      f"[{done}/{len(batches)}]")
+                if progress_callback:
+                    try:
+                        progress_callback(done, len(batches),
+                                          min(done * BATCH_SIZE, total), total)
+                    except Exception:
+                        pass
 
         def make(i: int, card: dict) -> ThemedCard:
             e = themed_entries.get(i, {})

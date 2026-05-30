@@ -424,6 +424,7 @@ class BuildRequest(BaseModel):
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
+    commander_tribe:   str           = ""     # override creature tribe to reskin; "" = auto-detect
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
@@ -465,6 +466,7 @@ class RethemeRequest(BaseModel):
     commander_prompt: Optional[str] = None   # None → use saved commander_prompt
     user_name:        Optional[str] = None   # None → use saved user_name
     llm_model:        Optional[str] = None   # None → use saved llm_model
+    commander_tribe:  Optional[str] = None   # None → use saved / auto-detect
 
 
 # ── SSE helpers ───────────────────────────────────────────────────────────────
@@ -1087,6 +1089,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 themer_quality=_style_meta["themer_quality"],
                 commander_gender=req.face_gender,
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
+                commander_tribe=req.commander_tribe or "",
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -1145,6 +1148,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "commander_prompt": req.commander_prompt,
             "emblem_prompt":    req.emblem_prompt,
             "playstyle":        ps_label,
+            "playstyle_description": PLAYSTYLES.get(req.playstyle, PLAYSTYLES.get("auto", {})).get("description", ""),
             "bracket":          req.bracket,
             "bracket_label":    BRACKET_LABELS.get(req.bracket, str(req.bracket)),
             "art_style":        req.art_style,
@@ -2196,6 +2200,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 themer_quality=_style_meta["themer_quality"],
                 commander_gender=face_gender_rt,
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
+                commander_tribe=(req.commander_tribe or ""),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
@@ -3517,6 +3522,15 @@ def _start_ollama() -> None:
 
     print("  [..] Ollama not detected, attempting to start...")
     try:
+        # Start Ollama with concurrency enabled so the themer's batches run in
+        # parallel (keeps the GPU busy across the idle gaps between batches).
+        # Only applies when WE start Ollama — if it's already running, raise
+        # OLLAMA_NUM_PARALLEL in your environment and restart Ollama yourself.
+        _ollama_env = {**os.environ}
+        _ollama_env.setdefault("OLLAMA_FLASH_ATTENTION", "1")
+        _ollama_env.setdefault("OLLAMA_KV_CACHE_TYPE", "q8_0")
+        if int(_ollama_env.get("OLLAMA_NUM_PARALLEL", "1") or "1") < 3:
+            _ollama_env["OLLAMA_NUM_PARALLEL"] = "3"
         if platform.system() == "Windows":
             # Try to start Ollama on Windows
             subprocess.Popen(
@@ -3524,6 +3538,7 @@ def _start_ollama() -> None:
                 shell=True,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
+                env=_ollama_env,
             )
         else:
             # Mac/Linux
@@ -3531,6 +3546,7 @@ def _start_ollama() -> None:
                 ["ollama", "serve"],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
+                env=_ollama_env,
             )
 
         # Wait up to 15 seconds for Ollama to start

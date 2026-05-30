@@ -1034,10 +1034,18 @@ def render_card(
     type_font_size = _mm(2.1)    # MPlantin at ~2.1mm
     type_font = _mplantin(type_font_size)
     type_text = type_line
+    max_type_w = _BAR_W - _mm(8)
     try:
-        while type_font.getlength(type_text) > (_BAR_W - _mm(8)) and "—" in type_text:
-            type_text = type_text.split("—")[0].strip()
-        while type_font.getlength(type_text) > (_BAR_W - _mm(8)):
+        # Shrink the font first so the FULL type (incl. the creature subtype after
+        # "—") fits. Never split on "—" / drop the subtype — that silently turned
+        # "Legendary Creature — Faerie Warlock" into "Legendary Creature".
+        min_type_size = _mm(1.5)
+        while type_font.getlength(type_text) > max_type_w and type_font_size > min_type_size:
+            type_font_size = max(int(type_font_size * 0.92), min_type_size)
+            type_font = _mplantin(type_font_size)
+        # Only if still too wide at the smallest size, ellipsis-truncate the tail
+        # (keeps the leading type + as much subtype as fits).
+        while type_font.getlength(type_text) > max_type_w and len(type_text) > 4:
             type_text = type_text[:-2] + "…"
     except Exception:
         pass

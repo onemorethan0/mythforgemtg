@@ -30,8 +30,9 @@ export default function App() {
   const [artStyle, setArtStyle]               = useState('mtg_fantasy')
   const [modelSpeed, setModelSpeed]           = useState('quality')
   const [checkpoint, setCheckpoint]           = useState('')
-  const [llmModel, setLlmModel]               = useState('qwen3:14b')
+  const [llmModel, setLlmModel]               = useState('qwen3:8b')
   const [borderTheme, setBorderTheme] = useState('')
+  const [commanderTribe, setCommanderTribe] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
   const [faceMethod, setFaceMethod] = useState(null)
   const [faceGender, setFaceGender] = useState('either')
@@ -97,7 +98,7 @@ export default function App() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
-    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:14b')
+    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setCommanderTribe(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -121,6 +122,7 @@ export default function App() {
         checkpoint:        checkpoint || null,
         llm_model:         llmModel || null,
         border_theme:      borderTheme || "",
+        commander_tribe:   commanderTribe || "",
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
@@ -232,7 +234,7 @@ export default function App() {
     setGenerateArt(!!d.generate_art)
     setModelSpeed(d.model_speed || 'quality')
     setCheckpoint(d.checkpoint || '')
-    setLlmModel(d.llm_model || 'qwen3:14b')
+    setLlmModel(d.llm_model || 'qwen3:8b')
     // Preserve face/crew selection in state (the Face step can't re-display an
     // existing key, so we skip it on re-entry rather than risk nulling it).
     setFaceKey(d.face_key || null)
@@ -376,6 +378,8 @@ export default function App() {
             onLlmModelChange={setLlmModel}
             borderTheme={borderTheme}
             onBorderThemeChange={setBorderTheme}
+            commanderTribe={commanderTribe}
+            onCommanderTribeChange={setCommanderTribe}
             faceKey={faceKey}
             faceMethod={faceMethod}
             genSettings={genSettings}

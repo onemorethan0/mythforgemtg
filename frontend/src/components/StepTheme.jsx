@@ -210,6 +210,7 @@ export default function StepTheme({
   userName, onUserNameChange,
   emblemPrompt, onEmblemPromptChange,
   borderTheme, onBorderThemeChange,
+  commanderTribe, onCommanderTribeChange,
   artStyle, onArtStyleChange,
   bracket, onBracketChange,
   generateArt, onGenerateArtChange,
@@ -562,7 +563,7 @@ export default function StepTheme({
             Commander Appearance <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span>
           </label>
           <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8 }}>
-            Describe <strong style={{ color: '#a8a29e' }}>{commander.name}</strong> specifically — their look, outfit, distinguishing features. This drives the commander's art and is layered on top of the world theme.
+            Describe <strong style={{ color: '#a8a29e' }}>{commander.name}</strong> specifically — their look, outfit, and distinguishing features like <strong style={{ color: '#a8a29e' }}>tattoos, scars, or piercings</strong>. Face matching only carries the <em>face</em>, so describe body details here (e.g. "sleeve tattoo of vines on the left arm"). This drives the commander's art and is layered on top of the world theme.
           </div>
           <textarea
             style={{ ...s.textarea, minHeight: 64 }}
@@ -724,6 +725,30 @@ export default function StepTheme({
             </button>
           )}
         </div>
+
+        {/* Commander tribe (optional reskin target) */}
+        {onCommanderTribeChange && (
+          <div style={{ marginBottom: 20 }}>
+            <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 4 }}>
+              Commander creature type <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span>
+            </label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8, lineHeight: 1.5 }}>
+              The single tribe to <strong style={{ color: '#a8a29e' }}>reskin into the theme</strong> (e.g. <em>Cat → cyber bird</em>) — applied consistently to every card of that type. Leave blank to auto-detect from your commander. Other creature types keep their own kind and are drawn as themselves.
+            </div>
+            <input
+              type="text"
+              style={{
+                width: '100%', background: '#0c0a09', border: '1px solid #44403c',
+                borderRadius: 10, padding: '10px 16px', color: '#f5f5f4', fontSize: 14,
+                outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+              }}
+              placeholder="e.g. Faerie, Cat, Goblin… (blank = auto)"
+              value={commanderTribe || ''}
+              onChange={e => onCommanderTribeChange(e.target.value)}
+              maxLength={40}
+            />
+          </div>
+        )}
 
         {/* Divider */}
         <div style={{ height: 1, background: '#292524', marginBottom: 20 }} />
