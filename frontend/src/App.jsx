@@ -7,6 +7,9 @@ import StepBuilding  from './components/StepBuilding'
 import StepDeck      from './components/StepDeck'
 import StepHistory   from './components/StepHistory'
 import HealthIndicator from './components/HealthIndicator'
+import LogViewer from './components/LogViewer'
+import { useGenSettings } from './hooks/useGenSettings'
+import { toGenSettingsPayload } from './config/genSettings'
 
 // Step indices
 const STEP = { COMMANDER: 0, PLAYSTYLE: 1, FACE: 2, THEME: 3, BUILDING: 4, DECK: 5, HISTORY: 6 }
@@ -36,6 +39,8 @@ export default function App() {
   const [crewGender, setCrewGender] = useState('either')
   const [jobId, setJobId]         = useState(null)
   const [deck, setDeck]           = useState(null)
+  // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
+  const genSettings = useGenSettings()
 
   // On mount: reconnect to an in-progress or recently-completed build.
   // Primary: sessionStorage (survives refresh but not new tab).
@@ -120,6 +125,7 @@ export default function App() {
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
         crew_gender:  crewGender,
+        gen_settings: toGenSettingsPayload(genSettings.values),
       }),
     })
     const data = await res.json()
@@ -260,6 +266,7 @@ export default function App() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <LogViewer />
           {step !== STEP.HISTORY && step !== STEP.BUILDING && (
             <button
               onClick={() => setStep(STEP.HISTORY)}
@@ -340,6 +347,7 @@ export default function App() {
             onNext={handleFaceNext}
             onSkip={handleFaceSkip}
             onBack={() => setStep(STEP.PLAYSTYLE)}
+            genSettings={genSettings}
           />
         )}
 
@@ -370,6 +378,7 @@ export default function App() {
             onBorderThemeChange={setBorderTheme}
             faceKey={faceKey}
             faceMethod={faceMethod}
+            genSettings={genSettings}
             onNext={startBuild}
             onBack={() => setStep(STEP.FACE)}
           />

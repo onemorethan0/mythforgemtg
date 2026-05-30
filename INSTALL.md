@@ -1,413 +1,55 @@
-# Myth Forge Installation Guide
+# Installation
 
-**Myth Forge** is an MTG Commander Deck Builder that generates themed card names and art using AI.
+**Myth Forge** — a fully-local MTG Commander deck builder with AI-generated card art. Backend: **FastAPI** + **React/Vite**, with **Ollama** (theming) and **ComfyUI** (image gen).
 
-## Quick Start
+For a feature overview see [README.md](./README.md); for model downloads see [MODELS.md](./MODELS.md); for the ComfyUI launch config see [COMFYUI_SETUP.md](./COMFYUI_SETUP.md).
 
-### Windows Users
-```bash
-# Run the installer
-install.bat
-```
+## Prerequisites
+- **Python 3.10+** (dev machine uses `C:\Python314\python.exe`) — check "Add to PATH" on Windows
+- **Node.js 18+**
+- **Ollama** (local LLM for theming) — https://ollama.ai
+- **ComfyUI Desktop** (image generation) — https://www.comfy.org
+- GPU recommended (NVIDIA 12–24 GB); without one, the app falls back to Scryfall art
 
-### macOS/Linux Users
-```bash
-# Run the installer
-python install.py
-```
+## Install
 
-## System Requirements
+**Windows:** `setup.bat`  **·**  **Mac/Linux:** `python install.py`
 
-### Essential
-- **Python 3.8+** — [Download](https://www.python.org/downloads/)
-- **Node.js 18+** — [Download](https://nodejs.org/)
-- **4GB RAM minimum** (8GB+ recommended)
-- **2GB disk space** for dependencies
+This installs Python deps, installs + builds the frontend, and creates working directories.
 
-### Optional (But Highly Recommended)
-- **Ollama** — Local LLM for card theming — [Download](https://ollama.ai)
-- **ComfyUI** — Image generation workflows — [GitHub](https://github.com/comfyanonymous/ComfyUI)
-- **GPU** (NVIDIA/AMD/Intel) — For faster image generation
+<details><summary>Manual steps</summary>
 
-## Installation Methods
-
-### Method 1: Automated Installation (Recommended)
-
-#### Windows
-1. Open Command Prompt in the project directory
-2. Run: `install.bat`
-3. Follow the on-screen prompts
-
-#### macOS/Linux
-1. Open Terminal in the project directory
-2. Run: `python install.py`
-3. Follow the on-screen prompts
-
-### Method 2: Manual Installation
-
-#### 1. Install Python Dependencies
 ```bash
 python -m pip install -r requirements.txt
+cd frontend && npm install && npm run build && cd ..
 ```
+</details>
 
-#### 2. Install Frontend Dependencies
+## Models
+Download at least one checkpoint (FLUX Schnell recommended to start):
+
+**Windows:** `download-models.bat`  **·**  **Mac/Linux:** `python download-models.py`
+
+Full checkpoint/LoRA/face-model details: **[MODELS.md](./MODELS.md)**.
+
+## Start
+1. Start **ComfyUI** — use `manage.bat` → option 9, or let Myth Forge auto-start it. **Do NOT launch ComfyUI Desktop's `.exe` directly** — it forces `--highvram`, overflowing VRAM and causing 5–20× slowdowns ([COMFYUI_SETUP.md](./COMFYUI_SETUP.md)).
+2. Start the server: `manage.bat` → option 1, or `dev.bat`, or `python server.py` (Mac/Linux: `bash start-mythforge.sh`). Ollama auto-starts.
+3. Open **http://localhost:8000**.
+
+## Ollama model
 ```bash
-cd frontend
-npm install
-npm run build
-cd ..
+ollama pull qwen3:14b    # default; falls back to qwen3:32b → qwen2.5-coder:14b → gemma if missing
 ```
 
-#### 3. Create Directories
-```bash
-mkdir data renders scryfall_cache
-```
-
-#### 4. Start the Server
-```bash
-python server.py
-```
-
-Open your browser to: **http://localhost:8000**
-
-## Starting the Application
-
-### After Initial Installation
-
-#### Windows
-Double-click `start-mythforge.bat` or run:
-```bash
-python server.py
-```
-
-#### macOS/Linux
-Run the startup script:
-```bash
-bash start-mythforge.sh
-```
-
-Or directly:
-```bash
-python server.py
-```
-
-The application will be available at: **http://localhost:8000**
-
-## Optional Setup
-
-### Ollama (For Better Card Theming)
-
-Ollama provides local AI models for card name and flavor text generation.
-
-#### Windows/macOS
-- Download installer from [ollama.ai](https://ollama.ai)
-- Install and run
-
-#### Linux
-```bash
-curl https://ollama.ai/install.sh | sh
-```
-
-#### Pull a Model
-```bash
-ollama pull qwen2:7b
-```
-
-The app will auto-detect Ollama. If running on a different port/address, update `server.py`.
-
-### ComfyUI (For Image Generation)
-
-ComfyUI provides the image generation pipeline using FLUX, SDXL, and other models.
-
-The recommended install is **ComfyUI Desktop** from [https://www.comfy.org](https://www.comfy.org).
-
-Myth Forge connects to ComfyUI on `localhost:8188` and auto-starts it on first build if it isn't already running.
-
-> **Important**: Do NOT start ComfyUI Desktop via its `.exe` directly for use with Myth Forge.  
-> The Desktop app hardcodes `--highvram`, which overflows VRAM on 24 GB cards running FLUX + LoRAs + ReActor and causes 5–20× slowdowns.  
-> Use manage.bat **option 9** or let Myth Forge auto-start it — both use the correct flags.  
-> See **[COMFYUI_SETUP.md](./COMFYUI_SETUP.md)** for full technical details.
-
-#### Automatic Model Download (Recommended)
-
-Use the built-in model downloader for easy setup:
-
-**Windows:**
-```bash
-download-models.bat
-```
-
-**Mac/Linux:**
-```bash
-python download-models.py
-```
-
-This interactive script will guide you through downloading models in just a few steps.
-
-See **[MODELS.md](./MODELS.md)** for more details.
-
-#### Manual Model Download
-
-Alternatively, follow the manual instructions below.
-
-**ComfyUI Models & LoRAs**
-
-**Checkpoints (Required — Choose at least ONE):**
-
-Model location: `ComfyUI/models/checkpoints/`
-
-- **FLUX.1 Dev** (Recommended for quality)
-  - Download: [HuggingFace](https://huggingface.co/black-forest-labs/FLUX.1-dev)
-  - Size: ~24GB
-  - Quality: Excellent, high detail
-  - Speed: Slower (~30-60s per image)
-
-- **FLUX.1 Schnell** (Fast, good quality)
-  - Download: [HuggingFace](https://huggingface.co/black-forest-labs/FLUX.1-schnell)
-  - Size: ~24GB
-  - Quality: Very good
-  - Speed: Fast (~5-10s per image)
-
-- **Illustrious-XL** (SDXL alternative)
-  - Download: [CivitAI](https://civitai.com/models/296424)
-  - Size: ~7.7GB
-  - Quality: Good for anime/fantasy
-  - Speed: Medium (~15-20s per image)
-
-- **SD 3.5 Large** (Good all-around)
-  - Download: [HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3.5-large)
-  - Size: ~7.7GB
-  - Speed: Medium
-
-**LoRAs (Optional but Recommended):**
-
-Model location: `ComfyUI/models/loras/`
-
-Myth Forge uses LoRAs for different art styles. Download these to `models/loras/`:
-
-1. **MTG v2 Style LoRA** (Core MTG aesthetic)
-   - Download: [CivitAI](https://civitai.com/models/669671)
-   - File: `lora.safetensors` → rename to `mtg_v2_lora.safetensors`
-
-2. **MTG Composition LoRA** (Composition improvement)
-   - Download: [CivitAI](https://civitai.com/models/567735)
-   - File: `lora.safetensors` → rename to `mtg_composition_lora.safetensors`
-
-3. **Realism LoRA** (For realistic art styles)
-   - Download: [CivitAI](https://civitai.com/models/680417)
-   - File: `lora.safetensors` → rename to `xlabs_realism_lora.safetensors`
-
-4. **Darkness LoRA** (Dark/horror aesthetics)
-   - Download: [CivitAI](https://civitai.com/models/300898)
-   - File: `lora.safetensors` → rename to `darkness_lora.safetensors`
-
-5. **Sketch LoRA** (Hand-drawn aesthetics)
-   - Download: [CivitAI](https://civitai.com/models/730615)
-   - File: `lora.safetensors` → rename to `sketch_lora.safetensors`
-
-**Required for Face Conditioning (Optional):**
-
-If you use face photos in card generation:
-
-1. **PuLID Model** (Face conditioning for FLUX)
-   - Installation: Follow [ComfyUI-PuLID](https://github.com/jojopapricardo/ComfyUI-PuLID)
-   - Download: Models from repository
-   - Enables realistic face conditioning on FLUX
-
-2. **ReActor** (Face swap for SDXL)
-   - Installation: Follow [ReActor Node](https://github.com/Gourieff/comfyui-reactor)
-   - Download: inswapper_128.pth model
-   - Enables face replacement on SDXL/SD3.5
-
-**VAE (Optional but improves quality):**
-
-Model location: `ComfyUI/models/vae/`
-
-- **VAE-ft-mse-840000** (For SDXL/SD3.5)
-  - Download: [HuggingFace](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)
-  - Improves detail in generated images
-
-#### Download Instructions
-
-**Using CivitAI (Easiest):**
-
-1. Visit [CivitAI](https://civitai.com)
-2. Search for model name
-3. Click "Download" button
-4. Save to `ComfyUI/models/loras/` (for LoRAs)
-5. Or `ComfyUI/models/checkpoints/` (for checkpoints)
-
-**Using HuggingFace (For larger models):**
-
-```bash
-# Option 1: Use git-lfs (recommended)
-git lfs install
-git clone https://huggingface.co/black-forest-labs/FLUX.1-dev
-# Move to ComfyUI/models/checkpoints/
-
-# Option 2: Download via Python
-huggingface-hub download black-forest-labs/FLUX.1-dev --repo-type model
-```
-
-**After Downloading:**
-
-1. Restart ComfyUI
-2. Models will appear in the UI dropdowns
-3. Myth Forge will auto-detect and use them
-
-#### Quick Setup (Minimal)
-
-Minimum setup to get started:
-1. Install **one checkpoint** (FLUX Schnell recommended for speed)
-2. No LoRAs required — default style will work
-3. Optional: Add LoRAs for better results
-
-Myth Forge works with any combination of models you have installed.
-
-### GPU Support (Optional)
-
-For faster image generation, install GPU drivers:
-
-#### NVIDIA (CUDA)
-- Download: [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit)
-- Follow installation instructions
-- Install CUDNN if needed
-
-#### AMD (ROCm)
-- Download: [AMD ROCm](https://rocmdocs.amd.com)
-- Follow OS-specific installation
-
-#### Intel (OneAPI)
-- Download: [Intel OneAPI](https://www.intel.com/content/www/us/en/develop/tools/oneapi/base-toolkit.html)
-- Follow installation instructions
-
-## Development
-
-### Building Frontend After Code Changes
-```bash
-make frontend-build
-```
-
-Or manually:
-```bash
-cd frontend
-npm run build
-cd ..
-```
-
-Then refresh your browser (Ctrl+Shift+R on Windows).
-
-### Development Server (Hot Reload)
-For active frontend development:
-```bash
-make frontend-dev
-```
-
-This starts a Vite dev server on `localhost:5173` with hot reload.
-
-### Useful Make Commands
-```bash
-make frontend-build    # Build for production
-make frontend-dev      # Start dev server with hot reload
-make rebuild           # Clean rebuild
-```
-
-## Troubleshooting
-
-### "Python not found"
-- Install Python 3.8+ from [python.org](https://www.python.org)
-- **Important**: Check "Add Python to PATH" during installation
-- Restart Command Prompt/Terminal after installing
-
-### "Node.js/npm not found"
-- Install Node.js 18+ from [nodejs.org](https://nodejs.org)
-- Choose the LTS version
-- Restart Command Prompt/Terminal after installing
-
-### "Failed to install dependencies"
-```bash
-# Try clearing npm cache
-npm cache clean --force
-
-# Then retry
-npm install
-```
-
-### Frontend changes don't appear in browser
-1. Make sure you rebuilt: `npm run build` (from `frontend/` directory)
-2. Hard refresh browser: `Ctrl+Shift+R` (Windows) or `Cmd+Shift+R` (Mac)
-3. Check that `frontend/dist/` was updated: `ls -la frontend/dist/`
-
-### Server won't start
-1. Check that port 8000 isn't in use: 
-   - Windows: `netstat -ano | findstr :8000`
-   - macOS/Linux: `lsof -i :8000`
-2. Try a different port: `python server.py --port 8001`
-
-### ComfyUI not detected
-- Use manage.bat **option 9** to start ComfyUI with the correct flags
-- Or start Myth Forge (`python server.py`) — it auto-starts ComfyUI in the background
-- Check that it's accessible: `curl http://localhost:8188/system_stats`
-- Do NOT start ComfyUI via its Desktop `.exe` — it uses `--highvram` which overflows VRAM
-- See [COMFYUI_SETUP.md](./COMFYUI_SETUP.md) for the full launch configuration
-
-### Image generation is very slow (5+ min per card)
-- ComfyUI was likely started with `--highvram` via the Desktop app
-- Restart ComfyUI using manage.bat option 9 or Myth Forge auto-start
-- Check Task Manager GPU tab — "Shared GPU Memory" > 1 GB indicates VRAM overflow
-
-### Ollama not detected
-- Ensure Ollama is running
-- Check that `qwen2:7b` is pulled: `ollama list`
-- On different systems, may need to update the API URL in `server.py`
-
-## Architecture
-
-```
-mythforge/
-├── server.py              # Flask API server
-├── image_gen.py           # Image generation (ComfyUI orchestration)
-├── themer.py              # Card theming (Ollama integration)
-├── frontend/              # React + Vite
-│   ├── src/               # Source code
-│   ├── dist/              # Production build (served by Flask)
-│   └── package.json       # Frontend dependencies
-├── requirements.txt       # Python dependencies
-└── data/                  # Generated decks & renders
-```
-
-## Performance Tips
-
-### Faster Builds
-- Use SSD for project directory
-- Keep `node_modules` on same drive
-- Use dedicated GPU if available
-
-### Better Generation Quality
-- Run Ollama with more VRAM: `OLLAMA_NUM_GPU=1 ollama serve`
-- Use larger ComfyUI models (more VRAM needed)
-- Set image generation to "quality" mode in app
-
-### Memory Usage
-- ComfyUI: 6GB+ VRAM for FLUX, 4GB+ for SDXL
-- Ollama: 4GB+ RAM for larger models
-- Ensure at least 8GB system RAM available
-
-## Getting Help
-
-- Check the [GitHub Issues](https://github.com/onemorethan0/mythforgemtg/issues)
-- Review the [README](./README.md) for more details
-- Check `server.log` for errors
-
-## Next Steps
-
-1. **Start the app**: Run installer or `python server.py`
-2. **Open browser**: Visit http://localhost:8000
-3. **Create a deck**: Choose a commander and follow the workflow
-4. **Explore features**: Adjust themes, regenerate cards, export decks
-
-Enjoy building!
+## Install troubleshooting
+- **"Python/Node not found"** — install + add to PATH, then reopen the terminal.
+- **Dependency install fails** — `npm cache clean --force`, then retry `npm install`.
+- **Frontend changes don't show** — rebuild (`cd frontend && npm run build`) and hard-refresh (`Ctrl+Shift+R`). The server also auto-rebuilds on startup when `frontend/src` is newer than `frontend/dist`.
+- **Port 8000 in use** — `manage.bat` → option 2 (Clean Start), or `netstat -ano | findstr :8000` then `taskkill /PID <id> /F`.
+- **ComfyUI not detected / generating on CPU / very slow** — see [COMFYUI_SETUP.md](./COMFYUI_SETUP.md) (almost always the `--highvram` / wrong-venv issue).
+
+Runtime troubleshooting by symptom: **[docs/MAINTENANCE.md](docs/MAINTENANCE.md)**.
 
 ---
-
-**Myth Forge** by OneMoreThan0 — Generate legendary decks with AI ⚔️
+*Myth Forge by OneMoreThan0 ⚔️*

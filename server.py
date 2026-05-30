@@ -43,13 +43,70 @@ from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
 from themer             import Themer, ThemedCard
-from image_gen          import ImageGen, _is_flux, _is_sd35, _is_sdxl
+from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
 from exporter           import build_zip, build_pdf
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 from model3d            import Model3DGen, generate_commander_3d
+
+# ── In-memory log capture ──────────────────────────────────────────────────────
+# Tee stdout/stderr into a bounded ring buffer so the running server's output
+# (startup checks, pipeline prints, tracebacks, uvicorn access logs) can be
+# viewed from inside the app via /api/logs — regardless of how the process was
+# launched (console, redirected file, or detached with no console at all).
+import sys as _sys
+import collections
+from datetime import datetime as _dt
+
+_LOG_BUFFER: "collections.deque[str]" = collections.deque(maxlen=5000)
+
+
+class _TeeStream:
+    """Write-through stream wrapper that mirrors output into _LOG_BUFFER line by line."""
+
+    def __init__(self, original):
+        self._original = original
+        self._partial = ""
+
+    def write(self, text):
+        if self._original is not None:
+            try:
+                self._original.write(text)
+            except Exception:
+                pass
+        self._partial += text
+        while "\n" in self._partial:
+            line, self._partial = self._partial.split("\n", 1)
+            _LOG_BUFFER.append(f"{_dt.now().strftime('%H:%M:%S')} {line}")
+        return len(text)
+
+    def flush(self):
+        if self._original is not None:
+            try:
+                self._original.flush()
+            except Exception:
+                pass
+
+    def isatty(self):
+        # uvicorn's log formatter calls this during config; guard against a
+        # None/detached stdout so logging setup never crashes on launch.
+        try:
+            return bool(self._original) and self._original.isatty()
+        except Exception:
+            return False
+
+    def __getattr__(self, name):
+        return getattr(self._original, name)
+
+
+# Wrap whatever stdout/stderr are at this point (model3d already installed a
+# UTF-8 wrapper on import). Wrapping happens before uvicorn.run() so uvicorn's
+# log handlers bind to the tee and access logs are captured too.
+_sys.stdout = _TeeStream(_sys.stdout)
+_sys.stderr = _TeeStream(_sys.stderr)
+
 
 # ── App setup ─────────────────────────────────────────────────────────────────
 
@@ -318,6 +375,34 @@ def _ensure_ollama_models_ready():
 class SearchRequest(BaseModel):
     query: str
 
+
+class GenSettingsModel(BaseModel):
+    """User-configurable generation knobs from the frontend Advanced panels.
+    Mirrors image_gen.GenSettings; all optional so omitting it preserves defaults."""
+    guidance:       Optional[float] = None   # FLUX FluxGuidance (1.5–5)
+    steps:          Optional[int]   = None   # sampler steps
+    sampler:        Optional[str]   = None
+    scheduler:      Optional[str]   = None
+    seed_mode:      Optional[str]   = None   # "random" | "fixed"
+    seed:           Optional[int]   = None
+    lora_overrides: Optional[List[dict]] = None  # [{filename, model_strength, clip_strength?, trigger?}]
+    face_method:    Optional[str]   = None   # None=auto | "reactor" | "pulid_flux" | "none"
+    face_weight:    Optional[float] = None
+    safe_mode:      Optional[bool]  = None
+
+
+def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:
+    """Convert the API GenSettingsModel into the image_gen.GenSettings dataclass.
+    None / missing fields fall back to defaults (existing behavior)."""
+    if gs is None:
+        return GenSettings()
+    try:
+        d = gs.model_dump(exclude_none=True)   # pydantic v2
+    except AttributeError:
+        d = {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
+    return GenSettings.from_dict(d)
+
+
 class BuildRequest(BaseModel):
     commander_name:    str = Field(..., max_length=120)
     playstyle:         str = "auto"
@@ -339,6 +424,7 @@ class BuildRequest(BaseModel):
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
+    gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
 class RebuildRequest(BaseModel):
@@ -350,12 +436,14 @@ class RebuildRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None
     crew_gender: str = "either"
+    gen_settings: Optional[GenSettingsModel] = None
 
 
 class CardRegenEntry(BaseModel):
     render_key:    str            # safe-name used in the filename / URL
     original_name: str            # canonical MTG card name for lookup fallback
-    custom_prompt: Optional[str] = None   # None → use saved art_prompt
+    custom_prompt: Optional[str] = None   # user's custom text (stored separately; never clobbers art_prompt)
+    use_custom:    bool = False           # True → feed custom_prompt to generation; False → use LLM art_prompt
 
 
 class RegenCardsRequest(BaseModel):
@@ -368,6 +456,7 @@ class RegenCardsRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None   # crew faces override for creature cards
     crew_gender: str = "either"
+    gen_settings: Optional[GenSettingsModel] = None
 
 
 class RethemeRequest(BaseModel):
@@ -801,7 +890,9 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
     return {
         "original_name": tc.original_name,
         "themed_name":   tc.themed_name,
-        "art_prompt":    tc.art_prompt,
+        "art_prompt":    tc.art_prompt,    # LLM-generated; treated as immutable
+        "custom_prompt": "",               # user override (kept separate from art_prompt)
+        "use_custom":    False,            # which prompt feeds generation
         "flavor_text":   tc.flavor_text,
         "mana_cost":     c.get("mana_cost", ""),
         "type_line":     c.get("type_line", ""),
@@ -1111,7 +1202,8 @@ def _run_build(job_id: str, req: BuildRequest):
                 with _art_lock:   # serialize: only one build drives ComfyUI at a time
                     try:
                         gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                                      checkpoint=req.checkpoint)
+                                      checkpoint=req.checkpoint,
+                                      gen_settings=_resolve_gen_settings(req.gen_settings))
                     except Exception as _ge:
                         _push(job_id, "progress", json.dumps({
                             "step": "art",
@@ -1508,7 +1600,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             with _art_lock:
                 try:
                     gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                                  checkpoint=req.checkpoint)
+                                  checkpoint=req.checkpoint,
+                                  gen_settings=_resolve_gen_settings(req.gen_settings))
                 except Exception as _ge:
                     _push(job_id, "progress", json.dumps({
                         "step": "art",
@@ -1760,8 +1853,16 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             # overwrites the original rendered file and the card_ready event key
             # matches what the frontend stores in card.render_key / refreshTs.
             stored_render_key = cd.get("render_key") or art_safe
-            custom = entry.custom_prompt.strip() if entry.custom_prompt and entry.custom_prompt.strip() else ""
-            prompt = custom or cd.get("art_prompt", "") or cd["original_name"]
+            # Pick which prompt feeds generation. The LLM art_prompt is the default
+            # and is NEVER overwritten; the custom prompt is used only when the card
+            # is flagged use_custom and has custom text. The request is authoritative
+            # (custom text falls back to whatever was previously stored for the card).
+            custom = (entry.custom_prompt if entry.custom_prompt is not None
+                      else cd.get("custom_prompt", "")) or ""
+            custom = custom.strip()
+            use_custom = bool(entry.use_custom and custom)
+            prompt = (custom if use_custom else cd.get("art_prompt", "")) \
+                     or cd.get("art_prompt", "") or cd["original_name"]
 
             tc = ThemedCard(
                 original_name = cd["original_name"],
@@ -1826,7 +1927,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
         with _art_lock:
             gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
-                          checkpoint=req.checkpoint)
+                          checkpoint=req.checkpoint,
+                          gen_settings=_resolve_gen_settings(req.gen_settings))
             if not gen.available:
                 raise ValueError("ComfyUI not available after acquiring GPU lock")
 
@@ -1911,6 +2013,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                     str(_Path("generated_art") / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
+                    card_type=tc.card.get("type_line", ""),
                 )
                 elapsed = time.time() - t0
                 success = art_path is not None
@@ -1953,18 +2056,28 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
             return
 
-        # ── Persist any custom prompts back to the source deck.json ──────────
-        custom_updates = {
-            "".join(ch if ch.isalnum() else "_" for ch in e.original_name)[:48]: e.custom_prompt.strip()
+        # ── Persist custom prompts + the use-custom choice to deck.json ──────
+        # IMPORTANT: never overwrite the LLM-generated art_prompt — store the user's
+        # text in a separate custom_prompt field so both remain available and the
+        # original can always be recovered. Records the per-card use_custom flag too.
+        prompt_updates = {
+            "".join(ch if ch.isalnum() else "_" for ch in e.original_name)[:48]: e
             for e in req.cards
-            if e.custom_prompt and e.custom_prompt.strip()
         }
-        if custom_updates:
+        if prompt_updates:
             updated = dict(source_data)
 
             def _patch_prompt(cd):
                 safe = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
-                return {**cd, "art_prompt": custom_updates[safe]} if safe in custom_updates else cd
+                e = prompt_updates.get(safe)
+                if not e:
+                    return cd
+                patched = {**cd, "use_custom": bool(e.use_custom)}
+                # Only replace stored custom text when new text was supplied;
+                # an empty/None custom_prompt preserves whatever was there.
+                if e.custom_prompt is not None and e.custom_prompt.strip():
+                    patched["custom_prompt"] = e.custom_prompt.strip()
+                return patched
 
             updated["commander"] = _patch_prompt(updated["commander"])
             updated["deck"]      = [_patch_prompt(c) for c in updated["deck"]]
@@ -3353,6 +3466,23 @@ async def download_commander_stl(job_id: str):
 async def get_3d_health():
     """Return Hunyuan3D v2 / rembg availability status."""
     return JSONResponse(Model3DGen.health_check())
+
+
+@app.get("/api/logs")
+async def get_logs(lines: int = 300):
+    """
+    Return the most recent server log lines from the in-memory ring buffer.
+    Captures stdout/stderr (startup checks, pipeline prints, tracebacks) and
+    uvicorn access logs. `lines` is clamped to [1, 5000].
+    """
+    lines = max(1, min(int(lines), 5000))
+    buf = list(_LOG_BUFFER)
+    recent = buf[-lines:]
+    return JSONResponse({
+        "lines":    recent,
+        "total":    len(buf),
+        "returned": len(recent),
+    })
 
 
 # ── Serve React frontend ───────────────────────────────────────────────────────

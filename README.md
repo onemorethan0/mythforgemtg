@@ -22,7 +22,7 @@ A fully local web app that builds themed 100-card EDH Commander decks with AI-ge
 - Smaller GPUs: Fallback to Scryfall artwork (no FLUX generation)
 - Mac M-series: CPU-only generation, much slower
 
-See `HARDWARE_OPTIMIZATION_GUIDE.md` for detailed analysis and batch size tuning.
+See [docs/HARDWARE_OPTIMIZATION_GUIDE.md](docs/HARDWARE_OPTIMIZATION_GUIDE.md) for detailed analysis and batch size tuning.
 
 ---
 
@@ -243,11 +243,12 @@ Layer order (bottom to top):
 
 Runs against **Ollama `qwen3:14b`** locally (auto-falls back to `qwen3:32b` → `qwen2.5-coder:14b` → `gemma4` if the primary model is missing).
 
-1. Generates one deck-wide **style guide** sentence (art medium, palette, lighting, mood)
-2. Processes cards in **batches of 8**, each receiving the style guide
-3. Each card gets: `themed_name`, `art_prompt` (25–40 words), `flavor_text`
-4. Style guide is appended to every `art_prompt` before passing to ComfyUI
-5. Ollama is **unloaded from GPU** after theming so ComfyUI can claim the VRAM
+1. Generates one deck-wide **style guide** sentence (used only as LLM context, NOT prepended to FLUX prompts)
+2. Processes cards in **batches**, each receiving the style guide as context
+3. Each card gets: `themed_name`, `art_prompt` (35–50 words), `flavor_text`
+4. **Name → art coherence (#1 rule):** the `art_prompt` must *depict* the themed name's imagery (2–3 concrete visual elements), and every card's scene must be unique (no reused templates)
+5. **Color = mana identity:** each card's palette is driven by its color identity (`_color_palette_hint`: W=ivory/gold, U=arcane blue, B=shadow/necrotic, R=fire/crimson, G=verdant, colorless=chrome), deferring to user-theme colors for characters — mirroring real MTG
+6. Ollama is **unloaded from GPU** after theming so ComfyUI can claim the VRAM
 
 **Prompt pipeline (togglable):** `USE_ENHANCED_PROMPTS` at the top of `themer.py` switches between two pipelines:
 
@@ -255,9 +256,10 @@ Runs against **Ollama `qwen3:14b`** locally (auto-falls back to `qwen3:32b` → 
 - **v2 (dual-anchor, default):** Each card is pre-classified by its mechanical role (`_card_soul()`) producing a `soul_phrase` (e.g. *"divine judgment, everything obliterated simultaneously"* for a boardwipe). The LLM receives both the soul (what the card *does*) and the theme skin (world aesthetic), producing prompts that feel true to both the MTG mechanic and the setting.
 
 **Art prompt rules enforced via system prompt:**
-- No specific color names (palette handled by style guide)
+- Color palette driven by the card's mana identity (see above), not a fixed deck palette
+- Themed name depicted as concrete visual elements; scenes unique per card
 - No close-up hands — poses that hide/glove/arm hands
-- Landscape composition always
+- Landscape composition (framing free to vary — no forced centering)
 - Each prompt ends with a quality closer phrase
 - Mechanic keywords mapped to visual cues (Flying → wings spread, Deathtouch → necrotic aura, etc.)
 
@@ -269,14 +271,17 @@ Auto-detects checkpoint type (FLUX vs SDXL) and best available face method.
 
 **Checkpoints:** `C:\Users\rvn92\Documents\ComfyUI\models\checkpoints\`
 
-**SDXL settings:** 30 steps, CFG 7.5, DPM++ 2M Karras  
-**FLUX dev settings:** 25 steps, CFG 3.5, Euler Simple  
-**FLUX schnell:** 4 steps, CFG 1.0
+**SDXL settings:** 30 steps, CFG 7.5, DPM++ 2M Karras
+**FLUX dev settings:** 35 steps, KSampler **CFG 1.0** + a **FluxGuidance** node (default 3.5), dpmpp_2m + sgm_uniform
+**FLUX schnell:** 8 steps, CFG 1.0, euler + simple (no FluxGuidance, no LoRAs)
+
+> **Why CFG 1.0 + FluxGuidance, not CFG 3.5 in the KSampler?** FLUX-dev is guidance-distilled; driving it with true CFG > 1 over-guides the latent to a blown-out near-white frame. Correct usage is KSampler CFG 1.0 with a FluxGuidance conditioning node (~3.5). The negative prompt is therefore inert on FLUX (it steers from the positive). Guidance/steps are user-tunable via the Theme step's Advanced panel (see Generation Settings below).
 
 **Positive prompt structure:**
 ```
-[style flux_prefix] + [gender qualifier if face card] + [art_prompt] + [style guide]
+[LoRA trigger words] + [style flux_prefix] + [art_prompt] + [face suffix if face card]
 ```
+The deck-wide style guide is **not** prepended to FLUX prompts (the `flux_prefix` owns the art style; prepending the style guide caused medium conflicts). Per-card **color comes from the card's mana identity** (see Themer), not a fixed deck palette.
 
 ### Art Style Presets
 
@@ -286,7 +291,7 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
 |-----|-------|------|--------------|
 | `mtg_fantasy` | MTG Fantasy | ⚔️ | `df_style_v1.1.safetensors`, `aidmaMTGCard-FLUX-V0.1.safetensors` |
 | `photorealism` | Photorealism | 📷 | `xlabs_realism_lora.safetensors` |
-| `cyberpunk` | Cyberpunk | 🌆 | `neon_noir_*.safetensors` |
+| `cyberpunk` | Cyberpunk | 🌆 | `kcyberpunk-02` + `Neon_Cyberpunk_Detailer` (per-card rotation with `boFLUX_Abyss_Neon`) |
 | `desert_punk` | Desert Punk | 🏜️ | `retrofuture_*.safetensors` |
 | `anime` | Anime / Manga | 🎌 | `flatcolor_anime_flux.safetensors` — flat cel-shaded |
 | `anime_illustrated` | Anime Illustrated | ✨ | `semi_realistic_anime_flux.safetensors` — detailed shading & depth |
@@ -332,6 +337,25 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
 
 ---
 
+## Generation Settings (Advanced panels)
+
+The Theme and Face steps each have a collapsible **⚙ Advanced** panel, driven by a single schema (`frontend/src/config/genSettings.js`) with a structural **Reset to defaults** button and `localStorage` persistence. Values flow `gen_settings → BuildRequest → ImageGen → workflow builders`:
+
+- **Theme:** FLUX guidance (1.5–5), sampler steps, seed (random/fixed), a **LoRA picker** (override the preset stack + per-LoRA strength), and **Safe mode**.
+- **Face:** face method (auto/ReActor/PuLID/none) and PuLID identity strength.
+- **Safe mode** lowers steps + resolution to reduce peak GPU/CPU load (mitigates crashes on unstable hardware — see Gotchas).
+- The fully-resolved settings are logged once per build as `[gen_settings] {...}`.
+
+## 3D Commander Models (`model3d.py`)
+
+Optional pipeline: commander art → **rembg** background removal → **Hunyuan3D v2** (ComfyUI) → GLB → **STL** (trimesh), scaled to ~60 mm for printing. Octree resolution defaults to 384 (`MYTHFORGE_3D_RES` to override). Exposed via `/api/deck/{job_id}/generate-3d` (SSE progress) and `/api/3d-health`.
+
+## In-app log viewer
+
+A **📜 Logs** button (header) streams the server's in-memory log buffer via `GET /api/logs` — captures stdout/stderr, pipeline prints, tracebacks, and uvicorn access logs regardless of how the server was launched.
+
+---
+
 ## API Reference
 
 | Method | Endpoint | Description |
@@ -339,6 +363,10 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
 | GET | `/api/playstyles` | List all 15 playstyle options |
 | GET | `/api/art-styles` | List all art style presets + LoRA install status |
+| GET | `/api/comfyui/loras` | List installed LoRA files (feeds the LoRA picker) |
+| GET | `/api/logs` | Recent server log lines (in-memory ring buffer) |
+| GET | `/api/3d-health` | Hunyuan3D v2 / rembg availability |
+| POST | `/api/deck/{job_id}/generate-3d` | Start commander 3D (STL) generation |
 | GET | `/api/face-method` | Probe which face engine ComfyUI supports |
 | POST | `/api/upload-face` | Upload 1–5 face reference photos |
 | POST | `/api/deck/build` | Start async deck build → `{job_id}` |
@@ -363,9 +391,11 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
   "art_theme": "dark gothic necromancer city",
   "generate_art": true,
   "face_key": "abc12345",
-  "face_gender": "female"
+  "face_gender": "female",
+  "gen_settings": { "guidance": 3.5, "steps": 35, "safe_mode": false }
 }
 ```
+`gen_settings` is optional; omitting any field falls back to the model default (see `GenSettingsModel` in `server.py` / `GenSettings` in `image_gen.py`).
 
 ---
 
@@ -392,6 +422,7 @@ Python: `C:\Python314\python.exe`
 - **Scryfall rate limiting** — 150ms sleep between requests. Running multiple builds back-to-back is fine for single-user use.
 - **Art generation is optional** — Toggle `generate_art: false` to skip ComfyUI entirely; Scryfall card art is used as fallback and frames still render.
 - **pixie-python SVG rasterization** — `pixie.Image.resize()` is NOT in-place. Must create a new `pixie.Image(w, h)` as destination, then `ctx.scale() + ctx.draw_image(src, 0, 0)`.
+- **Whole-machine reboots during generation are HARDWARE, not the app.** On the 5800X3D dev machine these were a CPU **Machine Check Exception ("Cache Hierarchy Error")** in the Windows event log (WHEA Id 18 → Kernel-Power 41) — the classic signature of an unstable PBO/Curve-Optimizer undervolt or unstable EXPO/XMP RAM under combined CPU+GPU load. Fix in BIOS (run CPU/RAM at stock, then stress-test); use the Theme step's **Safe mode** to reduce load meanwhile.
 
 ---
 
@@ -399,13 +430,10 @@ Python: `C:\Python314\python.exe`
 
 See **[docs/](docs/)** for complete documentation:
 
-**Quick Start:**
-- **[CHECKLIST_BEFORE_STARTING.txt](CHECKLIST_BEFORE_STARTING.txt)** — One-page checklist before your first run
-- **[docs/STARTUP_INSTRUCTIONS.txt](docs/STARTUP_INSTRUCTIONS.txt)** — Quick reference card
-
 **For Setup & Troubleshooting:**
-- **[docs/STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md)** — Complete setup with detailed troubleshooting for each service
-- **[docs/MAINTENANCE.md](docs/MAINTENANCE.md)** — Troubleshooting by symptom, optimization, new features
+- **[INSTALL.md](INSTALL.md)** — install + start, step by step
+- **[COMFYUI_SETUP.md](COMFYUI_SETUP.md)** — ComfyUI launch flags, VRAM, ReActor
+- **[docs/MAINTENANCE.md](docs/MAINTENANCE.md)** — Troubleshooting by symptom, optimization
 
 **For Developers:**
 - **[docs/DEVELOPMENT_GUIDELINES.md](docs/DEVELOPMENT_GUIDELINES.md)** — **Mandatory** guidelines for code changes. Read before making any changes.

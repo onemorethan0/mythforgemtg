@@ -1,153 +1,39 @@
 # Documentation Index
 
-Welcome to the MTG Commander Deck Builder documentation. This folder contains all guides and references.
+Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](../README.md) is the main reference; this folder holds deeper guides. For an agent-oriented overview see [`CLAUDE.md`](../CLAUDE.md).
 
 ---
 
-## **Quick Start** (Start Here!)
+## Getting started
+1. **First-time setup:** run `setup.bat` (Windows) or `python install.py` (Mac/Linux).
+2. **Download models:** `manage.bat` → Download AI Models, or `python download-models.py`.
+3. **Start:** `manage.bat` → Start Development Server (or `dev.bat`, or `python server.py`), then open http://localhost:8000.
+4. ComfyUI (port 8188) must be running separately; Ollama (11434) auto-starts.
 
-👉 **First time?** Read: [`CHECKLIST_BEFORE_STARTING.txt`](../CHECKLIST_BEFORE_STARTING.txt) (in root)
+Full setup + troubleshooting: [`../INSTALL.md`](../INSTALL.md) · ComfyUI launch: [`../COMFYUI_SETUP.md`](../COMFYUI_SETUP.md)
 
-Then come back here for more details.
+> Note: `STARTUP_INSTRUCTIONS.txt` and the `archive/` notes describe a removed `START.bat`/`paths_config.ps1` startup system — ignore them; INSTALL.md is current.
 
----
+## For users
+- **Troubleshooting by symptom:** [`MAINTENANCE.md`](MAINTENANCE.md)
+- **GPU/performance tuning:** [`HARDWARE_OPTIMIZATION_GUIDE.md`](HARDWARE_OPTIMIZATION_GUIDE.md)
 
-## **For Users**
+## For developers
+- **Read before changing code:** [`DEVELOPMENT_GUIDELINES.md`](DEVELOPMENT_GUIDELINES.md)
+- **Architecture & conventions:** [`../CLAUDE.md`](../CLAUDE.md)
 
-### Setup & Running
-- **[STARTUP_INSTRUCTIONS.txt](STARTUP_INSTRUCTIONS.txt)** — Quick reference (5 min read)
-- **[STARTUP_GUIDE.md](STARTUP_GUIDE.md)** — Complete setup with screenshots and troubleshooting (20 min read)
-
-### Troubleshooting
-- **[MAINTENANCE.md](MAINTENANCE.md)** — "Troubleshooting by Symptom" section
-  - Card not displaying?
-  - ComfyUI crashing?
-  - Generation too slow?
-  - Face conditioning not working?
-  - Find your issue and fix it.
-
-### Performance
-- **[HARDWARE_OPTIMIZATION_GUIDE.md](HARDWARE_OPTIMIZATION_GUIDE.md)** — Make your GPU faster
-  - Batch size tuning
-  - VRAM optimization
-  - RTX 3090 vs 4080 vs 4070 comparisons
-
----
-
-## **For Developers**
-
-⚠️ **Before making ANY code changes, read:**
-- **[DEVELOPMENT_GUIDELINES.md](DEVELOPMENT_GUIDELINES.md)** — Mandatory best practices
-  - Code change checklist
-  - Documentation requirements
-  - Testing procedures
-  - Error handling standards
-  - Self-check for each session
+## Real entry-point scripts (root)
+| Script | Purpose |
+|--------|---------|
+| `setup.bat` / `install.py` | One-time install (deps + frontend build) |
+| `manage.bat` | Menu: start/stop server, status, download models |
+| `dev.bat` | Start the dev server directly |
+| `download-models.py` | Download checkpoints/LoRAs/face models |
+| `start-mythforge.sh` | Mac/Linux start helper |
 
 ---
 
-## **Project Setup Files** (in root)
+## Archive
+`archive/` holds outdated session notes from earlier development. They are historical only — **the docs above are current.** Safe to delete if you want to declutter.
 
-| File | Purpose |
-|------|---------|
-| `paths_config.ps1` | Centralized configuration (edit this) |
-| `START.bat` | Master startup script |
-| `STOP.bat` | Master shutdown script |
-| `launch_comfyui.ps1` | ComfyUI launcher |
-| `README.md` | Main project documentation |
-| `requirements.txt` | Python dependencies |
-
----
-
-## **Directory Structure**
-
-```
-mtg_deck_builder/
-├── README.md                          ← Start here (main docs)
-├── CHECKLIST_BEFORE_STARTING.txt      ← One-page quick start
-├── paths_config.ps1                   ← Edit this (configuration)
-├── START.bat                          ← Double-click to start
-├── STOP.bat                           ← Double-click to stop
-│
-├── server.py                          ← FastAPI backend
-├── image_gen.py                       ← Image generation
-├── themer.py                          ← Card theming
-├── card_renderer.py                   ← Card rendering
-├── ... (other source files)
-│
-└── docs/                              ← All documentation
-    ├── INDEX.md                       ← You are here
-    ├── STARTUP_INSTRUCTIONS.txt       ← Quick reference
-    ├── STARTUP_GUIDE.md               ← Detailed setup
-    ├── MAINTENANCE.md                 ← Troubleshooting
-    ├── DEVELOPMENT_GUIDELINES.md      ← For developers
-    ├── HARDWARE_OPTIMIZATION_GUIDE.md ← GPU tuning
-    ├── STARTUP_REFINEMENT_SUMMARY.md  ← Technical details
-    │
-    └── archive/                       ← Old session notes (reference only)
-        ├── BUG_FIXES_COMPLETE.md
-        ├── DEPLOYMENT_READY.md
-        ├── SESSION_COMPLETE.md
-        └── ... (15 other historical files)
-```
-
----
-
-## **Common Tasks**
-
-### "I want to start the app"
-1. Edit `paths_config.ps1` (first time only)
-2. Double-click `START.bat`
-3. Open http://localhost:8000 in your browser
-
-→ See: **[STARTUP_INSTRUCTIONS.txt](STARTUP_INSTRUCTIONS.txt)**
-
-### "Something is broken"
-1. Note the exact error message
-2. Open **[MAINTENANCE.md](MAINTENANCE.md)**
-3. Find "Troubleshooting by Symptom"
-4. Locate your symptom and follow the fix
-
-### "I want to modify the code"
-1. Open **[DEVELOPMENT_GUIDELINES.md](DEVELOPMENT_GUIDELINES.md)**
-2. Follow the "Code Change Checklist"
-3. Update documentation at the same time
-4. Test (Level 1-4) before committing
-
-### "Generation is slow"
-→ See: **[HARDWARE_OPTIMIZATION_GUIDE.md](HARDWARE_OPTIMIZATION_GUIDE.md)**
-- Batch size tuning
-- GPU VRAM optimization
-- Checkpoint selection (FLUX vs SDXL)
-
-### "Face conditioning isn't working"
-→ See: **[MAINTENANCE.md](MAINTENANCE.md)** → "CUDA error: cublasLt64_12.dll missing"
-- Install CUDA Toolkit 12.x
-- Or generate without face photos as workaround
-
----
-
-## **Archive** (Historical Reference)
-
-The `archive/` folder contains documentation from previous development sessions. These are kept for reference but are outdated:
-- `BUG_FIXES_COMPLETE.md`
-- `DEPLOYMENT_READY.md`
-- `SESSION_COMPLETE.md`
-- ... and 13 others
-
-**You don't need to read these.** The active documentation above is current.
-
----
-
-## **Need Help?**
-
-1. **Setup issue?** → [STARTUP_GUIDE.md](STARTUP_GUIDE.md)
-2. **Troubleshooting?** → [MAINTENANCE.md](MAINTENANCE.md)
-3. **Performance?** → [HARDWARE_OPTIMIZATION_GUIDE.md](HARDWARE_OPTIMIZATION_GUIDE.md)
-4. **Development?** → [DEVELOPMENT_GUIDELINES.md](DEVELOPMENT_GUIDELINES.md)
-
----
-
-## **Last Updated**
-
-May 26, 2026 — Startup system refinement, bug fixes, documentation reorganization.
+_Last updated: May 2026 — synced with the actual `manage.bat`/`dev.bat` startup scripts; corrected references to a removed `START.bat`/`paths_config.ps1` system._

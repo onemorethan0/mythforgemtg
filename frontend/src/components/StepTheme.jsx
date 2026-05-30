@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ManaCost from './ManaCost'
+import AdvancedPanel from './AdvancedPanel'
 
 const EXAMPLES = [
   'dark gothic necromancer city',
@@ -216,6 +217,7 @@ export default function StepTheme({
   checkpoint, onCheckpointChange,
   llmModel, onLlmModelChange,
   faceKey, faceMethod,
+  genSettings,
   onNext, onBack,
 }) {
   const [loading, setLoading]           = useState(false)
@@ -1275,6 +1277,8 @@ export default function StepTheme({
             </div>
           </div>
         )}
+
+        {genSettings && <AdvancedPanel step="theme" settings={genSettings} />}
 
         <div style={s.footer}>
           <button style={s.btnBack} onClick={onBack} disabled={loading}>← Back</button>

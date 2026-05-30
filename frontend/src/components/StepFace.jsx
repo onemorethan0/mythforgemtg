@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import ManaCost from './ManaCost'
+import AdvancedPanel from './AdvancedPanel'
 
 const MAX_COMMANDER_PHOTOS = 5
 const MAX_CREW_PHOTOS      = 10
@@ -105,7 +106,7 @@ function GenderPicker({ value, onChange, label = "Person's sex:" }) {
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function StepFace({ commander, faceGender, onGenderChange, crewGender, onCrewGenderChange, onNext, onSkip, onBack }) {
+export default function StepFace({ commander, faceGender, onGenderChange, crewGender, onCrewGenderChange, onNext, onSkip, onBack, genSettings }) {
   const [cmdPhotos,  setCmdPhotos]  = useState([])
   const [crewPhotos, setCrewPhotos] = useState([])
   const [uploading,  setUploading]  = useState(false)
@@ -277,8 +278,10 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
         </div>
       )}
 
+      {genSettings && <AdvancedPanel step="face" settings={genSettings} />}
+
       {/* Footer */}
-      <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', marginTop: 16 }}>
         <button style={{ padding: '10px 22px', background: 'none', border: '1px solid #44403c', borderRadius: 10, color: '#a8a29e', cursor: 'pointer', fontFamily: 'inherit' }} onClick={onBack} disabled={uploading}>
           ← Back
         </button>

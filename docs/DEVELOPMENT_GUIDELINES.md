@@ -1,5 +1,11 @@
 # Development Guidelines — MTG Commander Deck Builder
 
+> ⚠️ **Outdated references:** this doc mentions `START.bat` / `STOP.bat` /
+> `paths_config.ps1`, which no longer exist. Startup is now `manage.bat` /
+> `dev.bat` / `python server.py` (no central `paths_config.ps1`; paths live in the
+> `.bat` scripts + `server.py`). For current architecture and the edit→run loop,
+> see [../CLAUDE.md](../CLAUDE.md). The checklist/standards below still apply.
+
 ## Purpose
 
 This document provides guidelines for developers to ensure consistent code quality, documentation accuracy, and reliable builds. **These guidelines are mandatory for all changes and should be referenced in every development session.**

@@ -56,8 +56,19 @@ HUNYUAN3D_DIT_MODEL  = "hunyuan3d-dit-v2-0-fp16.safetensors"
 H3D_STEPS         = 50     # denoising steps (50 per example workflow)
 H3D_CFG           = 5.5    # classifier-free guidance
 H3D_NUM_CHUNKS    = 32000  # VAE decode chunk size (reduce if OOM)
-H3D_MC_RES        = 384    # marching cubes resolution
+# Marching-cubes / octree resolution. 384 is the stable default — 512 gives more
+# surface detail but adds significant VRAM + compute load, which on an unstable
+# machine can contribute to GPU/driver crashes. Override with MYTHFORGE_3D_RES if
+# you've confirmed your hardware is stable and want the extra detail.
+H3D_MC_RES        = int(os.environ.get("MYTHFORGE_3D_RES", "384"))
 H3D_SCALE_FACTOR  = 1.01   # VAE scale factor
+
+# Target physical print size. Hunyuan3D normalizes meshes to roughly a unit cube
+# (~1–2 units across); STL is unitless and slicers read it as millimetres, so the
+# raw mesh imports as a ~2 mm speck. Scale the longest axis to this many mm — 60 mm
+# is a typical tabletop "hero" miniature height. Override via the MYTHFORGE_PRINT_MM
+# env var (e.g. set MYTHFORGE_PRINT_MM=32 for a 32 mm figure).
+PRINT_TARGET_MM   = float(os.environ.get("MYTHFORGE_PRINT_MM", "60"))
 
 # ComfyUI workflow poll
 _POLL_INTERVAL = 2.0
@@ -233,84 +244,89 @@ def _build_hunyuan3d_workflow(image_comfy_name: str, job_prefix: str) -> dict:
     Build a ComfyUI API workflow for Hunyuan3D v2 using ComfyUI-Hunyuan3DWrapper nodes.
 
     Node flow:
-      LoadImage → Hy3DModelLoader → Hy3DGenerateMesh → Hy3DVAEDecode
-        → Hy3DPostprocessMesh → Hy3DExportMesh (GLB)
+      LoadImage(1) → Hy3DModelLoader(2) → Hy3DGenerateMesh(4) → Hy3DVAEDecode(5)
+                  ↘ Hy3DDiffusersSchedulerConfig(3) ↗         → Hy3DPostprocessMesh(6)
+                  ↘ vae ──────────────────────────────────────↗                     → Hy3DExportMesh(7)
+
+    Hy3DModelLoader outputs: [pipeline (0), vae (1)]
+    Hy3DGenerateMesh outputs: [latents (0)]
+    Hy3DVAEDecode / Hy3DPostprocessMesh outputs: [trimesh (0)]
 
     image_comfy_name: filename registered in ComfyUI /upload/image
     job_prefix: GLB filename prefix (e.g. "3D/commander_abc123")
     """
     seed = int(time.time() * 1000) % (2**31)
-    # Model path as the node expects: "hy3dgen\<filename>" (subfolder inside diffusion_models)
+    # Node loader path: "hy3dgen\<filename>" (subfolder inside diffusion_models/)
     dit_model_path = f"hy3dgen\\{HUNYUAN3D_DIT_MODEL}"
     return {
-        # ── Load input image ──────────────────────────────────────────────────
+        # ── 1. Load input image ───────────────────────────────────────────────
         "1": {
             "class_type": "LoadImage",
             "inputs": {"image": image_comfy_name},
         },
-        # ── Load DiT model ────────────────────────────────────────────────────
-        # attention_mode "sdpa" = scaled dot-product attention (default, efficient)
+        # ── 2. Load DiT + VAE ─────────────────────────────────────────────────
+        # Outputs: [0] HY3DMODEL pipeline, [1] HY3DVAE vae
         "2": {
             "class_type": "Hy3DModelLoader",
             "inputs": {
                 "model":          dit_model_path,
-                "attention_mode": "sdpa",
-                "load_device":    False,
+                "attention_mode": "sdpa",  # efficient scaled-dot-product attention
             },
         },
-        # ── Scheduler config ─────────────────────────────────────────────────
+        # ── 3. Generate mesh latent ───────────────────────────────────────────
+        # scheduler is a string dropdown: "FlowMatchEulerDiscreteScheduler" or
+        # "ConsistencyFlowMatchEulerDiscreteScheduler" (NOT a connected node output)
+        # Outputs: [0] HY3DLATENT latents
         "3": {
-            "class_type": "Hy3DDiffusersSchedulerConfig",
-            "inputs": {
-                "scheduler": "FlowMatchEulerDiscreteScheduler",
-                "shift":     7.0,
-            },
-        },
-        # ── Generate mesh latent ──────────────────────────────────────────────
-        "4": {
             "class_type": "Hy3DGenerateMesh",
             "inputs": {
-                "model":     ["2", 0],
-                "image":     ["1", 0],
-                "scheduler": ["3", 0],
-                "guidance":  H3D_CFG,
-                "steps":     H3D_STEPS,
-                "seed":      seed,
-                "seed_mode": "fixed",
+                "pipeline":       ["2", 0],
+                "image":          ["1", 0],
+                "scheduler":      "FlowMatchEulerDiscreteScheduler",
+                "guidance_scale": H3D_CFG,
+                "steps":          H3D_STEPS,
+                "seed":           seed,
             },
         },
-        # ── VAE decode latent → mesh ─────────────────────────────────────────
-        # method "mc" = marching cubes (robust, slightly slower than "dc")
-        "5": {
+        # ── 4. VAE decode latent → trimesh ────────────────────────────────────
+        # Requires: vae, latents, box_v, octree_resolution, num_chunks, mc_level, mc_algo
+        # Outputs: [0] TRIMESH trimesh
+        "4": {
             "class_type": "Hy3DVAEDecode",
             "inputs": {
-                "latent":       ["4", 0],
-                "scale_factor": H3D_SCALE_FACTOR,
-                "resolution":   H3D_MC_RES,
-                "num_chunks":   H3D_NUM_CHUNKS,
-                "start_chunk":  0,
-                "method":       "mc",
+                "vae":                ["2", 1],   # vae output (index 1) of Hy3DModelLoader
+                "latents":            ["3", 0],   # latents from Hy3DGenerateMesh
+                "box_v":              H3D_SCALE_FACTOR,
+                "octree_resolution":  H3D_MC_RES,
+                "num_chunks":         H3D_NUM_CHUNKS,
+                "mc_level":           0.0,
+                "mc_algo":            "mc",       # marching cubes
             },
         },
-        # ── Postprocess mesh ─────────────────────────────────────────────────
-        "6": {
+        # ── 5. Postprocess mesh ───────────────────────────────────────────────
+        # Requires: trimesh, remove_floaters, remove_degenerate_faces,
+        #           reduce_faces, max_facenum, smooth_normals
+        # Outputs: [0] TRIMESH trimesh
+        "5": {
             "class_type": "Hy3DPostprocessMesh",
             "inputs": {
-                "mesh":                 ["5", 0],
-                "remove_duplicates":    True,
-                "remove_degenerate":    True,
-                "fill_holes":           True,
-                "smooth_normal":        True,
-                "max_facenum":          200000,
+                "trimesh":                ["4", 0],
+                "remove_floaters":        True,
+                "remove_degenerate_faces": True,
+                "reduce_faces":           True,
+                "max_facenum":            200000,
+                "smooth_normals":         True,
             },
         },
-        # ── Export as GLB ────────────────────────────────────────────────────
-        "7": {
+        # ── 6. Export as GLB ──────────────────────────────────────────────────
+        # Requires: trimesh, filename_prefix, file_format
+        # Outputs: [0] STRING glb_path
+        "6": {
             "class_type": "Hy3DExportMesh",
             "inputs": {
-                "mesh":            ["6", 0],
+                "trimesh":         ["5", 0],
                 "filename_prefix": job_prefix,
-                "format":          "glb",
+                "file_format":     "glb",
                 "save_file":       True,
             },
         },
@@ -402,7 +418,8 @@ def generate_3d_mesh(
 # ── GLB → STL conversion ──────────────────────────────────────────────────────
 
 def convert_glb_to_stl(glb_path: Path, stl_path: Path,
-                        progress_cb: Optional[Callable[[str], None]] = None) -> Path:
+                        progress_cb: Optional[Callable[[str], None]] = None,
+                        target_mm: float = PRINT_TARGET_MM) -> Path:
     """
     Convert a GLB mesh file to STL using trimesh.
 
@@ -410,6 +427,9 @@ def convert_glb_to_stl(glb_path: Path, stl_path: Path,
       - Merge duplicate vertices
       - Remove degenerate faces
       - Fix winding (important for 3D printing)
+      - Scale to a real-world print size and seat it on the bed (z=0)
+
+    target_mm: longest bounding-box dimension of the exported STL, in mm.
     Returns stl_path.
     """
     try:
@@ -434,16 +454,41 @@ def convert_glb_to_stl(glb_path: Path, stl_path: Path,
 
     # Mesh cleanup for 3D print quality
     mesh.merge_vertices()
-    mesh.remove_degenerate_faces()
+    # trimesh >=4 removed Trimesh.remove_degenerate_faces(); the equivalent is to
+    # keep only the non-degenerate faces via update_faces(nondegenerate_faces()).
+    mesh.update_faces(mesh.nondegenerate_faces())
     trimesh.repair.fix_normals(mesh)
     trimesh.repair.fix_winding(mesh)
+
+    # ── Scale to a printable size ──────────────────────────────────────────────
+    # The raw mesh is normalized to ~1–2 units; scale so the longest axis matches
+    # target_mm, then seat the model on z=0 so it sits on the print bed.
+    extents = mesh.extents  # (dx, dy, dz) of the axis-aligned bounding box
+    longest = float(max(extents)) if extents is not None and len(extents) else 0.0
+    if longest > 1e-9 and target_mm and target_mm > 0:
+        scale = target_mm / longest
+        mesh.apply_scale(scale)
+        print(f"  [model3d] scaled mesh ×{scale:.2f} → longest axis {target_mm:.0f} mm "
+              f"(was {longest:.3f} units)")
+    else:
+        print(f"  [model3d] WARNING: could not scale mesh (longest axis={longest})")
+
+    # Drop the model onto the bed: translate so min-z = 0, centered in x/y.
+    bmin, bmax = mesh.bounds
+    mesh.apply_translation([
+        -(bmin[0] + bmax[0]) / 2.0,
+        -(bmin[1] + bmax[1]) / 2.0,
+        -bmin[2],
+    ])
 
     # Export
     stl_path.parent.mkdir(parents=True, exist_ok=True)
     mesh.export(str(stl_path))
     size_kb = stl_path.stat().st_size // 1024
+    dims = mesh.extents
     print(f"  [model3d] STL saved: {stl_path} ({size_kb} KB, "
-          f"{len(mesh.faces):,} faces, {len(mesh.vertices):,} vertices)")
+          f"{len(mesh.faces):,} faces, {len(mesh.vertices):,} vertices, "
+          f"{dims[0]:.1f}×{dims[1]:.1f}×{dims[2]:.1f} mm)")
     return stl_path
 
 
