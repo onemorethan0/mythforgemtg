@@ -153,11 +153,41 @@ The app works with any checkpoint you have installed. Start with FLUX Schnell fo
 
 ## User Flow (5 steps)
 
-1. **Commander** — Search for any legendary creature by name (fuzzy search via Scryfall)
+1. **Commander** — Either **Generate a deck** (search any legendary creature, fuzzy Scryfall lookup) or **Import a deck** (retheme one you already own — see below)
 2. **Playstyle** — Choose from 15 preset styles (Aggro, Control, Lifegain, Aristocrats, etc.) or Auto-detect
 3. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness
 4. **Theme** — Free-text art theme ("dark gothic necromancer city"), bracket level, and art gen toggle
 5. **Deck** — Browse all 100 cards with rendered proxy frames, download ZIP or print PDF
+
+---
+
+## Importing an existing deck
+
+On the **Commander** step, switch to the **📥 Import a deck** tab to retheme a deck you already built elsewhere instead of generating a new list.
+
+**Supported sources:**
+- **Archidekt** — paste the deck URL (`https://archidekt.com/decks/...`). Reliable.
+- **Moxfield** — paste the deck URL (`https://www.moxfield.com/decks/...`). Best-effort: Moxfield guards its API, so if a link fails, use the paste option below.
+- **Pasted decklist** — paste any text list (works for **ManaBox** — export your deck as text in the app — and any other site). Format:
+  ```
+  Commander
+  1 Atraxa, Praetors' Voice
+
+  Deck
+  1 Sol Ring
+  1 Arcane Signet
+  10 Forest
+  ```
+  Quantities, `1x` syntax, `(SET) 123` suffixes, and `*CMDR*` tags are all understood; sideboard/maybeboard sections are ignored.
+
+**Notes:**
+- The deck must be **public** for URL imports.
+- The commander is auto-detected from the source's commander zone; if none is found you'll be prompted to type one.
+- Any card name that can't be matched on Scryfall is reported and skipped.
+- **Caching:** imported decks and resolved card data are cached under `cache/` — re-importing the same deck (or any card you've seen before) makes **no network calls**. Use **↻ Re-pull** to force a fresh fetch.
+- Duplicate basic lands are themed once and the art reused for every copy; your ZIP/PDF export still contains all physical proxies.
+
+Once imported, the rest of the flow (face, theme, custom pips, art generation, 3D, regen/retheme) works exactly as it does for generated decks.
 
 ---
 
@@ -361,6 +391,7 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
+| POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached |
 | GET | `/api/playstyles` | List all 15 playstyle options |
 | GET | `/api/art-styles` | List all art style presets + LoRA install status |
 | GET | `/api/comfyui/loras` | List installed LoRA files (feeds the LoRA picker) |

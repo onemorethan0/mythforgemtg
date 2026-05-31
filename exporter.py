@@ -81,10 +81,18 @@ def build_zip(
         if png.exists():
             zf.write(png, f"00_commander_{commander['render_key']}.png")
 
-        for i, card in enumerate(deck, 1):
+        slot = 0
+        for card in deck:
             png = render_dir / "cards" / f"{card['render_key']}.png"
-            if png.exists():
-                zf.write(png, f"{i:02d}_{card['render_key']}.png")
+            if not png.exists():
+                continue
+            # Imported decks aggregate duplicate basics into one entry with a
+            # quantity; emit one numbered copy per physical card so the proxy set
+            # is complete (the art is identical, themed once).
+            for copy in range(int(card.get("quantity", 1) or 1)):
+                slot += 1
+                suffix = f"_c{copy+1}" if card.get("quantity", 1) > 1 else ""
+                zf.write(png, f"{slot:02d}_{card['render_key']}{suffix}.png")
 
     buf.seek(0)
     return buf.read()
@@ -106,7 +114,10 @@ def build_pdf(
         png = render_dir / "cards" / f"{card['render_key']}.png"
         if png.exists():
             # .copy() closes the lazy file handle so we don't leak 100 open files
-            imgs.append(Image.open(png).copy())
+            # One printable slot per physical copy (imported duplicate basics).
+            img = Image.open(png).copy()
+            for _ in range(int(card.get("quantity", 1) or 1)):
+                imgs.append(img)
 
     if not imgs:
         raise ValueError("No rendered card images found for this deck.")

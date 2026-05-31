@@ -43,3 +43,6 @@ bat_stderr.txt
 
 # Face upload staging
 face_uploads/
+
+# Imported-deck + Scryfall card caches (regenerable)
+cache/

@@ -37,6 +37,7 @@ from pydantic import BaseModel, Field, validator
 
 # ── Local modules ─────────────────────────────────────────────────────────────
 from scryfall_client    import ScryfallClient
+import deck_import
 from commander_analysis import build_commander_profile
 from deck_builder       import DeckBuilder, compute_stats
 from playstyle          import (
@@ -406,7 +407,14 @@ def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:
 
 
 class BuildRequest(BaseModel):
-    commander_name:    str = Field(..., max_length=120)
+    # Optional when importing an existing decklist (deck_url / deck_list provide
+    # the commander). Required for the generate-a-deck path.
+    commander_name:    str = Field("", max_length=120)
+    # Import an existing deck instead of generating one. deck_url = a Moxfield/
+    # Archidekt URL; deck_list = pasted decklist text. When either is set the
+    # 99-card generator is skipped and the imported list is themed/rendered.
+    deck_url:          str = Field("", max_length=600)
+    deck_list:         str = Field("", max_length=20000)
     playstyle:         str = "auto"
     # Caps prevent long appearance dumps from polluting the LLM batch prompt and
     # blowing FLUX's first-N-token attention window (causes "standing portrait"
@@ -910,6 +918,7 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "colors":        c.get("color_identity", []),
         "power":         c.get("power"),
         "toughness":     c.get("toughness"),
+        "quantity":      c.get("quantity", 1),   # >1 for imported duplicate basics
         "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
         "has_render":    has_render,
         "render_key":    f"{_safe_name(tc.original_name)}_{deck_index:03d}",
@@ -931,6 +940,7 @@ def _stored_card_to_dict(d: dict) -> dict:
         "color_identity": d.get("colors", []),
         "power":          d.get("power"),
         "toughness":      d.get("toughness"),
+        "quantity":       d.get("quantity", 1),
         "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
     }
 
@@ -1065,31 +1075,59 @@ def _run_build(job_id: str, req: BuildRequest):
     try:
         _jobs[job_id]["status"] = "building"
 
-        # ── Commander lookup ──────────────────────────────────────────────────
-        _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Looking up {req.commander_name}..."}))
-        card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
-        if not card:
-            raise ValueError(f"Commander not found: {req.commander_name}")
-        _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Found: {card['name']}"}))
+        ps_label    = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
+        import_meta: dict = {}
 
-        # ── Profile + playstyle ───────────────────────────────────────────────
-        profile        = build_commander_profile(card)
-        active_themes  = resolve_themes(req.playstyle, profile.themes)
-        slot_overrides = get_slot_adjustments(req.playstyle)
-        ps_label       = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
+        if req.deck_url or req.deck_list:
+            # ── Import an existing decklist ───────────────────────────────────
+            src_input = (req.deck_url or req.deck_list)
+            _push(job_id, "progress", json.dumps(
+                {"step": "commander", "msg": "Importing decklist…"}))
+            try:
+                imported = deck_import.import_deck(src_input, _scryfall)
+            except deck_import.DeckImportError as e:
+                raise ValueError(str(e))
+            card = imported.commander
+            # If the source had no commander zone, let the user-supplied name fill in.
+            if not card and req.commander_name:
+                card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
+            if not card:
+                raise ValueError(
+                    "No commander found in the imported deck. Tag the commander in "
+                    "the source, or type a commander name before importing.")
+            deck = list(imported.deck)
+            # Partner/companion commanders aren't the face — render them as cards.
+            for p in imported.partners:
+                pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
+            stats = compute_stats(card, deck)
+            import_meta = {"source": imported.source, "source_name": imported.name,
+                           "source_input": src_input, "unresolved": imported.unresolved}
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg":
+                f"Imported {imported.name} — {stats['total_cards']} cards, commander {card['name']}"
+                + (f" ({len(imported.unresolved)} unresolved)" if imported.unresolved else "")}))
+        else:
+            # ── Generate a deck from a commander ──────────────────────────────
+            _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Looking up {req.commander_name}..."}))
+            card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
+            if not card:
+                raise ValueError(f"Commander not found: {req.commander_name}")
+            _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Found: {card['name']}"}))
 
-        # ── Deck build ────────────────────────────────────────────────────────
-        _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Building 99-card deck..."}))
-        builder = DeckBuilder(_scryfall)
-        deck = builder.build(
-            profile,
-            theme_override  = active_themes,
-            slot_overrides  = slot_overrides,
-            playstyle_label = ps_label,
-            bracket         = req.bracket,
-        )
-        stats = compute_stats(card, deck)
-        _push(job_id, "progress", json.dumps({"step": "deck", "msg": f"Built {stats['total_cards']} cards"}))
+            profile        = build_commander_profile(card)
+            active_themes  = resolve_themes(req.playstyle, profile.themes)
+            slot_overrides = get_slot_adjustments(req.playstyle)
+
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Building 99-card deck..."}))
+            builder = DeckBuilder(_scryfall)
+            deck = builder.build(
+                profile,
+                theme_override  = active_themes,
+                slot_overrides  = slot_overrides,
+                playstyle_label = ps_label,
+                bracket         = req.bracket,
+            )
+            stats = compute_stats(card, deck)
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg": f"Built {stats['total_cards']} cards"}))
 
         # ── Theme via Ollama ──────────────────────────────────────────────────
         art_theme = req.art_theme or f"epic fantasy art centered on {card['name']}"
@@ -1240,6 +1278,10 @@ def _run_build(job_id: str, req: BuildRequest):
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
             "custom_pips":      req.custom_pips,
+            "imported":         bool(import_meta),
+            "import_source":    import_meta.get("source", ""),
+            "import_name":      import_meta.get("source_name", ""),
+            "import_unresolved": import_meta.get("unresolved", []),
             "built_at":         time.time(),
         }
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
@@ -1473,13 +1515,14 @@ def _run_build(job_id: str, req: BuildRequest):
             ) for tc in _all_tcs
         }
         _flavor_ov = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs}
-        # Reuse the render_keys computed earlier (already set in _render_keys_inline)
+        # Recompute render_keys here (deterministic) so this works whether or not
+        # the art-gen branch ran — generate_art=false skips _render_keys_inline.
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov,
             flavor_overrides=_flavor_ov,
             border_theme=req.border_theme or "",
-            render_keys=_render_keys_inline,
+            render_keys=_build_render_keys(themed_cmd, themed_deck),
         )
         _push(job_id, "progress", json.dumps({"step": "render", "msg": f"Rendered {len(saved_imgs)} card frames"}))
 
@@ -2447,6 +2490,43 @@ def _trim_in_memory_jobs():
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
 
+class ImportPreviewRequest(BaseModel):
+    source:        str  = Field("", max_length=20000)  # URL or pasted decklist text
+    force_refresh: bool = False                          # bypass the on-disk cache
+
+
+@app.post("/api/deck/import-preview")
+def import_preview(req: ImportPreviewRequest):
+    """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can
+    confirm the commander and card count first. Cached, so re-previewing is free."""
+    if not req.source.strip():
+        raise HTTPException(400, "Provide a deck URL or paste a decklist.")
+    try:
+        imp = deck_import.import_deck(req.source, _scryfall, force_refresh=req.force_refresh)
+    except deck_import.DeckImportError as e:
+        raise HTTPException(400, str(e))
+    except Exception as e:
+        raise HTTPException(500, f"Import failed: {e}")
+
+    colors = sorted({c for card in ([imp.commander] if imp.commander else []) + imp.deck
+                     for c in (card.get("color_identity") or [])})
+    cmd = imp.commander
+    return {
+        "source":       imp.source,
+        "name":         imp.name,
+        "commander":    None if not cmd else {
+            "name":      cmd.get("name"),
+            "type_line": cmd.get("type_line", "").split(" // ")[0],
+            "image_url": (cmd.get("image_uris") or {}).get("normal", ""),
+        },
+        "partners":     [p.get("name") for p in imp.partners],
+        "unique_cards": len(imp.deck),
+        "total_cards":  imp.total_cards(),
+        "colors":       colors,
+        "unresolved":   imp.unresolved,
+    }
+
+
 @app.post("/api/commander/search")
 def search_commander(req: SearchRequest):
     card = _scryfall.get_card_by_name(req.query, fuzzy=True)
@@ -2546,6 +2626,10 @@ async def get_playstyles():
 
 @app.post("/api/deck/build")
 async def build_deck(req: BuildRequest, background_tasks: BackgroundTasks, request: Request):
+    # Must either generate from a commander or import an existing decklist.
+    if not (req.commander_name.strip() or req.deck_url.strip() or req.deck_list.strip()):
+        raise HTTPException(400, "Provide a commander name, or a deck URL / decklist to import.")
+
     # Rate limiting: prevent request floods from exhausting GPU/VRAM
     client_ip = request.client.host if request.client else "unknown"
     if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):

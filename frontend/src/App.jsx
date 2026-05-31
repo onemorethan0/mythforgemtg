@@ -111,7 +111,9 @@ export default function App() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        commander_name: commander.full_name || commander.name,
+        commander_name: commander.full_name || commander.name || "",
+        deck_url:  commander._import?.mode === 'url'  ? commander._import.value : "",
+        deck_list: commander._import?.mode === 'text' ? commander._import.value : "",
         playstyle,
         bracket,
         art_theme:         theme,

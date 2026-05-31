@@ -1,8 +1,18 @@
+import json
+import threading
 import time
+from pathlib import Path
 from typing import Optional
 import requests
 
 BASE_URL = "https://api.scryfall.com"
+
+# Persistent on-disk cache of resolved cards (name -> normalized card). Cuts
+# Scryfall API calls for every deck — generated or imported — and makes
+# re-importing a decklist nearly free. Card data is effectively immutable, so
+# the cache never needs invalidation for normal use.
+_CACHE_DIR       = Path("cache")
+_CARD_CACHE_FILE = _CACHE_DIR / "scryfall_cards.json"
 
 
 def _normalize_card(card: dict) -> dict:
@@ -37,6 +47,48 @@ class ScryfallClient:
             "Accept": "application/json",
         })
         self._last_request_time = 0.0
+        self._cache_lock = threading.Lock()
+        self._card_cache: dict[str, dict] = self._load_cache()
+
+    # ── Persistent card cache ──────────────────────────────────────────────────
+    @staticmethod
+    def _cache_key(name: str) -> str:
+        return (name or "").strip().lower()
+
+    def _load_cache(self) -> dict[str, dict]:
+        try:
+            if _CARD_CACHE_FILE.exists():
+                return json.loads(_CARD_CACHE_FILE.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"  [scryfall] cache load failed ({e}); starting empty")
+        return {}
+
+    def _save_cache(self) -> None:
+        try:
+            _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            tmp = _CARD_CACHE_FILE.with_suffix(".json.tmp")
+            tmp.write_text(json.dumps(self._card_cache), encoding="utf-8")
+            tmp.replace(_CARD_CACHE_FILE)
+        except Exception as e:
+            print(f"  [scryfall] cache save failed ({e})")
+
+    def _cache_get(self, name: str) -> Optional[dict]:
+        with self._cache_lock:
+            return self._card_cache.get(self._cache_key(name))
+
+    def _cache_put(self, names, card: dict, save: bool = True) -> None:
+        """Store a card under one or more lookup names (input + canonical)."""
+        if not card:
+            return
+        if isinstance(names, str):
+            names = [names]
+        with self._cache_lock:
+            for n in names:
+                key = self._cache_key(n)
+                if key:
+                    self._card_cache[key] = card
+        if save:
+            self._save_cache()
 
     def _rate_limit(self):
         elapsed = time.monotonic() - self._last_request_time
@@ -69,10 +121,16 @@ class ScryfallClient:
         return None
 
     def get_card_by_name(self, name: str, fuzzy: bool = False) -> Optional[dict]:
+        cached = self._cache_get(name)
+        if cached is not None:
+            return cached
+
         param_key = "fuzzy" if fuzzy else "exact"
         card = self._get("/cards/named", params={param_key: name})
         if card is not None:
-            return _normalize_card(card)
+            norm = _normalize_card(card)
+            self._cache_put([name, norm.get("name", "")], norm)
+            return norm
         if not fuzzy:
             return None
         # Fuzzy named endpoint failed (ambiguous or no match) — fall back to search
@@ -80,7 +138,64 @@ class ScryfallClient:
         if not results:
             # Last resort: broad search
             results = self.search_cards_paged(name, max_results=1)
-        return _normalize_card(results[0]) if results else None
+        if results:
+            norm = _normalize_card(results[0])
+            self._cache_put([name, norm.get("name", "")], norm)
+            return norm
+        return None
+
+    def get_cards_collection(self, names: list[str]) -> dict[str, dict]:
+        """
+        Resolve many card names at once. Returns {requested_name_lower -> card}.
+
+        Checks the persistent cache first, then asks Scryfall's /cards/collection
+        endpoint (POST, up to 75 identifiers per request) only for the misses —
+        so a 100-card import is ~2 API calls cold, and 0 once cached.
+        Names that can't be resolved are simply absent from the result.
+        """
+        out: dict[str, dict] = {}
+        misses: list[str] = []
+        seen: set[str] = set()
+        for n in names:
+            key = self._cache_key(n)
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            c = self._cache_get(n)
+            if c is not None:
+                out[key] = c
+            else:
+                misses.append(n)
+
+        for i in range(0, len(misses), 75):
+            chunk = misses[i:i + 75]
+            self._rate_limit()
+            try:
+                resp = self.session.post(
+                    f"{BASE_URL}/cards/collection",
+                    json={"identifiers": [{"name": n} for n in chunk]},
+                    timeout=20,
+                )
+                if resp.status_code != 200:
+                    continue
+                data = resp.json()
+            except requests.RequestException:
+                continue
+            # Map each returned card back to the requested name(s). Scryfall may
+            # normalise casing/spelling, so match by the card's own name too.
+            found = [_normalize_card(c) for c in data.get("data", [])]
+            by_canon = {self._cache_key(c.get("name", "")): c for c in found}
+            for req in chunk:
+                key = self._cache_key(req)
+                card = by_canon.get(key)
+                if card is None:
+                    # exact canonical miss — fall back to a single fuzzy lookup
+                    card = self.get_card_by_name(req, fuzzy=True)
+                if card is not None:
+                    out[key] = card
+                    self._cache_put([req, card.get("name", "")], card, save=False)
+        self._save_cache()
+        return out
 
     def search_cards(self, query: str, page: int = 1) -> dict:
         result = self._get("/cards/search", params={

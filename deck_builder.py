@@ -382,10 +382,11 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
     type_counts: dict[str, int] = {}
     for card in deck:
         tl = card.get("type_line", "")
+        qty = int(card.get("quantity", 1) or 1)   # imported decks aggregate basics
         for t in ["Land", "Creature", "Artifact", "Enchantment",
                   "Instant", "Sorcery", "Planeswalker", "Battle"]:
             if t in tl:
-                type_counts[t] = type_counts.get(t, 0) + 1
+                type_counts[t] = type_counts.get(t, 0) + qty
                 break
 
     cmc_curve: dict[int, int] = {}
@@ -393,11 +394,13 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
         mv = int(card.get("cmc", 0))
         cmc_curve[mv] = cmc_curve.get(mv, 0) + 1
 
+    # total counts every physical copy (quantity>1 for imported duplicate basics)
+    deck_total = sum(int(c.get("quantity", 1) or 1) for c in deck)
     return {
         "average_cmc": round(avg_cmc, 2),
         "color_pips": {k: v for k, v in color_pips.items() if v},
         "type_counts": type_counts,
         "cmc_curve": dict(sorted(cmc_curve.items())),
         "land_count": type_counts.get("Land", 0),
-        "total_cards": len(deck) + 1,  # +1 for commander
+        "total_cards": deck_total + 1,  # +1 for commander
     }

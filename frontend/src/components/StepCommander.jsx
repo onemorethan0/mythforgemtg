@@ -35,6 +35,48 @@ export default function StepCommander({ onNext }) {
   const inputRef  = useRef()
   const debounce  = useRef()
 
+  // ── Import mode ─────────────────────────────────────────────────────────────
+  const [mode, setMode]               = useState('generate')   // 'generate' | 'import'
+  const [importText, setImportText]   = useState('')
+  const [importLoading, setImportLoading] = useState(false)
+  const [importErr, setImportErr]     = useState('')
+  const [preview, setPreview]         = useState(null)
+  const [cmdOverride, setCmdOverride] = useState('')
+
+  async function doPreview(forceRefresh = false) {
+    const val = importText.trim()
+    if (!val) return
+    setImportLoading(true); setImportErr(''); setPreview(null)
+    try {
+      const res = await fetch('/api/deck/import-preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: val, force_refresh: forceRefresh }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setImportErr(data.detail || 'Import failed.'); setImportLoading(false); return }
+      setPreview(data)
+      setCmdOverride(data.commander?.name || '')
+    } catch {
+      setImportErr('Server unreachable. Is the backend running?')
+    }
+    setImportLoading(false)
+  }
+
+  function useImported() {
+    if (!preview) return
+    const mode2 = importText.trim().toLowerCase().startsWith('http') ? 'url' : 'text'
+    const cmdName = preview.commander?.name || cmdOverride.trim()
+    onNext({
+      name:       cmdName,
+      full_name:  cmdName,
+      type_line:  preview.commander?.type_line || '',
+      image_url:  preview.commander?.image_url || '',
+      colors:     preview.colors || [],
+      _import:    { mode: mode2, value: importText.trim() },
+    })
+  }
+
   // Fetch autocomplete suggestions with 200ms debounce
   const fetchSuggestions = useCallback((val) => {
     clearTimeout(debounce.current)
@@ -108,11 +150,105 @@ export default function StepCommander({ onNext }) {
 
   const COLOR_NAMES = { W: 'White', U: 'Blue', B: 'Black', R: 'Red', G: 'Green' }
 
+  const tabStyle = (active) => ({
+    flex: 1, padding: '10px 0', textAlign: 'center', cursor: 'pointer',
+    fontSize: 14, fontWeight: 700, letterSpacing: '0.03em',
+    background: active ? '#292524' : 'transparent',
+    color: active ? '#eab308' : '#78716c',
+    border: '1px solid #292524', borderRadius: 10,
+  })
+
   return (
     <div style={s.card}>
-      <h2 style={s.title}>Choose Your Commander</h2>
-      <p style={s.sub}>Search for any legendary creature.</p>
+      <h2 style={s.title}>{mode === 'import' ? 'Import a Deck' : 'Choose Your Commander'}</h2>
+      <p style={s.sub}>
+        {mode === 'import'
+          ? 'Paste a Moxfield or Archidekt URL, or any decklist text, to retheme a deck you already own.'
+          : 'Search for any legendary creature to generate a new deck.'}
+      </p>
 
+      <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+        <div style={tabStyle(mode === 'generate')} onClick={() => setMode('generate')}>✨ Generate a deck</div>
+        <div style={tabStyle(mode === 'import')}   onClick={() => setMode('import')}>📥 Import a deck</div>
+      </div>
+
+      {mode === 'import' && (
+        <div>
+          <textarea
+            style={{ ...s.input, minHeight: 110, resize: 'vertical', fontFamily: 'inherit' }}
+            placeholder={"https://www.moxfield.com/decks/...\nor\nhttps://archidekt.com/decks/...\n\nor paste a decklist:\nCommander\n1 Atraxa, Praetors' Voice\n\nDeck\n1 Sol Ring\n..."}
+            value={importText}
+            onChange={e => { setImportText(e.target.value); setPreview(null); setImportErr('') }}
+          />
+          <div style={{ fontSize: 12, color: '#57534e', margin: '8px 0 12px' }}>
+            ManaBox: in the app, export the deck as text and paste it here. Moxfield links are best-effort —
+            if one fails, paste the list instead. Imported decks are cached, so re-importing is instant.
+          </div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button
+              style={{ ...s.btnGold, ...(importLoading || !importText.trim() ? s.btnDisabled : {}) }}
+              disabled={importLoading || !importText.trim()}
+              onClick={() => doPreview(false)}
+            >
+              {importLoading ? 'Importing…' : 'Preview deck'}
+            </button>
+            {preview && (
+              <button style={{ ...s.btnGold, background: '#292524', color: '#d6d3d1' }}
+                      onClick={() => doPreview(true)} disabled={importLoading}>
+                ↻ Re-pull (skip cache)
+              </button>
+            )}
+          </div>
+          {importErr && <p style={s.err}>{importErr}</p>}
+
+          {preview && (
+            <div style={{ ...s.preview, flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', gap: 16 }}>
+                {preview.commander?.image_url
+                  ? <img src={preview.commander.image_url} alt="" style={s.img} />
+                  : <div style={{ ...s.img, background: '#292524', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#57534e', fontSize: 12, textAlign: 'center' }}>No commander detected</div>}
+                <div style={s.meta}>
+                  <div style={s.name}>{preview.name || 'Imported deck'}</div>
+                  <div style={s.type}>
+                    Source: {preview.source} · {preview.total_cards} cards
+                    {preview.unique_cards !== preview.total_cards ? ` (${preview.unique_cards} unique)` : ''}
+                  </div>
+                  {preview.colors?.length > 0 && (
+                    <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 6 }}>
+                      {preview.colors.map(c => COLOR_NAMES[c] || c).join(' / ')}
+                    </div>
+                  )}
+                  {preview.commander
+                    ? <div style={{ fontSize: 13, color: '#86efac' }}>Commander: {preview.commander.name}</div>
+                    : <div style={{ fontSize: 13, color: '#fca5a5', marginBottom: 6 }}>
+                        No commander zone found — type your commander:
+                        <input style={{ ...s.input, marginTop: 6 }} value={cmdOverride}
+                               placeholder="e.g. Atraxa, Praetors' Voice"
+                               onChange={e => setCmdOverride(e.target.value)} />
+                      </div>}
+                  {preview.partners?.length > 0 &&
+                    <div style={{ fontSize: 12, color: '#a8a29e' }}>Partners: {preview.partners.join(', ')}</div>}
+                </div>
+              </div>
+              {preview.unresolved?.length > 0 && (
+                <div style={{ fontSize: 12, color: '#fbbf24', background: '#1c1410', padding: 10, borderRadius: 8 }}>
+                  ⚠ {preview.unresolved.length} card(s) couldn't be matched and will be skipped:{' '}
+                  {preview.unresolved.slice(0, 8).join(', ')}{preview.unresolved.length > 8 ? '…' : ''}
+                </div>
+              )}
+              <button
+                style={{ ...s.btnNext, ...((preview.commander || cmdOverride.trim()) ? {} : s.btnDisabled) }}
+                disabled={!(preview.commander || cmdOverride.trim())}
+                onClick={useImported}
+              >
+                Retheme this deck →
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {mode === 'generate' && (<>
       <form onSubmit={handleSubmit} data-cmd-search>
         <div style={s.row}>
           <div style={s.inputWrap} data-cmd-search>
@@ -186,6 +322,7 @@ export default function StepCommander({ onNext }) {
           </button>
         </div>
       )}
+      </>)}
     </div>
   )
 }
