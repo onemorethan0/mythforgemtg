@@ -197,7 +197,13 @@ class DeckBuilder:
         colors = profile.color_identity
 
         # ── Non-basics ────────────────────────────────────────────────────────
-        nonbasic_cap = max(0, want - len(colors))  # always leave room for basics
+        # Leave a HEALTHY basic-land base. The old cap (want - len(colors)) let
+        # duals/utility fill nearly every land slot, leaving only ~1 basic per
+        # colour. Real manabases run plenty of basics, so cap nonbasics by colour
+        # count (more colours need more fixing) and let basics fill the rest:
+        #   1c≈9 · 2c≈14 · 3c≈19 · 4c≈24 · 5c≈29 nonbasics.
+        nonbasic_target = 4 + len(colors) * 5
+        nonbasic_cap = max(0, min(want - len(colors), nonbasic_target))
         allowed_tiers = _LAND_TIERS_BY_POWER.get(self._bracket_filter.rules.land_power, _LAND_TIERS_BY_POWER[4])
 
         for _label, land_q in NONBASIC_LAND_TIERS:
@@ -365,6 +371,23 @@ class DeckBuilder:
 
 
 # ── Deck stats ────────────────────────────────────────────────────────────────
+
+def aggregate_duplicates(deck: list[dict]) -> list[dict]:
+    """Collapse same-name cards into one entry carrying a 'quantity' (basic lands
+    are added as repeated copies). The pipeline then themes/renders each unique
+    card once; the exporter replicates by quantity. Preserves first-seen order."""
+    agg: dict[str, dict] = {}
+    order: list[str] = []
+    for c in deck:
+        name = c.get("name") or c.get("original_name") or ""
+        if name not in agg:
+            entry = dict(c)
+            entry["quantity"] = 0
+            agg[name] = entry
+            order.append(name)
+        agg[name]["quantity"] += int(c.get("quantity", 1) or 1)
+    return [agg[n] for n in order]
+
 
 def compute_stats(commander: dict, deck: list[dict]) -> dict:
     non_lands = [c for c in deck if "land" not in c.get("type_line", "").lower()]

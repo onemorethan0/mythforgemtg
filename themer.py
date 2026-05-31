@@ -854,7 +854,8 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                      themer_quality: str = "",
                      commander_gender: str = "",
                      lora_vocabulary: str = "",
-                     tribal_map: Optional[dict] = None) -> str:
+                     tribal_map: Optional[dict] = None,
+                     avoid_names: Optional[list[str]] = None) -> str:
     """
     Enhanced dual-anchor prompt (v2).
 
@@ -873,6 +874,18 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     # Colour words the user named in the theme — used as the palette for
     # colourless cards so a "green and black" deck keeps its colours everywhere.
     theme_palette = _extract_theme_palette(theme)
+
+    # Names already used by earlier batches — the LLM must not reuse them, so
+    # different cards across the deck don't end up with the same themed_name.
+    avoid_block = ""
+    if avoid_names:
+        taken = "; ".join(dict.fromkeys(n for n in avoid_names if n))[:1800]
+        if taken:
+            avoid_block = (
+                "\nALREADY-USED NAMES — these themed_names are TAKEN by other cards "
+                "in this deck. Every themed_name you produce now MUST be different "
+                f"from all of them (and from each other):\n{taken}\n")
+
     theme = _quote_user_text(theme)
     commander_name = _quote_user_text(commander_name, max_len=120)
     # Aggressive cap — long appearance dumps cause verbatim copying which
@@ -1035,7 +1048,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     QUALITY — end with ONE tag: {themer_quality or _DEFAULT_QUALITY}
     ORDER: theme-world + character LEAD; mechanical action is a supporting beat near the end of the scene description (before the quality tag).
 - "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL, not just generic atmosphere.
-
+{avoid_block}
 Cards to process (idx|name|type|mechanics|color_palette|role|soul):
 {card_block}
 
@@ -1265,6 +1278,7 @@ class Themer:
         commander_gender:       str = "",
         lora_vocabulary:        str = "",
         tribal_map:             Optional[dict] = None,
+        avoid_names:            Optional[list[str]] = None,
     ) -> list[dict]:
         """
         Process one batch of cards. Returns list of themed dicts.
@@ -1287,7 +1301,8 @@ class Themer:
                             themer_quality=themer_quality,
                             commander_gender=commander_gender,
                             lora_vocabulary=lora_vocabulary,
-                            tribal_map=tribal_map)
+                            tribal_map=tribal_map,
+                            avoid_names=avoid_names)
         raw    = _ollama_chat(prompt, model=self.model)
         parsed = _parse_batch(raw, cards)
 
@@ -1323,6 +1338,7 @@ class Themer:
                     commander_gender=commander_gender,
                     lora_vocabulary=lora_vocabulary,
                     tribal_map=tribal_map,
+                    avoid_names=avoid_names,
                 )
                 sub_raw    = _ollama_chat(sub_prompt, model=self.model)
                 sub_parsed = _parse_batch(sub_raw, sub_cards)
@@ -1418,7 +1434,7 @@ class Themer:
         # the GPU busy across the idle gaps (prompt-eval, parse, HTTP) that otherwise
         # drop utilization to ~0 between sequential batches. Falls back to serial
         # behavior automatically when OLLAMA_NUM_PARALLEL=1 (requests just queue).
-        def _run_batch(b_idx: int, batch: list):
+        def _run_batch(b_idx: int, batch: list, avoid_names=None):
             batch_start   = b_idx * BATCH_SIZE
             cmd_local_idx = 0 if batch_start == 0 else -1   # commander is all_cards[0]
             t0 = time.monotonic()
@@ -1432,28 +1448,77 @@ class Themer:
                 commander_gender=commander_gender,
                 lora_vocabulary=lora_vocabulary,
                 tribal_map=tribal_map,
+                avoid_names=avoid_names,
             )
             return b_idx, entries, time.monotonic() - t0
 
+        def _record(b_idx, entries, elapsed, done):
+            for e in entries:
+                themed_entries[e["idx"]] = e
+            print(f"  Batch {b_idx + 1}/{len(batches)} done in {elapsed:.1f}s  [{done}/{len(batches)}]")
+            if progress_callback:
+                try:
+                    progress_callback(done, len(batches), min(done * BATCH_SIZE, total), total)
+                except Exception:
+                    pass
+
         workers = max(1, min(_THEME_CONCURRENCY, len(batches)))
-        print(f"  (up to {workers} batches concurrent; OLLAMA_NUM_PARALLEL gates real parallelism)")
         done = 0
-        with ThreadPoolExecutor(max_workers=workers) as pool:
-            futures = [pool.submit(_run_batch, b_idx, batch)
-                       for b_idx, batch in enumerate(batches)]
-            for fut in as_completed(futures):
-                b_idx, entries, elapsed = fut.result()
-                for e in entries:                       # dict writes are in this (main) thread
-                    themed_entries[e["idx"]] = e
+        if workers == 1:
+            # Sequential (the default): feed each batch the themed_names already
+            # used so the LLM can't reuse a name a previous batch took — kills the
+            # cross-batch duplicate-name problem.
+            print("  (sequential batches; cross-batch name de-duplication on)")
+            used_names: list[str] = []
+            for b_idx, batch in enumerate(batches):
+                _, entries, elapsed = _run_batch(b_idx, batch, avoid_names=list(used_names))
+                for e in entries:
+                    nm = (e.get("themed_name") or "").strip()
+                    if nm:
+                        used_names.append(nm)
                 done += 1
-                print(f"  Batch {b_idx + 1}/{len(batches)} done in {elapsed:.1f}s  "
-                      f"[{done}/{len(batches)}]")
-                if progress_callback:
-                    try:
-                        progress_callback(done, len(batches),
-                                          min(done * BATCH_SIZE, total), total)
-                    except Exception:
-                        pass
+                _record(b_idx, entries, elapsed, done)
+        else:
+            print(f"  (up to {workers} batches concurrent; OLLAMA_NUM_PARALLEL gates real parallelism)")
+            with ThreadPoolExecutor(max_workers=workers) as pool:
+                futures = [pool.submit(_run_batch, b_idx, batch)
+                           for b_idx, batch in enumerate(batches)]
+                for fut in as_completed(futures):
+                    b_idx, entries, elapsed = fut.result()
+                    done += 1
+                    _record(b_idx, entries, elapsed, done)
+
+        # ── Final uniqueness guarantee ────────────────────────────────────────
+        # avoid_names makes the LLM avoid collisions, but a within-batch slip or a
+        # non-compliant model could still repeat a name. Deterministically
+        # disambiguate any survivors so two different cards never share a name.
+        _EPITHETS = ["the Elder", "Reborn", "Ascendant", "the Veiled", "Eclipsed",
+                     "the Gilded", "Resurgent", "the Lost", "Prime", "the Eternal",
+                     "Unbound", "the Hollow", "Wakened", "the Fallen", "Redux"]
+        _seen_names: set[str] = set()
+        _dupes = 0
+        for _i in sorted(themed_entries):
+            _e = themed_entries[_i]
+            _nm = (_e.get("themed_name") or "").strip()
+            if not _nm:
+                continue
+            if _nm.lower() not in _seen_names:
+                _seen_names.add(_nm.lower())
+                continue
+            _dupes += 1
+            base = _nm
+            cand = ""
+            for k in range(len(_EPITHETS) + 20):
+                ep = _EPITHETS[(_i + k) % len(_EPITHETS)]
+                cand = f"{base}, {ep}" if "," not in base else f"{base} ({ep})"
+                if k >= len(_EPITHETS):
+                    cand = f"{cand} {k}"
+                if cand.lower() not in _seen_names:
+                    break
+            _e["themed_name"] = cand
+            _seen_names.add(cand.lower())
+        if _dupes:
+            print(f"  [themer] disambiguated {_dupes} duplicate themed name(s)")
 
         def make(i: int, card: dict) -> ThemedCard:
             e = themed_entries.get(i, {})

@@ -39,7 +39,7 @@ from pydantic import BaseModel, Field, validator
 from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
-from deck_builder       import DeckBuilder, compute_stats
+from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
@@ -1126,6 +1126,9 @@ def _run_build(job_id: str, req: BuildRequest):
                 playstyle_label = ps_label,
                 bracket         = req.bracket,
             )
+            # Collapse duplicate basics into quantity entries (theme/render once,
+            # export replicates) — same model as imported decks.
+            deck = aggregate_duplicates(deck)
             stats = compute_stats(card, deck)
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": f"Built {stats['total_cards']} cards"}))
 
