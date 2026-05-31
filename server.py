@@ -3749,13 +3749,17 @@ def _resolve_comfyui_cmd() -> Optional[tuple[list[str], Path]]:
     return cmd, base_dir
 
 
-def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
+def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 300.0,
                           launch: bool = True) -> bool:
     """Ensure ComfyUI is running; auto-start it if it isn't.
 
     Returns True once ComfyUI responds.  If it's down and ``launch`` is True, the
     backend is started via the Desktop app's CUDA venv python with --normalvram,
-    then we poll up to ``wait_timeout`` seconds (ComfyUI takes ~60-90s on a 3090).
+    then we poll up to ``wait_timeout`` seconds.  A COLD start on this rig loads
+    heavy 3D custom nodes (Hunyuan3D, TRELLIS2) + runs a DB migration and can take
+    3-4 minutes; a warm start is ~20-30s.  The wait is generous so the first build
+    of a session doesn't falsely fall back to Scryfall art while ComfyUI is still
+    coming up.  Polls every 2s and returns the instant it responds.
     Progress is streamed over SSE when ``job_id`` is given.
 
     Serialized by _comfyui_start_lock so concurrent builds never spawn duplicates.
@@ -3781,11 +3785,24 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
             return False
 
         cmd, cwd = resolved
-        import subprocess
+        import subprocess, sys
+        # Capture ComfyUI's stdout/stderr to a logfile instead of DEVNULL so a
+        # failed launch is diagnosable (was previously silent — "refuses to start"
+        # with no clue why). Launch in its own process group so it survives a
+        # Ctrl+C / restart of this server.
+        log_path = RENDER_DIR / "comfyui_startup.log"
+        try:
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            _logf = open(log_path, "w", encoding="utf-8", errors="replace")
+        except Exception:
+            _logf = subprocess.DEVNULL
+        _flags = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0) if sys.platform == "win32" else 0
         _emit("ComfyUI not running — starting backend (NORMAL_VRAM mode, first load ~60-90s)…")
+        print(f"  [comfyui] launching: {cmd[0]} {cmd[1]} … (log: {log_path})", flush=True)
         try:
             subprocess.Popen(cmd, cwd=str(cwd),
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                             stdout=_logf, stderr=subprocess.STDOUT,
+                             creationflags=_flags)
         except Exception as e:
             _emit(f"⚠ Could not start ComfyUI backend: {e}")
             return False
@@ -3797,7 +3814,7 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 150.0,
                 _emit("✓ ComfyUI is ready.")
                 return True
 
-        _emit("⚠ ComfyUI did not become ready in time — continuing without it.")
+        _emit(f"⚠ ComfyUI did not become ready in {int(wait_timeout)}s — see {log_path} for the backend's output. Continuing without it.")
         return False
 
 

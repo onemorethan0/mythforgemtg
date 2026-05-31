@@ -202,41 +202,24 @@ if !errorlevel! equ 0 (
   goto menu
 )
 
-REM Find ComfyUI root (two levels up from this script's location)
-set COMFY_DIR=%~dp0..\..\ComfyUI
-if not exist "%COMFY_DIR%\main.py" (
-  echo   [!] ComfyUI not found at: %COMFY_DIR%
-  echo       Expected location: C:\Users\%USERNAME%\ComfyUI
-  echo       Install from: https://github.com/comfyanonymous/ComfyUI
-  echo.
-  pause
-  goto menu
-)
-
-echo   [*] Found ComfyUI at: %COMFY_DIR%
-echo   [*] Starting ComfyUI on port 8188...
-echo   [*] This window will remain open — ComfyUI runs in the background.
+REM Launch the SAME ComfyUI the server uses. The old code guessed paths and
+REM started a stale separate clone (C:\Users\%USERNAME%\ComfyUI) with the wrong
+REM base directory, which refused to start. server._resolve_comfyui_cmd() is the
+REM single source of truth: it auto-detects the Desktop install + its CUDA venv
+REM (reading %APPDATA%\ComfyUI\config.json) and uses NORMAL_VRAM + the offload fix.
+echo   [*] Locating + starting ComfyUI (via the server's resolver)...
+echo   [*] Cold start loads the 3D nodes + DB migration (~3-4 min); warm start ~30s.
+echo   [*] This waits for it — please be patient on the first launch.
 echo.
-
-set COMFY_PYTHON=%COMFY_DIR%\venv\Scripts\python.exe
-if not exist "%COMFY_PYTHON%" (
-  echo   [!] ComfyUI venv not found, using system python
-  set COMFY_PYTHON=python
+python -c "import server, sys; sys.exit(0 if server._ensure_comfyui_ready(wait_timeout=300) else 1)"
+if !errorlevel! equ 0 (
+  echo.
+  echo   [OK] ComfyUI is ready on port 8188.
+) else (
+  echo.
+  echo   [!] ComfyUI failed to start. See renders\comfyui_startup.log for the
+  echo       backend's own output, then start ComfyUI Desktop manually if needed.
 )
-
-REM Do NOT pass --highvram: on a 24 GB RTX 3090, FLUX + LoRAs + ReActor overflow
-REM VRAM and spill to system RAM. Without it, ComfyUI uses NORMAL_VRAM (fits).
-REM --disable-async-offload: NORMAL_VRAM's async-offload path is buggy in this
-REM ComfyUI build and crashes CLIPTextEncode; disabling it keeps NORMAL_VRAM working.
-set COMFY_BASE=%APPDATA%\ComfyUI
-start "ComfyUI" /D "%COMFY_DIR%" "%COMFY_PYTHON%" main.py ^
-  --base-directory "%COMFY_BASE%" ^
-  --user-directory "%COMFY_BASE%\user" ^
-  --input-directory "%COMFY_BASE%\input" ^
-  --output-directory "%COMFY_BASE%\output" ^
-  --listen 127.0.0.1 --port 8188 --log-stdout --disable-async-offload
-
-echo   [*] ComfyUI launching... check http://localhost:8188 in ~30 seconds.
 echo.
 pause
 goto menu
