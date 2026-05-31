@@ -447,7 +447,11 @@ _LORA_PRESETS: dict[str, dict] = {
         "icon":        "🌆",
         "style_guide_hint":  "cyberpunk digital painting, neon-lit tech-noir, glowing electric neon colors illuminating the scene brightly",
         "themer_medium":     '"digital painting," or "cyberpunk concept art," or "neon-lit illustration,"',
-        "themer_quality":    '"glowing neon lights, vivid electric colors" or "cyberpunk neon glow, bright illumination" or "painterly, luminous neon palette"',
+        # Quality tag is COLOR-NEUTRAL on purpose: it must not inject "neon /
+        # electric / vivid" hues, or every card's palette collapses to generic
+        # neon and the per-card mana / theme colors (col 5) are ignored. Keep
+        # luminosity + detail words only; the actual hue comes from col 5.
+        "themer_quality":    '"glowing illumination, high detail" or "luminous light, sharp focus" or "painterly, cinematic lighting"',
         # flux_prefix: lead with BRIGHT glowing neon light sources so FLUX doesn't
         # default to near-black.  "vivid neon palette against deep shadows" was the
         # old wording — FLUX over-weighted "deep shadows" and generated near-black
@@ -540,9 +544,13 @@ _LORA_PRESETS: dict[str, dict] = {
             {
                 "label": "Neon Abyss",
                 "loras": [
-                    # bo-neon trained its text encoder (has lora_te keys), so clip_strength matters here.
+                    # bo-neon trained its text encoder (has lora_te keys), so clip_strength
+                    # patches the COLOR conditioning. At 0.85 it overrode the prompt's
+                    # palette and forced magenta/cyan neon onto every card regardless of
+                    # the mana/theme colors. Lowered clip to 0.45 (and model to 0.75) so
+                    # the neon STYLE survives but the per-card green/black palette shows.
                     {"fragments": ["boFLUX_Abyss_Neon", "abyss_neon", "bo-neon", "boflux"], "trigger": "bo-neon",
-                     "model_strength": 0.85, "clip_strength": 0.85, "dark_only": False, "label": "Neon Abyss"},
+                     "model_strength": 0.75, "clip_strength": 0.45, "dark_only": False, "label": "Neon Abyss"},
                     {"fragments": ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"], "trigger": "mad-cbrpnk-dtlr",
                      "model_strength": 0.35, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Detailer"},
                 ],

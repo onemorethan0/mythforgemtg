@@ -172,16 +172,63 @@ _MTG_COLOR_PALETTES: dict[str, str] = {
 }
 _COLORLESS_PALETTE = "chrome, steel grey, crystal, void black, starlight silver"
 
-def _color_palette_hint(color_identity: list[str]) -> str:
-    """Build a terse palette string from a card's color identity list."""
+# Plain colour words a user may put in their WORLD THEME (e.g. "green and black
+# cyberpunk"). When the theme names colours, they become the palette for cards
+# with no mana colour of their own (colourless artifacts/lands), so a "green and
+# black" deck actually reads green and black instead of drifting to generic neon.
+_THEME_COLOR_WORDS: dict[str, str] = {
+    "white":     "white, ivory, pearl",
+    "green":     "green, verdant, emerald, jade",
+    "black":     "black, charcoal, onyx, deep shadow",
+    "blue":      "blue, azure, cobalt",
+    "red":       "red, crimson, scarlet",
+    "purple":    "purple, violet, amethyst",
+    "violet":    "violet, purple, amethyst",
+    "gold":      "gold, amber, brass",
+    "golden":    "gold, amber, brass",
+    "silver":    "silver, chrome, steel",
+    "pink":      "pink, rose, blush",
+    "magenta":   "magenta, hot pink, fuchsia",
+    "orange":    "orange, tangerine, ember",
+    "yellow":    "yellow, citrine, gold",
+    "cyan":      "cyan, electric teal",
+    "teal":      "teal, aquamarine",
+    "crimson":   "crimson, blood red",
+    "emerald":   "emerald green, jade",
+    "indigo":    "indigo, deep blue-violet",
+    "turquoise": "turquoise, aqua",
+}
+
+
+def _extract_theme_palette(theme: str) -> str:
+    """Palette string from explicit colour words in the user's theme, in order
+    of appearance ("green and black …" → "green … / black …"). "" if none."""
+    if not theme:
+        return ""
+    low = theme.lower()
+    seen: list[str] = []
+    for word, pal in _THEME_COLOR_WORDS.items():
+        idx = low.find(word)
+        if idx >= 0 and pal not in seen:
+            seen.append((idx, pal))  # type: ignore
+    seen.sort(key=lambda t: t[0])  # type: ignore
+    return " / ".join(p for _, p in seen)  # type: ignore
+
+
+def _color_palette_hint(color_identity: list[str], theme_palette: str = "") -> str:
+    """Build a terse palette string from a card's color identity list.
+
+    Colourless cards (no mana identity) fall back to the user's theme colours
+    when those exist, otherwise the neutral colourless palette — this keeps a
+    themed deck's stated colours present on its artifacts/lands."""
     if not color_identity:
-        return _COLORLESS_PALETTE
+        return theme_palette or _COLORLESS_PALETTE
     parts = []
     for c in color_identity:
         p = _MTG_COLOR_PALETTES.get(c.upper())
         if p:
             parts.append(p)
-    return " / ".join(parts) if parts else _COLORLESS_PALETTE
+    return " / ".join(parts) if parts else (theme_palette or _COLORLESS_PALETTE)
 
 
 # ── Tribal type remapping ─────────────────────────────────────────────────────
@@ -816,6 +863,9 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     The v1 prompt put theme first and mechanics second; v2 makes them co-equal anchors
     so card identity is never drowned out by the world aesthetic.
     """
+    # Colour words the user named in the theme — used as the palette for
+    # colourless cards so a "green and black" deck keeps its colours everywhere.
+    theme_palette = _extract_theme_palette(theme)
     theme = _quote_user_text(theme)
     commander_name = _quote_user_text(commander_name, max_len=120)
     # Aggressive cap — long appearance dumps cause verbatim copying which
@@ -843,7 +893,8 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
             else:
                 tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}]"
         mechsum  = _mechanic_summary(c)
-        palette  = _color_palette_hint(c.get("color_identity") or c.get("colors", []))
+        palette  = _color_palette_hint(c.get("color_identity") or c.get("colors", []),
+                                       theme_palette)
         role, soul = _card_soul(c)
         # Format: idx|name|type|mechanics|color_palette|role|soul
         lines.append(f'{i}|{c["name"]}|{tl}|{mechsum}|{palette}|{role}|{soul}')
@@ -961,7 +1012,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     NO TEMPLATE REUSE — MANDATORY: Each card's scene must be UNIQUE. Never reuse another card's setting sentence or copy a scene description across cards (e.g. do not give three cards "a vast echoing crystal cavern where shadowy figures whisper"). The themed_name is what makes each scene different — vary the location, framing, time, and focal subject card-to-card.
     THEME + CHARACTER (PRIMARY) — directly after the medium, place the theme-world setting and (if present) the character. This claims the model's strongest attention budget.
     MECHANICAL INFLUENCE (SECONDARY) — col 7 should appear as a scene beat, not the centerpiece. Hint at what the card does through a small detail, gesture, or background action.
-    COLOR (like real MTG cards) — the palette is DRIVEN by the card's mana colors in col 5 (W=holy/ivory & gold, U=arcane/cold blue, B=shadow/necrotic purple, R=fire/crimson/aggression, G=nature/verdant growth, colorless=void/chrome/steel). Lead the scene's lighting and dominant hues with col 5. ONLY override toward other hues when the user's WORLD THEME explicitly names colors for characters/creatures — then defer to those for the character while the environment still reads in the card's mana colors. Do not impose a single deck-wide neon palette; each card's color comes from ITS mana colors.
+    COLOR (like real MTG cards) — col 5 is the card's palette and is MANDATORY: the dominant hues and lighting of the scene MUST come from col 5. Name those actual colors in the prompt (e.g. if col 5 is "green, verdant, emerald, jade / black, charcoal, onyx", the scene is lit and coloured green-and-black). Each card's col 5 may differ — do NOT impose one deck-wide look. FORBIDDEN: defaulting every card to generic "neon", "electric", "vivid", "holographic", "blue glow" colors — those are only allowed when they are literally in col 5. For colorless cards col 5 carries the deck's own theme colors; use them, do not drift to neon. You MAY add a secondary accent hue from the WORLD THEME for a character/creature, but the environment and overall palette stay anchored to col 5.
     ANATOMY — no isolated floating limbs. Avoid awkward close-up hands.
     POSE — any character must be MID-ACTION and emotionally engaged: striking, casting, running, reaching, recoiling, commanding, reacting to something in the scene. NEVER a stiff standing portrait, a model posing for the camera, or a figure standing still and staring blankly into the distance. Give them a verb and a target — what are they DOING, and to/with what?
     CREATURE TYPE — for a creature card, make the creature's KIND visually unmistakable using its type (col 3): a Faerie looks like a faerie, a Goblin like a goblin, a Dragon like a dragon. If the type column carries a [reskin …] tag, depict the REPLACEMENT creature instead of the original (consistently). Weave the creature's kind into the scene rather than tacking it on.
