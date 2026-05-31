@@ -27,12 +27,15 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 import requests
 
-# How many theming batches to send to Ollama at once. We always send several
-# concurrently and let the OLLAMA SERVER decide real parallelism: with
-# OLLAMA_NUM_PARALLEL>=N they run in parallel (filling the idle gaps between
-# batches and keeping the GPU busy); with =1 they simply queue (harmless, no gain).
-# Independent of this process's view of OLLAMA_NUM_PARALLEL, which may be stale.
-_THEME_CONCURRENCY = max(1, min(int(os.environ.get("MYTHFORGE_THEME_CONCURRENCY", "3")), 4))
+# How many theming batches to send to Ollama at once.
+# DEFAULT IS 1 (sequential) on purpose: a single 8-card batch already saturates
+# the GPU, so concurrency>1 doesn't speed things up — it just SPLITS one model's
+# throughput across N streams (KvSize = num_ctx × OLLAMA_NUM_PARALLEL). When the
+# GPU is contended (e.g. ComfyUI resident), that per-stream slowdown pushes each
+# batch past REQUEST_TIMEOUT, truncating the JSON mid-stream and triggering an
+# endless half-batch retry spiral. Sequential keeps every batch well under the
+# timeout. Override with MYTHFORGE_THEME_CONCURRENCY only if the GPU is dedicated.
+_THEME_CONCURRENCY = max(1, min(int(os.environ.get("MYTHFORGE_THEME_CONCURRENCY", "1")), 4))
 
 def _quote_user_text(s: str, max_len: int = 1500) -> str:
     """
@@ -53,7 +56,7 @@ def _quote_user_text(s: str, max_len: int = 1500) -> str:
 OLLAMA_BASE          = "http://127.0.0.1:11434"
 OLLAMA_MODEL         = "qwen3:8b"   # smaller/faster default; 14b still selectable
 BATCH_SIZE      = 8
-REQUEST_TIMEOUT = 180
+REQUEST_TIMEOUT = 240   # margin for a contended GPU (~13 tok/s → 8-card batch ~60-90s)
 
 # ── Medium-tag stripper ───────────────────────────────────────────────────────
 # Ollama reliably defaults to "dramatic fantasy oil painting, ..." regardless
@@ -379,7 +382,10 @@ def _expand_theme(theme: str, model: str = OLLAMA_MODEL) -> tuple[str, list[str]
             {"role": "user",   "content": user},
         ],
         "stream": False,
-        "options": {"temperature": 0.85, "num_ctx": 768, "num_gpu": 99, "num_predict": 200},
+        # num_ctx matches the batch calls (4096) so Ollama keeps ONE model
+        # instance loaded across expand-theme → style-guide → batches instead of
+        # reloading (~18s each) every time the context size changes.
+        "options": {"temperature": 0.85, "num_ctx": 4096, "num_gpu": 99, "num_predict": 200},
     }
     try:
         resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=REQUEST_TIMEOUT)
@@ -479,7 +485,8 @@ def _generate_style_guide(theme: str, commander_name: str,
             {"role": "user",   "content": prompt},
         ],
         "stream": False,
-        "options": {"temperature": 0.85, "num_ctx": 512, "num_gpu": 99, "num_predict": 90},
+        # num_ctx unified to 4096 (see _expand_theme) to avoid model reloads.
+        "options": {"temperature": 0.85, "num_ctx": 4096, "num_gpu": 99, "num_predict": 90},
     }
     try:
         resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=REQUEST_TIMEOUT)
