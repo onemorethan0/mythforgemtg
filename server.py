@@ -959,23 +959,30 @@ def _build_render_keys(themed_cmd: ThemedCard, themed_deck: list) -> dict:
 
 
 def _setup_deck_pips(job_id: str, enabled: bool, art_theme: str, subject: str,
-                     source_job_id: str = "") -> bool:
+                     source_job_id: str = ""):
     """
     Install (or clear) themed custom mana pips for a deck render.
 
     Pips are a per-deck override of the stock W/U/B/R/G/C symbols: a mana-colour
-    disc with a single shared black silhouette of the deck's icon. They are
-    generated once per deck and saved under <job>/pips/. On rebuild/regen/retheme
-    the source deck's pips are reused so the silhouette stays identical across
-    operations. Must be called in every render path; passing enabled=False clears
-    any override left by a previous build (state is module-global in card_renderer).
+    disc with a single shared black silhouette of the deck's icon. The SAME
+    silhouette is reused to build the deck's set emblem so it actually reflects
+    the requested subject. Generated once per deck and saved under <job>/pips/.
+    On rebuild/regen/retheme the source deck's pips are reused so the silhouette
+    stays identical across operations. Must be called in every render path;
+    passing enabled=False clears any override left by a previous build (state is
+    module-global in card_renderer).
+
+    Returns the freshly-built set-emblem PIL image when pips are generated this
+    call (so the build can swap in the matching emblem), else None.
     """
     if not enabled:
         card_renderer.set_custom_pips(None)
-        return False
+        return None
     pip_dir = RENDER_DIR / job_id / "pips"
 
     # Reuse the source deck's pips (keeps the silhouette identical on re-renders).
+    # The source set_symbol.png already carries the matching emblem, so callers
+    # keep their copied symbol — return None here.
     if source_job_id:
         existing = mana_pips.load_mana_pips(RENDER_DIR / source_job_id / "pips")
         if existing:
@@ -983,24 +990,28 @@ def _setup_deck_pips(job_id: str, enabled: bool, art_theme: str, subject: str,
             for code, img in existing.items():
                 img.save(pip_dir / f"pip_{code}.png", "PNG")
             card_renderer.set_custom_pips(existing)
-            return True
+            return None
 
     # Already generated for this job (e.g. resumed render)?
     existing = mana_pips.load_mana_pips(pip_dir)
     if existing:
         card_renderer.set_custom_pips(existing)
-        return True
+        return None
 
     _push(job_id, "progress", json.dumps(
         {"step": "pips", "msg": "Generating custom mana pips…"}))
     try:
-        mana_pips.save_mana_pips(art_theme, pip_dir, subject or art_theme)
+        _, silhouette = mana_pips.save_mana_pips(art_theme, pip_dir, subject or art_theme)
         card_renderer.set_custom_pips(mana_pips.load_mana_pips(pip_dir))
-        return True
+        # Build a set emblem from the same silhouette and overwrite the procedural
+        # one so the deck symbol matches the requested subject + the pips.
+        emblem = mana_pips.make_set_emblem(silhouette, art_theme)
+        emblem.save(RENDER_DIR / job_id / "set_symbol.png", "PNG")
+        return emblem
     except Exception as e:
         print(f"  [pips] generation failed, using stock symbols: {e}")
         card_renderer.set_custom_pips(None)
-        return False
+        return None
 
 
 def _make_art_progress_cb(job_id: str, start_time: float):
@@ -1188,8 +1199,12 @@ def _run_build(job_id: str, req: BuildRequest):
         # silhouette otherwise.
         if req.custom_pips and req.generate_art:
             _ensure_comfyui_ready(job_id)
-        _setup_deck_pips(job_id, req.custom_pips, art_theme,
-                         req.emblem_prompt or "")
+        _pip_emblem = _setup_deck_pips(job_id, req.custom_pips, art_theme,
+                                       req.emblem_prompt or "")
+        if _pip_emblem is not None:
+            # The custom-pip silhouette doubles as the deck emblem so the set
+            # symbol reflects the requested subject (and matches the pips).
+            sym = _pip_emblem
 
         # ── Early checkpoint: write deck.json NOW (before art gen + render) ──
         # Art gen is the longest step (30+ min). If the server crashes or

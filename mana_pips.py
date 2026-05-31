@@ -214,11 +214,11 @@ def _compose_pip(disc_rgb: tuple[int, int, int], silhouette: Image.Image,
 
 # ── Public API ─────────────────────────────────────────────────────────────────
 
-def generate_mana_pips(theme: str, subject: str = "") -> dict[str, Image.Image]:
+def generate_silhouette(theme: str, subject: str = "") -> Image.Image:
     """
-    Build the W/U/B/R/G/C pip images for a deck. ``subject`` is the silhouette
-    icon (e.g. the emblem prompt); falls back to the theme when empty.
-    Returns a dict of mana-code → RGBA PIL image at ``PIP_BASE`` resolution.
+    Produce the deck's shared black silhouette (FLUX when ComfyUI is up, else a
+    procedural vector shape). ``subject`` is the icon (e.g. the emblem prompt);
+    falls back to the theme. Returns a trimmed pure-black RGBA image.
     """
     subject = (subject or theme or "arcane sigil").strip()
     gray = _flux_silhouette(subject)
@@ -228,19 +228,53 @@ def generate_mana_pips(theme: str, subject: str = "") -> dict[str, Image.Image]:
         print(f"  [mana_pips] procedural silhouette for {subject!r}")
     else:
         print(f"  [mana_pips] FLUX silhouette for {subject!r}")
+    return sil
+
+
+def generate_mana_pips(theme: str, subject: str = "",
+                       silhouette: Optional[Image.Image] = None) -> dict[str, Image.Image]:
+    """
+    Build the W/U/B/R/G/C pip images for a deck. Pass ``silhouette`` to reuse an
+    already-generated icon (so the set emblem and pips share one FLUX call);
+    otherwise one is generated from ``subject``/``theme``.
+    Returns a dict of mana-code → RGBA PIL image at ``PIP_BASE`` resolution.
+    """
+    sil = silhouette if silhouette is not None else generate_silhouette(theme, subject)
     return {code: _compose_pip(rgb, sil) for code, rgb in MANA_DISC.items()}
 
 
-def save_mana_pips(theme: str, out_dir: Path, subject: str = "") -> dict[str, Path]:
-    """Generate pips and save them as PNGs under ``out_dir``. Returns code → path."""
+def make_set_emblem(silhouette: Image.Image, theme: str,
+                    size: int = 128) -> Image.Image:
+    """
+    Build a deck set emblem from the shared silhouette: a theme-tinted disc with
+    the same black icon as the pips, so the emblem actually reflects the user's
+    requested subject (rather than a keyword-limited procedural shape).
+    """
+    import hashlib
+    from set_symbol import _hue_to_rgb
+    h = int(hashlib.sha256((theme or "").lower().encode()).hexdigest(), 16)
+    hue = (h >> 8) % 360
+    disc = _hue_to_rgb(hue, 0.50, 0.85)
+    return _compose_pip(disc, silhouette, size)
+
+
+def save_mana_pips(theme: str, out_dir: Path,
+                   subject: str = "") -> tuple[dict[str, Path], Image.Image]:
+    """
+    Generate the shared silhouette once, save the pips (and the raw silhouette)
+    as PNGs under ``out_dir``. Returns (code→path, silhouette image) so the
+    caller can also build a matching set emblem without a second FLUX call.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
-    pips = generate_mana_pips(theme, subject)
+    sil = generate_silhouette(theme, subject)
+    sil.save(out_dir / "_silhouette.png", "PNG")
+    pips = generate_mana_pips(theme, silhouette=sil)
     paths: dict[str, Path] = {}
     for code, img in pips.items():
         p = out_dir / f"pip_{code}.png"
         img.save(p, "PNG")
         paths[code] = p
-    return paths
+    return paths, sil
 
 
 def load_mana_pips(out_dir: Path) -> dict[str, Image.Image]:

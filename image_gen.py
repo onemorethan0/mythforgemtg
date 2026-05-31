@@ -45,6 +45,7 @@ from __future__ import annotations
 import io
 import json
 import random
+import re
 import sys
 import time
 from dataclasses import dataclass, asdict
@@ -237,6 +238,75 @@ _FLUX_PREFIX = (
     "Third-person view, character viewed from outside. Landscape composition. "
     "Any visible hands have exactly five fingers each. "
 )
+
+# ── Style/trigger de-duplication ──────────────────────────────────────────────
+# When the user's theme already names the style (e.g. theme "neon cyberpunk rave"
+# with the cyberpunk preset), the injected LoRA trigger prefix + style flux_prefix
+# repeat words like "cyberpunk" two or three times. CLIP then over-weights the
+# style and the LoRA "takes over", drowning out the per-card mana-colour palette.
+# These helpers strip style words from the INJECTED prefixes when those words are
+# already present in the user's prompt — the user's wording (and colours) win,
+# the style is stated once. LoRA *trigger tokens* (e.g. "kcyberpunk") are unique
+# and not affected, so the LoRA still activates.
+
+_DEDUP_STOPWORDS = {
+    "digital", "painting", "concept art", "style", "illustration", "highly",
+    "detailed", "scene", "image", "card", "with", "and", "the", "view",
+    "composition", "lighting", "colors", "color", "background",
+}
+
+
+def _prompt_word_set(text: str) -> set:
+    """Significant lowercased words in `text` (len ≥ 5, not a stopword)."""
+    return {
+        w.lower() for w in re.findall(r"[A-Za-z][A-Za-z\-]+", text)
+        if len(w) >= 5 and w.lower() not in _DEDUP_STOPWORDS
+    }
+
+
+def _tidy_prompt(text: str) -> str:
+    """Clean up punctuation/whitespace left after removing words."""
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s+([,.;])", r"\1", text)     # space before punct
+    text = re.sub(r"([,.;])(\s*[,.;])+", r"\1", text)  # collapsed runs of punct
+    text = re.sub(r"(^|[.;])\s*,", r"\1", text)   # stray leading comma
+    text = re.sub(r"\s{2,}", " ", text)
+    return text.strip(" ,;")
+
+
+def _strip_trigger_prefix(lora_prefix: str, prompt_words: set) -> str:
+    """Drop whole LoRA trigger tokens that already appear as words in the prompt.
+
+    The prefix looks like ``"trigA, trig B. "``. A trigger is dropped only when
+    *all* of its words are already in the prompt (so unique codes like
+    "kcyberpunk" — which never appear in user prompts — are always kept)."""
+    if not lora_prefix.strip():
+        return lora_prefix
+    body = lora_prefix.rstrip()
+    trailing = "." if body.endswith(".") else ""
+    body = body.rstrip(".")
+    kept = []
+    for trig in [t.strip() for t in body.split(",") if t.strip()]:
+        words = [w.lower() for w in re.findall(r"[A-Za-z][A-Za-z\-]+", trig)]
+        if words and all(w in prompt_words for w in words):
+            continue   # fully redundant with the user's prompt
+        kept.append(trig)
+    if not kept:
+        return ""
+    return ", ".join(kept) + (trailing or ".") + " "
+
+
+def _dedup_style_words(flux_prefix: str, prompt_words: set) -> str:
+    """Remove significant style words from the flux_prefix that the prompt already
+    states, so the style concept isn't double-weighted."""
+    if not flux_prefix.strip():
+        return flux_prefix
+
+    def repl(m):
+        return "" if m.group(0).lower() in prompt_words else m.group(0)
+
+    return _tidy_prompt(re.sub(r"[A-Za-z][A-Za-z\-]+", repl, flux_prefix)) + " "
+
 
 # ── Face-method node requirements ─────────────────────────────────────────────
 _FACE_METHODS: dict[str, list[str]] = {
@@ -2496,6 +2566,21 @@ class ImageGen:
         # LoRA trigger words prepended first so CLIP weights them most heavily.
         # self.lora_trigger_prefix is "" when no MTG art LoRAs are installed.
         lora_prefix = self.lora_trigger_prefix
+
+        # De-duplicate style words already present in the user's prompt. Without
+        # this, a theme like "neon cyberpunk rave" + the cyberpunk preset repeats
+        # "cyberpunk" across the trigger prefix AND the style flux_prefix, so the
+        # LoRA over-dominates and the per-card mana-colour palette is ignored.
+        # Unique LoRA trigger CODES (e.g. "kcyberpunk") are preserved so the LoRA
+        # still fires; only redundant plain-English style words are stripped.
+        _pw = _prompt_word_set(art_prompt)
+        if _pw:
+            _before = (lora_prefix, prefix)
+            lora_prefix = _strip_trigger_prefix(lora_prefix, _pw)
+            prefix = _dedup_style_words(prefix, _pw)
+            if (lora_prefix, prefix) != _before:
+                print(f"  [image_gen] de-duped style words already in prompt "
+                      f"(trigger={_before[0]!r}->{lora_prefix!r})")
 
         # CRITICAL FIX: Face constraint must cooperate WITH themer's description, not override it.
         # The old code prepended a contradictory "Painted portrait of a person" that overrode
