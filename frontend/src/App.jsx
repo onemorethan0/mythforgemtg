@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import StepCommander from './components/StepCommander'
-import StepPlaystyle from './components/StepPlaystyle'
 import StepFace      from './components/StepFace'
 import StepTheme     from './components/StepTheme'
 import StepBuilding  from './components/StepBuilding'
@@ -11,9 +10,10 @@ import LogViewer from './components/LogViewer'
 import { useGenSettings } from './hooks/useGenSettings'
 import { toGenSettingsPayload } from './config/genSettings'
 
-// Step indices
-const STEP = { COMMANDER: 0, PLAYSTYLE: 1, FACE: 2, THEME: 3, BUILDING: 4, DECK: 5, HISTORY: 6 }
-const STEP_LABELS = ['Commander', 'Playstyle', 'Face', 'Theme', 'Building']
+// Step indices — playstyle now lives on the Commander step (collected up front
+// with bracket so the decklist can be generated before theming).
+const STEP = { COMMANDER: 0, FACE: 1, THEME: 2, BUILDING: 3, DECK: 4, HISTORY: 5 }
+const STEP_LABELS = ['Commander', 'Face', 'Theme', 'Building']
 
 const SS_KEY = 'mtg_active_job'
 
@@ -35,6 +35,11 @@ export default function App() {
   const [borderTheme, setBorderTheme] = useState('')
   const [frameStyle, setFrameStyle] = useState('builtin')
   const [commanderTribe, setCommanderTribe] = useState('')
+  // Two-phase flow: decklist generated on the Commander step, plus the deck's
+  // creature tribes and the user's per-tribe replacement choices.
+  const [generatedDeck, setGeneratedDeck]   = useState(null)
+  const [deckTribes, setDeckTribes]         = useState([])
+  const [tribalOverrides, setTribalOverrides] = useState({})
   const [crewPrompt, setCrewPrompt] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
   const [faceMethod, setFaceMethod] = useState(null)
@@ -101,6 +106,7 @@ export default function App() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
+    setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
     setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
@@ -130,6 +136,8 @@ export default function App() {
         border_theme:      borderTheme || "",
         frame_style:       frameStyle || "builtin",
         commander_tribe:   commanderTribe || "",
+        prebuilt_deck:     generatedDeck || null,
+        tribal_overrides:  tribalOverrides || {},
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
@@ -336,16 +344,20 @@ export default function App() {
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 16px 48px' }}>
 
         {step === STEP.COMMANDER && (
-          <StepCommander onNext={card => { setCommander(card); setStep(STEP.PLAYSTYLE) }} />
-        )}
-
-        {step === STEP.PLAYSTYLE && (
-          <StepPlaystyle
-            commander={commander}
-            value={playstyle}
-            onChange={setPlaystyle}
-            onNext={() => setStep(STEP.FACE)}
-            onBack={() => setStep(STEP.COMMANDER)}
+          <StepCommander
+            bracket={bracket}
+            onBracketChange={setBracket}
+            playstyle={playstyle}
+            onPlaystyleChange={setPlaystyle}
+            onNext={card => {
+              setCommander(card)
+              // Generated decks carry the pre-built list + tribes from phase 1.
+              const g = card && card._generated
+              setGeneratedDeck(g ? g.deck : null)
+              setDeckTribes(g ? (g.tribes || []) : [])
+              setTribalOverrides({})
+              setStep(STEP.FACE)
+            }}
           />
         )}
 
@@ -358,7 +370,7 @@ export default function App() {
             onCrewGenderChange={setCrewGender}
             onNext={handleFaceNext}
             onSkip={handleFaceSkip}
-            onBack={() => setStep(STEP.PLAYSTYLE)}
+            onBack={() => setStep(STEP.COMMANDER)}
             genSettings={genSettings}
           />
         )}
@@ -378,8 +390,9 @@ export default function App() {
             onCustomPipsChange={setCustomPips}
             artStyle={artStyle}
             onArtStyleChange={setArtStyle}
-            bracket={bracket}
-            onBracketChange={setBracket}
+            tribes={deckTribes}
+            tribalOverrides={tribalOverrides}
+            onTribalOverridesChange={setTribalOverrides}
             generateArt={generateArt}
             onGenerateArtChange={setGenerateArt}
             modelSpeed={modelSpeed}

@@ -24,11 +24,19 @@ const s = {
   btnNext:  { width: '100%', marginTop: 20, padding: '12px', background: 'linear-gradient(180deg,#eab308,#a16207)', border: 'none', borderRadius: 10, color: '#0c0a09', fontWeight: 700, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.05em' },
 }
 
-export default function StepCommander({ onNext }) {
+const BRACKETS = [
+  { n: 1, label: 'Exhibition' }, { n: 2, label: 'Core' }, { n: 3, label: 'Upgraded' },
+  { n: 4, label: 'Optimized' },  { n: 5, label: 'cEDH' },
+]
+
+export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange }) {
   const [query, setQuery]           = useState('')
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
   const [result, setResult]         = useState(null)
+  const [playstyles, setPlaystyles] = useState([])
+  const [genLoading, setGenLoading] = useState(false)
+  const [genErr, setGenErr]         = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [showDrop, setShowDrop]     = useState(false)
   const [activeIdx, setActiveIdx]   = useState(-1)
@@ -122,6 +130,32 @@ export default function StepCommander({ onNext }) {
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
+
+  useEffect(() => {
+    fetch('/api/playstyles').then(r => r.json()).then(setPlaystyles).catch(() => {})
+  }, [])
+
+  // Phase 1: build the decklist now (no art) so the theme step can show tribes.
+  async function generateList() {
+    if (!result) return
+    setGenLoading(true); setGenErr('')
+    try {
+      const res = await fetch('/api/deck/generate-list', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          commander_name: result.full_name || result.name,
+          playstyle, bracket,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setGenErr(data.detail || 'Could not generate the decklist.'); setGenLoading(false); return }
+      onNext({ ...result, _generated: { deck: data.deck, tribes: data.tribes, stats: data.stats } })
+    } catch {
+      setGenErr('Server unreachable. Is the backend running?')
+    }
+    setGenLoading(false)
+  }
 
   async function doSearch(name) {
     const q = (name || query).trim()
@@ -317,8 +351,35 @@ export default function StepCommander({ onNext }) {
               </span>
             </div>
           </div>
-          <button style={s.btnNext} onClick={() => onNext(result)}>
-            Build Deck with {result.name} →
+          {/* Deck setup — bracket + playstyle shape the generated decklist */}
+          <div style={{ marginTop: 18, padding: 16, background: '#0c0a09', border: '1px solid #292524', borderRadius: 12 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 8 }}>Power bracket</div>
+            <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>
+              {BRACKETS.map(b => (
+                <button key={b.n} onClick={() => onBracketChange(b.n)}
+                  style={{ flex: 1, padding: '8px 4px', borderRadius: 8, cursor: 'pointer', fontFamily: 'inherit',
+                    background: bracket === b.n ? '#eab308' : 'transparent',
+                    color: bracket === b.n ? '#0c0a09' : '#78716c',
+                    border: `1px solid ${bracket === b.n ? '#eab308' : '#44403c'}`,
+                    fontWeight: bracket === b.n ? 800 : 500, fontSize: 12 }}>
+                  {b.n}. {b.label}
+                </button>
+              ))}
+            </div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 8 }}>Playstyle</div>
+            <select value={playstyle} onChange={e => onPlaystyleChange(e.target.value)}
+              style={{ width: '100%', background: '#1c1917', border: '1px solid #44403c', borderRadius: 8,
+                       padding: '9px 12px', color: '#f5f5f4', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}>
+              {playstyles.map(ps => <option key={ps.key} value={ps.key}>{ps.label}</option>)}
+            </select>
+          </div>
+          {genErr && <p style={s.err}>{genErr}</p>}
+          <button
+            style={{ ...s.btnNext, ...(genLoading ? s.btnDisabled : {}) }}
+            disabled={genLoading}
+            onClick={generateList}
+          >
+            {genLoading ? 'Generating decklist…' : `Generate decklist with ${result.name} →`}
           </button>
         </div>
       )}

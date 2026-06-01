@@ -214,7 +214,7 @@ export default function StepTheme({
   frameStyle, onFrameStyleChange,
   commanderTribe, onCommanderTribeChange,
   artStyle, onArtStyleChange,
-  bracket, onBracketChange,
+  tribes = [], tribalOverrides = {}, onTribalOverridesChange,
   generateArt, onGenerateArtChange,
   modelSpeed, onModelSpeedChange,
   checkpoint, onCheckpointChange,
@@ -240,8 +240,9 @@ export default function StepTheme({
   const [ccSaving, setCcSaving]         = useState(false)
   const [ccMsg, setCcMsg]               = useState('')
   const [checkpoints, setCheckpoints]   = useState([])
-  const selected = BRACKETS.find(b => b.n === bracket) || BRACKETS[2]
   const isRO = artStyle === 'ragnarok_online'
+  const setTribe = (orig, val) => onTribalOverridesChange &&
+    onTribalOverridesChange({ ...tribalOverrides, [orig]: val })
 
   // Derived: type of the currently selected checkpoint
   const activeCheckpointType = (() => {
@@ -489,60 +490,40 @@ export default function StepTheme({
       </div>
 
       <div style={s.card}>
-        <h2 style={s.title}>Power Level & Theme</h2>
-        <p style={s.sub}>Set your bracket and art theme. The bracket controls which cards the deck builder is allowed to include.</p>
+        <h2 style={s.title}>Theme & Creature Types</h2>
+        <p style={s.sub}>Set the world theme, then optionally reskin the deck's creature types — each replacement becomes the basis for that card's art.</p>
 
-        {/* ── Bracket selector ── */}
-        <div style={s.section}>
-          <label style={s.label}>Bracket (EDH Power Level)</label>
-
-          {/* 5-segment control */}
-          <div style={{ display: 'flex', gap: 4, background: '#0c0a09', borderRadius: 10, padding: 4, marginBottom: 12 }}>
-            {BRACKETS.map(b => (
-              <button
-                key={b.n}
-                onClick={() => onBracketChange(b.n)}
-                style={{
-                  flex: 1, padding: '10px 4px', borderRadius: 7, border: 'none',
-                  background: bracket === b.n ? b.color : 'transparent',
-                  color: bracket === b.n ? '#0c0a09' : '#57534e',
-                  fontWeight: bracket === b.n ? 800 : 500,
-                  cursor: 'pointer', fontFamily: 'inherit', fontSize: 13,
-                  transition: 'all 0.15s',
-                }}
-              >
-                <div style={{ fontSize: 16, fontWeight: 800 }}>{b.n}</div>
-                <div style={{ fontSize: 10, marginTop: 2, opacity: bracket === b.n ? 1 : 0.7 }}>{b.label}</div>
-              </button>
-            ))}
-          </div>
-
-          {/* Selected bracket detail card */}
-          <div style={{
-            background: selected.bg,
-            border: `1px solid ${selected.color}44`,
-            borderLeft: `3px solid ${selected.color}`,
-            borderRadius: 8, padding: '12px 14px',
-          }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: selected.color, marginBottom: 4 }}>
-              Bracket {selected.n} — {selected.label}
+        {/* ── Creature-type replacements (from the generated decklist) ── */}
+        {tribes.length > 0 && (
+          <div style={s.section}>
+            <label style={s.label}>Creature type replacements <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span></label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10, lineHeight: 1.5 }}>
+              These are the creature types in your generated deck. Type a replacement to reskin every creature of that type into the theme (e.g. <em>Goblin → Chrome Gremlin</em>) — in its name, art, and card type. Leave blank to keep a type as-is.
             </div>
-            <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 10, lineHeight: 1.5 }}>
-              {selected.desc}
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              {selected.pills.map(pill => (
-                <span key={pill} style={{
-                  fontSize: 11, padding: '2px 8px', borderRadius: 12,
-                  background: `${selected.color}22`, color: selected.color,
-                  border: `1px solid ${selected.color}44`,
-                }}>
-                  {pill}
-                </span>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 8 }}>
+              {tribes.map(t => (
+                <div key={t.type} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ flex: '0 0 96px', fontSize: 13, color: '#d6d3d1', textAlign: 'right' }}>
+                    {t.type} <span style={{ color: '#57534e', fontSize: 11 }}>×{t.count}</span>
+                  </div>
+                  <span style={{ color: '#57534e' }}>→</span>
+                  <input
+                    type="text"
+                    style={{
+                      flex: 1, minWidth: 0, background: '#0c0a09', border: `1px solid ${(tribalOverrides[t.type] || '').trim() ? '#ca8a04' : '#44403c'}`,
+                      borderRadius: 8, padding: '7px 10px', color: '#f5f5f4', fontSize: 13,
+                      outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+                    }}
+                    placeholder="keep as-is"
+                    value={tribalOverrides[t.type] || ''}
+                    onChange={e => setTribe(t.type, e.target.value)}
+                    maxLength={40}
+                  />
+                </div>
               ))}
             </div>
           </div>
-        </div>
+        )}
 
         {/* Divider */}
         <div style={{ height: 1, background: '#292524', marginBottom: 20 }} />
