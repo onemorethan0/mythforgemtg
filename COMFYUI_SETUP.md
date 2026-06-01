@@ -153,7 +153,11 @@ Insightface face detection: ~0.5–1s on CPU. Inswapper inference: ~1–2s per f
 | 8 | Rebuild frontend only |
 | **9** | **Start ComfyUI backend** with correct flags (no --highvram, --disable-async-offload) |
 
-Option 9 uses `COMFY_PYTHON` = `ComfyUI\venv\Scripts\python.exe` pointing at `%COMFY_DIR%` (`..\..\ComfyUI` relative to the script). Double-check those paths if ComfyUI moves.
+Option 9 does **not** hardcode any path — it calls the server's own resolver
+(`python -c "import server; server._ensure_comfyui_ready(...)"`), which is the
+single source of truth for locating the Desktop install + its CUDA venv (it reads
+`%APPDATA%\ComfyUI\config.json`) and launches with the correct flags. If ComfyUI
+moves, nothing here needs editing — only `server._resolve_comfyui_cmd()`.
 
 ---
 

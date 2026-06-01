@@ -12,7 +12,7 @@ Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](.
 
 Full setup + troubleshooting: [`../INSTALL.md`](../INSTALL.md) · ComfyUI launch: [`../COMFYUI_SETUP.md`](../COMFYUI_SETUP.md)
 
-> Note: `STARTUP_INSTRUCTIONS.txt` and the `archive/` notes describe a removed `START.bat`/`paths_config.ps1` startup system — ignore them; INSTALL.md is current.
+> Note: [`STARTUP_GUIDE.md`](STARTUP_GUIDE.md) is a superseded stub describing an old `START.bat`/`paths_config.ps1` system — ignore it; INSTALL.md is current.
 
 ## For users
 - **Troubleshooting by symptom:** [`MAINTENANCE.md`](MAINTENANCE.md)
@@ -33,7 +33,4 @@ Full setup + troubleshooting: [`../INSTALL.md`](../INSTALL.md) · ComfyUI launch
 
 ---
 
-## Archive
-`archive/` holds outdated session notes from earlier development. They are historical only — **the docs above are current.** Safe to delete if you want to declutter.
-
-_Last updated: May 2026 — synced with the actual `manage.bat`/`dev.bat` startup scripts; corrected references to a removed `START.bat`/`paths_config.ps1` system._
+_Last updated: June 2026 — synced with the actual `manage.bat`/`dev.bat` startup scripts; corrected references to a removed `START.bat`/`paths_config.ps1` system._

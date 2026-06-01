@@ -2,6 +2,10 @@
 
 A fully local web app that builds themed 100-card EDH Commander decks with AI-generated custom card art and proxy frames using real MTG card assets.
 
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/onemorethan0)
+
+> Myth Forge is free and fully local. If it saved you a stack of proxy cash, [buying me a coffee](https://www.buymeacoffee.com/onemorethan0) ☕ helps keep it improving.
+
 ---
 
 ## System Requirements
@@ -130,7 +134,7 @@ taskkill /PID <process_id> /F
 
 **Ollama not detected?**
 - Download & install Ollama: https://ollama.ai
-- Pull a model: `ollama pull qwen2:7b`
+- Pull the default model: `ollama pull qwen3:14b`
 - Start: `ollama serve`
 
 **Server not responding?**
@@ -208,7 +212,11 @@ mtg_deck_builder/
 ├── exporter.py             ZIP + print-ready PDF export
 ├── bracket.py              EDH bracket level definitions (1–5)
 ├── requirements.txt        Python dependencies
-├── start_app.bat           One-click startup for all three services
+├── manage.bat              Windows menu: start/stop/status/setup/models/ComfyUI
+├── dev.bat                 Windows: start the dev server directly
+├── setup.bat / install.py  First-time setup (deps + frontend build)
+├── download-models.py      Interactive checkpoint downloader
+├── start-mythforge.sh      Mac/Linux: start the server
 ├── card_assets/            Real MTG frame assets (see below)
 └── frontend/               React + Vite frontend
     └── src/
@@ -442,7 +450,7 @@ python-multipart>=0.0.9
 pixie-python>=4.3.0
 ```
 
-Python: `C:\Python314\python.exe`
+Any **Python 3.10+** works. (The dev machine happens to use `C:\Python314\python.exe`; the scripts call whatever `python` is on your PATH.)
 
 ---
 
@@ -470,6 +478,19 @@ See **[docs/](docs/)** for complete documentation:
 - **[docs/DEVELOPMENT_GUIDELINES.md](docs/DEVELOPMENT_GUIDELINES.md)** — **Mandatory** guidelines for code changes. Read before making any changes.
 - **[docs/HARDWARE_OPTIMIZATION_GUIDE.md](docs/HARDWARE_OPTIMIZATION_GUIDE.md)** — GPU tuning and batch size analysis
 
+**Also useful:**
+- **[MODELS.md](MODELS.md)** — checkpoints, LoRAs, face models + download links
+- **[SCRIPTS.md](SCRIPTS.md)** — full `manage.bat` menu reference and direct commands
+
 **Special Notes:**
 - **CUDA 12.x Required for Face Conditioning** — Download from https://developer.nvidia.com/cuda-downloads
-- **Archive:** [docs/archive/](docs/archive/) contains previous session notes and historical information
+
+---
+
+## Support
+
+Myth Forge is free, open, and runs entirely on your own machine. If it's been useful, you can support continued development:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/onemorethan0)
+
+*Myth Forge by OneMoreThan0 ⚔️*
