@@ -254,6 +254,23 @@ card_assets/
 
 ---
 
+## Optional: official-style M15 frames (Card Conjurer)
+
+`cc_frames.py` can render cards using the modern **M15 frame** set from a locally-installed [Card Conjurer](https://github.com/Investigamer/cardconjurer), for a more "official" look than the bundled frames.
+
+**This is opt-in and ships no frame artwork.** The module is clean-room code; the frame PNGs are © Wizards of the Coast / their authors. You supply them yourself — exactly like LoRAs/checkpoints:
+
+1. Install Card Conjurer locally (clone a fork, run it once) **outside this repo**.
+2. Set the environment variable `MYTHFORGE_CC_DIR` to its root (the folder containing `img/frames/…`):
+   ```cmd
+   set MYTHFORGE_CC_DIR=C:\path\to\cardconjurer
+   ```
+3. Start the server. Every card render now uses M15 frames; if the variable is unset or the assets are missing, it silently falls back to the bundled frames.
+
+> ⚠️ **Do not commit Card Conjurer assets to a public repo.** They're copyrighted and were the subject of a Wizards of the Coast cease-and-desist. `.gitignore` guards against accidental commits, but keep your CC install outside the project folder. Currently the M15 "regular" pack is supported (mono/gold/artifact/land + P/T). Text, mana symbols, and white-vs-black legibility reuse the built-in renderer.
+
+---
+
 ## Card Renderer (`card_renderer.py`)
 
 Renders at **3× resolution (1440×2016)** for supersampled anti-aliasing, then LANCZOS downscales to **750×1050** (2.5″×3.5″ @ 300 DPI — print-ready, no upscaling needed).

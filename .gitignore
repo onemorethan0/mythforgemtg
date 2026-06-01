@@ -45,6 +45,14 @@ bat_stderr.txt
 # Local marketing/launch assets (not part of the app)
 reddit_assets/
 
+# Card Conjurer frame assets are user-supplied & copyrighted — never commit them.
+# Point MYTHFORGE_CC_DIR at a CC install OUTSIDE this repo; this guard only
+# catches the case where someone clones/copies CC into the repo by mistake.
+cardconjurer/
+cardconjurer-*/
+cc_assets*/
+**/img/frames/m15/
+
 # Face upload staging
 face_uploads/
 

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import io
 import math
+import os
 import re
 import textwrap
 from functools import lru_cache
@@ -989,6 +990,22 @@ def render_card(
     Render a full MTG-style card.
     Returns a 750×1050 RGBA PIL Image.
     """
+    # ── Optional: official-style M15 frames from a locally-installed Card
+    # Conjurer (assets the user supplies themselves, like LoRAs/checkpoints).
+    # OFF by default; enabled only when MYTHFORGE_CC_DIR points at a CC install
+    # with the M15 assets present. Any miss falls through to the built-in frames.
+    if os.environ.get("MYTHFORGE_CC_DIR"):
+        try:
+            import cc_frames
+            if cc_frames.is_available():
+                _cc = cc_frames.render_card_cc(
+                    card, themed_name, oracle_text,
+                    art_image, set_symbol, flavor_text, border_theme)
+                if _cc is not None:
+                    return _cc
+        except Exception as _e:
+            print(f"  [render_card] CC frame render failed ({_e}); using built-in frames")
+
     colors    = card.get("color_identity", [])
     type_line = card.get("type_line", "")
     mana_cost = card.get("mana_cost", "") or ""
