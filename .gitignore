@@ -13,6 +13,7 @@ test_cards/
 test_output/
 *.log
 *.log.err
+*.err
 
 # Frontend build output (rebuilt with npm run build)
 frontend/dist/
