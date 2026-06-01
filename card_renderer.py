@@ -92,7 +92,10 @@ _ORA_PAD  = _mm(1.0)
 _DARK_TEXT  = (10,  8,  4)
 _LIGHT_TEXT = (240, 235, 220)
 
-# Per-key text colours (name/type bar foreground)
+# Per-key text colours (name/type bar foreground).
+# NOTE: this is only a *fallback seed*. The real choice is made at draw time by
+# sampling the composited pixels under each text region (see _legible_text_color)
+# so the border-theme tint and the actual box artwork are accounted for.
 _BAR_FG: dict[str, tuple] = {
     "U":         _LIGHT_TEXT,
     "B":         _LIGHT_TEXT,
@@ -101,6 +104,71 @@ _BAR_FG: dict[str, tuple] = {
     "BR":        _LIGHT_TEXT,
     "BG":        _LIGHT_TEXT,
 }
+
+
+# ── Legibility: pick white vs black text by contrast against real pixels ───────
+def _rel_luminance(rgb: tuple) -> float:
+    """WCAG relative luminance of an sRGB colour (ignores any alpha)."""
+    def _lin(c: float) -> float:
+        c = c / 255.0
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    return 0.2126 * _lin(rgb[0]) + 0.7152 * _lin(rgb[1]) + 0.0722 * _lin(rgb[2])
+
+
+def _contrast_ratio(a: tuple, b: tuple) -> float:
+    """WCAG contrast ratio between two colours (1.0 .. 21.0)."""
+    la, lb = _rel_luminance(a), _rel_luminance(b)
+    hi, lo = (la, lb) if la >= lb else (lb, la)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+def _avg_region_rgb(canvas: Image.Image, box: tuple) -> Optional[tuple]:
+    """Mean RGB of a canvas region, downsampled for speed/noise tolerance.
+    Returns None if the box is degenerate or off-canvas."""
+    x0, y0, x1, y1 = (int(round(v)) for v in box)
+    x0, y0 = max(0, x0), max(0, y0)
+    x1, y1 = min(canvas.width, x1), min(canvas.height, y1)
+    if x1 - x0 < 2 or y1 - y0 < 2:
+        return None
+    region = canvas.crop((x0, y0, x1, y1)).convert("RGB")
+    region.thumbnail((24, 12), Image.BILINEAR)
+    px = list(region.getdata())
+    n = len(px) or 1
+    return (sum(p[0] for p in px) // n,
+            sum(p[1] for p in px) // n,
+            sum(p[2] for p in px) // n)
+
+
+def _legible_text_color(canvas: Image.Image, box: tuple,
+                        fallback: tuple = _DARK_TEXT) -> tuple:
+    """Choose _LIGHT_TEXT or _DARK_TEXT for the best contrast against whatever is
+    currently composited under `box`. Sampled AFTER frame/boxes/crown/border-theme
+    are drawn, so tints are accounted for. Falls back to `fallback` (the static
+    per-key colour) when the region can't be sampled."""
+    bg = _avg_region_rgb(canvas, box)
+    if bg is None:
+        return fallback
+    return (_LIGHT_TEXT
+            if _contrast_ratio(_LIGHT_TEXT, bg) >= _contrast_ratio(_DARK_TEXT, bg)
+            else _DARK_TEXT)
+
+
+def _draw_legible_text(draw: "ImageDraw.ImageDraw", canvas: Image.Image,
+                       pos: tuple, text: str, font, box: tuple, *,
+                       anchor: str, fallback: tuple = _DARK_TEXT,
+                       halo: bool = True) -> tuple:
+    """Draw `text` in whichever of light/dark text reads best against the pixels
+    under `box`, with a subtle opposite-colour halo so it never blends into a
+    busy or mid-luminance bar. Returns the chosen foreground colour."""
+    fg = _legible_text_color(canvas, box, fallback=fallback)
+    stroke_w = max(1, round(_mm(0.06))) if halo else 0
+    stroke_fill = None
+    if stroke_w:
+        halo_rgb = _DARK_TEXT if fg == _LIGHT_TEXT else _LIGHT_TEXT
+        stroke_fill = (halo_rgb[0], halo_rgb[1], halo_rgb[2], 90)
+    draw.text(pos, text, font=font, fill=fg, anchor=anchor,
+              stroke_width=stroke_w, stroke_fill=stroke_fill)
+    return fg
 
 # ── Font helpers ───────────────────────────────────────────────────────────────
 @lru_cache(maxsize=32)
@@ -1029,8 +1097,14 @@ def render_card(
             name_text = name_text[:-2] + "…"
     except Exception:
         pass
-    draw.text((_NAME_TX, name_cy), name_text,
-              font=name_font, fill=bar_fg, anchor="lm")
+    # Choose white/black by contrast against the actual name-bar pixels (incl.
+    # any border-theme tint), sampled under the text's own bounding box.
+    _name_w   = max(name_font.getlength(name_text), _mm(6))
+    name_box  = (_NAME_TX, name_cy - name_font_size * 0.5,
+                 _NAME_TX + _name_w, name_cy + name_font_size * 0.5)
+    bar_fg = _draw_legible_text(
+        draw, canvas, (_NAME_TX, name_cy), name_text, name_font, name_box,
+        anchor="lm", fallback=_BAR_FG.get(fk, _DARK_TEXT))
 
     # ── Original card name subtitle ────────────────────────────────────────────
     if show_subtitle:
@@ -1084,8 +1158,13 @@ def render_card(
         ss = set_symbol.convert("RGBA").resize((set_sym_size, set_sym_size), Image.LANCZOS)
         canvas.paste(ss, (set_sym_x, set_sym_y), ss)
 
-    draw.text((_BAR_X + _mm(1.5), _TYPE_TY), type_text,
-              font=type_font, fill=bar_fg, anchor="lm")
+    _type_x   = _BAR_X + _mm(1.5)
+    _type_w   = max(type_font.getlength(type_text), _mm(6))
+    type_box  = (_type_x, _TYPE_TY - type_font_size * 0.5,
+                 _type_x + _type_w, _TYPE_TY + type_font_size * 0.5)
+    _draw_legible_text(
+        draw, canvas, (_type_x, _TYPE_TY), type_text, type_font, type_box,
+        anchor="lm", fallback=_BAR_FG.get(fk, _DARK_TEXT))
 
     # ── Layer 8: oracle text + flavor text ───────────────────────────────────
     oracle_fg  = _DARK_TEXT
@@ -1166,8 +1245,10 @@ def render_card(
             pt_font_size = _mm(1.8)
 
         pt_font = _beleren(pt_font_size)
-        draw.text((_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),
-                  pt_str, font=pt_font, fill=_DARK_TEXT, anchor="mm")
+        pt_box  = (_PT_X, _PT_Y, _PT_X + _PT_W, _PT_Y + _PT_H)
+        _draw_legible_text(
+            draw, canvas, (_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),
+            pt_str, pt_font, pt_box, anchor="mm", fallback=_DARK_TEXT)
 
     # ── Downscale 2× → 1× with LANCZOS ───────────────────────────────────────
     out = canvas.resize((CARD_W, CARD_H), Image.LANCZOS)
