@@ -438,6 +438,12 @@ class BuildRequest(BaseModel):
     frame_style:       str           = "builtin"  # "builtin" (bundled frames) or "m15" (official-style, needs local Card Conjurer)
     commander_tribe:   str           = ""     # override creature tribe to reskin; "" = auto-detect
     custom_pips:       bool          = False  # themed 2-colour mana pips (disc + black silhouette)
+    # Two-phase flow: a decklist generated up front (POST /api/deck/generate-list)
+    # is passed back here so the build skips DeckBuilder and themes/renders this
+    # exact list. tribal_overrides = user-chosen {OriginalType: Replacement} from
+    # the theme step's per-tribe fields (multi-tribe reskin; wins over auto-detect).
+    prebuilt_deck:     Optional[list] = None
+    tribal_overrides:  Optional[dict] = None
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
@@ -1079,7 +1085,19 @@ def _run_build(job_id: str, req: BuildRequest):
         ps_label    = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
         import_meta: dict = {}
 
-        if req.deck_url or req.deck_list:
+        if req.prebuilt_deck:
+            # ── Phase-2 build: theme/render a decklist generated in phase 1 ───
+            # (POST /api/deck/generate-list). Skip DeckBuilder entirely and use
+            # the exact list the user reviewed when choosing tribe replacements.
+            _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Looking up {req.commander_name}..."}))
+            card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
+            if not card:
+                raise ValueError(f"Commander not found: {req.commander_name}")
+            deck = list(req.prebuilt_deck)
+            stats = compute_stats(card, deck)
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg":
+                f"Using pre-generated deck — {stats['total_cards']} cards, commander {card['name']}"}))
+        elif req.deck_url or req.deck_list:
             # ── Import an existing decklist ───────────────────────────────────
             src_input = (req.deck_url or req.deck_list)
             _push(job_id, "progress", json.dumps(
@@ -1193,6 +1211,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 commander_gender=req.face_gender,
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
                 commander_tribe=req.commander_tribe or "",
+                tribal_map_override=req.tribal_overrides or None,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -1283,6 +1302,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
             "frame_style":      req.frame_style or "builtin",
+            "tribal_overrides": req.tribal_overrides or {},
             "custom_pips":      req.custom_pips,
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
@@ -1642,6 +1662,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "crew_gender":      req.crew_gender or source_data.get("crew_gender", "either"),
             "border_theme":     source_data.get("border_theme", ""),
             "frame_style":      source_data.get("frame_style", "builtin"),
+            "tribal_overrides": source_data.get("tribal_overrides", {}),
             "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
             "built_at":         time.time(),
@@ -2344,6 +2365,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 commander_gender=face_gender_rt,
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
                 commander_tribe=(req.commander_tribe or ""),
+                tribal_map_override=source_data.get("tribal_overrides") or None,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
@@ -2433,6 +2455,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "llm_model":        llm_model_rt or "",
             "border_theme":     source_data.get("border_theme", ""),
             "frame_style":      source_data.get("frame_style", "builtin"),
+            "tribal_overrides": source_data.get("tribal_overrides", {}),
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
@@ -2633,6 +2656,55 @@ async def get_playstyles():
         {"key": k, "label": PLAYSTYLES[k]["label"], "description": PLAYSTYLES[k]["description"]}
         for k in PLAYSTYLE_ORDER
     ]
+
+
+class GenerateListRequest(BaseModel):
+    commander_name: str = Field("", max_length=120)
+    playstyle:      str = "auto"
+    bracket:        int = 3
+
+
+@app.post("/api/deck/generate-list")
+def generate_list(req: GenerateListRequest):
+    """Phase 1 of the two-phase flow: build the 99-card decklist (NO theming/art)
+    so the theme step can show the deck's real creature types for per-tribe reskin.
+    Returns the commander, the (duplicate-aggregated) deck, stats, and the
+    frequency-ordered creature subtypes present. Runs in FastAPI's threadpool."""
+    name = (req.commander_name or "").strip()
+    if not name:
+        raise HTTPException(400, "commander_name is required")
+    card = _scryfall.get_card_by_name(name, fuzzy=True)
+    if not card:
+        raise HTTPException(404, f"Commander not found: {name}")
+    ps_label       = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
+    profile        = build_commander_profile(card)
+    active_themes  = resolve_themes(req.playstyle, profile.themes)
+    slot_overrides = get_slot_adjustments(req.playstyle)
+    deck = DeckBuilder(_scryfall).build(
+        profile, theme_override=active_themes, slot_overrides=slot_overrides,
+        playstyle_label=ps_label, bracket=req.bracket)
+    deck  = aggregate_duplicates(deck)
+    stats = compute_stats(card, deck)
+
+    # Frequency-ordered creature subtypes (commander + deck) for the reskin UI.
+    from collections import Counter
+    counts: "Counter[str]" = Counter()
+    for c in [card] + deck:
+        tl = c.get("type_line", "") or ""
+        if "creature" not in tl.lower():
+            continue
+        norm = tl.replace(" - ", " — ")
+        if "—" not in norm:
+            continue
+        for s in norm.split("—", 1)[1].strip().split():
+            # Skip split/MDFC noise ("//") and non-creature enchantment subtypes
+            # ("Saga") that can ride along on creature-sagas.
+            if s and s.isalpha() and s != "Saga":
+                counts[s] += 1
+    tribes = [{"type": t, "count": n} for t, n in counts.most_common()]
+
+    return {"commander": card, "deck": deck, "stats": stats, "tribes": tribes,
+            "playstyle": ps_label, "bracket": req.bracket}
 
 
 @app.post("/api/deck/build")

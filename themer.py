@@ -912,17 +912,16 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
         head     = full_tl.split("—")[0].strip()
         norm     = full_tl.replace(" - ", " — ")
         subs     = norm.split("—", 1)[1].strip().split() if "—" in norm else []
-        _repl    = next(iter(tribal_map.values())) if tribal_map else ""
         tl       = full_tl  # keep the full type (incl. subtype) visible to the LLM
         if subs:
             mapped = next((tribal_map[s] for s in subs if s in tribal_map), "") if tribal_map else ""
             if mapped:
-                # This creature IS the reskinned tribe — depict & name as the replacement.
+                # This creature IS a reskinned tribe — depict & name as the replacement.
                 tl = f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: depict & name as {mapped}]"
-            elif _repl:
-                # A reskin is active but this creature is NOT in that tribe — depict it
-                # as its OWN kind, never as the reskinned creature (stops over-application).
-                tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}; do NOT draw it as a {_repl}]"
+            elif tribal_map:
+                # A reskin is active but this creature is NOT in a mapped tribe —
+                # depict it as its OWN kind, never as any reskinned creature.
+                tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}; keep its own kind — do NOT reskin it]"
             else:
                 tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}]"
         mechsum  = _mechanic_summary(c)
@@ -1384,6 +1383,7 @@ class Themer:
         commander_gender:   str  = "",   # gender constraint: "male", "female", or "" for either
         lora_vocabulary:    str  = "",   # style-specific LoRA token vocabulary (e.g. RO element/race/class tags)
         commander_tribe:    str  = "",   # override for which tribe to reskin; "" = auto-detect from commander
+        tribal_map_override: Optional[dict] = None,  # user-chosen {OrigType: Replacement} (multi-tribe); wins over auto
     ) -> tuple[ThemedCard, list[ThemedCard]]:
         """
         Apply theme to commander + 99-card deck.
@@ -1427,12 +1427,22 @@ class Themer:
         # art, and the displayed type line. The tribe is the user's override if
         # given, else the commander's primary creature subtype. Other creatures
         # keep their original type (and that type is still fed to the art below).
-        ctribe = _commander_tribe(commander, commander_tribe)
-        if ctribe:
-            print(f"  Generating tribal reskin for commander tribe '{ctribe}'...")
-            tribal_map = _generate_tribal_map(expanded_theme, [ctribe], model=self.model)
+        # User-chosen replacements (from the theme step's per-tribe fields) win
+        # over auto-detection. They can cover MANY tribes, not just the commander's.
+        _user_map = {str(k).strip().title(): str(v).strip()
+                     for k, v in (tribal_map_override or {}).items()
+                     if str(k).strip() and str(v).strip()}
+        if _user_map:
+            tribal_map = _user_map
+            print(f"  [themer] Tribal reskin (user-selected, {len(tribal_map)} type(s)): "
+                  + ", ".join(f"{k}->{v}" for k, v in tribal_map.items()))
         else:
-            tribal_map = {}
+            ctribe = _commander_tribe(commander, commander_tribe)
+            if ctribe:
+                print(f"  Generating tribal reskin for commander tribe '{ctribe}'...")
+                tribal_map = _generate_tribal_map(expanded_theme, [ctribe], model=self.model)
+            else:
+                tribal_map = {}
         if tribal_map:
             print("  [themer] Tribal reskin: "
                   + ", ".join(f"{k}->{v}" for k, v in tribal_map.items()))
