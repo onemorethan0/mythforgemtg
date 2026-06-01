@@ -357,21 +357,26 @@ def render_card_cc(
     has_flavor = bool((flavor_text or "").strip())
     body_size = int(spec.rules.h * H * 0.13)        # starting size; _draw_oracle_text auto-fits
     sym_size  = int(body_size * 1.05)
+    # Pick rules/flavor colour by contrast against the actual text-box pixels:
+    # dark on the M15-regular parchment, light on the full-art translucent panel
+    # (which sits over the art — hardcoded dark was invisible there).
+    rules_fg = cr._legible_text_color(canvas, (rx, ry, rx + rw, ry + rh),
+                                      fallback=cr._DARK_TEXT)
 
     if has_oracle and has_flavor:
         rules_h = int(rh * 0.66)
         flav_y  = ry + rules_h + int(0.012 * H)
         flav_h  = rh - rules_h - int(0.012 * H)
         cr._draw_oracle_text(canvas, oracle_text, rx, ry, rw, rules_h,
-                             sym_size, body_size, cr._DARK_TEXT, center_v=True)
+                             sym_size, body_size, rules_fg, center_v=True)
         cr._draw_flavor_text(canvas, flavor_text, rx, flav_y, rw, flav_h,
-                             int(body_size * 0.92), cr._DARK_TEXT)
+                             int(body_size * 0.92), rules_fg)
     elif has_oracle:
         cr._draw_oracle_text(canvas, oracle_text, rx, ry, rw, rh,
-                             sym_size, body_size, cr._DARK_TEXT, center_v=True)
+                             sym_size, body_size, rules_fg, center_v=True)
     elif has_flavor:
         cr._draw_flavor_text(canvas, flavor_text, rx, ry, rw, rh,
-                             body_size, cr._DARK_TEXT)
+                             body_size, rules_fg)
 
     # ── Power/Toughness text ──────────────────────────────────────────────────────
     if power is not None and toughness is not None:
