@@ -248,6 +248,8 @@ export default function App() {
     setCustomPips(!!d.custom_pips)
     setBorderTheme(d.border_theme || '')
     setFrameStyle(d.frame_style || 'builtin')
+    setTribalOverrides(d.tribal_overrides || {})
+    setGeneratedDeck(null); setDeckTribes([])
     setArtStyle(d.art_style || 'mtg_fantasy')
     setGenerateArt(!!d.generate_art)
     setModelSpeed(d.model_speed || 'quality')
@@ -265,6 +267,20 @@ export default function App() {
     _setJobId(null)
     setDeck(null)
     setStep(STEP.THEME)
+
+    // Repopulate the decklist + creature tribes so the Theme step's per-tribe
+    // reskin fields show (pre-filled with the saved overrides above). Generated
+    // decks only — imported decks have no DeckBuilder list to regenerate.
+    if (!d.imported && (cmd.original_name || '')) {
+      try {
+        const gl = await fetch('/api/deck/generate-list', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ commander_name: cmd.original_name, playstyle: psKey, bracket: d.bracket || 3 }),
+        }).then(r => r.ok ? r.json() : null)
+        if (gl) { setGeneratedDeck(gl.deck); setDeckTribes(gl.tribes || []) }
+      } catch {}
+    }
   }
 
   // Steps shown in the progress indicator (everything before DECK)
