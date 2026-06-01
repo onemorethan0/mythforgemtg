@@ -97,8 +97,8 @@ _M15 = _FrameSpec(
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
     rules=_Box(0.086, 0.6303, 0.828, 0.2875),
     mana_right=0.9292,
-    mana_cy=0.0522 + 0.0543 / 2,
-    mana_size=0.046,
+    mana_cy=0.0613 + (71 / 2100) / 2,   # CC mana-box vertical centre
+    mana_size=0.043,                     # ~ CC 71/1638; was 0.046 (too large, rode high)
 )
 
 # M15 "borderless" / full-art — art fills the WHOLE card; the frame PNG is a
@@ -124,8 +124,8 @@ _M15_FULLART = _FrameSpec(
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
     rules=_Box(0.086, 0.6303, 0.828, 0.2875),
     mana_right=0.9292,
-    mana_cy=0.0522 + 0.0543 / 2,
-    mana_size=0.046,
+    mana_cy=0.0613 + (71 / 2100) / 2,   # CC mana-box vertical centre
+    mana_size=0.043,                     # ~ CC 71/1638; was 0.046 (too large, rode high)
 )
 
 # Frame-style key -> spec. Keys match BuildRequest.frame_style / the UI selector.
