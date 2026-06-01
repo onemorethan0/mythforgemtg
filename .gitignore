@@ -52,6 +52,8 @@ cardconjurer/
 cardconjurer-*/
 cc_assets*/
 **/img/frames/m15/
+# Machine-specific Card Conjurer folder setting (set via the in-app field)
+cc_config.json
 
 # Face upload staging
 face_uploads/

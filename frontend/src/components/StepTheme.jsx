@@ -235,6 +235,10 @@ export default function StepTheme({
   const [expandedStyle, setExpandedStyle] = useState(null)
   const [llmModels, setLlmModels]       = useState([])
   const [frameStyles, setFrameStyles]   = useState([])
+  const [ccDir, setCcDir]               = useState('')
+  const [ccFromEnv, setCcFromEnv]       = useState(false)
+  const [ccSaving, setCcSaving]         = useState(false)
+  const [ccMsg, setCcMsg]               = useState('')
   const [checkpoints, setCheckpoints]   = useState([])
   const selected = BRACKETS.find(b => b.n === bracket) || BRACKETS[2]
   const isRO = artStyle === 'ragnarok_online'
@@ -340,6 +344,28 @@ export default function StepTheme({
     if (artStyle === key) onArtStyleChange('mtg_fantasy')
   }
 
+  async function saveCcDir() {
+    setCcSaving(true); setCcMsg('')
+    try {
+      const res = await fetch('/api/frame-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cc_dir: ccDir }),
+      })
+      const j = await res.json()
+      if (!j.ok) { setCcMsg(j.error || 'Could not save.'); return }
+      // Re-check availability so the M15 / Full-art buttons unlock immediately
+      const fs = await fetch('/api/frame-styles').then(r => r.ok ? r.json() : null)
+      if (fs) setFrameStyles(fs.styles || [])
+      setCcMsg(j.valid ? '✓ Card Conjurer detected — M15 frames unlocked.'
+                       : (j.note || 'Saved, but no img/frames found at that path.'))
+    } catch (e) {
+      setCcMsg(String(e))
+    } finally {
+      setCcSaving(false)
+    }
+  }
+
   // Probe checkpoint availability, LoRA presets, and LLM catalog on mount.
   useEffect(() => {
     let cancelled = false
@@ -359,6 +385,11 @@ export default function StepTheme({
     fetch('/api/frame-styles').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
       setFrameStyles(d.styles || [])
+    }).catch(() => {})
+    fetch('/api/frame-config').then(r => r.ok ? r.json() : null).then(d => {
+      if (cancelled || !d) return
+      setCcDir(d.cc_dir || '')
+      setCcFromEnv(!!d.from_env)
     }).catch(() => {})
     fetch('/api/checkpoints').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
@@ -806,9 +837,50 @@ export default function StepTheme({
                 )
               })}
             </div>
-            {frameStyles.some(fs => fs.key === 'm15' && !fs.available) && (
-              <div style={{ fontSize: 11, color: '#57534e', marginTop: 8, lineHeight: 1.5 }}>
-                🔒 Official M15 needs a local Card Conjurer install — set <code>MYTHFORGE_CC_DIR</code> (see README). Selecting it without assets falls back to built-in.
+            {/* Card Conjurer folder config — shown when an M15 style is locked
+                OR a path is already configured (so users can edit it). */}
+            {(frameStyles.some(fs => (fs.key === 'm15' || fs.key === 'm15_fullart') && !fs.available) || ccDir) && (
+              <div style={{ marginTop: 10, padding: 10, background: '#0c0a09', border: '1px solid #292524', borderRadius: 10 }}>
+                <div style={{ fontSize: 11, color: '#a8a29e', marginBottom: 6, lineHeight: 1.5 }}>
+                  🗂 <strong>Card Conjurer folder</strong> — to unlock the M15 / Full-art frames, install Card Conjurer locally and point Myth Forge at its folder (the one containing <code>img/frames</code>).
+                </div>
+                {ccFromEnv ? (
+                  <div style={{ fontSize: 11, color: '#57534e' }}>
+                    Set via the <code>MYTHFORGE_CC_DIR</code> environment variable: <span style={{ color: '#78716c' }}>{ccDir}</span>
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <input
+                        type="text"
+                        style={{
+                          flex: 1, background: '#1c1917', border: '1px solid #44403c',
+                          borderRadius: 8, padding: '8px 12px', color: '#f5f5f4', fontSize: 13,
+                          outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+                        }}
+                        placeholder="C:\\path\\to\\cardconjurer"
+                        value={ccDir}
+                        onChange={e => setCcDir(e.target.value)}
+                      />
+                      <button
+                        onClick={saveCcDir}
+                        disabled={ccSaving}
+                        style={{
+                          fontSize: 12, padding: '8px 16px', background: '#1c2e1c',
+                          border: '1px solid #4ade80', borderRadius: 8,
+                          color: '#4ade80', cursor: ccSaving ? 'wait' : 'pointer', fontFamily: 'inherit',
+                        }}
+                      >
+                        {ccSaving ? 'Saving…' : 'Save'}
+                      </button>
+                    </div>
+                    {ccMsg && (
+                      <div style={{ fontSize: 11, color: ccMsg.startsWith('✓') ? '#4ade80' : '#d97706', marginTop: 6 }}>
+                        {ccMsg}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             )}
           </div>

@@ -260,14 +260,16 @@ card_assets/
 
 **This is opt-in and ships no frame artwork.** The module is clean-room code; the frame PNGs are © Wizards of the Coast / their authors. You supply them yourself — exactly like LoRAs/checkpoints:
 
-1. Install Card Conjurer locally (clone a fork, run it once) **outside this repo**.
-2. Set the environment variable `MYTHFORGE_CC_DIR` to its root (the folder containing `img/frames/…`) **before starting the server**:
-   ```cmd
-   set MYTHFORGE_CC_DIR=C:\path\to\cardconjurer
-   ```
-3. In the app's **Theme step**, the **Card Frame Style** selector now offers **Official-style (M15)** alongside **Built-in Frames** (it's enabled only when the assets are detected; otherwise it shows locked). Pick it per deck. If assets are missing it silently falls back to the bundled frames. The choice is saved with the deck, so Rebuild/Retheme/Regen reuse it.
+1. Install Card Conjurer locally **outside this repo** — clone a fork (e.g. `git clone https://github.com/Investigamer/cardconjurer.git`). You only need the `img/frames/…` assets; a sparse checkout of `img/frames/m15` is enough for the M15 styles.
+2. **Point Myth Forge at that folder.** Two ways (the env var wins if both are set):
+   - **Easiest — in the app:** on the **Theme step**, the **Card Frame Style** selector shows a 🗂 *Card Conjurer folder* field whenever M15 is locked. Paste the folder path (the one containing `img/frames`) and click **Save** — the M15 / Full-art options unlock immediately. Saved to a gitignored `cc_config.json`.
+   - **Or an environment variable** (persistent / power users): set `MYTHFORGE_CC_DIR` to that folder before starting the server.
+     ```cmd
+     setx MYTHFORGE_CC_DIR "C:\path\to\cardconjurer"
+     ```
+3. Pick **Official-style (M15)** or **Full-art (Borderless)** per deck. If assets are missing it silently falls back to the bundled frames. The choice is saved with the deck, so Rebuild/Retheme/Regen reuse it.
 
-`GET /api/frame-styles` reports which systems are available (drives the selector).
+`GET /api/frame-styles` reports which systems are available; `GET/POST /api/frame-config` reads/sets the folder (drives the in-app field).
 
 **Two M15 styles are supported**, both selectable in the Theme step when the assets are detected:
 - **Official-style (M15)** — the standard modern frame with the usual art window.

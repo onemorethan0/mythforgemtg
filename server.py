@@ -3180,6 +3180,51 @@ def get_frame_styles():
     }
 
 
+class FrameConfigRequest(BaseModel):
+    cc_dir: str = Field("", max_length=600)
+
+
+@app.get("/api/frame-config")
+def get_frame_config():
+    """Current Card Conjurer folder setting (for the in-app configuration field)."""
+    try:
+        import cc_frames
+        return {
+            "cc_dir":   cc_frames.configured_cc_dir(),
+            "from_env": bool(os.environ.get("MYTHFORGE_CC_DIR", "").strip()),
+            "valid":    cc_frames.cc_root() is not None,
+        }
+    except Exception as e:
+        return {"cc_dir": "", "from_env": False, "valid": False, "error": str(e)}
+
+
+@app.post("/api/frame-config")
+def set_frame_config(req: FrameConfigRequest):
+    """Set the Card Conjurer folder from the UI. Persists to cc_config.json.
+    The MYTHFORGE_CC_DIR env var (if set) always takes precedence over this."""
+    import cc_frames
+    if os.environ.get("MYTHFORGE_CC_DIR", "").strip():
+        return {
+            "ok": False,
+            "error": "The MYTHFORGE_CC_DIR environment variable is set and overrides this setting. Unset it to configure the folder here.",
+            "cc_dir": cc_frames.configured_cc_dir(),
+            "valid": cc_frames.cc_root() is not None,
+        }
+    path = (req.cc_dir or "").strip()
+    cc_frames.set_cc_dir(path)
+    root = cc_frames.cc_root()
+    valid = root is not None
+    return {
+        "ok": True,
+        "cc_dir": cc_frames.configured_cc_dir(),
+        "valid": valid,
+        "m15":         cc_frames.is_available("m15"),
+        "m15_fullart": cc_frames.is_available("m15_fullart"),
+        "note": ("" if valid or not path else
+                 "Folder set, but no img/frames found there — check the path points to your Card Conjurer root."),
+    }
+
+
 @app.get("/api/art-styles")
 def get_art_styles():
     """

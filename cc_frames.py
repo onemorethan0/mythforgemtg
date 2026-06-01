@@ -24,6 +24,7 @@ so adding more packs (8th edition, Showcase, Planeswalker, …) is just another 
 """
 from __future__ import annotations
 
+import json
 import os
 from dataclasses import dataclass
 from functools import lru_cache
@@ -143,9 +144,36 @@ _FONT_FILES = {
 
 
 # ── Asset resolution ───────────────────────────────────────────────────────────
+# Users can configure the Card Conjurer folder two ways (env var wins):
+#   1. MYTHFORGE_CC_DIR environment variable (power users / persistent)
+#   2. cc_config.json in the project root: {"cc_dir": "C:\\path\\to\\cardconjurer"}
+#      — written by the in-app "Card Conjurer folder" setting (POST /api/frame-config),
+#      gitignored so it never leaks a machine-specific path to the repo.
+_CONFIG_FILE = Path("cc_config.json")
+
+
+def configured_cc_dir() -> str:
+    """The configured CC path string (env var first, then cc_config.json). May be ''."""
+    d = os.environ.get("MYTHFORGE_CC_DIR", "").strip()
+    if d:
+        return d
+    try:
+        if _CONFIG_FILE.exists():
+            return (json.loads(_CONFIG_FILE.read_text(encoding="utf-8")).get("cc_dir") or "").strip()
+    except Exception:
+        pass
+    return ""
+
+
+def set_cc_dir(path: str) -> None:
+    """Persist the Card Conjurer folder to cc_config.json (used by the UI)."""
+    _CONFIG_FILE.write_text(json.dumps({"cc_dir": (path or "").strip()}, indent=2),
+                            encoding="utf-8")
+
+
 def cc_root() -> Optional[Path]:
     """The configured local Card Conjurer install, or None if unset/invalid."""
-    d = os.environ.get("MYTHFORGE_CC_DIR", "").strip()
+    d = configured_cc_dir()
     if not d:
         return None
     p = Path(d)
