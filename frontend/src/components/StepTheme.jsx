@@ -122,39 +122,6 @@ const RO_BORDER_PRESETS = [
   { label: '🌿 Payon Bamboo',  kw: 'bamboo and vine nature border', col: '#4ade80' },
 ]
 
-const BRACKETS = [
-  {
-    n: 1, label: 'Exhibition',
-    color: '#4ade80', bg: '#052e16',
-    desc: 'Precon power level. No staples, no infinite combos. Fully theme-focused.',
-    pills: ['No Game Changers', 'No Extra Turns', 'No Combos', 'Basics-heavy lands'],
-  },
-  {
-    n: 2, label: 'Core',
-    color: '#a3e635', bg: '#1a2e05',
-    desc: 'Solid casual play. Good synergies but no format-warping powerhouses.',
-    pills: ['No Game Changers', 'No Extra Turns', 'Check Lands OK', 'No Fast Mana'],
-  },
-  {
-    n: 3, label: 'Upgraded',
-    color: '#eab308', bg: '#422006',
-    desc: 'The most popular bracket. Strong synergies, up to 3 Game Changers allowed.',
-    pills: ['≤3 Game Changers', 'Extra Turns OK', 'Fetch/Shock Lands', 'No MLD'],
-  },
-  {
-    n: 4, label: 'Optimized',
-    color: '#f97316', bg: '#431407',
-    desc: 'High-powered. Infinite combos, tutors, fast mana — bring your strongest cards.',
-    pills: ['Unlimited Game Changers', 'Infinite Combos OK', 'MLD OK', 'All Lands'],
-  },
-  {
-    n: 5, label: 'cEDH',
-    color: '#ef4444', bg: '#450a0a',
-    desc: 'Competitive Commander. Maximum power, fastest possible wins. No mercy.',
-    pills: ['No Restrictions', 'Tutor Everything', 'Win ASAP', 'Best Cards Only'],
-  },
-]
-
 const s = {
   wrap: { maxWidth: 640, width: '100%', marginTop: 16 },
   commanderBar: { display: 'flex', alignItems: 'center', gap: 16, background: '#1c1917', border: '1px solid #292524', borderRadius: 12, padding: '12px 20px', marginBottom: 20 },

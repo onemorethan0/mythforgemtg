@@ -290,6 +290,31 @@ def _commander_tribe(commander: dict, override: str = "") -> str:
     return subs[0]
 
 
+def _name_too_close(word: str, cmd_tokens: list[str]) -> bool:
+    """True if `word` is a respelling / near-anagram of a commander name token —
+    catches *soft* bleed the exact-token guard misses (e.g. Krenko -> Kretno,
+    Krenkor). Conservative thresholds so genuinely different names aren't flagged."""
+    import difflib
+    w = (word or "").lower().strip(",.'\"")
+    if len(w) < 4:
+        return False
+    for tok in cmd_tokens:
+        t = tok.lower()
+        if len(t) < 5:
+            continue
+        if w == t:
+            return True
+        # High-confidence respelling: very similar string, OR same 4-char prefix,
+        # OR same letter multiset (anagram) on a long token.
+        if difflib.SequenceMatcher(None, w, t).ratio() >= 0.78:
+            return True
+        if len(w) >= 5 and w[:4] == t[:4]:
+            return True
+        if len(w) >= 5 and sorted(w) == sorted(t):
+            return True
+    return False
+
+
 def _generate_tribal_map(theme: str, tribes: list[str],
                           model: str = OLLAMA_MODEL) -> dict:
     """Ask the LLM for one theme-fitting replacement creature type per tribe.
@@ -1041,7 +1066,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     • All others: 2–5 word name, no comma, specific and punchy.
     • NAME VARIETY — MANDATORY: do NOT fall into a single template. Across the deck MIX these grammatical SHAPES (don't pick one): a single coined word; a possessive (a character's name + a concept); two words fused into one coinage; a place/relic name; a verb-led imperative (verb + object). Making most names "The [Adjective] [Noun]" is a FAILURE — use that shape rarely. Invent each name FRESH from this card's own col 2 + function; do NOT reuse any name shown as an example anywhere in this prompt.
     • NAME UNIQUENESS: every idx ≥ 1 card needs its own unique pre-comma / lead word.
-    • DO NOT BLEED THE COMMANDER'S NAME: never reuse the commander's proper name ("{commander_name}") or its distinctive proper nouns in ANY other card's name. Each card draws its identity from ITS OWN col 2 — never the commander's name and never another card's. (E.g. an Elspeth card must NOT be renamed using "Arahbo".)
+    • DO NOT BLEED THE COMMANDER'S NAME: never reuse the commander's proper name ("{commander_name}"), its distinctive proper nouns, OR any rhyme / respelling / near-anagram of it (if the commander is "Krenko", do NOT name other cards "Kretno", "Krenkor", "Kraztro", etc.) in ANY other card's name. Each card draws its identity from ITS OWN col 2 — never the commander's name and never another card's. (E.g. an Elspeth card must NOT be renamed using "Arahbo".)
 - "art_prompt": 35-50 words. LANDSCAPE orientation. Strict rules:
     MEDIUM — start with: {themer_medium or _DEFAULT_MEDIUM}. Always medium first.
     NAME-ART COHERENCE — #1 RULE, NON-NEGOTIABLE: Translate the themed_name into 2–3 CONCRETE VISUAL ELEMENTS that physically appear in the scene, and lead the description with them. DEPICT the name — do NOT merely paste the name text at the start of the prompt. Technique (these only show HOW to depict a name — NEVER copy these names onto a card): a name meaning "fire-blade" → a sword wreathed in live fire; a possessive name → its owner mid-action with the named object/effect; a place-name → that location's defining terrain and structures; a verb-led name → the action caught at its peak. Every noun/verb in the name should be visible in the art. A viewer seeing the art must be able to guess the name. Choose the themed_name FIRST, then build the scene from its words.
@@ -1637,6 +1662,12 @@ class Themer:
                     if re.search(rf"\b{re.escape(_tok)}\b", themed_name_raw, re.I):
                         themed_name_raw = re.sub(
                             rf"\b{re.escape(_tok)}\b[,]?\s*", "", themed_name_raw, flags=re.I)
+                # Soft bleed: the lead (pre-comma) word is a respelling/near-anagram
+                # of the commander's name (Krenko -> Kretno). Drop just that word.
+                _lead = themed_name_raw.split(",")[0].strip().split()
+                if _lead and _name_too_close(_lead[0], _cmd_tokens):
+                    themed_name_raw = re.sub(
+                        rf"^\s*{re.escape(_lead[0])}[,]?\s*", "", themed_name_raw, flags=re.I)
                 themed_name_raw = re.sub(r"\s{2,}", " ", themed_name_raw).strip().lstrip(",").strip()
                 if not themed_name_raw or len(themed_name_raw) < 3:
                     themed_name_raw = card["name"]   # fallback to original if we stripped too much
