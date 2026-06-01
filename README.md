@@ -269,7 +269,13 @@ card_assets/
 
 `GET /api/frame-styles` reports which systems are available (drives the selector).
 
-> ⚠️ **Do not commit Card Conjurer assets to a public repo.** They're copyrighted and were the subject of a Wizards of the Coast cease-and-desist. `.gitignore` guards against accidental commits, but keep your CC install outside the project folder. Currently the M15 "regular" pack is supported (mono/gold/artifact/land + P/T). Text, mana symbols, and white-vs-black legibility reuse the built-in renderer.
+**Two M15 styles are supported**, both selectable in the Theme step when the assets are detected:
+- **Official-style (M15)** — the standard modern frame with the usual art window.
+- **Full-art (Borderless)** — edge-to-edge full-bleed art with a translucent title plate + text box (the borderless/showcase look). Great for AI-generated art that deserves the whole card.
+
+Both cover mono / gold / artifact / land + P/T; text, mana symbols, and white-vs-black legibility reuse the built-in renderer (the legibility picker auto-handles white text over full-art).
+
+> ⚠️ **Do not commit Card Conjurer assets to a public repo.** They're copyrighted and were the subject of a Wizards of the Coast cease-and-desist. `.gitignore` guards against accidental commits, but keep your CC install outside the project folder.
 
 ---
 

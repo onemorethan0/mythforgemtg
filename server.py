@@ -3160,17 +3160,21 @@ def get_frame_styles():
     requires a local Card Conjurer install (MYTHFORGE_CC_DIR) with M15 assets."""
     try:
         import cc_frames
-        m15_ok = cc_frames.is_available()
+        m15_ok = cc_frames.is_available("m15")
+        fullart_ok = cc_frames.is_available("m15_fullart")
     except Exception:
-        m15_ok = False
+        m15_ok = fullart_ok = False
+    cc_hint = "Install Card Conjurer locally and set MYTHFORGE_CC_DIR to enable."
     return {
         "styles": [
             {"key": "builtin", "label": "Built-in Frames", "available": True,
              "note": "Bundled proxy frames — always available."},
             {"key": "m15", "label": "Official-style (M15)", "available": m15_ok,
              "note": ("Modern frames rendered from your local Card Conjurer install."
-                      if m15_ok else
-                      "Install Card Conjurer locally and set MYTHFORGE_CC_DIR to enable.")},
+                      if m15_ok else cc_hint)},
+            {"key": "m15_fullart", "label": "Full-art (Borderless)", "available": fullart_ok,
+             "note": ("Edge-to-edge full-art borderless frames from your local Card Conjurer."
+                      if fullart_ok else cc_hint)},
         ],
         "default": "builtin",
     }

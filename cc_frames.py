@@ -18,9 +18,9 @@ cc_frames.py — OPTIONAL "official-style" M15 frame rendering via Card Conjurer
 ║  returns None and the caller falls back to the built-in renderer.              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-Currently implemented: the **M15 "regular" modern frame** (the standard current
-card look) — the pack most users want. The layout is data-driven (see _M15), so
-adding more packs (8th edition, Showcase, Planeswalker, …) is just another spec.
+Implemented styles (see _SPECS): "m15" (regular modern frame) and "m15_fullart"
+(borderless / full-bleed art). The layout is data-driven (one _FrameSpec each),
+so adding more packs (8th edition, Showcase, Planeswalker, …) is just another spec.
 """
 from __future__ import annotations
 
@@ -100,6 +100,39 @@ _M15 = _FrameSpec(
     mana_size=0.046,
 )
 
+# M15 "borderless" / full-art — art fills the WHOLE card; the frame PNG is a
+# translucent overlay (title plate + gradient text box). Text reads white over
+# the art, which the legibility picker handles automatically by sampling.
+_M15_FULLART = _FrameSpec(
+    subdir="m15/borderless",
+    frames={
+        "W": "m15GenericShowcaseFrameW.png", "U": "m15GenericShowcaseFrameU.png",
+        "B": "m15GenericShowcaseFrameB.png", "R": "m15GenericShowcaseFrameR.png",
+        "G": "m15GenericShowcaseFrameG.png", "M": "m15GenericShowcaseFrameM.png",
+        "A": "m15GenericShowcaseFrameA.png", "L": "m15GenericShowcaseFrameL.png",
+        "C": "m15GenericShowcaseFrameC.png",
+    },
+    pt={
+        "W": "pt/w.png", "U": "pt/u.png", "B": "pt/b.png", "R": "pt/r.png",
+        "G": "pt/g.png", "M": "pt/m.png", "A": "pt/a.png", "C": "pt/l.png",
+    },
+    art=_Box(0.0, 0.0, 1.0, 0.9224),                 # full-bleed art
+    set_symbol=_Box(0.9213 - 0.12, 0.5910, 0.12, 0.0410),
+    pt_box=_Box(1146 / 1500, 1861 / 2100, 274 / 1500, 140 / 2100),
+    title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
+    type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
+    rules=_Box(0.086, 0.6303, 0.828, 0.2875),
+    mana_right=0.9292,
+    mana_cy=0.0522 + 0.0543 / 2,
+    mana_size=0.046,
+)
+
+# Frame-style key -> spec. Keys match BuildRequest.frame_style / the UI selector.
+_SPECS: dict[str, _FrameSpec] = {
+    "m15":         _M15,
+    "m15_fullart": _M15_FULLART,
+}
+
 # Logical font name -> file in card_assets/fonts (all already shipped with the app)
 _FONT_FILES = {
     "belerenb":   "beleren-bold_P1.01.ttf",
@@ -119,14 +152,17 @@ def cc_root() -> Optional[Path]:
     return p if (p / "img" / "frames").is_dir() else None
 
 
-def is_available() -> bool:
-    """True if a usable M15 frame pack is present locally."""
+def is_available(style: str = "m15") -> bool:
+    """True if the given frame pack's assets are present locally."""
     root = cc_root()
     if root is None:
         return False
-    fdir = root / "img" / "frames" / _M15.subdir
+    spec = _SPECS.get(style)
+    if spec is None:
+        return False
+    fdir = root / "img" / "frames" / spec.subdir
     # Require at least the base colored frames to consider the pack usable.
-    return (fdir / _M15.frames["M"]).exists() and (fdir / _M15.frames["R"]).exists()
+    return (fdir / spec.frames["M"]).exists() and (fdir / spec.frames["R"]).exists()
 
 
 @lru_cache(maxsize=64)
@@ -149,20 +185,21 @@ def _font(name: str, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default(size=size)
 
 
-# ── Color identity -> M15 frame key ────────────────────────────────────────────
-def _cc_frame_key(colors: list, type_line: str) -> str:
+# ── Color identity -> frame key (per spec) ─────────────────────────────────────
+def _cc_frame_key(colors: list, type_line: str, spec: _FrameSpec) -> str:
     tl = (type_line or "").lower()
-    if "land" in tl:
+    if "land" in tl and "L" in spec.frames:
         return "L"
     if not colors:
-        return "A"            # M15 regular has no plain colorless frame; artifact reads best
+        # prefer a dedicated colorless frame if the pack has one, else artifact
+        return "C" if "C" in spec.frames else "A"
     if len(colors) == 1:
-        return colors[0] if colors[0] in _M15.frames else "M"
+        return colors[0] if colors[0] in spec.frames else "M"
     return "M"                # 2+ colors -> gold/multicolored (duals need masks; v1 = gold)
 
 
-def _pt_key(frame_key: str) -> str:
-    if frame_key in _M15.pt:
+def _pt_key(frame_key: str, spec: _FrameSpec) -> str:
+    if frame_key in spec.pt:
         return frame_key
     return "C"
 
@@ -175,18 +212,23 @@ def render_card_cc(
     art_image: Optional[Image.Image] = None,
     set_symbol: Optional[Image.Image] = None,
     flavor_text: str = "",
-    border_theme: str = "",        # accepted for signature parity; not used by M15
+    border_theme: str = "",        # accepted for signature parity; not used here
+    style: str = "m15",            # which pack: "m15" (regular) or "m15_fullart"
 ) -> Optional[Image.Image]:
     """
-    Render `card` using locally-installed Card Conjurer M15 frames.
-    Returns a 750×1050 RGBA image, or None if CC assets aren't available (so the
+    Render `card` using locally-installed Card Conjurer frames for `style`
+    ("m15" = regular modern frame, "m15_fullart" = borderless/full-art).
+    Returns a 750×1050 RGBA image, or None if the assets aren't available (so the
     caller can fall back to the built-in renderer). Signature mirrors
     card_renderer.render_card for a drop-in dispatch.
     """
     root = cc_root()
     if root is None:
         return None
-    fdir = root / "img" / "frames" / _M15.subdir
+    spec = _SPECS.get(style)
+    if spec is None:
+        return None
+    fdir = root / "img" / "frames" / spec.subdir
 
     colors    = card.get("color_identity", []) or []
     type_line = card.get("type_line", "") or ""
@@ -194,8 +236,8 @@ def render_card_cc(
     power     = card.get("power")
     toughness = card.get("toughness")
 
-    fkey  = _cc_frame_key(colors, type_line)
-    frame = _load_png(str(fdir / _M15.frames.get(fkey, _M15.frames["M"])))
+    fkey  = _cc_frame_key(colors, type_line, spec)
+    frame = _load_png(str(fdir / spec.frames.get(fkey, spec.frames["M"])))
     if frame is None:
         return None  # asset missing → fall back
 
@@ -207,11 +249,11 @@ def render_card_cc(
 
     # ── Art ────────────────────────────────────────────────────────────────────
     if art_image is not None:
-        ax, ay, aw, ah = px(_M15.art)
+        ax, ay, aw, ah = px(spec.art)
         art = ImageOps.fit(art_image.convert("RGBA"), (aw, ah), Image.LANCZOS)
         canvas.paste(art, (ax, ay))
     else:
-        ax, ay, aw, ah = px(_M15.art)
+        ax, ay, aw, ah = px(spec.art)
         ph = Image.new("RGBA", (aw, ah), (20, 18, 14, 255))
         ImageDraw.Draw(ph).text((aw // 2, ah // 2), themed_name,
                                 font=_font("belerenb", int(0.03 * H)),
@@ -223,14 +265,14 @@ def render_card_cc(
 
     # ── Power/Toughness box ──────────────────────────────────────────────────────
     if power is not None and toughness is not None:
-        pt_png = _load_png(str(fdir / _M15.pt.get(_pt_key(fkey), _M15.pt["C"])))
+        pt_png = _load_png(str(fdir / spec.pt.get(_pt_key(fkey, spec), spec.pt["C"])))
         if pt_png is not None:
-            bx, by, bw, bh = px(_M15.pt_box)
+            bx, by, bw, bh = px(spec.pt_box)
             canvas.alpha_composite(pt_png.resize((bw, bh), Image.LANCZOS), (bx, by))
 
     # ── Set symbol ───────────────────────────────────────────────────────────────
     if set_symbol is not None:
-        sx, sy, sw, sh = px(_M15.set_symbol)
+        sx, sy, sw, sh = px(spec.set_symbol)
         ss = set_symbol.convert("RGBA")
         # fit within the band height, right-anchored
         scale = sh / ss.height
@@ -241,23 +283,23 @@ def render_card_cc(
 
     # ── Mana cost (right-aligned on the title line) ──────────────────────────────
     pips = cr._parse_mana(mana_cost)
-    mana_cy = int(_M15.mana_cy * H)
-    mana_sz = int(_M15.mana_size * H)
-    mana_left = int(_M15.mana_right * W)
+    mana_cy = int(spec.mana_cy * H)
+    mana_sz = int(spec.mana_size * H)
+    mana_left = int(spec.mana_right * W)
     if pips:
-        mana_left = cr._draw_mana_row(canvas, pips, int(_M15.mana_right * W),
+        mana_left = cr._draw_mana_row(canvas, pips, int(spec.mana_right * W),
                                       mana_cy, mana_sz)
 
     # ── Title (auto-fit + legibility-driven colour against the real frame) ───────
-    tx = int(_M15.title.x * W)
-    tcy = int((_M15.title.y + _M15.title.h / 2) * H)
-    title_max = max(int(0.2 * W), (mana_left - int(_M15.title.size * H * 0.3)) - tx)
-    t_size = int(_M15.title.size * H)
-    t_font = _font(_M15.title.font, t_size)
+    tx = int(spec.title.x * W)
+    tcy = int((spec.title.y + spec.title.h / 2) * H)
+    title_max = max(int(0.2 * W), (mana_left - int(spec.title.size * H * 0.3)) - tx)
+    t_size = int(spec.title.size * H)
+    t_font = _font(spec.title.font, t_size)
     t_text = themed_name
     while t_size > int(0.022 * H) and t_font.getlength(t_text) > title_max:
         t_size = int(t_size * 0.92)
-        t_font = _font(_M15.title.font, t_size)
+        t_font = _font(spec.title.font, t_size)
     while t_font.getlength(t_text) > title_max and len(t_text) > 4:
         t_text = t_text[:-2] + "…"
     t_box = (tx, tcy - t_size // 2, tx + max(t_font.getlength(t_text), 1), tcy + t_size // 2)
@@ -265,15 +307,15 @@ def render_card_cc(
                           anchor="lm", fallback=cr._DARK_TEXT)
 
     # ── Type line ────────────────────────────────────────────────────────────────
-    ty_x = int(_M15.type.x * W)
-    ty_cy = int((_M15.type.y + _M15.type.h / 2) * H)
-    ty_max = int(_M15.type.w * W) - int(0.06 * W)   # leave room for the set symbol
-    ty_size = int(_M15.type.size * H)
-    ty_font = _font(_M15.type.font, ty_size)
+    ty_x = int(spec.type.x * W)
+    ty_cy = int((spec.type.y + spec.type.h / 2) * H)
+    ty_max = int(spec.type.w * W) - int(0.06 * W)   # leave room for the set symbol
+    ty_size = int(spec.type.size * H)
+    ty_font = _font(spec.type.font, ty_size)
     ty_text = type_line
     while ty_size > int(0.02 * H) and ty_font.getlength(ty_text) > ty_max:
         ty_size = int(ty_size * 0.92)
-        ty_font = _font(_M15.type.font, ty_size)
+        ty_font = _font(spec.type.font, ty_size)
     while ty_font.getlength(ty_text) > ty_max and len(ty_text) > 4:
         ty_text = ty_text[:-2] + "…"
     ty_box = (ty_x, ty_cy - ty_size // 2, ty_x + max(ty_font.getlength(ty_text), 1),
@@ -282,10 +324,10 @@ def render_card_cc(
                           anchor="lm", fallback=cr._DARK_TEXT)
 
     # ── Rules + flavor (reuse the built-in text engine at M15 bounds) ────────────
-    rx, ry, rw, rh = px(_M15.rules)
+    rx, ry, rw, rh = px(spec.rules)
     has_oracle = bool((oracle_text or "").strip())
     has_flavor = bool((flavor_text or "").strip())
-    body_size = int(_M15.rules.h * H * 0.13)        # starting size; _draw_oracle_text auto-fits
+    body_size = int(spec.rules.h * H * 0.13)        # starting size; _draw_oracle_text auto-fits
     sym_size  = int(body_size * 1.05)
 
     if has_oracle and has_flavor:
@@ -306,8 +348,8 @@ def render_card_cc(
     # ── Power/Toughness text ──────────────────────────────────────────────────────
     if power is not None and toughness is not None:
         pt_str = f"{power}/{toughness}"
-        bx, by, bw, bh = px(_M15.pt_box)
-        pt_size = int(_M15.pt_box.h * H * 0.55)
+        bx, by, bw, bh = px(spec.pt_box)
+        pt_size = int(spec.pt_box.h * H * 0.55)
         pt_font = _font("belerenbsc", pt_size)
         pt_cx = bx + int(0.5 * bw)
         pt_cy = by + int(0.46 * bh)

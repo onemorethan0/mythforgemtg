@@ -1000,17 +1000,19 @@ def render_card(
     Render a full MTG-style card.
     Returns a 750×1050 RGBA PIL Image.
     """
-    # ── Optional: official-style M15 frames from a locally-installed Card
-    # Conjurer (assets the user supplies themselves, like LoRAs/checkpoints).
-    # Selected per-build via set_frame_style("m15"); requires MYTHFORGE_CC_DIR +
-    # the M15 assets present. Any miss falls through to the built-in frames.
-    if _FRAME_STYLE == "m15":
+    # ── Optional: Card Conjurer frame packs from a locally-installed CC (assets
+    # the user supplies themselves, like LoRAs/checkpoints). Selected per-build
+    # via set_frame_style() — e.g. "m15" (regular) or "m15_fullart" (borderless
+    # full-art). Requires MYTHFORGE_CC_DIR + the pack's assets present; any miss
+    # falls through to the built-in frames.
+    if _FRAME_STYLE != "builtin":
         try:
             import cc_frames
-            if cc_frames.is_available():
+            if cc_frames.is_available(_FRAME_STYLE):
                 _cc = cc_frames.render_card_cc(
                     card, themed_name, oracle_text,
-                    art_image, set_symbol, flavor_text, border_theme)
+                    art_image, set_symbol, flavor_text, border_theme,
+                    style=_FRAME_STYLE)
                 if _cc is not None:
                     return _cc
         except Exception as _e:
