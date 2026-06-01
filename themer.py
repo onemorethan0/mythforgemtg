@@ -273,11 +273,21 @@ def _creature_subtypes(type_line: str) -> list[str]:
 
 def _commander_tribe(commander: dict, override: str = "") -> str:
     """The single tribe to reskin. Uses the user-set override if given, else the
-    commander's primary (first) creature subtype. '' if the commander is typeless."""
+    commander's most distinctive creature subtype. '' if the commander is typeless.
+
+    Auto-detect skips near-universal *races* that span every class — reskinning
+    'Human' would recolour a huge slice of the deck — preferring the class/tribe
+    subtype when the commander is e.g. 'Human Wizard' (→ Wizard) or 'Human Cleric'
+    (→ Cleric). Distinctive races (Elf, Goblin, Cat, Dragon, …) are kept as-is."""
     if override and override.strip():
         return override.strip().title()
     subs = _creature_subtypes(commander.get("type_line", ""))
-    return subs[0] if subs else ""
+    if not subs:
+        return ""
+    _GENERIC_RACE = {"Human"}
+    if subs[0] in _GENERIC_RACE and len(subs) > 1:
+        return subs[1]
+    return subs[0]
 
 
 def _generate_tribal_map(theme: str, tribes: list[str],
@@ -879,7 +889,10 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     # different cards across the deck don't end up with the same themed_name.
     avoid_block = ""
     if avoid_names:
-        taken = "; ".join(dict.fromkeys(n for n in avoid_names if n))[:1800]
+        # Cap generously so the FINAL batches of a ~99-card deck still see every
+        # earlier name (≈99 names × ~18 chars ≈ 1.8k); 1800 truncated late batches
+        # and let near-duplicates slip past the LLM-side dedup.
+        taken = "; ".join(dict.fromkeys(n for n in avoid_names if n))[:5000]
         if taken:
             avoid_block = (
                 "\nALREADY-USED NAMES — these themed_names are TAKEN by other cards "
@@ -1020,15 +1033,19 @@ Example: Theme=Volcanic Hellscape, no character, card=Lightning Bolt →
 
 Return ONLY a JSON array, nothing else. Each object must have:
 - "idx": the card index number
-- "themed_name": base it on what the card DOES (col 4 mechanics + col 6 role) translated into the world.
-    • Legendary Creature / Legendary Planeswalker: "Firstname, Title" — max 6 words, max 3 before comma, max 3 after. Pre-comma MUST be a real-sounding character name. Post-comma reflects the card's ROLE/SOUL, not just its original name.
-    • CRITICAL — NAME UNIQUENESS: Every idx ≥ 1 card needs its own unique pre-comma name.
-    • CRITICAL — DO NOT BLEED THE COMMANDER'S NAME: never reuse the commander's proper name ("{commander_name}") or its distinctive proper nouns in ANY other card's name. Each non-commander card has its OWN original character/place name, unrelated to the commander. (You MAY occasionally keep ONE evocative noun from THIS card's own original name in col 2 — but never the commander's name, and never another card's name. E.g. an Elspeth card must NOT be renamed using "Arahbo".)
-    • Legendary non-creature/planeswalker: plain 2–4 word descriptive name, NO comma ("The Ashen Gate", "Void Crucible").
-    • All others: dramatic 2–5 word name, no comma, specific and punchy.
+- "themed_name": a THEME-WORLD reskin of THIS card that KEEPS THE FEEL OF THE ORIGINAL (col 2). Fuse two things:
+    (a) IDENTITY — carry over the original card's core concept / iconic imagery from its name in col 2, translated into the world. (Lightning Bolt = a sudden strike/bolt; Sol Ring = a ring/loop of power; Counterspell = negation/silence; Cultivate = growth/gathering; Doom Blade = a killing blade; Rampant Growth = surging life.) Someone who knows the original should RECOGNISE it in the new name.
+    (b) FUNCTION — what it DOES (col 4 mechanics + col 6 role), so the name also feels true to the card's effect.
+  Do BOTH at once. Do NOT merely bolt theme adjectives onto the old name, and do NOT emit a generic mechanics label ("Mana Source", "Removal Rite") that erases the card's identity — translate the original concept into the theme.
+    • Legendary Creature / Legendary Planeswalker: "Firstname, Title" — max 6 words (≤3 before the comma, ≤3 after). Pre-comma = a real-sounding proper character name; post-comma = the card's role/identity in the world (echoing the original where it has a title, e.g. "…, the Mob Boss" for a goblin-king effect).
+    • Legendary non-creature/planeswalker: 2–4 word name, NO comma.
+    • All others: 2–5 word name, no comma, specific and punchy.
+    • NAME VARIETY — MANDATORY: do NOT fall into a single template. Across the deck MIX these grammatical SHAPES (don't pick one): a single coined word; a possessive (a character's name + a concept); two words fused into one coinage; a place/relic name; a verb-led imperative (verb + object). Making most names "The [Adjective] [Noun]" is a FAILURE — use that shape rarely. Invent each name FRESH from this card's own col 2 + function; do NOT reuse any name shown as an example anywhere in this prompt.
+    • NAME UNIQUENESS: every idx ≥ 1 card needs its own unique pre-comma / lead word.
+    • DO NOT BLEED THE COMMANDER'S NAME: never reuse the commander's proper name ("{commander_name}") or its distinctive proper nouns in ANY other card's name. Each card draws its identity from ITS OWN col 2 — never the commander's name and never another card's. (E.g. an Elspeth card must NOT be renamed using "Arahbo".)
 - "art_prompt": 35-50 words. LANDSCAPE orientation. Strict rules:
     MEDIUM — start with: {themer_medium or _DEFAULT_MEDIUM}. Always medium first.
-    NAME-ART COHERENCE — #1 RULE, NON-NEGOTIABLE: Translate the themed_name into 2–3 CONCRETE VISUAL ELEMENTS that physically appear in the scene, and lead the description with them. DEPICT the name — do NOT merely paste the name text at the start of the prompt. Examples: "The Ashen Gate" → a massive ash-caked stone gateway looms, grey embers drifting; "The Hollow Grove" → hollowed-out husk-trees ring a clearing; "The Crystalline Rift" → a jagged glowing crystal fissure splits the ground; "Ember Blade" → a sword wreathed in live fire. Every noun/adjective in the name should be visible in the art. A viewer seeing the art must be able to guess the name. Choose the themed_name FIRST, then build the scene from its words.
+    NAME-ART COHERENCE — #1 RULE, NON-NEGOTIABLE: Translate the themed_name into 2–3 CONCRETE VISUAL ELEMENTS that physically appear in the scene, and lead the description with them. DEPICT the name — do NOT merely paste the name text at the start of the prompt. Technique (these only show HOW to depict a name — NEVER copy these names onto a card): a name meaning "fire-blade" → a sword wreathed in live fire; a possessive name → its owner mid-action with the named object/effect; a place-name → that location's defining terrain and structures; a verb-led name → the action caught at its peak. Every noun/verb in the name should be visible in the art. A viewer seeing the art must be able to guess the name. Choose the themed_name FIRST, then build the scene from its words.
     NO TEMPLATE REUSE — MANDATORY: Each card's scene must be UNIQUE. Never reuse another card's setting sentence or copy a scene description across cards (e.g. do not give three cards "a vast echoing crystal cavern where shadowy figures whisper"). The themed_name is what makes each scene different — vary the location, framing, time, and focal subject card-to-card.
     THEME + CHARACTER (PRIMARY) — directly after the medium, place the theme-world setting and (if present) the character. This claims the model's strongest attention budget.
     MECHANICAL INFLUENCE (SECONDARY) — col 7 should appear as a scene beat, not the centerpiece. Hint at what the card does through a small detail, gesture, or background action.
@@ -1047,7 +1064,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
       ENCHANTMENT/SAGA: "[medium], [theme-world scene with persistent magical aura reflecting the themed_name], [quality]"
     QUALITY — end with ONE tag: {themer_quality or _DEFAULT_QUALITY}
     ORDER: theme-world + character LEAD; mechanical action is a supporting beat near the end of the scene description (before the quality tag).
-- "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL, not just generic atmosphere.
+- "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL and the spirit of the original card (col 2) — evocative of what it is and does, not generic atmosphere.
 {avoid_block}
 Cards to process (idx|name|type|mechanics|color_palette|role|soul):
 {card_block}
