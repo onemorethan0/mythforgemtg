@@ -1544,9 +1544,15 @@ class Themer:
         # avoid_names makes the LLM avoid collisions, but a within-batch slip or a
         # non-compliant model could still repeat a name. Deterministically
         # disambiguate any survivors so two different cards never share a name.
+        # Comma "Name, Title" epithets ONLY for legendary creatures/planeswalkers.
         _EPITHETS = ["the Elder", "Reborn", "Ascendant", "the Veiled", "Eclipsed",
                      "the Gilded", "Resurgent", "the Lost", "Prime", "the Eternal",
                      "Unbound", "the Hollow", "Wakened", "the Fallen", "Redux"]
+        # Lands / spells / artifacts get a NO-COMMA adjective instead, so a land
+        # never becomes "Place, Title" (which reads like a legendary creature).
+        _PLACE_ADJ = ["Eclipsed", "Veiled", "Hollow", "Gilded", "Fallen", "Lost",
+                      "Sunken", "Riven", "Drowned", "Forgotten", "Shattered",
+                      "Ashen", "Buried", "Wakeless"]
         _seen_names: set[str] = set()
         _dupes = 0
         for _i in sorted(themed_entries):
@@ -1558,12 +1564,21 @@ class Themer:
                 _seen_names.add(_nm.lower())
                 continue
             _dupes += 1
+            _tl = (all_cards[_i].get("type_line") or "").lower() if _i < len(all_cards) else ""
+            _is_legend_char = ("legendary" in _tl
+                               and ("creature" in _tl or "planeswalker" in _tl))
             base = _nm
             cand = ""
-            for k in range(len(_EPITHETS) + 20):
-                ep = _EPITHETS[(_i + k) % len(_EPITHETS)]
-                cand = f"{base}, {ep}" if "," not in base else f"{base} ({ep})"
-                if k >= len(_EPITHETS):
+            for k in range(40):
+                if _is_legend_char:
+                    ep = _EPITHETS[(_i + k) % len(_EPITHETS)]
+                    cand = f"{base}, {ep}" if "," not in base else f"{base} ({ep})"
+                else:
+                    adj = _PLACE_ADJ[(_i + k) % len(_PLACE_ADJ)]
+                    # Prepend the adjective (after a leading "The" if present) — no comma.
+                    cand = (f"The {adj} {base[4:]}" if base[:4].lower() == "the "
+                            else f"{adj} {base}")
+                if k >= max(len(_EPITHETS), len(_PLACE_ADJ)):
                     cand = f"{cand} {k}"
                 if cand.lower() not in _seen_names:
                     break

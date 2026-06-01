@@ -118,7 +118,10 @@ _M15_FULLART = _FrameSpec(
         "G": "pt/g.png", "M": "pt/m.png", "A": "pt/a.png", "C": "pt/l.png",
     },
     art=_Box(0.0, 0.0, 1.0, 0.9224),                 # full-bleed art
-    set_symbol=_Box(0.9213 - 0.12, 0.5910, 0.12, 0.0410),
+    # On the borderless type band the symbol must sit ON the type line (the
+    # regular frame's 0.591 dropped it below the band, onto the rounded corner).
+    # Centre it vertically on the type box and pull it in from the rounded edge.
+    set_symbol=_Box(0.895 - 0.11, 0.5664 + (0.0543 - 0.041) / 2, 0.11, 0.041),
     pt_box=_Box(1146 / 1500, 1861 / 2100, 274 / 1500, 140 / 2100),
     title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
