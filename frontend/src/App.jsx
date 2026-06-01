@@ -33,6 +33,7 @@ export default function App() {
   const [checkpoint, setCheckpoint]           = useState('')
   const [llmModel, setLlmModel]               = useState('qwen3:8b')
   const [borderTheme, setBorderTheme] = useState('')
+  const [frameStyle, setFrameStyle] = useState('builtin')
   const [commanderTribe, setCommanderTribe] = useState('')
   const [crewPrompt, setCrewPrompt] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
@@ -100,7 +101,7 @@ export default function App() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
-    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -127,6 +128,7 @@ export default function App() {
         checkpoint:        checkpoint || null,
         llm_model:         llmModel || null,
         border_theme:      borderTheme || "",
+        frame_style:       frameStyle || "builtin",
         commander_tribe:   commanderTribe || "",
         face_key:     faceKey  || null,
         face_gender:  faceGender,
@@ -237,6 +239,7 @@ export default function App() {
     setEmblemPrompt(d.emblem_prompt || '')
     setCustomPips(!!d.custom_pips)
     setBorderTheme(d.border_theme || '')
+    setFrameStyle(d.frame_style || 'builtin')
     setArtStyle(d.art_style || 'mtg_fantasy')
     setGenerateArt(!!d.generate_art)
     setModelSpeed(d.model_speed || 'quality')
@@ -387,6 +390,8 @@ export default function App() {
             onLlmModelChange={setLlmModel}
             borderTheme={borderTheme}
             onBorderThemeChange={setBorderTheme}
+            frameStyle={frameStyle}
+            onFrameStyleChange={setFrameStyle}
             commanderTribe={commanderTribe}
             onCommanderTribeChange={setCommanderTribe}
             faceKey={faceKey}

@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import io
 import math
-import os
 import re
 import textwrap
 from functools import lru_cache
@@ -105,6 +104,17 @@ _BAR_FG: dict[str, tuple] = {
     "BR":        _LIGHT_TEXT,
     "BG":        _LIGHT_TEXT,
 }
+
+# ── Frame style (module-global, set once per build — mirrors set_custom_pips) ──
+# "builtin" → bundled wingedsheep frames (default). "m15" → official-style M15
+# frames via a locally-installed Card Conjurer (cc_frames.py); falls back to
+# built-in if those assets aren't present.
+_FRAME_STYLE = "builtin"
+
+def set_frame_style(style: str) -> None:
+    """Select the frame system for subsequent render_card() calls."""
+    global _FRAME_STYLE
+    _FRAME_STYLE = (style or "builtin").lower()
 
 
 # ── Legibility: pick white vs black text by contrast against real pixels ───────
@@ -992,9 +1002,9 @@ def render_card(
     """
     # ── Optional: official-style M15 frames from a locally-installed Card
     # Conjurer (assets the user supplies themselves, like LoRAs/checkpoints).
-    # OFF by default; enabled only when MYTHFORGE_CC_DIR points at a CC install
-    # with the M15 assets present. Any miss falls through to the built-in frames.
-    if os.environ.get("MYTHFORGE_CC_DIR"):
+    # Selected per-build via set_frame_style("m15"); requires MYTHFORGE_CC_DIR +
+    # the M15 assets present. Any miss falls through to the built-in frames.
+    if _FRAME_STYLE == "m15":
         try:
             import cc_frames
             if cc_frames.is_available():

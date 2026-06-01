@@ -211,6 +211,7 @@ export default function StepTheme({
   emblemPrompt, onEmblemPromptChange,
   customPips, onCustomPipsChange,
   borderTheme, onBorderThemeChange,
+  frameStyle, onFrameStyleChange,
   commanderTribe, onCommanderTribeChange,
   artStyle, onArtStyleChange,
   bracket, onBracketChange,
@@ -233,6 +234,7 @@ export default function StepTheme({
   const [stylePresets, setStylePresets] = useState([])
   const [expandedStyle, setExpandedStyle] = useState(null)
   const [llmModels, setLlmModels]       = useState([])
+  const [frameStyles, setFrameStyles]   = useState([])
   const [checkpoints, setCheckpoints]   = useState([])
   const selected = BRACKETS.find(b => b.n === bracket) || BRACKETS[2]
   const isRO = artStyle === 'ragnarok_online'
@@ -353,6 +355,10 @@ export default function StepTheme({
     fetch('/api/llm-models').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
       setLlmModels(d)
+    }).catch(() => {})
+    fetch('/api/frame-styles').then(r => r.ok ? r.json() : null).then(d => {
+      if (cancelled || !d) return
+      setFrameStyles(d.styles || [])
     }).catch(() => {})
     fetch('/api/checkpoints').then(r => r.ok ? r.json() : null).then(d => {
       if (cancelled || !d) return
@@ -767,6 +773,46 @@ export default function StepTheme({
             </button>
           )}
         </div>
+
+        {/* ── Card Frame Style ── */}
+        {onFrameStyleChange && (
+          <div style={{ marginBottom: 20 }}>
+            <label style={s.label}>Card Frame Style</label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8, lineHeight: 1.5 }}>
+              Which frame artwork cards are rendered with. <strong style={{ color: '#a8a29e' }}>Built-in</strong> always works;{' '}
+              <strong style={{ color: '#a8a29e' }}>Official-style (M15)</strong> renders from your own local Card Conjurer install.
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {(frameStyles.length ? frameStyles : [{ key: 'builtin', label: 'Built-in Frames', available: true, note: '' }]).map(fs => {
+                const active   = (frameStyle || 'builtin') === fs.key
+                const disabled = !fs.available
+                return (
+                  <button
+                    key={fs.key}
+                    onClick={() => !disabled && onFrameStyleChange(fs.key)}
+                    disabled={disabled}
+                    title={fs.note || ''}
+                    style={{
+                      fontSize: 12, padding: '8px 14px',
+                      background: active ? '#1c2e1c' : '#0c0a09',
+                      border: `1px solid ${active ? '#4ade80' : (disabled ? '#292524' : '#44403c')}`,
+                      borderRadius: 10, color: disabled ? '#52525b' : (active ? '#4ade80' : '#a8a29e'),
+                      cursor: disabled ? 'not-allowed' : 'pointer', fontFamily: 'inherit',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    {active ? '✓ ' : ''}{fs.label}{disabled ? ' 🔒' : ''}
+                  </button>
+                )
+              })}
+            </div>
+            {frameStyles.some(fs => fs.key === 'm15' && !fs.available) && (
+              <div style={{ fontSize: 11, color: '#57534e', marginTop: 8, lineHeight: 1.5 }}>
+                🔒 Official M15 needs a local Card Conjurer install — set <code>MYTHFORGE_CC_DIR</code> (see README). Selecting it without assets falls back to built-in.
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Commander tribe (optional reskin target) */}
         {onCommanderTribeChange && (

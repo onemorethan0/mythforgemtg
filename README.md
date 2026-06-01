@@ -261,11 +261,13 @@ card_assets/
 **This is opt-in and ships no frame artwork.** The module is clean-room code; the frame PNGs are © Wizards of the Coast / their authors. You supply them yourself — exactly like LoRAs/checkpoints:
 
 1. Install Card Conjurer locally (clone a fork, run it once) **outside this repo**.
-2. Set the environment variable `MYTHFORGE_CC_DIR` to its root (the folder containing `img/frames/…`):
+2. Set the environment variable `MYTHFORGE_CC_DIR` to its root (the folder containing `img/frames/…`) **before starting the server**:
    ```cmd
    set MYTHFORGE_CC_DIR=C:\path\to\cardconjurer
    ```
-3. Start the server. Every card render now uses M15 frames; if the variable is unset or the assets are missing, it silently falls back to the bundled frames.
+3. In the app's **Theme step**, the **Card Frame Style** selector now offers **Official-style (M15)** alongside **Built-in Frames** (it's enabled only when the assets are detected; otherwise it shows locked). Pick it per deck. If assets are missing it silently falls back to the bundled frames. The choice is saved with the deck, so Rebuild/Retheme/Regen reuse it.
+
+`GET /api/frame-styles` reports which systems are available (drives the selector).
 
 > ⚠️ **Do not commit Card Conjurer assets to a public repo.** They're copyrighted and were the subject of a Wizards of the Coast cease-and-desist. `.gitignore` guards against accidental commits, but keep your CC install outside the project folder. Currently the M15 "regular" pack is supported (mono/gold/artifact/land + P/T). Text, mana symbols, and white-vs-black legibility reuse the built-in renderer.
 

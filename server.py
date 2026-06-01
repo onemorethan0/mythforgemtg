@@ -435,6 +435,7 @@ class BuildRequest(BaseModel):
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
+    frame_style:       str           = "builtin"  # "builtin" (bundled frames) or "m15" (official-style, needs local Card Conjurer)
     commander_tribe:   str           = ""     # override creature tribe to reskin; "" = auto-detect
     custom_pips:       bool          = False  # themed 2-colour mana pips (disc + black silhouette)
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
@@ -1242,6 +1243,7 @@ def _run_build(job_id: str, req: BuildRequest):
             _ensure_comfyui_ready(job_id)
         _pip_emblem = _setup_deck_pips(job_id, req.custom_pips, art_theme,
                                        req.emblem_prompt or "")
+        card_renderer.set_frame_style(req.frame_style)
         if _pip_emblem is not None:
             # The custom-pip silhouette doubles as the deck emblem so the set
             # symbol reflects the requested subject (and matches the pips).
@@ -1280,6 +1282,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "user_name":        req.user_name or "",
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
+            "frame_style":      req.frame_style or "builtin",
             "custom_pips":      req.custom_pips,
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
@@ -1608,6 +1611,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         _rebuild_pips = bool(source_data.get("custom_pips", False))
         _setup_deck_pips(job_id, _rebuild_pips, art_theme,
                          source_data.get("emblem_prompt", ""), source_job_id)
+        card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
@@ -1637,6 +1641,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "crew_key":         req.crew_key or source_data.get("crew_key", ""),
             "crew_gender":      req.crew_gender or source_data.get("crew_gender", "either"),
             "border_theme":     source_data.get("border_theme", ""),
+            "frame_style":      source_data.get("frame_style", "builtin"),
             "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
             "built_at":         time.time(),
@@ -2026,6 +2031,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         # Reuse the source deck's custom pips so regenerated cards match the rest.
         _setup_deck_pips(source_job_id, bool(source_data.get("custom_pips", False)),
                          art_theme, source_data.get("emblem_prompt", ""))
+        card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
         # Renders go directly into the SOURCE job's cards/ dir
         render_out = RENDER_DIR / source_job_id / "cards"
@@ -2381,6 +2387,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         _retheme_pips = bool(source_data.get("custom_pips", False))
         _setup_deck_pips(job_id, _retheme_pips, art_theme,
                          source_data.get("emblem_prompt", ""), source_job_id)
+        card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
         # ── Locate existing raw art images ────────────────────────────────────
         # The raw FLUX outputs live in generated_art/{deck_slug}/{render_key}.png.
@@ -2425,6 +2432,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "user_name":        user_name_rt,
             "llm_model":        llm_model_rt or "",
             "border_theme":     source_data.get("border_theme", ""),
+            "frame_style":      source_data.get("frame_style", "builtin"),
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
@@ -3144,6 +3152,28 @@ def get_llm_models():
     """
     from themer import list_available_llms
     return list_available_llms()
+
+
+@app.get("/api/frame-styles")
+def get_frame_styles():
+    """Frame systems the UI can offer. 'builtin' is always available; 'm15'
+    requires a local Card Conjurer install (MYTHFORGE_CC_DIR) with M15 assets."""
+    try:
+        import cc_frames
+        m15_ok = cc_frames.is_available()
+    except Exception:
+        m15_ok = False
+    return {
+        "styles": [
+            {"key": "builtin", "label": "Built-in Frames", "available": True,
+             "note": "Bundled proxy frames — always available."},
+            {"key": "m15", "label": "Official-style (M15)", "available": m15_ok,
+             "note": ("Modern frames rendered from your local Card Conjurer install."
+                      if m15_ok else
+                      "Install Card Conjurer locally and set MYTHFORGE_CC_DIR to enable.")},
+        ],
+        "default": "builtin",
+    }
 
 
 @app.get("/api/art-styles")
