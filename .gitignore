@@ -42,6 +42,9 @@ OPTIMIZATION_RESEARCH*.md
 bat_stdout.txt
 bat_stderr.txt
 
+# Local marketing/launch assets (not part of the app)
+reddit_assets/
+
 # Face upload staging
 face_uploads/
 
