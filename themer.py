@@ -365,6 +365,25 @@ def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
     return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
 
 
+def _apply_tribal_map_to_text(text: str, tribal_map: dict) -> str:
+    """Reskin creature-type references inside rules/oracle text so they match the
+    tribal reskin — e.g. {Knight: Cowboy} turns 'equip Knight {0}' into
+    'equip Cowboy {0}' and 'Knights you control' into 'Cowboys you control'.
+    Whole-word matches on the (capitalised) MTG type token; plural-aware."""
+    if not text or not tribal_map:
+        return text
+    out = text
+    for orig, repl in tribal_map.items():
+        if not orig or not repl or orig == repl:
+            continue
+        repl_plural = repl if repl.endswith("s") else repl + "s"
+        # Plural and singular are independent whole-word matches (the trailing 's'
+        # breaks the \b on the singular pattern), so order doesn't matter.
+        out = re.sub(rf"\b{re.escape(orig)}s\b", lambda _m, r=repl_plural: r, out)
+        out = re.sub(rf"\b{re.escape(orig)}\b",  lambda _m, r=repl:        r, out)
+    return out
+
+
 # ── Style guide ───────────────────────────────────────────────────────────────
 
 _STYLE_GUIDE_SYSTEM = (
@@ -1761,9 +1780,15 @@ class Themer:
             # consistent with the name + art. Copy the card so the original isn't mutated.
             out_card = card
             if tribal_map:
-                _new_tl = _apply_tribal_map_to_type_line(card.get("type_line", "") or "", tribal_map)
-                if _new_tl != (card.get("type_line", "") or ""):
-                    out_card = {**card, "type_line": _new_tl}
+                _old_tl = card.get("type_line", "") or ""
+                _old_or = card.get("oracle_text", "") or ""
+                _new_tl = _apply_tribal_map_to_type_line(_old_tl, tribal_map)
+                # Reskin type references in the rules text too, so a Knight->Cowboy
+                # deck reads "equip Cowboy {0}", not "equip Knight {0}". Applies the
+                # full map to EVERY card (e.g. "Knights you control" on any card).
+                _new_or = _apply_tribal_map_to_text(_old_or, tribal_map)
+                if _new_tl != _old_tl or _new_or != _old_or:
+                    out_card = {**card, "type_line": _new_tl, "oracle_text": _new_or}
 
             return ThemedCard(
                 original_name=card["name"],
