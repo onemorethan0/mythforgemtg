@@ -155,13 +155,15 @@ The app works with any checkpoint you have installed. Start with FLUX Schnell fo
 
 ---
 
-## User Flow (5 steps)
+## User Flow (4 steps)
 
-1. **Commander** — Either **Generate a deck** (search any legendary creature, fuzzy Scryfall lookup) or **Import a deck** (retheme one you already own — see below)
-2. **Playstyle** — Choose from 15 preset styles (Aggro, Control, Lifegain, Aristocrats, etc.) or Auto-detect
-3. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness
-4. **Theme** — Free-text art theme ("dark gothic necromancer city"), bracket level, and art gen toggle
-5. **Deck** — Browse all 100 cards with rendered proxy frames, download ZIP or print PDF
+The deck list is generated **up front** (step 1), so the theme step can show the
+deck's real creature types for per-tribe reskinning.
+
+1. **Commander & Deck** — Either **Generate a deck** (search any legendary creature; pick **power bracket 1–5** and a **playstyle** — Aggro, Control, Lifegain, etc. or Auto) or **Import a deck** (retheme one you already own — see below). On continue, the **99-card list is built immediately** (no art yet).
+2. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness.
+3. **Theme** — Free-text world/art theme ("dark gothic necromancer city"), **per-tribe creature-type replacements** (e.g. *Knight → Cowboy* — reskins that type's name, art, card type line, **and rules text** across the deck), card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
+4. **Deck** — Browse all 100 cards with rendered proxy frames; download ZIP or print-ready PDF. Re-roll with **Retheme** (new names/art, same settings) or **Rebuild** (regenerate art), or **Edit** to change settings into a new deck.
 
 ---
 
@@ -208,6 +210,8 @@ mtg_deck_builder/
 ├── image_gen.py            ComfyUI: SDXL/FLUX image generation + face conditioning
 ├── face_ref.py             Face upload management + humanoid card detection logic
 ├── card_renderer.py        Pillow: composites real MTG frame PNGs into proxy cards
+├── cc_frames.py            Optional M15 / full-art frames from a local Card Conjurer
+├── deck_import.py          Import/retheme an existing Moxfield/Archidekt/ManaBox deck
 ├── set_symbol.py           Generates a unique set symbol SVG for the deck
 ├── exporter.py             ZIP + print-ready PDF export
 ├── bracket.py              EDH bracket level definitions (1–5)
@@ -300,6 +304,8 @@ Layer order (bottom to top):
 
 **Subtitle feature:** If the themed card name differs from the original Scryfall name, the original name is drawn in small italic text at the bottom of the name bar. Useful for identifying proxies.
 
+**Text legibility (white vs black):** The name bar, type bar, and P/T badge each choose light or dark text by **sampling the actual composited pixels under the text** (after frame + boxes + crown + border tint) and picking whichever gives the higher WCAG contrast, with a subtle opposite-colour halo (`_legible_text_color` / `_draw_legible_text`). This replaced a static per-colour map that could put light text on a light box (invisible names). On M15 full-art frames the rules/flavor text is sampled the same way (light over the art panel, dark on parchment).
+
 **SVG symbol rendering:** Uses `pixie-python` (pure Python, no libcairo required on Windows). Each symbol is rasterized to a temp PNG then loaded as a PIL Image.
 
 ---
@@ -312,8 +318,12 @@ Runs against **Ollama `qwen3:14b`** locally (auto-falls back to `qwen3:32b` → 
 2. Processes cards in **batches**, each receiving the style guide as context
 3. Each card gets: `themed_name`, `art_prompt` (35–50 words), `flavor_text`
 4. **Name → art coherence (#1 rule):** the `art_prompt` must *depict* the themed name's imagery (2–3 concrete visual elements), and every card's scene must be unique (no reused templates)
-5. **Color = mana identity:** each card's palette is driven by its color identity (`_color_palette_hint`: W=ivory/gold, U=arcane blue, B=shadow/necrotic, R=fire/crimson, G=verdant, colorless=chrome), deferring to user-theme colors for characters — mirroring real MTG
-6. Ollama is **unloaded from GPU** after theming so ComfyUI can claim the VRAM
+5. **Evoke the original card:** `themed_name` fuses the original card's identity/iconic imagery (col 2) with its function (mechanics+role), so the source card is recognizable reskinned into the theme (Lightning Bolt → "Neon Surge", Doom Blade → "Necrotic Lance") — not a generic mechanics label
+6. **Name variety:** the prompt forbids the monotonous "The [Adjective] [Noun]" default and pushes mixed forms (coinages, possessives, verb-led, place names). A deterministic guard strips the commander's name *and rhymes/respellings of it* (Krenko → "Kretno") from other cards; duplicate names are disambiguated — comma "Name, Title" epithets for legendary creatures/PW only, no-comma adjectives for lands/spells (so a land never reads "Place, Title")
+7. **Color = mana identity:** each card's palette is driven by its color identity (`_color_palette_hint`: W=ivory/gold, U=arcane blue, B=shadow/necrotic, R=fire/crimson, G=verdant, colorless=chrome), deferring to user-theme colors for characters — mirroring real MTG
+8. Ollama is **unloaded from GPU** after theming so ComfyUI can claim the VRAM
+
+**Tribe reskin (single auto-tribe or multi-tribe user choice):** the commander's most distinctive creature subtype (skipping the generic "Human" race) is auto-reskinned into a theme-fitting replacement, OR the user picks replacements per creature type in the Theme step (`tribal_overrides`). Each mapped type is reskinned **consistently in the themed name, the art, the displayed type line, AND the rules text** — e.g. *Knight → Cowboy* turns "equip Knight {0}" into "equip Cowboy {0}" and "Knights you control" into "Cowboys" (plural-aware, whole-word). Unmapped creatures keep their own kind.
 
 **Prompt pipeline (togglable):** `USE_ENHANCED_PROMPTS` at the top of `themer.py` switches between two pipelines:
 
@@ -427,8 +437,11 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
 |--------|----------|-------------|
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
 | POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached |
+| POST | `/api/deck/generate-list` | **Phase 1:** build the 99-card list (no art) from commander+playstyle+bracket; returns deck + its creature tribes for the reskin UI |
 | GET | `/api/playstyles` | List all 15 playstyle options |
 | GET | `/api/art-styles` | List all art style presets + LoRA install status |
+| GET | `/api/frame-styles` | Frame systems available (Built-in / M15 / Full-art) — M15 styles need a local Card Conjurer |
+| GET/POST | `/api/frame-config` | Read / set the local Card Conjurer folder (in-app config; env var wins) |
 | GET | `/api/comfyui/loras` | List installed LoRA files (feeds the LoRA picker) |
 | GET | `/api/logs` | Recent server log lines (in-memory ring buffer) |
 | GET | `/api/3d-health` | Hunyuan3D v2 / rembg availability |
@@ -455,13 +468,19 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
   "playstyle": "auto",
   "bracket": 3,
   "art_theme": "dark gothic necromancer city",
+  "frame_style": "builtin",
+  "prebuilt_deck": [ /* the deck returned by /api/deck/generate-list */ ],
+  "tribal_overrides": { "Knight": "Cowboy", "Rogue": "Outlaw" },
   "generate_art": true,
   "face_key": "abc12345",
   "face_gender": "female",
   "gen_settings": { "guidance": 3.5, "steps": 35, "safe_mode": false }
 }
 ```
-`gen_settings` is optional; omitting any field falls back to the model default (see `GenSettingsModel` in `server.py` / `GenSettings` in `image_gen.py`).
+- `prebuilt_deck` (optional): the list from `/api/deck/generate-list`. When present, the build skips `DeckBuilder` and themes/renders this exact list. Omit it and the deck is generated from `commander_name`+`playstyle`+`bracket` (old single-phase path; imports use `deck_url`/`deck_list`).
+- `tribal_overrides` (optional): `{OriginalType: Replacement}` chosen in the Theme step. Reskins each type across the deck — name, art, card type line, **and rules text** (`equip Knight` → `equip Cowboy`). Persisted in `deck.json`; Rebuild/Retheme reuse it.
+- `frame_style`: `"builtin"` (bundled frames), `"m15"` (Official-style), or `"m15_fullart"` (Full-art/Borderless). M15 styles need a local Card Conjurer (`MYTHFORGE_CC_DIR` or the in-app folder field).
+- `gen_settings` is optional; omitting any field falls back to the model default (see `GenSettingsModel` in `server.py` / `GenSettings` in `image_gen.py`).
 
 ---
 
