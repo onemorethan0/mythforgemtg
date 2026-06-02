@@ -8,9 +8,28 @@ A fully local web app that builds themed 100-card EDH Commander decks with AI-ge
 
 ---
 
+## Gallery
+
+One deck, two themes — same commander and card list reskinned by a single free-text prompt. Names, flavor, creature types, and art all follow the theme:
+
+![Dark fantasy vs. neon cyberpunk — the same deck under two themes](docs/gallery/two-themes.png)
+
+A themed deck up close (theme: *"neon cyberpunk megacity"*), rendered with real MTG proxy frames:
+
+![Cyberpunk-themed cards with custom art and proxy frames](docs/gallery/cards-cyberpunk.png)
+
+![Animated showcase cycling through a themed deck](docs/gallery/deck-showcase.gif)
+
+> All art above is generated **locally** (FLUX via ComfyUI) and composited into print-ready proxy frames. *Official-style M15 / full-art frames are also supported via a local [Card Conjurer](#optional-official-style-m15-frames-card-conjurer) install — those frames aren't bundled or shown here.*
+
+---
+
 ## System Requirements
 
-**Developed & Tested On:**
+> ### 🚀 No big GPU? Try it in "quick-look" mode first
+> You do **not** need ComfyUI or a 24 GB GPU to see the core experience. Install the app, **leave the "Generate AI art" toggle OFF** on the Theme step, and Myth Forge will theme the whole deck (custom names, flavor text, creature-type reskins) and render **print-ready proxy frames using real Scryfall card art** — no FLUX, no ComfyUI. Only the *custom AI art* needs a GPU + ComfyUI; everything else (theming, frames, ZIP/PDF export) runs on modest hardware. Theming uses Ollama, which can run a smaller model or on CPU.
+
+**Developed & Tested On (full AI-art pipeline):**
 - **GPU**: NVIDIA RTX 3090 (24GB VRAM)
 - **CPU**: AMD Ryzen 5800X3D
 - **System RAM**: 32GB

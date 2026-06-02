@@ -24,6 +24,8 @@ frontend/node_modules/
 test_*.py
 !tests/             # but DO track the committed test suite under tests/
 !tests/**
+!docs/gallery/      # and the README gallery images (built-in frames only)
+!docs/gallery/**
 test_*.png
 CLAUDE.md
 
