@@ -2690,6 +2690,11 @@ def generate_list(req: GenerateListRequest):
 
     # Frequency-ordered creature subtypes (commander + deck) for the reskin UI.
     from collections import Counter
+    # Card-TYPE words that can ride along on multi-type / DFC / adventure type
+    # lines but are NOT creature subtypes (so they shouldn't be reskin fields).
+    _NON_TRIBE_WORDS = {"Saga", "Creature", "Enchantment", "Artifact", "Land",
+                        "Sorcery", "Instant", "Planeswalker", "Battle", "Adventure",
+                        "Legendary", "Snow", "Token", "Basic", "Tribal"}
     counts: "Counter[str]" = Counter()
     for c in [card] + deck:
         tl = c.get("type_line", "") or ""
@@ -2699,9 +2704,11 @@ def generate_list(req: GenerateListRequest):
         if "—" not in norm:
             continue
         for s in norm.split("—", 1)[1].strip().split():
-            # Skip split/MDFC noise ("//") and non-creature enchantment subtypes
-            # ("Saga") that can ride along on creature-sagas.
-            if s and s.isalpha() and s != "Saga":
+            # Only count real creature subtypes. Skip split/MDFC noise ("//") and
+            # card-TYPE words that ride along on multi-type / DFC / adventure type
+            # lines (Saga, Enchantment, Creature, Sorcery, Adventure, …) — those
+            # aren't tribes and shouldn't appear as reskin fields.
+            if s and s.isalpha() and s not in _NON_TRIBE_WORDS:
                 counts[s] += 1
     tribes = [{"type": t, "count": n} for t, n in counts.most_common()]
 
