@@ -22,6 +22,8 @@ frontend/node_modules/
 # Misc
 *.png
 test_*.py
+!tests/             # but DO track the committed test suite under tests/
+!tests/**
 test_*.png
 CLAUDE.md
 

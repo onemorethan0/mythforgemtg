@@ -784,15 +784,16 @@ _LORA_PRESETS: dict[str, dict] = {
         "label":       "Gothic Horror",
         "description": "Innistrad-style dark gothic — haunted mansions, vampires, moonlit fog, stone gargoyles.",
         "icon":        "🏚️",
-        "style_guide_hint":  "dark gothic horror illustration, moonlit haunted atmosphere, muted charcoal and deep violet palette, crumbling stone architecture",
+        "style_guide_hint":  "dark gothic horror illustration, moonlit eerie atmosphere, dramatic chiaroscuro, crumbling architecture",
         "themer_medium":     '"dark gothic illustration," or "horror concept art," or "gothic painting,"',
-        "themer_quality":    '"atmospheric moonlit shadows, muted palette" or "gothic horror detail, dramatic chiaroscuro" or "cinematic horror mood, cold violet light"',
+        # Quality tag appended to EVERY prompt — lighting/detail/mood only, no palette lock.
+        "themer_quality":    '"atmospheric shadow and gloom, fine detail" or "gothic horror mood, dramatic chiaroscuro" or "eerie cinematic lighting, rich detail"',
+        # STYLE only — no fixed scene. The old prefix baked "haunted stone
+        # architecture, gargoyles, iron gates, graveyards" into every card; the
+        # per-card scene now comes from its art_prompt (zero-variety fix).
         "flux_prefix": (
-            "Digital painting, dark gothic horror illustration. "
-            "Moonlit haunted stone architecture — crumbling gargoyles, iron gates, fog-shrouded graveyards. "
-            "Deep shadow pools broken by pale candlelight and cold moonbeams. "
-            "Muted palette of charcoal, slate, deep violet, and silver moonlight. "
-            "Atmospheric and unsettling, cinematic horror mood. "
+            "Digital painting, dark gothic horror illustration, Innistrad-style. "
+            "Moody atmospheric horror, deep shadow and pale moonlight, dramatic chiaroscuro, eerie unsettling mood. "
             "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
@@ -865,16 +866,16 @@ _LORA_PRESETS: dict[str, dict] = {
         "label":       "Steampunk",
         "description": "Kaladesh-style Victorian machinery — brass gears, copper pipes, clockwork, steam and smog.",
         "icon":        "⚙️",
-        "style_guide_hint":  "steampunk illustration, Victorian brass and copper machinery, intricate clockwork gears, warm amber gas-lamp tones",
+        "style_guide_hint":  "steampunk illustration, Victorian brass-and-copper machine aesthetic, intricate clockwork detail, gas-lamp lighting",
         "themer_medium":     '"steampunk illustration," or "clockpunk concept art," or "Victorian mechanical painting,"',
-        "themer_quality":    '"intricate gear detail, warm amber palette" or "brass and copper texture, mechanical precision" or "painterly steampunk, steam and smog atmosphere"',
+        # Quality tag appended to EVERY prompt — texture/detail/lighting only, no palette lock.
+        "themer_quality":    '"intricate mechanical detail, fine texture" or "brass-and-copper texture, painterly precision" or "warm gas-lamp lighting, rich detail"',
+        # STYLE only — no fixed scene. The old prefix baked "clockwork cogs, gears,
+        # pipes, Victorian-industrial architecture, dirigibles" into every card; the
+        # per-card scene now comes from its art_prompt (zero-variety fix).
         "flux_prefix": (
-            "Digital painting, steampunk illustration. "
-            "Intricate brass and copper clockwork mechanisms — cogs, gears, pipes, and valves. "
-            "Victorian-industrial architecture with iron girders and glass-domed dirigibles. "
-            "Steam venting from ornate machinery, amber gas-lamp glow. "
-            "Rich warm tones of burnished gold, deep brown leather, and patina green. "
-            "Mechanical detail-rich composition. "
+            "Digital painting, steampunk illustration, Kaladesh-style Victorian brass-and-copper aesthetic. "
+            "Intricate clockwork detail and patinated metal textures, warm gas-lamp lighting, painterly. "
             "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
@@ -966,15 +967,16 @@ _LORA_PRESETS: dict[str, dict] = {
         "label":       "Eldritch Horror",
         "description": "Lovecraftian cosmic horror — Eldrazi-scale impossible entities, void geometry, ancient malice.",
         "icon":        "👁️",
-        "style_guide_hint":  "eldritch cosmic horror illustration, Lovecraftian impossible geometry, deep space void palette, ancient terrifying entities",
+        "style_guide_hint":  "eldritch cosmic horror illustration, Lovecraftian surreal atmosphere, ominous alien dread, dramatic scale",
         "themer_medium":     '"eldritch illustration," or "cosmic horror concept art," or "Lovecraftian painting,"',
-        "themer_quality":    '"impossible geometry, void-black and sickly chartreuse" or "cosmic horror atmosphere, ancient malice" or "tentacled entities, non-Euclidean architecture"',
+        # Quality tag appended to EVERY prompt — mood/detail only, no fixed subject/palette.
+        "themer_quality":    '"surreal warped detail, ominous atmosphere" or "cosmic horror mood, eerie depth" or "alien detail, dramatic dread"',
+        # STYLE only — no fixed scene. The old prefix baked "non-Euclidean geometry,
+        # writhing tentacles, star-filled void, eyes, alien architecture" into every
+        # card; the per-card scene now comes from its art_prompt (zero-variety fix).
         "flux_prefix": (
-            "Digital illustration, eldritch cosmic horror comic art style. "
-            "Impossible non-Euclidean geometries and writhing tentacled entities emerging from star-filled void. "
-            "Deep space palette: sickly chartreuse, cosmic violet, void black, and pallid bone white. "
-            "Oppressive sense of scale and ancient malice. "
-            "Tentacles, eyes, and alien architecture woven into impossible shapes. "
+            "Digital illustration, eldritch cosmic horror comic art style, Lovecraftian. "
+            "Oppressive cosmic dread, otherworldly alien atmosphere, surreal warped detail, ominous sense of scale. "
             "Third-person view, character viewed from outside. Landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
