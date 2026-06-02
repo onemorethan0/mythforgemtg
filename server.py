@@ -2531,6 +2531,16 @@ class ImportPreviewRequest(BaseModel):
     force_refresh: bool = False                          # bypass the on-disk cache
 
 
+def _safe_analyze(commander, deck):
+    """Run the bracket analysis but never let it break the import preview."""
+    try:
+        import deck_analysis
+        return deck_analysis.analyze_deck(commander, deck)
+    except Exception as e:
+        print(f"  [import-preview] deck analysis failed: {e}")
+        return None
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can
@@ -2560,6 +2570,7 @@ def import_preview(req: ImportPreviewRequest):
         "total_cards":  imp.total_cards(),
         "colors":       colors,
         "unresolved":   imp.unresolved,
+        "analysis":     _safe_analyze(imp.commander, imp.deck),
     }
 
 
