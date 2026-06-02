@@ -1302,7 +1302,9 @@ def _run_build(job_id: str, req: BuildRequest):
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
             "frame_style":      req.frame_style or "builtin",
-            "tribal_overrides": req.tribal_overrides or {},
+            # Persist the EFFECTIVE tribe map (user override OR the auto-generated
+            # one) so Rebuild/Retheme reuse the same replacement as the baked art.
+            "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or req.tribal_overrides or {},
             "custom_pips":      req.custom_pips,
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
@@ -2455,7 +2457,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "llm_model":        llm_model_rt or "",
             "border_theme":     source_data.get("border_theme", ""),
             "frame_style":      source_data.get("frame_style", "builtin"),
-            "tribal_overrides": source_data.get("tribal_overrides", {}),
+            "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or source_data.get("tribal_overrides", {}),
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),

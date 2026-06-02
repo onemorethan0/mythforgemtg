@@ -1494,6 +1494,10 @@ class Themer:
         else:
             print(f"  [themer] Tribal reskin: none (commander tribe '{ctribe or '—'}' "
                   f"not remapped — creatures keep their original types)")
+        # Expose the EFFECTIVE map (user override OR auto-generated) so the caller
+        # can persist it in deck.json — otherwise an auto-reskinned deck loses its
+        # map and a later Retheme re-rolls a different replacement than the baked art.
+        self._effective_tribal_map = dict(tribal_map)
 
         batches = [all_cards[i:i + BATCH_SIZE] for i in range(0, total, BATCH_SIZE)]
         pipeline_label = "v2 dual-anchor"

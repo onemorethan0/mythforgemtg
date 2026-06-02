@@ -379,8 +379,14 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
             disabled={genLoading}
             onClick={generateList}
           >
-            {genLoading ? 'Generating decklist…' : `Generate decklist with ${result.name} →`}
+            {genLoading ? 'Building your 99-card deck…' : `Generate decklist with ${result.name} →`}
           </button>
+          {genLoading && (
+            <p style={{ fontSize: 12, color: '#78716c', marginTop: 8, textAlign: 'center' }}>
+              Selecting cards and looking them up on Scryfall. First-time decks can take up
+              to a minute; repeat commanders are near-instant (cached). No art is generated yet.
+            </p>
+          )}
         </div>
       )}
       </>)}
