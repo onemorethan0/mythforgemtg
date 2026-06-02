@@ -62,6 +62,16 @@ ROLE_QUERIES: dict[str, str] = {
         "(o:\"hexproof\" OR o:\"indestructible\" OR o:\"ward\" "
         "OR otag:counterspell OR o:\"can't be countered\")"
     ),
+    # Game-closers so every deck has a reliable way to actually WIN, rather than
+    # relying on goodstuff to happen to include one: mass pump/overrun, extra
+    # combats, alt-win-cons, and group-drain payoffs.
+    "finisher": (
+        "(o:\"win the game\" OR o:\"wins the game\" OR o:\"loses the game\" "
+        "OR o:\"additional combat phase\" OR o:\"an additional combat\" "
+        "OR (o:\"creatures you control get +\" o:\"trample\") "
+        "OR o:\"creatures you control gain trample\" "
+        "OR o:\"deals that much damage to each opponent\")"
+    ),
 }
 
 # Non-basic land queries (sorted by power level / popularity tier)
@@ -311,6 +321,7 @@ class DeckBuilder:
             "removal":    (slot_overrides or {}).get("removal", 7),
             "board_wipe": (slot_overrides or {}).get("board_wipe", 4),
             "protection": (slot_overrides or {}).get("protection", 3),
+            "finisher":   (slot_overrides or {}).get("finisher", 3),
             "theme":      20,
         }
         used = sum(plan.values())
@@ -326,6 +337,7 @@ class DeckBuilder:
             ("Removal",        lambda: self._fetch_role(profile, "removal", plan["removal"])),
             ("Board wipes",    lambda: self._fetch_role(profile, "board_wipe", plan["board_wipe"])),
             ("Protection",     lambda: self._fetch_role(profile, "protection", plan["protection"])),
+            ("Finishers",      lambda: self._fetch_role(profile, "finisher", plan["finisher"])),
             ("Theme synergy",  lambda: self._fetch_theme_synergy_list(profile, _active, plan["theme"])),
             ("Goodstuff fill", lambda: self._fetch_goodstuff(profile, plan["goodstuff"])),
         ]

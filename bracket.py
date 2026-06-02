@@ -24,9 +24,9 @@ BRACKET_LABELS = {
 BRACKET_DESCRIPTIONS = {
     1: "Theme-focused, precon power. No staples, no combos. Pure creativity.",
     2: "Casual play. Solid synergies, no format-warping effects or fast mana.",
-    3: "Most popular bracket. Strong synergies, up to 3 Game Changers allowed.",
-    4: "High-powered. Infinite combos, tutors, fast mana — bring your best deck.",
-    5: "Competitive EDH. Maximum power. Win as fast as possible.",
+    3: "Most popular bracket. Strong synergies and up to 3 Game Changers — a well-rounded, competitive casual deck.",
+    4: "High-powered: fast mana, tutors, and combos are allowed. The engine builds a strong goodstuff/value list; add your own combo lines to fully optimize.",
+    5: "Maximum power, no restrictions. The engine builds a high-power goodstuff list with extra draw + interaction — a tuned tournament cEDH combo deck still needs hand-crafting.",
 }
 
 # ── Official Game Changers list (February 9, 2026 — 53 cards) ─────────────────

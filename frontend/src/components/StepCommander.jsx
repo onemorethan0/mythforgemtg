@@ -25,8 +25,11 @@ const s = {
 }
 
 const BRACKETS = [
-  { n: 1, label: 'Exhibition' }, { n: 2, label: 'Core' }, { n: 3, label: 'Upgraded' },
-  { n: 4, label: 'Optimized' },  { n: 5, label: 'cEDH' },
+  { n: 1, label: 'Exhibition', desc: 'Precon power. No Game Changers, extra turns, mass land destruction, or combos. Basics-heavy mana, theme-first.' },
+  { n: 2, label: 'Core',       desc: 'Solid casual. Good synergies, no Game Changers or fast mana. A clean, fair deck.' },
+  { n: 3, label: 'Upgraded',   desc: 'The popular bracket. Strong synergies + up to 3 Game Changers — a well-rounded competitive-casual deck.' },
+  { n: 4, label: 'Optimized',  desc: 'High-powered: fast mana, tutors, and combos allowed. A strong goodstuff/value list — add your own combo lines to fully optimize.' },
+  { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
 export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange }) {
@@ -365,6 +368,9 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                   {b.n}. {b.label}
                 </button>
               ))}
+            </div>
+            <div style={{ fontSize: 12, color: '#78716c', marginTop: -8, marginBottom: 16, lineHeight: 1.5 }}>
+              {(BRACKETS.find(b => b.n === bracket) || BRACKETS[2]).desc}
             </div>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 8 }}>Playstyle</div>
             <select value={playstyle} onChange={e => onPlaystyleChange(e.target.value)}
