@@ -40,8 +40,11 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "enchantment enters the battlefield"],
     "artifacts":        ["whenever an artifact enters", "whenever you cast an artifact",
                          "artifact you control"],
-    "voltron":          ["whenever this creature deals combat damage",
-                         "equipped creature", "aura attached"],
+    "voltron":          ["equip", "equipped creature", "attach", "aura attached"],
+    "auras":            ["aura", "enchant creature", "enchanted creature"],
+    "tribal_knights":   ["knight"],
+    "tribal_ninjas":    ["ninja"],
+    "tribal_cats":      ["cats", "cat creature"],
     "draw_matters":     ["whenever you draw a card", "draw a card for each",
                          "whenever a card is drawn"],
     "lifegain":         ["whenever you gain life", "each life you gain",
@@ -55,7 +58,7 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "whenever a creature enters the battlefield under your control",
                          "whenever a nontoken creature enters"],
     "energy":           ["energy counter", "gain {e}", "{e},"],
-    "chaos":            ["each player", "each opponent", "random"],
+    "chaos":            ["flip a coin", "at random", "will of the council", "votes", "goad"],
     "theft":            ["gain control", "under your control until end of turn"],
     "group_hug":        ["each player draws", "each player gains"],
     "voltron_combat":   ["first strike", "double strike", "trample", "unblockable",
@@ -75,6 +78,10 @@ THEME_LABELS: dict[str, str] = {
     "tribal_spirits":   "Spirit Tribal",
     "tribal_angels":    "Angel Tribal",
     "tribal_beasts":    "Beast Tribal",
+    "tribal_knights":   "Knight Tribal",
+    "tribal_ninjas":    "Ninja Tribal",
+    "tribal_cats":      "Cat Tribal",
+    "auras":            "Auras / Enchantress",
     "tokens":           "Token / Go-Wide",
     "counters":         "Counters / Proliferate",
     "aristocrats":      "Aristocrats / Sacrifice",
@@ -109,6 +116,10 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "tribal_spirits":   "type:spirit",
     "tribal_angels":    "type:angel",
     "tribal_beasts":    "type:beast",
+    "tribal_knights":   "type:knight",
+    "tribal_ninjas":    "type:ninja",
+    "tribal_cats":      "type:cat",
+    "auras":            '(type:aura OR otag:enchantress OR o:"whenever you cast an aura")',
     "tokens":           'otag:token-producer OR (o:"create" o:"token")',
     "counters":         'otag:counter-manipulation OR o:"proliferate" OR o:"+1/+1 counter"',
     "aristocrats":      'otag:sacrifice-outlet OR o:"whenever a creature you control dies"',
@@ -161,14 +172,21 @@ class CommanderProfile:
 
 
 def _detect_themes(card: dict) -> list[str]:
+    """Detect strategic themes from the commander's ORACLE TEXT only.
+
+    Deliberately does NOT read the type line: a commander being a "Human Knight"
+    or "Phyrexian Angel" doesn't make the deck Human- or Angel-tribal — that mis-
+    identified Syr Gwyn as Humans, Atraxa as Angels, Yuriko as Humans, etc. A real
+    tribal/archetype commander names its payoff in the rules text ("other Goblins
+    you control", "whenever you cast an Aura", "proliferate"), so oracle-only
+    detection both kills those false tribals and still catches the true strategy.
+    """
     oracle = (card.get("oracle_text") or "").lower()
-    type_line = (card.get("type_line") or "").lower()
-    text = oracle + " " + type_line
 
     found: list[str] = []
     for theme, patterns in THEME_PATTERNS.items():
         for pat in patterns:
-            if pat in text:
+            if pat in oracle:
                 found.append(theme)
                 break
     return found

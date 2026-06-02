@@ -106,9 +106,32 @@ def test_legibility():
     check("legib.on_light", cr._legible_text_color(white, box, fallback=dark), dark)
 
 
+# ── theme detection: oracle-only, no false tribal from the type line ─────────
+def test_theme_detection():
+    import commander_analysis as ca
+    det = ca._detect_themes
+    # "Human Knight" who rewards Knights+Equipment must NOT be Human-tribal.
+    syr = det({"type_line": "Legendary Creature — Human Knight",
+               "oracle_text": "Other Knights you control get +1/+1. Whenever Syr Gwyn attacks, "
+                              "attach target Equipment to a Knight. Equip costs you pay cost 0 less."})
+    check_true("theme.knight",   "tribal_knights" in syr)
+    check_true("theme.voltron",  "voltron" in syr)
+    check("theme.not_human",     "tribal_humans" in syr, False)
+    # "Phyrexian Angel" proliferate commander must be counters, not Angel-tribal.
+    atx = det({"type_line": "Legendary Creature — Phyrexian Angel Horror",
+               "oracle_text": "At the beginning of your end step, proliferate."})
+    check_true("theme.counters",  "counters" in atx)
+    check("theme.not_angel",      "tribal_angels" in atx, False)
+    # Aura/voltron commander detected (was previously nothing).
+    lp = det({"type_line": "Legendary Creature — Fox Advisor",
+              "oracle_text": "Whenever you cast an Aura spell, search your library for an Aura."})
+    check_true("theme.auras", "auras" in lp)
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
-               test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility):
+               test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
+               test_theme_detection):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
