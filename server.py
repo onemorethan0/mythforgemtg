@@ -3243,8 +3243,9 @@ def get_frame_styles():
         import cc_frames
         m15_ok = cc_frames.is_available("m15")
         fullart_ok = cc_frames.is_available("m15_fullart")
+        extended_ok = cc_frames.is_available("m15_extended")
     except Exception:
-        m15_ok = fullart_ok = False
+        m15_ok = fullart_ok = extended_ok = False
     cc_hint = "Install Card Conjurer locally and set MYTHFORGE_CC_DIR to enable."
     return {
         "styles": [
@@ -3253,6 +3254,9 @@ def get_frame_styles():
             {"key": "m15", "label": "Official-style (M15)", "available": m15_ok,
              "note": ("Modern frames rendered from your local Card Conjurer install."
                       if m15_ok else cc_hint)},
+            {"key": "m15_extended", "label": "Extended-art (M15)", "available": extended_ok,
+             "note": ("Full-width extended art with a normal text box, from your local Card Conjurer."
+                      if extended_ok else cc_hint)},
             {"key": "m15_fullart", "label": "Full-art (Borderless)", "available": fullart_ok,
              "note": ("Edge-to-edge full-art borderless frames from your local Card Conjurer."
                       if fullart_ok else cc_hint)},

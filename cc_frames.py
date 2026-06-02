@@ -131,10 +131,37 @@ _M15_FULLART = _FrameSpec(
     mana_size=0.043,                     # ~ CC 71/1638; was 0.046 (too large, rode high)
 )
 
+# M15 "extended art" — art runs full-width to the left/right edges (taller than
+# regular) but keeps a normal parchment text box, so rules text stays dark. PT
+# reuses the regular-frame badges (../../regular, relative to this pack's dir).
+_M15_EXTENDED = _FrameSpec(
+    subdir="m15/new/extended",
+    frames={
+        "W": "w.png", "U": "u.png", "B": "b.png", "R": "r.png", "G": "g.png",
+        "M": "m.png", "A": "a.png", "L": "l.png", "C": "c.png",
+    },
+    pt={
+        "W": "../../regular/m15PTW.png", "U": "../../regular/m15PTU.png",
+        "B": "../../regular/m15PTB.png", "R": "../../regular/m15PTR.png",
+        "G": "../../regular/m15PTG.png", "M": "../../regular/m15PTM.png",
+        "A": "../../regular/m15PTA.png", "C": "../../regular/m15PTC.png",
+    },
+    art=_Box(0.0, 236 / 2814, 1.0, 1530 / 2814),    # full-width extended art
+    set_symbol=_Box(0.9213 - 0.12, 0.5910, 0.12, 0.0410),
+    pt_box=_Box(0.7573, 0.8848, 0.188, 0.0733),
+    title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
+    type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
+    rules=_Box(0.086, 0.6303, 0.828, 0.2875),
+    mana_right=0.9292,
+    mana_cy=0.0613 + (71 / 2100) / 2,
+    mana_size=0.043,
+)
+
 # Frame-style key -> spec. Keys match BuildRequest.frame_style / the UI selector.
 _SPECS: dict[str, _FrameSpec] = {
-    "m15":         _M15,
-    "m15_fullart": _M15_FULLART,
+    "m15":          _M15,
+    "m15_fullart":  _M15_FULLART,
+    "m15_extended": _M15_EXTENDED,
 }
 
 # Logical font name -> file in card_assets/fonts (all already shipped with the app)
