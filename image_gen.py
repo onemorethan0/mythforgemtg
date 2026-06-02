@@ -563,17 +563,25 @@ _LORA_PRESETS: dict[str, dict] = {
         "label":       "Desert Punk",
         "description": "Post-apocalyptic wasteland — Mad Max / Fallout, salvaged tech, harsh sun, dust and rust.",
         "icon":        "🏜️",
-        "style_guide_hint":  "post-apocalyptic gritty concept art, warm ochre and rust palette, dramatic side lighting",
+        "style_guide_hint":  "post-apocalyptic gritty retrofuture concept art, weathered salvaged-tech textures, dramatic directional lighting",
         "themer_medium":     '"digital painting," or "post-apocalyptic concept art," or "gritty illustration,"',
-        "themer_quality":    '"dramatic side lighting, warm earth tones" or "gritty detail, dust-hazed atmosphere" or "painterly, vivid ochre and rust palette"',
+        # Quality tag is appended to EVERY art_prompt — keep it to lighting/detail
+        # words ONLY. A fixed palette here ("ochre and rust", "dust-hazed") forced
+        # the same look on every card; per-card colour comes from mana identity.
+        "themer_quality":    '"dramatic directional lighting, rich gritty detail" or "weathered texture, atmospheric depth" or "painterly, high detail"',
         # NOTE: avoid "bleached sky" / "harsh overhead sunlight" — at FLUX CFG 5.0
-        # those resolve to pure white overexposure.  Use warm earth-tone anchors +
-        # dramatic side/rim lighting instead to keep the desert feel without blowout.
+        # those resolve to pure white overexposure.
+        #
+        # IMPORTANT (variety): the flux_prefix LEADS every prompt, so it must carry
+        # STYLE/medium only — NOT a fixed scene or wardrobe. The old prefix baked
+        # "Sun-scorched desert wasteland, cracked red earth, amber dust haze" +
+        # "salvaged rust-stained armor" into all 100 cards, so every card rendered
+        # as the same desert with the same armor (the zero-variety bug). Each card's
+        # unique scene now comes from its own art_prompt; the prefix only sets the
+        # gritty post-apoc retrofuture LOOK.
         "flux_prefix": (
-            "Digital painting, post-apocalyptic concept art. "
-            "Sun-scorched desert wasteland, cracked red earth, amber dust haze. "
-            "Salvaged rust-stained armor, retrofuture survival gear, weathered bone and metal. "
-            "Dramatic side lighting, deep shadows, warm ochre and burnt sienna palette. "
+            "Digital painting, post-apocalyptic retrofuture concept art, gritty Mad-Max / Fallout aesthetic. "
+            "Weathered salvaged-tech textures, rust and grime, dramatic directional lighting, deep shadows. "
             "Third-person view, character viewed from outside. High detail, landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
@@ -581,8 +589,10 @@ _LORA_PRESETS: dict[str, dict] = {
             {
                 "fragments":      ["retrofuture", "dystopia"],
                 "trigger":        "RetroFutureDystopia",
-                "model_strength": 0.50,
-                "clip_strength":  0.65,
+                "model_strength": 0.55,
+                # clip 0.65 over-weighted the LoRA's trained look (samey output);
+                # keep style-LoRA clip moderate so each card's prompt shows through.
+                "clip_strength":  0.45,
                 "dark_only":      False,
                 "label":          "Retro Future Dystopia",
                 "download_url":   "https://civitai.com/models/886913",
