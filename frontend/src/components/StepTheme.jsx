@@ -402,6 +402,7 @@ export default function StepTheme({
       // Auto-correct stale model_speed if that checkpoint type disappeared
       if (modelSpeed === 'quality' && !hasDev_ && hasSchnell_) onModelSpeedChange('fast')
       else if (modelSpeed === 'fast' && !hasSchnell_ && hasDev_) onModelSpeedChange('quality')
+      else if (modelSpeed === 'turbo' && !hasDev_) onModelSpeedChange(hasSchnell_ ? 'fast' : 'quality')
       else if (modelSpeed === 'sd35' && !hasSd35_) onModelSpeedChange(hasDev_ ? 'quality' : 'fast')
     }).catch(() => {})
     return () => { cancelled = true }
@@ -441,7 +442,8 @@ export default function StepTheme({
     if (t.includes('FLUX')) {
       const isSchnell = ckpt.filename.toLowerCase().includes('schnell')
       if (isSchnell && modelSpeed !== 'fast') onModelSpeedChange('fast')
-      else if (!isSchnell && modelSpeed !== 'quality') onModelSpeedChange('quality')
+      // 'turbo' is also a dev mode — don't clobber it back to 'quality'.
+      else if (!isSchnell && modelSpeed !== 'quality' && modelSpeed !== 'turbo') onModelSpeedChange('quality')
     } else if (t.includes('SD') && !t.includes('SDXL')) {
       if (modelSpeed !== 'sd35') onModelSpeedChange('sd35')
     }
@@ -1340,13 +1342,25 @@ export default function StepTheme({
         {generateArt && !comfyOffline && checkpoints.length > 0 && (() => {
           // Determine which button is currently active based on the selected checkpoint
           const isSchnellActive = checkpoint && checkpoint.toLowerCase().includes('schnell')
-          const isDevActive     = checkpoint && activeCheckpointType.includes('FLUX') && !isSchnellActive
+          const isDevCkpt       = checkpoint && activeCheckpointType.includes('FLUX') && !isSchnellActive
+          const isTurboActive   = isDevCkpt && modelSpeed === 'turbo'
+          const isDevActive     = isDevCkpt && modelSpeed !== 'turbo'
           const isSDXLActive    = activeCheckpointType.includes('SDXL')
           const isSd35Active    = activeCheckpointType.includes('SD') && !isSDXLActive
+
+          // Turbo needs a distillation LoRA installed (keep fragments in sync with
+          // image_gen._TURBO_LORA_FRAGMENTS).
+          const TURBO_FRAGS = ['flux.1-turbo', 'flux-turbo', 'fluxturbo', 'hyper-flux', 'hyper-sd']
+          const hasTurboLora = installedLoras.some(f =>
+            TURBO_FRAGS.some(frag => String(f).toLowerCase().includes(frag)))
 
           const selectDev = () => {
             const c = checkpoints.find(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))
             if (c) { onCheckpointChange(c.filename); onModelSpeedChange('quality') }
+          }
+          const selectTurbo = () => {
+            const c = checkpoints.find(c => (c.type||'').toUpperCase().includes('FLUX') && !c.filename.toLowerCase().includes('schnell'))
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('turbo') }
           }
           const selectSDXL = () => {
             const c = checkpoints.find(c => (c.type||'').toUpperCase().includes('SDXL'))
@@ -1376,6 +1390,19 @@ export default function StepTheme({
                   }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: isDevActive ? '#eab308' : '#a8a29e', marginBottom: 3 }}>✦ Quality</div>
                     <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Dev · ~30s/card</div>
+                  </button>
+                )}
+
+                {/* FLUX Dev + Turbo LoRA (only when a turbo LoRA is installed) */}
+                {hasDev && hasTurboLora && (
+                  <button onClick={selectTurbo} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isTurboActive ? '#101c14' : '#0c0a09',
+                    border: `1px solid ${isTurboActive ? '#22c55e' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isTurboActive ? '#22c55e' : '#a8a29e', marginBottom: 3 }}>⚡ Turbo</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Dev · ~8s/card · near-Quality</div>
                   </button>
                 )}
 

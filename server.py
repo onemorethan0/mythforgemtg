@@ -2263,6 +2263,10 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 _jobs[source_job_id]["commander"] = updated["commander"]
                 _jobs[source_job_id]["deck"]      = updated["deck"]
 
+        # Mark terminal status BEFORE the done event. Without this the job stays
+        # "building" forever (the /status poll and the active-build lock both read
+        # _jobs[job_id]["status"]), even though the art + render already completed.
+        _jobs[job_id]["status"] = "done"
         _push(job_id, "done", json.dumps({"job_id": job_id, "source_job_id": source_job_id}))
 
     except Exception as e:

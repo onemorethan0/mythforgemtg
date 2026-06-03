@@ -1321,6 +1321,22 @@ def _theme_darkness_score(text: str) -> float:
     return round(0.20 + 0.80 * (ratio + 1) / 2, 3)
 
 
+# ── Turbo render mode ─────────────────────────────────────────────────────────
+# flux-dev + a distillation ("turbo") LoRA runs at ~8 steps near full dev quality
+# (~3-4x faster than 28-step dev, far sharper than schnell). The LoRA file is
+# user-supplied — drop it in ComfyUI/models/loras/ like any other; it's matched by
+# these filename fragments. Recommended: alimama-creative FLUX.1-Turbo-Alpha
+# (8 steps, model strength 1.0, guidance 3.5). If none is installed, turbo falls
+# back to standard 28-step dev so output never degrades to noise.
+_TURBO_LORA_FRAGMENTS = [
+    "FLUX.1-Turbo-Alpha", "flux.1-turbo", "flux-turbo", "fluxturbo",
+    "Hyper-FLUX.1-dev-8steps", "Hyper-FLUX", "Hyper-SD-FLUX", "Hyper-SD3",
+]
+_TURBO_STEPS         = 8
+_TURBO_LORA_STRENGTH = 1.0    # Turbo-Alpha / Hyper-8step both want ~1.0 on the UNET
+_TURBO_FALLBACK_STEPS = 28    # used when turbo requested but no turbo LoRA present
+
+
 def _insert_loras(
     workflow: dict,
     checkpoint_node_id: str,
@@ -1770,6 +1786,8 @@ class ImageGen:
                  gen_settings: Optional[GenSettings] = None):
         """
         model_speed: "quality" → prefer flux-dev (slower, sharper)
+                     "turbo"   → flux-dev + turbo LoRA at 8 steps (~3-4× faster,
+                                 near-dev quality); needs a turbo LoRA installed
                      "fast"    → prefer flux-schnell (4-8× faster, lower detail)
         art_style:   preset key from _LORA_PRESETS (e.g. "mtg_fantasy", "cyberpunk")
         gen_settings: user-configurable knobs (guidance/steps/seed/loras/safe_mode…).
@@ -1777,6 +1795,13 @@ class ImageGen:
         """
         # User-configurable generation settings (guidance, steps, seed, loras, …)
         self.gen = gen_settings or GenSettings()
+        # Turbo mode runs flux-dev at a low step count via a distillation LoRA
+        # (resolved in _setup_loras). Default the step count here so the workflow
+        # builders pick it up; a user gen.steps override still wins.
+        self._turbo = (model_speed == "turbo")
+        self._turbo_lora: Optional[dict] = None
+        if self._turbo and self.gen.steps is None:
+            self.gen.steps = _TURBO_STEPS
         # Safe mode: shrink the workload that can trip an unstable machine under
         # combined GPU+CPU load — fewer steps and a smaller canvas.
         if self.gen.safe_mode:
@@ -1815,6 +1840,13 @@ class ImageGen:
         if self.available:
             self._setup_face_method()
             self._setup_loras()
+            # Turbo requested but no turbo LoRA installed → 8 steps alone would be
+            # noisy. Fall back to standard dev steps so quality never degrades.
+            if self._turbo and self._turbo_lora is None and self.gen.steps == _TURBO_STEPS:
+                self.gen.steps = _TURBO_FALLBACK_STEPS
+                print(f"  [image_gen] ⚠ Turbo requested but no turbo LoRA installed "
+                      f"(expected one of {_TURBO_LORA_FRAGMENTS}); using "
+                      f"{_TURBO_FALLBACK_STEPS}-step dev instead.")
             # Log resolved generation settings once per build for easy troubleshooting.
             try:
                 print(f"  [gen_settings] {json.dumps(self.gen.resolved())}")
@@ -1844,9 +1876,10 @@ class ImageGen:
                 dev     = [c for c in flux if "schnell" not in c.lower()]
 
                 # model_speed routes to model family:
-                #   "sd35"    → SD 3.5 Large (slower, different aesthetic)
-                #   "fast"    → FLUX Schnell (4–8× faster than dev)
-                #   "quality" → FLUX dev (default, highest detail)
+                #   "sd35"            → SD 3.5 Large (slower, different aesthetic)
+                #   "fast"            → FLUX Schnell (4–8× faster than dev)
+                #   "quality"/"turbo" → FLUX dev (turbo adds a distillation LoRA +
+                #                       low steps for ~3-4× speed at near-dev quality)
                 if self.model_speed == "sd35" and sd35:
                     return sd35[0]
                 if self.model_speed == "fast":
@@ -2217,6 +2250,22 @@ class ImageGen:
         if missing_labels:
             print(f"  [image_gen] LoRAs missing for '{style_label}': "
                   f"{missing_labels} — preset runs prompt-only for those.")
+
+        # ── Turbo mode: resolve a distillation LoRA (flux-dev only) ─────────────
+        # Applied on TOP of the style stack in generate(); lets dev run at 8 steps.
+        if self._turbo and is_flux and "schnell" not in (self.checkpoint or "").lower():
+            tmatch = next(
+                (f for f in installed
+                 if any(frag.lower() in f.lower() for frag in _TURBO_LORA_FRAGMENTS)),
+                None,
+            )
+            if tmatch:
+                self._turbo_lora = {
+                    "label": "Turbo (distill)", "filename": tmatch, "trigger": "",
+                    "model_strength": _TURBO_LORA_STRENGTH, "clip_strength": 0.0,
+                }
+                print(f"  [image_gen] Turbo mode ON: {tmatch} @ "
+                      f"{self.gen.steps or _TURBO_STEPS} steps")
 
         # ── User LoRA overrides (from the Advanced "LoRA picker") ───────────────
         # gen.lora_overrides is a list of {filename, model_strength, clip_strength?,
@@ -2669,9 +2718,14 @@ class ImageGen:
             _is_flux_model = _is_flux(self.checkpoint)
             _is_sdxl_model = not _is_flux_model and not _is_sd35(self.checkpoint or "")
 
-            if self.active_loras and (_is_flux_model or _is_sdxl_model) and not _is_schnell_ckpt:
+            # Turbo distillation LoRA rides on top of the style stack (flux-dev only).
+            effective_loras = list(self.active_loras or [])
+            if self._turbo_lora and _is_flux_model and not _is_schnell_ckpt:
+                effective_loras = [self._turbo_lora] + effective_loras
+
+            if effective_loras and (_is_flux_model or _is_sdxl_model) and not _is_schnell_ckpt:
                 scaled: list[dict] = []
-                for entry in self.active_loras:
+                for entry in effective_loras:
                     if entry.get("dark_only") and self.theme_darkness < 1.0:
                         scaled.append({
                             **entry,
