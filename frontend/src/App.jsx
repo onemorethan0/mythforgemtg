@@ -17,12 +17,30 @@ const STEP_LABELS = ['Commander', 'Face', 'Theme', 'Building']
 
 const SS_KEY = 'mtg_active_job'
 
+// Compose the structured "deck vision" fields into one tight art-theme brief for
+// the themer. Setting leads (claims the model's token budget); the rest are
+// structured modifiers. Lighting is framed as overall atmosphere so it doesn't
+// fight the per-card mana-color identity.
+function composeVision(setting, moods, genres, lighting, inspiration) {
+  const p = []
+  if (setting && setting.trim()) p.push(setting.trim())
+  if (genres && genres.length)   p.push('Genre: ' + genres.join(', '))
+  if (moods && moods.length)     p.push('Mood: ' + moods.join(', '))
+  if (lighting && lighting.length) p.push('Overall lighting and atmosphere: ' + lighting.join(', '))
+  if (inspiration && inspiration.trim()) p.push('Inspired by ' + inspiration.trim())
+  return p.join('. ')
+}
+
 export default function App() {
   const [step, setStep]           = useState(STEP.COMMANDER)
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
-  const [theme, setTheme]         = useState('')
+  const [theme, setTheme]         = useState('')   // the "Setting" free-text (vision anchor)
+  const [visionMoods, setVisionMoods]       = useState([])
+  const [visionGenres, setVisionGenres]     = useState([])
+  const [visionLighting, setVisionLighting] = useState([])
+  const [visionInspiration, setVisionInspiration] = useState('')
   const [commanderPrompt, setCommanderPrompt] = useState('')
   const [userName, setUserName]               = useState('')
   const [emblemPrompt, setEmblemPrompt]       = useState('')
@@ -107,7 +125,7 @@ export default function App() {
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
-    setBracket(3); setTheme(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setTheme(''); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -123,7 +141,8 @@ export default function App() {
         deck_list: commander._import?.mode === 'text' ? commander._import.value : "",
         playstyle,
         bracket,
-        art_theme:         theme,
+        art_theme:         composeVision(theme, visionMoods, visionGenres, visionLighting, visionInspiration),
+        theme_spec:        { setting: theme, moods: visionMoods, genres: visionGenres, lighting: visionLighting, inspiration: visionInspiration },
         commander_prompt:  commanderPrompt,
         user_name:         userName || null,
         emblem_prompt:     emblemPrompt,
@@ -241,7 +260,13 @@ export default function App() {
     setPlaystyle(psKey)
 
     setBracket(d.bracket || 3)
-    setTheme(d.theme || '')
+    // Restore the structured vision fields if saved; else seed Setting with the theme.
+    const spec = d.theme_spec || {}
+    setTheme(spec.setting || d.theme || '')
+    setVisionMoods(spec.moods || [])
+    setVisionGenres(spec.genres || [])
+    setVisionLighting(spec.lighting || [])
+    setVisionInspiration(spec.inspiration || '')
     setCommanderPrompt(d.commander_prompt || '')
     setUserName(d.user_name || '')
     setEmblemPrompt(d.emblem_prompt || '')
@@ -396,6 +421,10 @@ export default function App() {
             commander={commander}
             theme={theme}
             onThemeChange={setTheme}
+            visionMoods={visionMoods} onVisionMoodsChange={setVisionMoods}
+            visionGenres={visionGenres} onVisionGenresChange={setVisionGenres}
+            visionLighting={visionLighting} onVisionLightingChange={setVisionLighting}
+            visionInspiration={visionInspiration} onVisionInspirationChange={setVisionInspiration}
             commanderPrompt={commanderPrompt}
             onCommanderPromptChange={setCommanderPrompt}
             userName={userName}

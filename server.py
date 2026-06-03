@@ -444,6 +444,9 @@ class BuildRequest(BaseModel):
     # the theme step's per-tribe fields (multi-tribe reskin; wins over auto-detect).
     prebuilt_deck:     Optional[list] = None
     tribal_overrides:  Optional[dict] = None
+    # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration)
+    # the frontend composed into art_theme — persisted so Edit can restore them.
+    theme_spec:        Optional[dict] = None
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
@@ -1282,6 +1285,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
+            "theme_spec":       req.theme_spec or {},
             "commander_prompt": req.commander_prompt,
             "emblem_prompt":    req.emblem_prompt,
             "playstyle":        ps_label,
@@ -1649,6 +1653,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
+            "theme_spec":       source_data.get("theme_spec", {}),
             "commander_prompt": req.commander_prompt or source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
@@ -2440,6 +2445,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "deck":             [_themed_card_to_dict(tc, deck_index=i) for i, tc in enumerate(themed_deck, 1)],
             "stats":            stats,
             "theme":            art_theme,
+            "theme_spec":       source_data.get("theme_spec", {}),
             "commander_prompt": commander_prompt,
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),

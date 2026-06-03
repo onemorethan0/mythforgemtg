@@ -11,6 +11,14 @@ const EXAMPLES = [
   'volcanic dragon empire',
 ]
 
+// Structured "deck vision" chip options — composed into the art-theme brief.
+const VISION_GENRES = ['High Fantasy', 'Dark Fantasy', 'Sci-Fi', 'Cyberpunk', 'Post-Apocalyptic',
+                       'Mythic / Legend', 'Steampunk', 'Gothic', 'Historical', 'Cosmic Horror']
+const VISION_MOODS  = ['Grim', 'Heroic', 'Whimsical', 'Eerie', 'Serene', 'Epic',
+                       'Gritty', 'Mysterious', 'Romantic', 'Ominous']
+const VISION_LIGHTING = ['Warm / golden', 'Cold / neon', 'Muted', 'Vibrant', 'High-contrast',
+                         'Pastel', 'Moody / dark', 'Ethereal glow']
+
 // ── Ragnarok Online specific constants ────────────────────────────────────────
 const RO_THEMES = [
   'Prontera castle grounds, golden spires, holy light',
@@ -173,6 +181,10 @@ const BORDER_THEME_EXAMPLES = [
 
 export default function StepTheme({
   commander, theme, onThemeChange,
+  visionMoods = [], onVisionMoodsChange,
+  visionGenres = [], onVisionGenresChange,
+  visionLighting = [], onVisionLightingChange,
+  visionInspiration = '', onVisionInspirationChange,
   commanderPrompt, onCommanderPromptChange,
   userName, onUserNameChange,
   emblemPrompt, onEmblemPromptChange,
@@ -210,6 +222,24 @@ export default function StepTheme({
   const isRO = artStyle === 'ragnarok_online'
   const setTribe = (orig, val) => onTribalOverridesChange &&
     onTribalOverridesChange({ ...tribalOverrides, [orig]: val })
+
+  // ── Deck-vision chip helpers ──
+  const toggleArr = (arr, val, on) => on && on(arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val])
+  const vchip = (active) => ({
+    fontSize: 11, padding: '4px 10px', borderRadius: 20, cursor: 'pointer', fontFamily: 'inherit',
+    transition: 'all 0.15s',
+    background: active ? '#422006' : '#0c0a09',
+    border: `1px solid ${active ? '#ca8a04' : '#44403c'}`,
+    color: active ? '#fde047' : '#a8a29e',
+  })
+  // Live preview of the composed brief sent to the art engine.
+  const visionBrief = [
+    (theme || '').trim(),
+    visionGenres.length && 'Genre: ' + visionGenres.join(', '),
+    visionMoods.length && 'Mood: ' + visionMoods.join(', '),
+    visionLighting.length && 'Overall lighting and atmosphere: ' + visionLighting.join(', '),
+    (visionInspiration || '').trim() && 'Inspired by ' + visionInspiration.trim(),
+  ].filter(Boolean).join('. ')
 
   // Derived: type of the currently selected checkpoint
   const activeCheckpointType = (() => {
@@ -514,34 +544,64 @@ export default function StepTheme({
           </div>
         )}
 
-        {/* ── World & Palette theme ── */}
+        {/* ── Deck Vision (structured intake → tighter art brief) ── */}
         <div style={s.section}>
-          <label style={s.label}>{isRO ? 'World Location & Mood' : 'World & Color Theme'}</label>
-          <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8 }}>
-            {isRO
-              ? 'Choose an RO world setting. The theme sets the palette and scene context for every card — it blends with each card\'s mana color identity.'
-              : 'Describe the setting, mood, and palette. Colors here blend with each card\'s MTG mana identity — a black card in a neon theme stays dark and electric, not pastel.'
-            }
+          <label style={s.label}>Deck Vision</label>
+          <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10 }}>
+            Describe the world, then pin the genre, mood, and lighting. These compose into a focused brief for the art engine — far sharper than a one-line description. Per-card colors still follow each card's MTG mana identity; lighting here sets the overall atmosphere.
           </div>
+
+          {/* Setting */}
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Setting <span style={{ color: '#57534e', fontWeight: 400 }}>— the world / place</span></div>
           <textarea
             style={s.textarea}
             placeholder={isRO
               ? 'e.g. Prontera castle grounds, golden spires, holy light streaming through stained glass'
-              : 'e.g. dark gothic necromancer city with bone-white spires and sickly green fog'
-            }
+              : 'e.g. a rain-slick neon megacity built into a canyon of derelict skyscrapers'}
             value={theme}
             onChange={e => onThemeChange(e.target.value)}
             rows={2}
           />
-          <p style={s.exLabel}>{isRO ? 'RO World Locations (click to use)' : 'Examples (click to use)'}</p>
           <div style={s.exGrid}>
             {(isRO ? RO_THEMES : EXAMPLES).map(ex => (
-              <button key={ex} style={{
-                ...s.exBtn,
-                ...(isRO && theme === ex ? { background: '#0a0c14', border: '1px solid #818cf8', color: '#818cf8' } : {}),
-              }} onClick={() => onThemeChange(ex)}>{ex}</button>
+              <button key={ex} style={s.exBtn} onClick={() => onThemeChange(ex)}>{ex}</button>
             ))}
           </div>
+
+          {/* Genre / Mood / Lighting chip groups */}
+          {[['Genre', VISION_GENRES, visionGenres, onVisionGenresChange],
+            ['Mood', VISION_MOODS, visionMoods, onVisionMoodsChange],
+            ['Lighting & palette', VISION_LIGHTING, visionLighting, onVisionLightingChange]].map(([label, opts, sel, on]) => (
+            <div key={label} style={{ marginTop: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>{label} <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span></div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {opts.map(o => (
+                  <button key={o} style={vchip(sel.includes(o))} onClick={() => toggleArr(sel, o, on)}>{o}</button>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* Inspirations */}
+          <div style={{ marginTop: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Inspirations <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span></div>
+            <input
+              type="text"
+              style={{ width: '100%', background: '#0c0a09', border: '1px solid #44403c', borderRadius: 10, padding: '9px 14px', color: '#f5f5f4', fontSize: 14, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' }}
+              placeholder="e.g. Blade Runner, Studio Ghibli, Dark Souls"
+              value={visionInspiration}
+              onChange={e => onVisionInspirationChange && onVisionInspirationChange(e.target.value)}
+              maxLength={120}
+            />
+          </div>
+
+          {/* Live composed brief */}
+          {visionBrief && (
+            <div style={{ marginTop: 12, padding: 10, background: '#0c0a09', border: '1px solid #292524', borderRadius: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#78716c', marginBottom: 4 }}>🎨 Art brief sent to the engine</div>
+              <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5, fontStyle: 'italic' }}>{visionBrief}</div>
+            </div>
+          )}
         </div>
 
         {/* ── Commander character prompt ── */}
