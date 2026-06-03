@@ -181,7 +181,7 @@ deck's real creature types for per-tribe reskinning.
 
 1. **Commander & Deck** — Either **Generate a deck** (search any legendary creature; pick **power bracket 1–5** and a **playstyle** — Aggro, Control, Lifegain, etc. or Auto) or **Import a deck** (retheme one you already own — see below). On continue, the **99-card list is built immediately** (no art yet).
 2. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness.
-3. **Theme** — Free-text world/art theme ("dark gothic necromancer city"), **per-tribe creature-type replacements** (e.g. *Knight → Cowboy* — reskins that type's name, art, card type line, **and rules text** across the deck), card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
+3. **Theme** — **Deck Vision** structured intake: a setting line plus genre/mood/lighting chips and optional inspirations compose into a clean theme brief (a live preview shows what the themer will receive), so you get better, more consistent names and art than a single free-text box. Also: **per-tribe creature-type replacements** (e.g. *Knight → Cowboy* — reskins that type's name, art, card type line, **and rules text** across the deck), card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
 4. **Deck** — Browse all 100 cards with rendered proxy frames; download ZIP or print-ready PDF. Re-roll with **Retheme** (new names/art, same settings) or **Rebuild** (regenerate art), or **Edit** to change settings into a new deck.
 
 ---
@@ -211,6 +211,8 @@ On the **Commander** step, switch to the **📥 Import a deck** tab to retheme a
 - Any card name that can't be matched on Scryfall is reported and skipped.
 - **Caching:** imported decks and resolved card data are cached under `cache/` — re-importing the same deck (or any card you've seen before) makes **no network calls**. Use **↻ Re-pull** to force a fresh fetch.
 - Duplicate basic lands are themed once and the art reused for every copy; your ZIP/PDF export still contains all physical proxies.
+
+**Bracket analysis (`deck_analysis.py`):** the import preview also estimates the deck's **power bracket (1–5)** from objective signals — Game Changers count, extra-turn spells, mass land destruction, fast mana, tutor density, and average mana value — and shows them as chips. It then suggests how to **scale up** (toward higher power) or **scale down** (toward a more casual table), so you can tune a borrowed list before rethemeing it.
 
 Once imported, the rest of the flow (face, theme, custom pips, art generation, 3D, regen/retheme) works exactly as it does for generated decks.
 
@@ -456,7 +458,7 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
-| POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached |
+| POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached; also returns an **estimated bracket** with power signals + scale-up/down suggestions (`deck_analysis.py`) |
 | POST | `/api/deck/generate-list` | **Phase 1:** build the 99-card list (no art) from commander+playstyle+bracket; returns deck + its creature tribes for the reskin UI |
 | GET | `/api/playstyles` | List all 15 playstyle options |
 | GET | `/api/art-styles` | List all art style presets + LoRA install status |
