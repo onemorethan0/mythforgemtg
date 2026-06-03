@@ -126,6 +126,30 @@ def test_theme_detection():
     lp = det({"type_line": "Legendary Creature — Fox Advisor",
               "oracle_text": "Whenever you cast an Aura spell, search your library for an Aura."})
     check_true("theme.auras", "auras" in lp)
+    # Meren: "another creature you control dies" + "in your graveyard" phrasing
+    # used to match nothing — must be aristocrats + reanimator now.
+    meren = det({"type_line": "Legendary Creature — Human Shaman",
+                 "oracle_text": "Whenever another creature you control dies, you get an "
+                 "experience counter. Choose target creature card in your graveyard. "
+                 "Return it to the battlefield."})
+    check_true("theme.meren_aristocrats", "aristocrats" in meren)
+    check_true("theme.meren_reanimator", "reanimator" in meren)
+    # Tovolar: "Human Werewolves" transform text must NOT read as Human tribal;
+    # it's Werewolf/Wolf.
+    tov = det({"type_line": "Legendary Creature — Werewolf",
+               "oracle_text": "Whenever a Wolf or Werewolf you control deals combat damage "
+               "to a player, draw a card. Transform any number of Human Werewolves you control."})
+    check_true("theme.tovolar_werewolf", "tribal_werewolves" in tov)
+    check("theme.tovolar_not_human",     "tribal_humans" in tov, False)
+    # Najeela: Warriors + attack triggers.
+    naj = det({"type_line": "Legendary Creature — Human Warrior",
+               "oracle_text": "Whenever a Warrior attacks, create a 1/1 white Warrior "
+               "creature token. There is an additional combat phase."})
+    check_true("theme.najeela_warrior", "tribal_warriors" in naj)
+    # Slivers are a recognized tribe.
+    slv = det({"type_line": "Legendary Creature — Sliver",
+               "oracle_text": "Sliver creatures you control have cascade."})
+    check_true("theme.sliver", "tribal_slivers" in slv)
 
 
 # ── imported-deck bracket analysis ───────────────────────────────────────────
