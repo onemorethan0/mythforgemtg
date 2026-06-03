@@ -356,6 +356,17 @@ class DeckBuilder:
             used = sum(v for k, v in plan.items() if k != "goodstuff")
             plan["goodstuff"] = max(2, 99 - used)
 
+        # Aggressive go-wide archetypes (any tribe / tokens / combat) want a wider
+        # creature base than balanced goodstuff gives. Theme-synergy picks are mostly
+        # creatures + their payoffs, so bias slots there (except cEDH, which keeps its
+        # interaction-heavy mix). This lifts the effective creature count ~25 -> ~31.
+        _aggro = any(t.startswith("tribal_") for t in active_themes) or \
+                 bool({"tokens", "voltron_combat"} & set(active_themes))
+        if _aggro and bracket != 5:
+            plan["theme"]     = plan.get("theme", 20) + 6
+            used = sum(v for k, v in plan.items() if k != "goodstuff")
+            plan["goodstuff"] = max(2, 99 - used)
+
         from commander_analysis import THEME_LABELS
         active_labels = [THEME_LABELS.get(t, t) for t in active_themes] or ["Goodstuff / Midrange"]
         bracket_label = BRACKET_LABELS.get(bracket, str(bracket))

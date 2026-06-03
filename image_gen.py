@@ -37,7 +37,7 @@ Sampler notes (community-tested FLUX dev, 2025):
   euler + beta   — NOT recommended together (beta only shines paired with deis).
   dpm++_2m + sgm_uniform — sharpest detail, best for illustration/concept art.
   deis + beta    — high contrast cinematic look, also excellent for MTG scenes.
-  Dev default:     dpm++_2m + sgm_uniform, 35 steps, CFG 3.5, 1152x768.
+  Dev default:     dpm++_2m + sgm_uniform, 28 steps, CFG 3.5, 1152x768.
   Schnell default: euler + simple,          8 steps, CFG 1.0, 1152x768 (no LoRAs — dev-trained).
 """
 from __future__ import annotations
@@ -128,7 +128,7 @@ CARD_HEIGHT    = 768
 class GenSettings:
     # FLUX sampler controls (dev only; schnell ignores guidance)
     guidance:   float          = 3.5     # FluxGuidance value (1.5–5)
-    steps:      Optional[int]  = None     # None → 35 dev / 8 schnell
+    steps:      Optional[int]  = None     # None → 28 dev / 8 schnell
     sampler:    Optional[str]  = None     # None → dpmpp_2m dev / euler schnell
     scheduler:  Optional[str]  = None     # None → sgm_uniform dev / simple schnell
     # Seed
@@ -1482,7 +1482,9 @@ def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
     #   with no FluxGuidance node at all.
     #   dpm++_2m + sgm_uniform remains the sharpest combo for illustration detail.
     # User-configurable knobs (fall back to model-appropriate defaults).
-    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 35)
+    # flux-dev fp8 is ~indistinguishable at 28 vs 35 steps for card art but ~20%
+    # faster (~38s -> ~30s/card on a 3090); override via gen.steps for max fidelity.
+    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 28)
     sampler  = gen.sampler   or              ("euler"  if is_schnell else "dpmpp_2m")
     scheduler= gen.scheduler or              ("simple" if is_schnell else "sgm_uniform")
     flux_guidance = gen.guidance     # distilled guidance for dev (ignored by schnell)
@@ -1572,7 +1574,9 @@ def _build_pulid_flux_workflow(
     is_schnell = "schnell" in checkpoint.lower()
     # See _build_flux_workflow: FLUX uses cfg=1.0 + a FluxGuidance node, never
     # KSampler cfg>1 (which over-guides to a blown-out white frame).
-    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 35)
+    # flux-dev fp8 is ~indistinguishable at 28 vs 35 steps for card art but ~20%
+    # faster (~38s -> ~30s/card on a 3090); override via gen.steps for max fidelity.
+    steps    = gen.steps     if gen.steps     else (8       if is_schnell else 28)
     sampler  = gen.sampler   or              ("euler"  if is_schnell else "dpmpp_2m")
     scheduler= gen.scheduler or              ("simple" if is_schnell else "sgm_uniform")
     flux_guidance = gen.guidance     # distilled guidance for dev (ignored by schnell)

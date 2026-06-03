@@ -21,8 +21,8 @@ export const GEN_SETTINGS_SCHEMA = [
   },
   {
     key: 'steps', step: 'theme', type: 'slider',
-    label: 'Sampler steps', min: 20, max: 40, step: 1, default: 35,
-    help: 'More steps = more detail but slower. 35 is the quality default.',
+    label: 'Sampler steps', min: 20, max: 40, step: 1, default: 28,
+    help: 'More steps = more detail but slower. 28 is the quality/speed default for flux-dev (near-identical to 35, ~20% faster); raise toward 35 for max fidelity.',
   },
   {
     key: 'seed_mode', step: 'theme', type: 'select',

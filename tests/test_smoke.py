@@ -69,8 +69,14 @@ def test_tribal_text():
 
 def test_tribal_type_line():
     f = themer._apply_tribal_map_to_type_line
+    # Reskinning a subtype drops the unmapped race word: "Human Knight" -> "Cowboy"
+    # (not "Human Cowboy"), so hybrids like "Squirrel Warrior" read cleanly.
     check("tl.knight", f("Legendary Creature — Human Knight", {"Knight": "Cowboy"}),
-          "Legendary Creature — Human Cowboy")
+          "Legendary Creature — Cowboy")
+    check("tl.multiword", f("Creature — Elf Warrior", {"Warrior": "Samurai Oni"}),
+          "Creature — Samurai Oni")
+    check("tl.unmapped_kept", f("Creature — Human Wizard", {"Knight": "Cowboy"}),
+          "Creature — Human Wizard")
     check("tl.noncreature", f("Instant", {"Knight": "Cowboy"}), "Instant")
 
 

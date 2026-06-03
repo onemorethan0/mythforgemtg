@@ -359,9 +359,18 @@ def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
         return type_line
     head, _, tail = type_line.replace(" - ", " — ").partition("—")
     subs = tail.strip().split()
-    new_subs = []
-    for s in subs:
-        new_subs.append(tribal_map.get(s, s))
+    # If any subtype is reskinned, the replacement *becomes* the creature's kind —
+    # drop the unmapped race words so "Elf Warrior"/"Squirrel Warrior" read cleanly
+    # as "Samurai Oni", not "Elf Samurai Oni"/"Squirrel Samurai Oni".
+    mapped = [tribal_map[s] for s in subs if s in tribal_map]
+    if mapped:
+        new_subs, seen = [], set()
+        for repl in mapped:                 # dedupe while preserving order
+            if repl not in seen:
+                seen.add(repl)
+                new_subs.append(repl)
+    else:
+        new_subs = subs
     return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
 
 
