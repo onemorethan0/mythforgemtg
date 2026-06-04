@@ -184,11 +184,11 @@ def test_deck_analysis():
 def test_ro_race_class():
     f = themer._ro_race_class
     # creature subtype -> (race, class)
-    check("ro.knight",    f("Legendary Creature — Human Knight"),   ("demihuman race", "lord knight"))
-    check("ro.wizard",    f("Creature — Human Wizard"),             ("demihuman race", "high wizard"))
-    check("ro.cleric",    f("Creature — Human Cleric"),             ("demihuman race", "arch bishop"))
-    check("ro.assassin",  f("Creature — Human Assassin"),           ("demihuman race", "guillotine cross"))
-    check("ro.elf_druid", f("Creature — Elf Druid"),                ("demihuman race", "sorcerer"))
+    check("ro.knight",    f("Legendary Creature — Human Knight"),   ("demihuman race", "lord_knight_(ragnarok_online)"))
+    check("ro.wizard",    f("Creature — Human Wizard"),             ("demihuman race", "high_wizard_(ragnarok_online)"))
+    check("ro.cleric",    f("Creature — Human Cleric"),             ("demihuman race", "arch_bishop_(ragnarok_online)"))
+    check("ro.assassin",  f("Creature — Human Assassin"),           ("demihuman race", "assassin_cross_(ragnarok_online)"))
+    check("ro.elf_druid", f("Creature — Elf Druid"),                ("demihuman race", "sorcerer_(ragnarok_online)"))
     # race-only (no clean class mapping)
     check("ro.dragon",    f("Creature — Dragon"),                   ("dragon race", ""))
     check("ro.angel",     f("Legendary Creature — Angel"),          ("angel race", ""))
@@ -201,7 +201,7 @@ def test_ro_race_class():
     check("ro.land",      f("Land"),                                ("", ""))
     check("ro.artifact",  f("Artifact"),                            ("", ""))
     # subtype precedence: class derives from the job subtype even with a race word
-    check("ro.zombie_wizard", f("Creature — Zombie Wizard"),        ("undead race", "high wizard"))
+    check("ro.zombie_wizard", f("Creature — Zombie Wizard"),        ("undead race", "high_wizard_(ragnarok_online)"))
 
 
 def test_stub_prompt():

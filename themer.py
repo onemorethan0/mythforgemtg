@@ -416,19 +416,23 @@ _RO_RACE = [
       "monk", "archer", "assassin", "samurai", "ninja", "noble", "advisor",
       "scout", "pilot", "berserker", "barbarian", "shaman", "druid", "elf", "dwarf"), "demihuman race"),
 ]
+# Job classes use the EXACT Danbooru tag the v5 LoRA was trained on
+# (jobname_(ragnarok_online)) — Illustrious is a Danbooru-tag model, so the tag is
+# the single strongest cue for the class. Plain "lord knight" did not reliably fire
+# the trained concept.
 _RO_CLASS = [
-    (("knight",), "lord knight"),
-    (("soldier", "warrior"), "knight"),
-    (("assassin", "ninja"), "guillotine cross"),
-    (("rogue",), "shadow chaser"),
-    (("archer", "ranger", "scout"), "sniper"),
-    (("cleric",), "arch bishop"),
-    (("monk",), "sura"),
-    (("wizard",), "high wizard"),
-    (("shaman", "druid"), "sorcerer"),
-    (("artificer",), "mechanic"),
-    (("berserker", "barbarian"), "rune knight"),
-    (("samurai",), "royal guard"),
+    (("knight",), "lord_knight_(ragnarok_online)"),
+    (("soldier", "warrior"), "knight_(ragnarok_online)"),
+    (("assassin", "ninja"), "assassin_cross_(ragnarok_online)"),
+    (("rogue",), "stalker_(ragnarok_online)"),
+    (("archer", "ranger", "scout"), "sniper_(ragnarok_online)"),
+    (("cleric",), "arch_bishop_(ragnarok_online)"),
+    (("monk",), "champion_(ragnarok_online)"),
+    (("wizard",), "high_wizard_(ragnarok_online)"),
+    (("shaman", "druid"), "sorcerer_(ragnarok_online)"),
+    (("artificer",), "mechanic_(ragnarok_online)"),
+    (("berserker", "barbarian"), "lord_knight_(ragnarok_online)"),
+    (("samurai",), "royal_guard_(ragnarok_online)"),
 ]
 
 
@@ -441,10 +445,11 @@ _STUB_BOILERPLATE = [
     "detailed background", "vivid colors", "masterpiece", "best quality",
 ]
 _STUB_TOKEN_RE = re.compile(
-    r"\b((holy|water|shadow|fire|earth|wind|neutral|ghost|undead)(\s+(fire|water|shadow))?\s+element"
-    r"|(demihuman|angel|dragon|undead|fish|demon|insect|plant|formless|brute)\s+race"
-    r"|lord knight|high wizard|arch bishop|guillotine cross|shadow chaser|royal guard|rune knight"
-    r"|sniper|sura|sorcerer|mechanic|knight|wizard)\b", re.I)
+    r"(\w+_\(ragnarok_online\)"                       # Danbooru job-class tags
+    r"|\b(holy|water|shadow|fire|earth|wind|neutral|ghost|undead)(\s+(fire|water|shadow))?\s+element"
+    r"|\b(demihuman|angel|dragon|undead|fish|demon|insect|plant|formless|brute)\s+race"
+    r"|\b(lord knight|high wizard|arch bishop|guillotine cross|shadow chaser|royal guard|rune knight"
+    r"|sniper|sura|sorcerer|mechanic|knight|wizard))", re.I)
 
 
 def _is_stub_prompt(raw: str) -> bool:
@@ -1871,29 +1876,30 @@ class Themer:
                 elif "G" in _ci:          _elem = "earth element"
                 else:                     _elem = "neutral element"
 
-                # Only inject if no element tag already in the prompt
-                if " element" not in full_prompt.lower():
-                    # Insert element tag early — right after the first comma (after medium)
-                    _parts = full_prompt.split(",", 1)
-                    if len(_parts) == 2:
-                        full_prompt = f"{_parts[0]}, {_elem},{_parts[1]}"
-                    else:
-                        full_prompt = f"{_elem}, {full_prompt}"
-
-                # ── Deterministic RACE + JOB-CLASS injection ──────────────────
-                # v5's headline capability is recognizing RO races/job classes BY
-                # NAME, but the LLM under-uses those tokens. Derive them from the
-                # card's creature subtypes so the trained concepts fire reliably.
-                # Non-creatures get neither (the vocab says omit class for spells).
+                # ── FRONT-LOADED token anchor (class → race → element) ─────────
+                # v5 recognizes RO job classes BY NAME using the Danbooru tag it was
+                # trained on. Illustrious weights LEADING tokens most, so we prepend
+                # the class tag (+race+element) to the very front of the prompt — the
+                # LLM's generic "a knight in armor" scene alone did not reliably fire
+                # the specific trained class. Class tag leads = class sticks.
                 _race, _cls = _ro_race_class(card.get("type_line", ""))
-                if _race and "race" not in full_prompt.lower():
-                    _inject = _race + (", " + _cls if _cls else "")
-                    # Place right after the element token (or after medium) if absent.
-                    if " element," in full_prompt:
-                        full_prompt = full_prompt.replace(" element,", f" element, {_inject},", 1)
-                    else:
-                        _p = full_prompt.split(",", 1)
-                        full_prompt = f"{_p[0]}, {_inject},{_p[1]}" if len(_p) == 2 else f"{_inject}, {full_prompt}"
+                _toks = []
+                if _cls:
+                    # Emphasis-weight the class tag so it dominates the LLM's scene
+                    # (a 'high wizard' scene about water otherwise rendered a dragon).
+                    # ComfyUI A1111 weighting; inner parens of the Danbooru tag escaped.
+                    _esc = _cls.replace("(", r"\(").replace(")", r"\)")
+                    _toks.append(f"({_esc}:1.3)")
+                if _race:
+                    _toks.append(_race)
+                _toks.append(_elem)
+                _anchor = ", ".join(_toks)
+                # Drop an element tag the LLM may already have written (avoid dup),
+                # then prepend the deterministic anchor so it leads.
+                if _cls and _cls.lower() not in full_prompt.lower():
+                    full_prompt = f"{_anchor}, {full_prompt}"
+                elif not _cls and " element" not in full_prompt.lower():
+                    full_prompt = f"{_anchor}, {full_prompt}"
 
                 # Ensure composition suffix is present (required by training captions)
                 _SUFFIXES = (
