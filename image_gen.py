@@ -1127,50 +1127,51 @@ _LORA_PRESETS: dict[str, dict] = {
                 "download_note":  "ro_lora_v5.safetensors — Illustrious XL, 1687 official art + 7881 Danbooru job classes, semantic card names",
             },
         ],
-        # lora_variants: randomly selects between illustrated style (2/3) and
-        # pixel art sprite style (1/3) on each card generation.
-        "lora_variants": [
+        # Illustrated v5 ONLY. The pixel-sprite style is a SEPARATE preset
+        # ("ragnarok_sprite") rather than a per-card variant here: mixing painted
+        # anime and pixel sprites at random within one deck looked incoherent, and
+        # the sprite LoRA renders item-sprite-sheets on non-creature/effect prompts.
+        # Keeping each deck to a single consistent style is the quality win.
+    },
+    "ragnarok_sprite": {
+        "label":       "Ragnarok Sprite (Pixel)",
+        "description": "Classic RO pixel-art sprite style — full-body characters on a clean background, like the game's overworld sprites. REQUIRES Illustrious XL (SDXL). Best on creature-heavy decks.",
+        "icon":        "👾",
+        "required_checkpoint_type": "sdxl",
+        "style_guide_hint":  "ragnarok online pixel art sprite, retro 2D game sprite, full-body character, clean simple background",
+        "themer_medium":     '"pixel art sprite," or "retro game sprite,"',
+        "themer_quality":    '"crisp pixel art, clean dithering" or "classic 2D RPG sprite, vibrant limited palette"',
+        # Pixel sprites need a SINGLE full-body figure on a plain background. Steer
+        # hard away from the LoRA's item-sprite-sheet failure mode.
+        "themer_vocabulary": (
+            "RAGNAROK ONLINE PIXEL SPRITE: describe exactly ONE full-body character "
+            "standing, centered, facing the viewer, on a plain simple background — like a "
+            "classic 2D game character sprite. Lead with the character (race, gear, pose). "
+            "NEVER describe item icons, equipment laid out, multiple small objects, or a "
+            "sprite sheet. For a non-creature card, depict a single emblematic character or "
+            "a simple iconic object centered on a plain background. Do NOT add element/race/"
+            "job-class or composition tags yourself; those are appended automatically."
+        ),
+        "flux_prefix": None,
+        "negative_prompt": (
+            "sprite sheet, multiple sprites, item icons, inventory grid, character select grid, "
+            "tiny figures, multiple characters, photograph, photorealistic, 3d render, "
+            "bad hands, extra fingers, bad anatomy, deformed, blurry, watermark, signature, "
+            "text, border, frame, card template"
+        ),
+        "face_prefix_medium": "Pixel art character sprite, ragnarok online style",
+        "face_prefix_quality": "clean pixel-art face, expressive sprite",
+        "loras": [
             {
-                "weight": 2,
-                "label":  "Illustrated Style",
-                "loras": [
-                    {
-                        # v5/v4/v3/v2 cascade: illustrated RO card art + job classes.
-                        # Captions include card names, element, race, job tags.
-                        # v5 adds 313 unique GRF card illustrations + more Danbooru data.
-                        "fragments":      ["ro_lora_v5", "ro_lora_v4", "ro_lora_v3", "ro_lora_v2", "ro_lora"],
-                        "trigger":        "ragnarok online style, ro card art",
-                        "model_strength": 0.85,
-                        "clip_strength":  0.7,
-                        "dark_only":      False,
-                        "label":          "Ragnarok Online Style",
-                        "download_url":   None,
-                        "download_note":  "ro_lora_v5.safetensors — train via train_v5.bat",
-                    },
-                ],
-            },
-            {
-                "weight": 1,
-                "label":  "Pixel Art Sprite Style",
-                "loras": [
-                    {
-                        # RO Sprite Pixel Art LoRA by Konan (civitai.com/models/1242746)
-                        # Trained on Illustrious/NoobAI XL — generates classic RO sprite-style
-                        # pixel art characters. Trigger: "pixel, full body, simple background".
-                        "fragments":      ["ro_pixel_sprite", "RagnarokSpriteNoob", "ragnarok_sprite"],
-                        "trigger":        "pixel art, ragnarok online style, full body, simple background, white background",
-                        "model_strength": 0.9,
-                        "clip_strength":  0.75,
-                        "dark_only":      False,
-                        "label":          "RO Pixel Sprite LoRA",
-                        "download_url":   "https://civitai.com/models/1242746",
-                        "download_note":  "RagnarokSpriteNoob_byKonan (105 MB) — INSTALLED as "
-                                          "ro_pixel_sprite_lora.safetensors. CivitAI requires a LOGGED-IN "
-                                          "download (the bare API URL returns 'Unauthorized'); re-fetch via "
-                                          "the model page while signed in if it ever needs replacing. If the "
-                                          "file is absent the variant is auto-skipped (v5 illustrated only).",
-                    },
-                ],
+                "fragments":      ["ro_pixel_sprite", "RagnarokSpriteNoob", "ragnarok_sprite"],
+                "trigger":        "pixel art, ragnarok online style, full body, solo, single character, simple background, white background",
+                "model_strength": 0.9,
+                "clip_strength":  0.7,
+                "dark_only":      False,
+                "label":          "RO Pixel Sprite LoRA",
+                "download_url":   "https://civitai.com/models/1242746",
+                "download_note":  "RagnarokSpriteNoob_byKonan (105 MB) — INSTALLED as "
+                                  "ro_pixel_sprite_lora.safetensors. CivitAI requires a LOGGED-IN download.",
             },
         ],
     },

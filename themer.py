@@ -54,8 +54,13 @@ def _quote_user_text(s: str, max_len: int = 1500) -> str:
     return cleaned
 
 OLLAMA_BASE          = "http://127.0.0.1:11434"
-OLLAMA_MODEL         = "qwen3:8b"   # smaller/faster default; 14b still selectable
-BATCH_SIZE      = 8
+OLLAMA_MODEL         = "qwen3:14b"  # best JSON reliability; 8b truncated ~30% of
+                                    # prompts on full 78-card builds (empty art_prompts
+                                    # -> Scryfall/fallback). 14b is worth the slower
+                                    # theming. 8b still selectable per-build via llm_model.
+BATCH_SIZE      = 5   # smaller batches truncate far less often (8 left ~22/78 cards
+                      # with empty art_prompts on RO builds). 5 + retry-on-any-empty
+                      # drives empties to ~0.
 REQUEST_TIMEOUT = 240   # margin for a contended GPU (~13 tok/s → 8-card batch ~60-90s)
 
 # ── Medium-tag stripper ───────────────────────────────────────────────────────
@@ -425,6 +430,35 @@ _RO_CLASS = [
     (("berserker", "barbarian"), "rune knight"),
     (("samurai",), "royal guard"),
 ]
+
+
+_STUB_BOILERPLATE = [
+    "detailed anime illustration", "painterly fantasy card art", "high-detail illustrated character",
+    "vibrant anime style", "jewel-tone palette", "vivid saturated colors", "painterly brushwork",
+    "dramatic lighting", "intricate detail", "rich texture", "concept art", "fantasy card art",
+    "digital painting", "fantasy illustration", "full body portrait", "full body action pose",
+    "card illustration", "painterly background", "saturated colors", "vibrant background",
+    "detailed background", "vivid colors", "masterpiece", "best quality",
+]
+_STUB_TOKEN_RE = re.compile(
+    r"\b((holy|water|shadow|fire|earth|wind|neutral|ghost|undead)(\s+(fire|water|shadow))?\s+element"
+    r"|(demihuman|angel|dragon|undead|fish|demon|insect|plant|formless|brute)\s+race"
+    r"|lord knight|high wizard|arch bishop|guillotine cross|shadow chaser|royal guard|rune knight"
+    r"|sniper|sura|sorcerer|mechanic|knight|wizard)\b", re.I)
+
+
+def _is_stub_prompt(raw: str) -> bool:
+    """True if the LLM's art_prompt has no real scene — just boilerplate quality/
+    medium tags and injected element/race/class tokens (the LLM sometimes echoes a
+    quality tag instead of writing a scene when its JSON truncated). Such prompts
+    render as generic tiny-figure stubs, so we treat them as empty and fall back."""
+    s = (raw or "").lower()
+    for b in _STUB_BOILERPLATE:
+        s = s.replace(b, " ")
+    s = _STUB_TOKEN_RE.sub(" ", s)
+    s = re.sub(r"[\[\]{}(),.;:\"']+", " ", s)
+    words = [w for w in s.split() if len(w) > 2 and w not in ("the", "and", "with", "for")]
+    return len(words) < 4
 
 
 def _ro_race_class(type_line: str) -> tuple[str, str]:
@@ -1434,7 +1468,10 @@ class Themer:
         # Treat a completely empty parsed list as all-empty
         if not parsed:
             empty_count = len(cards)
-        if empty_count >= max(1, len(cards) // 2) and len(cards) > 1:
+        # Retry on ANY empty prompt (was >=50%): batches with 1-3 empties used to
+        # slip through silently, leaving those cards with empty art_prompts that
+        # rendered as generic/tiny-figure stubs. Half-batches are short + reliable.
+        if empty_count >= 1 and len(cards) > 1:
             print(f"  [themer] {empty_count}/{len(cards)} prompts empty — likely truncation. "
                   f"Retrying as two half-batches ({prompt_version})...")
             mid    = len(cards) // 2
@@ -1672,6 +1709,11 @@ class Themer:
         def make(i: int, card: dict) -> ThemedCard:
             e = themed_entries.get(i, {})
             raw_prompt = e.get("art_prompt") or ""
+            # A non-empty but content-free "stub" (LLM echoed a quality tag instead of
+            # a scene) renders as a generic tiny-figure shot — treat it as empty so the
+            # class-based fallback below synthesizes a proper character/scene instead.
+            if raw_prompt and _is_stub_prompt(raw_prompt):
+                raw_prompt = ""
 
             if raw_prompt:
                 # ── Strip Ollama's medium tag ──────────────────────────────────
@@ -1736,14 +1778,19 @@ class Themer:
                 # the card still renders in-style instead of falling back.
                 _tname = (e.get("themed_name") or card.get("name") or "").strip()
                 _tl = (card.get("type_line", "") or "").lower()
+                _race, _cls = _ro_race_class(card.get("type_line", ""))
                 if i == 0 and commander_prompt:
                     full_prompt = commander_prompt
                 elif "land" in _tl and "creature" not in _tl:
-                    full_prompt = f"a sweeping panorama of {_tname}, dramatic fantasy landscape, no people"
+                    full_prompt = "a sweeping fantasy landscape panorama, dramatic terrain and sky, no people"
                 elif "creature" in _tl:
-                    full_prompt = f"{_tname}, a detailed fantasy character, dynamic heroic pose"
+                    # Lead with the RO class/race so a CHARACTER renders — not the
+                    # card name's literal nouns (e.g. "...White Orchid" -> flowers).
+                    _subj = _cls or (_race.replace(" race", "").strip() if _race else "warrior") or "warrior"
+                    full_prompt = (f"a single {_subj} character standing prominently, full body, "
+                                   f"detailed armor and gear, heroic pose, face visible")
                 elif _tname:
-                    full_prompt = f"{_tname}, a dramatic fantasy scene depicting its magical effect"
+                    full_prompt = "a dramatic fantasy scene of a magical spell effect, swirling energy, no readable text"
                 else:
                     full_prompt = ""
 

@@ -204,10 +204,21 @@ def test_ro_race_class():
     check("ro.zombie_wizard", f("Creature — Zombie Wizard"),        ("undead race", "high wizard"))
 
 
+def test_stub_prompt():
+    f = themer._is_stub_prompt
+    # real scenes -> not stubs
+    check_true("stub.real1", not f("a white-clad knight in gleaming armor on a battlefield, holy element, lord knight"))
+    check_true("stub.real2", not f("a radiant vampire with silver hair floating above a grand library"))
+    # boilerplate-only / quality-echo -> stub
+    check_true("stub.echo1", f("high-detail illustrated character, fire element, demihuman race, knight, vibrant anime style, full body portrait, saturated colors"))
+    check_true("stub.echo2", f("Avacyn, holy element, angel race, detailed anime illustration, jewel-tone palette, full body portrait"))
+    check_true("stub.empty", f(""))
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
-               test_theme_detection, test_deck_analysis, test_ro_race_class):
+               test_theme_detection, test_deck_analysis, test_ro_race_class, test_stub_prompt):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
