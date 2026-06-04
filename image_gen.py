@@ -1074,10 +1074,15 @@ _LORA_PRESETS: dict[str, dict] = {
         # output, leaving ~half the deck with empty prompts (Scryfall fallback).
         # Keep this brief: just steer the LLM toward a vivid RO-world scene.
         "themer_vocabulary": (
-            "RAGNAROK ONLINE STYLE: describe ONE vivid subject in the RO world of Midgard — "
-            "an adventurer, monster, temple, or fantasy landscape — with 2-3 concrete visual "
-            "elements. Do NOT add element/race/job-class tags or composition tags yourself; "
-            "those are appended automatically. Just give the scene."
+            "RAGNAROK ONLINE STYLE (anime fantasy). For a CREATURE/CHARACTER card, the art_prompt "
+            "MUST BEGIN with the character themselves and describe them concretely: their body/race, "
+            "what they wear and wield, their pose and expression — e.g. 'a silver-armored knight "
+            "gripping a longsword, determined face'. Put the character FIRST; mention the setting "
+            "only as a brief backdrop at the very end. Frame them as ONE figure standing close and "
+            "PROMINENT, filling most of the frame, face clearly visible (never tiny/distant — small "
+            "faces and pure-scenery shots render badly). For a LAND/non-creature, describe the place "
+            "or effect (no people). Do NOT add element/race/job-class or composition tags yourself; "
+            "those are appended automatically."
         ),
         # flux_prefix: not used for SDXL (Illustrious XL uses _SDXL_PREFIX instead).
         # Triggers are prepended via lora_trigger_prefix, which takes effect before _SDXL_PREFIX.
