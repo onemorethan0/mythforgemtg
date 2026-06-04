@@ -167,7 +167,14 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "chaos":            '(o:"each player" o:"random")',
     "theft":            '(o:"gain control" OR o:"under your control until end of turn")',
     "group_hug":        '(o:"each player draws" OR o:"each player gains")',
-    "voltron_combat":   '(type:equipment OR o:"double strike" OR o:"trample" OR o:"hexproof")',
+    # Combat/Evasion is a CREATURE theme (you need attackers). It used to lead
+    # with type:equipment, which flooded combat commanders (e.g. Aurelia) with
+    # Equipment artifacts and almost no creatures — equipment is covered by the
+    # separate "voltron" theme. Constrain to creatures with combat/evasion text.
+    "voltron_combat":   'type:creature (o:"double strike" OR o:"trample" OR o:"first strike" '
+                        'OR o:"menace" OR o:"flying" OR o:"additional combat phase" '
+                        'OR o:"an additional combat" OR o:"whenever this creature attacks" '
+                        'OR o:"whenever it attacks")',
 }
 
 
