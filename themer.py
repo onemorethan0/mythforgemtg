@@ -1773,6 +1773,55 @@ class Themer:
                     else:
                         full_prompt = f"{_elem}, {full_prompt}"
 
+                # ── Deterministic RACE + JOB-CLASS injection ──────────────────
+                # v5's headline capability is recognizing RO races/job classes BY
+                # NAME, but the LLM under-uses those tokens. Derive them from the
+                # card's creature subtypes so the trained concepts fire reliably.
+                # Non-creatures get neither (the vocab says omit class for spells).
+                _tl = (card.get("type_line", "") or "").lower()
+                if "creature" in _tl:
+                    _subs = _tl.split("—")[-1] if "—" in _tl else _tl.split("-")[-1]
+                    # RACE: first matching group wins (order = specificity).
+                    _RACE = [
+                        (("angel",), "angel race"),
+                        (("dragon", "wyvern", "drake", "hydra"), "dragon race"),
+                        (("zombie", "skeleton", "specter", "spirit", "shade", "horror", "vampire", "wraith"), "undead race"),
+                        (("merfolk", "serpent", "fish", "leviathan", "kraken", "crab", "octopus", "naga"), "fish race"),
+                        (("goblin", "orc", "demon", "devil", "imp", "ogre"), "demon race"),
+                        (("spider", "insect", "wasp", "scorpion"), "insect race"),
+                        (("plant", "saproling", "treefolk", "fungus", "dryad"), "plant race"),
+                        (("elemental", "golem", "construct", "spirit", "weird"), "formless race"),
+                        (("beast", "wolf", "bear", "cat", "hound", "dog", "boar", "ox", "wurm", "dinosaur", "ape"), "brute race"),
+                        (("human", "soldier", "knight", "warrior", "rogue", "wizard", "cleric",
+                          "monk", "archer", "assassin", "samurai", "ninja", "noble", "advisor",
+                          "scout", "pilot", "berserker", "barbarian", "shaman", "druid", "elf", "dwarf"), "demihuman race"),
+                    ]
+                    _race = next((tok for keys, tok in _RACE if any(k in _subs for k in keys)), "demihuman race")
+                    # JOB CLASS: only inject when a creature subtype clearly maps.
+                    _CLASS = [
+                        (("knight",), "lord knight"),
+                        (("soldier", "warrior"), "knight"),
+                        (("assassin", "ninja"), "guillotine cross"),
+                        (("rogue",), "shadow chaser"),
+                        (("archer", "ranger", "scout"), "sniper"),
+                        (("cleric",), "arch bishop"),
+                        (("monk",), "sura"),
+                        (("wizard",), "high wizard"),
+                        (("shaman", "druid"), "sorcerer"),
+                        (("artificer",), "mechanic"),
+                        (("berserker", "barbarian"), "rune knight"),
+                        (("samurai",), "royal guard"),
+                    ]
+                    _cls = next((tok for keys, tok in _CLASS if any(k in _subs for k in keys)), "")
+                    _inject = _race + (", " + _cls if _cls else "")
+                    # Place right after the element token (or after medium) if absent.
+                    if "race" not in full_prompt.lower():
+                        if " element," in full_prompt:
+                            full_prompt = full_prompt.replace(" element,", f" element, {_inject},", 1)
+                        else:
+                            _p = full_prompt.split(",", 1)
+                            full_prompt = f"{_p[0]}, {_inject},{_p[1]}" if len(_p) == 2 else f"{_inject}, {full_prompt}"
+
                 # Ensure composition suffix is present (required by training captions)
                 _SUFFIXES = (
                     "full body portrait", "full body action pose",
