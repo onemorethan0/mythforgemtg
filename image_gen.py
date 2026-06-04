@@ -1750,7 +1750,8 @@ class _ReactorCudaError(Exception):
 class ImageGen:
     def __init__(self, comfy_base: str = "", checkpoint: Optional[str] = None,
                  model_speed: str = "quality", art_style: str = "mtg_fantasy",
-                 gen_settings: Optional[GenSettings] = None):
+                 gen_settings: Optional[GenSettings] = None,
+                 frame_style: str = "builtin"):
         """
         model_speed: "quality" → prefer flux-dev (slower, sharper)
                      "turbo"   → flux-dev + turbo LoRA at 8 steps (~3-4× faster,
@@ -1785,6 +1786,11 @@ class ImageGen:
             print(f"  [image_gen] ComfyUI detected at: {comfy_base}")
         self.comfy_base  = comfy_base.rstrip("/")
         self.model_speed = model_speed
+        # Full-art/borderless frames overlay a text box on the bottom ~45% of the
+        # card, so the focal subject must sit in the UPPER portion or it's hidden
+        # behind the text. generate() appends a top-weighting composition hint when
+        # this is the borderless frame. ("m15_fullart" matches cc_frames._SPECS.)
+        self.frame_style = frame_style or "builtin"
         self.art_style   = art_style if art_style in _LORA_PRESETS else "mtg_fantasy"
         self.checkpoint  = checkpoint or self._detect_checkpoint()
         self.available   = bool(self.checkpoint and self._check_server())
@@ -2672,7 +2678,20 @@ class ImageGen:
             if self.face_method == "reactor":
                 face_suffix += " Keep the face unobscured and prominent enough to read clearly."
 
-        full_prompt = lora_prefix + prefix + art_prompt + face_suffix + land_suffix
+        # Borderless/full-art frames cover the bottom ~45% with the text box, so push
+        # the focal point up. For lands, weight the vista to the top; for everything
+        # else, keep the subject's head/torso in the upper half with open space below.
+        fullart_suffix = ""
+        if self.frame_style == "m15_fullart":
+            if is_land:
+                fullart_suffix = (". Composition: the key scenery and horizon sit in the UPPER half of the "
+                                  "frame; the lower third is plain open ground, water, or sky with little detail.")
+            else:
+                fullart_suffix = (". Composition: place the subject high in the frame with head and upper body "
+                                  "in the TOP HALF, full figure above center, leaving the lower third as open "
+                                  "ground or background — the bottom of the image must stay uncluttered.")
+
+        full_prompt = lora_prefix + prefix + art_prompt + face_suffix + land_suffix + fullart_suffix
 
         # Log the final prompt and settings so we can diagnose blurriness/LoRA issues
         print(f"  [image_gen] Prompt ({len(full_prompt)} chars): {full_prompt[:120]}{'...' if len(full_prompt) > 120 else ''}")

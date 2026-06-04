@@ -1358,7 +1358,8 @@ def _run_build(job_id: str, req: BuildRequest):
                     try:
                         gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
                                       checkpoint=req.checkpoint,
-                                      gen_settings=_resolve_gen_settings(req.gen_settings))
+                                      gen_settings=_resolve_gen_settings(req.gen_settings),
+                                      frame_style=req.frame_style or "builtin")
                     except Exception as _ge:
                         _push(job_id, "progress", json.dumps({
                             "step": "art",
@@ -1768,7 +1769,8 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 try:
                     gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
                                   checkpoint=req.checkpoint,
-                                  gen_settings=_resolve_gen_settings(req.gen_settings))
+                                  gen_settings=_resolve_gen_settings(req.gen_settings),
+                                  frame_style=source_data.get("frame_style", "builtin"))
                 except Exception as _ge:
                     _push(job_id, "progress", json.dumps({
                         "step": "art",
@@ -2103,7 +2105,8 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         with _art_lock:
             gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
                           checkpoint=req.checkpoint,
-                          gen_settings=_resolve_gen_settings(req.gen_settings))
+                          gen_settings=_resolve_gen_settings(req.gen_settings),
+                          frame_style=source_data.get("frame_style", "builtin"))
             if not gen.available:
                 raise ValueError("ComfyUI not available after acquiring GPU lock")
 
