@@ -1202,10 +1202,11 @@ _LORA_PRESETS: dict[str, dict] = {
                         "dark_only":      False,
                         "label":          "RO Pixel Sprite LoRA",
                         "download_url":   "https://civitai.com/models/1242746",
-                        "download_note":  "RagnarokSpriteNoob_byKonan — CivitAI requires a LOGGED-IN download "
-                                          "(the API URL returns 'Unauthorized'). Download via the web UI while "
-                                          "signed in, save as ro_pixel_sprite_lora.safetensors in ComfyUI/models/loras/. "
-                                          "Until then this variant is auto-skipped and RO builds use the v5 illustrated style.",
+                        "download_note":  "RagnarokSpriteNoob_byKonan (105 MB) — INSTALLED as "
+                                          "ro_pixel_sprite_lora.safetensors. CivitAI requires a LOGGED-IN "
+                                          "download (the bare API URL returns 'Unauthorized'); re-fetch via "
+                                          "the model page while signed in if it ever needs replacing. If the "
+                                          "file is absent the variant is auto-skipped (v5 illustrated only).",
                     },
                 ],
             },
