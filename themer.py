@@ -1728,11 +1728,22 @@ class Themer:
                     full_prompt = scene
 
             else:
-                # Ollama failed to produce a prompt for this card
+                # Ollama failed to produce a prompt for this card. Rather than leave
+                # it empty — which drops the card to plain Scryfall art (no theming,
+                # breaks style consistency) — synthesize a minimal themed prompt from
+                # the themed name + card type. The style-specific tokens (RO element/
+                # race/class) and composition suffix are added by the block below, so
+                # the card still renders in-style instead of falling back.
+                _tname = (e.get("themed_name") or card.get("name") or "").strip()
+                _tl = (card.get("type_line", "") or "").lower()
                 if i == 0 and commander_prompt:
-                    # Commander with no Ollama output — use the appearance description
-                    # as a minimal prompt rather than silently discarding it
                     full_prompt = commander_prompt
+                elif "land" in _tl and "creature" not in _tl:
+                    full_prompt = f"a sweeping panorama of {_tname}, dramatic fantasy landscape, no people"
+                elif "creature" in _tl:
+                    full_prompt = f"{_tname}, a detailed fantasy character, dynamic heroic pose"
+                elif _tname:
+                    full_prompt = f"{_tname}, a dramatic fantasy scene depicting its magical effect"
                 else:
                     full_prompt = ""
 

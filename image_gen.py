@@ -1066,61 +1066,18 @@ _LORA_PRESETS: dict[str, dict] = {
         "style_guide_hint":  "ragnarok online card art style, anime fantasy illustration, vibrant jewel-tone colors, painterly character portraits, detailed fantasy adventure scenes",
         "themer_medium":     '"anime illustration," or "fantasy card art," or "painted anime portrait,"',
         "themer_quality":    '"detailed anime illustration, jewel-tone palette" or "painterly fantasy card art, vivid saturated colors" or "high-detail illustrated character, vibrant anime style"',
-        # themer_vocabulary: injected into the batch prompt so Ollama uses the exact
-        # token vocabulary the LoRA was trained on (elements, races, job-class tags).
-        # Format mirrors the training caption schema:
-        #   ragnarok online style, ro card art, [element] element, [race] race, [job tags], ..., [suffix]
+        # themer_vocabulary: a SHORT style hint. The RO element/race/job-class tokens
+        # and the composition suffix are injected DETERMINISTICALLY after theming
+        # (themer._ro_race_class + the element/suffix block), so the LLM no longer
+        # needs the giant mapping tables that used to live here — that ~700-token
+        # block bloated every batch and made the small model truncate its JSON
+        # output, leaving ~half the deck with empty prompts (Scryfall fallback).
+        # Keep this brief: just steer the LLM toward a vivid RO-world scene.
         "themer_vocabulary": (
-            "RAGNAROK ONLINE LoRA VOCABULARY — use these EXACT tokens, they activate trained visual concepts.\n"
-            "\n"
-            "PROMPT STRUCTURE: [medium], [element token], [race token], [job class tag(s)], [scene description], [suffix]\n"
-            "Insert element + race + class tags RIGHT AFTER the medium, BEFORE the scene.\n"
-            "\n"
-            "ELEMENT TOKENS — pick from card's MTG color identity (col 5):\n"
-            "  W (white)     -> holy element\n"
-            "  U (blue)      -> water element   (ethereal/ghost: ghost element)\n"
-            "  B (black)     -> shadow element  (undead creature: undead)\n"
-            "  R (red)       -> fire element\n"
-            "  G (green)     -> earth element   (wind/flying: wind element)\n"
-            "  Colorless     -> neutral element\n"
-            "  Multi-color   -> use dominant color or combine: 'holy fire element', 'water shadow element'\n"
-            "\n"
-            "RACE TOKENS — pick from creature subtype/flavor:\n"
-            "  Angel, Cleric, Divine       -> angel race\n"
-            "  Dragon, Wyvern              -> dragon race\n"
-            "  Beast, Wolf, Bear, Cat      -> brute race\n"
-            "  Zombie, Skeleton, Specter   -> undead race\n"
-            "  Merfolk, Serpent, Fish      -> fish race\n"
-            "  Goblin, Orc, Demon          -> demon race\n"
-            "  Human, Soldier, Knight      -> demihuman race\n"
-            "  Spider, Insect, Bug         -> insect race\n"
-            "  Plant, Saproling, Treefolk  -> plant race\n"
-            "  Elemental, Golem, Construct -> formless race\n"
-            "\n"
-            "JOB CLASS TAGS — match creature archetype (add 1-2 most fitting):\n"
-            "  Armored swordsman          -> knight | lord knight | rune knight\n"
-            "  Holy paladin/defender      -> crusader | paladin | royal guard\n"
-            "  Fire/ice/lightning mage    -> wizard | high wizard | warlock\n"
-            "  Healer, support caster     -> priest | archbishop | acolyte\n"
-            "  Shadow assassin, rogue     -> assassin | guillotine cross | shadow chaser\n"
-            "  Archer, marksman           -> hunter | sniper | ranger\n"
-            "  Martial monk, fist fighter -> monk | champion | sura\n"
-            "  Engineer, inventor         -> mechanic | blacksmith | genetic\n"
-            "  Ninja, shadow warrior      -> ninja | kagerou | oboro\n"
-            "  Gunner, gunslinger         -> gunslinger | rebellion\n"
-            "  Bard, musician             -> bard | clown | minstrel\n"
-            "  Dancer, performer          -> dancer | gypsy | wanderer\n"
-            "  Non-creature (spell/land)  -> omit class tag\n"
-            "\n"
-            "COMPOSITION SUFFIX — always end with one of these:\n"
-            "  'full body portrait, painterly background, saturated colors'\n"
-            "  'full body action pose, vibrant background, jewel-tone palette'\n"
-            "  'card illustration, detailed background, vivid colors'\n"
-            "\n"
-            "EXAMPLE (W/U creature — angel, holy paladin):\n"
-            "  fantasy card art, holy water element, angel race, archbishop, [white-winged healer in a misty shrine, golden light streaming down], full body portrait, painterly background, saturated colors\n"
-            "EXAMPLE (B/R instant — shadow fire, no creature class):\n"
-            "  fantasy card art, shadow fire element, [eruption of dark flame consuming a battlefield ruin at dusk], card illustration, detailed background, vivid colors"
+            "RAGNAROK ONLINE STYLE: describe ONE vivid subject in the RO world of Midgard — "
+            "an adventurer, monster, temple, or fantasy landscape — with 2-3 concrete visual "
+            "elements. Do NOT add element/race/job-class tags or composition tags yourself; "
+            "those are appended automatically. Just give the scene."
         ),
         # flux_prefix: not used for SDXL (Illustrious XL uses _SDXL_PREFIX instead).
         # Triggers are prepended via lora_trigger_prefix, which takes effect before _SDXL_PREFIX.
