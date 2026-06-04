@@ -1201,8 +1201,11 @@ _LORA_PRESETS: dict[str, dict] = {
                         "clip_strength":  0.75,
                         "dark_only":      False,
                         "label":          "RO Pixel Sprite LoRA",
-                        "download_url":   "https://civitai.com/api/download/models/1400677",
-                        "download_note":  "RagnarokSpriteNoob_byKonan.safetensors → rename to ro_pixel_sprite_lora.safetensors",
+                        "download_url":   "https://civitai.com/models/1242746",
+                        "download_note":  "RagnarokSpriteNoob_byKonan — CivitAI requires a LOGGED-IN download "
+                                          "(the API URL returns 'Unauthorized'). Download via the web UI while "
+                                          "signed in, save as ro_pixel_sprite_lora.safetensors in ComfyUI/models/loras/. "
+                                          "Until then this variant is auto-skipped and RO builds use the v5 illustrated style.",
                     },
                 ],
             },
@@ -2218,8 +2221,22 @@ class ImageGen:
         variant_label = ""
         variants = preset.get("lora_variants")
         if variants:
-            weights = [v.get("weight", 1) for v in variants]
-            chosen = random.choices(variants, weights=weights, k=1)[0]
+            # Only consider variants whose LoRAs are actually installed — a variant
+            # whose file is missing (e.g. a login-gated CivitAI sprite LoRA) would
+            # otherwise be picked and render prompt-only/inconsistent. If none are
+            # installed, fall back to the full list (legacy prompt-only behaviour).
+            def _variant_installed(v):
+                for entry in v.get("loras", []):
+                    frags = entry.get("fragments", [entry.get("fragment", "")])
+                    if any(any(fr.lower() in f.lower() for fr in frags) for f in installed):
+                        return True
+                return False
+            usable = [v for v in variants if _variant_installed(v)] or variants
+            if len(usable) < len(variants):
+                _dropped = [v.get("label", "variant") for v in variants if v not in usable]
+                print(f"  [image_gen] LoRA variants skipped (no installed LoRA): {_dropped}")
+            weights = [v.get("weight", 1) for v in usable]
+            chosen = random.choices(usable, weights=weights, k=1)[0]
             lora_list = chosen["loras"]
             variant_label = f" [{chosen.get('label', 'variant')}]"
             print(f"  [image_gen] LoRA variant selected:{variant_label} "
