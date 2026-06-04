@@ -180,10 +180,34 @@ def test_deck_analysis():
     check("analysis.ramp_not_tutor", len(ramp["signals"]["tutors"]), 0)
 
 
+# ── Ragnarok Online race / job-class mapping (v5 LoRA by-name targeting) ──────
+def test_ro_race_class():
+    f = themer._ro_race_class
+    # creature subtype -> (race, class)
+    check("ro.knight",    f("Legendary Creature — Human Knight"),   ("demihuman race", "lord knight"))
+    check("ro.wizard",    f("Creature — Human Wizard"),             ("demihuman race", "high wizard"))
+    check("ro.cleric",    f("Creature — Human Cleric"),             ("demihuman race", "arch bishop"))
+    check("ro.assassin",  f("Creature — Human Assassin"),           ("demihuman race", "guillotine cross"))
+    check("ro.elf_druid", f("Creature — Elf Druid"),                ("demihuman race", "sorcerer"))
+    # race-only (no clean class mapping)
+    check("ro.dragon",    f("Creature — Dragon"),                   ("dragon race", ""))
+    check("ro.angel",     f("Legendary Creature — Angel"),          ("angel race", ""))
+    check("ro.zombie",    f("Creature — Zombie"),                   ("undead race", ""))
+    check("ro.beast",     f("Creature — Beast"),                    ("brute race", ""))
+    # creature with no subtype -> demihuman fallback, no class
+    check("ro.no_subtype", f("Creature"),                           ("demihuman race", ""))
+    # non-creatures -> nothing
+    check("ro.instant",   f("Instant"),                             ("", ""))
+    check("ro.land",      f("Land"),                                ("", ""))
+    check("ro.artifact",  f("Artifact"),                            ("", ""))
+    # subtype precedence: class derives from the job subtype even with a race word
+    check("ro.zombie_wizard", f("Creature — Zombie Wizard"),        ("undead race", "high wizard"))
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
-               test_theme_detection, test_deck_analysis):
+               test_theme_detection, test_deck_analysis, test_ro_race_class):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
