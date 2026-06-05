@@ -1508,6 +1508,40 @@ export default function StepTheme({
           </div>
         )}
 
+        {/* ── Image Quality (prominent toggles for the PAG + FaceDetailer passes) ── */}
+        {genSettings && generateArt && (() => {
+          const v = genSettings.values || {}
+          const QUALITY = [
+            { key: 'enhance',  label: '✨ Enhanced coherence',
+              desc: 'Better anatomy, faces & structure (PAG). ~2× slower.' },
+            { key: 'face_fix', label: '😊 Face fix',
+              desc: 'Re-renders detected faces at higher detail. SDXL / Ragnarok.' },
+          ]
+          return (
+            <div style={{ marginBottom: 20 }}>
+              <label style={s.label}>Image Quality <span style={{ color: '#57534e', fontWeight: 400 }}>(optional — slower, sharper)</span></label>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {QUALITY.map(q => {
+                  const on = !!v[q.key]
+                  return (
+                    <button key={q.key} onClick={() => genSettings.setField(q.key, !on)} style={{
+                      flex: '1 1 240px', minWidth: 220, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                      textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                      background: on ? '#101c14' : '#0c0a09',
+                      border: `1px solid ${on ? '#22c55e' : '#292524'}`,
+                    }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: on ? '#22c55e' : '#a8a29e', marginBottom: 3 }}>
+                        {on ? '● ' : '○ '}{q.label}
+                      </div>
+                      <div style={{ fontSize: 11, color: '#57534e' }}>{q.desc}</div>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })()}
+
         {genSettings && <AdvancedPanel step="theme" settings={genSettings} />}
 
         <div style={s.footer}>

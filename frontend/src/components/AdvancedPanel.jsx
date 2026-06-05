@@ -13,7 +13,9 @@ export default function AdvancedPanel({ step, settings, defaultOpen = false }) {
   if (fields.length === 0) return null
 
   const { values, setField, resetStep } = settings
-  const visible = fields.filter(f => !f.showIf || f.showIf(values))
+  // `hidden` fields stay in the schema (DEFAULTS + payload) but are surfaced
+  // elsewhere in the UI, so skip them here.
+  const visible = fields.filter(f => !f.hidden && (!f.showIf || f.showIf(values)))
 
   return (
     <div style={{ marginTop: 16, border: '1px solid #292524', borderRadius: 8, background: '#161311' }}>

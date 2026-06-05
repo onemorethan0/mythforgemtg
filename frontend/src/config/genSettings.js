@@ -48,13 +48,16 @@ export const GEN_SETTINGS_SCHEMA = [
     label: 'Safe mode (stability)', default: false,
     help: 'Lowers steps + resolution to reduce peak GPU/CPU load — use if generation has crashed/rebooted your machine.',
   },
+  // enhance + face_fix are surfaced as a prominent "Image Quality" block in
+  // StepTheme (not buried in Advanced), so they're marked hidden here — they stay
+  // in DEFAULTS + the payload, just not rendered inside the Advanced panel.
   {
-    key: 'enhance', step: 'theme', type: 'toggle',
+    key: 'enhance', step: 'theme', type: 'toggle', hidden: true,
     label: 'Enhanced coherence (PAG)', default: false,
     help: 'Perturbed-Attention Guidance — improves anatomy, faces, and overall structure (fewer malformed or abstract subjects). Roughly doubles render time. Great for character-heavy decks; especially helps the Ragnarok/anime styles.',
   },
   {
-    key: 'face_fix', step: 'theme', type: 'toggle',
+    key: 'face_fix', step: 'theme', type: 'toggle', hidden: true,
     label: 'Face fix (FaceDetailer)', default: false,
     help: 'Detects faces and re-renders them at higher detail (Impact Pack). Fixes small, blurry, or malformed faces on character cards. SDXL / Illustrious only (incl. Ragnarok). Adds a short pass per detected face.',
   },
