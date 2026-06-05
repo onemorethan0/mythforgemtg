@@ -222,7 +222,7 @@ export default function App() {
     setStep(STEP.BUILDING)
   }
 
-  // ── Retheme handler (re-run Ollama theming, keep existing art) ───────────
+  // ── Retheme handler (full re-generation: new theming AND new art) ────────
   function handleRetheme(newJobId) {
     setDeck(null)
     _setJobId(newJobId)

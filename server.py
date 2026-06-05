@@ -2297,17 +2297,20 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _finalize_job(job_id)
 
 
-# ── Retheme: re-run Ollama theming, keep existing art ────────────────────────
+# ── Retheme: re-kick the FULL generation (new theming AND new art) ───────────
 
 def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
     """
-    Re-run Ollama theming for an already-built deck without regenerating any art.
+    Full re-generation of an already-built deck on the SAME card list: re-run
+    Ollama theming (new names/prompts) AND regenerate all card art. (Rebuild, by
+    contrast, keeps the existing prompts and only re-rolls the art.)
 
     Flow:
       1. Load source deck.json — recovers commander/deck card data + theme params.
       2. Re-run themer.theme_deck() with the same (or overridden) theme string.
-      3. Locate existing raw FLUX art images via the stored deck_slug.
-      4. Re-render every card frame with new themed names / flavor text.
+      3. Generate NEW art from the new prompts (falls back to the source deck's
+         art only if ComfyUI is unavailable, so it always renders).
+      4. Render every card frame with the new names + new art.
       5. Write a new deck.json under job_id so the original deck is preserved.
 
     The new job lives in RENDER_DIR/{job_id}/.  The client navigates to it just
@@ -2437,22 +2440,99 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                          source_data.get("emblem_prompt", ""), source_job_id)
         card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
-        # ── Locate existing raw art images ────────────────────────────────────
-        # The raw FLUX outputs live in generated_art/{deck_slug}/{render_key}.png.
-        # Build an art_paths dict (keyed by original_name) for render_deck_thumbnails.
+        # ── Generate NEW art from the re-themed prompts ───────────────────────
+        # Retheme = full re-generation. Generate fresh art into a new slug; only
+        # fall back to the source deck's art if ComfyUI is down, so it always renders.
+        _cmd_name = (raw_commander.get("name")
+                     or source_data.get("commander", {}).get("original_name", "deck"))
+        new_deck_slug = (
+            "".join(c if c.isalnum() else "_" for c in _cmd_name)[:20]
+            + "_retheme_" + job_id[:8]
+        )
+
+        def _reuse_source_art() -> dict:
+            paths: dict[str, Optional[Path]] = {}
+            if source_deck_slug:
+                adir = Path("generated_art") / source_deck_slug
+                for tc in [themed_cmd] + themed_deck:
+                    safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
+                    p = adir / f"{safe}.png"
+                    if p.exists():
+                        paths[tc.original_name] = p
+            return paths
+
         art_paths: dict[str, Optional[Path]] = {}
-        if source_deck_slug:
-            art_dir = Path("generated_art") / source_deck_slug
-            for tc in [themed_cmd] + themed_deck:
-                safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
-                p    = art_dir / f"{safe}.png"
-                if p.exists():
-                    art_paths[tc.original_name] = p
+        effective_slug = source_deck_slug   # what deck.json records (where art lives)
+
+        if not source_data.get("generate_art", False):
+            art_paths = {}   # source was text-only (Scryfall art) — keep it that way
+        else:
+            _ensure_comfyui_ready(job_id)
+            _health = ImageGen.health_check()
+            _src_ckpt = source_data.get("checkpoint") or None
+            if not _health["ok"]:
+                art_paths = _reuse_source_art()
+                _push(job_id, "progress", json.dumps({
+                    "step": "art", "warning": True,
+                    "msg": f"⚠ ComfyUI unavailable ({_health['message']}) — reused {sum(1 for v in art_paths.values() if v)} existing art image(s). Start ComfyUI and retheme again for fresh art.",
+                }))
+            else:
+                from themer import OLLAMA_MODEL as _DEF_OLLAMA
+                from image_gen import _is_flux as _isflux
+                _ev = llm_model_rt or _DEF_OLLAMA
+                if _src_ckpt and not _isflux(_src_ckpt):
+                    _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
+                    _wait_for_comfyui_unload(job_id)
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_ev}) from VRAM…"}))
+                _wait_for_ollama_evict(_ev, job_id)
+                cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
+                with _art_lock:
+                    try:
+                        gen = ImageGen(model_speed=model_speed, art_style=art_style,
+                                       checkpoint=_src_ckpt,
+                                       gen_settings=_resolve_gen_settings(None),
+                                       frame_style=source_data.get("frame_style", "builtin"))
+                    except Exception as _ge:
+                        gen = None
+                        _push(job_id, "progress", json.dumps({"step": "art", "warning": True, "msg": f"⚠ ImageGen init failed: {_ge}"}))
+                    if gen is not None and gen.available:
+                        _fk = source_data.get("face_key", "")
+                        _ck = source_data.get("crew_key", "")
+                        _fp = [p for p in (get_face_paths(_fk) if _fk else []) if p.exists()]
+                        _cp = [p for p in (get_face_paths(_ck) if _ck else []) if p.exists()]
+                        _push(job_id, "progress", json.dumps({"step": "art", "msg": "Generating new card art (ComfyUI)…"}))
+                        try:
+                            art_paths = gen.generate_deck(
+                                themed_cmd, themed_deck, new_deck_slug,
+                                face_paths=_fp or None, crew_paths=_cp or None,
+                                face_gender=source_data.get("face_gender", "either"),
+                                crew_gender=source_data.get("crew_gender", "either"),
+                                crew_prompt=source_data.get("crew_prompt", "") or "",
+                                progress_callback=_make_art_progress_cb(job_id, time.time()),
+                                theme_str=art_theme, cancel_event=cancel_event,
+                            )
+                            effective_slug = new_deck_slug
+                        except Exception as _ge_err:
+                            traceback.print_exc()
+                            art_paths = _reuse_source_art()
+                            _push(job_id, "progress", json.dumps({"step": "art", "warning": True, "msg": f"⚠ Art generation failed ({_ge_err}) — reused existing art."}))
+                    else:
+                        art_paths = _reuse_source_art()
+            # Per-card fallback: patch any card that failed gen with source art.
+            if effective_slug == new_deck_slug:
+                _src_fallback = None
+                for _k, _v in list(art_paths.items()):
+                    if _v is None:
+                        if _src_fallback is None:
+                            _src_fallback = _reuse_source_art()
+                        if _k in _src_fallback:
+                            art_paths[_k] = _src_fallback[_k]
 
         art_found = sum(1 for v in art_paths.values() if v)
         _push(job_id, "progress", json.dumps({
             "step": "render",
-            "msg":  f"Found {art_found} existing art image(s) — re-rendering card frames…",
+            "msg":  f"Rendering {art_found} card frame(s) with new art…",
         }))
 
         # ── Early checkpoint ──────────────────────────────────────────────────
@@ -2473,7 +2553,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "art_style":        art_style,
             "model_speed":      model_speed,
             "generate_art":     source_data.get("generate_art", False),
-            "deck_slug":        source_deck_slug,
+            "deck_slug":        effective_slug,
             "face_key":         source_data.get("face_key", ""),
             "face_gender":      source_data.get("face_gender", "either"),
             "crew_key":         source_data.get("crew_key", ""),

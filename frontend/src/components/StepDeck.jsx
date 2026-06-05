@@ -1171,13 +1171,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <button
             onClick={handleRethemeAll}
             disabled={rethemeing || rebuilding}
-            title="Re-run Ollama theming with new random seeds — keeps existing art, generates new names, text &amp; flavor"
+            title="Re-kick the FULL generation on the same cards: new names, text/flavor AND freshly generated art (same theme + settings). Creates a new deck; this one is kept."
             style={{ ...btnBase, background: rethemeing ? '#1e1b4b' : '#1e3a5f', color: rethemeing ? '#818cf8' : '#93c5fd', border: `1px solid ${rethemeing ? '#4f46e5' : '#1d4ed8'}`, fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
           >
             {rethemeing ? '⏳ Starting…' : '✏️ Retheme'}
           </button>
           {onRebuild && (
-            <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing} title="Re-generate ALL card art with new random seeds"
+            <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing} title="Re-generate ALL card art with new seeds — keeps the current names &amp; prompts (just re-rolls the art)."
               style={{ ...btnBase, background: rebuilding ? '#2e1065' : '#3b0764', color: rebuilding ? '#7c3aed' : '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 600, opacity: rebuilding ? 0.7 : 1 }}>
               {rebuilding ? '⏳ Starting…' : '🔄 Rebuild All'}
             </button>
