@@ -531,11 +531,26 @@ _RO_CLASS_KEYWORDS = [
 ]
 
 
+# Display-name (spaces removed) → exact Danbooru class slug, only where the UI
+# label differs from "label.replace(' ', '_')". Most classes convert generically.
+_RO_CLASS_ALIAS = {
+    "archbishop": "arch_bishop",
+}
+
+
 def _ro_class_from_text(text: str) -> str:
-    """Return the Danbooru class tag for the first RO class name found in text
-    (e.g. a user's commander-appearance note), else "". Used to OVERRIDE the
-    subtype-derived class so a user can re-class a card."""
+    """Return the Danbooru class tag for an RO class named in text, else "".
+    Handles the UI job-class picker (which writes "<Class> class, ...") for ANY
+    class generically, plus free-text mentions via the keyword list. Used to
+    OVERRIDE the subtype-derived class so a user can re-class the commander."""
     s = (text or "").lower()
+    # 1) The picker prepends "<Class> class" — capture the 1-2 words before it.
+    m = re.match(r"\s*((?:[a-z]+ )?[a-z]+)\s+class\b", s)
+    if m:
+        name = m.group(1).strip()
+        slug = _RO_CLASS_ALIAS.get(name.replace(" ", ""), name.replace(" ", "_"))
+        return f"{slug}_(ragnarok_online)"
+    # 2) Free text (e.g. "a monk wearing a hat") — scan known class keywords.
     return next((tag for kw, tag in _RO_CLASS_KEYWORDS if kw in s), "")
 
 

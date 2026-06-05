@@ -408,6 +408,16 @@ export default function StepTheme({
     return () => { cancelled = true }
   }, [])
 
+  // ── Reflect a pinned "<Class> class" prefix on the chips when a deck is
+  // loaded for editing (the appearance text persists, so re-highlight the chip).
+  useEffect(() => {
+    const m = (commanderPrompt || '').match(/^\s*([A-Za-z ]+?)\s+class\b/i)
+    if (!m) return
+    const name = m[1].trim().toLowerCase()
+    const found = RO_JOB_CLASSES.flatMap(g => g.classes).find(c => c.toLowerCase() === name)
+    if (found && found !== roJobClass) setRoJobClass(found)
+  }, [])   // mount only — don't fight live typing
+
   // ── RO mode: auto-enable art gen + SDXL when ragnarok_online is selected ──
   useEffect(() => {
     if (!isRO) return
@@ -652,7 +662,7 @@ export default function StepTheme({
               Job Class <span style={{ color: '#57534e', fontWeight: 400 }}>(optional — pins a class to commander art)</span>
             </label>
             <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10 }}>
-              Selecting a class prepends its job tag to the Commander Appearance prompt, anchoring art generation to that class archetype.
+              Pin a class to <strong style={{ color: '#a8a29e' }}>override</strong> your commander's auto-detected class (otherwise it's inferred from the card's creature type — e.g. a Knight defaults to Lord Knight). The class is emphasis-weighted in the art prompt so it renders reliably.
             </div>
             {RO_JOB_CLASSES.map(({ group, color, classes }) => (
               <div key={group} style={{ marginBottom: 10 }}>

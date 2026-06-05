@@ -206,10 +206,15 @@ def test_ro_race_class():
 
 def test_ro_class_override():
     f = themer._ro_class_from_text
+    # UI picker format "<Class> class, ..." — works for ANY class generically
+    check("ovr.pick_monk",   f("Monk class, wearing a cowboy hat"), "monk_(ragnarok_online)")
+    check("ovr.pick_lk",     f("Lord Knight class, in gold armor"), "lord_knight_(ragnarok_online)")
+    check("ovr.pick_arch",   f("Archbishop class"),                 "arch_bishop_(ragnarok_online)")  # alias
+    check("ovr.pick_gx",     f("Guillotine Cross class, hooded"),   "guillotine_cross_(ragnarok_online)")
+    check("ovr.pick_super",  f("Super Novice class"),               "super_novice_(ragnarok_online)")
+    # Free text (no "class" word) — keyword fallback
     check("ovr.monk",   f("a monk wearing a cowboy hat"), "monk_(ragnarok_online)")
     check("ovr.champion", f("transcendent champion"),     "champion_(ragnarok_online)")
-    # most-specific keyword wins
-    check("ovr.lordknight", f("a lord knight in armor"),  "lord_knight_(ragnarok_online)")
     check("ovr.archbishop", f("an arch bishop of light"), "arch_bishop_(ragnarok_online)")
     # no class word -> no override
     check("ovr.none",   f("a brave hero on a hill"),      "")

@@ -1306,6 +1306,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
             "frame_style":      req.frame_style or "builtin",
+            "commander_tribe":  req.commander_tribe or "",
             # Persist the EFFECTIVE tribe map (user override OR the auto-generated
             # one) so Rebuild/Retheme reuse the same replacement as the baked art.
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or req.tribal_overrides or {},
@@ -1670,6 +1671,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "crew_gender":      req.crew_gender or source_data.get("crew_gender", "either"),
             "border_theme":     source_data.get("border_theme", ""),
             "frame_style":      source_data.get("frame_style", "builtin"),
+            "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": source_data.get("tribal_overrides", {}),
             "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
@@ -2378,7 +2380,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 themer_quality=_style_meta["themer_quality"],
                 commander_gender=face_gender_rt,
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
-                commander_tribe=(req.commander_tribe or ""),
+                commander_tribe=(getattr(req, "commander_tribe", "") or source_data.get("commander_tribe", "")),
                 tribal_map_override=source_data.get("tribal_overrides") or None,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
@@ -2470,6 +2472,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "llm_model":        llm_model_rt or "",
             "border_theme":     source_data.get("border_theme", ""),
             "frame_style":      source_data.get("frame_style", "builtin"),
+            "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or source_data.get("tribal_overrides", {}),
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
