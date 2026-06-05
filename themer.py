@@ -481,6 +481,64 @@ def _ro_race_class(type_line: str) -> tuple[str, str]:
     return race, cls
 
 
+# Class names a user might type (in the commander appearance / theme) → the exact
+# Danbooru tag. Ordered most-specific first so "lord knight" beats "knight",
+# "arch bishop" beats "bishop", etc. Lets a user OVERRIDE the subtype-derived class
+# (e.g. make a Knight commander a "monk") instead of being locked to lord_knight.
+_RO_CLASS_KEYWORDS = [
+    ("guillotine cross", "guillotine_cross_(ragnarok_online)"),
+    ("assassin cross", "assassin_cross_(ragnarok_online)"),
+    ("shadow chaser", "shadow_chaser_(ragnarok_online)"),
+    ("royal guard", "royal_guard_(ragnarok_online)"),
+    ("rune knight", "rune_knight_(ragnarok_online)"),
+    ("lord knight", "lord_knight_(ragnarok_online)"),
+    ("high priest", "high_priest_(ragnarok_online)"),
+    ("arch bishop", "arch_bishop_(ragnarok_online)"),
+    ("high wizard", "high_wizard_(ragnarok_online)"),
+    ("champion", "champion_(ragnarok_online)"),
+    ("crusader", "crusader_(ragnarok_online)"),
+    ("paladin", "paladin_(ragnarok_online)"),
+    ("warlock", "warlock_(ragnarok_online)"),
+    ("sorcerer", "sorcerer_(ragnarok_online)"),
+    ("professor", "professor_(ragnarok_online)"),
+    ("mechanic", "mechanic_(ragnarok_online)"),
+    ("blacksmith", "blacksmith_(ragnarok_online)"),
+    ("whitesmith", "whitesmith_(ragnarok_online)"),
+    ("gunslinger", "gunslinger_(ragnarok_online)"),
+    ("rebellion", "rebellion_(ragnarok_online)"),
+    ("minstrel", "minstrel_(ragnarok_online)"),
+    ("gypsy", "gypsy_(ragnarok_online)"),
+    ("dancer", "dancer_(ragnarok_online)"),
+    ("kagerou", "kagerou_(ragnarok_online)"),
+    ("oboro", "oboro_(ragnarok_online)"),
+    ("stalker", "stalker_(ragnarok_online)"),
+    ("ranger", "ranger_(ragnarok_online)"),
+    ("sniper", "sniper_(ragnarok_online)"),
+    ("hunter", "hunter_(ragnarok_online)"),
+    ("bishop", "arch_bishop_(ragnarok_online)"),
+    ("priest", "priest_(ragnarok_online)"),
+    ("acolyte", "acolyte_(ragnarok_online)"),
+    ("monk", "monk_(ragnarok_online)"),
+    ("sura", "sura_(ragnarok_online)"),
+    ("wizard", "high_wizard_(ragnarok_online)"),
+    ("sage", "sage_(ragnarok_online)"),
+    ("assassin", "assassin_cross_(ragnarok_online)"),
+    ("rogue", "stalker_(ragnarok_online)"),
+    ("knight", "lord_knight_(ragnarok_online)"),
+    ("ninja", "ninja_(ragnarok_online)"),
+    ("bard", "minstrel_(ragnarok_online)"),
+    ("genetic", "genetic_(ragnarok_online)"),
+]
+
+
+def _ro_class_from_text(text: str) -> str:
+    """Return the Danbooru class tag for the first RO class name found in text
+    (e.g. a user's commander-appearance note), else "". Used to OVERRIDE the
+    subtype-derived class so a user can re-class a card."""
+    s = (text or "").lower()
+    return next((tag for kw, tag in _RO_CLASS_KEYWORDS if kw in s), "")
+
+
 # ── Style guide ───────────────────────────────────────────────────────────────
 
 _STYLE_GUIDE_SYSTEM = (
@@ -1883,6 +1941,15 @@ class Themer:
                 # LLM's generic "a knight in armor" scene alone did not reliably fire
                 # the specific trained class. Class tag leads = class sticks.
                 _race, _cls = _ro_race_class(card.get("type_line", ""))
+                # User override: a class named in the commander appearance note wins
+                # over the subtype default — so a Knight commander can be re-classed
+                # (e.g. "monk") instead of being forced to lord_knight. Scoped to the
+                # commander only; a deck-wide override would wrongly fire on theme
+                # words like "crusaders"/"mages" and flatten per-card class variety.
+                if i == 0 and commander_prompt:
+                    _ov = _ro_class_from_text(commander_prompt)
+                    if _ov:
+                        _cls = _ov
                 _toks = []
                 if _cls:
                     # Emphasis-weight the class tag so it dominates the LLM's scene

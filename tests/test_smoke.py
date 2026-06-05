@@ -204,6 +204,18 @@ def test_ro_race_class():
     check("ro.zombie_wizard", f("Creature — Zombie Wizard"),        ("undead race", "high_wizard_(ragnarok_online)"))
 
 
+def test_ro_class_override():
+    f = themer._ro_class_from_text
+    check("ovr.monk",   f("a monk wearing a cowboy hat"), "monk_(ragnarok_online)")
+    check("ovr.champion", f("transcendent champion"),     "champion_(ragnarok_online)")
+    # most-specific keyword wins
+    check("ovr.lordknight", f("a lord knight in armor"),  "lord_knight_(ragnarok_online)")
+    check("ovr.archbishop", f("an arch bishop of light"), "arch_bishop_(ragnarok_online)")
+    # no class word -> no override
+    check("ovr.none",   f("a brave hero on a hill"),      "")
+    check("ovr.empty",  f(""),                            "")
+
+
 def test_stub_prompt():
     f = themer._is_stub_prompt
     # real scenes -> not stubs
@@ -218,7 +230,8 @@ def test_stub_prompt():
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
-               test_theme_detection, test_deck_analysis, test_ro_race_class, test_stub_prompt):
+               test_theme_detection, test_deck_analysis, test_ro_race_class,
+               test_ro_class_override, test_stub_prompt):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
