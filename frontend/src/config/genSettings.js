@@ -48,6 +48,11 @@ export const GEN_SETTINGS_SCHEMA = [
     label: 'Safe mode (stability)', default: false,
     help: 'Lowers steps + resolution to reduce peak GPU/CPU load — use if generation has crashed/rebooted your machine.',
   },
+  {
+    key: 'enhance', step: 'theme', type: 'toggle',
+    label: 'Enhanced coherence (PAG)', default: false,
+    help: 'Perturbed-Attention Guidance — improves anatomy, faces, and overall structure (fewer malformed or abstract subjects). Roughly doubles render time. Great for character-heavy decks; especially helps the Ragnarok/anime styles.',
+  },
 
   // ── Face step ────────────────────────────────────────────────────────────────
   {

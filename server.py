@@ -392,6 +392,7 @@ class GenSettingsModel(BaseModel):
     face_method:    Optional[str]   = None   # None=auto | "reactor" | "pulid_flux" | "none"
     face_weight:    Optional[float] = None
     safe_mode:      Optional[bool]  = None
+    enhance:        Optional[bool]  = None   # Perturbed-Attention Guidance (better anatomy; ~2x slower)
 
 
 def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:

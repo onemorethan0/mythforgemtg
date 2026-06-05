@@ -142,6 +142,10 @@ class GenSettings:
     face_weight: Optional[float] = None    # PuLID identity weight (0.5–1.0)
     # Stability
     safe_mode:  bool           = False     # lower steps + resolution to reduce crash load
+    # Quality: Perturbed-Attention Guidance — improves anatomy/face/structure
+    # coherence (fewer malformed subjects). ~2x slower (extra forward pass per
+    # step), so opt-in. Applied to SDXL/Illustrious + FLUX; CFG is auto-reduced.
+    enhance:    bool           = False
 
     # Resolved generation resolution (set by ImageGen based on safe_mode)
     width:      int            = CARD_WIDTH
@@ -1358,6 +1362,27 @@ def _insert_loras(
             if inp.get("model", [None])[0] == checkpoint_node_id:
                 inp["model"] = prev_model
 
+    return wf
+
+
+def _apply_pag(wf: dict, scale: float = 3.0) -> dict:
+    """Wrap the sampler's current model in a PerturbedAttentionGuidance node for
+    better anatomy/face/structure coherence. Order-independent — call AFTER
+    _insert_loras so it wraps the final (post-LoRA) model. Tames a high SDXL CFG
+    (PAG + high CFG over-saturates); FLUX runs cfg=1.0 and is left alone."""
+    ks = next((n for n in wf.values()
+               if n.get("class_type") in ("KSampler", "KSamplerAdvanced")), None)
+    if not ks or not ks.get("inputs", {}).get("model"):
+        return wf
+    nid = str(max((int(k) for k in wf if k.isdigit()), default=0) + 1)
+    wf[nid] = {"class_type": "PerturbedAttentionGuidance",
+               "inputs": {"model": ks["inputs"]["model"], "scale": scale}}
+    ks["inputs"]["model"] = [nid, 0]
+    try:
+        if float(ks["inputs"].get("cfg", 1.0)) > 4.0:
+            ks["inputs"]["cfg"] = 5.0
+    except (TypeError, ValueError):
+        pass
     return wf
 
 
@@ -2739,6 +2764,13 @@ class ImageGen:
                 #   SDXL workflows: node "4"
                 checkpoint_node = "1" if _is_flux_model else "4"
                 wf = _insert_loras(wf, checkpoint_node, scaled)
+
+            # Quality: Perturbed-Attention Guidance (opt-in). Applied last so it
+            # wraps the final post-LoRA model. Skipped for schnell (distilled, no
+            # guidance) and SD3.5 (different sampler graph).
+            if self.gen.enhance and not _is_schnell_ckpt and not _is_sd35(self.checkpoint or ""):
+                wf = _apply_pag(wf)
+                print("  [image_gen] PAG enhance ON (Perturbed-Attention Guidance)")
 
             # Log LoRA chain so we can spot missing/wrong filenames immediately
             lora_nodes = {nid: n for nid, n in wf.items()
