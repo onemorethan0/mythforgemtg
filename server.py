@@ -393,6 +393,7 @@ class GenSettingsModel(BaseModel):
     face_weight:    Optional[float] = None
     safe_mode:      Optional[bool]  = None
     enhance:        Optional[bool]  = None   # Perturbed-Attention Guidance (better anatomy; ~2x slower)
+    face_fix:       Optional[bool]  = None   # FaceDetailer pass (SDXL/Illustrious; re-renders faces)
 
 
 def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:

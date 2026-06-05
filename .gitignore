@@ -65,3 +65,5 @@ face_uploads/
 # Imported-deck + Scryfall card caches (regenerable)
 cache/
 ro_showcase/
+comfyui_restart.log
+comfyui_restart.log.err

@@ -146,6 +146,10 @@ class GenSettings:
     # coherence (fewer malformed subjects). ~2x slower (extra forward pass per
     # step), so opt-in. Applied to SDXL/Illustrious + FLUX; CFG is auto-reduced.
     enhance:    bool           = False
+    # Quality: FaceDetailer pass (Impact Pack) — detects faces and re-renders them
+    # at higher detail. SDXL/Illustrious only (needs the YOLO face model). Opt-in,
+    # adds a pass per detected face. Fixes small/blurry/malformed faces.
+    face_fix:   bool           = False
 
     # Resolved generation resolution (set by ImageGen based on safe_mode)
     width:      int            = CARD_WIDTH
@@ -1361,6 +1365,13 @@ def _insert_loras(
             # PuLID wraps the model — update its model input too
             if inp.get("model", [None])[0] == checkpoint_node_id:
                 inp["model"] = prev_model
+        if ct == "FaceDetailer":
+            # The face-refine pass must use the SAME LoRA-patched model + clip so
+            # the re-rendered face matches the deck's art style.
+            if inp.get("model", [None])[0] == checkpoint_node_id:
+                inp["model"] = prev_model
+            if inp.get("clip", [None])[0] == checkpoint_node_id:
+                inp["clip"] = prev_clip
 
     return wf
 
@@ -1449,9 +1460,9 @@ def _summarize_comfy_error(resp) -> str:
 # ── Standard workflow builders ────────────────────────────────────────────────
 
 def _build_sdxl_workflow(checkpoint: str, positive: str, seed: int,
-                          negative: str = "") -> dict:
+                          negative: str = "", gen: Optional[GenSettings] = None) -> dict:
     neg = negative or NEGATIVE_PROMPT
-    return {
+    wf = {
         "4": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": checkpoint}},
         "5": {"class_type": "EmptyLatentImage",        "inputs": {"width": CARD_WIDTH, "height": CARD_HEIGHT, "batch_size": 1}},
         "6": {"class_type": "CLIPTextEncode",          "inputs": {"text": positive, "clip": ["4", 1]}},
@@ -1468,6 +1479,26 @@ def _build_sdxl_workflow(checkpoint: str, positive: str, seed: int,
         "8": {"class_type": "VAEDecode", "inputs": {"samples": ["3", 0], "vae": ["4", 2]}},
         "9": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["8", 0]}},
     }
+    # Opt-in FaceDetailer pass (Impact Pack): detect faces and re-render them at
+    # detail. Inserted between VAEDecode and SaveImage. model/clip use the
+    # checkpoint here; _insert_loras rewires them to the LoRA chain so the refined
+    # face matches the deck's art style.
+    if gen and getattr(gen, "face_fix", False):
+        wf["20"] = {"class_type": "UltralyticsDetectorProvider",
+                    "inputs": {"model_name": "bbox/face_yolov8m.pt"}}
+        wf["21"] = {"class_type": "FaceDetailer", "inputs": {
+            "image": ["8", 0], "model": ["4", 0], "clip": ["4", 1], "vae": ["4", 2],
+            "positive": ["6", 0], "negative": ["7", 0], "bbox_detector": ["20", 0],
+            "guide_size": 384, "guide_size_for": True, "max_size": 1024,
+            "seed": seed, "steps": 20, "cfg": 6.5, "sampler_name": "dpmpp_2m",
+            "scheduler": "karras", "denoise": 0.45, "feather": 5, "noise_mask": True,
+            "force_inpaint": True, "bbox_threshold": 0.5, "bbox_dilation": 10,
+            "bbox_crop_factor": 3.0, "sam_detection_hint": "center-1", "sam_dilation": 0,
+            "sam_threshold": 0.93, "sam_bbox_expansion": 0, "sam_mask_hint_threshold": 0.7,
+            "sam_mask_hint_use_negative": "False", "drop_size": 10, "wildcard": "", "cycle": 1,
+        }}
+        wf["9"]["inputs"]["images"] = ["21", 0]
+    return wf
 
 
 def _build_flux_workflow(checkpoint: str, positive: str, seed: int,
@@ -1559,7 +1590,7 @@ def _build_workflow(checkpoint: str, positive: str, seed: int,
         return _build_sd35_workflow(checkpoint, positive, seed, negative=negative)
     if _is_flux(checkpoint):
         return _build_flux_workflow(checkpoint, positive, seed, negative=negative, gen=gen)
-    return _build_sdxl_workflow(checkpoint, positive, seed, negative=negative)
+    return _build_sdxl_workflow(checkpoint, positive, seed, negative=negative, gen=gen)
 
 
 # ── Face-conditioning workflow builders ───────────────────────────────────────
