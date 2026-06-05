@@ -554,6 +554,58 @@ def _ro_class_from_text(text: str) -> str:
     return next((tag for kw, tag in _RO_CLASS_KEYWORDS if kw in s), "")
 
 
+def _ro_element(card: dict) -> str:
+    """Map a card's MTG color identity → the RO element token the LoRA trained on."""
+    ci = {c.upper() for c in (card.get("color_identity") or card.get("colors") or [])}
+    if   {"W", "R"} <= ci: return "holy fire element"
+    elif {"U", "B"} <= ci: return "water shadow element"
+    elif {"W", "U"} <= ci: return "holy water element"
+    elif {"B", "R"} <= ci: return "shadow fire element"
+    elif {"G", "U"} <= ci: return "wind water element"
+    elif "W" in ci:        return "holy element"
+    elif "U" in ci:        return "water element"
+    elif "B" in ci:        return "shadow element"
+    elif "R" in ci:        return "fire element"
+    elif "G" in ci:        return "earth element"
+    return "neutral element"
+
+
+_RO_SUFFIXES = ("full body portrait", "full body action pose",
+                "card illustration", "painterly background")
+
+
+def apply_ro_tokens(prompt: str, card: dict, override_text: str = "") -> str:
+    """Front-load RO element/race/class tokens onto an art prompt for the Illustrious
+    RO LoRA. The class tag is emphasis-weighted so it sticks. Shared by theme_deck
+    AND per-card regen, so re-classing/accessorizing works anywhere.
+    override_text: free text (commander appearance / a regen custom prompt) whose
+    named class, if any, overrides the subtype-derived class."""
+    if not prompt:
+        return prompt
+    elem = _ro_element(card)
+    race, cls = _ro_race_class(card.get("type_line", ""))
+    if override_text:
+        ov = _ro_class_from_text(override_text)
+        if ov:
+            cls = ov
+    toks = []
+    if cls:
+        esc = cls.replace("(", r"\(").replace(")", r"\)")
+        toks.append(f"({esc}:1.3)")
+    if race:
+        toks.append(race)
+    toks.append(elem)
+    anchor = ", ".join(toks)
+    out = prompt
+    if cls and cls.lower() not in out.lower():
+        out = f"{anchor}, {out}"
+    elif not cls and " element" not in out.lower():
+        out = f"{anchor}, {out}"
+    if not any(s in out.lower() for s in _RO_SUFFIXES):
+        out = out.rstrip(". ") + ", full body portrait, painterly background, saturated colors"
+    return out
+
+
 # ── Style guide ───────────────────────────────────────────────────────────────
 
 _STYLE_GUIDE_SYSTEM = (
@@ -1926,70 +1978,12 @@ class Themer:
                     if name_words and not any(w in full_prompt.lower() for w in name_words[:2]):
                         full_prompt = f"{themed_name_raw}, {full_prompt}"
 
-            # ── RO LoRA: deterministic element + composition suffix injection ──
-            # The LLM is guided by the vocabulary block, but color_identity → element
-            # is a deterministic mapping we can guarantee.  If the LLM missed it,
-            # inject it so the LoRA's trained element-visual associations always fire.
-            # Similarly, ensure the trained composition suffix is present.
+            # ── RO LoRA: front-load element/race/class tokens (shared helper, so
+            # per-card regen can re-class too). Commander appearance can override
+            # the class; deck cards use the subtype default. ──
             if full_prompt and lora_vocabulary:
-                _color_ids = (
-                    card.get("color_identity") or card.get("colors") or []
-                )
-                _ci = {c.upper() for c in _color_ids}
-                # Map color identity → RO element token (same mapping as vocab block)
-                if   {"W", "R"} <= _ci:   _elem = "holy fire element"
-                elif {"U", "B"} <= _ci:   _elem = "water shadow element"
-                elif {"W", "U"} <= _ci:   _elem = "holy water element"
-                elif {"B", "R"} <= _ci:   _elem = "shadow fire element"
-                elif {"G", "U"} <= _ci:   _elem = "wind water element"
-                elif "W" in _ci:          _elem = "holy element"
-                elif "U" in _ci:          _elem = "water element"
-                elif "B" in _ci:          _elem = "shadow element"
-                elif "R" in _ci:          _elem = "fire element"
-                elif "G" in _ci:          _elem = "earth element"
-                else:                     _elem = "neutral element"
-
-                # ── FRONT-LOADED token anchor (class → race → element) ─────────
-                # v5 recognizes RO job classes BY NAME using the Danbooru tag it was
-                # trained on. Illustrious weights LEADING tokens most, so we prepend
-                # the class tag (+race+element) to the very front of the prompt — the
-                # LLM's generic "a knight in armor" scene alone did not reliably fire
-                # the specific trained class. Class tag leads = class sticks.
-                _race, _cls = _ro_race_class(card.get("type_line", ""))
-                # User override: a class named in the commander appearance note wins
-                # over the subtype default — so a Knight commander can be re-classed
-                # (e.g. "monk") instead of being forced to lord_knight. Scoped to the
-                # commander only; a deck-wide override would wrongly fire on theme
-                # words like "crusaders"/"mages" and flatten per-card class variety.
-                if i == 0 and commander_prompt:
-                    _ov = _ro_class_from_text(commander_prompt)
-                    if _ov:
-                        _cls = _ov
-                _toks = []
-                if _cls:
-                    # Emphasis-weight the class tag so it dominates the LLM's scene
-                    # (a 'high wizard' scene about water otherwise rendered a dragon).
-                    # ComfyUI A1111 weighting; inner parens of the Danbooru tag escaped.
-                    _esc = _cls.replace("(", r"\(").replace(")", r"\)")
-                    _toks.append(f"({_esc}:1.3)")
-                if _race:
-                    _toks.append(_race)
-                _toks.append(_elem)
-                _anchor = ", ".join(_toks)
-                # Drop an element tag the LLM may already have written (avoid dup),
-                # then prepend the deterministic anchor so it leads.
-                if _cls and _cls.lower() not in full_prompt.lower():
-                    full_prompt = f"{_anchor}, {full_prompt}"
-                elif not _cls and " element" not in full_prompt.lower():
-                    full_prompt = f"{_anchor}, {full_prompt}"
-
-                # Ensure composition suffix is present (required by training captions)
-                _SUFFIXES = (
-                    "full body portrait", "full body action pose",
-                    "card illustration", "painterly background",
-                )
-                if not any(s in full_prompt.lower() for s in _SUFFIXES):
-                    full_prompt = full_prompt.rstrip(". ") + ", full body portrait, painterly background, saturated colors"
+                _ov_text = commander_prompt if (i == 0) else ""
+                full_prompt = apply_ro_tokens(full_prompt, card, override_text=_ov_text)
 
             # Bleed guard for the ART prompt too — the LLM sometimes writes the
             # commander's name into another card's scene; strip it so FLUX never

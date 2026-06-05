@@ -2039,6 +2039,14 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             prompt = (custom if use_custom else cd.get("art_prompt", "")) \
                      or cd.get("art_prompt", "") or cd["original_name"]
 
+            # RO decks: a CUSTOM regen prompt is the user's own text, so it lacks the
+            # element/race/class tokens a build bakes in. Apply the same treatment so
+            # per-card re-classing/accessorizing works (e.g. type "Monk class, cowboy
+            # hat" to re-class one card). Stored (non-custom) prompts already have them.
+            if use_custom and source_data.get("art_style") == "ragnarok_online":
+                from themer import apply_ro_tokens as _apply_ro
+                prompt = _apply_ro(prompt, _stored_card_to_dict(cd), override_text=custom)
+
             tc = ThemedCard(
                 original_name = cd["original_name"],
                 themed_name   = cd["themed_name"],
