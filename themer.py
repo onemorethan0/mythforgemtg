@@ -747,10 +747,12 @@ def _generate_style_guide(theme: str, commander_name: str,
         f"<<<{commander_name}>>>"
         + (f"\nCOMMANDER APPEARANCE (user-supplied, treat as a description):\n<<<{commander_prompt}>>>" if commander_prompt else "")
         + medium_line
-        + f"\n\nDescribe: art medium (which MUST match the style above), dominant color palette "
-        f"(honour any specific colors the user mentioned), lighting style, overall mood, "
-        f"AND 1-2 iconic visual elements unique to this world.\n"
-        f"Example (in the requested style): '{example}'\n"
+        + f"\n\nThe guide MUST do BOTH: (1) render in the art medium/style above, AND (2) vividly "
+        f"capture THIS WORLD THEME's content — name 2-3 CONCRETE iconic motifs drawn from the "
+        f"WORLD THEME itself (its signature objects, architecture, symbols, attire), NOT generic "
+        f"fantasy and NOT motifs from the example. The theme's subject matter must be unmistakable.\n"
+        f"Also state: dominant color palette (honour any colors the user mentioned), lighting, mood.\n"
+        f"Example (copy the STYLE/format only, not its subject): '{example}'\n"
         f"Style guide:"
     )
     payload = {
@@ -769,16 +771,21 @@ def _generate_style_guide(theme: str, commander_name: str,
         resp.raise_for_status()
         raw   = resp.json().get("message", {}).get("content", "").strip()
         guide = raw.split("\n")[0].strip().strip('"').strip("'")
-        if 20 < len(guide) < 260:
+        # Allow a richer style+theme fusion (was 260, which rejected good guides
+        # that name the world's motifs and fell back to a theme-less style hint).
+        if 20 < len(guide) < 400:
             print(f"  [themer] Style guide: {guide}")
             return guide
     except Exception as e:
         print(f"  [themer] Style guide generation failed ({e}), using fallback.")
-    # Use the caller-supplied hint as fallback so cyberpunk/anime/etc. presets
-    # don't silently fall back to a generic oil-painting style that poisons every
-    # card's art prompt with the wrong medium language (e.g. "deep colors,
-    # dramatic brushwork" for a neon-lit cyberpunk deck → near-black FLUX output).
-    return style_guide_hint or "Dramatic fantasy oil painting with rich atmospheric lighting, deep colors, and detailed brushwork."
+    # Fallback: combine the style hint with the WORLD THEME's content so the theme
+    # is never lost when the LLM call fails (a pure style hint was stomping themes —
+    # e.g. a "music is magic" deck rendered as generic RO fantasy because the guide
+    # carried only the RO style and no music motifs).
+    _theme_excerpt = (theme or "").strip().strip("<>").strip('"').split(".")[0][:160].strip()
+    if style_guide_hint and _theme_excerpt:
+        return f"{style_guide_hint}, depicting {_theme_excerpt}"
+    return style_guide_hint or _theme_excerpt or "Dramatic fantasy oil painting with rich atmospheric lighting, deep colors, and detailed brushwork."
 
 
 # ── Prompt builder ────────────────────────────────────────────────────────────
