@@ -1192,9 +1192,16 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                 # This creature IS a reskinned tribe — depict & name as the replacement.
                 tl = f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: depict & name as {mapped}]"
             elif tribal_map:
-                # A reskin is active but this creature is NOT in a mapped tribe —
-                # depict it as its OWN kind, never as any reskinned creature.
-                tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}; keep its own kind — do NOT reskin it]"
+                # A reskin is active but this creature is NOT a mapped tribe. Do NOT
+                # force its ORIGINAL kind — that injected e.g. dragon wings onto a
+                # themed humanoid and clashed with the world (a "Dragon" rendered with
+                # random wings while the name/theme said otherwise). Let the themed
+                # NAME + theme world decide its form; the original kind is a loose hint
+                # only, and it must NOT be reskinned into the deck's reskinned tribes.
+                tl = (f"{head} — [a creature of the theme world; depict to MATCH THE THEMED NAME "
+                      f"within the theme; its original kind ({' '.join(subs)}) is a LOOSE hint only — "
+                      f"do NOT force {' '.join(subs)} anatomy/features (wings, scales, etc.); "
+                      f"do NOT reskin it into the deck's reskinned tribes]")
             else:
                 tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}]"
         mechsum  = _mechanic_summary(c)
