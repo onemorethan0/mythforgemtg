@@ -169,10 +169,12 @@ FLUX on this system CANNOT be batched across multiple cards because:
   - Quality is acceptable for MTG
   - Leaves maximum VRAM headroom
   
-- ✅ **Alternative**: FLUX Dev (35 steps, 35s/card) when user wants premium quality
-  - 100 cards: ~58 minutes total
+- ✅ **Default**: FLUX Dev (28 steps, ~30s/card) — premium quality, ~20% faster than the old 35-step default on fp8
+  - 100 cards: ~50 minutes total
   - Still safe (12 GB + headroom)
   - User can choose at build time
+- ⚡ **Turbo** (FLUX Dev + a distillation LoRA, 8 steps, ~10s/card): ~3× faster at near-dev quality when a turbo LoRA (e.g. FLUX.1-Turbo-Alpha) is installed
+- 🧩 **Quality toggles** (opt-in, ~2× slower each): Enhanced coherence (PAG) for anatomy/structure; Face fix (FaceDetailer) for cleaner faces on SDXL/Illustrious
 
 ---
 
