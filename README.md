@@ -182,7 +182,11 @@ deck's real creature types for per-tribe reskinning.
 1. **Commander & Deck** — Either **Generate a deck** (search any legendary creature; pick **power bracket 1–5** and a **playstyle** — Aggro, Control, Lifegain, etc. or Auto) or **Import a deck** (retheme one you already own — see below). On continue, the **99-card list is built immediately** (no art yet).
 2. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness.
 3. **Theme** — **Deck Vision** structured intake: a setting line plus genre/mood/lighting chips and optional inspirations compose into a clean theme brief (a live preview shows what the themer will receive), so you get better, more consistent names and art than a single free-text box. Also: **per-tribe creature-type replacements** (e.g. *Knight → Cowboy* — reskins that type's name, art, card type line, **and rules text** across the deck), card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
-4. **Deck** — Browse all 100 cards with rendered proxy frames; download ZIP or print-ready PDF. Re-roll with **Retheme** (new names/art, same settings) or **Rebuild** (regenerate art), or **Edit** to change settings into a new deck.
+4. **Deck** — Browse all 100 cards with rendered proxy frames; download ZIP or print-ready PDF. Re-roll three ways (each creates a new deck; the original is kept):
+   - **🔄 Rebuild** — re-roll the **art only**, keeping the current names & prompts.
+   - **✏️ Retheme** — re-kick the **whole** generation: new names **and** new art, same cards/theme/settings.
+   - **🎛️ Edit & Rebuild** — re-open the wizard with every input pre-filled; change anything (theme, art style, tribe reskins, quality), then it does a full build.
+   - You can also multi-select cards and **regenerate just those** (with optional custom prompts).
 
 ---
 
@@ -368,9 +372,11 @@ Auto-detects checkpoint type (FLUX vs SDXL) and best available face method.
 
 **Checkpoints:** `C:\Users\rvn92\Documents\ComfyUI\models\checkpoints\`
 
-**SDXL settings:** 30 steps, CFG 7.5, DPM++ 2M Karras
-**FLUX dev settings:** 35 steps, KSampler **CFG 1.0** + a **FluxGuidance** node (default 3.5), dpmpp_2m + sgm_uniform
+**SDXL / Illustrious settings:** 30 steps, CFG 7.5, DPM++ 2M Karras
+**FLUX dev settings:** 28 steps (≈ 35 for card art, ~20% faster on fp8), KSampler **CFG 1.0** + a **FluxGuidance** node (default 3.5), dpmpp_2m + sgm_uniform
 **FLUX schnell:** 8 steps, CFG 1.0, euler + simple (no FluxGuidance, no LoRAs)
+
+**Render speed modes (`model_speed`):** `quality` = flux-dev · **`turbo`** = flux-dev + a distillation LoRA (e.g. FLUX.1-Turbo-Alpha) at 8 steps (~10s/card vs ~30s, near-dev quality; a "⚡ Turbo" button appears when a turbo LoRA is installed) · `fast` = flux-schnell · `sd35` = SD 3.5 Large.
 
 > **Why CFG 1.0 + FluxGuidance, not CFG 3.5 in the KSampler?** FLUX-dev is guidance-distilled; driving it with true CFG > 1 over-guides the latent to a blown-out near-white frame. Correct usage is KSampler CFG 1.0 with a FluxGuidance conditioning node (~3.5). The negative prompt is therefore inert on FLUX (it steers from the positive). Guidance/steps are user-tunable via the Theme step's Advanced panel (see Generation Settings below).
 
@@ -401,6 +407,10 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
 | `pixel_art` | Pixel Art | 🕹️ | `Pixel_Art_FLUX.safetensors` |
 | `eldritch` | Eldritch Horror | 👁️ | `Eldritch_Comics_for_Flux*.safetensors` |
 | `stained_glass` | Stained Glass | 🪟 | `Stained_Glass_Style.safetensors` |
+| `ragnarok_online` | Ragnarok Online | ⚔️ | `ro_lora_v5.safetensors` — **requires Illustrious XL (SDXL)**; RO illustrated card-art style + recognizes RO job classes/elements/races by name |
+| `ragnarok_sprite` | Ragnarok Sprite (Pixel) | 👾 | `ro_pixel_sprite_lora.safetensors` — classic RO pixel-art sprites; **requires Illustrious XL** |
+
+> **Ragnarok Online styles** run on **Illustrious XL** (an SDXL/Danbooru-tag anime model), not FLUX. The themer auto-injects the exact Danbooru tags the LoRA was trained on — element from mana colour (holy/water/shadow/fire/earth), race from creature subtype, and the job class (`lord_knight_(ragnarok_online)`, `high_wizard_…`, `arch_bishop_…`, etc.), emphasis-weighted so the class reliably renders. Name a class in the **commander appearance** (or the Theme step's Job Class picker) to override the auto-detected class (e.g. make a Knight commander a *Monk*).
 
 **Anime style guide:**
 - 🎌 **Anime / Manga** — flat colour, cel-shaded, clean linework. Classic 2D TV animation look.
@@ -439,6 +449,9 @@ Each preset is a curated LoRA stack with its own prompt prefix, negative prompt,
 The Theme and Face steps each have a collapsible **⚙ Advanced** panel, driven by a single schema (`frontend/src/config/genSettings.js`) with a structural **Reset to defaults** button and `localStorage` persistence. Values flow `gen_settings → BuildRequest → ImageGen → workflow builders`:
 
 - **Theme:** FLUX guidance (1.5–5), sampler steps, seed (random/fixed), a **LoRA picker** (override the preset stack + per-LoRA strength), and **Safe mode**.
+- **Image Quality** (prominent toggles on the Theme step, shown when art-gen is on):
+  - **✨ Enhanced coherence (PAG)** — Perturbed-Attention Guidance; improves anatomy/faces/structure (fewer malformed or abstract subjects). ~2× slower.
+  - **😊 Face fix (FaceDetailer)** — detects faces and re-renders them at higher detail (Impact Pack; SDXL/Illustrious). Fixes small/blurry/malformed faces.
 - **Face:** face method (auto/ReActor/PuLID/none) and PuLID identity strength.
 - **Safe mode** lowers steps + resolution to reduce peak GPU/CPU load (mitigates crashes on unstable hardware — see Gotchas).
 - The fully-resolved settings are logged once per build as `[gen_settings] {...}`.
