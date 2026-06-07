@@ -246,6 +246,46 @@ def test_creature_floor_plan():
     check("floor.none",        p([]),                            (None, 0))
 
 
+# ── basic-land guarantee (deck reaches exactly 99 even if Scryfall is short) ──
+def test_pad_with_basics():
+    from deck_builder import DeckBuilder
+
+    class _FakeClient:                     # echoes the exact-name query back
+        def search_cards(self, q):
+            return {"data": [{"name": q.strip('!"'), "type_line": "Basic Land"}]}
+
+    class _Prof:
+        def __init__(self, ci): self.color_identity = ci
+
+    b = DeckBuilder(_FakeClient()); b._deck = []
+    n = b._pad_with_basics(_Prof(["G", "W"]), 5)
+    check("pad.count",   n, 5)
+    check("pad.deck_len", len(b._deck), 5)
+    # cycles the on-color basics in color order (G→Forest, W→Plains)
+    check("pad.cycle", [c["name"] for c in b._deck],
+          ["Forest", "Plains", "Forest", "Plains", "Forest"])
+    # colorless commander → Wastes
+    b2 = DeckBuilder(_FakeClient()); b2._deck = []
+    b2._pad_with_basics(_Prof([]), 3)
+    check("pad.colorless", [c["name"] for c in b2._deck], ["Wastes", "Wastes", "Wastes"])
+    # want<=0 is a no-op
+    b3 = DeckBuilder(_FakeClient()); b3._deck = []
+    check("pad.zero", b3._pad_with_basics(_Prof(["R"]), 0), 0)
+    check("pad.zero_len", len(b3._deck), 0)
+
+    # Scryfall fully down → synthetic basics still guarantee the count (legal 99).
+    import deck_builder as _db
+    _db._BASIC_LAND_CACHE.pop("Mountain", None)   # ensure a true cache miss
+    class _DeadClient:
+        def search_cards(self, q): return {"data": []}
+    b4 = DeckBuilder(_DeadClient()); b4._deck = []
+    n4 = b4._pad_with_basics(_Prof(["R"]), 4)
+    check("pad.dead_count", n4, 4)
+    check("pad.dead_names", [c["name"] for c in b4._deck], ["Mountain"] * 4)
+    check_true("pad.dead_synthetic", all(c.get("_synthetic") for c in b4._deck))
+    check_true("pad.dead_typeline", b4._deck[0]["type_line"] == "Basic Land — Mountain")
+
+
 def test_stub_prompt():
     f = themer._is_stub_prompt
     # real scenes -> not stubs
@@ -261,7 +301,8 @@ def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
                test_theme_detection, test_deck_analysis, test_creature_floor_plan,
-               test_ro_race_class, test_ro_class_override, test_stub_prompt):
+               test_pad_with_basics, test_ro_race_class, test_ro_class_override,
+               test_stub_prompt):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

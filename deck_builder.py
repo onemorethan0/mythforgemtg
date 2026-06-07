@@ -31,8 +31,34 @@ BASIC_LAND: dict[str, str] = {
     "G": "Forest",
 }
 
-# Basic land Scryfall IDs (avoid re-searching for them repeatedly)
+# Resolved basic-land card objects, cached to avoid re-searching them.
 _BASIC_LAND_CACHE: dict[str, dict] = {}
+
+# Color symbol each basic taps for (for the offline synthetic fallback).
+_BASIC_MANA: dict[str, str] = {
+    "Plains": "W", "Island": "U", "Swamp": "B", "Mountain": "R", "Forest": "G",
+}
+
+
+def _synthetic_basic(land_name: str) -> dict:
+    """A minimal, network-free basic-land card. Used ONLY as the absolute last
+    resort in DeckBuilder._pad_with_basics when Scryfall can't be reached at all,
+    so a build can still produce a legal 99-card deck. Carries just enough for
+    stats / render / export to treat it as an ordinary basic (no art — the image
+    pipeline degrades gracefully when Scryfall is unavailable anyway)."""
+    sym = _BASIC_MANA.get(land_name, "C")
+    subtype = "" if land_name == "Wastes" else f" — {land_name}"
+    return {
+        "name": land_name,
+        "type_line": f"Basic Land{subtype}",
+        "mana_cost": "",
+        "cmc": 0.0,
+        "oracle_text": f"({{T}}: Add {{{sym}}}.)",
+        "colors": [],
+        "color_identity": [] if sym == "C" else [sym],
+        "produced_mana": [sym],
+        "_synthetic": True,
+    }
 
 # ── Functional role queries ───────────────────────────────────────────────────
 # otag: (Oracle Tag) is a Scryfall community tagging system — great signal for
@@ -305,12 +331,10 @@ class DeckBuilder:
         basic_slots = want - added
         if not colors:
             # Colorless commanders use Wastes
-            wastes_q = '!"Wastes" type:basic'
-            result = self.client.search_cards(wastes_q)
-            wastes = result.get("data", [])
+            wastes = self._basic_card("Wastes")
             if wastes:
                 for _ in range(basic_slots):
-                    self._deck.append(wastes[0])
+                    self._deck.append(wastes)
                     added += 1
             return added
 
@@ -318,26 +342,43 @@ class DeckBuilder:
         extra = basic_slots % len(colors)
 
         for idx, color in enumerate(colors):
-            land_name = BASIC_LAND.get(color)
-            if not land_name:
-                continue
-
-            if land_name not in _BASIC_LAND_CACHE:
-                result = self.client.search_cards(f'!"{land_name}"')
-                data = result.get("data", [])
-                if data:
-                    _BASIC_LAND_CACHE[land_name] = data[0]
-
-            basic = _BASIC_LAND_CACHE.get(land_name)
+            basic = self._basic_card(BASIC_LAND.get(color))
             if not basic:
                 continue
-
             count = per_color + (1 if idx < extra else 0)
             for _ in range(count):
                 self._deck.append(basic)
                 added += 1
 
         return added
+
+    def _basic_card(self, land_name: str | None) -> dict | None:
+        """Fetch (and cache) the Scryfall card for a basic land by name. Basics
+        are appended to the deck directly (they bypass _add's name dedup), so
+        repeated copies are fine — aggregate_duplicates collapses them later."""
+        if not land_name:
+            return None
+        if land_name not in _BASIC_LAND_CACHE:
+            result = self.client.search_cards(f'!"{land_name}"')
+            data = (result or {}).get("data", [])
+            if data:
+                _BASIC_LAND_CACHE[land_name] = data[0]
+        return _BASIC_LAND_CACHE.get(land_name)
+
+    def _pad_with_basics(self, profile: CommanderProfile, want: int) -> int:
+        """Last-resort guarantee that the deck reaches 99: cycle on-color basic
+        lands (always legal, locally cached) so a Scryfall shortfall — a transient
+        rate-limit beyond the client's own backoff, or an exhausted on-color
+        pool — can't leave an ILLEGAL sub-100 deck."""
+        if want <= 0:
+            return 0
+        names = [BASIC_LAND[c] for c in profile.color_identity if c in BASIC_LAND] or ["Wastes"]
+        # Prefer the real Scryfall card; fall back to a synthetic so we ALWAYS
+        # reach the count even if Scryfall is fully unreachable.
+        basics = [self._basic_card(n) or _synthetic_basic(n) for n in names]
+        for i in range(want):
+            self._deck.append(basics[i % len(basics)])
+        return want
 
     # ── Public API ────────────────────────────────────────────────────────────
 
@@ -492,11 +533,25 @@ class DeckBuilder:
             n = fn()
             print(f"  [{label:<18}] {n:>2} cards   (running total: {len(self._deck)})")
 
-        # Pad if Scryfall returned fewer results than planned
+        # ── Guarantee exactly 99 cards ────────────────────────────────────────
+        # Scryfall can under-deliver — a transient rate-limit beyond the client's
+        # own 4-try backoff, or an exhausted on-color pool — which would otherwise
+        # leave an ILLEGAL sub-100 deck. Pad with goodstuff first (prefers real
+        # spells); retry a couple times since each pass can pull fresh cards, but
+        # stop the moment a pass adds nothing (pool dry / Scryfall down). Then
+        # guarantee the count with on-color basics, which are always legal and
+        # served from the local cache even if Scryfall is unreachable.
+        for _ in range(3):
+            shortfall = 99 - len(self._deck)
+            if shortfall <= 0:
+                break
+            print(f"\n  Padding {shortfall} missing slots with goodstuff...")
+            if self._fetch_goodstuff(profile, shortfall) == 0:
+                break
         shortfall = 99 - len(self._deck)
         if shortfall > 0:
-            print(f"\n  Padding {shortfall} missing slots with goodstuff...")
-            self._fetch_goodstuff(profile, shortfall)
+            print(f"\n  Guaranteeing 99 with {shortfall} basic land(s) (Scryfall came up short)...")
+            self._pad_with_basics(profile, shortfall)
 
         return self._deck[:99]
 
