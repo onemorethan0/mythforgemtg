@@ -24,10 +24,18 @@ frontend/node_modules/
 test_*.py
 !tests/             # but DO track the committed test suite under tests/
 !tests/**
+# …except compiled bytecode the !tests/** negation re-included
+tests/**/*.py[cod]
 !docs/gallery/      # and the README gallery images (built-in frames only)
 !docs/gallery/**
 test_*.png
 CLAUDE.md
+
+# Local dev/QA scratch scripts (one-off harnesses, not part of the app).
+# The committed showcase scripts (ro_showcase.py, ro_pixel_test.py) stay tracked.
+gen_*.py
+ro_*_test.py
+ro_appraise.py
 
 # Session / internal dev docs (not shipped)
 SESSION_*.md
