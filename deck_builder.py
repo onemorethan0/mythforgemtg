@@ -175,6 +175,40 @@ class DeckBuilder:
                     added += 1
         return added
 
+    def _count_creatures(self) -> int:
+        """Number of true creature cards currently in the deck (excludes lands,
+        e.g. creature-lands, and the like)."""
+        return sum(
+            1 for c in self._deck
+            if "creature" in (c.get("type_line", "") or "").lower()
+            and "land" not in (c.get("type_line", "") or "").lower()
+        )
+
+    def _fetch_creatures(self, profile: CommanderProfile, want: int) -> int:
+        """Top up the deck with EDHREC-sorted on-color creatures (goodstuff bodies).
+
+        Used by the creature floor: support archetypes whose theme query is
+        non-creature-centric (Equipment/Auras/Artifacts) otherwise build decks
+        with too few bodies to actually carry the payload."""
+        if want <= 0:
+            return 0
+        query = (
+            f"type:creature "
+            f"{self._ci_filter(profile)} "
+            f"legal:commander -type:land"
+        )
+        # Most popular creatures already sit at the top of EDHREC ranking and may
+        # be in the deck; fetch past them like _fetch_goodstuff does.
+        candidates_needed = len(self._names) + self._bracket_filter.candidate_buffer(want)
+        candidates = self.client.search_cards_paged(query, max_results=candidates_needed)
+        added = 0
+        for card in candidates:
+            if added >= want:
+                break
+            if self._add(card):
+                added += 1
+        return added
+
     def _fetch_goodstuff(self, profile: CommanderProfile, want: int) -> int:
         """
         EDHREC-sorted cards in color identity as a catch-all filler.
@@ -330,6 +364,25 @@ class DeckBuilder:
         # Snapshot active_themes into the lambda closures correctly
         _active = active_themes
 
+        # ── Creature floor ────────────────────────────────────────────────────
+        # "Support" archetypes lead with a NON-creature theme: their synergy query
+        # is Equipment / Auras / Artifacts (the payload), not bodies. Left alone
+        # they build decks with ~5 creatures — far too few to carry the payload
+        # (e.g. Syr Gwyn / Sram voltron lists). For these we (a) trim the (non-
+        # creature) theme package to make room and (b) reserve a creature floor
+        # that tops up on-color bodies. Creature-centric themes (tribal/tokens/
+        # combat) already field a wide board via the aggro bias below, so they
+        # get NO floor here — guaranteeing no regression for them.
+        _support_lead = bool(active_themes) and active_themes[0] in {
+            "voltron", "auras", "artifacts", "enchantress"
+        }
+        creature_floor = 0
+        if _support_lead:
+            plan["theme"]     = 10      # smaller equipment/aura package …
+            creature_floor    = 20      # … so ~20 bodies fit to carry it
+            used = sum(v for k, v in plan.items() if k != "goodstuff")
+            plan["goodstuff"] = max(2, 99 - used)
+
         steps: list[tuple[str, object]] = [
             ("Lands",          lambda: self._build_lands(profile, plan["lands"])),
             ("Ramp",           lambda: self._fetch_role(profile, "ramp", plan["ramp"])),
@@ -339,7 +392,12 @@ class DeckBuilder:
             ("Protection",     lambda: self._fetch_role(profile, "protection", plan["protection"])),
             ("Finishers",      lambda: self._fetch_role(profile, "finisher", plan["finisher"])),
             ("Theme synergy",  lambda: self._fetch_theme_synergy_list(profile, _active, plan["theme"])),
-            ("Goodstuff fill", lambda: self._fetch_goodstuff(profile, plan["goodstuff"])),
+            # Top up bodies to the floor, but never overshoot 99 (leaves goodstuff
+            # whatever slots remain). A no-op (want<=0) for creature-centric decks.
+            ("Creature floor", lambda: self._fetch_creatures(
+                profile, min(creature_floor - self._count_creatures(),
+                             99 - len(self._deck)))),
+            ("Goodstuff fill", lambda: self._fetch_goodstuff(profile, max(0, 99 - len(self._deck)))),
         ]
 
         # Bracket 5 (cEDH): lean heavier on draw/interaction, lighter on theme
@@ -360,8 +418,12 @@ class DeckBuilder:
         # creature base than balanced goodstuff gives. Theme-synergy picks are mostly
         # creatures + their payoffs, so bias slots there (except cEDH, which keeps its
         # interaction-heavy mix). This lifts the effective creature count ~25 -> ~31.
-        _aggro = any(t.startswith("tribal_") for t in active_themes) or \
-                 bool({"tokens", "voltron_combat"} & set(active_themes))
+        # Skip when a non-creature theme LEADS (support_lead): there the equipment/
+        # aura package is deliberately trimmed and bodies come from the creature
+        # floor instead — bumping theme would refill it with non-creatures (the
+        # Syr Gwyn "lots of Equipment, ~5 creatures" bug, since Knights ride along).
+        _aggro = (any(t.startswith("tribal_") for t in active_themes) or
+                  bool({"tokens", "voltron_combat"} & set(active_themes))) and not _support_lead
         if _aggro and bracket != 5:
             plan["theme"]     = plan.get("theme", 20) + 6
             used = sum(v for k, v in plan.items() if k != "goodstuff")
