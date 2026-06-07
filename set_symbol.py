@@ -19,9 +19,8 @@ from __future__ import annotations
 import hashlib
 import math
 from pathlib import Path
-from typing import Optional
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 # Symbol canvas size — scaled to card by card_renderer
 SYMBOL_SIZE = 64
@@ -42,10 +41,6 @@ def _hue_to_rgb(h: float, s: float = 0.72, v: float = 0.88) -> tuple[int, int, i
 
 def _darken(c: tuple[int, int, int], factor: float = 0.55) -> tuple[int, int, int]:
     return tuple(int(x * factor) for x in c)  # type: ignore
-
-
-def _lighten(c: tuple[int, int, int], factor: float = 1.45) -> tuple[int, int, int]:
-    return tuple(min(255, int(x * factor)) for x in c)  # type: ignore
 
 
 # ── Shape drawing ─────────────────────────────────────────────────────────────
@@ -398,55 +393,109 @@ _SHAPE_KEYWORDS: list[tuple[str, int]] = [
     ("undying",   11),
 ]
 
-_COLOR_KEYWORDS: list[tuple[str, Optional[int]]] = [
-    # (keyword, hue_degrees)   None → vivid random hue from emblem hash
-    ("rainbow",   None),
-    ("prismatic", None),
-    ("colorful",  None),
-    ("crimson",   0),
-    ("red",       0),
-    ("blood",     0),
-    ("fire",      20),
-    ("flame",     20),
-    ("ember",     25),
-    ("orange",    30),
-    ("amber",     40),
-    ("gold",      45),
-    ("golden",    45),
-    ("sun",       55),
-    ("yellow",    60),
-    ("lime",      90),
-    ("emerald",   145),
-    ("green",     120),
-    ("forest",    120),
-    ("nature",    115),
-    ("teal",      170),
-    ("cyan",      180),
-    ("ocean",     200),
-    ("sea",       205),
-    ("water",     210),
-    ("ice",       200),
-    ("frost",     200),
-    ("snow",      210),
-    ("sky",       210),
-    ("blue",      220),
-    ("sapphire",  215),
-    ("void",      260),
-    ("shadow",    250),
-    ("moon",      250),
-    ("arcane",    270),
-    ("purple",    270),
-    ("violet",    280),
-    ("amethyst",  270),
-    ("silver",    220),
-    ("white",     55),    # warm ivory-gold
-    ("black",     260),   # deep indigo
-    ("bone",      55),
-    ("pink",      330),
-    ("rose",      340),
-    ("cherry",    345),
-    ("star",      45),
-]
+# ── Rarity metals ──────────────────────────────────────────────────────────────
+# Real MTG set symbols are coloured by RARITY, not theme: common = black,
+# uncommon = silver, rare = gold, mythic = orange/bronze (special/timeshifted =
+# purple). The printed symbols are metallic — a gradient from a dark shadow up to
+# a light highlight — so we map the emblem's luminance relief onto a 3-stop metal
+# ramp (shadow → mid → highlight) to get that beveled, coin-like look.
+RARITY_METALS: dict[str, tuple[tuple[int, int, int], tuple[int, int, int], tuple[int, int, int]]] = {
+    "common":   ((26, 26, 28),   (66, 66, 70),    (140, 140, 146)),  # graphite black
+    "uncommon": ((92, 98, 106),  (164, 170, 178), (236, 240, 245)),  # silver
+    "rare":     ((120, 86, 20),  (198, 156, 56),  (252, 236, 158)),  # gold
+    "mythic":   ((140, 40, 14),  (216, 94, 28),   (252, 178, 90)),   # orange/bronze
+    "special":  ((74, 42, 116),  (128, 86, 178),  (210, 180, 240)),  # purple (timeshifted)
+}
+_RARITY_ALIASES = {
+    "mythic rare": "mythic", "bonus": "special",
+    "masterpiece": "special", "timeshifted": "special",
+}
+
+
+def _normalize_rarity(rarity: str) -> str:
+    key = (rarity or "common").strip().lower()
+    return _RARITY_ALIASES.get(key, key)
+
+
+def _metal_luts(stops):
+    """Three 256-entry LUTs (R,G,B) for a shadow→mid→highlight metal ramp."""
+    shadow, mid, high = stops
+    r_lut, g_lut, b_lut = [], [], []
+    for i in range(256):
+        t = i / 255
+        a, b, tt = (shadow, mid, t / 0.5) if t < 0.5 else (mid, high, (t - 0.5) / 0.5)
+        r_lut.append(int(a[0] + (b[0] - a[0]) * tt))
+        g_lut.append(int(a[1] + (b[1] - a[1]) * tt))
+        b_lut.append(int(a[2] + (b[2] - a[2]) * tt))
+    return r_lut, g_lut, b_lut
+
+
+def _add_rim(metal: Image.Image, alpha: Image.Image) -> Image.Image:
+    """A thin dark rim behind the symbol so silver/gold stay legible on any bar."""
+    grow = alpha.filter(ImageFilter.MaxFilter(3))
+    rim = Image.new("RGBA", metal.size, (18, 16, 15, 255))
+    rim.putalpha(grow)
+    return Image.alpha_composite(rim, metal)
+
+
+def colorize_by_rarity(symbol: Image.Image, rarity: str,
+                       add_outline: bool = True) -> Image.Image:
+    """Recolour a set-symbol relief into the card's rarity metal, preserving its
+    shape (alpha). The symbol's own luminance becomes the metallic emboss; it is
+    masked-normalized first so the result is consistent regardless of the input's
+    base colour (works for the silver relief AND a themed pip-emblem)."""
+    stops = RARITY_METALS.get(_normalize_rarity(rarity), RARITY_METALS["common"])
+    rgba  = symbol.convert("RGBA")
+    alpha = rgba.getchannel("A")
+    mask  = alpha.point(lambda a: 255 if a > 24 else 0)
+    lum   = rgba.convert("L")
+    # Min/max of luminance WITHIN the shape (out-of-shape pushed to the opposite
+    # extreme so it can't drag the range), then stretch to full 0..255.
+    lo = Image.composite(lum, Image.new("L", lum.size, 255), mask).getextrema()[0]
+    hi = Image.composite(lum, Image.new("L", lum.size, 0),   mask).getextrema()[1]
+    if hi - lo < 8:
+        lo, hi = 0, 255
+    span = hi - lo
+    norm = lum.point([0 if i <= lo else (255 if i >= hi else int((i - lo) * 255 / span))
+                      for i in range(256)])
+    r_lut, g_lut, b_lut = _metal_luts(stops)
+    metal = Image.merge("RGBA", (norm.point(r_lut), norm.point(g_lut),
+                                 norm.point(b_lut), alpha))
+    return _add_rim(metal, alpha) if add_outline else metal
+
+
+# ── Relief (theme-derived shape with a subtle metallic bevel) ───────────────────
+
+def _render_relief(theme: str, emblem_prompt: str, size: int) -> Image.Image:
+    """A neutral grayscale relief of the theme's emblem shape: mid-grey fill,
+    darker edges, lighter accents, plus a soft vertical sheen so it reads as a
+    bevelled metal coin. Hue-independent so colorize_by_rarity is consistent."""
+    h = int(hashlib.sha256((theme or "").lower().encode()).hexdigest(), 16)
+    shape_idx = h % len(_SHAPE_FUNCS)
+    if emblem_prompt and emblem_prompt.strip():
+        t = emblem_prompt.lower()
+        for kw, idx in _SHAPE_KEYWORDS:
+            if kw in t:
+                shape_idx = idx
+                break
+
+    img  = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+    cx, cy, r = size / 2, size / 2, size * 0.44
+    # Grayscale tones → internal relief structure (fill / edge / accent).
+    _SHAPE_FUNCS[shape_idx](draw, cx, cy, r, (168, 168, 168), (66, 66, 66), (224, 224, 224))
+
+    alpha = img.getchannel("A")
+    rgb   = img.convert("RGB")
+    # Vertical sheen (bright top → dark bottom) overlaid → directional metal bevel.
+    col = Image.new("L", (1, size))
+    for y in range(size):
+        col.putpixel((0, y), int(206 - 130 * (y / (size - 1))))
+    sheen  = col.resize((size, size))
+    relief = ImageChops.overlay(rgb, Image.merge("RGB", (sheen, sheen, sheen)))
+    out = relief.convert("RGBA")
+    out.putalpha(alpha)
+    return out.filter(ImageFilter.SMOOTH)
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
@@ -455,74 +504,22 @@ def generate_set_symbol(
     theme: str,
     size: int = SYMBOL_SIZE,
     emblem_prompt: str = "",
+    rarity: str = "uncommon",
 ) -> Image.Image:
     """
     Generate a set symbol for the given deck theme.
 
-    If ``emblem_prompt`` is provided (e.g. "golden crown with rubies",
-    "cat star rainbow", "arcane rune purple") keyword matching overrides
-    the hash-derived shape and/or hue for a more intentional result.
-    The fallback is always the deterministic hash of ``theme``.
+    The SHAPE is derived from the deck theme (deterministic hash), overridable by
+    ``emblem_prompt`` keywords (e.g. "crown", "arcane rune", "dragon crest").
+    The COLOUR is the card's ``rarity`` metal (common=black, uncommon=silver,
+    rare=gold, mythic=orange) — matching real MTG, where the set symbol's tint is
+    the rarity indicator. Defaults to silver so the saved/displayed emblem is a
+    neutral metallic; ``card_renderer`` re-tints it per card via
+    ``colorize_by_rarity``.
 
     Returns a square RGBA PIL Image of ``size × size`` pixels.
     """
-    # Derive base parameters from theme hash (deterministic fallback)
-    h = int(hashlib.sha256(theme.lower().encode()).hexdigest(), 16)
-    shape_idx  = h % len(_SHAPE_FUNCS)
-    hue        = (h >> 8) % 360
-    hue_accent = (hue + 150) % 360
-
-    # ── Apply emblem_prompt keyword overrides ─────────────────────────────────
-    if emblem_prompt.strip():
-        t = emblem_prompt.lower()
-
-        # Shape: first matching keyword wins
-        for kw, idx in _SHAPE_KEYWORDS:
-            if kw in t:
-                shape_idx = idx
-                break
-
-        # Color: first matching keyword wins
-        for kw, kw_hue in _COLOR_KEYWORDS:
-            if kw in t:
-                if kw_hue is None:
-                    # "rainbow" / "prismatic" — derive a vivid hue from the
-                    # emblem string itself so it's still deterministic but bright
-                    eh  = int(hashlib.sha256(emblem_prompt.lower().encode()).hexdigest(), 16)
-                    hue = (eh >> 4) % 360
-                else:
-                    hue = kw_hue
-                hue_accent = (hue + 150) % 360
-                break   # complementary
-
-    fg     = _hue_to_rgb(hue,        s=0.70, v=0.92)
-    accent = _hue_to_rgb(hue_accent, s=0.55, v=0.98)
-    bg     = _darken(fg, 0.35)
-
-    img  = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-
-    cx, cy = size / 2, size / 2
-    r = size * 0.44      # radius leaving a small margin
-
-    # Outer glow ring
-    for t in range(3, 0, -1):
-        alpha = 40 * t
-        glow_col = fg + (alpha,)
-        draw.ellipse(
-            [cx - r - t * 2, cy - r - t * 2, cx + r + t * 2, cy + r + t * 2],
-            outline=glow_col, width=2,
-        )
-
-    _SHAPE_FUNCS[shape_idx](draw, cx, cy, r, fg, bg, accent)
-
-    # Thin outer ring
-    draw.ellipse(
-        [cx - r - 2, cy - r - 2, cx + r + 2, cy + r + 2],
-        outline=_lighten(fg, 1.3), width=1,
-    )
-
-    return img.filter(ImageFilter.SMOOTH_MORE)
+    return colorize_by_rarity(_render_relief(theme, emblem_prompt, size), rarity)
 
 
 def save_set_symbol(theme: str, output_dir: Path, emblem_prompt: str = "") -> Path:

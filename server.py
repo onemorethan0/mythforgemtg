@@ -930,6 +930,7 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "colors":        c.get("color_identity", []),
         "power":         c.get("power"),
         "toughness":     c.get("toughness"),
+        "rarity":        c.get("rarity", ""),     # drives the set-symbol metal colour
         "quantity":      c.get("quantity", 1),   # >1 for imported duplicate basics
         "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
         "has_render":    has_render,
@@ -952,6 +953,7 @@ def _stored_card_to_dict(d: dict) -> dict:
         "color_identity": d.get("colors", []),
         "power":          d.get("power"),
         "toughness":      d.get("toughness"),
+        "rarity":         d.get("rarity", ""),
         "quantity":       d.get("quantity", 1),
         "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
     }

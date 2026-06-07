@@ -57,6 +57,7 @@ def _synthetic_basic(land_name: str) -> dict:
         "colors": [],
         "color_identity": [] if sym == "C" else [sym],
         "produced_mana": [sym],
+        "rarity": "common",
         "_synthetic": True,
     }
 

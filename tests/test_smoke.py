@@ -286,6 +286,43 @@ def test_pad_with_basics():
     check_true("pad.dead_typeline", b4._deck[0]["type_line"] == "Basic Land — Mountain")
 
 
+# ── set-symbol rarity metal colouring ────────────────────────────────────────
+def test_set_symbol_rarity():
+    import set_symbol as ss
+    # rarity normalization + aliases
+    check("rar.norm_mythic",  ss._normalize_rarity("Mythic Rare"), "mythic")
+    check("rar.norm_bonus",   ss._normalize_rarity("bonus"),       "special")
+    check("rar.norm_ts",      ss._normalize_rarity("timeshifted"), "special")
+    check("rar.norm_default", ss._normalize_rarity(""),            "common")
+    check("rar.norm_plain",   ss._normalize_rarity("RARE"),        "rare")
+
+    def mean_rgb(rar):
+        img = ss.generate_set_symbol("dragon crest", size=48, rarity=rar)
+        px = img.load()
+        n = r = g = b = 0
+        for y in range(img.height):
+            for x in range(img.width):
+                R, G, B, A = px[x, y]
+                if A > 40:
+                    r += R; g += G; b += B; n += 1
+        return (r / n, g / n, b / n) if n else (0.0, 0.0, 0.0)
+
+    cr, un, ra, my = (mean_rgb(x) for x in ("common", "uncommon", "rare", "mythic"))
+    lum = lambda c: 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
+    # silver (uncommon) is neutral: R≈G≈B
+    check_true("rar.silver_neutral", abs(un[0] - un[2]) < 24 and abs(un[0] - un[1]) < 20)
+    # gold (rare) is warm: R clearly above B
+    check_true("rar.gold_warm",      ra[0] - ra[2] > 30)
+    # mythic is orange: R > G > B with a strong R-B gap
+    check_true("rar.mythic_orange",  my[0] > my[1] > my[2] and my[0] - my[2] > 40)
+    # common is the darkest of the four
+    check_true("rar.common_darkest", lum(cr) < min(lum(un), lum(ra), lum(my)))
+    # shape preserved across rarities (same alpha footprint, independent of metal)
+    a_cr = ss.generate_set_symbol("dragon crest", size=48, rarity="common").getchannel("A")
+    a_my = ss.generate_set_symbol("dragon crest", size=48, rarity="mythic").getchannel("A")
+    check("rar.same_shape", a_cr.getbbox(), a_my.getbbox())
+
+
 def test_stub_prompt():
     f = themer._is_stub_prompt
     # real scenes -> not stubs
@@ -301,8 +338,8 @@ def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
                test_theme_detection, test_deck_analysis, test_creature_floor_plan,
-               test_pad_with_basics, test_ro_race_class, test_ro_class_override,
-               test_stub_prompt):
+               test_pad_with_basics, test_set_symbol_rarity, test_ro_race_class,
+               test_ro_class_override, test_stub_prompt):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

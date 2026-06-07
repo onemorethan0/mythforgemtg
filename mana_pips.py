@@ -31,7 +31,7 @@ import uuid
 from pathlib import Path
 from typing import Optional
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 # Colours the silhouette gets composited onto. Pure mana hues for W/U/R/G; B and
 # C are deliberately *lightened* (a black silhouette on a black disc is
@@ -195,20 +195,61 @@ def _procedural_silhouette(subject: str, theme: str) -> Image.Image:
 
 # ── Composition ────────────────────────────────────────────────────────────────
 
+def _radial(size: int, cx: float, cy: float, radius: float, steps: int = 40) -> Image.Image:
+    """Greyscale radial gradient: bright (255) at (cx,cy) fading to 0 at radius."""
+    g = Image.new("L", (size, size), 0)
+    dd = ImageDraw.Draw(g)
+    for i in range(steps):
+        t = i / steps
+        rr = radius * (1 - t)
+        dd.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=int(255 * t))
+    return g
+
+
 def _compose_pip(disc_rgb: tuple[int, int, int], silhouette: Image.Image,
                  size: int = PIP_BASE) -> Image.Image:
+    """A mana disc + the deck's black icon, with a subtle gem-like sheen
+    (upper-left highlight, lower-right shade) and a soft drop-shadow under the
+    icon for a little depth — deliberately restrained, not glossy."""
     base = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    pad = 1
+    disc_box = [pad, pad, size - 1 - pad, size - 1 - pad]
+
+    disc_mask = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(disc_mask).ellipse(disc_box, fill=255)
+
     d = ImageDraw.Draw(base)
-    d.ellipse(
-        [1, 1, size - 2, size - 2],
-        fill=disc_rgb + (255,),
-        outline=(22, 20, 18, 255),
-        width=max(1, size // 40),
-    )
+    d.ellipse(disc_box, fill=disc_rgb + (255,),
+              outline=(22, 20, 18, 255), width=max(1, size // 40))
+
+    # ── Gem sheen: top-left highlight + bottom-right shade, clipped to the disc ──
+    hi = ImageChops.multiply(
+        _radial(size, size * 0.36, size * 0.30, size * 0.62)
+        .filter(ImageFilter.GaussianBlur(size / 22)), disc_mask)
+    lo = ImageChops.multiply(
+        _radial(size, size * 0.66, size * 0.74, size * 0.66)
+        .filter(ImageFilter.GaussianBlur(size / 18)), disc_mask)
+    shade = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    shade.putalpha(lo.point(lambda p: int(p * 0.26)))
+    light = Image.new("RGBA", (size, size), (255, 255, 255, 0))
+    light.putalpha(hi.point(lambda p: int(p * 0.30)))
+    base.alpha_composite(shade)
+    base.alpha_composite(light)
+
+    # ── Icon with a soft drop shadow (kept on the disc) ──
     s = silhouette.copy()
-    fit = int(size * 0.62)
+    fit = int(size * 0.60)
     s.thumbnail((fit, fit), Image.LANCZOS)
-    base.alpha_composite(s, ((size - s.width) // 2, (size - s.height) // 2))
+    ox, oy = (size - s.width) // 2, (size - s.height) // 2
+
+    sh = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    drop = Image.new("RGBA", s.size, (0, 0, 0, 0))
+    drop.putalpha(s.getchannel("A").point(lambda p: int(p * 0.45)))
+    sh.alpha_composite(drop, (ox + max(1, size // 90), oy + max(1, size // 64)))
+    sh = sh.filter(ImageFilter.GaussianBlur(size / 80))
+    sh = Image.composite(sh, Image.new("RGBA", (size, size), (0, 0, 0, 0)), disc_mask)
+    base.alpha_composite(sh)
+    base.alpha_composite(s, (ox, oy))
     return base
 
 

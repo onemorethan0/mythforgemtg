@@ -331,6 +331,14 @@ def render_card_cc(
     # ── Set symbol ───────────────────────────────────────────────────────────────
     if set_symbol is not None:
         sx, sy, sw, sh = px(spec.set_symbol)
+        # Tint to the card's rarity metal (matches the built-in renderer).
+        _rar = (card.get("rarity") or "").strip()
+        if _rar:
+            try:
+                from set_symbol import colorize_by_rarity
+                set_symbol = colorize_by_rarity(set_symbol, _rar)
+            except Exception:
+                pass
         ss = set_symbol.convert("RGBA")
         # fit within the band height, right-anchored
         scale = sh / ss.height

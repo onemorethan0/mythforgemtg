@@ -1184,7 +1184,17 @@ def render_card(
     set_sym_x    = _BAR_X + _BAR_W - set_sym_size - _mm(0.5)
     set_sym_y    = _TYPE_Y + (_BAR_H - set_sym_size) // 2
     if set_symbol:
-        ss = set_symbol.convert("RGBA").resize((set_sym_size, set_sym_size), Image.LANCZOS)
+        # Tint the symbol to the card's rarity metal (common=black, uncommon=
+        # silver, rare=gold, mythic=orange) — the symbol image is a neutral relief.
+        sym_img = set_symbol
+        _rar = (card.get("rarity") or "").strip()
+        if _rar:
+            try:
+                from set_symbol import colorize_by_rarity
+                sym_img = colorize_by_rarity(set_symbol, _rar)
+            except Exception:
+                sym_img = set_symbol
+        ss = sym_img.convert("RGBA").resize((set_sym_size, set_sym_size), Image.LANCZOS)
         canvas.paste(ss, (set_sym_x, set_sym_y), ss)
 
     _type_x   = _BAR_X + _mm(1.5)
