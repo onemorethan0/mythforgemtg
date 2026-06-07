@@ -175,6 +175,44 @@ class DeckBuilder:
                     added += 1
         return added
 
+    # Lead archetypes that need a creature base but whose synergy query isn't
+    # creature-centric → (theme-package cap, creature floor). See build().
+    _FLOOR_PLAN: dict[str, tuple[int, int]] = {
+        "voltron":     (10, 20), "auras":       (10, 20),
+        "artifacts":   (10, 20), "enchantress": (10, 20),
+        "aristocrats": (15, 22), "reanimator":  (15, 18),
+    }
+
+    @staticmethod
+    def _is_aggro_theme(t: str | None) -> bool:
+        """A theme that already fields a wide board via the aggro bias (so it
+        never wants a creature floor): any tribe, tokens, or combat/evasion."""
+        return bool(t) and (t.startswith("tribal_") or t in {"tokens", "voltron_combat"})
+
+    @classmethod
+    def _creature_floor_plan(cls, active_themes: list[str]) -> tuple[int | None, int]:
+        """Decide (theme_cap, creature_floor) for a build from its themes.
+
+        theme_cap is None → leave the theme slot count as planned; an int → trim
+        the theme package to that many cards to make room. creature_floor is the
+        minimum number of on-color bodies the "Creature floor" step tops up to
+        (0 → no floor). Pure + deterministic so it can be regression-tested.
+
+        - A floor archetype (voltron/auras/artifacts/enchantress/aristocrats/
+          reanimator) that LEADS gets full treatment from _FLOOR_PLAN.
+        - aristocrats/reanimator riding shotgun under a NON-aggro lead (e.g.
+          Korvold counters+aristocrats) still wants bodies, but keeps most of the
+          lead theme: a modest trim + a 20-body floor.
+        - Everything else (incl. tribal/tokens/combat leads, vanilla goodstuff)
+          gets no floor.
+        """
+        lead = active_themes[0] if active_themes else None
+        if lead in cls._FLOOR_PLAN:
+            return cls._FLOOR_PLAN[lead]
+        if ({"aristocrats", "reanimator"} & set(active_themes)) and not cls._is_aggro_theme(lead):
+            return (15, 20)
+        return (None, 0)
+
     def _count_creatures(self) -> int:
         """Number of true creature cards currently in the deck (excludes lands,
         e.g. creature-lands, and the like)."""
@@ -365,21 +403,29 @@ class DeckBuilder:
         _active = active_themes
 
         # ── Creature floor ────────────────────────────────────────────────────
-        # "Support" archetypes lead with a NON-creature theme: their synergy query
-        # is Equipment / Auras / Artifacts (the payload), not bodies. Left alone
-        # they build decks with ~5 creatures — far too few to carry the payload
-        # (e.g. Syr Gwyn / Sram voltron lists). For these we (a) trim the (non-
-        # creature) theme package to make room and (b) reserve a creature floor
-        # that tops up on-color bodies. Creature-centric themes (tribal/tokens/
-        # combat) already field a wide board via the aggro bias below, so they
-        # get NO floor here — guaranteeing no regression for them.
-        _support_lead = bool(active_themes) and active_themes[0] in {
-            "voltron", "auras", "artifacts", "enchantress"
-        }
-        creature_floor = 0
-        if _support_lead:
-            plan["theme"]     = 10      # smaller equipment/aura package …
-            creature_floor    = 20      # … so ~20 bodies fit to carry it
+        # Some archetypes need a real creature base but LEAD with a non-creature
+        # synergy query, so left alone they under-field bodies. Each maps to
+        # (theme_cap, creature_floor); the "Creature floor" step then tops up
+        # on-color EDHREC bodies to the floor (capped so it never overshoots 99):
+        #
+        #   • "Support" leads — voltron / auras / artifacts / enchantress: the
+        #     PAYLOAD itself isn't creatures (Equipment/Auras), so left alone they
+        #     came out with ~5 bodies (the Syr Gwyn / Sram bug). Trim the theme
+        #     package hard (→10) and reserve ~20 bodies to carry it.
+        #   • "Creature-hungry" leads — aristocrats / reanimator: the deck IS made
+        #     of creatures (sac fodder, recursion, reanimation targets), but its
+        #     theme payoffs are partly non-creatures and EDHREC goodstuff fill
+        #     skews non-creature, so without a floor it came out ~14 (Meren).
+        #     Keep most of the theme package (its payoffs are creatures too) and
+        #     reserve a high floor.
+        #
+        # Creature-centric themes (tribal / tokens / combat) get NO floor — they
+        # already field a wide board via the aggro bias below, so no regression.
+        # The decision is a pure function (unit-tested in tests/test_smoke.py).
+        theme_cap, creature_floor = self._creature_floor_plan(active_themes)
+        _support_lead = creature_floor > 0        # reserved a floor → skip aggro bump
+        if theme_cap is not None:
+            plan["theme"]     = theme_cap
             used = sum(v for k, v in plan.items() if k != "goodstuff")
             plan["goodstuff"] = max(2, 99 - used)
 

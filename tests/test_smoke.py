@@ -221,6 +221,31 @@ def test_ro_class_override():
     check("ovr.empty",  f(""),                            "")
 
 
+# ── creature-floor planning (deck_builder) ───────────────────────────────────
+def test_creature_floor_plan():
+    from deck_builder import DeckBuilder
+    p = DeckBuilder._creature_floor_plan
+    # Support leads: trim theme hard (→10), reserve ~20 bodies (Syr Gwyn/Sram bug).
+    check("floor.voltron",     p(["voltron", "tribal_knights"]), (10, 20))
+    check("floor.auras",       p(["auras"]),                     (10, 20))
+    check("floor.enchantress", p(["enchantress"]),               (10, 20))
+    # Creature-hungry leads: keep most of the theme, reserve a high floor (Meren).
+    check("floor.aristocrats", p(["aristocrats", "reanimator"]), (15, 22))
+    check("floor.reanimator",  p(["reanimator"]),                (15, 18))
+    # Sac/reanimator riding shotgun under a NON-aggro lead → modest trim + floor
+    # (Korvold counters+aristocrats, 14 creatures → 20).
+    check("floor.korvold",     p(["counters", "aristocrats"]),   (15, 20))
+    # …but NOT under an aggro lead — tokens/tribal already field a wide board, so
+    # the aggro bump owns them (Chainer tokens+reanimator stays as-is).
+    check("floor.chainer",     p(["tokens", "reanimator"]),      (None, 0))
+    check("floor.tribal_lead", p(["tribal_goblins", "reanimator"]), (None, 0))
+    # Creature-centric / vanilla leads: no floor at all (no regression).
+    check("floor.tokens",      p(["tribal_goblins", "tokens"]),  (None, 0))
+    check("floor.counters",    p(["counters"]),                  (None, 0))
+    check("floor.landfall",    p(["landfall"]),                  (None, 0))
+    check("floor.none",        p([]),                            (None, 0))
+
+
 def test_stub_prompt():
     f = themer._is_stub_prompt
     # real scenes -> not stubs
@@ -235,8 +260,8 @@ def test_stub_prompt():
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
-               test_theme_detection, test_deck_analysis, test_ro_race_class,
-               test_ro_class_override, test_stub_prompt):
+               test_theme_detection, test_deck_analysis, test_creature_floor_plan,
+               test_ro_race_class, test_ro_class_override, test_stub_prompt):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
