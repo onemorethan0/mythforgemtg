@@ -1082,15 +1082,18 @@ _LORA_PRESETS: dict[str, dict] = {
         # output, leaving ~half the deck with empty prompts (Scryfall fallback).
         # Keep this brief: just steer the LLM toward a vivid RO-world scene.
         "themer_vocabulary": (
-            "RAGNAROK ONLINE STYLE (anime fantasy). For a CREATURE/CHARACTER card, the art_prompt "
-            "MUST BEGIN with the character themselves and describe them concretely: their body/race, "
-            "what they wear and wield, their pose and expression — e.g. 'a silver-armored knight "
-            "gripping a longsword, determined face'. Put the character FIRST; mention the setting "
-            "only as a brief backdrop at the very end. Frame them as ONE figure standing close and "
-            "PROMINENT, filling most of the frame, face clearly visible (never tiny/distant — small "
-            "faces and pure-scenery shots render badly). For a LAND/non-creature, describe the place "
-            "or effect (no people). Do NOT add element/race/job-class or composition tags yourself; "
-            "those are appended automatically."
+            "RAGNAROK ONLINE STYLE (anime fantasy). "
+            "CREATURE card: art_prompt MUST start with the character — body/race, gear, pose, expression "
+            "(e.g. 'a silver-armored knight gripping a longsword, determined face'). ONE figure, close "
+            "and PROMINENT, face clearly visible. Setting is a brief backdrop at the very end only. "
+            "EQUIPMENT/ARTIFACT card: depict the item itself as the main subject (a gleaming sword, "
+            "ancient relic, mechanical gauntlet) — no wielder needed. "
+            "LAND card: describe a specific RO zone — Prontera/Al De Baran for holy, Glast Heim/Morroc "
+            "for shadow, Payon/Mjolnir for earth, Byalan/Comodo for water, Einbroch/Thor Volcano for fire. "
+            "RO monsters the LoRA recognizes by tag: poring_(ragnarok_online), baphomet_(ragnarok_online), "
+            "moonlight_flower_(ragnarok_online), eddga_(ragnarok_online), maya_(ragnarok_online) — "
+            "use these tags in the prompt when the card is one of those monsters. "
+            "Do NOT add element/race/job-class or composition tags yourself; those are injected automatically."
         ),
         # flux_prefix: not used for SDXL (Illustrious XL uses _SDXL_PREFIX instead).
         # Triggers are prepended via lora_trigger_prefix, which takes effect before _SDXL_PREFIX.
@@ -1106,6 +1109,9 @@ _LORA_PRESETS: dict[str, dict] = {
             "bad face, ugly face, deformed face, poorly drawn face, asymmetrical face, "
             "first person view, first-person perspective, pov shot, first person pov, "
             "hands in foreground, foreground hands, player pov, viewer pov, point of view shot, "
+            "multiple characters, character sheet, character lineup, turnaround sheet, multiple poses, "
+            "sprite sheet, item grid, item layout, equipment grid, inventory layout, icon sheet, "
+            "tiny figure, distant figure, small character, figure in background, "
             "ugly, worst quality, low quality, "
             "blurry, out of focus, soft focus, "
             "jpeg artifacts, compression artifacts, pixelated, noisy, grainy, "

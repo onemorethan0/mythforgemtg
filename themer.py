@@ -773,6 +773,11 @@ def _ro_element(card: dict) -> str:
     elif {"W", "U"} <= ci: return "holy water element"
     elif {"B", "R"} <= ci: return "shadow fire element"
     elif {"G", "U"} <= ci: return "wind water element"
+    elif {"W", "B"} <= ci: return "holy shadow element"
+    elif {"B", "G"} <= ci: return "shadow earth element"
+    elif {"R", "G"} <= ci: return "fire earth element"
+    elif {"R", "U"} <= ci: return "fire water element"
+    elif {"W", "G"} <= ci: return "holy earth element"
     elif "W" in ci:        return "holy element"
     elif "U" in ci:        return "water element"
     elif "B" in ci:        return "shadow element"
@@ -813,7 +818,15 @@ def apply_ro_tokens(prompt: str, card: dict, override_text: str = "") -> str:
     elif not cls and " element" not in out.lower():
         out = f"{anchor}, {out}"
     if not any(s in out.lower() for s in _RO_SUFFIXES):
-        out = out.rstrip(". ") + ", full body portrait, painterly background, saturated colors"
+        tl = (card.get("type_line", "") or "").lower()
+        if race or "creature" in tl:
+            out = out.rstrip(". ") + ", full body portrait, painterly background, saturated colors"
+        elif "land" in tl:
+            out = out.rstrip(". ") + ", painterly environment scene, detailed background, saturated colors"
+        elif "artifact" in tl:
+            out = out.rstrip(". ") + ", item illustration, painterly background, saturated colors"
+        else:
+            out = out.rstrip(". ") + ", painterly scene, detailed background, saturated colors"
     return out
 
 
