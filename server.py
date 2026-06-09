@@ -2494,6 +2494,37 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                          source_data.get("emblem_prompt", ""), source_job_id)
         card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
+        # Live preview: render each card the moment its art finishes and push a
+        # card_ready SSE event, so retheme streams cards into the UI exactly like a
+        # fresh build (previously the grid stayed empty until the whole batch was
+        # done). render_deck_thumbnails below skips any card already written here
+        # (it checks out.exists()), so there's no double render.
+        _render_keys_rt = _build_render_keys(themed_cmd, themed_deck)
+
+        def _retheme_card_done_cb(tc, art_path):
+            name = tc.original_name
+            render_key = _render_keys_rt.get(name, _safe_name(name))
+            out_path = render_out / f"{render_key}.png"
+            if not out_path.exists():
+                try:
+                    art_img = _PIL.open(art_path) if art_path and Path(art_path).exists() else None
+                    processed_oracle = _replace_card_self_ref(
+                        tc.card.get("oracle_text", ""), tc.original_name, tc.themed_name)
+                    card_img = render_card(
+                        tc.card, tc.themed_name, processed_oracle,
+                        art_image=art_img, set_symbol=sym,
+                        flavor_text=tc.flavor_text or "",
+                        border_theme=source_data.get("border_theme", ""),
+                    )
+                    card_img.save(out_path, "PNG")
+                except Exception as _re:
+                    print(f"  [retheme render-inline] {name}: {_re}")
+            if out_path.exists():
+                _push(job_id, "card_ready", json.dumps({
+                    "key":  render_key,
+                    "name": tc.themed_name,
+                }))
+
         # ── Generate NEW art from the re-themed prompts ───────────────────────
         # Retheme = full re-generation. Generate fresh art into a new slug; only
         # fall back to the source deck's art if ComfyUI is down, so it always renders.
@@ -2565,6 +2596,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                                 crew_prompt=source_data.get("crew_prompt", "") or "",
                                 progress_callback=_make_art_progress_cb(job_id, time.time()),
                                 theme_str=art_theme, cancel_event=cancel_event,
+                                card_done_callback=_retheme_card_done_cb,
                             )
                             effective_slug = new_deck_slug
                         except Exception as _ge_err:
@@ -2633,7 +2665,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             ) for tc in _all_tcs_rt
         }
         _flavor_ov_rt = {tc.original_name: tc.flavor_text or "" for tc in _all_tcs_rt}
-        _render_keys_rt = _build_render_keys(themed_cmd, themed_deck)
+        # _render_keys_rt computed earlier (before art gen) so the live-preview
+        # callback and this final pass share the exact same filenames.
         saved_imgs = render_deck_thumbnails(
             themed_cmd, themed_deck, art_theme, art_paths, render_out,
             oracle_overrides=_oracle_ov_rt,
