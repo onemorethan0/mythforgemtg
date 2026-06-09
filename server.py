@@ -1705,7 +1705,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "stats":            stats,
             "theme":            art_theme,
             "theme_spec":       source_data.get("theme_spec", {}),
-            "commander_prompt": req.commander_prompt or source_data.get("commander_prompt", ""),
+            "commander_prompt": source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
             "bracket":          source_data.get("bracket", 3),
@@ -2705,7 +2705,7 @@ def _trim_in_memory_jobs():
     if len(done) <= _MAX_INMEM_JOBS:
         return
     # Sort by built_at if present, else by insertion order
-    done.sort(key=lambda kv: kv[1].get("built_at", 0))
+    done.sort(key=lambda kv: kv[1].get("built_at") or 0)
     for jid, _ in done[: len(done) - _MAX_INMEM_JOBS]:
         # Keep just enough metadata for status/events endpoints
         j = _jobs[jid]
