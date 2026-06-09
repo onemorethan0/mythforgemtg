@@ -135,7 +135,7 @@ export default function HealthIndicator() {
             </div>
           </div>
 
-          {/* Ollama Status */}
+          {/* LLM Status */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -152,10 +152,10 @@ export default function HealthIndicator() {
             </span>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#f5f5f4' }}>
-                Ollama
+                LLM (llama.cpp)
               </div>
               <div style={{ fontSize: 10, color: '#78716c' }}>
-                {health.ollama === 'up' ? 'Card theming ready' : 'Offline — restart Ollama'}
+                {health.ollama === 'up' ? 'Card theming ready' : 'Offline — start llama-swap'}
               </div>
             </div>
           </div>

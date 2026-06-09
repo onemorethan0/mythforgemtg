@@ -194,6 +194,7 @@ export default function StepTheme({
   commanderTribe, onCommanderTribeChange,
   artStyle, onArtStyleChange,
   tribes = [], tribalOverrides = {}, onTribalOverridesChange,
+  autoThemeTribes = true, onAutoThemeTribesChange,
   generateArt, onGenerateArtChange,
   modelSpeed, onModelSpeedChange,
   checkpoint, onCheckpointChange,
@@ -502,12 +503,33 @@ export default function StepTheme({
         <h2 style={s.title}>Theme & Creature Types</h2>
         <p style={s.sub}>Set the world theme, then optionally reskin the deck's creature types — each replacement becomes the basis for that card's art.</p>
 
+        {/* ── Auto-theme creature types (one-click reskin of every type) ── */}
+        <div style={s.section}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={!!autoThemeTribes}
+              onChange={e => onAutoThemeTribesChange && onAutoThemeTribesChange(e.target.checked)}
+              style={{ marginTop: 3, width: 16, height: 16, accentColor: '#ca8a04', cursor: 'pointer', flexShrink: 0 }}
+            />
+            <span>
+              <span style={{ fontSize: 14, fontWeight: 600, color: '#f5f5f4' }}>✨ Auto-theme creature types to fit the theme</span>
+              <span style={{ display: 'block', fontSize: 12, color: '#78716c', marginTop: 3, lineHeight: 1.5 }}>
+                {isRO
+                  ? <>Reskin <em>every</em> creature type into a <strong>Ragnarok Online</strong> job, monster, or race — uniformly in each card's name, type line, and art (e.g. <em>Knight → Lord Knight</em>, <em>Cat → Brute</em>, <em>Elf → Demihuman</em>). Keeps types in lock-step with the RO art so classes/monsters stay consistent across the deck.</>
+                  : <>Invent <strong>one</strong> theme-fitting replacement for <em>every</em> creature type in the deck and apply it uniformly — in each card's name, type line, and art (e.g. every <em>Dragon → Chrome Leviathan</em>, everywhere). One replacement per type keeps each kind consistent across all its cards, so a Dragon never looks like a cat.</>}
+                {tribes.length > 0 && <> Anything you type below overrides the auto pick for that type.</>}
+              </span>
+            </span>
+          </label>
+        </div>
+
         {/* ── Creature-type replacements (from the generated decklist) ── */}
         {tribes.length > 0 && (
           <div style={s.section}>
-            <label style={s.label}>Creature type replacements <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span></label>
+            <label style={s.label}>Creature type replacements <span style={{ color: '#57534e', fontWeight: 400 }}>({autoThemeTribes ? 'override the auto picks' : 'optional'})</span></label>
             <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10, lineHeight: 1.5 }}>
-              These are the creature types in your generated deck. Type a replacement to reskin every creature of that type into the theme (e.g. <em>Goblin → Chrome Gremlin</em>) — in its name, art, and card type. Leave blank to keep a type as-is.
+              These are the creature types in your generated deck. Type a replacement to reskin every creature of that type into the theme (e.g. <em>Goblin → Chrome Gremlin</em>) — in its name, art, and card type. {autoThemeTribes ? 'Leave blank to let auto-theme pick one for you.' : 'Leave blank to keep a type as-is.'}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 8 }}>
               {tribes.map(t => (
@@ -523,7 +545,7 @@ export default function StepTheme({
                       borderRadius: 8, padding: '7px 10px', color: '#f5f5f4', fontSize: 13,
                       outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
                     }}
-                    placeholder="keep as-is"
+                    placeholder={autoThemeTribes ? 'auto' : 'keep as-is'}
                     value={tribalOverrides[t.type] || ''}
                     onChange={e => setTribe(t.type, e.target.value)}
                     maxLength={40}
@@ -1482,7 +1504,7 @@ export default function StepTheme({
                     key={m.key}
                     onClick={() => m.installed && onLlmModelChange && onLlmModelChange(m.key)}
                     disabled={!m.installed}
-                    title={m.installed ? m.description : `Not installed — run: ollama pull ${m.key}`}
+                    title={m.installed ? m.description : `Not installed — add ${m.key} to llama-swap.yaml`}
                     style={{
                       padding: '10px 12px', borderRadius: 10,
                       cursor: m.installed ? 'pointer' : 'not-allowed',
@@ -1499,7 +1521,7 @@ export default function StepTheme({
                       {m.size_gb} GB · {m.tier}
                     </div>
                     <div style={{ fontSize: 10, color: '#57534e', lineHeight: 1.4 }}>
-                      {m.installed ? m.description.split('.')[0] : `Not installed — \`ollama pull ${m.key}\``}
+                      {m.installed ? m.description.split('.')[0] : `Not installed — add to llama-swap.yaml`}
                     </div>
                   </button>
                 )

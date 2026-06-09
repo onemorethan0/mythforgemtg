@@ -330,47 +330,30 @@ def _ensure_frontend_built():
         print(f"  [startup] [!] Could not check frontend build status: {e}", flush=True)
 
 
-# ── Ollama model checks (startup) ──────────────────────────────────────────────
-
-def _check_ollama_model(model_name: str, base_url: str = "http://127.0.0.1:11434") -> bool:
-    """Check if an Ollama model is installed."""
-    try:
-        response = requests.get(f"{base_url}/api/tags", timeout=5)
-        if response.status_code != 200:
-            return False
-        models = response.json().get("models", [])
-        return any(m["name"].startswith(model_name) for m in models)
-    except Exception:
-        return False
-
+# ── LLM backend checks (startup) ───────────────────────────────────────────────
 
 def _ensure_ollama_models_ready():
-    """Check that Ollama is reachable; does NOT pull missing models (would block startup)."""
-    import sys
-    from themer import OLLAMA_MODEL, OLLAMA_BASE
+    """Check that the LLM backend (llama.cpp via llama-swap, or Ollama) is
+    reachable. Does NOT load models (would block startup)."""
+    from themer import LLM_BACKEND, OLLAMA_MODEL, installed_models, llm_endpoint_base
 
-    print("\n[startup] Checking Ollama connectivity...", flush=True)
+    label = "llama.cpp (llama-swap)" if LLM_BACKEND == "llamacpp" else "Ollama"
+    print(f"\n[startup] Checking {label} connectivity at {llm_endpoint_base()}...", flush=True)
 
-    # Check if Ollama is reachable
-    try:
-        r = requests.get(f"{OLLAMA_BASE}/api/tags", timeout=5)
-        if r.status_code == 200:
-            models = r.json().get("models", [])
-            print(f"  [startup] [OK] Ollama reachable - {len(models)} model(s) loaded", flush=True)
-            # Check for default model
-            if _check_ollama_model(OLLAMA_MODEL, OLLAMA_BASE):
-                print(f"  [startup] [OK] Default model available: {OLLAMA_MODEL}", flush=True)
-            else:
-                print(f"  [startup] [!] Default model missing: {OLLAMA_MODEL}", flush=True)
-                print(f"  [startup]     Pull before first use: ollama pull {OLLAMA_MODEL}", flush=True)
+    models = installed_models()
+    if models:
+        print(f"  [startup] [OK] {label} reachable - {len(models)} model(s) available", flush=True)
+        if OLLAMA_MODEL in models:
+            print(f"  [startup] [OK] Default model available: {OLLAMA_MODEL}", flush=True)
         else:
-            print(f"  [startup] [FAIL] Ollama HTTP error {r.status_code}", flush=True)
-    except requests.Timeout:
-        print(f"  [startup] [FAIL] Ollama not reachable (timeout)", flush=True)
-        print(f"  [startup]        Start Ollama before running the deck builder", flush=True)
-    except Exception as e:
-        print(f"  [startup] [FAIL] Ollama error: {e}", flush=True)
-        print(f"  [startup]        Start Ollama before running the deck builder", flush=True)
+            print(f"  [startup] [!] Default model '{OLLAMA_MODEL}' not in list: {sorted(models)}", flush=True)
+            print(f"  [startup]     A fallback model will be used; check your backend config.", flush=True)
+    else:
+        print(f"  [startup] [FAIL] {label} not reachable at {llm_endpoint_base()}", flush=True)
+        if LLM_BACKEND == "llamacpp":
+            print(f"  [startup]        Start the gateway: E:\\llama\\start-llama-swap.bat", flush=True)
+        else:
+            print(f"  [startup]        Start Ollama before running the deck builder", flush=True)
 
 
 # ── Request / Response models ─────────────────────────────────────────────────
@@ -446,6 +429,11 @@ class BuildRequest(BaseModel):
     # the theme step's per-tribe fields (multi-tribe reskin; wins over auto-detect).
     prebuilt_deck:     Optional[list] = None
     tribal_overrides:  Optional[dict] = None
+    # "Auto-theme creature types" checkbox: auto-generate ONE theme-fitting
+    # replacement for EVERY deck creature type (not just the commander's) and
+    # apply it uniformly. Explicit tribal_overrides still win per-type. Defaults
+    # ON — a build with no directive gets cohesive theme-fitting creature types.
+    auto_theme_tribes: bool          = True
     # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration)
     # the frontend composed into art_theme — persisted so Edit can restore them.
     theme_spec:        Optional[dict] = None
@@ -545,9 +533,9 @@ _VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum FREE VRAM before loading FLUX+LoRAs (
                                   # While Ollama still loaded: ~11 GB free → blocks ✓
                                   # NOTE: now measured by nvidia-smi (system-wide), not
                                   # ComfyUI's internal pool which was blind to Ollama.
-_VRAM_OLLAMA_CLEAR_GB   = 14.0   # target free VRAM after ComfyUI /free before Ollama loads
+_VRAM_LLM_CLEAR_GB      = 14.0   # target free VRAM after ComfyUI /free before the LLM loads
                                   # After FLUX unloads: ~21-22 GB free, threshold met ✓
-                                  # Ollama qwen3:14b needs ~10 GB; 14 GB gives 4 GB headroom
+                                  # qwen3:14b needs ~10 GB; 14 GB gives 4 GB headroom
 _EVICT_POLL_INTERVAL    = 3.0    # seconds between VRAM polls (increased from 2.0 for efficiency)
 _EVICT_MAX_WAIT         = 120    # seconds — large models (27B, 23 GB) need up to 60 s
 
@@ -631,14 +619,36 @@ def _wait_for_comfyui_unload(job_id: str = "") -> bool:
     except Exception:
         return False  # ComfyUI offline — nothing to free
 
-    # Use the Ollama-clear threshold here: after unloading FLUX we want plenty
+    # Use the LLM-clear threshold here: after unloading FLUX we want plenty
     # of headroom for the LLM that's about to load.
-    return _wait_for_vram(_VRAM_OLLAMA_CLEAR_GB, job_id=job_id, label="ComfyUI unload")
+    return _wait_for_vram(_VRAM_LLM_CLEAR_GB, job_id=job_id, label="ComfyUI unload")
 
 
 def _ollama_loaded_models() -> list[str]:
-    """Return list of currently-loaded Ollama model names (via /api/ps)."""
+    """Return ids of currently-loaded LLM models (backend-aware).
+
+    • llama.cpp → llama-swap GET /running (defensive parse of its JSON).
+    • Ollama    → GET /api/ps.
+    Returns [] if nothing loaded or the backend is unreachable. Used only as an
+    optimization hint to skip eviction work when the LLM isn't holding VRAM.
+    """
+    from themer import LLM_BACKEND, LLM_BASE
     try:
+        if LLM_BACKEND == "llamacpp":
+            r = requests.get(f"{LLM_BASE}/running", timeout=4)
+            if r.status_code != 200:
+                return []
+            data = r.json()
+            items = data.get("running", data) if isinstance(data, dict) else data
+            out = []
+            for it in (items or []):
+                if isinstance(it, dict):
+                    mid = it.get("model") or it.get("id") or it.get("name")
+                    if mid:
+                        out.append(mid)
+                elif isinstance(it, str):
+                    out.append(it)
+            return out
         r = requests.get("http://127.0.0.1:11434/api/ps", timeout=4)
         if r.status_code == 200:
             return [m.get("name", "") for m in r.json().get("models", [])]
@@ -649,28 +659,53 @@ def _ollama_loaded_models() -> list[str]:
 
 def _wait_for_ollama_evict(model: str, job_id: str = "") -> bool:
     """
-    Evict `model` from Ollama VRAM via keep_alive=0, then perform a TWO-STAGE
-    confirmation:
-      1. Poll /api/ps until the model disappears from Ollama's process list.
-      2. Poll ComfyUI /system_stats until free VRAM >= _VRAM_FLUX_REQUIRED_GB.
+    Evict the LLM from VRAM, then confirm free VRAM >= _VRAM_FLUX_REQUIRED_GB
+    before FLUX loads. Backend-aware:
 
-    Stage 2 is the critical one that was missing before.  Ollama can report a
-    model as "unloaded" while CUDA still holds the physical pages cached.
-    Loading FLUX on top of those cached pages causes the OOM Windows crash.
+      • llama.cpp → POST llama-swap /api/models/unload (the upstream process
+        exits, releasing VRAM cleanly), then poll nvidia-smi for free VRAM.
+      • Ollama    → keep_alive=0 then a TWO-STAGE confirmation (process list
+        drop, then physical VRAM), because Ollama can report a model unloaded
+        while CUDA still holds the pages cached (the historic OOM crash cause).
 
-    Fast-path: if no models are loaded AND VRAM is already sufficient, skip
-    all eviction work.  This avoids 20 s of dead POST timeouts on rebuild/regen
-    jobs where Ollama was never used in this session.
+    Fast-path: if VRAM is already sufficient, skip all eviction work. This
+    avoids dead POST timeouts on rebuild/regen jobs where the LLM was never
+    used in this session.
     """
-    # Fast-path: check VRAM first (cheap, single HTTP call).  If we already
-    # have enough headroom there's nothing to evict — don't even hit Ollama.
+    from themer import LLM_BACKEND, LLM_BASE
+
+    # Fast-path: check VRAM first (cheap, single call). If we already have
+    # enough headroom there's nothing to evict — don't even hit the backend.
     free_now = _comfyui_vram_free_gb()
     if free_now is not None and free_now >= _VRAM_FLUX_REQUIRED_GB:
         if job_id:
-            print(f"  [vram] Ollama evict skipped — VRAM already clear "
+            print(f"  [vram] LLM evict skipped — VRAM already clear "
                   f"({free_now:.1f} GB free, need {_VRAM_FLUX_REQUIRED_GB:.0f}+)")
         return True
 
+    # ── llama.cpp / llama-swap branch ──
+    if LLM_BACKEND == "llamacpp":
+        running = _ollama_loaded_models()
+        if not running:
+            # LLM not resident — the VRAM pressure (if any) is ComfyUI's own
+            # FLUX models, which is exactly where we want them. Proceed.
+            if job_id:
+                free_s = f"{free_now:.1f}" if free_now is not None else "?"
+                print(f"  [vram] LLM not loaded — ComfyUI models resident "
+                      f"({free_s} GB free). Proceeding to generation.")
+            return True
+        try:
+            requests.post(f"{LLM_BASE}/api/models/unload", timeout=10)
+        except Exception:
+            pass
+        ok = _wait_for_vram(_VRAM_FLUX_REQUIRED_GB, job_id=job_id,
+                            label=f"post-LLM unload ({','.join(running)})")
+        if job_id:
+            print(f"  [vram] {'[OK]' if ok else '[!]'} llama-swap unload "
+                  f"{'confirmed' if ok else 'did not fully clear VRAM'}")
+        return ok
+
+    # ── Ollama branch (legacy two-stage) ──
     # VRAM is tight — check if anything is actually loaded before sending
     # keep_alive=0.  If Ollama is idle/offline, skip the POST requests (each
     # has a 10 s timeout that adds dead wait before FLUX can start).
@@ -751,7 +786,7 @@ def _free_all_vram(job_id: str = "") -> None:
     immediately — deliberately does NOT poll/wait for VRAM to confirm.
 
     Why fire-and-forget instead of blocking?
-      • _wait_for_comfyui_unload() polls for _VRAM_OLLAMA_CLEAR_GB (18 GB) free,
+      • _wait_for_comfyui_unload() polls for _VRAM_LLM_CLEAR_GB free,
         but CUDA's caching allocator keeps freed PyTorch pages resident until
         torch.cuda.empty_cache() completes, which may never drive vram_free above
         the threshold within _EVICT_MAX_WAIT (120 s) while ComfyUI holds models.
@@ -779,24 +814,31 @@ def _free_all_vram(job_id: str = "") -> None:
         )
     except Exception:
         pass
-    # Send Ollama eviction requests (fire-and-forget — no keep_alive poll)
-    loaded = _ollama_loaded_models()
-    for m in loaded:
-        for endpoint in ("/api/generate", "/api/chat"):
-            try:
-                payload = (
-                    {"model": m, "keep_alive": 0}
-                    if endpoint == "/api/generate"
-                    else {"model": m, "keep_alive": 0,
-                          "messages": [{"role": "user", "content": ""}]}
-                )
-                requests.post(
-                    f"http://127.0.0.1:11434{endpoint}",
-                    json=payload,
-                    timeout=5,
-                )
-            except Exception:
-                pass
+    # Send LLM eviction request (fire-and-forget — no VRAM poll), backend-aware.
+    from themer import LLM_BACKEND, LLM_BASE
+    if LLM_BACKEND == "llamacpp":
+        try:
+            requests.post(f"{LLM_BASE}/api/models/unload", timeout=5)
+        except Exception:
+            pass
+    else:
+        loaded = _ollama_loaded_models()
+        for m in loaded:
+            for endpoint in ("/api/generate", "/api/chat"):
+                try:
+                    payload = (
+                        {"model": m, "keep_alive": 0}
+                        if endpoint == "/api/generate"
+                        else {"model": m, "keep_alive": 0,
+                              "messages": [{"role": "user", "content": ""}]}
+                    )
+                    requests.post(
+                        f"http://127.0.0.1:11434{endpoint}",
+                        json=payload,
+                        timeout=5,
+                    )
+                except Exception:
+                    pass
 
 
 # ── Filename helper ──────────────────────────────────────────────────────────
@@ -1219,6 +1261,8 @@ def _run_build(job_id: str, req: BuildRequest):
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
                 commander_tribe=req.commander_tribe or "",
                 tribal_map_override=req.tribal_overrides or None,
+                auto_theme_tribes=bool(req.auto_theme_tribes),
+                ro_mode=(req.art_style in ("ragnarok_online", "ragnarok_sprite")),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -1314,6 +1358,7 @@ def _run_build(job_id: str, req: BuildRequest):
             # Persist the EFFECTIVE tribe map (user override OR the auto-generated
             # one) so Rebuild/Retheme reuse the same replacement as the baked art.
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or req.tribal_overrides or {},
+            "auto_theme_tribes": bool(req.auto_theme_tribes),
             "custom_pips":      req.custom_pips,
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
@@ -1677,6 +1722,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "frame_style":      source_data.get("frame_style", "builtin"),
             "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": source_data.get("tribal_overrides", {}),
+            "auto_theme_tribes": bool(source_data.get("auto_theme_tribes", True)),
             "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
             "built_at":         time.time(),
@@ -2397,6 +2443,12 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
                 commander_tribe=(getattr(req, "commander_tribe", "") or source_data.get("commander_tribe", "")),
                 tribal_map_override=source_data.get("tribal_overrides") or None,
+                # Reuse the baked map (passed above) so the reskin stays identical to
+                # the source art; only auto-generate if the flag was on but no map was
+                # ever persisted (avoids a wasted re-roll that could drift the mapping).
+                auto_theme_tribes=(bool(source_data.get("auto_theme_tribes", True))
+                                   and not source_data.get("tribal_overrides")),
+                ro_mode=(art_style in ("ragnarok_online", "ragnarok_sprite")),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
@@ -2566,6 +2618,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "frame_style":      source_data.get("frame_style", "builtin"),
             "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or source_data.get("tribal_overrides", {}),
+            "auto_theme_tribes": bool(source_data.get("auto_theme_tribes", True)),
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
@@ -3315,10 +3368,9 @@ def health_check():
     System health check: returns status of ComfyUI and Ollama services.
     Used by the frontend status indicator in the corner.
     """
-    from themer import OLLAMA_BASE
+    from themer import LLM_BACKEND, installed_models
 
     comfyui_status = "up"
-    ollama_status = "up"
 
     # Check ComfyUI
     try:
@@ -3328,17 +3380,15 @@ def health_check():
     except Exception:
         comfyui_status = "down"
 
-    # Check Ollama
-    try:
-        r = requests.get(f"{OLLAMA_BASE}/api/tags", timeout=2)
-        if r.status_code != 200:
-            ollama_status = "down"
-    except Exception:
-        ollama_status = "down"
+    # Check the LLM backend (llama.cpp via llama-swap, or Ollama)
+    llm_status = "up" if installed_models(timeout=2) else "down"
 
     return {
         "comfyui": comfyui_status,
-        "ollama": ollama_status,
+        # `ollama` key retained for backward compat; `llm` is the current key.
+        "ollama": llm_status,
+        "llm": llm_status,
+        "llm_backend": LLM_BACKEND,
         "timestamp": time.time()
     }
 

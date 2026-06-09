@@ -348,7 +348,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             {[
-              { val: false, label: '📋 All: AI prompts', desc: 'Use the original Ollama-crafted prompt for every selected card' },
+              { val: false, label: '📋 All: AI prompts', desc: 'Use the original AI-crafted prompt for every selected card' },
               { val: true,  label: '✏️ All: custom',     desc: 'Use the custom prompt for every selected card' },
             ].map(opt => (
               <button

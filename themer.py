@@ -53,7 +53,18 @@ def _quote_user_text(s: str, max_len: int = 1500) -> str:
         cleaned = cleaned[:max_len] + "..."
     return cleaned
 
-OLLAMA_BASE          = "http://127.0.0.1:11434"
+# ── LLM backend selection ─────────────────────────────────────────────────────
+# Default backend is llama.cpp (served via a llama-swap gateway that auto-loads/
+# unloads GGUF models on demand and exposes an OpenAI-compatible API). Ollama is
+# retained as a fallback: set MYTHFORGE_LLM_BACKEND=ollama to revert.
+#   • llamacpp → POST {LLM_BASE}/v1/chat/completions (OpenAI schema)
+#   • ollama   → POST {OLLAMA_BASE}/api/chat        (native schema)
+# llama-swap model ids are configured to MATCH the old Ollama names ("qwen3:14b",
+# …) so OLLAMA_MODEL / llm_model strings flow through unchanged for both backends.
+LLM_BACKEND          = os.getenv("MYTHFORGE_LLM_BACKEND", "llamacpp").strip().lower()
+LLM_BASE             = os.getenv("MYTHFORGE_LLM_BASE", "http://127.0.0.1:8010").rstrip("/")
+
+OLLAMA_BASE          = os.getenv("MYTHFORGE_OLLAMA_BASE", "http://127.0.0.1:11434").rstrip("/")
 OLLAMA_MODEL         = "qwen3:14b"  # best JSON reliability; 8b truncated ~30% of
                                     # prompts on full 78-card builds (empty art_prompts
                                     # -> Scryfall/fallback). 14b is worth the slower
@@ -99,9 +110,10 @@ _MEDIUM_PREFIX_RE = re.compile(
 # ── Model catalog ─────────────────────────────────────────────────────────────
 # Curated set of LLMs the UI can offer.  Each entry describes a tradeoff so the
 # user knows what they're picking.  The "installed" status is verified at
-# runtime against Ollama's /api/tags response by list_available_llms().
+# runtime against the active LLM backend by list_available_llms().
 #
-# To add a new option: pull the model with `ollama pull <name>` and add an
+# To add a new option: make the model available on the backend (add it to
+# llama-swap.yaml for llama.cpp, or `ollama pull <name>` for Ollama) and add an
 # entry here.  The UI will surface it automatically the next time the page loads.
 LLM_CATALOG: list[dict] = [
     {
@@ -117,6 +129,13 @@ LLM_CATALOG: list[dict] = [
         "size_gb":     9.3,
         "tier":        "quality",
         "description": "Higher quality names/flavour than 8B, slower. ~15–20s/batch.",
+    },
+    {
+        "key":         "qwen3:32b",
+        "label":       "Qwen3 32B",
+        "size_gb":     19.0,
+        "tier":        "quality",
+        "description": "Largest Qwen3 — best names/flavour, slowest. ~60–90s/batch.",
     },
     {
         "key":         "qwen3.6:latest",
@@ -149,18 +168,178 @@ LLM_CATALOG: list[dict] = [
 ]
 
 
+# ── Unified LLM client (llama.cpp via llama-swap, or native Ollama) ────────────
+
+_THINK_BLOCK_RE = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
+
+
+def llm_endpoint_base() -> str:
+    """Base URL for the active backend (llama-swap or Ollama)."""
+    return LLM_BASE if LLM_BACKEND == "llamacpp" else OLLAMA_BASE
+
+
+def installed_models(timeout: float = 5.0) -> set[str]:
+    """Set of model ids the active backend can serve. Empty set if unreachable."""
+    try:
+        if LLM_BACKEND == "llamacpp":
+            r = requests.get(f"{LLM_BASE}/v1/models", timeout=timeout)
+            r.raise_for_status()
+            return {m.get("id") for m in r.json().get("data", []) if m.get("id")}
+        r = requests.get(f"{OLLAMA_BASE}/api/tags", timeout=timeout)
+        r.raise_for_status()
+        return {m["name"] for m in r.json().get("models", [])}
+    except Exception:
+        return set()
+
+
+def llm_unload() -> None:
+    """Evict the loaded model from GPU VRAM so ComfyUI can claim the memory.
+
+    llama-swap exposes POST /api/models/unload (unload-all). Native Ollama uses
+    keep_alive=0. Both are best-effort and never raise.
+    """
+    try:
+        if LLM_BACKEND == "llamacpp":
+            requests.post(f"{LLM_BASE}/api/models/unload", timeout=10)
+            print("  [themer] llama-swap: model unloaded from GPU.")
+        else:
+            requests.post(
+                f"{OLLAMA_BASE}/api/generate",
+                json={"model": OLLAMA_MODEL, "keep_alive": 0},
+                timeout=10,
+            )
+            print(f"  [themer] Ollama model unloaded from GPU: {OLLAMA_MODEL}.")
+    except Exception as e:
+        print(f"  [themer] Could not unload LLM: {e}")
+
+
+def _chat_completion(
+    messages: list[dict],
+    *,
+    model: str,
+    temperature: float,
+    num_predict: int,
+    think: bool = False,
+    stream: bool = False,
+    top_p: float | None = None,
+    top_k: int | None = None,
+    repeat_penalty: float | None = None,
+    timeout: int = REQUEST_TIMEOUT,
+) -> str:
+    """Backend-agnostic chat call. Returns the assistant's text content.
+
+    Sampling/length knobs map per backend:
+      num_predict → max_tokens (OpenAI) / options.num_predict (Ollama)
+      think=False → chat_template_kwargs.enable_thinking=False (qwen3 via --jinja)
+                    / options.think=False (Ollama)
+    Context window (num_ctx) is baked into the llama-swap launch args (-c) and is
+    therefore not a per-request field for the llama.cpp backend.
+    """
+    if LLM_BACKEND == "llamacpp":
+        return _openai_chat(
+            messages, model=model, temperature=temperature, num_predict=num_predict,
+            think=think, stream=stream, top_p=top_p, timeout=timeout,
+        )
+    return _ollama_native_chat(
+        messages, model=model, temperature=temperature, num_predict=num_predict,
+        think=think, stream=stream, top_p=top_p, top_k=top_k,
+        repeat_penalty=repeat_penalty, timeout=timeout,
+    )
+
+
+def _openai_chat(messages, *, model, temperature, num_predict, think, stream,
+                 top_p=None, timeout=REQUEST_TIMEOUT) -> str:
+    payload: dict = {
+        "model": model,
+        "messages": messages,
+        "temperature": temperature,
+        "max_tokens": num_predict,
+        "stream": stream,
+    }
+    if top_p is not None:
+        payload["top_p"] = top_p
+    if not think:
+        # qwen3 (and other Jinja-templated models served with --jinja) honour this
+        # to skip the chain-of-thought pass. Harmless for models that ignore it.
+        payload["chat_template_kwargs"] = {"enable_thinking": False}
+
+    url = f"{LLM_BASE}/v1/chat/completions"
+    if not stream:
+        resp = requests.post(url, json=payload, timeout=timeout)
+        resp.raise_for_status()
+        content = (resp.json()["choices"][0]["message"].get("content") or "")
+        return _THINK_BLOCK_RE.sub("", content)
+
+    resp = requests.post(url, json=payload, stream=True, timeout=timeout)
+    resp.raise_for_status()
+    parts: list[str] = []
+    deadline = time.monotonic() + timeout
+    for line in resp.iter_lines():
+        if time.monotonic() > deadline:
+            print("  [themer] Batch timed out mid-stream, using partial response.")
+            break
+        if not line:
+            continue
+        s = line.decode("utf-8") if isinstance(line, bytes) else line
+        if s.startswith("data:"):
+            s = s[5:].strip()
+        if s == "[DONE]":
+            break
+        try:
+            chunk = json.loads(s)
+            delta = chunk["choices"][0].get("delta", {})
+            parts.append(delta.get("content") or "")
+        except (json.JSONDecodeError, KeyError, IndexError):
+            continue
+    return _THINK_BLOCK_RE.sub("", "".join(parts))
+
+
+def _ollama_native_chat(messages, *, model, temperature, num_predict, think, stream,
+                        top_p=None, top_k=None, repeat_penalty=None,
+                        timeout=REQUEST_TIMEOUT) -> str:
+    options: dict = {"temperature": temperature, "num_ctx": 4096, "num_gpu": 99,
+                     "num_predict": num_predict}
+    if top_p is not None:
+        options["top_p"] = top_p
+    if top_k is not None:
+        options["top_k"] = top_k
+    if repeat_penalty is not None:
+        options["repeat_penalty"] = repeat_penalty
+    payload = {"model": model, "think": think, "messages": messages,
+               "stream": stream, "options": options}
+
+    if not stream:
+        resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=timeout)
+        resp.raise_for_status()
+        return resp.json().get("message", {}).get("content", "").strip()
+
+    resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, stream=True, timeout=timeout)
+    resp.raise_for_status()
+    parts: list[str] = []
+    deadline = time.monotonic() + timeout
+    for line in resp.iter_lines():
+        if time.monotonic() > deadline:
+            print("  [themer] Batch timed out mid-stream, using partial response.")
+            break
+        if not line:
+            continue
+        try:
+            chunk = json.loads(line)
+            parts.append(chunk.get("message", {}).get("content", ""))
+            if chunk.get("done"):
+                break
+        except json.JSONDecodeError:
+            continue
+    return "".join(parts)
+
+
 def list_available_llms() -> list[dict]:
     """
     Return the LLM_CATALOG with an `installed` flag per entry, computed live
-    against the running Ollama instance.  Used by the UI to grey out options
-    the user hasn't pulled yet.
+    against the active LLM backend.  Used by the UI to grey out options the
+    user hasn't installed yet.
     """
-    try:
-        r = requests.get(f"{OLLAMA_BASE}/api/tags", timeout=5)
-        installed = {m["name"] for m in r.json().get("models", [])}
-    except Exception:
-        installed = set()
-
+    installed = installed_models()
     out = []
     for entry in LLM_CATALOG:
         out.append({**entry, "installed": entry["key"] in installed})
@@ -364,16 +543,16 @@ def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
         return type_line
     head, _, tail = type_line.replace(" - ", " — ").partition("—")
     subs = tail.strip().split()
-    # If any subtype is reskinned, the replacement *becomes* the creature's kind —
-    # drop the unmapped race words so "Elf Warrior"/"Squirrel Warrior" read cleanly
-    # as "Samurai Oni", not "Elf Samurai Oni"/"Squirrel Samurai Oni".
+    # If any subtype is reskinned, ONE replacement *becomes* the creature's whole
+    # kind — drop the unmapped race words AND collapse multiple mapped subtypes to a
+    # single type. When several subtypes map (e.g. all-tribes auto-reskin turns both
+    # words of "Human Knight"), prefer the LAST mapped subtype: MTG lists race then
+    # class, so the trailing token is the job/class (Knight→Lord Knight), which is
+    # the more specific identity. This keeps the line to one reskin ("— Lord Knight",
+    # not "— Demihuman Lord Knight" / "— Chrome Sentinel Cyber Falcon").
     mapped = [tribal_map[s] for s in subs if s in tribal_map]
     if mapped:
-        new_subs, seen = [], set()
-        for repl in mapped:                 # dedupe while preserving order
-            if repl not in seen:
-                seen.add(repl)
-                new_subs.append(repl)
+        new_subs = [mapped[-1]]
     else:
         new_subs = subs
     return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
@@ -479,6 +658,38 @@ def _ro_race_class(type_line: str) -> tuple[str, str]:
     race = next((tok for keys, tok in _RO_RACE if any(k in subs for k in keys)), "demihuman race")
     cls  = next((tok for keys, tok in _RO_CLASS if any(k in subs for k in keys)), "")
     return race, cls
+
+
+def _ro_tag_to_display(tag: str) -> str:
+    """RO job-class tag → display name: 'lord_knight_(ragnarok_online)' → 'Lord Knight'."""
+    return tag.split("_(")[0].replace("_", " ").title()
+
+
+def _ro_type_for_tribe(tribe: str) -> str:
+    """Map one MTG creature subtype to a Ragnarok Online TYPE — a job class
+    (Lord Knight, High Wizard, Arch Bishop, …) when the subtype names a class,
+    else the RO race/monster category (Brute, Insect, Demon, Dragon, Undead,
+    Fish, Plant, Formless, Angel) or Demihuman for the human-like default.
+
+    Deterministic — reuses the same _RO_CLASS / _RO_RACE keyword tables that drive
+    the LoRA tokens, so the reskinned card TYPE stays in lock-step with the art's
+    RO race/class anchors. No LLM call (instant + can't fail)."""
+    t = (tribe or "").lower()
+    for keys, tag in _RO_CLASS:
+        if any(k in t for k in keys):
+            return _ro_tag_to_display(tag)
+    for keys, tok in _RO_RACE:
+        if any(k in t for k in keys):
+            return tok.replace(" race", "").strip().title()
+    return "Demihuman"
+
+
+def _generate_ro_tribal_map(tribes: list[str]) -> dict:
+    """Deterministic RO reskin map: every creature subtype → its RO job/monster/race
+    type. One replacement per type (uniform deck-wide), no LLM. Used for RO art
+    styles so creature types read as RO classes/monsters instead of arbitrary
+    theme beings (e.g. Knight→Lord Knight, Cat→Brute, Zombie→Undead, Elf→Demihuman)."""
+    return {t: _ro_type_for_tribe(t) for t in (tribes or []) if t}
 
 
 # Class names a user might type (in the commander appearance / theme) → the exact
@@ -650,23 +861,12 @@ def _expand_theme(theme: str, model: str = OLLAMA_MODEL) -> tuple[str, list[str]
         f'"obsidian bridge over molten falls"\n'
         f'Be highly specific to this world.'
     )
-    payload = {
-        "model":   model,
-        "think":   False,
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user",   "content": user},
-        ],
-        "stream": False,
-        # num_ctx matches the batch calls (4096) so Ollama keeps ONE model
-        # instance loaded across expand-theme → style-guide → batches instead of
-        # reloading (~18s each) every time the context size changes.
-        "options": {"temperature": 0.85, "num_ctx": 4096, "num_gpu": 99, "num_predict": 200},
-    }
     try:
-        resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        raw = resp.json().get("message", {}).get("content", "").strip()
+        raw = _chat_completion(
+            [{"role": "system", "content": system},
+             {"role": "user",   "content": user}],
+            model=model, temperature=0.85, num_predict=200, think=False, stream=False,
+        ).strip()
 
         desc_m  = re.search(r'DESCRIPTION:\s*(.+?)(?=\nZONES:|$)', raw, re.DOTALL | re.IGNORECASE)
         zones_m = re.search(r'ZONES:\s*(.+?)$',                    raw, re.DOTALL | re.IGNORECASE)
@@ -755,21 +955,12 @@ def _generate_style_guide(theme: str, commander_name: str,
         f"Example (copy the STYLE/format only, not its subject): '{example}'\n"
         f"Style guide:"
     )
-    payload = {
-        "model": model,
-        "think": False,
-        "messages": [
-            {"role": "system", "content": _STYLE_GUIDE_SYSTEM},
-            {"role": "user",   "content": prompt},
-        ],
-        "stream": False,
-        # num_ctx unified to 4096 (see _expand_theme) to avoid model reloads.
-        "options": {"temperature": 0.85, "num_ctx": 4096, "num_gpu": 99, "num_predict": 90},
-    }
     try:
-        resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        raw   = resp.json().get("message", {}).get("content", "").strip()
+        raw = _chat_completion(
+            [{"role": "system", "content": _STYLE_GUIDE_SYSTEM},
+             {"role": "user",   "content": prompt}],
+            model=model, temperature=0.85, num_predict=90, think=False, stream=False,
+        ).strip()
         guide = raw.split("\n")[0].strip().strip('"').strip("'")
         # Allow a richer style+theme fusion (was 260, which rejected good guides
         # that name the world's motifs and fell back to a theme-less style hint).
@@ -1109,6 +1300,20 @@ def _card_soul(card: dict) -> tuple[str, str]:
     return ("SPELL", "magical energy released, arcane effect erupting")
 
 
+def _artifact_object_kind(subs: list[str]) -> str:
+    """Describe a NON-creature artifact's object kind for the name/art directive,
+    so it reads as a crafted thing (ring, blade, engine, vehicle) — never a person."""
+    s = " ".join(subs).lower()
+    if "equipment" in s:
+        return "piece of equipment (wieldable/wearable gear — weapon, armor, tool)"
+    if "vehicle" in s:
+        return "vehicle or war-machine"
+    if any(t in s for t in ("clue", "food", "treasure", "gold", "blood",
+                            "powerstone", "map", "incubator", "junk")):
+        return "small token-object (trinket, ration, coin, shard)"
+    return "device, relic, or construct (e.g. ring, stone, talisman, altar, engine, sigil, lantern)"
+
+
 _DEFAULT_MEDIUM  = '"digital painting," or "fantasy illustration," or "concept art,"'
 _DEFAULT_QUALITY = '"painterly brushwork, vivid colors" or "dramatic lighting, intricate detail" or "painterly, rich texture"'
 
@@ -1182,12 +1387,22 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     lines = []
     for i, c in enumerate(cards):
         full_tl  = c.get("type_line", "") or ""
+        low_tl   = full_tl.lower()
+        is_creature = "creature" in low_tl
         head     = full_tl.split("—")[0].strip()
         norm     = full_tl.replace(" - ", " — ")
         subs     = norm.split("—", 1)[1].strip().split() if "—" in norm else []
+        _subdash = (" — " + " ".join(subs)) if subs else ""
         tl       = full_tl  # keep the full type (incl. subtype) visible to the LLM
-        if subs:
-            mapped = next((tribal_map[s] for s in subs if s in tribal_map), "") if tribal_map else ""
+        # Subtypes ride after the em-dash on NON-creatures too (Artifact — Equipment,
+        # Land — Forest, Enchantment — Aura), so the creature reskin/depict logic must
+        # be gated on actual creature-ness — otherwise an Equipment gets named & drawn
+        # as "a creature of the theme world" (acute once tribal reskin defaults ON).
+        if is_creature and subs:
+            # Use the LAST mapped subtype so the art anchor matches the collapsed type
+            # line (_apply_tribal_map_to_type_line): the trailing token is the job/class.
+            _mapped_subs = [tribal_map[s] for s in subs if s in tribal_map] if tribal_map else []
+            mapped = _mapped_subs[-1] if _mapped_subs else ""
             if mapped:
                 # This creature IS a reskinned tribe — depict & name as the replacement.
                 tl = f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: depict & name as {mapped}]"
@@ -1204,6 +1419,25 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                       f"do NOT reskin it into the deck's reskinned tribes]")
             else:
                 tl = f"{head} — {' '.join(subs)} [depict as {' '.join(subs)}]"
+        elif not is_creature:
+            # Non-creature permanents are OBJECTS / PLACES / PHENOMENA — never living
+            # beings. Give each its own subject directive so the LLM names AND depicts
+            # it correctly instead of defaulting to a character/creature.
+            if "land" in low_tl:
+                tl = (f"{head}{_subdash} [a PLACE/location in the theme world — name it like a "
+                      f"place and depict the terrain/architecture itself; NO people or creatures]")
+            elif "artifact" in low_tl:
+                tl = (f"{head}{_subdash} [OBJECT — a crafted {_artifact_object_kind(subs)}; "
+                      f"NAME it as an object/relic/construct (NEVER a person, character, or living "
+                      f"creature) and DEPICT the object itself as the focal subject]")
+            elif "enchantment" in low_tl:
+                if "saga" in low_tl:
+                    tl = (f"{head}{_subdash} [a SAGA — an unfolding magical event in the theme world; "
+                          f"depict the scene/phenomenon, not a posed character]")
+                else:
+                    tl = (f"{head}{_subdash} [an ongoing magical AURA/phenomenon suffusing a "
+                          f"theme-world scene; depict the effect, not a person as the subject]")
+            # Instants / Sorceries / Planeswalkers keep full_tl (covered by name + role rules).
         mechsum  = _mechanic_summary(c)
         palette  = _color_palette_hint(c.get("color_identity") or c.get("colors", []),
                                        theme_palette)
@@ -1318,6 +1552,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
   Do BOTH at once. Do NOT merely bolt theme adjectives onto the old name, and do NOT emit a generic mechanics label ("Mana Source", "Removal Rite") that erases the card's identity — translate the original concept into the theme.
     • Legendary Creature / Legendary Planeswalker: "Firstname, Title" — max 6 words (≤3 before the comma, ≤3 after). Pre-comma = a real-sounding proper character name; post-comma = the card's role/identity in the world (echoing the original where it has a title, e.g. "…, the Mob Boss" for a goblin-king effect).
     • Legendary non-creature/planeswalker: 2–4 word name, NO comma.
+    • ARTIFACTS & OBJECTS — any NON-creature Artifact (mana rocks, relics, devices, Equipment, Vehicles, token-objects): name it as an OBJECT — a crafted relic / device / construct / weapon / vehicle. Real-MTG shapes to emulate: "Sol Ring", "Arcane Signet", "Fellwar Stone", "Chromatic Lantern", "Skullclamp", "Lightning Greaves", "Mana Vault", "Ashnod's Altar", "Talisman of Dominance". Use object nouns (ring, stone, signet, talisman, lantern, altar, engine, blade, boots, sigil, orb, reliquary) — often "[Material/Adj] [Object]" or "[Object] of [Concept]" or a possessive ("Wayfarer's Bauble"). NEVER a personal name, NEVER "Firstname, Title", and NEVER a living-creature name. ONLY an Artifact CREATURE (its type line literally says "Creature" — a Golem/Construct/Myr/Thopter, etc.) gets a creature/being name.
     • All others: 2–5 word name, no comma, specific and punchy.
     • LANDS especially — name them like real PLACES, and VARY the form hard: most should be evocative coined place-names with NO leading "The" (a fused coinage, a possessive holding, an "Xof-Y" only rarely). Do NOT make every land "The [Adjective] [Noun]" and do NOT cluster on one adjective (e.g. several "Ashen …" / "Veiled …" lands is a FAILURE) — each land's name must be distinctly its own.
     • NAME VARIETY — MANDATORY: do NOT fall into a single template. Across the deck MIX these grammatical SHAPES (don't pick one): a single coined word; a possessive (a character's name + a concept); two words fused into one coinage; a place/relic name; a verb-led imperative (verb + object). Making most names "The [Adjective] [Noun]" is a FAILURE — use that shape rarely. Invent each name FRESH from this card's own col 2 + function; do NOT reuse any name shown as an example anywhere in this prompt.
@@ -1340,7 +1575,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
       DRAW/TUTOR: "[medium], [theme-world scene of revelation/study], [glow/light hint], [quality]"
       RAMP/TOKEN: "[medium], [theme-world scene of gathering/growth], [small motes or allies in mid-distance], [quality]"
       LAND: "[medium], [sweeping theme-world panorama of the terrain/location itself], [quality]". The LAND/location is the SOLE subject — describe terrain, sky, structures, atmosphere. NO people, characters, figures, or creatures at all. A city/ruins land may show architecture from afar, but still with no visible people. Never write a person into a land's art_prompt.
-      ARTIFACT/EQUIPMENT: "[medium], [the named object — themed_name is its identity — resting in/being held within theme-world setting], [quality]"
+      ARTIFACT/EQUIPMENT (non-creature): "[medium], [the named OBJECT — themed_name is its identity — as the SOLE focal subject, displayed/resting within the theme-world setting; Equipment may be worn or wielded but the OBJECT stays the focus], [quality]". Do NOT make a person the subject of a non-creature artifact; only an Artifact CREATURE depicts a being.
       ENCHANTMENT/SAGA: "[medium], [theme-world scene with persistent magical aura reflecting the themed_name], [quality]"
     QUALITY — end with ONE tag: {themer_quality or _DEFAULT_QUALITY}
     ORDER: theme-world + character LEAD; mechanical action is a supporting beat near the end of the scene description (before the quality tag).
@@ -1352,71 +1587,31 @@ Cards to process (idx|name|type|mechanics|color_palette|role|soul):
 JSON array:"""
 
 
-# ── Ollama client ─────────────────────────────────────────────────────────────
+# ── Batch theming chat ────────────────────────────────────────────────────────
 
 def _ollama_chat(prompt: str, model: str = OLLAMA_MODEL) -> str:
-    payload = {
-        "model": model,
-        # qwen3 supports "think": false to skip the chain-of-thought reasoning pass.
-        # For JSON-structured creative tasks this cuts latency ~30-40% with no quality
-        # loss. Ignored harmlessly by older models (qwen2.5, etc.).
-        "think": False,
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": prompt},
-        ],
-        "stream": True,
-        "options": {
-            "temperature": 1.1,
-            "top_p": 0.95,
-            "top_k": 0,
-            "num_ctx": 4096,
-            "num_gpu": 99,
-            # 1024 is too small for verbose 27B+ models (qwen3.6 routinely hits
-            # ~1100-1400 tokens for an 8-card batch, causing mid-JSON truncation).
-            # 1792 gives comfortable headroom for a full 8-card batch from any model
-            # without ballooning memory usage (~0.7 GB extra KV cache at 4096 ctx).
-            "num_predict": 1792,
-            "repeat_penalty": 1.0,
-        },
-    }
-    resp = requests.post(
-        f"{OLLAMA_BASE}/api/chat",
-        json=payload,
-        stream=True,
-        timeout=REQUEST_TIMEOUT,
-    )
-    resp.raise_for_status()
+    """Stream a single batch-theming completion from the active LLM backend.
 
-    parts = []
-    deadline = time.monotonic() + REQUEST_TIMEOUT
-    for line in resp.iter_lines():
-        if time.monotonic() > deadline:
-            print("  [themer] Batch timed out mid-stream, using partial response.")
-            break
-        if not line:
-            continue
-        try:
-            chunk = json.loads(line)
-            parts.append(chunk.get("message", {}).get("content", ""))
-            if chunk.get("done"):
-                break
-        except json.JSONDecodeError:
-            continue
-    return "".join(parts)
+    Name kept for historical reasons; dispatches to llama.cpp or Ollama via
+    _chat_completion. think=False skips qwen3's chain-of-thought pass (~30-40%
+    faster for JSON-structured creative tasks). num_predict=1792 gives headroom
+    for a full batch from verbose large models without mid-JSON truncation.
+    """
+    return _chat_completion(
+        [{"role": "system", "content": SYSTEM_PROMPT},
+         {"role": "user",   "content": prompt}],
+        model=model, temperature=1.1, num_predict=1792, think=False, stream=True,
+        top_p=0.95, top_k=0, repeat_penalty=1.0,
+    )
 
 
 def unload_ollama_model(model: str = OLLAMA_MODEL) -> None:
-    """Evict the model from GPU VRAM so ComfyUI can claim the memory."""
-    try:
-        requests.post(
-            f"{OLLAMA_BASE}/api/generate",
-            json={"model": model, "keep_alive": 0},
-            timeout=10,
-        )
-        print(f"  [themer] Ollama model unloaded from GPU: {model}.")
-    except Exception as e:
-        print(f"  [themer] Could not unload Ollama model: {e}")
+    """Backward-compatible alias: evict the loaded model from GPU VRAM.
+
+    Delegates to the backend-aware llm_unload(). The `model` arg is ignored for
+    the llama.cpp backend (llama-swap unloads whatever is currently resident).
+    """
+    llm_unload()
 
 
 def _parse_batch(raw: str, cards: list[dict]) -> list[dict]:
@@ -1524,41 +1719,34 @@ class ThemedCard:
 # ── Themer ────────────────────────────────────────────────────────────────────
 
 class Themer:
-    def __init__(self, model: str = OLLAMA_MODEL, base_url: str = OLLAMA_BASE):
+    def __init__(self, model: str = OLLAMA_MODEL, base_url: str | None = None):
         self.model    = model
-        self.base_url = base_url
-        self._verify_ollama()
+        self.base_url = base_url or llm_endpoint_base()
+        self._verify_backend()
 
-    def _verify_ollama(self):
-        try:
-            r = requests.get(f"{self.base_url}/api/tags", timeout=5)
-            r.raise_for_status()
-            models = [m["name"] for m in r.json().get("models", [])]
-
-            # Check if exact requested model is available
-            if self.model not in models:
-                # Model not found — try to pick the best alternative
-                print(f"  [themer] Model '{self.model}' not installed. Available: {models}")
-
-                # Priority order for fallback: qwen3:32b > qwen2.5-coder > gemma4 > any first
-                fallback = None
-                for pattern in ["qwen3:32b", "qwen2.5-coder:14b", "gemma4:latest"]:
-                    fallback = next((m for m in models if m == pattern), None)
-                    if fallback:
-                        print(f"  [themer] Using fallback model: {fallback}")
-                        self.model = fallback
-                        return
-
-                # No exact match found — use first available as last resort
-                if models:
-                    print(f"  [themer] WARNING: No priority fallback matched. Using: {models[0]}")
-                    self.model = models[0]
-                else:
-                    raise RuntimeError(f"No Ollama models installed at {self.base_url}")
-        except requests.RequestException as e:
+    def _verify_backend(self):
+        models = installed_models()
+        if not models:
             raise RuntimeError(
-                f"Cannot reach Ollama at {self.base_url} — is it running?\n{e}"
+                f"Cannot reach the LLM backend ({LLM_BACKEND}) at "
+                f"{llm_endpoint_base()} — is it running?"
             )
+
+        # Check if exact requested model is available
+        if self.model not in models:
+            # Model not found — try to pick the best alternative
+            print(f"  [themer] Model '{self.model}' not available. Available: {sorted(models)}")
+
+            # Priority order for fallback: qwen3:14b > qwen3:32b > qwen2.5-coder > gemma4 > any
+            for pattern in ["qwen3:14b", "qwen3:32b", "qwen2.5-coder:14b", "gemma4", "gemma4:latest"]:
+                if pattern in models:
+                    print(f"  [themer] Using fallback model: {pattern}")
+                    self.model = pattern
+                    return
+
+            # No priority match — use any available as last resort
+            self.model = sorted(models)[0]
+            print(f"  [themer] WARNING: No priority fallback matched. Using: {self.model}")
 
     def _theme_batch(
         self,
@@ -1668,6 +1856,8 @@ class Themer:
         lora_vocabulary:    str  = "",   # style-specific LoRA token vocabulary (e.g. RO element/race/class tags)
         commander_tribe:    str  = "",   # override for which tribe to reskin; "" = auto-detect from commander
         tribal_map_override: Optional[dict] = None,  # user-chosen {OrigType: Replacement} (multi-tribe); wins over auto
+        auto_theme_tribes:  bool = True,   # auto-reskin EVERY deck creature type into the theme (checkbox; default ON)
+        ro_mode:            bool = False,  # Ragnarok Online style: reskin types into RO jobs/monsters (deterministic)
     ) -> tuple[ThemedCard, list[ThemedCard]]:
         """
         Apply theme to commander + 99-card deck.
@@ -1716,7 +1906,28 @@ class Themer:
         _user_map = {str(k).strip().title(): str(v).strip()
                      for k, v in (tribal_map_override or {}).items()
                      if str(k).strip() and str(v).strip()}
-        if _user_map:
+        ctribe = ""
+        if auto_theme_tribes:
+            # "Auto-theme creature types" checkbox: reskin EVERY creature type in the
+            # deck (not just the commander's) into one theme-fitting replacement.
+            # _generate_tribal_map returns exactly ONE replacement per type in a single
+            # LLM call, so the mapping is uniform — every Dragon becomes the SAME thing
+            # everywhere (never a cat on one card, a lizard on another). Explicit user
+            # picks still win per-type so a hand-edited replacement is never clobbered.
+            all_tribes = _collect_tribes(all_cards)
+            if ro_mode:
+                # Ragnarok Online: reskin types into RO jobs/monsters/races so they
+                # stay in lock-step with the LoRA's class/race anchors — deterministic,
+                # no LLM call (Knight→Lord Knight, Cat→Brute, Elf→Demihuman, …).
+                print(f"  Auto-theming {len(all_tribes)} creature type(s) into Ragnarok Online jobs/monsters...")
+                auto_map = _generate_ro_tribal_map(all_tribes)
+            elif all_tribes:
+                print(f"  Auto-theming {len(all_tribes)} creature type(s) to fit the theme...")
+                auto_map = _generate_tribal_map(expanded_theme, all_tribes, model=self.model)
+            else:
+                auto_map = {}
+            tribal_map = {**auto_map, **_user_map}   # user overrides win per-type
+        elif _user_map:
             tribal_map = _user_map
             print(f"  [themer] Tribal reskin (user-selected, {len(tribal_map)} type(s)): "
                   + ", ".join(f"{k}->{v}" for k, v in tribal_map.items()))
@@ -1927,6 +2138,12 @@ class Themer:
                     full_prompt = commander_prompt
                 elif "land" in _tl and "creature" not in _tl:
                     full_prompt = "a sweeping fantasy landscape panorama, dramatic terrain and sky, no people"
+                elif "artifact" in _tl and "creature" not in _tl:
+                    # Non-creature artifact: render the OBJECT, not a person/creature.
+                    _norm_tl = (card.get("type_line", "") or "").replace(" - ", " — ")
+                    _art_subs = _norm_tl.split("—", 1)[1].split() if "—" in _norm_tl else []
+                    full_prompt = (f"a single ornate crafted {_artifact_object_kind(_art_subs)}, "
+                                   f"intricate detail, the object displayed as the focal subject in a theme-world setting, no people")
                 elif "creature" in _tl:
                     # Lead with the RO class/race so a CHARACTER renders — not the
                     # card name's literal nouns (e.g. "...White Orchid" -> flowers).
@@ -2033,8 +2250,8 @@ class Themer:
         themed_all = [make(i, c) for i, c in enumerate(all_cards)]
 
         # Free GPU VRAM before ComfyUI art generation runs.
-        # IMPORTANT: must evict the actual model that was loaded — not the default.
-        # A mismatched name is silently ignored by Ollama, leaving the model resident.
+        # Evict the loaded model from VRAM so ComfyUI can claim it for FLUX.
+        # (llama-swap unloads whatever is resident; Ollama uses keep_alive=0.)
         unload_ollama_model(model=self.model)
 
         return themed_all[0], themed_all[1:]
@@ -2050,7 +2267,7 @@ def export_themed_deck(
 ) -> None:
     lines = [
         f"// Theme: {theme}",
-        f"// Model: {OLLAMA_MODEL} (local Ollama)",
+        f"// Model: {OLLAMA_MODEL} (local {LLM_BACKEND})",
         "",
         "// COMMANDER",
         f"// {commander_tc.themed_name}  (originally: {commander_tc.original_name})",

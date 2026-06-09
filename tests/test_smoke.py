@@ -78,6 +78,62 @@ def test_tribal_type_line():
     check("tl.unmapped_kept", f("Creature — Human Wizard", {"Knight": "Cowboy"}),
           "Creature — Human Wizard")
     check("tl.noncreature", f("Instant", {"Knight": "Cowboy"}), "Instant")
+    # When MULTIPLE subtypes map (all-tribes auto-reskin), collapse to ONE — the
+    # trailing token (MTG lists race then class, so it's the job/class).
+    check("tl.collapse_last", f("Creature — Human Knight", {"Human": "Demihuman", "Knight": "Lord Knight"}),
+          "Creature — Lord Knight")
+    check("tl.collapse_generic", f("Creature — Elf Warrior", {"Elf": "Chrome Sentinel", "Warrior": "Steel Blade"}),
+          "Creature — Steel Blade")
+
+
+def test_subject_directives():
+    # With a tribal_map active (auto-reskin default ON), non-creature permanents
+    # must NOT be labelled "a creature of the theme world". Each card type gets its
+    # own subject directive; only Artifact CREATURES stay creatures.
+    cards = [
+        {"name": "Sol Ring",      "type_line": "Artifact",                              "oracle_text": "{T}: Add {C}{C}.", "cmc": 1},
+        {"name": "Skullclamp",    "type_line": "Artifact — Equipment",                  "oracle_text": "+1/-1",            "cmc": 1},
+        {"name": "Copter",        "type_line": "Artifact — Vehicle",                    "oracle_text": "Flying",           "cmc": 2},
+        {"name": "Tower",         "type_line": "Land",                                  "oracle_text": "Add mana.",        "cmc": 0},
+        {"name": "Study",         "type_line": "Enchantment",                           "oracle_text": "draw a card",      "cmc": 3},
+        {"name": "Wurmcoil",      "type_line": "Artifact Creature — Phyrexian Wurm",    "oracle_text": "deathtouch",       "cmc": 6, "power": "6", "toughness": "6"},
+    ]
+    p = themer._batch_prompt_v2("neon city", "Hero", cards, tribal_map={"Wurm": "Iron Leviathan"})
+    line = {ln.split("|")[1]: ln.split("|")[2] for ln in p.splitlines() if ln[:2].rstrip("|").isdigit() and "|" in ln}
+    check_true("subj.artifact_object",  "OBJECT" in line["Sol Ring"])
+    check_true("subj.equipment_object", "OBJECT" in line["Skullclamp"] and "equipment" in line["Skullclamp"].lower())
+    check_true("subj.vehicle_object",   "OBJECT" in line["Copter"] and "vehicle" in line["Copter"].lower())
+    check_true("subj.land_place",       "PLACE" in line["Tower"])
+    check_true("subj.enchantment_aura", "AURA" in line["Study"])
+    # Non-creatures are NEVER called "a creature of the theme world"
+    for nm in ("Sol Ring", "Skullclamp", "Copter", "Tower", "Study"):
+        check_true(f"subj.not_creature.{nm}", "a creature of the theme world" not in line[nm])
+    # Artifact CREATURE still reskins as a creature/being
+    check_true("subj.artifact_creature", "reskin" in line["Wurmcoil"] and "Iron Leviathan" in line["Wurmcoil"])
+
+
+def test_artifact_object_kind():
+    f = themer._artifact_object_kind
+    check_true("aok.equipment", "equipment" in f(["Equipment"]).lower())
+    check_true("aok.vehicle",   "vehicle"  in f(["Vehicle"]).lower())
+    check_true("aok.token",     "token"    in f(["Treasure"]).lower())
+    check_true("aok.default",   "relic"    in f([]).lower() or "device" in f([]).lower())
+
+
+def test_ro_tribal_map():
+    # Deterministic RO reskin: jobs/monsters/races, one per type (no LLM).
+    m = themer._generate_ro_tribal_map(
+        ["Knight", "Wizard", "Cleric", "Cat", "Elf", "Dragon", "Zombie", "Merfolk", "Goblin", "Spirit"])
+    check("ro.knight",  m["Knight"],  "Lord Knight")
+    check("ro.wizard",  m["Wizard"],  "High Wizard")
+    check("ro.cleric",  m["Cleric"],  "Arch Bishop")
+    check("ro.cat",     m["Cat"],     "Brute")      # beast → brute monster race
+    check("ro.elf",     m["Elf"],     "Demihuman")
+    check("ro.dragon",  m["Dragon"],  "Dragon")
+    check("ro.zombie",  m["Zombie"],  "Undead")
+    check("ro.merfolk", m["Merfolk"], "Fish")
+    check("ro.goblin",  m["Goblin"],  "Demon")
+    check("ro.spirit",  m["Spirit"],  "Formless")
 
 
 def test_parse_mana():
@@ -339,7 +395,8 @@ def main():
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
                test_theme_detection, test_deck_analysis, test_creature_floor_plan,
                test_pad_with_basics, test_set_symbol_rarity, test_ro_race_class,
-               test_ro_class_override, test_stub_prompt):
+               test_ro_class_override, test_stub_prompt, test_ro_tribal_map,
+               test_subject_directives, test_artifact_object_kind):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

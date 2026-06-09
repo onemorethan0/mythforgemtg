@@ -58,6 +58,10 @@ export default function App() {
   const [generatedDeck, setGeneratedDeck]   = useState(null)
   const [deckTribes, setDeckTribes]         = useState([])
   const [tribalOverrides, setTribalOverrides] = useState({})
+  // "Auto-theme creature types" checkbox: auto-generate one theme-fitting
+  // replacement for every creature type (manual fields above still override).
+  // Defaults ON so a build with no directive gets cohesive themed creature types.
+  const [autoThemeTribes, setAutoThemeTribes] = useState(true)
   const [crewPrompt, setCrewPrompt] = useState('')
   const [faceKey, setFaceKey]       = useState(null)
   const [faceMethod, setFaceMethod] = useState(null)
@@ -157,6 +161,7 @@ export default function App() {
         commander_tribe:   commanderTribe || "",
         prebuilt_deck:     generatedDeck || null,
         tribal_overrides:  tribalOverrides || {},
+        auto_theme_tribes: autoThemeTribes,
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
@@ -275,6 +280,7 @@ export default function App() {
     setFrameStyle(d.frame_style || 'builtin')
     setCommanderTribe(d.commander_tribe || '')
     setTribalOverrides(d.tribal_overrides || {})
+    setAutoThemeTribes(d.auto_theme_tribes !== false)   // default ON when unset (old decks)
     setCrewPrompt(d.crew_prompt || '')
     setGeneratedDeck(null); setDeckTribes([])
     setArtStyle(d.art_style || 'mtg_fantasy')
@@ -440,6 +446,8 @@ export default function App() {
             tribes={deckTribes}
             tribalOverrides={tribalOverrides}
             onTribalOverridesChange={setTribalOverrides}
+            autoThemeTribes={autoThemeTribes}
+            onAutoThemeTribesChange={setAutoThemeTribes}
             generateArt={generateArt}
             onGenerateArtChange={setGenerateArt}
             modelSpeed={modelSpeed}
