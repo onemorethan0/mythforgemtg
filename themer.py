@@ -2242,15 +2242,20 @@ class Themer:
             # consistent with the name + art. Copy the card so the original isn't mutated.
             out_card = card
             if tribal_map:
-                _old_tl = card.get("type_line", "") or ""
-                _old_or = card.get("oracle_text", "") or ""
-                _new_tl = _apply_tribal_map_to_type_line(_old_tl, tribal_map)
+                # Always reskin from the original Scryfall type_line, not from a
+                # previously-reskinned value — once "Knight" became "Cowboy" the map
+                # key "Knight" would never match again on a subsequent retheme.
+                _orig_tl = card.get("original_type_line") or card.get("type_line", "") or ""
+                _old_tl  = card.get("type_line", "") or ""
+                _old_or  = card.get("oracle_text", "") or ""
+                _new_tl  = _apply_tribal_map_to_type_line(_orig_tl, tribal_map)
                 # Reskin type references in the rules text too, so a Knight->Cowboy
                 # deck reads "equip Cowboy {0}", not "equip Knight {0}". Applies the
                 # full map to EVERY card (e.g. "Knights you control" on any card).
                 _new_or = _apply_tribal_map_to_text(_old_or, tribal_map)
                 if _new_tl != _old_tl or _new_or != _old_or:
-                    out_card = {**card, "type_line": _new_tl, "oracle_text": _new_or}
+                    out_card = {**card, "type_line": _new_tl, "oracle_text": _new_or,
+                                "original_type_line": _orig_tl}
 
             return ThemedCard(
                 original_name=card["name"],

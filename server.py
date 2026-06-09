@@ -964,7 +964,8 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "use_custom":    False,            # which prompt feeds generation
         "flavor_text":   tc.flavor_text,
         "mana_cost":     c.get("mana_cost", ""),
-        "type_line":     c.get("type_line", ""),
+        "type_line":          c.get("type_line", ""),
+        "original_type_line": c.get("original_type_line") or c.get("type_line", ""),
         "oracle_text":   _replace_card_self_ref(
                              c.get("oracle_text", ""), tc.original_name, tc.themed_name
                          ),
@@ -987,10 +988,11 @@ def _stored_card_to_dict(d: dict) -> dict:
     / retheme to rebuild ThemedCard.card payloads from persisted decks.
     """
     return {
-        "name":           d["original_name"],
-        "mana_cost":      d.get("mana_cost", ""),
-        "type_line":      d.get("type_line", ""),
-        "oracle_text":    d.get("oracle_text", ""),
+        "name":               d["original_name"],
+        "mana_cost":          d.get("mana_cost", ""),
+        "type_line":          d.get("type_line", ""),
+        "original_type_line": d.get("original_type_line") or d.get("type_line", ""),
+        "oracle_text":        d.get("oracle_text", ""),
         "cmc":            d.get("cmc", 0),
         "color_identity": d.get("colors", []),
         "power":          d.get("power"),
