@@ -111,11 +111,6 @@ LoRAs are matched by filename **fragment** — drop a `.safetensors` in
 - Don't force "subject centered" framing — let composition vary.
 
 ## Gotchas
-- **Whole-machine reboots during generation are HARDWARE, not the app** — on the
-  5800X3D dev box, a CPU Machine Check Exception ("Cache Hierarchy Error", WHEA
-  Id 18 → Kernel-Power 41) from an unstable PBO/Curve-Optimizer undervolt or
-  EXPO/XMP RAM. Check the Windows event log. Fix in BIOS; the app's **Safe mode**
-  only lightens load. Don't chase it as a code bug.
 - Single-GPU VRAM is shared: themer unloads Ollama after theming; server frees
   ComfyUI before theming. ReActor face-swap runs on CPU here (CUDA 13 vs onnx 12).
 - Schnell uses no LoRAs and no FluxGuidance.

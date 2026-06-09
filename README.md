@@ -544,7 +544,6 @@ Any **Python 3.10+** works. (The dev machine happens to use `C:\Python314\python
 - **Scryfall rate limiting** — 150ms sleep between requests. Running multiple builds back-to-back is fine for single-user use.
 - **Art generation is optional** — Toggle `generate_art: false` to skip ComfyUI entirely; Scryfall card art is used as fallback and frames still render.
 - **pixie-python SVG rasterization** — `pixie.Image.resize()` is NOT in-place. Must create a new `pixie.Image(w, h)` as destination, then `ctx.scale() + ctx.draw_image(src, 0, 0)`.
-- **Whole-machine reboots during generation are HARDWARE, not the app.** On the 5800X3D dev machine these were a CPU **Machine Check Exception ("Cache Hierarchy Error")** in the Windows event log (WHEA Id 18 → Kernel-Power 41) — the classic signature of an unstable PBO/Curve-Optimizer undervolt or unstable EXPO/XMP RAM under combined CPU+GPU load. Fix in BIOS (run CPU/RAM at stock, then stress-test); use the Theme step's **Safe mode** to reduce load meanwhile.
 
 ---
 
