@@ -390,13 +390,76 @@ def test_stub_prompt():
     check_true("stub.empty", f(""))
 
 
+def test_creative_brief_helpers():
+    """Deterministic pieces of the faithfulness pipeline (no LLM)."""
+    # _spec_to_seed: structured spec → labelled seed (not a flattened blob)
+    seed = themer._spec_to_seed({"setting": "a neon megacity", "genres": ["Cyberpunk"],
+                                 "moods": ["Gritty"], "lighting": [], "inspiration": "Blade Runner"})
+    check_true("brief.seed.setting", "Setting: a neon megacity" in seed)
+    check_true("brief.seed.genre",   "Genre: Cyberpunk" in seed)
+    check_true("brief.seed.insp",    "Inspired by: Blade Runner" in seed)
+    check_true("brief.seed.no_empty_lighting", "Lighting" not in seed)
+    # empty spec falls back to the flat theme string (imports / old decks)
+    check("brief.seed.fallback", themer._spec_to_seed(None, "old flat theme"), "old flat theme")
+
+    # _extract_user_motifs: salient words, stopwords dropped
+    motifs = themer._extract_user_motifs({"setting": "a smoky jazz speakeasy with literal magic",
+                                          "inspiration": ""})
+    check_true("brief.motifs.keep", "speakeasy" in motifs and "smoky" in motifs)
+    check_true("brief.motifs.drop_stop", "literal" not in motifs and "with" not in motifs)
+
+    # _normalize_bible: coerces types + back-fills must_include when LLM under-delivers
+    nb = themer._normalize_bible({"world": "", "must_include": ["velvet booths"],
+                                  "signature_details": "a single string", "zones": []},
+                                 "Setting: a jazz speakeasy", None, "a jazz speakeasy", "balanced")
+    check_true("brief.norm.world_fallback", len(nb["world"]) > 0)
+    check_true("brief.norm.backfill", len(nb["must_include"]) >= 2)        # back-filled from seed words
+    check_true("brief.norm.sig_listified", isinstance(nb["signature_details"], list))
+
+    # _word_root + verify_motif_coverage: morphology-tolerant, no gross false positives
+    check("brief.root.fungus", themer._word_root("fungus"), "fung")
+    check("brief.root.bees",   themer._word_root("bees"),   "bee")
+    cov = themer.verify_motif_coverage(
+        ["bioluminescent fungus", "clockwork bees", "neon hologram"],
+        ["a fungal spire glows", "a clockwork bee drifts past"])
+    check_true("brief.cov.fungal", cov["bioluminescent fungus"] >= 1)      # fungus≈fungal
+    check_true("brief.cov.bees",   cov["clockwork bees"] >= 1)             # bees≈bee
+    check("brief.cov.absent",      cov["neon hologram"], 0)                # not present → ⚠
+
+    # _extract_json_object: tolerates prose wrap + a trailing comma
+    obj = themer._extract_json_object('sure! {"a": 1, "b": [2, 3,],}  done')
+    check_true("brief.json.parsed", isinstance(obj, dict) and obj.get("a") == 1)
+
+
+def test_name_art_coherence():
+    """The art_prompt must depict the card's OWN themed_name, not a divergent
+    invented subject ('named subject missing' fix)."""
+    inc, rep = themer._name_art_incoherent, themer._repair_name_lead
+    # divergent proper-name lead → flagged + realigned to the real name
+    check_true("coh.divergent.flag",
+               inc("Shimmerfang Skirmisher", "Shadow Snarler with translucent azure wings over a glade"))
+    check_true("coh.divergent.fix",
+               rep("Shimmerfang Skirmisher", "Shadow Snarler with translucent azure wings over a glade")
+               .startswith("Shimmerfang Skirmisher with translucent"))
+    # article-led depiction → left alone (this is the GOOD pattern)
+    check_true("coh.article.keep",
+               not inc("Nightpaw Lifebound Striker", "a sleek black hound with violet eyes crouches in a glade"))
+    # already leads with the right name → left alone
+    check_true("coh.aligned.keep",
+               not inc("Runed Canopy Glade", "Runed Canopy Glade, a glowing arboreal arena at dusk"))
+    # sentence-initial adjective that contains a name word → not a divergent name
+    check_true("coh.adj.keep",
+               not inc("Golden Dawn Herald", "Golden light floods a cathedral as a herald raises a horn"))
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
                test_theme_detection, test_deck_analysis, test_creature_floor_plan,
                test_pad_with_basics, test_set_symbol_rarity, test_ro_race_class,
                test_ro_class_override, test_stub_prompt, test_ro_tribal_map,
-               test_subject_directives, test_artifact_object_kind):
+               test_subject_directives, test_artifact_object_kind,
+               test_creative_brief_helpers, test_name_art_coherence):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

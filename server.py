@@ -403,8 +403,12 @@ class BuildRequest(BaseModel):
     playstyle:         str = "auto"
     # Caps prevent long appearance dumps from polluting the LLM batch prompt and
     # blowing FLUX's first-N-token attention window (causes "standing portrait"
-    # output with no card action).
-    art_theme:         str = Field("", max_length=400)
+    # output with no card action).  Cap raised from 400: art_theme is now a
+    # back-compat fallback (the structured theme_spec is the primary input) and is
+    # persisted/restored, so it must hold the composed structured brief without
+    # truncating (a long Setting + all chips can exceed 800; build_creative_brief
+    # caps the actual prompt seed at 900 chars regardless).
+    art_theme:         str = Field("", max_length=2000)
     commander_prompt:  str = Field("", max_length=500)
     emblem_prompt:     str = Field("", max_length=300)
     art_style:         str = "mtg_fantasy"  # LoRA preset key
@@ -434,9 +438,14 @@ class BuildRequest(BaseModel):
     # apply it uniformly. Explicit tribal_overrides still win per-type. Defaults
     # ON — a build with no directive gets cohesive theme-fitting creature types.
     auto_theme_tribes: bool          = True
-    # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration)
-    # the frontend composed into art_theme — persisted so Edit can restore them.
+    # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration).
+    # Now the PRIMARY theming input: themer.build_creative_brief() reads these as
+    # distinct labelled dimensions (not the flattened art_theme blob). Persisted so
+    # Edit can restore them.
     theme_spec:        Optional[dict] = None
+    # Creativity dial — how much invented detail the creative brief adds on top of
+    # the user's stated motifs: "faithful" | "balanced" | "imaginative".
+    creativity:        str           = "balanced"
     gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
 
 
@@ -480,6 +489,8 @@ class RethemeRequest(BaseModel):
     user_name:        Optional[str] = None   # None → use saved user_name
     llm_model:        Optional[str] = None   # None → use saved llm_model
     commander_tribe:  Optional[str] = None   # None → use saved / auto-detect
+    theme_spec:       Optional[dict] = None  # None → use saved structured theme_spec
+    creativity:       Optional[str]  = None  # None → use saved creativity dial
 
 
 # ── SSE helpers ───────────────────────────────────────────────────────────────
@@ -1265,6 +1276,8 @@ def _run_build(job_id: str, req: BuildRequest):
                 tribal_map_override=req.tribal_overrides or None,
                 auto_theme_tribes=bool(req.auto_theme_tribes),
                 ro_mode=(req.art_style in ("ragnarok_online", "ragnarok_sprite")),
+                theme_spec=req.theme_spec or None,
+                creativity=req.creativity or "balanced",
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
@@ -1336,6 +1349,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "stats":            stats,
             "theme":            art_theme,
             "theme_spec":       req.theme_spec or {},
+            "creativity":       req.creativity or "balanced",
             "commander_prompt": req.commander_prompt,
             "emblem_prompt":    req.emblem_prompt,
             "playstyle":        ps_label,
@@ -1707,6 +1721,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "stats":            stats,
             "theme":            art_theme,
             "theme_spec":       source_data.get("theme_spec", {}),
+            "creativity":       source_data.get("creativity", "balanced"),
             "commander_prompt": source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
@@ -2451,6 +2466,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 auto_theme_tribes=(bool(source_data.get("auto_theme_tribes", True))
                                    and not source_data.get("tribal_overrides")),
                 ro_mode=(art_style in ("ragnarok_online", "ragnarok_sprite")),
+                theme_spec=(getattr(req, "theme_spec", None) or source_data.get("theme_spec") or None),
+                creativity=(getattr(req, "creativity", None) or source_data.get("creativity") or "balanced"),
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
         except Exception as e:
@@ -2633,6 +2650,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "stats":            stats,
             "theme":            art_theme,
             "theme_spec":       source_data.get("theme_spec", {}),
+            "creativity":       (getattr(req, "creativity", None) or source_data.get("creativity", "balanced")),
             "commander_prompt": commander_prompt,
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
@@ -2921,6 +2939,102 @@ def generate_list(req: GenerateListRequest):
 
     return {"commander": card, "deck": deck, "stats": stats, "tribes": tribes,
             "playstyle": ps_label, "bracket": req.bracket}
+
+
+class ThemePreviewRequest(BaseModel):
+    """Cheap pre-build preview of the creative direction (no art generation)."""
+    commander_name:   str = Field("", max_length=120)
+    theme_spec:       Optional[dict] = None
+    art_style:        str = "mtg_fantasy"
+    creativity:       str = "balanced"
+    commander_prompt: str = Field("", max_length=500)
+    llm_model:        Optional[str] = None
+
+
+# Network-free representative cards so the preview shows how a land, a creature,
+# and a removal spell each get themed (alongside the real commander).
+_PREVIEW_SAMPLE_CARDS = [
+    {"name": "Forest", "type_line": "Basic Land — Forest", "oracle_text": "({T}: Add {G}.)",
+     "cmc": 0, "colors": [], "color_identity": []},
+    {"name": "Grizzly Bears", "type_line": "Creature — Bear", "oracle_text": "",
+     "cmc": 2, "colors": ["G"], "color_identity": ["G"], "power": "2", "toughness": "2"},
+    {"name": "Murder", "type_line": "Instant", "oracle_text": "Destroy target creature.",
+     "cmc": 3, "colors": ["B"], "color_identity": ["B"]},
+]
+
+
+@app.post("/api/deck/theme-preview")
+def theme_preview(req: ThemePreviewRequest):
+    """Cheap 'Preview creative direction' step (no art gen): build the world bible
+    from the structured inputs + theme a 3-card sample, so the user can iterate on
+    their idea before committing to a full ~30-min build. Returns the world bible,
+    sample themed cards, and which must-include motifs are covered."""
+    spec = req.theme_spec or {}
+    if not any((spec.get(k) for k in ("setting", "genres", "moods", "lighting", "inspiration"))):
+        raise HTTPException(400, "Describe your world first (at least a Setting) to preview.")
+
+    # Resolve the real commander when given (so its themed name is shown); fall back
+    # to a generic protagonist label otherwise.
+    cmd_name = (req.commander_name or "").strip()
+    cmd_card = _scryfall.get_card_by_name(cmd_name, fuzzy=True) if cmd_name else None
+    cmd_for_theme = (cmd_card or {"name": cmd_name or "The Commander",
+                                  "type_line": "Legendary Creature", "oracle_text": "",
+                                  "cmc": 0, "colors": [], "color_identity": []})
+
+    from image_gen import get_all_presets as _gap
+    from themer import (build_creative_brief, verify_motif_coverage,
+                        _generate_style_guide as _gen_style_guide, OLLAMA_MODEL as _DEF_MODEL)
+    _all_p = _gap()
+    _style = _all_p.get(req.art_style or "mtg_fantasy",
+                        _all_p.get("mtg_fantasy", next(iter(_all_p.values()))))
+
+    try:
+        T = Themer(model=(req.llm_model or _DEF_MODEL))
+        bible = build_creative_brief(
+            spec, cmd_for_theme.get("name", ""), req.commander_prompt or "",
+            style_guide_hint=_style.get("style_guide_hint", ""),
+            creativity=req.creativity or "balanced", model=T.model)
+        style_guide = _gen_style_guide(
+            bible["world"], cmd_for_theme.get("name", ""),
+            commander_prompt=req.commander_prompt or "",
+            style_guide_hint=_style.get("style_guide_hint", ""),
+            must_include=bible["must_include"], model=T.model)
+
+        sample_cards = [cmd_for_theme] + _PREVIEW_SAMPLE_CARDS
+        entries = T._theme_batch(
+            bible["world"], cmd_for_theme.get("name", ""), sample_cards, 0, style_guide,
+            commander_prompt=req.commander_prompt or "", batch_commander_idx=0,
+            world_zones=bible["zones"],
+            themer_medium=_style.get("themer_medium", ""),
+            themer_quality=_style.get("themer_quality", ""),
+            world_bible=bible)
+        by_idx = {e.get("idx"): e for e in entries}
+        samples = []
+        for i, c in enumerate(sample_cards):
+            e = by_idx.get(i, {})
+            samples.append({
+                "original":    c["name"],
+                "type_line":   c["type_line"],
+                "themed_name": e.get("themed_name", ""),
+                "art_prompt":  e.get("art_prompt", ""),
+            })
+        # Cards-only (the style guide never reaches FLUX); on a 3-card sample some
+        # motifs will read ⚠ — that's expected and disclaimed in the UI panel.
+        coverage = verify_motif_coverage(
+            bible["must_include"], [s["art_prompt"] for s in samples])
+    except Exception as e:
+        print(f"  [theme-preview] error: {e}")
+        traceback.print_exc()
+        raise HTTPException(503, f"Preview failed (is the LLM gateway up?): {e}")
+
+    return {
+        "world_bible": {k: bible.get(k) for k in
+                        ("world", "must_include", "signature_details", "palette", "zones", "creativity")},
+        "style_guide": style_guide,
+        "samples":     samples,
+        "coverage":    coverage,
+        "commander":   (cmd_card or {}).get("name", cmd_name),
+    }
 
 
 @app.post("/api/deck/build")
@@ -4204,6 +4318,74 @@ def _resolve_comfyui_cmd() -> Optional[tuple[list[str], Path]]:
     return cmd, base_dir
 
 
+# ── ComfyUI offload-fix guard ─────────────────────────────────────────────────
+# This ComfyUI build crashes CLIPTextEncode in NORMAL_VRAM's async weight-offload
+# path with "'VRAMBuffer' object has no attribute 'get'", which fails EVERY card
+# (0/N art saved, silent Scryfall fallback — looks like "theming worked but no
+# images"). _resolve_comfyui_cmd() launches with --disable-async-offload to avoid
+# it, but a ComfyUI started another way (the Desktop .exe, a manual run, a stale
+# duplicate) won't have the flag. These helpers detect that broken state at the
+# art preflight and relaunch ComfyUI correctly.
+def _list_comfyui_processes() -> "list[tuple[int, str]]":
+    """Return (pid, command_line) for running ComfyUI backend processes.
+
+    Windows-only (this rig); returns [] on other platforms or if inspection
+    fails — callers treat [] as "can't tell, don't touch"."""
+    import sys, subprocess
+    if sys.platform != "win32":
+        return []
+    ps = (
+        "Get-CimInstance Win32_Process -Filter \"name='python.exe'\" | "
+        "Where-Object { $_.CommandLine -like '*ComfyUI*main.py*' } | "
+        "ForEach-Object { \"$($_.ProcessId)`t$($_.CommandLine)\" }"
+    )
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+            capture_output=True, text=True, timeout=15,
+        )
+    except Exception:
+        return []
+    procs: list[tuple[int, str]] = []
+    for line in out.stdout.splitlines():
+        line = line.strip()
+        if "\t" not in line:
+            continue
+        pid_s, cmd = line.split("\t", 1)
+        try:
+            procs.append((int(pid_s), cmd))
+        except ValueError:
+            pass
+    return procs
+
+
+def _comfyui_running_without_offload_fix() -> bool:
+    """True iff a ComfyUI backend is running but at least one instance lacks
+    --disable-async-offload (the unsafe state). Conservative: if we can't inspect
+    the process list we return False so we never kill blindly."""
+    procs = _list_comfyui_processes()
+    if not procs:
+        return False
+    return any("disable-async-offload" not in cmd for _pid, cmd in procs)
+
+
+def _kill_comfyui_processes() -> None:
+    """Hard-kill every ComfyUI backend process (clears flagless + duplicate
+    instances) so a clean one can be relaunched via _resolve_comfyui_cmd()."""
+    import subprocess
+    killed = 0
+    for pid, _cmd in _list_comfyui_processes():
+        try:
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)],
+                           capture_output=True, text=True, timeout=15)
+            print(f"  [comfyui] killed flagless/duplicate ComfyUI backend PID {pid}", flush=True)
+            killed += 1
+        except Exception as e:
+            print(f"  [comfyui] could not kill PID {pid}: {e}", flush=True)
+    if killed:
+        time.sleep(3)   # let the OS release :8188 and the VRAM before relaunch
+
+
 def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 300.0,
                           launch: bool = True) -> bool:
     """Ensure ComfyUI is running; auto-start it if it isn't.
@@ -4219,10 +4401,13 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 300.0,
 
     Serialized by _comfyui_start_lock so concurrent builds never spawn duplicates.
     """
-    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+    # Fast path: up AND launched with the offload fix → nothing to do.
+    if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats") \
+            and not _comfyui_running_without_offload_fix():
         return True
     if not launch:
-        return False
+        # Can't repair/launch — report whatever is currently up.
+        return _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats")
 
     def _emit(msg: str) -> None:
         if job_id:
@@ -4230,9 +4415,19 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 300.0,
         print(f"  [comfyui] {msg}", flush=True)
 
     with _comfyui_start_lock:
-        # Another thread may have started it while we waited for the lock.
-        if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats"):
+        # Another thread may have started it (correctly) while we waited.
+        _up = _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats")
+        if _up and not _comfyui_running_without_offload_fix():
             return True
+        if _up:
+            # ComfyUI is up but was launched WITHOUT --disable-async-offload (e.g.
+            # the Desktop .exe or a manual/duplicate run). In that mode this build
+            # crashes CLIPTextEncode on every card ('VRAMBuffer' bug) → 0 art saved.
+            # Kill it and relaunch correctly.
+            _emit("⚠ ComfyUI is running without --disable-async-offload — that mode "
+                  "crashes image generation ('VRAMBuffer' bug, 0 cards rendered). "
+                  "Restarting ComfyUI with the offload fix…")
+            _kill_comfyui_processes()
 
         resolved = _resolve_comfyui_cmd()
         if resolved is None:

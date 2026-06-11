@@ -37,6 +37,7 @@ export default function App() {
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
   const [theme, setTheme]         = useState('')   // the "Setting" free-text (vision anchor)
+  const [creativity, setCreativity] = useState('balanced')  // Faithful ↔ Imaginative dial
   const [visionMoods, setVisionMoods]       = useState([])
   const [visionGenres, setVisionGenres]     = useState([])
   const [visionLighting, setVisionLighting] = useState([])
@@ -129,7 +130,7 @@ export default function App() {
     setStep(STEP.COMMANDER)
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
-    setBracket(3); setTheme(''); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setJobId(null); setDeck(null)
@@ -147,6 +148,8 @@ export default function App() {
         bracket,
         art_theme:         composeVision(theme, visionMoods, visionGenres, visionLighting, visionInspiration),
         theme_spec:        { setting: theme, moods: visionMoods, genres: visionGenres, lighting: visionLighting, inspiration: visionInspiration },
+        creativity,
+
         commander_prompt:  commanderPrompt,
         user_name:         userName || null,
         emblem_prompt:     emblemPrompt,
@@ -268,6 +271,7 @@ export default function App() {
     // Restore the structured vision fields if saved; else seed Setting with the theme.
     const spec = d.theme_spec || {}
     setTheme(spec.setting || d.theme || '')
+    setCreativity(d.creativity || 'balanced')
     setVisionMoods(spec.moods || [])
     setVisionGenres(spec.genres || [])
     setVisionLighting(spec.lighting || [])
@@ -429,6 +433,8 @@ export default function App() {
             commander={commander}
             theme={theme}
             onThemeChange={setTheme}
+            creativity={creativity}
+            onCreativityChange={setCreativity}
             visionMoods={visionMoods} onVisionMoodsChange={setVisionMoods}
             visionGenres={visionGenres} onVisionGenresChange={setVisionGenres}
             visionLighting={visionLighting} onVisionLightingChange={setVisionLighting}

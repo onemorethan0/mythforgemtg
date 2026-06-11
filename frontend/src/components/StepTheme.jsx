@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ManaCost from './ManaCost'
 import AdvancedPanel from './AdvancedPanel'
+import ThemePreview from './ThemePreview'
 
 const EXAMPLES = [
   'dark gothic necromancer city',
@@ -140,6 +141,12 @@ const s = {
   section: { marginBottom: 24 },
   title: { fontSize: 22, fontWeight: 700, color: '#eab308', marginBottom: 6, letterSpacing: '0.05em' },
   sub: { fontSize: 13, color: '#78716c', marginBottom: 20 },
+  // Phase divider that segments the long form into labelled groups.
+  groupHead: { display: 'flex', alignItems: 'center', gap: 10, margin: '4px 0 16px' },
+  groupNum: { flexShrink: 0, width: 22, height: 22, borderRadius: '50%', background: '#ca8a04', color: '#0c0a09', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  groupTitle: { fontSize: 14, fontWeight: 700, color: '#eab308', letterSpacing: '0.04em', textTransform: 'uppercase', whiteSpace: 'nowrap' },
+  groupSub: { fontSize: 11, color: '#57534e', whiteSpace: 'nowrap' },
+  groupRule: { flex: 1, height: 1, background: '#292524' },
   label: { fontSize: 13, color: '#a8a29e', marginBottom: 8, display: 'block' },
   textarea: { width: '100%', background: '#0c0a09', border: '1px solid #44403c', borderRadius: 10, padding: '12px 16px', color: '#f5f5f4', fontSize: 14, outline: 'none', resize: 'vertical', fontFamily: 'inherit', minHeight: 80, boxSizing: 'border-box' },
   exLabel: { fontSize: 12, color: '#57534e', margin: '14px 0 8px' },
@@ -179,8 +186,23 @@ const BORDER_THEME_EXAMPLES = [
   'flowering vines and leaves',
 ]
 
+// Phase header used to segment the Theme step into labelled groups so the long
+// form reads as a sequence (World → Characters → Card Look → Art Engine) instead
+// of one undifferentiated scroll.
+function GroupHeader({ num, title, sub }) {
+  return (
+    <div style={s.groupHead}>
+      <span style={s.groupNum}>{num}</span>
+      <span style={s.groupTitle}>{title}</span>
+      {sub && <span style={s.groupSub}>· {sub}</span>}
+      <span style={s.groupRule} />
+    </div>
+  )
+}
+
 export default function StepTheme({
   commander, theme, onThemeChange,
+  creativity = 'balanced', onCreativityChange,
   visionMoods = [], onVisionMoodsChange,
   visionGenres = [], onVisionGenresChange,
   visionLighting = [], onVisionLightingChange,
@@ -234,14 +256,6 @@ export default function StepTheme({
     color: active ? '#fde047' : '#a8a29e',
   })
   // Live preview of the composed brief sent to the art engine.
-  const visionBrief = [
-    (theme || '').trim(),
-    visionGenres.length && 'Genre: ' + visionGenres.join(', '),
-    visionMoods.length && 'Mood: ' + visionMoods.join(', '),
-    visionLighting.length && 'Overall lighting and atmosphere: ' + visionLighting.join(', '),
-    (visionInspiration || '').trim() && 'Inspired by ' + visionInspiration.trim(),
-  ].filter(Boolean).join('. ')
-
   // Derived: type of the currently selected checkpoint
   const activeCheckpointType = (() => {
     if (!checkpoint || !checkpoints.length) return ''
@@ -500,8 +514,24 @@ export default function StepTheme({
       </div>
 
       <div style={s.card}>
-        <h2 style={s.title}>Theme & Creature Types</h2>
-        <p style={s.sub}>Set the world theme, then optionally reskin the deck's creature types — each replacement becomes the basis for that card's art.</p>
+        <h2 style={s.title}>Theme &amp; Art</h2>
+        <p style={s.sub}>
+          Everything that shapes how your deck looks, in four steps: the world it lives in,
+          who's in it, how the cards are dressed, and which engine renders the art.
+        </p>
+
+        <GroupHeader num="1" title="World &amp; Theme" sub="the setting and its creatures" />
+
+        {/* Content-vs-medium framing: the #1 source of confusion is conflating WHAT
+            the world is (here) with HOW it's drawn (Art Style, group 4). */}
+        <div style={{ display: 'flex', gap: 10, padding: '11px 14px', marginBottom: 18, background: '#0c0a09', border: '1px solid #292524', borderLeft: '3px solid #ca8a04', borderRadius: 10 }}>
+          <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
+          <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.55 }}>
+            Describe <strong style={{ color: '#e7e5e4' }}>the world</strong> here — what's in it.
+            The app expands your description with creative detail and applies it consistently to all 100 cards.
+            <em style={{ color: '#78716c' }}> (How it's drawn — painted, anime, pixel art — is the <strong>Art Style</strong> in step 4.)</em>
+          </div>
+        </div>
 
         {/* ── Auto-theme creature types (one-click reskin of every type) ── */}
         <div style={s.section}>
@@ -556,6 +586,33 @@ export default function StepTheme({
           </div>
         )}
 
+        {/* Commander tribe (optional reskin target) — lives with the creature-type
+            controls above. Mainly the fallback when no per-type list is shown
+            (e.g. an imported deck); when the list above is present, set the
+            commander's type there instead. */}
+        {onCommanderTribeChange && (
+          <div style={{ marginBottom: 20 }}>
+            <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 4 }}>
+              Commander's creature type <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span>
+            </label>
+            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8, lineHeight: 1.5 }}>
+              Pin the single tribe to <strong style={{ color: '#a8a29e' }}>reskin into the theme</strong> (e.g. <em>Cat → cyber bird</em>), applied to every card of that type. Leave blank to auto-detect from your commander. If the per-type list above is showing, use that instead — this is the fallback when it isn't.
+            </div>
+            <input
+              type="text"
+              style={{
+                width: '100%', background: '#0c0a09', border: '1px solid #44403c',
+                borderRadius: 10, padding: '10px 16px', color: '#f5f5f4', fontSize: 14,
+                outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+              }}
+              placeholder="e.g. Faerie, Cat, Goblin… (blank = auto)"
+              value={commanderTribe || ''}
+              onChange={e => onCommanderTribeChange(e.target.value)}
+              maxLength={40}
+            />
+          </div>
+        )}
+
         {/* Divider */}
         <div style={{ height: 1, background: '#292524', marginBottom: 20 }} />
 
@@ -578,15 +635,17 @@ export default function StepTheme({
           </div>
         )}
 
-        {/* ── Deck Vision (structured intake → tighter art brief) ── */}
+        {/* ── Deck Vision (structured intake → world bible) ── */}
         <div style={s.section}>
-          <label style={s.label}>Deck Vision</label>
-          <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10 }}>
-            Describe the world, then pin the genre, mood, and lighting. These compose into a focused brief for the art engine — far sharper than a one-line description. Per-card colors still follow each card's MTG mana identity; lighting here sets the overall atmosphere.
+          <label style={s.label}>Your deck idea</label>
+          <div style={{ fontSize: 12, color: '#57534e', marginBottom: 10, lineHeight: 1.5 }}>
+            Write the seed in <strong style={{ color: '#a8a29e' }}>Setting</strong>, then pin genre / mood / lighting to steer it.
+            The app keeps every concrete thing you name and adds creative detail around it. Per-card colours still follow
+            each card's MTG mana identity; lighting here sets the overall atmosphere. Preview the result below before you build.
           </div>
 
           {/* Setting */}
-          <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Setting <span style={{ color: '#57534e', fontWeight: 400 }}>— the world / place</span></div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Setting <span style={{ color: '#57534e', fontWeight: 400 }}>— the world &amp; what's in it (name concrete things — they'll be kept)</span></div>
           <textarea
             style={s.textarea}
             placeholder={isRO
@@ -595,6 +654,7 @@ export default function StepTheme({
             value={theme}
             onChange={e => onThemeChange(e.target.value)}
             rows={2}
+            maxLength={1200}
           />
           <div style={s.exGrid}>
             {(isRO ? RO_THEMES : EXAMPLES).map(ex => (
@@ -618,7 +678,7 @@ export default function StepTheme({
 
           {/* Inspirations */}
           <div style={{ marginTop: 12 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Inspirations <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span></div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>Inspirations <span style={{ color: '#57534e', fontWeight: 400 }}>(optional — we translate references into motifs, not brand names)</span></div>
             <input
               type="text"
               style={{ width: '100%', background: '#0c0a09', border: '1px solid #44403c', borderRadius: 10, padding: '9px 14px', color: '#f5f5f4', fontSize: 14, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' }}
@@ -629,14 +689,61 @@ export default function StepTheme({
             />
           </div>
 
-          {/* Live composed brief */}
-          {visionBrief && (
-            <div style={{ marginTop: 12, padding: 10, background: '#0c0a09', border: '1px solid #292524', borderRadius: 8 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#78716c', marginBottom: 4 }}>🎨 Art brief sent to the engine</div>
-              <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5, fontStyle: 'italic' }}>{visionBrief}</div>
+          {/* Creativity dial — how much invented detail to add on top of your words */}
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>
+              Creative liberty <span style={{ color: '#57534e', fontWeight: 400 }}>— how much we invent around your idea</span>
             </div>
-          )}
+            <div style={{ display: 'flex', gap: 8 }}>
+              {[
+                ['faithful',    'Faithful',    'Stay close to your words'],
+                ['balanced',    'Balanced',    'Your words + a few invented touches'],
+                ['imaginative', 'Imaginative', 'Bold invented detail (keeps your motifs)'],
+              ].map(([key, label, desc]) => {
+                const active = (creativity || 'balanced') === key
+                return (
+                  <button
+                    key={key}
+                    onClick={() => onCreativityChange && onCreativityChange(key)}
+                    style={{
+                      flex: 1, padding: '9px 10px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
+                      background: active ? '#1a1208' : '#0c0a09',
+                      border: `1px solid ${active ? '#ca8a04' : '#292524'}`,
+                      color: active ? '#eab308' : '#a8a29e', fontFamily: 'inherit', transition: 'all 0.15s',
+                    }}
+                  >
+                    <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 2 }}>{active ? '● ' : '○ '}{label}</div>
+                    <div style={{ fontSize: 10, color: '#57534e', lineHeight: 1.3 }}>{desc}</div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Live "Preview creative direction" — replaces the old static brief box.
+              Builds the world bible + samples so the user can iterate before building. */}
+          <ThemePreview
+            commanderName={commander?.full_name || commander?.name || ''}
+            themeSpec={{ setting: theme, moods: visionMoods, genres: visionGenres, lighting: visionLighting, inspiration: visionInspiration }}
+            artStyle={artStyle}
+            creativity={creativity}
+            commanderPrompt={commanderPrompt}
+            llmModel={llmModel}
+          />
         </div>
+
+        <GroupHeader num="2" title="Characters &amp; Appearance" sub="how the people look" />
+
+        {/* Face reference badge (if user uploaded photos) */}
+        {faceKey && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: '#0a0800', border: '1px solid #eab30833', borderRadius: 10, marginBottom: 16 }}>
+            <span style={{ fontSize: 18 }}>👤</span>
+            <div>
+              <div style={{ fontSize: 13, color: '#eab308', fontWeight: 700 }}>Face reference active</div>
+              <div style={{ fontSize: 11, color: '#78716c' }}>{faceMethod || 'Face photos uploaded'} · Humanoid card art will resemble your photos</div>
+            </div>
+          </div>
+        )}
 
         {/* ── Commander character prompt ── */}
         <div style={s.section}>
@@ -745,6 +852,8 @@ export default function StepTheme({
             maxLength={40}
           />
         </div>
+
+        <GroupHeader num="3" title="Card Look" sub="emblem, pips, border &amp; frame" />
 
         {/* ── Set emblem prompt ── */}
         <div style={s.section}>
@@ -928,43 +1037,7 @@ export default function StepTheme({
           </div>
         )}
 
-        {/* Commander tribe (optional reskin target) */}
-        {onCommanderTribeChange && (
-          <div style={{ marginBottom: 20 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 4 }}>
-              Commander creature type <span style={{ color: '#57534e', fontWeight: 400 }}>(optional)</span>
-            </label>
-            <div style={{ fontSize: 12, color: '#57534e', marginBottom: 8, lineHeight: 1.5 }}>
-              The single tribe to <strong style={{ color: '#a8a29e' }}>reskin into the theme</strong> (e.g. <em>Cat → cyber bird</em>) — applied consistently to every card of that type. Leave blank to auto-detect from your commander. Other creature types keep their own kind and are drawn as themselves.
-            </div>
-            <input
-              type="text"
-              style={{
-                width: '100%', background: '#0c0a09', border: '1px solid #44403c',
-                borderRadius: 10, padding: '10px 16px', color: '#f5f5f4', fontSize: 14,
-                outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
-              }}
-              placeholder="e.g. Faerie, Cat, Goblin… (blank = auto)"
-              value={commanderTribe || ''}
-              onChange={e => onCommanderTribeChange(e.target.value)}
-              maxLength={40}
-            />
-          </div>
-        )}
-
-        {/* Divider */}
-        <div style={{ height: 1, background: '#292524', marginBottom: 20 }} />
-
-        {/* Face reference badge (if user uploaded photos) */}
-        {faceKey && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: '#0a0800', border: '1px solid #eab30833', borderRadius: 10, marginBottom: 16 }}>
-            <span style={{ fontSize: 18 }}>👤</span>
-            <div>
-              <div style={{ fontSize: 13, color: '#eab308', fontWeight: 700 }}>Face reference active</div>
-              <div style={{ fontSize: 11, color: '#78716c' }}>{faceMethod || 'Face photos uploaded'} · Humanoid card art will resemble your photos</div>
-            </div>
-          </div>
-        )}
+        <GroupHeader num="4" title="Art Engine" sub="generate the card art" />
 
         {/* ComfyUI art toggle */}
         <div style={s.artRow}>

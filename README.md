@@ -181,7 +181,7 @@ deck's real creature types for per-tribe reskinning.
 
 1. **Commander & Deck** — Either **Generate a deck** (search any legendary creature; pick **power bracket 1–5** and a **playstyle** — Aggro, Control, Lifegain, etc. or Auto) or **Import a deck** (retheme one you already own — see below). On continue, the **99-card list is built immediately** (no art yet).
 2. **Face** — Optionally upload 1–5 photos; humanoid card art will feature your likeness.
-3. **Theme** — **Deck Vision** structured intake: a setting line plus genre/mood/lighting chips and optional inspirations compose into a clean theme brief (a live preview shows what the themer will receive), so you get better, more consistent names and art than a single free-text box. Also: **✨ Auto-theme creature types** (on by default) — invents **one** theme-fitting replacement for *every* creature type and applies it uniformly to each card's name, art, type line, and rules text, so a type stays consistent everywhere (a Dragon never renders as a cat); on **Ragnarok Online** styles it instead maps types to RO jobs/monsters/races (*Knight → Lord Knight*, *Cat → Brute*, *Elf → Demihuman*). **Per-tribe replacements** below the toggle let you override any individual type (e.g. *Knight → Cowboy*) or fill one in yourself. Plus card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
+3. **Theme** — structured **deck-idea intake**: a Setting line plus genre/mood/lighting chips and optional inspirations. These feed a **creative brief** that deconstructs your idea, keeps every concrete thing you named (a *faithfulness contract*), and invents extra detail to colour it — how much is set by a **Faithful ↔ Balanced ↔ Imaginative** dial. A **🔮 Preview creative direction** button shows the resulting *world bible* (your motifs with ✓/⚠ coverage, the invented "signature details", palette, and a few sample themed cards) so you can iterate before committing to a full build. *(This describes the **world** — what's in it; the **Art Style** preset controls the **medium** — how it's drawn.)* Also: **✨ Auto-theme creature types** (on by default) — invents **one** theme-fitting replacement for *every* creature type and applies it uniformly to each card's name, art, type line, and rules text, so a type stays consistent everywhere (a Dragon never renders as a cat); on **Ragnarok Online** styles it instead maps types to RO jobs/monsters/races (*Knight → Lord Knight*, *Cat → Brute*, *Elf → Demihuman*). **Per-tribe replacements** below the toggle let you override any individual type (e.g. *Knight → Cowboy*) or fill one in yourself. Plus card **frame style** (Built-in / Official M15 / Full-art), border theme, custom pips, art-style preset, and the art-gen toggle.
 4. **Deck** — Browse all 100 cards with rendered proxy frames; download ZIP or print-ready PDF. Re-roll three ways (each creates a new deck; the original is kept):
    - **🔄 Rebuild** — re-roll the **art only**, keeping the current names & prompts.
    - **✏️ Retheme** — re-kick the **whole** generation: new names **and** new art, same cards/theme/settings.
@@ -340,8 +340,9 @@ Layer order (bottom to top):
 
 Runs against **Ollama `qwen3:14b`** locally (auto-falls back to `qwen3:32b` → `qwen2.5-coder:14b` → `gemma4` if the primary model is missing).
 
-1. Generates one deck-wide **style guide** sentence (used only as LLM context, NOT prepended to FLUX prompts)
-2. Processes cards in **batches**, each receiving the style guide as context
+0. **Creative brief / world bible** (`build_creative_brief`) — turns the Theme step's *structured* inputs (Setting + Genre/Mood/Lighting + Inspirations) into a shared world bible: `must_include` (your concrete motifs, preserved verbatim — the faithfulness anchor), `signature_details` (invented "colouring", amount set by the **creativity dial**), palette, and 4 visual zones. Threaded into the style guide and every per-card prompt; `verify_motif_coverage` then checks each promised motif actually appears in the deck art. The **🔮 Preview creative direction** panel (`POST /api/deck/theme-preview`) shows the bible + a 3-card sample before you build. Old/imported decks (no structured spec) fall back to the simpler `_expand_theme` flow.
+1. Generates one deck-wide **style guide** sentence (used only as LLM context, NOT prepended to FLUX prompts; when a brief exists it must name your `must_include` motifs)
+2. Processes cards in **batches**, each receiving the style guide + world bible as context
 3. Each card gets: `themed_name`, `art_prompt` (35–50 words), `flavor_text`
 4. **Name → art coherence (#1 rule):** the `art_prompt` must *depict* the themed name's imagery (2–3 concrete visual elements), and every card's scene must be unique (no reused templates)
 5. **Evoke the original card:** `themed_name` fuses the original card's identity/iconic imagery (col 2) with its function (mechanics+role), so the source card is recognizable reskinned into the theme (Lightning Bolt → "Neon Surge", Doom Blade → "Necrotic Lance") — not a generic mechanics label
@@ -505,6 +506,8 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
   "playstyle": "auto",
   "bracket": 3,
   "art_theme": "dark gothic necromancer city",
+  "theme_spec": { "setting": "a plague-haunted cathedral city of bone reliquaries", "genres": ["Gothic"], "moods": ["Eerie"], "lighting": ["Moody / dark"], "inspiration": "Bloodborne" },
+  "creativity": "balanced",
   "frame_style": "builtin",
   "prebuilt_deck": [ /* the deck returned by /api/deck/generate-list */ ],
   "tribal_overrides": { "Knight": "Cowboy", "Rogue": "Outlaw" },
@@ -514,6 +517,7 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
   "gen_settings": { "guidance": 3.5, "steps": 35, "safe_mode": false }
 }
 ```
+- `theme_spec` (preferred theming input): the structured Deck-idea fields. Drives `build_creative_brief` (world bible + faithfulness). `art_theme` is now a back-compat fallback used only when `theme_spec` is empty (imports / old decks). `creativity` ∈ `"faithful"|"balanced"|"imaginative"` tunes how much detail is invented around your motifs. Preview either with `POST /api/deck/theme-preview` before building. Both persist in `deck.json` and restore on Edit.
 - `prebuilt_deck` (optional): the list from `/api/deck/generate-list`. When present, the build skips `DeckBuilder` and themes/renders this exact list. Omit it and the deck is generated from `commander_name`+`playstyle`+`bracket` (old single-phase path; imports use `deck_url`/`deck_list`).
 - `tribal_overrides` (optional): `{OriginalType: Replacement}` chosen in the Theme step. Reskins each type across the deck — name, art, card type line, **and rules text** (`equip Knight` → `equip Cowboy`). Persisted in `deck.json`; Rebuild/Retheme reuse it.
 - `frame_style`: `"builtin"` (bundled frames), `"m15"` (Official-style), or `"m15_fullart"` (Full-art/Borderless). M15 styles need a local Card Conjurer (`MYTHFORGE_CC_DIR` or the in-app folder field).

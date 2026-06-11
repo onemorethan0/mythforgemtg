@@ -101,6 +101,16 @@ LoRAs are matched by filename **fragment** — drop a `.safetensors` in
 (Civitai) using the Claude-in-Chrome MCP; verify metadata after.
 
 ## Prompt / variety rules (themer.py + image_gen.py)
+- **Faithfulness pipeline (the core function).** The Theme step's structured
+  inputs go to `build_creative_brief()` → a **world bible** `{world, must_include,
+  signature_details, palette, zones}`. `must_include` = the user's named motifs,
+  preserved and woven into the style guide + every card prompt (a `WORLD BIBLE`
+  block in `_batch_prompt_v2`); `verify_motif_coverage()` checks they land.
+  `creativity` (faithful/balanced/imaginative) scales `signature_details` count.
+  Preview via `POST /api/deck/theme-preview`. When changing intake, keep
+  `theme_spec` flowing (server → `theme_deck(theme_spec=, creativity=)`); the flat
+  `art_theme` string is only the fallback for imports/old decks. See CLAUDE.md
+  "Creative brief / world bible".
 - **Color = mana identity.** Each card's palette comes from its color identity
   (`_color_palette_hint`). Do NOT bake fixed hues into a preset's `flux_prefix` —
   that flattens every card to one look (the cyberpunk "zero variety" bug). Keep

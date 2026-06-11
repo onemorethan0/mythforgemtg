@@ -1809,6 +1809,20 @@ class _ReactorCudaError(Exception):
     """
 
 
+class _ComfyOffloadError(Exception):
+    """
+    Raised when ComfyUI crashes in NORMAL_VRAM's async weight-offload path
+    ("'VRAMBuffer' object has no attribute 'get'" in comfy/ops.get_cast_buffer).
+    This is a SYSTEMIC misconfiguration — ComfyUI was launched WITHOUT
+    --disable-async-offload, so EVERY card fails identically.  It propagates out
+    of generate()/generate_deck() so the build aborts the art phase immediately
+    with an actionable message instead of grinding through N identical failures
+    and silently falling back to Scryfall art.  The fix is to relaunch ComfyUI
+    via server._ensure_comfyui_ready() (which adds the flag) — done automatically
+    at the build preflight by server._comfyui_running_without_offload_fix().
+    """
+
+
 class ImageGen:
     def __init__(self, comfy_base: str = "", checkpoint: Optional[str] = None,
                  model_speed: str = "quality", art_style: str = "mtg_fantasy",
@@ -2540,6 +2554,24 @@ class ImageGen:
                             print(f"  [image_gen] Error: [{exc_type}] {str(exc_msg)[:120]}")
                             continue
 
+                        # ── Async-offload crash (systemic) ───────────────────
+                        # ComfyUI launched WITHOUT --disable-async-offload crashes
+                        # CLIPTextEncode here on EVERY card. Abort fast with an
+                        # actionable message rather than failing all N identically.
+                        _blob = f"{exc_type} {exc_msg} {tb_tail}"
+                        if ("VRAMBuffer" in _blob or "get_cast_buffer" in _blob
+                                or "aimdo_to_tensor" in _blob):
+                            print(
+                                f"  [image_gen] FATAL: ComfyUI async-offload crash in "
+                                f"node {node_id} ({node_type}): {exc_msg}"
+                            )
+                            raise _ComfyOffloadError(
+                                "ComfyUI is running without --disable-async-offload "
+                                "(NORMAL_VRAM async-offload 'VRAMBuffer' bug) — every "
+                                "card will fail. Restart ComfyUI via manage.bat → "
+                                "option 3 (or it auto-repairs on the next build)."
+                            )
+
                         # For non-ReActor/non-CUDA errors, print full error details
                         print(
                             f"  [image_gen] EXECUTION ERROR in node {node_id} "
@@ -2841,6 +2873,10 @@ class ImageGen:
                           f"Scryfall art will be used as fallback for '{filename_stem}'")
                     return None
             return result
+        except _ComfyOffloadError:
+            # Systemic — let it bubble up so generate_deck() aborts the whole art
+            # phase immediately instead of failing every card identically.
+            raise
         except _ReactorCudaError as e:
             # ReActor face-swap failed due to CUDA mismatch — retry this card
             # without face conditioning so we at least get a styled base image
@@ -3043,13 +3079,22 @@ class ImageGen:
             print(f"  [{i:>3}/{total}] {face_tag_card} {tc.themed_name:<33}", end=" ", flush=True)
 
             t0   = time.monotonic()
-            path = self.generate(
-                card_art_prompt, str(out),
-                face_comfy_name=card_face_name,
-                face_gender=card_face_gender,
-                cancel_event=cancel_event,
-                card_type=tc.card.get("type_line", ""),
-            )
+            try:
+                path = self.generate(
+                    card_art_prompt, str(out),
+                    face_comfy_name=card_face_name,
+                    face_gender=card_face_gender,
+                    cancel_event=cancel_event,
+                    card_type=tc.card.get("type_line", ""),
+                )
+            except _ComfyOffloadError as e:
+                # ComfyUI is misconfigured (no --disable-async-offload) — every
+                # remaining card would fail identically. Abort the art phase now
+                # with a clear message; the deck still renders with Scryfall art.
+                print(f"\n  [image_gen] ABORTING art generation: {e}")
+                print(f"  [image_gen] {i - 1}/{total} cards done before the crash; "
+                      f"remaining cards fall back to Scryfall art.")
+                break
             elapsed = time.monotonic() - t0
             results[tc.original_name] = path
             print(f"{'OK' if path else 'FAIL'}  {elapsed:.0f}s")
