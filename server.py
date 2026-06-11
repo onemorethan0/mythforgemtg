@@ -2983,13 +2983,27 @@ def theme_preview(req: ThemePreviewRequest):
 
     from image_gen import get_all_presets as _gap
     from themer import (build_creative_brief, verify_motif_coverage,
-                        _generate_style_guide as _gen_style_guide, OLLAMA_MODEL as _DEF_MODEL)
+                        _generate_style_guide as _gen_style_guide,
+                        OLLAMA_MODEL as _DEF_MODEL, LLM_CATALOG as _CATALOG)
     _all_p = _gap()
     _style = _all_p.get(req.art_style or "mtg_fantasy",
                         _all_p.get("mtg_fantasy", next(iter(_all_p.values()))))
 
+    # ── VRAM headroom for the LLM ─────────────────────────────────────────────
+    # If FLUX is resident from a previous render, llama-swap can fail to load the
+    # preview model (verified: qwen3:32b → upstream exit at 3.5 GB free). Mirror
+    # the build path's dance: when free VRAM < model size + margin, ask ComfyUI to
+    # unload its models first. No-ops when there's already room.
+    _mkey = req.llm_model or _DEF_MODEL
+    _msize = next((m.get("size_gb", 10.0) for m in _CATALOG if m.get("key") == _mkey), 10.0)
+    _free = _comfyui_vram_free_gb()
+    if _free is not None and _free < _msize + 2.0:
+        print(f"  [theme-preview] {_free:.1f} GB free < {_msize:.0f}+2 GB needed for {_mkey} — "
+              f"unloading ComfyUI models first")
+        _wait_for_comfyui_unload()
+
     try:
-        T = Themer(model=(req.llm_model or _DEF_MODEL))
+        T = Themer(model=_mkey)
         bible = build_creative_brief(
             spec, cmd_for_theme.get("name", ""), req.commander_prompt or "",
             style_guide_hint=_style.get("style_guide_hint", ""),
@@ -3035,6 +3049,121 @@ def theme_preview(req: ThemePreviewRequest):
         "coverage":    coverage,
         "commander":   (cmd_card or {}).get("name", cmd_name),
     }
+
+
+# ── Visual taste test (style sample) ──────────────────────────────────────────
+# Renders the text-preview's sample art_prompts as REAL FLUX/SDXL art (≤4 images,
+# ~30s each) so the user can judge the deck's actual look before a ~40-min full
+# build. Deliberately re-renders the EXACT prompts the user just read in the
+# ThemePreview panel — what you previewed is what renders. No theming, no faces;
+# the only GPU tenant is the image model (LLM is evicted first, same as builds).
+
+class StyleSampleEntry(BaseModel):
+    themed_name: str = Field("", max_length=120)
+    art_prompt:  str = Field("", max_length=900)
+    type_line:   str = Field("", max_length=80)
+
+
+class StyleSampleRequest(BaseModel):
+    samples:      List[StyleSampleEntry]
+    art_style:    str = "mtg_fantasy"
+    model_speed:  str = "quality"
+    checkpoint:   Optional[str] = None
+    llm_model:    Optional[str] = None   # which LLM to evict (it just ran the text preview)
+    gen_settings: Optional[GenSettingsModel] = None
+
+
+_STYLE_SAMPLE_DIR = RENDER_DIR / "style_samples"
+
+
+def _run_style_sample(job_id: str, req: StyleSampleRequest):
+    job = _jobs[job_id]
+    out_dir = _STYLE_SAMPLE_DIR / job_id
+    try:
+        if not _ensure_comfyui_ready(wait_timeout=240.0):
+            job.update(status="error", error="ComfyUI is not running and could not be started.")
+            return
+        from themer import OLLAMA_MODEL as _DEF
+        _wait_for_ollama_evict(req.llm_model or _DEF)
+
+        with _art_lock:   # never contend with a real build for the GPU
+            gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
+                           checkpoint=req.checkpoint,
+                           gen_settings=_resolve_gen_settings(req.gen_settings))
+            if not gen.available:
+                job.update(status="error", error="No usable checkpoint found in ComfyUI.")
+                return
+            # Match deck builds: scale dark-only LoRAs to the sample's mood so the
+            # taste test renders with the same stack a real build would use.
+            gen.theme_darkness = _theme_darkness_score_safe(
+                " ".join(s.art_prompt for s in req.samples))
+
+            out_dir.mkdir(parents=True, exist_ok=True)
+            for i, s in enumerate(req.samples[:4]):
+                if job.get("cancel_event") and job["cancel_event"].is_set():
+                    break
+                job["current"] = s.themed_name
+                path = gen.generate(s.art_prompt, str(out_dir / f"sample_{i}"),
+                                    card_type=s.type_line or "",
+                                    cancel_event=job.get("cancel_event"))
+                job["images"].append({
+                    "idx": i, "themed_name": s.themed_name,
+                    "ok": path is not None,
+                    "url": f"/api/deck/style-sample/{job_id}/img/{i}" if path else None,
+                })
+        job["status"] = "done"
+    except Exception as e:
+        traceback.print_exc()
+        job.update(status="error", error=str(e))
+    finally:
+        job["current"] = None
+
+
+def _theme_darkness_score_safe(hint: str) -> float:
+    try:
+        from image_gen import _theme_darkness_score
+        return _theme_darkness_score(hint)
+    except Exception:
+        return 1.0
+
+
+@app.post("/api/deck/style-sample")
+async def start_style_sample(req: StyleSampleRequest, background_tasks: BackgroundTasks, request: Request):
+    prompts = [s for s in req.samples if (s.art_prompt or "").strip()]
+    if not prompts:
+        raise HTTPException(400, "No sample prompts to render — run the creative-direction preview first.")
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} per {_RATE_LIMIT_WINDOW}s")
+    # One GPU: refuse while a build/sample is actively running.
+    for jid, j in _jobs.items():
+        if j.get("status") in ("queued", "building"):
+            raise HTTPException(409, "Another build is running — wait for it to finish (one GPU).")
+    job_id = uuid.uuid4().hex[:16]
+    _jobs[job_id] = {"status": "building", "kind": "style_sample", "images": [],
+                     "current": None, "total": min(len(prompts), 4),
+                     "cancel_event": threading.Event(), "created_at": time.time()}
+    req.samples = prompts
+    background_tasks.add_task(_run_style_sample, job_id, req)
+    return {"job_id": job_id}
+
+
+@app.get("/api/deck/style-sample/{job_id}")
+async def style_sample_status(job_id: str):
+    j = _jobs.get(job_id)
+    if not j or j.get("kind") != "style_sample":
+        raise HTTPException(404, "Sample job not found")
+    return {"status": j.get("status"), "error": j.get("error"),
+            "current": j.get("current"), "total": j.get("total"),
+            "images": j.get("images", [])}
+
+
+@app.get("/api/deck/style-sample/{job_id}/img/{idx}")
+async def style_sample_image(job_id: str, idx: int):
+    path = _STYLE_SAMPLE_DIR / job_id / f"sample_{idx}.png"
+    if not re.fullmatch(r"[0-9a-f]{16}", job_id) or not path.exists():
+        raise HTTPException(404, "Image not found")
+    return FileResponse(path, media_type="image/png")
 
 
 @app.post("/api/deck/build")

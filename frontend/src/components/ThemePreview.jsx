@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // "Preview the creative direction" — a cheap, pre-build look at how the app will
 // interpret the user's deck idea. Calls POST /api/deck/theme-preview, which builds
@@ -6,10 +6,15 @@ import { useState } from 'react'
 // themes a 3-card sample, so the user can iterate on their inputs before committing
 // to a full ~30-minute build. The must-include chips double as the faithfulness
 // contract: ✓ = the motif shows up in the sample art, ⚠ = not yet (try rephrasing).
-export default function ThemePreview({ commanderName, themeSpec, artStyle, creativity, commanderPrompt, llmModel }) {
+export default function ThemePreview({ commanderName, themeSpec, artStyle, creativity, commanderPrompt, llmModel,
+                                        canRenderArt = false, modelSpeed = 'quality', checkpoint = '', genSettings = null }) {
   const [loading, setLoading] = useState(false)
   const [data, setData]       = useState(null)
   const [error, setError]     = useState('')
+  // Visual taste test: render the previewed prompts as real art (~30s each)
+  const [artJob, setArtJob]     = useState(null)   // job_id while rendering
+  const [artState, setArtState] = useState(null)   // last polled status payload
+  const [artError, setArtError] = useState('')
 
   const hasSetting = !!(themeSpec && (themeSpec.setting || '').trim())
 
@@ -37,6 +42,54 @@ export default function ThemePreview({ commanderName, themeSpec, artStyle, creat
       setLoading(false)
     }
   }
+
+  // Kick off a visual taste test: render the previewed prompts as real art.
+  async function renderSamples() {
+    if (!data?.samples?.length) return
+    setArtError(''); setArtState(null)
+    try {
+      const res = await fetch('/api/deck/style-sample', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          samples: data.samples.map(s => ({
+            themed_name: s.themed_name, art_prompt: s.art_prompt, type_line: s.type_line,
+          })),
+          art_style:    artStyle || 'mtg_fantasy',
+          model_speed:  modelSpeed || 'quality',
+          checkpoint:   checkpoint || null,
+          llm_model:    llmModel || null,
+          gen_settings: genSettings || null,
+        }),
+      })
+      const body = await res.json()
+      if (!res.ok) throw new Error(body.detail || `Sample render failed (${res.status})`)
+      setArtJob(body.job_id)
+    } catch (e) {
+      setArtError(String(e.message || e))
+    }
+  }
+
+  // Poll the sample job every 3s until done/error.
+  useEffect(() => {
+    if (!artJob) return
+    let stop = false
+    const tick = async () => {
+      try {
+        const res = await fetch(`/api/deck/style-sample/${artJob}`)
+        const body = await res.json()
+        if (stop) return
+        setArtState(body)
+        if (body.status === 'building') setTimeout(tick, 3000)
+        else if (body.status === 'error') { setArtError(body.error || 'Sample render failed'); setArtJob(null) }
+        else setArtJob(null)   // done
+      } catch {
+        if (!stop) setTimeout(tick, 4000)
+      }
+    }
+    tick()
+    return () => { stop = true }
+  }, [artJob])
 
   const wb = data?.world_bible
   const cov = data?.coverage || {}
@@ -140,6 +193,57 @@ export default function ThemePreview({ commanderName, themeSpec, artStyle, creat
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Visual taste test — render the previewed prompts as real art */}
+          {canRenderArt && data?.samples?.length > 0 && (
+            <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #292524' }}>
+              {!artJob && !artState?.images?.length && (
+                <button
+                  onClick={renderSamples}
+                  style={{
+                    fontSize: 13, padding: '9px 16px', borderRadius: 10, cursor: 'pointer',
+                    background: 'linear-gradient(180deg,#ca8a04,#854d0e)', border: '1px solid #eab308',
+                    color: '#0c0a09', fontFamily: 'inherit', fontWeight: 700,
+                    display: 'flex', alignItems: 'center', gap: 8,
+                  }}
+                >
+                  <span>🎨</span> Render these as real art (~2 min)
+                </button>
+              )}
+              {artJob && (
+                <div style={{ fontSize: 12, color: '#a8a29e' }}>
+                  ⏳ Painting{artState?.current ? <> — <em style={{ color: '#eab308' }}>{artState.current}</em></> : '…'}
+                  <span style={{ color: '#57534e' }}> ({(artState?.images?.length || 0)}/{artState?.total || data.samples.length} done — first image loads the model, ~60s)</span>
+                </div>
+              )}
+              {artError && (
+                <div style={{ marginTop: 8, padding: '8px 12px', background: '#1f0a0a', border: '1px solid #7f1d1d', borderRadius: 8, fontSize: 12, color: '#fca5a5' }}>
+                  {artError}
+                </div>
+              )}
+              {artState?.images?.length > 0 && (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))', gap: 10, marginTop: 10 }}>
+                  {artState.images.filter(im => im.ok && im.url).map(im => (
+                    <figure key={im.idx} style={{ margin: 0 }}>
+                      <img src={im.url} alt={im.themed_name}
+                           style={{ width: '100%', borderRadius: 8, border: '1px solid #44403c', display: 'block' }} />
+                      <figcaption style={{ fontSize: 11, color: '#eab308', marginTop: 4, fontWeight: 700 }}>
+                        {im.themed_name}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {!artJob && artState?.images?.length > 0 && (
+                <button
+                  onClick={renderSamples}
+                  style={{ marginTop: 10, fontSize: 11, color: '#78716c', background: 'none', border: '1px solid #292524', borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit' }}
+                >
+                  🎲 Re-roll samples
+                </button>
+              )}
             </div>
           )}
 

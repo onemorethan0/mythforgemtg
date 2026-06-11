@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ManaCost from './ManaCost'
 import AdvancedPanel from './AdvancedPanel'
 import ThemePreview from './ThemePreview'
+import { toGenSettingsPayload } from '../config/genSettings'
 
 const EXAMPLES = [
   'dark gothic necromancer city',
@@ -729,6 +730,10 @@ export default function StepTheme({
             creativity={creativity}
             commanderPrompt={commanderPrompt}
             llmModel={llmModel}
+            canRenderArt={!!generateArt && !comfyOffline}
+            modelSpeed={modelSpeed}
+            checkpoint={checkpoint}
+            genSettings={genSettings ? toGenSettingsPayload(genSettings.values) : null}
           />
         </div>
 
