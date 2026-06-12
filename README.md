@@ -16,9 +16,9 @@ Every card below came out of the same pipeline: pick a commander, describe a wor
 
 ![Five commanders across five themed decks](docs/samples/hero_commanders.jpg)
 
-**One deck, two themes** — same commander and card list reskinned by a single free-text prompt. Names, flavor, creature types, and art all follow the theme:
+**One card, four worlds** — the *same* commander (Syr Gwyn, Hero of Ashvale) rethemed into four different decks. The rules stay identical, but the name, art, flavor — even the creature types in the rules text ("equip **Cowboy**", "equip **Grim Warden**") — follow each world, and the subtitle always shows the real card:
 
-![Dark fantasy vs. neon cyberpunk — the same deck under two themes](docs/gallery/two-themes.png)
+![The same commander rethemed into four different worlds](docs/samples/one_card_four_worlds.jpg)
 
 ### The borderless treatment
 
@@ -87,8 +87,6 @@ A taste of thirteen sample decks (commander + a creature + a spell or land each)
 **🛡️ An ironclad champion of Midgard:**
 
 ![Ironclad Midgard sample cards](docs/samples/theme_10_ironclad_midgard.jpg)
-
-![Animated showcase cycling through a themed deck](docs/gallery/deck-showcase.gif)
 
 > All art above is generated **locally** (FLUX / SDXL via ComfyUI) and composited into print-ready proxy frames. The borderless cards were rendered against a locally-installed [Card Conjurer](#optional-official-style-m15-frames-card-conjurer)'s frame assets — **this repo bundles no Wizards-copyrighted frame artwork**; the built-in frames (e.g. the samurai deck) ship with the app.
 
