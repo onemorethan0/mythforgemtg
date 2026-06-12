@@ -74,6 +74,12 @@ class _FrameSpec:
     mana_right: float    # right edge x-fraction for the (right-aligned) mana row
     mana_cy: float       # vertical centre y-fraction of the mana row
     mana_size: float     # mana pip size as a fraction of card height
+    # ── Optional treatments (default off so existing specs are unchanged) ──────
+    white_text: bool = False         # force white title/type/PT (borderless convention)
+    subtitle: bool = True            # show the proxied card's real name under the title
+    crowns: Optional[dict] = None    # color-key -> legendary crown PNG (under crown_subdir)
+    crown_subdir: str = ""           # img/frames subpath holding the crown PNGs
+    crown_box: Optional[_Box] = None # crown placement (full-card fractions; authored at 1500×2100)
 
 
 # M15 "regular" — values transcribed from the standard MTG card layout
@@ -91,14 +97,16 @@ _M15 = _FrameSpec(
         "A": "m15PTA.png", "C": "m15PTC.png",
     },
     art=_Box(0.0767, 0.1129, 0.8476, 0.4429),
-    set_symbol=_Box(0.9213 - 0.12, 0.5910, 0.12, 0.0410),  # right-anchored band
+    # Right-anchored on the type line, vertically centred on the type text
+    # (0.5910 sat below the band — the symbol rode the bar's lower edge).
+    set_symbol=_Box(0.9213 - 0.12, 0.5664 + (0.0543 - 0.041) / 2, 0.12, 0.0410),
     pt_box=_Box(0.7573, 0.8848, 0.188, 0.0733),
     title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
     rules=_Box(0.086, 0.6303, 0.828, 0.2875),
     mana_right=0.9292,
     mana_cy=0.0613 + (71 / 2100) / 2,   # CC mana-box vertical centre
-    mana_size=0.043,                     # ~ CC 71/1638; was 0.046 (too large, rode high)
+    mana_size=0.032,                     # measured: real pip ≈ 0.032 of card H (2X2 scan)
 )
 
 # M15 "borderless" / full-art — art fills the WHOLE card; the frame PNG is a
@@ -118,17 +126,30 @@ _M15_FULLART = _FrameSpec(
         "G": "pt/g.png", "M": "pt/m.png", "A": "pt/a.png", "C": "pt/l.png",
     },
     art=_Box(0.0, 0.0, 1.0, 0.9224),                 # full-bleed art
-    # On the borderless type band the symbol must sit ON the type line (the
-    # regular frame's 0.591 dropped it below the band, onto the rounded corner).
-    # Centre it vertically on the type box and pull it in from the rounded edge.
-    set_symbol=_Box(0.895 - 0.11, 0.5664 + (0.0543 - 0.041) / 2, 0.11, 0.041),
+    # Centred vertically on the type text, right edge at the CC-faithful set
+    # symbol margin (0.9213 — real scans put it just inside the cost's 0.9286
+    # right edge). The glyph itself is alpha-trimmed at composite time.
+    set_symbol=_Box(0.9213 - 0.11, 0.5664 + (0.0543 - 0.041) / 2, 0.11, 0.041),
     pt_box=_Box(1146 / 1500, 1861 / 2100, 274 / 1500, 140 / 2100),
     title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
     rules=_Box(0.086, 0.6303, 0.828, 0.2875),
     mana_right=0.9292,
-    mana_cy=0.0613 + (71 / 2100) / 2,   # CC mana-box vertical centre
-    mana_size=0.043,                     # ~ CC 71/1638; was 0.046 (too large, rode high)
+    mana_cy=0.0522 + 0.0543 / 2,         # align with the title text centre
+    mana_size=0.032,                     # measured: real pip ≈ 0.032 of card H (2X2 scan)
+    # Borderless / showcase treatment: white title + type + PT (WotC convention),
+    # a floating legend crown for legendaries, and the proxied card's real name
+    # as a subtitle under the new title.
+    white_text=True,
+    crowns={
+        "W": "m15CrownWFloating.png", "U": "m15CrownUFloating.png",
+        "B": "m15CrownBFloating.png", "R": "m15CrownRFloating.png",
+        "G": "m15CrownGFloating.png", "M": "m15CrownMFloating.png",
+        "A": "m15CrownAFloating.png", "L": "m15CrownLFloating.png",
+        "C": "m15CrownCFloating.png",
+    },
+    crown_subdir="m15/crowns",
+    crown_box=_Box(46 / 1500, 30 / 2100, 1408 / 1500, 215 / 2100),
 )
 
 # M15 "extended art" — art runs full-width to the left/right edges (taller than
@@ -147,14 +168,14 @@ _M15_EXTENDED = _FrameSpec(
         "A": "../../regular/m15PTA.png", "C": "../../regular/m15PTC.png",
     },
     art=_Box(0.0, 236 / 2814, 1.0, 1530 / 2814),    # full-width extended art
-    set_symbol=_Box(0.9213 - 0.12, 0.5910, 0.12, 0.0410),
+    set_symbol=_Box(0.9213 - 0.12, 0.5664 + (0.0543 - 0.041) / 2, 0.12, 0.0410),
     pt_box=_Box(0.7573, 0.8848, 0.188, 0.0733),
     title=_Text(0.0854, 0.0522, 0.8292, 0.0543, 0.0381, "belerenb"),
     type=_Text(0.0854, 0.5664, 0.8292, 0.0543, 0.0324, "belerenb"),
     rules=_Box(0.086, 0.6303, 0.828, 0.2875),
     mana_right=0.9292,
     mana_cy=0.0613 + (71 / 2100) / 2,
-    mana_size=0.043,
+    mana_size=0.032,
 )
 
 # Frame-style key -> spec. Keys match BuildRequest.frame_style / the UI selector.
@@ -169,8 +190,23 @@ _FONT_FILES = {
     "belerenb":   "beleren-bold_P1.01.ttf",
     "belerenbsc": "belerensmallcaps-bold.ttf",
     "mplantin":   "mplantin.ttf",
+    "mplantini":  "MPlantin-Italic.ttf",
     "matrixb":    "matrixb.ttf",
 }
+
+
+def _draw_frame_text(draw, canvas, pos, text, font, box, anchor, spec) -> tuple:
+    """Draw title/type/PT text. On `white_text` specs (the WotC borderless /
+    showcase convention) force a near-white fill with a dark outline so it reads
+    over the full-bleed art; otherwise pick black/white by contrast as before."""
+    if spec.white_text:
+        white = (252, 250, 246)
+        sw = max(2, int(font.size * 0.05))
+        draw.text(pos, text, font=font, fill=white, anchor=anchor,
+                  stroke_width=sw, stroke_fill=(0, 0, 0, 190))
+        return white
+    return cr._draw_legible_text(draw, canvas, pos, text, font, box,
+                                 anchor=anchor, fallback=cr._DARK_TEXT)
 
 
 # ── Asset resolution ───────────────────────────────────────────────────────────
@@ -293,6 +329,7 @@ def render_card_cc(
     mana_cost = card.get("mana_cost", "") or ""
     power     = card.get("power")
     toughness = card.get("toughness")
+    is_legendary = "Legendary" in type_line
 
     fkey  = _cc_frame_key(colors, type_line, spec)
     frame = _load_png(str(fdir / spec.frames.get(fkey, spec.frames["M"])))
@@ -321,6 +358,20 @@ def render_card_cc(
     # ── Frame overlay (full-card PNG with transparent art/text windows) ──────────
     canvas.alpha_composite(frame.resize((W, H), Image.LANCZOS))
 
+    # ── Legendary crown ──────────────────────────────────────────────────────────
+    # Borderless legendaries get the floating ornamental crown over the title.
+    # Authored at 1500×2100; scale uniformly and centre horizontally so each
+    # colour's crown keeps its aspect, then seat the top at the spec'd y.
+    if is_legendary and spec.crowns and spec.crown_box is not None:
+        ckey = fkey if fkey in spec.crowns else "M"
+        crown = _load_png(str(root / "img" / "frames" / spec.crown_subdir / spec.crowns[ckey]))
+        if crown is not None:
+            cscale = W / 1500.0
+            cw = max(1, int(crown.width * cscale))
+            ch = max(1, int(crown.height * cscale))
+            crown_r = crown.resize((cw, ch), Image.LANCZOS)
+            canvas.alpha_composite(crown_r, ((W - cw) // 2, int(spec.crown_box.y * H)))
+
     # ── Power/Toughness box ──────────────────────────────────────────────────────
     if power is not None and toughness is not None:
         pt_png = _load_png(str(fdir / spec.pt.get(_pt_key(fkey, spec), spec.pt["C"])))
@@ -340,6 +391,12 @@ def render_card_cc(
             except Exception:
                 pass
         ss = set_symbol.convert("RGBA")
+        # Trim the transparent padding around the glyph first — the generated
+        # relief leaves ~12% vertical / ~16% right-side margin, which both
+        # shrank the visible symbol and pushed it left of its right anchor.
+        bb = ss.getchannel("A").getbbox()
+        if bb:
+            ss = ss.crop(bb)
         # fit within the band height, right-anchored
         scale = sh / ss.height
         ss = ss.resize((max(1, int(ss.width * scale)), sh), Image.LANCZOS)
@@ -347,18 +404,26 @@ def render_card_cc(
 
     draw = ImageDraw.Draw(canvas)
 
-    # ── Mana cost (right-aligned on the title line) ──────────────────────────────
+    # ── Title vertical anchor (lifted when a proxied-name subtitle is shown) ─────
+    original_name = (card.get("name") or "").strip()
+    show_subtitle = bool(spec.subtitle and original_name
+                         and original_name != (themed_name or "").strip())
+    if show_subtitle:
+        tcy_frac = spec.title.y + spec.title.h * 0.32   # lift into the upper plate
+    else:
+        tcy_frac = spec.title.y + spec.title.h / 2
+    tcy = int(tcy_frac * H)
+
+    # ── Mana cost (right-aligned, sharing the title's vertical centre) ───────────
     pips = cr._parse_mana(mana_cost)
-    mana_cy = int(spec.mana_cy * H)
     mana_sz = int(spec.mana_size * H)
     mana_left = int(spec.mana_right * W)
     if pips:
         mana_left = cr._draw_mana_row(canvas, pips, int(spec.mana_right * W),
-                                      mana_cy, mana_sz)
+                                      tcy, mana_sz)
 
-    # ── Title (auto-fit + legibility-driven colour against the real frame) ───────
+    # ── Title (auto-fit; white on borderless specs, else contrast-picked) ────────
     tx = int(spec.title.x * W)
-    tcy = int((spec.title.y + spec.title.h / 2) * H)
     title_max = max(int(0.2 * W), (mana_left - int(spec.title.size * H * 0.3)) - tx)
     t_size = int(spec.title.size * H)
     t_font = _font(spec.title.font, t_size)
@@ -369,8 +434,18 @@ def render_card_cc(
     while t_font.getlength(t_text) > title_max and len(t_text) > 4:
         t_text = t_text[:-2] + "…"
     t_box = (tx, tcy - t_size // 2, tx + max(t_font.getlength(t_text), 1), tcy + t_size // 2)
-    cr._draw_legible_text(draw, canvas, (tx, tcy), t_text, t_font, t_box,
-                          anchor="lm", fallback=cr._DARK_TEXT)
+    _draw_frame_text(draw, canvas, (tx, tcy), t_text, t_font, t_box, "lm", spec)
+
+    # ── Proxied-card-name subtitle (so it's clear what real card this is) ────────
+    if show_subtitle:
+        sub_size = max(int(spec.title.size * 0.42 * H), int(0.014 * H))
+        sub_font = _font("mplantini", sub_size)
+        sub_text = original_name
+        while sub_font.getlength(sub_text) > title_max and len(sub_text) > 4:
+            sub_text = sub_text[:-2] + "…"
+        sub_y = int((spec.title.y + spec.title.h * 0.95) * H)
+        sub_box = (tx, sub_y - sub_size, tx + max(sub_font.getlength(sub_text), 1), sub_y)
+        _draw_frame_text(draw, canvas, (tx, sub_y), sub_text, sub_font, sub_box, "lb", spec)
 
     # ── Type line ────────────────────────────────────────────────────────────────
     ty_x = int(spec.type.x * W)
@@ -386,8 +461,7 @@ def render_card_cc(
         ty_text = ty_text[:-2] + "…"
     ty_box = (ty_x, ty_cy - ty_size // 2, ty_x + max(ty_font.getlength(ty_text), 1),
               ty_cy + ty_size // 2)
-    cr._draw_legible_text(draw, canvas, (ty_x, ty_cy), ty_text, ty_font, ty_box,
-                          anchor="lm", fallback=cr._DARK_TEXT)
+    _draw_frame_text(draw, canvas, (ty_x, ty_cy), ty_text, ty_font, ty_box, "lm", spec)
 
     # ── Rules + flavor (reuse the built-in text engine at M15 bounds) ────────────
     rx, ry, rw, rh = px(spec.rules)
@@ -405,10 +479,12 @@ def render_card_cc(
         rules_h = int(rh * 0.66)
         flav_y  = ry + rules_h + int(0.012 * H)
         flav_h  = rh - rules_h - int(0.012 * H)
-        cr._draw_oracle_text(canvas, oracle_text, rx, ry, rw, rules_h,
-                             sym_size, body_size, rules_fg, center_v=True)
+        # Draw flavor at the SAME final size as the rules text so a single card
+        # never mixes font sizes (the two boxes otherwise auto-fit independently).
+        rules_size = cr._draw_oracle_text(canvas, oracle_text, rx, ry, rw, rules_h,
+                                          sym_size, body_size, rules_fg, center_v=True)
         cr._draw_flavor_text(canvas, flavor_text, rx, flav_y, rw, flav_h,
-                             int(body_size * 0.92), rules_fg)
+                             rules_size, rules_fg)
     elif has_oracle:
         cr._draw_oracle_text(canvas, oracle_text, rx, ry, rw, rh,
                              sym_size, body_size, rules_fg, center_v=True)
@@ -420,12 +496,12 @@ def render_card_cc(
     if power is not None and toughness is not None:
         pt_str = f"{power}/{toughness}"
         bx, by, bw, bh = px(spec.pt_box)
-        pt_size = int(spec.pt_box.h * H * 0.55)
-        pt_font = _font("belerenbsc", pt_size)
+        # Real-card digit sizing (see cr._PT_INK_FRAC) — the old 0.55×box-height
+        # font came out ~30% under real M15 digits. Width-fit handles "10/10"+.
+        pt_font = cr._pt_font_for(pt_str, int(bw * 0.84), H)
         pt_cx = bx + int(0.5 * bw)
         pt_cy = by + int(0.46 * bh)
         pt_box = (bx, by, bx + bw, by + bh)
-        cr._draw_legible_text(draw, canvas, (pt_cx, pt_cy), pt_str, pt_font, pt_box,
-                              anchor="mm", fallback=cr._DARK_TEXT)
+        _draw_frame_text(draw, canvas, (pt_cx, pt_cy), pt_str, pt_font, pt_box, "mm", spec)
 
     return canvas.resize((cr.CARD_W, cr.CARD_H), Image.LANCZOS)

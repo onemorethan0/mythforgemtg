@@ -203,6 +203,41 @@ def _mplantin_italic(size: int) -> ImageFont.FreeTypeFont:
         return ImageFont.truetype(str(p), size)
     return ImageFont.load_default(size=size)
 
+
+# ── P/T sizing (shared by the built-in renderer and cc_frames) ────────────────
+# Real M15 P/T digits measure 0.0395 of card height (2X2 Marchesa scan, digit
+# ink height / card height — they fill ~86% of the badge interior). All three
+# frame systems previously rendered digits at roughly half that, which read as
+# tiny numbers floating in an oversized badge.
+_PT_INK_FRAC = 0.0395
+
+
+@lru_cache(maxsize=1)
+def _beleren_digit_ratio() -> float:
+    """Digit ink height as a fraction of the font em size (measured once)."""
+    try:
+        bb = _beleren(100).getbbox("3")
+        r = (bb[3] - bb[1]) / 100
+        if 0.4 < r < 1.0:
+            return r
+    except Exception:
+        pass
+    return 0.71
+
+
+def _pt_font_for(pt_str: str, max_w: int, canvas_h: int) -> ImageFont.FreeTypeFont:
+    """Beleren sized so digits hit the real-card ink fraction, shrunk to fit
+    max_w for long strings ('10/10', '13/13', '*/*')."""
+    size = max(12, int(_PT_INK_FRAC * canvas_h / _beleren_digit_ratio()))
+    font = _beleren(size)
+    try:
+        while font.getlength(pt_str) > max_w and size > 12:
+            size = max(12, int(size * 0.92))
+            font = _beleren(size)
+    except Exception:
+        pass
+    return font
+
 # ── SVG → PIL via pixie ───────────────────────────────────────────────────────
 _SYM_CACHE: dict[tuple[str, int], Image.Image] = {}
 
@@ -390,17 +425,50 @@ def _fetch_scryfall_art(url: str, cache_key: str) -> Optional[Image.Image]:
 # ── Inline-symbol text renderer ───────────────────────────────────────────────
 _SYM_RE = re.compile(r"\{([^}]+)\}")
 
-def _tokenise(text: str) -> list[tuple[str, str]]:
-    """Split text into ('text', str) and ('sym', sym_name) tokens."""
-    tokens: list[tuple[str, str]] = []
-    pos = 0
-    for m in _SYM_RE.finditer(text):
-        if m.start() > pos:
-            tokens.append(("text", text[pos:m.start()]))
-        tokens.append(("sym", m.group(1)))
-        pos = m.end()
-    if pos < len(text):
-        tokens.append(("text", text[pos:]))
+
+def _italic_regions(text: str) -> list[tuple[str, bool]]:
+    """Split `text` into consecutive (segment, is_italic) runs where any
+    parenthetical reminder text — including the parentheses — is italic.
+    Paren depth is tracked across the whole string so reminders that contain
+    '{T}'-style symbols or nested parens stay italic end-to-end; unbalanced
+    parens are left upright."""
+    runs: list[tuple[str, bool]] = []
+    buf: list[str] = []
+    cur = False          # italic flag of the run currently being accumulated
+    depth = 0
+    for ch in text:
+        if ch == "(":
+            ital = True
+            depth += 1
+        elif ch == ")":
+            ital = depth > 0
+            depth = max(0, depth - 1)
+        else:
+            ital = depth > 0
+        if ital != cur and buf:
+            runs.append(("".join(buf), cur))
+            buf = []
+        cur = ital
+        buf.append(ch)
+    if buf:
+        runs.append(("".join(buf), cur))
+    return runs
+
+
+def _tokenise(text: str) -> list[tuple[str, str, bool]]:
+    """Split text into ('text', str, italic) and ('sym', name, False) tokens.
+    Reminder text in parentheses is flagged italic so it renders in MPlantin-
+    Italic inline — not only when a whole paragraph is parenthetical."""
+    tokens: list[tuple[str, str, bool]] = []
+    for seg, ital in _italic_regions(text):
+        pos = 0
+        for m in _SYM_RE.finditer(seg):
+            if m.start() > pos:
+                tokens.append(("text", seg[pos:m.start()], ital))
+            tokens.append(("sym", m.group(1), False))
+            pos = m.end()
+        if pos < len(seg):
+            tokens.append(("text", seg[pos:], ital))
     return tokens
 
 
@@ -415,11 +483,13 @@ def _draw_oracle_text(
     font_size: int,
     fg: tuple,
     center_v: bool = False,
-) -> None:
+) -> int:
     """
     Render oracle text with inline symbols into `img`.
     Automatically shrinks font/symbol to fit, or grows them for short text.
     When center_v=True the rendered block is vertically centred in max_h.
+    Returns the final body font size, so flavor text can be drawn at the same
+    size for a consistent look on a single card.
     """
     # ── Shrink phase: up to 8 attempts ────────────────────────────────────────
     for attempt in range(8):
@@ -427,7 +497,7 @@ def _draw_oracle_text(
         fnt_italic = _mplantin_italic(font_size)
         lh = font_size + _mm(0.4)
 
-        lines   = _build_oracle_lines(text, fnt_body, sym_size, max_w)
+        lines   = _build_oracle_lines(text, fnt_body, fnt_italic, sym_size, max_w)
         total_h = len(lines) * lh
 
         if total_h <= max_h or attempt == 7:
@@ -438,16 +508,17 @@ def _draw_oracle_text(
     # ── Grow phase: expand for short text so it fills the box nicely ──────────
     if center_v and total_h < max_h * 0.55:
         for _ in range(5):
-            new_fs  = min(int(font_size * 1.12), _mm(3.4))
-            new_ss  = min(int(sym_size  * 1.12), _mm(3.4))
-            new_fnt = _mplantin(new_fs)
-            new_lns = _build_oracle_lines(text, new_fnt, new_ss, max_w)
-            new_lh  = new_fs + _mm(0.4)
+            new_fs   = min(int(font_size * 1.12), _mm(3.4))
+            new_ss   = min(int(sym_size  * 1.12), _mm(3.4))
+            new_body = _mplantin(new_fs)
+            new_ital = _mplantin_italic(new_fs)
+            new_lns  = _build_oracle_lines(text, new_body, new_ital, new_ss, max_w)
+            new_lh   = new_fs + _mm(0.4)
             if len(new_lns) * new_lh > max_h * 0.82:
                 break
             font_size, sym_size = new_fs, new_ss
-            fnt_body   = new_fnt
-            fnt_italic = _mplantin_italic(new_fs)
+            fnt_body   = new_body
+            fnt_italic = new_ital
             lh         = new_lh
             lines      = new_lns
             total_h    = len(lines) * lh
@@ -457,12 +528,13 @@ def _draw_oracle_text(
 
     draw  = ImageDraw.Draw(img)
     cur_y = start_y
-    for line_tokens, is_reminder in lines:
+    for line_tokens in lines:
         if cur_y + lh > y + max_h:
             break
         _draw_line(draw, img, line_tokens, x, cur_y, sym_size,
-                   fnt_italic if is_reminder else fnt_body, fg, lh)
+                   fnt_body, fnt_italic, fg, lh)
         cur_y += lh
+    return font_size
 
 
 def _draw_flavor_text(
@@ -513,60 +585,70 @@ def _draw_flavor_text(
 
 def _build_oracle_lines(
     text: str,
-    font: ImageFont.FreeTypeFont,
+    font_body: ImageFont.FreeTypeFont,
+    font_italic: ImageFont.FreeTypeFont,
     sym_size: int,
     max_w: int,
-) -> list[tuple[list, bool]]:
-    """Word-wrap oracle text (with symbols) to fit within max_w pixels."""
+) -> list[list[tuple[str, str, bool]]]:
+    """Word-wrap oracle text (with inline symbols + italic reminder spans) to
+    fit within max_w pixels. Each line is a list of (kind, value, italic) tokens."""
     result = []
     for para in text.split("\n"):
         if not para.strip():
-            result.append(([], False))
+            result.append([])
             continue
-        is_reminder = para.strip().startswith("(")
         tokens = _tokenise(para)
-        result.extend(_wrap_tokens(tokens, font, sym_size, max_w, is_reminder))
+        result.extend(_wrap_tokens(tokens, font_body, font_italic, sym_size, max_w))
     return result
 
 
-def _token_width(tok_type: str, tok_val: str, font: ImageFont.FreeTypeFont, sym_size: int) -> int:
-    if tok_type == "sym":
+def _token_width(
+    token: tuple[str, str, bool],
+    font_body: ImageFont.FreeTypeFont,
+    font_italic: ImageFont.FreeTypeFont,
+    sym_size: int,
+) -> int:
+    if token[0] == "sym":
         return sym_size + 2
+    font = font_italic if token[2] else font_body
     try:
-        return round(font.getlength(tok_val))
+        return round(font.getlength(token[1]))
     except Exception:
-        return len(tok_val) * (font.size // 2)
+        return len(token[1]) * (font.size // 2)
 
 
 def _wrap_tokens(
-    tokens: list[tuple[str, str]],
-    font: ImageFont.FreeTypeFont,
+    tokens: list[tuple[str, str, bool]],
+    font_body: ImageFont.FreeTypeFont,
+    font_italic: ImageFont.FreeTypeFont,
     sym_size: int,
     max_w: int,
-    is_reminder: bool,
-) -> list[tuple[list, bool]]:
-    """Wrap a list of tokens into lines of at most max_w px."""
+) -> list[list[tuple[str, str, bool]]]:
+    """Wrap a list of (kind, value, italic) tokens into lines of at most max_w px."""
     lines   = []
-    cur_line: list[tuple[str, str]] = []
+    cur_line: list[tuple[str, str, bool]] = []
     cur_w   = 0
 
     def flush():
         if cur_line:
-            lines.append((list(cur_line), is_reminder))
+            lines.append(list(cur_line))
 
-    for tok_type, tok_val in tokens:
-        if tok_type == "text":
+    for token in tokens:
+        if token[0] == "text":
+            ital = token[2]
             # split on spaces, keeping spaces as part of following word
-            words = re.split(r"(?<= )", tok_val)
+            words = re.split(r"(?<= )", token[1])
             for word in words:
-                w = _token_width("text", word, font, sym_size)
+                if not word:
+                    continue
+                w = _token_width(("text", word, ital), font_body, font_italic, sym_size)
                 if cur_w + w > max_w and cur_line:
                     flush()
                     cur_line = []
                     cur_w = 0
                     word = word.lstrip(" ")
-                    w = _token_width("text", word, font, sym_size)
-                cur_line.append(("text", word))
+                    w = _token_width(("text", word, ital), font_body, font_italic, sym_size)
+                cur_line.append(("text", word, ital))
                 cur_w += w
         else:  # sym
             w = sym_size + 2
@@ -574,7 +656,7 @@ def _wrap_tokens(
                 flush()
                 cur_line = []
                 cur_w = 0
-            cur_line.append(("sym", tok_val))
+            cur_line.append(token)
             cur_w += w
 
     flush()
@@ -584,25 +666,27 @@ def _wrap_tokens(
 def _draw_line(
     draw: ImageDraw.ImageDraw,
     img: Image.Image,
-    tokens: list[tuple[str, str]],
+    tokens: list[tuple[str, str, bool]],
     x: int,
     y: int,
     sym_size: int,
-    font: ImageFont.FreeTypeFont,
+    font_body: ImageFont.FreeTypeFont,
+    font_italic: ImageFont.FreeTypeFont,
     fg: tuple,
     lh: int,
 ) -> None:
     cx = x
     sym_y = y + (lh - sym_size) // 2
-    for tok_type, tok_val in tokens:
-        if tok_type == "text":
-            draw.text((cx, y), tok_val, font=font, fill=fg)
+    for token in tokens:
+        if token[0] == "text":
+            font = font_italic if token[2] else font_body
+            draw.text((cx, y), token[1], font=font, fill=fg)
             try:
-                cx += round(font.getlength(tok_val))
+                cx += round(font.getlength(token[1]))
             except Exception:
-                cx += len(tok_val) * (font.size // 2)
+                cx += len(token[1]) * (font.size // 2)
         else:
-            sym_img = _svg_sym(tok_val, sym_size)
+            sym_img = _svg_sym(token[1], sym_size)
             if sym_img:
                 img.paste(sym_img, (cx, sym_y), sym_img)
                 cx += sym_size + 2
@@ -611,7 +695,7 @@ def _draw_line(
                 r = sym_size // 2
                 draw.ellipse([cx, sym_y, cx + sym_size, sym_y + sym_size],
                              fill=(140, 140, 140))
-                draw.text((cx + r, sym_y + r), tok_val[:2].upper(),
+                draw.text((cx + r, sym_y + r), token[1][:2].upper(),
                           font=_mplantin(max(sym_size - 4, 10)), fill=(255, 255, 255),
                           anchor="mm")
                 cx += sym_size + 2
@@ -625,15 +709,26 @@ def _draw_mana_row(
     centre_y: int,
     pip_size: int,
 ) -> int:
-    """Draw mana pips right-aligned from right_x. Returns leftmost x used."""
+    """Draw mana pips right-aligned from right_x. Returns leftmost x used.
+
+    Each pip gets a hard dark drop shadow offset down(-left) — real M15 cost
+    rows have one (measured ≈+8.5%/−2% of pip diameter on a 2X2 scan); without
+    it the discs read as pasted-on. Inter-pip gap is proportional (~3% of
+    diameter — real pips nearly touch)."""
     cx = right_x
+    gap   = max(2, round(pip_size * 0.03))
+    sh_dx = -max(1, round(pip_size * 0.02))
+    sh_dy = max(2, round(pip_size * 0.085))
     for sym in reversed(pips):
         sym_img = _svg_sym(sym, pip_size)
         if sym_img:
             px = cx - pip_size
             py = centre_y - pip_size // 2
+            shadow = Image.new("RGBA", sym_img.size, (0, 0, 0, 255))
+            shadow.putalpha(sym_img.getchannel("A"))
+            img.paste(shadow, (px + sh_dx, py + sh_dy), shadow)
             img.paste(sym_img, (px, py), sym_img)
-            cx = px - 2
+            cx = px - gap
         else:
             # fallback coloured circle
             draw = ImageDraw.Draw(img)
@@ -641,7 +736,7 @@ def _draw_mana_row(
             draw.ellipse([px, py, px + pip_size, py + pip_size], fill=(140, 140, 140))
             draw.text((px + pip_size // 2, centre_y), sym[:2].upper(),
                       font=_beleren(max(pip_size - 8, 10)), fill=(255, 255, 255), anchor="mm")
-            cx = px - 2
+            cx = px - gap
     return cx
 
 
@@ -1238,8 +1333,9 @@ def render_card(
         flav_y  = 0
         flav_h  = 0
 
+    rules_size = body_size
     if has_oracle:
-        _draw_oracle_text(
+        rules_size = _draw_oracle_text(
             canvas, oracle_text,
             ora_x, ora_y, ora_w, rules_h if rules_h else ora_h,
             sym_size, body_size, oracle_fg,
@@ -1255,7 +1351,9 @@ def render_card(
                   fill=(110, 98, 78, 200), width=max(1, round(_mm(0.08))))
 
     if has_flavor and flav_h > 0:
-        flav_font = _mm(1.85)
+        # Match the rules-text size so a single card never mixes sizes; fall
+        # back to a default only when there's no rules text to match.
+        flav_font = rules_size if has_oracle else _mm(1.85)
         _draw_flavor_text(
             canvas, flavor_text,
             ora_x, flav_y, ora_w, flav_h,
@@ -1273,17 +1371,9 @@ def render_card(
             draw.rounded_rectangle([_PT_X, _PT_Y, _PT_X + _PT_W, _PT_Y + _PT_H],
                                    radius=_mm(0.8), fill=(200, 185, 145))
 
-        # Scale font size based on P/T string length to fill space visually
-        # "1/1" (3 chars) → 2.3mm, "10/10" (5 chars) → 1.9mm, "13/12" (5 chars) → 1.9mm
-        pt_len = len(pt_str)
-        if pt_len <= 3:
-            pt_font_size = _mm(2.3)
-        elif pt_len == 4:
-            pt_font_size = _mm(2.0)
-        else:  # 5+ characters
-            pt_font_size = _mm(1.8)
-
-        pt_font = _beleren(pt_font_size)
+        # Size digits to the real-card ink fraction, shrinking only when a long
+        # string ("10/10", "*/*") would overflow the badge's inner width.
+        pt_font = _pt_font_for(pt_str, _PT_W - _mm(3.0), _H2)
         pt_box  = (_PT_X, _PT_Y, _PT_X + _PT_W, _PT_Y + _PT_H)
         _draw_legible_text(
             draw, canvas, (_PT_X + _PT_W // 2, _PT_Y + _PT_H // 2),

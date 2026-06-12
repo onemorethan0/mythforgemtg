@@ -452,6 +452,39 @@ def test_name_art_coherence():
                not inc("Golden Dawn Herald", "Golden light floods a cathedral as a herald raises a horn"))
 
 
+def test_oracle_reminder_italics():
+    """Inline parenthetical reminder text is flagged italic (not only when a
+    whole paragraph is parenthetical), and _draw_oracle_text reports its final
+    body font size so flavor text can be drawn at the same size."""
+    # _italic_regions: the reminder span (incl. parens) is italic; the rest upright
+    regs = cr._italic_regions("Dethrone (Whenever this attacks, draw.) Done")
+    check("ital.reconstruct", "".join(s for s, _ in regs),
+          "Dethrone (Whenever this attacks, draw.) Done")
+    check("ital.span", "".join(s for s, it in regs if it),
+          "(Whenever this attacks, draw.)")
+    check_true("ital.keyword_upright",
+               all(not it for s, it in regs if "Dethrone" in s))
+
+    # _tokenise carries the italic flag through to text tokens
+    toks = cr._tokenise("Flying (It can't be blocked.)")
+    check_true("tok.reminder_italic",
+               any(t[0] == "text" and t[2] and "blocked" in t[1] for t in toks))
+    check_true("tok.body_upright",
+               any(t[0] == "text" and not t[2] and "Flying" in t[1] for t in toks))
+
+    # a reminder that contains a {symbol} stays italic end-to-end
+    toks2 = cr._tokenise("({T}: Add {G}.)")
+    check_true("tok.sym_reminder_italic",
+               all(t[2] for t in toks2 if t[0] == "text"))
+
+    # _draw_oracle_text returns the final body font size (int) it settled on
+    from PIL import Image
+    img = Image.new("RGBA", (300, 200), (0, 0, 0, 255))
+    size = cr._draw_oracle_text(img, "Counter target spell.", 10, 10, 280, 180,
+                                cr._mm(2.4), cr._mm(2.2), cr._DARK_TEXT, center_v=True)
+    check_true("oracle.returns_int", isinstance(size, int) and size > 0)
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -459,7 +492,8 @@ def main():
                test_pad_with_basics, test_set_symbol_rarity, test_ro_race_class,
                test_ro_class_override, test_stub_prompt, test_ro_tribal_map,
                test_subject_directives, test_artifact_object_kind,
-               test_creative_brief_helpers, test_name_art_coherence):
+               test_creative_brief_helpers, test_name_art_coherence,
+               test_oracle_reminder_italics):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
