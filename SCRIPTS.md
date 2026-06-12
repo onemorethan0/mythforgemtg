@@ -242,10 +242,28 @@ python server.py              # Start server
 
 ---
 
+## Utility scripts (`utilities/`)
+
+### `generate_samples.py` — showcase sample cards
+
+Re-renders showcase cards from any **already-built** deck (no GPU/LLM needed — pure PIL from stored data + existing art). For each deck it picks the commander + 3 creatures + 3 spells + 3 lands and writes full-res PNGs, a 10-up `contact_sheet.png`, and a `manifest.json`:
+
+```bash
+# one or more deck job ids (the folder names under renders/)
+python utilities/generate_samples.py 532317b8f7ee4def
+
+# or a JSON manifest mapping label -> job id (see sample_picks.json)
+python utilities/generate_samples.py --manifest sample_picks.json --out renders/sample_cards
+```
+
+Custom pips, frame style, border theme, and rarity-tinted set symbols are all restored from the deck's `deck.json`, so samples match the app's own renders. Used to produce the README gallery (`docs/samples/`).
+
+---
+
 ## Notes
 
 - **ComfyUI must be running separately** - It's a standalone service
-- **Ollama auto-starts** when the server runs
+- **The LLM gateway auto-starts** when the server runs via `manage.bat` (llama-swap on :8010; or Ollama with `MYTHFORGE_LLM_BACKEND=ollama`)
 - **These scripts only manage Myth Forge** on port 8000
 - **Safe to run multiple times** - Menu won't break anything
 - **Use the menu as your default** - It handles cleanup automatically
