@@ -5,3 +5,5 @@ uvicorn>=0.47.0
 anthropic>=0.100.0
 python-multipart>=0.0.9
 pixie-python>=4.3.0
+imageio>=2.34.0
+imageio-ffmpeg>=0.5.1

@@ -543,6 +543,15 @@ The Theme and Face steps each have a collapsible **⚙ Advanced** panel, driven 
 - **Safe mode** lowers steps + resolution to reduce peak GPU/CPU load (mitigates crashes on unstable hardware — see Gotchas).
 - The fully-resolved settings are logged once per build as `[gen_settings] {...}`.
 
+## Animated cards (`card_video.py`) — optional
+
+Turn finished cards into **looping "cinemagraph" MP4s**. From the gallery, select one or more cards → **✨ Animate** → pick a motion preset. A local ComfyUI **image-to-video** model animates only the **art**, and each frame is re-composited through the normal renderer so the **frame, text, mana symbols and P/T stay perfectly crisp** — only the picture moves. Animated tiles autoplay-loop in the gallery (the static PNG stays the print/poster), download as MP4, and export together as a **🎬 Videos ZIP**. Animations persist across reloads; print PDF/ZIP are unchanged.
+
+- **Supply your own model** (like LoRAs / Hunyuan3D — none is bundled). The feature **auto-detects** and gates on what's installed: **LTX-Video** (lighter/faster, recommended starting point on a 24 GB card) or **Wan 2.x** I2V (heavier, higher motion quality). Both ship as ComfyUI-core nodes; you provide the weights under `ComfyUI/models/`. `GET /api/video-health` reports readiness and disables the button with a hint if nothing usable is present.
+- **Motion** = a preset (Subtle cinemagraph / Drifting elements / Slow push-in / Shimmer) combined with the card's existing art prompt, so the motion fits the scene. Frames are ping-pong looped for a seamless clip.
+- **Override the workflow:** the default ComfyUI graphs are best-effort for stock core nodes; if your version differs, point `MYTHFORGE_VIDEO_WORKFLOW_LTXV` / `_WAN` at your own API-format JSON (placeholders documented in `card_video._PLACEHOLDERS`) or drop it at `card_assets/video_workflows/<method>.json`.
+- Endpoints: `POST /api/deck/{job_id}/animate-cards` (SSE `video_ready`), `GET /api/deck/{job_id}/card-video/{render_key}`, `GET /api/deck/{job_id}/export/videos`, `GET /api/video-health`.
+
 ## 3D Commander Models (`model3d.py`)
 
 Optional pipeline: commander art → **rembg** background removal → **Hunyuan3D v2** (ComfyUI) → GLB → **STL** (trimesh), scaled to ~60 mm for printing. Octree resolution defaults to 384 (`MYTHFORGE_3D_RES` to override). Exposed via `/api/deck/{job_id}/generate-3d` (SSE progress) and `/api/3d-health`.
@@ -582,6 +591,10 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
 | POST | `/api/deck/{job_id}/retheme` | Re-run Ollama theming, reuse existing art |
 | POST | `/api/deck/{job_id}/rebuild` | Re-generate card art, keep existing themes |
 | POST | `/api/deck/{job_id}/regen-cards` | Regenerate art for specific cards only |
+| GET | `/api/video-health` | Whether an image-to-video model is installed + ready (gates the Animate UI) |
+| POST | `/api/deck/{job_id}/animate-cards` | Animate selected cards → looping MP4s (SSE `video_ready`) |
+| GET | `/api/deck/{job_id}/card-video/{render_key}` | A card's looping MP4 animation |
+| GET | `/api/deck/{job_id}/export/videos` | ZIP of the deck's animated MP4s |
 | POST | `/api/deck/{job_id}/cancel` | Cancel an in-progress build |
 | GET | `/api/deck/{job_id}/export/zip` | Download all card PNGs as ZIP |
 | GET | `/api/deck/{job_id}/export/pdf` | Download print-ready PDF |

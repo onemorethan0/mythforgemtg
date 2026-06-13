@@ -28,8 +28,15 @@ Notes when adding a LoRA:
 - **ReActor (swap)** — install `comfyui-reactor-node`; models auto-fetch (`inswapper_128.onnx`, `codeformer`). Runs on CPU here (see [COMFYUI_SETUP.md](./COMFYUI_SETUP.md) for the CUDA-13 note). Requires CUDA 12.x for GPU.
 - Auto-detected best-available method wins; tune in the Face step's Advanced panel.
 
+## Animated cards (optional) → image-to-video model
+For the **✨ Animate** feature (gallery → looping MP4 cards), install ONE image-to-video model into ComfyUI; the app auto-detects it (`GET /api/video-health`). Both ship as ComfyUI-core nodes — you supply the weights:
+- **LTX-Video** (recommended, lighter/faster on a 24 GB card) — checkpoint → `models/checkpoints/` (or `models/diffusion_models/`).
+- **Wan 2.x I2V** (heavier, higher motion quality) — DiT → `models/diffusion_models/`, `umt5` text encoder → `models/text_encoders/`, Wan VAE → `models/vae/`, CLIP-Vision → `models/clip_vision/`.
+
+If your ComfyUI version's node inputs differ from the bundled default graph, point `MYTHFORGE_VIDEO_WORKFLOW_LTXV` / `MYTHFORGE_VIDEO_WORKFLOW_WAN` at your own API-format workflow JSON (or drop it at `card_assets/video_workflows/<method>.json`). ~24 GB GPU recommended.
+
 ## Storage (rough)
-One FLUX checkpoint ~24 GB · one SDXL ~7.7 GB · LoRAs ~20–300 MB each · face models ~1 GB. Minimal usable setup: one checkpoint (~24 GB).
+One FLUX checkpoint ~24 GB · one SDXL ~7.7 GB · LoRAs ~20–300 MB each · face models ~1 GB · LTX-Video ~10 GB / Wan I2V ~16–32 GB. Minimal usable setup: one checkpoint (~24 GB).
 
 ## Troubleshooting
 - **No checkpoints / models not in the selector** — ComfyUI running on :8188? Models in the right folder? Restart ComfyUI.

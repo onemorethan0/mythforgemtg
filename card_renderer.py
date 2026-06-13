@@ -1384,6 +1384,37 @@ def render_card(
     return out
 
 
+# ── Animated cards: composite a sequence of art frames into card frames ───────
+def render_card_frames(
+    card:         dict,
+    themed_name:  str,
+    oracle_text:  str,
+    art_frames:   list,
+    set_symbol:   Optional[Image.Image] = None,
+    flavor_text:  str = "",
+    border_theme: str = "",
+) -> list:
+    """
+    Render one full card image per art frame, reusing render_card so the frame,
+    text, mana symbols, crown and P/T stay pixel-identical across the sequence
+    and only the ART moves. Honors the active frame style (built-in or M15 via
+    set_frame_style) exactly like a normal render. Returns a list of 750×1050
+    RGBA images, one per input art frame.
+
+    This is the compositing half of the "animate card" feature: an image-to-video
+    model produces `art_frames`; here each is dropped into the card's art window
+    with the static chrome re-composited on top.
+    """
+    frames = []
+    for art in art_frames:
+        frames.append(render_card(
+            card, themed_name, oracle_text,
+            art_image=art, set_symbol=set_symbol,
+            flavor_text=flavor_text, border_theme=border_theme,
+        ))
+    return frames
+
+
 # ── Batch helpers ─────────────────────────────────────────────────────────────
 def render_deck_thumbnails(
     commander_tc,

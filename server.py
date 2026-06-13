@@ -49,7 +49,7 @@ import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
 import mana_pips
-from exporter           import build_zip, build_pdf
+from exporter           import build_zip, build_pdf, build_video_zip
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 from model3d            import Model3DGen, generate_commander_3d
@@ -172,7 +172,9 @@ app.add_middleware(
 )
 
 STATIC_DIR  = Path(__file__).parent / "frontend" / "dist"
-RENDER_DIR  = Path("renders")
+# Anchor to the script location, not the cwd — the server (and deck history)
+# must work the same regardless of where it's launched from.
+RENDER_DIR  = Path(__file__).parent / "renders"
 RENDER_DIR.mkdir(exist_ok=True)
 
 # In-memory job store (replace with Redis/SQLite for persistence)
@@ -480,6 +482,25 @@ class RegenCardsRequest(BaseModel):
     crew_key:    Optional[str] = None   # crew faces override for creature cards
     crew_gender: str = "either"
     gen_settings: Optional[GenSettingsModel] = None
+
+
+class AnimateCardEntry(BaseModel):
+    render_key:    str
+    original_name: str
+
+
+class AnimateCardsRequest(BaseModel):
+    """Animate a subset of cards — I2V the art and/or overlay a procedural foil
+    sheen, recomposite, and encode a looping clip (mp4 / webp / gif)."""
+    cards:         List[AnimateCardEntry]
+    motion_preset: str = "subtle"
+    loop:          bool = True
+    frames:        Optional[int] = None   # override the method's default frame count
+    fps:           Optional[int] = None
+    method:        Optional[str] = None   # override the auto-detected I2V model
+    effect:        str = "motion"         # motion | foil | motion_foil
+    foil_style:    str = "holo"           # holo | gold | silver (when effect uses foil)
+    fmt:           str = "mp4"            # mp4 | webp | gif (output container)
 
 
 class RethemeRequest(BaseModel):
@@ -988,6 +1009,7 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "quantity":      c.get("quantity", 1),   # >1 for imported duplicate basics
         "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
         "has_render":    has_render,
+        "has_video":     False,            # set True once an MP4 animation is generated
         "render_key":    f"{_safe_name(tc.original_name)}_{deck_index:03d}",
     }
 
@@ -1375,6 +1397,8 @@ def _run_build(job_id: str, req: BuildRequest):
             # one) so Rebuild/Retheme reuse the same replacement as the baked art.
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or req.tribal_overrides or {},
             "auto_theme_tribes": bool(req.auto_theme_tribes),
+            # Set Bible (world + per-colour factions + lore) for display / debugging.
+            "world_bible":      getattr(themer, "_world_bible", {}) or {},
             "custom_pips":      req.custom_pips,
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
@@ -2362,6 +2386,256 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         _finalize_job(job_id)
 
 
+def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsRequest"):
+    """
+    Animate a subset of cards: run a ComfyUI image-to-video model on each card's
+    still ART, recomposite every frame through the static card chrome
+    (card_renderer.render_card_frames), and encode a looping MP4 into the SOURCE
+    job's videos/ dir. Pushes ``video_ready`` per card and persists has_video /
+    video_meta to deck.json. Mirrors _run_regen_cards (same per-deck lock, GPU
+    handoff, SSE channel).
+    """
+    import card_video
+    from PIL import Image as _PIL
+    from pathlib import Path as _Path
+
+    def _safe(n: str) -> str:
+        return "".join(ch if ch.isalnum() else "_" for ch in n)[:48]
+
+    _deck_lock = _get_deck_regen_lock(source_job_id)
+    _deck_lock.acquire()
+    try:
+        _jobs[job_id]["status"] = "building"
+        source_json_path = RENDER_DIR / source_job_id / "deck.json"
+        source_data = _load_source_deck(source_job_id)
+
+        all_stored = [source_data["commander"]] + source_data["deck"]
+        key_map: dict[str, dict] = {}
+        name_map: dict[str, dict] = {}
+        for cd in all_stored:
+            key_map[_safe(cd["original_name"])] = cd
+            if cd.get("render_key"):
+                key_map[cd["render_key"]] = cd
+            name_map[cd["original_name"]] = cd
+
+        targets = []
+        for entry in req.cards:
+            cd = key_map.get(entry.render_key) or name_map.get(entry.original_name)
+            if cd:
+                targets.append(cd)
+            else:
+                _push(job_id, "progress", json.dumps({
+                    "step": "video", "msg": f"⚠ Card not found: {entry.original_name} — skipping"}))
+        if not targets:
+            raise ValueError("No matching cards found to animate")
+
+        # ── Effect / output-format setup ──────────────────────────────────────
+        do_motion = req.effect in ("motion", "motion_foil")
+        do_foil   = req.effect in ("foil", "motion_foil")
+        fmt = (req.fmt or "mp4").lower()
+        if fmt not in card_video.VIDEO_FORMATS:
+            fmt = "mp4"
+
+        # ── ComfyUI + video-model preflight (only the I2V motion path needs it;
+        #    the procedural foil sheen runs on CPU with no model) ───────────────
+        method = None
+        if do_motion:
+            _ensure_comfyui_ready(job_id)
+            vh = card_video.health_check()
+            if not vh["ok"]:
+                raise ValueError(f"Animation model unavailable: {vh['message']} {vh['hint']}")
+
+            from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
+            _push(job_id, "progress", json.dumps({"step": "video", "msg": "Evicting LLM from VRAM…"}))
+            _wait_for_ollama_evict(source_data.get("llm_model") or _DEFAULT_OLLAMA, job_id)
+            method = req.method or card_video.detect_method()
+            if not method:
+                raise ValueError("No image-to-video model available in ComfyUI")
+
+        # ── Render setup (match the rest of the deck) ─────────────────────────
+        art_theme = source_data.get("theme", "")
+        sym_path  = RENDER_DIR / source_job_id / "set_symbol.png"
+        sym       = _PIL.open(sym_path) if sym_path.exists() else None
+        _setup_deck_pips(source_job_id, bool(source_data.get("custom_pips", False)),
+                         art_theme, source_data.get("emblem_prompt", ""))
+        card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
+        deck_slug = source_data.get("deck_slug") or ""
+        border    = source_data.get("border_theme", "")
+        videos_out = RENDER_DIR / source_job_id / "videos"
+        videos_out.mkdir(parents=True, exist_ok=True)
+        anim_src = RENDER_DIR / source_job_id / "_anim_src"
+        anim_src.mkdir(parents=True, exist_ok=True)
+
+        cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+        total = len(targets)
+        start = time.time()
+        meta_updates: dict[str, dict] = {}
+
+        _effect_label = {"motion": method or "motion", "foil": f"{req.foil_style} foil",
+                         "motion_foil": f"{method or 'motion'} + {req.foil_style} foil"}.get(req.effect, req.effect)
+        _push(job_id, "progress", json.dumps({
+            "step": "video",
+            "msg":  f"Animating {total} card{'' if total == 1 else 's'} "
+                    f"({_effect_label} → {fmt.upper()})…"}))
+
+        def _base_card_image(render_key, art_safe, card_dict, themed, cd):
+            """The composited still card to foil over: prefer the deck's rendered
+            PNG; else render one static frame from the card's art."""
+            png = RENDER_DIR / source_job_id / "cards" / f"{render_key}.png"
+            if png.exists():
+                im = _PIL.open(png); im.load(); return im.convert("RGBA")
+            s = _Path("generated_art") / deck_slug / f"{art_safe}.png"
+            if not s.exists():
+                s = _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
+            if not s or not _Path(s).exists():
+                return None
+            art = _PIL.open(s).convert("RGBA")
+            fr = card_renderer.render_card_frames(
+                card_dict, themed, card_dict.get("oracle_text", ""), [art],
+                set_symbol=sym, flavor_text=cd.get("flavor_text", ""), border_theme=border)
+            return fr[0] if fr else None
+
+        # Only the I2V motion path needs the global GPU lock; foil is CPU-only.
+        import contextlib
+        lock_cm = _art_lock if do_motion else contextlib.nullcontext()
+        with lock_cm:
+            for i, cd in enumerate(targets, 1):
+                if cancel_event.is_set():
+                    break
+                art_safe   = _safe(cd["original_name"])
+                render_key = cd.get("render_key") or art_safe
+                themed     = cd.get("themed_name") or cd["original_name"]
+
+                wall = time.time() - start
+                _push(job_id, "progress", json.dumps({
+                    "step": "video", "msg": f"[{i}/{total}] {themed}",
+                    "card_num": i, "total": total, "card_name": themed,
+                    "pct": round(i / total * 100, 1), "elapsed": round(wall),
+                    "eta": round(wall / i * (total - i)) if i > 1 else 0}))
+
+                def _cb(msg, _i=i):
+                    _push(job_id, "progress", json.dumps({
+                        "step": "video", "msg": f"[{_i}/{total}] {msg}",
+                        "card_num": _i, "total": total}))
+
+                try:
+                    card_dict = _stored_card_to_dict(cd)
+                    card_frames = None
+
+                    if do_motion:
+                        # Source art: the deck's generated crop, else Scryfall art.
+                        src = _Path("generated_art") / deck_slug / f"{art_safe}.png"
+                        if not src.exists():
+                            src = _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
+                        if not src or not _Path(src).exists():
+                            _push(job_id, "progress", json.dumps({
+                                "step": "video", "msg": f"⚠ No art for {themed} — skipping"}))
+                            continue
+                        motion = card_video.build_motion_prompt(req.motion_preset, cd.get("art_prompt", ""))
+                        art_frames = card_video.animate(
+                            _Path(src), motion, method=method,
+                            frames=req.frames, fps=req.fps,
+                            seed=(int(start) + i) % (2 ** 31), progress_cb=_cb)
+                        card_frames = card_renderer.render_card_frames(
+                            card_dict, themed, card_dict.get("oracle_text", ""),
+                            art_frames, set_symbol=sym,
+                            flavor_text=cd.get("flavor_text", ""), border_theme=border)
+
+                    # Foil overlay (whole-card). Foil frames are already periodic,
+                    # so they're encoded with loop=False (no extra ping-pong).
+                    if do_foil:
+                        if do_motion and card_frames:
+                            seq = card_video.ping_pong(card_frames, loop=req.loop)
+                            final = card_video.foil_frames(seq, count=len(seq), style=req.foil_style)
+                        else:
+                            base = _base_card_image(render_key, art_safe, card_dict, themed, cd)
+                            if base is None:
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "video", "msg": f"⚠ No card image for {themed} — skipping"}))
+                                continue
+                            final = card_video.foil_frames(
+                                [base], count=(req.frames or 30), style=req.foil_style)
+                        loop_encode = False
+                    else:
+                        final = card_frames
+                        loop_encode = req.loop
+
+                    fps = req.fps or (card_video._VIDEO_METHODS[method]["fps"] if method else 24)
+                    # Drop any stale animation for this card in a different format.
+                    for _old in card_video.VIDEO_FORMATS:
+                        if _old != fmt:
+                            _stale = videos_out / f"{render_key}.{_old}"
+                            if _stale.exists():
+                                try: _stale.unlink()
+                                except OSError: pass
+                    out = videos_out / f"{render_key}.{fmt}"
+                    card_video.encode_loop(final, out, fmt=fmt, fps=fps, loop=loop_encode)
+                    meta_updates[render_key] = {
+                        "method": method, "effect": req.effect, "format": fmt,
+                        "foil_style": req.foil_style if do_foil else None,
+                        "motion": req.motion_preset if do_motion else None,
+                        "frames": len(final), "fps": fps, "loop": bool(req.loop),
+                        "created_at": time.time()}
+                    _push(job_id, "video_ready", json.dumps({
+                        "key": render_key, "name": themed, "format": fmt,
+                        "source_job_id": source_job_id}))
+                except Exception as _ve:
+                    print(f"  [animate] failed for {themed}: {_ve}")
+                    _push(job_id, "progress", json.dumps({
+                        "step": "video", "msg": f"⚠ {themed}: {_ve}"}))
+
+        if cancel_event.is_set():
+            _jobs[job_id]["status"] = "cancelled"
+            _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
+            return
+
+        # ── Persist has_video / video_meta ────────────────────────────────────
+        if meta_updates:
+            updated = dict(source_data)
+
+            def _patch(cd):
+                rk = cd.get("render_key") or _safe(cd["original_name"])
+                m = meta_updates.get(rk)
+                return {**cd, "has_video": True, "video_meta": m} if m else cd
+
+            updated["commander"] = _patch(updated["commander"])
+            updated["deck"]      = [_patch(c) for c in updated["deck"]]
+            source_json_path.write_text(json.dumps(updated), encoding="utf-8")
+            if source_job_id in _jobs and isinstance(_jobs[source_job_id].get("deck"), list):
+                _jobs[source_job_id]["commander"] = updated["commander"]
+                _jobs[source_job_id]["deck"]      = updated["deck"]
+
+        _jobs[job_id]["status"] = "done"
+        _push(job_id, "done", json.dumps({
+            "job_id": job_id, "source_job_id": source_job_id,
+            "animated": len(meta_updates)}))
+
+    except Exception as e:
+        _mark_job_error(job_id, e)
+    finally:
+        try:
+            _deck_lock.release()
+        except RuntimeError:
+            pass
+        _finalize_job(job_id)
+
+
+def _download_art_to(url: str, dest: "Path") -> Optional["Path"]:
+    """Download a Scryfall art image to dest (PNG). Returns dest or None."""
+    if not url:
+        return None
+    try:
+        import requests as _rq
+        r = _rq.get(url, timeout=20)
+        if r.status_code == 200:
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(r.content)
+            return dest
+    except Exception as e:
+        print(f"  [animate] art download failed ({url}): {e}")
+    return None
+
+
 # ── Retheme: re-kick the FULL generation (new theming AND new art) ───────────
 
 def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
@@ -2671,6 +2945,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or source_data.get("tribal_overrides", {}),
             "auto_theme_tribes": bool(source_data.get("auto_theme_tribes", True)),
+            "world_bible":      getattr(themer, "_world_bible", {}) or source_data.get("world_bible", {}) or {},
             "custom_pips":      _retheme_pips,
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
@@ -2983,6 +3258,7 @@ def theme_preview(req: ThemePreviewRequest):
 
     from image_gen import get_all_presets as _gap
     from themer import (build_creative_brief, verify_motif_coverage,
+                        build_color_factions, _deck_color_identity,
                         _generate_style_guide as _gen_style_guide,
                         OLLAMA_MODEL as _DEF_MODEL, LLM_CATALOG as _CATALOG)
     _all_p = _gap()
@@ -3014,6 +3290,19 @@ def theme_preview(req: ThemePreviewRequest):
             style_guide_hint=_style.get("style_guide_hint", ""),
             must_include=bible["must_include"], model=T.model)
 
+        # Set Bible: per-colour factions for the commander's colour identity (the
+        # whole EDH deck shares it). Generated before sampling so the preview cards
+        # already reflect their factions, and returned so the UI can show the world.
+        _pcolors = (cmd_for_theme.get("color_identity")
+                    or _deck_color_identity(cmd_for_theme, _PREVIEW_SAMPLE_CARDS)
+                    or ["W", "U", "B", "R", "G"])
+        _fac = build_color_factions(bible["world"], bible.get("palette", ""), _pcolors,
+                                    creativity=req.creativity or "balanced", model=T.model)
+        bible["colors"]          = [c for c in ["W", "U", "B", "R", "G"] if c in _fac.get("factions", {})]
+        bible["color_factions"]  = _fac.get("factions", {})
+        bible["mechanic_flavor"] = _fac.get("mechanic_flavor", {})
+        bible["lore"]            = _fac.get("lore", "")
+
         sample_cards = [cmd_for_theme] + _PREVIEW_SAMPLE_CARDS
         entries = T._theme_batch(
             bible["world"], cmd_for_theme.get("name", ""), sample_cards, 0, style_guide,
@@ -3043,7 +3332,8 @@ def theme_preview(req: ThemePreviewRequest):
 
     return {
         "world_bible": {k: bible.get(k) for k in
-                        ("world", "must_include", "signature_details", "palette", "zones", "creativity")},
+                        ("world", "must_include", "signature_details", "palette", "zones",
+                         "creativity", "colors", "color_factions", "mechanic_flavor", "lore")},
         "style_guide": style_guide,
         "samples":     samples,
         "coverage":    coverage,
@@ -3271,6 +3561,49 @@ async def regen_cards(job_id: str, req: RegenCardsRequest, background_tasks: Bac
     return {"job_id": new_job_id}
 
 
+@app.get("/api/video-health")
+def video_health():
+    """Whether an image-to-video model is installed + ready (gates the UI)."""
+    import card_video
+    return card_video.health_check()
+
+
+@app.get("/api/video-presets")
+def video_presets():
+    """Motion presets, foil styles and output formats for the Animate panel."""
+    import card_video
+    return {"presets": card_video.motion_presets(),
+            "foil_styles": card_video.foil_styles(),
+            "formats": card_video.format_options()}
+
+
+@app.post("/api/deck/{job_id}/animate-cards")
+async def animate_cards(job_id: str, req: AnimateCardsRequest,
+                        background_tasks: BackgroundTasks, request: Request):
+    """
+    Animate a subset of cards (image-to-video on the art, recomposite, encode MP4).
+    Returns a new job_id; listen on ``/api/deck/{new_job_id}/events`` for
+    ``video_ready`` and ``done`` events. MP4s land in the SOURCE deck's videos/.
+    """
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} per {_RATE_LIMIT_WINDOW}s")
+    if not req.cards:
+        raise HTTPException(400, "No cards specified")
+    source_ok = (
+        (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
+        or (RENDER_DIR / job_id / "deck.json").exists()
+    )
+    if not source_ok:
+        raise HTTPException(404, f"Source deck not found: {job_id}")
+
+    new_job_id = uuid.uuid4().hex[:16]
+    _jobs[new_job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
+    _progress[new_job_id] = []
+    background_tasks.add_task(_run_animate_cards, new_job_id, job_id, req)
+    return {"job_id": new_job_id}
+
+
 @app.post("/api/deck/{job_id}/retheme")
 async def retheme_deck(job_id: str, req: RethemeRequest, background_tasks: BackgroundTasks):
     """
@@ -3493,6 +3826,30 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
                         if rk and not card.get("has_render"):
                             card["has_render"] = rk in rendered
 
+            # Backfill has_video the same way (animations persist as mp4/webp/gif).
+            videos_dir = RENDER_DIR / job_id / "videos"
+            if videos_dir.exists():
+                # render_key → format (mp4 wins if multiple somehow coexist)
+                vids: dict[str, str] = {}
+                for ext in ("gif", "webp", "mp4"):
+                    for fp in videos_dir.glob(f"*.{ext}"):
+                        vids[fp.stem] = ext
+                if vids:
+                    def _mark_video(card):
+                        fmt = vids.get(card.get("render_key"))
+                        if fmt:
+                            card["has_video"] = True
+                            meta = card.get("video_meta")
+                            if not isinstance(meta, dict):
+                                card["video_meta"] = {"format": fmt}
+                            elif not meta.get("format"):
+                                meta["format"] = fmt
+                    cmd = data.get("commander")
+                    if isinstance(cmd, dict):
+                        _mark_video(cmd)
+                    for card in data.get("deck") or []:
+                        _mark_video(card)
+
             return data
         except Exception:
             return None
@@ -3573,6 +3930,21 @@ async def card_image(job_id: str, render_key: str):
             return FileResponse(bare_path, media_type="image/png",
                                 headers={"Cache-Control": "no-cache, must-revalidate"})
     raise HTTPException(404, "Card image not found")
+
+
+_VIDEO_MEDIA_TYPES = {"mp4": "video/mp4", "webp": "image/webp", "gif": "image/gif"}
+
+
+@app.get("/api/deck/{job_id}/card-video/{render_key}")
+async def card_video_file(job_id: str, render_key: str):
+    """Serve a card's looping animation (MP4 / WebP / GIF), whichever exists."""
+    videos = RENDER_DIR / job_id / "videos"
+    for ext, media in _VIDEO_MEDIA_TYPES.items():   # mp4 preferred, then webp, gif
+        path = videos / f"{render_key}.{ext}"
+        if path.exists():
+            return FileResponse(path, media_type=media,
+                                headers={"Cache-Control": "no-cache, must-revalidate"})
+    raise HTTPException(404, "Card video not found")
 
 
 @app.get("/api/deck/{job_id}/set-symbol")
@@ -4061,6 +4433,25 @@ def export_zip(job_id: str):
         io.BytesIO(data),
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{safe}_deck.zip"'},
+    )
+
+
+@app.get("/api/deck/{job_id}/export/videos")
+def export_videos(job_id: str):
+    """ZIP of the deck's looping MP4 animations (only animated cards)."""
+    job = _load_job_for_export(job_id)
+    render_dir = RENDER_DIR / job_id
+    try:
+        data = build_video_zip(job["commander"], job["deck"], render_dir)
+    except Exception as e:
+        raise HTTPException(500, f"Video export failed: {e}")
+    if len(data) < 40:   # empty zip
+        raise HTTPException(404, "No animated cards in this deck")
+    safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
+    return StreamingResponse(
+        io.BytesIO(data),
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{safe}_videos.zip"'},
     )
 
 

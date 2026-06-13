@@ -98,6 +98,41 @@ def build_zip(
     return buf.read()
 
 
+def build_video_zip(
+    commander:  dict,
+    deck:       list[dict],
+    render_dir: Path,
+) -> bytes:
+    """
+    Return ZIP bytes containing the looping animations that exist for this deck
+    (videos/<render_key>.{mp4,webp,gif}). Only cards that were animated are
+    included; static cards are skipped. Files are slot-numbered like the PNG export.
+    """
+    videos_dir = render_dir / "videos"
+    _EXTS = ("mp4", "webp", "gif")
+
+    def _find(render_key):
+        for ext in _EXTS:
+            p = videos_dir / f"{render_key}.{ext}"
+            if p.exists():
+                return p, ext
+        return None, None
+
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        path, ext = _find(commander["render_key"])
+        if path:
+            zf.write(path, f"00_commander_{commander['render_key']}.{ext}")
+        slot = 0
+        for card in deck:
+            slot += 1
+            path, ext = _find(card["render_key"])
+            if path:
+                zf.write(path, f"{slot:02d}_{card['render_key']}.{ext}")
+    buf.seek(0)
+    return buf.read()
+
+
 def build_pdf(
     commander:  dict,
     deck:       list[dict],

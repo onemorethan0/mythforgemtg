@@ -485,6 +485,96 @@ def test_oracle_reminder_italics():
     check_true("oracle.returns_int", isinstance(size, int) and size > 0)
 
 
+def test_card_video_helpers():
+    """Pure-logic guards for the animate-card pipeline (no GPU/ComfyUI)."""
+    import card_video as cv
+
+    # motion prompt: preset text + the card's art prompt, capped
+    mp = cv.build_motion_prompt("elements", "a neon dragon over a rain-slick city")
+    check_true("cv.motion.preset", "drifting embers" in mp)
+    check_true("cv.motion.art",    "neon dragon" in mp)
+    check("cv.motion.fallback_preset",
+          cv.build_motion_prompt("nope", ""), cv._MOTION_PRESETS["subtle"])
+
+    # ping-pong: seamless loop without duplicating the two endpoints
+    seq = cv.ping_pong(list(range(5)), loop=True)
+    check("cv.pingpong.len", len(seq), 8)              # 5 + 3 reversed-interior
+    check("cv.pingpong.ends", (seq[0], seq[-1]), (0, 1))
+    check("cv.pingpong.noloop", cv.ping_pong([1, 2, 3], loop=False), [1, 2, 3])
+
+    # workflow builder: placeholders filled, numerics typed as int, nodes present
+    wf = cv.build_workflow("ltxv", "art.png", "subtle motion", "pfx",
+                           frames=49, fps=24, w=768, h=512, seed=7,
+                           models={"ckpt": "ltx.safetensors"})
+    classes = {n["class_type"] for n in wf.values()}
+    check_true("cv.wf.i2v_node", "LTXVImgToVideo" in classes)
+    check_true("cv.wf.save", "SaveImage" in classes)
+    i2v = next(n for n in wf.values() if n["class_type"] == "LTXVImgToVideo")
+    check("cv.wf.length_int", i2v["inputs"]["length"], 49)
+    check_true("cv.wf.length_is_int", isinstance(i2v["inputs"]["length"], int))
+    ckpt = next(n for n in wf.values() if n["class_type"] == "CheckpointLoaderSimple")
+    check("cv.wf.model", ckpt["inputs"]["ckpt_name"], "ltx.safetensors")
+
+    # health_check shape (ComfyUI is down in CI → ok False, actionable hint)
+    h = cv.health_check()
+    check_true("cv.health.keys", all(k in h for k in ("ok", "method", "hint", "models")))
+    check_true("cv.health.gated", h["ok"] in (True, False))
+
+
+def test_set_bible_factions():
+    """Set Bible colour-faction helpers + faction-aware palette (no LLM)."""
+    import themer as T
+
+    cmd  = {"name": "Atraxa", "color_identity": ["W", "U", "B", "G"]}
+    deck = [{"name": "Bolt", "color_identity": ["R"], "type_line": "Instant"}]
+    check("sb.colors", T._deck_color_identity(cmd, deck), ["W", "U", "B", "R", "G"])
+
+    fb = T._fallback_factions(["U", "R"])
+    check_true("sb.fallback.shape",
+               all(k in fb["factions"]["U"] for k in ("name", "people", "aesthetic", "palette")))
+
+    norm = T._normalize_factions(
+        {"factions": {"U": {"name": "the Glitch Choir", "people": "data-spirits",
+                            "aesthetic": "neon glass", "motifs": ["halos"],
+                            "palette": "electric teal, black"}},
+         "mechanic_flavor": {"draw": "data-divination"}, "lore": "war over the grid"},
+        ["U", "R"], "teal/red")
+    check("sb.norm.kept",   norm["factions"]["U"]["name"], "the Glitch Choir")
+    check_true("sb.norm.filled", bool(norm["factions"]["R"]["name"]))   # R from fallback
+
+    # Faction palette wins over the static stock palette for that colour
+    pal = T._color_palette_hint(["U"], "", norm["factions"])
+    check("sb.palette.faction", pal, "electric teal, black")
+    check("sb.faction.tag", T._card_faction_tag(["U"], norm["factions"]), "the Glitch Choir")
+
+
+def test_foil_and_formats():
+    """Procedural foil frames + multi-format encode dispatch (no GPU)."""
+    import tempfile, pathlib
+    from PIL import Image
+    import card_video as cv
+
+    check("fmt.list", cv.VIDEO_FORMATS, ("mp4", "webp", "gif"))
+    check_true("fmt.options", {f["key"] for f in cv.format_options()} == {"mp4", "webp", "gif"})
+    check_true("foil.styles", {s["key"] for s in cv.foil_styles()} >= {"holo", "gold", "silver"})
+
+    base = Image.new("RGBA", (120, 168), (40, 60, 90, 255))
+    frames = cv.foil_frames([base], count=6, style="holo")
+    check("foil.count", len(frames), 6)
+    check("foil.size",  frames[0].size, (120, 168))
+    check_true("foil.changes", list(frames[0].getdata()) != list(frames[3].getdata()))
+
+    d = pathlib.Path(tempfile.mkdtemp())
+    out = d / "t.webp"
+    cv.encode_loop(frames, out, fmt="webp", fps=12, loop=False)
+    check_true("foil.webp_written", out.exists() and out.stat().st_size > 0)
+    try:
+        cv.encode_loop(frames, d / "t.bogus", fmt="bogus")
+        check_true("foil.bad_fmt_raises", False)
+    except ValueError:
+        check_true("foil.bad_fmt_raises", True)
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -493,7 +583,8 @@ def main():
                test_ro_class_override, test_stub_prompt, test_ro_tribal_map,
                test_subject_directives, test_artifact_object_kind,
                test_creative_brief_helpers, test_name_art_coherence,
-               test_oracle_reminder_italics):
+               test_oracle_reminder_italics, test_card_video_helpers,
+               test_set_bible_factions, test_foil_and_formats):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

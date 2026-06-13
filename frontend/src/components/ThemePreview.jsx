@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react'
 
+// WUBRG chip styling for the colour-faction display.
+const COLOR_META = {
+  W: { name: 'White', glyph: 'W', bg: '#f8f4e6', fg: '#3a3320' },
+  U: { name: 'Blue',  glyph: 'U', bg: '#3b82f6', fg: '#0b1f3a' },
+  B: { name: 'Black', glyph: 'B', bg: '#3f3f46', fg: '#e4e4e7' },
+  R: { name: 'Red',   glyph: 'R', bg: '#ef4444', fg: '#3a0b0b' },
+  G: { name: 'Green', glyph: 'G', bg: '#22c55e', fg: '#0b2a16' },
+}
+
 // "Preview the creative direction" — a cheap, pre-build look at how the app will
 // interpret the user's deck idea. Calls POST /api/deck/theme-preview, which builds
 // the world bible (must-include motifs + invented signature details + palette) and
@@ -169,6 +178,39 @@ export default function ThemePreview({ commanderName, themeSpec, artStyle, creat
           {wb.palette && (
             <div style={{ marginBottom: 14, fontSize: 12, color: '#78716c' }}>
               <span style={{ color: '#a8a29e', fontWeight: 700 }}>Palette: </span>{wb.palette}
+            </div>
+          )}
+
+          {/* Colour factions — the set-cohesion layer (each colour is a faction) */}
+          {wb.color_factions && Object.keys(wb.color_factions).length > 0 && (
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#a8a29e', marginBottom: 6 }}>
+                Colour factions <span style={{ color: '#57534e', fontWeight: 400 }}>— every card of a colour belongs to its faction, so the deck reads as one set</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {['W', 'U', 'B', 'R', 'G'].filter(c => wb.color_factions[c]).map(c => {
+                  const f = wb.color_factions[c]
+                  const meta = COLOR_META[c]
+                  return (
+                    <div key={c} style={{ padding: '8px 12px', background: '#1c1917', border: '1px solid #292524', borderRadius: 8, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                      <span title={meta.name} style={{ flexShrink: 0, width: 20, height: 20, borderRadius: '50%', background: meta.bg, color: meta.fg, fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #00000044' }}>{meta.glyph}</span>
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#f5f5f4' }}>{f.name}</div>
+                        {f.people && <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 1 }}>{f.people}</div>}
+                        {f.aesthetic && <div style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>{f.aesthetic}</div>}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Lore — the connective tissue between factions */}
+          {wb.lore && (
+            <div style={{ marginBottom: 14, padding: '10px 14px', background: '#150f24', border: '1px solid #4c1d9555', borderRadius: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', marginBottom: 4 }}>Lore</div>
+              <div style={{ fontSize: 12, color: '#d6d3d1', lineHeight: 1.5, fontStyle: 'italic' }}>{wb.lore}</div>
             </div>
           )}
 
