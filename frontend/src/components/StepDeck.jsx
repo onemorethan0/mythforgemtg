@@ -867,6 +867,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         setRefreshTs(prev => ({ ...prev, [d.key]: Date.now() }))
         setRegenPending(prev => { const s = new Set(prev); s.delete(d.key); return s })
         setRegenDone(prev => new Set([...prev, d.key]))
+        // A regenerated still invalidates its animation (it was made from the old
+        // art); the backend deletes the stale clip, so drop the tile's video and
+        // show the fresh still until the card is re-animated.
+        setVideoKeys(prev => { if (!prev.has(d.key)) return prev; const s = new Set(prev); s.delete(d.key); return s })
+        setVideoFmts(prev => { if (!(d.key in prev)) return prev; const m = { ...prev }; delete m[d.key]; return m })
       } catch {}
     })
 

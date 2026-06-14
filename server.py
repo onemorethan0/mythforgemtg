@@ -2242,6 +2242,9 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             _art_start   = time.time()
             total        = len(to_regen)
             crew_regen_idx = 0   # round-robin index for crew faces
+            # Render keys whose still art was regenerated this run — their existing
+            # animation (if any) now depicts the OLD art, so it's invalidated below.
+            regen_done_keys: set[str] = set()
 
             from face_ref import is_human_card as _is_human_card
 
@@ -2309,10 +2312,25 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                             border_theme=source_data.get("border_theme", ""),
                         )
                         card_img.save(out_path, "PNG")
+                        # The new still invalidates any prior animation (it was made
+                        # from the OLD art). Delete the stale clip so the tile shows
+                        # the fresh still until the user re-animates.
+                        _video_was_cleared = False
+                        for _ext in ("mp4", "webp", "gif"):
+                            _vp = RENDER_DIR / source_job_id / "videos" / f"{render_key}.{_ext}"
+                            if _vp.exists():
+                                try:
+                                    _vp.unlink()
+                                    _video_was_cleared = True
+                                except OSError:
+                                    pass
+                        regen_done_keys.add(render_key)
                         _push(job_id, "card_ready", json.dumps({
                             "key":           render_key,
                             "name":          tc.themed_name,
                             "source_job_id": source_job_id,
+                            # Tell the UI to drop any stale animation for this tile.
+                            "video_cleared": _video_was_cleared,
                         }))
                     except Exception as _re:
                         print(f"  [regen] render failed for {tc.themed_name}: {_re}")
@@ -2331,19 +2349,27 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             "".join(ch if ch.isalnum() else "_" for ch in e.original_name)[:48]: e
             for e in req.cards
         }
-        if prompt_updates:
+        if prompt_updates or regen_done_keys:
             updated = dict(source_data)
 
             def _patch_prompt(cd):
                 safe = "".join(ch if ch.isalnum() else "_" for ch in cd["original_name"])[:48]
-                e = prompt_updates.get(safe)
-                if not e:
+                rk   = cd.get("render_key") or safe
+                e    = prompt_updates.get(safe)
+                stale_video = rk in regen_done_keys
+                if not e and not stale_video:
                     return cd
-                patched = {**cd, "use_custom": bool(e.use_custom)}
-                # Only replace stored custom text when new text was supplied;
-                # an empty/None custom_prompt preserves whatever was there.
-                if e.custom_prompt is not None and e.custom_prompt.strip():
-                    patched["custom_prompt"] = e.custom_prompt.strip()
+                patched = dict(cd)
+                if e:
+                    patched["use_custom"] = bool(e.use_custom)
+                    # Only replace stored custom text when new text was supplied;
+                    # an empty/None custom_prompt preserves whatever was there.
+                    if e.custom_prompt is not None and e.custom_prompt.strip():
+                        patched["custom_prompt"] = e.custom_prompt.strip()
+                # A regenerated still invalidates its animation (made from old art).
+                if stale_video:
+                    patched.pop("has_video", None)
+                    patched.pop("video_meta", None)
                 return patched
 
             updated["commander"] = _patch_prompt(updated["commander"])
