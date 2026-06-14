@@ -941,35 +941,9 @@ def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: st
 
 # ── User-name substitution helper ────────────────────────────────────────────
 
-def _apply_user_name(themed_name: str, user_name: str) -> str:
-    """
-    Replace the personal-name portion of a legendary themed name with the
-    player's chosen name.
-
-    Examples:
-      "Vex Thornwood, Blade of the Void" + "Dorian"  → "Dorian, Blade of the Void"
-      "Vex Thornwood, Blade of the Void" + "Dorian Grey" → "Dorian Grey, Blade of the Void"
-      "Kaalia of the Vast"               + "Dante"   → "Dante of the Vast"
-      "Kaalia Reborn"                    + "Dante"   → "Dante Reborn"
-      "Ember Sanctum"  (no comma)        + ""        → "Ember Sanctum" (unchanged, no user name)
-    """
-    user_name = (user_name or "").strip()
-    if not user_name:
-        return themed_name
-    if "," in themed_name:
-        # Standard legendary format: "Firstname, Title" → swap the first-name part
-        _, rest = themed_name.split(",", 1)
-        return f"{user_name},{rest}"
-    # No comma — two failure modes land here:
-    #   1. Theming fell back to the original MTG name ("Kaalia of the Vast")
-    #   2. Ollama ignored the "Firstname, Title" format ("Kaalia Reborn")
-    # In both cases the user explicitly chose a name, so apply it.
-    # Keep any suffix words as a title so "Kaalia of the Vast" → "Dante of the Vast"
-    # rather than silently discarding the user's customisation.
-    words = themed_name.split()
-    if len(words) > 1:
-        return user_name + " " + " ".join(words[1:])
-    return user_name
+# Commander naming with the player's chosen "Your Name" lives in
+# themer.compose_commander_name — it drops the original first name AND regenerates
+# a creature-type-fitting title when the themed title leaked the original.
 
 
 # ── Shared build-pipeline helpers ─────────────────────────────────────────────
@@ -1312,6 +1286,28 @@ def _run_build(job_id: str, req: BuildRequest):
                 "warning": True,
             }))
 
+        if themed_cmd is None:
+            def _plain(c): return ThemedCard(c["name"], c["name"], "", "", c)
+            themed_cmd  = _plain(card)
+            themed_deck = [_plain(c) for c in deck]
+
+        # ── Apply the player's chosen name to the commander ───────────────────
+        # Runs BEFORE the Ollama eviction below so a title regeneration (rare —
+        # only when the themed title leaked the original) reuses the warm LLM
+        # instead of forcing a reload right after we evict it. (Imported explicitly
+        # because the local `themer` here is a Themer INSTANCE, not the module.)
+        if req.user_name:
+            from themer import compose_commander_name as _compose_cmd_name
+            themed_cmd.themed_name = _compose_cmd_name(
+                req.user_name, themed_cmd.themed_name, card,
+                theme=art_theme, world_bible=getattr(themer, "_world_bible", {}),
+                tribal_map=getattr(themer, "_effective_tribal_map", {}),
+                model=getattr(themer, "model", None) or _llm or None)
+            _push(job_id, "progress", json.dumps({
+                "step": "theme",
+                "msg":  f"Commander renamed: {themed_cmd.themed_name}",
+            }))
+
         # ── Unload Ollama before proceeding to symbol / art gen ────────────────
         # Prevents Ollama from competing with ComfyUI for VRAM during art gen.
         # Do this even if theming failed — Ollama may still be partially resident.
@@ -1320,19 +1316,6 @@ def _run_build(job_id: str, req: BuildRequest):
             _ollama_model = _llm or _DEFAULT_OLLAMA
             _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Freeing GPU for art generation…"}))
             _wait_for_ollama_evict(_ollama_model, job_id)
-
-        if themed_cmd is None:
-            def _plain(c): return ThemedCard(c["name"], c["name"], "", "", c)
-            themed_cmd  = _plain(card)
-            themed_deck = [_plain(c) for c in deck]
-
-        # ── Apply user's custom name to the commander ─────────────────────────
-        if req.user_name:
-            themed_cmd.themed_name = _apply_user_name(themed_cmd.themed_name, req.user_name)
-            _push(job_id, "progress", json.dumps({
-                "step": "theme",
-                "msg":  f"Commander renamed: {themed_cmd.themed_name}",
-            }))
 
         # ── Set symbol ────────────────────────────────────────────────────────
         _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Generating set symbol..."}))
@@ -2762,9 +2745,16 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             themed_cmd  = _plain(raw_commander)
             themed_deck = [_plain(c) for c in raw_deck]
 
-        # ── Apply user name to commander ──────────────────────────────────────
+        # ── Apply the player's chosen name to the commander ───────────────────
+        # '<YourName>, <generated title fitting the creature-type theme>' — keeps a
+        # genuinely new themed title, regenerates one when the original leaked.
         if user_name_rt and themed_cmd:
-            themed_cmd.themed_name = _apply_user_name(themed_cmd.themed_name, user_name_rt)
+            from themer import compose_commander_name as _compose_cmd_name
+            themed_cmd.themed_name = _compose_cmd_name(
+                user_name_rt, themed_cmd.themed_name, raw_commander,
+                theme=art_theme, world_bible=getattr(themer, "_world_bible", {}),
+                tribal_map=getattr(themer, "_effective_tribal_map", {}),
+                model=getattr(themer, "model", None))
 
         # ── Set symbol: reuse from source ─────────────────────────────────────
         render_out = RENDER_DIR / job_id / "cards"

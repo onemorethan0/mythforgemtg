@@ -575,6 +575,44 @@ def test_foil_and_formats():
         check_true("foil.bad_fmt_raises", True)
 
 
+def test_commander_user_name():
+    """'Your Name' → '<name>, <title>': keep a genuine themed title, regenerate a
+    leaked original title from the reskinned creature type, always drop the
+    original first name (no LLM — uses the deterministic fallback)."""
+    import themer as T
+
+    cmd = {"name": "Urza, Lord High Artificer",
+           "type_line": "Legendary Creature — Human Artificer",
+           "oracle_text": "create a token", "color_identity": ["U"]}
+
+    # Leak detection
+    check_true("uname.leak.orig", T._title_is_original("Lord High Artificer", "Urza, Lord High Artificer"))
+    check_true("uname.leak.new",  not T._title_is_original("the Glitch Conductor", "Urza, Lord High Artificer"))
+
+    # Reskinned creature type drives the generated title
+    check("uname.reskin", T._primary_reskinned_type(cmd, {"Artificer": "Netrunner"}), "Netrunner")
+
+    # A genuinely themed title is kept, first name swapped to the user's
+    keep = T.compose_commander_name("Ravn", "Urza, the Glitch Conductor", cmd,
+                                    theme="cyberpunk", world_bible={"world": "neon city"},
+                                    tribal_map={})
+    check("uname.keep_title", keep, "Ravn, the Glitch Conductor")
+
+    # A leaked original title is regenerated; force the deterministic fallback with
+    # an unreachable model. Result must be "Ravn, ..." and contain neither the
+    # original first name nor the original title.
+    regen = T.compose_commander_name("Ravn", "Urza, Lord High Artificer", cmd,
+                                     theme="cyberpunk", world_bible={"world": "neon city"},
+                                     tribal_map={"Artificer": "Netrunner"}, model="__no_such_model__")
+    check_true("uname.regen.prefix", regen.startswith("Ravn, "))
+    check_true("uname.regen.no_orig_first", "Urza" not in regen)
+    check_true("uname.regen.no_orig_title", "Artificer" not in regen)
+    check_true("uname.regen.fits_type", "Netrunner" in regen)
+
+    # No user name → unchanged
+    check("uname.empty", T.compose_commander_name("", "Urza, the X", cmd), "Urza, the X")
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -584,7 +622,8 @@ def main():
                test_subject_directives, test_artifact_object_kind,
                test_creative_brief_helpers, test_name_art_coherence,
                test_oracle_reminder_italics, test_card_video_helpers,
-               test_set_bible_factions, test_foil_and_formats):
+               test_set_bible_factions, test_foil_and_formats,
+               test_commander_user_name):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash
