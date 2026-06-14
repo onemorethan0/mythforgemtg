@@ -2285,7 +2285,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     ANATOMY — no isolated floating limbs. Avoid awkward close-up hands.
     POSE — any character must be MID-ACTION and emotionally engaged: striking, casting, running, reaching, recoiling, commanding, reacting to something in the scene. NEVER a stiff standing portrait, a model posing for the camera, or a figure standing still and staring blankly into the distance. Give them a verb and a target — what are they DOING, and to/with what?
     CREATURE TYPE — for a creature card, make the creature's KIND visually unmistakable using its type (col 3): a Faerie looks like a faerie, a Goblin like a goblin, a Dragon like a dragon. If the type column carries a [reskin …] tag, depict the REPLACEMENT creature instead of the original (consistently). Weave the creature's kind into the scene rather than tacking it on.
-    FACTION (col 8) — when a faction is named, this card belongs to it: its subject wears/uses that faction's signature materials, attire and architecture, and sits in that faction's palette (col 5). Cards sharing a colour share a faction and must look like the same people across the deck. Don't name the faction in the prompt — DEPICT it.
+    FACTION (col 8) — when a faction is named, this card belongs to it and is rendered in that faction's signature materials and palette (col 5), shown in the way that fits the card: a PERSON wears/wields its attire and gear; a PLACE shows its architecture and materials; an OBJECT is wrought in its style. This NEVER overrides the role rules below — do NOT add a person to a LAND or non-creature ARTIFACT just to show the faction; render the faction through the terrain/architecture or the object itself. Cards sharing a colour share a faction and read as the same culture across the deck. Don't name the faction — DEPICT it.
     DO NOT pile on style adjectives — the LoRA handles style.
     COMPOSITION by ROLE (col 6):
       CREATURE/PLANESWALKER: "[medium], [character whose appearance embodies the themed_name, inside theme-world setting], [light hint of action], [quality]"
@@ -2643,21 +2643,29 @@ class Themer:
         # ── Set Bible: per-colour FACTIONS ────────────────────────────────────
         # Design each colour present in the deck as a faction (people, look,
         # palette) so every card of that colour shares an identity across the
-        # whole deck — the set-level cohesion layer. Only colours actually in the
-        # deck are generated. Deterministic fallback so theming never breaks.
+        # whole deck — the set-level cohesion layer. ONLY colours actually in the
+        # deck are generated; a fully colourless deck (Eldrazi, etc.) skips it
+        # entirely (no colour ⇒ no faction tag on any card, so the call would be
+        # wasted). Deterministic fallback so theming never breaks.
         _colors = _deck_color_identity(commander, deck)
-        print(f"  Designing colour factions ({'/'.join(_colors) or 'colourless'})...")
-        _fac = build_color_factions(expanded_theme, world_bible.get("palette", ""),
-                                    _colors, creativity=creativity, model=self.model)
-        world_bible["colors"]         = _colors
-        world_bible["color_factions"] = _fac.get("factions", {})
-        world_bible["mechanic_flavor"] = _fac.get("mechanic_flavor", {})
-        world_bible["lore"]           = _fac.get("lore", "")
-        for _cc in _colors:
-            _f = world_bible["color_factions"].get(_cc, {})
-            print(f"           {_cc} • {_f.get('name', '?')} — {_f.get('people', '')}")
-        if world_bible["lore"]:
-            print(f"           lore • {world_bible['lore'][:120]}")
+        world_bible.setdefault("color_factions", {})
+        world_bible.setdefault("mechanic_flavor", {})
+        world_bible.setdefault("lore", "")
+        world_bible["colors"] = _colors
+        if _colors:
+            print(f"  Designing colour factions ({'/'.join(_colors)})...")
+            _fac = build_color_factions(expanded_theme, world_bible.get("palette", ""),
+                                        _colors, creativity=creativity, model=self.model)
+            world_bible["color_factions"] = _fac.get("factions", {})
+            world_bible["mechanic_flavor"] = _fac.get("mechanic_flavor", {})
+            world_bible["lore"]           = _fac.get("lore", "")
+            for _cc in _colors:
+                _f = world_bible["color_factions"].get(_cc, {})
+                print(f"           {_cc} • {_f.get('name', '?')} — {_f.get('people', '')}")
+            if world_bible["lore"]:
+                print(f"           lore • {world_bible['lore'][:120]}")
+        else:
+            print("  Colourless deck — skipping colour factions.")
 
         # Generate one deck-wide style guide — used as context in Ollama's batch
         # prompts so every card's scene feels like the same world.
