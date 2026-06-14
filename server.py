@@ -1379,6 +1379,11 @@ def _run_build(job_id: str, req: BuildRequest):
             # Persist the EFFECTIVE tribe map (user override OR the auto-generated
             # one) so Rebuild/Retheme reuse the same replacement as the baked art.
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or req.tribal_overrides or {},
+            # Persist the user's EXPLICIT per-tribe picks separately. Edit restores
+            # ONLY these (not the merged effective map) so auto-reskins regenerate
+            # from the edited theme — otherwise the baked map froze every creature
+            # type on Edit & Rebuild even when the theme changed.
+            "user_tribal_overrides": req.tribal_overrides or {},
             "auto_theme_tribes": bool(req.auto_theme_tribes),
             # Set Bible (world + per-colour factions + lore) for display / debugging.
             "world_bible":      getattr(themer, "_world_bible", {}) or {},
@@ -2934,6 +2939,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "frame_style":      source_data.get("frame_style", "builtin"),
             "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": getattr(themer, "_effective_tribal_map", None) or source_data.get("tribal_overrides", {}),
+            # Carry the user's explicit picks forward so a later Edit restores them.
+            "user_tribal_overrides": source_data.get("user_tribal_overrides", {}),
             "auto_theme_tribes": bool(source_data.get("auto_theme_tribes", True)),
             "world_bible":      getattr(themer, "_world_bible", {}) or source_data.get("world_bible", {}) or {},
             "custom_pips":      _retheme_pips,
