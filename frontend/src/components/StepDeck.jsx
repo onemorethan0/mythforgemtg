@@ -96,7 +96,7 @@ function CmcChart({ curve }) {
 }
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
-function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt }) {
+function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true }) {
   const [hover, setHover] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
 
@@ -110,7 +110,7 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
     : null
   // A fresh/re-animated video clears any prior load failure.
   useEffect(() => { setVideoFailed(false) }, [videoSrc])
-  const showVideo = videoSrc && !videoFailed
+  const showVideo = showMotion && videoSrc && !videoFailed
   // WebP/GIF are animated images (render in <img>); MP4 needs a <video>.
   const fmt = videoFmt || card.video_meta?.format || 'mp4'
   const videoIsImage = fmt === 'webp' || fmt === 'gif'
@@ -888,6 +888,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     for (const c of deck?.deck || []) add(c)
     return m
   })
+  // View preference: show the animated version of cards that have one, or the
+  // static still. Persisted across decks; default ON.
+  const [showMotion, setShowMotion] = useState(() => {
+    try { return localStorage.getItem('mtg_show_motion') !== '0' } catch { return true }
+  })
+  useEffect(() => {
+    try { localStorage.setItem('mtg_show_motion', showMotion ? '1' : '0') } catch {}
+  }, [showMotion])
   const [videoHealth, setVideoHealth] = useState(null)   // null | {ok, method, hint, ...}
   const [motionPresets, setMotionPresets] = useState([])
   const [foilStyles, setFoilStyles]       = useState([])
@@ -1242,8 +1250,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             const stillSrc = (commander.has_render || refreshTs[commander.render_key])
               ? `/api/deck/${jobId}/card-image/${commander.render_key}${refreshTs[commander.render_key] ? `?t=${refreshTs[commander.render_key]}` : ''}`
               : commander.scryfall_img || null
-            // Show the animation when the commander has one (mp4 → <video>, webp/gif → <img>).
-            if (videoKeys.has(commander.render_key)) {
+            // Show the animation when the commander has one (mp4 → <video>, webp/gif → <img>),
+            // unless the viewer turned animations off.
+            if (showMotion && videoKeys.has(commander.render_key)) {
               const vts  = videoTs[commander.render_key] || 0
               const vfmt = videoFmts[commander.render_key] || commander.video_meta?.format || 'mp4'
               const vsrc = `/api/deck/${jobId}/card-video/${commander.render_key}${vts ? `?t=${vts}` : ''}`
@@ -1505,6 +1514,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           {videoKeys.size > 0 && (
             <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>🎬 Animations ({videoKeys.size})</button>
           )}
+          {videoKeys.size > 0 && (
+            <button
+              onClick={() => setShowMotion(m => !m)}
+              title={showMotion ? 'Showing animated cards — click to show the static art instead'
+                                : 'Showing static art — click to play the animated versions'}
+              style={{ ...btnBase, background: showMotion ? '#0c2a4d' : 'none',
+                color: showMotion ? '#7dd3fc' : '#78716c',
+                border: `1px solid ${showMotion ? '#0ea5e9' : '#44403c'}`, fontWeight: 600 }}
+            >{showMotion ? '▶ Motion: On' : '❚❚ Motion: Off'}</button>
+          )}
           <button
             onClick={handleRethemeAll}
             disabled={rethemeing || rebuilding}
@@ -1573,6 +1592,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               regenStatus={regenStatusFor(card.render_key)}
               refreshTs={refreshTs[card.render_key] || 0}
               hasVideo={videoKeys.has(card.render_key)}
+              showMotion={showMotion}
               videoTs={videoTs[card.render_key] || 0}
               videoFmt={videoFmts[card.render_key]}
             />
