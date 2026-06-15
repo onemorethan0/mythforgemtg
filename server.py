@@ -155,7 +155,7 @@ async def lifespan(app: FastAPI):
     except asyncio.CancelledError:
         pass
 
-app = FastAPI(title="Myth Forge", version="1.1", lifespan=lifespan)
+app = FastAPI(title="Myth Forge", version="1.2", lifespan=lifespan)
 
 # Bind tightly to localhost — this app has no auth layer. If you need
 # LAN access, add an auth header check and expand allow_origins explicitly.
