@@ -96,13 +96,24 @@ function CmcChart({ curve }) {
 }
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
-function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs }) {
+function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt }) {
   const [hover, setHover] = useState(false)
+  const [videoFailed, setVideoFailed] = useState(false)
 
   // Use cache-busting timestamp when the card was freshly regenerated
   const imgSrc = (card.has_render || refreshTs)
     ? `/api/deck/${jobId}/card-image/${card.render_key}${refreshTs ? `?t=${refreshTs}` : ''}`
     : card.scryfall_img || null
+
+  const videoSrc = hasVideo
+    ? `/api/deck/${jobId}/card-video/${card.render_key}${videoTs ? `?t=${videoTs}` : ''}`
+    : null
+  // A fresh/re-animated video clears any prior load failure.
+  useEffect(() => { setVideoFailed(false) }, [videoSrc])
+  const showVideo = videoSrc && !videoFailed
+  // WebP/GIF are animated images (render in <img>); MP4 needs a <video>.
+  const fmt = videoFmt || card.video_meta?.format || 'mp4'
+  const videoIsImage = fmt === 'webp' || fmt === 'gif'
 
   const selectable = onSelect != null
 
@@ -122,7 +133,17 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs }) {
         userSelect: 'none',
       }}
     >
-      {imgSrc
+      {showVideo
+        ? (videoIsImage
+          ? <img src={videoSrc} alt={card.themed_name}
+                 onError={() => setVideoFailed(true)}
+                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', background: '#000' }} />
+          : <video src={videoSrc} poster={imgSrc || undefined}
+                 autoPlay loop muted playsInline preload="auto" controls={hover}
+                 onError={() => setVideoFailed(true)}
+                 onLoadedData={e => { const p = e.currentTarget.play?.(); if (p && p.catch) p.catch(() => {}) }}
+                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', background: '#000' }} />)
+        : imgSrc
         ? <img src={imgSrc} alt={card.themed_name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         : (
           <div style={{ width: '100%', height: '100%', background: '#1c1917', border: '1px solid #292524', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 8, boxSizing: 'border-box' }}>
@@ -167,6 +188,20 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs }) {
         }}>
           NEW
         </div>
+      )}
+
+      {/* Animated indicator + download */}
+      {videoSrc && regenStatus !== 'pending' && (
+        <a href={videoSrc} download={`${card.render_key}.mp4`} title="Download MP4"
+           onClick={e => e.stopPropagation()}
+           style={{
+             position: 'absolute', bottom: 5, left: 5, fontSize: 9,
+             padding: '2px 6px', borderRadius: 4, fontWeight: 700, textDecoration: 'none',
+             background: 'rgba(12,10,9,0.78)', color: '#a5b4fc', border: '1px solid #4f46e5',
+             pointerEvents: hover ? 'auto' : 'none', opacity: hover ? 1 : 0.85,
+           }}>
+          ▶ MP4
+        </a>
       )}
 
       {/* Hover overlay */}
@@ -594,6 +629,207 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
   )
 }
 
+// ── Animate panel (modal) ───────────────────────────────────────────────────
+function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, health, onStart, onClose }) {
+  const i2vOk = !!health?.ok
+  const [effect, setEffect]   = useState(i2vOk ? 'motion' : 'foil')
+  const [preset, setPreset]   = useState(presets?.[0]?.key || 'subtle')
+  const [foilStyle, setFoilStyle] = useState(foilStyles?.[0]?.key || 'holo')
+  const [fmt, setFmt]         = useState('mp4')
+  const [loop, setLoop]       = useState(true)
+
+  const usesMotion = effect === 'motion' || effect === 'motion_foil'
+  const usesFoil   = effect === 'foil'   || effect === 'motion_foil'
+  const canRun     = !usesMotion || i2vOk
+
+  // ── Clip length (duration) + frame rate + foil intensity ──
+  const FALLBACK_CAPS = { motion: { min_s: 1, max_s: 6, default_s: 2 },
+                          foil: { min_s: 1, max_s: 10, default_s: 3 }, fps_options: [12, 16, 24, 30] }
+  const capsR     = caps || FALLBACK_CAPS
+  const fpsOptions = capsR.fps_options || FALLBACK_CAPS.fps_options
+  // Motion clip-length range applies whenever I2V runs (motion or motion_foil);
+  // foil-only uses the cheaper, longer foil range.
+  const range     = usesMotion ? (capsR.motion || FALLBACK_CAPS.motion) : (capsR.foil || FALLBACK_CAPS.foil)
+  const [duration, setDuration] = useState(range.default_s)
+  const [fps, setFps]           = useState(24)
+  const [foilIntensity, setFoilIntensity] = useState(0.55)
+  const [customMotion, setCustomMotion]   = useState('')   // free-text when preset === '__custom__'
+  const isCustomMotion = preset === '__custom__'
+
+  // Keep duration within the active effect's range when the effect switches.
+  useEffect(() => {
+    setDuration(d => Math.min(range.max_s, Math.max(range.min_s, d)))
+  }, [effect])  // eslint-disable-line react-hooks/exhaustive-deps
+
+  const clampedDur = Math.min(range.max_s, Math.max(range.min_s, duration))
+  const estFrames  = Math.max(2, Math.round(clampedDur * fps))
+  // Looping motion ping-pongs (plays ~2× on screen); foil already loops once.
+  const loopMult   = (usesMotion && loop && !usesFoil) ? 2 : 1
+  const onScreenS  = (clampedDur * loopMult).toFixed(1)
+
+  function handleStart() {
+    onStart({
+      cards: selectedCards.map(c => ({ render_key: c.render_key, original_name: c.original_name })),
+      motion_preset: isCustomMotion ? 'subtle' : preset,
+      motion_prompt: isCustomMotion ? customMotion.trim() : undefined,
+      effect,
+      foil_style: foilStyle,
+      foil_intensity: foilIntensity,
+      fmt,
+      duration: clampedDur,
+      fps,
+      loop,
+    })
+  }
+
+  const modelLabel = health?.method
+    ? health.method.toUpperCase()
+    : (health?.methods?.length ? health.methods.join(', ') : 'auto')
+
+  // Local button style (this component is top-level — it can't see StepDeck's btnBase).
+  const btnBase = { padding: '6px 16px', borderRadius: 8, fontSize: 12, fontFamily: 'inherit', cursor: 'pointer', fontWeight: 600, border: 'none' }
+  const selStyle = { width: '100%', padding: '8px 10px', background: '#0c0a09', color: '#f5f5f4',
+    border: '1px solid #44403c', borderRadius: 8, fontSize: 13, marginBottom: 14 }
+
+  const effectOptions = [
+    { key: 'motion', label: '🎞️ Art motion (image-to-video)', needsI2v: true },
+    { key: 'foil',   label: '✨ Foil / holo sheen (whole card)', needsI2v: false },
+    { key: 'motion_foil', label: '🎞️+✨ Motion + foil', needsI2v: true },
+  ]
+  const fmtList   = formats?.length ? formats
+    : [{ key: 'mp4', label: 'MP4 (H.264 video)' }, { key: 'webp', label: 'Animated WebP' }, { key: 'gif', label: 'Animated GIF' }]
+  const foilList  = foilStyles?.length ? foilStyles
+    : [{ key: 'holo', label: 'Rainbow holo' }, { key: 'gold', label: 'Gold foil' }, { key: 'silver', label: 'Silver shimmer' }]
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: 16 }}
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      <div style={{ background: '#1c1917', border: '1px solid #44403c', borderRadius: 16,
+        maxWidth: 560, width: '100%', maxHeight: '88vh', overflowY: 'auto', padding: 24 }}>
+        <div style={{ fontSize: 18, fontWeight: 800, color: '#7dd3fc', marginBottom: 4 }}>
+          ✨ Animate {selectedCards.length} card{selectedCards.length !== 1 ? 's' : ''}
+        </div>
+        <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 16 }}>
+          {usesFoil && !usesMotion
+            ? 'A holographic foil sheen sweeps across the whole card — frame, text and art. Runs on CPU, no GPU model needed (~seconds per card).'
+            : `The card art is turned into a short looping clip (${modelLabel}); the frame, text and symbols stay crisp. This runs on your GPU and takes ~½–2 min per card.`}
+        </div>
+
+        {/* Effect */}
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Effect</label>
+        <select value={effect} onChange={e => setEffect(e.target.value)} style={selStyle}>
+          {effectOptions.map(o => (
+            <option key={o.key} value={o.key} disabled={o.needsI2v && !i2vOk}>
+              {o.label}{o.needsI2v && !i2vOk ? ' — needs a video model' : ''}
+            </option>
+          ))}
+        </select>
+
+        {/* Motion preset (only when art motion is used) */}
+        {usesMotion && (<>
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Motion</label>
+          <select value={preset} onChange={e => setPreset(e.target.value)} style={{ ...selStyle, marginBottom: isCustomMotion ? 8 : 14 }}>
+            {(presets?.length ? presets : [{ key: 'subtle', label: 'Subtle cinemagraph' }]).map(p => (
+              <option key={p.key} value={p.key}>{p.label}</option>
+            ))}
+            <option value="__custom__">✍️ Custom motion…</option>
+          </select>
+          {isCustomMotion && (<>
+            <textarea
+              value={customMotion}
+              onChange={e => setCustomMotion(e.target.value)}
+              maxLength={300}
+              rows={2}
+              placeholder="e.g. slow camera push-in, rain falling, neon signs flickering"
+              style={{ ...selStyle, marginBottom: 4, resize: 'vertical', minHeight: 44 }}
+            />
+            <div style={{ fontSize: 11, color: '#78716c', marginBottom: 14, lineHeight: 1.5 }}>
+              Describe <strong>ambient or camera motion</strong> — the subject is held still automatically.
+              Avoid actions (“swings sword”, “runs”): image-to-video warps the figure on big moves.
+            </div>
+          </>)}
+        </>)}
+
+        {/* Foil style (only when foil is used) */}
+        {usesFoil && (<>
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Foil style</label>
+          <select value={foilStyle} onChange={e => setFoilStyle(e.target.value)} style={selStyle}>
+            {foilList.map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
+          </select>
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Foil intensity</label>
+          <select value={foilIntensity} onChange={e => setFoilIntensity(parseFloat(e.target.value))} style={selStyle}>
+            <option value={0.35}>Subtle</option>
+            <option value={0.55}>Medium</option>
+            <option value={0.8}>Strong</option>
+          </select>
+        </>)}
+
+        {/* Clip length (duration) + frame rate */}
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+          <span>Clip length</span>
+          <span style={{ color: '#7dd3fc', fontWeight: 600 }}>{clampedDur.toFixed(1)}s</span>
+        </label>
+        <input type="range" min={range.min_s} max={range.max_s} step={0.5}
+               value={clampedDur} onChange={e => setDuration(parseFloat(e.target.value))}
+               style={{ width: '100%', marginBottom: 6, accentColor: '#0ea5e9' }} />
+        <div style={{ fontSize: 11, color: '#78716c', marginBottom: 14 }}>
+          ≈ {estFrames} frames{usesMotion ? ' (snapped to the model’s cadence)' : ''} ·
+          {' '}plays ~{onScreenS}s on screen{loopMult > 1 ? ' (ping-pong loop)' : ''}.
+          {usesMotion && <span> Longer = sharper motion but slower to render.</span>}
+        </div>
+
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Smoothness (frame rate)</label>
+        <select value={fps} onChange={e => setFps(parseInt(e.target.value, 10))} style={selStyle}>
+          {fpsOptions.map(f => (
+            <option key={f} value={f}>{f} fps{f <= 12 ? ' — choppy, tiny file' : f >= 30 ? ' — smoothest, larger file' : ''}</option>
+          ))}
+        </select>
+
+        {/* Output format */}
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Format</label>
+        <select value={fmt} onChange={e => setFmt(e.target.value)} style={selStyle}>
+          {fmtList.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+        </select>
+        {fmt === 'gif' && (
+          <div style={{ fontSize: 11, color: '#a8729e', marginTop: -8, marginBottom: 12 }}>
+            GIF is the most portable but 256-colour — holo gradients band and files are large. WebP looks far better.
+          </div>
+        )}
+
+        {/* Loop toggle (foil already loops seamlessly) */}
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: usesMotion ? '#d6d3d1' : '#57534e', marginBottom: 18, cursor: usesMotion ? 'pointer' : 'default' }}>
+          <input type="checkbox" checked={usesMotion ? loop : true} disabled={!usesMotion}
+                 onChange={e => setLoop(e.target.checked)} />
+          {usesMotion ? 'Seamless ping-pong loop (recommended)' : 'Seamless loop (always on for foil)'}
+        </label>
+
+        {/* Selected card list */}
+        <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Cards</div>
+        <div style={{ maxHeight: 180, overflowY: 'auto', border: '1px solid #292524', borderRadius: 8, padding: 8, marginBottom: 18 }}>
+          {selectedCards.map((c, i) => (
+            <div key={i} style={{ fontSize: 12, color: '#d6d3d1', padding: '2px 0' }}>
+              {c.themed_name}{c.themed_name !== c.original_name && <span style={{ color: '#57534e' }}> ({c.original_name})</span>}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
+          <button onClick={onClose} style={{ ...btnBase, background: 'none', color: '#a8a29e', border: '1px solid #44403c' }}>
+            Cancel
+          </button>
+          <button onClick={handleStart} disabled={!canRun}
+            title={canRun ? '' : (health?.hint || 'Image-to-video model not available')}
+            style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9',
+              opacity: canRun ? 1 : 0.5, cursor: canRun ? 'pointer' : 'not-allowed' }}>
+            ✨ Animate
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
@@ -619,10 +855,34 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [rebuildArtStyle, setRebuildArtStyle] = useState(deck.art_style || 'mtg_fantasy')
   const [rebuildModelSpeed, setRebuildModelSpeed] = useState(deck.model_speed || 'quality')
   const [rebuildArtStyles, setRebuildArtStyles] = useState([])
+  // Pinned style-variant for the rebuild — seeded from the deck's persisted choice.
+  const [rebuildVariant, setRebuildVariant] = useState(deck.gen_settings?.style_variant || '')
   const [rethemeing, setRethemeing]   = useState(false)
   const [duplicating, setDuplicating] = useState(false)
   const [dupMsg, setDupMsg]           = useState(null)   // null | {newJobId, name} | 'error'
   const [deckCheckpoints, setDeckCheckpoints] = useState([])
+
+  // ── Animate (image-to-video) state ────────────────────────────────────────
+  const [showAnimatePanel, setShowAnimatePanel] = useState(false)
+  const [videoTs, setVideoTs]       = useState({})   // render_key → timestamp (cache-bust)
+  const [videoKeys, setVideoKeys]   = useState(() => {
+    const s = new Set()
+    if (deck?.commander?.has_video) s.add(deck.commander.render_key)
+    for (const c of deck?.deck || []) if (c.has_video) s.add(c.render_key)
+    return s
+  })
+  const [videoFmts, setVideoFmts]   = useState(() => {   // render_key → mp4|webp|gif
+    const m = {}
+    const add = c => { if (c?.has_video) m[c.render_key] = c.video_meta?.format || 'mp4' }
+    add(deck?.commander)
+    for (const c of deck?.deck || []) add(c)
+    return m
+  })
+  const [videoHealth, setVideoHealth] = useState(null)   // null | {ok, method, hint, ...}
+  const [motionPresets, setMotionPresets] = useState([])
+  const [foilStyles, setFoilStyles]       = useState([])
+  const [videoFormats, setVideoFormats]   = useState([])
+  const [videoCaps, setVideoCaps]         = useState(null)   // {motion:{min_s,max_s,default_s}, foil:{...}, fps_options}
 
   // ── 3D Commander generation state ─────────────────────────────────────────
   const [gen3dState, setGen3dState]     = useState('idle')   // idle|loading|rmbg|trellis|converting|done|error
@@ -645,6 +905,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       .then(r => r.ok ? r.json() : [])
       .then(d => setDeckCheckpoints(Array.isArray(d) ? d : []))
       .catch(() => {})
+    fetch('/api/video-health')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setVideoHealth(d) })
+      .catch(() => {})
+    fetch('/api/video-presets')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d?.presets) setMotionPresets(d.presets)
+        if (d?.foil_styles) setFoilStyles(d.foil_styles)
+        if (d?.formats) setVideoFormats(d.formats)
+        if (d?.caps) setVideoCaps(d.caps)
+      })
+      .catch(() => {})
   }, [])
 
   // ── SSE listener for per-card regen job ───────────────────────────────────
@@ -656,8 +929,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     src.addEventListener('progress', e => {
       try {
         const d = JSON.parse(e.data)
-        if (d.step === 'art' && d.card_num != null) {
-          setRegenProgress({ current: d.card_num, total: d.total, cardName: d.card_name, pct: d.pct })
+        if ((d.step === 'art' || d.step === 'video') && d.card_num != null) {
+          setRegenProgress({ current: d.card_num, total: d.total, cardName: d.card_name,
+                             pct: d.pct, kind: d.step })
         }
       } catch {}
     })
@@ -666,6 +940,23 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       try {
         const d = JSON.parse(e.data)
         setRefreshTs(prev => ({ ...prev, [d.key]: Date.now() }))
+        setRegenPending(prev => { const s = new Set(prev); s.delete(d.key); return s })
+        setRegenDone(prev => new Set([...prev, d.key]))
+        // A regenerated still invalidates its animation (it was made from the old
+        // art); the backend deletes the stale clip, so drop the tile's video and
+        // show the fresh still until the card is re-animated.
+        setVideoKeys(prev => { if (!prev.has(d.key)) return prev; const s = new Set(prev); s.delete(d.key); return s })
+        setVideoFmts(prev => { if (!(d.key in prev)) return prev; const m = { ...prev }; delete m[d.key]; return m })
+      } catch {}
+    })
+
+    // Animate job: a card's MP4 just finished — swap its tile to the looping video.
+    src.addEventListener('video_ready', e => {
+      try {
+        const d = JSON.parse(e.data)
+        setVideoKeys(prev => new Set([...prev, d.key]))
+        setVideoFmts(prev => ({ ...prev, [d.key]: d.format || 'mp4' }))
+        setVideoTs(prev => ({ ...prev, [d.key]: Date.now() }))
         setRegenPending(prev => { const s = new Set(prev); s.delete(d.key); return s })
         setRegenDone(prev => new Set([...prev, d.key]))
       } catch {}
@@ -729,6 +1020,24 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     }
   }
 
+  async function handleStartAnimate(payload) {
+    setShowAnimatePanel(false)
+    setRegenPending(new Set(payload.cards.map(c => c.render_key)))
+    try {
+      const res = await fetch(`/api/deck/${jobId}/animate-cards`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      setRegenJobId(data.job_id)   // reuse the SSE listener (progress + video_ready + done)
+    } catch (err) {
+      setRegenPending(new Set())
+      alert(`Could not start animation: ${err.message}`)
+    }
+  }
+
   async function handleRebuildAll() {
     // Show the rebuild options modal
     setShowRebuildModal(true)
@@ -738,6 +1047,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     if (rebuilding) return
     setRebuilding(true)
     setShowRebuildModal(false)
+    // Only send the pinned variant if it actually belongs to the chosen style.
+    const _rbStyle = rebuildArtStyles.find(s => s.key === rebuildArtStyle)
+    const _rbVariant = (_rbStyle?.variants || []).some(v => v.label === rebuildVariant)
+      ? rebuildVariant : ''
     try {
       const res = await fetch(`/api/deck/${jobId}/rebuild`, {
         method: 'POST',
@@ -750,6 +1063,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           face_gender: deck.face_gender || 'either',
           crew_key:    deck.crew_key || null,
           crew_gender: deck.crew_gender || 'either',
+          // Preserve the deck's advanced settings and apply the chosen flavor.
+          // '' = Variety mix (per-card rotation).
+          gen_settings: { ...(deck.gen_settings || {}), style_variant: _rbVariant },
         }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -904,24 +1220,32 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     <div style={{ width: '100%', maxWidth: 1200, marginTop: 24, paddingBottom: selectedKeys.size > 0 || regenProgress ? 80 : 0 }}>
 
       {/* Commander banner */}
-      <div style={{ display: 'flex', gap: 24, background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 24, marginBottom: 24, alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 24, marginBottom: 24, alignItems: 'flex-start' }}>
         {/* Commander image — clickable for selection */}
         <div
           style={{ position: 'relative', flexShrink: 0, cursor: 'pointer' }}
           onClick={() => toggleSelect(commander.render_key)}
           title="Click to select commander for regen"
         >
-          {commander.has_render || refreshTs[commander.render_key]
-            ? <img
-                src={`/api/deck/${jobId}/card-image/${commander.render_key}${refreshTs[commander.render_key] ? `?t=${refreshTs[commander.render_key]}` : ''}`}
-                alt={commander.themed_name}
-                style={{ width: 180, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none', display: 'block' }}
-              />
-            : commander.scryfall_img
-              ? <img src={commander.scryfall_img} alt={commander.themed_name}
-                  style={{ width: 180, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none', display: 'block' }} />
+          {(() => {
+            const imgStyle = { width: 180, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none', display: 'block' }
+            const stillSrc = (commander.has_render || refreshTs[commander.render_key])
+              ? `/api/deck/${jobId}/card-image/${commander.render_key}${refreshTs[commander.render_key] ? `?t=${refreshTs[commander.render_key]}` : ''}`
+              : commander.scryfall_img || null
+            // Show the animation when the commander has one (mp4 → <video>, webp/gif → <img>).
+            if (videoKeys.has(commander.render_key)) {
+              const vts  = videoTs[commander.render_key] || 0
+              const vfmt = videoFmts[commander.render_key] || commander.video_meta?.format || 'mp4'
+              const vsrc = `/api/deck/${jobId}/card-video/${commander.render_key}${vts ? `?t=${vts}` : ''}`
+              return (vfmt === 'webp' || vfmt === 'gif')
+                ? <img src={vsrc} alt={commander.themed_name} style={imgStyle} />
+                : <video src={vsrc} poster={stillSrc || undefined} autoPlay loop muted playsInline preload="auto"
+                    style={{ ...imgStyle, background: '#000' }} />
+            }
+            return stillSrc
+              ? <img src={stillSrc} alt={commander.themed_name} style={imgStyle} />
               : <div style={{ width: 180, height: 252, background: '#0c0a09', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#57534e' }}>No art</div>
-          }
+          })()}
           {/* Status overlays for commander */}
           {regenPending.has(commander.render_key) && (
             <div style={{ position: 'absolute', inset: 0, borderRadius: 12, background: 'rgba(0,0,0,0.72)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 6 }}>
@@ -940,9 +1264,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           </div>
         </div>
 
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: '1 1 320px', minWidth: 0 }}>
           <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>Commander</div>
-          <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fde047', margin: '0 0 4px', lineHeight: 1.2 }}>{commander.themed_name}</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fde047', margin: '0 0 4px', lineHeight: 1.2, overflowWrap: 'anywhere' }}>{commander.themed_name}</h1>
           {commander.themed_name !== commander.original_name && (
             <div style={{ fontSize: 13, color: '#57534e', marginBottom: 10 }}>({commander.original_name})</div>
           )}
@@ -1168,6 +1492,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <button onClick={() => exportThemed(deck)}   style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed TXT</button>
           <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/zip`)} style={{ ...btnBase, background: '#1e3a5f', color: '#93c5fd', border: '1px solid #1d4ed8', fontWeight: 600 }}>↓ ZIP</button>
           <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/pdf`)} style={{ ...btnBase, background: '#14532d', color: '#86efac', border: '1px solid #15803d', fontWeight: 600 }}>↓ PDF</button>
+          {videoKeys.size > 0 && (
+            <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>🎬 Animations ({videoKeys.size})</button>
+          )}
           <button
             onClick={handleRethemeAll}
             disabled={rethemeing || rebuilding}
@@ -1235,6 +1562,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               onSelect={!regenProgress ? toggleSelect : null}
               regenStatus={regenStatusFor(card.render_key)}
               refreshTs={refreshTs[card.render_key] || 0}
+              hasVideo={videoKeys.has(card.render_key)}
+              videoTs={videoTs[card.render_key] || 0}
+              videoFmt={videoFmts[card.render_key]}
             />
           ))}
         </div>
@@ -1302,6 +1632,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             style={{ ...btnBase, background: 'none', color: '#78716c', fontSize: 11 }}
           >✕ Clear</button>
           <button
+            onClick={() => setShowAnimatePanel(true)}
+            title={videoHealth?.ok ? 'Animate the selected cards (art motion and/or foil sheen)'
+                                   : 'Add a foil/holo sheen (a video model is needed for art motion)'}
+            style={{ ...btnBase,
+              background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9',
+              fontWeight: 700, fontSize: 13, padding: '8px 18px', cursor: 'pointer' }}
+          >
+            ✨ Animate {selectedKeys.size}
+          </button>
+          <button
             onClick={() => setShowRegenPanel(true)}
             style={{ ...btnBase, background: '#3b0764', color: '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 700, fontSize: 13, padding: '8px 20px' }}
           >
@@ -1321,7 +1661,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ fontSize: 13, animation: 'spin-slow 1.5s linear infinite' }}>⚙️</div>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#eab308' }}>
-              Regenerating cards… {regenProgress.current}/{regenProgress.total}
+              {regenProgress.kind === 'video' ? 'Animating cards…' : 'Regenerating cards…'} {regenProgress.current}/{regenProgress.total}
             </span>
             {regenProgress.cardName && (
               <span style={{ fontSize: 12, color: '#78716c', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -1350,6 +1690,20 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           savedFaceGender={deck.face_gender || 'either'}
           savedCrewKey={deck.crew_key || null}
           savedCrewGender={deck.crew_gender || 'either'}
+        />
+      )}
+
+      {/* ── Animate panel modal ── */}
+      {showAnimatePanel && (
+        <AnimatePanel
+          selectedCards={selectedCardData}
+          presets={motionPresets}
+          foilStyles={foilStyles}
+          formats={videoFormats}
+          caps={videoCaps}
+          health={videoHealth}
+          onStart={handleStartAnimate}
+          onClose={() => setShowAnimatePanel(false)}
         />
       )}
 
@@ -1394,6 +1748,32 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 )}
               </select>
             </div>
+
+            {/* Style-variant selector — only when the chosen style exposes flavors */}
+            {(() => {
+              const st = rebuildArtStyles.find(s => s.key === rebuildArtStyle)
+              const variants = (st && Array.isArray(st.variants)) ? st.variants : []
+              if (variants.length === 0) return null
+              return (
+                <div>
+                  <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    {st.label} Flavor
+                  </label>
+                  <select
+                    value={variants.some(v => v.label === rebuildVariant) ? rebuildVariant : ''}
+                    onChange={e => setRebuildVariant(e.target.value)}
+                    style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
+                  >
+                    <option value="">✨ Variety mix (each card varies)</option>
+                    {variants.map(v => (
+                      <option key={v.label} value={v.label} disabled={!v.ready}>
+                        {v.ready ? '✓' : '⚠'} {v.label}{v.ready ? '' : ' (LoRA missing)'}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )
+            })()}
 
             <div>
               <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>

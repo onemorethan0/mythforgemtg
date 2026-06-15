@@ -61,6 +61,14 @@ export const GEN_SETTINGS_SCHEMA = [
     label: 'Face fix (FaceDetailer)', default: false,
     help: 'Detects faces and re-renders them at higher detail (Impact Pack). Fixes small, blurry, or malformed faces on character cards. SDXL / Illustrious only (incl. Ragnarok). Adds a short pass per detected face.',
   },
+  // style_variant pins a preset's rotation flavor (e.g. cyberpunk "Blade Runner '82")
+  // deck-wide. '' = Variety mix (per-card rotation, the default). Surfaced by a
+  // contextual "flavor" selector in StepTheme next to the art-style grid (only for
+  // presets that expose variants), so it's hidden from the Advanced panel here.
+  {
+    key: 'style_variant', step: 'theme', type: 'select', hidden: true,
+    label: 'Style variant', default: '',
+  },
 
   // ── Face step ────────────────────────────────────────────────────────────────
   {
@@ -106,6 +114,7 @@ export function toGenSettingsPayload(values) {
       if (Array.isArray(v) && v.length) out.lora_overrides = v
       continue
     }
+    if (f.key === 'style_variant') { if (v) out.style_variant = v; continue }  // '' = Variety mix → omit
     out[f.key] = v
   }
   return out

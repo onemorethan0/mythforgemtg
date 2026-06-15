@@ -1082,6 +1082,49 @@ def _draw_border_theme(
 
 
 # ── Main render ───────────────────────────────────────────────────────────────
+# Enchantment subtypes that read as pure rules-mechanics noise on a custom themed
+# proxy (the leveling "Class" subtype is the one users flag). Aura/Saga/etc. are
+# kept — they describe the card and we depict them. Extend this set to drop more.
+_DROP_ENCHANTMENT_SUBTYPES = {"class"}
+
+
+def clean_display_type_line(card: dict, type_line: str, themed_name: str = "") -> str:
+    """Tidy a type line for display on the proxy (and in deck.json):
+
+    1. Never print the card's own themed NAME as its creature subtype — e.g.
+       name "Cyber Champion" with type "Legendary Creature — Cyber Champion".
+       Real cards carry a generic creature KIND, so fall back to the card's
+       original creature type (a name-as-type only belongs on a card whose real
+       printing was already that way).
+    2. Drop enchantment subtypes that are pure mechanics labels (e.g. "— Class"),
+       keeping meaningful ones like Aura/Saga.
+    """
+    tl   = type_line or ""
+    norm = tl.replace(" - ", " — ")
+    low  = norm.lower()
+
+    # (1) name-as-type → revert to the original creature type
+    if themed_name and "creature" in low and "—" in norm:
+        subs        = norm.split("—", 1)[1].strip()
+        name_proper = themed_name.split(",")[0].strip()
+        if subs.lower() == name_proper.lower():
+            orig = card.get("original_type_line") or ""
+            if orig and orig.strip().lower() != tl.strip().lower():
+                tl   = orig
+                norm = tl.replace(" - ", " — ")
+                low  = norm.lower()
+
+    # (2) strip rules-noise enchantment subtypes
+    if "enchantment" in low and "creature" not in low and "—" in norm:
+        head, _, tail = norm.partition("—")
+        subs = tail.split()
+        kept = [s for s in subs if s.lower() not in _DROP_ENCHANTMENT_SUBTYPES]
+        if len(kept) != len(subs):
+            tl = f"{head.strip()} — {' '.join(kept)}" if kept else head.strip()
+
+    return tl
+
+
 def render_card(
     card:         dict,
     themed_name:  str,
@@ -1095,6 +1138,13 @@ def render_card(
     Render a full MTG-style card.
     Returns a 750×1050 RGBA PIL Image.
     """
+    # Tidy the displayed type line (drop "— Class" noise; never print the themed
+    # name as the creature subtype). Done here, before the CC dispatch, so BOTH
+    # frame systems render the cleaned line.
+    _clean_tl = clean_display_type_line(card, card.get("type_line", ""), themed_name)
+    if _clean_tl != card.get("type_line", ""):
+        card = {**card, "type_line": _clean_tl}
+
     # ── Optional: Card Conjurer frame packs from a locally-installed CC (assets
     # the user supplies themselves, like LoRAs/checkpoints). Selected per-build
     # via set_frame_style() — e.g. "m15" (regular) or "m15_fullart" (borderless
@@ -1382,6 +1432,37 @@ def render_card(
     # ── Downscale 2× → 1× with LANCZOS ───────────────────────────────────────
     out = canvas.resize((CARD_W, CARD_H), Image.LANCZOS)
     return out
+
+
+# ── Animated cards: composite a sequence of art frames into card frames ───────
+def render_card_frames(
+    card:         dict,
+    themed_name:  str,
+    oracle_text:  str,
+    art_frames:   list,
+    set_symbol:   Optional[Image.Image] = None,
+    flavor_text:  str = "",
+    border_theme: str = "",
+) -> list:
+    """
+    Render one full card image per art frame, reusing render_card so the frame,
+    text, mana symbols, crown and P/T stay pixel-identical across the sequence
+    and only the ART moves. Honors the active frame style (built-in or M15 via
+    set_frame_style) exactly like a normal render. Returns a list of 750×1050
+    RGBA images, one per input art frame.
+
+    This is the compositing half of the "animate card" feature: an image-to-video
+    model produces `art_frames`; here each is dropped into the card's art window
+    with the static chrome re-composited on top.
+    """
+    frames = []
+    for art in art_frames:
+        frames.append(render_card(
+            card, themed_name, oracle_text,
+            art_image=art, set_symbol=set_symbol,
+            flavor_text=flavor_text, border_theme=border_theme,
+        ))
+    return frames
 
 
 # ── Batch helpers ─────────────────────────────────────────────────────────────

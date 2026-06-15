@@ -137,6 +137,11 @@ class GenSettings:
     # LoRA selection/strength overrides (list of {filename, model_strength, clip_strength?})
     # None → use the art-style preset's default LoRA stack.
     lora_overrides: Optional[list] = None
+    # Per-deck style-variant pin for presets that define a `lora_rotation` (e.g.
+    # cyberpunk). None / "" / "auto" → keep per-card random rotation ("Variety mix").
+    # Otherwise it must match a rotation stack's `label`; _setup_loras then pins the
+    # rotation pool to that single stack so the whole deck uses one flavor.
+    style_variant: Optional[str] = None
     # Face conditioning
     face_method: Optional[str] = None      # None=auto | "reactor" | "pulid_flux" | "none"
     face_weight: Optional[float] = None    # PuLID identity weight (0.5–1.0)
@@ -536,12 +541,20 @@ _LORA_PRESETS: dict[str, dict] = {
                 "download_note":  "Neon_Cyberpunk_Detailer_FLUX_multi_trigger.safetensors",
             },
         ],
-        # Per-card rotation: each card randomly uses one of these two style stacks
-        # for stylistic variety across a deck (CG-realism vs vaporwave neon mood).
-        # Both are clean flux-1-dev STYLE LoRAs that respect the subject.
+        # ── Style variants (per-card rotation OR user-pinned) ──────────────────
+        # Each entry is a self-contained flux-1-dev STYLE stack for one cyberpunk
+        # "flavor".  By default generate() picks one PER CARD ("Variety mix") so a
+        # deck spans the whole family; the user can instead pin ONE flavor deck-wide
+        # via gen.style_variant (UI "Cyberpunk flavor" selector → _setup_loras).
+        # The `description` is surfaced in the UI selector.  All are clean style
+        # LoRAs that respect the described subject (NOT subject/character LoRAs —
+        # see the Neon Noir removal note above).  The shared Cyberpunk Detailer is
+        # layered at a low strength for cyber-augment / neon micro-detail without
+        # dictating the subject.  Keep clip_strength ≤0.45 (CLAUDE.md palette rule).
         "lora_rotation": [
             {
-                "label": "Cyberpunk CG",
+                "label": "Neon CG",
+                "description": "High-saturation neon CG — chrome, holograms, futuristic city tech.",
                 "loras": [
                     {"fragments": ["kcyberpunk", "cyberpunk_cg"], "trigger": "kcyberpunk",
                      "model_strength": 0.7, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk CG"},
@@ -550,7 +563,45 @@ _LORA_PRESETS: dict[str, dict] = {
                 ],
             },
             {
+                "label": "Cinematic City",
+                "description": "Cinematic cyberpunk megacity — film lighting, depth, rain-slick streets.",
+                "loras": [
+                    {"fragments": ["cyberpunk_cinematic", "cyberpunk_cinem"], "trigger": "cyberpunk style",
+                     "model_strength": 0.7, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Cinematic"},
+                    {"fragments": ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"], "trigger": "mad-cbrpnk-dtlr",
+                     "model_strength": 0.35, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Detailer"},
+                ],
+            },
+            {
+                "label": "Blade Runner '82",
+                "description": "1982 tech-noir film look — moody neon haze, gritty retro-future.",
+                "loras": [
+                    # dim16/alpha64 → scale 4.0 (very potent); training tags skew
+                    # person-focused (1boy/solo, Deckard screenshots), so keep model
+                    # LOW (0.45) to get the film LOOK without dragging every card
+                    # toward a lone man. No trigger token (style applies unprompted).
+                    {"fragments": ["blade_runner_1982", "blade_runner", "bladerunner"], "trigger": "",
+                     "model_strength": 0.45, "clip_strength": 0.0, "dark_only": False, "label": "Blade Runner 1982"},
+                    {"fragments": ["cyberpunk_detailer", "cbrpnk", "Neon_Cyberpunk_Detailer"], "trigger": "mad-cbrpnk-dtlr",
+                     "model_strength": 0.3, "clip_strength": 0.0, "dark_only": False, "label": "Cyberpunk Detailer"},
+                ],
+            },
+            {
+                "label": "Retro-Futurism",
+                "description": "Painterly Syd Mead retro-futurist illustration — best for card-art.",
+                "loras": [
+                    # Syd Mead "Future Noir": painterly illustration style (great medium
+                    # fit for card art).  Strong style, used solo (no detailer) so the
+                    # brushy look isn't muddied.  Trigger 'sydme1 painting' is unique
+                    # ('sydme1' survives _dedup_style_words; 'painting' may dedup if the
+                    # prompt already says painting — harmless, the LoRA still fires).
+                    {"fragments": ["syd_mead", "sydmead", "future_noir", "sydme1"], "trigger": "sydme1 painting",
+                     "model_strength": 0.8, "clip_strength": 0.0, "dark_only": False, "label": "Syd Mead Future Noir"},
+                ],
+            },
+            {
                 "label": "Neon Abyss",
+                "description": "Vaporwave neon mood — saturated magenta/cyan glow (kept moderate).",
                 "loras": [
                     # bo-neon trained its text encoder (has lora_te keys), so clip_strength
                     # patches the COLOR conditioning. At 0.85 it overrode the prompt's
@@ -593,6 +644,9 @@ _LORA_PRESETS: dict[str, dict] = {
             "Third-person view, character viewed from outside. High detail, landscape composition. "
             "Any visible hands have exactly five fingers each. "
         ),
+        # Base stack (fallback when no rotation stack resolves): the original
+        # Retro-Future Dystopia LoRA.  Also carries the download hints surfaced by
+        # /api/art-styles.
         "loras": [
             {
                 "fragments":      ["retrofuture", "dystopia"],
@@ -605,6 +659,40 @@ _LORA_PRESETS: dict[str, dict] = {
                 "label":          "Retro Future Dystopia",
                 "download_url":   "https://civitai.com/models/886913",
                 "download_note":  "Save as retrofuture_dystopia.safetensors",
+            },
+        ],
+        # ── Style variants (per-card rotation OR user-pinned) ──────────────────
+        # Same machinery as cyberpunk: "Variety mix" rotates these per card, or the
+        # user pins one deck-wide.  All flux-1-dev STYLE LoRAs (scenes/aesthetic),
+        # NOT game-character LoRAs.  clip kept ≤0.45 (palette rule).
+        "lora_rotation": [
+            {
+                "label": "Retro Dystopia",
+                "description": "Weathered retro-future dystopia — salvaged tech, rust, grime.",
+                "loras": [
+                    {"fragments": ["retrofuture", "dystopia"], "trigger": "RetroFutureDystopia",
+                     "model_strength": 0.55, "clip_strength": 0.45, "dark_only": False, "label": "Retro Future Dystopia"},
+                ],
+            },
+            {
+                "label": "Mad Max",
+                "description": "Sun-scorched Mad-Max wasteland — war rigs, dust, brutal sun.",
+                "loras": [
+                    # Unique trigger code 'm5dm5x6' (verified via tag_frequency) — the
+                    # LoRA barely fires without it. UNET-only (clip no-op → 0).
+                    {"fragments": ["mad_max", "madmax", "mad-max"], "trigger": "m5dm5x6",
+                     "model_strength": 0.75, "clip_strength": 0.0, "dark_only": False, "label": "Mad Max Aesthetics"},
+                ],
+            },
+            {
+                "label": "Wasteland",
+                "description": "Fallout-style ruined wasteland — derelict structures, irradiated ruins.",
+                "loras": [
+                    # Fallout-4 style: dim2/alpha16 → scale 8 (potent at low strength),
+                    # natural-language captions (no trigger token). UNET-only (clip 0).
+                    {"fragments": ["wasteland_concept", "wasteland", "fallout"], "trigger": "",
+                     "model_strength": 0.5, "clip_strength": 0.0, "dark_only": False, "label": "Wasteland Concept"},
+                ],
             },
         ],
     },
@@ -2384,12 +2472,28 @@ class ImageGen:
                         "loras":         resolved_stack,
                         "trigger_prefix": (", ".join(trg) + ". ") if trg else "",
                     })
+            # ── Variant pin ───────────────────────────────────────────────────
+            # If the user pinned a specific flavor (gen.style_variant), filter the
+            # pool to that single stack so the WHOLE deck uses one look. Empty /
+            # "auto" keeps the full pool (per-card "Variety mix"). An unknown label
+            # (e.g. a deck saved before its variant was renamed) falls back to the
+            # full pool rather than erroring.
+            variant_pin = (self.gen.style_variant or "").strip()
+            if pool and variant_pin and variant_pin.lower() not in ("auto", "variety", "variety mix"):
+                pinned = [p for p in pool if p["label"].lower() == variant_pin.lower()]
+                if pinned:
+                    pool = pinned
+                    print(f"  [image_gen] Style variant pinned: {pinned[0]['label']}")
+                else:
+                    print(f"  [image_gen] Style variant '{variant_pin}' not found/installed; "
+                          f"using full rotation {[p['label'] for p in pool]}")
             if pool:
                 self._lora_rotation = pool
                 # default to the first stack (generate() re-picks per card)
                 self.active_loras       = pool[0]["loras"]
                 self.lora_trigger_prefix = pool[0]["trigger_prefix"]
-                print(f"  [image_gen] LoRA rotation enabled ({len(pool)} stacks): "
+                _mode = "pinned" if len(pool) == 1 and variant_pin else "rotation"
+                print(f"  [image_gen] LoRA {_mode} enabled ({len(pool)} stack(s)): "
                       f"{[p['label'] for p in pool]}")
 
     # ── ComfyUI helpers ───────────────────────────────────────────────────────

@@ -283,11 +283,19 @@ export default function App() {
     setBorderTheme(d.border_theme || '')
     setFrameStyle(d.frame_style || 'builtin')
     setCommanderTribe(d.commander_tribe || '')
-    setTribalOverrides(d.tribal_overrides || {})
+    // Restore ONLY the user's explicit per-tribe picks — NOT the merged effective
+    // map. Restoring the full baked map froze every creature-type reskin (and the
+    // creature names anchored to it) on Edit & Rebuild even when the theme changed;
+    // with only explicit picks restored, auto-reskins regenerate from the new theme.
+    // (Falls back to {} for decks built before this was persisted → full auto regen.)
+    setTribalOverrides(d.user_tribal_overrides || {})
     setAutoThemeTribes(d.auto_theme_tribes !== false)   // default ON when unset (old decks)
     setCrewPrompt(d.crew_prompt || '')
     setGeneratedDeck(null); setDeckTribes([])
     setArtStyle(d.art_style || 'mtg_fantasy')
+    // Restore the pinned style-variant from the deck's persisted gen_settings so
+    // Edit & Rebuild keeps the same flavor (other advanced knobs stay in localStorage).
+    genSettings.setField('style_variant', d.gen_settings?.style_variant || '')
     setGenerateArt(!!d.generate_art)
     setModelSpeed(d.model_speed || 'quality')
     setCheckpoint(d.checkpoint || '')
