@@ -520,6 +520,7 @@ class AnimateCardsRequest(BaseModel):
     cards:         List[AnimateCardEntry]
     motion_preset: str = "subtle"
     motion_prompt: Optional[str] = None   # free-text custom motion (wins over motion_preset)
+    motion_strength: Optional[float] = None  # 0..1 how much the art moves (LTXV); None → default 0.5
     loop:          bool = True
     duration:      Optional[float] = None  # desired clip length (seconds); → frame count (snapped for I2V)
     frames:        Optional[int] = None   # explicit frame-count override (wins over duration)
@@ -2596,6 +2597,9 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             eff_frames = None
         foil_intensity = (float(req.foil_intensity)
                           if req.foil_intensity is not None else 0.55)
+        motion_strength = (float(req.motion_strength)
+                           if req.motion_strength is not None
+                           else card_video.MOTION_STRENGTH_DEFAULT)
 
         # ── Render setup (match the rest of the deck) ─────────────────────────
         art_theme = source_data.get("theme", "")
@@ -2694,7 +2698,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                             req.motion_preset, cd.get("art_prompt", ""), custom=req.motion_prompt or "")
                         art_frames = card_video.animate(
                             _Path(src), motion, method=method,
-                            frames=eff_frames, fps=eff_fps,
+                            frames=eff_frames, fps=eff_fps, motion_strength=motion_strength,
                             seed=(int(start) + i) % (2 ** 31), progress_cb=_cb)
                         card_frames = card_renderer.render_card_frames(
                             card_dict, themed, card_dict.get("oracle_text", ""),
@@ -2743,6 +2747,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                         "foil_intensity": round(foil_intensity, 2) if do_foil else None,
                         "motion": req.motion_preset if do_motion else None,
                         "motion_prompt": (req.motion_prompt or None) if do_motion else None,
+                        "motion_strength": round(motion_strength, 2) if do_motion else None,
                         "frames": len(final), "fps": fps, "loop": bool(req.loop),
                         "duration_s": round(len(final) / max(1, fps), 2),
                         "created_at": time.time()}
