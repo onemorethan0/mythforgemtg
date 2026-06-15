@@ -655,6 +655,7 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
   const [foilIntensity, setFoilIntensity] = useState(0.55)
   const [customMotion, setCustomMotion]   = useState('')   // free-text when preset === '__custom__'
   const isCustomMotion = preset === '__custom__'
+  const [motionStrength, setMotionStrength] = useState(capsR.motion_strength_default ?? 0.5)
 
   // Keep duration within the active effect's range when the effect switches.
   useEffect(() => {
@@ -672,6 +673,7 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
       cards: selectedCards.map(c => ({ render_key: c.render_key, original_name: c.original_name })),
       motion_preset: isCustomMotion ? 'subtle' : preset,
       motion_prompt: isCustomMotion ? customMotion.trim() : undefined,
+      motion_strength: motionStrength,
       effect,
       foil_style: foilStyle,
       foil_intensity: foilIntensity,
@@ -749,6 +751,14 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
               Avoid actions (“swings sword”, “runs”): image-to-video warps the figure on big moves.
             </div>
           </>)}
+
+          {/* Motion strength — how much the art moves (LTX-Video) */}
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Motion strength</label>
+          <select value={motionStrength} onChange={e => setMotionStrength(parseFloat(e.target.value))} style={selStyle}>
+            <option value={0.2}>Subtle — barely-there drift</option>
+            <option value={0.5}>Medium — gentle motion (default)</option>
+            <option value={0.8}>Strong — pronounced movement</option>
+          </select>
         </>)}
 
         {/* Foil style (only when foil is used) */}

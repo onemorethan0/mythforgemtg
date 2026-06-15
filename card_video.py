@@ -54,7 +54,9 @@ _PLACEHOLDERS = {
     "width":    "__WIDTH__",
     "height":   "__HEIGHT__",
     "length":   "__LENGTH__",    # frame count
-    "fps":      "__FPS__",
+    "fps":      "__FPS__",        # PLAYBACK frame rate (encode timing / smoothness)
+    "cond_fps": "__COND_FPS__",   # LTXV CONDITIONING frame rate — the motion lever
+                                  # (lower = more motion); decoupled from playback fps
     "seed":     "__SEED__",
     "model":    "__MODEL__",     # resolved checkpoint/unet filename
     "clip":     "__CLIP__",      # Wan: umt5 text encoder
@@ -198,6 +200,26 @@ FPS_OPTIONS = [12, 16, 24, 30]          # selectable frame rates (smoothness)
 _FOIL_DEFAULT_S = 3.0
 _MOTION_DEFAULT_S = 2.0
 
+# Motion strength (art-motion / LTXV only). LTX-Video's *conditioning* frame_rate
+# is the motion lever: the model assumes that much time passes between frames, so
+# a LOWER conditioning fps packs MORE motion per frame. We map a 0..1 strength to
+# a conditioning fps in [_MOTION_COND_FPS_MIN.._MAX] (inverted), DECOUPLED from the
+# playback fps (which only controls encode smoothness). Wan has no equivalent knob
+# in the default graph, so motion_strength is a no-op there.
+MOTION_STRENGTH_DEFAULT = 0.5
+# Wide range: LTXV motion scales hard only at low conditioning fps, so a narrow
+# band (e.g. 17–27) is barely perceptible. 8 fps ≈ the clip spans ~6 s of "real
+# time" over its frames → lots of motion; 30 fps → ~1.5 s → very subtle.
+_MOTION_COND_FPS_MIN = 8    # strength 1.0 → strongest motion
+_MOTION_COND_FPS_MAX = 30   # strength 0.0 → most subtle
+
+
+def _ltxv_cond_fps(strength: float) -> int:
+    """Map motion strength 0..1 → LTXV conditioning frame_rate (inverted: lower fps
+    = more motion). 0 → 30 (subtle), 0.5 → 22, 1 → 14 (strong)."""
+    s = max(0.0, min(1.0, float(strength)))
+    return int(round(_MOTION_COND_FPS_MAX - s * (_MOTION_COND_FPS_MAX - _MOTION_COND_FPS_MIN)))
+
 
 def frames_for_duration(method: Optional[str], seconds: float, fps: int,
                         *, foil: bool = False) -> int:
@@ -227,6 +249,7 @@ def video_caps() -> dict:
         "motion": {"min_s": MOTION_MIN_S, "max_s": MOTION_MAX_S, "default_s": _MOTION_DEFAULT_S},
         "foil":   {"min_s": FOIL_MIN_S,   "max_s": FOIL_MAX_S,   "default_s": _FOIL_DEFAULT_S},
         "fps_options": list(FPS_OPTIONS),
+        "motion_strength_default": MOTION_STRENGTH_DEFAULT,
     }
 
 
@@ -335,7 +358,7 @@ def _default_ltxv_template() -> dict:
                    "image": ["5", 0], "width": P["width"], "height": P["height"],
                    "length": P["length"], "batch_size": 1, "strength": 1.0}},
         "7":  {"class_type": "LTXVConditioning", "inputs": {
-                   "positive": ["6", 0], "negative": ["6", 1], "frame_rate": P["fps"]}},
+                   "positive": ["6", 0], "negative": ["6", 1], "frame_rate": P["cond_fps"]}},
         "8":  {"class_type": "KSampler", "inputs": {
                    "model": ["1", 0], "positive": ["7", 0], "negative": ["7", 1],
                    "latent_image": ["6", 2], "seed": P["seed"], "steps": 30,
@@ -413,13 +436,19 @@ def _fill(template: dict, subs: dict) -> dict:
 
 def build_workflow(method: str, image_comfy_name: str, motion_prompt: str,
                    prefix: str, *, frames: int, fps: int, w: int, h: int,
-                   seed: int, models: dict) -> dict:
+                   seed: int, models: dict,
+                   motion_strength: float = MOTION_STRENGTH_DEFAULT) -> dict:
+    # Motion strength → LTXV conditioning frame_rate (decoupled from playback fps).
+    # Other methods have no conditioning-fps lever, so fall back to playback fps
+    # (a no-op for their graphs, which don't reference __COND_FPS__).
+    cond_fps = _ltxv_cond_fps(motion_strength) if method == "ltxv" else fps
     subs = {
         _PLACEHOLDERS["image"]: image_comfy_name,
         _PLACEHOLDERS["positive"]: motion_prompt,
         _PLACEHOLDERS["negative"]: _NEG_PROMPT,
         _PLACEHOLDERS["width"]: w, _PLACEHOLDERS["height"]: h,
         _PLACEHOLDERS["length"]: frames, _PLACEHOLDERS["fps"]: fps,
+        _PLACEHOLDERS["cond_fps"]: cond_fps,
         _PLACEHOLDERS["seed"]: seed, _PLACEHOLDERS["prefix"]: prefix,
         _PLACEHOLDERS["model"]: models.get("ckpt") or models.get("unet") or "",
         _PLACEHOLDERS["clip"]: models.get("clip") or "",
@@ -499,10 +528,12 @@ def _collect_frames(outputs: dict) -> list[Image.Image]:
 
 def animate(image_path: Path, motion_prompt: str, *, method: Optional[str] = None,
             frames: Optional[int] = None, fps: Optional[int] = None,
+            motion_strength: float = MOTION_STRENGTH_DEFAULT,
             seed: int = 0, progress_cb: Optional[Callable[[str], None]] = None,
             ) -> list[Image.Image]:
     """Run I2V on a still image; return the generated art frames (PIL RGBA).
-    Raises if no usable method is installed."""
+    `motion_strength` (0..1) drives how much the art moves (LTXV only). Raises if
+    no usable method is installed."""
     comfy_base = _comfy_base()
     method = method or detect_method(comfy_base)
     if method is None:
@@ -516,7 +547,8 @@ def animate(image_path: Path, motion_prompt: str, *, method: Optional[str] = Non
     comfy_name = _upload_image(image_path, comfy_base)
     prefix = f"mtg_anim/{image_path.stem}_{uuid.uuid4().hex[:8]}"
     wf = build_workflow(method, comfy_name, motion_prompt, prefix,
-                        frames=n, fps=f, w=w, h=h, seed=seed, models=models)
+                        frames=n, fps=f, w=w, h=h, seed=seed, models=models,
+                        motion_strength=motion_strength)
     pid = _submit(wf, comfy_base)
     outputs = _wait(pid, comfy_base, progress_cb=progress_cb)
     art_frames = _collect_frames(outputs)
