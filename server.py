@@ -522,6 +522,7 @@ class AnimateCardsRequest(BaseModel):
     motion_prompt: Optional[str] = None   # free-text custom motion (wins over motion_preset)
     motion_strength: Optional[float] = None  # 0..1 how much the art moves (LTXV); None → default 0.5
     loop:          bool = True
+    loop_style:    Optional[str] = None   # crossfade | bounce | off (motion); None → crossfade
     duration:      Optional[float] = None  # desired clip length (seconds); → frame count (snapped for I2V)
     frames:        Optional[int] = None   # explicit frame-count override (wins over duration)
     fps:           Optional[int] = None
@@ -2600,6 +2601,9 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
         motion_strength = (float(req.motion_strength)
                            if req.motion_strength is not None
                            else card_video.MOTION_STRENGTH_DEFAULT)
+        # Loop style for art motion: crossfade (default, forward-only) / bounce
+        # (ping-pong) / off. Foil is inherently periodic and always encoded "off".
+        eff_loop_style = card_video._resolve_loop_style(req.loop, req.loop_style)
 
         # ── Render setup (match the rest of the deck) ─────────────────────────
         art_theme = source_data.get("theme", "")
@@ -2706,10 +2710,11 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                             flavor_text=cd.get("flavor_text", ""), border_theme=border)
 
                     # Foil overlay (whole-card). Foil frames are already periodic,
-                    # so they're encoded with loop=False (no extra ping-pong).
+                    # so they're encoded with loop_style="off" (the looping for the
+                    # underlying motion is baked in by make_loop below).
                     if do_foil:
                         if do_motion and card_frames:
-                            seq = card_video.ping_pong(card_frames, loop=req.loop)
+                            seq = card_video.make_loop(card_frames, eff_loop_style)
                             final = card_video.foil_frames(seq, count=len(seq),
                                                            style=req.foil_style, intensity=foil_intensity)
                         else:
@@ -2724,14 +2729,14 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                                 None, card_video._FOIL_DEFAULT_S, eff_fps, foil=True)
                             final = card_video.foil_frames(
                                 [base], count=foil_count, style=req.foil_style, intensity=foil_intensity)
-                        loop_encode = False
+                        enc_loop_style = "off"   # foil sequence already loops
                     else:
                         final = card_frames
-                        loop_encode = req.loop
+                        enc_loop_style = eff_loop_style
 
                     fps = eff_fps
                     out = videos_out / f"{render_key}.{fmt}"
-                    card_video.encode_loop(final, out, fmt=fmt, fps=fps, loop=loop_encode)
+                    card_video.encode_loop(final, out, fmt=fmt, fps=fps, loop_style=enc_loop_style)
                     # Drop any stale animation for this card in a DIFFERENT format —
                     # only AFTER the new one encodes successfully, so a failed/slow
                     # re-encode never destroys the card's existing video.
@@ -2748,6 +2753,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                         "motion": req.motion_preset if do_motion else None,
                         "motion_prompt": (req.motion_prompt or None) if do_motion else None,
                         "motion_strength": round(motion_strength, 2) if do_motion else None,
+                        "loop_style": enc_loop_style,
                         "frames": len(final), "fps": fps, "loop": bool(req.loop),
                         "duration_s": round(len(final) / max(1, fps), 2),
                         "created_at": time.time()}
@@ -3793,6 +3799,7 @@ def video_presets():
     return {"presets": card_video.motion_presets(),
             "foil_styles": card_video.foil_styles(),
             "formats": card_video.format_options(),
+            "loop_styles": card_video.loop_styles(),
             "caps": card_video.video_caps()}
 
 

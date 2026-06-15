@@ -586,12 +586,76 @@ def ping_pong(frames: list, loop: bool = True) -> list:
     return list(frames) + list(frames[-2:0:-1])
 
 
+# ── Loop styles ───────────────────────────────────────────────────────────────
+# I2V clips are NOT periodic (each frame drifts further from frame 0), so a direct
+# last→first loop hard-cuts. Two ways to hide that:
+#   • bounce    — play forward then reverse (ping-pong). Seamless at the seam but
+#                 the motion visibly REVERSES (push-in then pull-out) and bounces
+#                 at the two turnarounds. Best for symmetric ambient shimmer.
+#   • crossfade — play forward-only and dissolve the tail back into the head over
+#                 the last ~25% of frames. No reversal; a much more natural loop
+#                 for directional/ambient motion. Ghosts slightly during the
+#                 dissolve (worse the larger the motion). This is the default.
+#   • off       — no loop; the clip plays once.
+LOOP_STYLES = ("crossfade", "bounce", "off")
+_MOTION_LOOP_DEFAULT = "crossfade"
+_XFADE_FRAC = 0.25
+
+
+def loop_styles() -> list[dict]:
+    """Loop-style list for the UI (key + human label)."""
+    labels = {"crossfade": "Crossfade (smooth, forward-only)",
+              "bounce":    "Bounce (ping-pong)",
+              "off":       "No loop (play once)"}
+    return [{"key": k, "label": labels[k]} for k in LOOP_STYLES]
+
+
+def _crossfade_loop(frames: list, xfade_frac: float = _XFADE_FRAC) -> list:
+    """Forward-only seamless loop: dissolve the clip's tail into its head over the
+    first K frames. The looped length is N−K; the seam (last→first) is continuous
+    because out[0] ≈ frames[N−K] follows frames[N−K−1], and out[0..K] dissolves
+    from the tail toward the head, so playback only ever moves forward."""
+    import numpy as np
+    n = len(frames)
+    if n < 4:
+        return list(frames)
+    k = max(1, min(n // 2, int(round(n * xfade_frac))))
+    L = n - k
+    arrs = [np.asarray(f.convert("RGBA"), dtype=np.float32) for f in frames]
+    out: list = []
+    for t in range(L):
+        if t < k:
+            w = (t + 1) / (k + 1)                       # 0→1: tail → head
+            blended = arrs[L + t] * (1.0 - w) + arrs[t] * w
+            out.append(Image.fromarray(blended.astype(np.uint8), "RGBA"))
+        else:
+            out.append(frames[t].convert("RGBA"))
+    return out
+
+
+def make_loop(frames: list, style: str = _MOTION_LOOP_DEFAULT) -> list:
+    """Turn raw I2V frames into a looping sequence per `style` (see LOOP_STYLES)."""
+    style = (style or _MOTION_LOOP_DEFAULT).lower()
+    if not frames or len(frames) < 3 or style in ("off", "none", ""):
+        return list(frames)
+    if style == "bounce":
+        return ping_pong(frames, loop=True)
+    return _crossfade_loop(frames)
+
+
+def _resolve_loop_style(loop: bool, loop_style: Optional[str]) -> str:
+    """Back-compat: explicit loop_style wins; else map the legacy `loop` bool."""
+    if loop_style is not None:
+        return loop_style
+    return _MOTION_LOOP_DEFAULT if loop else "off"
+
+
 def encode_loop_mp4(frames: list, out_path: Path, *, fps: int = 24,
-                    loop: bool = True) -> Path:
+                    loop: bool = True, loop_style: Optional[str] = None) -> Path:
     """Encode card frames (PIL images, 750×1050) to a looping H.264 MP4."""
     import imageio.v2 as imageio
 
-    seq = ping_pong(frames, loop=loop)
+    seq = make_loop(frames, _resolve_loop_style(loop, loop_style))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     writer = imageio.get_writer(
         str(out_path), fps=fps, codec="libx264", quality=8,
@@ -607,9 +671,9 @@ def encode_loop_mp4(frames: list, out_path: Path, *, fps: int = 24,
 
 
 def encode_loop_webp(frames: list, out_path: Path, *, fps: int = 24,
-                     loop: bool = True) -> Path:
+                     loop: bool = True, loop_style: Optional[str] = None) -> Path:
     """Encode card frames to an animated WebP (alpha preserved, infinite loop)."""
-    seq = ping_pong(frames, loop=loop)
+    seq = make_loop(frames, _resolve_loop_style(loop, loop_style))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     imgs = [fr.convert("RGBA") for fr in seq]
     dur = max(1, int(round(1000.0 / max(1, fps))))
@@ -620,10 +684,10 @@ def encode_loop_webp(frames: list, out_path: Path, *, fps: int = 24,
 
 
 def encode_loop_gif(frames: list, out_path: Path, *, fps: int = 24,
-                    loop: bool = True) -> Path:
+                    loop: bool = True, loop_style: Optional[str] = None) -> Path:
     """Encode card frames to an animated GIF (256-colour, infinite loop). GIF
     has no real alpha, so transparent corners are flattened onto black."""
-    seq = ping_pong(frames, loop=loop)
+    seq = make_loop(frames, _resolve_loop_style(loop, loop_style))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     imgs = [_as_rgb_img(fr) for fr in seq]
     dur = max(20, int(round(1000.0 / max(1, fps))))   # GIF granularity is ~10ms
@@ -651,14 +715,15 @@ def format_options() -> list[dict]:
 
 
 def encode_loop(frames: list, out_path: Path, *, fmt: str = "mp4", fps: int = 24,
-                loop: bool = True) -> Path:
+                loop: bool = True, loop_style: Optional[str] = None) -> Path:
     """Encode card frames to ``fmt`` (mp4 / webp / gif). ``out_path`` should
-    already carry the matching suffix (callers own the filename)."""
+    already carry the matching suffix (callers own the filename). ``loop_style``
+    (crossfade / bounce / off) wins over the legacy ``loop`` bool."""
     enc = _FORMAT_ENCODERS.get((fmt or "mp4").lower())
     if enc is None:
         raise ValueError(f"Unsupported animation format: {fmt!r} "
                          f"(expected one of {', '.join(VIDEO_FORMATS)})")
-    return enc(frames, out_path, fps=fps, loop=loop)
+    return enc(frames, out_path, fps=fps, loop=loop, loop_style=loop_style)
 
 
 def _as_rgb(img):

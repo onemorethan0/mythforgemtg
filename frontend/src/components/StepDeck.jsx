@@ -630,13 +630,14 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
 }
 
 // ── Animate panel (modal) ───────────────────────────────────────────────────
-function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, health, onStart, onClose }) {
+function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles, caps, health, onStart, onClose }) {
   const i2vOk = !!health?.ok
   const [effect, setEffect]   = useState(i2vOk ? 'motion' : 'foil')
   const [preset, setPreset]   = useState(presets?.[0]?.key || 'subtle')
   const [foilStyle, setFoilStyle] = useState(foilStyles?.[0]?.key || 'holo')
   const [fmt, setFmt]         = useState('mp4')
   const [loop, setLoop]       = useState(true)
+  const [loopStyle, setLoopStyle] = useState('crossfade')
 
   const usesMotion = effect === 'motion' || effect === 'motion_foil'
   const usesFoil   = effect === 'foil'   || effect === 'motion_foil'
@@ -664,8 +665,9 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
 
   const clampedDur = Math.min(range.max_s, Math.max(range.min_s, duration))
   const estFrames  = Math.max(2, Math.round(clampedDur * fps))
-  // Looping motion ping-pongs (plays ~2× on screen); foil already loops once.
-  const loopMult   = (usesMotion && loop && !usesFoil) ? 2 : 1
+  // Bounce (ping-pong) plays ~2× on screen; crossfade is forward-only (~1×, minus
+  // the dissolve); foil already loops once.
+  const loopMult   = (usesMotion && !usesFoil && loopStyle === 'bounce') ? 2 : 1
   const onScreenS  = (clampedDur * loopMult).toFixed(1)
 
   function handleStart() {
@@ -680,7 +682,8 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
       fmt,
       duration: clampedDur,
       fps,
-      loop,
+      loop_style: loopStyle,
+      loop: loopStyle !== 'off',
     })
   }
 
@@ -807,12 +810,26 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, healt
           </div>
         )}
 
-        {/* Loop toggle (foil already loops seamlessly) */}
-        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: usesMotion ? '#d6d3d1' : '#57534e', marginBottom: 18, cursor: usesMotion ? 'pointer' : 'default' }}>
-          <input type="checkbox" checked={usesMotion ? loop : true} disabled={!usesMotion}
-                 onChange={e => setLoop(e.target.checked)} />
-          {usesMotion ? 'Seamless ping-pong loop (recommended)' : 'Seamless loop (always on for foil)'}
-        </label>
+        {/* Loop style (motion only — foil is inherently seamless) */}
+        {usesMotion ? (<>
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Loop style</label>
+          <select value={loopStyle} onChange={e => setLoopStyle(e.target.value)} style={{ ...selStyle, marginBottom: 4 }}>
+            {(loopStyles?.length ? loopStyles : [
+              { key: 'crossfade', label: 'Crossfade (smooth, forward-only)' },
+              { key: 'bounce', label: 'Bounce (ping-pong)' },
+              { key: 'off', label: 'No loop (play once)' },
+            ]).map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
+          </select>
+          <div style={{ fontSize: 11, color: '#78716c', marginBottom: 18, lineHeight: 1.5 }}>
+            {loopStyle === 'bounce'
+              ? 'Plays forward then reverse — seamless, but the motion visibly runs backward at the turn. Best for symmetric shimmer.'
+              : loopStyle === 'off'
+              ? 'Plays once and stops.'
+              : 'Forward-only with a dissolved wrap — the most natural seamless loop for camera/ambient motion (slight ghosting during the dissolve).'}
+          </div>
+        </>) : (
+          <div style={{ fontSize: 12, color: '#57534e', marginBottom: 18 }}>Foil loops seamlessly (always on).</div>
+        )}
 
         {/* Selected card list */}
         <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Cards</div>
@@ -900,6 +917,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [motionPresets, setMotionPresets] = useState([])
   const [foilStyles, setFoilStyles]       = useState([])
   const [videoFormats, setVideoFormats]   = useState([])
+  const [videoLoopStyles, setVideoLoopStyles] = useState([])
   const [videoCaps, setVideoCaps]         = useState(null)   // {motion:{min_s,max_s,default_s}, foil:{...}, fps_options}
 
   // ── 3D Commander generation state ─────────────────────────────────────────
@@ -933,6 +951,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         if (d?.presets) setMotionPresets(d.presets)
         if (d?.foil_styles) setFoilStyles(d.foil_styles)
         if (d?.formats) setVideoFormats(d.formats)
+        if (d?.loop_styles) setVideoLoopStyles(d.loop_styles)
         if (d?.caps) setVideoCaps(d.caps)
       })
       .catch(() => {})
@@ -1730,6 +1749,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           presets={motionPresets}
           foilStyles={foilStyles}
           formats={videoFormats}
+          loopStyles={videoLoopStyles}
           caps={videoCaps}
           health={videoHealth}
           onStart={handleStartAnimate}
