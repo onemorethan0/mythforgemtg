@@ -867,6 +867,19 @@ def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
     return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
 
 
+def _subtype_echoes_name(type_line: str, themed_name: str) -> bool:
+    """True when a card's displayed creature subtype is just its own themed NAME
+    (e.g. name 'Cyber Champion' AND type 'Legendary Creature — Cyber Champion').
+    Real cards carry a generic creature KIND as the subtype, never their proper
+    name, so this signals the reskin/naming collapsed the two together."""
+    subs = _creature_subtypes(type_line)
+    if not subs:
+        return False
+    sub_str    = " ".join(subs).strip().lower()
+    name_proper = (themed_name or "").split(",")[0].strip().lower()
+    return bool(sub_str) and sub_str == name_proper
+
+
 def _apply_tribal_map_to_text(text: str, tribal_map: dict) -> str:
     """Reskin creature-type references inside rules/oracle text so they match the
     tribal reskin — e.g. {Knight: Cowboy} turns 'equip Knight {0}' into
@@ -2063,8 +2076,12 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
             _mapped_subs = [tribal_map[s] for s in subs if s in tribal_map] if tribal_map else []
             mapped = _mapped_subs[-1] if _mapped_subs else ""
             if mapped:
-                # This creature IS a reskinned tribe — depict & name as the replacement.
-                tl = f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: depict & name as {mapped}]"
+                # This creature IS a reskinned tribe — depict AS the replacement kind,
+                # but the themed_name must stay its OWN proper name (NOT the bare words
+                # "{mapped}") — otherwise the card prints "Legendary Creature — {mapped}"
+                # with the identical name, reading as name-as-type.
+                tl = (f"{head} — {' '.join(subs)} [reskin {'/'.join(subs)}->{mapped}: "
+                      f"depict as a {mapped}; give it its OWN proper name, do NOT name it '{mapped}']")
             elif tribal_map:
                 # A reskin is active but this creature is NOT a mapped tribe. Do NOT
                 # force its ORIGINAL kind — that injected e.g. dragon wings onto a
@@ -2426,6 +2443,14 @@ def _parse_batch(raw: str, cards: list[dict]) -> list[dict]:
     return result
 
 
+# ── Cancellation ──────────────────────────────────────────────────────────────
+
+class ThemingCancelled(Exception):
+    """Raised by theme_deck() when its cancel_event fires mid-theming, so the
+    caller can abort the build cleanly instead of treating it as a theming
+    failure (which would fall back to plain names and keep going)."""
+
+
 # ── ThemedCard ────────────────────────────────────────────────────────────────
 
 class ThemedCard:
@@ -2597,11 +2622,23 @@ class Themer:
         ro_mode:            bool = False,  # Ragnarok Online style: reskin types into RO jobs/monsters (deterministic)
         theme_spec:         Optional[dict] = None,   # structured intake {setting, genres[], moods[], lighting[], inspiration}
         creativity:         str  = "balanced",       # "faithful" | "balanced" | "imaginative" — invented-detail dial
+        cancel_event=None,                           # threading.Event; set → abort theming with ThemingCancelled
     ) -> tuple[ThemedCard, list[ThemedCard]]:
         """
         Apply theme to commander + 99-card deck.
         Returns (themed_commander, themed_deck_99).
+
+        If ``cancel_event`` is supplied and fires, theming aborts at the next
+        checkpoint (between the preamble LLM calls and before each batch) by
+        raising ``ThemingCancelled`` — so a cancelled build stops talking to the
+        LLM instead of grinding through all ~20 batches first.
         """
+        def _ck_cancel():
+            if cancel_event is not None and cancel_event.is_set():
+                raise ThemingCancelled()
+
+        _ck_cancel()   # cancel during the pre-theming GPU wait → bail immediately
+
         all_cards = [commander] + deck
         total     = len(all_cards)
         themed_entries: dict[int, dict] = {}
@@ -2666,6 +2703,8 @@ class Themer:
                 print(f"           lore • {world_bible['lore'][:120]}")
         else:
             print("  Colourless deck — skipping colour factions.")
+
+        _ck_cancel()   # user may have cancelled during the brief / faction calls
 
         # Generate one deck-wide style guide — used as context in Ollama's batch
         # prompts so every card's scene feels like the same world.
@@ -2734,6 +2773,8 @@ class Themer:
         # map and a later Retheme re-rolls a different replacement than the baked art.
         self._effective_tribal_map = dict(tribal_map)
 
+        _ck_cancel()   # tribal-map LLM call done — bail before the batch grind
+
         batches = [all_cards[i:i + BATCH_SIZE] for i in range(0, total, BATCH_SIZE)]
         pipeline_label = "v2 dual-anchor"
         print(f"  Theming {total} cards via Ollama ({self.model}) "
@@ -2783,6 +2824,7 @@ class Themer:
             print("  (sequential batches; cross-batch name de-duplication on)")
             used_names: list[str] = []
             for b_idx, batch in enumerate(batches):
+                _ck_cancel()   # stop between batches the instant cancel fires
                 _, entries, elapsed = _run_batch(b_idx, batch, avoid_names=list(used_names))
                 for e in entries:
                     nm = (e.get("themed_name") or "").strip()
@@ -2795,10 +2837,16 @@ class Themer:
             with ThreadPoolExecutor(max_workers=workers) as pool:
                 futures = [pool.submit(_run_batch, b_idx, batch)
                            for b_idx, batch in enumerate(batches)]
-                for fut in as_completed(futures):
-                    b_idx, entries, elapsed = fut.result()
-                    done += 1
-                    _record(b_idx, entries, elapsed, done)
+                try:
+                    for fut in as_completed(futures):
+                        _ck_cancel()   # abort; pending futures are cancelled below
+                        b_idx, entries, elapsed = fut.result()
+                        done += 1
+                        _record(b_idx, entries, elapsed, done)
+                except ThemingCancelled:
+                    for f in futures:
+                        f.cancel()
+                    raise
 
         # ── Final uniqueness guarantee ────────────────────────────────────────
         # avoid_names makes the LLM avoid collisions, but a within-batch slip or a
@@ -3100,6 +3148,14 @@ class Themer:
                 _old_tl  = card.get("type_line", "") or ""
                 _old_or  = card.get("oracle_text", "") or ""
                 _new_tl  = _apply_tribal_map_to_type_line(_orig_tl, tribal_map)
+                # Guard: never print the card's own NAME as its creature subtype.
+                # The reskin can collapse the type to a name-like value that the LLM
+                # also used verbatim as the themed_name (→ "Cyber Champion" named
+                # "Legendary Creature — Cyber Champion"). When that happens, keep the
+                # card's REAL creature type instead — a name-as-type only belongs on a
+                # card whose original printing was already that way.
+                if _subtype_echoes_name(_new_tl, themed_name_raw):
+                    _new_tl = _orig_tl
                 # Reskin type references in the rules text too, so a Knight->Cowboy
                 # deck reads "equip Cowboy {0}", not "equip Knight {0}". Applies the
                 # full map to EVERY card (e.g. "Knights you control" on any card).
