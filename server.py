@@ -43,7 +43,7 @@ from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
-from themer             import Themer, ThemedCard
+from themer             import Themer, ThemedCard, ThemingCancelled
 from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl
 import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
@@ -374,6 +374,7 @@ class GenSettingsModel(BaseModel):
     seed_mode:      Optional[str]   = None   # "random" | "fixed"
     seed:           Optional[int]   = None
     lora_overrides: Optional[List[dict]] = None  # [{filename, model_strength, clip_strength?, trigger?}]
+    style_variant:  Optional[str]   = None   # pin a preset rotation flavor deck-wide ("" / "auto" = Variety mix)
     face_method:    Optional[str]   = None   # None=auto | "reactor" | "pulid_flux" | "none"
     face_weight:    Optional[float] = None
     safe_mode:      Optional[bool]  = None
@@ -391,6 +392,30 @@ def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:
     except AttributeError:
         d = {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
     return GenSettings.from_dict(d)
+
+
+def _gen_settings_to_dict(gs: "Optional[GenSettingsModel]") -> dict:
+    """Serialize a request GenSettingsModel to a plain (None-stripped) dict for
+    persistence in deck.json, so regen paths can recover the user's advanced
+    settings — guidance/steps/lora_overrides and a pinned style_variant."""
+    if gs is None:
+        return {}
+    try:
+        return gs.model_dump(exclude_none=True)   # pydantic v2
+    except AttributeError:
+        return {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
+
+
+def _resolve_gen_settings_reusing(gs: "Optional[GenSettingsModel]",
+                                  source_data: "Optional[dict]") -> GenSettings:
+    """For regen paths (rebuild / regen-cards / retheme): honor the request's
+    gen_settings when provided, else fall back to the gen_settings persisted in the
+    source deck.json. This keeps a pinned style_variant (and every other advanced
+    knob) alive across a re-generation instead of silently resetting to defaults."""
+    if gs is not None:
+        return _resolve_gen_settings(gs)
+    stored = (source_data or {}).get("gen_settings") or None
+    return GenSettings.from_dict(stored)
 
 
 class BuildRequest(BaseModel):
@@ -494,12 +519,15 @@ class AnimateCardsRequest(BaseModel):
     sheen, recomposite, and encode a looping clip (mp4 / webp / gif)."""
     cards:         List[AnimateCardEntry]
     motion_preset: str = "subtle"
+    motion_prompt: Optional[str] = None   # free-text custom motion (wins over motion_preset)
     loop:          bool = True
-    frames:        Optional[int] = None   # override the method's default frame count
+    duration:      Optional[float] = None  # desired clip length (seconds); → frame count (snapped for I2V)
+    frames:        Optional[int] = None   # explicit frame-count override (wins over duration)
     fps:           Optional[int] = None
     method:        Optional[str] = None   # override the auto-detected I2V model
     effect:        str = "motion"         # motion | foil | motion_foil
     foil_style:    str = "holo"           # holo | gold | silver (when effect uses foil)
+    foil_intensity: Optional[float] = None  # foil sheen strength 0..1 (default ~0.55)
     fmt:           str = "mp4"            # mp4 | webp | gif (output container)
 
 
@@ -962,6 +990,10 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
     name swapped for its themed name.
     """
     c = tc.card
+    # Same tidy the renderer applies (drop "— Class" enchantment noise; never print
+    # the themed name as the creature subtype) so deck.json + the UI list match the
+    # printed proxy.
+    _display_tl = card_renderer.clean_display_type_line(c, c.get("type_line", ""), tc.themed_name)
     return {
         "original_name": tc.original_name,
         "themed_name":   tc.themed_name,
@@ -970,7 +1002,7 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "use_custom":    False,            # which prompt feeds generation
         "flavor_text":   tc.flavor_text,
         "mana_cost":     c.get("mana_cost", ""),
-        "type_line":          c.get("type_line", ""),
+        "type_line":          _display_tl,
         "original_type_line": c.get("original_type_line") or c.get("type_line", ""),
         "oracle_text":   _replace_card_self_ref(
                              c.get("oracle_text", ""), tc.original_name, tc.themed_name
@@ -986,6 +1018,41 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "has_video":     False,            # set True once an MP4 animation is generated
         "render_key":    f"{_safe_name(tc.original_name)}_{deck_index:03d}",
     }
+
+
+def _write_cancelled_deck(job_id: str, cmd_tc: ThemedCard, deck_tcs: list,
+                          stats: dict, theme: str, generate_art: bool) -> None:
+    """Persist a minimal cancelled deck.json + in-memory job.
+
+    The build/retheme pipelines only write their full checkpoint AFTER theming
+    (build) or AFTER art (retheme), so a cancel before that point would leave no
+    deck.json at all — and the result view crashes on the missing card list.
+    This writes just enough (the card list + a "cancelled" status) so the page
+    renders the deck, with has_render backfilled from whatever was rendered so
+    far (Scryfall art fills the rest). Mirrors the art-phase cancel handling.
+    """
+    cards_dir = RENDER_DIR / job_id / "cards"
+    rendered = {fp.stem for fp in cards_dir.glob("*.png")} if cards_dir.exists() else set()
+
+    def _has(tc: ThemedCard, idx: int) -> bool:
+        return f"{_safe_name(tc.original_name)}_{idx:03d}" in rendered
+
+    path = RENDER_DIR / job_id / "deck.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "status":       "cancelled",
+        "commander":    _themed_card_to_dict(cmd_tc, deck_index=0, has_render=_has(cmd_tc, 0)),
+        "deck":         [_themed_card_to_dict(tc, deck_index=i, has_render=_has(tc, i))
+                         for i, tc in enumerate(deck_tcs, 1)],
+        "stats":        stats,
+        "theme":        theme,
+        "generate_art": generate_art,
+        "built_at":     time.time(),
+    }
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    _jobs[job_id].update(payload)
+    _jobs[job_id]["status"] = "cancelled"
+    _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
 
 
 def _stored_card_to_dict(d: dict) -> dict:
@@ -1236,6 +1303,11 @@ def _run_build(job_id: str, req: BuildRequest):
             "msg":  f"Theming cards with Ollama ({_llm or 'default'})..."
         }))
 
+        # Fetched here (not just before art) so theming itself is cancellable —
+        # a cancel during the LLM batches now stops the build instead of letting
+        # all ~20 batches finish first.
+        cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+
         themed_cmd: Optional[ThemedCard] = None
         themed_deck: Optional[list[ThemedCard]] = None
         try:
@@ -1274,17 +1346,40 @@ def _run_build(job_id: str, req: BuildRequest):
                 ro_mode=(req.art_style in ("ragnarok_online", "ragnarok_sprite")),
                 theme_spec=req.theme_spec or None,
                 creativity=req.creativity or "balanced",
+                cancel_event=cancel_event,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete",
                                                    "pct": 100}))
+        except ThemingCancelled:
+            # User hit cancel mid-theming — honored below; no plain-name fallback.
+            cancel_event.set()
         except Exception as e:
-            print(f"  [theme] OLLAMA THEMING ERROR: {e}")
-            traceback.print_exc()
-            _push(job_id, "progress", json.dumps({
-                "step": "theme",
-                "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
-                "warning": True,
-            }))
+            # A cancel that evicted the LLM mid-request can surface here as a
+            # connection error — don't show a scary "theming failed" toast for it.
+            if cancel_event.is_set():
+                print(f"  [theme] theming interrupted by cancel: {e}")
+            else:
+                print(f"  [theme] OLLAMA THEMING ERROR: {e}")
+                traceback.print_exc()
+                _push(job_id, "progress", json.dumps({
+                    "step": "theme",
+                    "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
+                    "warning": True,
+                }))
+
+        # ── Early-exit on cancel (during theming) ─────────────────────────────
+        # The full checkpoint is written further down (after theming), so cancel
+        # here would otherwise leave NO deck.json — and the result view crashes on
+        # the missing card list. Write a minimal deck.json from the un-themed cards
+        # (themed_cmd/_deck are None when theming was interrupted) so the page shows
+        # the original deck list with Scryfall art and a cancelled status, mirroring
+        # how an art-phase cancel shows its partial deck. (VRAM eviction was already
+        # scheduled by the cancel endpoint; _finalize_job runs via the outer finally.)
+        if cancel_event.is_set():
+            _c_cmd  = themed_cmd  if themed_cmd  is not None else ThemedCard(card["name"], card["name"], "", "", card)
+            _c_deck = themed_deck if themed_deck is not None else [ThemedCard(c["name"], c["name"], "", "", c) for c in deck]
+            _write_cancelled_deck(job_id, _c_cmd, _c_deck, stats, art_theme, req.generate_art)
+            return
 
         if themed_cmd is None:
             def _plain(c): return ThemedCard(c["name"], c["name"], "", "", c)
@@ -1364,6 +1459,9 @@ def _run_build(job_id: str, req: BuildRequest):
             "art_style":        req.art_style,
             "checkpoint":       req.checkpoint or "",
             "model_speed":      req.model_speed,
+            # Persist the advanced gen settings (incl. a pinned style_variant) so
+            # rebuild / regen / retheme can recover them — see _resolve_gen_settings_reusing.
+            "gen_settings":     _gen_settings_to_dict(req.gen_settings),
             "generate_art":     req.generate_art,
             "deck_slug":        _deck_slug_base,
             "face_key":         req.face_key or "",
@@ -1399,7 +1497,7 @@ def _run_build(job_id: str, req: BuildRequest):
         # render_out is defined early so the inline-render callback can use it
         render_out = RENDER_DIR / job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
-        cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+        # cancel_event was fetched before theming (see above) so it's already bound.
 
         # ── Art generation (optional) ─────────────────────────────────────────
         art_paths: dict[str, Optional[Path]] = {}
@@ -1741,6 +1839,9 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        req.art_style,
             "model_speed":      req.model_speed,
+            # Carry forward the gen settings used for this rebuild (request override
+            # or the source deck's persisted set) so later regens keep them.
+            "gen_settings":     _gen_settings_to_dict(req.gen_settings) or source_data.get("gen_settings", {}),
             "generate_art":     True,
             "deck_slug":        _rebuild_deck_slug,
             "face_key":         req.face_key or source_data.get("face_key", ""),
@@ -1850,7 +1951,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 try:
                     gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
                                   checkpoint=req.checkpoint,
-                                  gen_settings=_resolve_gen_settings(req.gen_settings),
+                                  gen_settings=_resolve_gen_settings_reusing(req.gen_settings, source_data),
                                   frame_style=source_data.get("frame_style", "builtin"))
                 except Exception as _ge:
                     _push(job_id, "progress", json.dumps({
@@ -2194,7 +2295,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         with _art_lock:
             gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
                           checkpoint=req.checkpoint,
-                          gen_settings=_resolve_gen_settings(req.gen_settings),
+                          gen_settings=_resolve_gen_settings_reusing(req.gen_settings, source_data),
                           frame_style=source_data.get("frame_style", "builtin"))
             if not gen.available:
                 raise ValueError("ComfyUI not available after acquiring GPU lock")
@@ -2312,6 +2413,20 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                             border_theme=source_data.get("border_theme", ""),
                         )
                         card_img.save(out_path, "PNG")
+                        # Stash the new RAW art crop as this slot's CURRENT art so a
+                        # later Animate uses the regenerated version, not the original
+                        # build crop. The motion (I2V) path needs the raw crop, not the
+                        # composite; keyed by render_key it overrides the stale build
+                        # crop in generated_art/<deck_slug>/. (Foil already uses the
+                        # composite card PNG we just overwrote above.)
+                        try:
+                            if art_path and art_path.exists():
+                                import shutil as _shutil
+                                _cur_art_dir = RENDER_DIR / source_job_id / "art"
+                                _cur_art_dir.mkdir(parents=True, exist_ok=True)
+                                _shutil.copyfile(art_path, _cur_art_dir / f"{render_key}.png")
+                        except OSError as _ce:
+                            print(f"  [regen] could not stash current art for {render_key}: {_ce}")
                         # The new still invalidates any prior animation (it was made
                         # from the OLD art). Delete the stale clip so the tile shows
                         # the fresh still until the user re-animates.
@@ -2466,6 +2581,22 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             if not method:
                 raise ValueError("No image-to-video model available in ComfyUI")
 
+        # ── Effective frame-rate + clip length ────────────────────────────────
+        # fps falls back to the I2V method default (foil-only → 24). A requested
+        # `duration` (seconds) is converted to a frame count — snapped to the
+        # model's preferred k*n+1 for I2V motion, or round(s*fps) for the foil
+        # sweep. An explicit `frames` override still wins; None → downstream default.
+        eff_fps = int(req.fps or (card_video._VIDEO_METHODS[method]["fps"] if method else 24))
+        if req.frames:
+            eff_frames = int(req.frames)
+        elif req.duration:
+            eff_frames = card_video.frames_for_duration(
+                method, req.duration, eff_fps, foil=not do_motion)
+        else:
+            eff_frames = None
+        foil_intensity = (float(req.foil_intensity)
+                          if req.foil_intensity is not None else 0.55)
+
         # ── Render setup (match the rest of the deck) ─────────────────────────
         art_theme = source_data.get("theme", "")
         sym_path  = RENDER_DIR / source_job_id / "set_symbol.png"
@@ -2479,6 +2610,22 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
         videos_out.mkdir(parents=True, exist_ok=True)
         anim_src = RENDER_DIR / source_job_id / "_anim_src"
         anim_src.mkdir(parents=True, exist_ok=True)
+        # Per-deck store of CURRENT raw art crops, written by regen (keyed by
+        # render_key). When a card was rebuilt this holds its newest crop; the
+        # original build crop in generated_art/<deck_slug>/ is stale for it.
+        cur_art_dir = RENDER_DIR / source_job_id / "art"
+
+        def _current_art_src(render_key, art_safe, cd):
+            """Raw art crop for the card's CURRENTLY displayed version, for the I2V
+            motion model. Prefers a regen-stashed crop (keyed by render_key), then
+            the original build crop, then a Scryfall download."""
+            regen_crop = cur_art_dir / f"{render_key}.png"
+            if regen_crop.exists():
+                return regen_crop
+            build_crop = _Path("generated_art") / deck_slug / f"{art_safe}.png"
+            if build_crop.exists():
+                return build_crop
+            return _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
         total = len(targets)
@@ -2498,9 +2645,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             png = RENDER_DIR / source_job_id / "cards" / f"{render_key}.png"
             if png.exists():
                 im = _PIL.open(png); im.load(); return im.convert("RGBA")
-            s = _Path("generated_art") / deck_slug / f"{art_safe}.png"
-            if not s.exists():
-                s = _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
+            s = _current_art_src(render_key, art_safe, cd)
             if not s or not _Path(s).exists():
                 return None
             art = _PIL.open(s).convert("RGBA")
@@ -2537,18 +2682,19 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                     card_frames = None
 
                     if do_motion:
-                        # Source art: the deck's generated crop, else Scryfall art.
-                        src = _Path("generated_art") / deck_slug / f"{art_safe}.png"
-                        if not src.exists():
-                            src = _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
+                        # Source art: the CURRENTLY displayed version — a regen-stashed
+                        # crop if the card was rebuilt, else the original build crop,
+                        # else Scryfall art.
+                        src = _current_art_src(render_key, art_safe, cd)
                         if not src or not _Path(src).exists():
                             _push(job_id, "progress", json.dumps({
                                 "step": "video", "msg": f"⚠ No art for {themed} — skipping"}))
                             continue
-                        motion = card_video.build_motion_prompt(req.motion_preset, cd.get("art_prompt", ""))
+                        motion = card_video.build_motion_prompt(
+                            req.motion_preset, cd.get("art_prompt", ""), custom=req.motion_prompt or "")
                         art_frames = card_video.animate(
                             _Path(src), motion, method=method,
-                            frames=req.frames, fps=req.fps,
+                            frames=eff_frames, fps=eff_fps,
                             seed=(int(start) + i) % (2 ** 31), progress_cb=_cb)
                         card_frames = card_renderer.render_card_frames(
                             card_dict, themed, card_dict.get("oracle_text", ""),
@@ -2560,35 +2706,45 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
                     if do_foil:
                         if do_motion and card_frames:
                             seq = card_video.ping_pong(card_frames, loop=req.loop)
-                            final = card_video.foil_frames(seq, count=len(seq), style=req.foil_style)
+                            final = card_video.foil_frames(seq, count=len(seq),
+                                                           style=req.foil_style, intensity=foil_intensity)
                         else:
                             base = _base_card_image(render_key, art_safe, card_dict, themed, cd)
                             if base is None:
                                 _push(job_id, "progress", json.dumps({
                                     "step": "video", "msg": f"⚠ No card image for {themed} — skipping"}))
                                 continue
+                            # Foil-only loop length: requested frame count, else the
+                            # default foil clip length × fps.
+                            foil_count = eff_frames or card_video.frames_for_duration(
+                                None, card_video._FOIL_DEFAULT_S, eff_fps, foil=True)
                             final = card_video.foil_frames(
-                                [base], count=(req.frames or 30), style=req.foil_style)
+                                [base], count=foil_count, style=req.foil_style, intensity=foil_intensity)
                         loop_encode = False
                     else:
                         final = card_frames
                         loop_encode = req.loop
 
-                    fps = req.fps or (card_video._VIDEO_METHODS[method]["fps"] if method else 24)
-                    # Drop any stale animation for this card in a different format.
+                    fps = eff_fps
+                    out = videos_out / f"{render_key}.{fmt}"
+                    card_video.encode_loop(final, out, fmt=fmt, fps=fps, loop=loop_encode)
+                    # Drop any stale animation for this card in a DIFFERENT format —
+                    # only AFTER the new one encodes successfully, so a failed/slow
+                    # re-encode never destroys the card's existing video.
                     for _old in card_video.VIDEO_FORMATS:
                         if _old != fmt:
                             _stale = videos_out / f"{render_key}.{_old}"
                             if _stale.exists():
                                 try: _stale.unlink()
                                 except OSError: pass
-                    out = videos_out / f"{render_key}.{fmt}"
-                    card_video.encode_loop(final, out, fmt=fmt, fps=fps, loop=loop_encode)
                     meta_updates[render_key] = {
                         "method": method, "effect": req.effect, "format": fmt,
                         "foil_style": req.foil_style if do_foil else None,
+                        "foil_intensity": round(foil_intensity, 2) if do_foil else None,
                         "motion": req.motion_preset if do_motion else None,
+                        "motion_prompt": (req.motion_prompt or None) if do_motion else None,
                         "frames": len(final), "fps": fps, "loop": bool(req.loop),
+                        "duration_s": round(len(final) / max(1, fps), 2),
                         "created_at": time.time()}
                     _push(job_id, "video_ready", json.dumps({
                         "key": render_key, "name": themed, "format": fmt,
@@ -2673,6 +2829,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
 
     try:
         _jobs[job_id]["status"] = "building"
+        # Bound up-front so retheme theming is cancellable (parity with _run_build).
+        cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
 
         # ── Load source deck ──────────────────────────────────────────────────
         source_data = _load_source_deck(source_job_id)
@@ -2756,19 +2914,38 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 ro_mode=(art_style in ("ragnarok_online", "ragnarok_sprite")),
                 theme_spec=(getattr(req, "theme_spec", None) or source_data.get("theme_spec") or None),
                 creativity=(getattr(req, "creativity", None) or source_data.get("creativity") or "balanced"),
+                cancel_event=cancel_event,
             )
             _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
+        except ThemingCancelled:
+            cancel_event.set()   # honored just below; skip plain-name fallback + art
         except Exception as e:
-            print(f"  [theme] OLLAMA THEMING ERROR (retheme): {e}")
-            traceback.print_exc()
-            _push(job_id, "progress", json.dumps({
-                "step": "theme",
-                "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
-                "warning": True,
-            }))
+            # A cancel that evicted the LLM mid-request can surface as a connection
+            # error — don't show a "theming failed" toast for an intentional cancel.
+            if cancel_event.is_set():
+                print(f"  [theme] retheme theming interrupted by cancel: {e}")
+            else:
+                print(f"  [theme] OLLAMA THEMING ERROR (retheme): {e}")
+                traceback.print_exc()
+                _push(job_id, "progress", json.dumps({
+                    "step": "theme",
+                    "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
+                    "warning": True,
+                }))
             # Don't raise — fall back to plain names like in _run_build
             themed_cmd = None
             themed_deck = None
+
+        # Early-exit on cancel during theming — no new art yet. Write a minimal
+        # cancelled deck.json (un-themed names if theming was interrupted) so the
+        # new job's result view renders instead of crashing. The SOURCE deck is
+        # untouched.
+        if cancel_event.is_set():
+            _c_cmd  = themed_cmd  if themed_cmd  is not None else ThemedCard(raw_commander["name"], raw_commander["name"], "", "", raw_commander)
+            _c_deck = themed_deck if themed_deck is not None else [ThemedCard(c["name"], c["name"], "", "", c) for c in raw_deck]
+            _write_cancelled_deck(job_id, _c_cmd, _c_deck, source_data.get("stats", {}),
+                                  art_theme, source_data.get("generate_art", False))
+            return
 
         # Fallback to plain card names if theming failed
         if themed_cmd is None or themed_deck is None:
@@ -2884,13 +3061,13 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                     _wait_for_comfyui_unload(job_id)
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_ev}) from VRAM…"}))
                 _wait_for_ollama_evict(_ev, job_id)
-                cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+                # cancel_event already bound at the top of _run_retheme.
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
                 with _art_lock:
                     try:
                         gen = ImageGen(model_speed=model_speed, art_style=art_style,
                                        checkpoint=_src_ckpt,
-                                       gen_settings=_resolve_gen_settings(None),
+                                       gen_settings=_resolve_gen_settings_reusing(None, source_data),
                                        frame_style=source_data.get("frame_style", "builtin"))
                     except Exception as _ge:
                         gen = None
@@ -2929,6 +3106,16 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                         if _k in _src_fallback:
                             art_paths[_k] = _src_fallback[_k]
 
+        # Cancel during art gen: generate_deck returns early with partial art, so
+        # stop before rendering/finalizing rather than emitting a half-rethemed
+        # "done" deck. Persist the themed card list (cancelled) so the result view
+        # shows whatever rendered, with Scryfall art for the rest. Source untouched.
+        if cancel_event.is_set():
+            _write_cancelled_deck(job_id, themed_cmd, list(themed_deck),
+                                  source_data.get("stats", {}), art_theme,
+                                  source_data.get("generate_art", False))
+            return
+
         art_found = sum(1 for v in art_paths.values() if v)
         _push(job_id, "progress", json.dumps({
             "step": "render",
@@ -2953,6 +3140,9 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        art_style,
             "model_speed":      model_speed,
+            # Preserve the source deck's advanced gen settings (incl. style_variant)
+            # so the rethemed deck keeps the same flavor on future regens.
+            "gen_settings":     source_data.get("gen_settings", {}),
             "generate_art":     source_data.get("generate_art", False),
             "deck_slug":        effective_slug,
             "face_key":         source_data.get("face_key", ""),
@@ -3597,7 +3787,8 @@ def video_presets():
     import card_video
     return {"presets": card_video.motion_presets(),
             "foil_styles": card_video.foil_styles(),
-            "formats": card_video.format_options()}
+            "formats": card_video.format_options(),
+            "caps": card_video.video_caps()}
 
 
 @app.post("/api/deck/{job_id}/animate-cards")
@@ -4193,6 +4384,27 @@ def get_art_styles():
             })
         all_inst = all(l["installed"] for l in loras)
         any_inst = any(l["installed"] for l in loras)
+
+        # Style variants (per-card rotation stacks) — surfaced so the UI can show a
+        # "flavor" selector. Each variant is ready only when ALL its LoRAs are
+        # installed; "Variety mix" (auto) is added client-side as the default.
+        variants = []
+        for stack in preset.get("lora_rotation", []) or []:
+            v_loras = stack.get("loras", [])
+            v_status = []
+            for entry in v_loras:
+                frags = entry.get("fragments", [entry.get("fragment", "")])
+                v_status.append(any(
+                    any(frag.lower() in f for frag in frags)
+                    for f in installed_lower
+                ))
+            variants.append({
+                "label":       stack.get("label", "Variant"),
+                "description": stack.get("description", ""),
+                "ready":       bool(v_status) and all(v_status),
+                "partial":     any(v_status) and not all(v_status),
+            })
+
         result.append({
             "key":         key,
             "label":       preset["label"],
@@ -4201,6 +4413,7 @@ def get_art_styles():
             "ready":       all_inst,
             "partial":     any_inst and not all_inst,
             "loras":       loras,
+            "variants":    variants,
             "custom":      key in custom_keys,
             # Model type constraint — tells the UI which checkpoint family is required
             "required_checkpoint_type": preset.get("required_checkpoint_type"),

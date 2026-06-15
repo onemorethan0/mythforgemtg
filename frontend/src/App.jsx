@@ -293,6 +293,9 @@ export default function App() {
     setCrewPrompt(d.crew_prompt || '')
     setGeneratedDeck(null); setDeckTribes([])
     setArtStyle(d.art_style || 'mtg_fantasy')
+    // Restore the pinned style-variant from the deck's persisted gen_settings so
+    // Edit & Rebuild keeps the same flavor (other advanced knobs stay in localStorage).
+    genSettings.setField('style_variant', d.gen_settings?.style_variant || '')
     setGenerateArt(!!d.generate_art)
     setModelSpeed(d.model_speed || 'quality')
     setCheckpoint(d.checkpoint || '')

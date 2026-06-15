@@ -630,7 +630,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
 }
 
 // ── Animate panel (modal) ───────────────────────────────────────────────────
-function AnimatePanel({ selectedCards, presets, foilStyles, formats, health, onStart, onClose }) {
+function AnimatePanel({ selectedCards, presets, foilStyles, formats, caps, health, onStart, onClose }) {
   const i2vOk = !!health?.ok
   const [effect, setEffect]   = useState(i2vOk ? 'motion' : 'foil')
   const [preset, setPreset]   = useState(presets?.[0]?.key || 'subtle')
@@ -642,13 +642,42 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, health, onS
   const usesFoil   = effect === 'foil'   || effect === 'motion_foil'
   const canRun     = !usesMotion || i2vOk
 
+  // ── Clip length (duration) + frame rate + foil intensity ──
+  const FALLBACK_CAPS = { motion: { min_s: 1, max_s: 6, default_s: 2 },
+                          foil: { min_s: 1, max_s: 10, default_s: 3 }, fps_options: [12, 16, 24, 30] }
+  const capsR     = caps || FALLBACK_CAPS
+  const fpsOptions = capsR.fps_options || FALLBACK_CAPS.fps_options
+  // Motion clip-length range applies whenever I2V runs (motion or motion_foil);
+  // foil-only uses the cheaper, longer foil range.
+  const range     = usesMotion ? (capsR.motion || FALLBACK_CAPS.motion) : (capsR.foil || FALLBACK_CAPS.foil)
+  const [duration, setDuration] = useState(range.default_s)
+  const [fps, setFps]           = useState(24)
+  const [foilIntensity, setFoilIntensity] = useState(0.55)
+  const [customMotion, setCustomMotion]   = useState('')   // free-text when preset === '__custom__'
+  const isCustomMotion = preset === '__custom__'
+
+  // Keep duration within the active effect's range when the effect switches.
+  useEffect(() => {
+    setDuration(d => Math.min(range.max_s, Math.max(range.min_s, d)))
+  }, [effect])  // eslint-disable-line react-hooks/exhaustive-deps
+
+  const clampedDur = Math.min(range.max_s, Math.max(range.min_s, duration))
+  const estFrames  = Math.max(2, Math.round(clampedDur * fps))
+  // Looping motion ping-pongs (plays ~2× on screen); foil already loops once.
+  const loopMult   = (usesMotion && loop && !usesFoil) ? 2 : 1
+  const onScreenS  = (clampedDur * loopMult).toFixed(1)
+
   function handleStart() {
     onStart({
       cards: selectedCards.map(c => ({ render_key: c.render_key, original_name: c.original_name })),
-      motion_preset: preset,
+      motion_preset: isCustomMotion ? 'subtle' : preset,
+      motion_prompt: isCustomMotion ? customMotion.trim() : undefined,
       effect,
       foil_style: foilStyle,
+      foil_intensity: foilIntensity,
       fmt,
+      duration: clampedDur,
+      fps,
       loop,
     })
   }
@@ -700,11 +729,26 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, health, onS
         {/* Motion preset (only when art motion is used) */}
         {usesMotion && (<>
           <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Motion</label>
-          <select value={preset} onChange={e => setPreset(e.target.value)} style={selStyle}>
+          <select value={preset} onChange={e => setPreset(e.target.value)} style={{ ...selStyle, marginBottom: isCustomMotion ? 8 : 14 }}>
             {(presets?.length ? presets : [{ key: 'subtle', label: 'Subtle cinemagraph' }]).map(p => (
               <option key={p.key} value={p.key}>{p.label}</option>
             ))}
+            <option value="__custom__">✍️ Custom motion…</option>
           </select>
+          {isCustomMotion && (<>
+            <textarea
+              value={customMotion}
+              onChange={e => setCustomMotion(e.target.value)}
+              maxLength={300}
+              rows={2}
+              placeholder="e.g. slow camera push-in, rain falling, neon signs flickering"
+              style={{ ...selStyle, marginBottom: 4, resize: 'vertical', minHeight: 44 }}
+            />
+            <div style={{ fontSize: 11, color: '#78716c', marginBottom: 14, lineHeight: 1.5 }}>
+              Describe <strong>ambient or camera motion</strong> — the subject is held still automatically.
+              Avoid actions (“swings sword”, “runs”): image-to-video warps the figure on big moves.
+            </div>
+          </>)}
         </>)}
 
         {/* Foil style (only when foil is used) */}
@@ -713,7 +757,34 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, health, onS
           <select value={foilStyle} onChange={e => setFoilStyle(e.target.value)} style={selStyle}>
             {foilList.map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
           </select>
+          <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Foil intensity</label>
+          <select value={foilIntensity} onChange={e => setFoilIntensity(parseFloat(e.target.value))} style={selStyle}>
+            <option value={0.35}>Subtle</option>
+            <option value={0.55}>Medium</option>
+            <option value={0.8}>Strong</option>
+          </select>
         </>)}
+
+        {/* Clip length (duration) + frame rate */}
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+          <span>Clip length</span>
+          <span style={{ color: '#7dd3fc', fontWeight: 600 }}>{clampedDur.toFixed(1)}s</span>
+        </label>
+        <input type="range" min={range.min_s} max={range.max_s} step={0.5}
+               value={clampedDur} onChange={e => setDuration(parseFloat(e.target.value))}
+               style={{ width: '100%', marginBottom: 6, accentColor: '#0ea5e9' }} />
+        <div style={{ fontSize: 11, color: '#78716c', marginBottom: 14 }}>
+          ≈ {estFrames} frames{usesMotion ? ' (snapped to the model’s cadence)' : ''} ·
+          {' '}plays ~{onScreenS}s on screen{loopMult > 1 ? ' (ping-pong loop)' : ''}.
+          {usesMotion && <span> Longer = sharper motion but slower to render.</span>}
+        </div>
+
+        <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Smoothness (frame rate)</label>
+        <select value={fps} onChange={e => setFps(parseInt(e.target.value, 10))} style={selStyle}>
+          {fpsOptions.map(f => (
+            <option key={f} value={f}>{f} fps{f <= 12 ? ' — choppy, tiny file' : f >= 30 ? ' — smoothest, larger file' : ''}</option>
+          ))}
+        </select>
 
         {/* Output format */}
         <label style={{ fontSize: 12, color: '#d6d3d1', fontWeight: 700, display: 'block', marginBottom: 6 }}>Format</label>
@@ -784,6 +855,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [rebuildArtStyle, setRebuildArtStyle] = useState(deck.art_style || 'mtg_fantasy')
   const [rebuildModelSpeed, setRebuildModelSpeed] = useState(deck.model_speed || 'quality')
   const [rebuildArtStyles, setRebuildArtStyles] = useState([])
+  // Pinned style-variant for the rebuild — seeded from the deck's persisted choice.
+  const [rebuildVariant, setRebuildVariant] = useState(deck.gen_settings?.style_variant || '')
   const [rethemeing, setRethemeing]   = useState(false)
   const [duplicating, setDuplicating] = useState(false)
   const [dupMsg, setDupMsg]           = useState(null)   // null | {newJobId, name} | 'error'
@@ -809,6 +882,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [motionPresets, setMotionPresets] = useState([])
   const [foilStyles, setFoilStyles]       = useState([])
   const [videoFormats, setVideoFormats]   = useState([])
+  const [videoCaps, setVideoCaps]         = useState(null)   // {motion:{min_s,max_s,default_s}, foil:{...}, fps_options}
 
   // ── 3D Commander generation state ─────────────────────────────────────────
   const [gen3dState, setGen3dState]     = useState('idle')   // idle|loading|rmbg|trellis|converting|done|error
@@ -841,6 +915,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         if (d?.presets) setMotionPresets(d.presets)
         if (d?.foil_styles) setFoilStyles(d.foil_styles)
         if (d?.formats) setVideoFormats(d.formats)
+        if (d?.caps) setVideoCaps(d.caps)
       })
       .catch(() => {})
   }, [])
@@ -972,6 +1047,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     if (rebuilding) return
     setRebuilding(true)
     setShowRebuildModal(false)
+    // Only send the pinned variant if it actually belongs to the chosen style.
+    const _rbStyle = rebuildArtStyles.find(s => s.key === rebuildArtStyle)
+    const _rbVariant = (_rbStyle?.variants || []).some(v => v.label === rebuildVariant)
+      ? rebuildVariant : ''
     try {
       const res = await fetch(`/api/deck/${jobId}/rebuild`, {
         method: 'POST',
@@ -984,6 +1063,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           face_gender: deck.face_gender || 'either',
           crew_key:    deck.crew_key || null,
           crew_gender: deck.crew_gender || 'either',
+          // Preserve the deck's advanced settings and apply the chosen flavor.
+          // '' = Variety mix (per-card rotation).
+          gen_settings: { ...(deck.gen_settings || {}), style_variant: _rbVariant },
         }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -1618,6 +1700,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           presets={motionPresets}
           foilStyles={foilStyles}
           formats={videoFormats}
+          caps={videoCaps}
           health={videoHealth}
           onStart={handleStartAnimate}
           onClose={() => setShowAnimatePanel(false)}
@@ -1665,6 +1748,32 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 )}
               </select>
             </div>
+
+            {/* Style-variant selector — only when the chosen style exposes flavors */}
+            {(() => {
+              const st = rebuildArtStyles.find(s => s.key === rebuildArtStyle)
+              const variants = (st && Array.isArray(st.variants)) ? st.variants : []
+              if (variants.length === 0) return null
+              return (
+                <div>
+                  <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    {st.label} Flavor
+                  </label>
+                  <select
+                    value={variants.some(v => v.label === rebuildVariant) ? rebuildVariant : ''}
+                    onChange={e => setRebuildVariant(e.target.value)}
+                    style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
+                  >
+                    <option value="">✨ Variety mix (each card varies)</option>
+                    {variants.map(v => (
+                      <option key={v.label} value={v.label} disabled={!v.ready}>
+                        {v.ready ? '✓' : '⚠'} {v.label}{v.ready ? '' : ' (LoRA missing)'}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )
+            })()}
 
             <div>
               <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>

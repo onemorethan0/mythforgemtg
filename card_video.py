@@ -65,33 +65,81 @@ _PLACEHOLDERS = {
 
 
 # ── Motion presets (combined with each card's own art_prompt) ─────────────────
+# Each value is the MOTION clause fed to the I2V model.  Keep them ambient or
+# camera-driven and ALWAYS pin the subject ("subject stays still"): LTXV/Wan warp
+# the figure on large/structural motion, so action verbs (swings, runs, casts)
+# belong in neither the presets nor a sane custom prompt.  Grouped subtle→stronger.
 _MOTION_PRESETS: dict[str, str] = {
+    # ── Ambient ──
     "subtle":  "subtle cinemagraph, gentle ambient motion, the subject stays still, "
                "only soft background drift and faint light flicker",
     "elements": "drifting embers and smoke, flowing water, swaying cloth and hair, "
                 "shimmering magical energy, subject mostly still",
-    "push_in": "very slow cinematic camera push-in with parallax depth, "
-               "subject stays still, gentle atmospheric motion",
     "shimmer": "shimmering light, glints and sparkles drifting across the scene, "
                "subtle glow pulsing, subject still",
+    "breathing": "living portrait, the subject breathes slowly and blinks, the faintest "
+                 "idle sway, everything else still, no pose change",
+    # ── Atmosphere / weather ──
+    "rain":   "steady rain falling, wet reflective sheen and dripping water, "
+              "subtle mist, subject stays still",
+    "snow":   "soft snow or ash gently falling and drifting, cold still air, "
+              "subject stays still",
+    "fog":    "low fog and mist slowly rolling through the scene, volumetric haze "
+              "drifting, subject stays still",
+    "fire":   "flickering firelight and glowing embers, warm light dancing across "
+              "the scene, subject stays still",
+    # ── Camera moves (I2V's most reliable) ──
+    "push_in": "very slow cinematic camera push-in with parallax depth, "
+               "subject stays still, gentle atmospheric motion",
+    "pull_back": "very slow cinematic camera pull-back reveal with parallax depth, "
+                 "subject stays still, gentle atmospheric motion",
+    "pan":    "slow cinematic camera pan drifting across the scene with parallax, "
+              "subject stays still",
+    "orbit":  "gentle cinematic parallax, foreground and background layers separate "
+              "as the view sways slightly, subject stays still",
+    # ── Energy / FX (spells, artifacts) ──
+    "arcane": "pulsing magical glow, runes and energy flickering and breathing with "
+              "light, subject stays still",
+    "energy": "crackling energy and drifting sparks arcing across the scene, "
+              "electric glow flickering, subject stays still",
 }
 _DEFAULT_PRESET = "subtle"
+
+# Appended to a CUSTOM motion prompt to keep the subject from morphing — the same
+# guarantee every built-in preset carries.
+_CUSTOM_MOTION_GUARD = "the subject stays still with no pose change, only the described motion"
 
 _NEG_PROMPT = ("morphing, warping, distortion, deformed, flickering identity, "
                "jitter, text, watermark, fast motion, scene cut, duplicate subject")
 
 
 def motion_presets() -> list[dict]:
-    """Preset list for the UI (key + human label)."""
-    labels = {"subtle": "Subtle cinemagraph", "elements": "Drifting elements",
-              "push_in": "Slow push-in", "shimmer": "Shimmer & glints"}
+    """Preset list for the UI (key + human label), grouped for the dropdown."""
+    labels = {
+        "subtle": "Subtle cinemagraph", "elements": "Drifting elements",
+        "shimmer": "Shimmer & glints", "breathing": "Living portrait (breathe & blink)",
+        "rain": "Rain & wet sheen", "snow": "Falling snow / ash",
+        "fog": "Rolling fog & mist", "fire": "Flickering firelight",
+        "push_in": "Camera: slow push-in", "pull_back": "Camera: pull-back reveal",
+        "pan": "Camera: slow pan", "orbit": "Camera: parallax sway",
+        "arcane": "Arcane pulse & runes", "energy": "Crackling energy",
+    }
     return [{"key": k, "label": labels.get(k, k)} for k in _MOTION_PRESETS]
 
 
-def build_motion_prompt(preset: str, art_prompt: str = "") -> str:
-    """Motion-preset text + the card's existing art_prompt so motion fits the
-    scene without re-describing it from scratch."""
-    base = _MOTION_PRESETS.get(preset or _DEFAULT_PRESET, _MOTION_PRESETS[_DEFAULT_PRESET])
+def build_motion_prompt(preset: str, art_prompt: str = "", custom: str = "") -> str:
+    """Build the I2V motion prompt.
+
+    A non-empty ``custom`` free-text description wins over ``preset`` (the user
+    typed exactly what they want) and is anchored with the subject-stays-still
+    guard so it doesn't morph the figure. Either way the card's own ``art_prompt``
+    is appended as the Scene so motion fits without re-describing it.
+    """
+    custom = (custom or "").strip()
+    if custom:
+        base = f"{custom[:300]}, {_CUSTOM_MOTION_GUARD}"
+    else:
+        base = _MOTION_PRESETS.get(preset or _DEFAULT_PRESET, _MOTION_PRESETS[_DEFAULT_PRESET])
     art = (art_prompt or "").strip()
     if art:
         # Trim the art prompt so the motion clause stays dominant.
@@ -135,6 +183,51 @@ _VIDEO_METHODS: dict[str, dict] = {
     },
 }
 _METHOD_ORDER = ["ltxv", "wan"]   # preference, NOT a hard default
+
+
+# ── Clip-length (duration) configuration ──────────────────────────────────────
+# Duration is exposed in the UI as "clip length" (seconds) and converted to a
+# frame count here.  I2V models like a frame count of the form k*n+1 (LTXV→8n+1,
+# Wan→4n+1); off-multiple lengths can drop or duplicate the last frames.  Motion
+# is range-limited because I2V temporal coherence degrades and VRAM/time grow with
+# length; the procedural foil sweep is cheap so it allows longer loops.
+_FRAME_SNAP = {"ltxv": 8, "wan": 4}     # frame count best expressed as k*n + 1
+MOTION_MIN_S, MOTION_MAX_S = 1.0, 6.0   # I2V art-motion clip-length bounds (sec)
+FOIL_MIN_S,   FOIL_MAX_S   = 1.0, 10.0  # procedural foil loop bounds (sec)
+FPS_OPTIONS = [12, 16, 24, 30]          # selectable frame rates (smoothness)
+_FOIL_DEFAULT_S = 3.0
+_MOTION_DEFAULT_S = 2.0
+
+
+def frames_for_duration(method: Optional[str], seconds: float, fps: int,
+                        *, foil: bool = False) -> int:
+    """Convert a desired clip length (seconds) to a frame count.
+
+    For I2V motion the result is clamped to the method's safe range and snapped to
+    the nearest k*n+1 the model prefers.  For the procedural foil sweep any count
+    is fine, so it's just round(seconds*fps) within the foil bounds.
+    """
+    fps = max(1, int(fps or 24))
+    lo, hi = (FOIL_MIN_S, FOIL_MAX_S) if foil else (MOTION_MIN_S, MOTION_MAX_S)
+    seconds = max(lo, min(hi, float(seconds)))
+    raw = max(2, int(round(seconds * fps)))
+    if foil:
+        return raw
+    k = _FRAME_SNAP.get(method or "", 1)
+    if k > 1:
+        n = max(1, round((raw - 1) / k))
+        return k * n + 1
+    return raw
+
+
+def video_caps() -> dict:
+    """Duration / frame-rate capability ranges surfaced to the UI so the clip-length
+    slider and FPS selector show valid bounds per effect."""
+    return {
+        "motion": {"min_s": MOTION_MIN_S, "max_s": MOTION_MAX_S, "default_s": _MOTION_DEFAULT_S},
+        "foil":   {"min_s": FOIL_MIN_S,   "max_s": FOIL_MAX_S,   "default_s": _FOIL_DEFAULT_S},
+        "fps_options": list(FPS_OPTIONS),
+    }
 
 
 def _available_nodes(comfy_base: Optional[str] = None) -> set[str]:

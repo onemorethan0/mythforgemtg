@@ -459,6 +459,20 @@ export default function StepTheme({
     if (match && onCheckpointChange) onCheckpointChange(match.filename)
   }, [artStyle, stylePresets, checkpoints, generateArt])
 
+  // ── Clear a pinned style variant that doesn't apply to the current style ──
+  // A flavor pinned for cyberpunk (e.g. "Blade Runner '82") is meaningless for the
+  // anime preset, and a stale value from localStorage would silently fall back to
+  // full rotation on the backend. Reset to "Variety mix" whenever the selected
+  // style has no matching variant label.
+  useEffect(() => {
+    if (!genSettings || !stylePresets.length) return
+    const current = genSettings.values?.style_variant || ''
+    if (!current) return
+    const preset = stylePresets.find(s => s.key === artStyle)
+    const labels = (preset?.variants || []).map(v => v.label)
+    if (!labels.includes(current)) genSettings.setField('style_variant', '')
+  }, [artStyle, stylePresets])
+
   // ── Sync model_speed when an explicit checkpoint is chosen ───────────────
   useEffect(() => {
     if (!checkpoint || !checkpoints.length) return
@@ -1171,6 +1185,46 @@ export default function StepTheme({
               return (
                 <div style={{ marginTop: 8, fontSize: 12, color: '#57534e', lineHeight: 1.5 }}>
                   {st.description}
+                </div>
+              )
+            })()}
+
+            {/* ── Style-variant ("flavor") selector ──────────────────────────
+                Only for presets that expose rotation variants (e.g. cyberpunk,
+                desert_punk). "✨ Variety mix" (value '') keeps the per-card
+                rotation; picking one variant pins it deck-wide. Stored in
+                genSettings.style_variant so it round-trips into the build payload. */}
+            {genSettings && (() => {
+              const st = stylePresets.find(s => s.key === artStyle)
+              if (!st || !Array.isArray(st.variants) || st.variants.length === 0) return null
+              const current = genSettings.values?.style_variant || ''
+              const sel = st.variants.find(v => v.label === current)
+              return (
+                <div style={{ marginTop: 12 }}>
+                  <label style={{ fontSize: 12, color: '#a8a29e', fontWeight: 700, display: 'block', marginBottom: 6 }}>
+                    {st.label} flavor
+                  </label>
+                  <select
+                    value={current}
+                    onChange={e => genSettings.setField('style_variant', e.target.value)}
+                    style={{
+                      width: '100%', background: '#0c0a09', border: '1px solid #44403c',
+                      borderRadius: 8, padding: '8px 12px', color: '#f5f5f4', fontSize: 13,
+                      outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box', cursor: 'pointer',
+                    }}
+                  >
+                    <option value="">✨ Variety mix (each card varies)</option>
+                    {st.variants.map(v => (
+                      <option key={v.label} value={v.label} disabled={!v.ready}>
+                        {v.ready ? '✓' : '⚠'} {v.label}{v.ready ? '' : ' (LoRA missing)'}
+                      </option>
+                    ))}
+                  </select>
+                  <div style={{ fontSize: 11, color: '#57534e', marginTop: 5, lineHeight: 1.5 }}>
+                    {current
+                      ? (sel?.description || 'This flavor is used for every card in the deck.')
+                      : 'Each card randomly uses one installed flavor, for variety across the deck.'}
+                  </div>
                 </div>
               )
             })()}
