@@ -69,10 +69,87 @@ OLLAMA_MODEL         = "qwen3:14b"  # best JSON reliability; 8b truncated ~30% o
                                     # prompts on full 78-card builds (empty art_prompts
                                     # -> Scryfall/fallback). 14b is worth the slower
                                     # theming. 8b still selectable per-build via llm_model.
-BATCH_SIZE      = 5   # smaller batches truncate far less often (8 left ~22/78 cards
-                      # with empty art_prompts on RO builds). 5 + retry-on-any-empty
-                      # drives empties to ~0.
+BATCH_SIZE      = 8   # Was 5 ONLY because the old context ceiling truncated 8-card
+                      # batches (~22/78 cards came back with empty art_prompts on RO
+                      # builds). With llama-swap now at -c 32768 that ceiling is gone,
+                      # so 8 is safe again — and it's a DIVERSITY lever, not just speed:
+                      # the "no two cards share a setting/backdrop" rule in
+                      # _batch_prompt_v2 is enforced WITHIN a batch (cross-batch only
+                      # de-dups NAMES via avoid_names, not scenes), so a wider batch
+                      # forces more cards into distinct settings per call → better
+                      # deck-wide scene variety. retry-on-any-empty + the larger
+                      # num_predict below keep truncation at ~0. Drop back to 5 if a
+                      # quality model's per-card prompts ever feel weaker in long batches.
 REQUEST_TIMEOUT = 240   # margin for a contended GPU (~13 tok/s → 8-card batch ~60-90s)
+
+# Context window for the Ollama FALLBACK path (options.num_ctx). The default
+# llama.cpp backend bakes ctx into the llama-swap launch args (-c 32768) and
+# ignores this field; this only governs MYTHFORGE_LLM_BACKEND=ollama. Kept in
+# sync with llama-swap so the larger BATCH_SIZE / num_predict can't truncate on
+# the fallback (a 4096 ctx left no room for input once num_predict grew).
+LLM_NUM_CTX = int(os.environ.get("MYTHFORGE_LLM_NUM_CTX", "32768"))
+
+# ── Few-shot exemplar gating ──────────────────────────────────────────────────
+# A worked FORMAT EXAMPLE (one ideal batch, shown before the real cards) lifts
+# output quality and name↔art↔flavor integration. The risk is theme-bleed: a
+# smaller model copies the example's WORLD into the user's deck, hurting theme
+# faithfulness (the user's #1 priority). So the exemplar is gated to ≥14B-class
+# models, which reliably treat it as format-only and ignore its content.
+#   MYTHFORGE_THEME_FEWSHOT = auto (default) | on | off
+_FEWSHOT_MODE  = os.environ.get("MYTHFORGE_THEME_FEWSHOT", "auto").strip().lower()
+_FEWSHOT_MIN_B = float(os.environ.get("MYTHFORGE_THEME_FEWSHOT_MIN_B", "14"))
+
+
+def _model_param_b(model: str) -> float:
+    """Best-effort parameter count (billions) for a model id/label. Parses a
+    '<N>b' size tag (qwen3:14b→14, llama3.1:8b→8); for ids with no size tag
+    (qwen3.6:latest, glm-4.7-flash:q4_K_M) falls back to LLM_CATALOG size_gb as a
+    proxy (~0.65 GB per B at q4-q8 quant). 0.0 when nothing is parseable."""
+    m = (model or "").lower()
+    nums = re.findall(r"(\d+(?:\.\d+)?)\s*b\b", m)
+    if nums:
+        try:
+            return max(float(n) for n in nums)
+        except ValueError:
+            pass
+    for entry in LLM_CATALOG:
+        if entry.get("key") == model and entry.get("size_gb"):
+            return float(entry["size_gb"]) / 0.65
+    return 0.0
+
+
+def _use_fewshot(model: str) -> bool:
+    """Whether to include the format exemplar for this model (see _FEWSHOT_MODE)."""
+    if _FEWSHOT_MODE == "on":
+        return True
+    if _FEWSHOT_MODE == "off":
+        return False
+    return _model_param_b(model) >= _FEWSHOT_MIN_B
+
+
+# A single ideal batch in a DELIBERATELY unrelated throwaway world, bracketed by a
+# hard "do not copy its content" guard. It teaches STRUCTURE only: unique evocative
+# names; art_prompts that depict the exact name, lead with world+subject, name real
+# colours, keep the mechanical action a late secondary beat, end on one quality tag;
+# a LAND with terrain and no people; 10-15-word in-world flavour. Triple-SINGLE
+# quoted so the JSON's double quotes need no escaping.
+_FEWSHOT_BLOCK = '''
+━━━ FORMAT EXAMPLE (shows HOW to write entries — its CONTENT is off-limits) ━━━
+This example uses a THROWAWAY world ("a storm-wracked brass airship armada above an
+endless ocean") that has NOTHING to do with this deck. Study ONLY its structure —
+how each themed_name is unique and evocative; how each art_prompt DEPICTS that exact
+name, leads with world + subject, names real colours, places the mechanical action
+as a late secondary beat, and ends with one quality tag; how the LAND shows terrain
+with NO people; how flavor_text speaks in-world in 10-15 words. DO NOT reuse this
+example's world, motifs, names, palette, or phrasing — every card you write MUST
+come from the WORLD THEME above, never from this example.
+[
+  {"idx":0,"themed_name":"Skymarshal of the Ninth Gale","art_prompt":"weathered brass-armored airship captain mid-shout on a storm-lashed deck, coat snapping in the wind, signaling a diving skyship behind her, ivory and verdigris tones under bruised grey storm-light, dramatic lighting","flavor_text":"The sky answers only to those who refuse, at last, to fall."},
+  {"idx":1,"themed_name":"The Drowned Spire Harbor","art_prompt":"sweeping panorama of a half-sunken brass clocktower rising from an endless grey ocean, frozen gears furred with barnacles, gulls wheeling through cold salt mist, tarnished gold and deep teal light, no figures at all, vast and desolate, atmospheric","flavor_text":"Time stopped in this harbor the very day the rising tide finally won."},
+  {"idx":2,"themed_name":"Cut the Tether","art_prompt":"a brass airship's mooring cable snapping apart in mid-air above open water, the freed vessel listing hard as crates tumble into grey waves, sparks racing along the frayed wire, stormy steel-blue palette, cinematic","flavor_text":"One clean cut, and the whole armada slowly learned how to grieve."}
+]
+━━━ END FORMAT EXAMPLE — now write the REAL cards below, from the WORLD THEME. ━━━
+'''
 
 # ── Medium-tag stripper ───────────────────────────────────────────────────────
 # Ollama reliably defaults to "dramatic fantasy oil painting, ..." regardless
@@ -321,7 +398,7 @@ def _ollama_native_chat(messages, *, model, temperature, num_predict, think, str
                         top_p=None, top_k=None, repeat_penalty=None,
                         frequency_penalty=None, presence_penalty=None,
                         timeout=REQUEST_TIMEOUT) -> str:
-    options: dict = {"temperature": temperature, "num_ctx": 4096, "num_gpu": 99,
+    options: dict = {"temperature": temperature, "num_ctx": LLM_NUM_CTX, "num_gpu": 99,
                      "num_predict": num_predict}
     if top_p is not None:
         options["top_p"] = top_p
@@ -2003,7 +2080,8 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                      lora_vocabulary: str = "",
                      tribal_map: Optional[dict] = None,
                      avoid_names: Optional[list[str]] = None,
-                     world_bible: Optional[dict] = None) -> str:
+                     world_bible: Optional[dict] = None,
+                     fewshot: bool = False) -> str:
     """
     Enhanced dual-anchor prompt (v2).
 
@@ -2048,6 +2126,11 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                 "prefix onto a taken one (if 'Ashen Citadel' is taken, 'Lost Ashen "
                 "Citadel' is NOT a new name). No distinctive word should anchor more "
                 "than ~2 cards across the whole deck.\n")
+
+    # Format exemplar (≥14B models only — see _use_fewshot). Placed just before the
+    # real cards so the model anchors on its STRUCTURE, with a hard content-guard so
+    # it doesn't bleed the example world into the user's theme.
+    fewshot_block = _FEWSHOT_BLOCK if fewshot else ""
 
     theme = _quote_user_text(theme)
     commander_name = _quote_user_text(commander_name, max_len=120)
@@ -2315,7 +2398,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     QUALITY — end with ONE tag: {themer_quality or _DEFAULT_QUALITY}
     ORDER: theme-world + character LEAD; mechanical action is a supporting beat near the end of the scene description (before the quality tag).
 - "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL and the spirit of the original card (col 2) — evocative of what it is and does, not generic atmosphere. Where it fits, let it speak from the card's FACTION (col 8) or echo the world's LORE/central tension, so the deck's flavour reads as one connected story.
-{avoid_block}
+{avoid_block}{fewshot_block}
 Cards to process (idx|name|type|mechanics|color_palette|role|soul|faction):
 {card_block}
 
@@ -2329,8 +2412,11 @@ def _ollama_chat(prompt: str, model: str = OLLAMA_MODEL) -> str:
 
     Name kept for historical reasons; dispatches to llama.cpp or Ollama via
     _chat_completion. think=False skips qwen3's chain-of-thought pass (~30-40%
-    faster for JSON-structured creative tasks). num_predict=1792 gives headroom
-    for a full batch from verbose large models without mid-JSON truncation.
+    faster for JSON-structured creative tasks). num_predict=3072 gives generous
+    headroom for a full BATCH_SIZE=8 batch even from verbose quality models (GLM
+    4.7, Qwen 3.6 27B) so the back cards of a batch never get self-compressed or
+    truncated to fit a tighter budget. (Was 1792 for 5-card batches; under the
+    32k context this 2× output budget is a rounding error on total ctx.)
 
     Sampling (tuned for varied but coherent names):
       • temperature 0.9 — the proven value before the llama.cpp migration (which
@@ -2346,7 +2432,7 @@ def _ollama_chat(prompt: str, model: str = OLLAMA_MODEL) -> str:
     return _chat_completion(
         [{"role": "system", "content": SYSTEM_PROMPT},
          {"role": "user",   "content": prompt}],
-        model=model, temperature=0.9, num_predict=1792, think=False, stream=True,
+        model=model, temperature=0.9, num_predict=3072, think=False, stream=True,
         top_p=0.95, top_k=40, repeat_penalty=1.0,
         frequency_penalty=0.4, presence_penalty=0.3,
     )
@@ -2537,6 +2623,9 @@ class Themer:
         """
         _prompt_fn    = _batch_prompt_v2
         prompt_version = "v2 (dual-anchor)"
+        # Format exemplar only for ≥14B-class models (smaller ones bleed its world
+        # into the user's theme). Computed once and reused for the half-batch retries.
+        _fewshot = _use_fewshot(self.model)
 
         prompt = _prompt_fn(theme, commander_name, cards, style_guide,
                             commander_prompt=commander_prompt,
@@ -2548,7 +2637,8 @@ class Themer:
                             lora_vocabulary=lora_vocabulary,
                             tribal_map=tribal_map,
                             avoid_names=avoid_names,
-                            world_bible=world_bible)
+                            world_bible=world_bible,
+                            fewshot=_fewshot)
         raw    = _ollama_chat(prompt, model=self.model)
         parsed = _parse_batch(raw, cards)
 
@@ -2589,6 +2679,7 @@ class Themer:
                     tribal_map=tribal_map,
                     avoid_names=avoid_names,
                     world_bible=world_bible,
+                    fewshot=_fewshot,
                 )
                 sub_raw    = _ollama_chat(sub_prompt, model=self.model)
                 sub_parsed = _parse_batch(sub_raw, sub_cards)
