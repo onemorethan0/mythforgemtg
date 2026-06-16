@@ -53,6 +53,9 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   const [importErr, setImportErr]     = useState('')
   const [preview, setPreview]         = useState(null)
   const [cmdOverride, setCmdOverride] = useState('')
+  // Explicit "Is this a Commander deck?" answer. Defaulted from auto_face (a deck
+  // with no commander zone is probably NOT Commander) but the user always decides.
+  const [isCmdDeck, setIsCmdDeck]     = useState(true)
 
   async function doPreview(forceRefresh = false) {
     const val = importText.trim()
@@ -68,6 +71,7 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
       if (!res.ok) { setImportErr(data.detail || 'Import failed.'); setImportLoading(false); return }
       setPreview(data)
       setCmdOverride(data.commander?.name || '')
+      setIsCmdDeck(!data.auto_face)   // no commander zone → default "not a Commander deck"
     } catch {
       setImportErr('Server unreachable. Is the backend running?')
     }
@@ -86,7 +90,12 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
       type_line:  preview.commander?.type_line || '',
       image_url:  preview.commander?.image_url || '',
       colors:     preview.colors || [],
-      _import:    { mode: mode2, value: importText.trim() },
+      _import:    {
+        mode: mode2,
+        value: importText.trim(),
+        is_commander_deck: isCmdDeck,
+        cards: preview.cards || [],
+      },
     })
   }
 
@@ -286,6 +295,29 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                   {preview.unresolved.slice(0, 8).join(', ')}{preview.unresolved.length > 8 ? '…' : ''}
                 </div>
               )}
+
+              {/* ── Is this a Commander deck? ── */}
+              <div style={{ background: '#0c0a09', border: '1px solid #292524', borderRadius: 10, padding: 14 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 8 }}>
+                  Is this a Commander deck?
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {[{ k: true, label: '👑 Yes — Commander/EDH' }, { k: false, label: '🃏 No — other format' }].map(({ k, label }) => (
+                    <button key={String(k)} onClick={() => setIsCmdDeck(k)} style={{
+                      flex: 1, padding: '9px 12px', borderRadius: 8, fontSize: 12.5, cursor: 'pointer', fontFamily: 'inherit',
+                      border:     isCmdDeck === k ? '1px solid #eab308' : '1px solid #44403c',
+                      background: isCmdDeck === k ? '#eab30820' : 'none',
+                      color:      isCmdDeck === k ? '#fde68a' : '#a8a29e',
+                      fontWeight: isCmdDeck === k ? 700 : 400,
+                    }}>{label}</button>
+                  ))}
+                </div>
+                <div style={{ fontSize: 11.5, color: '#78716c', lineHeight: 1.55, marginTop: 8 }}>
+                  {isCmdDeck
+                    ? 'The commander (or auto-elected face) is the deck’s hero — it gets the commander portrait; crew photos fill humanoid creatures.'
+                    : 'No single hero. On the next step you can assign your uploaded people to specific cards — pick exactly who appears where.'}
+                </div>
+              </div>
 
               {/* ── Bracket analysis ── */}
               {preview.analysis && (() => {

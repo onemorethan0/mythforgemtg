@@ -448,6 +448,8 @@ class BuildRequest(BaseModel):
     crew_key:          Optional[str] = None   # crew face photos for creature cards
     crew_gender:       str = "either"         # gender hint for crew faces
     crew_prompt:       str = ""               # shared appearance notes for crew-faced creatures
+    is_commander_deck: bool = True            # False → imported non-Commander list: no auto hero face
+    face_assignments:  Optional[dict] = None  # {card original_name: crew-photo index} — explicit per-card faces (non-commander decks)
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
@@ -506,6 +508,11 @@ class RegenCardsRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None   # crew faces override for creature cards
     crew_gender: str = "either"
+    # Force a single uploaded face onto EVERY selected card, bypassing the
+    # commander/humanoid-creature routing. Lets the user drop a friendly face
+    # onto any card they picked (even non-humanoid ones) and regenerate it.
+    force_face_key:    Optional[str] = None
+    force_face_gender: str = "either"
     gen_settings: Optional[GenSettingsModel] = None
 
 
@@ -1481,6 +1488,8 @@ def _run_build(job_id: str, req: BuildRequest):
             "crew_key":         req.crew_key or "",
             "crew_gender":      req.crew_gender,
             "crew_prompt":      req.crew_prompt or "",
+            "is_commander_deck": req.is_commander_deck,
+            "face_assignments": req.face_assignments or {},
             "user_name":        req.user_name or "",
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
@@ -1657,6 +1666,8 @@ def _run_build(job_id: str, req: BuildRequest):
                                 theme_str=art_theme,
                                 card_done_callback=_card_done_cb,
                                 cancel_event=cancel_event,
+                                is_commander_deck=req.is_commander_deck,
+                                face_assignments=(req.face_assignments or None),
                             )
                         except Exception as _ge_err:
                             _push(job_id, "progress", json.dumps({
@@ -2353,6 +2364,30 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                         "msg":  f"Crew photos loaded: {len(crew_comfy_names)} photo(s) for creature cards",
                     }))
 
+            # Upload the FORCE face — applied to every selected card regardless of
+            # type (the user explicitly wants this likeness on the card(s) they
+            # picked, so it bypasses the commander/humanoid routing below).
+            force_face_comfy_name: Optional[str] = None
+            if req.force_face_key:
+                if gen.face_method == "none":
+                    _push(job_id, "progress", json.dumps({
+                        "step": "art",
+                        "msg":  "⚠ A face was supplied but no face-swap node is installed — install PuLID / IP-Adapter / ReActor in ComfyUI to apply it",
+                    }))
+                else:
+                    _ff = get_face_paths(req.force_face_key)
+                    if _ff:
+                        force_face_comfy_name = gen.upload_face_to_comfy(_ff[0])
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art",
+                            "msg":  f"Forced face loaded ({gen.face_method_label}) — applied to all {len(to_regen)} selected card(s)",
+                        }))
+                    else:
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art",
+                            "msg":  "⚠ Force-face key supplied but photos missing",
+                        }))
+
             _art_start   = time.time()
             total        = len(to_regen)
             crew_regen_idx = 0   # round-robin index for crew faces
@@ -2366,11 +2401,17 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 if cancel_event.is_set():
                     break
 
-                # Face conditioning: commander face for commander, crew for humanoid creatures
+                # Face conditioning. Priority:
+                #   1. Forced face → every selected card, any type (user's explicit pick).
+                #   2. Commander face → the commander card.
+                #   3. Crew faces → humanoid creature cards (round-robin).
                 is_commander = tc.original_name == commander_original_name
                 face_for_card   = None
                 gender_for_card = "either"
-                if is_commander and face_comfy_name_for_cmd:
+                if force_face_comfy_name:
+                    face_for_card   = force_face_comfy_name
+                    gender_for_card = req.force_face_gender or "either"
+                elif is_commander and face_comfy_name_for_cmd:
                     face_for_card   = face_comfy_name_for_cmd
                     gender_for_card = effective_face_gender
                 elif not is_commander and crew_comfy_names and _is_human_card(tc.card.get("type_line", "")):
@@ -3291,6 +3332,11 @@ def import_preview(req: ImportPreviewRequest):
         },
         "partners":     [p.get("name") for p in imp.partners],
         "auto_face":    imp.auto_face,
+        # Unique maindeck cards (name + type) so the UI can offer per-card face
+        # assignment for non-Commander imports without re-fetching the deck.
+        "cards":        [{"name": c.get("name", ""),
+                          "type_line": (c.get("type_line", "") or "").split(" // ")[0]}
+                         for c in imp.deck],
         "unique_cards": len(imp.deck),
         "total_cards":  imp.total_cards(),
         "colors":       colors,

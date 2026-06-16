@@ -1897,6 +1897,52 @@ class _ReactorCudaError(Exception):
     """
 
 
+def route_card_face(
+    *,
+    is_cmd: bool,
+    is_commander_deck: bool,
+    commander_face: Optional[str],
+    crew_faces: list[str],
+    face_gender: str,
+    crew_gender: str,
+    card_type_line: str,
+    card_name: str,
+    face_assignments: Optional[dict],
+    crew_idx: int,
+) -> tuple[Optional[str], str, bool, int]:
+    """Pure routing of which uploaded face (if any) a single card gets.
+
+    Returns ``(face_comfy_name, gender, uses_crew, next_crew_idx)``. Kept
+    dependency-light + side-effect-free so it can be unit-tested.
+
+    Three modes:
+      • Commander hero — the commander card gets the commander face, but ONLY on a
+        real Commander deck. A non-commander import (60-card list, etc.) has just an
+        auto-elected display "face" with no special hero, so it gets no face here.
+      • Explicit per-card assignment (``face_assignments`` provided) — the
+        authoritative mode for non-commander decks: a card named in the map gets
+        that crew photo by index, BYPASSING the humanoid gate (the user picked it on
+        purpose). Cards absent from the map get no face — no round-robin.
+      • Legacy round-robin (``face_assignments`` is None) — crew photos cycle across
+        humanoid creature cards as before.
+    """
+    if is_cmd:
+        if is_commander_deck and commander_face:
+            return commander_face, face_gender, False, crew_idx
+        return None, "either", False, crew_idx
+
+    if face_assignments is not None:
+        idx = face_assignments.get(card_name)
+        if idx is not None and crew_faces and 0 <= int(idx) < len(crew_faces):
+            return crew_faces[int(idx)], crew_gender, True, crew_idx
+        return None, "either", False, crew_idx
+
+    from face_ref import is_human_card
+    if crew_faces and is_human_card(card_type_line):
+        return crew_faces[crew_idx % len(crew_faces)], crew_gender, True, crew_idx + 1
+    return None, "either", False, crew_idx
+
+
 class _ComfyOffloadError(Exception):
     """
     Raised when ComfyUI crashes in NORMAL_VRAM's async weight-offload path
@@ -3041,6 +3087,8 @@ class ImageGen:
         theme_str: str = "",                       # human-readable theme for LoRA darkness scaling
         card_done_callback=None,                   # callable(tc, art_path) — called after each card renders
         cancel_event=None,                         # threading.Event — set to stop mid-run
+        is_commander_deck: bool = True,            # False → no auto commander "hero" face (imported 60-card lists, etc.)
+        face_assignments: Optional[dict] = None,   # {card original_name: crew-photo index} — explicit per-card faces
     ) -> dict[str, Optional[Path]]:
         if not self.available:
             return {}
@@ -3135,8 +3183,6 @@ class ImageGen:
         print(f"\n  Generating art for {total} cards via {kind}{face_tag} "
               f"(~{total * secs_each // 60}–{total * secs_each * 2 // 60} min)...")
 
-        from face_ref import is_human_card
-
         results: dict[str, Optional[Path]] = {}
         art_dir = Path("generated_art") / deck_name
         crew_card_idx = 0   # round-robin index into crew_comfy_names
@@ -3151,24 +3197,29 @@ class ImageGen:
 
             is_cmd = (tc.original_name == themed_commander.original_name)
 
-            # ── Assign face reference for this card ───────────────────────────
-            # Commander → always uses commander face (if provided)
-            # Humanoid creatures → round-robin through crew photos (if provided)
-            # Everything else → no face conditioning
-            card_face_name:   Optional[str] = None
-            card_face_gender: str           = "either"
-
-            card_uses_crew = False
-            if is_cmd and face_comfy_name:
-                card_face_name   = face_comfy_name
-                card_face_gender = face_gender
-                face_tag_card    = "[👑]"
-            elif not is_cmd and crew_comfy_names and is_human_card(tc.card.get("type_line", "")):
-                card_face_name   = crew_comfy_names[crew_card_idx % len(crew_comfy_names)]
-                card_face_gender = crew_gender
-                crew_card_idx   += 1
-                card_uses_crew   = True
-                face_tag_card    = f"[👥{(crew_card_idx - 1) % len(crew_comfy_names) + 1}]"
+            # ── Assign face reference for this card (see route_card_face) ──────
+            # Commander hero face / explicit per-card assignment / legacy crew
+            # round-robin — the routing rules live in the pure helper so they're
+            # unit-tested. crew_card_idx only advances in round-robin mode.
+            card_face_name, card_face_gender, card_uses_crew, crew_card_idx = route_card_face(
+                is_cmd=is_cmd,
+                is_commander_deck=is_commander_deck,
+                commander_face=face_comfy_name,
+                crew_faces=crew_comfy_names,
+                face_gender=face_gender,
+                crew_gender=crew_gender,
+                card_type_line=tc.card.get("type_line", ""),
+                card_name=tc.original_name,
+                face_assignments=face_assignments,
+                crew_idx=crew_card_idx,
+            )
+            if is_cmd and card_face_name:
+                face_tag_card = "[👑]"
+            elif card_uses_crew and face_assignments is not None:
+                _who = int(face_assignments.get(tc.original_name, 0)) + 1
+                face_tag_card = f"[👤{_who}]"
+            elif card_uses_crew:
+                face_tag_card = f"[👥{(crew_card_idx - 1) % max(1, len(crew_comfy_names)) + 1}]"
             else:
                 face_tag_card = "    "
 

@@ -69,6 +69,11 @@ export default function App() {
   const [faceGender, setFaceGender] = useState('either')
   const [crewKey, setCrewKey]       = useState(null)
   const [crewGender, setCrewGender] = useState('either')
+  // Imported non-Commander decks: explicit flag + the unique card list (for the
+  // per-card face-assignment grid) + the chosen {cardName: personIndex} map.
+  const [isCommanderDeck, setIsCommanderDeck] = useState(true)
+  const [importCards, setImportCards]         = useState([])
+  const [faceAssignments, setFaceAssignments] = useState({})
   const [jobId, setJobId]         = useState(null)
   const [deck, setDeck]           = useState(null)
   // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
@@ -133,6 +138,7 @@ export default function App() {
     setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
+    setIsCommanderDeck(true); setImportCards([]); setFaceAssignments({})
     setJobId(null); setDeck(null)
   }
 
@@ -170,6 +176,8 @@ export default function App() {
         crew_key:     crewKey  || null,
         crew_gender:  crewGender,
         crew_prompt:  crewPrompt || "",
+        is_commander_deck: isCommanderDeck,
+        face_assignments:  isCommanderDeck ? null : (faceAssignments || {}),
         gen_settings: toGenSettingsPayload(genSettings.values),
       }),
     })
@@ -179,12 +187,13 @@ export default function App() {
   }
 
   // ── Face step handlers ────────────────────────────────────────────────────
-  function handleFaceNext(key, method, gender, cKey, cGender) {
+  function handleFaceNext(key, method, gender, cKey, cGender, assignments) {
     setFaceKey(key)
     setFaceMethod(method)
     setFaceGender(gender || 'either')
     setCrewKey(cKey   || null)
     setCrewGender(cGender || 'either')
+    setFaceAssignments(assignments || {})
     setStep(STEP.THEME)
   }
   function handleFaceSkip() {
@@ -193,6 +202,7 @@ export default function App() {
     setFaceGender('either')
     setCrewKey(null)
     setCrewGender('either')
+    setFaceAssignments({})
     setStep(STEP.THEME)
   }
 
@@ -307,6 +317,10 @@ export default function App() {
     setFaceGender(d.face_gender || 'either')
     setCrewKey(d.crew_key || null)
     setCrewGender(d.crew_gender || 'either')
+    // Restore the Commander-deck flag; per-card assignments need photos re-uploaded
+    // (face keys aren't re-displayable), so the user re-assigns on the Face step.
+    setIsCommanderDeck(d.is_commander_deck !== false)
+    setImportCards([]); setFaceAssignments({})
 
     // Fresh build → new job id; clear the old one so we don't reconnect to it.
     _setJobId(null)
@@ -417,6 +431,12 @@ export default function App() {
               setGeneratedDeck(g ? g.deck : null)
               setDeckTribes(g ? (g.tribes || []) : [])
               setTribalOverrides({})
+              // Import flow carries whether it's a Commander deck + the card list
+              // for per-card face assignment. Generated decks are always commander.
+              const imp = card && card._import
+              setIsCommanderDeck(imp ? imp.is_commander_deck !== false : true)
+              setImportCards(imp ? (imp.cards || []) : [])
+              setFaceAssignments({})
               setStep(STEP.FACE)
             }}
           />
@@ -429,6 +449,8 @@ export default function App() {
             onGenderChange={setFaceGender}
             crewGender={crewGender}
             onCrewGenderChange={setCrewGender}
+            isCommanderDeck={isCommanderDeck}
+            importCards={importCards}
             onNext={handleFaceNext}
             onSkip={handleFaceSkip}
             onBack={() => setStep(STEP.COMMANDER)}

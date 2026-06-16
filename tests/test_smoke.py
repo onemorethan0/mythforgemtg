@@ -84,6 +84,94 @@ def test_tribal_type_line():
           "Creature — Lord Knight")
     check("tl.collapse_generic", f("Creature — Elf Warrior", {"Elf": "Chrome Sentinel", "Warrior": "Steel Blade"}),
           "Creature — Steel Blade")
+    # Multi-face cards (MDFC/split/transform) reskin each face independently and
+    # never bleed across the '//'. Regression: a single split on the first '—' used
+    # to drag the back face's "Legendary"/"Creature"/"//" into the front subtypes.
+    check("tl.multiface",
+          f("Creature — Ogre Shaman // Legendary Creature — Ogre Shaman",
+            {"Ogre": "Rusted Colossus", "Shaman": "Holo-Priest"}),
+          "Creature — Holo-Priest // Legendary Creature — Holo-Priest")
+
+
+def test_collect_tribes_multiface():
+    # The 'all cards become the same creature type' import bug: a '//' card leaked
+    # non-subtype tokens ('//', 'Legendary', 'Creature', a stray '—') into the tribe
+    # list, which were then sent to the LLM and mapped. Only real subtypes survive.
+    cards = [
+        {"type_line": "Creature — Ogre Shaman // Legendary Creature — Ogre Shaman"},
+        {"type_line": "Creature — Demon Spirit"},
+        {"type_line": "Basic Land — Mountain"},
+        {"type_line": "Instant — Arcane"},
+    ]
+    tribes = themer._collect_tribes(cards)
+    check_true("tribes.clean", set(tribes) == {"Ogre", "Shaman", "Demon", "Spirit"})
+    for junk in ("//", "Legendary", "Creature", "—", "Arcane"):
+        check_true(f"tribes.no_{junk}", junk not in tribes)
+
+
+def test_decluster_name_words():
+    f = themer._decluster_name_words
+    # A faction named "the Ashen Covenant" was prefixing every black card with
+    # "Ashen". Cap "ashen" to one appearance; strip it (cleanly) from the rest.
+    names = ["Ashen Wisp", "Ashen Reckoning", "Ashen Lord of the Void",
+             "Plague of Ashen Blood", "Yukora, the Ashen Warden"]
+    out = f(names, ["ashen", "covenant"], cap=1)
+    check("declus.keep_first", out[0], "Ashen Wisp")          # first keeps the word
+    check("declus.strip2",     out[1], "Reckoning")
+    check("declus.strip3",     out[2], "Lord of the Void")
+    check("declus.mid_of",     out[3], "Plague of Blood")     # tidy "of Ashen Blood" → "of Blood"
+    check("declus.comma",      out[4], "Yukora, the Warden")
+    # Only one card ends up containing "ashen".
+    check_true("declus.count", sum("ashen" in n.lower() for n in out) == 1)
+    # No faction words → identity; empty/none-safe.
+    check("declus.noop", f(["Brass Skyship", "Iron Gale"], []), ["Brass Skyship", "Iron Gale"])
+    # Never shrink a name below 3 chars (would-be-empty strip is skipped).
+    check("declus.minlen", f(["Ash", "Ash"], ["ash"], cap=1), ["Ash", "Ash"])
+
+
+def test_route_card_face():
+    from image_gen import route_card_face as r
+    crew = ["a", "b", "c"]
+    # Commander deck: the commander card gets the commander hero face.
+    check("face.cmd_deck", r(is_cmd=True, is_commander_deck=True, commander_face="C",
+          crew_faces=crew, face_gender="male", crew_gender="female",
+          card_type_line="", card_name="Cmd", face_assignments=None, crew_idx=0),
+          ("C", "male", False, 0))
+    # Non-commander import: the elected display face is NOT a hero — no face.
+    check("face.noncmd_cmd", r(is_cmd=True, is_commander_deck=False, commander_face="C",
+          crew_faces=crew, face_gender="male", crew_gender="female",
+          card_type_line="", card_name="Cmd", face_assignments=None, crew_idx=0),
+          (None, "either", False, 0))
+    # Explicit assignment wins and BYPASSES the humanoid gate (even on a Land).
+    check("face.assign_land", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Land", card_name="Tower",
+          face_assignments={"Tower": 2}, crew_idx=0),
+          ("c", "f", True, 0))
+    # In explicit mode an UNassigned card gets no face (no round-robin fallback).
+    check("face.assign_unassigned", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human Soldier", card_name="Grunt",
+          face_assignments={"Tower": 2}, crew_idx=0),
+          (None, "either", False, 0))
+    # An out-of-range index is ignored safely.
+    check("face.assign_oob", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human", card_name="X",
+          face_assignments={"X": 9}, crew_idx=0),
+          (None, "either", False, 0))
+    # Legacy round-robin (no assignments) still cycles crew across humanoids.
+    check("face.rr_human", r(is_cmd=False, is_commander_deck=True, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human Wizard", card_name="Mage",
+          face_assignments=None, crew_idx=1),
+          ("b", "f", True, 2))
+    # Non-humanoid in round-robin mode → no face, idx unchanged.
+    check("face.rr_nonhuman", r(is_cmd=False, is_commander_deck=True, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Dragon", card_name="Wyrm",
+          face_assignments=None, crew_idx=1),
+          (None, "either", False, 1))
 
 
 def test_subject_directives():

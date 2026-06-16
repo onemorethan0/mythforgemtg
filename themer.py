@@ -811,34 +811,38 @@ def compose_commander_name(user_name: str, themed_name: str, commander_card: dic
 # line. Computed once in theme_deck and threaded into every batch.
 
 def _collect_tribes(cards: list[dict], max_tribes: int = 20) -> list[str]:
-    """Frequency-ordered creature subtypes (tribes) across the deck."""
+    """Frequency-ordered creature subtypes (tribes) across the deck. Reuses the
+    face-aware `_creature_subtypes` so multi-face cards never leak non-subtype
+    tokens ('//', 'Legendary', 'Creature', a stray '—') into the tribe list."""
     from collections import Counter
     counts: "Counter[str]" = Counter()
     for c in cards:
-        tl = c.get("type_line", "") or ""
-        if "creature" not in tl.lower():
-            continue
-        # Subtypes follow the long dash (—); also tolerate a plain hyphen.
-        parts = tl.replace(" - ", " — ").split("—", 1)
-        if len(parts) < 2:
-            continue
-        for sub in parts[1].strip().split():
-            s = sub.strip()
-            if s:
-                counts[s] += 1
+        for s in _creature_subtypes(c.get("type_line", "") or ""):
+            counts[s] += 1
     return [t for t, _ in counts.most_common(max_tribes)]
 
 
 def _creature_subtypes(type_line: str) -> list[str]:
     """Creature subtypes from a type line ('Legendary Creature — Faerie Warlock'
-    -> ['Faerie', 'Warlock']). Empty for non-creatures / typeless cards."""
+    -> ['Faerie', 'Warlock']). Empty for non-creatures / typeless cards.
+
+    Multi-face cards (MDFC/split/transform, '… // …') are read FACE BY FACE: each
+    face contributes the words after its OWN em-dash, and only creature faces count.
+    Without this, a card like 'Creature — Ogre Shaman // Legendary Creature — Ogre
+    Shaman' would (via a single split on the first '—') leak the back face's
+    pre-dash words ('Legendary', 'Creature'), the '//' separator, and the second
+    '—' into the subtype list — which then poisoned tribe detection / the reskin
+    map (the 'all cards become the same creature type' import bug)."""
     tl = type_line or ""
     if "creature" not in tl.lower():
         return []
-    norm = tl.replace(" - ", " — ")
-    if "—" not in norm:
-        return []
-    return [s for s in norm.split("—", 1)[1].strip().split() if s]
+    out: list[str] = []
+    for face in tl.replace(" - ", " — ").split("//"):
+        if "creature" not in face.lower() or "—" not in face:
+            continue
+        tail = face.split("—", 1)[1]
+        out.extend(s for s in tail.strip().split() if s)
+    return out
 
 
 def _commander_tribe(commander: dict, override: str = "") -> str:
@@ -858,6 +862,38 @@ def _commander_tribe(commander: dict, override: str = "") -> str:
     if subs[0] in _GENERIC_RACE and len(subs) > 1:
         return subs[1]
     return subs[0]
+
+
+def _decluster_name_words(names: list[str], words: list[str], cap: int = 1) -> list[str]:
+    """Cap how many themed names may contain each `word` (case-insensitive whole
+    word). The first `cap` names that use a word keep it; later names have it
+    stripped (with dangling connectors tidied). Pure + order-stable.
+
+    Stops a colour faction's proper name ("the Ashen Covenant") from prefixing
+    every same-colour card ("Ashen Wisp", "Ashen Lord", "Plague of Ashen Blood",
+    …) — faction cohesion belongs to the art/palette, not a shared name stem.
+    A name is left unchanged if stripping would shrink it below 3 characters."""
+    words = list(dict.fromkeys(w.lower() for w in words if w))
+    if not words:
+        return list(names)
+    counts: dict[str, int] = {}
+    out: list[str] = []
+    for nm in names:
+        nm = (nm or "").strip()
+        for fw in words:
+            if not re.search(rf"\b{re.escape(fw)}\b", nm, flags=re.I):
+                continue
+            if counts.get(fw, 0) >= cap:
+                new = re.sub(rf"\b{re.escape(fw)}\b", "", nm, flags=re.I)
+                new = re.sub(r"\s{2,}", " ", new)
+                new = re.sub(r"\b(of|the|de|du|of the)\b\s*$", "", new, flags=re.I)
+                new = re.sub(r"^(of|the|de|du)\s+", "", new, flags=re.I).strip(" ,-—'")
+                if len(new) >= 3 and new.lower() != nm.lower():
+                    nm = new
+            else:
+                counts[fw] = counts.get(fw, 0) + 1
+        out.append(nm)
+    return out
 
 
 def _name_too_close(word: str, cmd_tokens: list[str]) -> bool:
@@ -925,23 +961,29 @@ def _generate_tribal_map(theme: str, tribes: list[str],
 def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
     """Replace mapped creature subtypes in a type line so the displayed card type
     matches the reskin (e.g. 'Legendary Creature — Cat' → '… — Cyber Falcon')."""
-    if not tribal_map or "—" not in type_line.replace(" - ", " — "):
+    norm = type_line.replace(" - ", " — ")
+    if not tribal_map or "—" not in norm:
         return type_line
-    head, _, tail = type_line.replace(" - ", " — ").partition("—")
-    subs = tail.strip().split()
-    # If any subtype is reskinned, ONE replacement *becomes* the creature's whole
-    # kind — drop the unmapped race words AND collapse multiple mapped subtypes to a
-    # single type. When several subtypes map (e.g. all-tribes auto-reskin turns both
-    # words of "Human Knight"), prefer the LAST mapped subtype: MTG lists race then
-    # class, so the trailing token is the job/class (Knight→Lord Knight), which is
-    # the more specific identity. This keeps the line to one reskin ("— Lord Knight",
-    # not "— Demihuman Lord Knight" / "— Chrome Sentinel Cyber Falcon").
-    mapped = [tribal_map[s] for s in subs if s in tribal_map]
-    if mapped:
-        new_subs = [mapped[-1]]
-    else:
-        new_subs = subs
-    return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
+
+    def _reskin_face(face: str) -> str:
+        if "—" not in face:
+            return face.strip()
+        head, _, tail = face.partition("—")
+        subs = tail.strip().split()
+        # If any subtype is reskinned, ONE replacement *becomes* the creature's
+        # whole kind — drop the unmapped race words AND collapse multiple mapped
+        # subtypes to a single type. When several subtypes map (e.g. all-tribes
+        # auto-reskin turns both words of "Human Knight"), prefer the LAST mapped
+        # subtype: MTG lists race then class, so the trailing token is the
+        # job/class (Knight→Lord Knight), the more specific identity. This keeps
+        # the line to one reskin ("— Lord Knight", not "— Demihuman Lord Knight").
+        mapped = [tribal_map[s] for s in subs if s in tribal_map]
+        new_subs = [mapped[-1]] if mapped else subs
+        return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else face.strip()
+
+    # Multi-face cards ('… // …') are reskinned face-by-face and rejoined, so a
+    # back face never bleeds into the front (and vice-versa).
+    return " // ".join(_reskin_face(f) for f in norm.split("//"))
 
 
 def _subtype_echoes_name(type_line: str, themed_name: str) -> bool:
@@ -2280,11 +2322,16 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     factions_block = ""
     if _factions:
         _fp = ["\n\n━━━ COLOUR FACTIONS (SET COHESION — MANDATORY) ━━━",
-               "This world's colours are FACTIONS. Col 8 names each card's faction. The themed_name and "
-               "art MUST depict that faction — its people, signature materials, architecture, attire and "
-               "palette. EVERY card of the same colour belongs to the SAME faction and must look like it "
-               "(this is what makes the deck read as one set, not random cards). Multicolour cards blend "
-               "their factions; colourless cards are neutral relics/constructs of the world."]
+               "This world's colours are FACTIONS. Col 8 names each card's faction. The ART (and the FEEL of "
+               "the themed_name) MUST reflect that faction — its people, signature materials, architecture, "
+               "attire and palette. EVERY card of the same colour belongs to the SAME faction and must look "
+               "like it (this is what makes the deck read as one set, not random cards). Multicolour cards "
+               "blend their factions; colourless cards are neutral relics/constructs of the world.",
+               "NAMING — do NOT reuse the faction's PROPER NAME (or any one of its words) as a recurring "
+               "prefix/word across card names. Every themed_name must be DISTINCT; let the faction show "
+               "through materials, roles, attire and imagery — never a shared name-word. "
+               "(A faction called 'the Ashen Covenant' must NOT yield 'Ashen Wisp', 'Ashen Lord', "
+               "'Ashen Reckoning' — vary every name.)"]
         for _c in [x for x in ["W", "U", "B", "R", "G"] if x in _factions]:
             _f = _factions[_c]
             _mot = ", ".join(m for m in (_f.get("motifs") or []) if m)
@@ -2996,6 +3043,35 @@ class Themer:
                         _stripped += 1
             if _stripped:
                 print(f"  [themer] stripped creature/tribe words from {_stripped} land name(s)")
+
+        # ── De-cluster faction PROPER-NAME words from themed names ─────────────
+        # A colour faction named e.g. "the Ashen Covenant" makes the model prefix
+        # nearly every same-colour card with "Ashen" ("Ashen Wisp", "Ashen Lord",
+        # "Plague of Ashen Blood", …). Faction cohesion belongs to the ART, palette
+        # and materials — NOT to a shared name stem. Cap each distinctive faction
+        # name-word to ONE appearance and strip it from the rest (keeping a distinct
+        # remainder), so the same colour stops reading as one repeated adjective.
+        _FACTION_NAME_STOP = {"the", "of", "and", "a", "an", "de", "du", "la", "le",
+                              "order", "covenant", "clan", "house", "guild", "circle",
+                              "cult", "court", "legion", "pact", "host", "choir"}
+        _faction_words: list[str] = []
+        for _f in (world_bible.get("color_factions") or {}).values():
+            if isinstance(_f, dict):
+                for _w in re.findall(r"[A-Za-z']{4,}", _f.get("name", "") or ""):
+                    if _w.lower() not in _FACTION_NAME_STOP:
+                        _faction_words.append(_w.lower())
+        _faction_words = list(dict.fromkeys(_faction_words))
+        if _faction_words:
+            _order  = sorted(themed_entries)
+            _names  = [(themed_entries[_i].get("themed_name") or "").strip() for _i in _order]
+            _declus = _decluster_name_words(_names, _faction_words, cap=1)
+            _declustered = 0
+            for _i, _old, _nw in zip(_order, _names, _declus):
+                if _nw != _old:
+                    themed_entries[_i]["themed_name"] = _nw
+                    _declustered += 1
+            if _declustered:
+                print(f"  [themer] de-clustered faction name-word(s) from {_declustered} name(s)")
 
         _seen_names: set[str] = set()
         _dupes = 0
