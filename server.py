@@ -1234,22 +1234,32 @@ def _run_build(job_id: str, req: BuildRequest):
             except deck_import.DeckImportError as e:
                 raise ValueError(str(e))
             card = imported.commander
-            # If the source had no commander zone, let the user-supplied name fill in.
-            if not card and req.commander_name:
-                card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
+            # An explicitly typed commander/face name overrides the auto-elected
+            # face (and fills in if election somehow produced nothing). Only a name
+            # that actually differs from the current face triggers a Scryfall lookup.
+            override = (req.commander_name or "").strip()
+            if override and (card is None or override.lower() not in (card.get("name", "") or "").lower()):
+                ov = _scryfall.get_card_by_name(override, fuzzy=True)
+                if ov:
+                    card = ov
             if not card:
+                # With auto-election this is essentially unreachable (any non-empty
+                # deck yields a face); kept as a guard for a truly empty import.
                 raise ValueError(
-                    "No commander found in the imported deck. Tag the commander in "
-                    "the source, or type a commander name before importing.")
+                    "Couldn't read any cards from that deck. Check the URL or "
+                    "decklist text and try again.")
             deck = list(imported.deck)
             # Partner/companion commanders aren't the face — render them as cards.
             for p in imported.partners:
                 pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
             stats = compute_stats(card, deck)
+            face_auto = bool(imported.auto_face) and card is imported.commander
             import_meta = {"source": imported.source, "source_name": imported.name,
-                           "source_input": src_input, "unresolved": imported.unresolved}
+                           "source_input": src_input, "unresolved": imported.unresolved,
+                           "auto_face": face_auto}
             _push(job_id, "progress", json.dumps({"step": "deck", "msg":
-                f"Imported {imported.name} — {stats['total_cards']} cards, commander {card['name']}"
+                f"Imported {imported.name} — {stats['total_cards']} cards, "
+                + (f"face (auto-selected) {card['name']}" if face_auto else f"commander {card['name']}")
                 + (f" ({len(imported.unresolved)} unresolved)" if imported.unresolved else "")}))
         else:
             # ── Generate a deck from a commander ──────────────────────────────
@@ -1492,6 +1502,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "import_source":    import_meta.get("source", ""),
             "import_name":      import_meta.get("source_name", ""),
             "import_unresolved": import_meta.get("unresolved", []),
+            "import_auto_face": import_meta.get("auto_face", False),
             "built_at":         time.time(),
         }
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
@@ -3279,6 +3290,7 @@ def import_preview(req: ImportPreviewRequest):
             "image_url": (cmd.get("image_uris") or {}).get("normal", ""),
         },
         "partners":     [p.get("name") for p in imp.partners],
+        "auto_face":    imp.auto_face,
         "unique_cards": len(imp.deck),
         "total_cards":  imp.total_cards(),
         "colors":       colors,

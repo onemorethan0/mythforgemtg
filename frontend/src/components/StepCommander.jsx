@@ -77,7 +77,9 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   function useImported() {
     if (!preview) return
     const mode2 = importText.trim().toLowerCase().startsWith('http') ? 'url' : 'text'
-    const cmdName = preview.commander?.name || cmdOverride.trim()
+    // A typed override wins (incl. changing an auto-elected face); else the
+    // detected/elected commander. cmdOverride is prefilled in doPreview.
+    const cmdName = cmdOverride.trim() || preview.commander?.name || ''
     onNext({
       name:       cmdName,
       full_name:  cmdName,
@@ -218,8 +220,10 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
             onChange={e => { setImportText(e.target.value); setPreview(null); setImportErr('') }}
           />
           <div style={{ fontSize: 12, color: '#57534e', margin: '8px 0 12px' }}>
-            ManaBox: in the app, export the deck as text and paste it here. Moxfield links are best-effort —
-            if one fails, paste the list instead. Imported decks are cached, so re-importing is instant.
+            Any format works — Commander, 60-card, singleton. A commander is optional; if there's no
+            commander zone, a face card is auto-selected (you can change it). ManaBox: in the app, export the
+            deck as text and paste it here. Moxfield links are best-effort — if one fails, paste the list
+            instead. Imported decks are cached, so re-importing is instant.
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
             <button
@@ -255,14 +259,23 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                       {preview.colors.map(c => COLOR_NAMES[c] || c).join(' / ')}
                     </div>
                   )}
-                  {preview.commander
-                    ? <div style={{ fontSize: 13, color: '#86efac' }}>Commander: {preview.commander.name}</div>
-                    : <div style={{ fontSize: 13, color: '#fca5a5', marginBottom: 6 }}>
-                        No commander zone found — type your commander:
-                        <input style={{ ...s.input, marginTop: 6 }} value={cmdOverride}
-                               placeholder="e.g. Atraxa, Praetors' Voice"
-                               onChange={e => setCmdOverride(e.target.value)} />
-                      </div>}
+                  {preview.commander && !preview.auto_face &&
+                    <div style={{ fontSize: 13, color: '#86efac' }}>Commander: {preview.commander.name}</div>}
+                  {preview.commander && preview.auto_face &&
+                    <div style={{ fontSize: 13, color: '#fbbf24', marginBottom: 6 }}>
+                      No commander zone — using <b style={{ color: '#fde68a' }}>{preview.commander.name}</b> as the deck's face.
+                      <div style={{ fontSize: 12, color: '#a8a29e', marginTop: 4 }}>Change the face (optional):</div>
+                      <input style={{ ...s.input, marginTop: 4 }} value={cmdOverride}
+                             placeholder="e.g. Heartless Hidetsugu"
+                             onChange={e => setCmdOverride(e.target.value)} />
+                    </div>}
+                  {!preview.commander &&
+                    <div style={{ fontSize: 13, color: '#fca5a5', marginBottom: 6 }}>
+                      No cards detected — type a commander to build around:
+                      <input style={{ ...s.input, marginTop: 6 }} value={cmdOverride}
+                             placeholder="e.g. Atraxa, Praetors' Voice"
+                             onChange={e => setCmdOverride(e.target.value)} />
+                    </div>}
                   {preview.partners?.length > 0 &&
                     <div style={{ fontSize: 12, color: '#a8a29e' }}>Partners: {preview.partners.join(', ')}</div>}
                 </div>
