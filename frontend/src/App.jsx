@@ -336,7 +336,7 @@ export default function App() {
       {/* Header */}
       <header style={{ borderBottom: '1px solid #292524', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '22px' }}>⚔</span>
+          <span style={{ fontSize: '22px' }}>🔨</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             <span style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '0.15em', color: '#eab308', textTransform: 'uppercase' }}>
               Myth Forge
