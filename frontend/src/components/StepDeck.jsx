@@ -276,6 +276,15 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
   const [crewUploadErr, setCrewUploadErr]     = useState(null)
   const crewInputRef                          = useRef(null)
 
+  // Force a single uploaded face onto EVERY selected card, whatever its type.
+  // This is the "add a friendly face to this card" path — it overrides the
+  // commander/crew routing on the backend.
+  const [forceFaceKey, setForceFaceKey]           = useState(null)
+  const [forceFaceUploading, setForceFaceUploading] = useState(false)
+  const [forceFaceErr, setForceFaceErr]           = useState(null)
+  const [forceFaceGender, setForceFaceGender]     = useState('either')
+  const forceFaceInputRef                         = useRef(null)
+
   function setPrompt(key, val) { setCustomPrompts(p => ({ ...p, [key]: val })) }
   // Enabling custom RECALLS the current prompt into the editable box (saved custom
   // if any, else the AI prompt) so you can tweak it instead of retyping. The AI
@@ -344,6 +353,8 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
       face_gender: savedFaceGender || 'either',
       crew_key,
       crew_gender: savedCrewGender || 'either',
+      force_face_key:    forceFaceKey || null,
+      force_face_gender: forceFaceGender,
     })
   }
 
@@ -400,6 +411,48 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
               >{opt.label}</button>
             ))}
           </div>
+        </div>
+
+        {/* Force a friendly face onto the selected card(s) — any type */}
+        <div style={{ padding: '14px 22px 0', flexShrink: 0 }}>
+          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+            🙂 Add a face to {selectedCards.length === 1 ? 'this card' : 'these cards'}
+            <span style={{ textTransform: 'none', letterSpacing: 0, color: '#57534e' }}> — applied to every selected card, even non-creatures</span>
+          </div>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+            <button onClick={() => forceFaceInputRef.current?.click()}
+              disabled={forceFaceUploading}
+              style={{ ...btnBase, padding: '6px 12px', fontSize: 11, opacity: forceFaceUploading ? 0.6 : 1,
+                fontWeight: forceFaceKey ? 700 : 600,
+                background: forceFaceKey ? '#1c3a22' : '#0c0a09',
+                color:      forceFaceKey ? '#86efac' : '#a8a29e',
+                border:     `1px solid ${forceFaceKey ? '#15803d' : '#44403c'}`,
+              }}>
+              {forceFaceUploading ? '⏳ Uploading…' : forceFaceKey ? '✓ Face loaded' : '↑ Upload a photo'}
+            </button>
+            {forceFaceKey && (
+              <button onClick={() => { setForceFaceKey(null); setForceFaceErr(null) }}
+                style={{ ...btnBase, padding: '6px 12px', fontSize: 11, fontWeight: 400,
+                  background: '#0c0a09', color: '#57534e', border: '1px solid #292524' }}>✕ Clear</button>
+            )}
+            <label style={{ fontSize: 11, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6, marginLeft: 'auto' }}>
+              Look
+              <select value={forceFaceGender} onChange={e => setForceFaceGender(e.target.value)}
+                style={{ background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '4px 8px', fontSize: 11, fontFamily: 'inherit' }}>
+                <option value="either">Either</option>
+                <option value="male">Masc</option>
+                <option value="female">Femme</option>
+              </select>
+            </label>
+          </div>
+          {forceFaceErr && <div style={{ fontSize: 10, color: '#f87171', marginTop: 4 }}>{forceFaceErr}</div>}
+          {forceFaceKey && (
+            <div style={{ fontSize: 10, color: '#65a30d', marginTop: 5 }}>
+              This face will be used on {selectedCards.length === 1 ? 'the selected card' : `all ${selectedCards.length} selected cards`} — it overrides the commander/crew faces below.
+            </div>
+          )}
+          <input ref={forceFaceInputRef} type="file" accept="image/*" multiple style={{ display: 'none' }}
+            onChange={e => handlePhotoUpload(e, setForceFaceKey, () => {}, setForceFaceUploading, setForceFaceErr)} />
         </div>
 
         {/* Face/crew reference sections */}
