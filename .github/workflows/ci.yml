@@ -17,8 +17,9 @@ jobs:
           python-version: "3.12"
 
       - name: Install runtime deps for the pure-logic tests
-        # The smoke tests import card_renderer/themer/cc_frames (no Ollama/ComfyUI).
-        run: python -m pip install --upgrade pip pillow requests pixie-python
+        # The smoke tests import card_renderer/themer/cc_frames/card_video (no Ollama/ComfyUI).
+        # numpy backs card_video's procedural foil sweep, exercised by test_foil_and_formats.
+        run: python -m pip install --upgrade pip pillow requests pixie-python numpy
 
       - name: Syntax-check all tracked Python
         run: python -m py_compile $(git ls-files '*.py')
