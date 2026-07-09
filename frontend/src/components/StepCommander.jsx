@@ -368,6 +368,52 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                 )
               })()}
 
+              {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
+              {preview.simulation?.power_profile && (() => {
+                const pp = preview.simulation.power_profile
+                const AC = '#38bdf8'
+                const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`)
+                const bar = (label, val, suffix = '') => (
+                  <div style={{ marginBottom: 7 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: '#a8a29e', marginBottom: 2 }}>
+                      <span>{label}</span>
+                      <b style={{ color: '#e7e5e4' }}>{val == null ? '—' : `${Math.round(val)}${suffix}`}</b>
+                    </div>
+                    <div style={{ height: 5, borderRadius: 4, background: '#1c1917', overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${Math.max(0, Math.min(100, val || 0))}%`, background: AC }} />
+                    </div>
+                  </div>
+                )
+                const speed = pp.speed_avg_kill_turn
+                  ? `turn ${pp.speed_avg_kill_turn.toFixed(1)} (${pct(pp.speed_kill_rate)})`
+                  : `no goldfish kill (${pct(pp.speed_kill_rate)})`
+                return (
+                  <div style={{ background: '#0c0a09', border: `1px solid ${AC}44`, borderLeft: `3px solid ${AC}`, borderRadius: 10, padding: 14, marginTop: 12 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1' }}>Simulation-grounded strength</span>
+                      <span style={{ fontSize: 10.5, padding: '1px 8px', borderRadius: 20, background: `${AC}22`, color: AC, border: `1px solid ${AC}` }}>MythGauntlet</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: '#78716c', marginBottom: 10 }}>
+                      Measured by simulating games — not a static heuristic.
+                    </div>
+                    {bar('Consistency', pp.consistency, '/100')}
+                    {bar('Resilience vs a board wipe', pp.resilience, '/100')}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+                        Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>
+                      </span>
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+                        Cards simulated at high fidelity: <b style={{ color: '#e7e5e4' }}>{pct(pp.semantics_coverage)}</b>
+                      </span>
+                    </div>
+                    <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5 }}>{pp.bracket_hint}</div>
+                    {preview.simulation.engine_version && (
+                      <div style={{ fontSize: 10, color: '#57534e', marginTop: 6 }}>engine v{preview.simulation.engine_version}</div>
+                    )}
+                  </div>
+                )
+              })()}
+
               <button
                 style={{ ...s.btnNext, ...((preview.commander || cmdOverride.trim()) ? {} : s.btnDisabled) }}
                 disabled={!(preview.commander || cmdOverride.trim())}

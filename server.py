@@ -3652,6 +3652,52 @@ def _safe_analyze(commander, deck):
         return None
 
 
+# --- MythGauntlet strength API (Myth Suite contract C3) ---------------------------------
+# Simulation-grounded deck strength: MythGauntlet plays thousands of games and returns a
+# measured Power Profile. Optional — if its local server (mythgauntlet serve) isn't up,
+# import-preview silently falls back to the deck_analysis heuristic above.
+MYTHGAUNTLET_URL = os.getenv("MYTHGAUNTLET_URL", "http://127.0.0.1:8020").rstrip("/")
+
+
+def _deck_to_lines(commander, deck) -> str:
+    """Render an imported deck as MythGauntlet's decklist text format."""
+    lines = []
+    if commander and commander.get("name"):
+        lines += ["Commander:", f"1 {commander['name']}", ""]
+    lines.append("Deck:")
+    for c in deck:
+        name = c.get("name", "")
+        if name:
+            lines.append(f"{c.get('quantity', 1)} {name}")
+    return "\n".join(lines)
+
+
+def _gauntlet_analyze(commander, deck):
+    """Simulation-grounded strength from MythGauntlet; None if the service is unavailable."""
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/analyze",
+            json={
+                "deck": _deck_to_lines(commander, deck),
+                "name": (commander or {}).get("name") or "deck",
+                "runs": 300,
+                "resilience": True,
+            },
+            timeout=25,
+        )
+        if resp.status_code != 200:
+            return None
+        data = resp.json()
+        return {
+            "engine_version": data.get("engine_version"),
+            "power_profile": data.get("power_profile"),
+            "unresolved": (data.get("deck") or {}).get("unresolved", []),
+        }
+    except Exception as e:
+        print(f"  [import-preview] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can
@@ -3688,6 +3734,7 @@ def import_preview(req: ImportPreviewRequest):
         "colors":       colors,
         "unresolved":   imp.unresolved,
         "analysis":     _safe_analyze(imp.commander, imp.deck),
+        "simulation":   _gauntlet_analyze(imp.commander, imp.deck),
     }
 
 
