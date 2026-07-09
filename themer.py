@@ -3348,6 +3348,134 @@ class Themer:
 
         return themed_all[0], themed_all[1:]
 
+    # ── Single custom card ────────────────────────────────────────────────────
+    def theme_single_card(
+        self,
+        card:             dict,
+        theme:            str,
+        *,
+        commander_prompt: str  = "",   # how the card's subject should look
+        style_guide_hint: str  = "",
+        themer_medium:    str  = "",
+        themer_quality:   str  = "",
+        lora_vocabulary:  str  = "",
+        ro_mode:          bool = False,
+        theme_spec:       Optional[dict] = None,
+        creativity:       str  = "balanced",
+        gender:           str  = "",
+        want_flavor:      bool = True,
+    ) -> ThemedCard:
+        """Theme a SINGLE user-authored card — generate an ``art_prompt`` (and
+        optional flavor text) that *depicts the card's own name*, WITHOUT renaming
+        it or touching its rules text.
+
+        This is the "author it yourself, AI does the art" path of single-card
+        mode (the "let AI theme everything" path reuses ``theme_deck`` with a
+        one-card deck instead). It builds the same world bible + style guide as a
+        deck so the art still reflects the user's vision, then makes ONE focused
+        LLM call for this card. Falls back to a deterministic prompt on any LLM
+        failure (mirrors the deck path's stub guard).
+
+        Returns a ThemedCard whose ``themed_name``/``card`` are the user's
+        verbatim inputs and whose ``art_prompt``/``flavor_text`` are generated.
+        """
+        name      = (card.get("name") or "Custom Card").strip()
+        type_line = card.get("type_line", "")
+        oracle    = card.get("oracle_text", "")
+        ci        = card.get("color_identity", []) or []
+
+        # World bible (shares the deck pipeline so the art matches the vision).
+        _has_spec = bool(theme_spec) and any(
+            (theme_spec or {}).get(k) for k in ("setting", "genres", "moods", "lighting", "inspiration"))
+        try:
+            if _has_spec:
+                world_bible = build_creative_brief(
+                    theme_spec, name, commander_prompt,
+                    style_guide_hint=style_guide_hint, creativity=creativity,
+                    model=self.model, fallback_theme=theme)
+            else:
+                _exp, _zones = _expand_theme(theme, model=self.model)
+                world_bible = {
+                    "world": _exp, "must_include": _extract_user_motifs(None, theme),
+                    "signature_details": [], "palette": _extract_theme_palette(theme),
+                    "zones": _zones, "seed": theme,
+                    "creativity": (creativity or "balanced").lower(),
+                }
+        except Exception as e:
+            print(f"  [themer] single-card world bible failed ({e}); using flat theme.")
+            world_bible = {"world": theme, "must_include": [], "signature_details": [],
+                           "palette": _extract_theme_palette(theme), "zones": []}
+        self._world_bible = world_bible
+        expanded_theme = world_bible.get("world", theme) or theme
+
+        try:
+            style_guide = _generate_style_guide(
+                expanded_theme, name, commander_prompt=commander_prompt,
+                style_guide_hint=style_guide_hint,
+                must_include=world_bible.get("must_include"), model=self.model)
+        except Exception as e:
+            print(f"  [themer] single-card style guide failed ({e}).")
+            style_guide = expanded_theme
+
+        palette = _color_palette_hint(ci, world_bible.get("palette", ""))
+        must_inc = [m for m in (world_bible.get("must_include") or []) if m][:4]
+
+        # ── ONE focused art-prompt call ───────────────────────────────────────
+        subject_note = f"\nSUBJECT APPEARANCE (honor this): {commander_prompt.strip()}" if commander_prompt.strip() else ""
+        gender_note  = ""
+        if (gender or "").lower() in ("male", "female"):
+            gender_note = f"\nIf a person is depicted, they are {gender.lower()}."
+        motif_note = f"\nWeave in 1-2 of these world motifs where natural: {', '.join(must_inc)}." if must_inc else ""
+        medium_note  = f"\nMEDIUM: {themer_medium}" if themer_medium else ""
+        quality_note = f"\nQUALITY: {themer_quality}" if themer_quality else ""
+
+        user_msg = (
+            f"WORLD: {expanded_theme}\n"
+            f"VISUAL STYLE: {style_guide}\n"
+            f"CARD NAME (the subject to depict): {name}\n"
+            f"CARD TYPE: {type_line}\n"
+            f"RULES TEXT (context only — do not write it into the art): {oracle[:300]}\n"
+            f"PALETTE (use these colours): {palette}"
+            f"{subject_note}{gender_note}{motif_note}{medium_note}{quality_note}\n\n"
+            "Write a vivid single-paragraph art prompt (about 45-70 words) for an "
+            "illustration that DEPICTS the card name above using 2-3 concrete visual "
+            "elements, set in this world and palette. Do NOT invent a different name "
+            "or write any card text. "
+            + ("Also write a short evocative one-sentence flavor quote. " if want_flavor else "")
+            + 'Respond ONLY as JSON: {"art_prompt": "...", "flavor_text": "..."}'
+        )
+
+        art_prompt = ""
+        flavor     = ""
+        try:
+            raw = _chat_completion(
+                [{"role": "system", "content": "You are an MTG art director. Output only valid JSON."},
+                 {"role": "user", "content": user_msg}],
+                model=self.model, temperature=0.9, num_predict=512, think=False,
+                top_p=0.95, top_k=40, frequency_penalty=0.3, presence_penalty=0.2,
+            )
+            obj = _extract_json_object(raw) or {}
+            art_prompt = (obj.get("art_prompt") or "").strip()
+            flavor     = (obj.get("flavor_text") or "").strip()
+        except Exception as e:
+            print(f"  [themer] single-card art prompt LLM failed ({e}); using fallback.")
+
+        if _is_stub_prompt(art_prompt):
+            # Deterministic fallback so a single-card build never ships an empty prompt.
+            art_prompt = (f"{name}, {type_line or 'fantasy subject'}, depicted with dramatic "
+                          f"composition; {palette}; {style_guide}").strip()
+
+        if ro_mode:
+            art_prompt = apply_ro_tokens(art_prompt, card, override_text=commander_prompt)
+
+        return ThemedCard(
+            original_name=name,
+            themed_name  =name,           # author mode: keep the user's name verbatim
+            art_prompt   =art_prompt,
+            flavor_text  =flavor if want_flavor else "",
+            card         =card,
+        )
+
 
 # ── Display / export helpers ──────────────────────────────────────────────────
 

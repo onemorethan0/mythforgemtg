@@ -1297,6 +1297,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const selectedCardData = allCardsFlat.filter(c => selectedKeys.has(c.render_key))
 
   const { commander, stats } = deck
+  // Single custom-card mode: the deck is "of one", so deck-level chrome (stats,
+  // type filters, the empty deck grid) is hidden and labels are re-pointed.
+  const single = deck?.mode === 'single_card'
 
   function regenStatusFor(key) {
     if (regenPending.has(key)) return 'pending'
@@ -1356,7 +1359,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
 
         <div style={{ flex: '1 1 320px', minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>Commander</div>
+          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>{single ? 'Custom Card' : 'Commander'}</div>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fde047', margin: '0 0 4px', lineHeight: 1.2, overflowWrap: 'anywhere' }}>{commander.themed_name}</h1>
           {commander.themed_name !== commander.original_name && (
             <div style={{ fontSize: 13, color: '#57534e', marginBottom: 10 }}>({commander.original_name})</div>
@@ -1370,8 +1373,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={{ fontSize: 12, color: '#78716c', fontStyle: 'italic', marginBottom: 16, maxWidth: 440 }}>{commander.flavor_text}</div>
           )}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>
-            {deck.bracket && (
+            {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>}
+            {!single && deck.bracket && (
               <span style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
                 background: ['','#052e16','#1a2e05','#422006','#431407','#450a0a'][deck.bracket] || '#1c1917',
                 border: `1px solid ${['','#4ade80','#a3e635','#eab308','#f97316','#ef4444'][deck.bracket] || '#44403c'}`,
@@ -1380,8 +1383,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 B{deck.bracket} {deck.bracket_label}
               </span>
             )}
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>
+            {deck.theme && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>}
+            {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>}
           </div>
 
           {/* Playstyle strategy summary */}
@@ -1517,7 +1520,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
 
         {/* Stats panel */}
-        {stats && (
+        {!single && stats && (
           <div style={{ width: 200, flexShrink: 0 }}>
             <div style={{ fontSize: 12, color: '#78716c', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Deck Stats</div>
             <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 4 }}>Avg CMC: <span style={{ color: '#fde047', fontWeight: 700 }}>{(stats.average_cmc ?? stats.avg_cmc)?.toFixed?.(2) ?? '—'}</span></div>
@@ -1553,7 +1556,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
         {/* Type filter */}
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', flex: 1 }}>
-          {types.map(t => (
+          {!single && types.map(t => (
             <button key={t} onClick={() => setFilter(t)} style={{
               fontSize: 12, padding: '5px 14px', borderRadius: 20, border: 'none', cursor: 'pointer', fontFamily: 'inherit',
               background: filter === t ? '#ca8a04' : '#1c1917',

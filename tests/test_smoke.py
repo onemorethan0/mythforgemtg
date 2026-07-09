@@ -174,6 +174,52 @@ def test_route_card_face():
           (None, "either", False, 1))
 
 
+def test_face_swap_profile():
+    # Style-aware ReActor tuning + multi-photo blend graph wiring.
+    import image_gen as ig
+    R = ["none", "GFPGANv1.4.pth", "GPEN-BFR-512.onnx", "codeformer-v0.1.0.pth"]
+
+    # Medium classification: FLUX realistic → photoreal; RO/painterly → illustrated;
+    # pixel sprite → swap disabled.
+    check("face.medium_flux",   ig._face_render_medium("mtg_fantasy", "flux1-dev.safetensors"), "photoreal")
+    check("face.medium_ro",     ig._face_render_medium("ragnarok_online", "illustrious.safetensors"), "illustrated")
+    check("face.medium_oil",    ig._face_render_medium("oil_painting", "flux1-dev.safetensors"), "illustrated")
+    check("face.medium_sdxl",   ig._face_render_medium("mtg_fantasy", "illustrious.safetensors"), "illustrated")
+    check("face.medium_pixel",  ig._face_render_medium("ragnarok_sprite", "illustrious.safetensors"), "pixel")
+
+    photo = ig._resolve_face_swap_profile("mtg_fantasy", "flux1-dev.safetensors", R)
+    ill   = ig._resolve_face_swap_profile("ragnarok_online", "illustrious.safetensors", R)
+    pix   = ig._resolve_face_swap_profile("ragnarok_sprite", "illustrious.safetensors", R)
+    # Photoreal: crisp GPEN restore at high visibility; illustrated: soft codeformer.
+    check_true("face.photo_gpen",   photo.restore_model == "GPEN-BFR-512.onnx" and photo.restore_visibility >= 0.8)
+    check_true("face.ill_soft",     ill.restore_visibility <= 0.6 and "codeformer" in ill.restore_model.lower())
+    check_true("face.pixel_off",    pix.enabled is False)
+
+    # Graph wiring: single photo → source_image; ≥2 → blended FACE_MODEL; boost present.
+    base = {
+        "1": {"class_type": "CheckpointLoaderSimple", "inputs": {}},
+        "6": {"class_type": "VAEDecode", "inputs": {}},
+        "7": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["6", 0]}},
+    }
+    one = ig._append_reactor(dict(base), ["a.jpg"], profile=photo)
+    many = ig._append_reactor(dict(base), ["a.jpg", "b.jpg", "c.jpg"], profile=photo)
+    rid_one = next(k for k, n in one.items() if n["class_type"] == "ReActorFaceSwap")
+    rid_many = next(k for k, n in many.items() if n["class_type"] == "ReActorFaceSwap")
+    check_true("face.single_source",  "source_image" in one[rid_one]["inputs"])
+    check_true("face.blend_model",    "face_model" in many[rid_many]["inputs"])
+    check_true("face.blend_builds",   any(n["class_type"] == "ReActorBuildFaceModel" for n in many.values()))
+    check_true("face.has_boost",      "face_boost" in one[rid_one]["inputs"])
+    # SaveImage must be rewired to the reactor output, and every node-ref must resolve.
+    save = next(n for n in many.values() if n["class_type"] == "SaveImage")
+    check_true("face.save_rewired",   save["inputs"]["images"][0] == rid_many)
+    refs_ok = all(
+        v[0] in many
+        for n in many.values() for v in n.get("inputs", {}).values()
+        if isinstance(v, list) and len(v) == 2 and isinstance(v[0], str)
+    )
+    check_true("face.refs_valid", refs_ok)
+
+
 def test_subject_directives():
     # With a tribal_map active (auto-reskin default ON), non-creature permanents
     # must NOT be labelled "a creature of the theme world". Each card type gets its

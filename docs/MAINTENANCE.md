@@ -272,6 +272,8 @@ tasklist | findstr python  # Should show python.exe processes
 
 ### Symptom: "CUDA error: cublasLt64_12.dll missing" (face conditioning fails)
 
+> **Note (2026-06-18):** ReActor now defaults to **CPU** and auto-falls back, so this no longer fails a build out of the box — it only applies if you opted into GPU via `MYTHFORGE_REACTOR_PROVIDER=cuda`. The recommended GPU path on a CUDA-13 box is **DirectML** (`MYTHFORGE_REACTOR_PROVIDER=dml` + `onnxruntime-directml`), not CUDA. See `COMFYUI_SETUP.md` → ReActor.
+
 **Root cause:**
 ONNXRuntime in ComfyUI venv is compiled for a different CUDA version than what's installed. Version mismatch between CUDA and ONNXRuntime causes DLL load failures.
 

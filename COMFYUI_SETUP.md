@@ -100,42 +100,46 @@ After generation:  FLUX stays resident (NORMAL_VRAM)    ~7–8 GB free
 
 ## ReActor Face Conditioning
 
-### Status: Working (CPU inference)
+### Status: Working (CPU by default, GPU-ready via env var)
 
-ReActor is installed and functional. Face detection (insightface buffalo_l) and face swapping (inswapper_128.onnx) run on **CPU**, not CUDA.
+ReActor is installed and functional. Face detection (insightface buffalo_l), face swapping (inswapper_128.onnx), and face restore/boost run on **CPU by default**.
 
-**Why CPU**: `onnxruntime-gpu` (any version) requires CUDA 12.x DLLs (`cublasLt64_12.dll`). The system has CUDA 13.2. When the CUDA provider DLL loads, it fails at initialization with `WinError 1114` — the CUDA 12.x interface is not binary-compatible with the 13.2 driver.
+**Why CPU**: `onnxruntime-gpu` (any version) requires CUDA 12.x DLLs (`cublasLt64_12.dll`). The system has CUDA 13.2. When the CUDA provider DLL loads, it fails at initialization with `WinError 1114` — the CUDA 12.x interface is not binary-compatible with the 13.2 driver. The `nvidia-cublas-cu12` package provides the DLL, but `onnxruntime_providers_cuda.dll` still fails at the driver interface level. Tried onnxruntime 1.18.0–1.26.0 and cuDNN 9.x (`nvidia-cudnn-cu12>=9.0`) — all fail. (Re-verified 2026-06-18: a direct `InferenceSession(inswapper_128.onnx, providers=["CUDAExecutionProvider",...])` reports `cublasLt64_12.dll missing` and silently falls back to CPU.)
 
-The `nvidia-cublas-cu12` Python package (already installed in the ComfyUI venv) provides the DLL, but attempting to load `onnxruntime_providers_cuda.dll` against it still fails at the driver interface level. This applies to onnxruntime versions 1.18.0, 1.26.0, and everything in between.
+### Provider selection — `MYTHFORGE_REACTOR_PROVIDER` env var
 
-Installing cuDNN 9.x (`nvidia-cudnn-cu12>=9.0`) was tried — still fails.
+The two ReActor provider sites are patched to read an env var instead of hard-coding CPU, so GPU is **one flag away** when a compatible runtime exists, with **automatic CPU fallback** (onnxruntime falls back if the chosen GPU provider can't init, so it's always safe):
+
+| Value (env) | Providers |
+|---|---|
+| unset / `cpu` (default) | `CPUExecutionProvider` |
+| `cuda` / `gpu` | `CUDA → CPU` (needs cuDNN 9 + CUDA 12 runtime DLLs on PATH) |
+| `dml` / `directml` | `DirectML → CPU` (needs `pip install onnxruntime-directml`) — **the viable GPU path on this CUDA-13 box**, since DirectML drives the 3090 via DirectX with no CUDA dependency |
+| `auto` | first available GPU provider (CUDA/DML), else CPU |
+
+Default unset keeps current CPU behavior with **no log noise**. To try GPU via DirectML: `Documents\ComfyUI\.venv\Scripts\python.exe -m pip install onnxruntime-directml` (note: may conflict with `onnxruntime-gpu` — uninstall it first), then set `MYTHFORGE_REACTOR_PROVIDER=dml` before launching ComfyUI.
 
 ### What was patched
 
-Two files in the ReActor custom node were changed to force CPU-only:
+Provider selection is now env-driven (default CPU) in **both** files:
+- **`custom_nodes/comfyui-reactor-node/scripts/reactor_swapper.py`** — `_reactor_providers()` helper (insightface detect + inswapper).
+- **`custom_nodes/comfyui-reactor-node/scripts/r_faceboost/restorer.py`** — `_faceboost_providers()` helper (FaceBoost restore).
 
-**`custom_nodes/comfyui-reactor-node/scripts/reactor_swapper.py`** (line 32–40):
-```python
-# Original (tries CUDA first):
-# if cuda is not None:
-#     if cuda.is_available():
-#         providers = ["CUDAExecutionProvider", "CPUExecutionProvider"]
-#     else:
-#         providers = ["CPUExecutionProvider"]
-# else:
-#     providers = ["CPUExecutionProvider"]
+(`reactor_patcher.py:102` only forces CPU when `ctx_id < 0`, i.e. already in a CPU context, so it doesn't fight a GPU choice — left as-is.)
 
-# Patched:
-providers = ["CPUExecutionProvider"]  # CUDA 13.2 incompatible with onnxruntime CUDA 12.x DLLs
-```
+These files are inside the ComfyUI custom node directory, not in the Myth Forge repo — they survive a Myth Forge `git pull` but a ComfyUI Manager **update of the ReActor node** overwrites them. Re-apply the env-driven patch after any ReActor update.
 
-**`custom_nodes/comfyui-reactor-node/scripts/r_faceboost/restorer.py`** (same change).
+### Quality tuning (Myth Forge, in `image_gen.py`)
 
-These files are inside the ComfyUI custom node directory, not in the Myth Forge repo — they won't be overwritten by Myth Forge `git pull`. But a ComfyUI Manager **update of the ReActor node** will overwrite them. Re-apply the patch after any ReActor update.
+The swap is style-aware and identity-blended (see `CLAUDE.md` → Face conditioning):
+- **Multi-photo blend** — all commander photos are averaged into one `FACE_MODEL` (`ReActorBuildFaceModel`, Mean) for a more robust likeness.
+- **Style-aware restore** — photoreal art uses crisp GPEN @ 0.85; illustrated art uses soft codeformer @ 0.55; pixel-art styles skip the swap entirely.
+- **FaceBoost** — sharpen/upscale the swapped 128px face (`ReActorFaceBoost`).
+- Restorer models available: `GFPGANv1.3/1.4.pth`, `GPEN-BFR-512/1024/2048.onnx`, `codeformer-v0.1.0.pth`.
 
 ### Performance impact
 
-Insightface face detection: ~0.5–1s on CPU. Inswapper inference: ~1–2s per face on CPU. Negligible relative to FLUX's 25–40s per card.
+Insightface face detection: ~0.5–1s on CPU. Inswapper inference: ~1–2s per face on CPU (+ a little for the blend build and FaceBoost). Negligible relative to FLUX's 25–40s per card — which is why GPU face-swap is low-priority on this box.
 
 ---
 

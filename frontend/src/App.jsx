@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import StepCommander from './components/StepCommander'
+import StepSingleCard from './components/StepSingleCard'
 import StepFace      from './components/StepFace'
 import StepTheme     from './components/StepTheme'
 import StepBuilding  from './components/StepBuilding'
@@ -33,6 +34,8 @@ function composeVision(setting, moods, genres, lighting, inspiration) {
 
 export default function App() {
   const [step, setStep]           = useState(STEP.COMMANDER)
+  // 'deck' = the 100-card builder wizard; 'card' = the single custom-card designer.
+  const [mode, setMode]           = useState('deck')
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
@@ -133,6 +136,7 @@ export default function App() {
   function reset() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
+    setMode('deck')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
     setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
@@ -181,6 +185,23 @@ export default function App() {
         gen_settings: toGenSettingsPayload(genSettings.values),
       }),
     })
+    const data = await res.json()
+    _setJobId(data.job_id)
+    setStep(STEP.BUILDING)
+  }
+
+  // ── Single-card mode: start a custom-card build ───────────────────────────
+  async function startCardBuild(payload) {
+    const res = await fetch('/api/card/build', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    if (!res.ok) {
+      let detail = `HTTP ${res.status}`
+      try { const e = await res.json(); if (e.detail) detail = e.detail } catch {}
+      throw new Error(detail)
+    }
     const data = await res.json()
     _setJobId(data.job_id)
     setStep(STEP.BUILDING)
@@ -342,8 +363,10 @@ export default function App() {
     }
   }
 
-  // Steps shown in the progress indicator (everything before DECK)
-  const showProgress = step >= STEP.COMMANDER && step <= STEP.BUILDING
+  // Steps shown in the progress indicator (everything before DECK). The deck
+  // wizard's labelled steps don't apply to the single-card designer, so the
+  // indicator is shown only in deck mode (single-card still uses BUILDING/DECK).
+  const showProgress = mode === 'deck' && step >= STEP.COMMANDER && step <= STEP.BUILDING
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#0c0a09', color: '#f5f5f4' }}>
@@ -419,27 +442,51 @@ export default function App() {
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 16px 48px' }}>
 
         {step === STEP.COMMANDER && (
-          <StepCommander
-            bracket={bracket}
-            onBracketChange={setBracket}
-            playstyle={playstyle}
-            onPlaystyleChange={setPlaystyle}
-            onNext={card => {
-              setCommander(card)
-              // Generated decks carry the pre-built list + tribes from phase 1.
-              const g = card && card._generated
-              setGeneratedDeck(g ? g.deck : null)
-              setDeckTribes(g ? (g.tribes || []) : [])
-              setTribalOverrides({})
-              // Import flow carries whether it's a Commander deck + the card list
-              // for per-card face assignment. Generated decks are always commander.
-              const imp = card && card._import
-              setIsCommanderDeck(imp ? imp.is_commander_deck !== false : true)
-              setImportCards(imp ? (imp.cards || []) : [])
-              setFaceAssignments({})
-              setStep(STEP.FACE)
-            }}
-          />
+          <>
+            {/* Mode toggle: 100-card deck builder vs single custom card */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginTop: 24, marginBottom: 4, borderRadius: 12, overflow: 'hidden', border: '1px solid #292524' }}>
+              {[['deck', '🃏 Build a Deck'], ['card', '🂠 Single Card']].map(([m, label]) => (
+                <button key={m} onClick={() => setMode(m)} style={{
+                  padding: '10px 26px', fontSize: 14, fontFamily: 'inherit', cursor: 'pointer', border: 'none',
+                  fontWeight: mode === m ? 700 : 500,
+                  background: mode === m ? '#eab308' : '#1c1917',
+                  color: mode === m ? '#0c0a09' : '#a8a29e',
+                }}>{label}</button>
+              ))}
+            </div>
+
+            {mode === 'deck' && (
+              <StepCommander
+                bracket={bracket}
+                onBracketChange={setBracket}
+                playstyle={playstyle}
+                onPlaystyleChange={setPlaystyle}
+                onNext={card => {
+                  setCommander(card)
+                  // Generated decks carry the pre-built list + tribes from phase 1.
+                  const g = card && card._generated
+                  setGeneratedDeck(g ? g.deck : null)
+                  setDeckTribes(g ? (g.tribes || []) : [])
+                  setTribalOverrides({})
+                  // Import flow carries whether it's a Commander deck + the card list
+                  // for per-card face assignment. Generated decks are always commander.
+                  const imp = card && card._import
+                  setIsCommanderDeck(imp ? imp.is_commander_deck !== false : true)
+                  setImportCards(imp ? (imp.cards || []) : [])
+                  setFaceAssignments({})
+                  setStep(STEP.FACE)
+                }}
+              />
+            )}
+
+            {mode === 'card' && (
+              <StepSingleCard
+                genSettings={genSettings}
+                onGenerate={startCardBuild}
+                onBack={() => setMode('deck')}
+              />
+            )}
+          </>
         )}
 
         {step === STEP.FACE && (
