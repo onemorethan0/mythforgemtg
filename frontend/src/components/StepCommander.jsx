@@ -32,7 +32,7 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
-export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange }) {
+export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange, initialTab = 'generate' }) {
   const [query, setQuery]           = useState('')
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
@@ -47,7 +47,9 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   const debounce  = useRef()
 
   // ── Import mode ─────────────────────────────────────────────────────────────
-  const [mode, setMode]               = useState('generate')   // 'generate' | 'import'
+  // Seeded by the home hub's choice (Build -> generate, Analyze -> import); the
+  // in-panel tabs still let the user switch without returning to the hub.
+  const [mode, setMode]               = useState(initialTab)   // 'generate' | 'import'
   const [importText, setImportText]   = useState('')
   const [importLoading, setImportLoading] = useState(false)
   const [importErr, setImportErr]     = useState('')

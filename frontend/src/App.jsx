@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import StepHome from './components/StepHome'
 import StepCommander from './components/StepCommander'
 import StepSingleCard from './components/StepSingleCard'
 import StepFace      from './components/StepFace'
@@ -34,8 +35,12 @@ function composeVision(setting, moods, genres, lighting, inspiration) {
 
 export default function App() {
   const [step, setStep]           = useState(STEP.COMMANDER)
-  // 'deck' = the 100-card builder wizard; 'card' = the single custom-card designer.
-  const [mode, setMode]           = useState('deck')
+  // Landing hub picks the flow: 'home' = choose; 'deck' = the 100-card builder wizard
+  // (StepCommander → Face → Theme → Building → Deck); 'card' = single custom-card designer.
+  const [mode, setMode]           = useState('home')
+  // Which StepCommander tab the "deck" flow opens on: 'generate' (Build) or 'import'
+  // (Analyze an existing deck). Set by the home hub choice.
+  const [deckEntryTab, setDeckEntryTab] = useState('generate')
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
@@ -136,7 +141,8 @@ export default function App() {
   function reset() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
-    setMode('deck')
+    setMode('home')
+    setDeckEntryTab('generate')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
     setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
@@ -205,6 +211,17 @@ export default function App() {
     const data = await res.json()
     _setJobId(data.job_id)
     setStep(STEP.BUILDING)
+  }
+
+  // ── Home hub: pick one of the three flows ─────────────────────────────────
+  function handleChoose(key) {
+    if (key === 'card') {
+      setMode('card')
+    } else {
+      setMode('deck')
+      setDeckEntryTab(key === 'analyze' ? 'import' : 'generate')
+    }
+    setStep(STEP.COMMANDER)
   }
 
   // ── Face step handlers ────────────────────────────────────────────────────
@@ -367,6 +384,9 @@ export default function App() {
   // wizard's labelled steps don't apply to the single-card designer, so the
   // indicator is shown only in deck mode (single-card still uses BUILDING/DECK).
   const showProgress = mode === 'deck' && step >= STEP.COMMANDER && step <= STEP.BUILDING
+  // The Home button appears anywhere except the landing hub itself and mid-build.
+  const onHome = mode === 'home' && step === STEP.COMMANDER
+  const showHome = !onHome && step !== STEP.BUILDING
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#0c0a09', color: '#f5f5f4' }}>
@@ -385,17 +405,20 @@ export default function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <LogViewer />
+          {showHome && (
+            <button
+              onClick={reset}
+              style={{ fontSize: '13px', color: '#78716c', background: 'none', border: '1px solid #292524', borderRadius: 8, padding: '5px 12px', cursor: 'pointer' }}
+            >
+              🏠 Home
+            </button>
+          )}
           {step !== STEP.HISTORY && step !== STEP.BUILDING && (
             <button
               onClick={() => setStep(STEP.HISTORY)}
               style={{ fontSize: '13px', color: '#78716c', background: 'none', border: '1px solid #292524', borderRadius: 8, padding: '5px 12px', cursor: 'pointer' }}
             >
               📚 History
-            </button>
-          )}
-          {step > STEP.COMMANDER && step < STEP.BUILDING && (
-            <button onClick={reset} style={{ fontSize: '13px', color: '#78716c', background: 'none', border: 'none', cursor: 'pointer' }}>
-              ← Start over
             </button>
           )}
         </div>
@@ -441,22 +464,13 @@ export default function App() {
       {/* Content */}
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 16px 48px' }}>
 
-        {step === STEP.COMMANDER && (
-          <>
-            {/* Mode toggle: 100-card deck builder vs single custom card */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginTop: 24, marginBottom: 4, borderRadius: 12, overflow: 'hidden', border: '1px solid #292524' }}>
-              {[['deck', '🃏 Build a Deck'], ['card', '🂠 Single Card']].map(([m, label]) => (
-                <button key={m} onClick={() => setMode(m)} style={{
-                  padding: '10px 26px', fontSize: 14, fontFamily: 'inherit', cursor: 'pointer', border: 'none',
-                  fontWeight: mode === m ? 700 : 500,
-                  background: mode === m ? '#eab308' : '#1c1917',
-                  color: mode === m ? '#0c0a09' : '#a8a29e',
-                }}>{label}</button>
-              ))}
-            </div>
+        {step === STEP.COMMANDER && mode === 'home' && (
+          <StepHome onChoose={handleChoose} />
+        )}
 
-            {mode === 'deck' && (
+        {step === STEP.COMMANDER && mode === 'deck' && (
               <StepCommander
+                initialTab={deckEntryTab}
                 bracket={bracket}
                 onBracketChange={setBracket}
                 playstyle={playstyle}
@@ -477,16 +491,14 @@ export default function App() {
                   setStep(STEP.FACE)
                 }}
               />
-            )}
+        )}
 
-            {mode === 'card' && (
-              <StepSingleCard
-                genSettings={genSettings}
-                onGenerate={startCardBuild}
-                onBack={() => setMode('deck')}
-              />
-            )}
-          </>
+        {step === STEP.COMMANDER && mode === 'card' && (
+          <StepSingleCard
+            genSettings={genSettings}
+            onGenerate={startCardBuild}
+            onBack={() => setMode('home')}
+          />
         )}
 
         {step === STEP.FACE && (
