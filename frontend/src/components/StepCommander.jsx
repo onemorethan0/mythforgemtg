@@ -396,8 +396,25 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                     <div style={{ fontSize: 11, color: '#78716c', marginBottom: 10 }}>
                       Measured by simulating games — not a static heuristic.
                     </div>
+                    {pp.bracket_estimate && (() => {
+                      const BR = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
+                      const bc = BR[pp.bracket_estimate] || '#eab308'
+                      return (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                          <span style={{ fontSize: 12, color: '#a8a29e' }}>Simulated bracket</span>
+                          <span style={{ fontSize: 13, fontWeight: 800, padding: '2px 12px', borderRadius: 20, background: `${bc}22`, color: bc, border: `1px solid ${bc}` }}>
+                            {pp.bracket_estimate}. {pp.bracket_label}
+                          </span>
+                          {pp.bracket_confidence != null && (
+                            <span style={{ fontSize: 10.5, color: '#78716c' }}>{Math.round(pp.bracket_confidence * 100)}% conf.</span>
+                          )}
+                        </div>
+                      )
+                    })()}
                     {bar('Consistency', pp.consistency, '/100')}
                     {bar('Resilience vs a board wipe', pp.resilience, '/100')}
+                    {pp.interaction != null && bar('Interaction', pp.interaction, '/100')}
+                    {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100')}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
                       <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
                         Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>
