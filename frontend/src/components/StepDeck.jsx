@@ -1385,6 +1385,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             )}
             {deck.theme && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>}
             {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>}
+            {!single && deck.collection && deck.collection.enabled && (
+              <span title={`From your Myth Suite collection (${deck.collection.collection_size} owned cards)`}
+                    style={{ fontSize: 12, padding: '4px 12px', background: '#052e16',
+                             border: '1px solid #16a34a', borderRadius: 20, color: '#4ade80' }}>
+                🎴 {deck.collection.owned}/{deck.collection.total} from your collection
+              </span>
+            )}
           </div>
 
           {/* Playstyle strategy summary */}

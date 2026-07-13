@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import themer
 import cc_frames
 import card_renderer as cr
+import collection
 
 _fails = []
 
@@ -747,6 +748,41 @@ def test_commander_user_name():
     check("uname.empty", T.compose_commander_name("", "Urza, the X", cmd), "Urza, the X")
 
 
+# ── Myth Suite collection contract + collection-aware building (C4) ───────────
+def test_collection_owned_key():
+    ok = collection.owned_key
+    check("ck.simple",  ok("Sol Ring"), "sol ring")
+    check("ck.case",    ok("  LIGHTNING BOLT "), "lightning bolt")
+    check("ck.dfc",     ok("Fire // Ice"), "fire")
+
+
+def test_collection_parse():
+    owned = collection.parse_owned("Count,Name,Edition\n1,Sol Ring,cmd\n2,Lightning Bolt,lea\n")
+    check_true("parse.csv.sol",  "sol ring" in owned)
+    check_true("parse.csv.bolt", "lightning bolt" in owned)
+    owned2 = collection.parse_owned("1 Sol Ring\nCommander: Krenko, Mob Boss\nCounterspell (mmq) 62\n")
+    check_true("parse.dl.sol",     "sol ring" in owned2)
+    check_true("parse.dl.cmdr",    "krenko, mob boss" in owned2)
+    check_true("parse.dl.setcode", "counterspell" in owned2)  # trailing (SET) 123 stripped
+    check("parse.empty", collection.parse_owned(""), set())
+
+
+def test_collection_owned_count():
+    owned = {"sol ring", "counterspell"}
+    cards = [{"name": "Sol Ring"}, {"name": "Llanowar Elves"}, {"name": "Counterspell"}]
+    check("count.two",      collection.owned_count(cards, owned), 2)
+    check("count.no_owned", collection.owned_count(cards, set()), 0)
+
+
+def test_prefer_owned():
+    from deck_builder import DeckBuilder
+    b = DeckBuilder(None)  # _prefer_owned never touches the client
+    cands = [{"name": "A"}, {"name": "B"}, {"name": "C"}, {"name": "D"}]
+    check("prefer.off", [c["name"] for c in b._prefer_owned(cands)], ["A", "B", "C", "D"])
+    b._owned = {"c", "a"}  # owned-first, EDHREC order kept within each group
+    check("prefer.on", [c["name"] for c in b._prefer_owned(cands)], ["A", "C", "B", "D"])
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -757,7 +793,9 @@ def main():
                test_creative_brief_helpers, test_name_art_coherence,
                test_oracle_reminder_italics, test_card_video_helpers,
                test_set_bible_factions, test_foil_and_formats,
-               test_commander_user_name):
+               test_commander_user_name,
+               test_collection_owned_key, test_collection_parse,
+               test_collection_owned_count, test_prefer_owned):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

@@ -40,6 +40,7 @@ from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
 from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
+from collection         import load_owned_names, owned_count, suite_collection_path
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
@@ -467,6 +468,11 @@ class BuildRequest(BaseModel):
     # apply it uniformly. Explicit tribal_overrides still win per-type. Defaults
     # ON — a build with no directive gets cohesive theme-fitting creature types.
     auto_theme_tribes: bool          = True
+    # Collection-aware building (Myth Suite C4): when true, the 99-card generator
+    # PREFERS cards from the user's owned-collection export
+    # (Documents/MythSuite/collection.csv), falling back to unowned EDHREC picks
+    # when the collection can't cover a slot. Generate path only (imports ignore it).
+    use_collection:    bool          = False
     # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration).
     # Now the PRIMARY theming input: themer.build_creative_brief() reads these as
     # distinct labelled dimensions (not the flattened art_theme blob). Persisted so
@@ -1316,6 +1322,7 @@ def _run_build(job_id: str, req: BuildRequest):
 
         ps_label    = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
         import_meta: dict = {}
+        collection_stats: Optional[dict] = None  # C4: set in the generate branch when on
 
         if req.prebuilt_deck:
             # ── Phase-2 build: theme/render a decklist generated in phase 1 ───
@@ -1378,6 +1385,14 @@ def _run_build(job_id: str, req: BuildRequest):
             active_themes  = resolve_themes(req.playstyle, profile.themes)
             slot_overrides = get_slot_adjustments(req.playstyle)
 
+            owned = load_owned_names() if req.use_collection else set()
+            if req.use_collection:
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
+                    f"Building from your collection ({len(owned)} owned cards)…"
+                    if owned else
+                    "Collection is empty — building normally "
+                    "(export from MythScanner to Documents/MythSuite)."
+                )}))
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Building 99-card deck..."}))
             builder = DeckBuilder(_scryfall)
             deck = builder.build(
@@ -1386,11 +1401,23 @@ def _run_build(job_id: str, req: BuildRequest):
                 slot_overrides  = slot_overrides,
                 playstyle_label = ps_label,
                 bracket         = req.bracket,
+                owned           = owned,
             )
             # Collapse duplicate basics into quantity entries (theme/render once,
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
             stats = compute_stats(card, deck)
+            if req.use_collection:
+                _spells = [card] + [c for c in deck
+                                    if "basic" not in (c.get("type_line", "") or "").lower()]
+                have = owned_count(_spells, owned)
+                collection_stats = {
+                    "enabled": True, "owned": have, "total": len(_spells),
+                    "collection_size": len(owned),
+                }
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
+                    f"You own {have} of {len(_spells)} non-basic cards in this deck"
+                )}))
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": f"Built {stats['total_cards']} cards"}))
 
         # ── Theme via Ollama ──────────────────────────────────────────────────
@@ -1571,6 +1598,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "emblem_prompt":    req.emblem_prompt,
             "playstyle":        ps_label,
             "playstyle_description": PLAYSTYLES.get(req.playstyle, PLAYSTYLES.get("auto", {})).get("description", ""),
+            "collection":       collection_stats,   # C4: owned-card coverage (None = off)
             "bracket":          req.bracket,
             "bracket_label":    BRACKET_LABELS.get(req.bracket, str(req.bracket)),
             "art_style":        req.art_style,
@@ -3839,6 +3867,7 @@ class GenerateListRequest(BaseModel):
     commander_name: str = Field("", max_length=120)
     playstyle:      str = "auto"
     bracket:        int = 3
+    use_collection: bool = False   # prefer owned cards (Myth Suite C4)
 
 
 @app.post("/api/deck/generate-list")
@@ -3857,11 +3886,20 @@ def generate_list(req: GenerateListRequest):
     profile        = build_commander_profile(card)
     active_themes  = resolve_themes(req.playstyle, profile.themes)
     slot_overrides = get_slot_adjustments(req.playstyle)
+    owned = load_owned_names() if req.use_collection else set()
     deck = DeckBuilder(_scryfall).build(
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
-        playstyle_label=ps_label, bracket=req.bracket)
+        playstyle_label=ps_label, bracket=req.bracket, owned=owned)
     deck  = aggregate_duplicates(deck)
     stats = compute_stats(card, deck)
+    collection_stats = None
+    if req.use_collection:
+        _spells = [card] + [c for c in deck
+                            if "basic" not in (c.get("type_line", "") or "").lower()]
+        collection_stats = {
+            "enabled": True, "owned": owned_count(_spells, owned),
+            "total": len(_spells), "collection_size": len(owned),
+        }
 
     # Frequency-ordered creature subtypes (commander + deck) for the reskin UI.
     from collections import Counter
@@ -3888,7 +3926,7 @@ def generate_list(req: GenerateListRequest):
     tribes = [{"type": t, "count": n} for t, n in counts.most_common()]
 
     return {"commander": card, "deck": deck, "stats": stats, "tribes": tribes,
-            "playstyle": ps_label, "bracket": req.bracket}
+            "playstyle": ps_label, "bracket": req.bracket, "collection": collection_stats}
 
 
 class ThemePreviewRequest(BaseModel):

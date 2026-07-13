@@ -32,7 +32,7 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
-export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange, initialTab = 'generate' }) {
+export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate' }) {
   const [query, setQuery]           = useState('')
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
@@ -161,12 +161,12 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           commander_name: result.full_name || result.name,
-          playstyle, bracket,
+          playstyle, bracket, use_collection: useCollection,
         }),
       })
       const data = await res.json()
       if (!res.ok) { setGenErr(data.detail || 'Could not generate the decklist.'); setGenLoading(false); return }
-      onNext({ ...result, _generated: { deck: data.deck, tribes: data.tribes, stats: data.stats } })
+      onNext({ ...result, _generated: { deck: data.deck, tribes: data.tribes, stats: data.stats, collection: data.collection } })
     } catch {
       setGenErr('Server unreachable. Is the backend running?')
     }
@@ -538,6 +538,24 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                        padding: '9px 12px', color: '#f5f5f4', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}>
               {playstyles.map(ps => <option key={ps.key} value={ps.key}>{ps.label}</option>)}
             </select>
+
+            {/* Collection-aware building (Myth Suite C4) */}
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginTop: 16,
+                            cursor: 'pointer' }}>
+              <input type="checkbox" checked={useCollection}
+                     onChange={e => onUseCollectionChange && onUseCollectionChange(e.target.checked)}
+                     style={{ marginTop: 3, width: 16, height: 16, accentColor: '#eab308', cursor: 'pointer' }} />
+              <span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1' }}>
+                  🎴 Build from my collection
+                </span>
+                <span style={{ display: 'block', fontSize: 12, color: '#78716c', marginTop: 2, lineHeight: 1.5 }}>
+                  Prefer cards you own (from your MythScanner export at Documents/MythSuite),
+                  filling the flexible slots with your collection first. Essential roles and lands
+                  are still completed with staples so the deck stays playable.
+                </span>
+              </span>
+            </label>
           </div>
           {genErr && <p style={s.err}>{genErr}</p>}
           <button

@@ -44,6 +44,7 @@ export default function App() {
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
+  const [useCollection, setUseCollection] = useState(false)  // C4: build from owned cards
   const [theme, setTheme]         = useState('')   // the "Setting" free-text (vision anchor)
   const [creativity, setCreativity] = useState('balanced')  // Faithful ↔ Imaginative dial
   const [visionMoods, setVisionMoods]       = useState([])
@@ -145,7 +146,7 @@ export default function App() {
     setDeckEntryTab('generate')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
-    setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setUseCollection(false); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setIsCommanderDeck(true); setImportCards([]); setFaceAssignments({})
@@ -181,6 +182,7 @@ export default function App() {
         prebuilt_deck:     generatedDeck || null,
         tribal_overrides:  tribalOverrides || {},
         auto_theme_tribes: autoThemeTribes,
+        use_collection:    useCollection,
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
@@ -475,6 +477,8 @@ export default function App() {
                 onBracketChange={setBracket}
                 playstyle={playstyle}
                 onPlaystyleChange={setPlaystyle}
+                useCollection={useCollection}
+                onUseCollectionChange={setUseCollection}
                 onNext={card => {
                   setCommander(card)
                   // Generated decks carry the pre-built list + tribes from phase 1.
