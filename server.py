@@ -2233,6 +2233,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "commander_prompt": source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
+            "collection":       source_data.get("collection"),  # C4 badge survives rebuild
             "bracket":          source_data.get("bracket", 3),
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        req.art_style,
@@ -3573,6 +3574,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "commander_prompt": commander_prompt,
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
+            "collection":       source_data.get("collection"),  # C4 badge survives retheme
             "bracket":          source_data.get("bracket", 3),
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        art_style,

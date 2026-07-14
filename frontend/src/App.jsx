@@ -318,6 +318,8 @@ export default function App() {
     setPlaystyle(psKey)
 
     setBracket(d.bracket || 3)
+    // C4: a collection-built deck re-edits with the toggle still on.
+    setUseCollection(!!(d.collection && d.collection.enabled))
     // Restore the structured vision fields if saved; else seed Setting with the theme.
     const spec = d.theme_spec || {}
     setTheme(spec.setting || d.theme || '')
