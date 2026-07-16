@@ -34,6 +34,7 @@ export default function StepHome({ onChoose }) {
         {CHOICES.map(c => (
           <button
             key={c.key}
+            aria-label={c.title}
             onClick={() => onChoose(c.key)}
             style={{
               flex: '1 1 260px', maxWidth: 300, textAlign: 'left', background: '#1c1917',

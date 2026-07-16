@@ -13,7 +13,7 @@ echo     2.  Clean start           (kill a stale :8000 process, then start)
 echo     3.  Start ComfyUI         (image-generation backend on :8188)
 echo.
 echo   -- Manage --
-echo     4.  Check status          (ComfyUI :8188, llama-swap :8010, Myth Forge :8000)
+echo     4.  Check status          (ComfyUI :8188, llama-swap :8010, strength :8020, Myth Forge :8000)
 echo     5.  Stop server           (free :8000)
 echo     6.  Kill orphaned Python  (force-stop ALL python.exe)
 echo.
@@ -51,9 +51,11 @@ echo ============================================
 echo.
 echo [*] Backend services:
 echo       llama-swap  :8010   theming   (this script starts it below)
+echo       strength    :8020   deck analysis  (this script starts it below)
 echo       ComfyUI     :8188   art       (start separately - menu option 3)
 echo.
 call :ensure_llama
+call :ensure_gauntlet
 echo.
 echo [*] Starting Myth Forge on http://127.0.0.1:8000
 echo [*] Leave this window open; press Ctrl+C to stop the server.
@@ -81,6 +83,7 @@ if not defined _killed echo       [OK] Nothing was listening on :8000.
 timeout /t 2 >nul
 echo.
 call :ensure_llama
+call :ensure_gauntlet
 echo.
 echo [*] Starting Myth Forge on http://127.0.0.1:8000
 echo [*] Leave this window open; press Ctrl+C to stop the server.
@@ -132,6 +135,7 @@ echo ============================================
 echo.
 call :status_line "ComfyUI      :8188" 8188 ""
 call :status_line "llama-swap   :8010" 8010 "starts with the server - menu option 1 or 2"
+call :status_line "strength API :8020" 8020 "starts with the server - deck analysis falls back to heuristic"
 call :status_line "Myth Forge   :8000" 8000 ""
 echo.
 pause
@@ -262,6 +266,38 @@ if defined _ll (
   echo [OK] llama-swap is up on :8010.
 ) else (
   echo [WARN] llama-swap not ready yet - it may still be starting in its own window.
+)
+goto :eof
+
+:ensure_gauntlet
+REM Make sure the MythGauntlet strength API (:8020) is running; start it if not.
+REM Powers the simulation-grounded Analyze/import panel (Myth Suite C2/C3); the UI
+REM falls back to the heuristic while it warms (store load ~50s cold / ~1.4s warm).
+netstat -aon 2>nul | find ":8020" | find "LISTENING" >nul
+if !errorlevel! equ 0 (
+  echo [OK] MythGauntlet strength API already running on :8020.
+  goto :eof
+)
+if not exist "%USERPROFILE%\Documents\mythgauntlet\.venv\Scripts\python.exe" (
+  echo [WARN] MythGauntlet not found at Documents\mythgauntlet - deck analysis
+  echo        will use the heuristic fallback ^(no simulation panel^).
+  goto :eof
+)
+echo [*] Starting MythGauntlet strength API (:8020) in its own window...
+start "mythgauntlet-serve" /min /d "%USERPROFILE%\Documents\mythgauntlet" cmd /c ".venv\Scripts\python.exe -m mythgauntlet serve"
+set "_mg="
+for /l %%i in (1,1,15) do (
+  if not defined _mg (
+    timeout /t 1 /nobreak >nul
+    netstat -aon 2>nul | find ":8020" | find "LISTENING" >nul
+    if !errorlevel! equ 0 set "_mg=1"
+  )
+)
+if defined _mg (
+  echo [OK] Strength API is up on :8020.
+) else (
+  echo [*] Strength API still warming ^(cold store load ~50s^) - the Analyze panel
+  echo     uses the heuristic until it is ready.
 )
 goto :eof
 
