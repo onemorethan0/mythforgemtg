@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import themer
 import cc_frames
 import card_renderer as cr
+import collection
 
 _fails = []
 
@@ -84,6 +85,140 @@ def test_tribal_type_line():
           "Creature — Lord Knight")
     check("tl.collapse_generic", f("Creature — Elf Warrior", {"Elf": "Chrome Sentinel", "Warrior": "Steel Blade"}),
           "Creature — Steel Blade")
+    # Multi-face cards (MDFC/split/transform) reskin each face independently and
+    # never bleed across the '//'. Regression: a single split on the first '—' used
+    # to drag the back face's "Legendary"/"Creature"/"//" into the front subtypes.
+    check("tl.multiface",
+          f("Creature — Ogre Shaman // Legendary Creature — Ogre Shaman",
+            {"Ogre": "Rusted Colossus", "Shaman": "Holo-Priest"}),
+          "Creature — Holo-Priest // Legendary Creature — Holo-Priest")
+
+
+def test_collect_tribes_multiface():
+    # The 'all cards become the same creature type' import bug: a '//' card leaked
+    # non-subtype tokens ('//', 'Legendary', 'Creature', a stray '—') into the tribe
+    # list, which were then sent to the LLM and mapped. Only real subtypes survive.
+    cards = [
+        {"type_line": "Creature — Ogre Shaman // Legendary Creature — Ogre Shaman"},
+        {"type_line": "Creature — Demon Spirit"},
+        {"type_line": "Basic Land — Mountain"},
+        {"type_line": "Instant — Arcane"},
+    ]
+    tribes = themer._collect_tribes(cards)
+    check_true("tribes.clean", set(tribes) == {"Ogre", "Shaman", "Demon", "Spirit"})
+    for junk in ("//", "Legendary", "Creature", "—", "Arcane"):
+        check_true(f"tribes.no_{junk}", junk not in tribes)
+
+
+def test_decluster_name_words():
+    f = themer._decluster_name_words
+    # A faction named "the Ashen Covenant" was prefixing every black card with
+    # "Ashen". Cap "ashen" to one appearance; strip it (cleanly) from the rest.
+    names = ["Ashen Wisp", "Ashen Reckoning", "Ashen Lord of the Void",
+             "Plague of Ashen Blood", "Yukora, the Ashen Warden"]
+    out = f(names, ["ashen", "covenant"], cap=1)
+    check("declus.keep_first", out[0], "Ashen Wisp")          # first keeps the word
+    check("declus.strip2",     out[1], "Reckoning")
+    check("declus.strip3",     out[2], "Lord of the Void")
+    check("declus.mid_of",     out[3], "Plague of Blood")     # tidy "of Ashen Blood" → "of Blood"
+    check("declus.comma",      out[4], "Yukora, the Warden")
+    # Only one card ends up containing "ashen".
+    check_true("declus.count", sum("ashen" in n.lower() for n in out) == 1)
+    # No faction words → identity; empty/none-safe.
+    check("declus.noop", f(["Brass Skyship", "Iron Gale"], []), ["Brass Skyship", "Iron Gale"])
+    # Never shrink a name below 3 chars (would-be-empty strip is skipped).
+    check("declus.minlen", f(["Ash", "Ash"], ["ash"], cap=1), ["Ash", "Ash"])
+
+
+def test_route_card_face():
+    from image_gen import route_card_face as r
+    crew = ["a", "b", "c"]
+    # Commander deck: the commander card gets the commander hero face.
+    check("face.cmd_deck", r(is_cmd=True, is_commander_deck=True, commander_face="C",
+          crew_faces=crew, face_gender="male", crew_gender="female",
+          card_type_line="", card_name="Cmd", face_assignments=None, crew_idx=0),
+          ("C", "male", False, 0))
+    # Non-commander import: the elected display face is NOT a hero — no face.
+    check("face.noncmd_cmd", r(is_cmd=True, is_commander_deck=False, commander_face="C",
+          crew_faces=crew, face_gender="male", crew_gender="female",
+          card_type_line="", card_name="Cmd", face_assignments=None, crew_idx=0),
+          (None, "either", False, 0))
+    # Explicit assignment wins and BYPASSES the humanoid gate (even on a Land).
+    check("face.assign_land", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Land", card_name="Tower",
+          face_assignments={"Tower": 2}, crew_idx=0),
+          ("c", "f", True, 0))
+    # In explicit mode an UNassigned card gets no face (no round-robin fallback).
+    check("face.assign_unassigned", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human Soldier", card_name="Grunt",
+          face_assignments={"Tower": 2}, crew_idx=0),
+          (None, "either", False, 0))
+    # An out-of-range index is ignored safely.
+    check("face.assign_oob", r(is_cmd=False, is_commander_deck=False, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human", card_name="X",
+          face_assignments={"X": 9}, crew_idx=0),
+          (None, "either", False, 0))
+    # Legacy round-robin (no assignments) still cycles crew across humanoids.
+    check("face.rr_human", r(is_cmd=False, is_commander_deck=True, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Human Wizard", card_name="Mage",
+          face_assignments=None, crew_idx=1),
+          ("b", "f", True, 2))
+    # Non-humanoid in round-robin mode → no face, idx unchanged.
+    check("face.rr_nonhuman", r(is_cmd=False, is_commander_deck=True, commander_face=None,
+          crew_faces=crew, face_gender="m", crew_gender="f",
+          card_type_line="Creature — Dragon", card_name="Wyrm",
+          face_assignments=None, crew_idx=1),
+          (None, "either", False, 1))
+
+
+def test_face_swap_profile():
+    # Style-aware ReActor tuning + multi-photo blend graph wiring.
+    import image_gen as ig
+    R = ["none", "GFPGANv1.4.pth", "GPEN-BFR-512.onnx", "codeformer-v0.1.0.pth"]
+
+    # Medium classification: FLUX realistic → photoreal; RO/painterly → illustrated;
+    # pixel sprite → swap disabled.
+    check("face.medium_flux",   ig._face_render_medium("mtg_fantasy", "flux1-dev.safetensors"), "photoreal")
+    check("face.medium_ro",     ig._face_render_medium("ragnarok_online", "illustrious.safetensors"), "illustrated")
+    check("face.medium_oil",    ig._face_render_medium("oil_painting", "flux1-dev.safetensors"), "illustrated")
+    check("face.medium_sdxl",   ig._face_render_medium("mtg_fantasy", "illustrious.safetensors"), "illustrated")
+    check("face.medium_pixel",  ig._face_render_medium("ragnarok_sprite", "illustrious.safetensors"), "pixel")
+
+    photo = ig._resolve_face_swap_profile("mtg_fantasy", "flux1-dev.safetensors", R)
+    ill   = ig._resolve_face_swap_profile("ragnarok_online", "illustrious.safetensors", R)
+    pix   = ig._resolve_face_swap_profile("ragnarok_sprite", "illustrious.safetensors", R)
+    # Photoreal: crisp GPEN restore at high visibility; illustrated: soft codeformer.
+    check_true("face.photo_gpen",   photo.restore_model == "GPEN-BFR-512.onnx" and photo.restore_visibility >= 0.8)
+    check_true("face.ill_soft",     ill.restore_visibility <= 0.6 and "codeformer" in ill.restore_model.lower())
+    check_true("face.pixel_off",    pix.enabled is False)
+
+    # Graph wiring: single photo → source_image; ≥2 → blended FACE_MODEL; boost present.
+    base = {
+        "1": {"class_type": "CheckpointLoaderSimple", "inputs": {}},
+        "6": {"class_type": "VAEDecode", "inputs": {}},
+        "7": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["6", 0]}},
+    }
+    one = ig._append_reactor(dict(base), ["a.jpg"], profile=photo)
+    many = ig._append_reactor(dict(base), ["a.jpg", "b.jpg", "c.jpg"], profile=photo)
+    rid_one = next(k for k, n in one.items() if n["class_type"] == "ReActorFaceSwap")
+    rid_many = next(k for k, n in many.items() if n["class_type"] == "ReActorFaceSwap")
+    check_true("face.single_source",  "source_image" in one[rid_one]["inputs"])
+    check_true("face.blend_model",    "face_model" in many[rid_many]["inputs"])
+    check_true("face.blend_builds",   any(n["class_type"] == "ReActorBuildFaceModel" for n in many.values()))
+    check_true("face.has_boost",      "face_boost" in one[rid_one]["inputs"])
+    # SaveImage must be rewired to the reactor output, and every node-ref must resolve.
+    save = next(n for n in many.values() if n["class_type"] == "SaveImage")
+    check_true("face.save_rewired",   save["inputs"]["images"][0] == rid_many)
+    refs_ok = all(
+        v[0] in many
+        for n in many.values() for v in n.get("inputs", {}).values()
+        if isinstance(v, list) and len(v) == 2 and isinstance(v[0], str)
+    )
+    check_true("face.refs_valid", refs_ok)
 
 
 def test_subject_directives():
@@ -613,6 +748,41 @@ def test_commander_user_name():
     check("uname.empty", T.compose_commander_name("", "Urza, the X", cmd), "Urza, the X")
 
 
+# ── Myth Suite collection contract + collection-aware building (C4) ───────────
+def test_collection_owned_key():
+    ok = collection.owned_key
+    check("ck.simple",  ok("Sol Ring"), "sol ring")
+    check("ck.case",    ok("  LIGHTNING BOLT "), "lightning bolt")
+    check("ck.dfc",     ok("Fire // Ice"), "fire")
+
+
+def test_collection_parse():
+    owned = collection.parse_owned("Count,Name,Edition\n1,Sol Ring,cmd\n2,Lightning Bolt,lea\n")
+    check_true("parse.csv.sol",  "sol ring" in owned)
+    check_true("parse.csv.bolt", "lightning bolt" in owned)
+    owned2 = collection.parse_owned("1 Sol Ring\nCommander: Krenko, Mob Boss\nCounterspell (mmq) 62\n")
+    check_true("parse.dl.sol",     "sol ring" in owned2)
+    check_true("parse.dl.cmdr",    "krenko, mob boss" in owned2)
+    check_true("parse.dl.setcode", "counterspell" in owned2)  # trailing (SET) 123 stripped
+    check("parse.empty", collection.parse_owned(""), set())
+
+
+def test_collection_owned_count():
+    owned = {"sol ring", "counterspell"}
+    cards = [{"name": "Sol Ring"}, {"name": "Llanowar Elves"}, {"name": "Counterspell"}]
+    check("count.two",      collection.owned_count(cards, owned), 2)
+    check("count.no_owned", collection.owned_count(cards, set()), 0)
+
+
+def test_prefer_owned():
+    from deck_builder import DeckBuilder
+    b = DeckBuilder(None)  # _prefer_owned never touches the client
+    cands = [{"name": "A"}, {"name": "B"}, {"name": "C"}, {"name": "D"}]
+    check("prefer.off", [c["name"] for c in b._prefer_owned(cands)], ["A", "B", "C", "D"])
+    b._owned = {"c", "a"}  # owned-first, EDHREC order kept within each group
+    check("prefer.on", [c["name"] for c in b._prefer_owned(cands)], ["A", "C", "B", "D"])
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -623,7 +793,9 @@ def main():
                test_creative_brief_helpers, test_name_art_coherence,
                test_oracle_reminder_italics, test_card_video_helpers,
                test_set_bible_factions, test_foil_and_formats,
-               test_commander_user_name):
+               test_commander_user_name,
+               test_collection_owned_key, test_collection_parse,
+               test_collection_owned_count, test_prefer_owned):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

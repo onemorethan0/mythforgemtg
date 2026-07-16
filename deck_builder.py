@@ -21,6 +21,7 @@ from __future__ import annotations
 from commander_analysis import CommanderProfile, THEME_SYNERGY_QUERIES
 from scryfall_client import ScryfallClient
 from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
+from collection import owned_key
 
 # ── Color → basic land name ───────────────────────────────────────────────────
 BASIC_LAND: dict[str, str] = {
@@ -130,8 +131,69 @@ class DeckBuilder:
         self._names: set[str] = set()
         self._commander_name: str = ""
         self._bracket_filter: BracketFilter = BracketFilter(3)
+        self._owned: set[str] = set()   # normalized owned names; empty = collection off
+        self._owned_cards: list[dict] = []  # resolved, CI/legal-eligible owned cards (C4)
 
     # ── Internal helpers ──────────────────────────────────────────────────────
+    # Note: collection-aware building draws owned cards from an EXPLICIT resolve
+    # (_resolve_owned_cards) seeded into the flexible slots, not by widening every
+    # role window — that keeps a "build from my collection" run as fast as a normal one.
+
+    def _resolve_owned_cards(self, profile: CommanderProfile) -> list[dict]:
+        """Resolve owned names to card data and keep the ones that fit this deck.
+
+        Eligible = in the commander's colour identity, Commander-legal, not a basic land.
+        Sorted by EDHREC rank so the best owned cards fill the flexible slots first. This is
+        what makes "build from my collection" pull in owned cards the EDHREC-ranked role
+        windows would never surface (a niche card ranked past the candidate buffer)."""
+        if not self._owned:
+            return []
+        try:
+            resolved = self.client.get_cards_collection(sorted(self._owned))
+        except Exception:      # noqa: BLE001 - a Scryfall hiccup just disables the explicit fill
+            return []
+        ci = set(profile.color_identity)
+        out: list[dict] = []
+        for card in resolved.values():
+            tl = (card.get("type_line", "") or "").lower()
+            if "basic" in tl and "land" in tl:
+                continue                                   # basics aren't "collection" cards
+            card_ci = set(card.get("color_identity", []))
+            if profile.is_colorless:
+                if card_ci:
+                    continue                               # colorless commander: colorless only
+            elif not card_ci <= ci:
+                continue                                   # outside the commander's identity
+            if (card.get("legalities", {}) or {}).get("commander") != "legal":
+                continue
+            out.append(card)
+        out.sort(key=lambda c: c.get("edhrec_rank") or 10**9)
+        return out
+
+    def _owned_candidates(self, creatures_only: bool = False) -> list[dict]:
+        """Eligible owned cards to seed a flexible slot (optionally only creatures)."""
+        if not creatures_only:
+            return list(self._owned_cards)
+        return [
+            c for c in self._owned_cards
+            if "creature" in (c.get("type_line", "") or "").lower()
+            and "land" not in (c.get("type_line", "") or "").lower()
+        ]
+
+    def _prefer_owned(self, candidates: list[dict]) -> list[dict]:
+        """Reorder EDHREC-ranked candidates so cards the user OWNS come first.
+
+        Collection-aware building (Myth Suite C4): a stable partition keeps each group in
+        its original EDHREC order, so owned cards are drafted first and unowned high-value
+        cards still fill the gaps when the collection can't cover a slot. No-op when the
+        collection is off/empty, so a normal build is byte-for-byte unchanged.
+        """
+        if not self._owned:
+            return candidates
+        owned, rest = [], []
+        for card in candidates:
+            (owned if owned_key(card.get("name", "")) in self._owned else rest).append(card)
+        return owned + rest
 
     def _ci_filter(self, profile: CommanderProfile) -> str:
         """Returns a Scryfall color-identity restriction fragment."""
@@ -157,7 +219,7 @@ class DeckBuilder:
             f"legal:commander -type:land"
         )
         buf = self._bracket_filter.candidate_buffer(want)
-        candidates = self.client.search_cards_paged(query, max_results=buf)
+        candidates = self._prefer_owned(self.client.search_cards_paged(query, max_results=buf))
         added = 0
         for card in candidates:
             if added >= want:
@@ -194,7 +256,8 @@ class DeckBuilder:
                 f"{self._ci_filter(profile)} "
                 f"legal:commander -type:land"
             )
-            candidates = self.client.search_cards_paged(query, max_results=self._bracket_filter.candidate_buffer(slot))
+            candidates = self._prefer_owned(self.client.search_cards_paged(
+                query, max_results=self._bracket_filter.candidate_buffer(slot)))
             for card in candidates:
                 if added >= want:
                     break
@@ -265,7 +328,9 @@ class DeckBuilder:
         # Most popular creatures already sit at the top of EDHREC ranking and may
         # be in the deck; fetch past them like _fetch_goodstuff does.
         candidates_needed = len(self._names) + self._bracket_filter.candidate_buffer(want)
-        candidates = self.client.search_cards_paged(query, max_results=candidates_needed)
+        # Seed with owned creatures first (C4), then EDHREC bodies fill the rest.
+        candidates = self._owned_candidates(creatures_only=True) + self._prefer_owned(
+            self.client.search_cards_paged(query, max_results=candidates_needed))
         added = 0
         for card in candidates:
             if added >= want:
@@ -286,7 +351,10 @@ class DeckBuilder:
         # Already-picked cards live at the top of the EDHREC ranking, so we
         # need to fetch past them. Buffer = current deck size + generous margin.
         candidates_needed = len(self._names) + self._bracket_filter.candidate_buffer(want)
-        candidates = self.client.search_cards_paged(query, max_results=candidates_needed)
+        # Owned cards get first claim on the flexible goodstuff slots (C4) — this is where
+        # "build from my collection" actually spends the deck on what you own.
+        candidates = self._owned_candidates() + self._prefer_owned(
+            self.client.search_cards_paged(query, max_results=candidates_needed))
         added = 0
         for card in candidates:
             if added >= want:
@@ -321,7 +389,8 @@ class DeckBuilder:
             if _label not in allowed_tiers:
                 continue
             query = f"{land_q} {self._ci_filter(profile)} legal:commander"
-            candidates = self.client.search_cards_paged(query, max_results=15)
+            candidates = self._prefer_owned(
+                self.client.search_cards_paged(query, max_results=15))
             for card in candidates:
                 if added >= nonbasic_cap:
                     break
@@ -390,6 +459,7 @@ class DeckBuilder:
         slot_overrides: dict[str, int] | None = None,
         playstyle_label: str = "Auto",
         bracket: int = 3,
+        owned: set[str] | None = None,
     ) -> list[dict]:
         """
         Build the 99-card deck.
@@ -401,11 +471,16 @@ class DeckBuilder:
             slot_overrides:   Per-role slot count overrides from playstyle
                               (e.g. control bumps removal to 10).
             playstyle_label:  Display name for the chosen playstyle.
+            owned:            Normalized owned-card names (Myth Suite collection). When
+                              given, every slot prefers cards the user owns, falling back
+                              to unowned EDHREC picks when the collection can't cover it.
         """
         self._deck = []
         self._names = set()
         self._commander_name = profile.name
         self._bracket_filter = BracketFilter(bracket)
+        self._owned = owned or set()   # collection-aware building (C4); empty = off
+        self._owned_cards = self._resolve_owned_cards(profile)
 
         # Use overridden themes for synergy fetching, fall back to auto-detected
         active_themes = theme_override if theme_override is not None else profile.themes
@@ -516,6 +591,19 @@ class DeckBuilder:
             plan["theme"]     = plan.get("theme", 20) + 6
             used = sum(v for k, v in plan.items() if k != "goodstuff")
             plan["goodstuff"] = max(2, 99 - used)
+
+        # Collection-aware building (Myth Suite C4): make room for the user's OWNED cards.
+        # Owned cards are drafted first into the goodstuff slots (_fetch_goodstuff prepends
+        # _owned_candidates), so trim the auto-theme package by just enough to seat the
+        # eligible owned cards there. A small collection barely touches theme; a large one
+        # shifts more of the flexible budget onto what the user actually owns.
+        if self._owned_cards:
+            want_owned = min(len(self._owned_cards), 25)
+            deficit = want_owned - plan["goodstuff"]
+            if deficit > 0:
+                plan["theme"] = max(4, plan["theme"] - deficit)
+                used = sum(v for k, v in plan.items() if k != "goodstuff")
+                plan["goodstuff"] = max(2, 99 - used)
 
         from commander_analysis import THEME_LABELS
         active_labels = [THEME_LABELS.get(t, t) for t in active_themes] or ["Goodstuff / Midrange"]

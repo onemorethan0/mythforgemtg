@@ -346,6 +346,25 @@ _FACE_METHODS: dict[str, list[str]] = {
 
 _LORA_PRESETS: dict[str, dict] = {
 
+    # ── No style LoRA (base model look) ───────────────────────────────────────
+    # Prompt-only generation: no style LoRA stack at all. The pipeline already
+    # degrades to prompt-only when a preset's LoRAs are missing (and for schnell);
+    # this exposes that as a deliberate choice. Style is steered purely by the
+    # neutral default _FLUX_PREFIX + the themer hints below — there is no LoRA to
+    # impose a trained look. Output is base FLUX-dev aesthetic (cleaner/flatter,
+    # slightly photoreal-leaning). The turbo distillation LoRA (model_speed=turbo)
+    # is a SPEED LoRA, not a style one, so it still rides on top of an empty stack.
+    "none": {
+        "label":       "No style LoRA (base model)",
+        "description": "Prompt-only generation with no style LoRA — clean base FLUX-dev look, no trained aesthetic imposed.",
+        "icon":        "○",
+        "flux_prefix": None,   # None → use default module-level _FLUX_PREFIX
+        "style_guide_hint":  "clean digital illustration, dramatic lighting, no specific trained art style",
+        "themer_medium":     '"digital painting," or "fantasy illustration," or "concept art,"',
+        "themer_quality":    '"painterly brushwork, vivid colors" or "dramatic lighting, intricate detail" or "painterly, rich texture"',
+        "loras": [],
+    },
+
     # ── Classic MTG card illustration ─────────────────────────────────────────
     "mtg_fantasy": {
         "label":       "MTG Fantasy",
@@ -1825,24 +1844,153 @@ def _build_faceid_sdxl_workflow(
     }
 
 
+# ── ReActor face-swap: style-aware quality profile ────────────────────────────
+# A photoreal restored face stamped at full strength onto hand-illustrated art
+# reads as "a photo pasted on a painting". So the swap is tuned by the rendering
+# *medium* of the active art style: photoreal art tolerates a crisp, fully-
+# restored face; painterly art needs the swap blended in softly; pixel art can't
+# be swapped at all (insightface finds no face and the result looks wrong).
+
+# Styles whose output is clearly hand-illustrated / painterly.
+_ILLUSTRATED_STYLES: frozenset[str] = frozenset({
+    "ragnarok_online", "anime", "anime_illustrated", "anime_soft",
+    "watercolor", "oil_painting", "gothic_horror",
+})
+# Pixel-art styles — face swap is skipped entirely.
+_PIXEL_STYLES: frozenset[str] = frozenset({"ragnarok_sprite"})
+
+
+def _face_render_medium(art_style: str, checkpoint: str) -> str:
+    """Classify the active style's output as 'photoreal' | 'illustrated' | 'pixel'.
+
+    Drives how aggressively the swapped face is restored (see
+    _resolve_face_swap_profile). FLUX renders semi-photoreal faces; SDXL /
+    Illustrious checkpoints render more painterly ones, so a non-FLUX checkpoint
+    leans 'illustrated' even for an unclassified style.
+    """
+    if art_style in _PIXEL_STYLES:
+        return "pixel"
+    if art_style in _ILLUSTRATED_STYLES:
+        return "illustrated"
+    if checkpoint and not _is_flux(checkpoint):
+        return "illustrated"
+    return "photoreal"
+
+
+@dataclass
+class _FaceSwapProfile:
+    """Per-style ReActor parameters. Built once per deck by
+    _resolve_face_swap_profile from the art style + checkpoint + installed
+    restorer models."""
+    medium:                  str        # photoreal | illustrated | pixel (for logs)
+    enabled:                 bool        # pixel → False (skip the swap)
+    restore_model:           str        # main face-restore model
+    restore_visibility:      float       # 0..1 — how strongly the photo face shows
+    codeformer_weight:       float       # only used by codeformer restorers
+    blend_method:            str         # Mean/Median/Mode for multi-photo identity
+    boost_enabled:           bool        # FaceBoost = sharpen/upscale the swapped face
+    boost_model:             str
+    boost_visibility:        float
+    boost_interpolation:     str         # Nearest/Bilinear/Bicubic/Lanczos
+    boost_codeformer_weight: float
+
+
+def _resolve_face_swap_profile(
+    art_style: str, checkpoint: str, available_restorers: list[str],
+) -> _FaceSwapProfile:
+    """Pick ReActor restore/boost/blend parameters for the active art style.
+
+    `available_restorers` is ComfyUI's live `face_restore_model` list (filenames
+    + "none"); we prefer the best installed model per medium and degrade
+    gracefully when a preferred one is absent.
+    """
+    medium = _face_render_medium(art_style, checkpoint or "")
+    low = {m.lower(): m for m in (available_restorers or [])}
+
+    def pick(*fragments: str) -> str:
+        for frag in fragments:
+            for lk, orig in low.items():
+                if frag in lk:
+                    return orig
+        return "none"
+
+    gpen   = pick("gpen-bfr-512", "gpen")   # crisp, photoreal — best for real art
+    gfpgan = pick("gfpgan")                  # softer — kinder to painted art
+    codef  = pick("codeformer")              # identity-faithful, tunable weight
+
+    if medium == "pixel":
+        return _FaceSwapProfile(
+            medium=medium, enabled=False,
+            restore_model="none", restore_visibility=0.0, codeformer_weight=0.0,
+            blend_method="Mean", boost_enabled=False, boost_model="none",
+            boost_visibility=0.0, boost_interpolation="Bicubic",
+            boost_codeformer_weight=0.0,
+        )
+
+    if medium == "illustrated":
+        # Soft swap so the photo face melts into the painted look.
+        return _FaceSwapProfile(
+            medium=medium, enabled=True,
+            restore_model=(codef or gfpgan or "none"),
+            restore_visibility=0.55,
+            codeformer_weight=0.4,
+            blend_method="Mean",
+            boost_enabled=(gfpgan != "none" or gpen != "none"),
+            boost_model=(gfpgan or gpen or "none"),
+            boost_visibility=0.5,
+            boost_interpolation="Bicubic",
+            boost_codeformer_weight=0.5,
+        )
+
+    # photoreal — crisp, fully-restored face, GPEN sharpening boost.
+    return _FaceSwapProfile(
+        medium=medium, enabled=True,
+        restore_model=(gpen or codef or gfpgan or "none"),
+        restore_visibility=0.85,
+        codeformer_weight=0.3,
+        blend_method="Mean",
+        boost_enabled=(gpen != "none" or codef != "none"),
+        boost_model=(gpen or codef or "none"),
+        boost_visibility=0.7,
+        boost_interpolation="Lanczos",
+        boost_codeformer_weight=0.4,
+    )
+
+
 def _append_reactor(
     workflow: dict,
-    face_comfy_name: str,
-    swap_model:    str = "inswapper_128.onnx",
-    restore_model: str = "codeformer-v0.1.0.pth",
+    source_names: list[str],
+    *,
+    swap_model: str = "inswapper_128.onnx",
+    profile: Optional[_FaceSwapProfile] = None,
 ) -> dict:
     """
-    Append a ReActorFaceSwap node after the VAEDecode in any workflow.
-    source_image is wired to the uploaded face reference (optional input).
-    SaveImage is rewired to the reactor output.
+    Append a ReActorFaceSwap node after the VAEDecode in any workflow and rewire
+    SaveImage to its output.
 
-    Required ReActor inputs (from nodes.py inspection):
-      enabled, input_image, swap_model, facedetection,
-      face_restore_model, face_restore_visibility, codeformer_weight,
-      detect_gender_input, detect_gender_source,
-      input_faces_index, source_faces_index, console_log_level
-    Optional: source_image, face_model, face_boost
+    Two identity sources:
+      • len(source_names) == 1 → the photo is wired to `source_image` directly.
+      • len(source_names) >  1 → all photos are batched (ImageBatch chain) and
+        averaged into one robust `FACE_MODEL` via ReActorBuildFaceModel
+        (`send_only`, no disk write), wired to `face_model`. A blended model is
+        far more angle/lighting-tolerant than a single frame — used for the
+        commander, who may upload several photos of themselves.
+
+    `profile` (a _FaceSwapProfile) supplies the style-aware restore visibility /
+    model, blend method, and optional FaceBoost (sharpen+upscale the swapped
+    face). Defaults to a photoreal-ish profile when None.
+
+    Required ReActor inputs: enabled, input_image, swap_model, facedetection,
+    face_restore_model, face_restore_visibility, codeformer_weight,
+    detect_gender_input, detect_gender_source, input_faces_index,
+    source_faces_index, console_log_level. Optional: source_image, face_model,
+    face_boost.
     """
+    if not source_names:
+        return workflow
+    if profile is None:
+        profile = _resolve_face_swap_profile("mtg_fantasy", "", [])
+
     vae_node_id  = None
     save_node_id = None
     for nid, node in workflow.items():
@@ -1850,36 +1998,80 @@ def _append_reactor(
             vae_node_id = nid
         if node["class_type"] == "SaveImage":
             save_node_id = nid
-
     if vae_node_id is None or save_node_id is None:
         return workflow
 
     wf = dict(workflow)
-    max_id = max(int(k) for k in wf.keys() if k.isdigit())
-    load_id    = str(max_id + 1)
-    reactor_id = str(max_id + 2)
+    _counter = max(int(k) for k in wf.keys() if k.isdigit())
 
-    wf[load_id] = {"class_type": "LoadImage", "inputs": {"image": face_comfy_name}}
-    wf[reactor_id] = {
-        "class_type": "ReActorFaceSwap",
-        "inputs": {
-            # Required
-            "enabled":                 True,
-            "input_image":             [vae_node_id, 0],   # IMAGE from VAEDecode
-            "swap_model":              swap_model,          # e.g. "inswapper_128.onnx"
-            "facedetection":           "retinaface_resnet50",
-            "face_restore_model":      restore_model,       # e.g. "codeformer-v0.1.0.pth"
-            "face_restore_visibility": 1.0,
-            "codeformer_weight":       0.3,   # lower = more identity, less correction
-            "detect_gender_input":     "no",
-            "detect_gender_source":    "no",
-            "input_faces_index":       "0",
-            "source_faces_index":      "0",
-            "console_log_level":       1,
-            # Optional — source_image is the reference face
-            "source_image":            [load_id, 0],
-        },
+    def _new_id() -> str:
+        nonlocal _counter
+        _counter += 1
+        return str(_counter)
+
+    reactor_inputs: dict = {
+        "enabled":                 True,
+        "input_image":             [vae_node_id, 0],   # IMAGE from VAEDecode
+        "swap_model":              swap_model,
+        "facedetection":           "retinaface_resnet50",
+        "face_restore_model":      profile.restore_model,
+        "face_restore_visibility": profile.restore_visibility,
+        "codeformer_weight":       profile.codeformer_weight,
+        "detect_gender_input":     "no",
+        "detect_gender_source":    "no",
+        "input_faces_index":       "0",
+        "source_faces_index":      "0",
+        "console_log_level":       1,
     }
+
+    if len(source_names) > 1:
+        # Blend all uploaded photos into one averaged identity model.
+        img_ids: list[str] = []
+        for nm in source_names:
+            lid = _new_id()
+            wf[lid] = {"class_type": "LoadImage", "inputs": {"image": nm}}
+            img_ids.append(lid)
+        # ImageBatch takes two images; chain to combine N (it auto-resizes).
+        batch_id = img_ids[0]
+        for extra in img_ids[1:]:
+            bid = _new_id()
+            wf[bid] = {"class_type": "ImageBatch",
+                       "inputs": {"image1": [batch_id, 0], "image2": [extra, 0]}}
+            batch_id = bid
+        model_id = _new_id()
+        wf[model_id] = {
+            "class_type": "ReActorBuildFaceModel",
+            "inputs": {
+                "save_mode":      False,   # don't persist to disk
+                "send_only":      True,    # just emit the FACE_MODEL downstream
+                "face_model_name": "mythforge_blend",
+                "compute_method": profile.blend_method,
+                "images":         [batch_id, 0],
+            },
+        }
+        reactor_inputs["face_model"] = [model_id, 0]
+    else:
+        lid = _new_id()
+        wf[lid] = {"class_type": "LoadImage", "inputs": {"image": source_names[0]}}
+        reactor_inputs["source_image"] = [lid, 0]
+
+    if profile.boost_enabled and profile.boost_model and profile.boost_model != "none":
+        boost_id = _new_id()
+        wf[boost_id] = {
+            "class_type": "ReActorFaceBoost",
+            "inputs": {
+                "enabled":                 True,
+                "boost_model":             profile.boost_model,
+                "interpolation":           profile.boost_interpolation,
+                "visibility":              profile.boost_visibility,
+                "codeformer_weight":       profile.boost_codeformer_weight,
+                "restore_with_main_after": False,
+            },
+        }
+        reactor_inputs["face_boost"] = [boost_id, 0]
+
+    reactor_id = _new_id()
+    wf[reactor_id] = {"class_type": "ReActorFaceSwap", "inputs": reactor_inputs}
     wf[save_node_id] = {
         "class_type": "SaveImage",
         "inputs": {"filename_prefix": "mtg_card", "images": [reactor_id, 0]},
@@ -1895,6 +2087,52 @@ class _ReactorCudaError(Exception):
     driver mismatch.  Signals generate() to retry the card without face
     conditioning rather than silently falling back to Scryfall art.
     """
+
+
+def route_card_face(
+    *,
+    is_cmd: bool,
+    is_commander_deck: bool,
+    commander_face: Optional[str],
+    crew_faces: list[str],
+    face_gender: str,
+    crew_gender: str,
+    card_type_line: str,
+    card_name: str,
+    face_assignments: Optional[dict],
+    crew_idx: int,
+) -> tuple[Optional[str], str, bool, int]:
+    """Pure routing of which uploaded face (if any) a single card gets.
+
+    Returns ``(face_comfy_name, gender, uses_crew, next_crew_idx)``. Kept
+    dependency-light + side-effect-free so it can be unit-tested.
+
+    Three modes:
+      • Commander hero — the commander card gets the commander face, but ONLY on a
+        real Commander deck. A non-commander import (60-card list, etc.) has just an
+        auto-elected display "face" with no special hero, so it gets no face here.
+      • Explicit per-card assignment (``face_assignments`` provided) — the
+        authoritative mode for non-commander decks: a card named in the map gets
+        that crew photo by index, BYPASSING the humanoid gate (the user picked it on
+        purpose). Cards absent from the map get no face — no round-robin.
+      • Legacy round-robin (``face_assignments`` is None) — crew photos cycle across
+        humanoid creature cards as before.
+    """
+    if is_cmd:
+        if is_commander_deck and commander_face:
+            return commander_face, face_gender, False, crew_idx
+        return None, "either", False, crew_idx
+
+    if face_assignments is not None:
+        idx = face_assignments.get(card_name)
+        if idx is not None and crew_faces and 0 <= int(idx) < len(crew_faces):
+            return crew_faces[int(idx)], crew_gender, True, crew_idx
+        return None, "either", False, crew_idx
+
+    from face_ref import is_human_card
+    if crew_faces and is_human_card(card_type_line):
+        return crew_faces[crew_idx % len(crew_faces)], crew_gender, True, crew_idx + 1
+    return None, "either", False, crew_idx
 
 
 class _ComfyOffloadError(Exception):
@@ -1962,6 +2200,9 @@ class ImageGen:
         # Face conditioning support
         self.face_method: str = "none"         # pulid_flux | ipadapter_faceid | reactor | none
         self.face_info:   dict = {}            # method-specific model names
+        # Style-aware ReActor tuning (computed in _detect_face_method when the
+        # method resolves to reactor). None for pulid/ipadapter/none.
+        self._face_profile: Optional["_FaceSwapProfile"] = None
 
         # LoRA art style support
         self.active_loras: list[dict] = []     # populated by _setup_loras()
@@ -2266,9 +2507,23 @@ class ImageGen:
                         ),
                     )
                     self.face_method = "reactor"
-                    self.face_info   = {"swap_model": swap, "restore_model": restore}
-                    print(f"  [image_gen] Face method: ReActor  "
-                          f"(swap={swap}, restore={restore})")
+                    self.face_info   = {"swap_model": swap, "restore_model": restore,
+                                        "restore_models": restore_models}
+                    # Style-aware profile: tunes restore strength / model / blend /
+                    # boost (and disables the swap entirely on pixel-art styles)
+                    # from the active art style + checkpoint + installed restorers.
+                    self._face_profile = _resolve_face_swap_profile(
+                        self.art_style, self.checkpoint or "", restore_models,
+                    )
+                    p = self._face_profile
+                    if not p.enabled:
+                        print(f"  [image_gen] Face method: ReActor — DISABLED for "
+                              f"'{self.art_style}' (pixel-art medium; swap skipped)")
+                    else:
+                        print(f"  [image_gen] Face method: ReActor  (swap={swap}, "
+                              f"medium={p.medium}, restore={p.restore_model}@{p.restore_visibility}, "
+                              f"boost={p.boost_model if p.boost_enabled else 'off'}, "
+                              f"blend={p.blend_method})")
                     return
                 # else: ReActorFaceSwap node exists but no models — fall through to try other methods
 
@@ -2765,10 +3020,11 @@ class ImageGen:
         self,
         art_prompt:    str,
         filename_stem: str,
-        face_comfy_name: Optional[str] = None,   # already-uploaded ComfyUI filename
+        face_comfy_name: Optional[str] = None,   # already-uploaded ComfyUI filename (primary)
         face_gender:   str = "either",            # "male", "female", or "either"
         cancel_event=None,                        # threading.Event — set to stop generation mid-run
         card_type:     str = "",                  # type_line — used to keep people out of Land art
+        face_comfy_names: Optional[list[str]] = None,  # all photos of this person (ReActor blend)
     ) -> Optional[Path]:
         if not self.available:
             return None
@@ -2900,8 +3156,14 @@ class ImageGen:
             # Build workflow — face-conditioned if we have a reference.
             # Pass the preset-specific negative so anime / photorealism etc. can
             # actively push against FLUX's default photoreal prior.
-            if face_comfy_name and self.face_method != "none":
-                wf = self._build_face_workflow(full_prompt, attempt_seed, face_comfy_name)
+            # Skip face conditioning when the ReActor profile is disabled for this
+            # art style (pixel art — insightface can't find a face to swap).
+            _reactor_off = (self.face_method == "reactor"
+                            and self._face_profile is not None
+                            and not self._face_profile.enabled)
+            if face_comfy_name and self.face_method != "none" and not _reactor_off:
+                wf = self._build_face_workflow(full_prompt, attempt_seed, face_comfy_name,
+                                               face_comfy_names=face_comfy_names)
             else:
                 wf = _build_workflow(self.checkpoint, full_prompt, attempt_seed,
                                      negative=self.active_negative, gen=self.gen)
@@ -3002,9 +3264,17 @@ class ImageGen:
             print(f"  [image_gen] Unexpected error '{filename_stem}': {e}")
         return None
 
-    def _build_face_workflow(self, positive: str, seed: int, face_comfy_name: str) -> dict:
-        """Select and build the best available face-conditioned workflow."""
+    def _build_face_workflow(self, positive: str, seed: int, face_comfy_name: str,
+                             face_comfy_names: Optional[list[str]] = None) -> dict:
+        """Select and build the best available face-conditioned workflow.
+
+        `face_comfy_names` (≥1 uploaded filenames) is the ReActor identity source:
+        a single photo wires to `source_image`; multiple photos (e.g. several
+        commander selfies) are blended into one averaged FACE_MODEL. PuLID /
+        IP-Adapter use the single primary photo (`face_comfy_name`).
+        """
         neg = self.active_negative
+        names = face_comfy_names or ([face_comfy_name] if face_comfy_name else [])
         if self.face_method == "pulid_flux":
             return _build_pulid_flux_workflow(
                 self.checkpoint, positive, seed, face_comfy_name,
@@ -3020,9 +3290,9 @@ class ImageGen:
         if self.face_method == "reactor":
             base = _build_workflow(self.checkpoint, positive, seed, negative=neg, gen=self.gen)
             return _append_reactor(
-                base, face_comfy_name,
+                base, names,
                 swap_model=self.face_info.get("swap_model", "inswapper_128.onnx"),
-                restore_model=self.face_info.get("restore_model", "codeformer-v0.1.0.pth"),
+                profile=self._face_profile,
             )
         # Should not reach here
         return _build_workflow(self.checkpoint, positive, seed, negative=neg, gen=self.gen)
@@ -3041,6 +3311,8 @@ class ImageGen:
         theme_str: str = "",                       # human-readable theme for LoRA darkness scaling
         card_done_callback=None,                   # callable(tc, art_path) — called after each card renders
         cancel_event=None,                         # threading.Event — set to stop mid-run
+        is_commander_deck: bool = True,            # False → no auto commander "hero" face (imported 60-card lists, etc.)
+        face_assignments: Optional[dict] = None,   # {card original_name: crew-photo index} — explicit per-card faces
     ) -> dict[str, Optional[Path]]:
         if not self.available:
             return {}
@@ -3061,14 +3333,25 @@ class ImageGen:
                 print(f"  [image_gen] Light theme detected (darkness={self.theme_darkness:.2f}) — "
                       f"scaling dark LoRAs: {dark_entries}")
 
-        # ── Upload commander face reference (used ONLY for the commander card) ─
-        face_comfy_name: Optional[str] = None
+        # ── Upload commander face reference(s) (used ONLY for the commander card) ─
+        # Upload ALL commander photos, not just the first: with ReActor, multiple
+        # photos of the same person are blended into one averaged identity model
+        # (more angle/lighting-tolerant). PuLID/IP-Adapter still use the primary.
+        face_comfy_name:  Optional[str] = None
+        commander_face_names: list[str] = []
         if face_paths and self.face_method != "none":
-            face_comfy_name = self.upload_face_to_comfy(face_paths[0])
-            if not face_comfy_name:
-                print("  [image_gen] Commander face upload failed — generating without face conditioning")
+            for fp in face_paths:
+                n = self.upload_face_to_comfy(fp)
+                if n:
+                    commander_face_names.append(n)
+            if commander_face_names:
+                face_comfy_name = commander_face_names[0]
+                _blend = (f", blending {len(commander_face_names)} photos"
+                          if len(commander_face_names) > 1 and self.face_method == "reactor"
+                          else "")
+                print(f"  [image_gen] Commander face uploaded: {face_comfy_name}{_blend}")
             else:
-                print(f"  [image_gen] Commander face uploaded: {face_comfy_name}")
+                print("  [image_gen] Commander face upload failed — generating without face conditioning")
 
         # ── Upload ALL crew photos (distributed round-robin across creature cards) ─
         # Each photo in crew_paths represents a different person.
@@ -3135,8 +3418,6 @@ class ImageGen:
         print(f"\n  Generating art for {total} cards via {kind}{face_tag} "
               f"(~{total * secs_each // 60}–{total * secs_each * 2 // 60} min)...")
 
-        from face_ref import is_human_card
-
         results: dict[str, Optional[Path]] = {}
         art_dir = Path("generated_art") / deck_name
         crew_card_idx = 0   # round-robin index into crew_comfy_names
@@ -3151,24 +3432,29 @@ class ImageGen:
 
             is_cmd = (tc.original_name == themed_commander.original_name)
 
-            # ── Assign face reference for this card ───────────────────────────
-            # Commander → always uses commander face (if provided)
-            # Humanoid creatures → round-robin through crew photos (if provided)
-            # Everything else → no face conditioning
-            card_face_name:   Optional[str] = None
-            card_face_gender: str           = "either"
-
-            card_uses_crew = False
-            if is_cmd and face_comfy_name:
-                card_face_name   = face_comfy_name
-                card_face_gender = face_gender
-                face_tag_card    = "[👑]"
-            elif not is_cmd and crew_comfy_names and is_human_card(tc.card.get("type_line", "")):
-                card_face_name   = crew_comfy_names[crew_card_idx % len(crew_comfy_names)]
-                card_face_gender = crew_gender
-                crew_card_idx   += 1
-                card_uses_crew   = True
-                face_tag_card    = f"[👥{(crew_card_idx - 1) % len(crew_comfy_names) + 1}]"
+            # ── Assign face reference for this card (see route_card_face) ──────
+            # Commander hero face / explicit per-card assignment / legacy crew
+            # round-robin — the routing rules live in the pure helper so they're
+            # unit-tested. crew_card_idx only advances in round-robin mode.
+            card_face_name, card_face_gender, card_uses_crew, crew_card_idx = route_card_face(
+                is_cmd=is_cmd,
+                is_commander_deck=is_commander_deck,
+                commander_face=face_comfy_name,
+                crew_faces=crew_comfy_names,
+                face_gender=face_gender,
+                crew_gender=crew_gender,
+                card_type_line=tc.card.get("type_line", ""),
+                card_name=tc.original_name,
+                face_assignments=face_assignments,
+                crew_idx=crew_card_idx,
+            )
+            if is_cmd and card_face_name:
+                face_tag_card = "[👑]"
+            elif card_uses_crew and face_assignments is not None:
+                _who = int(face_assignments.get(tc.original_name, 0)) + 1
+                face_tag_card = f"[👤{_who}]"
+            elif card_uses_crew:
+                face_tag_card = f"[👥{(crew_card_idx - 1) % max(1, len(crew_comfy_names)) + 1}]"
             else:
                 face_tag_card = "    "
 
@@ -3182,6 +3468,13 @@ class ImageGen:
 
             print(f"  [{i:>3}/{total}] {face_tag_card} {tc.themed_name:<33}", end=" ", flush=True)
 
+            # The commander blends ALL of its uploaded photos (multi-photo identity
+            # model); crew/assigned cards use their single routed photo.
+            if is_cmd and len(commander_face_names) > 1 and card_face_name:
+                card_face_names = commander_face_names
+            else:
+                card_face_names = [card_face_name] if card_face_name else None
+
             t0   = time.monotonic()
             try:
                 path = self.generate(
@@ -3190,6 +3483,7 @@ class ImageGen:
                     face_gender=card_face_gender,
                     cancel_event=cancel_event,
                     card_type=tc.card.get("type_line", ""),
+                    face_comfy_names=card_face_names,
                 )
             except _ComfyOffloadError as e:
                 # ComfyUI is misconfigured (no --disable-async-offload) — every

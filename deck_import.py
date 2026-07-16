@@ -20,6 +20,12 @@ Design notes / concessions:
     other site.
   • Partner/companion commanders: the first commander is the deck's "face"; the
     rest are kept in `partners` and folded into the maindeck for theming/render.
+  • ANY decklist is importable, not just Commander decks. When a deck has no
+    commander zone (a 60-card constructed list, an un-tagged singleton, etc.) a
+    display "face" is auto-elected from the maindeck (`_apply_auto_face`) — a
+    legendary creature if present, else the splashiest card — and one copy is
+    pulled into the face slot, so the rest of the pipeline (which expects a face
+    card) works unchanged. The user can still override the face by name.
 """
 from __future__ import annotations
 
@@ -67,6 +73,7 @@ class ImportedDeck:
     deck: list[dict]                      # unique maindeck cards, each with "quantity"
     partners: list[dict] = field(default_factory=list)
     unresolved: list[str] = field(default_factory=list)
+    auto_face: bool = False               # commander was auto-elected (no commander zone)
 
     def total_cards(self) -> int:
         return (1 if self.commander else 0) + len(self.partners) + \
@@ -77,13 +84,15 @@ class ImportedDeck:
             "name": self.name, "source": self.source,
             "commander": self.commander, "partners": self.partners,
             "deck": self.deck, "unresolved": self.unresolved,
+            "auto_face": self.auto_face,
         }
 
     @classmethod
     def from_json(cls, d: dict) -> "ImportedDeck":
         return cls(name=d.get("name", ""), source=d.get("source", ""),
                    commander=d.get("commander"), deck=d.get("deck", []),
-                   partners=d.get("partners", []), unresolved=d.get("unresolved", []))
+                   partners=d.get("partners", []), unresolved=d.get("unresolved", []),
+                   auto_face=bool(d.get("auto_face", False)))
 
 
 # ── Source detection ───────────────────────────────────────────────────────────
@@ -289,6 +298,66 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
                         deck=deck, partners=partners, unresolved=unresolved)
 
 
+# ── Auto-elect a face for commanderless decks ────────────────────────────────────
+
+def _elect_face(deck: list[dict]) -> Optional[dict]:
+    """Pick a display "face" for a deck that has no commander zone — a pasted
+    60-card constructed list, a singleton list with the commander un-tagged, etc.
+    Prefers the most natural hero: a legendary creature, then a 'can be your
+    commander' card / legendary planeswalker, then the splashiest creature, then
+    the highest-mana-value card. Returns a dict that is an element of `deck` (the
+    caller pulls one physical copy out into the face slot)."""
+    if not deck:
+        return None
+
+    def mv(c) -> float:
+        try:
+            return float(c.get("cmc", 0) or 0)
+        except (TypeError, ValueError):
+            return 0.0
+
+    def tl(c) -> str:
+        return (c.get("type_line") or "").lower()
+
+    def otext(c) -> str:
+        return (c.get("oracle_text") or "").lower()
+
+    tiers = [
+        lambda c: "legendary" in tl(c) and "creature" in tl(c),
+        lambda c: "can be your commander" in otext(c),
+        lambda c: "legendary" in tl(c) and "planeswalker" in tl(c),
+        lambda c: "creature" in tl(c),
+        lambda c: True,
+    ]
+    for pred in tiers:
+        cands = [c for c in deck if pred(c)]
+        if cands:
+            return max(cands, key=mv)
+    return None
+
+
+def _apply_auto_face(imp: ImportedDeck) -> None:
+    """If an imported deck has no commander, elect a display face from the
+    maindeck and pull ONE physical copy into the commander slot, so the rest of
+    the build/theme/render/export pipeline (which everywhere expects a face card)
+    works for ANY imported decklist, not just Commander decks. Idempotent: a
+    no-op when a commander is already present. Applied on every import_deck
+    return (fresh OR cached) so it also upgrades pre-existing cache entries."""
+    if imp.commander is not None or not imp.deck:
+        return
+    face = _elect_face(imp.deck)
+    if face is None:
+        return
+    commander = dict(face)
+    commander.pop("quantity", None)
+    if int(face.get("quantity", 1) or 1) > 1:
+        face["quantity"] = int(face["quantity"]) - 1
+    else:
+        imp.deck = [c for c in imp.deck if c is not face]
+    imp.commander = commander
+    imp.auto_face = True
+
+
 # ── Public API ──────────────────────────────────────────────────────────────────
 
 _FETCHERS = {
@@ -325,7 +394,9 @@ def import_deck(source_input: str, scryfall, force_refresh: bool = False) -> Imp
 
     if not force_refresh and cache_file.exists():
         try:
-            return ImportedDeck.from_json(json.loads(cache_file.read_text(encoding="utf-8")))
+            imported = ImportedDeck.from_json(json.loads(cache_file.read_text(encoding="utf-8")))
+            _apply_auto_face(imported)   # also upgrades older commanderless caches
+            return imported
         except Exception:
             pass   # corrupt cache → re-fetch
 
@@ -342,4 +413,7 @@ def import_deck(source_input: str, scryfall, force_refresh: bool = False) -> Imp
     except Exception as e:
         print(f"  [deck_import] cache write failed ({e})")
 
+    # Elect a face AFTER caching the raw resolution, so the cache stays a faithful
+    # mirror of the source and election (deterministic) re-runs on each load.
+    _apply_auto_face(imported)
     return imported

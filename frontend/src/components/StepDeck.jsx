@@ -276,6 +276,15 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
   const [crewUploadErr, setCrewUploadErr]     = useState(null)
   const crewInputRef                          = useRef(null)
 
+  // Force a single uploaded face onto EVERY selected card, whatever its type.
+  // This is the "add a friendly face to this card" path — it overrides the
+  // commander/crew routing on the backend.
+  const [forceFaceKey, setForceFaceKey]           = useState(null)
+  const [forceFaceUploading, setForceFaceUploading] = useState(false)
+  const [forceFaceErr, setForceFaceErr]           = useState(null)
+  const [forceFaceGender, setForceFaceGender]     = useState('either')
+  const forceFaceInputRef                         = useRef(null)
+
   function setPrompt(key, val) { setCustomPrompts(p => ({ ...p, [key]: val })) }
   // Enabling custom RECALLS the current prompt into the editable box (saved custom
   // if any, else the AI prompt) so you can tweak it instead of retyping. The AI
@@ -344,6 +353,8 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
       face_gender: savedFaceGender || 'either',
       crew_key,
       crew_gender: savedCrewGender || 'either',
+      force_face_key:    forceFaceKey || null,
+      force_face_gender: forceFaceGender,
     })
   }
 
@@ -400,6 +411,48 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
               >{opt.label}</button>
             ))}
           </div>
+        </div>
+
+        {/* Force a friendly face onto the selected card(s) — any type */}
+        <div style={{ padding: '14px 22px 0', flexShrink: 0 }}>
+          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+            🙂 Add a face to {selectedCards.length === 1 ? 'this card' : 'these cards'}
+            <span style={{ textTransform: 'none', letterSpacing: 0, color: '#57534e' }}> — applied to every selected card, even non-creatures</span>
+          </div>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+            <button onClick={() => forceFaceInputRef.current?.click()}
+              disabled={forceFaceUploading}
+              style={{ ...btnBase, padding: '6px 12px', fontSize: 11, opacity: forceFaceUploading ? 0.6 : 1,
+                fontWeight: forceFaceKey ? 700 : 600,
+                background: forceFaceKey ? '#1c3a22' : '#0c0a09',
+                color:      forceFaceKey ? '#86efac' : '#a8a29e',
+                border:     `1px solid ${forceFaceKey ? '#15803d' : '#44403c'}`,
+              }}>
+              {forceFaceUploading ? '⏳ Uploading…' : forceFaceKey ? '✓ Face loaded' : '↑ Upload a photo'}
+            </button>
+            {forceFaceKey && (
+              <button onClick={() => { setForceFaceKey(null); setForceFaceErr(null) }}
+                style={{ ...btnBase, padding: '6px 12px', fontSize: 11, fontWeight: 400,
+                  background: '#0c0a09', color: '#57534e', border: '1px solid #292524' }}>✕ Clear</button>
+            )}
+            <label style={{ fontSize: 11, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6, marginLeft: 'auto' }}>
+              Look
+              <select value={forceFaceGender} onChange={e => setForceFaceGender(e.target.value)}
+                style={{ background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '4px 8px', fontSize: 11, fontFamily: 'inherit' }}>
+                <option value="either">Either</option>
+                <option value="male">Masc</option>
+                <option value="female">Femme</option>
+              </select>
+            </label>
+          </div>
+          {forceFaceErr && <div style={{ fontSize: 10, color: '#f87171', marginTop: 4 }}>{forceFaceErr}</div>}
+          {forceFaceKey && (
+            <div style={{ fontSize: 10, color: '#65a30d', marginTop: 5 }}>
+              This face will be used on {selectedCards.length === 1 ? 'the selected card' : `all ${selectedCards.length} selected cards`} — it overrides the commander/crew faces below.
+            </div>
+          )}
+          <input ref={forceFaceInputRef} type="file" accept="image/*" multiple style={{ display: 'none' }}
+            onChange={e => handlePhotoUpload(e, setForceFaceKey, () => {}, setForceFaceUploading, setForceFaceErr)} />
         </div>
 
         {/* Face/crew reference sections */}
@@ -1244,6 +1297,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const selectedCardData = allCardsFlat.filter(c => selectedKeys.has(c.render_key))
 
   const { commander, stats } = deck
+  // Single custom-card mode: the deck is "of one", so deck-level chrome (stats,
+  // type filters, the empty deck grid) is hidden and labels are re-pointed.
+  const single = deck?.mode === 'single_card'
 
   function regenStatusFor(key) {
     if (regenPending.has(key)) return 'pending'
@@ -1303,7 +1359,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
 
         <div style={{ flex: '1 1 320px', minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>Commander</div>
+          <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>{single ? 'Custom Card' : 'Commander'}</div>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fde047', margin: '0 0 4px', lineHeight: 1.2, overflowWrap: 'anywhere' }}>{commander.themed_name}</h1>
           {commander.themed_name !== commander.original_name && (
             <div style={{ fontSize: 13, color: '#57534e', marginBottom: 10 }}>({commander.original_name})</div>
@@ -1317,8 +1373,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={{ fontSize: 12, color: '#78716c', fontStyle: 'italic', marginBottom: 16, maxWidth: 440 }}>{commander.flavor_text}</div>
           )}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>
-            {deck.bracket && (
+            {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>}
+            {!single && deck.bracket && (
               <span style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
                 background: ['','#052e16','#1a2e05','#422006','#431407','#450a0a'][deck.bracket] || '#1c1917',
                 border: `1px solid ${['','#4ade80','#a3e635','#eab308','#f97316','#ef4444'][deck.bracket] || '#44403c'}`,
@@ -1327,8 +1383,15 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 B{deck.bracket} {deck.bracket_label}
               </span>
             )}
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>
-            <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>
+            {deck.theme && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>}
+            {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>}
+            {!single && deck.collection && deck.collection.enabled && (
+              <span title={`From your Myth Suite collection (${deck.collection.collection_size} owned cards)`}
+                    style={{ fontSize: 12, padding: '4px 12px', background: '#052e16',
+                             border: '1px solid #16a34a', borderRadius: 20, color: '#4ade80' }}>
+                🎴 {deck.collection.owned}/{deck.collection.total} from your collection
+              </span>
+            )}
           </div>
 
           {/* Playstyle strategy summary */}
@@ -1464,7 +1527,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
 
         {/* Stats panel */}
-        {stats && (
+        {!single && stats && (
           <div style={{ width: 200, flexShrink: 0 }}>
             <div style={{ fontSize: 12, color: '#78716c', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Deck Stats</div>
             <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 4 }}>Avg CMC: <span style={{ color: '#fde047', fontWeight: 700 }}>{(stats.average_cmc ?? stats.avg_cmc)?.toFixed?.(2) ?? '—'}</span></div>
@@ -1500,7 +1563,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
         {/* Type filter */}
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', flex: 1 }}>
-          {types.map(t => (
+          {!single && types.map(t => (
             <button key={t} onClick={() => setFilter(t)} style={{
               fontSize: 12, padding: '5px 14px', borderRadius: 20, border: 'none', cursor: 'pointer', fontFamily: 'inherit',
               background: filter === t ? '#ca8a04' : '#1c1917',

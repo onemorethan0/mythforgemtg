@@ -105,21 +105,157 @@ function GenderPicker({ value, onChange, label = "Person's sex:" }) {
   )
 }
 
+// ── Cast panel (non-Commander imports: assign people → specific cards) ─────────
+const PERSON_COLORS = ['#4ade80', '#60a5fa', '#f472b6', '#fbbf24', '#a78bfa', '#fb7185',
+                       '#34d399', '#f59e0b', '#22d3ee', '#c084fc']
+
+function CastPanel({ importCards, crewPhotos, setCrewPhotos, crewRef, crewGender, onCrewGenderChange, assignments, setAssignments, assignedCount }) {
+  const [filter, setFilter] = useState('')
+  const people = crewPhotos.map((p, i) => ({ idx: i, url: p.url, color: PERSON_COLORS[i % PERSON_COLORS.length] }))
+
+  function assign(cardName, idx) {
+    setAssignments(prev => {
+      const next = { ...prev }
+      if (idx === '' || idx == null) delete next[cardName]
+      else next[cardName] = Number(idx)
+      return next
+    })
+  }
+  function bulkClear() { setAssignments({}) }
+
+  const shown = importCards.filter(c => !filter.trim() ||
+    (c.name || '').toLowerCase().includes(filter.trim().toLowerCase()))
+
+  return (
+    <div style={{ marginBottom: 16 }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <span style={{ fontSize: 20 }}>🎬</span>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80' }}>Cast your deck</div>
+          <div style={{ fontSize: 12, color: '#78716c' }}>
+            Not a Commander deck — assign your people to the exact cards they should appear on.
+          </div>
+        </div>
+      </div>
+
+      {/* People uploader */}
+      <div style={{ background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 18, marginBottom: 14 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#a8a29e', marginBottom: 6 }}>
+          1 · Add the people {crewPhotos.length > 0 && <span style={{ color: '#4ade80' }}>({crewPhotos.length})</span>}
+        </div>
+        <p style={{ fontSize: 12, color: '#78716c', lineHeight: 1.6, margin: '0 0 12px' }}>
+          Each photo is one person. They'll show up as <strong style={{ color: '#a8a29e' }}>Person&nbsp;1</strong>,
+          <strong style={{ color: '#a8a29e' }}> Person&nbsp;2</strong>, … below — pick who goes on which card.
+        </p>
+        <PhotoPicker photos={crewPhotos} setPhotos={setCrewPhotos} maxPhotos={MAX_CREW_PHOTOS} inputRef={crewRef} accentColor='#4ade80' primaryBadge='person 1' />
+        {people.length > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
+            {people.map(p => (
+              <span key={p.idx} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5, padding: '3px 9px', borderRadius: 20, background: `${p.color}18`, color: p.color, border: `1px solid ${p.color}44` }}>
+                <img src={p.url} alt="" style={{ width: 18, height: 18, borderRadius: '50%', objectFit: 'cover' }} />
+                Person {p.idx + 1}
+              </span>
+            ))}
+          </div>
+        )}
+        <GenderPicker value={crewGender} onChange={onCrewGenderChange} label="Sex:" />
+      </div>
+
+      {/* Card assignment grid */}
+      <div style={{ background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#a8a29e' }}>
+            2 · Assign people to cards
+          </div>
+          <span style={{ fontSize: 11.5, color: '#4ade80' }}>{assignedCount} assigned</span>
+          {assignedCount > 0 && (
+            <button onClick={bulkClear} style={{ marginLeft: 'auto', fontSize: 11, padding: '3px 10px', borderRadius: 8, background: 'none', border: '1px solid #44403c', color: '#a8a29e', cursor: 'pointer', fontFamily: 'inherit' }}>
+              Clear all
+            </button>
+          )}
+        </div>
+        {people.length === 0 ? (
+          <div style={{ fontSize: 12.5, color: '#78716c', padding: '14px 0', textAlign: 'center' }}>
+            Add at least one person above to start assigning.
+          </div>
+        ) : (
+          <>
+            <input
+              value={filter}
+              onChange={e => setFilter(e.target.value)}
+              placeholder={`Filter ${importCards.length} cards…`}
+              style={{ width: '100%', boxSizing: 'border-box', padding: '8px 12px', marginBottom: 10, borderRadius: 8, background: '#0c0a09', border: '1px solid #44403c', color: '#e7e5e4', fontSize: 13, fontFamily: 'inherit' }}
+            />
+            <div style={{ maxHeight: 340, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {shown.map(c => {
+                const cur = assignments[c.name]
+                const col = cur != null && cur !== '' ? PERSON_COLORS[Number(cur) % PERSON_COLORS.length] : '#44403c'
+                return (
+                  <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 8px', borderRadius: 8, background: '#0c0a09', borderLeft: `3px solid ${col}` }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 12.5, color: '#e7e5e4', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</div>
+                      <div style={{ fontSize: 10.5, color: '#57534e', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.type_line}</div>
+                    </div>
+                    <select
+                      value={cur == null ? '' : String(cur)}
+                      onChange={e => assign(c.name, e.target.value)}
+                      style={{ flexShrink: 0, padding: '5px 8px', borderRadius: 7, background: '#1c1917', border: `1px solid ${col}66`, color: cur != null && cur !== '' ? col : '#a8a29e', fontSize: 12, fontFamily: 'inherit', cursor: 'pointer' }}
+                    >
+                      <option value="">— none —</option>
+                      {people.map(p => <option key={p.idx} value={p.idx}>Person {p.idx + 1}</option>)}
+                    </select>
+                  </div>
+                )
+              })}
+              {shown.length === 0 && (
+                <div style={{ fontSize: 12, color: '#78716c', padding: '10px 0', textAlign: 'center' }}>No cards match “{filter}”.</div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
-export default function StepFace({ commander, faceGender, onGenderChange, crewGender, onCrewGenderChange, onNext, onSkip, onBack, genSettings }) {
+export default function StepFace({ commander, faceGender, onGenderChange, crewGender, onCrewGenderChange, isCommanderDeck = true, importCards = [], onNext, onSkip, onBack, genSettings }) {
   const [cmdPhotos,  setCmdPhotos]  = useState([])
   const [crewPhotos, setCrewPhotos] = useState([])
   const [uploading,  setUploading]  = useState(false)
   const [error,      setError]      = useState('')
   const [faceMethod, setFaceMethod] = useState(null)
   const [comfyOffline, setComfyOffline] = useState(false)
+  // Non-commander decks: {cardName: personIndex} into crewPhotos.
+  const [assignments, setAssignments] = useState({})
+
+  // "Cast" mode = an imported non-Commander deck where the user assigns specific
+  // uploaded people to specific cards instead of the commander/crew round-robin.
+  const castMode = !isCommanderDeck && importCards.length > 0
 
   const cmdRef  = useRef()
   const crewRef = useRef()
 
-  const hasAny      = cmdPhotos.length > 0 || crewPhotos.length > 0
+  // In cast mode the only photos are the "people" (reusing the crew uploader);
+  // a deck is ready to continue once at least one card has a person assigned.
+  const assignedCount = Object.values(assignments).filter(v => v != null && v !== '').length
+  const hasAny      = castMode
+    ? (crewPhotos.length > 0 && assignedCount > 0)
+    : (cmdPhotos.length > 0 || crewPhotos.length > 0)
   const methodInfo  = FACE_METHOD_INFO[faceMethod] || FACE_METHOD_INFO['not available']
   const noFaceNodes = faceMethod === 'not available' || faceMethod === null
+
+  // Drop assignments that point at a person who was since removed.
+  useEffect(() => {
+    setAssignments(prev => {
+      const next = {}
+      for (const [card, idx] of Object.entries(prev)) {
+        if (idx != null && idx !== '' && Number(idx) < crewPhotos.length) next[card] = idx
+      }
+      return next
+    })
+  }, [crewPhotos.length])
 
   useEffect(() => {
     fetch('/api/face-method').then(r => r.ok ? r.json() : null).then(d => {
@@ -154,10 +290,21 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
     setUploading(true)
     setError('')
     try {
+      if (castMode) {
+        // People are uploaded as the crew group; assignments index into them.
+        const crewKey = await uploadGroup(crewPhotos, 'People photos')
+        // Normalize {cardName: idx} → numeric indices, dropping empties.
+        const map = {}
+        for (const [card, idx] of Object.entries(assignments)) {
+          if (idx != null && idx !== '') map[card] = Number(idx)
+        }
+        onNext(null, faceMethod, 'either', crewKey, crewGender, map)
+        return
+      }
       // Upload sequentially so errors are attributed to the right group
       const faceKey = await uploadGroup(cmdPhotos, 'Commander photos')
       const crewKey = await uploadGroup(crewPhotos, 'Crew photos')
-      onNext(faceKey, faceMethod, faceGender, crewKey, crewGender)
+      onNext(faceKey, faceMethod, faceGender, crewKey, crewGender, {})
     } catch (err) {
       setError(err.message)
       setUploading(false)
@@ -167,7 +314,8 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
   return (
     <div style={{ maxWidth: 780, width: '100%', marginTop: 16 }}>
 
-      {/* Commander chip */}
+      {/* Commander chip (commander decks only) */}
+      {!castMode && (
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, background: '#1c1917', border: '1px solid #292524', borderRadius: 12, padding: '12px 18px', marginBottom: 20 }}>
         {commander.image_url
           ? <img src={commander.image_url} alt={commander.name} style={{ width: 44, height: 44, borderRadius: 6, objectFit: 'cover' }} />
@@ -178,8 +326,22 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
           <div style={{ fontSize: 11, color: '#78716c' }}>{commander.type_line}</div>
         </div>
       </div>
+      )}
 
-      {/* Two-column layout */}
+      {/* ── Cast mode: assign uploaded people to specific cards ── */}
+      {castMode && (
+        <CastPanel
+          importCards={importCards}
+          crewPhotos={crewPhotos} setCrewPhotos={setCrewPhotos}
+          crewRef={crewRef}
+          crewGender={crewGender} onCrewGenderChange={onCrewGenderChange}
+          assignments={assignments} setAssignments={setAssignments}
+          assignedCount={assignedCount}
+        />
+      )}
+
+      {/* Two-column layout (commander decks) */}
+      {!castMode && (
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
 
         {/* ── Commander face card ── */}
@@ -224,6 +386,7 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
           <GenderPicker value={crewGender} onChange={onCrewGenderChange} label="Sex:" />
         </div>
       </div>
+      )}
 
       {/* Face method status */}
       {faceMethod && (
@@ -293,9 +456,11 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
           disabled={!hasAny || uploading}
           onClick={handleContinue}
         >
-          {uploading ? 'Uploading…' : hasAny
-            ? `Use Photos (${[cmdPhotos.length && `👑 ${cmdPhotos.length}`, crewPhotos.length && `👥 ${crewPhotos.length}`].filter(Boolean).join(' + ')}) →`
-            : 'Continue →'}
+          {uploading ? 'Uploading…' : castMode
+            ? (hasAny ? `Assign & continue (${assignedCount} card${assignedCount !== 1 ? 's' : ''}) →` : 'Assign a person to continue →')
+            : hasAny
+              ? `Use Photos (${[cmdPhotos.length && `👑 ${cmdPhotos.length}`, crewPhotos.length && `👥 ${crewPhotos.length}`].filter(Boolean).join(' + ')}) →`
+              : 'Continue →'}
         </button>
       </div>
     </div>

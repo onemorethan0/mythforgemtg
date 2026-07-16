@@ -32,7 +32,7 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
-export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange }) {
+export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate' }) {
   const [query, setQuery]           = useState('')
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
@@ -47,12 +47,17 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   const debounce  = useRef()
 
   // ── Import mode ─────────────────────────────────────────────────────────────
-  const [mode, setMode]               = useState('generate')   // 'generate' | 'import'
+  // Seeded by the home hub's choice (Build -> generate, Analyze -> import); the
+  // in-panel tabs still let the user switch without returning to the hub.
+  const [mode, setMode]               = useState(initialTab)   // 'generate' | 'import'
   const [importText, setImportText]   = useState('')
   const [importLoading, setImportLoading] = useState(false)
   const [importErr, setImportErr]     = useState('')
   const [preview, setPreview]         = useState(null)
   const [cmdOverride, setCmdOverride] = useState('')
+  // Explicit "Is this a Commander deck?" answer. Defaulted from auto_face (a deck
+  // with no commander zone is probably NOT Commander) but the user always decides.
+  const [isCmdDeck, setIsCmdDeck]     = useState(true)
 
   async function doPreview(forceRefresh = false) {
     const val = importText.trim()
@@ -68,6 +73,7 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
       if (!res.ok) { setImportErr(data.detail || 'Import failed.'); setImportLoading(false); return }
       setPreview(data)
       setCmdOverride(data.commander?.name || '')
+      setIsCmdDeck(!data.auto_face)   // no commander zone → default "not a Commander deck"
     } catch {
       setImportErr('Server unreachable. Is the backend running?')
     }
@@ -77,14 +83,21 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   function useImported() {
     if (!preview) return
     const mode2 = importText.trim().toLowerCase().startsWith('http') ? 'url' : 'text'
-    const cmdName = preview.commander?.name || cmdOverride.trim()
+    // A typed override wins (incl. changing an auto-elected face); else the
+    // detected/elected commander. cmdOverride is prefilled in doPreview.
+    const cmdName = cmdOverride.trim() || preview.commander?.name || ''
     onNext({
       name:       cmdName,
       full_name:  cmdName,
       type_line:  preview.commander?.type_line || '',
       image_url:  preview.commander?.image_url || '',
       colors:     preview.colors || [],
-      _import:    { mode: mode2, value: importText.trim() },
+      _import:    {
+        mode: mode2,
+        value: importText.trim(),
+        is_commander_deck: isCmdDeck,
+        cards: preview.cards || [],
+      },
     })
   }
 
@@ -148,12 +161,12 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           commander_name: result.full_name || result.name,
-          playstyle, bracket,
+          playstyle, bracket, use_collection: useCollection,
         }),
       })
       const data = await res.json()
       if (!res.ok) { setGenErr(data.detail || 'Could not generate the decklist.'); setGenLoading(false); return }
-      onNext({ ...result, _generated: { deck: data.deck, tribes: data.tribes, stats: data.stats } })
+      onNext({ ...result, _generated: { deck: data.deck, tribes: data.tribes, stats: data.stats, collection: data.collection } })
     } catch {
       setGenErr('Server unreachable. Is the backend running?')
     }
@@ -218,8 +231,10 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
             onChange={e => { setImportText(e.target.value); setPreview(null); setImportErr('') }}
           />
           <div style={{ fontSize: 12, color: '#57534e', margin: '8px 0 12px' }}>
-            ManaBox: in the app, export the deck as text and paste it here. Moxfield links are best-effort —
-            if one fails, paste the list instead. Imported decks are cached, so re-importing is instant.
+            Any format works — Commander, 60-card, singleton. A commander is optional; if there's no
+            commander zone, a face card is auto-selected (you can change it). ManaBox: in the app, export the
+            deck as text and paste it here. Moxfield links are best-effort — if one fails, paste the list
+            instead. Imported decks are cached, so re-importing is instant.
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
             <button
@@ -255,14 +270,23 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                       {preview.colors.map(c => COLOR_NAMES[c] || c).join(' / ')}
                     </div>
                   )}
-                  {preview.commander
-                    ? <div style={{ fontSize: 13, color: '#86efac' }}>Commander: {preview.commander.name}</div>
-                    : <div style={{ fontSize: 13, color: '#fca5a5', marginBottom: 6 }}>
-                        No commander zone found — type your commander:
-                        <input style={{ ...s.input, marginTop: 6 }} value={cmdOverride}
-                               placeholder="e.g. Atraxa, Praetors' Voice"
-                               onChange={e => setCmdOverride(e.target.value)} />
-                      </div>}
+                  {preview.commander && !preview.auto_face &&
+                    <div style={{ fontSize: 13, color: '#86efac' }}>Commander: {preview.commander.name}</div>}
+                  {preview.commander && preview.auto_face &&
+                    <div style={{ fontSize: 13, color: '#fbbf24', marginBottom: 6 }}>
+                      No commander zone — using <b style={{ color: '#fde68a' }}>{preview.commander.name}</b> as the deck's face.
+                      <div style={{ fontSize: 12, color: '#a8a29e', marginTop: 4 }}>Change the face (optional):</div>
+                      <input style={{ ...s.input, marginTop: 4 }} value={cmdOverride}
+                             placeholder="e.g. Heartless Hidetsugu"
+                             onChange={e => setCmdOverride(e.target.value)} />
+                    </div>}
+                  {!preview.commander &&
+                    <div style={{ fontSize: 13, color: '#fca5a5', marginBottom: 6 }}>
+                      No cards detected — type a commander to build around:
+                      <input style={{ ...s.input, marginTop: 6 }} value={cmdOverride}
+                             placeholder="e.g. Atraxa, Praetors' Voice"
+                             onChange={e => setCmdOverride(e.target.value)} />
+                    </div>}
                   {preview.partners?.length > 0 &&
                     <div style={{ fontSize: 12, color: '#a8a29e' }}>Partners: {preview.partners.join(', ')}</div>}
                 </div>
@@ -273,6 +297,29 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                   {preview.unresolved.slice(0, 8).join(', ')}{preview.unresolved.length > 8 ? '…' : ''}
                 </div>
               )}
+
+              {/* ── Is this a Commander deck? ── */}
+              <div style={{ background: '#0c0a09', border: '1px solid #292524', borderRadius: 10, padding: 14 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 8 }}>
+                  Is this a Commander deck?
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {[{ k: true, label: '👑 Yes — Commander/EDH' }, { k: false, label: '🃏 No — other format' }].map(({ k, label }) => (
+                    <button key={String(k)} onClick={() => setIsCmdDeck(k)} style={{
+                      flex: 1, padding: '9px 12px', borderRadius: 8, fontSize: 12.5, cursor: 'pointer', fontFamily: 'inherit',
+                      border:     isCmdDeck === k ? '1px solid #eab308' : '1px solid #44403c',
+                      background: isCmdDeck === k ? '#eab30820' : 'none',
+                      color:      isCmdDeck === k ? '#fde68a' : '#a8a29e',
+                      fontWeight: isCmdDeck === k ? 700 : 400,
+                    }}>{label}</button>
+                  ))}
+                </div>
+                <div style={{ fontSize: 11.5, color: '#78716c', lineHeight: 1.55, marginTop: 8 }}>
+                  {isCmdDeck
+                    ? 'The commander (or auto-elected face) is the deck’s hero — it gets the commander portrait; crew photos fill humanoid creatures.'
+                    : 'No single hero. On the next step you can assign your uploaded people to specific cards — pick exactly who appears where.'}
+                </div>
+              </div>
 
               {/* ── Bracket analysis ── */}
               {preview.analysis && (() => {
@@ -318,6 +365,69 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                         <div style={{ fontSize: 12, fontWeight: 700, color: '#fca5a5', marginBottom: 4 }}>🎯 To bring it down a bracket</div>
                         {a.scale_down.map((t, i) => <div key={i} style={{ fontSize: 11.5, color: '#a8a29e', lineHeight: 1.5, marginBottom: 3 }}>• {t}</div>)}
                       </div>
+                    )}
+                  </div>
+                )
+              })()}
+
+              {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
+              {preview.simulation?.power_profile && (() => {
+                const pp = preview.simulation.power_profile
+                const AC = '#38bdf8'
+                const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`)
+                const bar = (label, val, suffix = '') => (
+                  <div style={{ marginBottom: 7 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: '#a8a29e', marginBottom: 2 }}>
+                      <span>{label}</span>
+                      <b style={{ color: '#e7e5e4' }}>{val == null ? '—' : `${Math.round(val)}${suffix}`}</b>
+                    </div>
+                    <div style={{ height: 5, borderRadius: 4, background: '#1c1917', overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${Math.max(0, Math.min(100, val || 0))}%`, background: AC }} />
+                    </div>
+                  </div>
+                )
+                const speed = pp.speed_avg_kill_turn
+                  ? `turn ${pp.speed_avg_kill_turn.toFixed(1)} (${pct(pp.speed_kill_rate)})`
+                  : `no goldfish kill (${pct(pp.speed_kill_rate)})`
+                return (
+                  <div style={{ background: '#0c0a09', border: `1px solid ${AC}44`, borderLeft: `3px solid ${AC}`, borderRadius: 10, padding: 14, marginTop: 12 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1' }}>Simulation-grounded strength</span>
+                      <span style={{ fontSize: 10.5, padding: '1px 8px', borderRadius: 20, background: `${AC}22`, color: AC, border: `1px solid ${AC}` }}>MythGauntlet</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: '#78716c', marginBottom: 10 }}>
+                      Measured by simulating games — not a static heuristic.
+                    </div>
+                    {pp.bracket_estimate && (() => {
+                      const BR = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
+                      const bc = BR[pp.bracket_estimate] || '#eab308'
+                      return (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                          <span style={{ fontSize: 12, color: '#a8a29e' }}>Simulated bracket</span>
+                          <span style={{ fontSize: 13, fontWeight: 800, padding: '2px 12px', borderRadius: 20, background: `${bc}22`, color: bc, border: `1px solid ${bc}` }}>
+                            {pp.bracket_estimate}. {pp.bracket_label}
+                          </span>
+                          {pp.bracket_confidence != null && (
+                            <span style={{ fontSize: 10.5, color: '#78716c' }}>{Math.round(pp.bracket_confidence * 100)}% conf.</span>
+                          )}
+                        </div>
+                      )
+                    })()}
+                    {bar('Consistency', pp.consistency, '/100')}
+                    {bar('Resilience vs a board wipe', pp.resilience, '/100')}
+                    {pp.interaction != null && bar('Interaction', pp.interaction, '/100')}
+                    {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100')}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+                        Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>
+                      </span>
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+                        Cards simulated at high fidelity: <b style={{ color: '#e7e5e4' }}>{pct(pp.semantics_coverage)}</b>
+                      </span>
+                    </div>
+                    <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5 }}>{pp.bracket_hint}</div>
+                    {preview.simulation.engine_version && (
+                      <div style={{ fontSize: 10, color: '#57534e', marginTop: 6 }}>engine v{preview.simulation.engine_version}</div>
                     )}
                   </div>
                 )
@@ -428,6 +538,24 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
                        padding: '9px 12px', color: '#f5f5f4', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}>
               {playstyles.map(ps => <option key={ps.key} value={ps.key}>{ps.label}</option>)}
             </select>
+
+            {/* Collection-aware building (Myth Suite C4) */}
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginTop: 16,
+                            cursor: 'pointer' }}>
+              <input type="checkbox" checked={useCollection}
+                     onChange={e => onUseCollectionChange && onUseCollectionChange(e.target.checked)}
+                     style={{ marginTop: 3, width: 16, height: 16, accentColor: '#eab308', cursor: 'pointer' }} />
+              <span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1' }}>
+                  🎴 Build from my collection
+                </span>
+                <span style={{ display: 'block', fontSize: 12, color: '#78716c', marginTop: 2, lineHeight: 1.5 }}>
+                  Prefer cards you own (from your MythScanner export at Documents/MythSuite),
+                  filling the flexible slots with your collection first. Essential roles and lands
+                  are still completed with staples so the deck stays playable.
+                </span>
+              </span>
+            </label>
           </div>
           {genErr && <p style={s.err}>{genErr}</p>}
           <button

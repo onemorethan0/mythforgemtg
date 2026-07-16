@@ -40,6 +40,7 @@ from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
 from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
+from collection         import load_owned_names, owned_count, suite_collection_path
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
@@ -155,7 +156,7 @@ async def lifespan(app: FastAPI):
     except asyncio.CancelledError:
         pass
 
-app = FastAPI(title="Myth Forge", version="1.2", lifespan=lifespan)
+app = FastAPI(title="Myth Forge", version="1.3", lifespan=lifespan)
 
 # Bind tightly to localhost — this app has no auth layer. If you need
 # LAN access, add an auth header check and expand allow_origins explicitly.
@@ -448,6 +449,8 @@ class BuildRequest(BaseModel):
     crew_key:          Optional[str] = None   # crew face photos for creature cards
     crew_gender:       str = "either"         # gender hint for crew faces
     crew_prompt:       str = ""               # shared appearance notes for crew-faced creatures
+    is_commander_deck: bool = True            # False → imported non-Commander list: no auto hero face
+    face_assignments:  Optional[dict] = None  # {card original_name: crew-photo index} — explicit per-card faces (non-commander decks)
     user_name:         Optional[str] = None   # replaces the commander's generated first name
     llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
     border_theme:      str           = ""     # free-text description of card-border decoration
@@ -465,6 +468,11 @@ class BuildRequest(BaseModel):
     # apply it uniformly. Explicit tribal_overrides still win per-type. Defaults
     # ON — a build with no directive gets cohesive theme-fitting creature types.
     auto_theme_tribes: bool          = True
+    # Collection-aware building (Myth Suite C4): when true, the 99-card generator
+    # PREFERS cards from the user's owned-collection export
+    # (Documents/MythSuite/collection.csv), falling back to unowned EDHREC picks
+    # when the collection can't cover a slot. Generate path only (imports ignore it).
+    use_collection:    bool          = False
     # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration).
     # Now the PRIMARY theming input: themer.build_creative_brief() reads these as
     # distinct labelled dimensions (not the flattened art_theme blob). Persisted so
@@ -506,6 +514,11 @@ class RegenCardsRequest(BaseModel):
     face_gender: str = "either"
     crew_key:    Optional[str] = None   # crew faces override for creature cards
     crew_gender: str = "either"
+    # Force a single uploaded face onto EVERY selected card, bypassing the
+    # commander/humanoid-creature routing. Lets the user drop a friendly face
+    # onto any card they picked (even non-humanoid ones) and regenerate it.
+    force_face_key:    Optional[str] = None
+    force_face_gender: str = "either"
     gen_settings: Optional[GenSettingsModel] = None
 
 
@@ -542,6 +555,49 @@ class RethemeRequest(BaseModel):
     commander_tribe:  Optional[str] = None   # None → use saved / auto-detect
     theme_spec:       Optional[dict] = None  # None → use saved structured theme_spec
     creativity:       Optional[str]  = None  # None → use saved creativity dial
+
+
+class SingleCardModel(BaseModel):
+    """A user-authored custom card definition for single-card mode."""
+    name:        str = Field("", max_length=160)
+    mana_cost:   str = Field("", max_length=80)   # e.g. "{2}{W}{U}"
+    type_line:   str = Field("", max_length=160)  # e.g. "Legendary Creature — Knight"
+    oracle_text: str = Field("", max_length=2000)
+    flavor_text: str = Field("", max_length=600)
+    power:       Optional[str] = None             # strings so "*"/"1+*" are allowed
+    toughness:   Optional[str] = None
+    loyalty:     Optional[str] = None             # planeswalkers
+    rarity:      str = "rare"                     # common|uncommon|rare|mythic|special
+    colors:      Optional[List[str]] = None       # WUBRG; None → derive from mana_cost
+
+
+class CardBuildRequest(BaseModel):
+    """Single custom card → theme + (optional) art + rendered proxy. Reuses the
+    deck theming/art knobs; the result persists as a 'deck of one' so every
+    existing per-card action (regen/animate/3D/export/history) works on it."""
+    card:             SingleCardModel
+    # Theming
+    theme_mode:       str = "author"   # "author" (keep my name/text; AI art only) | "full" (AI themes/renames)
+    art_prompt_mode:  str = "auto"     # "auto" (LLM writes art prompt) | "custom" (user supplies it)
+    art_prompt:       str = Field("", max_length=2000)   # used when art_prompt_mode == "custom"
+    art_theme:        str = Field("", max_length=2000)
+    theme_spec:       Optional[dict] = None
+    creativity:       str = "balanced"
+    commander_prompt: str = Field("", max_length=500)    # subject appearance
+    emblem_prompt:    str = Field("", max_length=300)
+    # Art / render
+    art_style:        str = "mtg_fantasy"
+    generate_art:     bool = False
+    model_speed:      str  = "quality"
+    checkpoint:       Optional[str] = None
+    llm_model:        Optional[str] = None
+    border_theme:     str = ""
+    frame_style:      str = "builtin"
+    custom_pips:      bool = False
+    # Face conditioning (single likeness)
+    face_key:         Optional[str] = None
+    face_gender:      str = "either"
+    gen_settings:     Optional[GenSettingsModel] = None
 
 
 # ── SSE helpers ───────────────────────────────────────────────────────────────
@@ -1079,6 +1135,61 @@ def _stored_card_to_dict(d: dict) -> dict:
     }
 
 
+_MANA_SYMBOL_RE = re.compile(r"\{([^}]+)\}")
+_WUBRG = ("W", "U", "B", "R", "G")
+
+
+def _parse_mana_cost(mana_cost: str) -> tuple[float, list[str]]:
+    """Derive (cmc, color_identity) from a mana-cost string like '{2}{W}{U}'.
+
+    Generic numbers add to cmc; X = 0; hybrid/phyrexian symbols (e.g. {W/U},
+    {2/W}, {W/P}) count 1 toward cmc and contribute every WUBRG colour they name.
+    """
+    cmc = 0.0
+    colors: list[str] = []
+    for sym in _MANA_SYMBOL_RE.findall(mana_cost or ""):
+        s = sym.upper().strip()
+        if s in ("X", "Y", "Z"):
+            continue
+        if s.isdigit():
+            cmc += int(s)
+            continue
+        cmc += 1   # any non-generic symbol (incl. hybrids) costs 1
+        for letter in _WUBRG:
+            if letter in s and letter not in colors:
+                colors.append(letter)
+    # preserve WUBRG order
+    colors = [c for c in _WUBRG if c in colors]
+    return cmc, colors
+
+
+def _single_card_to_internal(m: "SingleCardModel") -> dict:
+    """Build the internal card dict the theming/render pipeline expects from a
+    user-authored SingleCardModel. Derives cmc + color identity from the mana
+    cost when the user didn't pin colours explicitly."""
+    cmc, derived_colors = _parse_mana_cost(m.mana_cost)
+    colors = [c.upper() for c in (m.colors or []) if c] or derived_colors
+    name = (m.name or "").strip() or "Custom Card"
+    rarity = (m.rarity or "rare").strip().lower()
+    return {
+        "name":               name,
+        "mana_cost":          m.mana_cost or "",
+        "type_line":          m.type_line or "",
+        "original_type_line": m.type_line or "",
+        "oracle_text":        m.oracle_text or "",
+        "flavor_text":        m.flavor_text or "",
+        "cmc":            cmc,
+        "color_identity": colors,
+        "colors":         colors,
+        "power":          (m.power if (m.power not in (None, "")) else None),
+        "toughness":      (m.toughness if (m.toughness not in (None, "")) else None),
+        "loyalty":        (m.loyalty if (m.loyalty not in (None, "")) else None),
+        "rarity":         rarity,
+        "quantity":       1,
+        "image_uris":     {},
+    }
+
+
 def _load_source_deck(source_job_id: str) -> dict:
     """Load a saved deck.json by job id (memory path first, then disk loader).
 
@@ -1211,6 +1322,7 @@ def _run_build(job_id: str, req: BuildRequest):
 
         ps_label    = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
         import_meta: dict = {}
+        collection_stats: Optional[dict] = None  # C4: set in the generate branch when on
 
         if req.prebuilt_deck:
             # ── Phase-2 build: theme/render a decklist generated in phase 1 ───
@@ -1234,22 +1346,32 @@ def _run_build(job_id: str, req: BuildRequest):
             except deck_import.DeckImportError as e:
                 raise ValueError(str(e))
             card = imported.commander
-            # If the source had no commander zone, let the user-supplied name fill in.
-            if not card and req.commander_name:
-                card = _scryfall.get_card_by_name(req.commander_name, fuzzy=True)
+            # An explicitly typed commander/face name overrides the auto-elected
+            # face (and fills in if election somehow produced nothing). Only a name
+            # that actually differs from the current face triggers a Scryfall lookup.
+            override = (req.commander_name or "").strip()
+            if override and (card is None or override.lower() not in (card.get("name", "") or "").lower()):
+                ov = _scryfall.get_card_by_name(override, fuzzy=True)
+                if ov:
+                    card = ov
             if not card:
+                # With auto-election this is essentially unreachable (any non-empty
+                # deck yields a face); kept as a guard for a truly empty import.
                 raise ValueError(
-                    "No commander found in the imported deck. Tag the commander in "
-                    "the source, or type a commander name before importing.")
+                    "Couldn't read any cards from that deck. Check the URL or "
+                    "decklist text and try again.")
             deck = list(imported.deck)
             # Partner/companion commanders aren't the face — render them as cards.
             for p in imported.partners:
                 pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
             stats = compute_stats(card, deck)
+            face_auto = bool(imported.auto_face) and card is imported.commander
             import_meta = {"source": imported.source, "source_name": imported.name,
-                           "source_input": src_input, "unresolved": imported.unresolved}
+                           "source_input": src_input, "unresolved": imported.unresolved,
+                           "auto_face": face_auto}
             _push(job_id, "progress", json.dumps({"step": "deck", "msg":
-                f"Imported {imported.name} — {stats['total_cards']} cards, commander {card['name']}"
+                f"Imported {imported.name} — {stats['total_cards']} cards, "
+                + (f"face (auto-selected) {card['name']}" if face_auto else f"commander {card['name']}")
                 + (f" ({len(imported.unresolved)} unresolved)" if imported.unresolved else "")}))
         else:
             # ── Generate a deck from a commander ──────────────────────────────
@@ -1263,6 +1385,14 @@ def _run_build(job_id: str, req: BuildRequest):
             active_themes  = resolve_themes(req.playstyle, profile.themes)
             slot_overrides = get_slot_adjustments(req.playstyle)
 
+            owned = load_owned_names() if req.use_collection else set()
+            if req.use_collection:
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
+                    f"Building from your collection ({len(owned)} owned cards)…"
+                    if owned else
+                    "Collection is empty — building normally "
+                    "(export from MythScanner to Documents/MythSuite)."
+                )}))
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Building 99-card deck..."}))
             builder = DeckBuilder(_scryfall)
             deck = builder.build(
@@ -1271,11 +1401,23 @@ def _run_build(job_id: str, req: BuildRequest):
                 slot_overrides  = slot_overrides,
                 playstyle_label = ps_label,
                 bracket         = req.bracket,
+                owned           = owned,
             )
             # Collapse duplicate basics into quantity entries (theme/render once,
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
             stats = compute_stats(card, deck)
+            if req.use_collection:
+                _spells = [card] + [c for c in deck
+                                    if "basic" not in (c.get("type_line", "") or "").lower()]
+                have = owned_count(_spells, owned)
+                collection_stats = {
+                    "enabled": True, "owned": have, "total": len(_spells),
+                    "collection_size": len(owned),
+                }
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
+                    f"You own {have} of {len(_spells)} non-basic cards in this deck"
+                )}))
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": f"Built {stats['total_cards']} cards"}))
 
         # ── Theme via Ollama ──────────────────────────────────────────────────
@@ -1456,6 +1598,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "emblem_prompt":    req.emblem_prompt,
             "playstyle":        ps_label,
             "playstyle_description": PLAYSTYLES.get(req.playstyle, PLAYSTYLES.get("auto", {})).get("description", ""),
+            "collection":       collection_stats,   # C4: owned-card coverage (None = off)
             "bracket":          req.bracket,
             "bracket_label":    BRACKET_LABELS.get(req.bracket, str(req.bracket)),
             "art_style":        req.art_style,
@@ -1471,6 +1614,8 @@ def _run_build(job_id: str, req: BuildRequest):
             "crew_key":         req.crew_key or "",
             "crew_gender":      req.crew_gender,
             "crew_prompt":      req.crew_prompt or "",
+            "is_commander_deck": req.is_commander_deck,
+            "face_assignments": req.face_assignments or {},
             "user_name":        req.user_name or "",
             "llm_model":        req.llm_model or "",
             "border_theme":     req.border_theme or "",
@@ -1492,6 +1637,7 @@ def _run_build(job_id: str, req: BuildRequest):
             "import_source":    import_meta.get("source", ""),
             "import_name":      import_meta.get("source_name", ""),
             "import_unresolved": import_meta.get("unresolved", []),
+            "import_auto_face": import_meta.get("auto_face", False),
             "built_at":         time.time(),
         }
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
@@ -1646,6 +1792,8 @@ def _run_build(job_id: str, req: BuildRequest):
                                 theme_str=art_theme,
                                 card_done_callback=_card_done_cb,
                                 cancel_event=cancel_event,
+                                is_commander_deck=req.is_commander_deck,
+                                face_assignments=(req.face_assignments or None),
                             )
                         except Exception as _ge_err:
                             _push(job_id, "progress", json.dumps({
@@ -1756,6 +1904,254 @@ def _run_build(job_id: str, req: BuildRequest):
         _finalize_job(job_id)
 
 
+# ── Single custom card build ─────────────────────────────────────────────────
+
+def _run_card_build(job_id: str, req: "CardBuildRequest"):
+    """Build ONE user-authored custom card: theme → (optional) art → render.
+
+    Persists a 'deck of one' (commander = the card, deck = []) so the result view
+    and every job-keyed per-card action (regen / animate / 3D / export / history /
+    retheme / rebuild / duplicate) work on it with no special-casing.
+    """
+    from PIL import Image as _PIL
+
+    try:
+        _jobs[job_id]["status"] = "building"
+        card = _single_card_to_internal(req.card)
+        name = card["name"]
+        stats = compute_stats(card, [])
+        art_theme = req.art_theme or f"epic fantasy art centered on {name}"
+        ro_mode   = req.art_style in ("ragnarok_online", "ragnarok_sprite")
+
+        _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Custom card: {name}"}))
+
+        # Art-style preset → themer medium/quality/vocabulary (same mapping as builds).
+        from image_gen import get_all_presets as _gap
+        _all_p = _gap()
+        _style_meta = _all_p.get(req.art_style or "mtg_fantasy",
+                                 _all_p.get("mtg_fantasy", next(iter(_all_p.values()))))
+
+        _llm = req.llm_model or None
+        cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
+
+        # Does this run need the LLM? Only when AI writes the art prompt or themes it.
+        custom_prompt = (req.art_prompt or "").strip()
+        need_llm = (req.theme_mode == "full") or \
+                   (req.theme_mode != "full" and req.art_prompt_mode != "custom") or \
+                   (req.art_prompt_mode != "custom" and not custom_prompt)
+
+        tc: Optional[ThemedCard] = None
+        world_bible: dict = {}
+        if need_llm:
+            _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Freeing GPU for the LLM…"}))
+            _wait_for_comfyui_unload(job_id)
+            _push(job_id, "progress", json.dumps({
+                "step": "theme", "msg": f"Theming card with the LLM ({_llm or 'default'})…"}))
+            try:
+                themer = Themer(model=_llm) if _llm else Themer()
+                if req.theme_mode == "full":
+                    # AI themes/renames the card, deck-style (one-card deck).
+                    themed_cmd, _ = themer.theme_deck(
+                        art_theme, card, [],
+                        commander_prompt=req.commander_prompt,
+                        style_guide_hint=_style_meta["style_guide_hint"],
+                        themer_medium=_style_meta["themer_medium"],
+                        themer_quality=_style_meta["themer_quality"],
+                        commander_gender=req.face_gender,
+                        lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
+                        auto_theme_tribes=False,
+                        ro_mode=ro_mode,
+                        theme_spec=req.theme_spec or None,
+                        creativity=req.creativity or "balanced",
+                        cancel_event=cancel_event,
+                    )
+                    tc = themed_cmd
+                else:
+                    # Author mode: keep the user's name/text, AI writes the art prompt.
+                    tc = themer.theme_single_card(
+                        card, art_theme,
+                        commander_prompt=req.commander_prompt,
+                        style_guide_hint=_style_meta["style_guide_hint"],
+                        themer_medium=_style_meta["themer_medium"],
+                        themer_quality=_style_meta["themer_quality"],
+                        lora_vocabulary=_style_meta.get("themer_vocabulary", ""),
+                        ro_mode=ro_mode,
+                        theme_spec=req.theme_spec or None,
+                        creativity=req.creativity or "balanced",
+                        gender=req.face_gender,
+                        want_flavor=not bool(card.get("flavor_text")),
+                    )
+                world_bible = getattr(themer, "_world_bible", {}) or {}
+                _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Theming complete", "pct": 100}))
+            except ThemingCancelled:
+                cancel_event.set()
+            except Exception as e:
+                print(f"  [card] theming failed: {e}")
+                traceback.print_exc()
+                _push(job_id, "progress", json.dumps({
+                    "step": "theme",
+                    "msg": f"⚠ Theming failed — using a basic art prompt. {e}", "warning": True}))
+
+        if cancel_event.is_set():
+            _jobs[job_id]["status"] = "cancelled"
+            _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
+            return
+
+        # Custom art prompt (or fallback when theming was skipped/failed).
+        if tc is None:
+            prompt = custom_prompt or art_theme
+            if ro_mode and prompt:
+                from themer import apply_ro_tokens as _apply_ro
+                prompt = _apply_ro(prompt, card, override_text=req.commander_prompt)
+            tc = ThemedCard(name, name, prompt, card.get("flavor_text", ""), card)
+
+        # Author mode: never let AI flavor clobber a flavor the user actually wrote.
+        if req.theme_mode != "full" and card.get("flavor_text"):
+            tc.flavor_text = card["flavor_text"]
+
+        # ── Set symbol + pips + frame ─────────────────────────────────────────
+        _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Generating set symbol…"}))
+        sym = generate_set_symbol(art_theme, emblem_prompt=req.emblem_prompt or "")
+        sym_path = RENDER_DIR / job_id / "set_symbol.png"
+        sym_path.parent.mkdir(parents=True, exist_ok=True)
+        sym.save(sym_path)
+
+        if req.custom_pips and req.generate_art:
+            _ensure_comfyui_ready(job_id)
+        _pip_emblem = _setup_deck_pips(job_id, req.custom_pips, art_theme, req.emblem_prompt or "")
+        card_renderer.set_frame_style(req.frame_style or "builtin")
+        if _pip_emblem is not None:
+            sym = _pip_emblem
+
+        render_out = RENDER_DIR / job_id / "cards"
+        render_out.mkdir(parents=True, exist_ok=True)
+        render_key = f"{_safe_name(name)}_000"
+        deck_slug  = ("".join(c if c.isalnum() else "_" for c in name)[:28] + "_card_" + job_id[:8])
+
+        # ── Persist checkpoint (deck of one) BEFORE art so a crash keeps the card ──
+        def _persist(status: str, has_render: bool) -> dict:
+            payload = {
+                "status":          status,
+                "mode":            "single_card",
+                "commander":       _themed_card_to_dict(tc, deck_index=0, has_render=has_render),
+                "deck":            [],
+                "stats":           stats,
+                "theme":           art_theme,
+                "theme_spec":      req.theme_spec or {},
+                "creativity":      req.creativity or "balanced",
+                "theme_mode":      req.theme_mode,
+                "art_prompt_mode": req.art_prompt_mode,
+                "commander_prompt": req.commander_prompt,
+                "emblem_prompt":   req.emblem_prompt or "",
+                "playstyle":       "Single Card",
+                "bracket":         0,
+                "art_style":       req.art_style,
+                "checkpoint":      req.checkpoint or "",
+                "model_speed":     req.model_speed,
+                "gen_settings":    _gen_settings_to_dict(req.gen_settings),
+                "generate_art":    req.generate_art,
+                "deck_slug":       deck_slug,
+                "face_key":        req.face_key or "",
+                "face_gender":     req.face_gender,
+                "crew_key":        "",
+                "crew_gender":     "either",
+                "crew_prompt":     "",
+                "is_commander_deck": True,
+                "user_name":       "",
+                "llm_model":       req.llm_model or "",
+                "border_theme":    req.border_theme or "",
+                "frame_style":     req.frame_style or "builtin",
+                "custom_pips":     req.custom_pips,
+                "world_bible":     world_bible,
+                "imported":        False,
+                "built_at":        time.time(),
+            }
+            (RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
+            _jobs[job_id].update(payload)
+            return payload
+
+        _persist("rendering", has_render=False)
+
+        # ── Art generation (optional) ─────────────────────────────────────────
+        art_path: Optional[Path] = None
+        if req.generate_art:
+            _ensure_comfyui_ready(job_id)
+            health = ImageGen.health_check()
+            if not health["ok"]:
+                _push(job_id, "progress", json.dumps({
+                    "step": "art", "msg": f"⚠ Art generation skipped — {health['message']}",
+                    "warning": True, "hint": health.get("hint", "")}))
+            else:
+                from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Freeing GPU for art generation…"}))
+                _wait_for_ollama_evict(req.llm_model or _DEFAULT_OLLAMA, job_id)
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
+                with _art_lock:
+                    gen = ImageGen(model_speed=req.model_speed, art_style=req.art_style,
+                                   checkpoint=req.checkpoint,
+                                   gen_settings=_resolve_gen_settings(req.gen_settings),
+                                   frame_style=req.frame_style or "builtin")
+                    if not gen.available:
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art", "msg": "⚠ ComfyUI not available — rendering without generated art.",
+                            "warning": True}))
+                    else:
+                        face_comfy_name: Optional[str] = None
+                        if req.face_key and gen.face_method != "none":
+                            _fp = get_face_paths(req.face_key)
+                            if _fp:
+                                face_comfy_name = gen.upload_face_to_comfy(_fp[0])
+                                _push(job_id, "progress", json.dumps({
+                                    "step": "art", "msg": f"Face loaded ({gen.face_method_label})"}))
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art", "msg": f"[1/1] {tc.themed_name}",
+                            "card_num": 1, "total": 1, "card_name": tc.themed_name,
+                            "has_face": face_comfy_name is not None, "pct": 50}))
+                        t0 = time.time()
+                        try:
+                            art_path = gen.generate(
+                                tc.art_prompt,
+                                str(Path("generated_art") / deck_slug / _safe_name(name)),
+                                face_comfy_name=face_comfy_name,
+                                face_gender=req.face_gender,
+                                card_type=card.get("type_line", ""),
+                            )
+                        except Exception as _ge:
+                            print(f"  [card] art gen raised: {_ge}")
+                            traceback.print_exc()
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art", "msg": f"[1/1] {tc.themed_name} — {'OK' if art_path else 'FAIL'}",
+                            "card_num": 1, "total": 1, "pct": 100,
+                            "last_ok": art_path is not None, "elapsed": round(time.time() - t0)}))
+                _wait_for_comfyui_unload(job_id)
+
+        if cancel_event.is_set():
+            _persist("cancelled", has_render=False)
+            _push(job_id, "done", json.dumps({"job_id": job_id, "cancelled": True}))
+            return
+
+        # ── Render the proxy ──────────────────────────────────────────────────
+        _push(job_id, "progress", json.dumps({"step": "render", "msg": "Rendering card…"}))
+        processed_oracle = _replace_card_self_ref(card.get("oracle_text", ""), name, tc.themed_name)
+        art_img = _PIL.open(art_path) if (art_path and art_path.exists()) else None
+        card_img = render_card(
+            tc.card, tc.themed_name, processed_oracle,
+            art_image=art_img, set_symbol=sym,
+            flavor_text=tc.flavor_text or "",
+            border_theme=req.border_theme or "",
+        )
+        card_img.save(render_out / f"{render_key}.png", "PNG")
+        _push(job_id, "card_ready", json.dumps({"key": render_key, "name": tc.themed_name}))
+
+        _persist("done", has_render=True)
+        _push(job_id, "done", json.dumps({"job_id": job_id}))
+
+    except Exception as e:
+        _mark_job_error(job_id, e)
+    finally:
+        _finalize_job(job_id)
+
+
 # ── Rebuild: re-run art gen for an already-themed deck ───────────────────────
 
 def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
@@ -1837,6 +2233,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "commander_prompt": source_data.get("commander_prompt", ""),
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
+            "collection":       source_data.get("collection"),  # C4 badge survives rebuild
             "bracket":          source_data.get("bracket", 3),
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        req.art_style,
@@ -2342,6 +2739,30 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                         "msg":  f"Crew photos loaded: {len(crew_comfy_names)} photo(s) for creature cards",
                     }))
 
+            # Upload the FORCE face — applied to every selected card regardless of
+            # type (the user explicitly wants this likeness on the card(s) they
+            # picked, so it bypasses the commander/humanoid routing below).
+            force_face_comfy_name: Optional[str] = None
+            if req.force_face_key:
+                if gen.face_method == "none":
+                    _push(job_id, "progress", json.dumps({
+                        "step": "art",
+                        "msg":  "⚠ A face was supplied but no face-swap node is installed — install PuLID / IP-Adapter / ReActor in ComfyUI to apply it",
+                    }))
+                else:
+                    _ff = get_face_paths(req.force_face_key)
+                    if _ff:
+                        force_face_comfy_name = gen.upload_face_to_comfy(_ff[0])
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art",
+                            "msg":  f"Forced face loaded ({gen.face_method_label}) — applied to all {len(to_regen)} selected card(s)",
+                        }))
+                    else:
+                        _push(job_id, "progress", json.dumps({
+                            "step": "art",
+                            "msg":  "⚠ Force-face key supplied but photos missing",
+                        }))
+
             _art_start   = time.time()
             total        = len(to_regen)
             crew_regen_idx = 0   # round-robin index for crew faces
@@ -2355,11 +2776,17 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 if cancel_event.is_set():
                     break
 
-                # Face conditioning: commander face for commander, crew for humanoid creatures
+                # Face conditioning. Priority:
+                #   1. Forced face → every selected card, any type (user's explicit pick).
+                #   2. Commander face → the commander card.
+                #   3. Crew faces → humanoid creature cards (round-robin).
                 is_commander = tc.original_name == commander_original_name
                 face_for_card   = None
                 gender_for_card = "either"
-                if is_commander and face_comfy_name_for_cmd:
+                if force_face_comfy_name:
+                    face_for_card   = force_face_comfy_name
+                    gender_for_card = req.force_face_gender or "either"
+                elif is_commander and face_comfy_name_for_cmd:
                     face_for_card   = face_comfy_name_for_cmd
                     gender_for_card = effective_face_gender
                 elif not is_commander and crew_comfy_names and _is_human_card(tc.card.get("type_line", "")):
@@ -3147,6 +3574,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "commander_prompt": commander_prompt,
             "emblem_prompt":    source_data.get("emblem_prompt", ""),
             "playstyle":        source_data.get("playstyle", ""),
+            "collection":       source_data.get("collection"),  # C4 badge survives retheme
             "bracket":          source_data.get("bracket", 3),
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        art_style,
@@ -3254,6 +3682,52 @@ def _safe_analyze(commander, deck):
         return None
 
 
+# --- MythGauntlet strength API (Myth Suite contract C3) ---------------------------------
+# Simulation-grounded deck strength: MythGauntlet plays thousands of games and returns a
+# measured Power Profile. Optional — if its local server (mythgauntlet serve) isn't up,
+# import-preview silently falls back to the deck_analysis heuristic above.
+MYTHGAUNTLET_URL = os.getenv("MYTHGAUNTLET_URL", "http://127.0.0.1:8020").rstrip("/")
+
+
+def _deck_to_lines(commander, deck) -> str:
+    """Render an imported deck as MythGauntlet's decklist text format."""
+    lines = []
+    if commander and commander.get("name"):
+        lines += ["Commander:", f"1 {commander['name']}", ""]
+    lines.append("Deck:")
+    for c in deck:
+        name = c.get("name", "")
+        if name:
+            lines.append(f"{c.get('quantity', 1)} {name}")
+    return "\n".join(lines)
+
+
+def _gauntlet_analyze(commander, deck):
+    """Simulation-grounded strength from MythGauntlet; None if the service is unavailable."""
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/analyze",
+            json={
+                "deck": _deck_to_lines(commander, deck),
+                "name": (commander or {}).get("name") or "deck",
+                "runs": 300,
+                "resilience": True,
+            },
+            timeout=25,
+        )
+        if resp.status_code != 200:
+            return None
+        data = resp.json()
+        return {
+            "engine_version": data.get("engine_version"),
+            "power_profile": data.get("power_profile"),
+            "unresolved": (data.get("deck") or {}).get("unresolved", []),
+        }
+    except Exception as e:
+        print(f"  [import-preview] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can
@@ -3279,11 +3753,18 @@ def import_preview(req: ImportPreviewRequest):
             "image_url": (cmd.get("image_uris") or {}).get("normal", ""),
         },
         "partners":     [p.get("name") for p in imp.partners],
+        "auto_face":    imp.auto_face,
+        # Unique maindeck cards (name + type) so the UI can offer per-card face
+        # assignment for non-Commander imports without re-fetching the deck.
+        "cards":        [{"name": c.get("name", ""),
+                          "type_line": (c.get("type_line", "") or "").split(" // ")[0]}
+                         for c in imp.deck],
         "unique_cards": len(imp.deck),
         "total_cards":  imp.total_cards(),
         "colors":       colors,
         "unresolved":   imp.unresolved,
         "analysis":     _safe_analyze(imp.commander, imp.deck),
+        "simulation":   _gauntlet_analyze(imp.commander, imp.deck),
     }
 
 
@@ -3388,6 +3869,7 @@ class GenerateListRequest(BaseModel):
     commander_name: str = Field("", max_length=120)
     playstyle:      str = "auto"
     bracket:        int = 3
+    use_collection: bool = False   # prefer owned cards (Myth Suite C4)
 
 
 @app.post("/api/deck/generate-list")
@@ -3406,11 +3888,20 @@ def generate_list(req: GenerateListRequest):
     profile        = build_commander_profile(card)
     active_themes  = resolve_themes(req.playstyle, profile.themes)
     slot_overrides = get_slot_adjustments(req.playstyle)
+    owned = load_owned_names() if req.use_collection else set()
     deck = DeckBuilder(_scryfall).build(
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
-        playstyle_label=ps_label, bracket=req.bracket)
+        playstyle_label=ps_label, bracket=req.bracket, owned=owned)
     deck  = aggregate_duplicates(deck)
     stats = compute_stats(card, deck)
+    collection_stats = None
+    if req.use_collection:
+        _spells = [card] + [c for c in deck
+                            if "basic" not in (c.get("type_line", "") or "").lower()]
+        collection_stats = {
+            "enabled": True, "owned": owned_count(_spells, owned),
+            "total": len(_spells), "collection_size": len(owned),
+        }
 
     # Frequency-ordered creature subtypes (commander + deck) for the reskin UI.
     from collections import Counter
@@ -3437,7 +3928,7 @@ def generate_list(req: GenerateListRequest):
     tribes = [{"type": t, "count": n} for t, n in counts.most_common()]
 
     return {"commander": card, "deck": deck, "stats": stats, "tribes": tribes,
-            "playstyle": ps_label, "bracket": req.bracket}
+            "playstyle": ps_label, "bracket": req.bracket, "collection": collection_stats}
 
 
 class ThemePreviewRequest(BaseModel):
@@ -3698,6 +4189,24 @@ async def build_deck(req: BuildRequest, background_tasks: BackgroundTasks, reque
     _jobs[job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
     _progress[job_id] = []
     background_tasks.add_task(_run_build, job_id, req)
+    return {"job_id": job_id}
+
+
+@app.post("/api/card/build")
+async def build_single_card(req: CardBuildRequest, background_tasks: BackgroundTasks, request: Request):
+    """Build a single user-authored custom card (theme + optional art + render)."""
+    if not (req.card.name or "").strip():
+        raise HTTPException(400, "Give the card a name.")
+
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(
+            429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} builds per {_RATE_LIMIT_WINDOW}s")
+
+    job_id = uuid.uuid4().hex[:16]
+    _jobs[job_id]     = {"status": "queued", "cancel_event": threading.Event(), "created_at": time.time()}
+    _progress[job_id] = []
+    background_tasks.add_task(_run_card_build, job_id, req)
     return {"job_id": job_id}
 
 
@@ -4663,7 +5172,9 @@ def _load_job_for_export(job_id: str) -> dict:
         raise HTTPException(409, "Deck still building — try again once it finishes")
     if status == "error":
         raise HTTPException(409, f"Deck failed to build: {job.get('error', 'unknown error')}")
-    if not job.get("commander") or not job.get("deck"):
+    # A single custom card is a "deck of one" (commander only, deck == []), so an
+    # empty deck list is valid there — only require the commander in that mode.
+    if not job.get("commander") or (not job.get("deck") and job.get("mode") != "single_card"):
         raise HTTPException(409, "Deck has no card data yet")
     return job
 

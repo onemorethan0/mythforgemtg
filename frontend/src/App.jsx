@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import StepHome from './components/StepHome'
 import StepCommander from './components/StepCommander'
+import StepSingleCard from './components/StepSingleCard'
 import StepFace      from './components/StepFace'
 import StepTheme     from './components/StepTheme'
 import StepBuilding  from './components/StepBuilding'
@@ -33,9 +35,16 @@ function composeVision(setting, moods, genres, lighting, inspiration) {
 
 export default function App() {
   const [step, setStep]           = useState(STEP.COMMANDER)
+  // Landing hub picks the flow: 'home' = choose; 'deck' = the 100-card builder wizard
+  // (StepCommander → Face → Theme → Building → Deck); 'card' = single custom-card designer.
+  const [mode, setMode]           = useState('home')
+  // Which StepCommander tab the "deck" flow opens on: 'generate' (Build) or 'import'
+  // (Analyze an existing deck). Set by the home hub choice.
+  const [deckEntryTab, setDeckEntryTab] = useState('generate')
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
+  const [useCollection, setUseCollection] = useState(false)  // C4: build from owned cards
   const [theme, setTheme]         = useState('')   // the "Setting" free-text (vision anchor)
   const [creativity, setCreativity] = useState('balanced')  // Faithful ↔ Imaginative dial
   const [visionMoods, setVisionMoods]       = useState([])
@@ -69,6 +78,11 @@ export default function App() {
   const [faceGender, setFaceGender] = useState('either')
   const [crewKey, setCrewKey]       = useState(null)
   const [crewGender, setCrewGender] = useState('either')
+  // Imported non-Commander decks: explicit flag + the unique card list (for the
+  // per-card face-assignment grid) + the chosen {cardName: personIndex} map.
+  const [isCommanderDeck, setIsCommanderDeck] = useState(true)
+  const [importCards, setImportCards]         = useState([])
+  const [faceAssignments, setFaceAssignments] = useState({})
   const [jobId, setJobId]         = useState(null)
   const [deck, setDeck]           = useState(null)
   // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
@@ -128,11 +142,14 @@ export default function App() {
   function reset() {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
+    setMode('home')
+    setDeckEntryTab('generate')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
-    setBracket(3); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setUseCollection(false); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
+    setIsCommanderDeck(true); setImportCards([]); setFaceAssignments({})
     setJobId(null); setDeck(null)
   }
 
@@ -165,11 +182,14 @@ export default function App() {
         prebuilt_deck:     generatedDeck || null,
         tribal_overrides:  tribalOverrides || {},
         auto_theme_tribes: autoThemeTribes,
+        use_collection:    useCollection,
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
         crew_gender:  crewGender,
         crew_prompt:  crewPrompt || "",
+        is_commander_deck: isCommanderDeck,
+        face_assignments:  isCommanderDeck ? null : (faceAssignments || {}),
         gen_settings: toGenSettingsPayload(genSettings.values),
       }),
     })
@@ -178,13 +198,42 @@ export default function App() {
     setStep(STEP.BUILDING)
   }
 
+  // ── Single-card mode: start a custom-card build ───────────────────────────
+  async function startCardBuild(payload) {
+    const res = await fetch('/api/card/build', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    if (!res.ok) {
+      let detail = `HTTP ${res.status}`
+      try { const e = await res.json(); if (e.detail) detail = e.detail } catch {}
+      throw new Error(detail)
+    }
+    const data = await res.json()
+    _setJobId(data.job_id)
+    setStep(STEP.BUILDING)
+  }
+
+  // ── Home hub: pick one of the three flows ─────────────────────────────────
+  function handleChoose(key) {
+    if (key === 'card') {
+      setMode('card')
+    } else {
+      setMode('deck')
+      setDeckEntryTab(key === 'analyze' ? 'import' : 'generate')
+    }
+    setStep(STEP.COMMANDER)
+  }
+
   // ── Face step handlers ────────────────────────────────────────────────────
-  function handleFaceNext(key, method, gender, cKey, cGender) {
+  function handleFaceNext(key, method, gender, cKey, cGender, assignments) {
     setFaceKey(key)
     setFaceMethod(method)
     setFaceGender(gender || 'either')
     setCrewKey(cKey   || null)
     setCrewGender(cGender || 'either')
+    setFaceAssignments(assignments || {})
     setStep(STEP.THEME)
   }
   function handleFaceSkip() {
@@ -193,6 +242,7 @@ export default function App() {
     setFaceGender('either')
     setCrewKey(null)
     setCrewGender('either')
+    setFaceAssignments({})
     setStep(STEP.THEME)
   }
 
@@ -268,6 +318,8 @@ export default function App() {
     setPlaystyle(psKey)
 
     setBracket(d.bracket || 3)
+    // C4: a collection-built deck re-edits with the toggle still on.
+    setUseCollection(!!(d.collection && d.collection.enabled))
     // Restore the structured vision fields if saved; else seed Setting with the theme.
     const spec = d.theme_spec || {}
     setTheme(spec.setting || d.theme || '')
@@ -307,6 +359,10 @@ export default function App() {
     setFaceGender(d.face_gender || 'either')
     setCrewKey(d.crew_key || null)
     setCrewGender(d.crew_gender || 'either')
+    // Restore the Commander-deck flag; per-card assignments need photos re-uploaded
+    // (face keys aren't re-displayable), so the user re-assigns on the Face step.
+    setIsCommanderDeck(d.is_commander_deck !== false)
+    setImportCards([]); setFaceAssignments({})
 
     // Fresh build → new job id; clear the old one so we don't reconnect to it.
     _setJobId(null)
@@ -328,15 +384,20 @@ export default function App() {
     }
   }
 
-  // Steps shown in the progress indicator (everything before DECK)
-  const showProgress = step >= STEP.COMMANDER && step <= STEP.BUILDING
+  // Steps shown in the progress indicator (everything before DECK). The deck
+  // wizard's labelled steps don't apply to the single-card designer, so the
+  // indicator is shown only in deck mode (single-card still uses BUILDING/DECK).
+  const showProgress = mode === 'deck' && step >= STEP.COMMANDER && step <= STEP.BUILDING
+  // The Home button appears anywhere except the landing hub itself and mid-build.
+  const onHome = mode === 'home' && step === STEP.COMMANDER
+  const showHome = !onHome && step !== STEP.BUILDING
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#0c0a09', color: '#f5f5f4' }}>
       {/* Header */}
       <header style={{ borderBottom: '1px solid #292524', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '22px' }}>⚔</span>
+          <span style={{ fontSize: '22px' }}>🔨</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             <span style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '0.15em', color: '#eab308', textTransform: 'uppercase' }}>
               Myth Forge
@@ -348,17 +409,20 @@ export default function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <LogViewer />
+          {showHome && (
+            <button
+              onClick={reset}
+              style={{ fontSize: '13px', color: '#78716c', background: 'none', border: '1px solid #292524', borderRadius: 8, padding: '5px 12px', cursor: 'pointer' }}
+            >
+              🏠 Home
+            </button>
+          )}
           {step !== STEP.HISTORY && step !== STEP.BUILDING && (
             <button
               onClick={() => setStep(STEP.HISTORY)}
               style={{ fontSize: '13px', color: '#78716c', background: 'none', border: '1px solid #292524', borderRadius: 8, padding: '5px 12px', cursor: 'pointer' }}
             >
               📚 History
-            </button>
-          )}
-          {step > STEP.COMMANDER && step < STEP.BUILDING && (
-            <button onClick={reset} style={{ fontSize: '13px', color: '#78716c', background: 'none', border: 'none', cursor: 'pointer' }}>
-              ← Start over
             </button>
           )}
         </div>
@@ -404,21 +468,42 @@ export default function App() {
       {/* Content */}
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 16px 48px' }}>
 
-        {step === STEP.COMMANDER && (
-          <StepCommander
-            bracket={bracket}
-            onBracketChange={setBracket}
-            playstyle={playstyle}
-            onPlaystyleChange={setPlaystyle}
-            onNext={card => {
-              setCommander(card)
-              // Generated decks carry the pre-built list + tribes from phase 1.
-              const g = card && card._generated
-              setGeneratedDeck(g ? g.deck : null)
-              setDeckTribes(g ? (g.tribes || []) : [])
-              setTribalOverrides({})
-              setStep(STEP.FACE)
-            }}
+        {step === STEP.COMMANDER && mode === 'home' && (
+          <StepHome onChoose={handleChoose} />
+        )}
+
+        {step === STEP.COMMANDER && mode === 'deck' && (
+              <StepCommander
+                initialTab={deckEntryTab}
+                bracket={bracket}
+                onBracketChange={setBracket}
+                playstyle={playstyle}
+                onPlaystyleChange={setPlaystyle}
+                useCollection={useCollection}
+                onUseCollectionChange={setUseCollection}
+                onNext={card => {
+                  setCommander(card)
+                  // Generated decks carry the pre-built list + tribes from phase 1.
+                  const g = card && card._generated
+                  setGeneratedDeck(g ? g.deck : null)
+                  setDeckTribes(g ? (g.tribes || []) : [])
+                  setTribalOverrides({})
+                  // Import flow carries whether it's a Commander deck + the card list
+                  // for per-card face assignment. Generated decks are always commander.
+                  const imp = card && card._import
+                  setIsCommanderDeck(imp ? imp.is_commander_deck !== false : true)
+                  setImportCards(imp ? (imp.cards || []) : [])
+                  setFaceAssignments({})
+                  setStep(STEP.FACE)
+                }}
+              />
+        )}
+
+        {step === STEP.COMMANDER && mode === 'card' && (
+          <StepSingleCard
+            genSettings={genSettings}
+            onGenerate={startCardBuild}
+            onBack={() => setMode('home')}
           />
         )}
 
@@ -429,6 +514,8 @@ export default function App() {
             onGenderChange={setFaceGender}
             crewGender={crewGender}
             onCrewGenderChange={setCrewGender}
+            isCommanderDeck={isCommanderDeck}
+            importCards={importCards}
             onNext={handleFaceNext}
             onSkip={handleFaceSkip}
             onBack={() => setStep(STEP.COMMANDER)}

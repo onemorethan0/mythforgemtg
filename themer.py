@@ -69,10 +69,87 @@ OLLAMA_MODEL         = "qwen3:14b"  # best JSON reliability; 8b truncated ~30% o
                                     # prompts on full 78-card builds (empty art_prompts
                                     # -> Scryfall/fallback). 14b is worth the slower
                                     # theming. 8b still selectable per-build via llm_model.
-BATCH_SIZE      = 5   # smaller batches truncate far less often (8 left ~22/78 cards
-                      # with empty art_prompts on RO builds). 5 + retry-on-any-empty
-                      # drives empties to ~0.
+BATCH_SIZE      = 8   # Was 5 ONLY because the old context ceiling truncated 8-card
+                      # batches (~22/78 cards came back with empty art_prompts on RO
+                      # builds). With llama-swap now at -c 32768 that ceiling is gone,
+                      # so 8 is safe again — and it's a DIVERSITY lever, not just speed:
+                      # the "no two cards share a setting/backdrop" rule in
+                      # _batch_prompt_v2 is enforced WITHIN a batch (cross-batch only
+                      # de-dups NAMES via avoid_names, not scenes), so a wider batch
+                      # forces more cards into distinct settings per call → better
+                      # deck-wide scene variety. retry-on-any-empty + the larger
+                      # num_predict below keep truncation at ~0. Drop back to 5 if a
+                      # quality model's per-card prompts ever feel weaker in long batches.
 REQUEST_TIMEOUT = 240   # margin for a contended GPU (~13 tok/s → 8-card batch ~60-90s)
+
+# Context window for the Ollama FALLBACK path (options.num_ctx). The default
+# llama.cpp backend bakes ctx into the llama-swap launch args (-c 32768) and
+# ignores this field; this only governs MYTHFORGE_LLM_BACKEND=ollama. Kept in
+# sync with llama-swap so the larger BATCH_SIZE / num_predict can't truncate on
+# the fallback (a 4096 ctx left no room for input once num_predict grew).
+LLM_NUM_CTX = int(os.environ.get("MYTHFORGE_LLM_NUM_CTX", "32768"))
+
+# ── Few-shot exemplar gating ──────────────────────────────────────────────────
+# A worked FORMAT EXAMPLE (one ideal batch, shown before the real cards) lifts
+# output quality and name↔art↔flavor integration. The risk is theme-bleed: a
+# smaller model copies the example's WORLD into the user's deck, hurting theme
+# faithfulness (the user's #1 priority). So the exemplar is gated to ≥14B-class
+# models, which reliably treat it as format-only and ignore its content.
+#   MYTHFORGE_THEME_FEWSHOT = auto (default) | on | off
+_FEWSHOT_MODE  = os.environ.get("MYTHFORGE_THEME_FEWSHOT", "auto").strip().lower()
+_FEWSHOT_MIN_B = float(os.environ.get("MYTHFORGE_THEME_FEWSHOT_MIN_B", "14"))
+
+
+def _model_param_b(model: str) -> float:
+    """Best-effort parameter count (billions) for a model id/label. Parses a
+    '<N>b' size tag (qwen3:14b→14, llama3.1:8b→8); for ids with no size tag
+    (qwen3.6:latest, glm-4.7-flash:q4_K_M) falls back to LLM_CATALOG size_gb as a
+    proxy (~0.65 GB per B at q4-q8 quant). 0.0 when nothing is parseable."""
+    m = (model or "").lower()
+    nums = re.findall(r"(\d+(?:\.\d+)?)\s*b\b", m)
+    if nums:
+        try:
+            return max(float(n) for n in nums)
+        except ValueError:
+            pass
+    for entry in LLM_CATALOG:
+        if entry.get("key") == model and entry.get("size_gb"):
+            return float(entry["size_gb"]) / 0.65
+    return 0.0
+
+
+def _use_fewshot(model: str) -> bool:
+    """Whether to include the format exemplar for this model (see _FEWSHOT_MODE)."""
+    if _FEWSHOT_MODE == "on":
+        return True
+    if _FEWSHOT_MODE == "off":
+        return False
+    return _model_param_b(model) >= _FEWSHOT_MIN_B
+
+
+# A single ideal batch in a DELIBERATELY unrelated throwaway world, bracketed by a
+# hard "do not copy its content" guard. It teaches STRUCTURE only: unique evocative
+# names; art_prompts that depict the exact name, lead with world+subject, name real
+# colours, keep the mechanical action a late secondary beat, end on one quality tag;
+# a LAND with terrain and no people; 10-15-word in-world flavour. Triple-SINGLE
+# quoted so the JSON's double quotes need no escaping.
+_FEWSHOT_BLOCK = '''
+━━━ FORMAT EXAMPLE (shows HOW to write entries — its CONTENT is off-limits) ━━━
+This example uses a THROWAWAY world ("a storm-wracked brass airship armada above an
+endless ocean") that has NOTHING to do with this deck. Study ONLY its structure —
+how each themed_name is unique and evocative; how each art_prompt DEPICTS that exact
+name, leads with world + subject, names real colours, places the mechanical action
+as a late secondary beat, and ends with one quality tag; how the LAND shows terrain
+with NO people; how flavor_text speaks in-world in 10-15 words. DO NOT reuse this
+example's world, motifs, names, palette, or phrasing — every card you write MUST
+come from the WORLD THEME above, never from this example.
+[
+  {"idx":0,"themed_name":"Skymarshal of the Ninth Gale","art_prompt":"weathered brass-armored airship captain mid-shout on a storm-lashed deck, coat snapping in the wind, signaling a diving skyship behind her, ivory and verdigris tones under bruised grey storm-light, dramatic lighting","flavor_text":"The sky answers only to those who refuse, at last, to fall."},
+  {"idx":1,"themed_name":"The Drowned Spire Harbor","art_prompt":"sweeping panorama of a half-sunken brass clocktower rising from an endless grey ocean, frozen gears furred with barnacles, gulls wheeling through cold salt mist, tarnished gold and deep teal light, no figures at all, vast and desolate, atmospheric","flavor_text":"Time stopped in this harbor the very day the rising tide finally won."},
+  {"idx":2,"themed_name":"Cut the Tether","art_prompt":"a brass airship's mooring cable snapping apart in mid-air above open water, the freed vessel listing hard as crates tumble into grey waves, sparks racing along the frayed wire, stormy steel-blue palette, cinematic","flavor_text":"One clean cut, and the whole armada slowly learned how to grieve."}
+]
+━━━ END FORMAT EXAMPLE — now write the REAL cards below, from the WORLD THEME. ━━━
+'''
 
 # ── Medium-tag stripper ───────────────────────────────────────────────────────
 # Ollama reliably defaults to "dramatic fantasy oil painting, ..." regardless
@@ -321,7 +398,7 @@ def _ollama_native_chat(messages, *, model, temperature, num_predict, think, str
                         top_p=None, top_k=None, repeat_penalty=None,
                         frequency_penalty=None, presence_penalty=None,
                         timeout=REQUEST_TIMEOUT) -> str:
-    options: dict = {"temperature": temperature, "num_ctx": 4096, "num_gpu": 99,
+    options: dict = {"temperature": temperature, "num_ctx": LLM_NUM_CTX, "num_gpu": 99,
                      "num_predict": num_predict}
     if top_p is not None:
         options["top_p"] = top_p
@@ -734,34 +811,38 @@ def compose_commander_name(user_name: str, themed_name: str, commander_card: dic
 # line. Computed once in theme_deck and threaded into every batch.
 
 def _collect_tribes(cards: list[dict], max_tribes: int = 20) -> list[str]:
-    """Frequency-ordered creature subtypes (tribes) across the deck."""
+    """Frequency-ordered creature subtypes (tribes) across the deck. Reuses the
+    face-aware `_creature_subtypes` so multi-face cards never leak non-subtype
+    tokens ('//', 'Legendary', 'Creature', a stray '—') into the tribe list."""
     from collections import Counter
     counts: "Counter[str]" = Counter()
     for c in cards:
-        tl = c.get("type_line", "") or ""
-        if "creature" not in tl.lower():
-            continue
-        # Subtypes follow the long dash (—); also tolerate a plain hyphen.
-        parts = tl.replace(" - ", " — ").split("—", 1)
-        if len(parts) < 2:
-            continue
-        for sub in parts[1].strip().split():
-            s = sub.strip()
-            if s:
-                counts[s] += 1
+        for s in _creature_subtypes(c.get("type_line", "") or ""):
+            counts[s] += 1
     return [t for t, _ in counts.most_common(max_tribes)]
 
 
 def _creature_subtypes(type_line: str) -> list[str]:
     """Creature subtypes from a type line ('Legendary Creature — Faerie Warlock'
-    -> ['Faerie', 'Warlock']). Empty for non-creatures / typeless cards."""
+    -> ['Faerie', 'Warlock']). Empty for non-creatures / typeless cards.
+
+    Multi-face cards (MDFC/split/transform, '… // …') are read FACE BY FACE: each
+    face contributes the words after its OWN em-dash, and only creature faces count.
+    Without this, a card like 'Creature — Ogre Shaman // Legendary Creature — Ogre
+    Shaman' would (via a single split on the first '—') leak the back face's
+    pre-dash words ('Legendary', 'Creature'), the '//' separator, and the second
+    '—' into the subtype list — which then poisoned tribe detection / the reskin
+    map (the 'all cards become the same creature type' import bug)."""
     tl = type_line or ""
     if "creature" not in tl.lower():
         return []
-    norm = tl.replace(" - ", " — ")
-    if "—" not in norm:
-        return []
-    return [s for s in norm.split("—", 1)[1].strip().split() if s]
+    out: list[str] = []
+    for face in tl.replace(" - ", " — ").split("//"):
+        if "creature" not in face.lower() or "—" not in face:
+            continue
+        tail = face.split("—", 1)[1]
+        out.extend(s for s in tail.strip().split() if s)
+    return out
 
 
 def _commander_tribe(commander: dict, override: str = "") -> str:
@@ -781,6 +862,38 @@ def _commander_tribe(commander: dict, override: str = "") -> str:
     if subs[0] in _GENERIC_RACE and len(subs) > 1:
         return subs[1]
     return subs[0]
+
+
+def _decluster_name_words(names: list[str], words: list[str], cap: int = 1) -> list[str]:
+    """Cap how many themed names may contain each `word` (case-insensitive whole
+    word). The first `cap` names that use a word keep it; later names have it
+    stripped (with dangling connectors tidied). Pure + order-stable.
+
+    Stops a colour faction's proper name ("the Ashen Covenant") from prefixing
+    every same-colour card ("Ashen Wisp", "Ashen Lord", "Plague of Ashen Blood",
+    …) — faction cohesion belongs to the art/palette, not a shared name stem.
+    A name is left unchanged if stripping would shrink it below 3 characters."""
+    words = list(dict.fromkeys(w.lower() for w in words if w))
+    if not words:
+        return list(names)
+    counts: dict[str, int] = {}
+    out: list[str] = []
+    for nm in names:
+        nm = (nm or "").strip()
+        for fw in words:
+            if not re.search(rf"\b{re.escape(fw)}\b", nm, flags=re.I):
+                continue
+            if counts.get(fw, 0) >= cap:
+                new = re.sub(rf"\b{re.escape(fw)}\b", "", nm, flags=re.I)
+                new = re.sub(r"\s{2,}", " ", new)
+                new = re.sub(r"\b(of|the|de|du|of the)\b\s*$", "", new, flags=re.I)
+                new = re.sub(r"^(of|the|de|du)\s+", "", new, flags=re.I).strip(" ,-—'")
+                if len(new) >= 3 and new.lower() != nm.lower():
+                    nm = new
+            else:
+                counts[fw] = counts.get(fw, 0) + 1
+        out.append(nm)
+    return out
 
 
 def _name_too_close(word: str, cmd_tokens: list[str]) -> bool:
@@ -848,23 +961,29 @@ def _generate_tribal_map(theme: str, tribes: list[str],
 def _apply_tribal_map_to_type_line(type_line: str, tribal_map: dict) -> str:
     """Replace mapped creature subtypes in a type line so the displayed card type
     matches the reskin (e.g. 'Legendary Creature — Cat' → '… — Cyber Falcon')."""
-    if not tribal_map or "—" not in type_line.replace(" - ", " — "):
+    norm = type_line.replace(" - ", " — ")
+    if not tribal_map or "—" not in norm:
         return type_line
-    head, _, tail = type_line.replace(" - ", " — ").partition("—")
-    subs = tail.strip().split()
-    # If any subtype is reskinned, ONE replacement *becomes* the creature's whole
-    # kind — drop the unmapped race words AND collapse multiple mapped subtypes to a
-    # single type. When several subtypes map (e.g. all-tribes auto-reskin turns both
-    # words of "Human Knight"), prefer the LAST mapped subtype: MTG lists race then
-    # class, so the trailing token is the job/class (Knight→Lord Knight), which is
-    # the more specific identity. This keeps the line to one reskin ("— Lord Knight",
-    # not "— Demihuman Lord Knight" / "— Chrome Sentinel Cyber Falcon").
-    mapped = [tribal_map[s] for s in subs if s in tribal_map]
-    if mapped:
-        new_subs = [mapped[-1]]
-    else:
-        new_subs = subs
-    return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else type_line
+
+    def _reskin_face(face: str) -> str:
+        if "—" not in face:
+            return face.strip()
+        head, _, tail = face.partition("—")
+        subs = tail.strip().split()
+        # If any subtype is reskinned, ONE replacement *becomes* the creature's
+        # whole kind — drop the unmapped race words AND collapse multiple mapped
+        # subtypes to a single type. When several subtypes map (e.g. all-tribes
+        # auto-reskin turns both words of "Human Knight"), prefer the LAST mapped
+        # subtype: MTG lists race then class, so the trailing token is the
+        # job/class (Knight→Lord Knight), the more specific identity. This keeps
+        # the line to one reskin ("— Lord Knight", not "— Demihuman Lord Knight").
+        mapped = [tribal_map[s] for s in subs if s in tribal_map]
+        new_subs = [mapped[-1]] if mapped else subs
+        return f"{head.strip()} — {' '.join(new_subs)}" if new_subs else face.strip()
+
+    # Multi-face cards ('… // …') are reskinned face-by-face and rejoined, so a
+    # back face never bleeds into the front (and vice-versa).
+    return " // ".join(_reskin_face(f) for f in norm.split("//"))
 
 
 def _subtype_echoes_name(type_line: str, themed_name: str) -> bool:
@@ -2003,7 +2122,8 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                      lora_vocabulary: str = "",
                      tribal_map: Optional[dict] = None,
                      avoid_names: Optional[list[str]] = None,
-                     world_bible: Optional[dict] = None) -> str:
+                     world_bible: Optional[dict] = None,
+                     fewshot: bool = False) -> str:
     """
     Enhanced dual-anchor prompt (v2).
 
@@ -2048,6 +2168,11 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
                 "prefix onto a taken one (if 'Ashen Citadel' is taken, 'Lost Ashen "
                 "Citadel' is NOT a new name). No distinctive word should anchor more "
                 "than ~2 cards across the whole deck.\n")
+
+    # Format exemplar (≥14B models only — see _use_fewshot). Placed just before the
+    # real cards so the model anchors on its STRUCTURE, with a hard content-guard so
+    # it doesn't bleed the example world into the user's theme.
+    fewshot_block = _FEWSHOT_BLOCK if fewshot else ""
 
     theme = _quote_user_text(theme)
     commander_name = _quote_user_text(commander_name, max_len=120)
@@ -2197,11 +2322,16 @@ def _batch_prompt_v2(theme: str, commander_name: str, cards: list[dict],
     factions_block = ""
     if _factions:
         _fp = ["\n\n━━━ COLOUR FACTIONS (SET COHESION — MANDATORY) ━━━",
-               "This world's colours are FACTIONS. Col 8 names each card's faction. The themed_name and "
-               "art MUST depict that faction — its people, signature materials, architecture, attire and "
-               "palette. EVERY card of the same colour belongs to the SAME faction and must look like it "
-               "(this is what makes the deck read as one set, not random cards). Multicolour cards blend "
-               "their factions; colourless cards are neutral relics/constructs of the world."]
+               "This world's colours are FACTIONS. Col 8 names each card's faction. The ART (and the FEEL of "
+               "the themed_name) MUST reflect that faction — its people, signature materials, architecture, "
+               "attire and palette. EVERY card of the same colour belongs to the SAME faction and must look "
+               "like it (this is what makes the deck read as one set, not random cards). Multicolour cards "
+               "blend their factions; colourless cards are neutral relics/constructs of the world.",
+               "NAMING — do NOT reuse the faction's PROPER NAME (or any one of its words) as a recurring "
+               "prefix/word across card names. Every themed_name must be DISTINCT; let the faction show "
+               "through materials, roles, attire and imagery — never a shared name-word. "
+               "(A faction called 'the Ashen Covenant' must NOT yield 'Ashen Wisp', 'Ashen Lord', "
+               "'Ashen Reckoning' — vary every name.)"]
         for _c in [x for x in ["W", "U", "B", "R", "G"] if x in _factions]:
             _f = _factions[_c]
             _mot = ", ".join(m for m in (_f.get("motifs") or []) if m)
@@ -2315,7 +2445,7 @@ Return ONLY a JSON array, nothing else. Each object must have:
     QUALITY — end with ONE tag: {themer_quality or _DEFAULT_QUALITY}
     ORDER: theme-world + character LEAD; mechanical action is a supporting beat near the end of the scene description (before the quality tag).
 - "flavor_text": 10-15 word in-universe quote in the voice of the "{theme}" world. Reflects the card's SOUL and the spirit of the original card (col 2) — evocative of what it is and does, not generic atmosphere. Where it fits, let it speak from the card's FACTION (col 8) or echo the world's LORE/central tension, so the deck's flavour reads as one connected story.
-{avoid_block}
+{avoid_block}{fewshot_block}
 Cards to process (idx|name|type|mechanics|color_palette|role|soul|faction):
 {card_block}
 
@@ -2329,8 +2459,11 @@ def _ollama_chat(prompt: str, model: str = OLLAMA_MODEL) -> str:
 
     Name kept for historical reasons; dispatches to llama.cpp or Ollama via
     _chat_completion. think=False skips qwen3's chain-of-thought pass (~30-40%
-    faster for JSON-structured creative tasks). num_predict=1792 gives headroom
-    for a full batch from verbose large models without mid-JSON truncation.
+    faster for JSON-structured creative tasks). num_predict=3072 gives generous
+    headroom for a full BATCH_SIZE=8 batch even from verbose quality models (GLM
+    4.7, Qwen 3.6 27B) so the back cards of a batch never get self-compressed or
+    truncated to fit a tighter budget. (Was 1792 for 5-card batches; under the
+    32k context this 2× output budget is a rounding error on total ctx.)
 
     Sampling (tuned for varied but coherent names):
       • temperature 0.9 — the proven value before the llama.cpp migration (which
@@ -2346,7 +2479,7 @@ def _ollama_chat(prompt: str, model: str = OLLAMA_MODEL) -> str:
     return _chat_completion(
         [{"role": "system", "content": SYSTEM_PROMPT},
          {"role": "user",   "content": prompt}],
-        model=model, temperature=0.9, num_predict=1792, think=False, stream=True,
+        model=model, temperature=0.9, num_predict=3072, think=False, stream=True,
         top_p=0.95, top_k=40, repeat_penalty=1.0,
         frequency_penalty=0.4, presence_penalty=0.3,
     )
@@ -2537,6 +2670,9 @@ class Themer:
         """
         _prompt_fn    = _batch_prompt_v2
         prompt_version = "v2 (dual-anchor)"
+        # Format exemplar only for ≥14B-class models (smaller ones bleed its world
+        # into the user's theme). Computed once and reused for the half-batch retries.
+        _fewshot = _use_fewshot(self.model)
 
         prompt = _prompt_fn(theme, commander_name, cards, style_guide,
                             commander_prompt=commander_prompt,
@@ -2548,7 +2684,8 @@ class Themer:
                             lora_vocabulary=lora_vocabulary,
                             tribal_map=tribal_map,
                             avoid_names=avoid_names,
-                            world_bible=world_bible)
+                            world_bible=world_bible,
+                            fewshot=_fewshot)
         raw    = _ollama_chat(prompt, model=self.model)
         parsed = _parse_batch(raw, cards)
 
@@ -2589,6 +2726,7 @@ class Themer:
                     tribal_map=tribal_map,
                     avoid_names=avoid_names,
                     world_bible=world_bible,
+                    fewshot=_fewshot,
                 )
                 sub_raw    = _ollama_chat(sub_prompt, model=self.model)
                 sub_parsed = _parse_batch(sub_raw, sub_cards)
@@ -2906,6 +3044,35 @@ class Themer:
             if _stripped:
                 print(f"  [themer] stripped creature/tribe words from {_stripped} land name(s)")
 
+        # ── De-cluster faction PROPER-NAME words from themed names ─────────────
+        # A colour faction named e.g. "the Ashen Covenant" makes the model prefix
+        # nearly every same-colour card with "Ashen" ("Ashen Wisp", "Ashen Lord",
+        # "Plague of Ashen Blood", …). Faction cohesion belongs to the ART, palette
+        # and materials — NOT to a shared name stem. Cap each distinctive faction
+        # name-word to ONE appearance and strip it from the rest (keeping a distinct
+        # remainder), so the same colour stops reading as one repeated adjective.
+        _FACTION_NAME_STOP = {"the", "of", "and", "a", "an", "de", "du", "la", "le",
+                              "order", "covenant", "clan", "house", "guild", "circle",
+                              "cult", "court", "legion", "pact", "host", "choir"}
+        _faction_words: list[str] = []
+        for _f in (world_bible.get("color_factions") or {}).values():
+            if isinstance(_f, dict):
+                for _w in re.findall(r"[A-Za-z']{4,}", _f.get("name", "") or ""):
+                    if _w.lower() not in _FACTION_NAME_STOP:
+                        _faction_words.append(_w.lower())
+        _faction_words = list(dict.fromkeys(_faction_words))
+        if _faction_words:
+            _order  = sorted(themed_entries)
+            _names  = [(themed_entries[_i].get("themed_name") or "").strip() for _i in _order]
+            _declus = _decluster_name_words(_names, _faction_words, cap=1)
+            _declustered = 0
+            for _i, _old, _nw in zip(_order, _names, _declus):
+                if _nw != _old:
+                    themed_entries[_i]["themed_name"] = _nw
+                    _declustered += 1
+            if _declustered:
+                print(f"  [themer] de-clustered faction name-word(s) from {_declustered} name(s)")
+
         _seen_names: set[str] = set()
         _dupes = 0
         for _i in sorted(themed_entries):
@@ -3180,6 +3347,134 @@ class Themer:
         unload_ollama_model(model=self.model)
 
         return themed_all[0], themed_all[1:]
+
+    # ── Single custom card ────────────────────────────────────────────────────
+    def theme_single_card(
+        self,
+        card:             dict,
+        theme:            str,
+        *,
+        commander_prompt: str  = "",   # how the card's subject should look
+        style_guide_hint: str  = "",
+        themer_medium:    str  = "",
+        themer_quality:   str  = "",
+        lora_vocabulary:  str  = "",
+        ro_mode:          bool = False,
+        theme_spec:       Optional[dict] = None,
+        creativity:       str  = "balanced",
+        gender:           str  = "",
+        want_flavor:      bool = True,
+    ) -> ThemedCard:
+        """Theme a SINGLE user-authored card — generate an ``art_prompt`` (and
+        optional flavor text) that *depicts the card's own name*, WITHOUT renaming
+        it or touching its rules text.
+
+        This is the "author it yourself, AI does the art" path of single-card
+        mode (the "let AI theme everything" path reuses ``theme_deck`` with a
+        one-card deck instead). It builds the same world bible + style guide as a
+        deck so the art still reflects the user's vision, then makes ONE focused
+        LLM call for this card. Falls back to a deterministic prompt on any LLM
+        failure (mirrors the deck path's stub guard).
+
+        Returns a ThemedCard whose ``themed_name``/``card`` are the user's
+        verbatim inputs and whose ``art_prompt``/``flavor_text`` are generated.
+        """
+        name      = (card.get("name") or "Custom Card").strip()
+        type_line = card.get("type_line", "")
+        oracle    = card.get("oracle_text", "")
+        ci        = card.get("color_identity", []) or []
+
+        # World bible (shares the deck pipeline so the art matches the vision).
+        _has_spec = bool(theme_spec) and any(
+            (theme_spec or {}).get(k) for k in ("setting", "genres", "moods", "lighting", "inspiration"))
+        try:
+            if _has_spec:
+                world_bible = build_creative_brief(
+                    theme_spec, name, commander_prompt,
+                    style_guide_hint=style_guide_hint, creativity=creativity,
+                    model=self.model, fallback_theme=theme)
+            else:
+                _exp, _zones = _expand_theme(theme, model=self.model)
+                world_bible = {
+                    "world": _exp, "must_include": _extract_user_motifs(None, theme),
+                    "signature_details": [], "palette": _extract_theme_palette(theme),
+                    "zones": _zones, "seed": theme,
+                    "creativity": (creativity or "balanced").lower(),
+                }
+        except Exception as e:
+            print(f"  [themer] single-card world bible failed ({e}); using flat theme.")
+            world_bible = {"world": theme, "must_include": [], "signature_details": [],
+                           "palette": _extract_theme_palette(theme), "zones": []}
+        self._world_bible = world_bible
+        expanded_theme = world_bible.get("world", theme) or theme
+
+        try:
+            style_guide = _generate_style_guide(
+                expanded_theme, name, commander_prompt=commander_prompt,
+                style_guide_hint=style_guide_hint,
+                must_include=world_bible.get("must_include"), model=self.model)
+        except Exception as e:
+            print(f"  [themer] single-card style guide failed ({e}).")
+            style_guide = expanded_theme
+
+        palette = _color_palette_hint(ci, world_bible.get("palette", ""))
+        must_inc = [m for m in (world_bible.get("must_include") or []) if m][:4]
+
+        # ── ONE focused art-prompt call ───────────────────────────────────────
+        subject_note = f"\nSUBJECT APPEARANCE (honor this): {commander_prompt.strip()}" if commander_prompt.strip() else ""
+        gender_note  = ""
+        if (gender or "").lower() in ("male", "female"):
+            gender_note = f"\nIf a person is depicted, they are {gender.lower()}."
+        motif_note = f"\nWeave in 1-2 of these world motifs where natural: {', '.join(must_inc)}." if must_inc else ""
+        medium_note  = f"\nMEDIUM: {themer_medium}" if themer_medium else ""
+        quality_note = f"\nQUALITY: {themer_quality}" if themer_quality else ""
+
+        user_msg = (
+            f"WORLD: {expanded_theme}\n"
+            f"VISUAL STYLE: {style_guide}\n"
+            f"CARD NAME (the subject to depict): {name}\n"
+            f"CARD TYPE: {type_line}\n"
+            f"RULES TEXT (context only — do not write it into the art): {oracle[:300]}\n"
+            f"PALETTE (use these colours): {palette}"
+            f"{subject_note}{gender_note}{motif_note}{medium_note}{quality_note}\n\n"
+            "Write a vivid single-paragraph art prompt (about 45-70 words) for an "
+            "illustration that DEPICTS the card name above using 2-3 concrete visual "
+            "elements, set in this world and palette. Do NOT invent a different name "
+            "or write any card text. "
+            + ("Also write a short evocative one-sentence flavor quote. " if want_flavor else "")
+            + 'Respond ONLY as JSON: {"art_prompt": "...", "flavor_text": "..."}'
+        )
+
+        art_prompt = ""
+        flavor     = ""
+        try:
+            raw = _chat_completion(
+                [{"role": "system", "content": "You are an MTG art director. Output only valid JSON."},
+                 {"role": "user", "content": user_msg}],
+                model=self.model, temperature=0.9, num_predict=512, think=False,
+                top_p=0.95, top_k=40, frequency_penalty=0.3, presence_penalty=0.2,
+            )
+            obj = _extract_json_object(raw) or {}
+            art_prompt = (obj.get("art_prompt") or "").strip()
+            flavor     = (obj.get("flavor_text") or "").strip()
+        except Exception as e:
+            print(f"  [themer] single-card art prompt LLM failed ({e}); using fallback.")
+
+        if _is_stub_prompt(art_prompt):
+            # Deterministic fallback so a single-card build never ships an empty prompt.
+            art_prompt = (f"{name}, {type_line or 'fantasy subject'}, depicted with dramatic "
+                          f"composition; {palette}; {style_guide}").strip()
+
+        if ro_mode:
+            art_prompt = apply_ro_tokens(art_prompt, card, override_text=commander_prompt)
+
+        return ThemedCard(
+            original_name=name,
+            themed_name  =name,           # author mode: keep the user's name verbatim
+            art_prompt   =art_prompt,
+            flavor_text  =flavor if want_flavor else "",
+            card         =card,
+        )
 
 
 # ── Display / export helpers ──────────────────────────────────────────────────
