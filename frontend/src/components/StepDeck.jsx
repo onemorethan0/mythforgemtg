@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import AdvisePanel from './AdvisePanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import { searchCards } from '../utils/searchCards'
@@ -1562,10 +1563,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         )}
       </div>
 
-      {/* Simulation-grounded strength (Myth Suite C3) — full decks only */}
+      {/* Simulation-grounded strength + upgrade advisor (Myth Suite C3/C4) — full decks only */}
       {!single && (
         <div style={{ marginBottom: 20 }}>
           <MeasurePanel key={jobId} jobId={jobId} cached={deck.last_measure} />
+          <AdvisePanel key={`adv-${jobId}`} jobId={jobId} />
         </div>
       )}
 

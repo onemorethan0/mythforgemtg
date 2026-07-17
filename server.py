@@ -3728,6 +3728,72 @@ def _gauntlet_analyze(commander, deck):
         return None
 
 
+def _gauntlet_advise(commander, deck, axis=None):
+    """Owned-card upgrade suggestions from MythGauntlet's ablation advisor.
+
+    Returns the advise JSON, {"error": detail} for a meaningful 400 (no collection
+    exported / bad axis), or None when the service is unreachable.
+    """
+    try:
+        payload = {
+            "deck": _deck_to_lines(commander, deck),
+            "name": (commander or {}).get("name") or "deck",
+            "runs": 300,
+            "max_eval": 8,
+        }
+        if axis:
+            payload["axis"] = axis
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=90)
+        if resp.status_code == 400:
+            try:
+                return {"error": resp.json().get("detail", "advise failed")}
+            except Exception:
+                return {"error": "advise failed"}
+        if resp.status_code != 200:
+            return None
+        return resp.json()
+    except Exception as e:
+        print(f"  [advise] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
+class AdviseDeckRequest(BaseModel):
+    axis: Optional[str] = None  # None -> the deck's weakest axis
+
+
+@app.post("/api/deck/{job_id}/advise")
+def advise_deck(job_id: str, req: AdviseDeckRequest):
+    """Upgrade suggestions from the user's collection for a FINISHED deck (suite C4).
+
+    Every suggestion is a measured axis delta from MythGauntlet's ablation re-simulation,
+    never popularity. Needs the strength API (:8020) and a Myth Suite collection export.
+    """
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has no deck to advise on.")
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in cards
+    ]
+    result = _gauntlet_advise(commander, deck, axis=req.axis)
+    if result is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    if "error" in result:
+        raise HTTPException(400, result["error"])
+    return result
+
+
 @app.post("/api/deck/{job_id}/measure")
 def measure_deck(job_id: str):
     """Simulation-grounded strength for a FINISHED deck (suite C3, result screen).
