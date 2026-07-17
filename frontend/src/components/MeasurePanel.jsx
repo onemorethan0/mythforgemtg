@@ -6,9 +6,16 @@ import SimStrengthPanel from './SimStrengthPanel'
 // shared Power Profile panel. (Drafted by local LLM from spec, reviewed: the
 // draft's run() guard was `state !== 'idle'`, which blocked Re-measure and
 // retry-after-error — only 'loading' must be guarded.)
-export default function MeasurePanel({ jobId }) {
-  const [state, setState] = useState('idle')
-  const [result, setResult] = useState(null)
+//
+// `cached` = the deck's persisted last_measure ({simulation, date}) — when
+// present the panel opens pre-filled with the stored profile and a measured-on
+// date instead of making the user re-simulate. Mount with key={jobId} so
+// navigating between decks resets the state machine.
+export default function MeasurePanel({ jobId, cached }) {
+  const hasCache = !!cached?.simulation?.power_profile
+  const [state, setState] = useState(hasCache ? 'done' : 'idle')
+  const [result, setResult] = useState(hasCache ? cached.simulation : null)
+  const [measuredAt, setMeasuredAt] = useState(hasCache ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
 
   const run = async () => {
@@ -18,6 +25,7 @@ export default function MeasurePanel({ jobId }) {
       const response = await fetch(`/api/deck/${jobId}/measure`, { method: 'POST' })
       if (response.ok) {
         setResult(await response.json())
+        setMeasuredAt(null)  // fresh numbers, not the cached ones
         setState('done')
       } else {
         let detail = `HTTP ${response.status}`
@@ -61,16 +69,23 @@ export default function MeasurePanel({ jobId }) {
       {state === 'done' && (
         <>
           <SimStrengthPanel simulation={result} />
-          <button
-            onClick={run}
-            style={{
-              marginTop: 8, padding: '7px 16px', borderRadius: 8,
-              border: '1px solid #292524', background: 'none', color: '#78716c',
-              fontWeight: 600, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit',
-            }}
-          >
-            ↻ Re-measure
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
+            <button
+              onClick={run}
+              style={{
+                padding: '7px 16px', borderRadius: 8,
+                border: '1px solid #292524', background: 'none', color: '#78716c',
+                fontWeight: 600, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit',
+              }}
+            >
+              ↻ Re-measure
+            </button>
+            {measuredAt && (
+              <span style={{ fontSize: 11, color: '#57534e' }}>
+                measured {new Date(measuredAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+              </span>
+            )}
+          </div>
         </>
       )}
       {state === 'error' && (

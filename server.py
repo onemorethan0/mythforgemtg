@@ -3758,6 +3758,19 @@ def measure_deck(job_id: str):
             "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
             "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
         )
+    # Persist the measurement so History/Recent tiles can badge the measured
+    # bracket and the result screen shows the cached profile without re-simulating.
+    stamp = {"simulation": sim, "date": _dt.now().isoformat(timespec="seconds")}
+    try:
+        p = RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk_data = json.loads(p.read_text(encoding="utf-8"))
+            disk_data["last_measure"] = stamp
+            p.write_text(json.dumps(disk_data), encoding="utf-8")
+        if job_id in _jobs:
+            _jobs[job_id]["last_measure"] = stamp
+    except Exception as e:
+        print(f"  [measure] could not persist last_measure: {e}")
     return sim
 
 
@@ -3870,6 +3883,9 @@ async def list_decks():
                 thumb = f"/api/deck/{job_id}/card-image/{rkey}"
             elif cmd.get("scryfall_img"):
                 thumb = cmd["scryfall_img"]
+            # Cached MythGauntlet measurement (POST /api/deck/{id}/measure) -> badge
+            lm_pp = (((data.get("last_measure") or {}).get("simulation") or {})
+                     .get("power_profile") or {})
             results.append({
                 "job_id":           job_id,
                 "commander_name":   cmd.get("original_name", ""),
@@ -3884,6 +3900,8 @@ async def list_decks():
                 "partial":          status in ("rendering", "cancelled"),
                 "is_copy":          bool(data.get("is_copy")),
                 "copied_from":      data.get("copied_from", ""),
+                "measured_bracket": lm_pp.get("bracket_estimate"),
+                "measured_label":   lm_pp.get("bracket_label", ""),
             })
         except Exception:
             continue

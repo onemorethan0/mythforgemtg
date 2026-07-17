@@ -84,8 +84,16 @@ export default function RecentDecks({ onLoad }) {
                 <div style={{ fontSize: 12, fontWeight: 700, color: '#f5f5f4', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
                   {name}
                 </div>
-                <div style={{ fontSize: 10, color: '#57534e', marginTop: 2 }}>
-                  {fmtDate(entry.built_at)}
+                <div style={{ fontSize: 10, color: '#57534e', marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span>{fmtDate(entry.built_at)}</span>
+                  {entry.measured_bracket && (
+                    <span
+                      title={`Simulation-measured bracket: ${entry.measured_bracket}. ${entry.measured_label || ''}`}
+                      style={{ padding: '0px 6px', borderRadius: 10, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844', fontWeight: 700 }}
+                    >
+                      ⚡ B{entry.measured_bracket}
+                    </span>
+                  )}
                 </div>
               </div>
             </button>

@@ -1565,7 +1565,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       {/* Simulation-grounded strength (Myth Suite C3) — full decks only */}
       {!single && (
         <div style={{ marginBottom: 20 }}>
-          <MeasurePanel jobId={jobId} />
+          <MeasurePanel key={jobId} jobId={jobId} cached={deck.last_measure} />
         </div>
       )}
 

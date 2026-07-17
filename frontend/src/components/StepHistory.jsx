@@ -234,6 +234,14 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
             <span style={{ ...s.bracket, background: `${bColor}22`, color: bColor, border: `1px solid ${bColor}44` }}>
               B{entry.bracket} {bLabel}
             </span>
+            {entry.measured_bracket && (
+              <span
+                title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`}
+                style={{ ...s.bracket, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844' }}
+              >
+                ⚡ B{entry.measured_bracket}
+              </span>
+            )}
             <span style={s.count}>{entry.card_count} cards</span>
             <span style={s.date}>{fmt_date(entry.built_at)}</span>
           </div>
