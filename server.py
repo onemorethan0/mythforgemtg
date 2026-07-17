@@ -3728,6 +3728,39 @@ def _gauntlet_analyze(commander, deck):
         return None
 
 
+@app.post("/api/deck/{job_id}/measure")
+def measure_deck(job_id: str):
+    """Simulation-grounded strength for a FINISHED deck (suite C3, result screen).
+
+    Converts the stored deck.json back into a decklist and reuses the same
+    MythGauntlet call as import-preview, so imported and generated decks measure
+    identically. 503 when the strength API is down (the UI says how to start it);
+    400 for a single-card build (nothing to measure).
+    """
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has no deck to measure.")
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in cards
+    ]
+    sim = _gauntlet_analyze(commander, deck)
+    if sim is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    return sim
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can

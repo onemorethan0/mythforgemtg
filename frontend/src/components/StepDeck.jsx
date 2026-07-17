@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import ManaCost from './ManaCost'
+import MeasurePanel from './MeasurePanel'
 import { searchCards } from '../utils/searchCards'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1560,6 +1561,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           </div>
         )}
       </div>
+
+      {/* Simulation-grounded strength (Myth Suite C3) — full decks only */}
+      {!single && (
+        <div style={{ marginBottom: 20 }}>
+          <MeasurePanel jobId={jobId} />
+        </div>
+      )}
 
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
