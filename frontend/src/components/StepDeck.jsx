@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import ManaCost from './ManaCost'
+import { searchCards } from '../utils/searchCards'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -917,6 +918,7 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles,
 export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit }) {
   const [filter, setFilter]   = useState('All')
   const [view, setView]       = useState('gallery')
+  const [query, setQuery]     = useState('')   // text search across the card list
 
   // ── Selection state ───────────────────────────────────────────────────────
   const [selectedKeys, setSelectedKeys]   = useState(new Set())
@@ -1291,7 +1293,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const groups      = groupByType(deck.deck)
   const types       = ['All', ...TYPE_ORDER.filter(t => groups[t]?.length > 0)]
   if (groups['Other']?.length) types.push('Other')
-  const visibleCards = filter === 'All' ? deck.deck : (groups[filter] || [])
+  const visibleCards = searchCards(filter === 'All' ? deck.deck : (groups[filter] || []), query)
 
   const allCardsFlat    = [deck.commander, ...deck.deck]
   const selectedCardData = allCardsFlat.filter(c => selectedKeys.has(c.render_key))
@@ -1575,6 +1577,35 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           ))}
         </div>
 
+        {/* Text search */}
+        {!single && (
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            <input
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="🔎 Search cards…"
+              aria-label="Search cards"
+              style={{
+                padding: '6px 28px 6px 12px', borderRadius: 8, border: '1px solid #292524',
+                background: '#1c1917', color: '#f5f5f4', fontSize: 12, fontFamily: 'inherit',
+                width: 180, outline: 'none',
+              }}
+            />
+            {query && (
+              <button
+                onClick={() => setQuery('')}
+                aria-label="Clear search"
+                style={{
+                  position: 'absolute', right: 6, background: 'none', border: 'none',
+                  color: '#78716c', cursor: 'pointer', fontSize: 12, padding: 2, fontFamily: 'inherit',
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        )}
+
         {/* View toggle */}
         <div style={{ display: 'flex', gap: 4 }}>
           {['gallery', 'list'].map(v => (
@@ -1661,6 +1692,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
       )}
 
+      {/* Search with no hits */}
+      {query.trim() && visibleCards.length === 0 && view === 'gallery' && (
+        <div style={{ textAlign: 'center', color: '#57534e', fontSize: 13, padding: '30px 0' }}>
+          No cards match “{query.trim()}”
+        </div>
+      )}
+
       {/* Card gallery */}
       {view === 'gallery' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
@@ -1686,7 +1724,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       {view === 'list' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {(filter === 'All' ? TYPE_ORDER.concat('Other') : [filter]).map(type => {
-            const cards = groups[type]
+            const cards = searchCards(groups[type] || [], query)
             if (!cards?.length) return null
             return (
               <div key={type} style={{ marginBottom: 16 }}>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useBuildNotifier, getNotifyPref, setNotifyPref, requestPermissionIfNeeded } from '../hooks/useBuildNotifier'
 
 // ── Styles ────────────────────────────────────────────────────────────────────
 const c = {
@@ -203,6 +204,18 @@ export default function StepBuilding({ jobId, onDone, onError }) {
   const [status, setStatus]       = useState('building')
   const [readyCards, setReadyCards] = useState([])    // {key, name} as they arrive
   const [cancelState, setCancelState] = useState('idle')  // idle | cancelling | cancelled
+  const [notifyOn, setNotifyOn]   = useState(getNotifyPref())
+
+  // Tab-title flash + optional desktop notification/chime when the build
+  // finishes while the user is on another tab (builds run 30+ min with art).
+  useBuildNotifier(status, null)
+
+  async function toggleNotify() {
+    if (notifyOn) { setNotifyPref(false); setNotifyOn(false); return }
+    await requestPermissionIfNeeded()  // chime + title flash work even if denied
+    setNotifyPref(true)
+    setNotifyOn(true)
+  }
 
   const evtRef    = useRef(null)
   const bottomRef = useRef(null)
@@ -386,6 +399,24 @@ export default function StepBuilding({ jobId, onDone, onError }) {
             <ProgressBar pct={heroPct} color={isCancelling ? '#78716c' : heroPct < 70 ? '#eab308' : '#22c55e'} />
             <div style={{ fontSize: 12, color: '#57534e', marginTop: 4 }}>{heroPct}% overall</div>
           </div>
+        )}
+
+        {/* Notify-when-done toggle — useful for the long art step; safe to tab away */}
+        {status === 'building' && (
+          <button
+            onClick={toggleNotify}
+            title="Flash the tab title and (optionally) show a desktop notification + chime when the build finishes"
+            style={{
+              marginTop: 12, padding: '5px 14px', borderRadius: 20, fontSize: 12,
+              fontFamily: 'inherit', cursor: 'pointer',
+              background: notifyOn ? '#1c1408' : 'none',
+              border: notifyOn ? '1px solid #ca8a04' : '1px solid #292524',
+              color: notifyOn ? '#eab308' : '#57534e',
+              transition: 'all 0.15s',
+            }}
+          >
+            🔔 Notify when done: {notifyOn ? 'On' : 'Off'}
+          </button>
         )}
 
         {/* Cancel button */}

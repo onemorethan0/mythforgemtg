@@ -469,7 +469,7 @@ export default function App() {
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 16px 48px' }}>
 
         {step === STEP.COMMANDER && mode === 'home' && (
-          <StepHome onChoose={handleChoose} />
+          <StepHome onChoose={handleChoose} onLoadDeck={handleLoadHistoricDeck} />
         )}
 
         {step === STEP.COMMANDER && mode === 'deck' && (

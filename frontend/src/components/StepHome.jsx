@@ -1,3 +1,5 @@
+import RecentDecks from './RecentDecks'
+
 // The landing hub: the three things Myth Forge can do, chosen up front so each is
 // a first-class entry (Build a deck / Analyze an existing deck / Design one card).
 const CHOICES = [
@@ -19,7 +21,7 @@ const CHOICES = [
   },
 ]
 
-export default function StepHome({ onChoose }) {
+export default function StepHome({ onChoose, onLoadDeck }) {
   return (
     <div style={{ maxWidth: 940, width: '100%', marginTop: 44 }}>
       <div style={{ textAlign: 'center', marginBottom: 34 }}>
@@ -52,6 +54,7 @@ export default function StepHome({ onChoose }) {
           </button>
         ))}
       </div>
+      {onLoadDeck && <RecentDecks onLoad={onLoadDeck} />}
     </div>
   )
 }
