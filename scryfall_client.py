@@ -188,6 +188,15 @@ class ScryfallClient:
             for req in chunk:
                 key = self._cache_key(req)
                 card = by_canon.get(key)
+                if card is None and "//" in req:
+                    # Double-faced / MDFC cards (e.g. "Avatar Aang // Aang, Master
+                    # of Elements") are NOT matched by the collection endpoint on
+                    # their full "Front // Back" name — only the front face resolves.
+                    # Split/aftermath cards ("Fire // Ice") already matched above by
+                    # their full name, so this only fires for genuine DFC misses.
+                    front = req.split("//", 1)[0].strip()
+                    if front:
+                        card = self.get_card_by_name(front, fuzzy=False)
                 if card is None:
                     # exact canonical miss — fall back to a single fuzzy lookup
                     card = self.get_card_by_name(req, fuzzy=True)
