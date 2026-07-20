@@ -46,6 +46,18 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
+      {Array.isArray(pp.bracket_reasons) && pp.bracket_reasons.length > 0 && (
+        <details style={{ marginBottom: 10 }}>
+          <summary style={{ fontSize: 11, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>
+            Why this bracket?
+          </summary>
+          <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+            {pp.bracket_reasons.map((r, i) => (
+              <li key={i} style={{ fontSize: 11, color: '#a8a29e', lineHeight: 1.5 }}>{r}</li>
+            ))}
+          </ul>
+        </details>
+      )}
       {bar('Consistency', pp.consistency, '/100')}
       {bar('Resilience vs a board wipe', pp.resilience, '/100')}
       {pp.interaction != null && bar('Interaction', pp.interaction, '/100')}
