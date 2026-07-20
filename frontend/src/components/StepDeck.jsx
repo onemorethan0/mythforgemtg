@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import AdvisePanel from './AdvisePanel'
+import DuelPanel from './DuelPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import { searchCards } from '../utils/searchCards'
@@ -1582,6 +1583,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               (the old profile no longer matches the modified list) */}
           <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure} />
           <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
+          <DuelPanel key={`duel-${jobId}`} jobId={jobId} />
         </div>
       )}
 

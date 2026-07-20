@@ -3936,6 +3936,80 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     return _serializable_job(job)
 
 
+class DuelRequest(BaseModel):
+    opponent: str                 # opponent decklist text (pasted, Moxfield/plain)
+    opponent_name: str = "Opponent"
+    games: int = 120
+
+
+def _gauntlet_duel(commander, deck, opponent_text, name_a, name_b, games):
+    """Head-to-head win rate from MythGauntlet's Tier-2 adversarial engine.
+
+    Returns the duel JSON, {"error": detail} for a meaningful 400 (unparseable
+    opponent list), or None when the service is unreachable.
+    """
+    try:
+        payload = {
+            "deck_a": _deck_to_lines(commander, deck),
+            "deck_b": opponent_text,
+            "name_a": name_a or "Your deck",
+            "name_b": name_b or "Opponent",
+            "games": max(20, min(400, int(games))),
+            "seed": 42,
+        }
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/duel", json=payload, timeout=180)
+        if resp.status_code == 400:
+            try:
+                return {"error": resp.json().get("detail", "duel failed")}
+            except Exception:
+                return {"error": "duel failed"}
+        if resp.status_code != 200:
+            return None
+        return resp.json()
+    except Exception as e:
+        print(f"  [duel] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
+@app.post("/api/deck/{job_id}/duel")
+def duel_deck(job_id: str, req: DuelRequest):
+    """Test THIS finished deck head-to-head against a pasted opponent decklist (Tier-2).
+
+    Battlecruiser-fidelity 1v1 win rate — an honest "how does my deck play against
+    my friend's?" read, not a bracket verdict. Needs the strength API (:8020).
+    """
+    if not (req.opponent or "").strip():
+        raise HTTPException(400, "Paste an opponent decklist to test against.")
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has nothing to duel with.")
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in cards
+    ]
+    name_a = (job.get("commander") or {}).get("themed_name") \
+        or (job.get("commander") or {}).get("original_name") or "Your deck"
+    result = _gauntlet_duel(
+        commander, deck, req.opponent, name_a, req.opponent_name, req.games
+    )
+    if result is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    if "error" in result:
+        raise HTTPException(400, result["error"])
+    return result
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can
