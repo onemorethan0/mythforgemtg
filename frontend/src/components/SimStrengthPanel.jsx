@@ -58,6 +58,47 @@ export default function SimStrengthPanel({ simulation }) {
           </ul>
         </details>
       )}
+      {simulation.combos?.checked && simulation.combos.total > 0 && (() => {
+        const cb = simulation.combos
+        const relColor = { 'fast-win': '#ef4444', strong: '#f97316', slow: '#eab308' }
+        const shown = cb.items.slice(0, 6)
+        return (
+          <div style={{ marginBottom: 10, padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #44403c' }}>
+            <div style={{ fontSize: 11.5, color: '#d6d3d1', fontWeight: 600, marginBottom: 6 }}>
+              Combos: {cb.total} in deck
+              <span style={{ color: '#78716c', fontWeight: 400 }}>
+                {' '}({cb.terminal} terminal, {cb.advantage} need an outlet
+                {cb.nondeterministic ? `, ${cb.nondeterministic} non-deterministic` : ''})
+              </span>
+            </div>
+            {shown.map((it, i) => {
+              const rc = relColor[it.reliability] || '#eab308'
+              return (
+                <div key={i} style={{ marginBottom: 6 }}>
+                  <div style={{ fontSize: 11, color: '#e7e5e4', lineHeight: 1.4 }}>
+                    <span style={{ fontSize: 9.5, fontWeight: 700, padding: '1px 6px', borderRadius: 10, marginRight: 6, background: `${rc}22`, color: rc, border: `1px solid ${rc}` }}>
+                      {it.reliability}
+                    </span>
+                    {it.cards.join(' + ')}
+                  </div>
+                  <div style={{ fontSize: 10, color: '#78716c', marginLeft: 2, marginTop: 1 }}>
+                    {it.produces.join('; ')}
+                  </div>
+                  <div style={{ fontSize: 10, color: '#a8a29e', marginLeft: 2 }}>
+                    {it.pieces} pieces · {it.mana_value} mana · {it.terminal ? 'terminal' : 'needs an outlet'}
+                    {it.needs_commander ? ' · commander-dependent' : ''}
+                    {it.deterministic === false ? ' · ⚠ non-deterministic' : ''}
+                    {it.spellbook_tag ? ` · Spellbook ${it.spellbook_tag}` : ''}
+                  </div>
+                </div>
+              )
+            })}
+            {cb.total > shown.length && (
+              <div style={{ fontSize: 10, color: '#78716c' }}>… and {cb.total - shown.length} more</div>
+            )}
+          </div>
+        )
+      })()}
       {bar('Consistency', pp.consistency, '/100')}
       {bar('Resilience vs a board wipe', pp.resilience, '/100')}
       {pp.interaction != null && bar('Interaction', pp.interaction, '/100')}

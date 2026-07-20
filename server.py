@@ -3712,6 +3712,7 @@ def _gauntlet_analyze(commander, deck):
                 "name": (commander or {}).get("name") or "deck",
                 "runs": 300,
                 "resilience": True,
+                "combos": True,  # graded combo gate: real wincons vs durdles (Spellbook, cached)
             },
             timeout=25,
         )
@@ -3721,6 +3722,7 @@ def _gauntlet_analyze(commander, deck):
         return {
             "engine_version": data.get("engine_version"),
             "power_profile": data.get("power_profile"),
+            "combos": data.get("combos"),  # graded in-deck combos for the strength panel
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:
