@@ -57,6 +57,16 @@ export default function SimStrengthPanel({ simulation }) {
         <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
           Cards simulated at high fidelity: <b style={{ color: '#e7e5e4' }}>{pct(pp.semantics_coverage)}</b>
         </span>
+        {pp.go_off && (
+          <span title="A storm/spellslinger nut draw reaches lethal off the combat clock" style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#7c2d1222', border: '1px solid #f97316', color: '#fdba74' }}>
+            Storm go-off{pp.go_off_turn ? <b style={{ color: '#fed7aa' }}> ~T{pp.go_off_turn}</b> : null}
+          </span>
+        )}
+        {pp.overrun_alpha && (
+          <span title="A wide board + one-shot team pump kills in one swing on the nut draw" style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#14532d22', border: '1px solid #4ade80', color: '#86efac' }}>
+            Overrun alpha strike
+          </span>
+        )}
       </div>
       <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5 }}>{pp.bracket_hint}</div>
       {simulation.engine_version && (

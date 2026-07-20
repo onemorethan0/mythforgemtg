@@ -1,6 +1,11 @@
 @echo off
 setlocal enabledelayedexpansion
 
+REM Direct commands (skip the menu): manage.bat start | status | stop
+if /i "%~1"=="start"  goto start_dev
+if /i "%~1"=="status" goto check_status
+if /i "%~1"=="stop"   goto stop_server
+
 :menu
 cls
 echo ============================================

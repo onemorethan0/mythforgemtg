@@ -156,7 +156,7 @@ This will:
 **Windows:**
 ```cmd
 manage.bat
-→ Option 7: Download AI Models
+→ Option 8: Download AI models
 ```
 
 **Mac/Linux:**
@@ -168,15 +168,15 @@ Choose which models to download (see [MODELS.md](./MODELS.md) for details).
 
 ### 3. **Start the Server**
 
-**Windows (Recommended):**
+**Windows — one click (recommended):** double-click **`START MYTH FORGE.bat`** in the repo
+root (or the **"Myth Forge"** desktop shortcut). It auto-starts every backend the app needs —
+the llama-swap theming LLM (:8010) and the MythGauntlet strength API (:8020) — then serves the
+app. `manage.bat start` does the same from a terminal.
+
+**Or via the menu:**
 ```cmd
 manage.bat
-```
-Select Option 1: Start Development Server
-
-**Or directly:**
-```cmd
-dev.bat
+→ Option 1: Start server
 ```
 
 **Mac/Linux:**
@@ -190,16 +190,17 @@ Then open your browser to: **http://localhost:8000**
 
 **Windows:**
 ```cmd
-manage.bat
-→ Option 3: Check Server Status
+manage.bat status        (or: manage.bat → Option 4)
 ```
 
 Shows status of:
-- ComfyUI (port 8188)
-- Myth Forge (port 8000)
-- LLM backend (llama-swap port 8010, or Ollama port 11434)
+- ComfyUI (port 8188) — card art; optional, start via `manage.bat` Option 3
+- llama-swap LLM gateway (port 8010) — deck theming
+- MythGauntlet strength API (port 8020) — simulation-grounded deck analysis
+- Myth Forge (port 8000) — the app itself
 
-> **Note:** ComfyUI must be running in a separate window. `manage.bat` auto-starts the LLM gateway if it isn't already listening.
+> **Note:** starting the server auto-starts llama-swap and the strength API if they aren't
+> already listening. ComfyUI is only needed for image generation and starts separately.
 
 ---
 
@@ -315,8 +316,10 @@ mtg_deck_builder/
 ├── utilities/
 │   └── generate_samples.py Render showcase samples (commander + 3 creatures + 3 spells + 3 lands) from any built deck
 ├── requirements.txt        Python dependencies
+├── START MYTH FORGE.bat    Windows one-click launcher (starts all backends + the app)
 ├── manage.bat              Windows menu: start/stop/status/setup/models/ComfyUI
-├── dev.bat                 Windows: start the dev server directly
+│                           (also direct: manage.bat start | status | stop)
+├── dev.bat                 Windows: start the dev server directly (no backend auto-start)
 ├── setup.bat / install.py  First-time setup (deps + frontend build)
 ├── download-models.py      Interactive checkpoint downloader
 ├── start-mythforge.sh      Mac/Linux: start the server

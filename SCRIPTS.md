@@ -5,9 +5,16 @@ All server management is centralized in one menu system.
 ## Quick Start
 
 ### **Windows Users:**
+
+Double-click **`START MYTH FORGE.bat`** (or the **"Myth Forge"** desktop shortcut) — it
+auto-starts the llama-swap LLM gateway (:8010) and the MythGauntlet strength API (:8020),
+then serves the app on http://localhost:8000.
+
+For the full menu (status, stop, ComfyUI, setup, models):
 ```batch
 manage.bat
 ```
+Direct commands also work: `manage.bat start` / `manage.bat status` / `manage.bat stop`.
 
 ### **Mac/Linux Users:**
 ```bash
