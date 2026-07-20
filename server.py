@@ -3840,6 +3840,102 @@ def measure_deck(job_id: str):
     return sim
 
 
+class ApplySwapRequest(BaseModel):
+    add: str
+    cut: str
+
+
+@app.post("/api/deck/{job_id}/apply-swap")
+def apply_swap(job_id: str, req: ApplySwapRequest):
+    """Apply an advisor suggestion to a FINISHED deck: cut one card, add another.
+
+    Closes the build -> test -> improve loop (suite C4): the AdvisePanel's measured
+    suggestions become one-click edits instead of a manual re-import. The added card
+    is stored UNTHEMED (real name, Scryfall art fallback, swapped_in flag) — theming
+    art for it is a later regen, not a blocker for testing. The cached measurement is
+    invalidated because the deck changed; the swap is recorded in applied_swaps.
+    """
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        _jobs[job_id] = disk
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has no deck to modify.")
+
+    cut_norm = req.cut.strip().casefold()
+    idx = next(
+        (i for i, c in enumerate(cards)
+         if (c.get("original_name") or "").casefold() == cut_norm),
+        None,
+    )
+    if idx is None:
+        raise HTTPException(400, f"'{req.cut}' is not in this deck (already swapped out?)")
+    add_norm = req.add.strip().casefold()
+    if any((c.get("original_name") or "").casefold() == add_norm for c in cards):
+        raise HTTPException(400, f"'{req.add}' is already in this deck.")
+
+    card = _scryfall.get_card_by_name(req.add, fuzzy=True)
+    if not card:
+        raise HTTPException(400, f"Card not found on Scryfall: {req.add}")
+
+    # cut: decrement a stack (imported duplicate basics), else remove the entry
+    if (cards[idx].get("quantity") or 1) > 1:
+        cards[idx]["quantity"] = cards[idx]["quantity"] - 1
+    else:
+        cards.pop(idx)
+
+    swap_no = int(job.get("swap_count") or 0) + 1
+    job["swap_count"] = swap_no
+    name = card.get("_front_name") or card.get("name") or req.add
+    new_entry = {
+        "original_name": name,
+        "themed_name":   name,               # unthemed — shows the real card
+        "art_prompt":    "",
+        "custom_prompt": "",
+        "use_custom":    False,
+        "flavor_text":   "",
+        "mana_cost":     card.get("mana_cost", ""),
+        "type_line":          card.get("type_line", ""),
+        "original_type_line": card.get("type_line", ""),
+        "oracle_text":   card.get("oracle_text", ""),
+        "cmc":           card.get("cmc", 0),
+        "colors":        card.get("color_identity", []),
+        "power":         card.get("power"),
+        "toughness":     card.get("toughness"),
+        "rarity":        card.get("rarity", ""),
+        "quantity":      1,
+        "scryfall_img":  (card.get("image_uris") or {}).get("normal", ""),
+        "has_render":    False,              # tile falls back to scryfall_img
+        "has_video":     False,
+        "render_key":    f"{_safe_name(name)}_swap{swap_no:02d}",
+        "swapped_in":    True,               # UI badge: an applied upgrade
+    }
+    cards.insert(min(idx, len(cards)), new_entry)
+
+    swap_record = {"add": name, "cut": req.cut,
+                   "date": _dt.now().isoformat(timespec="seconds")}
+    job.setdefault("applied_swaps", []).append(swap_record)
+    job.pop("last_measure", None)            # the measurement no longer matches the list
+
+    try:
+        p = RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk_data = json.loads(p.read_text(encoding="utf-8"))
+            disk_data["deck"] = cards
+            disk_data["swap_count"] = swap_no
+            disk_data.setdefault("applied_swaps", []).append(swap_record)
+            disk_data.pop("last_measure", None)
+            p.write_text(json.dumps(disk_data), encoding="utf-8")
+    except Exception as e:
+        print(f"  [apply-swap] could not persist swap: {e}")
+
+    return _serializable_job(job)
+
+
 @app.post("/api/deck/import-preview")
 def import_preview(req: ImportPreviewRequest):
     """Fetch + resolve a deck URL / pasted list WITHOUT building, so the UI can

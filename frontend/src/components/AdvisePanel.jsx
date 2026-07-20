@@ -5,11 +5,38 @@ import { useState } from 'react'
 // re-simulation delta, never popularity. (Drafted by local LLM from spec, reviewed:
 // the draft's idle state returned an EMPTY div — the feature rendered nothing until
 // you were already loading — and the delta chip stacked under the numbers.)
-export default function AdvisePanel({ jobId }) {
+export default function AdvisePanel({ jobId, onApplied }) {
   const [phase, setPhase] = useState('idle')
   const [result, setResult] = useState(null)
   const [errMsg, setErrMsg] = useState('')
   const [axis, setAxis] = useState('')
+  const [applying, setApplying] = useState('')   // add-name of the in-flight swap
+  const [applied, setApplied] = useState('')     // add-name of the applied swap
+  const [applyErr, setApplyErr] = useState('')
+
+  async function applySwap(s) {
+    if (applying || applied) return
+    setApplying(s.add); setApplyErr('')
+    try {
+      const response = await fetch(`/api/deck/${jobId}/apply-swap`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ add: s.add, cut: result.cut }),
+      })
+      if (response.ok) {
+        const updated = await response.json()
+        setApplied(s.add)
+        onApplied?.(updated)   // App swaps in the modified deck; measure resets
+      } else {
+        let d = 'HTTP ' + response.status
+        try { d = (await response.json()).detail || d } catch {}
+        setApplyErr(d)
+      }
+    } catch {
+      setApplyErr('Server unreachable')
+    }
+    setApplying('')
+  }
 
   async function run() {
     if (phase === 'loading') return
@@ -123,6 +150,7 @@ export default function AdvisePanel({ jobId }) {
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     padding: '6px 8px', borderRadius: 6,
                     background: i % 2 === 0 ? '#1c1917' : 'transparent',
+                    opacity: applied && applied !== s.add ? 0.45 : 1,
                   }}
                 >
                   <span style={{ fontSize: 12.5, fontWeight: 600, color: '#f5f5f4' }}>{s.add}</span>
@@ -136,6 +164,29 @@ export default function AdvisePanel({ jobId }) {
                     }}>
                       +{s.delta.toFixed(1)}
                     </span>
+                    {applied === s.add ? (
+                      <span style={{
+                        fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 8,
+                        marginLeft: 8, background: '#14532d22', color: '#4ade80',
+                        border: '1px solid #166534',
+                      }}>
+                        ✓ Applied
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => applySwap(s)}
+                        disabled={!!applying || !!applied}
+                        title={`Swap out ${result.cut} for ${s.add} in this deck, then re-measure`}
+                        style={{
+                          fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 8,
+                          marginLeft: 8, cursor: (applying || applied) ? 'default' : 'pointer',
+                          background: '#0c1a0c', color: '#86efac', border: '1px solid #166534',
+                          fontFamily: 'inherit', opacity: (applying || applied) ? 0.5 : 1,
+                        }}
+                      >
+                        {applying === s.add ? '…' : 'Apply'}
+                      </button>
+                    )}
                   </span>
                 </div>
               ))
@@ -145,12 +196,30 @@ export default function AdvisePanel({ jobId }) {
                 {result.candidates_that_fit} that fit this deck's colors.
               </div>
             )}
+            {applyErr && (
+              <div style={{
+                fontSize: 11.5, color: '#fca5a5', background: '#1c0a0a',
+                border: '1px solid #7f1d1d', borderRadius: 8, padding: '6px 10px', marginTop: 8,
+              }}>
+                Swap failed: {applyErr}
+              </div>
+            )}
+            {applied && (
+              <div style={{
+                fontSize: 11.5, color: '#86efac', background: '#0c1a0c',
+                border: '1px solid #166534', borderRadius: 8, padding: '6px 10px', marginTop: 8,
+              }}>
+                Swapped in <b>{applied}</b> for {result.cut}. The deck changed, so hit
+                {' '}<b>Measure strength</b> above to see the new profile — the other
+                suggestions assumed the old list, so re-run the advisor for fresh ones.
+              </div>
+            )}
             <div style={{ fontSize: 10, color: '#57534e', marginTop: 8 }}>
               collection: {result.collection_source} · engine v{result.engine_version}
             </div>
           </div>
           <button
-            onClick={() => setPhase('idle')}
+            onClick={() => { setPhase('idle'); setApplied(''); setApplyErr('') }}
             style={{
               background: 'none', border: '1px solid #292524', color: '#78716c',
               fontSize: 12, padding: '6px 14px', borderRadius: 8, marginTop: 8,

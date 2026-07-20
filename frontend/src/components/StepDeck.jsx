@@ -193,6 +193,18 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
         </div>
       )}
 
+      {/* "UPGRADE" badge on advisor-applied swaps (unthemed: Scryfall art until regen) */}
+      {card.swapped_in && regenStatus !== 'done' && (
+        <div title="Added by the upgrade advisor — real card art until you regenerate it"
+          style={{
+            position: 'absolute', top: 5, left: 5, fontSize: 9,
+            padding: '2px 6px', borderRadius: 4, fontWeight: 700,
+            background: '#0c1a0c', color: '#4ade80', border: '1px solid #166534',
+          }}>
+          UPGRADE
+        </div>
+      )}
+
       {/* Animated indicator + download */}
       {videoSrc && regenStatus !== 'pending' && (
         <a href={videoSrc} download={`${card.render_key}.mp4`} title="Download MP4"
@@ -917,7 +929,7 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles,
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit }) {
+export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit, onDeckChange }) {
   const [filter, setFilter]   = useState('All')
   const [view, setView]       = useState('gallery')
   const [query, setQuery]     = useState('')   // text search across the card list
@@ -1566,8 +1578,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       {/* Simulation-grounded strength + upgrade advisor (Myth Suite C3/C4) — full decks only */}
       {!single && (
         <div style={{ marginBottom: 20 }}>
-          <MeasurePanel key={jobId} jobId={jobId} cached={deck.last_measure} />
-          <AdvisePanel key={`adv-${jobId}`} jobId={jobId} />
+          {/* keyed on swap_count so an applied swap resets the cached measurement
+              (the old profile no longer matches the modified list) */}
+          <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure} />
+          <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
         </div>
       )}
 

@@ -583,7 +583,7 @@ export default function App() {
         )}
 
         {step === STEP.DECK && (
-          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} />
+          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} onDeckChange={setDeck} />
         )}
 
         {step === STEP.HISTORY && (
