@@ -31,7 +31,12 @@ from typing import AsyncGenerator, Optional, List
 import requests
 from fastapi import FastAPI, BackgroundTasks, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
+from fastapi.responses import (
+    FileResponse,
+    JSONResponse,
+    RedirectResponse,
+    StreamingResponse,
+)
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, validator
 
@@ -1075,6 +1080,38 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         "has_render":    has_render,
         "has_video":     False,            # set True once an MP4 animation is generated
         "render_key":    f"{_safe_name(tc.original_name)}_{deck_index:03d}",
+    }
+
+
+def _imported_card_to_stored(c: dict, deck_index: int) -> dict:
+    """Serialize a raw imported (Scryfall) card into the deck.json card schema WITHOUT
+    theming. Mirrors _themed_card_to_dict but keeps the original name, no art_prompt, and
+    has_render=False — used by 'Save to library' so an imported deck persists and recalls
+    with its ORIGINAL art (the card-image endpoint falls back to scryfall_img). A later
+    Retheme regenerates from this exactly like any other saved deck."""
+    name = c.get("name", "")
+    _display_tl = card_renderer.clean_display_type_line(c, c.get("type_line", ""), name)
+    return {
+        "original_name": name,
+        "themed_name":   name,             # un-themed: the UI shows the real card name
+        "art_prompt":    "",
+        "custom_prompt": "",
+        "use_custom":    False,
+        "flavor_text":   c.get("flavor_text", ""),
+        "mana_cost":     c.get("mana_cost", ""),
+        "type_line":          _display_tl,
+        "original_type_line": c.get("original_type_line") or c.get("type_line", ""),
+        "oracle_text":   c.get("oracle_text", ""),
+        "cmc":           c.get("cmc", 0),
+        "colors":        c.get("color_identity", []),
+        "power":         c.get("power"),
+        "toughness":     c.get("toughness"),
+        "rarity":        c.get("rarity", ""),
+        "quantity":      c.get("quantity", 1),
+        "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
+        "has_render":    False,
+        "has_video":     False,
+        "render_key":    f"{_safe_name(name)}_{deck_index:03d}",
     }
 
 
@@ -4052,6 +4089,81 @@ def import_preview(req: ImportPreviewRequest):
     }
 
 
+class ImportSaveRequest(BaseModel):
+    source:            str  = Field("", max_length=20000)  # URL or pasted decklist text
+    force_refresh:     bool = False
+    is_commander_deck: bool = True
+    commander_name:    str  = Field("", max_length=120)    # optional face override
+
+
+@app.post("/api/deck/import-save")
+def import_save(req: ImportSaveRequest):
+    """Store an imported decklist in the library WITHOUT generating art, so it can be
+    recalled from History like a generated deck (shown with its ORIGINAL Scryfall art) and
+    rethemed later. Non-destructive: writes a fresh deck.json under a new job id; re-saving
+    the same deck creates a new entry (the user chose an explicit Save button, not dedup)."""
+    if not req.source.strip():
+        raise HTTPException(400, "Provide a deck URL or paste a decklist.")
+    try:
+        imp = deck_import.import_deck(req.source, _scryfall, force_refresh=req.force_refresh)
+    except deck_import.DeckImportError as e:
+        raise HTTPException(400, str(e))
+    except Exception as e:
+        raise HTTPException(500, f"Import failed: {e}")
+
+    card = imp.commander
+    override = (req.commander_name or "").strip()
+    if override and (card is None or override.lower() not in (card.get("name", "") or "").lower()):
+        ov = _scryfall.get_card_by_name(override, fuzzy=True)
+        if ov:
+            card = ov
+    if not card:
+        raise HTTPException(400, "Couldn't read any cards from that deck.")
+
+    deck = list(imp.deck)
+    for p in imp.partners:                      # partners/companions render as cards
+        pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
+    stats = compute_stats(card, deck)
+    face_auto = bool(imp.auto_face) and card is imp.commander
+
+    job_id = uuid.uuid4().hex[:16]
+    (RENDER_DIR / job_id).mkdir(parents=True, exist_ok=True)
+    deck_slug = ("".join(ch if ch.isalnum() else "_" for ch in card.get("name", ""))[:28]
+                 + "_" + job_id[:8])
+    payload = {
+        "status":            "done",
+        "commander":         _imported_card_to_stored(card, 0),
+        "deck":              [_imported_card_to_stored(c, i) for i, c in enumerate(deck, 1)],
+        "stats":             stats,
+        "theme":             "",
+        "bracket":           0,
+        "bracket_label":     "",
+        "art_style":         "",
+        "model_speed":       "quality",
+        "frame_style":       "builtin",
+        "deck_slug":         deck_slug,
+        "is_commander_deck": req.is_commander_deck,
+        "generate_art":      False,
+        # imported_only: saved from an import with no AI art yet. Drives the "original art"
+        # display + the "Generate art / Retheme" affordance; cleared once a build/retheme runs.
+        "imported":          True,
+        "imported_only":     True,
+        "import_source":     imp.source,
+        "import_name":       imp.name,
+        "import_unresolved": imp.unresolved,
+        "import_auto_face":  face_auto,
+        "built_at":          time.time(),
+    }
+    (RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
+    return {
+        "job_id":        job_id,
+        "name":          imp.name,
+        "total_cards":   stats.get("total_cards"),
+        "unresolved":    imp.unresolved,
+        "imported_only": True,
+    }
+
+
 @app.post("/api/commander/search")
 def search_commander(req: SearchRequest):
     card = _scryfall.get_card_by_name(req.query, fuzzy=True)
@@ -4953,6 +5065,20 @@ async def card_image(job_id: str, render_key: str):
         if bare_path.exists():
             return FileResponse(bare_path, media_type="image/png",
                                 headers={"Cache-Control": "no-cache, must-revalidate"})
+    # No AI render (e.g. a saved-but-un-themed imported deck): fall back to the card's
+    # ORIGINAL Scryfall art so recalled imports still display. Look the card up in
+    # deck.json by render_key and redirect to its stored image URL.
+    dj = RENDER_DIR / job_id / "deck.json"
+    if dj.exists():
+        try:
+            data = json.loads(dj.read_text(encoding="utf-8"))
+        except Exception:
+            data = None
+        if data:
+            cards = ([data.get("commander")] if data.get("commander") else []) + (data.get("deck") or [])
+            for c in cards:
+                if c and c.get("render_key") == render_key and c.get("scryfall_img"):
+                    return RedirectResponse(c["scryfall_img"])
     raise HTTPException(404, "Card image not found")
 
 

@@ -253,6 +253,17 @@ export default function App() {
     setStep(STEP.DECK)
   }
 
+  // ── Save imported deck (no art gen): fetch the freshly-saved deck and open it ──
+  async function handleSaveImported(jobId) {
+    try {
+      const res  = await fetch(`/api/deck/${jobId}`)
+      const data = await res.json()
+      handleLoadHistoricDeck(jobId, data)
+    } catch {
+      // The deck is saved regardless; the user can open it from History.
+    }
+  }
+
   // ── Duplicate handler (navigate to the copy immediately) ────────────────
   async function handleDuplicate(newJobId) {
     try {
@@ -475,6 +486,7 @@ export default function App() {
         {step === STEP.COMMANDER && mode === 'deck' && (
               <StepCommander
                 initialTab={deckEntryTab}
+                onSaveImported={handleSaveImported}
                 bracket={bracket}
                 onBracketChange={setBracket}
                 playstyle={playstyle}

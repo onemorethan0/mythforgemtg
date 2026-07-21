@@ -33,7 +33,7 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
-export default function StepCommander({ onNext, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate' }) {
+export default function StepCommander({ onNext, onSaveImported, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate' }) {
   const [query, setQuery]           = useState('')
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
@@ -59,6 +59,7 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
   // Explicit "Is this a Commander deck?" answer. Defaulted from auto_face (a deck
   // with no commander zone is probably NOT Commander) but the user always decides.
   const [isCmdDeck, setIsCmdDeck]     = useState(true)
+  const [saveLoading, setSaveLoading] = useState(false)
 
   async function doPreview(forceRefresh = false) {
     const val = importText.trim()
@@ -100,6 +101,30 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
         cards: preview.cards || [],
       },
     })
+  }
+
+  // Save the imported deck to the library as-is (original art, no AI gen). It then
+  // appears in History like a generated deck and can be rethemed later.
+  async function saveImported() {
+    if (!preview) return
+    setSaveLoading(true); setImportErr('')
+    try {
+      const res = await fetch('/api/deck/import-save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: importText.trim(),
+          is_commander_deck: isCmdDeck,
+          commander_name: cmdOverride.trim(),
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setImportErr(data.detail || 'Save failed.'); setSaveLoading(false); return }
+      onSaveImported?.(data.job_id)
+    } catch {
+      setImportErr('Server unreachable. Is the backend running?')
+    }
+    setSaveLoading(false)
   }
 
   // Fetch autocomplete suggestions with 200ms debounce
@@ -374,13 +399,28 @@ export default function StepCommander({ onNext, bracket, onBracketChange, playst
               {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
               <SimStrengthPanel simulation={preview.simulation} />
 
-              <button
-                style={{ ...s.btnNext, ...((preview.commander || cmdOverride.trim()) ? {} : s.btnDisabled) }}
-                disabled={!(preview.commander || cmdOverride.trim())}
-                onClick={useImported}
-              >
-                Retheme this deck →
-              </button>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                <button
+                  style={{
+                    flex: '1 1 200px', padding: '12px 16px', borderRadius: 10, fontSize: 14,
+                    fontFamily: 'inherit', cursor: saveLoading ? 'default' : 'pointer',
+                    border: '1px solid #44403c', background: 'none', color: '#d6d3d1',
+                    opacity: saveLoading ? 0.6 : 1,
+                  }}
+                  disabled={saveLoading || !(preview.commander || cmdOverride.trim())}
+                  onClick={saveImported}
+                  title="Store this deck with its original card art. It appears in History and you can generate custom art later."
+                >
+                  {saveLoading ? 'Saving…' : '💾 Save to library'}
+                </button>
+                <button
+                  style={{ ...s.btnNext, flex: '1 1 200px', marginTop: 0, ...((preview.commander || cmdOverride.trim()) ? {} : s.btnDisabled) }}
+                  disabled={!(preview.commander || cmdOverride.trim())}
+                  onClick={useImported}
+                >
+                  Retheme this deck →
+                </button>
+              </div>
             </div>
           )}
         </div>
