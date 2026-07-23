@@ -11,7 +11,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
   const [errMsg, setErrMsg] = useState('')
   const [axis, setAxis] = useState('')
   const [applying, setApplying] = useState('')   // add-name of the in-flight swap
-  const [applied, setApplied] = useState('')     // add-name of the applied swap
+  const [applied, setApplied] = useState(null)   // the applied suggestion {add, cut, ...}
   const [applyErr, setApplyErr] = useState('')
 
   async function applySwap(s) {
@@ -21,11 +21,12 @@ export default function AdvisePanel({ jobId, onApplied }) {
       const response = await fetch(`/api/deck/${jobId}/apply-swap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ add: s.add, cut: result.cut }),
+        // Each suggestion carries its OWN cut (cut_pool>1) — use it, not a global cut.
+        body: JSON.stringify({ add: s.add, cut: s.cut }),
       })
       if (response.ok) {
         const updated = await response.json()
-        setApplied(s.add)
+        setApplied(s)
         onApplied?.(updated)   // App swaps in the modified deck; measure resets
       } else {
         let d = 'HTTP ' + response.status
@@ -137,24 +138,33 @@ export default function AdvisePanel({ jobId, onApplied }) {
             <div style={{ fontSize: 11.5, color: '#a8a29e', margin: '6px 0' }}>
               Target: {result.axis_label} — deck baseline {Math.round(result.baseline)}/100
             </div>
-            {result.cut && (
-              <div style={{ fontSize: 11, color: '#78716c', marginBottom: 8 }}>
-                Each swap replaces your weakest card: {result.cut}
-              </div>
-            )}
+            <div style={{ fontSize: 11, color: '#78716c', marginBottom: 8 }}>
+              Each row: <span style={{ color: '#fca5a5' }}>cut ✕</span> → <span style={{ color: '#86efac' }}>add ✓</span>, with the measured axis gain.
+            </div>
             {result.suggestions.length > 0 ? (
               result.suggestions.map((s, i) => (
                 <div
                   key={s.add}
                   style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '6px 8px', borderRadius: 6,
+                    gap: 10, padding: '7px 8px', borderRadius: 6,
                     background: i % 2 === 0 ? '#1c1917' : 'transparent',
-                    opacity: applied && applied !== s.add ? 0.45 : 1,
+                    opacity: applied && applied.add !== s.add ? 0.45 : 1,
                   }}
                 >
-                  <span style={{ fontSize: 12.5, fontWeight: 600, color: '#f5f5f4' }}>{s.add}</span>
-                  <span style={{ display: 'flex', alignItems: 'center' }}>
+                  {/* The swap, spelled out: OUT card → IN card */}
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 7, minWidth: 0, flex: 1 }}>
+                    <span style={{
+                      fontSize: 12, color: '#fca5a5', textDecoration: 'line-through',
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '42%',
+                    }} title={`Cut ${s.cut}`}>✕ {s.cut}</span>
+                    <span style={{ fontSize: 13, color: '#78716c' }}>→</span>
+                    <span style={{
+                      fontSize: 12.5, fontWeight: 700, color: '#86efac',
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                    }} title={`Add ${s.add}`}>✓ {s.add}</span>
+                  </span>
+                  <span style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                     <span style={{ fontSize: 11.5, color: '#a8a29e' }}>
                       {Math.round(s.before)} → {Math.round(s.after)}
                     </span>
@@ -164,7 +174,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                     }}>
                       +{s.delta.toFixed(1)}
                     </span>
-                    {applied === s.add ? (
+                    {applied && applied.add === s.add ? (
                       <span style={{
                         fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 8,
                         marginLeft: 8, background: '#14532d22', color: '#4ade80',
@@ -176,7 +186,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                       <button
                         onClick={() => applySwap(s)}
                         disabled={!!applying || !!applied}
-                        title={`Swap out ${result.cut} for ${s.add} in this deck, then re-measure`}
+                        title={`Swap out ${s.cut} for ${s.add} in this deck, then re-measure`}
                         style={{
                           fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 8,
                           marginLeft: 8, cursor: (applying || applied) ? 'default' : 'pointer',
@@ -209,7 +219,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                 fontSize: 11.5, color: '#86efac', background: '#0c1a0c',
                 border: '1px solid #166534', borderRadius: 8, padding: '6px 10px', marginTop: 8,
               }}>
-                Swapped in <b>{applied}</b> for {result.cut}. The deck changed, so hit
+                Swapped in <b>{applied.add}</b> for <b>{applied.cut}</b>. The deck changed, so hit
                 {' '}<b>Measure strength</b> above to see the new profile — the other
                 suggestions assumed the old list, so re-run the advisor for fresh ones.
               </div>
@@ -219,7 +229,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
             </div>
           </div>
           <button
-            onClick={() => { setPhase('idle'); setApplied(''); setApplyErr('') }}
+            onClick={() => { setPhase('idle'); setApplied(null); setApplyErr('') }}
             style={{
               background: 'none', border: '1px solid #292524', color: '#78716c',
               fontSize: 12, padding: '6px 14px', borderRadius: 8, marginTop: 8,
