@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import StepHome from './components/StepHome'
 import StepCommander from './components/StepCommander'
 import StepSingleCard from './components/StepSingleCard'
+import StepCollection from './components/StepCollection'
 import StepFace      from './components/StepFace'
 import StepTheme     from './components/StepTheme'
 import StepBuilding  from './components/StepBuilding'
@@ -219,6 +220,8 @@ export default function App() {
   function handleChoose(key) {
     if (key === 'card') {
       setMode('card')
+    } else if (key === 'collection') {
+      setMode('collection')
     } else {
       setMode('deck')
       setDeckEntryTab(key === 'analyze' ? 'import' : 'generate')
@@ -517,6 +520,10 @@ export default function App() {
             onGenerate={startCardBuild}
             onBack={() => setMode('home')}
           />
+        )}
+
+        {step === STEP.COMMANDER && mode === 'collection' && (
+          <StepCollection onBack={() => setMode('home')} />
         )}
 
         {step === STEP.FACE && (

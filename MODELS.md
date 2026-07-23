@@ -15,6 +15,19 @@ The easy path: **`download-models.bat`** (Windows) / **`python download-models.p
 
 The app auto-detects checkpoint type (FLUX / SDXL / SD3.5) from the filename and applies the right sampler settings (see [CLAUDE.md](./CLAUDE.md)).
 
+### Newer models (2026) — Krea & Qwen-Image
+Two next-gen options are wired in; run **`python download_new_models.py all`** (uses the ComfyUI
+venv + `huggingface_hub`) to fetch the ComfyUI-ready fp8 files into the right folders, then
+restart ComfyUI and pick the model in the Theme step. Both are **UNET-split** distributions
+(not all-in-one checkpoints), so they land under `models/diffusion_models/` + companions:
+
+| Model | Files | Notes |
+|---|---|---|
+| **FLUX.1-Krea-dev** (`✦ Krea`) | UNET `flux1-krea-dev_fp8_scaled` (~12 GB) + `clip_l` + existing `t5xxl` + `ae.safetensors` VAE | **Same flux-dev architecture → every FLUX LoRA + preset works unchanged.** Refined, less "AI-look" aesthetics. Best value upgrade. |
+| **Qwen-Image** (`◈ Qwen-Image`) | UNET `qwen_image_fp8_e4m3fn` (~20 GB) + `qwen_2.5_vl_7b_fp8_scaled` text encoder (~9 GB) + `qwen_image_vae` | Best-in-class in-image **text** + prompt adherence, 1328² native. Separate architecture — **no FLUX/SDXL LoRAs** (prompt-only). Face via ReActor swap only (no PuLID). |
+
+Detection is by filename fragment (`krea`, `qwen`) via `UNETLoader`/`CLIPLoader`/`VAELoader`, mirroring the checkpoint auto-detect.
+
 ## LoRAs → `models/loras/`
 LoRAs are **optional** and **auto-detected by filename fragment** — each art-style preset declares the fragments it looks for, so you just drop a `.safetensors` into `models/loras/` and the matching style activates. The preset → LoRA mapping is the table in [README.md](./README.md#art-style-presets); download links live on each preset's `download_url` in `image_gen.py` (`_LORA_PRESETS`).
 

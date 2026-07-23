@@ -774,6 +774,47 @@ def test_collection_owned_count():
     check("count.no_owned", collection.owned_count(cards, set()), 0)
 
 
+def test_collection_crud():
+    import tempfile, pathlib
+    p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_crud_test.csv"
+    if p.exists():
+        p.unlink()
+    bak = p.with_suffix(".csv.bak")
+    # write + quantity-aware load
+    collection.write_collection([{"name": "Sol Ring", "count": 1},
+                                 {"name": "Fire // Ice", "count": 2}], p)
+    rows = collection.load_collection(p)
+    check("crud.load.len", len(rows), 2)
+    check("crud.load.count", rows[1]["count"], 2)
+    # add merges onto existing (front-face keyed)
+    collection.add_card("Sol Ring", 2, p)
+    check("crud.add.merge", collection._find_row(collection.load_collection(p), "sol ring")["count"], 3)
+    collection.add_card("Llanowar Elves", 1, p)
+    check("crud.add.new", len(collection.load_collection(p)), 3)
+    # set_count, and 0 removes
+    collection.set_count("Sol Ring", 5, p)
+    check("crud.setcount", collection._find_row(collection.load_collection(p), "sol ring")["count"], 5)
+    collection.set_count("Sol Ring", 0, p)
+    check_true("crud.setcount.zero_removes",
+               collection._find_row(collection.load_collection(p), "sol ring") is None)
+    # remove via front face
+    collection.remove_card("Fire", p)
+    check_true("crud.remove.dfc",
+               collection._find_row(collection.load_collection(p), "fire // ice") is None)
+    # bulk import merge then replace
+    collection.bulk_import("2 Llanowar Elves\n1 Brainstorm", "merge", p)
+    check("crud.bulk.merge", collection._find_row(collection.load_collection(p), "llanowar elves")["count"], 3)
+    collection.bulk_import("Count,Name\n4,Island", "replace", p)
+    rows2 = collection.load_collection(p)
+    check("crud.bulk.replace.len", len(rows2), 1)
+    check("crud.bulk.replace.count", rows2[0]["count"], 4)
+    # .bak is created on write
+    check_true("crud.bak_exists", bak.exists())
+    p.unlink()
+    if bak.exists():
+        bak.unlink()
+
+
 def test_prefer_owned():
     from deck_builder import DeckBuilder
     b = DeckBuilder(None)  # _prefer_owned never touches the client

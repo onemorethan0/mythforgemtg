@@ -1429,6 +1429,8 @@ def _insert_loras(
     workflow: dict,
     checkpoint_node_id: str,
     loras: list[dict],
+    model_src: Optional[list] = None,
+    clip_src: Optional[list] = None,
 ) -> dict:
     """
     Chain LoRA loader nodes into a ComfyUI workflow.
@@ -1439,14 +1441,20 @@ def _insert_loras(
 
     Works for both standard FLUX and PuLID FLUX workflows because we target
     class_type strings rather than hardcoded node IDs.
-    """
+
+    For an all-in-one CheckpointLoaderSimple the model+clip both come from one node
+    (model=[node,0], clip=[node,1]) — the default. For split UNET graphs (FLUX.1-Krea
+    UNETLoader + DualCLIPLoader) the two live on different nodes, so pass `model_src`
+    and `clip_src` explicitly; KSampler.model is rewired when it currently points at
+    `model_src`'s node (falling back to `checkpoint_node_id`)."""
     if not loras:
         return workflow
     wf = dict(workflow)
     max_id = max(int(k) for k in wf.keys() if k.isdigit())
 
-    prev_model = [checkpoint_node_id, 0]
-    prev_clip  = [checkpoint_node_id, 1]
+    prev_model = list(model_src) if model_src else [checkpoint_node_id, 0]
+    prev_clip  = list(clip_src)  if clip_src  else [checkpoint_node_id, 1]
+    model_node = prev_model[0]   # node id whose model output feeds the sampler
 
     for entry in loras:
         max_id += 1
@@ -1464,26 +1472,27 @@ def _insert_loras(
         prev_model = [nid, 0]
         prev_clip  = [nid, 1]
 
-    # Rewire downstream nodes
+    # Rewire downstream nodes. A node's model input is rewired when it currently
+    # points at the base model source (the checkpoint node, or an explicit UNET node).
+    _model_nodes = (checkpoint_node_id, model_node)
     for node in wf.values():
         ct = node.get("class_type", "")
         inp = node.get("inputs", {})
         if ct in ("KSampler", "KSamplerAdvanced"):
-            # Only rewire if model was coming from the checkpoint
-            if inp.get("model", [None])[0] == checkpoint_node_id:
+            if inp.get("model", [None])[0] in _model_nodes:
                 inp["model"] = prev_model
         if ct == "CLIPTextEncode":
             inp["clip"] = prev_clip
         if ct == "ApplyPulidFlux":
             # PuLID wraps the model — update its model input too
-            if inp.get("model", [None])[0] == checkpoint_node_id:
+            if inp.get("model", [None])[0] in _model_nodes:
                 inp["model"] = prev_model
         if ct == "FaceDetailer":
             # The face-refine pass must use the SAME LoRA-patched model + clip so
             # the re-rendered face matches the deck's art style.
-            if inp.get("model", [None])[0] == checkpoint_node_id:
+            if inp.get("model", [None])[0] in _model_nodes:
                 inp["model"] = prev_model
-            if inp.get("clip", [None])[0] == checkpoint_node_id:
+            if inp.get("clip", [None])[0] in _model_nodes:
                 inp["clip"] = prev_clip
 
     return wf
@@ -1514,6 +1523,32 @@ def _apply_pag(wf: dict, scale: float = 3.0) -> dict:
 
 def _is_flux(name: str) -> bool:
     return "flux" in name.lower()
+
+def _is_krea(name: str) -> bool:
+    """FLUX.1-Krea-dev — an aesthetic refinement of FLUX.1-dev. Same architecture
+    (guidance-distilled flux-1-dev), so it uses the exact FLUX workflow and every
+    flux-dev LoRA applies unchanged. This helper is only for labelling / model_speed
+    routing; `_is_flux` already returns True for a krea file (name contains 'flux')."""
+    return "krea" in name.lower()
+
+def _is_qwen(name: str) -> bool:
+    """Qwen-Image (Alibaba) — a ~20B MMDiT with its own text encoder + VAE. NOT a
+    CheckpointLoaderSimple checkpoint: it's a UNET (diffusion_models/unet) loaded
+    alongside a qwen_image CLIP and a qwen VAE, with a distinct sampler graph.
+    FLUX/SDXL LoRAs are architecturally incompatible, so it runs prompt-only."""
+    return "qwen" in name.lower()
+
+# Fragments used to auto-resolve the three Qwen-Image asset files from ComfyUI's
+# installed lists (UNETLoader / CLIPLoader / VAELoader).
+_QWEN_UNET_FRAGMENTS = ("qwen_image", "qwen-image", "qwenimage")
+_QWEN_CLIP_FRAGMENTS = ("qwen_2.5_vl", "qwen2.5_vl", "qwen_2_5_vl", "qwen_vl", "qwen2.5-vl")
+_QWEN_VAE_FRAGMENTS  = ("qwen_image_vae", "qwen_image", "qwen-vae", "qwenvae")
+
+# FLUX split-graph components (needed for UNET-only FLUX models like FLUX.1-Krea-dev,
+# which ship without baked-in encoders/VAE — unlike the all-in-one flux1-dev-fp8).
+_FLUX_CLIPL_FRAGMENTS = ("clip_l",)
+_FLUX_T5_FRAGMENTS    = ("t5xxl", "t5-xxl", "t5xx")
+_FLUX_VAE_FRAGMENTS   = ("ae.safetensors", "flux_vae", "flux-vae", "ae.sft", "diffusion_pytorch_model")
 
 def _is_sd35(name: str) -> bool:
     """SD 3.5 (Large or Medium) — recognised by `sd3.5`, `sd35`, or `stable-diffusion-3` in the filename."""
@@ -2194,7 +2229,28 @@ class ImageGen:
         # this is the borderless frame. ("m15_fullart" matches cc_frames._SPECS.)
         self.frame_style = frame_style or "builtin"
         self.art_style   = art_style if art_style in _LORA_PRESETS else "mtg_fantasy"
+        # Qwen-Image assets (resolved lazily in _detect_checkpoint when the qwen
+        # model_speed is selected). None for every other model family.
+        self._qwen_clip: Optional[str] = None
+        self._qwen_vae:  Optional[str] = None
+        # FLUX split-graph assets {clip_l, t5, vae}. Set only when the FLUX model is a
+        # UNET-only file (FLUX.1-Krea-dev); None for the all-in-one flux1-dev checkpoint.
+        self._flux_unet_assets: Optional[dict] = None
         self.checkpoint  = checkpoint or self._detect_checkpoint()
+        # If a Qwen UNET was chosen explicitly (checkpoint dropdown), _detect_checkpoint
+        # was bypassed, so resolve its CLIP + VAE now. If they can't be found, drop the
+        # qwen selection (leaves self.checkpoint set but _check_server will flag it).
+        if _is_qwen(self.checkpoint or "") and not (self._qwen_clip and self._qwen_vae):
+            q = self._detect_qwen_assets()
+            if q:
+                self.checkpoint, self._qwen_clip, self._qwen_vae = q["unet"], q["clip"], q["vae"]
+        # A Krea checkpoint chosen explicitly (dropdown) may be a UNET-only file that
+        # bypassed _detect_checkpoint's resolver — figure out its mode now.
+        elif (_is_flux(self.checkpoint or "") and self._flux_unet_assets is None
+              and not self._checkpoint_is_all_in_one(self.checkpoint or "")):
+            fa = self._detect_flux_unet_assets()
+            if fa:
+                self._flux_unet_assets = fa
         self.available   = bool(self.checkpoint and self._check_server())
 
         # Face conditioning support
@@ -2233,7 +2289,178 @@ class ImageGen:
 
     # ── Checkpoint detection ──────────────────────────────────────────────────
 
+    def _detect_qwen_assets(self) -> Optional[dict]:
+        """Resolve the Qwen-Image UNET + CLIP + VAE from ComfyUI's installed lists.
+
+        Qwen-Image is loaded as three separate files (UNETLoader / CLIPLoader /
+        VAELoader), not a single checkpoint, so it needs its own probe. Returns
+        {"unet","clip","vae"} when all three are present, else None (caller falls
+        back to another model family)."""
+        def _list(node: str, field: str) -> list[str]:
+            try:
+                r = requests.get(f"{self.comfy_base}/object_info/{node}", timeout=5)
+                if r.status_code == 200:
+                    return (r.json().get(node, {}).get("input", {}).get("required", {})
+                            .get(field, [[]])[0]) or []
+            except requests.RequestException:
+                pass
+            return []
+
+        def _match(names: list[str], frags: tuple) -> Optional[str]:
+            for n in names:
+                if n.startswith("Unconfirmed"):
+                    continue
+                if any(fr in n.lower() for fr in frags):
+                    return n
+            return None
+
+        unet = _match(_list("UNETLoader", "unet_name"), _QWEN_UNET_FRAGMENTS)
+        clip = _match(_list("CLIPLoader", "clip_name"), _QWEN_CLIP_FRAGMENTS)
+        vae  = _match(_list("VAELoader",  "vae_name"),  _QWEN_VAE_FRAGMENTS)
+        if unet and clip and vae:
+            return {"unet": unet, "clip": clip, "vae": vae}
+        missing = [k for k, v in (("unet", unet), ("clip", clip), ("vae", vae)) if not v]
+        print(f"  [image_gen] Qwen-Image assets incomplete — missing {missing}. "
+              f"Need a qwen_image UNET, a qwen_2.5_vl CLIP, and a qwen_image VAE.")
+        return None
+
+    def _list_object_field(self, node: str, field: str) -> list[str]:
+        """Fetch an installed-file list from a ComfyUI loader node's object_info."""
+        try:
+            r = requests.get(f"{self.comfy_base}/object_info/{node}", timeout=5)
+            if r.status_code == 200:
+                return (r.json().get(node, {}).get("input", {}).get("required", {})
+                        .get(field, [[]])[0]) or []
+        except requests.RequestException:
+            pass
+        return []
+
+    def _checkpoint_is_all_in_one(self, name: str) -> bool:
+        """True if `name` is a CheckpointLoaderSimple checkpoint (encoders+VAE baked
+        in), as opposed to a UNET-only diffusion_models file."""
+        if not name:
+            return False
+        return name in self._list_object_field("CheckpointLoaderSimple", "ckpt_name")
+
+    def _detect_flux_unet_assets(self) -> Optional[dict]:
+        """Resolve the FLUX split-graph companions (clip_l, t5xxl, VAE) for a
+        UNET-only FLUX model. Returns {"clip_l","t5","vae"} or None if any is missing."""
+        clips = self._list_object_field("DualCLIPLoader", "clip_name1") \
+             or self._list_object_field("CLIPLoader", "clip_name")
+
+        def _match(names, frags):
+            for n in names:
+                if not n.startswith("Unconfirmed") and any(fr in n.lower() for fr in frags):
+                    return n
+            return None
+
+        clip_l = _match(clips, _FLUX_CLIPL_FRAGMENTS)
+        t5     = _match(clips, _FLUX_T5_FRAGMENTS)
+        vae    = _match(self._list_object_field("VAELoader", "vae_name"), _FLUX_VAE_FRAGMENTS)
+        if clip_l and t5 and vae:
+            return {"clip_l": clip_l, "t5": t5, "vae": vae}
+        missing = [k for k, v in (("clip_l", clip_l), ("t5xxl", t5), ("vae", vae)) if not v]
+        print(f"  [image_gen] FLUX UNET companions incomplete — missing {missing}. "
+              f"A UNET-only FLUX model (e.g. FLUX.1-Krea-dev) needs clip_l + t5xxl + a flux VAE (ae.safetensors).")
+        return None
+
+    def _build_flux_unet_workflow(self, positive: str, seed: int,
+                                  negative: str = "", gen: Optional[GenSettings] = None) -> dict:
+        """FLUX graph for a UNET-only checkpoint (FLUX.1-Krea-dev): UNETLoader +
+        DualCLIPLoader(flux) + VAELoader, otherwise identical sampler semantics to the
+        all-in-one FLUX path (cfg=1.0 + FluxGuidance). LoRA insertion is handled in
+        _build_and_run via _insert_loras(model_src=[1,0], clip_src=[2,0])."""
+        gen = gen or self.gen
+        neg = negative or _FLUX_NEGATIVE
+        a = self._flux_unet_assets or {}
+        steps    = gen.steps     or 28
+        sampler  = gen.sampler   or "dpmpp_2m"
+        scheduler= gen.scheduler or "sgm_uniform"
+        return {
+            "1": {"class_type": "UNETLoader",
+                  "inputs": {"unet_name": self.checkpoint, "weight_dtype": "default"}},
+            "2": {"class_type": "DualCLIPLoader",
+                  "inputs": {"clip_name1": a.get("clip_l", ""), "clip_name2": a.get("t5", ""),
+                             "type": "flux", "device": "default"}},
+            "3": {"class_type": "VAELoader", "inputs": {"vae_name": a.get("vae", "")}},
+            "4": {"class_type": "CLIPTextEncode", "inputs": {"text": positive, "clip": ["2", 0]}},
+            "5": {"class_type": "CLIPTextEncode", "inputs": {"text": neg,      "clip": ["2", 0]}},
+            "6": {"class_type": "EmptyLatentImage",
+                  "inputs": {"width": gen.width, "height": gen.height, "batch_size": 1}},
+            "8": {"class_type": "FluxGuidance",
+                  "inputs": {"conditioning": ["4", 0], "guidance": gen.guidance}},
+            "7": {"class_type": "KSampler",
+                  "inputs": {"seed": seed, "steps": steps, "cfg": 1.0,
+                             "sampler_name": sampler, "scheduler": scheduler, "denoise": 1.0,
+                             "model": ["1", 0], "positive": ["8", 0], "negative": ["5", 0],
+                             "latent_image": ["6", 0]}},
+            "9":  {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["3", 0]}},
+            "10": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["9", 0]}},
+        }
+
+    def _build_qwen_workflow(self, positive: str, seed: int,
+                             negative: str = "", gen: Optional[GenSettings] = None) -> dict:
+        """Qwen-Image text-to-image graph (ComfyUI canonical template).
+
+        UNETLoader + CLIPLoader(type=qwen_image) + VAELoader feed a true-CFG
+        KSampler (Qwen honours negatives, unlike guidance-distilled FLUX at cfg 1).
+        ModelSamplingAuraFlow sets the flow-matching shift. Assets were resolved in
+        _detect_qwen_assets → self.checkpoint (unet), self._qwen_clip, self._qwen_vae.
+        Qwen is a 16-channel latent (EmptySD3LatentImage), like SD3."""
+        gen = gen or self.gen
+        neg = negative or NEGATIVE_PROMPT   # Qwen respects negatives at cfg>1
+        width, height = gen.width, gen.height
+        # Qwen defaults (community-tested, Aug 2025): 20 steps, cfg 2.5, euler+simple.
+        steps    = gen.steps     or 20
+        sampler  = gen.sampler   or "euler"
+        scheduler= gen.scheduler or "simple"
+        cfg      = gen.guidance if (gen.guidance and gen.guidance != GenSettings().guidance) else 2.5
+        return {
+            "1":  {"class_type": "UNETLoader",
+                   "inputs": {"unet_name": self.checkpoint, "weight_dtype": "default"}},
+            "2":  {"class_type": "CLIPLoader",
+                   "inputs": {"clip_name": self._qwen_clip, "type": "qwen_image", "device": "default"}},
+            "3":  {"class_type": "VAELoader", "inputs": {"vae_name": self._qwen_vae}},
+            "4":  {"class_type": "CLIPTextEncode", "inputs": {"text": positive, "clip": ["2", 0]}},
+            "5":  {"class_type": "CLIPTextEncode", "inputs": {"text": neg,      "clip": ["2", 0]}},
+            "6":  {"class_type": "EmptySD3LatentImage",
+                   "inputs": {"width": width, "height": height, "batch_size": 1}},
+            "7":  {"class_type": "ModelSamplingAuraFlow", "inputs": {"shift": 3.1, "model": ["1", 0]}},
+            "8":  {"class_type": "KSampler",
+                   "inputs": {"seed": seed, "steps": steps, "cfg": cfg,
+                              "sampler_name": sampler, "scheduler": scheduler, "denoise": 1.0,
+                              "model": ["7", 0], "positive": ["4", 0], "negative": ["5", 0],
+                              "latent_image": ["6", 0]}},
+            "9":  {"class_type": "VAEDecode", "inputs": {"samples": ["8", 0], "vae": ["3", 0]}},
+            "10": {"class_type": "SaveImage", "inputs": {"filename_prefix": "mtg_card", "images": ["9", 0]}},
+        }
+
     def _detect_checkpoint(self) -> Optional[str]:
+        # Qwen-Image lives outside CheckpointLoaderSimple (UNET + CLIP + VAE), so
+        # resolve it first when requested; fall through to FLUX on any miss.
+        if self.model_speed == "qwen":
+            q = self._detect_qwen_assets()
+            if q:
+                self._qwen_clip = q["clip"]
+                self._qwen_vae  = q["vae"]
+                return q["unet"]
+            print("  [image_gen] Qwen-Image unavailable — falling back to FLUX dev.")
+        if self.model_speed == "krea":
+            # Prefer an all-in-one Krea checkpoint (handled by the block below); only
+            # take the UNET path when no such checkpoint exists.
+            simple = self._list_object_field("CheckpointLoaderSimple", "ckpt_name")
+            krea_simple = any(_is_krea(c) and not c.startswith("Unconfirmed") for c in simple)
+            if not krea_simple:
+                unets = self._list_object_field("UNETLoader", "unet_name")
+                ku = next((u for u in unets
+                           if _is_krea(u) and not u.startswith("Unconfirmed")), None)
+                if ku:
+                    fa = self._detect_flux_unet_assets()
+                    if fa:
+                        self._flux_unet_assets = fa
+                        return ku
+                    print("  [image_gen] Krea UNET found but companions missing — "
+                          "falling back to FLUX dev.")
         try:
             r = requests.get(f"{self.comfy_base}/object_info/CheckpointLoaderSimple", timeout=5)
             if r.status_code == 200:
@@ -2252,19 +2479,28 @@ class ImageGen:
                 sd35    = [c for c in usable if _is_sd35(c)]
                 schnell = [c for c in flux if "schnell" in c.lower()]
                 dev     = [c for c in flux if "schnell" not in c.lower()]
+                krea    = [c for c in dev if _is_krea(c)]
 
                 # model_speed routes to model family:
                 #   "sd35"            → SD 3.5 Large (slower, different aesthetic)
                 #   "fast"            → FLUX Schnell (4–8× faster than dev)
+                #   "krea"            → FLUX.1-Krea-dev (flux-dev arch + all LoRAs,
+                #                       refined aesthetics); falls back to plain dev
+                #   "qwen"            → handled above (UNET+CLIP+VAE)
                 #   "quality"/"turbo" → FLUX dev (turbo adds a distillation LoRA +
                 #                       low steps for ~3-4× speed at near-dev quality)
                 if self.model_speed == "sd35" and sd35:
                     return sd35[0]
                 if self.model_speed == "fast":
                     return (schnell or dev or sd35 or usable)[0]
-                # quality (default): prefer FLUX dev → schnell → SD3.5 → anything
+                if self.model_speed == "krea" and krea:
+                    return krea[0]
+                # quality (default): prefer FLUX dev → schnell → SD3.5 → anything.
+                # A Krea checkpoint is a valid dev pick but never auto-wins the
+                # default so existing decks keep their look unless the user asks.
                 if flux:
-                    return (dev or schnell)[0]
+                    dev_pref = [c for c in dev if not _is_krea(c)] or dev
+                    return (dev_pref or schnell)[0]
                 return (sd35 or usable)[0]
         except requests.RequestException as e:
             print(f"  [image_gen] Checkpoint detection failed: {e}")
@@ -2308,7 +2544,11 @@ class ImageGen:
         if not self.checkpoint:
             print(f"  [image_gen] No checkpoint detected")
             return False
-        if _is_flux(self.checkpoint):
+        if _is_qwen(self.checkpoint):
+            kind = "Qwen-Image"
+        elif _is_krea(self.checkpoint):
+            kind = "FLUX.1-Krea-dev"
+        elif _is_flux(self.checkpoint):
             kind = "FLUX"
         elif _is_sd35(self.checkpoint):
             kind = "SD3.5"
@@ -3161,7 +3401,24 @@ class ImageGen:
             _reactor_off = (self.face_method == "reactor"
                             and self._face_profile is not None
                             and not self._face_profile.enabled)
-            if face_comfy_name and self.face_method != "none" and not _reactor_off:
+            if _is_qwen(self.checkpoint or ""):
+                # Qwen-Image has no PuLID/IP-Adapter path; a face (if any) is applied
+                # by the ReActor post-process swap, which _append_reactor bolts onto
+                # any SaveImage graph. Build the base qwen graph here regardless.
+                wf = self._build_qwen_workflow(full_prompt, attempt_seed,
+                                               negative=self.active_negative, gen=self.gen)
+                if (face_comfy_name and self.face_method == "reactor" and not _reactor_off):
+                    _names = face_comfy_names or ([face_comfy_name] if face_comfy_name else [])
+                    wf = _append_reactor(wf, _names, profile=self._face_profile)
+            elif self._flux_unet_assets is not None:
+                # UNET-only FLUX (Krea): no PuLID graph here; a face is applied by
+                # the ReActor post-process swap, same as the Qwen path.
+                wf = self._build_flux_unet_workflow(full_prompt, attempt_seed,
+                                                    negative=self.active_negative, gen=self.gen)
+                if (face_comfy_name and self.face_method == "reactor" and not _reactor_off):
+                    _names = face_comfy_names or ([face_comfy_name] if face_comfy_name else [])
+                    wf = _append_reactor(wf, _names, profile=self._face_profile)
+            elif face_comfy_name and self.face_method != "none" and not _reactor_off:
                 wf = self._build_face_workflow(full_prompt, attempt_seed, face_comfy_name,
                                                face_comfy_names=face_comfy_names)
             else:
@@ -3175,8 +3432,10 @@ class ImageGen:
             # incompatible with schnell's distillation; applying them produces
             # incoherent output. schnell runs prompt-only.
             _is_schnell_ckpt = "schnell" in (self.checkpoint or "").lower()
+            _is_qwen_model = _is_qwen(self.checkpoint or "")
             _is_flux_model = _is_flux(self.checkpoint)
-            _is_sdxl_model = not _is_flux_model and not _is_sd35(self.checkpoint or "")
+            _is_sdxl_model = (not _is_flux_model and not _is_qwen_model
+                              and not _is_sd35(self.checkpoint or ""))
 
             # Turbo distillation LoRA rides on top of the style stack (flux-dev only).
             effective_loras = list(self.active_loras or [])
@@ -3198,12 +3457,18 @@ class ImageGen:
                 #   FLUX workflows: node "1"
                 #   SDXL workflows: node "4"
                 checkpoint_node = "1" if _is_flux_model else "4"
-                wf = _insert_loras(wf, checkpoint_node, scaled)
+                if self._flux_unet_assets is not None:
+                    # Krea UNET graph: model=[1,0] (UNETLoader), clip=[2,0] (DualCLIPLoader).
+                    wf = _insert_loras(wf, "1", scaled,
+                                       model_src=["1", 0], clip_src=["2", 0])
+                else:
+                    wf = _insert_loras(wf, checkpoint_node, scaled)
 
             # Quality: Perturbed-Attention Guidance (opt-in). Applied last so it
             # wraps the final post-LoRA model. Skipped for schnell (distilled, no
             # guidance) and SD3.5 (different sampler graph).
-            if self.gen.enhance and not _is_schnell_ckpt and not _is_sd35(self.checkpoint or ""):
+            if (self.gen.enhance and not _is_schnell_ckpt and not _is_qwen_model
+                    and not _is_sd35(self.checkpoint or "")):
                 wf = _apply_pag(wf)
                 print("  [image_gen] PAG enhance ON (Perturbed-Attention Guidance)")
 

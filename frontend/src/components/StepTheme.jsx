@@ -233,6 +233,8 @@ export default function StepTheme({
   const [hasDev, setHasDev]             = useState(false)
   const [hasSd35, setHasSd35]           = useState(false)
   const [hasSDXL, setHasSDXL]           = useState(false)
+  const [hasKrea, setHasKrea]           = useState(false)
+  const [hasQwen, setHasQwen]           = useState(false)
   const [comfyOffline, setComfyOffline] = useState(false)
   const [stylePresets, setStylePresets] = useState([])
   const [expandedStyle, setExpandedStyle] = useState(null)
@@ -414,7 +416,10 @@ export default function StepTheme({
       const hasSchnell_= ckpts.some(c => c.filename.toLowerCase().includes('schnell'))
       const hasSDXL_   = ckpts.some(c => (c.type||'').toUpperCase().includes('SDXL'))
       const hasSd35_   = ckpts.some(c => { const t=(c.type||'').toUpperCase(); return t.includes('SD') && !t.includes('SDXL') })
+      const hasKrea_   = ckpts.some(c => (c.type||'').toUpperCase().includes('KREA') || c.filename.toLowerCase().includes('krea'))
+      const hasQwen_   = ckpts.some(c => (c.type||'').toUpperCase().includes('QWEN') || c.filename.toLowerCase().includes('qwen'))
       setHasDev(hasDev_); setHasSchnell(hasSchnell_); setHasSDXL(hasSDXL_); setHasSd35(hasSd35_)
+      setHasKrea(hasKrea_); setHasQwen(hasQwen_)
       // Auto-correct stale model_speed if that checkpoint type disappeared
       if (modelSpeed === 'quality' && !hasDev_ && hasSchnell_) onModelSpeedChange('fast')
       else if (modelSpeed === 'fast' && !hasSchnell_ && hasDev_) onModelSpeedChange('quality')
@@ -1506,11 +1511,13 @@ export default function StepTheme({
         {generateArt && !comfyOffline && checkpoints.length > 0 && (() => {
           // Determine which button is currently active based on the selected checkpoint
           const isSchnellActive = checkpoint && checkpoint.toLowerCase().includes('schnell')
-          const isDevCkpt       = checkpoint && activeCheckpointType.includes('FLUX') && !isSchnellActive
+          const isQwenActive    = checkpoint && checkpoint.toLowerCase().includes('qwen')
+          const isKreaActive    = checkpoint && checkpoint.toLowerCase().includes('krea')
+          const isDevCkpt       = checkpoint && activeCheckpointType.includes('FLUX') && !isSchnellActive && !isKreaActive
           const isTurboActive   = isDevCkpt && modelSpeed === 'turbo'
           const isDevActive     = isDevCkpt && modelSpeed !== 'turbo'
           const isSDXLActive    = activeCheckpointType.includes('SDXL')
-          const isSd35Active    = activeCheckpointType.includes('SD') && !isSDXLActive
+          const isSd35Active    = !isQwenActive && activeCheckpointType.includes('SD') && !isSDXLActive
 
           // Turbo needs a distillation LoRA installed (keep fragments in sync with
           // image_gen._TURBO_LORA_FRAGMENTS).
@@ -1538,6 +1545,14 @@ export default function StepTheme({
             const c = checkpoints.find(c => c.filename.toLowerCase().includes('schnell'))
             if (c) { onCheckpointChange(c.filename); onModelSpeedChange('fast') }
           }
+          const selectKrea = () => {
+            const c = checkpoints.find(c => c.filename.toLowerCase().includes('krea'))
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('krea') }
+          }
+          const selectQwen = () => {
+            const c = checkpoints.find(c => c.filename.toLowerCase().includes('qwen'))
+            if (c) { onCheckpointChange(c.filename); onModelSpeedChange('qwen') }
+          }
 
           return (
             <div style={{ marginBottom: 20 }}>
@@ -1554,6 +1569,34 @@ export default function StepTheme({
                   }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: isDevActive ? '#eab308' : '#a8a29e', marginBottom: 3 }}>✦ Quality</div>
                     <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Dev · ~30s/card</div>
+                  </button>
+                )}
+
+                {/* FLUX.1-Krea-dev — flux-dev architecture (all FLUX LoRAs apply),
+                    refined aesthetics. Drop-in; shown when a krea checkpoint exists. */}
+                {hasKrea && (
+                  <button onClick={selectKrea} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isKreaActive ? '#1a1220' : '#0c0a09',
+                    border: `1px solid ${isKreaActive ? '#d946ef' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isKreaActive ? '#e879f9' : '#a8a29e', marginBottom: 3 }}>✦ Krea</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>FLUX Krea · ~30s/card · refined look · your LoRAs</div>
+                  </button>
+                )}
+
+                {/* Qwen-Image — 20B MMDiT, best-in-class text + composition.
+                    Separate architecture (no FLUX/SDXL LoRAs), prompt-only. */}
+                {hasQwen && (
+                  <button onClick={selectQwen} style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer',
+                    background: isQwenActive ? '#0a1618' : '#0c0a09',
+                    border: `1px solid ${isQwenActive ? '#2dd4bf' : '#292524'}`,
+                    textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.15s',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isQwenActive ? '#5eead4' : '#a8a29e', marginBottom: 3 }}>◈ Qwen-Image</div>
+                    <div style={{ fontSize: 11, color: '#57534e' }}>Qwen · ~40s/card · top text/prompt · no LoRAs</div>
                   </button>
                 )}
 

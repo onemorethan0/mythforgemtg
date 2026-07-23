@@ -45,12 +45,16 @@ from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
 from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
-from collection         import load_owned_names, owned_count, suite_collection_path
+from collection         import (
+    load_owned_names, owned_count, suite_collection_path,
+    load_collection, add_card as coll_add_card, set_count as coll_set_count,
+    remove_card as coll_remove_card, bulk_import as coll_bulk_import, owned_key,
+)
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
 from themer             import Themer, ThemedCard, ThemingCancelled
-from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl
+from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl, _is_krea, _is_qwen
 import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
@@ -3833,6 +3837,98 @@ def advise_deck(job_id: str, req: AdviseDeckRequest):
     return result
 
 
+# ── Collection manager (edit the canonical MythSuite/collection.csv) ──────────────
+# The collection is the Myth Suite handoff file (contract C1): MythScanner writes it,
+# Myth Forge + MythGauntlet read it for owned-aware building & advice. These endpoints
+# let the user browse/add/edit/remove owned cards from inside Myth Forge; every write
+# goes to the SAME canonical CSV (with a .bak) so the whole suite stays in sync.
+
+def _collection_summary(rows: list[dict]) -> dict:
+    return {
+        "distinct":    len(rows),
+        "total_cards": sum(int(r.get("count", 0)) for r in rows),
+        "path":        str(suite_collection_path()),
+        "exists":      suite_collection_path().exists(),
+    }
+
+
+@app.get("/api/collection")
+def get_collection(q: str = "", offset: int = 0, limit: int = 200):
+    """Owned cards (quantity-aware), optionally filtered by `q` and paginated.
+    limit<=0 returns all matches (still capped at 5000 for safety)."""
+    rows = load_collection()
+    ql = (q or "").strip().casefold()
+    filtered = [r for r in rows if ql in r["name"].casefold()] if ql else rows
+    lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
+    page = filtered[max(offset, 0): max(offset, 0) + lim]
+    return {"cards": page, "matched": len(filtered), **_collection_summary(rows)}
+
+
+class CollectionAddRequest(BaseModel):
+    name:     str
+    count:    int = 1
+    validate: bool = True   # resolve the canonical Scryfall name before storing
+
+
+@app.post("/api/collection/add")
+def collection_add(req: CollectionAddRequest):
+    """Add copies of a card. When validate=True the name is resolved against Scryfall
+    (fuzzy) so the stored spelling matches how decklists reference it; an unresolvable
+    name is a 404 so the UI can warn instead of silently storing a typo."""
+    name = (req.name or "").strip()
+    if not name:
+        raise HTTPException(400, "Card name is required.")
+    display = name
+    if req.validate:
+        try:
+            card = _scryfall.get_card_by_name(name, fuzzy=True)
+        except Exception:
+            card = None
+        if not card or not card.get("name"):
+            raise HTTPException(404, f"No card found matching '{name}'. Add it with validate=false to store as-is.")
+        display = card["name"]
+    rows = coll_add_card(name, max(int(req.count), 1), display_name=display)
+    return {"cards": rows[:200], "resolved_name": display, **_collection_summary(rows)}
+
+
+class CollectionCountRequest(BaseModel):
+    name:  str
+    count: int
+
+
+@app.patch("/api/collection/count")
+def collection_set_count(req: CollectionCountRequest):
+    """Set a card's exact count (0 removes it)."""
+    if not (req.name or "").strip():
+        raise HTTPException(400, "Card name is required.")
+    rows = coll_set_count(req.name.strip(), int(req.count))
+    return {"cards": rows[:200], **_collection_summary(rows)}
+
+
+@app.delete("/api/collection/{name}")
+def collection_remove(name: str):
+    """Remove a card entirely (matched on front-face name, case-insensitive)."""
+    rows = coll_remove_card(name)
+    return {"cards": rows[:200], **_collection_summary(rows)}
+
+
+class CollectionImportRequest(BaseModel):
+    text: str
+    mode: str = "merge"   # "merge" adds onto the current collection; "replace" overwrites
+
+
+@app.post("/api/collection/import")
+def collection_import(req: CollectionImportRequest):
+    """Bulk-import a pasted Moxfield CSV or a plain decklist. No Scryfall validation
+    (imports can be large); names are stored as written and normalized on read."""
+    text = (req.text or "").strip()
+    if not text:
+        raise HTTPException(400, "Nothing to import.")
+    mode = "replace" if req.mode == "replace" else "merge"
+    rows = coll_bulk_import(text, mode=mode)
+    return {"cards": rows[:200], "imported_mode": mode, **_collection_summary(rows)}
+
+
 @app.post("/api/deck/{job_id}/measure")
 def measure_deck(job_id: str):
     """Simulation-grounded strength for a FINISHED deck (suite C3, result screen).
@@ -5384,7 +5480,9 @@ def get_checkpoints():
             # Categorize by type using the same detection functions as image_gen.py
             result = []
             for ckpt in sorted(usable):
-                if _is_flux(ckpt):
+                if _is_krea(ckpt):
+                    ckpt_type = "FLUX Krea"      # flux-dev arch → all FLUX LoRAs apply
+                elif _is_flux(ckpt):
                     ckpt_type = "FLUX"
                 elif _is_sd35(ckpt):
                     ckpt_type = "SD 3.5"
@@ -5398,6 +5496,25 @@ def get_checkpoints():
                     "type": ckpt_type,
                     "label": f"{ckpt} ({ckpt_type})"
                 })
+
+            # Qwen-Image is a UNET (not a CheckpointLoaderSimple checkpoint), so it
+            # never appears in the list above. Probe UNETLoader and add a synthetic
+            # entry when the qwen assets are present so the UI can offer it.
+            try:
+                ur = requests.get("http://127.0.0.1:8188/object_info/UNETLoader", timeout=5)
+                if ur.status_code == 200:
+                    unets = (ur.json().get("UNETLoader", {}).get("input", {})
+                             .get("required", {}).get("unet_name", [[]])[0]) or []
+                    for u in sorted(unets):
+                        if _is_qwen(u) and not u.startswith("Unconfirmed"):
+                            result.append({
+                                "filename": u,
+                                "type": "Qwen-Image",
+                                "label": f"{u} (Qwen-Image)"
+                            })
+                            break
+            except Exception:
+                pass
             return result
     except Exception:
         pass

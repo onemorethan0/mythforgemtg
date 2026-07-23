@@ -19,6 +19,12 @@ const CHOICES = [
     desc: 'Design one custom card — your own name, cost, rules, and flavor — with AI-generated art.',
     cta: 'Design a card',
   },
+  {
+    key: 'collection', icon: '🎴', title: 'My Collection',
+    desc: 'Browse, add, and edit the cards you own. Powers collection-aware deck building '
+      + 'and owned-card upgrade suggestions across the Myth Suite.',
+    cta: 'Manage collection',
+  },
 ]
 
 export default function StepHome({ onChoose, onLoadDeck }) {
