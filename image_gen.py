@@ -3302,11 +3302,15 @@ class ImageGen:
             seed = int(self.gen.seed)
         else:
             seed = random.randint(0, 2**32 - 1)
-        # For FLUX, always use the preset-specific active_flux_prefix.
-        # For SDXL/SD3.5, use active_flux_prefix only if the preset defined a
-        # custom one (i.e. active_flux_prefix was overridden from _FLUX_PREFIX);
-        # otherwise fall back to _SDXL_PREFIX which is tuned for high-CFG SDXL.
-        if _is_flux(self.checkpoint):
+        # For FLUX and Qwen-Image, always use the preset-specific active_flux_prefix.
+        # Both are natural-language models, so the painterly _FLUX_PREFIX default (and
+        # each preset's custom natural-language prefix) steers them toward illustration;
+        # the SDXL tag-salad prefix would push Qwen toward photoreal (observed on the
+        # base 'none' style — it rendered semi-real instead of card art).
+        # For SDXL/SD3.5, use active_flux_prefix only if the preset defined a custom
+        # one (active_flux_prefix was overridden from _FLUX_PREFIX); otherwise fall
+        # back to _SDXL_PREFIX which is tuned for high-CFG SDXL.
+        if _is_flux(self.checkpoint) or _is_qwen(self.checkpoint):
             prefix = self.active_flux_prefix
         elif self.active_flux_prefix is not _FLUX_PREFIX:
             # Preset explicitly set a custom prefix for this SDXL/SD3.5 style
