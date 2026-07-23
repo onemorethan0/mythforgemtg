@@ -3820,11 +3820,13 @@ def _gauntlet_advise(commander, deck, axis=None):
             "deck": _deck_to_lines(commander, deck),
             "name": (commander or {}).get("name") or "deck",
             "runs": 300,
-            # The advisor now ranks owned candidates by TARGET-AXIS relevance before
-            # spending the eval budget (was popularity → tested staples that can't move
-            # e.g. Ceiling). 16 relevant candidates finds real swaps where 8 popular
-            # ones found none; the wider budget needs the longer timeout below.
+            # The advisor ranks owned candidates by TARGET-AXIS relevance + commander fit
+            # before spending the eval budget, then returns a NON-OVERLAPPING package
+            # (distinct cuts). cut_pool=6 gives up to 6 replaceable slots so the package
+            # can be more than 3 swaps; max_eval=16 relevant adds compete for them.
+            # 16×6 analyses ~= 60s warm, within the 150s timeout below.
             "max_eval": 16,
+            "cut_pool": 6,
         }
         if axis:
             payload["axis"] = axis
