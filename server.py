@@ -5497,22 +5497,27 @@ def get_checkpoints():
                     "label": f"{ckpt} ({ckpt_type})"
                 })
 
-            # Qwen-Image is a UNET (not a CheckpointLoaderSimple checkpoint), so it
-            # never appears in the list above. Probe UNETLoader and add a synthetic
-            # entry when the qwen assets are present so the UI can offer it.
+            # Qwen-Image and FLUX.1-Krea-dev ship as UNET files (diffusion_models),
+            # not CheckpointLoaderSimple checkpoints, so they never appear above. Probe
+            # UNETLoader and add synthetic entries so the UI can offer them. Only the
+            # first of each family is added (the app resolves companions by fragment).
             try:
                 ur = requests.get("http://127.0.0.1:8188/object_info/UNETLoader", timeout=5)
                 if ur.status_code == 200:
                     unets = (ur.json().get("UNETLoader", {}).get("input", {})
                              .get("required", {}).get("unet_name", [[]])[0]) or []
+                    seen_qwen = seen_krea = False
                     for u in sorted(unets):
-                        if _is_qwen(u) and not u.startswith("Unconfirmed"):
-                            result.append({
-                                "filename": u,
-                                "type": "Qwen-Image",
-                                "label": f"{u} (Qwen-Image)"
-                            })
-                            break
+                        if u.startswith("Unconfirmed"):
+                            continue
+                        if _is_qwen(u) and not seen_qwen:
+                            result.append({"filename": u, "type": "Qwen-Image",
+                                           "label": f"{u} (Qwen-Image)"})
+                            seen_qwen = True
+                        elif _is_krea(u) and not seen_krea:
+                            result.append({"filename": u, "type": "FLUX Krea",
+                                           "label": f"{u} (FLUX Krea)"})
+                            seen_krea = True
             except Exception:
                 pass
             return result

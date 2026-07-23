@@ -2245,8 +2245,9 @@ class ImageGen:
             if q:
                 self.checkpoint, self._qwen_clip, self._qwen_vae = q["unet"], q["clip"], q["vae"]
         # A Krea checkpoint chosen explicitly (dropdown) may be a UNET-only file that
-        # bypassed _detect_checkpoint's resolver — figure out its mode now.
-        elif (_is_flux(self.checkpoint or "") and self._flux_unet_assets is None
+        # bypassed _detect_checkpoint's resolver — figure out its mode now. Gated to
+        # Krea so the common all-in-one flux-dev/schnell path takes no extra probes.
+        elif (_is_krea(self.checkpoint or "") and self._flux_unet_assets is None
               and not self._checkpoint_is_all_in_one(self.checkpoint or "")):
             fa = self._detect_flux_unet_assets()
             if fa:
@@ -2356,7 +2357,18 @@ class ImageGen:
 
         clip_l = _match(clips, _FLUX_CLIPL_FRAGMENTS)
         t5     = _match(clips, _FLUX_T5_FRAGMENTS)
-        vae    = _match(self._list_object_field("VAELoader", "vae_name"), _FLUX_VAE_FRAGMENTS)
+        # VAE needs a stricter match: the literal fragment "ae.safetensors" is a
+        # SUBSTRING of "wan2.2_vae.safetensors" and "qwen_image_vae.safetensors", so a
+        # loose contains-check could grab the wrong VAE by list order. Prefer the exact
+        # flux VAE filename, then an explicitly flux-named VAE, then a fragment match
+        # that excludes the other model families.
+        vaes = [v for v in self._list_object_field("VAELoader", "vae_name")
+                if not v.startswith("Unconfirmed")]
+        vae = (next((v for v in vaes if v.lower() in ("ae.safetensors", "ae.sft", "flux_vae.safetensors")), None)
+               or next((v for v in vaes if "flux" in v.lower() and "vae" in v.lower()), None)
+               or next((v for v in vaes
+                        if any(fr in v.lower() for fr in _FLUX_VAE_FRAGMENTS)
+                        and "qwen" not in v.lower() and "wan" not in v.lower()), None))
         if clip_l and t5 and vae:
             return {"clip_l": clip_l, "t5": t5, "vae": vae}
         missing = [k for k, v in (("clip_l", clip_l), ("t5xxl", t5), ("vae", vae)) if not v]
