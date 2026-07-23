@@ -3464,11 +3464,32 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                                   art_theme, source_data.get("generate_art", False))
             return
 
-        # Fallback to plain card names if theming failed
+        # Fallback to plain card names if theming failed.
+        # raw_* dicts come from _stored_card_to_dict, whose key is "name" — NOT
+        # "original_name". Reading the wrong key raised KeyError here, so a themer
+        # hiccup (llama-swap down mid-retheme) blew up the whole retheme instead of
+        # degrading to plain names, which is how a retheme could end up mangling the
+        # deck. Accept either shape.
         if themed_cmd is None or themed_deck is None:
-            def _plain(c): return ThemedCard(c["original_name"], c["original_name"], "", "", c)
+            def _plain(c):
+                n = c.get("original_name") or c.get("name") or ""
+                return ThemedCard(n, n, "", "", c)
             themed_cmd  = _plain(raw_commander)
             themed_deck = [_plain(c) for c in raw_deck]
+
+        # SAFETY NET: a retheme re-invents names/art — it must NEVER change WHICH cards
+        # are in the deck. If the themer returned a short or partial batch, backfill from
+        # raw_deck (by original name, preserving order) so no card is ever dropped or
+        # substituted. A no-op on the normal path.
+        if len(themed_deck) != len(raw_deck):
+            print(f"  [retheme] themer returned {len(themed_deck)} of {len(raw_deck)} cards "
+                  f"— backfilling the rest with plain names so the decklist is preserved")
+            by_orig = {tc.original_name: tc for tc in themed_deck}
+            themed_deck = [
+                by_orig.get(c.get("name", ""),
+                            ThemedCard(c.get("name", ""), c.get("name", ""), "", "", c))
+                for c in raw_deck
+            ]
 
         # ── Apply the player's chosen name to the commander ───────────────────
         # '<YourName>, <generated title fitting the creature-type theme>' — keeps a
