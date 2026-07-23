@@ -212,6 +212,13 @@ _LINE_RE = re.compile(
     """, re.VERBOSE)
 
 _COMMANDER_HEADER = re.compile(r"^\s*(commander|commanders)\s*:?\s*$", re.I)
+# INLINE form: "Commander: Krenko, Mob Boss" — the single most common way a paper
+# decklist names its commander (and the format Myth Forge's own export writes). The
+# header regex above is end-anchored, so this line used to match NOTHING: no quantity,
+# no section, so it was silently DISCARDED. With the commander gone, _apply_auto_face
+# then elected a face out of the maindeck and pulled that card into the commander slot —
+# i.e. importing a paper deck silently changed which cards were in it.
+_COMMANDER_INLINE = re.compile(r"^\s*commanders?\s*:\s*(?P<name>\S.*?)\s*$", re.I)
 _SECTION_HEADER = re.compile(
     r"^\s*(deck|mainboard|maindeck|companion|sideboard|maybeboard|tokens?)\s*:?\s*$", re.I)
 _IGNORE_SECTIONS = {"sideboard", "maybeboard", "token", "tokens"}
@@ -229,6 +236,13 @@ def _parse_text(text: str) -> RawDeck:
             continue
         if _COMMANDER_HEADER.match(line):
             section = "commander"; saw_commander_header = True
+            continue
+        m_inline = _COMMANDER_INLINE.match(line)
+        if m_inline:
+            # "Commander: <name>" names the commander on the same line — record it and
+            # stay in the deck section (the following lines are the maindeck).
+            commander_names.append(m_inline.group("name").strip())
+            saw_commander_header = True
             continue
         m_sec = _SECTION_HEADER.match(line)
         if m_sec:

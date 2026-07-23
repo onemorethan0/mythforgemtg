@@ -1,4 +1,6 @@
+import difflib
 import json
+import re
 import threading
 import time
 from pathlib import Path
@@ -13,6 +15,32 @@ BASE_URL = "https://api.scryfall.com"
 # the cache never needs invalidation for normal use.
 _CACHE_DIR       = Path("cache")
 _CARD_CACHE_FILE = _CACHE_DIR / "scryfall_cards.json"
+
+
+def _fuzzy_name_key(name: str) -> str:
+    """Lowercase, strip punctuation/accents-ish noise, collapse space — for comparing a
+    requested decklist name against the card Scryfall's fuzzy search returned."""
+    import unicodedata
+    n = unicodedata.normalize("NFKD", (name or "")).encode("ascii", "ignore").decode()
+    n = n.split("//", 1)[0]                       # compare on the front face
+    n = re.sub(r"[^a-z0-9 ]+", " ", n.lower())
+    return re.sub(r"\s+", " ", n).strip()
+
+
+def _fuzzy_is_plausible(requested: str, canonical: str, threshold: float = 0.72) -> bool:
+    """True when a fuzzy match plausibly IS the requested card.
+
+    Guards against Scryfall's fuzzy endpoint silently substituting an unrelated card for
+    a typo — which would change an imported paper decklist. Accepts near-misses
+    (punctuation/accents, "Krenko Mob Boss" -> "Krenko, Mob Boss") and front-face/prefix
+    matches; rejects "sol rng" -> "Oathsworn Giant".
+    """
+    a, b = _fuzzy_name_key(requested), _fuzzy_name_key(canonical)
+    if not a or not b:
+        return False
+    if a == b or b.startswith(a) or a.startswith(b):
+        return True
+    return difflib.SequenceMatcher(None, a, b).ratio() >= threshold
 
 
 def _normalize_card(card: dict) -> dict:
@@ -198,8 +226,15 @@ class ScryfallClient:
                     if front:
                         card = self.get_card_by_name(front, fuzzy=False)
                 if card is None:
-                    # exact canonical miss — fall back to a single fuzzy lookup
-                    card = self.get_card_by_name(req, fuzzy=True)
+                    # Exact canonical miss — a fuzzy lookup is a convenience for near
+                    # misses (missing comma/accent, DFC front face), but Scryfall's fuzzy
+                    # will happily return a COMPLETELY different card for a typo
+                    # ("sol rng" -> "Oathsworn Giant"). Silently swapping that into an
+                    # imported paper decklist changes the user's deck, so only accept a
+                    # fuzzy hit that actually resembles what was asked for; otherwise
+                    # leave it unresolved and let the caller surface it.
+                    cand = self.get_card_by_name(req, fuzzy=True)
+                    card = cand if _fuzzy_is_plausible(req, (cand or {}).get("name", "")) else None
                 if card is not None:
                     out[key] = card
                     self._cache_put([req, card.get("name", "")], card, save=False)

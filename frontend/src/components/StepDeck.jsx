@@ -206,15 +206,26 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
         </div>
       )}
 
-      {/* Ownership: mark cards the user does NOT own a real copy of (proxy). */}
+      {/* Ownership. EVERY card here has custom art, so the badge conveys whether you own
+          a real copy — not "proxy" (which read as "you don't own this"). */}
+      {card.owned === true && (
+        <div title="Custom art for a card you own (in your collection)"
+          style={{
+            position: 'absolute', bottom: 5, left: 5, fontSize: 8.5,
+            padding: '1px 5px', borderRadius: 4, fontWeight: 700, letterSpacing: '0.03em',
+            background: '#0c1a0ccc', color: '#4ade80', border: '1px solid #166534',
+          }}>
+          ✓ OWNED
+        </div>
+      )}
       {card.owned === false && (
-        <div title="You don't own a real copy — this is a proxy"
+        <div title="You don't own a real copy of this card yet"
           style={{
             position: 'absolute', bottom: 5, left: 5, fontSize: 8.5,
             padding: '1px 5px', borderRadius: 4, fontWeight: 700, letterSpacing: '0.03em',
             background: '#1c1408cc', color: '#eab308', border: '1px solid #a16207',
           }}>
-          PROXY
+          NOT OWNED
         </div>
       )}
 
@@ -946,6 +957,29 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [filter, setFilter]   = useState('All')
   const [view, setView]       = useState('gallery')
   const [query, setQuery]     = useState('')   // text search across the card list
+  // "I own this deck in paper" -> merge its cards into the collection so ownership
+  // badges reflect reality (idle | saving | done | error message)
+  const [ownDeck, setOwnDeck] = useState('idle')
+
+  async function addDeckToCollection() {
+    if (ownDeck === 'saving') return
+    setOwnDeck('saving')
+    try {
+      const names = [deck.commander, ...(deck.deck || [])].filter(Boolean)
+        .map(c => `${c.quantity || 1} ${c.original_name}`).join('\n')
+      const r = await fetch('/api/collection/import', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: names, mode: 'merge' }),
+      })
+      if (!r.ok) throw new Error('import failed')
+      // Re-fetch so the server recomputes `owned` for every card.
+      const d = await fetch(`/api/deck/${jobId}`)
+      if (d.ok) onDeckChange?.(await d.json())
+      setOwnDeck('done')
+    } catch {
+      setOwnDeck('error')
+    }
+  }
 
   // ── Selection state ───────────────────────────────────────────────────────
   const [selectedKeys, setSelectedKeys]   = useState(new Set())
@@ -1418,11 +1452,26 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               const own = cards.filter(c => c.owned).length
               const proxies = total - own
               return (
-                <span title={`${own} you own · ${proxies} proxies you'd need to acquire`}
-                  style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
-                    background: '#1c1408', border: '1px solid #a16207', color: '#fde047' }}>
-                  🎴 Own {own}/{total}{proxies ? ` · ${proxies} proxies` : ' · all owned'}
-                </span>
+                <>
+                  <span title={`${own} you own a real copy of · ${proxies} you don't own yet. Every card here has custom art.`}
+                    style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
+                      background: '#1c1408', border: '1px solid #a16207', color: '#fde047' }}>
+                    🎴 Own {own}/{total}{proxies ? ` · ${proxies} not owned` : ' · all owned'}
+                  </span>
+                  {proxies > 0 && (
+                    <button
+                      onClick={addDeckToCollection}
+                      disabled={ownDeck === 'saving' || ownDeck === 'done'}
+                      title="You own this deck in paper? Add its cards to your collection so they're marked owned."
+                      style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
+                        cursor: ownDeck === 'saving' || ownDeck === 'done' ? 'default' : 'pointer',
+                        fontFamily: 'inherit', background: '#0c1a0c', color: '#86efac',
+                        border: '1px solid #166534', opacity: ownDeck === 'saving' ? 0.6 : 1 }}>
+                      {ownDeck === 'saving' ? '…' : ownDeck === 'done' ? '✓ Added to collection'
+                        : ownDeck === 'error' ? '✕ Failed — retry' : '＋ I own this deck in paper'}
+                    </button>
+                  )}
+                </>
               )
             })()}
             {deck.theme && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>}

@@ -774,6 +774,34 @@ def test_collection_owned_count():
     check("count.no_owned", collection.owned_count(cards, set()), 0)
 
 
+def test_import_preserves_decklist():
+    """Importing a paper deck must not change which cards are in it.
+
+    Regression: 'Commander: <Name>' (the most common paper/export form) matched no
+    rule, was silently DISCARDED, and the commanderless deck then had a maindeck card
+    auto-elected into the commander slot — so the import changed the user's deck."""
+    from deck_import import _parse_text
+    raw = _parse_text("Commander: Krenko, Mob Boss\n\n1 Sol Ring\n1 Lightning Bolt\n2 Mountain")
+    check("imp.cmdr", raw.commander_names, ["Krenko, Mob Boss"])
+    check("imp.cards", [n for n, _ in raw.card_entries],
+          ["Sol Ring", "Lightning Bolt", "Mountain"])
+    check("imp.qty", dict(raw.card_entries)["Mountain"], 2)
+    # bare-header form still works
+    raw2 = _parse_text("Commander\n1 Krenko, Mob Boss\n\nDeck\n1 Sol Ring")
+    check("imp.hdr.cmdr", raw2.commander_names, ["Krenko, Mob Boss"])
+    check("imp.hdr.cards", [n for n, _ in raw2.card_entries], ["Sol Ring"])
+
+
+def test_fuzzy_substitution_guard():
+    """A typo must NOT silently become a different card in an imported decklist."""
+    from scryfall_client import _fuzzy_is_plausible
+    check_true("fz.near", _fuzzy_is_plausible("Krenko Mob Boss", "Krenko, Mob Boss"))
+    check_true("fz.dfc", _fuzzy_is_plausible("Aang, at the Crossroads",
+                                             "Aang, at the Crossroads // Aang, Destined Savior"))
+    check_true("fz.typo", not _fuzzy_is_plausible("sol rng", "Oathsworn Giant"))
+    check_true("fz.other", not _fuzzy_is_plausible("Jace, the Mind Sculptor", "Jace Beleren"))
+
+
 def test_collection_crud():
     import tempfile, pathlib
     p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_crud_test.csv"
