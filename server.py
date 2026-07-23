@@ -3904,6 +3904,34 @@ def collection_add(req: CollectionAddRequest):
     return {"cards": rows[:200], "resolved_name": display, **_collection_summary(rows)}
 
 
+@app.get("/api/card-image")
+def card_image(name: str):
+    """Resolve a card NAME to its Scryfall image URLs (for hover previews).
+
+    Exact-first then fuzzy, via the cached ScryfallClient. Handles double-faced cards
+    (image_uris live on the front face). Returns {name, normal, art_crop} or 404."""
+    nm = (name or "").strip()
+    if not nm:
+        raise HTTPException(400, "name required")
+    card = None
+    try:
+        card = _scryfall.get_card_by_name(nm, fuzzy=False) or _scryfall.get_card_by_name(nm, fuzzy=True)
+    except Exception:
+        card = None
+    if not card:
+        raise HTTPException(404, f"no card matching '{nm}'")
+    imgs = card.get("image_uris") or {}
+    if not imgs:
+        faces = card.get("card_faces") or []
+        if faces and isinstance(faces[0], dict):
+            imgs = faces[0].get("image_uris") or {}
+    return {
+        "name": card.get("name", nm),
+        "normal": imgs.get("normal") or imgs.get("large") or imgs.get("small") or "",
+        "art_crop": imgs.get("art_crop") or "",
+    }
+
+
 @app.get("/api/collection/suggest")
 def collection_suggest(q: str = ""):
     """Card-name typeahead for the add box (Scryfall autocomplete). Returns up to

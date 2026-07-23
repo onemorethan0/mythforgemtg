@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
+import CardHover from './CardHover'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -190,9 +191,9 @@ export default function StepCollection({ onBack, onBuild }) {
                   {buildable.commanders.map(cm => (
                     <div key={cm.commander} style={{ border: `1px solid ${c.border}`, borderRadius: 10, padding: 12, background: c.card }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                        <div style={{ flex: 1, fontSize: 14, fontWeight: 700, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <CardHover name={cm.commander} style={{ flex: 1, fontSize: 14, fontWeight: 700, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                           {cm.commander}
-                        </div>
+                        </CardHover>
                         <span style={{ fontSize: 11, fontWeight: 700, color: c.gold, whiteSpace: 'nowrap' }}>{cm.ci}</span>
                       </div>
                       <div style={{ height: 6, background: '#000', borderRadius: 4, overflow: 'hidden', marginBottom: 6 }}>
@@ -316,9 +317,9 @@ export default function StepCollection({ onBack, onBuild }) {
               display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px',
               background: i % 2 ? '#141210' : c.card, borderBottom: i < cards.length - 1 ? `1px solid ${c.border}` : 'none',
             }}>
-              <div style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <CardHover name={row.name} style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                 {row.name}
-              </div>
+              </CardHover>
               <button onClick={() => setCount(row.name, row.count - 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>−</button>
               <span style={{ minWidth: 26, textAlign: 'center', fontSize: 13.5, color: c.gold, fontWeight: 700 }}>{row.count}</span>
               <button onClick={() => setCount(row.name, row.count + 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>+</button>

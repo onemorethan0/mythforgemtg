@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CardHover from './CardHover'
 
 // "Suggest upgrades from my collection" (Myth Suite C4 advisor): asks MythGauntlet
 // which OWNED cards measurably improve the deck — every suggestion is an ablation
@@ -146,23 +147,25 @@ export default function AdvisePanel({ jobId, onApplied }) {
                 <div
                   key={s.add}
                   style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    gap: 10, padding: '7px 8px', borderRadius: 6,
+                    padding: '7px 8px', borderRadius: 6,
                     background: i % 2 === 0 ? '#1c1917' : 'transparent',
                     opacity: applied && applied.add !== s.add ? 0.45 : 1,
                   }}
                 >
-                  {/* The swap, spelled out: OUT card → IN card */}
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
+                  {/* The swap, spelled out: OUT card → IN card (hover a name for its image) */}
                   <span style={{ display: 'flex', alignItems: 'center', gap: 7, minWidth: 0, flex: 1 }}>
-                    <span style={{
+                    <CardHover name={s.cut} style={{
                       fontSize: 12, color: '#fca5a5', textDecoration: 'line-through',
-                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '42%',
-                    }} title={`Cut ${s.cut}`}>✕ {s.cut}</span>
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      maxWidth: '42%', display: 'inline-block', verticalAlign: 'bottom',
+                    }}>✕ {s.cut}</CardHover>
                     <span style={{ fontSize: 13, color: '#78716c' }}>→</span>
-                    <span style={{
+                    <CardHover name={s.add} style={{
                       fontSize: 12.5, fontWeight: 700, color: '#86efac',
                       whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                    }} title={`Add ${s.add}`}>✓ {s.add}</span>
+                      display: 'inline-block', verticalAlign: 'bottom',
+                    }}>✓ {s.add}</CardHover>
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                     <span style={{ fontSize: 11.5, color: '#a8a29e' }}>
@@ -198,6 +201,12 @@ export default function AdvisePanel({ jobId, onApplied }) {
                       </button>
                     )}
                   </span>
+                 </div>
+                 {s.reason && (
+                   <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}>
+                     {s.reason} <span style={{ color: '#57534e' }}>(+{s.delta.toFixed(1)} measured)</span>
+                   </div>
+                 )}
                 </div>
               ))
             ) : (
