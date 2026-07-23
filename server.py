@@ -3782,11 +3782,15 @@ def _gauntlet_advise(commander, deck, axis=None):
             "deck": _deck_to_lines(commander, deck),
             "name": (commander or {}).get("name") or "deck",
             "runs": 300,
-            "max_eval": 8,
+            # The advisor now ranks owned candidates by TARGET-AXIS relevance before
+            # spending the eval budget (was popularity → tested staples that can't move
+            # e.g. Ceiling). 16 relevant candidates finds real swaps where 8 popular
+            # ones found none; the wider budget needs the longer timeout below.
+            "max_eval": 16,
         }
         if axis:
             payload["axis"] = axis
-        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=90)
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=150)
         if resp.status_code == 400:
             try:
                 return {"error": resp.json().get("detail", "advise failed")}
