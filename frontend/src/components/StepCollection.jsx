@@ -115,7 +115,9 @@ export default function StepCollection({ onBack, onBuild }) {
     }), null)
 
   const removeCard = (name) =>
-    apply(fetch(`/api/collection/${encodeURIComponent(name)}`, { method: 'DELETE' }),
+    // name is a query param, not a path segment — DFC/split names contain '//' and an
+    // encoded slash in the path 405s under Starlette routing.
+    apply(fetch(`/api/collection?name=${encodeURIComponent(name)}`, { method: 'DELETE' }),
       () => `Removed ${name}`)
 
   const runImport = () => {

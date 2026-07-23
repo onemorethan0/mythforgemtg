@@ -2716,8 +2716,13 @@ class ImageGen:
             if not all(n in available_nodes for n in required_nodes):
                 continue
 
-            # Method nodes are present — check models exist
-            if method == "pulid_flux" and _is_flux(self.checkpoint):
+            # Method nodes are present — check models exist.
+            # PuLID's graph uses CheckpointLoaderSimple, so it can't drive a UNET-only
+            # FLUX model (Krea) — skip it there so face routing falls through to ReActor
+            # (a post-process swap that works on any SaveImage graph) instead of silently
+            # dropping the face.
+            if (method == "pulid_flux" and _is_flux(self.checkpoint)
+                    and self._flux_unet_assets is None):
                 pulid_models = self._query_model_list("PulidModelLoader", "pulid_file")
                 eva_models   = self._query_model_list("EVACLIPLoader",    "model_name")
                 if pulid_models and eva_models:

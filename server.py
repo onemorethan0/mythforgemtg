@@ -3937,9 +3937,14 @@ def collection_set_count(req: CollectionCountRequest):
     return {"cards": rows[:200], **_collection_summary(rows)}
 
 
-@app.delete("/api/collection/{name}")
+@app.delete("/api/collection")
 def collection_remove(name: str):
-    """Remove a card entirely (matched on front-face name, case-insensitive)."""
+    """Remove a card entirely (matched on front-face name, case-insensitive).
+
+    The name is a QUERY param, not a path segment: double-faced/split card names
+    contain '//', and an encoded slash in the path 405s under Starlette routing."""
+    if not (name or "").strip():
+        raise HTTPException(400, "Card name is required.")
     rows = coll_remove_card(name)
     return {"cards": rows[:200], **_collection_summary(rows)}
 
