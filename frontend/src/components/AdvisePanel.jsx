@@ -211,8 +211,13 @@ export default function AdvisePanel({ jobId, onApplied }) {
               ))
             ) : (
               <div style={{ fontSize: 12, color: '#a8a29e' }}>
-                No owned card improved {result.axis_label} — evaluated {result.evaluated} of{' '}
+                No owned card improved {result.axis_label} by at least{' '}
+                {(result.min_delta ?? 1).toFixed(1)} pts — evaluated {result.evaluated} of{' '}
                 {result.candidates_that_fit} that fit this deck's colors.
+                <div style={{ fontSize: 11, color: '#78716c', marginTop: 4 }}>
+                  Smaller gains are simulation noise, so they're filtered out rather than
+                  padding the list.
+                </div>
               </div>
             )}
             {applyErr && (
