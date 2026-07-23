@@ -26,7 +26,10 @@ export default function StepCollection({ onBack }) {
   const [showImport, setShowImport] = useState(false)
   const [importText, setImportText] = useState('')
   const [importMode, setImportMode] = useState('merge')
+  const [suggests, setSuggests]     = useState([])   // typeahead names for the add box
+  const [showSug, setShowSug]       = useState(false)
   const debounce = useRef(null)
+  const sugDebounce = useRef(null)
 
   const flash = (kind, text) => { setMsg({ kind, text }); if (text) setTimeout(() => setMsg(null), 4000) }
 
@@ -51,6 +54,20 @@ export default function StepCollection({ onBack }) {
     debounce.current = setTimeout(() => load(q.trim()), 250)
     return () => debounce.current && clearTimeout(debounce.current)
   }, [q, load])
+
+  // Typeahead: fetch Scryfall autocomplete for the add box (debounced).
+  useEffect(() => {
+    if (sugDebounce.current) clearTimeout(sugDebounce.current)
+    const term = addName.trim()
+    if (term.length < 2) { setSuggests([]); return }
+    sugDebounce.current = setTimeout(() => {
+      fetch(`/api/collection/suggest?q=${encodeURIComponent(term)}`)
+        .then(r => r.json())
+        .then(d => setSuggests(d.suggestions || []))
+        .catch(() => setSuggests([]))
+    }, 200)
+    return () => sugDebounce.current && clearTimeout(sugDebounce.current)
+  }, [addName])
 
   const apply = (promise, okMsg) => {
     setBusy(true)
@@ -134,13 +151,33 @@ export default function StepCollection({ onBack }) {
 
       {/* Add card */}
       <div style={{ display: 'flex', gap: 8, margin: '14px 0', flexWrap: 'wrap' }}>
-        <input
-          value={addName} onChange={e => setAddName(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && addCard()}
-          placeholder="Add a card by name (e.g. Sol Ring)"
-          style={{ flex: '1 1 320px', padding: '9px 12px', borderRadius: 8, background: c.panel,
-                   border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14 }}
-        />
+        <div style={{ flex: '1 1 320px', position: 'relative' }}>
+          <input
+            value={addName}
+            onChange={e => { setAddName(e.target.value); setShowSug(true) }}
+            onKeyDown={e => { if (e.key === 'Enter') { setShowSug(false); addCard() } if (e.key === 'Escape') setShowSug(false) }}
+            onFocus={() => setShowSug(true)}
+            onBlur={() => setTimeout(() => setShowSug(false), 150)}
+            placeholder="Add a card by name (e.g. Sol Ring)"
+            style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
+                     border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14 }}
+          />
+          {showSug && suggests.length > 0 && (
+            <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 20, marginTop: 4,
+                          background: c.card, border: `1px solid ${c.border}`, borderRadius: 8,
+                          maxHeight: 240, overflowY: 'auto', boxShadow: '0 6px 20px rgba(0,0,0,0.5)' }}>
+              {suggests.map(s => (
+                <div key={s}
+                  onMouseDown={e => { e.preventDefault(); setAddName(s); setShowSug(false) }}
+                  style={{ padding: '7px 12px', fontSize: 13.5, color: '#f5f5f4', cursor: 'pointer' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#2a2420'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                  {s}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <input
           type="number" min="1" value={addCount} onChange={e => setAddCount(e.target.value)}
           style={{ width: 68, padding: '9px 10px', borderRadius: 8, background: c.panel,

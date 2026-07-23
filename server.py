@@ -3880,15 +3880,43 @@ def collection_add(req: CollectionAddRequest):
         raise HTTPException(400, "Card name is required.")
     display = name
     if req.validate:
+        # Exact match first so a correctly-typed name is never fuzzed into a
+        # different card (fuzzy turned "sol rng" into "Oathsworn Giant"); only fall
+        # back to fuzzy when the exact spelling isn't found.
+        card = None
         try:
-            card = _scryfall.get_card_by_name(name, fuzzy=True)
+            card = _scryfall.get_card_by_name(name, fuzzy=False)
         except Exception:
             card = None
+        if not card or not card.get("name"):
+            try:
+                card = _scryfall.get_card_by_name(name, fuzzy=True)
+            except Exception:
+                card = None
         if not card or not card.get("name"):
             raise HTTPException(404, f"No card found matching '{name}'. Add it with validate=false to store as-is.")
         display = card["name"]
     rows = coll_add_card(name, max(int(req.count), 1), display_name=display)
     return {"cards": rows[:200], "resolved_name": display, **_collection_summary(rows)}
+
+
+@app.get("/api/collection/suggest")
+def collection_suggest(q: str = ""):
+    """Card-name typeahead for the add box (Scryfall autocomplete). Returns up to
+    ~20 canonical names; empty list on short/blank query or any upstream hiccup."""
+    ql = (q or "").strip()
+    if len(ql) < 2:
+        return {"suggestions": []}
+    try:
+        # Use the ScryfallClient's session — Scryfall rejects requests without a
+        # proper User-Agent/Accept header (a bare requests.get returns nothing).
+        r = _scryfall.session.get("https://api.scryfall.com/cards/autocomplete",
+                                  params={"q": ql}, timeout=5)
+        if r.status_code == 200:
+            return {"suggestions": (r.json().get("data") or [])[:20]}
+    except Exception:
+        pass
+    return {"suggestions": []}
 
 
 class CollectionCountRequest(BaseModel):
