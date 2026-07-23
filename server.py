@@ -1062,6 +1062,15 @@ def _owned_names_cached() -> set:
     return _owned_cache["set"]
 
 
+def _card_is_owned(name: str, type_line: str, owned: set) -> bool:
+    """Owned = a real copy you have, OR a basic land (freely available — never a proxy
+    you'd need to acquire). Everything else is judged against the collection."""
+    tl = (type_line or "").lower()
+    if "basic" in tl and "land" in tl:
+        return True
+    return owned_key(name) in owned
+
+
 def _annotate_owned(payload: dict) -> dict:
     """Tag the commander + each deck card with `owned` (real copy in the collection vs
     a proxy) at SERVE time — so loaded/old decks get it too, and it reflects live
@@ -1070,7 +1079,7 @@ def _annotate_owned(payload: dict) -> dict:
     for c in ([payload.get("commander")] if isinstance(payload.get("commander"), dict) else []) \
             + (payload.get("deck") or []):
         if isinstance(c, dict) and c.get("original_name"):
-            c["owned"] = owned_key(c["original_name"]) in owned
+            c["owned"] = _card_is_owned(c["original_name"], c.get("type_line", ""), owned)
     return payload
 
 
@@ -1089,9 +1098,10 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
     return {
         "original_name": tc.original_name,
         "themed_name":   tc.themed_name,
-        # True = the user owns a real copy (in the Myth Suite collection); False = a
-        # proxy they'd need to acquire. Powers the ownership badges in the deck view.
-        "owned":         owned_key(tc.original_name) in _owned_names_cached(),
+        # True = the user owns a real copy (or it's a basic land); False = a proxy they'd
+        # need to acquire. Powers the ownership badges in the deck view. Re-checked at
+        # serve time (_annotate_owned) so it tracks collection edits.
+        "owned":         _card_is_owned(tc.original_name, c.get("type_line", ""), _owned_names_cached()),
         "art_prompt":    tc.art_prompt,    # LLM-generated; treated as immutable
         "custom_prompt": "",               # user override (kept separate from art_prompt)
         "use_custom":    False,            # which prompt feeds generation
