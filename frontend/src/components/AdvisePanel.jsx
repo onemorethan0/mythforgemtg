@@ -204,7 +204,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                  </div>
                  {s.reason && (
                    <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}>
-                     {s.reason} <span style={{ color: '#57534e' }}>(+{s.delta.toFixed(1)} measured)</span>
+                     {s.reason}
                    </div>
                  )}
                 </div>

@@ -206,6 +206,18 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
         </div>
       )}
 
+      {/* Ownership: mark cards the user does NOT own a real copy of (proxy). */}
+      {card.owned === false && (
+        <div title="You don't own a real copy — this is a proxy"
+          style={{
+            position: 'absolute', bottom: 5, left: 5, fontSize: 8.5,
+            padding: '1px 5px', borderRadius: 4, fontWeight: 700, letterSpacing: '0.03em',
+            background: '#1c1408cc', color: '#eab308', border: '1px solid #a16207',
+          }}>
+          PROXY
+        </div>
+      )}
+
       {/* Animated indicator + download */}
       {videoSrc && regenStatus !== 'pending' && (
         <a href={videoSrc} download={`${card.render_key}.mp4`} title="Download MP4"
@@ -1400,6 +1412,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 B{deck.bracket} {deck.bracket_label}
               </span>
             )}
+            {!single && Array.isArray(deck.deck) && deck.deck.some(c => 'owned' in c) && (() => {
+              const cards = [deck.commander, ...deck.deck].filter(Boolean)
+              const total = cards.length
+              const own = cards.filter(c => c.owned).length
+              const proxies = total - own
+              return (
+                <span title={`${own} you own · ${proxies} proxies you'd need to acquire`}
+                  style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
+                    background: '#1c1408', border: '1px solid #a16207', color: '#fde047' }}>
+                  🎴 Own {own}/{total}{proxies ? ` · ${proxies} proxies` : ' · all owned'}
+                </span>
+              )
+            })()}
             {deck.theme && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{deck.theme}</span>}
             {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#0c0a09', border: '1px solid #292524', borderRadius: 20, color: '#a8a29e' }}>{stats?.total_cards || deck.deck.length + 1} cards</span>}
             {!single && deck.collection && deck.collection.enabled && (

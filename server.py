@@ -1049,6 +1049,31 @@ def _replace_card_self_ref(oracle_text: str, original_name: str, themed_name: st
 # touch VRAM eviction, the _art_lock, or any threading order — that orchestration
 # stays inline in each pipeline because its sequencing is subtle and per-pipeline.
 
+# Owned-set cache (mtime-keyed on the collection CSV) so every card->dict call can
+# cheaply tag whether the user owns a real copy vs it being a proxy they don't own.
+_owned_cache: dict = {"mtime": None, "set": set()}
+
+
+def _owned_names_cached() -> set:
+    p = suite_collection_path()
+    mtime = p.stat().st_mtime if p.exists() else 0
+    if _owned_cache["mtime"] != mtime:
+        _owned_cache.update({"mtime": mtime, "set": load_owned_names()})
+    return _owned_cache["set"]
+
+
+def _annotate_owned(payload: dict) -> dict:
+    """Tag the commander + each deck card with `owned` (real copy in the collection vs
+    a proxy) at SERVE time — so loaded/old decks get it too, and it reflects live
+    collection edits rather than whatever was baked into deck.json at build time."""
+    owned = _owned_names_cached()
+    for c in ([payload.get("commander")] if isinstance(payload.get("commander"), dict) else []) \
+            + (payload.get("deck") or []):
+        if isinstance(c, dict) and c.get("original_name"):
+            c["owned"] = owned_key(c["original_name"]) in owned
+    return payload
+
+
 def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool = False) -> dict:
     """Serialize a ThemedCard to the deck.json card schema.
 
@@ -1064,6 +1089,9 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
     return {
         "original_name": tc.original_name,
         "themed_name":   tc.themed_name,
+        # True = the user owns a real copy (in the Myth Suite collection); False = a
+        # proxy they'd need to acquire. Powers the ownership badges in the deck view.
+        "owned":         owned_key(tc.original_name) in _owned_names_cached(),
         "art_prompt":    tc.art_prompt,    # LLM-generated; treated as immutable
         "custom_prompt": "",               # user override (kept separate from art_prompt)
         "use_custom":    False,            # which prompt feeds generation
@@ -5224,7 +5252,7 @@ async def get_deck(job_id: str):
     if job["status"] == "error":
         raise HTTPException(409, f"Deck failed: {job.get('error', 'unknown error')}")
     # "done", "rendering", "cancelled" → return whatever we have on disk
-    return _serializable_job(job)
+    return _annotate_owned(_serializable_job(job))
 
 
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
