@@ -42,6 +42,9 @@ export default function App() {
   // Which StepCommander tab the "deck" flow opens on: 'generate' (Build) or 'import'
   // (Analyze an existing deck). Set by the home hub choice.
   const [deckEntryTab, setDeckEntryTab] = useState('generate')
+  // Commander name to pre-fill the generate flow with (set by "Build this" from the
+  // Collection's Buildable panel). Cleared on a fresh Home.
+  const [prefillCommander, setPrefillCommander] = useState('')
   const [commander, setCommander] = useState(null)
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
@@ -218,6 +221,7 @@ export default function App() {
 
   // ── Home hub: pick one of the three flows ─────────────────────────────────
   function handleChoose(key) {
+    setPrefillCommander('')   // fresh hub entry — don't inherit a "Build this" prefill
     if (key === 'card') {
       setMode('card')
     } else if (key === 'collection') {
@@ -226,6 +230,16 @@ export default function App() {
       setMode('deck')
       setDeckEntryTab(key === 'analyze' ? 'import' : 'generate')
     }
+    setStep(STEP.COMMANDER)
+  }
+
+  // "Build this" from the Collection's Buildable panel: open the generate flow with
+  // the commander pre-filled and collection-aware building on.
+  function handleBuildFromCollection(commanderName) {
+    setPrefillCommander(commanderName || '')
+    setUseCollection(true)
+    setDeckEntryTab('generate')
+    setMode('deck')
     setStep(STEP.COMMANDER)
   }
 
@@ -489,6 +503,7 @@ export default function App() {
         {step === STEP.COMMANDER && mode === 'deck' && (
               <StepCommander
                 initialTab={deckEntryTab}
+                initialQuery={prefillCommander}
                 onSaveImported={handleSaveImported}
                 bracket={bracket}
                 onBracketChange={setBracket}
@@ -523,7 +538,7 @@ export default function App() {
         )}
 
         {step === STEP.COMMANDER && mode === 'collection' && (
-          <StepCollection onBack={() => setMode('home')} />
+          <StepCollection onBack={() => setMode('home')} onBuild={handleBuildFromCollection} />
         )}
 
         {step === STEP.FACE && (

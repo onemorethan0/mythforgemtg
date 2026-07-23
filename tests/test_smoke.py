@@ -815,6 +815,43 @@ def test_collection_crud():
         bak.unlink()
 
 
+def test_buildable_scan():
+    import buildable as bd
+    # role classification
+    ramp = {"type_line": "Artifact", "oracle_text": "{T}: Add {C}{C}."}
+    draw = {"type_line": "Instant", "oracle_text": "Draw two cards."}
+    removal = {"type_line": "Instant", "oracle_text": "Destroy target creature."}
+    wipe = {"type_line": "Sorcery", "oracle_text": "Destroy all creatures."}
+    check_true("bd.ramp", "ramp" in bd.classify_roles(ramp))
+    check_true("bd.draw", "draw" in bd.classify_roles(draw))
+    check_true("bd.removal", "removal" in bd.classify_roles(removal))
+    check_true("bd.wipe", "wipe" in bd.classify_roles(wipe))
+    # commander eligibility (legendary creature vs not; DFC face; explicit text)
+    check_true("bd.cmd.legcrea", bd.is_commander_eligible(
+        {"type_line": "Legendary Creature — Elf Druid"}))
+    check_true("bd.cmd.no", not bd.is_commander_eligible(
+        {"type_line": "Creature — Goblin"}))
+    check_true("bd.cmd.text", bd.is_commander_eligible(
+        {"type_line": "Legendary Planeswalker — X", "oracle_text": "X can be your commander."}))
+    # scoring: color-identity filter + role floors -> gaps
+    cmd = {"id": "c", "name": "Cmd", "color_identity": ["G"], "type_line": "Legendary Creature",
+           "legalities": {"commander": "legal"}}
+    pool = [cmd] + [
+        {"id": f"g{i}", "name": f"G{i}", "color_identity": ["G"], "type_line": "Creature",
+         "legalities": {"commander": "legal"}, "oracle_text": "Draw a card."} for i in range(5)
+    ] + [
+        {"id": "u1", "name": "OffColor", "color_identity": ["U"], "type_line": "Creature",
+         "legalities": {"commander": "legal"}, "oracle_text": ""},
+        {"id": "b1", "name": "Forest", "color_identity": [], "type_line": "Basic Land — Forest",
+         "legalities": {"commander": "legal"}},
+    ]
+    s = bd.score_commander(cmd, pool)
+    check("bd.score.nonland", s["owned_nonland"], 5)        # off-color + basic excluded
+    check("bd.score.draw", s["roles"]["draw"], 5)
+    check_true("bd.score.gaps", "ramp" in s["gaps"] and "removal" in s["gaps"])
+    check_true("bd.score.pct", s["buildable_pct"] == round(100 * 5 / bd.TARGET_NONLAND))
+
+
 def test_prefer_owned():
     from deck_builder import DeckBuilder
     b = DeckBuilder(None)  # _prefer_owned never touches the client

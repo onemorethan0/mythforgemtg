@@ -3957,6 +3957,31 @@ def collection_import(req: CollectionImportRequest):
     return {"cards": rows[:200], "imported_mode": mode, **_collection_summary(rows)}
 
 
+# Cache the buildable scan keyed on the collection file's mtime, so repeat views are
+# instant and any edit (which rewrites the CSV) transparently invalidates it.
+_buildable_cache: dict = {"key": None, "data": None}
+
+
+@app.get("/api/collection/buildable")
+def collection_buildable(limit: int = 8):
+    """Which commanders you own could you build a B1-3 deck from, ranked by how
+    complete each deck would be. Fast local scan (no simulation); 'Build this' then
+    goes through the normal generate flow where the deck can be measured."""
+    import buildable
+    p = suite_collection_path()
+    mtime = p.stat().st_mtime if p.exists() else 0
+    key = (mtime, int(limit))
+    if _buildable_cache["key"] == key and _buildable_cache["data"] is not None:
+        return {**_buildable_cache["data"], "cached": True}
+    owned = load_owned_names()
+    try:
+        data = buildable.find_buildable(owned, _scryfall, limit=int(limit))
+    except Exception as e:
+        raise HTTPException(503, f"Could not scan the collection (Scryfall): {e}")
+    _buildable_cache.update({"key": key, "data": data})
+    return {**data, "cached": False}
+
+
 @app.post("/api/deck/{job_id}/measure")
 def measure_deck(job_id: str):
     """Simulation-grounded strength for a FINISHED deck (suite C3, result screen).

@@ -33,8 +33,8 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
-export default function StepCommander({ onNext, onSaveImported, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate' }) {
-  const [query, setQuery]           = useState('')
+export default function StepCommander({ onNext, onSaveImported, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, initialTab = 'generate', initialQuery = '' }) {
+  const [query, setQuery]           = useState(initialQuery)
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
   const [result, setResult]         = useState(null)

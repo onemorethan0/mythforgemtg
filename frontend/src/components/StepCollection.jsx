@@ -13,7 +13,7 @@ const c = {
   panel:  '#0c0a09',
 }
 
-export default function StepCollection({ onBack }) {
+export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
   const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false })
   const [matched, setMatched]   = useState(0)
@@ -28,8 +28,20 @@ export default function StepCollection({ onBack }) {
   const [importMode, setImportMode] = useState('merge')
   const [suggests, setSuggests]     = useState([])   // typeahead names for the add box
   const [showSug, setShowSug]       = useState(false)
+  const [buildable, setBuildable]   = useState(null)  // {commanders, scanned, candidates}
+  const [bLoading, setBLoading]     = useState(false)
+  const [showBuild, setShowBuild]   = useState(false)
   const debounce = useRef(null)
   const sugDebounce = useRef(null)
+
+  const loadBuildable = useCallback(() => {
+    setBLoading(true)
+    fetch('/api/collection/buildable?limit=8')
+      .then(r => r.json())
+      .then(d => setBuildable(d))
+      .catch(() => flash('err', 'Could not scan your collection.'))
+      .finally(() => setBLoading(false))
+  }, [])
 
   const flash = (kind, text) => { setMsg({ kind, text }); if (text) setTimeout(() => setMsg(null), 4000) }
 
@@ -148,6 +160,63 @@ export default function StepCollection({ onBack }) {
           color: msg.kind === 'ok' ? '#4ade80' : '#f87171',
         }}>{msg.text}</div>
       )}
+
+      {/* Buildable-from-collection */}
+      <div style={{ margin: '12px 0' }}>
+        <button
+          onClick={() => { const n = !showBuild; setShowBuild(n); if (n && !buildable) loadBuildable() }}
+          style={btn({ background: '#12100a', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700, width: '100%', textAlign: 'left' })}>
+          🔨 Build from what I own {showBuild ? '▲' : '▼'}
+        </button>
+        {showBuild && (
+          <div style={{ marginTop: 10 }}>
+            {bLoading ? (
+              <div style={{ color: c.faint, fontSize: 13, padding: 16, textAlign: 'center' }}>
+                Scanning your collection…
+              </div>
+            ) : !buildable || !buildable.commanders?.length ? (
+              <div style={{ color: c.faint, fontSize: 13, padding: 16, textAlign: 'center' }}>
+                No buildable commanders found yet — add more owned cards.
+              </div>
+            ) : (
+              <>
+                <div style={{ fontSize: 12, color: c.faint, marginBottom: 8 }}>
+                  {buildable.candidates} legendary creatures in your collection · showing the most complete decks you could build.
+                  Bracket is gauged after you build (measure on the result screen).
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 10 }}>
+                  {buildable.commanders.map(cm => (
+                    <div key={cm.commander} style={{ border: `1px solid ${c.border}`, borderRadius: 10, padding: 12, background: c.card }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        <div style={{ flex: 1, fontSize: 14, fontWeight: 700, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {cm.commander}
+                        </div>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: c.gold, whiteSpace: 'nowrap' }}>{cm.ci}</span>
+                      </div>
+                      <div style={{ height: 6, background: '#000', borderRadius: 4, overflow: 'hidden', marginBottom: 6 }}>
+                        <div style={{ width: `${cm.buildable_pct}%`, height: '100%', background: cm.buildable_pct >= 100 ? '#22c55e' : '#eab308' }} />
+                      </div>
+                      <div style={{ fontSize: 11.5, color: c.dim, marginBottom: cm.gaps.length ? 4 : 8 }}>
+                        {cm.buildable_pct}% buildable · {cm.owned_nonland} owned on-color cards
+                      </div>
+                      {cm.gaps.length > 0 && (
+                        <div style={{ fontSize: 11, color: '#f59e0b', marginBottom: 8 }}>
+                          thin on: {cm.gaps.join(', ')}
+                        </div>
+                      )}
+                      <button
+                        onClick={() => onBuild && onBuild(cm.commander)}
+                        style={btn({ width: '100%', background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 })}>
+                        Build this →
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Add card */}
       <div style={{ display: 'flex', gap: 8, margin: '14px 0', flexWrap: 'wrap' }}>
