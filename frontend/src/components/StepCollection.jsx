@@ -109,17 +109,29 @@ export default function StepCollection({ onBack, onBuild }) {
     setAddName(''); setAddCount(1)
   }
 
-  const setCount = (name, count) =>
+  // Rows are PER PRINTING now, so edits must name the set/collector number or they'd
+  // hit the wrong copy of a card owned in several sets.
+  const setCount = (row, count) =>
     apply(fetch('/api/collection/count', {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, count }),
+      body: JSON.stringify({ name: row.name, count, set_code: row.set || null, cn: row.cn || null }),
     }), null)
 
-  const removeCard = (name) =>
+  const backfillPrintings = () => {
+    setMsg({ kind: 'ok', text: 'Looking up cheapest printings… this can take a minute.' })
+    apply(fetch('/api/collection/backfill-printings', { method: 'POST' }),
+      d => `Filled ${d.filled} printing${d.filled === 1 ? '' : 's'}${d.failed ? ` · ${d.failed} not found` : ''}`)
+  }
+
+  const removeCard = (row) => {
     // name is a query param, not a path segment — DFC/split names contain '//' and an
     // encoded slash in the path 405s under Starlette routing.
-    apply(fetch(`/api/collection?name=${encodeURIComponent(name)}`, { method: 'DELETE' }),
-      () => `Removed ${name}`)
+    const q = new URLSearchParams({ name: row.name })
+    if (row.set) q.set('set_code', row.set)
+    if (row.cn) q.set('cn', row.cn)
+    return apply(fetch(`/api/collection?${q}`, { method: 'DELETE' }),
+      () => `Removed ${row.name}${row.set ? ` (${row.set})` : ''}`)
+  }
 
   const runImport = () => {
     const text = importText.trim()
@@ -260,17 +272,23 @@ export default function StepCollection({ onBack, onBuild }) {
           + Add
         </button>
         <button onClick={() => setShowImport(v => !v)} style={btn()}>⇪ Bulk import</button>
+        <button onClick={backfillPrintings} disabled={busy} style={btn()}
+          title="Fill in the cheapest printing for any card whose set is unknown (one Scryfall lookup per card — slow on a big collection)">
+          🖨 Fill printings
+        </button>
       </div>
 
       {/* Bulk import */}
       {showImport && (
         <div style={{ margin: '0 0 14px', padding: 14, borderRadius: 10, background: c.panel, border: `1px solid ${c.border}` }}>
           <div style={{ fontSize: 12.5, color: c.dim, marginBottom: 8 }}>
-            Paste a Moxfield CSV (<code>Count,Name</code>) or a plain decklist (<code>1 Sol Ring</code>).
+            Paste a Moxfield CSV (<code>Count,Name,Edition,Collector Number</code>) or a decklist
+            (<code>1 Sol Ring (C21) 263</code>). Set info is kept, so the same card in different
+            sets stays separate; entries without a set default to the cheapest printing.
           </div>
           <textarea
             value={importText} onChange={e => setImportText(e.target.value)}
-            rows={7} placeholder={'Count,Name\n1,Sol Ring\n2,Llanowar Elves'}
+            rows={7} placeholder={'Count,Name,Edition,Collector Number\n1,Sol Ring,C21,263\n2,Llanowar Elves,,'}
             style={{ width: '100%', boxSizing: 'border-box', padding: 10, borderRadius: 8, background: '#000',
                      border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'monospace', fontSize: 12.5 }}
           />
@@ -313,18 +331,27 @@ export default function StepCollection({ onBack, onBuild }) {
       ) : (
         <div style={{ border: `1px solid ${c.border}`, borderRadius: 10, overflow: 'hidden' }}>
           {cards.map((row, i) => (
-            <div key={row.name} style={{
+            <div key={`${row.name}|${row.set || ''}|${row.cn || ''}`} style={{
               display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px',
               background: i % 2 ? '#141210' : c.card, borderBottom: i < cards.length - 1 ? `1px solid ${c.border}` : 'none',
             }}>
               <CardHover name={row.name} style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                 {row.name}
               </CardHover>
-              <button onClick={() => setCount(row.name, row.count - 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>−</button>
+              {/* Which printing this row is. Blank = set unknown (use Fill printings). */}
+              <span title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''}` : 'Printing unknown'}
+                style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0,
+                  padding: '1px 6px', borderRadius: 4, minWidth: 40, textAlign: 'center',
+                  background: row.set ? '#0c0a09' : 'transparent',
+                  border: `1px solid ${row.set ? c.border : 'transparent'}`,
+                  color: row.set ? c.dim : c.faint }}>
+                {row.set || '—'}
+              </span>
+              <button onClick={() => setCount(row, row.count - 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>−</button>
               <span style={{ minWidth: 26, textAlign: 'center', fontSize: 13.5, color: c.gold, fontWeight: 700 }}>{row.count}</span>
-              <button onClick={() => setCount(row.name, row.count + 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>+</button>
-              <button onClick={() => removeCard(row.name)} disabled={busy}
-                style={btn({ padding: '2px 10px', color: '#f87171', border: '1px solid #3f1d1d' })} title="Remove">✕</button>
+              <button onClick={() => setCount(row, row.count + 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>+</button>
+              <button onClick={() => removeCard(row)} disabled={busy}
+                style={btn({ padding: '2px 10px', color: '#f87171', border: '1px solid #3f1d1d' })} title="Remove this printing">✕</button>
             </div>
           ))}
         </div>

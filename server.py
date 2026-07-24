@@ -49,6 +49,7 @@ from collection         import (
     load_owned_names, owned_count, suite_collection_path,
     load_collection, add_card as coll_add_card, set_count as coll_set_count,
     remove_card as coll_remove_card, bulk_import as coll_bulk_import, owned_key,
+    write_collection as coll_write,
 )
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
@@ -3933,6 +3934,8 @@ class CollectionAddRequest(BaseModel):
     name:     str
     count:    int = 1
     validate: bool = True   # resolve the canonical Scryfall name before storing
+    set_code: Optional[str] = None   # which printing; None -> default to the cheapest
+    cn:       Optional[str] = None   # collector number (disambiguates within a set)
 
 
 @app.post("/api/collection/add")
@@ -3961,8 +3964,32 @@ def collection_add(req: CollectionAddRequest):
         if not card or not card.get("name"):
             raise HTTPException(404, f"No card found matching '{name}'. Add it with validate=false to store as-is.")
         display = card["name"]
-    rows = coll_add_card(name, max(int(req.count), 1), display_name=display)
-    return {"cards": rows[:200], "resolved_name": display, **_collection_summary(rows)}
+
+    # Printing: use what the caller gave us, else default to the CHEAPEST printing so a
+    # collection entry always names a concrete, sensibly-priced version of the card.
+    set_code, cn = (req.set_code or "").strip().upper() or None, (req.cn or "").strip() or None
+    if not set_code:
+        try:
+            cheap = _scryfall.cheapest_printing(display)
+        except Exception:
+            cheap = None
+        if cheap:
+            set_code, cn = cheap["set"], cheap["collector_number"]
+    rows = coll_add_card(name, max(int(req.count), 1), display_name=display,
+                         set_code=set_code, cn=cn)
+    return {"cards": rows[:200], "resolved_name": display,
+            "set_code": set_code, "cn": cn, **_collection_summary(rows)}
+
+
+@app.get("/api/collection/printings")
+def collection_printings(name: str):
+    """Every printing of a card (cheapest first) so the UI can offer a set picker."""
+    if not (name or "").strip():
+        raise HTTPException(400, "name required")
+    try:
+        return {"printings": _scryfall.get_printings(name.strip())[:60]}
+    except Exception as e:
+        raise HTTPException(503, f"Scryfall lookup failed: {e}")
 
 
 @app.get("/api/card-image")
@@ -4015,26 +4042,57 @@ def collection_suggest(q: str = ""):
 class CollectionCountRequest(BaseModel):
     name:  str
     count: int
+    set_code: Optional[str] = None   # target one printing; None = first printing
+    cn:       Optional[str] = None
 
 
 @app.patch("/api/collection/count")
 def collection_set_count(req: CollectionCountRequest):
-    """Set a card's exact count (0 removes it)."""
+    """Set a card's exact count (0 removes it). With set_code, targets that printing."""
     if not (req.name or "").strip():
         raise HTTPException(400, "Card name is required.")
-    rows = coll_set_count(req.name.strip(), int(req.count))
+    rows = coll_set_count(req.name.strip(), int(req.count),
+                          set_code=(req.set_code or None), cn=(req.cn or None))
     return {"cards": rows[:200], **_collection_summary(rows)}
 
 
+@app.post("/api/collection/backfill-printings")
+def collection_backfill_printings(limit: int = 1000):
+    """Fill in the cheapest printing for rows that have no set (e.g. a Count,Name-only
+    import). One Scryfall lookup per distinct name, so it's rate-limited and slow on a
+    big collection — an explicit action, never automatic."""
+    rows = load_collection()
+    missing = [r for r in rows if not (r.get("set") or "").strip()]
+    filled, failed = 0, 0
+    seen: dict = {}
+    for r in missing[: max(1, int(limit))]:
+        nm = r["name"]
+        if nm not in seen:
+            try:
+                seen[nm] = _scryfall.cheapest_printing(nm)
+            except Exception:
+                seen[nm] = None
+        cheap = seen[nm]
+        if cheap:
+            r["set"], r["cn"] = cheap["set"], cheap["collector_number"]
+            filled += 1
+        else:
+            failed += 1
+    if filled:
+        coll_write(rows)
+    return {"filled": filled, "failed": failed, "remaining": len(missing) - filled,
+            **_collection_summary(rows)}
+
+
 @app.delete("/api/collection")
-def collection_remove(name: str):
+def collection_remove(name: str, set_code: str | None = None, cn: str | None = None):
     """Remove a card entirely (matched on front-face name, case-insensitive).
 
     The name is a QUERY param, not a path segment: double-faced/split card names
     contain '//', and an encoded slash in the path 405s under Starlette routing."""
     if not (name or "").strip():
         raise HTTPException(400, "Card name is required.")
-    rows = coll_remove_card(name)
+    rows = coll_remove_card(name, set_code=(set_code or None), cn=(cn or None))
     return {"cards": rows[:200], **_collection_summary(rows)}
 
 

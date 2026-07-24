@@ -802,6 +802,40 @@ def test_fuzzy_substitution_guard():
     check_true("fz.other", not _fuzzy_is_plausible("Jace, the Mind Sculptor", "Jace Beleren"))
 
 
+def test_collection_printings():
+    """The same card owned in several sets stays several rows, and set/collector number
+    survive both the CSV and decklist import forms. Ownership stays NAME-level."""
+    import tempfile, pathlib
+    p = pathlib.Path(tempfile.gettempdir()) / "mf_printing_test.csv"
+    for f in (p, p.with_suffix(".csv.bak")):
+        if f.exists():
+            f.unlink()
+    # CSV with Edition + Collector Number
+    rows = collection._parse_rows(
+        "Count,Name,Edition,Collector Number\n1,Sol Ring,C21,263\n2,Sol Ring,LTC,284\n1,Bolt,,")
+    check("pr.csv.len", len(rows), 3)
+    check("pr.csv.sets", [r["set"] for r in rows], ["C21", "LTC", ""])
+    # decklist "(SET) num" suffix
+    d = collection._parse_rows("1 Sol Ring (C21) 263\n1 Sol Ring (LTC)\n2 Mountain")
+    check("pr.deck.sets", [r["set"] for r in d], ["C21", "LTC", ""])
+    check("pr.deck.name", d[0]["name"], "Sol Ring")
+    # per-printing add / remove
+    collection.write_collection(rows, p)
+    collection.add_card("Sol Ring", 1, p, set_code="C21")          # merges that printing
+    collection.add_card("Sol Ring", 3, p, set_code="LTR", cn="1")  # new printing
+    got = [(r["name"], r["count"], r["set"]) for r in collection.load_collection(p)]
+    check("pr.merge", ("Sol Ring", 2, "C21") in got, True)
+    check("pr.newprint", ("Sol Ring", 3, "LTR") in got, True)
+    # ownership is name-level regardless of printings
+    check_true("pr.owned", "sol ring" in collection.load_owned_names(p))
+    collection.remove_card("Sol Ring", p, set_code="LTC")
+    check_true("pr.rm.one", not any(r["set"] == "LTC" for r in collection.load_collection(p)))
+    check_true("pr.rm.keeps", any(r["set"] == "C21" for r in collection.load_collection(p)))
+    for f in (p, p.with_suffix(".csv.bak")):
+        if f.exists():
+            f.unlink()
+
+
 def test_collection_crud():
     import tempfile, pathlib
     p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_crud_test.csv"

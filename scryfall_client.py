@@ -241,6 +241,40 @@ class ScryfallClient:
         self._save_cache()
         return out
 
+    def get_printings(self, name: str) -> list[dict]:
+        """Every printing of a card: [{set, set_name, collector_number, usd, ...}].
+
+        Uses an exact-name search with unique=prints so alt-art/showcase printings each
+        appear. Sorted cheapest-first (printings with no price sink to the end)."""
+        result = self._get("/cards/search", params={
+            "q": f'!"{name}"', "unique": "prints", "order": "usd", "dir": "asc",
+        })
+        out: list[dict] = []
+        for c in (result or {}).get("data", []) or []:
+            prices = c.get("prices") or {}
+            usd = prices.get("usd") or prices.get("usd_foil")
+            try:
+                usd_f = float(usd) if usd else None
+            except (TypeError, ValueError):
+                usd_f = None
+            out.append({
+                "name": c.get("name", name),
+                "set": (c.get("set") or "").upper(),
+                "set_name": c.get("set_name", ""),
+                "collector_number": c.get("collector_number", ""),
+                "usd": usd_f,
+                "image": ((c.get("image_uris") or {}).get("normal")
+                          or ((c.get("card_faces") or [{}])[0].get("image_uris") or {}).get("normal", "")),
+            })
+        out.sort(key=lambda p: (p["usd"] is None, p["usd"] if p["usd"] is not None else 0.0))
+        return out
+
+    def cheapest_printing(self, name: str) -> Optional[dict]:
+        """The cheapest printing of a card — the sensible default when an import
+        doesn't say which set a copy is from."""
+        prints = self.get_printings(name)
+        return prints[0] if prints else None
+
     def search_cards(self, query: str, page: int = 1) -> dict:
         result = self._get("/cards/search", params={
             "q": query,
