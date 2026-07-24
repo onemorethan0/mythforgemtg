@@ -43,6 +43,11 @@ def _fuzzy_is_plausible(requested: str, canonical: str, threshold: float = 0.72)
     return difflib.SequenceMatcher(None, a, b).ratio() >= threshold
 
 
+def price_key(name: str, set_code: str = "", cn: str = "") -> str:
+    """Stable key for a priced collection row (matches collection.printing_key)."""
+    return f"{(name or '').strip().lower()}|{(set_code or '').strip().upper()}|{(cn or '').strip()}"
+
+
 def _normalize_card(card: dict) -> dict:
     """Promote front-face fields to the top level for double-faced cards."""
     if card.get("image_uris"):
@@ -239,6 +244,68 @@ class ScryfallClient:
                     out[key] = card
                     self._cache_put([req, card.get("name", "")], card, save=False)
         self._save_cache()
+        return out
+
+    def fetch_prices(self, rows: list[dict]) -> dict[str, Optional[float]]:
+        """Current market price (USD) for collection rows, batched.
+
+        `rows` are {name, set, cn}. A row with a known printing is priced as THAT
+        printing (set + collector number identifier); a row without one is priced by
+        name, which Scryfall answers with a representative printing. Scryfall's `usd`
+        is an aggregated market price (it falls back to the foil price when a printing
+        is foil-only), so this is an average-style valuation, not a vendor quote.
+
+        Returns {price_key -> usd or None}; unpriced/unresolved rows map to None.
+        Never raises — a Scryfall hiccup just yields fewer prices.
+        """
+        out: dict[str, Optional[float]] = {}
+        ident_for: list[tuple[str, dict]] = []
+        for r in rows:
+            name = (r.get("name") or "").strip()
+            if not name:
+                continue
+            st, cn = (r.get("set") or "").strip(), (r.get("cn") or "").strip()
+            key = price_key(name, st, cn)
+            if key in out:
+                continue
+            out[key] = None
+            if st and cn:
+                ident_for.append((key, {"set": st.lower(), "collector_number": cn}))
+            else:
+                ident_for.append((key, {"name": name.split("//")[0].strip()}))
+
+        for i in range(0, len(ident_for), 75):
+            chunk = ident_for[i:i + 75]
+            try:
+                self._rate_limit()
+                resp = self.session.post(
+                    f"{BASE_URL}/cards/collection",
+                    json={"identifiers": [ident for _, ident in chunk]}, timeout=20,
+                )
+                if resp.status_code != 200:
+                    continue
+                data = resp.json().get("data", []) or []
+            except (requests.RequestException, ValueError):
+                continue
+            # Index the returned cards both by set+cn and by name so either identifier
+            # style maps back to its row.
+            by_setcn, by_name = {}, {}
+            for c in data:
+                prices = c.get("prices") or {}
+                usd = prices.get("usd") or prices.get("usd_foil") or prices.get("usd_etched")
+                try:
+                    val = float(usd) if usd else None
+                except (TypeError, ValueError):
+                    val = None
+                by_setcn[((c.get("set") or "").upper(), str(c.get("collector_number") or ""))] = val
+                by_name.setdefault(self._cache_key(c.get("name", "")), val)
+                front = (c.get("name") or "").split("//")[0].strip()
+                by_name.setdefault(self._cache_key(front), val)
+            for key, ident in chunk:
+                if "set" in ident:
+                    out[key] = by_setcn.get((ident["set"].upper(), str(ident["collector_number"])))
+                else:
+                    out[key] = by_name.get(self._cache_key(ident["name"]))
         return out
 
     def get_printings(self, name: str) -> list[dict]:

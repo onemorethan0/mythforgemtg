@@ -56,6 +56,7 @@ from playstyle          import (
 )
 from themer             import Themer, ThemedCard, ThemingCancelled
 from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl, _is_krea, _is_qwen
+from scryfall_client    import price_key as _price_key
 import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
@@ -3909,12 +3910,44 @@ def advise_deck(job_id: str, req: AdviseDeckRequest):
 # let the user browse/add/edit/remove owned cards from inside Myth Forge; every write
 # goes to the SAME canonical CSV (with a .bak) so the whole suite stays in sync.
 
-def _collection_summary(rows: list[dict]) -> dict:
+# Collection prices (Scryfall market USD), cached on disk with a timestamp so a page
+# load never blocks on the network. Refreshed explicitly via /api/collection/prices.
+_PRICE_CACHE_FILE = Path("cache") / "prices.json"
+
+
+def _load_prices() -> dict:
+    try:
+        return json.loads(_PRICE_CACHE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {"updated": None, "prices": {}}
+
+
+def _save_prices(prices: dict) -> None:
+    try:
+        _PRICE_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        _PRICE_CACHE_FILE.write_text(json.dumps(prices), encoding="utf-8")
+    except Exception as e:
+        print(f"  [prices] save failed: {e}")
+
+
+def _price_of(row: dict, prices: dict):
+    return prices.get(_price_key(row.get("name", ""), row.get("set", ""), row.get("cn", "")))
+
+
+def _collection_summary(rows: list[dict], prices: dict | None = None) -> dict:
+    cache = _load_prices() if prices is None else {"prices": prices, "updated": None}
+    pmap = cache.get("prices") or {}
+    valued = [(int(r.get("count", 0)), _price_of(r, pmap)) for r in rows]
+    total_value = sum(cnt * val for cnt, val in valued if val)
     return {
-        "distinct":    len(rows),
-        "total_cards": sum(int(r.get("count", 0)) for r in rows),
-        "path":        str(suite_collection_path()),
-        "exists":      suite_collection_path().exists(),
+        "distinct":       len(rows),
+        "total_cards":    sum(int(r.get("count", 0)) for r in rows),
+        "path":           str(suite_collection_path()),
+        "exists":         suite_collection_path().exists(),
+        # Value of the WHOLE collection (price x count), not just the returned page.
+        "total_value":    round(total_value, 2),
+        "priced":         sum(1 for _, val in valued if val),
+        "prices_updated": _load_prices().get("updated"),
     }
 
 
@@ -3927,7 +3960,27 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200):
     filtered = [r for r in rows if ql in r["name"].casefold()] if ql else rows
     lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
     page = filtered[max(offset, 0): max(offset, 0) + lim]
+    # Attach cached prices to the returned page (never fetches — see /prices).
+    pmap = (_load_prices().get("prices") or {})
+    page = [{**r, "price": _price_of(r, pmap)} for r in page]
     return {"cards": page, "matched": len(filtered), **_collection_summary(rows)}
+
+
+@app.post("/api/collection/prices")
+def collection_refresh_prices():
+    """Refresh market prices for the whole collection from Scryfall and cache them.
+
+    Batched 75 identifiers per request, so a ~750-card collection is ~10 calls. Rows
+    with a known printing are priced as that printing; the rest by name."""
+    rows = load_collection()
+    if not rows:
+        return {"priced": 0, "total_value": 0.0, **_collection_summary(rows)}
+    try:
+        prices = _scryfall.fetch_prices(rows)
+    except Exception as e:
+        raise HTTPException(503, f"Price lookup failed: {e}")
+    _save_prices({"updated": _dt.now().isoformat(timespec="seconds"), "prices": prices})
+    return _collection_summary(rows)
 
 
 class CollectionAddRequest(BaseModel):

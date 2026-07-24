@@ -16,7 +16,7 @@ const c = {
 
 export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
-  const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false })
+  const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false, total_value: 0, priced: 0, prices_updated: null })
   const [matched, setMatched]   = useState(0)
   const [q, setQ]               = useState('')
   const [loading, setLoading]   = useState(true)
@@ -53,7 +53,8 @@ export default function StepCollection({ onBack, onBuild }) {
       .then(d => {
         setCards(d.cards || [])
         setMatched(d.matched || 0)
-        setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists })
+        setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
+                     total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
       })
       .catch(() => flash('err', 'Could not load collection — is the server running?'))
       .finally(() => setLoading(false))
@@ -88,7 +89,8 @@ export default function StepCollection({ onBack, onBuild }) {
       .then(async r => {
         const d = await r.json().catch(() => ({}))
         if (!r.ok) throw new Error(d.detail || 'Request failed')
-        setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists })
+        setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
+                     total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
         if (okMsg) flash('ok', okMsg(d))
         load(q.trim())
       })
@@ -116,6 +118,12 @@ export default function StepCollection({ onBack, onBuild }) {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: row.name, count, set_code: row.set || null, cn: row.cn || null }),
     }), null)
+
+  const refreshPrices = () => {
+    setMsg({ kind: 'ok', text: 'Fetching current market prices…' })
+    apply(fetch('/api/collection/prices', { method: 'POST' }),
+      d => `Priced ${d.priced} of ${d.distinct} · collection value $${(d.total_value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`)
+  }
 
   const backfillPrintings = () => {
     setMsg({ kind: 'ok', text: 'Looking up cheapest printings… this can take a minute.' })
@@ -155,6 +163,20 @@ export default function StepCollection({ onBack, onBuild }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
         <button onClick={onBack} style={btn()}>← Home</button>
         <h1 style={{ fontSize: 24, fontWeight: 700, color: c.gold, margin: 0 }}>🎴 My Collection</h1>
+      </div>
+      {/* Value summary — total = price x count across the WHOLE collection */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', margin: '2px 0 6px' }}>
+        <span style={{ fontSize: 18, fontWeight: 700, color: '#4ade80' }}>
+          ${(summary.total_value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+        </span>
+        <span style={{ fontSize: 11.5, color: c.faint }}>
+          {summary.priced ? `${summary.priced}/${summary.distinct} priced` : 'not priced yet'}
+          {summary.prices_updated ? ` · updated ${String(summary.prices_updated).replace('T', ' ')}` : ''}
+        </span>
+        <button onClick={refreshPrices} disabled={busy} style={btn({ padding: '4px 10px', fontSize: 12 })}
+          title="Fetch current market prices (Scryfall USD) for every card, batched">
+          💲 {summary.priced ? 'Refresh prices' : 'Get prices'}
+        </button>
       </div>
       <p style={{ fontSize: 12.5, color: c.faint, margin: '0 0 4px' }}>
         {summary.total_cards} cards · {summary.distinct} unique.
@@ -346,6 +368,12 @@ export default function StepCollection({ onBack, onBuild }) {
                   border: `1px solid ${row.set ? c.border : 'transparent'}`,
                   color: row.set ? c.dim : c.faint }}>
                 {row.set || '—'}
+              </span>
+              {/* Market price for this printing (x count shown on hover) */}
+              <span title={row.price ? `$${row.price.toFixed(2)} each · $${(row.price * row.count).toFixed(2)} for ${row.count}` : 'No price yet — hit Get prices'}
+                style={{ fontSize: 11.5, color: row.price ? '#4ade80' : c.faint, minWidth: 52,
+                         textAlign: 'right', flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
+                {row.price ? `$${row.price.toFixed(2)}` : '—'}
               </span>
               <button onClick={() => setCount(row, row.count - 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>−</button>
               <span style={{ minWidth: 26, textAlign: 'center', fontSize: 13.5, color: c.gold, fontWeight: 700 }}>{row.count}</span>
