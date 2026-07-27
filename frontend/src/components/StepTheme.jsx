@@ -201,24 +201,6 @@ function GroupHeader({ num, title, sub }) {
   )
 }
 
-// Phase header for the Theme step. This screen is a long scroll of ~13 unrelated
-// fields (theme intake, frame, models, quality); numbered headers break it into the
-// three questions it's actually asking so you can tell where you are.
-function SectionHead({ n, title, hint }) {
-  return (
-    <div style={{ margin: '30px 0 14px', paddingBottom: 8, borderBottom: '1px solid #292524' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <span style={{ width: 21, height: 21, borderRadius: '50%', background: '#1c1408',
-                       border: '1px solid #a16207', color: '#eab308', fontSize: 11,
-                       fontWeight: 700, display: 'flex', alignItems: 'center',
-                       justifyContent: 'center', flexShrink: 0 }}>{n}</span>
-        <span style={{ fontSize: 15, fontWeight: 700, color: '#f5f5f4' }}>{title}</span>
-      </div>
-      {hint && <div style={{ fontSize: 11.5, color: '#78716c', marginTop: 4, paddingLeft: 30 }}>{hint}</div>}
-    </div>
-  )
-}
-
 export default function StepTheme({
   commander, theme, onThemeChange,
   creativity = 'balanced', onCreativityChange,
@@ -673,9 +655,6 @@ export default function StepTheme({
           </div>
         )}
 
-        <SectionHead n={1} title="Your theme"
-          hint="What world your cards live in. This drives the names, flavor text and art." />
-
         {/* ── Deck Vision (structured intake → world bible) ── */}
         <div style={s.section}>
           <label style={s.label}>Your deck idea</label>
@@ -943,9 +922,6 @@ export default function StepTheme({
             </span>
           </label>
         </div>
-
-        <SectionHead n={2} title="How the cards look"
-          hint="Art style, card frame and border treatment for the printed proxy." />
 
         {/* ── Card Border Theme ── */}
         <div style={s.section}>
@@ -1532,11 +1508,6 @@ export default function StepTheme({
         )}
 
         {/* ── Image model picker ── */}
-        {generateArt && !comfyOffline && checkpoints.length > 0 && (
-          <SectionHead n={3} title="AI models"
-            hint="Which model draws the art and which writes the names. Defaults are fine." />
-        )}
-
         {generateArt && !comfyOffline && checkpoints.length > 0 && (() => {
           // Determine which button is currently active based on the selected checkpoint
           const isSchnellActive = checkpoint && checkpoint.toLowerCase().includes('schnell')
