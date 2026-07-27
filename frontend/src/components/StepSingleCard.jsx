@@ -136,6 +136,61 @@ export default function StepSingleCard({ genSettings, onGenerate, onBack }) {
   const [faceUploading, setFaceUploading] = useState(false)
   const fileRef = useRef(null)
 
+  // ── "Proxy a real card": look one up and prefill every field with its real
+  // printed values (rules text verbatim), then generate new art for it.
+  const [lookupQ, setLookupQ]         = useState('')
+  const [lookupSug, setLookupSug]     = useState([])
+  const [showLookupSug, setShowLookupSug] = useState(false)
+  const [lookupBusy, setLookupBusy]   = useState(false)
+  const [sourceCard, setSourceCard]   = useState(null)   // {name, image} once prefilled
+  const lookupDebounce = useRef(null)
+
+  useEffect(() => {
+    if (lookupDebounce.current) clearTimeout(lookupDebounce.current)
+    const term = lookupQ.trim()
+    if (term.length < 2) { setLookupSug([]); return }
+    lookupDebounce.current = setTimeout(() => {
+      fetch(`/api/collection/suggest?q=${encodeURIComponent(term)}`)
+        .then(r => r.json()).then(d => setLookupSug(d.suggestions || [])).catch(() => setLookupSug([]))
+    }, 200)
+    return () => lookupDebounce.current && clearTimeout(lookupDebounce.current)
+  }, [lookupQ])
+
+  async function loadRealCard(cardName) {
+    const nm = (cardName || lookupQ).trim()
+    if (!nm) return
+    setLookupBusy(true); setError(''); setShowLookupSug(false)
+    try {
+      const r = await fetch(`/api/card-lookup?name=${encodeURIComponent(nm)}`)
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}))
+        setError(d.detail || `No card found matching "${nm}"`)
+        return
+      }
+      const c = await r.json()
+      // Prefill EVERY field from the real card — rules text stays verbatim.
+      setName(c.name); setManaCost(c.mana_cost); setTypeLine(c.type_line)
+      setOracle(c.oracle_text); setFlavor(c.flavor_text)
+      setPower(c.power); setToughness(c.toughness); setLoyalty(c.loyalty)
+      if (c.rarity && RARITIES.some(r2 => r2.key === c.rarity)) setRarity(c.rarity)
+      setColors(c.colors || [])
+      // Keep the printed name + rules exactly as-is; only the art is new.
+      setThemeMode('author')
+      setSourceCard({ name: c.name, image: c.image })
+      setLookupQ('')
+    } catch {
+      setError('Lookup failed — is the server running?')
+    } finally {
+      setLookupBusy(false)
+    }
+  }
+
+  function clearSourceCard() {
+    setSourceCard(null)
+    setName(''); setManaCost(''); setTypeLine(''); setOracle(''); setFlavor('')
+    setPower(''); setToughness(''); setLoyalty(''); setColors([])
+  }
+
   // ── Catalogs ──
   const [stylePresets, setStylePresets] = useState([])
   const [frameStyles, setFrameStyles]   = useState([])
@@ -238,6 +293,77 @@ export default function StepSingleCard({ genSettings, onGenerate, onBack }) {
 
         {/* 1 — Card definition */}
         <Group num={1} title="Card">
+          {/* Proxy a REAL card: look it up, keep its real rules text, new art. */}
+          {!sourceCard ? (
+            <div style={{ marginBottom: 14, padding: 12, borderRadius: 10,
+                          background: '#0c0a09', border: '1px solid #292524' }}>
+              <div style={{ fontSize: 12.5, color: '#a8a29e', marginBottom: 8 }}>
+                <b style={{ color: '#eab308' }}>Proxying a real card?</b> Look it up to fill in its
+                real name, cost, type and rules text — then generate new art for it.
+                Or just type your own card below.
+              </div>
+              <div style={{ display: 'flex', gap: 8, position: 'relative' }}>
+                <div style={{ flex: 1, position: 'relative' }}>
+                  <input
+                    style={{ ...s.input, width: '100%', boxSizing: 'border-box' }}
+                    value={lookupQ}
+                    onChange={e => { setLookupQ(e.target.value); setShowLookupSug(true) }}
+                    onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); loadRealCard() } }}
+                    onFocus={() => setShowLookupSug(true)}
+                    onBlur={() => setTimeout(() => setShowLookupSug(false), 150)}
+                    placeholder="Search a real card — e.g. Lightning Bolt"
+                  />
+                  {showLookupSug && lookupSug.length > 0 && (
+                    <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 30,
+                                  marginTop: 4, background: '#1c1917', border: '1px solid #292524',
+                                  borderRadius: 8, maxHeight: 240, overflowY: 'auto',
+                                  boxShadow: '0 6px 20px rgba(0,0,0,0.5)' }}>
+                      {lookupSug.map(sg => (
+                        <div key={sg}
+                          onMouseDown={e => { e.preventDefault(); loadRealCard(sg) }}
+                          style={{ padding: '7px 12px', fontSize: 13.5, color: '#f5f5f4', cursor: 'pointer' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#2a2420'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                          {sg}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button type="button" onClick={() => loadRealCard()} disabled={lookupBusy || !lookupQ.trim()}
+                  style={{ padding: '9px 16px', borderRadius: 8, border: '1px solid #a16207',
+                           background: '#1c1408', color: '#eab308', fontWeight: 700, fontSize: 13,
+                           fontFamily: 'inherit', whiteSpace: 'nowrap',
+                           cursor: lookupBusy || !lookupQ.trim() ? 'default' : 'pointer',
+                           opacity: lookupBusy || !lookupQ.trim() ? 0.5 : 1 }}>
+                  {lookupBusy ? '…' : 'Look up'}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div style={{ marginBottom: 14, padding: 12, borderRadius: 10, display: 'flex',
+                          alignItems: 'center', gap: 12,
+                          background: '#0c1a0c', border: '1px solid #166534' }}>
+              {sourceCard.image && (
+                <img src={sourceCard.image} alt={sourceCard.name}
+                  style={{ width: 46, borderRadius: 4, flexShrink: 0 }} />
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#4ade80' }}>
+                  ✓ Proxying {sourceCard.name}
+                </div>
+                <div style={{ fontSize: 11.5, color: '#78716c' }}>
+                  Real rules text kept verbatim. Edit anything below, then generate new art.
+                </div>
+              </div>
+              <button type="button" onClick={clearSourceCard}
+                style={{ padding: '5px 12px', borderRadius: 8, border: '1px solid #292524',
+                         background: '#0c0a09', color: '#a8a29e', fontSize: 12,
+                         fontFamily: 'inherit', cursor: 'pointer', flexShrink: 0 }}>
+                Clear
+              </button>
+            </div>
+          )}
           <div style={s.row}>
             <div style={{ ...s.field, minWidth: '100%' }}>
               <label style={s.label}>Card name</label>

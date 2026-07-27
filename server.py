@@ -4073,6 +4073,44 @@ def card_image(name: str):
     }
 
 
+@app.get("/api/card-lookup")
+def card_lookup(name: str):
+    """Full card data by NAME, shaped for the Single Card form.
+
+    Lets a user proxy a REAL card: look it up, prefill every field with the real
+    printed values (rules text verbatim), then generate new art for it. Exact-first
+    then fuzzy (guarded), so a near-miss resolves but a typo doesn't silently become
+    a different card."""
+    nm = (name or "").strip()
+    if not nm:
+        raise HTTPException(400, "name required")
+    card = None
+    try:
+        card = _scryfall.get_card_by_name(nm, fuzzy=False) or _scryfall.get_card_by_name(nm, fuzzy=True)
+    except Exception:
+        card = None
+    if not card:
+        raise HTTPException(404, f"No card found matching '{nm}'")
+    imgs = card.get("image_uris") or {}
+    if not imgs:
+        faces = card.get("card_faces") or []
+        if faces and isinstance(faces[0], dict):
+            imgs = faces[0].get("image_uris") or {}
+    return {
+        "name":        card.get("name", nm),
+        "mana_cost":   card.get("mana_cost", "") or "",
+        "type_line":   card.get("type_line", "") or "",
+        "oracle_text": card.get("oracle_text", "") or "",
+        "flavor_text": card.get("flavor_text", "") or "",
+        "power":       card.get("power") or "",
+        "toughness":   card.get("toughness") or "",
+        "loyalty":     card.get("loyalty") or "",
+        "rarity":      card.get("rarity", "") or "",
+        "colors":      card.get("color_identity", []) or [],
+        "image":       imgs.get("normal") or imgs.get("large") or "",
+    }
+
+
 @app.get("/api/collection/suggest")
 def collection_suggest(q: str = ""):
     """Card-name typeahead for the add box (Scryfall autocomplete). Returns up to
