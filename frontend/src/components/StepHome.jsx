@@ -16,8 +16,9 @@ const CHOICES = [
   },
   {
     key: 'card', icon: '🂠', title: 'Single Card',
-    desc: 'Design one custom card — your own name, cost, rules, and flavor — with AI-generated art.',
-    cta: 'Design a card',
+    desc: 'Proxy one real card with new art, or design a custom card from scratch — '
+      + 'your own name, cost, rules and flavor.',
+    cta: 'Make a card',
   },
   {
     key: 'collection', icon: '🎴', title: 'My Collection',
@@ -35,7 +36,7 @@ export default function StepHome({ onChoose, onLoadDeck }) {
           What will you forge?
         </h1>
         <p style={{ fontSize: 14, color: '#78716c', margin: 0 }}>
-          Build a new deck, measure a deck you already have, or craft a single custom card.
+          Build a deck, measure one you already have, make a single card, or manage your collection.
         </p>
       </div>
       <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', justifyContent: 'center' }}>

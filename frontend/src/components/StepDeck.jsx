@@ -1371,6 +1371,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   }
 
   const btnBase = { padding: '5px 14px', borderRadius: 8, fontFamily: 'inherit', fontSize: 12, cursor: 'pointer', border: '1px solid #44403c' }
+  // Labelled action clusters (Download / Regenerate / Deck) so related controls read
+  // as a set instead of one undifferentiated row of buttons.
+  const actGroupLabel = { fontSize: 9.5, color: '#57534e', textTransform: 'uppercase',
+                          letterSpacing: '0.1em', fontWeight: 700, marginBottom: 5 }
+  const actGroupRow   = { display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }
 
   return (
     <div style={{ width: '100%', maxWidth: 1200, marginTop: 24, paddingBottom: selectedKeys.size > 0 || regenProgress ? 80 : 0 }}>
@@ -1718,58 +1723,90 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           ))}
         </div>
 
-        {/* Export + actions */}
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-          <button onClick={() => exportMoxfield(deck)} style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Moxfield</button>
-          <button onClick={() => exportThemed(deck)}   style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed TXT</button>
-          <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/zip`)} style={{ ...btnBase, background: '#1e3a5f', color: '#93c5fd', border: '1px solid #1d4ed8', fontWeight: 600 }}>↓ ZIP</button>
-          <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/pdf`)} style={{ ...btnBase, background: '#14532d', color: '#86efac', border: '1px solid #15803d', fontWeight: 600 }}>↓ PDF</button>
-          {videoKeys.size > 0 && (
-            <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>🎬 Animations ({videoKeys.size})</button>
-          )}
-          {videoKeys.size > 0 && (
-            <button
-              onClick={() => setShowMotion(m => !m)}
-              title={showMotion ? 'Showing animated cards — click to show the static art instead'
-                                : 'Showing static art — click to play the animated versions'}
-              style={{ ...btnBase, background: showMotion ? '#0c2a4d' : 'none',
-                color: showMotion ? '#7dd3fc' : '#78716c',
-                border: `1px solid ${showMotion ? '#0ea5e9' : '#44403c'}`, fontWeight: 600 }}
-            >{showMotion ? '▶ Motion: On' : '❚❚ Motion: Off'}</button>
-          )}
-          <button
-            onClick={handleRethemeAll}
-            disabled={rethemeing || rebuilding}
-            title="Re-kick the FULL generation on the same cards: new names, text/flavor AND freshly generated art (same theme + settings). Creates a new deck; this one is kept."
-            style={{ ...btnBase, background: rethemeing ? '#1e1b4b' : '#1e3a5f', color: rethemeing ? '#818cf8' : '#93c5fd', border: `1px solid ${rethemeing ? '#4f46e5' : '#1d4ed8'}`, fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
-          >
-            {rethemeing ? '⏳ Starting…' : '✏️ Retheme'}
-          </button>
-          {onRebuild && (
-            <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing} title="Re-generate ALL card art with new seeds — keeps the current names &amp; prompts (just re-rolls the art)."
-              style={{ ...btnBase, background: rebuilding ? '#2e1065' : '#3b0764', color: rebuilding ? '#7c3aed' : '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 600, opacity: rebuilding ? 0.7 : 1 }}>
-              {rebuilding ? '⏳ Starting…' : '🔄 Rebuild All'}
-            </button>
-          )}
-          {onEdit && (
-            <button
-              onClick={() => onEdit(deck)}
-              disabled={rebuilding || rethemeing || duplicating}
-              title="Re-open the builder with this deck's commander, theme, prompts, art style and all settings pre-filled for editing. Building creates a new deck — this one is kept."
-              style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600 }}
-            >
-              🎛️ Edit &amp; Rebuild
-            </button>
-          )}
-          <button
-            onClick={handleDuplicate}
-            disabled={duplicating || rebuilding || rethemeing}
-            title="Create an independent copy of this deck — the original is preserved unchanged"
-            style={{ ...btnBase, background: duplicating ? '#1c2030' : '#0f172a', color: duplicating ? '#64748b' : '#7dd3fc', border: '1px solid #1e40af', fontWeight: 600, opacity: duplicating ? 0.7 : 1 }}
-          >
-            {duplicating ? '⏳ Copying…' : '📋 Duplicate'}
-          </button>
-          <button onClick={onReset} style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>New Deck</button>
+        {/* Actions, grouped by INTENT. Previously one flat row of ten buttons mixed
+            downloads, a view toggle and three different regeneration actions whose
+            names didn't say what they did ("Rebuild All" only re-rolled art while
+            "Retheme" regenerated everything). Each group is labelled, and every
+            regenerate button now states its scope. */}
+        <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+
+          {/* — Download — */}
+          <div>
+            <div style={actGroupLabel}>Download</div>
+            <div style={actGroupRow}>
+              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/pdf`)} title="Print-ready PDF of every card, 9 per page"
+                style={{ ...btnBase, background: '#14532d', color: '#86efac', border: '1px solid #15803d', fontWeight: 600 }}>↓ Print PDF</button>
+              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/zip`)} title="ZIP of the individual card images"
+                style={{ ...btnBase, background: '#1e3a5f', color: '#93c5fd', border: '1px solid #1d4ed8', fontWeight: 600 }}>↓ Images</button>
+              {videoKeys.size > 0 && (
+                <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} title="ZIP of the animated cards"
+                  style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>↓ Animations ({videoKeys.size})</button>
+              )}
+              <button onClick={() => exportMoxfield(deck)} title="Decklist of the ORIGINAL card names — paste into Moxfield/Archidekt"
+                style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Decklist</button>
+              <button onClick={() => exportThemed(deck)} title="Decklist showing the themed names next to the real ones"
+                style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed list</button>
+            </div>
+          </div>
+
+          {/* — Regenerate: smallest scope first, each says what it changes — */}
+          <div>
+            <div style={actGroupLabel}>Regenerate</div>
+            <div style={actGroupRow}>
+              {onRebuild && (
+                <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing}
+                  title="Re-roll the ART on every card using the existing names and prompts. Names, rules text and flavor stay exactly as they are."
+                  style={{ ...btnBase, background: rebuilding ? '#2e1065' : '#3b0764', color: rebuilding ? '#7c3aed' : '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 600, opacity: rebuilding ? 0.7 : 1 }}>
+                  {rebuilding ? '⏳ Starting…' : '🎲 New art only'}
+                </button>
+              )}
+              <button
+                onClick={handleRethemeAll}
+                disabled={rethemeing || rebuilding}
+                title="Re-run the FULL generation on the same cards: new themed names, flavor text AND new art (same theme + settings). Saves as a new deck; this one is kept."
+                style={{ ...btnBase, background: rethemeing ? '#1e1b4b' : '#1e3a5f', color: rethemeing ? '#818cf8' : '#93c5fd', border: `1px solid ${rethemeing ? '#4f46e5' : '#1d4ed8'}`, fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
+              >
+                {rethemeing ? '⏳ Starting…' : '✏️ New names + art'}
+              </button>
+              {onEdit && (
+                <button
+                  onClick={() => onEdit(deck)}
+                  disabled={rebuilding || rethemeing || duplicating}
+                  title="Re-open the builder with this deck's commander, theme, art style and every setting pre-filled so you can change them. Building saves a new deck — this one is kept."
+                  style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600 }}
+                >
+                  🎛️ Change settings…
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* — This deck — */}
+          <div>
+            <div style={actGroupLabel}>Deck</div>
+            <div style={actGroupRow}>
+              {videoKeys.size > 0 && (
+                <button
+                  onClick={() => setShowMotion(m => !m)}
+                  title={showMotion ? 'Showing animated cards — click to show the static art instead'
+                                    : 'Showing static art — click to play the animated versions'}
+                  style={{ ...btnBase, background: showMotion ? '#0c2a4d' : 'none',
+                    color: showMotion ? '#7dd3fc' : '#78716c',
+                    border: `1px solid ${showMotion ? '#0ea5e9' : '#44403c'}`, fontWeight: 600 }}
+                >{showMotion ? '▶ Motion: On' : '❚❚ Motion: Off'}</button>
+              )}
+              <button
+                onClick={handleDuplicate}
+                disabled={duplicating || rebuilding || rethemeing}
+                title="Create an independent copy of this deck — the original is preserved unchanged"
+                style={{ ...btnBase, background: duplicating ? '#1c2030' : '#0f172a', color: duplicating ? '#64748b' : '#7dd3fc', border: '1px solid #1e40af', fontWeight: 600, opacity: duplicating ? 0.7 : 1 }}
+              >
+                {duplicating ? '⏳ Copying…' : '📋 Duplicate'}
+              </button>
+              <button onClick={onReset} title="Start a brand-new deck from scratch"
+                style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>New Deck</button>
+            </div>
+          </div>
         </div>
         {/* Duplicate feedback banner */}
         {dupMsg && dupMsg !== 'error' && (
