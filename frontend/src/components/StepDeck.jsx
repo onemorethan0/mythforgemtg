@@ -126,7 +126,7 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
       className="deck-card-tile"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={selectable ? () => onSelect(card.render_key) : undefined}
+      onClick={selectable ? (e) => onSelect(card.render_key, e.shiftKey) : undefined}
       style={{
         position: 'relative', borderRadius: 8, overflow: 'hidden',
         cursor: selectable ? 'pointer' : 'default',
@@ -1145,14 +1145,32 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   }, [regenJobId])
 
   // ── Selection helpers ─────────────────────────────────────────────────────
-  function toggleSelect(key) {
+  // Shift-click selects the RANGE between the last clicked card and this one (in the
+  // order currently displayed), so picking "all the creatures" on a 100-card deck is
+  // one gesture instead of thirty clicks. Plain click toggles a single card.
+  const lastClickedKey = useRef(null)
+
+  function toggleSelect(key, shiftKey = false) {
+    // Read the anchor HERE, not inside the updater: setState updaters run later, by
+    // which point lastClickedKey.current has already been reassigned to `key` below —
+    // so the range check would always compare a key against itself and never fire.
+    const anchor = lastClickedKey.current
     setSelectedKeys(prev => {
       const s = new Set(prev)
+      if (shiftKey && anchor && anchor !== key) {
+        const order = visibleCards.map(c => c.render_key)
+        const a = order.indexOf(anchor), b = order.indexOf(key)
+        if (a !== -1 && b !== -1) {
+          for (const k of order.slice(Math.min(a, b), Math.max(a, b) + 1)) s.add(k)
+          return s
+        }
+      }
       s.has(key) ? s.delete(key) : s.add(key)
       return s
     })
+    lastClickedKey.current = key
   }
-  function clearSelection() { setSelectedKeys(new Set()) }
+  function clearSelection() { setSelectedKeys(new Set()); lastClickedKey.current = null }
 
   // ── Regen handlers ────────────────────────────────────────────────────────
   async function handleStartRegen(payload) {
@@ -1823,9 +1841,15 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       </div>
 
       {/* Selection hint */}
+      {/* Discoverability: per-card regen/animate is only reachable by clicking a card,
+          and this hint used to be #44403c (near-invisible on the dark background) and
+          didn't mention animation — so the whole feature set read as missing. */}
       {selectedKeys.size === 0 && !regenProgress && view === 'gallery' && (
-        <div style={{ fontSize: 11, color: '#44403c', marginBottom: 12, textAlign: 'center' }}>
-          Click any card to select it for regeneration
+        <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 12, textAlign: 'center',
+                      padding: '7px 12px', borderRadius: 8, background: '#1c191788',
+                      border: '1px dashed #44403c' }}>
+          👆 <b style={{ color: '#fde047' }}>Click any card</b> to select it — then regenerate its
+          art or add animation. Shift-click or “Select visible” for several at once.
         </div>
       )}
 
@@ -1870,7 +1894,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 </div>
                 {cards.map((c, i) => (
                   <div key={i}
-                    onClick={() => !regenProgress && toggleSelect(c.render_key)}
+                    onClick={(e) => !regenProgress && toggleSelect(c.render_key, e.shiftKey)}
                     style={{
                       display: 'flex', alignItems: 'center', gap: 12, padding: '7px 8px', borderRadius: 6,
                       background: selectedKeys.has(c.render_key) ? '#1c1408' : i % 2 === 0 ? '#0c0a09' : 'transparent',
