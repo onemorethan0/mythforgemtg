@@ -7,13 +7,15 @@ from pathlib import Path
 from typing import Optional
 import requests
 
+from app_paths import app_path
+
 BASE_URL = "https://api.scryfall.com"
 
 # Persistent on-disk cache of resolved cards (name -> normalized card). Cuts
 # Scryfall API calls for every deck — generated or imported — and makes
 # re-importing a decklist nearly free. Card data is effectively immutable, so
 # the cache never needs invalidation for normal use.
-_CACHE_DIR       = Path("cache")
+_CACHE_DIR       = app_path("cache")
 _CARD_CACHE_FILE = _CACHE_DIR / "scryfall_cards.json"
 
 

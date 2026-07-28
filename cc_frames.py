@@ -36,6 +36,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 # Reuse Myth Forge's tuned text engine + fonts + canvas scale so this renders at
 # the same quality and downscales identically. We only borrow our OWN helpers.
 import card_renderer as cr
+from app_paths import app_path
 
 
 # ── Layout spec (factual MTG card geometry — fractions of the full card) ───────
@@ -215,7 +216,7 @@ def _draw_frame_text(draw, canvas, pos, text, font, box, anchor, spec) -> tuple:
 #   2. cc_config.json in the project root: {"cc_dir": "C:\\path\\to\\cardconjurer"}
 #      — written by the in-app "Card Conjurer folder" setting (POST /api/frame-config),
 #      gitignored so it never leaks a machine-specific path to the repo.
-_CONFIG_FILE = Path("cc_config.json")
+_CONFIG_FILE = app_path("cc_config.json")
 
 
 def configured_cc_dir() -> str:

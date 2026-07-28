@@ -38,13 +38,14 @@ from PIL import Image
 
 # Reuse ComfyUI connection conventions from the 3D module (same install).
 from model3d import _comfy_base, _comfy_models_dir, _COMFY_OUTPUT_DIR
+from app_paths import app_path
 
 # ── Poll / timeout ────────────────────────────────────────────────────────────
 _POLL_INTERVAL = 2.0
 _OUTPUT_TIMEOUT = float(os.environ.get("MYTHFORGE_VIDEO_TIMEOUT", "600"))  # 10 min
 
 # Where optional user-supplied workflow templates live (override the defaults).
-_WORKFLOW_DIR = Path("card_assets") / "video_workflows"
+_WORKFLOW_DIR = app_path("card_assets", "video_workflows")
 
 # Placeholder tokens substituted into a workflow template (default or override).
 _PLACEHOLDERS = {

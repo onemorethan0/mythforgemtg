@@ -13,6 +13,7 @@ Three inputs only:
 import sys
 from pathlib import Path
 
+from app_paths         import app_path
 from scryfall_client    import ScryfallClient
 from commander_analysis import build_commander_profile
 from deck_builder       import DeckBuilder, compute_stats
@@ -220,7 +221,7 @@ def main() -> None:
         if gen_choice == "c":
             path = gen.generate(
                 themed_commander.art_prompt,
-                str(Path("generated_art") / deck_slug / "commander"),
+                str(app_path("generated_art") / deck_slug / "commander"),
             )
             art_paths[themed_commander.original_name] = path
             if path:

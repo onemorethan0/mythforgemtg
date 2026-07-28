@@ -25,6 +25,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from app_paths import app_path
+
 from PIL import Image
 
 import card_renderer as cr
@@ -48,7 +50,7 @@ def _cmc(c: dict) -> float:
 
 def pick_cards(deck: dict, slug: str) -> list[dict]:
     """Commander + 3 creatures + 3 spells + 3 lands, all with art on disk."""
-    art_dir = Path("generated_art") / slug
+    art_dir = app_path("generated_art") / slug
 
     def has_art(c):
         n = c.get("original_name") or ""
@@ -112,10 +114,10 @@ def pick_cards(deck: dict, slug: str) -> list[dict]:
 
 
 def render_deck_samples(job: str, label: str, out_root: Path) -> Path:
-    job_dir = Path("renders") / job
+    job_dir = app_path("renders") / job
     deck = json.loads((job_dir / "deck.json").read_text(encoding="utf-8"))
     slug = deck.get("deck_slug") or ""
-    art_dir = Path("generated_art") / slug
+    art_dir = app_path("generated_art") / slug
     out = out_root / label
     out.mkdir(parents=True, exist_ok=True)
 

@@ -54,6 +54,8 @@ from typing import Optional
 
 import requests
 
+from app_paths import app_path
+
 # On Windows the default console encoding is cp1252 which can't represent many
 # Unicode characters that appear in art prompts and log messages (—, …, ⚠, etc.).
 # Wrap stdout/stderr with UTF-8 so print() never raises UnicodeEncodeError.
@@ -3705,7 +3707,7 @@ class ImageGen:
               f"(~{total * secs_each // 60}–{total * secs_each * 2 // 60} min)...")
 
         results: dict[str, Optional[Path]] = {}
-        art_dir = Path("generated_art") / deck_name
+        art_dir = app_path("generated_art") / deck_name
         crew_card_idx = 0   # round-robin index into crew_comfy_names
 
         for i, tc in enumerate(queue, 1):

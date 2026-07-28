@@ -34,10 +34,13 @@ from typing import Optional
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
+from app_paths import app_path
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
-_ASSETS   = Path("card_assets")
+# Anchored to the app dir, not the CWD — see app_paths.py.
+_ASSETS   = app_path("card_assets")
 _FONTS    = _ASSETS / "fonts"
-_ART_CACHE = Path("scryfall_cache")
+_ART_CACHE = app_path("scryfall_cache")
 
 # ── Canvas dimensions ─────────────────────────────────────────────────────────
 # Card = 63.5 × 88.9 mm; we render at 3× for anti-aliasing then downscale.

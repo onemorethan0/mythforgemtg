@@ -16,7 +16,9 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-FACE_DIR = Path("face_uploads")
+from app_paths import app_path
+
+FACE_DIR = app_path("face_uploads")
 
 # Maximum non-commander cards that receive face treatment.
 # The commander always gets the face; this caps how many deck cards do.

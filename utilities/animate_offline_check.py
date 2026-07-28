@@ -16,13 +16,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from app_paths import app_path
+
 from PIL import Image, ImageEnhance
 
 import card_renderer as cr
 import card_video as cv
 from set_symbol import generate_set_symbol
 
-OUT = Path("renders/anim_check")
+OUT = app_path("renders", "anim_check")
 
 
 def sanitize(n):
@@ -54,7 +56,7 @@ def synth_frames(art: Image.Image, n: int = 24) -> list:
 def run(job: str, want_name: str, label: str):
     d = json.loads(Path(f"renders/{job}/deck.json").read_text(encoding="utf-8"))
     slug = d.get("deck_slug")
-    art_dir = Path("generated_art") / slug
+    art_dir = app_path("generated_art") / slug
     cr.set_frame_style(d.get("frame_style", "builtin"))
 
     # custom pips, if any

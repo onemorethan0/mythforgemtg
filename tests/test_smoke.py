@@ -923,6 +923,50 @@ def test_prefer_owned():
     check("prefer.on", [c["name"] for c in b._prefer_owned(cands)], ["A", "C", "B", "D"])
 
 
+# ── App paths are CWD-independent ────────────────────────────────────────────
+# Every data dir the app reads or writes must resolve against the app directory,
+# never the process CWD. When these were bare relative literals, launching the
+# server by absolute path (shortcut / IDE / scheduler) forked the app's state into
+# whatever directory the process started in: a second cache/ that never hit its own
+# imported-deck entries, a second generated_art/ the deck view couldn't find art in,
+# and card_assets/ fonts missing outright.
+_DATA_DIR_NAMES = ("card_assets", "scryfall_cache", "face_uploads", "generated_art",
+                   "cache", "renders", "cc_config.json")
+
+
+def test_app_paths_absolute():
+    import re
+    from pathlib import Path
+    from app_paths import APP_DIR
+    import card_video, deck_import, face_ref, scryfall_client
+
+    for label, p in (("renderer.assets", cr._ASSETS),
+                     ("renderer.art_cache", cr._ART_CACHE),
+                     ("cc.config", cc_frames._CONFIG_FILE),
+                     ("video.workflows", card_video._WORKFLOW_DIR),
+                     ("import.cache", deck_import._CACHE_DIR),
+                     ("face.dir", face_ref.FACE_DIR),
+                     ("scryfall.cache", scryfall_client._CACHE_DIR)):
+        check_true(f"paths.{label}.absolute", p.is_absolute())
+        check_true(f"paths.{label}.under_app", APP_DIR in p.parents or p == APP_DIR)
+
+    # Source guard: no runtime module may reintroduce a CWD-relative data path.
+    # (Dev-only ro_*/test_* scratch scripts are exempt — they write scratch output.)
+    # Matches Path("cache") and the _Path alias server.py uses; app_path() is
+    # lowercase, so it never trips the pattern.
+    pat = re.compile(r'Path\(\s*["\'](' + "|".join(_DATA_DIR_NAMES) + r')[/"\']')
+    exempt = {"app_paths.py", "install.py", "verify-setup.py", "recover_deck.py",
+              "test_render.py", "test_gen.py"}
+    offenders = []
+    for src in sorted(APP_DIR.glob("*.py")) + sorted((APP_DIR / "utilities").glob("*.py")):
+        if src.name in exempt or src.name.startswith(("ro_", "gen_")):
+            continue
+        for i, line in enumerate(src.read_text(encoding="utf-8").splitlines(), 1):
+            if pat.search(line):
+                offenders.append(f"{src.name}:{i}")
+    check("paths.no_cwd_relative", offenders, [])
+
+
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
@@ -935,7 +979,8 @@ def main():
                test_set_bible_factions, test_foil_and_formats,
                test_commander_user_name,
                test_collection_owned_key, test_collection_parse,
-               test_collection_owned_count, test_prefer_owned):
+               test_collection_owned_count, test_prefer_owned,
+               test_app_paths_absolute):
         try:
             fn()
         except Exception as e:  # a thrown error is a failure, not a crash

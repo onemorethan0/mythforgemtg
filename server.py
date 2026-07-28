@@ -41,6 +41,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, validator
 
 # ── Local modules ─────────────────────────────────────────────────────────────
+from app_paths          import app_path
 from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
@@ -183,10 +184,11 @@ app.add_middleware(
     allow_headers=["Content-Type"],
 )
 
-STATIC_DIR  = Path(__file__).parent / "frontend" / "dist"
 # Anchor to the script location, not the cwd — the server (and deck history)
-# must work the same regardless of where it's launched from.
-RENDER_DIR  = Path(__file__).parent / "renders"
+# must work the same regardless of where it's launched from. See app_paths.py.
+STATIC_DIR  = app_path("frontend", "dist")
+RENDER_DIR  = app_path("renders")
+ART_DIR     = app_path("generated_art")
 RENDER_DIR.mkdir(exist_ok=True)
 
 # In-memory job store (replace with Redis/SQLite for persistence)
@@ -2192,7 +2194,7 @@ def _run_card_build(job_id: str, req: "CardBuildRequest"):
                         try:
                             art_path = gen.generate(
                                 tc.art_prompt,
-                                str(Path("generated_art") / deck_slug / _safe_name(name)),
+                                str(ART_DIR / deck_slug / _safe_name(name)),
                                 face_comfy_name=face_comfy_name,
                                 face_gender=req.face_gender,
                                 card_type=card.get("type_line", ""),
@@ -2352,7 +2354,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             result: dict[str, Optional[Path]] = {}
             if not slug:
                 return result
-            art_dir = Path("generated_art") / slug
+            art_dir = ART_DIR / slug
             for _tc in [themed_cmd] + list(themed_deck):
                 _safe = "".join(ch if ch.isalnum() else "_" for ch in _tc.original_name)[:48]
                 _p = art_dir / f"{_safe}.png"
@@ -2891,7 +2893,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 t0 = time.time()
                 art_path = gen.generate(
                     tc.art_prompt,
-                    str(_Path("generated_art") / deck_slug / art_safe),
+                    str(_ART_DIR / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
                     card_type=tc.card.get("type_line", ""),
@@ -3138,7 +3140,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             regen_crop = cur_art_dir / f"{render_key}.png"
             if regen_crop.exists():
                 return regen_crop
-            build_crop = _Path("generated_art") / deck_slug / f"{art_safe}.png"
+            build_crop = _ART_DIR / deck_slug / f"{art_safe}.png"
             if build_crop.exists():
                 return build_crop
             return _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
@@ -3569,7 +3571,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         def _reuse_source_art() -> dict:
             paths: dict[str, Optional[Path]] = {}
             if source_deck_slug:
-                adir = Path("generated_art") / source_deck_slug
+                adir = ART_DIR / source_deck_slug
                 for tc in [themed_cmd] + themed_deck:
                     safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
                     p = adir / f"{safe}.png"
@@ -3912,7 +3914,7 @@ def advise_deck(job_id: str, req: AdviseDeckRequest):
 
 # Collection prices (Scryfall market USD), cached on disk with a timestamp so a page
 # load never blocks on the network. Refreshed explicitly via /api/collection/prices.
-_PRICE_CACHE_FILE = Path("cache") / "prices.json"
+_PRICE_CACHE_FILE = app_path("cache", "prices.json")
 
 
 def _load_prices() -> dict:
@@ -5238,7 +5240,7 @@ async def delete_deck(job_id: str):
             raise HTTPException(500, f"Failed to remove deck directory: {e}")
 
     # Remove generated_art directory for this job if it exists
-    for art_dir in Path("generated_art").glob(f"*_{job_id[:8]}"):
+    for art_dir in ART_DIR.glob(f"*_{job_id[:8]}"):
         try:
             _shutil.rmtree(str(art_dir))
         except Exception:
@@ -5280,7 +5282,7 @@ async def delete_decks_batch(req: BatchDeleteRequest):
                 skipped.append(job_id)
                 continue
 
-        for art_dir in Path("generated_art").glob(f"*_{job_id[:8]}"):
+        for art_dir in ART_DIR.glob(f"*_{job_id[:8]}"):
             try:
                 _shutil.rmtree(str(art_dir))
             except Exception:
@@ -6099,7 +6101,7 @@ def _run_3d_generation(job_3d_id: str, deck_job_id: str):
         art_path: Optional[Path] = None
         if deck_slug and original_name:
             safe = "".join(c if c.isalnum() else "_" for c in original_name)[:48]
-            candidate = Path("generated_art") / deck_slug / f"{safe}.png"
+            candidate = ART_DIR / deck_slug / f"{safe}.png"
             if candidate.exists():
                 art_path = candidate
 

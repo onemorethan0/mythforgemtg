@@ -39,7 +39,9 @@ from urllib.parse import urlparse
 
 import requests
 
-_CACHE_DIR = Path("cache") / "imported_decks"
+from app_paths import app_path
+
+_CACHE_DIR = app_path("cache", "imported_decks")
 _HTTP_HEADERS = {
     "User-Agent": "MythForgeDeckImporter/1.0 (personal MTG proxy tool)",
     "Accept": "application/json",
