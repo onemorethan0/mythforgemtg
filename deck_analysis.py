@@ -111,12 +111,19 @@ def analyze_deck(commander: dict | None, deck: list[dict]) -> dict:
         est = max(est, 3)
     if mld:
         est = max(est, 4)
-    # cEDH fingerprint: heavy fast mana + tutors + a very low curve.
+    # cEDH fingerprint: heavy fast mana + tutors + a very low curve. Tutor COUNT is fair
+    # game here — B5 is defined by the cEDH metagame, not by a rules quota, and tutor
+    # density is part of that deck's shape. It must not appear in any lower-bracket gate.
     if est >= 4 and len(fast_mana) >= 3 and len(tutors) >= 4 and avg_mv <= 2.8:
         est = 5
     # Precon-level floor: nothing pushing power at all.
+    # Tutors are deliberately NOT part of this test. The October 2025 bracket update
+    # removed tutor restrictions from Commander Brackets entirely — WotC now relies on
+    # the Game Changers list to catch the efficient ones. A casual B1/B2 deck may run a
+    # Diabolic Tutor without leaving its bracket, so requiring zero tutors here wrongly
+    # denied the precon-level label to plenty of genuinely casual decks.
     low_end = (gcn == 0 and not extra_turns and not mld
-               and len(fast_mana) <= 1 and len(tutors) == 0)
+               and len(fast_mana) <= 1)
     est = max(1, min(5, est))
 
     label = BRACKET_LABELS.get(est, str(est))
@@ -125,7 +132,9 @@ def analyze_deck(commander: dict | None, deck: list[dict]) -> dict:
     bits = [f"{gcn} Game Changer{'s' if gcn != 1 else ''}"]
     if extra_turns: bits.append(f"{len(extra_turns)} extra-turn card(s)")
     if mld:         bits.append(f"{len(mld)} mass land destruction")
-    bits.append(f"{len(fast_mana)} fast-mana, {len(tutors)} tutor(s)")
+    # Tutors are reported as deck FACTS, not bracket criteria (restrictions removed
+    # Oct 2025) — the wording must not imply they push the bracket.
+    bits.append(f"{len(fast_mana)} fast-mana, {len(tutors)} tutor(s) (not bracket-limited)")
     bits.append(f"avg MV {avg_mv}")
     summary = (f"Estimated **Bracket {est} — {label}**: " + ", ".join(bits) + ". "
                + ("This looks like a precon-level casual deck. " if low_end and est <= 2 else "")
@@ -137,7 +146,9 @@ def analyze_deck(commander: dict | None, deck: list[dict]) -> dict:
     if len(fast_mana) < 3:
         up.append("Add fast mana — e.g. Sol Ring, Mana Crypt, Mana Vault, Jeweled Lotus — to power out the commander earlier.")
     if len(tutors) < 3:
-        up.append("Add tutors (Demonic Tutor, Vampiric Tutor, Mystical Tutor, Worldly Tutor) for consistency.")
+        up.append("Add tutors (Demonic Tutor, Vampiric Tutor, Mystical Tutor, Worldly Tutor) "
+                  "for consistency — note this makes the deck more reliable but does NOT "
+                  "raise its bracket; tutor restrictions were removed in October 2025.")
     if gcn < 3:
         up.append("Add high-impact Game Changers in-color (Rhystic Study, Smothering Tithe, Cyclonic Rift, Fierce Guardianship).")
     if land_count and land_count >= 35:
