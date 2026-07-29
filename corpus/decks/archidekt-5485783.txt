@@ -1,0 +1,103 @@
+# Archidekt — Voxy's Pantlaza | Game Knights #66
+# source: archidekt:5485783
+# fetched: 2026-07-05
+
+Commander:
+1 Pantlaza, Sun-Favored
+
+Deck:
+1 Arcane Signet
+1 Arid Mesa
+1 Atzocan Seer
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Birds of Paradise
+1 Blasphemous Act
+1 Boros Charm
+1 Boseiju, Who Endures
+1 Bountiful Promenade
+1 Canopy Vista
+1 Cavern of Souls
+1 Chaos Warp
+1 Cinder Glade
+1 Clifftop Retreat
+1 Path of Ancestry
+1 Path to Exile
+2 Plains
+1 Prismatic Vista
+1 Rampaging Ferocidon
+1 Command Tower
+1 Cryptic Gateway
+1 Cultivate
+1 Deflecting Swat
+1 Delayed Blast Fireball
+1 Eiganjo, Seat of the Empire
+1 Elemental Bond
+1 Ephemerate
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Etali, Primal Storm
+1 Fabled Passage
+1 Farseek
+3 Forest
+1 Garruk's Uprising
+1 Ghalta and Mavren
+1 Gishath, Sun's Avatar
+1 Guardian Project
+1 Heroic Intervention
+1 Jetmir's Garden
+1 Lurking Predators
+1 Masked Vandal
+1 Metallic Mimic
+1 Monster Manual // Zoological Study
+1 Mosswort Bridge
+2 Mountain
+1 Nature's Lore
+1 Otepec Huntmaster
+1 Overgrown Farmland
+1 Rampant Growth
+1 Realmwalker
+1 Return of the Wildspeaker
+1 Ripjaw Raptor
+1 Rockfall Vale
+1 Rootbound Crag
+1 Runic Armasaur
+1 Sacred Foundry
+1 Sakura-Tribe Elder
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sokenzan, Crucible of Defiance
+1 Sol Ring
+1 Spectator Seating
+1 Spire Garden
+1 Stomping Ground
+1 Sunpetal Grove
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Sylvan Library
+1 Tail Swipe
+1 Talisman of Unity
+1 Temple Garden
+1 The Great Henge
+1 Thrashing Brontodon
+1 Three Visits
+1 Topiary Stomper
+1 Tranquil Frillback
+1 Urza's Incubator
+1 Wakening Sun's Avatar
+1 Wayward Swordtooth
+1 Windswept Heath
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Teferi's Protection
+1 Gwenna, Eyes of Gaea
+1 Stroke of Midnight
+1 Quartzwood Crasher
+1 Hulking Raptor
+1 Wrathful Raptors
+1 Bonehoard Dracosaur
+1 Trumpeting Carnosaur
+1 Bronzebeak Foragers
+1 Curious Altisaur
+1 Earthshaker Dreadmaw
+1 Sunfrill Imitator
+1 Contest of Claws
+1 Intrepid Paleontologist
+1 Pugnacious Hammerskull

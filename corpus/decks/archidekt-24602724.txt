@@ -1,0 +1,82 @@
+# Archidekt — Grave Danger - Mod
+# source: archidekt:24602724
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Gisa and Geralf
+
+Deck:
+1 Damnation
+1 Vengeful Bloodwitch
+1 Cemetery Reaper
+1 Temple of Deceit
+1 Evolving Wilds
+1 Unknown Shores
+1 Rooftop Storm
+1 Submerged Boneyard
+1 Sunken Hollow
+1 Dimir Signet
+26 Swamp
+1 Syphon Flesh
+1 Withered Wretch
+1 Zombie Apocalypse
+1 Enter the God-Eternals
+1 Gray Merchant of Asphodel
+1 Grimoire of the Dead
+1 Havengul Lich
+1 Jwar Isle Refuge
+1 Lazotep Reaver
+1 Liliana's Mastery
+1 Lotleth Giant
+1 Loyal Subordinate
+1 Mire Triton
+1 Necromantic Selection
+1 Necrotic Hex
+1 Open the Graves
+1 Overseer of the Damned
+1 Army of the Damned
+1 Commander's Sphere
+1 Crippling Fear
+1 Diregraf Captain
+1 Dismal Backwater
+1 Eternal Skylord
+1 Fleshbag Marauder
+1 Geralf's Mindcrusher
+1 Gleaming Overseer
+1 Pilfered Plans
+1 Salt Marsh
+1 Scourge of Nel Toth
+1 Talisman of Dominance
+1 Champion of the Perished
+1 Choked Estuary
+1 Vela the Night-Clad
+1 Vengeful Dead
+1 Vizier of the Scorpion
+1 Command Tower
+1 Sol Ring
+1 Undermine
+1 Liliana, Untouched by Death
+1 Lord of the Accursed
+1 Unbreathing Horde
+2 Island
+1 Mortuary Mire
+1 Gravedigger
+1 Dimir Guildgate
+1 Ashnod's Altar
+1 Unbury
+1 Crow of Dark Tidings
+1 Mind Sculpt
+1 Graveshifter
+1 Demogorgon's Clutches
+1 Returned Reveler
+1 Gravedig
+1 Macabre Waltz
+1 Cemetery Recruitment
+1 Sidisi, Undead Vizier
+1 Reanimate
+1 Jace, Memory Adept
+1 Propaganda
+1 Consuming Aberration
+1 Demonic Tutor
+1 Cavern of Souls

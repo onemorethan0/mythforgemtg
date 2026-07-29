@@ -1,0 +1,82 @@
+# Archidekt — '93–'96 Merieke Ri Berit
+# source: archidekt:65004
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Merieke Ri Berit
+
+Deck:
+1 Rasputin Dreamweaver
+10 Swamp
+7 Plains
+12 Island
+1 Exile
+1 Arcane Denial
+1 Diminishing Returns
+1 Force of Will
+1 Energy Arc
+1 Lim-Dûl's Vault
+1 Sol Grail
+1 Soldevi Excavations
+1 Thawing Glaciers
+1 Chain Stasis
+1 Giant Oyster
+1 Merchant Scroll
+1 City of Brass
+1 Brainstorm
+1 Infuse
+1 Mystic Remora
+1 Portent
+1 Dance of the Dead
+1 Dark Banishing
+1 Necropotence
+1 Norritt
+1 Adarkar Wastes
+1 Underground River
+1 Seasinger
+1 Dust to Dust
+1 Apprentice Wizard
+1 Dance of Many
+1 Ashes to Ashes
+1 Book of Rass
+1 Fellwar Stone
+1 Tormod's Crypt
+1 Maze of Ith
+1 Divine Offering
+1 Urborg
+1 Disenchant
+1 Swords to Plowshares
+1 Wrath of God
+1 Braingeyser
+1 Clone
+1 Ivory Tower
+1 Jandor's Saddlebags
+1 Mana Vault
+1 Nevinyrral's Disk
+1 Sol Ring
+1 Underground Sea
+1 Mishra's Factory
+1 Strip Mine
+1 Psionic Blast
+1 Royal Assassin
+1 Icy Manipulator
+1 Oubliette
+1 Island of Wak-Wak
+1 Power Sink
+1 Demonic Tutor
+1 Terror
+1 Scrubland
+1 Tundra
+1 Forcefield
+1 Lat-Nam's Legacy
+1 Vesuvan Doppelganger
+1 Binding Grasp
+1 Animate Dead
+1 Greed
+1 Counterspell
+1 Meekstone
+1 Control Magic
+1 Copy Artifact
+1 Land Tax
+1 Steal Artifact

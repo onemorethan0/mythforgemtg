@@ -1,0 +1,102 @@
+# Archidekt — Codi
+# source: archidekt:24594909
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 Switcheroo
+1 Deadpool, Trading Card
+1 Fractured Identity
+1 Phage the Untouchable
+1 Archfiend of the Dross
+1 Touch of the Eternal
+1 Puca's Mischief
+1 Tibalt's Trickery
+1 Wrong Turn
+1 Evil Eye of Orms-by-Gore
+1 Demonic Pact
+1 Aggressive Mining
+1 Blim, Comedic Genius
+1 Symbiotic Deployment
+1 Summoner's Pact
+1 Captive Audience
+1 Last Chance
+1 Worship
+1 Coveted Falcon
+1 Stunning Reversal
+1 Exchange of Words
+1 Sudden Substitution
+1 Bazaar Trader
+1 Lavinia, Azorius Renegade
+1 Iroh, Tea Master
+1 The Golden Throne
+1 Nine Lives
+1 Khârn the Betrayer
+1 Grid Monitor
+1 Steel Golem
+1 Narset's Reversal
+1 Twincast
+1 Flashback
+1 Shifting Grift
+1 Overwhelming Splendor
+1 Sol Ring
+1 Arcane Signet
+1 Twinning Staff
+2 Swamp
+1 Vexing Bauble
+2 Island
+2 Mountain
+1 Vibrant Cityscape
+1 Thriving Isle
+2 Plains
+1 Vernal Fen
+4 Forest
+1 Thriving Bluff
+1 Thriving Grove
+1 Evolving Wilds
+1 Command Tower
+1 Ash Barrens
+1 Undergrowth Stadium
+1 Sunken Hollow
+1 Spire Garden
+1 Sodden Verdure
+1 Fabled Passage
+1 Hinterland Harbor
+1 Smoldering Marsh
+1 Rain-Slicked Copse
+1 Rootbound Crag
+1 Exotic Orchard
+1 City of Brass
+1 Immortal Coil
+1 Dragonskull Summit
+1 Zagoth Triome
+1 Savai Triome
+1 Ketria Triome
+1 Raugrin Triome
+1 Indatha Triome
+1 Cinder Glade
+1 Rest in Peace
+1 Dualcaster Mage
+1 Chromatic Lantern
+1 Isochron Scepter
+1 Teferi's Protection
+1 Rust Elemental
+1 Reverberate
+1 Angel's Grace
+1 Inkshield
+1 Silence
+1 Avarice Totem
+1 Phyrexian Metamorph
+1 Copy Enchantment
+1 Maze of Ith
+1 Bojuka Bog
+1 Harmless Offering
+1 Demonic Tutor
+1 Mystical Tutor
+1 Idyllic Tutor
+1 Enlightened Tutor
+1 Vampiric Tutor
+1 Personal Tutor

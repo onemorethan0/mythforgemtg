@@ -1,0 +1,42 @@
+# Archidekt — Galvanize "Push the Button" (Ashling)
+# source: archidekt:10781360
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Ashling the Pilgrim
+
+Deck:
+1 Ring of Valkas
+1 Resurrection Orb
+1 Tarrian's Soulcleaver
+1 Valakut, the Molten Pinnacle
+1 Repercussion
+1 Basilisk Collar
+1 Quietus Spike
+1 Shadowspear
+1 Mithril Coat
+1 Caged Sun
+1 Gauntlet of Might
+1 Gauntlet of Power
+1 Swiftfoot Boots
+1 Pain for All
+1 Loxodon Warhammer
+1 Laccolith Rig
+1 Lightning Greaves
+1 Heartstone
+1 Magebane Armor
+1 The Ozolith
+1 Braid of Fire
+1 Witch's Clinic
+1 Chandra's Ignition
+1 Hammer of Nazahn
+1 Sandstone Needle
+1 Mirage Mesa
+1 Forgotten Cave
+1 Mercadian Bazaar
+1 Cori Mountain Monastery
+1 Daily Bugle Building
+1 Amonkhet Raceway
+66 Mountain
+1 Champion's Helm

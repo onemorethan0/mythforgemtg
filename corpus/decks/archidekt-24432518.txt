@@ -1,0 +1,89 @@
+# Archidekt — Bear with me
+# source: archidekt:24432518
+# fetched: 2026-07-17
+
+Commander:
+1 Duskana, the Rage Mother
+
+Deck:
+1 Mother Bear
+1 Rhythm of the Wild
+1 Return of the Wildspeaker
+1 Rootbound Crag
+1 Beast Whisperer
+1 Rampant Growth
+1 Cinder Glade
+1 Reliquary Tower
+1 Canopy Vista
+1 Exotic Orchard
+1 Sunpetal Grove
+1 Solemn Simulacrum
+1 Quirion Beastcaller
+1 Clifftop Retreat
+1 Path of Ancestry
+1 Path to Exile
+1 Farseek
+1 Tuya Bearclaw
+1 Assemble the Players
+1 Wild Pair
+1 Charming Prince
+1 Evolving Wilds
+1 Blasphemous Act
+1 Caller of the Claw
+1 Goblin Anarchomancer
+1 Swords to Plowshares
+1 Jungle Shrine
+1 Beast Within
+1 Annie Joins Up
+1 Command Tower
+1 Arcane Signet
+1 Fortified Village
+1 Karplusan Forest
+1 Battlefield Forge
+1 Cultivate
+1 Swiftfoot Boots
+1 Austere Command
+1 Kudo, King Among Bears
+1 Grizzly Bears
+1 Chaos Warp
+1 Ayula, Queen Among Bears
+1 Felidar Retreat
+1 Kodama's Reach
+1 Kutzil, Malamet Exemplar
+1 Wilson, Refined Grizzly
+1 Game Trail
+1 Black Widow, Agile Avenger
+1 Shamanic Revelation
+1 Guardian Project
+1 Mentor of the Meek
+1 Taurean Mauler
+1 Twitching Doll
+1 Temple of Plenty
+1 Atalan Jackal
+1 Bear Cub
+1 Temple of Abandon
+1 Runeclaw Bear
+1 Scavenging Ooze
+1 Manglehorn
+1 Druid's Familiar
+1 Dusk // Dawn
+1 Spawnwrithe
+1 Terramorphic Expanse
+1 Anger
+1 Ashcoat Bear
+1 Rampaging Yao Guai
+1 Tender Wildguide
+1 Beastmaster Ascension
+1 Ms. Marvel, Elastic Ally
+1 Archetype of Courage
+1 Radha, Heir to Keld
+1 Viv Vision, Teen Synthezoid
+1 Hawkeye, Master Marksman
+6 Plains
+10 Forest
+1 Bane of Progress
+3 Mountain
+1 Naya Charm
+1 Unbreakable Formation
+1 Dawn's Truce
+1 White Sun's Zenith

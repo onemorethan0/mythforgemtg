@@ -1,0 +1,105 @@
+# Archidekt — The Room Where It Happens
+# source: archidekt:9192431
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Marina Vendrell
+
+Deck:
+1 Mirror Room // Fractured Realm
+1 Central Elevator // Promising Stairs
+1 Bottomless Pool // Locker Room
+1 Walk-In Closet // Forgotten Cellar
+1 Unholy Annex // Ritual Chamber
+1 Experimental Lab // Staff Room
+1 Greenhouse // Rickety Gazebo
+1 Smoky Lounge // Misty Salon
+1 Restricted Office // Lecture Hall
+1 Painter's Studio // Defaced Gallery
+1 Secret Arcade // Dusty Parlor
+1 Dollmaker's Shop // Porcelain Gallery
+1 Charred Foyer // Warped Space
+1 Grand Entryway // Elegant Rotunda
+1 Glassworks // Shattered Yard
+1 Meat Locker // Drowned Diner
+1 Roaring Furnace // Steaming Sauna
+1 Inquisitive Glimmer
+1 Derelict Attic // Widow's Walk
+1 Dazzling Theater // Prop Room
+1 Ticket Booth // Tunnel of Hate
+1 Ghostly Dancers
+1 Entity Tracker
+1 Fear of Sleep Paralysis
+1 Ghostly Keybearer
+1 Ghostly Prison
+1 Valgavoth's Lair
+1 Patriar's Seal
+1 Command Tower
+1 Cramped Vents // Access Maze
+1 Wall of Omens
+1 Trapped in the Screen
+1 Suspicious Bookcase
+1 Split Up
+1 Defenestrate
+1 Billiard Room
+1 Spiked Corridor // Torture Pit
+1 Moldering Gym // Weight Room
+1 Funeral Room // Awakening Hall
+1 Keys to the House
+1 Rotating Fireplace
+1 Underwater Tunnel // Slimy Aquarium
+1 Elegant Parlor
+1 Unable to Scream
+1 Door to Nothingness
+1 Sheltered by Ghosts
+1 Dance of the Manse
+1 Kitchen
+1 False Floor
+1 Gremlin Tamer
+1 Haunted Screen
+2 Forest
+1 Ballroom
+1 Terramorphic Expanse
+1 Manor Gate
+1 Hall
+1 Library
+2 Plains
+1 Mountain
+1 Morphic Pool
+1 Dining Room
+1 Luxury Suite
+1 Swamp
+2 Island
+1 Study
+1 Conservatory
+1 Secret Passage
+1 Meticulous Archive
+1 Lounge
+1 Escape Tunnel
+1 Blood Crypt
+1 Neglected Manor
+1 Lush Portico
+1 Peculiar Lighthouse
+1 Murky Sewer
+1 Lakeside Shack
+1 Abandoned Campground
+1 Etched Cornfield
+1 Raucous Carnival
+1 Bleeding Woods
+1 Crawlspace
+1 Rooftop Nuisance
+1 Hide on the Ceiling
+1 Stomping Ground
+1 Concealing Curtains // Revealing Eye
+1 Break Down the Door
+1 Exorcise
+1 From Under the Floorboards
+1 Heirloom Mirror // Inherited Fiend
+1 Boarded Window
+1 Cellar Door
+1 Tapping at the Window
+1 By Invitation Only
+1 Secret Door
+1 The Bath Song
+1 Concealed Courtyard

@@ -1,0 +1,85 @@
+# Archidekt — Angels but they don't stop comin and they don't stop comin
+# source: archidekt:24752502
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Shilgengar, Sire of Famine
+
+Deck:
+1 Angel of Indemnity
+1 Caves of Koilos
+1 Command Tower
+1 Damn
+1 Dazzling Angel
+1 Diresight
+1 Eventide's Shadow
+1 Feed the Swarm
+1 Fetid Heath
+1 Firja's Retribution
+1 Funeral Rites
+1 Ghostway
+1 Giada, Font of Hope
+1 Herald's Horn
+1 Inspiring Overseer
+1 Inspiring Statuary
+1 Isolated Chapel
+1 Lich-Knights' Conquest
+1 Merchant of Truth
+1 Mind Stone
+1 Nesting Grounds
+1 Orzhov Basilica
+1 Orzhov Signet
+1 Path to Exile
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Guardian of Ghirapur
+1 Metropolis Reformer
+1 Eradicator Valkyrie
+1 Anguished Unmaking
+1 Eerie Interlude
+1 Bojuka Bog
+1 Pointed Discussion
+1 Rampage of the Valkyries
+1 Seraph Sanctuary
+1 Serra Paragon
+1 Shineshadow Snarl
+1 Sign in Blood
+1 Spymaster's Vault
+1 Surveillance Room
+11 Swamp
+1 Tainted Field
+1 Toxic Deluge
+1 Victimize
+1 Wayfarer's Bauble
+1 Swiftfoot Boots
+1 Talisman of Hierarchy
+1 Wojek Investigator
+1 Sanctuary Warden
+1 Swords to Plowshares
+1 Stroke of Midnight
+1 Angel of the Ruins
+1 Angel of Suffering
+1 Youthful Valkyrie
+1 Righteous Valkyrie
+1 Renegade Reaper
+1 Mirkwood Bats
+1 Astelli Reclaimer
+1 Kambal, Profiteering Mayor
+1 Blood Artist
+1 Pitiless Plunderer
+1 Thief of Blood
+14 Plains
+1 Dark Ritual
+1 Solemnity
+1 Sol Ring
+1 Agent of the Iron Throne
+1 Wispweaver Angel
+1 Lightstall Inquisitor
+1 Falkenrath Noble
+1 Angel of Vitality
+1 Pactdoll Terror
+1 Life Insurance
+1 Cruel Celebrant
+1 Zulaport Cutthroat
+1 Grim Haruspex

@@ -1,0 +1,88 @@
+# Archidekt — Creatureless Bruce Banner/Incredible Hulk
+# source: archidekt:24786977
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Bruce Banner // The Incredible Hulk
+
+Deck:
+1 Llanowar Elves
+1 Arc Reactor
+1 Arcane Signet
+1 Basilisk Collar
+1 Caltrops
+1 Captain America's Shield
+1 Expedition Map
+1 Falcon's Wing Harness
+1 Feldon's Cane
+1 Fellwar Stone
+1 Fireshrieker
+1 Gilded Lotus
+1 Hawkeye's Bow
+1 Hedron Archive
+1 Hero's Blade
+1 Mithril Coat
+1 Sol Ring
+1 Soul-Guide Lantern
+1 Super Suit
+1 Swiftfoot Boots
+1 Abrade
+1 Blazing Crescendo
+1 Broken Wings
+1 Bulk Up
+1 Burst Lightning
+1 Chase Inspiration
+1 Counterspell
+1 Deflecting Swat
+1 Dive Down
+1 Fierce Guardianship
+1 Giant Growth
+1 HULK SMASH!
+1 Heroic Intervention
+1 Lightning Strike
+1 Opt
+1 Refute
+1 Run Away Together
+1 Snakeskin Veil
+1 Team Tactics
+1 Think Twice
+1 Unsummon
+1 Vision of Love
+1 Avengers Disassembled
+1 Bushwhack
+1 Chart a Course
+1 Epic Fight
+1 Jeska's Will
+1 Knockout Maneuver
+1 Obliterating Bolt
+1 Oracle's Restoration
+1 Photon Blast Barrage
+1 Pym Particles
+1 River's Rebuke
+1 Seismic Rupture
+1 Stump Stomp // Burnwillow Clearing
+1 Death to Our Enemies
+1 Gratuitous Violence
+1 Hydra's Growth
+1 Ordeal of Nylea
+1 Rhystic Study
+1 Super Speed
+1 Training Regimen
+1 Avengers Tower
+1 Cinder Glade
+1 Command Tower
+1 Demolition Field
+1 Evolving Wilds
+1 Flooded Grove
+8 Forest
+7 Island
+1 Los Diablos Missile Base
+8 Mountain
+1 Pym Technologies
+1 Rejuvenating Springs
+1 Rogue's Passage
+1 Stark Industries
+1 Surveillance Room
+1 Terramorphic Expanse
+1 Training Compound

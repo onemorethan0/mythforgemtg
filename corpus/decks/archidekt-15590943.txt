@@ -1,0 +1,96 @@
+# Archidekt — Hashaton Bracket Mid 3
+# source: archidekt:15590943
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Hashaton, Scarab's Fist
+
+Deck:
+1 Agna Qel'a
+1 Arcane Signet
+1 Damn
+1 Talisman of Progress
+1 Pollywog Prodigy
+1 Talisman of Hierarchy
+1 Talisman of Dominance
+1 Hoarding Broodlord
+1 Rune-Scarred Demon
+1 Looter il-Kor
+1 An Offer You Can't Refuse
+1 Merfolk Looter
+1 Skirge Familiar
+1 Sire of Stagnation
+1 Putrid Imp
+1 Tireless Tribe
+1 Archfiend of Ifnir
+1 Massacre Wurm
+1 Emeria Shepherd
+1 Hullbreaker Horror
+1 The Scarab God
+1 Angel of the Ruins
+1 Ashen Rider
+1 Temmet, Naktamun's Will
+1 God-Pharaoh's Gift
+1 Archon of Cruelty
+1 Reanimate
+1 Victimize
+1 Gate to the Afterlife
+1 Bitter Triumph
+1 Lotho, Corrupt Shirriff
+1 Bone Shards
+1 Propaganda
+1 Monument to Endurance
+1 Tortured Existence
+1 Nesting Dovehawk
+1 Port Town
+1 Exotic Orchard
+5 Swamp
+1 Adarkar Wastes
+1 Accursed Duneyard
+1 Sunken Hollow
+1 Command Tower
+1 Prairie Stream
+1 Underground River
+1 Arcane Sanctum
+1 Caves of Koilos
+1 Bojuka Bog
+1 Reliquary Tower
+1 Path of Ancestry
+1 Tainted Isle
+1 Deadly Rollick
+1 Jin-Gitaxias, Core Augur
+1 Land Tax
+1 Hallowed Fountain
+1 Swords to Plowshares
+1 Sol Ring
+1 Animate Dead
+1 Path to Exile
+1 Saw in Half
+1 Curious Colossus
+5 Island
+4 Plains
+1 Elesh Norn, Grand Cenobite
+1 Faithful Mending
+1 Nezahal, Primal Tide
+1 Flawless Maneuver
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Monastery Siege
+1 Likeness Looter
+1 Psychic Frog
+1 Bone Miser
+1 Ghostly Pilferer
+1 Vohar, Vodalian Desecrator
+1 Ledger Shredder
+1 Windfall
+1 Frantic Search
+1 Gleaming Overseer
+1 Esper Sentinel
+1 The Soul Stone
+1 Swan Song
+1 Sink into Stupor // Soporific Springs
+1 Fell the Profane // Fell Mire
+1 Rhet-Tomb Mystic
+1 Watery Grave
+1 Undercity Sewers
+1 Sea of Clouds

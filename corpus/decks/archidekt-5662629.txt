@@ -1,0 +1,108 @@
+# Archidekt — [cEDH] Sisay Soprano
+# source: archidekt:5662629
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Gemstone Caverns
+1 Cabal Ritual
+1 Ranger-Captain of Eos
+1 Rite of Flame
+1 Ad Nauseam
+1 Agatha's Soul Cauldron
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Arcane Signet
+1 Badlands
+1 Bayou
+1 Beseech the Mirror
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Boseiju, Who Endures
+1 Brain Freeze
+1 Chain of Vapor
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Culling the Weak
+1 Dark Ritual
+1 Deathrite Shaman
+1 Deflecting Swat
+1 Demonic Consultation
+1 Demonic Tutor
+1 Elvish Spirit Guide
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Exotic Orchard
+1 Faerie Mastermind
+1 Fierce Guardianship
+1 Final Fortune
+1 Flash Photography
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Gamble
+1 Ignoble Hierarch
+1 Imperial Seal
+1 Lavinia, Azorius Renegade
+1 Lion's Eye Diamond
+1 Lotho, Corrupt Shirriff
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mental Misstep
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mnemonic Betrayal
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Necrodominance
+1 Necropotence
+1 Noxious Revival
+1 Orcish Bowmasters
+1 Orim's Chant
+1 Pact of Negation
+1 Polluted Delta
+1 Ragavan, Nimble Pilferer
+1 Red Elemental Blast
+1 Rhystic Study
+1 Savannah
+1 Scalding Tarn
+1 Scrubland
+1 Silence
+1 Simian Spirit Guide
+1 Smothering Tithe
+1 Sol Ring
+1 Starting Town
+1 Storm-Kiln Artist
+1 Swan Song
+1 Taiga
+1 Tainted Pact
+1 Tataru Taru
+1 Teferi, Time Raveler
+1 Thassa's Oracle
+1 The Cabbage Merchant
+1 Tinder Wall
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Underworld Breach
+1 Valley Floodcaller
+1 Vampiric Tutor
+1 Veil of Summer
+1 Verdant Catacombs
+1 Volcanic Island
+1 Windswept Heath
+1 Wooded Foothills
+1 Diabolic Intent
+1 Kinnan, Bonder Prodigy
+1 Manamorphose
+1 Birds of Paradise

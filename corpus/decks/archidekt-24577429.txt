@@ -1,0 +1,80 @@
+# Archidekt — Wouldst thou like to live deliciously?
+# source: archidekt:24577429
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Eruth, Tormented Prophet
+
+Deck:
+1 Divination
+1 Deranged Assistant
+1 Ghostly Touch
+1 Geralf's Masterpiece
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Sol Ring
+1 Blasphemous Act
+1 Wrack with Madness
+1 Witch's Mark
+1 Vessel of Endless Rest
+1 Alchemist's Retrieval
+1 Thirst for Discovery
+1 Voldaren Estate
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Soulcipher Board // Cipherbound Spirit
+1 Sapphire Medallion
+1 Fearful Villager // Fearsome Werewolf
+1 Witch Hunt
+1 Vampires' Vengeance
+1 Dance with Devils
+1 Heavy Mattock
+1 Twisted Fealty
+1 Trickery Charm
+1 Covetous Castaway // Ghostly Castigator
+1 Curse of Stalked Prey
+1 Laboratory Maniac
+1 Thought Scour
+1 Thing in the Ice // Awoken Horror
+1 Delver of Secrets // Insectile Aberration
+1 Sisters of the Flame
+1 Geier Reach Sanitarium
+1 Murder of Crows
+1 Reckless Waif // Merciless Predator
+1 Desperate Ravings
+1 Claustrophobia
+1 Pithing Needle
+1 Uninvited Geist // Unimpeded Trespasser
+1 Investigator's Journal
+1 Stormcarved Coast
+1 Gitaxian Probe
+1 Desolate Lighthouse
+1 Startled Awake // Persistent Nightmare
+1 Tormenting Voice
+1 Cackling Counterpart
+1 Essence Flux
+15 Mountain
+15 Island
+1 Mirror of Fate
+1 Mystic Retrieval
+1 Haunted Fengraf
+1 Jar of Eyeballs
+1 Docent of Perfection // Final Iteration
+1 Drag Under
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Raze the Effigy
+1 Sulfur Falls
+1 Curse of Hospitality
+1 Lightning Greaves
+1 Clout of the Dominus
+1 Whispersilk Cloak
+1 Burn at the Stake
+1 Enlightened Maniac
+1 Alchemist's Apprentice
+1 Brand of Ill Omen
+1 Maeve, Insidious Singer
+1 Dreamborn Muse
+1 Everflowing Chalice
+1 Imprisoned in the Moon
+1 Emry, Lurker of the Loch
+1 Arcane Signet
+1 Phial of Galadriel

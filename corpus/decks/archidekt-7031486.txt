@@ -1,0 +1,88 @@
+# Archidekt — Buffs by Hans
+# source: archidekt:7031486
+# fetched: 2026-07-05
+
+Commander:
+1 Xyris, the Writhing Storm
+
+Deck:
+1 Gaea's Gift
+1 Tyvar's Stand
+1 Invigorate
+1 Brute Force
+1 Kodama's Reach
+1 Command Tower
+10 Forest
+1 Harrow
+1 Hunter's Insight
+1 Ohran Viper
+1 Bite Down
+1 Ram Through
+1 Mischievous Catgeist // Catlike Curiosity
+1 Cosmic Hunger
+1 Groundswell
+1 Growth Spiral
+1 Eureka Moment
+1 Inscription of Abundance
+1 Become Immense
+1 Vedalken Heretic
+1 Decisive Denial
+1 Deeproot Wayfinder
+1 Joint Exploration
+1 Temur Charm
+1 Frontier Bivouac
+1 Simic Growth Chamber
+1 Gruul Turf
+1 Izzet Boilerworks
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Temple of Epiphany
+1 Temple of Abandon
+1 Temple of Mystery
+1 Simic Charm
+6 Island
+6 Mountain
+1 Blossoming Defense
+1 Izzet Guildgate
+1 Gruul Guildgate
+1 Simic Guildgate
+1 Titan's Strength
+1 Oakhame Adversary
+1 Soul's Fire
+1 Shore Up
+1 Vines of Vastwood
+1 Snakeskin Veil
+1 Tamiyo's Safekeeping
+1 Djinn Illuminatus
+1 Cold-Eyed Selkie
+1 Stormchaser Drake
+1 Khalni Ambush // Khalni Territory
+1 Mercurial Spelldancer
+1 Cultivate
+1 Colossal Growth
+1 Mutagenic Growth
+1 Sticky Fingers
+1 Roiling Regrowth
+1 Goldvein Pick
+1 Beamtown Beatstick
+1 Snake Umbra
+1 Combat Research
+1 Geode Golem
+1 Fully Grown
+1 Sunder Shaman
+1 Collision // Colossus
+1 Surrakar Spellblade
+1 Titanic Growth
+1 Bladegriff Prototype
+1 Temur Battle Rage
+1 Thrash // Threat
+1 Coiling Oracle
+1 Kessig Wolf Run
+1 Trygon Predator
+1 Giant Growth
+1 Season of Growth
+1 Neheb, Dreadhorde Champion
+1 Master's Rebuke
+1 Blazing Crescendo
+1 Armed // Dangerous
+1 Roar of Challenge

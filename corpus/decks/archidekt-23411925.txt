@@ -1,0 +1,93 @@
+# Archidekt — Who's Your Commander?
+# source: archidekt:23411925
+# fetched: 2026-07-27
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Soundwave, Sonic Spy // Soundwave, Superior Captain
+1 Hanna, Ship's Navigator
+1 Gwafa Hazid, Profiteer
+1 Merieke Ri Berit
+1 Godless Shrine
+1 Command Tower
+1 Exotic Orchard
+1 Reliquary Tower
+1 Isolated Chapel
+1 Skycloud Expanse
+1 The Destined Warrior
+6 Swamp
+1 Shipwreck Marsh
+1 Sea of Clouds
+1 Vault of Champions
+1 Shattered Sanctum
+6 Plains
+1 Darkwater Catacombs
+1 Sol Ring
+1 Phyrexian Arena
+1 Arcane Signet
+1 Exquisite Blood
+1 Propaganda
+1 Anguished Unmaking
+1 Ghostly Prison
+1 Authority of the Consuls
+1 Dovin's Veto
+1 Alhammarret's Archive
+1 Blind Obedience
+1 Kambal, Consul of Allocation
+1 Karlov of the Ghost Council
+1 Thought Vessel
+1 Rhox Faithmender
+1 Dark Ritual
+1 Serra Ascendant
+1 Bloodthirsty Conqueror
+1 Crested Sunmare
+1 The Wind Crystal
+1 Test of Endurance
+1 Lotho, Corrupt Shirriff
+1 Voice of the Blessed
+1 Cosmos Elixir
+1 Belisarius Cawl
+1 Inquisitorial Rosette
+1 Birth of the Imperium
+1 Beacon Hawk
+1 Yennett, Cryptic Sovereign
+1 Arcane Sanctum
+1 Bojuka Bog
+1 Hall of Heliod's Generosity
+1 Hallowed Fountain
+1 Defenders of Humanity
+1 Mana Drain
+1 Deserted Beach
+6 Island
+1 Watery Grave
+1 Exemplar of Light
+1 Void Rend
+1 Grand Abolisher
+1 Ertai, the Corrupted
+1 The Water Crystal
+1 Dauntless Aven
+1 Black Market Connections
+1 Rhystic Study
+1 Bane, Lord of Darkness
+1 G'raha Tia, Scion Reborn
+1 Smothering Tithe
+1 Queza, Augur of Agonies
+1 Zur the Enchanter
+1 Felidar Sovereign
+1 Supreme Verdict
+1 Y'shtola, Night's Blessed
+1 The Darkness Crystal
+1 Saruman of Many Colors
+1 Tivit, Seller of Secrets
+1 Marneus Calgar
+1 Sen Triplets
+1 Beacon of Immortality
+1 Esper Sentinel
+1 Witch of the Moors
+1 The Gaffer
+1 Despark
+1 Archangel of Thune
+1 Land Tax
+1 Absorb

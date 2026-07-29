@@ -1,0 +1,91 @@
+# Archidekt — Equipment are the best mana rocks
+# source: archidekt:4615680
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Meria, Scholar of Antiquity
+
+Deck:
+1 Galvanic Blast
+1 Radha, Heart of Keld
+1 Hull Breach
+1 Rogue's Gloves
+1 Tyvar's Stand
+1 Sol Ring
+1 Heroic Intervention
+1 Blackblade Reforged
+1 Explorer's Scope
+1 Goldvein Pick
+1 Darksteel Citadel
+1 Argentum Armor
+10 Forest
+1 Beamtown Beatstick
+1 Lightning Bolt
+1 Command Tower
+1 Haywire Mite
+1 Whispersilk Cloak
+1 Champion of the Flame
+1 Mossfire Valley
+1 Soul of New Phyrexia
+1 Armory Automaton
+1 Goblin Gaveleer
+1 Golem-Skin Gauntlets
+1 Silkguard
+1 Swiftfoot Boots
+1 Bladegraft Aspirant
+1 Bearded Axe
+1 Prying Blade
+1 Hajar, Loyal Bodyguard
+1 Mask of Memory
+1 Lightning Greaves
+1 Fireshrieker
+1 Atalan Jackal
+1 Chishiro, the Shattered Blade
+1 Beast Within
+1 Arcane Signet
+1 Rebel Salvo
+1 Tree of Tales
+1 Great Furnace
+1 Gruul Turf
+1 Game Trail
+1 Bloodforged Battle-Axe
+1 Rugged Highlands
+1 Leather Armor
+1 Slagwoods Bridge
+1 Temple of Abandon
+1 Mizzium Mortars
+1 Flame Slash
+1 Chaos Warp
+1 Darksteel Plate
+1 Nettlecyst
+1 Diamond Pick-Axe
+1 Inquisitor's Flail
+1 Zephyr Boots
+1 Lizard Blades
+1 Brass Knuckles
+1 Cinder Glade
+1 Rogue's Passage
+1 Hunter's Insight
+1 Oakhame Adversary
+1 Thran Power Suit
+1 Copperline Gorge
+1 Kazandu Refuge
+1 Kessig Wolf Run
+1 Rockfall Vale
+1 Tamiyo's Safekeeping
+1 Lost Jitte
+1 Courser of Kruphix
+1 Sarinth Steelseeker
+1 Augur of Autumn
+1 Lavaspur Boots
+1 Leyline Axe
+1 Komainu Battle Armor
+1 Cliffhaven Kitesail
+1 Fleetfeather Sandals
+1 Hot Soup
+1 Dire Flail // Dire Blunderbuss
+1 Talisman of Impulse
+1 Chainsaw
+1 Cragcrown Pathway // Timbercrown Pathway
+9 Mountain

@@ -1,0 +1,97 @@
+# Archidekt — Jeskai, Cpt. America, TL
+# source: archidekt:23719164
+# fetched: 2026-07-23
+# bracket: 2
+
+Commander:
+1 Captain America, Team Leader
+
+Deck:
+1 Boros Charm
+1 Make Your Move
+1 Political Triumph
+1 Path to Exile
+1 Pongify
+1 Counterspell
+1 Chaos Warp
+1 Generous Gift
+1 Super Intelligence
+1 The Ozolith
+1 Director Nick Fury
+1 Ant-Man, Elusive Avenger
+1 Araña, Heart of the Spider
+1 Arcane Signet
+1 Avengers Assemble!
+1 Avengers Tower
+1 Bastion Protector
+1 Biorganic Carapace
+1 Black Widow, Agile Avenger
+1 Captain America, Living Legend
+1 Captain Mar-Vell, Space-Born
+1 Captain Marvel, Apex Avenger
+1 Clifftop Retreat
+1 Coastal Peak
+1 Command Tower
+1 Destroy Evil
+1 Dismantling Wave
+1 Exotic Orchard
+1 Falcon and Redwing
+1 Fellwar Stone
+1 Firebird, Blazing Ranger
+1 Folk Hero
+1 Frostboil Snarl
+1 Furycalm Snarl
+1 Glacial Fortress
+1 Glittering Massif
+1 Hercules, Olympian Hero
+1 Heroic Sacrifice
+1 Iron Man, Armored Avenger
+1 Irrigated Farmland
+4 Island
+1 Jarvis, Earth's Mightiest Butler
+1 Methods of the Mighty
+1 Mystic Monastery
+1 Night Nurse, Healer of Heroes
+1 Origin of the Avengers
+1 Path of Ancestry
+1 Patriot, Shield Wielder
+1 Photon, Mighty Marvel
+1 Plaza of Heroes
+1 Port Town
+1 Prairie Stream
+1 Professor Hulk
+1 Quicksilver, Speedster
+1 Radiant Summit
+1 Raise the Palisade
+1 Reconnaissance Mission
+1 Rescue, Pepper Potts
+1 Scarlet Witch, Chaotic Avenger
+1 Scavenger Grounds
+1 Scorched Geyser
+1 Secluded Courtyard
+1 She-Hulk, Wallbreaker
+1 Sol Ring
+1 Spectator Seating
+1 Sulfur Falls
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 The Sentry, Golden Guardian
+1 The Wasp, Winsome Avenger
+1 Unclaimed Territory
+1 War Machine, Avenging Arsenal
+1 Cosmic Cube
+1 Captain America, Super-Soldier
+1 Mountain
+10 Plains
+1 Agent Phil Coulson
+1 Jhoira, Weatherlight Captain
+1 Wave Goodbye
+1 Descendants' Fury
+1 Invisible Woman, Sue Storm
+1 Damning Verdict
+1 Herald's Horn
+1 Matt Murdock, Justice Seeker
+1 Flowering of the White Tree
+1 Ripples of Potential

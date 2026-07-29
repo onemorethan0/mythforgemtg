@@ -1,0 +1,77 @@
+# Archidekt — The Izzet League
+# source: archidekt:24748046
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Niv-Mizzet, the Firemind
+
+Deck:
+1 Beacon Bolt
+1 Blustersquall
+1 Bolt Bend
+1 Crackling Drake
+1 Brainstorm
+1 Char
+1 Chemister's Insight
+1 Compulsive Research
+1 Counterflux
+1 Downsize
+1 Ecstatic Electromancer
+1 Electrodominance
+1 Electrolyze
+1 Electrostatic Field
+1 Epic Experiment
+1 Expansion // Explosion
+1 Experimental Overload
+1 Finale of Promise
+1 Fire // Ice
+1 Firemind Vessel
+1 Firemind's Research
+1 Goblin Electromancer
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Hypersonic Dragon
+1 Invert Polarity
+1 Invoke the Firemind
+1 Ionize
+1 Izzet Boilerworks
+1 Izzet Charm
+1 Izzet Chronarch
+1 Izzet Cluestone
+1 Izzet Guildgate
+1 Izzet Keyrune
+1 Izzet Locket
+1 Izzet Signet
+1 Melek, Izzet Paragon
+1 Melek, Reforged Researcher
+1 Mizzium Mortars
+1 Mizzium Skin
+1 Mizzium Transreliquat
+1 Mizzix's Mastery
+1 Mizzix, Replica Rider
+1 Niv-Mizzet, Dracogenius
+1 Niv-Mizzet, Parun
+1 Niv-Mizzet, Visionary
+1 Nivix Guildmage
+1 Nivix, Aerie of the Firemind
+1 Prophetic Bolt
+1 Quicken
+1 Radical Idea
+1 Ral Zarek
+1 Ral's Reinforcements
+1 Ral, Storm Conduit
+1 Recalibrate
+1 Risk Factor
+1 Scatter Arc
+1 Seal of the Guildpact
+1 Spellgorger Weird
+1 Spellkeeper Weird
+1 Street Spasm
+1 Thousand-Year Storm
+1 Turn // Burn
+1 Vandalblast
+1 Steam Vents
+17 Mountain
+1 Stitch in Time
+17 Island
+1 Cyclonic Rift

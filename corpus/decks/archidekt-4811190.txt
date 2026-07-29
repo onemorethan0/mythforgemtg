@@ -1,0 +1,100 @@
+# Archidekt — I Can’t Carry It For You, But I Can Carry You
+# source: archidekt:4811190
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Sam, Loyal Attendant
+1 Frodo, Adventurous Hobbit
+
+Deck:
+6 Forest
+1 Call of the Ring
+1 Boromir, Warden of the Tower
+1 Valorous Stance
+1 Sol Ring
+1 Midnight Snack
+1 Homeward Path
+1 Peregrin Took
+1 Chocobo Camp
+2 Swamp
+3 Plains
+1 Banquet Guests
+1 Farmer Cotton
+1 Feasting Hobbit
+1 Field-Tested Frying Pan
+1 Gollum, Obsessed Stalker
+1 Of Herbs and Stewed Rabbit
+1 Revive the Shire
+1 Shire Terrace
+1 Treebeard, Gracious Host
+1 Graypelt Refuge
+1 Gwaihir, Greatest of the Eagles
+1 Hithlain Rope
+1 Mirkwood Bats
+1 Rosie Cotton of South Lane
+1 Rapacious Guest
+1 Anguished Unmaking
+1 Arcane Signet
+1 Bilbo, Birthday Celebrant
+1 Birds of Paradise
+1 Brushland
+1 Canopy Vista
+1 Command Tower
+1 Cultivate
+1 Farseek
+1 Fumigate
+1 Ghost Quarter
+1 Harmonize
+1 Isolated Chapel
+1 Lobelia, Defender of Bag End
+1 Merry, Warden of Isengard
+1 Mortify
+1 Motivated Pony
+1 Night's Whisper
+1 Path of Ancestry
+1 Pippin, Warden of Isengard
+1 Prosperous Innkeeper
+1 Rogue's Passage
+1 Sandsteppe Citadel
+1 Sanguine Bond
+1 Scattered Groves
+1 Sunpetal Grove
+1 Swords to Plowshares
+1 The Gaffer
+1 Tireless Provisioner
+1 Toxic Deluge
+1 Woodland Cemetery
+1 The Shire
+1 Samwise Gamgee
+1 Elanor Gardner
+1 Sméagol, Helpful Guide
+1 Minas Tirith
+1 Indatha Triome
+1 Mithril Coat
+1 Agent of the Iron Throne
+1 Nature's Lore
+1 Three Visits
+1 Temple Garden
+1 Godless Shrine
+1 Horizon Canopy
+1 Vault of Champions
+1 Marsh Flats
+1 Night of the Sweets' Revenge
+1 Yavimaya, Cradle of Growth
+1 Master Chef
+1 Heroic Intervention
+1 Idolized
+1 Gandalf, White Rider
+1 Camaraderie
+1 Hobbit's Sting
+1 Faramir, Field Commander
+1 Restless Cottage
+1 Sam's Desperate Rescue
+1 Shelob, Child of Ungoliant
+1 Wasteland
+1 The Great Henge
+1 The Battle of Bywater
+1 Wedding Ring
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Campsite Cuisine

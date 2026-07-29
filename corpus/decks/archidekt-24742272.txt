@@ -1,0 +1,86 @@
+# Archidekt — Vivi
+# source: archidekt:24742272
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Artist's Talent
+1 Glamdring
+1 Mistrise Village
+1 Quicksilver Elemental
+1 Prismari, the Inspiration
+1 Volcanic Island
+1 Sulfur Falls
+1 Command Tower
+12 Mountain
+12 Island
+1 Reliquary Tower
+1 Stormcarved Coast
+1 Shivan Reef
+1 Training Center
+1 Riverpyre Verge
+1 Frostboil Snarl
+1 Veyran, Voice of Duality
+1 Hexing Squelcher
+1 Coruscation Mage
+1 Tandem Lookout
+1 Guttersnipe
+1 Goblin Electromancer
+1 Stormcatch Mentor
+1 Archmage Emeritus
+1 Cyclonic Rift
+1 Deflecting Swat
+1 Mana Geyser
+1 Flusterstorm
+1 An Offer You Can't Refuse
+1 Brain Freeze
+1 Lightning Bolt
+1 Mana Drain
+1 Counterspell
+1 Swan Song
+1 Arcane Denial
+1 Crackle with Power
+1 Ral, Crackling Wit
+1 Isochron Scepter
+1 Sol Ring
+1 Mithril Coat
+1 Sigil of Sleep
+1 Thousand-Year Storm
+1 Fiery Inscription
+1 Propaganda
+1 Molecule Man
+1 Omniscience
+1 Wizard Class
+1 Amphibian Downpour
+1 Clout of the Dominus
+1 Fiery Emancipation
+1 Thought Vessel
+1 Resonating Lute
+1 Sundial of the Infinite
+1 Last Chance
+1 Final Fortune
+1 Temporal Manipulation
+1 Plea for Power
+1 The Legend of Kuruk // Avatar Kuruk
+1 Niv-Mizzet, Visionary
+1 Rhystic Study
+1 Ponder
+1 Curiosity
+1 Brainstorm
+1 Ophidian Eye
+1 Jeska's Will
+1 Frantic Search
+1 Wheel of Misfortune
+1 Wheel of Fortune
+1 Radiant Performer
+1 Chaos Warp
+1 Faithless Looting
+1 Commander's Plate
+1 Grapeshot
+1 Gale, Waterdeep Prodigy
+1 Stella Lee, Wild Card
+1 Mystic Sanctuary
+1 Mizzix's Mastery

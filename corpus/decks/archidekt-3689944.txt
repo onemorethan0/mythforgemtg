@@ -1,0 +1,102 @@
+# Archidekt — It's Just Reanimator Don't Worry About It
+# source: archidekt:3689944
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Vohar, Vodalian Desecrator
+
+Deck:
+1 Persist
+1 Necromancy
+1 Ever After
+1 Reanimate
+1 Archon of Cruelty
+1 Living Death
+1 Ancient Brass Dragon
+1 Dance of the Dead
+1 Scholar of the Lost Trove
+1 Makeshift Mannequin
+1 Demon of Dark Schemes
+1 Summon Undead
+1 Connive // Concoct
+1 Port of Karfell
+1 Tomb Fortress
+1 Triplicate Titan
+1 Sphinx of the Second Sun
+1 Lord of Change
+1 Incarnation Technique
+1 Body Double
+1 Diabolic Servitude
+1 Tidal Force
+1 Soul Exchange
+1 Malakir Rebirth // Malakir Mire
+1 Chart a Course
+1 Thirst for Discovery
+1 Thirst for Knowledge
+1 Thirst for Meaning
+1 Tainted Indulgence
+1 Twilight's Call
+1 Cauldron's Gift
+1 Dread Return
+1 Nezahal, Primal Tide
+1 Phyrexian Metamorph
+1 Consecrated Sphinx
+1 Overseer of the Damned
+1 Feed the Swarm
+1 Command Tower
+1 Dimir Aqueduct
+1 Temple of Deceit
+1 Sunken Hollow
+1 Morphic Pool
+1 High Market
+1 Polluted Delta
+1 Guildless Commons
+1 Phyrexian Tower
+1 Minamo, School at Water's Edge
+1 Watery Grave
+1 Darkwater Catacombs
+1 Arcane Signet
+1 Sol Ring
+1 Stubborn Denial
+1 An Offer You Can't Refuse
+1 Darkslick Shores
+1 Breach the Multiverse
+1 Lord of the Void
+1 Animate Dead
+1 Victimize
+1 Vilis, Broker of Blood
+1 Archfiend of Despair
+1 Astral Dragon
+1 Reality Shift
+1 Damnation
+1 Bojuka Bog
+1 Toxic Deluge
+1 Ancient Stone Idol
+1 Lightning Greaves
+1 Ancient Silver Dragon
+1 Phantasmal Image
+1 Flesh Duplicate
+1 Zombify
+1 Sheoldred, Whispering One
+1 Cyclonic Rift
+4 Island
+4 Swamp
+1 Withering Torment
+1 Winternight Stories
+1 Roiling Dragonstorm
+1 Pongify
+1 Rapid Hybridization
+1 Summon: Bahamut
+1 Will of the Abzan
+1 Glasspool Mimic // Glasspool Shore
+1 Cephalid Coliseum
+1 Sink into Stupor // Soporific Springs
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Undercity Sewers
+1 Bitter Triumph
+1 Coiling Rebirth
+1 Underground River
+1 Arid Archway
+1 Boggart Trawler // Boggart Bog
+1 Vile Mutilator

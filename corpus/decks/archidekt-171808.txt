@@ -1,0 +1,95 @@
+# Archidekt — Rakdos, Lord of Big Free Stuff
+# source: archidekt:171808
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Rakdos, Lord of Riots
+
+Deck:
+1 Creeping Bloodsucker
+1 Fabled Passage
+1 Urborg, Tomb of Yawgmoth
+7 Mountain
+8 Swamp
+1 Plague Spitter
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Deadly Rollick
+1 Rakdos Signet
+1 Sanctum of Stone Fangs
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Spear Spewer
+1 Razaketh, the Foulblooded
+1 Graven Cairns
+1 Thermo-Alchemist
+1 Ulamog, the Ceaseless Hunger
+1 Deflecting Swat
+1 Badlands
+1 Blackcleave Cliffs
+1 Haunted Ridge
+1 Valakut Awakening // Valakut Stoneforge
+1 Fanatic of Mogis
+1 Feed the Swarm
+1 Rakdos Charm
+1 Lightning Greaves
+1 Fellwar Stone
+1 Vampiric Tutor
+1 Toxic Deluge
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Meteor Golem
+1 Protection Racket
+1 Ob Nixilis, the Adversary
+1 Lim-Dûl's Hex
+1 Shepherd of Rot
+1 Luxury Suite
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Florian, Voldaren Scion
+1 Tuktuk Rubblefort
+1 Sandstone Oracle
+1 Blightstep Pathway // Searstep Pathway
+1 Sulfurous Springs
+1 Command Tower
+1 Foreboding Ruins
+1 Sol Ring
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Wheel of Misfortune
+1 Shivan Devastator
+1 Kozilek, Butcher of Truth
+1 Emrakul, the Promised End
+1 It That Betrays
+1 Blightsteel Colossus
+1 Walking Ballista
+1 Bloodstained Mire
+1 Keen Duelist
+1 Generous Plunderer
+1 Ulamog, the Defiler
+1 Kozilek, the Broken Reality
+1 Grim Servant
+1 Emrakul, the World Anew
+1 Jagged Barrens
+1 Sunspine Lynx
+1 Fireglass Mentor
+1 Ancient Cellarspawn
+1 Priest of Gix
+1 Pandemonium
+1 Terror of the Peaks
+1 Bloodsoaked Insight // Sanguine Morass
+1 Exocrine
+1 Demonic Tutor
+1 Blood Crypt
+1 Raucous Theater
+1 Boltwave
+1 Cityscape Leveler
+1 Prismatic Vista
+1 Gray Merchant of Asphodel
+1 Lightning Bolt
+1 Imperial Recruiter
+1 Stormfist Crusader
+1 Bojuka Bog
+1 Phyrexian Reclamation
+1 Descent into Avernus
+1 Ulamog, the Infinite Gyre
+1 Knollspine Dragon
+1 Screamer-Killer

@@ -1,0 +1,105 @@
+# Archidekt — Thromok, the Insatiable
+# source: archidekt:715322
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Thromok the Insatiable
+
+Deck:
+1 Sokenzan, Crucible of Defiance
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Artifact Mutation
+1 Rockfall Vale
+1 Sheltered Thicket
+1 Sylvan Safekeeper
+1 Heroic Intervention
+1 Beast Within
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Green Sun's Zenith
+1 Chandra's Ignition
+1 Command Tower
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Chord of Calling
+1 Valakut Awakening // Valakut Stoneforge
+1 Skullclamp
+1 Footfall Crater
+1 Windswept Heath
+1 Arid Mesa
+1 Exotic Orchard
+1 Spire Garden
+1 Mossfire Valley
+1 Stomping Ground
+1 Tempt with Vengeance
+1 Awaken the Woods
+1 Finale of Devastation
+1 Not of This World
+1 Tamiyo's Safekeeping
+1 Gruul Turf
+1 Grove of the Burnwillows
+1 Scalding Tarn
+1 Misty Rainforest
+1 Defend the Rider
+1 Malevolent Rumble
+1 Kenrith's Transformation
+1 Pest Infestation
+1 Imperial Recruiter
+1 Humble Defector
+1 Cryptolith Rite
+1 Soul's Fire
+1 Terror of the Peaks
+1 Nature's Lore
+1 Three Visits
+1 Deep Forest Hermit
+1 From Beyond
+1 Seasoned Pyromancer
+1 Arcane Signet
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Commercial District
+1 Song of Totentanz
+1 Prismatic Vista
+1 Transmogrifying Wand
+1 Collective Resistance
+1 Brightcap Badger // Fungus Frolic
+1 Enduring Vitality
+1 Thornspire Verge
+1 Scavenger Grounds
+3 Forest
+1 Urza's Saga
+1 Fountainport
+1 Khalni Garden
+1 Dryad Arbor
+1 Hornet Nest
+1 Arachnogenesis
+1 Canoptek Scarab Swarm
+1 Summoner's Pact
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Song of the Dryads
+1 Basilisk Collar
+1 Boseiju, Who Endures
+1 Blasphemous Act
+1 Awakening Zone
+1 Diamond City
+1 Nature's Rhythm
+1 Wild Growth
+1 Evolutionary Leap
+2 Mountain
+1 Cactusfolk Sureshot
+1 Disrupt Decorum
+1 Insidious Fungus
+1 Worldly Tutor
+1 Galadhrim Ambush
+1 Cori-Steel Cutter
+1 Fire-Lit Thicket
+1 Talisman of Impulse
+1 Gruul Signet
+1 Soul Immolation
+1 Karplusan Forest
+1 Maximum Carnage
+1 Jaheira, Friend of the Forest
+1 Springleaf Parade
+1 Generous Patron
+1 Chain Reaction
+1 Impolite Entrance

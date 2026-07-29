@@ -1,0 +1,74 @@
+# Archidekt — Cats
+# source: archidekt:15559859
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Arahbo, Roar of the World
+
+Deck:
+1 Descendants' Path
+1 Kodama's Reach
+1 Lucky Offering
+1 Monstrous Growth
+1 Nine Lives
+1 Primal Command
+1 Sculpted Sunburst
+1 Serenity
+1 Trove Warden
+1 Graceful Cat
+1 Adorned Pouncer
+1 Charmed Stray
+1 Forum Familiar
+1 Garrison Cat
+1 Helpful Hunter
+1 Sanctuary Cat
+1 Maned Serval
+1 Regal Caracal
+1 Sacred Cat
+1 Ocelot Pride
+1 Generous Stray
+1 Hungry Lynx
+1 Trained Caracal
+1 Steppe Lynx
+1 Canopy Stalker
+1 Feline Sovereign
+1 Feral Prowler
+1 Hunting Cheetah
+1 Initiate's Companion
+1 Qasali Slingers
+1 Penumbra Bobcat
+1 Pridemalkin
+1 Undergrowth Leopard
+1 Scythecat Cub
+1 Claws Out
+1 Leonin Warleader
+1 Mirri, Weatherlight Duelist
+1 Felidar Retreat
+1 White Sun's Zenith
+1 Esika's Chariot
+1 Waiting in the Weeds
+1 Beastmaster Ascension
+1 Animal Sanctuary
+1 Path to Exile
+1 Herald's Horn
+1 Colossification
+1 Khalni Ambush // Khalni Territory
+1 Pouncing Lynx
+1 Doubling Season
+1 Kraven's Cats
+18 Plains
+1 Bast, Panther Goddess
+18 Forest
+1 Canopy Vista
+1 Harmonize
+1 Razorverge Thicket
+1 Spirit of the Hearth
+1 Lynx
+1 Utopia Sprawl
+1 Arahbo, the First Fang
+1 Fell the Mighty
+1 Alms Collector
+1 Felidar Sovereign
+1 Pride Sovereign
+1 Arcbound Mouser

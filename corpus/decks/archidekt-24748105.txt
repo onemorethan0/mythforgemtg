@@ -1,0 +1,90 @@
+# Archidekt — When the going gets tough
+# source: archidekt:24748105
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Doran, Besieged by Time
+
+Deck:
+1 Doran, the Siege Tower
+6 Swamp
+1 Bojuka Bog
+6 Plains
+1 Command Bridge
+9 Forest
+1 Access Tunnel
+1 Exotic Orchard
+1 Command Tower
+1 Sinister Gnarlbark
+1 Rupture Spire
+1 Weathered Sentinels
+1 Sol Ring
+1 Arcane Signet
+1 Vault of the Archangel
+1 Deceptive Landscape
+1 Graypelt Refuge
+1 Jungle Hollow
+1 Desolate Mire
+1 Canopy Vista
+1 Isolated Chapel
+1 Chromatic Lantern
+1 Sonic Screwdriver
+1 Garruk, Apex Predator
+1 Huatli, the Sun's Heart
+1 Arboreal Grazer
+1 Suspicious Bookcase
+1 Tapestry Warden
+1 Ancient Lumberknot
+1 Nyx-Fleece Ram
+1 Crystal Barricade
+1 Sapling Nursery
+1 Bedrock Tortoise
+1 Great Forest Druid
+1 Enduring Innocence
+1 Indulging Patrician
+1 Morbid Opportunist
+1 Indomitable Ancients
+1 Jeskai Barricade
+1 Brawn
+1 Welcoming Vampire
+1 Saryth, the Viper's Fang
+1 Wall of Reverence
+1 Tree of Perdition
+1 South Wind Avatar
+1 Felothar the Steadfast
+1 Seedborn Muse
+1 Cathar's Shield
+1 Rhox Faithmender
+1 Ohran Frostfang
+1 Arbor Adherent
+1 Ikra Shidiqi, the Usurper
+1 Treetop Snarespinner
+1 Canopy Gargantuan
+1 Shadrix Silverquill
+1 Baldin, Century Herdmaster
+1 Fecund Greenshell
+1 Betor, Kin to All
+1 Dragonlord Dromoka
+1 Swords to Plowshares
+1 Jaws of Defeat
+1 The Pride of Hull Clade
+1 Eerie Ultimatum
+1 Swiftfoot Boots
+1 Assault Formation
+1 Slaughter the Strong
+1 Return to Nature
+1 Despark
+1 Legions to Ashes
+1 Tower Defense
+1 Anguished Unmaking
+1 Will of the Abzan
+1 Unnatural Growth
+1 Grim Contest
+1 Collector's Cage
+1 Entropic Battlecruiser
+1 Broken Wings
+1 Vindicate
+1 Moldervine Reclamation
+1 Stoneskin
+1 Dusk // Dawn

@@ -1,0 +1,77 @@
+# Archidekt — Vanilla tribal
+# source: archidekt:24735192
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Ruxa, Patient Professor
+
+Deck:
+1 Leatherback Baloth
+1 Gigantosaurus
+1 Rumbling Baloth
+1 Alpine Grizzly
+1 Kalonian Tusker
+1 Jibbirik Omnivore
+1 Terrain Elemental
+1 Nullhide Ferox
+1 Swordwise Centaur
+1 Orazca Frillback
+1 Elvish Ranger
+1 Garruk's Gorehorn
+1 Panther Warriors
+1 Terrian, World Tyrant
+1 Primordial Wurm
+1 Quakestrider Ceratops
+1 Whiptail Wurm
+1 Vorstclaw
+1 Quilled Slagwurm
+1 The Irencrag
+1 Titania's Song
+1 Balduvian Bears
+1 Bear Cub
+1 Arcane Signet
+1 Rampant Growth
+1 Three Visits
+1 Nature's Lore
+1 Shared Roots
+1 Song of the Dryads
+1 Beast Within
+1 Kenrith's Transformation
+1 Lignify
+1 Primal Command
+1 Trickster's Elk
+1 Harmonize
+1 Glimpse of Nature
+1 The Great Henge
+1 Scroll Rack
+1 Mind Stone
+32 Forest
+1 Runeclaw Bear
+1 Misty Rainforest
+1 Fabled Passage
+1 Windswept Heath
+1 Emerald Medallion
+1 Moss Diamond
+1 Worn Powerstone
+1 Wooded Foothills
+1 Boseiju, Who Endures
+1 Verdant Catacombs
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Cursed Totem
+1 Damping Matrix
+1 Torpor Orb
+1 Bubble Matrix
+1 Junkyo Bell
+1 Sol Ring
+1 Unnatural Growth
+1 Muraganda Petroglyphs
+1 Sylvan Anthem
+1 Ancient Brontodon
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Lifecrafter's Bestiary
+1 The Skullspore Nexus
+1 Staff of Titania
+1 Beastmaster Ascension
+1 Ranger Class
+1 Vastwood Fortification // Vastwood Thicket

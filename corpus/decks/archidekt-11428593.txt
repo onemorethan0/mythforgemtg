@@ -1,0 +1,95 @@
+# Archidekt — Phyrexian-flavored Subtheme Soup
+# source: archidekt:11428593
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Glissa, Herald of Predation
+
+Deck:
+1 Phyrexian Scriptures
+1 Dollhouse of Horrors
+1 Atomize
+1 Dross Scorpion
+1 Contagion Clasp
+1 Voltaic Construct
+1 Noxious Gearhulk
+1 Mimic Vat
+1 Selesnya Eulogist
+1 Rootcast Apprenticeship
+1 Spread the Sickness
+1 Planewide Celebration
+1 Golgari Signet
+1 Restless Cottage
+1 City of Death
+1 Talisman of Resilience
+1 Lux Cannon
+1 Replicating Ring
+1 Blast Zone
+1 Buried Ruin
+1 Ashnod, Flesh Mechanist
+1 Twitching Doll
+1 Thran Spider
+1 Hall of Tagsin
+1 Karn, Living Legacy
+1 Terisiare's Devastation
+1 Blight Titan
+1 Drown in Ichor
+1 Demonic Junker
+1 Throne of Geth
+1 Karn's Bastion
+1 Viridescent Bog
+1 Carnivorous Canopy
+1 Plaguemaw Beast
+1 Myriad Landscape
+1 Grim Backwoods
+1 Bloated Processor
+1 Clock of Omens
+1 Haywire Mite
+1 Blighted Burgeoning
+1 Nexus of Becoming
+1 Idol of Oblivion
+1 Darkmoss Bridge
+1 Twilight Mire
+1 Haunted Mire
+1 Command Tower
+1 Path of Ancestry
+1 Exotic Orchard
+1 Llanowar Wastes
+1 Temple of Malady
+1 Necroblossom Snarl
+1 Woodland Cemetery
+1 Eviscerator's Insight
+1 Esika's Chariot
+1 Tyvar, Jubilant Brawler
+1 Wight of the Reliquary
+1 Sarinth Steelseeker
+1 Old Rutstein
+1 Staff of Compleation
+1 Millikin
+1 Tablet of Compleation
+1 Evolution Witness
+1 Kami of Whispered Hopes
+7 Swamp
+8 Forest
+1 Lazotep Quarry
+1 Kuldotha Forgemaster
+1 Monumental Corruption
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Vat of Rebirth
+1 Deadly Dispute
+1 Vraska, Betrayal's Sting
+1 Tireless Tracker
+1 Empowered Autogenerator
+1 Everflowing Chalice
+1 Astral Cornucopia
+1 Liquimetal Torque
+1 Wondrous Crucible
+1 Thirsting Roots
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Cankerbloom
+1 Revitalizing Repast // Old-Growth Grove
+1 Hagra Mauling // Hagra Broodpit
+1 Disciple of Freyalise // Garden of Freyalise
+1 Morbid Opportunist
+1 Scrapyard Recombiner

@@ -1,0 +1,91 @@
+# Archidekt — rat go burn
+# source: archidekt:24612245
+# fetched: 2026-07-23
+
+Commander:
+1 Wick, the Whorled Mind
+
+Deck:
+1 Darkwater Catacombs
+1 Dimir Signet
+1 Xander's Lounge
+1 Polluted Delta
+1 Watery Grave
+1 Blood Crypt
+1 Scalding Tarn
+1 Steam Vents
+1 Bloodstained Mire
+1 Graven Cairns
+1 Cascade Bluffs
+1 Sunken Ruins
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Ferrous Lake
+1 Shadowblood Ridge
+6 Island
+6 Swamp
+1 Hidden Lair
+6 Mountain
+1 Dark Fortress
+1 Sulfur Falls
+1 Command Tower
+1 Sol Ring
+1 Exotic Orchard
+1 Path of Ancestry
+1 Rakdos Signet
+1 Crumbling Necropolis
+1 Arcane Signet
+1 Talisman of Creativity
+1 Fellwar Stone
+1 Ornithopter of Paradise
+1 Talisman of Dominance
+1 Izzet Signet
+1 Voracious Vermin
+1 Thornplate Intimidator
+1 Talisman of Indulgence
+1 Ruthless Radrat
+1 Lord Skitter's Butcher
+1 Redcap Gutter-Dweller
+1 Chittering Witch
+1 Ogre Slumlord
+1 Ogre Chitterlord
+1 Pack Rat
+1 Karumonix, the Rat King
+1 Lord Skitter, Sewer King
+1 Vren, the Relentless
+1 Impact Tremors
+1 Shoreline Looter
+1 Azure Beastbinder
+1 Undercity Dire Rat
+1 Silver-Fur Master
+1 Freya Crescent
+1 Persistent Marshstalker
+1 Ashcoat of the Shadow Swarm
+1 Crypt Rats
+1 General Kreat, the Boltbringer
+1 Old Flitterfang
+1 Wave of Rats
+1 Swarm of Rats
+1 Rancid Rats
+1 Engine Rat
+1 Purphoros, God of the Forge
+1 Rat King, Verminister
+1 Molten Gatekeeper
+1 Rat King, Pale Piper
+1 Kindred Discovery
+1 Weftstalker Ardent
+1 Warstorm Surge
+1 Unexpected Windfall
+1 Agate Instigator
+1 Big Score
+1 Piper of the Swarm
+1 Kindred Dominance
+1 Valley Rotcaller
+1 Totentanz, Swarm Piper
+1 Consult the Star Charts
+1 Stock Up
+1 Doom Blade
+1 An Offer You Can't Refuse
+1 Go for the Throat
+1 Adaptive Automaton
+1 Impulse

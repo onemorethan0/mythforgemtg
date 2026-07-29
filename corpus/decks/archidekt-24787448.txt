@@ -1,0 +1,93 @@
+# Archidekt — Kaaarrrrll
+# source: archidekt:24787448
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Karlov of the Ghost Council
+
+Deck:
+1 Command Tower
+1 Esper Sentinel
+1 Shattered Sanctum
+1 Bloodchief Ascension
+1 Authority of the Consuls
+10 Plains
+1 Soul Warden
+1 Tablet of the Guilds
+1 Mask of Griselbrand
+1 Lotho, Corrupt Shirriff
+1 Flawless Maneuver
+1 Pristine Talisman
+1 Kambal, Consul of Allocation
+1 Demonic Tutor
+1 Ocelot Pride
+1 Aetherflux Reservoir
+1 Despark
+7 Swamp
+1 Sunscorch Regent
+1 Ajani, Strength of the Pride
+1 Greed
+1 Shadowy Backstreet
+1 Black Market Connections
+1 Mangara, the Diplomat
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Generous Gift
+1 Godless Shrine
+1 Swords to Plowshares
+1 Scoured Barrens
+1 Auriok Champion
+1 Sun Droplet
+1 Anguished Unmaking
+1 The Battle of Bywater
+1 Mother of Runes
+1 Spectrum Sentinel
+1 Vito, Thorn of the Dusk Rose
+1 Krav, the Unredeemed
+1 Dauthi Voidwalker
+1 Archangel of Thune
+1 Orzhov Signet
+1 Fetid Heath
+1 Arcane Signet
+1 Guide of Souls
+1 Necropotence
+1 Glasswing Grace // Age-Graced Chapel
+1 Shadowspear
+1 Regna, the Redeemer
+1 Curious Farm Animals
+1 Ranger of Eos
+1 Bleachbone Verge
+1 Brotherhood Regalia
+1 Elenda's Hierophant
+1 Shizo, Death's Storehouse
+1 Cleric Class
+1 Isolated Chapel
+1 Soul's Attendant
+1 Marsh Flats
+1 Austere Command
+1 Aerith Gainsborough
+1 Crested Sunmare
+1 Kaya's Guile
+1 Bojuka Bog
+1 Fabled Passage
+1 Diresight
+1 Serra Ascendant
+1 Takenuma, Abandoned Mire
+1 Moseo, Vein's New Dean
+1 Heliod, Sun-Crowned
+1 Exemplar of Light
+1 Vault of Champions
+1 Silent Clearing
+1 Orzhov Basilica
+1 The Soul Stone
+1 Talisman of Hierarchy
+1 Eiganjo, Seat of the Empire
+1 Trouble in Pairs
+1 Voice of the Blessed
+1 Caves of Koilos
+1 Bolas's Citadel
+1 Haliya, Guided by Light
+1 Tymna the Weaver
+1 Heliod's Intervention
+1 Sol Ring
+1 Abiding Grace

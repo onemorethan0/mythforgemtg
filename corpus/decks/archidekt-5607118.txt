@@ -1,0 +1,95 @@
+# Archidekt — 2. Alela, Cunning Conqueror - Faerie Trickery
+# source: archidekt:5607118
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Alela, Cunning Conqueror
+
+Deck:
+7 Swamp
+1 Bender's Waterskin
+1 Perplexing Test
+1 Blink of an Eye
+1 Spell Stutter
+1 Dig Through Time
+1 Tegwyll, Duke of Splendor
+1 Mystical Teachings
+1 Consider
+1 Three Tree City
+1 Beseech the Queen
+1 Banner of Kinship
+1 Impulse
+1 Aetherize
+1 Arcane Signet
+1 Bitterblossom
+1 Brazen Borrower // Petty Theft
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Counterspell
+1 Fact or Fiction
+1 Faerie Fencing
+1 Faerie Mastermind
+1 Farsight Ritual
+1 Illusionist's Gambit
+8 Island
+1 Kindred Discovery
+1 Malleable Impostor
+1 Memory Deluge
+1 Misleading Signpost
+1 Mistbind Clique
+1 Sol Ring
+1 Pact of the Serpent
+1 Pull from Tomorrow
+1 Reconnaissance Mission
+1 Reliquary Tower
+1 Rivendell
+1 Scion of Oona
+1 Shipwreck Marsh
+1 Spellstutter Sprite
+1 Sunken Hollow
+1 Sunken Ruins
+1 Talisman of Dominance
+1 Anticipate
+1 Thought Vessel
+1 Opt
+1 Castle Vantress
+1 Rapid Hybridization
+1 Sword of the Animist
+1 Temple of Deceit
+1 Three Steps Ahead
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Enduring Curiosity
+1 Blightwing Bandit
+1 Gloomlake Verge
+1 Long River's Pull
+1 Rowan's Grim Search
+1 Secluded Glen
+1 Vendilion Clique
+1 Undermine
+1 Tegwyll's Scouring
+1 Faebloom Trick
+1 Faerie Bladecrafter
+1 Nettling Nuisance
+1 High Fae Trickster
+1 Path of Ancestry
+1 Obyra, Dreaming Duelist
+1 Morphic Pool
+1 Glen Elendra Guardian
+1 Drowned Catacomb
+1 Baleful Mastery
+1 Underground River
+1 Consult the Star Charts
+1 Bojuka Bog
+1 Faerie Conclave
+1 Reality Shift
+1 Flitterwing Nuisance
+1 Bitterbloom Bearer
+1 Watery Grave
+1 Choked Estuary
+1 Cryptic Command
+1 Mystic Confluence
+1 Silundi Vision // Silundi Isle
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Waterlogged Teachings // Inundated Archive

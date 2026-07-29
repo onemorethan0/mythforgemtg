@@ -1,0 +1,93 @@
+# Archidekt — Varis, Power Ranger
+# source: archidekt:1971524
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Varis, Silverymoon Ranger
+
+Deck:
+1 Archdruid's Charm
+1 Selvala, Heart of the Wilds
+1 Wirewood Symbiote
+1 Elvish Mystic
+1 Wirewood Lodge
+1 Gaea's Cradle
+1 Llanowar Elves
+1 Fyndhorn Elves
+1 Quirion Ranger
+1 Yavimaya, Cradle of Growth
+1 Allosaurus Shepherd
+1 Priest of Titania
+1 Nykthos, Shrine to Nyx
+1 Eternal Witness
+1 Circle of Dreams Druid
+1 Fauna Shaman
+1 Natural Order
+1 Finale of Devastation
+1 Ashaya, Soul of the Wild
+1 Veil of Summer
+1 Chord of Calling
+1 Endurance
+1 Beast Within
+1 Dryad Arbor
+1 Crop Rotation
+1 Boseiju, Who Endures
+1 Cavern of Souls
+1 Food Chain
+1 Eternal Scourge
+1 Sylvan Tutor
+1 Eldritch Evolution
+1 Summoner's Pact
+1 Survival of the Fittest
+1 Destiny Spinner
+1 Birds of Paradise
+1 Yavimaya Hollow
+1 Ancient Tomb
+1 Elvish Spirit Guide
+1 Carpet of Flowers
+1 Geier Reach Sanitarium
+1 Worldly Tutor
+1 Gemstone Caverns
+1 Shared Summons
+1 Chrome Mox
+1 Yisan, the Wanderer Bard
+1 Wild Growth
+1 Noxious Revival
+1 Sol Ring
+1 Kogla, the Titan Ape
+1 Hyrax Tower Scout
+1 Joraga Treespeaker
+1 Kenrith's Transformation
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Sylvan Safekeeper
+1 Castle Garenbrig
+1 Utopia Sprawl
+1 Delighted Halfling
+1 Autumn's Veil
+1 Concordant Crossroads
+1 Ulvenwald Tracker
+1 Legolas's Quick Reflexes
+1 Scryb Ranger
+1 Dosan the Falling Leaf
+1 Temur Sabertooth
+1 Tooth and Nail
+1 Force of Vigor
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Emergence Zone
+1 Keen-Eyed Curator
+1 Arbor Elf
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Lotus Petal
+1 Nature's Rhythm
+1 Elvish Reclaimer
+1 Nature's Claim
+1 Homeward Path
+1 Green Sun's Zenith
+1 Formidable Speaker
+1 Marwyn, the Nurturer
+16 Forest
+1 Mana Vault
+1 Collector Ouphe
+1 Mox Diamond
+1 Talon Gates of Madara

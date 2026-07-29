@@ -1,0 +1,91 @@
+# Archidekt — Big Boys
+# source: archidekt:24595800
+# fetched: 2026-07-23
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Sundering Growth
+1 Palani's Hatcher
+1 Zetalpa, Primal Dawn
+1 Farseek
+1 Ashnod's Altar
+1 Galactus, Devourer of Worlds
+1 Worldly Tutor
+1 Skullclamp
+1 Nesting Dragon
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Etali, Primal Storm
+1 Rampant Growth
+1 Garruk's Uprising
+1 Lightning Greaves
+1 Swords to Plowshares
+1 Ghalta and Mavren
+1 Cultivate
+1 Zacama, Primal Calamity
+1 Seedborn Muse
+1 Rhythm of the Wild
+1 Goblin Bombardment
+1 High Market
+1 Ghalta, Stampede Tyrant
+1 Gishath, Sun's Avatar
+1 Apex Altisaur
+1 Natural Order
+1 Ghalta, Primal Hunger
+1 Teferi's Protection
+1 Verdant Sun's Avatar
+1 Pantlaza, Sun-Favored
+1 Myriad Landscape
+1 Worldspine Wurm
+1 Harmonic Prodigy
+1 Gisela, Blade of Goldnight
+1 Emrakul, the Promised End
+1 Ulamog, the Infinite Gyre
+1 Zopandrel, Hunger Dominus
+1 Silverclad Ferocidons
+1 Mondrak, Glory Dominus
+1 Blightsteel Colossus
+1 Rogue's Passage
+6 Plains
+6 Mountain
+6 Forest
+1 Exotic Orchard
+1 Command Tower
+1 Jungle Shrine
+1 Slayers' Stronghold
+1 Legion Leadership // Legion Stronghold
+1 Monster Manual // Zoological Study
+1 Annie Joins Up
+1 Arcane Signet
+1 Reliquary Tower
+1 Sol Ring
+1 Phyrexian Altar
+1 Chromatic Lantern
+1 Culling Dais
+1 Selesnya Signet
+1 Disciple of Freyalise // Garden of Freyalise
+1 Fellwar Stone
+1 Beast Whisperer
+1 Faithless Looting
+1 Kodama's Reach
+1 Vaultborn Tyrant
+1 Return of the Wildspeaker
+1 Growing Ranks
+1 Spawning Pit
+1 Huatli, Warrior Poet
+1 Warstorm Surge
+1 Idol of Oblivion
+1 Austere Command
+1 Boros Charm
+1 Bountiful Promenade
+1 Stomping Ground
+1 Spire Garden
+1 Sunpetal Grove
+1 Rootbound Crag
+1 Sacred Foundry
+1 Path of Ancestry
+1 Canopy Vista
+1 Cinder Glade
+1 Rockfall Vale
+1 Fortified Village

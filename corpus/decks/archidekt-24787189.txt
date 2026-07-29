@@ -1,0 +1,98 @@
+# Archidekt — karn
+# source: archidekt:24787189
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Karn, Legacy Reforged
+
+Deck:
+1 All Is Dust
+1 Ancient Stone Idol
+1 Basalt Monolith
+1 Batterskull
+1 Blightsteel Colossus
+1 Buried Ruin
+1 Calamity of the Titans
+1 Canoptek Spyder
+1 Cathedral of War
+1 Chimil, the Inner Sun
+1 Cityscape Leveler
+1 Clock of Omens
+1 Cloud Key
+1 Colossus of Akros
+1 Cyberman Patrol
+1 Cybermen Squadron
+1 Darksteel Citadel
+1 Darksteel Colossus
+1 Darksteel Forge
+1 Darksteel Monolith
+1 Doubling Cube
+1 Dust Bowl
+1 Echoes of Eternity
+1 Eldrazi Conscription
+1 Fireshrieker
+1 Fomori Vault
+1 Forsaken Monument
+1 Foundry Inspector
+1 Geode Golem
+1 Ghost Quarter
+1 Gruesome Slaughter
+1 Horizon Stone
+1 Karn, Living Legacy
+1 Key to the City
+1 Labyrinth of Skophos
+1 Liberator, Urza's Battlethopter
+1 Lithoform Engine
+1 Manifold Key
+1 Metalwork Colossus
+1 Mikokoro, Center of the Sea
+1 Mind's Eye
+1 Mirrex
+1 Mirrorpool
+1 Mirrorworks
+1 Mycosynth Golem
+1 Null Elemental Blast
+1 Palladium Myr
+1 Planar Bridge
+1 Platinum Angel
+1 Platinum Emperion
+1 Portal to Phyrexia
+1 Power Depot
+1 Quicksilver Amulet
+1 Reliquary Tower
+1 Ring of Three Wishes
+1 Rogue's Passage
+1 Sanctum of Ugin
+1 Sandstorm Verge
+1 Scrap Trawler
+1 Sculpting Steel
+1 Sensei's Divining Top
+1 Shimmer Myr
+1 Shrine of the Forsaken Gods
+1 Sol Ring
+1 Sonic Screwdriver
+1 Soul of New Phyrexia
+1 Steel Hellkite
+1 Steel Overseer
+1 Stonecoil Serpent
+1 Swiftfoot Boots
+1 Temple of the False God
+1 Tezzeret, Cruel Captain
+1 The Eternity Elevator
+1 The Mycosynth Gardens
+1 Thran Dynamo
+1 Tomb of the Spirit Dragon
+1 Triplicate Titan
+1 Ulamog, the Defiler
+1 Ultima, Origin of Oblivion
+1 Unwinding Clock
+1 Urza's Cave
+1 Urza's Factory
+1 Urza's Mine
+1 Urza's Power Plant
+1 Urza's Tower
+1 Walking Ballista
+1 War Room
+11 Wastes
+1 Wurmcoil Engine

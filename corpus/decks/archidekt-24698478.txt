@@ -1,0 +1,95 @@
+# Archidekt — NDWT
+# source: archidekt:24698478
+# fetched: 2026-07-26
+
+Commander:
+1 Lobelia Sackville-Baggins
+
+Deck:
+1 Revel in Riches
+1 Urborg, Tomb of Yawgmoth
+1 Bojuka Bog
+1 Reliquary Tower
+1 Rogue's Passage
+1 Myriad Landscape
+1 Cabal Coffers
+1 Nykthos, Shrine to Nyx
+1 Cabal Stronghold
+1 Tomb Fortress
+1 Shizo, Death's Storehouse
+1 Spymaster's Vault
+1 Witch's Cottage
+1 Takenuma, Abandoned Mire
+1 Arcane Signet
+1 Phial of Galadriel
+1 Sol Ring
+1 Academy Manufactor
+1 Gold Pan
+1 Goldvein Pick
+1 Bucknard's Everfull Purse
+1 Dragon-Cursed Halls
+1 Blood Money
+1 Pitiless Plunderer
+1 Nuka-Cola Vending Machine
+1 Treasure Vault
+1 Tempting Contract
+1 Grim Bounty
+1 Sign in Blood
+1 Ancient Craving
+1 Ambition's Cost
+1 Atrocious Experiment
+1 Eldritch Pact
+1 Damnable Pact
+1 Unhinge
+1 Read the Bones
+1 Painful Lesson
+1 Painful Truths
+1 Skullport Merchant
+1 Bag End Banquet
+1 Undercity Dire Rat
+1 Treasure Dredger
+1 Warren Soultrader
+1 Careening Mine Cart
+1 Carrion
+1 Collector's Vault
+1 Coin of Mastery
+1 Foreboding Steamboat
+1 Kozilek's Command
+1 Lord Skitter, Sewer King
+1 Rapacious Guest
+1 Old Flitterfang
+1 Orcrist, Goblin-cleaver
+1 Prying Blade
+1 Revenge of the Rats
+1 Stardew Valley
+1 Taste of Death
+1 The Underworld Cookbook
+1 Treasure Map // Treasure Cove
+1 Witch's Oven
+1 Transmutation Font
+1 Trading Post
+1 Commander's Sphere
+1 Deserted Temple
+1 Barren Moor
+1 Inventors' Fair
+1 Phyrexian Tower
+1 War Room
+1 Geier Reach Sanitarium
+1 Fountainport
+14 Swamp
+1 Thought Vessel
+1 Jet Medallion
+1 Conjurer's Closet
+1 Charcoal Diamond
+1 Black Market
+1 The Sackville-Bagginses
+1 No Mercy
+1 Black Market Connections
+1 Exsanguinate
+1 Blasphemous Edict
+1 Diabolic Intent
+1 Bubbling Muck
+1 Rise of the Dark Realms
+1 Dark Ritual
+1 Nasty End
+1 Cabal Ritual

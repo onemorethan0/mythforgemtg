@@ -1,0 +1,91 @@
+# Archidekt — Garfield & Odie, Best buds
+# source: archidekt:24096124
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Orim's Chant
+1 Swords to Plowshares
+1 Fog
+1 Beast Within
+1 Sol Ring
+1 Regal Caracal
+1 Arahbo, the First Fang
+1 Naya Panorama
+1 Jungle Shrine
+1 Command Tower
+1 Gruul Guildgate
+1 Kitt Kanto, Mayhem Diva
+1 Mirror Entity
+1 Jazal Goldmane
+1 Spider-Ham, Peter Porker
+1 Wilt-Leaf Liege
+1 Heritage Reclamation
+1 Healer of the Pride
+1 Pet Avengers
+1 Phabine, Boss's Confidant
+1 Disenchant
+1 Take Up the Shield
+1 Anthem of Champions
+1 Valorous Stance
+1 Naturalize
+1 Raphael's Technique
+1 Boros Cluestone
+1 Lifecrafter's Bestiary
+1 Slate of Ancestry
+1 Gahiji, Honored One
+1 Overrun
+1 Ancient Imperiosaur
+1 Release the Dogs
+1 Intangible Virtue
+1 Mentor of the Meek
+1 Boros Fury-Shield
+1 Jinnie Fay, Jetmir's Second
+1 Mirrormind Crown
+1 Congregation at Dawn
+1 Harmonize
+1 Path of Discovery
+1 Felidar Retreat
+1 Wild Beastmaster
+1 Skullclamp
+1 Map the Frontier
+1 Mind Stone
+1 Phantom Nishoba
+1 Cultivate
+1 Lightning Greaves
+1 Commander's Sphere
+1 Fellwar Stone
+1 Farseek
+1 New Generation's Technique
+1 Explosive Vegetation
+1 Escape Tunnel
+1 Radiant Grove
+1 Terramorphic Expanse
+7 Plains
+1 Suburban Sanctuary
+1 Boros Garrison
+1 Kazandu Refuge
+1 Evolving Wilds
+1 Path of Ancestry
+1 Dimension X
+5 Mountain
+1 Fields of Strife
+1 Temple of the False God
+8 Forest
+1 Rampant Growth
+1 Zar Ojanen, Scion of Efrava
+1 Soul Warden
+1 Leonin Lightscribe
+1 Pack Leader
+1 White Sun's Zenith
+1 Hungry Lynx
+1 Ajani, Caller of the Pride
+1 Leonin Warleader
+1 Leonin Sun Standard
+1 Kaheera, the Orphanguard
+1 Jareth, Leonine Titan
+1 Shamanic Revelation
+1 G'raha Tia

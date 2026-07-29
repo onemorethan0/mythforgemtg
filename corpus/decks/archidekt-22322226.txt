@@ -1,0 +1,96 @@
+# Archidekt — pop goes the weasel
+# source: archidekt:22322226
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Obosh, the Preypiercer
+1 The Infamous Cruelclaw
+
+Deck:
+1 Big Apple, 3 a.m.
+1 Peat Bog
+1 Foul Roads
+1 Worldfire
+1 Field of the Dead
+1 Graven Cairns
+1 Hellion Crucible
+1 Hive of the Eye Tyrant
+1 Command Beacon
+1 Keldon Necropolis
+1 Mutavault
+1 Rath's Edge
+1 Secluded Starforge
+1 Soulstone Sanctuary
+1 Springjack Pasture
+1 Stensia Bloodhall
+1 Tomb of Urami
+1 Blighted Gorge
+1 Branch of Vitu-Ghazi
+1 Cavernous Maw
+1 Dread Statuary
+1 Frostwalk Bastion
+1 Gods' Eye, Gate to the Reikai
+1 Immersturm Skullcairn
+1 Keldon Megaliths
+1 Rocky Roads
+1 Spawning Bed
+1 Cradle of the Accursed
+1 Jagged Barrens
+1 Sunscorched Desert
+1 Sandstone Needle
+1 Castle Doom
+1 Cactus Preserve
+1 Abundant Countryside
+1 Barad-dûr
+1 Blightstep Pathway // Searstep Pathway
+1 Blinkmoth Nexus
+1 Crystal Vein
+1 Dwarven Mine
+1 Dwarven Ruins
+1 Great Hall of the Biblioplex
+1 Midgar, City of Mako // Reactor Raid
+1 Blazemire Verge
+1 Command Tower
+1 Crawling Barrens
+1 Dunes of the Dead
+1 Tainted Peak
+1 Urborg, Tomb of Yawgmoth
+1 Mount Doom
+1 Den of the Bugbear
+1 Faceless Haven
+1 Gargoyle Castle
+1 Hostile Desert
+1 Inkmoth Nexus
+1 Jasmine Dragon Tea Shop
+1 Lavaclaw Reaches
+1 Lindblum, Industrial Regency // Mage Siege
+1 Luxury Suite
+1 Mirrex
+1 Mishra's Foundry
+1 Mobilized District
+1 Realm of Koh
+1 Restless Vents
+1 Shadowblood Ridge
+1 Shivan Gorge
+1 Sliver Hive
+1 Sokenzan, Crucible of Defiance
+1 Talon Gates of Madara
+1 Urza's Saga
+1 Valakut, the Molten Pinnacle
+1 Darksteel Citadel
+1 Foundry of the Consuls
+1 Ghitu Encampment
+1 Mishra's Factory
+1 Ramunap Ruins
+1 Spawning Pool
+1 Stalking Stones
+1 Urza's Factory
+1 Zoetic Cavern
+1 Great Furnace
+1 Piranha Marsh
+8 Snow-Covered Mountain
+7 Snow-Covered Swamp
+1 Vault of Whispers
+1 Gemstone Caverns
+1 Ebon Stronghold

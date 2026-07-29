@@ -1,0 +1,89 @@
+# Archidekt — Sea You Later
+# source: archidekt:6103226
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Deeproot Historian
+1 Arcane Signet
+1 Curse of the Swine
+1 Bygone Marvels
+1 Benthic Biomancer
+1 Thieving Skydiver
+1 Vorel of the Hull Clade
+1 Unclaimed Territory
+1 Tishana, Voice of Thunder
+1 Tatyova, Benthic Druid
+1 Genesis
+1 Burgeoning
+1 Exploration
+1 Titan of Littjara
+1 Myriad Landscape
+1 Path of Ancestry
+1 Singer of Swift Rivers
+1 Mist Dancer
+1 Growth Spiral
+1 Nicanzil, Current Conductor
+1 Ripples of Potential
+1 Wave Goodbye
+1 Alchemist's Refuge
+1 Tributary Instructor
+1 Branching Evolution
+1 Explore
+1 Inspiring Call
+1 Kindred Discovery
+1 Kodama's Reach
+1 Command Tower
+1 Mosswort Bridge
+1 Rapid Hybridization
+1 Ravenform
+1 Reflections of Littjara
+1 Reliquary Tower
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Sol Ring
+1 Simic Ascendancy
+1 Deeproot Waters
+1 Quandrix Command
+1 Cold-Eyed Selkie
+1 Kumena, Tyrant of Orazca
+1 Seafloor Oracle
+1 Svyelun of Sea and Sky
+1 Zegana, Utopian Speaker
+15 Island
+1 Herald of Secret Streams
+1 Kopala, Warden of Waves
+1 Master of the Pearl Trident
+1 Merrow Reejerey
+1 Realmwalker
+1 Emperor Mihail II
+1 Evolution Sage
+1 Merfolk Mistbinder
+1 Merfolk Sovereign
+1 Deeproot Elite
+1 Kiora's Follower
+1 Metallic Mimic
+6 Forest
+1 Hardened Scales
+1 Topography Tracker
+1 Vodalian Hexcatcher
+1 Deeproot Pilgrimage
+1 Flooded Grove
+1 For the Ancestors
+1 Breeding Pool
+1 Simic Charm
+1 Dreamroot Cascade
+1 Imprisoned in the Moon
+1 Stonybrook Banneret
+1 Spreading Seas
+1 Merrow Commerce
+1 Sea's Claim
+1 Misty Rainforest
+1 Thought Vessel
+1 Tropical Island
+1 Aquitect's Will
+1 Lingering Mirage
+1 Nature's Claim

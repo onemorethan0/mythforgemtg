@@ -1,0 +1,91 @@
+# Archidekt — sami
+# source: archidekt:18750373
+# fetched: 2026-07-09
+
+Commander:
+1 Sami, Wildcat Captain
+
+Deck:
+1 Ugin, Eye of the Storms
+1 Angel of the Ruins
+1 Memorial Vault
+1 The Endstone
+1 Weapons Manufacturing
+1 Tezzeret, Cruel Captain
+1 Melded Moxite
+1 Kaldra Compleat
+1 The Dominion Bracelet
+1 Wake the Past
+1 Swords to Plowshares
+1 Reroute Systems
+1 Organic Extinction
+1 Wild Ride
+1 Dauntless Scrapbot
+1 Bygone Colossus
+1 Zookeeper Mechan
+1 Alibou, Ancient Witness
+1 Gilded Lotus
+1 Thran Dynamo
+1 Eldrazi Conscription
+1 Swiftfoot Boots
+1 Boros Signet
+1 Iron Giant
+1 Sol Ring
+1 Great Furnace
+1 Rustvale Bridge
+1 Ancient Den
+10 Mountain
+1 Big Score
+1 Command Bridge
+1 Adagia, Windswept Bastion
+1 Kavaron, Memorial World
+1 Spire of Industry
+1 Evolving Wilds
+1 Battlefield Forge
+1 Mechanized Ninja Cavalry
+1 Glittering Massif
+1 Echoing Deeps
+1 Casey Jones, Jury-Rig Justiciar
+1 Skateboard
+1 Radiant Summit
+1 Clifftop Retreat
+1 Petrified Field
+1 Rugged Prairie
+1 Hangarback Walker
+1 Spidersilk Net
+8 Plains
+1 Red Sun's Twilight
+1 Underworld Breach
+1 Weftstalker Ardent
+1 Myr Convert
+1 Coveted Jewel
+1 Loxodon Warhammer
+1 Improvised Arsenal
+1 Samurai's Katana
+1 Thrill of Possibility
+1 Cathartic Reunion
+1 Raphael's Technique
+1 Thought Vessel
+1 HYDRA Assault Robot
+1 Hot Dog Cart
+1 Tempestra, Dame of Games
+1 Winter Moon
+1 Season of the Bold
+1 Hit the Mother Lode
+1 Krang, Utrom Warlord
+1 The Vision
+1 Inspired Tinkering
+1 Arc Reactor
+1 Unexpected Windfall
+1 Commune with Lava
+1 Brass's Bounty
+1 Seize the Spoils
+1 Mystic Forge
+1 Reliquary Tower
+1 Comet Storm
+1 Depthshaker Titan
+1 Threefold Thunderhulk
+1 Fated Firepower
+1 Kozilek, the Great Distortion
+1 Zenith Festival
+1 Monologue Tax

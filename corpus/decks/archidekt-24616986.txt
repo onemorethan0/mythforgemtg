@@ -1,0 +1,83 @@
+# Archidekt — 500 tokens
+# source: archidekt:24616986
+# fetched: 2026-07-24
+
+Commander:
+1 Chulane, Teller of Tales
+
+Deck:
+1 Exalted Sunborn
+1 Primal Vigor
+1 Doubling Season
+1 Bard, King of Dale
+1 Anointed Procession
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Parallel Lives
+1 Elspeth, Storm Slayer
+1 Adrix and Nev, Twincasters
+1 Idol of Oblivion
+1 An Offer You Can't Refuse
+1 Exotic Orchard
+1 Mondrak, Glory Dominus
+1 Jaheira, Friend of the Forest
+1 Second Harvest
+1 Spellbook
+6 Hare Apparent
+1 Temple of the False God
+1 Skullclamp
+1 Panharmonicon
+1 Thought Vessel
+1 Rootborn Defenses
+1 Sol Ring
+1 Sunpetal Grove
+1 Triumph of the Hordes
+1 Roaming Throne
+1 Glacial Fortress
+1 Sandstorm Salvager
+1 Arcane Signet
+1 Birds of Paradise
+1 Llanowar Elves
+1 Nesting Dovehawk
+1 Three Tree City
+1 Curiosity Crafter
+1 Sakura-Tribe Elder
+1 Avacyn's Pilgrim
+1 Nature's Lore
+1 Reliquary Tower
+1 Lightning Greaves
+1 Command Tower
+1 Heroic Intervention
+1 Swan Song
+1 Sea of Clouds
+1 Bountiful Promenade
+1 Swiftfoot Boots
+1 Canopy Vista
+1 Dovin's Veto
+1 Elvish Mystic
+1 Dreamroot Cascade
+1 Kodama's Reach
+1 Noble Hierarch
+1 Hinterland Harbor
+1 Craterhoof Behemoth
+1 Fyndhorn Elves
+1 Seedborn Muse
+1 Esper Sentinel
+1 Fellwar Stone
+1 Talisman of Curiosity
+1 Growth Spiral
+1 Trynn, Champion of Freedom
+1 Flawless Maneuver
+1 Worldly Tutor
+1 Scute Swarm
+1 Avenger of Zendikar
+1 Negate
+1 Three Visits
+1 Snow-Covered Island
+6 Snow-Covered Plains
+15 Snow-Covered Forest
+1 Prairie Stream
+1 Decanter of Endless Water
+1 Rejuvenating Springs
+1 Counterspell
+1 Cyclonic Rift
+1 Finale of Devastation

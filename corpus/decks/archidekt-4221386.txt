@@ -1,0 +1,101 @@
+# Archidekt — Sharuum slide
+# source: archidekt:4221386
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Sharuum the Hegemon
+
+Deck:
+1 Desert of the Mindful
+1 Secluded Steppe
+1 Desert of the Glorified
+1 Lonely Sandbar
+1 Remote Isle
+1 Imposing Vantasaur
+1 Irrigated Farmland
+1 Fluctuator
+1 Raffine's Tower
+1 Astral Drift
+1 Ash Barrens
+1 Barren Moor
+1 Blasted Landscape
+1 Desert of the True
+1 Drifting Meadow
+1 Fetid Pools
+1 Polluted Mire
+1 Arcane Sanctum
+1 Caves of Koilos
+1 Currency Converter
+1 River of Tears
+1 Noxious Gearhulk
+1 Portal to Phyrexia
+1 Tameshi, Reality Architect
+1 An Offer You Can't Refuse
+1 Miscalculation
+1 Countervailing Winds
+6 Island
+3 Plains
+1 Swamp
+1 Goldmire Bridge
+1 Mistvault Bridge
+1 Razortide Bridge
+1 Oversold Cemetery
+1 Fomori Vault
+1 Perplex
+1 Muddle the Mixture
+1 Eagles of the North
+1 Troll of Khazad-dûm
+1 Lórien Revealed
+1 Monstrosity of the Lake
+1 Trinket Mage
+1 Terisiare's Devastation
+1 Command Tower
+1 Exotic Orchard
+1 Waterlogged Teachings // Inundated Archive
+1 Scampering Surveyor
+1 Boggart Trawler // Boggart Bog
+1 Treasure Mage
+1 Underground River
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Vedalken Aethermage
+1 Zur the Enchanter
+1 Sol Ring
+1 Step Through
+1 Street Wraith
+1 Stern Lesson
+1 Neutralize
+1 Escape Protocol
+1 Angel of the Ruins
+1 Herald of the Forgotten
+1 Astral Slide
+1 Sphinx Summoner
+1 Cataclysmic Gearhulk
+1 Boon of the Wish-Giver
+1 God-Pharaoh's Gift
+1 Thirst for Knowledge
+1 Arcane Signet
+1 Thought Monitor
+1 Ancient Excavation
+1 Filigree Angel
+1 Solemn Simulacrum
+1 Timeless Dragon
+1 Nimble Obstructionist
+1 Baleful Strix
+1 Archfiend of Ifnir
+1 Drannith Healer
+1 Flourishing Fox
+1 Hall of Heliod's Generosity
+1 Magister Sphinx
+1 All-Seeing Arbiter
+1 Tribute Mage
+1 Ertai Resurrected
+1 Transit Mage
+1 Waxen Shapethief
+1 Spectacular Pileup
+1 Shorikai, Genesis Engine
+1 Sevinne's Reclamation
+1 Refurbished Familiar
+1 Wreck Remover
+1 Night Market
+1 Riptide Gearhulk

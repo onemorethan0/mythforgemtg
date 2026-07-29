@@ -1,0 +1,92 @@
+# Archidekt — Valentin, Dean of the Vein (The 999 Club)
+# source: archidekt:24778808
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+
+Deck:
+1 Winding Constrictor
+1 Zulaport Cutthroat
+1 Blood Artist
+1 Beledros Witherbloom
+1 Three Visits
+1 Radiant Fountain
+1 Inspiring Call
+1 Bogwater Lumaret
+1 Assassin's Trophy
+1 Kami of Whispered Hopes
+1 Corpsejack Menace
+1 Spike Feeder
+1 Pest Infestation
+1 Teacher's Pest
+1 Marauding Blight-Priest
+1 Blossoming Bogbeast
+1 Gala Greeters
+1 Cauldron of Essence
+1 Social Climber
+1 Scavenging Ooze
+1 Mortality Spear
+1 Essence Warden
+1 Dina, Soul Steeper
+1 Prosperous Innkeeper
+1 Cultivate
+1 Farseek
+1 Haywire Mite
+1 Blood Researcher
+1 Sakura-Tribe Elder
+1 Virulent Emissary
+1 Moseo, Vein's New Dean
+1 Evolution Witness
+1 Deathgreeter
+1 Jaddi Offshoot
+1 Vito, Thorn of the Dusk Rose
+1 High Market
+1 Essenceknit Scholar
+1 Beast Within
+1 Heroic Intervention
+1 Plumb the Forbidden
+1 Rampant Growth
+1 Deathrite Shaman
+1 Birds of Paradise
+1 Village Rites
+1 Tamiyo's Safekeeping
+1 Night's Whisper
+1 Pest Rescuer
+1 Branching Evolution
+1 Revitalizing Repast // Old-Growth Grove
+1 Nature's Lore
+1 Deadly Dispute
+1 Kodama's Reach
+1 Moldervine Reclamation
+1 Golgari Rot Farm
+1 Skullclamp
+1 Fountain of Renewal
+1 Tablet of the Guilds
+1 Retreat to Kazandu
+1 Hardened Scales
+1 Bastion of Remembrance
+1 Necroblossom Snarl
+1 Ozolith, the Shattered Spire
+1 Vampiric Rites
+1 Tainted Wood
+1 Blight Mound
+1 Command Tower
+1 Professor Dellian Fel
+1 Bojuka Bog
+1 Darkbore Pathway // Slitherbore Pathway
+1 Arcane Signet
+12 Forest
+1 Woodland Cemetery
+1 Exotic Orchard
+1 Jungle Hollow
+1 Llanowar Wastes
+1 Deathcap Glade
+1 Overgrown Tomb
+1 Vernal Fen
+1 Wastewood Verge
+1 Twilight Mire
+6 Swamp
+1 Wurm's Tooth
+1 Pestilent Cauldron // Restorative Burst

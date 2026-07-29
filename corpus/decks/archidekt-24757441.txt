@@ -1,0 +1,10 @@
+# Archidekt — Troll1
+# source: archidekt:24757441
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Phage the Untouchable
+
+Deck:
+99 Swamp

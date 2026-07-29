@@ -1,0 +1,96 @@
+# Archidekt — Raggadragga's Spaghetti Kitchen
+# source: archidekt:4616610
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Raggadragga, Goreguts Boss
+
+Deck:
+1 Triumph of the Hordes
+1 Nature's Lore
+1 Brood Birthing
+1 Emrakul's Hatcher
+1 Growth Spasm
+1 Momentous Fall
+1 Rapacious One
+1 Spawnsire of Ulamog
+1 Second Harvest
+1 Brood Monitor
+1 Cinder Glade
+1 Spawning Bed
+1 Boreal Druid
+1 Treetop Village
+1 Sheltered Thicket
+1 Warping Wail
+1 Bane of Bala Ged
+1 Blighted Woodland
+1 Rockfall Vale
+1 Demolition Field
+1 Mishra's Factory
+1 Armored Scrapgorger
+1 Kami of Whispered Hopes
+1 Nightshade Dryad
+1 Malevolent Rumble
+1 Propagator Drone
+1 Titans' Vanguard
+1 Forsaken Monument
+1 Sol Ring
+1 Mind Stone
+1 The Immortal Sun
+1 Idol of False Gods
+1 Eldrazi Confluence
+1 Kozilek's Command
+1 From Beyond
+1 Zendikar Resurgent
+1 Beastmaster Ascension
+1 Outpost Siege
+1 Awakening Zone
+1 Brazen Cannonade
+1 Doubling Season
+1 Tribute to the World Tree
+1 Path of Annihilation
+1 Skittering Invasion
+1 Rishkar's Expertise
+1 Call the Scions
+1 Genesis Wave
+1 Regrowth
+1 Harmonize
+1 All Is Dust
+1 Three Visits
+1 Shamanic Revelation
+1 Pest Infestation
+1 Glimpse the Impossible
+1 Chittering Dispatcher
+9 Forest
+5 Mountain
+1 Kozilek's Predator
+1 Inkmoth Nexus
+1 Birds of Paradise
+1 Tectonic Edge
+1 Mutavault
+1 Birthing Hulk
+1 Vile Redeemer
+1 World Breaker
+1 Kessig Wolf Run
+1 Gruul Turf
+1 Beast Whisperer
+1 Eternal Witness
+1 Temple of the False God
+1 Spire Garden
+1 Manor Gate
+1 Cliffgate
+1 Llanowar Loamspeaker
+1 Karplusan Forest
+1 Wooded Ridgeline
+1 Command Tower
+1 Circle of Dreams Druid
+1 Stomping Ground
+1 Spawnbed Protector
+1 Basking Broodscale
+1 Eldrazi Repurposer
+1 Glaring Fleshraker
+1 Spawn-Gang Commander
+1 Writhing Chrysalis
+1 Kozilek, the Broken Reality
+1 Ba Sing Se

@@ -1,0 +1,108 @@
+# Archidekt — Frodo/Sam Tokens Deck
+# source: archidekt:11995208
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Sam, Loyal Attendant
+1 Frodo, Adventurous Hobbit
+
+Deck:
+1 Command Tower
+1 Swords to Plowshares
+1 Call of the Ring
+1 Bayou
+1 The Gaffer
+1 Mortality Spear
+1 Anguished Unmaking
+1 Agent of the Iron Throne
+1 Many Partings
+1 Savannah
+1 Eladamri's Call
+1 Overgrown Tomb
+1 Swamp
+1 The Battle of Bywater
+1 Undergrowth Stadium
+1 Congregation at Dawn
+1 Haliya, Guided by Light
+1 Shattered Sanctum
+1 Marionette Apprentice
+1 Chatterfang, Squirrel General
+1 Tear Asunder
+1 Lotho, Corrupt Shirriff
+1 Inspiring Statuary
+1 Underground Mortuary
+1 Twilight Prophet
+1 Nadier's Nightblade
+1 Black Market Connections
+1 Exotic Orchard
+1 Caves of Koilos
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Astrid Peth
+1 Camellia, the Seedmiser
+1 Sol Ring
+1 Turbulent Fen
+1 Deadly Dispute
+1 Godless Shrine
+1 Turbulent Moor
+1 The One Ring
+1 Rosie Cotton of South Lane
+1 Flawless Maneuver
+1 Plains
+1 Dawn's Truce
+1 Clever Concealment
+1 Jaheira, Friend of the Forest
+1 Tireless Provisioner
+1 Birds of Paradise
+1 Peregrin Took
+1 Sylvan Library
+1 Mutagen Man, Living Ooze
+1 Night of the Sweets' Revenge
+1 Mirkwood Bats
+1 Reanimate
+1 Cauldron Familiar
+1 Samwise Gamgee
+1 Hushwood Verge
+1 Sunpetal Grove
+1 Cosmic Rebirth
+1 Bountiful Promenade
+1 Brushland
+1 Overgrown Farmland
+1 Vault of Champions
+1 Bleachbone Verge
+1 Deathcap Glade
+1 Twilight Mire
+1 Wastewood Verge
+1 Academy Manufactor
+1 Nuka-Cola Vending Machine
+1 Windswept Heath
+1 Elves of Deep Shadow
+1 Gilded Goose
+1 Boromir, Warden of the Tower
+1 Gollum, Obsessed Stalker
+1 Umbral Collar Zealot
+1 Bartolomé del Presidio
+1 Mortuary Mire
+1 Night's Whisper
+1 Heroic Intervention
+1 Forest
+1 Traverse the Ulvenwald
+1 Scrubland
+1 Temple Garden
+1 Archivist of Oghma
+1 Obscuring Haze
+1 Path of Ancestry
+1 Gyome, Master Chef
+1 Wooded Bastion
+1 Indatha Triome
+1 Tamiyo's Safekeeping
+1 Warren Soultrader
+1 Ashnod's Altar
+1 Cauldron of Essence
+1 Utopia Sprawl
+1 Veil of Summer
+1 Sarinth Steelseeker
+1 Springleaf Drum
+1 Marsh Flats
+1 Horizon Canopy
+1 Smothering Tithe

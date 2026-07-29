@@ -1,0 +1,92 @@
+# Archidekt — "Bello There." - Raccooni Kenobi
+# source: archidekt:8820287
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Bello, Bard of the Brambles
+
+Deck:
+1 Three Visits
+1 Llanowar Elves
+1 Utopia Sprawl
+1 Wild Growth
+1 Overlord of the Boilerbilges
+1 Mirror March
+1 Bane of Progress
+1 Hoard Hauler
+1 Moraug, Fury of Akoum
+1 Asceticism
+1 Glorious Sunrise
+1 City on Fire
+1 Nature's Will
+1 Case of the Locked Hothouse
+1 Sanctum Weaver
+1 Unnatural Growth
+1 Warstorm Surge
+1 The Great Henge
+1 The Immortal Sun
+1 Nautiloid Ship
+1 Akroma's Memorial
+1 Arcane Signet
+1 Chimil, the Inner Sun
+1 Molten Echoes
+1 Leyline of Punishment
+1 Gruul War Chant
+1 Fiery Emancipation
+1 Guardian Project
+1 Eidolon of Blossoms
+1 Gratuitous Violence
+1 Berserkers' Onslaught
+1 Sol Ring
+1 Nylea, God of the Hunt
+1 Kodama of the East Tree
+1 Solemn Simulacrum
+1 Goblin Anarchomancer
+1 Fanatic of Rhonas
+1 Birds of Paradise
+1 Swiftfoot Boots
+1 Beast Within
+1 Blasphemous Act
+1 Nature's Lore
+1 Tamiyo's Safekeeping
+8 Mountain
+1 Cinder Glade
+1 Command Tower
+1 Copperline Gorge
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Fire-Lit Thicket
+1 Game Trail
+1 Karplusan Forest
+1 Reliquary Tower
+1 Rockfall Vale
+1 Rootbound Crag
+1 Spire Garden
+1 Stomping Ground
+1 Wooded Foothills
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Arasta of the Endless Web
+1 Exotic Orchard
+1 Sheltered Thicket
+1 Temple of Abandon
+1 Commercial District
+1 Echoing Assault
+1 Avoid Fate
+1 Collective Resistance
+1 Enduring Courage
+1 Giggling Skitterspike
+1 Garruk's Uprising
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Chaos Warp
+1 Farseek
+1 Heroic Intervention
+1 Legolas's Quick Reflexes
+1 Defense of the Heart
+1 Mana Echoes
+10 Forest
+1 Maximum Carnage
+1 Abundance
+1 Carpet of Flowers
+1 Delighted Halfling
+1 Collective Inferno
+1 Elvish Mystic

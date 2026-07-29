@@ -1,0 +1,94 @@
+# Archidekt — Tawnos’s Clone Army
+# source: archidekt:17390273
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Tawnos, Solemn Survivor
+
+Deck:
+1 Meeting of Minds
+1 Thoughtcast
+1 Thought Monitor
+1 Gilded Lotus
+1 Swiftfoot Boots
+1 Deadly Dispute
+1 Bident of Thassa
+1 Thirst for Knowledge
+1 Command Tower
+1 Deserted Beach
+1 Floodfarm Verge
+1 Gloomlake Verge
+1 Shipwreck Marsh
+1 Shattered Sanctum
+1 Prairie Stream
+1 Sunken Hollow
+15 Island
+1 Sunlit Marsh
+1 Idyllic Beachfront
+1 Contaminated Aquifer
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Final Parting
+1 Razortide Bridge
+1 Fetid Heath
+1 Great Desert Prospector
+1 Hall of Tagsin
+1 Splitting the Powerstone
+1 Stern Lesson
+1 Stone Retrieval Unit
+1 Urza, Powerstone Prodigy
+1 Karn, Living Legacy
+1 Powerstone Shard
+1 Thran Turbine
+1 Sol Ring
+1 Rings of Brighthearth
+1 Lithoform Engine
+1 Frantic Search
+1 Pull from Tomorrow
+1 Matzalantli, the Great Door // The Core
+1 Collector's Vault
+1 Tezzeret, Betrayer of Flesh
+1 Buried Alive
+1 Kjeldoran Skyknight
+1 Kjeldoran Skycaptain
+1 Teremko Griffin
+1 Mesa Pegasus
+1 Noble Elephant
+1 Kjeldoran Phalanx
+1 War Elephant
+1 Lotho, Corrupt Shirriff
+1 Seat of the Synod
+1 Vault of Whispers
+1 Mistvault Bridge
+1 Darksteel Citadel
+1 Goldmire Bridge
+1 Ancient Den
+1 Muster the Departed
+1 Heartstone
+1 Intruder Alarm
+1 Freed from the Real
+1 Illusionist's Bracers
+1 Volatile Fault
+1 The Underworld Cookbook
+1 Noble's Purse
+1 Ioreth of the Healing House
+1 Trickster Mage
+1 Patriar's Seal
+1 Retreat to Coralhelm
+1 Mirrorworks
+1 Esoteric Duplicator
+1 Clone Legion
+1 Extravagant Replication
+1 March of Progress
+1 Mechanized Production
+1 Urza, Prince of Kroog
+1 Thran Dynamo
+1 Organic Extinction
+1 Losheel, Clockwork Scholar
+1 Tempered Steel
+1 Thopter Spy Network
+1 Urza, Chief Artificer
+1 Chief of the Foundry
+1 Steel Overseer
+1 Plaza of Heroes

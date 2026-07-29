@@ -1,0 +1,84 @@
+# Archidekt — [EDHLAB.gg] Girl You Know It's Cruel
+# source: archidekt:20978253
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Syr Konrad, the Grim
+
+Deck:
+1 Perpetual Timepiece
+1 Murderous Rider // Swift End
+1 Woe Strider
+1 Ayara, First of Locthwain
+1 Haunted Crossroads
+1 Ripples of Undeath
+1 Coffin Queen
+1 Metamorphosis Fanatic
+1 Phyrexian Delver
+1 Undead Butler
+1 Altar of Dementia
+1 Gray Merchant of Asphodel
+1 Altar of the Brood
+1 Wake the Dead
+1 Stitcher's Supplier
+1 Undercity Informer
+1 Sign in Blood
+1 Plaguecrafter
+1 Mindcrank
+1 Morality Shift
+1 Bone Harvest
+1 Cabal Coffers
+1 Forever Young
+1 Feed the Swarm
+1 Tomb Fortress
+1 Eden, Seat of the Sanctum
+1 Victimize
+1 Takenuma, Abandoned Mire
+1 Overlord of the Balemurk
+1 Breach the Multiverse
+1 Dreadhound
+20 Swamp
+1 Mesmeric Orb
+1 Soul Enervation
+1 Tortured Existence
+1 Angel of Suffering
+1 Palantír of Orthanc
+1 Bloodghast
+1 Deadly Rollick
+1 Bojuka Bog
+1 Morbid Opportunist
+1 Withering Torment
+1 Living Death
+1 Bone Shards
+1 Jet Medallion
+1 Oversold Cemetery
+1 Mortuary Mire
+1 Witch's Cottage
+1 Urborg, Tomb of Yawgmoth
+1 Doom Whisperer
+1 Stinkweed Imp
+1 Unshakable Tail
+1 Renegade Reaper
+1 The Meathook Massacre
+1 Polluted Delta
+1 Bloodstained Mire
+1 Marsh Flats
+1 Verdant Catacombs
+1 Bloodchief Ascension
+1 Bolas's Citadel
+1 Liliana, Dreadhorde General
+1 Crypt Ghast
+1 Demonic Tutor
+1 Yawgmoth, Thran Physician
+1 Necropotence
+1 Sol Ring
+1 Toxic Deluge
+1 Grave Researcher // Reanimate
+1 Reanimate
+1 Phyrexian Tower
+1 Volrath's Stronghold
+1 Mausoleum Secrets
+1 Crypt of Agadeem
+1 Arcane Signet
+1 Nykthos, Shrine to Nyx

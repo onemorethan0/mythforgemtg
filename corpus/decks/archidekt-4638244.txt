@@ -1,0 +1,97 @@
+# Archidekt — Saruman, the White Hand
+# source: archidekt:4638244
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Saruman, the White Hand
+
+Deck:
+1 Bleeding Edge
+1 Gothmog, Morgul Lieutenant
+1 Saruman's Trickery
+1 Vizier of the Scorpion
+1 Barad-dûr
+1 Command Beacon
+1 Thriving Bluff
+1 Thriving Moor
+1 Command Tower
+1 Crumbling Necropolis
+1 Darkslick Shores
+1 Sunken Hollow
+1 Temple of Deceit
+1 Temple of Malice
+1 Haunted Ridge
+1 Swiftwater Cliffs
+1 Shivan Reef
+1 Wake the Dragon
+1 Gríma, Saruman's Footman
+5 Mountain
+1 Smoldering Marsh
+1 Frostboil Snarl
+1 Reliquary Tower
+1 Foreboding Ruins
+1 Path of Ancestry
+1 Choked Estuary
+1 Temple of Epiphany
+1 Thriving Isle
+1 Angrath, Captain of Chaos
+1 Call of the Ring
+1 Ambitious Assault
+1 Mask of Griselbrand
+1 Arcane Signet
+1 Talisman of Dominance
+1 Gleaming Overseer
+1 Basilisk Collar
+1 Orcish Siegemaster
+1 Invert Polarity
+1 Commander's Sphere
+1 Shark Typhoon
+1 Arcane Denial
+1 Press the Enemy
+1 Commence the Endgame
+1 Rage Reflection
+1 Talisman of Creativity
+1 Blood for the Blood God!
+1 Street Riot
+1 Glittering Stockpile
+1 Relentless Advance
+1 Xenograft
+1 Leyline of Transformation
+1 Foray of Orcs
+1 Sky Diamond
+1 Honor the God-Pharaoh
+1 Seize the Spoils
+1 Primal Amulet // Primal Wellspring
+1 Eternal Skylord
+1 Subjugate the Hobbits
+1 Fevered Suspicion
+1 Sauron, the Dark Lord
+1 Blasphemous Act
+1 Surrounded by Orcs
+1 Unexpected Windfall
+1 Arcane Adaptation
+1 Mindsplice Apparatus
+1 Goblin War Drums
+1 Spiteful Banditry
+1 Treasure Cruise
+1 Ferocity of the Wilds
+1 Dig Through Time
+1 Callous Dismissal
+1 Conspiracy
+1 Chaos Warp
+1 Ingenious Prodigy
+1 Dreadhorde Invasion
+1 Palantír of Orthanc
+1 Widespread Brutality
+1 Read the Bones
+1 Archmage Emeritus
+1 Assault on Osgiliath
+1 Evolving Wilds
+5 Island
+4 Swamp
+1 Black Waltz No. 3
+1 Sword of Hearth and Home
+1 The Last Agni Kai
+1 Sword of the Animist
+1 Torpor Orb

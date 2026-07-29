@@ -1,0 +1,87 @@
+# Archidekt — Its so SIMple
+# source: archidekt:24779797
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Vorel of the Hull Clade
+
+Deck:
+1 Darksteel Reactor
+1 Simic Ascendancy
+1 Helix Pinnacle
+1 Deepglow Skate
+1 Gilder Bairn
+1 Doubling Season
+1 Sculpting Steel
+1 Phyrexian Metamorph
+1 Copy Artifact
+1 Treasure Mage
+1 Fabricate
+1 Whir of Invention
+1 Tezzeret the Seeker
+1 Long-Term Plans
+1 Reshape
+1 Chord of Calling
+1 Contagion Clasp
+1 Contagion Engine
+1 Inexorable Tide
+1 Flux Channeler
+1 Evolution Sage
+1 Tezzeret's Gambit
+1 Coretapper
+1 Surge Node
+1 Power Conduit
+1 Murkfiend Liege
+1 Thousand-Year Elixir
+1 Kiora's Follower
+1 Sol Ring
+1 Arcane Signet
+1 Everflowing Chalice
+1 Astral Cornucopia
+1 Rampant Growth
+1 Nature's Lore
+1 Three Visits
+1 Cultivate
+1 Kodama's Reach
+1 Mystic Remora
+1 Vedalken Archmage
+1 Sylvan Library
+1 Fact or Fiction
+1 Ponder
+1 Preordain
+1 Propaganda
+1 Fog Bank
+1 Wall of Frost
+1 Constant Mists
+1 Moment's Peace
+1 Evacuation
+1 Aetherize
+1 Counterspell
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Pongify
+1 Beast Within
+1 Krosan Grip
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Heroic Intervention
+1 Padeem, Consul of Innovation
+1 Karn's Bastion
+1 Inventors' Fair
+1 Nesting Grounds
+1 Reliquary Tower
+1 Breeding Pool
+1 Hinterland Harbor
+1 Botanical Sanctum
+1 Yavimaya Coast
+1 Barkchannel Pathway // Tidechannel Pathway
+12 Island
+11 Forest
+1 Fathom Mage
+1 Rings of Brighthearth
+1 Lithoform Engine
+1 Rejuvenating Springs
+1 Waterlogged Grove
+1 Command Tower
+1 Misty Rainforest

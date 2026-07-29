@@ -7,3 +7,10 @@ python-multipart>=0.0.9
 pixie-python>=4.3.0
 imageio>=2.34.0
 imageio-ffmpeg>=0.5.1
+
+# --- MythGauntlet engine (src/mythgauntlet) ---------------------------------
+# The simulation/analysis engine merged in 2026-07-29. Small, pure-Python deps;
+# fastapi/uvicorn/requests above are shared with the app.
+rich>=13.0
+json-repair>=0.30
+

@@ -1,0 +1,103 @@
+# Archidekt — Brack 1 Turtles
+# source: archidekt:24753946
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 April O'Neil, Live on the Scene
+1 Leonardo, the Balance
+
+Deck:
+1 Continue?
+1 Saved by the Shell
+1 Hidden Hideout
+1 Baxter, Fly in the Ointment
+1 Regrowth
+1 Mutant Town
+1 Evolving Wilds
+1 Lessons from Life
+1 Michelangelo, the Heart
+1 Command Tower
+1 Rain-Slicked Copse
+1 Jennika, Bad Apple Big Sister
+2 Forest
+1 Donatello, the Brains
+1 Manhole Cover
+2 Plains
+1 Exotic Orchard
+1 Sol Ring
+1 Splinter's Technique
+1 Mikey & Leo, Chaos & Order
+1 Mikey & Mona, Mutant Sitters
+1 Chord of Calling
+1 Hardened Scales
+1 Hinterland Harbor
+2 Island
+2 Swamp
+1 Grand Coliseum
+1 Turtle Lair
+1 All Will Be One
+1 Sunken Hollow
+1 Raph & Leo, Sibling Rivals
+1 Undergrowth Stadium
+1 Shellshock
+1 Mechanized Ninja Cavalry
+1 Dragonskull Summit
+1 Arcane Signet
+1 Raphael, the Muscle
+1 Leatherhead, Iron Gator
+2 Mountain
+1 High Score
+1 Settle the Wreckage
+1 Fabled Passage
+1 Irma, Part-Time Mutant
+1 Splinter, Radical Rat
+1 Sally Pride, Lioness Leader
+1 Spire Garden
+1 Cinder Glade
+1 Foot Headquarters
+1 Big Mother Mouser
+1 Super Combo
+1 City of Brass
+1 Undercity Sewers
+1 Rootbound Crag
+1 Thriving Moor
+1 The Ooze
+1 Level Up
+1 Tainted Treats
+1 Pirated Copy
+1 Make Your Move
+1 Chromatic Lantern
+1 Mona Lisa, Science Geek
+1 Ninja Pizza
+1 Mutant Chain Reaction
+1 Fast Forward
+1 Arcade Cabinet
+1 Path to Exile
+1 Party Dude
+1 Mona Lisa, Ever Adaptable
+1 Illegitimate Business
+1 Michelangelo, Weirdness to 11
+1 Casey Jones, Back Alley Brute
+1 Thriving Grove
+1 Lita, Little Orphan Amphibian
+1 Ray Fillet, Wave Warrior
+1 April O'Neil, Human Element
+1 Heroes in a Half Shell
+1 Smoldering Marsh
+1 Splinter, Aging Champion
+1 Doubling Season
+1 Sodden Verdure
+1 Donatello, Gadget Master
+1 Corpsejack Menace
+1 Assassin's Trophy
+1 Vernal Fen
+1 Endless Foot Assault
+1 Agent Bishop, Man in Black
+1 Splinter & Leo, Father & Son
+1 Cultivate
+1 Definitely Not a Turtle
+1 Wave Goodbye
+1 Escape Tunnel
+1 April, Reporter of the Weird
+1 Leonardo's Technique

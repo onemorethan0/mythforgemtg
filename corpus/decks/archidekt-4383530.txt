@@ -1,0 +1,99 @@
+# Archidekt — Punishment for Gluttony
+# source: archidekt:4383530
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Yurlok of Scorch Thrash
+
+Deck:
+1 Ant Queen
+1 Barren Moor
+1 Bojuka Bog
+1 Citadel of Pain
+1 Cultivate
+1 Dictate of Karametra
+1 Dryad of the Ilysian Grove
+1 Eladamri's Vineyard
+1 Jade Mage
+1 Electrodominance
+1 Heartbeat of Spring
+1 Harrow
+1 Sign in Blood
+1 Kodama's Reach
+1 Chaos Warp
+4 Forest
+1 Devil's Play
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Jaya's Immolating Inferno
+1 Command Tower
+1 Sol Ring
+1 Lavalanche
+1 Rampant Growth
+1 Nemata, Grove Guardian
+1 Reliquary Tower
+1 Nourishing Shoal
+5 Swamp
+1 Manabarbs
+1 Myriad Landscape
+1 Painful Truths
+1 Savage Lands
+3 Mountain
+1 Roiling Regrowth
+1 Tectonic Instability
+1 War's Toll
+1 Tormenting Voice
+1 Zhur-Taa Ancient
+1 Helix Pinnacle
+1 Wound Reflection
+1 Cabal Coffers
+1 Heroic Intervention
+1 Awaken the Woods
+1 Exquisite Blood
+1 Torment of Hailfire
+1 Urborg, Tomb of Yawgmoth
+1 Badlands
+1 Bayou
+1 Taiga
+1 Fabled Passage
+1 Deathcap Glade
+1 Haunted Ridge
+1 Rockfall Vale
+1 Bloodstained Mire
+1 Blood Crypt
+1 Overgrown Tomb
+1 Stomping Ground
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Dark Depths
+1 Scavenger Grounds
+1 Skyshroud Claim
+1 Horizon Stone
+1 Leyline of Abundance
+1 Nyxbloom Ancient
+1 Overabundance
+1 Spellshock
+1 Mana Flare
+1 Morbid Opportunist
+1 Night's Whisper
+1 Damnable Pact
+1 Harvester of Souls
+1 Thrill of Possibility
+1 Read the Bones
+1 Rites of Flourishing
+1 Xantcha, Sleeper Agent
+1 Gift of Doom
+1 Kaya's Ghostform
+1 Deflecting Swat
+1 Oubliette
+1 Song of the Dryads
+1 Bedevil
+1 Mana Reflection
+1 From Under the Floorboards
+1 Battle at the Bridge
+1 Slimefoot, the Stowaway
+1 Lifeblood Hydra
+1 Pest Infestation
+1 Their Number Is Legion
+1 Exsanguinate
+1 Erebos's Intervention

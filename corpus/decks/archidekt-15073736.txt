@@ -1,0 +1,101 @@
+# Archidekt — 🧝‍♀️ It came from the woods | Lathril, Blade of the Elves
+# source: archidekt:15073736
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Allosaurus Shepherd
+1 Assassin's Trophy
+1 Beast Whisperer
+1 Boseiju, Who Endures
+1 Bounty of Skemfar
+1 Bow of Nylea
+1 Canopy Tactician
+1 Castle Garenbrig
+1 Casualties of War
+1 Cavern of Souls
+1 Circle of Dreams Druid
+1 City of Brass
+1 Command Tower
+1 Concordant Crossroads
+1 Craterhoof Behemoth
+1 Cultivate
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathcap Glade
+1 Doubling Season
+1 Eladamri, Lord of Leaves
+1 Elven Ambush
+1 Elves of Deep Shadow
+1 Elvish Archdruid
+1 Elvish Champion
+1 Elvish Guidance
+1 Elvish Harbinger
+1 Elvish Mystic
+1 Elvish Promenade
+1 Elvish Warmaster
+1 Ezuri, Renegade Leader
+1 Fauna Shaman
+1 Finale of Devastation
+8 Forest
+1 Fyndhorn Elves
+1 Gilt-Leaf Palace
+1 Golgari Rot Farm
+1 Green Sun's Zenith
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Harald Unites the Elves
+1 Harvest Season
+1 Heritage Druid
+1 Immaculate Magistrate
+1 Imperious Perfect
+1 Jagged-Scar Archers
+1 Joraga Treespeaker
+1 Joraga Warcaller
+1 Leaf-Crowned Visionary
+1 Llanowar Elves
+1 Llanowar Tribe
+1 Llanowar Wastes
+1 Marwyn, the Nurturer
+1 Metallic Mimic
+1 Necroblossom Snarl
+1 Nurturing Peatland
+1 Okina, Temple to the Grandfathers
+1 Oran-Rief, the Vastwood
+1 Emerald Medallion
+1 Overgrown Tomb
+1 Parallel Lives
+1 Poison-Tip Archer
+1 Priest of Titania
+1 Primal Vigor
+1 Prismatic Vista
+1 Quest for Renewal
+1 Realmwalker
+1 Reclamation Sage
+1 Rogue's Passage
+1 Ruthless Winnower
+1 Secluded Courtyard
+1 Seedborn Muse
+1 Skemfar Avenger
+1 Skemfar Shadowsage
+1 Swamp
+1 Talisman of Resilience
+1 Twilight Mire
+1 Unclaimed Territory
+1 Underground Mortuary
+1 Undergrowth Stadium
+1 Verdant Catacombs
+1 Wirewood Channeler
+1 Wirewood Lodge
+1 Wolverine Riders
+1 Wood Elves
+1 Woodland Cemetery
+1 Sol Ring
+1 Worldly Tutor
+1 Yavimaya, Cradle of Growth
+1 Yeva, Nature's Herald
+1 Tyvar Kell
+1 Freyalise, Llanowar's Fury
+1 Coat of Arms
+1 Sylvan Library

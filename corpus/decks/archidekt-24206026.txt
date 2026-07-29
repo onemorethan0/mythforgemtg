@@ -1,0 +1,86 @@
+# Archidekt — Land dryiads do be dropping
+# source: archidekt:24206026
+# fetched: 2026-07-09
+
+Commander:
+1 Bonny Pall, Clearcutter
+1 Jyoti, Moag Ancient
+
+Deck:
+1 Curse of the Swine
+1 Up the Beanstalk
+1 Mossborn Hydra
+1 Run Over
+1 Springbloom Druid
+1 Scute Swarm
+1 Braulios of Pheres Band
+1 Growth Spiral
+1 Giant Ankheg
+1 Search for Tomorrow
+1 Didn't Say Please
+1 Fog
+1 Explore
+1 Tatyova, Benthic Druid
+1 Cultivator Colossus
+1 Aesi, Tyrant of Gyre Strait
+1 Skyserpent Seeker
+1 Multani, Yavimaya's Avatar
+1 Compulsive Research
+1 Bounce Off
+1 Mathemagics
+1 Ley Weaver
+11 Island
+12 Forest
+1 Entish Restoration
+1 Key to the City
+1 Tireless Tracker
+1 Agna Qel'a
+1 Ba Sing Se
+1 Wayfarer's Bauble
+1 Kodama of the East Tree
+1 Hullbreaker Horror
+1 Overwhelming Stampede
+1 Embrace the Paradox
+1 River's Rebuke
+1 Sakura-Tribe Scout
+1 Rampant Growth
+1 Spelunking
+1 Auroral Procession
+1 Myriad Landscape
+1 Terramorphic Expanse
+1 Exotic Orchard
+1 Retreat to Coralhelm
+1 Mind into Matter
+1 Grappling Kraken
+1 Avenger of Zendikar
+1 Tectonic Split
+1 Lumbering Worldwagon
+1 Sugar Coat
+1 Unwind
+1 Zendikar Resurgent
+1 Elemental Teachings
+1 Shared Roots
+1 Lore Weaver
+1 Khalni Heart Expedition
+1 Cultivate
+1 Command Tower
+1 Disciple of Freyalise // Garden of Freyalise
+1 Evolving Wilds
+1 Lotus Field
+1 Overflowing Basin
+1 Reliquary Tower
+1 Urban Evolution
+1 Temple of the False God
+1 Chart a Course
+1 Crash of Rhino Beetles
+1 Rogue's Passage
+1 Garruk's Uprising
+1 Augmenter Pugilist // Echoing Equation
+1 Ghostly Flicker
+1 Ashaya, Soul of the Wild
+1 Ulvenwald Hydra
+1 Arid Archway
+1 Simic Growth Chamber
+1 Oviya, Automech Artisan
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Jaheira's Respite

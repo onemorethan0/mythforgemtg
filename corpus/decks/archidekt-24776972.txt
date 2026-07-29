@@ -1,0 +1,85 @@
+# Archidekt — astor equipment and vehicles
+# source: archidekt:24776972
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Astor, Bearer of Blades
+
+Deck:
+12 Mountain
+1 Sol Ring
+1 Command Tower
+1 Boros Garrison
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Path to Exile
+1 Arcane Signet
+1 Sram, Senior Edificer
+1 Blackblade Reforged
+1 Clifftop Retreat
+1 Boros Signet
+1 Rugged Prairie
+1 Temple of Triumph
+1 Open the Armory
+15 Plains
+1 Sword of the Animist
+1 Colossus Hammer
+1 Swords to Plowshares
+1 Fighter Class
+1 Boros Charm
+1 Blasphemous Act
+1 Generous Gift
+1 Danitha Capashen, Paragon
+1 Akiri, Fearless Voyager
+1 Puresteel Paladin
+1 Furycalm Snarl
+1 Foundry Inspector
+1 Chaos Warp
+1 Bruenor Battlehammer
+1 Dispatch
+1 Buried Ruin
+1 Masterwork of Ingenuity
+1 Fellwar Stone
+1 Mind Stone
+1 Basilisk Collar
+1 Sunhome, Fortress of the Legion
+1 Sunforger
+1 Reyav, Master Smith
+1 Forge Anew
+1 Shadowspear
+1 Solemn Simulacrum
+1 Wear // Tear
+1 Reliquary Tower
+1 Deflecting Palm
+1 Radiant Summit
+1 Bureau Headmaster
+1 Vandalblast
+1 Faithless Looting
+1 Bladehold War-Whip
+1 Consulate Dreadnought
+1 Wyleth, Soul of Steel
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Jor Kadeen, First Goldwarden
+1 Armored Skyhunter
+1 Leonin Shikari
+1 Danitha, Benalia's Hope
+1 Mana Geyser
+1 Gilgamesh, Master-at-Arms
+1 Adelbert Steiner
+1 Aurelia, the Warleader
+1 Sun Titan
+1 Legion Leadership // Legion Stronghold
+1 Swiftblade Vindicator
+1 Sami, Wildcat Captain
+1 Inventory Management
+1 Resistance Reunited
+1 Dawn's Truce
+1 Dawn Charm
+1 Wake the Past
+1 Rebel Salvo
+1 Disenchant
+1 Vanquish the Horde
+1 Parhelion II
+1 Goldwardens' Gambit
+1 Weatherlight

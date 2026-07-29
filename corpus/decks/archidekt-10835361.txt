@@ -1,0 +1,75 @@
+# Archidekt — Minth-HARE-a
+# source: archidekt:10835361
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Minthara, Merciless Soul
+
+Deck:
+25 Hare Apparent
+1 Gilded Pinions
+1 Viscera Seer
+1 Bojuka Bog
+1 Commander's Sphere
+1 Mind Stone
+1 Command Tower
+1 Deadly Dispute
+1 Wayfarer's Bauble
+1 Accursed Marauder
+1 Shire Terrace
+1 Promising Vein
+1 Seal of Cleansing
+1 Fanatical Devotion
+1 Escape Tunnel
+1 Obscura Storefront
+1 Westfold Rider
+1 Pointed Discussion
+1 Fanatical Offering
+1 Cathar Commando
+1 Esper Panorama
+3 Swamp
+8 Plains
+1 Nested Shambler
+1 Fleshbag Marauder
+1 Raise the Draugr
+1 Read the Bones
+1 Diresight
+1 Return from Extinction
+1 Deadly Derision
+1 Grim Affliction
+1 Goldmire Bridge
+1 Night's Whisper
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Blood Fountain
+1 Soltari Visionary
+1 Settle Beyond Reality
+1 Scoured Barrens
+1 Nadier's Nightblade
+1 Path of Ancestry
+1 Snowfield Sinkhole
+1 The Fair Basilica
+1 The Dross Pits
+1 Safe Passage
+1 Orzhov Basilica
+1 Sunlit Marsh
+1 Executioner's Capsule
+1 Seal of Doom
+1 Cradle of the Accursed
+1 Crypt Rats
+1 Whisper of the Dross
+1 Village Rites
+1 Corrupted Conviction
+1 Annihilating Glare
+1 Haunted Fengraf
+1 Cloudshift
+1 Cartel Aristocrat
+1 Ephemerate
+1 Gustrider Exuberant
+1 Hideous Visage
+1 Spare from Evil
+1 Demon's Disciple
+1 Falkenrath Noble
+1 Dirge of Dread
+1 Echoing Return

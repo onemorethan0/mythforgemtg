@@ -1,0 +1,86 @@
+# Archidekt — Liliana Super Friends
+# source: archidekt:24786449
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Liliana the Faultless
+
+Deck:
+1 Ajani Resolute
+1 Ajani, Strength of the Pride
+1 Ajani Goldmane
+1 Ajani Steadfast
+1 Ajani, Adversary of Tyrants
+1 Ajani, Caller of the Pride
+1 Elspeth Tirel
+1 Elspeth, Sun's Champion
+1 Elspeth Resplendent
+1 Elspeth, Knight-Errant
+1 The Wandering Emperor
+1 The Eternal Wanderer
+1 Serra the Benevolent
+1 Basri Ket
+1 Gideon, Ally of Zendikar
+1 Soul Warden
+1 Soul's Attendant
+1 Lunarch Veteran // Luminous Phantom
+1 Guide of Souls
+1 Auriok Champion
+1 Suture Priest
+1 Delney, Streetwise Lookout
+1 Lae'zel, Vlaakith's Champion
+1 Djeru, With Eyes Open
+1 Monastery Mentor
+1 Defiler of Faith
+1 Welcoming Vampire
+1 Enduring Innocence
+1 Archangel of Thune
+1 Nykthos Paragon
+1 Resplendent Angel
+1 Arena Rector
+1 Sun Titan
+1 Sol Ring
+1 Arcane Signet
+1 Marble Diamond
+1 Mind Stone
+1 Honor-Worn Shaku
+1 Gatewatch Beacon
+1 The Chain Veil
+1 Aetherflux Reservoir
+1 Well of Lost Dreams
+1 Norn's Annex
+1 Authority of the Consuls
+1 Cleric Class
+1 Dawn of Hope
+1 Oath of Gideon
+1 Resourceful Defense
+1 Tocasia's Welcome
+1 Case of the Uneaten Feast
+1 Swords to Plowshares
+1 Path to Exile
+1 Generous Gift
+1 Get Lost
+1 Reprieve
+1 Clever Concealment
+1 Semester's End
+1 Call the Gatewatch
+1 Search for Glory
+1 Fumigate
+1 Promise of Loyalty
+1 Sevinne's Reclamation
+1 Triumphant Reckoning
+23 Snow-Covered Plains
+1 Karn's Bastion
+1 Interplanar Beacon
+1 Nykthos, Shrine to Nyx
+1 Emeria, the Sky Ruin
+1 Eiganjo, Seat of the Empire
+1 Minas Tirith
+1 War Room
+1 Monumental Henge
+1 Castle Ardenvale
+1 Myriad Landscape
+1 Demolition Field
+1 Nesting Grounds
+1 Fountainport

@@ -1,0 +1,108 @@
+# Archidekt — cEDH Blue Farm, World Police | Tymna Kraum | Self-Mill | T+K v6.3 No Proxies
+# source: archidekt:3384924
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Kraum, Ludevic's Opus
+1 Tymna the Weaver
+
+Deck:
+1 Vampiric Tutor
+1 An Offer You Can't Refuse
+1 Swan Song
+1 City of Brass
+1 Dark Ritual
+1 Red Elemental Blast
+1 Ad Nauseam
+1 Orcish Bowmasters
+1 Diabolic Intent
+1 Lotus Petal
+1 Thassa's Oracle
+1 Sol Ring
+1 Arid Mesa
+1 Watery Grave
+1 Steam Vents
+1 Mystical Tutor
+1 Command Tower
+1 Underworld Breach
+1 Scrubland
+1 Enlightened Tutor
+1 Scalding Tarn
+1 Sea of Clouds
+1 Esper Sentinel
+1 Mox Opal
+1 Godless Shrine
+1 Force of Negation
+1 Volcanic Island
+1 Cephalid Coliseum
+1 Polluted Delta
+1 Trickbind
+1 Hallowed Fountain
+1 Fierce Guardianship
+1 Sevinne's Reclamation
+1 Mox Diamond
+1 Shizo, Death's Storehouse
+1 Swords to Plowshares
+1 Tundra
+1 Demonic Consultation
+1 Demonic Tutor
+1 Rhystic Study
+1 Training Center
+1 Arcane Signet
+1 Chrome Mox
+1 Silence
+1 Mystic Remora
+1 Brain Freeze
+1 Bloodstained Mire
+1 Plateau
+1 Blood Crypt
+1 Force of Will
+1 Vault of Champions
+1 Mana Drain
+1 Dispel
+1 Otawara, Soaring City
+1 Dress Down
+1 Mindbreak Trap
+1 Marsh Flats
+1 Flooded Strand
+1 Chain of Vapor
+1 Reanimate
+1 Grand Abolisher
+1 Intuition
+1 Faerie Mastermind
+1 Lotho, Corrupt Shirriff
+1 Tainted Pact
+1 Island
+1 Underground Sea
+1 Necropotence
+1 Flusterstorm
+1 Borne Upon a Wind
+1 Ranger-Captain of Eos
+1 Pollywog Prodigy
+1 Ragavan, Nimble Pilferer
+1 Mockingbird
+1 Fellwar Stone
+1 Drannith Magistrate
+1 Professional Face-Breaker
+1 Valley Floodcaller
+1 Delney, Streetwise Lookout
+1 Voice of Victory
+1 Simian Spirit Guide
+1 Badlands
+1 Steal Enchantment
+1 Smothering Tithe
+1 Grinding Station
+1 Tataru Taru
+1 Copy Artifact
+1 Gamble
+1 Mayhem Devil
+1 Wishclaw Talisman
+1 Rite of Flame
+1 Gifts Ungiven
+1 Into the Flood Maw
+1 Hexing Squelcher
+1 Exhibition Tidecaller
+1 Storm-Kiln Artist
+1 Flashback
+1 Archivist of Oghma

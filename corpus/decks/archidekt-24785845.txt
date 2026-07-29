@@ -1,0 +1,89 @@
+# Archidekt — Edgar
+# source: archidekt:24785845
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Basilisk Collar
+1 Belligerent Guest
+1 Bladebrand
+1 Blasphemous Act
+1 Blood Burglar
+1 Blood Crypt
+1 Blood Petal Celebrant
+1 Bloodcrazed Socialite
+1 Bloodthirsty Aerialist
+1 Bloodthrone Vampire
+1 Bloodtithe Harvester
+1 Boros Signet
+1 Captivating Vampire
+1 Child of Night
+1 Cleric of Life's Bond
+1 Clifftop Retreat
+1 Collective Brutality
+1 Command Tower
+1 Condemn
+1 Day of Judgment
+1 Dusk Legion Duelist
+1 Edgar, Charmed Groom // Edgar Markov's Coffin
+1 Elegant Parlor
+1 Ephemerate
+1 Esper Sentinel
+1 Exotic Orchard
+1 Falkenrath Perforator
+1 Famished Foragers
+1 Foreboding Ruins
+1 Fracture
+1 Gemstone Mine
+1 Gluttonous Guest
+1 Humiliate
+1 Immersturm Predator
+1 Indulgent Aristocrat
+1 Infernal Grasp
+1 Isolated Chapel
+1 Knight of the Ebon Legion
+1 Mari, the Killing Quill
+1 Markov Purifier
+1 Markov Retribution
+1 Markov Waltzer
+1 Mass Hysteria
+1 Maze of Ith
+6 Mountain
+1 Olivia, Crimson Bride
+1 Oversold Cemetery
+1 Phyrexian Arena
+7 Plains
+1 Pulse Tracker
+1 Rakdos Charm
+1 Rakdos Signet
+1 Raucous Theater
+1 Restless Bloodseeker // Bloodsoaked Reveler
+1 Shadowy Backstreet
+1 Silverquill Pledgemage
+1 Smoldering Marsh
+1 Sol Ring
+1 Strefan, Maurer Progenitor
+1 Stromkirk Bloodthief
+9 Swamp
+1 Swords to Plowshares
+1 Temple of Triumph
+1 Thought Vessel
+1 Thrill of Possibility
+1 Thrilling Discovery
+1 Urza's Incubator
+1 Vampire Interloper
+1 Vampire Spawn
+1 Vampire of the Dire Moon
+1 Vanquish the Horde
+1 Village Rites
+1 Voldaren Ambusher
+1 Voldaren Epicure
+1 Voldaren Stinger
+1 Welcoming Vampire
+1 Master of Dark Rites
+1 Malakir Bloodwitch
+1 Roaming Throne
+1 Drana and Linvala

@@ -1,0 +1,106 @@
+# Archidekt — Earthbender Territory
+# source: archidekt:24785811
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Badgermole
+1 Rebellious Captives
+1 Bitter Work
+1 Toph, Greatest Earthbender
+1 Bumi, Unleashed
+1 Toph, Hardheaded Teacher
+1 Badgermole Cub
+1 Earthbender Ascension
+1 The Cave of Two Lovers
+1 Earthshape
+1 Ichor Wellspring
+1 Avatar Kyoshi, Earthbender
+1 Bumi, King of Three Trials
+1 Bumi's Feast Lecture
+1 Bumi, Eclectic Earthbender
+1 Earth Kingdom General
+1 Earth Rumble
+1 Earthbending Lesson
+1 Cracked Earth Technique
+1 The Boulder, Ready to Rumble
+1 Toph, the Blind Bandit
+1 Earthbending Student
+1 Haru, Hidden Talent
+1 Solid Ground
+1 Ba Sing Se
+1 Rockalanche
+1 Toph, Earthbending Master
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Tireless Provisioner
+1 Annie Joins Up
+1 Vesuva
+1 Sandbenders' Storm
+1 Swords to Plowshares
+1 Field of the Dead
+1 Gaea's Cradle
+1 The Stasis Coffin
+1 Tannuk, Memorial Ensign
+1 Great Divide Guide
+1 Crop Rotation
+1 Zuran Orb
+1 Lotus Cobra
+1 Solemn Simulacrum
+1 Urza's Saga
+1 Secret Tunnel
+1 Path to Exile
+1 Darksteel Citadel
+1 Abandoned Air Temple
+1 Buried Ruin
+1 Deserted Temple
+1 Inventors' Fair
+1 Inkmoth Nexus
+1 Rumble Arena
+1 Thespian's Stage
+1 Karn's Bastion
+1 Slagwoods Bridge
+1 Bountiful Promenade
+1 Sun-Blessed Peak
+1 Fabled Passage
+1 Omashu City
+1 Rustvale Bridge
+1 Sacred Foundry
+1 Jetmir's Garden
+1 Rockfall Vale
+1 Thornglint Bridge
+1 Cinder Glade
+1 Kyoshi Village
+1 Ondu Inversion // Ondu Skyruins
+1 Exotic Orchard
+1 Canopy Vista
+1 Temple Garden
+1 Command Tower
+1 Jungle Shrine
+1 Stomping Ground
+1 Rootbound Crag
+1 Clifftop Retreat
+1 Sunpetal Grove
+1 Taiga
+1 Spire Garden
+1 Spectator Seating
+1 Savannah
+1 Overgrown Farmland
+1 Sundown Pass
+1 Plateau
+1 Commercial District
+1 Plains
+1 Mountain
+1 Lush Portico
+1 Origin of Metalbending
+1 Pillar Launch
+1 The Ozolith
+3 Forest
+1 Rocky Rebuke
+1 Tale of Katara and Toph
+1 The Earth Crystal
+1 Seismic Sense
+1 Liquimetal Torque
+1 Sol Ring

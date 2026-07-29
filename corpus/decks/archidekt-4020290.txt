@@ -1,0 +1,92 @@
+# Archidekt — Counter Blessings - Build-Your-Own Precon
+# source: archidekt:4020290
+# fetched: 2026-07-05
+
+Commander:
+1 Ezuri, Stalker of Spheres
+
+Deck:
+1 Aether Hub
+1 Arcane Signet
+1 Armored Scrapgorger
+1 Ash Barrens
+1 Astral Cornucopia
+1 Beast Within
+1 Blast Zone
+1 Blighted Woodland
+1 Cankerbloom
+1 Command Tower
+1 Contagion Clasp
+1 Draining Whelk
+1 Everflowing Chalice
+1 Evolution Sage
+1 Exotic Orchard
+1 Experimental Augury
+1 Fight Rigging
+1 Flux Channeler
+10 Forest
+1 Fuel for the Cause
+1 Garruk, Primal Hunter
+1 Gemstone Mine
+1 Grasping Dunes
+1 Guildpact Informant
+1 Incubation Druid
+1 Infectious Bite
+7 Island
+1 Jace, Architect of Thought
+1 Jiang Yanggu, Wildcrafter
+1 Kappa Tech-Wrecker
+1 Karn's Bastion
+1 Lux Cannon
+1 Magistrate's Scepter
+1 Master Biomancer
+1 Memorial to Genius
+1 Merfolk Skydiver
+1 Midnight Clock
+1 Mosswort Bridge
+1 Myojin of Cryptic Dreams
+1 Myojin of Towering Might
+1 Myr Convert
+1 Myriad Landscape
+1 Nissa, Voice of Zendikar
+1 Ominous Seas
+1 Oran-Rief, the Vastwood
+1 Park Heights Maverick
+1 Pentad Prism
+1 Pollenbright Druid
+1 Power Conduit
+1 Pyramid of the Pantheon
+1 Quandrix Campus
+1 Ratchet Bomb
+1 Renata, Called to the Hunt
+1 Rishkar, Peema Renegade
+1 Scavenging Ooze
+1 Serrated Arrows
+1 Serum Sovereign
+1 Simic Growth Chamber
+1 Smell Fear
+1 Thrummingbird
+1 Sol Ring
+1 Song of Freyalise
+1 Sphere of the Suns
+1 Staff of Compleation
+1 Tainted Observer
+1 Tangled Islet
+1 Tanglepool Bridge
+1 Teferi, Master of Time
+1 Temple of Mystery
+1 Tezzeret's Gambit
+1 The Phasing of Zhalfir
+1 Thirsting Roots
+1 Tranquil Thicket
+1 Transmogrifying Wand
+1 Tuskguard Captain
+1 Ugin, the Ineffable
+1 Unnatural Restoration
+1 Urban Daggertooth
+1 Verdurous Gearhulk
+1 Viridian Corrupter
+1 Vivien, Champion of the Wilds
+1 Vivisurgeon's Insight
+1 Yavimaya Coast
+1 Zegana, Utopian Speaker

@@ -1,0 +1,84 @@
+# Archidekt — Talrand, Sky Summoner: Drakestorm
+# source: archidekt:3995
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Talrand, Sky Summoner
+
+Deck:
+1 Chart a Course
+1 Kindred Discovery
+1 Scavenger Grounds
+1 Docent of Perfection // Final Iteration
+1 Thought Vessel
+1 Reality Shift
+1 Sapphire Medallion
+1 Bident of Thassa
+1 Swan Song
+1 Hidden Strings
+1 Hands of Binding
+1 Rapid Hybridization
+1 Mitotic Manipulation
+1 Wasteland
+1 Opt
+1 Caged Sun
+1 Brainstorm
+1 Keep Watch
+1 Veilstone Amulet
+1 Pongify
+1 Gauntlet of Power
+1 Extraplanar Lens
+1 Retraced Image
+1 Mind Games
+1 Abjure
+1 Strip Mine
+1 High Tide
+1 Murmuring Mystic
+1 Narset's Reversal
+1 Winged Words
+1 Arcane Signet
+1 Heraldic Banner
+1 Mystic Sanctuary
+1 Reconnaissance Mission
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Telling Time
+1 War Room
+1 Archmage Emeritus
+1 Resculpt
+1 Curiosity Crafter
+1 Consider
+1 Access Denied
+1 Rod of Absorption
+1 Three Tree City
+1 Patchwork Banner
+1 An Offer You Can't Refuse
+1 Whispering Wizard
+1 Cyber Conversion
+1 As Foretold
+1 Candlekeep Inspiration
+1 Alandra, Sky Dreamer
+1 Archmage's Charm
+1 Meeting of Minds
+1 Sink into Stupor // Soporific Springs
+1 Press the Enemy
+1 Throne of Eldraine
+1 Quick Study
+1 The Indomitable
+1 Bottomless Pool // Locker Room
+1 Forger's Foundry
+1 Arcane Heist
+1 Abstergo Entertainment
+1 Lunar Insight
+1 Stock Up
+1 Hermes, Overseer of Elpis
+25 Snow-Covered Island
+1 Talrand's Invocation
+1 Archmage of Runes
+1 Polymorphist's Jest
+1 Complete the Circuit
+1 Sol Ring
+1 Enduring Curiosity
+1 Sunken Palace
+1 Coastal Piracy
+1 Counterspell

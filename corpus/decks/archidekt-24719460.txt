@@ -1,0 +1,87 @@
+# Archidekt — flick my shard v.2
+# source: archidekt:24719460
+# fetched: 2026-07-27
+
+Commander:
+1 Niko, Light of Hope
+
+Deck:
+1 Vanquish the Horde
+1 Ghostly Flicker
+1 Cyclonic Rift
+1 Split Up
+1 Sublime Epiphany
+1 Teferi's Protection
+1 Battle Angels of Tyr
+1 Rapid Hybridization
+1 Silverwing Squadron
+1 Hallowed Fountain
+1 Hengegate Pathway // Mistgate Pathway
+1 Fabled Passage
+1 Talon Gates of Madara
+1 Floodfarm Verge
+1 Curiosity Crafter
+1 Mystic Gate
+1 Glacial Fortress
+1 Protean Thaumaturge
+1 Prairie Stream
+1 Halo Fountain
+1 Starfield Vocalist
+1 Ironwill Forger
+1 Soulherder
+1 Ephemerate
+1 Teleportation Circle
+1 Entity Tracker
+1 Eerie Interlude
+1 Cloudshift
+1 Dour Port-Mage
+1 Dovin's Veto
+1 Enduring Curiosity
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Ornithopter of Paradise
+1 Path to Exile
+1 Blur
+1 Archaeomancer's Map
+1 Displacer Kitten
+1 Sink into Stupor // Soporific Springs
+1 Skycloud Expanse
+1 Swan Song
+1 Silver Myr
+1 Conjurer's Closet
+1 Flawless Maneuver
+1 Thousand-Year Elixir
+1 Panharmonicon
+1 Gold Myr
+1 Sol Ring
+1 Thought Vessel
+1 Arcane Signet
+1 Archon of Sun's Grace
+11 Plains
+1 Command Tower
+1 Sphere of Safety
+1 Solemn Simulacrum
+1 Reliquary Tower
+1 Counterspell
+1 Sword of Hearth and Home
+1 Irrigated Farmland
+1 Flare of Fortitude
+1 Arcane Denial
+1 Naban, Dean of Iteration
+1 Deserted Beach
+1 Nimbus Maze
+1 Exalted Sunborn
+1 Mirror Room // Fractured Realm
+11 Island
+1 Palladium Myr
+1 Swiftfoot Boots
+1 Spellskite
+1 Enlightened Tutor
+1 Fellwar Stone
+1 Azorius Signet
+1 Caretaker's Talent
+1 Recruiter of the Guard
+1 Daydream
+1 Thassa, Deep-Dwelling
+1 Venser, Shaper Savant
+1 Abdel Adrian, Gorion's Ward
+1 Deadeye Navigator

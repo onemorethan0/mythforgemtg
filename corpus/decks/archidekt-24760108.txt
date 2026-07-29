@@ -1,0 +1,85 @@
+# Archidekt — Abomination of llanowar
+# source: archidekt:24760108
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Abomination of Llanowar
+
+Deck:
+1 Arbor Elf
+1 Sol Ring
+1 Elvish Mystic
+1 Trystan, Callous Cultivator // Trystan, Penitent Culler
+1 Beast Whisperer
+1 Llanowar Tribe
+1 Elvish Harbinger
+1 Miara, Thorn of the Glade
+1 Nissa, Genesis Mage
+1 Jaspera Sentinel
+1 Elvish Warmaster
+1 Elvish Visionary
+1 Wirewood Symbiote
+1 Elves of Deep Shadow
+1 Dwynen's Elite
+1 Nettle Sentinel
+1 Elvish Archdruid
+1 Elvish Clancaller
+1 Wirewood Hivemaster
+1 Elvish Warrior
+1 Imperious Perfect
+1 Priest of Titania
+1 Llanowar Visionary
+1 Reclamation Sage
+1 Eclipsed Elf
+1 Harald, King of Skemfar
+1 Skullwinder
+1 Realmwalker
+1 Champions of the Perfect
+1 Oran-Rief Ooze
+1 Shaman of the Pack
+1 Tireless Provisioner
+1 Ivy Lane Denizen
+1 Lys Alana Huntmaster
+1 Lead the Stampede
+1 Heraldic Banner
+1 Dwynen, Gilt-Leaf Daen
+1 Winding Way
+1 Poison-Tip Archer
+1 Kagha, Shadow Archdruid
+1 Selfless Safewright
+1 Skemfar Shadowsage
+1 Golgari Signet
+1 Cultivate
+1 Putrefy
+1 End-Raze Forerunners
+1 Swiftfoot Boots
+1 Wrap in Vigor
+1 Grisly Salvage
+1 Snakeskin Veil
+1 Golgari Guildgate
+1 Return to Nature
+1 Pact of the Serpent
+1 Rampant Growth
+1 Return of the Wildspeaker
+1 Shamanic Revelation
+1 Sylvan Anthem
+1 Kodama's Reach
+1 Garruk's Uprising
+1 Overrun
+1 Elvish Promenade
+1 Command Tower
+6 Swamp
+1 Song of Freyalise
+1 Evolving Wilds
+1 Elven Chorus
+1 Blighted Woodland
+18 Forest
+1 Pride of the Perfect
+1 Bojuka Bog
+1 Myriad Landscape
+1 Llanowar Wastes
+1 Path of Ancestry
+1 Tainted Wood
+1 Jungle Hollow
+1 Terramorphic Expanse

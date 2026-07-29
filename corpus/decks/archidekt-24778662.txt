@@ -1,0 +1,81 @@
+# Archidekt — Shroofus Pump N Dump
+# source: archidekt:24778662
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Shroofus Sproutsire
+
+Deck:
+1 Access Tunnel
+1 Giant Growth
+28 Forest
+1 Rogue's Passage
+1 Three Tree City
+1 War Room
+1 Fountainport
+1 Pendelhaven
+1 Diamond City
+1 Kenrith's Transformation
+1 Evendo, Waking Haven
+1 Well Rested
+1 Utopia Sprawl
+1 Beastmaster Ascension
+1 Season of Growth
+1 Fungal Plots
+1 Level Up
+1 Blanchwood Armor
+1 Snake Umbra
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Wild Growth
+1 Springleaf Parade
+1 Bear Umbra
+1 Preposterous Proportions
+1 Unnatural Growth
+1 March of the World Ooze
+1 Shamanic Revelation
+1 Rishkar's Expertise
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Skullclamp
+1 Overwhelming Stampede
+1 Trailblazer's Boots
+1 Pip-Boy 3000
+1 Sol Ring
+1 Invigorate
+1 Eldrazi Monument
+1 Swiftfoot Boots
+1 Blossoming Defense
+1 Heroic Intervention
+1 Sword of the Squeak
+1 Banner of Kinship
+1 Might of Old Krosa
+1 Might of the Masses
+1 Return of the Wildspeaker
+1 Titanic Growth
+1 Primal Bellow
+1 Tyvar's Stand
+1 Vines of Vastwood
+1 Groundswell
+1 Collective Resistance
+1 Overprotect
+1 Fyndhorn Elves
+1 Tamiyo's Safekeeping
+1 Beast Within
+1 Essence Warden
+1 Boreal Druid
+1 Arbor Elf
+1 Arboreal Grazer
+1 Frenzied Baloth
+1 Toski, Bearer of Secrets
+1 Ohran Frostfang
+1 Champion of Lambholt
+1 Saryth, the Viper's Fang
+1 Elvish Mystic
+1 Enduring Vitality
+1 Llanowar Elves
+1 Tendershoot Dryad
+1 Thunderfoot Baloth
+1 Brightcap Badger // Fungus Frolic
+1 Sporecrown Thallid
+1 Guardian Augmenter
+1 Craterhoof Behemoth

@@ -1,0 +1,86 @@
+# Archidekt — To the rescue
+# source: archidekt:8359436
+# fetched: 2026-07-26
+# bracket: 2
+
+Commander:
+1 The Wandering Rescuer
+
+Deck:
+1 Pearl-Ear, Imperial Advisor
+1 Sigil of the Empty Throne
+1 Sram, Senior Edificer
+1 Indebted Spirit
+1 Blade-Blizzard Kitsune
+1 Dog Umbra
+1 Benevolent Blessing
+1 Knightly Valor
+1 Levitating Statue
+1 Cartographer's Hawk
+1 Drifting Meadow
+1 Hidden Courtyard
+1 Ethereal Armor
+1 The Eternal Wanderer
+1 Pearl Medallion
+1 Shardmage's Rescue
+1 Selfless Spirit
+1 Mass Calcify
+1 Glyph Elemental
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Desert of the True
+1 Brilliant Restoration
+1 Orzhov Advokist
+1 Farfinder
+1 Shrine Steward
+1 Spectral Grasp
+1 Armored Skyhunter
+1 Fog on the Barrow-Downs
+1 Ao, the Dawn Sky
+1 Due Diligence
+1 Heliod's Intervention
+1 Secluded Steppe
+1 Idyllic Grange
+1 Rune of Sustenance
+1 Candlelight Vigil
+1 Heavenly Blademaster
+1 Eriette's Lullaby
+1 Angelic Gift
+1 Suspicious Bookcase
+1 Unquestioned Authority
+1 Bound in Gold
+1 Mantle of the Ancients
+1 Sage's Reverie
+1 Mammoth Umbra
+1 Faith's Fetters
+1 One Last Job
+1 All That Glitters
+1 Transcendent Envoy
+1 Revitalize
+1 Hyena Umbra
+1 Conviction
+1 Filigree Familiar
+1 Gryff's Boon
+1 Cage of Hands
+1 Stoneskin
+1 Stroke of Midnight
+1 Danitha Capashen, Paragon
+1 Sheltered by Ghosts
+1 Patriot, Shield Wielder
+1 Light-Paws, Emperor's Voice
+1 Spirited Companion
+1 Archon of Sun's Grace
+1 Boon of the Spirit Realm
+1 Spectra Ward
+1 Rebuff the Wicked
+1 Mesa Enchantress
+1 Spirit Mantle
+1 On Serra's Wings
+1 Felidar Umbra
+22 Snow-Covered Plains

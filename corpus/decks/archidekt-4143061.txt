@@ -1,0 +1,72 @@
+# Archidekt — Thrun SMASH
+# source: archidekt:4143061
+# fetched: 2026-07-05
+
+Commander:
+1 Thrun, Breaker of Silence
+
+Deck:
+1 Abundance
+1 Acidic Slime
+1 Alpha Authority
+1 Ancestral Mask
+1 Ancient Animus
+1 Arbor Elf
+1 Arcane Signet
+1 Audacity
+1 Bellowing Tanglewurm
+1 Blackblade Reforged
+1 Blanchwood Armor
+1 Boar Umbra
+1 Cartouche of Strength
+1 Colossal Majesty
+1 Colossification
+1 Eidolon of Blossoms
+1 Elvish Mystic
+1 Enchantress's Presence
+1 Fertile Ground
+1 Fireshrieker
+36 Forest
+1 Forgotten Ancient
+1 Gift of Paradise
+1 Hydra's Growth
+1 In Search of Greatness
+1 Indomitable Might
+1 Keen Sense
+1 Kenrith's Transformation
+1 Krosan Grip
+1 Llanowar Elves
+1 Lure
+1 Myriad Landscape
+1 Nylea's Colossus
+1 Ordeal of Nylea
+1 Overgrowth
+1 Primal Bellow
+1 Primal Might
+1 Prodigious Growth
+1 Ram Through
+1 Rancor
+1 Ranger's Guile
+1 Regrowth
+1 Rofellos's Gift
+1 Rogue's Passage
+1 Sanctum Weaver
+1 Scavenging Ooze
+1 Seal of Primordium
+1 Setessan Champion
+1 Shigeki, Jukai Visionary
+1 Silkguard
+1 Sixth Sense
+1 Snake Umbra
+1 Sol Ring
+1 Soul's Majesty
+1 Spider Umbra
+1 Strata Scythe
+1 Tanuki Transplanter
+1 Thran Power Suit
+1 Thrun, the Last Troll
+1 Verduran Enchantress
+1 Wild Growth
+1 Wolfwillow Haven
+1 Yavimaya Enchantress
+1 Kami of Transience

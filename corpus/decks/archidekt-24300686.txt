@@ -1,0 +1,109 @@
+# Archidekt — Cat tribal
+# source: archidekt:24300686
+# fetched: 2026-07-17
+
+Commander:
+1 Jetmir, Nexus of Revels
+
+Deck:
+1 Skyshroud Claim
+1 Farseek
+1 Coat of Arms
+1 Chronicle of Victory
+1 Oketra's Monument
+1 Pearl Medallion
+1 Emerald Medallion
+1 Herald's Horn
+1 Jazal Goldmane
+1 Mirror Entity
+1 Flowering of the White Tree
+1 Vanquisher's Banner
+1 White Sun's Zenith
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Brimaz, King of Oreskos
+1 Enlightened Ascetic
+1 Jedit Ojanen of Efrava
+1 Leonin Warleader
+1 Nacatl War-Pride
+1 Ocelot Pride
+1 Phabine, Boss's Confidant
+1 Prideful Parent
+1 Regal Caracal
+1 Sally Pride, Lioness Leader
+1 Skyhunter Strike Force
+1 Tabaxi Toucaneers
+1 Scythecat Cub
+1 Sovereign Okinec Ahau
+1 Skyknight Squire
+1 Runadi, Behemoth Caller
+1 Wild Nacatl
+1 Alms Collector
+1 Realmwalker
+1 Bast, Panther Goddess
+1 Arahbo, Roar of the World
+1 Esika's Chariot
+1 Jinnie Fay, Jetmir's Second
+1 Jolrael, Mwonvuli Recluse
+1 Pride Sovereign
+1 Idol of Oblivion
+1 Rootborn Defenses
+1 Make a Stand
+1 Felidar Retreat
+1 Doubling Season
+1 Call the Coppercoats
+1 Anointed Procession
+1 Cathars' Crusade
+1 Akroma's Will
+1 Elspeth, Storm Slayer
+1 Second Harvest
+1 Renewed Solidarity
+1 Springleaf Parade
+1 Caretaker's Talent
+1 Mirri, Weatherlight Duelist
+1 Kutzil, Malamet Exemplar
+1 Marisi, Breaker of the Coil
+1 Helpful Hunter
+1 Parallel Lives
+1 Boros Charm
+1 Unbreakable Formation
+1 Heroic Intervention
+1 Lightning Greaves
+1 Skullclamp
+1 Qasali Ambusher
+1 Leonin Relic-Warder
+1 Qasali Slingers
+1 Keeper of Fables
+1 Pridemalkin
+1 Qasali Pridemage
+1 Seht's Tiger
+1 Metallic Mimic
+1 Path to Exile
+1 Swords to Plowshares
+1 Vanquish the Horde
+1 Farewell
+1 Tragic Arrogance
+1 Worldly Tutor
+1 Enlightened Tutor
+1 Eladamri's Call
+1 Clever Concealment
+1 Flare of Fortitude
+1 Dawn's Truce
+1 Teferi's Protection
+1 Crisis of Conscience
+1 Ezuri's Predation
+1 Sol Ring
+1 Arcane Signet
+1 Burgeoning
+1 Three Visits
+1 Cultivate
+1 Patchwork Banner
+1 King of the Pride
+1 Arahbo, the First Fang
+1 Nature's Lore
+1 Harvest Season
+1 Beastmaster Ascension
+1 Feline Sovereign
+1 Deflecting Swat
+1 Flawless Maneuver
+1 Whitemane Lion
+1 Temur Sabertooth

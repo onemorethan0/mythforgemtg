@@ -1,0 +1,100 @@
+# Archidekt — Betor
+# source: archidekt:24699454
+# fetched: 2026-07-26
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Crypt Ghast
+1 Bruna, the Fading Light
+1 Gisela, the Broken Blade
+1 Buried Alive
+1 Dauthi Voidwalker
+1 Elesh Norn, Grand Cenobite
+1 Icetill Explorer
+1 Blind Obedience
+1 Inkshield
+1 Voice of Victory
+1 Flowering of the White Tree
+1 Whip of Erebos
+1 Dawn's Truce
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Kutzil, Malamet Exemplar
+1 Boseiju, Who Endures
+1 The Great Henge
+1 Branching Evolution
+1 Birds of Paradise
+1 Noxious Revival
+1 Authority of the Consuls
+2 Forest
+2 Plains
+2 Swamp
+1 Ripples of Undeath
+1 Hermit Druid
+1 Kami of Whispered Hopes
+1 Mesmeric Orb
+1 Marsh Flats
+1 Godless Shrine
+1 Isolated Chapel
+1 Sunpetal Grove
+1 Windswept Heath
+1 Indatha Triome
+1 Verdant Catacombs
+1 Delighted Halfling
+1 Selfless Spirit
+1 Serra Ascendant
+1 Bountiful Promenade
+1 Overgrown Tomb
+1 Heliod, Sun-Crowned
+1 Soul Warden
+1 Haywire Mite
+1 Command Tower
+1 Exotic Orchard
+1 Temple Garden
+1 Woodland Cemetery
+1 Overgrown Farmland
+1 Undergrowth Stadium
+1 Vault of Champions
+1 Lush Portico
+1 Bayou
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Underground Mortuary
+1 Shadowy Backstreet
+1 Shattered Sanctum
+1 Savannah
+1 Scrubland
+1 Deathcap Glade
+1 Disciple of Freyalise // Garden of Freyalise
+1 Hushwood Verge
+1 Bleachbone Verge
+1 Wastewood Verge
+1 Sol Ring
+1 Nyxbloom Ancient
+1 Archon of Cruelty
+1 Stinkweed Imp
+1 Cemetery Tampering
+1 Golgari Grave-Troll
+1 Valgavoth, Terror Eater
+1 Out of the Tombs
+1 Living Death
+1 Essence Warden
+1 Life from the Loam
+1 Cultivate
+1 Kodama's Reach
+1 Avacyn, Angel of Hope
+1 Black Market Connections
+1 Rhox Faithmender
+1 Dark Confidant
+1 Vilis, Broker of Blood
+1 Exemplar of Light
+1 Archangel of Thune
+1 Esper Sentinel
+1 Evolution Witness
+1 Disenchant
+1 Deadly Rollick
+1 Flare of Cultivation
+1 Baleful Mastery
+1 Swords to Plowshares

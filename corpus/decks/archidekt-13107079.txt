@@ -1,0 +1,101 @@
+# Archidekt — Counter Blitz - Final Fantasy Commander
+# source: archidekt:13107079
+# fetched: 2026-07-05
+
+Commander:
+1 Tidus, Yuna's Guardian
+
+Deck:
+1 Altered Ego
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Ash Barrens
+1 Auron, Venerated Guardian
+1 Bane of Progress
+1 Blitzball Stadium
+1 Bred for the Hunt
+1 Brushland
+1 Canopy Vista
+1 Chasm Skulker
+1 Chocobo Knights
+1 Collective Effort
+1 Damning Verdict
+1 Destroy Evil
+1 Duskshell Crawler
+1 Command Tower
+1 Endless Detour
+1 Everflowing Chalice
+1 Evolving Wilds
+1 Exotic Orchard
+1 Farewell
+1 Farseek
+1 Fathom Mage
+1 Fight Rigging
+1 Flooded Grove
+1 Forge of Heroes
+1 Forgotten Ancient
+1 Fortified Village
+3 Forest
+1 Gatta and Luzzu
+1 Generous Patron
+1 Glacial Fortress
+1 Grateful Apparition
+1 Gyre Sage
+1 Hardened Scales
+1 Hinterland Harbor
+1 Idyllic Beachfront
+1 Incubation Druid
+1 Inexorable Tide
+1 Inspiring Call
+1 Kimahri, Valiant Guardian
+1 Lord Jyscal Guado
+1 Lulu, Stern Guardian
+1 Luminous Broodmoth
+1 Maester Seymour
+1 Nesting Grounds
+1 O'aka, Traveling Merchant
+1 Overflowing Basin
+1 Path of Ancestry
+1 Path of Discovery
+1 Path to Exile
+1 Port Town
+1 Prairie Stream
+1 Promise of Loyalty
+1 Protection Magic
+1 Pull from Tomorrow
+1 Radiant Grove
+1 Rampant Rejuvenator
+1 Resourceful Defense
+1 Rikku, Resourceful Guardian
+1 Scholar of New Horizons
+1 Seaside Citadel
+1 Shelinda, Yevon Acolyte
+1 Sin, Unending Cataclysm
+1 Skycloud Expanse
+1 Sphere Grid
+1 Summon: Ixion
+1 Summon: Magus Sisters
+1 Summon: Valefor
+1 Summon: Yojimbo
+1 Summoner's Sending
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorch Regent
+1 Tangled Islet
+1 Temple of Enlightenment
+1 Temple of Mystery
+1 Temple of Plenty
+1 Temple of the False God
+1 Three Visits
+1 Tireless Tracker
+1 Together Forever
+1 Tromell, Seymour's Butler
+1 Vineglimmer Snarl
+1 Wakka, Devoted Guardian
+1 Walking Ballista
+1 Yuna's Decision
+1 Yuna's Whistle
+1 Yuna, Grand Summoner
+1 Sol Ring
+3 Island
+3 Plains

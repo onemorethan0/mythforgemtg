@@ -1,0 +1,106 @@
+# Archidekt — Waterbender's Hope
+# source: archidekt:24785151
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Katara, Water Tribe's Hope
+
+Deck:
+1 Aang's Iceberg
+1 North Pole Patrol
+1 Water Whip
+1 Waterbender's Restoration
+1 Flexible Waterbender
+1 Giant Koi
+1 Secret of Bloodbending
+1 Spirit Water Revival
+1 Geyser Leaper
+1 Waterbender Ascension
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 The Legend of Kuruk // Avatar Kuruk
+1 Benevolent River Spirit
+1 Invasion Submersible
+1 Waterbending Lesson
+1 Crashing Wave
+1 Water Tribe Rallier
+1 The Unagi of Kyoshi Island
+1 Katara, Bending Prodigy
+1 Swords to Plowshares
+1 Watery Grasp
+1 Swiftfoot Boots
+1 Yue, the Moon Spirit
+1 Command Tower
+1 Captain America, Living Legend
+1 Invasion Reinforcements
+1 Sokka, Lateral Strategist
+1 Adeline, Resplendent Cathar
+1 Path to Exile
+1 Forecasting Fortune Teller
+1 Counterspell
+1 United Front
+1 Prairie Stream
+1 Tranquil Cove
+1 Secure the Wastes
+1 Grand Crescendo
+1 Deserted Beach
+1 Glacial Fortress
+1 Flooded Strand
+1 Adarkar Wastes
+1 Teferi's Protection
+1 Cyclonic Rift
+1 North Pole Gates
+1 Hengegate Pathway // Mistgate Pathway
+1 Port Town
+1 Sea of Clouds
+1 Hallowed Fountain
+1 White Lotus Hideout
+1 Skycloud Expanse
+1 Idyllic Beachfront
+1 Glacial Floodplain
+1 Mystic Gate
+1 Azorius Chancery
+1 Temple of Enlightenment
+1 Floodfarm Verge
+1 Nimbus Maze
+1 Razortide Bridge
+1 Irrigated Farmland
+1 Jasmine Dragon Tea Shop
+1 Thriving Isle
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Sink into Stupor // Soporific Springs
+1 Thriving Heath
+1 Meticulous Archive
+1 Tundra
+1 Abandoned Air Temple
+1 Kabira Takedown // Kabira Plateau
+1 Agna Qel'a
+1 The Mechanist, Aerial Artisan
+1 Compassionate Healer
+1 South Pole Voyager
+1 Tui and La, Moon and Ocean
+1 Plains
+3 Island
+1 Suki, Courageous Rescuer
+1 Gran-Gran
+1 White Lotus Tile
+1 Sol Ring
+1 Hakoda, Selfless Commander
+1 Octopus Form
+1 Call the Coppercoats
+1 Katara, Heroic Healer
+1 Aang, Air Nomad
+1 Ty Lee, Chi Blocker
+1 Katara, Waterbending Master
+1 It'll Quench Ya!
+1 Waterbending Scroll
+1 Bender's Waterskin
+1 Accumulate Wisdom
+1 Katara's Reversal
+1 Boomerang Basics
+1 Yip Yip!
+1 Fancy Footwork
+1 Sokka's Haiku
+1 Lost Days
+1 Smothering Tithe
+1 Seachrome Coast

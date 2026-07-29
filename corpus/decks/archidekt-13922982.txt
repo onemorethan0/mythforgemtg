@@ -1,0 +1,91 @@
+# Archidekt — Road Trips with Noctis
+# source: archidekt:13922982
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Noctis, Heir Apparent
+
+Deck:
+3 Swamp
+1 Arcane Signet
+1 The Gold Saucer
+1 Dimir Signet
+1 The Regalia
+1 Ardyn, the Usurper
+1 Campfire
+1 Instant Ramen
+1 Malboro
+1 Vorpal Sword
+1 Dragonfire Blade
+1 Ninja's Blades
+1 Werefox Bodyguard
+1 Commander's Sphere
+1 Sunken Hollow
+1 Machinist's Arsenal
+1 Auron, Venerated Guardian
+1 Iron Giant
+1 Fishing Gear
+1 Dockside Chef
+1 Weapons Vendor
+1 Sword of the Chosen
+1 Sol Ring
+1 Flash Photography
+1 Noctis, Prince of Lucis
+1 Warrior's Resolve
+1 Mjölnir, Storm Hammer
+1 Azorius Cluestone
+1 Azorius Locket
+1 Blitzball
+1 Talisman of Hierarchy
+1 Orzhov Locket
+1 Treno, Dark City
+1 Temple of Silence
+1 Sharlayan, Nation of Scholars
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Prairie Stream
+1 Ashe, Princess of Dalmasca
+1 Scepter of Insight
+1 Tidus, Blitzball Star
+1 Damn
+1 Praetor's Grasp
+1 Viridian Longbow
+1 From Father to Son
+1 Cid, Timeless Artificer
+1 Summon: Leviathan
+1 Forge Anew
+1 Coeurl
+1 Darien, King of Kjeldor
+1 Akroma's Will
+1 Quick-Draw Katana
+1 Bastion Protector
+1 Command Tower
+1 Travel the Overworld
+1 Combat Tutorial
+6 Island
+1 Crossroads Village
+1 Jidoor, Aristocratic Capital // Overture
+1 Ishgard, the Holy See // Faith & Grief
+1 Midgar, City of Mako // Reactor Raid
+1 Starting Town
+1 Shield of the Avatar
+1 Varragoth, Bloodsky Sire
+1 Leyline Axe
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Sea of Clouds
+1 Insomnia, Crown City
+1 Kain, Traitorous Dragoon
+1 Capital City
+1 Void Rend
+1 Ring of the Lucii
+1 Spring-Loaded Sawblades // Bladewheel Chariot
+1 Anguished Unmaking
+11 Plains
+1 Sram, Senior Edificer
+1 Tormentor's Trident
+1 Sword of Vengeance
+1 Wizened Mentor
+1 Memories Returning
+1 Orzhov Signet
+1 Path of Ancestry

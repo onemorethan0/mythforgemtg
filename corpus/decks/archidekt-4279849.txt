@@ -1,0 +1,108 @@
+# Archidekt — 1. Life is a Scry-way
+# source: archidekt:4279849
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Trelasarra, Moon Dancer
+
+Deck:
+1 The Gaffer
+1 Leonin Elder
+1 Beast Whisperer
+1 Ashes of the Abhorrent
+1 Aunt May
+1 Righteous Cause
+1 Essence Channeler
+1 Powerleech
+1 Ajani, Strength of the Pride
+1 Ancient Tomb
+1 Yavimaya, Cradle of Growth
+1 Shefet Dunes
+1 Branchloft Pathway // Boulderloft Pathway
+1 Brushland
+1 Heliod, Sun-Crowned
+1 Exemplar of Light
+1 Swords to Plowshares
+1 The One Ring
+1 Ajani's Pridemate
+1 Kodama of the West Tree
+1 Beast Within
+1 Voice of the Blessed
+1 Return of the Wildspeaker
+1 Archivist of Oghma
+1 Generous Gift
+1 Serra Ascendant
+1 Sylvan Library
+1 Temple Garden
+1 Soul's Attendant
+1 Bountiful Promenade
+1 Rogue's Passage
+1 Healer's Hawk
+1 Auriok Champion
+1 Augur of Autumn
+1 Overgrown Farmland
+1 Canopy Vista
+1 Horizon Canopy
+1 Windswept Heath
+1 Sunpetal Grove
+1 Command Tower
+1 Wooded Bastion
+1 Hashep Oasis
+1 Plains
+1 Forest
+1 Plains
+1 Plains
+1 Forest
+1 Plains
+1 Forest
+1 Plains
+1 Plains
+1 Hushwood Verge
+1 Plains
+1 Forest
+1 Abiding Grace
+1 Sevinne's Reclamation
+1 Savannah
+1 Forest
+1 Path to Exile
+1 Aerith Gainsborough
+1 Plains
+1 Haliya, Guided by Light
+1 Celestine, the Living Saint
+1 Essence Warden
+1 Lunarch Veteran // Luminous Phantom
+1 Soul Warden
+1 Authority of the Consuls
+1 Hinterland Sanctifier
+1 Haywire Mite
+1 Scavenging Ooze
+1 Case of the Uneaten Feast
+1 Shadowspear
+1 Enduring Innocence
+1 Terrasymbiosis
+1 Solitude
+1 City of Brass
+1 Plains
+1 The Destined White Mage
+1 Spry and Mighty
+1 Virulent Emissary
+1 Mikey & Leo, Chaos & Order
+1 Avatar's Wrath
+1 Guide of Souls
+1 Mana Confluence
+1 Plains
+1 Sungrass Prairie
+1 Tigra, Feline Fury
+1 Dr. Beverly Crusher
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Pest Infestation
+1 The Great Henge
+1 Leonardo, Cutting Edge
+1 Elenda's Hierophant
+1 Suture Priest
+1 Herd Heirloom
+1 Ajani Resolute
+1 Enlightened Confidant
+1 Liliana the Faultless
+1 The Queen of Dale

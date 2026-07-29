@@ -1,0 +1,91 @@
+# Archidekt — Bracket 1 Progenitus
+# source: archidekt:14804914
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Progenitus
+
+Deck:
+2 Cid, Timeless Artificer
+2 Rat Colony
+2 Hare Apparent
+2 Shadowborn Apostle
+2 Relentless Rats
+2 Tempest Hawk
+2 Dragon's Approach
+2 Nazgûl
+2 Slime Against Humanity
+2 Persistent Petitioners
+2 Swamp
+2 Seven Dwarves
+2 Templar Knight
+2 Mountain
+2 Plains
+2 Island
+2 Forest
+1 Bomat Bazaar Barge
+1 Consulate Dreadnought
+1 Adrestia
+1 Dusk Legion Dreadnought
+1 Fell Flagship
+1 Conqueror's Galleon // Conqueror's Foothold
+1 Llanowar Elves
+1 Funeral Longboat
+1 Elvish Mystic
+1 Jackdaw
+1 Marauding Dreadship
+1 Foreboding Steamboat
+1 Raiders' Karve
+1 Subterranean Schooner
+1 Magmatic Galleon
+1 Shadowed Caravel
+1 The Indomitable
+1 Sleek Schooner
+1 The Belligerent
+1 Cultivate
+1 Kodama's Reach
+1 Idyllic Beachfront
+1 Arctic Treeline
+1 Contaminated Aquifer
+1 Geothermal Bog
+1 Glacial Floodplain
+1 Tangled Islet
+1 Molten Tributary
+1 Wooded Ridgeline
+1 Rimewood Falls
+1 Volatile Fjord
+1 Sacred Peaks
+1 Radiant Grove
+1 Ice Tunnel
+1 Highland Forest
+1 Alpine Meadow
+1 Sunlit Marsh
+1 Haunted Mire
+1 Sulfurous Mire
+1 Woodland Chasm
+1 Snowfield Sinkhole
+1 Grizzly Bears
+1 Bear Cub
+1 Anaconda
+1 Wild Ox
+1 Oreskos Swiftclaw
+1 Blade of the Sixth Pride
+1 Ekundu Griffin
+1 Goblin Roughrider
+1 Razorfoot Griffin
+1 Goblin Cavaliers
+1 Defang
+1 Muzzle
+1 Rupture Spire
+1 Pongify
+1 Nature's Lore
+1 Three Visits
+1 Rapid Hybridization
+1 Transguild Promenade
+1 Wanderer's Twig
+1 Traveler's Amulet
+1 Blossoming Sands
+1 Graypelt Refuge
+1 Lightning Blast
+1 Flame Lash

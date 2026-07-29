@@ -1,0 +1,78 @@
+# Archidekt — Goblin bomb
+# source: archidekt:5594131
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Brudiclad, Telchor Engineer
+
+Deck:
+1 Court of Vantress
+1 Replication Technique
+1 Goblin Bomb
+1 Lithoform Engine
+1 Astral Dragon
+1 Extravagant Replication
+1 Sol Ring
+1 Tibalt's Trickery
+1 Chaos Warp
+1 Blasphemous Act
+1 Liquimetal Torque
+1 Descent into Avernus
+1 Wayfarer's Bauble
+1 Izzet Signet
+1 Arcane Signet
+1 Karn's Bastion
+1 Fellwar Stone
+1 Aetherize
+1 Mind Stone
+1 Windfall
+1 Thirst for Knowledge
+1 Big Score
+1 Seize the Spoils
+1 Pirate's Pillage
+1 Unexpected Windfall
+1 Seize the Spotlight
+1 Pirate's Prize
+1 Prismari Command
+1 Thopter Spy Network
+1 Sky Diamond
+1 Fire Diamond
+1 Urza's Command
+1 Stern Lesson
+1 Sai, Master Thopterist
+1 Quarrel's End
+1 Perplexing Test
+1 Silverbluff Bridge
+1 Seat of the Synod
+1 Ripples of Potential
+1 There and Back Again
+1 Breeches, the Blastmaker
+1 Drafna, Founder of Lat-Nam
+1 Storm of Saruman
+1 Reenact the Crime
+1 Scalding Tongs
+1 Poetic Ingenuity
+1 Korvold and the Noble Thief
+1 Visions of Phyrexia
+1 Asinine Antics
+1 Faerie Slumber Party
+1 Evacuation
+1 Commander's Sphere
+1 The Brothers' War
+13 Mountain
+14 Island
+1 Tezzeret's Gambit
+1 See Double
+1 Shivan Reef
+1 Aetherspouts
+1 Sulfur Falls
+1 Mystic Confluence
+1 Inspired Tinkering
+1 Command Tower
+1 Mirrorpool
+1 Hall of Tagsin
+1 Tomb of Horrors Adventurer
+1 Spell Swindle
+1 Talisman of Creativity
+1 Dwarven Mine

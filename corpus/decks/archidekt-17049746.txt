@@ -1,0 +1,104 @@
+# Archidekt — Build-A-Bear Anime Protagonist
+# source: archidekt:17049746
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Flaming Fist
+1 Wilson, Refined Grizzly
+
+Deck:
+1 Burgeoning
+1 Strong Back
+1 Hushwood Verge
+1 Lion Sash
+1 Brotherhood Regalia
+1 Beast Within
+1 Open the Armory
+1 Strength of the Harvest // Haven of the Harvest
+1 Command Tower
+1 Angel's Grace
+1 Trailblazer's Boots
+1 Codsworth, Handy Helper
+1 Sol Ring
+1 Lush Portico
+1 Stoneforge Mystic
+1 Ancestral Mask
+1 Scavenger Grounds
+1 Urza's Saga
+1 Arcane Lighthouse
+1 Birds of Paradise
+1 Esper Sentinel
+1 Kutzil, Malamet Exemplar
+1 Alpha Authority
+1 Thran Power Suit
+1 Horizon Canopy
+1 Enduring Vitality
+1 Retether
+1 Gathering Place
+1 Songbirds' Blessing
+1 Brushland
+1 Buster Sword
+1 Trouble in Pairs
+1 Delighted Halfling
+1 Yavimaya, Cradle of Growth
+1 Sheltered by Ghosts
+1 Shadowspear
+1 Spirit Mantle
+1 Sage's Reverie
+1 Nettlecyst
+1 Petrified Hamlet
+1 Idyllic Tutor
+1 Archdruid's Charm
+1 Helm of the Gods
+1 Cloak of the Bat
+1 Sram, Senior Edificer
+1 Hall of Heliod's Generosity
+1 Power Fist
+1 All That Glitters
+1 Mantle of the Ancients
+1 Brilliant Wings
+1 Silver Shroud Costume
+1 Bountiful Promenade
+1 Heroic Intervention
+1 Commander's Plate
+1 Ghostly Prison
+1 Mithril Coat
+1 Super State
+1 Sigarda's Aid
+1 Sythis, Harvest's Hand
+1 Secluded Starforge
+1 Sterling Grove
+1 City of Brass
+1 Reflecting Pool
+1 Flawless Maneuver
+1 Windswept Heath
+1 Buried Ruin
+1 Temple Garden
+1 Ethereal Armor
+1 Savannah
+1 Boseiju, Who Endures
+1 Rogue's Passage
+1 Voice of Victory
+1 Wooded Bastion
+1 Danitha, New Benalia's Light
+1 Selesnya Sanctuary
+1 Forest
+1 Mana Confluence
+1 Cosmic Cube
+1 Panther Habit
+1 Unquestioned Authority
+1 Jennifer Walters // The Sensational She-Hulk
+1 Enchantress's Presence
+5 Plains
+1 Inventors' Fair
+1 Reliquary Tower
+1 Grand Abolisher
+1 Swordsman's Steel
+1 Avatar's Wrath
+1 Steelshaper's Gift
+1 Darksteel Mutation
+1 Demolition Field
+1 Sylvan Library
+1 Gleaming Splendor
+1 Monologue Tax

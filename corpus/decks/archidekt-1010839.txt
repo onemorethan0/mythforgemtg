@@ -1,0 +1,87 @@
+# Archidekt — 2 Shelob, Child of Ungoliant
+# source: archidekt:1010839
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Return to Nature
+1 Bind
+1 Deathcap Glade
+1 Jungle Hollow
+1 Undergrowth Stadium
+1 Haunted Mire
+1 Tangle
+1 Shelob, Dread Weaver
+1 Arachnogenesis
+1 Emerald Medallion
+1 Crawlspace
+1 Overgrown Tomb
+1 Terrifying Presence
+1 Grim Backwoods
+1 Arachnus Web
+1 Verdant Catacombs
+1 Golgari Signet
+1 Silklash Spider
+1 Tranquil Thicket
+1 Spitting Spider
+1 Wild Growth
+1 Hatchery Spider
+1 Nurturing Peatland
+1 Rotwidow Pack
+1 Twin-Silk Spider
+1 Arasta of the Endless Web
+1 Sporeweb Weaver
+1 Sweet-Gum Recluse
+1 Eaten by Spiders
+1 Lolth, Spider Queen
+1 Prey Upon
+1 Sylvan Safekeeper
+1 Brood Weaver
+1 Stinging Study
+1 Skyfisher Spider
+1 Swamp
+1 Masked Vandal
+1 Harmonize
+1 Genesis Hydra
+1 Gloomwidow's Feast
+1 Realmwalker
+1 Beast Whisperer
+1 Arachnus Spinner
+1 Curse of Clinging Webs
+1 Severed Strands
+1 Llanowar Wastes
+1 Yavimaya, Cradle of Growth
+1 Penumbra Spider
+1 Nyx Weaver
+1 Deadly Recluse
+1 Wayfarer's Bauble
+1 Talisman of Resilience
+1 Woodland Cemetery
+1 Underground Mortuary
+1 Sylvan Library
+1 Chainweb Aracnir
+1 Lost in the Woods
+1 Doom Weaver
+1 Twilight Mire
+1 Soul of the Harvest
+1 Spider Food
+1 Ishkanah, Grafwidow
+1 Rampant Growth
+23 Forest
+1 Cultivate
+1 Swarmyard
+1 Grisly Salvage
+1 Broodspinner
+1 Izoni, Center of the Web
+1 Spinner of Souls
+1 Nature's Lore
+1 Driven // Despair
+1 Subtle Strike
+1 Spider Spawning
+1 Find // Finality
+1 Moldering Gym // Weight Room
+1 Barren Moor
+1 Supper for Spiders

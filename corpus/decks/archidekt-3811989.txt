@@ -1,0 +1,89 @@
+# Archidekt — Jon Irenicus, Shattered One
+# source: archidekt:3811989
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Infernal Grasp
+1 Watery Grave
+1 Shipwreck Marsh
+1 Morphic Pool
+1 Homeward Path
+1 Rogue's Passage
+1 Drowned Catacomb
+1 Bojuka Bog
+1 Underground River
+1 Ghost Quarter
+1 Spellskite
+1 Gisa, Glorious Resurrector
+1 Sygg, River Cutthroat
+1 Run Away Together
+1 Aetherize
+1 Dark Ritual
+1 Thought Devourer
+1 Arcane Signet
+1 Sol Ring
+1 Talisman of Dominance
+1 Gloomlake Verge
+1 Rot-Curse Rakshasa
+1 Tainted Isle
+1 No Mercy
+1 Dimir Signet
+1 Mithril Coat
+1 Crawlspace
+1 Assault Suit
+1 Thran Dynamo
+1 Curse of Verbosity
+1 Dissipation Field
+1 Ghoulish Impetus
+1 Fateful Handoff
+1 Irenicus's Vile Duplication
+1 Modify Memory
+1 Arcane Denial
+1 Countersquall
+1 Reins of Power
+1 Wrong Turn
+1 Withering Torment
+1 Abyssal Persecutor
+1 Demonic Taskmaster
+1 Drinker of Sorrow
+1 Ebon Drake
+1 Ebonblade Reaper
+1 Evil Eye of Urborg
+1 Greater Harvester
+1 Master of the Feast
+1 Phyrexian Negator
+1 Phyrexian Soulgorger
+1 Phyrexian Vatmother
+1 Rotting Regisaur
+1 Wretched Anurid
+1 Tragedy Feaster
+1 Sower of Discord
+1 Phyrexian Obliterator
+1 Sudden Spoiling
+1 Wan Shi Tong, Librarian
+1 Oft-Nabbed Goat
+1 Reanimate
+1 Insatiable Avarice
+1 Lord of the Pit
+1 Archfiend of the Dross
+1 Eye of Nidhogg
+1 Heartless Summoning
+1 Bloodthirsty Blade
+1 Desecration Elemental
+1 Necropotence
+1 Blasphemous Edict
+1 Maze of Ith
+1 Reliquary Tower
+3 Island
+18 Swamp
+1 Command Tower
+1 Alexi's Cloak
+1 Blessing of Leeches
+1 Evil Eye of Orms-by-Gore
+1 Resculpt
+1 Painwracker Oni
+1 Flesh Reaver

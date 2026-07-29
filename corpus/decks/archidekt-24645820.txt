@@ -1,0 +1,79 @@
+# Archidekt — Okay that's it I'm finally making this deck ugh
+# source: archidekt:24645820
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Baral, Chief of Compliance
+
+Deck:
+1 Ertai's Scorn
+1 Disallow
+1 Rewind
+1 Unwind
+1 Counterspell
+1 Disdainful Stroke
+1 Tale's End
+1 Archmage Emeritus
+30 Island
+1 Negate
+1 Transcendent Dragon
+1 Wayfarer's Bauble
+1 Talrand, Sky Summoner
+1 Guile
+1 Wavebreak Hippocamp
+1 Arcane Denial
+1 Myriad Landscape
+1 Archmage of Runes
+1 Sapphire Medallion
+1 Archaeomancer
+1 Lullmage Mentor
+1 Shark Typhoon
+1 Reliquary Tower
+1 Mystic Sanctuary
+1 Thought Vessel
+1 Jace's Sanctum
+1 Jace, Wielder of Mysteries
+1 Sol Ring
+1 Otawara, Soaring City
+1 Bender's Waterskin
+1 Victory Chimes
+1 Arcane Signet
+1 Propaganda
+1 Maze of Ith
+1 Laboratory Maniac
+1 Precognition Field
+1 Coveted Jewel
+1 Ghostly Flicker
+1 Omniscience
+1 Declaration of Naught
+1 Teferi's Ageless Insight
+1 Telepathy
+1 Ominous Seas
+1 Snap
+1 Displace
+1 Step Through
+1 Peregrine Drake
+1 Gilded Lotus
+1 Solemn Simulacrum
+1 Illusionist's Stratagem
+1 Mindsplice Apparatus
+1 Mischievous Mystic
+1 Murmuring Mystic
+1 Hermes, Overseer of Elpis
+1 Emrakul's Messenger
+1 Three Steps Ahead
+1 Essence Scatter
+1 Insidious Will
+1 Saw It Coming
+1 Mana Sculpt
+1 Cryptic Command
+1 Cancel
+1 Reality Shift
+1 Wizard's Retort
+1 Brush Off
+1 Flare of Denial
+1 Neutralize
+1 Aetherize
+1 Stinging Lionfish
+1 Vnwxt, Verbose Host

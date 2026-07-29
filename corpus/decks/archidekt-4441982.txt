@@ -1,0 +1,85 @@
+# Archidekt — Yargle
+# source: archidekt:4441982
+# fetched: 2026-07-05
+
+Commander:
+1 Yargle and Multani
+
+Deck:
+1 Exponential Growth
+1 Exsanguinate
+1 Fake Your Own Death
+1 Snakeskin Veil
+1 Sol Ring
+1 Arbor Elf
+1 Arboreal Grazer
+1 Arcane Signet
+1 Beast Within
+1 Bojuka Bog
+1 Colossal Majesty
+1 Command Tower
+1 Commander's Sphere
+1 Culling Ritual
+1 Cultivate
+1 Deathsprout
+1 Disciple of Bolas
+1 Dying Wish
+1 Elvish Mystic
+1 End-Raze Forerunners
+1 Essence Harvest
+1 Eternal Witness
+1 Exotic Orchard
+1 Explore
+1 Feign Death
+1 Fellwar Stone
+1 Field of Ruin
+12 Forest
+1 Fungal Sprouting
+1 Gaea's Gift
+1 Gemrazer
+1 Geode Golem
+1 Ghoulcaller Gisa
+1 Go for the Throat
+1 Golgari Rot Farm
+1 Golgari Signet
+1 Goreclaw, Terror of Qal Sisma
+1 Harrow
+1 Haunted Mire
+1 Jarad, Golgari Lich Lord
+1 Jungle Hollow
+1 Kaya's Ghostform
+1 Kenrith's Transformation
+1 Kodama's Reach
+1 Korozda Guildmage
+1 Languish
+1 Life's Legacy
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Migratory Greathorn
+1 Mind Stone
+1 Minion's Return
+1 Mosswort Bridge
+1 Myriad Landscape
+1 Overwhelming Stampede
+1 Putrefy
+1 Rampant Growth
+1 Reclamation Sage
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Rite of Consumption
+1 Rogue's Passage
+1 Ruthless Technomancer
+1 Ruxa, Patient Professor
+1 Sign in Blood
+1 Solemn Simulacrum
+11 Swamp
+1 Swiftfoot Boots
+1 Tainted Wood
+1 Talisman of Resilience
+1 Tanuki Transplanter
+1 Tear Asunder
+1 Temple of Malady
+1 Tend the Pests
+1 Traverse the Outlands
+1 Tyvar's Stand
+1 Yargle, Glutton of Urborg

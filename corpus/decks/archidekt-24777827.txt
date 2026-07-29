@@ -1,0 +1,92 @@
+# Archidekt — Goadwrecker
+# source: archidekt:24777827
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Red Death, Shipwrecker
+
+Deck:
+1 Abrade
+1 Acquired Mutation
+1 Aetherize
+1 Agitator Ant
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Arcane Signet
+1 Baeloth Barrityl, Entertainer
+1 Blasphemous Act
+1 Bloodthirsty Blade
+1 Bothersome Quasit
+1 Brainstorm
+1 Chaos Warp
+1 Command Tower
+1 Coronation of Chaos
+1 Counterspell
+1 Curse of Opulence
+1 Curse of Verbosity
+1 Death Kiss
+1 Disrupt Decorum
+1 Dissipation Field
+1 Emberwilde Captain
+1 Exotic Orchard
+1 Faithless Looting
+1 Fell Beast's Shriek
+1 Fiendish Duo
+1 Fiery Islet
+1 Firkraag, Cunning Instigator
+1 Forensic Researcher
+1 Frantic Search
+1 Freed from the Real
+1 Frontier Warmonger
+1 Frostboil Snarl
+1 Geode Rager
+1 Grenzo, Havoc Raiser
+1 Havoc Eater
+1 Hot Pursuit
+1 Ioreth of the Healing House
+3 Island
+3 Island
+3 Island
+3 Island
+1 Izzet Boilerworks
+1 Kazuul, Tyrant of the Cliffs
+1 Komainu Battle Armor
+1 Life of the Party
+1 Maeve, Insidious Singer
+1 Mind Stone
+1 Mocking Doppelganger
+3 Mountain
+3 Mountain
+3 Mountain
+3 Mountain
+1 Myriad Landscape
+1 Negate
+1 Patriar's Seal
+1 Pemmin's Aura
+1 Pongify
+1 Propaganda
+1 Psychic Impetus
+1 Reality Shift
+1 Reliquary Tower
+1 Scrawling Crawler
+1 Shiny Impetus
+1 Shivan Reef
+1 Shore Up
+1 Sly Instigator
+1 Sol Ring
+1 Spectacular Showdown
+1 Steam Vents
+1 Sting, the Glinting Dagger
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Swiftfoot Boots
+1 Talisman of Creativity
+1 Taunting Kobold
+1 Temple of Epiphany
+1 The Unagi of Kyoshi Island
+1 Thought Vessel
+1 Thundering Falls
+1 Vengeful Ancestor
+1 Windfall
+1 Zurzoth, Chaos Rider

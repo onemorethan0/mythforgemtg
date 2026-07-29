@@ -1,0 +1,26 @@
+{
+  "card": {
+    "name": "Sakura-Tribe Elder",
+    "mana_cost": "{1}{G}",
+    "type_line": "Creature — Snake Shaman",
+    "oracle_text": "Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+    "power": "1",
+    "toughness": "1"
+  },
+  "ccm": {
+    "name": "Sakura-Tribe Elder",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{1}{G}"},
+    "types": ["creature"],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {"sacrifice_self": true},
+        "effects": [
+          {"op": "search_library", "what": {"type": "land", "subtype": "basic"}, "count": 1, "to": "battlefield", "tapped": true, "shuffle": true}
+        ]
+      }
+    ]
+  }
+}

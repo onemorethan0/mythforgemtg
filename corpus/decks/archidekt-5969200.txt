@@ -1,0 +1,99 @@
+# Archidekt — 4. John "Before Damage" Benton
+# source: archidekt:5969200
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Sergeant John Benton
+
+Deck:
+1 Embiggen
+1 Empyrial Armor
+1 Empyrial Plate
+1 Inner Calm, Outer Strength
+1 Wild Defiance
+1 Reliquary Tower
+1 Llanowar Elves
+1 Duelist's Heritage
+1 Phytoburst
+1 Flaming Fist
+1 Might of the Nephilim
+1 Tamiyo's Safekeeping
+1 Ranger's Guile
+1 Scent of Ivy
+1 Tyvar's Stand
+1 Scale Up
+1 Exploration
+1 Titanic Growth
+1 Arbor Elf
+1 Swords to Plowshares
+1 Path to Exile
+1 Blossoming Defense
+1 Summer Bloom
+1 Spellbook
+1 Revive
+1 Regrowth
+1 Groundswell
+1 Birds of Paradise
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Choose Your Weapon
+1 Bounty of the Hunt
+1 Become Immense
+1 Collective Resistance
+1 Snakeskin Veil
+1 Elvish Mystic
+1 Vines of Vastwood
+1 Wild Growth
+1 Fyndhorn Elves
+1 Might of Old Krosa
+1 Overprotect
+1 Ram Through
+1 Command Tower
+1 Hushwood Verge
+1 Sol Ring
+1 Blacksmith's Skill
+1 Defend the Rider
+1 Delighted Halfling
+1 Razorverge Thicket
+1 Horizon Canopy
+1 Branchloft Pathway // Boulderloft Pathway
+1 Dual-Sun Technique
+1 Voice of Victory
+1 Grow Extra Arms
+1 Avacyn's Pilgrim
+1 Chrome Mox
+1 Crop Rotation
+1 Gift of the Viper
+1 Enlightened Tutor
+1 Heliod, Sun-Crowned
+1 Lotus Petal
+1 Elvish Spirit Guide
+1 Invigorate
+1 Walking Ballista
+1 Mutagenic Growth
+1 Rustler Rampage
+1 Tifa's Limit Break
+1 Feral Ferocity
+7 Forest
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Graduation Day
+1 Giant Growth
+1 Forbidden Orchard
+1 Berserk
+1 Royal Treatment
+1 Savannah
+1 Mana Confluence
+4 Plains
+1 City of Brass
+1 Yavimaya, Cradle of Growth
+1 Verdant Catacombs
+1 Temple Garden
+1 Windswept Heath
+1 Misty Rainforest
+1 Prismatic Vista
+1 Gemstone Caverns
+1 Bountiful Promenade
+1 Wooded Foothills
+1 Brushland
+1 Boseiju, Who Endures
+1 Utopia Sprawl

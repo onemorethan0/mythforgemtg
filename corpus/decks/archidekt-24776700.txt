@@ -1,0 +1,108 @@
+# Archidekt — What the Sigma Kudo
+# source: archidekt:24776700
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Kudo, King Among Bears
+
+Deck:
+1 Ainok Bond-Kin
+1 Arachnogenesis
+1 Arboreal Grazer
+1 Arcane Signet
+1 Austere Command
+1 Beast Whisperer
+1 Beast Within
+1 Boseiju, Who Endures
+1 Canopy Vista
+1 Champion of Lambholt
+1 Clarion Conqueror
+1 Clarion Spirit
+1 Command Tower
+1 Communal Brewing
+1 Condemn
+1 Doorkeeper Thrull
+1 Elven Farsight
+1 Elvish Mystic
+1 Elvish Spirit Guide
+1 Envoy of the Ancestors
+1 Faeburrow Elder
+1 Fanatic of Rhonas
+1 Flare of Fortitude
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Generous Gift
+1 Germination Practicum
+1 Gnarlid Colony
+1 Good-Fortune Unicorn
+1 Hard-Hitting Question
+1 Haywire Mite
+1 Jacked Rabbit
+1 Karn's Bastion
+1 Kutzil, Malamet Exemplar
+1 Mana Tithe
+1 Mossborn Hydra
+1 Nature's Claim
+1 Nesting Grounds
+1 Odric, Master Tactician
+1 Orim's Chant
+1 Ouroboroid
+1 Overgrown Farmland
+1 Perch Protection
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Queen Allenal of Ruadach
+1 Razorgrass Ambush // Razorgrass Field
+1 Reliquary Tower
+1 Reprieve
+1 Return of the Wildspeaker
+1 Rishkar, Peema Renegade
+1 Rumor Gatherer
+1 Scavenger Grounds
+1 Shapers' Sanctuary
+1 Shelinda, Yevon Acolyte
+1 Shifting Woodland
+1 Sigarda's Splendor
+1 Skrelv's Hive
+1 Skyshroud Claim
+1 Smite
+1 Sol Ring
+1 Sphere Grid
+1 Spider-Ham, Peter Porker
+1 Studious First-Year // Rampant Growth
+1 Tempt with Bunnies
+1 Tendershoot Dryad
+1 Thraben Charm
+1 Three Visits
+1 Toski, Bearer of Secrets
+1 Trouble in Pairs
+1 Tyvar's Stand
+1 Ulamog, the Defiler
+1 Unnatural Restoration
+1 Unstable Glyphbridge // Sandswirl Wanderglyph
+1 Vanquish the Horde
+1 Vexing Bauble
+1 Virulent Emissary
+1 Voice of Victory
+1 Warden of the Grove
+1 Welcoming Vampire
+1 White Orchid Phantom
+1 Windswept Heath
+1 Witch Enchanter // Witch-Blessed Meadow

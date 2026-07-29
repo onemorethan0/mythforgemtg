@@ -1,0 +1,100 @@
+# Archidekt — Thalisse You Could Do
+# source: archidekt:913410
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Thalisse, Reverent Medium
+
+Deck:
+1 Black Market Connections
+1 Temple of Silence
+1 Swords to Plowshares
+1 Path to Exile
+1 Martial Coup
+1 Flagstones of Trokair
+1 Fetid Heath
+1 Battle Screech
+1 Night's Whisper
+1 Company Commander
+1 Illustrious Wanderglyph
+1 Grand Crescendo
+1 Bojuka Bog
+1 Caves of Koilos
+1 Godless Shrine
+1 Vault of the Archangel
+1 Isolated Chapel
+1 Windbrisk Heights
+1 Orzhov Basilica
+1 Command Tower
+1 Silent Clearing
+1 Scavenger Grounds
+1 Smothering Tithe
+1 Sol Ring
+1 Orzhov Signet
+1 Arcane Signet
+1 Skullclamp
+1 Maw of the Obzedat
+1 Read the Bones
+1 Phyrexian Arena
+1 Endrek Sahr, Master Breeder
+1 Intangible Virtue
+1 Talisman of Hierarchy
+1 Vault of Champions
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Szat's Will
+1 Nadier's Nightblade
+1 Field of the Dead
+1 Fabled Passage
+1 Shattered Sanctum
+1 Adeline, Resplendent Cathar
+1 Crowded Crypt
+1 Liquimetal Torque
+1 Strixhaven Stadium
+1 Moonshaker Cavalry
+1 Anointed Procession
+1 Mondrak, Glory Dominus
+1 Heraldic Banner
+1 Necrotic Hex
+1 Tevesh Szat, Doom of Fools
+1 For the Emperor!
+1 Myojin of Blooming Dawn
+1 Master of Ceremonies
+1 Inkshield
+1 Clever Concealment
+1 Dismantling Wave
+1 Pointed Discussion
+1 Mind Stone
+1 Plumb the Forbidden
+1 Increasing Devotion
+1 Lingering Souls
+1 Shrine of Loyal Legions
+1 Call the Coppercoats
+1 Release the Dogs
+1 Elspeth, Sun's Champion
+1 Mirror Entity
+1 Sign in Blood
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Season of the Burrow
+1 Patchwork Banner
+1 Static Prison
+1 Caretaker's Talent
+1 Diresight
+1 Galadriel's Dismissal
+1 Desolate Mire
+1 Shadowy Backstreet
+1 Kambal, Profiteering Mayor
+1 Grasp of Fate
+1 Dollmaker's Shop // Porcelain Gallery
+1 Teferi's Protection
+1 Boggart Trawler // Boggart Bog
+2 Swamp
+3 Plains
+1 Winds of Abandon
+1 Arid Archway
+1 Guildless Commons
+1 Loran of the Third Path
+4 Snow-Covered Plains
+1 Marsh Flats
+1 Path of Ancestry
+3 Snow-Covered Swamp

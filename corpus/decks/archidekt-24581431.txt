@@ -1,0 +1,101 @@
+# Archidekt — Jinnie Fay, Jetmir's Second
+# source: archidekt:24581431
+# fetched: 2026-07-23
+
+Commander:
+1 Jinnie Fay, Jetmir's Second
+
+Deck:
+1 Utopia Sprawl
+1 Elvish Mystic
+1 Arbor Elf
+1 Delighted Halfling
+1 Green Sun's Zenith
+1 Avacyn's Pilgrim
+1 Birds of Paradise
+1 Wild Growth
+1 Bennie Bracks, Zoologist
+1 Rumor Gatherer
+1 Peregrin Took
+1 Rabble Rousing
+1 Aura Mutation
+1 Adeline, Resplendent Cathar
+1 Anim Pakal, Thousandth Moon
+1 Llanowar Elves
+1 Feline Sovereign
+1 Jaheira, Friend of the Forest
+1 Jetmir, Nexus of Revels
+1 Queen Allenal of Ruadach
+1 Baylen, the Haymaker
+1 Artifact Mutation
+1 Neyali, Suns' Vanguard
+1 Regal Caracal
+1 Dollmaker's Shop // Porcelain Gallery
+1 Welcoming Vampire
+1 Caretaker's Talent
+1 Loyal Apprentice
+1 Quina, Qu Gourmet
+1 Awakening Zone
+1 Tippy-Toe, Terrific Partner
+1 Skrelv's Hive
+1 Michelangelo, the Heart
+1 Searslicer Goblin
+1 The Cabbage Merchant
+1 Temple Garden
+1 Rockfall Vale
+1 Exotic Orchard
+1 Command Tower
+1 Sunpetal Grove
+1 Canopy Vista
+1 Cinder Glade
+1 Bountiful Promenade
+1 Sungrass Prairie
+1 Stomping Ground
+1 Wooded Bastion
+1 City of Brass
+1 Radiant Summit
+1 Sacred Foundry
+1 Mossfire Valley
+1 Brushland
+1 Dryad Arbor
+1 Rootbound Crag
+1 Mana Confluence
+1 Clifftop Retreat
+1 Spire Garden
+1 Overgrown Farmland
+1 Rugged Prairie
+1 Battlefield Forge
+1 Spectator Seating
+1 Karplusan Forest
+1 Plaza of Heroes
+1 Fire-Lit Thicket
+1 Sunscorched Divide
+1 Wizened Mentor
+3 Forest
+3 Plains
+1 Mountain
+1 Beast Within
+1 Brimstone Roundup
+1 Mole Man, Moloid Master
+1 Torens, Fist of the Angels
+1 Horizon Explorer
+1 Tataru Taru
+1 Clarion Spirit
+1 Skyknight Vanguard
+1 Gala Greeters
+1 Lita, Little Orphan Amphibian
+1 Jolrael, Mwonvuli Recluse
+1 Tocasia's Welcome
+1 Professional Face-Breaker
+1 Samwise Gamgee
+1 Scute Swarm
+1 Oltec Matterweaver
+1 Endless Foot Assault
+1 Gylwain, Casting Director
+1 Tireless Provisioner
+1 Enduring Innocence
+1 Oketra's Monument
+1 Urabrask's Forge
+1 Tireless Tracker
+1 Doomed Artisan
+1 Glimmer Seeker

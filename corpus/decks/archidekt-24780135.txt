@@ -1,0 +1,74 @@
+# Archidekt — Kykar
+# source: archidekt:24780135
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Kykar, Zephyr Awakener
+
+Deck:
+1 Dovin, Hand of Control
+1 Burnished Hart
+1 Gold-Forged Thopteryx
+1 Soulcipher Board // Cipherbound Spirit
+1 Beckoning Will-o'-Wisp
+1 Binding Geist // Spectral Binding
+1 Brine Comber // Brinebound Gift
+1 Chaplain of Alms // Chapel Shieldgeist
+1 Cloudblazer
+1 Custodi Squire
+1 Dawnhart Geist
+1 Distracting Geist // Clever Distraction
+1 Drogskol Infantry // Drogskol Armaments
+1 Emissary of the Sleepless
+1 Empyrean Eagle
+1 Friendly Ghost
+1 Gallows Warden
+1 Guardian of Pilgrims
+1 Gutter Skulker // Gutter Shortcut
+1 Heron-Blessed Geist
+1 Keening Apparition
+1 Kindly Ancestor // Ancestor's Embrace
+1 Lantern Bearer // Lanterns' Lift
+1 Lunarch Veteran // Luminous Phantom
+1 Marketwatch Phantom
+1 Mischievous Catgeist // Catlike Curiosity
+1 Moonlit Strider
+1 Pilgrim of the Ages
+1 Pillardrop Rescuer
+1 Raff, Weatherlight Stalwart
+1 Rescuer Chwinga
+1 Shepherding Spirits
+1 Soul-Guide Gryff
+1 Stonebinder's Familiar
+1 Steelclad Spirit
+1 Twinblade Geist // Twinblade Invocation
+1 Wrangler of the Damned
+1 Banishing Light
+1 Cradle of Safety
+1 Fear of Death
+1 Touch the Spirit Realm
+1 Vessel of Ephemera
+1 Aether Tradewinds
+1 Alchemist's Retrieval
+1 Blessed Defiance
+1 Condescend
+1 Disenchant
+1 Ertai's Scorn
+1 Failed Inspection
+1 Geistlight Snare
+1 Impulse
+1 Isolation at Orthanc
+1 Out of Air
+1 Pillar of Light
+1 Refute
+1 Scattered Thoughts
+1 Stall for Time
+1 Summary Judgment
+1 Syncopate
+1 Think Twice
+1 Not Forgotten
+1 Azorius Guildgate
+1 Tranquil Cove
+18 Plains
+18 Island

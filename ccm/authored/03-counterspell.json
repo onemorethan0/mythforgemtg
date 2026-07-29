@@ -1,0 +1,18 @@
+{
+  "card": {
+    "name": "Counterspell",
+    "mana_cost": "{U}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Counter target spell."
+  },
+  "ccm": {
+    "name": "Counterspell",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{U}{U}"},
+    "types": ["instant"],
+    "abilities": [
+      {"kind": "spell_effect", "effects": [{"op": "counter_spell"}]}
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+# Archidekt — MTG:  A Deckmaster Game
+# source: archidekt:5221510
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Atogatog
+
+Deck:
+1 You Cannot Pass!
+1 Space Marine Devastator
+1 Davros, Dalek Creator
+1 Optimus Prime, Hero // Optimus Prime, Autobot Leader
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Malik, Grim Manipulator
+1 Sam, Loyal Attendant
+1 Marneus Calgar
+1 Vanguard Suppressor
+1 The Shire
+1 Mines of Moria
+1 Swamp
+1 Havengul Laboratory // Havengul Mystery
+1 Mount Doom
+1 Gallifrey Council Chamber
+1 TARDIS
+1 The Tenth Doctor
+1 Ellie and Alan, Paleontologists
+1 Permission Denied
+1 Great Hall of the Citadel
+1 Shire Terrace
+1 The Grey Havens
+1 Exterminate!
+1 Baldur's Gate
+1 Gond Gate
+1 Heap Gate
+1 Sea Gate
+1 Manor Gate
+1 Black Dragon Gate
+1 Cliffgate
+1 Citadel Gate
+1 Trenzalore Clocktower
+1 Senator Peacock
+1 Diamond City
+1 Abstergo Entertainment
+1 Excalibur, Sword of Eden
+1 Mountain
+1 Island
+1 Swamp
+1 Plains
+1 Forest
+1 Lindblum, Industrial Regency // Mage Siege
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Capital City
+1 Ishgard, the Holy See // Faith & Grief
+1 Forest
+1 Mountain
+1 Daily Bugle Building
+1 Urban Retreat
+1 Island
+1 Plains
+1 Perception Bobblehead
+1 Nuka-Cola Vending Machine
+1 Luck Bobblehead
+1 Intelligence Bobblehead
+1 Endurance Bobblehead
+1 Agility Bobblehead
+1 Charisma Bobblehead
+1 The Wandering Minstrel
+1 Wakka, Devoted Guardian
+1 Sauron, the Dark Lord
+1 Birth of the Imperium
+1 Chaos Defiler
+1 In the Darkness Bind Them
+1 Dino DNA
+1 Lara Croft, Tomb Raider
+1 Overkill
+1 Cleopatra, Exiled Pharaoh
+1 Havi, the All-Father
+1 The Night of the Doctor
+1 Weeping Angel
+1 Biophagus
+1 Frodo, Adventurous Hobbit
+1 Cast into the Fire
+1 Fblthp, the Lost
+1 Sonic the Hedgehog
+1 The Regalia
+1 Deadpool, Trading Card
+1 Knuckles the Echidna
+1 Strength Bobblehead
+1 Starting Town
+1 The Gold Saucer
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Multiversal Passage
+1 Suplex
+1 Peter Parker // Amazing Spider-Man
+1 Princess Yue
+1 This Is How It Ends
+1 The Last Ronin
+1 Big Apple, 3 a.m.
+1 Skateboard
+1 Hidden Hideout
+1 The Ooze
+1 Go Ninja Go
+1 Heroes in a Half Shell
+1 Jaws, Relentless Predator
+1 Nathan Drake, Treasure Hunter
+1 Unlucky Cabbage Merchant
+1 Sister Hospitaller

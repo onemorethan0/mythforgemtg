@@ -1,0 +1,81 @@
+# Archidekt — Well, you know, that's just like uh, your opinion, man.
+# source: archidekt:24301639
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Tellah, Great Sage
+
+Deck:
+1 Fleeting Reflection
+1 Skin Invasion // Skin Shedder
+1 Involuntary Employment
+1 Pinnacle Monk // Mystic Peak
+1 Jadzi, Steward of Fate // Oracle's Gift
+1 Teferi's Time Twist
+1 Sanar, Unfinished Genius // Wild Idea
+1 Hard Evidence
+1 Blazing Firesinger // Seething Song
+1 Big Score
+1 Spyglass Siren
+1 Mists of Lórien
+1 Suspend
+1 Press the Enemy
+1 March of Swirling Mist
+1 Hidden Cataract
+1 Rocky Roads
+1 Teetering Peaks
+1 The Surgical Bay
+1 Smoldering Spires
+1 Skirk Prospector
+1 Spectrum Sentinel
+1 Monastery Swiftspear
+1 Fanatical Firebrand
+1 Spectral Sailor
+1 Piggy Bank
+1 Swiftfoot Boots
+1 Lotus Blossom
+1 Ovalchase Dragster
+1 Guardian Idol
+1 Prismatic Lens
+1 Subterranean Schooner
+1 Cargo Ship
+1 Mind Stone
+1 Moonsilver Spear
+1 Deluxe Dragster
+1 Extinguisher Battleship
+1 Weatherlight
+1 Opt
+1 Peek
+1 Illusionist's Gambit
+1 Fellwar Stone
+1 Infuriate
+1 Negate
+1 Wash Out
+1 Imprisoned in the Moon
+1 Commit // Memory
+1 Aetherspouts
+1 Thopter Spy Network
+1 Blink of an Eye
+1 Electrodominance
+1 Ultros, Obnoxious Octopus
+1 Vanishing
+1 Fog Bank
+1 Inscription of Insight
+1 Everflowing Chalice
+1 Return the Favor
+1 Ultimate Magic: Meteor
+1 The Lunar Whale
+1 Third Path Iconoclast
+1 Mightstone's Animation
+1 Skysovereign, Consul Flagship
+1 Sky Diamond
+1 Hedron Archive
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Beyeen Veil // Beyeen Coast
+1 Domineering Will
+17 Island
+12 Mountain
+1 Aetherize
+1 Soul Foundry

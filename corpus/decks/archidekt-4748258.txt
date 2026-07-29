@@ -1,0 +1,104 @@
+# Archidekt — Josh's Tom Bombadil | Game Knights #62
+# source: archidekt:4748258
+# fetched: 2026-07-05
+
+Commander:
+1 Tom Bombadil
+
+Deck:
+1 Stomping Ground
+1 Evolution Sage
+1 Ketria Triome
+1 The Trickster-God's Heist
+1 Spara's Headquarters
+1 Nesting Grounds
+1 Faeburrow Elder
+1 Collector Ouphe
+1 Kenrith's Transformation
+1 Breeding Pool
+1 Cankerbloom
+1 Song of Freyalise
+1 Song of Eärendil
+1 Nessian Wanderer
+1 Temple Garden
+1 Sacred Foundry
+1 Blood Crypt
+2 Forest
+2 Island
+1 Kiora Bests the Sea God
+1 Steam Vents
+1 Glissa Sunslayer
+1 Scroll of Isildur
+2 Plains
+1 Misty Rainforest
+1 Historian's Boon
+1 Lignify
+1 Flux Channeler
+1 Eidolon of Blossoms
+1 Verdant Catacombs
+1 Wild Growth
+1 Watery Grave
+1 Bloom Tender
+1 The Akroan War
+1 Swamp
+1 Flicker of Fate
+1 Dryad of the Ilysian Grove
+1 Elspeth Conquers Death
+1 Arid Mesa
+1 Showdown of the Skalds
+1 Heroic Intervention
+1 Experimental Augury
+1 Jukai Naturalist
+1 Dance of the Manse
+1 Wooded Foothills
+1 Rhystic Study
+1 Raugrin Triome
+1 Fall of Gil-galad
+1 Hallowed Fountain
+1 Mountain
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Tale of Tinúviel
+1 Three Visits
+1 Overgrown Tomb
+1 Setessan Champion
+1 Hex Parasite
+1 Goldberry, River-Daughter
+1 Sythis, Harvest's Hand
+1 Command Tower
+1 The First Iroan Games
+1 Oath of the Grey Host
+1 War of the Last Alliance
+1 Weaver of Harmony
+1 Brokers Confluence
+1 Rivendell
+1 Spiteful Banditry
+1 Clockspinning
+1 Scholar of New Horizons
+1 Windswept Heath
+1 Pippin, Guard of the Citadel
+1 The Bath Song
+1 Glóin, Dwarf Emissary
+1 Fertile Ground
+1 Utopia Sprawl
+1 Zagoth Triome
+1 Trace of Abundance
+1 Reflecting Pool
+1 Genesis Wave
+1 Satsuki, the Living Lore
+1 Farseek
+1 Ziatora's Proving Ground
+1 Arcane Denial
+1 Binding the Old Gods
+1 Swords to Plowshares
+1 Anguished Unmaking
+1 Indatha Triome
+1 Murmuring Bosk
+1 Yavimaya, Cradle of Growth
+1 Sanctum Weaver
+1 Supreme Verdict
+1 Jetmir's Garden
+1 There and Back Again
+1 Godless Shrine
+1 Exotic Orchard
+1 Archon of Sun's Grace
+1 The Kami War // O-Kagachi Made Manifest

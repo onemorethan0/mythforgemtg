@@ -1,0 +1,84 @@
+# Archidekt — (Big Simic) Aesi, Tyrant of Gyre Strait (Jason)
+# source: archidekt:4779430
+# fetched: 2026-07-05
+
+Commander:
+1 Aesi, Tyrant of Gyre Strait
+
+Deck:
+1 Urban Evolution
+1 Regrowth
+1 Oracle of Mul Daya
+1 Terramorphic Expanse
+1 Thornwood Falls
+1 Woodland Stream
+1 Yavimaya Coast
+1 Tangled Islet
+1 Vineglimmer Snarl
+1 Soratami Rainshaper
+16 Forest
+1 Guardian of Tazeem
+1 Territorial Scythecat
+1 Yavimaya Elder
+1 Tragic Lesson
+1 Commander's Sphere
+1 Seer's Sundial
+1 Molimo, Maro-Sorcerer
+1 Kiora, Sovereign of the Deep
+1 Entish Restoration
+1 Cultivate
+1 Murkfiend Liege
+1 Whelming Wave
+1 Eternal Witness
+1 Beast Within
+1 Rampant Growth
+1 Growth Spiral
+1 Counterspell
+1 Kodama's Reach
+1 Tireless Provisioner
+1 Arixmethes, Slumbering Isle
+1 Terastodon
+1 Explosive Vegetation
+1 Nissa's Pilgrimage
+1 Verdant Sun's Avatar
+1 Scourge of Fleets
+1 Coiling Oracle
+1 Explore
+1 Avenger of Zendikar
+1 Khalni Heart Expedition
+1 Tatyova, Benthic Druid
+1 Rampaging Baloths
+1 Meloku the Clouded Mirror
+1 Nezahal, Primal Tide
+1 Lotus Cobra
+1 Blighted Woodland
+1 Simic Guildgate
+1 Temple of Mystery
+9 Island
+1 Fa'adiyah Seer
+1 Slinn Voda, the Rising Deep
+1 Mind Spring
+1 Harmonize
+1 Simic Signet
+1 Ior Ruin Expedition
+1 Zendikar's Roil
+1 Sol Ring
+1 Opt
+1 Trench Behemoth
+1 Kodama of the East Tree
+1 Sakura-Tribe Elder
+1 Acidic Slime
+1 Multani, Yavimaya's Avatar
+1 Stormtide Leviathan
+1 Llanowar Scout
+1 Negate
+1 Simic Charm
+1 Summer Bloom
+1 Overwhelming Stampede
+1 Retreat to Kazandu
+1 Druid Class
+1 Wilderness Reclamation
+1 Coral Atoll
+1 Jungle Basin
+1 Command Tower
+1 Simic Growth Chamber

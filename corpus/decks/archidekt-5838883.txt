@@ -1,0 +1,88 @@
+# Archidekt — It Takes a Village
+# source: archidekt:5838883
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Apothecary White
+
+Deck:
+1 Northampton Farm
+1 Omni-Cheese Pizza
+1 Icatian Store
+1 Alaborn Musketeer
+1 Icatian Moneychanger
+1 Monk Realist
+1 Alaborn Zealot
+1 Youthful Knight
+1 Devout Harpist
+1 Moment of Silence
+1 Vengeance
+1 Path of Peace
+1 Festival of Trokin
+1 Remote Farm
+1 Rustic Clachan
+1 Droning Bureaucrats
+1 Righteousness
+1 Secluded Steppe
+1 Veteran Armorer
+1 Veteran's Armaments
+1 Honor the Fallen
+1 Spidersilk Net
+1 Bartered Cow
+1 Raise the Alarm
+1 Kabira Crossroads
+1 Village Bell-Ringer
+1 Folk Hero
+1 Homestead Courage
+1 Oblation
+1 Shire Terrace
+1 Mother of Runes
+1 False Prophet
+1 Beregond of the Guard
+1 Holy Day
+1 Visions of Glory
+1 Karoo
+1 Drifting Meadow
+1 Seasoned Tactician
+1 Loyal Sentry
+1 Rambunctious Mutt
+1 Contraband Livestock
+1 Coppercoat Vanguard
+1 Lembas
+1 Bill the Pony
+1 Lossarnach Captain
+1 Horn of Gondor
+1 One-Eyed Scarecrow
+1 Cut a Deal
+1 Reprieve
+1 Credit Voucher
+1 Krovod Haunch
+1 Mangara, the Diplomat
+1 Escarpment Fortress
+1 Towering Viewpoint
+1 Scars of the Veteran
+1 Inspiring Leader
+1 Sunset Revelry
+1 Secret Rendezvous
+1 Wedding Ring
+1 Loran of the Third Path
+1 Ellyn Harbreeze, Busybody
+1 Caretaker's Talent
+1 Blessed Wine
+1 Swords to Plowshares
+1 Myriad Landscape
+1 Adventurer's Inn
+1 Heidegger, Shinra Executive
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Crossroads Village
+1 Daydream
+1 Evolving Wilds
+1 Curious Farm Animals
+1 White Lotus Tile
+1 Generous Pup
+1 Phelia, Exuberant Shepherd
+1 City Pigeon
+1 Marble Diamond
+21 Plains
+1 Reveille Squad

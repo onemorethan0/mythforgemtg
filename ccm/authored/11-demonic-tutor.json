@@ -1,0 +1,23 @@
+{
+  "card": {
+    "name": "Demonic Tutor",
+    "mana_cost": "{1}{B}",
+    "type_line": "Sorcery",
+    "oracle_text": "Search your library for a card, put that card into your hand, then shuffle."
+  },
+  "ccm": {
+    "name": "Demonic Tutor",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{1}{B}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "search_library", "what": {"type": "card"}, "count": 1, "to": "hand", "shuffle": true}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+# Archidekt — Reading the Card Explains the Card
+# source: archidekt:10354152
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Jegantha, the Wellspring
+
+Deck:
+1 Reliquary Tower
+1 Disenchant
+1 Sakura-Tribe Elder
+1 Avacyn's Pilgrim
+1 Day of Judgment
+1 Void Winnower
+1 Urza's Saga
+1 Moonshaker Cavalry
+1 Vengevine
+1 Recollect
+1 Harrow
+1 Rampant Growth
+1 Wrath of God
+1 Command Tower
+1 Path to Exile
+1 Condemn
+6 Mountain
+1 Counterspell
+1 Burst Lightning
+1 Harmonize
+1 Cryptic Command
+1 Fireball
+1 Tidings
+1 Jedit Ojanen
+1 Hinder
+1 Lier, Disciple of the Drowned
+1 Mana Leak
+1 Lightning Helix
+1 Negate
+1 Omnath, Locus of Creation
+1 Remove Soul
+1 Reciprocate
+1 Cancel
+1 Pyroclasm
+1 Dead Ringers
+1 Chains of Mephistopheles
+1 Zaffai, Thunder Conductor
+1 Camouflage
+1 Walking Atlas
+1 Mirri, Cat Warrior
+1 Oboro Envoy
+1 Invert // Invent
+1 Marath, Will of the Wild
+1 Saruman of Many Colors
+1 Baton of Morale
+1 Circular Logic
+1 Wheel of Misfortune
+1 Elesh Norn, Grand Cenobite
+1 Phyrexian Arena
+1 Vorinclex, Voice of Hunger
+1 Professional Face-Breaker
+1 Jaxis, the Troublemaker
+1 Chandra, Pyromaster
+6 Plains
+8 Forest
+1 Dauthi Voidwalker
+1 Terror
+1 Damnation
+1 Doom Blade
+1 Sign in Blood
+1 Zombify
+1 Bituminous Blast
+1 Dark Confidant
+1 Terminate
+1 Putrefy
+1 Mortify
+1 Thalia and The Gitrog Monster
+7 Island
+7 Swamp
+1 Llanowar Greenwidow

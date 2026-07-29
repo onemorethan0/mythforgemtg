@@ -1,0 +1,101 @@
+# Archidekt — gruul
+# source: archidekt:24423857
+# fetched: 2026-07-23
+
+Commander:
+1 Raph & Mikey, Troublemakers
+
+Deck:
+1 Majestic Genesis
+1 Moraug, Fury of Akoum
+1 Imposing Grandeur
+1 Road of Return
+1 Improvisation Capstone
+1 Last Chance
+1 Irencrag Feat
+1 Raphael, Tag Team Tough
+1 Anzrag, the Quake-Mole
+1 Full Throttle
+1 Terastodon
+1 Pyretic Ritual
+1 Apex Altisaur
+1 Worldspine Wurm
+1 Farseek
+1 Sol Ring
+1 Garruk's Uprising
+1 Ghalta, Stampede Tyrant
+1 Dragonlord Atarka
+1 Balefire Dragon
+1 Chaos Warp
+1 Impervious Greatwurm
+1 Galactus, Devourer of Worlds
+1 Giant Adephage
+1 Titan of Industry
+1 Pyrewood Gearhulk
+1 Lifestream's Blessing
+1 Return of the Wildspeaker
+1 Overwhelming Stampede
+1 Glorious End
+1 Vastwood Surge
+1 Hellkite Courser
+1 Finale of Devastation
+1 Tel-Jilad Stylus
+1 Praetor's Counsel
+1 Grow from the Ashes
+1 Chandra's Ignition
+1 Molten Duplication
+1 Hate Mirage
+1 End-Raze Forerunners
+1 Overlord of the Boilerbilges
+1 Command Beacon
+1 Crystal Vein
+1 Thornspire Verge
+1 Rockfall Vale
+1 Spire Garden
+1 Cinder Glade
+1 Rogue's Passage
+1 Arena of Glory
+1 Game Trail
+1 Karplusan Forest
+1 Fire-Lit Thicket
+1 Copperline Gorge
+1 Muraganda Raceway
+1 Command Tower
+1 Training Compound
+1 Shifting Woodland
+1 Rootbound Crag
+1 Stomping Ground
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Reliquary Tower
+1 Grove of the Burnwillows
+4 Forest
+1 Kessig Wolf Run
+4 Mountain
+1 Drakuseth, Maw of Flames
+1 Quilled Greatwurm
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Ilharg, the Raze-Boar
+1 Port Razer
+1 Bard Class
+1 Peter Parker's Camera
+1 Gilded Lotus
+1 Fury of the Horde
+1 Summoner's Pact
+1 Cosmic Cube
+1 Cavern of Souls
+1 Ancient Tomb
+1 Wooded Foothills
+1 Taiga
+1 Gladiolus Amicitia
+1 Trumpeting Carnosaur
+1 Inferno Titan
+1 Last March of the Ents
+1 Aggravated Assault
+1 Stonehoof Chieftain
+1 Cultivator Colossus
+1 Everflowing Chalice
+1 Herd Heirloom
+1 Rite of Flame
+1 Coliseum Behemoth
+1 Fabled Passage
+1 Desperate Ritual

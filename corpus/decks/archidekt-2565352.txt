@@ -1,0 +1,78 @@
+# Archidekt — Urza, Lord High Artificer CEDH
+# source: archidekt:2565352
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Pact of Negation
+7 Island
+1 Serum Visions
+1 Peregrine Drake
+1 Treasure Cruise
+1 Howling Mine
+1 Shimmer Myr
+1 Dramatic Reversal
+1 Paradoxical Outcome
+1 Static Orb
+1 Isochron Scepter
+1 Sensei's Divining Top
+1 Winter Orb
+1 Lightning Greaves
+1 Sol Ring
+1 Dig Through Time
+1 Deadeye Navigator
+1 Laboratory Maniac
+1 Phantasmal Image
+1 Gitaxian Probe
+1 Grand Architect
+1 Pili-Pala
+1 Foundry Inspector
+1 Tsabo's Web
+1 Palinchron
+1 Capsize
+1 Mystic Remora
+1 Mana Vault
+1 High Tide
+1 Brainstorm
+1 Counterspell
+1 Negate
+1 Sai, Master Thopterist
+1 Unwinding Clock
+1 Etherium Sculptor
+1 Mirrodin Besieged
+24 Island
+1 Thassa's Oracle
+1 Leveler
+1 Ensnaring Bridge
+1 Reshape
+1 Force of Will
+1 Spellskite
+1 Basalt Monolith
+1 Pongify
+1 Buried Ruin
+1 Preordain
+1 Rings of Brighthearth
+1 Mystic Forge
+1 Sapphire Medallion
+1 Repurposing Bay
+1 An Offer You Can't Refuse
+1 Ledger Shredder
+1 Swiftfoot Boots
+1 Sculpting Steel
+1 Cloud Key
+1 Force of Negation
+1 Whir of Invention
+1 Volatile Stormdrake
+1 Strix Serenade
+1 Flusterstorm
+1 Flare of Denial
+1 Commandeer
+1 Gifts Ungiven
+1 Defense Grid
+1 Uthros, Titanic Godcore
+1 Rhystic Study
+1 Hurkyl's Recall
+2 Island

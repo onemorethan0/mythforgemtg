@@ -1,0 +1,105 @@
+# Archidekt — Power Puff Gang
+# source: archidekt:24729833
+# fetched: 2026-07-27
+
+Commander:
+1 Power Pack
+
+Deck:
+1 Blatant Thievery
+1 Irenicus's Vile Duplication
+1 It's Clobberin' Time!
+1 Faeburrow Elder
+1 Path to Exile
+1 Swords to Plowshares
+1 Arcane Signet
+1 Whirlwind of Thought
+1 Quantum Misalignment
+1 Nature's Lore
+1 Command Tower
+1 Three Visits
+1 Annie Joins Up
+1 Valeria Richards, Precocious
+1 Growth Spiral
+1 Cosmic Crucible
+1 Breeding Pool
+1 Into the Time Vortex
+1 Kellan, the Kid
+1 Scalding Tarn
+1 Training Center
+1 Delighted Halfling
+1 Resonating Lute
+1 Chaos Warp
+1 Stomping Ground
+1 Raugrin Triome
+1 Flooded Strand
+1 Fabled Passage
+1 Steam Vents
+1 Crystal, Inhuman Princess
+1 Ketria Triome
+1 Arid Mesa
+1 Spara's Headquarters
+1 Jeskai Ascendancy
+1 Jetmir's Garden
+1 Temple Garden
+1 Hallowed Fountain
+1 Wooded Foothills
+1 Misty Rainforest
+1 Reliquary Tower
+1 Windswept Heath
+1 Lorehold, the Historian
+1 Yavimaya, Cradle of Growth
+1 Unexpected Windfall
+1 Bloom Tender
+1 Bountiful Promenade
+1 Spectator Seating
+1 Boros Charm
+1 Quandrix, the Proof
+1 Rhystic Study
+1 Beast Within
+1 Entish Restoration
+1 Teferi's Protection
+1 Improvisation Capstone
+1 Frantic Search
+1 Sacred Foundry
+1 Birds of Paradise
+1 Jeska's Will
+1 Sol Ring
+1 Lush Portico
+1 Alicia Masters, Skilled Sculptor
+1 Storm, Force of Nature
+1 Island
+1 Mithril Coat
+1 Forest
+1 Mountain
+1 Plains
+1 Storm-Kiln Artist
+1 Treasure Cruise
+1 Hedge Maze
+1 Hull Breach
+1 Commercial District
+1 H.E.R.B.I.E., Lovable Robot
+1 Seize the Spotlight
+1 Expropriate
+1 Freed from the Real
+1 Cosmic Cube
+1 Pemmin's Aura
+1 Dawn's Truce
+1 Delayed Blast Fireball
+1 Fierce Guardianship
+1 Glimpse the Impossible
+1 Grab the Prize
+1 Mizzix's Mastery
+1 Ensnared by the Mara
+1 Insurrection
+1 Blade Historian
+1 Karlach, Fury of Avernus
+1 Embercleave
+1 Irma, Part-Time Mutant
+1 Lizard Blades
+1 Hit the Mother Lode
+1 The Scarlet Witch
+1 Scarlet Witch, Chaotic Avenger
+1 Aminatou's Augury
+1 Mnemonic Deluge
+1 Mister Fantastic

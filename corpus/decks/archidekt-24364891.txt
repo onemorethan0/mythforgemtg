@@ -1,0 +1,99 @@
+# Archidekt — The Unity - Children of the Cathedral
+# source: archidekt:24364891
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 The Master, Transcendent
+
+Deck:
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Altar of Dementia
+1 Altar of the Brood
+1 Colossal Grave-Reaver
+1 Court of Cunning
+1 Drown in Ichor
+1 Aftermath Analyst
+1 An Offer You Can't Refuse
+1 Bane of Progress
+1 Bojuka Bog
+1 Elemental Bond
+1 Elixir of Immortality
+1 Growth Spiral
+1 Hedge Maze
+1 Jenova, Ancient Calamity
+1 Mindcrank
+1 Mesmeric Orb
+1 Psychic Strike
+1 Skull Prophet
+1 Tyvar, Jubilant Brawler
+1 Underground Mortuary
+1 Vat Emergence
+1 Vernal Fen
+1 X-23, Deadly Weapon
+1 Putrefy
+1 Raul, Trouble Shooter
+1 Patriar's Seal
+1 Undercity Sewers
+1 Ruin Crab
+1 Sting, the Glinting Dagger
+1 Nightkin Ambusher
+1 Phenax, God of Deception
+1 Syr Konrad, the Grim
+1 Nuclear Fallout
+1 Mutational Advantage
+1 Sol Ring
+1 Arcane Signet
+1 Atomize
+1 Strong, the Brutish Thespian
+1 Tato Farmer
+1 Alpha Deathclaw
+1 Agent Frank Horrigan
+1 Command Tower
+1 Heroic Intervention
+1 Feral Ghoul
+5 Forest
+1 Glowing One
+1 Infesting Radroach
+1 Mortuary Mire
+1 Rogue's Passage
+1 Tainted Isle
+1 Tainted Wood
+1 Vault 12: The Necropolis
+1 Vault 87: Forced Evolution
+1 Mariposa Military Base
+1 Drowned Catacomb
+1 Guardian Project
+1 Hancock, Ghoulish Mayor
+1 Harold and Bob, First Numens
+1 The Wise Mothman
+1 Vexing Radgull
+2 Island
+1 Hinterland Harbor
+1 Inexorable Tide
+1 Watchful Radstag
+1 Woodland Cemetery
+1 Fabled Passage
+5 Swamp
+1 Screeching Scorchbeast
+1 Patchwork Banner
+1 Lightning Greaves
+1 Ripples of Potential
+1 Bighorner Rancher
+1 Casualties of War
+1 Caged Sun
+1 Corpsejack Menace
+1 Marcus, Mutant Mayor
+1 Hardened Scales
+1 Tarmogoyf
+1 Birds of Paradise
+1 Muldrotha, the Gravetide
+1 Young Deathclaws
+1 Cultivate
+1 Evolution Sage
+1 Sunken Hollow
+1 Command Beacon
+1 Myriad Landscape
+1 Reflecting Pool
+1 Reliquary Tower

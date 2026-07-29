@@ -1,0 +1,95 @@
+# Archidekt — I don't have a name for this deck
+# source: archidekt:24748428
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Command Tower
+6 Plains
+4 Swamp
+1 Bonders' Enclave
+1 Radiant Summit
+1 Dragonskull Summit
+1 Furycalm Snarl
+6 Mountain
+1 Mutinous Massacre
+1 Isolated Chapel
+1 Foreboding Ruins
+1 Smoldering Marsh
+1 Shineshadow Snarl
+1 Reya Dawnbringer
+1 Clifftop Retreat
+1 Sundown Pass
+1 Access Tunnel
+1 Bojuka Bog
+1 Rupture Spire
+1 Firemane Angel
+1 Command Bridge
+1 Exotic Orchard
+1 Chromatic Lantern
+1 Temple of the False God
+1 Honored Heirloom
+1 Sol Ring
+1 Firemind Vessel
+1 Iroas, God of Victory
+1 Vault of the Archangel
+1 Forge of Heroes
+1 Minas Tirith
+1 Sonic Screwdriver
+1 Arcane Signet
+1 Dragonmaster Outcast
+1 Inspiring Overseer
+1 Morbid Opportunist
+1 Anya, Merciless Angel
+1 Baneslayer Angel
+1 Aurelia, the Warleader
+1 Iron Giant
+1 Backdraft Hellkite
+1 Wardscale Dragon
+1 Thraben Watcher
+1 Basandra, Battle Seraph
+1 Aurelia, the Law Above
+1 Sephara, Sky's Blade
+1 Lightning Greaves
+1 Glory
+1 Shivan Devastator
+1 Goremand
+1 Moonveil Dragon
+1 Demonlord Belzenlok
+1 Tyrant's Familiar
+1 Swiftfoot Boots
+1 Twilight Shepherd
+1 Rakdos, Patron of Chaos
+1 Brotherhood Regalia
+1 Subjugator Angel
+1 Angelfire Ignition
+1 Gisela, Blade of Goldnight
+1 Angelic Arbiter
+1 Swords to Plowshares
+1 Duty Beyond Death
+1 Tariel, Reckoner of Souls
+1 Rune-Scarred Demon
+1 Griselbrand
+1 Colfenor's Urn
+1 Quicksilver Amulet
+1 Inevitable Defeat
+1 Land Tax
+1 Whispersilk Cloak
+1 Boros Charm
+1 Shattering Spree
+1 Manifold Key
+1 Horn of the Mark
+1 Windcrag Siege
+1 Ritual of Soot
+1 Legions to Ashes
+1 Vindicate
+1 Ruinous Ultimatum
+1 Phyrexian Arena
+1 Ghostly Prison
+1 All-Out Assault
+1 Invoke Despair
+1 Overwhelming Forces
+1 Blasphemous Act

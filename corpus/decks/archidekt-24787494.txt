@@ -1,0 +1,90 @@
+# Archidekt — Strahd is gonna fuck you up, and not in the good way
+# source: archidekt:24787494
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Strefan, Maurer Progenitor
+
+Deck:
+1 Voldaren Estate
+1 Glass-Cast Heart
+1 Anowon, the Ruin Sage
+1 Bloodline Keeper // Lord of Lineage
+1 Bloodthirsty Conqueror
+1 Bojuka Bog
+1 Bontu's Monument
+1 Butcher of Malakir
+1 Champion of Dusk
+1 Cordial Vampire
+1 Creeping Bloodsucker
+1 Crossway Troublemakers
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Drana, Liberator of Malakir
+1 Emeritus of Woe // Demonic Tutor
+1 Haunted Ridge
+1 Kamber, the Plunderer
+1 Kindred Dominance
+1 Leechridden Swamp
+1 Lich-Knights' Conquest
+1 Malakir Bloodwitch
+1 Markov Enforcer
+1 Mirkwood Bats
+1 Necropolis Regent
+1 Olivia's Attendants
+1 Path of Ancestry
+1 Patron of the Vein
+1 Phyrexian Arena
+1 Pointed Discussion
+1 Rakdos Charm
+1 Rakdos Signet
+1 Rakish Heir
+1 Rise of the Dark Realms
+1 Sanctum Seeker
+1 Scheming Silvertongue // Sign in Blood
+1 Scion of Opulence
+1 Stensia Masquerade
+1 Stensian Sanguinist // Exsanguinate
+1 Stromkirk Captain
+1 Sol Ring
+1 Arcane Signet
+1 Lightning Greaves
+1 Inspiring Statuary
+1 Bloodtithe Harvester
+1 Florian, Voldaren Scion
+1 Anje, Maid of Dishonor
+1 Bloodletter of Aclazotz
+1 High-Society Hunter
+1 Olivia, Crimson Bride
+1 Black Market Connections
+1 Deadly Dispute
+1 Chaos Warp
+1 Deadly Rollick
+1 Blood Crypt
+1 Command Tower
+1 Dragonskull Summit
+1 Foreboding Ruins
+8 Mountain
+1 Rakdos Carnarium
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Sorin, Imperious Bloodlord
+1 Feed the Swarm
+1 Night's Whisper
+1 Olivia's Wrath
+1 Tainted Peak
+1 Twilight Prophet
+1 Vampire's Kiss
+1 Vito, Thorn of the Dusk Rose
+1 Westgate Regent
+1 Voldaren Epicure
+1 Talisman of Indulgence
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Swiftfoot Boots
+1 Vampires' Vengeance
+1 Sulfurous Springs
+12 Swamp
+1 Temple of Malice
+1 Unclaimed Territory
+1 Vandalblast
+1 End the Festivities

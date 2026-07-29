@@ -1,0 +1,105 @@
+# Archidekt — Fractal Y'shtola, Copy Cat ~🐱🪞✨️
+# source: archidekt:11453507
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Force of Negation
+1 Dismember
+1 Adarkar Wastes
+1 Ancient Tomb
+1 Anguished Unmaking
+1 Arcane Signet
+1 Azorius Chancery
+1 Bender's Waterskin
+1 City of Brass
+1 Black Market Connections
+1 Bloodchief Ascension
+1 Command Tower
+1 Curiosity
+1 Deadly Rollick
+1 Decanter of Endless Water
+1 Demonic Tutor
+1 Dimir Aqueduct
+1 Dralnu, Lich Lord
+1 Echocasting Symposium
+1 Emet-Selch of the Third Seat
+1 Erode
+1 Esper Sentinel
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Flawless Maneuver
+1 Flooded Strand
+1 G'raha Tia, Scion Reborn
+1 Grim Tutor
+1 Hallowed Fountain
+1 Helm of the Ghastlord
+1 Irenicus's Vile Duplication
+2 Island
+1 Land Tax
+1 Lim-Dûl's Vault
+1 Mai, Scornful Striker
+1 Mana Confluence
+1 Mana Drain
+1 Toxic Deluge
+1 Mithril Coat
+1 Morphic Pool
+1 Ophidian Eye
+1 Orzhov Basilica
+1 Path to Exile
+2 Plains
+1 Polluted Delta
+1 Primal Amulet // Primal Wellspring
+1 Quantum Misalignment
+1 Raffine's Tower
+1 Reliquary Tower
+1 Rewind
+1 Rhystic Study
+1 Sakashima of a Thousand Faces
+1 Scrubland
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Sea of Clouds
+1 Snuff Out
+1 Sol Ring
+1 Spark Double
+1 Stock Up
+2 Swamp
+1 Swan Song
+1 Swords to Plowshares
+1 Sygg, River Cutthroat
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 The One Ring
+1 Tundra
+1 Underground River
+1 Underground Sea
+1 Void Rend
+1 Watery Grave
+1 Whip of Erebos
+1 Sheoldred, the Apocalypse
+1 Decorum Dissertation
+1 Mindcrank
+1 Kambal, Consul of Allocation
+1 Delney, Streetwise Lookout
+1 Teferi, Time Raveler
+1 Vile Consumption
+1 Force of Will
+1 Chromatic Lantern
+1 Ishgard, the Holy See // Faith & Grief
+1 Midgar, City of Mako // Reactor Raid
+1 Castle Locthwain
+1 Otawara, Soaring City
+1 Multiversal Recruitment
+1 Sejiri Shelter // Sejiri Glacier
+1 Glasspool Mimic // Glasspool Shore
+1 Malakir Rebirth // Malakir Mire
+1 Sink into Stupor // Soporific Springs
+1 Loki, Lord of Misrule
+1 Unwind
+1 Waterlogged Teachings // Inundated Archive
+1 Too Evil to Stay Dead
+1 Scour for Scrap

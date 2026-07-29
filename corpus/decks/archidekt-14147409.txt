@@ -1,0 +1,106 @@
+# Archidekt — Wandering Minstrel
+# source: archidekt:14147409
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Icetill Explorer
+1 Ketria Triome
+1 Lotus Field
+1 Raugrin Triome
+1 Spara's Headquarters
+1 Zagoth Triome
+1 The World Tree
+1 Tireless Provisioner
+1 Ulvenwald Hydra
+1 Ancient Greenwarden
+1 Indatha Triome
+1 March from Velis Vel
+1 Valgavoth's Lair
+1 Abundant Growth
+1 Manascape Refractor
+1 Expedition Map
+1 Anguished Unmaking
+1 Blitzball
+1 Lotus Cobra
+1 Traveling Chocobo
+1 Omnath, Locus of Creation
+1 Sazh's Chocobo
+1 Choco, Seeker of Paradise
+1 Aftermath Analyst
+1 Growth Spiral
+1 Fellwar Stone
+1 Gohn, Town of Ruin
+1 Guadosalam, Farplane Gateway
+1 Treno, Dark City
+1 Adventurer's Inn
+1 Vector, Imperial Capital
+1 Crossroads Village
+1 Starting Town
+1 Baron, Airship Kingdom
+1 Insomnia, Crown City
+1 Rabanastre, Royal City
+1 Clive's Hideaway
+1 Sharlayan, Nation of Scholars
+1 Loot, Exuberant Explorer
+1 Oracle of Mul Daya
+1 Swords to Plowshares
+1 Dryad of the Ilysian Grove
+1 Heroic Intervention
+1 Summon: Titan
+1 Cyclonic Rift
+1 Aesi, Tyrant of Gyre Strait
+1 Capital City
+1 Windurst, Federation Center
+1 The Gold Saucer
+1 Eden, Seat of the Sanctum
+1 Command Tower
+1 Island
+2 Forest
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Jidoor, Aristocratic Capital // Overture
+1 Travel the Overworld
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Ishgard, the Holy See // Faith & Grief
+1 Midgar, City of Mako // Reactor Raid
+1 Azusa, Lost but Seeking
+1 Tatyova, Benthic Druid
+1 Leyline of the Guildpact
+1 Case of the Locked Hothouse
+1 Dragonback Assault
+1 Open the Way
+1 Broken Bond
+1 Wrenn and Realmbreaker
+1 Coalition Victory
+1 Chromatic Lantern
+1 Town Greeter
+1 Arcane Denial
+1 Prishe's Wanderings
+1 Dovin's Veto
+1 Gongaga, Reactor Town
+1 Second City
+1 Thespian's Stage
+1 Akroma's Will
+1 Omenpath Journey
+1 Glacierwood Siege
+1 Talon Gates of Madara
+1 Birds of Paradise
+1 Scute Swarm
+1 Lindblum, Industrial Regency // Mage Siege
+1 Reach the Horizon
+1 PuPu UFO
+1 Lessons from Life
+1 Amulet of Vigor
+1 Exotic Orchard
+1 Evendo, Waking Haven
+1 City of Brass
+1 Mana Confluence
+1 Boseiju, Who Endures
+1 Crop Rotation
+1 Erode
+1 Path to Exile
+1 Overkill
+1 Ramunap Excavator

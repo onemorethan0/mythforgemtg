@@ -1,0 +1,101 @@
+# Archidekt — Sidisi, The Sultai One
+# source: archidekt:171880
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Sidisi, Brood Tyrant
+
+Deck:
+1 Jubilation
+1 Aftermath Analyst
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Ancient Ziggurat
+1 Apprentice Necromancer
+1 Armored Scrapgorger
+1 Baleful Strix
+1 Bane of Progress
+1 Barrowgoyf
+1 Beast Whisperer
+1 Birds of Paradise
+1 Bloom Tender
+1 Boggart Trawler // Boggart Bog
+1 Breeding Pool
+1 Bringer of the Last Gift
+1 Colossal Grave-Reaver
+1 Colossal Skyturtle
+1 Command Tower
+1 Crypt of Agadeem
+1 Cryptbreaker
+1 Diligent Farmhand
+1 Doom Whisperer
+1 Dread Return
+1 Dreadhound
+1 Elves of Deep Shadow
+1 Exotic Orchard
+1 Field of the Dead
+4 Forest
+1 Ghost Quarter
+1 Glasspool Mimic // Glasspool Shore
+1 Glen Elendra Archmage
+1 Grave Titan
+1 Heartwood Storyteller
+1 Hedge Maze
+1 Hedron Crab
+1 Hinterland Harbor
+1 Honest Rutstein
+1 Icetill Explorer
+2 Island
+1 Kagha, Shadow Archdruid
+1 Kiora's Follower
+1 Kishla Skimmer
+1 Kotis, Sibsig Champion
+1 Living Death
+1 Lost Monarch of Ifnir
+1 Lumra, Bellow of the Woods
+1 Misty Rainforest
+1 Morphic Pool
+1 Naga Fleshcrafter
+1 Overgrown Tomb
+1 Perennial Behemoth
+1 Polluted Delta
+1 Pollywog Prodigy
+1 Psychic Frog
+1 Qarsi Revenant
+1 Ramunap Excavator
+1 Raul, Trouble Shooter
+1 Ravenous Chupacabra
+1 Reflecting Pool
+1 Sakura-Tribe Elder
+1 Shizo, Death's Storehouse
+1 Shriekmaw
+1 Six
+1 Skull Prophet
+1 Snarling Gorehound
+4 Swamp
+1 Takenuma, Abandoned Mire
+1 Tangled Florahedron // Tangled Vale
+1 Tato Farmer
+1 The Gitrog Monster
+1 The Scarab God
+1 Timeless Witness
+1 Tower Winder
+1 Troll of Khazad-dûm
+1 Twilight Diviner
+1 Umbral Collar Zealot
+1 Undead Augur
+1 Underground Mortuary
+1 Undergrowth Stadium
+1 Uro, Titan of Nature's Wrath
+1 Verdant Catacombs
+1 Volrath's Stronghold
+1 Voracious Varmint
+1 Watery Grave
+1 Wight of the Reliquary
+1 Wonder
+1 Woodland Cemetery
+1 Zagoth Triome
+1 Deathrite Shaman
+1 Augur of Autumn
+1 Rejuvenating Springs
+1 Studious First-Year // Rampant Growth

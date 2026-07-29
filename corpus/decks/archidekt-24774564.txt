@@ -1,0 +1,78 @@
+# Archidekt — This is a YuGiOh deck
+# source: archidekt:24774564
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Jodah, Archmage Eternal
+
+Deck:
+1 Sword of Kaldra
+1 Kaldra Compleat
+1 Shield of Kaldra
+1 Helm of Kaldra
+1 Scepter of Empires
+1 Throne of Empires
+1 Bubbling Cauldron
+1 Sarpadian Empires, Vol. VII
+1 Crown of Empires
+1 Festering Newt
+1 Bogbrew Witch
+1 Urborg Panther
+1 Spirit of the Night
+1 Urza's Mine
+1 Urza's Cave
+1 Urza's Power Plant
+1 Urza's Tower
+1 Nissa's Defeat
+1 Nissa's Encouragement
+1 Nissa Revane
+1 Nissa's Chosen
+1 Nissa's Triumph
+1 Breathstealer
+1 Kyscu Drake
+1 Sift Through Sands
+1 Peer Through Depths
+1 The Unspeakable
+1 Dark Supplicant
+1 Reach Through Mists
+1 Scion of Darkness
+7 Swamp
+1 Feral Shadow
+7 Island
+7 Mountain
+1 Vial of Dragonfire
+7 Forest
+1 Viashivan Dragon
+1 Dragon's Herald
+7 Plains
+1 Angel's Herald
+1 Spitting Drake
+1 Empyrial Archangel
+1 Renowned Weaponsmith
+1 Diligent Farmhand
+1 Pardic Firecat
+1 Heart-Piercer Bow
+1 Hellkite Overlord
+1 Muscle Burst
+1 Flame Burst
+1 Demon's Herald
+1 Behemoth's Herald
+1 Godsire
+1 Emerald Medallion
+1 Jet Medallion
+1 Sphinx Sovereign
+1 Prince of Thralls
+1 Sphinx's Herald
+1 Sol Ring
+1 Sapphire Medallion
+1 Ruby Medallion
+1 Pearl Medallion
+1 Chromatic Lantern
+1 Arcane Signet
+1 Chromatic Orrery
+1 Chromatic Star
+1 Chromatic Sphere
+1 Mox Tantalite
+1 Mox Amber
+1 Mox Opal

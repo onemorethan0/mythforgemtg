@@ -1,0 +1,104 @@
+# Archidekt — Edge Lord (Limit Break+)
+# source: archidekt:24782276
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Puresteel Paladin
+1 Hellkite Tyrant
+1 Professional Face-Breaker
+1 Decimate
+1 Darksteel Plate
+1 Inspiring Statuary
+1 Bonders' Enclave
+1 Tifa, Martial Artist
+1 Bugenhagen, Wise Elder
+1 Summoning Materia
+1 Sword of the Animist
+1 Avalanche of Sector 7
+1 Vincent, Vengeful Atoner
+1 Aerith, Last Ancient
+1 Lifestream's Blessing
+1 Professor Hojo
+1 Austere Command
+1 Chaos Warp
+1 Yuffie, Materia Hunter
+1 Barret, Avalanche Leader
+1 Clifftop Retreat
+1 Exotic Orchard
+1 Cid, Freeflier Pilot
+1 Slayers' Stronghold
+1 Rampant Growth
+1 Behemoth Sledge
+3 Mountain
+3 Forest
+3 Plains
+1 Arcane Signet
+1 Cultivate
+1 Sol Ring
+1 Barret Wallace
+1 Nature's Lore
+1 Skullclamp
+1 Dispatch
+1 Vandalblast
+1 Hero's Heirloom
+1 Command Tower
+1 Path of Ancestry
+1 Scavenger Grounds
+1 Spire of Industry
+1 Sunpetal Grove
+1 Cait Sith, Fortune Teller
+1 Red XIII, Proud Warrior
+1 Rootbound Crag
+1 Lightning Greaves
+1 Ultimate Magic: Holy
+1 Sephiroth, Fallen Hero
+1 Zack Fair
+1 Heroic Intervention
+1 Cloud, Midgar Mercenary
+1 Buster Sword
+1 Nibelheim Aflame
+1 The Masamune
+1 Star of Extinction
+1 Umezawa's Jitte
+1 Bloodforged Battle-Axe
+1 Sigarda's Aid
+1 Embercleave
+1 Sword of Feast and Famine
+1 Sword of Light and Shadow
+1 Sword of Hearth and Home
+1 Sword of Fire and Ice
+1 Hammer of Nazahn
+1 Blackblade Reforged
+1 Hexplate Wallbreaker
+1 Danitha Capashen, Paragon
+1 Roaming Throne
+1 Strionic Resonator
+1 Vedalken Orrery
+1 Sram, Senior Edificer
+1 Quicksmith Genius
+1 Lithoform Engine
+1 Cloud, Planet's Champion
+1 Spectator Seating
+1 Plateau
+1 Arid Mesa
+1 Forbidden Orchard
+1 Wooded Foothills
+1 Spire Garden
+1 Windswept Heath
+1 Stomping Ground
+1 Prismatic Vista
+1 Temple Garden
+1 Taiga
+1 Savannah
+1 Sacred Foundry
+1 Jetmir's Garden
+1 Ancient Den
+1 Tree of Tales
+1 Bountiful Promenade
+1 Inventors' Fair
+1 Great Furnace
+1 Academy Ruins

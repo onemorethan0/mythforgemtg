@@ -1,0 +1,95 @@
+# Archidekt — Oops, All Treefolk (Doran, The Siege Tower, "Doran, Doran")
+# source: archidekt:5117231
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Doran, the Siege Tower
+
+Deck:
+1 Up the Beanstalk
+1 Harmonize
+1 Herald's Horn
+1 Read the Bones
+1 Lignify
+1 Bojuka Bog
+1 Brave the Sands
+1 Meekstone
+1 Last March of the Ents
+1 Godless Shrine
+9 Forest
+1 Guardian Project
+1 Indomitable Ancients
+1 Farseek
+1 Leaf-Crowned Elder
+1 Exotic Orchard
+1 Haunted Mire
+1 Faeburrow Elder
+1 Evolving Wilds
+1 Huatli, the Sun's Heart
+1 Fangorn, Tree Shepherd
+1 Nemata, Primeval Warden
+1 Magnigoth Treefolk
+1 Murmuring Bosk
+1 Treebeard, Gracious Host
+4 Plains
+1 Command Tower
+1 Spidersilk Armor
+1 Radiant Grove
+1 Quickbeam, Upstart Ent
+1 Temple Garden
+1 Terramorphic Expanse
+1 Sol Ring
+1 Colfenor, the Last Yew
+1 Arcane Signet
+1 Assault Formation
+1 Dauntless Dourbark
+1 Putrefy
+1 Rampant Growth
+1 Primal Rage
+1 Orchard Warden
+1 Path of Ancestry
+1 Abzan Charm
+3 Swamp
+1 Behind the Scenes
+1 Reach of Branches
+1 Tower Defense
+1 Canopy Vista
+1 Sunpetal Grove
+1 Stoneskin
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Wave of Reckoning
+1 Unstoppable Ash
+1 Treefolk Harbinger
+1 Tainted Wood
+1 Tainted Field
+1 Ezzaroot Channeler
+1 Thorntooth Witch
+1 Yedora, Grave Gardener
+1 Assemble the Entmoot
+1 Roots of Life
+1 Abundant Growth
+1 Colfenor's Urn
+1 Wickerbough Elder
+1 Krosan Verge
+1 Kenrith's Transformation
+1 Stroke of Midnight
+1 Utopia Sprawl
+1 Talisman of Hierarchy
+1 Talisman of Unity
+1 Nature's Lore
+1 Path to Exile
+1 Concordant Crossroads
+1 For the Ancestors
+1 Akroma's Will
+1 Heroic Intervention
+1 Timber Protector
+1 Overgrown Tomb
+1 Patriarch's Bidding
+1 Sapling of Colfenor
+1 Descendants' Path
+1 Bosk Banneret
+1 Swords to Plowshares
+1 Sapling Nursery
+1 Great Forest Druid

@@ -1,0 +1,91 @@
+# Archidekt — You Did This To Yourself
+# source: archidekt:565636
+# fetched: 2026-07-05
+
+Commander:
+1 Ruhan of the Fomori
+
+Deck:
+6 Island
+8 Mountain
+1 Relic of Legends
+1 Phyrexian Vindicator
+1 Burnished Hart
+1 Mountain
+5 Plains
+1 Island
+1 Aether Flash
+1 Windborn Muse
+1 Rhystic Study
+1 Teferi's Protection
+1 Public Enemy
+1 Parallectric Feedback
+1 Settle the Wreckage
+1 Refuse // Cooperate
+1 Desertion
+1 Illusory Ambusher
+1 Thought Vessel
+1 Hedron Archive
+1 Prairie Stream
+1 Day's Undoing
+1 Comeuppance
+1 Deflecting Palm
+1 Mystic Monastery
+1 Sun Titan
+1 Blind Obedience
+1 Boros Reckoner
+1 Command Tower
+1 Hibernation
+1 Rogue's Passage
+1 Reliquary Tower
+1 Gisela, Blade of Goldnight
+1 Blasphemous Act
+1 Clifftop Retreat
+1 Solemn Simulacrum
+1 Blue Sun's Zenith
+1 Mimic Vat
+1 Glacial Fortress
+1 Lightmine Field
+1 Chain Reaction
+1 Land Tax
+1 Gather Specimens
+1 Mistveil Plains
+1 Mind Stone
+1 Honorable Passage
+1 Reiterate
+1 Academy Ruins
+1 Vesuva
+1 Steam Vents
+1 Boros Fury-Shield
+1 Copy Enchantment
+1 Sunforger
+1 Sacred Foundry
+1 Minamo, School at Water's Edge
+1 Darksteel Ingot
+1 Gilded Lotus
+1 Mischievous Quanar
+1 Powerstone Minefield
+1 Mirror Strike
+1 Aura Thief
+1 Repercussion
+1 Viashino Heretic
+1 Acidic Soil
+1 Reins of Power
+1 Reflect Damage
+1 Azorius Locket
+1 The Wanderer
+1 Solar Blaze
+1 Gideon's Sacrifice
+1 Reflecting Pool
+1 Sol Ring
+1 Arcane Signet
+1 Leadership Vacuum
+1 Thought Sponge
+1 Mandate of Peace
+1 Coveted Jewel
+1 Raugrin Triome
+1 Confounding Conundrum
+1 Phyrexian Metamorph
+1 Hallowed Fountain
+1 Reverse Damage
+1 Rod of Absorption

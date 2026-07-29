@@ -1,0 +1,89 @@
+# Archidekt — Warglock
+# source: archidekt:23939644
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Ghyrson Starn, Kelermorph
+
+Deck:
+1 Goblin Fireslinger
+1 Manabarbs
+1 Niv-Mizzet, Parun
+1 Goblin Sharpshooter
+1 Blazing Volley
+1 Redirect
+1 Grafted Exoskeleton
+1 Abrade
+1 Goblin Chainwhirler
+1 Swiftwater Cliffs
+1 Izzet Boilerworks
+1 Thermo-Alchemist
+1 Burning Earth
+1 Ionize
+1 Brainstorm
+1 End the Festivities
+1 Ponder
+1 Command Tower
+1 Rampaging Ferocidon
+1 Thousand-Year Storm
+1 Krenko, Mob Boss
+1 Curse of the Pierced Heart
+1 Boiling Earth
+1 Izzet Signet
+1 Curiosity
+1 Repercussion
+1 Sapphire Medallion
+1 Sol Ring
+1 Stock Up
+1 Shower of Sparks
+1 Shadowspear
+1 Exotic Orchard
+1 Eroded Canyon
+1 Flames of the Firebrand
+1 Untimely Malfunction
+1 Basilisk Collar
+1 Hexing Squelcher
+1 Return the Favor
+1 Counterspell
+1 Dual Shot
+1 Spitfire Lagac
+1 Terramorphic Expanse
+1 Ruby Medallion
+1 Turbulent Springs
+1 Razorkin Needlehead
+1 Firebrand Archer
+1 Twin Bolt
+1 Temple of Epiphany
+1 Scorched Geyser
+1 Evolving Wilds
+1 Lightning Greaves
+1 Spirebluff Canal
+1 Stormcarved Coast
+1 Mana Leak
+1 Cinder Pyromancer
+1 Prodigal Pyromancer
+1 Thundering Falls
+1 Tunneling Geopede
+8 Island
+1 Gelectrode
+1 Electrostatic Field
+1 Chandra's Magmutt
+1 Electrickery
+1 Fire // Ice
+1 Arcane Signet
+1 Impact Tremors
+1 Prismari Charm
+1 Propaganda
+1 Arcane Bombardment
+1 Brainsurge
+1 Isochron Scepter
+1 Caltrops
+1 Turnabout
+1 Dual Casting
+1 Disallow
+1 Resculpt
+1 Silent Hallcreeper
+13 Mountain
+1 Grapeshot
+1 Lightning Bolt

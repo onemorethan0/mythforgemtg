@@ -1,0 +1,80 @@
+# Archidekt — Un sol set
+# source: archidekt:24765175
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Obscura Ascendancy
+1 Obscura Charm
+1 Obscura Storefront
+1 Obscura Interceptor
+1 Body Launderer
+1 Obscura Confluence
+1 Obscura Initiate
+11 Island
+11 Swamp
+11 Plains
+1 Skybridge Towers
+1 Extraction Specialist
+1 Make Disappear
+1 Cut Your Losses
+1 Depopulate
+1 Rumor Gatherer
+1 Brass Knuckles
+1 Halo Scarab
+1 Disdainful Stroke
+1 An Offer You Can't Refuse
+1 A Little Chat
+1 Angel of Suffering
+1 Fake Your Own Death
+1 Aven Heartstabber
+1 Boon of Safety
+1 Cemetery Tampering
+1 Celestial Regulator
+1 Cut of the Profits
+1 Citizen's Crowbar
+1 Faerie Vandal
+1 Elspeth Resplendent
+1 Gilded Pinions
+1 Dusk Mangler
+1 Getaway Car
+1 Halo Fountain
+1 Errant, Street Artist
+1 Hold for Ransom
+1 Murder
+1 Illuminator Virtuoso
+1 Ledger Shredder
+1 Midnight Assassin
+1 Metropolis Angel
+1 Nimble Larcenist
+1 Ominous Parcel
+1 Patch Up
+1 Mysterious Limousine
+1 Out of the Way
+1 Refuse to Yield
+1 Public Enemy
+1 Raffine, Scheming Seer
+1 Rabble Rousing
+1 Raffine's Silencer
+1 Raffine's Informant
+1 Reservoir Kraken
+1 Raffine's Tower
+1 Sanguine Spy
+1 Rogues' Gallery
+1 Sanctuary Warden
+1 Run Out of Town
+1 Scheming Fence
+1 Security Bypass
+1 Shattered Seraph
+1 Slip Out the Back
+1 Snooping Newsie
+1 Syndicate Infiltrator
+1 Toluz, Clever Conductor
+1 Waterfront District
+1 Unlicensed Hearse
+1 Undercover Operative
+1 Void Rend
+1 Witness Protection

@@ -1,0 +1,102 @@
+# Archidekt — Sarya, electrical
+# source: archidekt:16368647
+# fetched: 2026-07-24
+# bracket: 4
+
+Commander:
+1 Satya, Aetherflux Genius
+
+Deck:
+1 Stone Idol Generator
+1 Confiscation Coup
+1 Decoction Module
+1 HELIOS One
+1 Phyrexian Ironworks
+1 Sphinx of the Revelation
+1 Blaster Hulk
+1 Aurora Shifter
+1 Scurry of Gremlins
+1 Era of Innovation
+1 Aether Refinery
+1 Liberty Prime, Recharged
+1 Solemn Simulacrum
+1 Vault 112: Sadistic Simulation
+1 Salvation Colossus
+1 Amped Raptor
+1 Dr. Madison Li
+1 Rush of Inspiration // Crackling Falls
+1 Overclocked Electromancer
+1 The Motherlode, Excavator
+1 Brotherhood Scribe
+1 Whirler Virtuoso
+1 Assaultron Dominator
+1 Izzet Generatorium
+1 Localized Destruction
+1 Synth Eradicator
+1 Bespoke Battlewagon
+1 Lightning Runner
+1 Razorfield Ripper
+1 Aetherstorm Roc
+1 Automated Assembly Line
+1 Aethertide Whale
+1 Aethersquall Ancient
+1 Aethergeode Miner
+1 Jolted Awake
+1 Sentry Bot
+1 Skyclave Apparition
+1 Farewell
+1 City of Brass
+1 Serra Ascendant
+1 Akroma's Will
+1 Roil Cartographer
+1 Unstable Amulet
+1 Wrath of the Skies
+1 Aetherworks Marvel
+1 Electrostatic Pummeler
+1 Aether Revolt
+1 Tune the Narrative
+1 Riddle Gate Gargoyle
+1 Galvanic Discharge
+1 Volatile Stormdrake
+1 Aether Spike
+1 Guide of Souls
+1 Behemoth of Vault 0
+1 Panharmonicon
+1 Battle of Hoover Dam
+1 Brudiclad, Telchor Engineer
+1 Cayth, Famed Mechanist
+1 Gonti's Aether Heart
+1 T-45 Power Armor
+1 Saheeli Rai
+1 Talisman of Creativity
+1 Temple of Triumph
+1 Electrosiphon
+1 Urza, Prince of Kroog
+1 Recruiter of the Guard
+1 Solar Transformer
+1 Reiterating Bolt
+1 Conversion Apparatus
+1 Aether Hub
+1 Mystic Gate
+1 Rugged Prairie
+1 Sunbillow Verge
+1 Mystic Monastery
+1 Command Tower
+1 Sacred Foundry
+1 Furycalm Snarl
+2 Island
+1 Temple of Enlightenment
+1 Azorius Chancery
+1 Island
+1 Island
+1 Island
+1 Mountain
+1 Island
+2 Mountain
+2 Mountain
+1 Plains
+1 Mountain
+1 Plains
+1 Plains
+1 Plains
+1 Plains

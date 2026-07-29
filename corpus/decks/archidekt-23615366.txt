@@ -1,0 +1,91 @@
+# Archidekt — Saruman
+# source: archidekt:23615366
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Saruman, the White Hand
+
+Deck:
+1 Arcane Signet
+1 Blasphemous Act
+1 Choked Estuary
+1 Command Tower
+1 Desolate Lighthouse
+1 Drowned Catacomb
+1 Faithless Looting
+1 Feed the Swarm
+1 Fiery Inscription
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Guttersnipe
+1 Languish
+1 Lord of the Nazgûl
+6 Mountain
+1 Notion Thief
+1 Orcish Siegemaster
+1 Relic of Sauron
+1 Rogue's Passage
+1 Sol Ring
+1 Sulfur Falls
+1 Summons of Saruman
+1 The Black Gate
+1 The Mouth of Sauron
+1 Underground River
+1 Talisman of Indulgence
+1 Fellwar Stone
+1 Scalding Tarn
+1 Steam Vents
+1 Dragonskull Summit
+1 Professor Onyx
+1 Electrostatic Field
+1 Anticipate
+1 Bitter Triumph
+1 Saruman's Trickery
+1 Mordor Muster
+1 Lazotep Plating
+1 Soul's Fire
+1 Dreadhorde Invasion
+1 Narset, Parter of Veils
+1 The Eldest Reborn
+1 Lórien Revealed
+1 Terminate
+1 Grixis Charm
+1 Shore Up
+1 Firebrand Archer
+1 Fling
+1 Brainstorm
+1 Big Score
+1 Unexpected Windfall
+1 Crosis's Charm
+1 Counterspell
+1 Negate
+1 Impulse
+1 Infernal Grasp
+1 Frantic Search
+1 Ponder
+1 Mana Leak
+1 Stock Up
+1 Key to the City
+1 Exotic Orchard
+1 Tainted Peak
+10 Island
+4 Swamp
+1 Sulfurous Springs
+1 Sauron, Lord of the Rings
+1 Corsairs of Umbar
+1 Gandalf the Grey
+1 Talisman of Dominance
+1 Kess, Dissident Mage
+1 Strategic Planning
+1 Chandra's Ignition
+1 Jace, the Mind Sculptor
+1 Syphon Mind
+1 Toxic Deluge
+1 Call Forth the Tempest
+1 Sink into Stupor // Soporific Springs
+1 Nexus of Fate
+1 Swan Song
+1 Essence Flux
+1 Karn's Temporal Sundering
+1 Kolaghan's Command

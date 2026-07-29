@@ -1,0 +1,108 @@
+# Archidekt — 200 cards
+# source: archidekt:24769173
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Augmenter Pugilist // Echoing Equation
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Branchloft Pathway // Boulderloft Pathway
+1 Hagra Mauling // Hagra Broodpit
+1 Boggart Trawler // Boggart Bog
+1 Glasspool Mimic // Glasspool Shore
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Tangled Florahedron // Tangled Vale
+1 Needleverge Pathway // Pillarverge Pathway
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Silundi Vision // Silundi Isle
+1 Blightstep Pathway // Searstep Pathway
+1 Glasswing Grace // Age-Graced Chapel
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Fell the Profane // Fell Mire
+1 Disciple of Freyalise // Garden of Freyalise
+1 Revitalizing Repast // Old-Growth Grove
+1 Valakut Awakening // Valakut Stoneforge
+1 Blex, Vexing Pest // Search for Blex
+1 Sejiri Shelter // Sejiri Glacier
+1 Shaile, Dean of Radiance // Embrose, Dean of Shadow
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Sapphire Dragon // Psionic Pulse
+1 Hengegate Pathway // Mistgate Pathway
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Darkbore Pathway // Slitherbore Pathway
+1 Pinnacle Monk // Mystic Peak
+1 Rush of Inspiration // Crackling Falls
+1 Riverglide Pathway // Lavaglide Pathway
+1 Stump Stomp // Burnwillow Clearing
+1 Malakir Rebirth // Malakir Mire
+1 Razorgrass Ambush // Razorgrass Field
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sundering Eruption // Volcanic Fissure
+1 Ondu Inversion // Ondu Skyruins
+1 Egon, God of Death // Throne of Death
+1 Sink into Stupor // Soporific Springs
+1 Strength of the Harvest // Haven of the Harvest
+1 Bloodsoaked Insight // Sanguine Morass
+1 Makindi Stampede // Makindi Mesas
+1 Mila, Crafty Companion // Lukka, Wayward Bonder
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Torrent Sculptor // Flamethrower Sonata
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Khalni Ambush // Khalni Territory
+1 Jwari Disruption // Jwari Ruins
+1 Kolvori, God of Kinship // The Ringhart Crest
+1 Legion Leadership // Legion Stronghold
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Rowan, Scholar of Sparks // Will, Scholar of Frost
+1 Wandering Archaic // Explore the Vastlands
+1 Alrund, God of the Cosmos // Hakka, Whispering Raven
+1 Halvar, God of Battle // Sword of the Realms
+1 Kabira Takedown // Kabira Plateau
+1 Zof Consumption // Zof Bloodbog
+1 Cosima, God of the Voyage // The Omenkeel
+1 Jadzi, Oracle of Arcavios // Journey to the Oracle
+1 Uvilda, Dean of Perfection // Nassari, Dean of Expression
+1 Suppression Ray // Orderly Plaza
+1 Extus, Oriq Overlord // Awaken the Blood Avatar
+1 Drowner of Truth // Drowned Jungle
+1 Pestilent Cauldron // Restorative Burst
+1 Virtue of Strength // Garenbrig Growth
+1 Flamescroll Celebrant // Revel in Silence
+1 Kianne, Dean of Substance // Imbraham, Dean of Theory
+1 Waterlogged Teachings // Inundated Archive
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Selfless Glyphweaver // Deadly Vanity
+1 Decadent Dragon // Expensive Taste
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Bramble Familiar // Fetch Quest
+1 Virtue of Persistence // Locthwain Scorn
+1 Virtue of Courage // Embereth Blaze
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Virtue of Knowledge // Vantress Visions
+1 Brazen Borrower // Petty Theft
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Undercity Informer
+1 Realm-Cloaked Giant // Cast Off
+1 Horned Loch-Whale // Lagoon Breach
+1 Questing Druid // Seek the Beast
+1 Beluna Grandsquall // Seek Thrills
+1 Brightcap Badger // Fungus Frolic
+1 Murderous Rider // Swift End
+1 Stormkeld Vanguard // Bear Down
+1 Sword Coast Serpent // Capsizing Wave
+1 Scalding Viper // Steam Clean
+1 Spellscorn Coven // Take It Back
+1 Beanstalk Wurm // Plant Beans
+1 Kellan, Daring Traveler // Journey On
+1 Giant Killer // Chop Down
+1 Tempest Hart // Scan the Clouds

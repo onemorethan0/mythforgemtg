@@ -1,0 +1,83 @@
+# Archidekt — Massive Aggro
+# source: archidekt:24785396
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Radha, Heir to Keld
+
+Deck:
+1 Amarant Coral
+1 Anara, Wolvid Familiar
+1 Arlinn, the Pack's Hope // Arlinn, the Moon's Fury
+1 Ashling, Flame Dancer
+1 Atalan Jackal
+1 Avatar Roku, Firebender
+1 Balduvian Rage
+1 Bear Umbra
+1 Bloodthirster
+1 Bow of Nylea
+1 Bulk Up
+1 Electro, Assaulting Battery
+1 Electrodominance
+1 Elvish Mystic
+1 Energy Refractor
+1 Explore
+1 Fated Firepower
+1 Fire Nation Palace
+1 Fire Nation Turret
+1 Firebending Student
+1 Flameblast Dragon
+1 Full Throttle
+1 Gemstone Array
+1 Goldspan Dragon
+1 Hellkite Charger
+1 Impact Resonance
+1 Jolene, the Plunder Queen
+1 Klauth, Unrivaled Ancient
+1 Leyline Tyrant
+1 Loot, Exuberant Explorer
+1 Lure
+1 Mina and Denn, Wildborn
+1 Moraug, Fury of Akoum
+13 Mountain
+1 Nemesis Mask
+1 Old Gnawbone
+1 Primal Rage
+1 Purphoros, Bronze-Blooded
+1 Quest for Renewal
+1 Redshift, Rocketeer Chief
+1 Rhythm of the Wild
+1 Ruby, Daring Tracker
+1 Sarkhan's Triumph
+1 Savage Ventmaw
+1 Soulbright Flamekin
+1 Starstorm
+1 The Last Agni Kai
+1 Toski, Bearer of Secrets
+1 Unexpected Windfall
+1 Urn of Godfire
+1 Valakut Awakening // Valakut Stoneforge
+1 Vedalken Orrery
+1 Vexing Shusher
+1 Vivien, Champion of the Wilds
+1 Xenagos, God of Revels
+1 Yeva, Nature's Herald
+1 Zuko, Exiled Prince
+1 Zuko, Firebending Master
+1 Rootbound Crag
+1 Command Tower
+1 Thornspire Verge
+1 Taiga
+1 Heroic Intervention
+1 Great Train Heist
+1 Elemental Bond
+14 Forest
+1 Grand Warlord Radha
+1 Guardian Project
+1 Dragonborn Champion
+1 Beast Whisperer
+1 Buster Sword
+1 Elder Gargaroth
+1 Bugenhagen, Wise Elder
+1 Ohran Frostfang

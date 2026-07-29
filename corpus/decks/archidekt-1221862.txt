@@ -1,0 +1,89 @@
+# Archidekt — Upping the Average - Brudiclad, Telchor Engineer
+# source: archidekt:1221862
+# fetched: 2026-07-05
+
+Commander:
+1 Brudiclad, Telchor Engineer
+
+Deck:
+1 Combat Celebrant
+1 Helm of the Host
+1 Sulfur Falls
+1 Reef Worm
+1 Brass's Bounty
+1 Storm the Vault // Vault of Catlacan
+1 Spell Swindle
+1 Clone Legion
+1 Cackling Counterpart
+1 Mechanized Production
+1 Faerie Artisans
+1 Padeem, Consul of Innovation
+1 Hanweir Garrison
+1 Rite of Replication
+1 Vandalblast
+1 Supplant Form
+1 Tempt with Vengeance
+1 Sai, Master Thopterist
+1 Seat of the Synod
+1 Worn Powerstone
+1 Thopter Assembly
+1 Thopter Spy Network
+1 Saheeli's Artistry
+1 Retrofitter Foundry
+1 Saheeli, the Gifted
+1 Steam Vents
+1 Quasiduplicate
+1 Saheeli, Sublime Artificer
+1 Talisman of Creativity
+1 Mirrodin Besieged
+1 Dockside Extortionist
+1 Feldon of the Third Path
+1 Idol of Oblivion
+1 Great Furnace
+1 Nadir Kraken
+1 Shivan Reef
+1 Izzet Boilerworks
+1 Mimic Vat
+1 Chaos Warp
+1 Solemn Simulacrum
+1 Temple of Epiphany
+1 Sublime Epiphany
+1 Hedron Archive
+1 Sharding Sphinx
+1 Wurmcoil Engine
+1 Myr Battlesphere
+1 Darksteel Citadel
+1 Buried Ruin
+1 Training Center
+1 Riverglide Pathway // Lavaglide Pathway
+1 Skyclave Relic
+1 Tamiyo's Journal
+1 Stolen Identity
+1 Blasphemous Act
+1 Hullbreacher
+14 Island
+6 Mountain
+1 Mystic Reflection
+1 Whirler Rogue
+1 Command Tower
+1 Sol Ring
+1 Mind Stone
+1 Commander's Sphere
+1 Arcane Signet
+1 Confirm Suspicions
+1 Spawning Bed
+1 One with the Machine
+1 Foundry of the Consuls
+1 Rapid Hybridization
+1 Gargoyle Castle
+1 Trading Post
+1 Kiora Bests the Sea God
+1 Shared Animosity
+1 The Locust God
+1 Krenko, Mob Boss
+1 Pongify
+1 Kher Keep
+1 Replicating Ring
+1 Izzet Signet
+1 Skullclamp
+1 Counterspell

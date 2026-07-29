@@ -1,0 +1,97 @@
+# Archidekt — Untap
+# source: archidekt:24761845
+# fetched: 2026-07-28
+
+Commander:
+1 Shorikai, Genesis Engine
+
+Deck:
+1 Mechanized Production
+1 Darksteel Forge
+1 Nevinyrral's Disk
+1 Unwinding Clock
+1 Voltaic Key
+1 Manifold Key
+1 Clock of Omens
+1 Thousand-Year Elixir
+1 Magewright's Stone
+1 The One Ring
+1 Coveted Jewel
+1 Basalt Monolith
+1 Mirrodin Besieged
+1 Rise and Shine
+1 Grim Monolith
+1 Gilded Lotus
+1 Thran Dynamo
+1 Cyberdrive Awakener
+1 Urza, Lord High Artificer
+1 Sai, Master Thopterist
+1 Efficient Construction
+1 Shimmer Dragon
+1 Padeem, Consul of Innovation
+1 Etherium Sculptor
+1 Shuri, Wakandan Inventor
+1 Imposter Mech
+1 Emry, Lurker of the Loch
+1 Foundry Inspector
+1 Sol Ring
+1 Arcane Signet
+1 Tezzeret the Seeker
+1 Forsaken Monument
+1 Unctus, Grand Metatect
+1 Scrap Trawler
+1 Trading Post
+1 Thought Monitor
+1 Mystic Forge
+1 Bronze Guardian
+1 Vedalken Archmage
+1 Liquimetal Torque
+1 Thoughtcast
+1 Forensic Gadgeteer
+1 Skyclave Apparition
+1 Unstable Glyphbridge // Sandswirl Wanderglyph
+1 Academy Ruins
+1 Mech Hangar
+1 Minamo, School at Water's Edge
+1 Tundra
+1 Hallowed Fountain
+1 Seachrome Coast
+1 Adarkar Wastes
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Windswept Heath
+1 Prismatic Vista
+1 Inventors' Fair
+1 Urza's Saga
+1 Otawara, Soaring City
+1 Eiganjo, Seat of the Empire
+1 War Room
+1 Buried Ruin
+1 Command Tower
+1 City of Brass
+1 Mana Confluence
+1 Reflecting Pool
+1 Ancient Tomb
+8 Island
+2 Snow-Covered Island
+3 Plains
+1 Excise the Imperfect
+1 Portal to Phyrexia
+1 Dispatch
+1 Scourglass
+1 Meteor Golem
+1 Lux Cannon
+1 Spine of Ish Sah
+1 Transmogrifying Wand
+1 Skullclamp
+1 Voltaic Construct
+1 Thopter Spy Network
+1 Dance of the Manse
+1 Brilliant Restoration
+1 Mirrorworks
+1 Daring Thief
+1 Copy Artifact
+1 Machine God's Effigy
+1 Rings of Brighthearth

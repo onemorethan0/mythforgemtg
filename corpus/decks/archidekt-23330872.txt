@@ -1,0 +1,92 @@
+# Archidekt — Mazo de viejitos
+# source: archidekt:23330872
+# fetched: 2026-07-17
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Malevolent Hermit // Benevolent Geist
+1 Iroh's Demonstration
+1 Izzet Guildmage
+1 Trusted Advisor
+1 Sol Ring
+1 Avatar Roku, Firebender
+1 Alesha, Who Laughs at Fate
+1 Alchemist's Greeting
+1 Ashes to Ashes
+1 Drain Power
+1 Kindly Stranger // Demon-Possessed Witch
+1 Library of Leng
+1 Pilfered Plans
+1 Elder Auntie
+1 Spell Pierce
+1 Glamdring
+1 Wheel of Fortune
+1 Archivist of Gondor
+1 Ancestral Reminiscence
+1 Arcane Teachings
+1 Bastion of Remembrance
+1 Bilbo, Retired Burglar
+1 Deluge
+1 Bolt Bend
+1 Barrin, Tolarian Archmage
+1 Fated Firepower
+1 Cathartic Reunion
+1 Dual Casting
+1 Consider
+1 Erudite Wizard
+1 Commander's Sphere
+1 Forever Young
+1 Diresight
+1 Forsaken Wastes
+1 Mystic Denial
+1 Gandalf, Friend of the Shire
+1 Glóin, Dwarf Emissary
+1 Gandalf the Grey
+1 Gran-Gran
+1 Ioreth of the Healing House
+1 Honest Work
+1 Incite
+1 Jeskai Elder
+1 Iroh, Dragon of the West
+1 Impulse
+1 Iroh, Firebending Instructor
+1 Lightning Strike
+1 Ludevic, Necro-Alchemist
+1 Magus of the Unseen
+1 Orthion, Hero of Lavabrink
+1 Obsessive Stitcher
+1 Old Man of the Sea
+1 Shaun, Father of Synths
+1 Withercrown
+1 Arcane Signet
+1 Dragonskull Summit
+1 Command Tower
+1 Exotic Orchard
+1 Drowned Catacomb
+1 Sulfur Falls
+1 Xander's Lounge
+1 Damnation
+1 Forge of Heroes
+1 Sunken Hollow
+1 Smoldering Marsh
+1 Scorched Geyser
+1 Morphic Pool
+4 Swamp
+1 Hidden Lair
+6 Mountain
+1 Luxury Suite
+1 Dark Fortress
+1 Training Center
+9 Island
+1 Shivan Reef
+1 Sulfurous Springs
+1 Underground River
+1 Grim Haruspex
+1 Go for the Throat
+1 Undercity Sewers
+1 Zuko, Exiled Prince
+1 Raucous Theater
+1 Thundering Falls
+1 Chittering Witch

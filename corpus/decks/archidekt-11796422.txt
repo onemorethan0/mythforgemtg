@@ -1,0 +1,84 @@
+# Archidekt — Rocco's Flying Goats of Nostalgia (Exhibition - Bracket 1)
+# source: archidekt:11796422
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Rocco, Cabaretti Caterer
+
+Deck:
+1 Springjack Pasture
+1 Fling
+1 Trading Post
+1 Pathbreaker Ibex
+1 Springjack Shepherd
+1 Flameshadow Conjuring
+1 Knight of the Reliquary
+1 Weathered Wayfarer
+1 Voyaging Satyr
+1 Emancipation Angel
+1 Cloudshift
+1 Minion Reflector
+1 Staff of Domination
+1 Dryad Arbor
+1 Eternal Witness
+1 Flickerwisp
+1 Cloud Key
+1 Temple of Abandon
+1 Temple of Plenty
+1 Temple of Triumph
+1 Umbral Mantle
+1 Goatnapper
+1 Evolution Charm
+1 Somberwald Sage
+1 Eiganjo Free-Riders
+1 Rosheen Meanderer
+1 Fiend Hunter
+1 Loaming Shaman
+1 Chromatic Lantern
+1 Gruul Signet
+1 Boros Signet
+1 Selesnya Signet
+1 Greenweaver Druid
+1 Lotus Bloom
+1 Palladium Myr
+1 Shaman of Forgotten Ways
+1 Windborn Muse
+1 Ghostly Prison
+1 Elemental Bond
+1 Karametra, God of Harvests
+1 Kazuul, Tyrant of the Cliffs
+1 Yeva, Nature's Herald
+1 Explore
+1 Reki, the History of Kamigawa
+1 Banisher Priest
+1 Narrow Escape
+1 Orochi Leafcaller
+1 Bloom Tender
+1 Heartbeat of Spring
+1 Roaring Primadox
+1 Ancient Stirrings
+1 Cream of the Crop
+9 Plains
+7 Mountain
+12 Forest
+1 Ancient Ziggurat
+1 Clifftop Retreat
+1 Exotic Orchard
+1 Untaidake, the Cloud Keeper
+1 Rootbound Crag
+1 Sunpetal Grove
+1 Jungle Shrine
+1 Stomping Ground
+1 Sacred Foundry
+1 Temple Garden
+1 Legion's Initiative
+1 Commune with Nature
+1 Magmatic Insight
+1 Searing Spear
+1 Kuldotha Forgemaster
+1 Strionic Resonator
+1 Myr Battlesphere
+1 Sliversmith
+1 Restoration Angel
+1 Oblivion Ring

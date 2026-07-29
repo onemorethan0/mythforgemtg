@@ -1,0 +1,94 @@
+# Archidekt — Nicol Bolas Tribal
+# source: archidekt:2857794
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Nicol Bolas
+
+Deck:
+1 Nicol Bolas, Dragon-God
+1 Neheb, the Eternal
+1 Crush Dissent
+1 Cinder Barrens
+1 Eternal of Harsh Truths
+1 Lazotep Plating
+1 Crypt of the Eternals
+1 Eternal Skylord
+1 God-Eternal Bontu
+1 God-Eternal Kefnet
+1 Nicol Bolas, Planeswalker
+1 Nicol Bolas, God-Pharaoh
+1 Wildfire Eternal
+1 Dunes of the Dead
+1 Crumbling Necropolis
+1 Sol Ring
+1 Command Tower
+1 Arcane Signet
+1 Exotic Orchard
+5 Island
+6 Mountain
+1 Spark Harvest
+1 Finale of Promise
+1 Honor the God-Pharaoh
+1 God-Pharaoh's Statue
+1 Throne of the God-Pharaoh
+1 The Scorpion God
+1 The Scarab God
+1 The Locust God
+1 Dreadhorde Invasion
+1 Dreadhorde Twins
+1 Dreadhorde Butcher
+1 Dreadhorde Arcanist
+1 Command the Dreadhorde
+1 Neheb, Dreadhorde Champion
+1 The Eldest Reborn
+1 Tormenting Voice
+1 Nicol Bolas, the Deceiver
+1 In Bolas's Clutches
+1 Hour of Devastation
+1 Wit's End
+1 Fraying Omnipotence
+1 Patient Rebuilding
+1 Bolas's Citadel
+1 Commence the Endgame
+1 Tyrant's Scorn
+1 Slave of Bolas
+1 Apex of Power
+1 Imminent Doom
+1 Visage of Bolas
+1 Disciple of Bolas
+1 Finale of Eternity
+1 Finale of Revelation
+1 Cruel Ultimatum
+1 Gem of Becoming
+1 Deliver Unto Evil
+1 Deep Analysis
+1 Grim Initiate
+1 Torment of Hailfire
+1 Nicol Bolas, the Ravager // Nicol Bolas, the Arisen
+1 Sulfur Falls
+1 Drowned Catacomb
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Talisman of Dominance
+1 Dragonskull Summit
+1 Sulfurous Springs
+1 Underground River
+1 Shivan Reef
+1 Foreboding Ruins
+1 Choked Estuary
+1 Sunken Hollow
+1 Smoldering Marsh
+6 Swamp
+1 Tainted Peak
+1 Tainted Isle
+1 Crux of Fate
+1 Tezzeret, Agent of Bolas
+1 Liliana, Dreadhorde General
+1 The Elderspell
+1 Augur of Bolas
+1 Merciless Eternal
+1 Survivors' Encampment
+1 No Escape
+1 Price of Betrayal

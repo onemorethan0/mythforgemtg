@@ -1,0 +1,100 @@
+# Archidekt — Revival Trance - Final Fantasy Commander
+# source: archidekt:13106730
+# fetched: 2026-07-05
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Shadowblood Ridge
+1 Demolition Field
+1 Angel of the Ruins
+1 Anger
+1 Archfiend of Depravity
+1 Banon, the Returners' Leader
+1 Battlefield Forge
+1 Bedevil
+1 Big Score
+1 Celes, Rune Knight
+1 Commander's Sphere
+1 Crackling Doom
+1 Cyan, Vengeful Samurai
+1 Combustible Gearhulk
+1 Desolate Mire
+1 Dragonskull Summit
+1 Edgar, Master Machinist
+1 Espers to Magicite
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fetid Heath
+1 Flayer of the Hatebound
+1 Foreboding Ruins
+1 Furycalm Snarl
+1 Gau, Feral Youth
+1 General Leo Cristophe
+1 Geothermal Bog
+1 Gogo, Mysterious Mime
+1 Graven Cairns
+1 High Market
+1 Interceptor, Shadow's Hound
+1 Kefka, Dancing Mad
+1 Key to the City
+1 Laughing Mad
+1 Legions to Ashes
+1 Locke, Treasure Hunter
+1 Meteor Golem
+1 Millikin
+1 Mind Stone
+1 Mog, Moogle Warrior
+1 Morbid Opportunist
+1 Mortify
+1 Night's Whisper
+1 Nomad Outpost
+1 Palace Jailer
+1 Phoenix Down
+1 Pitiless Plunderer
+1 Priest of Fell Rites
+1 Reanimate
+1 Rejoin the Fight
+1 Rugged Prairie
+1 Ruin Grinder
+1 Ruinous Ultimatum
+1 Sabin, Master Monk
+1 Sacred Peaks
+1 Sepulchral Primordial
+1 Setzer, Wandering Gambler
+1 Shadow, Mysterious Assassin
+1 Siegfried, Famed Swordsman
+1 Smoldering Marsh
+1 Solemn Simulacrum
+1 Stitch Together
+1 Stitcher's Supplier
+1 Strago and Relm
+1 Summon: Esper Valigarmanda
+1 Sun Titan
+1 Sunlit Marsh
+1 Sunscorched Divide
+1 Swiftfoot Boots
+1 Talisman of Conviction
+1 Talisman of Indulgence
+1 The Falcon, Airship Restored
+1 Tragic Arrogance
+1 Umaro, Raging Yeti
+1 Path of Ancestry
+1 Ash Barrens
+1 Clifftop Retreat
+1 Isolated Chapel
+1 Rogue's Passage
+1 Shineshadow Snarl
+1 Sulfurous Springs
+1 Wayfarer's Bauble
+1 Coin of Fate
+1 Rise of the Dark Realms
+1 Snort
+3 Mountain
+1 The Warring Triad
+1 Arcane Signet
+1 Command Tower
+1 Sol Ring
+3 Swamp
+4 Plains

@@ -276,20 +276,22 @@ goto :eof
 
 :ensure_gauntlet
 REM Make sure the MythGauntlet strength API (:8020) is running; start it if not.
-REM Powers the simulation-grounded Analyze/import panel (Myth Suite C2/C3); the UI
-REM falls back to the heuristic while it warms (store load ~50s cold / ~1.4s warm).
+REM The engine now lives IN THIS REPO (src\mythgauntlet) - it is started as a separate
+REM process on purpose: it holds the whole card-semantics store in memory (~50s cold,
+REM ~1.4s warm), and folding that into the web server would make every Forge restart
+REM pay for it. The Analyze panel reports "unavailable" until it is up.
 netstat -aon 2>nul | find ":8020" | find "LISTENING" >nul
 if !errorlevel! equ 0 (
   echo [OK] MythGauntlet strength API already running on :8020.
   goto :eof
 )
-if not exist "%USERPROFILE%\Documents\mythgauntlet\.venv\Scripts\python.exe" (
-  echo [WARN] MythGauntlet not found at Documents\mythgauntlet - deck analysis
-  echo        will use the heuristic fallback ^(no simulation panel^).
+if not exist "%~dp0src\mythgauntlet\__main__.py" (
+  echo [WARN] Engine missing at src\mythgauntlet - the Analyze panel will report
+  echo        bracket/strength as unavailable.
   goto :eof
 )
-echo [*] Starting MythGauntlet strength API (:8020) in its own window...
-start "mythgauntlet-serve" /min /d "%USERPROFILE%\Documents\mythgauntlet" cmd /c ".venv\Scripts\python.exe -m mythgauntlet serve"
+echo [*] Starting the strength API (:8020) from src\mythgauntlet in its own window...
+start "mythgauntlet-serve" /min /d "%~dp0" cmd /c "set PYTHONPATH=%~dp0src&& python -m mythgauntlet serve"
 set "_mg="
 for /l %%i in (1,1,15) do (
   if not defined _mg (

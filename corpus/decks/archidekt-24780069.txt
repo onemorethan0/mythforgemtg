@@ -1,0 +1,103 @@
+# Archidekt — Krang & Shredder
+# source: archidekt:24780069
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Krang & Shredder
+
+Deck:
+1 Choked Estuary
+1 Essence Flux
+1 Y'shtola Rhul
+1 Displacer Kitten
+1 Sakashima of a Thousand Faces
+1 Chameleon, Master of Disguise
+1 Starfield Vocalist
+1 Gonti, Night Minister
+1 Planar Incision
+1 Ghostly Flicker
+1 Drowned Catacomb
+1 Polluted Delta
+1 Morphic Pool
+1 Tainted Isle
+1 Conjurer's Closet
+1 Sunken Hollow
+1 Gloomlake Verge
+1 Underground River
+1 Dimir Aqueduct
+1 Command Tower
+1 Watery Grave
+1 Undercity Sewers
+1 Shipwreck Marsh
+1 Turtle Lair
+1 Dismal Backwater
+1 Fetid Pools
+1 Darkwater Catacombs
+1 Auton Soldier
+1 Temple of Deceit
+1 Glasspool Mimic // Glasspool Shore
+1 Bojuka Bog
+1 Urza's Saga
+1 Darkslick Shores
+1 Underground Sea
+1 Rogue's Passage
+1 Shizo, Death's Storehouse
+6 Island
+1 Swamp
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Thriving Isle
+1 Otawara, Soaring City
+1 Coin of Mastery
+1 The Soul Stone
+1 Reliquary Tower
+1 Mystic Sanctuary
+1 Mind Stone
+1 Irma, Part-Time Mutant
+1 Sol Ring
+1 Deadeye Navigator
+1 Accursed Marauder
+1 Mulldrifter
+1 Dimir Signet
+1 Arcane Signet
+1 Omni-Cheese Pizza
+1 Super Shredder
+1 Shredder, Unrelenting
+1 Oroku Saki, Shredder Rising
+1 Talisman of Dominance
+1 Krang, Master Mind
+1 Displace
+1 Thassa, Deep-Dwelling
+1 Garland, Royal Kidnapper
+1 Phyrexian Metamorph
+1 Sakashima the Impostor
+1 Hostage Taker
+1 Clever Impersonator
+1 Plaguecrafter
+1 Teferi's Time Twist
+1 Malakir Rebirth // Malakir Mire
+1 Shredder, Shadow Master
+1 Siren's Ruse
+1 Shark Shredder, Killer Clone
+1 Shredder's Technique
+1 Agent of Treachery
+1 Armaggon, Future Shark
+1 Irenicus's Vile Duplication
+1 Shredder's Revenge
+1 Utrom Scientists
+1 Quantum Misalignment
+1 Splash Portal
+1 Blade of Selves
+1 Retro-Mutation
+1 Ooze Spill
+1 Shredder's Armor
+1 Helm of the Host
+1 The Cloning of Shredder
+1 Anchovy & Banana Pizza
+1 Impostor Syndrome
+1 Stomped by the Foot
+1 Death in the Family
+1 Black Market Connections
+1 Ninja Teen
+1 Sapphire Medallion
+1 Mana Drain

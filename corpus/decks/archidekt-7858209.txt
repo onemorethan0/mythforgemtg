@@ -1,0 +1,107 @@
+# Archidekt — Eldrazi Incursion - Modern Horizons 3 Commander
+# source: archidekt:7858209
+# fetched: 2026-07-05
+
+Commander:
+1 Ulalek, Fused Atrocity
+
+Deck:
+1 Command Tower
+1 Azlask, the Swelling Scourge
+1 Crib Swap
+1 Sol Ring
+1 Arcane Signet
+1 Battlefield Forge
+1 Shivan Reef
+1 Adarkar Wastes
+1 Drowner of Hope
+1 Oblivion Sower
+1 Eldrazi Displacer
+1 Ulamog's Crusher
+1 Elder Deep-Fiend
+1 Ancient Stirrings
+1 Ugin's Insight
+1 Rishkar's Expertise
+1 All Is Dust
+1 Skittering Invasion
+1 Cascading Cataracts
+1 Unclaimed Territory
+1 Caves of Koilos
+1 Llanowar Wastes
+1 Yavimaya Coast
+1 Shrine of the Forsaken Gods
+1 Spawning Bed
+1 Brushland
+1 Hedron Archive
+1 Mystic Forge
+1 Eldrazi Monument
+1 Forsaken Monument
+1 Dreamstone Hedron
+1 Imprisoned in the Moon
+1 Awakening Zone
+1 Garruk's Uprising
+1 Eldrazi Conscription
+1 Karplusan Forest
+1 Sulfurous Springs
+1 Underground River
+1 Exotic Orchard
+1 Reliquary Tower
+1 Temple of Malady
+1 Tomb of the Spirit Dragon
+1 Tectonic Edge
+1 Corrupted Crossroads
+1 Ruins of Oran-Rief
+1 Eldrazi Temple
+1 Temple of Silence
+1 Tendo Ice Bridge
+1 Opal Palace
+1 Ash Barrens
+1 Path of Ancestry
+1 Bonders' Enclave
+1 Secluded Courtyard
+1 Eldrazi Confluence
+1 Bismuth Mindrender
+1 Chittering Dispatcher
+1 Benthic Anomaly
+1 Angelic Aberration
+1 Eldritch Immunity
+1 Selective Obliteration
+1 Ulamog's Dreadsire
+1 Mutated Cultist
+1 Twins of Discord
+1 Inversion Behemoth
+1 Spawnbed Protector
+1 Plains
+1 Island
+1 Swamp
+1 Mountain
+1 Forest
+1 Wastes
+1 Twisted Landscape
+1 Tranquil Landscape
+1 Titans' Vanguard
+1 Wastescape Battlemage
+1 Snapping Voidcraw
+1 Glaring Fleshraker
+1 Vile Redeemer
+1 Sifter of Skulls
+1 Ulamog's Nullifier
+1 Deepfathom Skulker
+1 Sire of Stagnation
+1 Endbringer
+1 World Breaker
+1 Morophon, the Boundless
+1 Artisan of Kozilek
+1 Suffer the Past
+1 Warping Wail
+1 Kozilek's Return
+1 Return of the Wildspeaker
+1 Everflowing Chalice
+1 Talisman of Dominance
+1 Talisman of Impulse
+1 Talisman of Curiosity
+1 Talisman of Resilience
+1 Idol of Oblivion
+1 Herald's Horn
+1 Ugin, the Ineffable
+1 Hideous Taskmaster

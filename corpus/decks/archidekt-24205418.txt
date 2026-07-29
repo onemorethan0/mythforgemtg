@@ -1,0 +1,81 @@
+# Archidekt — Ring Wraiths
+# source: archidekt:24205418
+# fetched: 2026-07-09
+# bracket: 3
+
+Commander:
+1 Lord of the Nazgûl
+
+Deck:
+1 Myriad Landscape
+1 Cabal Coffers
+1 Urza's Saga
+9 Nazgûl
+1 Witch-king, Bringer of Ruin
+1 Bog Wraith
+1 Sol Ring
+1 Sapphire Medallion
+1 The Darkness Crystal
+1 Ringwraiths
+1 Command Tower
+1 Dimir Signet
+1 Canoptek Wraith
+1 Jet Medallion
+1 Urborg, Tomb of Yawgmoth
+1 Witch-king of Angmar
+1 Elrond, Lord of Rivendell
+1 Claim the Precious
+1 Gandalf, Friend of the Shire
+1 Scroll of Isildur
+1 Ringsight
+1 Call of the Ring
+1 Sam's Desperate Rescue
+1 Sauron, the Necromancer
+1 Mana Drain
+1 Gollum, Patient Plotter
+1 Birthday Escape
+1 Flusterstorm
+1 Reliquary Tower
+1 Minas Morgul, Dark Fortress
+1 Roaming Throne
+1 Accursed Duneyard
+1 Shipwreck Marsh
+1 Gloomlake Verge
+1 Isochron Scepter
+1 Sunken Ruins
+1 Minamo, School at Water's Edge
+1 Tainted Isle
+1 Three Tree City
+1 Underground Sea
+1 Morphic Pool
+1 Darkwater Catacombs
+1 Sunken Hollow
+1 Kindred Discovery
+1 Island
+19 Swamp
+1 Echocasting Symposium
+1 Animate Dead
+1 Thrumming Stone
+1 Pongify
+1 Secret Salvage
+1 Snap
+1 River Song's Diary
+1 Kindred Dominance
+1 Culling the Weak
+1 The Haunt of Hightower
+1 Enduring Curiosity
+1 The One Ring
+1 Demonic Tutor
+1 Dauthi Voidwalker
+1 Dismember
+1 Reanimate
+1 Cut Down
+1 Counterspell
+1 Narset's Reversal
+1 Thought Vessel
+1 Raise the Palisade
+1 Praetor's Grasp
+1 Witness Protection
+1 The Ozolith
+1 Phyrexian Metamorph
+1 Mockingbird

@@ -1,0 +1,102 @@
+# Archidekt — III - Nin Plays Russian Roulette
+# source: archidekt:12900196
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Nin, the Pain Artist
+
+Deck:
+1 Arid Mesa
+1 Blinkmoth Nexus
+1 Bloodstained Mire
+1 Cascade Bluffs
+1 Command Tower
+1 Flooded Strand
+1 Homeward Path
+1 Mystic Sanctuary
+2 Mountain
+1 Kher Keep
+1 Kobolds of Kher Keep
+1 Mishra's Factory
+1 Misty Rainforest
+1 Mox Amber
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Polluted Delta
+1 Reflecting Pool
+1 Scalding Tarn
+1 Sokenzan, Crucible of Defiance
+1 Stormcarved Coast
+1 Strip Mine
+1 Sulfur Falls
+1 Thespian's Stage
+1 Training Center
+1 Urza's Saga
+1 Wooded Foothills
+1 Mana Vault
+1 Faithless Looting
+1 March of Swirling Mist
+1 Mystical Tutor
+1 Swan Song
+1 Wayfarer's Bauble
+1 Arcane Signet
+1 Cyclonic Rift
+1 Talisman of Creativity
+1 Tibalt's Trickery
+1 Wild Magic Surge
+1 Coalition Relic
+1 Intuition
+1 Proteus Staff
+1 Whir of Invention
+1 Worn Powerstone
+1 Rhystic Study
+1 Turnabout
+1 Mana Drain
+1 Chaos Warp
+1 Flame of Anor
+1 Cryptic Command
+1 Fact or Fiction
+1 Ponder
+1 Preordain
+1 Tezzeret the Seeker
+1 All Is Dust
+1 Divergent Transformations
+1 Ugin, the Spirit Dragon
+1 Blasphemous Act
+1 Blightsteel Colossus
+1 Chrome Mox
+1 Sundering Eruption // Volcanic Fissure
+1 Polymorph
+1 Chain Reaction
+1 Reality Scramble
+1 Ancient Tomb
+1 Transmogrify
+1 Thundering Falls
+1 Commandeer
+1 Urza's Cave
+1 Chandra's Ignition
+1 Invert Polarity
+1 Crookshank Kobolds
+1 Crimson Kobolds
+1 Rograkh, Son of Rohgahh
+1 Rosnakht, Heir of Rohgahh
+1 Mistrise Village
+1 Mass Hysteria
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 The One Ring
+1 Sol Ring
+1 Brainstorm
+1 Not of This World
+1 Mutavault
+1 Steam Vents
+6 Island
+1 Stock Up
+1 Sink into Stupor // Soporific Springs
+1 Prismari Charm
+1 Flashback
+1 Resonating Lute
+1 Counterbalance
+1 Sensei's Divining Top
+1 Mana Sculpt
+1 Gifts Ungiven

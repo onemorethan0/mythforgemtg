@@ -1,0 +1,86 @@
+# Archidekt — Betor Life and Death
+# source: archidekt:21823323
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Gohn, Town of Ruin
+1 Quilled Greatwurm
+1 Anguished Unmaking
+1 Blossoming Sands
+1 Deathcap Glade
+1 Exotic Orchard
+1 Feed the Swarm
+1 Germination Practicum
+1 Jungle Hollow
+1 Rhox Faithmender
+1 Sandsteppe Citadel
+1 Scoured Barrens
+1 Victimize
+1 Withering Curse
+1 Vicious Rivalry
+1 Abigale, Eloquent First-Year
+1 Aerith Gainsborough
+1 Lathiel, the Bounteous Dawn
+1 Bolas's Citadel
+1 Scheming Silvertongue // Sign in Blood
+1 Tarnished Citadel
+1 Vilis, Broker of Blood
+1 Toxic Deluge
+1 Dark Confidant
+1 Underrealm Lich
+1 Bloom Tender
+1 Ripples of Undeath
+1 Celestine, the Living Saint
+1 Staff of Compleation
+1 Phyrexian Arena
+1 The Wind Crystal
+1 Branching Evolution
+1 The Ozolith
+1 Archangel of Thune
+5 Forest
+1 Bloodthirsty Conqueror
+1 Farseek
+1 Starting Town
+1 Byrke, Long Ear of the Law
+1 Reanimate
+1 Command Tower
+1 Imp's Mischief
+1 Tamiyo's Safekeeping
+5 Plains
+1 Murmuring Bosk
+10 Swamp
+1 Grand Coliseum
+1 Llanowar Wastes
+1 Sylvan Library
+1 Doom Whisperer
+1 Serra Paragon
+1 Essence Channeler
+1 Terrasymbiosis
+1 Talisman of Resilience
+1 Sol Ring
+1 Shattered Sanctum
+1 Shattered Acolyte
+1 Odric, Lunarch Marshal
+1 Dauthi Voidwalker
+1 Karlov of the Ghost Council
+1 Icetill Explorer
+1 World Shaper
+1 Malakir Rebirth // Malakir Mire
+1 Elves of Deep Shadow
+1 Kodama's Reach
+1 Temple Garden
+1 Ghostly Prison
+1 Heroic Intervention
+1 Nethroi, Apex of Death
+1 Colossal Grave-Reaver
+1 Kodama of the West Tree
+1 Morbid Opportunist
+1 Culling Ritual
+1 Elenda, the Dusk Rose
+1 Swords to Plowshares
+1 Brave the Sands
+1 Valkyrie Harbinger

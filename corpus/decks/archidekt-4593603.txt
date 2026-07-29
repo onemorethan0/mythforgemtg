@@ -1,0 +1,69 @@
+# Archidekt — Galazeth Prismari: The Dragons Are Coming
+# source: archidekt:4593603
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Galazeth Prismari
+
+Deck:
+1 Archmage Emeritus
+1 Cascade Bluffs
+1 Command Tower
+1 Arcane Signet
+1 Exotic Orchard
+1 Izzet Signet
+1 Mind Bomb
+1 Molten Tributary
+1 Fabled Passage
+1 Prismari Campus
+1 Riverglide Pathway // Lavaglide Pathway
+1 Shivan Reef
+1 Ruby Medallion
+1 Mathise, Surge Channeler
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Talisman of Creativity
+1 Thundering Falls
+1 Training Center
+1 Wheel of Fortune
+1 Wheel of Misfortune
+1 Sea Gate Restoration // Sea Gate, Reborn
+3 Island
+1 Niv-Mizzet, Visionary
+1 Demand Answers
+1 Experimental Synthesizer
+1 Twinflame Tyrant
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Sink into Stupor // Soporific Springs
+1 Notorious Throng
+1 Locket of Yesterdays
+1 Pentad Prism
+1 Pinnacle Monk // Mystic Peak
+1 Marang River Regent // Coil and Catch
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Jeska's Will
+1 Zenith Festival
+1 Noble's Purse
+1 Melded Moxite
+1 Themberchaud
+1 Collected Conjuring
+1 Volatile Fjord
+25 Dragon's Approach
+1 Archmage of Runes
+1 Epic Experiment
+1 Bothersome Quasit
+1 Howling Mine
+1 Valakut Awakening // Valakut Stoneforge
+1 Steam Vents
+1 The Reality Chip
+1 Knollspine Dragon
+1 Stormcatch Mentor
+1 Goblin Electromancer
+14 Mountain
+1 Traumatic Critique
+1 Prismari, the Inspiration
+1 Sol Ring
+1 Faithless Looting
+1 Windfall
+1 Frostboil Snarl

@@ -1,0 +1,89 @@
+# Archidekt — Yoshimaru/Falthis rebuild
+# source: archidekt:17578024
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Falthis, Shadowcat Familiar
+1 Yoshimaru, Ever Faithful
+
+Deck:
+1 Kaya, Intangible Slayer
+1 Loran of the Third Path
+1 Vincent Valentine // Galian Beast
+1 Caged Sun
+1 Exsanguinate
+1 The Irencrag
+1 Vito, Thorn of the Dusk Rose
+1 Glasswing Grace // Age-Graced Chapel
+1 Ardyn, the Usurper
+1 Elspeth Resplendent
+1 Heroes' Podium
+1 Godsend
+1 Anafenza, Kin-Tree Spirit
+6 Swamp
+1 The Speed Demon
+1 The Wandering Emperor
+1 Debt to the Deathless
+1 Minas Tirith
+1 Drana, Liberator of Malakir
+1 Noble Heritage
+1 Basri Ket
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+1 Ardbert, Warrior of Darkness
+1 Feed the Swarm
+1 The Wanderer
+1 Diabolic Tutor
+2 Plains
+6 Swamp
+1 Liliana of the Dark Realms
+1 Yosei, the Morning Star
+1 Barad-dûr
+1 Sigarda's Summons
+1 Revival // Revenge
+1 Withering Torment
+1 Lost Jitte
+1 The Eternal Wanderer
+1 Keleth, Sunmane Familiar
+1 Mirror of Galadriel
+1 Valkyrie's Call
+1 Odric, Lunarch Marshal
+1 Invasion of Fiora // Marchesa, Resolute Monarch
+1 Mangara, the Diplomat
+1 Daxos, Blessed by the Sun
+1 Agent of the Shadow Thieves
+1 Sword of the Animist
+1 Mask of Griselbrand
+1 Stroke of Midnight
+1 Astarion's Thirst
+1 Orzhov Basilica
+1 Aerith Gainsborough
+1 Alisaie Leveilleur
+2 Plains
+4 Plains
+1 Despark
+1 Tataru Taru
+1 Havengul Laboratory // Havengul Mystery
+1 The Grey Havens
+1 Fetid Heath
+1 Flagstones of Trokair
+1 Command Tower
+1 Windbrisk Heights
+1 Nyx Lotus
+1 The Wandering Rescuer
+1 Phyrexian Arena
+1 Arcane Signet
+1 Sign in Blood
+1 Shelter
+1 Tarrian's Soulcleaver
+1 Urdnan, Dromoka Warrior
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Squall, SeeD Mercenary
+1 Eye of Nidhogg
+1 Ao, the Dawn Sky
+1 Imp's Mischief
+5 Plains
+1 Viv Vision, Teen Synthezoid
+1 Isolated Chapel
+1 Elenda, Saint of Dusk
+1 Icingdeath, Frost Tyrant

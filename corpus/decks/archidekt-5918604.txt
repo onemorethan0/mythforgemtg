@@ -1,0 +1,74 @@
+# Archidekt — Herbert the pervert
+# source: archidekt:5918604
+# fetched: 2026-07-17
+
+Commander:
+1 Abuelo, Ancestral Echo
+
+Deck:
+1 The Mightstone and Weakstone
+1 Solemn Simulacrum
+1 Arcanist's Owl
+1 Bronze Guardian
+1 Brotherhood Outcast
+1 Panharmonicon
+1 Claim Jumper
+1 Helpful Hunter
+1 Elesh Norn, Mother of Machines
+1 Appa, Steadfast Guardian
+1 Blur
+1 Ajani's Welcome
+1 Authority of the Consuls
+1 Essence Flux
+1 Voidwalk
+1 Dawnbringer Cleric
+1 Charming Prince
+1 Cleric Class
+1 Impassioned Orator
+1 Soul Warden
+1 Norn's Inquisitor
+1 Skyknight Squire
+1 Displacer Kitten
+1 H.E.R.B.I.E. Scout Unit
+1 Circuit Mender
+1 The One Ring
+1 Teleportation Circle
+1 Mulldrifter
+1 Smirking Spelljacker
+1 Diluvian Primordial
+1 Thought Monitor
+1 Aether Channeler
+1 Farewell
+1 Counterspell
+1 Cyclonic Rift
+1 Agent of Treachery
+1 Helm of the Host
+1 Wizard Class
+1 Scrollshift
+1 Conjurer's Closet
+1 Venser, Shaper Savant
+1 Semester's End
+1 Vendilion Clique
+1 Spellseeker
+1 Peregrine Drake
+1 Archaeomancer
+1 Urza, Lord High Artificer
+1 Smothering Tithe
+1 The Wind Crystal
+1 Riverchurn Monument
+1 The Water Crystal
+1 Palantír of Orthanc
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Path to Exile
+1 Legion Loyalty
+19 Plains
+17 Island
+1 Crested Sunmare
+1 Staff of the Storyteller
+1 Battle Angels of Tyr
+1 The Book of Exalted Deeds
+1 Summon: Knights of Round
+1 Myrel, Shield of Argive
+1 Adeline, Resplendent Cathar
+1 Sol Ring

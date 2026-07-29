@@ -1,0 +1,92 @@
+# Archidekt — Six Sevennn
+# source: archidekt:21843315
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Rhino, Barreling Brute
+
+Deck:
+1 Wrenn and Six
+1 Wrenn and Seven
+1 Six
+1 Sixth Sense
+7 Seven Dwarves
+1 Sire of Seven Deaths
+1 Break Out
+1 Klothys, God of Destiny
+1 Raggadragga, Goreguts Boss
+1 Xenagos, the Reveler
+1 Aetherworks Marvel
+1 Xenagos, God of Revels
+1 Avatar Roku, Firebender
+1 Baloth Prime
+1 Castle Garenbrig
+1 Chandra, Heart of Fire
+1 Chandra, the Firebrand
+1 Clockwork Dragon
+1 Expand the Sphere
+1 Invasion of Ravnica // Guildpact Paragon
+1 Hexavus
+1 Luck Bobblehead
+1 Agility Bobblehead
+1 Endurance Bobblehead
+1 Intelligence Bobblehead
+1 Perception Bobblehead
+1 Strength Bobblehead
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Planetary Annihilation
+1 Quilled Greatwurm
+1 Avatar of Fury
+1 Case of the Locked Hothouse
+1 Ebony Owl Netsuke
+1 Dragon Mage
+1 Irencrag Feat
+1 Kozilek, the Great Distortion
+1 Magus of the Wheel
+1 Summoning Trap
+1 Sundering Stroke
+1 Symbiotic Wurm
+1 Tersa Lightshatter
+1 The World Spell
+1 Ugin, the Spirit Dragon
+1 Watcher in the Web
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Command Tower
+1 Temple of the False God
+1 Adventurer's Inn
+1 Rogue's Passage
+1 Bleeding Woods
+1 Bristling Backwoods
+1 Captivating Cave
+1 Cinder Glade
+1 Commercial District
+1 Command Beacon
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Daily Bugle Building
+1 Desert of the Fervent
+1 Desert of the Indomitable
+1 Dining Room
+1 Copperline Gorge
+1 Fire-Lit Thicket
+1 Fungal Reaches
+1 Forgotten Cave
+1 Game Trail
+1 Kazandu Refuge
+1 Reliquary Tower
+1 Rockfall Vale
+1 Slippery Karst
+1 Rootbound Crag
+1 Rugged Highlands
+1 Savage Mansion
+1 Sheltered Thicket
+1 Slagwoods Bridge
+1 Smoldering Crater
+1 Temple of Abandon
+1 The Autonomous Furnace
+1 The Hunter Maze
+1 Thornspire Verge
+1 Tranquil Thicket
+6 Mountain
+6 Forest
+1 Charisma Bobblehead

@@ -1,0 +1,86 @@
+# Archidekt — Elvish Council
+# source: archidekt:24776744
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Galadriel, Elven-Queen
+
+Deck:
+1 Arbor Elf
+1 Arcane Signet
+1 Arwen, Weaver of Hope
+1 Asceticism
+1 Ash Barrens
+1 Beast Within
+1 Celeborn the Wise
+1 Colossal Whale
+1 Command Tower
+1 Commander's Sphere
+1 Cultivate
+1 Círdan the Shipwright
+1 Devastation Tide
+1 Elrond of the White Council
+1 Elven Farsight
+1 Elvish Archdruid
+1 Elvish Mystic
+1 Elvish Piper
+1 Elvish Visionary
+1 Elvish Warmaster
+1 Erestor of the Council
+1 Exotic Orchard
+1 Farhaven Elf
+1 Field of Ruin
+1 Flooded Grove
+7 Forest
+8 Forest
+1 Galadhrim Ambush
+1 Gandalf, Friend of the Shire
+1 Gandalf, Westward Voyager
+1 Genesis Wave
+1 Growth Spiral
+1 Haldir, Lórien Lieutenant
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Hornet Queen
+1 Inscription of Abundance
+5 Island
+6 Island
+1 Legolas Greenleaf
+1 Lightning Greaves
+1 Lignify
+1 Lonely Sandbar
+1 Lothlórien Blade
+1 Lórien Revealed
+1 Mirkwood Elk
+1 Mirkwood Trapper
+1 Mirror of Galadriel
+1 Model of Unity
+1 Mystic Confluence
+1 Opt
+1 Overwhelming Stampede
+1 Paradise Druid
+1 Plea for Power
+1 Preordain
+1 Radagast, Wizard of Wilds
+1 Raise the Palisade
+1 Rampant Growth
+1 Realm Seekers
+1 Reclamation Sage
+1 Rejuvenating Springs
+1 Sail into the West
+1 Seeds of Renewal
+1 Sol Ring
+1 Song of Eärendil
+1 Swan Song
+1 Sylvan Offering
+1 Thornwood Falls
+1 Tranquil Thicket
+1 Trap the Trespassers
+1 Travel Through Caradhras
+1 Vineglimmer Snarl
+1 Whispersilk Cloak
+1 Windswift Slice
+1 Wood Elves
+1 Woodland Stream
+1 Wose Pathfinder

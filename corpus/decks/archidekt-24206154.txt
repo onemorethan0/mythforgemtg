@@ -1,0 +1,100 @@
+# Archidekt — Kraken 2
+# source: archidekt:24206154
+# fetched: 2026-07-09
+
+Commander:
+1 Kenessos, Priest of Thassa
+
+Deck:
+4 Island
+1 Aesi, Tyrant of Gyre Strait
+1 Alchemist's Refuge
+1 Arcane Signet
+1 Arixmethes, Slumbering Isle
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Behold the Multiverse
+1 Benthic Anomaly
+1 Boseiju, Who Endures
+1 Brainsurge
+1 Brinelin, the Moon Kraken
+1 Castle Garenbrig
+1 Command Tower
+1 Cosmic Cube
+1 Cyclonic Rift
+1 Deliberate
+1 Elven Farsight
+1 Fabled Passage
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Flooded Grove
+1 Forest
+1 Galadriel of Lothlórien
+1 Garruk's Uprising
+1 Gilanra, Caller of Wirewood
+1 Glacier Godmaw
+1 Growth Spiral
+1 Harmonized Trio // Brainstorm
+1 Hedge Maze
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Hullbreaker Horror
+1 Inkwell Leviathan
+1 Jace, Mirror Mage
+1 Joint Exploration
+1 Kiora, Sovereign of the Deep
+1 Kodama of the East Tree
+1 Koma, Cosmos Serpent
+1 Koma, World-Eater
+1 Lost Isle Calling
+1 Mazemind Tome
+1 Mirri's Guile
+1 Mistrise Village
+1 Misty Rainforest
+1 Moritte of the Frost
+1 Mystic Remora
+1 Noxious Revival
+1 Omni-Changeling
+1 Opt
+1 Otawara, Soaring City
+1 Planetarium of Wan Shi Tong
+1 Ponder
+1 Pongify
+1 Preordain
+1 Quandrix Campus
+1 Quest for Ula's Temple
+1 Rapid Hybridization
+1 Reason // Believe
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Retreat to Coralhelm
+1 Rivendell
+1 Scour All Possibilities
+1 Scroll Rack
+1 Seedborn Muse
+1 Sensei's Divining Top
+1 Serpent of Yawning Depths
+1 Serum Visions
+1 Simic Growth Chamber
+1 Skyshroud Claim
+1 Slinn Voda, the Rising Deep
+1 Sol Ring
+1 Soothsaying
+1 Spawning Kraken
+1 Starwinder
+1 Stormsurge Kraken
+1 Summon: Leviathan
+1 Talisman of Curiosity
+1 Tel-Jilad Justice
+1 Temporal Mastery
+1 Thassa, God of the Sea
+1 The Great Henge
+1 The Grey Havens
+1 The Unagi of Kyoshi Island
+1 Training Grounds
+1 Traverse the Outlands
+1 Tromokratis
+1 Tropical Island
+1 Turbulent Wilderness
+1 Whelming Wave
+1 Willowrush Verge
+1 Yavimaya, Cradle of Growth

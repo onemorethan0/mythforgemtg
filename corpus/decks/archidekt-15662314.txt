@@ -1,0 +1,96 @@
+# Archidekt — The House Always Wins
+# source: archidekt:15662314
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Mr. House, President and CEO
+
+Deck:
+1 Contraband Livestock
+1 Brazen Dwarf
+1 Attempted Murder
+1 Rogue's Passage
+1 Inspiring Statuary
+1 Charisma Bobblehead
+1 Luck Bobblehead
+1 Sulfurous Springs
+1 Desolate Mire
+1 Anim Pakal, Thousandth Moon
+1 Academy Manufactor
+1 Molten Gatekeeper
+1 Circuits Act
+1 Steel Overseer
+1 Command Tower
+1 Godless Shrine
+1 Village Rites
+1 Revel in Riches
+1 Ruinous Ultimatum
+1 Jan Jansen, Chaos Crafter
+1 Caesar, Legion's Emperor
+1 Celebr-8000
+1 Hellkite Tyrant
+1 Isshin, Two Heavens as One
+1 The Deck of Many Things
+1 Caged Sun
+1 Strength Bobblehead
+1 Agent of the Iron Throne
+1 Iron Mastiff
+1 Hoarding Ogre
+1 Myrkul's Edict
+1 Ingenious Artillerist
+1 Wyll, Blade of Frontiers
+1 Clown Car
+1 Swiftfoot Boots
+1 Agility Bobblehead
+1 Perception Bobblehead
+1 Endurance Bobblehead
+1 Intelligence Bobblehead
+1 Xenosquirrels
+1 Six-Sided Die
+1 Path of Ancestry
+1 Night Shift of the Living Dead
+1 Slight Malfunction
+1 Spire of Industry
+1 Exotic Orchard
+1 Intangible Virtue
+1 Clifftop Retreat
+1 Approach of the Second Sun
+1 Tempered Steel
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Nuka-Cola Vending Machine
+4 Plains
+1 Mayhem Devil
+7 Mountain
+1 Grim Hireling
+1 Xorn
+4 Swamp
+1 Arcane Signet
+1 Battlefield Forge
+1 Delina, Wild Mage
+1 Component Pouch
+1 Bojuka Bog
+1 Maddening Hex
+1 Securitron Squadron
+1 Dragonskull Summit
+1 Vexing Puzzlebox
+1 Treasure Vault
+1 Isolated Chapel
+1 Losheel, Clockwork Scholar
+1 Marionette Apprentice
+1 Nomad Outpost
+1 Lightfoot Rogue
+1 Wear // Tear
+1 Shattered Landscape
+1 Revivify
+1 Organic Extinction
+1 Wand of Wonder
+1 Reckless Fireweaver
+1 Vihaan, Goldwaker
+1 Vault of the Archangel
+1 Underdark Rift
+1 Wyll's Reversal
+1 Chaos Dragon
+1 Craterclaw Colossus
+1 Halo Fountain
+1 Barbarian Class

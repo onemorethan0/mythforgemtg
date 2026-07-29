@@ -1,0 +1,52 @@
+# Archidekt — Violet's Marrow-Gnawer | Game Knights #63
+# source: archidekt:5149482
+# fetched: 2026-07-05
+
+Commander:
+1 Marrow-Gnawer
+
+Deck:
+1 Arcane Signet
+1 Ayara, First of Locthwain
+1 Black Market
+1 Bojuka Bog
+1 Bolas's Citadel
+1 Bontu's Monument
+1 Cabal Coffers
+1 Cabal Stronghold
+1 Crippling Fear
+1 Dark Ritual
+1 Deadly Dispute
+1 Defile
+1 Echoing Return
+1 Feed the Swarm
+1 Gruesome Fate
+1 Haunted One
+1 Herald's Horn
+1 Heraldic Banner
+1 Infernal Grasp
+1 Locket of Yesterdays
+1 Mirror Box
+1 Ogre Slumlord
+1 Pack Rat
+1 Patriarch's Bidding
+1 Phyrexian Tower
+1 Piper of the Swarm
+29 Rat Colony
+1 Ratcatcher
+1 Read the Bones
+1 Secret Salvage
+1 Sign in Blood
+1 Skullclamp
+1 Sol Ring
+1 Species Specialist
+28 Swamp
+1 Swarmyard
+1 Tainted Strike
+1 Takenuma, Abandoned Mire
+1 Thrumming Stone
+1 Vampiric Tutor
+1 Vanquisher's Banner
+1 Village Rites
+1 Phyrexian Altar
+1 Patriar's Seal

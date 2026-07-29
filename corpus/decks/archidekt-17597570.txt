@@ -1,0 +1,98 @@
+# Archidekt — nico
+# source: archidekt:17597570
+# fetched: 2026-07-05
+
+Commander:
+1 Nicol Bolas, the Ravager // Nicol Bolas, the Arisen
+
+Deck:
+1 Arcane Signet
+1 Ashiok, Dream Render
+1 Baleful Strix
+1 Blasphemous Act
+1 Blood Crypt
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Bolas's Citadel
+1 Chaos Warp
+1 Command Tower
+1 Consecrated Sphinx
+1 Counterspell
+1 Crumbling Necropolis
+1 Crux of Fate
+1 Cyclonic Rift
+1 Damnation
+1 Dark Intimations
+1 Dark Ritual
+1 Deadly Rollick
+1 Deepglow Skate
+1 Deflecting Swat
+1 Deliver Unto Evil
+1 Demonic Tutor
+1 Dimir Signet
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Flux Channeler
+1 Force of Will
+1 Haunted Ridge
+1 Ichormoon Gauntlet
+4 Island
+1 Izzet Signet
+1 Karn's Bastion
+1 Liliana, Dreadhorde General
+1 Luxury Suite
+1 Mana Drain
+1 Morphic Pool
+4 Mountain
+1 Mystic Remora
+1 Mystical Tutor
+1 Narset, Parter of Veils
+1 Nicol Bolas
+1 Nicol Bolas, Dragon-God
+1 Nicol Bolas, God-Pharaoh
+1 Nicol Bolas, Planeswalker
+1 Nicol Bolas, the Deceiver
+1 Nightscape Familiar
+1 Notion Thief
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Polluted Delta
+1 Propaganda
+1 Rakdos Signet
+1 Reanimate
+1 Reliquary Tower
+1 Rhystic Study
+1 Scalding Tarn
+1 Sheoldred, the Apocalypse
+1 Shipwreck Marsh
+1 Sol Ring
+1 Solemn Simulacrum
+1 Spark Double
+1 Steam Vents
+1 Stormcarved Coast
+1 Sulfur Falls
+4 Swamp
+1 Swan Song
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 The Chain Veil
+1 The Eldest Reborn
+1 The Locust God
+1 Torment of Hailfire
+1 Toxic Deluge
+1 Training Center
+1 Urborg, Tomb of Yawgmoth
+1 Vampiric Tutor
+1 Vandalblast
+1 Vraska, Betrayal's Sting
+1 Waste Not
+1 Watery Grave
+1 Windfall
+1 Xander's Lounge
+1 Villainous Wrath
+1 Oscorp Industries

@@ -1,0 +1,90 @@
+# Archidekt — Everything Changed When The Fire Nation Attacked (Fire Lord Zuko)
+# source: archidekt:17417255
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Fire Lord Zuko
+
+Deck:
+1 Isshin, Two Heavens as One
+1 Infuriate
+1 Legion Leadership // Legion Stronghold
+1 Onward // Victory
+1 Ashling, Flame Dancer
+1 Battlefield Forge
+1 Beaming Defiance
+1 Blacksmith's Skill
+1 Brute Force
+1 Bulk Up
+1 Comet Storm
+1 Command Tower
+1 Desolate Mire
+1 Dragonfire Blade
+1 Dream Devourer
+1 Electric Revelation
+1 Electro, Assaulting Battery
+1 Electrodominance
+1 Enter the Avatar State
+1 Exotic Orchard
+1 Fall of the Titans
+1 Fatal Frenzy
+1 Fetid Heath
+1 Fire Lord Ozai
+1 Fireglass Mentor
+1 Flare of Duplication
+1 Ghitu Fire
+1 Graven Cairns
+1 Increasing Vengeance
+1 Isolated Chapel
+1 Laughing Mad
+1 Leyline Tyrant
+1 Loran's Escape
+1 Monstrous Rage
+1 Opera Love Song
+4 Plains
+1 Reckless Charge
+1 Redirect Lightning
+1 Restoration Magic
+1 Return the Favor
+1 Reverberate
+1 Rob the Archives
+1 Rugged Prairie
+1 Shadowblood Ridge
+1 Shardmage's Rescue
+1 Spectacular Tactics
+1 Sulfurous Springs
+1 Summon: Brynhildr
+1 Sunscorched Divide
+4 Swamp
+1 The Last Agni Kai
+1 Volcanic Geyser
+1 The Legend of Roku // Avatar Roku
+1 Aurelia's Fury
+1 Big Score
+1 Caves of Koilos
+1 Clifftop Retreat
+1 Commune with Lava
+1 Dragonskull Summit
+1 Fire Nation Palace
+1 Inti, Seneschal of the Sun
+13 Mountain
+1 Nomad Outpost
+1 Party Thrasher
+1 Reckless Impulse
+1 Seize Opportunity
+1 Magmatic Channeler
+1 March of Reckless Joy
+1 Tavern Brawler
+1 Showdown of the Skalds
+1 Unlucky Witness
+1 Light Up the Stage
+1 Unexpected Windfall
+1 Tempered in Solitude
+1 Wrenn's Resolve
+1 Unstable Amulet
+1 Rush of Blood
+1 Valakut Awakening // Valakut Stoneforge
+1 Storm King's Thunder
+1 Display of Power
+1 Wild Ride

@@ -1,0 +1,95 @@
+# Archidekt — Toughness Matters Theme
+# source: archidekt:22159245
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Arcades, the Strategist
+
+Deck:
+1 Beast Within
+1 Arcane Signet
+1 Breeding Pool
+1 Canopy Vista
+1 Access Tunnel
+1 Angelic Chorus
+1 Assault Formation
+1 Axebane Guardian
+1 Azorius Signet
+1 Bar the Door
+1 Bountiful Promenade
+1 Brave the Sands
+1 Angelic Wall
+1 Carven Caryatid
+1 Corrupted Shapeshifter
+1 Crashing Drawbridge
+1 The Walls of Ba Sing Se
+1 Dusk // Dawn
+1 Hallowed Fountain
+1 Expel the Interlopers
+1 Fortified Rampart
+1 Glacial Fortress
+1 High Alert
+1 Huatli, the Sun's Heart
+1 Jeskai Barricade
+1 Overgrown Battlement
+1 Perimeter Captain
+1 Prairie Stream
+1 Rammas Echor, Ancient Shield
+1 Shield Sphere
+1 Shield-Wall Sentinel
+1 Spara's Headquarters
+1 Stalwart Shield-Bearers
+1 Stoneskin
+1 Sunpetal Grove
+1 Sylvan Caryatid
+1 The Pride of Hull Clade
+1 Tree of Redemption
+1 Vine Trellis
+1 Walking Bulwark
+1 Wall of Frost
+1 Wall of Junk
+1 Wall of Runes
+1 Wall of Stolen Identity
+1 Wall of Tanglecord
+1 Weathered Sentinels
+1 Wingmantle Chaplain
+5 Island
+5 Forest
+1 Hinterland Harbor
+1 Hover Barrier
+1 Reliquary Tower
+1 Tower Defense
+1 Eerie Interlude
+1 Path to Exile
+1 Fell the Mighty
+1 Rampant Growth
+1 Sol Ring
+1 Cultivate
+1 Crystal Barricade
+1 Farseek
+1 Negate
+1 Wall of Glare
+1 Slaughter the Strong
+1 Swords to Plowshares
+1 Tetsuko Umezawa, Fugitive
+1 Counterspell
+1 Evolving Wilds
+1 Swiftfoot Boots
+1 Rhystic Study
+1 Wall of Omens
+1 Heroic Intervention
+1 Command Tower
+1 Wall of Denial
+1 Sea of Clouds
+1 Meekstone
+1 Lightning Greaves
+1 Wall of Blossoms
+6 Plains
+1 Exotic Orchard
+1 Rejuvenating Springs
+1 Seaside Citadel
+1 Aura Shards
+1 Sunscape Familiar
+1 Temple Garden
+1 Akroma's Will

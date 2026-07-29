@@ -1,0 +1,102 @@
+# Archidekt — Jaheira, Friend of the Forest + Agent of the Iron Throne: Spawning Scions
+# source: archidekt:2886541
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Jaheira, Friend of the Forest
+1 Agent of the Iron Throne
+
+Deck:
+1 Treasure Vault
+1 Blisterpod
+1 Nature's Lore
+1 Three Visits
+1 Sol Ring
+1 Assassin's Trophy
+1 Sylvan Library
+1 Awakening Zone
+1 Brood Butcher
+1 Catacomb Sifter
+1 Dread Drone
+1 Eyeless Watcher
+1 From Beyond
+1 Beast Within
+1 Kozilek's Predator
+1 Nest Invader
+1 Skittering Invasion
+1 Spawning Bed
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Bojuka Bog
+1 Command Tower
+1 Deathcap Glade
+1 Llanowar Wastes
+1 Nurturing Peatland
+1 Overgrown Tomb
+1 Scavenger Grounds
+1 Strip Mine
+1 Undergrowth Stadium
+1 Urborg, Tomb of Yawgmoth
+1 Verdant Catacombs
+1 War Room
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Parallel Lives
+1 Brood Monitor
+1 Smothering Abomination
+1 Tear Asunder
+1 Bastion of Remembrance
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 The Meathook Massacre
+1 Demolition Field
+1 Boseiju, Who Endures
+1 Second Harvest
+1 Read the Bones
+4 Forest
+4 Swamp
+1 Saw in Half
+1 Funeral Room // Awakening Hall
+1 Eldrazi Repurposer
+1 Chittering Dispatcher
+1 Glaring Fleshraker
+1 Spawnbed Protector
+1 Fell the Profane // Fell Mire
+1 Scion Summoner
+1 Abstergo Entertainment
+1 Three Tree City
+1 Wastewood Verge
+1 Shifting Woodland
+1 Ancient Tomb
+1 Path of Annihilation
+1 Farseek
+1 Idol of Oblivion
+1 Skullclamp
+1 Crippling Fear
+1 Call the Scions
+1 Rampant Growth
+1 Glimpse the Core
+1 Black Market Connections
+1 Full Flowering
+1 Night's Whisper
+1 Sign in Blood
+1 Shamanic Revelation
+1 Doubling Season
+1 Moldervine Reclamation
+1 Kozilek's Command
+1 Kindred Summons
+1 Eldrazi Confluence
+1 Heroic Intervention
+1 Grave Venerations
+1 For the Common Good
+1 Collective Resistance
+1 Shared Roots
+1 Corpsehatch
+1 Ninja Teen
+1 Rabid Attack
+1 Twilight Mire
+1 Cauldron of Essence
+1 Turbulent Fen
+1 Decorum Dissertation
+1 Ominous Harvest
+1 Body Count
+1 Growth Spasm

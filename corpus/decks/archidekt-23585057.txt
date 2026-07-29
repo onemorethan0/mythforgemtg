@@ -1,0 +1,77 @@
+# Archidekt — Mairsil Grixis
+# source: archidekt:23585057
+# fetched: 2026-07-20
+
+Commander:
+1 Mairsil, the Pretender
+
+Deck:
+1 Dream Harvest
+1 Mana Sculpt
+1 Arcanis the Omnipotent
+1 Horseshoe Crab
+1 Counterspell
+1 Wash Away
+1 Ghostly Flicker
+1 Arcane Epiphany
+1 Spell Pierce
+1 Final Act
+1 Stock Up
+1 Pull from Tomorrow
+1 Eventide's Shadow
+1 Coalition Relic
+1 Endless Evil
+1 Thought Sponge
+1 Izzet Boilerworks
+1 Stormcarved Coast
+1 Dimir Aqueduct
+1 Polluted Delta
+1 Sunken Hollow
+1 Darkwater Catacombs
+11 Swamp
+1 Command Tower
+1 Fellwar Stone
+1 Ornithopter of Paradise
+1 Chromatic Lantern
+1 Niv-Mizzet, the Firemind
+1 Kefnet the Mindful
+1 Urza's Avenger
+1 PuPu UFO
+1 Thran Dynamo
+1 Basalt Monolith
+1 Sting, the Glinting Dagger
+1 Intruder Alarm
+1 Mithril Coat
+1 Coveted Jewel
+1 Chainer, Dementia Master
+1 Freed from the Real
+1 Pemmin's Aura
+1 Aetherling
+1 Avatar of Woe
+1 Endling
+1 Marvin, Murderous Mimic
+1 Deadeye Navigator
+1 Arco-Flagellant
+1 Heartstone
+1 Bojuka Bog
+1 Asmodeus the Archfiend
+15 Island
+1 Spectral Sailor
+1 Heartless Hidetsugu
+1 Tree of Perdition
+1 Flow State
+1 Exotic Orchard
+1 Theft of Dreams
+3 Mountain
+1 Magic Damper
+1 Feed the Swarm
+1 Fell the Profane // Fell Mire
+1 Shore Up
+1 Mana Geode
+1 Summoning Station
+1 Cauldron of Souls
+1 Memnarch
+1 Hateflayer
+1 Bloodfire Colossus
+1 Fervor
+1 Salvaging Station

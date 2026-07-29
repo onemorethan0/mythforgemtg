@@ -1,0 +1,89 @@
+# Archidekt — The Colossal Dreadmaw  |  An Unknown Commander Deck
+# source: archidekt:6567770
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 The Colossal Dreadmaw
+
+Deck:
+1 Rampant, Growth
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Regal Imperiosaur
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Castle Garenbrig
+1 Curious Altisaur
+1 Dino DNA
+1 Elvish Mystic
+1 Beast Whisperer
+1 Questing Cosplayer
+1 Tangled Florahedron // Tangled Vale
+1 Earthshaker Dreadmaw
+1 Investi-Gate
+1 Llanowar Tribe
+1 Sawtusk Demolisher
+1 Then, Dreadmaws Ate Everyone
+1 Augur of Autumn
+1 Vaultborn Tyrant
+1 Mosswort Bridge
+1 Intrepid Paleontologist
+1 Dryad Arbor
+1 Unnatural Growth
+1 Chatterstorm and Awaken the Woods
+1 Scion of Calamity
+1 Evendo, Waking Haven
+1 Selvala, Heart of the Wilds
+1 Urza's Incubator
+1 Guildmark
+1 Eternal Witness
+1 Path of Ancestry
+1 Savage Order
+1 Nylea, Keen-Eyed
+1 Elemental Bond
+1 Krosan Drover
+1 Lander Rizzi
+1 Arbor Adherent
+1 Herd Heirloom
+1 Nykthos, Shrine to Nyx
+1 Up the Beanstalk
+1 Contest of Claws
+1 Colossal Majesty
+1 Regal Behemoth
+1 Kamigawa Charm
+1 Welcome to . . . // Jurassic Park
+1 The Great Henge
+1 Topiary Stomper
+4 Forest
+3 Forest
+1 Maître Tree
+1 Emerald Medallion
+5 Forest
+1 Garruk's Uprising
+1 Ghost Quarter
+1 Goreclaw, Terror of Qal Sisma
+1 Gwenna, Eyes of Gaea
+1 Hulking Raptor
+1 Karametra's Acolyte
+1 Khalni Ambush // Khalni Territory
+1 Knight of the Stampede
+1 Llanowar Elves
+1 The Skullspore Nexus
+1 Thrashing Brontodon
+1 Tranquil Frillback
+1 Tribute to the World Tree
+1 War Room
+1 Zopandrel, Hunger Dominus
+1 Fanatic of Rhonas
+1 Urza's Cave
+1 Disciple of Freyalise // Garden of Freyalise
+1 Apex Altisaur
+5 Forest
+4 Forest
+4 Forest
+1 The Massive Zatcatl
+1 Take the High Ground
+1 Just a Li'l Guy
+1 The Paradise Bird
+1 Sakura-Tribe Elder
+1 Locus Cobra
+1 The Alright Henge

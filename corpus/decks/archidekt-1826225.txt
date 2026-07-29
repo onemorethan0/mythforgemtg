@@ -1,0 +1,85 @@
+# Archidekt — Tivash, Gloom Summoner: The Long Kiss Goodnight
+# source: archidekt:1826225
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Tivash, Gloom Summoner
+
+Deck:
+1 Shard of the Nightbringer
+1 Gray Merchant of Asphodel
+1 Diresight
+1 March of Wretched Sorrow
+1 Consuming Corruption
+1 Fell the Profane // Fell Mire
+1 Urza's Cave
+1 Noxious Gearhulk
+1 Feed the Swarm
+1 Scavenger Grounds
+1 Night's Whisper
+1 Phyrexian Arena
+1 Defile
+1 Urborg, Tomb of Yawgmoth
+1 Nirkana Revenant
+1 Blood Tithe
+1 Rite of Consumption
+1 Stinging Study
+1 Talon Gates of Madara
+1 Gumdrop Poisoner // Tempt with Treats
+1 Throne of Eldraine
+1 Susur Secundi, Void Altar
+1 Demolition Field
+1 Unholy Annex // Ritual Chamber
+1 Gollum, Obsessed Stalker
+24 Snow-Covered Swamp
+1 Bloodthirsty Conqueror
+1 Ardyn, the Usurper
+1 Morlun, Devourer of Spiders
+1 Alhammarret's Archive
+1 Gauntlet of Power
+1 Exquisite Blood
+1 Caged Sun
+1 Extraplanar Lens
+1 Mask of Griselbrand
+1 Whip of Erebos
+1 Well of Lost Dreams
+1 Essence Harvest
+1 Blasphemous Edict
+1 Oubliette
+1 Demonic Covenant
+1 The Soul Stone
+1 War Room
+1 Arcane Signet
+1 Strip Mine
+1 Sol Ring
+1 Lightning Greaves
+1 Exsanguinate
+1 Read the Bones
+1 Sign in Blood
+1 Imp's Mischief
+1 Cabal Coffers
+1 Jet Medallion
+1 Crypt Ghast
+1 Twilight Prophet
+1 Disciple of Bolas
+1 Vilis, Broker of Blood
+1 Thought Vessel
+1 Abstergo Entertainment
+1 Withering Torment
+1 The Darkness Crystal
+1 Shredder's Technique
+1 Decorum Dissertation
+1 Defiling Daemogoth
+1 Stensian Sanguinist // Exsanguinate
+1 Scheming Silvertongue // Sign in Blood
+1 Withering Curse
+1 Erebos's Intervention
+1 Font of Agonies
+1 Ob Nixilis of the Black Oath
+1 Midnight Snack
+1 Peter Parker's Camera
+1 Lithoform Engine
+1 Mirage Mirror
+1 Sudden Spoiling
+1 South Wind Avatar

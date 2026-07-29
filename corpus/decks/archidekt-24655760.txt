@@ -1,0 +1,76 @@
+# Archidekt — RAT
+# source: archidekt:24655760
+# fetched: 2026-07-24
+
+Commander:
+1 Ashcoat of the Shadow Swarm
+
+Deck:
+1 Rat King, Verminister
+1 Crypt Rats
+1 Rat Colony
+1 Orcrist, Goblin-cleaver
+1 Karumonix, the Rat King
+1 Pack Rat
+1 Herald's Horn
+1 Swarmyard
+1 Swarm of Rats
+1 Ogre Slumlord
+1 Lord Skitter, Sewer King
+1 Vanquisher's Banner
+1 Bontu's Monument
+1 Voracious Vermin
+1 Lord Skitter's Butcher
+1 Patriarch's Bidding
+1 Persistent Marshstalker
+1 Rat King, Pale Piper
+1 Burglar Rat
+1 Rancid Rats
+1 Tangled Colony
+1 Wave of Rats
+1 Ratcatcher
+1 Blightbelly Rat
+1 Pestilence Rats
+1 Chittering Rats
+1 Chittering Witch
+1 Nezumi Graverobber // Nighteyes the Desecrator
+1 Ichor Rats
+1 Nezumi Prowler
+1 Engine Rat
+1 Gnawing Vermin
+1 Locust Miser
+1 Old Flitterfang
+1 Innocuous Rat
+1 Twisted Sewer-Witch
+1 Ravenous Rats
+1 Septic Rats
+1 Ruin Rat
+1 Refurbished Familiar
+1 Drainpipe Vermin
+1 Mukotai Ambusher
+1 Hero's Downfall
+1 Ruthless Radrat
+1 Village Rites
+1 Go for the Throat
+1 Revenge of the Rats
+1 Foul-Tongue Shriek
+1 Tragic Slip
+1 Bloodline Bidding
+1 Echoing Return
+1 Crucible of Worlds
+1 The Darkness Crystal
+1 Cabal Coffers
+1 Black Market
+1 Reliquary Tower
+1 Crypt of Agadeem
+1 Buried Ruin
+1 Barren Moor
+1 Sol Ring
+1 Piper of the Swarm
+1 Big Apple, 3 a.m.
+1 Typhoid Rats
+1 Patchwork Banner
+29 Swamp
+1 Stronghold Rats
+1 Nezumi Informant
+1 Mudflat Village

@@ -1,0 +1,82 @@
+# Archidekt — Maximizing Fun and Game Actions
+# source: archidekt:23859572
+# fetched: 2026-07-17
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Narset's Reversal
+1 Hullbreaker Horror
+1 Divide by Zero
+1 Failure // Comply
+1 Sink into Stupor // Soporific Springs
+1 Spellscorn Coven // Take It Back
+1 Reprieve
+1 Remand
+1 Obscura Interceptor
+1 Unsubstantiate
+1 Press the Enemy
+1 Venser, Shaper Savant
+1 Toluz, Clever Conductor
+1 Raffine, Scheming Seer
+1 Lapse of Certainty
+1 Unsummon
+1 Isochron Scepter
+1 Aligned Heart
+4 Swamp
+10 Plains
+14 Island
+1 Azorius Charm
+1 Arcane Signet
+1 Arcane Denial
+1 Temple of Enlightenment
+1 Evolving Wilds
+1 Orzhov Signet
+1 Arcane Sanctum
+1 Temple of Deceit
+1 Obscura Storefront
+1 Prairie Stream
+1 Sunken Hollow
+1 Command Tower
+1 Terramorphic Expanse
+1 Azorius Signet
+1 Dimir Signet
+1 Defacing Duskmage // Vandal's Edit
+1 Blink of an Eye
+1 Into the Roil
+1 Faithful Mending
+1 Peek
+1 Scout's Warning
+1 Academy Wall
+1 Archmage Emeritus
+1 Archmage of Runes
+1 Clarion Spirit
+1 Cosmogrand Zenith
+1 Kykar, Zephyr Awakener
+1 Leonin Lightscribe
+1 Riptide Gearhulk
+1 Kitsa, Otterball Elite
+1 Monastery Mentor
+1 Murmuring Mystic
+1 Stormwing Entity
+1 Stinging Lionfish
+1 Spell Satchel
+1 Myriad Landscape
+1 Wavebreak Hippocamp
+1 Talrand, Sky Summoner
+1 Insight Engine
+1 Frantic Search
+1 Mind Spring
+1 Pull from Tomorrow
+1 Commit // Memory
+1 Dissipation Field
+1 Dimir Cluestone
+1 Orzhov Cluestone
+1 Azorius Cluestone
+1 Ormos, Archive Keeper
+1 Banishing Knack
+1 Curfew
+1 Chain of Vapor
+1 Angel's Grace
+1 Change of Heart

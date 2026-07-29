@@ -1,0 +1,96 @@
+# Archidekt — Doom's Blade
+# source: archidekt:24607636
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Terminate
+1 Chaos Warp
+1 Arcane Signet
+1 Lethal Scheme
+1 Vandalblast
+1 Toxic Deluge
+1 Blasphemous Act
+1 Bedevil
+1 Withering Torment
+1 Negate
+1 Kang Dynasty
+1 Counterspell
+1 Age of Ultron
+1 Talisman of Indulgence
+1 Propaganda
+1 Talisman of Creativity
+1 Loki's Scepter
+1 Talisman of Dominance
+1 Archnemesis
+1 Progenitor's Icon
+1 Night's Whisper
+1 Sol Ring
+1 Swiftfoot Boots
+1 Glorious Purpose
+1 Syphon Mind
+1 Victimize
+1 Currency Converter
+1 Black Market Connections
+1 Too Evil to Stay Dead
+1 Doom's Time Platform
+1 Changeling Outcast
+1 Animate Dead
+1 Reanimate
+1 Containment Construct
+1 Phyrexian Reclamation
+1 Lich-Knights' Conquest
+1 Typhoid Mary, Fractured
+1 Iron Monger, Sadistic Tycoon
+1 Command Tower
+1 Batroc the Leaper
+1 Kang, Temporal Tyrant
+1 Stilt-Man, Towering Terror
+1 Ultron, Unlimited
+1 Ultimate Green Goblin
+1 Prowler, Clawed Thief
+1 Tombstone, Career Criminal
+1 Spark Double
+1 Baron Strucker, HYDRA Overlord
+1 The Frightful Four
+1 Doctor Doom
+1 Leader, Super-Genius
+1 Red Ghost, Intangible Genius
+1 Moonstone, Harsh Mistress
+1 Loki, the Deceiver
+1 Chameleon, Master of Disguise
+1 Madame Hydra
+1 Kang Prime
+1 Bone Miser
+1 Madame Masque
+1 Living Laser
+1 The Squadron Sinister
+6 Swamp
+1 The Masters of Evil
+1 Sulfur Falls
+4 Island
+1 Choked Estuary
+5 Mountain
+1 Titan of Littjara
+1 Villainous Hideout
+1 Crumbling Necropolis
+1 Secluded Courtyard
+1 Canyon Slough
+1 Exotic Orchard
+1 Unclaimed Territory
+1 Luxury Suite
+1 Smoldering Marsh
+1 Drowned Catacomb
+1 Dragonskull Summit
+1 Coastal Peak
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Scorched Geyser
+1 Sunken Hollow
+1 Fetid Pools
+1 Scavenger Grounds
+1 Three Tree City
+1 Doctor Octopus, Master Planner

@@ -1,0 +1,90 @@
+# Archidekt — Only Dice
+# source: archidekt:24772934
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Wyll, Blade of Frontiers
+1 Sword Coast Sailor
+
+Deck:
+1 Priority Boarding
+1 Aberrant Mind Sorcerer
+1 Ancient Copper Dragon
+1 Ancient Silver Dragon
+1 Arcane Endeavor
+1 Arcane Investigator
+1 Arcane Signet
+1 Barbarian Class
+1 Berserker's Frenzy
+1 Boing!
+1 Brazen Dwarf
+1 Bucknard's Everfull Purse
+1 Cascade Bluffs
+1 Celebr-8000
+1 Chaos Channeler
+1 Chaos Dragon
+1 Circuits Act
+1 Clay Golem
+1 Clown Car
+1 Coastal Peak
+1 Command Tower
+1 Component Pouch
+1 Cone of Cold
+1 Contact Other Plane
+1 Critical Hit
+1 Delina, Wild Mage
+1 Diviner's Portent
+1 Djinni Windseer
+1 Earth-Cult Elemental
+1 Ebony Fly
+1 Exotic Orchard
+1 Farideh, Devil's Chosen
+1 Farideh's Fireball
+1 Ferrous Lake
+1 Feywild Trickster
+1 Fiery Islet
+1 Frostboil Snarl
+1 Gale's Redirection
+1 Goblin Morningstar
+1 Guild Artisan
+1 Hoarding Ogre
+1 Iron Mastiff
+9 Island
+1 Izzet Boilerworks
+1 Luck Bobblehead
+1 Maddening Hex
+1 Mathise, Surge Channeler
+1 Mind Stone
+11 Mountain
+1 Myriad Landscape
+1 Netherese Puzzle-Ward
+1 Non-Human Cannonball
+1 Pixie Guide
+1 Power of Persuasion
+1 Reckless Endeavor
+1 Reliquary Tower
+1 Riverglide Pathway // Lavaglide Pathway
+1 Scion of Stygia
+1 Scorched Geyser
+1 Shivan Reef
+1 Slight Malfunction
+1 Sol Ring
+1 Spiked Pit Trap
+1 Spirebluff Canal
+1 Stormcarved Coast
+1 Strength-Testing Hammer
+1 Swarming Goblins
+1 Sword of Hours
+1 Temple of Epiphany
+1 The Deck of Many Things
+1 Thought Vessel
+1 Thunderwave
+1 Treasure Chest
+1 Underdark Rift
+1 Vedalken Squirrel-Whacker
+1 Velukan Dragon
+1 Vexing Puzzlebox
+1 Wand of Wonder
+1 Wizard's Spellbook
+1 Wyll's Reversal

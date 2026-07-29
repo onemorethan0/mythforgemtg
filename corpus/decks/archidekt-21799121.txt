@@ -1,0 +1,91 @@
+# Archidekt — Rootha
+# source: archidekt:21799121
+# fetched: 2026-07-24
+
+Commander:
+1 Rootha, Mastering the Moment
+
+Deck:
+1 Faithless Looting
+1 Stormcatch Mentor
+1 Talisman of Creativity
+1 Mystic Sanctuary
+1 Reliquary Tower
+1 Cascade Bluffs
+1 Exotic Orchard
+1 Ferrous Lake
+1 Frostboil Snarl
+1 Shivan Reef
+1 Sulfur Falls
+1 Arcane Signet
+1 Command Tower
+1 Mana Geyser
+1 Inspired Skypainter // Maestro's Gift
+1 Dirgur Focusmage // Braingeyser
+1 Coastal Peak
+1 Scorched Geyser
+1 Determined Iteration
+1 Fabled Passage
+1 Curiosity Crafter
+1 Stormcarved Coast
+1 Blasphemous Act
+1 Fellwar Stone
+1 Thunderclap Drake
+1 Unexpected Windfall
+1 Big Score
+1 Prismari Command
+1 Chaos Warp
+1 Reality Shift
+1 Prismari Charm
+1 Arcane Denial
+1 Sanar, Unfinished Genius // Wild Idea
+1 Brass's Bounty
+1 Seize the Spoils
+1 Sol Ring
+1 Relentless Assault
+1 War Room
+1 Full Throttle
+1 Ember Island Production
+1 Izzet Signet
+1 Resonating Lute
+1 Frostcliff Siege
+1 Irenicus's Vile Duplication
+1 Temporal Trespass
+1 Mob Rule
+1 Stock Up
+1 Professional Face-Breaker
+1 Archmage of Runes
+1 Rapid Hybridization
+1 Counterspell
+1 Thrill of Possibility
+1 Flow State
+1 Riverpyre Verge
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Swiftfoot Boots
+1 Season of Weaving
+1 Tablet of Discovery
+1 Goblin Electromancer
+1 Improvisation Capstone
+1 Thought Vessel
+1 Ghired's Belligerence
+1 Rousing Refrain
+1 Crackle with Power
+1 Bribery
+1 Turbulent Springs
+1 Volcanic Vision
+12 Mountain
+1 Frantic Search
+1 Isengard Unleashed
+1 Mistrise Village
+6 Island
+1 Lórien Revealed
+1 Steam Vents
+1 Mizzix's Mastery
+1 Disrupt Decorum
+1 Quantum Misalignment
+1 Iron Lad, Young Avenger
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Commander's Sphere
+1 The Scarlet Witch
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Snap

@@ -1,0 +1,86 @@
+# Archidekt — Kuja pings EDH
+# source: archidekt:24087824
+# fetched: 2026-07-09
+# bracket: 2
+
+Commander:
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+
+Deck:
+1 Faithless Looting
+1 Smoldering Marsh
+1 Lavaclaw Reaches
+1 Canyon Slough
+1 Temple of Malice
+1 Restless Vents
+1 Night's Whisper
+1 Dragonskull Summit
+1 Foreboding Ruins
+1 Coruscation Mage
+1 Thrill of Possibility
+1 Shadowblood Ridge
+1 Transpose
+1 Sulfurous Springs
+1 Seething Song
+1 Kolaghan's Command
+1 Pyretic Ritual
+1 Black Waltz No. 3
+1 Terminate
+1 Fiery Inscription
+1 Lightning Bolt
+1 Light Up the Stage
+1 Mizzix's Mastery
+1 Circle of Power
+1 Storm-Kiln Artist
+1 Expedite
+1 Fandaniel, Telophoroi Ascian
+1 Abrade
+1 Laughing Mad
+1 Grab the Prize
+1 Imp's Mischief
+1 Seize the Spoils
+1 Crash Through
+1 Snort
+1 Artist's Talent
+1 Cathartic Reunion
+1 Rakdos Carnarium
+1 Cori Mountain Monastery
+1 Blood Crypt
+1 Basalt Ravager
+1 Guttersnipe
+1 Black Mage's Rod
+1 Ancestral Anger
+1 Might of the Meek
+1 Spikefield Hazard // Spikefield Cave
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Blazing Firesinger // Seething Song
+1 Impolite Entrance
+1 Mysidian Elder
+1 Rile
+1 Playful Shove
+1 Glimpse the Impossible
+1 Diresight
+1 Arcane Signet
+1 Read the Bones
+1 Choreographed Sparks
+1 Sazacap's Brew
+1 Solstice Revelations
+1 Sol Ring
+1 Talisman of Indulgence
+1 Dual Strike
+1 Rakdos Signet
+1 Gut Shot
+1 Bituminous Blast
+1 Price of Fame
+1 Evolving Wilds
+1 Terramorphic Expanse
+22 Mountain
+1 Cornered by Black Mages
+2 Swamp
+1 Sign in Blood
+1 Harnesser of Storms
+1 Sorceress's Schemes
+1 Melded Moxite
+1 Lava Dart
+1 Experimental Synthesizer
+1 Cling to Dust

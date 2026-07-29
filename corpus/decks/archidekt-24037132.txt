@@ -1,0 +1,93 @@
+# Archidekt — Which Card? Discard! w. Tersa Lightshatter
+# source: archidekt:24037132
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Tersa Lightshatter
+
+Deck:
+1 Wheel of Fortune
+1 Phyrexian Triniform
+1 Spine of Ish Sah
+1 Daretti, Scrap Savant
+1 Triplicate Titan
+1 Scarecrone
+1 Razorkin Needlehead
+1 Extinguisher Battleship
+1 Bladegriff Prototype
+1 Wastes
+16 Mountain
+1 Memory Jar
+1 Monument to Endurance
+1 Land's Edge
+1 Balor
+1 The Ten Rings
+1 Drownyard Temple
+1 Geier Reach Sanitarium
+1 Smuggler's Copter
+1 Artist's Talent
+1 Cool but Rude
+1 Psychosis Crawler
+1 Chaos Warp
+1 Null Elemental Blast
+1 Wild Magic Surge
+1 Platinum Emperion
+1 Combustible Gearhulk
+1 Descent into Avernus
+1 Scavenged Brawler
+1 Mana Geyser
+1 Nevinyrral's Disk
+1 Blasphemous Act
+1 Vandalblast
+1 The Regalia
+1 Dauntless Scrapbot
+1 Lazotep Quarry
+1 Solemn Simulacrum
+1 Metalwork Colossus
+1 Ruin Grinder
+1 Talon Gates of Madara
+1 Demand Answers
+1 Scrap Mastery
+1 Trash for Treasure
+1 Cityscape Leveler
+1 Shardless Outlander
+1 Arena of Glory
+1 Eldrazi Confluence
+1 Wedding Invitation
+1 Portal to Phyrexia
+1 Anger
+1 Goblin Welder
+1 Daretti, Rocketeer Engineer
+1 Warping Wail
+1 Bitter Reunion
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Snort
+1 Faithless Looting
+1 Big Score
+1 Matzalantli, the Great Door // The Core
+1 Blasted Landscape
+1 Forgotten Cave
+1 Desert of the Fervent
+1 Ash Barrens
+1 Thran Dynamo
+1 The Golden Throne
+1 Conduit Pylons
+1 Scavenger Grounds
+1 Ramunap Ruins
+1 Arid Archway
+1 Crystal Grotto
+1 Shrine of the Forsaken Gods
+1 Ugin's Labyrinth
+1 Smoldering Crater
+1 Nykthos, Shrine to Nyx
+1 Scrawling Crawler
+1 Ichor Wellspring
+1 Mycosynth Wellspring
+1 Dowsing Dagger // Lost Vale
+1 RMS Titanic
+1 Chainsaw
+1 Squee, Goblin Nabob
+1 Darksteel Angel
+1 Myriad Landscape
+1 Petrified Hamlet

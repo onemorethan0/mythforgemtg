@@ -1,0 +1,103 @@
+# Archidekt — Street Grub
+# source: archidekt:24766687
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Rocco, Street Chef
+
+Deck:
+1 Sam, Loyal Attendant
+1 Feasting Hobbit
+1 The Cabbage Merchant
+1 Generous Pup
+1 Ragost, Deft Gastronaut
+1 Reckless Fireweaver
+1 Swords to Plowshares
+1 Banquet Guests
+1 Yotian Dissident
+1 Chef's Kiss
+1 Master Chef
+1 Food Fight
+1 Cultivate
+1 Food Coma
+1 Pippin's Bravery
+1 Giant Opportunity
+1 Many Partings
+1 Late to Dinner
+1 Revive the Shire
+1 Zenith Festival
+1 Festival of the Guildpact
+1 Festival of Embers
+1 Syr Ginger, the Meal Ender
+1 Instant Ramen
+1 Guac & Marshmallow Pizza
+1 Omni-Cheese Pizza
+1 Gingerbrute
+1 Lembas
+1 Three Bowls of Porridge
+1 Krovod Haunch
+1 Bagel and Schmear
+1 Tough Cookie
+1 Spicy Oatmeal Pizza
+1 Campsite Cuisine
+1 Campfire
+1 Trail of Crumbs
+1 Savage Hunger
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Hot Dog Cart
+1 Nuka-Cola Vending Machine
+1 Ninja Pizza
+1 Charred Foyer // Warped Space
+1 Of Herbs and Stewed Rabbit
+1 Killer Service
+1 Prosperous Innkeeper
+1 An-Havva Inn
+1 Adventurer's Inn
+1 Butterbur, Bree Innkeeper
+1 Innkeeper's Talent
+1 Oak Street Innkeeper
+1 Teapot Slinger
+1 Stew the Coneys
+1 Bumbleflower's Sharepot
+1 Boil
+1 Field-Tested Frying Pan
+1 Roast
+1 Fry
+1 Windbrisk Heights
+1 Farmer Cotton
+1 Curious Farm Animals
+1 The Shire
+1 Mayael's Aria
+1 Overgrown Farmland
+1 Gourmand's Talent
+1 Mosswort Bridge
+1 Gavony Township
+1 Hidden Courtyard
+1 Spinerock Knoll
+1 Fountainport
+1 Gingerbread Cabin
+1 Elanor Gardner
+1 Hidden Volcano
+1 Tireless Provisioner
+1 Rosie Cotton of South Lane
+1 Sol Ring
+1 Hidden Nursery
+1 Samwise Gamgee
+1 Night of the Sweets' Revenge
+1 Hurska Sweet-Tooth
+1 Restless Cottage
+1 Molder Slug
+1 Radiant Summit
+1 Sunpetal Grove
+1 Shire Terrace
+1 Clifftop Retreat
+1 Cinder Glade
+1 Canopy Vista
+1 Rootbound Crag
+1 The Gold Saucer
+1 Dining Room
+3 Mountain
+1 Northampton Farm
+2 Plains
+3 Forest

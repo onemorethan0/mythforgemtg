@@ -1,0 +1,107 @@
+# Archidekt — Penguin Tribal (AKA 'Flyer Liars')
+# source: archidekt:11777459
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Ancient Ziggurat
+1 Arcane Sanctum
+1 Arid Mesa
+1 Bloodstained Mire
+1 Cascading Cataracts
+1 City of Brass
+1 Coffin Queen
+1 Command Tower
+1 Exotic Orchard
+1 Flooded Strand
+1 Frontier Bivouac
+1 Grand Coliseum
+1 Indatha Triome
+1 Intrepid Stablemaster
+1 Ketria Triome
+1 Mana Confluence
+1 Marsh Flats
+1 Misery's Shadow
+1 Myojin of Cryptic Dreams
+1 Mystic Monastery
+1 Nomad Outpost
+1 Opulent Palace
+1 Otawara, Soaring City
+1 Path of Ancestry
+1 Raugrin Triome
+1 Sandsteppe Citadel
+1 Savai Triome
+1 Sea of Clouds
+1 Seaside Citadel
+1 Sky Diamond
+1 Skyclave Relic
+1 Progenitor Mimic
+1 Petra Sphinx
+1 Myojin of Night's Reach
+1 Phantom Nomad
+1 Maelstrom Wanderer
+1 Rose, Cutthroat Raider
+1 Levitation
+1 Reckless Stormseeker // Storm-Charged Slasher
+1 Overlord of the Hauntwoods
+1 Skyclave Apparition
+1 Shatter the Sky
+1 Scalding Viper // Steam Clean
+1 Pain Kami
+1 Ondu Inversion // Ondu Skyruins
+1 Nova Cleric
+1 Magus of the Abyss
+1 Skyshroud Claim
+1 Sol Ring
+1 Urborg, Tomb of Yawgmoth
+1 Windswept Heath
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Wrathful Raptors
+1 Weeping Angel
+1 Sustaining Spirit
+1 Yore-Tiller Nephilim
+1 Transcendent Master
+1 Uro, Titan of Nature's Wrath
+1 Sunscape Apprentice
+1 Sovereigns of Lost Alara
+1 Skyscribing
+1 Zodiac Rooster
+1 Whippoorwill
+1 Void Stalker
+1 Time Elemental
+1 Karador, Ghost Chieftain
+1 Iname, Life Aspect
+1 Thief of Hope
+1 Banshee of the Dread Choir
+1 Cosi's Trickster
+1 Ghostly Pilferer
+1 Graveborn Muse
+1 Dreamcatcher
+1 Kami of Celebration
+1 Karazikar, the Eye Tyrant
+1 Iname, Death Aspect
+1 Dragon Wings
+1 Fly
+1 Death Tyrant
+1 Dimir Infiltrator
+1 Drowner of Truth // Drowned Jungle
+1 Drowner of Hope
+1 Ghastly Death Tyrant
+1 Elder Pine of Jukai
+1 Broken Wings
+1 Akroma's Memorial
+1 Take Flight
+1 Forest
+1 Plains
+1 Swamp
+1 Mountain
+2 Island
+1 The Celestus
+1 Sphere of the Suns
+1 Windfall
+1 Watery Grave
+1 Shimmering Wings

@@ -1,0 +1,97 @@
+# Archidekt — The Wandering Minstrel - A Deck Built Completely With Bulk
+# source: archidekt:13854904
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Farseek
+1 Dovin's Veto
+1 Azusa, Lost but Seeking
+1 Nature's Claim
+1 Ishgard, the Holy See // Faith & Grief
+1 Lindblum, Industrial Regency // Mage Siege
+1 Midgar, City of Mako // Reactor Raid
+1 Sazh's Chocobo
+1 Adventurer's Inn
+1 Jidoor, Aristocratic Capital // Overture
+1 Restoration Magic
+1 Chocobo Racetrack
+1 Choco, Seeker of Paradise
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Esper Origins // Summon: Esper Maduin
+1 Capital City
+1 Crossroads Village
+1 Sidequest: Raise a Chocobo // Black Chocobo
+1 The Gold Saucer
+1 World Map
+1 Eden, Seat of the Sanctum
+1 Zell Dincht
+1 Clive's Hideaway
+1 Suplex
+1 Sharlayan, Nation of Scholars
+1 Guadosalam, Farplane Gateway
+1 Windurst, Federation Center
+1 Baron, Airship Kingdom
+1 Vector, Imperial Capital
+1 Rabanastre, Royal City
+1 Treno, Dark City
+1 Gohn, Town of Ruin
+1 Relm's Sketching
+1 Insomnia, Crown City
+1 Gongaga, Reactor Town
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Summon: G.F. Ifrit
+1 Gladiolus Amicitia
+1 Summon: Brynhildr
+1 Moogles' Valor
+1 Gysahl Greens
+1 Magic Damper
+1 Commune with Beavers
+1 Call the Mountain Chocobo
+8 Forest
+1 Prishe's Wanderings
+1 The Regalia
+1 Blitzball
+1 Summon: Fenrir
+1 PuPu UFO
+1 Ignis Scientia
+1 Reach the Horizon
+1 Combat Tutorial
+1 Ultima
+1 Sleep Magic
+1 Overkill
+1 Opera Love Song
+1 Louisoix's Sacrifice
+1 Ride the Shoopuf
+1 Town Greeter
+1 Qiqirn Merchant
+1 Summon: Fat Chocobo
+1 Omega, Heartless Evolution
+1 Sazh Katzroy
+1 Rydia, Summoner of Mist
+1 Torgal, A Fine Hound
+1 Memories Returning
+1 Chocobo Kick
+1 Travel the Overworld
+1 Choco-Comet
+1 Fight On!
+1 Laughing Mad
+1 Self-Destruct
+1 Battle Menu
+1 Airship Crash
+1 Ice Magic
+1 Dreams of Laguna
+1 Sabotender
+1 Summon: Titan
+1 Ambrosia Whiteheart
+1 Phoenix Down
+1 Quistis Trepe
+1 Stroke of Midnight
+1 Chromatic Lantern
+1 Plains
+5 Island
+1 Mountain
+1 Starting Town

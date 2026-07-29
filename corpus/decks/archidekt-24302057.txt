@@ -1,0 +1,89 @@
+# Archidekt — Zaxara Optimized
+# source: archidekt:24302057
+# fetched: 2026-07-17
+
+Commander:
+1 Zaxara, the Exemplary
+
+Deck:
+1 Force of Will
+1 Fabled Passage
+1 Swamp
+1 Morphic Pool
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Rejuvenating Springs
+1 Shipwreck Marsh
+1 Hinterland Harbor
+1 Curse of the Swine
+1 Inspiring Call
+1 Villainous Wealth
+1 Sunken Hollow
+1 Mind Spring
+1 Ravener
+1 Pull from Tomorrow
+1 Drown in Dreams
+1 Dominate
+1 Wilderness Reclamation
+1 Finale of Eternity
+1 Drowned Catacomb
+1 Dreamroot Cascade
+1 Woodland Cemetery
+1 Entrancing Melody
+1 Breeding Pool
+1 Watery Grave
+1 Ilysian Caryatid
+1 Seedborn Muse
+1 Tear Asunder
+1 Silver Scrutiny
+1 Freed from the Real
+1 Blue Sun's Twilight
+1 Elementalist's Palette
+1 Lullmage's Domination
+1 Urborg Elf
+1 Stroke of Genius
+1 Pest Infestation
+1 Finale of Revelation
+5 Island
+1 Arcane Signet
+1 Command Tower
+1 Farseek
+1 Condescend
+1 Nexos
+1 Opulent Palace
+1 Profane Command
+1 Rampant Growth
+1 Lightning Greaves
+1 Simic Ascendancy
+1 Hydroid Krasis
+1 Utopia Sprawl
+1 Growth Spiral
+1 Bonders' Enclave
+1 Thassa's Intervention
+1 Sakura-Tribe Elder
+1 Repeal
+1 Gyre Sage
+1 Logic Knot
+1 Even the Score
+1 Erebos's Intervention
+1 Tangled Florahedron // Tangled Vale
+1 Black Sun's Twilight
+13 Forest
+1 Tanufel Rimespeaker
+1 Selvala, Heart of the Wilds
+1 Torment of Hailfire
+1 Fierce Guardianship
+1 Unbound Flourishing
+1 Birds of Paradise
+1 Wan Shi Tong, Librarian
+1 Owlin Spiralmancer
+1 Zimone, Infinite Analyst
+1 Mana Drain
+1 Killing Glare
+1 Slice from the Shadows
+1 Repulsive Mutation
+1 Syncopate
+1 Spectral Denial
+1 Chrome Host Seedshark
+1 Animist's Awakening
+1 Power Sink

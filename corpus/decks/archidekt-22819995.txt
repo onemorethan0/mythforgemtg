@@ -1,0 +1,94 @@
+# Archidekt — World Shredder
+# source: archidekt:22819995
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Toph, Hardheaded Teacher
+
+Deck:
+1 Rancor
+1 Shifting Woodland
+1 Aftermath Analyst
+1 Moraug, Fury of Akoum
+1 Secret Tunnel
+1 Tireless Provisioner
+1 Seedborn Muse
+1 Crop Rotation
+1 Tireless Tracker
+1 Icetill Explorer
+1 Valakut Exploration
+1 Stone-Seeder Hierophant
+1 Mosswort Bridge
+1 Hidden Nursery
+1 Springbloom Druid
+1 Tributary Instructor
+1 Stomping Ground
+1 Constant Mists
+1 Escape Tunnel
+1 Fabled Passage
+1 Satyr Wayfinder
+1 Sapling Nursery
+1 Harrow
+1 Meltstrider Eulogist
+1 Scute Swarm
+1 Evendo Brushrazer
+1 Ramunap Excavator
+1 Augur of Autumn
+1 Oracle of Mul Daya
+1 Wooded Foothills
+1 Myriad Landscape
+1 Sylvan Scrying
+1 Ashaya, Soul of the Wild
+1 Six
+1 Suplex
+1 Tannuk, Memorial Ensign
+1 Evolutionary Leap
+1 Roiling Regrowth
+1 Farseek
+1 Nature's Lore
+1 Lotus Cobra
+1 Redirect Lightning
+1 Beast Within
+1 Wasteland
+1 Life from the Loam
+1 Sabotender
+1 Command Beacon
+5 Mountain
+11 Forest
+1 Apex Devastator
+1 Disciple of Freyalise // Garden of Freyalise
+1 World Shaper
+1 Karplusan Forest
+1 Skullclamp
+1 Springheart Nantuko
+1 Evolving Wilds
+1 Thornspire Verge
+1 Cultivate
+1 Sol Ring
+1 Explore
+1 Azusa, Lost but Seeking
+1 Fire-Lit Thicket
+1 Spinner of Souls
+1 Manamorphose
+1 Nature's Claim
+1 Blasphemous Act
+1 Horizon Explorer
+1 Spelunking
+1 Zuran Orb
+1 Goblin Bombardment
+1 Bristling Backwoods
+1 Sylvan Safekeeper
+1 Ghost Quarter
+1 Command Tower
+1 Exploration Broodship
+1 Worldly Tutor
+1 Vandalblast
+1 Dryad's Revival
+1 Urza's Cave
+1 Strip Mine
+1 Malevolent Rumble
+1 Mind's Eye
+1 Vesuva
+1 Yedora, Grave Gardener
+1 Amulet of Vigor

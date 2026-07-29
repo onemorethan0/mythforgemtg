@@ -1,0 +1,95 @@
+# Archidekt — Mardu Surge - Tarkir: Dragonstorm Commander
+# source: archidekt:12020252
+# fetched: 2026-07-05
+
+Commander:
+1 Zurgo Stormrender
+
+Deck:
+1 Neriv, Crackling Vanguard
+1 Ainok Strike Leader
+1 Ironwill Forger
+1 Will of the Mardu
+1 Bone Devourer
+1 Within Range
+1 Eliminate the Competition
+1 Commander's Insignia
+1 Goldlust Triad
+1 Infantry Shield
+1 Redoubled Stormsinger
+1 Battlefield Forge
+1 Canyon Slough
+1 Castle Ardenvale
+1 Castle Embereth
+1 Caves of Koilos
+1 Clifftop Retreat
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Fetid Heath
+1 Isolated Chapel
+1 Shattered Sanctum
+1 Smoldering Marsh
+1 Temple of Silence
+1 Temple of Triumph
+1 Vault of the Archangel
+1 Windbrisk Heights
+1 Tocasia's Welcome
+1 Sun Titan
+1 Emeria Angel
+1 Selfless Spirit
+1 Grand Crescendo
+1 Mindblade Render
+1 Idol of Oblivion
+1 Grenzo, Havoc Raiser
+1 Gix, Yawgmoth Praetor
+1 Ogre Battledriver
+1 Solemn Simulacrum
+1 Hour of Reckoning
+1 Yahenni, Undying Partisan
+1 Twilight Drover
+1 Tempt with Vengeance
+1 Siege-Gang Commander
+1 Ophiomancer
+1 Myr Battlesphere
+1 Legion Warboss
+1 Legion Loyalty
+1 Kaya, Geist Hunter
+1 Hero of Bladehold
+1 Divine Visitation
+1 Chittering Witch
+1 Blade of Selves
+1 Angel of Invention
+1 Adeline, Resplendent Cathar
+1 Command Tower
+1 Nomad Outpost
+1 Bojuka Bog
+1 Path of Ancestry
+1 Shattered Landscape
+1 Terramorphic Expanse
+5 Plains
+5 Swamp
+5 Mountain
+1 Goldnight Commander
+1 Bastion of Remembrance
+1 Skullclamp
+1 Morbid Opportunist
+1 Lightning Greaves
+1 Deadly Dispute
+1 Arcane Signet
+1 Wayfarer's Bauble
+1 Talisman of Hierarchy
+1 Talisman of Conviction
+1 Sol Ring
+1 Fellwar Stone
+1 Swords to Plowshares
+1 Stroke of Midnight
+1 Viscera Seer
+1 Aron, Benalia's Ruin
+1 Thalisse, Reverent Medium
+1 Shadow Summoning
+1 Release the Dogs
+1 Loyal Apprentice
+1 Lingering Souls
+1 Beetleback Chief
+1 Abrade
+1 Bitter Triumph

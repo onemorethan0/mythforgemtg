@@ -1,0 +1,87 @@
+# Archidekt — Raccoon
+# source: archidekt:23875493
+# fetched: 2026-07-24
+# bracket: 2
+
+Commander:
+1 Muerra, Trash Tactician
+
+Deck:
+1 Bakersbane Duo
+1 Coati Scavenger
+1 Raccoon Rallier
+1 Trailtracker Scout
+1 Wandertale Mentor
+1 Roughshod Duo
+1 Rust-Shield Rampager
+1 Scrappy Bruiser
+1 Scrapshooter
+1 Teapot Slinger
+1 Valley Flamecaller
+1 Valley Mightcaller
+1 Oakhollow Village
+1 Rockface Village
+1 Gourmand's Talent
+1 Take Out the Trash
+1 Junkblade Bruiser
+1 Bark-Knuckle Boxer
+1 Sylvan Scavenging
+1 Bello, Bard of the Brambles
+1 Bramble Familiar // Fetch Quest
+1 Brambleguard Veteran
+1 Prosperous Bandit
+1 Brazen Collector
+1 Keen-Eyed Curator
+1 Byway Barterer
+1 Hoarder's Overflow
+1 Chaos Warp
+1 Realmwalker
+1 Taurean Mauler
+1 Masked Vandal
+1 Roaming Throne
+1 Goblin Anarchomancer
+1 Etali, Primal Storm
+1 Faldorn, Dread Wolf Herald
+1 Tender Wildguide
+1 Pyreswipe Hawk
+1 Llanowar Elves
+1 Mutable Explorer
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Elvish Mystic
+1 Apex Devastator
+1 Peerless Recycling
+1 Heroic Intervention
+1 Tamiyo's Safekeeping
+1 Decimate
+1 Blasphemous Act
+1 Escape to the Wilds
+1 Season of Gathering
+1 Playful Shove
+1 Season of the Bold
+1 Rishkar's Expertise
+1 Improvisation Capstone
+1 Hull Breach
+1 Vanquisher's Banner
+1 Maskwood Nexus
+1 Communal Brewing
+1 Springleaf Parade
+1 Thickest in the Thicket
+1 Three Tree City
+1 Sol Ring
+1 Arcane Signet
+1 Patchwork Banner
+1 Command Tower
+1 Rootbound Crag
+1 Cinder Glade
+1 Stomping Ground
+1 Rockfall Vale
+1 Sheltered Thicket
+1 Temple of Abandon
+1 Wooded Foothills
+8 Mountain
+15 Forest
+1 Mosswort Bridge
+1 Spinerock Knoll
+1 Commercial District
+1 Ornithopter of Paradise
+1 Path of Ancestry

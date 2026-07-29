@@ -1,0 +1,78 @@
+# Archidekt — Vincent Vengeful Atoner, $100 turn 5 wins, by Based Deck Department
+# source: archidekt:13868857
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Vincent, Vengeful Atoner
+
+Deck:
+1 Amonkhet Raceway
+1 Barge In
+1 Brute Force
+1 Brute Strength
+1 Critical Hit
+1 Downhill Charge
+1 Fatal Frenzy
+1 Fire Shrine Keeper
+1 Freya Crescent
+1 Generous Plunderer
+1 Grim Reaper's Sprint
+1 Looming Spires
+1 Overpowering Attack
+1 Raking Claws
+1 Reckless Charge
+1 Rouse the Mob
+1 Silver Shroud Costume
+1 Smoke Bomb
+1 Teetering Peaks
+1 Titan's Strength
+1 Wyll's Reversal
+1 Legion Loyalist
+1 Gimli's Fury
+1 Kediss, Emberclaw Familiar
+1 Flameblade Adept
+1 Frantic Scapegoat
+1 Rohirrim Lancer
+1 Kari Zev, Skyship Raider
+1 Phoenix Chick
+1 Shock Brigade
+1 Kessig Wolfrider
+1 Reckless Lackey
+1 Irreverent Gremlin
+1 Twinferno
+1 Untimely Malfunction
+1 Tibalt's Trickery
+1 Dreadmaw's Ire
+1 Goldhound
+1 Hope of Ghirapur
+1 Assault Strobe
+1 Unleash Fury
+1 Infuriate
+1 Smelted Chargebug
+1 Rust Harvester
+1 Bolt Bend
+1 Borrowed Hostility
+1 Bulk Up
+1 Burnout Bashtronaut
+1 Fists of Flame
+1 Great Train Heist
+1 Insolent Neonate
+1 Inti, Seneschal of the Sun
+1 Invigorated Rampage
+1 Stadium Headliner
+1 Shivan Devastator
+1 Molten-Core Maestro
+1 Hobgoblin, Mantled Marauder
+1 Slickshot Show-Off
+1 Monstrous Rage
+31 Mountain
+1 Not of This World
+1 Return the Favor
+1 Rotisserie Elemental
+1 Smoldering Spires
+1 Spectacular Showdown
+1 Swiftfoot Boots
+1 Temur Battle Rage
+1 Zhao, the Moon Slayer
+1 Fire Nation Palace

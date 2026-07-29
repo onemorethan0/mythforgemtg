@@ -1,0 +1,78 @@
+# Archidekt — Budget Phage
+# source: archidekt:24737924
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Phage the Untouchable
+
+Deck:
+1 Platinum Angel
+1 Sundial of the Infinite
+1 Campfire
+1 Whispersilk Cloak
+1 Torpor Orb
+1 Rogue's Passage
+1 Crypt Ghast
+1 Endless Whispers
+1 Netherborn Altar
+1 Dauthi Trapper
+1 Vorpal Sword
+1 Swiftfoot Boots
+1 Mask of Griselbrand
+1 Lich's Mastery
+32 Swamp
+1 Bojuka Bog
+1 Barren Moor
+1 Witch's Cottage
+1 Myriad Landscape
+1 Crashing Drawbridge
+1 Temple of the False God
+1 Massacre Wurm
+1 Feed the Swarm
+1 Victimize
+1 Blood for Bones
+1 Final Parting
+1 Mutilate
+1 Syphon Mind
+1 Command the Dreadhorde
+1 Infernal Offering
+1 Decree of Pain
+1 Dark Ritual
+1 Slaughter Pact
+1 Stunning Reversal
+1 Defile
+1 Tragic Slip
+1 Price of Fame
+1 Fleshbag Marauder
+1 Charcoal Diamond
+1 Solemn Simulacrum
+1 Filth
+1 Vile Entomber
+1 Gray Merchant of Asphodel
+1 Avatar of Woe
+1 Thrull Wizard
+1 Magus of the Coffers
+1 K'rrik, Son of Yawgmoth
+1 Sengir, the Dark Baron
+1 Dreadhorde Invasion
+1 Murderous Rider // Swift End
+1 Expedition Map
+1 Defiler of Flesh
+1 Cadaver Imp
+1 Burnished Hart
+1 Morbid Opportunist
+1 Varragoth, Bloodsky Sire
+1 Summon: Primal Odin
+1 Dread Presence
+1 Beseech the Queen
+1 Archenemy's Charm
+1 Ebony Fly
+1 Everflowing Chalice
+1 Thought Vessel
+1 Necrodominance
+1 Dauthi Embrace
+1 Exsanguinate
+1 Key to the City
+1 Phyrexian Arena
+1 Ob Nixilis, Unshackled

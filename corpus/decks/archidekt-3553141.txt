@@ -1,0 +1,104 @@
+# Archidekt — Umbris Vmax (Xile)
+# source: archidekt:3553141
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Umbris, Fear Manifest
+
+Deck:
+1 Lantern of the Lost
+1 Notion Thief
+1 Ruin Crab
+1 Command Tower
+1 Mystic Remora
+1 Nephalia Drownyard
+1 Sol Ring
+1 Mana Drain
+1 Underground Sea
+1 Watery Grave
+1 Shizo, Death's Storehouse
+1 The Black Gate
+1 Minas Morgul, Dark Fortress
+1 Web of Inertia
+1 Black Market Connections
+1 Windfall
+1 The Mindskinner
+1 Fleet Swallower
+1 Chariot of Victory
+1 Fact or Fiction
+1 Omniscience
+1 Midnight Clock
+1 Otawara, Soaring City
+1 Shipwreck Marsh
+1 Mesmeric Orb
+1 Cabal Coffers
+1 Archive Trap
+1 Sink into Stupor // Soporific Springs
+1 Planar Void
+1 Ruthless Technomancer
+1 Dark Ritual
+1 Geier Reach Sanitarium
+1 Urza's Saga
+1 Jace's Archivist
+1 Maze of Ith
+1 Mystifying Maze
+1 Dauthi Voidwalker
+1 Propaganda
+1 Cowardice
+1 Public Enemy
+1 Show and Tell
+1 Psychic Corrosion
+1 War Room
+1 Horobi, Death's Wail
+1 Morphic Pool
+1 Mind Grind
+1 Bojuka Bog
+1 Ipnu Rivulet
+1 Relic of Progenitus
+1 Scavenger Grounds
+1 Jidoor, Aristocratic Capital // Overture
+1 Whispering Madness
+1 Urborg, Tomb of Yawgmoth
+1 Sunken Palace
+1 Singularity Rupture
+1 Maddening Cacophony
+1 Vampiric Tutor
+1 Mystical Tutor
+1 Imperious Mindbreaker
+1 Rite of Consumption
+1 Altar of Dementia
+1 Guiltfeeder
+1 Lazav, Dimir Mastermind
+1 Expedition Map
+1 Uba Mask
+1 Meekstone
+1 Future Sight
+1 Oblivion Sower
+1 Shadow Kin
+1 Arcane Signet
+1 Dimir Signet
+1 Divert Disaster
+1 Ornithopter of Paradise
+1 Talisman of Dominance
+1 Secret Tunnel
+1 Kitsune's Technique
+1 Rogue's Passage
+1 Reins of Power
+1 Essence Harvest
+2 Swamp
+6 Island
+1 Abstergo Entertainment
+1 Petrified Field
+1 Nuclear Fallout
+1 Leyline of the Void
+1 Sphinx's Tutelage
+1 Tasha's Hideous Laughter
+1 Mocking Doppelganger
+1 Consuming Aberration
+1 Sygg, River Cutthroat
+1 Doomsday Excruciator
+1 Halls of Mist
+1 Misleading Signpost
+1 Silent Hallcreeper
+1 Endless Evil

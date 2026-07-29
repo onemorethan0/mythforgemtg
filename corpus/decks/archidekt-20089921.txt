@@ -1,0 +1,95 @@
+# Archidekt — You've been invited to a selesnya wedding <3
+# source: archidekt:20089921
+# fetched: 2026-07-26
+# bracket: 3
+
+Commander:
+1 Kudo, King Among Bears
+
+Deck:
+7 Plains
+1 Castle Garenbrig
+1 Ravenous Slime
+1 Arwen, Weaver of Hope
+1 Ephemerate
+1 Bane of Progress
+1 Fauna Shaman
+1 Saffi Eriksdotter
+1 Canopy Vista
+1 Demolition Field
+1 Anticausal Vestige
+1 Emiel the Blessed
+1 Thraben Charm
+1 Kutzil, Malamet Exemplar
+1 Selvala, Explorer Returned
+1 Torsten, Founder of Benalia
+1 Eternal Witness
+1 Three Tree City
+1 Karmic Guide
+1 The Seriema
+1 Phelia, Exuberant Shepherd
+1 Wood Elves
+1 Ayula, Queen Among Bears
+1 Elvish Harbinger
+1 Eerie Interlude
+1 Llanowar Elves
+1 Thalia's Lancers
+1 Avacyn's Pilgrim
+1 Wild Growth
+1 Utopia Sprawl
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Elesh Norn, Grand Cenobite
+1 Woodland Bellower
+1 Elvish Mystic
+1 Fierce Empath
+1 Champion of Lambholt
+1 Guardian of Faith
+1 Archdruid's Charm
+1 Analyze the Pollen
+1 Abandoned Air Temple
+1 Enduring Innocence
+1 Toski, Bearer of Secrets
+1 Parting Gust
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Celestial Reunion
+1 Selfless Safewright
+1 Mutable Explorer
+1 Razorverge Thicket
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Werefox Bodyguard
+1 Selesnya Sanctuary
+1 Temple Garden
+1 Brushland
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Branchloft Pathway // Boulderloft Pathway
+1 Flooded Strand
+1 Command Tower
+1 Fyndhorn Elves
+1 Recruiter of the Guard
+1 Windswept Heath
+1 Lush Portico
+1 Restoration Angel
+1 Kodama of the East Tree
+1 Tyvar, the Pummeler
+1 Kami of Whispered Hopes
+1 Rishkar, Peema Renegade
+1 Disciple of Freyalise // Garden of Freyalise
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Birds of Paradise
+1 Evendo, Waking Haven
+1 Voice of Victory
+1 Formidable Speaker
+1 Arbor Elf
+1 Cloudshift
+1 Chomping Changeling
+1 Flickerwisp
+1 Hushwood Verge
+1 Endurance
+1 Banner of Kinship
+1 Spinner of Souls
+1 Angel of Indemnity
+1 Brigid, Clachan's Heart // Brigid, Doun's Mind
+8 Forest
+1 Appa, Steadfast Guardian
+1 Dryad Arbor

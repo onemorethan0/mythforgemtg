@@ -1,0 +1,99 @@
+# Archidekt — Minecraft
+# source: archidekt:464254
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Dragon Breath
+1 The End
+1 Mountain
+1 Plains
+1 Dragon Egg
+1 Jungle Creeper
+1 Potion of Healing
+1 Expose to Daylight
+1 Frost Walker
+1 Jack-o'-Lantern
+1 Iron Golem
+1 Treasure Chest
+1 Ignite the Beacon
+1 Poison Arrow
+1 Strider Harness
+1 Plains
+1 Vial of Poison
+1 Village Bell-Ringer
+1 Cinderbones
+1 Sand Squid
+1 Zombie Mob
+1 Coral Reef
+1 Jump
+1 Skeleton Archer
+1 Vial of Dragonfire
+1 Mountain Stronghold
+1 Spider Spawning
+1 Lava Zombie
+1 Into the Void
+1 Fire // Ice
+1 Fire Diamond
+1 Irrigated Farmland
+1 Void
+1 Aggressive Mining
+1 Leather Armor
+1 Terraformer
+1 Shipwreck Looter
+1 Memory Leak
+1 Mob
+1 Plateau
+1 Taiga
+1 Eye Spy
+1 Cartographer
+1 Bee Sting
+1 Drowned
+1 Riptide
+1 Remove Enchantments
+1 Smite
+1 Blaze
+1 Desert
+1 Teleport
+1 Goldvein Pick
+1 Diamond Pick-Axe
+1 Frantic Inventory
+1 Terrain Generator
+1 Night // Day
+1 Warrant // Warden
+1 Allay
+1 Sleep
+1 Command Tower
+1 Smelt
+1 Lure
+1 Jungle Shrine
+1 Fireball
+1 Relic Ward
+1 Mountain
+1 Campfire
+1 Tundra
+1 Badlands
+1 Island
+5 Island
+1 Forest
+1 Swamp
+1 Treasure Map // Treasure Cove
+1 Grindstone
+1 Breach
+1 Savannah
+1 Blind Creeper
+1 Spawning Bed
+1 Strip Mine
+1 Grief
+1 Witch's Cottage
+1 Lightning Bolt
+6 Swamp
+1 Teferi's Puzzle Box
+1 Witch's Cauldron
+1 Library
+1 Far // Away
+1 Caged Zombie
+1 Island

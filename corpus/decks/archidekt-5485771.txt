@@ -1,0 +1,104 @@
+# Archidekt — Josh's Mycotyrant | Game Knights #66
+# source: archidekt:5485771
+# fetched: 2026-07-05
+
+Commander:
+1 The Mycotyrant
+
+Deck:
+1 Altar of Dementia
+1 Animate Dead
+1 Arcane Signet
+1 Argoth, Sanctum of Nature
+1 Woodland Cemetery
+1 World Shaper
+1 Yavimaya, Cradle of Growth
+1 Yawgmoth, Thran Physician
+1 Ash Barrens
+1 Ayara, First of Locthwain
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Beastmaster Ascension
+1 Blooming Marsh
+1 Blossoming Tortoise
+1 Boseiju, Who Endures
+1 Cankerbloom
+1 Cemetery Tampering
+1 Chatterfang, Squirrel General
+1 Command Tower
+1 Crawling Infestation
+1 Crawling Sensation
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deadly Rollick
+1 Deathcap Glade
+1 Doom Whisperer
+1 Egon, God of Death // Throne of Death
+1 Eternal Witness
+1 Exotic Orchard
+1 Fabled Passage
+1 Field of the Dead
+3 Forest
+1 Fungal Sprouting
+1 Golgari Signet
+1 Grisly Salvage
+1 Grist, the Hunger Tide
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Guardian Project
+1 Hermit Druid
+1 Jaheira, Friend of the Forest
+1 Lich-Knights' Conquest
+1 Lightning Greaves
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Mind Stone
+1 Mycoloth
+1 Myriad Landscape
+1 Necromancy
+1 Nurturing Peatland
+1 Nyx Weaver
+1 Ohran Frostfang
+1 Okina, Temple to the Grandfathers
+1 Overgrown Tomb
+1 Overwhelming Stampede
+1 Phyrexian Altar
+1 Phyrexian Tower
+1 Pile On
+1 Prismatic Vista
+1 Reliquary Tower
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Rogue's Passage
+1 Sakura-Tribe Elder
+1 Satyr Wayfinder
+1 Shamanic Revelation
+1 Shizo, Death's Storehouse
+1 Skull Prophet
+1 Skullclamp
+1 Sol Ring
+1 Sporecrown Thallid
+1 Sprout Swarm
+1 Stitcher's Supplier
+2 Swamp
+1 Sylvan Library
+1 Syr Konrad, the Grim
+1 Takenuma, Abandoned Mire
+1 Talisman of Resilience
+1 Tangled Florahedron // Tangled Vale
+1 Temple of Malady
+1 Tendershoot Dryad
+1 The Great Henge
+1 The Meathook Massacre
+1 Toxic Deluge
+1 Twilight Mire
+1 Undead Butler
+1 Undergrowth Stadium
+1 Urborg, Tomb of Yawgmoth
+1 Verdant Catacombs
+1 Lethal Scheme
+1 Path of Ancestry
+1 Golgari Grave-Troll
+1 Old Rutstein
+1 Perpetual Timepiece
+1 Black Market Connections
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Squirming Emergence
+1 Matzalantli, the Great Door // The Core

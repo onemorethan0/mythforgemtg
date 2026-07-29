@@ -1,0 +1,90 @@
+# Archidekt — Niko, Light of Hope Anthem/Flicker
+# source: archidekt:9065387
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Niko, Light of Hope
+
+Deck:
+1 Thassa, Deep-Dwelling
+1 Conjurer's Closet
+1 Entity Tracker
+1 Niko Aris
+10 Plains
+10 Island
+1 Ethereal Valkyrie
+1 Assimilation Aegis
+1 Pack Leader
+1 Genestealer Patriarch
+1 Genestealer Locus
+1 Empyrean Eagle
+1 Ultramarines Honour Guard
+1 Marshal of Zhalfir
+1 Private Eye
+1 Regal Caracal
+1 Blur
+1 Cloudshift
+1 Skycat Sovereign
+1 Paragon of New Dawns
+1 Long Road Home
+1 Hammers of Moradin
+1 Yotian Tactician
+1 Solemn Simulacrum
+1 Dour Port-Mage
+1 Drogskol Captain
+1 Eternal of Harsh Truths
+1 Paragon of Gathering Mists
+1 Ephemerate
+1 Sun Titan
+1 Parting Gust
+1 Eerie Interlude
+1 Flicker of Fate
+1 Marble Diamond
+1 Arcane Signet
+1 Sol Ring
+1 No More Lies
+1 Resculpt
+1 Calamity's Wake
+1 Reality Shift
+1 Broodbirth Viper
+1 Auton Soldier
+1 Tranquil Cove
+1 Reliquary Tower
+1 Disorder in the Court
+1 Evolving Wilds
+1 Meticulous Archive
+1 Prairie Stream
+1 Myriad Landscape
+1 Path of Ancestry
+1 Irrigated Farmland
+1 Glacial Fortress
+1 Restless Anchorage
+1 Temple of Enlightenment
+1 Deserted Beach
+1 Port Town
+1 Time Wipe
+1 Decanter of Endless Water
+1 Sword of Hearth and Home
+1 Talisman of Progress
+1 Thought Vessel
+1 Fraying Line
+1 King of the Pride
+1 Sea-Dasher Octopus
+1 Planar Incision
+1 Idol of Oblivion
+1 Leonin Warleader
+1 Fey Steed
+1 Supreme Phantom
+1 Sludge Monster
+1 Sky Diamond
+1 Reconnaissance Mission
+1 Command Tower
+1 Ephara, God of the Polis
+1 Far Traveler
+1 Aerial Extortionist
+1 Soulherder
+1 Enduring Curiosity
+1 Turn to Mist
+1 Unstoppable Plan
+1 Mirrorhall Mimic // Ghastly Mimicry

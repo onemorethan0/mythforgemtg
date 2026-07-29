@@ -1,0 +1,102 @@
+# Archidekt — Abraham Lincoln, Vampire Hunter
+# source: archidekt:3011948
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Wernog, Rider's Chaplain
+1 Elmar, Ulvenwald Informant
+
+Deck:
+1 Blood Seeker
+1 Bloodrage Vampire
+1 Act of Treason
+1 Smite the Monstrous
+1 Solemnity
+1 Spiteful Blow
+1 Djeru, With Eyes Open
+1 Sengir, the Dark Baron
+1 Confront the Past
+1 Sorin, Imperious Bloodlord
+1 Lure
+1 Impeccable Timing
+1 Bloodmist Infiltrator
+1 Tainted Peak
+1 Twinning Glass
+1 Creeping Bloodsucker
+1 Hero of the Games
+1 Moonsilver Spear
+1 Armorer Guildmage
+1 Subira, Tulzidi Caravanner
+1 Tinder Farm
+1 Vivid Crag
+1 Heavy Mattock
+1 Awakener Druid
+1 Winding Canyons
+1 Rustvale Bridge
+1 Access Tunnel
+1 Nocturnal Feeder
+1 Blackcleave Cliffs
+1 Arrogant Outlaw
+1 Olivia's Dragoon
+1 Belligerent Guest
+1 Cryptic Caves
+1 Curse of Thirst
+1 Silver-Inlaid Dagger
+1 Encroaching Wastes
+1 Dragonskull Summit
+1 Evolving Wilds
+1 Throwing Knife
+1 Unwavering Initiate
+1 Fabled Passage
+1 Fetid Heath
+1 Field of Ruin
+1 Skymarch Bloodletter
+2 Forest
+1 Forbidden Orchard
+1 Vernadi Shieldmate
+1 Mesa Enchantress
+1 Grasslands
+1 Olivia, Mobilized for War
+1 Vampire Lacerator
+1 Militia Bugler
+1 Vampire of the Dire Moon
+1 Cruel Reality
+1 Resupply
+1 Voldaren Stinger
+1 Oashra Cultivator
+1 Zhalfirin Decoy
+1 Shoulder to Shoulder
+1 Hickory Woodlot
+1 Disciple of the Sun
+1 Mossfire Valley
+3 Mountain
+1 Mountain Valley
+1 Enchanted Being
+1 Drannith Healer
+1 Moonsilver Key
+3 Plains
+1 Silver Bolt
+1 Raging Ravine
+1 Renowned Weaver
+1 Zhalfirin Commander
+1 Resolute Blademaster
+1 Rootbound Crag
+1 Aradara Express
+1 Rocky Tar Pit
+1 Resolute Survivors
+1 Rugged Prairie
+1 Devastate
+1 Garenbrig Squire
+1 Michiko Konda, Truth Seeker
+1 Sheltered Valley
+1 Quicksilver Amulet
+1 Shadowblood Ridge
+1 Smoldering Spires
+1 Stomping Ground
+1 Silverstrike
+1 Haazda Snare Squad
+1 Sundown Pass
+2 Swamp
+1 True Conviction
+1 Show of Confidence

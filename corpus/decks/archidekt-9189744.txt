@@ -1,0 +1,93 @@
+# Archidekt — Endless Punishment - Duskmourn: House of Horror Commander
+# source: archidekt:9189744
+# fetched: 2026-07-05
+
+Commander:
+1 Valgavoth, Harrower of Souls
+
+Deck:
+1 Talisman of Indulgence
+1 Thought Vessel
+1 Florian, Voldaren Scion
+1 Gray Merchant of Asphodel
+1 Harsh Mentor
+1 Kaervek the Merciless
+1 Kardur, Doomscourge
+1 Kederekt Parasite
+1 Massacre Girl
+1 Massacre Wurm
+1 Mayhem Devil
+1 Morbid Opportunist
+1 Nightshade Harvester
+1 Rakdos, Lord of Riots
+1 Stormfist Crusader
+1 Syr Konrad, the Grim
+1 Tectonic Giant
+1 Tainted Peak
+1 Temple of Malice
+1 Basilisk Collar
+1 Blood Artist
+1 Bastion of Remembrance
+1 Blackcleave Cliffs
+1 Blasphemous Act
+1 Arcane Signet
+1 Ash Barrens
+1 Barbflare Gremlin
+1 Bedevil
+1 Rampaging Ferocidon
+8 Swamp
+1 Command Tower
+1 Evolving Wilds
+1 Fear of Burning Alive
+1 Gleeful Arsonist
+1 Grab the Prize
+1 Persistent Constrictor
+1 Fellwar Stone
+1 Sadistic Shell Game
+1 Séance Board
+1 Mask of Griselbrand
+1 Spiked Corridor // Torture Pit
+1 Star Athlete
+1 Suspended Sentence
+1 Rakdos Signet
+1 Temple of the False God
+1 Terramorphic Expanse
+1 The Lord of Pain
+1 Braids, Arisen Nightmare
+1 Enchanter's Bane
+1 Spiteful Visions
+1 Lightning Greaves
+1 Theater of Horrors
+1 Chaos Warp
+1 Infernal Grasp
+1 Rakdos Charm
+1 Bloodfell Caves
+1 Canyon Slough
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Blood Seeker
+1 Decree of Pain
+1 Foreboding Ruins
+1 Geothermal Bog
+1 Light Up the Stage
+1 Graven Cairns
+1 Brash Taunter
+1 Leechridden Swamp
+8 Mountain
+1 Shadowblood Ridge
+1 Blood Pact
+1 Combustible Gearhulk
+1 Falkenrath Noble
+1 Solemn Simulacrum
+1 Shivan Gorge
+1 Fate Unraveler
+1 Mind Stone
+1 Smoldering Marsh
+1 Sign in Blood
+1 Mogis, God of Slaughter
+1 Spinerock Knoll
+1 Sulfurous Springs
+1 Feed the Swarm
+1 Vial Smasher the Fierce
+1 Witch's Clinic
+1 Sol Ring

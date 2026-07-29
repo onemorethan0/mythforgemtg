@@ -1,0 +1,81 @@
+# Archidekt — recurcion tribal
+# source: archidekt:19146490
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Rhys, the Evermore
+
+Deck:
+1 Esper Sentinel
+1 Spirited Companion
+1 Urza's Saga
+1 Luminous Broodmoth
+1 Sun Titan
+1 Court of Ardenvale
+1 Faith's Reward
+1 Brought Back
+1 Angel of Indemnity
+1 Emeria Shepherd
+1 Jailbreak
+1 Serra Paragon
+1 Redemption Choir
+1 Sevinne's Reclamation
+1 Season of the Burrow
+1 Sudden Salvation
+1 Shepherd of the Cosmos
+1 The Restoration of Eiganjo // Architect of Restoration
+1 Altar of the Brood
+1 Ambrosia Whiteheart
+1 Retreat to Emeria
+1 Archaeomancer's Map
+1 Admonition Angel
+1 Felidar Retreat
+1 Deep Gnome Terramancer
+1 Glyph Elemental
+1 Emeria Angel
+1 Fearless Fledgling
+1 Seer's Sundial
+1 Tiller Engine
+1 Terrain Generator
+1 Crucible of Worlds
+1 PuPu UFO
+1 Walking Atlas
+1 Gerrard's Hourglass Pendant
+1 Scaretiller
+1 Pendant of Prosperity
+1 Planar Birth
+1 Sacred Ground
+1 Tomik, Distinguished Advokist
+1 Second Sunrise
+1 Cauldron of Souls
+1 Cosmic Intervention
+1 Lifeline
+1 Twilight Shepherd
+1 Together Forever
+1 Gift of Immortality
+1 Ao, the Dawn Sky
+1 Cactus Preserve
+1 Guardian Zendikon
+1 Soulstone Sanctuary
+1 Flagstones of Trokair
+1 Mutavault
+1 Cave of the Frost Dragon
+1 Forbidding Watchtower
+1 Emeria, the Sky Ruin
+1 Dark Depths
+1 Genju of the Fields
+1 Encircling Fissure
+1 Mishra's Groundbreaker
+1 Wall of Resurgence
+1 Planar Outburst
+1 Ondu Rising
+1 Sheer Drop
+1 Cloudshift
+28 Plains
+1 Zuran Orb
+1 Phyrexian Altar
+1 Ashnod's Altar
+1 Horn of Greed
+1 Colfenor's Urn
+1 Darksteel Citadel

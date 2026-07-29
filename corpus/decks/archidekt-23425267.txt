@@ -1,0 +1,84 @@
+# Archidekt — Exponential Freakin' Lasers
+# source: archidekt:23425267
+# fetched: 2026-07-28
+
+Commander:
+1 Living Laser
+
+Deck:
+1 Burning Inquiry
+1 Raphael's Technique
+1 Ruin Grinder
+1 Reforge the Soul
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Daily Bugle Newspaper
+1 Currency Converter
+1 Fear of Missing Out
+1 Artist's Talent
+1 Romantic Rendezvous
+1 Jeska's Will
+1 Highway Robbery
+1 Grab the Prize
+1 Ruby Medallion
+1 Ashling, Flame Dancer
+1 Big Score
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Roaming Throne
+1 Bolt Bend
+1 Redirect Lightning
+1 Smokebraider
+1 Flamebraider
+1 Combat Celebrant
+1 Great Train Heist
+1 Sundial of the Infinite
+1 Blasphemous Act
+1 Breath of Fury
+1 Commander's Plate
+1 Grim Reaper's Sprint
+1 Loki's Scepter
+1 Lightning Greaves
+1 Karlach, Fury of Avernus
+1 Monument to Endurance
+1 Sol Ring
+1 Cavern of Souls
+1 Savage Beating
+1 Aggravated Assault
+1 Gamble
+1 Amulet of Vigor
+1 Change of Fortune
+1 Nykthos, Shrine to Nyx
+1 Sokenzan, Crucible of Defiance
+1 Smoldering Crater
+1 Desert of the Fervent
+1 Forgotten Cave
+1 Hazoret's Monument
+1 Molten Duplication
+1 Rogue's Passage
+1 Bag of Holding
+1 Misty Knight, Hero for Hire
+1 Bitter Reunion
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Cool but Rude
+1 Magus of the Wheel
+1 Raphael, the Nightwatcher
+1 Enduring Courage
+1 Path of the Pyromancer
+1 Urza's Saga
+1 Pyretic Charge
+1 The Fire Crystal
+1 Anger
+1 Valakut, the Molten Pinnacle
+1 Thrill of Possibility
+1 Hulkling, Young Avenger
+1 Professional Face-Breaker
+1 Deflecting Swat
+1 Chaos Warp
+24 Mountain
+1 Snort
+1 Will of the Jeskai
+1 Containment Construct
+1 Geier Reach Sanitarium
+1 Faithless Looting
+1 Electro, Assaulting Battery
+1 Flashback
+1 Return the Favor

@@ -1,0 +1,101 @@
+# Archidekt — FFXIV Scions & Spellcraft | $30 Upgrade
+# source: archidekt:13546643
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Staff of Compleation
+1 Deny the Witch
+1 Papalymo Totolymo
+1 Stormscape Familiar
+1 Tataru Taru
+1 Alisaie Leveilleur
+1 G'raha Tia, Scion Reborn
+1 Kambal, Consul of Allocation
+1 Lyse Hext
+1 Murderous Rider // Swift End
+1 Alphinaud Leveilleur
+1 Archmage Emeritus
+1 Emet-Selch of the Third Seat
+1 Hermes, Overseer of Elpis
+1 Fandaniel, Telophoroi Ascian
+1 Jin-Gitaxias // The Great Synthesis
+1 Swords to Plowshares
+1 Generous Gift
+1 Anguished Unmaking
+1 Dismember
+1 Transpose
+1 Undermine
+1 Unwind
+1 Void Rend
+1 Lethal Scheme
+1 Rewind
+1 Snuff Out
+1 Dig Through Time
+1 Exsanguinate
+1 Risky Shortcut
+1 Circle of Power
+1 Syphon Mind
+1 Cleansing Nova
+1 Final Judgment
+1 Authority of the Consuls
+1 Curiosity
+1 Eye of Nidhogg
+1 Ghostly Prison
+1 Propaganda
+1 Helm of the Ghastlord
+1 Observed Stasis
+1 Sol Ring
+1 Arcane Signet
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Thought Vessel
+1 Archaeomancer's Map
+1 Relic of Legends
+1 White Auracite
+1 Arcane Sanctum
+1 Choked Estuary
+1 Command Tower
+1 Contaminated Aquifer
+1 Darkwater Catacombs
+1 Demolition Field
+1 Desolate Mire
+1 Drowned Catacomb
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fetid Heath
+1 Glacial Fortress
+1 Idyllic Beachfront
+1 Isolated Chapel
+1 Path of Ancestry
+1 Port Town
+1 Prairie Stream
+1 Scavenger Grounds
+1 Shineshadow Snarl
+1 Skycloud Expanse
+1 Sunken Hollow
+1 Sunken Ruins
+1 Sunlit Marsh
+1 Underground River
+3 Island
+4 Swamp
+1 Frantic Search
+1 Stroke of Midnight
+1 Baleful Mastery
+1 Vindicate
+1 Disallow
+1 Counterpoint
+1 Tandem Lookout
+1 Suspended Sentence
+1 Press the Enemy
+1 Decanter of Endless Water
+3 Plains
+1 Hagra Mauling // Hagra Broodpit
+1 Waterlogged Teachings // Inundated Archive
+1 Liesa, Shroud of Dusk
+1 Talion, the Kindly Lord
+1 Fellwar Stone

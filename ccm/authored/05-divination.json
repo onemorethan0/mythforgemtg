@@ -1,0 +1,18 @@
+{
+  "card": {
+    "name": "Divination",
+    "mana_cost": "{2}{U}",
+    "type_line": "Sorcery",
+    "oracle_text": "Draw two cards."
+  },
+  "ccm": {
+    "name": "Divination",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{U}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {"kind": "spell_effect", "effects": [{"op": "draw", "count": 2}]}
+    ]
+  }
+}

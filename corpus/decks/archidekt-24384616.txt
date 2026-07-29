@@ -1,0 +1,76 @@
+# Archidekt — Xylofonoid
+# source: archidekt:24384616
+# fetched: 2026-07-17
+
+Commander:
+1 Xyris, the Writhing Storm
+
+Deck:
+1 Domineering Will
+1 Force of Rage
+1 Fleeting Reflection
+1 Ravener
+1 Reality Shift
+1 Double Trouble
+1 Spellskite
+11 Island
+11 Mountain
+1 Command Tower
+1 Primeval Bounty
+1 Naga Fleshcrafter
+1 Subterfuge
+1 Wizard Class
+1 Frontier Bivouac
+1 Bident of Thassa
+1 Guided Passage
+1 Sakiko, Mother of Summer
+1 Flashback
+1 Esix, Fractal Bloom
+1 Archmage Emeritus
+1 Metamorphic Blast
+1 Arcane Signet
+1 Defend the Rider
+1 Cultivate
+1 Become Immense
+1 Havoc Eater
+11 Forest
+1 Cemetery Illuminator
+1 Tifa's Limit Break
+1 Trash the Town
+1 Smirking Spelljacker
+1 Planar Genesis
+1 Beast Whisperer
+1 Kodama's Reach
+1 Path of Ancestry
+1 Demolition Field
+1 Stolen Vitality
+1 Titanic Growth
+1 Predator's Strike
+1 Ovinize
+1 Wrap in Vigor
+1 Raking Claws
+1 Swell of Growth
+1 On the Trail
+1 Ant-Man, Elusive Avenger
+1 Cold-Eyed Selkie
+1 Conclave Sledge-Captain
+1 Octavia, Living Thesis
+1 Blasphemous Act
+1 Bender's Waterskin
+1 Leadership Vacuum
+1 Reinterpret
+1 Jadzi, Oracle of Arcavios // Journey to the Oracle
+1 Rampant Growth
+1 Fealty to the Realm
+1 Harrow
+1 Disorienting Choice
+1 Red Sun's Twilight
+1 Glorious End
+1 Primal Amulet // Primal Wellspring
+1 Tangled Florahedron // Tangled Vale
+1 Viewpoint Synchronization
+1 Season of Growth
+1 Solemn Simulacrum
+1 Sonic Screwdriver
+1 Anger
+1 Clifftop Lookout

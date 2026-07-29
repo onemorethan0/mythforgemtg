@@ -1,0 +1,99 @@
+# Archidekt — Esper zombie
+# source: archidekt:24362354
+# fetched: 2026-07-24
+
+Commander:
+1 Varina, Lich Queen
+
+Deck:
+1 Rooftop Storm
+1 Gravecrawler
+1 Carrion Feeder
+1 Ashnod's Altar
+1 Altar of Dementia
+1 Viscera Seer
+1 Warren Soultrader
+1 Nantuko Husk
+1 Woe Strider
+1 Demonic Tutor
+1 Diabolic Tutor
+1 Enlightened Tutor
+1 Buried Alive
+1 Disentomb
+1 Mastermind's Acquisition
+1 Unmarked Grave
+1 Solve the Equation
+1 Reanimate
+1 Victimize
+1 Living Death
+1 Persist
+1 Necromancy
+1 Zulaport Cutthroat
+1 Wayward Servant
+1 Death Baron
+1 Wilhelt, the Rotcleaver
+1 Undead Warchief
+1 Noxious Ghoul
+1 Arcane Signet
+1 Sol Ring
+1 The Scarab God
+1 Fellwar Stone
+1 Orzhov Signet
+1 Azorius Signet
+1 Dimir Signet
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Windfall
+1 Reconnaissance Mission
+1 Swords to Plowshares
+1 Path to Exile
+1 Anguished Unmaking
+1 Secluded Courtyard
+1 Unclaimed Territory
+1 Lightning Greaves
+1 Command Tower
+1 Path of Ancestry
+1 Vault of Champions
+1 Temple of Enlightenment
+1 Temple of Deceit
+1 Temple of Silence
+1 Exotic Orchard
+1 Arcane Sanctum
+1 Terramorphic Expanse
+1 Evolving Wilds
+3 Swamp
+1 Reliquary Tower
+1 Necroduality
+1 Zul Ashur, Lich Lord
+1 Ratadrabik of Urborg
+1 Grim Reaper's Scythe
+1 Project Deathlok Soldier
+1 Dark Ritual
+1 On Wings of Gold
+1 Claws of Gix
+1 Bojuka Bog
+1 Bleachbone Verge
+1 Glacial Fortress
+1 Floodfarm Verge
+1 Crypt of Agadeem
+1 Drowned Catacomb
+1 Gloomlake Verge
+1 Sea of Clouds
+1 Isolated Chapel
+1 Morphic Pool
+1 Urborg, Tomb of Yawgmoth
+1 Nevinyrral, Urborg Tyrant
+1 Goldmire Bridge
+1 Razortide Bridge
+1 Mistvault Bridge
+4 Island
+4 Plains
+1 Corpse Knight
+1 Syr Konrad, the Grim
+1 Diregraf Captain
+1 Lord of the Accursed
+1 Bastion of Remembrance
+1 Blood Artist
+1 Kindred Discovery
+1 Plague Belcher

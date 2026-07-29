@@ -1,0 +1,91 @@
+# Archidekt — meet my lands
+# source: archidekt:24422854
+# fetched: 2026-07-17
+
+Commander:
+1 Noyan Dar, Roil Shaper
+
+Deck:
+1 Arcane Signet
+1 Archmage Emeritus
+1 Archmage of Runes
+1 Azorius Signet
+1 Baral, Chief of Compliance
+1 Brave the Sands
+1 Cave of the Frost Dragon
+1 Celestial Colonnade
+1 Command Tower
+1 Consuming Tide
+1 Counterspell
+1 Cyclonic Rift
+1 Devastation Tide
+1 Eiganjo, Seat of the Empire
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Faerie Conclave
+1 Farewell
+1 Field of the Dead
+1 Fierce Guardianship
+1 Flagstones of Trokair
+1 Flawless Maneuver
+1 Flooded Strand
+1 Force of Will
+1 Frantic Search
+1 Generous Gift
+1 Gifts Ungiven
+1 Gitaxian Probe
+1 Glacial Fortress
+1 Hall of Storm Giants
+1 Harmonized Trio // Brainstorm
+1 Herald of Secret Streams
+1 Hour of Revelation
+1 Maze of Ith
+1 Merchant Scroll
+1 Mystical Tutor
+1 Mystic Remora
+1 Mystic Sanctuary
+1 Mana Drain
+1 Otawara, Soaring City
+1 Part the Waterveil
+1 Path to Exile
+1 Planar Outburst
+1 Ponder
+1 Prairie Stream
+1 Preordain
+1 Propaganda
+1 Razortide Bridge
+1 Reliquary Tower
+1 Render Silent
+1 Restless Anchorage
+1 Return to Dust
+1 Rhystic Study
+1 Sapphire Medallion
+1 Seachrome Coast
+1 Sea of Clouds
+1 Sevinne's Reclamation
+1 Sigarda's Summons
+1 Silence
+1 Smothering Tithe
+1 Snap
+1 Snapcaster Mage
+1 Sol Ring
+1 Solve the Equation
+1 Swords to Plowshares
+1 Talrand, Sky Summoner
+1 Teferi's Protection
+1 Terra Eternal
+1 Time Warp
+1 Tolaria West
+1 Tomik, Distinguished Advokist
+1 Tragic Arrogance
+1 Tundra
+1 Unwind
+1 Windfall
+9 Island
+9 Plains
+1 Land Tax
+1 Fellwar Stone
+1 Hydro-Channeler
+1 Volshe Tideturner
+1 Tranquil Cove
+1 Narset's Reversal

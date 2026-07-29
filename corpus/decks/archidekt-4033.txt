@@ -1,0 +1,95 @@
+# Archidekt — Death is the Only Way to Live
+# source: archidekt:4033
+# fetched: 2026-07-05
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Merciless Executioner
+1 Zulaport Cutthroat
+1 Darkbore Pathway // Slitherbore Pathway
+1 Woodland Chasm
+1 Author of Shadows
+1 Verdant Catacombs
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Sakura-Tribe Elder
+1 Wood Elves
+1 Ashnod's Altar
+1 Victimize
+1 Skullclamp
+1 Sol Ring
+1 Solemn Simulacrum
+1 Command Tower
+1 High Market
+1 Sidisi, Undead Vizier
+1 Farhaven Elf
+1 Urborg, Tomb of Yawgmoth
+1 Overgrown Tomb
+1 Entomb
+1 Buried Alive
+1 Woodland Cemetery
+1 Bojuka Bog
+1 Golgari Rot Farm
+1 Birthing Pod
+1 Fauna Shaman
+1 Twilight Mire
+1 Llanowar Wastes
+1 Yavimaya Granger
+1 Survival of the Fittest
+1 Volrath's Stronghold
+1 Phyrexian Tower
+1 Nurturing Peatland
+1 Springbloom Druid
+1 Ash Barrens
+1 Undergrowth Stadium
+7 Swamp
+1 Guildless Commons
+1 Viridian Emissary
+1 Twilight's Call
+1 Khalni Garden
+1 Reclamation Sage
+1 Spore Frog
+1 Mikaeus, the Unhallowed
+1 Animate Dead
+1 Living Death
+1 Sheoldred, Whispering One
+1 Necromancy
+1 Plaguecrafter
+1 Demon's Disciple
+1 Midnight Reaper
+1 Guardian Project
+1 Yawgmoth, Thran Physician
+1 Moldervine Reclamation
+1 The Great Henge
+1 Eternal Witness
+1 Grave Pact
+1 Fleshbag Marauder
+1 Gray Merchant of Asphodel
+1 Blood Artist
+1 Massacre Wurm
+1 Avenger of Zendikar
+1 Kokusho, the Evening Star
+1 Tombstone Stairwell
+1 Syr Konrad, the Grim
+1 Poison-Tip Archer
+1 Mitotic Slime
+1 Dreadhound
+1 Ravenous Chupacabra
+1 Assassin's Trophy
+1 Viscera Seer
+1 Phyrexian Altar
+1 Altar of Dementia
+1 Satyr Wayfinder
+7 Forest
+1 Dictate of Erebos
+1 Grim Haruspex
+1 Arcane Signet
+1 Command Beacon
+1 Unmarked Grave
+1 Yavimaya, Cradle of Growth
+1 Timeless Witness
+1 Foundation Breaker
+1 Druid of Purification
+1 Fell Stinger
+1 Liquimetal Torque

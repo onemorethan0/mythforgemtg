@@ -1,0 +1,99 @@
+# Archidekt — 2. Can't Block This
+# source: archidekt:5005670
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Malcolm, Keen-Eyed Navigator
+1 Ikra Shidiqi, the Usurper
+
+Deck:
+1 Flare of Denial
+1 Grazilaxx, Illithid Scholar
+1 Inkfathom Infiltrator
+1 Lightning Greaves
+1 Reconnaissance Mission
+1 Gudul Lurker
+1 Mist-Cloaked Herald
+1 The Indomitable
+1 Dreamroot Cascade
+1 Beastmaster Ascension
+1 Ohran Frostfang
+1 Brazen Borrower // Petty Theft
+1 Shipwreck Marsh
+1 Morphic Pool
+1 Nether Traitor
+1 Clearwater Pathway // Murkwater Pathway
+1 Slither Blade
+1 Tormented Soul
+1 Triton Shorestalker
+1 Changeling Outcast
+1 Invisible Stalker
+1 Looter il-Kor
+1 Edric, Spymaster of Trest
+1 Bident of Thassa
+1 Coastal Piracy
+1 Beast Within
+1 Command Tower
+1 Exotic Orchard
+1 Path of Ancestry
+7 Island
+1 Hinterland Harbor
+1 Drowned Catacomb
+1 Enduring Curiosity
+1 Gix, Yawgmoth Praetor
+1 Rejuvenating Springs
+1 Wu Light Cavalry
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Mockingbird
+1 Zagoth Triome
+1 Breeding Pool
+1 Watery Grave
+1 Baleful Strix
+1 Sink into Stupor // Soporific Springs
+1 Cephalid Facetaker
+1 Into the Flood Maw
+1 Skyserpent Seeker
+1 Willowrush Verge
+1 Shoreline Looter
+1 Unsubstantiate
+1 Ledger Shredder
+1 Gloomlake Verge
+1 Flooded Grove
+1 Sunken Ruins
+1 Departed Deckhand
+1 Notorious Throng
+1 Dauthi Voidwalker
+1 Silent Hallcreeper
+1 Thieving Skydiver
+1 Faerie Mastermind
+1 Orochi Soul-Reaver
+1 Grim Hireling
+1 Vedalken Infiltrator
+1 Bitterbloom Bearer
+1 Spectral Sailor
+1 Malcolm, Alluring Scoundrel
+1 Spyglass Siren
+1 Waterbender Ascension
+1 Wan Shi Tong, Librarian
+1 Misty Rainforest
+4 Swamp
+1 Flitterwing Nuisance
+1 Siren Stormtamer
+1 Cloud Pirates
+1 River of Tears
+1 Irma, Part-Time Mutant
+1 Scale Up
+1 Toski, Bearer of Secrets
+1 Faerie Slumber Party
+1 Tegwyll's Scouring
+1 Fell the Profane // Fell Mire
+1 Forest
+1 Polluted Delta
+1 The Destined Thief
+1 Skateboard
+1 Tezzeret the Seeker
+1 Bilbo, Luckwearer // Burglar's Plot
+1 Underground Sea
+1 Otawara, Soaring City
+1 Tropical Island

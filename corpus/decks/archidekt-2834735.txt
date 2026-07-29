@@ -1,0 +1,75 @@
+# Archidekt — Goblin Tsunami
+# source: archidekt:2834735
+# fetched: 2026-07-28
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Patriar's Seal
+1 Skirk Fire Marshal
+1 Treasure Nabber
+1 Goblin Instigator
+1 Pashalik Mons
+1 Massive Raid
+1 Goblin Recruiter
+1 Goblin King
+1 Warren Instigator
+1 Legion Loyalist
+1 Goblin Diplomats
+1 Idol of Oblivion
+1 Vanquisher's Banner
+1 Lightning Greaves
+1 Sol Ring
+1 Skullclamp
+1 Witty Roastmaster
+1 Devilish Valet
+1 Krenko, Tin Street Kingpin
+1 Goro-Goro, Disciple of Ryusei
+1 Dark-Dweller Oracle
+1 Hobgoblin Bandit Lord
+1 Battle Cry Goblin
+1 Throne of the God-Pharaoh
+1 Hazoret's Monument
+1 Goblin Wardriver
+1 Gempalm Incinerator
+1 Hordeling Outburst
+1 Siege-Gang Commander
+1 Door of Destinies
+1 Goblin War Strike
+1 Chaos Warp
+1 Fervor
+1 Thousand-Year Elixir
+1 Mogg War Marshal
+1 Goblin Chieftain
+1 Beetleback Chief
+1 Goblin Matron
+1 Goblin Piledriver
+1 Goblin Warchief
+1 Purphoros, God of the Forge
+1 Goblin Grenade
+1 Goblin Bombardment
+1 Faithless Looting
+1 Skirk Prospector
+1 Goblin Ringleader
+1 Legion Warboss
+1 Goblin Trashmaster
+1 Goblin Chirurgeon
+1 Goblin Lackey
+1 Shared Animosity
+1 Conspicuous Snoop
+1 Dockside Extortionist
+1 Vandalblast
+1 Relentless Assault
+1 Arcane Signet
+33 Mountain
+1 Burn at the Stake
+1 Dragon Fodder
+1 Krenko's Command
+1 Battle Hymn
+1 Brightstone Ritual
+1 You See a Pair of Goblins
+1 Quest for the Goblin Lord
+1 Jeska's Will
+1 Impact Tremors
+1 Boggart Shenanigans

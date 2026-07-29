@@ -1,0 +1,89 @@
+# Archidekt — Wilson, Refined Grizzly
+# source: archidekt:24779022
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Wilson, Refined Grizzly
+
+Deck:
+1 Raised by Giants
+1 Sanctum Weaver
+1 Fyndhorn Elves
+1 Selvala, Heart of the Wilds
+1 Herald of the Pantheon
+1 Eidolon of Blossoms
+1 Disciple of Freyalise // Garden of Freyalise
+1 Defiler of Vigor
+1 Saryth, the Viper's Fang
+1 Guardian Augmenter
+1 Verduran Enchantress
+1 Eternal Witness
+1 Bugenhagen, Wise Elder
+1 Arbor Elf
+1 Elvish Mystic
+1 Llanowar Tribe
+1 Tanuki Transplanter
+1 Karametra's Acolyte
+1 Sakura-Tribe Elder
+1 Forgotten Ancient
+1 Llanowar Elves
+1 Cankerbloom
+1 Reclamation Sage
+1 Studious First-Year // Rampant Growth
+1 Werebear
+1 Poison Dart Frog
+1 Tanglespan Lookout
+1 Blackblade Reforged
+1 Champion's Helm
+1 Sol Ring
+1 Rhonas's Monument
+1 Thran Power Suit
+1 Trailblazer's Boots
+1 Loxodon Warhammer
+1 Strata Scythe
+1 Fireshrieker
+1 Alpha Authority
+1 Snake Umbra
+1 Colossification
+1 Indomitable Might
+1 Spider Umbra
+1 Boar Umbra
+1 Lion Umbra
+1 Blanchwood Armor
+1 Tyvar's Stand
+1 Ram Through
+1 Beast Within
+1 Inscription of Abundance
+1 Primal Bellow
+1 Khalni Ambush // Khalni Territory
+1 Hunter's Insight
+1 Tail Swipe
+1 Prizefight
+1 Season of Gathering
+1 Ezuri's Predation
+1 Rishkar's Expertise
+1 Soul's Majesty
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Cultivate
+1 Hunter's Prowess
+1 Regrowth
+1 Harmonize
+1 Rogue's Passage
+1 Path of Ancestry
+1 Blighted Woodland
+1 Tranquil Thicket
+1 Roadside Reliquary
+1 Scavenger Grounds
+1 Temple of the False God
+1 Llanowar Reborn
+1 Evolving Wilds
+1 Opal Palace
+1 Thriving Grove
+1 The Hunter Maze
+1 Wild Roads
+1 Hidden Nursery
+1 Fertile Thicket
+1 Turntimber Grove
+20 Forest
+1 Slippery Karst

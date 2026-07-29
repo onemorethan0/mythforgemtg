@@ -1,0 +1,98 @@
+# Archidekt — Budget Baba
+# source: archidekt:4074687
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Baba Lysaga, Night Witch
+
+Deck:
+1 Dockside Chef
+6 Swamp
+1 Gloomshrieker
+1 Beast Within
+1 Prized Statue
+1 Tear Asunder
+1 Restore
+1 Mishra's Foundry
+1 Manglehorn
+1 Abundant Growth
+1 Marionette Master
+1 Gods' Eye, Gate to the Reikai
+1 Mortality Spear
+1 Fortitude
+1 Wild Growth
+1 Liquimetal Coating
+1 Darkmoss Bridge
+1 Syr Konrad, the Grim
+1 Titania, Protector of Argoth
+1 Command Tower
+1 World Shaper
+1 Splendid Reclamation
+1 Erinis, Gloom Stalker
+1 Aspect of Mongoose
+1 Agent of the Iron Throne
+1 Rancor
+1 Dunes of the Dead
+1 Ordeal of Nylea
+1 Bojuka Bog
+1 Darksteel Citadel
+1 Patriar's Seal
+1 Kaya's Ghostform
+1 Primal Druid
+1 Ugin's Nexus
+1 Viridian Emissary
+6 Forest
+1 Blinkmoth Nexus
+1 Tree of Tales
+1 Gixian Puppeteer
+1 Ornithopter of Paradise
+1 Deadly Tempest
+1 Llanowar Loamspeaker
+1 Tragic Slip
+1 Power Depot
+1 Necrotic Hex
+1 Khalni Garden
+1 Reclamation Sage
+1 Liquimetal Torque
+1 Terramorphic Expanse
+1 Lampad of Death's Vigil
+1 Llanowar Wastes
+1 Shigeki, Jukai Visionary
+1 Nature's Chosen
+1 Ash Barrens
+1 Overwhelming Remorse
+1 Jolrael, Mwonvuli Recluse
+1 Myr Sire
+1 Weirding Wood
+1 Copper Myr
+1 Leaden Myr
+1 Vault of Whispers
+1 Fang of Shigeki
+1 Swiftfoot Boots
+1 Instill Energy
+1 Treetop Village
+1 Jungle Hollow
+1 Mycosynth Wellspring
+1 Mishra's Factory
+1 Sol Ring
+1 Putrefy
+1 Respite
+1 Blessed Respite
+1 Grave Endeavor
+1 Minion's Return
+1 Necrogen Communion
+1 Crashing Drawbridge
+1 Trail of Crumbs
+1 Unhallowed Pact
+1 Unholy Indenture
+1 Mirrex
+1 Path of Ancestry
+1 Temple of Malady
+1 Hissing Quagmire
+1 Ornithopter
+1 Scuttling Doom Engine
+1 Tyvar, Jubilant Brawler
+1 Sanctum Weaver
+1 Evolving Wilds
+1 Ichor Wellspring

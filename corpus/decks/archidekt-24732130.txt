@@ -1,0 +1,84 @@
+# Archidekt — Everyone into the moshpit it's Group Slug Time
+# source: archidekt:24732130
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Red Death, Shipwrecker
+
+Deck:
+1 Forbidden Orchard
+8 Island
+1 Temple of Epiphany
+18 Mountain
+1 Ferrous Lake
+1 Cascade Bluffs
+1 Coastal Peak
+1 Shivan Reef
+1 Scorched Geyser
+1 Command Tower
+1 Sulfur Falls
+1 Evolving Wilds
+1 Agitator Ant
+1 Pyxis of Pandemonium
+1 Dance with Calamity
+1 Disrupt Decorum
+1 Alexios, Deimos of Kosmos
+1 Wild Ricochet
+1 Risky Move
+1 Mass Hysteria
+1 Chaos Warp
+1 Grip of Chaos
+1 Impulsive Maneuvers
+1 Possibility Storm
+1 Tempt with Vengeance
+1 Over the Top
+1 Warp World
+1 Aetherize
+1 Scrambleverse
+1 Mana Flare
+1 Komainu Battle Armor
+1 Mana Geyser
+1 Ioreth of the Healing House
+1 Shiny Impetus
+1 Dramatic Reversal
+1 Vengeful Ancestor
+1 Vizier of Tumbling Sands
+1 Kelpie Guide
+1 Spectacular Showdown
+1 Propaganda
+1 Renegade Silent
+1 Forensic Gadgeteer
+1 The Unagi of Kyoshi Island
+1 Geode Rager
+1 Taunting Kobold
+1 Lavaleaper
+1 Barbflare Gremlin
+1 Refocus
+1 Magic Damper
+1 Abrade
+1 Narset's Reversal
+1 Invert Polarity
+1 Minds Aglow
+1 Vision Skeins
+1 Wrong Turn
+1 Long River's Pull
+1 Words of Wisdom
+1 Shore Up
+1 Fast Forward
+1 Folio of Fancies
+1 Psychic Impetus
+1 Dictate of Kruphix
+1 Unstoppable Plan
+1 Ral Zarek
+1 Izzet Signet
+1 Chef's Kiss
+1 Kazuul, Tyrant of the Cliffs
+1 Humble Defector
+1 Hithlain Rope
+1 Fellwar Stone
+1 Sol Ring
+1 Arcane Signet
+1 Akroan Horse
+1 Tempt with Mayhem
+1 Pendant of Prosperity
