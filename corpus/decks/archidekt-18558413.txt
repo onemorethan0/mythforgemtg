@@ -1,0 +1,107 @@
+# Archidekt — Devious Eggman Deck
+# source: archidekt:18558413
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Dr. Eggman
+
+Deck:
+1 Crumbling Necropolis
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Sunken Hollow
+1 Choked Estuary
+1 Academy Ruins
+1 Mountain
+1 Cyberdrive Awakener
+1 Fire Diamond
+1 Spire of Industry
+1 Goring Warplow
+1 Metalwork Colossus
+1 Urza's Saga
+1 Cityscape Leveler
+1 Wisecrack
+1 Sol Ring
+1 Mountain
+1 Drowned Catacomb
+1 Iron Spider, Stark Upgrade
+1 Secluded Starforge
+1 Tezzeret's Touch
+1 Essence Capture
+1 Dependable Quinjet
+1 Relentless X-ATM092
+1 Buzz Bots
+1 Dimir Aqueduct
+1 Thopter Spy Network
+1 Foundry Inspector
+1 Emissary Escort
+1 The Fire Nation Drill
+1 Sulfur Falls
+1 Thought Monitor
+1 Myr Battlesphere
+1 Command Tower
+1 Sky Diamond
+1 Charcoal Diamond
+1 Noxious Gearhulk
+1 Mountain
+1 Zookeeper Mechan
+1 Swamp
+1 Island
+1 Ominous Asylum
+1 Tramway Station
+1 Island
+1 Evolving Wilds
+1 Swamp
+1 Urza, Lord High Artificer
+1 Mechan Assembler
+1 Otawara, Soaring City
+1 Thundering Falls
+1 Steam Vents
+1 Stormcarved Coast
+1 Training Center
+1 Lightning Greaves
+1 Simulacrum Synthesizer
+1 Uthros, Titanic Godcore
+1 Mystic Forge
+1 Desynchronization
+1 Swiftfoot Boots
+1 Swerve
+1 Chaos Warp
+1 Chief of the Foundry
+1 Diabolic Tutor
+1 Lady Octopus, Inspired Inventor
+1 Dismal Backwater
+1 Mistvault Bridge
+1 Golbez, Crystal Collector
+1 Big Mother Mouser
+1 Vault of Whispers
+1 Dragonskull Summit
+1 Combustible Gearhulk
+1 Scrapyard Recombiner
+1 Cybermen Squadron
+1 Kavaron Turbodrone
+1 Interceptor Mechan
+1 Tormod's Crypt
+1 Seize the Spoils
+1 By Force
+1 Weatherlight
+1 Shardless Outlander
+1 Rook Turret
+1 Hulldrifter
+1 Krang, Utrom Warlord
+1 Terminate
+1 Nettlecyst
+1 Cranial Ram
+1 Dermotaxi
+1 Mutinous Massacre
+1 Voidforged Titan
+1 Massacre Girl, Known Killer
+1 Guidelight Optimizer
+1 Arcane Signet
+1 Mystic Sanctuary
+1 Decree of Pain
+1 Requiem Monolith
+1 Phyrexian Arena

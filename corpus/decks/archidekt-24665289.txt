@@ -1,0 +1,101 @@
+# Archidekt — Terra Job Select
+# source: archidekt:24665289
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Forest
+1 Island
+1 Prishe's Wanderings
+1 Temple of the False God
+1 Reach the Horizon
+1 Sun Titan
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Sol Ring
+1 Relic of Legends
+1 White Auracite
+7 Plains
+1 Austere Command
+1 Golbez, Crystal Collector
+1 Vanquish the Horde
+1 Cleansing Nova
+1 Ice Magic
+1 Dispatch
+1 Collective Effort
+1 Path to Exile
+1 Bugenhagen, Wise Elder
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Sharlayan, Nation of Scholars
+1 Windurst, Federation Center
+1 Rabanastre, Royal City
+1 Insomnia, Crown City
+1 Ishgard, the Holy See // Faith & Grief
+1 Gongaga, Reactor Town
+1 Lindblum, Industrial Regency // Mage Siege
+1 Eden, Seat of the Sanctum
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Swamp
+1 Vector, Imperial Capital
+2 Mountain
+1 Path of Ancestry
+1 Exotic Orchard
+1 Sunpetal Grove
+1 Canopy Vista
+1 Brago, King Eternal
+1 Thundering Raiju
+1 Stroke of Midnight
+1 Snuff Out
+1 Swords to Plowshares
+1 Teleportation Circle
+1 The Cruelty of Gix
+1 Hildibrand Manderville // Gentleman's Rise
+1 Puresteel Paladin
+1 Nahiri's Resolve
+1 Danitha, New Benalia's Light
+1 Earthbender Ascension
+1 Sundown Pass
+1 Plaza of Heroes
+1 Prairie Stream
+1 Phyrexia's Core
+1 Monumental Henge
+1 Gavony Township
+1 Clifftop Retreat
+1 Command Tower
+1 Abandoned Air Temple
+1 The Mighty Thor, Jane Foster
+1 Ninja's Blades
+1 Black Mage's Rod
+1 Red Mage's Rapier
+1 Sage's Nouliths
+1 White Mage's Staff
+1 Paladin's Arms
+1 Warrior's Sword
+1 Bard's Bow
+1 Samurai's Katana
+1 Dancer's Chakrams
+1 Summoner's Grimoire
+1 Dark Knight's Greatsword
+1 Blue Mage's Cane
+1 Dragoon's Lance
+1 Reaper's Scythe
+1 Thief's Knife
+1 Monk's Fist
+1 Astrologian's Planisphere
+1 Machinist's Arsenal
+1 Ashe, Princess of Dalmasca
+1 Barret, Avalanche Leader
+1 Cid, Freeflier Pilot
+1 Giott, King of the Dwarves
+1 Elena, Turk Recruit
+1 Sephiroth, Fallen Hero
+1 Edgar, Master Machinist
+1 Firion, Wild Rose Warrior
+1 Freya Crescent
+1 Ignis Scientia
+1 Red XIII, Proud Warrior
+1 Sram, Senior Edificer
+1 Zack Fair
+1 Torgal, A Fine Hound

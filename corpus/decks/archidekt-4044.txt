@@ -1,0 +1,108 @@
+# Archidekt — Reyshai
+# source: archidekt:4044
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Reyhan, Last of the Abzan
+1 Ishai, Ojutai Dragonspeaker
+
+Deck:
+1 Plains
+1 Swamp
+1 Path of Ancestry
+1 Sol Ring
+1 Deathcap Glade
+1 Shattered Sanctum
+1 Overgrown Farmland
+1 Resourceful Defense
+1 Deserted Beach
+1 Raffine's Tower
+1 Dreamroot Cascade
+1 Spara's Headquarters
+1 Shipwreck Marsh
+1 Damning Verdict
+1 Island
+1 Nature's Lore
+1 Chasm Skulker
+1 Forest
+1 Hooded Hydra
+1 Rite of Consumption
+1 Phyrexian Tower
+1 Three Visits
+1 Forgotten Ancient
+1 Elenda, the Dusk Rose
+1 Painful Truths
+1 Rishkar's Expertise
+1 Walking Ballista
+1 Kalonian Hydra
+1 Fathom Mage
+1 Fellwar Stone
+1 Exotic Orchard
+1 Reliquary Tower
+1 High Market
+1 Mosswort Bridge
+1 Command Tower
+1 Managorger Hydra
+1 Hangarback Walker
+1 City of Brass
+1 Mana Confluence
+1 Prime Speaker Zegana
+1 Breeding Pool
+1 Godless Shrine
+1 Watery Grave
+1 Corpsejack Menace
+1 Hallowed Fountain
+1 Overgrown Tomb
+1 Temple Garden
+1 Farseek
+1 Essence Harvest
+1 Reflecting Pool
+1 Crystalline Crawler
+1 Sea of Clouds
+1 Morphic Pool
+1 Bountiful Promenade
+1 Toothy, Imaginary Friend
+1 Pir, Imaginative Rascal
+1 Arcane Signet
+1 Tezzeret's Gambit
+1 The Great Henge
+1 Return of the Wildspeaker
+1 Thought Vessel
+1 Zagoth Triome
+1 Indatha Triome
+1 Branching Evolution
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Rejuvenating Springs
+1 Path to Exile
+1 Swords to Plowshares
+1 Felisa, Fang of Silverquill
+1 One with the Kami
+1 Vorinclex, Monstrous Raider
+1 The Ozolith
+1 Yahenni, Undying Partisan
+1 Bloodtracker
+1 Master Biomancer
+1 Cathars' Crusade
+1 Mirrorweave
+1 Hadana's Climb // Winged Temple of Orazca
+1 Assassin's Trophy
+1 Ozolith, the Shattered Spire
+1 Kami of Whispered Hopes
+1 Last March of the Ents
+1 Wave Goodbye
+1 Arwen, Weaver of Hope
+1 Fangs of Kalonia
+1 Danny Pink
+1 Requisition Raid
+1 Greater Good
+1 Nanogene Conversion
+1 Carrion Feeder
+1 Static Prison
+1 Viscera Seer
+1 Heronblade Elite
+1 Termagant Swarm
+1 Boss's Chauffeur
+1 Faerie Bladecrafter
+1 Ragged Veins

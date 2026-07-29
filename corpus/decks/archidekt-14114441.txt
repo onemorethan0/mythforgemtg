@@ -1,0 +1,83 @@
+# Archidekt — Tiamat Blows up Everything
+# source: archidekt:14114441
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Tiamat
+
+Deck:
+1 Split Up
+1 Reckless Barbarian
+1 Ancient Copper Dragon
+1 Mox Jasper
+1 Seething Song
+1 Sol Ring
+1 Earthquake Dragon
+1 Lotus Cobra
+1 Gilded Lotus
+1 Chaos Dragon
+1 Minion of the Mighty
+1 Shivan Devastator
+1 Thought Vessel
+1 Steel Hellkite
+1 Sarkhan, Soul Aflame
+1 Counterspell
+1 Dragon's Hoard
+1 Dissipation Field
+1 Swords to Plowshares
+1 Dragonstorm Globe
+1 Scavenger Regent // Exude Toxin
+1 Sarkhan, Dragon Ascendant
+1 Clarion Conqueror
+1 Rites of Flourishing
+1 Nevinyrral's Disk
+1 Suspend
+1 Sapphire Medallion
+1 Rush of Dread
+1 Esper Origins // Summon: Esper Maduin
+1 Basilisk Collar
+1 Ebondeath, Dracolich
+1 Icingdeath, Frost Tyrant
+1 Llanowar Elves
+1 Ignoble Hierarch
+1 Old Gnawbone
+1 In the Trenches
+1 Ranger Class
+1 Voice of Victory
+1 Encroaching Dragonstorm
+1 Frontier Bivouac
+1 Command Tower
+1 Bloodfell Caves
+1 Tranquil Cove
+6 Mountain
+6 Swamp
+6 Island
+1 Dracogenesis
+1 Keiga, the Tide Star
+1 Inferno of the Star Mounts
+1 Faithless Salvaging
+1 Robe of the Archmagi
+1 Scourge of the Throne
+1 Harmonize
+1 Force Spike
+1 Faithless Looting
+1 The One Ring
+1 Branchloft Pathway // Boulderloft Pathway
+1 Botanical Sanctum
+1 Flooded Strand
+1 Sheltered Thicket
+6 Plains
+1 Sunken Hollow
+6 Forest
+1 The Ur-Dragon
+1 Enlightened Tutor
+1 Crux of Fate
+1 Prairie Stream
+1 Nissa's Renewal
+1 Master Warcraft
+1 Curse of the Swine
+1 Corroding Dragonstorm
+1 Murktide Regent
+1 Scion of Draco
+1 Scaled Nurturer

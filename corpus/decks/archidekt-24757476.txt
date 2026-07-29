@@ -1,0 +1,10 @@
+# Archidekt — Troll 2
+# source: archidekt:24757476
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Progenitus
+
+Deck:
+98 Wastes

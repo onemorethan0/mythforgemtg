@@ -1,0 +1,23 @@
+{
+  "card": {
+    "name": "Wrath of God",
+    "mana_cost": "{2}{W}{W}",
+    "type_line": "Sorcery",
+    "oracle_text": "Destroy all creatures. They can't be regenerated."
+  },
+  "ccm": {
+    "name": "Wrath of God",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{W}{W}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "destroy", "target": {"type": "creature", "count": "all"}, "condition": "they can't be regenerated"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+# Archidekt — CZ 711 | Iroh, Tea Master
+# source: archidekt:17183253
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Iroh, Tea Master
+
+Deck:
+1 Disrupt Decorum
+1 Taunt from the Rampart
+1 Yes Man, Personal Securitron
+1 Stiltzkin, Moogle Merchant
+1 Humble Defector
+1 Path to Redemption
+1 Swords to Plowshares
+1 Nine Lives
+1 Kabira Evangel
+1 Talus Paladin
+1 Tuktuk Scrapper
+1 Redirect Lightning
+1 Pentad Prism
+1 Noble's Purse
+1 Promise of Loyalty
+1 Peter Parker's Camera
+1 Cut a Deal
+1 Secret Rendezvous
+1 Seize the Spotlight
+1 Leave // Chance
+1 Howling Mine
+1 Idol of Oblivion
+1 Share the Spoils
+1 Lembas
+1 Golden Egg
+1 Three Bowls of Porridge
+1 Scholar of New Horizons
+1 Clifftop Retreat
+1 Furycalm Snarl
+1 Path of Ancestry
+1 Sundown Pass
+1 Sunscorched Divide
+1 Ishgard, the Holy See // Faith & Grief
+1 Bagel and Schmear
+1 Sol Ring
+1 Fabled Passage
+1 Command Tower
+1 Battlefield Forge
+1 Rugged Prairie
+1 Needleverge Pathway // Pillarverge Pathway
+8 Mountain
+1 Fire Nation Palace
+1 Sundering Eruption // Volcanic Fissure
+1 Witch's Oven
+1 Eriette's Tempting Apple
+1 Zuko, Exiled Prince
+1 Instant Ramen
+1 Carrot Cake
+1 Survivor's Med Kit
+15 Plains
+1 Cavern-Hoard Dragon
+1 Talisman of Conviction
+1 Boros Signet
+1 Generous Plunderer
+1 Treasure Nabber
+1 Ichor Wellspring
+1 Hellkite Tyrant
+1 Hithlain Rope
+1 Darksteel Mutation
+1 Grasp of Fate
+1 Bucknard's Everfull Purse
+1 Dusk Rose Reliquary
+1 Touch the Spirit Realm
+1 Unstable Glyphbridge // Sandswirl Wanderglyph
+1 Seal from Existence
+1 Claim the Firstborn
+1 Prison Sentence
+1 Ancient Runes
+1 Strionic Resonator
+1 Welcoming Vampire
+1 Mentor of the Meek
+1 Enduring Innocence
+1 Jasmine Dragon Tea Shop
+1 Appa, the Vigilant
+1 Pumpkin Bombs
+1 Iroh's Demonstration
+1 Transcendence
+1 Sun-Blessed Peak

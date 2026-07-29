@@ -1,0 +1,103 @@
+# Archidekt — Wilhelter Skelter
+# source: archidekt:1909492
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Dimir Aqueduct
+1 Path of Ancestry
+1 Drowned Catacomb
+1 Plague Belcher
+1 Watery Grave
+1 Dimir Signet
+1 Gray Merchant of Asphodel
+1 Zombie Apocalypse
+1 Crowded Crypt
+1 Empty the Laboratory
+1 Hordewing Skaab
+1 Distant Melody
+1 Rooftop Storm
+1 Death Baron
+1 Diregraf Captain
+1 Arcane Signet
+1 Bojuka Bog
+1 Shipwreck Marsh
+1 Skullclamp
+1 Undead Augur
+1 Command Tower
+1 Darkwater Catacombs
+1 Reality Shift
+1 Necrotic Hex
+1 Fleshbag Marauder
+1 Pongify
+1 Rapid Hybridization
+1 Kindred Dominance
+1 Sunken Ruins
+1 Archghoul of Thraben
+1 Overcharged Amalgam
+1 Polluted Delta
+1 Guildless Commons
+1 Victimize
+1 Graveborn Muse
+1 Cryptbreaker
+1 Vengeful Dead
+1 Heraldic Banner
+1 Lord of the Undead
+1 Sol Ring
+1 Lord of the Accursed
+1 Midnight Reaper
+1 Talisman of Dominance
+1 Clearwater Pathway // Murkwater Pathway
+1 Raise the Palisade
+1 Darkness
+1 Undead Warchief
+1 Roaming Throne
+1 Dreadhorde Invasion
+1 Headless Rider
+1 Diregraf Colossus
+1 Takenuma, Abandoned Mire
+1 Necroduality
+1 Underground River
+1 High Market
+1 Prismatic Vista
+1 Otawara, Soaring City
+1 Undercity Sewers
+1 Living Death
+1 Sakashima's Will
+1 Rot Hulk
+1 Noxious Ghoul
+1 Urborg, Tomb of Yawgmoth
+1 Patchwork Banner
+1 Accursed Marauder
+1 Lazotep Quarry
+1 Cephalid Coliseum
+1 Warren Soultrader
+1 Prophet of the Scarab
+1 Carrion Feeder
+1 Mind Stone
+1 Noosegraf Mob
+1 Species Specialist
+1 Zul Ashur, Lich Lord
+1 Jason Bright, Glowing Prophet
+1 Hancock, Ghoulish Mayor
+1 Malakir Rebirth // Malakir Mire
+1 Glasspool Mimic // Glasspool Shore
+1 Sink into Stupor // Soporific Springs
+1 Phyrexian Tower
+1 Morphic Pool
+1 Arid Archway
+3 Swamp
+1 Fell Stinger
+1 Reverse the Polarity
+1 Rite of Replication
+1 Gleaming Overseer
+1 Vizier of the Scorpion
+1 Putrid Goblin
+1 Butcher Ghoul
+1 Funeral Room // Awakening Hall
+2 Island
+2 Snow-Covered Swamp
+2 Snow-Covered Island

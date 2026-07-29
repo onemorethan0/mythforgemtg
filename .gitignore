@@ -75,3 +75,21 @@ cache/
 ro_showcase/
 comfyui_restart.log
 comfyui_restart.log.err
+
+# ── MythGauntlet engine: trained card semantics (WITHHELD, deliberate) ──────────
+# The simulation engine below src/mythgauntlet is open. The COMPILED CARD SEMANTICS
+# it consumes are not — ccm/compiled/ is ~30k JSON documents produced by many
+# overnight GPU-hours of LLM compilation plus a hand-tuned prompt and three
+# validation gates, and it is still being trained (the quarantine backlog is
+# actively shrinking night over night). It is withheld until that work is
+# complete; distribution terms are undecided and may be commercial.
+#
+# Consequence for a fresh clone: the engine falls back to rung-1 Oracle-text
+# heuristics, so it RUNS but measures less precisely. See docs/ENGINE_DATA.md.
+# ccm/authored/ (the hand-written few-shot exemplars) IS committed — it is prompt
+# source, not compiled output.
+ccm/compiled/
+ccm/ledger.json
+
+# Scryfall bulk cache the engine downloads on demand (mythgauntlet fetch-data)
+data/

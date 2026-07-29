@@ -1,0 +1,96 @@
+# Archidekt — BDD's BUDGET Bracket 4 Azula Combo List
+# source: archidekt:17869907
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Sol Ring
+1 Abandon Attachments
+1 Waterlogged Teachings // Inundated Archive
+1 Frantic Search
+1 Preordain
+1 Invoke Calamity
+1 Wishclaw Talisman
+1 Nightscape Familiar
+1 Mystical Tutor
+1 Unexpected Windfall
+1 Desperate Ritual
+1 Gifts Ungiven
+1 Mystical Teachings
+1 Reiterate
+1 Sazacap's Brew
+1 Demand Answers
+1 Borne Upon a Wind
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sky Diamond
+1 Strike It Rich
+1 Muddle the Mixture
+1 Highway Robbery
+1 Shivan Reef
+1 Ponder
+1 Serum Visions
+1 Sulfurous Springs
+1 Exotic Orchard
+1 Command Tower
+1 Merchant Scroll
+1 Past in Flames
+1 Personal Tutor
+1 Solve the Equation
+1 Izzet Signet
+1 Rakdos Signet
+1 Thrill of Possibility
+1 Dark Ritual
+1 Talisman of Indulgence
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Arcane Signet
+1 Big Score
+1 Turnabout
+1 Fellwar Stone
+1 Arcane Denial
+1 An Offer You Can't Refuse
+1 Narset's Reversal
+1 Fire Diamond
+1 Seething Song
+1 Faithless Looting
+1 Brainstorm
+1 Underground River
+1 Dimir Signet
+1 Graven Cairns
+3 Swamp
+1 Choked Estuary
+1 Frostboil Snarl
+1 Foreboding Ruins
+5 Mountain
+1 Cascade Bluffs
+1 Darkwater Catacombs
+1 Dragonskull Summit
+1 Fiery Islet
+1 Shadowblood Ridge
+1 Sulfur Falls
+1 Drowned Catacomb
+1 Crumbling Necropolis
+1 Ferrous Lake
+1 Negate
+1 Miscast
+1 Dispel
+7 Island
+1 Dive Down
+1 Counterspell
+1 Spell Pierce
+1 Opt
+1 Laughing Mad
+1 Electric Revelation
+1 Consider
+1 Impulse
+1 Silundi Vision // Silundi Isle
+1 Lim-Dûl's Vault
+1 Delay
+1 Stubborn Denial
+1 Comet Storm
+1 Pyretic Ritual
+1 Lightning Bolt
+1 Bolt Bend

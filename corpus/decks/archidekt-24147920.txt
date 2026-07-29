@@ -1,0 +1,76 @@
+# Archidekt — Bro bro
+# source: archidekt:24147920
+# fetched: 2026-07-09
+
+Commander:
+1 Bruvac the Grandiloquent
+
+Deck:
+1 The Water Crystal
+1 Aether Syphon
+1 Belltower Sphinx
+1 Countermand
+1 Crosstown Courier
+1 Chronic Flooding
+1 Compelling Argument
+1 Cloudhoof Kirin
+1 Curse of the Bloody Tome
+1 Didn't Say Please
+1 Diligent Excavator
+1 Drowned Secrets
+1 Folio of Fancies
+1 Fraying Sanity
+1 Forced Fruition
+1 Mind Sculpt
+1 Jace Beleren
+1 Memory Erosion
+1 Mindcrank
+1 Gifts Ungiven
+1 Psychic Corrosion
+1 Psychic Spiral
+1 Riddlekeeper
+1 Ruin Crab
+1 Weight of Memory
+1 Sphinx Mindbreaker
+1 Sphinx's Tutelage
+1 The Mindskinner
+1 Towering-Wave Mystic
+1 Thought Scour
+1 Thought Collapse
+1 Sword of Body and Mind
+1 Rhystic Study
+1 Fierce Guardianship
+1 Arcane Signet
+1 Bender's Waterskin
+1 Master Transmuter
+1 Urza, Lord High Artificer
+1 Vedalken Archmage
+1 Treasure Mage
+1 Shimmer Dragon
+1 Shuri, Wakandan Inventor
+1 Rescue, Pepper Potts
+1 Mithril Coat
+1 Giggling Skitterspike
+1 Darksteel Forge
+1 Stuffy Doll
+1 Hammer of Nazahn
+1 Colossus of Akros
+1 The Walls of Ba Sing Se
+1 Darksteel Colossus
+1 Kaldra Compleat
+1 Sol Ring
+1 Mox Amber
+1 Roaming Throne
+1 Unstable Molecule Suit
+1 Platinum Emperion
+1 Panharmonicon
+1 God-Pharaoh's Statue
+1 Dolmen Gate
+1 Sword of Fire and Ice
+1 Chromatic Orrery
+1 Reliquary Tower
+33 Island
+1 Command Tower
+1 Helm of the Host
+1 Mirror Shield
+1 Rogue's Passage

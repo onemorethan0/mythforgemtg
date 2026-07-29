@@ -1,0 +1,86 @@
+# Archidekt — Marrow Gnawer
+# source: archidekt:24710378
+# fetched: 2026-07-28
+
+Commander:
+1 Marrow-Gnawer
+
+Deck:
+1 Ink-Eyes, Servant of Oni
+1 Leechridden Swamp
+1 Ashcoat of the Shadow Swarm
+1 Blightbelly Rat
+1 Burglar Rat
+1 Daggerfang Duo
+1 Ichor Rats
+1 Engine Rat
+1 Gnat Miser
+1 Infected Vermin
+1 Karumonix, the Rat King
+1 Locust Miser
+1 Lord Skitter's Butcher
+1 Nezumi Bladeblesser
+1 Nezumi Ronin
+1 Lord Skitter, Sewer King
+1 Mukotai Ambusher
+1 Rancid Rats
+1 Pestilence Rats
+1 Old Flitterfang
+1 Persistent Marshstalker
+1 Rat King, Pale Piper
+1 Rats of Rath
+1 Nezumi Cutthroat
+1 Pack Rat
+1 Refurbished Familiar
+1 Swarm of Rats
+1 Ruin Rat
+1 Septic Rats
+1 Sinuous Vermin
+1 Typhoid Rats
+1 Wave of Rats
+1 Ancient Ziggurat
+1 Access Tunnel
+1 Gutter Skulk
+1 Grave Exchange
+1 Bone Splinters
+1 Dash Hopes
+1 Dead Revels
+1 Brawler's Plate
+1 Spidersilk Net
+1 Bone Saw
+1 Blood Beckoning
+1 Morbid Plunder
+1 Bladed Pinions
+1 Wander in Death
+1 Diabolic Tutor
+1 Dutiful Return
+1 Diamond Mare
+1 Morbid Curiosity
+1 Juggernaut
+1 Virulent Wound
+1 Wring Flesh
+1 Cremate
+1 Bladebrand
+1 Cutthroat Maneuver
+1 Foul-Tongue Shriek
+1 Murder
+1 Renegade's Getaway
+1 Altar's Reap
+1 Necrobite
+1 Coat with Venom
+1 Navigator's Compass
+1 Mycosynth Wellspring
+1 Warden of the Wall
+1 Yawgmoth's Edict
+1 Devour Flesh
+1 Underworld Dreams
+1 Golem's Heart
+1 Renegade Map
+1 Unholy Indenture
+1 Stab Wound
+1 Enslave
+1 Undercity Dire Rat
+22 Swamp
+1 Adventurer's Inn
+1 Sol Ring
+1 Arcane Signet

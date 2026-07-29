@@ -1,0 +1,90 @@
+# Archidekt — Prof's Hakbal | Game Knights #66
+# source: archidekt:5485798
+# fetched: 2026-07-05
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Arcane Denial
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Beast Within
+1 Benthic Biomancer
+1 Bident of Thassa
+1 Breeding Pool
+1 Burgeoning
+1 Demolition Field
+1 Distant Melody
+1 Cavern of Souls
+1 Cold-Eyed Selkie
+1 Command Tower
+1 Commit // Memory
+1 Counterspell
+1 Deeproot Waters
+1 Dreamroot Cascade
+1 Echo of Eons
+1 Emperor Mihail II
+1 Exotic Orchard
+1 Exploration
+1 Explore
+1 Fabled Passage
+1 Farseek
+1 Filter Out
+6 Forest
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Growth Spiral
+1 Hardened Scales
+1 Herald of Secret Streams
+1 Heroic Intervention
+1 Hinterland Harbor
+13 Island
+1 Kindred Discovery
+1 Kopala, Warden of Waves
+1 Kumena, Tyrant of Orazca
+1 Lord of Atlantis
+1 Master of the Pearl Trident
+1 Merfolk Mistbinder
+1 Merfolk Sovereign
+1 Merrow Reejerey
+1 Misty Rainforest
+1 Path of Ancestry
+1 Pongify
+1 Prismatic Vista
+1 Rapid Hybridization
+1 Realmwalker
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Rimewood Falls
+1 River's Rebuke
+1 Sage of Fables
+1 Sage of the Falls
+1 Seafloor Oracle
+1 Silvergill Adept
+1 Sol Ring
+1 Stonybrook Banneret
+1 Svyelun of Sea and Sky
+1 Tatyova, Benthic Druid
+1 Temple of Mystery
+1 Thada Adel, Acquisitor
+1 Thieving Skydiver
+1 Thought Vessel
+1 Thrasios, Triton Hero
+1 Unclaimed Territory
+1 Vodalian Hexcatcher
+1 Whirlpool Rider
+1 Wildgrowth Walker
+1 Yavimaya Coast
+1 Zegana, Utopian Speaker
+1 Thassa, God of the Sea
+1 Wanderwine Prophets
+1 Deeproot Pilgrimage
+1 Twists and Turns // Mycoid Maze
+1 Merfolk Cave-Diver
+1 Tishana's Tidebinder
+1 Mist Dancer
+1 Wave Goodbye
+1 Ripples of Potential
+1 Topography Tracker
+1 Tributary Instructor
+1 Nicanzil, Current Conductor
+1 Deeproot Historian

@@ -1,0 +1,83 @@
+# Archidekt — Mogis - The Joy of Agony
+# source: archidekt:16992339
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Mogis, God of Slaughter
+
+Deck:
+1 Goblin Sharpshooter
+1 Sheoldred, the Apocalypse
+1 Leyline of the Void
+1 Accursed Marauder
+1 Bojuka Bog
+1 Arcane Signet
+1 Tor Wauki the Younger
+1 Restless Vents
+1 Demonic Tutor
+1 Thran Dynamo
+1 Blightstep Pathway // Searstep Pathway
+1 Luxury Suite
+1 Mai, Scornful Striker
+1 Fiery Emancipation
+1 Black Waltz No. 3
+1 Qarsi Revenant
+1 Megrim
+1 Kederekt Parasite
+1 Mind Stone
+1 Sangromancer
+1 No Mercy
+1 Waste Not
+1 Painful Quandary
+1 Mayhem Devil
+1 Angrath's Marauders
+1 Screaming Nemesis
+1 Sire of Insanity
+1 Smoldering Marsh
+1 Tainted Peak
+1 Dragonskull Summit
+1 Vampiric Tutor
+1 Command Tower
+1 Magus of the Wheel
+1 Bloodfell Caves
+1 Hypnotic Specter
+1 Liliana Vess
+1 Disentomb
+1 Diabolic Tutor
+1 Liliana's Caress
+1 Bottomless Pit
+1 Spellshock
+1 The Darkness Crystal
+1 Koh, the Face Stealer
+1 Polluted Bonds
+1 Dark Ritual
+1 Cunning Lethemancer
+1 Deadly Rollick
+1 Bloodchief Ascension
+1 Repay in Kind
+1 Fate Unraveler
+1 Blood Crypt
+1 Parker Luck
+1 Oppression
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Entomb
+1 Fellwar Stone
+1 Sol Ring
+14 Swamp
+1 Razorkin Needlehead
+1 Charcoal Diamond
+1 Black Market
+1 Death Watch
+1 Jet Medallion
+1 Reanimate
+1 Altar of the Pantheon
+1 Basilisk Collar
+1 Grave Researcher // Reanimate
+1 Crypt Ghast
+1 Peer into the Abyss
+1 Unearth
+13 Mountain
+1 Seizan, Perverter of Truth
+1 Grave Pact
+1 Stoneshaker Shaman

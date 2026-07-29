@@ -1,0 +1,100 @@
+# Archidekt — Terrible Two
+# source: archidekt:24780643
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Tokka & Rahzar, Terrible Twos
+
+Deck:
+1 Sulfurous Springs
+1 Daredevil, Fearless Fighter
+1 Wild Evocation
+1 Possibility Storm
+1 Omen Machine
+1 Zoyowa's Justice
+1 Whip of Erebos
+1 Graven Cairns
+1 Temple of Malice
+1 Dragonskull Summit
+1 The Lord of Pain
+1 Blightstep Pathway // Searstep Pathway
+1 Valgavoth, Harrower of Souls
+1 Mai, Scornful Striker
+1 Basilisk Collar
+1 Transforming Flourish
+1 The Frightful Four
+1 Helm of Awakening
+1 Smoldering Marsh
+1 Urza's Filter
+1 Sol Ring
+1 Rakdos Charm
+1 Knowledge Pool
+1 Guff Rewrites History
+1 Tibalt's Trickery
+1 Tainted Peak
+1 Haunted Ridge
+1 Audacious Swap
+1 Solphim, Mayhem Dominus
+1 Raucous Theater
+1 Shadowblood Ridge
+1 Malakir Rebirth // Malakir Mire
+1 Torbran, Thane of Red Fell
+1 Foreboding Ruins
+1 Roiling Vortex
+1 Blazemire Verge
+1 Luxury Suite
+1 Bloodstained Mire
+1 Blood Crypt
+1 Mox Amber
+1 Command Tower
+1 Badlands
+1 Rakdos Carnarium
+1 Canyon Slough
+1 Bojuka Bog
+1 Mount Doom
+1 Reliquary Tower
+1 Fell the Profane // Fell Mire
+1 Bloodfell Caves
+1 Kaervek the Merciless
+1 Blackcleave Cliffs
+1 Rug of Smothering
+1 Bloodthirsty Conqueror
+1 Kederekt Parasite
+1 Witch's Clinic
+1 Mogis, God of Slaughter
+1 Arcane Signet
+1 Cursed Mirror
+1 Vial Smasher the Fierce
+1 The Soul Stone
+1 Talisman of Indulgence
+1 Stormfist Crusader
+1 Fiendish Duo
+1 Magebane Lizard
+1 Scytheclaw Raptor
+1 Hexing Squelcher
+1 Scrawling Crawler
+1 Swamp
+9 Mountain
+1 Darkness
+1 Razorkin Needlehead
+1 Twinflame Tyrant
+1 Gleeful Arsonist
+1 Harsh Mentor
+1 Sheoldred, the Apocalypse
+1 Untimely Malfunction
+1 Auntie Blyte, Bad Influence
+1 Tempt with Mayhem
+1 Resurrection Orb
+1 Creative Technique
+1 Vampiric Link
+1 Howling Mine
+1 Unexpected Fangs
+1 Deflecting Swat
+1 Allure of the Unknown
+1 Backlash
+1 Prisoner's Dilemma
+1 Painful Quandary
+1 Spiteful Visions
+1 Mask of Griselbrand
+1 Shadowspear

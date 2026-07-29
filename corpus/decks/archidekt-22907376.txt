@@ -1,0 +1,84 @@
+# Archidekt — Anchor Arms Vivi
+# source: archidekt:22907376
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Dirgur Island Dragon // Skimming Strike
+1 Marang River Regent // Coil and Catch
+1 Runescale Stormbrood // Chilling Screech
+1 Stormshriek Feral // Flush Out
+1 Dragonstorm
+1 Breaching Dragonstorm
+1 Roiling Dragonstorm
+1 Deceptive Frostkite
+1 Wrathful Red Dragon
+1 Terror of the Peaks
+1 Iymrith, Desert Doom
+1 Drakuseth, Maw of Flames
+1 Bonehoard Dracosaur
+1 Young Red Dragon // Bathe in Gold
+1 Young Blue Dragon // Sand Augury
+12 Island
+1 Majestic Metamorphosis
+12 Mountain
+1 Sapphire Dragon // Psionic Pulse
+1 Fang Dragon // Forktail Sweep
+1 Sword Coast Serpent // Capsizing Wave
+1 Amethyst Dragon // Explosive Crystal
+1 Phantasmal Form
+1 Zhalfirin Shapecraft
+1 Siege Smash
+1 Shore Up
+1 Samut's Sprint
+1 Haste Magic
+1 Infuriate
+1 Antagonize
+1 Octopus Form
+1 Monstrous Rage
+1 Ancestors' Aid
+1 Magic Damper
+1 Titan's Strength
+1 Brute Force
+1 Blazing Crescendo
+1 Run Amok
+1 Personal Tutor
+1 Reckless Ransacking
+1 Stroke of Genius
+1 Archmage Emeritus
+1 Faerie Mastermind
+1 Solve the Equation
+1 Archmage of Runes
+1 Case of the Ransacked Lab
+1 Blue Sun's Zenith
+1 Shadow of the Second Sun
+1 Finale of Revelation
+1 Pull from Tomorrow
+1 Command Tower
+1 Sulfur Falls
+1 Steam Vents
+1 Scalding Tarn
+1 Otawara, Soaring City
+1 Stormcarved Coast
+1 Temple of Epiphany
+1 Cascade Bluffs
+1 Training Center
+1 Mystic Sanctuary
+1 Thundering Falls
+1 Riverglide Pathway // Lavaglide Pathway
+1 Mistrise Village
+1 Library
+1 Scorched Geyser
+1 Turbulent Springs
+1 Bulk Up
+1 Rush of Blood
+1 Unleash Fury
+1 Sudden Breakthrough
+1 Leyline Tyrant
+1 Eel Umbra
+1 Octopus Umbra
+1 Inordinate Rage
+1 Virtue of Courage // Embereth Blaze

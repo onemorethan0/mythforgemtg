@@ -1,0 +1,82 @@
+# Archidekt — Flicker Pandemonium
+# source: archidekt:24431543
+# fetched: 2026-07-17
+# bracket: 2
+
+Commander:
+1 Scriv, the Obligator
+
+Deck:
+1 Conjurer's Closet
+1 Felidar Guardian
+1 Restoration Angel
+1 Ephemerate
+1 Another Round
+1 Slumbering Keepguard
+1 Lumbering Battlement
+1 Panharmonicon
+1 Acrobatic Maneuver
+1 Eldrazi Confluence
+1 Scrollshift
+1 Personify
+1 Semester's End
+1 Teleportation Circle
+1 Kaya, Ghost Assassin
+1 Elesh Norn, Mother of Machines
+1 Far Traveler
+1 Flicker of Fate
+1 Airbender Ascension
+1 Shadrix Silverquill
+1 Helm of the Host
+1 Archon of Sun's Grace
+1 Eriette of the Charmed Apple
+1 Parting Gust
+1 Sword of Hearth and Home
+1 Daydream
+1 Phelia, Exuberant Shepherd
+1 Parasitic Impetus
+1 Avatar's Wrath
+1 Cloudshift
+14 Plains
+1 Kambal, Profiteering Mayor
+1 Justiciar's Portal
+1 Ghoulish Impetus
+1 Darksteel Mutation
+1 Delney, Streetwise Lookout
+1 Reliquary Tower
+1 Hall of Heliod's Generosity
+1 Ajani's Chosen
+1 Coercive Impetus
+1 Grim Guardian
+1 Ashiok's Reaper
+1 Hateful Eidolon
+1 Exalted Sunborn
+1 Killian, Decisive Mentor
+1 All That Glitters
+1 Sage's Reverie
+1 Morningtide's Light
+1 Inkshield
+1 Helm of the Gods
+1 Ethereal Armor
+14 Swamp
+1 Anointed Procession
+1 Mondrak, Glory Dominus
+1 Breena, the Demagogue
+1 Eidolon of Countless Battles
+1 Eye of Nidhogg
+1 Victor, Valgavoth's Seneschal
+1 Herald of Amity
+1 Martial Impetus
+1 Elspeth, Storm Slayer
+1 Doomwake Giant
+1 Damn
+1 Balemurk Leech
+1 Kaya's Ghostform
+1 Vampiric Link
+1 Anguished Unmaking
+1 Animate Dead
+1 Phyrexian Arena
+1 Fracture
+1 Tomik, Wielder of Law
+1 Screams from Within
+1 Dark Ritual

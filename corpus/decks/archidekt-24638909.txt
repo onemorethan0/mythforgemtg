@@ -1,0 +1,100 @@
+# Archidekt — TMNT
+# source: archidekt:24638909
+# fetched: 2026-07-26
+
+Commander:
+1 Heroes in a Half Shell
+
+Deck:
+1 Cultivate
+2 Mountain
+1 Swords to Plowshares
+1 Path to Exile
+1 Leatherhead, Iron Gator
+1 Leonardo, the Balance
+1 Level Up
+1 Michelangelo, the Heart
+1 Mona Lisa, Science Geek
+1 Together Forever
+1 Tokka & Rahzar, Unsupervised
+1 Turtle Lair
+1 Vernal Fen
+1 Vibrant Cityscape
+1 Reliquary Tower
+1 Kami of Whispered Hopes
+1 Arwen, Weaver of Hope
+1 Morphic Pool
+1 Slip Out the Back
+1 Counterspell
+1 Rampant Growth
+1 Ghostly Prison
+1 Decanter of Endless Water
+1 Rockfall Vale
+1 Raphael, the Nightwatcher
+1 Raph & Mikey, Troublemakers
+1 Michelangelo, Improviser
+1 Hardened Scales
+1 Inexorable Tide
+1 Donatello, Gadget Master
+1 Karai, Future of the Foot
+1 Sol Ring
+1 Path of Ancestry
+1 Raphael, the Muscle
+1 Ray Fillet, Wave Warrior
+1 Rocksteady, Mutant Marauder
+1 Rootbound Crag
+1 Shredder, Shadow Master
+1 Smoldering Marsh
+1 Sodden Verdure
+1 Steelbane Hydra
+1 Vigor
+1 Wave Goodbye
+1 Agent Frank Horrigan
+1 Experiment Kraj
+1 Dark Leo & Shredder
+1 Super Shredder
+1 Bountiful Promenade
+1 Ancient Ziggurat
+1 Reflecting Pool
+1 Sea of Clouds
+1 Ouroboroid
+1 Forgotten Ancient
+2 Swamp
+2 Plains
+1 Sunken Hollow
+1 Training Center
+1 Arcane Signet
+1 Shark Shredder, Killer Clone
+1 Herald of Secret Streams
+1 Propaganda
+1 Beast Within
+1 Andúril, Narsil Reforged
+1 Akroma's Memorial
+1 Rhythm of the Wild
+1 Cyclonic Rift
+1 Arcade Cabinet
+1 Ash Barrens
+1 Assassin's Trophy
+1 Baxter, Fly in the Ointment
+1 Bebop, Skull & Crossbones
+1 Casey Jones, Back Alley Brute
+1 Cinder Glade
+1 Coin of Mastery
+1 Command Tower
+1 Donatello, the Brains
+1 Dragonskull Summit
+1 Endless Foot Assault
+1 Escape Tunnel
+1 Evolving Wilds
+1 Exotic Orchard
+1 Exploding Barrel
+1 Fabled Passage
+1 Fast Forward
+1 Here Comes a New Hero!
+1 Hidden Hideout
+1 High Score
+1 Hinterland Harbor
+1 Chromatic Lantern
+4 Forest
+2 Island
+1 Farseek

@@ -1,0 +1,76 @@
+# Archidekt — The Inquisition
+# source: archidekt:23287895
+# fetched: 2026-07-09
+
+Commander:
+1 Inquisitor Eisenhorn
+
+Deck:
+1 Tangletrove Kelp
+1 Propaganda
+1 Trail of Evidence
+1 Aether Tunnel
+1 Obsessive Pursuit
+1 Aqueous Form
+1 Mechanized Production
+1 Tamiyo's Journal
+1 Academy Manufactor
+1 Piper Wright, Publick Reporter
+1 Martha Jones
+1 Deadly Dispute
+1 Feed the Swarm
+1 Rise and Shine
+1 Kappa Cannoneer
+1 Mirkwood Bats
+1 Counterspell
+1 Swiftfoot Boots
+1 Junk Winder
+1 Trailblazer's Boots
+1 Thought Vessel
+12 Swamp
+16 Island
+1 Inspiring Statuary
+1 Nettlecyst
+1 Cranial Plating
+1 Shimmer Dragon
+1 Whirler Rogue
+1 Forensic Gadgeteer
+1 Golbez, Crystal Collector
+1 Negate
+1 Contraband Kingpin
+1 Brainstorm
+1 An Offer You Can't Refuse
+1 Clan Crafter
+1 Monumental Corruption
+1 Thoughtcast
+1 Opt
+1 Adaptive Omnitool
+1 Arcane Signet
+1 Reliquary Tower
+1 Dimir Signet
+1 Seat of the Synod
+1 Vault of Whispers
+1 Sol Ring
+1 Infernal Grasp
+1 Deduce
+1 Five Hundred Year Diary
+1 Necron Overlord
+1 Psychosis Crawler
+1 Decanter of Endless Water
+1 Whir of Invention
+1 Universal Surveillance
+1 Persuasive Interrogators
+1 Broodstar
+1 Preordain
+1 Marionette Master
+1 Pactdoll Terror
+1 Tarrian's Soulcleaver
+1 Temple of Deceit
+1 Choked Estuary
+1 Drowned Catacomb
+1 Darkwater Catacombs
+1 Mistvault Bridge
+1 Command Tower
+1 Sunken Hollow
+1 Consider
+1 Hard Evidence

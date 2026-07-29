@@ -1,0 +1,69 @@
+# Archidekt — Oops, All Jace!
+# source: archidekt:14918751
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+
+Deck:
+1 Jace, the Mind Sculptor
+1 Jace Beleren
+40 Island
+1 Jace, Unraveler of Secrets
+1 Jace, Memory Adept
+1 Distorted Curiosity
+1 Bring the Ending
+1 The Filigree Sylex
+1 Jace, the Perfected Mind
+1 Jace's Projection
+1 Jace's Triumph
+1 Dramatic Reversal
+1 Fact or Fiction
+1 Azor's Gateway // Sanctum of the Sun
+1 Brainstorm
+1 Castaway's Despair
+1 Clash of Wills
+1 Comparative Analysis
+1 Contingency Plan
+1 Contentious Plan
+1 Dispel
+1 Control Magic
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Jace, Cunning Castaway
+1 Jace, Mirror Mage
+1 Jace Reawakened
+1 Maddening Cacophony
+1 Jace's Scrutiny
+1 Jace's Ingenuity
+1 Jace's Mindseeker
+1 Jace's Ruse
+1 Jace, the Living Guildpact
+1 Jace, Wielder of Mysteries
+1 Negate
+1 Guildpact Informant
+1 Hedron Archive
+1 Imaginary Threats
+1 Jace, Arcane Strategist
+1 Jace's Erasure
+1 Jace, Architect of Thought
+1 Omniscience
+1 Oath of Jace
+1 Psychic Rebuttal
+1 Open into Wonder
+1 Spark Double
+1 Ugin's Insight
+1 Uncovered Clues
+1 Strategic Planning
+1 Threads of Disloyalty
+1 Talent of the Telepath
+1 Jace, Ingenious Mind-Mage
+1 Don't Make a Sound
+1 Epiphany at the Drownyard
+1 Grasping Current
+1 Flood of Recollection
+1 Induced Amnesia
+1 Pieces of the Puzzle
+1 Perilous Voyage
+1 Unsubstantiate

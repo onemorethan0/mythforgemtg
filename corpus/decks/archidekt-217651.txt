@@ -1,0 +1,105 @@
+# Archidekt — ***** Meren Hulk (cEDH)
+# source: archidekt:217651
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Dauthi Voidwalker
+1 Shallow Grave
+1 Wastewood Verge
+1 Abrupt Decay
+1 Accursed Marauder
+1 Ancient Tomb
+1 Animate Dead
+1 Assassin's Trophy
+1 Baleful Mastery
+1 Bayou
+1 Beast Within
+1 Birds of Paradise
+1 Blood Artist
+1 Bloodstained Mire
+1 Body Snatcher
+1 Boseiju, Who Endures
+1 Chain of Smog
+1 Chrome Mox
+1 Collector Ouphe
+1 Command Tower
+1 Crop Rotation
+1 Culling Ritual
+1 Culling the Weak
+1 Dance of the Dead
+1 Dark Confidant
+1 Dark Ritual
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathrite Shaman
+1 Demonic Tutor
+1 Diabolic Intent
+1 Dismember
+1 Dryad Arbor
+1 Earthcraft
+1 Eldritch Evolution
+1 Elves of Deep Shadow
+1 Elvish Mystic
+1 Endurance
+1 Entomb
+1 Eternal Witness
+1 Forsaken Miner
+1 Gemstone Caverns
+1 Green Sun's Zenith
+1 Insidious Fungus
+1 Life // Death
+1 Lion's Eye Diamond
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Lotus Petal
+1 Marsh Flats
+1 Mindslicer
+1 Misty Rainforest
+1 Murderous Cut
+1 Nature's Claim
+1 Necromancy
+1 Nurturing Peatland
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Overgrown Tomb
+1 Plaguecrafter
+1 Polluted Delta
+1 Prismatic Vista
+1 Protean Hulk
+1 Elvish Spirit Guide
+1 Force of Vigor
+1 Reanimate
+1 Saw in Half
+1 Skullclamp
+1 Sol Ring
+1 Sylvan Library
+1 Talon Gates of Madara
+1 Toxic Deluge
+1 Urza's Saga
+1 Vampiric Tutor
+1 Veil of Summer
+1 Verdant Catacombs
+1 Viscera Seer
+1 Volrath's Stronghold
+1 Warren Soultrader
+1 Wild Growth
+1 Windswept Heath
+1 Witherbloom Apprentice
+1 Wooded Foothills
+1 Worldly Tutor
+2 Forest
+1 Necropotence
+1 Razaketh, the Foulblooded
+1 Undergrowth Stadium
+1 Sylvan Safekeeper
+1 Savage Summoning
+1 Yawgmoth, Thran Physician
+1 Survival of the Fittest
+1 Noxious Revival
+1 Mox Diamond
+1 Foundation Breaker
+5 Swamp
+1 Phyrexian Tower

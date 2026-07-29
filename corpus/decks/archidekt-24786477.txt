@@ -1,0 +1,81 @@
+# Archidekt — Ayara
+# source: archidekt:24786477
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Ayara, First of Locthwain
+
+Deck:
+1 Arcane Signet
+1 Ashnod's Altar
+1 Bolas's Citadel
+1 Bontu's Monument
+1 Jet Medallion
+1 Lightning Greaves
+1 Phyrexian Altar
+1 Skullclamp
+26 Swamp
+1 Abhorrent Overlord
+1 Bitterbloom Bearer
+1 Blood Artist
+1 Bloodghast
+1 Braids, Arisen Nightmare
+1 Carrion Feeder
+1 Chittering Witch
+1 Crypt Ghast
+1 Endrek Sahr, Master Breeder
+1 Gravecrawler
+1 Jadar, Ghoulcaller of Nephalia
+1 K'rrik, Son of Yawgmoth
+1 Mikaeus, the Unhallowed
+1 Morbid Opportunist
+1 Nether Traitor
+1 Nine-Lives Familiar
+1 Ophiomancer
+1 Pitiless Plunderer
+1 Reassembling Skeleton
+1 Sengir Autocrat
+1 Bastion of Remembrance
+1 Bitterblossom
+1 Exquisite Blood
+1 Grave Pact
+1 Necropotence
+1 Phyrexian Arena
+1 Culling the Weak
+1 Dark Ritual
+1 Deadly Dispute
+1 Deadly Rollick
+1 Imp's Mischief
+1 Malakir Rebirth // Malakir Mire
+1 Bojuka Bog
+1 Cabal Coffers
+1 Cabal Stronghold
+1 Castle Locthwain
+1 Nykthos, Shrine to Nyx
+1 Phyrexian Tower
+1 Liliana, Dreadhorde General
+1 Army of the Damned
+1 Damnation
+1 Demonic Tutor
+1 Diabolic Intent
+1 Feed the Swarm
+1 Grim Tutor
+1 Plague of Vermin
+1 Reanimate
+1 Syr Konrad, the Grim
+1 Viscera Seer
+1 Vito, Thorn of the Dusk Rose
+1 Warren Soultrader
+1 Yawgmoth, Thran Physician
+1 Zulaport Cutthroat
+1 The Meathook Massacre
+1 Orcish Bowmasters
+1 Sol Ring
+1 Village Rites
+1 Urborg, Tomb of Yawgmoth
+1 Witch's Cottage
+1 Toxic Deluge
+1 Victimize
+1 Withering Torment
+1 Gray Merchant of Asphodel

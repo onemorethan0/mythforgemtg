@@ -1,0 +1,87 @@
+# Archidekt — Airbender's Guile
+# source: archidekt:24786562
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Monk Gyatso
+
+Deck:
+1 Aang, the Last Airbender
+1 Airbender Ascension
+1 Airbending Lesson
+1 Aang, Airbending Master
+1 Swords to Plowshares
+1 Cloud Key
+1 Airbender's Reversal
+1 Appa, Loyal Sky Bison
+1 Appa, Steadfast Guardian
+1 Avatar's Wrath
+1 Glider Staff
+1 The Legend of Yangchen // Avatar Yangchen
+1 The Mind Stone
+1 Helpful Hunter
+1 Lightning Greaves
+1 Wall of Omens
+1 Nomads en-Kor
+1 Warrior en-Kor
+1 Pearl Medallion
+1 Semblance Anvil
+1 Spirited Companion
+1 Shuko
+1 Oketra's Monument
+1 Teferi's Protection
+1 Helm of Awakening
+1 Loran of the Third Path
+1 Delivery Moogle
+1 Salt Road Packbeast
+1 Path to Exile
+1 Recruiter of the Guard
+1 Sevinne's Reclamation
+1 Smothering Tithe
+1 Sejiri Shelter // Sejiri Glacier
+1 Drannith Magistrate
+1 Kindly Customer
+1 Razorgrass Ambush // Razorgrass Field
+1 Talon Gates of Madara
+1 Eiganjo, Seat of the Empire
+1 Emeria, the Sky Ruin
+1 Monumental Henge
+22 Plains
+1 Abstergo Entertainment
+1 Flagstones of Trokair
+1 Abandoned Air Temple
+1 Urza's Saga
+1 Sandstone Bridge
+1 Idyllic Grange
+1 Sejiri Steppe
+1 Eiganjo Castle
+1 Aven Interrupter
+1 Ishgard, the Holy See // Faith & Grief
+1 Sol Ring
+1 Liquimetal Torque
+1 Restoration Magic
+1 Thought Vessel
+1 Arcane Signet
+1 Cloudshift
+1 Starfield Shepherd
+1 Marble Diamond
+1 Grafted Wargear
+1 Shaman en-Kor
+1 Altar of the Brood
+1 Umbral Mantle
+1 Steelshaper's Gift
+1 Silence
+1 Comeuppance
+1 Reprieve
+1 Loran's Escape
+1 The Wind Crystal
+1 Aetherflux Reservoir
+1 Parting Gust
+1 Scroll of Fate
+1 Dazzling Theater // Prop Room
+1 Vedalken Orrery
+1 Austere Command
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Trouble in Pairs
+1 Circuit Mender

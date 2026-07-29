@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Cultivate",
+    "mana_cost": "{2}{G}",
+    "type_line": "Sorcery",
+    "oracle_text": "Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle."
+  },
+  "ccm": {
+    "name": "Cultivate",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{G}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "search_library", "what": {"type": "land", "subtype": "basic"}, "count": 1, "to": "battlefield", "tapped": true, "optional": true},
+          {"op": "search_library", "what": {"type": "land", "subtype": "basic"}, "count": 1, "to": "hand", "optional": true, "shuffle": true}
+        ]
+      }
+    ]
+  }
+}

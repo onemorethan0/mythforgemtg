@@ -1,0 +1,97 @@
+# Archidekt — Iroh Lessons
+# source: archidekt:18931885
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Iroh, Grand Lotus
+
+Deck:
+1 Shivan Reef
+1 Mystic Sanctuary
+1 Path of Ancestry
+1 Tangled Islet
+1 Hermitic Herbalist
+1 Blasphemous Act
+1 Exotic Orchard
+1 Molten Tributary
+1 Cinder Glade
+1 Meditation Pools
+1 Spirebluff Canal
+1 Command Tower
+1 Spire Garden
+1 Pit of Offerings
+1 Botanical Sanctum
+1 White Lotus Hideout
+1 Fabled Passage
+1 Thriving Bluff
+1 Thriving Isle
+1 Elemental Teachings
+1 Airship Engine Room
+1 Omashu City
+1 Bender's Waterskin
+1 Cycle of Renewal
+1 Thriving Grove
+7 Island
+1 Gran-Gran
+1 True Ancestry
+1 Sol Ring
+1 Stormcatch Mentor
+1 Goblin Electromancer
+5 Forest
+4 Mountain
+1 Overwhelming Victory
+1 Boomerang Basics
+1 Combustion Man
+1 Uncle Iroh
+1 Shared Roots
+1 Whirlwind Technique
+1 Earthbender Ascension
+1 Cursed Mirror
+1 The Lion-Turtle
+1 Seismic Sense
+1 Waterbending Lesson
+1 Abandon Attachments
+1 Leaves from the Vine
+1 Redirect Lightning
+1 Chakra Meditation
+1 The Unagi of Kyoshi Island
+1 Accumulate Wisdom
+1 Reckless Blaze
+1 Zuko, Exiled Prince
+1 Cathartic Reunion
+1 Zuko's Exile
+1 Iroh's Demonstration
+1 Origin of Metalbending
+1 Earthbending Lesson
+1 Bolt Bend
+1 Price of Freedom
+1 Bumi's Feast Lecture
+1 Toph, Hardheaded Teacher
+1 The Art of Tea
+1 Fang, Roku's Companion
+1 Koma, Cosmos Serpent
+1 Professor Zei, Anthropologist
+1 Master Pakku
+1 Sokka, Bold Boomeranger
+1 Jeong Jeong, the Deserter
+1 Guru Pathik
+1 Lost in Memories
+1 Ran and Shaw
+1 Teachings of the Archaics
+1 Improvisation Capstone
+1 Germination Practicum
+1 The Legend of Roku // Avatar Roku
+1 Combustion Technique
+1 Cracked Earth Technique
+1 Water Whip
+1 Rockalanche
+1 Containment Breach
+1 Illuminate History
+1 The Mechanist, Aerial Artisan
+1 The Last Agni Kai
+1 Introduction to Annihilation
+1 Octopus Form
+1 Insurrection
+1 Bumi, Unleashed
+1 Nightmares and Daydreams

@@ -1,0 +1,94 @@
+# Archidekt — $100  Sauron, The Dark Lord Spellslinger B2/B3
+# source: archidekt:7817483
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Arcane Denial
+1 Chandra's Ignition
+1 Command Tower
+1 Crumbling Necropolis
+1 Dimir Aqueduct
+1 Drowned Catacomb
+1 Faithless Looting
+1 Ferrous Lake
+7 Island
+1 Kess, Dissident Mage
+1 Mindsplice Apparatus
+1 Mystic Retrieval
+1 Negate
+1 Rakdos Carnarium
+1 Rakdos Signet
+1 Ranger's Firebrand
+1 Rogue's Passage
+1 Shivan Reef
+1 Sol Ring
+1 Sulfurous Springs
+1 Sulfur Falls
+4 Swamp
+1 Underground River
+1 Arcane Infusion
+1 Arcane Signet
+1 Birthday Escape
+1 Call of the Ring
+1 Claim the Precious
+1 Darkwater Catacombs
+1 Deep Analysis
+1 Deranged Assistant
+1 Dihada's Ploy
+1 Dark Ritual
+1 Electric Revelation
+1 Evolving Wilds
+1 Fact or Fiction
+1 Foray of Orcs
+1 Immolating Gyre
+1 Inherited Envelope
+1 Izzet Signet
+1 Maestros Theater
+1 Memory Deluge
+1 Millikin
+1 Pirate's Pillage
+1 Relic of Sauron
+1 Shadowblood Ridge
+1 Soothing of Sméagol
+1 Mauhúr, Uruk-hai Captain
+1 Saruman, the White Hand
+1 Lazotep Chancellor
+1 Galvanic Iteration
+1 Soul's Fire
+1 Gravitic Punch
+1 Talisman of Creativity
+1 Terminate
+1 Terramorphic Expanse
+1 Unexpected Windfall
+1 Widespread Brutality
+1 Summons of Saruman
+1 Izzet Boilerworks
+6 Mountain
+1 Ringsight
+1 Big Score
+1 Countersquall
+1 Price of Fame
+1 Cascade Bluffs
+1 Dimir Signet
+1 Dragonskull Summit
+1 Increasing Vengeance
+1 Nightscape Familiar
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Fellwar Stone
+1 Seize the Spoils
+1 Gollum's Bite
+1 Mission Briefing
+1 Scroll of Isildur
+1 Forbidden Alchemy
+1 Breaking of the Fellowship
+1 Goblin Electromancer
+1 Island
+1 The Black Gate
+1 Molten Collapse
+1 Mystical Teachings
+1 Artful Dodge

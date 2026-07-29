@@ -1,0 +1,92 @@
+# Archidekt — Kibo: Bananarama
+# source: archidekt:5926477
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Kibo, Uktabi Prince
+
+Deck:
+1 Ash Barrens
+1 Patriar's Seal
+1 Sarinth Steelseeker
+1 Sarinth Greatwurm
+1 Parallel Lives
+1 Battlemage's Bracers
+1 Collector Ouphe
+1 Jolene, the Plunder Queen
+1 Jungle Patrol
+1 Fangren Marauder
+1 Taiga
+1 Wooded Foothills
+1 Mines of Moria
+1 Genesis
+1 Uktabi Orangutan
+1 Toggo, Goblin Weaponsmith
+1 Cinder Glade
+1 Command Tower
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fabled Passage
+1 Citanul Flute
+1 Gorilla Shaman
+1 Big Score
+1 Chord of Calling
+1 Gaea's Anthem
+12 Forest
+1 Forgotten Cave
+1 Highland Forest
+1 Khalni Garden
+6 Mountain
+1 Reflecting Pool
+1 Scavenger Grounds
+1 Smoldering Crater
+1 Spire Garden
+1 Stomping Ground
+1 Terramorphic Expanse
+1 War Room
+1 Forsaken Monument
+1 Idol of Oblivion
+1 Illusionist's Bracers
+1 Green Sun's Zenith
+1 Instill Energy
+1 Tireless Provisioner
+1 Summoner's Pact
+1 The Immortal Sun
+1 Scroll Rack
+1 Sylvan Library
+1 Titania's Song
+1 Strike It Rich
+1 Tough Cookie
+1 Yavimaya Steelcrusher
+1 Jaheira, Friend of the Forest
+1 Raggadragga, Goreguts Boss
+1 Viridian Revel
+1 Tireless Tracker
+1 Seize the Spoils
+1 Makeshift Munitions
+1 Thornbite Staff
+1 Mechtitan Core
+1 Magewright's Stone
+1 Alloy Animist
+1 Displaced Dinosaurs
+1 Halsin, Emerald Archdruid
+1 Ragavan, Nimble Pilferer
+1 Gala Greeters
+1 Eternal Witness
+1 Gaea's Avenger
+1 Esika's Chariot
+1 Thousand-Year Elixir
+1 Beast Within
+1 Chaos Warp
+1 Tibalt's Trickery
+1 Fountainport
+1 Count on Luck
+1 Overwhelming Instinct
+1 Unexpected Windfall
+1 Urza's Miter
+1 Sheltered Thicket
+1 Demand Answers
+1 Acolyte Hybrid
+1 Commercial District
+1 Farid, Enterprising Salvager

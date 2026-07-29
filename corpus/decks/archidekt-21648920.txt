@@ -1,0 +1,103 @@
+# Archidekt — Galadriel LOTR (3)
+# source: archidekt:21648920
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Galadriel, Light of Valinor
+
+Deck:
+1 Eladamri's Call
+1 Ancient Silver Dragon
+1 Akroma's Will
+1 Reflecting Pool
+1 Oboro, Palace in the Clouds
+1 Mistrise Village
+1 Minamo, School at Water's Edge
+1 Misty Rainforest
+1 Kor Haven
+1 Mana Confluence
+1 Hallowed Fountain
+1 Gemstone Caverns
+1 Exotic Orchard
+1 Protean Hulk
+1 Ezuri, Renegade Leader
+1 Eladamri, Lord of Leaves
+1 Dionus, Elvish Archdruid
+1 Freyalise, Llanowar's Fury
+1 Wolverine Riders
+1 Marwyn, the Nurturer
+1 Elvish Mystic
+1 Ohran Frostfang
+1 Noble Hierarch
+1 Doubling Season
+1 Arcane Signet
+1 Parallel Lives
+1 Primal Vigor
+1 Elven Ambush
+1 Raise the Palisade
+1 Three Tree City
+1 Hedge Maze
+1 Rejuvenating Springs
+1 Yavimaya, Cradle of Growth
+1 Boseiju, Who Endures
+1 Willowrush Verge
+1 Bountiful Promenade
+1 Command Tower
+1 Heroic Intervention
+1 Spara's Headquarters
+1 Arwen, Weaver of Hope
+1 Elvish Warmaster
+1 Esper Sentinel
+1 Windswept Heath
+1 Hengegate Pathway // Mistgate Pathway
+1 Rivendell
+1 The Shire
+1 Panharmonicon
+1 Flooded Strand
+1 Aura Shards
+1 Horizon Canopy
+1 Cavern of Souls
+1 Sylvan Tutor
+1 Winnowing
+1 Allosaurus Shepherd
+1 Imperious Perfect
+1 Rhys the Redeemed
+1 Skyshroud Poacher
+2 Island
+1 Windswift Slice
+1 Priest of Titania
+1 Realm Seekers
+1 Ancient Gold Dragon
+1 Elspeth, Storm Slayer
+1 Exalted Sunborn
+1 Elven Chorus
+1 Mists of Lórien
+1 Elvish Promenade
+1 Birds of Paradise
+3 Plains
+1 Temple Garden
+3 Forest
+1 Sylvan Offering
+1 Defense of the Heart
+1 Galadhrim Ambush
+1 Arboreal Alliance
+1 Galadhrim Brigade
+1 Anointed Procession
+1 Selfless Safewright
+1 Llanowar Elves
+1 The One Ring
+1 Sol Ring
+1 Beastmaster Ascension
+1 Swords to Plowshares
+1 Delighted Halfling
+1 Leaf-Crowned Visionary
+1 Mirrormind Crown
+1 Yuna, Grand Summoner
+1 Rally the Galadhrim
+1 Kodama's Reach
+1 Beast Whisperer
+1 Champions of the Perfect
+1 Elvish Archdruid
+1 Bloom Tender
+1 Waterlogged Grove

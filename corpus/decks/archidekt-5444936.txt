@@ -1,0 +1,101 @@
+# Archidekt — Kynaios & Tiro - Friendly Nonsense ($250)
+# source: archidekt:5444936
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Storm Fleet Negotiator
+1 Fevered Visions
+3 Plains
+1 Reliquary Tower
+1 Dictate of Kruphix
+1 Chaos Warp
+3 Mountain
+1 Exotic Orchard
+3 Forest
+1 Command Tower
+3 Island
+1 Mossfire Valley
+1 Skycloud Expanse
+1 Sungrass Prairie
+1 Seaside Citadel
+1 Mystic Monastery
+1 Jungle Shrine
+1 Frontier Bivouac
+1 Path of Ancestry
+1 Ferrous Lake
+1 Overflowing Basin
+1 Fractured Identity
+1 Sunscorched Divide
+1 Perilous Landscape
+1 Bountiful Landscape
+1 Niv-Mizzet, the Firemind
+1 Decanter of Endless Water
+1 Arcane Signet
+1 Fellwar Stone
+1 Bucknard's Everfull Purse
+1 Howling Mine
+1 Gahiji, Honored One
+1 Gluntch, the Bestower
+1 Xyris, the Writhing Storm
+1 The Second Doctor
+1 Tidal Barracuda
+1 Agitator Ant
+1 Scrawling Crawler
+1 Jolene, the Plunder Queen
+1 Minds Aglow
+1 Duelist's Heritage
+1 Well of Ideas
+1 Wrong Turn
+1 Wild Magic Surge
+1 Guff Rewrites History
+1 Tempt with Discovery
+1 Loran of the Third Path
+1 Irencrag Pyromancer
+1 Into the Flood Maw
+1 Scrapshooter
+1 Parting Gust
+1 Annie Joins Up
+1 Fraying Line
+1 Frenzied Fugue
+1 Aurora Awakener
+1 The Legend of Yangchen // Avatar Yangchen
+1 Proft's Eidetic Memory
+1 Omnath, Locus of Rage
+1 Dragonback Assault
+1 Aragorn, the Uniter
+1 Fabled Passage
+1 Avatar of Growth
+1 Doppelgang
+1 Hidden Hideout
+1 Rite of Replication
+1 M'Baku, Jabari Chieftain
+1 Black Widow, Agile Avenger
+1 Reins of Power
+1 Octomancer
+1 Kimahri, Valiant Guardian
+1 Hithlain Rope
+1 Sodden Verdure
+1 Cinder Glade
+1 Canopy Vista
+1 Iron Man, Armored Avenger
+1 Phabine, Boss's Confidant
+1 Yes Man, Personal Securitron
+1 Prairie Stream
+1 Radiant Summit
+1 Plaza of Heroes
+1 Woodvine Elemental
+1 Coveted Jewel
+1 Krang, the All-Powerful
+1 Explosion of Riches
+1 Boldwyr Heavyweights
+1 Maddening Hex
+1 Aragorn, King of Gondor
+1 Prisoner's Dilemma
+1 The Sentry, Golden Guardian
+1 Mob Verdict
+1 Council's Judgment
+1 Oblation

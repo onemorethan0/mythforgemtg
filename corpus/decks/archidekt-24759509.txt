@@ -1,0 +1,82 @@
+# Archidekt — Sally Sparrow, Haunted One
+# source: archidekt:24759509
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Haunted One
+1 Sally Sparrow
+
+Deck:
+1 Weeping Angel
+1 Peter Parker's Camera
+1 Victimize
+1 Blink
+1 Reprieve
+1 Eerie Interlude
+1 Displacer Kitten
+1 Snap
+1 Azorius Chancery
+1 Ephemerate
+1 Aetherize
+1 Dimir Aqueduct
+1 Orzhov Basilica
+1 Conjurer's Closet
+1 Teleportation Circle
+1 Ghostly Flicker
+1 Cloudshift
+1 Essence Flux
+1 Swamp
+1 Grasp of Fate
+1 Everybody Lives!
+1 Restoration Angel
+1 Soulherder
+1 Unstoppable Slasher
+1 Reconnaissance
+14 Plains
+1 Command Tower
+14 Island
+1 Hallowed Fountain
+1 Prairie Stream
+1 Time Wipe
+1 Propaganda
+1 Wibbly-wobbly, Timey-wimey
+1 Five Hundred Year Diary
+1 Quantum Misalignment
+1 Danny Pink
+1 Start the TARDIS
+1 Ominous Cemetery
+1 Out of Time
+1 This Is How It Ends
+1 Martha Jones
+1 Don't Blink
+1 Renegade Silent
+1 Angel of the Ruins
+1 Northampton Farm
+1 Ellyn Harbreeze, Busybody
+1 University Campus
+1 Friendly Neighborhood
+1 City Pigeon
+1 Selfless Police Captain
+1 Tamiyo's Journal
+1 Deduce
+1 Piper Wright, Publick Reporter
+1 Astrid Peth
+1 Trail of Evidence
+1 Merchant of Truth
+1 Armed with Proof
+1 Confirm Suspicions
+1 Rory Williams
+1 In Too Deep
+1 Secret Passage
+1 Study
+1 Curious Inquiry
+1 Press for Answers
+1 Survive the Night
+1 Errant and Giada
+1 Sarah Jane Smith
+1 Scheming Symmetry
+1 Momentary Blink
+1 Misleading Signpost
+1 Valor Made Real
+1 Isochron Scepter

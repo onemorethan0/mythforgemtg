@@ -1,0 +1,99 @@
+# Archidekt — Dr. Doom, Conniving Perscriber
+# source: archidekt:24787052
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 A.I.M. Labs
+1 A.I.M. Scientists
+1 Arcane Signet
+1 Archfiend of Ifnir
+1 Archnemesis
+1 Baron Strucker, HYDRA Overlord
+1 Bedevil
+1 Black Market Connections
+1 Canyon Slough
+1 Castle Doom
+1 Chameleon, Master of Disguise
+1 Choked Estuary
+1 Coastal Peak
+1 Command Tower
+1 Loki's Scepter
+1 Fellwar Stone
+1 Titan of Littjara
+1 Crumbling Necropolis
+1 Currency Converter
+1 Dark Fortress
+1 Dig Through Time
+1 Dismissive Denial
+1 Doctor Octopus, Master Planner
+1 Doom Reigns Supreme
+1 Doom's Time Platform
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Fetid Pools
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Glorious Purpose
+1 Hell's Kitchen
+1 Hidden Lair
+1 Infernal Rebirth
+1 Iron Monger, Sadistic Tycoon
+4 Island
+1 Kang Dynasty
+1 Kang Prime
+1 Kang, Temporal Tyrant
+1 Kindred Dominance
+1 Kree Sentinel
+1 Leader, Super-Genius
+1 Lethal Scheme
+1 Living Laser
+1 Loki, the Deceiver
+1 Luxury Suite
+1 M.O.D.O.K.
+1 Marchesa, the Black Rose
+1 Molecule Man
+1 Moonstone, Harsh Mistress
+4 Mountain
+1 Norman Osborn // Green Goblin
+1 Patchwork Banner
+1 Path of Ancestry
+1 Propaganda
+1 Prowler, Clawed Thief
+1 Puppet Master, String Puller
+1 Radioactive Man
+1 Red Ghost, Intangible Genius
+1 Roxxon Brutes
+1 Scorched Geyser
+1 Secluded Courtyard
+1 Skullclamp
+1 Smoldering Marsh
+1 Sol Ring
+1 Stark Industries
+1 Stilt-Man, Towering Terror
+1 Sulfur Falls
+1 Sunken Hollow
+4 Swamp
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Taskmaster, Mercenary Mimic
+1 Terminate
+1 The Masters of Evil
+1 The Spot's Portal
+1 The Squadron Sinister
+1 Time Stretch
+1 Tombstone, Career Criminal
+1 Toxic Deluge
+1 Turf War
+1 Ultron, Unlimited
+1 Unclaimed Territory
+1 Vandalblast
+1 Villainous Hideout
+1 Withering Torment
+1 Containment Construct
+1 Spark Double

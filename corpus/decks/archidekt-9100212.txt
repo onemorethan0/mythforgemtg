@@ -1,0 +1,88 @@
+# Archidekt — Inflated Value
+# source: archidekt:9100212
+# fetched: 2026-07-05
+
+Commander:
+1 The Jolly Balloon Man
+
+Deck:
+1 Abrade
+1 Ambitious Farmhand // Seasoned Cathar
+1 Ao, the Dawn Sky
+1 Arcane Signet
+1 Ash Barrens
+1 Austere Command
+1 Battlefield Forge
+1 Blade Splicer
+1 Boros Garrison
+1 Cathar Commando
+1 Chaos Warp
+1 Circuit Mender
+1 Clifftop Retreat
+1 Command Tower
+1 Culling Dais
+1 Dauntless Dismantler
+1 Daxos, Blessed by the Sun
+1 Dire Fleet Daredevil
+1 Echoing Assault
+1 Éowyn, Fearless Knight
+1 Errand-Rider of Gondor
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fanatic of Mogis
+1 Fell the Mighty
+1 Furycalm Snarl
+1 Generous Gift
+1 Ghostfire Slice
+1 Goblin Bombardment
+1 Gold Myr
+1 Idol of Oblivion
+1 Illusionist's Bracers
+1 Impact Tremors
+1 Inspiring Leader
+1 Inspiring Overseer
+1 Intangible Virtue
+1 Iron Myr
+1 Karmic Guide
+1 Knight of the White Orchid
+1 Loyal Warhound
+1 Mage's Attendant
+1 Mentor of the Meek
+1 Meteor Golem
+1 Mogg Mob
+11 Mountain
+1 Myriad Landscape
+1 Ornithopter of Paradise
+1 Panharmonicon
+1 Path of Ancestry
+1 Path to Exile
+1 Patriar's Seal
+10 Plains
+1 Remorseful Cleric
+1 Restless Bivouac
+1 Restoration Angel
+1 Rootborn Defenses
+1 Rosie Cotton of South Lane
+1 Rugged Prairie
+1 Rumor Gatherer
+1 Sacred Peaks
+1 Skullclamp
+1 Skyclave Apparition
+1 Sol Ring
+1 Solemn Simulacrum
+1 Spirited Companion
+1 Staff of the Storyteller
+1 Sun Titan
+1 Sunscorched Divide
+1 Swiftfoot Boots
+1 Talisman of Conviction
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 Triskelion
+1 Trumpeting Carnosaur
+1 Village Bell-Ringer
+1 Wall of Omens
+1 Welcoming Vampire
+1 Westfold Rider
+1 Witty Roastmaster
+1 Zealous Conscripts

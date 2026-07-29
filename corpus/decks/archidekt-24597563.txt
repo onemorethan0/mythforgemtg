@@ -1,0 +1,104 @@
+# Archidekt — God-Pharaoh
+# source: archidekt:24597563
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 Creeping Bloodsucker
+1 Flame of Anor
+1 Relic of Sauron
+1 Fierce Guardianship
+1 Jeska's Will
+1 Seize the Spotlight
+1 Skull Rend
+1 Blightbeetle
+1 Abstract Paintmage
+1 Resonating Lute
+1 Exsanguinate
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Keen Duelist
+1 Inspired Tinkering
+1 Nicol Bolas, God-Pharaoh
+1 Blasphemous Edict
+1 Protection Racket
+1 Ultimate Magic: Meteor
+1 Mire in Misery
+1 Sheoldred's Edict
+1 Sheoldred // The True Scriptures
+1 Rankle's Prank
+1 Decree of Pain
+1 Arterial Flow
+1 Sheoldred, the Apocalypse
+1 Sol Ring
+1 Dark Ritual
+1 Blatant Thievery
+1 Kroxa, Titan of Death's Hunger
+1 Seething Song
+1 Breach the Multiverse
+1 Worn Powerstone
+1 Incite Rebellion
+1 Dream Harvest
+1 The Theorist, Jace Beleren
+1 Deadly Rollick
+1 Stock Up
+1 See the Truth
+1 Flow State
+1 Torment of Hailfire
+1 Cormela, Glamour Thief
+1 Decorum Dissertation
+1 Lightning Greaves
+1 Syphon Mind
+1 Syphon Flesh
+1 Mutinous Massacre
+1 The Scarlet Witch
+1 Tablet of Discovery
+1 Fevered Suspicion
+1 Improvisation Capstone
+1 Parker Luck
+1 Silundi Vision // Silundi Isle
+1 Sunken Ruins
+1 Drowned Catacomb
+1 Luxury Suite
+1 Mistrise Village
+1 Blood Crypt
+1 Command Tower
+1 Raucous Theater
+1 Crumbling Necropolis
+1 Training Center
+1 Xander's Lounge
+1 Watery Grave
+1 Steam Vents
+1 Dragonskull Summit
+1 Morphic Pool
+1 Underground Sea
+1 Undercity Sewers
+1 Volcanic Island
+1 Badlands
+1 Shipwreck Marsh
+4 Swamp
+2 Island
+1 Exotic Orchard
+1 Underground River
+1 Urborg, Tomb of Yawgmoth
+1 Bojuka Bog
+1 Blackcleave Cliffs
+1 Deflecting Swat
+1 Vandalblast
+1 Cyclonic Rift
+1 Consuming Tide
+1 Rakdos Charm
+1 Insurrection
+1 Consult the Star Charts
+1 Ashiok, Dream Render
+1 Telling Time
+1 Takenuma, Abandoned Mire
+1 Otawara, Soaring City
+1 Bloodsoaked Insight // Sanguine Morass
+1 Blazemire Verge
+1 Blightstep Pathway // Searstep Pathway
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Fatespinner
+1 Minas Morgul, Dark Fortress

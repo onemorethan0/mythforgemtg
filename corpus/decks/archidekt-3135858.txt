@@ -1,0 +1,101 @@
+# Archidekt — Snitches Get Isshins - Mardu - Attack Triggers
+# source: archidekt:3135858
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Isshin, Two Heavens as One
+
+Deck:
+1 Brutal Hordechief
+1 Vault of the Archangel
+1 Hanweir Battlements
+1 Hanweir Garrison
+1 Reconnaissance
+1 Savai Triome
+1 Inquisitorial Rosette
+1 Mardu Strike Leader
+1 Tegan Jovanka
+1 Final Showdown
+1 Champions from Beyond
+1 Basri Ket
+1 Shredder, Shadow Master
+1 Niblis of the Urn
+1 Swiftfoot Boots
+1 Minas Tirith
+1 Eiganjo, Seat of the Empire
+1 Exotic Orchard
+1 Mishra, Claimed by Gix
+1 Path of Ancestry
+1 Triumphant Adventurer
+1 Multiversal Passage
+1 Vesuva
+1 Sunbaked Canyon
+1 Urborg, Tomb of Yawgmoth
+1 Reflecting Pool
+1 Shinka, the Bloodsoaked Keep
+1 Restless Bivouac
+1 Salvation Colossus
+1 Iroas, God of Victory
+1 Hammer of Purphoros
+1 Within Range
+1 Ruinous Ultimatum
+1 Winota, Joiner of Forces
+1 Goro-Goro, Disciple of Ryusei
+1 Urabrask the Hidden
+1 Restless Fortress
+1 Avatar Roku, Firebender
+1 Full Throttle
+1 Caesar, Legion's Emperor
+1 Dalkovan Encampment
+1 Smaug the Magnificent
+1 Anim Pakal, Thousandth Moon
+1 Abandoned Air Temple
+1 Mox Diamond
+1 Moraug, Fury of Akoum
+1 Sol Ring
+1 Krenko, Tin Street Kingpin
+1 Scriv, the Obligator
+1 Aang, Air Nomad
+1 Raph & Leo, Sibling Rivals
+2 Swamp
+1 Akroma's Memorial
+1 Sword of the Animist
+1 Boros Charm
+1 Akroma's Will
+1 Swords to Plowshares
+1 Hidden Hideout
+1 Guide of Souls
+1 Doom's Time Platform
+1 Dolmen Gate
+1 Mardu Siegebreaker
+1 Márton Stromgald
+1 Voice of Victory
+1 Windbrisk Heights
+1 Command Tower
+1 Den of the Bugbear
+1 Ghostly Prison
+1 Plaza of Heroes
+1 Rogue's Passage
+1 Temple of Triumph
+1 Sozin's Comet
+1 The Master, Multiplied
+1 Sacred Foundry
+1 Karlach, Fury of Avernus
+1 Adeline, Resplendent Cathar
+1 Goldspan Dragon
+1 Aurelia, the Law Above
+1 Andúril, Narsil Reforged
+1 Ares, God of War
+1 Alesha, Who Laughs at Fate
+1 Arena of Glory
+5 Plains
+3 Mountain
+1 Aggravated Assault
+1 Firebender Ascension
+1 Unbreakable Formation
+1 Imperial Seal
+1 Emblem of the Warmind
+1 Signal Pest
+1 Captain Marvel, Shooting Star
+1 Eagle of the Great Shelf

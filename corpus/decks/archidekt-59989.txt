@@ -1,0 +1,99 @@
+# Archidekt — Gishath, Sun's Avatar - Dinosaur Kindred
+# source: archidekt:59989
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 Urza's Incubator
+1 Curious Altisaur
+1 Wrathful Raptors
+1 Bronzebeak Foragers
+1 Topiary Stomper
+1 Bountiful Promenade
+1 Nature's Lore
+1 Ash Barrens
+1 Farseek
+1 Sundering Eruption // Volcanic Fissure
+1 Commercial District
+1 Lush Portico
+1 Vaultborn Tyrant
+1 Dinosaur Egg
+1 Collective Resistance
+1 Temple Altisaur
+1 Trapjaw Tyrant
+1 Forerunner of the Empire
+1 Silverclad Ferocidons
+1 Kinjalli's Sunwing
+1 Wakening Sun's Avatar
+1 Thrashing Brontodon
+1 Wayward Swordtooth
+1 Ranging Raptors
+1 Ripjaw Raptor
+1 Verdant Sun's Avatar
+1 Raging Swordtooth
+1 Regisaur Alpha
+1 Mirari's Wake
+1 Scavenger Grounds
+1 Pyrohemia
+1 Heroic Intervention
+1 Blasphemous Act
+1 Cultivate
+1 Command Tower
+1 Regal Behemoth
+1 Rogue's Passage
+1 Zendikar Resurgent
+1 Path of Ancestry
+1 Canopy Vista
+1 Cinder Glade
+1 Rite of Passage
+1 Runic Armasaur
+1 Warstorm Surge
+1 Skyshroud Claim
+1 Spire Garden
+1 Boros Charm
+1 Thespian's Stage
+1 Kodama's Reach
+1 Guardian Project
+1 Rhythm of the Wild
+1 Marauding Raptor
+1 Apex Altisaur
+1 Spectator Seating
+3 Mountain
+3 Plains
+1 Krosan Verge
+1 Three Visits
+1 Realmwalker
+1 Fabled Passage
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Ondu Inversion // Ondu Skyruins
+1 Zacama, Primal Calamity
+1 Hulking Raptor
+1 Regrowth
+1 Jetmir's Garden
+1 Valakut Awakening // Valakut Stoneforge
+1 Exotic Orchard
+1 Majestic Genesis
+1 Cavern of Souls
+1 Demolition Field
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Kogla and Yidaro
+1 Scroll Rack
+1 Tranquil Frillback
+1 Pantlaza, Sun-Favored
+1 Earthshaker Dreadmaw
+1 Trumpeting Carnosaur
+1 Ghalta, Stampede Tyrant
+1 Elegant Parlor
+1 Sol Ring
+1 Lightning Greaves
+1 Swords to Plowshares
+6 Forest
+1 Winnowing
+1 Cream of the Crop
+1 Secluded Courtyard
+1 Abundant Countryside
+1 Herald's Horn
+1 Sunfrill Imitator

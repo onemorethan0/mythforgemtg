@@ -1,0 +1,91 @@
+# Archidekt — Nel Toth's Recycling Plant
+# source: archidekt:21344299
+# fetched: 2026-07-28
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Grisly Salvage
+1 Skull Prophet
+1 Twilight Diviner
+1 Arcane Signet
+1 Jarad, Golgari Lich Lord
+1 Desperate Plea
+1 Acidic Slime
+1 Blood Artist
+1 Infernal Grasp
+1 Deadly Dispute
+1 Grist, the Hunger Tide
+1 Revitalizing Repast // Old-Growth Grove
+1 Moldervine Reclamation
+10 Swamp
+1 Victimize
+1 Dread Return
+1 Bastion of Remembrance
+1 Garruk's Uprising
+1 Turbulent Fen
+1 Ophiomancer
+1 Toxic Deluge
+1 Fabled Passage
+1 Assassin's Trophy
+1 Mazirek, Kraul Death Priest
+1 Exotic Orchard
+1 High Market
+1 Llanowar Wastes
+1 Necroblossom Snarl
+1 Twilight Mire
+1 Vernal Fen
+1 Woodland Cemetery
+1 Sol Ring
+1 Command Tower
+1 Terramorphic Expanse
+1 Cultivate
+1 Elvish Mystic
+1 Sakura-Tribe Elder
+1 Haywire Mite
+1 Bojuka Bog
+8 Forest
+1 Golgari Signet
+1 Braids, Arisen Nightmare
+1 Poison-Tip Archer
+1 Arasta of the Endless Web
+1 Tendershoot Dryad
+1 Umbral Collar Zealot
+1 Insidious Roots
+1 Wight of the Reliquary
+1 Feed the Swarm
+1 Junji, the Midnight Sky
+1 Savra, Queen of the Golgari
+1 Deathcap Glade
+1 Dina, Essence Brewer
+1 Festering Thicket
+1 Body Launderer
+1 Eternal Witness
+1 Massacre Wurm
+1 Syr Konrad, the Grim
+1 Matzalantli, the Great Door // The Core
+1 Regrowth
+1 Casualties of War
+1 Beledros Witherbloom
+1 Creakwood Liege
+1 Grave Researcher // Reanimate
+1 Pitiless Plunderer
+1 Cauldron of Essence
+1 Grave Venerations
+1 Accursed Marauder
+1 Grave Titan
+1 Swiftfoot Boots
+1 Gray Merchant of Asphodel
+1 Spore Frog
+1 Honest Rutstein
+1 Zulaport Cutthroat
+1 Sméagol, Helpful Guide
+1 Life from the Loam
+1 Timeless Witness
+1 Meathook Massacre II
+1 Grist, Voracious Larva // Grist, the Plague Swarm
+1 Cankerbloom
+1 Golgari Charm
+1 Rune-Scarred Demon
+1 Golgari Rot Farm

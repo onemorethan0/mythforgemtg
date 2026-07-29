@@ -1,0 +1,83 @@
+# Archidekt — Gisa Zombies
+# source: archidekt:1777280
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Ghoulcaller Gisa
+
+Deck:
+1 Ayara, First of Locthwain
+1 Vindictive Lich
+1 Season of Loss
+1 Malakir Rebirth // Malakir Mire
+1 Cryptbreaker
+1 Undead Augur
+1 Gravespawn Sovereign
+1 Mire Triton
+1 Fell Stinger
+1 Withered Wretch
+1 Feral Ghoul
+1 Spymaster's Vault
+1 Fell the Profane // Fell Mire
+1 Accursed Marauder
+1 Illicit Masquerade
+1 Plague Belcher
+1 Crypt of Agadeem
+1 Phyrexian Ghoul
+1 Cemetery Desecrator
+1 Zul Ashur, Lich Lord
+1 Rot Hulk
+1 Noxious Ghoul
+1 Warren Soultrader
+1 Grim Servant
+1 Vesper Ghoul
+1 Nantuko Husk
+1 Living Death
+1 Ravenous Rotbelly
+1 Shambling Ghast
+1 Flare of Malice
+1 Lost Monarch of Ifnir
+1 Incarnation Technique
+1 Headless Rider
+1 Funeral Room // Awakening Hall
+26 Swamp
+1 Feed the Swarm
+1 Mikaeus, the Unhallowed
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Nykthos, Shrine to Nyx
+1 Three Tree City
+1 Roaming Throne
+1 Cabal Coffers
+1 Diregraf Colossus
+1 Deadly Dispute
+1 Fleshbag Marauder
+1 Death Baron
+1 Phyrexian Tower
+1 Dark Ritual
+1 Culling the Weak
+1 Undead Butler
+1 Champion of the Perished
+1 Jet Medallion
+1 Gravecrawler
+1 Lethal Scheme
+1 Liliana, Untouched by Death
+1 Butcher Ghoul
+1 Liliana, Dreadhorde General
+1 Archghoul of Thraben
+1 Priest of Forgotten Gods
+1 Demolition Field
+1 Ghoulish Procession
+1 Songs of the Damned
+1 Stitcher's Supplier
+1 Carrion Feeder
+1 The Meathook Massacre
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Urborg, Tomb of Yawgmoth
+1 Gray Merchant of Asphodel
+1 Will of the Abzan
+1 Lazotep Reaver
+1 Pile On
+1 Skullclamp
+1 Phyrexian Altar
+1 Teval's Judgment

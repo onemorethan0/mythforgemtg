@@ -1,0 +1,97 @@
+# Archidekt — Temur Roar Precon Downgrade
+# source: archidekt:20732370
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Ureni of the Unwritten
+
+Deck:
+1 Sheltered Thicket
+1 Shivan Reef
+1 Sulfur Falls
+1 Temple of Abandon
+1 Temple of Mystery
+1 Yavimaya Coast
+1 Arcane Signet
+1 Kodama's Reach
+1 Fellwar Stone
+1 Talisman of Impulse
+1 Lathliss, Dragon Queen
+1 Scourge of the Throne
+1 Broodcaller Scourge
+1 Keiga, the Tide Star
+1 Reflections of Littjara
+1 Atarka, World Render
+1 Dragonlord Atarka
+1 Sarkhan, Soul Aflame
+1 Temur Ascendancy
+1 Dragon's Hoard
+1 Command Tower
+1 Whirlwing Stormbrood // Dynamic Soar
+1 Miirym, Sentinel Wyrm
+1 Rampant Growth
+1 Dracogenesis
+1 Herald's Horn
+1 Rhythm of the Wild
+1 Atsushi, the Blazing Sky
+1 Lightning Greaves
+1 Hellkite Tyrant
+1 Cultivate
+1 Ganax, Astral Hunter
+1 Dragonhawk, Fate's Tempest
+1 Secluded Courtyard
+1 Carnelian Orb of Dragonkind
+1 Goldspan Dragon
+1 Garruk's Uprising
+1 Nesting Dragon
+1 Dragon Tempest
+1 Path of Ancestry
+3 Island
+6 Mountain
+1 Blasphemous Act
+1 Chaos Warp
+1 Hellkite Courser
+1 Cinder Glade
+1 Sol Ring
+1 Elemental Bond
+1 Farseek
+1 Frontier Bivouac
+1 Dragonspeaker Shaman
+1 Unclaimed Territory
+1 Rootbound Crag
+1 Exotic Orchard
+1 Flooded Grove
+1 Haven of the Spirit Dragon
+1 Hinterland Harbor
+1 Karplusan Forest
+1 Kessig Wolf Run
+1 Rockfall Vale
+1 Urza's Incubator
+1 Maelstrom of the Spirit Dragon
+1 Deceptive Frostkite
+1 Marang River Regent // Coil and Catch
+1 Counterspell
+1 Migration Path
+1 Frostcliff Siege
+1 Hammerhead Tyrant
+1 Glorybringer
+1 Stormbreath Dragon
+1 Thunderbreak Regent
+1 Dragonlord's Servant
+1 Temple of the Dragon Queen
+1 Will of the Temur
+1 Stormscale Scion
+5 Forest
+1 Dragonologist
+1 Savage Ventmaw
+1 Cavern-Hoard Dragon
+1 Bolt Bend
+1 Thrakkus the Butcher
+1 Encroaching Dragonstorm
+1 Leyline Tyrant
+1 Panharmonicon
+1 Twinflame Tyrant
+1 Earth's Mightiest Heroes
+1 Ferocification
+1 Elvish Piper

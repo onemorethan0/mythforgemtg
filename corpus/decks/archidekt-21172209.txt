@@ -1,0 +1,103 @@
+# Archidekt — The Multiverse Invades New York
+# source: archidekt:21172209
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Pym Technologies
+2 Mountain
+2 Swamp
+2 Forest
+2 Island
+2 Plains
+1 Sizzling Soloist
+1 Insomnia, Crown City
+1 Treno, Dark City
+1 Savage Mansion
+1 Windurst, Federation Center
+1 Sharlayan, Nation of Scholars
+1 Boros Garrison
+1 Rabanastre, Royal City
+1 Suburban Sanctuary
+1 University Campus
+1 Fisk Tower
+1 Mutant Town
+1 Tarnation Vista
+1 Undercover Butler
+1 TCRI Building
+1 Vector, Imperial Capital
+1 Botanical Plaza
+1 Illegitimate Business
+1 Popular Egotist
+1 Gohn, Town of Ruin
+1 Hell's Kitchen
+1 Cat Collector
+1 Vibrant Cityscape
+1 Maestros Theater
+1 Sewer Crocodile
+1 Action News Crew
+1 Kingpin's Enforcers
+1 Professional Wrestler
+1 Powerful Broker
+1 Cleanup Crew
+1 City Pigeon
+1 Damage Control Crew
+1 Stark Industries Executive
+1 EPF Point Squad
+1 Angry Rabble
+1 Vengeful Townsfolk
+1 Taxi Driver
+1 Common Crook
+1 Supportive Parents
+1 White Glove Gourmand
+1 Acrobatic Cheerleader
+1 Mob Lookout
+1 Civic Gardener
+1 Raucous Audience
+1 News Helicopter
+1 Exhibition Magician
+1 Ratcatcher Trainee // Pest Problem
+1 Courier of Comestibles
+1 Rent Is Due
+1 Guy in the Chair
+1 Witness Protection
+1 Scout the City
+1 Farseek
+1 Subway Train
+1 Gallant Citizen
+1 Everything Pizza
+1 Call Damage Control
+1 Tainted Treats
+1 Knife
+1 Friendly Neighborhood
+1 Return to the Sewers
+1 Manhole Missile
+1 Fishing Pole
+1 Chainsaw
+1 Skateboard
+1 Ceremonial Groundbreaker
+1 Wrench
+1 Baseball Bat
+1 School Daze
+1 Bagel and Schmear
+1 Passenger Ferry
+1 Butcher's Cleaver
+1 The Regalia
+1 Hot Dog Cart
+1 Citizen's Crowbar
+1 Capenna Express
+1 Trading Post
+1 Mugging
+1 Bold Biochemist
+1 Urban Retreat
+1 Big Apple, 3 a.m.
+1 Brass Knuckles
+1 Meddling Youths
+1 Steel Wrecking Ball
+1 Cheering Crowd
+1 Public Thoroughfare
+1 Rootbound Crag
+1 Foot Headquarters

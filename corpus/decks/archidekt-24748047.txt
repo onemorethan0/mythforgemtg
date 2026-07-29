@@ -1,0 +1,76 @@
+# Archidekt — The Golgari Swarm
+# source: archidekt:24748047
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Jarad, Golgari Lich Lord
+
+Deck:
+1 Abrupt Decay
+1 Assassin's Trophy
+1 Awaken the Erstwhile
+1 Burglar Rat
+1 Corpsejack Menace
+1 Deadbridge Chant
+1 Deadbridge Goliath
+1 Death's Presence
+1 Deathrite Shaman
+1 Deathsprout
+1 Dreg Mangler
+1 Drown in Filth
+1 Elves of Deep Shadow
+1 Find // Finality
+1 Fungal Rebirth
+1 Gaze of Granite
+1 Gleancrawler
+1 Golgari Charm
+1 Golgari Cluestone
+1 Golgari Germination
+1 Golgari Grave-Troll
+1 Golgari Guildgate
+1 Golgari Keyrune
+1 Golgari Locket
+1 Golgari Rot Farm
+1 Golgari Signet
+1 Golgari Thug
+1 Grave Betrayal
+1 Greater Good
+17 Forest
+1 Grisly Salvage
+1 Hatchery Spider
+1 Izoni, Thousand-Eyed
+1 Jarad's Orders
+1 Korozda Guildmage
+1 Kraul Harpooner
+1 Life // Death
+1 Life from the Loam
+1 Lotleth Troll
+1 Mazirek, Kraul Death Priest
+1 Night's Whisper
+1 Ochran Assassin
+1 Overgrown Tomb
+1 Putrefy
+1 Rot Farm Skeleton
+1 Severed Strands
+1 Sisters of Stone Death
+1 Sludge Titan
+1 Sluiceway Scorpion
+1 Slum Reaper
+1 Status // Statue
+1 Stinkweed Imp
+1 Storrev, Devkarin Lich
+1 Svogthos, the Restless Tomb
+1 Treasured Find
+1 Trestle Troll
+1 Twinblade Assassins
+1 Underrealm Lich
+1 Varolz, the Scar-Striped
+1 Vigor Mortis
+1 Vraska the Unseen
+1 Vraska, Golgari Queen
+1 Vraska, Swarm's Eminence
+1 Vulturous Zombie
+1 Zanikev Locust
+17 Swamp
+1 Savra, Queen of the Golgari

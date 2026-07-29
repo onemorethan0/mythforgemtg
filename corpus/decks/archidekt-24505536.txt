@@ -1,0 +1,79 @@
+# Archidekt — Ninjustsu
+# source: archidekt:24505536
+# fetched: 2026-07-20
+
+Commander:
+1 Satoru Umezawa
+
+Deck:
+1 Silent-Blade Oni
+1 Silver-Fur Master
+1 Slither Blade
+1 Changeling Outcast
+1 Triton Shorestalker
+1 Mist-Cloaked Herald
+1 Tormented Soul
+1 Rune-Scarred Demon
+1 Force of Will
+1 Ornithopter
+1 Fallen Shinobi
+1 Mindleech Mass
+1 Swiftfoot Boots
+1 Moon-Circuit Hacker
+1 Dokuchi Silencer
+1 Nezumi Prowler
+1 Prosperous Thief
+1 Moonsnare Specialist
+1 Kaito, Dancing Shadow
+1 Ingenious Infiltrator
+1 Biting-Palm Ninja
+1 Satoru, the Infiltrator
+1 Tetsuko Umezawa, Fugitive
+1 You Are Already Dead
+1 Go for the Throat
+1 Spell Pierce
+1 Brainstorm
+1 Reality Shift
+1 Return to Action
+1 Enter the Enigma
+1 Read the Bones
+1 Sign in Blood
+1 Shredder's Technique
+1 Soul Transfer
+1 Wayfarer's Bauble
+1 Bident of Thassa
+1 Key to the City
+1 Quick-Draw Katana
+1 Vorpal Sword
+1 Ninja's Blades
+1 Sol Ring
+1 Arcane Signet
+1 Cunning Evasion
+1 Reconnaissance Mission
+1 Aqueous Form
+1 Rogue Class
+1 Clawing Torment
+15 Island
+15 Swamp
+1 Bojuka Bog
+1 Creeping Tar Pit
+1 Dismal Backwater
+1 Lonely Sandbar
+1 Command Tower
+1 Sunken Hollow
+1 Choked Estuary
+1 Evolving Wilds
+1 Mind Stone
+1 Dimir Keyrune
+1 Counterspell
+1 Artful Dodge
+1 Armaggon, Future Shark
+1 Kami of Restless Shadows
+1 Fellwar Stone
+1 Artisan of Kozilek
+1 Sepulchral Primordial
+1 Dark Ritual
+1 Demon of Loathing
+1 Zareth San, the Trickster
+1 Deadly Dispute
+1 Fatal Push

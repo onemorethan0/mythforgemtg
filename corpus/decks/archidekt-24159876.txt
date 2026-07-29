@@ -1,0 +1,96 @@
+# Archidekt — SAMI
+# source: archidekt:24159876
+# fetched: 2026-07-07
+
+Commander:
+1 Sami, Wildcat Captain
+
+Deck:
+1 Ultron, Artificial Malevolence
+1 Devastating Onslaught
+1 All That Glitters
+1 Ancient Den
+1 Apex of Power
+1 Arcane Signet
+1 Arid Mesa
+1 Audacious Reshapers
+1 Battlefield Forge
+1 Big Score
+1 Brass's Bounty
+1 Chaos Warp
+1 Cityscape Leveler
+1 Clifftop Retreat
+1 Command Tower
+1 Crackle with Power
+1 Daretti, Scrap Savant
+1 Darksteel Citadel
+1 Demand Answers
+1 Dispatch
+1 Everflowing Chalice
+1 Evolving Wilds
+1 Excalibur, Sword of Eden
+1 Exotic Orchard
+1 Fellwar Stone
+1 Furycalm Snarl
+1 Gilded Lotus
+1 Great Furnace
+1 Inspired Tinkering
+1 Iron Myr
+1 Lightning Greaves
+1 Machinist's Arsenal
+1 Memorial Vault
+1 Mishra, Excavation Prodigy
+1 Jeska's Will
+7 Mountain
+1 Myr Retriever
+1 Mystic Forge
+1 Path to Exile
+1 Pirate's Pillage
+6 Plains
+1 Platoon Dispenser
+1 Power Depot
+1 Quicksmith Genius
+1 Radiant Summit
+1 Rogue's Passage
+1 Rugged Prairie
+1 Rustvale Bridge
+1 Sacred Foundry
+1 Scrap Trawler
+1 Secluded Starforge
+1 Seize the Spoils
+1 Skullclamp
+1 Smothering Tithe
+1 Sol Ring
+1 Spire of Industry
+1 Sundown Pass
+1 Sword of the Animist
+1 Swords to Plowshares
+1 Thought Vessel
+1 Treasure Vault
+1 Unexpected Windfall
+1 Zenith Festival
+1 Ravenous Robots
+1 Angel of the Ruins
+1 Brotherhood Regalia
+1 Meteor Golem
+1 Urabrask the Hidden
+1 Myr Battlesphere
+1 Weapons Manufacturing
+1 Nettlecyst
+1 Colossus Hammer
+1 Hedron Archive
+1 Walking Ballista
+1 Rising of the Day
+1 Terramorphic Expanse
+1 The Walls of Ba Sing Se
+1 Swiftfoot Boots
+1 Solemn Simulacrum
+1 Bronze Guardian
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Shimmer Myr
+1 Threefold Thunderhulk
+1 Triplicate Titan
+1 Talisman of Conviction
+1 Ornithopter of Paradise
+1 Liquimetal Torque
+1 Palladium Myr

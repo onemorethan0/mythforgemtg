@@ -1,0 +1,102 @@
+# Archidekt — Arcades Sabboth // Kydelle-Livio
+# source: archidekt:580194
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Livio, Oathsworn Sentinel
+1 Kydele, Chosen of Kruphix
+
+Deck:
+1 Springbloom Druid
+1 Marshaling Cry
+1 Alhammarret's Archive
+1 Astral Drift
+1 Astral Slide
+1 Containment Construct
+1 Crystalline Resonance
+1 Escape Protocol
+1 Monument to Endurance
+1 Reconnaissance Mission
+1 Teferi's Ageless Insight
+1 Alandra, Sky Dreamer
+1 Beza, the Bounding Spring
+1 Deep Forest Hermit
+1 Deranged Hermit
+1 Detective of the Month
+1 Ethereal Investigator
+1 Flourishing Fox
+1 Homunculus Horde
+1 Jolrael, Mwonvuli Recluse
+1 Minn, Wily Illusionist
+1 Mischievous Mystic
+1 Scrounging Skyray
+1 Valiant Rescuer
+1 Ash Barrens
+1 Blasted Landscape
+1 Desert of the Indomitable
+1 Desert of the Mindful
+1 Desert of the True
+1 Drifting Meadow
+1 Irrigated Farmland
+1 Lonely Sandbar
+1 Rain-Slicked Copse
+1 Remote Isle
+1 Scattered Groves
+1 Secluded Steppe
+1 Slippery Karst
+1 Spara's Headquarters
+1 Tranquil Landscape
+1 Tranquil Thicket
+1 Akroma's Vengeance
+1 Angel of the Ruins
+1 Aura Extraction
+1 Barrier Breach
+1 Clear
+1 Countervailing Winds
+1 Forsake the Worldly
+1 Gallant Strike
+1 Hush
+1 Miscalculation
+1 Neutralize
+1 Radiant's Judgment
+1 Rescind
+1 Spectacular Pileup
+1 Trade the Helm
+1 Wilt
+1 Adarkar Wastes
+1 Breeding Pool
+1 Brushland
+1 Cephalid Coliseum
+1 Flooded Strand
+2 Forest
+1 Hallowed Fountain
+4 Island
+1 Misty Rainforest
+1 Overflowing Basin
+3 Plains
+1 Prismatic Vista
+1 Skycloud Expanse
+1 Sungrass Prairie
+1 Temple Garden
+1 Windswept Heath
+1 Yavimaya Coast
+1 Beneath the Sands
+1 Currency Converter
+1 Emrakul's Messenger
+1 Fluctuator
+1 Migration Path
+1 New Perspectives
+1 The Enigma Jewel // Locus of Enlightenment
+1 Thran Turbine
+1 Angel of Indemnity
+1 Cloud of Faeries
+1 Eternal Witness
+1 Lull
+1 Repopulate
+1 Reveillark
+1 Tilling Treefolk
+1 Vizier of Tumbling Sands
+1 Waxen Shapethief
+1 Skullwinder
+1 Jadzi, Steward of Fate // Oracle's Gift

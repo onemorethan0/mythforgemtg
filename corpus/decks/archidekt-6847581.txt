@@ -1,0 +1,82 @@
+# Archidekt — Goth Girl Tribal
+# source: archidekt:6847581
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Massacre Girl, Known Killer
+
+Deck:
+1 Vampire Hexmage
+1 Sanguine Bond
+1 Dark Dabbling
+1 Thought Vessel
+1 Slaughter Specialist
+1 Go for the Throat
+1 Tragic Slip
+1 Toxic Deluge
+1 Jet Medallion
+1 Plague Witch
+1 Drana, Kalastria Bloodchief
+1 Shadow Alley Denizen
+1 Blood Artist
+1 Drana, Liberator of Malakir
+1 Ayara's Oathsworn
+1 Bloodline Culling
+1 Not Dead After All
+1 Deadly Rollick
+1 Deadly Dispute
+1 Nirkana Revenant
+1 Feed the Swarm
+1 Sign in Blood
+1 Demonic Tutor
+1 Golden Demise
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Liliana of the Dark Realms
+1 Vraska, Betrayal's Sting
+1 Reliquary Tower
+1 Exquisite Blood
+1 Whip of Erebos
+1 Cabal Coffers
+1 Cabal Stronghold
+1 Nykthos, Shrine to Nyx
+1 Urborg, Tomb of Yawgmoth
+1 Sol Ring
+1 Arcane Signet
+1 Bloodchief Ascension
+1 Conductor of Cacophony
+1 Diabolic Intent
+1 Necropolis Regent
+1 Snuff Out
+1 Stromkirk Bloodthief
+1 Thrill-Kill Assassin
+1 Gilded Lotus
+1 Beseech the Mirror
+1 Isareth the Awakener
+1 Kalastria Highborn
+1 Marauding Blight-Priest
+1 Vampire of the Dire Moon
+1 Rev, Tithe Extractor
+1 Thespian's Stage
+1 Nullpriest of Oblivion
+1 Ayara, First of Locthwain
+1 Bloodthrone Vampire
+1 Sangromancer
+1 Bojuka Bog
+1 Spymaster's Vault
+1 Braids, Arisen Nightmare
+1 Myriad Landscape
+1 Massacre Girl
+1 High-Society Hunter
+1 Phyrexian Arena
+1 Elegy Acolyte
+1 Black Market Connections
+1 Grasp of Darkness
+1 Gaze of Pain
+27 Swamp
+1 Emeritus of Woe // Demonic Tutor
+1 Gwenom, Remorseless
+1 Stensian Sanguinist // Exsanguinate
+1 Nightshade Assassin
+1 Scheming Silvertongue // Sign in Blood

@@ -1,0 +1,253 @@
+"""Bracket estimate: synthesize the measured axes into an official 1-5 Commander Bracket.
+
+This is the headline user-facing output ("what bracket is my deck?"). It is RULE-BASED,
+mirroring how the official WotC Commander Brackets (Feb 2026) actually work — the system is
+defined by hard gates (Game Changers count, in-deck game-ending combos of any size, mass land
+denial, chained extra turns), not a hidden score. We apply those gates to set the allowed band,
+then use the
+measured Power Profile axes to place within it, and report a confidence + the reasons that
+drove the call.
+
+Honest scope: this is the official-rules estimate, not a learned calibration. A fitted
+ordinal model over a large labeled corpus (roadmap Phase 5) is future work — the corpus is
+still too small to fit without overfitting. Distinguishing 4 vs 5 (optimization/cEDH intent)
+is inherently soft without a gauntlet Meta-strength rating, so the estimate leans on that
+when supplied and stays conservative otherwise.
+
+Two boundaries are decided by measurement rather than by a rules gate, and both were
+re-measured on 2026-07-28 against the enlarged anchor set (B1 78 / B2 90 / B3 84) using
+`scripts/axis_separation.py`. Re-run it before changing either.
+
+**B1 vs B2 — mana-base consistency.** The gates put every zero-Game-Changer deck in the band
+[1,2]; placing within it used to test ceiling/speed, which gave 5.9% B1 recall on a sample
+that was 44% B1 — i.e. "always say Core" with noise. Mana-base colour consistency is the only
+measured signal above "weak" at that boundary (Cohen's d +0.61) and lifts accuracy 58.7% ->
+64.5% with balanced recall. See `estimate_bracket` for the table.
+
+**B2 vs B3 — not resolvable, and we say so.** The Game Changer gate itself is good where it
+applies (79.2% accuracy over 173 anchors, d +1.27), but 40% of author-labeled Upgraded decks
+carry ZERO Game Changers, so the gate must call them Core. `plays_up` marks that band. It
+used to gate on ceiling/speed/interaction "upper-Core tuning" thresholds — measured, those
+fired on 33% of Upgraded and 37% of Core decks, more often on the ones they should have left
+alone, and NOTHING we compute separates that population (best signal d +0.37). So the flag no
+longer claims a per-deck reading; it states the calibration fact that applies to every deck in
+the band. That is the honest-uncertainty invariant applied to our own heuristic.
+"""
+
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass, field
+
+from mythgauntlet.data.spellbook import ComboAssessment
+from mythgauntlet.model.card import Card
+
+BRACKET_LABELS = {1: "Exhibition", 2: "Core", 3: "Upgraded", 4: "Optimized", 5: "cEDH"}
+
+_EXTRA_TURN_RE = re.compile(r"take an extra turn|extra turn after this one", re.IGNORECASE)
+_MLD_RES = (
+    re.compile(r"destroy all lands", re.IGNORECASE),
+    re.compile(r"destroy all nonbasic lands", re.IGNORECASE),
+    re.compile(r"each player sacrifices? .*?lands?", re.IGNORECASE),
+    re.compile(r"each opponent sacrifices? .*?lands?", re.IGNORECASE),
+)
+
+
+@dataclass
+class BracketEstimate:
+    bracket: int  # 1-5
+    label: str
+    confidence: float  # 0-1
+    reasons: list[str] = field(default_factory=list)
+    game_changers: int = 0
+    two_card_combos: int = 0
+    extra_turn_cards: int = 0
+    mass_land_denial_cards: int = 0
+    plays_up: bool = False  # capped at Core by the gates, but measures at the Core/Upgraded edge
+
+
+def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
+    """(extra-turn card copies, mass-land-denial card copies) by oracle text."""
+    extra = mld = 0
+    for card, count in cards:
+        text = card.oracle_text or ""
+        if _EXTRA_TURN_RE.search(text):
+            extra += count
+        if any(r.search(text) for r in _MLD_RES):
+            mld += count
+    return extra, mld
+
+
+# B1-vs-B2 threshold on mana-base colour consistency. See estimate_bracket for the
+# measurement that chose it; accuracy is flat over 0.70-0.78, so this is a recall-balance
+# choice, not a fitted optimum. The PARAMETER defaults to 1.0 (not this value) so every
+# existing caller and any deck we can't measure stays on the Bracket-2 side rather than
+# being silently demoted to Exhibition.
+_EXHIBITION_MANA = 0.78
+
+
+def _fast_two_card_combo(two_card_combos: int, profile: ComboAssessment | None) -> bool:
+    """The cEDH escalation signal. With a graded profile, require the 2-card combo to be a
+    FAST TERMINAL win (not e.g. a 2-card infinite-mana engine with no outlet). Without a
+    profile (counts-only callers, existing tests), fall back to the old 'any 2-card' rule.
+    """
+    if profile is not None:
+        return profile.fast_terminal_two_card
+    return bool(two_card_combos)
+
+
+def estimate_bracket(
+    cards: list[tuple[Card, int]],
+    commanders: list[Card],
+    *,
+    ceiling: float = 0.0,
+    speed_kill_rate: float = 0.0,
+    consistency: float = 0.0,  # T0 consistency_score (0-100)
+    interaction: float = 0.0,  # Interaction axis (0-100)
+    avg_kill_turn: float | None = None,  # goldfish mean kill turn
+    manabase_consistency: float = 1.0,  # ratings/manabase.py mean colour probability (0-1)
+    two_card_combos: int = 0,
+    combo_count: int = 0,  # in-deck game-ending combos of ANY size (>= two_card_combos)
+    combo_profile: ComboAssessment | None = None,  # graded combos (refines the flat gate)
+    can_go_off: bool = False,  # a storm/spellslinger nut-draw kill (sim/storm.py)
+    combos_checked: bool = False,
+    meta_rating: float | None = None,
+    coverage_share: float = 1.0,
+) -> BracketEstimate:
+    all_cards = list(cards) + [(c, 1) for c in commanders]
+    gc_names = {c.name for c, _ in all_cards if c.game_changer}
+    gc = len(gc_names)
+    extra_turns, mld = _scan(all_cards)
+
+    reasons: list[str] = []
+
+    # --- official hard gates set the allowed band [floor, cap] ---
+    if gc == 0:
+        floor, cap = 1, 2
+        reasons.append("0 Game Changers -> Brackets 1-2")
+    elif gc <= 3:
+        floor, cap = 3, 3
+        reasons.append(f"{gc} Game Changer(s) (<=3) -> Bracket 3")
+    else:
+        floor, cap = 4, 5
+        reasons.append(f"{gc} Game Changers (>3) -> Brackets 4-5")
+
+    combos = max(combo_count, two_card_combos)  # any in-deck game-ending combo (2- or 3+-card)
+    if combo_profile is not None:
+        combos = max(combos, combo_profile.total)
+    if combos:
+        if floor < 3:
+            floor, cap = max(floor, 3), max(cap, 3)
+            if combo_profile is not None and combo_profile.grades:
+                # Graded reason: says WHICH kind of combo(s) drove the gate, not just a count.
+                reasons.append(combo_profile.gate_reason())
+            else:
+                detail = f" ({two_card_combos} two-card)" if two_card_combos else ""
+                reasons.append(f"{combos} in-deck game-ending combo(s){detail} -> min Bracket 3")
+    if can_go_off:
+        # a storm/spellslinger deck that reaches lethal on its nut draw is an emergent combo-kill;
+        # the commander-as-engine (Prismari class) is invisible to the combat clock (sim/storm.py).
+        if floor < 3:
+            floor, cap = max(floor, 3), max(cap, 3)
+            reasons.append("storm/spellslinger go-off (nut-draw kill) -> min Bracket 3")
+    if mld:
+        floor, cap = max(floor, 4), 5
+        reasons.append(f"mass land denial ({mld}) -> Brackets 4-5")
+    if extra_turns >= 2:
+        floor, cap = max(floor, 4), 5
+        reasons.append(f"chained extra turns ({extra_turns}) -> Brackets 4-5")
+
+    # --- place within the band using measured power ---
+    bracket = floor
+    if floor == 1 and cap == 2:
+        # 1 (exhibition/ultra-casual) vs 2 (precon-level). Decided on MANA-BASE consistency,
+        # measured 2026-07-28 against 155 rules-consistent B1/B2 anchors
+        # (scripts/axis_separation.py; re-run it if you change this):
+        #
+        #   rule                                   acc    B1 recall   B2 recall
+        #   ceiling>=15 or speed>=0.10 (OLD)      58.7%       5.9%      100.0%
+        #   always say B2 (baseline)              56.1%       0.0%      100.0%
+        #   manabase consistency >= 0.78          64.5%      58.8%       69.0%
+        #
+        # The old gate was "always say B2" with noise on top: it produced Bracket 1 for 6%
+        # of decks in a sample that was 44% B1. Ceiling and speed simply do not separate
+        # these two (Cohen's d +0.30 and ~+0.09); mana-base consistency does (d +0.61), and
+        # it is the ONLY measured signal above "weak" at this boundary. Intuition matches:
+        # B1 is "theme over power", where five-colour pet decks live, and their mana is
+        # genuinely worse than a precon's.
+        #
+        # NOTE it must REPLACE the old test, not join it — `OLD or manabase` scores 56.8%,
+        # WORSE than manabase alone, because OR-ing an always-B2 rule re-imposes its bias.
+        # Accuracy is flat across thresholds 0.70-0.78 (all 64.5%); they differ only in
+        # recall balance, so 0.78 is chosen for the most even split rather than a fitted peak.
+        if manabase_consistency >= _EXHIBITION_MANA:
+            bracket = 2
+            reasons.append(
+                f"mana base holds up ({manabase_consistency:.0%} colour consistency) "
+                "-> Bracket 2 (core)"
+            )
+        else:
+            bracket = 1
+            reasons.append(
+                f"thin mana base ({manabase_consistency:.0%} colour consistency) "
+                "-> Bracket 1 (exhibition)"
+            )
+    elif floor >= 4:
+        # 4 (optimized) vs 5 (cEDH): needs meta-strength/intent; conservative without it
+        if meta_rating is not None and meta_rating >= 1650:
+            bracket = 5
+            reasons.append(f"high gauntlet rating ({meta_rating:.0f}) -> Bracket 5 (cEDH)")
+        elif _fast_two_card_combo(two_card_combos, combo_profile) and ceiling >= 40 \
+                and speed_kill_rate >= 0.4:
+            bracket = 5
+            reasons.append("fast combo kill + high ceiling -> Bracket 5 (cEDH) range")
+        else:
+            bracket = 4
+            reasons.append("optimized power; not clearly cEDH-tuned -> Bracket 4")
+
+    # --- B2/B3 boundary banner (honest uncertainty, not a B3 classifier) ---
+    # This flag used to gate on _upper_core(ceiling/speed/interaction/consistency). Measured
+    # 2026-07-28 against 120 zero-Game-Changer anchors, that gate was WORSE THAN USELESS: it
+    # fired on 33% of decks their authors labeled Upgraded and 37% labeled Core — more often
+    # on the ones it was supposed to leave alone. So a third of Core decks were told they sit
+    # at the Upgraded boundary for no measured reason.
+    #
+    # Nothing we compute separates that population (best signal nut_kill_rate d=+0.37, weak;
+    # everything else weak or none), which is unsurprising: with 0 Game Changers the official
+    # gate is silent by design, and the real Core/Upgraded line is card-quality and tuning
+    # that goldfish fidelity cannot see.
+    #
+    # So the flag no longer PRETENDS to detect tuning per deck. It now states a calibration
+    # fact that is true of every deck in this position: 40% of author-labeled Upgraded decks
+    # (33/83) carry zero Game Changers, so a zero-GC "Core" verdict genuinely cannot rule
+    # Upgraded out. That is honest uncertainty; the old banner was false precision.
+    plays_up = bracket == 2 and (floor, cap) == (1, 2)
+    if plays_up:
+        reasons.append(
+            "0 Game Changers caps this at Core, but 40% of decks their authors call Upgraded "
+            "also run none -- this boundary is not resolvable from card gates; read the axes"
+        )
+
+    # --- confidence ---
+    confidence = 0.75
+    if floor != cap and bracket in (4, 5) and meta_rating is None:
+        confidence -= 0.20  # 4-vs-5 is soft without a gauntlet rating
+    if combos and not combos_checked:
+        confidence -= 0.10
+    if not combos_checked:
+        reasons.append("note: combos not checked (run with --combos for the combo gate)")
+        confidence -= 0.05
+    confidence *= 0.6 + 0.4 * max(0.0, min(1.0, coverage_share))  # lower if semantics thin
+    confidence = max(0.2, min(0.95, confidence))
+
+    return BracketEstimate(
+        bracket=bracket,
+        label=BRACKET_LABELS[bracket],
+        confidence=confidence,
+        reasons=reasons,
+        game_changers=gc,
+        two_card_combos=two_card_combos,
+        extra_turn_cards=extra_turns,
+        mass_land_denial_cards=mld,
+        plays_up=plays_up,
+    )

@@ -1,0 +1,104 @@
+# Archidekt — Terra Precon upgraded?
+# source: archidekt:24553092
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Shadowblood Ridge
+1 Dalek Drone
+1 Celes, Rune Knight
+1 Summon: Knights of Round
+1 Ravenous Chupacabra
+1 Gaius van Baelsar
+1 Chainer, Nightmare Adept
+1 Havoc Eater
+1 Plaguecrafter
+1 Accursed Marauder
+1 Sevinne's Reclamation
+1 Luminous Broodmoth
+1 Clifftop Retreat
+1 Dragonskull Summit
+1 Geothermal Bog
+1 Graven Cairns
+1 Ash Barrens
+1 Furycalm Snarl
+1 Command Tower
+1 Nomad Outpost
+1 Foreboding Ruins
+1 Sunlit Marsh
+1 Isolated Chapel
+1 Fetid Heath
+1 Path of Ancestry
+1 Rogue's Passage
+1 Exotic Orchard
+1 Evolving Wilds
+1 Rugged Prairie
+1 Battlefield Forge
+1 Desolate Mire
+3 Swamp
+1 High Market
+1 Sacred Peaks
+1 Shineshadow Snarl
+1 Demolition Field
+1 Sulfurous Springs
+2 Mountain
+1 Smoldering Marsh
+4 Plains
+1 Ark of Hunger
+1 Garrison Excavator
+1 Quintorius, Field Historian
+1 Espers to Magicite
+1 Guardian Scalelord
+1 Balefire Liege
+1 Pitiless Plunderer
+1 Stitch Together
+1 Hofri Ghostforge
+1 Mortify
+1 Ruinous Ultimatum
+1 Shadow, Mysterious Assassin
+1 Snort
+1 Laughing Mad
+1 Rise of the Dark Realms
+1 Mind Stone
+1 Stitcher's Supplier
+1 Tragic Arrogance
+1 Gau, Feral Youth
+1 Flayer of the Hatebound
+1 Cyan, Vengeful Samurai
+1 Swiftfoot Boots
+1 Solemn Simulacrum
+1 Arcane Signet
+1 Siegfried, Famed Swordsman
+1 Crackling Doom
+1 Mog, Moogle Warrior
+1 General Leo Cristophe
+1 Anger
+1 The Falcon, Airship Restored
+1 Key to the City
+1 Morbid Opportunist
+1 Big Score
+1 Locke, Treasure Hunter
+1 Legions to Ashes
+1 Sol Ring
+1 Talisman of Conviction
+1 Banon, the Returners' Leader
+1 Sepulchral Primordial
+1 Talisman of Indulgence
+1 Reanimate
+1 Wayfarer's Bauble
+1 Gogo, Mysterious Mime
+1 Millikin
+1 Palace Jailer
+1 Sabin, Master Monk
+1 Fellwar Stone
+1 Twilight Diviner
+1 Blade Historian
+1 Aurelia, the Warleader
+1 Bedevil
+1 Meteor Golem
+1 Sunscorched Divide
+1 Pinnacle Monk // Mystic Peak
+1 Selfless Spirit

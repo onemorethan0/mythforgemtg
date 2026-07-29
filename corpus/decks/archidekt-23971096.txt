@@ -1,0 +1,108 @@
+# Archidekt — Y'shtola Precon Upgraded
+# source: archidekt:23971096
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Damnation
+1 Wrath of God
+1 Pongify
+1 Zur the Enchanter
+1 Hallowed Fountain
+1 Godless Shrine
+1 Fabled Passage
+1 Disenchant
+1 Generous Gift
+1 Night's Whisper
+1 Raffine's Tower
+1 Island
+1 Island
+1 Snow-Covered Island
+1 Snow-Covered Plains
+1 Plains
+1 Plains
+1 Swamp
+1 Snow-Covered Swamp
+1 Swamp
+1 Plains
+1 Papalymo Totolymo
+1 Murderous Rider // Swift End
+1 Hraesvelgr of the First Brood
+1 Torrential Gearhulk
+1 Talisman of Progress
+1 Snuff Out
+1 Estinien Varlineau
+1 Void Rend
+1 Archaeomancer's Map
+1 Cleansing Nova
+1 G'raha Tia, Scion Reborn
+1 Lyse Hext
+1 Fandaniel, Telophoroi Ascian
+1 Vindicate
+1 Authority of the Consuls
+1 Tataru Taru
+1 Sol Ring
+1 Final Judgment
+1 Swords to Plowshares
+1 Emet-Selch of the Third Seat
+1 Thancred Waters
+1 Thought Vessel
+1 Hypnotic Sprite // Mesmeric Glare
+1 Propaganda
+1 Talisman of Hierarchy
+1 Exsanguinate
+1 Baleful Strix
+1 Alphinaud Leveilleur
+1 Krile Baldesion
+1 Observed Stasis
+1 Lethal Scheme
+1 Arcane Signet
+1 Alisaie Leveilleur
+1 Reaper's Scythe
+1 Talisman of Dominance
+1 Exotic Orchard
+1 Swamp
+1 Port Town
+1 Command Tower
+1 Arcane Sanctum
+1 Sunken Ruins
+1 Evolving Wilds
+1 Sunken Hollow
+1 Prairie Stream
+1 Temple of the False God
+1 Glacial Fortress
+1 Fetid Heath
+1 Choked Estuary
+1 Isolated Chapel
+1 Underground River
+1 Shineshadow Snarl
+1 Archmage Emeritus
+1 Drowned Catacomb
+1 Ash Barrens
+1 Ghostly Prison
+1 Rhystic Study
+1 Bolas's Citadel
+1 Bloodchief Ascension
+1 Phyrexian Arena
+1 Azorius Signet
+1 Dimir Signet
+1 Orzhov Signet
+1 Smothering Tithe
+1 Mystic Remora
+1 Grand Abolisher
+1 Idyllic Tutor
+1 Reliquary Tower
+1 Liesa, Shroud of Dusk
+1 Venser's Journal
+1 Leyline of Anticipation
+1 Negate
+1 Path to Exile
+1 Counterspell
+1 Mana Drain
+1 Time Wipe
+1 Dovin's Veto
+1 Rewind
+1 Sheoldred, the Apocalypse

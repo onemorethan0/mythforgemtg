@@ -1,0 +1,91 @@
+# Archidekt — With Great Discard Comes Great Responsibility
+# source: archidekt:23908785
+# fetched: 2026-07-26
+
+Commander:
+1 Astonishing Spider-Man
+
+Deck:
+1 Psychosis Crawler
+1 Niv-Mizzet, Parun
+1 Hawkeye, Young Avenger
+1 Brallin, Skyshark Rider
+1 Propaganda
+1 Niv-Mizzet, the Firemind
+1 Spider-Punk
+1 Chasm Skulker
+1 Mystic Redaction
+1 Scrounging Skyray
+1 Iron Man, Armored Avenger
+1 Anger
+1 Brotherhood Regalia
+1 Change of Fortune
+1 Rielle, the Everwise
+1 Misty Knight, Hero for Hire
+1 Captain Howler, Sea Scourge
+1 Stark's Ingenuity
+1 Lyla, Holographic Assistant
+1 Human Torch, Johnny Storm
+1 Cool but Rude
+1 Training Center
+1 Waterbender Ascension
+1 Frostboil Snarl
+1 Sokenzan, Crucible of Defiance
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Command Tower
+1 Shivan Reef
+1 Vandalblast
+1 Rapid Hybridization
+1 Windfall
+1 Arcane Flight
+1 Counterspell
+1 Blasphemous Act
+1 Izzet Signet
+1 Temple of Epiphany
+1 Sink into Stupor // Soporific Springs
+1 Chameleon, Master of Disguise
+1 Talisman of Creativity
+1 Arcane Signet
+1 Frantic Search
+1 Marauding Mako
+1 Cascade Bluffs
+1 Izzet Boilerworks
+1 Pongify
+1 Multiversal Passage
+1 Arcane Denial
+1 Hobgoblin, Mantled Marauder
+1 Sulfur Falls
+1 Lórien Revealed
+1 Steal the Show
+5 Mountain
+1 Mountain
+1 Graviton, Fundamental Force
+1 Monument to Endurance
+1 Mysterio's Mirage
+1 Big Score
+1 The Locust God
+1 Psychic Corrosion
+1 Rocket-Powered Goblin Glider
+1 Underworld Breach
+1 Aetherize
+1 Sword Coast Sailor
+1 Thought Vessel
+1 Pinnacle Monk // Mystic Peak
+1 Ferrous Lake
+1 Reliquary Tower
+13 Island
+1 Magmakin Artillerist
+1 Faithless Looting
+1 Midnight Clock
+1 Sol Ring
+1 Exotic Orchard
+1 Fierce Guardianship
+1 Riverpyre Verge
+1 Aqueous Form
+1 Wonder
+1 Cyclonic Rift
+1 Wizard Class
+1 Ominous Seas
+1 Lady Spider, Maybelle Reilly
+1 Teferi's Ageless Insight
+1 Spider-Man, New Champion

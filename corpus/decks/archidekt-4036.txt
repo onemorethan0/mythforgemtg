@@ -1,0 +1,106 @@
+# Archidekt — Yennett's Odd-yssey
+# source: archidekt:4036
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Yennett, Cryptic Sovereign
+
+Deck:
+1 Chromatic Lantern
+1 Extinction Event
+1 One with the Multiverse
+1 Vanquish the Horde
+1 Ancient Gold Dragon
+1 Angel of the Ruins
+1 Inkshield
+1 Serra's Emissary
+1 Liquimetal Torque
+1 Grave Endeavor
+1 Watery Grave
+1 Hallowed Fountain
+1 Godless Shrine
+1 Lord of Change
+1 Temple of Enlightenment
+1 Temple of Deceit
+1 Temple of Silence
+1 Sorin, Grim Nemesis
+1 Hulking Metamorph
+1 Nezahal, Primal Tide
+1 Riverwise Augur
+1 Twilight Prophet
+1 Path of Ancestry
+1 Command Tower
+2 Plains
+2 Island
+1 Marsh Flats
+1 Lightning Greaves
+1 Exotic Orchard
+1 Thought Vessel
+1 Flooded Strand
+1 Polluted Delta
+1 Reflecting Pool
+1 Gilded Lotus
+1 Path to Exile
+1 Champion's Helm
+1 Fellwar Stone
+1 Magister Sphinx
+1 Baneful Omen
+1 Halimar Depths
+1 Sensei's Divining Top
+1 Hall of the Bandit Lord
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Scroll Rack
+1 Brainstorm
+1 Swords to Plowshares
+1 Morphic Pool
+1 Swiftfoot Boots
+1 Dream Cache
+1 Aminatou, the Fateshifter
+1 Prismatic Vista
+1 Talisman of Hierarchy
+1 Arcane Signet
+1 Fabled Passage
+1 Bojuka Bog
+1 Vault of Champions
+1 Linvala, Shield of Sea Gate
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Skull Storm
+1 Dimir Signet
+1 Azorius Signet
+1 Orzhov Signet
+1 In Garruk's Wake
+1 Dismantling Wave
+1 Raffine's Tower
+1 Protection Racket
+1 Palantír of Orthanc
+1 Lórien Revealed
+1 Sol Ring
+1 Stroke of Midnight
+1 Urborg, Tomb of Yawgmoth
+1 Generous Gift
+1 Keen Duelist
+1 Undercity Sewers
+1 Aminatou's Augury
+1 Shadowy Backstreet
+1 Teferi's Protection
+1 Meticulous Archive
+1 Diabolic Vision
+1 Ancient Cellarspawn
+1 Brainsurge
+1 Grasp of Fate
+1 Contaminated Landscape
+1 Jace, the Mind Sculptor
+1 Zimone's Hypothesis
+1 Sink into Stupor // Soporific Springs
+1 Boggart Trawler // Boggart Bog
+1 Glasswing Grace // Age-Graced Chapel
+1 Sire of Seven Deaths
+1 Sea of Clouds
+1 Hidetsugu and Kairi
+1 Cavalier of Gales
+1 Summon: Bahamut
+1 Swamp
+1 Triplicate Titan

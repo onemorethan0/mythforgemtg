@@ -1,0 +1,76 @@
+# Archidekt — Shell's Kitchen FULL FLAVOUR - Ragost, Deft Gastronaut by Based Deck Department
+# source: archidekt:14875868
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Ragost, Deft Gastronaut
+
+Deck:
+1 Alchemist's Vial
+1 Apothecary White
+1 Astrid Peth
+1 Bag of Holding
+1 Bartered Cow
+1 Bill the Pony
+1 Bothersome Quasit
+1 Bumbleflower's Sharepot
+1 Candy Trail
+1 Carrot Cake
+1 Case of the Uneaten Feast
+1 Cat Collector
+1 Chef's Kiss
+1 Crumb and Get It
+1 Cut a Deal
+1 Discerning Financier
+1 Disrupt Decorum
+1 Eastfarthing Farmer
+1 Ellyn Harbreeze, Busybody
+1 Elsewhere Flask
+1 Exotic Orchard
+1 Fabled Passage
+1 Field-Tested Frying Pan
+1 Food Coma
+1 Forbidden Orchard
+1 Fortifying Provisions
+1 Gallant Pie-Wielder
+1 Glóin, Dwarf Emissary
+1 Golden Egg
+1 Hobbit's Sting
+1 Instant Ramen
+1 Lady of Laughter
+1 Late to Dinner
+1 Lembas
+1 Market Gnome
+1 Mentor of the Meek
+14 Mountain
+1 Night Market
+1 Nuka-Cola Vending Machine
+1 Nutrient Block
+1 Of Herbs and Stewed Rabbit
+1 Oswald Fiddlebender
+1 Overencumbered
+1 Party Thrasher
+1 Path of Peace
+20 Plains
+1 Potion of Healing
+1 Roadside Assistance
+1 Rosie Cotton of South Lane
+1 Rune of Sustenance
+1 Second Breakfast
+1 Sierra, Nuka's Biggest Fan
+1 Smothering Tithe
+1 Spare Supplies
+1 Spirit Link
+1 Spirit Loop
+1 Sunset Revelry
+1 Survivor's Med Kit
+1 Swords to Plowshares
+1 Syr Ginger, the Meal Ender
+1 Take Out the Trash
+1 The Gaffer
+1 Three Bowls of Porridge
+1 Vault 101: Birthday Party
+1 Wedding Invitation
+1 Witch's Oven
+1 Smuggler's Share

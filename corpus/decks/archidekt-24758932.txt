@@ -1,0 +1,94 @@
+# Archidekt — Re: Your Brains
+# source: archidekt:24758932
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Narfi, Betrayer King
+
+Deck:
+1 Archghoul of Thraben
+1 Ash Barrens
+1 Bloodline Bidding
+1 Bojuka Bog
+1 Boneknitter
+1 Borrowing 100,000 Arrows
+1 Cemetery Reaper
+1 Champion of the Perished
+1 Command Tower
+1 Compelling Deterrence
+1 Harmonized Crescendo
+1 Contaminated Aquifer
+1 Corpse Blockade
+1 Corpse Connoisseur
+1 Corrupted Conviction
+1 Crystal Vein
+1 Deadly Dispute
+1 Deadly Plot
+1 Diabolic Tutor
+1 Dimir House Guard
+1 Distant Melody
+1 Dread Return
+1 Drownyard Amalgam
+1 Empty the Laboratory
+1 Escape Tunnel
+1 Evolving Wilds
+1 Fatestitcher
+1 Fell Stinger
+1 Field of Ruin
+1 Final Parting
+1 Flip the Switch
+1 Geralf's Mindcrusher
+1 Ghost Quarter
+1 Ghoulcaller's Chant
+1 Gisa and Geralf
+1 Graf Harvest
+1 Grisly Spectacle
+1 Halo-Charged Skaab
+1 Jwari Disruption // Jwari Ruins
+1 Lazotep Plating
+1 Liliana's Standard Bearer
+1 Lively Dirge
+1 Lord of the Accursed
+1 Malakir Rebirth // Malakir Mire
+1 Midnight Reaper
+1 Mistvault Bridge
+1 Myriad Landscape
+1 Mystic Sanctuary
+1 Nantuko Husk
+1 Nim Shambler
+1 Noosegraf Mob
+1 Overcharged Amalgam
+1 Path of Ancestry
+1 Phyrexian Reclamation
+1 Plumb the Forbidden
+1 Port of Karfell
+1 Prophet of the Scarab
+1 Razaketh's Rite
+1 Rewind
+1 Rooftop Storm
+1 Scavenger Grounds
+1 Screeching Scorchbeast
+6 Snow-Covered Island
+10 Snow-Covered Swamp
+1 Spell Pierce
+1 Stern Scolding
+1 Stitch Together
+1 Tainted Isle
+1 Temple of Deceit
+1 Temple of the False God
+1 Umbral Collar Zealot
+1 Unclaimed Territory
+1 Undead Alchemist
+1 Undead Augur
+1 Undead Butler
+1 Undead Warchief
+1 Vault 12: The Necropolis
+1 Victimize
+1 Vile Entomber
+1 Village Rites
+1 Viscera Seer
+1 Wight of Precinct Six
+1 Witch's Cottage
+1 Zombie Apocalypse
+1 Zombie Trailblazer

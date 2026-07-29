@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Swords to Plowshares",
+    "mana_cost": "{W}",
+    "type_line": "Instant",
+    "oracle_text": "Exile target creature. Its controller gains life equal to its power."
+  },
+  "ccm": {
+    "name": "Swords to Plowshares",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{W}"},
+    "types": ["instant"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "exile", "target": {"type": "creature", "count": 1, "controller": "any"}},
+          {"op": "gain_life", "amount": "X", "x_basis": "target_power", "who": "opponent", "condition": "equal to the exiled creature's power"}
+        ]
+      }
+    ]
+  }
+}

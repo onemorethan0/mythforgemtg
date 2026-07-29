@@ -1,0 +1,82 @@
+# Archidekt — Gotta Wait for Shadow
+# source: archidekt:22935841
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Shadow, Mysterious Assassin
+
+Deck:
+1 Pact Weapon
+1 Swiftfoot Boots
+1 Brotherhood Regalia
+1 Warlock Class
+1 Phantom Blade
+1 Junji, the Midnight Sky
+1 Kokusho, the Evening Star
+1 Metalwork Colossus
+1 Restart Sequence
+1 Phyrexian Scriptures
+1 Ninja's Blades
+1 Solemn Simulacrum
+1 Sol Ring
+1 Arcane Signet
+1 Charcoal Diamond
+1 Mind Stone
+1 Defile
+1 Expedition Map
+1 Anticausal Vestige
+1 Will of the Abzan
+1 Meteor Golem
+1 Animate Dead
+1 Key to the City
+1 Bojuka Bog
+1 Cabal Coffers
+1 Buried Ruin
+28 Swamp
+1 Withering Torment
+1 Chain Assassination
+1 Silver Shroud Costume
+1 Kaya's Ghostform
+1 Agent of the Shadow Thieves
+1 Bygone Colossus
+1 Mithril Coat
+1 Heartless Summoning
+1 Jet Medallion
+1 The Darkness Crystal
+1 Spymaster's Vault
+1 Shizo, Death's Storehouse
+1 Excalibur, Sword of Eden
+1 Shadow of Mortality
+1 Gray Merchant of Asphodel
+1 Ravenous Chupacabra
+1 Bloodletter of Aclazotz
+1 Overlord of the Balemurk
+1 Go for the Throat
+1 Massacre Wurm
+1 Cabal Stronghold
+1 Witch's Cottage
+1 Come Back Wrong
+1 Wound Reflection
+1 Malakir Rebirth // Malakir Mire
+1 Dark Ritual
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Insatiable Avarice
+1 Hammer of Nazahn
+1 Reanimate
+1 Entomb
+1 Necromancy
+1 Interceptor, Shadow's Hound
+1 My Precious // Allure of Power
+1 Infernal Grasp
+1 Game Over
+1 Black Market Connections
+1 Cover of Darkness
+1 Bitter Triumph
+1 The Black Gate
+1 Armor of Shadows
+1 Masterful Flourish
+1 Professor's Warning
+1 Filth
+1 Urborg, Tomb of Yawgmoth

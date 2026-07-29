@@ -1,0 +1,93 @@
+# Archidekt — Pride Kindred
+# source: archidekt:3200613
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Ashiok, Nightmare Muse
+1 Heartbeat of Spring
+1 Huatli, Radiant Champion
+1 Saheeli, Sublime Artificer
+1 Saheeli's Artistry
+1 Secret Rendezvous
+1 Nissa, Voice of Zendikar
+1 Nissa, Vital Force
+1 Adeline, Resplendent Cathar
+1 Halana and Alena, Partners
+1 Halana, Kessig Ranger
+1 Alena, Kessig Trapper
+1 Bearscape
+1 Savor the Moment
+1 Ral Zarek
+1 Haktos the Unscarred
+1 Kynaios and Tiro of Meletis
+1 Alesha, Who Smiles at Death
+1 Cadira, Caller of the Small
+1 Niko Aris
+1 Karn, Scion of Urza
+1 Tivit, Seller of Secrets
+1 Xantcha, Sleeper Agent
+1 Gonti, Lord of Luxury
+1 Yahenni, Undying Partisan
+1 Oji, the Exquisite Blade
+1 Collective Voyage
+1 Wedding Ring
+1 Sol Ring
+1 Mana Confluence
+1 The World Tree
+1 Transguild Promenade
+4 Plains
+4 Forest
+4 Island
+4 Swamp
+4 Mountain
+1 Chandra, Torch of Defiance
+1 Evolving Wilds
+1 Exotic Orchard
+1 Ash Barrens
+1 Nomad Outpost
+1 Savage Lands
+1 Sandsteppe Citadel
+1 Crumbling Necropolis
+1 Arcane Sanctum
+1 Frontier Bivouac
+1 Jungle Shrine
+1 Seaside Citadel
+1 Mystic Monastery
+1 Arcane Signet
+1 Spirit of Resistance
+1 Death-Greeter's Champion
+1 Plargg and Nassari
+1 Rocco, Street Chef
+1 Command Tower
+1 Path of Ancestry
+1 Rowan Kenrith
+1 Will Kenrith
+1 Primeval Herald
+1 Talion, the Kindly Lord
+1 Conduit Pylons
+1 Yuma, Proud Protector
+1 Gonti, Canny Acquisitor
+1 Tomik, Wielder of Law
+1 Oviya, Automech Artisan
+1 Sita Varma, Masked Racer
+1 Six
+1 Cactus Preserve
+1 Alesha, Who Laughs at Fate
+1 Niko, Light of Hope
+1 Ureni, the Song Unending
+1 Smile at Death
+1 Alesha's Legacy
+1 Felothar, Dawn of the Abzan
+1 Eshki Dragonclaw
+1 Chromatic Lantern
+1 Xu-Ifit, Osteoharmonist
+1 Kirol, Attentive First-Year
+1 Joined Researchers // Secret Rendezvous
+1 Gilded Lotus
+1 Shared Roots
+1 Sami, Wildcat Captain
+1 Hearts on Fire

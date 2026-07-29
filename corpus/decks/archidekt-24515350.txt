@@ -1,0 +1,95 @@
+# Archidekt — Nita Swimming
+# source: archidekt:24515350
+# fetched: 2026-07-24
+
+Commander:
+1 Nita, Forum Conciliator
+
+Deck:
+1 Knowledge Pool
+1 Leonin Relic-Warder
+1 The Mycosynth Gardens
+1 Argivian Find
+1 Buried Ruin
+1 Aetherflux Reservoir
+1 Enlightened Tutor
+1 Command Tower
+1 Agatha's Soul Cauldron
+1 Blight Herder
+1 Mirage Mirror
+1 Sculpting Steel
+1 Crypt Ghast
+1 Grand Abolisher
+1 Case of the Stashed Skeleton
+1 Insatiable Avarice
+1 Profane Tutor
+1 Scheming Symmetry
+1 Wishclaw Talisman
+1 Grim Tutor
+1 Beseech the Mirror
+1 Grim Servant
+1 Hoarding Broodlord
+1 Splinter's Technique
+1 The Cruelty of Gix
+1 Black Sun's Twilight
+1 Blacksmith's Skill
+1 Dark Ritual
+1 Final Showdown
+1 Firja, Judge of Valor
+1 Aligned Heart
+1 Mangara, the Diplomat
+1 Lotho, Corrupt Shirriff
+1 Scrollshift
+1 Abdel Adrian, Gorion's Ward
+1 Teleportation Circle
+1 Expedition Map
+1 Aerial Extortionist
+1 Callous Bloodmage
+1 Fellwar Stone
+1 Cosmogrand Zenith
+1 Fire Nation Occupation
+1 Sedgemoor Witch
+1 Grand Crescendo
+1 Heliod's Intervention
+1 Secure the Wastes
+1 Unexpectedly Absent
+1 Enduring Innocence
+1 Welcoming Vampire
+1 Biblioplex Assistant
+1 Urborg, Tomb of Yawgmoth
+1 Talisman of Hierarchy
+1 Arcane Signet
+1 Mind Stone
+1 Sunpearl Kirin
+1 Desperate Measures
+1 Stensian Sanguinist // Exsanguinate
+1 Airbending Lesson
+1 Oblation
+1 Imperial Seal
+1 Rowan's Grim Search
+1 Gerrard's Hourglass Pendant
+1 Reprieve
+1 Malakir Rebirth // Malakir Mire
+1 Caves of Koilos
+1 Isolated Chapel
+9 Plains
+1 Tainted Field
+1 Vault of Champions
+1 Orzhov Basilica
+1 Shattered Sanctum
+1 Concealed Courtyard
+1 Bleachbone Verge
+1 Castle Locthwain
+1 Exotic Orchard
+1 Fell the Profane // Fell Mire
+1 Boggart Trawler // Boggart Bog
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Adagia, Windswept Bastion
+1 Fetid Heath
+5 Swamp
+1 Razorgrass Ambush // Razorgrass Field
+1 Sejiri Shelter // Sejiri Glacier
+1 Kabira Takedown // Kabira Plateau
+1 Trading Post
+1 Monastery Mentor

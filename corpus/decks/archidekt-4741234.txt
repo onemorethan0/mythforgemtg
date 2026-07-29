@@ -1,0 +1,102 @@
+# Archidekt — 🪦 Tatsunari Mutate
+# source: archidekt:4741234
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Tatsunari, Toad Rider
+
+Deck:
+1 Keen Sense
+1 Hypnotic Siren
+1 Ivy, Gleeful Spellthief
+1 Grim Guardian
+1 Pouncing Shoreshark
+1 Gemrazer
+1 Utopia Sprawl
+1 Parcelbeast
+1 Migratory Greathorn
+1 Vesuvan Duplimancy
+1 Oubliette
+1 Sea-Dasher Octopus
+1 Combat Research
+1 Mana Bloom
+1 One with Nature
+1 Court of Ambition
+1 Balemurk Leech
+1 Bear Umbra
+1 Amphibian Downpour
+1 Vraska Joins Up
+1 Shimmering Wings
+1 Sawtusk Demolisher
+1 Revitalizing Repast // Old-Growth Grove
+1 Season of Growth
+1 Estrid's Invocation
+1 Karametra's Favor
+1 Wound Reflection
+1 Boneyard Lurker
+1 Leyline Immersion
+1 Valgavoth's Lair
+1 Silent Hallcreeper
+1 Insatiable Hemophage
+1 Asinine Antics
+1 Whip Silk
+1 Flooded Grove
+1 Bloodchief Ascension
+1 Waterlogged Grove
+1 Kenrith's Transformation
+1 Awaken the Honored Dead
+1 Dress Down
+2 Island
+1 Heroic Intervention
+1 Ancestral Mask
+1 Nature's Will
+1 Shigeki, Jukai Visionary
+1 Wolfwillow Haven
+1 Demolition Field
+1 Setessan Champion
+2 Swamp
+1 Command Tower
+1 An Offer You Can't Refuse
+1 Wild Growth
+1 Fertile Ground
+1 Verduran Enchantress
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Sink into Stupor // Soporific Springs
+1 Ground Seal
+1 Confounding Conundrum
+1 Enchantress's Presence
+5 Forest
+1 Unbridled Growth
+1 Abundant Growth
+1 Sanctum Weaver
+1 Dawn's Reflection
+1 Omen of the Sea
+1 Assassin's Trophy
+1 Eidolon of Blossoms
+1 Doomwake Giant
+1 Breeding Pool
+1 Verdant Catacombs
+1 Polluted Delta
+1 Zagoth Triome
+1 Watery Grave
+1 Overgrown Tomb
+1 Llanowar Wastes
+1 Boseiju, Who Endures
+1 Dreamroot Cascade
+1 Undergrowth Stadium
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Prismatic Vista
+1 Otawara, Soaring City
+1 Fabled Passage
+1 Hedge Maze
+1 Proft's Eidetic Memory
+1 Argothian Enchantress
+1 Misty Rainforest
+1 Arcane Denial
+1 Bojuka Bog
+1 Golgari Rot Farm
+1 Observed Stasis
+1 Seal of Primordium
+1 Mystic Remora

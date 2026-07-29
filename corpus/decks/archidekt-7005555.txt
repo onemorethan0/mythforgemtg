@@ -1,0 +1,94 @@
+# Archidekt — L A M P.dek
+# source: archidekt:7005555
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Deep Analysis
+1 Dryad's Revival
+1 Witch's Cottage
+1 Choked Estuary
+1 Opulent Palace
+1 Edgewall Inn
+1 Roadside Reliquary
+1 Gingerbread Cabin
+1 Reverse Engineer
+1 Weave Fate
+1 Order of Midnight // Alter Fate
+1 Rescue from the Underworld
+1 Corridor Monitor
+1 Hagra Mauling // Hagra Broodpit
+1 Sift
+1 Daring Sleuth // Bearer of Overwhelming Truths
+1 Trinket Mage
+1 Wickerbough Elder
+1 Old Rutstein
+1 Captivating Glance
+1 Spectral Adversary
+1 Rattlechains
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Patrician Geist
+1 Gravelighter
+1 Kodama of the West Tree
+1 Cemetery Illuminator
+1 Spectral Arcanist
+1 Hawkeater Moth
+1 Mothdust Changeling
+1 Blinkmoth Well
+1 Refresh
+1 Chillerpillar
+1 Restless Cottage
+1 Pithing Needle
+1 Lantern of the Lost
+1 Glaring Spotlight
+1 Ghost Lantern // Bind Spirit
+1 Lamplighter of Selhoff
+1 Glowcap Lantern
+1 Twisted Experiment
+1 Lantern of Insight
+1 Inspiring Call
+1 Ethereal Investigator
+1 Lantern of Revealing
+1 Seer's Lantern
+1 Chromatic Lantern
+1 Spectral Searchlight
+1 Detection Tower
+1 Arcane Lighthouse
+1 Geistlight Snare
+1 Command Beacon
+6 Island
+3 Swamp
+3 Swamp
+1 Hold for Questioning
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Soul-Guide Lantern
+1 Dismal Backwater
+1 Ghost Quarter
+1 Overgrown Tomb
+1 Inkmoth Nexus
+1 Wanderlight Spirit
+1 Slaughter Specialist
+1 Leshrac's Rite
+1 Ghostly Wings
+1 Fear of Death
+1 Searchlight Geist
+1 Blinkmoth Nexus
+1 Infernal Kirin
+1 Phenomenon Investigators
+1 Dazzling Lights
+1 Glimmerlight
+1 Deadly Allure
+6 Forest
+1 Reito Lantern
+1 Duskshell Crawler
+1 Roaming Ghostlight
+1 Lantern Spirit
+1 Lantern Bearer // Lanterns' Lift
+1 Ongoing Investigation
+1 Secrets of the Key
+1 Overwhelmed Archivist // Archive Haunt
+1 Fascination

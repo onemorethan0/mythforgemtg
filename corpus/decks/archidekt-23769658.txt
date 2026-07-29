@@ -1,0 +1,101 @@
+# Archidekt — ZUKO
+# source: archidekt:23769658
+# fetched: 2026-07-09
+
+Commander:
+1 Fire Lord Zuko
+
+Deck:
+4 Mountain
+1 Norin the Wary
+2 Swamp
+1 Command Tower
+1 Inti, Seneschal of the Sun
+1 Party Thrasher
+1 Anim Pakal, Thousandth Moon
+1 Exotic Orchard
+1 Dream Devourer
+1 Prosper, Tome-Bound
+1 Anep, Vizier of Hazoret
+1 Laelia, the Blade Reforged
+1 Ryan Sinclair
+1 Cait Sith, Fortune Teller
+1 Headliner Scarlett
+1 The Legend of Roku // Avatar Roku
+1 Malakir Rebirth // Malakir Mire
+1 Duelist's Flame
+1 Goro-Goro, Disciple of Ryusei
+1 Dusk Legion Duelist
+1 Abzan Falconer
+1 Arcane Signet
+1 Sol Ring
+1 Talisman of Indulgence
+1 Talisman of Hierarchy
+1 Hopeful Initiate
+1 Reconnaissance
+1 Legion Leadership // Legion Stronghold
+1 Sundering Eruption // Volcanic Fissure
+1 The Last Agni Kai
+1 Eerie Interlude
+1 Hurl Through Hell
+1 Damning Verdict
+1 Castle Embereth
+1 Cori Mountain Monastery
+1 Spinerock Knoll
+1 Vault of the Archangel
+1 Windbrisk Heights
+1 Nomad Outpost
+1 Path of Ancestry
+1 Clifftop Retreat
+1 Godless Shrine
+1 Caves of Koilos
+1 Battlefield Forge
+1 Blood Crypt
+1 Sacred Foundry
+1 Bloodstained Mire
+1 Sulfurous Springs
+1 Shattered Sanctum
+1 Haunted Ridge
+1 Sundown Pass
+1 Rugged Prairie
+1 Shadowblood Ridge
+2 Plains
+1 Lotho, Corrupt Shirriff
+1 Aggravated Assault
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Delayed Blast Fireball
+1 Uncivil Unrest
+1 Leyline Tyrant
+1 Valakut Awakening // Valakut Stoneforge
+1 Smoldering Marsh
+1 Redirect Lightning
+1 Wild Wasteland
+1 Jeska's Will
+1 Deflecting Swat
+1 Big Score
+1 Lae'zel, Vlaakith's Champion
+1 Grim Tutor
+1 Tersa Lightshatter
+1 Professional Face-Breaker
+1 Grim Hireling
+1 Soul Shatter
+1 Akroma's Will
+1 Unexpected Windfall
+1 Wild-Magic Sorcerer
+1 Chandra's Ignition
+1 Seething Song
+1 Battle Hymn
+1 Seize Opportunity
+1 Flawless Maneuver
+1 Commune with Lava
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Runaway Steam-Kin
+1 Opera Love Song
+1 Blazing Crescendo
+1 Swords to Plowshares
+1 Zuko's Conviction
+1 End-Blaze Epiphany
+1 Boros Charm
+1 Passionate Archaeologist
+1 Kefka, Dancing Mad
+1 Bolt Bend

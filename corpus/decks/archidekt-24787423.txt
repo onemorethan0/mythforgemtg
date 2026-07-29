@@ -1,0 +1,105 @@
+# Archidekt — Derevi, Tapper of the Accord
+# source: archidekt:24787423
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Derevi, Empyrial Tactician
+
+Deck:
+1 Bountiful Promenade
+1 Overgrown Farmland
+1 Deserted Beach
+1 Adarkar Wastes
+2 Forest
+1 Flooded Strand
+1 Breeding Pool
+1 Windswept Heath
+1 City of Brass
+2 Plains
+1 Swan Song
+1 Otawara, Soaring City
+1 Sink into Stupor // Soporific Springs
+1 Boseiju, Who Endures
+1 Faeburrow Elder
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Arid Mesa
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Yavimaya Coast
+1 Into the Flood Maw
+1 Temple Garden
+1 Wooded Foothills
+1 Dreamroot Cascade
+1 Misty Rainforest
+1 Flooded Grove
+1 Command Tower
+2 Island
+1 Brushland
+1 Hallowed Fountain
+1 Exotic Orchard
+1 Spara's Headquarters
+1 Rejuvenating Springs
+1 Mana Confluence
+1 Sea of Clouds
+1 Delighted Halfling
+1 Disciple of Freyalise // Garden of Freyalise
+1 Scalding Tarn
+1 Yavimaya, Cradle of Growth
+1 Bloom Tender
+1 Sol Ring
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Nature's Claim
+1 No More Lies
+1 Get Lost
+1 Wear Down
+1 Path to Exile
+1 Swords to Plowshares
+1 Strix Serenade
+1 An Offer You Can't Refuse
+1 Esper Sentinel
+1 Sylvan Library
+1 Lightning Greaves
+1 Faerie Mastermind
+1 King T'Challa // Black Panther, Hope Enduring
+1 Ledger Shredder
+1 Avatar's Wrath
+1 Wargate
+1 Teferi's Protection
+1 The One Ring
+1 Captain America, Living Legend
+1 Emiel the Blessed
+1 Falcon and Redwing
+1 Mockingbird
+1 Serra Ascendant
+1 Zuran Spellcaster
+1 Arcanis the Omnipotent
+1 Deadeye Navigator
+1 Empress Galina
+1 Patron Wizard
+1 Prodigal Sorcerer
+1 Wu Longbowman
+1 Willow Satyr
+1 Samite Archer
+1 Rootwater Hunter
+1 Tideforce Elemental
+1 Dawn's Truce
+1 Apprentice Sorcerer
+1 Thornwind Faeries
+1 Suq'Ata Firewalker
+1 Finale of Devastation
+1 Flawless Maneuver
+1 Ioreth of the Healing House
+1 Nykthos, Shrine to Nyx
+1 Eldritch Evolution
+1 Capricious Sorcerer
+1 Seedborn Muse
+1 Kelpie Guide
+1 Drumbellower
+1 Unstoppable Plan
+1 Murkfiend Liege
+1 Kiora's Follower
+1 Nyxbloom Ancient
+1 Formidable Speaker
+1 Vizier of Tumbling Sands
+1 Seeker of Skybreak

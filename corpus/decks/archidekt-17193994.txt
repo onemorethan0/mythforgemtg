@@ -1,0 +1,97 @@
+# Archidekt — Fire Nation Attacks (Fire Lord Azula LOST PRECON)
+# source: archidekt:17193994
+# fetched: 2026-07-05
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Frantic Search
+1 Withering Torment
+1 Unleash Fury
+1 Reverberate
+1 Ozai, the Phoenix King
+1 Arcane Signet
+1 Fire Nation Palace
+1 Azula Always Lies
+1 Heartless Act
+1 Noxious Gearhulk
+1 Firebending Student
+1 Sol Ring
+1 Firebender Ascension
+1 The Last Agni Kai
+1 Azula, On the Hunt
+1 Azula, Cunning Usurper
+1 The Rise of Sozin // Fire Lord Sozin
+1 The Fire Nation Drill
+1 Cruel Administrator
+1 Zuko, Exiled Prince
+1 Fire Nation Attacks
+1 Fire Nation Archers
+1 Fire Nation Turret
+1 Leyline of Anticipation
+1 Fated Firepower
+1 Borne Upon a Wind
+1 Dualcaster Mage
+1 Unexpected Windfall
+1 Lightning Bolt
+1 Terminate
+1 Comet Storm
+1 Necron Deathmark
+1 Enduring Curiosity
+1 Mysterious Stranger
+1 Sphinx of Forgotten Lore
+1 Torrential Gearhulk
+1 Witchstalker Frenzy
+1 Quick Study
+1 Dig Through Time
+1 Nowhere to Run
+1 Dubious Delicacy
+1 Misleading Signpost
+1 Abrade
+1 Omen of the Sea
+1 Seething Song
+1 Fire Covenant
+1 Kolaghan's Command
+1 Electrodominance
+1 Soul's Fire
+1 Thirst for Discovery
+1 Fire Magic
+1 Pyrokinesis
+1 Electrolyze
+1 Barrels of Blasting Jelly
+5 Mountain
+1 Smoldering Marsh
+4 Island
+1 Cascade Bluffs
+1 Fire Sages
+1 Fiery Islet
+1 Graven Cairns
+1 Drowned Catacomb
+1 Darkwater Catacombs
+1 Mystic Confluence
+1 Dragonskull Summit
+4 Swamp
+1 Sulfur Falls
+1 Command Tower
+1 Canyon Slough
+1 Ash Barrens
+1 Sunken Hollow
+1 Seething Landscape
+1 Underground River
+1 Sulfurous Springs
+1 Fetid Pools
+1 Exotic Orchard
+1 Sunken Ruins
+1 Stormcarved Coast
+1 Command Beacon
+1 Izzet Signet
+1 Dimir Signet
+1 Rakdos Signet
+1 Shadowblood Ridge
+1 Blasphemous Act
+1 Lightning Greaves
+1 Sozin's Comet
+1 Chaos Warp
+1 Scarring Memories
+1 The Blue Spirit

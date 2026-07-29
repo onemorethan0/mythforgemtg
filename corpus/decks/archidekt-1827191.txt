@@ -1,0 +1,88 @@
+# Archidekt — GROTHAMA!
+# source: archidekt:1827191
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Grothama, All-Devouring
+
+Deck:
+1 Questing Beast
+1 Broodhatch Nantuko
+1 Saber Ants
+1 Blighted Woodland
+1 Liquimetal Torque
+1 Tamiyo's Safekeeping
+1 Desert of the Indomitable
+1 Psychosis Crawler
+1 Joraga Treespeaker
+1 Mossbridge Troll
+1 Okina, Temple to the Grandfathers
+1 Yavimaya Hollow
+1 Rancor
+1 Treetop Village
+1 Goreclaw, Terror of Qal Sisma
+1 Castle Garenbrig
+1 The Great Henge
+1 Vigor
+1 Shadowspear
+1 Kogla, the Titan Ape
+1 Ram Through
+1 Exploration
+1 Sol Ring
+1 Tangled Florahedron // Tangled Vale
+1 War Room
+1 Guildless Commons
+1 Cultivate
+1 Stuffy Doll
+1 Witch's Clinic
+1 Oran-Rief, the Vastwood
+1 Mirrorpool
+1 Tireless Tracker
+1 Lair of the Hydra
+1 Mosswort Bridge
+1 Beast Within
+1 Boseiju, Who Endures
+1 Kodama's Reach
+1 Haywire Mite
+1 Barrow-Blade
+1 Cankerbloom
+1 Twists and Turns // Mycoid Maze
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Khalni Ambush // Khalni Territory
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Fanatic of Rhonas
+1 Collective Resistance
+1 Greater Good
+1 Archdruid's Charm
+1 Case of the Locked Hothouse
+1 Outcaster Trailblazer
+1 Bighorner Rancher
+1 Insidious Fungus
+1 Keen-Eyed Curator
+21 Forest
+1 Herd Heirloom
+1 Sylvan Library
+1 Surrak, Elusive Hunter
+1 Baru, Wurmspeaker
+1 Dawnsire, Sunstar Dreadnought
+1 Bloomvine Regent // Claim Territory
+1 Sledge-Class Seedship
+1 Exploration Broodship
+1 Extinguisher Battleship
+1 Endless Sands
+1 Lizard, Connors's Curse
+1 The Eternity Elevator
+1 Scrapshooter
+1 Season of Gathering
+1 Origin of Metalbending
+1 Spinner of Souls
+1 Trailtracker Scout
+1 Spry and Mighty
+1 Sapling Nursery
+1 Reliquary Tower
+1 Centaur Omenreader
+1 Wall of Roots
+1 Groundchuck & Dirtbag
+1 Skullclamp
+1 Super Combo

@@ -1,0 +1,85 @@
+# Archidekt — Sokka gue
+# source: archidekt:24528389
+# fetched: 2026-07-20
+
+Commander:
+1 Sokka, Tenacious Tactician
+
+Deck:
+1 Abrade
+1 Aetherspouts
+1 Airbending Lesson
+1 Akim, the Soaring Wind
+1 An Offer You Can't Refuse
+1 Ancestors' Aid
+1 Angel's Grace
+1 Azorius Signet
+1 Command Tower
+1 Council's Deliberation
+1 Counterspell
+1 Daring Discovery
+1 Deflecting Palm
+1 Ember Island Production
+1 Evolving Wilds
+1 Exotic Orchard
+1 Expressive Iteration
+1 Fblthp, Lost on the Range
+1 Forceful Denial
+1 Fortune Teller's Talent
+1 Frantic Search
+1 Gamble
+1 Gitaxian Probe
+1 Guttersnipe
+1 Hindering Light
+1 Inspired Ultimatum
+10 Island
+1 Katara, Water Tribe's Hope
+1 Kraum, Violent Cacophony
+1 Kykar, Wind's Fury
+1 Lunar Insight
+1 Molten Tributary
+5 Mountain
+1 Myriad Landscape
+1 Neera, Wild Mage
+1 Otherworldly Gaze
+1 Otterball Antics
+1 Path of Ancestry
+1 Perilous Landscape
+5 Plains
+1 Prairie Stream
+1 Quick Draw
+1 Quicken
+1 Ravenform
+1 Run Away Together
+1 Rupture Spire
+1 Sea Gate
+1 Seachrome Coast
+1 Skycloud Expanse
+1 Slickshot Show-Off
+1 Sokka's Charge
+1 Sokka's Haiku
+1 Sokka, Lateral Strategist
+1 Storm-Kiln Artist
+1 Suppression Ray // Orderly Plaza
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 The Cave of Two Lovers
+1 Thor Odinson
+1 Thriving Heath
+1 Thriving Isle
+1 Unending Whisper
+1 United Front
+1 Zada, Hedron Grinder
+1 Arcane Signet
+1 Chaos Warp
+1 Fellwar Stone
+1 Solve the Equation
+1 Blasphemous Act
+1 Jeskai Ascendancy
+1 Archmage Emeritus
+1 Balmor, Battlemage Captain
+1 Crackle with Power
+1 Impact Tremors
+1 Surge to Victory
+1 Whirlwind of Thought
+1 Warleader's Call

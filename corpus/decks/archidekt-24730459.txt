@@ -1,0 +1,81 @@
+# Archidekt — Molecule Man
+# source: archidekt:24730459
+# fetched: 2026-07-27
+
+Commander:
+1 Molecule Man
+
+Deck:
+1 Daily Bugle Newspaper
+1 Titan's Presence
+1 Warping Wail
+1 Ancient Tomb
+1 Artisan of Kozilek
+1 Bonders' Enclave
+1 Command Beacon
+1 Commander's Plate
+1 Conduit of Ruin
+1 Dreamstone Hedron
+1 Echoes of Eternity
+1 Eldrazi Temple
+1 Eldritch Immunity
+1 Endbringer
+1 Fellwar Stone
+1 Forsaken Monument
+1 Galactus, Devourer of Worlds
+1 Glaring Fleshraker
+1 Hedron Archive
+1 Introduction to Annihilation
+1 Kozilek, Butcher of Truth
+1 Kozilek, the Great Distortion
+1 Lightning Greaves
+1 Mana Vault
+1 Mikokoro, Center of the Sea
+1 Mind Stone
+1 Mystic Forge
+1 Not of This World
+1 Null Elemental Blast
+1 Oblivion Sower
+1 Emrakul, the Promised End
+1 Emrakul, the World Anew
+1 Blightsteel Colossus
+1 All Is Dust
+1 Calamity of the Titans
+1 Cityscape Leveler
+1 Desecrate Reality
+1 It That Betrays
+1 Kozilek's Command
+1 Palladium Myr
+1 Platinum Angel
+1 Reliquary Tower
+1 Rogue's Passage
+1 Scavenger Grounds
+1 Scour from Existence
+1 Scroll Rack
+1 Sensei's Divining Top
+1 Shrine of the Forsaken Gods
+1 Silver Surfer, Galactus's Herald
+1 Sol Ring
+1 Solemn Simulacrum
+1 Swiftfoot Boots
+1 The Immortal Sun
+1 The One Ring
+1 The Walls of Ba Sing Se
+1 Thran Dynamo
+1 Ugin, the Ineffable
+1 Ulamog's Dreadsire
+1 Ultima, Origin of Oblivion
+1 Void Winnower
+1 Wandering Archaic // Explore the Vastlands
+1 War Room
+27 Wastes
+1 Worn Powerstone
+1 Zhulodok, Void Gorger
+1 Sire of Seven Deaths
+1 Ulamog, the Defiler
+1 The Ten Rings
+1 Ugin, Eye of the Storms
+1 Ugin, the Spirit Dragon
+1 Ulamog, the Ceaseless Hunger
+1 Arc Reactor
+1 Summon: Bahamut

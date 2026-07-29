@@ -1,0 +1,66 @@
+# Archidekt — The Pride of Hull Clade (Bracket 2, Slime Against Humanity)
+# source: archidekt:10547386
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 The Pride of Hull Clade
+
+Deck:
+1 Disciple of Freyalise // Garden of Freyalise
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Hinterland Harbor
+1 Thunderclap Drake
+1 Ancestral Knowledge
+1 Taigam's Scheming
+1 Foresight
+1 Misty Rainforest
+1 Rejuvenating Springs
+1 Hedge Maze
+1 Dreamroot Cascade
+1 Emerald Medallion
+1 Locket of Yesterdays
+1 Sink into Stupor // Soporific Springs
+1 Khalni Ambush // Khalni Territory
+1 Cactus Preserve
+1 Command Tower
+1 Flooded Grove
+1 Mosswort Bridge
+1 Overflowing Basin
+1 Yavimaya Coast
+1 Contingency Plan
+1 Manipulate Fate
+1 Reliquary Tower
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Birds of Paradise
+1 Elvish Mystic
+1 Archdruid's Charm
+1 Llanowar Elves
+1 Breeding Pool
+1 Rogue's Passage
+10 Island
+8 Forest
+1 Willowrush Verge
+1 Wild Growth
+1 Kederekt Leviathan
+1 Semblance Anvil
+1 Spellweaver Helix
+1 Ravenform
+1 Lier, Disciple of the Drowned
+1 Eldritch Evolution
+1 Reclamation Sage
+1 Adrix and Nev, Twincasters
+1 Quilled Greatwurm
+1 Vigor
+1 Traverse the Outlands
+1 Malevolent Rumble
+1 Joraga Treespeaker
+1 Fyndhorn Elves
+1 Aether Gale
+1 Pick Your Poison
+1 Contest of Claws
+28 Slime Against Humanity
+1 Decisive Denial
+1 Aftermath Analyst
+1 Loading Zone
+1 Kodama of the West Tree

@@ -1,0 +1,108 @@
+# Archidekt — Aragorn, The Uniter Spellslinger Deck Bracket 2/3
+# source: archidekt:12909909
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Aragorn, the Uniter
+
+Deck:
+1 Annie Joins Up
+1 Arcane Infusion
+1 Arid Mesa
+1 Atarka's Command
+1 Azorius Charm
+1 Archmage Emeritus
+1 Bant Charm
+1 Bloom Tender
+1 Bountiful Promenade
+1 Breeding Pool
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Brokers Charm
+1 Command Tower
+1 Decisive Denial
+1 Destructive Revelry
+1 Domri's Ambush
+1 Dromoka's Command
+1 Endless Detour
+1 Exotic Orchard
+1 Expressive Iteration
+1 Faeburrow Elder
+1 Fallaji Wayfarer
+1 Farseek
+1 Fiery Inscription
+1 Firemind's Research
+1 Flame of Anor
+1 Flooded Strand
+1 Forest
+1 Friendly Rivalry
+1 Galvanic Iteration
+1 General Ferrous Rokiric
+1 Growth Spiral
+1 Guttersnipe
+1 Hallowed Fountain
+1 Hinterland Harbor
+1 Hull Breach
+1 Hushwood Verge
+1 Island
+1 Izzet Charm
+1 Jeskai Ascendancy
+1 Jetmir's Garden
+1 Ketria Triome
+1 Legion Leadership // Legion Stronghold
+1 Lightning Helix
+1 Lilah, Undefeated Slickshot
+1 Manamorphose
+1 Misty Rainforest
+1 Mountain
+1 Nature's Lore
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Olórin's Searing Light
+1 Pillar of the Paruns
+1 Planar Genesis
+1 Prismari Command
+1 Quandrix Apprentice
+1 Rampant Growth
+1 Raugrin Triome
+1 Rejuvenating Springs
+1 Riverpyre Verge
+1 Rootbound Crag
+1 Sacred Foundry
+1 Scalding Tarn
+1 Sea of Clouds
+1 Sorcerer Class
+1 Spara's Headquarters
+1 Spectator Seating
+1 Spire Garden
+1 Steam Vents
+1 Stomping Ground
+1 Stump Stomp // Burnwillow Clearing
+1 Sulfur Falls
+1 Sunbillow Verge
+1 Temple Garden
+1 Temur Charm
+1 Thornspire Verge
+1 Three Visits
+1 Thrilling Discovery
+1 Trace of Abundance
+1 Training Center
+1 Treva's Charm
+1 Whirlwind of Thought
+1 Willowrush Verge
+1 Windswept Heath
+1 Wooded Foothills
+1 Silundi Vision // Silundi Isle
+1 Sink into Stupor // Soporific Springs
+1 Birds of Paradise
+1 Veyran, Voice of Duality
+1 Sundering Eruption // Volcanic Fissure
+1 Skullclamp
+1 Simic Charm
+1 Jeskai Charm
+1 Guided Passage
+1 Naya Charm
+1 Curiosity
+1 Keen Sense
+1 Vivi Ornitier
+1 Spider Manifestation
+1 Boros Charm

@@ -1,0 +1,103 @@
+# Archidekt — Burakos, Party of Four?
+# source: archidekt:4301639
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Burakos, Party Leader
+1 Folk Hero
+
+Deck:
+1 Temple of Silence
+1 Swiftfoot Boots
+1 Orzhov Basilica
+1 Nalia de'Arnise
+1 Jazal Goldmane
+1 War Room
+1 Vexilus Praetor
+1 Vat of Rebirth
+1 Stick Together
+1 Starlit Sanctum
+1 Squad Commander
+1 Path of Ancestry
+1 Arcane Signet
+1 Windbrisk Heights
+1 Multiclass Baldric
+1 Mindblade Render
+1 Harper Recruiter
+1 Deep Gnome Terramancer
+1 Crib Swap
+1 Astarion, the Decadent
+1 Assault Intercessor
+1 Archpriest of Iona
+1 Access Tunnel
+1 Command Tower
+1 Caves of Koilos
+1 Selfless Glyphweaver // Deadly Vanity
+1 Batwing Brume
+1 Morbid Opportunist
+1 Night Clubber
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Giver of Runes
+1 Rogue's Passage
+1 Silent Clearing
+1 Flawless Maneuver
+1 Baldin, Century Herdmaster
+1 Roadside Reliquary
+1 Heliod's Intervention
+1 Obsidian Battle-Axe
+1 Gandalf, White Rider
+1 Evin, Waterdeep Opportunist
+1 The Black Gate
+1 Lotho, Corrupt Shirriff
+1 Disciple of the Vault
+1 Guildless Commons
+1 Deadly Rollick
+1 Vault of Champions
+1 Skullclamp
+1 Selfless Spirit
+1 Talisman of Hierarchy
+1 Sol Ring
+1 Orzhov Signet
+1 Path to Exile
+1 Bojuka Bog
+1 Zulaport Cutthroat
+1 Vault of the Archangel
+1 Swords to Plowshares
+1 Nadier's Nightblade
+1 Mutavault
+1 Mother of Runes
+1 Mirror Entity
+1 Lightning Greaves
+1 Grim Haruspex
+1 Godless Shrine
+1 Changeling Outcast
+1 Black Market Connections
+1 Winds of Abandon
+1 Mage's Attendant
+3 Swamp
+1 Fetid Heath
+1 Roaming Throne
+1 Mastermind Plum
+1 Shattered Sanctum
+1 Desolate Mire
+1 Arid Archway
+1 Galadriel's Dismissal
+1 Aven Interrupter
+1 Requisition Raid
+1 Popular Egotist
+1 Inkshield
+1 Akroma's Will
+1 Shadowy Backstreet
+1 Al Bhed Salvagers
+1 Sejiri Shelter // Sejiri Glacier
+1 Exalted Sunborn
+1 Shizo, Death's Storehouse
+1 Adept Watershaper
+1 Archivist of Oghma
+4 Plains
+1 Glasswing Grace // Age-Graced Chapel
+1 Blackbloom Rogue // Blackbloom Bog
+1 Smogsteed Rider
+1 Storm of Souls
+1 Haunted One

@@ -1,0 +1,97 @@
+# EDHREC average deck — Kess, Dissident Mage
+# source: edhrec_average:kess-dissident-mage
+# fetched: 2026-07-05
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Arcane Signet
+1 Archmage Emeritus
+1 Baral, Chief of Compliance
+1 Black Waltz No. 3
+1 Blasphemous Act
+1 Blood Crypt
+1 Bloodstained Mire
+1 Brainstorm
+1 Cabal Ritual
+1 Chaos Warp
+1 Command Tower
+1 Consider
+1 Counterspell
+1 Crumbling Necropolis
+1 Cyclonic Rift
+1 Dark Ritual
+1 Demonic Tutor
+1 Dimir Signet
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Dualcaster Mage
+1 Exotic Orchard
+1 Fact or Fiction
+1 Faithless Looting
+1 Feed the Swarm
+1 Fellwar Stone
+1 Frantic Search
+1 Gamble
+1 Gitaxian Probe
+1 Goblin Electromancer
+1 Guttersnipe
+1 Increasing Vengeance
+5 Island
+1 Izzet Signet
+1 Jeska's Will
+1 Lightning Bolt
+1 Luxury Suite
+1 Mana Drain
+1 Mana Geyser
+1 Morphic Pool
+4 Mountain
+1 Mystic Remora
+1 Mystical Tutor
+1 Negate
+1 Nightscape Familiar
+1 Notion Thief
+1 Opt
+1 Orcish Bowmasters
+1 Polluted Delta
+1 Ponder
+1 Preordain
+1 Professor Onyx
+1 Rakdos Signet
+1 Reanimate
+1 Reliquary Tower
+1 Rhystic Study
+1 Scalding Tarn
+1 See the Truth
+1 Shivan Reef
+1 Smoldering Marsh
+1 Sol Ring
+1 Steam Vents
+1 Storm-Kiln Artist
+1 Stormcatch Mentor
+1 Sulfur Falls
+1 Sunken Hollow
+4 Swamp
+1 Swan Song
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Talrand, Sky Summoner
+1 Terminate
+1 Thassa's Oracle
+1 Thousand-Year Storm
+1 Toxic Deluge
+1 Training Center
+1 Underground River
+1 Underworld Breach
+1 Vampiric Tutor
+1 Vandalblast
+1 Vivi Ornitier
+1 Watery Grave
+1 Wheel of Fortune
+1 Windfall
+1 Xander's Lounge
+1 Young Pyromancer

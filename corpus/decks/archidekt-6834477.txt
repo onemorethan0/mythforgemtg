@@ -1,0 +1,95 @@
+# Archidekt — Mutant Menace - Fallout
+# source: archidekt:6834477
+# fetched: 2026-07-05
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Find // Finality
+1 Cathedral Acolyte
+1 Darkwater Catacombs
+1 Farseek
+1 Harmonize
+1 Hinterland Harbor
+1 Branching Evolution
+1 Inspiring Call
+1 Fetid Pools
+1 Jason Bright, Glowing Prophet
+1 Mirelurk Queen
+1 Mortuary Mire
+1 Rampaging Yao Guai
+1 Strong, the Brutish Thespian
+1 Talisman of Curiosity
+1 Temple of Deceit
+1 Temple of Mystery
+1 Tireless Tracker
+1 Nesting Grounds
+1 Opulent Palace
+1 Sunken Hollow
+1 Tainted Wood
+1 Temple of Malady
+1 Woodland Cemetery
+1 Contagion Clasp
+1 Contaminated Drink
+1 Command Tower
+1 Biomass Mutation
+1 Casualties of War
+1 Bloatfly Swarm
+1 Corpsejack Menace
+1 Cultivate
+1 Drowned Catacomb
+5 Forest
+1 Glowing One
+1 Guardian Project
+1 Hardened Scales
+1 Harold and Bob, First Numens
+1 Inexorable Tide
+5 Island
+1 Infesting Radroach
+1 Lily Bowen, Raging Grandma
+1 Lumbering Megasloth
+1 Mutational Advantage
+1 Nightkin Ambusher
+1 Nuka-Nuke Launcher
+1 Piper Wright, Publick Reporter
+1 Power Fist
+1 Radstorm
+1 Raul, Trouble Shooter
+1 Strength Bobblehead
+1 Struggle for Project Purity
+1 Tainted Isle
+1 Talisman of Dominance
+1 Temple of the False God
+1 Terramorphic Expanse
+1 The Master, Transcendent
+1 Vault 87: Forced Evolution
+1 Vault 12: The Necropolis
+1 Watchful Radstag
+1 Winding Constrictor
+1 Young Deathclaws
+1 Exotic Orchard
+1 Fraying Sanity
+1 Sol Ring
+1 Path of Ancestry
+1 Nuclear Fallout
+1 Atomize
+1 Alpha Deathclaw
+1 Putrefy
+1 Ash Barrens
+5 Swamp
+1 Arcane Signet
+1 Evolving Wilds
+1 Vexing Radgull
+1 Hancock, Ghoulish Mayor
+1 Feral Ghoul
+1 Agent Frank Horrigan
+1 Overflowing Basin
+1 Tato Farmer
+1 Recon Craft Theta
+1 Rampant Growth
+1 Talisman of Resilience
+1 Viridescent Bog
+1 Marcus, Mutant Mayor
+1 Screeching Scorchbeast
+1 Mariposa Military Base

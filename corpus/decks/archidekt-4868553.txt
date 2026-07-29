@@ -1,0 +1,102 @@
+# Archidekt — Lore Of The Rings Upgrade Build
+# source: archidekt:4868553
+# fetched: 2026-07-05
+
+Commander:
+1 Tom Bombadil
+
+Deck:
+1 Abundant Growth
+1 Arcane Signet
+1 Ash Barrens
+1 Azusa's Many Journeys // Likeness of the Seeker
+1 Bad River
+1 Battlefield Forge
+1 Binding the Old Gods
+1 Birth of the Imperium
+1 Brago, King Eternal
+1 Brushland
+1 Canopy Vista
+1 Caves of Koilos
+1 Chromatic Lantern
+1 Cinder Glade
+1 Clockspinning
+1 Command Tower
+1 Cultivate
+1 Dance of the Manse
+1 Doomwake Giant
+1 Eidolon of Blossoms
+1 Elspeth Conquers Death
+1 Enchantress's Presence
+1 Exotic Orchard
+1 Farseek
+1 Firja's Retribution
+1 Flood Plain
+5 Forest
+1 Fortified Village
+1 Ghen, Arcanum Weaver
+1 Glissa Sunslayer
+1 Goldberry, River-Daughter
+1 Grasslands
+1 Haunted Mire
+1 Hex Parasite
+1 Hidetsugu Consumes All // Vessel of the All-Consuming
+1 Hinterland Harbor
+1 In the Darkness Bind Them
+1 Island
+1 Jin-Gitaxias // The Great Synthesis
+1 Jugan Defends the Temple // Remnant of the Rising Star
+1 Jukai Naturalist
+1 Karplusan Forest
+1 Kiora Bests the Sea God
+1 Krosan Verge
+1 Llanowar Wastes
+1 Mountain
+1 Mountain Valley
+1 Nature's Lore
+1 Negate
+1 One Ring to Rule Them All
+1 Ornithopter of Paradise
+1 Paradise Druid
+2 Plains
+1 Power Conduit
+1 Prairie Stream
+1 Rampant Growth
+1 Resurgent Belief
+1 Rocky Tar Pit
+1 Sacred Peaks
+1 Sanctum Weaver
+1 Satsuki, the Living Lore
+1 Scholar of New Horizons
+1 Scroll of Isildur
+1 Setessan Champion
+1 Showdown of the Skalds
+1 Sigil of the Empty Throne
+1 Smoldering Marsh
+1 Sol Ring
+1 Song of Eärendil
+1 Song of Freyalise
+1 Sulfur Falls
+1 Sunken Hollow
+1 Sunpetal Grove
+1 Swamp
+1 Swords to Plowshares
+1 Sythis, Harvest's Hand
+1 Tangled Islet
+1 The Akroan War
+1 The Bath Song
+1 The Cruelty of Gix
+1 The Elder Dragon War
+1 The Eldest Reborn
+1 The First Iroan Games
+1 The Horus Heresy
+1 The Kami War // O-Kagachi Made Manifest
+1 The Phasing of Zhalfir
+1 The Restoration of Eiganjo // Architect of Restoration
+1 The Trickster-God's Heist
+1 The Weatherseed Treaty
+1 The World Tree
+1 There and Back Again
+1 Unnatural Restoration
+1 Weaver of Harmony
+1 Yavimaya Coast

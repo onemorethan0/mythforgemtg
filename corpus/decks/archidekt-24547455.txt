@@ -1,0 +1,99 @@
+# Archidekt — Frodo & Sam
+# source: archidekt:24547455
+# fetched: 2026-07-28
+
+Commander:
+1 Frodo, Adventurous Hobbit
+1 Sam, Loyal Attendant
+
+Deck:
+1 Bilbo, Fellow Conspirator
+1 Gilded Goose
+1 Woodland Cemetery
+1 Overgrown Tomb
+1 Exotic Orchard
+1 Swords to Plowshares
+1 Indatha Triome
+1 Command Tower
+1 Isolated Chapel
+1 Brushland
+1 Call of the Ring
+1 Temple Garden
+1 Arcane Signet
+1 Canopy Vista
+1 Mirkwood Bats
+1 Path to Exile
+1 Sunpetal Grove
+1 Tireless Provisioner
+1 Peregrin Took
+1 Academy Manufactor
+1 Rosie Cotton of South Lane
+1 Treebeard, Gracious Host
+1 Sanguine Bond
+1 Merry, Warden of Isengard
+1 Pippin, Warden of Isengard
+1 The Shire
+1 Fortified Village
+1 The Battle of Bywater
+1 Godless Shrine
+1 Lotho, Corrupt Shirriff
+1 Gollum, Obsessed Stalker
+1 Assassin's Trophy
+1 Verdant Catacombs
+1 Undergrowth Stadium
+1 Caves of Koilos
+1 Windswept Heath
+1 Llanowar Wastes
+1 Marsh Flats
+1 Bojuka Bog
+1 Bountiful Promenade
+1 Vault of Champions
+1 Overgrown Farmland
+1 Vito, Thorn of the Dusk Rose
+1 Many Partings
+3 Plains
+4 Forest
+1 Reliquary Tower
+4 Swamp
+1 Sol Ring
+1 Super Shredder
+1 Rapacious Guest
+1 Kambal, Profiteering Mayor
+1 Agent of the Iron Throne
+1 Reprieve
+1 Braids, Arisen Nightmare
+1 Deadly Rollick
+1 Frodo Baggins
+1 Jaheira, Friend of the Forest
+1 Three Visits
+1 Exquisite Blood
+1 Bloodthirsty Conqueror
+1 Imp's Mischief
+1 Cauldron Familiar
+1 Clever Concealment
+1 Flawless Maneuver
+1 Teferi's Protection
+1 Boromir, Warden of the Tower
+1 Force of Vigor
+1 Shattered Sanctum
+1 Warren Soultrader
+1 Ninja Pizza
+1 Toxic Deluge
+1 Enduring Tenacity
+1 Smothering Tithe
+1 Mutagen Man, Living Ooze
+1 Prosperous Innkeeper
+1 Scurry Oak
+1 Chatterfang, Squirrel General
+1 Nadier's Nightblade
+1 Samwise Gamgee
+1 Delighted Halfling
+1 The One Ring
+1 Viscera Seer
+1 Night's Whisper
+1 Black Market Connections
+1 Nuka-Cola Vending Machine
+1 Diabolic Intent
+1 Heroic Intervention
+1 Nature's Claim
+1 Marionette Apprentice

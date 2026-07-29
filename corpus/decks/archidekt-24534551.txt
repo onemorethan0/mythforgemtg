@@ -1,0 +1,87 @@
+# Archidekt — Thank Our Troops (deck for charity stream)
+# source: archidekt:24534551
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Kytheon, Hero of Akros // Gideon, Battle-Forged
+
+Deck:
+1 Preeminent Captain
+1 Veteran Armorsmith
+1 Ballyrush Banneret
+1 Veteran Swordsmith
+1 Daru Warchief
+1 Captain of the Watch
+1 Field Marshal
+1 Myrel, Shield of Argive
+1 Recruiter of the Guard
+1 Ranger-Captain of Eos
+1 Siege Veteran
+1 Resolute Reinforcements
+1 Darien, King of Kjeldor
+1 Adeline, Resplendent Cathar
+1 Hero of Bladehold
+1 Mentor of the Meek
+1 Bastion Protector
+1 Frontline Medic
+1 Odric, Master Tactician
+1 Thalia, Heretic Cathar
+1 Odric, Lunarch Marshal
+1 Selfless Spirit
+1 Sword of the Animist
+1 Herald of Anafenza
+1 Herald's Horn
+1 Pearl Medallion
+1 Thalia, Guardian of Thraben
+1 Mobilization
+1 Gideon Jura
+1 Cathars' Crusade
+1 Intangible Virtue
+1 True Conviction
+1 Glorious Anthem
+1 Path to Exile
+1 Elspeth Tirel
+1 Gideon's Company
+1 Blackblade Reforged
+1 Gideon's Sacrifice
+1 Raise the Alarm
+1 Flawless Maneuver
+1 Teferi's Protection
+1 Gideon's Triumph
+1 Martial Coup
+1 Emeria, the Sky Ruin
+1 Windbrisk Heights
+1 Castle Ardenvale
+1 Captain America, Unbowed
+1 Sigarda's Aid
+1 Colossus Hammer
+1 Nykthos, Shrine to Nyx
+1 Myriad Landscape
+1 War Room
+1 Rogue's Passage
+1 Mistveil Plains
+22 Plains
+1 Colossus of Akros
+1 Martyr's Bond
+1 Soldier of the Pantheon
+1 Thran Dynamo
+1 Leyline of the Meek
+1 Esper Sentinel
+1 Valiant Veteran
+1 Spectrum Sentinel
+1 Arcbound Javelineer
+1 Ardent Recruit
+1 Glaring Aegis
+1 Marshal's Anthem
+1 Veteran's Armaments
+1 Baird, Steward of Argive
+1 Ghostly Prison
+1 Maskwood Nexus
+1 Captain America, Super-Soldier
+1 Super-Soldier Serum
+1 Soldier On
+1 Arcane Signet
+1 Swiftfoot Boots
+1 Sol Ring
+1 Commander's Plate

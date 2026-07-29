@@ -1,0 +1,90 @@
+# Archidekt — Ride the Lightning!/Johann,The Apprentice Sorcerer
+# source: archidekt:15440478
+# fetched: 2026-07-09
+# bracket: 2
+
+Commander:
+1 Johann, Apprentice Sorcerer
+
+Deck:
+1 Nevinyrral's Disk
+1 Academy Wall
+1 Temple of Epiphany
+1 Izzet Boilerworks
+1 Retributive Wand
+1 Diviner's Lockbox
+1 Lantern of Revealing
+1 Evolving Wilds
+1 Silverbluff Bridge
+1 Crackling Drake
+1 Prismari Campus
+1 Highland Lake
+1 Terramorphic Expanse
+1 Swiftwater Cliffs
+1 Transguild Promenade
+10 Mountain
+1 Skyline Cascade
+1 Molten Tributary
+1 Izzet Guildgate
+1 Peculiar Lighthouse
+1 Edgewall Inn
+1 Windrider Wizard
+1 Tolarian Terror
+1 Smoldering Spires
+10 Island
+1 Nivix Guildmage
+1 Mocking Sprite
+1 Surtland Frostpyre
+1 Meldweb Curator
+1 Sprite Dragon
+1 Supreme Inquisitor
+1 Archaeomancer
+1 Rootha, Mercurial Artist
+1 Naiad of Hidden Coves
+1 Spectacle Mage
+1 League Guildmage
+1 Uvilda, Dean of Perfection // Nassari, Dean of Expression
+1 Blazing Volley
+1 Seize the Storm
+1 Enigma Drake
+1 Cyclops Electromancer
+1 Izzet Chronarch
+1 Najal, the Storm Runner
+1 Balmor, Battlemage Captain
+1 Maelstrom Muse
+1 Storm Skreelix
+1 Goblin Electromancer
+1 Beamsplitter Mage
+1 Izzet Charm
+1 Elemental Expressionist
+1 Arbiter of the Ideal
+1 Beacon Bolt
+1 Micromancer
+1 Electrostatic Infantry
+1 Multiple Choice
+1 Psychic Barrier
+1 Invade the City
+1 Breakthrough
+1 Gandalf's Sanction
+1 Firemind's Research
+1 Call to Mind
+1 Experimental Overload
+1 Stifle
+1 Chemister's Trick
+1 Ixidor's Will
+1 Annul
+1 Cancel
+1 Brainstorm
+1 Wizard's Retort
+1 Thassa's Rebuff
+1 Essence Backlash
+1 Lightning Strike
+1 Demon Bolt
+1 Fear, Fire, Foes!
+1 Teach by Example
+1 Disdainful Stroke
+1 Stonesplitter Bolt
+1 Frantic Firebolt
+1 Invert // Invent
+1 Searing Blaze
+1 Misguided Rage

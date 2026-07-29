@@ -1,0 +1,102 @@
+# Archidekt — Ich-Tekik, Salvage Splicer/Malcolm, Keen-Eyed Navigator: Grinding Golems
+# source: archidekt:4116172
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Ich-Tekik, Salvage Splicer
+1 Malcolm, Keen-Eyed Navigator
+
+Deck:
+1 Idol of Oblivion
+4 Island
+1 Simic Ascendancy
+1 Farseek
+1 Nature's Lore
+1 Rampant Growth
+1 Three Visits
+1 Breeding Pool
+1 Command Tower
+1 Flooded Grove
+1 Hinterland Harbor
+1 Misty Rainforest
+1 Otawara, Soaring City
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+1 Strip Mine
+1 Demolition Field
+1 Scavenger Grounds
+1 Waterlogged Grove
+1 Yavimaya Coast
+1 Yavimaya, Cradle of Growth
+4 Forest
+1 Ancient Tomb
+1 Fierce Guardianship
+1 An Offer You Can't Refuse
+1 Swan Song
+1 Displacer Kitten
+1 Elemental Bond
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 War Room
+1 Boseiju, Who Endures
+1 Treasure Vault
+1 Winged Words
+1 Glimpse the Core
+1 Urza's Cave
+1 Abstergo Entertainment
+1 Shifting Woodland
+1 Sink into Stupor // Soporific Springs
+1 Three Tree City
+1 Y'shtola Rhul
+1 Willowrush Verge
+1 Worldwalker Helm
+1 Wing Splicer
+1 Maul Splicer
+1 Vital Splicer
+1 Sandstorm Salvager
+1 Cryptic Command
+1 Terrasymbiosis
+1 Starfield Vocalist
+1 Glaring Spotlight
+1 Hide on the Ceiling
+1 Siren's Ruse
+1 Essence Flux
+1 Ghostly Flicker
+1 Planar Incision
+1 Teferi's Time Twist
+1 Spell Swindle
+1 Inspiring Call
+1 Heroic Intervention
+1 Mutational Advantage
+1 Second Harvest
+1 Tribute to the World Tree
+1 Sylvan Library
+1 Hardened Scales
+1 Doubling Season
+1 Parallel Lives
+1 Branching Evolution
+1 Eagle Vision
+1 Thoughtcast
+1 Shamanic Revelation
+1 Sol Ring
+1 The Earth Crystal
+1 Ozolith, the Shattered Spire
+1 Amphibian Downpour
+1 Talon Gates of Madara
+1 Rapid Hybridization
+1 Reality Shift
+1 Pongify
+1 Beast Within
+1 Panharmonicon
+1 Shared Roots
+1 Collective Resistance
+1 Turbulent Wilderness
+1 Hidden Hideout
+1 High Score
+1 Nature's Will
+1 Sphere Grid
+1 Virtue of Knowledge // Vantress Visions
+1 Candlekeep Sage
+1 Wiccan, Rising Magician
+1 Cosmic Crucible
+1 Spaceshift

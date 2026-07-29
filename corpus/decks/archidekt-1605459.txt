@@ -1,0 +1,102 @@
+# Archidekt — Ardenn, Intrepid Archeologist/Esior, Wardwing Familiar: Suit Up
+# source: archidekt:1605459
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Esior, Wardwing Familiar
+1 Ardenn, Intrepid Archaeologist
+
+Deck:
+1 Inkmoth Nexus
+1 Blinkmoth Nexus
+1 Reverse Engineer
+1 Indomitable Archangel
+1 Deserted Beach
+1 Mutavault
+1 Mishra's Factory
+1 Teferi's Protection
+1 The Mycosynth Gardens
+1 Minamo, School at Water's Edge
+1 Demolition Field
+1 Bloodforged Battle-Axe
+1 Sram, Senior Edificer
+1 Otawara, Soaring City
+1 Puresteel Paladin
+1 Glacial Fortress
+1 Flooded Strand
+1 Inquisitor's Flail
+1 Adarkar Wastes
+1 Talisman of Progress
+1 Sea of Clouds
+1 Ancient Tomb
+1 Hallowed Fountain
+1 Thoughtcast
+1 Strip Mine
+1 Fierce Guardianship
+1 Mystic Gate
+1 Sword of Fire and Ice
+1 Sword of Feast and Famine
+1 Path to Exile
+1 War Room
+1 Generous Gift
+1 Commander's Plate
+1 Swords to Plowshares
+1 Azorius Signet
+1 Arcane Signet
+1 Sol Ring
+1 Scavenger Grounds
+1 Command Tower
+1 Loxodon Warhammer
+1 Nettlecyst
+4 Plains
+1 Mystery Key
+1 Abstergo Entertainment
+1 Eagle Vision
+4 Island
+1 Skycloud Expanse
+1 Talon Gates of Madara
+1 Fomori Vault
+1 Winged Words
+1 Urza's Cave
+1 Secluded Starforge
+1 The Reality Chip
+1 Witch's Clinic
+1 Batterskull
+1 Adaptive Omnitool
+1 Sword of Vengeance
+1 Robe of the Archmagi
+1 Thran Power Suit
+1 The Key to the Vault
+1 Excalibur, Sword of Eden
+1 Blackblade Reforged
+1 Colossus Hammer
+1 Buster Sword
+1 Conqueror's Flail
+1 Masterwork of Ingenuity
+1 Dowsing Dagger // Lost Vale
+1 Strength-Testing Hammer
+1 Sword of Hearth and Home
+1 Sword of Forge and Frontier
+1 Sword of Sinew and Steel
+1 Mana Drain
+1 An Offer You Can't Refuse
+1 Stubborn Denial
+1 March of Swirling Mist
+1 Cloud Key
+1 Gleaming Bastion
+1 Shuri, Wakandan Inventor
+1 Swordsman's Steel
+1 The Mighty Thor, Jane Foster
+1 Ironheart, Clever Champion
+1 Iron Lad, Diverging Destiny
+1 Iron Man, Bleeding Edge
+1 The Mind Stone
+1 Genji Glove
+1 Austere Command
+1 Patrician's Scorn
+1 Heliod's Intervention
+1 Mask of the Schemer
+1 Moonsnare Prototype
+1 Swan Song
+1 Liquimetal Torque

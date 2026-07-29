@@ -1,0 +1,96 @@
+# Archidekt — Uncharted
+# source: archidekt:21703619
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Nathan Drake, Treasure Hunter
+
+Deck:
+1 Stolen Strategy
+1 Share the Spoils
+1 You Find Some Prisoners
+1 Chaos Wand
+1 Wand of Wonder
+1 Gonti, Lord of Luxury
+1 Thief of Sanity
+1 Mind's Dilation
+1 Etali, Primal Storm
+1 Twincast
+1 Ignite the Future
+1 Fevered Suspicion
+1 Persuasion
+1 Entrancing Melody
+1 Control Magic
+1 Domineering Will
+1 Callous Oppressor
+1 Reverberate
+1 Bonus Round
+1 Narset's Reversal
+1 Seize the Spoils
+1 Pirate's Pillage
+1 Unexpected Windfall
+1 Brass's Bounty
+1 Big Score
+1 Arcane Denial
+1 Izzet Signet
+1 Storm the Vault // Vault of Catlacan
+1 Captain Lannery Storm
+1 Prismari Command
+1 Sol Ring
+1 Goldvein Pick
+1 Neurok Stealthsuit
+1 Arcane Signet
+1 Talisman of Creativity
+1 Swiftfoot Boots
+1 Dive Down
+1 Reality Shift
+1 Slip Out the Back
+1 Counterspell
+1 Chaos Warp
+1 Negate
+1 Reconnaissance Mission
+1 Dig Through Time
+1 Preordain
+1 Ponder
+1 Expressive Iteration
+1 Impulse
+1 Exotic Orchard
+1 Command Tower
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Swiftwater Cliffs
+1 Path of Ancestry
+5 Mountain
+1 Temple of Epiphany
+1 Izzet Boilerworks
+5 Island
+1 Sulfur Falls
+1 Crumbling Necropolis
+1 Access Tunnel
+1 Drowned Catacomb
+1 Rogue's Passage
+1 Temple of Malice
+1 Temple of Deceit
+1 Underground River
+1 Maestros Theater
+1 Dragonskull Summit
+1 Shivan Reef
+5 Swamp
+1 Sunken Hollow
+1 Myriad Landscape
+1 Smoldering Marsh
+1 Feed the Swarm
+1 Terminate
+1 Cunning Rhetoric
+1 Shoot the Sheriff
+1 Aquitect's Defenses
+1 Faithless Looting
+1 Vaan, Street Thief
+1 Prosperous Thief
+1 Don Andres, the Renegade
+1 Dire Fleet Daredevil
+1 Kellogg, Dangerous Mind
+1 Hostage Taker
+1 Crumbling Necropolis
+1 Xander's Lounge

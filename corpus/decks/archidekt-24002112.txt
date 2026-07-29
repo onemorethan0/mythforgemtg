@@ -1,0 +1,91 @@
+# Archidekt — Life Tithe
+# source: archidekt:24002112
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Liesa, Shroud of Dusk
+
+Deck:
+1 Glasswing Grace // Age-Graced Chapel
+1 Orzhov Basilica
+1 Vizkopa Guildmage
+1 Mai, Scornful Striker
+1 Pristine Talisman
+1 Angelic Accord
+1 Revenge of Ravens
+1 Fabled Passage
+1 Command Tower
+1 Arcane Signet
+1 Land Tax
+1 Swords to Plowshares
+1 Sol Ring
+1 Inkshield
+1 Marsh Flats
+1 Eclipsed Steppe
+1 Fetid Heath
+1 Bojuka Bog
+1 Caves of Koilos
+1 Turbulent Moor
+1 Shadowy Backstreet
+1 Godless Shrine
+2 Plains
+1 Shattered Sanctum
+1 Isolated Chapel
+10 Swamp
+1 Path to Exile
+1 Soul Warden
+1 Authority of the Consuls
+1 Exsanguinate
+1 Soul's Attendant
+1 Anguished Unmaking
+1 Gray Merchant of Asphodel
+1 Lunar Convocation
+1 Cleric Class
+1 Talisman of Hierarchy
+1 Painful Quandary
+1 Fumigate
+1 Generous Gift
+1 Amalia Benavides Aguirre
+1 Debt to the Deathless
+1 Angel of Vitality
+1 Heliod's Intervention
+1 Vault of the Archangel
+1 Beacon of Immortality
+1 Damn
+1 Sanguine Bond
+8 Plains
+1 Vito, Thorn of the Dusk Rose
+1 Ghostly Prison
+1 Exquisite Blood
+1 Cliffhaven Vampire
+1 Marauding Blight-Priest
+1 Liesa, Forgotten Archangel
+1 Mind Stone
+1 Fracture
+1 Fellwar Stone
+1 Exemplar of Light
+1 Vault of Champions
+1 Tainted Field
+1 Decorum Dissertation
+1 Orzhov Signet
+1 Suture Priest
+1 Diabolic Tutor
+1 Valkyrie Harbinger
+1 Dark Ritual
+1 Night's Whisper
+1 Sign in Blood
+1 Erebos, God of the Dead
+1 Read the Bones
+1 Shineshadow Snarl
+1 Umbral Expanse
+1 Sunscorch Regent
+1 Temple of Silence
+1 Tithe Drinker
+1 Starscape Cleric
+1 Swiftfoot Boots
+1 Phyrexian Arena
+1 Polluted Bonds
+1 Blind Obedience
+1 Kambal, Consul of Allocation
+1 Resplendent Angel

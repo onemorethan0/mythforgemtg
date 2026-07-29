@@ -1,0 +1,88 @@
+# Archidekt — Rakdos Hood, Stealing From the Rich
+# source: archidekt:7607306
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Rakdos, the Muscle
+
+Deck:
+1 Clay Revenant
+1 Bloodsoaked Insight // Sanguine Morass
+1 Cult Conscript
+1 Oblivion Sower
+1 Forsaken Miner
+1 Night Incarnate
+1 The Scorpion God
+1 Ebondeath, Dracolich
+1 Molten Firebird
+1 Sire of Insanity
+1 Laughing Jasper Flint
+1 Nim Devourer
+1 Haunt of the Dead Marshes
+1 At Knifepoint
+1 Nine-Lives Familiar
+1 Bronze Walrus
+1 Undead Sprinter
+1 Mizzium Mortars
+1 Rakdos Keyrune
+1 Ozox, the Clattering King
+6 Mountain
+1 Restless Vents
+1 Poet's Quill
+1 Sunset Strikemaster
+1 Locke, Treasure Hunter
+1 Zookeeper Mechan
+1 Timeline Culler
+1 Bojuka Bog
+1 Skittering Precursor
+1 Feed the Swarm
+1 Skitterbeam Battalion
+1 Canyon Slough
+1 Gollum, Patient Plotter
+1 Charcoal Diamond
+1 Ornithopter of Paradise
+1 Bloodsoaked Champion
+16 Swamp
+1 Arcane Signet
+1 Guardian Idol
+1 Persistent Specimen
+1 Spitebellows
+1 Solemn Simulacrum
+1 Abrade
+1 Forgotten Cave
+1 Command Tower
+1 Decadent Dragon // Expensive Taste
+1 Lavaclaw Reaches
+1 Rocky Tar Pit
+1 Mutinous Massacre
+1 Witch's Cauldron
+1 Exotic Orchard
+1 Sol Ring
+1 Rakdos Signet
+1 Talisman of Indulgence
+1 Leaden Myr
+1 Reassembling Skeleton
+1 Ingot Chewer
+1 Squee, the Immortal
+1 Shadowblood Ridge
+1 Wayfarer's Bauble
+1 Liquimetal Torque
+1 Iron Myr
+1 Bedevil
+1 Heartless Conscription
+1 Blasphemous Act
+1 Thieving Varmint
+1 Rakdos Charm
+1 Shriekmaw
+1 Mind Stone
+1 Anger
+1 Temple of Malice
+1 Dreadbore
+1 Foreboding Ruins
+1 Smoldering Marsh
+1 Tainted Peak
+1 Barren Moor
+1 Swiftfoot Boots
+1 High Market
+1 Bloodghast

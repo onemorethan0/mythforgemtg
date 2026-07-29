@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Command Tower",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}: Add one mana of any color in your commander's color identity."
+  },
+  "ccm": {
+    "name": "Command Tower",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": ""},
+    "types": ["land"],
+    "abilities": [
+      {
+        "kind": "mana_ability",
+        "cost": {"tap": true},
+        "effects": [
+          {"op": "add_mana", "amount": 1, "colors": "any", "condition": "of any color in your commander's color identity"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+# Archidekt — Shilgengar: Gotta Sac Angels to Make Angels
+# source: archidekt:7545966
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Shilgengar, Sire of Famine
+
+Deck:
+1 Angel of the Ruins
+1 Black Market Connections
+1 Firemane Commando
+1 Talisman of Hierarchy
+1 Isolated Chapel
+1 Arcane Signet
+1 Eagles of the North
+1 Mind Stone
+1 High Market
+1 Secluded Courtyard
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Angel of Suffering
+1 Malakir Rebirth // Malakir Mire
+5 Swamp
+1 Ripples of Undeath
+1 Nesting Grounds
+1 Seraph of the Scales
+1 Troll of Khazad-dûm
+1 Starfall Invocation
+1 Avacyn, Angel of Hope
+1 Metropolis Reformer
+1 Renegade Reaper
+1 Radiant Solar
+1 Emeria Shepherd
+1 Guardian of Ghirapur
+1 Serra Avenger
+1 Wojek Investigator
+1 Sanctuary Warden
+1 Merchant of Truth
+1 Pointed Discussion
+1 Angel of Despair
+1 Big Game Hunter
+1 Vault of Champions
+1 Command Tower
+1 Caves of Koilos
+1 Marsh Flats
+1 Godless Shrine
+11 Plains
+1 Orzhov Signet
+1 Tainted Field
+1 Shineshadow Snarl
+1 Swords to Plowshares
+1 Path to Exile
+1 Anguished Unmaking
+1 Despark
+1 Angelic Field Marshal
+1 Reanimate
+1 Animate Dead
+1 Fellwar Stone
+1 Liquimetal Torque
+1 Concealed Courtyard
+1 Fell the Profane // Fell Mire
+1 Firja, Judge of Valor
+1 Angelic Renewal
+1 Unclaimed Territory
+1 Fracture
+1 Batwing Brume
+1 Bishop of Wings
+1 Roaming Throne
+1 Serra Paragon
+1 Serra's Emissary
+1 Bojuka Bog
+1 Battle Angels of Tyr
+1 Seraph Sanctuary
+1 Angel of Indemnity
+1 Exemplar of Light
+1 Dazzling Angel
+1 Windshaper Planetar
+1 Archangel of Tithes
+1 Inkshield
+1 Inspiring Overseer
+1 Sephara, Sky's Blade
+1 Angelic Sell-Sword
+1 Angel of Vitality
+1 Righteous Valkyrie
+1 Ghost Quarter
+1 Angel of Finality
+1 Giada, Font of Hope
+1 Lyra Dawnbringer
+1 The Soul Stone
+1 Momo, Friendly Flier
+1 Youthful Valkyrie
+1 Fetid Heath
+1 Blasphemous Edict
+1 Bloodline Bidding

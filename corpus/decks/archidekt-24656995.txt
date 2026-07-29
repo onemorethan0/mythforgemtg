@@ -1,0 +1,101 @@
+# Archidekt — Broken halo
+# source: archidekt:24656995
+# fetched: 2026-07-26
+
+Commander:
+1 Kasla, the Broken Halo
+
+Deck:
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Grand Crescendo
+1 Outlaws' Merriment
+1 Dazzling Theater // Prop Room
+1 Hour of Reckoning
+1 Drumbellower
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Arcane Denial
+1 Flawless Maneuver
+1 Wand of the Worldsoul
+1 Replenish
+1 Hall of Heliod's Generosity
+1 Plateau
+1 Gilded Lotus
+4 Plains
+1 Arcane Signet
+1 Artistic Refusal
+1 Adarkar Wastes
+1 Battlefield Forge
+1 Ainok Strike Leader
+1 Caretaker's Talent
+1 Cascade Bluffs
+1 Conclave Tribunal
+3 Mountain
+1 Frontline Rush
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Jeskai Ascendancy
+1 Kavaron, Memorial World
+1 Meeting of Minds
+1 Molten Gatekeeper
+1 Mystic Gate
+1 Pinnacle Monk // Mystic Peak
+4 Island
+1 Raise the Alarm
+1 Sram's Expertise
+1 Stoke the Flames
+1 Third Path Iconoclast
+1 Impact Tremors
+1 City on Fire
+1 The Wandering Rescuer
+1 Boros Charm
+1 Bennie Bracks, Zoologist
+1 Enduring Innocence
+1 Minas Tirith
+1 Skullclamp
+1 Clifftop Retreat
+1 Command Tower
+1 Deserted Beach
+1 Fiery Islet
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Shivan Reef
+1 Sokenzan, Crucible of Defiance
+1 Steam Vents
+1 Sulfur Falls
+1 Sunbaked Canyon
+1 Sundown Pass
+1 Kykar, Wind's Fury
+1 Monastery Mentor
+1 Saint Traft and Rem Karolus
+1 Secure the Wastes
+1 Calamity of Cinders
+1 Everything Comes to Dust
+1 Path to Exile
+1 Champions from Beyond
+1 Cosmogrand Zenith
+1 Elspeth, Storm Slayer
+1 Mystic Monastery
+1 Dawn's Truce
+1 Prosperous Partnership
+1 Talisman of Conviction
+1 Sol Ring
+1 Talisman of Progress
+1 Stormcarved Coast
+1 Transcendent Message
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Wildfire Awakener
+1 Will of the Mardu
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Purphoros, God of the Forge
+1 Fated Firepower
+1 Agate Instigator
+1 Clever Concealment
+1 Raugrin Triome
+1 Scalding Tarn
+1 Tundra
+1 Flooded Strand
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Dollmaker's Shop // Porcelain Gallery
+1 Serra's Blessing
+1 Swords to Plowshares

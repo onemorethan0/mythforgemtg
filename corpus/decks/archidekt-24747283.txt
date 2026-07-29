@@ -1,0 +1,108 @@
+# Archidekt — Saturday Morning Cartoons
+# source: archidekt:24747283
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Anger
+1 Arcane Signet
+1 Auton Soldier
+1 Baron, Airship Kingdom
+1 Blaster, Combat DJ // Blaster, Morale Booster
+1 Blightsteel Colossus
+1 By Force
+1 Chromatic Lantern
+1 City of Brass
+1 Clive's Hideaway
+1 Command Tower
+1 Conqueror's Flail
+1 Crossroads Village
+1 Cryptolith Rite
+1 Cyclonus, the Saboteur // Cyclonus, Cybertronian Fighter
+1 Defense of the Heart
+1 Doubling Cube
+1 Dr. Eggman
+1 Eden, Seat of the Sanctum
+1 Etherium Sculptor
+1 Everybody Lives!
+1 Exotic Orchard
+1 Fabricate
+1 Fellwar Stone
+1 Forest
+1 Forest
+1 Forest
+1 Frog Butler
+1 Generous Gift
+1 Gohn, Town of Ruin
+1 Golbez, Crystal Collector
+1 Gongaga, Reactor Town
+1 Greater Good
+1 Grim Tutor
+1 Guadosalam, Farplane Gateway
+1 Insomnia, Crown City
+1 Ishgard, the Holy See // Faith & Grief
+1 Island
+1 Island
+1 Island
+1 Jetfire, Ingenious Scientist // Jetfire, Air Guardian
+1 K-9, Mark I
+1 Katara, Waterbending Master
+1 Kodama's Reach
+1 Lindblum, Industrial Regency // Mage Siege
+1 Marchesa, the Black Rose
+1 Megatron, Tyrant // Megatron, Destructive Force
+1 Midgar, City of Mako // Reactor Raid
+1 Mog, Moogle Warrior
+1 Mountain
+1 Mountain
+1 Mountain
+1 Myriad Landscape
+1 Najeela, the Blade-Blossom
+1 Night's Whisper
+1 Optimus Prime, Hero // Optimus Prime, Autobot Leader
+1 Path of Ancestry
+1 Phyrexian Arena
+1 Plains
+1 Plains
+1 Plains
+1 Ponder
+1 Preordain
+1 Rabanastre, Royal City
+1 Ratchet, Field Medic // Ratchet, Rescue Racer
+1 Reconnaissance Mission
+1 Regrowth
+1 Relic of Legends
+1 Serra Ascendant
+1 Shadowspear
+1 Sharlayan, Nation of Scholars
+1 Silence
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Smuggler's Copter
+1 Sol Ring
+1 Sonic Screwdriver
+1 Soundwave, Sonic Spy // Soundwave, Superior Captain
+1 Spellskite
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Starting Town
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swords to Plowshares
+1 The Earth Crystal
+1 The Regalia
+1 The Wandering Minstrel
+1 Thespian's Stage
+1 Toph, Earthbending Master
+1 Treno, Dark City
+1 Triumph of the Hordes
+1 Trouble in Pairs
+1 True Conviction
+1 Ultra Magnus, Tactician // Ultra Magnus, Armored Carrier
+1 Weatherlight
+1 Windurst, Federation Center
+1 Wrath of God
+1 Zack Fair
+1 Zanarkand, Ancient Metropolis // Lasting Fayth

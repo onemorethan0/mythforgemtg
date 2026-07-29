@@ -1,0 +1,96 @@
+# Archidekt — Sagas
+# source: archidekt:24778177
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Satsuki, the Living Lore
+
+Deck:
+1 Command Tower
+1 Arcane Signet
+1 Swords to Plowshares
+1 Love Song of Night and Day
+7 Plains
+1 Enchantress's Presence
+1 The First Iroan Games
+1 Battle for Bretagard
+1 Yenna, Redtooth Regent
+1 Battle at the Helvault
+1 Elspeth Conquers Death
+1 Summon: Fenrir
+1 Reliquary Tower
+1 The Binding of the Titans
+1 Jukai Naturalist
+1 History of Benalia
+1 Sol Ring
+1 Kutzil, Malamet Exemplar
+1 Fall of the Impostor
+1 The Birth of Meletis
+1 Song of Freyalise
+1 Summon: Yojimbo
+1 Three Blind Mice
+1 The Weatherseed Treaty
+1 The Mending of Dominaria
+1 Summon: Knights of Round
+1 Sythis, Harvest's Hand
+1 Destiny Spinner
+1 Garnet, Princess of Alexandria
+1 Tale of Tinúviel
+1 Mesa Enchantress
+1 Beast Within
+1 Generous Gift
+1 Archon of Sun's Grace
+1 Herald of the Pantheon
+7 Forest
+1 Cultivate
+1 Temple of Plenty
+1 Sigil of the Empty Throne
+1 Path to Exile
+1 Unnatural Restoration
+1 Canopy Vista
+1 Calix, Destiny's Hand
+1 Power Conduit
+1 Weaver of Harmony
+1 Selesnya Sanctuary
+1 Scholar of New Horizons
+1 Hall of Heliod's Generosity
+1 Triumph of Gerrard
+1 Storyweave
+1 Summon: Titan
+1 Temple Garden
+1 Nesting Grounds
+1 Bountiful Promenade
+1 Selesnya Signet
+1 Sterling Grove
+1 Rampant Growth
+1 Kami of Transience
+1 Fall of the First Civilization
+1 Fortified Village
+1 Eiganjo, Seat of the Empire
+1 Satyr Enchanter
+1 Brushland
+1 Utopia Sprawl
+1 Overgrown Farmland
+1 Moon-Blessed Cleric
+1 Windswept Heath
+1 Ian Chesterton
+1 The Aesir Escape Valhalla
+1 Summon: Bahamut
+1 The Huntsman's Redemption
+1 The World Spell
+1 Sunpetal Grove
+1 Sungrass Prairie
+1 Karn's Bastion
+1 Boseiju, Who Endures
+1 Summon: Ixion
+1 Starfield Mystic
+1 Setessan Champion
+1 Season of Renewal
+1 Nyx-Fleece Ram
+1 Fall of Gil-galad
+1 Teshar, Ancestor's Apostle
+1 Starfield of Nyx
+1 Kodama's Reach
+1 Brilliant Restoration
+1 Exotic Orchard

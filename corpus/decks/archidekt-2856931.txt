@@ -1,0 +1,77 @@
+# Archidekt — A "Commander" Commander Deck
+# source: archidekt:2856931
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Tana, the Bloodsower
+1 Tymna the Weaver
+
+Deck:
+1 Genesis Storm
+1 Fury Storm
+1 Skull Storm
+1 Empyrial Storm
+1 Commander's Insignia
+1 Tome of Legends
+1 Obscuring Haze
+1 Flawless Maneuver
+1 Jirina Kudro
+1 Deadly Rollick
+1 Szat's Will
+1 Slash the Ranks
+1 Biowaste Blob
+1 Akroma's Will
+1 Study Hall
+1 Guardian Augmenter
+1 Loyal Apprentice
+1 Bastion Protector
+1 Loyal Guardian
+1 Astarion's Thirst
+1 Loyal Unicorn
+1 Commander's Sphere
+1 Opal Palace
+1 Bloodsworn Steward
+1 Kediss, Emberclaw Familiar
+1 Falthis, Shadowcat Familiar
+1 Thunderfoot Baloth
+1 Noble Heritage
+1 Guild Artisan
+1 Arcane Signet
+1 Command Tower
+1 Raised by Giants
+1 Hardy Outlander
+1 Scion of Halaster
+1 Flaming Fist
+1 Master Chef
+1 Agent of the Iron Throne
+1 Agent of the Shadow Thieves
+1 Veteran Soldier
+1 Inspiring Leader
+1 Tavern Brawler
+1 Path of Ancestry
+1 Timely Ward
+1 Vexilus Praetor
+9 Mountain
+1 Hellkite Courser
+1 Skyhunter Strike Force
+8 Forest
+1 Siege-Gang Lieutenant
+1 Will of the Abzan
+1 Will of the Sultai
+1 Ainok Strike Leader
+1 Will of the Mardu
+1 Keleth, Sunmane Familiar
+1 Deflecting Swat
+1 Judgment of Alexander
+1 Kamahl's Will
+1 Nakia, Wakandan Operative
+1 Hidden Hideout
+1 Everett K. Ross, Hapless Attaché
+10 Plains
+1 Hatut Zeraze Strike Force
+1 Ancestral Communion
+1 Fight for the Throne
+8 Swamp
+1 Dancer's Chakrams
+1 Haunted One

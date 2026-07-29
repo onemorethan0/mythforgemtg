@@ -1,0 +1,80 @@
+# Archidekt — Angels of Hope
+# source: archidekt:24747772
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+29 Plains
+1 Youthful Valkyrie
+1 Bonders' Enclave
+1 Minas Tirith
+1 Emeria, the Sky Ruin
+1 Idyllic Grange
+1 Forge of Heroes
+1 Sol Ring
+1 Path of Ancestry
+1 Opal Palace
+1 Segovian Angel
+1 Lulu, Loyal Hollyphant
+1 Seraph Sanctuary
+1 Gilded Lotus
+1 Starnheim Aspirant
+1 Lyra Dawnbringer
+1 Righteous Valkyrie
+1 Firemane Commando
+1 Resplendent Angel
+1 Herald of War
+1 Angel of the Ruins
+1 Speaker of the Heavens
+1 Adarkar Valkyrie
+1 Excalibur II
+1 Bishop of Wings
+1 Wojek Investigator
+1 Ainok Bond-Kin
+1 Gisela, the Broken Blade
+1 Trusty Packbeast
+1 Resplendent Marshal
+1 Exemplar of Light
+1 Shepherd of the Cosmos
+1 Linvala, Keeper of Silence
+1 Emeria Shepherd
+1 Thraben Watcher
+1 Archangel of Tithes
+1 Sephara, Sky's Blade
+1 Angelic Skirmisher
+1 Sigarda's Vanguard
+1 Akroma, Vision of Ixidor
+1 Angelic Destiny
+1 Angel of Invention
+1 Dawn of Hope
+1 Bruna, the Fading Light
+1 Akroma, Angel of Wrath
+1 Pearl Medallion
+1 Chalice of Life // Chalice of Death
+1 Swords to Plowshares
+1 Entreat the Angels
+1 Elspeth Resplendent
+1 Brave the Elements
+1 Duty Beyond Death
+1 Endless Atlas
+1 Return to Dust
+1 The Wind Crystal
+1 Folk Hero
+1 Pacifism
+1 Angelic Purge
+1 Damning Verdict
+1 Make a Stand
+1 Fumigate
+1 The Book of Exalted Deeds
+1 Herald's Horn
+1 Resurrection
+1 Marshal's Anthem
+1 Sigarda's Splendor
+1 True Conviction
+1 Angelic Edict
+1 Elspeth Conquers Death
+1 Austere Command
+1 Farewell

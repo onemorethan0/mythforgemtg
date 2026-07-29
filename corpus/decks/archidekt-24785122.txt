@@ -1,0 +1,96 @@
+# Archidekt — King Dr Doom 3.0
+# source: archidekt:24785122
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Baleful Strix
+1 Containment Construct
+1 Ledger Shredder
+1 Psychic Frog
+1 Baron Helmut Zemo
+1 Baron Strucker, HYDRA Overlord
+1 Glint-Horn Buccaneer
+1 Iron Monger, Sadistic Tycoon
+1 Killmonger, Ruthless Usurper
+1 Prowler, Clawed Thief
+1 Tombstone, Career Criminal
+1 Ultron, Unlimited
+1 Anger
+1 Carnage, Crimson Chaos
+1 Chameleon, Master of Disguise
+1 Leader, Super-Genius
+1 Loki, the Deceiver
+1 Moonstone, Harsh Mistress
+1 Mysterio, Master of Illusion
+1 Spark Double
+1 Taskmaster, Mercenary Mimic
+1 Archfiend of Ifnir
+1 Green Goblin, Revenant
+1 M.O.D.O.K.
+1 Titan of Littjara
+1 Currency Converter
+1 Sol Ring
+1 Arcane Signet
+1 Dimir Signet
+1 Izzet Signet
+1 Rakdos Signet
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Crucible of Worlds
+1 Loki's Scepter
+1 Monument to Endurance
+1 Cryptcaller Chariot
+1 Helm of the Host
+1 Dark Ritual
+1 Counterspell
+1 Pull from Tomorrow
+1 Terminate
+1 Bedevil
+1 Chaos Warp
+1 Frantic Search
+1 Withering Torment
+1 Decaying Time Loop
+1 Lethal Scheme
+1 Reanimate
+1 Vandalblast
+1 Nahiri's Lithoforming
+1 Toxic Deluge
+1 Kindred Dominance
+1 Blasphemous Act
+1 Cool but Rude
+1 Glorious Purpose
+1 Archnemesis
+1 Black Market Connections
+1 Propaganda
+1 Teferi's Ageless Insight
+1 Choked Estuary
+1 Coastal Peak
+1 Command Tower
+1 Crumbling Necropolis
+1 Dark Fortress
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Fetid Pools
+1 Foreboding Ruins
+1 Frostboil Snarl
+4 Island
+1 Luxury Suite
+5 Mountain
+1 Oscorp Industries
+1 Path of Ancestry
+1 Scorched Geyser
+1 Shivan Reef
+1 Smoldering Marsh
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Sunken Hollow
+6 Swamp
+1 Terramorphic Expanse
+1 Villainous Hideout
+1 Xander's Lounge

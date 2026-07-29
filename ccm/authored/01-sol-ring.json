@@ -1,0 +1,22 @@
+{
+  "card": {
+    "name": "Sol Ring",
+    "mana_cost": "{1}",
+    "type_line": "Artifact",
+    "oracle_text": "{T}: Add {C}{C}."
+  },
+  "ccm": {
+    "name": "Sol Ring",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{1}"},
+    "types": ["artifact"],
+    "abilities": [
+      {
+        "kind": "mana_ability",
+        "cost": {"tap": true},
+        "effects": [{"op": "add_mana", "amount": 2, "colors": "C"}]
+      }
+    ]
+  }
+}

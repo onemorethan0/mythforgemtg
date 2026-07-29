@@ -1,0 +1,95 @@
+# Archidekt — True Vehicle(Mech) Deck
+# source: archidekt:24643390
+# fetched: 2026-07-27
+
+Commander:
+1 Urza, Prince of Kroog
+
+Deck:
+1 Plaza of Heroes
+1 Talon Gates of Madara
+1 Slip Out the Back
+1 Galadriel's Dismissal
+1 Akroma's Will
+1 Teferi's Protection
+1 The Indomitable
+1 Urza's Ruinous Blast
+1 Access Denied
+1 Efficient Construction
+1 Leonardo da Vinci
+1 Thopter Fabricator
+1 Stridehangar Automaton
+1 Whirler Rogue
+1 Mech Hangar
+1 Salvation Engine
+1 Sai, Master Thopterist
+1 Cosima, God of the Voyage // The Omenkeel
+1 Mu Yanling, Wind Rider
+1 Anchor to Reality
+1 Reaver Titan
+1 Knight Paladin
+1 Tempered Steel
+1 Master of Etherium
+1 Inventors' Fair
+1 Treasure Vault
+1 Academy Ruins
+1 Buried Ruin
+1 Minas Tirith
+1 Seachrome Coast
+1 Unwinding Clock
+1 Cybermen Squadron
+1 Mirrorworks
+1 Bronze Guardian
+1 Organic Extinction
+1 Steel Hellkite
+1 Surgehacker Mech
+1 Hulldrifter
+1 Lifecraft Engine
+1 Dispatch
+1 Adarkar Wastes
+1 City of Brass
+1 Command Tower
+1 Deserted Beach
+1 Flooded Strand
+1 Mobilizer Mech
+1 Glacial Fortress
+1 Hallowed Fountain
+7 Island
+7 Plains
+1 Prairie Stream
+1 Sea of Clouds
+1 Heart of Kiran
+1 Imposter Mech
+1 Shorikai, Genesis Engine
+1 Mechtitan Core
+1 Mighty Servant of Leuk-o
+1 Smuggler's Copter
+1 Skysovereign, Consul Flagship
+1 Weatherlight
+1 Vibranium Mining Mech
+1 Esper Sentinel
+1 Darksteel Citadel
+1 Etherium Sculptor
+1 Ancient Den
+1 Foundry Inspector
+1 Chief of the Foundry
+1 Thopter Spy Network
+1 Losheel, Clockwork Scholar
+1 Steel Overseer
+1 Riptide Gearhulk
+1 Simulacrum Synthesizer
+1 Archway of Innovation
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Uthros Research Craft
+1 Arcane Signet
+1 Uthros, Titanic Godcore
+1 Azorius Signet
+1 Fellwar Stone
+1 Urza's Saga
+1 Sol Ring
+1 Talisman of Progress
+1 Razortide Bridge
+1 Cataclysmic Gearhulk
+1 Thran Dynamo
+1 Liquimetal Torque

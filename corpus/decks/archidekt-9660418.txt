@@ -1,0 +1,90 @@
+# Archidekt — Gruulfriends
+# source: archidekt:9660418
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Pia Nalaar, Chief Mechanic
+
+Deck:
+1 Chandra, Legacy of Fire
+1 Chandra's Regulator
+1 Fiery Impulse
+1 Nissa, Worldsoul Speaker
+1 Chandra's Ignition
+1 Nissa, Resurgent Animist
+1 Chandra's Spitfire
+1 Chandra, Acolyte of Flame
+1 Chandra, Heart of Fire
+1 Chandra, Dressed to Kill
+1 Nissa, Nature's Artisan
+1 Chandra, Fire of Kaladesh // Chandra, Roaring Flame
+1 Fall of the Titans
+1 Chandra, the Firebrand
+1 Nissa, Genesis Mage
+1 Chandra, Flamecaller
+1 Chandra's Incinerator
+1 Oath of Chandra
+1 Pyroblast
+1 Chandra's Triumph
+1 Chandra, Flame's Catalyst
+1 Chandra, Flame's Fury
+1 Chandra, Pyromaster
+1 Chandra, Novice Pyromancer
+1 Rite of Flame
+1 Light Up the Night
+1 By Force
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Command Tower
+1 Collective Voyage
+1 Oath of Nissa
+1 Path of the Animist
+1 Verdant Crescendo
+1 Chandra, Flameshaper
+1 Nissa Revane
+1 Chandra's Pyreling
+1 Chandra, Awakened Inferno
+1 Chandra, Fire Artisan
+1 Chandra Ablaze
+1 Chandra, Bold Pyromancer
+1 Path of the Pyromancer
+1 Chandra's Embercat
+1 Chandra, Pyrogenius
+1 Chandra, Hope's Beacon
+1 Broken Bond
+1 Nissa, Vital Force
+1 Nissa, Who Shakes the World
+1 Nissa, Ascended Animist
+1 Chandra, Torch of Defiance
+1 Attune with Aether
+1 Fiery Confluence
+1 Outpace Oblivion
+1 Kickoff Celebrations
+1 Chandra, Spark Hunter
+1 Willowrush Verge
+1 Mossfire Valley
+1 Cinder Glade
+1 Exotic Orchard
+1 Rootbound Crag
+6 Forest
+1 Sulfur Falls
+1 Hinterland Harbor
+1 Vineglimmer Snarl
+1 Frostboil Snarl
+1 Forest
+1 Forest
+1 Island
+1 Muraganda Raceway
+1 Nissa, Steward of Elements
+1 Sol Ring
+1 Mana Confluence
+1 Chandra Nalaar
+1 Nissa, Voice of Zendikar
+1 Nissa, Worldwaker
+1 Savor the Moment
+1 Bearscape
+1 Heartbeat of Spring
+1 Open the Way
+7 Mountain
+8 Mountain
+1 Gilded Lotus

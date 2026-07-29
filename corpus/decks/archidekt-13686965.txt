@@ -1,0 +1,87 @@
+# Archidekt — Bracket 2 Base  & Budget Vivi
+# source: archidekt:13686965
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 An Offer You Can't Refuse
+1 Archmage Emeritus
+1 Big Score
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Cascading Cataracts
+1 Cleansing Wildfire
+1 Command Tower
+1 Consider
+1 Curiosity
+1 Darksteel Citadel
+1 Deep Analysis
+1 Demand Answers
+1 Dowsing Device // Geode Grotto
+1 Drownyard Temple
+1 Expansion // Explosion
+1 Faithless Looting
+1 Ferrous Lake
+1 Filter Out
+1 Fists of Flame
+1 Flame of Anor
+1 Frantic Search
+1 Frostboil Snarl
+1 Galvanic Iteration
+1 Geomancer's Gambit
+1 Harmonic Prodigy
+1 Ill-Timed Explosion
+1 Immolating Gyre
+1 Increasing Vengeance
+1 Invert Polarity
+12 Island
+1 Izzet Boilerworks
+1 Leadership Vacuum
+1 Mana Geyser
+1 Misdirection
+1 Mizzix's Mastery
+11 Mountain
+1 Mystic Retrieval
+1 Negate
+1 Niv-Mizzet, Parun
+1 Niv-Mizzet, Visionary
+1 Ophidian Eye
+1 Opt
+1 Path of Ancestry
+1 Pirate's Pillage
+1 Pit of Offerings
+1 Ponder
+1 Preordain
+1 Propaganda
+1 Quicksilver Elemental
+1 Quiet Speculation
+1 Refuse // Cooperate
+1 Sazacap's Brew
+1 Scampering Surveyor
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Seize the Spoils
+1 Shivan Reef
+1 Sigil of Sleep
+1 Silundi Vision // Silundi Isle
+1 Silverbluff Bridge
+1 Snap
+1 Snapback
+1 Sojourner's Companion
+1 Solemn Simulacrum
+1 Storm-Kiln Artist
+1 Sulfur Falls
+1 Summons of Saruman
+1 Sunken Palace
+1 Tandem Lookout
+1 Tempt with Mayhem
+1 Thaumatic Compass // Spires of Orazca
+1 The Everflowing Well // The Myriad Pools
+1 Thrill of Possibility
+1 Trinket Mage
+1 Unexpected Windfall
+1 Veyran, Voice of Duality
+1 Volcanic Vision
+1 Wayfarer's Bauble
+1 Whir of Invention

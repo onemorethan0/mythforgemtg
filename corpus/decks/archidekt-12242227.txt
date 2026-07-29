@@ -1,0 +1,95 @@
+# Archidekt — oops! All lands
+# source: archidekt:12242227
+# fetched: 2026-07-05
+
+Commander:
+1 Arixmethes, Slumbering Isle
+
+Deck:
+1 Academy Ruins
+1 Access Tunnel
+1 Arch of Orazca
+1 Ash Barrens
+1 Baldur's Gate
+1 Basilisk Gate
+1 Blasted Landscape
+1 Blinkmoth Nexus
+1 Boseiju, Who Endures
+1 Cactus Preserve
+1 Captivating Cave
+1 Castle Vantress
+1 Cave of Temptation
+1 Cavernous Maw
+1 Crawling Barrens
+1 Cryptic Caves
+1 Dark Depths
+1 Darksteel Citadel
+1 Desert of the Indomitable
+1 Desert of the Mindful
+1 Deserted Temple
+1 Dread Statuary
+1 Drownyard Temple
+1 Dryad Arbor
+1 Echoing Deeps
+1 Escape Tunnel
+1 Faceless Haven
+1 Faerie Conclave
+1 Field of the Dead
+7 Forest
+1 Fountainport
+1 Frostwalk Bastion
+1 Gateway Plaza
+1 Glacial Chasm
+1 Gond Gate
+1 Hall of Storm Giants
+1 Hashep Oasis
+1 Heap Gate
+1 Horizon of Progress
+1 Hostile Desert
+1 Inkmoth Nexus
+7 Island
+1 Karn's Bastion
+1 Kitchen
+1 Labyrinth of Skophos
+1 Lair of the Hydra
+1 Littjara Mirrorlake
+1 Lonely Sandbar
+1 Lumbering Falls
+1 Magosi, the Waterveil
+1 Manor Gate
+1 Maze of Ith
+1 Maze's End
+1 Mirrex
+1 Mishra's Factory
+1 Mishra's Foundry
+1 Mobilized District
+1 Mutavault
+1 Night Market
+1 Pendelhaven
+1 Power Depot
+1 Remote Isle
+1 Restless Vinestalk
+1 Rogue's Passage
+1 Scene of the Crime
+1 Sea Gate
+1 Sea Gate Wreckage
+1 Seat of the Synod
+1 Simic Guildgate
+1 Slippery Karst
+1 Soulstone Sanctuary
+1 Stalking Stones
+1 Talon Gates of Madara
+1 Tanglepool Bridge
+1 Terrain Generator
+1 The Mycosynth Gardens
+1 The Seedcore
+1 Thespian's Stage
+1 Thran Portal
+1 Tolaria West
+1 Tranquil Thicket
+1 Treasure Vault
+1 Tree of Tales
+1 Treetop Village
+1 Urza's Cave
+1 Vesuva
+1 War Room

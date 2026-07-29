@@ -1,0 +1,90 @@
+# Archidekt — Robot-o
+# source: archidekt:23861253
+# fetched: 2026-07-26
+# bracket: 2
+
+Commander:
+1 Iron Man, Master of Machines
+
+Deck:
+1 Baxter Stockman
+12 Island
+8 Mountain
+1 Don & Raph, Hard Science
+1 HYDRA Assault Robot
+1 Machinesmith Automaton
+1 Ultron, Artificial Malevolence
+1 Thriving Isle
+1 Fabled Passage
+1 Molten Tributary
+1 TCRI Building
+1 Temple of the False God
+1 Talisman of Creativity
+1 Show and Tell
+1 Time Warp
+1 Armor Wars
+1 Here Comes a New Hero!
+1 Love on the Battlefield
+1 Kindred Discovery
+1 The Scarlet Witch
+1 Vision of Love
+1 Romantic Rendezvous
+1 Blazing Crescendo
+1 Tri-Sentinel, Act of Vengeance
+1 Metalhead
+1 Krang, the All-Powerful
+1 Metallic Mimic
+1 Buzz Bots
+1 Brilliance Unleashed
+1 Casey Jones, Jury-Rig Justiciar
+1 Simulacrum Synthesizer
+1 Stark Industries
+1 Rescue, Pepper Potts
+1 Arcane Denial
+1 Vision Quest
+1 Arc Reactor
+1 Iron Lad, Diverging Destiny
+1 Big Mother Mouser
+1 Futurist Forge
+1 Fugitive Droid
+1 Command Tower
+1 Iron Man Armor
+1 Iron Spider, Stark Upgrade
+1 Ironheart, Clever Champion
+1 Jocasta, Automaton Avenger
+1 Krang, Utrom Warlord
+1 Living Brain, Mechanical Marvel
+1 Patchwork Banner
+1 Super-Adaptoid
+1 Sol Ring
+1 Unstable Molecule Suit
+1 Thought Vessel
+1 The Vision
+1 Ultron, Machine Overlord
+1 Donatello, Mutant Mechanic
+1 Vision, Spectral Synthezoid
+1 Viv Vision, Teen Synthezoid
+1 Donatello, the Brains
+1 Fantastic Bounce
+1 I Am Iron Man
+1 Mind Transfer Protocol
+1 Machine Man, Model X-51
+1 Ms. Marvel, Kamala Khan
+1 Path of Ancestry
+1 Shuri, Wakandan Inventor
+1 Pym Particles
+1 Robotics Mastery
+1 Vibranium Mining Mech
+1 Reed Richards, Smartest Man
+1 School Daze
+1 Rewrite History
+1 The Great Mound
+1 Super Intelligence
+1 We Say Thee Nay!
+1 Reliquary Tower
+1 Nerd Rage
+1 Professor Hulk
+1 Ooze Spill
+1 Cascade Bluffs
+1 Prismari Campus
+1 Library

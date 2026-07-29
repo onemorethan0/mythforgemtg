@@ -1,0 +1,91 @@
+# Archidekt — Monkey Bussiness
+# source: archidekt:7157020
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Kibo, Uktabi Prince
+
+Deck:
+1 Craterhoof Behemoth
+1 Castle Embereth
+1 Mosswort Bridge
+1 Kessig Wolf Run
+1 Rootbound Crag
+1 Command Tower
+1 Sheltered Thicket
+1 Arena
+1 Bonders' Enclave
+1 Cinder Glade
+1 Rockfall Vale
+1 Karplusan Forest
+1 Game Trail
+1 Uktabi Orangutan
+1 Silverback Shaman
+1 War Room
+1 Silverback Elder
+1 Simian Grunts
+1 Kird Ape
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Ragavan, Nimble Pilferer
+1 Primal Might
+1 Gorilla Shaman
+1 Domri, Anarch of Bolas
+1 Ancient Silverback
+1 Fight Rigging
+1 Guardian Project
+1 Khalni Ambush // Khalni Territory
+1 Apes of Rath
+1 Boxing Ring
+1 Inscription of Abundance
+1 Summit Apes
+1 Simian Spirit Guide
+1 Rhythm of the Wild
+1 Neyith of the Dire Hunt
+1 Ulvenwald Tracker
+1 Barbary Apes
+1 Grunn, the Lonely King
+1 Oran-Rief, the Vastwood
+1 Skarrg, the Rage Pits
+1 Copperline Gorge
+1 Fang Guardian
+1 Thornspire Verge
+1 Kogla and Yidaro
+1 Gorilla Titan
+1 Gearbane Orangutan
+1 Treetop Village
+1 Kogla, the Titan Ape
+1 Colossal Majesty
+1 Kird Chieftain
+1 Archetype of Aggression
+1 Gimli's Reckless Might
+1 Garruk's Uprising
+1 Yavimaya Steelcrusher
+1 Castle Garenbrig
+1 Ravenous Baboons
+1 Ferocious Tigorilla
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Viridian Revel
+1 Setessan Tactics
+1 Stomping Ground
+1 Monkey Cage
+1 Savage Punch
+1 Hidden Gibbons
+9 Forest
+1 Towering Gibbon
+1 Signature Slam
+10 Mountain
+1 Rhino's Rampage
+1 Smell Fear
+1 Kapow!
+1 Flopsie, Bumi's Buddy
+1 Hog-Monkey Rampage
+1 The Last Agni Kai
+1 Elephant-Mandrill
+1 Pitiless Fists
+1 Unnatural Aggression
+1 Guerrilla Gorilla
+1 Go Nuts!
+1 Epic Fight
+1 The Great Henge
+1 Hit-Monkey

@@ -1,0 +1,23 @@
+{
+  "card": {
+    "name": "Blaze",
+    "mana_cost": "{X}{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Blaze deals X damage to any target."
+  },
+  "ccm": {
+    "name": "Blaze",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{X}{R}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "deal_damage", "amount": "X", "x_basis": "mana_paid", "target": {"type": "any", "count": 1}}
+        ]
+      }
+    ]
+  }
+}

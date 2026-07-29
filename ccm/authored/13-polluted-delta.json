@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Polluted Delta",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card, put it onto the battlefield, then shuffle."
+  },
+  "ccm": {
+    "name": "Polluted Delta",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": ""},
+    "types": ["land"],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {"tap": true, "pay_life": 1, "sacrifice_self": true},
+        "effects": [
+          {"op": "search_library", "what": {"type": "land", "subtype": "Island or Swamp"}, "count": 1, "to": "battlefield", "shuffle": true}
+        ]
+      }
+    ]
+  }
+}

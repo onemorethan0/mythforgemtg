@@ -1,0 +1,92 @@
+# Archidekt — Kardur, Doomscourge
+# source: archidekt:24777143
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Kardur, Doomscourge
+
+Deck:
+1 Arcane Signet
+1 Blade of Selves
+1 Bloodthirsty Blade
+1 Commander's Sphere
+1 Conjurer's Closet
+1 Cursed Mirror
+1 Fellwar Stone
+1 Mind Stone
+1 Rakdos Signet
+9 Mountain
+1 Agitator Ant
+1 Alexios, Deimos of Kosmos
+1 Blood Artist
+1 Bothersome Quasit
+1 Brash Taunter
+1 Geode Rager
+1 Goblin Spymaster
+1 Hunted Horror
+1 Jaxis, the Troublemaker
+1 Karazikar, the Eye Tyrant
+1 Kazuul, Tyrant of the Cliffs
+1 Life of the Party
+1 Massacre Wurm
+1 Morbid Opportunist
+1 Orthion, Hero of Lavabrink
+1 Animate Dead
+1 Curse of Disturbance
+1 Curse of Opulence
+1 Maximum Carnage
+1 Phyrexian Arena
+1 Phyrexian Reclamation
+1 Rite of the Raging Storm
+1 Abrade
+1 Bedevil
+1 Chaos Warp
+1 Dark Ritual
+1 Malakir Rebirth // Malakir Mire
+1 Not Dead After All
+1 Rakdos Charm
+1 Blazemire Verge
+1 Blood Crypt
+1 Bojuka Bog
+1 Command Tower
+1 Dragonskull Summit
+1 Foreboding Ruins
+1 Graven Cairns
+1 Haunted Ridge
+1 Luxury Suite
+1 Myriad Landscape
+1 Rakdos Carnarium
+1 Blasphemous Act
+1 Disrupt Decorum
+1 Feed the Swarm
+1 Insurrection
+1 Mana Geyser
+1 Night's Whisper
+1 Read the Bones
+1 Reanimate
+1 Sol Ring
+1 Talisman of Indulgence
+9 Swamp
+1 Slaughter Specialist
+1 Solemn Simulacrum
+1 Stormfist Crusader
+1 Varchild, Betrayer of Kjeldor
+1 Varragoth, Bloodsky Sire
+1 Vengeful Ancestor
+1 Xantcha, Sleeper Agent
+1 Shiny Impetus
+1 Soul Shatter
+1 Supernatural Stamina
+1 Terminate
+1 Undying Malice
+1 Sanctum of Eternity
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Tainted Peak
+1 Temple of Malice
+1 Sign in Blood
+1 Spectacular Showdown
+1 Vandalblast
+1 Death Kiss

@@ -1,0 +1,85 @@
+# Archidekt — Tiny
+# source: archidekt:2907226
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Saskia the Unyielding
+
+Deck:
+4 Swamp
+8 Plains
+8 Mountain
+1 Igneous Pouncer
+1 Agonizing Demise
+1 Shriekmaw
+1 Profane Command
+1 Dawnstrike Paladin
+1 Pay No Heed
+1 Daily Regimen
+1 Ordeal of Purphoros
+1 Nobilis of War
+1 Truefire Paladin
+1 Figure of Destiny
+1 Stun Sniper
+1 Kamahl, Pit Fighter
+1 Sun Titan
+1 Smite the Monstrous
+1 Battle Mastery
+1 Griffin Guide
+1 Winds of Rath
+1 Cavalry Pegasus
+1 Miraculous Recovery
+1 Condemn
+1 Bonds of Faith
+1 Titanic Ultimatum
+1 Pride of Lions
+1 Jade Mage
+1 Sylvan Bounty
+1 Sylvan Ranger
+1 Ajani Vengeant
+1 Lightning Helix
+1 Firemane Angel
+1 Woolly Thoctar
+1 Naya Charm
+1 Marisi's Twinclaws
+1 Loxodon Hierarch
+1 Qasali Pridemage
+1 Recumbent Bliss
+1 Behemoth Sledge
+1 Spitemare
+1 Destructive Revelry
+1 Zhur-Taa Druid
+1 Fires of Yavimaya
+1 Valley Rannet
+1 Conquering Manticore
+1 Crater Hellion
+1 Gorehorn Minotaurs
+1 Skarrgan Firebird
+1 Blood Ogre
+1 Orcish Lumberjack
+1 Pyroclasm
+1 Volt Charge
+1 Satyr Hedonist
+1 Skarrgan Skybreaker
+1 Prey Upon
+1 Crowned Ceratok
+1 Terrifying Presence
+1 Beast Within
+1 Regrowth
+1 Krosan Tusker
+1 Deadly Recluse
+1 Polukranos, World Eater
+1 Wild Nacatl
+1 Blazing Specter
+7 Forest
+1 Terramorphic Expanse
+1 Rupture Spire
+1 Skarrg, the Rage Pits
+1 New Benalia
+1 Boros Guildgate
+1 Vitu-Ghazi, the City-Tree
+1 Jungle Shrine
+1 Graypelt Refuge
+1 Evolving Wilds
+1 Lead the Stampede

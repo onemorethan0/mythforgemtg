@@ -1,0 +1,90 @@
+# Archidekt — Praise the Sun, Fire the Gun
+# source: archidekt:18520785
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Heliod, Sun-Crowned
+
+Deck:
+1 Giver of Runes
+1 Pearl Medallion
+1 Mother of Runes
+1 Teferi's Protection
+1 Mana Vault
+1 Esper Sentinel
+1 Sol Ring
+1 Walking Ballista
+1 Ethersworn Canonist
+1 Inventors' Fair
+1 Galadriel's Dismissal
+1 Containment Priest
+1 Path to Exile
+1 Soul Partition
+1 Flawless Maneuver
+1 Recruiter of the Guard
+1 Agatha's Soul Cauldron
+1 Linvala, Keeper of Silence
+1 Emergence Zone
+1 Reprieve
+1 High Market
+1 Archon of Emeria
+1 Liberator, Urza's Battlethopter
+1 Chrome Mox
+1 Surge of Salvation
+1 Buried Ruin
+1 Phyrexian Revoker
+1 Deafening Silence
+1 Dauntless Dismantler
+1 Ranger-Captain of Eos
+1 Cavern of Souls
+1 Abeyance
+1 Crystal Vein
+1 Cathar Commando
+1 Grafdigger's Cage
+1 Blind Obedience
+1 Talon Gates of Madara
+1 Reverent Mantra
+1 Swords to Plowshares
+1 Sanctum Prelate
+1 Calamity's Wake
+1 Hall of Oracles
+1 Rule of Law
+1 Soulless Jailer
+1 Weathered Wayfarer
+1 Rebuff the Wicked
+1 Authority of the Consuls
+1 Aven Interrupter
+1 Land Tax
+1 Vexing Bauble
+1 Scrapyard Recombiner
+1 Angel's Grace
+1 Winds of Abandon
+1 Portable Hole
+1 Drannith Magistrate
+1 Grim Monolith
+1 Silence
+1 Aven Mindcensor
+1 The One Ring
+6 Plains
+1 Rest in Peace
+6 Plains
+1 Smothering Tithe
+1 Triskelion
+1 Ancient Tomb
+1 Enlightened Tutor
+1 Ranger of Eos
+1 Grand Abolisher
+6 Plains
+1 Solitude
+1 Leonin Arbiter
+1 Disruptor Flute
+1 Lotus Petal
+1 Orim's Chant
+1 Skyclave Apparition
+1 Tezzeret, Cruel Captain
+1 Ancient Den
+1 Mox Opal
+4 Plains
+1 The Mind Stone
+1 Phyrexian Censor

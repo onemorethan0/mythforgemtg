@@ -1,0 +1,79 @@
+# Archidekt — Pauper Prodigy's Prototype
+# source: archidekt:24403950
+# fetched: 2026-07-28
+
+Commander:
+1 Prodigy's Prototype
+
+Deck:
+1 Hulldrifter
+1 Chrome Companion
+1 Filigree Attendant
+1 Scaretiller
+1 Raiders' Karve
+1 Ancient Den
+1 Seat of the Synod
+1 Thundersteel Colossus
+1 Daring Mechanic
+1 Seven-Tail Mentor
+1 Lightwheel Enhancements
+1 Moonsnare Prototype
+1 Dragonfly Suit
+1 Brute Suit
+1 Spotcycle Scouter
+1 Giant Ox
+1 Interface Ace
+1 Lens Flare
+1 Thoughtcast
+1 Recommission
+1 Broadcast Rambler
+1 Adventurer's Airship
+1 Gearseeker Serpent
+1 Etherium Sculptor
+1 Aradara Express
+1 Kitsune Ace
+1 Mobile Garrison
+1 Flywheel Racer
+1 Spontaneous Flight
+1 Voyager Quickwelder
+15 Plains
+15 Island
+1 Vedalken Engineer
+1 Irontread Crusher
+1 Futurist Sentinel
+1 Adaptive Gemguard
+1 Sky Skiff
+1 Silver Myr
+1 Feat of Resistance
+1 Greatsword of Tyr
+1 Archaeomender
+1 Stasis Field
+1 Ravenform
+1 Disenchant
+1 Trusty Retriever
+1 Ornithopter of Paradise
+1 Preordain
+1 Myr Scrapling
+1 Darksteel Citadel
+1 Compassionate Healer
+1 Midnight Mangler
+1 Funeral Longboat
+1 Skybox Ferry
+1 Guidelight Matrix
+1 Nanoform Sentinel
+1 Sojourner's Companion
+1 Utrom Monitor
+1 Passenger Ferry
+1 Dependable Quinjet
+1 Wing It
+1 Command Tower
+1 Steelfin Whale
+1 Stonybrook Schoolmaster
+1 Silvergill Peddler
+1 Weapon Rack
+1 Command Bridge
+1 Auxiliary Boosters
+1 Mnemonic Sphere
+1 Razortide Bridge
+1 Foundry Inspector
+1 Blacksmith's Skill

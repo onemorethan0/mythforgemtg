@@ -1,0 +1,102 @@
+# Archidekt — Dromoka, the Eternal: Count on Dragons
+# source: archidekt:2713146
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Dromoka, the Eternal
+
+Deck:
+1 Heliod's Intervention
+1 Boseiju, Who Endures
+1 Sol Ring
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Overgrown Farmland
+1 Yavimaya, Cradle of Growth
+1 War Room
+1 Bountiful Promenade
+1 Brushland
+1 Yavimaya Hollow
+1 Wooded Bastion
+1 Strip Mine
+1 Nykthos, Shrine to Nyx
+1 Command Tower
+1 Windswept Heath
+1 Rishkar's Expertise
+1 Scavenger Grounds
+1 Temple Garden
+1 Sunpetal Grove
+1 Solidarity of Heroes
+1 Invigorating Surge
+1 Akroma's Will
+1 Heroic Intervention
+1 Visions of Dominance
+1 Three Visits
+1 Rampant Growth
+1 Path to Exile
+1 Swords to Plowshares
+1 Selvala's Stampede
+1 Demolition Field
+1 Witch's Clinic
+1 Ozolith, the Shattered Spire
+1 Sejiri Shelter // Sejiri Glacier
+1 Scalelord Reckoner
+1 Sunscorch Regent
+1 Old Gnawbone
+1 Dragon's Hoard
+1 Jade Orb of Dragonkind
+1 Last March of the Ents
+1 Urza's Cave
+1 Talon Gates of Madara
+1 Cavern of Souls
+1 Abstergo Entertainment
+1 Horizon Canopy
+1 Cosmic Cube
+1 Dawn's Truce
+1 Hushwood Verge
+1 Bloomvine Regent // Claim Territory
+1 Herd Heirloom
+1 Broodcaller Scourge
+1 Canopy Gargantuan
+1 Lush Portico
+1 Summon: Bahamut
+1 Ambitious Dragonborn
+4 Forest
+4 Plains
+1 Harmonize
+1 Stroke of Midnight
+1 Generous Gift
+1 Beast Within
+1 Dragonlord Dromoka
+1 Icingdeath, Frost Tyrant
+1 Ancient Bronze Dragon
+1 Earthquake Dragon
+1 Clarion Conqueror
+1 Guardian Scalelord
+1 Enduring Scalelord
+1 Protector of the Wastes
+1 Glimpse the Core
+1 Nature's Lore
+1 Farseek
+1 The Earth Crystal
+1 Branching Evolution
+1 Loading Zone
+1 Hardened Scales
+1 Thickest in the Thicket
+1 Yuna's Whistle
+1 Damning Verdict
+1 Fangs of Kalonia
+1 Trouble in Pairs
+1 Sylvan Library
+1 Up the Beanstalk
+1 Terrasymbiosis
+1 Garruk's Uprising
+1 Return of the Wildspeaker
+1 Shared Roots
+1 Collective Resistance
+1 Ancient Tomb
+1 Harsh Mercy
+1 Hidden Hideout
+1 High Score
+1 Nature's Will
+1 Dragonstorm Globe

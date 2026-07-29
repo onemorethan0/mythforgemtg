@@ -1,0 +1,86 @@
+# Archidekt — Djeru, With Eyes Open: Plainswalkers
+# source: archidekt:3994
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Djeru, With Eyes Open
+
+Deck:
+1 Austere Command
+1 Scavenger Grounds
+1 Anointed Procession
+1 Oath of Gideon
+1 Gideon, Ally of Zendikar
+1 Ugin, the Spirit Dragon
+1 Caged Sun
+1 Pearl Medallion
+1 Ajani Steadfast
+1 The Chain Veil
+1 Elspeth, Sun's Champion
+1 Nykthos, Shrine to Nyx
+1 Elspeth, Knight-Errant
+1 Path to Exile
+1 Sol Ring
+1 Elspeth Tirel
+1 Rings of Brighthearth
+1 Swords to Plowshares
+1 Extraplanar Lens
+1 Kor Haven
+1 Strip Mine
+1 Cathars' Crusade
+1 Arena Rector
+1 Divine Visitation
+1 Karn's Bastion
+1 The Wanderer
+1 Grateful Apparition
+1 Karn, the Great Creator
+1 Ugin, the Ineffable
+1 Generous Gift
+1 Tome of Legends
+1 Elspeth, Sun's Nemesis
+1 War Room
+1 Serra the Benevolent
+1 Lae'zel, Vlaakith's Champion
+1 Honor-Worn Shaku
+1 Karn, Scion of Urza
+1 The Peregrine Dynamo
+1 Heraldic Banner
+1 Scroll Rack
+1 Heliod's Intervention
+1 Demolition Field
+1 Arcane Signet
+1 Norn's Choirmaster
+1 Glistening Sphere
+1 The Eternal Wanderer
+1 Archangel Elspeth
+1 Minas Tirith
+1 Stroke of Midnight
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Gatewatch Beacon
+1 Fomori Vault
+1 Abstergo Entertainment
+1 Hourglass of the Lost
+1 Monumental Henge
+1 Emergency Eject
+1 Elspeth, Storm Slayer
+1 Throne of Eldraine
+1 Smuggler's Share
+23 Snow-Covered Plains
+1 Clever Concealment
+1 Dawn's Truce
+1 Aetheric Amplifier
+1 Lithoform Engine
+1 Mind's Eye
+1 Land Tax
+1 Elspeth's Talent
+1 Trouble in Pairs
+1 Tocasia's Welcome
+1 Urza Assembles the Titans
+1 Dawn of a New Age
+1 Caretaker's Talent
+1 Darksteel Mutation
+1 Ajani, Outland Chaperone
+1 Ugin, Eye of the Storms
+1 Nesting Grounds
+1 Deification

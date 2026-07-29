@@ -1,0 +1,87 @@
+# Archidekt — Dragon Triggers
+# source: archidekt:17703923
+# fetched: 2026-07-09
+
+Commander:
+1 Miirym, Sentinel Wyrm
+
+Deck:
+1 Explore
+1 Spire Garden
+1 Deep Analysis
+1 Cliffgate
+1 Blur
+1 Temple of the Dragon Queen
+1 Earthquake Dragon
+1 Orb of Dragonkind
+1 Crossroads Village
+1 Breaching Dragonstorm
+1 Secluded Courtyard
+1 Dispelling Exhale
+1 Powerbalance
+1 Manor Gate
+1 Swashbuckler Extraordinaire
+1 Fire Diamond
+1 Sapphire Dragon // Psionic Pulse
+1 Divination
+1 Draconic Muralists
+1 Kessig Wolf Run
+1 Irenicus's Vile Duplication
+1 Essence Scatter
+1 Arcane Signet
+1 Herd Heirloom
+1 Panharmonicon
+1 Korlessa, Scale Singer
+1 Branching Bolt
+1 Lapis Orb of Dragonkind
+1 Majestic Genesis
+1 Reckless Barbarian
+1 Fang Dragon // Forktail Sweep
+1 Auroral Procession
+1 Evolving Wilds
+1 Contact Other Plane
+1 Bard Class
+1 Sea Gate
+1 Sky Diamond
+1 Command Tower
+1 Carnelian Orb of Dragonkind
+1 Deceptive Frostkite
+1 Fireball
+1 Jade Orb of Dragonkind
+1 Roiling Dragonstorm
+1 Izzet Boilerworks
+1 Thunderbreak Regent
+1 Sword Coast Serpent // Capsizing Wave
+1 Dragonstorm Globe
+1 Cancel
+1 Ganax, Astral Hunter
+1 Swiftwater Cliffs
+1 Decanter of Endless Water
+1 Oceanus Dragon
+1 Dread Linnorm // Scale Deflection
+1 Reverberate
+1 Reflecting Pool
+1 Frontier Bivouac
+1 Patchwork Banner
+1 Encroaching Dragonstorm
+1 Hammerhead Tyrant
+8 Mountain
+1 You Meet in a Tavern
+8 Forest
+7 Island
+1 Draconic Lore
+1 Moss Diamond
+1 Rampant Growth
+1 Scaled Nurturer
+1 Thrakkus the Butcher
+1 Acolyte of Bahamut
+1 Ancient Silver Dragon
+1 Displacer Kitten
+1 Stormscale Scion
+1 Sol Ring
+1 Green Dragon
+1 Lozhan, Dragons' Legacy
+1 Whirlwing Stormbrood // Dynamic Soar
+1 Quandrix, the Proof
+1 Marang River Regent // Coil and Catch
+1 Lightning Bolt

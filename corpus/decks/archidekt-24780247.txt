@@ -1,0 +1,90 @@
+# Archidekt — Fynn 2
+# source: archidekt:24780247
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Fynn, the Fangbearer
+
+Deck:
+1 Ivy Lane Denizen
+1 Snakeskin Veil
+1 Ruthless Predation
+1 Urban Daggertooth
+19 Forest
+1 Jewel-Eyed Cobra
+1 Evolution Sage
+1 Devouring Tendrils
+1 Saryth, the Viper's Fang
+1 Noxious Newt
+1 Return to Nature
+1 Fang of Shigeki
+1 Venerated Rotpriest
+1 Radioactive Spider
+1 Ankle Biter
+1 Infectious Bite
+1 Skycoach Waypoint
+1 Spinning Wheel Kick
+1 Smell Fear
+1 Serpent-Blade Assailant
+1 Atraxa's Fall
+1 Sol Ring
+1 Horrific Assault
+1 Setessan Training
+1 Plague Nurse
+1 Elvish Regrower
+1 Avatar of Might
+1 Recollect
+1 Rocky Rebuke
+1 Kraul Stinger
+1 Tandem Takedown
+1 Thirsting Roots
+1 Ohran Frostfang
+1 Nightshade Dryad
+1 Tail Swipe
+1 Gingerbread Cabin
+1 Teething Wurmlet
+1 Venomous Brutalizer
+1 Study Hall
+1 Underdark Basilisk
+1 Hidden Nursery
+1 Topiary Lecturer
+1 Command Tower
+1 Band Together
+1 Narnam Renegade
+1 Dune Mover
+1 Druid of the Cowl
+1 Emil, Vastlands Roamer
+1 Crystal Carapace
+1 Kappa Tech-Wrecker
+1 Werebear
+1 Biosynthic Burst
+1 Bite Down
+1 Gnarlwood Dryad
+1 Hard-Hitting Question
+1 Rabid Bite
+1 Ornery Dilophosaur
+1 Sabertooth Cobra
+1 Erinis, Gloom Stalker
+1 Courage in Crisis
+1 Daggerback Basilisk
+1 Titanic Growth
+1 Questing Beast
+1 Sedge Scorpion
+1 Llanowar Elves
+1 Ichorspit Basilisk
+1 Oracle's Restoration
+1 Tyrranax Atrocity
+1 Elvish Visionary
+1 Cankerbloom
+1 Ambush Viper
+1 Outmuscle
+1 Carnivorous Canopy
+1 Greater Basilisk
+1 Adaptive Sporesinger
+1 Virulent Emissary
+1 Giant Growth
+1 Nightshade Peddler
+1 Heir of the Wilds
+1 Ram Through
+1 Predator's Strike

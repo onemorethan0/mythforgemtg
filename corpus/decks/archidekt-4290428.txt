@@ -1,0 +1,90 @@
+# Archidekt — Biblically Accurate Beatdown
+# source: archidekt:4290428
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Liesa, Shroud of Dusk
+
+Deck:
+1 Barrowgoyf
+1 Charismatic Conqueror
+1 Hunted Horror
+1 Giver of Runes
+1 Ankh of Mishra
+1 Archangel of Tithes
+1 Assault Intercessor
+1 Athreos, God of Passage
+1 Aura of Silence
+1 Aven Mindcensor
+1 Blackblade Reforged
+1 Bleachbone Verge
+1 Boggart Trawler // Boggart Bog
+1 Bojuka Bog
+1 Boromir, Warden of the Tower
+1 Breena, the Demagogue
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caves of Koilos
+1 Command Tower
+1 Concealed Courtyard
+1 Dauntless Dismantler
+1 Dauthi Voidwalker
+1 Deadly Tempest
+1 Desolate Mire
+1 Dismantling Wave
+1 Duelist's Heritage
+1 Dusk // Dawn
+1 Fell the Profane // Fell Mire
+1 Fetid Heath
+1 Force of Despair
+1 Generous Gift
+1 Ghostly Prison
+1 Glasswing Grace // Age-Graced Chapel
+1 Godless Shrine
+1 Hagra Mauling // Hagra Broodpit
+1 Kambal, Consul of Allocation
+1 Kataki, War's Wage
+1 Lightning Greaves
+1 Loran of the Third Path
+1 Lotho, Corrupt Shirriff
+1 MacCready, Lamplight Mayor
+1 Malakir Rebirth // Malakir Mire
+1 Massacre Wurm
+1 Mother of Runes
+1 Orzhov Basilica
+1 Painful Quandary
+12 Plains
+1 Polluted Bonds
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Rogue's Passage
+1 Selfless Spirit
+1 Shadowy Backstreet
+1 Shattered Sanctum
+1 Skyhunter Strike Force
+1 Sol Ring
+1 Soul Shatter
+8 Swamp
+1 Swords to Plowshares
+1 Thalia, Guardian of Thraben
+1 Thalia, Heretic Cathar
+1 Vault of Champions
+1 Vryn Wingmare
+1 Welcoming Vampire
+1 Windborn Muse
+1 Winds of Abandon
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Wound Reflection
+1 Suture Priest
+1 Mai, Scornful Striker
+1 Dark Confidant
+1 Darkstar Augur
+1 Assemble the Players
+1 Caustic Bronco
+1 Elegy Acolyte
+1 Firemane Commando
+1 Archivist of Oghma
+1 Enduring Innocence
+1 Keen Duelist
+1 Glimmer Lens
+1 Clever Concealment
+1 Aven Interrupter

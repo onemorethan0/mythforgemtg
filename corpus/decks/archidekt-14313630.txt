@@ -1,0 +1,106 @@
+# Archidekt — The Ur-Dragon based on Scion
+# source: archidekt:14313630
+# fetched: 2026-07-27
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Ancient Silver Dragon
+1 Allied Strategies
+1 Commercial District
+1 Damn
+1 Dragon Tempest
+1 Arcane Signet
+1 Elegant Parlor
+1 Hedge Maze
+1 Lush Portico
+1 Meticulous Archive
+1 Sarkhan Unbroken
+1 Shadowy Backstreet
+1 Skyshroud Claim
+1 Stinging Study
+1 Thundering Falls
+1 Undercity Sewers
+1 Underground Mortuary
+1 Utvara Hellkite
+1 Three Visits
+1 Wasitora, Nekoru Queen
+1 Savai Triome
+1 Call the Spirit Dragons
+1 Leyline Binding
+1 Up the Beanstalk
+1 Majestic Genesis
+1 Stubborn Denial
+1 Garruk's Uprising
+1 Kindred Discovery
+1 Tiamat
+1 Two-Headed Hellkite
+1 Wrathful Red Dragon
+1 Lathliss, Dragon Queen
+1 Hellkite Courser
+1 Marang River Regent // Coil and Catch
+1 Atarka, World Render
+1 Beast Within
+1 Birds of Paradise
+1 Bring to Light
+1 Command Tower
+1 Crux of Fate
+1 Dragon's Hoard
+1 Dragonskull Summit
+1 Farewell
+1 Farseek
+1 Forest
+1 Island
+1 Lightning Greaves
+1 Mountain
+1 Nature's Lore
+1 Balefire Dragon
+1 Miirym, Sentinel Wyrm
+1 Anguished Unmaking
+1 Nicol Bolas, Planeswalker
+1 Plains
+1 Raucous Theater
+1 Scion of Draco
+1 Sol Ring
+1 Sunpetal Grove
+1 Swamp
+1 Tear Asunder
+1 Temur Ascendancy
+1 Toxic Deluge
+1 Windswept Heath
+1 Exotic Orchard
+1 Jetmir's Garden
+1 Ketria Triome
+1 Isolated Chapel
+1 Woodland Cemetery
+1 Clifftop Retreat
+1 Hinterland Harbor
+1 Drowned Catacomb
+1 Rootbound Crag
+1 Collective Restraint
+1 Frostcliff Siege
+1 Reflecting Pool
+1 Ziatora's Proving Ground
+1 Zagoth Triome
+1 Raugrin Triome
+1 Xander's Lounge
+1 Spara's Headquarters
+1 Raffine's Tower
+1 Scourge of Valkas
+1 Indatha Triome
+1 Ugin, the Spirit Dragon
+1 Scaled Nurturer
+1 Scalelord Reckoner
+1 Urza's Incubator
+1 Ureni, the Song Unending
+1 Dragonborn Champion
+1 Nadaar, Selfless Paladin
+1 Haven of the Spirit Dragon
+1 Maelstrom of the Spirit Dragon
+1 Draconic Muralists
+1 Moonveil Regent
+1 Hidetsugu and Kairi
+1 Disruptive Stormbrood // Petty Revenge
+1 Realmwalker
+1 Ureni of the Unwritten

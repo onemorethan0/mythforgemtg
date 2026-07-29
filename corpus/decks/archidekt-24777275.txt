@@ -1,0 +1,85 @@
+# Archidekt — Fynn, the Fangbearer
+# source: archidekt:24777275
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Fynn, the Fangbearer
+
+Deck:
+1 Acidic Slime
+1 Affectionate Indrik
+1 Ainok Wayfarer
+1 Ambush Wolf
+1 Ash Barrens
+1 Attuned Hunter
+1 Baloth Woodcrasher
+1 Band Together
+1 Beast-Kin Ranger
+1 Bite Down
+1 Blanchwood Armor
+1 Broken Wings
+1 Burnished Hart
+1 Bushwhack
+1 Champion of Dusan
+1 Commander's Sphere
+1 Darksteel Axe
+1 Eager Trufflesnout
+1 Elfsworn Giant
+1 Elvish Regrower
+1 Encroaching Dragonstorm
+1 Escape Tunnel
+1 Evolution Witness
+1 Evolving Wilds
+1 Explore
+1 For the Family
+1 Frogmite
+1 Ghalta, Primal Hunger
+1 Giant Growth
+1 Gnarlid Colony
+1 Goldvein Pick
+1 Grazing Gladehart
+1 Groundswell
+1 Grow from the Ashes
+1 Harrow
+1 Heraldic Banner
+1 Heritage Reclamation
+1 Infiltration Lens
+1 Insidious Fungus
+1 Inspiring Call
+1 Knockout Maneuver
+1 Meteor Golem
+1 Might of the Masses
+1 Mind Stone
+1 Multani, Yavimaya's Avatar
+1 Myr Enforcer
+1 Myriad Landscape
+1 Needletooth Pack
+1 Nessian Hornbeetle
+1 Nesting Grounds
+1 Overcome
+1 Overwhelm
+1 Pristine Talisman
+1 Prophetic Prism
+1 Rainveil Rejuvenator
+1 Reclamation Sage
+1 Rite of Renewal
+1 Roamer's Routine
+1 Sage of the Fang
+1 Saproling Migration
+1 Saurian Symbiote
+1 Skyclave Pick-Axe
+1 Slimy Piper
+1 Snakeskin Veil
+1 Snapping Gnarlid
+1 Somberwald Sage
+1 Spore Swarm
+1 Sporecrown Thallid
+1 Sporemound
+1 Terramorphic Expanse
+1 Trade Route Envoy
+1 Tukatongue Thallid
+1 Wary Thespian
+1 Welding Jar
+1 Wildwood Scourge
+24 Forest

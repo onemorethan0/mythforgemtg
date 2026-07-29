@@ -1,0 +1,106 @@
+# Archidekt — Evil Omo Landfall Alt Wincons
+# source: archidekt:13708248
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Omo, Queen of Vesuva
+
+Deck:
+1 Boseiju, Who Endures
+1 Vorinclex, Voice of Hunger
+1 Pongify
+1 Growth Spiral
+1 Planar Nexus
+1 Basilisk Gate
+1 Horizon of Progress
+1 Echoing Deeps
+1 Ruin Crab
+1 Spelunking
+1 Sylvan Scrying
+1 Uro, Titan of Nature's Wrath
+1 Ramunap Excavator
+1 Aesi, Tyrant of Gyre Strait
+1 Thassa, Deep-Dwelling
+1 Kodama of the East Tree
+1 Birds of Paradise
+1 Peregrine Drake
+1 Mystic Sanctuary
+1 Crop Rotation
+1 Forest
+1 Flooded Strand
+1 Hour of Promise
+1 Mutavault
+1 March from Velis Vel
+1 Force of Vigor
+1 Biovisionary
+1 Simic Growth Chamber
+1 Aggressive Biomancy
+1 Knowledge Exploitation
+1 Hermit Druid
+1 Thassa's Oracle
+1 Amulet of Vigor
+1 Scavenger Grounds
+1 Exploration
+1 Misty Rainforest
+1 Thespian's Stage
+1 Urza's Mine
+1 Icetill Explorer
+1 Farseek
+1 Urza's Tower
+1 Azusa, Lost but Seeking
+1 Urza's Power Plant
+1 Windswept Heath
+1 An Offer You Can't Refuse
+1 Springheart Nantuko
+1 Lotus Cobra
+1 Beast Within
+1 Island
+1 Glacial Chasm
+1 Deadeye Navigator
+1 Genesis Wave
+1 Talon Gates of Madara
+1 Maze's End
+1 Scute Swarm
+1 Dryad of the Ilysian Grove
+1 Cloudpost
+1 Shifting Woodland
+1 Mirrorpool
+1 Vesuva
+1 Turbulent Wilderness
+1 Yavimaya, Cradle of Growth
+1 Collective Restraint
+1 Yavimaya Coast
+1 Heroic Intervention
+1 Breeding Pool
+1 Glimmerpost
+1 Curse of the Swine
+1 Tireless Provisioner
+1 Urban Evolution
+1 Lush Oasis
+1 Sage of the Maze
+1 Xolatoyac, the Smiling Flood
+1 Eureka Moment
+1 Azami, Lady of Scrolls
+1 Planar Genesis
+1 Priest of Titania
+1 Sunken Citadel
+1 Zuran Orb
+1 Mystic Remora
+1 Flusterstorm
+1 Deserted Temple
+1 Rejuvenating Springs
+1 Gemstone Caverns
+1 Tatyova, Benthic Druid
+1 Baldur's Gate
+1 Eternal Witness
+1 Frantic Search
+1 Dryad Arbor
+1 Lumra, Bellow of the Woods
+1 Apex Devastator
+1 Eldritch Evolution
+1 Sowing Mycospawn
+1 Emergence Zone
+1 Thrasios, Triton Hero
+1 Elephant Graveyard
+1 Oboro Breezecaller

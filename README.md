@@ -2,7 +2,17 @@
 
 A fully local web app that builds themed 100-card EDH Commander decks with AI-generated custom card art and proxy frames using real MTG card assets.
 
-> **Part of the Myth Suite.** Myth Forge is the *creative* half — deck building, theming, AI art, proxy rendering and printing. It does **not** judge deck power itself: every bracket and strength number it shows is measured by **[MythGauntlet](https://github.com/onemorethan0/mythgauntlet)**, which simulates thousands of games and serves the result on `:8020`. Forge shipped its own bracket heuristic once; the two copies drifted apart, so it was removed in favour of a single authority. If MythGauntlet isn't running, Forge says the number is unavailable rather than substituting a guess. Owned-card features read the shared collection written by **MythScanner**.
+> **Now includes the MythGauntlet engine.** Myth Forge builds and prints; the engine at
+> `src/mythgauntlet/` measures — it simulates thousands of games to produce a six-axis Power
+> Profile and a 1–5 Commander bracket calibrated against author-labeled decks, plus an advisor
+> that ranks upgrades from cards you already own. There is exactly one analysis implementation
+> in this repo, and when the engine isn't running the UI says a number is unavailable rather
+> than guessing. Owned-card features read the shared collection written by **MythScanner**.
+>
+> ⚠️ **The engine's ~30k compiled card semantics are NOT included** — that store is still being
+> trained and is withheld for now. The engine runs without it on Oracle-text fallbacks, with
+> reduced fidelity. See **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)** for exactly what's missing
+> and how to build your own.
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/onemorethan0)
 
@@ -126,6 +136,7 @@ See [docs/HARDWARE_OPTIMIZATION_GUIDE.md](docs/HARDWARE_OPTIMIZATION_GUIDE.md) f
 | FastAPI / Uvicorn | 8000 | Backend API + serves React frontend |
 | Local LLM — **llama.cpp via llama-swap** (default) or **Ollama** | 8010 / 11434 | Card theming, names, flavor text, art prompts (`qwen3:14b` default) |
 | ComfyUI | 8188 | AI image generation (FLUX or SDXL) |
+| **MythGauntlet engine** (`src/mythgauntlet`) | 8020 | Deck strength, bracket, upgrade advisor. Started by `manage.bat`. Separate process on purpose — it holds the card-semantics store in memory (~50s cold, ~1.4s warm) so the web server restarts stay fast |
 
 > **LLM backend:** Myth Forge talks to an **OpenAI-compatible endpoint** — by default a [llama-swap](https://github.com/mostlygeek/llama-swap) gateway in front of `llama-server` (llama.cpp), which auto-loads GGUF models on demand and unloads them when idle. Prefer **Ollama**? Set `MYTHFORGE_LLM_BACKEND=ollama` and it works exactly as before — easiest path for a first install. `MYTHFORGE_LLM_BASE` overrides the endpoint URL.
 

@@ -1,0 +1,85 @@
+# Archidekt — Syrah Konnor
+# source: archidekt:234654
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Syr Konrad, the Grim
+
+Deck:
+1 Toxic Deluge
+1 Plaguecrafter
+1 Demon's Disciple
+1 Urborg, Tomb of Yawgmoth
+1 Nykthos, Shrine to Nyx
+1 Bojuka Bog
+1 Cabal Coffers
+1 Necropotence
+1 Skullclamp
+1 Sol Ring
+1 Crypt Ghast
+1 Ornithopter of Paradise
+1 Ancient Tomb
+1 Takenuma, Abandoned Mire
+1 Ripples of Undeath
+1 Flare of Malice
+1 Animate Dead
+1 Arcane Signet
+1 Massacre Wurm
+1 Braids, Arisen Nightmare
+1 Breach the Multiverse
+1 Bolas's Citadel
+1 Leaden Myr
+1 Millikin
+1 Dread Return
+1 Incarnation Technique
+1 Balthor the Defiled
+1 Living Death
+1 Night's Whisper
+1 Boggart Trawler // Boggart Bog
+1 Sign in Blood
+1 Malakir Rebirth // Malakir Mire
+1 Witch's Cottage
+1 Zulaport Cutthroat
+1 Blasphemous Edict
+1 Jet Medallion
+1 The Soul Stone
+1 Ashnod's Altar
+1 Out of the Tombs
+1 Ayara, First of Locthwain
+1 Sinister Gnarlbark
+1 Snuff Out
+1 Pitiless Plunderer
+1 Arnyn, Deathbloom Botanist
+1 Stitcher's Supplier
+1 Jadar, Ghoulcaller of Nephalia
+1 Midgar, City of Mako // Reactor Raid
+1 Putrid Goblin
+1 Butcher Ghoul
+1 Ophiomancer
+1 Orcish Bowmasters
+1 Crypt of Agadeem
+1 Bubbling Muck
+1 Kaya's Ghostform
+1 Morbid Opportunist
+1 Tortured Existence
+1 Plumb the Forbidden
+1 Dark Confidant
+1 Gray Merchant of Asphodel
+1 Blood Artist
+1 Marionette Apprentice
+1 Foggy Swamp Visions
+1 Avenger of the Fallen
+1 Mindcrank
+1 Altar of Dementia
+1 Warren Soultrader
+1 Phyrexian Altar
+1 Mesmeric Orb
+1 Umbral Collar Zealot
+1 Viscera Seer
+1 Accursed Marauder
+24 Snow-Covered Swamp
+1 Tombstone Stairwell
+1 Reassembling Skeleton
+1 Bloodghast
+1 Reanimate

@@ -1,0 +1,107 @@
+# Archidekt — NOCtis Cedh
+# source: archidekt:24700231
+# fetched: 2026-07-27
+
+Commander:
+1 Noctis, Prince of Lucis
+
+Deck:
+1 Lotus Petal
+1 Mana Confluence
+1 Ranger-Captain of Eos
+1 Mana Vault
+1 Enlightened Tutor
+1 Spellskite
+1 Flusterstorm
+1 Liberator, Urza's Battlethopter
+1 Grand Abolisher
+1 Mox Diamond
+1 Misty Rainforest
+1 Watery Grave
+1 Golbez, Crystal Collector
+1 Fierce Guardianship
+1 Mystic Remora
+1 Borne Upon a Wind
+1 Intuition
+1 Dark Ritual
+1 Esper Sentinel
+1 Mox Amber
+1 Tundra
+1 Lion's Eye Diamond
+1 Leonardo, Cutting Edge
+1 Hex Parasite
+1 An Offer You Can't Refuse
+1 Mindbreak Trap
+1 Bloodstained Mire
+1 Underground Sea
+1 Polluted Delta
+1 Hallowed Fountain
+1 Swan Song
+1 Silence
+1 Defense Grid
+1 Circle of Power
+1 Sensei's Divining Top
+1 Mishra's Workshop
+1 Windswept Heath
+1 Starting Town
+1 Smothering Tithe
+1 Urza's Saga
+1 Pact of Negation
+1 Cyclonic Rift
+1 City of Brass
+1 Gemstone Caverns
+1 Agatha's Soul Cauldron
+1 Sol Ring
+1 Scrubland
+1 Entomb
+1 Arcane Signet
+1 Force of Will
+1 Vampiric Tutor
+1 Cursed Totem
+1 Otawara, Soaring City
+1 Chrome Mox
+1 Bolas's Citadel
+1 Wishclaw Talisman
+1 Thassa's Oracle
+1 Imperial Seal
+1 Repurposing Bay
+1 Tezzeret the Seeker
+1 Auriok Salvagers
+1 Command Tower
+1 Oswald Fiddlebender
+1 Cavern of Souls
+1 Mox Opal
+1 Lotho, Corrupt Shirriff
+1 Minamo, School at Water's Edge
+1 Scalding Tarn
+1 Transmute Artifact
+1 Gifts Ungiven
+1 Force of Negation
+1 Tezzeret, Cruel Captain
+1 Grim Monolith
+1 Godless Shrine
+1 Squall, SeeD Mercenary
+1 Inventors' Fair
+1 Wan Shi Tong, Librarian
+1 Black Mage's Rod
+1 Lady Octopus, Inspired Inventor
+1 The One Ring
+1 Brain Freeze
+1 Vexing Bauble
+1 Ethersworn Canonist
+1 Marsh Flats
+1 Tainted Pact
+1 Ancient Tomb
+1 Flooded Strand
+1 Mystical Tutor
+1 Rhystic Study
+1 Aetherflux Reservoir
+1 Walking Ballista
+1 Demonic Tutor
+1 Opposition Agent
+1 Faerie Mastermind
+1 Grinding Station
+1 Ultron, Artificial Malevolence
+1 King T'Challa // Black Panther, Hope Enduring
+1 Beseech the Mirror
+1 Mental Misstep

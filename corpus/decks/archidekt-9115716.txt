@@ -1,0 +1,88 @@
+# Archidekt — Malfegor's Mudpit Melee
+# source: archidekt:9115716
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Malfegor
+
+Deck:
+1 Spinerock Knoll
+1 Laelia, the Blade Reforged
+1 Kardur, Doomscourge
+1 Ox of Agonas
+1 Dragonskull Summit
+1 Syphon Mind
+1 Skull Rend
+1 Call to the Netherworld
+1 Mind Rake
+1 Cunning Lethemancer
+1 Burglar Rat
+1 Stromkirk Occultist
+1 Syr Konrad, the Grim
+1 Mizzium Mortars
+1 Terminate
+15 Swamp
+1 Temple of Malice
+1 Anje's Ravager
+1 Asylum Visitor
+1 Azra Oddsmaker
+1 Cut // Ribbons
+7 Mountain
+1 Rakdos Carnarium
+1 Rix Maadi, Dungeon Palace
+1 Pain Magnification
+1 Command Tower
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Caustic Bronco
+1 Tainted Peak
+1 Sol Ring
+1 Chainer, Nightmare Adept
+1 Kroxa, Titan of Death's Hunger
+1 Case of the Crimson Pulse
+1 Arcane Signet
+1 Darkstar Augur
+1 Blackcleave Cliffs
+1 Stronghold Rats
+1 Bottomless Pit
+1 Rankle, Master of Pranks
+1 Unnerve
+1 Arterial Flow
+1 Fireglass Mentor
+1 Necrogoyf
+1 Victimize
+1 Florian, Voldaren Scion
+1 Bandit's Talent
+1 Tasigur's Cruelty
+1 Ripples of Undeath
+1 Inti, Seneschal of the Sun
+1 Sangromancer
+1 Fell the Profane // Fell Mire
+1 Accursed Marauder
+1 Painful Quandary
+1 Bedevil
+1 Soul Shatter
+1 Spymaster's Vault
+1 Let's Play a Game
+1 Delirium Skeins
+1 Restless Vents
+1 Sulfurous Springs
+1 Anger
+1 Bojuka Bog
+1 Immersturm Predator
+1 Detective's Phoenix
+1 Emperor of Bones
+1 Withering Torment
+1 Fiery Confluence
+1 Urborg Scavengers
+1 Rakdos Charm
+1 Boggart Trawler // Boggart Bog
+1 Qarsi Revenant
+1 Ghost Vacuum
+1 Malboro
+1 Tersa Lightshatter
+1 Byway Barterer
+1 Unlicensed Hearse
+1 Tinybones, Bauble Burglar
+1 Ivora, Insatiable Heir

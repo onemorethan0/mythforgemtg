@@ -1,0 +1,101 @@
+# Archidekt — Winter is Coming
+# source: archidekt:9539857
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Winter, Cynical Opportunist
+
+Deck:
+1 Squirming Emergence
+1 Cache Grab
+1 Ripples of Undeath
+1 Arid Archway
+1 Overgrown Tomb
+1 Viridescent Bog
+1 Hornet Queen
+1 Millikin
+1 Polluted Cistern // Dim Oubliette
+1 Convert to Slime
+1 Tree of Tales
+1 Demolisher Spawn
+1 Nesting Grounds
+1 Necron Deathmark
+1 Rise of the Witch-king
+1 Ursine Monstrosity
+1 Sol Ring
+1 Amzu, Swarm's Hunger
+1 Arachnogenesis
+1 Malevolent Rumble
+1 Twilight Mire
+1 Golgari Rot Farm
+1 Undergrowth Stadium
+1 Wondrous Crucible
+1 You Look Upon the Tarrasque
+1 Invasion of Fiora // Marchesa, Resolute Monarch
+1 Skull Prophet
+1 Old Rutstein
+1 The World Spell
+1 Nurturing Peatland
+1 Underground Mortuary
+1 Guildless Commons
+1 Treefolk Umbra
+1 Treasure Vault
+1 Takenuma, Abandoned Mire
+1 Valgavoth's Lair
+1 Sanctum Weaver
+1 Brotherhood Regalia
+1 Asceticism
+1 Out of the Tombs
+1 Overlord of the Balemurk
+1 Ornithopter of Paradise
+1 Disciple of Freyalise // Garden of Freyalise
+1 Revitalizing Repast // Old-Growth Grove
+1 Shizo, Death's Storehouse
+1 Drag to the Roots
+1 Winding Way
+1 Animate Dead
+1 Vile Mutilator
+1 Matzalantli, the Great Door // The Core
+1 Shifting Woodland
+1 Dakmor Salvage
+1 Town Greeter
+1 The Warring Triad
+1 Myr Battlesphere
+1 Colossal Grave-Reaver
+1 Deadly Tempest
+1 Eyeblight's Ending
+1 Zendikar Resurgent
+1 Bear Umbra
+1 Rampant Frogantua
+1 Summon: Bahamut
+1 Vault of Whispers
+1 Grisly Salvage
+1 Whip of Erebos
+1 Noxious Gearhulk
+1 Haywire Mite
+1 Grapple with the Past
+1 Mulch
+1 Satyr Wayfinder
+1 Bojuka Bog
+1 Darksteel Citadel
+1 Command Tower
+1 Darkmoss Bridge
+1 Llanowar Wastes
+1 Lightning Greaves
+4 Forest
+1 Akroma's Memorial
+1 Heroic Intervention
+1 Syr Konrad, the Grim
+1 Mosswort Bridge
+1 Cityscape Leveler
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Kaya's Ghostform
+1 Midnight Tilling
+1 Villainous Wrath
+5 Swamp
+1 Grist, the Hunger Tide
+1 Twitching Doll
+1 Nyx Weaver
+1 Deathcap Glade
+1 Dryad Arbor

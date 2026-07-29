@@ -1,0 +1,96 @@
+# Archidekt — How It Feels To Chew 5 Gum
+# source: archidekt:24431699
+# fetched: 2026-07-17
+
+Commander:
+1 April O'Neil, Human Element
+
+Deck:
+1 Drafna, Founder of Lat-Nam
+1 Extruder
+1 Krark-Clan Ironworks
+1 Grinding Station
+1 Urza's Saga
+1 The Mechanist, Aerial Artisan
+1 Urza, Lord High Artificer
+1 K-9, Mark I
+1 Sewer-veillance Cam
+1 Forensic Gadgeteer
+1 Retraction Helix
+1 Mm'menon, the Right Hand
+1 Mechanized Production
+1 The One Ring
+1 Valley Floodcaller
+1 Inventors' Fair
+1 Tezzeret the Seeker
+1 Inspiring Statuary
+1 Nykthos, Shrine to Nyx
+1 Mystical Tutor
+1 Sapphire Medallion
+1 Tezzeret, Cruel Captain
+1 Cephalid Coliseum
+1 Moonsilver Key
+1 Trinket Mage
+1 Sensei's Divining Top
+1 Spire of Industry
+1 Fomori Vault
+1 Buried Ruin
+1 Sol Ring
+1 Arcane Signet
+1 Dizzy Spell
+1 Transmute Artifact
+1 Mana Vault
+1 Ancient Tomb
+1 High Tide
+1 Misty Rainforest
+1 Lotus Petal
+1 Mox Amber
+1 Mox Opal
+1 Gemstone Caverns
+1 Scalding Tarn
+1 Mox Diamond
+12 Island
+1 Prismatic Vista
+1 Flooded Strand
+1 Polluted Delta
+1 Grand Architect
+1 Dramatic Reversal
+1 Etherium Sculptor
+1 Pili-Pala
+1 Walking Ballista
+1 Isochron Scepter
+1 Mental Misstep
+1 Swan Song
+1 Paradise Mantle
+1 Chain of Vapor
+1 Faerie Mastermind
+1 Rhystic Study
+1 Hullbreaker Horror
+1 Force of Negation
+1 Mystic Remora
+1 Sink into Stupor // Soporific Springs
+1 Flusterstorm
+1 An Offer You Can't Refuse
+1 Mister Fantastic, Reed Richards
+1 Force of Will
+1 Mindbreak Trap
+1 Stifle
+1 Wan Shi Tong, Librarian
+1 Mana Drain
+1 Pollywog Prodigy
+1 Muzzio, Visionary Architect
+1 Hangarback Walker
+1 Marketback Walker
+1 Mystic Forge
+1 Emry, Lurker of the Loch
+1 Animation Module
+1 Stridehangar Automaton
+1 Dispel
+1 Everflowing Chalice
+1 Sai, Master Thopterist
+1 Kappa Cannoneer
+1 Seat of the Synod
+1 Clan Crafter
+1 Spellskite
+1 Gifts Ungiven
+1 Cyberdrive Awakener

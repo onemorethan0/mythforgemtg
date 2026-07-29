@@ -1,0 +1,108 @@
+# Archidekt — rin and seri
+# source: archidekt:24787113
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Feline Sovereign
+1 Regal Caracal
+1 Jetmir, Nexus of Revels
+1 Lucky the Pizza Dog
+1 Selfless Savior
+1 Marisi, Breaker of the Coil
+1 King of the Pride
+1 Pack Leader
+1 Arahbo, the First Fang
+1 Jinnie Fay, Jetmir's Second
+1 Beastmaster Ascension
+1 Leonin Warleader
+1 Impact Tremors
+1 Ocelot Pride
+1 Kutzil, Malamet Exemplar
+1 Maskwood Nexus
+1 Sol Ring
+1 Qasali Slingers
+1 Anointed Procession
+1 Mirri, Weatherlight Duelist
+1 Loyal Warhound
+1 Spirited Companion
+1 Felidar Retreat
+1 Farseek
+1 Path to Exile
+1 Felidar Sovereign
+1 Heroic Intervention
+1 Helpful Hunter
+1 Cultivate
+1 Enduring Courage
+1 Release the Dogs
+1 Phelia, Exuberant Shepherd
+1 Realmwalker
+1 Mirror Entity
+1 Skullclamp
+1 Nature's Lore
+1 Three Tree City
+1 Hungry Lynx
+1 White Sun's Zenith
+1 Prava of the Steel Legion
+1 Kodama's Reach
+1 Prowling Serpopard
+1 Rampant Growth
+1 Lightning Greaves
+1 Herald's Horn
+1 Boros Charm
+1 Crib Swap
+1 Caretaker's Talent
+1 Vanquisher's Banner
+1 Akroma's Will
+1 Masked Vandal
+1 Alms Collector
+1 Patchwork Banner
+1 Shamanic Revelation
+1 Yoshimaru, Ever Faithful
+1 Aura Shards
+1 Earthcraft
+1 Whitemane Lion
+1 Molten Echoes
+1 Reliquary Tower
+1 Cathars' Crusade
+1 Mayael's Aria
+1 Universal Automaton
+1 Thought Vessel
+1 Animal Sanctuary
+1 Gavony Township
+1 Temur Sabertooth
+1 Evendo, Waking Haven
+1 Abandoned Air Temple
+1 Temple Garden
+1 Command Tower
+1 Arcane Signet
+1 Windswept Heath
+1 Rogue's Passage
+1 Stomping Ground
+1 Sacred Foundry
+1 Spire Garden
+1 Clifftop Retreat
+1 Rootbound Crag
+1 Path of Ancestry
+1 Yavimaya, Cradle of Growth
+1 Sunpetal Grove
+1 Brushland
+1 Game Trail
+1 Canopy Vista
+1 Spectator Seating
+1 Overgrown Farmland
+1 Rockfall Vale
+1 Karplusan Forest
+1 Furycalm Snarl
+1 Cinder Glade
+1 Evolving Wilds
+1 Sundown Pass
+1 Mosswort Bridge
+1 Bountiful Promenade
+1 Fortified Village
+1 Terramorphic Expanse
+1 Wooded Foothills
+1 Battlefield Forge

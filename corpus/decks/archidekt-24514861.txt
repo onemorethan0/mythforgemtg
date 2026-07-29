@@ -1,0 +1,107 @@
+# Archidekt — Dimir ninja
+# source: archidekt:24514861
+# fetched: 2026-07-20
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Triton Shorestalker
+1 Ingenious Infiltrator
+1 Mist-Syndicate Naga
+1 Sakashima's Student
+1 Street Wraith
+1 Preordain
+1 Opt
+1 Treasure Cruise
+1 Commandeer
+1 Reality Shift
+1 Pongify
+1 Rapid Hybridization
+1 Counterspell
+1 Murderous Cut
+1 Commit // Memory
+1 Feed the Swarm
+1 Sunken Hollow
+1 Underground River
+1 Island
+1 Cyclonic Rift
+1 Arcane Signet
+1 Dimir Signet
+1 Faerie Seer
+1 Mist-Cloaked Herald
+1 Nashi, Moon Sage's Scion
+1 Mistblade Shinobi
+1 Ninja of the Deep Hours
+1 Ornithopter
+1 Tetsuko Umezawa, Fugitive
+1 Thousand-Faced Shadow
+1 Arcane Denial
+1 Consider
+1 Dig Through Time
+1 Mystical Tutor
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Drowned Catacomb
+1 Shipwreck Marsh
+1 Ponder
+1 Temporal Mastery
+1 Temporal Trespass
+1 Dauthi Voidwalker
+1 Gudul Lurker
+1 Higure, the Still Wind
+1 Mothdust Changeling
+1 Tormented Soul
+1 Reanimate
+1 Witness Protection
+1 Darkslick Shores
+1 Gloomlake Verge
+1 Watery Grave
+1 Solve the Equation
+1 Bribery
+1 Toxic Deluge
+1 Bident of Thassa
+1 Sensei's Divining Top
+1 Sol Ring
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Changeling Outcast
+1 Draco
+1 Fallen Shinobi
+1 Gingerbrute
+1 Moon-Circuit Hacker
+1 Prosperous Thief
+1 Shadow of Mortality
+1 Skullsnatcher
+1 Slither Blade
+1 Silent-Blade Oni
+1 Cover of Darkness
+1 Kaito Shizuki
+1 Brainstorm
+1 Consign // Oblivion
+1 Drown in the Loch
+1 Cunning Evasion
+1 Snuff Out
+1 Choked Estuary
+1 Darkwater Catacombs
+1 Mystic Sanctuary
+1 Exotic Orchard
+1 Tainted Isle
+1 Polluted Delta
+1 Swamp
+1 Swamp
+1 Swamp
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp

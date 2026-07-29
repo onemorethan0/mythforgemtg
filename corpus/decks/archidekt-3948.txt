@@ -1,0 +1,102 @@
+# Archidekt — Glissa, the Traitor: The Engine of Betrayal
+# source: archidekt:3948
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Glissa, the Traitor
+
+Deck:
+1 Cybermen Squadron
+1 Dalek Drone
+1 Deathcap Glade
+1 Boseiju, Who Endures
+1 Demolition Field
+1 Liquimetal Torque
+1 Scavenger Grounds
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Strip Mine
+1 Bojuka Bog
+1 Sol Ring
+1 Mind Stone
+1 Executioner's Capsule
+1 Wayfarer's Bauble
+1 Command Tower
+1 Assassin's Trophy
+1 Undergrowth Stadium
+1 Expedition Map
+1 Llanowar Wastes
+1 Urborg, Tomb of Yawgmoth
+1 War Room
+1 Yavimaya, Cradle of Growth
+1 Lokhust Heavy Destroyer
+1 Sylvok Replica
+1 Haywire Mite
+1 Horizon Spellbomb
+1 Fae Offering
+1 Metalwork Colossus
+1 Wurmcoil Engine
+1 Noxious Gearhulk
+1 Karn, Legacy Reforged
+1 Canoptek Spyder
+1 Imotekh the Stormlord
+1 Biotransference
+1 Necron Deathmark
+1 Cloud Key
+1 Tree of Tales
+1 Vault of Whispers
+1 Darksteel Citadel
+1 Darkmoss Bridge
+1 Power Depot
+1 Treasure Vault
+1 Beast Within
+1 Barbed Servitor
+1 Scene of the Crime
+1 Liberator, Urza's Battlethopter
+1 Shimmer Myr
+1 The Mycosynth Gardens
+1 Armix, Filigree Thrasher
+1 Fomori Vault
+1 Arcbound Condor
+1 Vexing Bauble
+4 Forest
+4 Swamp
+1 Abstergo Entertainment
+1 Tithing Blade // Consuming Sepulcher
+1 Wastewood Verge
+1 Teval's Judgment
+1 Cryptothrall
+1 Urza's Cave
+1 Talon Gates of Madara
+1 Monoist Circuit-Feeder
+1 Solar Array
+1 Vona's Hunger
+1 Soul Shatter
+1 Sheoldred's Edict
+1 Make an Example
+1 Will of the Abzan
+1 Revitalizing Repast // Old-Growth Grove
+1 Nettlecyst
+1 Traxos, Scourge of Kroog
+1 Urza's Bauble
+1 Engineered Explosives
+1 Heroic Intervention
+1 Their Name Is Death
+1 Phyrexian Scriptures
+1 Rishkar's Expertise
+1 Sylvan Library
+1 Glaring Spotlight
+1 Mishra's Bauble
+1 Hylda's Crown of Winter
+1 Requiem Monolith
+1 Mystic Forge
+1 Prototype Portal
+1 The Soul Stone
+1 Saw in Half
+1 Krang, Utrom Warlord
+1 Giggling Skitterspike
+1 The Vision
+1 M.O.D.O.K.
+1 Panther Robot
+1 Collective Resistance

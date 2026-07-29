@@ -1,0 +1,95 @@
+# EDHREC average deck — Edgar Markov
+# source: edhrec_average:edgar-markov
+# fetched: 2026-07-05
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Anguished Unmaking
+1 Anointed Procession
+1 Arcane Signet
+1 Blade of the Bloodchief
+1 Blood Artist
+1 Blood Crypt
+1 Bloodletter of Aclazotz
+1 Bloodline Keeper
+1 Bloodstained Mire
+1 Bloodthirsty Conqueror
+1 Bojuka Bog
+1 Boros Charm
+1 Captivating Vampire
+1 Cavern of Souls
+1 Caves of Koilos
+1 Champion of Dusk
+1 Charismatic Conqueror
+1 Clavileño, First of the Blessed
+1 Command Tower
+1 Cordial Vampire
+1 Cruel Celebrant
+1 Damn
+1 Dark Ritual
+1 Demonic Tutor
+1 Dragonskull Summit
+1 Drana, Liberator of Malakir
+1 Edgar, Charmed Groom
+1 Elenda, the Dusk Rose
+1 Exotic Orchard
+1 Exquisite Blood
+1 Forerunner of the Legion
+1 Godless Shrine
+1 Herald's Horn
+1 Indulgent Aristocrat
+1 Isolated Chapel
+1 Knight of the Ebon Legion
+1 Legion Lieutenant
+1 Luxury Suite
+1 Malakir Bloodwitch
+1 Markov Baron
+1 Marsh Flats
+1 Master of Dark Rites
+1 Mavren Fein, Dusk Apostle
+3 Mountain
+1 New Blood
+1 Nomad Outpost
+1 Olivia's Wrath
+1 Orzhov Signet
+1 Pact of the Serpent
+1 Path of Ancestry
+1 Path to Exile
+1 Patron of the Vein
+1 Phyrexian Arena
+5 Plains
+1 Rakdos Signet
+1 Ruinous Ultimatum
+1 Sacred Foundry
+1 Sanctum Seeker
+1 Sanguine Bond
+1 Savai Triome
+1 Secluded Courtyard
+1 Shared Animosity
+1 Skullclamp
+1 Sol Ring
+1 Sorin, Imperious Bloodlord
+1 Stensia Masquerade
+1 Stromkirk Captain
+7 Swamp
+1 Swords to Plowshares
+1 Talisman of Hierarchy
+1 Teferi's Protection
+1 Twilight Prophet
+1 Unclaimed Territory
+1 Vampire Nighthawk
+1 Vampire Socialite
+1 Vampire of the Dire Moon
+1 Vampiric Tutor
+1 Vanquisher's Banner
+1 Vault of Champions
+1 Vault of the Archangel
+1 Vengeful Bloodwitch
+1 Village Rites
+1 Viscera Seer
+1 Vito, Thorn of the Dusk Rose
+1 Voldaren Estate
+1 Welcoming Vampire
+1 Yahenni, Undying Partisan

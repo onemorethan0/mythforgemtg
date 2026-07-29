@@ -1,0 +1,73 @@
+# Archidekt — Lord of the Nazgul Full LotR
+# source: archidekt:4747444
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Lord of the Nazgûl
+
+Deck:
+1 Barad-dûr
+1 Gríma, Saruman's Footman
+1 Consider
+1 Witch-king, Bringer of Ruin
+1 Ringwraiths
+1 Sauron, the Necromancer
+1 Wasteland
+1 Minas Morgul, Dark Fortress
+1 Uruk-hai Berserker
+1 Glorious Gale
+1 Claim the Precious
+1 Dreadful as the Storm
+1 Gollum, Patient Plotter
+1 Gollum's Bite
+1 Soothing of Sméagol
+1 Witch-king of Angmar
+1 Inherited Envelope
+1 Preordain
+1 Reanimate
+1 Raise the Palisade
+1 Languish
+1 Subjugate the Hobbits
+1 Boon of the Wish-Giver
+1 Shadowspear
+1 Arcane Denial
+1 Arcane Signet
+1 Mind Stone
+1 Sol Ring
+1 Call of the Ring
+1 Sauron's Ransom
+1 Commander's Sphere
+1 The Black Breath
+1 The One Ring
+1 Ringsight
+1 Horses of the Bruinen
+1 Birthday Escape
+1 Bitter Downfall
+1 Sam's Desperate Rescue
+1 Scroll of Isildur
+1 Decree of Pain
+1 Feed the Swarm
+1 Saruman's Trickery
+9 Nazgûl
+1 One Ring to Rule Them All
+1 Learn from the Past
+1 Crypt Incursion
+1 Forbidden Alchemy
+1 Go for the Throat
+1 Night's Whisper
+1 Mystic Confluence
+1 Underground River
+1 Sunken Hollow
+1 Drowned Catacomb
+1 Devastation Tide
+1 Boseiju, Who Shelters All
+1 Terramorphic Expanse
+1 Voracious Fell Beast
+1 Orcish Bowmasters
+1 Nazgûl Battle-Mace
+1 Fact or Fiction
+1 Command Tower
+14 Island
+1 Path of Ancestry
+15 Swamp

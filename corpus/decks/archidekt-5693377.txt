@@ -1,0 +1,102 @@
+# Archidekt — Doggone It!!
+# source: archidekt:5693377
+# fetched: 2026-07-23
+# bracket: 4
+
+Commander:
+1 Haldan, Avid Arcanist
+1 Pako, Arcane Retriever
+
+Deck:
+1 Scalding Tarn
+1 Orcish Lumberjack
+1 Nature's Lore
+1 Regrowth
+1 Arcane Signet
+1 Fellwar Stone
+1 Flooded Grove
+1 Command Tower
+1 Wild Growth
+1 Sol Ring
+1 Tinder Wall
+1 Noxious Revival
+1 Mystical Tutor
+1 Swan Song
+1 Exploration
+1 Stubborn Denial
+1 An Offer You Can't Refuse
+1 Misdirection
+1 Steam Vents
+1 Breeding Pool
+1 Stomping Ground
+1 Wooded Foothills
+1 Misty Rainforest
+1 Cyclonic Rift
+1 You Come to a River
+1 City of Brass
+1 Polluted Delta
+1 Minamo, School at Water's Edge
+1 March of Swirling Mist
+1 Seasons Past
+1 Delayed Blast Fireball
+1 Temur Battle Rage
+1 Seedtime
+2 Forest
+1 Three Visits
+1 Winged Boots
+1 Sensei's Divining Top
+1 Flare of Denial
+1 Capture of Jingzhou
+1 Time Warp
+1 Rolling Earthquake
+1 Force of Negation
+1 Sylvan Library
+1 Whispersilk Cloak
+1 Chandra's Ignition
+1 Ragavan, Nimble Pilferer
+1 Mystic Remora
+1 Seize the Day
+1 Canopy Cover
+1 Mana Drain
+1 Mystic Sanctuary
+1 Homeward Path
+1 Exotic Orchard
+1 Rancor
+1 Brotherhood Regalia
+1 The Lost and the Damned
+1 Minsc & Boo, Timeless Heroes
+1 Hedge Maze
+1 Sink into Stupor // Soporific Springs
+1 Training Center
+1 Rejuvenating Springs
+1 Explore
+1 Legolas's Quick Reflexes
+1 Kessig Wolf Run
+1 The Reaver Cleaver
+1 Hunter's Insight
+1 Mistrise Village
+1 Selvala, Heart of the Wilds
+1 Summer Bloom
+1 Chrome Mox
+1 Birds of Paradise
+1 Talisman of Creativity
+1 Fierce Guardianship
+1 Passionate Archaeologist
+1 Otawara, Soaring City
+1 Yavimaya Coast
+1 Lotus Petal
+1 Talisman of Curiosity
+1 Spire Garden
+1 Gemstone Caverns
+1 Collective Resistance
+1 Flashback
+1 Witch's Clinic
+1 Counterspell
+1 Multiversal Passage
+2 Island
+1 Personal Tutor
+1 Beast Within
+1 Terrasymbiosis
+1 Slip Out the Back
+1 Windswept Heath
+1 Flooded Strand

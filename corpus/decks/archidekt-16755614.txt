@@ -1,0 +1,84 @@
+# Archidekt — 2 Golgari - Shelob, Child of Ungoliant
+# source: archidekt:16755614
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Sol Ring
+1 Rampant Growth
+1 Broodspinner
+1 Migration Path
+1 Blighted Woodland
+1 Ishkanah, Grafwidow
+1 Rotwidow Pack
+1 Ransack the Lab
+1 Nyx Weaver
+1 Animist's Awakening
+1 Bitter Revelation
+1 Resentful Revelation
+1 Rabid Bite
+1 Penumbra Spider
+1 Hatchery Spider
+1 Spitting Spider
+1 Oran-Rief Recluse
+1 Brawn
+1 Sweet-Gum Recluse
+1 Search for Tomorrow
+1 Grow from the Ashes
+1 Arasta of the Endless Web
+1 Canopy Spider
+1 Sporecap Spider
+1 Netcaster Spider
+1 Renowned Weaver
+1 Graverobber Spider
+1 Fierce Empath
+1 Sporeweb Weaver
+1 Hitchclaw Recluse
+1 Temple of the False God
+1 Brood Weaver
+1 Snarespinner
+1 Ram Through
+1 Frostweb Spider
+1 Chainweb Aracnir
+1 Treefolk Umbra
+1 Golgari Cluestone
+1 Talons of Wildwood
+1 Golgari Rot Farm
+1 Deadly Recluse
+1 Huatli's Final Strike
+1 Spinning Wheel Kick
+1 Master's Rebuke
+1 Devouring Tendrils
+1 Stew the Coneys
+1 Bite Down
+1 Evolving Wilds
+1 Spider Spawning
+1 Assault Formation
+1 Golgari Locket
+1 Golgari Guildgate
+1 Foul Orchard
+1 Darkmoss Bridge
+1 Jungle Hollow
+18 Forest
+1 Clear Shot
+1 Silklash Spider
+1 Weirding Wood
+1 Moldervine Cloak
+1 Twin-Silk Spider
+1 Fangren Marauder
+1 Beneath the Sands
+1 Diresight
+1 Ambuscade
+1 Golgari Signet
+1 Cultivate
+1 Rogue's Passage
+1 Vastwood Surge
+1 Path of Ancestry
+1 Command Tower
+1 Myriad Landscape
+1 Ancient Lumberknot
+8 Swamp
+1 Twitching Doll

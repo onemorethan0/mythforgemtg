@@ -1,0 +1,108 @@
+# Archidekt — Mimeoplastic
+# source: archidekt:4047
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 The Mimeoplasm
+
+Deck:
+1 Forest
+1 Body Double
+1 Impervious Greatwurm
+1 Stubborn Denial
+1 Toxic Deluge
+1 Swiftfoot Boots
+1 Assassin's Trophy
+1 Mystic Remora
+1 Thirst for Meaning
+1 Chart a Course
+1 Altar of Dementia
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Tainted Indulgence
+1 An Offer You Can't Refuse
+1 Walking Ballista
+1 Exotic Orchard
+1 Sylvan Library
+1 Breeding Pool
+1 Watery Grave
+1 Overgrown Tomb
+1 Cephalid Coliseum
+1 Reanimate
+1 Animate Dead
+1 Living Death
+1 Command Tower
+1 Consecrated Sphinx
+1 Island
+1 Swamp
+1 Lord of Extinction
+1 Reflecting Pool
+1 Urborg, Tomb of Yawgmoth
+1 Thirst for Knowledge
+1 Mesmeric Orb
+1 Hermit Druid
+1 Necromancy
+1 Strip Mine
+1 Bayou
+1 Tropical Island
+1 Morphic Pool
+1 Zagoth Triome
+1 Undergrowth Stadium
+1 Rejuvenating Springs
+1 Sol Ring
+1 Thirst for Discovery
+1 Apocalypse Demon
+1 Emrakul, the Promised End
+1 Champion of Wits
+1 Path of Ancestry
+1 Dimir Aqueduct
+1 Yavimaya, Cradle of Growth
+1 Simic Growth Chamber
+1 Golgari Rot Farm
+1 Yargle and Multani
+1 Tyrranax Rex
+1 Prime Speaker Zegana
+1 Birds of Paradise
+1 Lightning Greaves
+1 Ripples of Undeath
+1 Malevolent Rumble
+1 Underground Sea
+1 Giggling Skitterspike
+1 Eternal Witness
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Rhystic Study
+1 Ancient Tomb
+1 Phyrexian Tower
+1 Winternight Stories
+1 Life from the Loam
+1 Thirst for Identity
+1 Roiling Dragonstorm
+1 Fathom Mage
+1 Disciple of Freyalise // Garden of Freyalise
+1 City of Brass
+1 Mana Confluence
+1 Sink into Stupor // Soporific Springs
+1 Terastodon
+1 Frantic Search
+1 Windfall
+1 Boseiju, Who Endures
+1 Arcane Signet
+1 Delighted Halfling
+1 Jodah's Avenger
+1 Nezahal, Primal Tide
+1 Nostalgic Dreams
+1 Breach the Multiverse
+1 Dance of the Dead
+1 Aberrant Return
+1 Incarnation Technique
+1 Underrealm Lich
+1 Vile Mutilator
+1 Colossal Grave-Reaver
+1 Archfiend of Despair
+1 Massacre Wurm
+1 Archon of Cruelty
+1 Scholar of the Lost Trove
+1 Vilis, Broker of Blood
+1 Astral Dragon
+1 Bane of Progress

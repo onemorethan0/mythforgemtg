@@ -1,0 +1,89 @@
+# Archidekt — Golbez, Crystal Collector Combo (Bracket 2)
+# source: archidekt:15214112
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Golbez, Crystal Collector
+
+Deck:
+1 Consuming Aberration
+1 Apocalypse Demon
+1 Arcane Signet
+1 Charcoal Diamond
+1 Chrome Host Seedshark
+1 Cloud Key
+1 Collector's Vault
+1 Command Tower
+1 Cryogen Relic
+1 Cut Your Losses
+1 Darksteel Citadel
+1 Darkwater Catacombs
+1 Deadly Dispute
+1 Deep Analysis
+1 Dimir Signet
+1 Drowned Catacomb
+1 Etherium Sculptor
+1 Fanatical Offering
+1 Fellwar Stone
+1 Forensic Gadgeteer
+1 Foundry Inspector
+1 Giant's Amulet
+1 Ichor Wellspring
+13 Island
+1 Leaden Myr
+1 Lightning Greaves
+1 Liquimetal Torque
+1 Matoya, Archon Elder
+1 Mephitic Draught
+1 Mind Stone
+1 Mirrodin Besieged
+1 Mistvault Bridge
+1 Muddle the Mixture
+1 Mycosynth Wellspring
+1 Noble's Purse
+1 Ornithopter of Paradise
+1 Personal Tutor
+1 Power Depot
+1 Prismatic Lens
+1 Prized Statue
+1 Riddlesmith
+1 Sai, Master Thopterist
+1 Scene of the Crime
+1 Seat of the Synod
+1 Silver Myr
+1 Singularity Rupture
+1 Sky Diamond
+1 Sol Ring
+1 Solve the Equation
+1 Springleaf Drum
+1 Star Compass
+1 Stern Lesson
+1 Sunken Hollow
+1 Survivor's Med Kit
+8 Swamp
+1 Tainted Isle
+1 Talisman of Dominance
+1 Terror Tide
+1 Thirst for Discovery
+1 Thirst for Knowledge
+1 Thought Monitor
+1 Thought Vessel
+1 Thoughtcast
+1 Toxic Deluge
+1 Traumatize
+1 Treasure Vault
+1 Underground River
+1 Vault of Whispers
+1 Windfall
+1 Winged Boots
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Counterspell
+1 Negate
+1 Swiftfoot Boots
+1 Enhanced Surveillance
+1 The Mechanist, Aerial Artisan
+1 Inspiring Statuary
+1 Unmarked Grave
+1 Lively Dirge

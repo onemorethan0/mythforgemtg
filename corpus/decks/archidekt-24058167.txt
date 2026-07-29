@@ -1,0 +1,87 @@
+# Archidekt — Wolverine
+# source: archidekt:24058167
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Wolverine, Best There Is
+
+Deck:
+1 Rogue's Passage
+1 Sword of Once and Future
+1 Sol Ring
+1 Arcane Signet
+1 Talisman of Impulse
+1 Rampant Growth
+1 Nature's Lore
+1 Three Visits
+1 Cultivate
+1 Kodama's Reach
+1 Sakura-Tribe Elder
+1 Hardened Scales
+1 Branching Evolution
+1 Invigorating Hot Spring
+1 Rhythm of the Wild
+1 Garruk's Uprising
+1 Elemental Bond
+1 Return of the Wildspeaker
+1 Kami of Whispered Hopes
+1 Forgotten Ancient
+1 Champion of Lambholt
+1 Duskshell Crawler
+1 Rishkar, Peema Renegade
+1 Armorcraft Judge
+1 Incubation Druid
+1 Evolution Witness
+1 Gyre Sage
+1 Renata, Called to the Hunt
+1 Tail Swipe
+1 Ram Through
+1 Prizefight
+1 Ancient Animus
+1 Cosmic Hunger
+1 Bushwhack
+1 Clear Shot
+1 Savage Punch
+1 Tamiyo's Safekeeping
+1 Snakeskin Veil
+1 Tyvar's Stand
+1 Bolt Bend
+1 Chaos Warp
+1 Return to Nature
+1 Chandra's Ignition
+1 Overwhelming Stampede
+1 Unnatural Growth
+1 Wildwood Scourge
+1 Managorger Hydra
+1 Taurean Mauler
+1 Loyal Guardian
+1 Command Tower
+1 Cinder Glade
+1 Game Trail
+1 Karplusan Forest
+1 Rockfall Vale
+1 Temple of Abandon
+1 Mossfire Valley
+1 Sheltered Thicket
+1 Highland Forest
+1 Gruul Turf
+1 Evolving Wilds
+1 Kessig Wolf Run
+1 Animation Module
+1 Pridemalkin
+9 Mountain
+1 Ozolith, the Shattered Spire
+1 Tuskguard Captain
+14 Forest
+1 Inspiring Call
+1 Bender's Waterskin
+1 Hunger of the Howlpack
+1 Ranger Class
+1 Voracious Hydra
+1 Ivy Lane Denizen
+1 Blossoming Defense
+1 Ridgescale Tusker
+1 Fangs of Kalonia
+1 Fiery Emancipation
+1 Mage Slayer

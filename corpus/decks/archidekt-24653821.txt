@@ -1,0 +1,101 @@
+# Archidekt — I. Am. Iron Man.
+# source: archidekt:24653821
+# fetched: 2026-07-24
+
+Commander:
+1 Tony Stark // The Invincible Iron Man
+
+Deck:
+1 Reconnaissance Mission
+1 Armor Wars
+1 Seize the Day
+1 Mechanized Production
+1 The Vision
+1 Loki, God of Mischief
+1 Avengers Disassembled
+1 Cyberdrive Awakener
+1 Iron Man, Master of Machines
+1 Fiery Emancipation
+3 Mountain
+1 Iron Man, Futurist Paragon
+1 Iron Man Armor
+1 I Am Iron Man
+1 Arc Reactor
+1 Phyrexian Walker
+1 Chain Reaction
+1 Steelswarm Operator
+1 Voltaic Key
+1 Golem Foundry
+1 Universal Surveillance
+1 Uthros Research Craft
+1 Depthshaker Titan
+1 Rust Harvester
+1 Kappa Cannoneer
+1 Swan Song
+1 Mm'menon, the Right Hand
+1 Emry, Lurker of the Loch
+1 Jhoira, Weatherlight Captain
+1 Warmaker Gunship
+1 Chrome Host Seedshark
+1 Phyrexian Metamorph
+1 Thought Monitor
+1 Crawlspace
+1 Insight Engine
+1 Pull from Tomorrow
+1 Gavel of the Righteous
+1 Steel Overseer
+1 One with the Machine
+1 Talisman of Creativity
+1 Lux Artillery
+1 Unwinding Clock
+1 Mirrormade
+1 Weapons Manufacturing
+1 Etherium Sculptor
+1 Basalt Monolith
+1 Mana Vault
+1 Cloud Key
+1 Arcane Signet
+1 Sol Ring
+1 Enthusiastic Mechanaut
+1 Sulfur Falls
+1 Ornithopter of Paradise
+1 Ferrous Lake
+1 Buried Ruin
+1 Seat of the Synod
+1 Lotus Field
+1 Riverpyre Verge
+1 Cascade Bluffs
+1 The Mycosynth Gardens
+1 Reliquary Tower
+1 Shivan Reef
+1 Uthros, Titanic Godcore
+1 Command Tower
+1 Frostboil Snarl
+1 Spire of Industry
+1 Inventors' Fair
+1 Exotic Orchard
+1 Castle Doom
+6 Island
+1 Hydraulic Helper
+1 Stark Industries
+1 Stark's Ingenuity
+1 Island
+1 Mountain
+1 Mountain
+1 Island
+1 Iron Man, Armored Avenger
+1 Iron Man, Bleeding Edge
+1 Iron Man, Tony Stark
+1 Origin of Iron Man
+1 Hulkbuster Armor
+1 Iron Man, Titan of Innovation
+1 Genji Glove
+1 Colossus Hammer
+1 Rogue's Passage
+1 Counterspell
+1 Blade of Selves
+1 Great Furnace
+1 Swiftfoot Boots
+1 Darksteel Citadel
+1 Gemstone Caverns
+1 The Fire Crystal

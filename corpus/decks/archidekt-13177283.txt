@@ -1,0 +1,101 @@
+# Archidekt — Terra - Every Summon - Only FF
+# source: archidekt:13177283
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Vincent's Limit Break
+1 Summon: G.F. Ifrit
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Summon: Titan
+1 Crystal Fragments // Summon: Alexander
+2 Island
+1 Rydia, Summoner of Mist
+1 Garnet, Princess of Alexandria
+1 Summon: Magus Sisters
+1 Summon: Good King Mog XII
+1 Summon: Kujata
+1 Summon: Ixion
+1 Summon: Valefor
+1 Summon: Leviathan
+1 Summon: Esper Ramuh
+1 Summon: Yojimbo
+1 Terra, Herald of Hope
+1 Arcane Signet
+1 Esper Origins // Summon: Esper Maduin
+1 O'aka, Traveling Merchant
+1 Summon: Bahamut
+1 Summon: Esper Valigarmanda
+1 Summon: Fenrir
+1 Summon: Primal Odin
+1 Summon: Shiva
+1 Yuna, Hope of Spira
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+2 Mountain
+1 Command Tower
+4 Plains
+2 Swamp
+2 Forest
+1 Exotic Orchard
+1 Summon: Anima
+1 Summon: Knights of Round
+1 Summon: Primal Garuda
+1 Yuna, Grand Summoner
+1 Sin, Unending Cataclysm
+1 Rikku, Resourceful Guardian
+1 Starting Town
+1 Gohn, Town of Ruin
+1 Baron, Airship Kingdom
+1 Jidoor, Aristocratic Capital // Overture
+1 Lindblum, Industrial Regency // Mage Siege
+1 Gongaga, Reactor Town
+1 Rabanastre, Royal City
+1 Guadosalam, Farplane Gateway
+1 Insomnia, Crown City
+1 Ishgard, the Holy See // Faith & Grief
+1 Sharlayan, Nation of Scholars
+1 Treno, Dark City
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Vector, Imperial Capital
+1 Windurst, Federation Center
+1 Chocobo Knights
+1 Reanimate
+1 Rise of the Dark Realms
+1 Clash of the Eikons
+1 Yuna's Decision
+1 Farseek
+1 Jungle Shrine
+1 Nomad Outpost
+1 Seaside Citadel
+1 Path of Ancestry
+1 Arcane Sanctum
+1 Reach the Horizon
+1 Tidus, Yuna's Guardian
+1 Rhystic Study
+1 Chromatic Lantern
+1 Nesting Grounds
+1 Together Forever
+1 Scholar of New Horizons
+1 Ruinous Ultimatum
+1 Elena, Turk Recruit
+1 Luminous Broodmoth
+1 Celes, Rune Knight
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Midgar, City of Mako // Reactor Raid
+1 Prishe's Wanderings
+1 Eden, Seat of the Sanctum
+1 Summon: Fat Chocobo
+1 Summon: G.F. Cerberus
+1 Summon: Choco/Mog
+1 The Wandering Minstrel
+1 Summon: Brynhildr
+1 Sol Ring
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Birds of Paradise
+1 Heroic Intervention

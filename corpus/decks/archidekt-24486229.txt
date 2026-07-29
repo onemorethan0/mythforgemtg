@@ -1,0 +1,97 @@
+# Archidekt — Go-Shintai of Life's Origin
+# source: archidekt:24486229
+# fetched: 2026-07-20
+# bracket: 4
+
+Commander:
+1 Go-Shintai of Life's Origin
+
+Deck:
+1 Abundant Growth
+1 Command Beacon
+1 Command Tower
+1 Dryad of the Ilysian Grove
+1 Anguished Unmaking
+1 Eerie Ultimatum
+1 Commercial District
+1 Enchantress's Presence
+1 Arcane Signet
+1 Eidolon of Blossoms
+1 Entity Tracker
+1 Assassin's Trophy
+1 Moon-Blessed Cleric
+1 Freed from the Real
+1 Sodden Verdure
+1 Honden of Cleansing Fire
+1 Sol Ring
+1 Stomping Ground
+1 Turbulent Fen
+1 Undergrowth Stadium
+1 Strength of the Harvest // Haven of the Harvest
+1 Vernal Fen
+1 White Lotus Hideout
+1 Weaver of Harmony
+1 Extinguish All Hope
+4 Island
+2 Swamp
+1 Mountain
+4 Forest
+1 Rapid Augmenter
+1 Molten Gatekeeper
+1 Redress Fate
+5 Plains
+1 Delayed Blast Fireball
+1 Farewell
+1 Exotic Orchard
+1 Elegant Parlor
+1 Fabled Passage
+1 Iroas, God of Victory
+1 Temporal Manipulation
+1 Dolmen Gate
+1 Invasion of Tolvada // The Broken Sky
+1 Destiny Spinner
+1 Eiganjo Dynastorian // Replenish
+1 Aminatou, Veil Piercer
+1 Doomwake Giant
+1 Inquisitive Glimmer
+1 Sanctum Weaver
+1 Jukai Naturalist
+1 Marina Vendrell
+1 Soaring Lightbringer
+1 Springheart Nantuko
+1 Sythis, Harvest's Hand
+1 Thassa, God of the Sea
+1 Crescent Island Temple
+1 Zur, Eternal Schemer
+1 Case of the Locked Hothouse
+1 Happily Ever After
+1 Estrid's Invocation
+1 Fertile Ground
+1 Helix Pinnacle
+1 Kyoshi Island Plaza
+1 Leyline of the Guildpact
+1 Honden of Infinite Rage
+1 Mirror Room // Fractured Realm
+1 Mirrormade
+1 Sheltered by Ghosts
+1 Secret Arcade // Dusty Parlor
+1 Sphere of Safety
+1 Shimmerwilds Growth
+1 Sterling Grove
+1 Sigil of the Empty Throne
+1 Virtue of Knowledge // Vantress Visions
+1 The Spirit Oasis
+1 Abandoned Air Temple
+1 Ishgard, the Holy See // Faith & Grief
+1 Shifting Woodland
+1 Calix, Destiny's Hand
+1 Spinerock Knoll
+1 Valgavoth's Lair
+1 Windbrisk Heights
+1 Aang's Journey
+1 Improvisation Capstone
+1 Restoration Seminar
+1 Southern Air Temple
+1 Northern Air Temple
+1 Sanctum of Tranquil Light
+1 Shrine Steward

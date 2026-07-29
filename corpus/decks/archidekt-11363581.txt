@@ -1,0 +1,81 @@
+# Archidekt — Where am I going, and how don't I get there?
+# source: archidekt:11363581
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Lotus Cobra
+1 Mind Stone
+1 Talisman of Impulse
+1 Lotus Petal
+1 Scute Swarm
+1 Spirebluff Canal
+1 Ramunap Excavator
+1 Zuran Orb
+1 Simic Signet
+8 Mountain
+15 Forest
+1 Wooded Foothills
+1 Izzet Signet
+1 Breeding Pool
+1 Utopia Sprawl
+1 Escape to the Wilds
+1 Grove of the Burnwillows
+1 Frantic Search
+1 Talisman of Curiosity
+1 Mox Opal
+1 Song of Creation
+1 Ghirapur Orrery
+1 Elvish Mystic
+1 Rites of Flourishing
+1 Hinterland Harbor
+1 Abundance
+1 Pentad Prism
+1 Desolate Lighthouse
+1 Peregrine Drake
+1 Life from the Loam
+1 Sulfur Falls
+1 Tormod's Crypt
+2 Snow-Covered Island
+1 Arcane Signet
+1 Talisman of Creativity
+1 Mox Amber
+1 Grapeshot
+1 Tireless Provisioner
+1 Rootbound Crag
+1 Arboreal Grazer
+1 Gruul Signet
+1 Llanowar Elves
+1 Exploration
+1 Turnabout
+1 Azusa, Lost but Seeking
+1 Dryad of the Ilysian Grove
+1 Crucible of Worlds
+1 Stomping Ground
+1 Steam Vents
+1 Loot, Exuberant Explorer
+1 Command Tower
+1 Wild Growth
+1 Oracle of Mul Daya
+1 Azusa's Many Journeys // Likeness of the Seeker
+1 Sol Ring
+1 Fyndhorn Elves
+6 Island
+1 Rampaging Baloths
+1 Embodiment of Insight
+1 Brass's Bounty
+1 Embodiment of Fury
+1 Radha, Heart of Keld
+1 Tatyova, Steward of Tides
+1 Avenger of Zendikar
+1 Zendikar's Roil
+1 Greensleeves, Maro-Sorcerer
+1 Gladiolus Amicitia
+1 Moraug, Fury of Akoum
+1 Sabotender
+1 Omnath, Locus of Rage
+1 Chocobo Racetrack
+1 Craterhoof Behemoth

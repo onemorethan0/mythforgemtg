@@ -1,0 +1,99 @@
+# Archidekt — Teval Self-Mill
+# source: archidekt:21703328
+# fetched: 2026-07-20
+
+Commander:
+1 Teval, Arbiter of Virtue
+
+Deck:
+1 Nature's Lore
+1 Polluted Delta
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Watery Grave
+1 Overgrown Tomb
+1 Fabled Passage
+1 Hedge Maze
+1 Underground Mortuary
+1 Mistrise Village
+1 Stensian Sanguinist // Exsanguinate
+1 Rejuvenating Springs
+1 Undergrowth Stadium
+1 Morphic Pool
+1 Rapid Hybridization
+1 Platinum Angel
+1 Glacierwood Siege
+1 Ripples of Undeath
+1 Stubborn Denial
+1 Sol Ring
+1 Arcane Signet
+1 Woodland Cemetery
+1 Drowned Catacomb
+1 Yavimaya Coast
+1 Llanowar Wastes
+1 Underground River
+1 Hinterland Harbor
+1 Exotic Orchard
+1 Command Tower
+1 Vilis, Broker of Blood
+1 Auroral Procession
+1 Eternal Witness
+1 Frantic Search
+1 Colossal Grave-Reaver
+1 Will of the Sultai
+1 Hedron Crab
+1 Golgari Grave-Troll
+1 Stitcher's Supplier
+1 Doppelgang
+1 Rite of Replication
+1 Three Steps Ahead
+1 Buried Alive
+1 Assassin's Trophy
+1 Drown in Dreams
+1 Solve the Equation
+1 Exhibition Tidecaller
+1 Teval's Judgment
+1 Life from the Loam
+1 Six
+1 Zagoth Triome
+1 Farseek
+1 Cycle of Renewal
+1 Roiling Regrowth
+1 Three Visits
+1 Birds of Paradise
+1 Traumatize
+1 Exsanguinate
+1 Fang, Fearless l'Cie
+1 Kishla Village
+1 Hedge Shredder
+1 Cephalid Coliseum
+1 Gray Merchant of Asphodel
+1 Explore
+1 Golgari Thug
+1 Muldrotha, the Gravetide
+1 Essence Warden
+1 Zuran Orb
+1 World Shaper
+1 Junji, the Midnight Sky
+1 Town Greeter
+1 Tatyova, Benthic Druid
+1 Breeding Pool
+3 Forest
+3 Swamp
+1 Dreamroot Cascade
+1 Deathcap Glade
+1 Shipwreck Marsh
+1 Spectrum Sentinel
+1 Jaddi Offshoot
+1 Kishla Skimmer
+3 Island
+1 Kokusho, the Evening Star
+1 Kairi, the Swirling Sky
+1 Animate Dead
+1 Victimize
+1 Regrowth
+1 Growth Spiral
+1 Nature's Claim
+1 Reanimate
+1 Lethal Scheme
+1 Entish Restoration

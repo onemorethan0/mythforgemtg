@@ -1,0 +1,92 @@
+# Archidekt — King Gizzard and the Lizard Lizard
+# source: archidekt:9673317
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Ignacio of Myra's Marvels
+1 Ikra Shidiqi, the Usurper
+
+Deck:
+1 Overclocked Electromancer
+1 Yurlok of Scorch Thrash
+1 Gev, Scaled Scorch
+1 Ognis, the Dragon's Lash
+1 Scissors Lizard
+1 Bellows Lizard
+1 Agate Instigator
+1 Scales of Shale
+1 Fireglass Mentor
+1 Kediss, Emberclaw Familiar
+1 Lizard Blades
+1 Magebane Lizard
+1 Frilled Sparkshooter
+1 Immolation Shaman
+1 Whiptongue Hydra
+1 Iridescent Vinelasher
+1 Valley Flamecaller
+1 Hired Claw
+1 Thought-Stalker Warlock
+1 Alpha Deathclaw
+1 Viashino Heretic
+1 Ziatora's Envoy
+1 Impatient Iguana
+1 Hearthborn Battler
+1 Gila Courser
+1 Hall Monitor
+6 Swamp
+1 Flamecache Gecko
+1 Chaosphere
+1 Swell of Growth
+1 Slavering Branchsnapper
+1 Pygmy Pyrosaur
+1 Lightning Bolt
+1 Sizzling Barrage
+1 Ravine Raider
+1 Damnable Pact
+1 Commune with Lava
+1 Chandra's Pyreling
+1 Herald's Horn
+1 Lavalanche
+1 Realmwalker
+1 Beast Within
+1 Sheltered Thicket
+1 Putrefy
+1 Assassin's Trophy
+1 Kessig Wolf Run
+1 Drannith Ruins
+1 Path of Ancestry
+1 Game Trail
+1 Pact of the Serpent
+1 Abstract Iguanart
+1 Darigaaz's Caldera
+1 Savage Lands
+1 Mudflat Village
+1 Decimate
+1 Party Thrasher
+1 Rockface Village
+1 Blazing Rootwalla
+1 Hissing Iguanar
+1 Mindclaw Shaman
+1 Scorch Spitter
+1 Pattern of Rebirth
+1 Ashroot Animist
+1 Fecundity
+1 Spitfire Lagac
+1 Arcane Signet
+7 Mountain
+1 Jund Panorama
+1 Sol Ring
+1 Command Tower
+1 Tarnished Citadel
+1 Damnation
+1 Exploration
+1 Talisman of Indulgence
+6 Forest
+1 Talisman of Resilience
+1 Talisman of Impulse
+1 Ketria Triome
+1 Undiscovered Paradise
+1 Mana Confluence
+1 City of Brass
+1 Gaea's Cradle

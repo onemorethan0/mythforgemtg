@@ -1,0 +1,95 @@
+# Archidekt — May the Odds Be Ever in Your Favour
+# source: archidekt:24747160
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Yennett, Cryptic Sovereign
+
+Deck:
+1 Minas Tirith
+1 Tome of the Guildpact
+7 Plains
+4 Swamp
+5 Island
+1 Sunken Ruins
+1 Bojuka Bog
+1 Mystic Sanctuary
+1 Arcane Sanctum
+1 Vault of the Archangel
+1 Port Town
+1 Exotic Orchard
+1 Arcane Lighthouse
+1 Isolated Chapel
+1 Command Tower
+1 Path of Ancestry
+1 Arcane Signet
+1 Opal Palace
+1 Prairie Stream
+1 Sunken Hollow
+1 Chromatic Lantern
+1 Shineshadow Snarl
+1 Tranquil Cove
+1 Darksteel Ingot
+1 Glacial Fortress
+1 Liesa, Forgotten Archangel
+1 Sol Ring
+1 Harmonized Trio // Brainstorm
+1 Honored Heirloom
+1 Aminatou, the Fateshifter
+1 Graceful Adept
+1 Shipwreck Singer
+1 Watcher of the Spheres
+1 Loyal Drake
+1 Aerial Responder
+1 Varragoth, Bloodsky Sire
+1 Sphinx of New Prahv
+1 Cavalier of Gales
+1 Emancipation Angel
+1 Trusty Packbeast
+1 Celestial Enforcer
+1 Illusory Angel
+1 Cloudblazer
+1 Markov Purifier
+1 Vega, the Watcher
+1 Victory's Herald
+1 Geode Golem
+1 Sharuum the Hegemon
+1 Rambunctious Mutt
+1 Sphinx Summoner
+1 Glorious Enforcer
+1 Ashen Rider
+1 Arcanis the Omnipotent
+1 Scholar of the Lost Trove
+1 Angel of the Ruins
+1 Elesh Norn, Grand Cenobite
+1 Land Tax
+1 Windreader Sphinx
+1 Dawnsire, Sunstar Dreadnought
+1 Toxic Deluge
+1 Pestilent Haze
+1 Cancel
+1 Salvation Colossus
+1 Duress
+1 Mystic Speculation
+1 Invoke the Divine
+1 Hero's Blade
+1 Diary of Dreams
+1 Personal Tutor
+1 Feign Death
+1 Murder
+1 Legions to Ashes
+1 Legion's Judgment
+1 Maul of the Skyclaves
+1 Loxodon Warhammer
+1 Extinction Event
+1 Moment of Reckoning
+1 Brainsurge
+1 Mind's Eye
+1 Approach of the Second Sun
+1 Wisdom of Ages
+1 Restoration Seminar
+1 Blatant Thievery
+1 In Garruk's Wake
+1 Rise of the Dark Realms
+1 Finale of Revelation

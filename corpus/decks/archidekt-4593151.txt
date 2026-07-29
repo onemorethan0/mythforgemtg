@@ -1,0 +1,90 @@
+# Archidekt — Octavia & the Unbloctopuses
+# source: archidekt:4593151
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Octavia, Living Thesis
+
+Deck:
+1 Artful Dodge
+1 Leap
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 March of Swirling Mist
+1 Bamboozle
+1 Blinkmoth Nexus
+5 Island
+1 Defy Gravity
+1 Faerie Conclave
+1 Gale, Waterdeep Prodigy
+6 Island
+6 Island
+1 Lonely Sandbar
+1 Demolition Field
+1 Ledger Shredder
+1 Brain Freeze
+1 Floodgate
+1 Filter Out
+1 Ipnu Rivulet
+5 Island
+1 Chart a Course
+1 Gigadrowse
+1 Cryptic Command
+1 Mission Briefing
+1 Pongify
+1 Peek
+1 Resculpt
+1 Psionic Blast
+1 Retraced Image
+1 Slip Through Space
+1 Thieving Skydiver
+1 Mists of Lórien
+1 Otherworldly Gaze
+1 Opt
+1 Rapid Hybridization
+1 Faerie Slumber Party
+1 You Come to a River
+1 Ponder
+1 Emrakul's Messenger
+1 Enter the Enigma
+1 Kiora, the Rising Tide
+1 Mischievous Mystic
+1 Malcolm, Alluring Scoundrel
+1 Thought Scour
+1 Mental Note
+1 Enduring Curiosity
+1 Sink into Stupor // Soporific Springs
+1 Consider
+1 Occult Epiphany
+1 Shadow Rift
+1 Cloak of Feathers
+1 Ray of Erasure
+1 Kitsa, Otterball Elite
+1 Archmage Emeritus
+1 Deep Analysis
+1 Faerie Mastermind
+1 Ghostly Pilferer
+1 Lórien Revealed
+1 Mystic Remora
+1 Thirst for Discovery
+1 Windfall
+1 Mystic Confluence
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Octopus Form
+1 Abhorrent Oculus
+1 Consult the Star Charts
+1 Nadir Kraken
+1 Mystic Sanctuary
+1 Brazen Borrower // Petty Theft
+1 Cephalid Coliseum
+1 Rivendell
+1 Picklock Prankster // Free the Fae
+1 Quiet Speculation
+1 Otawara, Soaring City
+1 Siren's Call
+1 Duelist of the Mind
+1 Sunken Palace
+1 Silundi Vision // Silundi Isle
+1 Brainstorm
+1 Unwelcome Sprite
+1 Shoreline Looter

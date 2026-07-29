@@ -1,0 +1,93 @@
+# Archidekt — Treasure Planet - Proxy List
+# source: archidekt:24158927
+# fetched: 2026-07-09
+
+Commander:
+1 Breeches, Brazen Plunderer
+1 Malcolm, Keen-Eyed Navigator
+
+Deck:
+9 Island
+1 Kitesail Larcenist
+1 Malcolm, Alluring Scoundrel
+1 Steam Vents
+1 Training Center
+1 Command Tower
+1 Cavern of Souls
+1 Shivan Reef
+1 Port Razer
+1 Roaming Throne
+1 The Indomitable
+1 Corsair Captain
+1 Fiery Islet
+1 Stormcarved Coast
+1 Exotic Orchard
+1 Cyclonic Rift
+1 Protean Raider
+1 Professional Face-Breaker
+7 Mountain
+1 Sulfur Falls
+1 Thundering Falls
+1 Siren Stormtamer
+1 Storm Fleet Sprinter
+1 Path of Ancestry
+1 Azure Fleet Admiral
+1 Fathom Fleet Swordjack
+1 Frostboil Snarl
+1 Riverglide Pathway // Lavaglide Pathway
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Spirebluff Canal
+1 Raise the Palisade
+1 Cascade Bluffs
+1 Cyberdrive Awakener
+1 Merchant Raiders
+1 Patchwork Banner
+1 Sol Ring
+1 Breeches, Eager Pillager
+1 Rise and Shine
+1 Double Down
+1 Dispel
+1 An Offer You Can't Refuse
+1 Flusterstorm
+1 Pongify
+1 Rapid Hybridization
+1 Chain of Vapor
+1 Chaos Warp
+1 Kari Zev, Skyship Raider
+1 Malcolm, the Eyes
+1 Warkite Marauder
+1 Captain Storm, Cosmium Raider
+1 Pirated Copy
+1 Vaan, Street Thief
+1 Academy Manufactor
+1 Emberwilde Captain
+1 Departed Deckhand
+1 Slippery Scoundrel
+1 Fabled Passage
+1 Kediss, Emberclaw Familiar
+1 Coercive Recruiter
+1 Zara, Renegade Recruiter
+1 Alchemist's Talent
+1 Captain Lannery Storm
+1 Gemcutter Buccaneer
+1 Brainstorm
+1 Chimil, the Inner Sun
+1 Expressive Iteration
+1 Jeska's Will
+1 Kindred Discovery
+1 The Reaver Cleaver
+1 Chart a Course
+1 Rain of Riches
+1 Spectral Sailor
+1 Storm Fleet Negotiator
+1 Windfall
+1 Arcane Denial
+1 Counterspell
+1 Invert Polarity
+1 Lookout's Dispersal
+1 Lightning Greaves
+1 Talisman of Creativity
+1 Vanquisher's Banner
+1 Arcane Signet
+1 Amphin Mutineer

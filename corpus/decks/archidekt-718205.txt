@@ -1,0 +1,90 @@
+# Archidekt — Go touch grass, before it touches you
+# source: archidekt:718205
+# fetched: 2026-07-24
+
+Commander:
+1 Titania, Protector of Argoth
+
+Deck:
+1 Wave of Vitriol
+1 Fertile Thicket
+1 Embodiment of Insight
+1 Fortitude
+1 Lotus Field
+1 Myriad Landscape
+1 Warped Landscape
+1 Zuran Orb
+1 Elemental Bond
+1 Haunted Fengraf
+1 Constant Mists
+1 Awakening of Vitu-Ghazi
+1 Cryptic Caves
+1 Drownyard Temple
+1 Naturalize
+1 Explosive Vegetation
+1 Mosswort Bridge
+1 Blighted Woodland
+1 Scapeshift
+1 Nissa, Who Shakes the World
+1 Nissa, Vital Force
+1 Sylvan Safekeeper
+1 Gaea's Blessing
+1 Harrow
+1 Evolving Wilds
+1 Khalni Ambush // Khalni Territory
+1 Crop Rotation
+1 Garruk's Uprising
+1 Krosan Grip
+1 Roiling Regrowth
+1 Cultivate
+1 Shamanic Revelation
+1 Terramorphic Expanse
+1 Reclamation Sage
+1 Sylvan Library
+1 Titania, Voice of Gaea
+1 Argoth, Sanctum of Nature
+1 Sol Ring
+1 Avenger of Zendikar
+1 Titania, Nature's Force
+1 Azusa, Lost but Seeking
+1 Ashaya, Soul of the Wild
+1 Oracle of Mul Daya
+1 Six
+1 Planar Engineering
+1 Exploration
+1 Entish Restoration
+1 Tireless Provisioner
+1 Rites of Flourishing
+1 Tempt with Discovery
+1 Tendershoot Dryad
+1 Conduit of Worlds
+1 Ancient Greenwarden
+1 Fabled Passage
+1 Beast Within
+1 Icetill Explorer
+1 Omnath, Locus of Mana
+4 Forest
+1 Yavimaya, Cradle of Growth
+1 Archdruid's Charm
+1 Exploration Broodship
+1 Dryad of the Ilysian Grove
+1 Awaken the Woods
+1 Ghost Quarter
+1 Kodama's Reach
+1 Crucible of Worlds
+1 Staff of Titania
+1 Elvish Reclaimer
+1 Defense of the Heart
+1 Dryad Arbor
+5 Forest
+1 Seedborn Muse
+4 Forest
+4 Forest
+4 Forest
+4 Forest
+1 Cycle of Renewal
+1 Sapling Nursery
+1 Concordant Crossroads
+1 Natural Order
+1 Rampant Growth
+1 Life from the Loam

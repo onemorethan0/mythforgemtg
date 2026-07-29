@@ -1,0 +1,99 @@
+# EDHREC average deck — Atraxa, Praetors' Voice
+# source: edhrec_average:atraxa-praetors-voice
+# fetched: 2026-07-05
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Ajani, Sleeper Agent
+1 Arcane Signet
+1 Astral Cornucopia
+1 Birds of Paradise
+1 Blightbelly Rat
+1 Blighted Agent
+1 Bloated Contaminator
+1 Breeding Pool
+1 Brokers Ascendancy
+1 Cankerbloom
+1 Chromatic Lantern
+1 Command Tower
+1 Contagion Engine
+1 Contaminant Grafter
+1 Counterspell
+1 Cultivate
+1 Cyclonic Rift
+1 Deepglow Skate
+1 Doubling Season
+1 Dreamtide Whale
+1 Drown in Ichor
+1 Everflowing Chalice
+1 Evolution Sage
+1 Exotic Orchard
+1 Experimental Augury
+1 Ezuri, Stalker of Spheres
+1 Farseek
+1 Fellwar Stone
+1 Flooded Strand
+1 Flux Channeler
+3 Forest
+1 Glistening Sphere
+1 Godless Shrine
+1 Hallowed Fountain
+1 Heroic Intervention
+1 Ichor Rats
+1 Indatha Triome
+1 Inexorable Tide
+1 Infectious Bite
+1 Infectious Inquiry
+1 Innkeeper's Talent
+3 Island
+1 Ixhel, Scion of Atraxa
+1 Karn's Bastion
+1 Lightning Greaves
+1 Marsh Flats
+1 Metastatic Evangel
+1 Misty Rainforest
+1 Narset, Parter of Veils
+1 Nature's Lore
+1 Norn's Decree
+1 Oko, Thief of Crowns
+1 Opulent Palace
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Path to Exile
+1 Phyresis Outbreak
+1 Phyrexian Swarmlord
+1 Plague Stinger
+3 Plains
+1 Polluted Delta
+1 Prologue to Phyresis
+1 Raffine's Tower
+1 Rhystic Study
+1 Sandsteppe Citadel
+1 Seaside Citadel
+1 Skithiryx, the Blight Dragon
+1 Skrelv, Defector Mite
+1 Smothering Tithe
+1 Sol Ring
+1 Spara's Headquarters
+3 Swamp
+1 Swords to Plowshares
+1 Tainted Observer
+1 Tamiyo, Field Researcher
+1 Teferi's Protection
+1 Teferi, Master of Time
+1 Tekuthal, Inquiry Dominus
+1 Temple Garden
+1 Tezzeret's Gambit
+1 Thrummingbird
+1 Unnatural Restoration
+1 Venerated Rotpriest
+1 Verdant Catacombs
+1 Voidwing Hybrid
+1 Vorinclex, Monstrous Raider
+1 Vraska's Fall
+1 Vraska, Betrayal's Sting
+1 Watery Grave
+1 Windswept Heath
+1 Zagoth Triome

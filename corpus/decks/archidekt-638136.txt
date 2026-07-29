@@ -1,0 +1,90 @@
+# Archidekt — When Elves Attack
+# source: archidekt:638136
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Tyvar the Bellicose
+
+Deck:
+1 Galadhrim Ambush
+1 Tear Asunder
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Staff of Domination
+1 Elven Chorus
+1 Tyvar, Jubilant Brawler
+1 Bayou
+4 Swamp
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Path of Ancestry
+1 Elvish Warmaster
+1 Viridian Joiner
+1 Galadhrim Brigade
+1 Reclamation Sage
+1 Realm Seekers
+1 Fyndhorn Elves
+1 Overgrown Tomb
+1 High Market
+1 Ezuri, Renegade Leader
+1 Genesis Wave
+1 Elvish Archdruid
+1 Joraga Treespeaker
+1 Joraga Warcaller
+1 Arbor Elf
+1 Nissa Revane
+1 Eldrazi Monument
+1 Verdant Catacombs
+1 Rhys the Exiled
+1 Immaculate Magistrate
+1 Imperious Perfect
+1 Jagged-Scar Archers
+1 Gilt-Leaf Palace
+1 Wood Elves
+1 Viridian Zealot
+1 Viridian Shaman
+1 Elvish Soultiller
+1 Wirewood Channeler
+1 Priest of Titania
+1 Elvish Guidance
+1 Taunting Elf
+1 Tajuru Preserver
+1 Marwyn, the Nurturer
+1 Elvish Harbinger
+1 Woodland Cemetery
+1 Wellwisher
+1 Wirewood Herald
+1 Wirewood Lodge
+1 Llanowar Elves
+1 Gaea's Cradle
+1 Elvish Dreadlord
+1 Imaryll, Elfhame Elite
+1 Lathril, Blade of the Elves
+1 Leaf-Crowned Visionary
+1 Poison-Tip Archer
+1 Nath of the Gilt-Leaf
+1 Ruthless Winnower
+1 Wirewood Hivemaster
+1 Wolverine Riders
+1 Elvish Mystic
+1 Undergrowth Stadium
+1 Tyvar Kell
+1 The Great Henge
+1 Heroic Intervention
+1 Allosaurus Shepherd
+1 Canopy Tactician
+1 Circle of Dreams Druid
+1 Eladamri, Lord of Leaves
+1 Gyre Sage
+1 Beast Whisperer
+1 Jarad, Golgari Lich Lord
+1 Pact of the Serpent
+1 Cavern of Souls
+1 Eladamri, Korvecdal
+1 Evolution Witness
+1 Dionus, Elvish Archdruid
+1 Skemfar Avenger
+1 Nurturing Peatland
+16 Forest
+1 Akroma's Memorial
+1 Quest for Renewal

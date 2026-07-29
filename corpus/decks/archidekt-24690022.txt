@@ -1,0 +1,97 @@
+# Archidekt — New vampire Deck cards
+# source: archidekt:24690022
+# fetched: 2026-07-26
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 All That Glitters
+1 All-Out Assault
+1 Anje, Maid of Dishonor
+1 Arcane Lighthouse
+1 Arcane Signet
+1 Arterial Alchemy
+1 Belligerent Guest
+1 Blood Fountain
+1 Bloodletter of Aclazotz
+1 Bloodline Keeper // Lord of Lineage
+1 Bloodtithe Harvester
+1 Bojuka Bog
+1 Boros Signet
+1 By Invitation Only
+1 Campfire
+1 Captivating Vampire
+1 Chromatic Lantern
+1 Clifftop Retreat
+1 Command Tower
+1 Cordial Vampire
+1 Court of Ambition
+1 Cranial Plating
+1 Cranial Ram
+1 Culling the Weak
+1 Damnation
+1 Descent into Avernus
+1 Diabolic Tutor
+1 Dictate of Erebos
+1 Dolmen Gate
+1 Drana, Liberator of Malakir
+1 Evolving Wilds
+1 Exotic Orchard
+1 Falkenrath Forebear
+1 Feign Death
+1 Flickering Ward
+1 Immersturm Predator
+1 Isolated Chapel
+1 Kamber, the Plunderer
+1 Lightning Greaves
+1 Mana Vault
+1 Markov Baron
+1 Mirkwood Bats
+3 Mountain
+1 Nettlecyst
+1 Nomad Outpost
+1 Olivia, Crimson Bride
+1 Olivia's Attendants
+1 Orzhov Signet
+1 Path of Ancestry
+1 Path to Exile
+3 Plains
+1 Prison Term
+1 Rakdos Signet
+1 Relentless Assault
+1 Reliquary Tower
+1 Restless Bloodseeker // Bloodsoaked Reveler
+1 Rising of the Day
+1 Rogue's Passage
+1 Sanctum Seeker
+1 Sanguine Statuette
+1 Shattered Sanctum
+1 Smoldering Marsh
+1 Sol Ring
+1 Sorin, Lord of Innistrad
+1 Static Orb
+1 Steelshaper's Gift
+1 Stranglehold
+1 Strefan, Maurer Progenitor
+1 Stromkirk Captain
+1 Sulfurous Springs
+1 Sundown Pass
+1 Sunhome, Fortress of the Legion
+4 Swamp
+1 Swords to Plowshares
+1 Tainted Field
+1 Tainted Peak
+1 Temple of Malice
+1 Three Tree City
+1 Timothar, Baron of Bats
+1 Torment of Hailfire
+1 Uncharted Haven
+1 Vampire of the Dire Moon
+1 Vampires' Vengeance
+1 Vein Ripper
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Voldaren Epicure
+1 Voldaren Estate
+1 Welcoming Vampire
+1 Urborg, Tomb of Yawgmoth

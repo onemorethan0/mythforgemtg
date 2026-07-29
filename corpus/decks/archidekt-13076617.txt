@@ -1,0 +1,101 @@
+# Archidekt — Double the Power, Double the Fun
+# source: archidekt:13076617
+# fetched: 2026-07-26
+
+Commander:
+1 Lord Windgrace
+
+Deck:
+1 Tranquil Thicket
+1 Barren Moor
+1 Unexpected Windfall
+1 Crop Rotation
+1 Harrow
+1 Honest Rutstein
+1 Storrev, Devkarin Lich
+1 Tree of Tales
+1 Nantuko Mentor
+1 Fanatic of Rhonas
+1 Bone Miser
+1 The Skullspore Nexus
+1 Demand Answers
+6 Forest
+1 Escape Tunnel
+1 Rydia, Summoner of Mist
+1 Summon: G.F. Ifrit
+1 Evolving Wilds
+1 Myriad Landscape
+1 Enduring Courage
+1 Ouroboroid
+1 Haunted Ridge
+1 Feldon of the Third Path
+1 Rishkar's Expertise
+1 Undergrowth Stadium
+1 Essence Harvest
+1 Kessig Wolf Run
+1 Forgotten Ancient
+1 The Eternity Elevator
+1 Deathcap Glade
+1 Disciple of Freyalise // Garden of Freyalise
+1 Rockfall Vale
+1 Sulfurous Springs
+1 Surly Badgersaur
+1 Scene of the Crime
+1 Untimely Malfunction
+1 Terramorphic Expanse
+1 Xenagos, God of Revels
+1 Woodland Cemetery
+1 Thran Dynamo
+1 Swiftfoot Boots
+1 Tainted Strike
+1 Smoldering Marsh
+1 Spry and Mighty
+1 Sol Ring
+1 Slagwoods Bridge
+1 Rancor
+1 Path of Ancestry
+1 Mount Doom
+1 Froghemoth
+1 Monument to Endurance
+1 Mightform Harmonizer
+1 Entish Restoration
+1 Collector's Vault
+1 Atalan Jackal
+1 Assassin's Trophy
+1 Ashroot Animist
+1 Llanowar Wastes
+1 Twisted Landscape
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Fling
+1 Amarant Coral
+1 Hanweir Battlements
+3 Mountain
+1 Unnatural Growth
+2 Swamp
+1 Ash Barrens
+1 Blood Crypt
+1 Matzalantli, the Great Door // The Core
+1 Berserk
+1 Halana and Alena, Partners
+1 Mr. Orfeo, the Boulder
+1 Darkmoss Bridge
+1 Hydra Omnivore
+1 Zopandrel, Hunger Dominus
+1 Neyith of the Dire Hunt
+1 Temple of the False God
+1 Detective's Phoenix
+1 Wickerfolk Thresher
+1 Containment Construct
+1 Chaos Warp
+1 Chainer, Nightmare Adept
+1 Song of the Dryads
+1 Khalni Heart Expedition
+1 Planar Engineering
+1 Fog
+1 Jumbo Cactuar
+1 Faithless Looting
+1 Thrill of Possibility
+1 Cathartic Reunion
+1 Sarkhan, Fireblood
+1 Analyze the Pollen
+1 Traverse the Ulvenwald

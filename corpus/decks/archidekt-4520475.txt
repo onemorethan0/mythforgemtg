@@ -1,0 +1,104 @@
+# Archidekt — Everypony Wins: Princess Twilight Sparkle!
+# source: archidekt:4520475
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Princess Twilight Sparkle
+
+Deck:
+1 Reconnaissance Mission
+1 Generous Gift
+1 Radiate
+1 Defense of the Heart
+1 Nightmare Moon // Princess Luna
+1 City of Brass
+1 Grand Coliseum
+1 Fellwar Stone
+1 Storm of Souls
+1 Weird Harvest
+1 Rampant Growth
+1 Seaside Citadel
+1 Frontier Bivouac
+1 Evolving Wilds
+1 Fabled Passage
+1 Path of Ancestry
+1 Rarity
+2 Plains
+2 Forest
+1 Pinkie Pie
+1 Applejack
+1 Rainbow Dash
+1 Fluttershy
+1 Exotic Orchard
+1 Thriving Heath
+1 Thriving Moor
+1 Thriving Isle
+1 Thriving Grove
+1 Thriving Bluff
+1 Blessed Sanctuary
+1 Pendant of Prosperity
+1 Access Tunnel
+1 Diamond Mare
+1 Life's Legacy
+1 Call for Aid
+1 Everybody Lives!
+1 Devastation Tide
+1 Gilded Ghoda
+1 Storm Herd
+1 Guardian Sunmare
+1 Loch Mare
+1 Many Partings
+1 Throw from the Saddle
+1 Pull from Eternity
+1 Distinguished Conjurer
+1 Neighborhood Guardian
+1 Braids, Conjurer Adept
+1 So Tiny
+1 Akroan Horse
+1 Caustic Bronco
+1 Excava, the Risen Past
+1 Moment's Peace
+1 Auroral Procession
+1 Bill Ferny, Bree Swindler
+1 Bill the Pony
+1 Levitation
+1 Lathiel, the Bounteous Dawn
+1 Tenacity
+1 Twilight's Call
+1 Eerie Ultimatum
+1 Wedding Ring
+1 Chromatic Lantern
+1 Discord, Lord of Disharmony
+1 Haunted Mire
+1 Tangled Islet
+1 Radiant Grove
+1 Minimus Containment
+1 Opaline Unicorn
+1 Cosmic Rebirth
+1 Shepherd of the Clouds
+2 Mountain
+1 Swamp
+1 Command Tower
+1 Mystic Monastery
+1 Arcane Sanctum
+1 Opulent Palace
+1 Graypelt Refuge
+1 Wind-Scarred Crag
+1 Scheming Symmetry
+2 Island
+1 Tranquil Cove
+1 Arcane Signet
+1 Thornwood Falls
+1 Rugged Highlands
+1 Wooded Ridgeline
+1 Canopy Vista
+1 Mangara, the Diplomat
+1 Prairie Stream
+1 Loyal Unicorn
+1 Ronom Unicorn
+1 Capashen Unicorn
+1 Crested Sunmare
+1 Park Heights Pegasus
+1 Shadowfax, Lord of Horses
+1 Seraphic Steed

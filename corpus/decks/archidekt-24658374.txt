@@ -1,0 +1,103 @@
+# Archidekt — six seven kindred
+# source: archidekt:24658374
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Ajani's Chosen
+1 Araumi of the Dead Tide
+1 Addle
+1 Behold the Multiverse
+1 Caligo Skin-Witch
+1 Blood Pact
+1 Axebane Guardian
+1 Bilbo, Birthday Celebrant
+1 Duelist of the Mind
+1 Bloodtithe Collector
+1 Demonic Pact
+1 Fortune's Favor
+1 Faithless Looting
+1 Mind into Matter
+1 Farseek
+1 Foul Presence
+1 Heidegger, Shinra Executive
+1 Jeleva, Nephalia's Scourge
+1 Mercurial Chemister
+1 Ral's Staticaster
+1 Victor Mancha, Runaway
+1 Mahadi, Emporium Master
+1 Natural Connection
+1 Renari, Merchant of Marvels
+1 Outlaws' Merriment
+1 Reiterating Bolt
+1 White Sun's Twilight
+1 Reward the Faithful
+1 Tangleweave Armor
+1 Sanguine Bond
+1 Wrenn and Six
+1 Restoration Angel
+1 Wrenn and Seven
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Omnath, Locus of Creation
+1 Seven-Tail Mentor
+1 Wight of Precinct Six
+1 Soulstone Sanctuary
+1 Impostor of the Sixth Pride
+1 Temple of Mystery
+1 Behold the Sinister Six!
+1 Six-Sided Die
+1 Six
+1 Sixth Sense
+1 Blade of the Sixth Pride
+1 Seven Dwarves
+1 The Seventh Doctor
+1 The Sixth Doctor
+1 Jasmine Boreal of the Seven
+1 Clifftop Retreat
+1 Arcane Sanctum
+1 Jungle Shrine
+2 Mountain
+1 Mystic Monastery
+1 Sandsteppe Citadel
+1 Seaside Citadel
+2 Plains
+2 Swamp
+2 Forest
+2 Island
+1 Temple of Triumph
+1 Temple of Epiphany
+1 Evolving Wilds
+1 Temple of Silence
+1 Temple of Malice
+1 Temple of Plenty
+1 Temple of Enlightenment
+1 Temple of Deceit
+1 Temple of Abandon
+1 Savage Lands
+1 Nomad Outpost
+1 Frontier Bivouac
+1 Crumbling Necropolis
+1 Exotic Orchard
+1 Opulent Palace
+1 Path of Ancestry
+1 Terramorphic Expanse
+1 Temple of Malady
+1 Gixian Puppeteer
+1 Anointed Chorister
+1 Suture Priest
+1 False Prophet
+1 Starfield Mystic
+1 Defy Gravity
+1 Nameless Inversion
+1 Abrade
+1 Arms of Hadar
+1 Fire Nation Raider
+1 Leafkin Druid
+1 Blood Petal Celebrant
+1 Toggo, Goblin Weaponsmith
+1 Ragged Playmate
+1 Skewer the Critics
+1 Command Tower

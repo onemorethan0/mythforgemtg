@@ -1,0 +1,107 @@
+# Archidekt — Tombadil
+# source: archidekt:4757191
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Tom Bombadil
+
+Deck:
+1 Tribute to Horobi // Echo of Death's Wail
+1 Sign in Blood
+1 Calix, Guided by Fate
+1 Windswept Heath
+1 Stone of Erech
+1 Flooded Strand
+1 Urborg, Tomb of Yawgmoth
+1 Bojuka Bog
+1 Karn's Temporal Sundering
+1 Plains
+1 Abdel Adrian, Gorion's Ward
+1 Steam Vents
+1 All That Glitters
+1 Tundra
+1 Birth of the Imperium
+1 Ignoble Hierarch
+1 Soul Shatter
+1 Path to Exile
+1 Exotic Orchard
+1 Elspeth Conquers Death
+1 Mountain
+1 Tear Asunder
+1 Michiko's Reign of Truth // Portrait of Michiko
+1 There and Back Again
+1 Leyline Immersion
+1 Island
+1 Replenish
+1 Training Center
+1 Wooded Foothills
+1 Behold the Unspeakable // Vision of the Unspeakable
+1 Savannah
+1 Underground Sea
+1 Founding the Third Path
+1 The Fall of Lord Konda // Fragment of Konda
+1 The Mirari Conjecture
+1 The Elder Dragon War
+1 The Kami War // O-Kagachi Made Manifest
+1 Tropical Island
+1 Flawless Maneuver
+1 Access Denied
+1 Savai Triome
+1 Evolving Wilds
+1 Brainstorm
+1 Phyrexian Scriptures
+1 Breeding Pool
+1 Jugan Defends the Temple // Remnant of the Rising Star
+1 Arid Mesa
+1 Spell Swindle
+1 Raffine's Tower
+1 Enchantress's Presence
+1 Swamp
+1 Scholar of New Horizons
+1 Spara's Headquarters
+1 Binding the Old Gods
+1 Path of Ancestry
+1 Kiora Bests the Sea God
+1 Hall of Heliod's Generosity
+2 Forest
+1 Yotia Declares War
+1 Arcane Signet
+1 Blood Crypt
+1 Temple Garden
+1 Hallowed Fountain
+1 Command Tower
+1 Wooded Ridgeline
+1 Overgrown Tomb
+1 Godless Shrine
+1 Sacred Foundry
+1 Sythis, Harvest's Hand
+1 Heroic Intervention
+1 Watery Grave
+1 The Eldest Reborn
+1 Historian's Boon
+1 The Phasing of Zhalfir
+1 The Trickster-God's Heist
+1 Xander's Lounge
+1 In the Darkness Bind Them
+1 Skyshroud Claim
+1 Three Visits
+1 Swiftfoot Boots
+1 Chromatic Lantern
+1 Commander's Sphere
+1 Darksteel Ingot
+1 Lightning Greaves
+1 Sol Ring
+1 Noble Hierarch
+1 Setessan Champion
+1 One Ring to Rule Them All
+1 Birds of Paradise
+1 Bloodstained Mire
+1 Preordain
+1 Ponder
+1 Read the Bones
+1 Dryad of the Ilysian Grove
+1 Rush of Knowledge
+1 Grasp of Fate
+1 Starfield of Nyx
+1 Eidolon of Blossoms

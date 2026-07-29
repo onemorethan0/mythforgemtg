@@ -1,0 +1,102 @@
+# Archidekt — It's Glarbin' Time
+# source: archidekt:24196840
+# fetched: 2026-07-09
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Command Tower
+1 Exotic Orchard
+1 Opulent Palace
+1 Island
+1 Muldrotha, the Gravetide
+5 Forest
+1 Shriekmaw
+1 Syr Konrad, the Grim
+1 Life // Death
+1 Vile Entomber
+1 Greater Good
+1 Mulldrifter
+1 Counterspell
+1 Glen Elendra Archmage
+1 Birds of Paradise
+1 Molt Tender
+1 Oracle of Mul Daya
+1 Elves of Deep Shadow
+1 Deathrite Shaman
+1 Lórien Revealed
+1 Hidetsugu and Kairi
+1 Generous Ent
+1 Overlord of the Floodpits
+1 Troll of Khazad-dûm
+1 Doom Whisperer
+1 Tasigur, the Golden Fang
+1 Treasure Cruise
+1 Teval, Arbiter of Virtue
+1 Ancient Ziggurat
+1 Colossal Grave-Reaver
+1 Dig Through Time
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Disciple of Freyalise // Garden of Freyalise
+1 Waterlogged Teachings // Inundated Archive
+1 Ponder
+1 Dread Return
+1 Culling Ritual
+1 Tatyova, Benthic Druid
+1 Assassin's Trophy
+1 Hedge Shredder
+1 Mana Leak
+1 Hinterland Harbor
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Underground River
+1 Botanical Sanctum
+1 Dreamroot Cascade
+1 Shipwreck Marsh
+1 Fabled Passage
+1 Loot, Exuberant Explorer
+1 Massacre Wurm
+1 Brainstorm
+1 Stitcher's Supplier
+1 Shifting Woodland
+1 Lotus Cobra
+1 Wonder
+1 Six
+1 Singularity Rupture
+1 Hedron Crab
+1 Glimpse the Unthinkable
+1 Verdant Catacombs
+1 Polluted Delta
+1 Misty Rainforest
+1 Azusa, Lost but Seeking
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Illicit Masquerade
+1 Anticausal Vestige
+1 Aesi, Tyrant of Gyre Strait
+1 Utopia Sprawl
+2 Swamp
+1 Winding Way
+1 Overgrown Tomb
+1 Breeding Pool
+1 Kishla Village
+1 Darkslick Shores
+1 Blooming Marsh
+1 Watery Grave
+1 Persist
+1 Mole Man, Moloid Master
+1 Reanimate
+1 Ramunap Excavator
+1 Living Death
+1 Up the Beanstalk
+1 Foreboding Landscape
+1 Flooded Grove
+1 Twilight Mire
+1 Woodland Cemetery
+1 Victimize
+1 Savvy Trader
+1 Sakura-Tribe Elder
+1 Honest Rutstein
+1 Crucible of Worlds
+1 Connive // Concoct
+1 Aethersnipe

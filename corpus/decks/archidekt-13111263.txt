@@ -1,0 +1,75 @@
+# Archidekt — Tivit, Mustache King - Bracket 1
+# source: archidekt:13111263
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Tivit, Seller of Secrets
+
+Deck:
+1 Krovikan Vampire
+1 Corrupt Official
+1 Land Tax
+1 Lim-Dûl the Necromancer
+1 Brink of Madness
+1 Hand of Justice
+1 Herald of Anafenza
+1 Sleep Paralysis
+1 Shield Mate
+1 Search Party Captain
+1 Stock Up
+1 Spirit Link
+1 Stern Marshal
+1 Temporary Truce
+1 Sleight of Hand
+1 Soul Kiss
+1 Stand // Deliver
+1 Stream of Thought
+1 Sword-Point Diplomacy
+1 Tobias Andrion
+1 Three Wishes
+1 Thirst
+1 Tobias, Doomed Conqueror
+1 Vicious Conquistador
+12 Island
+1 Command Tower
+1 Wyrm's Crossing Patrol
+12 Plains
+12 Swamp
+1 Icatian Infantry
+1 Inspired Charge
+1 Holy Day
+1 Hunted by The Family
+1 Mental Note
+1 Hunted Witness
+1 Juniper Order Advocate
+1 Mardu Hateblade
+1 Icatian Lieutenant
+1 Purify
+1 Pulsemage Advocate
+1 Prosperity Tycoon
+1 Presence of the Master
+1 Persuasion
+1 Outlaw Medic
+1 Port Inspector
+1 Kaya's Guile
+1 Scheming Fence
+1 Lu Su, Wu Advisor
+1 Night Clubber
+1 Jaded Analyst
+1 Kambal, Consul of Allocation
+1 Mind Twist
+1 Ninth Bridge Patrol
+1 Krovikan Sorcerer
+1 Militant Monk
+1 Rakshasa's Secret
+1 Necrotic Wound
+1 Pox
+1 Puppeteer
+1 Sign in Blood
+1 Reverse Polarity
+1 Rush of Battle
+1 Queen's Commission
+1 Rustler Rampage
+1 Seize the Secrets
+1 Sage of Lat-Nam

@@ -1,0 +1,84 @@
+# Archidekt — $100 ish Stella Lee, Wild Card Combo B4
+# source: archidekt:7963239
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 Cascade Bluffs
+1 Fellwar Stone
+1 Refocus
+1 Sulfur Falls
+1 Shivan Reef
+1 Bitter Reunion
+1 Fiery Islet
+1 Preordain
+1 Unexpected Windfall
+1 Big Score
+1 Compelling Deterrence
+1 Demand Answers
+1 Dive Down
+1 Expel from Orazca
+1 Highway Robbery
+1 Miscast
+1 Mission Briefing
+1 Mizzium Skin
+1 Noble's Purse
+1 Perilous Voyage
+1 Select for Inspection
+1 Simian Spirit Guide
+1 Solve the Equation
+1 Star Compass
+1 Strike It Rich
+1 Thrill of Possibility
+1 Unauthorized Exit
+1 You See a Guard Approach
+1 Cathartic Reunion
+1 Concerted Defense
+1 Cerulean Wisps
+1 Pirate's Pillage
+1 Chaos Charm
+1 Unnatural Speed
+1 Fever Charm
+1 Jolt
+1 Twitch
+1 Twisted Fealty
+1 Negate
+1 An Offer You Can't Refuse
+1 Expedite
+1 Rite of Flame
+1 Samut's Sprint
+1 Snap
+1 Seize the Spoils
+1 Serum Visions
+1 Dispel
+1 Arcane Signet
+1 Brainstorm
+1 Command Tower
+1 Consider
+1 Crimson Wisps
+1 Daze
+1 Desperate Ritual
+1 Faithless Looting
+1 Ferrous Lake
+1 Frostboil Snarl
+1 Impulsive Pilferer
+16 Island
+1 Izzet Boilerworks
+1 Izzet Signet
+1 Merchant Scroll
+1 Mind Stone
+10 Mountain
+1 Muddle the Mixture
+1 Mystic Sanctuary
+1 Mystical Tutor
+1 Opt
+1 Personal Tutor
+1 Ponder
+1 Shore Up
+1 Sky Diamond
+1 Sol Ring
+1 Spell Pierce
+1 Talisman of Creativity

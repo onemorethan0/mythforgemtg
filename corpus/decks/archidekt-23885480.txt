@@ -1,0 +1,109 @@
+# Archidekt — Dancing mad
+# source: archidekt:23885480
+# fetched: 2026-07-20
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Vexing Bauble
+1 Lion's Eye Diamond
+1 Storm-Kiln Artist
+1 Talion, the Kindly Lord
+1 Narset, Parter of Veils
+1 Pact of Negation
+1 Flashback
+1 Strip Mine
+1 Emergence Zone
+1 Talon Gates of Madara
+1 Winds of Change
+1 Rite of Flame
+1 Imperial Seal
+1 Mnemonic Betrayal
+1 Imperial Recruiter
+1 Dualcaster Mage
+1 Underworld Breach
+1 Mox Diamond
+1 Underground Sea
+1 Mox Opal
+1 Deflecting Swat
+1 Exhibition Tidecaller
+1 Dragon's Rage Channeler
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Reanimate
+1 Demonic Consultation
+1 Tainted Pact
+1 Chrome Mox
+1 Otawara, Soaring City
+1 Cavern of Souls
+1 Demonic Tutor
+1 Thassa's Oracle
+1 Ragavan, Nimble Pilferer
+1 Twinflame
+1 Starting Town
+1 Mana Vault
+1 Gamble
+1 Into the Flood Maw
+1 Lotus Petal
+1 Fellwar Stone
+1 Wishclaw Talisman
+1 Talisman of Dominance
+1 Hexing Squelcher
+1 Mockingbird
+1 Sol Ring
+1 Arcane Signet
+1 Simian Spirit Guide
+1 Necropotence
+1 Vivi Ornitier
+1 Displacer Kitten
+1 Wan Shi Tong, Librarian
+1 Valley Floodcaller
+1 Harmonic Prodigy
+1 Phantasmal Image
+1 Jeska's Will
+1 Phyrexian Metamorph
+1 Notion Thief
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Orcish Bowmasters
+1 Tinybones, Bauble Burglar
+1 Mystic Remora
+1 Rhystic Study
+1 Molten Duplication
+1 Culling the Weak
+1 Windfall
+1 Gitaxian Probe
+1 Mindbreak Trap
+1 Dark Ritual
+1 An Offer You Can't Refuse
+1 Flusterstorm
+1 Mental Misstep
+1 Cabal Ritual
+1 Borne Upon a Wind
+1 Flare of Duplication
+1 Brain Freeze
+1 Chain of Vapor
+1 Force of Negation
+1 Reflecting Pool
+1 Gemstone Caverns
+1 Red Elemental Blast
+1 Marsh Flats
+1 Fierce Guardianship
+1 Thundering Falls
+1 Snow-Covered Island
+1 Cyclonic Rift
+1 Snow-Covered Mountain
+1 Force of Will
+1 Steam Vents
+1 Snow-Covered Swamp
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Blood Crypt
+1 City of Brass
+1 Phyrexian Tower
+1 Raucous Theater
+1 Exotic Orchard
+1 Command Tower
+1 Polluted Delta
+1 Undercity Sewers
+1 Watery Grave

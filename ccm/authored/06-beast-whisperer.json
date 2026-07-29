@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Beast Whisperer",
+    "mana_cost": "{2}{G}{G}",
+    "type_line": "Creature — Elf Druid",
+    "oracle_text": "Whenever you cast a creature spell, draw a card.",
+    "power": "2",
+    "toughness": "3"
+  },
+  "ccm": {
+    "name": "Beast Whisperer",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{G}{G}"},
+    "types": ["creature"],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {"event": "cast_creature"},
+        "effects": [{"op": "draw", "count": 1}]
+      }
+    ]
+  }
+}

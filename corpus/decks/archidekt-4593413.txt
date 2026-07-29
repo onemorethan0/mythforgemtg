@@ -1,0 +1,103 @@
+# Archidekt — Dihada, Binder Full of Legends
+# source: archidekt:4593413
+# fetched: 2026-07-17
+# bracket: 4
+
+Commander:
+1 Dihada, Binder of Wills
+
+Deck:
+1 Ao, the Dawn Sky
+1 Blood Crypt
+1 Celestine, the Living Saint
+1 Command Tower
+1 Djeru and Hazoret
+1 Eiganjo Castle
+1 Fabled Passage
+1 Godless Shrine
+1 Lotho, Corrupt Shirriff
+1 Loyal Retainers
+1 Minas Tirith
+1 Mount Doom
+3 Plains
+1 Path to Exile
+1 Sacred Foundry
+1 Savai Triome
+1 Shinka, the Bloodsoaked Keep
+1 Spectator Seating
+1 Takenuma, Abandoned Mire
+1 Teshar, Ancestor's Apostle
+1 Vault of Champions
+1 Goro-Goro, Disciple of Ryusei
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Olivia, Crimson Bride
+1 Sokenzan, Crucible of Defiance
+1 Kor Haven
+1 Flagstones of Trokair
+1 Boromir, Warden of the Tower
+1 The Kenriths' Royal Funeral
+1 Magda, Brazen Outlaw
+1 Swords to Plowshares
+1 Kambal, Profiteering Mayor
+1 Arbaaz Mir
+1 Taunt from the Rampart
+1 Adeline, Resplendent Cathar
+1 Akroma's Memorial
+1 Vandalblast
+1 Heartless Hidetsugu
+1 Vanishing Verse
+1 Despark
+1 Odric, Lunarch Marshal
+1 Zoraline, Cosmos Caller
+1 Piru, the Volatile
+1 Jirina, Dauntless General
+1 Arcane Signet
+1 General Ferrous Rokiric
+2 Mountain
+1 Mox Amber
+1 Mangara, the Diplomat
+1 Bladewing, Deathless Tyrant
+1 Tomik, Wielder of Law
+1 Bojuka Bog
+1 Talisman of Hierarchy
+1 Plaza of Heroes
+1 Clifftop Retreat
+1 Rakdos Signet
+1 Talisman of Indulgence
+1 Great Hall of the Citadel
+1 Nomad Outpost
+1 Shizo, Death's Storehouse
+1 Talisman of Conviction
+1 Ruinous Ultimatum
+1 Luxury Suite
+1 Fellwar Stone
+1 The Grey Havens
+1 Sol Ring
+1 Terra, Herald of Hope
+1 Locke, Treasure Hunter
+1 Rakdos Charm
+1 Tersa Lightshatter
+1 Gemstone Caverns
+3 Swamp
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Breena, the Demagogue
+1 Ardbert, Warrior of Darkness
+1 Bloodstained Mire
+1 Aurelia, the Warleader
+1 Squall, SeeD Mercenary
+1 Marsh Flats
+1 Arid Mesa
+1 Anguished Unmaking
+1 The Aetherspark
+1 Galadriel's Dismissal
+1 Eiganjo, Seat of the Empire
+1 Abstergo Entertainment
+1 Thalia, Heretic Cathar
+1 Winota, Joiner of Forces
+1 Merry, Esquire of Rohan
+1 Éowyn, Fearless Knight
+1 Queen Marchesa
+1 Kardur, Doomscourge
+1 Shanid, Sleepers' Scourge
+1 Karlach, Fury of Avernus
+1 Morningtide's Light

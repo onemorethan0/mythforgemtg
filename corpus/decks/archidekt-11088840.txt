@@ -1,0 +1,102 @@
+# Archidekt — Sefris -- Dungeons of Death -- Upgraded V5
+# source: archidekt:11088840
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Sefris of the Hidden Ways
+
+Deck:
+1 Geier Reach Sanitarium
+1 Hama Pashar, Ruin Seeker
+1 Sol Ring
+1 Solemn Simulacrum
+1 High Market
+1 Unburial Rites
+1 Culling the Weak
+1 Sunblast Angel
+1 Radiant Solar
+1 Cabal Coffers
+1 Esper Panorama
+1 Port Town
+1 Thriving Isle
+1 Victimize
+1 Eternal Dragon
+1 Arcane Signet
+1 Curator of Mysteries
+1 Phantom Steed
+1 Commander's Sphere
+1 Lightning Greaves
+1 Phyrexian Tower
+1 Merfolk Looter
+1 Despark
+1 Living Death
+1 Buried Alive
+1 Dungeon Map
+1 Ghostly Prison
+1 Syr Konrad, the Grim
+1 The Sibsig Ceremony
+1 The Deck of Many Things
+1 Shipwreck Marsh
+1 Barrowin of Clan Undurr
+1 Fellwar Stone
+1 Shriekmaw
+1 Grim Tutor
+1 Angel of the Ruins
+1 Cyclonic Rift
+1 Forbidden Alchemy
+1 Living End
+1 Triumphant Adventurer
+1 Obsessive Stitcher
+1 Phyrexian Altar
+1 Revivify
+1 Doomed Necromancer
+1 Revival // Revenge
+1 Jace, the Mind Sculptor
+1 Darkwater Catacombs
+1 Acererak the Archlich
+1 The Meathook Massacre
+1 Utter End
+1 Liliana, Death's Majesty
+1 Nine-Lives Familiar
+1 Treasure Vault
+1 Rhystic Study
+1 Entomb
+1 Evolving Wilds
+1 Deserted Beach
+1 Hall of Storm Giants
+1 Choked Estuary
+1 Urborg, Tomb of Yawgmoth
+1 Nimbus Maze
+1 Shattered Sanctum
+1 Thriving Heath
+1 Yennett, Cryptic Sovereign
+1 Plaguecrafter
+1 Accursed Marauder
+3 Island
+4 Swamp
+1 Hallowed Fountain
+1 Enlightened Tutor
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Midnight Pathlighter
+1 Mulldrifter
+1 Baleful Strix
+1 Propaganda
+1 Sun Titan
+1 Cave of the Frost Dragon
+1 Arcane Sanctum
+1 Sunken Hollow
+1 Raffine's Tower
+1 Command Tower
+1 Thriving Moor
+1 Temporal Mastery
+1 Nadaar, Selfless Paladin
+1 Avacyn, Angel of Hope
+2 Plains
+1 Phantasmal Image
+1 Elesh Norn, Grand Cenobite
+1 Dungeon Delver
+1 Seasoned Dungeoneer
+1 Tortured Existence
+1 Karmic Guide
+1 Sakashima of a Thousand Faces

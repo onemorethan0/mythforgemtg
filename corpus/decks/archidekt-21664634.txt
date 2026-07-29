@@ -1,0 +1,93 @@
+# Archidekt — Mendicant BALLER CORE
+# source: archidekt:21664634
+# fetched: 2026-07-28
+
+Commander:
+1 Mendicant Core, Guidelight
+
+Deck:
+1 Adaptive Omnitool
+1 Bident of Thassa
+1 Cloud Key
+1 Thought Vessel
+1 Hedron Archive
+1 Foundry Inspector
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Emry, Lurker of the Loch
+1 Etherium Sculptor
+1 Katsumasa, the Animator
+1 Thopter Assembly
+1 Dispatch
+1 Archway of Innovation
+1 Command Tower
+1 Ancient Den
+1 Lonely Arroyo
+1 Tezzeret, Cruel Machinist
+1 Terrain Generator
+1 Organic Extinction
+8 Plains
+8 Island
+1 Sol Ring
+1 Manifold Key
+1 Adarkar Wastes
+1 Amonkhet Raceway
+1 Arcane Signet
+1 Avishkar Raceway
+1 Bronze Guardian
+1 Buried Ruin
+1 Counterspell
+1 Cyberdrive Awakener
+1 Dance of the Manse
+1 Darksteel Citadel
+1 Deserted Beach
+1 Dovin's Veto
+1 Enter the Enigma
+1 Exotic Orchard
+1 Fellwar Stone
+1 Generous Gift
+1 Ghostly Prison
+1 Glacial Fortress
+1 Gold Myr
+1 Gold-Forged Thopteryx
+1 Hengegate Pathway // Mistgate Pathway
+1 Jhoira's Familiar
+1 K-9, Mark I
+1 Kappa Cannoneer
+1 Losheel, Clockwork Scholar
+1 March of Progress
+1 Mechanized Production
+1 Muraganda Raceway
+1 Myr Retriever
+1 Nesting Bot
+1 Ornithopter of Paradise
+1 Padeem, Consul of Innovation
+1 Path to Exile
+1 Prairie Stream
+1 Propaganda
+1 Rogue's Passage
+1 Seat of the Synod
+1 Shimmer Myr
+1 Silver Myr
+1 Stroke of Midnight
+1 Swords to Plowshares
+1 Talisman of Progress
+1 Thopter Spy Network
+1 Thought Monitor
+1 Thoughtcast
+1 Three Steps Ahead
+1 Unwinding Clock
+1 Vnwxt, Verbose Host
+1 Voyage Home
+1 Dreamstone Hedron
+1 Myr Battlesphere
+1 Urza, Prince of Kroog
+1 Sai, Master Thopterist
+1 Tomb of the Spirit Dragon
+1 Puresteel Paladin
+1 Sram, Senior Edificer
+1 Marketback Walker
+1 Razortide Bridge
+1 Mind's Eye
+1 Swiftfoot Boots
+1 Mind Stone
+1 Auton Soldier

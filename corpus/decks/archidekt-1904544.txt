@@ -1,0 +1,89 @@
+# Archidekt — Upping the Average - Wilhelt, the Rotcleaver
+# source: archidekt:1904544
+# fetched: 2026-07-05
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Vengeful Dead
+1 Noosegraf Mob
+1 Lazotep Plating
+1 Heraldic Banner
+1 Bastion of Remembrance
+1 Reality Shift
+1 Necrotic Hex
+1 Pyre of Heroes
+1 Reflections of Littjara
+1 Pact of the Serpent
+1 Bladestitched Skaab
+1 Drowned Catacomb
+1 Plague Belcher
+1 Cryptbreaker
+1 Relentless Dead
+1 Ghoulcaller Gisa
+1 Command Tower
+1 Undead Warchief
+1 Watery Grave
+1 Ashnod's Altar
+1 Gravecrawler
+1 Carrion Feeder
+1 Rhystic Study
+1 Cyclonic Rift
+1 The Scarab God
+1 Lord of the Undead
+1 Dimir Signet
+1 Sol Ring
+1 Rise of the Dread Marn
+1 Gray Merchant of Asphodel
+1 Urborg, Tomb of Yawgmoth
+1 Counterspell
+1 Acererak the Archlich
+1 Wand of Orcus
+1 Noxious Ghoul
+5 Island
+15 Swamp
+1 Zombie Apocalypse
+1 Cleaver Skaab
+1 Crowded Crypt
+1 Empty the Laboratory
+1 Tomb Tyrant
+1 Ravenous Rotbelly
+1 Hordewing Skaab
+1 Distant Melody
+1 Eternal Skylord
+1 Rooftop Storm
+1 Undead Alchemist
+1 Army of the Damned
+1 Cemetery Reaper
+1 Corpse Augur
+1 Dark Salvation
+1 Death Baron
+1 Diregraf Colossus
+1 Dreadhorde Invasion
+1 Feed the Swarm
+1 Fleshbag Marauder
+1 Liliana, Death's Majesty
+1 Liliana's Mastery
+1 Lord of the Accursed
+1 Midnight Reaper
+1 Undead Augur
+1 Diregraf Captain
+1 Gisa and Geralf
+1 Arcane Signet
+1 Gleaming Overseer
+1 Commander's Sphere
+1 Bojuka Bog
+1 Choked Estuary
+1 Talisman of Dominance
+1 Darkwater Catacombs
+1 Dimir Aqueduct
+1 Exotic Orchard
+1 Myriad Landscape
+1 Path of Ancestry
+1 Sunken Hollow
+1 Tainted Isle
+1 Temple of Deceit
+1 Unclaimed Territory
+1 Ghouls' Night Out
+1 Poppet Stitcher // Poppet Factory

@@ -1,0 +1,94 @@
+# Archidekt — Deadpool Lost Precon
+# source: archidekt:12636151
+# fetched: 2026-07-05
+
+Commander:
+1 Deadpool, Trading Card
+
+Deck:
+1 Sol Ring
+1 The Master, Multiplied
+1 Arcane Signet
+1 Blade of Selves
+1 Helm of the Host
+1 Blasphemous Act
+1 Rakdos Signet
+1 Vandalblast
+1 Talisman of Indulgence
+1 Brash Taunter
+1 Barbed Servitor
+1 Warren Soultrader
+1 Vashta Nerada
+1 Mirror Box
+1 Goblin Bombardment
+1 Deadly Rollick
+1 Sword of Hearth and Home
+1 Harmless Offering
+1 Viscera Seer
+1 Necromancy
+1 Nim Deathmantle
+1 Resurrection Orb
+1 Feign Death
+1 Not Dead After All
+1 Liliana, Dreadhorde General
+1 Woe Strider
+1 Orthion, Hero of Lavabrink
+1 Splinter Twin
+1 Deadly Dispute
+1 Wayfarer's Bauble
+1 Feed the Swarm
+1 Impact Tremors
+1 Mind Stone
+1 Plumb the Forbidden
+1 Idol of Oblivion
+1 Morbid Opportunist
+1 Gix, Yawgmoth Praetor
+1 Lightning Bolt
+1 Molten Collapse
+1 Abrade
+1 Cursed Mirror
+1 Temple of Malice
+8 Swamp
+1 Flameshadow Conjuring
+1 Solemn Simulacrum
+1 Lich-Knights' Conquest
+1 Jaxis, the Troublemaker
+1 Delina, Wild Mage
+1 Conjurer's Closet
+1 Zulaport Cutthroat
+1 Electroduplicate
+1 Golden Argosy
+1 Chaos Warp
+1 Undying Malice
+1 Echoing Assault
+1 Chandra, Flameshaper
+1 Mirage Phalanx
+1 Redoubled Stormsinger
+1 Rakdos Joins Up
+1 Pitiless Plunderer
+1 Rionya, Fire Dancer
+1 Warstorm Surge
+1 Mirror March
+1 Exotic Orchard
+1 Sulfurous Springs
+1 Myriad Landscape
+1 Smoldering Marsh
+1 Rakdos Carnarium
+1 Bojuka Bog
+1 Dragonskull Summit
+1 Command Tower
+1 Canyon Slough
+1 Evolving Wilds
+1 Rogue's Passage
+1 Tainted Peak
+1 Ash Barrens
+1 Blackcleave Cliffs
+1 Barren Moor
+1 Shadowblood Ridge
+1 Razortrap Gorge
+1 Terramorphic Expanse
+1 Foreboding Ruins
+7 Mountain
+1 Forgotten Cave
+1 Mirror Gallery
+1 Saw in Half

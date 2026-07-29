@@ -1,0 +1,103 @@
+# Archidekt — FFVII Limit Break | $30 Upgrade
+# source: archidekt:13195893
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Zack Fair
+1 Bugenhagen, Wise Elder
+1 Cid, Freeflier Pilot
+1 Helitrooper
+1 Professor Hojo
+1 Puresteel Paladin
+1 Sram, Senior Edificer
+1 Akiri, Fearless Voyager
+1 Danitha Capashen, Paragon
+1 Danitha, New Benalia's Light
+1 Kutzil, Malamet Exemplar
+1 Professional Face-Breaker
+1 Red XIII, Proud Warrior
+1 Vincent, Vengeful Atoner
+1 Yuffie, Materia Hunter
+1 Barret, Avalanche Leader
+1 Bruenor Battlehammer
+1 Tifa, Martial Artist
+1 Sephiroth, Fallen Hero
+1 Dispatch
+1 Path to Exile
+1 Swords to Plowshares
+1 Cloud's Limit Break
+1 Beast Within
+1 Chaos Warp
+1 Generous Gift
+1 Ultimate Magic: Holy
+1 Clever Concealment
+1 Lifestream's Blessing
+1 Vandalblast
+1 Nature's Lore
+1 Rampant Growth
+1 Cultivate
+1 Austere Command
+1 Vanquish the Horde
+1 Forge Anew
+1 Colossus Hammer
+1 Dragonfire Blade
+1 Explorer's Scope
+1 Sol Ring
+1 Adaptive Omnitool
+1 Arcane Signet
+1 Blackblade Reforged
+1 Conformer Shuriken
+1 Conqueror's Flail
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Trailblazer's Boots
+1 Wrecking Ball Arm
+1 Behemoth Sledge
+1 Champion's Helm
+1 Darksteel Plate
+1 Loxodon Warhammer
+1 Nettlecyst
+1 Summoning Materia
+1 Kaldra Compleat
+1 Ash Barrens
+1 Battlefield Forge
+1 Bonders' Enclave
+1 Brushland
+1 Canopy Vista
+1 Cinder Glade
+1 Clifftop Retreat
+1 Command Tower
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fire-Lit Thicket
+1 Fortified Village
+1 Furycalm Snarl
+1 Game Trail
+1 Jungle Shrine
+1 Mossfire Valley
+1 Path of Ancestry
+1 Radiant Grove
+1 Rootbound Crag
+1 Rugged Prairie
+1 Sacred Peaks
+1 Scavenger Grounds
+1 Slayers' Stronghold
+1 Spire of Industry
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorched Divide
+1 Wooded Ridgeline
+3 Plains
+2 Mountain
+3 Forest
+1 Bloodforged Battle-Axe
+1 The Reaver Cleaver
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Open the Armory
+1 Hero's Blade
+1 Bureau Headmaster

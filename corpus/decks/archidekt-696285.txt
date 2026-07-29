@@ -1,0 +1,96 @@
+# Archidekt — Upping the Average - Kaalia of the Vast
+# source: archidekt:696285
+# fetched: 2026-07-05
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Clifftop Retreat
+1 Demonlord Belzenlok
+1 Isolated Chapel
+1 Gisela, Blade of Goldnight
+1 Yosei, the Morning Star
+1 Dragon Tempest
+1 Dragonskull Summit
+1 Crux of Fate
+1 Archfiend of Depravity
+1 Diabolic Tutor
+1 Hellkite Tyrant
+1 Phyrexian Arena
+1 Bruna, the Fading Light
+1 Open the Armory
+1 Anguished Unmaking
+1 Twilight Shepherd
+1 Bloodgift Demon
+1 Ob Nixilis, Unshackled
+1 Lord of the Void
+1 Aurelia, the Warleader
+1 Fervor
+1 Wayfarer's Bauble
+1 Merciless Eviction
+1 Angel of Serenity
+1 Steel Hellkite
+1 Sower of Discord
+1 Sacred Foundry
+1 Doom Whisperer
+1 Boros Charm
+1 Godless Shrine
+1 Blood Crypt
+1 Smothering Tithe
+1 Master of Cruelties
+1 Utvara Hellkite
+1 Angel of Despair
+1 Giver of Runes
+1 Generous Gift
+1 Talisman of Hierarchy
+1 Talisman of Conviction
+1 Kaalia, Zenith Seeker
+1 Vilis, Broker of Blood
+1 Sephara, Sky's Blade
+1 Drakuseth, Maw of Flames
+1 Chromatic Lantern
+1 Rune-Scarred Demon
+1 Read the Bones
+1 Night's Whisper
+1 Swords to Plowshares
+1 Mother of Runes
+1 Terror of Mount Velus
+1 Arcane Signet
+1 Command Tower
+1 Sol Ring
+1 Akroma, Angel of Wrath
+1 Rakdos Carnarium
+1 Orzhov Basilica
+1 Nomad Outpost
+1 Exotic Orchard
+1 Caves of Koilos
+1 Bojuka Bog
+1 Boros Garrison
+1 Battlefield Forge
+1 Swiftfoot Boots
+1 Orzhov Signet
+1 Rakdos Signet
+1 Boros Signet
+1 Terminate
+1 Crackling Doom
+1 Chaos Warp
+1 Painful Truths
+1 Ruinous Ultimatum
+1 Savai Triome
+5 Swamp
+1 Evolving Wilds
+1 Temple of Silence
+1 Temple of Triumph
+6 Plains
+3 Mountain
+1 Terramorphic Expanse
+1 Angelic Arbiter
+1 Path to Exile
+1 Wrath of God
+1 Blasphemous Act
+1 Graven Cairns
+1 Lightning Greaves
+1 Avacyn, Angel of Hope
+1 Ash Barrens
+1 Animate Dead

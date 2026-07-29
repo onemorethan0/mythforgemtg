@@ -1,0 +1,102 @@
+# Archidekt — The Dragon's Horde
+# source: archidekt:24246589
+# fetched: 2026-07-24
+# bracket: 3
+
+Commander:
+1 Ognis, the Dragon's Lash
+
+Deck:
+1 Malakir Rebirth // Malakir Mire
+1 Bloodstained Mire
+1 Blood Crypt
+1 Luxury Suite
+1 Haunted Ridge
+1 Sulfurous Springs
+1 Wooded Foothills
+1 Stomping Ground
+1 Spire Garden
+1 Rockfall Vale
+1 Karplusan Forest
+1 Verdant Catacombs
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Deathcap Glade
+1 Llanowar Wastes
+1 Ziatora's Proving Ground
+1 Savage Lands
+1 Exotic Orchard
+1 Reflecting Pool
+3 Swamp
+4 Mountain
+3 Forest
+1 Nurturing Peatland
+1 Command Tower
+1 Revitalizing Repast // Old-Growth Grove
+1 Treasure Vault
+1 Kessig Wolf Run
+1 Rogue's Passage
+1 Sokenzan, Crucible of Defiance
+1 Bojuka Bog
+1 Smellerbee, Rebel Fighter
+1 Professional Face-Breaker
+1 Nadier's Nightblade
+1 Captain Lannery Storm
+1 Goldspan Dragon
+1 Xorn
+1 Crime Novelist
+1 Samut, Vizier of Naktamun
+1 Mayhem Devil
+1 Loyal Apprentice
+1 Reckless Fireweaver
+1 Mirkwood Bats
+1 Kellogg, Dangerous Mind
+1 Kalain, Reclusive Painter
+1 Ruby, Daring Tracker
+1 Academy Manufactor
+1 Deadly Dispute
+1 Magda, the Hoardmaster
+1 Beast Within
+1 Ignoble Hierarch
+1 Anger
+1 Atalan Jackal
+1 Marionette Master
+1 Ingenious Artillerist
+1 Wulfgar of Icewind Dale
+1 Grim Hireling
+1 Marionette Apprentice
+1 Magda, Brazen Outlaw
+1 Shadow the Hedgehog
+1 Korvold, Fae-Cursed King
+1 Knuckles the Echidna
+1 Chatterfang, Squirrel General
+1 Krenko, Baron of Tin Street
+1 Assassin's Trophy
+1 Big Score
+1 Terminate
+1 Chaos Warp
+1 Heroic Intervention
+1 Golgari Charm
+1 Unexpected Windfall
+1 Mob Rule
+1 Song of Totentanz
+1 Nature's Lore
+1 Seize the Spotlight
+1 Three Visits
+1 Blood Money
+1 Sol Ring
+1 Tempt with Vengeance
+1 Idol of Oblivion
+1 Bootleggers' Stash
+1 The Fire Crystal
+1 Fires of Yavimaya
+1 Alchemist's Talent
+1 Rising of the Day
+1 Elemental Mastery
+1 Goldlust Triad
+1 Lightning Greaves
+1 Demand Answers
+1 Rhythm of the Wild
+1 Ohran Frostfang
+1 Farseek
+1 Revel in Riches

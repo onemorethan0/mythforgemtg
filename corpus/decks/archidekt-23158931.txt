@@ -1,0 +1,79 @@
+# Archidekt — M.I.L.F. (Man, I Love to Fish)
+# source: archidekt:23158931
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Neerdiv, Devious Diver
+
+Deck:
+1 Aboleth Spawn
+1 Agatha's Soul Cauldron
+1 Anchor to Reality
+1 Arcane Signet
+1 Artful Dodge
+1 Ashnod's Altar
+1 Clever Conjurer
+1 Clock of Omens
+1 Combat Courier
+1 Cut Your Losses
+1 Deadeye Quartermaster
+1 Defy Gravity
+1 Dramatic Reversal
+1 Echo of Eons
+1 Eluge, the Shoreless Sea
+1 Emry, Lurker of the Loch
+1 Encroaching Mycosynth
+1 Excalibur, Sword of Eden
+1 Fabricate
+1 Fatestitcher
+1 Fishing Pole
+1 Fleet Swallower
+1 Forensic Researcher
+1 Fountainport
+1 Freed from the Real
+1 Grand Architect
+1 Horseshoe Crab
+1 Ichthyomorphosis
+1 Into the Flood Maw
+1 Intruder Alarm
+1 Inventors' Fair
+1 Kapsho Kitefins
+1 Kelpie Guide
+1 Lotus Petal
+1 Loyal Inventor
+1 Mind Over Matter
+1 Mind Spiral
+1 Mindless Automaton
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Mox Amber
+1 Mycosynth Lattice
+1 Mystic Remora
+1 Nimbleclaw Adept
+1 Nyx Lotus
+1 Opposition
+1 Otherworldly Gaze
+1 Personal Tutor
+1 Relic of Legends
+1 Roaming Throne
+1 Secrets of the Key
+1 Sleep with the Fishes
+1 Sol Ring
+1 Staff of Domination
+1 Starforged Sword
+1 Stinging Lionfish
+1 Stonybrook Angler
+1 Terisian Mindbreaker
+1 The Millennium Calendar
+1 Think Twice
+1 Tidal Barracuda
+1 Trinket Mage
+1 Urza's Saga
+1 Windfall
+1 Reliquary Tower
+1 Psychic Corrosion
+30 Island
+1 Reef Worm
+1 Deep Analysis
+1 Pemmin's Aura
+1 Radical Idea

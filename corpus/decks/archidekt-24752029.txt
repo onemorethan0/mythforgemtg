@@ -1,0 +1,40 @@
+# Archidekt — Giant Slime
+# source: archidekt:24752029
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Yorvo, Lord of Garenbrig
+
+Deck:
+1 Biogenic Ooze
+1 Biowaste Blob
+1 Bushmaster, Coiled Henchman
+1 Elvish Mystic
+1 Green Slime
+1 Llanowar Elves
+1 Oran-Rief Ooze
+1 Predator Ooze
+1 Quina, Qu Gourmet
+1 Ravenous Slime
+1 Sakura-Tribe Elder
+1 Arcane Signet
+1 Emerald Medallion
+1 Locket of Yesterdays
+1 Rhonas's Monument
+1 Spellweaver Helix
+1 Beast Within
+1 Inspiring Call
+1 Cultivate
+1 Kodama's Reach
+1 Nature's Lore
+1 Rampant Growth
+33 Slime Against Humanity
+1 Garruk's Uprising
+1 Hardened Scales
+1 March of the World Ooze
+1 Rites of Flourishing
+1 Unnatural Growth
+1 Wild Growth
+37 Forest
+1 Rogue's Passage

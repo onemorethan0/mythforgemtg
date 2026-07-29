@@ -1,0 +1,104 @@
+# Archidekt — Upping the Average - The Ur-Dragon Redux
+# source: archidekt:3062146
+# fetched: 2026-07-05
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Ancient Copper Dragon
+1 Ancient Gold Dragon
+1 Ancient Silver Dragon
+1 Anguished Unmaking
+1 Arcane Signet
+1 Arid Mesa
+1 Atarka, World Render
+1 Balefire Dragon
+1 Blood Crypt
+1 Bower Passage
+1 Breeding Pool
+1 Cavern of Souls
+1 Chromatic Lantern
+1 Command Tower
+1 Commander's Sphere
+1 Crucible of the Spirit Dragon
+1 Crux of Fate
+1 Bladewing the Risen
+1 Klauth, Unrivaled Ancient
+1 Kodama's Reach
+1 Stomping Ground
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Cultivate
+1 Cyclonic Rift
+1 Dragon Tempest
+1 Dragon's Hoard
+1 Dragonlord Dromoka
+1 Dragonlord's Servant
+1 Dragonspeaker Shaman
+1 Dromoka, the Eternal
+1 Temple Garden
+1 Temur Ascendancy
+1 Terror of the Peaks
+1 The World Tree
+1 Elemental Bond
+1 Exotic Orchard
+1 Farseek
+2 Forest
+1 Garruk's Uprising
+1 Godless Shrine
+1 Goldspan Dragon
+1 Hallowed Fountain
+1 Haven of the Spirit Dragon
+1 Hellkite Charger
+1 Hellkite Courser
+1 Herald's Horn
+1 Heroic Intervention
+1 Indatha Triome
+1 Island
+1 Jetmir's Garden
+1 Ketria Triome
+1 Kindred Discovery
+1 Kolaghan, the Storm's Fury
+1 Lathliss, Dragon Queen
+1 Lightning Greaves
+1 Lurking Predators
+1 Miirym, Sentinel Wyrm
+1 Morophon, the Boundless
+3 Mountain
+1 Nature's Lore
+1 Ojutai, Soul of Winter
+1 Old Gnawbone
+1 Orb of Dragonkind
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Patriarch's Bidding
+1 Plains
+1 Ramos, Dragon Engine
+1 Rampant Growth
+1 Raugrin Triome
+1 Rhythm of the Wild
+1 Sacred Foundry
+1 Sarkhan's Triumph
+1 Savage Ventmaw
+1 Savai Triome
+1 Scalelord Reckoner
+1 Scion of Draco
+1 Scion of the Ur-Dragon
+1 Scourge of Valkas
+1 Secluded Courtyard
+1 Silumgar, the Drifting Death
+1 Skyshroud Claim
+1 Sol Ring
+1 Steam Vents
+1 Three Visits
+1 Tiamat
+1 Unclaimed Territory
+1 Urza's Incubator
+1 Utvara Hellkite
+1 Vaevictis Asmadi, the Dire
+1 Verdant Catacombs
+1 Watery Grave
+1 Wooded Foothills
+1 Zagoth Triome
+1 Ziatora's Proving Ground

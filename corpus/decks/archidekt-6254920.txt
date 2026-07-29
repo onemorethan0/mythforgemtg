@@ -1,0 +1,102 @@
+# Archidekt — (retired) New Mishra, Old Border
+# source: archidekt:6254920
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Mishra, Eminent One
+
+Deck:
+1 Preordain
+2 Swamp
+1 Rakdos Carnarium
+1 Ash Barrens
+1 Exotic Orchard
+1 Myriad Landscape
+1 Reliquary Tower
+1 Silverbluff Bridge
+1 Drossforge Bridge
+1 Mistvault Bridge
+1 Vault of Whispers
+1 Great Furnace
+1 Buried Ruin
+1 Command Tower
+1 Crumbling Necropolis
+1 Dimir Aqueduct
+1 Field of Ruin
+1 Path of Ancestry
+1 Seat of the Synod
+1 Smoldering Marsh
+1 Sulfur Falls
+1 Temple of Deceit
+1 Temple of Epiphany
+1 Terramorphic Expanse
+1 Smelting Vat
+1 Emry, Lurker of the Loch
+1 Executioner's Capsule
+1 Oblivion Stone
+1 Thirst for Knowledge
+1 Bedevil
+1 Cursed Mirror
+1 Ichor Wellspring
+1 Scavenged Brawler
+1 Mirrorworks
+1 Master Transmuter
+1 Machine God's Effigy
+1 Trading Post
+1 Expressive Iteration
+1 Brudiclad, Telchor Engineer
+1 Muzzio, Visionary Architect
+1 One with the Machine
+1 Jhoira, Weatherlight Captain
+1 Mycosynth Wellspring
+1 Wondrous Crucible
+1 Lithoform Engine
+1 Terisiare's Devastation
+1 Arcane Signet
+1 Dimir Signet
+1 Fellwar Stone
+1 Hedron Archive
+1 Idol of Oblivion
+1 Mind Stone
+1 Mystic Forge
+1 Nihil Spellbomb
+1 Rakdos Signet
+1 Sol Ring
+1 Soul-Guide Lantern
+1 Spine of Ish Sah
+1 Strionic Resonator
+1 Thran Dynamo
+1 Wayfarer's Bauble
+1 Workshop Elders
+1 Shimmer Dragon
+1 Padeem, Consul of Innovation
+1 Myr Battlesphere
+1 Metalwork Colossus
+1 Foundry Inspector
+1 Read the Bones
+1 Ponder
+1 Thoughtcast
+1 Chaos Warp
+1 Feed the Swarm
+1 Blasphemous Act
+1 Steam Vents
+1 Watery Grave
+1 Blood Crypt
+1 Fact or Fiction
+1 March of Progress
+1 Master of Etherium
+1 Feldon of the Third Path
+1 Cloud Key
+5 Island
+1 Etherium Sculptor
+1 Liquimetal Torque
+1 Opt
+1 Counterspell
+1 Sleight of Hand
+1 Marsh Flats
+2 Mountain
+1 Strip Mine
+1 Wasteland
+1 Thopter Spy Network
+1 Psychosis Crawler

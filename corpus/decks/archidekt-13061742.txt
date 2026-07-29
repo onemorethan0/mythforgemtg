@@ -1,0 +1,97 @@
+# Archidekt — Ragnarok
+# source: archidekt:13061742
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Ragnarok, Divine Deliverance
+1 Fang, Fearless l'Cie
+1 Vanille, Cheerful l'Cie
+
+Deck:
+1 Nature's Claim
+1 Sazh Katzroy
+1 Summon: Bahamut
+1 Carpet of Flowers
+1 Summon: Magus Sisters
+1 Rampant Growth
+1 Night's Whisper
+1 Exotic Orchard
+3 Forest
+2 Forest
+1 Swamp
+2 Swamp
+2 Swamp
+1 Swamp
+3 Swamp
+1 Forest
+1 Forest
+1 Forest
+1 Summon: Titan
+1 Campsite Cuisine
+1 Chocobo Camp
+1 Malboro
+1 Command Tower
+1 Reanimate
+1 Rise of the Dark Realms
+1 Cultivate
+1 Yuna's Decision
+1 Bane of Progress
+1 Stitcher's Supplier
+1 Sol Ring
+1 Stitch Together
+1 Arcane Signet
+1 Sepulchral Primordial
+1 Rejoin the Fight
+1 Snuff Out
+1 Jumbo Cactuar
+1 Shambling Cie'th
+1 Yuna's Whistle
+1 Summon: Anima
+1 Lethal Scheme
+1 Evil Reawakened
+1 Espers to Magicite
+1 Swiftfoot Boots
+1 Gohn, Town of Ruin
+1 Overkill
+1 Torgal, A Fine Hound
+1 Syr Konrad, the Grim
+1 Fight On!
+1 Diamond Weapon
+1 Eden, Seat of the Sanctum
+1 Gran Pulse Ochu
+1 Airship Crash
+1 Resentful Revelation
+1 Midgar, City of Mako // Reactor Raid
+1 Azusa, Lost but Seeking
+1 Ardyn, the Usurper
+1 Bugenhagen, Wise Elder
+1 Exdeath, Void Warlock // Neo Exdeath, Dimension's End
+1 Town Greeter
+1 Reach the Horizon
+1 Rydia's Return
+1 Summon: Primal Odin
+1 Vincent's Limit Break
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Harmonize
+1 Tifa's Limit Break
+1 The Darkness Crystal
+1 Esper Origins // Summon: Esper Maduin
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Lightning Greaves
+1 Summoner's Grimoire
+1 Diabolic Intent
+1 Ancient Adamantoise
+1 Starting Town
+1 Sazh's Chocobo
+1 Heroic Intervention
+1 Fishing Gear
+1 The Falcon, Airship Restored
+1 Evolving Wilds
+1 Demolition Field
+1 Tifa Lockhart
+4 Swamp
+1 Crux of Fate
+3 Forest
+1 Forest
+1 Colossus Hammer

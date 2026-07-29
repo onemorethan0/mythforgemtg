@@ -1,0 +1,98 @@
+# Archidekt — Rachel Weeks, Game Knight | An Unknown Commander Deck
+# source: archidekt:7234189
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 The Knight of Weeks
+
+Deck:
+1 Skyhunter Strike Force
+1 Tocasia's Welcome
+1 Moonshaker Cavalry
+1 Call the Cavalry
+2 Snow-Covered Plains
+1 Path of Ancestry
+1 Warren Warleader
+1 Hero of Bladehold
+1 Knight Exemplar
+1 Summon: Knights of Round
+2 Plains
+1 Swords to Plowshares
+1 Flare of Fortitude
+1 Demolition Field
+1 Eiganjo, Seat of the Empire
+1 Abandoned Air Temple
+1 Plains
+2 Plains
+2 Plains
+1 Dawn's Truce
+1 Lightning Greaves
+1 Reverent Mantra
+1 Plains
+1 Chivalric Alliance
+1 Gideon, Ally of Zendikar
+1 Gallant Cavalry
+1 History of Benalia
+1 Knight of the New Coalition
+1 Righteous Confluence
+1 Adeline, Resplendent Cathar
+1 Armored Skyhunter
+1 Battle Angels of Tyr
+1 Cavalier of Dawn
+1 Dauntless Bodyguard
+1 Guardian of Faith
+1 Kinsbaile Cavalier
+1 Knight of the White Orchid
+1 Paladin Danse, Steel Maverick
+1 Puresteel Paladin
+1 Silverblade Paladin
+1 Westfold Rider
+1 Mask of Memory
+1 Sword of the Animist
+1 Conjurer's Mantle
+1 Dowsing Dagger // Lost Vale
+1 Glimmer Lens
+1 Heirloom Blade
+1 Plains
+2 Plains
+1 Pip-Boy 3000
+2 Plains
+1 Urza's Saga
+1 Minas Tirith
+1 Flagstones of Trokair
+1 Emeria, the Sky Ruin
+1 Path to Exile
+1 Austere Command
+1 White Orchid Phantom
+1 Werefox Bodyguard
+1 Tome of Legends
+1 Odric, Lunarch Marshal
+1 Lost Jitte
+1 Galadriel's Dismissal
+1 Standard Bearer
+1 Akroma's Will
+1 Monumental Henge
+1 Idol of Oblivion
+1 Throne of Eldraine
+1 Razorgrass Ambush // Razorgrass Field
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Pearl Medallion
+1 Brotherhood Regalia
+1 Get Lost
+1 Plains
+2 Plains
+2 Plains
+1 Shrike Force
+1 Vanquisher's Banner
+2 Plains
+1 Knight-Errant of Eos
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Knight of Lost Causes
+1 Acclaimed Contender
+1 Marble Diamond
+2 Plains
+1 Plains
+1 Avatar's Wrath
+1 Plains
+1 The Ozolith

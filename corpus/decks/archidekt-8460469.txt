@@ -1,0 +1,98 @@
+# Archidekt — Peace Offering - Bloomburrow Commander
+# source: archidekt:8460469
+# fetched: 2026-07-05
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Chasm Skulker
+1 Coveted Jewel
+1 Sol Ring
+1 Thought Vessel
+1 Baird, Steward of Argive
+1 Coiling Oracle
+1 Spore Frog
+1 Bloodroot Apothecary
+1 Command Tower
+1 Communal Brewing
+1 Exotic Orchard
+1 Fisher's Talent
+1 Adarkar Wastes
+1 Faeburrow Elder
+1 Body of Knowledge
+1 Broken Wings
+1 Farseek
+1 Fellwar Stone
+1 Brushland
+1 Canopy Vista
+1 Evolving Wilds
+1 Cultivate
+1 An Offer You Can't Refuse
+1 Simic Ascendancy
+1 Managorger Hydra
+4 Forest
+4 Island
+1 Jolly Gerbils
+1 Long River's Pull
+1 Mr. Foxglove
+1 Octomancer
+1 Peerless Recycling
+1 Perch Protection
+4 Plains
+1 Steelburr Champion
+1 Tempt with Bunnies
+1 Terramorphic Expanse
+1 Twenty-Toed Toad
+1 Wear Down
+1 Triskaidekaphile
+1 Kalonian Hydra
+1 Kwain, Itinerant Meddler
+1 Hoofprints of the Stag
+1 Psychosis Crawler
+1 Wizard Class
+1 Perplexing Test
+1 Sunscorch Regent
+1 Rishkar, Peema Renegade
+1 Loran of the Third Path
+1 Glacial Fortress
+1 Flooded Grove
+1 Martial Impetus
+1 Mangara, the Diplomat
+1 Generous Gift
+1 Sphinx of Enlightenment
+1 Forgotten Ancient
+1 Mind Stone
+1 Tempt with Discovery
+1 Jolrael, Mwonvuli Recluse
+1 Tamiyo, Field Researcher
+1 Tenuous Truce
+1 Ghirapur Orrery
+1 Intellectual Offering
+1 Seaside Citadel
+1 Skycloud Expanse
+1 Hinterland Harbor
+1 Sungrass Prairie
+1 Overflowing Basin
+1 Sunpetal Grove
+1 Prairie Stream
+1 Temple of Enlightenment
+1 Temple of Mystery
+1 Temple of Plenty
+1 Thriving Grove
+1 Thriving Heath
+1 Thriving Isle
+1 Yavimaya Coast
+1 Promise of Loyalty
+1 Secret Rendezvous
+1 Rites of Flourishing
+1 Arcane Signet
+1 Selvala, Explorer Returned
+1 Illusionist's Gambit
+1 Realm-Cloaked Giant // Cast Off
+1 Riot Control
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Razorverge Thicket
+1 Reliquary Tower
+1 Seachrome Coast

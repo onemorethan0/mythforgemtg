@@ -1,0 +1,75 @@
+# Archidekt — Suis-moi j'ai des bonbons
+# source: archidekt:24525346
+# fetched: 2026-07-20
+
+Commander:
+1 Sméagol, Helpful Guide
+
+Deck:
+1 Command Tower
+1 Woodland Cemetery
+1 Undergrowth Stadium
+1 Arcane Signet
+1 Call of the Ring
+1 Sakura-Tribe Elder
+1 Sam's Desperate Rescue
+1 Twilight Mire
+1 Llanowar Elves
+1 Inherited Envelope
+1 Witch-king of Angmar
+1 Golgari Signet
+1 Blood Artist
+1 Reliquary Tower
+1 Nasty End
+1 Rogue's Passage
+1 Gollum, Patient Plotter
+1 Cultivate
+1 Claim the Precious
+1 Haunt of the Dead Marshes
+1 Morgul-Knife Wound
+1 Revive the Shire
+1 Sol Ring
+1 Entish Restoration
+1 Many Partings
+1 Delighted Halfling
+1 Mirkwood Spider
+1 Mirrormere Guardian
+1 Pippin's Bravery
+1 Overgrown Tomb
+1 Tainted Wood
+1 Assassin's Trophy
+1 Rise of the Witch-king
+1 One Ring to Rule Them All
+1 Village Rites
+1 Thran Dynamo
+1 Barad-dûr
+1 Phyrexian Altar
+1 Enraged Huorn
+1 Honest Rutstein
+1 Dark Ritual
+1 Kodama's Reach
+1 Oracle of Mul Daya
+1 Elvish Mystic
+1 Corrupted Conviction
+1 Ringwraiths
+1 Old Man Willow
+1 Generous Ent
+1 Wose Pathfinder
+1 Stew the Coneys
+1 Andúril, Flame of the West
+1 Gríma Wormtongue
+1 Gollum's Bite
+1 Orcish Medicine
+1 Mithril Coat
+1 Ashnod's Altar
+1 Victimize
+1 Urborg, Tomb of Yawgmoth
+1 Compost
+1 Thought Vessel
+1 Uruk-hai Berserker
+1 Syr Konrad, the Grim
+11 Forest
+16 Swamp
+9 Nazgûl
+1 Lightning Greaves
+1 Panharmonicon

@@ -1,0 +1,108 @@
+# Archidekt — Rog/Reyhan Landless Turbo Suicide Engine
+# source: archidekt:8216504
+# fetched: 2026-07-17
+# bracket: 5
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Reyhan, Last of the Abzan
+
+Deck:
+1 Goro-Goro, Disciple of Ryusei
+1 Wild Cantor
+1 Splinter's Technique
+1 Multani's Harmony
+1 Diregraf Rebirth
+1 Boggart Trawler // Boggart Bog
+1 Disciple of Freyalise // Garden of Freyalise
+1 Hagra Mauling // Hagra Broodpit
+1 Fell the Profane // Fell Mire
+1 Pinnacle Monk // Mystic Peak
+1 Spikefield Hazard // Spikefield Cave
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Stump Stomp // Burnwillow Clearing
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sundering Eruption // Volcanic Fissure
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Morselhoarder
+1 Mox Amber
+1 Devoted Druid
+1 Birds of Paradise
+1 Master of Dark Rites
+1 Ragavan, Nimble Pilferer
+1 Tinder Wall
+1 Elves of Deep Shadow
+1 Deathrite Shaman
+1 Ignoble Hierarch
+1 Tangled Florahedron // Tangled Vale
+1 Elvish Spirit Guide
+1 Undercity Informer
+1 Poxwalkers
+1 Imperial Seal
+1 Simian Spirit Guide
+1 Phantasmagorian
+1 Balustrade Spy
+1 Gamble
+1 Necrotic Ooze
+1 Lotus Petal
+1 Chrome Mox
+1 Cabal Therapy
+1 Paradise Mantle
+1 Dark Ritual
+1 Carpet of Flowers
+1 Culling the Weak
+1 Mana Vault
+1 Revitalizing Repast // Old-Growth Grove
+1 Vampiric Tutor
+1 Rite of Flame
+1 Sol Ring
+1 Sylvan Tutor
+1 Springleaf Drum
+1 Cabal Ritual
+1 Arcane Signet
+1 Demonic Tutor
+1 Diabolic Intent
+1 Grim Monolith
+1 Guild Artisan
+1 Wishclaw Talisman
+1 Flare of Duplication
+1 Jeska's Will
+1 Bridge from Below
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Eldritch Evolution
+1 Deflecting Swat
+1 Beseech the Mirror
+1 Bloodsoaked Insight // Sanguine Morass
+1 Culling Ritual
+1 Dread Return
+1 Turn the Earth
+1 Reanimate
+1 Pentad Prism
+1 Lively Dirge
+1 Jack-o'-Lantern
+1 Avenging Druid
+1 Hermit Druid
+1 Talisman of Resilience
+1 Ancient Grudge
+1 Worldly Tutor
+1 Pyretic Ritual
+1 Desperate Ritual
+1 Infernal Plunge
+1 Lion's Eye Diamond
+1 Underworld Breach
+1 Entomb
+1 Shenanigans
+1 Chancellor of the Tangle
+1 Ox of Agonas
+1 Bloodghast
+1 Hogaak, Arisen Necropolis
+1 Indulge // Excess
+1 Khalni Ambush // Khalni Territory
+1 Nature's Rhythm
+1 Zof Consumption // Zof Bloodbog
+1 Warren Soultrader
+1 Blightsteel Colossus
+1 Summoner's Pact
+1 Fellwar Stone
+1 Destroy the Evidence

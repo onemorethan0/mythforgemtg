@@ -1,0 +1,100 @@
+# Archidekt — Witherbloom, the Balancer - Spell Affinity
+# source: archidekt:24779243
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Witherbloom, the Balancer
+
+Deck:
+1 Bitter Triumph
+1 Arachnogenesis
+1 Arasta of the Endless Web
+1 Arcane Signet
+1 Army of the Damned
+1 Arnyn, Deathbloom Botanist
+1 Awaken the Woods
+1 Awakening Zone
+1 Beledros Witherbloom
+1 Bitterbloom Bearer
+1 Blood Artist
+1 Blooming Marsh
+1 Bojuka Bog
+1 Chain of Smog
+1 Chatterfang, Squirrel General
+1 Collective Unconscious
+1 Command Tower
+1 Cultivate
+1 Dark Ritual
+1 Deathcap Glade
+1 Diabolic Revelation
+1 Diabolic Tutor
+1 Dina's Guidance
+1 Elvish Mystic
+1 Emeritus of Woe // Demonic Tutor
+1 Exotic Orchard
+1 Exsanguinate
+1 Fabled Passage
+1 Finale of Devastation
+1 For the Common Good
+6 Forest
+1 Golgari Signet
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Heritage Reclamation
+1 Heroic Intervention
+1 In Garruk's Wake
+1 Kodama's Reach
+1 Llanowar Elves
+1 Mirkwood Bats
+1 Nature's Lore
+1 Necroblossom Snarl
+1 Noxious Newt
+1 Ophiomancer
+1 Overgrown Tomb
+1 Phyrexian Arena
+1 Phyrexian Tower
+1 Reliquary Tower
+1 Revitalizing Repast // Old-Growth Grove
+1 Rishkar's Expertise
+1 Birds of Paradise
+1 Fyndhorn Elves
+1 Feed the Swarm
+1 Nature's Rhythm
+1 Pest Infestation
+1 Root Manipulation
+1 Scute Swarm
+1 Second Harvest
+1 Shamanic Revelation
+1 Skullclamp
+1 Sol Ring
+1 Splinter's Technique
+1 Springleaf Parade
+1 Sprout Swarm
+1 Stensian Sanguinist // Exsanguinate
+4 Swamp
+1 Tainted Wood
+1 Thought Vessel
+1 Three Visits
+1 Topiary Lecturer
+1 Torment of Hailfire
+1 Undergrowth Leopard
+1 Undergrowth Stadium
+1 Vernal Fen
+1 Viridescent Bog
+1 Virulent Emissary
+1 Wastewood Verge
+1 Witherbloom Apprentice
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Sylvan Library
+1 Turbulent Fen
+1 Twilight Mire
+1 Talisman of Resilience
+1 Cryptolith Rite
+1 Parallel Lives
+1 Pitiless Plunderer
+1 Royal Treatment
+1 Bayou
+1 Harrow
+1 Profane Transfusion
+1 Black Market Connections

@@ -1,0 +1,102 @@
+# Archidekt — Troublemaker
+# source: archidekt:24431478
+# fetched: 2026-07-17
+
+Commander:
+1 Raph & Mikey, Troublemakers
+
+Deck:
+1 Arcane Signet
+1 Avoid Fate
+1 Blightsteel Colossus
+1 Cave-In
+1 Cavern of Souls
+1 City of Traitors
+1 Command Tower
+1 Desperate Ritual
+1 Emblem of the Warmind
+1 Finale of Devastation
+1 Full Throttle
+1 Gamble
+1 Gemstone Mine
+1 Geosurge
+1 Great Train Heist
+1 Grim Reaper's Sprint
+1 Grove of the Burnwillows
+1 Guttural Response
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Irencrag Feat
+1 Jeska's Will
+1 Last Chance
+1 Last Night Together
+1 Lion's Eye Diamond
+1 Mana Confluence
+1 Manifold Key
+6 Mountain
+1 Mox Diamond
+1 Not of This World
+1 Open the Omenpaths
+1 Overpowering Attack
+1 Peter Parker's Camera
+1 Port Razer
+1 Prismatic Vista
+1 Chandra's Ignition
+1 Mana Vault
+1 Chrome Mox
+1 Lotus Petal
+1 Deflecting Swat
+1 Final Fortune
+1 Ancient Tomb
+1 Arid Mesa
+1 Bloodstained Mire
+1 City of Brass
+1 Crystal Vein
+1 Gemstone Caverns
+1 Pyrokinesis
+1 Raphael, Tag Team Tough
+1 Redirect Lightning
+1 Relentless Assault
+1 Ricochet Trap
+1 Ruby Medallion
+1 Savage Beating
+1 Scalding Tarn
+1 Seething Song
+1 Seize the Day
+1 Shinka, the Bloodsoaked Keep
+1 Silver Shroud Costume
+1 Sol Ring
+1 Stomping Ground
+1 Taiga
+1 Talisman of Impulse
+1 Thornspire Verge
+1 Tibalt's Trickery
+1 Treasonous Ogre
+1 Untimely Malfunction
+1 Vessel of Volatility
+1 Warrior's Oath
+1 Wooded Foothills
+1 World War Hulk
+1 Yavimaya, Cradle of Growth
+1 Sylvan Library
+1 Wild Growth
+1 Strike It Rich
+1 World at War
+1 Sylvan Tutor
+1 Tezzeret, Cruel Captain
+1 The One Ring
+1 Pyretic Ritual
+1 Pyroblast
+1 Red Elemental Blast
+1 Worldly Tutor
+1 Aggravated Assault
+1 Old Gnawbone
+1 Rite of Flame
+1 Grim Monolith
+1 Jeweled Amulet
+1 Scroll Rack
+1 Bolt Bend
+1 Noxious Revival
+1 Reverberate
+1 Veil of Summer
+1 Boseiju, Who Endures
+1 Karplusan Forest

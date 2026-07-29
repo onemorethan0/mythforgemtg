@@ -1,0 +1,85 @@
+# Archidekt — $75 Lyse Hext Voltron Budget Build. Bracket 3
+# source: archidekt:13511774
+# fetched: 2026-07-28
+# bracket: 3
+
+Commander:
+1 Lyse Hext
+
+Deck:
+1 Water Wings
+1 Wedding Invitation
+1 Conjurer's Bauble
+1 Coldsteel Heart
+1 Defiant Strike
+1 Combat Tutorial
+1 Adarkar Wastes
+1 Azorius Signet
+1 Cartouche of Knowledge
+1 Deserted Beach
+1 Center Soul
+1 Compulsive Research
+1 Deliberate
+1 Distortion Strike
+1 Emerge Unscathed
+1 Empyrial Armor
+1 Enter the Enigma
+1 Feat of Resistance
+1 Feather of Flight
+1 Gitaxian Probe
+1 Guided Strike
+1 Hand of Vecna
+1 Hithlain Knots
+1 Inaction Injunction
+16 Island
+1 Keep Safe
+1 Lock and Load
+1 Marble Diamond
+1 Omen of the Sea
+1 Frantic Search
+1 Plunge into Winter
+1 Port Town
+1 Preordain
+1 Rebellious Strike
+1 Reprieve
+1 Rune of Sustenance
+1 Secret Rendezvous
+1 See Beyond
+1 Shadow Rift
+1 Sky Diamond
+1 Glacial Fortress
+1 Skycloud Expanse
+1 Slip Through Space
+1 Temporary Truce
+1 Unwind
+1 Veil of Secrecy
+1 Words of Wisdom
+1 Zhalfirin Shapecraft
+1 Silver Myr
+1 Negate
+1 Apostle's Blessing
+1 Arcane Signet
+1 Brainstorm
+1 Chromatic Sphere
+1 Chromatic Star
+1 Command Tower
+1 Cut a Deal
+1 Fellwar Stone
+1 Gold Myr
+1 Open the Armory
+1 Mystic Gate
+9 Plains
+1 Ponder
+1 Prairie Stream
+1 Proft's Eidetic Memory
+1 Talisman of Progress
+1 Vision Skeins
+1 Fae Flight
+1 Sejiri Shelter // Sejiri Glacier
+1 Rune of Flight
+1 Stratus Walk
+1 Remand
+1 Confound
+1 Nerd Rage
+1 Angelic Gift
+1 Shelter

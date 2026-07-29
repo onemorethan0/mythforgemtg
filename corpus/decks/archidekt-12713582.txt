@@ -1,0 +1,99 @@
+# Archidekt — Mind Goblin
+# source: archidekt:12713582
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Wort, the Raidmother
+
+Deck:
+1 Chord of Calling
+1 Overcome
+1 Roamer's Routine
+1 Den of the Bugbear
+7 Mountain
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+2 Forest
+1 Goblin Bombardment
+1 Goblin Lookout
+1 Stadium Headliner
+1 Goblin Matron
+1 Heraldic Banner
+1 Goblinslide
+1 Gruul Locket
+1 Zurgo's Vanguard
+1 Goblin Negotiation
+1 Goblin Wardriver
+1 Hajar, Loyal Bodyguard
+1 Goblin Anarchomancer
+1 Rulik Mons, Warren Chief
+1 Owlbear Shepherd
+1 Picnic Ruiner // Stolen Goodies
+1 Assault on Osgiliath
+1 Colossal Might
+1 Sparksmith
+1 Krenko, Mob Boss
+1 Gut, True Soul Zealot
+1 Goblin Assault
+1 Strength in Numbers
+1 Impact Tremors
+1 Quest for the Goblin Lord
+1 Perilous Forays
+1 Goblin Rally
+1 Krenko's Command
+1 Goblin Wizardry
+1 Goblin Scouts
+1 Empty the Warrens
+1 Goblin War Party
+1 Overrun
+1 Mogg Infestation
+1 Mogg Alarm
+1 Dragon Fodder
+1 Wildsize
+1 Goblin Offensive
+1 You See a Pair of Goblins
+1 Hordeling Outburst
+1 Gleeful Demolition
+1 Finale of Promise
+1 Brightstone Ritual
+1 Tarfire
+1 Get a Leg Up
+1 Goblin Grenade
+1 Might of the Masses
+1 Preposterous Proportions
+1 Nature's Lore
+1 Harmonize
+1 Glimpse the Impossible
+1 Cultivate
+1 Outnumber
+1 Evolving Wilds
+1 Rugged Highlands
+1 Spikefield Hazard // Spikefield Cave
+1 Spire Garden
+1 Goblin Burrows
+1 Racers' Ring
+1 Command Tower
+1 Cliffgate
+1 Akoum Warrior // Akoum Teeth
+1 Gruul Guildgate
+1 Temple of Abandon
+1 Forest
+4 Mountain
+1 Reckless Bushwhacker
+1 Goblin Barrage
+1 Goblin Surprise
+1 Highland Forest
+1 Snakeskin Veil
+1 Return the Past
+1 Festival of Embers
+1 Gruul Charm
+1 Twinferno
+1 _____ Goblin

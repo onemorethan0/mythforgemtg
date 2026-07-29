@@ -1,0 +1,102 @@
+# Archidekt — Culture
+# source: archidekt:5254377
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Basandra, Battle Seraph
+1 Bloodflow Connoisseur
+1 Hero of Bladehold
+1 Azure Mage
+1 Blustersquall
+1 Collective Unconscious
+1 Crossway Vampire
+1 Curse of Predation
+1 Curse of Wizardry
+1 Dark Banishing
+1 Deadly Allure
+1 Dryad Sophisticate
+1 Drana's Emissary
+1 Dryad's Caress
+1 Filigree Fracture
+1 Disciple of Grace
+1 Elvish Ranger
+1 Fire Elemental
+1 Exotic Curse
+1 Healing Leaves
+1 Heedless One
+1 Kemba, Kha Regent
+1 Earthbind
+1 Kitsune Diviner
+1 Hill Giant
+1 Holy Strength
+1 Shattered Dreams
+1 Sisters of Stone Death
+1 Seek the Horizon
+1 Knight of Dusk
+1 Liquify
+1 Mage's Guile
+1 Korozda Gorgon
+1 Koth's Courier
+1 Liability
+1 Lingering Souls
+1 Nullmage Shepherd
+1 Lyzolda, the Blood Witch
+1 Mending Hands
+1 Morkrut Banshee
+1 Mul Daya Channelers
+1 Nirkana Cutthroat
+1 Pyromania
+1 Oblivion's Hunger
+1 Psychic Overload
+1 Rites of Reaping
+1 Pacifism
+1 Plague Witch
+1 Reversal of Fortune
+1 Sanguinary Mage
+1 Soul Collector
+1 Spearpoint Oread
+1 Tidebinder Mage
+1 Sylvan Ranger
+1 Traitorous Instinct
+1 Transluminant
+1 Treasured Find
+1 Unlikely Alliance
+1 Vampire's Bite
+1 Vein Drinker
+1 Vicious Betrayal
+1 Visara the Dreadful
+1 Voice of Law
+1 Wakedancer
+1 Crumbling Necropolis
+1 Evolving Wilds
+1 Frontier Bivouac
+1 Jungle Shrine
+1 Mystic Monastery
+1 Nomad Outpost
+1 Sandsteppe Citadel
+1 Temple of Abandon
+1 Temple of Deceit
+1 Temple of Plenty
+1 Temple of Silence
+1 Temple of Triumph
+2 Mountain
+3 Forest
+2 Plains
+1 Command Tower
+1 Arcane Sanctum
+1 Exotic Orchard
+1 Opulent Palace
+1 Savage Lands
+1 Seaside Citadel
+1 Terramorphic Expanse
+1 Temple of Malady
+2 Island
+1 Temple of Enlightenment
+1 Temple of Epiphany
+1 Temple of Malice
+1 Temple of Mystery
+2 Swamp

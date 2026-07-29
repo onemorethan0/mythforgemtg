@@ -1,0 +1,21 @@
+{
+  "card": {
+    "name": "Lightning Bolt",
+    "mana_cost": "{R}",
+    "type_line": "Instant",
+    "oracle_text": "Lightning Bolt deals 3 damage to any target."
+  },
+  "ccm": {
+    "name": "Lightning Bolt",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{R}"},
+    "types": ["instant"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [{"op": "deal_damage", "amount": 3, "target": {"type": "any", "count": 1}}]
+      }
+    ]
+  }
+}

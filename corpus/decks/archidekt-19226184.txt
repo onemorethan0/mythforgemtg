@@ -1,0 +1,78 @@
+# Archidekt — Just read the card man
+# source: archidekt:19226184
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of Creation
+
+Deck:
+1 Kobolds of Kher Keep
+1 Memnite
+1 Abhorrent Oculus
+1 Emeritus of Ideation // Ancestral Recall
+1 Forest Bear
+1 Cancel
+1 Counterspell
+1 Cryptic Command
+1 Hinder
+1 Lier, Disciple of the Drowned
+1 Ponder
+1 Tidings
+1 Treasure Hunt
+1 Prismatic Ending
+1 Fyndhorn Elves
+1 Goddric, Cloaked Reveler
+1 Blade of the Sixth Pride
+1 Disenchant
+1 Mana Tithe
+1 Blind Phantasm
+1 Nessian Courser
+1 Brave the Elements
+1 Celestial Purge
+1 Condemn
+1 Day of Judgment
+1 Ocelot Pride
+1 Avacyn's Pilgrim
+1 Path to Exile
+1 Reciprocate
+1 Wrath of God
+1 Vendilion Clique
+1 Giant Growth
+1 Mana Leak
+1 Pyroclasm
+1 Psionic Blast
+1 Remove Soul
+1 Fireball
+1 Flame Javelin
+1 Incinerate
+1 Lightning Bolt
+1 Searing Blaze
+1 Volcanic Fallout
+1 Moonshaker Cavalry
+1 Gigantosaurus
+1 Harrow
+1 Oxidize
+1 Rampant Growth
+1 Recollect
+1 Sakura-Tribe Elder
+1 Vengevine
+1 Jedit Ojanen
+1 Wayfarer's Bauble
+1 Lightning Helix
+1 Void Winnower
+1 Urza's Saga
+1 Command Tower
+9 Plains
+7 Mountain
+1 Reliquary Tower
+1 Squire
+1 Preordain
+1 Kozilek's Command
+1 Utopia Sprawl
+10 Island
+8 Forest
+1 Harmonize
+1 Negate
+1 Fomori Nomad
+1 Burst Lightning

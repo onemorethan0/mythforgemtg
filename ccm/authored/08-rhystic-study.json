@@ -1,0 +1,24 @@
+{
+  "card": {
+    "name": "Rhystic Study",
+    "mana_cost": "{2}{U}",
+    "type_line": "Enchantment",
+    "oracle_text": "Whenever an opponent casts a spell, you may draw a card unless that player pays {1}."
+  },
+  "ccm": {
+    "name": "Rhystic Study",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{U}"},
+    "types": ["enchantment"],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {"event": "opponent_casts_spell"},
+        "effects": [
+          {"op": "draw", "count": 1, "optional": true, "condition": "unless that player pays {1}"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+# Archidekt — Braids, but not making any friends
+# source: archidekt:24147865
+# fetched: 2026-07-28
+
+Commander:
+1 Braids, Arisen Nightmare
+
+Deck:
+1 Sedgemoor Witch
+1 Professor Onyx
+1 Virus Beetle
+1 Contamination
+1 Winter Moon
+1 Refurbished Familiar
+1 Vicious Rumors
+1 Oppression
+1 Chain of Smog
+1 Bolas's Citadel
+1 Aetherflux Reservoir
+1 Bloodchief Ascension
+1 Delirium Skeins
+1 Ophiomancer
+1 Waste Not
+1 Memnite
+1 Everflowing Chalice
+1 Mox Amber
+1 Expedition Map
+1 The One Ring
+1 Sol Ring
+1 Dark Ritual
+1 Jet Medallion
+1 Arcane Signet
+1 Blood Pet
+1 Chrome Mox
+1 Cabal Ritual
+1 Jeweled Amulet
+1 Bandit's Talent
+1 Mindslicer
+1 Smallpox
+1 Tinybones Joins Up
+1 Hopeless Nightmare
+1 Myr Retriever
+1 Chthonian Nightmare
+1 Reanimate
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Dark Deal
+1 Necrodominance
+1 Necropotence
+1 Toxic Deluge
+1 Grave Pact
+1 Black Market Connections
+1 Dismember
+1 Plaguecrafter
+1 Accursed Marauder
+1 Tithing Blade // Consuming Sepulcher
+1 The Meathook Massacre
+1 Damnation
+1 Withering Torment
+1 Feed the Swarm
+1 Beseech the Mirror
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Buried Ruin
+1 Cabal Stronghold
+1 Hagra Mauling // Hagra Broodpit
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Strip Mine
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Nykthos, Shrine to Nyx
+1 Bojuka Bog
+23 Swamp
+1 Rankle, Master of Pranks
+1 Dauthi Voidwalker
+1 Orcish Bowmasters
+1 Boggart Trawler // Boggart Bog
+1 Ornithopter
+1 Scrap Trawler
+1 Takenuma, Abandoned Mire
+1 Sensei's Divining Top
+1 Viscera Seer
+1 War Room
+1 Raven's Crime
+1 Elderfang Disciple
+1 Burglar Rat

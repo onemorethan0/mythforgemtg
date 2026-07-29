@@ -1,0 +1,73 @@
+# Archidekt — Kairi Clone Control $50 budget deck!
+# source: archidekt:16034855
+# fetched: 2026-07-28
+# bracket: 2
+
+Commander:
+1 Kairi, the Swirling Sky
+
+Deck:
+1 Curse of the Swine
+1 Keiga, the Tide Star
+1 Dissipate
+1 Ravenform
+1 Disdainful Stroke
+1 Wash Away
+1 Commandeer
+1 Wipe Away
+1 Guard Gomazoa
+1 Uthros Psionicist
+1 Fog Bank
+1 Skyclave Relic
+1 Cyber Conversion
+1 Capsize
+1 Commence the Endgame
+1 Chasm Skulker
+1 Dissipation Field
+1 Confounding Riddle
+1 Invoke the Winds
+1 Hedron Archive
+1 Sol Ring
+36 Island
+1 Cackling Counterpart
+1 Walking Atlas
+1 Quasiduplicate
+1 Rite of Replication
+1 Counterspell
+1 Fated Infatuation
+1 Replication Technique
+1 Resculpt
+1 See Double
+1 Rapid Hybridization
+1 High Tide
+1 Imprisoned in the Moon
+1 Mirror Mockery
+1 Dig Through Time
+1 Evacuation
+1 Gilded Lotus
+1 PuPu UFO
+1 Aetherize
+1 Aetherspouts
+1 Propaganda
+1 Engulf the Shore
+1 Rise from the Tides
+1 Rewind
+1 Archmage's Charm
+1 Unwind
+1 Foil
+1 Fact or Fiction
+1 Multiple Choice
+1 March of Swirling Mist
+1 Shark Typhoon
+1 Thought Vessel
+1 War Room
+1 Reliquary Tower
+1 High Market
+1 Terrain Generator
+1 Clear the Mind
+1 Mystic Sanctuary
+1 Run Away Together
+1 Zndrsplt's Judgment
+1 Illusionist's Gambit
+1 Silundi Vision // Silundi Isle
+1 Pull from Tomorrow

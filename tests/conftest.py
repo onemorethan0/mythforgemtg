@@ -12,13 +12,25 @@ appended, so both entry points enforce the same checks and the 39 test bodies st
 untouched. It hooks the CALL phase (not a teardown fixture) so a violation is
 reported as a real test FAILURE rather than a teardown error.
 """
+import os
+import sys
+
 import pytest
+
+# The MythGauntlet engine lives at src/mythgauntlet (merged 2026-07-29) and keeps its
+# src/ layout so its PROJECT_ROOT (parents[2]) still resolves to this repo root.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import test_smoke
 
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_call(item):
+    # Only the smoke tests report through the _fails list; engine tests (tests/engine)
+    # use plain asserts and must not be wrapped.
+    if item.module.__name__ != "test_smoke":
+        yield
+        return
     before = len(test_smoke._fails)
     outcome = yield
     if outcome.exception is None:

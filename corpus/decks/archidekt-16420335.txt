@@ -1,0 +1,86 @@
+# Archidekt — The EDHREC'd Deck
+# source: archidekt:16420335
+# fetched: 2026-07-28
+# bracket: 1
+
+Commander:
+1 The Commander Recommender
+
+Deck:
+1 Mordenkainen
+1 Riptide Laboratory
+1 Trusted Advisor
+1 Master of Predicaments
+1 Sturmgeist
+1 Academy Ruins
+1 Predict
+1 Liar's Pendulum
+1 My First Tome
+1 Mistrise Village
+1 Reliquary Tower
+1 Sol Ring
+1 See Double
+1 Atemsis, All-Seeing
+1 Quick Study
+1 Misleading Signpost
+1 Commander's Sphere
+1 Decanter of Endless Water
+1 Covenant of Minds
+1 Flow of Knowledge
+1 Elixir of Immortality
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Caged Sun
+1 Arcane Signet
+1 Spider-Sense
+1 The Water Crystal
+1 Irenicus's Vile Duplication
+1 Followed Footsteps
+1 Quantum Misalignment
+1 Preordain
+1 Machine God's Effigy
+1 Ponder
+1 Gogo, Master of Mimicry
+1 Lithoform Engine
+1 Psychosis Crawler
+1 Mind Stone
+1 Conundrum Sphinx
+1 Spark Double
+1 Relm's Sketching
+1 Three Steps Ahead
+1 Wayfarer's Bauble
+1 World Map
+1 Strionic Resonator
+1 Starfield Vocalist
+1 Lórien Revealed
+1 Thought Vessel
+1 Everythingamajig
+1 Mystic Sanctuary
+1 Memories Returning
+1 Dialogue Tree
+1 The Mysterious Sphere
+1 Ensoul Ring
+1 Castle Vantress
+1 War Room
+1 Buried Ruin
+1 Hedron Archive
+1 Witch's Clinic
+22 Island
+1 Fountainport
+1 Evolving Wilds
+1 Strip Mine
+1 Field of Ruin
+1 Wasteland
+1 Terramorphic Expanse
+1 Myriad Landscape
+1 Rapid Hybridization
+1 Reality Shift
+1 Treasure Cruise
+1 Arcane Denial
+1 Commit // Memory
+1 Overwhelming Intellect
+1 Mitotic Manipulation
+1 Burnished Hart
+1 Tolarian Sentinel
+1 Triskaidekaphile
+1 Body of Knowledge
+1 Adric, Mathematical Genius
