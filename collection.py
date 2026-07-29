@@ -154,13 +154,31 @@ def write_collection(rows: list[dict], path: Path | None = None) -> int:
         except OSError:
             pass
     clean = [r for r in rows if int(r.get("count", 0)) > 0 and (r.get("name") or "").strip()]
-    # utf-8-sig so Excel and MythScanner (which reads utf-8-sig) both open it cleanly.
-    with p.open("w", encoding="utf-8-sig", newline="") as fh:
-        w = csv.writer(fh)
-        w.writerow(["Count", "Name", "Edition", "Collector Number"])
-        for r in clean:
-            w.writerow([int(r["count"]), r["name"].strip(),
-                        (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip()])
+
+    # ATOMIC WRITE — this is the canonical Myth Suite collection file, it has more than one
+    # writer (MythScanner's export targets the same path), and Myth Forge rewrites it on
+    # every single +/- click in the collection manager. Opening the real path with "w"
+    # truncates it immediately, so an interrupted write (crash, power loss, disk full) left
+    # the user's entire collection truncated, and a reader mid-write — the deck builder's
+    # load_owned_names, say — could silently build from half a collection. Writing a temp
+    # file in the SAME directory and os.replace()ing it is atomic on both Windows and POSIX
+    # for same-volume renames, so readers see either the old file or the new one, never a
+    # partial one. (Same directory matters: os.replace across volumes is not atomic.)
+    tmp = p.with_name(f".{p.name}.tmp")
+    try:
+        # utf-8-sig so Excel and MythScanner (which reads utf-8-sig) both open it cleanly.
+        with tmp.open("w", encoding="utf-8-sig", newline="") as fh:
+            w = csv.writer(fh)
+            w.writerow(["Count", "Name", "Edition", "Collector Number"])
+            for r in clean:
+                w.writerow([int(r["count"]), r["name"].strip(),
+                            (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip()])
+            fh.flush()
+            os.fsync(fh.fileno())   # durable before the rename, not just in the page cache
+        os.replace(tmp, p)
+    except BaseException:
+        tmp.unlink(missing_ok=True)   # never leave a stray .tmp beside the collection
+        raise
     return len(clean)
 
 

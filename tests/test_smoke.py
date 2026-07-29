@@ -836,6 +836,53 @@ def test_collection_printings():
             f.unlink()
 
 
+def test_collection_write_is_atomic():
+    """A failed write must leave the previous collection intact, not a truncated file.
+
+    This file is the canonical Myth Suite collection, MythScanner writes the same path, and
+    Forge rewrites it on every +/- click. Opening the real path with "w" truncates it up
+    front, so an interrupted write used to destroy the collection and a concurrent reader
+    could see a partial one. write_collection now builds a temp file beside it and
+    os.replace()s in.
+    """
+    import tempfile, pathlib, csv as _csv
+    p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_atomic_test.csv"
+    p.unlink(missing_ok=True)
+    collection.write_collection([{"name": "Sol Ring", "count": 1}], p)
+    before = p.read_bytes()
+
+    # Blow up midway through serialising the new contents.
+    class Boom(Exception):
+        pass
+
+    real_writer = _csv.writer
+
+    def exploding_writer(*a, **kw):
+        w = real_writer(*a, **kw)
+        class W:
+            def writerow(self, row):
+                if row and row[0] != "Count":
+                    raise Boom("disk full")
+                return w.writerow(row)
+        return W()
+
+    _csv.writer = exploding_writer
+    try:
+        collection.write_collection([{"name": "Black Lotus", "count": 99}], p)
+        check_true("atomic.raised", False)          # should not reach here
+    except Boom:
+        pass
+    finally:
+        _csv.writer = real_writer
+
+    check("atomic.original_intact", p.read_bytes(), before)
+    check("atomic.still_loads", len(collection.load_collection(p)), 1)
+    check_true("atomic.no_tmp_left",
+               not (p.parent / f".{p.name}.tmp").exists())
+    p.unlink(missing_ok=True)
+    p.with_suffix(".csv.bak").unlink(missing_ok=True)
+
+
 def test_collection_crud():
     import tempfile, pathlib
     p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_crud_test.csv"
@@ -980,6 +1027,7 @@ def main():
                test_commander_user_name,
                test_collection_owned_key, test_collection_parse,
                test_collection_owned_count, test_prefer_owned,
+               test_collection_write_is_atomic,
                test_app_paths_absolute):
         try:
             fn()
