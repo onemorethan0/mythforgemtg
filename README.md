@@ -2,6 +2,8 @@
 
 A fully local web app that builds themed 100-card EDH Commander decks with AI-generated custom card art and proxy frames using real MTG card assets.
 
+> **Part of the Myth Suite.** Myth Forge is the *creative* half — deck building, theming, AI art, proxy rendering and printing. It does **not** judge deck power itself: every bracket and strength number it shows is measured by **[MythGauntlet](https://github.com/onemorethan0/mythgauntlet)**, which simulates thousands of games and serves the result on `:8020`. Forge shipped its own bracket heuristic once; the two copies drifted apart, so it was removed in favour of a single authority. If MythGauntlet isn't running, Forge says the number is unavailable rather than substituting a guess. Owned-card features read the shared collection written by **MythScanner**.
+
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/onemorethan0)
 
 > Myth Forge is free and fully local. If it saved you a stack of proxy cash, [buying me a coffee](https://www.buymeacoffee.com/onemorethan0) ☕ helps keep it improving.
