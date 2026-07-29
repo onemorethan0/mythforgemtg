@@ -14,10 +14,13 @@ const c = {
   panel:  '#0c0a09',
 }
 
+const PAGE = 500   // rows fetched by default; "Show all" refetches with limit=0
+
 export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
   const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false, total_value: 0, priced: 0, prices_updated: null })
   const [matched, setMatched]   = useState(0)
+  const [showingAll, setShowingAll] = useState(false)
   const [q, setQ]               = useState('')
   const [loading, setLoading]   = useState(true)
   const [msg, setMsg]           = useState(null)         // {kind:'ok'|'err', text}
@@ -46,9 +49,14 @@ export default function StepCollection({ onBack, onBuild }) {
 
   const flash = (kind, text) => { setMsg({ kind, text }); if (text) setTimeout(() => setMsg(null), 4000) }
 
-  const load = useCallback((query = '') => {
+  // Page size for the list. The server also accepts limit<=0 ("all matches", capped at
+  // 5000) which is what "Show all" sends. Without the notice below, a collection larger
+  // than PAGE lost the overflow SILENTLY — a 986-card collection rendered 500 rows with
+  // nothing on screen saying the other 486 existed, and no offset control to reach them.
+  const load = useCallback((query = '', all = false) => {
     setLoading(true)
-    fetch(`/api/collection?limit=500&q=${encodeURIComponent(query)}`)
+    setShowingAll(all)
+    fetch(`/api/collection?limit=${all ? 0 : PAGE}&q=${encodeURIComponent(query)}`)
       .then(r => r.json())
       .then(d => {
         setCards(d.cards || [])
@@ -92,7 +100,8 @@ export default function StepCollection({ onBack, onBuild }) {
         setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
                      total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
         if (okMsg) flash('ok', okMsg(d))
-        load(q.trim())
+        // Preserve "Show all": an edit must not silently collapse the list back to one page.
+        load(q.trim(), showingAll)
       })
       .catch(e => flash('err', String(e.message || e)))
       .finally(() => setBusy(false))
@@ -341,7 +350,21 @@ export default function StepCollection({ onBack, onBuild }) {
         style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
                  border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14, marginBottom: 10 }}
       />
-      {q && <div style={{ fontSize: 12, color: c.faint, marginBottom: 8 }}>{matched} match{matched === 1 ? '' : 'es'}</div>}
+      {(q || matched > cards.length) && (
+        <div style={{ fontSize: 12, color: matched > cards.length ? '#fbbf24' : c.faint, marginBottom: 8 }}>
+          {q && <>{matched} match{matched === 1 ? '' : 'es'}</>}
+          {matched > cards.length && (
+            <>
+              {q ? ' — ' : ''}showing {cards.length} of {matched}
+              <button
+                onClick={() => load(q.trim(), true)}
+                style={{ marginLeft: 8, background: 'none', border: `1px solid ${c.border}`, borderRadius: 6,
+                         color: '#fbbf24', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, padding: '2px 8px' }}
+              >Show all {matched}</button>
+            </>
+          )}
+        </div>
+      )}
 
       {/* List */}
       {loading ? (
