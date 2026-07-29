@@ -68,18 +68,37 @@ Rules:
 /no_think"""
 
 
+def store_dir() -> Path:
+    """Directory holding the COMPILED store (`compiled/` + `ledger.json`).
+
+    Override: ``MYTHGAUNTLET_STORE``. This exists because the engine ships open while the
+    compiled semantics do not (see docs/ENGINE_DATA.md) — the store is ~30k documents
+    produced by many hundreds of GPU-hours and is versioned in a separate private repo.
+    Pointing this at that repo lets the engine READ and the compiler WRITE the canonical
+    copy in place, instead of keeping a duplicate 130 MB tree beside the source.
+
+    Unset, it falls back to this repo's own `ccm/` — so a fresh clone works with whatever
+    the user has compiled themselves, and an empty store degrades to rung-1 heuristics
+    rather than failing.
+    """
+    override = os.environ.get("MYTHGAUNTLET_STORE")
+    return Path(override) if override else PROJECT_ROOT / "ccm"
+
+
 def authored_dir() -> Path:
+    """Hand-written rung-3 exemplars. NOT store_dir() — these are prompt source, they ship
+    with the engine, and they must stay findable even when the compiled store is elsewhere."""
     return PROJECT_ROOT / "ccm" / "authored"
 
 
 def compiled_dir() -> Path:
     """Path to the compiled-CCM store. Pure getter — does NOT create the dir, so building
     a SemanticsStore to READ semantics never fails on a read-only checkout."""
-    return PROJECT_ROOT / "ccm" / "compiled"
+    return store_dir() / "compiled"
 
 
 def ledger_path() -> Path:
-    return PROJECT_ROOT / "ccm" / "ledger.json"
+    return store_dir() / "ledger.json"
 
 
 def card_block(card: Card) -> str:

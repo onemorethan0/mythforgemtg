@@ -57,6 +57,23 @@ coverage, and `mythgauntlet home` shows the store size on the dashboard:
 | Semantics (CCM)  14 authored + 0 compiled |
 ```
 
+## Pointing the engine at a store elsewhere
+
+`MYTHGAUNTLET_STORE` relocates the compiled store. Set it to a directory containing
+`compiled/` and `ledger.json`:
+
+```bash
+setx MYTHGAUNTLET_STORE "C:\path\to\store"    # Windows, persistent
+export MYTHGAUNTLET_STORE=/path/to/store          # POSIX
+```
+
+Unset, the engine uses this repo's own `ccm/`. The authored exemplars are **not** affected —
+they are prompt source, they ship with the engine, and they stay findable either way.
+
+This is how the maintainer's setup runs: the engine is here, the store is versioned in a
+separate private repo, and `scripts/overnight.py` compiles straight into it. It also means you
+can keep a store on another drive without a 130 MB duplicate beside the source.
+
 ## Building your own store
 
 Nothing stops you. The compiler is included and documented:

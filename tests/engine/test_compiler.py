@@ -192,3 +192,26 @@ def test_load_exemplars_produces_pairs():
     block, ccm_json = pairs[0]
     assert "NAME:" in block and "ORACLE:" in block
     assert json.loads(ccm_json)["ccm_version"] == 1
+
+
+def test_store_dir_override(monkeypatch, tmp_path):
+    """MYTHGAUNTLET_STORE relocates the COMPILED store but never the authored exemplars.
+
+    The engine ships open while the ~30k compiled semantics are withheld and versioned in a
+    separate private repo (docs/ENGINE_DATA.md). This override lets the engine read and the
+    compiler write that canonical copy in place rather than duplicating 130 MB beside the
+    source. The authored exemplars are prompt SOURCE — they ship with the engine and must
+    stay findable regardless.
+    """
+    from pathlib import Path
+
+    monkeypatch.delenv("MYTHGAUNTLET_STORE", raising=False)
+    default_authored = compiler.authored_dir()
+    assert compiler.compiled_dir() == compiler.store_dir() / "compiled"
+    assert compiler.ledger_path() == compiler.store_dir() / "ledger.json"
+
+    monkeypatch.setenv("MYTHGAUNTLET_STORE", str(tmp_path))
+    assert compiler.store_dir() == Path(tmp_path)
+    assert compiler.compiled_dir() == Path(tmp_path) / "compiled"
+    assert compiler.ledger_path() == Path(tmp_path) / "ledger.json"
+    assert compiler.authored_dir() == default_authored, "exemplars must not follow the override"

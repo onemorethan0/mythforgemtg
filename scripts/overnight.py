@@ -37,9 +37,33 @@ from datetime import datetime
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PYTHON = REPO / ".venv" / "Scripts" / "python.exe"
+
+
+def _python() -> str:
+    """The interpreter to spawn CLI subprocesses with.
+
+    This script came from the standalone MythGauntlet repo, which had its own `.venv`.
+    Myth Forge doesn't — it runs on the system interpreter — so prefer a venv when one
+    exists (keeps the old layout working) and otherwise use whatever is running us.
+    `sys.executable` is right in both the scheduled-task and manual cases.
+    """
+    venv = REPO / ".venv" / "Scripts" / "python.exe"
+    return str(venv if venv.exists() else Path(sys.executable))
+
+
+PYTHON = _python()
+
+# Subprocesses need src/ importable (the engine keeps its src/ layout) and must inherit the
+# compiled-store location, which lives outside this repo — see compiler.store_dir().
+_ENV = {**os.environ, "PYTHONPATH": os.pathsep.join(
+    filter(None, [str(REPO / "src"), os.environ.get("PYTHONPATH", "")])
+)}
 DATA = REPO / "data"
-LEDGER = REPO / "ccm" / "ledger.json"
+# The compiled store (and its ledger) can live outside this repo — the semantics are
+# withheld and versioned separately, see compiler.store_dir() / docs/ENGINE_DATA.md.
+# Honour the same override the engine does, or the morning report would read a ledger
+# that the night never wrote to and cheerfully report "nothing happened".
+LEDGER = Path(os.environ.get("MYTHGAUNTLET_STORE") or (REPO / "ccm")) / "ledger.json"
 GATEWAY_URL = "http://127.0.0.1:8010/v1/models"
 GATEWAY_BAT = Path("E:/llama/start-llama-swap.bat")
 
@@ -63,8 +87,8 @@ def run(name: str, *cli_args: str) -> int:
     started = time.time()
     try:
         proc = subprocess.Popen(
-            [str(PYTHON), "-m", "mythgauntlet", *cli_args],
-            cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            [PYTHON, "-m", "mythgauntlet", *cli_args],
+            cwd=REPO, env=_ENV, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True, encoding="utf-8", errors="replace",
         )
         assert proc.stdout is not None
@@ -312,7 +336,7 @@ def write_report(
 
     lines += ["", "## Sanity", ""]
     rc = subprocess.run(
-        [str(PYTHON), "-m", "pytest", "-q"], cwd=REPO, capture_output=True, text=True
+        [PYTHON, "-m", "pytest", "-q"], cwd=REPO, env=_ENV, capture_output=True, text=True
     )
     tail = (rc.stdout or "").strip().splitlines()[-1:] or ["(no output)"]
     lines.append(f"- pytest: rc={rc.returncode} ({tail[0]})")
