@@ -847,6 +847,33 @@ def test_collection_preserves_scanner_columns():
     p.with_suffix(".csv.bak").unlink(missing_ok=True)
 
 
+def test_suite_path_contract():
+    """C1 is mirrored in three repos; this pins Forge's copy to the contract.
+
+    Forge, MythScanner and MythGauntlet each compute this path independently — the first
+    two cannot import MythGauntlet's config.py, so the constant is duplicated by necessity.
+    An identical assertion lives in each repo (MythGauntlet tests/test_config_suite.py,
+    Scanner tests/test_export.py) so whichever copy drifts fails its OWN suite instead of
+    silently pointing an app at a different collection file. Contract: MYTHSUITE_DIR
+    overrides, default ~/Documents/MythSuite, filename collection.csv.
+    See mythgauntlet docs/SUITE_PLAN.md (C1).
+    """
+    import pathlib as _pl
+    prior = os.environ.pop("MYTHSUITE_DIR", None)
+    try:
+        check("suite.default_dir", collection.suite_dir(),
+              _pl.Path.home() / "Documents" / "MythSuite")
+        check("suite.default_file", collection.suite_collection_path(),
+              _pl.Path.home() / "Documents" / "MythSuite" / "collection.csv")
+        os.environ["MYTHSUITE_DIR"] = r"C:\elsewhere\Suite"
+        check("suite.override", collection.suite_collection_path(),
+              _pl.Path(r"C:\elsewhere\Suite") / "collection.csv")
+    finally:
+        os.environ.pop("MYTHSUITE_DIR", None)
+        if prior is not None:
+            os.environ["MYTHSUITE_DIR"] = prior
+
+
 def test_collection_write_is_atomic():
     """A failed write must leave the previous collection intact, not a truncated file.
 
@@ -1038,7 +1065,7 @@ def main():
                test_commander_user_name,
                test_collection_owned_key, test_collection_parse,
                test_collection_owned_count, test_prefer_owned,
-               test_collection_write_is_atomic, test_collection_preserves_scanner_columns,
+               test_collection_write_is_atomic, test_suite_path_contract, test_collection_preserves_scanner_columns,
                test_app_paths_absolute):
         try:
             fn()
