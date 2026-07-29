@@ -836,6 +836,39 @@ def test_collection_printings():
             f.unlink()
 
 
+def test_collection_preserves_scanner_columns():
+    """A Forge edit must not delete columns Forge doesn't model.
+
+    MythScanner's export writes Condition/Language/Foil to the same canonical CSV. Forge
+    only models Count/Name/Edition/Collector Number, and used to rewrite the file with just
+    those four — so one +/- click silently destroyed the scanner's per-copy data.
+    """
+    import tempfile, pathlib
+    p = pathlib.Path(tempfile.gettempdir()) / "mf_coll_cols_test.csv"
+    p.unlink(missing_ok=True)
+    p.write_text("\n".join([
+        "Count,Name,Edition,Condition,Language,Foil,Collector Number",
+        "2,Sol Ring,LTC,NM,en,foil,284",
+        "1,Forest,ZNR,LP,en,,270",
+        "",
+    ]), encoding="utf-8")
+
+    collection.write_collection(collection.load_collection(p), p)
+    text = p.read_text(encoding="utf-8-sig")
+    for col in ("Condition", "Language", "Foil"):
+        check_true(f"cols.header.{col}", col in text.splitlines()[0])
+    check_true("cols.values_kept", "NM" in text and "foil" in text)
+
+    # ...and they survive an actual edit, not just a passthrough rewrite.
+    collection.add_card("Sol Ring", 1, p, set_code="LTC", cn="284")
+    after = p.read_text(encoding="utf-8-sig")
+    row = [ln for ln in after.splitlines() if ln.startswith("3,Sol Ring")]
+    check("cols.edit_count", len(row), 1)
+    check_true("cols.edit_keeps_extra", "NM,en,foil" in row[0])
+    p.unlink(missing_ok=True)
+    p.with_suffix(".csv.bak").unlink(missing_ok=True)
+
+
 def test_collection_write_is_atomic():
     """A failed write must leave the previous collection intact, not a truncated file.
 
@@ -1027,7 +1060,7 @@ def main():
                test_commander_user_name,
                test_collection_owned_key, test_collection_parse,
                test_collection_owned_count, test_prefer_owned,
-               test_collection_write_is_atomic,
+               test_collection_write_is_atomic, test_collection_preserves_scanner_columns,
                test_app_paths_absolute):
         try:
             fn()

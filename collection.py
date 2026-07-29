@@ -164,15 +164,27 @@ def write_collection(rows: list[dict], path: Path | None = None) -> int:
     # file in the SAME directory and os.replace()ing it is atomic on both Windows and POSIX
     # for same-volume renames, so readers see either the old file or the new one, never a
     # partial one. (Same directory matters: os.replace across volumes is not atomic.)
+    # Columns this module does not model but the file may carry. MythScanner's export
+    # writes Condition/Language/Foil; before this, a single +/- click in Forge rewrote the
+    # file with only our four columns and silently DELETED the scanner's per-copy data.
+    # Preserve any extra column seen on read, in first-seen order, appended after ours.
+    extra_cols: list[str] = []
+    for r in clean:
+        for key in (r.get("_extra") or {}):
+            if key not in extra_cols:
+                extra_cols.append(key)
+
     tmp = p.with_name(f".{p.name}.tmp")
     try:
         # utf-8-sig so Excel and MythScanner (which reads utf-8-sig) both open it cleanly.
         with tmp.open("w", encoding="utf-8-sig", newline="") as fh:
             w = csv.writer(fh)
-            w.writerow(["Count", "Name", "Edition", "Collector Number"])
+            w.writerow(["Count", "Name", "Edition", "Collector Number"] + extra_cols)
             for r in clean:
+                extra = r.get("_extra") or {}
                 w.writerow([int(r["count"]), r["name"].strip(),
-                            (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip()])
+                            (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip()]
+                           + [extra.get(col, "") for col in extra_cols])
             fh.flush()
             os.fsync(fh.fileno())   # durable before the rename, not just in the page cache
         os.replace(tmp, p)
@@ -287,7 +299,8 @@ def _parse_rows(text: str) -> list[dict]:
     rows: dict[tuple, dict] = {}
     order: list[tuple] = []
 
-    def _add(name: str, count: int, set_code: str = "", cn: str = "") -> None:
+    def _add(name: str, count: int, set_code: str = "", cn: str = "",
+             extra: dict | None = None) -> None:
         name = (name or "").strip()
         if not name:
             return
@@ -297,6 +310,11 @@ def _parse_rows(text: str) -> list[dict]:
         else:
             rows[k] = {"name": name, "count": count,
                        "set": (set_code or "").strip().upper(), "cn": (cn or "").strip()}
+            # Columns we do not model (MythScanner writes Condition/Language/Foil) ride
+            # along so a Forge edit round-trips them instead of deleting them. See
+            # write_collection.
+            if extra:
+                rows[k]["_extra"] = extra
             order.append(k)
 
     if "," in first_line and _find_column(first_line.split(","), _NAME_COLUMNS):
@@ -312,9 +330,13 @@ def _parse_rows(text: str) -> list[dict]:
                 cnt = int(float((row.get(count_col) or "1").strip())) if count_col else 1
             except (TypeError, ValueError):
                 cnt = 1
+            known = {c for c in (name_col, count_col, set_col, cn_col) if c}
+            extra = {k: v for k, v in row.items()
+                     if k and k not in known and (v or "").strip()}
             _add(name, max(cnt, 1),
                  (row.get(set_col) or "") if set_col else "",
-                 (row.get(cn_col) or "") if cn_col else "")
+                 (row.get(cn_col) or "") if cn_col else "",
+                 extra)
     else:
         for raw in text.splitlines():
             line = raw.strip()
