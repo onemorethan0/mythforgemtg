@@ -91,5 +91,8 @@ comfyui_restart.log.err
 ccm/compiled/
 ccm/ledger.json
 
-# Scryfall bulk cache the engine downloads on demand (mythgauntlet fetch-data)
-data/
+# Scryfall bulk cache the engine downloads on demand (mythgauntlet fetch-data).
+# LEADING SLASH IS LOAD-BEARING: a bare "data/" also matched src/mythgauntlet/data/ —
+# the engine's data-ACCESS package (scryfall/edhrec/spellbook/decksources) — and
+# silently excluded six source files, so a fresh clone got an unimportable engine.
+/data/

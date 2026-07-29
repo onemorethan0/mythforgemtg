@@ -1,0 +1,146 @@
+{
+  "aggro_mirror_tapping": {
+    "avg_turns": 7.05,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 20,
+    "wins_b": 20
+  },
+  "aggro_vs_do_nothing": {
+    "avg_turns": 7.025,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 40,
+    "wins_b": 0
+  },
+  "big_vs_small": {
+    "avg_turns": 6.5,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 39,
+    "wins_b": 1
+  },
+  "ccm_death_trigger": {
+    "avg_turns": 7.525,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 24,
+    "wins_b": 16
+  },
+  "ccm_landfall_tokens": {
+    "avg_turns": 7.475,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 40,
+    "wins_b": 0
+  },
+  "ccm_pinger_activated": {
+    "avg_turns": 10.3,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 40,
+    "wins_b": 0
+  },
+  "ccm_ritual_mana": {
+    "avg_turns": 5.725,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 36,
+    "wins_b": 4
+  },
+  "ccm_upkeep_drainer": {
+    "avg_turns": 5.675,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 40,
+    "wins_b": 0
+  },
+  "ccm_x_basis_surge": {
+    "avg_turns": 8.125,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 24,
+    "wins_b": 16
+  },
+  "combo_assembles": {
+    "avg_turns": 3.625,
+    "combo_wins": 39,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 39,
+    "wins_b": 1
+  },
+  "commander_recast": {
+    "avg_turns": 7.325,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 0,
+    "wins_b": 40
+  },
+  "counter_control_mirror": {
+    "avg_turns": 9.175,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 18,
+    "wins_b": 22
+  },
+  "decking_tiny_deck": {
+    "avg_turns": 9.5,
+    "combo_wins": 0,
+    "decked_losses": 20,
+    "draws": 0,
+    "games": 20,
+    "wins_a": 0,
+    "wins_b": 20
+  },
+  "instant_removal_control_vs_aggro": {
+    "avg_turns": 17.6,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 0,
+    "wins_b": 40
+  },
+  "removal_vs_beef": {
+    "avg_turns": 7.35,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 23,
+    "wins_b": 17
+  },
+  "wipe_control_vs_aggro": {
+    "avg_turns": 10.725,
+    "combo_wins": 0,
+    "decked_losses": 0,
+    "draws": 0,
+    "games": 40,
+    "wins_a": 34,
+    "wins_b": 6
+  }
+}
