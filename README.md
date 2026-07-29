@@ -286,7 +286,7 @@ On the **Commander** step, switch to the **📥 Import a deck** tab to retheme a
 - **Caching:** imported decks and resolved card data are cached under `cache/` — re-importing the same deck (or any card you've seen before) makes **no network calls**. Use **↻ Re-pull** to force a fresh fetch.
 - Duplicate basic lands are themed once and the art reused for every copy; your ZIP/PDF export still contains all physical proxies.
 
-**Bracket analysis (`deck_analysis.py`):** the import preview also estimates the deck's **power bracket (1–5)** from objective signals — Game Changers count, extra-turn spells, mass land destruction, fast mana, tutor density, and average mana value — and shows them as chips. It then suggests how to **scale up** (toward higher power) or **scale down** (toward a more casual table), so you can tune a borrowed list before rethemeing it.
+**Bracket analysis (MythGauntlet):** the import preview shows the deck's **power bracket (1–5)**, measured by simulating games rather than scored from a static heuristic. This comes from MythGauntlet's strength API on `:8020` — the single source of truth for anything analytical in the suite. Forge previously carried its own estimator as a fallback; it was removed once the two copies drifted apart. If MythGauntlet isn't running, the panel says so rather than showing a second, weaker estimate.
 
 Once imported, the rest of the flow (face, theme, custom pips, art generation, 3D, regen/retheme) works exactly as it does for generated decks.
 
@@ -307,7 +307,6 @@ mtg_deck_builder/
 ├── card_renderer.py        Pillow: composites real MTG frame PNGs into proxy cards
 ├── cc_frames.py            Optional M15 / full-art frames from a local Card Conjurer
 ├── deck_import.py          Import/retheme an existing Moxfield/Archidekt/ManaBox deck
-├── deck_analysis.py        Bracket estimation for imported decks (power signals + tuning tips)
 ├── set_symbol.py           Per-deck set symbol, tinted by card rarity (black/silver/gold/orange)
 ├── mana_pips.py            Optional deck-branded mana pips (gem disc + emblem silhouette)
 ├── model3d.py              Commander art → Hunyuan3D v2 → printable STL
@@ -570,7 +569,7 @@ A **📜 Logs** button (header) streams the server's in-memory log buffer via `G
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/commander/search` | Fuzzy commander lookup via Scryfall |
-| POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached; also returns an **estimated bracket** with power signals + scale-up/down suggestions (`deck_analysis.py`) |
+| POST | `/api/deck/import-preview` | Resolve a deck URL / pasted list (commander + counts), cached; also returns MythGauntlet's **simulated strength profile** when `:8020` is up (`simulation`) |
 | POST | `/api/deck/generate-list` | **Phase 1:** build the 99-card list (no art) from commander+playstyle+bracket; returns deck + its creature tribes for the reskin UI |
 | GET | `/api/playstyles` | List all 15 playstyle options |
 | GET | `/api/art-styles` | List all art style presets + LoRA install status |

@@ -349,28 +349,6 @@ def test_theme_detection():
     check_true("theme.sliver", "tribal_slivers" in slv)
 
 
-# ── imported-deck bracket analysis ───────────────────────────────────────────
-def test_deck_analysis():
-    import deck_analysis as da
-    def cd(n, cmc=3, tl="Creature", o=""):
-        return {"name": n, "cmc": cmc, "type_line": tl, "oracle_text": o}
-    # No power signals -> casual (Bracket 2).
-    casual = da.analyze_deck(None, [cd("Grizzly Bears"), cd("Forest", 0, "Basic Land")])
-    check("analysis.casual", casual["estimated_bracket"], 2)
-    # Mass land destruction forces Bracket >=4.
-    mld = da.analyze_deck(None, [cd("Armageddon", 4, "Sorcery", "Destroy all lands.")])
-    check_true("analysis.mld>=4", mld["estimated_bracket"] >= 4)
-    check_true("analysis.mld_listed", "Armageddon" in mld["signals"]["mass_land_destruction"])
-    # 2 Game Changers -> Bracket 3, and they show in scale_down.
-    up = da.analyze_deck(None, [cd("Rhystic Study", 3), cd("Cyclonic Rift", 7)])
-    check("analysis.gc->3", up["estimated_bracket"], 3)
-    check_true("analysis.gc_listed", "Rhystic Study" in up["signals"]["game_changers"])
-    # Land ramp is NOT counted as a tutor.
-    ramp = da.analyze_deck(None, [cd("Cultivate", 3, "Sorcery",
-        "Search your library for up to two basic land cards, reveal them, put one onto the battlefield tapped.")])
-    check("analysis.ramp_not_tutor", len(ramp["signals"]["tutors"]), 0)
-
-
 # ── Ragnarok Online race / job-class mapping (v5 LoRA by-name targeting) ──────
 def test_ro_race_class():
     f = themer._ro_race_class
@@ -1050,7 +1028,7 @@ def test_app_paths_absolute():
 def main():
     for fn in (test_commander_tribe, test_name_too_close, test_tribal_text,
                test_tribal_type_line, test_parse_mana, test_frame_key, test_legibility,
-               test_theme_detection, test_deck_analysis, test_creature_floor_plan,
+               test_theme_detection, test_creature_floor_plan,
                test_pad_with_basics, test_set_symbol_rarity, test_ro_race_class,
                test_ro_class_override, test_stub_prompt, test_ro_tribal_map,
                test_subject_directives, test_artifact_object_kind,

@@ -347,55 +347,6 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
                 </div>
               </div>
 
-              {/* ── Bracket analysis ── */}
-              {preview.analysis && (() => {
-                const a = preview.analysis
-                const BR = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
-                const col = BR[a.estimated_bracket] || '#eab308'
-                const sg = a.signals || {}
-                const chips = [
-                  ['Game Changers', (sg.game_changers || []).length],
-                  ['Extra turns', (sg.extra_turns || []).length],
-                  ['Land destruction', (sg.mass_land_destruction || []).length],
-                  ['Fast mana', (sg.fast_mana || []).length],
-                  ['Tutors', (sg.tutors || []).length],
-                  ['Avg MV', sg.avg_mana_value],
-                  ['Lands', sg.land_count],
-                ]
-                return (
-                  <div style={{ background: '#0c0a09', border: `1px solid ${col}44`, borderLeft: `3px solid ${col}`, borderRadius: 10, padding: 14 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                      <span style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1' }}>Bracket estimate</span>
-                      <span style={{ fontSize: 13, fontWeight: 800, padding: '2px 12px', borderRadius: 20, background: `${col}22`, color: col, border: `1px solid ${col}` }}>
-                        {a.estimated_bracket}. {a.bracket_label}
-                      </span>
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
-                      {chips.map(([k, v]) => (
-                        <span key={k} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
-                          {k}: <b style={{ color: '#e7e5e4' }}>{v}</b>
-                        </span>
-                      ))}
-                    </div>
-                    <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.55, marginBottom: 10 }}>
-                      {(a.summary || '').replace(/\*\*/g, '')}
-                    </div>
-                    {(a.scale_up?.length > 0) && (
-                      <div style={{ marginBottom: 8 }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#86efac', marginBottom: 4 }}>💪 To push it higher</div>
-                        {a.scale_up.map((t, i) => <div key={i} style={{ fontSize: 11.5, color: '#a8a29e', lineHeight: 1.5, marginBottom: 3 }}>• {t}</div>)}
-                      </div>
-                    )}
-                    {(a.scale_down?.length > 0) && (
-                      <div>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#fca5a5', marginBottom: 4 }}>🎯 To bring it down a bracket</div>
-                        {a.scale_down.map((t, i) => <div key={i} style={{ fontSize: 11.5, color: '#a8a29e', lineHeight: 1.5, marginBottom: 3 }}>• {t}</div>)}
-                      </div>
-                    )}
-                  </div>
-                )
-              })()}
-
               {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
               <SimStrengthPanel simulation={preview.simulation} />
 

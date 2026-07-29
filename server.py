@@ -3776,20 +3776,13 @@ class ImportPreviewRequest(BaseModel):
     force_refresh: bool = False                          # bypass the on-disk cache
 
 
-def _safe_analyze(commander, deck):
-    """Run the bracket analysis but never let it break the import preview."""
-    try:
-        import deck_analysis
-        return deck_analysis.analyze_deck(commander, deck)
-    except Exception as e:
-        print(f"  [import-preview] deck analysis failed: {e}")
-        return None
-
-
 # --- MythGauntlet strength API (Myth Suite contract C3) ---------------------------------
 # Simulation-grounded deck strength: MythGauntlet plays thousands of games and returns a
-# measured Power Profile. Optional — if its local server (mythgauntlet serve) isn't up,
-# import-preview silently falls back to the deck_analysis heuristic above.
+# measured Power Profile. It is the SOLE bracket authority — Forge used to carry its own
+# heuristic estimator (deck_analysis.py) as a fallback and the import preview rendered
+# both, which let the copies drift: Forge's still applied the tutor restrictions the
+# October 2025 bracket update removed. The duplicate is deleted; when :8020 is down the
+# UI says so rather than substituting a second, worse opinion.
 MYTHGAUNTLET_URL = os.getenv("MYTHGAUNTLET_URL", "http://127.0.0.1:8020").rstrip("/")
 
 
@@ -4482,7 +4475,6 @@ def import_preview(req: ImportPreviewRequest):
         "total_cards":  imp.total_cards(),
         "colors":       colors,
         "unresolved":   imp.unresolved,
-        "analysis":     _safe_analyze(imp.commander, imp.deck),
         "simulation":   _gauntlet_analyze(imp.commander, imp.deck),
     }
 

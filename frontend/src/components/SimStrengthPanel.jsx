@@ -5,8 +5,27 @@
 // ({engine_version, power_profile, unresolved}).
 export default function SimStrengthPanel({ simulation }) {
   const pp = simulation?.power_profile
-  if (!pp) return null
   const AC = '#38bdf8'
+  // MythGauntlet is the ONLY bracket authority now. Forge used to ship its own heuristic
+  // estimator (deck_analysis.py) as a fallback and render it above this panel — two bracket
+  // opinions on one screen, and the copy drifted (it still applied tutor restrictions that
+  // the October 2025 bracket update removed). The duplicate is gone, so when :8020 is down
+  // we say so plainly instead of substituting a worse answer.
+  if (!pp) {
+    return (
+      <div style={{ background: '#0c0a09', border: '1px solid #292524', borderLeft: '3px solid #57534e',
+                    borderRadius: 10, padding: 14, marginTop: 12 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>
+          Bracket &amp; strength unavailable
+        </div>
+        <div style={{ fontSize: 11.5, color: '#a8a29e', lineHeight: 1.55 }}>
+          MythGauntlet measures this by simulating games; it isn’t reachable on <code>:8020</code>.
+          Start Myth Forge via <b>manage.bat</b> (it launches MythGauntlet automatically), or run{' '}
+          <code style={{ color: '#d6d3d1' }}>mythgauntlet serve</code> yourself, then re-preview.
+        </div>
+      </div>
+    )
+  }
   const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`)
   const bar = (label, val, suffix = '') => (
     <div style={{ marginBottom: 7 }}>
