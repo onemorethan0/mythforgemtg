@@ -1,0 +1,87 @@
+# Archidekt — Betor, Ancestor's Voice V1
+# source: archidekt:24796798
+# fetched: 2026-07-30
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Bogwater Lumaret
+1 Rumble Arena
+7 Forest
+1 Royal Treatment
+8 Plains
+9 Swamp
+1 Virulent Emissary
+1 Temple Garden
+1 Rampant Growth
+1 Exotic Orchard
+1 Forum of Amity
+1 Titan's Grave
+1 Kyoshi Village
+1 Command Tower
+1 Evolving Wilds
+1 Dina, Soul Steeper
+1 Compassionate Healer
+1 Terramorphic Expanse
+1 Skystinger
+1 Soul-Guide Lantern
+1 Fog
+1 Beledros Witherbloom
+1 Cheerful Osteomancer // Raise Dead
+1 Blech, Loafing Pest
+1 Fracture
+1 Path to Exile
+1 Llanowar Elves
+1 Swords to Plowshares
+1 Arcane Signet
+1 Masterful Flourish
+1 Sol Ring
+1 Defiling Daemogoth
+1 Loran's Escape
+1 Restoration Seminar
+1 Cycle of Renewal
+1 Midnight Tilling
+1 The Fire Nation Drill
+1 Repel Calamity
+1 Root Manipulation
+1 Moseo, Vein's New Dean
+1 Explore
+1 Eusocial Engineering
+1 Great Forest Druid
+1 Soul Enervation
+1 Skyscythe Engulfer
+1 Thirsting Roots
+1 Oracle's Restoration
+1 Celestial Reunion
+1 Dreams of Steel and Oil
+1 Bender's Waterskin
+1 Studious First-Year // Rampant Growth
+1 Fellwar Stone
+1 Pestbrood Sloth
+1 Silverquill Charm
+1 Surrak, Elusive Hunter
+1 Badgermole
+1 Icetill Explorer
+1 Blossoming Defense
+1 Bogslither's Embrace
+1 Comforting Counsel
+1 Mind's Eye
+1 Tragedy Feaster
+1 Despark
+1 Ajani, Outland Chaperone
+1 Gixian Puppeteer
+1 Well of Lost Dreams
+1 Ruinous Waterbending
+1 Scarblade's Malice
+1 Spectrum Sentinel
+1 Kayla's Command
+1 Environmental Scientist
+1 Feed the Swarm
+1 Shattered Acolyte
+1 Diabolic Intent
+1 Scarblade Scout
+1 Long Feng, Grand Secretariat
+1 Gohn, Town of Ruin
+1 The Earth Crystal
+1 K'rrik, Son of Yawgmoth

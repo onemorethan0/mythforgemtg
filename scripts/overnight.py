@@ -175,6 +175,11 @@ def _archive_gauntlet(tag: str) -> Path | None:
     return dest
 
 
+# Weekday the weekly agent-contrast phase runs on (0=Mon). Sunday keeps it off work nights.
+AGENT_CONTRAST_WEEKDAY = 6
+_WEEKDAY_NAMES = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", "Sunday")
+
 REDUCED_SEED = "778"  # distinct from the full-gauntlet seed so caches don't collide
 
 
@@ -356,6 +361,12 @@ def main() -> int:
     )
     parser.add_argument("--chunks", type=int, default=4)
     parser.add_argument(
+        "--agent-contrast", choices=("auto", "always", "never"), default="auto",
+        help="greedy-vs-ISMCTS phase. auto (default) = weekly, and only if the night is "
+             "still inside --max-hours; always = force it; never = skip. It was nightly "
+             "until its matchups tripled with the corpus and it stopped fitting in a night",
+    )
+    parser.add_argument(
         "--mcts-iters", type=int, default=120,
         help="ISMCTS iterations for the agent-contrast gauntlet (Phase 7 re-basing)",
     )
@@ -392,16 +403,36 @@ def main() -> int:
         run("gauntlet POST (greedy)", "gauntlet", *gauntlet_args)
         _archive_gauntlet("post")
 
-    # Phase-7 re-basing: two reduced-scope gauntlets at the SAME scope/seed, differing ONLY in the
-    # agent, run in parallel across the cores the GPU workstream isn't using. The morning question:
-    # does a stronger agent move the bracket picture (esp. the cEDH/B5 inversion)?
-    cores = max(1, (os.cpu_count() or 4) - 2)
-    run("gauntlet reduced (greedy)", "gauntlet",
-        *_agent_gauntlet_args("greedy", cores, args.smoke))
-    _archive_gauntlet("rgreedy")
-    run("gauntlet reduced (ISMCTS)", "gauntlet",
-        *_agent_gauntlet_args(f"mcts:{args.mcts_iters}", cores, args.smoke))
-    _archive_gauntlet("mcts")
+    # Phase-7 re-basing: two reduced-scope gauntlets at the SAME scope/seed, differing ONLY in
+    # the agent. The morning question was whether a stronger agent moves the bracket picture
+    # (esp. the cEDH/B5 inversion).
+    #
+    # NOT NIGHTLY ANY MORE (2026-07-30). Matchups scale with the corpus, and the corpus tripled
+    # when the B1-3 anchors were harvested: 389 -> 449 -> 1066. At 1066 the ISMCTS half ran
+    # 13+ HOURS and still hadn't finished when the 7/29 run died, so that night produced no
+    # report at all and the 7/30 run was refused because the previous instance was still
+    # registered as running. Two nights lost to a phase whose headline question is already
+    # answered (the inversion is engine fidelity, not agent strength — docs/engine/STATUS.md).
+    #
+    # So it runs WEEKLY by default and only if the night is still within budget. The compile
+    # workstream and the full greedy gauntlet — the parts that actually feed calibration — now
+    # always get to finish and report.
+    if args.agent_contrast == "never":
+        log("agent-contrast: disabled (--agent-contrast never)")
+    elif time.time() > deadline:
+        log(f"agent-contrast: SKIPPED - past the {args.max_hours}h budget "
+            "(compile + gauntlet results are already written)")
+    elif args.agent_contrast == "auto" and datetime.now().weekday() != AGENT_CONTRAST_WEEKDAY:
+        log("agent-contrast: skipped - runs weekly on "
+            f"{_WEEKDAY_NAMES[AGENT_CONTRAST_WEEKDAY]} (--agent-contrast always to force)")
+    else:
+        cores = max(1, (os.cpu_count() or 4) - 2)
+        run("gauntlet reduced (greedy)", "gauntlet",
+            *_agent_gauntlet_args("greedy", cores, args.smoke))
+        _archive_gauntlet("rgreedy")
+        run("gauntlet reduced (ISMCTS)", "gauntlet",
+            *_agent_gauntlet_args(f"mcts:{args.mcts_iters}", cores, args.smoke))
+        _archive_gauntlet("mcts")
 
     run("ccm-status", "ccm-status")
     write_report(before, gauntlet_args, started)
