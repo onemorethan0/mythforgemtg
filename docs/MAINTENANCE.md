@@ -2,7 +2,10 @@
 
 > ⚠️ **Startup commands updated.** This guide predates the current launcher and
 > still references a removed system. Translate as you read:
-> - `START.bat` → `manage.bat` (option 1 = start Myth Forge; option 9 = start ComfyUI; Ollama auto-starts) — or just `python server.py`, which auto-starts Ollama + ComfyUI.
+> - `START.bat` → `manage.bat` (option 1 = start Myth Forge, which also brings up the LLM
+>   gateway on :8010 and the strength engine on :8020; option 9 = start ComfyUI). `python
+>   server.py` starts only the web server and auto-starts ComfyUI — not the gateway or engine.
+>   The LLM default is **llama.cpp via llama-swap**, not Ollama (migrated 2026-06-08).
 > - `STOP.bat` → `manage.bat` option 4 (stop server) / option 5 (kill orphaned processes).
 > - **Restart ComfyUI** → `manage.bat` option 9 (correct flags — never the Desktop `.exe`; see [COMFYUI_SETUP.md](../COMFYUI_SETUP.md)).
 > - `paths_config.ps1` / `launch_comfyui.ps1` → **gone**; paths now live in the `.bat` scripts and `server.py` (`_ensure_comfyui_ready`).

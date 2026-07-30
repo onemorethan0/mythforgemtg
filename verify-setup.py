@@ -25,8 +25,8 @@ def print_header(text: str):
 
 
 def check_item(name: str, condition: bool, details: str = "") -> bool:
-    status = f"{Colors.GREEN}✓{Colors.END}" if condition else f"{Colors.RED}✗{Colors.END}"
-    print(f"{status} {name}" + (f" — {details}" if details else ""))
+    status = f"{Colors.GREEN}[OK]{Colors.END}" if condition else f"{Colors.RED}[X]{Colors.END}"
+    print(f"{status} {name}" + (f" - {details}" if details else ""))
     return condition
 
 
@@ -36,18 +36,27 @@ def check_python():
     try:
         version = sys.version_info
         version_str = f"{version.major}.{version.minor}.{version.micro}"
-        check_item("Python version", version.major >= 3 and version.minor >= 8, version_str)
+        # 3.12 is the floor: the bundled MythGauntlet engine requires it.
+        check_item("Python version", (version.major, version.minor) >= (3, 12),
+                   version_str + ("" if (version.major, version.minor) >= (3, 12)
+                                  else " - need 3.12+ for the engine"))
 
-        # Check for key packages
-        packages = ['flask', 'requests', 'pillow', 'pydantic']
+        # (import name, pip name). These are IMPORT names on purpose — the old list
+        # checked 'flask' (this app is FastAPI and never used Flask) and 'pillow'
+        # (imports as PIL), so a perfectly good install reported as broken.
+        packages = [
+            ("fastapi", "fastapi"), ("uvicorn", "uvicorn"), ("pydantic", "pydantic"),
+            ("requests", "requests"), ("PIL", "pillow"), ("pixie", "pixie-python"),
+            ("rich", "rich"), ("json_repair", "json-repair"),
+        ]
         all_found = True
 
-        for pkg in packages:
+        for mod, pip_name in packages:
             try:
-                __import__(pkg)
-                check_item(f"  {pkg}", True)
+                __import__(mod)
+                check_item(f"  {pip_name}", True)
             except ImportError:
-                check_item(f"  {pkg}", False, "run: pip install -r requirements.txt")
+                check_item(f"  {pip_name}", False, "run: pip install -r requirements.txt")
                 all_found = False
 
         return all_found
@@ -69,15 +78,24 @@ def check_node():
         check_item("Node.js", node_ok, node_version)
 
         # Check npm
-        result = subprocess.run(['npm', '--version'], capture_output=True, text=True)
+        # shell=True: npm is npm.cmd on Windows, so a bare exec raises WinError 2 and
+        # blew up the whole Node check before it could report anything.
+        result = subprocess.run("npm --version", capture_output=True, text=True, shell=True)
         npm_ok = result.returncode == 0
         npm_version = result.stdout.strip() if npm_ok else "not found"
         check_item("npm", npm_ok, npm_version)
 
         # Check frontend dist
         dist_path = project_root / 'frontend' / 'dist'
-        dist_ok = dist_path.exists() and list(dist_path.glob('*.js'))
-        check_item("Frontend build (dist/)", dist_ok, "run: make frontend-build" if not dist_ok else "ready")
+        # Vite emits hashed bundles to dist/assets/, not dist/ — the old glob looked in the
+        # wrong directory and reported a fully built frontend as missing. (The suggestion is
+        # now the npm command rather than `make frontend-build`, which is a real Makefile
+        # target but assumes make is installed; on Windows it usually isn't.)
+        dist_ok = dist_path.is_dir() and (
+            list((dist_path / "assets").glob("*.js")) or list(dist_path.glob("*.js"))
+        )
+        check_item("Frontend build (dist/)", bool(dist_ok),
+                   "ready" if dist_ok else "run: cd frontend && npm run build")
 
         # Check node_modules
         nm_path = project_root / 'frontend' / 'node_modules'
@@ -125,7 +143,7 @@ def check_optional():
                 capture_output=True
             )
             found = result.returncode == 0
-            check_item(name, found, "found" if found else "not found — see INSTALL.md")
+            check_item(name, found, "found" if found else "not found - see INSTALL.md")
         except:
             check_item(name, False)
 
@@ -148,17 +166,77 @@ def check_api():
     return server_ok and req_ok
 
 
+
+def check_engine():
+    """The MythGauntlet engine (src/mythgauntlet) that measures deck strength.
+
+    Its compiled card semantics are withheld from this repo on purpose
+    (docs/ENGINE_DATA.md), so an absent store is reported as INFO, not a failure -
+    the engine falls back to Oracle-text heuristics and still produces brackets.
+    """
+    print_header("Deck Strength Engine (MythGauntlet)")
+    project_root = Path(__file__).parent
+    src = project_root / "src"
+    ok = check_item("Engine source", (src / "mythgauntlet" / "__main__.py").exists(),
+                    "src/mythgauntlet")
+    if not ok:
+        print("  Engine missing - bracket/strength will report as unavailable.")
+        return False
+
+    sys.path.insert(0, str(src))
+    try:
+        from mythgauntlet.semantics import compiler
+        from mythgauntlet.semantics.store import SemanticsStore
+    except ImportError as exc:
+        check_item("Engine imports", False, str(exc))
+        print("  Install deps:  python -m pip install -r requirements.txt")
+        return False
+    check_item("Engine imports", True, "rich + json-repair present")
+
+    # Card data (Scryfall bulk) - needed to resolve decklists.
+    try:
+        from mythgauntlet.config import data_dir
+        cards = data_dir() / "cards_slim.json"
+    except Exception:
+        cards = project_root / "data" / "cards_slim.json"
+    if not check_item("Card data", cards.exists(), str(cards)):
+        print("  Fetch it:  set PYTHONPATH=src && python -m mythgauntlet fetch-data")
+
+    # Compiled semantics: absent is EXPECTED for a fresh clone.
+    store = SemanticsStore()
+    compiled = len(list(compiler.compiled_dir().glob("*.json")))         if compiler.compiled_dir().is_dir() else 0
+    if compiled:
+        check_item("Card semantics", True,
+                   f"{len(store)} cards ({compiled} compiled) from {compiler.store_dir()}")
+    else:
+        print(f"{Colors.CYAN}[i]{Colors.END} Card semantics - "
+              f"{len(store)} authored, 0 compiled (withheld; see docs/ENGINE_DATA.md)")
+        print("  The engine runs on Oracle-text fallbacks; brackets still work, less precisely.")
+        print(r'  Have a store?  setx MYTHGAUNTLET_STORE "D:\my-ccm-store"')
+
+    # Is it serving?
+    try:
+        import urllib.request
+        with urllib.request.urlopen("http://127.0.0.1:8020/health", timeout=2):
+            check_item("Strength API (:8020)", True, "running")
+    except Exception:
+        print(f"{Colors.CYAN}[i]{Colors.END} Strength API (:8020) - not running "
+              "(manage.bat starts it; the UI says 'unavailable' until then)")
+    return True
+
+
 def main():
     print(f"\n{Colors.BOLD}{Colors.CYAN}")
-    print("╔═══════════════════════════════════════════════════╗")
-    print("║       MYTH FORGE - Installation Verification       ║")
-    print("╚═══════════════════════════════════════════════════╝")
+    print("+===================================================+")
+    print("|       MYTH FORGE - Installation Verification       |")
+    print("+===================================================+")
     print(Colors.END)
 
     results = {
         'Python': check_python(),
         'Node.js': check_node(),
         'Directories': check_directories(),
+        'Engine': check_engine(),
         'API': check_api(),
     }
 
@@ -170,22 +248,27 @@ def main():
     all_ok = all(results.values())
 
     for component, status in results.items():
-        icon = f"{Colors.GREEN}✓{Colors.END}" if status else f"{Colors.RED}✗{Colors.END}"
+        icon = f"{Colors.GREEN}[OK]{Colors.END}" if status else f"{Colors.RED}[X]{Colors.END}"
         print(f"{icon} {component}")
 
     print()
 
     if all_ok:
         print(f"{Colors.GREEN}{Colors.BOLD}")
-        print("✓ All essential components are installed!")
+        print("[OK] All essential components are installed!")
         print(Colors.END)
-        print("\nYou can now start the server:")
-        print(f"  {Colors.BOLD}python server.py{Colors.END}")
+        # manage.bat, not server.py: server.py starts only the web server, while manage.bat
+        # also brings up the LLM gateway (:8010) for theming and the engine (:8020) for
+        # brackets. Recommending server.py left people with unthemed decks and no bracket.
+        print("\nYou can now start Myth Forge:")
+        print(f"  {Colors.BOLD}manage.bat{Colors.END}"
+              "        (web server + LLM gateway + strength engine)")
+        print(f"  {Colors.BOLD}python server.py{Colors.END}  (web server only)")
         print(f"\nThen open: {Colors.BOLD}http://localhost:8000{Colors.END}\n")
         return 0
     else:
         print(f"{Colors.RED}{Colors.BOLD}")
-        print("✗ Some components are missing")
+        print("[X] Some components are missing")
         print(Colors.END)
         print("\nRun the installer to fix issues:")
 

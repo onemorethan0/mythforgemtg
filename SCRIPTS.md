@@ -275,3 +275,22 @@ Custom pips, frame style, border theme, and rarity-tinted set symbols are all re
 - **Safe to run multiple times** - Menu won't break anything
 - **Use the menu as your default** - It handles cleanup automatically
 
+---
+
+## Engine scripts (`scripts/`)
+
+Came with the MythGauntlet engine. Both need `PYTHONPATH=src`.
+
+| Script | What it does |
+|---|---|
+| `scripts/overnight.py` | Unattended pipeline: compiles card semantics on the GPU while running corpus gauntlets and benchmarks on the CPU, then writes `data/overnight_report_*.md`. `--smoke` for a wiring check. A Windows scheduled task ("MythGauntlet Overnight Training") runs it nightly at 02:00. |
+| `scripts/axis_separation.py` | The standing calibration test: measures which signals actually separate the labeled bracket anchors (Spearman rho over the ladder + Cohen's d per adjacent pair). **No axis may influence a bracket verdict until it demonstrates separation here.** Re-run whenever the corpus grows or an axis changes. |
+
+```bash
+set PYTHONPATH=src
+python scripts/overnight.py --smoke
+python scripts/axis_separation.py --runs 200
+```
+
+Both honour `MYTHGAUNTLET_STORE` / `MYTHGAUNTLET_DATA`, so they read and write the compiled
+store wherever it lives (see [docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)).

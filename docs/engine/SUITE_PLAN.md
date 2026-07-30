@@ -1,5 +1,13 @@
 # The Myth Suite — combining MythForge, MythScanner, and MythGauntlet
 
+> **NOTE (2026-07-29): the engine MERGED INTO MYTH FORGE.** This document was written when
+> MythGauntlet was its own repository. The engine now lives at `src/mythgauntlet/` inside Myth
+> Forge, so references below to "Gauntlet" and "Forge" as separate checkouts describe two
+> *components of one repo* — plus **MythScanner**, which is still its own project. The
+> collection contract (C1) is unchanged and still spans both repos. The compiled semantics live
+> in a separate private data repo; see `docs/ENGINE_DATA.md`.
+
+
 *Drafted 2026-07-07 from a live survey of all three repos. This is the canonical plan;
 the sibling repos get pointers to it.*
 

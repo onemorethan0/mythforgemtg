@@ -16,3 +16,42 @@ Other make targets: `make frontend-build`, `make rebuild`.
 
 ## When changes don't appear
 Almost always a stale browser bundle → hard-refresh (`Ctrl+Shift+R`). Otherwise: confirm the file saved, the server restarted (watch its startup log for the rebuild line), and check the browser console (`F12`) for JS errors.
+
+## Tests
+
+```bash
+python -m pytest tests -q          # everything: 41 app + 464 engine
+python -m pytest tests/engine -q   # engine only
+python tests/test_smoke.py         # app smoke tests, standalone runner
+```
+
+`tests/conftest.py` puts `src/` on the path and is what makes pytest *enforce* the app smoke
+tests — their bodies append to a `_fails` list rather than asserting, so without that hook they
+passed unconditionally. Engine tests use plain asserts and are excluded from the hook.
+
+## Working on the engine
+
+The MythGauntlet engine lives at `src/mythgauntlet/`. It keeps its `src/` layout deliberately:
+`config.PROJECT_ROOT` resolves via `parents[2]`, so it lands on the repo root unchanged.
+
+```bash
+set PYTHONPATH=src
+python -m mythgauntlet home        # dashboard: data, semantics coverage, gateways
+python -m mythgauntlet doctor      # health check with suggested fixes
+python -m mythgauntlet serve       # strength API on :8020 (what the app calls)
+```
+
+Three things about it that are invariants, not preferences:
+
+1. **One analysis implementation.** The engine is the sole authority for bracket and strength.
+   Myth Forge shipped a second heuristic estimator once; the copies drifted and it was deleted.
+   Don't add another.
+2. **No axis influences a bracket verdict until it's shown to separate the labeled anchors** —
+   `python scripts/axis_separation.py`. Several plausible signals (the goldfish clock, every
+   card-quality metric tried) measured as bracket-blind; one strong-looking signal had the
+   wrong sign. See `docs/engine/STATUS.md`.
+3. **Its compiled semantics are not in this repo** and `ccm/compiled/` is gitignored — see
+   [docs/ENGINE_DATA.md](docs/ENGINE_DATA.md). Never commit a store here.
+
+Engine-internal conventions (determinism through one seeded RNG, no card names in `sim/`,
+ASCII-only CLI output) are in `docs/engine/ARCHITECTURE.md`.

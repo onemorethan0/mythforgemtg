@@ -44,19 +44,19 @@ class MythForgeInstaller:
 
     def print_success(self, text: str):
         """Print success message"""
-        print(f"{Colors.GREEN}✓ {text}{Colors.END}")
+        print(f"{Colors.GREEN}[OK] {text}{Colors.END}")
 
     def print_error(self, text: str):
         """Print error message"""
-        print(f"{Colors.RED}✗ {text}{Colors.END}")
+        print(f"{Colors.RED}[X] {text}{Colors.END}")
 
     def print_warning(self, text: str):
         """Print warning message"""
-        print(f"{Colors.YELLOW}⚠ {text}{Colors.END}")
+        print(f"{Colors.YELLOW}[!] {text}{Colors.END}")
 
     def print_info(self, text: str):
         """Print info message"""
-        print(f"{Colors.CYAN}ℹ {text}{Colors.END}")
+        print(f"{Colors.CYAN}[i] {text}{Colors.END}")
 
     def ask_yes_no(self, question: str) -> bool:
         """Ask yes/no question"""
@@ -69,11 +69,20 @@ class MythForgeInstaller:
             print("Please enter 'y' or 'n'")
 
     def run_command(self, cmd: List[str], description: str = "") -> bool:
-        """Run a command and return success status"""
+        """Run a command and return success status.
+
+        shell=True on Windows is load-bearing: npm is `npm.cmd`, so a bare exec raises
+        WinError 2, which the FileNotFoundError branch below swallowed as a plain failure.
+        The frontend install/build steps could never succeed on Windows.
+        """
         try:
             if description:
                 self.print_info(description)
-            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            use_shell = self.os_type == 'Windows' and cmd and cmd[0] == 'npm'
+            subprocess.run(
+                subprocess.list2cmdline(cmd) if use_shell else cmd,
+                capture_output=True, text=True, check=True, shell=use_shell,
+            )
             return True
         except subprocess.CalledProcessError as e:
             if description:
@@ -93,16 +102,19 @@ class MythForgeInstaller:
         return result.returncode == 0
 
     def check_python_version(self) -> bool:
-        """Check Python version (need 3.8+)"""
+        """Check Python version. 3.12+ because the bundled MythGauntlet engine requires it
+        (the old floor was 3.8, from before the engine merged in)."""
         self.print_step(1, "Checking Python version...")
         version = sys.version_info
-        if version.major >= 3 and version.minor >= 8:
+        if (version.major, version.minor) >= (3, 12):
             self.print_success(f"Python {version.major}.{version.minor}.{version.micro}")
             self.checks_passed['python'] = True
             return True
-        else:
-            self.print_error(f"Python 3.8+ required (you have {version.major}.{version.minor})")
-            return False
+        self.print_error(
+            f"Python 3.12+ required (you have {version.major}.{version.minor}) - "
+            "the deck-strength engine needs it"
+        )
+        return False
 
     def check_git(self) -> bool:
         """Check if git is installed"""
@@ -167,21 +179,18 @@ class MythForgeInstaller:
             self.print_warning("frontend directory not found")
             return True
 
-        if self.run_command(
-            ['npm', 'install'],
-            "Installing npm packages",
-        ):
-            os.chdir(frontend_dir)
-            result = self.run_command(
-                ['npm', 'install'],
-                "Installing frontend dependencies"
-            )
+        # There is no package.json at the repo root, so the old first `npm install` here was
+        # a no-op that gated the real one behind its exit status. Install in frontend/ only.
+        os.chdir(frontend_dir)
+        try:
+            ok = self.run_command(['npm', 'install'], "Installing frontend dependencies")
+        finally:
             os.chdir(self.project_root)
 
-            if result:
-                self.print_success("Node.js dependencies installed")
-                self.checks_passed['node_deps'] = True
-                return True
+        if ok:
+            self.print_success("Node.js dependencies installed")
+            self.checks_passed['node_deps'] = True
+            return True
 
         self.print_error("Failed to install Node.js dependencies")
         return False
@@ -277,16 +286,27 @@ class MythForgeInstaller:
         print("  Starting Myth Forge")
         print("=" * 60 + "\n")
 
+        # Recommend manage.bat, not `python server.py`: server.py starts ONLY the web
+        # server, while manage.bat also brings up the LLM gateway (:8010) for theming and
+        # the strength engine (:8020) for brackets. It also used to name
+        # start-mythforge.bat, which does not exist in this repo.
         if self.os_type == 'Windows':
-            print(f"  Run from Command Prompt:\n")
+            print("  Recommended - starts the web server, the LLM gateway and the engine:\n")
+            print(f"  {Colors.BOLD}manage.bat{Colors.END}"
+                  '   (or double-click "START MYTH FORGE.bat")\n')
+            print("  Web server only (gateway/engine must already be up):\n")
             print(f"  {Colors.BOLD}python server.py{Colors.END}\n")
-            print(f"  Or use the batch file:\n")
-            print(f"  {Colors.BOLD}start-mythforge.bat{Colors.END}\n")
         else:
-            print(f"  Run from terminal:\n")
-            print(f"  {Colors.BOLD}python server.py{Colors.END}\n")
+            print("  Run from terminal:\n")
+            print(f"  {Colors.BOLD}bash start-mythforge.sh{Colors.END}"
+                  "   (or: python server.py)\n")
 
         print("  Then open your browser to: http://localhost:8000\n")
+        print("  Verify the install at any time:\n")
+        print(f"  {Colors.BOLD}python verify-setup.py{Colors.END}\n")
+        print("  Note: deck-strength brackets come from the bundled MythGauntlet engine.")
+        print("  Its compiled card semantics are NOT shipped (still in training) - the")
+        print("  engine falls back to Oracle-text heuristics. See docs/ENGINE_DATA.md.\n")
 
         print("=" * 60)
         print("  Quick Reference")
