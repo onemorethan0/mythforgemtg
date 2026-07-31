@@ -16,10 +16,28 @@ from mythgauntlet.semantics import tags
 CCM_VERSION = 1
 
 ABILITY_KINDS = {"spell_effect", "activated", "triggered", "static", "mana_ability"}
-TRIGGER_EVENTS = {
+# Events the ENGINE executes (sim/tier2._EVENT_TRIGGERS is the authority).
+_EXECUTED_EVENTS = {
     "etb", "death", "upkeep", "draw_step", "end_step", "attack", "cast_creature",
-    "cast_spell", "opponent_casts_spell", "landfall", "combat_damage_to_player", "other",
+    "cast_spell", "opponent_casts_spell", "landfall", "combat_damage_to_player",
 }
+# Events the engine does NOT execute but cards genuinely have. Naming them is not
+# cosmetic: an unexecuted event is DROPPED by _event_triggers and under-counts honestly,
+# while a wrong executable event FABRICATES value. Smaug the Impenetrable ("whenever
+# Smaug is dealt noncombat damage, create that many Treasures") was compiled as
+# combat_damage_to_player — so the engine minted Treasures every time he connected in
+# combat, an ability the card does not have. Before this vocabulary existed the model had
+# no correct answer available and reached for the nearest executable one; 1,572 of 15,765
+# triggered abilities (10%) declared an event their oracle text does not support.
+_UNEXECUTED_EVENTS = {
+    "self_cast",        # "When you cast this spell" — fires ONCE, not on every creature
+    "blocks", "becomes_blocked", "end_of_combat",
+    "dealt_damage",     # "whenever this is dealt damage" (incl. noncombat)
+    "saga_chapter",     # I/II/III — not the draw step
+    "leaves_battlefield", "creature_dies", "becomes_target", "tap_for_mana",
+    "gain_life", "lose_life", "counter_added", "activate_ability",
+}
+TRIGGER_EVENTS = _EXECUTED_EVENTS | _UNEXECUTED_EVENTS | {"other"}
 TARGET_KEYS = {"type", "subtype", "controller", "count", "zone"}
 TARGET_CONTROLLERS = {"you", "opponent", "any", "each"}
 EFFECT_COMMON_KEYS = {"op", "optional", "condition", "note", "x_basis"}
@@ -357,6 +375,130 @@ def _keyword_licensed_ops(oracle_text: str) -> set[str]:
     return {op for pattern, op in _KEYWORD_IMPLIED_OPS if pattern.search(raw)}
 
 
+# Textual evidence a declared trigger event must have. Magic is exact: a trigger that
+# fires on the wrong event is a DIFFERENT CARD, not an approximation, and the engine
+# executes it at full value. These patterns are deliberately anchored against the
+# near-misses that were actually being accepted:
+#   - "noncombat damage" CONTAINS the substring "combat damage" (Smaug), so the combat
+#     pattern uses a negative lookbehind for "non".
+#   - Blocking is the OTHER side of combat: "blocks"/"becomes blocked" must not satisfy
+#     "attack" (155 cards did).
+#   - "When you cast THIS spell" fires once; "whenever you cast A creature spell" fires
+#     every time. cast_creature therefore requires an article, not "this" (112 cards).
+#   - A land going to the GRAVEYARD is not landfall (42 cards).
+_TRIGGER_EVIDENCE: dict[str, re.Pattern[str]] = {
+    "etb": re.compile(r"\benters?\b|\bentering\b", re.I),
+    "death": re.compile(r"\bdies\b|\bdie\b|\bput into a graveyard from the battlefield\b"
+                        r"|\bis put into a graveyard\b", re.I),
+    "creature_dies": re.compile(r"\bdies\b|\bdie\b", re.I),
+    "upkeep": re.compile(r"\bupkeep\b", re.I),
+    "draw_step": re.compile(r"\bdraw step\b", re.I),
+    "end_step": re.compile(r"\bend step\b|\bbeginning of the end\b", re.I),
+    "end_of_combat": re.compile(r"\bend of combat\b", re.I),
+    "attack": re.compile(r"\battacks?\b|\battacking\b|\bdeclare attackers\b", re.I),
+    "blocks": re.compile(r"\bblocks\b|\bblocking\b", re.I),
+    "becomes_blocked": re.compile(r"\bbecomes blocked\b|\bbecome blocked\b", re.I),
+    # Deliberately "a ... spell", not "a creature spell": tribal payoffs say "Whenever you
+    # cast a Dog spell" and a Dog spell IS a creature spell (Rin and Seri). Requiring the
+    # literal word would discard correct CCMs. The article is what carries the weight —
+    # it still rejects "casts THIS spell", which is the self_cast confusion.
+    "cast_creature": re.compile(r"\bcasts? (?:a|an|another|your)\b[^.]*\bspell\b", re.I),
+    "self_cast": re.compile(r"\bcasts? this (?:spell|card)\b", re.I),
+    "cast_spell": re.compile(r"\bcasts?\b", re.I),
+    "opponent_casts_spell": re.compile(r"\bopponents? casts?\b", re.I),
+    "landfall": re.compile(r"\blandfall\b|\blands? enters?\b|\bland entering\b"
+                           r"|\bplays? (?:a|an|another) land\b", re.I),
+    "combat_damage_to_player": re.compile(
+        r"(?<!non)combat damage to|deals damage to (?:a |target |an )?(?:player|opponent)",
+        re.I),
+    "dealt_damage": re.compile(r"\bis dealt\b|\bdealt damage\b", re.I),
+    "saga_chapter": re.compile(r"\bsaga\b|\bchapter\b|^\s*(?:I{1,3}|IV|V)\s*(?:,|—|-)", re.I | re.M),
+    "leaves_battlefield": re.compile(r"\bleaves? the battlefield\b|\bleave the battlefield\b", re.I),
+    "becomes_target": re.compile(r"\bbecomes the target\b", re.I),
+    "tap_for_mana": re.compile(r"\btaps? [^.]*for mana\b", re.I),
+    "gain_life": re.compile(r"\bgains? life\b|\bgain \d+ life\b", re.I),
+    "lose_life": re.compile(r"\bloses? life\b|\blose \d+ life\b", re.I),
+    "counter_added": re.compile(r"\bcounter is put\b|\bcounters? (?:is|are) put\b", re.I),
+    "activate_ability": re.compile(r"\bactivates?\b", re.I),
+}
+
+# Keyword abilities whose TRIGGER lives entirely in reminder text — the same problem
+# _KEYWORD_IMPLIED_OPS solves for ops. Cascade really is a cast trigger, modular really
+# is a death trigger, but the parenthetical saying so is stripped before the check.
+_KEYWORD_IMPLIED_EVENTS: tuple[tuple[re.Pattern[str], frozenset[str]], ...] = (
+    (re.compile(r"\bcascade\b|\bstorm\b|\bmagecraft\b|\bprowess\b|\bextort\b", re.I),
+     frozenset({"cast_spell", "self_cast"})),
+    (re.compile(r"\bmodular\b|\bsoulshift\b|\bpersist\b|\bundying\b|\bafterlife\b"
+                r"|\bhaunt\b|\bvengeance\b", re.I), frozenset({"death"})),
+    (re.compile(r"\bexalted\b|\bbattle cry\b|\bmentor\b|\bmelee\b|\bafflict\b"
+                r"|\bdethrone\b|\bmyriad\b|\bannihilator\b|\braid\b|\bboast\b"
+                r"|\btraining\b|\bmobilize\b", re.I), frozenset({"attack"})),
+    # Squad and living weapon are ENTERS triggers, not combat ones ("When this creature
+    # enters, create that many tokens that are copies of it").
+    (re.compile(r"\bsquad\b|\bliving weapon\b", re.I), frozenset({"etb"})),
+    # A Saga's reminder text is "As this Saga enters AND AFTER YOUR DRAW STEP, add a lore
+    # counter" — so etb and draw_step are both literally supported, they just live inside
+    # the parenthetical the check strips. saga_chapter is the preferred answer (the prompt
+    # says so) but the other two are not hallucinations and must not be discarded.
+    (re.compile(r"\bsaga\b|\blore counter\b|\bread ahead\b", re.I),
+     frozenset({"saga_chapter", "etb", "draw_step", "upkeep"})),
+    (re.compile(r"\bbushido\b|\bflanking\b|\brampage\b|\bprovoke\b", re.I),
+     frozenset({"blocks", "becomes_blocked", "attack"})),
+    (re.compile(r"\brenown\b|\bbloodthirst\b|\bingest\b|\bpoisonous\b|\bbushido\b", re.I),
+     frozenset({"combat_damage_to_player", "attack"})),
+    (re.compile(r"\bevolve\b|\bfabricate\b|\bexploit\b|\bdevour\b|\briot\b|\bamass\b"
+                r"|\bunearth\b|\bembalm\b|\beternalize\b|\bdisturb\b|\bbackup\b"
+                r"|\bfor mirrodin\b|\bsoulbond\b", re.I), frozenset({"etb"})),
+    # Champion's reminder text is BOTH halves: "When this enters, sacrifice it unless you
+    # exile another creature... When this leaves the battlefield, that card returns."
+    (re.compile(r"\bchampion\b", re.I), frozenset({"etb", "leaves_battlefield"})),
+    (re.compile(r"\becho\b|\bcumulative upkeep\b|\bsuspend\b|\bvanishing\b|\bfading\b",
+                re.I), frozenset({"upkeep"})),
+    (re.compile(r"\bward\b|\bmiracle\b|\bsplice\b|\bcasualty\b|\bblitz\b|\bemerge\b"
+                r"|\bmorph\b|\bdisguise\b|\bflashback\b|\bescape\b|\bdredge\b", re.I),
+     frozenset({"cast_spell", "self_cast", "etb"})),
+    (re.compile(r"\bstart your engines\b|\bmax speed\b", re.I),
+     frozenset({"attack", "end_step", "etb"})),
+)
+
+
+def _keyword_licensed_events(oracle_text: str) -> set[str]:
+    """Trigger events justified by a keyword whose definition is reminder text."""
+    raw = oracle_text or ""
+    out: set[str] = set()
+    for pattern, events in _KEYWORD_IMPLIED_EVENTS:
+        if pattern.search(raw):
+            out |= events
+    return out
+
+
+def _check_trigger_events(doc: dict, card: Card, text: str) -> list[str]:
+    """Every declared trigger event must have textual support.
+
+    Permissive in the same direction as the rest of gate 3: "other" always passes, an
+    event outside the vocabulary passes (the engine drops it anyway), and reminder-text
+    keywords license their event. What does NOT pass is a vocabulary event whose text
+    isn't there — that is a card doing something it cannot do.
+    """
+    errors: list[str] = []
+    licensed = _keyword_licensed_events(card.oracle_text)
+    for ability in doc.get("abilities") or []:
+        if not isinstance(ability, dict) or ability.get("kind") != "triggered":
+            continue
+        trigger = ability.get("trigger")
+        event = trigger.get("event") if isinstance(trigger, dict) else None
+        if not isinstance(event, str) or event == "other" or event in licensed:
+            continue
+        pattern = _TRIGGER_EVIDENCE.get(event)
+        if pattern is None or pattern.search(text):
+            continue
+        errors.append(
+            f"trigger event '{event}' has no support in the oracle text "
+            f"(use a matching event or 'other')"
+        )
+    return errors
+
+
 def cross_check(doc: dict, card: Card) -> list[str]:
     """Gate 3: bidirectional cross-check against the independent rung-1 heuristics.
 
@@ -425,6 +567,7 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         errors.append("CCM declares win_game but text never says win")
     if card.is_land and fx.enters_tapped and not doc.get("enters_tapped"):
         errors.append("land enters tapped per oracle text; CCM must set enters_tapped")
+    errors += _check_trigger_events(doc, card, text)
     return errors
 
 

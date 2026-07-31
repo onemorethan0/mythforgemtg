@@ -34,7 +34,7 @@ from mythgauntlet.semantics import ccm
 # by example without saying the key set was closed, and never mentioned "other" at all,
 # so the model invented keys like "discard". Bumping the version also re-arms the
 # quarantine retry gate in compile-top for all 2,276 entries.
-PROMPT_VERSION = 9  # v9: closed activated-cost keys; no empty effects; mana_ability purity
+PROMPT_VERSION = 10  # v10: trigger events must match the text (gate 3 now checks them)
 DEFAULT_LLM_URL = os.environ.get("MYTHGAUNTLET_LLM_URL", "http://127.0.0.1:8010")
 DEFAULT_LLM_MODEL = os.environ.get("MYTHGAUNTLET_LLM_MODEL", "qwen3:14b")
 
@@ -48,7 +48,7 @@ Ability kinds:
 - {"kind":"spell_effect","effects":[...]} — what an instant/sorcery does when it resolves
 - {"kind":"mana_ability","cost":{"tap":true},"effects":[{"op":"add_mana",...}]} — effects may contain add_mana and NOTHING else
 - {"kind":"activated","cost":{"mana":"{2}","tap":true,"sacrifice_self":false,"pay_life":0},"effects":[...]} — include only the cost keys the card actually uses
-- {"kind":"triggered","trigger":{"event":E},"effects":[...]} where E is one of: etb, death, upkeep, draw_step, end_step, attack, cast_creature, cast_spell, opponent_casts_spell, landfall, combat_damage_to_player, other
+- {"kind":"triggered","trigger":{"event":E},"effects":[...]} where E is one of: etb, death, creature_dies, upkeep, draw_step, end_step, end_of_combat, attack, blocks, becomes_blocked, self_cast, cast_creature, cast_spell, opponent_casts_spell, landfall, combat_damage_to_player, dealt_damage, saga_chapter, leaves_battlefield, becomes_target, tap_for_mana, gain_life, lose_life, counter_added, activate_ability, other
 - {"kind":"static","note":"<short description>"} — continuous effects that fit no op
 
 Effect ops (params; amounts may be "X" — when a numeric param is "X", also put "x_basis" on that effect saying what X counts: one of mana_paid (X in the mana cost), chosen, creatures_you_control, lands_you_control, artifacts_you_control, permanents_you_control, cards_in_hand, life_paid, counters_on_this, target_power, other):
@@ -64,6 +64,15 @@ Rules:
 - Model ONLY what the text says. If a clause cannot be expressed with these ops, represent it as {"kind":"static","note":...} rather than inventing ops or forcing a bad fit.
 - "static" is an ability KIND, never an effect op. Every effect's "op" must come from the op list above. Any effect may carry a "note" string for details the params cannot express.
 - An instant or sorcery resolves once and goes to the graveyard: model its text as spell_effect (plus static notes), never as mana_ability, activated, or triggered.
+- THE TRIGGER EVENT MUST MATCH THE TEXT EXACTLY. A trigger on the wrong event is a different card, not a close-enough one. If no event in the list fits, use "other" — that is always correct and always better than a near miss. Specifically:
+  * "is dealt damage" / "is dealt noncombat damage" is dealt_damage. It is NOT combat_damage_to_player — noncombat damage is the opposite of combat damage.
+  * "deals combat damage to a player" is combat_damage_to_player.
+  * "When you cast this spell" is self_cast — it happens ONCE. "Whenever you cast a creature spell" is cast_creature and happens every time. Never use cast_creature for a card's own cast.
+  * "blocks" is blocks and "becomes blocked" is becomes_blocked. Neither is attack — blocking is the opposite side of combat from attacking.
+  * landfall is a land ENTERING the battlefield. A land being destroyed, sacrificed, or put into a graveyard is not landfall; a land being tapped for mana is tap_for_mana.
+  * A Saga's chapter abilities (I, II, III) are saga_chapter, never upkeep or draw_step.
+  * "Whenever another creature dies" is creature_dies. "When this creature dies" is death.
+- A card with no triggered ability must not have one. Prevention effects, activated abilities, and static keywords are not triggers — do not invent an "etb" for a card that never mentions entering.
 - Output must be strictly valid JSON: double-quoted keys, no trailing commas, no | alternatives inside values.
 /no_think"""
 
@@ -323,6 +332,27 @@ def compile_card(
     return CompileResult(
         name=card.name, status="quarantined", attempts=max_attempts, errors=errors
     )
+
+
+def stored_ccm_passes_gates(card: Card) -> bool:
+    """Does the CCM already on disk still satisfy today's gates?
+
+    The refresh path keeps a prior CCM when a recompile fails, so a good card can't be
+    demoted by a bad roll. But that guard assumed the prior was CORRECT — when a gate is
+    newly ADDED, the prior may be exactly what the gate now rejects, and keeping it means
+    the engine goes on executing something the card cannot do. Prompt v10's trigger-event
+    check found 1,400 such cards. So the keep is conditional: retain the prior only if it
+    would pass today, otherwise let the failure stand and drop the card to rung-1
+    heuristics, which under-count honestly instead of fabricating.
+    """
+    path = compiled_dir() / f"{_slug(card.name)}.json"
+    if not path.exists():
+        return False
+    try:
+        envelope = read_envelope(path)
+    except ValueError:
+        return False
+    return not any(ccm.validate(envelope["ccm"], card).values())
 
 
 class Ledger:

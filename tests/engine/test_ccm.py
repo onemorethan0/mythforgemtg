@@ -327,3 +327,108 @@ def test_all_authored_exemplars_pass_schema():
         assert "card" in doc and "ccm" in doc, path.name
         errors = validate_schema(doc["ccm"])
         assert errors == [], f"{path.name}: {errors}"
+
+
+def _triggered(event, oracle, make_card, name="Trigger Test", effects=None):
+    doc = {
+        "name": name, "ccm_version": 1, "cost": {"mana": "{1}{R}"},
+        "types": ["creature"],
+        "abilities": [{
+            "kind": "triggered", "trigger": {"event": event},
+            "effects": effects or [{"op": "create_token", "count": 1, "power": 0,
+                                    "toughness": 0, "types": ["treasure"]}],
+        }],
+    }
+    card = make_card(name, mana_cost="{1}{R}", type_line="Creature — Dragon",
+                     oracle_text=oracle)
+    return doc, card
+
+
+def test_cross_check_rejects_smaug_noncombat_damage_as_combat(make_card):
+    """The exact card that exposed this: 'noncombat damage' is not combat damage.
+
+    Smaug the Impenetrable — "Whenever Smaug is dealt noncombat damage, create that many
+    Treasure tokens" — compiled as combat_damage_to_player and was ACCEPTED, so the engine
+    minted Treasures every time he connected in combat: an ability the card does not have.
+    The substring "combat damage" is literally present inside "noncombat damage", so the
+    evidence pattern has to exclude the negation rather than merely search for the phrase.
+    """
+    oracle = ("Flying, indestructible, haste\nWhenever Smaug is dealt noncombat damage, "
+              "create that many Treasure tokens.")
+    doc, card = _triggered("combat_damage_to_player", oracle, make_card, name="Smaug")
+    assert any("combat_damage_to_player" in e for e in cross_check(doc, card))
+
+    # dealt_damage is the honest answer — the engine doesn't execute it, so the card
+    # under-counts instead of fabricating Treasures.
+    ok, card = _triggered("dealt_damage", oracle, make_card, name="Smaug")
+    assert not any("trigger event" in e for e in cross_check(ok, card))
+
+
+def test_cross_check_rejects_blocking_declared_as_attacking(make_card):
+    """Blocking is the other side of combat; 155 cards had it mapped to attack."""
+    oracle = "Whenever this creature blocks a creature, return that creature to its owner's hand."
+    doc, card = _triggered("attack", oracle, make_card)
+    assert any("attack" in e for e in cross_check(doc, card))
+    ok, card = _triggered("blocks", oracle, make_card)
+    assert not any("trigger event" in e for e in cross_check(ok, card))
+
+
+def test_cross_check_rejects_self_cast_declared_as_cast_creature(make_card):
+    """"When you cast THIS spell" fires once; cast_creature fires on every creature spell.
+
+    112 cards carried this, turning a one-shot into a repeating engine.
+    """
+    oracle = "When you cast this spell, target opponent loses 3 life and you gain 3 life."
+    doc, card = _triggered("cast_creature", oracle, make_card)
+    assert any("cast_creature" in e for e in cross_check(doc, card))
+    ok, card = _triggered("self_cast", oracle, make_card)
+    assert not any("trigger event" in e for e in cross_check(ok, card))
+
+
+def test_cross_check_rejects_land_to_graveyard_as_landfall(make_card):
+    oracle = ("Whenever a land is put into a graveyard from the battlefield, "
+              "this creature gets +1/+0 until end of turn.")
+    doc, card = _triggered("landfall", oracle, make_card)
+    assert any("landfall" in e for e in cross_check(doc, card))
+
+
+def test_cross_check_rejects_an_invented_etb(make_card):
+    """The most common failure (696 cards): an etb trigger on a card that never enters."""
+    oracle = "{T}: Prevent the next 1 damage that would be dealt to any target this turn."
+    doc, card = _triggered("etb", oracle, make_card)
+    assert any("etb" in e for e in cross_check(doc, card))
+
+
+def test_cross_check_licenses_reminder_text_trigger_keywords(make_card):
+    """Cascade IS a cast trigger and modular IS a death trigger — the parenthetical that
+    says so is stripped before the check, exactly as for keyword-implied OPS."""
+    doc, card = _triggered("cast_spell", "Reach, trample\nCascade", make_card)
+    assert not any("trigger event" in e for e in cross_check(doc, card))
+    doc, card = _triggered("death", "Modular 3", make_card)
+    assert not any("trigger event" in e for e in cross_check(doc, card))
+    doc, card = _triggered("death", "Soulshift 8", make_card)
+    assert not any("trigger event" in e for e in cross_check(doc, card))
+
+
+def test_cross_check_always_allows_other(make_card):
+    """'other' is the escape hatch — it must never be penalised, or the model will pick a
+    wrong-but-specific event to satisfy the gate."""
+    doc, card = _triggered("other", "Some text the vocabulary cannot express.", make_card)
+    assert not any("trigger event" in e for e in cross_check(doc, card))
+
+
+def test_cross_check_accepts_correct_events(make_card):
+    for event, oracle in [
+        ("etb", "When this creature enters, draw a card."),
+        ("death", "When this creature dies, each opponent loses 2 life."),
+        ("attack", "Whenever this creature attacks, create a 1/1 Soldier token."),
+        ("upkeep", "At the beginning of your upkeep, scry 1."),
+        ("landfall", "Whenever a land enters under your control, gain 1 life."),
+        ("combat_damage_to_player",
+         "Whenever this creature deals combat damage to a player, draw a card."),
+        ("saga_chapter", "I — Draw a card."),
+        ("becomes_blocked", "Whenever this creature becomes blocked, it gets +2/+0."),
+    ]:
+        doc, card = _triggered(event, oracle, make_card)
+        assert not any("trigger event" in e for e in cross_check(doc, card)), \
+            f"{event} should be supported by {oracle!r}"

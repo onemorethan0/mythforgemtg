@@ -163,12 +163,23 @@ def test_refresh_keeps_prior_ccm_when_recompile_fails(tmp_path, monkeypatch, mak
     from mythgauntlet import cli
 
     ledger_file = tmp_path / "ledger.json"
+    store = tmp_path / "compiled"
+    store.mkdir()
     monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "compiled_dir", lambda: store)
     monkeypatch.setattr(cli, "_llm_client", lambda: _FakeClient(BAD_JSON))
     saved: list[str] = []
     monkeypatch.setattr(compiler, "save_compiled", lambda card, doc: saved.append(card.name))
 
     card = _card(make_card)
+    # The prior must actually EXIST on disk — the keep now protects a stored CCM that
+    # still passes the gates, not a bare ledger row (see the conditional-keep test below).
+    (store / "insight-spell.json").write_text(json.dumps({
+        "card": {"name": card.name, "mana_cost": "{2}{U}", "type_line": "Sorcery",
+                 "oracle_text": card.oracle_text},
+        "ccm": {**json.loads(GOOD_JSON), "rung": 2},
+    }), encoding="utf-8")
+
     prior = Ledger(path=ledger_file)
     prior.entries[compiler.normalize_name(card.name)] = {
         "name": card.name, "status": "accepted", "attempts": 1, "ops": ["draw"],
@@ -277,3 +288,84 @@ def test_compile_top_tops_up_a_partial_chunk_with_refreshes(tmp_path, monkeypatc
         "new cards compile first with quarantine-on-failure; the refresh tops up the "
         "chunk and keeps its prior CCM on failure"
     )
+
+
+def test_refresh_does_not_keep_a_prior_that_fails_todays_gates(tmp_path, monkeypatch,
+                                                               make_card):
+    """The keep-on-failure guard must not preserve a CCM the current gates reject.
+
+    Keeping a prior assumes the prior is correct. When a gate is newly ADDED that stops
+    being true: prompt v10's trigger-event check found 1,400 stored CCMs whose trigger
+    event the oracle text doesn't support. Keeping those means the engine goes on
+    executing an ability the card does not have, which is worse than having no semantics
+    at all — rung-1 heuristics under-count honestly.
+    """
+    from mythgauntlet import cli
+
+    ledger_file = tmp_path / "ledger.json"
+    store = tmp_path / "compiled"
+    store.mkdir()
+    monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "compiled_dir", lambda: store)
+    monkeypatch.setattr(cli, "_llm_client", lambda: _FakeClient(BAD_JSON))
+
+    # A stored CCM with Smaug's exact defect: noncombat damage modelled as combat damage.
+    card = make_card("Smaug", mana_cost="{5}{B}{R}", type_line="Legendary Creature — Dragon",
+                     oracle_text="Whenever Smaug is dealt noncombat damage, "
+                                 "create that many Treasure tokens.")
+    (store / "smaug.json").write_text(json.dumps({
+        "card": {"name": "Smaug", "mana_cost": "{5}{B}{R}",
+                 "type_line": "Legendary Creature — Dragon",
+                 "oracle_text": card.oracle_text},
+        "ccm": {"name": "Smaug", "ccm_version": 1, "cost": {"mana": "{5}{B}{R}"},
+                "types": ["creature"], "rung": 2,
+                "abilities": [{"kind": "triggered",
+                               "trigger": {"event": "combat_damage_to_player"},
+                               "effects": [{"op": "create_token", "count": 1, "power": 0,
+                                            "toughness": 0, "types": ["treasure"]}]}]},
+    }), encoding="utf-8")
+
+    assert compiler.stored_ccm_passes_gates(card) is False
+
+    prior = Ledger(path=ledger_file)
+    prior.entries[compiler.normalize_name(card.name)] = {
+        "name": card.name, "status": "accepted", "attempts": 1, "ops": ["create_token"],
+        "errors": [], "model": "old", "prompt_version": 9, "date": "2026-07-31",
+    }
+    prior.save()
+
+    cli._compile_cards([card], keep_on_failure=True)
+    assert Ledger(path=ledger_file).get(card.name)["status"] == "quarantined", (
+        "a prior CCM that fails today's gates must not be retained"
+    )
+
+
+def test_refresh_still_keeps_a_prior_that_remains_valid(tmp_path, monkeypatch, make_card):
+    """The original guard must survive: a VALID prior is still protected from a bad roll."""
+    from mythgauntlet import cli
+
+    ledger_file = tmp_path / "ledger.json"
+    store = tmp_path / "compiled"
+    store.mkdir()
+    monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "compiled_dir", lambda: store)
+    monkeypatch.setattr(cli, "_llm_client", lambda: _FakeClient(BAD_JSON))
+
+    card = _card(make_card)
+    (store / "insight-spell.json").write_text(json.dumps({
+        "card": {"name": card.name, "mana_cost": "{2}{U}", "type_line": "Sorcery",
+                 "oracle_text": card.oracle_text},
+        "ccm": {**json.loads(GOOD_JSON), "rung": 2},
+    }), encoding="utf-8")
+    assert compiler.stored_ccm_passes_gates(card) is True
+
+    prior = Ledger(path=ledger_file)
+    prior.entries[compiler.normalize_name(card.name)] = {
+        "name": card.name, "status": "accepted", "attempts": 1, "ops": ["draw"],
+        "errors": [], "model": "old", "prompt_version": 5, "date": "2026-07-05",
+    }
+    prior.save()
+
+    cli._compile_cards([card], keep_on_failure=True)
+    entry = Ledger(path=ledger_file).get(card.name)
+    assert entry["status"] == "accepted" and entry["prompt_version"] == 5

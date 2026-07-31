@@ -825,8 +825,10 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
                 f"[dim]ops: {', '.join(result.ops) or 'none'} "
                 f"(attempt {result.attempts})[/dim]"
             )
-        elif prior is not None and prior["status"] == "accepted":
-            # Refresh miss: keep the older-but-working CCM and its ledger entry.
+        elif (prior is not None and prior["status"] == "accepted"
+                and compiler.stored_ccm_passes_gates(card)):
+            # Refresh miss on a card whose EXISTING CCM is still valid: keep the
+            # older-but-working CCM and its ledger entry rather than risk a demotion.
             ledger.entries[normalize_name(card.name)] = prior
             ledger.save()
             kept += 1
