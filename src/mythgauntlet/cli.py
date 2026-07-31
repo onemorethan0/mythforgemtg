@@ -127,9 +127,26 @@ def _semantics_store() -> SemanticsStore:
 
 def _cmd_fetch_data(args: argparse.Namespace) -> int:
     console.print("[bold]Fetching Scryfall oracle-cards bulk data...[/bold]")
-    path = scryfall.fetch_bulk(force=args.force)
+    before = scryfall.bulk_age_days()
+    try:
+        path = scryfall.fetch_bulk(force=args.force, max_age_days=args.max_age_days)
+    except requests.RequestException as exc:
+        # Offline is not fatal when we already have a store — the night's remaining
+        # phases all read it. It IS worth shouting about, because a silently stale
+        # universe is what froze this data for 26 days.
+        if scryfall.slim_path().exists():
+            console.print(f"[yellow]Bulk refresh failed ({exc}); using the cached store "
+                          f"({before:.1f} days old).[/yellow]")
+            path = scryfall.slim_path()
+        else:
+            _die(f"No cached card store and the bulk download failed: {exc}")
     db = scryfall.load_card_db(path)
-    console.print(f"Card store ready: [green]{path}[/green] ({len(db):,} unique cards)")
+    age = scryfall.bulk_age_days() or 0.0
+    console.print(f"Card store ready: [green]{path}[/green] ({len(db):,} unique cards, "
+                  f"{age:.1f} days old)")
+    if age > scryfall.MAX_AGE_DAYS:
+        console.print(f"[yellow]Card universe is {age:.0f} days stale — cards printed "
+                      "since then don't exist to the engine.[/yellow]")
     _nudge("Next: mythgauntlet analyze my_deck.txt   (or 'mythgauntlet menu' to explore)")
     return 0
 
@@ -1470,6 +1487,10 @@ def build_parser() -> argparse.ArgumentParser:
         "fetch-data", description="Download Scryfall bulk card data."
     )
     p_fetch.add_argument("--force", action="store_true", help="re-download even if cached")
+    p_fetch.add_argument(
+        "--max-age-days", type=float, default=scryfall.MAX_AGE_DAYS,
+        help=f"refetch when the cached store is older than this (default {scryfall.MAX_AGE_DAYS})",
+    )
     p_fetch.set_defaults(func=_cmd_fetch_data)
 
     p_analyze = sub.add_parser(

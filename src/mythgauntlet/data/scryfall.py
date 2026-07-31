@@ -7,7 +7,9 @@ fields and deleted; everything afterwards is offline.
 
 from __future__ import annotations
 
+import gzip
 import json
+import time
 from collections.abc import Iterable
 from pathlib import Path
 
@@ -63,11 +65,53 @@ def _slim(raw: dict) -> dict | None:
     }
 
 
-def fetch_bulk(force: bool = False) -> Path:
-    """Download + slim the oracle_cards bulk file. Returns the slim store path."""
+MAX_AGE_DAYS = 7  # refetch the bulk once a week; Scryfall ships new sets faster than that
+
+
+def _read_bulk(path: Path, jsonl: bool) -> Iterable[dict]:
+    """Stream card records out of a bulk download.
+
+    JSONL arrives gzipped and is read a line at a time — the uncompressed payload is
+    ~450 MB, so materializing it (as the old json.load of the array did) is wasteful.
+    """
+    if not jsonl:
+        with open(path, encoding="utf-8") as fh:
+            yield from json.load(fh)
+        return
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                yield json.loads(line)
+
+
+def bulk_age_days() -> float | None:
+    """Age of the local slim store in days, or None if there isn't one."""
+    out = slim_path()
+    if not out.exists():
+        return None
+    return (time.time() - out.stat().st_mtime) / 86400
+
+
+def fetch_bulk(force: bool = False, max_age_days: float | None = MAX_AGE_DAYS) -> Path:
+    """Download + slim the oracle_cards bulk file. Returns the slim store path.
+
+    Refetches when the local store is missing, older than `max_age_days`, or `force`.
+    Pass `max_age_days=None` to accept any existing store (offline / test use).
+
+    The age check is the whole point. This used to return early on mere existence, so
+    the nightly `fetch-data` phase — added specifically to stop the card universe going
+    stale — was a no-op from the moment the file first appeared. It sat frozen at
+    2026-07-05 for 26 days: cards printed after that date didn't exist, five corpus
+    decks dropped out of every gauntlet because their COMMANDER was unresolvable, and
+    the compile pool looked "exhausted" when it was simply frozen.
+    """
     out = slim_path()
     if out.exists() and not force:
-        return out
+        age = bulk_age_days()
+        if max_age_days is None or (age is not None and age <= max_age_days):
+            return out
 
     resp = requests.get(BULK_INDEX_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
@@ -75,25 +119,38 @@ def fetch_bulk(force: bool = False) -> Path:
     entry = next(
         (d for d in index.get("data", []) if d.get("type") == "oracle_cards"), None
     )
-    if entry is None or not entry.get("download_uri"):
+    # Scryfall moved the bulk payload to gzipped JSON Lines and dropped `download_uri`
+    # from the index (observed 2026-07-31; the last successful fetch was 2026-07-05).
+    # Prefer JSONL, keep the plain-JSON path for older/mirrored indexes.
+    if entry is None:
         raise RuntimeError(
-            "Scryfall bulk-data index has no usable 'oracle_cards' entry "
+            "Scryfall bulk-data index has no 'oracle_cards' entry "
             "(unexpected response or API change)."
         )
-    uri = entry["download_uri"]
+    uri = entry.get("jsonl_download_uri") or entry.get("download_uri")
+    if not uri:
+        raise RuntimeError(
+            "Scryfall's 'oracle_cards' entry has neither jsonl_download_uri nor "
+            f"download_uri (fields: {sorted(entry)}) — the bulk API changed again."
+        )
+    jsonl = uri.endswith((".jsonl", ".jsonl.gz"))
 
-    raw_path = data_dir() / "oracle_cards.json"
-    part = raw_path.with_suffix(".part")
-    with requests.get(uri, headers=HEADERS, stream=True, timeout=120) as resp:
+    raw_path = data_dir() / ("oracle_cards.jsonl.gz" if jsonl else "oracle_cards.json")
+    part = raw_path.with_suffix(raw_path.suffix + ".part")
+    with requests.get(uri, headers=HEADERS, stream=True, timeout=300) as resp:
         resp.raise_for_status()
         with open(part, "wb") as fh:
             for chunk in resp.iter_content(chunk_size=1 << 20):
                 fh.write(chunk)
     part.replace(raw_path)
 
-    with open(raw_path, encoding="utf-8") as fh:
-        records = json.load(fh)
-    slimmed = [s for s in (_slim(r) for r in records) if s is not None]
+    slimmed = [s for s in (_slim(r) for r in _read_bulk(raw_path, jsonl)) if s is not None]
+    if not slimmed:
+        raw_path.unlink(missing_ok=True)
+        raise RuntimeError(
+            f"Scryfall bulk download yielded 0 usable cards ({raw_path.name}) — "
+            "refusing to overwrite the existing store."
+        )
     tmp = out.with_suffix(".part")
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump({"schema": SLIM_SCHEMA, "cards": slimmed}, fh, ensure_ascii=False)
