@@ -229,3 +229,51 @@ def test_store_dir_override(monkeypatch, tmp_path):
     assert compiler.compiled_dir() == Path(tmp_path) / "compiled"
     assert compiler.ledger_path() == Path(tmp_path) / "ledger.json"
     assert compiler.authored_dir() == default_authored, "exemplars must not follow the override"
+
+
+def test_compile_top_tops_up_a_partial_chunk_with_refreshes(tmp_path, monkeypatch, make_card):
+    """A short new-card pool must not hand the rest of the chunk's GPU time back.
+
+    The refresh path used to be gated on `not targets` — all-or-nothing. On a night
+    when the card universe has just grown, the new-card pool is far smaller than the
+    overnight chunk size (140 vs 1,400 after the 2026-07-31 bulk unfreeze), so the
+    chunk compiled 140 cards and stopped. New cards must still go FIRST, and the two
+    halves must keep their own failure policy: a new card quarantines, a refresh keeps
+    its prior CCM.
+    """
+    import argparse
+
+    from mythgauntlet import cli
+
+    fresh = make_card("Fresh Card", mana_cost="{U}", type_line="Sorcery",
+                      oracle_text="Draw a card.", edhrec_rank=10)
+    stale = make_card("Stale Card", mana_cost="{U}", type_line="Sorcery",
+                      oracle_text="Draw a card.", edhrec_rank=20)
+
+    ledger_file = tmp_path / "ledger.json"
+    monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "authored_names", lambda: set())
+    led = Ledger(path=ledger_file)
+    led.entries[compiler.normalize_name(stale.name)] = {
+        "name": stale.name, "status": "accepted", "attempts": 1, "ops": ["draw"],
+        "errors": [], "model": "old", "prompt_version": 1, "date": "2026-07-05",
+    }
+    led.save()
+
+    db = type("_Db", (), {"_by_name": {"fresh card": fresh, "stale card": stale}})()
+    monkeypatch.setattr(cli, "_load_db", lambda: db)
+
+    calls: list[tuple[list[str], bool]] = []
+    monkeypatch.setattr(
+        cli, "_compile_cards",
+        lambda cards, keep_on_failure=False: calls.append(
+            ([c.name for c in cards], keep_on_failure)
+        ) or 0,
+    )
+
+    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+
+    assert calls == [(["Fresh Card"], False), (["Stale Card"], True)], (
+        "new cards compile first with quarantine-on-failure; the refresh tops up the "
+        "chunk and keeps its prior CCM on failure"
+    )

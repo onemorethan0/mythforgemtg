@@ -889,7 +889,13 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
                 continue
         targets.append(card)
 
-    if not targets and args.refresh_stale:
+    # Top up a partly-filled chunk with refreshes rather than only an empty one. The
+    # overnight run asks for chunks of 1,400; on a night when the universe has just
+    # grown, the new-card pool holds far fewer than that (140 after the 2026-07-31
+    # unfreeze), so an all-or-nothing refresh gate would compile 140 and hand the rest
+    # of the chunk's GPU hour back. New/quarantined cards still come FIRST — refreshes
+    # only fill what's left.
+    if len(targets) < args.count and args.refresh_stale:
         # The new-card pool is exhausted (as of 2026-07-28 the ledger covers every
         # EDHREC-ranked non-basic card except the 17 hand-authored ones), so the
         # remaining work is UPGRADING cards accepted under an older prompt. The
@@ -909,15 +915,25 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
             if version < compiler.PROMPT_VERSION:
                 stale.append((version, card))
         stale.sort(key=lambda vc: (vc[0], vc[1].edhrec_rank))
-        targets = [card for _, card in stale[: args.count]]
-        if targets:
-            spread = sorted({v for v, _ in stale[: args.count]})
+        room = args.count - len(targets)
+        refresh = [card for _, card in stale[:room]]
+        if refresh:
+            spread = sorted({v for v, _ in stale[:room]})
+            lead = (
+                "New-card pool empty"
+                if not targets
+                else f"{len(targets)} new/quarantined cards first, then"
+            )
             console.print(
-                f"New-card pool empty; refreshing {len(targets)} of {len(stale)} cards "
-                f"accepted at prompt v{spread} (current v{compiler.PROMPT_VERSION}). "
+                f"{lead}; refreshing {len(refresh)} of {len(stale)} cards accepted at "
+                f"prompt v{spread} (current v{compiler.PROMPT_VERSION}). "
                 "A failed refresh keeps the existing CCM."
             )
-            return _compile_cards(targets, keep_on_failure=True)
+            # Two passes, not one: the refresh half must run with keep_on_failure so a
+            # bad roll can't demote a working CCM, while a NEW card has nothing to keep
+            # and a failure is a genuine quarantine.
+            rc = _compile_cards(targets) if targets else 0
+            return _compile_cards(refresh, keep_on_failure=True) or rc
 
     if not targets:
         console.print("Nothing to compile (all top cards already in ledger).")
