@@ -1,0 +1,86 @@
+# Archidekt — Monkey?
+# source: archidekt:24644239
+# fetched: 2026-07-31
+
+Commander:
+1 Kibo, Uktabi Prince
+
+Deck:
+8 Mountain
+1 Silverback Elder
+1 Fangren Marauder
+1 Beast Within
+1 Stomping Ground
+1 Sol Ring
+1 Farseek
+1 Tarrian's Soulcleaver
+1 Instill Energy
+1 Thornspire Verge
+13 Forest
+1 Vandalblast
+1 The Earth Crystal
+1 Gruul Turf
+1 Three Visits
+1 Reliquary Tower
+1 Ferocious Tigorilla
+1 Kogla and Yidaro
+1 Karn, the Great Creator
+1 Spire Garden
+1 Party Dude
+1 Arcane Signet
+1 Tree Monkey
+1 Kessig Wolf Run
+1 Thought Vessel
+1 Liquimetal Torque
+1 Goblin Anarchomancer
+1 Skarrg, the Rage Pits
+1 Monkey Cage
+1 Rhythm of the Wild
+1 High Score
+1 Viridian Revel
+1 Cinder Glade
+1 Liquimetal Coating
+1 Innkeeper's Talent
+1 Cultivate
+1 Scrounging Bandar
+1 Taurean Mauler
+1 Grunn, the Lonely King
+1 Meltdown
+1 Idol of Oblivion
+1 Anzrag's Rampage
+1 Hardened Scales
+1 Guttural Response
+1 Garruk's Uprising
+1 Gruul Signet
+1 Heroic Intervention
+1 Gorilla Shaman
+1 Simian Simulacrum
+1 Elephant-Mandrill
+1 Kird Ape
+1 Signature Slam
+1 Gearbane Orangutan
+1 Branching Evolution
+1 Hull Breach
+1 Untimely Malfunction
+1 Abrade
+1 Game Trail
+1 Rogue's Passage
+1 Towering Gibbon
+1 Inspiring Call
+1 Command Tower
+1 Rootbound Crag
+1 Treetop Village
+1 Rockfall Vale
+1 Uktabi Orangutan
+1 Kird Chieftain
+1 Ancient Grudge
+1 Appetite for the Unnatural
+1 Mossfire Valley
+1 Invigorating Hot Spring
+1 Chaos Warp
+1 Blasphemous Act
+1 Yavimaya Steelcrusher
+1 Guerrilla Gorilla
+1 Chomping Changeling
+1 Stump Stomp // Burnwillow Clearing
+1 Flopsie, Bumi's Buddy

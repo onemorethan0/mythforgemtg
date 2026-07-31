@@ -1,0 +1,89 @@
+# Archidekt — Dungeons & Dwarves
+# source: archidekt:17919512
+# fetched: 2026-07-31
+
+Commander:
+1 Giott, King of the Dwarves
+
+Deck:
+1 Shared Animosity
+1 Forge Anew
+1 Unbreakable Formation
+1 Gemstone Caverns
+1 Ancient Tomb
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Mox Amber
+1 Lost Jitte
+1 Magda, Brazen Outlaw
+1 Reprieve
+1 Cavern of Souls
+1 Hammers of Moradin
+1 Bearded Axe
+1 Sword of Hours
+1 Dwarven Hammer
+1 Gimli's Axe
+1 Torbran, Thane of Red Fell
+1 Slaughter the Strong
+1 Bloodforged Battle-Axe
+1 Stoneforge Masterwork
+1 Mask of Memory
+1 Goldvein Pick
+1 Sol Ring
+1 Colossus Hammer
+1 Koll, the Forgemaster
+1 Dwarven Mine
+1 Dwarven Recruiter
+1 Reckless Crew
+1 Sram, Senior Edificer
+1 Monument to Endurance
+1 Cadric, Soul Kindler
+1 Armed and Armored
+1 Anger
+1 Gimli of the Glittering Caves
+1 Depala, Pilot Exemplar
+1 Basilisk Collar
+1 Swiftfoot Boots
+1 Mines of Moria
+1 Command Tower
+1 Sword of Light and Shadow
+10 Mountain
+1 Dwarven Ruins
+1 The Arkenstone // Seek the Heart
+1 Trailblazer's Boots
+1 Swords to Plowshares
+1 Axgard Armory
+1 Hammer of Nazahn
+1 Sword of Hearth and Home
+1 Reyav, Master Smith
+1 Dusk // Dawn
+1 Practiced Scrollsmith
+1 Lorehold Archivist // Restore Relic
+1 Glóin, Dwarf Emissary
+1 Bruenor Battlehammer
+1 Arcane Signet
+1 An Unexpected Party // At the Door
+1 Thorin, Mountain-king
+1 Dwarven Bloodboiler
+1 Thorin Oakenshield
+1 Thorin, King of Durin's Folk
+1 Fíli and Kíli, Joyous
+1 Dragon-Cursed Halls
+10 Plains
+1 The Lonely Mountain
+1 Gimli's Reckless Might
+1 Bifur, Melodic Rider
+1 Orcrist, Goblin-cleaver
+1 The Mountain-king's Return
+1 Iron Hills Blacksmith
+1 Magda, the Hoardmaster
+1 Mithril Coat
+1 Dwarven Mauler
+1 Dáin Ironfoot
+1 Dáin's Company
+1 Glóin the Mighty // Easy Pickings
+1 Phial of Galadriel
+1 Tocasia's Welcome
+1 Kíli the Resourceful
+1 Cloudshift
+1 Dwalin, Weaponmaster
+1 Balin, Loremaster

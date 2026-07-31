@@ -1,0 +1,88 @@
+# Archidekt — Kingmaker
+# source: archidekt:24852004
+# fetched: 2026-07-31
+
+Commander:
+1 Black Panther, Wakandan King
+
+Deck:
+1 Arcane Signet
+1 Scout the Wilderness
+1 Maskwood Nexus
+1 Crossbow Ambush
+1 Tireless Provisioner
+10 Forest
+1 Broken Bond
+1 Savannah Lions
+1 Cradle Clearcutter
+1 Jolrael's Centaur
+1 Nature's Lore
+1 Rampant Growth
+1 Lightning Greaves
+1 Queen Allenal of Ruadach
+11 Plains
+1 Scavenging Ooze
+1 Sheriff of Safe Passage
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Kodama's Reach
+1 Essence Warden
+1 Court of Grace
+1 Hero of Bladehold
+1 Natural Affinity
+1 Skullclamp
+1 Eternal Witness
+1 Ley Line
+1 Doubling Season
+1 Unbounded Potential
+1 Snakeskin Veil
+1 Panharmonicon
+1 Animate Land
+1 Sunscorch Regent
+1 Arachnogenesis
+1 Stocking the Pantry
+1 Swords to Plowshares
+1 Fortified Village
+1 Dryad Arbor
+1 Court of Bounty
+1 Tendershoot Dryad
+1 Archon of Coronation
+1 Saber Ants
+1 Jade Mage
+1 Return of the Wildspeaker
+1 Bretagard Stronghold
+1 Martial Coup
+1 Arahbo, the First Fang
+1 Yedora, Grave Gardener
+1 Release to Memory
+1 Emerald Medallion
+1 Loyal Guardian
+1 Verdant Force
+1 Prideful Parent
+1 Recross the Paths
+1 Haazda Marshal
+1 Soulstone Sanctuary
+1 Enlightened Tutor
+1 Grasslands
+1 Emergent Sequence
+1 Mirri, Weatherlight Duelist
+1 Ephemerate
+1 Woodland Acolyte // Mend the Wilds
+1 Forbidding Watchtower
+1 Sol Ring
+1 Scattered Groves
+1 Rishkar, Peema Renegade
+1 Canopy Vista
+1 Generous Gift
+1 Cho-Manno's Blessing
+1 The Ozolith
+1 Secure the Wastes
+1 Avenger of Zendikar
+1 Resolute Reinforcements
+1 Stirring Wildwood
+1 Heroic Intervention
+1 Hostile Desert
+1 Karn's Bastion
+1 Akroma's Will
+1 Life and Limb
+1 Command Tower
+1 Rogue's Passage

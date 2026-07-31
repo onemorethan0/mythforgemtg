@@ -1,0 +1,74 @@
+# Archidekt — Fem'menon the right hand
+# source: archidekt:24842199
+# fetched: 2026-07-31
+
+Commander:
+1 Mm'menon, the Right Hand
+
+Deck:
+1 Arcane Signet
+36 Island
+1 Origin of Iron Man
+1 Iron Spider, Stark Upgrade
+1 Mole Module
+1 Hullbreaker Horror
+1 Gitaxian Probe
+1 Thought Vessel
+1 Ultron, Artificial Malevolence
+1 Bygone Colossus
+1 Donatello, the Brains
+1 Negate
+1 Big Mother Mouser
+1 Counterspell
+1 Chrome Dome
+1 Witness Protection
+1 Otherworldly Gaze
+1 Counterbalance
+1 Mechanized Production
+1 Opt
+1 Krang, Master Mind
+1 Etherium Sculptor
+1 Emry, Lurker of the Loch
+1 Time Warp
+1 Fellwar Stone
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Rook Turret
+1 Thief's Knife
+1 Super Suit
+1 Cryogen Relic
+1 Blitzball Stadium
+1 Cargo Ship
+1 Midnight Clock
+1 The Water Crystal
+1 Sewer-veillance Cam
+1 Honest Work
+1 Impostor Syndrome
+1 Does Machines
+1 Struggle for Project Purity
+1 Fugitive Droid
+1 Utrom Scientists
+1 Everflowing Chalice
+1 Aerial Doombot
+1 Rite of Replication
+1 Into the Story
+1 Firdoch Core
+1 Hot Dog Cart
+1 Strixhaven Stadium
+1 Blitzball
+1 PuPu UFO
+1 Lunatic Pandora
+1 Krang, the All-Powerful
+1 Bender's Waterskin
+1 Bandit's Haul
+1 Steel Overseer
+1 Magic Pot
+1 Living Brain, Mechanical Marvel
+1 Ultron Drone
+1 H.E.R.B.I.E. Scout Unit
+1 Henchbots
+1 Roadkill Rodney
+1 Bane's Contingency
+1 Charisma Bobblehead
+1 Luck Bobblehead
+1 Madame Web, Clairvoyant
+1 Donatello, Way with Machines

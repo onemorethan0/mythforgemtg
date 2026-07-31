@@ -1,0 +1,100 @@
+# Archidekt — Fan4stic best movie
+# source: archidekt:23517048
+# fetched: 2026-07-31
+
+Commander:
+1 The Fantastic Four
+
+Deck:
+1 Helm of the Host
+1 Chameleon, Master of Disguise
+1 Roaming Throne
+1 Irenicus's Vile Duplication
+1 Wall of Blossoms
+1 Lessons from Life
+3 Plains
+1 Iron Man, Armored Avenger
+1 Solemn Simulacrum
+1 Crystal Barricade
+1 Swords to Plowshares
+1 Bolt Bend
+1 Arcades, the Strategist
+1 Annie Joins Up
+1 Farseek
+1 Mister Fantastic, Reed Richards
+1 Steam Vents
+1 Fanatic of Rhonas
+1 Spark Double
+1 Nature's Lore
+1 Bloom Tender
+1 Three Visits
+1 Overgrown Battlement
+1 Clever Concealment
+1 Birds of Paradise
+1 Temur Battlecrier
+1 Panharmonicon
+1 Displacer Kitten
+1 Skyshroud Claim
+1 Path to Exile
+1 Noble Hierarch
+1 Beast Whisperer
+1 Aragorn, the Uniter
+1 Smothering Tithe
+1 Sakashima of a Thousand Faces
+1 Formidable Speaker
+1 Spellskite
+1 Emiel the Blessed
+1 Heroic Intervention
+1 Teleportation Circle
+1 Exotic Orchard
+1 Solemn Simulacrum
+1 Esper Sentinel
+1 Captain America, Living Legend
+1 Faeburrow Elder
+1 Thassa, Deep-Dwelling
+1 Ephemerate
+1 Flare of Fortitude
+1 Force of Vigor
+1 Counterspell
+1 Bountiful Promenade
+2 Island
+1 First Family
+1 Big Score
+1 Rammas Echor, Ancient Shield
+1 Reflecting Pool
+1 Windswept Heath
+1 Sea of Clouds
+1 Sacred Foundry
+1 Arid Mesa
+1 Cultivate
+2 Mountain
+1 Mjölnir, Hammer of Thor
+1 Migration Path
+1 Avatar's Wrath
+3 Forest
+1 Command Tower
+1 Glacial Fortress
+1 Stomping Ground
+1 Flooded Strand
+1 The Regalia
+1 Misty Rainforest
+1 Breeding Pool
+1 Hallowed Fountain
+1 Cinder Glade
+1 Temple Garden
+1 Spectator Seating
+1 Wooded Foothills
+1 City of Brass
+1 Scalding Tarn
+1 Rejuvenating Springs
+1 Clifftop Retreat
+1 Baxter Building
+1 Spire Garden
+1 Thran Dynamo
+1 Guardian Project
+1 Hinterland Harbor
+1 Daydream
+1 Arcane Signet
+1 Sol Ring
+1 Elven Chorus
+1 Harmonize

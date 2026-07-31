@@ -1,0 +1,89 @@
+# Archidekt — Sauron, the Goblin Lord - Daz Tribute
+# source: archidekt:18022040
+# fetched: 2026-07-31
+# bracket: 3
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Sol Ring
+1 Conspicuous Snoop
+1 Crumbling Necropolis
+1 Sulfur Falls
+1 Sunken Hollow
+1 Goblin Matron
+1 Goblin Ringleader
+1 The One Ring
+1 Mogg War Marshal
+1 Legion Warboss
+1 Goblin Instigator
+1 Battle Cry Goblin
+1 Squee, Dubious Monarch
+1 You See a Pair of Goblins
+1 Dragon Fodder
+1 In the Darkness Bind Them
+1 Stormfist Crusader
+1 Boggart Harbinger
+1 Krenko, Mob Boss
+1 Siege-Gang Commander
+1 Auntie's Hovel
+1 Exotic Orchard
+1 Command Tower
+1 Foreboding Ruins
+1 Dragonskull Summit
+1 Sulfurous Springs
+1 Den of the Bugbear
+1 Unclaimed Territory
+1 Ancient Ziggurat
+1 Goblin Recruiter
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Hordeling Outburst
+1 Beetleback Chief
+1 Rogue's Passage
+1 Purphoros, God of the Forge
+1 Goblin King
+1 Rundvelt Hordemaster
+1 Krenko, Tin Street Kingpin
+1 Krenko's Command
+1 Arcane Signet
+1 Smoldering Marsh
+1 Herald's Horn
+6 Swamp
+15 Mountain
+1 Foundry Street Denizen
+1 Goblin Bushwhacker
+1 Reckless Bushwhacker
+1 Sling-Gang Lieutenant
+1 Knucklebone Witch
+1 Goblin Piledriver
+1 Goblin Chirurgeon
+1 Coat of Arms
+1 Legion Loyalist
+1 Wort, Boggart Auntie
+1 Distant Melody
+1 Sygg, River Cutthroat
+1 Shared Discovery
+1 Elrond, Lord of Rivendell
+1 Dark Ritual
+1 Shared Animosity
+1 Nightscape Familiar
+1 Battle Squadron
+1 Goblin War Drums
+1 Brightstone Ritual
+1 Torbran, Thane of Red Fell
+1 Dralnu's Crusade
+1 Boggart Cursecrafter
+1 Reckless One
+1 Taster of Wares
+1 Boggart Mischief
+1 Eclipsed Boggart
+1 Boneclub Berserker
+1 Hazoret's Monument
+1 Call of the Ring
+1 Goblin Trashmaster
+1 Hobgoblin Bandit Lord
+1 Goblin Chieftain
+1 Mad Auntie
+1 Goblin Warchief
+1 Goblin Lookout

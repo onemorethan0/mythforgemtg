@@ -1,0 +1,107 @@
+# Archidekt — kess cedh
+# source: archidekt:21401646
+# fetched: 2026-07-31
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 Arid Mesa
+1 Badlands
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blood Crypt
+1 Cabal Ritual
+1 City of Brass
+1 Chain of Vapor
+1 Dark Ritual
+1 Command Tower
+1 Demonic Consultation
+1 Displacer Kitten
+1 Exotic Orchard
+1 Dragon's Rage Channeler
+1 Flooded Strand
+1 Grim Monolith
+1 Intuition
+1 Ledger Shredder
+1 Lion's Eye Diamond
+1 Luxury Suite
+1 Mizzix's Mastery
+1 Mnemonic Betrayal
+1 Mystic Remora
+1 Mystical Tutor
+1 Necropotence
+1 Opposition Agent
+1 Pact of Negation
+1 Ponder
+1 Praetor's Grasp
+1 Reanimate
+1 Runechanter's Pike
+1 Scalding Tarn
+1 Simian Spirit Guide
+1 Snow-Covered Island
+1 Sol Ring
+1 Steam Vents
+1 Thassa's Oracle
+1 Timetwister
+1 Toxic Deluge
+1 Underground Sea
+1 Vampiric Tutor
+1 Unsubstantiate
+1 Volcanic Island
+1 Watery Grave
+1 Wheel of Fortune
+1 Wishclaw Talisman
+1 Yawgmoth's Will
+1 Grinding Station
+1 Mox Diamond
+1 Arcane Signet
+1 Dauthi Voidwalker
+1 Chrome Mox
+1 Mana Vault
+1 Lotus Petal
+1 Tainted Pact
+1 Mox Opal
+1 Fellwar Stone
+1 Talisman of Dominance
+1 Phantasmal Image
+1 Talisman of Creativity
+1 Brainstorm
+1 Ragavan, Nimble Pilferer
+1 Rhystic Study
+1 Spell Pierce
+1 Underworld Breach
+1 Morphic Pool
+1 Swan Song
+1 Mental Misstep
+1 Bloodstained Mire
+1 Force of Will
+1 Brain Freeze
+1 Flusterstorm
+1 Stifle
+1 Snap
+1 Muddle the Mixture
+1 Mana Confluence
+1 Force of Negation
+1 Ad Nauseam
+1 Windfall
+1 Snow-Covered Swamp
+1 Ancient Tomb
+1 Jeska's Will
+1 Misty Rainforest
+1 Island
+1 Polluted Delta
+1 Gemstone Caverns
+1 Marsh Flats
+1 Spire of Industry
+1 Training Center
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Underground River
+1 Hexing Squelcher
+1 Gitaxian Probe
+1 Faithless Looting
+1 Gamble
+1 Imperial Seal
+1 Demonic Tutor
+1 Peer into the Abyss
+1 Wizard's Staff

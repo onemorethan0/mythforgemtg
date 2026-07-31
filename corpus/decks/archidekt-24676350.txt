@@ -1,0 +1,97 @@
+# Archidekt — Smaug, Turns Out Greed Is Good
+# source: archidekt:24676350
+# fetched: 2026-07-31
+# bracket: 3
+
+Commander:
+1 Smaug the Impenetrable
+
+Deck:
+1 Chain Lightning
+1 Blazing Firesinger // Seething Song
+1 Spiteful Banditry
+1 Pestilence
+1 The One Ring
+1 Crackle with Power
+1 Liquimetal Torque
+1 Chain Reaction
+1 Repercussion
+1 Expedited Inheritance
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Knuckles the Echidna
+1 Shinka, the Bloodsoaked Keep
+1 Rakdos Carnarium
+1 Haunted Ridge
+1 Graven Cairns
+1 Command Tower
+1 Command Beacon
+1 Blightstep Pathway // Searstep Pathway
+1 Blazemire Verge
+1 Blood Crypt
+1 Bojuka Bog
+1 Luxury Suite
+1 Shadowblood Ridge
+1 Sulfurous Springs
+1 Dragonskull Summit
+1 Dark Fortress
+1 Malakir Rebirth // Malakir Mire
+1 Big Score
+1 Jeska's Will
+1 There and Back Again
+1 Troll of Khazad-dûm
+1 Unexpected Windfall
+1 Demand Answers
+1 Cathartic Reunion
+1 Star of Extinction
+1 Black Market Connections
+1 Brash Taunter
+1 Inspired Tinkering
+1 Boggart Trawler // Boggart Bog
+1 Dragon-Cursed Halls
+1 Abrade
+1 Sundering Eruption // Volcanic Fissure
+1 Fell the Profane // Fell Mire
+1 Blasphemous Act
+1 Pyrohemia
+1 Lavabrink Floodgates
+1 Reckless Endeavor
+1 Oliphaunt
+1 Goldspan Dragon
+1 Rakdos Signet
+1 Mines of Moria
+1 Arena of Glory
+1 Fiendlash
+1 Alchemist's Talent
+1 Talisman of Indulgence
+1 Dark Ritual
+1 Sol Ring
+1 Kellogg, Dangerous Mind
+1 Arcbond
+1 Pain for All
+1 Exploding Barrel
+1 Reckless Barbarian
+1 Rite of Flame
+1 Seething Song
+1 Flashback
+1 Tibalt's Trickery
+1 Fire Covenant
+1 Hexing Squelcher
+1 Lightning Bolt
+1 Raphael, Ninja Destroyer
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Weftstalker Ardent
+1 Snort
+1 Hex Magic
+1 Magus of the Wheel
+1 Valakut Awakening // Valakut Stoneforge
+1 Raphael's Technique
+1 Thran Dynamo
+1 Arcane Signet
+1 Marauding Raptor
+1 Mayhem Devil
+8 Mountain
+4 Swamp
+1 Mjölnir, Hammer of Thor
+1 Last Chance
+1 Temple of the False God
+1 Barbed Servitor

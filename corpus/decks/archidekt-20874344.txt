@@ -1,0 +1,101 @@
+# Archidekt — Kalamax Spellslinger
+# source: archidekt:20874344
+# fetched: 2026-07-31
+# bracket: 3
+
+Commander:
+1 Kalamax, the Stormsire
+
+Deck:
+1 Sodden Verdure
+1 Harrow
+1 Yavimaya, Cradle of Growth
+1 Command Tower
+1 Springleaf Drum
+1 Stomping Ground
+1 Storm-Kiln Artist
+1 Three Steps Ahead
+1 Three Visits
+1 Dig Through Time
+1 Eureka Moment
+1 Invert Polarity
+1 Jin-Gitaxias, Progress Tyrant
+1 Joint Exploration
+1 Ketria Triome
+1 Mana Drain
+1 March of Swirling Mist
+1 Mistrise Village
+1 Misty Rainforest
+1 Mystic Sanctuary
+1 Narset's Reversal
+1 Nexus of Fate
+1 Oko, Thief of Crowns
+1 Otawara, Soaring City
+1 Planar Genesis
+1 Rashmi, Eternities Crafter
+1 Reflecting Pool
+1 Rejuvenating Springs
+1 Resculpt
+1 Scalding Tarn
+1 Return the Favor
+1 Thrill of Possibility
+1 Abrade
+1 Spire Garden
+1 Steam Vents
+1 Training Center
+1 Vivi Ornitier
+1 Volatile Stormdrake
+1 Wavebreak Hippocamp
+1 Veil of Summer
+1 Archmage Emeritus
+1 Arcane Signet
+1 Auroral Procession
+1 Baral, Chief of Compliance
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 Counterspell
+1 Deflecting Swat
+1 Delayed Blast Fireball
+1 Snap
+1 Nature's Claim
+1 Sol Ring
+1 Nature's Lore
+1 Farseek
+1 Wooded Foothills
+1 Yavimaya Coast
+1 Sink into Stupor // Soporific Springs
+1 Valakut Awakening // Valakut Stoneforge
+1 Growth Spiral
+1 Silundi Vision // Silundi Isle
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Veyran, Voice of Duality
+1 Ral, Storm Conduit
+1 Expansion // Explosion
+1 Sorcerer Class
+1 Deekah, Fractal Theorist
+1 Shark Typhoon
+1 Decisive Denial
+1 Mana Confluence
+1 Consider
+1 Big Score
+1 Frantic Search
+1 Quandrix Apprentice
+1 Twinning Staff
+1 Chaos Warp
+1 Izzet Boilerworks
+4 Island
+1 Starstorm
+1 Turbulent Springs
+1 Turbulent Wilderness
+1 Entish Restoration
+1 Resonating Lute
+1 Traumatic Critique
+1 Hedge Maze
+1 Thundering Falls
+1 Manamorphose
+2 Mountain
+3 Forest
+1 Commercial District
+1 Jwari Disruption // Jwari Ruins
+1 Baral's Expertise
+1 Embrace the Paradox
