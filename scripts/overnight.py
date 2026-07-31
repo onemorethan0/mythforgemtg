@@ -58,7 +58,14 @@ PYTHON = _python()
 _ENV = {**os.environ, "PYTHONPATH": os.pathsep.join(
     filter(None, [str(REPO / "src"), os.environ.get("PYTHONPATH", "")])
 )}
-DATA = REPO / "data"
+# Where the ENGINE writes its run artifacts — must match config.data_dir() exactly, or this
+# script archives and reads a directory the night never wrote to. (2026-07-31: it didn't.
+# DATA was hardcoded to REPO/data while the CLI honoured MYTHGAUNTLET_DATA, so
+# _archive_gauntlet() globbed an empty dir, found nothing to rename, and the POST gauntlet
+# overwrote PRE — two nights of "pre/post comparison unavailable", the report's headline
+# calibration signal, silently lost. Same class of bug as the LEDGER override below.)
+DATA = Path(os.environ.get("MYTHGAUNTLET_DATA") or (REPO / "data"))
+DATA.mkdir(parents=True, exist_ok=True)
 # The compiled store (and its ledger) can live outside this repo — the semantics are
 # withheld and versioned separately, see compiler.store_dir() / docs/ENGINE_DATA.md.
 # Honour the same override the engine does, or the morning report would read a ledger
@@ -181,6 +188,17 @@ _WEEKDAY_NAMES = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                   "Saturday", "Sunday")
 
 REDUCED_SEED = "778"  # distinct from the full-gauntlet seed so caches don't collide
+
+# Why the agent-contrast phase didn't run, so the report can say "skipped on purpose"
+# instead of "unavailable (see log)" — the latter reads as a failure and sent a morning
+# review hunting through 8,600 log lines for a breakage that wasn't there.
+_CONTRAST_SKIP: str | None = None
+
+
+def _skip_contrast(reason: str) -> None:
+    global _CONTRAST_SKIP
+    _CONTRAST_SKIP = reason
+    log(f"agent-contrast: {reason}")
 
 
 def _reduced_scope(smoke: bool) -> list[str]:
@@ -320,7 +338,13 @@ def write_report(
         lines.append("- POST skipped: semantics unchanged, so it would rerun PRE bit-for-bit.")
         lines.append(f"- bracket means [greedy, full]: {_bracket_means(pre_r, labels)}")
     else:
-        lines.append("- pre/post comparison unavailable (see log)")
+        # Name the missing half. "unavailable (see log)" hid a path bug for two nights:
+        # both archives were absent because DATA pointed at the wrong directory.
+        missing = [tag for tag, r in (("PRE", pre_r), ("POST", post_r)) if not r]
+        lines.append(
+            f"- pre/post comparison unavailable: no {' or '.join(missing)} archive under "
+            f"{DATA} (expected gauntlet_*_{{pre,post}}_{STAMP}.json)"
+        )
 
     # The Phase-7 payoff: same reduced scope, ONLY the agent differs.
     lines += ["", "## Agent upgrade: greedy vs ISMCTS at equal scope (Phase 7)"]
@@ -336,8 +360,10 @@ def write_report(
         lines.append("- READ: if ISMCTS lifts B5/cEDH toward B3 the inversion was partly an")
         lines.append("  AGENT-fidelity gap; if it stays inverted it's the ENGINE (cEDH lines")
         lines.append("  under-modeled) -- do NOT feed T2 meta-rating to top-bracket calibration.")
+    elif _CONTRAST_SKIP:
+        lines.append(f"- not run tonight: {_CONTRAST_SKIP}")
     else:
-        lines.append("- ISMCTS agent-contrast unavailable (see log)")
+        lines.append("- ISMCTS agent-contrast ran but produced no ratings (see log)")
 
     lines += ["", "## Sanity", ""]
     rc = subprocess.run(
@@ -418,13 +444,13 @@ def main() -> int:
     # workstream and the full greedy gauntlet — the parts that actually feed calibration — now
     # always get to finish and report.
     if args.agent_contrast == "never":
-        log("agent-contrast: disabled (--agent-contrast never)")
+        _skip_contrast("disabled (--agent-contrast never)")
     elif time.time() > deadline:
-        log(f"agent-contrast: SKIPPED - past the {args.max_hours}h budget "
-            "(compile + gauntlet results are already written)")
+        _skip_contrast(f"past the {args.max_hours}h budget "
+                       "(compile + gauntlet results are already written)")
     elif args.agent_contrast == "auto" and datetime.now().weekday() != AGENT_CONTRAST_WEEKDAY:
-        log("agent-contrast: skipped - runs weekly on "
-            f"{_WEEKDAY_NAMES[AGENT_CONTRAST_WEEKDAY]} (--agent-contrast always to force)")
+        _skip_contrast(f"runs weekly on {_WEEKDAY_NAMES[AGENT_CONTRAST_WEEKDAY]} "
+                       "(--agent-contrast always to force)")
     else:
         cores = max(1, (os.cpu_count() or 4) - 2)
         run("gauntlet reduced (greedy)", "gauntlet",
