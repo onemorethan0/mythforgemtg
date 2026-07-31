@@ -1221,6 +1221,89 @@ def _cmd_pod(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_pod_brackets(args: argparse.Namespace) -> int:
+    """Bracket means under POD rating — the instrument brackets are actually defined for.
+
+    The 1v1 gauntlet rates pairwise duels and INVERTS at the top (STATUS.md "the B5
+    finding"). Commander brackets describe 4-player games, so this seats every labeled
+    anchor in pods against the corpus field and reports win share vs the 1/players
+    baseline, grouped by bracket. Measured 2026-07-31: B1 -0.008, B2 -0.005, B3 -0.008,
+    B4 -0.003, B5 +0.148 — cEDH goes from LAST in duels to clearly first in pods.
+
+    Run it with --no-combos too. That control is not optional: B5's entire lift comes
+    from the combo model (B5 +0.143 with combos, -0.009 without), so the signal is
+    single-source and inherits every simplification in `combo_ready`.
+    """
+    import statistics
+
+    from mythgauntlet.ratings.pod import pod_winrate, prepare_seat
+    from mythgauntlet.sim.tier2 import DuelConfig
+
+    _require_positive(games=args.games, turns=args.turns, players=args.players)
+    db = _load_db()
+    store = _semantics_store()
+    deck_dir = Path(args.dir) if args.dir else corpus_dir()
+    labels = _bracket_labels_from(deck_dir)
+    if not labels:
+        _die(f"No bracket-labeled decks in {deck_dir}/manifest.json.")
+
+    # Build every seat ONCE. `pod` rebuilds the whole field per deck, which is fine for a
+    # single rating and quadratic here.
+    seats: dict[str, object] = {}
+    for path in sorted(deck_dir.glob("*.txt")):
+        res = _load_resolved(str(path), db)
+        if not res.cards:
+            continue
+        combos = () if args.no_combos else _winning_combos(res)
+        cmdr = res.commanders[0] if res.commanders else None
+        seats[path.stem] = prepare_seat(res.cards, cmdr, store, combos)
+    if len(seats) < args.players:
+        _die(f"Need at least {args.players} resolvable decks in {deck_dir}.")
+
+    cfg = DuelConfig(max_turns=args.turns, start_life=args.life)
+    by_bracket: dict[int, list[float]] = {}
+    for stem, bracket in sorted(labels.items()):
+        if stem not in seats:
+            continue
+        bucket = by_bracket.setdefault(bracket, [])
+        if args.per_bracket and len(bucket) >= args.per_bracket:
+            continue
+        others = [s for k, s in seats.items() if k != stem]
+        rating = pod_winrate(
+            seats[stem], others, cfg, games=args.games, seed=args.seed,
+            pod_size=args.players,
+        )
+        bucket.append(rating.lift)
+        console.print(f"[dim]{stem} (B{bracket}): lift {rating.lift:+.3f}[/dim]")
+
+    baseline = 1.0 / args.players
+    table = Table(title=f"Pod bracket means ({args.players}-player, {args.games} pods/deck, "
+                        f"seed {args.seed}{', NO combos' if args.no_combos else ''})")
+    for col in ("Bracket", "n", "Mean lift", "Win share", "Min", "Max"):
+        table.add_column(col)
+    for bracket in sorted(by_bracket):
+        vals = by_bracket[bracket]
+        if not vals:
+            continue
+        mean = statistics.mean(vals)
+        table.add_row(f"B{bracket}", str(len(vals)), f"{mean:+.3f}",
+                      f"{baseline + mean:.3f}", f"{min(vals):+.3f}", f"{max(vals):+.3f}")
+    console.print(table)
+    console.print(f"Baseline (even, no-skill pod): {baseline:.3f}. "
+                  "Positive lift = wins more than its fair share of the table.")
+    return 0
+
+
+def _bracket_labels_from(deck_dir: Path) -> dict[str, int]:
+    """Bracket labels from a corpus manifest: {deck stem -> bracket}."""
+    manifest = deck_dir / "manifest.json"
+    if not manifest.exists():
+        return {}
+    with open(manifest, encoding="utf-8") as fh:
+        return {Path(e["file"]).stem: e["bracket"]
+                for e in json.load(fh).get("decks", []) if e.get("bracket")}
+
+
 def _cmd_ladder(args: argparse.Namespace) -> int:
     """Agent strength ladder: pit search levels head-to-head to confirm more search wins."""
     from mythgauntlet.ratings.ladder import is_monotone, run_ladder
@@ -1674,6 +1757,22 @@ def build_parser() -> argparse.ArgumentParser:
     p_pod.add_argument("--life", type=int, default=40)
     p_pod.add_argument("--no-combos", action="store_true", help="skip combo win-conditions")
     p_pod.set_defaults(func=_cmd_pod)
+
+    p_podbr = sub.add_parser(
+        "pod-brackets",
+        description="Bracket means under pod rating (the format brackets are defined for).",
+    )
+    p_podbr.add_argument("--dir", help="corpus directory (default: corpus/decks)")
+    p_podbr.add_argument("--games", type=int, default=24, help="pods per deck")
+    p_podbr.add_argument("--seed", type=int, default=777)
+    p_podbr.add_argument("--turns", type=int, default=30)
+    p_podbr.add_argument("--players", type=int, default=4)
+    p_podbr.add_argument("--life", type=int, default=40)
+    p_podbr.add_argument("--per-bracket", type=int, default=25,
+                         help="cap decks sampled per bracket (0 = all)")
+    p_podbr.add_argument("--no-combos", action="store_true",
+                         help="CONTROL run: B5's lift is entirely combo-driven, verify it")
+    p_podbr.set_defaults(func=_cmd_pod_brackets)
 
     p_edhrec = sub.add_parser(
         "edhrec", description="Show EDHREC synergy data for a commander."

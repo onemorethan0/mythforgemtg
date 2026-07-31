@@ -208,7 +208,14 @@ def _reduced_scope(smoke: bool) -> list[str]:
 
 
 def _agent_gauntlet_args(agent: str, cores: int, smoke: bool) -> list[str]:
-    return (["--agent", agent, "--jobs", str(cores), "--cache", "--no-combos",
+    # Combos stay ON. The whole question this phase exists to answer is whether a stronger
+    # agent lifts B5/cEDH — and a cEDH deck's win is a two-card combo, so --no-combos made
+    # the contrast structurally blind to exactly the decks it was measuring. (Sharpened by
+    # 2026-07-31: the greedy agent was throwing its own combo pieces in the graveyard, worth
+    # +51 to the B5 mean once fixed, and this phase could never have seen it.) Combo lookups
+    # are cached under data/spellbook/ and degrade to "no combos" offline, so keeping them on
+    # costs little and does not break an offline run.
+    return (["--agent", agent, "--jobs", str(cores), "--cache",
              "--seed", REDUCED_SEED] + _reduced_scope(smoke))
 
 

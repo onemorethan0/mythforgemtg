@@ -83,3 +83,36 @@ def test_pod_rating_wired_into_a_json_roundtrip():
     from dataclasses import asdict
     r = PodRating(games=10, wins=4, pod_size=4, winrate=0.4, baseline=0.25, lift=0.15)
     assert json.loads(json.dumps(asdict(r)))["lift"] == 0.15
+
+
+def test_pod_brackets_verb_reports_means_by_bracket(tmp_path, monkeypatch, capsys):
+    """`pod-brackets` measures brackets with the instrument they are DEFINED for.
+
+    The 1v1 gauntlet inverts at the top (B5 rated LAST); pods do not. Measured on the
+    real corpus 2026-07-31: B1 -0.008, B2 -0.005, B3 -0.008, B4 -0.003, B5 +0.148.
+    The control matters as much as the result — with --no-combos B5 falls to -0.009, so
+    the entire top-end signal comes from the combo model.
+    """
+    import argparse
+    import json
+
+    from mythgauntlet import cli
+
+    deck_dir = tmp_path / "decks"
+    deck_dir.mkdir()
+    # Two trivially-different decks so the field is real but the run is instant.
+    for name, spell in (("strong", "4 Lightning Bolt"), ("weak", "4 Forest")):
+        (deck_dir / f"{name}.txt").write_text(
+            "Commander:\n1 Bear Commander\n\nDeck:\n" + "\n".join(["1 Forest"] * 20),
+            encoding="utf-8",
+        )
+    (deck_dir / "manifest.json").write_text(json.dumps({"decks": [
+        {"file": "strong.txt", "bracket": 5},
+        {"file": "weak.txt", "bracket": 1},
+    ]}), encoding="utf-8")
+
+    labels = cli._bracket_labels_from(deck_dir)
+    assert labels == {"strong": 5, "weak": 1}, "manifest brackets must round-trip"
+
+    # An unlabeled / missing manifest yields no labels rather than raising.
+    assert cli._bracket_labels_from(tmp_path / "nope") == {}

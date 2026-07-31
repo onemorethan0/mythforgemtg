@@ -477,6 +477,39 @@ last piece is precisely what stops the win): Blue Farm 34/120 → **120/120** un
 24.4 → 13.8 turns; Tymna/Thrasios 36 → 94; Meren Hulk 41 → 66. Head-to-head vs a B2
 Ghired list, 5.0% → 16.0%.*
 
+*THE INVERSION IS AN INSTRUMENT PROBLEM AND AN AGENT PROBLEM — not mainly engine
+fidelity (2026-07-31, three converging measurements).*
+
+*1. Instrument. Commander brackets describe FOUR-PLAYER games; the gauntlet rates 1v1
+duels. Rated in pods instead (`mythgauntlet pod-brackets`, 4-player, 24 pods/deck,
+seed 777), the inversion disappears: B1 -0.008, B2 -0.005, B3 -0.008, B4 -0.003,
+**B5 +0.148** — cEDH goes from LAST in duels to clearly first, at a 0.398 win share
+against a 0.250 baseline. Part of why is mechanical: cEDH's draw engines are
+opponent-taxed (Rhystic Study, Mystic Remora, Esper Sentinel) and are close to blank in
+a duel by construction.*
+
+*2. But the pod signal is SINGLE-SOURCE. The `--no-combos` control is not optional and
+must be run alongside: with combos off, B5 falls to -0.009 and every bracket is flat
+(B1 -0.021, B3 +0.004). B5's entire lift is the combo model, so it inherits every
+simplification in `combo_ready` — pieces held plus mana, no opposing interaction.
+Faithful in kind (a real Thoracle line does beat the whole table at once) but not
+independent corroboration that the engine "understands" cEDH.*
+
+*3. Agent strength matters far more than previously concluded. Re-testing greedy vs
+ISMCTS-120 WITH COMBOS ON (60 games, seed 778, same scope, only the agent differs):
+Blue Farm 31.7% -> 48.3%, Tymna/Thrasios 13.3% -> 40.0%, Meren Hulk 8.3% -> 20.0%, with
+combo wins roughly doubling in each. The standing "if it stays inverted it's the ENGINE"
+verdict was reached from a contrast that ran `--no-combos` — structurally blind to the
+two-card combo that IS the cEDH win — and while the greedy agent was still binning its
+own pieces. Both premises are now false; the nightly contrast no longer passes
+`--no-combos`.*
+
+*Consequence for calibration: the standing ban should be narrowed from "T2 meta-rating"
+to "T2 DUEL meta-rating". Pod rating with combos is a defensible top-end signal today,
+stated with its combo-model dependency. It still does NOT separate B1-B4 (all within
+0.005 of baseline) — that separation remains a composition question, as the T0 speed
+finding above already concluded.*
+
 *What this changes methodologically: before attributing a rating result to "fidelity",
 instrument the failure and count the reasons. Fidelity is a real ceiling — Blue Farm's
 post-fix clock is ~13.8 turns against games that end at 8.6, and that gap IS

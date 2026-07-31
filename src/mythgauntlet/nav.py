@@ -67,6 +67,7 @@ COMMAND_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
         "Ratings & corpus",
         [
             ("gauntlet", "Round-robin the corpus -> Bradley-Terry ratings (Tier-2)"),
+            ("pod-brackets", "Bracket means in 4-player pods (duels invert at the top)"),
             ("ladder", "Agent strength ladder: pit search levels head-to-head (Phase 7)"),
             ("benchmark", "Tier-0 analysis across the whole deck corpus"),
             ("decks", "Browse the decklists available to analyze/duel/gauntlet"),
