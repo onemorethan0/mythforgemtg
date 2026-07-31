@@ -365,6 +365,13 @@ def _card_value(gc: GameCard, me: _Player, opp: _Player, turn: int, cfg: DuelCon
     value += 0.3 * p.gain_life
     if p.ramp_sources or p.fetches_land:
         value += max(0.5, 6.0 - turn) if turn <= cfg.ramp_priority_turns else 0.5
+    # Binning a combo piece for nothing is worse than doing nothing at all. Tested BEFORE
+    # the combo bonus is added, and against the value the card earns on its own merits
+    # (the popularity prior excluded) — so a piece that is also genuine removal or lethal
+    # burn can still be cast, while a dedicated piece is kept in hand. The agent reads
+    # value <= 0 as "hold it".
+    if _combo_piece_hold(gc, me) and (value - 2.0 * p.impact) < _PIECE_HOLD_MAX_INTRINSIC:
+        return 0.0
     value += _combo_bonus(gc, me)  # prioritize assembling a game-ending combo
     value += _tutor_bonus(gc, me)  # ... and a tutor that FINISHES one (fetches the last piece)
     return value
@@ -384,6 +391,42 @@ def _combo_bonus(gc: GameCard, me: _Player) -> float:
             have = len(pieces & online)  # other pieces already down
             best = max(best, 2.5 + 4.0 * have)
     return best
+
+
+# How much independent, executable value a card must have before the agent is willing to
+# BIN a combo piece by casting it. The popularity prior is excluded from this test on
+# purpose: a dedicated piece like Demonic Consultation scores ~2.0 from popularity alone
+# while doing nothing the engine can execute, and that was enough to get it cast.
+_PIECE_HOLD_MAX_INTRINSIC = 3.0
+
+
+def _combo_piece_hold(gc: GameCard, me: _Player) -> bool:
+    """True when casting this card now would throw a combo piece away for nothing.
+
+    A competent player never casts Demonic Consultation without Thassa's Oracle — it is
+    card disadvantage that exiles your library. The greedy agent did exactly that, because
+    _combo_bonus paid it to cast ANY piece whether or not the combo could finish. Measured
+    on cEDH Blue Farm: Demonic Consultation 0.85 casts/game, Tainted Pact 0.82, Brain
+    Freeze 0.88 — each deck runs ONE copy, so the first cast removed the wincon from the
+    game permanently. 98% of failed combo checks were a missing piece, and the deck could
+    not assemble in THIRTY unpressured turns 70% of the time.
+
+    Only instants and sorceries are held. A permanent piece stays on the battlefield and
+    counts as assembled, so casting it is real progress.
+
+    There is deliberately NO "unless this cast finishes the combo" exception, because
+    `combo_ready` resolves a combo from pieces HELD (online or in hand) plus the mana to
+    cast the rest — it is a state, not a sequence of casts. So casting the last piece is
+    the one thing that stops the win: the card leaves hand for the graveyard and the
+    post-main check then sees it missing. Holding it is both correct Magic and the only
+    way the engine can register the kill.
+    """
+    if not me.combo_pieces:
+        return False
+    name = normalize_name(gc.name)
+    if name not in me.combo_pieces:
+        return False
+    return gc.card.has_type("Instant") or gc.card.has_type("Sorcery")
 
 
 def _tutor_bonus(gc: GameCard, me: _Player) -> float:
@@ -434,17 +477,40 @@ def _ritual_mana(me: _Player, amount: int, colors: str | None) -> None:
     )
 
 
+_CARD_TYPES = frozenset({
+    "artifact", "creature", "enchantment", "instant", "land", "planeswalker",
+    "sorcery", "battle", "kindred", "tribal",
+})
+
+
 def _tutor_matcher(what: dict):
     """A predicate for what a tutor may fetch, honoring the CCM `what.type`/`what.subtype` filter
-    (e.g. Mystical -> 'instant or sorcery', Enlightened -> 'artifact or enchantment')."""
+    (e.g. Mystical -> 'instant or sorcery', Enlightened -> 'artifact or enchantment').
+
+    A disjunction of two card TYPES must be OR-ed, not AND-ed. The schema has one `type`
+    slot, so "an instant or sorcery card" compiles as type=instant + subtype=sorcery, and
+    AND-ing those asks for a card that is both — which no card in Magic is. Mystical Tutor
+    therefore fetched NOTHING, ever. A real subtype (Equipment, Aura, Human) is never also
+    a card type, so "the subtype slot holds a card type" is an unambiguous signal that the
+    compiler flattened a disjunction; a genuine subtype filter (artifact + Equipment) still
+    AND-s correctly. `type` may also arrive as a literal "creature or land".
+    """
     wtype = str((what or {}).get("type") or "card").casefold()
     wsub = str((what or {}).get("subtype") or "").casefold()
+    type_words = [w.strip() for w in wtype.split(" or ") if w.strip()]
     sub_words = [
-        w for w in wsub.replace(",", " ").split() if len(w) > 2 and w not in ("and", "the", "card")
+        w for w in wsub.replace(",", " ").replace(" or ", " ").split()
+        if len(w) > 2 and w not in ("and", "the", "card")
     ]
+    # A card type sitting in the subtype slot is a flattened disjunction — move it up.
+    disjunct = [w for w in sub_words if w in _CARD_TYPES]
+    if disjunct:
+        type_words += disjunct
+        sub_words = [w for w in sub_words if w not in _CARD_TYPES]
+    type_words = [w for w in type_words if w not in ("card", "any", "permanent")]
 
     def matches(gc: GameCard) -> bool:
-        if wtype not in ("card", "any", "permanent") and not gc.card.has_type(wtype):
+        if type_words and not any(gc.card.has_type(w) for w in type_words):
             return False
         if sub_words and not any(gc.card.has_type(w) for w in sub_words):
             return False

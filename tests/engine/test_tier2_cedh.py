@@ -201,3 +201,77 @@ def test_combo_charges_combined_cost_of_hand_pieces(make_card):
     assert me.combo_ready() is False  # need 2 total, only 1 ready
     me.sources.append(_src("B"))
     assert me.combo_ready() is True
+
+
+def test_agent_holds_an_instant_combo_piece_instead_of_binning_it(make_card):
+    """The greedy agent must not cast away its own wincon.
+
+    _combo_bonus paid the agent to cast ANY combo piece regardless of whether the combo
+    could finish, so a dedicated instant/sorcery piece went to the graveyard for nothing.
+    Measured on cEDH Blue Farm before the fix: Demonic Consultation 0.85 casts/game,
+    Tainted Pact 0.82, Brain Freeze 0.88 — one copy each, so the first cast removed the
+    wincon permanently. Unpressured (30 turns, no lethal), the deck assembled in only
+    34 of 120 games; after the fix, 120 of 120.
+    """
+    from mythgauntlet.sim.tier2 import _card_value
+
+    piece = make_game_card(
+        make_card("Consult", mana_cost="{B}", type_line="Instant", color_identity=("B",)),
+        None,
+    )
+    combo = frozenset({normalize_name("Oracle"), normalize_name("Consult")})
+    me = _Player(name="me", library=[], combos=(combo,), combo_pieces=combo,
+                 sources=[_src("B")], hand=[piece])
+    opp = _Player(name="opp", library=[])
+    assert _card_value(piece, me, opp, 3, DuelConfig()) == 0.0, (
+        "a dedicated instant combo piece must be held (value <= 0 keeps it in hand)"
+    )
+
+    # Same card in a deck with no combo is unaffected — the rule is combo-gated.
+    plain = _Player(name="me", library=[], sources=[_src("B")], hand=[piece])
+    assert _card_value(piece, plain, opp, 3, DuelConfig()) > 0.0
+
+
+def test_permanent_combo_piece_is_still_cast(make_card):
+    """A permanent piece STAYS on the battlefield and counts as assembled, so casting it
+    is progress — the hold must apply only to instants/sorceries."""
+    from mythgauntlet.sim.tier2 import _card_value
+
+    piece = _vanilla(make_card, "Oracle", cost="{U}{U}", power=1)
+    combo = frozenset({normalize_name("Oracle"), normalize_name("Consult")})
+    me = _Player(name="me", library=[], combos=(combo,), combo_pieces=combo,
+                 sources=[_src("U"), _src("U")], hand=[piece])
+    opp = _Player(name="opp", library=[])
+    assert _card_value(piece, me, opp, 3, DuelConfig()) > 0.0
+
+
+def test_tutor_filter_ors_a_flattened_type_disjunction(make_card):
+    """"An instant or sorcery card" compiles as type=instant + subtype=sorcery.
+
+    AND-ing those asks for a card that is both, which no card is — so Mystical Tutor
+    fetched nothing, ever. A real subtype is never also a card type, so a card type in
+    the subtype slot is an unambiguous flattened disjunction.
+    """
+    from mythgauntlet.sim.tier2 import _tutor_matcher
+
+    matches = _tutor_matcher({"type": "instant", "subtype": "sorcery"})
+    assert matches(make_game_card(make_card("Bolt", type_line="Instant"), None))
+    assert matches(make_game_card(make_card("Divination", type_line="Sorcery"), None))
+    assert not matches(make_game_card(make_card("Bear", type_line="Creature — Bear"), None))
+
+    # "creature or land" arriving in the type slot itself
+    m2 = _tutor_matcher({"type": "creature or land"})
+    assert m2(make_game_card(make_card("Bear", type_line="Creature — Bear"), None))
+    assert m2(make_game_card(make_card("Forest", type_line="Basic Land — Forest"), None))
+    assert not m2(make_game_card(make_card("Bolt", type_line="Instant"), None))
+
+
+def test_tutor_filter_still_ands_a_genuine_subtype(make_card):
+    """artifact + Equipment must stay an AND — only card-type subtypes are disjunctions."""
+    from mythgauntlet.sim.tier2 import _tutor_matcher
+
+    matches = _tutor_matcher({"type": "artifact", "subtype": "equipment"})
+    assert matches(make_game_card(
+        make_card("Sword", type_line="Artifact — Equipment"), None))
+    assert not matches(make_game_card(
+        make_card("Signet", type_line="Artifact"), None))
