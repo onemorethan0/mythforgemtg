@@ -460,6 +460,31 @@ is partly fidelity and shrinks as fidelity rises; the remaining ~240-point gap t
 the Phase 7 mandate (deliberate combo-turn mana holding, storm, stack wars at cEDH
 density, protection).*
 
+*Correction (2026-07-31): a MEASURABLE PART OF THE INVERSION WAS AN AGENT BUG, NOT
+FIDELITY. The narrative above — "cEDH decks are forced to play combat games they would
+never play" — was true but incomplete, and it discouraged looking for a specific defect.
+There was one. `_combo_bonus` paid the greedy agent to cast ANY combo piece whether or
+not the combo could finish, so dedicated instants/sorceries went to the graveyard for a
+popularity prior of ~2.0: Demonic Consultation 0.85 casts/game on Blue Farm, Tainted Pact
+0.82, Brain Freeze 0.88, one copy each. The first cast removed the deck's wincon from the
+game permanently. Diagnosis that found it: 98% of failed `combo_ready` checks were a
+MISSING PIECE (mana bound only 1.4%), and unpressured — 30 turns, no lethal, isolating the
+deck's own clock from the beatdown race — Blue Farm assembled in just 34/120 games.*
+
+*After holding instant/sorcery pieces (note the subtlety: NO "unless this cast finishes
+it" exception, because `combo_ready` resolves from pieces HELD plus mana, so casting the
+last piece is precisely what stops the win): Blue Farm 34/120 → **120/120** unpressured,
+24.4 → 13.8 turns; Tymna/Thrasios 36 → 94; Meren Hulk 41 → 66. Head-to-head vs a B2
+Ghired list, 5.0% → 16.0%.*
+
+*What this changes methodologically: before attributing a rating result to "fidelity",
+instrument the failure and count the reasons. Fidelity is a real ceiling — Blue Farm's
+post-fix clock is ~13.8 turns against games that end at 8.6, and that gap IS
+battlecruiser-vs-cEDH — but it is also a comfortable story that hid a one-line agent
+defect for two weeks. Also re-tested and still negative: a graduated tutor bonus for
+tutoring while 2–3 pieces away (the "tempo trap" finding survives its own re-measurement,
+now that fetched pieces are no longer binned).*
+
 1. **Compiler v8 campaign COMPLETE (2026-07-17, 4.7h overnight run).** +4,823 accepted
    (5,044 total v8 accepts: 289 via deep repair, 685 carrying x_basis); executable
    semantics 9,266 → **14,089**. Quarantine floor 1,060 and finally honest — 1,059/1,060

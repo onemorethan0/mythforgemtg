@@ -289,6 +289,52 @@ Determinism preserved — no new RNG. The point of the increment is the re-measu
 same seed-777 anchor gauntlet, run after these three links exist, is the falsifiable test
 of whether the B5 inversion was fidelity (it should shrink) or something deeper.
 
+### Holding combo pieces: the agent was casting away its own wincon (2026-07-31)
+
+The three links above were all present and all working — and cEDH decks still could not
+combo. Instrumenting `combo_ready` showed **98% of failed checks were a MISSING PIECE**;
+mana bound only 1.4%. Unpressured (30 turns, life set unreachably high so the deck's own
+clock is isolated from the beatdown race), cEDH Blue Farm assembled in only 34 of 120
+games.
+
+The defect was in the value function, not the simulation. `_combo_bonus` rewarded casting
+ANY combo piece regardless of whether the combo could finish, so dedicated instants and
+sorceries — whose ops the engine cannot execute anyway — were cast for their ~2.0
+popularity prior and went to the graveyard. Blue Farm binned Demonic Consultation 0.85
+times per game, Tainted Pact 0.82, Brain Freeze 0.88. Each deck runs ONE copy, so the
+first cast removed the wincon from the game permanently.
+
+`_combo_piece_hold` now keeps an instant/sorcery combo piece in hand (the agent already
+reads `value <= 0` as "hold it"). Two details matter:
+
+- **There is deliberately no "unless this cast finishes the combo" exception.**
+  `combo_ready` resolves a combo from pieces HELD — online or in hand — plus the mana to
+  cast the rest. It is a STATE, not a sequence of casts. So casting the last piece is the
+  one thing that prevents the win: the card leaves hand for the graveyard and the
+  post-main check then sees it missing. Holding is both correct Magic and the only way
+  the engine can register the kill.
+- **Permanent pieces are still cast.** They stay on the battlefield and count as
+  assembled, so casting them is real progress. Only instants/sorceries are held, and only
+  when the card has no independent executable value (the popularity prior is excluded
+  from that test, so a piece that is also genuine removal or lethal burn still gets cast).
+
+Measured, 120 unpressured games: Blue Farm 34 -> **120/120**, 24.4 -> 13.8 turns;
+Tymna/Thrasios 36 -> 94; Meren Hulk 41 -> 66. Head-to-head vs a B2 Ghired list, 5.0% ->
+16.0%. Fair B2/B3 decks that happen to run a combo were checked for regression: flat or
+slightly up. Every change is gated on the player having a detected combo, so non-combo
+decks (including every golden-master deck) are byte-identical.
+
+**Remaining, and honestly so:** Blue Farm's post-fix clock is ~13.8 turns while these
+games end at 8.6. That gap is the real battlecruiser-vs-cEDH fidelity ceiling. The lesson
+is that "it's a fidelity ceiling" was ALSO a comfortable story that hid a specific agent
+bug for two weeks — instrument and count failure reasons before attributing.
+
+**Tutor filters must OR a flattened disjunction.** "An instant or sorcery card" compiles
+as `type=instant` + `subtype=sorcery`, and the matcher AND-ed them, asking for a card that
+is both — which no card in Magic is, so Mystical Tutor fetched NOTHING. A genuine subtype
+(Equipment, Aura, Human) is never also a card type, so a card type sitting in the subtype
+slot is an unambiguous flattened disjunction; `artifact` + `Equipment` still AND-s.
+
 ### cEDH tutor-destination fix + the assembly-vs-timing finding (2026-07-18)
 
 **Diagnosis first.** Ranking all 11 labeled B5 decks vs a B3/B4 panel showed most win 23–48%
