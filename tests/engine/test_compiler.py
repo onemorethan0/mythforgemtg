@@ -90,6 +90,20 @@ def test_compile_accepts_valid_response(make_card):
     assert result.doc["rung"] == 2
 
 
+def test_compile_overrides_a_self_declared_rung(make_card):
+    """Rung 3 is the hand-authored tier — a compiled card may never claim it.
+
+    The model does emit `"rung": 3` on its own, and `setdefault` used to keep it: 1,897
+    files in the compiled store had claimed the authored tier by 2026-07-31, flipping in
+    and out of the diff on every prompt refresh.
+    """
+    doc = json.loads(GOOD_JSON)
+    doc["rung"] = 3
+    result = compile_card(_card(make_card), lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["rung"] == 2
+
+
 def test_compile_retries_with_feedback_then_accepts(make_card):
     calls = []
 

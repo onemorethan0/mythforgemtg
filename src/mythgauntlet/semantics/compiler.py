@@ -300,7 +300,11 @@ def compile_card(
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]
         if not errors:
-            doc.setdefault("rung", 2)
+            # The COMPILER owns the tier, not the model. setdefault let the LLM keep a
+            # self-declared "rung": 3 — the tier reserved for hand-authored exemplars —
+            # and 1,897 compiled cards had claimed it by 2026-07-31, churning in and out
+            # on every prompt refresh. Rung 2 is what this path produces, always.
+            doc["rung"] = 2
             unsupported = ccm.unsupported_ops(doc)
             if unsupported:
                 doc["unsupported_ops"] = unsupported
