@@ -369,3 +369,42 @@ def test_refresh_still_keeps_a_prior_that_remains_valid(tmp_path, monkeypatch, m
     cli._compile_cards([card], keep_on_failure=True)
     entry = Ledger(path=ledger_file).get(card.name)
     assert entry["status"] == "accepted" and entry["prompt_version"] == 5
+
+
+def test_ledger_save_is_atomic(tmp_path, monkeypatch, make_card):
+    """A reader must never see a half-written ledger.
+
+    save() is called after EVERY card, so a ~6 MB 31k-entry file is rewritten roughly
+    every three seconds for hours. Truncating the real file in place meant a concurrent
+    reader could hit a fragment — observed 2026-08-01 as a JSONDecodeError while the
+    nightly was mid-chunk — and a crash mid-write would destroy the index built over
+    hundreds of GPU-hours. save_compiled was already atomic; the ledger was not.
+    """
+    ledger_file = tmp_path / "ledger.json"
+    ledger = Ledger(path=ledger_file)
+    result = compile_card(_card(make_card), lambda m: GOOD_JSON, exemplars=[])
+    ledger.record(result, model="test-model")
+    ledger.save()
+
+    original = ledger_file.read_text(encoding="utf-8")
+
+    # Simulate a crash PART-WAY through the next write: json.dump has emitted some bytes
+    # into the temp file when the process dies.
+    real_dump = json.dump
+
+    def die_midway(obj, fh, **kwargs):
+        fh.write('{"entries": {"half')
+        raise KeyboardInterrupt("power cut")
+
+    monkeypatch.setattr(json, "dump", die_midway)
+    ledger.entries["another card"] = {"name": "Another Card", "status": "accepted"}
+    try:
+        ledger.save()
+    except KeyboardInterrupt:
+        pass
+    monkeypatch.setattr(json, "dump", real_dump)
+
+    # The real ledger is untouched and still parses — the damage is confined to the temp.
+    assert ledger_file.read_text(encoding="utf-8") == original
+    assert json.loads(ledger_file.read_text(encoding="utf-8"))["entries"]
+    assert Ledger(path=ledger_file).get("insight spell")["status"] == "accepted"

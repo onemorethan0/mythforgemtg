@@ -381,9 +381,26 @@ class Ledger:
         }
 
     def save(self) -> None:
+        """Write the ledger ATOMICALLY (temp file + replace), like save_compiled does.
+
+        This is called after EVERY card, so a ~6 MB, 31k-entry file is rewritten roughly
+        every three seconds for hours. Truncating the real file in place meant:
+
+          * any concurrent reader — the strength API on :8020, `ccm-status`, a morning
+            script — could read a half-written file and raise JSONDecodeError (observed
+            2026-08-01 while the nightly was mid-chunk);
+          * a crash or power cut during a write would destroy the whole ledger, which is
+            the index over many hundreds of GPU-hours of compilation.
+
+        Writing to a sibling temp and replacing makes the swap atomic on Windows and
+        POSIX alike, so a reader sees either the old ledger or the new one, never a
+        fragment.
+        """
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.path, "w", encoding="utf-8") as fh:
+        tmp = self.path.with_suffix(".json.part")
+        with open(tmp, "w", encoding="utf-8") as fh:
             json.dump({"entries": self.entries}, fh, indent=2, ensure_ascii=False, sort_keys=True)
+        tmp.replace(self.path)
 
     def stats(self) -> dict[str, int]:
         out: dict[str, int] = {}
