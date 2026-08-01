@@ -85,6 +85,35 @@ mismatches still reject). This decouples compilation progress from engine progre
 Kiki-combo creature whose ETB "draw" is modeled but whose exotic keyword isn't still
 contributes its real, checkable behavior instead of being thrown back to rung 1 whole.
 
+**Trigger events must match the text (v10+).** Gate 3 cross-checked ops against the Oracle
+text exhaustively and never looked at trigger EVENTS, so a card could declare any event and
+be accepted. Smaug the Impenetrable ("whenever Smaug is dealt NONCOMBAT damage, create that
+many Treasure tokens") compiled as `combat_damage_to_player`, and the engine duly minted
+Treasures every time he connected in combat — an ability the card does not have. An audit of
+the committed store found 1,400 cards (4.6%) in that state.
+
+The root cause was a MISSING VOCABULARY, not a careless model: the correct event often did
+not exist, so the model reached for the nearest *executable* one. `TRIGGER_EVENTS` therefore
+carries events the engine does NOT execute — `self_cast`, `blocks`, `becomes_blocked`,
+`dealt_damage`, `saga_chapter`, `creature_dies`, `leaves_battlefield`, `becomes_target`,
+`tap_for_mana`, `end_of_combat`. That is deliberate and it is the whole trick:
+`sim/tier2._EVENT_TRIGGERS` DROPS an event it cannot execute, so a correct-but-unexecuted
+event **under-counts honestly** while a wrong-but-executable one **fabricates value**.
+
+`ccm.cross_check` now requires textual evidence for every declared event. It stays permissive
+in the same direction as the rest of gate 3 — `"other"` always passes (and is always the
+right answer when nothing fits), an event outside the vocabulary passes, and reminder-text
+keywords are licensed exactly as `_KEYWORD_IMPLIED_OPS` does for ops (cascade IS a cast
+trigger, modular IS a death trigger, champion/squad/living-weapon are ETBs, and a Saga's
+parenthetical literally says "as this Saga enters and after your draw step").
+
+Two lessons worth keeping. **Anchor the pattern against the near-miss, not the phrase:**
+"noncombat damage" *contains* the substring "combat damage", so the combat pattern needs a
+negative lookbehind; `cast_creature` requires an article so it cannot match "casts THIS
+spell". And **tune a gate against real random samples** — three independent 20-card draws
+from the store, every flag hand-classified, until false positives fell to ~1 in 20. A naive
+first pass claimed 18% of the store was broken; disciplined passes gave a defensible 4.6%.
+
 **X-basis (v8+):** a numeric param of `"X"` may carry a sibling `x_basis` string on the
 effect naming what X counts (`mana_paid`, `chosen`, `creatures_you_control`,
 `lands_you_control`, `cards_in_hand`, `target_power`, ... — see `ccm.X_BASES`). This exists
