@@ -27,7 +27,28 @@ _WORD_NUMBERS = {
 
 _ENTERS_TAPPED_RE = re.compile(r"enters (?:the battlefield )?tapped")
 _ADD_MANA_RE = re.compile(r"\badd ((?:\{[^}]+\}|,| or |and/or| )+)")
-_SEARCH_LAND_RE = re.compile(r"search (?:your|their) library for .{0,60}?land")
+# "search THEIR library" is usually the OPPONENT ramping (Path to Exile, Assassin's
+# Trophy) — crediting that to us made premium removal read as our own acceleration.
+# A symmetric "each player searches their library" does ramp us, so it still counts.
+_SEARCH_LAND_RE = re.compile(r"search your library for .{0,60}?land")
+_SEARCH_LAND_SYMMETRIC_RE = re.compile(
+    r"each player searches their library for .{0,60}?land"
+)
+# Worded mana amounts: "Add one mana of any color" (Arcane Signet, Birds of Paradise).
+# The symbol regex below only ever matched "{G}"-style clauses, so every rock and dork
+# that spells the amount out in words produced ZERO ramp — 416 cards, including EDHREC
+# ranks 3, 17, 33 and 48. That is most of the mana acceleration in the format.
+_ADD_WORDED_MANA_RE = re.compile(
+    r"\badd (a|an|one|two|three|four|five|six|seven|x) (?:additional )?mana"
+)
+# Mana that is spent by ceasing to exist is not a mana SOURCE. Tier-0 models
+# ramp_sources as a permanent that untaps every turn, so a ritual or a sacrifice-for-mana
+# artifact modelled that way pays out every turn forever (Dark Ritual was worth three
+# permanent sources). The burst is modelled separately as ritual_mana for Tier-2.
+# The sacrifice must be the COST OF THE MANA ABILITY ITSELF ("{T}, Sacrifice this
+# artifact: Add one mana"). Matching a sacrifice clause anywhere in the text instead
+# caught Commander's Sphere, which sacrifices for a CARD and taps for mana repeatably.
+_SACRIFICE_FOR_MANA_RE = re.compile(r"sacrifice (?:this|it)[^:.]*:[^.]*\badd\b")
 _SEARCH_CARD_RE = re.compile(r"search (?:your|their) library for ([^.]*)")
 _DRAW_RE = re.compile(r"draws? (\w+) (?:additional )?cards?")
 _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)")
@@ -81,14 +102,24 @@ def _clean_text(card: Card) -> str:
 
 
 def _ramp_from_add_clause(text: str) -> int:
-    """Mana added per activation of an 'Add ...' ability (rocks/dorks), crudely."""
+    """Mana added per activation of an 'Add ...' ability (rocks/dorks), crudely.
+
+    Handles both spellings Magic uses: mana symbols ("Add {C}{C}" — Sol Ring) and words
+    ("Add one mana of any color" — Arcane Signet, Birds of Paradise). Only the symbol
+    form used to match, so every colour-fixing rock and most dorks read as zero ramp.
+    """
     m = _ADD_MANA_RE.search(text)
-    if not m:
-        return 0
-    clause = m.group(1)
-    if " or " in clause:  # "Add {G}, {U}, or {R}" produces one mana of a choice
-        return 1
-    return max(1, min(3, clause.count("{")))
+    if m:
+        clause = m.group(1)
+        if " or " in clause:  # "Add {G}, {U}, or {R}" produces one mana of a choice
+            return 1
+        symbols = clause.count("{")
+        if symbols:
+            return max(1, min(3, symbols))
+    worded = _ADD_WORDED_MANA_RE.search(text)
+    if worded:
+        return max(1, min(3, _WORD_NUMBERS.get(worded.group(1), 1)))
+    return 0
 
 
 def _draw_counts(text: str) -> tuple[int, int]:
@@ -156,8 +187,19 @@ def analyze(card: Card) -> EffectVector:
     ramp_sources = 0
     fetches_land = False
     if not card.is_land:
-        ramp_sources = _ramp_from_add_clause(text)
-        if _SEARCH_LAND_RE.search(text) and "battlefield" in text:
+        # ramp_sources is a PERMANENT that untaps each turn, so only repeatable mana
+        # counts. One-shot mana (a ritual, or an artifact that sacrifices itself for
+        # mana) would otherwise pay out every turn forever; Tier-2 models that burst as
+        # ritual_mana instead.
+        one_shot = (
+            card.has_type("Instant")
+            or card.has_type("Sorcery")
+            or bool(_SACRIFICE_FOR_MANA_RE.search(text))
+        )
+        if not one_shot:
+            ramp_sources = _ramp_from_add_clause(text)
+        if ((_SEARCH_LAND_RE.search(text) or _SEARCH_LAND_SYMMETRIC_RE.search(text))
+                and "battlefield" in text):
             fetches_land = True
             ramp_sources = max(ramp_sources, 1)
 
