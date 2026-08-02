@@ -6,10 +6,25 @@ the top (STATUS.md "the B5 finding"). This runs the actual pod: seat the deck am
 opponents sampled from a field, rotate its seat to average out turn-order advantage, and measure
 its win share. The honest baseline is `1/pod_size` — a deck that beats that is above pod-average.
 
-It runs the N-player Tier-2 engine (`sim/game.play_table`) under GreedyAgents. Same engine-limit
-caveats as that engine (docs/SIMULATION.md "Multiplayer"): threat-focus combat, each-opponent
-effect scaling, but death-trigger drains / opponent-cast fan-out / reactions are not yet pod-wired
-— so this is a measurement BY an instrument, tagged with the engine version like every rating.
+It runs the N-player Tier-2 engine (`sim/game.play_table`) under GreedyAgents. Engine-limit
+caveats (docs/SIMULATION.md "Multiplayer"): threat-focus combat and each-opponent effect
+scaling, and **reactions are still 1v1-only** (a multiplayer cast resolves immediately —
+see `_cast` in sim/game.py), so counterspells and instant-speed removal do nothing here.
+
+Death-trigger drains and opponent-cast fan-out ARE pod-wired, contrary to what this
+docstring claimed for some time after they landed: a dying creature's "each opponent"
+drain scales through `_others` in `_apply_declare_blocks`, and every opponent's taxer fires
+on a cast via `state.opponents_of(state.active)`. That correction matters, because those
+are exactly the cards whose value is opponent-count-dependent — Rhystic Study, Smothering
+Tithe, Esper Sentinel — and a stale "not wired" note invites someone to go re-fix a
+mechanism that already works.
+
+Known limit that DOES bite: a rung-1 card's opponent-taxed draw is a flat per-turn
+`engine_draw` approximation that does NOT scale with pod size; only a CCM-backed card
+fires per-opponent. So a deck's taxer value in a pod is only as good as its semantics
+coverage.
+
+Still a measurement BY an instrument, tagged with the engine version like every rating.
 Deterministic (invariant #1): all randomness via SeededRng.
 """
 

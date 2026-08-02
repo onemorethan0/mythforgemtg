@@ -20,6 +20,10 @@ ABILITY_KINDS = {"spell_effect", "activated", "triggered", "static", "mana_abili
 _EXECUTED_EVENTS = {
     "etb", "death", "upkeep", "draw_step", "end_step", "attack", "cast_creature",
     "cast_spell", "opponent_casts_spell", "landfall", "combat_damage_to_player",
+    # begin_combat was being EMITTED by the compiler (244 cards) but was outside the
+    # vocabulary, so the schema tolerated it and sim/tier2._EVENT_TRIGGERS dropped every
+    # one. "At the beginning of combat on your turn" is a common, high-impact trigger.
+    "begin_combat",
 }
 # Events the engine does NOT execute but cards genuinely have. Naming them is not
 # cosmetic: an unexecuted event is DROPPED by _event_triggers and under-counts honestly,
@@ -395,6 +399,7 @@ _TRIGGER_EVIDENCE: dict[str, re.Pattern[str]] = {
     "draw_step": re.compile(r"\bdraw step\b", re.I),
     "end_step": re.compile(r"\bend step\b|\bbeginning of the end\b", re.I),
     "end_of_combat": re.compile(r"\bend of combat\b", re.I),
+    "begin_combat": re.compile(r"\bbeginning of combat\b|\bbeginning of each combat\b", re.I),
     "attack": re.compile(r"\battacks?\b|\battacking\b|\bdeclare attackers\b", re.I),
     "blocks": re.compile(r"\bblocks\b|\bblocking\b", re.I),
     "becomes_blocked": re.compile(r"\bbecomes blocked\b|\bbecome blocked\b", re.I),

@@ -233,6 +233,12 @@ def _resolution_abilities(ccm: dict) -> tuple[dict, ...]:
 _EVENT_TRIGGERS = frozenset({
     "upkeep", "draw_step", "end_step", "landfall", "cast_creature", "cast_spell",
     "opponent_casts_spell", "attack", "combat_damage_to_player",
+    # "At the beginning of combat on your turn" — 244 stored CCMs carry this and every
+    # one was silently dropped, because the event sat outside TRIGGER_EVENTS so the
+    # schema tolerated it and this set ignored it. All 244 have textual support for the
+    # event (checked against the gate before wiring execution), so firing them is a
+    # fidelity gain rather than a new source of fabricated value.
+    "begin_combat",
 })
 
 

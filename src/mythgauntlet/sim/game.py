@@ -145,6 +145,7 @@ class GameState:
     # per-turn / per-phase bookkeeping (mirrors the old imperative loops)
     land_played: bool = False
     casts_this_main: int = 0
+    combat_begun: bool = False
     activation_reserve: int = 0
     activations_done: int = 0
     combat_attackers: list[_Permanent] = field(default_factory=list)
@@ -218,6 +219,7 @@ def clone(state: GameState) -> GameState:
         phase=state.phase,
         land_played=state.land_played,
         casts_this_main=state.casts_this_main,
+        combat_begun=state.combat_begun,
         activation_reserve=state.activation_reserve,
         activations_done=state.activations_done,
         pending_spell=state.pending_spell,
@@ -404,6 +406,7 @@ def _do_turn_start(state: GameState) -> None:
             return
     state.land_played = False
     state.casts_this_main = 0
+    state.combat_begun = False
     state.phase = MAIN
 
 
@@ -509,6 +512,15 @@ def advance(state: GameState) -> None:
             state.reaction_actor = None
             state.phase = COMBAT_ATTACK
         elif ph == COMBAT_ATTACK:
+            if not state.combat_begun:
+                # The beginning-of-combat step happens whether or not anyone can attack,
+                # so this fires BEFORE the eligible-attackers check. Guarded by a
+                # per-turn flag because two phase transitions lead here (1v1 goes through
+                # the instant window, multiplayer straight from post-main) and an ISMCTS
+                # clone can re-enter the branch.
+                state.combat_begun = True
+                _fire_triggers(state.players[state.active], state.players[state.other],
+                               "begin_combat", _others(state))
             if not _eligible_attackers(state.players[state.active]):
                 state.phase = "end_step"
                 continue

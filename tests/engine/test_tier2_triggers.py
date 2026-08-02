@@ -382,3 +382,49 @@ def test_trigger_execution_is_deterministic(tmp_path, make_card):
     assert duel(deck_a, None, deck_b, None, cfg, store=store) == duel(
         deck_a, None, deck_b, None, cfg, store=store
     )
+
+
+def test_begin_combat_trigger_is_executed(tmp_path, make_card):
+    """"At the beginning of combat on your turn" must actually fire.
+
+    244 stored CCMs carry this event and every one was silently dropped: `begin_combat`
+    sat OUTSIDE ccm.TRIGGER_EVENTS, so the schema tolerated it as an unknown event and
+    tier2._EVENT_TRIGGERS ignored it. The engine had the phase all along.
+    """
+    gc = _trigger_gc(tmp_path, make_card, "Combat Herald", "begin_combat",
+                     [{"op": "create_token", "count": 1, "power": 1, "toughness": 1}])
+    assert gc.trigger_abilities, "begin_combat must survive _event_triggers, not be dropped"
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _on_battlefield(gc, me, opp)
+    _fire_triggers(me, opp, "upkeep")
+    assert len(me.creatures()) == 0  # wrong event
+    _fire_triggers(me, opp, "begin_combat")
+    assert len(me.creatures()) == 1
+
+
+def test_begin_combat_fires_once_per_turn_in_the_state_machine(tmp_path, make_card, forest):
+    """It fires from the real turn loop exactly once, even with no eligible attackers.
+
+    The beginning-of-combat step happens whether or not anyone can attack, so the hook
+    sits BEFORE the eligible-attackers check; a per-turn flag keeps it to one firing
+    because two phase transitions reach COMBAT_ATTACK and an ISMCTS clone can re-enter it.
+    """
+    from mythgauntlet.sim.game import COMBAT_ATTACK, GameState, advance
+
+    gc = _trigger_gc(tmp_path, make_card, "Combat Herald", "begin_combat",
+                     [{"op": "create_token", "count": 1, "power": 1, "toughness": 1}])
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _on_battlefield(gc, me, opp)
+    before = len(me.creatures())
+
+    state = GameState(players={"a": me, "b": opp}, order=["a", "b"], cfg=DuelConfig(),
+                      active="a", phase=COMBAT_ATTACK)
+    advance(state)
+    once = len(me.creatures()) - before
+    assert once == 1, "begin_combat must fire when the turn reaches combat"
+
+    # Re-entering the branch in the same turn (an ISMCTS clone does exactly this) must
+    # not mint a second token.
+    state.phase = COMBAT_ATTACK
+    advance(state)
+    assert len(me.creatures()) - before == once, "must not re-fire within the same turn"
