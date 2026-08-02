@@ -87,6 +87,9 @@ export default function App() {
   const [isCommanderDeck, setIsCommanderDeck] = useState(true)
   const [importCards, setImportCards]         = useState([])
   const [faceAssignments, setFaceAssignments] = useState({})
+  // Edit & Rebuild of an IMPORTED deck: the job id whose stored card list the new
+  // build must reuse verbatim. Empty for every other path.
+  const [sourceDeckId, setSourceDeckId]       = useState('')
   const [jobId, setJobId]         = useState(null)
   const [deck, setDeck]           = useState(null)
   // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
@@ -154,6 +157,7 @@ export default function App() {
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setIsCommanderDeck(true); setImportCards([]); setFaceAssignments({})
+    setSourceDeckId('')
     setJobId(null); setDeck(null)
   }
 
@@ -165,6 +169,9 @@ export default function App() {
         commander_name: commander.full_name || commander.name || "",
         deck_url:  commander._import?.mode === 'url'  ? commander._import.value : "",
         deck_list: commander._import?.mode === 'text' ? commander._import.value : "",
+        // Set only by Edit & Rebuild on an imported deck — reuse that deck's exact
+        // stored card list rather than re-importing or regenerating one.
+        source_deck_id: sourceDeckId || "",
         playstyle,
         bracket,
         art_theme:         composeVision(theme, visionMoods, visionGenres, visionLighting, visionInspiration),
@@ -321,6 +328,14 @@ export default function App() {
   // Building from here creates a NEW deck — the original is left untouched.
   async function handleEditDeck(d) {
     if (!d) return
+
+    // An IMPORTED deck's card list is the deck's identity, and this wizard offers no
+    // way to change it — only the theme/art. So pin the deck being edited and let the
+    // build reuse its stored list verbatim. Without this the payload carried no
+    // deck_url/deck_list (they aren't restorable here) and no prebuilt_deck, so the
+    // build fell through to the GENERATE branch and DeckBuilder silently replaced the
+    // user's imported deck with a different 99-card pile.
+    setSourceDeckId(d.imported ? (jobId || '') : '')
 
     // Reconstruct the commander card the wizard expects from stored deck data.
     const cmd = d.commander || {}
@@ -524,6 +539,9 @@ export default function App() {
                   setIsCommanderDeck(imp ? imp.is_commander_deck !== false : true)
                   setImportCards(imp ? (imp.cards || []) : [])
                   setFaceAssignments({})
+                  // A fresh import/generate resolves its own list — never inherit a
+                  // pin left behind by a previous Edit & Rebuild.
+                  setSourceDeckId('')
                   setStep(STEP.FACE)
                 }}
               />

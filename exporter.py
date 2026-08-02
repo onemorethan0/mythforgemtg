@@ -5,13 +5,20 @@ Exports a completed deck as:
   PDF  — Print-ready US Letter pages, 3×3 grid @ 300 DPI
          Card size: 2.5" × 3.5" (exact standard MTG dimensions)
          Cut marks at every card corner for easy trimming
+
+Card images resolve through an optional ``image_for(card)`` callable. The default
+looks only in ``render_dir/cards/<render_key>.png``, which is empty for a deck
+imported and saved WITHOUT AI art — so those exports came out as a near-empty ZIP
+or an outright "No rendered card images found". The server passes a resolver that
+falls back to the card's real Scryfall image, so an un-themed import is printable
+the moment it's saved.
 """
 from __future__ import annotations
 
 import io
 import zipfile
 from pathlib import Path
-from typing import Optional
+from typing import Callable, Optional
 
 from PIL import Image, ImageDraw
 
@@ -66,25 +73,38 @@ def _make_page(slots: list[Image.Image]) -> Image.Image:
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
+ImageResolver = Callable[[dict], Optional[Path]]
+
+
+def _default_resolver(render_dir: Path) -> ImageResolver:
+    """Rendered-proxy-only lookup — the historical behaviour."""
+    def _resolve(card: dict) -> Optional[Path]:
+        png = render_dir / "cards" / f"{card.get('render_key', '')}.png"
+        return png if png.exists() else None
+    return _resolve
+
+
 def build_zip(
     commander:  dict,
     deck:       list[dict],
     render_dir: Path,
+    image_for:  Optional[ImageResolver] = None,
 ) -> bytes:
     """
     Return ZIP bytes with one PNG per card slot (100 files total).
     Commander is file 00, deck slots are 01-99.
     """
+    resolve = image_for or _default_resolver(render_dir)
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
-        png = render_dir / "cards" / f"{commander['render_key']}.png"
-        if png.exists():
-            zf.write(png, f"00_commander_{commander['render_key']}.png")
+        png = resolve(commander)
+        if png:
+            zf.write(png, f"00_commander_{commander['render_key']}{png.suffix}")
 
         slot = 0
         for card in deck:
-            png = render_dir / "cards" / f"{card['render_key']}.png"
-            if not png.exists():
+            png = resolve(card)
+            if not png:
                 continue
             # Imported decks aggregate duplicate basics into one entry with a
             # quantity; emit one numbered copy per physical card so the proxy set
@@ -92,7 +112,7 @@ def build_zip(
             for copy in range(int(card.get("quantity", 1) or 1)):
                 slot += 1
                 suffix = f"_c{copy+1}" if card.get("quantity", 1) > 1 else ""
-                zf.write(png, f"{slot:02d}_{card['render_key']}{suffix}.png")
+                zf.write(png, f"{slot:02d}_{card['render_key']}{suffix}{png.suffix}")
 
     buf.seek(0)
     return buf.read()
@@ -137,17 +157,19 @@ def build_pdf(
     commander:  dict,
     deck:       list[dict],
     render_dir: Path,
+    image_for:  Optional[ImageResolver] = None,
 ) -> bytes:
     """
     Return PDF bytes — US Letter, 3×3 card grid, 300 DPI, cut marks.
     100 card slots → ~12 pages.
     """
+    resolve   = image_for or _default_resolver(render_dir)
     all_cards = [commander] + list(deck)
 
     imgs: list[Image.Image] = []
     for card in all_cards:
-        png = render_dir / "cards" / f"{card['render_key']}.png"
-        if png.exists():
+        png = resolve(card)
+        if png:
             # .copy() closes the lazy file handle so we don't leak 100 open files
             # One printable slot per physical copy (imported duplicate basics).
             img = Image.open(png).copy()

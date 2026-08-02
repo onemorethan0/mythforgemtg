@@ -27,6 +27,7 @@ import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import AsyncGenerator, Optional, List
+from urllib.parse import urlparse
 
 import requests
 from fastapi import FastAPI, BackgroundTasks, File, HTTPException, Request, UploadFile
@@ -441,6 +442,11 @@ class BuildRequest(BaseModel):
     # 99-card generator is skipped and the imported list is themed/rendered.
     deck_url:          str = Field("", max_length=600)
     deck_list:         str = Field("", max_length=20000)
+    # Edit & Rebuild of a deck whose card list must be preserved (imports). The
+    # list is restored VERBATIM from that job's deck.json — not re-imported (the
+    # upstream deck may have changed since) and not regenerated (DeckBuilder would
+    # invent a different deck entirely). Wins over deck_url/deck_list/prebuilt_deck.
+    source_deck_id:    str = Field("", max_length=64)
     playstyle:         str = "auto"
     # Caps prevent long appearance dumps from polluting the LLM batch prompt and
     # blowing FLUX's first-N-token attention window (causes "standing portrait"
@@ -560,7 +566,7 @@ class AnimateCardsRequest(BaseModel):
 
 
 class RethemeRequest(BaseModel):
-    """Re-run Ollama theming for an already-built deck, keeping all existing card art."""
+    """Re-theme an already-built deck: new names/prompts, and new art for them."""
     art_theme:        Optional[str] = None   # None → use saved theme from deck.json
     commander_prompt: Optional[str] = None   # None → use saved commander_prompt
     user_name:        Optional[str] = None   # None → use saved user_name
@@ -568,6 +574,16 @@ class RethemeRequest(BaseModel):
     commander_tribe:  Optional[str] = None   # None → use saved / auto-detect
     theme_spec:       Optional[dict] = None  # None → use saved structured theme_spec
     creativity:       Optional[str]  = None  # None → use saved creativity dial
+    # Art controls. A deck saved straight from an import has generate_art=False and
+    # no art_style at all, so retheme used to re-name its cards and then skip art
+    # entirely — the "save the list now, generate art later" lifecycle produced no
+    # art and offered no way to pick a style. These let that first art run be
+    # requested; each falls back to the source deck's value when omitted.
+    generate_art:     Optional[bool] = None  # None → use saved generate_art
+    art_style:        Optional[str]  = None  # None → use saved art_style
+    model_speed:      Optional[str]  = None  # None → use saved model_speed
+    checkpoint:       Optional[str]  = None  # None → use saved checkpoint
+    gen_settings:     Optional[GenSettingsModel] = None   # None → use saved gen_settings
 
 
 class SingleCardModel(BaseModel):
@@ -1218,6 +1234,78 @@ def _stored_card_to_dict(d: dict) -> dict:
     }
 
 
+def _stored_card_to_raw(d: dict) -> dict:
+    """Stored deck.json entry → a card dict fit to be themed FROM SCRATCH.
+
+    Same as `_stored_card_to_dict`, but rewinds the two fields a previous theming
+    pass mutated: `type_line` goes back to the card's real printed line (a stored
+    entry carries the tribe-RESKINNED line, e.g. "Creature — Holo-Priest") and
+    `keywords` is cleared so the themer re-derives mechanics. Without the rewind, a
+    re-theme whose new theme maps that type to nothing keeps the OLD theme's
+    creature type printed on the card — a wrong card model on a deck the user never
+    asked to change. The themer always reskins from `original_type_line`, so the
+    rewind is a no-op on the path where a map DOES cover the type.
+    """
+    c = _stored_card_to_dict(d)
+    c["type_line"] = d.get("original_type_line") or d.get("type_line", "")
+    c["keywords"]  = []
+    return c
+
+
+# Fields that identify WHAT a deck is (as opposed to how it looks). Rebuild and
+# retheme write a new deck.json under a NEW job id — the source is always left
+# intact — so anything not copied across that boundary is silently lost.
+_PROVENANCE_KEYS = (
+    "imported", "import_source", "import_name", "import_source_input",
+    "import_unresolved", "import_auto_face", "is_commander_deck",
+    "face_assignments",
+)
+
+
+def _carry_provenance(dst: dict, src: dict, *, generated_art: bool) -> dict:
+    """Copy a source deck's identity/provenance onto a derived deck's payload.
+
+    Losing `imported` here is not cosmetic: Edit & Rebuild reads it to decide
+    whether to reuse the stored card list or generate a fresh one, so a rethemed
+    import that forgot the flag would silently regenerate into a DIFFERENT deck on
+    the next edit. `is_commander_deck` / `face_assignments` decide which cards get
+    a face, and dropping them stamps the commander portrait onto a 60-card list's
+    auto-elected display card.
+
+    `imported_only` means "an import with no AI art yet"; it survives a text-only
+    re-run and clears the moment a run actually produces art.
+    """
+    for k in _PROVENANCE_KEYS:
+        if k in src:
+            dst[k] = src[k]
+    if src.get("imported_only") and not generated_art:
+        dst["imported_only"] = True
+    else:
+        dst.pop("imported_only", None)
+    return dst
+
+
+def _preserve_decklist(themed_deck: list, raw_deck: list[dict]) -> list:
+    """Guarantee a theming pass returned exactly the cards it was given.
+
+    Theming re-invents names and art prompts — it must NEVER change WHICH cards are
+    in the deck. If a themer returned a short or partial list, rebuild it from
+    `raw_deck` (by original name, in order), filling gaps with plain-named cards.
+    A no-op on the normal path; the point is that an imported paper decklist can
+    never come back with a card missing or substituted.
+    """
+    if len(themed_deck) == len(raw_deck):
+        return themed_deck
+    print(f"  [theme] themer returned {len(themed_deck)} of {len(raw_deck)} cards "
+          f"— backfilling the rest with plain names so the decklist is preserved")
+    by_orig = {tc.original_name: tc for tc in themed_deck}
+    out = []
+    for c in raw_deck:
+        n = c.get("name") or c.get("original_name") or ""
+        out.append(by_orig.get(n, ThemedCard(n, n, "", "", c)))
+    return out
+
+
 _MANA_SYMBOL_RE = re.compile(r"\{([^}]+)\}")
 _WUBRG = ("W", "U", "B", "R", "G")
 
@@ -1407,7 +1495,37 @@ def _run_build(job_id: str, req: BuildRequest):
         import_meta: dict = {}
         collection_stats: Optional[dict] = None  # C4: set in the generate branch when on
 
-        if req.prebuilt_deck:
+        if req.source_deck_id:
+            # ── Edit & Rebuild: re-theme a saved deck's EXACT card list ───────
+            # An imported deck's identity IS its card list, and the wizard offers
+            # no way to change it — only the theme/art. Restoring the stored list
+            # verbatim is the only option that can't drift: re-importing would pick
+            # up an upstream edit, and falling through to the generate branch (what
+            # used to happen, because the import source wasn't restored) silently
+            # replaced the user's deck with a fresh DeckBuilder pile.
+            _push(job_id, "progress", json.dumps(
+                {"step": "commander", "msg": "Loading the saved decklist…"}))
+            src = _load_source_deck(req.source_deck_id)
+            card = _stored_card_to_raw(src["commander"])
+            deck = [_stored_card_to_raw(c) for c in src.get("deck") or []]
+            override = (req.commander_name or "").strip()
+            if override and override.lower() not in (card.get("name", "") or "").lower():
+                ov = _scryfall.get_card_by_name(override, fuzzy=True)
+                if ov:
+                    card = ov
+            stats = compute_stats(card, deck)
+            if src.get("imported"):
+                import_meta = {
+                    "source":       src.get("import_source", ""),
+                    "source_name":  src.get("import_name", ""),
+                    "source_input": src.get("import_source_input", ""),
+                    "unresolved":   src.get("import_unresolved", []),
+                    "auto_face":    bool(src.get("import_auto_face", False)),
+                }
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg":
+                f"Reusing the saved decklist — {stats['total_cards']} cards, "
+                f"face {card['name']} (no cards changed)"}))
+        elif req.prebuilt_deck:
             # ── Phase-2 build: theme/render a decklist generated in phase 1 ───
             # (POST /api/deck/generate-list). Skip DeckBuilder entirely and use
             # the exact list the user reviewed when choosing tribe replacements.
@@ -1537,6 +1655,12 @@ def _run_build(job_id: str, req: BuildRequest):
 
         themed_cmd: Optional[ThemedCard] = None
         themed_deck: Optional[list[ThemedCard]] = None
+        # Bound BEFORE the try: if the Themer CONSTRUCTOR raises (llama-swap down),
+        # the except below degrades to plain names, but every later
+        # getattr(themer, …) hit an unbound local and killed the whole build with
+        # "cannot access local variable 'themer'" — so a gateway that wasn't running
+        # lost the deck instead of just its themed names.
+        themer = None
         try:
             themer = Themer(model=_llm) if _llm else Themer()
 
@@ -1612,6 +1736,10 @@ def _run_build(job_id: str, req: BuildRequest):
             def _plain(c): return ThemedCard(c["name"], c["name"], "", "", c)
             themed_cmd  = _plain(card)
             themed_deck = [_plain(c) for c in deck]
+
+        # SAFETY NET (parity with retheme): theming re-invents names, never the
+        # card list. Backfill anything a short/partial themer batch dropped.
+        themed_deck = _preserve_decklist(themed_deck, deck)
 
         # ── Apply the player's chosen name to the commander ───────────────────
         # Runs BEFORE the Ollama eviction below so a title regeneration (rare —
@@ -1719,6 +1847,10 @@ def _run_build(job_id: str, req: BuildRequest):
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
             "import_name":      import_meta.get("source_name", ""),
+            # The exact URL / pasted text this deck came from. Persisted so the deck
+            # view can name its origin and a later re-import can be offered without
+            # the user digging the link back out.
+            "import_source_input": import_meta.get("source_input", ""),
             "import_unresolved": import_meta.get("unresolved", []),
             "import_auto_face": import_meta.get("auto_face", False),
             "built_at":         time.time(),
@@ -2334,11 +2466,20 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             "frame_style":      source_data.get("frame_style", "builtin"),
             "commander_tribe":  source_data.get("commander_tribe", ""),
             "tribal_overrides": source_data.get("tribal_overrides", {}),
+            # Carried so a later Edit restores the user's explicit picks (not the
+            # merged auto-map) and the deck view keeps its Set Bible / player name.
+            "user_tribal_overrides": source_data.get("user_tribal_overrides", {}),
             "auto_theme_tribes": bool(source_data.get("auto_theme_tribes", True)),
+            "world_bible":      source_data.get("world_bible", {}) or {},
+            "user_name":        source_data.get("user_name", ""),
+            "llm_model":        source_data.get("llm_model", ""),
             "custom_pips":      _rebuild_pips,
             "rebuilt_from":     source_job_id,
             "built_at":         time.time(),
         }
+        # A rebuild re-rolls art on the SAME cards — the deck's identity is unchanged,
+        # so it must survive the new-job boundary. See _carry_provenance.
+        _carry_provenance(checkpoint, source_data, generated_art=True)
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
 
         # ── Art generation ────────────────────────────────────────────────────
@@ -2538,6 +2679,12 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                             theme_str=art_theme,
                             card_done_callback=_card_done_cb,
                             cancel_event=cancel_event,
+                            # Who gets a face is a property of the DECK, not of this
+                            # run — see the same note in _run_retheme.
+                            is_commander_deck=bool(
+                                source_data.get("is_commander_deck", True)),
+                            face_assignments=(
+                                source_data.get("face_assignments") or None),
                         )
                     except Exception as _ge_err:
                         _push(job_id, "progress", json.dumps({
@@ -2853,7 +3000,15 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             # animation (if any) now depicts the OLD art, so it's invalidated below.
             regen_done_keys: set[str] = set()
 
-            from face_ref import is_human_card as _is_human_card
+            from image_gen import route_card_face as _route_face
+
+            # Face routing is a property of the DECK — a non-Commander import has no
+            # hero, and an import with explicit per-card assignments must not fall
+            # back to the humanoid round-robin. Regen used to hardcode both, so
+            # re-rolling one card put the commander portrait on a 60-card list's
+            # display card, or a crew face on a card the user never assigned.
+            _is_cmd_deck   = bool(source_data.get("is_commander_deck", True))
+            _assignments   = source_data.get("face_assignments") or None
 
             for i, (tc, render_key, art_safe, has_custom) in enumerate(to_regen, 1):
                 if cancel_event.is_set():
@@ -2861,21 +3016,25 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
 
                 # Face conditioning. Priority:
                 #   1. Forced face → every selected card, any type (user's explicit pick).
-                #   2. Commander face → the commander card.
-                #   3. Crew faces → humanoid creature cards (round-robin).
+                #   2. Otherwise the deck's own routing (route_card_face): commander
+                #      hero, explicit per-card assignment, or crew round-robin.
                 is_commander = tc.original_name == commander_original_name
-                face_for_card   = None
-                gender_for_card = "either"
                 if force_face_comfy_name:
                     face_for_card   = force_face_comfy_name
                     gender_for_card = req.force_face_gender or "either"
-                elif is_commander and face_comfy_name_for_cmd:
-                    face_for_card   = face_comfy_name_for_cmd
-                    gender_for_card = effective_face_gender
-                elif not is_commander and crew_comfy_names and _is_human_card(tc.card.get("type_line", "")):
-                    face_for_card   = crew_comfy_names[crew_regen_idx % len(crew_comfy_names)]
-                    gender_for_card = effective_crew_gender
-                    crew_regen_idx += 1
+                else:
+                    face_for_card, gender_for_card, _uses_crew, crew_regen_idx = _route_face(
+                        is_cmd=is_commander,
+                        is_commander_deck=_is_cmd_deck,
+                        commander_face=face_comfy_name_for_cmd,
+                        crew_faces=crew_comfy_names,
+                        face_gender=effective_face_gender,
+                        crew_gender=effective_crew_gender,
+                        card_type_line=tc.card.get("type_line", ""),
+                        card_name=tc.original_name,
+                        face_assignments=_assignments,
+                        crew_idx=crew_regen_idx,
+                    )
 
                 wall = time.time() - _art_start
                 eta  = round(wall / i * (total - i)) if i > 1 else 0
@@ -3312,18 +3471,28 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
 
 
 def _download_art_to(url: str, dest: "Path") -> Optional["Path"]:
-    """Download a Scryfall art image to dest (PNG). Returns dest or None."""
+    """Download a Scryfall card image to dest. Returns dest or None.
+
+    The User-Agent is REQUIRED, not politeness: Scryfall's image CDN answers a
+    default `python-requests/...` UA with HTTP 400 `generic_user_agent`, and this
+    helper's only signal for that was returning None — so every download here failed
+    silently (verified against cards.scryfall.io: 400 bare, 200 with a UA).
+    """
     if not url:
         return None
     try:
         import requests as _rq
-        r = _rq.get(url, timeout=20)
+        r = _rq.get(url, timeout=20, headers={
+            "User-Agent": "MythForge/1.3 (personal MTG proxy tool)",
+            "Accept": "image/*",
+        })
         if r.status_code == 200:
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(r.content)
             return dest
+        print(f"  [art] download refused HTTP {r.status_code} ({url}): {r.text[:160]}")
     except Exception as e:
-        print(f"  [animate] art download failed ({url}): {e}")
+        print(f"  [art] download failed ({url}): {e}")
     return None
 
 
@@ -3361,9 +3530,15 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         user_name_rt     = req.user_name        or source_data.get("user_name", "")
         llm_model_rt     = req.llm_model        or source_data.get("llm_model")
         face_gender_rt   = source_data.get("face_gender", "either")
-        art_style        = source_data.get("art_style", "mtg_fantasy")
-        model_speed      = source_data.get("model_speed", "quality")
+        # A deck saved straight from an import has art_style="" — fall through to the
+        # default rather than handing an empty key to the preset lookup.
+        art_style        = (req.art_style or source_data.get("art_style") or "mtg_fantasy")
+        model_speed      = (req.model_speed or source_data.get("model_speed") or "quality")
         source_deck_slug = source_data.get("deck_slug", "")
+        # Whether THIS run should produce art. An un-arted import (generate_art=False)
+        # can now opt in from the request; everything else inherits the source deck.
+        generate_art_rt  = (req.generate_art if req.generate_art is not None
+                            else bool(source_data.get("generate_art", False)))
 
         _push(job_id, "progress", json.dumps({
             "step": "deck",
@@ -3371,15 +3546,11 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         }))
 
         # ── Reconstruct raw card dicts for themer ─────────────────────────────
-        # We feed the *original* MTG names back to the themer so it re-invents
-        # names from scratch rather than theming already-themed names.
-        # keywords is reset to [] so the themer re-derives mechanics from scratch;
-        # oracle_text may already be themed from a prior pass, which is harmless.
-        def _stored_to_raw(d: dict) -> dict:
-            return {**_stored_card_to_dict(d), "keywords": []}
-
-        raw_commander = _stored_to_raw(source_data["commander"])
-        raw_deck      = [_stored_to_raw(c) for c in source_data["deck"]]
+        # We feed the *original* MTG names and printed type lines back to the themer
+        # so it re-invents names (and re-derives the tribe reskin) from scratch
+        # rather than theming an already-themed card — see _stored_card_to_raw.
+        raw_commander = _stored_card_to_raw(source_data["commander"])
+        raw_deck      = [_stored_card_to_raw(c) for c in source_data["deck"]]
 
         # ── Free ComfyUI VRAM before Ollama runs ──────────────────────────────
         if _art_lock.locked():
@@ -3400,6 +3571,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         }))
         themed_cmd: Optional[ThemedCard]       = None
         themed_deck: Optional[list[ThemedCard]] = None
+        themer = None   # bound up-front — see the same note in _run_build
         try:
             # Themer init automatically detects model fallback if needed (qwen3:14b → qwen3:32b)
             themer = Themer(model=llm_model_rt) if llm_model_rt else Themer()
@@ -3481,19 +3653,9 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             themed_cmd  = _plain(raw_commander)
             themed_deck = [_plain(c) for c in raw_deck]
 
-        # SAFETY NET: a retheme re-invents names/art — it must NEVER change WHICH cards
-        # are in the deck. If the themer returned a short or partial batch, backfill from
-        # raw_deck (by original name, preserving order) so no card is ever dropped or
-        # substituted. A no-op on the normal path.
-        if len(themed_deck) != len(raw_deck):
-            print(f"  [retheme] themer returned {len(themed_deck)} of {len(raw_deck)} cards "
-                  f"— backfilling the rest with plain names so the decklist is preserved")
-            by_orig = {tc.original_name: tc for tc in themed_deck}
-            themed_deck = [
-                by_orig.get(c.get("name", ""),
-                            ThemedCard(c.get("name", ""), c.get("name", ""), "", "", c))
-                for c in raw_deck
-            ]
+        # SAFETY NET: a retheme re-invents names/art — it must NEVER change WHICH
+        # cards are in the deck. Shared with _run_build.
+        themed_deck = _preserve_decklist(themed_deck, raw_deck)
 
         # ── Apply the player's chosen name to the commander ───────────────────
         # '<YourName>, <generated title fitting the creature-type theme>' — keeps a
@@ -3582,12 +3744,12 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         art_paths: dict[str, Optional[Path]] = {}
         effective_slug = source_deck_slug   # what deck.json records (where art lives)
 
-        if not source_data.get("generate_art", False):
+        if not generate_art_rt:
             art_paths = {}   # source was text-only (Scryfall art) — keep it that way
         else:
             _ensure_comfyui_ready(job_id)
             _health = ImageGen.health_check()
-            _src_ckpt = source_data.get("checkpoint") or None
+            _src_ckpt = req.checkpoint or source_data.get("checkpoint") or None
             if not _health["ok"]:
                 art_paths = _reuse_source_art()
                 _push(job_id, "progress", json.dumps({
@@ -3609,7 +3771,8 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                     try:
                         gen = ImageGen(model_speed=model_speed, art_style=art_style,
                                        checkpoint=_src_ckpt,
-                                       gen_settings=_resolve_gen_settings_reusing(None, source_data),
+                                       gen_settings=_resolve_gen_settings_reusing(
+                                           req.gen_settings, source_data),
                                        frame_style=source_data.get("frame_style", "builtin"))
                     except Exception as _ge:
                         gen = None
@@ -3630,6 +3793,15 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                                 progress_callback=_make_art_progress_cb(job_id, time.time()),
                                 theme_str=art_theme, cancel_event=cancel_event,
                                 card_done_callback=_retheme_card_done_cb,
+                                # Who gets a face is part of the DECK, not the run.
+                                # Omitting these defaulted to (True, None), which
+                                # stamped the commander portrait onto a non-Commander
+                                # import's auto-elected display card and reverted
+                                # explicit per-card assignments to crew round-robin.
+                                is_commander_deck=bool(
+                                    source_data.get("is_commander_deck", True)),
+                                face_assignments=(
+                                    source_data.get("face_assignments") or None),
                             )
                             effective_slug = new_deck_slug
                         except Exception as _ge_err:
@@ -3683,10 +3855,12 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "bracket_label":    source_data.get("bracket_label", ""),
             "art_style":        art_style,
             "model_speed":      model_speed,
+            "checkpoint":       (req.checkpoint or source_data.get("checkpoint") or ""),
             # Preserve the source deck's advanced gen settings (incl. style_variant)
             # so the rethemed deck keeps the same flavor on future regens.
-            "gen_settings":     source_data.get("gen_settings", {}),
-            "generate_art":     source_data.get("generate_art", False),
+            "gen_settings":     (_gen_settings_to_dict(req.gen_settings)
+                                 or source_data.get("gen_settings", {})),
+            "generate_art":     generate_art_rt,
             "deck_slug":        effective_slug,
             "face_key":         source_data.get("face_key", ""),
             "face_gender":      source_data.get("face_gender", "either"),
@@ -3706,6 +3880,10 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             "rethemed_from":    source_job_id,
             "built_at":         time.time(),
         }
+        # Identity travels with the deck across the new-job boundary (see
+        # _carry_provenance) — without it a rethemed import stops reading as
+        # imported, and the next Edit & Rebuild regenerates a different decklist.
+        _carry_provenance(checkpoint, source_data, generated_art=bool(art_found))
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
 
         # ── Re-render card frames ─────────────────────────────────────────────
@@ -4540,8 +4718,16 @@ def import_save(req: ImportSaveRequest):
         "imported_only":     True,
         "import_source":     imp.source,
         "import_name":       imp.name,
+        "import_source_input": req.source.strip(),
         "import_unresolved": imp.unresolved,
         "import_auto_face":  face_auto,
+        # A saved import has no theme yet, so nothing to carry into a later art run —
+        # but the art knobs must exist, because Retheme reads them from the source
+        # deck. generate_art:False here is what used to make "save now, generate art
+        # later" produce no art at all; the retheme request can now override it.
+        "gen_settings":      {},
+        "theme_spec":        {},
+        "creativity":        "balanced",
         "built_at":          time.time(),
     }
     (RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
@@ -6010,12 +6196,47 @@ def _load_job_for_export(job_id: str) -> dict:
     return job
 
 
+def _export_image_resolver(job_id: str):
+    """Resolve the printable image for a card: rendered proxy, else Scryfall art.
+
+    A deck imported and saved WITHOUT AI art has no rendered proxies at all, so the
+    render-only lookup produced an empty ZIP / "No rendered card images found" —
+    the one export a freshly-saved import most obviously wants. Falling back to the
+    card's real printing keeps that deck printable, and mixed decks (some cards
+    regenerated, some not) come out complete. Downloads are cached per job under
+    `original/` so a re-export costs nothing.
+    """
+    render_dir   = RENDER_DIR / job_id
+    original_dir = render_dir / "original"
+
+    def _resolve(card: dict) -> Optional[Path]:
+        key = card.get("render_key") or ""
+        png = render_dir / "cards" / f"{key}.png"
+        if png.exists():
+            return png
+        url = card.get("scryfall_img") or ""
+        if not url or not key:
+            return None
+        # Scryfall serves JPEG for `normal`; keep the real extension so the ZIP's
+        # filenames don't lie about what's inside them.
+        ext = Path(urlparse(url).path).suffix.lower() or ".jpg"
+        if ext not in (".jpg", ".jpeg", ".png", ".webp"):
+            ext = ".jpg"
+        cached = original_dir / f"{key}{ext}"
+        if cached.exists():
+            return cached
+        return _download_art_to(url, cached)
+
+    return _resolve
+
+
 @app.get("/api/deck/{job_id}/export/zip")
 def export_zip(job_id: str):
     job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
-        data = build_zip(job["commander"], job["deck"], render_dir)
+        data = build_zip(job["commander"], job["deck"], render_dir,
+                         image_for=_export_image_resolver(job_id))
     except Exception as e:
         raise HTTPException(500, f"ZIP export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
@@ -6023,6 +6244,47 @@ def export_zip(job_id: str):
         io.BytesIO(data),
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{safe}_deck.zip"'},
+    )
+
+
+@app.get("/api/deck/{job_id}/export/decklist")
+def export_decklist(job_id: str):
+    """The deck's ORIGINAL card names as plain text, in the format this app imports.
+
+    The themed proxies are a rendering of a deck; this is the deck itself. It round-
+    trips (paste it back into Import and you get the same 100 cards), which makes it
+    both the portable copy for Moxfield/Archidekt and the way to VERIFY that a
+    themed build still contains exactly the cards that went in. Quantities are the
+    physical counts, so aggregated duplicate basics expand correctly.
+    """
+    job  = _load_job_for_export(job_id)
+    cmd  = job.get("commander") or {}
+    deck = job.get("deck") or []
+    lines: list[str] = []
+    if cmd.get("original_name"):
+        # Only a real Commander deck gets a Commander header — an auto-elected
+        # display face is just a maindeck card and must re-import as one.
+        if job.get("is_commander_deck", True) and not job.get("import_auto_face"):
+            lines += [f"Commander: {cmd['original_name']}", ""]
+        else:
+            deck = [cmd] + list(deck)
+    for c in deck:
+        name = c.get("original_name") or ""
+        if name:
+            lines.append(f"{int(c.get('quantity', 1) or 1)} {name}")
+    unresolved = job.get("import_unresolved") or []
+    if unresolved:
+        # Recorded as comments (the importer skips '#' lines) so the export is an
+        # honest account of the source deck rather than a silently shorter one.
+        lines += ["", f"# {len(unresolved)} card(s) from the source could not be "
+                      "matched on Scryfall and are NOT in this deck:"]
+        lines += [f"# {n}" for n in unresolved]
+    body = "\n".join(lines) + "\n"
+    safe = "".join(c if c.isalnum() else "_" for c in (cmd.get("original_name") or "deck"))[:30]
+    return StreamingResponse(
+        io.BytesIO(body.encode("utf-8")),
+        media_type="text/plain; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{safe}_decklist.txt"'},
     )
 
 
@@ -6050,7 +6312,8 @@ def export_pdf(job_id: str):
     job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
-        data = build_pdf(job["commander"], job["deck"], render_dir)
+        data = build_pdf(job["commander"], job["deck"], render_dir,
+                         image_for=_export_image_resolver(job_id))
     except Exception as e:
         raise HTTPException(500, f"PDF export failed: {e}")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]

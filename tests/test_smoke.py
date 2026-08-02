@@ -770,6 +770,136 @@ def test_import_preserves_decklist():
     check("imp.hdr.cards", [n for n, _ in raw2.card_entries], ["Sol Ring"])
 
 
+def test_import_line_formats():
+    """Every mainstream decklist export must parse into the SAME cards.
+
+    Regression: the name group was lazy and ran to end-of-line, so anything the
+    exporter appended after the name became part of it. "1x Sol Ring (c21) 263
+    [Ramp{noPrice}]" resolved as a card by that literal name — i.e. it silently
+    left the user's deck and reappeared only as an `unresolved` entry. Archidekt's
+    own text export takes exactly that path, and its "[Commander{top}]" tag went
+    with it, so the commander was dropped and a maindeck card got auto-elected into
+    the face slot in its place."""
+    from deck_import import _parse_text, _strip_line_metadata, _QTY_RE
+
+    def name_of(line):
+        m = _QTY_RE.match(line)
+        return _strip_line_metadata(m.group("rest"))[0] if m else None
+
+    check("fmt.archidekt", name_of("1x Sol Ring (c21) 263 [Ramp{noPrice}]"), "Sol Ring")
+    check("fmt.moxfield",  name_of("1 Sol Ring (C21) 263"), "Sol Ring")
+    check("fmt.mtgo",      name_of("4 Lightning Bolt [M11] 149"), "Lightning Bolt")
+    check("fmt.foil",      name_of("1 Chandra, Torch of Defiance (KLD) 110 *F*"), "Chandra, Torch of Defiance")
+    check("fmt.hash",      name_of("1 Sol Ring #263"), "Sol Ring")
+    # Names that must survive untouched: an embedded number, and a split card whose
+    # "//" separator must never be read as a comment.
+    check("fmt.numeric",   name_of("1 Borrowing 100,000 Arrows"), "Borrowing 100,000 Arrows")
+    check("fmt.split",     name_of("1 Fire // Ice"), "Fire // Ice")
+    check("fmt.dfc",       name_of("1 Bonecrusher Giant // Stomp (ELD) 115"), "Bonecrusher Giant // Stomp")
+
+    # Archidekt's text export has no section headers at all — the category tag is
+    # the only signal for the commander and the sideboard.
+    arch = _parse_text(
+        "1x Krenko, Mob Boss (jmp) 341 [Commander{top}]\n"
+        "1x Sol Ring (c21) 263 [Ramp{noPrice}]\n"
+        "2x Mountain (unf) 239 [Land]\n"
+        "1x Counterspell (mh2) 267 [Sideboard]\n")
+    check("fmt.arch.cmdr",  arch.commander_names, ["Krenko, Mob Boss"])
+    check("fmt.arch.cards", [n for n, _ in arch.card_entries], ["Sol Ring", "Mountain"])
+    check("fmt.arch.qty",   dict(arch.card_entries)["Mountain"], 2)
+    # MWS/Apprentice "SB:" lines are sideboard, not maindeck.
+    mws = _parse_text("SB: 1 Counterspell\n4 Lightning Bolt\n")
+    check("fmt.mws", [n for n, _ in mws.card_entries], ["Lightning Bolt"])
+
+
+def test_deck_identity_is_preserved():
+    """A deck's card list and provenance must survive every derived-deck boundary.
+
+    Rebuild/retheme write a NEW deck.json under a NEW job id. Anything not carried
+    across is lost — and losing `imported` re-arms the worst bug in this area:
+    Edit & Rebuild reads that flag to decide whether to reuse the stored card list
+    or generate a fresh one, so a rethemed import that forgot it would silently
+    regenerate into a different deck."""
+    try:
+        import server
+    except Exception as e:                      # fastapi/pydantic missing
+        check("identity.import", f"skipped: {e}", f"skipped: {e}")
+        return
+
+    # ── _preserve_decklist: a short themer batch never shrinks the deck ──
+    raw = [{"name": "Sol Ring"}, {"name": "Lightning Bolt"}, {"name": "Mountain"}]
+    short = [server.ThemedCard("Sol Ring", "Ring of Suns", "art", "", raw[0])]
+    out = server._preserve_decklist(short, raw)
+    check("keep.len",   len(out), 3)
+    check("keep.order", [tc.original_name for tc in out],
+          ["Sol Ring", "Lightning Bolt", "Mountain"])
+    check("keep.themed", out[0].themed_name, "Ring of Suns")   # real theming kept
+    check("keep.plain",  out[2].themed_name, "Mountain")       # gap filled, not dropped
+    same = server._preserve_decklist(
+        [server.ThemedCard(c["name"], "X", "", "", c) for c in raw], raw)
+    check("keep.noop", [tc.themed_name for tc in same], ["X", "X", "X"])
+
+    # ── _carry_provenance: identity travels, imported_only tracks art ──
+    src = {"imported": True, "imported_only": True, "import_source": "archidekt",
+           "import_name": "My Deck", "import_unresolved": ["Bogus Card"],
+           "import_auto_face": True, "is_commander_deck": False,
+           "face_assignments": {"Sol Ring": 0}, "theme": "not provenance"}
+    themed = server._carry_provenance({}, src, generated_art=True)
+    check_true("prov.imported",     themed["imported"] is True)
+    check("prov.source",            themed["import_source"], "archidekt")
+    check("prov.unresolved",        themed["import_unresolved"], ["Bogus Card"])
+    check_true("prov.not_cmd_deck", themed["is_commander_deck"] is False)
+    check("prov.assignments",       themed["face_assignments"], {"Sol Ring": 0})
+    check_true("prov.no_theme",     "theme" not in themed)
+    # art was generated → it is no longer an "import with no art yet"
+    check_true("prov.only_cleared", "imported_only" not in themed)
+    text_only = server._carry_provenance({}, src, generated_art=False)
+    check_true("prov.only_kept",    text_only["imported_only"] is True)
+
+    # ── _stored_card_to_raw: re-theming starts from the REAL printed type ──
+    stored = {"original_name": "Knight of the White Orchid",
+              "themed_name": "Holo-Priest of Dawn",
+              "type_line": "Creature — Holo-Priest",         # last theme's reskin
+              "original_type_line": "Creature — Human Knight",
+              "scryfall_img": "", "quantity": 1}
+    check("raw.type", server._stored_card_to_raw(stored)["type_line"],
+          "Creature — Human Knight")
+    check("raw.keywords", server._stored_card_to_raw(stored)["keywords"], [])
+    # the rebuild path must still see the themed line (it keeps names as-is)
+    check("raw.rebuild_untouched", server._stored_card_to_dict(stored)["type_line"],
+          "Creature — Holo-Priest")
+
+
+def test_export_covers_unrendered_cards():
+    """An imported deck with no AI art must still export.
+
+    build_zip/build_pdf looked only in renders/<job>/cards/. A deck saved straight
+    from an import has none of those, so the ZIP came out empty and the PDF raised
+    "No rendered card images found" — on the one deck whose export is just its real
+    cards. The server now passes a resolver that falls back to Scryfall art."""
+    import io
+    import zipfile
+    from pathlib import Path
+    import exporter
+
+    cmd  = {"render_key": "Krenko_000", "original_name": "Krenko", "quantity": 1}
+    deck = [{"render_key": "Sol_Ring_001", "quantity": 1},
+            {"render_key": "Mountain_002", "quantity": 3}]
+
+    # Default resolver + nothing on disk = the old, empty result.
+    empty = exporter.build_zip(cmd, deck, Path("/nonexistent"))
+    check("exp.default_empty", len(zipfile.ZipFile(io.BytesIO(empty)).namelist()), 0)
+
+    # A resolver standing in for the Scryfall fallback fills every slot, and a
+    # quantity-3 entry still yields three printable copies.
+    here = Path(__file__).resolve()
+    data = exporter.build_zip(cmd, deck, Path("/nonexistent"), image_for=lambda c: here)
+    names = zipfile.ZipFile(io.BytesIO(data)).namelist()
+    check("exp.slots", len(names), 5)          # commander + 1 + 3 copies
+    check_true("exp.commander", any(n.startswith("00_commander_") for n in names))
+    check_true("exp.copies", sum(1 for n in names if "Mountain_002" in n) == 3)
+
+
 def test_fuzzy_substitution_guard():
     """A typo must NOT silently become a different card in an imported decklist."""
     from scryfall_client import _fuzzy_is_plausible
@@ -1066,6 +1196,11 @@ def main():
                test_collection_owned_key, test_collection_parse,
                test_collection_owned_count, test_prefer_owned,
                test_collection_write_is_atomic, test_suite_path_contract, test_collection_preserves_scanner_columns,
+               # Deck import / identity. These existed but were never listed here, so
+               # `python tests/test_smoke.py` skipped them entirely.
+               test_import_preserves_decklist, test_import_line_formats,
+               test_fuzzy_substitution_guard, test_deck_identity_is_preserved,
+               test_export_covers_unrendered_cards,
                test_app_paths_absolute):
         try:
             fn()

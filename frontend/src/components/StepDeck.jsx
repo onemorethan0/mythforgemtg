@@ -30,13 +30,11 @@ function triggerDownload(url) {
   const a = document.createElement('a'); a.href = url; a.click()
 }
 
-function exportMoxfield(deck) {
-  const lines = deck.deck.map(c => `1 ${c.original_name}`)
-  lines.unshift(`1 ${deck.commander.original_name}`)
-  const blob = new Blob([lines.join('\n')], { type: 'text/plain' })
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob)
-  a.download = `${deck.commander.original_name.replace(/[^a-z0-9]/gi, '_')}_deck.txt`; a.click()
-}
+// The original-names decklist is produced SERVER-side (/export/decklist). The old
+// client version wrote a flat "1 <name>" per entry, which silently dropped every
+// duplicate copy — an imported deck whose 30-odd basics aggregate into a handful of
+// quantity entries came out as a ~70-card list — and emitted the commander as a
+// plain maindeck line, so the file did not re-import as the same deck.
 
 function exportThemed(deck) {
   const lines = [`Commander: ${deck.commander.themed_name} (${deck.commander.original_name})`, '']
@@ -52,14 +50,22 @@ function exportThemed(deck) {
   a.download = `${deck.commander.themed_name.replace(/[^a-z0-9]/gi, '_')}_themed.txt`; a.click()
 }
 
-async function triggerRetheme(jobId) {
+// `body` carries optional art overrides (generate_art / art_style / model_speed /
+// checkpoint / art_theme). A deck saved straight from an import has none of those
+// stored, so this is how its FIRST art run gets requested — see ArtSetupModal.
+async function triggerRetheme(jobId, body = {}) {
   const res = await fetch(`/api/deck/${jobId}/retheme`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({}),
+    body: JSON.stringify(body),
   })
   if (!res.ok) throw new Error(`Retheme failed: ${res.status}`)
   return (await res.json()).job_id
+}
+
+// A deck imported and saved to the library carries no theme and no art yet.
+function deckHasNoArt(deck) {
+  return !!deck && !deck.generate_art
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1042,6 +1048,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [gen3dStlUrl, setGen3dStlUrl]   = useState(null)
   const [gen3dHealth, setGen3dHealth]   = useState(null)     // null | {ok, message, hint, missing}
   const [rebuildCheckpoint, setRebuildCheckpoint] = useState(deck.checkpoint || null)
+  // First-art-run setup for a deck that has none yet (a saved import).
+  const [showArtSetup, setShowArtSetup] = useState(false)
+  const [artSetupTheme, setArtSetupTheme] = useState(deck.theme || '')
 
   const evtRef = useRef(null)
 
@@ -1250,6 +1259,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
   async function handleRethemeAll() {
     if (rethemeing) return
+    // A deck with no art yet (saved straight from an import) has no theme and no
+    // art style stored, so firing a bare retheme would rename the cards and stop.
+    // Ask for those once, up front, instead.
+    if (deckHasNoArt(deck)) { setShowArtSetup(true); return }
     setRethemeing(true)
     try {
       const newJobId = await triggerRetheme(jobId)
@@ -1257,6 +1270,28 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       else if (onRebuild) onRebuild(newJobId)  // fallback: treat like rebuild nav
     } catch (err) {
       alert(`Could not start retheme: ${err.message}`)
+      setRethemeing(false)
+    }
+  }
+
+  // First art run for an un-arted deck: theme + style come from the modal, and
+  // generate_art:true is what actually unlocks the art phase in _run_retheme.
+  async function handleConfirmArtSetup() {
+    if (rethemeing) return
+    setRethemeing(true)
+    setShowArtSetup(false)
+    try {
+      const newJobId = await triggerRetheme(jobId, {
+        art_theme:    artSetupTheme.trim() || null,
+        generate_art: true,
+        art_style:    rebuildArtStyle,
+        model_speed:  rebuildModelSpeed,
+        checkpoint:   rebuildCheckpoint || null,
+      })
+      if (onRetheme) onRetheme(newJobId)
+      else if (onRebuild) onRebuild(newJobId)
+    } catch (err) {
+      alert(`Could not start art generation: ${err.message}`)
       setRethemeing(false)
     }
   }
@@ -1673,6 +1708,46 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         )}
       </div>
 
+      {/* Imported-deck provenance. Where the list came from, whether the "commander"
+          is a real one or an auto-elected display face, and — the part that used to
+          be invisible after the build — which source cards never resolved and are
+          therefore NOT in this deck. */}
+      {!single && deck.imported && (
+        <div style={{
+          marginBottom: 20, padding: '10px 14px', borderRadius: 10,
+          background: '#0c1a2e', border: '1px solid #1e40af',
+          fontSize: 12, color: '#93c5fd', display: 'flex', flexWrap: 'wrap',
+          gap: 10, alignItems: 'center',
+        }}>
+          <span style={{ fontWeight: 700 }}>📥 Imported deck</span>
+          {deck.import_name && <span style={{ color: '#bfdbfe' }}>“{deck.import_name}”</span>}
+          {deck.import_source && (
+            <span style={{ color: '#60a5fa', textTransform: 'capitalize' }}>via {deck.import_source}</span>
+          )}
+          <span style={{ color: '#64748b' }}>
+            {(deck.deck || []).reduce((n, c) => n + (c.quantity || 1), 0) + 1} cards
+          </span>
+          {deckHasNoArt(deck) && (
+            <span style={{ color: '#c4b5fd' }}>· original card art (no AI art yet)</span>
+          )}
+          {deck.import_auto_face && (
+            <span style={{ color: '#fcd34d' }}>
+              · no commander zone — “{deck.commander?.original_name}” is the display face
+            </span>
+          )}
+          {(deck.import_unresolved || []).length > 0 && (
+            <span style={{
+              color: '#fca5a5', width: '100%', marginTop: 2, lineHeight: 1.5,
+            }} title={(deck.import_unresolved || []).join('\n')}>
+              ⚠ {deck.import_unresolved.length} card(s) from the source could not be matched
+              on Scryfall and are <strong>not</strong> in this deck:{' '}
+              {deck.import_unresolved.slice(0, 10).join(', ')}
+              {deck.import_unresolved.length > 10 ? ` … +${deck.import_unresolved.length - 10} more` : ''}
+            </span>
+          )}
+        </div>
+      )}
+
       {/* Simulation-grounded strength + upgrade advisor (Myth Suite C3/C4) — full decks only */}
       {!single && (
         <div style={{ marginBottom: 20 }}>
@@ -1760,7 +1835,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} title="ZIP of the animated cards"
                   style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>↓ Animations ({videoKeys.size})</button>
               )}
-              <button onClick={() => exportMoxfield(deck)} title="Decklist of the ORIGINAL card names — paste into Moxfield/Archidekt"
+              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/decklist`)}
+                title="Decklist of the ORIGINAL card names with real quantities — paste into Moxfield/Archidekt, or back into Import to verify the deck is unchanged"
                 style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Decklist</button>
               <button onClick={() => exportThemed(deck)} title="Decklist showing the themed names next to the real ones"
                 style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed list</button>
@@ -1781,10 +1857,17 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               <button
                 onClick={handleRethemeAll}
                 disabled={rethemeing || rebuilding}
-                title="Re-run the FULL generation on the same cards: new themed names, flavor text AND new art (same theme + settings). Saves as a new deck; this one is kept."
-                style={{ ...btnBase, background: rethemeing ? '#1e1b4b' : '#1e3a5f', color: rethemeing ? '#818cf8' : '#93c5fd', border: `1px solid ${rethemeing ? '#4f46e5' : '#1d4ed8'}`, fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
+                title={deckHasNoArt(deck)
+                  ? 'This deck has no AI art yet. Pick a theme and art style, and generate custom art for every card on this exact list. Saves as a new deck; this one is kept.'
+                  : 'Re-run the FULL generation on the same cards: new themed names, flavor text AND new art (same theme + settings). Saves as a new deck; this one is kept.'}
+                style={{ ...btnBase,
+                  background: rethemeing ? '#1e1b4b' : (deckHasNoArt(deck) ? '#3b0764' : '#1e3a5f'),
+                  color: rethemeing ? '#818cf8' : (deckHasNoArt(deck) ? '#c4b5fd' : '#93c5fd'),
+                  border: `1px solid ${rethemeing ? '#4f46e5' : (deckHasNoArt(deck) ? '#7c3aed' : '#1d4ed8')}`,
+                  fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
               >
-                {rethemeing ? '⏳ Starting…' : '✏️ New names + art'}
+                {rethemeing ? '⏳ Starting…'
+                  : deckHasNoArt(deck) ? '🎨 Generate AI art…' : '✏️ New names + art'}
               </button>
               {onEdit && (
                 <button
@@ -2020,6 +2103,80 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       )}
 
       {/* ── Rebuild modal ── */}
+      {/* First art run for a deck that has none — a decklist imported and saved to
+          the library. Without this the only art control lived in the build wizard,
+          which a saved import never passes through. */}
+      {showArtSetup && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 200, padding: 16,
+        }}
+          onClick={e => { if (e.target === e.currentTarget) setShowArtSetup(false) }}
+        >
+          <div style={{
+            background: '#1c1917', border: '1px solid #44403c', borderRadius: 16,
+            width: '100%', maxWidth: 440, boxShadow: '0 24px 64px rgba(0,0,0,0.6)',
+            padding: 24, display: 'flex', flexDirection: 'column', gap: 16,
+          }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: 16, color: '#c4b5fd', fontWeight: 700 }}>🎨 Generate AI art</h3>
+              <div style={{ fontSize: 12, color: '#78716c', marginTop: 4, lineHeight: 1.5 }}>
+                Themed names, flavor text and custom art for <strong>every card on this
+                exact list</strong> — no cards are added, removed or substituted. Saves as
+                a new deck; this one is kept as the original.
+              </div>
+            </div>
+
+            <div>
+              <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Theme
+              </label>
+              <textarea
+                value={artSetupTheme}
+                onChange={e => setArtSetupTheme(e.target.value)}
+                rows={3}
+                placeholder="e.g. sunken art-deco city ruled by clockwork whales"
+                style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 12, fontFamily: 'inherit', boxSizing: 'border-box', resize: 'vertical' }}
+              />
+              <div style={{ fontSize: 11, color: '#57534e', marginTop: 4 }}>
+                Leave blank to theme around the deck's face card.
+              </div>
+            </div>
+
+            <div>
+              <label style={{ fontSize: 11, color: '#78716c', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Art Style
+              </label>
+              <select
+                value={rebuildArtStyle}
+                onChange={e => setRebuildArtStyle(e.target.value)}
+                style={{ width: '100%', background: '#0c0a09', color: '#f5f5f4', border: '1px solid #44403c', borderRadius: 6, padding: '8px 10px', fontSize: 11, fontFamily: 'inherit', boxSizing: 'border-box' }}
+              >
+                {rebuildArtStyles.length > 0 ? (
+                  rebuildArtStyles.map(s => (
+                    <option key={s.key} value={s.key} disabled={!s.ready && !s.partial}>
+                      {s.icon} {s.label}{s.ready ? '' : s.partial ? ' (partial)' : ' (missing)'}
+                    </option>
+                  ))
+                ) : (
+                  <option value="mtg_fantasy">MTG Fantasy</option>
+                )}
+              </select>
+            </div>
+
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+              <button onClick={() => setShowArtSetup(false)}
+                style={{ ...btnBase, background: 'none', color: '#a8a29e', border: '1px solid #44403c' }}>Cancel</button>
+              <button onClick={handleConfirmArtSetup}
+                style={{ ...btnBase, background: '#3b0764', color: '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 700 }}>
+                Generate art
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showRebuildModal && (
         <div style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
