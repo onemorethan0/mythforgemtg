@@ -255,10 +255,13 @@ _TRAIL_FLAG  = re.compile(r"\s*\*(?P<tag>[^*]*)\*\s*$")
 _TRAIL_BRACK = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s*$")
 _TRAIL_SET   = re.compile(r"\s*\((?P<tag>[A-Za-z0-9]{2,6})\)(?:\s+[A-Za-z0-9★*\-]{1,8})?\s*$")
 _TRAIL_HASH  = re.compile(r"\s+#\S*\s*$")
-# Bare trailing collector number. Digits-only (plus an optional variant letter or
-# ★) and only applied once the line has shown a printing token, so a card whose
-# name merely ends in a word is never truncated.
-_TRAIL_CN    = re.compile(r"\s+\d{1,5}[a-z★]?\s*$")
+# "[M11] 149" — a bracketed set followed by its collector number, matched as ONE
+# unit. It has to be one pattern: a general "strip a bare trailing number" rule
+# looks identical to the end of a card that is genuinely NAMED with a number, and
+# stripping it truncated five real cards in the corpus — Pip-Boy 3000, Black Waltz
+# No. 3, Avalanche of Sector 7, Behemoth of Vault 0, Michelangelo, Weirdness to 11.
+# The number is only metadata when a printing token is sitting right in front of it.
+_TRAIL_BRACK_CN = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s+\d{1,5}[a-z★]?\s*$")
 # "SB: 1 Sol Ring" — Apprentice/MWS sideboard prefix.
 _SB_PREFIX   = re.compile(r"^\s*SB:\s*", re.I)
 
@@ -271,35 +274,26 @@ def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
     commander or a sideboard entry. Set codes and collector numbers are dropped.
     """
     tags: list[str] = []
-    saw_printing = False
     for _ in range(12):          # bounded: a line has a handful of trailing groups
         m = _TRAIL_FLAG.search(rest)
-        if m:
+        if m and rest[:m.start()].strip():
             tags.append((m.group("tag") or "").strip().lower())
             rest = rest[:m.start()].rstrip()
             continue
-        m = _TRAIL_BRACK.search(rest)
-        if m:
+        # "[M11] 149" before plain "[M11]", so the number goes with its bracket.
+        m = _TRAIL_BRACK_CN.search(rest) or _TRAIL_BRACK.search(rest)
+        if m and rest[:m.start()].strip():
             tags.append((m.group("tag") or "").strip().lower())
             rest = rest[:m.start()].rstrip()
-            saw_printing = True
             continue
         m = _TRAIL_SET.search(rest)
-        if m:
+        if m and rest[:m.start()].strip():
             rest = rest[:m.start()].rstrip()
-            saw_printing = True
             continue
         m = _TRAIL_HASH.search(rest)
-        if m:
+        if m and rest[:m.start()].strip():
             rest = rest[:m.start()].rstrip()
             continue
-        # Only strip a bare number once the line has shown (or still shows) a
-        # printing token — otherwise a legitimate name could lose its last word.
-        if saw_printing or "[" in rest or "(" in rest:
-            m = _TRAIL_CN.search(rest)
-            if m and rest[:m.start()].strip():
-                rest = rest[:m.start()].rstrip()
-                continue
         break
     return rest.strip(), [t for t in tags if t]
 

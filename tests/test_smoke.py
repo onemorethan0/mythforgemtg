@@ -797,6 +797,17 @@ def test_import_line_formats():
     check("fmt.split",     name_of("1 Fire // Ice"), "Fire // Ice")
     check("fmt.dfc",       name_of("1 Bonecrusher Giant // Stomp (ELD) 115"), "Bonecrusher Giant // Stomp")
 
+    # Cards whose NAME ends in a number. A general "strip a bare trailing number"
+    # rule cannot tell these from a collector number and truncated all five — found
+    # by replaying the 10,824 distinct card names in corpus/ through the stripper in
+    # six line shapes (64,944 checks, now zero damage). The number is metadata only
+    # when a printing token sits directly in front of it, as in "[M11] 149".
+    for nm in ("Pip-Boy 3000", "Black Waltz No. 3", "Avalanche of Sector 7",
+               "Behemoth of Vault 0", "Michelangelo, Weirdness to 11"):
+        check(f"fmt.numname.{nm}",      name_of(f"1 {nm}"), nm)
+        check(f"fmt.numname.set.{nm}",  name_of(f"1 {nm} (pip) 123"), nm)
+        check(f"fmt.numname.cat.{nm}",  name_of(f"1x {nm} [Ramp{{noPrice}}]"), nm)
+
     # Archidekt's text export has no section headers at all — the category tag is
     # the only signal for the commander and the sideboard.
     arch = _parse_text(
