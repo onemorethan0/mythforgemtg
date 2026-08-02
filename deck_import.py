@@ -206,12 +206,74 @@ def _fetch_manabox(url: str) -> RawDeck:
 # ── Pasted decklist text → RawDeck ──────────────────────────────────────────────
 
 # "1 Sol Ring", "1x Sol Ring", "1 Sol Ring (C21) 263", "1 Sol Ring *CMDR*"
-_LINE_RE = re.compile(
-    r"""^\s*(?P<qty>\d+)\s*[xX]?\s+          # quantity
-        (?P<name>.+?)                         # card name (lazy)
-        (?:\s*\((?P<set>[A-Za-z0-9]{2,6})\)\s*[A-Za-z0-9\-]*)?   # optional (SET) num
-        (?P<flags>(?:\s*\*[^*]+\*)*)\s*$       # optional *CMDR* / *F* flags
-    """, re.VERBOSE)
+_QTY_RE = re.compile(r"^\s*(?P<qty>\d+)\s*[xX]?\s+(?P<rest>\S.*)$")
+
+# Trailing metadata a decklist line can carry AFTER the card name. Every real
+# export appends some combination of these, and a single mega-regex could not
+# cover them all — so they're peeled off one at a time, right to left, until the
+# remainder is just the name:
+#   "(C21) 263"        set code + collector number  (Moxfield / MTGA / Archidekt)
+#   "[Ramp{noPrice}]"  Archidekt category tag       ("[Commander{top}]" names the commander!)
+#   "[M11] 149"        bracketed set + number       (MTGO / Deckbox style)
+#   "*CMDR* *F*"       Moxfield flags
+#   "#263"             bare collector-number comment
+# Before this, the lazy name group swallowed the whole tail, so
+# "1x Sol Ring (c21) 263 [Ramp{noPrice}]" resolved as a card literally named
+# "Sol Ring (c21) 263 [Ramp{noPrice}]" — i.e. it silently vanished from the
+# user's deck into `unresolved`. Archidekt's own text export takes that path, and
+# its "[Commander{top}]" tag was lost with it, so the commander was dropped too
+# and _apply_auto_face then elected some other card into the face slot.
+_TRAIL_FLAG  = re.compile(r"\s*\*(?P<tag>[^*]*)\*\s*$")
+_TRAIL_BRACK = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s*$")
+_TRAIL_SET   = re.compile(r"\s*\((?P<tag>[A-Za-z0-9]{2,6})\)(?:\s+[A-Za-z0-9★*\-]{1,8})?\s*$")
+_TRAIL_HASH  = re.compile(r"\s+#\S*\s*$")
+# Bare trailing collector number. Digits-only (plus an optional variant letter or
+# ★) and only applied once the line has shown a printing token, so a card whose
+# name merely ends in a word is never truncated.
+_TRAIL_CN    = re.compile(r"\s+\d{1,5}[a-z★]?\s*$")
+# "SB: 1 Sol Ring" — Apprentice/MWS sideboard prefix.
+_SB_PREFIX   = re.compile(r"^\s*SB:\s*", re.I)
+
+
+def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
+    """Peel trailing printing/category metadata off a decklist line.
+
+    Returns ``(card_name, tags)`` where tags are the lower-cased contents of any
+    ``*flag*`` / ``[category]`` groups found — the caller reads those to spot a
+    commander or a sideboard entry. Set codes and collector numbers are dropped.
+    """
+    tags: list[str] = []
+    saw_printing = False
+    for _ in range(12):          # bounded: a line has a handful of trailing groups
+        m = _TRAIL_FLAG.search(rest)
+        if m:
+            tags.append((m.group("tag") or "").strip().lower())
+            rest = rest[:m.start()].rstrip()
+            continue
+        m = _TRAIL_BRACK.search(rest)
+        if m:
+            tags.append((m.group("tag") or "").strip().lower())
+            rest = rest[:m.start()].rstrip()
+            saw_printing = True
+            continue
+        m = _TRAIL_SET.search(rest)
+        if m:
+            rest = rest[:m.start()].rstrip()
+            saw_printing = True
+            continue
+        m = _TRAIL_HASH.search(rest)
+        if m:
+            rest = rest[:m.start()].rstrip()
+            continue
+        # Only strip a bare number once the line has shown (or still shows) a
+        # printing token — otherwise a legitimate name could lose its last word.
+        if saw_printing or "[" in rest or "(" in rest:
+            m = _TRAIL_CN.search(rest)
+            if m and rest[:m.start()].strip():
+                rest = rest[:m.start()].rstrip()
+                continue
+        break
+    return rest.strip(), [t for t in tags if t]
 
 _COMMANDER_HEADER = re.compile(r"^\s*(commander|commanders)\s*:?\s*$", re.I)
 # INLINE form: "Commander: Krenko, Mob Boss" — the single most common way a paper
@@ -230,38 +292,50 @@ def _parse_text(text: str) -> RawDeck:
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
     section = "deck"            # current section
-    saw_commander_header = False
 
     for raw_line in (text or "").splitlines():
         line = raw_line.strip()
         if not line or line.startswith(("#", "//")):
             continue
         if _COMMANDER_HEADER.match(line):
-            section = "commander"; saw_commander_header = True
+            section = "commander"
             continue
         m_inline = _COMMANDER_INLINE.match(line)
         if m_inline:
             # "Commander: <name>" names the commander on the same line — record it and
             # stay in the deck section (the following lines are the maindeck).
-            commander_names.append(m_inline.group("name").strip())
-            saw_commander_header = True
+            name, _ = _strip_line_metadata(m_inline.group("name").strip())
+            if name:
+                commander_names.append(name)
             continue
         m_sec = _SECTION_HEADER.match(line)
         if m_sec:
             section = m_sec.group(1).lower()
             continue
-        m = _LINE_RE.match(line)
+        sb_line = bool(_SB_PREFIX.match(line))
+        if sb_line:
+            line = _SB_PREFIX.sub("", line, count=1)
+        m = _QTY_RE.match(line)
         if not m:
             # A bare "Commander Name" line with no quantity right under the header
             if section == "commander":
-                commander_names.append(line)
+                name, _ = _strip_line_metadata(line)
+                if name:
+                    commander_names.append(name)
             continue
-        qty = int(m.group("qty"))
-        name = m.group("name").strip()
-        flags = (m.group("flags") or "").lower()
-        if section in _IGNORE_SECTIONS:
+        qty  = int(m.group("qty"))
+        name, tags = _strip_line_metadata(m.group("rest"))
+        if not name:
             continue
-        if section == "commander" or "*cmdr*" in flags or "*commander*" in flags:
+        if sb_line or section in _IGNORE_SECTIONS:
+            continue
+        # A per-line tag overrides the current section: Moxfield writes "*CMDR*",
+        # Archidekt's text export writes "[Commander{top}]" / "[Sideboard]" with no
+        # section headers at all.
+        if any(t.startswith(("sideboard", "maybeboard", "token")) for t in tags):
+            continue
+        if (section == "commander"
+                or any(t.startswith(("cmdr", "commander")) for t in tags)):
             commander_names.append(name)
         else:
             card_entries.append((name, qty))
