@@ -872,6 +872,26 @@ def test_import_zone_headers():
           _parse_text("1 A\n1 B\n1 C\n\n1 Sol Ring\n").leading_names, [])
 
 
+def test_world_placeholder_unwrap():
+    """The world description must not keep the template's square brackets.
+
+    _expand_theme's prompt says "fill in the brackets, keep the labels" and shows
+    "DESCRIPTION: [...]", so the model routinely returns the brackets. The parser
+    stripped quotes but not brackets, so a literal "[A world of molten rivers…]"
+    became the deck's world text — which then fed the style guide and every per-card
+    art prompt, brackets and all. 4 of the 23 stored bibles carry the artefact.
+    Conservative: only a pair wrapping the WHOLE value is removed, so an aside in
+    the middle of real prose survives."""
+    from themer import _unwrap_placeholder as u
+    check("wrap.simple", u("[A world of molten rivers]"), "A world of molten rivers")
+    check("wrap.quoted", u('"[a magma forge at noon]"'), "a magma forge at noon")
+    check("wrap.plain",  u("A plain description"), "A plain description")
+    # Must NOT touch brackets that are part of the prose.
+    check("wrap.aside",  u("text with [an aside] inside it"), "text with [an aside] inside it")
+    check("wrap.nested", u("[nested [inner] brackets]"), "[nested [inner] brackets]")
+    check("wrap.empty",  u(""), "")
+
+
 def test_archidekt_respects_included_in_deck():
     """Archidekt says which categories are in the deck — believe it, don't guess.
 
@@ -1341,7 +1361,7 @@ def main():
                # `python tests/test_smoke.py` skipped them entirely.
                test_import_preserves_decklist, test_import_line_formats,
                test_import_zone_headers, test_leading_commander_promotion,
-               test_archidekt_respects_included_in_deck,
+               test_archidekt_respects_included_in_deck, test_world_placeholder_unwrap,
                test_fuzzy_substitution_guard, test_deck_identity_is_preserved,
                test_export_covers_unrendered_cards,
                test_app_paths_absolute):

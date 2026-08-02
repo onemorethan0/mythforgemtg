@@ -3,6 +3,7 @@ import AdvisePanel from './AdvisePanel'
 import DuelPanel from './DuelPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
+import SetBible from './SetBible'
 import { searchCards } from '../utils/searchCards'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1720,6 +1721,22 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           </div>
         )}
       </div>
+
+      {/* Where this deck came from. Retheme/rebuild/duplicate each leave the source
+          intact and write a NEW deck — this is the only place that says so. */}
+      {(deck.rethemed_from || deck.rebuilt_from || deck.copied_from) && (
+        <div style={{ marginBottom: 12, fontSize: 12, color: '#78716c', display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+          <span>
+            {deck.rethemed_from ? '✏️ Re-themed from' : deck.rebuilt_from ? '🎲 Re-rolled art from' : '📋 Copied from'} an earlier deck
+          </span>
+          <span style={{ color: '#44403c' }}>— that one is untouched and still in History.</span>
+        </div>
+      )}
+
+      {/* The world these cards are printed in. Generated and persisted by every
+          themed build (build/rebuild/retheme and single-card all write world_bible),
+          but until now only ever rendered in the Theme step's pre-build preview. */}
+      <SetBible bible={deck.world_bible} theme={deck.theme} />
 
       {/* Imported-deck provenance. Where the list came from, whether the "commander"
           is a real one or an auto-elected display face, and — the part that used to

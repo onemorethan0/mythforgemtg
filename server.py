@@ -4826,6 +4826,17 @@ async def list_decks():
                 "partial":          status in ("rendering", "cancelled"),
                 "is_copy":          bool(data.get("is_copy")),
                 "copied_from":      data.get("copied_from", ""),
+                # Lineage. Retheme/rebuild/duplicate each write a NEW deck under a NEW
+                # job id and record where they came from — but only `copied_from` was
+                # ever exposed, so History showed a chain of derived decks as a pile of
+                # near-identical entries with no relationship between them.
+                "derived_from":     (data.get("rethemed_from") or data.get("rebuilt_from")
+                                     or data.get("copied_from", "")),
+                "derived_kind":     ("retheme" if data.get("rethemed_from")
+                                     else "rebuild" if data.get("rebuilt_from")
+                                     else "copy" if data.get("copied_from") else ""),
+                "imported":         bool(data.get("imported")),
+                "has_bible":        bool((data.get("world_bible") or {}).get("world")),
                 "measured_bracket": lm_pp.get("bracket_estimate"),
                 "measured_label":   lm_pp.get("bracket_label", ""),
             })

@@ -94,7 +94,8 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
 }
 
 // ── Single deck card ──────────────────────────────────────────────────────────
-function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode, selected, onToggleSelect }) {
+function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode, selected, onToggleSelect,
+                    parent = null, nested = false, versionCount = 0, expanded = false, onToggleVersions }) {
   const [hov, setHov]         = useState(false)
   const [loading, setLoading] = useState(false)
   const [duping, setDuping]   = useState(false)
@@ -168,6 +169,8 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
 
   const cardStyle = {
     ...s.card,
+    // A version reads as belonging to the deck above it: inset, dimmer, dashed.
+    ...(nested ? { borderStyle: 'dashed', borderColor: '#3f3f46', background: '#161413' } : {}),
     ...(selected ? s.cardSel : hov && !selectMode ? s.cardHov : {}),
     ...(isBuilding ? { borderColor: '#3b82f6', animation: 'pulse-border 2s ease-in-out infinite' } : {}),
     opacity: deleting ? 0.4 : 1,
@@ -213,9 +216,29 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
                 ⚙ building
               </span>
             )}
-            {entry.is_copy && !isBuilding && (
-              <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#0f172a', color: '#7dd3fc', border: '1px solid #1e40af', flexShrink: 0, marginTop: 2 }}>
-                📋 copy
+            {entry.derived_kind && !isBuilding && (() => {
+              const k = KIND_BADGE[entry.derived_kind] || KIND_BADGE.copy
+              return (
+                <span
+                  title={parent
+                    ? `A ${k.label} of “${parent.themed_name || parent.commander_name}” — same cards, kept as its own deck`
+                    : `A ${k.label} of a deck that is no longer in your history`}
+                  style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: k.bg, color: k.color, border: `1px solid ${k.border}`, flexShrink: 0, marginTop: 2 }}
+                >
+                  {k.icon} {k.label}
+                </span>
+              )
+            })()}
+            {entry.imported && !isBuilding && (
+              <span title="Imported decklist — these are cards you chose, not a generated list"
+                style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#0c1a2e', color: '#60a5fa', border: '1px solid #1e40af', flexShrink: 0, marginTop: 2 }}>
+                📥
+              </span>
+            )}
+            {entry.has_bible && !isBuilding && (
+              <span title="This deck has a Set Bible — the world, its factions and its lore"
+                style={{ fontSize: 10, padding: '2px 6px', borderRadius: 8, background: '#180f2e', color: '#c4b5fd', border: '1px solid #6d28d9', flexShrink: 0, marginTop: 2 }}>
+                📖
               </span>
             )}
             {entry.partial && !isBuilding && (
@@ -226,6 +249,14 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
           </div>
           {entry.themed_name && entry.themed_name !== entry.commander_name && (
             <div style={s.orig}>({entry.commander_name})</div>
+          )}
+          {parent && (
+            <div style={{ fontSize: 11, color: '#57534e', display: 'flex', gap: 4 }}>
+              <span style={{ flexShrink: 0 }}>↳ from</span>
+              <span style={{ color: '#78716c', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {parent.themed_name || parent.commander_name}
+              </span>
+            </div>
           )}
           {entry.theme && (
             <div style={s.theme}>{entry.theme}</div>
@@ -247,6 +278,22 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
           </div>
 
           {!selectMode && (
+            <>
+            {versionCount > 0 && (
+              <button
+                onClick={onToggleVersions}
+                title="Retheme, rebuild and duplicate each save a NEW deck on the same cards. These are this deck's other versions."
+                style={{
+                  marginTop: 8, width: '100%', padding: '6px 10px', borderRadius: 8,
+                  background: expanded ? '#1c1408' : 'none',
+                  border: `1px dashed ${expanded ? '#ca8a04' : '#44403c'}`,
+                  color: expanded ? '#fde047' : '#a8a29e',
+                  cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, textAlign: 'left',
+                }}
+              >
+                {expanded ? '▲ Hide' : `▼ ${versionCount} other version${versionCount === 1 ? '' : 's'}`}
+              </button>
+            )}
             <div style={s.btnRow}>
               <button style={{ ...s.loadBtn, opacity: loading ? 0.6 : 1, background: isBuilding ? '#3b82f6' : 'linear-gradient(180deg,#eab308,#a16207)' }} onClick={handleLoad} disabled={loading || duping || deleting}>
                 {loading ? 'Loading…' : isBuilding ? '▶ Resume Building' : 'View & Export →'}
@@ -272,6 +319,7 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
                 {deleting ? '⏳' : '🗑'}
               </button>
             </div>
+            </>
           )}
 
           {selectMode && (
@@ -285,6 +333,45 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
   )
 }
 
+// ── Lineage ───────────────────────────────────────────────────────────────────
+// Retheme / rebuild / duplicate each write a NEW deck under a NEW job id and record
+// where it came from. Without reading that back, a deck you iterated on four times
+// is four unrelated-looking tiles. This folds each family under its oldest ancestor
+// that is still present, so the top level is "decks" rather than "versions".
+const KIND_BADGE = {
+  retheme: { icon: '✏️', label: 'retheme', color: '#93c5fd', bg: '#0c1a2e', border: '#1e40af' },
+  rebuild: { icon: '🎲', label: 'rebuild', color: '#c4b5fd', bg: '#180f2e', border: '#6d28d9' },
+  copy:    { icon: '📋', label: 'copy',    color: '#7dd3fc', bg: '#0f172a', border: '#1e40af' },
+}
+
+function buildFamilies(decks) {
+  const byId = new Map(decks.map(d => [d.job_id, d]))
+  // Walk to the oldest ancestor still in the list. A deleted mid-chain parent makes
+  // its child a root of its own, which is the honest reading — the link is gone.
+  function rootOf(entry) {
+    const seen = new Set([entry.job_id])
+    let cur = entry
+    while (cur.derived_from && byId.has(cur.derived_from) && !seen.has(cur.derived_from)) {
+      seen.add(cur.derived_from)
+      cur = byId.get(cur.derived_from)
+    }
+    return cur
+  }
+  const children = new Map()   // rootId -> descendants, newest first
+  const roots = []
+  for (const d of decks) {
+    const root = rootOf(d)
+    if (root.job_id === d.job_id) roots.push(d)
+    else children.set(root.job_id, [...(children.get(root.job_id) || []), d])
+  }
+  // Keep a family at the top while it is being worked on: order by the newest
+  // member's date, not the ancestor's.
+  const newest = r => Math.max(r.built_at || 0,
+    ...(children.get(r.job_id) || []).map(c => c.built_at || 0))
+  roots.sort((a, b) => newest(b) - newest(a))
+  return { roots, children, byId }
+}
+
 // ── History page ──────────────────────────────────────────────────────────────
 export default function StepHistory({ onLoad, onResume, onBack }) {
   const [decks, setDecks]         = useState([])
@@ -293,6 +380,8 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
   const [selected, setSelected]   = useState(new Set())
   const [batchConfirm, setBatchConfirm] = useState(false)
   const [batchDeleting, setBatchDeleting] = useState(false)
+  const [grouped, setGrouped]     = useState(true)          // fold versions under their origin
+  const [expanded, setExpanded]   = useState(new Set())     // rootIds showing their versions
 
   function loadDecks() {
     setState('loading')
@@ -415,23 +504,69 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
       {state === 'ready' && decks.length === 0 && (
         <div style={s.empty}>No decks yet — build one to see it here.</div>
       )}
-      {state === 'ready' && decks.length > 0 && (
-        <div style={s.grid}>
-          {decks.map(entry => (
-            <DeckCard
-              key={entry.job_id}
-              entry={entry}
-              onLoad={onLoad}
-              onResume={onResume}
-              onDuplicated={loadDecks}
-              onDeleted={handleDeleted}
-              selectMode={selectMode}
-              selected={selected.has(entry.job_id)}
-              onToggleSelect={toggleSelect}
-            />
-          ))}
-        </div>
-      )}
+      {state === 'ready' && decks.length > 0 && (() => {
+        const { roots, children, byId } = buildFamilies(decks)
+        const derivedCount = decks.length - roots.length
+        // Flat list = every deck, in the API's newest-first order (grouping off).
+        // Grouped = roots, each followed by its versions when expanded, so a family
+        // stays adjacent in the grid without restructuring the layout.
+        const visible = []
+        if (!grouped) {
+          visible.push(...decks.map(d => ({ entry: d, child: !!d.derived_from })))
+        } else {
+          for (const r of roots) {
+            const kids = children.get(r.job_id) || []
+            visible.push({ entry: r, child: false, kids: kids.length })
+            if (expanded.has(r.job_id)) {
+              visible.push(...kids.map(k => ({ entry: k, child: true })))
+            }
+          }
+        }
+        return (
+          <>
+            {derivedCount > 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setGrouped(g => !g)}
+                  title="Retheme, rebuild and duplicate each save a NEW deck. Grouping folds those versions under the deck they came from."
+                  style={{ ...s.selBtn, ...(grouped ? { borderColor: '#ca8a04', color: '#fde047' } : {}) }}
+                >
+                  {grouped ? '🌿 Grouping versions' : '☰ Flat list'}
+                </button>
+                <span style={{ fontSize: 12, color: '#57534e' }}>
+                  {grouped
+                    ? `${roots.length} deck${roots.length === 1 ? '' : 's'} · ${derivedCount} version${derivedCount === 1 ? '' : 's'} folded in`
+                    : `${decks.length} entries`}
+                </span>
+              </div>
+            )}
+            <div style={s.grid}>
+              {visible.map(({ entry, child, kids }) => (
+                <DeckCard
+                  key={entry.job_id}
+                  entry={entry}
+                  parent={entry.derived_from ? byId.get(entry.derived_from) : null}
+                  nested={child}
+                  versionCount={kids || 0}
+                  expanded={expanded.has(entry.job_id)}
+                  onToggleVersions={() => setExpanded(prev => {
+                    const n = new Set(prev)
+                    n.has(entry.job_id) ? n.delete(entry.job_id) : n.add(entry.job_id)
+                    return n
+                  })}
+                  onLoad={onLoad}
+                  onResume={onResume}
+                  onDuplicated={loadDecks}
+                  onDeleted={handleDeleted}
+                  selectMode={selectMode}
+                  selected={selected.has(entry.job_id)}
+                  onToggleSelect={toggleSelect}
+                />
+              ))}
+            </div>
+          </>
+        )
+      })()}
 
       <style>{`
         @keyframes pulse-border {

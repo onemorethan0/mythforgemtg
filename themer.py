@@ -1278,6 +1278,26 @@ _STYLE_GUIDE_SYSTEM = (
     "Output only the requested content in one sentence. No explanations, no preamble."
 )
 
+def _unwrap_placeholder(s: str) -> str:
+    """Strip the square brackets the format template asks the model to fill in.
+
+    The prompt below says "fill in the brackets, keep the labels" and shows
+    ``DESCRIPTION: [...]`` / ``ZONES: [zone1] | [zone2]``, so the model frequently
+    returns the brackets too. The parser stripped quotes but not brackets, so a
+    literal "[A world of molten rivers...]" became the deck's world text — which
+    then went into the style guide and every per-card art prompt, brackets and all
+    (4 of the 23 stored bibles carry the artefact). Only a bracket pair wrapping the
+    WHOLE value is removed; brackets inside the prose are left alone.
+    """
+    s = (s or "").strip().strip('"').strip("'").strip()
+    for _ in range(3):
+        if len(s) > 2 and s.startswith("[") and s.endswith("]") and "]" not in s[1:-1]:
+            s = s[1:-1].strip()
+        else:
+            break
+    return s.strip().strip('"').strip("'").strip()
+
+
 def _expand_theme(theme: str, model: str = OLLAMA_MODEL) -> tuple[str, list[str]]:
     """
     Expand a short theme phrase into a richer world description plus a list of
@@ -1325,10 +1345,11 @@ def _expand_theme(theme: str, model: str = OLLAMA_MODEL) -> tuple[str, list[str]
         desc_m  = re.search(r'DESCRIPTION:\s*(.+?)(?=\nZONES:|$)', raw, re.DOTALL | re.IGNORECASE)
         zones_m = re.search(r'ZONES:\s*(.+?)$',                    raw, re.DOTALL | re.IGNORECASE)
 
-        description = desc_m.group(1).strip()  if desc_m  else ""
+        description = _unwrap_placeholder(desc_m.group(1))  if desc_m  else ""
         zones_raw   = zones_m.group(1).strip() if zones_m else ""
-        zones = [z.strip().strip('"').strip("'")
+        zones = [_unwrap_placeholder(z)
                  for z in re.split(r'\s*\|\s*', zones_raw) if z.strip()]
+        zones = [z for z in zones if z]
 
         expanded = f"{theme} — {description}" if description else theme
         if len(zones) >= 2:
