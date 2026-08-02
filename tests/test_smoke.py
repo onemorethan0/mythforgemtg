@@ -812,6 +812,136 @@ def test_import_line_formats():
     check("fmt.mws", [n for n, _ in mws.card_entries], ["Lightning Bolt"])
 
 
+def test_import_zone_headers():
+    """Zone headers must be recognised through every decoration a real export uses.
+
+    Missing one is worse than dropping a card: an unrecognised "Sideboard (15)" folds
+    fifteen cards the user never wanted INTO their maindeck, and an unrecognised
+    "Commander (1)" leaves the commander in the 99 for _apply_auto_face to replace
+    with whatever card happened to cost the most mana."""
+    from deck_import import _parse_text
+
+    # Archidekt / TappedOut / Moxfield category exports: "(N)" suffix.
+    counted = _parse_text(
+        "Commander (1)\n1x Krenko, Mob Boss (jmp) 341\n\n"
+        "Creatures (2)\n1x Goblin Chieftain (m10) 137\n1x Skirk Prospector (dom) 143\n\n"
+        "Sideboard (2)\n1x Counterspell (mh2) 267\n1x Negate (m19) 69\n")
+    check("zone.count.cmdr",  counted.commander_names, ["Krenko, Mob Boss"])
+    check("zone.count.cards", [n for n, _ in counted.card_entries],
+          ["Goblin Chieftain", "Skirk Prospector"])
+
+    # Deckstats: "//" categories. The reader must LEAVE the commander section when a
+    # non-zone category follows, or every creature is read as a commander.
+    ds = _parse_text(
+        "//Commander\n1 Krenko, Mob Boss\n"
+        "//Creatures\n1 Goblin Chieftain\n1 Skirk Prospector\n"
+        "//Sideboard\n1 Counterspell\n")
+    check("zone.ds.cmdr",  ds.commander_names, ["Krenko, Mob Boss"])
+    check("zone.ds.cards", [n for n, _ in ds.card_entries],
+          ["Goblin Chieftain", "Skirk Prospector"])
+
+    # Regressions: the plain forms must keep working.
+    check("zone.paper", _parse_text("Commander: Krenko, Mob Boss\n\n1 Sol Ring\n").commander_names,
+          ["Krenko, Mob Boss"])
+    check("zone.bare", _parse_text("Commander\n1 Krenko, Mob Boss\n\nDeck\n1 Sol Ring\n").commander_names,
+          ["Krenko, Mob Boss"])
+    check("zone.mtga_sb", [n for n, _ in _parse_text(
+        "Deck\n1 Sol Ring (C21) 263\n\nSideboard\n1 Counterspell (MH2) 267\n").card_entries],
+        ["Sol Ring"])
+
+    # Moxfield's header-less plain export encodes the commander POSITIONALLY: first
+    # paragraph, then the maindeck. Recorded as a hint only — _resolve promotes it
+    # solely when Scryfall confirms the card is legendary.
+    mox = _parse_text("1 Krenko, Mob Boss (JMP) 341\n\n1 Sol Ring (C21) 263\n1 Lightning Bolt (M11) 149\n")
+    check("zone.mox.hint", mox.leading_names, ["Krenko, Mob Boss"])
+    # A tagged deck never needs the hint, and neither does a list with no clear opener.
+    check("zone.mox.no_hint_when_tagged",
+          _parse_text("Commander: Krenko, Mob Boss\n\n1 Sol Ring\n").leading_names, [])
+    check("zone.mox.no_hint_when_long",
+          _parse_text("1 A\n1 B\n1 C\n\n1 Sol Ring\n").leading_names, [])
+
+
+def test_archidekt_respects_included_in_deck():
+    """Archidekt says which categories are in the deck — believe it, don't guess.
+
+    Judging by category NAME was wrong in both directions. A user's own not-in-deck
+    piles ("cut", "Too sauced", "Graveyard support?") were imported as real cards,
+    and a category literally named "Sideboard" that the user had INCLUDED was thrown
+    away. Over 40 real corpus decks the two rules disagree on 7; the worst imported a
+    166-card "deck" out of a 100-card list."""
+    from deck_import import _parse_archidekt
+
+    def card(name, cats, qty=1):
+        return {"quantity": qty, "categories": cats, "card": {"oracleCard": {"name": name}}}
+
+    raw = _parse_archidekt({
+        "name": "Test deck",
+        "categories": [
+            {"name": "Commander",  "includedInDeck": True},
+            {"name": "Ramp",       "includedInDeck": True},
+            {"name": "Sideboard",  "includedInDeck": True},   # user INCLUDED it
+            {"name": "Maybeboard", "includedInDeck": False},
+            {"name": "cut",        "includedInDeck": False},  # custom exclude pile
+        ],
+        "cards": [
+            card("Krenko, Mob Boss", ["Commander"]),
+            card("Sol Ring",         ["Ramp"]),
+            card("Mountain",         ["Ramp"], qty=8),
+            card("Lightning Bolt",   ["Sideboard"]),          # kept: includedInDeck
+            card("Negate",           ["Maybeboard"]),         # dropped
+            card("Counterspell",     ["cut"]),                # dropped
+        ],
+    })
+    check("arch.cmdr",  raw.commander_names, ["Krenko, Mob Boss"])
+    check("arch.cards", [n for n, _ in raw.card_entries],
+          ["Sol Ring", "Mountain", "Lightning Bolt"])
+    check("arch.total", sum(q for _, q in raw.card_entries), 10)
+
+    # No category metadata at all (older/partial responses) → fall back to the name test.
+    legacy = _parse_archidekt({"name": "Legacy", "categories": [], "cards": [
+        card("Sol Ring", ["Ramp"]),
+        card("Negate",   ["Sideboard"]),
+    ]})
+    check("arch.legacy", [n for n, _ in legacy.card_entries], ["Sol Ring"])
+
+
+def test_leading_commander_promotion():
+    """The positional-commander hint may only promote a REAL legendary card.
+
+    _apply_auto_face used to elect the highest-mana-value legendary creature into the
+    face slot for these decks, which on a 100-card list is usually the wrong card
+    while the real commander stays buried in the 99. Promotion is structural (first
+    paragraph) AND verified (Scryfall says legendary) — a non-legendary opener falls
+    through to the honest election instead of inventing a commander."""
+    from deck_import import ImportedDeck, _promote_leading_commander
+
+    krenko = {"name": "Krenko, Mob Boss", "type_line": "Legendary Creature — Goblin Warrior",
+              "quantity": 1}
+    bolt   = {"name": "Lightning Bolt", "type_line": "Instant", "quantity": 1}
+    mtn    = {"name": "Mountain", "type_line": "Basic Land — Mountain", "quantity": 8}
+
+    imp = ImportedDeck(name="d", source="text", commander=None,
+                       deck=[dict(krenko), dict(bolt), dict(mtn)])
+    before = imp.total_cards()
+    _promote_leading_commander(imp, ["Krenko, Mob Boss"])
+    check("promote.cmdr",  (imp.commander or {}).get("name"), "Krenko, Mob Boss")
+    check("promote.pulled", [c["name"] for c in imp.deck], ["Lightning Bolt", "Mountain"])
+    check("promote.total",  imp.total_cards(), before)   # 1 out of the deck, 1 into the face
+
+    # Not legendary → left alone entirely.
+    imp2 = ImportedDeck(name="d", source="text", commander=None,
+                        deck=[dict(bolt), dict(mtn)])
+    _promote_leading_commander(imp2, ["Lightning Bolt"])
+    check_true("promote.no_invent", imp2.commander is None)
+    check("promote.untouched", [c["name"] for c in imp2.deck], ["Lightning Bolt", "Mountain"])
+
+    # A multi-copy opener decrements rather than removing the stack.
+    imp3 = ImportedDeck(name="d", source="text", commander=None,
+                        deck=[{**krenko, "quantity": 2}, dict(bolt)])
+    _promote_leading_commander(imp3, ["Krenko, Mob Boss"])
+    check("promote.decrement", imp3.deck[0]["quantity"], 1)
+
+
 def test_deck_identity_is_preserved():
     """A deck's card list and provenance must survive every derived-deck boundary.
 
@@ -1199,6 +1329,8 @@ def main():
                # Deck import / identity. These existed but were never listed here, so
                # `python tests/test_smoke.py` skipped them entirely.
                test_import_preserves_decklist, test_import_line_formats,
+               test_import_zone_headers, test_leading_commander_promotion,
+               test_archidekt_respects_included_in_deck,
                test_fuzzy_substitution_guard, test_deck_identity_is_preserved,
                test_export_covers_unrendered_cards,
                test_app_paths_absolute):

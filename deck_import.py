@@ -65,6 +65,12 @@ class RawDeck:
     source: str
     commander_names: list[str]
     card_entries: list[tuple[str, int]]   # (name, quantity), maindeck only
+    # Names in the decklist's FIRST paragraph, set only when nothing tagged a
+    # commander and the shape encodes one positionally (Moxfield's plain text export
+    # writes the commander(s), a blank line, then the maindeck). A hint, not a claim:
+    # `_resolve` promotes these only if Scryfall says they're legendary — otherwise
+    # they stay ordinary maindeck cards. See _promote_leading_commander.
+    leading_names: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -170,7 +176,29 @@ def _fetch_archidekt(url: str) -> RawDeck:
     if not m:
         raise DeckImportError("Could not read the Archidekt deck id from that URL.")
     deck_id = m.group(1)
-    data = _http_json(f"https://archidekt.com/api/decks/{deck_id}/")
+    return _parse_archidekt(_http_json(f"https://archidekt.com/api/decks/{deck_id}/"))
+
+
+def _parse_archidekt(data: dict) -> RawDeck:
+    """Archidekt API payload → RawDeck. Pure, so it can be tested without network."""
+    # Archidekt decks carry their OWN answer to "is this category in the deck?" —
+    # a deck-level `categories` list where each entry has `includedInDeck`. Judging
+    # by category NAME instead got it wrong in both directions: a user category
+    # marked not-in-deck ("Cuts", "Considering", "Sideboard ideas") was imported as
+    # real cards, and a category literally named "Sideboard" that the user had
+    # INCLUDED was thrown away. Measured over 40 real corpus decks: the two rules
+    # disagree on 7 of them. Worst case (deck 11428593) the name rule imported a
+    # 166-card "deck" — 66 cards the user had filed under "cut", "Too sauced",
+    # "Other maybeboard stuff" and four more excluded piles; deck 11796422 goes the
+    # other way, with 2 real cards in a category named "Sideboard" that the user had
+    # includedInDeck=true. Most divergent decks land exactly on 100 under this rule.
+    excluded = {str(c.get("name", "")).lower()
+                for c in (data.get("categories") or [])
+                if isinstance(c, dict) and c.get("includedInDeck") is False}
+    # Fallback for responses with no category metadata at all: the old name test.
+    _DEFAULT_EXCLUDED = {"maybeboard", "sideboard"}
+    known = {str(c.get("name", "")).lower()
+             for c in (data.get("categories") or []) if isinstance(c, dict)}
 
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
@@ -182,7 +210,7 @@ def _fetch_archidekt(url: str) -> RawDeck:
         if not name:
             continue
         low = [x.lower() for x in cats]
-        if "maybeboard" in low or "sideboard" in low:
+        if any(k in excluded or (k not in known and k in _DEFAULT_EXCLUDED) for k in low):
             continue
         if "commander" in low:
             commander_names.append(name)
@@ -275,7 +303,21 @@ def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
         break
     return rest.strip(), [t for t in tags if t]
 
-_COMMANDER_HEADER = re.compile(r"^\s*(commander|commanders)\s*:?\s*$", re.I)
+# Zone headers. Every real export decorates them differently, and all three
+# decorations below used to miss — which is worse than dropping a card, because a
+# missed "Sideboard (15)" folds fifteen cards the user never wanted INTO their
+# maindeck, and a missed "Commander (1)" leaves the commander in the maindeck for
+# _apply_auto_face to replace with whatever card happened to cost the most.
+#   "Commander"      MTGA / paper
+#   "Commander:"     paper (and Myth Forge's own export)
+#   "Commander (1)"  Archidekt / TappedOut / Moxfield category exports
+#   "//Commander"    Deckstats
+_ZONE_HEADER = re.compile(
+    r"""^\s*(?://\s*)?
+        (?P<zone>commanders?|companions?|deck|mainboard|maindeck
+                |sideboard|maybeboard|tokens?)
+        \s*(?:\(\s*\d+\s*\))?\s*:?\s*$
+    """, re.I | re.VERBOSE)
 # INLINE form: "Commander: Krenko, Mob Boss" — the single most common way a paper
 # decklist names its commander (and the format Myth Forge's own export writes). The
 # header regex above is end-anchored, so this line used to match NOTHING: no quantity,
@@ -283,8 +325,13 @@ _COMMANDER_HEADER = re.compile(r"^\s*(commander|commanders)\s*:?\s*$", re.I)
 # then elected a face out of the maindeck and pulled that card into the commander slot —
 # i.e. importing a paper deck silently changed which cards were in it.
 _COMMANDER_INLINE = re.compile(r"^\s*commanders?\s*:\s*(?P<name>\S.*?)\s*$", re.I)
-_SECTION_HEADER = re.compile(
-    r"^\s*(deck|mainboard|maindeck|companion|sideboard|maybeboard|tokens?)\s*:?\s*$", re.I)
+# A NON-zone category header: "Creatures (30)", "//Artifacts", "Ramp (12):". These
+# must reset the section to the maindeck — a Deckstats list goes "//Commander" then
+# "//Creatures", and treating the second as a plain comment left the section stuck on
+# `commander`, so every creature in the deck was read as a commander.
+_CATEGORY_HEADER = re.compile(
+    r"^\s*(?://\s*)?[A-Za-z][A-Za-z0-9 '&/\-]*\s*\(\s*\d+\s*\)\s*:?\s*$")
+_COMMENT_CATEGORY = re.compile(r"^\s*//\s*\S")
 _IGNORE_SECTIONS = {"sideboard", "maybeboard", "token", "tokens"}
 
 
@@ -292,13 +339,28 @@ def _parse_text(text: str) -> RawDeck:
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
     section = "deck"            # current section
+    tagged_commander = False    # a header/tag named the commander explicitly
+    # Entries in the first paragraph, recorded for the header-less Moxfield form
+    # (see RawDeck.leading_names).
+    leading: list[str] = []
+    paragraph = 0
+    blank_run = False
 
     for raw_line in (text or "").splitlines():
         line = raw_line.strip()
-        if not line or line.startswith(("#", "//")):
+        if not line:
+            if not blank_run:
+                paragraph += 1
+                blank_run = True
             continue
-        if _COMMANDER_HEADER.match(line):
-            section = "commander"
+        blank_run = False
+
+        m_zone = _ZONE_HEADER.match(line)
+        if m_zone:
+            zone = m_zone.group("zone").lower()
+            section = "commander" if zone.startswith("commander") else zone
+            if section == "commander":
+                tagged_commander = True
             continue
         m_inline = _COMMANDER_INLINE.match(line)
         if m_inline:
@@ -307,10 +369,16 @@ def _parse_text(text: str) -> RawDeck:
             name, _ = _strip_line_metadata(m_inline.group("name").strip())
             if name:
                 commander_names.append(name)
+                tagged_commander = True
             continue
-        m_sec = _SECTION_HEADER.match(line)
-        if m_sec:
-            section = m_sec.group(1).lower()
+        # A non-zone category header ("Creatures (30)", "//Artifacts") returns the
+        # reader to the maindeck. Without this a Deckstats list that opens
+        # "//Commander" then "//Creatures" stayed stuck in the commander section and
+        # read every creature in the deck as a commander.
+        if _CATEGORY_HEADER.match(line) or _COMMENT_CATEGORY.match(line):
+            section = "deck"
+            continue
+        if line.startswith("#"):
             continue
         sb_line = bool(_SB_PREFIX.match(line))
         if sb_line:
@@ -337,16 +405,24 @@ def _parse_text(text: str) -> RawDeck:
         if (section == "commander"
                 or any(t.startswith(("cmdr", "commander")) for t in tags)):
             commander_names.append(name)
+            tagged_commander = True
         else:
             card_entries.append((name, qty))
+            if paragraph == 0 and qty == 1:
+                leading.append(name)
 
     if not commander_names and not card_entries:
         raise DeckImportError(
             "Couldn't find any cards in that text. Use lines like '1 Sol Ring', "
             "and put your commander under a 'Commander' header (or tag it *CMDR*)."
         )
+    # Only meaningful when nothing named a commander, and only for the shape that
+    # actually encodes one positionally: a short opening paragraph, more cards after.
+    hint = ([] if (tagged_commander or not leading or len(leading) > 2
+                   or len(card_entries) <= len(leading)) else list(leading))
     return RawDeck(name="Imported deck", source="text",
-                   commander_names=commander_names, card_entries=card_entries)
+                   commander_names=commander_names, card_entries=card_entries,
+                   leading_names=hint)
 
 
 # ── Resolve names → cards ───────────────────────────────────────────────────────
@@ -384,8 +460,53 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
         agg[key]["quantity"] += max(1, qty)
 
     deck = [agg[k] for k in order]
-    return ImportedDeck(name=raw.name, source=raw.source, commander=commander,
-                        deck=deck, partners=partners, unresolved=unresolved)
+    imported = ImportedDeck(name=raw.name, source=raw.source, commander=commander,
+                            deck=deck, partners=partners, unresolved=unresolved)
+    if commander is None:
+        _promote_leading_commander(imported, raw.leading_names)
+    return imported
+
+
+def _is_legendary_creature(card: dict) -> bool:
+    tl = (card.get("type_line") or "").lower()
+    # Read the FRONT face: a legendary creature that transforms into something else
+    # is still a legal commander.
+    front = tl.split("//", 1)[0]
+    return "legendary" in front and ("creature" in front
+                                     or "can be your commander" in (card.get("oracle_text") or "").lower())
+
+
+def _promote_leading_commander(imp: "ImportedDeck", leading_names: list[str]) -> None:
+    """Promote a positionally-encoded commander out of the maindeck.
+
+    Moxfield's plain text export writes the commander(s), a blank line, then the
+    maindeck — with no header and no tag. Every such deck therefore arrived with no
+    commander zone, and `_apply_auto_face` then elected whichever legendary creature
+    cost the MOST mana into the face slot. On a 100-card list that is usually the
+    wrong card, and the real commander stayed buried in the 99.
+
+    This only fires on that exact shape (`RawDeck.leading_names`, which `_parse_text`
+    populates only for a short opening paragraph followed by more cards) and only for
+    cards Scryfall confirms are legendary. A non-legendary opener is left alone and
+    falls through to the ordinary election, so the guess can't invent a commander.
+    """
+    if imp.commander is not None or not leading_names:
+        return
+    by_name = {(c.get("name") or "").lower(): c for c in imp.deck}
+    picks = [by_name.get(n.lower()) for n in leading_names]
+    if not picks or any(c is None or not _is_legendary_creature(c) for c in picks):
+        return
+    promoted: list[dict] = []
+    for entry in picks:
+        one = dict(entry)
+        one.pop("quantity", None)
+        promoted.append(one)
+        if int(entry.get("quantity", 1) or 1) > 1:
+            entry["quantity"] = int(entry["quantity"]) - 1
+        else:
+            imp.deck = [c for c in imp.deck if c is not entry]
+    imp.commander = promoted[0]
+    imp.partners = promoted[1:] + list(imp.partners)
 
 
 # ── Auto-elect a face for commanderless decks ────────────────────────────────────

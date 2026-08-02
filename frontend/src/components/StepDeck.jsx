@@ -36,13 +36,26 @@ function triggerDownload(url) {
 // quantity entries came out as a ~70-card list — and emitted the commander as a
 // plain maindeck line, so the file did not re-import as the same deck.
 
+// Themed names beside the real ones. Quantities are the PHYSICAL counts and the
+// section headers count physical cards, so an imported deck whose 8 basics live in
+// one aggregated entry reads as "Land (8)" and not "Land (1)" — the same
+// duplicate-dropping bug the original-names export had. An auto-elected display face
+// is a maindeck card, so it is only labelled "Commander:" on a real Commander deck.
 function exportThemed(deck) {
-  const lines = [`Commander: ${deck.commander.themed_name} (${deck.commander.original_name})`, '']
-  const groups = groupByType(deck.deck)
+  const qty = c => Math.max(1, parseInt(c.quantity, 10) || 1)
+  const isCmd = deck.is_commander_deck !== false && !deck.import_auto_face
+  const lines = []
+  let cards = deck.deck
+  if (isCmd) {
+    lines.push(`Commander: ${deck.commander.themed_name} (${deck.commander.original_name})`, '')
+  } else {
+    cards = [deck.commander, ...deck.deck]
+  }
+  const groups = groupByType(cards)
   for (const type of [...TYPE_ORDER, 'Other']) {
     if (!groups[type]?.length) continue
-    lines.push(`// ${type} (${groups[type].length})`)
-    groups[type].forEach(c => lines.push(`1 ${c.themed_name} (${c.original_name})`))
+    lines.push(`// ${type} (${groups[type].reduce((n, c) => n + qty(c), 0)})`)
+    groups[type].forEach(c => lines.push(`${qty(c)} ${c.themed_name} (${c.original_name})`))
     lines.push('')
   }
   const blob = new Blob([lines.join('\n')], { type: 'text/plain' })
