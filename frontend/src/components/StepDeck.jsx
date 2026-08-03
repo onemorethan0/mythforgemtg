@@ -1961,7 +1961,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               >
                 {duplicating ? '⏳ Copying…' : '📋 Duplicate'}
               </button>
-              <button onClick={() => onReset(single ? 'card' : 'deck')}
+              {/* Only single-card mode short-circuits back into its own designer;
+                  a deck still returns to the home hub, as it always has. */}
+              <button onClick={() => onReset(single ? 'card' : undefined)}
                 title={single ? 'Design another card from scratch' : 'Start a brand-new deck from scratch'}
                 style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>
                 {single ? '🂠 New Card' : 'New Deck'}</button>
