@@ -99,7 +99,16 @@ def build_zip(
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
         png = resolve(commander)
         if png:
-            zf.write(png, f"00_commander_{commander['render_key']}{png.suffix}")
+            # A single custom card is a "deck of one": there is no commander and no
+            # slot ordering, so name the entry after the card instead of shipping a
+            # lone "00_commander_….png".
+            if deck:
+                zf.write(png, f"00_commander_{commander['render_key']}{png.suffix}")
+            else:
+                safe = "".join(c if c.isalnum() or c in " -_" else "_"
+                               for c in (commander.get("themed_name")
+                                         or commander.get("original_name") or "card"))[:60].strip()
+                zf.write(png, f"{safe or 'card'}{png.suffix}")
 
         slot = 0
         for card in deck:

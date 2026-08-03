@@ -86,6 +86,7 @@ export default function RecentDecks({ onLoad }) {
                 </div>
                 <div style={{ fontSize: 10, color: '#57534e', marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span>{fmtDate(entry.built_at)}</span>
+                  {entry.single_card && <span style={{ color: '#c084fc' }}>🂠 card</span>}
                   {entry.measured_bracket && (
                     <span
                       title={`Simulation-measured bracket: ${entry.measured_bracket}. ${entry.measured_label || ''}`}

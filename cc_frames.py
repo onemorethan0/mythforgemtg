@@ -330,6 +330,13 @@ def render_card_cc(
     mana_cost = card.get("mana_cost", "") or ""
     power     = card.get("power")
     toughness = card.get("toughness")
+    # Planeswalker loyalty shares the P/T badge (a card is never both) — see the
+    # same note in card_renderer.render_card.
+    loyalty   = card.get("loyalty")
+    if power is None or toughness is None:
+        badge_text = str(loyalty) if loyalty not in (None, "") else None
+    else:
+        badge_text = f"{power}/{toughness}"
     is_legendary = "Legendary" in type_line
 
     fkey  = _cc_frame_key(colors, type_line, spec)
@@ -374,7 +381,7 @@ def render_card_cc(
             canvas.alpha_composite(crown_r, ((W - cw) // 2, int(spec.crown_box.y * H)))
 
     # ── Power/Toughness box ──────────────────────────────────────────────────────
-    if power is not None and toughness is not None:
+    if badge_text is not None:
         pt_png = _load_png(str(fdir / spec.pt.get(_pt_key(fkey, spec), spec.pt["C"])))
         if pt_png is not None:
             bx, by, bw, bh = px(spec.pt_box)
@@ -494,8 +501,8 @@ def render_card_cc(
                              body_size, rules_fg)
 
     # ── Power/Toughness text ──────────────────────────────────────────────────────
-    if power is not None and toughness is not None:
-        pt_str = f"{power}/{toughness}"
+    if badge_text is not None:
+        pt_str = badge_text
         bx, by, bw, bh = px(spec.pt_box)
         # Real-card digit sizing (see cr._PT_INK_FRAC) — the old 0.55×box-height
         # font came out ~30% under real M15 digits. Width-fit handles "10/10"+.

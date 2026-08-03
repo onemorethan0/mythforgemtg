@@ -34,6 +34,50 @@ function composeVision(setting, moods, genres, lighting, inspiration) {
   return p.join('. ')
 }
 
+// deck.json (a finished single card) -> StepSingleCard's `initial` prefill.
+function cardDraftFromDeck(d) {
+  const c = d.commander || {}
+  const spec = d.theme_spec || {}
+  return {
+    name: c.original_name || '', mana_cost: c.mana_cost || '', type_line: c.original_type_line || c.type_line || '',
+    oracle_text: c.oracle_text || '', flavor_text: c.flavor_text || '',
+    power: c.power || '', toughness: c.toughness || '', loyalty: c.loyalty || '',
+    rarity: c.rarity || 'rare', colors: c.colors || [],
+    theme_mode: d.theme_mode || 'author', art_prompt_mode: d.art_prompt_mode || 'auto',
+    art_prompt: c.art_prompt || '',
+    setting: spec.setting || d.theme || '', moods: spec.moods || [], genres: spec.genres || [],
+    lighting: spec.lighting || [], inspiration: spec.inspiration || '',
+    creativity: d.creativity || 'balanced', commander_prompt: d.commander_prompt || '',
+    emblem_prompt: d.emblem_prompt || '', art_style: d.art_style || 'mtg_fantasy',
+    generate_art: !!d.generate_art, model_speed: d.model_speed || 'quality',
+    checkpoint: d.checkpoint || '', llm_model: d.llm_model || '',
+    border_theme: d.border_theme || '', frame_style: d.frame_style || 'builtin',
+    custom_pips: !!d.custom_pips, face_gender: d.face_gender || 'either',
+  }
+}
+
+// The payload we just POSTed -> the same prefill shape, so a failed build can
+// re-open the designer exactly as the user left it.
+function cardDraftFromPayload(pl) {
+  const c = pl.card || {}
+  const spec = pl.theme_spec || {}
+  return {
+    name: c.name || '', mana_cost: c.mana_cost || '', type_line: c.type_line || '',
+    oracle_text: c.oracle_text || '', flavor_text: c.flavor_text || '',
+    power: c.power || '', toughness: c.toughness || '', loyalty: c.loyalty || '',
+    rarity: c.rarity || 'rare', colors: c.colors || [],
+    theme_mode: pl.theme_mode, art_prompt_mode: pl.art_prompt_mode, art_prompt: pl.art_prompt || '',
+    setting: spec.setting || '', moods: spec.moods || [], genres: spec.genres || [],
+    lighting: spec.lighting || [], inspiration: spec.inspiration || '',
+    creativity: pl.creativity, commander_prompt: pl.commander_prompt || '',
+    emblem_prompt: pl.emblem_prompt || '', art_style: pl.art_style,
+    generate_art: !!pl.generate_art, model_speed: pl.model_speed,
+    checkpoint: pl.checkpoint || '', llm_model: pl.llm_model || '',
+    border_theme: pl.border_theme || '', frame_style: pl.frame_style,
+    custom_pips: !!pl.custom_pips, face_gender: pl.face_gender,
+  }
+}
+
 export default function App() {
   const [step, setStep]           = useState(STEP.COMMANDER)
   // Landing hub picks the flow: 'home' = choose; 'deck' = the 100-card builder wizard
@@ -92,6 +136,14 @@ export default function App() {
   const [sourceDeckId, setSourceDeckId]       = useState('')
   const [jobId, setJobId]         = useState(null)
   const [deck, setDeck]           = useState(null)
+  // Single-card designer: the fields to open it with. Set by "Edit this card" on a
+  // finished card, and by a failed build so the user's hand-authored card isn't
+  // thrown away with the error (it used to reset() straight to the home hub).
+  const [cardDraft, setCardDraft] = useState(null)
+  // Whether the job on the BUILDING screen is a single card. Rebuild/retheme of a
+  // card clear `deck` before navigating, and a card opened from History leaves
+  // `mode` on 'home', so neither is a reliable signal on its own.
+  const [buildSingle, setBuildSingle] = useState(false)
   // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
   const genSettings = useGenSettings()
 
@@ -104,7 +156,9 @@ export default function App() {
     function reconnect(id) {
       fetch(`/api/deck/${id}/status`).then(r => r.json()).then(d => {
         if (cancelled) return
-        if (d.status === 'building') {
+        // 'rendering' is the on-disk checkpoint state of a job still in flight —
+        // treating it as "not building" dropped the saved job on a refresh.
+        if (d.status === 'building' || d.status === 'rendering') {
           _setJobId(id); setStep(STEP.BUILDING)
         } else if (d.status === 'done') {
           fetch(`/api/deck/${id}`).then(r => r.json()).then(deckData => {
@@ -146,10 +200,12 @@ export default function App() {
     else     sessionStorage.removeItem(SS_KEY)
   }
 
-  function reset() {
+  function reset(nextMode = 'home') {
     sessionStorage.removeItem(SS_KEY)
     setStep(STEP.COMMANDER)
-    setMode('home')
+    setMode(typeof nextMode === 'string' ? nextMode : 'home')
+    setCardDraft(null)
+    setBuildSingle(false)
     setDeckEntryTab('generate')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
@@ -211,6 +267,8 @@ export default function App() {
 
   // ── Single-card mode: start a custom-card build ───────────────────────────
   async function startCardBuild(payload) {
+    setCardDraft(cardDraftFromPayload(payload))
+    setBuildSingle(true)
     const res = await fetch('/api/card/build', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -310,6 +368,7 @@ export default function App() {
   // ── Rebuild handler (re-run art gen from StepDeck) ───────────────────────
   function handleRebuild(newJobId) {
     // Clear the old deck so StepBuilding/StepDeck don't show stale data
+    setBuildSingle(deck?.mode === 'single_card')
     setDeck(null)
     _setJobId(newJobId)
     setStep(STEP.BUILDING)
@@ -317,6 +376,7 @@ export default function App() {
 
   // ── Retheme handler (full re-generation: new theming AND new art) ────────
   function handleRetheme(newJobId) {
+    setBuildSingle(deck?.mode === 'single_card')
     setDeck(null)
     _setJobId(newJobId)
     setStep(STEP.BUILDING)
@@ -328,6 +388,15 @@ export default function App() {
   // Building from here creates a NEW deck — the original is left untouched.
   async function handleEditDeck(d) {
     if (!d) return
+
+    if (d.mode === 'single_card') {
+      setCardDraft(cardDraftFromDeck(d))
+      _setJobId(null)
+      setDeck(null)
+      setMode('card')
+      setStep(STEP.COMMANDER)
+      return
+    }
 
     // An IMPORTED deck's card list is the deck's identity, and this wizard offers no
     // way to change it — only the theme/art. So pin the deck being edited and let the
@@ -549,9 +618,11 @@ export default function App() {
 
         {step === STEP.COMMANDER && mode === 'card' && (
           <StepSingleCard
+            key={cardDraft ? 'draft' : 'blank'}
             genSettings={genSettings}
+            initial={cardDraft}
             onGenerate={startCardBuild}
-            onBack={() => setMode('home')}
+            onBack={() => { setCardDraft(null); setMode('home') }}
           />
         )}
 
@@ -629,8 +700,15 @@ export default function App() {
         {step === STEP.BUILDING && (
           <StepBuilding
             jobId={jobId}
+            single={buildSingle || mode === 'card'}
             onDone={deckData => { sessionStorage.removeItem(SS_KEY); setDeck(deckData); setStep(STEP.DECK) }}
-            onError={msg => { sessionStorage.removeItem(SS_KEY); alert(`Build failed: ${msg}`); reset() }}
+            onError={msg => {
+              sessionStorage.removeItem(SS_KEY)
+              alert(`Build failed: ${msg}`)
+              // Keep the card the user authored — going Home destroyed it.
+              if (mode === 'card' && cardDraft) { _setJobId(null); setDeck(null); setStep(STEP.COMMANDER) }
+              else reset()
+            }}
           />
         )}
 

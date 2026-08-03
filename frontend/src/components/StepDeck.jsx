@@ -521,7 +521,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
             {/* Commander face */}
             {commanderSelected && (
               <div style={{ flex: 1, minWidth: 200 }}>
-                <div style={{ fontSize: 10, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>👑 Commander face</div>
+                <div style={{ fontSize: 10, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>{single ? '🙂 Card face' : '👑 Commander face'}</div>
                 <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                   {savedFaceKey && (
                     <button onClick={() => setFaceMode('saved')} style={{ ...btnBase, padding: '5px 10px', fontSize: 11,
@@ -1456,7 +1456,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           title="Click to select commander for regen"
         >
           {(() => {
-            const imgStyle = { width: 180, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none', display: 'block' }
+            const imgStyle = { width: single ? 300 : 180, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none', display: 'block' }
             const stillSrc = (commander.has_render || refreshTs[commander.render_key])
               ? `/api/deck/${jobId}/card-image/${commander.render_key}${refreshTs[commander.render_key] ? `?t=${refreshTs[commander.render_key]}` : ''}`
               : commander.scryfall_img || null
@@ -1473,7 +1473,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             }
             return stillSrc
               ? <img src={stillSrc} alt={commander.themed_name} style={imgStyle} />
-              : <div style={{ width: 180, height: 252, background: '#0c0a09', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#57534e' }}>No art</div>
+              : <div style={{ width: single ? 300 : 180, height: single ? 420 : 252, background: '#0c0a09', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#57534e' }}>No art</div>
           })()}
           {/* Status overlays for commander */}
           {regenPending.has(commander.render_key) && (
@@ -1489,7 +1489,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={{ position: 'absolute', top: 6, left: 6, fontSize: 9, padding: '2px 6px', borderRadius: 4, fontWeight: 700, background: '#14532d', color: '#86efac', border: '1px solid #166534' }}>NEW</div>
           )}
           <div style={{ position: 'absolute', bottom: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: '#78716c', whiteSpace: 'nowrap', background: 'rgba(0,0,0,0.6)', padding: '2px 6px', borderRadius: 4 }}>
-            click to select
+            {single ? 'click to re-roll art' : 'click to select'}
           </div>
         </div>
 
@@ -1563,8 +1563,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               <span style={{ color: '#fde047', fontWeight: 700 }}>Strategy: </span>{deck.playstyle_description}
             </div>
           )}
-          {/* Deck composition one-liner */}
-          {stats?.type_counts && (
+          {/* Deck composition one-liner. compute_stats(card, []) yields empty
+              type_counts and avg 0, so a single card printed a bare "· avg MV 0.0". */}
+          {!single && stats?.type_counts && (
             <div style={{ fontSize: 11.5, color: '#78716c', marginTop: 8, maxWidth: 460 }}>
               {['Creature','Instant','Sorcery','Artifact','Enchantment','Planeswalker','Land']
                 .filter(t => stats.type_counts[t])
@@ -1577,6 +1578,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           {/* ── 3D Commander Generator ─────────────────────────────────────── */}
           <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #292524' }}>
             <div style={{ fontSize: 10, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 }}>3D Print</div>
+            {single && !commander.has_render && (
+              <div style={{ fontSize: 11.5, color: '#78716c', marginBottom: 8, lineHeight: 1.5 }}>
+                Needs generated art — a 3D model is sculpted from the card's artwork.
+              </div>
+            )}
 
             {gen3dState === 'idle' || gen3dState === 'error' ? (
               <div>
@@ -1835,7 +1841,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         )}
 
         {/* View toggle */}
-        <div style={{ display: 'flex', gap: 4 }}>
+        {!single && <div style={{ display: 'flex', gap: 4 }}>
           {['gallery', 'list'].map(v => (
             <button key={v} onClick={() => setView(v)} style={{
               padding: '5px 14px', borderRadius: 8, border: '1px solid #292524', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12,
@@ -1844,7 +1850,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               {v === 'gallery' ? '⊞ Gallery' : '☰ List'}
             </button>
           ))}
-        </div>
+        </div>}
 
         {/* Actions, grouped by INTENT. Previously one flat row of ten buttons mixed
             downloads, a view toggle and three different regeneration actions whose
@@ -1857,7 +1863,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <div>
             <div style={actGroupLabel}>Download</div>
             <div style={actGroupRow}>
-              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/pdf`)} title="Print-ready PDF of every card, 9 per page"
+              {single && (
+                <a href={`/api/deck/${jobId}/card-image/${commander.render_key}`}
+                   download={`${(commander.themed_name || 'card').replace(/[^a-z0-9]+/gi, '_')}.png`}
+                   title="The finished card as a PNG"
+                   style={{ ...btnBase, background: '#14532d', color: '#86efac',
+                            border: '1px solid #15803d', fontWeight: 600, textDecoration: 'none' }}>↓ Card PNG</a>
+              )}
+              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/pdf`)} title={single ? 'Print-ready PDF — a sheet of this card, ready to cut' : 'Print-ready PDF of every card, 9 per page'}
                 style={{ ...btnBase, background: '#14532d', color: '#86efac', border: '1px solid #15803d', fontWeight: 600 }}>↓ Print PDF</button>
               <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/zip`)} title="ZIP of the individual card images"
                 style={{ ...btnBase, background: '#1e3a5f', color: '#93c5fd', border: '1px solid #1d4ed8', fontWeight: 600 }}>↓ Images</button>
@@ -1865,11 +1878,15 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} title="ZIP of the animated cards"
                   style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>↓ Animations ({videoKeys.size})</button>
               )}
-              <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/decklist`)}
-                title="Decklist of the ORIGINAL card names with real quantities — paste into Moxfield/Archidekt, or back into Import to verify the deck is unchanged"
-                style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Decklist</button>
-              <button onClick={() => exportThemed(deck)} title="Decklist showing the themed names next to the real ones"
-                style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed list</button>
+              {!single && (
+                <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/decklist`)}
+                  title="Decklist of the ORIGINAL card names with real quantities — paste into Moxfield/Archidekt, or back into Import to verify the deck is unchanged"
+                  style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Decklist</button>
+              )}
+              {!single && (
+                <button onClick={() => exportThemed(deck)} title="Decklist showing the themed names next to the real ones"
+                  style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed list</button>
+              )}
             </div>
           </div>
 
@@ -1879,7 +1896,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={actGroupRow}>
               {onRebuild && (
                 <button onClick={handleRebuildAll} disabled={rebuilding || rethemeing}
-                  title="Re-roll the ART on every card using the existing names and prompts. Names, rules text and flavor stay exactly as they are."
+                  title={single
+                    ? 'Re-roll the art from the same art prompt. Everything printed on the card stays as it is.'
+                    : 'Re-roll the ART on every card using the existing names and prompts. Names, rules text and flavor stay exactly as they are.'}
                   style={{ ...btnBase, background: rebuilding ? '#2e1065' : '#3b0764', color: rebuilding ? '#7c3aed' : '#c4b5fd', border: '1px solid #7c3aed', fontWeight: 600, opacity: rebuilding ? 0.7 : 1 }}>
                   {rebuilding ? '⏳ Starting…' : '🎲 New art only'}
                 </button>
@@ -1888,8 +1907,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 onClick={handleRethemeAll}
                 disabled={rethemeing || rebuilding}
                 title={deckHasNoArt(deck)
-                  ? 'This deck has no AI art yet. Pick a theme and art style, and generate custom art for every card on this exact list. Saves as a new deck; this one is kept.'
-                  : 'Re-run the FULL generation on the same cards: new themed names, flavor text AND new art (same theme + settings). Saves as a new deck; this one is kept.'}
+                  ? (single
+                      ? 'This card has no AI art yet. Pick a theme and art style and generate art for it. Saves as a new card; this one is kept.'
+                      : 'This deck has no AI art yet. Pick a theme and art style, and generate custom art for every card on this exact list. Saves as a new deck; this one is kept.')
+                  : single
+                    ? 'Write a fresh art prompt for this card and generate new art from it. Your name, rules text and flavor are kept exactly as you wrote them. Saves as a new card; this one is kept.'
+                    : 'Re-run the FULL generation on the same cards: new themed names, flavor text AND new art (same theme + settings). Saves as a new deck; this one is kept.'}
                 style={{ ...btnBase,
                   background: rethemeing ? '#1e1b4b' : (deckHasNoArt(deck) ? '#3b0764' : '#1e3a5f'),
                   color: rethemeing ? '#818cf8' : (deckHasNoArt(deck) ? '#c4b5fd' : '#93c5fd'),
@@ -1897,16 +1920,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                   fontWeight: 600, opacity: rethemeing ? 0.7 : 1 }}
               >
                 {rethemeing ? '⏳ Starting…'
-                  : deckHasNoArt(deck) ? '🎨 Generate AI art…' : '✏️ New names + art'}
+                  : deckHasNoArt(deck) ? '🎨 Generate AI art…'
+                  : single ? '✏️ New art direction' : '✏️ New names + art'}
               </button>
               {onEdit && (
                 <button
                   onClick={() => onEdit(deck)}
                   disabled={rebuilding || rethemeing || duplicating}
-                  title="Re-open the builder with this deck's commander, theme, art style and every setting pre-filled so you can change them. Building saves a new deck — this one is kept."
+                  title={single
+                    ? 'Re-open the card designer with every field of this card pre-filled so you can change it. Generating saves a new card — this one is kept.'
+                    : "Re-open the builder with this deck's commander, theme, art style and every setting pre-filled so you can change them. Building saves a new deck — this one is kept."}
                   style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600 }}
                 >
-                  🎛️ Change settings…
+                  {single ? '✎ Edit this card…' : '🎛️ Change settings…'}
                 </button>
               )}
             </div>
@@ -1914,7 +1940,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
           {/* — This deck — */}
           <div>
-            <div style={actGroupLabel}>Deck</div>
+            <div style={actGroupLabel}>{single ? 'Card' : 'Deck'}</div>
             <div style={actGroupRow}>
               {videoKeys.size > 0 && (
                 <button
@@ -1929,13 +1955,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               <button
                 onClick={handleDuplicate}
                 disabled={duplicating || rebuilding || rethemeing}
-                title="Create an independent copy of this deck — the original is preserved unchanged"
+                title={single ? 'Create an independent copy of this card — the original is preserved unchanged'
+                             : 'Create an independent copy of this deck — the original is preserved unchanged'}
                 style={{ ...btnBase, background: duplicating ? '#1c2030' : '#0f172a', color: duplicating ? '#64748b' : '#7dd3fc', border: '1px solid #1e40af', fontWeight: 600, opacity: duplicating ? 0.7 : 1 }}
               >
                 {duplicating ? '⏳ Copying…' : '📋 Duplicate'}
               </button>
-              <button onClick={onReset} title="Start a brand-new deck from scratch"
-                style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>New Deck</button>
+              <button onClick={() => onReset(single ? 'card' : 'deck')}
+                title={single ? 'Design another card from scratch' : 'Start a brand-new deck from scratch'}
+                style={{ ...btnBase, background: 'linear-gradient(180deg,#eab308,#a16207)', color: '#0c0a09', border: 'none', fontWeight: 700 }}>
+                {single ? '🂠 New Card' : 'New Deck'}</button>
             </div>
           </div>
         </div>
@@ -1961,8 +1990,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 12, textAlign: 'center',
                       padding: '7px 12px', borderRadius: 8, background: '#1c191788',
                       border: '1px dashed #44403c' }}>
-          👆 <b style={{ color: '#fde047' }}>Click any card</b> to select it — then regenerate its
-          art or add animation. Shift-click or “Select visible” for several at once.
+          {single ? (
+            <>👆 <b style={{ color: '#fde047' }}>Click your card above</b> to re-roll its art or animate it.</>
+          ) : (
+            <>👆 <b style={{ color: '#fde047' }}>Click any card</b> to select it — then regenerate its
+              art or add animation. Shift-click or “Select visible” for several at once.</>
+          )}
         </div>
       )}
 
@@ -1973,8 +2006,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         </div>
       )}
 
-      {/* Card gallery */}
-      {view === 'gallery' && (
+      {/* Card gallery — a deck of one has its only card in the hero banner */}
+      {view === 'gallery' && !single && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
           {visibleCards.map((card, i) => (
             <CardTile
@@ -2047,10 +2080,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {selectedKeys.size} card{selectedKeys.size !== 1 ? 's' : ''} selected
           </span>
           <div style={{ flex: 1 }} />
-          <button
-            onClick={() => setSelectedKeys(new Set(visibleCards.map(c => c.render_key)))}
-            style={{ ...btnBase, background: 'none', color: '#78716c', fontSize: 11 }}
-          >Select visible</button>
+          {!single && (
+            <button
+              onClick={() => setSelectedKeys(new Set(visibleCards.map(c => c.render_key)))}
+              style={{ ...btnBase, background: 'none', color: '#78716c', fontSize: 11 }}
+            >Select visible</button>
+          )}
           <button
             onClick={clearSelection}
             style={{ ...btnBase, background: 'none', color: '#78716c', fontSize: 11 }}
@@ -2221,7 +2256,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             padding: 24, display: 'flex', flexDirection: 'column', gap: 16,
           }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: 16, color: '#fde047', fontWeight: 700 }}>🔄 Rebuild Deck</h3>
+              <h3 style={{ margin: 0, fontSize: 16, color: '#fde047', fontWeight: 700 }}>{single ? '🎲 New art for this card' : '🔄 Rebuild Deck'}</h3>
               <div style={{ fontSize: 12, color: '#78716c', marginTop: 4 }}>
                 Generate new card art with different settings
               </div>

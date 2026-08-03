@@ -1171,6 +1171,15 @@ def render_card(
     mana_cost = card.get("mana_cost", "") or ""
     power     = card.get("power")
     toughness = card.get("toughness")
+    # Planeswalker starting loyalty. Occupies the same bottom-right badge as P/T
+    # (a card is never both), so one code path draws whichever the card has. This
+    # is a proxy frame, not a real planeswalker frame — there are no per-ability
+    # loyalty-cost rows, the abilities print as ordinary rules text.
+    loyalty   = card.get("loyalty")
+    if power is None or toughness is None:
+        badge_text = str(loyalty) if loyalty not in (None, "") else None
+    else:
+        badge_text = f"{power}/{toughness}"
     is_legendary = "Legendary" in (type_line or "")
 
     fk  = _frame_key(colors, type_line)
@@ -1363,9 +1372,9 @@ def render_card(
     ora_w = _ORA_W - 2 * _ORA_PAD
     ora_h = _ORA_H - 2 * _ORA_PAD
 
-    # Keep body text clear of the P/T badge (sits bottom-right). End the text
-    # area just above the badge so flavor text never renders underneath it.
-    if power is not None and toughness is not None:
+    # Keep body text clear of the P/T (or loyalty) badge (sits bottom-right). End
+    # the text area just above the badge so flavor text never renders underneath it.
+    if badge_text is not None:
         ora_h = min(ora_h, (_PT_Y - _mm(1.2)) - ora_y)
 
     has_oracle = bool((oracle_text or "").strip())
@@ -1413,9 +1422,9 @@ def render_card(
             flav_font, oracle_fg,
         )
 
-    # ── Layer 9: P/T badge ────────────────────────────────────────────────────
-    if power is not None and toughness is not None:
-        pt_str = f"{power}/{toughness}"
+    # ── Layer 9: P/T (or planeswalker loyalty) badge ──────────────────────────
+    if badge_text is not None:
+        pt_str = badge_text
         pt_img = _load_asset("pt_boxes", bk)
         if pt_img:
             pt_scaled = pt_img.resize((_PT_W, _PT_H), Image.LANCZOS)

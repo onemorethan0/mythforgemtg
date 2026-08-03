@@ -3489,6 +3489,12 @@ class Themer:
         if ro_mode:
             art_prompt = apply_ro_tokens(art_prompt, card, override_text=commander_prompt)
 
+        # Free the GPU, exactly as theme_deck does on its way out. Without this a
+        # single-card build left ~10 GB of qwen3 resident: art generation then had
+        # to evict it (slow), and a text-only build never freed it at all — which
+        # matters on a one-GPU box that also runs games.
+        unload_ollama_model(model=self.model)
+
         return ThemedCard(
             original_name=name,
             themed_name  =name,           # author mode: keep the user's name verbatim

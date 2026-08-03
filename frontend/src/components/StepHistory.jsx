@@ -262,18 +262,28 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
             <div style={s.theme}>{entry.theme}</div>
           )}
           <div style={s.meta}>
-            <span style={{ ...s.bracket, background: `${bColor}22`, color: bColor, border: `1px solid ${bColor}44` }}>
-              B{entry.bracket} {bLabel}
-            </span>
-            {entry.measured_bracket && (
-              <span
-                title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`}
-                style={{ ...s.bracket, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844' }}
-              >
-                ⚡ B{entry.measured_bracket}
+            {/* A single custom card has no bracket and no card count worth showing —
+                it used to list as "B0 · 1 cards", indistinguishable from a deck. */}
+            {entry.single_card ? (
+              <span style={{ ...s.bracket, background: '#a855f722', color: '#c084fc', border: '1px solid #a855f744' }}>
+                🂠 Custom card
               </span>
+            ) : (
+              <>
+                <span style={{ ...s.bracket, background: `${bColor}22`, color: bColor, border: `1px solid ${bColor}44` }}>
+                  B{entry.bracket} {bLabel}
+                </span>
+                {entry.measured_bracket && (
+                  <span
+                    title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`}
+                    style={{ ...s.bracket, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844' }}
+                  >
+                    ⚡ B{entry.measured_bracket}
+                  </span>
+                )}
+                <span style={s.count}>{entry.card_count} cards</span>
+              </>
             )}
-            <span style={s.count}>{entry.card_count} cards</span>
             <span style={s.date}>{fmt_date(entry.built_at)}</span>
           </div>
 

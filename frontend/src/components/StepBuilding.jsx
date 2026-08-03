@@ -42,13 +42,17 @@ const c = {
   empty:      { padding: '20px 0', color: '#57534e', fontSize: 14, textAlign: 'center' },
 }
 
+// Labels differ between a 100-card deck build and a single custom card: the same
+// pipeline steps mean different things, and calling a one-card job "Deck
+// Construction" that ends in "Deck Complete!" was the loudest wrong note in
+// single-card mode. ("Ollama" is also just stale — theming moved to llama.cpp.)
 const STEP_META = {
-  commander: { icon: '🔍', label: 'Commander Lookup' },
+  commander: { icon: '🔍', label: 'Commander Lookup', card: 'Your Card' },
   deck:      { icon: '🃏', label: 'Deck Construction' },
-  theme:     { icon: '✨', label: 'Theming with Ollama' },
+  theme:     { icon: '✨', label: 'Theming with the LLM', card: 'Art Direction' },
   symbol:    { icon: '🔮', label: 'Set Symbol' },
   art:       { icon: '🎨', label: 'Card Art (ComfyUI)' },
-  render:    { icon: '🖼',  label: 'Rendering Frames' },
+  render:    { icon: '🖼',  label: 'Rendering Frames', card: 'Rendering the Proxy' },
 }
 const STEP_ORDER = ['commander', 'deck', 'theme', 'symbol', 'art', 'render']
 
@@ -117,8 +121,26 @@ function ArtDetail({ data, active }) {
 }
 
 // ── Live card grid ────────────────────────────────────────────────────────────
-function CardGrid({ jobId, cards }) {
+function CardGrid({ jobId, cards, single }) {
   if (!cards.length) return null
+  // A single-card job has exactly one payoff — show it big and centred instead of
+  // as a lone postage stamp in a grid sized for a hundred cards.
+  if (single) {
+    const card = cards[cards.length - 1]
+    return (
+      <div style={{ marginTop: 22, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#a8a29e' }}>Your card</span>
+        <img
+          src={`/api/deck/${jobId}/card-image/${card.key}?t=${card.ts || 0}`}
+          alt={card.name}
+          style={{ width: 300, maxWidth: '100%', aspectRatio: '480 / 672', borderRadius: 10,
+                   border: '1px solid #292524', boxShadow: '0 10px 34px rgba(0,0,0,0.55)',
+                   animation: 'card-pop 0.3s ease-out' }}
+        />
+        <span style={{ fontSize: 12, color: '#57534e' }}>{card.name}</span>
+      </div>
+    )
+  }
   return (
     <div style={{ marginTop: 20 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10 }}>
@@ -197,8 +219,12 @@ function CardThumb({ jobId, card, isLatest }) {
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function StepBuilding({ jobId, onDone, onError }) {
+export default function StepBuilding({ jobId, onDone, onError, single = false }) {
   const [byStep, setByStep]       = useState({})
+  // Warnings (art skipped, theming failed) arrived styled exactly like normal
+  // progress and their `hint` was dropped on the floor, so the one message that
+  // explained why a build produced no art was invisible.
+  const [warnings, setWarnings]   = useState([])
   const [themeData, setThemeData] = useState(null)
   const [artData, setArtData]     = useState(null)
   const [status, setStatus]       = useState('building')
@@ -237,6 +263,10 @@ export default function StepBuilding({ jobId, onDone, onError }) {
       try {
         const d = JSON.parse(e.data)
         setByStep(prev => ({ ...prev, [d.step]: d.msg }))
+        if (d.warning) {
+          setWarnings(prev => prev.some(w => w.msg === d.msg)
+            ? prev : [...prev, { step: d.step, msg: d.msg, hint: d.hint || '' }])
+        }
 
         if (d.step === 'theme' && d.batch != null) {
           setThemeData({ batch: d.batch, total_batches: d.total_batches,
@@ -353,8 +383,12 @@ export default function StepBuilding({ jobId, onDone, onError }) {
   const visibleSteps = STEP_ORDER.filter(s => byStep[s])
   const lastStep = visibleSteps[visibleSteps.length - 1] || null
 
-  // Compute overall rough % for hero bar
-  const STEP_WEIGHTS = { commander: 2, deck: 5, theme: 20, symbol: 1, art: 65, render: 7 }
+  // Compute overall rough % for hero bar. A single-card job never emits a `deck`
+  // step and only ever has one card of art, so the deck weights left it stuck at
+  // ~27% and then vanishing at 'done' — it read as a build that gave up.
+  const STEP_WEIGHTS = single
+    ? { commander: 5, deck: 0, theme: 25, symbol: 5, art: 55, render: 10 }
+    : { commander: 2, deck: 5, theme: 20, symbol: 1, art: 65, render: 7 }
   let heroProgress = 0
   STEP_ORDER.forEach(s => {
     if (!byStep[s]) return
@@ -369,8 +403,16 @@ export default function StepBuilding({ jobId, onDone, onError }) {
       heroProgress += w * 0.5
     }
   })
-  const totalWeight = Object.values(STEP_WEIGHTS).reduce((a, b) => a + b, 0)
-  const heroPct = Math.min(100, Math.round((heroProgress / totalWeight) * 100))
+  // Denominator = the steps this job will actually run. A step that never appears
+  // and is already behind the current one was SKIPPED (a single card with a
+  // hand-written art prompt emits no `theme` step at all), so counting it made the
+  // bar top out well short of 100 and look like a stall. Steps still ahead do count.
+  const lastIdx = STEP_ORDER.indexOf(lastStep)
+  const totalWeight = STEP_ORDER.reduce(
+    (a, st, i) => a + ((byStep[st] || i > lastIdx) ? (STEP_WEIGHTS[st] || 0) : 0), 0)
+  const heroPct = status === 'done'
+    ? 100
+    : Math.min(100, Math.round((heroProgress / (totalWeight || 1)) * 100))
 
   const isCancelling = cancelState === 'cancelling'
   const canCancel    = status === 'building' && cancelState === 'idle'
@@ -379,18 +421,23 @@ export default function StepBuilding({ jobId, onDone, onError }) {
     <div style={c.wrap}>
       {/* Header */}
       <div style={c.header}>
-        <div style={c.heroIcon}>{status === 'done' ? '✅' : isCancelling ? '⏹️' : '⚙️'}</div>
+        <div style={c.heroIcon}>{status === 'done' ? '✅' : isCancelling ? '⏹️' : single ? '🂠' : '⚙️'}</div>
         <h2 style={c.heroTitle}>
-          {status === 'done' ? 'Deck Complete!' : isCancelling ? 'Cancelling…' : 'Forging Your Deck…'}
+          {status === 'done' ? (single ? 'Card Complete!' : 'Deck Complete!')
+            : isCancelling ? 'Cancelling…'
+            : single ? 'Forging Your Card…' : 'Forging Your Deck…'}
         </h2>
         <p style={c.heroSub}>
           {status === 'done'
-            ? 'Your deck is ready.'
+            ? (single ? 'Your card is ready.' : 'Your deck is ready.')
             : isCancelling
-              ? 'Finishing the current card, then stopping. Deck will show what was completed.'
+              ? (single
+                  ? 'Stopping — your card is saved with whatever finished.'
+                  : 'Finishing the current card, then stopping. Deck will show what was completed.')
               : byStep.art
                 ? 'Generating card art with FLUX — this is the long step.'
-                : 'Hang tight while we build and theme your deck.'}
+                : (single ? 'Hang tight while we write, illustrate and print your card.'
+                          : 'Hang tight while we build and theme your deck.')}
         </p>
 
         {/* Overall progress bar */}
@@ -456,12 +503,14 @@ export default function StepBuilding({ jobId, onDone, onError }) {
 
         {STEP_ORDER.filter(s => byStep[s]).map(s => {
           const meta   = STEP_META[s] || { icon: '⚙', label: s }
+          // A one-card job has no commander and no deck — use the card-mode label.
+          const mLabel = (single && meta.card) ? meta.card : meta.label
           const active = s === lastStep && status === 'building'
           return (
             <div key={s} style={c.row}>
               <span style={c.rowIcon}>{meta.icon}</span>
               <div style={c.rowBody}>
-                <div style={c.rowLabel}>{meta.label}</div>
+                <div style={c.rowLabel}>{mLabel}</div>
                 <div style={c.rowMsg(active)}>{byStep[s]}</div>
 
                 {/* Theme inline detail */}
@@ -480,8 +529,22 @@ export default function StepBuilding({ jobId, onDone, onError }) {
         })}
       </div>
 
+      {/* Warnings the step log used to swallow */}
+      {warnings.length > 0 && (
+        <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 10,
+                      background: '#1c1408', border: '1px solid #a16207' }}>
+          {warnings.map((w, i) => (
+            <div key={i} style={{ fontSize: 12.5, color: '#fcd34d', lineHeight: 1.6,
+                                  marginTop: i ? 6 : 0 }}>
+              {w.msg}
+              {w.hint && <div style={{ color: '#a8a29e', fontSize: 11.5 }}>{w.hint}</div>}
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Live card grid — fills in as art generates */}
-      <CardGrid jobId={jobId} cards={readyCards} />
+      <CardGrid jobId={jobId} cards={readyCards} single={single} />
 
       <div ref={bottomRef} />
 
