@@ -408,3 +408,115 @@ def test_ledger_save_is_atomic(tmp_path, monkeypatch, make_card):
     assert ledger_file.read_text(encoding="utf-8") == original
     assert json.loads(ledger_file.read_text(encoding="utf-8"))["entries"]
     assert Ledger(path=ledger_file).get("insight spell")["status"] == "accepted"
+
+
+def test_failed_refresh_is_not_retried_at_the_same_prompt_version(tmp_path, monkeypatch,
+                                                                  make_card):
+    """A refresh that fails must step aside, or it blocks the queue forever.
+
+    The keep-on-failure guard restored the prior ledger entry VERBATIM, which left the
+    card looking exactly like un-attempted work: accepted, below the current prompt
+    version — the query --refresh-stale selects on. That selection sorts by
+    (prompt_version, edhrec_rank) and is deterministic, so the same permanently-failing
+    cards won the same top slots in every chunk of the night. On 2026-08-04 that was 384
+    cards failing in all four chunks (Flusterstorm was card 1/1400 four times): 1,536 of
+    5,600 refresh attempts, ~27% of the run's GPU budget, spent re-failing while the tail
+    of the stale pool was never reached.
+
+    The card stays accepted at its old version — it is still stale and still wants a
+    refresh — but not at THIS prompt version again. A new prompt revision clears it.
+    """
+    import argparse
+
+    from mythgauntlet import cli
+
+    ledger_file = tmp_path / "ledger.json"
+    store = tmp_path / "compiled"
+    store.mkdir()
+    monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "compiled_dir", lambda: store)
+    monkeypatch.setattr(compiler, "authored_names", lambda: set())
+    monkeypatch.setattr(cli, "_llm_client", lambda: _FakeClient(BAD_JSON))
+    monkeypatch.setattr(compiler, "save_compiled", lambda card, doc: None)
+
+    # Needs a real edhrec_rank: _cmd_compile_top ranks on it and drops unranked cards
+    # before any of the selection logic below runs.
+    card = make_card("Insight Spell", mana_cost="{2}{U}", type_line="Sorcery",
+                     oracle_text="Draw two cards.", edhrec_rank=10)
+    (store / "insight-spell.json").write_text(json.dumps({
+        "card": {"name": card.name, "mana_cost": "{2}{U}", "type_line": "Sorcery",
+                 "oracle_text": card.oracle_text},
+        "ccm": {**json.loads(GOOD_JSON), "rung": 2},
+    }), encoding="utf-8")
+
+    led = Ledger(path=ledger_file)
+    led.entries[compiler.normalize_name(card.name)] = {
+        "name": card.name, "status": "accepted", "attempts": 1, "ops": ["draw"],
+        "errors": [], "model": "old", "prompt_version": 5, "date": "2026-07-05",
+    }
+    led.save()
+
+    cli._compile_cards([card], keep_on_failure=True)
+
+    entry = Ledger(path=ledger_file).get(card.name)
+    assert entry["status"] == "accepted", "still no demotion"
+    assert entry["prompt_version"] == 5, "still stale — the working CCM is v5"
+    assert entry["refresh_failed_at"] == compiler.PROMPT_VERSION, (
+        "the failed attempt must leave a trace scoped to the prompt version that failed"
+    )
+
+    # The selector now skips it, so the chunk's GPU time goes to cards further down the
+    # stale pool instead of re-failing on the same head-of-line card.
+    db = type("_Db", (), {"_by_name": {"insight spell": card}})()
+    monkeypatch.setattr(cli, "_load_db", lambda: db)
+    calls: list[list[str]] = []
+    monkeypatch.setattr(
+        cli, "_compile_cards",
+        lambda cards, keep_on_failure=False: calls.append([c.name for c in cards]) or 0,
+    )
+
+    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+    assert calls == [], "a card that already failed at this prompt version is not re-picked"
+
+    # --force is the escape hatch: it re-attempts a blocked card, and exactly ONCE —
+    # forcing pulls already-accepted cards into `targets`, and every one of those is
+    # stale by definition, so the two pools would otherwise both claim it.
+    cli._cmd_compile_top(argparse.Namespace(count=5, force=True, refresh_stale=True))
+    assert calls == [[card.name]], "--force retries a blocked card, and does not double it"
+
+
+def test_failed_refresh_is_retried_once_the_prompt_moves(tmp_path, monkeypatch, make_card):
+    """The block is scoped to one prompt version, not permanent.
+
+    A card that can't be modelled under v10 may well compile under v11 — that is the
+    whole reason the prompt keeps moving. If the marker outlived its version it would
+    quietly retire cards from the corpus forever.
+    """
+    import argparse
+
+    from mythgauntlet import cli
+
+    card = make_card("Stale Card", mana_cost="{U}", type_line="Sorcery",
+                     oracle_text="Draw a card.", edhrec_rank=20)
+    ledger_file = tmp_path / "ledger.json"
+    monkeypatch.setattr(compiler, "ledger_path", lambda: ledger_file)
+    monkeypatch.setattr(compiler, "authored_names", lambda: set())
+    led = Ledger(path=ledger_file)
+    led.entries[compiler.normalize_name(card.name)] = {
+        "name": card.name, "status": "accepted", "attempts": 1, "ops": ["draw"],
+        "errors": [], "model": "old", "prompt_version": 5, "date": "2026-07-05",
+        # blocked under a PAST prompt version, not the current one
+        "refresh_failed_at": compiler.PROMPT_VERSION - 1,
+    }
+    led.save()
+
+    db = type("_Db", (), {"_by_name": {"stale card": card}})()
+    monkeypatch.setattr(cli, "_load_db", lambda: db)
+    calls: list[list[str]] = []
+    monkeypatch.setattr(
+        cli, "_compile_cards",
+        lambda cards, keep_on_failure=False: calls.append([c.name for c in cards]) or 0,
+    )
+
+    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+    assert calls == [[card.name]], "a stale marker from an older prompt must not block"

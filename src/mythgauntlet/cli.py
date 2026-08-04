@@ -829,7 +829,20 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
                 and compiler.stored_ccm_passes_gates(card)):
             # Refresh miss on a card whose EXISTING CCM is still valid: keep the
             # older-but-working CCM and its ledger entry rather than risk a demotion.
-            ledger.entries[normalize_name(card.name)] = prior
+            # Record WHICH prompt version failed, though. Restoring `prior` verbatim
+            # left no trace of the attempt, so the card stayed "accepted below the
+            # current prompt" — exactly the query `compile-top --refresh-stale` uses
+            # to pick work — and its sort key (version, edhrec_rank) is deterministic,
+            # so the same cards won the same top slots in every chunk of the night.
+            # On 2026-08-04, 384 cards failed in all four chunks: 1,536 of 5,600
+            # refresh attempts (27% of the run's GPU budget) re-failing on a
+            # head-of-line block, while the tail of the stale pool was never reached.
+            # The marker is scoped to the version that failed, so the next prompt
+            # revision retries every one of them.
+            ledger.entries[normalize_name(card.name)] = {
+                **prior,
+                "refresh_failed_at": compiler.PROMPT_VERSION,
+            }
             ledger.save()
             kept += 1
             console.print(
@@ -907,15 +920,29 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
         # Oldest prompt version first, then EDHREC rank — the weakest CCMs on the
         # most-played cards get fixed first.
         stale = []
+        blocked = 0
+        # --force puts already-accepted cards into `targets` (it skips the status
+        # short-circuit above), and every one of those is stale by definition — so
+        # without this the forced card is compiled TWICE in one chunk, once per pass.
+        # On the normal path the two pools can't overlap: an accepted card never
+        # reaches `targets`, and only accepted cards are stale.
+        queued = {normalize_name(c.name) for c in targets}
         for card in ranked:
-            if normalize_name(card.name) in authored:
+            if normalize_name(card.name) in authored or normalize_name(card.name) in queued:
                 continue
             entry = ledger.get(card.name)
             if not entry or entry["status"] != "accepted":
                 continue
             version = entry.get("prompt_version") or 0
-            if version < compiler.PROMPT_VERSION:
-                stale.append((version, card))
+            if version >= compiler.PROMPT_VERSION:
+                continue
+            # Already tried and failed AT THIS PROMPT VERSION (see the marker written
+            # on the keep path in _compile_cards): don't spend the GPU on it again
+            # until the prompt itself changes. --force still re-attempts everything.
+            if entry.get("refresh_failed_at") == compiler.PROMPT_VERSION and not args.force:
+                blocked += 1
+                continue
+            stale.append((version, card))
         stale.sort(key=lambda vc: (vc[0], vc[1].edhrec_rank))
         room = args.count - len(targets)
         refresh = [card for _, card in stale[:room]]
@@ -926,10 +953,16 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
                 if not targets
                 else f"{len(targets)} new/quarantined cards first, then"
             )
+            held = (
+                f" {blocked} held back (already failed a v{compiler.PROMPT_VERSION} "
+                "refresh; --force retries them)."
+                if blocked
+                else ""
+            )
             console.print(
                 f"{lead}; refreshing {len(refresh)} of {len(stale)} cards accepted at "
                 f"prompt v{spread} (current v{compiler.PROMPT_VERSION}). "
-                "A failed refresh keeps the existing CCM."
+                f"A failed refresh keeps the existing CCM.{held}"
             )
             # Two passes, not one: the refresh half must run with keep_on_failure so a
             # bad roll can't demote a working CCM, while a NEW card has nothing to keep

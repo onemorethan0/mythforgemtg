@@ -158,6 +158,14 @@ def ledger_stats() -> dict[str, int]:
         latest = max(versions)
         stats["prompt_version"] = latest
         stats["at_latest_prompt"] = sum(1 for v in versions if v == latest)
+        # Cards that tried the current prompt and failed its gates keep their older
+        # CCM, so they still read as "on an older prompt" — but the compiler will not
+        # pick them again until the prompt moves. Counting them separately keeps the
+        # remaining-work number from implying a backlog the run can actually reach.
+        stats["blocked_at_latest"] = sum(
+            1 for e in entries.values()
+            if (e.get("prompt_version") or 0) < latest and e.get("refresh_failed_at") == latest
+        )
     return stats
 
 
@@ -313,7 +321,14 @@ def write_report(
         f"{after.get('at_latest_prompt', 0) - before.get('at_latest_prompt', 0)}"
         f" (now {after.get('at_latest_prompt', 0)}/{after.get('total', 0)})",
         f"- remaining on an older prompt: "
-        f"{after.get('total', 0) - after.get('at_latest_prompt', 0)}",
+        f"{after.get('total', 0) - after.get('at_latest_prompt', 0)}"
+        + (
+            f" ({after['blocked_at_latest']} of them tried v"
+            f"{after.get('prompt_version', '?')} and failed its gates - not retried "
+            "until the prompt moves)"
+            if after.get("blocked_at_latest")
+            else ""
+        ),
     ]
     if after == before:
         lines.append(
