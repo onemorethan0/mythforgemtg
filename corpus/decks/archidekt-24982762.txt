@@ -1,0 +1,107 @@
+# Archidekt — First Strike Mardu
+# source: archidekt:24982762
+# fetched: 2026-08-04
+
+Commander:
+1 Tsagan, Raider Warlord
+
+Deck:
+1 Archetype of Aggression
+1 Archetype of Courage
+1 Battlefield Raptor
+1 Burnout Bashtronaut
+1 Drana, Liberator of Malakir
+1 Endrider Catalyzer
+1 Gas Guzzler
+1 Gastal Thrillseeker
+1 Goldhound
+1 Adeline, Resplendent Cathar
+1 Alesha, Who Laughs at Fate
+1 Ankle Shanker
+1 Blade Historian
+1 Far Fortune, End Boss
+1 Enduring Courage
+1 Bonehoard Dracosaur
+1 Hazoret, Godseeker
+1 Iroas, God of Victory
+1 Isshin, Two Heavens as One
+1 Karlach, Fury of Avernus
+1 Kinscaer Sentry
+1 Knuckles the Echidna
+1 Legion Loyalist
+1 Professional Face-Breaker
+1 Swiftblade Vindicator
+1 Thalia, Heretic Cathar
+1 The Speed Demon
+1 Voice of Victory
+1 Akroma's Will
+1 Anguished Unmaking
+1 Boros Charm
+1 Chaos Warp
+1 Crackling Doom
+1 Deflecting Swat
+1 Flawless Maneuver
+1 Legion Leadership // Legion Stronghold
+1 Path to Exile
+1 Swords to Plowshares
+1 Austere Command
+1 Blasphemous Act
+1 Night's Whisper
+1 Ruinous Ultimatum
+1 Vandalblast
+1 Fellwar Stone
+1 All-Out Assault
+1 Black Market Connections
+1 Kickoff Celebrations
+1 Momentum Breaker
+1 Reconnaissance
+1 Rising of the Day
+1 Windcrag Siege
+1 Amonkhet Raceway
+1 Arena of Glory
+1 Arid Mesa
+1 Avishkar Raceway
+1 Battlefield Forge
+1 Blazemire Verge
+1 Bleachbone Verge
+1 Blood Crypt
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Caves of Koilos
+1 City of Brass
+1 Clifftop Retreat
+1 Command Tower
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Fabled Passage
+1 Godless Shrine
+1 Haunted Ridge
+1 Isolated Chapel
+1 Luxury Suite
+1 Marsh Flats
+1 Muraganda Raceway
+1 Nomad Outpost
+1 Rogue's Passage
+1 Sacred Foundry
+1 Savai Triome
+1 Shattered Sanctum
+1 Smoldering Marsh
+1 Spectator Seating
+1 Sulfurous Springs
+1 Sunbillow Verge
+1 Swiftfoot Boots
+1 Talisman of Indulgence
+1 Knight of the White Orchid
+1 Kwende, Pride of Femeref
+1 Lightning, Army of One
+1 Mardu Siegebreaker
+1 Odric, Lunarch Marshal
+1 Sundown Pass
+1 Vault of Champions
+1 Vault of the Archangel
+1 Talisman of Hierarchy
+1 Sol Ring
+1 Lightning Greaves
+1 Talisman of Conviction
+1 Arcane Signet
+1 Skullclamp

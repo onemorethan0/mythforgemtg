@@ -1,0 +1,106 @@
+# Archidekt — Run of the Mill
+# source: archidekt:19126048
+# fetched: 2026-08-04
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Polluted Delta
+1 Arid Mesa
+1 Bloodstained Mire
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Windswept Heath
+1 Tundra
+1 Scrubland
+1 Underground Sea
+1 Hallowed Fountain
+1 Godless Shrine
+1 Watery Grave
+1 Glacial Chasm
+1 Karlov of the Ghost Council
+1 Serra Ascendant
+1 Esper Sentinel
+1 Witch of the Moors
+1 Haliya, Guided by Light
+1 The Gaffer
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Blind Obedience
+1 Authority of the Consuls
+1 Black Market Connections
+1 Otawara, Soaring City
+1 Vault of the Archangel
+1 Hall of Heliod's Generosity
+1 Undercity Sewers
+1 Bojuka Bog
+1 Ancient Tomb
+1 Meticulous Archive
+1 Eiganjo, Seat of the Empire
+1 Raffine's Tower
+1 Takenuma, Abandoned Mire
+1 Shadowy Backstreet
+1 Urza's Saga
+1 Arcane Signet
+1 The Darkness Crystal
+1 Cabal Coffers
+1 Recruiter of the Guard
+1 Teferi's Ageless Insight
+1 Alhammarret's Archive
+1 Trouble in Pairs
+1 Archivist of Oghma
+2 Island
+1 Nephalia Drownyard
+1 Prismatic Vista
+1 Sphinx of the Revelation
+1 Urborg, Tomb of Yawgmoth
+2 Plains
+2 Swamp
+1 Dauthi Voidwalker
+1 Leyline of the Void
+1 Altar of the Brood
+1 Bruvac the Grandiloquent
+1 Ashiok, Dream Render
+1 Fractured Sanity
+1 Folio of Fancies
+1 Hope Estheim
+1 Maddening Cacophony
+1 Memory Erosion
+1 Mindcrank
+1 Psychic Corrosion
+1 Phenax, God of Deception
+1 Ruin Crab
+1 Space-Time Anomaly
+1 Singularity Rupture
+1 Sphinx's Tutelage
+1 The Mindskinner
+1 Teferi's Tutelage
+1 The Water Crystal
+1 Aetherflux Reservoir
+1 The Wind Crystal
+1 Amalia Benavides Aguirre
+1 Dawn of Hope
+1 Exemplar of Light
+1 Veinwitch Coven
+1 Well of Lost Dreams
+1 Essence Pulse
+1 Will, Scion of Peace
+1 Celestine, the Living Saint
+1 Rodolf Duskbringer
+1 Talisman of Hierarchy
+1 Sol Ring
+1 Talisman of Progress
+1 Talisman of Dominance
+1 Rhox Faithmender
+1 Sun Titan
+1 Ajani Resolute
+1 Defiling Daemogoth
+1 MACH-1, Swooping Scoundrel
+1 Dr. Beverly Crusher
+1 Leech Collector // Bloodletting
+1 Moseo, Vein's New Dean
+1 Enlightened Confidant
+1 Scheming Silvertongue // Sign in Blood

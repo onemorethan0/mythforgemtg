@@ -1,0 +1,85 @@
+# Archidekt — Copy of - Honey Pack
+# source: archidekt:24552870
+# fetched: 2026-08-02
+
+Commander:
+1 Hurska Sweet-Tooth
+
+Deck:
+1 Glorious Sunrise
+1 Rancor
+1 Trelasarra, Moon Dancer
+1 Riot Control
+1 Haliya, Guided by Light
+1 Well of Lost Dreams
+1 Nykthos Paragon
+1 Trail of Crumbs
+1 Evolving Wilds
+1 Avacyn's Pilgrim
+1 Idol of Oblivion
+1 Swords to Plowshares
+1 Exemplar of Light
+1 Leyline of Hope
+1 Sol Ring
+1 Inscription of Abundance
+1 Heliod's Intervention
+1 Fortifying Draught
+1 Light of Promise
+1 Adventurer's Inn
+1 Angel of Vitality
+1 Garruk's Uprising
+1 Congregate
+1 Feasting Troll King
+1 Defend the Rider
+1 Akroma's Will
+1 Flawless Maneuver
+1 War Report
+1 Blossoming Bogbeast
+1 Accomplished Alchemist
+1 Arcane Signet
+1 Rampant Growth
+1 Lathiel, the Bounteous Dawn
+1 Command Tower
+1 Canopy Vista
+1 Sunpetal Grove
+1 Sungrass Prairie
+1 Peregrin Took
+1 Rogue's Passage
+1 Fortified Village
+1 Brushland
+1 Sam, Loyal Attendant
+1 Cleric Class
+1 Gilded Goose
+1 Rhox Faithmender
+1 Temple of Plenty
+1 Gingerbread Cabin
+1 Banquet Guests
+1 Sunbond
+1 Cradle of Vitality
+1 Rest for the Weary
+1 Armadillo Cloak
+1 Unflinching Courage
+1 The Wind Crystal
+1 Behemoth Sledge
+1 Rune of Might
+1 Treebeard, Gracious Host
+1 Feed the Clan
+1 Sheltering Word
+1 Restoration Magic
+1 Fumigate
+1 Heroic Intervention
+1 Overprotect
+1 Kutzil, Malamet Exemplar
+1 Jaheira, Friend of the Forest
+1 Caduceus, Staff of Hermes
+1 Astrid Peth
+1 Felidar Sovereign
+10 Plains
+14 Forest
+1 Blacksmith's Skill
+1 Samwise Gamgee
+1 Farewell
+1 Predator's Rapport
+1 Rosie Cotton of South Lane
+1 Beast Within
+1 Eager Trufflesnout

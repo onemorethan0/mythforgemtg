@@ -1,0 +1,90 @@
+# Archidekt — grn
+# source: archidekt:24982407
+# fetched: 2026-08-04
+
+Commander:
+1 Arwen, Mortal Queen
+
+Deck:
+1 Aragorn and Arwen, Wed
+1 Chance-Met Elves
+1 Arwen, Weaver of Hope
+1 Quirion Elves
+1 Doubling Season
+1 Emerald Medallion
+1 Llanowar Elves
+1 Drove of Elves
+1 Fyndhorn Elves
+1 Circle of the Moon Druid
+1 Bramblewood Paragon
+1 Deathbloom Gardener
+1 Elvish Aberration
+1 Lightning Greaves
+1 Damning Verdict
+1 Elderleaf Mentor
+1 Swiftfoot Boots
+1 Conclave Guildmage
+1 Arcane Signet
+1 Orcrist, Goblin-cleaver
+1 Mithril Coat
+1 Cultivate
+1 Path to Exile
+1 Swords to Plowshares
+1 Andúril, Narsil Reforged
+1 Temple Garden
+1 Thought Vessel
+1 Selesnya Sanctuary
+1 The Arkenstone // Seek the Heart
+1 Command Tower
+1 Savannah
+1 Sol Ring
+1 The Earth Crystal
+1 Esper Sentinel
+1 Seedborn Muse
+15 Forest
+1 Sunpetal Grove
+1 Teferi's Protection
+1 Temple of the False God
+1 Exotic Orchard
+1 Pearl Medallion
+1 Soul Warden
+1 Reliquary Tower
+1 Conclave Mentor
+1 Andúril, Flame of the West
+1 Canopy Vista
+1 Fortified Village
+1 Minas Tirith
+1 Overgrown Farmland
+1 Bountiful Promenade
+1 Kutzil, Malamet Exemplar
+1 Temple of Plenty
+1 Hardened Scales
+1 Heroic Intervention
+1 Brushland
+1 Birds of Paradise
+2 Plains
+1 Branchloft Pathway // Boulderloft Pathway
+1 Strength of the Harvest // Haven of the Harvest
+1 Soul's Attendant
+1 Rogue's Passage
+1 The Ozolith
+1 Three Tree City
+1 Generous Gift
+1 Beast Whisperer
+1 Farseek
+1 Essence Warden
+1 Beast Within
+1 Toski, Bearer of Secrets
+1 Kodama's Reach
+1 Rampant Growth
+1 Nature's Lore
+1 Gleaming Splendor
+1 Elvish Mystic
+1 Champion of Lambholt
+1 Three Visits
+1 Smothering Tithe
+1 Evolution Sage
+1 Shalai, Voice of Plenty
+1 Norn's Choirmaster
+1 Delighted Halfling
+1 Exemplar of Light

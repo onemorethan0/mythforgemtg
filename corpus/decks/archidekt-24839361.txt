@@ -1,0 +1,98 @@
+# Archidekt — altair ibn
+# source: archidekt:24839361
+# fetched: 2026-08-02
+
+Commander:
+1 Altaïr Ibn-La'Ahad
+
+Deck:
+1 Buried Alive
+1 Reconnaissance
+1 The Master, Multiplied
+1 Desmond Miles
+1 Enlightened Tutor
+1 Goblin Bombardment
+1 High Noon
+1 Faithless Looting
+1 Lotho, Corrupt Shirriff
+1 Overpowering Attack
+1 Roaming Throne
+1 Diabolic Intent
+1 Anger
+1 Dark Ritual
+1 Éowyn, Fearless Knight
+1 Éomer, Marshal of Rohan
+1 Sword of the Animist
+1 Cathars' Crusade
+1 Ulamog, the Defiler
+1 Windcrag Siege
+1 Abrade
+1 Swift Reconfiguration
+1 Arcane Signet
+1 Glimpse the Impossible
+1 Gimli of the Glittering Caves
+1 Alena, Kessig Trapper
+1 Burnt Offering
+1 Dihada, Binder of Wills
+1 The Queen of Dale
+1 Dark Fortress
+1 Sacrifice
+1 Balin, Loremaster
+1 Eiganjo, Seat of the Empire
+1 Neriv, Heart of the Storm
+1 Vile Entomber
+1 Simian Spirit Guide
+1 Great Hall of the Citadel
+1 Heroes' Podium
+1 Plaza of Heroes
+1 Burning-Rune Demon
+1 Concealed Courtyard
+1 Command Tower
+1 Arena of Glory
+1 Sol Ring
+1 Clifftop Retreat
+1 Sacred Foundry
+1 Blood Crypt
+1 Exotic Orchard
+1 Spectator Seating
+1 Raucous Theater
+1 Elegant Parlor
+1 Sundown Pass
+1 Shattered Sanctum
+1 Battlefield Forge
+1 Ragavan, Nimble Pilferer
+1 Collector's Vault
+1 Pip-Boy 3000
+1 Angel of the Ruins
+1 Rune-Scarred Demon
+1 Daily Bugle Newspaper
+1 Mask of Memory
+1 Currency Converter
+5 Mountain
+1 Sundial of the Infinite
+1 Altar of Dementia
+1 The Grey Havens
+1 Monumental Henge
+1 Gandalf the White
+1 One Ring to Rule Them All
+1 General's Enforcer
+1 Eiganjo Castle
+1 Daily Bugle Building
+1 War of the Last Alliance
+1 Hero's Heirloom
+1 Tinybones Joins Up
+2 Plains
+1 The Peregrine Dynamo
+1 Lightning Greaves
+1 Rising of the Day
+1 Flowering of the White Tree
+1 Minas Tirith
+7 Swamp
+1 Bayek of Siwa
+1 Roshan, Hidden Magister
+1 The Animus
+1 Unstoppable Slasher
+1 Mari, the Killing Quill
+1 Murderous Redcap
+1 Maskwood Nexus
+1 Ashes of the Fallen

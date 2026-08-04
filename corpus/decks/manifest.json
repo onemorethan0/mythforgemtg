@@ -22,6 +22,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-10498441.txt",
+      "name": "Atraxa",
+      "source": "archidekt:10498441",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-10547386.txt",
       "name": "The Pride of Hull Clade (Bracket 2, Slime Against Humanity)",
       "source": "archidekt:10547386",
@@ -153,6 +160,13 @@
       "source": "archidekt:12713582",
       "bracket": 2,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-12890193.txt",
+      "name": "Alibou, Ancient Witness - Artifacts",
+      "source": "archidekt:12890193",
+      "bracket": null,
+      "fetched": "2026-08-01"
     },
     {
       "file": "archidekt-12900196.txt",
@@ -379,6 +393,13 @@
       "fetched": "2026-07-31"
     },
     {
+      "file": "archidekt-15400926.txt",
+      "name": "Obeka, Splitter of Seconds",
+      "source": "archidekt:15400926",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-15440478.txt",
       "name": "Ride the Lightning!/Johann,The Apprentice Sorcerer",
       "source": "archidekt:15440478",
@@ -468,6 +489,13 @@
       "source": "archidekt:16992339",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-17001993.txt",
+      "name": "Morphing commander",
+      "source": "archidekt:17001993",
+      "bracket": 2,
+      "fetched": "2026-08-04"
     },
     {
       "file": "archidekt-17049746.txt",
@@ -596,6 +624,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-18262654.txt",
+      "name": "Hamster Fight Club",
+      "source": "archidekt:18262654",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-1827191.txt",
       "name": "GROTHAMA!",
       "source": "archidekt:1827191",
@@ -657,6 +692,13 @@
       "source": "archidekt:1909492",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-19126048.txt",
+      "name": "Run of the Mill",
+      "source": "archidekt:19126048",
+      "bracket": null,
+      "fetched": "2026-08-04"
     },
     {
       "file": "archidekt-19146490.txt",
@@ -764,6 +806,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-21707343.txt",
+      "name": "Nuclear Hands",
+      "source": "archidekt:21707343",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-217651.txt",
       "name": "***** Meren Hulk (cEDH)",
       "source": "archidekt:217651",
@@ -813,6 +862,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-22518748.txt",
+      "name": "Slimefoot and Squee",
+      "source": "archidekt:22518748",
+      "bracket": 3,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-22819995.txt",
       "name": "World Shredder",
       "source": "archidekt:22819995",
@@ -832,6 +888,13 @@
       "source": "archidekt:22935841",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-23152610.txt",
+      "name": "Cloud Attacks!",
+      "source": "archidekt:23152610",
+      "bracket": null,
+      "fetched": "2026-08-02"
     },
     {
       "file": "archidekt-23158931.txt",
@@ -993,6 +1056,13 @@
       "source": "archidekt:24087824",
       "bracket": 2,
       "fetched": "2026-07-09"
+    },
+    {
+      "file": "archidekt-24089756.txt",
+      "name": "Urza, Master of Blades",
+      "source": "archidekt:24089756",
+      "bracket": null,
+      "fetched": "2026-08-02"
     },
     {
       "file": "archidekt-24096124.txt",
@@ -1268,6 +1338,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-24552870.txt",
+      "name": "Copy of - Honey Pack",
+      "source": "archidekt:24552870",
+      "bracket": null,
+      "fetched": "2026-08-02"
+    },
+    {
       "file": "archidekt-24553092.txt",
       "name": "Terra Precon upgraded?",
       "source": "archidekt:24553092",
@@ -1336,6 +1413,13 @@
       "source": "archidekt:24607636",
       "bracket": 2,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-24610331.txt",
+      "name": "Elsha swingy",
+      "source": "archidekt:24610331",
+      "bracket": null,
+      "fetched": "2026-08-02"
     },
     {
       "file": "archidekt-24612245.txt",
@@ -1478,6 +1562,13 @@
       "fetched": "2026-07-27"
     },
     {
+      "file": "archidekt-24717474.txt",
+      "name": "oops! all combat tricks",
+      "source": "archidekt:24717474",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
       "file": "archidekt-24719460.txt",
       "name": "flick my shard v.2",
       "source": "archidekt:24719460",
@@ -1520,11 +1611,25 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-24739374.txt",
+      "name": "Stealing stuff and pawning it off",
+      "source": "archidekt:24739374",
+      "bracket": null,
+      "fetched": "2026-08-02"
+    },
+    {
       "file": "archidekt-24742272.txt",
       "name": "Vivi",
       "source": "archidekt:24742272",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-24745445.txt",
+      "name": "Jersey",
+      "source": "archidekt:24745445",
+      "bracket": null,
+      "fetched": "2026-08-01"
     },
     {
       "file": "archidekt-24747160.txt",
@@ -1835,6 +1940,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-24780079.txt",
+      "name": "Chaos Incarnate Precon",
+      "source": "archidekt:24780079",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
       "file": "archidekt-24780135.txt",
       "name": "Kykar",
       "source": "archidekt:24780135",
@@ -2003,6 +2115,20 @@
       "fetched": "2026-07-30"
     },
     {
+      "file": "archidekt-24825861.txt",
+      "name": "Power Up madness",
+      "source": "archidekt:24825861",
+      "bracket": null,
+      "fetched": "2026-08-02"
+    },
+    {
+      "file": "archidekt-24839361.txt",
+      "name": "altair ibn",
+      "source": "archidekt:24839361",
+      "bracket": null,
+      "fetched": "2026-08-02"
+    },
+    {
       "file": "archidekt-24842199.txt",
       "name": "Fem'menon the right hand",
       "source": "archidekt:24842199",
@@ -2022,6 +2148,97 @@
       "source": "archidekt:24853396",
       "bracket": null,
       "fetched": "2026-07-31"
+    },
+    {
+      "file": "archidekt-24854260.txt",
+      "name": "He's a GOOD BOY!! (First Draft)",
+      "source": "archidekt:24854260",
+      "bracket": null,
+      "fetched": "2026-08-02"
+    },
+    {
+      "file": "archidekt-24871087.txt",
+      "name": "Copy of - Dragon Kaalia",
+      "source": "archidekt:24871087",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
+      "file": "archidekt-24894937.txt",
+      "name": "The Cooler Omnath",
+      "source": "archidekt:24894937",
+      "bracket": 3,
+      "fetched": "2026-08-02"
+    },
+    {
+      "file": "archidekt-24895884.txt",
+      "name": "2nd try for aesi",
+      "source": "archidekt:24895884",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
+      "file": "archidekt-24895978.txt",
+      "name": "Terra, Herald of Hope",
+      "source": "archidekt:24895978",
+      "bracket": null,
+      "fetched": "2026-08-01"
+    },
+    {
+      "file": "archidekt-24897899.txt",
+      "name": "Oops All Dawi",
+      "source": "archidekt:24897899",
+      "bracket": 2,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24976097.txt",
+      "name": "Spidey",
+      "source": "archidekt:24976097",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24981728.txt",
+      "name": "Equippies",
+      "source": "archidekt:24981728",
+      "bracket": 3,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24981890.txt",
+      "name": "Grannie",
+      "source": "archidekt:24981890",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24982407.txt",
+      "name": "grn",
+      "source": "archidekt:24982407",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24982508.txt",
+      "name": "You Work for Me Now!",
+      "source": "archidekt:24982508",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24982525.txt",
+      "name": "Mr Crabs",
+      "source": "archidekt:24982525",
+      "bracket": null,
+      "fetched": "2026-08-04"
+    },
+    {
+      "file": "archidekt-24982762.txt",
+      "name": "First Strike Mardu",
+      "source": "archidekt:24982762",
+      "bracket": null,
+      "fetched": "2026-08-04"
     },
     {
       "file": "archidekt-2565352.txt",
@@ -2680,6 +2897,13 @@
       "source": "archidekt:6847581",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-6919287.txt",
+      "name": "Omnath-ni-nom",
+      "source": "archidekt:6919287",
+      "bracket": null,
+      "fetched": "2026-08-02"
     },
     {
       "file": "archidekt-696285.txt",

@@ -1,0 +1,93 @@
+# Archidekt — Omnath-ni-nom
+# source: archidekt:6919287
+# fetched: 2026-08-02
+
+Commander:
+1 Omnath, Locus of Creation
+
+Deck:
+1 Otawara, Soaring City
+1 Ancient Greenwarden
+1 Misty Rainforest
+1 Arid Mesa
+1 Jetmir's Garden
+1 Spara's Headquarters
+3 Mountain
+3 Island
+1 Omnath, Locus of Mana
+1 Ashaya, Soul of the Wild
+1 Maelstrom Wanderer
+1 Elvish Reclaimer
+1 Radha, Heart of Keld
+1 Lotus Cobra
+1 Tatyova, Benthic Druid
+1 Moraug, Fury of Akoum
+1 Hedron Crab
+1 Khalni Heart Expedition
+1 Ruin Crab
+1 Tireless Provisioner
+1 Scute Swarm
+1 Felidar Retreat
+1 Spitfire Lagac
+1 Valakut Exploration
+1 Azusa, Lost but Seeking
+1 Conduit of Worlds
+1 Boseiju, Who Endures
+1 Cabaretti Courtyard
+1 Cartographer's Survey
+1 Cultivator Colossus
+1 Cyclonic Rift
+1 Cultivate
+1 Dryad of the Ilysian Grove
+1 Demolition Field
+1 Elesh Norn, Mother of Machines
+1 Evolving Wilds
+1 Fierce Guardianship
+1 Farseek
+1 Expand the Sphere
+1 Heroic Intervention
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Kodama's Reach
+1 Kogla and Yidaro
+1 Green Sun's Twilight
+1 Gwenna, Eyes of Gaea
+1 Kodama of the West Tree
+1 Thassa, Deep-Dwelling
+1 Kefnet the Mindful
+1 Spark Double
+1 Wayward Guide-Beast
+1 Vastwood Surge
+1 Growth Spiral
+1 Pir's Whim
+1 The Great Henge
+1 Topiary Stomper
+1 Rampant Growth
+1 Prismatic Vista
+1 Terramorphic Expanse
+1 Vigor
+1 Clever Concealment
+1 Klothys, God of Destiny
+1 Sword of Forge and Frontier
+1 Lithoform Engine
+1 Colossal Majesty
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Plaza of Heroes
+1 Breeding Pool
+1 Command Tower
+9 Forest
+1 Branchloft Pathway // Boulderloft Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Cinder Glade
+1 Deserted Beach
+1 Brokers Hideout
+1 Canopy Vista
+1 Needleverge Pathway // Pillarverge Pathway
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Dreamroot Cascade
+1 Eiganjo, Seat of the Empire
+1 Razorverge Thicket
+1 Riverglide Pathway // Lavaglide Pathway
+1 Hengegate Pathway // Mistgate Pathway
+1 Rockfall Vale
+1 Secluded Courtyard
+1 Nature's Lore

@@ -1,0 +1,90 @@
+# Archidekt — You Work for Me Now!
+# source: archidekt:24982508
+# fetched: 2026-08-04
+
+Commander:
+1 Scriv, the Obligator
+
+Deck:
+1 Silverquill Lecturer
+1 Yume, Chronicler of Valor
+1 Acrobatic Maneuver
+1 Airbender Ascension
+1 Airbender's Reversal
+1 All That Glitters
+1 Arcane Lighthouse
+1 Ashiok's Reaper
+1 Blade of Selves
+1 Bloodthirsty Blade
+1 Breena, the Demagogue
+1 Cloudshift
+1 Combat Calligrapher
+1 Comeuppance
+1 Duelist's Heritage
+1 Eerie Interlude
+1 Eidolon of Countless Battles
+1 Eiganjo Dynastorian // Replenish
+1 Ephemerate
+1 Eriette of the Charmed Apple
+1 Far Traveler
+1 Flicker of Fate
+1 Ghostly Prison
+1 Gilraen, Dúnedain Protector
+1 Grim Guardian
+1 Harvestguard Alseids
+1 Hateful Eidolon
+1 Idol of Oblivion
+1 Immortal Obligation
+1 Inkshield
+1 Joined Researchers // Secret Rendezvous
+1 Kambal, Profiteering Mayor
+1 Kaya, Geist Hunter
+1 Killian, Decisive Mentor
+1 Lae'zel's Acrobatics
+1 Land Tax
+1 Loran of the Third Path
+1 Mandate of Peace
+1 Mangara, the Diplomat
+1 Nils, Discipline Enforcer
+1 Norn's Annex
+1 Ondu Spiritdancer
+1 Panharmonicon
+1 Parting Gust
+1 Pearl Medallion
+1 Revenge of Ravens
+1 Roaming Throne
+1 Sage's Reverie
+1 Scheming Symmetry
+1 Scrollshift
+1 Secret Rendezvous
+1 Shadrix Silverquill
+1 Sphere of Safety
+1 Strionic Resonator
+1 Teleportation Circle
+1 Tenuous Truce
+1 Wedding Ring
+1 Winds of Abandon
+1 Elesh Norn, Mother of Machines
+1 Welcoming Vampire
+1 Tocasia's Welcome
+1 Arcane Signet
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caves of Koilos
+1 Command Tower
+1 Concealed Courtyard
+1 Exotic Orchard
+1 Fabled Passage
+1 Fellwar Stone
+1 Godless Shrine
+1 Isolated Chapel
+1 Orzhov Signet
+1 Shattered Sanctum
+1 Shineshadow Snarl
+1 Sol Ring
+1 Tainted Field
+1 Talisman of Hierarchy
+1 Vault of Champions
+1 Swamp
+19 Plains
+1 Nykthos, Shrine to Nyx
+1 Emeria, the Sky Ruin

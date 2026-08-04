@@ -1,0 +1,96 @@
+# Archidekt — Urza, Master of Blades
+# source: archidekt:24089756
+# fetched: 2026-08-02
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Andúril, Narsil Reforged
+1 Genji Glove
+1 Buster Sword
+1 Hammer of Nazahn
+1 Pip-Boy 3000
+1 Nazgûl Battle-Mace
+1 Mithril Coat
+1 Blade of Selves
+1 Brotherhood Regalia
+1 Sword of the Animist
+1 Silver Shroud Costume
+1 Commander's Plate
+1 Scythe of the Wretched
+1 Sword of Feast and Famine
+1 Sword of Fire and Ice
+1 Sword of War and Peace
+1 Swordsman's Steel
+1 Fishing Gear
+1 Resurrection Orb
+1 Sword of Hearth and Home
+1 Excalibur, Sword of Eden
+1 Sword of Light and Shadow
+1 Sword of Forge and Frontier
+1 Winged Boots
+1 Sword of Sinew and Steel
+1 Nim Deathmantle
+1 Panther Habit
+1 Andúril, Flame of the West
+1 Kaldra Compleat
+1 Helm of the Host
+1 Darksteel Plate
+1 Helm of Kaldra
+1 Iron Man Armor
+1 Unstable Molecule Suit
+1 The Reality Chip
+1 Grafted Exoskeleton
+1 Blackblade Reforged
+1 Basilisk Collar
+1 Masterwork of Ingenuity
+1 Swiftfoot Boots
+1 Champion's Helm
+1 Bloodforged Battle-Axe
+1 Sword of Vengeance
+1 Conqueror's Flail
+1 Nettlecyst
+1 Lightning Greaves
+1 Loxodon Warhammer
+1 Lavaspur Boots
+1 Leyline Axe
+1 Wrecking Ball Arm
+1 Neurok Stealthsuit
+1 Urza's Saga
+1 Infiltration Lens
+1 Urza's Power Plant
+1 Urza's Tower
+1 Emergence Zone
+1 Vibranium Strike Gauntlets
+1 Reliquary Tower
+1 War Room
+1 Academy Ruins
+1 Buried Ruin
+1 Urza's Mine
+1 Sink into Stupor // Soporific Springs
+1 Minamo, School at Water's Edge
+1 Polluted Delta
+1 Uthros, Titanic Godcore
+1 Cavern of Souls
+1 Fomori Vault
+1 Otawara, Soaring City
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Skullclamp
+1 Flooded Strand
+1 Scalding Tarn
+1 Urza's Cave
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Misty Rainforest
+1 Umezawa's Jitte
+1 Inventors' Fair
+4 Island
+4 Island
+4 Island
+3 Island
+1 Adaptive Omnitool
+1 Bitterthorn, Nissa's Animus
+1 Batterskull
+1 Illusionist's Bracers
+1 Rogue's Gloves
+1 Shadowspear

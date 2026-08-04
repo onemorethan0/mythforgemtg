@@ -1,0 +1,89 @@
+# Archidekt — Morphing commander
+# source: archidekt:17001993
+# fetched: 2026-08-04
+# bracket: 2
+
+Commander:
+1 Kadena, Slinking Sorcerer
+
+Deck:
+1 Vesuvan Shapeshifter
+1 Chromeshell Crab
+1 Golgari Cluestone
+1 Thornwood Falls
+1 Silumgar Spell-Eater
+1 Broodhatch Nantuko
+1 Sakura-Tribe Elder
+1 Foul Orchard
+1 Cyber Conversion
+1 Sign in Blood
+1 Thousand Winds
+1 Aphetto Runecaster
+1 Ainok Survivalist
+1 Submerged Boneyard
+1 Cultivate
+1 Ruthless Ripper
+1 Hagra Mauling // Hagra Broodpit
+1 Stratus Dancer
+1 Silent Specter
+1 Dream Chisel
+1 Bane of the Living
+1 Creeping Tar Pit
+1 Rancor
+1 Doom Blade
+1 Dimir Guildgate
+1 Explore
+1 Solemn Simulacrum
+1 Woodland Stream
+1 Sagu Mauler
+1 Ixidron
+1 Mischievous Quanar
+1 Sylvan Caryatid
+1 Den Protector
+1 Krosan Colossus
+1 Aphetto Exterminator
+1 Icefeather Aven
+1 Krosan Cloudscraper
+1 Putrefy
+1 Inscription of Abundance
+1 Opulent Palace
+1 Rampant Growth
+1 Trail of Mystery
+1 Skinthinner
+1 Voidmage Prodigy
+1 Bojuka Bog
+1 Gift of Doom
+1 Aphetto Alchemist
+1 Ebonblade Reaper
+1 Riptide Entrancer
+1 Hooded Hydra
+1 Dermoplasm
+1 Voidmage Apprentice
+1 Kadena's Silencer
+1 Silumgar Assassin
+1 Echo Tracer
+1 Soul Collector
+1 Ixidor, Reality Sculptor
+1 Grinning Demon
+1 Khalni Heart Expedition
+1 Secret Plans
+1 Deathmist Raptor
+8 Forest
+1 Temple of Mystery
+1 Riptide Survivor
+1 Hystrodon
+1 Fact or Fiction
+1 Primal Whisperer
+1 Command Tower
+1 Read the Bones
+1 Grim Haruspex
+1 Simic Cluestone
+1 Foreboding Landscape
+1 Mistfire Weaver
+1 Golgari Guildgate
+6 Swamp
+1 Evolving Wilds
+8 Island
+1 Zoetic Cavern
+1 Kodama's Reach
+1 Dimir Cluestone

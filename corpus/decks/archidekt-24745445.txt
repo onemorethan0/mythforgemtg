@@ -1,0 +1,57 @@
+# Archidekt — Jersey
+# source: archidekt:24745445
+# fetched: 2026-08-01
+
+Commander:
+1 Magda, Brazen Outlaw
+1 Athreos, Shroud-Veiled
+
+Deck:
+2 Blazing Firesinger // Seething Song
+2 Dwarven Grunt
+1 Bruenor Battlehammer
+1 Dáin of the Ancient Halls
+1 Dori, Bearer of Friends
+1 Fearless Liberator
+1 Rogue's Passage
+1 Gimli of the Glittering Caves
+1 Academy Manufactor
+1 Glóin, Dwarf Emissary
+2 Adult Gold Dragon
+1 Ancient Brass Dragon
+1 Ancient Copper Dragon
+1 Atsushi, the Blazing Sky
+1 Lathliss, Dragon Queen
+2 Aviary Mechanic
+2 Audacious Infiltrator
+2 Aerial Responder
+1 Cadric, Soul Kindler
+2 Aethershield Artificer
+2 Bomb Squad
+2 Cavern-Hoard Dragon
+1 Dragonlord Kolaghan
+1 Magda, the Hoardmaster
+2 Plundering Barbarian
+2 Skullport Merchant
+1 Thorin, Company's Leader
+1 Vihaan, Goldwaker
+1 Armory of Iroas
+1 Barbed Battlegear
+1 Basilisk Collar
+2 Amorphous Axe
+1 Aettir and Priwen
+2 Bearded Axe
+2 Beamtown Beatstick
+2 Gilded Pinions
+2 Goldvein Pick
+1 Gorgon's Head
+2 Gold Pan
+1 Gorgon Flail
+1 Smaug the Impenetrable
+1 Smaug the Magnificent
+1 Thorin, King of Durin's Folk
+1 The Lonely Mountain
+12 Mountain
+12 Plains
+1 Xorn
+11 Swamp

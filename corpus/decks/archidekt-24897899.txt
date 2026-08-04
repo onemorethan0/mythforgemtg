@@ -1,0 +1,70 @@
+# Archidekt — Oops All Dawi
+# source: archidekt:24897899
+# fetched: 2026-08-04
+# bracket: 2
+
+Commander:
+1 Dáin of the Ancient Halls
+
+Deck:
+1 Bearded Axe
+1 Goldvein Pick
+1 Dwarven Recruiter
+1 Depala, Pilot Exemplar
+1 Armed and Armored
+1 Gimli's Axe
+1 Bruenor Battlehammer
+1 Gimli's Reckless Might
+1 Reyav, Master Smith
+1 Warchanter Skald
+1 Restoration Specialist
+1 Giott, King of the Dwarves
+1 Dwarven Mauler
+1 Dori, Bearer of Friends
+1 Dwalin, Weaponmaster
+1 Dáin Ironfoot
+1 Dáin, Lord of the Iron Hills
+1 Glóin the Mighty // Easy Pickings
+1 Fíli and Kíli, Joyous
+1 Iron Hills Stalwart
+1 Koll, the Forgemaster
+1 Kíli the Resourceful
+1 Thorin's Last Stand
+1 Sol Ring
+1 Orcrist, Goblin-cleaver
+1 Balin, Loremaster
+1 Thorin Oakenshield
+1 Gimli's Fury
+1 Sram, Senior Edificer
+1 Thorin, King of Durin's Folk
+1 Thorin, Company's Leader
+1 Thorin, Mountain-king
+1 Iron Hills Blacksmith
+1 Gleaming Splendor
+1 The Lonely Mountain
+1 Bifur, Melodic Rider
+1 Dwarven Hammer
+1 Bloodforged Battle-Axe
+1 Inventor's Axe
+1 Colossus Hammer
+1 Fíli the Pathfinder
+1 Dáin's Company
+1 Mjölnir, Storm Hammer
+17 Plains
+1 Gimli of the Glittering Caves
+20 Mountain
+1 Arcane Signet
+1 Storm-Kiln Artist
+1 Warlord's Axe
+1 Darksteel Axe
+1 Greataxe
+1 Marauder's Axe
+1 Leyline Axe
+1 Maul of the Skyclaves
+1 Deconstruction Hammer
+1 Kill Shot
+1 Generous Gift
+1 Vandalize
+1 Suplex
+1 Dwarven Shortsword
+1 Dwarven Mattock

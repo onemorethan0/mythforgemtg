@@ -1,0 +1,87 @@
+# Archidekt — Power Up madness
+# source: archidekt:24825861
+# fetched: 2026-08-02
+
+Commander:
+1 Hulk, Gamma Goliath
+
+Deck:
+1 Wild Ricochet
+1 Lightning Greaves
+1 Exotic Orchard
+1 Punishing Punch
+1 Snakeskin Veil
+1 Mister Hyde, Monster Within
+1 Call Damage Control
+1 Maximum Carnage
+1 Surrak, Elusive Hunter
+1 Nature's Rhythm
+1 Agatha of the Vile Cauldron
+1 Iron Fist, Hero for Hire
+1 Abomination, Terrifying Titan
+1 Birds of Paradise
+1 Gamma Grotesque
+1 Bushmaster, Coiled Henchman
+1 Goblin Anarchomancer
+1 Jack of Hearts, Volatile Hero
+1 Molly Hayes, Runaway
+1 Doc Samson, Super Psychiatrist
+1 Elvish Mystic
+1 Shang-Chi, Martial Mentor
+1 Ultron Drone
+1 Gamble
+1 Fanatic of Rhonas
+1 White Tiger, Ava Ayala
+1 Human Torch, Johnny Storm
+1 Kami of Whispered Hopes
+1 Chaos Warp
+1 Kodama of the West Tree
+1 Agatha's Soul Cauldron
+1 Goliath, Mass Manipulator
+1 Serpent Specialist
+1 Hercules, Prince of Power
+1 Wonder Man, Hollywood Hero
+1 Quicksilver, Brash Blur
+1 She-Hulk, Jade Defender
+1 Loki Laufeyson
+1 Quinjet Technician
+1 Viv Vision, Teen Synthezoid
+1 Cultivate
+1 Kodama's Reach
+1 Avengers Tower
+1 Colossal Majesty
+1 Farseek
+1 Faithless Looting
+1 Heroic Intervention
+1 Nature's Lore
+1 Arcane Signet
+1 Reckless Handling
+1 Three Visits
+1 Lightning Bolt
+1 Untimely Malfunction
+1 Big Score
+1 Worldly Tutor
+1 Return the Favor
+1 Unexpected Windfall
+1 The Fire Crystal
+1 Training Compound
+1 Advancing the Spirit
+1 Spire Garden
+1 Thornspire Verge
+1 Sol Ring
+1 Branching Evolution
+1 Cool but Rude
+1 The Earth Crystal
+1 Hardened Scales
+1 Myriad Landscape
+1 Innkeeper's Talent
+1 Garruk's Uprising
+1 Command Tower
+1 Game Trail
+1 Terrasymbiosis
+1 Cinder Glade
+11 Mountain
+11 Forest
+1 Stomping Ground
+1 Rockfall Vale
+1 Wooded Foothills

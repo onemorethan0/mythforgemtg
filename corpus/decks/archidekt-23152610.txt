@@ -1,0 +1,100 @@
+# Archidekt — Cloud Attacks!
+# source: archidekt:23152610
+# fetched: 2026-08-02
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Freya Crescent
+1 Swords to Plowshares
+1 Inventory Management
+1 Cloud, Planet's Champion
+1 Raubahn, Bull of Ala Mhigo
+1 Brotherhood Regalia
+1 Stump Stomp // Burnwillow Clearing
+1 Boros Charm
+1 Buried Ruin
+1 Junktown
+1 Temple of Abandon
+1 Austere Command
+1 Hero's Blade
+1 Jungle Shrine
+1 Sephiroth, Fallen Hero
+1 Arcane Signet
+1 Cinder Glade
+1 Barret, Avalanche Leader
+1 Behemoth Sledge
+1 Bugenhagen, Wise Elder
+1 Colossus Hammer
+1 Conqueror's Flail
+1 Puresteel Paladin
+1 Rampant Growth
+1 Red XIII, Proud Warrior
+1 Professor Hojo
+1 Sol Ring
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorched Divide
+1 Tifa, Martial Artist
+1 Wrecking Ball Arm
+1 Yuffie, Materia Hunter
+1 Zack Fair
+1 Vincent, Vengeful Atoner
+1 Ashe, Princess of Dalmasca
+1 Codsworth, Handy Helper
+1 Excalibur, Sword of Eden
+1 Firion, Wild Rose Warrior
+1 Gilgamesh, Master-at-Arms
+1 Nibelheim Aflame
+1 Sword of War and Peace
+1 Lightning, Security Sergeant
+1 Forge Anew
+1 Dogmeat, Ever Loyal
+1 Helm of the Host
+1 Maximus, Knight Apparent
+1 Bayek of Siwa
+1 Silver Shroud Costume
+1 Ultima Weapon
+1 Leyline Axe
+1 Basilisk Collar
+1 Pip-Boy 3000
+1 Bloodforged Battle-Axe
+1 Maul of the Skyclaves
+1 Bonders' Enclave
+1 Canopy Vista
+1 Clifftop Retreat
+1 Command Tower
+1 Exotic Orchard
+2 Forest
+4 Mountain
+1 Path of Ancestry
+1 Rootbound Crag
+1 Rugged Prairie
+1 Scavenger Grounds
+4 Plains
+1 Slayers' Stronghold
+1 Rogue's Passage
+1 Spire Garden
+1 Temple of Plenty
+1 Razorverge Thicket
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Urza's Saga
+1 Elegant Parlor
+1 Kessig Wolf Run
+1 Reconnaissance
+1 Sami, Wildcat Captain
+1 Alexios, Deimos of Kosmos
+1 Sram, Senior Edificer
+1 Minsc & Boo, Timeless Heroes
+1 Clever Concealment
+1 Sword of the Animist
+1 Inspiring Statuary
+1 Stroke of Midnight
+1 Celestial Armor
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Cloud, Midgar Mercenary
+1 Machinist's Arsenal
+1 Overwhelming Stampede
+1 Kodama's Reach
+1 Waves of Aggression

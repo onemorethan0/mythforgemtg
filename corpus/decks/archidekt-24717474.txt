@@ -1,0 +1,86 @@
+# Archidekt — oops! all combat tricks
+# source: archidekt:24717474
+# fetched: 2026-08-01
+
+Commander:
+1 Thor Odinson
+
+Deck:
+1 Ancestral Anger
+1 Balduvian Rage
+1 Crash Through
+1 Crimson Wisps
+1 Faithless Looting
+1 Honor
+1 Dragon Mantle
+1 Defiant Strike
+1 Expedite
+1 Niveous Wisps
+1 Needle Drop
+1 Magmatic Insight
+1 Might of the Meek
+1 Vexing Bauble
+1 Relic of Progenitus
+1 Sticky Fingers
+1 Warlord's Fury
+1 Prophecy
+1 Bandage
+1 Impolite Entrance
+1 Heal
+1 Festival of the Guildpact
+1 Break the Spell
+1 Arcum's Astrolabe
+1 Capashen Standard
+1 Urza's Bauble
+1 Mishra's Bauble
+1 Accelerate
+1 Demand Answers
+1 Artist's Talent
+1 Demonic Ruckus
+1 Dual-Sun Technique
+1 Faithless Salvaging
+1 Fists of Flame
+1 Guided Strike
+1 To Arms!
+1 Key to the City
+1 Rebellious Strike
+1 Psychotic Fury
+1 Mind Stone
+1 Reprieve
+1 Pumpkin Bombs
+1 Witch's Mark
+1 Rune of Sustenance
+1 Romantic Rendezvous
+1 Thrilling Discovery
+1 Tormenting Voice
+1 Vision of Love
+1 Talisman of Conviction
+12 Plains
+1 Fellwar Stone
+1 Arcane Signet
+1 Spectator Seating
+1 Battlefield Forge
+1 Slayers' Stronghold
+1 Sunhome, Fortress of the Legion
+1 Clifftop Retreat
+1 Reflecting Pool
+1 Sundering Eruption // Volcanic Fissure
+1 Sundown Pass
+1 Rogue's Passage
+1 Command Tower
+1 Boros Signet
+1 Darksteel Mutation
+1 Boros Charm
+1 Vandalblast
+1 Stroke of Midnight
+1 Blasphemous Act
+1 Abrade
+1 Generous Gift
+1 Path to Exile
+1 Swords to Plowshares
+1 Chaos Warp
+1 Erode
+12 Mountain
+1 Primal Amulet // Primal Wellspring
+1 Helm of Awakening
+1 Ruby Medallion

@@ -1,0 +1,97 @@
+# Archidekt — Nuclear Hands
+# source: archidekt:21707343
+# fetched: 2026-08-01
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Abrade
+1 Bolt Bend
+1 Waterlogged Teachings // Inundated Archive
+1 Tidal Barracuda
+1 Leyline of Anticipation
+3 Swamp
+1 Nightscape Familiar
+1 Dark Ritual
+1 Aether Tunnel
+1 Expedite
+1 Seething Landscape
+5 Island
+1 Balmor, Battlemage Captain
+1 Electrodominance
+1 Negate
+1 Blazemire Verge
+1 Blood Crypt
+1 Drowned Catacomb
+1 Fabled Passage
+1 Gloomlake Verge
+1 Talisman of Dominance
+1 Temple of Deceit
+1 Temple of Epiphany
+1 Temple of Malice
+1 Twinning Staff
+1 Vandalblast
+5 Mountain
+1 Fists of Flame
+1 Underground River
+1 Mindsplice Apparatus
+1 Talisman of Indulgence
+1 Goblin Electromancer
+1 Storm-Kiln Artist
+1 Big Score
+1 Bulk Up
+1 Spell Pierce
+1 Ash Barrens
+1 Sol Ring
+1 Faerie Mastermind
+1 An Offer You Can't Refuse
+1 Ozai, the Phoenix King
+1 Steam Vents
+1 Riverpyre Verge
+1 Talisman of Creativity
+1 Command Tower
+1 Gandalf, Friend of the Shire
+1 Archmage Emeritus
+1 Aqueous Form
+1 Antagonize
+1 Brute Force
+1 Thousand-Year Storm
+1 Valley Floodcaller
+1 High Fae Trickster
+1 Temur Battle Rage
+1 Glamdring
+1 Lightning Bolt
+1 Mystical Tutor
+1 Swan Song
+1 Shipwreck Marsh
+1 Lórien Revealed
+1 Stormcarved Coast
+1 Haunted Ridge
+1 Xander's Lounge
+1 Watery Grave
+1 Trailblazer's Boots
+1 Frantic Search
+1 Arcane Signet
+1 Sulfurous Springs
+1 Lavaspur Boots
+1 Borne Upon a Wind
+1 Underworld Breach
+1 Dragonskull Summit
+1 Swiftfoot Boots
+1 Unleash Fury
+1 Shivan Reef
+1 Exsanguinate
+1 Solve the Equation
+1 Isochron Scepter
+1 Sulfur Falls
+1 Lier, Disciple of the Drowned
+1 Kess, Dissident Mage
+1 Chandra's Ignition
+1 Dramatic Reversal
+1 Windfall
+1 Diabolic Intent
+1 Veyran, Voice of Duality
+1 Galvanic Iteration
+1 Prismari, the Inspiration
+1 Fated Firepower

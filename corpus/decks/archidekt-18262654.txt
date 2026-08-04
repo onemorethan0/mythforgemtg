@@ -1,0 +1,90 @@
+# Archidekt — Hamster Fight Club
+# source: archidekt:18262654
+# fetched: 2026-08-01
+
+Commander:
+1 Minsc & Boo, Timeless Heroes
+
+Deck:
+1 Karplusan Forest
+10 Forest
+1 Hit-Monkey
+1 Rampaging Yao Guai
+1 Atalan Jackal
+1 Traverse the Outlands
+1 Bolt Bend
+1 Rogue's Passage
+1 Command Tower
+1 Unnatural Restoration
+1 Stump Stomp // Burnwillow Clearing
+1 Spinerock Knoll
+1 Kessig Wolf Run
+1 Taurean Mauler
+1 Forgotten Ancient
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Ruby, Daring Tracker
+1 Lion Umbra
+1 Karn's Bastion
+1 Goblin Anarchomancer
+1 Branching Evolution
+1 Kalonian Hydra
+1 Quartzwood Crasher
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Cinder Glade
+1 Froghemoth
+1 Exotic Orchard
+1 Mosswort Bridge
+1 Command Beacon
+1 Bugenhagen, Wise Elder
+1 Hunter's Insight
+1 Rootbound Crag
+1 Red XIII, Proud Warrior
+1 Fire-Lit Thicket
+1 Blasphemous Act
+1 Managorger Hydra
+1 Ghalta, Primal Hunger
+1 Sundering Eruption // Volcanic Fissure
+1 Collective Resistance
+1 Thought Vessel
+1 Reliquary Tower
+1 Terrasymbiosis
+1 Herd Heirloom
+1 Rockfall Vale
+1 Mossfire Valley
+1 Chandra's Ignition
+1 Loyal Apprentice
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Wilson, Refined Grizzly
+1 Sol Ring
+1 Pain for All
+1 Gangly Stompling
+1 Goldvein Hydra
+1 Lifeblood Hydra
+1 Spider Manifestation
+1 Hunter's Bow
+1 Firbolg Flutist
+1 Hideous Taskmaster
+1 Two-Handed Axe // Sweeping Cleave
+1 Bejeweled Warg
+1 Ram Through
+1 Leatherhead, Swamp Stalker
+1 Studious First-Year // Rampant Growth
+1 Frog Butler
+1 Vigor
+1 Elder Gargaroth
+1 Tarrian's Soulcleaver
+1 Scavenged Brawler
+1 Captain America's Shield
+1 Mjölnir, Hammer of Thor
+1 Hidden Hideout
+1 Luxior, Giada's Gift
+1 Soul Immolation
+1 Ilysian Caryatid
+6 Mountain
+1 Training Compound
+1 Xenagos, God of Revels
+1 Bulk Up
+1 Season of Gathering
+1 Untimely Malfunction
+1 Fanatic of Rhonas
+1 Obscuring Haze

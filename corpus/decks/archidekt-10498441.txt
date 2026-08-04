@@ -1,0 +1,102 @@
+# Archidekt — Atraxa
+# source: archidekt:10498441
+# fetched: 2026-08-01
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Branching Evolution
+1 Wave Goodbye
+1 Farseek
+1 Kalonian Hydra
+1 Biophagus
+1 Mikaeus, the Lunarch
+1 Tekuthal, Inquiry Dominus
+1 Dreamtide Whale
+1 Danny Pink
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Zimone, Paradox Sculptor
+1 Hamza, Guardian of Arashin
+1 Woodland Cemetery
+1 Arcane Signet
+1 Lightning Greaves
+1 Triumph of the Hordes
+1 Arwen, Weaver of Hope
+1 Ouroboroid
+1 Path of Ancestry
+1 Herald of Secret Streams
+1 Reyhan, Last of the Abzan
+1 Birds of Paradise
+1 Cultivate
+1 Inspiring Call
+1 Hinterland Harbor
+1 Terramorphic Expanse
+1 Swords to Plowshares
+1 Sunpetal Grove
+1 Evolving Wilds
+1 Hardened Scales
+1 Overwhelming Stampede
+1 Rishkar's Expertise
+1 Corpsejack Menace
+1 Forgotten Ancient
+1 Fathom Mage
+1 Nesting Grounds
+1 Heroic Intervention
+1 Ezuri, Stalker of Spheres
+1 Metastatic Evangel
+1 Evolution Sage
+1 Yuna, Grand Summoner
+1 Sphere Grid
+1 Deathcap Glade
+1 Dreamroot Cascade
+1 Overgrown Farmland
+1 Conclave Mentor
+1 The Earth Crystal
+1 Atomize
+1 Erode
+1 Court of Garenbrig
+1 Sol Ring
+1 Master Biomancer
+1 Andúril, Narsil Reforged
+1 Tuskguard Captain
+1 Crystalline Crawler
+1 Champion of Lambholt
+1 Inkshield
+1 Opal Palace
+1 Path to Exile
+2 Plains
+1 Swamp
+2 Island
+1 Rampant Growth
+1 Seedborn Muse
+1 Infectious Inquiry
+1 Wildgrowth Archaic
+1 Command Tower
+1 Fabled Passage
+1 Counterspell
+1 Yavimaya Coast
+4 Forest
+1 Underground River
+1 Exotic Orchard
+1 Greater Good
+1 Solidarity of Heroes
+1 Germination Practicum
+1 Damning Verdict
+1 Expansion Algorithm
+1 Experimental Augury
+1 Terrasymbiosis
+1 Brushland
+1 Adarkar Wastes
+1 Llanowar Wastes
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Branchloft Pathway // Boulderloft Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Reflecting Pool
+1 Crop Rotation
+1 Hengegate Pathway // Mistgate Pathway
+1 Darkbore Pathway // Slitherbore Pathway
+1 City of Brass
+1 Shattered Sanctum
+1 Caves of Koilos

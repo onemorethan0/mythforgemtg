@@ -1,0 +1,102 @@
+# Archidekt — Spidey
+# source: archidekt:24976097
+# fetched: 2026-08-04
+
+Commander:
+1 Peter Parker // Amazing Spider-Man
+
+Deck:
+1 Lightning Greaves
+1 Mystic Remora
+1 Alchemist's Refuge
+1 An Offer You Can't Refuse
+1 Arachnogenesis
+1 Beast Within
+1 Borne Upon a Wind
+1 Boseiju, Who Endures
+1 Bountiful Promenade
+1 Breeding Pool
+1 Command Tower
+1 Cryptolith Rite
+1 Dawnsire, Sunstar Dreadnought
+1 Deserted Beach
+1 Dour Port-Mage
+1 Dreamroot Cascade
+1 Elven Chorus
+1 Enduring Vitality
+1 Evendo, Waking Haven
+1 Exotic Orchard
+1 Fierce Guardianship
+1 Flawless Maneuver
+1 Flooded Strand
+2 Forest
+1 Fyndhorn Elves
+1 Galadriel, Light of Valinor
+1 Gandalf the White
+1 Ghalta and Mavren
+1 Ghalta, Stampede Tyrant
+1 Gwenna, Eyes of Gaea
+1 Hallowed Fountain
+1 Hedge Maze
+1 Holdout Settlement
+1 Horizon of Progress
+1 Island
+1 Kira, Great Glass-Spinner
+1 Kogla, the Titan Ape
+1 Koma, Cosmos Serpent
+1 Koma, World-Eater
+1 Legolas's Quick Reflexes
+1 Loran of the Third Path
+1 Lush Portico
+1 Meticulous Archive
+1 Minamo, School at Water's Edge
+1 Misty Rainforest
+1 Mystic Snake
+1 Nature's Lore
+1 Nezahal, Primal Tide
+1 Noble Hierarch
+1 Otawara, Soaring City
+1 Overgrown Farmland
+1 Plains
+1 Plaza of Heroes
+1 Ponder
+1 Preordain
+1 Rejuvenating Springs
+1 Reki, the History of Kamigawa
+1 Relic of Legends
+1 Myojin of Life's Web
+1 Sea of Clouds
+1 Selvala, Heart of the Wilds
+1 Shifting Woodland
+1 Sol Ring
+1 Spectacular Spider-Man
+1 Spider-Sense
+1 Springleaf Drum
+1 Surrak and Goreclaw
+1 Survivors' Encampment
+1 Teferi, Mage of Zhalfir
+1 Temple Garden
+1 The Eternity Elevator
+1 The Seriema
+1 The Shire
+1 The Sixth Doctor
+1 The Tarrasque
+1 The Wandering Rescuer
+1 Thousand-Year Elixir
+1 Three Visits
+1 Urza's Ruinous Blast
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Windswept Heath
+1 Yavimaya, Cradle of Growth
+1 Zopandrel, Hunger Dominus
+1 Helga, Skittish Seer
+1 Avacyn's Memorial
+1 Captain Sisay
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Chulane, Teller of Tales
+1 Fanatic of Rhonas
+1 Delighted Halfling
+1 Bloom Tender
+1 Elesh Norn, Grand Cenobite
+1 Avacyn, Angel of Hope

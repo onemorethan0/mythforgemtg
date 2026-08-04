@@ -1,0 +1,69 @@
+# Archidekt — Stealing stuff and pawning it off
+# source: archidekt:24739374
+# fetched: 2026-08-02
+
+Commander:
+1 Candlekeep Sage
+1 Shadowheart, Dark Justiciar
+
+Deck:
+1 Baleful Strix
+1 Dream Leash
+1 Blue Sun's Twilight
+1 Keiga, the Tide Star
+1 Callous Oppressor
+1 Shore Up
+1 Entrancing Melody
+1 Domineering Will
+1 Essence Flux
+1 Dragonlord Silumgar
+1 Sapphire Medallion
+1 Thran Dynamo
+1 Eriette's Tempting Apple
+1 Propaganda
+1 Fleeting Reflection
+1 Mind Flayer
+1 Sower of Temptation
+1 Volatile Stormdrake
+1 Shield Broker
+1 Blur
+1 Ray of Command
+1 Hatred
+1 Carrion
+1 Ashnod's Altar
+1 Agent of Treachery
+1 Negate
+1 Tempted by the Oriq
+20 Island
+1 An Offer You Can't Refuse
+1 Proft's Eidetic Memory
+1 Thought Reflection
+1 Into the Flood Maw
+20 Swamp
+1 Copy Land
+1 Teferi's Ageless Insight
+1 Chamber of Manipulation
+1 Arcane Signet
+1 Mitotic Manipulation
+1 Dimir Signet
+1 Sol Ring
+1 Talisman of Dominance
+1 Culling the Weak
+1 Sacrifice
+1 Dark Ritual
+1 Rite of Consumption
+1 Disciple of Bolas
+1 Psychosis Crawler
+1 Body of Knowledge
+1 Wizard Class
+1 Terror
+1 Pongify
+1 Withering Torment
+1 Feed the Swarm
+1 Warped Physique
+1 Chasm Skulker
+1 Necropotence
+1 Laboratory Maniac
+1 Thought Vessel
+1 Counterspell
+1 Arcane Denial

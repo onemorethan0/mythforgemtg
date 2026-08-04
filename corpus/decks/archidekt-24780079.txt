@@ -1,0 +1,80 @@
+# Archidekt — Chaos Incarnate Precon
+# source: archidekt:24780079
+# fetched: 2026-08-04
+
+Commander:
+1 Kratos, God of War
+
+Deck:
+1 Mana Geyser
+1 Molten Slagheap
+14 Mountain
+1 Myriad Landscape
+1 Nihil Spellbomb
+1 Ob Nixilis Reignited
+1 Profane Command
+1 Rakdos Charm
+1 Rakdos Signet
+1 Rakshasa Debaser
+1 Read the Bones
+1 Reign of the Pit
+1 Sangromancer
+1 Scythe Specter
+1 Sepulchral Primordial
+1 Syphon Mind
+1 Talisman of Indulgence
+1 Tectonic Giant
+1 Temple of Malice
+1 Terminate
+1 Theater of Horrors
+1 Thermo-Alchemist
+1 Titan Hunter
+1 Unlicensed Disintegration
+1 Urborg Volcano
+1 Vampire Nighthawk
+1 Wayfarer's Bauble
+1 Wild Ricochet
+1 Wildfire Devils
+1 Worn Powerstone
+1 Commander's Sphere
+1 Coveted Jewel
+1 Deadly Tempest
+1 Guttersnipe
+1 Hate Mirage
+1 Indulgent Tormentor
+1 Kazuul, Tyrant of the Cliffs
+1 Lightning Greaves
+1 Magmatic Force
+1 Blasphemous Act
+1 Bloodfell Caves
+1 Bloodgift Demon
+1 Brash Taunter
+1 Breath of Malfegor
+1 Burnished Hart
+1 Chaos Warp
+1 Cinder Barrens
+1 Combustible Gearhulk
+1 Command Tower
+1 Abrade
+1 Akoum Refuge
+1 Ambition's Cost
+1 Arcane Signet
+1 Archfiend of Depravity
+1 Sign in Blood
+1 Smoldering Marsh
+1 Sol Ring
+1 Solemn Simulacrum
+1 Soul Shatter
+1 Spiteful Visions
+1 Stensia Bloodhall
+1 Stormfist Crusader
+1 Sunbird's Invocation
+15 Swamp
+1 Dictate of the Twin Gods
+1 Dredge the Mire
+1 Explosion of Riches
+1 Feed the Swarm
+1 Fiery Confluence
+1 Foreboding Ruins
+1 Geode Rager
+1 Kaervek the Merciless

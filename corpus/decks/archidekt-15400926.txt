@@ -1,0 +1,98 @@
+# Archidekt — Obeka, Splitter of Seconds
+# source: archidekt:15400926
+# fetched: 2026-08-01
+
+Commander:
+1 Obeka, Splitter of Seconds
+
+Deck:
+1 Oscorp Industries
+1 Seething Landscape
+1 Atomic Microsizer
+1 Reverse the Polarity
+1 Siege Smash
+1 Combat Research
+1 Rogue's Passage
+1 Access Tunnel
+1 Cathedral of War
+1 Command Tower
+1 Exotic Orchard
+1 Sulfur Falls
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Sulfurous Springs
+1 Underground River
+1 Shivan Reef
+1 Smoldering Marsh
+1 Path of Ancestry
+1 Sunken Hollow
+4 Mountain
+1 Ring of Xathrid
+1 Ring of Valkas
+1 Ring of Evos Isle
+1 As Foretold
+1 Dragonmaster Outcast
+1 Twilight Prophet
+1 Aqueous Form
+1 Alexios, Deimos of Kosmos
+1 Triskaidekaphobia
+1 Palace Siege
+1 Darksteel Reactor
+1 Aether Tunnel
+1 Security Bypass
+1 Sword Coast Sailor
+1 Netherborn Altar
+1 Wild Evocation
+1 Vile Requiem
+1 Smoke Bomb
+1 Suspended Sentence
+1 Trailblazer's Boots
+1 Marchesa, the Black Rose
+1 Arc Blade
+1 Festering March
+1 Star Whale
+1 Rousing Refrain
+1 Ancestral Vision
+1 Sibylline Soothsayer
+1 Jhoira of the Ghitu
+1 Chronozoa
+1 Doom's Time Platform
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Replicating Ring
+1 Court of Ire
+1 Arcane Signet
+1 Skyline Despot
+1 Nightscape Familiar
+1 Inspiring Refrain
+1 The Parting of the Ways
+1 Indulgent Tormentor
+1 Tithing Blade // Consuming Sepulcher
+1 River Song's Diary
+1 Sin Prodder
+1 Theater of Horrors
+1 Sinister Concierge
+1 Terminate
+1 Slip Through Space
+1 Bojuka Bog
+1 Taigam, Master Opportunist
+1 All of History, All at Once
+1 Time Beetle
+1 Forge of Heroes
+1 Hidden Lair
+1 Scorched Geyser
+1 Tainted Isle
+1 Tainted Peak
+1 Turbulent Springs
+1 Stormcarved Coast
+1 Temple of Epiphany
+4 Island
+4 Swamp
+1 Talisman of Creativity
+1 Rakdos Charm
+1 Pym Particles
+1 Super Intelligence
+1 Crumbling Necropolis
+1 Amy Pond
+1 Triple Triad
+1 Ecstatic Beauty

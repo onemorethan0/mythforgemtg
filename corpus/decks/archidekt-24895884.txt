@@ -1,0 +1,77 @@
+# Archidekt — 2nd try for aesi
+# source: archidekt:24895884
+# fetched: 2026-08-01
+
+Commander:
+1 Aesi, Tyrant of Gyre Strait
+
+Deck:
+1 Arixmethes, Slumbering Isle
+1 Scourge of Fleets
+1 Rampaging Baloths
+1 Sakura-Tribe Elder
+1 Avenger of Zendikar
+1 Loot, Exuberant Explorer
+1 Eternal Witness
+1 Meloku the Clouded Mirror
+1 Growth Spiral
+1 Koma, Cosmos Serpent
+1 Kodama of the East Tree
+1 Tireless Provisioner
+1 Oracle of Mul Daya
+1 Murkfiend Liege
+1 Azusa, Lost but Seeking
+1 Coiling Oracle
+1 Explore
+1 Cultivate
+1 Urban Evolution
+1 Mossborn Hydra
+1 Reclamation Sage
+1 Lotus Cobra
+1 Dryad of the Ilysian Grove
+1 Scute Swarm
+1 Arcane Denial
+1 Counterspell
+1 Broken Bond
+1 Heroic Intervention
+1 Crop Rotation
+1 Entish Restoration
+1 Nature's Lore
+1 Kodama's Reach
+1 Rampant Growth
+1 Whelming Wave
+1 Farseek
+1 Harrow
+1 Negate
+1 Beast Within
+1 Simic Charm
+1 Wrenn and Seven
+1 Thornwood Falls
+1 Three Visits
+1 Arcane Signet
+1 Sol Ring
+1 Thought Vessel
+1 Swiftfoot Boots
+1 Zendikar's Roil
+1 Retreat to Kazandu
+1 Burgeoning
+1 Khalni Heart Expedition
+1 Terramorphic Expanse
+1 Retreat to Coralhelm
+1 Simic Growth Chamber
+1 Blighted Woodland
+1 Yavimaya Coast
+1 Fabled Passage
+1 Dreamroot Cascade
+1 Ramunap Excavator
+16 Forest
+16 Island
+1 Tatyova, Benthic Druid
+1 Evolving Wilds
+1 Command Tower
+1 Coral Atoll
+1 Hinterland Harbor
+1 Jungle Basin
+1 Myriad Landscape
+1 Reliquary Tower
+1 Rejuvenating Springs

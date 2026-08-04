@@ -1,0 +1,104 @@
+# Archidekt — The Cooler Omnath
+# source: archidekt:24894937
+# fetched: 2026-08-02
+# bracket: 3
+
+Commander:
+1 Kruphix, God of Horizons
+
+Deck:
+1 Kodama's Reach
+1 Disallow
+1 Counterspell
+1 Heroic Intervention
+1 Legolas's Quick Reflexes
+1 Eternal Witness
+1 Altered Ego
+1 Arbor Adherent
+1 Charging Badger
+1 Rise of the Eldrazi
+1 Fractal Harness
+1 Doppelgang
+1 Curse of the Swine
+1 Cryptic Trilobite
+1 Asceticism
+1 Exponential Growth
+1 Finale of Devastation
+1 Gelatinous Genesis
+1 Ghalta, Primal Hunger
+1 Avenger of Zendikar
+1 Soul of New Phyrexia
+1 Goldvein Hydra
+1 Kozilek's Command
+1 Hydroid Krasis
+1 Mass Manipulation
+1 Orochi Hatchery
+1 Ulamog, the Ceaseless Hunger
+1 Darksteel Colossus
+1 Blightsteel Colossus
+1 It That Betrays
+1 Ulamog, the Infinite Gyre
+1 Kozilek, Butcher of Truth
+1 Three Visits
+1 Cultivate
+1 Clifftop Lookout
+1 Rampant Growth
+1 Farseek
+1 Sakura-Tribe Elder
+1 Nature's Lore
+1 Search for Tomorrow
+1 Wood Elves
+1 Shared Roots
+1 Awaken the Woods
+1 Thran Dynamo
+1 Victory Chimes
+1 Gilded Lotus
+1 Treasure Cruise
+1 The Great Henge
+1 Studious First-Year // Rampant Growth
+1 Sol Ring
+1 Karametra's Acolyte
+1 Bender's Waterskin
+1 Consult the Star Charts
+1 Voidslime
+1 Mathemagics
+1 Drawn from Dreams
+1 Arcanis the Omnipotent
+1 Mulldrifter
+1 Ponder
+1 Dig Through Time
+1 Stock Up
+1 Quick Study
+1 Blue Sun's Zenith
+1 Preordain
+1 Faerie Mastermind
+1 Spider-Sense
+1 Three Steps Ahead
+1 Harmonize
+1 An Offer You Can't Refuse
+1 Power Sink
+1 Auroral Procession
+1 Noxious Revival
+1 Regrowth
+1 Devastation Tide
+1 Beast Within
+1 Sink into Stupor // Soporific Springs
+1 Reclamation Sage
+1 Krosan Grip
+1 Rapid Hybridization
+1 Cyclonic Rift
+1 Pongify
+1 Collective Resistance
+1 Lignify
+1 Imprisoned in the Moon
+1 Arachnogenesis
+1 Yavimaya, Cradle of Growth
+1 Yavimaya Hollow
+1 Evendo, Waking Haven
+1 Consuming Tide
+1 War Room
+1 Otawara, Soaring City
+1 Homeward Path
+1 Ghost Quarter
+1 Rogue's Passage
+1 Mistrise Village

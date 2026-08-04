@@ -1,0 +1,108 @@
+# Archidekt — Slimefoot and Squee
+# source: archidekt:22518748
+# fetched: 2026-08-01
+# bracket: 3
+
+Commander:
+1 Slimefoot and Squee
+
+Deck:
+1 Fell the Profane // Fell Mire
+1 Verdant Catacombs
+1 Golgari Germination
+1 Zulaport Cutthroat
+1 Underrealm Lich
+1 Forest
+1 The Meathook Massacre
+1 Strip Mine
+1 Goblin Bombardment
+1 Pitiless Plunderer
+1 Stitcher's Supplier
+1 Dragonskull Summit
+1 Mayhem Devil
+1 Exotic Orchard
+1 Flayer of the Hatebound
+1 Nature's Lore
+1 Deadpool, Trading Card
+1 Buried Alive
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Ziatora's Proving Ground
+1 Phyrexian Tower
+1 Deathcap Glade
+1 Savage Lands
+1 Syr Konrad, the Grim
+1 Commercial District
+1 Skullclamp
+1 Woodland Cemetery
+1 Sol Ring
+1 Geier Reach Sanitarium
+1 Rockfall Vale
+1 Haunted Ridge
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Malakir Rebirth // Malakir Mire
+1 Crucible of Worlds
+1 Hermit Druid
+1 Life from the Loam
+1 Bojuka Bog
+1 Utopia Mycon
+1 Greater Good
+1 Warren Soultrader
+1 Viscera Seer
+1 Bitter Triumph
+1 Icetill Explorer
+1 Cauldron of Essence
+1 Colossal Grave-Reaver
+1 Grave Researcher // Reanimate
+1 Animate Dead
+1 Stomping Ground
+1 Mountain
+1 Teval's Judgment
+1 Luxury Suite
+1 Raucous Theater
+1 Living Death
+1 Mesmeric Orb
+1 Phyrexian Altar
+1 Altar of Dementia
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Entomb
+1 Blood Crypt
+1 Blazemire Verge
+1 Thornspire Verge
+1 Hedge Shredder
+1 Ignoble Hierarch
+1 Anger
+1 Sprouting Thrinax
+1 Immoral Bargain
+1 Command Tower
+1 High Market
+1 Tendershoot Dryad
+1 Nasty End
+1 Tragic Slip
+1 Village Rites
+1 Necrogenesis
+1 Fungal Rebirth
+1 Mole Man, Moloid Master
+1 Assassin's Trophy
+1 Twilight Diviner
+1 Abrupt Decay
+1 Deadly Dispute
+1 Fabled Passage
+1 Mirkwood Bats
+1 Dakmor Salvage
+1 Skull Prophet
+1 Thrill of Possibility
+1 Faithless Looting
+1 Apex Altisaur
+1 Sheoldred, Whispering One
+1 Korvold, Fae-Cursed King
+1 The Gitrog, Ravenous Ride
+1 Aurora Awakener
+1 Swamp
+1 Summon: Bahamut
+1 Perpetual Timepiece
+1 Wooded Foothills
+1 Takenuma, Abandoned Mire
+1 Reanimate
+1 Ripples of Undeath

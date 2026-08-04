@@ -1,0 +1,69 @@
+# Archidekt — Equippies
+# source: archidekt:24981728
+# fetched: 2026-08-04
+# bracket: 3
+
+Commander:
+1 Ekthi, Contaminator Priest
+
+Deck:
+1 Unwinding Clock
+1 Banish to Another Universe
+1 Dust to Dust
+1 The Everforger
+1 Thought Vessel
+1 Swiftfoot Boots
+1 Bronze Guardian
+1 Leonin Abunas
+1 Spring-Loaded Sawblades // Bladewheel Chariot
+1 Karn, Legacy Reforged
+1 Metalwork Colossus
+1 All That Glitters
+1 Panther Robot
+1 Nettlecyst
+1 Paradise Mantle
+1 Lens Flare
+1 Overencumbered
+1 Sword of the Animist
+1 Excalibur, Sword of Eden
+1 Shadowspear
+1 Blackblade Reforged
+1 Mithril Coat
+1 Commander's Plate
+1 Basilisk Collar
+1 Sword of Feast and Famine
+1 Sword of Hearth and Home
+1 Buster Sword
+1 Colossus Hammer
+1 Sword of Truth and Justice
+1 Caduceus, Staff of Hermes
+1 Sword of Fire and Ice
+1 Kaldra Compleat
+1 Leyline Axe
+1 Masterwork of Ingenuity
+1 Explorer's Scope
+1 Bitterthorn, Nissa's Animus
+1 Adaptive Omnitool
+1 Argentum Armor
+1 Dragonfire Blade
+1 Grafted Exoskeleton
+1 Wrecking Ball Arm
+1 Andúril, Narsil Reforged
+1 Quietus Spike
+35 Snow-Covered Plains
+1 The Walls of Ba Sing Se
+1 Extraplanar Lens
+1 Kozilek, Butcher of Truth
+1 Nazgûl Battle-Mace
+1 Conformer Shuriken
+1 Sword of Body and Mind
+1 Gavel of the Righteous
+1 Bone Saw
+1 Horn of Valhalla // Ysgard's Call
+1 Inquisitorial Rosette
+1 Greatsword of Tyr
+1 Captain America's Shield
+1 Kite Shield
+1 Infested Fleshcutter
+1 Greataxe
+1 Scythe of the Wretched
