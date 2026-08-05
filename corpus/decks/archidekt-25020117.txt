@@ -1,0 +1,107 @@
+# Archidekt — Narset my queen
+# source: archidekt:25020117
+# fetched: 2026-08-05
+
+Commander:
+1 Narset, Enlightened Exile
+
+Deck:
+1 Command Tower
+1 Mystic Monastery
+1 Glacial Fortress
+1 Stormcarved Coast
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Rugged Prairie
+1 Plains
+1 Mountain
+1 Sulfur Falls
+1 Jeskai Ascendancy
+1 Snap
+2 Island
+1 Azorius Signet
+1 Sacred Foundry
+1 Whirlwind of Thought
+1 Talisman of Progress
+1 Monastery Mentor
+1 Skycloud Expanse
+1 Veyran, Voice of Duality
+1 Path of Ancestry
+1 Clifftop Retreat
+1 Deserted Beach
+1 Counterspell
+1 Rogue's Passage
+1 Exotic Orchard
+1 Elsha, Threefold Master
+1 Aligned Heart
+1 Kykar, Wind's Fury
+1 Frostcliff Siege
+1 Izzet Signet
+1 Sol Ring
+1 Raugrin Triome
+1 Evolving Wilds
+1 Molten Tributary
+1 Cascade Bluffs
+1 Furycalm Snarl
+1 Lightning Bolt
+1 Sundown Pass
+1 Battlefield Forge
+1 Port Town
+1 Irrigated Farmland
+1 Hallowed Fountain
+1 Adarkar Wastes
+1 Aether Syphon
+1 Frostboil Snarl
+1 Sacred Peaks
+1 Ark of Hunger
+1 The Water Crystal
+1 Jidoor, Aristocratic Capital // Overture
+1 Dragon's Rage Channeler
+1 Jace's Erasure
+1 Valakut Exploration
+1 Perpetual Timepiece
+1 Arcane Signet
+1 The Mindskinner
+1 Space-Time Anomaly
+1 Riverchurn Monument
+1 Curse of the Bloody Tome
+1 Sorcerous Squall
+1 Drowned Secrets
+1 Patient Rebuilding
+1 Stillness in Motion
+1 Chronic Flooding
+1 Lorehold Excavation
+1 Kirol, History Buff // Pack a Punch
+1 Pongify
+1 Frantic Search
+1 Chaos Warp
+1 Meticulous Archive
+1 Thundering Falls
+1 Abrade
+1 Flow State
+1 Windcrag Siege
+1 Elegant Parlor
+1 Ferrous Lake
+1 Clout of the Dominus
+1 Boros Signet
+1 Shadow Rift
+1 Scourge of the Nobilis
+1 Will of the Jeskai
+1 Shivan Reef
+1 Steam Vents
+1 Confession Dial
+1 Steel of the Godhead
+1 Ponder
+1 Windfall
+1 Path to Exile
+1 Third Path Iconoclast
+1 Boros Charm
+1 Balmor, Battlemage Captain
+1 Faithless Looting
+1 Aqueous Form
+1 Security Bypass
+1 Propaganda
+1 Cloak of Mists
+1 Sejiri Shelter // Sejiri Glacier
+1 Ghostly Prison
+1 Legion Leadership // Legion Stronghold

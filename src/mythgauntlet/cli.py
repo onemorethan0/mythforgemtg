@@ -42,6 +42,30 @@ from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig, simulate
 from mythgauntlet.sim.tier2 import DuelConfig, duel
 from mythgauntlet.state import get_last_deck, set_last_deck
 
+def _make_output_lossy() -> None:
+    """Never let a card NAME be able to crash the process.
+
+    Windows gives a non-console stdout the locale codepage (cp1252 here), and Magic
+    prints names it cannot encode: `Hamato Ninpo` and `Bespoke Bo` carry U+014D, and
+    `Ratonhnhake:ton` carries U+A789. Compiling one raised UnicodeEncodeError from
+    inside console.print AFTER the CCM had been saved and the ledger stamped, so the
+    work survived but the process died — on 2026-08-05 that killed compile chunk 3/4
+    at card 219/1400 (the overnight retry recovered it, ~8 min lost), and Bespoke Bo
+    almost certainly did the same on 2026-08-02.
+
+    errors="replace" degrades an unprintable glyph to a placeholder in the terminal
+    while the ledger, the CCM store and every file write stay exact UTF-8. Losing a
+    diacritic from a progress line is acceptable; losing the run is not.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(errors="replace")
+            except (ValueError, OSError):  # detached / already-closed stream
+                pass
+
+
+_make_output_lossy()
 console = Console()
 err = Console(stderr=True)  # warnings/errors -> stderr so --json stdout stays clean JSON
 

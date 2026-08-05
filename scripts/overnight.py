@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import statistics
 import subprocess
 import sys
 import threading
@@ -57,7 +58,12 @@ PYTHON = _python()
 # compiled-store location, which lives outside this repo — see compiler.store_dir().
 _ENV = {**os.environ, "PYTHONPATH": os.pathsep.join(
     filter(None, [str(REPO / "src"), os.environ.get("PYTHONPATH", "")])
-)}
+), "PYTHONIOENCODING": "utf-8"}
+# PYTHONIOENCODING pairs with the encoding="utf-8" pipe below: without it the child
+# writes its stdout in the Windows locale codepage (cp1252) while this side decodes
+# UTF-8, which both mangled every em-dash in the log into a replacement char and let a
+# card name Windows cannot encode kill the whole chunk (see _make_output_lossy in
+# cli.py). Belt and braces — the CLI no longer crashes on its own either.
 # Where the ENGINE writes its run artifacts — must match config.data_dir() exactly, or this
 # script archives and reads a directory the night never wrote to. (2026-07-31: it didn't.
 # DATA was hardcoded to REPO/data while the CLI honoured MYTHGAUNTLET_DATA, so
@@ -236,7 +242,32 @@ def _bracket_labels() -> dict[str, int]:
                 for e in json.load(fh).get("decks", []) if e.get("bracket")}
 
 
+# Below this a deck is losing to essentially the whole field regardless of its list, so
+# its rating carries no information about deck strength. The corpus median is ~1532 and
+# the 5th percentile ~1156, so 1000 sits well clear of "merely weak" — the 14 decks under
+# it on 2026-08-05 ran from -74 to 995.
+FLOOR_RATING = 1000
+
+
 def _bracket_means(ratings: dict[str, float], labels: dict[str, int]) -> str:
+    """Per-bracket central tendency, reported as MEDIAN with the mean beside it.
+
+    The mean alone was actively misleading. B4/B5 carry n=16/n=11, and the corpus has a
+    thin tail of structurally-valid but non-representative decks — a literal troll deck
+    (`1 Progenitus` + `98 Wastes`, which cannot cast its own commander) rates -74, and
+    14 decks sit under 1000 against a median field of ~1532. A handful of those drags a
+    small bracket's mean by ~100 points, which on 2026-08-04/05 manufactured a B2>B3
+    "inversion" and buried B4 below both. It reads as a calibration failure in exactly
+    the range the brackets are meant to separate, and it isn't one:
+
+        mean:   B1 1407  B2 1523  B3 1504  B4 1444  B5 1394   <- B3 and B4 look broken
+        median: B1 1466  B2 1535  B3 1554  B4 1559  B5 1434   <- monotone B1..B4
+
+    The median is monotone across B1-B4, which is the real signal. B5 stays inverted --
+    that one IS the known cEDH engine-fidelity ceiling, not a tail artifact. The mean is
+    kept alongside so a genuine shift in the tail stays visible rather than hidden by a
+    robust statistic.
+    """
     by: dict[int, list[float]] = {}
     for name, rating in ratings.items():
         bracket = labels.get(name)
@@ -244,7 +275,10 @@ def _bracket_means(ratings: dict[str, float], labels: dict[str, int]) -> str:
             by.setdefault(bracket, []).append(rating)
     if not by:
         return "no labeled decks in this run"
-    return "  ".join(f"B{b}:{sum(v) / len(v):.0f}(n={len(v)})" for b, v in sorted(by.items()))
+    return "  ".join(
+        f"B{b}:{statistics.median(v):.0f}(mean {sum(v) / len(v):.0f}, n={len(v)})"
+        for b, v in sorted(by.items())
+    )
 
 
 def gpu_worker(chunks: list[int], deadline: float) -> None:
@@ -345,7 +379,7 @@ def write_report(
         shared = sorted(set(pre_r) & set(post_r))
         deltas = sorted(((post_r[n] - pre_r[n], n) for n in shared), key=lambda t: -abs(t[0]))
         lines.append(f"- decks rated in both runs: {len(shared)}")
-        lines.append(f"- bracket means [greedy, full]: {_bracket_means(post_r, labels)}")
+        lines.append(f"- bracket medians [greedy, full]: {_bracket_means(post_r, labels)}")
         moved = [d for d, _ in deltas if d]
         if not moved:
             # Say this outright: a top-10 table of "+0.0" reads like a measurement.
@@ -355,10 +389,24 @@ def write_report(
             lines.append(f"- decks that moved: {len(moved)}")
             lines.append("- biggest movers (post - pre):")
             for delta, name in deltas[:10]:
-                lines.append(f"    {delta:+7.1f}  {name}")
+                # Flag floor decks. A deck rated far below the field loses ~every game
+                # either way, so its delta measures Elo step size, not a semantics
+                # change — and because those deltas are the largest, they crowd the
+                # real signal out of a top-10 sorted by magnitude. On 2026-08-05 six of
+                # the top ten were floor decks, including the two biggest (-89.0 on a
+                # 102-card list, +74.1 on `1 Progenitus` + `98 Wastes`).
+                floor = " [floor deck - rating < 1000, delta not meaningful]" if (
+                    post_r.get(name, 0) < FLOOR_RATING
+                ) else ""
+                lines.append(f"    {delta:+7.1f}  {name}{floor}")
+            real = [(d, n) for d, n in deltas if post_r.get(n, 0) >= FLOOR_RATING]
+            if real and any(post_r.get(n, 0) < FLOOR_RATING for _, n in deltas[:10]):
+                lines.append("- biggest movers EXCLUDING floor decks:")
+                for delta, name in real[:5]:
+                    lines.append(f"    {delta:+7.1f}  {name}")
     elif pre_r and after == before:
         lines.append("- POST skipped: semantics unchanged, so it would rerun PRE bit-for-bit.")
-        lines.append(f"- bracket means [greedy, full]: {_bracket_means(pre_r, labels)}")
+        lines.append(f"- bracket medians [greedy, full]: {_bracket_means(pre_r, labels)}")
     else:
         # Name the missing half. "unavailable (see log)" hid a path bug for two nights:
         # both archives were absent because DATA pointed at the wrong directory.
@@ -374,8 +422,8 @@ def write_report(
         shared = sorted(set(rgreedy_r) & set(mcts_r))
         movers = sorted(((mcts_r[n] - rgreedy_r[n], n) for n in shared), key=lambda t: -abs(t[0]))
         lines.append(f"- decks rated under both agents: {len(shared)} (reduced scope, same seed)")
-        lines.append(f"- bracket means [greedy]: {_bracket_means(rgreedy_r, labels)}")
-        lines.append(f"- bracket means [ISMCTS]: {_bracket_means(mcts_r, labels)}")
+        lines.append(f"- bracket medians [greedy]: {_bracket_means(rgreedy_r, labels)}")
+        lines.append(f"- bracket medians [ISMCTS]: {_bracket_means(mcts_r, labels)}")
         lines.append("- biggest shifts (ISMCTS - greedy):")
         for delta, name in movers[:10]:
             lines.append(f"    {delta:+7.1f}  {name}")

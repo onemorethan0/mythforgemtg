@@ -1,0 +1,96 @@
+# Archidekt — ☢️ R.Y.N.O. (Rip Ya a New One)
+# source: archidekt:15929724
+# fetched: 2026-08-05
+
+Commander:
+1 Pantlaza, Sun-Favored
+
+Deck:
+1 Sacred Foundry
+1 Rhythm of the Wild
+1 Spire Garden
+1 Akroma's Will
+1 Curious Altisaur
+4 Mountain
+1 Path of Ancestry
+4 Plains
+1 Progenitor's Icon
+1 Rishkar's Expertise
+1 Unclaimed Territory
+1 Clifftop Retreat
+1 Descendants' Path
+1 Exotic Orchard
+1 Farseek
+5 Forest
+1 Command Tower
+1 Generous Gift
+1 Jungle Shrine
+1 Kessig Wolf Run
+1 Kinjalli's Sunwing
+1 Marauding Raptor
+1 Mosswort Bridge
+1 Path to Exile
+1 Savage Stomp
+1 Secluded Courtyard
+1 Sol Ring
+1 Thunderherd Migration
+1 Ephemerate
+1 Elemental Bond
+1 Dinosaurs on a Spaceship
+1 Belligerent Yearling
+1 Topiary Stomper
+1 Bonehoard Dracosaur
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Gishath, Sun's Avatar
+1 Rockfall Vale
+1 Branchloft Pathway // Boulderloft Pathway
+1 Overgrown Farmland
+1 Ghalta, Primal Hunger
+1 Earthshaker Dreadmaw
+1 Scion of Calamity
+1 Sunfrill Imitator
+1 Wrathful Raptors
+1 Zacama, Primal Calamity
+1 Runic Armasaur
+1 Shifting Ceratops
+1 Cream of the Crop
+1 Hushwood Verge
+1 Karplusan Forest
+1 Savage Order
+1 Flaming Tyrannosaurus
+1 Stomping Ground
+1 Fanatic of Rhonas
+1 Commercial District
+1 Trapjaw Tyrant
+1 Finale of Devastation
+1 Selvala, Heart of the Wilds
+1 Spelunking
+1 Valkyrie's Call
+1 Sneak Attack
+1 Lurking Predators
+1 Trumpeting Carnosaur
+1 Mirari's Wake
+1 Parting Gust
+1 Needleverge Pathway // Pillarverge Pathway
+1 Wayward Swordtooth
+1 Regisaur Alpha
+1 Deathgorge Scavenger
+1 Ghalta, Stampede Tyrant
+1 Triceraton Commander
+1 Thornspire Verge
+1 Windswept Heath
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Blasphemous Act
+1 Apex Altisaur
+1 Boros Charm
+1 Cloudshift
+1 Touch the Spirit Realm
+1 Eerie Interlude
+1 Vaultborn Tyrant
+1 Temple Garden
+1 Arcane Signet
+1 Guardian Project
+1 Kodama's Reach
+1 Ravenous Tyrannosaurus
+1 Cultivate

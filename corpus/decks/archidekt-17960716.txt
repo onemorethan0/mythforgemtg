@@ -1,0 +1,108 @@
+# Archidekt — Final Fantasy Yshtola
+# source: archidekt:17960716
+# fetched: 2026-08-05
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Morphic Pool
+1 Wizard Class
+1 Fetid Pools
+1 Promise of Loyalty
+1 The Water Crystal
+1 The Wind Crystal
+1 Grand Arbiter Augustin IV
+1 Murderous Rider // Swift End
+1 Sheoldred, the Apocalypse
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Y'shtola Rhul
+1 Helm of the Ghastlord
+1 Ghostly Prison
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Circle of Power
+1 The Darkness Crystal
+1 Render Silent
+1 Fierce Guardianship
+1 The Destined White Mage
+1 Single Combat
+1 Debt to the Deathless
+1 Turbulent Moor
+1 Blightwing Bandit
+1 Shadow of the Second Sun
+1 The Destined Black Mage
+1 Exquisite Blood
+1 Fetid Heath
+1 Sunken Ruins
+1 Lyse Hext
+1 Hope Estheim
+1 Void Rend
+1 Kambal, Consul of Allocation
+1 Arcane Signet
+1 Mystic Sanctuary
+1 The Destined Warrior
+1 Curiosity
+1 Sanguine Bond
+1 Ishgard, the Holy See // Faith & Grief
+1 Command Tower
+1 Underground River
+1 Idyllic Beachfront
+1 Stroke of Midnight
+1 Snuff Out
+1 Sol Ring
+1 Propaganda
+1 Arcane Sanctum
+1 Decorum Dissertation
+1 Wound Reflection
+1 Raffine's Tower
+1 Vault of Champions
+1 Dimir Aqueduct
+1 Mystic Gate
+1 Contaminated Aquifer
+1 Sea of Clouds
+1 Bojuka Bog
+1 Deadly Rollick
+1 Decanter of Endless Water
+1 Ophidian Eye
+1 Bloodchief Ascension
+1 Bloodthirsty Conqueror
+1 Mindcrank
+1 Academy Ruins
+1 Hall of Heliod's Generosity
+1 Reliquary Tower
+1 Bane's Contingency
+1 Anguished Unmaking
+1 Adarkar Wastes
+1 Caves of Koilos
+1 Hallowed Fountain
+1 Watery Grave
+1 Godless Shrine
+1 Tataru Taru
+1 Caduceus, Staff of Hermes
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Undercity Sewers
+1 Sigil of Sleep
+1 Emet-Selch of the Third Seat
+1 Mithril Coat
+1 Bolas's Citadel
+1 Inkshield
+1 Dancer's Chakrams
+1 Alisaie Leveilleur
+1 Plains
+1 Swamp
+1 Island
+1 Orzhov Basilica
+1 Irrigated Farmland
+1 Transpose
+1 Stormscape Familiar
+1 Alphinaud Leveilleur
+1 Azorius Chancery
+1 Jidoor, Aristocratic Capital // Overture
+1 Relic of Legends
+1 Baleful Strix
+1 Papalymo Totolymo
+1 Enduring Tenacity
+1 Fated Clash
+1 Soul Shatter

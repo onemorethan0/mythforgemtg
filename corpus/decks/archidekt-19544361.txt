@@ -1,0 +1,99 @@
+# Archidekt — The Adventurer
+# source: archidekt:19544361
+# fetched: 2026-08-05
+
+Commander:
+1 Aragorn, the Uniter
+
+Deck:
+1 Mysterious Pathlighter
+1 Pollen-Shield Hare // Hare Raising
+1 Woodland Acolyte // Mend the Wilds
+1 Brazen Borrower // Petty Theft
+1 Storyteller Pixie
+1 Beanstalk Wurm // Plant Beans
+1 Tlincalli Hunter // Retrieve Prey
+1 Edgewall Inn
+1 Monster Manual // Zoological Study
+1 Whirlwind of Thought
+1 Lucky Clover
+1 Jidoor, Aristocratic Capital // Overture
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Sanar, Unfinished Genius // Wild Idea
+1 Pinnacle Monk // Mystic Peak
+1 Arcane Signet
+1 Fellwar Stone
+1 Kutzil, Malamet Exemplar
+1 Lozhan, Dragons' Legacy
+1 Wandermare
+1 Horn of Valhalla // Ysgard's Call
+1 Simic Signet
+1 Two-Handed Axe // Sweeping Cleave
+1 Blessed Hippogriff // Tyr's Blessing
+1 Bonecrusher Giant // Stomp
+1 Beanstalk Giant // Fertile Footsteps
+1 Sol Ring
+1 Talisman of Curiosity
+1 The Arkenstone // Seek the Heart
+1 Bilbo, Thief in the Night
+1 Archmage Emeritus
+1 Chancellor of Tales
+1 Craterhoof Behemoth
+1 Bramble Familiar // Fetch Quest
+1 Kellan, the Kid
+1 Beluna Grandsquall // Seek Thrills
+1 Sword Coast Serpent // Capsizing Wave
+1 Bloom Tender
+1 Edgewall Innkeeper
+1 Elusive Otter // Grove's Bounty
+1 Embereth Shieldbreaker // Battle Display
+1 Doc Aurlock, Grizzled Genius
+1 Hypnotic Sprite // Mesmeric Glare
+1 Giant Killer // Chop Down
+1 Gorion, Wise Mentor
+1 Guardian Naga // Banishing Coils
+1 Eternal Witness
+1 Eshki Dragonclaw
+1 Moonshaker Cavalry
+1 Young Blue Dragon // Sand Augury
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Questing Druid // Seek the Beast
+1 Moonshae Pixie // Pixie Dust
+1 Sapphire Dragon // Psionic Pulse
+1 Rosethorn Acolyte // Seasonal Ritual
+1 Twining Twins // Swift Spiral
+1 Realm-Cloaked Giant // Cast Off
+1 Virtue of Strength // Garenbrig Growth
+1 Scalding Viper // Steam Clean
+1 Terror of the Peaks
+1 Frostcliff Siege
+1 Vega, the Watcher
+1 Ketria Triome
+1 Bountiful Promenade
+1 Exotic Orchard
+1 Frontier Bivouac
+1 Virtue of Loyalty // Ardenvale Fealty
+1 An Unexpected Party // At the Door
+1 Temur Ascendancy
+1 Lindblum, Industrial Regency // Mage Siege
+1 Warstorm Surge
+1 Dreamroot Cascade
+1 Command Tower
+1 Ishgard, the Holy See // Faith & Grief
+3 Forest
+1 Deserted Beach
+3 Island
+1 Overgrown Farmland
+1 Sea of Clouds
+3 Mountain
+3 Plains
+1 Rejuvenating Springs
+1 Rockfall Vale
+1 Stormcarved Coast
+1 Seaside Citadel
+1 Spara's Headquarters
+1 Training Center
+1 Spire Garden
+1 Primal Surge
+1 Turbulent Wilderness
+1 Stormkeld Vanguard // Bear Down

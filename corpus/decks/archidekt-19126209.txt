@@ -1,0 +1,83 @@
+# Archidekt — Its a 1 burn
+# source: archidekt:19126209
+# fetched: 2026-08-05
+
+Commander:
+1 Ob Nixilis, Captive Kingpin
+
+Deck:
+1 Blazing Hellhound
+1 End the Festivities
+1 Feed the Swarm
+1 Lightning Greaves
+1 Mayhem Devil
+1 Vicious Rumors
+1 Blasphemous Act
+1 Gamble
+1 Grapeshot
+1 Untimely Malfunction
+1 Abrade
+1 Brash Taunter
+1 Faithless Looting
+1 Impact Tremors
+1 Chaos Warp
+1 Rampaging Ferocidon
+1 Reliquary Tower
+1 Rogue's Passage
+1 Spiteful Visions
+1 Tectonic Hazard
+1 Gut Shot
+1 Stormfist Crusader
+1 Sunscorched Desert
+1 Bedevil
+1 Overmaster
+1 Creeping Bloodsucker
+1 Hexing Squelcher
+1 Roiling Vortex
+1 Lindblum, Industrial Regency // Mage Siege
+1 Black Mage's Rod
+1 Firebrand Archer
+1 Imodane, the Pyrohammer
+1 Electrostatic Field
+1 Sol Ring
+1 Shocking Sharpshooter
+1 Twin Bolt
+1 Forked Bolt
+1 Merciless Enforcers
+1 Terminate
+1 Sabotender
+1 Hagi Mob
+1 Spitfire Lagac
+1 Murder
+1 Command Tower
+1 Foreboding Ruins
+1 Canyon Slough
+1 Razortrap Gorge
+1 Bojuka Bog
+1 Chandra's Magmutt
+1 Blightspeaker
+1 Kindlespark Duo
+1 Volcanic Rambler
+1 Thermo-Alchemist
+1 Chandra's Ignition
+1 Blood Artist
+1 Blood Seeker
+1 Psychosis Crawler
+1 Leechridden Swamp
+1 Vandalblast
+1 The Reaver Cleaver
+1 Shivan Gorge
+12 Swamp
+1 All Will Be One
+1 Wound Reflection
+1 Casey Jones, Back Alley Brute
+1 Kederekt Parasite
+1 Kessig Flamebreather
+1 Prosper, Tome-Bound
+1 Razorkin Needlehead
+1 Scrawling Crawler
+1 Shadow of the Goblin
+1 Unstable Amulet
+1 Walking Ballista
+1 Mount Doom
+13 Mountain

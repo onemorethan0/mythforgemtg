@@ -1,0 +1,91 @@
+# Archidekt — Smaug's Treasures
+# source: archidekt:25019164
+# fetched: 2026-08-05
+
+Commander:
+1 Smaug, Wicked Worm
+
+Deck:
+1 Generous Plunderer
+1 Cavern-Hoard Dragon
+1 Dragon-Cursed Halls
+1 Professional Face-Breaker
+1 Smaug the Magnificent
+1 Blasphemous Act
+1 Magda, Brazen Outlaw
+1 Rain of Riches
+1 Reckless Fireweaver
+1 Goldspan Dragon
+1 Mirkwood Bats
+1 Mayhem Devil
+1 Academy Manufactor
+1 Big Score
+1 Gamble
+1 Decadent Dragon // Expensive Taste
+1 Crime Novelist
+1 Marionette Apprentice
+1 Nadier's Nightblade
+1 Hexing Squelcher
+1 Alchemist's Talent
+1 Swiftfoot Boots
+1 Rivaz of the Claw
+1 Fell the Profane // Fell Mire
+1 Infernal Grasp
+1 Dark Ritual
+1 Seething Song
+1 Untimely Malfunction
+1 Terminate
+1 Exsanguinate
+1 Bolt Bend
+1 Faithless Looting
+1 Cursed Mirror
+1 Cathartic Reunion
+1 Strike It Rich
+1 Genesis Chamber
+1 Revel in Riches
+1 Chaos Warp
+1 Spinerock Tyrant
+1 Mines of Moria
+1 Lightning Bolt
+1 Conjurer's Closet
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Krark-Clan Ironworks
+1 Sol Ring
+1 Arcane Signet
+1 Dragonskull Summit
+1 Cranial Plating
+1 Glittering Stockpile
+1 Talisman of Indulgence
+1 Mind Stone
+1 Scalding Tarn
+1 Mount Doom
+1 Mox Amber
+1 Bloodstained Mire
+1 Tezzeret, Cruel Captain
+1 Fellwar Stone
+1 Mox Jasper
+1 Exotic Orchard
+1 Sulfurous Springs
+1 Command Tower
+1 Marsh Flats
+1 Arid Mesa
+1 Foreboding Ruins
+1 Smoldering Marsh
+1 Fire Covenant
+8 Swamp
+11 Mountain
+1 Crackle with Power
+1 Blood Crypt
+1 Night's Whisper
+1 Lightning Greaves
+1 Phyrexian Arena
+1 Inspiring Statuary
+1 Thrill of Possibility
+1 Come Back Wrong
+1 Geothermal Bog
+1 Ancient Craving
+1 Commune with Lava
+1 Blazemire Verge
+1 Blood Money
+1 Urza's Saga
+1 Crux of Fate

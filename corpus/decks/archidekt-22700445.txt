@@ -1,0 +1,100 @@
+# Archidekt — 🤝 Sharing with Maralen 🤝
+# source: archidekt:22700445
+# fetched: 2026-08-05
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+3 Forest
+1 Halimar Depths
+1 Mystic Sanctuary
+1 Alchemist's Refuge
+1 Faerie Mastermind
+1 Urborg Elf
+1 Beast Within
+1 Glen Elendra Guardian
+1 Selfless Safewright
+2 Swamp
+1 Nymris, Oona's Trickster
+1 Brazen Borrower // Petty Theft
+1 Likeness Looter
+1 Aetherize
+1 Reliquary Tower
+1 Blightwing Bandit
+1 Faerie Formation
+1 Frantic Search
+1 Stolen by the Fae
+1 Wilderness Reclamation
+1 Breeding Pool
+1 Command Tower
+1 Feywild Visitor
+1 Elvish Mystic
+1 Dimir Aqueduct
+1 Thought Vessel
+1 Firdoch Core
+1 Three Steps Ahead
+1 Scion of Oona
+1 Dig Up
+1 Mystic Remora
+1 Three Visits
+1 Simic Growth Chamber
+1 Jwari Disruption // Jwari Ruins
+1 Bender's Waterskin
+1 Dina's Guidance
+1 Maraleaf Pixie
+1 Sunken Hollow
+1 Arvinox, the Mind Flail
+1 Progenitor Mimic
+1 Alela, Cunning Conqueror
+1 Turbulent Wilderness
+1 Sodden Verdure
+1 Vernal Fen
+1 Turbulent Fen
+1 Stock Up
+1 Beast Whisperer
+1 Faerie Harbinger
+1 Opulent Palace
+1 Sower of Temptation
+1 Cloud of Faeries
+1 Adrix and Nev, Twincasters
+1 Archmage of Echoes
+1 Glen Elendra Archmage
+1 Gathering Stone
+1 Finale of Devastation
+1 Coat of Arms
+7 Island
+1 Fell the Profane // Fell Mire
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Obyra, Dreaming Duelist
+1 Sol Ring
+1 Nature's Lore
+1 Deathcap Glade
+1 Bitterbloom Bearer
+1 Overgrown Tomb
+1 Deadeye Navigator
+1 Spellstutter Sprite
+1 Faerie Artisans
+1 Golgari Rot Farm
+1 Fabled Passage
+1 Exotic Orchard
+1 Springheart Nantuko
+1 Aggressive Biomancy
+1 Cultivate
+1 Llanowar Elves
+1 Rankle, Master of Pranks
+1 Kindred Discovery
+1 Farseek
+1 Tempt with Discovery
+1 Halo Forager
+1 Chomping Changeling
+1 Evolving Wilds
+1 Hinterland Harbor
+1 Darkslick Shores
+1 Dreamroot Cascade
+1 Demolition Field
+1 Voracious Tome-Skimmer
+1 Arcane Denial
+1 Mischievous Mystic
+1 Swan Song
+1 An Offer You Can't Refuse
