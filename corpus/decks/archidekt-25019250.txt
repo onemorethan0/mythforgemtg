@@ -1,0 +1,85 @@
+# Archidekt — Red Landfall
+# source: archidekt:25019250
+# fetched: 2026-08-06
+
+Commander:
+1 Maraxus of Keld
+
+Deck:
+1 Geomancer's Gambit
+1 Searing Blaze
+1 Soul's Fire
+1 Fling
+1 Hew the Entwood
+1 Cleansing Wildfire
+1 Adventuring Gear
+1 Wayfarer's Bauble
+1 Endless Atlas
+1 Koth of the Hammer
+1 Expedition Map
+1 Claws of Valakut
+1 Zell Dincht
+1 Terrain Generator
+1 Tunneling Geopede
+1 Walking Atlas
+1 Akoum Hellkite
+1 Valakut, the Molten Pinnacle
+25 Mountain
+1 Spitfire Lagac
+1 Chaos Warp
+1 Blasphemous Act
+1 Vesuva
+1 Haunted Cloak
+1 Bitterthorn, Nissa's Animus
+1 Burnished Hart
+1 PuPu UFO
+1 Canoptek Wraith
+1 Molten Man, Inferno Incarnate
+1 Koth, Fire of Resistance
+1 Myriad Landscape
+1 Spinerock Knoll
+1 Kazuul's Fury // Kazuul's Cliffs
+1 War Room
+1 Tenza, Godo's Maul
+1 Fiendlash
+1 Wild Magic Surge
+1 Blackblade Reforged
+1 Ghirapur Orrery
+1 Scampering Surveyor
+1 Solemn Simulacrum
+1 Dragonmaster Outcast
+1 Nesting Dragon
+1 Scaretiller
+1 Abrade
+1 Isolated Watchtower
+1 Nahiri's Lithoforming
+1 Evolving Wilds
+1 Urza's Cave
+1 Terramorphic Expanse
+1 Chain Reaction
+1 Umaro, Raging Yeti
+1 Sabotender
+1 World Map
+1 Vandalblast
+1 Burning Anger
+1 Echoing Deeps
+1 Sunken Citadel
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Hoarder's Overflow
+1 Moraug, Fury of Akoum
+1 Horn of Greed
+1 Thaumatic Compass // Spires of Orazca
+1 Thespian's Stage
+1 Tectonic Reformation
+1 The Regalia
+1 Hit the Mother Lode
+1 Brass's Bounty
+1 Storm Cauldron
+1 Kazuul, Tyrant of the Cliffs
+1 Valakut Exploration
+1 Surestrike Trident
+1 Mind's Eye
+1 Sol Ring
+1 Fated Firepower
+1 Gratuitous Violence
+1 Horizon of Progress

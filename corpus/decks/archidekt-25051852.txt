@@ -1,0 +1,85 @@
+# Archidekt — jon irenicus
+# source: archidekt:25051852
+# fetched: 2026-08-06
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Coastal Piracy
+1 Sol Ring
+1 Talisman of Dominance
+1 Fellwar Stone
+1 Everflowing Chalice
+1 Arcane Signet
+1 Dimir Signet
+1 Mind Stone
+1 Thought Vessel
+1 Phyrexian Arena
+1 Wayfarer's Bauble
+1 Mystic Remora
+1 Black Market Connections
+1 Kindred Discovery
+1 Bident of Thassa
+1 Reconnaissance Mission
+1 Night's Whisper
+1 Fact or Fiction
+1 Lim-Dûl's Hex
+1 Swiftfoot Boots
+1 Counterspell
+1 Arcane Denial
+1 Grid Monitor
+1 Negate
+1 Lightning Greaves
+1 Eater of Days
+1 Malakir Rebirth // Malakir Mire
+1 Rust Elemental
+1 Steel Golem
+1 Bronze Bombshell
+1 Lord of the Pit
+1 Hunted Horror
+1 Demonic Taskmaster
+1 Abyssal Persecutor
+1 Evil Eye of Urborg
+1 Hunted Phantasm
+1 Archfiend of Depravity
+1 Desecration Demon
+1 Sleeper Agent
+1 Propaganda
+1 Leveler
+1 No Mercy
+1 Bloodthirsty Blade
+1 Cultural Exchange
+1 Assault Suit
+1 Reins of Power
+1 Reanimate
+1 Homeward Path
+1 Animate Dead
+1 Necromancy
+1 Living Death
+1 Pongify
+1 Victimize
+1 Feed the Swarm
+1 Drowned Catacomb
+1 Reality Shift
+1 Rapid Hybridization
+1 Toxic Deluge
+1 Infernal Grasp
+1 Damnation
+1 Polluted Delta
+1 Watery Grave
+1 Sunken Hollow
+1 Shipwreck Marsh
+1 Command Tower
+1 Exotic Orchard
+1 Takenuma, Abandoned Mire
+1 Reliquary Tower
+11 Snow-Covered Swamp
+13 Snow-Covered Island
+1 Plague Reaver
+1 Rotting Regisaur
+1 Parasitic Impetus
+1 Go for the Throat
+1 Dauthi Voidwalker
+1 Bolas's Citadel
+1 Painful Quandary

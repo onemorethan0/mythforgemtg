@@ -1,0 +1,96 @@
+# Archidekt — prosper
+# source: archidekt:20884088
+# fetched: 2026-08-06
+# bracket: 3
+
+Commander:
+1 Prosper, Tome-Bound
+
+Deck:
+1 Sol Ring
+1 Fellwar Stone
+1 Count on Luck
+1 Brainstealer Dragon
+1 Plargg and Nassari
+1 Mirkwood Bats
+1 Deadly Dispute
+1 Blood Crypt
+1 Raucous Theater
+1 Marionette Apprentice
+1 Arcane Signet
+1 Rakdos Signet
+1 Ruby Medallion
+1 Swiftfoot Boots
+1 Theater of Horrors
+1 Bedevil
+1 Chaos Warp
+1 The Infamous Cruelclaw
+1 Rakdos Charm
+1 Return the Favor
+1 Terminate
+1 Untimely Malfunction
+1 Blasphemous Act
+1 Reckless Impulse
+1 Strike It Rich
+1 Vandalblast
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Canyon Slough
+1 Command Tower
+1 Fabled Passage
+1 Haunted Ridge
+1 Rakdos Carnarium
+1 Sulfurous Springs
+1 Tainted Peak
+6 Swamp
+1 Light Up the Stage
+1 Etali, Primal Storm
+1 Luxury Suite
+1 Spider-Punk
+1 Shadow the Hedgehog
+1 Kefka, Dancing Mad
+1 Insatiable Avarice
+1 Uba Mask
+1 Xorn
+1 Beseech the Queen
+1 Cori Mountain Monastery
+1 Toxic Deluge
+1 Party Thrasher
+1 Redirect Lightning
+1 Grim Hireling
+1 Goldspan Dragon
+1 Wild-Magic Sorcerer
+1 Laelia, the Blade Reforged
+1 Black Sun's Zenith
+1 Infernal Grasp
+1 Withering Torment
+1 Mind Stone
+1 Glimpse the Impossible
+1 Wrenn's Resolve
+1 Bender's Waterskin
+1 Asgardian Inspiration
+1 Professional Face-Breaker
+1 Improvisation Capstone
+1 Chandra, Torch of Defiance
+1 Wanda's Vision
+1 Nadier's Nightblade
+1 Commander's Sphere
+7 Mountain
+1 Dragonskull Summit
+1 Chimil, the Inner Sun
+1 Smoldering Marsh
+1 Evolving Wilds
+1 Path of Ancestry
+1 Terramorphic Expanse
+1 Burning Curiosity
+1 Dark Fortress
+1 Wooded Foothills
+1 Bonehoard Dracosaur
+1 Jeska's Will
+1 Keeper of Secrets
+1 Rain of Riches
+1 Valakut Exploration
+1 Imp's Mischief
+1 Crackle with Power
+1 Myriad Landscape
+1 Lightning Greaves

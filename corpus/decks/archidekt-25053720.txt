@@ -1,0 +1,100 @@
+# Archidekt — my Ooze deck
+# source: archidekt:25053720
+# fetched: 2026-08-06
+# bracket: 2
+
+Commander:
+1 Uugguu, the Omniplasm
+
+Deck:
+1 Acidic Slime
+1 Biowaste Blob
+1 Necrotic Ooze
+1 Scavenging Ooze
+1 Uchuulon
+1 Hecteyes
+1 Biogenic Ooze
+1 Oran-Rief Ooze
+1 Aeve, Progenitor Ooze
+1 Slurrk, All-Ingesting
+1 Ochre Jelly
+1 Mitotic Slime
+1 Changeling Wayfinder
+1 Chomping Changeling
+1 Graveshifter
+1 Mutable Explorer
+1 Oko, Lorwyn Liege // Oko, Shadowmoor Scion
+1 Arcane Signet
+1 Sol Ring
+1 Bloom Tender
+1 Farseek
+1 Cultivate
+1 Delighted Halfling
+1 Nature's Lore
+1 Three Visits
+1 Fellwar Stone
+1 Mystic Remora
+1 An Offer You Can't Refuse
+1 Assassin's Trophy
+1 Counterspell
+1 Torment of Hailfire
+1 Mana Drain
+1 City of Brass
+1 Command Tower
+1 Exotic Orchard
+1 Zagoth Triome
+1 Mana Confluence
+1 Reflecting Pool
+1 Plaza of Heroes
+1 Karn's Bastion
+1 Misty Rainforest
+1 Reliquary Tower
+1 Rejuvenating Springs
+1 Watery Grave
+1 Verdant Catacombs
+1 Polluted Delta
+1 Breeding Pool
+1 Overgrown Tomb
+1 Phyrexian Tower
+1 Bojuka Bog
+1 Undergrowth Stadium
+1 Underground Mortuary
+1 Hedge Maze
+1 Opulent Palace
+1 Morphic Pool
+1 Three Tree City
+1 Path of Ancestry
+1 Dreamroot Cascade
+1 Yavimaya, Cradle of Growth
+1 Shipwreck Marsh
+7 Forest
+3 Swamp
+2 Island
+1 Predator Ooze
+1 Birds of Paradise
+1 Prime Speaker Vannifar
+1 Ravenous Slime
+1 Green Slime
+1 Ancient Ooze
+1 Realmwalker
+1 Mirror Image
+1 Roaming Throne
+1 Consuming Blob
+1 The Mimeoplasm
+1 Omni-Changeling
+1 Gluttonous Slime
+1 Reanimate
+1 Rampant Growth
+1 Bloodline Bidding
+1 Kodama's Reach
+1 Toxic Deluge
+1 Kindred Dominance
+1 Victimize
+1 Second Harvest
+1 Experiment One
+1 Doubling Season
+1 Heroic Intervention
+1 Growth Spiral
+1 Arcane Denial
+1 Ashnod's Altar
+1 Cauldron of Essence

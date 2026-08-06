@@ -1,0 +1,94 @@
+# Archidekt — Avengers Assemble with Marvel upgrades
+# source: archidekt:24218524
+# fetched: 2026-08-06
+
+Commander:
+1 Captain America, Team Leader
+
+Deck:
+1 Scavenger Grounds
+1 Scorched Geyser
+1 Spectator Seating
+1 Sulfur Falls
+1 Raise the Palisade
+1 Captain America, Living Legend
+1 Avengers Tower
+1 Swords to Plowshares
+1 Rip Apart
+1 Arcane Signet
+1 Plaza of Heroes
+1 Port Town
+1 Radiant Summit
+1 Captain Mar-Vell, Space-Born
+1 Frostboil Snarl
+1 Furycalm Snarl
+1 Glacial Fortress
+5 Island
+5 Mountain
+1 Heroic Sacrifice
+1 Methods of the Mighty
+1 Winter Soldier, Reborn Avenger
+1 Iron Man, Armored Avenger
+1 Jarvis, Earth's Mightiest Butler
+1 Professor Hulk
+1 The Wasp, Winsome Avenger
+1 Firebird, Blazing Ranger
+1 She-Hulk, Wallbreaker
+1 War Machine, Avenging Arsenal
+1 Ant-Man, Elusive Avenger
+1 Black Widow, Agile Avenger
+1 Director Nick Fury
+1 Quicksilver, Speedster
+1 Scarlet Witch, Chaotic Avenger
+1 Shang-Chi and the Ten Rings
+1 Avengers Quinjet
+1 Hulkbuster Armor
+1 Jocasta, Automaton Avenger
+1 Folk Hero
+1 Gift of Immortality
+1 Kindred Discovery
+1 Door of Destinies
+1 Metallic Mimic
+1 Exotic Orchard
+1 Glittering Massif
+1 Irrigated Farmland
+1 Relic of Legends
+1 Sol Ring
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 Thought Vessel
+1 Command Tower
+1 Path of Ancestry
+1 Secluded Courtyard
+1 Unclaimed Territory
+1 Fellwar Stone
+1 Herald's Horn
+1 Rescue, Pepper Potts
+6 Plains
+1 Lyla, Holographic Assistant
+1 Doc Ock's Tentacles
+1 Captain Marvel, Shooting Star
+1 Amazing Spider-Girl
+1 Captain America's Shield
+1 Black Panther, Claws of Bast
+1 Captain America, Liberator
+1 Matt Murdock, Justice Seeker
+1 The Sentry, Golden Guardian
+1 Counterspell
+1 Three Steps Ahead
+1 Thor, God of Thunder
+1 Daredevil, Man Without Fear
+1 The Ten Rings
+1 Asgardian Citadel
+1 Stark Industries
+1 Borough Backup
+1 Castle Doom
+1 Avengers Assemble!
+1 Cosmic Cube
+1 Captain America, Wings of Freedom
+1 Gleaming Bastion
+1 Silver Surfer, Galactus's Herald
+1 Patriot, Shield Wielder
+1 Galactus, Devourer of Worlds
+1 Shuri, Wakandan Inventor

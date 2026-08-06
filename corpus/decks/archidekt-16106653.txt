@@ -1,0 +1,93 @@
+# Archidekt — What Is Dead May Never Die
+# source: archidekt:16106653
+# fetched: 2026-08-06
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Sidisi, Undead Vizier
+8 Forest
+1 Grave Pact
+1 Buried Alive
+1 Entomb
+1 Eternal Witness
+1 Living Death
+1 Plaguecrafter
+1 Victimize
+1 Viscera Seer
+1 Command Tower
+1 Bayou
+1 Bojuka Bog
+1 Command Beacon
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathcap Glade
+1 Golgari Rot Farm
+1 Llanowar Wastes
+1 Skullclamp
+1 Necroblossom Snarl
+1 Overgrown Tomb
+1 Tainted Wood
+1 Temple of Malady
+1 Urborg, Tomb of Yawgmoth
+1 Vernal Fen
+1 Wastewood Verge
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Verdant Catacombs
+1 Phyrexian Tower
+1 Birds of Paradise
+1 Sol Ring
+1 Reanimate
+1 Beast Within
+1 Culling Ritual
+1 High Market
+1 Reclamation Sage
+1 Animate Dead
+1 Ashnod's Altar
+1 Ravenous Chupacabra
+1 Accursed Marauder
+8 Swamp
+1 Mikaeus, the Unhallowed
+1 Spore Frog
+1 Carrion Feeder
+1 Blood Pet
+1 Fleshbag Marauder
+1 Massacre Wurm
+1 Dread Return
+1 Putrefy
+1 Dictate of Erebos
+1 Insidious Fungus
+1 Wood Elves
+1 Yawgmoth, Thran Physician
+1 Cavalier of Night
+1 Blood Artist
+1 Moldervine Reclamation
+1 Syr Konrad, the Grim
+1 Zulaport Cutthroat
+1 Bastion of Remembrance
+1 Village Rites
+1 Assassin's Trophy
+1 Avenger of Zendikar
+1 Grim Haruspex
+1 Marionette Apprentice
+1 Elvish Mystic
+1 Arcane Signet
+1 Cauldron of Essence
+1 Pathbreaker Ibex
+1 Wriggling Grub
+1 Craterhoof Behemoth
+1 Hornet Queen
+1 Grave Titan
+1 Mitotic Slime
+1 Fumulus, the Infestation
+1 Grisly Salvage
+1 Satyr Wayfinder
+1 Pawn of Ulamog
+1 Carrier Thrall
+1 Midnight Reaper
+1 Guardian Project
+1 Insidious Roots
+1 Spawning Pit
+1 Solemn Simulacrum
+1 Awaken the Woods

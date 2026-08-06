@@ -1,0 +1,107 @@
+# Archidekt — Krenko
+# source: archidekt:25054064
+# fetched: 2026-08-06
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Cavalcade of Calamity
+1 Goblin Instigator
+1 Heraldic Banner
+1 Hordeling Outburst
+1 Krenko's Command
+1 Last-Ditch Effort
+1 Massive Raid
+1 Mob Justice
+1 Outnumber
+1 Patriar's Seal
+1 Fervor
+1 Banner of Kinship
+1 Quest for the Goblin Lord
+1 Shared Animosity
+1 Goblin King
+1 Rising of the Day
+1 Bloodmark Mentor
+1 Goblin Chieftain
+1 Impact Tremors
+1 Goblin War Strike
+1 Raid Bombardment
+1 Skullclamp
+1 Thrill of Possibility
+1 Faithless Looting
+1 Goblin Ringleader
+1 Rundvelt Hordemaster
+1 Frenzied Goblin
+1 Goblin War Drums
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Arcane Signet
+1 Mountain
+1 Foundry Street Denizen
+1 Goblin Bushwhacker
+1 Battle Squadron
+1 Seething Song
+1 Battle Hymn
+1 Brightstone Ritual
+1 Goblin Warchief
+1 Mana Geyser
+1 Treasure Nabber
+1 Magewright's Stone
+1 Skirk Prospector
+1 Sol Ring
+1 Umbral Mantle
+1 Battle Cry Goblin
+1 Springleaf Drum
+1 Howlsquad Heavy
+1 Pashalik Mons
+1 Thousand-Year Elixir
+1 Goblin Matron
+1 Staff of Domination
+1 Moggcatcher
+1 Goblin Recruiter
+1 Siege-Gang Commander
+1 Dragon Fodder
+1 Goro-Goro, Disciple of Ryusei
+1 Beetleback Chief
+1 Chaos Warp
+1 Siege-Gang Lieutenant
+1 Goblin Settler
+1 Searslicer Goblin
+1 Goblin Bombardment
+1 Warstorm Surge
+1 Hobgoblin Bandit Lord

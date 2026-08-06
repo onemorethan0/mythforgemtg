@@ -1,0 +1,99 @@
+# Archidekt — Diggy Diggy Hole
+# source: archidekt:25054764
+# fetched: 2026-08-06
+
+Commander:
+1 Tocasia, Dig Site Mentor
+
+Deck:
+3 Forest
+1 Arcane Signet
+1 Conduit of Worlds
+1 Encroaching Mycosynth
+1 Halo Fountain
+1 Hedge Shredder
+1 Lightning Greaves
+1 Planetarium of Wan Shi Tong
+4 Plains
+1 Adept Watershaper
+1 Aftermath Analyst
+1 Avacyn's Pilgrim
+1 Birds of Paradise
+1 Captain America, Living Legend
+1 Drumbellower
+1 Emmara, Soul of the Accord
+1 Emry, Lurker of the Loch
+1 Enduring Vitality
+1 Esper Sentinel
+1 Eternal Witness
+1 Etherium Sculptor
+1 Fallowsage
+1 Foundry Inspector
+1 Haywire Mite
+1 Matoya, Archon Elder
+1 Mistmeadow Vanisher
+1 Noble Hierarch
+1 Ornithopter of Paradise
+1 Cryptolith Rite
+1 Dazzling Theater // Prop Room
+1 Enhanced Surveillance
+1 Intruder Alarm
+1 Quest for Renewal
+1 An Offer You Can't Refuse
+1 Beast Within
+1 Counterspell
+1 Enlightened Tutor
+1 Generous Gift
+1 Heroic Intervention
+1 Path to Exile
+1 Adarkar Wastes
+1 Ancient Den
+1 Bountiful Promenade
+1 Breeding Pool
+1 Command Tower
+1 Exotic Orchard
+1 Flooded Strand
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Hinterland Harbor
+1 Lush Portico
+1 Meticulous Archive
+1 Misty Rainforest
+1 Prairie Stream
+1 Rejuvenating Springs
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Farseek
+1 Nature's Lore
+1 Rampant Growth
+1 Shorikai, Genesis Engine
+1 Sol Ring
+1 The Everflowing Well // The Myriad Pools
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Thousand-Year Elixir
+1 Unwinding Clock
+1 Sai, Master Thopterist
+1 Scaretiller
+1 Seedborn Muse
+1 Stonybrook Schoolmaster
+1 Sun Titan
+1 The Queen of Dale
+1 The Reality Chip
+1 Unctus, Grand Metatect
+1 Wonder
+1 Wylie Duke, Atiin Hero
+1 Unstoppable Plan
+1 Swords to Plowshares
+1 Sea of Clouds
+1 Seaside Citadel
+1 Seat of the Synod
+1 Spara's Headquarters
+1 Sunpetal Grove
+1 Temple Garden
+1 Tree of Tales
+1 Windswept Heath
+1 Yavimaya Coast
+1 Tezzeret, Cruel Captain
+1 Sevinne's Reclamation
+1 Split Up
+1 Three Visits
+4 Island

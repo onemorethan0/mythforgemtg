@@ -1,0 +1,79 @@
+# Archidekt — Mono white 1 mana
+# source: archidekt:25054436
+# fetched: 2026-08-06
+
+Commander:
+1 Skrelv, Defector Mite
+
+Deck:
+1 Path to Exile
+1 Swords to Plowshares
+1 Abandoned Air Temple
+1 Authority of the Consuls
+1 Wayfarer's Bauble
+1 Expedition Map
+1 Cloudshift
+1 Cleric Class
+1 Colossus Hammer
+1 Lavaspur Boots
+1 Elixir of Immortality
+1 Weathered Wayfarer
+1 Universal Automaton
+1 Null Elemental Blast
+1 Explorer's Scope
+1 Deafening Silence
+1 Gingerbrute
+1 Flickering Ward
+1 Blacksmith's Skill
+1 Dragonfire Blade
+1 Mana Tithe
+1 Zack Fair
+1 Alseid of Life's Bounty
+1 Selfless Savior
+1 Hinterland Sanctifier
+1 Hyena Umbra
+1 Surge of Salvation
+1 Peter Parker's Camera
+1 Spirit Link
+1 Healer's Hawk
+1 World Map
+1 Unwanted Remake
+1 Brave the Elements
+1 Lunarch Veteran // Luminous Phantom
+1 Gods Willing
+1 Speaker of the Heavens
+1 Walking Bulwark
+1 Condemn
+1 Paladin Class
+1 Zephyr Boots
+1 Retrofitter Foundry
+1 Enter the Avatar State
+1 Brainstone
+1 Traveler's Amulet
+1 Fountainport Bell
+1 Doomed Traveler
+1 Divine Resilience
+1 Helping Hand
+1 Kami of False Hope
+1 Conjurer's Bauble
+1 Honor
+1 Case of the Uneaten Feast
+1 Benevolent Bodyguard
+1 Holy Day
+1 Crumb and Get It
+1 Gorgon's Head
+1 Cliffhaven Kitesail
+1 Soul Snare
+1 Signal Pest
+1 Nutrient Block
+1 Crawling Chorus
+1 Thraben Inspector
+1 Slagwurm Armor
+1 Stiltzkin, Moogle Merchant
+1 Prying Blade
+1 Candy Trail
+29 Plains
+1 Wastes
+1 Hunted Witness
+1 Crystal Fragments // Summon: Alexander
+1 Wyrm's Crossing Patrol
