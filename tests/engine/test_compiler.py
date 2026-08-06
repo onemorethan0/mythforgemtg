@@ -464,6 +464,14 @@ def test_failed_refresh_is_not_retried_at_the_same_prompt_version(tmp_path, monk
     assert entry["refresh_failed_at"] == compiler.PROMPT_VERSION, (
         "the failed attempt must leave a trace scoped to the prompt version that failed"
     )
+    assert entry["refresh_errors"], (
+        "the trace must carry WHY it failed — a bare marker leaves the blocked pile "
+        "undiagnosable without re-running the GPU"
+    )
+    assert entry["errors"] == [], (
+        "the retained entry is still an ACCEPTED v5 compile; its own error list must not "
+        "pick up the failed refresh's complaints"
+    )
 
     # The selector now skips it, so the chunk's GPU time goes to cards further down the
     # stale pool instead of re-failing on the same head-of-line card.

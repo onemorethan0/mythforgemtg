@@ -863,9 +863,18 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
             # head-of-line block, while the tail of the stale pool was never reached.
             # The marker is scoped to the version that failed, so the next prompt
             # revision retries every one of them.
+            # Keep WHY it failed, not just that it did. The marker alone made the
+            # blocked pile unreadable: 784 cards had accumulated by 2026-08-06 (+211 in
+            # one night) with `errors: []` inherited from their last *successful* compile,
+            # so the only way to learn what v10 objected to was to re-run the GPU. The
+            # reason is the whole diagnostic — it is what tells a Talisman's mana ability
+            # apart from a fabricated trigger, and which of those is a prompt bug worth
+            # fixing at the class level. Stored under its own key so a retained-accepted
+            # entry never looks quarantined; same 8-error cap as `Ledger.record`.
             ledger.entries[normalize_name(card.name)] = {
                 **prior,
                 "refresh_failed_at": compiler.PROMPT_VERSION,
+                "refresh_errors": result.errors[:8],
             }
             ledger.save()
             kept += 1

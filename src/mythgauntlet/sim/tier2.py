@@ -60,7 +60,7 @@ from dataclasses import dataclass, field, replace
 
 from mythgauntlet.model.card import Card, normalize_name
 from mythgauntlet.semantics import tags
-from mythgauntlet.semantics.ccm import normalize_colors
+from mythgauntlet.semantics.ccm import canonical_event, normalize_colors
 from mythgauntlet.semantics.interpreter import ResolvedEffect, interpret_ability
 from mythgauntlet.semantics.profile import (
     ActivatedEffect,
@@ -287,6 +287,11 @@ def _event_triggers(ccm: dict, card: Card) -> tuple[tuple[str, dict], ...]:
             continue
         trig = ability.get("trigger")
         event = trig.get("event") if isinstance(trig, dict) else None
+        # Fold known re-spellings onto the vocabulary before the membership test, so a
+        # stored CCM that says "beginning_of_combat" fires like the "begin_combat" it
+        # means. Retroactive on purpose: this recovers the existing store without
+        # spending a recompile on cards whose only fault is the synonym.
+        event = canonical_event(event)
         if event not in _EVENT_TRIGGERS:
             continue
         if event == "attack":

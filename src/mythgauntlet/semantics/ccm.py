@@ -42,6 +42,61 @@ _UNEXECUTED_EVENTS = {
     "gain_life", "lose_life", "counter_added", "activate_ability",
 }
 TRIGGER_EVENTS = _EXECUTED_EVENTS | _UNEXECUTED_EVENTS | {"other"}
+
+# Spellings the compiler emits for events the vocabulary ALREADY names. Adding
+# `begin_combat` in the block above fixed one instance of this; it did not fix the class,
+# because the validator tolerates any event string (see `validate`) and `_event_triggers`
+# then drops whatever it doesn't recognise. So a synonym is silently inert, and the model
+# keeps minting them: at prompt v10 the store held 611 out-of-vocabulary triggers across
+# 117 spellings.
+#
+# Only an EXACT-semantic re-spelling belongs here, checked against the oracle text of
+# every card that uses it — a near-miss that reads like a vocabulary word is the failure
+# this map is supposed to fix, not repeat. Three candidates were rejected on that check:
+#
+#   * `begin_end_step` (9 cards) is NOT `end_step`. Every one is a delayed one-shot
+#     cleanup — "sacrifice it at the beginning of the NEXT end step" (Urabrask's Forge,
+#     Valduk, Determined Iteration). Firing it as the recurring end-step trigger would
+#     sacrifice a token every turn, fabricating a downside the card does not have. The
+#     model uses plain `end_step` for genuine recurring triggers, so the two spellings
+#     are carrying a real distinction.
+#   * `enters_battlefield` (3 cards) is NOT `etb`. Brainstealer Dragon's entry is
+#     `{"event": "enters_battlefield", "controller": "opponent"}` — an opponent's
+#     permanent entering, not its own ETB. Firing it as ETB mints a drain on cast.
+#   * `graveyard_from_battlefield` / `dealt_damage_to_player` read as `death` /
+#     `combat_damage_to_player` but do not have to mean them.
+#
+# Anything genuinely absent from the vocabulary (`sacrifice`, `discard`, `cycle`,
+# `mutate`, the main-phase steps, ...) likewise stays unmapped and stays inert: naming it
+# would invent an event the engine cannot execute, and an honest under-count beats a
+# confident fabrication.
+_EVENT_SYNONYMS = {
+    # -> executable (verified against the oracle text of every card that carries them)
+    "beginning_of_combat": "begin_combat",
+    "beginning_of_upkeep": "upkeep",
+    "begin_upkeep": "upkeep",
+    "beginning_of_draw_step": "draw_step",
+    # -> unexecuted (no simulation change; keeps the honest under-count countable
+    #    instead of scattering it across anonymous spellings)
+    "leave_battlefield": "leaves_battlefield",
+    "leave_the_battlefield": "leaves_battlefield",
+    "targeted": "becomes_target",
+    "targeted_by_spell": "becomes_target",
+    "targeted_by_spell_or_ability": "becomes_target",
+    "block": "blocks",
+    "blocked": "becomes_blocked",
+    "end_combat": "end_of_combat",
+    "chapter_I": "saga_chapter",
+    "chapter_II": "saga_chapter",
+    "chapter_III": "saga_chapter",
+}
+
+
+def canonical_event(event: object) -> object:
+    """Map a known re-spelling onto its vocabulary word; pass anything else through."""
+    return _EVENT_SYNONYMS.get(event, event) if isinstance(event, str) else event
+
+
 TARGET_KEYS = {"type", "subtype", "controller", "count", "zone"}
 TARGET_CONTROLLERS = {"you", "opponent", "any", "each"}
 EFFECT_COMMON_KEYS = {"op", "optional", "condition", "note", "x_basis"}

@@ -402,6 +402,44 @@ def test_begin_combat_trigger_is_executed(tmp_path, make_card):
     assert len(me.creatures()) == 1
 
 
+def test_event_synonyms_fire_and_unknown_events_stay_inert(tmp_path, make_card):
+    """A re-spelling of a vocabulary word must fire; an unnamed event must not.
+
+    Adding `begin_combat` fixed one instance, not the class: the validator tolerates any
+    event string, so the compiler kept inventing synonyms for words it already had. At
+    prompt v10 the store carried 611 out-of-vocabulary triggers across 117 spellings, and
+    `beginning_of_combat` / `begin_end_step` / `enters_battlefield` were re-spellings of
+    EXECUTABLE events — silently dropped, exactly as before.
+
+    The other half of the guarantee matters just as much: `sacrifice` is not a synonym of
+    anything the engine can execute, so it must STAY dropped. Mapping it somewhere
+    plausible would fabricate value, which is the failure the event vocabulary exists to
+    prevent.
+    """
+    gc = _trigger_gc(tmp_path, make_card, "Combat Herald", "beginning_of_combat",
+                     [{"op": "create_token", "count": 1, "power": 1, "toughness": 1}])
+    assert gc.trigger_abilities, "a known re-spelling must survive _event_triggers"
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _on_battlefield(gc, me, opp)
+    _fire_triggers(me, opp, "upkeep")
+    assert len(me.creatures()) == 0, "still the wrong event"
+    _fire_triggers(me, opp, "begin_combat")
+    assert len(me.creatures()) == 1, "beginning_of_combat must fire as begin_combat"
+
+    # The other half of the guarantee. Each of these READS like a vocabulary word and is
+    # deliberately not mapped onto one:
+    #   sacrifice        - the vocabulary simply has no such event
+    #   begin_end_step   - a delayed "at the beginning of the NEXT end step" cleanup, not
+    #                      the recurring end_step trigger (all 9 stored cards are this)
+    #   enters_battlefield - can carry controller:"opponent", so it is not always own-ETB
+    for event in ("sacrifice", "begin_end_step", "enters_battlefield"):
+        inert = _trigger_gc(tmp_path, make_card, f"Fodder {event}", event,
+                            [{"op": "create_token", "count": 1, "power": 1, "toughness": 1}])
+        assert not inert.trigger_abilities, (
+            f"{event!r} must stay inert, not be guessed onto a nearby executable event"
+        )
+
+
 def test_begin_combat_fires_once_per_turn_in_the_state_machine(tmp_path, make_card, forest):
     """It fires from the real turn loop exactly once, even with no eligible attackers.
 
