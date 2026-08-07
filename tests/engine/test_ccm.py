@@ -207,6 +207,54 @@ def test_cross_check_licenses_reminder_text_keywords(make_card):
     assert any("never says draw" in e for e in cross_check(GOOD_DRAW_CCM, bare))
 
 
+def test_trigger_evidence_reads_the_wording_cards_actually_use(make_card):
+    """Gate 3 must not reject a trigger the card plainly has, written another way.
+
+    All three wordings below are taken from real cards that the v10 refresh blocked. The
+    `tap_for_mana` one is not hypothetical: `\\btaps? ` never matched the PASSIVE "is
+    tapped for mana", and on 2026-08-07 that demoted Storm Cauldron and Trace of
+    Abundance from accepted to quarantined — the refresh campaign's first two losses.
+
+    The negative half is the point of the test. Widening evidence is the direction that
+    lets a FABRICATED event through, so each pattern stays scoped: "deals damage to an
+    opponent" is the card dealing damage, not being dealt it, and must still fail.
+    """
+    def evidence(event, oracle):
+        card = make_card("Probe", mana_cost="{1}", type_line="Artifact", oracle_text=oracle)
+        doc = dict(GOOD_DRAW_CCM, types=["artifact"], abilities=[
+            {"kind": "triggered", "trigger": {"event": event},
+             "effects": [{"op": "draw", "count": 1}]},
+        ])
+        return not any("has no support" in e for e in cross_check(doc, card))
+
+    # Real wordings that must be RECOGNISED
+    assert evidence("tap_for_mana", "Whenever a Mountain is tapped for mana, draw a card.")
+    assert evidence("dealt_damage",
+                    "Whenever a source you control deals damage to you, draw a card.")
+    assert evidence("dealt_damage",
+                    "Whenever a source an opponent controls deals damage to this creature, "
+                    "draw a card.")
+    assert evidence("leaves_battlefield",
+                    "When this Aura is put into a graveyard from the battlefield, draw a card.")
+
+    # Wordings that must still be REJECTED
+    assert not evidence("dealt_damage",
+                        "Whenever this creature deals damage to an opponent, draw a card."), (
+        "dealing damage is not being dealt damage"
+    )
+    assert not evidence("tap_for_mana",
+                        "Whenever you cast a red spell, you may untap this creature."), (
+        "'untap' must not read as a tap-for-mana trigger"
+    )
+    assert not evidence("tap_for_mana",
+                        "{T}: This creature deals 1 damage to any target."), (
+        "tapping for an effect is not tapping for mana"
+    )
+    assert not evidence("etb", "{T}: Draw a card, then discard a card."), (
+        "a card that never mentions entering has no ETB trigger"
+    )
+
+
 def test_cross_check_catches_missing_draw(make_card):
     card = make_card("Insight Spell", mana_cost="{2}{U}", type_line="Sorcery",
                      oracle_text="Draw two cards.")

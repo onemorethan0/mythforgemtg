@@ -471,11 +471,26 @@ _TRIGGER_EVIDENCE: dict[str, re.Pattern[str]] = {
     "combat_damage_to_player": re.compile(
         r"(?<!non)combat damage to|deals damage to (?:a |target |an )?(?:player|opponent)",
         re.I),
-    "dealt_damage": re.compile(r"\bis dealt\b|\bdealt damage\b", re.I),
+    # The ACTIVE voice is the same trigger: "Whenever a source you control deals damage
+    # to you" (Auntie Blyte) / "...deals damage to this creature" (Archfiend of Spite) is
+    # a dealt-damage trigger written the other way round. Scoped to this/you deliberately
+    # — "deals damage to an OPPONENT" (Atemsis) is the card dealing, not being dealt, and
+    # must keep failing.
+    "dealt_damage": re.compile(
+        r"\bis dealt\b|\bdealt damage\b|\bdeals damage to (?:this|you)\b", re.I),
     "saga_chapter": re.compile(r"\bsaga\b|\bchapter\b|^\s*(?:I{1,3}|IV|V)\s*(?:,|—|-)", re.I | re.M),
-    "leaves_battlefield": re.compile(r"\bleaves? the battlefield\b|\bleave the battlefield\b", re.I),
+    # "Put into a graveyard from the battlefield" IS leaving the battlefield — it is the
+    # wording Auras and older cards use (Demonic Ruckus). `death` already licenses this
+    # phrase; both readings are defensible, so neither should be rejected.
+    "leaves_battlefield": re.compile(
+        r"\bleaves? the battlefield\b|\bleave the battlefield\b"
+        r"|\bput into a graveyard from the battlefield\b", re.I),
     "becomes_target": re.compile(r"\bbecomes the target\b", re.I),
-    "tap_for_mana": re.compile(r"\btaps? [^.]*for mana\b", re.I),
+    # `taps?` did not match the PASSIVE "is tapped for mana", which is how every card that
+    # actually has this trigger writes it (Gauntlet of Might, Storm Cauldron, Trace of
+    # Abundance). On 2026-08-07 that cost the store two accepted cards — the campaign's
+    # first demotions. `\b` still keeps "untap" out.
+    "tap_for_mana": re.compile(r"\btap(?:s|ped|ping)?\b[^.]*\bfor mana\b", re.I),
     "gain_life": re.compile(r"\bgains? life\b|\bgain \d+ life\b", re.I),
     "lose_life": re.compile(r"\bloses? life\b|\blose \d+ life\b", re.I),
     "counter_added": re.compile(r"\bcounter is put\b|\bcounters? (?:is|are) put\b", re.I),
