@@ -1,0 +1,98 @@
+# Archidekt — Thunderbolts
+# source: archidekt:23925664
+# fetched: 2026-08-07
+
+Commander:
+1 Citizen V, Helmut Zemo
+
+Deck:
+1 Endless Ranks of HYDRA
+1 Kindred Dominance
+1 Night's Whisper
+1 Syphon Mind
+1 Withering Torment
+1 Baron Helmut Zemo
+1 Songbird, Sonic Screamer
+1 Crossbones, Malicious Mercenary
+1 Doom Reigns Supreme
+1 Elektra, Daughter of the Hand
+1 HYDRA Infiltration
+1 White Widow, Yelena Belova
+1 HYDRA Disintegrator
+1 Iron Monger, Sadistic Tycoon
+1 Baron Strucker, HYDRA Overlord
+1 Klaw, Master of Sound
+1 Tombstone, Career Criminal
+1 Age of Ultron
+1 Black Market Connections
+1 Moonstone, Harsh Mistress
+1 The Frightful Four
+1 Lethal Scheme
+1 Toxic Deluge
+1 Currency Converter
+1 Patchwork Banner
+1 Progenitor's Icon
+1 Skullclamp
+1 Damocles Base, Sword of Kang
+1 Doom's Time Platform
+1 Sol Ring
+1 Swiftfoot Boots
+1 Villainous Hideout
+1 Villainous Syndication
+1 MACH-1, Swooping Scoundrel
+1 Minotaur, Roxxon CEO
+1 Ultimo, Civilization's End
+1 Boomerang, Blade Flinger
+1 Madame Hydra, Reanimated
+1 The Masters of Evil
+1 Dark Deed
+1 Hour of Defeat
+1 Infernal Rebirth
+1 HYDRA Troopers
+1 Agents of HYDRA
+3 Swamp
+8 Swamp
+1 Swamp
+1 Madame Masque
+1 Swordsman, Sharp Scoundrel
+1 Titanium Man
+1 Stolen Stark Tech
+1 Arnim Zola, Bio-Fanatic
+1 Klaw, Sonic Subjugator
+1 Cruel Alliance
+1 Criminal Enterprise
+1 Voltaic Whip
+1 Construct a Cosmic Cube
+1 Viper, Cruel Conspirator
+1 Castle Doom
+1 Barren Moor
+1 Dakmor Salvage
+1 Desert of the Glorified
+1 Howltooth Hollow
+1 Memorial to Folly
+1 Midgar, City of Mako // Reactor Raid
+1 Everglades
+1 Hidden Necropolis
+1 Minas Morgul, Dark Fortress
+1 Ifnir Deadlands
+1 Vault of Whispers
+1 Polluted Mire
+1 Spymaster's Vault
+1 Mortuary Mire
+1 Spawning Pool
+1 Piranha Marsh
+1 Susur Secundi, Void Altar
+1 Takenuma, Abandoned Mire
+1 The Dross Pits
+1 Radioactive Man
+1 Thunderbolts Conspiracy
+1 Valentina Allegra de Fontaine
+1 Crimson Cowl, Master of Evil
+1 Crypt of Agadeem
+1 The Black Gate
+1 Tomb Fortress
+1 Fixer, Techno Terror
+1 Grim Reaper, Lethal Legionnaire
+1 Blighted Fen
+1 Bojuka Bog
+1 Grim Reaper's Scythe

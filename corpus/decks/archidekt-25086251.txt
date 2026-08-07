@@ -1,0 +1,81 @@
+# Archidekt — Zur’s Menagerie
+# source: archidekt:25086251
+# fetched: 2026-08-07
+
+Commander:
+1 Zur, Eternal Schemer
+
+Deck:
+1 Zur the Enchanter
+1 Archetype of Imagination
+1 Archetype of Finality
+1 Athreos, Shroud-Veiled
+1 Archetype of Courage
+1 Aegis of the Gods
+1 Agent of Erebos
+1 Callaphe, Beloved of the Sea
+1 Demon of Fate's Design
+1 Eidolon of Countless Battles
+1 Doomwake Giant
+1 Erebos, Bleak-Hearted
+1 Grim Guardian
+1 Inquisitive Glimmer
+1 Fear of Lost Teeth
+1 Nykthos Paragon
+1 Silent Hallcreeper
+1 Soaring Lightbringer
+1 The Mindskinner
+1 Thoughtrender Lamia
+1 Underworld Coinsmith
+1 Sage of Mysteries
+1 Tempest Technique
+1 Aminatou, Veil Piercer
+1 Slumbering Keepguard
+1 Protean Thaumaturge
+1 Web of Inertia
+1 Rest in Peace
+1 Ethereal Armor
+1 Energy Field
+1 Arrest
+1 Bound by Moonsilver
+1 Cage of Hands
+1 Bound in Silence
+1 Captured by the Consulate
+1 Dog Umbra
+1 Droning Bureaucrats
+1 Unstable Molecule Suit
+1 Sol Ring
+1 Mirror Shield
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Doomskar
+1 Ultimate Magic: Holy
+1 Swords to Plowshares
+1 Path to Exile
+1 Austere Command
+1 Generous Gift
+1 Swiftfoot Boots
+1 Whispersilk Cloak
+1 Arcane Signet
+1 Command Tower
+1 Underground River
+1 Eiganjo Dynastorian // Replenish
+1 Drowned Catacomb
+1 Arcane Sanctum
+1 Caves of Koilos
+1 Isolated Chapel
+1 Glacial Fortress
+10 Plains
+8 Island
+8 Swamp
+1 Adarkar Wastes
+1 Bojuka Bog
+1 Sanctum of Calm Waters
+1 Psemilla, Meletian Poet
+1 Heliod, God of the Sun
+1 Dovin's Veto
+1 Familiar's Ruse
+1 Jaded Response
+1 Long River's Pull
+1 Gift of Immortality

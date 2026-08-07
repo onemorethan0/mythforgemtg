@@ -1,0 +1,75 @@
+# Archidekt — One Black Mana
+# source: archidekt:25087112
+# fetched: 2026-08-07
+
+Commander:
+1 Ashnod, Flesh Mechanist
+
+Deck:
+1 Forsaken Miner
+1 Gas Guzzler
+1 Graf Harvest
+1 Gravecrawler
+1 Acolyte of Xathrid
+1 Annihilating Glare
+1 Banehound
+1 Bilious Skulldweller
+1 Bone Splinters
+1 Buried Ruin
+1 Clay Revenant
+1 Crawl from the Cellar
+1 Cremate
+1 Cult Conscript
+1 Cultist of the Absolute
+1 Dockside Chef
+1 Drainpipe Vermin
+1 Dread Wanderer
+1 Drillworks Mole
+1 Dross Skullbomb
+1 Duskwielder
+1 Eaten Alive
+1 Ecstatic Awakener // Awoken Demon
+1 Embrace Oblivion
+1 Engine Rat
+1 Etherium Pteramander
+1 Evolved Sleeper
+1 Eye Collector
+1 Fear of Lost Teeth
+1 Festering Goblin
+1 Fifty Feet of Rope
+1 Ghost-Lit Stalker
+1 Greedy Freebooter
+1 Grim Physician
+1 Haunt of the Dead Marshes
+1 Heirloom Epic
+1 Hired Poisoner
+1 Hullcarver
+1 Infestation Sage
+1 Lash of the Balrog
+1 Lead Pipe
+1 Leather Armor
+1 Liliana's Steward
+1 Mirrodin Avenged
+1 Monoist Sentry
+1 Nested Shambler
+1 Nezumi Linkbreaker
+1 Persistent Specimen
+1 Quest for the Gravelord
+1 Ransom Note
+1 Retrofitted Transmogrant
+1 Serrated Scorpion
+1 Shadow Alley Denizen
+1 Skeleton Key
+1 Stalactite Stalker
+1 Stirge
+33 Swamp
+1 Tarrian's Soulcleaver
+1 Tenacious Dead
+1 The Last Ride
+1 The Millennium Calendar
+1 Thraben Gargoyle // Stonewing Antagonizer
+1 Tinybones Joins Up
+1 Tonberry
+1 Urn of Godfire
+1 Wizard's Rockets
+1 You Are Already Dead

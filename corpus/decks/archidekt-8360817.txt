@@ -1,0 +1,96 @@
+# Archidekt — Slimefoot and Squee
+# source: archidekt:8360817
+# fetched: 2026-08-07
+
+Commander:
+1 Slimefoot and Squee
+
+Deck:
+1 Overgrown Tomb
+1 Stomping Ground
+1 Savage Lands
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Path of Ancestry
+1 Sol Ring
+1 Foreboding Ruins
+1 Game Trail
+1 Mossfire Valley
+1 Cinder Glade
+1 Command Tower
+1 Exotic Orchard
+1 Fauna Shaman
+1 Reflecting Pool
+1 Anger
+1 Mycoloth
+1 Artifact Mutation
+1 Terramorphic Expanse
+1 Dictate of Erebos
+1 Evolving Wilds
+1 Viscera Seer
+1 Unmarked Grave
+1 Arcane Signet
+1 Sprouting Thrinax
+1 Ashnod's Altar
+1 Braids, Arisen Nightmare
+1 Ziatora, the Incinerator
+1 Woodland Cemetery
+1 Brightcap Badger // Fungus Frolic
+1 Buried Alive
+1 Protean Hulk
+1 Balefire Dragon
+1 Thrill of Possibility
+1 Entomb
+1 Apprentice Necromancer
+1 Accursed Marauder
+1 Priest of Forgotten Gods
+1 Pathrazer of Ulamog
+1 Victimize
+1 Idol of Oblivion
+1 Wight of the Reliquary
+1 Nasty End
+1 Evolutionary Leap
+1 Grab the Prize
+1 Feldon of the Third Path
+1 Lignify
+1 Corrupted Conviction
+1 Blasphemous Act
+1 Butcher of Malakir
+1 Grave Pact
+1 Chaos Defiler
+1 Plaguecrafter
+4 Forest
+9 Swamp
+1 Archon of Cruelty
+1 Command Beacon
+1 Birds of Paradise
+1 Trumpeting Carnosaur
+1 Peter Parker's Camera
+1 Insidious Fungus
+1 Unearth
+1 Romantic Rendezvous
+1 Korvold, Fae-Cursed King
+1 Jumbo Cactuar
+1 Ornithopter of Paradise
+1 Titanoth Rex
+1 Spry and Mighty
+1 High Market
+1 Thrór's Map
+1 Untimely Malfunction
+1 Twilight Diviner
+1 Oriq Loremage
+1 Swiftfoot Boots
+1 Lazotep Quarry
+2 Mountain
+1 Misty Knight, Hero for Hire
+1 Terminate
+1 Apex Altisaur
+1 The Balrog, Durin's Bane
+1 Greater Good
+1 Faithless Looting
+1 Fogwell's Gym
+1 Rampant Growth
+1 Grave Researcher // Reanimate
+1 Hostile Hostel // Creeping Inn
+1 Big Game Hunter
+1 Tendershoot Dryad

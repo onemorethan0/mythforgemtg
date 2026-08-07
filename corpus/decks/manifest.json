@@ -771,6 +771,13 @@
       "fetched": "2026-07-26"
     },
     {
+      "file": "archidekt-20584931.txt",
+      "name": "Emrakul’s Payroll",
+      "source": "archidekt:20584931",
+      "bracket": 3,
+      "fetched": "2026-08-07"
+    },
+    {
       "file": "archidekt-20732370.txt",
       "name": "Temur Roar Precon Downgrade",
       "source": "archidekt:20732370",
@@ -1072,6 +1079,13 @@
       "fetched": "2026-07-26"
     },
     {
+      "file": "archidekt-23925664.txt",
+      "name": "Thunderbolts",
+      "source": "archidekt:23925664",
+      "bracket": null,
+      "fetched": "2026-08-07"
+    },
+    {
       "file": "archidekt-23939644.txt",
       "name": "Warglock",
       "source": "archidekt:23939644",
@@ -1084,6 +1098,13 @@
       "source": "archidekt:23971096",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-23991627.txt",
+      "name": "Absolute evil",
+      "source": "archidekt:23991627",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-24002112.txt",
@@ -1210,6 +1231,13 @@
       "source": "archidekt:24246589",
       "bracket": 3,
       "fetched": "2026-07-24"
+    },
+    {
+      "file": "archidekt-24290252.txt",
+      "name": "Elie 2be3",
+      "source": "archidekt:24290252",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-24300686.txt",
@@ -1532,6 +1560,13 @@
       "source": "archidekt:24645820",
       "bracket": 1,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-24652297.txt",
+      "name": "Jin Sakai",
+      "source": "archidekt:24652297",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-24653821.txt",
@@ -2346,6 +2381,13 @@
       "fetched": "2026-08-05"
     },
     {
+      "file": "archidekt-25036610.txt",
+      "name": "Yshtola Bracket 4",
+      "source": "archidekt:25036610",
+      "bracket": 4,
+      "fetched": "2026-08-07"
+    },
+    {
       "file": "archidekt-25051852.txt",
       "name": "jon irenicus",
       "source": "archidekt:25051852",
@@ -2379,6 +2421,48 @@
       "source": "archidekt:25054764",
       "bracket": null,
       "fetched": "2026-08-06"
+    },
+    {
+      "file": "archidekt-25056563.txt",
+      "name": "Luckiest Planwalker",
+      "source": "archidekt:25056563",
+      "bracket": 3,
+      "fetched": "2026-08-07"
+    },
+    {
+      "file": "archidekt-25083717.txt",
+      "name": "Borderless Dragons",
+      "source": "archidekt:25083717",
+      "bracket": null,
+      "fetched": "2026-08-07"
+    },
+    {
+      "file": "archidekt-25086251.txt",
+      "name": "Zur’s Menagerie",
+      "source": "archidekt:25086251",
+      "bracket": null,
+      "fetched": "2026-08-07"
+    },
+    {
+      "file": "archidekt-25086538.txt",
+      "name": "Copy of - Urza, Chief Artificer",
+      "source": "archidekt:25086538",
+      "bracket": null,
+      "fetched": "2026-08-07"
+    },
+    {
+      "file": "archidekt-25086995.txt",
+      "name": "Ishai/ rograkh",
+      "source": "archidekt:25086995",
+      "bracket": null,
+      "fetched": "2026-08-07"
+    },
+    {
+      "file": "archidekt-25087112.txt",
+      "name": "One Black Mana",
+      "source": "archidekt:25087112",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-2565352.txt",
@@ -2428,6 +2512,13 @@
       "source": "archidekt:2907226",
       "bracket": 1,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-2951483.txt",
+      "name": "1. Cleric Tribal -- Liesa",
+      "source": "archidekt:2951483",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-3011948.txt",
@@ -3163,6 +3254,13 @@
       "source": "archidekt:8359436",
       "bracket": 2,
       "fetched": "2026-07-26"
+    },
+    {
+      "file": "archidekt-8360817.txt",
+      "name": "Slimefoot and Squee",
+      "source": "archidekt:8360817",
+      "bracket": null,
+      "fetched": "2026-08-07"
     },
     {
       "file": "archidekt-8376777.txt",

@@ -1,0 +1,108 @@
+# Archidekt — Yshtola Bracket 4
+# source: archidekt:25036610
+# fetched: 2026-08-07
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Mystical Tutor
+1 Vampiric Tutor
+1 Curiosity
+1 Ophidian Eye
+1 Helm of the Ghastlord
+1 Sigil of Sleep
+1 Deadly Rollick
+1 Risky Shortcut
+1 Unwind
+1 Thought Vessel
+1 Flawless Maneuver
+1 Snuff Out
+1 Toxic Deluge
+1 Submerge
+1 Sheoldred, the Apocalypse
+1 Kambal, Consul of Allocation
+1 Bloodchief Ascension
+1 Delney, Streetwise Lookout
+1 Force of Negation
+1 Swords to Plowshares
+1 Frantic Search
+1 Dark Ritual
+1 Force of Despair
+1 Force of Will
+1 Fierce Guardianship
+1 Teferi's Protection
+1 Cyclonic Rift
+1 Esper Sentinel
+1 Sygg, River Cutthroat
+1 Drannith Magistrate
+1 Opposition Agent
+1 Dovin's Veto
+1 Mana Drain
+1 Misdirection
+1 Dig Through Time
+1 Pact of Negation
+1 Counterspell
+1 Mindbreak Trap
+1 Baleful Mastery
+1 Flusterstorm
+1 Mental Misstep
+1 Windfall
+1 Supreme Verdict
+1 Alhammarret's Archive
+1 Basilisk Collar
+1 Mystic Remora
+1 Phyresis
+1 The One Ring
+1 Lotho, Corrupt Shirriff
+1 Orcish Bowmasters
+1 Gilded Drake
+1 Baral, Chief of Compliance
+1 Swan Song
+1 Massacre
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Flooded Strand
+1 Watery Grave
+1 Underground Sea
+1 Hallowed Fountain
+1 Tundra
+1 Scrubland
+1 City of Brass
+1 Mana Confluence
+1 Command Tower
+1 Godless Shrine
+1 Gemstone Caverns
+1 Scalding Tarn
+1 Bloodstained Mire
+1 Morphic Pool
+1 Arid Mesa
+1 Verdant Catacombs
+1 Tarnished Citadel
+1 Adarkar Wastes
+1 Undercity Sewers
+1 Underground River
+1 Meticulous Archive
+1 Cavern of Souls
+1 Ancient Tomb
+1 Shadowy Backstreet
+1 Notion Thief
+1 Fellwar Stone
+1 Damn
+1 Yahenni's Expertise
+1 Gitaxian Probe
+1 Polluted Delta
+1 Windswept Heath
+1 Sea of Clouds
+1 Raffine's Tower
+1 Misty Rainforest
+1 Marsh Flats
+1 Mana Vault
+1 Smothering Tithe
+1 Rhystic Study
+1 Sol Ring
+1 Demonic Tutor
+1 Mox Amber
+1 Dismember
+1 Chrome Mox

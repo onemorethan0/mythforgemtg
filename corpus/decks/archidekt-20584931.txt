@@ -1,0 +1,90 @@
+# Archidekt — Emrakul’s Payroll
+# source: archidekt:20584931
+# fetched: 2026-08-07
+# bracket: 3
+
+Commander:
+1 Belbe, Corrupted Observer
+
+Deck:
+1 Emrakul, the Promised End
+1 Wumpus Aberration
+1 Ulamog's Crusher
+1 Forbidden Orchard
+1 Nurturing Peatland
+1 The Eternity Elevator
+1 Skyclave Relic
+9 Forest
+1 Crumbling Vestige
+1 Susur Secundi, Void Altar
+1 Blooming Marsh
+1 Woodland Cemetery
+1 Wastewood Verge
+1 Overgrown Tomb
+1 Thespian's Stage
+1 Ring of the Lucii
+1 Bojuka Bog
+1 Breaker of Creation
+1 Crushing Disappointment
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Extinguisher Battleship
+1 In Garruk's Wake
+1 Leechridden Swamp
+1 Rishkar's Expertise
+1 Spry and Mighty
+1 Night Market Lookout
+1 Okiba Reckoner Raid // Nezumi Road Captain
+1 Selvala's Stampede
+1 Pulse Tracker
+1 Retreat to Hagra
+1 Return of the Wildspeaker
+1 Command Tower
+1 Risky Shortcut
+1 Thornbow Archer
+1 Vicious Conquistador
+1 Wondrous Crucible
+1 Lifestream's Blessing
+1 Malboro
+1 Shriekwood Devourer
+1 The Gitrog, Ravenous Ride
+1 Gilded Lotus
+1 Mardu Shadowspear
+1 Decree of Pain
+1 Exsanguinate
+1 Llanowar Wastes
+1 Beanstalk Giant // Fertile Footsteps
+1 Shepherd of Rot
+11 Swamp
+1 Deathrite Shaman
+1 Terastodon
+1 Summon: Primal Odin
+1 Sandstone Oracle
+1 Dreamstone Hedron
+1 Creeping Bloodsucker
+1 Sanctum of Stone Fangs
+1 Assassin's Trophy
+1 Malakir Blood-Priest
+1 Elvish Aberration
+1 Catacomb Sifter
+1 Darkbore Pathway // Slitherbore Pathway
+1 Exotic Orchard
+1 Gemstone Mine
+1 Disciple of Freyalise // Garden of Freyalise
+1 Open the Way
+1 Undergrowth Stadium
+1 Loyal Subordinate
+1 Garruk's Uprising
+1 Heartless Conscription
+1 Bighorner Rancher
+1 Tooth and Nail
+1 Scour from Existence
+1 Elvish Spirit Guide
+1 Yargle and Multani
+1 Burnished Hart
+1 Insatiable Hemophage
+1 Wurmcoil Engine
+1 Everflowing Chalice
+1 Kozilek's Command
+1 Kozilek's Channeler
+1 Coveted Jewel
+1 Artisan of Kozilek

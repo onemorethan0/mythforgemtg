@@ -1,0 +1,107 @@
+# Archidekt — Borderless Dragons
+# source: archidekt:25083717
+# fetched: 2026-08-07
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Ancient Copper Dragon
+1 Birds of Paradise
+1 Bloom Tender
+1 Delighted Halfling
+1 Dragonlord Dromoka
+1 Galazeth Prismari
+1 Goldlust Triad
+1 Goldspan Dragon
+1 Hellkite Courser
+1 Klauth, Unrivaled Ancient
+1 Lathliss, Dragon Queen
+1 Oracle of Mul Daya
+1 Morophon, the Boundless
+1 Old Gnawbone
+1 Roaming Throne
+1 Sarkhan, Soul Aflame
+1 Scavenger Regent // Exude Toxin
+1 Shadrix Silverquill
+1 Scion of Draco
+1 Three Visits
+1 Terror of the Peaks
+1 Silumgar, the Drifting Death
+1 Ureni of the Unwritten
+1 Tiamat
+1 Vaevictis Asmadi, the Dire
+1 Zurgo and Ojutai
+1 Crux of Fate
+1 Escape to the Wilds
+1 Explore
+1 Nature's Lore
+1 Skyshroud Claim
+1 Brainstorm
+1 Sarkhan Unbroken
+1 Farseek
+1 Magda, Brazen Outlaw
+1 Cyclonic Rift
+1 Dragonlord Silumgar
+1 Protector of the Wastes
+1 Miirym, Sentinel Wyrm
+1 Dragonlord Kolaghan
+1 Heroic Intervention
+1 Return of the Wildspeaker
+1 Smuggler's Surprise
+1 Stinging Study
+1 Stubborn Denial
+1 Swan Song
+1 Coalition Relic
+1 Dragon's Hoard
+1 Arcane Signet
+1 Fellwar Stone
+1 Gruul Signet
+1 Simic Signet
+1 Rhythm of the Wild
+1 Selesnya Signet
+1 Sol Ring
+1 The Great Henge
+1 Dragon Tempest
+1 Garruk's Uprising
+1 Mirari's Wake
+1 Smothering Tithe
+1 Sylvan Library
+1 Temur Ascendancy
+1 Badlands
+1 Arid Mesa
+1 Up the Beanstalk
+1 Bayou
+1 Bloodstained Mire
+1 Breeding Pool
+1 Cavern of Souls
+1 Command Tower
+1 Flooded Strand
+1 Forest
+1 Haven of the Spirit Dragon
+1 Ketria Triome
+1 Hinterland Harbor
+1 Maelstrom of the Spirit Dragon
+1 Marsh Flats
+1 Misty Rainforest
+1 Mountain
+1 Plateau
+1 Overgrown Tomb
+1 Polluted Delta
+1 Reflecting Pool
+1 Rootbound Crag
+1 Savannah
+1 Scalding Tarn
+1 Stomping Ground
+1 Scrubland
+1 Sulfur Falls
+1 Sunpetal Grove
+1 Taiga
+1 Tundra
+1 Underground Sea
+1 Temple Garden
+1 Verdant Catacombs
+1 Tropical Island
+1 Volcanic Island
+1 Windswept Heath
+1 Wooded Foothills

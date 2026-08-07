@@ -1,0 +1,94 @@
+# Archidekt — 1. Cleric Tribal -- Liesa
+# source: archidekt:2951483
+# fetched: 2026-08-07
+
+Commander:
+1 Liesa, Shroud of Dusk
+
+Deck:
+1 Sunlit Marsh
+1 Shineshadow Snarl
+1 Talisman of Hierarchy
+1 Preacher of the Schism
+1 Inkshield
+1 Living Death
+1 Herald's Horn
+1 Deadly Dispute
+1 Sejiri Shelter // Sejiri Glacier
+1 Malakir Rebirth // Malakir Mire
+1 Night's Whisper
+1 Pact of the Serpent
+1 Aetherflux Reservoir
+1 Blind Obedience
+1 Caves of Koilos
+1 Command Tower
+1 Drana's Emissary
+1 Fetid Heath
+1 Flooded Strand
+1 Godless Shrine
+1 Isolated Chapel
+1 Myriad Landscape
+1 Polluted Delta
+1 Snowfield Sinkhole
+1 Vault of the Archangel
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Leechridden Swamp
+1 Witch's Cottage
+1 Idyllic Grange
+1 Mistveil Plains
+6 Swamp
+1 Glorious Protector
+1 Anguished Unmaking
+1 Swords to Plowshares
+1 Path to Exile
+1 Ashnod's Altar
+1 Orzhov Signet
+1 Arcane Signet
+1 Sol Ring
+1 Sensei's Divining Top
+10 Plains
+1 Stroke of Midnight
+1 Guide of Souls
+1 Lunarch Veteran // Luminous Phantom
+1 Minwu, White Mage
+1 Sun-Blessed Healer
+1 Marauding Blight-Priest
+1 Righteous Valkyrie
+1 Soul Warden
+1 Soul's Attendant
+1 Speaker of the Heavens
+1 Suture Priest
+1 Vito, Thorn of the Dusk Rose
+1 Bishop of Rebirth
+1 Yawgmoth, Thran Physician
+1 Orah, Skyclave Hierophant
+1 Tymna the Weaver
+1 Priest of Ancient Lore
+1 Taborax, Hope's Demise
+1 Inspiring Overseer
+1 Grand Abolisher
+1 Priest of Forgotten Gods
+1 Cleric of Life's Bond
+1 Elas il-Kor, Sadistic Pilgrim
+1 Edgewalker
+1 Redemption Choir
+1 Mangara, the Diplomat
+1 Master of Dark Rites
+1 Markov Purifier
+1 Phyrexian Missionary
+1 Skyclave Cleric // Skyclave Basilica
+1 Starscape Cleric
+1 Kabira Takedown // Kabira Plateau
+1 Land Tax
+1 Decorum Dissertation
+1 Dawn of a New Age
+1 Dawn of Hope
+1 Call the Coppercoats
+1 Grand Crescendo
+1 Secure the Wastes
+1 Will of the Mardu
+1 Hinterland Sanctifier
+1 Impassioned Orator
+1 Liliana the Faultless
+1 Rosa, Resolute White Mage
+1 Weathered Wayfarer

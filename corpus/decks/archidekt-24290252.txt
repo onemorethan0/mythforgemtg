@@ -1,0 +1,106 @@
+# Archidekt — Elie 2be3
+# source: archidekt:24290252
+# fetched: 2026-08-07
+
+Commander:
+1 Ellie, Vengeful Hunter
+1 Ellie, Brick Master
+
+Deck:
+1 Null Elemental Blast
+1 Agent Venom
+1 Zulaport Cutthroat
+1 Volrath's Stronghold
+1 Cult Conscript
+1 Abundant Countryside
+1 Arid Mesa
+1 Badlands
+1 Blackcleave Cliffs
+1 Blazemire Verge
+1 Blightstep Pathway // Searstep Pathway
+1 Blood Crypt
+1 Bloodstained Mire
+1 Command Beacon
+1 Command Tower
+1 Den of the Bugbear
+1 Marionette Apprentice
+1 Scrapheap Scrounger
+1 Infestation Sage
+1 Bloodsoaked Champion
+1 Graven Cairns
+1 Great Furnace
+1 Haunted Ridge
+1 Hive of the Eye Tyrant
+1 Lazotep Quarry
+1 Mana Confluence
+1 Marsh Flats
+1 Mishra's Factory
+1 Mount Doom
+1 Mountain
+1 Multiversal Passage
+1 Polluted Delta
+1 Prismatic Vista
+1 Raucous Theater
+1 Scalding Tarn
+1 Shizo, Death's Storehouse
+1 Snow-Covered Swamp
+1 Sokenzan, Crucible of Defiance
+1 Spymaster's Vault
+1 Starting Town
+1 Sulfurous Springs
+1 Swamp
+1 Takenuma, Abandoned Mire
+1 Urza's Saga
+1 Vault of Whispers
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Bomat Courier
+1 Broadside Bombardiers
+1 Dauthi Voidwalker
+1 Detective's Phoenix
+1 Emperor of Bones
+1 Fear of Missing Out
+1 Forsaken Miner
+1 Fury
+1 Gau, Feral Youth
+1 Gravecrawler
+1 Grief
+1 Grim Initiate
+1 Harried Spearguard
+1 Inti, Seneschal of the Sun
+1 Jadar, Ghoulcaller of Nephalia
+1 Juri, Master of the Revue
+1 Loyal Apprentice
+1 Moonshadow
+1 Nested Shambler
+1 Nethergoyf
+1 Nezumi Linkbreaker
+1 Serrated Scorpion
+1 Simian Spirit Guide
+1 Snarling Gorehound
+1 Stadium Headliner
+1 Stalactite Stalker
+1 Stitcher's Supplier
+1 Demonic Consultation
+1 Demonic Tutor
+1 Dismember
+1 Fatal Push
+1 Flare of Malice
+1 Gamble
+1 Ghostfire Slice
+1 Lightning Bolt
+1 Pyrokinesis
+1 Rotten Reunion
+1 Tainted Pact
+1 Unearth
+1 Goblin Bombardment
+1 Skullclamp
+1 Hexing Squelcher
+1 Wriggling Grub
+1 Orcish Bowmasters
+1 Lava Spike
+1 Lethal Scheme
+1 Nether Traitor
+1 Reinforced Ronin
+1 Turn Inside Out
+1 Vraan, Executioner Thane

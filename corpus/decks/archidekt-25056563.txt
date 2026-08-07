@@ -1,0 +1,85 @@
+# Archidekt — Luckiest Planwalker
+# source: archidekt:25056563
+# fetched: 2026-08-07
+# bracket: 3
+
+Commander:
+1 The Unluckiest Planeswalker
+
+Deck:
+1 Bear Umbra
+1 Blasphemous Act
+1 Alexios, Deimos of Kosmos
+1 Archnemesis
+1 Bothersome Quasit
+1 Brash Taunter
+1 Chaos Warp
+1 Chimil, the Inner Sun
+1 City of Brass
+1 Command Beacon
+1 Command Tower
+1 Crawlspace
+1 Cruel Reality
+1 Crystal Grotto
+1 Curse of Bloodletting
+1 Curse of Death's Hold
+1 Curse of Exhaustion
+1 Curse of Fool's Wisdom
+1 Curse of Misfortunes
+1 Curse of Opulence
+1 Curse of the Nightly Hunt
+1 Curse of Thirst
+1 Disrupt Decorum
+1 Exotic Orchard
+1 Fertile Ground
+8 Forest
+1 Guilty Conscience
+1 Helm of the Gods
+1 Insurrection
+1 Inviolability
+3 Island
+1 Jaya's Phoenix
+1 Kaya's Ghostform
+1 Longshot, Rebel Bowman
+1 Luxior, Giada's Gift
+1 Maddening Hex
+1 Mana Confluence
+1 Maze of Ith
+10 Mountain
+1 Overgrowth
+1 Overwhelming Splendor
+1 Pariah
+1 Path of Ancestry
+3 Plains
+1 Professional Face-Breaker
+1 Redirect Lightning
+1 Return the Favor
+1 Shiny Impetus
+1 Silent Arbiter
+1 Smoke
+1 Sol Ring
+1 Stuffy Doll
+4 Swamp
+1 Thaumatic Compass // Spires of Orazca
+1 Tibalt's Trickery
+1 Trespasser's Curse
+1 Utopia Sprawl
+1 Vandalblast
+1 Wild Growth
+1 Wild Magic Surge
+1 Elixir of Immortality
+1 Darksteel Mutation
+1 Imprisoned in the Moon
+1 Amphibian Downpour
+1 Ghoulish Impetus
+1 Curse of Clinging Webs
+1 Rowan's Talent
+1 Teferi's Talent
+1 Lightning Bolt
+1 Mana Geyser
+1 Ancestral Mask
+1 All That Glitters
+1 Jeska's Will
+1 Ornithopter of Paradise
+1 Cloud Key
+1 Chandra, Torch of Defiance

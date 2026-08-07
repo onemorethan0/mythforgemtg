@@ -1,0 +1,103 @@
+# Archidekt — Copy of - Urza, Chief Artificer
+# source: archidekt:25086538
+# fetched: 2026-08-07
+
+Commander:
+1 Urza, Chief Artificer
+
+Deck:
+1 Lithoform Engine
+1 Mycosynth Golem
+1 Academy Ruins
+1 Kappa Cannoneer
+1 Sol Ring
+1 Karn, Scion of Urza
+1 Ancient Den
+1 Drowned Catacomb
+1 Urborg, Tomb of Yawgmoth
+1 Scroll Rack
+1 Elspeth, Storm Slayer
+1 Inkmoth Nexus
+1 Skrelv, Defector Mite
+1 Vampiric Tutor
+1 Glacial Fortress
+1 Island
+1 Anointed Procession
+1 Master Transmuter
+1 Inventors' Fair
+1 Darksteel Forge
+1 Akroma's Memorial
+1 Cyclonic Rift
+1 Dispatch
+1 Tezzeret, Master of the Bridge
+1 Mox Opal
+1 Ornithopter
+1 Darksteel Citadel
+1 Ornithopter of Paradise
+1 Arcum Dagsson
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Rebbec, Architect of Ascension
+1 Karn, Legacy Reforged
+1 Mechanized Production
+1 Losheel, Clockwork Scholar
+1 Plains
+1 Spire of Industry
+1 Bronze Guardian
+1 Morphic Pool
+1 Roaming Throne
+1 Mystic Forge
+1 Unwinding Clock
+1 Liquimetal Torque
+1 Reflecting Pool
+1 Cybermen Squadron
+1 Spark Double
+1 Padeem, Consul of Innovation
+1 Demonic Tutor
+1 Etherium Sculptor
+1 Smothering Tithe
+1 Counterspell
+1 Bojuka Bog
+1 Hallowed Fountain
+1 Otawara, Soaring City
+1 Seat of the Synod
+1 Undercity Sewers
+1 Urza's Saga
+1 Vault of Whispers
+1 Whip of Erebos
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Bident of Thassa
+1 Encroaching Mycosynth
+1 Worldwalker Helm
+1 Cranial Plating
+1 Simulacrum Synthesizer
+1 Lightning Greaves
+1 Sensei's Divining Top
+1 Arcane Signet
+1 Anrakyr the Traveller
+1 Mondrak, Glory Dominus
+1 Oltec Matterweaver
+1 Phyrexian Metamorph
+1 Foundry Inspector
+1 Anguished Unmaking
+1 Mana Drain
+1 Esper Sentinel
+1 Mystic Remora
+1 Deadly Rollick
+1 Teferi's Protection
+1 Fierce Guardianship
+1 Swords to Plowshares
+1 Rapid Hybridization
+1 Urza, Lord High Artificer
+1 Phyrexian Scriptures
+1 Jin-Gitaxias, Progress Tyrant
+1 Flooded Strand
+1 Deserted Beach
+1 Command Tower
+1 Meticulous Archive
+1 Sea of Clouds
+1 Shipwreck Marsh
+1 Marsh Flats
+1 Polluted Delta
+1 Watery Grave
+1 Godless Shrine
+1 Vault of Champions

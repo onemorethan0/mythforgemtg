@@ -1,0 +1,94 @@
+# Archidekt — Jin Sakai
+# source: archidekt:24652297
+# fetched: 2026-08-07
+
+Commander:
+1 Jin Sakai, Ghost of Tsushima
+
+Deck:
+1 Spirited Companion
+1 Aether Channeler
+1 Reflector Mage
+1 Silent Hallcreeper
+1 Ingenious Infiltrator
+1 Ghostly Flicker
+1 Reconnaissance Mission
+1 Sword of the Animist
+1 Swiftfoot Boots
+1 Conqueror's Flail
+1 Umezawa's Jitte
+1 Black Widow, Super Spy
+1 Forge Anew
+1 Prosperous Thief
+1 Thousand-Faced Shadow
+1 Silver-Fur Master
+1 Higure, the Still Wind
+1 Counterspell
+1 Throat Slitter
+1 Nashi, Moon Sage's Scion
+1 An Offer You Can't Refuse
+1 Negate
+1 Moonsnare Specialist
+1 Cover of Darkness
+1 Propaganda
+1 Dauthi Voidwalker
+1 Steel of the Godhead
+1 Open the Armory
+1 Spark Double
+1 Oathkeeper, Takeno's Daisho
+5 Swamp
+1 Squall, SeeD Mercenary
+1 Godless Shrine
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Watery Grave
+1 Hallowed Fountain
+1 Isolated Chapel
+1 Sea of Clouds
+1 Vault of Champions
+1 Morphic Pool
+1 Bleachbone Verge
+1 Floodfarm Verge
+1 Gloomlake Verge
+1 Deserted Beach
+1 Shipwreck Marsh
+1 Shattered Sanctum
+1 Mistblade Shinobi
+1 Tetsuko Umezawa, Fugitive
+1 Ink-Eyes, Servant of Oni
+1 Ninja of the Deep Hours
+1 Baleful Strix
+1 Dokuchi Silencer
+1 Splinter, Hamato Yoshi
+1 Submerge
+1 Arcane Denial
+1 Mist-Syndicate Naga
+1 Silent-Blade Oni
+1 Command Tower
+1 Talisman of Dominance
+1 Sol Ring
+1 Exotic Orchard
+1 Fallen Shinobi
+1 Thought Vessel
+1 Fellwar Stone
+6 Island
+1 Yuriko, the Tiger's Shadow
+1 Arcane Sanctum
+1 Path to Exile
+5 Plains
+1 Anguished Unmaking
+1 Splinter, Radical Rat
+1 Karai, Future of the Foot
+1 Swords to Plowshares
+1 Caves of Koilos
+1 Adarkar Wastes
+1 Underground River
+1 Talisman of Progress
+1 Talisman of Hierarchy
+1 Grand Abolisher
+1 The Key to the Vault
+1 Supreme Verdict
+1 Dovin's Veto
+1 Arcane Signet
+1 Mask of Memory
+1 Lightning Greaves

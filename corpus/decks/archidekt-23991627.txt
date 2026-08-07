@@ -1,0 +1,82 @@
+# Archidekt — Absolute evil
+# source: archidekt:23991627
+# fetched: 2026-08-07
+
+Commander:
+1 Geth, Lord of the Vault
+
+Deck:
+1 Baleful Mastery
+1 Cloudkill
+1 Grasp of Darkness
+1 Flunk
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Bolas's Citadel
+1 Braids, Cabal Minion
+1 Dark Ritual
+1 Bojuka Bog
+1 Syr Konrad, the Grim
+1 Mortuary Mire
+26 Swamp
+1 Myriad Landscape
+1 Tainted Pact
+1 Mind Stone
+1 Manalith
+1 Angel of Suffering
+1 Osseous Sticktwister
+1 Journeyer's Kite
+1 Chainer's Edict
+1 Boggart Trawler // Boggart Bog
+1 Faceless Butcher
+1 Rankle, Master of Pranks
+1 Eye Collector
+1 Carrion Feeder
+1 Jadar, Ghoulcaller of Nephalia
+1 Fell the Profane // Fell Mire
+1 Codex Shredder
+1 Unearth
+1 Bubbling Muck
+1 Greedy Freebooter
+1 Gauntlet of Power
+1 Ghoulcaller's Bell
+1 Arcane Signet
+1 Dreadhorde Invasion
+1 Burning-Rune Demon
+1 Lord of the Forsaken
+1 Pitiless Plunderer
+1 Blood Pet
+1 Bandit's Talent
+1 Chorale of the Void
+1 Morbid Opportunist
+1 Liliana, Death's Majesty
+1 Dockside Chef
+1 Metamorphosis Fanatic
+1 Victimize
+1 Phyrexian Ghoul
+1 Nethergoyf
+1 Buried Alive
+1 Gravecrawler
+1 Oversold Cemetery
+1 Accursed Marauder
+1 Hedron Archive
+1 Viscera Seer
+1 Millikin
+1 Midgar, City of Mako // Reactor Raid
+1 Altar of the Pantheon
+1 Reassembling Skeleton
+1 Peat Bog
+1 Exhume
+1 Pristine Talisman
+1 Virus Beetle
+1 Charcoal Diamond
+1 Forever Young
+1 Street Wraith
+1 Sol Ring
+1 Witch's Cottage
+1 Troll of Khazad-dûm
+1 Lantern of Insight
+1 Lich-Knights' Conquest
+1 Peer into the Abyss
+1 Skirge Familiar
+1 The Long Reach of Night // Animus of Night's Reach
+1 Millstone
