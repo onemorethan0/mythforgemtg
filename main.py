@@ -2,7 +2,7 @@
 """
 Commander Deck Builder — fully local pipeline
   • Card data  : Scryfall API
-  • Text gen   : Ollama / llama3.1:8b
+  • Text gen   : llama.cpp via llama-swap (:8010) / qwen3:14b
   • Image gen  : ComfyUI + local SDXL checkpoint
 
 Three inputs only:
@@ -123,7 +123,7 @@ def print_stats(stats: dict) -> None:
 
 def main() -> None:
     print("=" * 76)
-    print("  Commander Deck Builder  |  Ollama + ComfyUI + Scryfall  |  100% local")
+    print("  Commander Deck Builder  |  llama.cpp + ComfyUI + Scryfall  |  100% local")
     print("=" * 76)
 
     # ── 1. Commander ──────────────────────────────────────────────────────────
@@ -184,7 +184,7 @@ def main() -> None:
     )
     stats = compute_stats(card, deck)
 
-    # ── Theme via Ollama ──────────────────────────────────────────────────────
+    # ── Theme via the local LLM (llama.cpp via llama-swap, or Ollama) ─────────
     print("\n" + "─" * 76)
     themed_commander: ThemedCard | None = None
     themed_deck:      list[ThemedCard] | None = None
@@ -193,7 +193,9 @@ def main() -> None:
         themer = Themer()
         themed_commander, themed_deck = themer.theme_deck(art_theme, card, deck)
     except RuntimeError as e:
-        print(f"\n  Ollama unavailable — {e}")
+        from themer import LLM_BACKEND, llm_endpoint_base
+        _llm = "llama.cpp" if LLM_BACKEND == "llamacpp" else "Ollama"
+        print(f"\n  {_llm} unavailable at {llm_endpoint_base()} — {e}")
         print("  Continuing with original card names.")
     except Exception as e:
         print(f"\n  Theming error: {e}")

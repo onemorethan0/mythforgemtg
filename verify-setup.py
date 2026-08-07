@@ -131,21 +131,33 @@ def check_directories():
 def check_optional():
     print_header("Optional Components (Not Required)")
 
-    components = {
-        'ollama': 'Ollama (card theming)',
-        'comfy': 'ComfyUI (image generation)',
-    }
+    # The LLM is a SERVICE, not a binary on PATH. Checking `where ollama` reported
+    # the default llama.cpp backend as a missing install and pointed at INSTALL.md
+    # for a program the app no longer uses — ask the configured backend instead.
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from themer import LLM_BACKEND, installed_models, llm_endpoint_base
+        label = 'llama.cpp via llama-swap' if LLM_BACKEND == 'llamacpp' else 'Ollama'
+        models = installed_models()
+        check_item(
+            f'{label} (card theming)',
+            bool(models),
+            f'reachable at {llm_endpoint_base()} - {len(models)} model(s)' if models
+            else f'not reachable at {llm_endpoint_base()} - see INSTALL.md',
+        )
+    except Exception as e:
+        check_item('LLM backend (card theming)', False, f'could not check: {e}')
 
-    for cmd, name in components.items():
-        try:
-            result = subprocess.run(
-                ['where' if sys.platform == 'win32' else 'which', cmd],
-                capture_output=True
-            )
-            found = result.returncode == 0
-            check_item(name, found, "found" if found else "not found - see INSTALL.md")
-        except:
-            check_item(name, False)
+    # Same story for ComfyUI: it runs as the Desktop app, so `where comfy` reported
+    # "not found" while it was serving happily on :8188. Ask the service.
+    try:
+        import requests
+        r = requests.get('http://127.0.0.1:8188/system_stats', timeout=4)
+        up = r.status_code == 200
+    except Exception:
+        up = False
+    check_item('ComfyUI (image generation)', up,
+               'running on :8188' if up else 'not running on :8188 - see INSTALL.md')
 
 
 def check_api():

@@ -349,6 +349,16 @@ def _ensure_frontend_built():
 
 # ── LLM backend checks (startup) ───────────────────────────────────────────────
 
+def _llm_label() -> str:
+    """Name of the LLM backend actually in use, for logs and UI progress.
+
+    Every build message used to say "Ollama" regardless of backend, so a healthy
+    llama.cpp run read as an Ollama run in the log viewer.
+    """
+    from themer import LLM_BACKEND
+    return "llama.cpp" if LLM_BACKEND == "llamacpp" else "Ollama"
+
+
 def _ensure_ollama_models_ready():
     """Check that the LLM backend (llama.cpp via llama-swap, or Ollama) is
     reachable. Does NOT load models (would block startup)."""
@@ -1700,13 +1710,13 @@ def _run_build(job_id: str, req: BuildRequest):
         # Free ComfyUI from VRAM before Ollama runs.
         # ComfyUI can hold the image model resident between builds (~11-12 GB);
         # polling /system_stats ensures VRAM is actually free before Ollama loads.
-        _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Freeing GPU for Ollama…"}))
+        _push(job_id, "progress", json.dumps({"step": "theme", "msg": f"Freeing GPU for {_llm_label()}…"}))
         _wait_for_comfyui_unload(job_id)
 
         _llm = req.llm_model or None   # None → Themer uses default qwen3:14b
         _push(job_id, "progress", json.dumps({
             "step": "theme",
-            "msg":  f"Theming cards with Ollama ({_llm or 'default'})..."
+            "msg":  f"Theming cards with {_llm_label()} ({_llm or 'default'})..."
         }))
 
         # Fetched here (not just before art) so theming itself is cancellable —
@@ -1775,7 +1785,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 traceback.print_exc()
                 _push(job_id, "progress", json.dumps({
                     "step": "theme",
-                    "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
+                    "msg": f"[!] {_llm_label()} theming failed — falling back to plain card names. Error: {e}",
                     "warning": True,
                 }))
 
@@ -1950,7 +1960,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 # Evict Ollama from VRAM and confirm via /api/ps before loading FLUX.
                 from themer import OLLAMA_MODEL as _DEFAULT_OLLAMA
                 _evict_model = req.llm_model or _DEFAULT_OLLAMA
-                _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_model}) from VRAM…"}))
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting {_llm_label()} ({_evict_model}) from VRAM…"}))
                 _wait_for_ollama_evict(_evict_model, job_id)
 
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
@@ -2753,7 +2763,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
                 _wait_for_comfyui_unload(job_id)
 
-            _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rt}) from VRAM…"}))
+            _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting {_llm_label()} ({_evict_rt}) from VRAM…"}))
             _wait_for_ollama_evict(_evict_rt, job_id)
 
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
@@ -3102,7 +3112,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
             _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
             _wait_for_comfyui_unload(job_id)
 
-        _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_evict_rg}) from VRAM…"}))
+        _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting {_llm_label()} ({_evict_rg}) from VRAM…"}))
         _wait_for_ollama_evict(_evict_rg, job_id)
 
         cancel_event = _jobs[job_id].get("cancel_event") or threading.Event()
@@ -3733,7 +3743,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
 
         _push(job_id, "progress", json.dumps({
             "step": "deck",
-            "msg":  f"Re-theming deck with Ollama: '{art_theme}'...",
+            "msg":  f"Re-theming deck with {_llm_label()}: '{art_theme}'...",
         }))
 
         # ── Reconstruct raw card dicts for themer ─────────────────────────────
@@ -3752,13 +3762,13 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
             with _art_lock:
                 pass
         # Free ComfyUI FLUX before Ollama loads for retheme — poll for confirmation.
-        _push(job_id, "progress", json.dumps({"step": "theme", "msg": "Freeing GPU for Ollama…"}))
+        _push(job_id, "progress", json.dumps({"step": "theme", "msg": f"Freeing GPU for {_llm_label()}…"}))
         _wait_for_comfyui_unload(job_id)
 
         # ── Re-run Ollama theming ─────────────────────────────────────────────
         _push(job_id, "progress", json.dumps({
             "step": "theme",
-            "msg":  f"Theming cards with Ollama ({llm_model_rt or 'default'})…",
+            "msg":  f"Theming cards with {_llm_label()} ({llm_model_rt or 'default'})…",
         }))
         themed_cmd: Optional[ThemedCard]       = None
         themed_deck: Optional[list[ThemedCard]] = None
@@ -3838,7 +3848,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 traceback.print_exc()
                 _push(job_id, "progress", json.dumps({
                     "step": "theme",
-                    "msg": f"[!] Ollama theming failed — falling back to plain card names. Error: {e}",
+                    "msg": f"[!] {_llm_label()} theming failed — falling back to plain card names. Error: {e}",
                     "warning": True,
                 }))
             # Don't raise — fall back to plain names like in _run_build
@@ -3979,7 +3989,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 if _src_ckpt and not _isflux(_src_ckpt):
                     _push(job_id, "progress", json.dumps({"step": "art", "msg": "Unloading previous ComfyUI models for VRAM headroom…"}))
                     _wait_for_comfyui_unload(job_id)
-                _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting Ollama ({_ev}) from VRAM…"}))
+                _push(job_id, "progress", json.dumps({"step": "art", "msg": f"Evicting {_llm_label()} ({_ev}) from VRAM…"}))
                 _wait_for_ollama_evict(_ev, job_id)
                 # cancel_event already bound at the top of _run_retheme.
                 _push(job_id, "progress", json.dumps({"step": "art", "msg": "Waiting for GPU…"}))
@@ -6790,8 +6800,90 @@ def _check_service(name: str, url: str, timeout: float = 2.0) -> bool:
         return False
 
 
+# The llama-swap launcher (the LLM gateway, shared with Odysseus). Override with
+# MYTHFORGE_LLAMA_SWAP_LAUNCHER if the gateway lives elsewhere.
+_LLAMA_SWAP_LAUNCHER = os.getenv(
+    "MYTHFORGE_LLAMA_SWAP_LAUNCHER", r"E:\llama\start-llama-swap.bat"
+)
+
+
+def _start_llm_backend() -> None:
+    """Start whichever LLM backend themer is actually configured to use.
+
+    This dispatch is the whole point: the boot thread used to call _start_ollama()
+    unconditionally, so on the default (llamacpp) backend `python server.py`
+    tried to `ollama serve` a program that isn't installed any more, spent 15 s
+    timing out, told the user to go download Ollama — and never started the
+    gateway theming actually talks to. If :8010 wasn't already up (manage.bat is
+    the only other thing that starts it), every build then failed at theming.
+    """
+    from themer import LLM_BACKEND
+    if LLM_BACKEND == "llamacpp":
+        _start_llama_swap()
+    else:
+        _start_ollama()
+
+
+def _start_llama_swap() -> None:
+    """Start the llama-swap gateway (:8010) if it isn't already listening.
+
+    Mirrors manage.bat's :ensure_llama so both launch paths bring up the same
+    service. llama-swap itself is cheap to start — it loads no GGUF until a
+    request arrives — so this costs nothing at boot and holds no VRAM.
+    """
+    import subprocess
+    import platform
+
+    from themer import LLM_BASE
+
+    if _check_service("llama-swap", f"{LLM_BASE}/v1/models"):
+        print(f"  [OK] llama-swap gateway already running at {LLM_BASE}")
+        return
+
+    launcher = Path(_LLAMA_SWAP_LAUNCHER)
+    if not launcher.exists():
+        print(f"  [X] llama-swap launcher not found: {launcher}")
+        print(f"      Theming needs the gateway at {LLM_BASE} — start it manually,")
+        print(f"      or point MYTHFORGE_LLAMA_SWAP_LAUNCHER at the launcher.")
+        return
+
+    print(f"  [..] llama-swap not detected, starting {launcher.name}...")
+    try:
+        if platform.system() == "Windows":
+            # Detached + no console: the gateway outlives this server (Odysseus
+            # shares it) and doesn't steal focus with a window.
+            flags = (getattr(subprocess, "DETACHED_PROCESS", 0)
+                     | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0))
+            cmd = ["cmd", "/c", str(launcher)]
+        else:
+            flags = 0
+            cmd = [str(launcher)]
+        subprocess.Popen(
+            cmd,
+            cwd=str(launcher.parent),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            creationflags=flags,
+        )
+
+        for _attempt in range(30):
+            time.sleep(1)
+            if _check_service("llama-swap", f"{LLM_BASE}/v1/models"):
+                print(f"  [OK] llama-swap started successfully on {LLM_BASE}")
+                return
+
+        print("  [!] llama-swap startup timed out (may still be initializing)")
+    except Exception as e:
+        print(f"  [X] Could not start llama-swap: {e}")
+        print(f"      Start it manually: {launcher}")
+
+
 def _start_ollama() -> None:
-    """Attempt to start Ollama if it's installed but not running."""
+    """Attempt to start Ollama if it's installed but not running.
+
+    Only reached on the legacy MYTHFORGE_LLM_BACKEND=ollama path — see
+    _start_llm_backend().
+    """
     import subprocess
     import sys
     import platform
@@ -7097,7 +7189,7 @@ if __name__ == "__main__":
     print("Starting Myth Forge MTG Deck Builder...", flush=True)
     print(flush=True)
 
-    # Boot Ollama + ComfyUI in a background daemon thread.  _start_comfyui()
+    # Boot the LLM backend + ComfyUI in a background daemon thread.  _start_comfyui()
     # launches ComfyUI and then polls for up to ~2 min for it to come up; running
     # it inline blocked uvicorn from binding port 8000 whenever ComfyUI wasn't
     # already running, so the whole app appeared to "fail to start".  The app
@@ -7105,12 +7197,14 @@ if __name__ == "__main__":
     # health check and falls back), so they can warm up in parallel.
     def _boot_services():
         try:
-            _start_ollama()
+            _start_llm_backend()
             _start_comfyui()
         except Exception as _e:
             print(f"  [!] Background service startup error: {_e}", flush=True)
 
-    print("Starting Ollama + ComfyUI in the background (server will not wait on them)...", flush=True)
+    from themer import LLM_BACKEND as _boot_backend
+    _boot_label = "llama-swap" if _boot_backend == "llamacpp" else "Ollama"
+    print(f"Starting {_boot_label} + ComfyUI in the background (server will not wait on them)...", flush=True)
     threading.Thread(target=_boot_services, name="service-boot", daemon=True).start()
 
     print(flush=True)
