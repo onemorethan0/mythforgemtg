@@ -82,6 +82,10 @@ class ScryfallClient:
             "Accept": "application/json",
         })
         self._last_request_time = 0.0
+        # Set by get_cards_collection when a batch request could not be completed, so a
+        # caller that persists the result can tell a real "no such card" from a network
+        # failure and refuse to cache the latter.
+        self.last_lookup_incomplete = False
         self._cache_lock = threading.Lock()
         self._card_cache: dict[str, dict] = self._load_cache()
 
@@ -179,6 +183,43 @@ class ScryfallClient:
             return norm
         return None
 
+    def _post_collection(self, identifiers: list[dict]) -> Optional[dict]:
+        """POST /cards/collection with the same retry discipline `_get` has.
+
+        This used to be a bare POST whose only error handling was `continue`, so ONE
+        429 or dropped connection silently discarded up to 75 cards — and the caller
+        cannot tell that from "Scryfall says these aren't cards". A real import lost 7
+        cards to this (Prismari, the Inspiration: Goldspan Dragon, Mental Misstep,
+        Twinflame, ... all perfectly ordinary cards that resolve on request). They were
+        exactly the names not already in the local cache, i.e. the one chunk that went
+        to the network — and `deck_import` then froze that outcome in its deck cache, so
+        every later import replayed the failure with no network call at all.
+
+        Returns the parsed body, or None if the request could not be completed.
+        """
+        backoff = 1.0
+        for _ in range(4):
+            self._rate_limit()
+            try:
+                resp = self.session.post(
+                    f"{BASE_URL}/cards/collection",
+                    json={"identifiers": identifiers},
+                    timeout=20,
+                )
+                if resp.status_code == 200:
+                    return resp.json()
+                if resp.status_code in (429, 503):
+                    print(f"\n  [rate limit] waiting {backoff:.1f}s...", end=" ", flush=True)
+                    time.sleep(backoff)
+                    backoff = min(backoff * 2, 16.0)
+                    self._last_request_time = time.monotonic()
+                    continue
+                return None   # 400/422 etc. — a retry sends the same bad body
+            except requests.RequestException:
+                time.sleep(backoff)
+                backoff = min(backoff * 2, 16.0)
+        return None
+
     def get_cards_collection(self, names: list[str]) -> dict[str, dict]:
         """
         Resolve many card names at once. Returns {requested_name_lower -> card}.
@@ -188,6 +229,7 @@ class ScryfallClient:
         so a 100-card import is ~2 API calls cold, and 0 once cached.
         Names that can't be resolved are simply absent from the result.
         """
+        self.last_lookup_incomplete = False
         out: dict[str, dict] = {}
         misses: list[str] = []
         seen: set[str] = set()
@@ -204,17 +246,12 @@ class ScryfallClient:
 
         for i in range(0, len(misses), 75):
             chunk = misses[i:i + 75]
-            self._rate_limit()
-            try:
-                resp = self.session.post(
-                    f"{BASE_URL}/cards/collection",
-                    json={"identifiers": [{"name": n} for n in chunk]},
-                    timeout=20,
-                )
-                if resp.status_code != 200:
-                    continue
-                data = resp.json()
-            except requests.RequestException:
+            data = self._post_collection([{"name": n} for n in chunk])
+            if data is None:
+                # The REQUEST failed — that is not the same as Scryfall saying the cards
+                # don't exist, and the difference matters because the caller writes this
+                # result to a durable cache. Recorded so it can refuse to.
+                self.last_lookup_incomplete = True
                 continue
             # Map each returned card back to the requested name(s). Scryfall may
             # normalise casing/spelling, so match by the card's own name too.

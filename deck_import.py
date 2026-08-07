@@ -612,11 +612,22 @@ def import_deck(source_input: str, scryfall, force_refresh: bool = False) -> Imp
 
     imported = _resolve(raw, scryfall)
 
-    try:
-        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        cache_file.write_text(json.dumps(imported.to_json()), encoding="utf-8")
-    except Exception as e:
-        print(f"  [deck_import] cache write failed ({e})")
+    # Cache what Scryfall ANSWERED; never cache what we failed to ask. A card that is
+    # missing because the lookup request died is indistinguishable, in the cached JSON,
+    # from a card Scryfall says doesn't exist — and since a cache hit costs zero network
+    # calls, writing it makes a one-off outage permanent. That is exactly how the
+    # "Prismari, the Inspiration" import lost 7 ordinary cards on every retry until the
+    # cache file was deleted. Skipping the write costs one re-fetch; writing it costs the
+    # user cards with no way to notice or recover.
+    if getattr(scryfall, "last_lookup_incomplete", False):
+        print(f"  [deck_import] lookup incomplete ({len(imported.unresolved)} unresolved) "
+              f"— not caching, so a retry can still succeed")
+    else:
+        try:
+            _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            cache_file.write_text(json.dumps(imported.to_json()), encoding="utf-8")
+        except Exception as e:
+            print(f"  [deck_import] cache write failed ({e})")
 
     # Elect a face AFTER caching the raw resolution, so the cache stays a faithful
     # mirror of the source and election (deterministic) re-runs on each load.

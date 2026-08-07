@@ -936,6 +936,88 @@ def test_archidekt_respects_included_in_deck():
     check("arch.legacy", [n for n, _ in legacy.card_entries], ["Sol Ring"])
 
 
+def test_batch_lookup_retries_and_a_failed_one_is_never_cached():
+    """A dropped batch request must not cost the user cards, permanently.
+
+    The "Prismari, the Inspiration" import lost 7 perfectly ordinary cards — Goldspan
+    Dragon, Mental Misstep, Twinflame, Mana Geyser, ... — and lost them again on every
+    retry. Two bugs in series:
+
+      1. `/cards/collection` was a bare POST whose only error handling was `continue`,
+         so one 429 discarded the whole chunk of up to 75. `_get` had retried for years;
+         this path never did. The 7 were exactly the names not already in the local name
+         cache, i.e. the single chunk that actually went to the network.
+      2. `import_deck` then wrote that outcome to its deck cache, and a cache hit costs
+         zero network calls — so the transient failure became permanent. The cards only
+         came back when the cache file was deleted.
+
+    A card Scryfall genuinely doesn't know is still a fine thing to cache. A card we
+    never successfully asked about is not.
+    """
+    import tempfile
+    import threading
+    from pathlib import Path
+    import scryfall_client as sc
+    import deck_import as di
+
+    class _Resp:
+        def __init__(self, code, body=None):
+            self.status_code, self._body = code, body or {}
+
+        def json(self):
+            return self._body
+
+    # 1. One 503, then success — the chunk must survive.
+    client = sc.ScryfallClient.__new__(sc.ScryfallClient)   # no disk cache, no network
+    client.session = type("S", (), {"headers": {}})()
+    client._last_request_time = 0.0
+    client.last_lookup_incomplete = False
+    client._cache_lock = threading.Lock()
+    client._card_cache = {}
+    client._save_cache = lambda: None
+    calls = []
+    ok = {"data": [{"name": "Goldspan Dragon", "type_line": "Creature — Dragon"}],
+          "not_found": []}
+    client.session.post = lambda *a, **k: (
+        calls.append(1), _Resp(503) if len(calls) == 1 else _Resp(200, ok))[1]
+    real_sleep, sc.time.sleep = sc.time.sleep, lambda *_: None
+    try:
+        body = client._post_collection([{"name": "Goldspan Dragon"}])
+    finally:
+        sc.time.sleep = real_sleep
+    check_true("batch.retry.recovered", body is not None and bool(body.get("data")))
+    check("batch.retry.attempts", len(calls), 2)
+
+    # 2. Unrecoverable → reported as incomplete, not as "these aren't cards".
+    client.session.post = lambda *a, **k: _Resp(503)
+    real_sleep, sc.time.sleep = sc.time.sleep, lambda *_: None
+    try:
+        out = client.get_cards_collection(["Goldspan Dragon", "Mental Misstep"])
+    finally:
+        sc.time.sleep = real_sleep
+    check("batch.fail.resolved", out, {})
+    check_true("batch.fail.flagged", client.last_lookup_incomplete)
+
+    # 3. An incomplete lookup must NOT be written to the deck cache.
+    class _Stub:
+        last_lookup_incomplete = True
+
+        def get_cards_collection(self, names):
+            return {}
+
+    with tempfile.TemporaryDirectory() as td:
+        orig, di._CACHE_DIR = di._CACHE_DIR, Path(td)
+        try:
+            di.import_deck("1 Goldspan Dragon\n1 Mental Misstep", _Stub())
+            check("cache.skipped_on_failure", list(Path(td).glob("*.json")), [])
+            # A COMPLETE lookup that simply found nothing is a real answer — cache it.
+            _Stub.last_lookup_incomplete = False
+            di.import_deck("1 Goldspan Dragon\n1 Mental Misstep", _Stub())
+            check_true("cache.written_on_success", len(list(Path(td).glob("*.json"))) == 1)
+        finally:
+            di._CACHE_DIR = orig
+
+
 def test_leading_commander_promotion():
     """The positional-commander hint may only promote a REAL legendary card.
 
