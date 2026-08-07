@@ -38,6 +38,12 @@ export default function StepCollection({ onBack, onBuild }) {
   const debounce = useRef(null)
   const sugDebounce = useRef(null)
 
+  // Declared before the callbacks that close over it. `loadBuildable` used to sit
+  // above this line and reference it, which is legal only by accident — useCallback
+  // defers the body, so the read lands after initialisation — but it left the memo
+  // holding the first render's `flash` forever and tripped react-hooks/immutability.
+  const flash = (kind, text) => { setMsg({ kind, text }); if (text) setTimeout(() => setMsg(null), 4000) }
+
   const loadBuildable = useCallback(() => {
     setBLoading(true)
     fetch('/api/collection/buildable?limit=8')
@@ -46,8 +52,6 @@ export default function StepCollection({ onBack, onBuild }) {
       .catch(() => flash('err', 'Could not scan your collection.'))
       .finally(() => setBLoading(false))
   }, [])
-
-  const flash = (kind, text) => { setMsg({ kind, text }); if (text) setTimeout(() => setMsg(null), 4000) }
 
   // Page size for the list. The server also accepts limit<=0 ("all matches", capped at
   // 5000) which is what "Show all" sends. Without the notice below, a collection larger

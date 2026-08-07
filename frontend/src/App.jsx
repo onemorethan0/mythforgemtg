@@ -712,7 +712,10 @@ export default function App() {
           />
         )}
 
-        {step === STEP.DECK && (
+        {/* `deck &&` is load-bearing: StepDeck reads deck.* in its very first useState
+            calls, so it cannot defend itself against a null deck from the inside without
+            making its own hooks conditional. Guard here, before it mounts. */}
+        {step === STEP.DECK && deck && (
           <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} onDeckChange={setDeck} />
         )}
 

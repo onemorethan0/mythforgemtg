@@ -293,7 +293,7 @@ function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, has
 function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultModelSpeed,
                       defaultCheckpoint,
                       commanderOriginalName, savedFaceKey, savedFaceGender,
-                      savedCrewKey, savedCrewGender }) {
+                      savedCrewKey, savedCrewGender, single = false }) {
   // Per-card prompt state. The LLM art_prompt is immutable; customPrompts holds the
   // user's separate override text, and useCustom decides which one feeds generation.
   const [customPrompts, setCustomPrompts] = useState(
@@ -1068,7 +1068,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
   const evtRef = useRef(null)
 
-  if (!deck) return null
+  // NOTE: there is deliberately no `if (!deck) return null` here. It used to sit on
+  // this line and was doubly wrong: unreachable (the useState calls above already
+  // dereference `deck.checkpoint`/`deck.theme`, so a null deck throws before we get
+  // here) and harmful (returning early made every hook below it conditional — three
+  // rules-of-hooks violations, which crash with "rendered fewer hooks than expected"
+  // the moment the early return's branch flips between renders). App.jsx guards the
+  // null case at the call site instead, before this component ever mounts.
 
   // ── Fetch art styles and checkpoints for rebuild modal ─────────────────────
   useEffect(() => {
@@ -2151,6 +2157,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           savedFaceGender={deck.face_gender || 'either'}
           savedCrewKey={deck.crew_key || null}
           savedCrewGender={deck.crew_gender || 'either'}
+          single={single}
         />
       )}
 

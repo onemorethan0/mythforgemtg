@@ -5,27 +5,35 @@
 // GenSettings field names. Adding a new knob = add one entry here.
 //
 // field: {
-//   key, step, type ('slider'|'number'|'select'|'toggle'|'lora'),
+//   key, panel, type ('slider'|'number'|'select'|'toggle'|'lora'),
 //   label, default, help?,
-//   min?, max?, step?,            // slider/number
+//   min?, max?, step?,            // slider/number — `step` is the numeric increment
 //   options?: [{value,label}],    // select
 //   showIf?: (values) => boolean, // conditional visibility
 // }
+//
+// `panel` (which wizard step owns the field) is deliberately NOT called `step`:
+// sliders also need a numeric `step` increment for <input type="range">, and a
+// single object literal cannot hold both. It used to try — `{ panel: 'theme', …,
+// step: 0.1 }` — and the later key silently won, so `f.step` came back 0.1 and
+// `stepFields('theme')` never matched. That hid the only three sliders in the
+// whole schema (FLUX guidance, Sampler steps, Face identity strength) from the
+// Advanced panels entirely, and made ConfigField's slider branch dead code.
 
 export const GEN_SETTINGS_SCHEMA = [
   // ── Theme step (image generation) ──────────────────────────────────────────
   {
-    key: 'guidance', step: 'theme', type: 'slider',
+    key: 'guidance', panel: 'theme', type: 'slider',
     label: 'FLUX guidance', min: 1.5, max: 5, step: 0.1, default: 3.5,
     help: 'Higher = stronger prompt adherence but less variety. 3.5 is the FLUX-dev sweet spot; lower (≈2.5) loosens compositions.',
   },
   {
-    key: 'steps', step: 'theme', type: 'slider',
+    key: 'steps', panel: 'theme', type: 'slider',
     label: 'Sampler steps', min: 20, max: 40, step: 1, default: 28,
     help: 'More steps = more detail but slower. 28 is the quality/speed default for flux-dev (near-identical to 35, ~20% faster); raise toward 35 for max fidelity.',
   },
   {
-    key: 'seed_mode', step: 'theme', type: 'select',
+    key: 'seed_mode', panel: 'theme', type: 'select',
     label: 'Seed', default: 'random',
     options: [
       { value: 'random', label: 'Random (varied per card)' },
@@ -34,17 +42,17 @@ export const GEN_SETTINGS_SCHEMA = [
     help: 'Fixed reuses one seed so a re-run reproduces the same image.',
   },
   {
-    key: 'seed', step: 'theme', type: 'number',
+    key: 'seed', panel: 'theme', type: 'number',
     label: 'Seed value', default: 0, min: 0, max: 4294967295,
     showIf: v => v.seed_mode === 'fixed',
   },
   {
-    key: 'lora_overrides', step: 'theme', type: 'lora',
+    key: 'lora_overrides', panel: 'theme', type: 'lora',
     label: 'LoRAs', default: null,
     help: 'Override the art-style default: pick which installed LoRAs to apply and their strength. Leave unchanged to use the style preset.',
   },
   {
-    key: 'safe_mode', step: 'theme', type: 'toggle',
+    key: 'safe_mode', panel: 'theme', type: 'toggle',
     label: 'Safe mode (stability)', default: false,
     help: 'Lowers steps + resolution to reduce peak GPU/CPU load — use if generation has crashed/rebooted your machine.',
   },
@@ -52,12 +60,12 @@ export const GEN_SETTINGS_SCHEMA = [
   // StepTheme (not buried in Advanced), so they're marked hidden here — they stay
   // in DEFAULTS + the payload, just not rendered inside the Advanced panel.
   {
-    key: 'enhance', step: 'theme', type: 'toggle', hidden: true,
+    key: 'enhance', panel: 'theme', type: 'toggle', hidden: true,
     label: 'Enhanced coherence (PAG)', default: false,
     help: 'Perturbed-Attention Guidance — improves anatomy, faces, and overall structure (fewer malformed or abstract subjects). Roughly doubles render time. Great for character-heavy decks; especially helps the Ragnarok/anime styles.',
   },
   {
-    key: 'face_fix', step: 'theme', type: 'toggle', hidden: true,
+    key: 'face_fix', panel: 'theme', type: 'toggle', hidden: true,
     label: 'Face fix (FaceDetailer)', default: false,
     help: 'Detects faces and re-renders them at higher detail (Impact Pack). Fixes small, blurry, or malformed faces on character cards. SDXL / Illustrious only (incl. Ragnarok). Adds a short pass per detected face.',
   },
@@ -66,13 +74,13 @@ export const GEN_SETTINGS_SCHEMA = [
   // contextual "flavor" selector in StepTheme next to the art-style grid (only for
   // presets that expose variants), so it's hidden from the Advanced panel here.
   {
-    key: 'style_variant', step: 'theme', type: 'select', hidden: true,
+    key: 'style_variant', panel: 'theme', type: 'select', hidden: true,
     label: 'Style variant', default: '',
   },
 
   // ── Face step ────────────────────────────────────────────────────────────────
   {
-    key: 'face_method', step: 'face', type: 'select',
+    key: 'face_method', panel: 'face', type: 'select',
     label: 'Face method', default: 'auto',
     options: [
       { value: 'auto',       label: 'Auto (best available)' },
@@ -83,7 +91,7 @@ export const GEN_SETTINGS_SCHEMA = [
     help: 'How the reference photo is applied to generated characters.',
   },
   {
-    key: 'face_weight', step: 'face', type: 'slider',
+    key: 'face_weight', panel: 'face', type: 'slider',
     label: 'Face identity strength', min: 0.5, max: 1.0, step: 0.05, default: 0.75,
     help: 'PuLID identity weight. Higher = closer to the reference face but more rigid composition.',
     showIf: v => v.face_method === 'pulid_flux' || v.face_method === 'auto',
@@ -96,10 +104,10 @@ export const DEFAULTS = Object.fromEntries(
 )
 
 // All fields belonging to a given step.
-export const stepFields = step => GEN_SETTINGS_SCHEMA.filter(f => f.step === step)
+export const stepFields = step => GEN_SETTINGS_SCHEMA.filter(f => f.panel === step)
 
 // Which steps actually have configurable fields (so steps without any don't render an empty panel).
-export const STEPS_WITH_FIELDS = [...new Set(GEN_SETTINGS_SCHEMA.map(f => f.step))]
+export const STEPS_WITH_FIELDS = [...new Set(GEN_SETTINGS_SCHEMA.map(f => f.panel))]
 
 // Build the backend `gen_settings` payload, omitting "auto"/default sentinels that
 // mean "let the backend decide" so we don't override server defaults needlessly.
