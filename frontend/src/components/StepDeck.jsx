@@ -1159,7 +1159,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       setRegenJobId(null)
       setRegenPending(new Set())
       setRegenProgress(null)
-      try { alert(`Regen failed: ${JSON.parse(e.data).msg}`) } catch {}
+      // Always tell the user. This used to be `try { alert(JSON.parse(...).msg) } catch {}`,
+      // so a malformed error payload was swallowed entirely — and since the three setters
+      // above have already cleared the spinner, a silently-failed regen looked exactly like
+      // a successful one. Fall back to the raw payload rather than showing nothing.
+      let msg
+      try { msg = JSON.parse(e.data).msg || '' } catch { msg = String(e.data || '').slice(0, 300) }
+      alert(`Regen failed: ${msg || 'the server reported an error but sent no detail.'}`)
     })
 
     src.onerror = () => {
