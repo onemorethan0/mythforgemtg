@@ -373,7 +373,7 @@ function RegenPanel({ selectedCards, onStart, onClose, defaultArtStyle, defaultM
       try {
         res = await fetch('/api/upload-face', { method: 'POST', body: fd })
       } catch (netErr) {
-        throw new Error(`Could not reach server: ${netErr.message}`)
+        throw new Error(`Could not reach server: ${netErr.message}`, { cause: netErr })
       }
       if (!res.ok) {
         let detail = `HTTP ${res.status}`
@@ -748,7 +748,8 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles,
   const [preset, setPreset]   = useState(presets?.[0]?.key || 'subtle')
   const [foilStyle, setFoilStyle] = useState(foilStyles?.[0]?.key || 'holo')
   const [fmt, setFmt]         = useState('mp4')
-  const [loop, setLoop]       = useState(true)
+  // No `loop` state: the payload's `loop` flag is derived from loopStyle below
+  // (`loop: loopStyle !== 'off'`), which is what the <select> actually writes.
   const [loopStyle, setLoopStyle] = useState('crossfade')
 
   const usesMotion = effect === 'motion' || effect === 'motion_foil'
@@ -1332,7 +1333,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       const data = await res.json()
       setDupMsg({ newJobId: data.new_job_id, name: data.themed_name })
       if (onDuplicate) onDuplicate(data.new_job_id)
-    } catch (err) {
+    } catch {
       setDupMsg('error')
     } finally {
       setDuplicating(false)

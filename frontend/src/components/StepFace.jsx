@@ -273,7 +273,7 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
     try {
       res = await fetch('/api/upload-face', { method: 'POST', body: form })
     } catch (netErr) {
-      throw new Error(`${label} upload failed — could not reach server: ${netErr.message}`)
+      throw new Error(`${label} upload failed — could not reach server: ${netErr.message}`, { cause: netErr })
     }
     if (!res.ok) {
       let detail = `HTTP ${res.status}`

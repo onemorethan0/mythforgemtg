@@ -175,18 +175,6 @@ const EMBLEM_EXAMPLES = [
   'ocean blue shield',
 ]
 
-const BORDER_THEME_EXAMPLES = [
-  'ancient stone runes',
-  'icy crystalline frost',
-  'fire and ember sparks',
-  'golden baroque scrollwork',
-  'glowing arcane sigils',
-  'cyberpunk circuit traces',
-  'ocean waves and droplets',
-  'dark shadow wisps',
-  'flowering vines and leaves',
-]
-
 // Phase header used to segment the Theme step into labelled groups so the long
 // form reads as a sequence (World → Characters → Card Look → Art Engine) instead
 // of one undifferentiated scroll.

@@ -122,7 +122,7 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
       if (!r.ok) throw new Error('Deck not found')
       const data = await r.json()
       onLoad(entry.job_id, data)
-    } catch (err) {
+    } catch {
       setLoading(false)
       if (entry.partial) {
         alert(`This deck is incomplete — ${entry.status === 'building' ? 'it\'s still building. Resume to check progress.' : 'the render data is missing.'}`)

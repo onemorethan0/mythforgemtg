@@ -13,7 +13,7 @@ export default function HealthIndicator() {
           const data = await res.json()
           setHealth({ comfyui: data.comfyui, ollama: data.ollama })
         }
-      } catch (err) {
+      } catch {
         setHealth({ comfyui: 'down', ollama: 'down' })
       }
     }
