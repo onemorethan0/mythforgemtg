@@ -192,6 +192,24 @@ RENDER_DIR  = app_path("renders")
 ART_DIR     = app_path("generated_art")
 RENDER_DIR.mkdir(exist_ok=True)
 
+# Every job id this app mints is `uuid.uuid4().hex[:16]` — 16 lowercase hex chars —
+# so validating that shape can never reject a real deck. 26 routes take {job_id}
+# straight off the URL and interpolate it into a path under RENDER_DIR; a segment
+# like `..%2f..%2f..` decodes AFTER routing (Starlette's `[^/]+` param regex only
+# sees the encoded form), so it survives into the Path join. That reaches rmtree in
+# DELETE /api/deck/{job_id} and FileResponse in the card-image/video/export routes.
+# Not remotely exploitable today — the server binds 127.0.0.1 and CORS is an explicit
+# localhost allowlist — but it is one config change away from mattering, and
+# style_sample_image already validated while its 25 siblings did not.
+_JOB_ID_RE = re.compile(r"[0-9a-f]{16}")
+
+
+def _require_job_id(job_id: str) -> str:
+    """Reject any job id that isn't the 16-hex-char shape we mint. Returns it."""
+    if not _JOB_ID_RE.fullmatch(job_id):
+        raise HTTPException(404, "Deck not found")
+    return job_id
+
 # In-memory job store (replace with Redis/SQLite for persistence)
 _jobs: dict[str, dict] = {}
 _progress: dict[str, list[str]] = {}   # job_id → list of SSE event strings
@@ -5591,6 +5609,7 @@ async def duplicate_deck(job_id: str):
 
     Returns {"new_job_id": "...", "themed_name": "..."}.
     """
+    _require_job_id(job_id)
     import shutil as _shutil
 
     src_dir  = RENDER_DIR / job_id
@@ -5644,6 +5663,8 @@ async def delete_deck(job_id: str):
     Returns {"ok": True, "job_id": job_id}.
     """
     import shutil as _shutil
+
+    _require_job_id(job_id)   # this function rmtree's a path built from job_id
 
     # Refuse to delete an actively-building deck
     job = _jobs.get(job_id, {})
@@ -5860,6 +5881,7 @@ async def get_deck(job_id: str):
 
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
 async def card_image(job_id: str, render_key: str):
+    _require_job_id(job_id)
     cards_dir = RENDER_DIR / job_id / "cards"
     path = cards_dir / f"{render_key}.png"
     if path.exists():
@@ -5905,6 +5927,7 @@ _VIDEO_MEDIA_TYPES = {"mp4": "video/mp4", "webp": "image/webp", "gif": "image/gi
 @app.get("/api/deck/{job_id}/card-video/{render_key}")
 async def card_video_file(job_id: str, render_key: str):
     """Serve a card's looping animation (MP4 / WebP / GIF), whichever exists."""
+    _require_job_id(job_id)
     videos = RENDER_DIR / job_id / "videos"
     for ext, media in _VIDEO_MEDIA_TYPES.items():   # mp4 preferred, then webp, gif
         path = videos / f"{render_key}.{ext}"
@@ -5916,6 +5939,7 @@ async def card_video_file(job_id: str, render_key: str):
 
 @app.get("/api/deck/{job_id}/set-symbol")
 async def set_symbol_endpoint(job_id: str):
+    _require_job_id(job_id)
     path = RENDER_DIR / job_id / "set_symbol.png"
     if not path.exists():
         raise HTTPException(404, "Set symbol not found")
@@ -6473,6 +6497,7 @@ def _export_image_resolver(job_id: str):
 
 @app.get("/api/deck/{job_id}/export/zip")
 def export_zip(job_id: str):
+    _require_job_id(job_id)
     job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
@@ -6507,6 +6532,7 @@ def export_decklist(job_id: str):
     themed build still contains exactly the cards that went in. Quantities are the
     physical counts, so aggregated duplicate basics expand correctly.
     """
+    _require_job_id(job_id)
     job  = _load_job_for_export(job_id)
     cmd  = job.get("commander") or {}
     deck = job.get("deck") or []
@@ -6541,6 +6567,7 @@ def export_decklist(job_id: str):
 @app.get("/api/deck/{job_id}/export/videos")
 def export_videos(job_id: str):
     """ZIP of the deck's looping MP4 animations (only animated cards)."""
+    _require_job_id(job_id)
     job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
@@ -6559,6 +6586,7 @@ def export_videos(job_id: str):
 
 @app.get("/api/deck/{job_id}/export/pdf")
 def export_pdf(job_id: str):
+    _require_job_id(job_id)
     job = _load_job_for_export(job_id)
     render_dir = RENDER_DIR / job_id
     try:
@@ -6734,6 +6762,7 @@ async def stream_3d_status(job_id: str, job_3d_id: str, request: Request):
 @app.get("/api/deck/{job_id}/commander-3d.stl")
 async def download_commander_stl(job_id: str):
     """Serve the completed commander STL for download."""
+    _require_job_id(job_id)
     stl_path = RENDER_DIR / job_id / "commander_3d.stl"
     if not stl_path.exists():
         raise HTTPException(status_code=404,
