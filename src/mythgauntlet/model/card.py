@@ -82,6 +82,10 @@ class Card:
     toughness: str | None = None
     edhrec_rank: int | None = None
     game_changer: bool = False  # WotC Game Changers list, via Scryfall's game_changer flag
+    # Scryfall legalities.commander == "legal". Defaults True so a hand-built Card (tests,
+    # synthetic basics) is playable without having to say so; the store always sets it
+    # explicitly from schema v3 on.
+    commander_legal: bool = True
     layout: str = "normal"
     oracle_id: str = ""
 

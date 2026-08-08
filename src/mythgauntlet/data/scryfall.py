@@ -29,7 +29,11 @@ SKIP_LAYOUTS = {
     "vanguard", "scheme", "planar", "augment", "host",
 }
 SLIM_FILENAME = "cards_slim.json"
-SLIM_SCHEMA = 2  # v2: adds game_changer (Scryfall's WotC Game Changers flag)
+# v2: adds game_changer (Scryfall's WotC Game Changers flag)
+# v3: adds commander_legal, so the advisor can stop recommending BANNED cards. A mismatch
+#     is a loud, actionable error (see load_card_db) rather than a missing field that would
+#     make the ban filter silently inert — the bulk refetches weekly anyway.
+SLIM_SCHEMA = 3
 
 
 def slim_path() -> Path:
@@ -60,6 +64,10 @@ def _slim(raw: dict) -> dict | None:
         "toughness": face.get("toughness"),
         "edhrec_rank": raw.get("edhrec_rank"),
         "game_changer": bool(raw.get("game_changer", False)),
+        # Scryfall's legalities.commander is one of legal/not_legal/restricted/banned.
+        # Only "legal" is playable: "banned" is the ban list, and "not_legal" covers cards
+        # that were never in the format at all (acorn/Un-cards, Conspiracy, playtest cards).
+        "commander_legal": (raw.get("legalities") or {}).get("commander") == "legal",
         "layout": raw.get("layout", "normal"),
         "oracle_id": raw.get("oracle_id", ""),
     }
@@ -172,6 +180,7 @@ def _card_from_slim(rec: dict) -> Card:
         toughness=rec.get("toughness"),
         edhrec_rank=rec.get("edhrec_rank"),
         game_changer=bool(rec.get("game_changer", False)),
+        commander_legal=bool(rec.get("commander_legal", True)),
         layout=rec.get("layout") or "normal",
         oracle_id=rec.get("oracle_id") or "",
     )

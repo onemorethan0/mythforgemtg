@@ -370,19 +370,23 @@ def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
     return frozenset(identity)
 
 
-def _within_identity(card: Card, identity: frozenset[str]) -> bool:
-    """Whether `card` is legal in a deck of this colour identity (CR 903.4).
+def _is_legal_candidate(card: Card, identity: frozenset[str]) -> bool:
+    """Whether `card` may legally go in this deck: format-legal AND in colour identity.
 
     The advisor had no legality notion at all, so with a collection-shaped candidate pool
-    it would happily tell a mono-green deck to add a blue card — a swap the user cannot
-    legally make, presented alongside real ones. Colourless cards are legal everywhere, so
-    an empty identity on the card always passes.
+    (its documented use: "the cards you OWN") it would tell a mono-green deck to add a blue
+    card, or hand back a Commander-BANNED card the user happens to own — swaps that cannot
+    be made, ranked alongside real ones, and the better the illegal card the higher it rose.
 
-    NOTE this checks colour identity ONLY. The slim card store carries no `legalities`
-    field, so a Commander-BANNED card the user owns (Mana Crypt, Jeweled Lotus, Dockside)
-    can still be recommended. Fixing that needs the banned flag carried through
-    data/scryfall.py's slim schema first.
+    Two checks:
+      - `commander_legal` is Scryfall's legalities.commander == "legal", so it rejects both
+        the ban list (Mana Crypt, Jeweled Lotus, Dockside Extortionist) and cards never in
+        the format (acorn/Un-cards, Conspiracy). Carried by slim schema v3.
+      - Colour identity per CR 903.4. Colourless cards carry an empty identity and are
+        legal in every deck.
     """
+    if not getattr(card, "commander_legal", True):
+        return False
     return set(getattr(card, "color_identity", ()) or ()) <= identity
 
 
@@ -434,7 +438,7 @@ def advise(
         identity = _commander_identity(resolved)
         eligible = [
             c for c in candidates
-            if c.name not in in_deck and _within_identity(c, identity)
+            if c.name not in in_deck and _is_legal_candidate(c, identity)
         ]
         # Rank by TARGET-axis relevance AND the commander's mechanical direction before
         # spending the eval budget, so we re-simulate the cards most likely to move the

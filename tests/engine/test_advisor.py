@@ -275,3 +275,57 @@ def test_gain_floor_never_drops_below_the_axis_noise():
     # the floors are the measured values, not invented ones
     assert _AXIS_NOISE_FLOOR["speed"] == 1.7
     assert _AXIS_NOISE_FLOOR["ceiling"] == 2.3
+
+
+def test_advisor_never_suggests_a_banned_card(make_card, forest, bear):
+    """A collection-shaped candidate pool contains whatever the user owns, including cards
+    that are BANNED in Commander (Mana Crypt, Jeweled Lotus, Dockside Extortionist). The
+    advisor had no legality data at all and would rank them like anything else — in fact
+    higher, since they are strong. `commander_legal` comes from Scryfall's
+    legalities.commander via slim schema v3.
+    """
+    from mythgauntlet.model.deck import Deck, ResolvedDeck
+    from mythgauntlet.ratings.advisor import advise
+    from mythgauntlet.semantics.store import SemanticsStore
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    cmd = make_card("Green Boss", mana_cost="{2}{G}", type_line="Legendary Creature — Elf",
+                    colors=("G",), color_identity=("G",))
+    cmd.power, cmd.toughness = "3", "3"
+    resolved = ResolvedDeck(deck=Deck(name="mono-green"), commanders=[cmd],
+                            cards=[(forest, 60), (bear, 39)], missing=[])
+
+    legal = make_card("Fine Rock", mana_cost="{2}", type_line="Artifact",
+                      oracle_text="{T}: Add {C}{C}.")
+    banned = make_card("Mana Crypt", mana_cost="{0}", type_line="Artifact",
+                       oracle_text="{T}: Add {C}{C}.")
+    banned.commander_legal = False
+
+    report = advise(resolved, SimConfig(turns=8, runs=8, seed=3), SemanticsStore({}),
+                    [legal, banned], axis="speed", top=5, max_eval=6, min_delta=-999.0)
+    named = {s.add for s in report.suggestions}
+    assert "Mana Crypt" not in named
+    assert named <= {"Fine Rock"}
+
+
+def test_slim_record_carries_commander_legality():
+    """Schema v3. Only "legal" is playable: "banned" is the ban list and "not_legal" covers
+    cards that were never in the format (acorn/Un-cards, Conspiracy, playtest)."""
+    from mythgauntlet.data.scryfall import SLIM_SCHEMA, _card_from_slim, _slim
+
+    assert SLIM_SCHEMA >= 3
+
+    def legality(value):
+        return _slim({"name": "X", "type_line": "Artifact", "layout": "normal",
+                      "legalities": {"commander": value}})["commander_legal"]
+
+    assert legality("legal") is True
+    assert legality("banned") is False
+    assert legality("not_legal") is False
+    assert legality("restricted") is False
+    # a record with no legalities block at all must not claim legality
+    assert _slim({"name": "X", "type_line": "Artifact",
+                  "layout": "normal"})["commander_legal"] is False
+    # the loader round-trips it
+    assert _card_from_slim({"name": "X", "commander_legal": False}).commander_legal is False
+    assert _card_from_slim({"name": "X", "commander_legal": True}).commander_legal is True
