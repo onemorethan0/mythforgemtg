@@ -415,7 +415,13 @@ def _do_turn_start(state: GameState) -> None:
     for c in me.battlefield:
         c.sick = False
         c.tapped = False
-    if not (state.turn == 1 and state.pos == 0):  # first player skips the first draw (1v1)
+    # CR 103.8a: "In a two-player game, the player who plays first skips the draw step of
+    # their first turn." CR 103.8c: "In all other multiplayer games, no player skips the
+    # draw step of their first turn." The skip is a TWO-PLAYER rule; applying it in a pod
+    # docked the starting seat a card in every 4-player game the format's brackets are
+    # actually defined for.
+    skips_first_draw = state.turn == 1 and state.pos == 0 and not state.multiplayer
+    if not skips_first_draw:
         me.draw(1)
     me.draw(me.engine_draws())
     others = _others(state)

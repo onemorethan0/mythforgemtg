@@ -322,3 +322,26 @@ def test_combat_defender_survives_a_clone():
     _apply_declare_attackers(st, [attacker])
 
     assert clone(st).combat_defender == st.combat_defender == "b"
+
+
+def test_starting_seat_draws_on_turn_one_in_a_pod():
+    """CR 103.8a: "In a two-player game, the player who plays first skips the draw step of
+    their first turn." CR 103.8c: "In all other multiplayer games, no player skips the draw
+    step of their first turn."
+
+    The skip is a TWO-PLAYER rule. Applying it in a pod docked the starting seat a card in
+    every 4-player game — the format the brackets are actually defined for.
+    """
+    from mythgauntlet.sim.game import _do_turn_start
+
+    def hand_after_first_turn(seats):
+        players = {k: _player(k) for k in seats}
+        for p in players.values():
+            p.library = [None] * 40          # draw() just pops; contents don't matter here
+        st = GameState(players=players, order=list(seats), cfg=DuelConfig(max_turns=30),
+                       active=seats[0], turn=1, pos=0)
+        _do_turn_start(st)
+        return len(players[seats[0]].hand)
+
+    assert hand_after_first_turn("ab") == 0      # 1v1: starting player skips (103.8a)
+    assert hand_after_first_turn("abcd") == 1    # pod: nobody skips (103.8c)
