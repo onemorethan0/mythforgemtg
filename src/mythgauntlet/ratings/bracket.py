@@ -45,11 +45,39 @@ from mythgauntlet.model.card import Card
 BRACKET_LABELS = {1: "Exhibition", 2: "Core", 3: "Upgraded", 4: "Optimized", 5: "cEDH"}
 
 _EXTRA_TURN_RE = re.compile(r"take an extra turn|extra turn after this one", re.IGNORECASE)
+# Mass land denial. A SINGLE match forces floor=4/cap=5 below, so a false positive
+# here is not a rounding error — it reports a casual deck as "Optimized".
+#
+# Validated 2026-08-07 by diffing old vs new across all 34,179 cards in
+# data/cards_slim.json. The previous patterns were wrong in both directions:
+#
+#   FABRICATED (forced B4 on 7 cards that are not mass land denial)
+#     `lands?` had no word boundary, so "sacrifices all nonLAND permanents" matched.
+#     Tragic Arrogance — an ordinary Bracket-2 wrath — reported Bracket 4, as did
+#     Shard of the Void Dragon. The other five (Tremble, Yawning Fissure, Hurloon
+#     Shaman, Akki Blizzard-Herder, Razing Snidd) sacrifice ONE land: attrition,
+#     not MASS denial.
+#
+#   MISSED (9 cards that really are mass land denial)
+#     The literal "destroy all lands" does not appear in Jokulhaups, Obliterate,
+#     Devastation, Death Cloud, Pox, Gerrymandering, Realm Razer or Tectonic Hellion.
+#
+# Two guards are load-bearing and must survive any edit here:
+#   \b around land/lands   — stops "nonland" matching.
+#   (?!except)             — stops sweepers that explicitly SPARE lands from matching
+#                            ("Destroy all permanents except for artifacts and lands":
+#                            Scourglass, Elspeth Tirel, World-Bottling Kit), and keeps
+#                            graveyard hate out ("other than basic land cards":
+#                            Haunting Echoes) via the plural requirement.
+# Plural "lands" is deliberate: a single symmetric land sacrifice stays unflagged,
+# which is the honest under-count rather than a fabricated Bracket 4.
 _MLD_RES = (
-    re.compile(r"destroy all lands", re.IGNORECASE),
-    re.compile(r"destroy all nonbasic lands", re.IGNORECASE),
-    re.compile(r"each player sacrifices? .*?lands?", re.IGNORECASE),
-    re.compile(r"each opponent sacrifices? .*?lands?", re.IGNORECASE),
+    # "Destroy/Exile all … lands" — including the multi-type sweepers.
+    re.compile(r"\b(?:destroy|exile) all\b(?:(?!except)[^.])*?\blands\b", re.IGNORECASE),
+    # Symmetric or one-sided sacrifice of MULTIPLE lands.
+    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\blands\b", re.IGNORECASE),
+    # …or of one land per something, which scales into mass denial (Thoughts of Ruin).
+    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\bland\b[^.]*?\bfor each\b", re.IGNORECASE),
 )
 
 

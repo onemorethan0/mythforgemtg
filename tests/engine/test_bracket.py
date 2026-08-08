@@ -100,6 +100,59 @@ def test_mass_land_denial_raises_to_four(make_card, forest):
     assert est.mass_land_denial_cards == 59
 
 
+def test_mass_land_denial_does_not_fire_on_nonland_wraths(make_card, forest, bear):
+    """A wrath that spares lands is not land denial.
+
+    `_MLD_RES` used to be `each player sacrifices? .*?lands?` with no word boundary,
+    so "sacrifices all NONLAND permanents" matched the "land" inside "nonland" — and
+    because a single match sets floor=4, one Tragic Arrogance reported an ordinary
+    casual deck as Bracket 4 "Optimized". Real oracle text, verbatim.
+    """
+    tragic = make_card(
+        "Tragic Arrogance", mana_cost="{2}{W}{W}", type_line="Sorcery",
+        oracle_text=(
+            "For each player, you choose from among the permanents that player controls "
+            "an artifact, a creature, an enchantment, and a planeswalker. Each player "
+            "sacrifices all nonland permanents except the chosen ones."
+        ),
+    )
+    est = estimate_bracket([(forest, 40), (bear, 58), (tragic, 1)], [],
+                           ceiling=10, speed_kill_rate=0.05, manabase_consistency=0.95)
+    assert est.mass_land_denial_cards == 0
+    assert est.bracket == 2
+
+
+def test_mass_land_denial_ignores_sweepers_that_spare_lands(make_card, forest, bear):
+    """"Destroy all permanents EXCEPT ... lands" keeps every land on the battlefield."""
+    for name, text in [
+        ("Scourglass", "Destroy all permanents except for artifacts and lands."),
+        ("Elspeth Tirel", "Destroy all other permanents except for lands and tokens."),
+        # Graveyard hate, not land denial.
+        ("Haunting Echoes", "Exile all cards from target player's graveyard other than basic land cards."),
+    ]:
+        card = make_card(name, mana_cost="{4}", type_line="Sorcery", oracle_text=text)
+        est = estimate_bracket([(forest, 40), (bear, 58), (card, 1)], [],
+                               ceiling=10, speed_kill_rate=0.05, manabase_consistency=0.95)
+        assert est.mass_land_denial_cards == 0, name
+        assert est.bracket == 2, name
+
+
+def test_mass_land_denial_catches_multi_type_sweepers(make_card, forest):
+    """The literal "destroy all lands" appears in almost no real MLD card."""
+    for name, text in [
+        ("Jokulhaups", "Destroy all artifacts, creatures, and lands. They can't be regenerated."),
+        ("Obliterate", "This spell can't be countered. Destroy all artifacts, creatures, and lands."),
+        ("Devastation", "Destroy all creatures and lands."),
+        ("Death Cloud", "Each player loses X life, discards X cards, sacrifices X creatures "
+                        "of their choice, then sacrifices X lands of their choice."),
+        ("Realm Razer", "When this creature enters, exile all lands."),
+    ]:
+        card = make_card(name, mana_cost="{4}{R}{R}", type_line="Sorcery", oracle_text=text)
+        est = estimate_bracket([(forest, 59), (card, 40)], [], ceiling=10, speed_kill_rate=0.05)
+        assert est.mass_land_denial_cards == 40, name
+        assert est.bracket >= 4, name
+
+
 def test_extra_turn_chain_raises_to_four(make_card, forest):
     time = make_card("Time Loop", mana_cost="{4}{U}{U}", type_line="Sorcery",
                      oracle_text="Take an extra turn after this one.")
