@@ -67,7 +67,12 @@ class AdviseRequest(BaseModel):
     max_eval: int = Field(default=8, ge=1, le=40)
     min_delta: float = Field(
         default=1.0, ge=0.0, le=50.0,
-        description="minimum measured axis gain for a swap to be reported (filters sim noise)",
+        description=(
+            "minimum measured axis gain for a swap to be reported. Raised automatically to "
+            "the target axis's own seed-to-seed spread when that is higher (speed 1.7, "
+            "ceiling 2.3), so a request can tighten this bar but never drop it below the "
+            "noise. The floor actually applied comes back as the report's min_delta."
+        ),
     )
     cut_pool: int = Field(
         default=3, ge=1, le=10,

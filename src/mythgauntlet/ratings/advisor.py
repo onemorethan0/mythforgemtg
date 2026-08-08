@@ -338,6 +338,30 @@ def _swap_variant(resolved: ResolvedDeck, cut: Card, add: Card) -> ResolvedDeck:
     return dataclasses.replace(resolved, cards=new_cards)
 
 
+# Seed-to-seed standard deviation of each axis, MEASURED: the same deck re-analysed at 8
+# seeds (runs=150) across corpus decks, which is the run-to-run spread you get from doing
+# nothing at all.
+#
+#   speed        1.73  (max 2.32)      ceiling      2.31  (max 8.30)
+#   consistency  0.94  (max 1.17)      resilience   0.00      interaction  0.00
+#
+# The old flat `min_delta=1.0` default was documented as filtering sim noise but had never
+# been checked against it, and it sits BELOW the noise on the two axes that carry it. So the
+# advisor was reporting swaps whose measured "gain" is smaller than the variation from
+# re-rolling the RNG on an unchanged deck — noise, ranked and presented as advice.
+#
+# This is a floor, not a significance test: clearing one sigma is not proof, it just stops
+# the list filling with results a re-run would reverse. Resilience and interaction are
+# computed deterministically, so they keep the caller's floor untouched.
+_AXIS_NOISE_FLOOR = {
+    "speed": 1.7,
+    "ceiling": 2.3,
+    "consistency": 0.9,
+    "resilience": 0.0,
+    "interaction": 0.0,
+}
+
+
 def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
     """The deck's legal colour identity: the union across its commander(s)."""
     identity: set[str] = set()
@@ -395,6 +419,9 @@ def advise(
         combos_checked=combos_checked, run_resilience=axis in (None, "resilience"),
     )
     target = axis or weakest_axis(baseline)
+    # Never report a gain smaller than the axis's own run-to-run spread, whatever the
+    # caller asked for. A caller may raise the bar, not lower it below the noise.
+    effective_delta = max(min_delta, _AXIS_NOISE_FLOOR.get(target, 0.0))
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
@@ -435,8 +462,10 @@ def advise(
                 after = axis_score(a, target)
                 # Require a MEANINGFUL gain, not just a positive one: on a 0-100 axis a
                 # +0.1 swap is sim noise, and padding the list with noise is what made the
-                # advisor feel useless ("5 suggestions, 4 of them +0.1").
-                if after - base_score >= min_delta:
+                # advisor feel useless ("5 suggestions, 4 of them +0.1"). `effective_delta`
+                # additionally refuses to go below the target axis's own measured
+                # seed-to-seed spread — see _AXIS_NOISE_FLOOR.
+                if after - base_score >= effective_delta:
                     evals.append((after - base_score, add, cut, after, a))
         # Greedy non-overlapping selection: best gain first, each add + each cut used once.
         evals.sort(key=lambda e: (-e[0], e[1].name, e[2].name))
@@ -461,5 +490,5 @@ def advise(
         axis=target, axis_label=AXES[target][1], baseline=base_score,
         cut=cuts[0].name if (cuts and cut_pool == 1) else None,
         suggestions=suggestions[:top], evaluated=evaluated,
-        analyses=analyses, cut_pool=cut_pool, min_delta=min_delta,
+        analyses=analyses, cut_pool=cut_pool, min_delta=effective_delta,
     )

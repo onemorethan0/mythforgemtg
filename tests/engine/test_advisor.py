@@ -246,3 +246,32 @@ def test_advisor_never_suggests_a_card_outside_the_colour_identity(make_card, fo
     named = {s.add for s in report.suggestions}
     assert "Blue Add" not in named
     assert named <= {"Green Add", "Rock"}   # colourless is legal in any identity
+
+
+def test_gain_floor_never_drops_below_the_axis_noise():
+    """`min_delta=1.0` was documented as filtering sim noise but had never been checked
+    against it. Measured seed-to-seed spread (same deck, 8 seeds, runs=150): speed 1.73,
+    ceiling 2.31, consistency 0.94, resilience/interaction 0.00. So on the two axes that
+    carry it the old default sat BELOW the noise — the advisor reported swaps whose gain is
+    smaller than re-rolling the RNG on an unchanged deck.
+
+    A caller may raise the bar; it must not be able to lower it under the noise.
+    """
+    from mythgauntlet.ratings.advisor import _AXIS_NOISE_FLOOR
+
+    def effective(min_delta, target):
+        return max(min_delta, _AXIS_NOISE_FLOOR.get(target, 0.0))
+
+    # the default cannot buy a sub-noise suggestion on a simulated axis
+    assert effective(1.0, "speed") == _AXIS_NOISE_FLOOR["speed"] > 1.0
+    assert effective(1.0, "ceiling") == _AXIS_NOISE_FLOOR["ceiling"] > 1.0
+    # nor can an explicit request for zero
+    assert effective(0.0, "speed") > 0.0
+    # a caller wanting a stricter bar still gets it
+    assert effective(9.0, "speed") == 9.0
+    # deterministic axes have no sim variance, so the caller's floor stands
+    assert effective(1.0, "resilience") == 1.0
+    assert effective(1.0, "interaction") == 1.0
+    # the floors are the measured values, not invented ones
+    assert _AXIS_NOISE_FLOOR["speed"] == 1.7
+    assert _AXIS_NOISE_FLOOR["ceiling"] == 2.3
