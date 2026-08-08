@@ -346,3 +346,23 @@ def test_removal_requires_hitting_a_CREATURE(make_card):
     assert not r("Destroy target enchantment.")
     assert not r("Exile target creature card from a graveyard.")  # zone, not battlefield
     assert not r("This spell deals 3 damage to target player.")   # Lava Spike
+
+
+def test_ramp_is_net_of_the_activation_cost(make_card):
+    """`ramp_sources` is spent by tier0 as that many extra mana EVERY turn, so it has to
+    be NET. Counting only the produced symbols made an Azorius Signet worth +2 when it
+    nets +1, and made a pure colour filter ("{1}, {T}: Add {B}") worth a full mana per
+    turn when it nets zero. 49 mana abilities in the compiled store cost mana.
+    """
+    def ramp(text, type_line="Artifact"):
+        return tags.analyze(make_card("R", mana_cost="{2}", type_line=type_line,
+                                      oracle_text=text)).ramp_sources
+
+    assert ramp("{T}: Add {C}{C}.") == 2                       # Sol Ring
+    assert ramp("{1}, {T}: Add {W}{U}.") == 1                  # Azorius Signet: 2 - 1
+    assert ramp("{T}: Add one mana of any color.") == 1        # Arcane Signet
+    assert ramp("{T}: Add three mana of any one color.") == 3  # Gilded Lotus
+    assert ramp("{1}, {T}: Add {B}.") == 0                     # filter, nets nothing
+    assert ramp("{2}, {T}: Add {W}{U}.") == 0                  # filter, nets nothing
+    # {T} is not mana and must never be charged as part of the cost.
+    assert ramp("{T}: Add {G}.", "Creature — Elf Druid") == 1  # Llanowar Elves

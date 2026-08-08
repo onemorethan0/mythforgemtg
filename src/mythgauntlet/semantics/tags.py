@@ -178,24 +178,50 @@ def _clean_text(card: Card) -> str:
     return _REMINDER_RE.sub("", card.oracle_text or "").casefold()
 
 
+def _activation_mana_cost(text: str) -> int:
+    """Generic/coloured mana in the ability's ACTIVATION cost, i.e. before the colon.
+
+    "{1}, {T}: Add {W}{U}" costs 1. {T}/{Q}/{E} are not mana and never count.
+    """
+    head = text.split(":", 1)[0]
+    if len(head) > 60:            # not an activation cost, just a long sentence
+        return 0
+    total = 0
+    for sym in re.findall(r"\{([^}]*)\}", head):
+        s = sym.strip().lower()
+        if s in ("t", "q", "e") or not s:
+            continue
+        total += int(s) if s.isdigit() else 1
+    return total
+
+
 def _ramp_from_add_clause(text: str) -> int:
-    """Mana added per activation of an 'Add ...' ability (rocks/dorks), crudely.
+    """NET mana added per activation of an 'Add ...' ability (rocks/dorks), crudely.
 
     Handles both spellings Magic uses: mana symbols ("Add {C}{C}" — Sol Ring) and words
     ("Add one mana of any color" — Arcane Signet, Birds of Paradise). Only the symbol
     form used to match, so every colour-fixing rock and most dorks read as zero ramp.
+
+    NET, because tier0 spends `ramp_sources` as that many extra mana EVERY TURN. Counting
+    the produced symbols and ignoring what the ability costs to activate made an Azorius
+    Signet ("{1}, {T}: Add {W}{U}") worth +2 permanent mana when it nets +1, and — the
+    common case — made a pure colour FILTER ("{1}, {T}: Add {B}": Abzan Devotee, Bog
+    Initiate, Arcum's Astrolabe) worth a full mana per turn when it nets zero. 49 mana
+    abilities in the compiled store cost mana; a casual deck runs a lot of them, and the
+    inflation lands straight on Speed -> Ceiling -> bracket.
     """
+    cost = _activation_mana_cost(text)
     m = _ADD_MANA_RE.search(text)
     if m:
         clause = m.group(1)
         if " or " in clause:  # "Add {G}, {U}, or {R}" produces one mana of a choice
-            return 1
+            return max(0, 1 - cost)
         symbols = clause.count("{")
         if symbols:
-            return max(1, min(3, symbols))
+            return max(0, min(3, symbols) - cost)
     worded = _ADD_WORDED_MANA_RE.search(text)
     if worded:
-        return max(1, min(3, _WORD_NUMBERS.get(worded.group(1), 1)))
+        return max(0, min(3, _WORD_NUMBERS.get(worded.group(1), 1)) - cost)
     return 0
 
 

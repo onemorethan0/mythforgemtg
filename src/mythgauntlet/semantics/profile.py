@@ -109,6 +109,36 @@ def _amount(value, default: int = 1) -> int:
     return default  # "X" and friends resolve as 1 at this fidelity
 
 
+def _net_mana_from(ability: dict, effects: list[dict]) -> int:
+    """Mana a mana-ability actually ADDS to the pool, after paying for itself.
+
+    `ramp_sources` is spent by tier0 as one extra mana per turn, every turn, so it has to
+    mean persistent NET mana. Summing the `add_mana` amounts and ignoring the cost got both
+    halves wrong, over 598 non-land cards carrying a mana ability in the compiled store:
+
+      49 abilities cost mana. An Azorius Signet ("{1}, {T}: Add {W}{U}") nets +1, not +2 —
+      and the common case is worse: "{1}, {T}: Add {B}" (Abzan Devotee, Bog Initiate,
+      Arcum's Astrolabe) is a COLOUR FILTER that nets ZERO, yet each was credited a full
+      ramp source and handed tier0 a free mana every turn.
+
+       8 sacrifice themselves. Jeweled Lotus (+3), Basal Thrull (+2), Generator Servant
+      (+2) are one-shots; tier2 treats ramp_sources as "persistent mana ... structural".
+
+    Returns 0 for a one-shot or a break-even filter, so neither reaches the ramp count.
+    """
+    cost = ability.get("cost")
+    if not isinstance(cost, dict):
+        cost = {}
+    if cost.get("sacrifice_self"):
+        return 0
+    mana = cost.get("mana")
+    cost_mana = ManaCost.parse(mana if isinstance(mana, str) else "").mana_value
+    produced = sum(
+        _amount(e.get("amount"), 1) for e in effects if e.get("op") == "add_mana"
+    )
+    return max(0, produced - cost_mana)
+
+
 def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | None:
     cost = ability.get("cost")
     if not isinstance(cost, dict):  # tolerate a malformed hand-authored cost (str/None/…)
@@ -361,9 +391,12 @@ def profile_from_ccm(doc: dict, card: Card, fx: EffectVector) -> PlayProfile:
         effects = [e for e in ability.get("effects") or [] if isinstance(e, dict)]
 
         if kind == "mana_ability" and is_permanent and not card.is_land:
-            for effect in effects:
-                if effect.get("op") == "add_mana":
-                    ramp += _amount(effect.get("amount"), 1)
+            net = _net_mana_from(ability, effects)
+            # MAX, not sum: a card printing "{T}: Add {G}" and "{T}: Add {U}" as two
+            # abilities can only use one per tap. 34 non-land cards in the store carry more
+            # than one mana ability and were having them added together — Boros Signet
+            # among them, which is also one of the cost-ignoring cases below.
+            ramp = max(ramp, net)
         elif kind == "activated" and is_permanent:
             act = _activated_from(ability, effects)
             if act is not None:
