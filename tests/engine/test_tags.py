@@ -243,3 +243,55 @@ def test_opponent_land_search_is_not_our_ramp(make_card):
                     "it onto the battlefield tapped, then shuffles.",
     )
     assert tags.analyze(symmetric).fetches_land
+
+
+def test_cheat_into_play_requires_putting_a_CREATURE(make_card):
+    """`cheats_creatures` drives tier0's Kaalia model, which pulls the biggest stranded
+    creature out of hand and swings with it that turn. The tag was the bare substring
+    "from your hand onto the battlefield", which says nothing about WHAT is put — so land
+    ramp read as a creature cheat. Of 164 cards matching it in the 34,179-card store, only
+    91 can put a creature; 50 put a land.
+
+    Controlled measurement on a slow 8-drop ramp deck, one copy, 500 runs: with the old
+    tag a single Burgeoning moved goldfish kill rate 0.536 -> 0.612 and avg kill turn
+    12.05 -> 10.75. Sakura-Tribe Scout produced identical numbers, confirming it was the
+    tag flipping rather than anything about the card. With the fix both match the control
+    deck exactly.
+    """
+    def fx(name, type_line, text):
+        return tags.analyze(make_card(name, mana_cost="{2}{G}", type_line=type_line,
+                                      oracle_text=text)).cheats_creatures
+
+    # Land ramp — reads identically to a cheat enabler, is not one.
+    assert not fx("Burgeoning", "Enchantment",
+                  "Whenever an opponent plays a land, you may put a land card from your "
+                  "hand onto the battlefield.")
+    assert not fx("Sakura-Tribe Scout", "Creature — Human Scout",
+                  "{T}: You may put a land card from your hand onto the battlefield.")
+    assert not fx("Growth Spiral", "Instant",
+                  "Draw a card. You may put a land card from your hand onto the battlefield.")
+    # Not creatures either.
+    assert not fx("Planebound Accomplice", "Creature — Human",
+                  "{R}: You may put a planeswalker card from your hand onto the battlefield.")
+    assert not fx("Stoneforge Mystic", "Creature — Kor Artificer",
+                  "When this creature enters, you may put an Equipment card from your hand "
+                  "onto the battlefield.")
+    # A self-put cannot cheat in the fatty stranded beside it — not an enabler.
+    assert not fx("Talon Gates of Madara", "Land",
+                  "You may put this card from your hand onto the battlefield.")
+
+    # The real Kaalia class must still fire.
+    assert fx("Sneak Attack", "Enchantment",
+              "{R}: You may put a creature card from your hand onto the battlefield. "
+              "It gains haste.")
+    assert fx("Elvish Piper", "Creature — Elf",
+              "{G}, {T}: You may put a creature card from your hand onto the battlefield.")
+    assert fx("Quicksilver Amulet", "Artifact",
+              "{4}, {T}: You may put a creature card from your hand onto the battlefield.")
+    assert fx("Kaalia of the Vast", "Legendary Creature — Angel",
+              "Whenever Kaalia of the Vast attacks, you may put an Angel, Demon, or Dragon "
+              "creature card from your hand onto the battlefield tapped and attacking.")
+    # "permanent card" can be a creature, so it counts.
+    assert fx("Thran Temporal Gateway", "Artifact",
+              "{4}, {T}: You may put a historic permanent card from your hand onto the "
+              "battlefield.")

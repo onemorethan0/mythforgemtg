@@ -64,9 +64,32 @@ _WIPE_RES = (
     re.compile(r"all creatures get [-−]"),
 )
 _COUNTER_RE = re.compile(r"counter target .{0,40}spell")
-# "put ... from your hand onto the battlefield" = a cheat-into-play enabler (Kaalia, Sneak
-# Attack, Elvish Piper, Quicksilver Amulet). Distinct from land ramp ("...from your library...").
-_CHEAT_RE = re.compile(r"from your hand onto the battlefield")
+# A cheat-into-play enabler (Kaalia, Sneak Attack, Elvish Piper, Quicksilver Amulet).
+# `sim/tier0.py` acts on this by pulling the BIGGEST STRANDED CREATURE out of hand and
+# swinging with it the same turn, so the tag has to mean "can put an arbitrary creature
+# from hand onto the battlefield" — nothing weaker.
+#
+# It used to be the bare substring "from your hand onto the battlefield", which says
+# nothing about WHAT is put. Of the 164 cards matching it in the 34,179-card store, only
+# 91 can put a creature. The other 73 were fabricating a goldfish clock out of nothing:
+#   50 put a LAND — Sakura-Tribe Scout, Llanowar Scout, Growth Spiral, Spelunking,
+#      Burgeoning, Firebrand Ranger. The old comment guarded against library ramp
+#      ("...from your library...") but not hand-land ramp, which reads identically.
+#    3 put a PLANESWALKER (Planebound Accomplice, The Disciple of Vess).
+#   20 put an artifact / Aura / Equipment (Stoneforge Mystic, Copper Gnomes, Holy Avenger)
+#      or put THIS card — a self-put is not an enabler at all: it cannot cheat in the fatty
+#      stranded next to it, which is the only thing tier0 models.
+#
+# Known, deliberate under-count: a put restricted to a creature SUBTYPE reads as
+# non-creature here ("a Vampire card" — Strefan; "a Construct, Robot, or Vehicle card" —
+# Dr. Eggman). That is 2 cards against 73 fabrications, and it errs toward silence.
+_HAND_PUT_RE = re.compile(r"put\s+([^.]{0,80}?)\s+from your hand onto the battlefield")
+_CHEATABLE_OBJECT_RE = re.compile(r"\bcreature\b|\bpermanent\b")
+
+
+def _cheats_creatures(text: str) -> bool:
+    """True only when the card can put an arbitrary CREATURE from hand onto the battlefield."""
+    return any(_CHEATABLE_OBJECT_RE.search(m.group(1)) for m in _HAND_PUT_RE.finditer(text))
 
 # --- storm / spellslinger go-off engine (docs/SIMULATION.md; feeds the Ceiling axis) ---
 _GRANTS_STORM_RE = re.compile(r"spells you cast have storm")  # Prismari class
@@ -211,7 +234,7 @@ def analyze(card: Card) -> EffectVector:
     removal = 1 if any(r.search(text) for r in _REMOVAL_RES) else 0
     board_wipe = any(r.search(text) for r in _WIPE_RES)
     counterspell = bool(_COUNTER_RE.search(text))
-    cheats_creatures = bool(_CHEAT_RE.search(text))
+    cheats_creatures = _cheats_creatures(text)
     draw_cards, engine_draw = _draw_counts(text)
 
     # storm / spellslinger engine facts
