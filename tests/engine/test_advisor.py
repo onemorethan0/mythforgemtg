@@ -213,3 +213,36 @@ def test_advise_skips_cards_already_in_deck(deck, store, make_card):
 def test_advise_rejects_unknown_axis(deck, store):
     with pytest.raises(ValueError, match="unknown axis"):
         advisor.advise(deck, SimConfig(runs=50, turns=5, seed=1), store, [], axis="bogus")
+
+
+def test_advisor_never_suggests_a_card_outside_the_colour_identity(make_card, forest, bear):
+    """CR 903.4. The advisor had no legality notion at all, so with a collection-shaped
+    candidate pool it would tell a mono-green deck to add a blue card — a swap the user
+    cannot legally make, listed next to real ones.
+    """
+    from mythgauntlet.model.deck import Deck, ResolvedDeck
+    from mythgauntlet.ratings.advisor import advise
+    from mythgauntlet.semantics.store import SemanticsStore
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    cmd = make_card("Green Boss", mana_cost="{2}{G}", type_line="Legendary Creature — Elf",
+                    colors=("G",), color_identity=("G",))
+    cmd.power, cmd.toughness = "3", "3"
+    resolved = ResolvedDeck(deck=Deck(name="mono-green"), commanders=[cmd],
+                            cards=[(forest, 60), (bear, 39)], missing=[])
+
+    legal = make_card("Green Add", mana_cost="{1}{G}", type_line="Creature — Beast",
+                      colors=("G",), color_identity=("G",))
+    legal.power, legal.toughness = "4", "4"
+    illegal = make_card("Blue Add", mana_cost="{1}{U}", type_line="Creature — Drake",
+                        colors=("U",), color_identity=("U",))
+    illegal.power, illegal.toughness = "9", "9"          # strictly better, still illegal
+    colorless = make_card("Rock", mana_cost="{2}", type_line="Artifact",
+                          oracle_text="{T}: Add {C}.")
+
+    report = advise(resolved, SimConfig(turns=8, runs=8, seed=3), SemanticsStore({}),
+                    [legal, illegal, colorless], axis="speed", top=5, max_eval=6,
+                    min_delta=-999.0)
+    named = {s.add for s in report.suggestions}
+    assert "Blue Add" not in named
+    assert named <= {"Green Add", "Rock"}   # colourless is legal in any identity

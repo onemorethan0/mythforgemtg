@@ -338,6 +338,30 @@ def _swap_variant(resolved: ResolvedDeck, cut: Card, add: Card) -> ResolvedDeck:
     return dataclasses.replace(resolved, cards=new_cards)
 
 
+def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
+    """The deck's legal colour identity: the union across its commander(s)."""
+    identity: set[str] = set()
+    for commander in resolved.commanders:
+        identity.update(getattr(commander, "color_identity", ()) or ())
+    return frozenset(identity)
+
+
+def _within_identity(card: Card, identity: frozenset[str]) -> bool:
+    """Whether `card` is legal in a deck of this colour identity (CR 903.4).
+
+    The advisor had no legality notion at all, so with a collection-shaped candidate pool
+    it would happily tell a mono-green deck to add a blue card — a swap the user cannot
+    legally make, presented alongside real ones. Colourless cards are legal everywhere, so
+    an empty identity on the card always passes.
+
+    NOTE this checks colour identity ONLY. The slim card store carries no `legalities`
+    field, so a Commander-BANNED card the user owns (Mana Crypt, Jeweled Lotus, Dockside)
+    can still be recommended. Fixing that needs the banned flag carried through
+    data/scryfall.py's slim schema first.
+    """
+    return set(getattr(card, "color_identity", ()) or ()) <= identity
+
+
 def advise(
     resolved: ResolvedDeck,
     cfg: SimConfig,
@@ -380,7 +404,11 @@ def advise(
     analyses = 0
     if cuts:
         in_deck = {c.name for c, _ in resolved.cards} | {c.name for c in resolved.commanders}
-        eligible = [c for c in candidates if c.name not in in_deck]
+        identity = _commander_identity(resolved)
+        eligible = [
+            c for c in candidates
+            if c.name not in in_deck and _within_identity(c, identity)
+        ]
         # Rank by TARGET-axis relevance AND the commander's mechanical direction before
         # spending the eval budget, so we re-simulate the cards most likely to move the
         # axis that also fit the deck's plan (e.g. Kaalia's cheatable Angels/Demons/Dragons).
