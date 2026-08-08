@@ -2,15 +2,38 @@ requests>=2.31.0
 pillow>=12.0.0
 fastapi>=0.130.0
 uvicorn>=0.47.0
+# Imported directly by both servers for the request models, not just pulled in behind
+# fastapi — declare what we actually import.
+pydantic>=2.0
 anthropic>=0.100.0
 python-multipart>=0.0.9
 pixie-python>=4.3.0
 imageio>=2.34.0
 imageio-ffmpeg>=0.5.1
+# card_video's procedural foil/holo sweep and its crossfade loop builder import numpy at
+# call time and NOT inside a try, so this is a hard runtime dependency — and it backs the
+# one animation path that is meant to work with no model installed at all. It was missing
+# here and only ever installed explicitly by CI, so a clean `pip install -r
+# requirements.txt` produced an app that ImportErrors the moment you animate a card.
+# (mana_pips also imports it, but guarded, with a documented fallback.)
+numpy>=1.26
 
 # --- MythGauntlet engine (src/mythgauntlet) ---------------------------------
 # The simulation/analysis engine merged in 2026-07-29. Small, pure-Python deps;
 # fastapi/uvicorn/requests above are shared with the app.
 rich>=13.0
 json-repair>=0.30
+
+# --- Deliberately NOT required ----------------------------------------------
+# Audited 2026-08-08 by walking every third-party import in the tracked tree against this
+# file. Each of these is imported behind a try/except with a real fallback or a clear
+# install message, so the app runs without them — install only if you want the feature:
+#   trimesh, rembg      model3d.py — commander -> 3D print. trimesh raises an actionable
+#                       "pip install trimesh"; rembg just flips a health-check flag.
+#   scipy               mana_pips.py — trims the pip silhouette to its largest blob; the
+#                       median filter + bbox is already clean without it.
+#   huggingface-hub     download-models.py / download_new_models.py — setup scripts only.
+#   pywin32 (win32com)  server.py — resolves ComfyUI's Start-Menu shortcut on Windows.
+#   pytest              tests only; CI installs it separately.
+# numpy was the one unguarded import in this class and is now required above.
 
