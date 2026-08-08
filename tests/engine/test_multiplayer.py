@@ -268,3 +268,57 @@ def test_pod_game_is_deterministic(make_card, forest):
     seats2 = [_seat(make_card, forest) for _ in range(4)]
     r2 = play_table(seats2, cfg, SeededRng(11), _greedy_agents(4))
     assert r1 == r2
+
+
+def test_combat_stays_with_the_seat_that_was_attacked():
+    """CR 506.3/508.1: an attacker is declared as attacking a specific player, and that
+    does not change mid-combat.
+
+    `other` is a computed property — the highest-scoring living opponent — and combat used
+    to read it afresh at every step: to fire attack triggers, to pick who declares blocks,
+    and again to assign combat damage. An attack trigger that drains or kills in between
+    (an ordinary pod occurrence) re-ranks the threats, so blocks were declared by one seat
+    while the damage landed on another that never had a chance to block.
+    """
+    from mythgauntlet.sim.game import _apply_declare_attackers, _apply_declare_blocks
+
+    players = {"a": _player("a"), "b": _player("b", score_power=9),
+               "c": _player("c", score_power=8), "d": _player("d", score_power=1)}
+    st = GameState(players=players, order=list("abcd"),
+                   cfg=DuelConfig(max_turns=30), active="a")
+    attacker = _Permanent(name="Attacker", power=7, toughness=7,
+                          is_creature=True, sick=False)
+    players["a"].battlefield.append(attacker)
+
+    assert st.other == "b"                      # b is the biggest threat right now
+    _apply_declare_attackers(st, [attacker])
+    assert st.combat_defender == "b"            # ...so the attack is declared at b
+
+    players["b"].life -= 20                     # an attack trigger drains b
+    assert st.other == "c"                      # the live ranking now prefers c
+
+    advance(st)
+    assert st.pending.player == "b"             # b still declares the blocks
+
+    before = {k: players[k].life for k in "bcd"}
+    _apply_declare_blocks(st, {})               # no blocks
+    after = {k: players[k].life for k in "bcd"}
+    assert after["b"] == before["b"] - 7        # damage lands on the seat that was attacked
+    assert after["c"] == before["c"]
+    assert st.combat_defender is None           # lock released when combat ends
+
+
+def test_combat_defender_survives_a_clone():
+    """MCTS clones mid-combat; losing the lock there would reintroduce the flip in search."""
+    from mythgauntlet.sim.game import _apply_declare_attackers, clone
+
+    players = {"a": _player("a"), "b": _player("b", score_power=9),
+               "c": _player("c", score_power=8)}
+    st = GameState(players=players, order=list("abc"),
+                   cfg=DuelConfig(max_turns=30), active="a")
+    attacker = _Permanent(name="Attacker", power=3, toughness=3,
+                          is_creature=True, sick=False)
+    players["a"].battlefield.append(attacker)
+    _apply_declare_attackers(st, [attacker])
+
+    assert clone(st).combat_defender == st.combat_defender == "b"

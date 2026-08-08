@@ -149,6 +149,17 @@ class GameState:
     activation_reserve: int = 0
     activations_done: int = 0
     combat_attackers: list[_Permanent] = field(default_factory=list)
+    # Who the attack was declared against, LOCKED for the whole combat.
+    #
+    # `other` is a computed property — the highest-scoring living opponent — and combat read
+    # it afresh at every step: to fire attack triggers, to pick who declares blocks, and
+    # again to assign combat damage. An attack trigger that drains or kills in between (an
+    # ordinary pod occurrence) re-ranks the threats, so blocks were declared by one seat and
+    # the damage landed on another, which never had a chance to block. CR 506.3/508.1: an
+    # attacker is declared as attacking a specific player and that does not change.
+    # None outside combat. In 1v1 there is only ever one opponent, so this is a no-op there
+    # and the golden master is unaffected.
+    combat_defender: str | None = None
     # a spell on the stack awaiting counter/resolution: (card, is_commander, value, caster_key)
     pending_spell: tuple[GameCard, bool, float, str] | None = None
     counters_on_stack: int = 0  # counters played over the pending spell (LIFO parity)
@@ -182,6 +193,21 @@ class GameState:
 
     def me_opp(self) -> tuple[_Player, _Player]:
         return self.players[self.active], self.players[self.other]
+
+    @property
+    def combat_defender_key(self) -> str:
+        """Seat KEY of the player combat was declared against (not `_Player.name`, which is
+        a display name and does not always match the key). Falls back to `other` outside a
+        declared combat, or if that seat has since been eliminated."""
+        key = self.combat_defender
+        if key is None or key in self.eliminated or key not in self.players:
+            return self.other
+        return key
+
+    def combat_me_opp(self) -> tuple[_Player, _Player]:
+        """(attacker, DEFENDER) — the seat combat was declared against, not the current
+        biggest threat."""
+        return self.players[self.active], self.players[self.combat_defender_key]
 
 
 _ACTIVATION_BUDGET = 8  # cap per turn (was _activation_phase's `budget`), also bounds rollouts
@@ -229,6 +255,7 @@ def clone(state: GameState) -> GameState:
         pending=state.pending,
         terminal=state.terminal,
         result=state.result,
+        combat_defender=state.combat_defender,
     )
     # combat_attackers references permanents; remap to the cloned battlefield by identity->index
     if state.combat_attackers:
@@ -527,7 +554,8 @@ def advance(state: GameState) -> None:
             state.pending = Decision(state.active, COMBAT_ATTACK)
             return
         elif ph == COMBAT_BLOCK:
-            state.pending = Decision(state.other, COMBAT_BLOCK)
+            # the seat that was attacked declares the blocks, not whoever is biggest now
+            state.pending = Decision(state.combat_defender_key, COMBAT_BLOCK)
             return
         elif ph == "end_step":
             _do_end_step(state)
@@ -825,7 +853,10 @@ def _apply_declare_attackers(state: GameState, declared: tuple[_Permanent, ...])
     ``n`` is fixed at the declared-attacker count so a self-trigger that kills an attacker
     can't retroactively shrink the global fan-out.
     """
-    me, opp = state.me_opp()
+    # Lock the defender BEFORE any attack trigger fires, so the triggers, the block
+    # decision and the damage assignment all address the seat that was actually attacked.
+    state.combat_defender = state.other
+    me, opp = state.combat_me_opp()
     others = _others(state)
     attackers = [a for a in declared if a in me.battlefield]
     attackers = sorted(attackers, key=lambda c: c.power, reverse=True)
@@ -838,12 +869,16 @@ def _apply_declare_attackers(state: GameState, declared: tuple[_Permanent, ...])
             _fire_attack_triggers(perm, me, opp, "global_once", 1, others)
     attackers = [c for c in attackers if c in me.battlefield]
     state.combat_attackers = attackers
-    state.phase = "end_step" if not attackers else COMBAT_BLOCK
+    if attackers:
+        state.phase = COMBAT_BLOCK
+    else:  # every attacker died to its own trigger; combat is over, release the lock
+        state.phase = "end_step"
+        state.combat_defender = None
 
 
 def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -> None:
     """Resolve combat damage exactly as the old _combat second half did."""
-    me, opp = state.me_opp()  # me = attacker, opp = defender
+    me, opp = state.combat_me_opp()  # me = attacker, opp = the seat that WAS attacked
     others = _others(state)  # scales a dying creature's "each opponent" death drain across the pod
     attackers = state.combat_attackers
     unblocked_hitters: list[_Permanent] = []
@@ -862,6 +897,7 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
     for atk in unblocked_hitters:
         _fire_perm_triggers(atk, me, opp, "combat_damage_to_player")
     state.combat_attackers = []
+    state.combat_defender = None
     state.phase = "end_step"
 
 
