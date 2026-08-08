@@ -162,3 +162,43 @@ def test_graded_fast_combo_escalates_to_five(make_card, forest):
         cards, [], ceiling=60, speed_kill_rate=0.5, combo_profile=fast, combos_checked=True,
     )
     assert est.bracket == 5
+
+
+# --- the two surfaces must agree ---------------------------------------------------------
+
+def test_pod_finisher_agrees_between_cli_and_api_combo_inputs(make_card):
+    """analyze_deck's callers hand it combo evidence in two different shapes.
+
+    The CLI counts combos itself and passes `game_ending_combos`; the API passes the whole
+    `combo_report` and leaves the counts at 0. `estimate_bracket` reconciles them, but
+    `compute_pod`'s `has_finisher` read the raw count only — so over HTTP it was always
+    False and the app's pod score never reflected a combo finisher that the CLI did see.
+    """
+    from mythgauntlet.model.deck import Deck, ResolvedDeck
+    from mythgauntlet.ratings.analysis import analyze_deck
+    from mythgauntlet.semantics.store import SemanticsStore
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    forest = make_card("Forest", type_line="Basic Land - Forest",
+                       produced_mana=("G",), color_identity=("G",))
+    bear = make_card("Bear", mana_cost="{1}{G}", type_line="Creature - Beast",
+                     color_identity=("G",))
+    bear.power, bear.toughness = "3", "3"
+    cmd = make_card("Cmd", mana_cost="{2}{G}", type_line="Legendary Creature - Elf",
+                    color_identity=("G",))
+    cmd.power, cmd.toughness = "2", "2"
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmd],
+                            cards=[(forest, 40), (bear, 59)], missing=[])
+
+    cfg = SimConfig(turns=8, runs=8, seed=7)
+    store = SemanticsStore({})
+    report = _report(_variant(["Bear", "Cmd"], ["Win the game"], id="combo-1"))
+
+    cli_side = analyze_deck(resolved, cfg, store, two_card_combos=1, game_ending_combos=1,
+                            combo_report=report, combos_checked=True, run_resilience=False)
+    api_side = analyze_deck(resolved, cfg, store, combo_report=report,
+                            combos_checked=True, run_resilience=False)
+
+    assert api_side.pod.via_finisher == cli_side.pod.via_finisher
+    assert api_side.pod.score == cli_side.pod.score
+    assert api_side.bracket.bracket == cli_side.bracket.bracket

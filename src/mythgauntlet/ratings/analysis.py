@@ -85,6 +85,25 @@ def analyze_deck(
     ceiling = compute_ceiling(
         runs, cfg, go_off_turn=go_off.earliest_turn, overrun_alpha=overrun.can_alpha_strike
     )
+    # Grade the combos (metadata) + judge determinism (rules/errata) so the bracket gate and
+    # explanation can tell a fast terminal wincon from a slow durdle or a chance-based loop,
+    # instead of "any combo -> min Bracket 3".
+    #
+    # Graded BEFORE the pod score, because the pod score needs it. The two callers supply
+    # combo evidence in different shapes: the CLI counts combos itself and passes
+    # `game_ending_combos`, while the API passes the whole `combo_report` and leaves the
+    # counts at 0. `estimate_bracket` already reconciles the two (it takes
+    # `max(combo_count, two_card_combos, combo_profile.total)`), but `has_finisher` below
+    # read the raw count only — so over HTTP it was ALWAYS False and the app's pod score
+    # never reflected a combo finisher, while the CLI's did. Same deck, two answers, from
+    # the pipeline whose comment says the surfaces "can't drift".
+    combo_profile = None
+    if combo_report is not None:
+        commander_names = frozenset(c.name for c in resolved.commanders)
+        det_fn = make_determinism_fn(resolved.cards, resolved.commanders)
+        combo_profile = assess_combos(combo_report, commander_names, determinism_fn=det_fn)
+    has_finisher = game_ending_combos > 0 or (combo_profile is not None and combo_profile.total > 0)
+
     # Pod (multiplayer) closing power: a longer goldfish (a pod runs long) tells whether the deck
     # can generate TABLE-lethal unopposed damage; a game-ending combo closes the table combat
     # can't. A capacity proxy — the duel-vs-pod gap shows how much a pod raises the bar.
@@ -93,7 +112,7 @@ def analyze_deck(
     else:
         pod_cfg = replace(cfg, turns=_POD_HORIZON)
         pod_runs = simulate(resolved.cards, commander, pod_cfg)
-    pod = compute_pod(pod_runs, pod_cfg, has_finisher=game_ending_combos > 0)
+    pod = compute_pod(pod_runs, pod_cfg, has_finisher=has_finisher)
 
     resilience = None
     wipe_turn = None
@@ -105,14 +124,6 @@ def analyze_deck(
         [c.name for c in resolved.commanders if c.game_changer]
         + [c.name for c, _ in resolved.cards if c.game_changer]
     )
-    # Grade the combos (metadata) + judge determinism (rules/errata) so the bracket gate and
-    # explanation can tell a fast terminal wincon from a slow durdle or a chance-based loop,
-    # instead of "any combo -> min Bracket 3".
-    combo_profile = None
-    if combo_report is not None:
-        commander_names = frozenset(c.name for c in resolved.commanders)
-        det_fn = make_determinism_fn(resolved.cards, resolved.commanders)
-        combo_profile = assess_combos(combo_report, commander_names, determinism_fn=det_fn)
     bracket = estimate_bracket(
         resolved.cards, resolved.commanders,
         ceiling=ceiling.score, speed_kill_rate=report.goldfish_kill_rate,
