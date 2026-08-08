@@ -219,7 +219,10 @@ def render_dashboard(console: Console, *, status: SuiteStatus | None = None) -> 
         age = _age_str(st.card_data_age_days)
         size = f"{st.card_data_size_mb:.0f} MB" if st.card_data_size_mb is not None else "cached"
         card_val = f"{flag(True)}  ({size}, updated {age})"
-        if st.card_data_age_days and st.card_data_age_days > 30:
+        # Against the engine's OWN freshness policy, not a looser hand-picked number.
+        # This hinted at 30 days while scryfall.MAX_AGE_DAYS is 7, so the store that sat
+        # frozen for 26 days looked perfectly healthy here the entire time.
+        if st.card_data_age_days and st.card_data_age_days > scryfall.MAX_AGE_DAYS:
             card_val += "  [yellow]consider fetch-data --force[/yellow]"
     else:
         card_val = flag(False) + "  run 'fetch-data'"
@@ -289,7 +292,11 @@ def run_checks() -> list[Check]:
             detail = f"{n:,} cards, " + detail
         except (FileNotFoundError, RuntimeError):
             pass
-        stale = st.card_data_age_days is not None and st.card_data_age_days > 45
+        # doctor's whole job is catching this. It warned at 45 days while the fetch layer
+        # refetches at 7, so the 26-day freeze that silently dropped five corpus decks and
+        # faked an "exhausted" compile pool was reported as OK by the very check meant to
+        # surface it. Track the policy, don't restate a looser one.
+        stale = st.card_data_age_days is not None and st.card_data_age_days > scryfall.MAX_AGE_DAYS
         checks.append(
             Check(
                 "Card data",

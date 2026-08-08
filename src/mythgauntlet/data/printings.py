@@ -15,6 +15,7 @@ depends on it -- printings carry no gameplay meaning.
 from __future__ import annotations
 
 import json
+import time
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
@@ -36,10 +37,19 @@ SKIP_LAYOUTS = {
 
 SLIM_FILENAME = "printings_slim.json"
 SLIM_SCHEMA = 1
+MAX_AGE_DAYS = 7  # same cadence as the oracle store; Scryfall ships new sets faster
 
 
 def slim_path() -> Path:
     return data_dir() / SLIM_FILENAME
+
+
+def bulk_age_days() -> float | None:
+    """Age of the local slim store in days, or None if there isn't one."""
+    out = slim_path()
+    if not out.exists():
+        return None
+    return (time.time() - out.stat().st_mtime) / 86400
 
 
 @dataclass(frozen=True)
@@ -158,14 +168,26 @@ def _slim(raw: dict) -> dict | None:
     }
 
 
-def fetch_bulk(force: bool = False) -> Path:
+def fetch_bulk(force: bool = False, max_age_days: float | None = MAX_AGE_DAYS) -> Path:
     """Download + slim the `default_cards` bulk file. Returns the slim store path.
 
     ~450 MB raw download, streamed to disk then deleted; the slim store is what we keep.
+
+    Refetches when the local store is missing, older than `max_age_days`, or `force`.
+    Pass `max_age_days=None` to accept any existing store (offline / test use).
+
+    The age check is not optional. This function used to return on mere existence — the
+    exact bug that froze `scryfall.fetch_bulk`'s store at 2026-07-05 for 26 days (see the
+    docstring there). The blast radius is smaller here because only the EDHPlay art export
+    reads printings, never `sim/` or `semantics/`, but the failure mode is the same and
+    just as silent: a frozen store simply has no printings for recently-released cards, so
+    art selection quietly falls back or comes up empty for them with nothing reported.
     """
     out = slim_path()
     if out.exists() and not force:
-        return out
+        age = bulk_age_days()
+        if max_age_days is None or (age is not None and age <= max_age_days):
+            return out
 
     resp = requests.get(BULK_INDEX_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()

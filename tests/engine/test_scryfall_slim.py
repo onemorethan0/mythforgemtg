@@ -115,3 +115,49 @@ def test_fetch_bulk_max_age_none_accepts_any_store(tmp_path, monkeypatch):
     store = _write_store(tmp_path, monkeypatch, age_days=999)
     monkeypatch.setattr(scryfall.requests, "get", _no_network)
     assert scryfall.fetch_bulk(max_age_days=None) == store
+
+
+def _write_printings_store(tmp_path, monkeypatch, age_days):
+    """Point the data dir at tmp_path with a printings slim store aged `age_days`."""
+    import json
+    import os
+    import time
+
+    monkeypatch.setenv("MYTHGAUNTLET_DATA", str(tmp_path))
+    store = tmp_path / "printings_slim.json"
+    store.write_text(json.dumps({"schema": 1, "printings": {}}), encoding="utf-8")
+    when = time.time() - age_days * 86400
+    os.utime(store, (when, when))
+    return store
+
+
+def test_printings_fetch_bulk_serves_a_fresh_store(tmp_path, monkeypatch):
+    from mythgauntlet.data import printings
+
+    store = _write_printings_store(tmp_path, monkeypatch, age_days=1)
+    monkeypatch.setattr(printings.requests, "get", _no_network)
+    assert printings.fetch_bulk() == store
+
+
+def test_printings_fetch_bulk_refetches_a_stale_store(tmp_path, monkeypatch):
+    """The same no-age-check bug that froze the oracle store, in the sibling module.
+
+    `printings.fetch_bulk` returned on mere existence long after `scryfall.fetch_bulk`
+    was fixed. Only the EDHPlay art export reads printings, so the blast radius is
+    smaller — but a frozen store simply has no printings for recently-released cards,
+    and art selection falls back or comes up empty with nothing reported.
+    """
+    from mythgauntlet.data import printings
+
+    _write_printings_store(tmp_path, monkeypatch, age_days=printings.MAX_AGE_DAYS + 1)
+    monkeypatch.setattr(printings.requests, "get", _no_network)
+    with pytest.raises(_Reached):
+        printings.fetch_bulk()
+
+
+def test_printings_fetch_bulk_max_age_none_accepts_any_store(tmp_path, monkeypatch):
+    from mythgauntlet.data import printings
+
+    store = _write_printings_store(tmp_path, monkeypatch, age_days=999)
+    monkeypatch.setattr(printings.requests, "get", _no_network)
+    assert printings.fetch_bulk(max_age_days=None) == store
