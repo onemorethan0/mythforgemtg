@@ -6346,7 +6346,12 @@ async def upsert_custom_art_style(payload: dict):
     if payload.get("negative_prompt"):
         preset["negative_prompt"] = payload["negative_prompt"]
 
-    upsert_custom_preset(key, preset)
+    # Report the truth: _save_custom_presets used to swallow write failures, so this
+    # returned ok:True for a style that never reached disk and vanished on reload.
+    try:
+        upsert_custom_preset(key, preset)
+    except OSError as e:
+        raise HTTPException(500, f"Could not save custom art style '{key}': {e}") from e
     return {"ok": True, "key": key}
 
 
@@ -6356,7 +6361,10 @@ async def delete_custom_art_style(key: str):
     from image_gen import delete_custom_preset, _LORA_PRESETS
     if key in _LORA_PRESETS:
         raise HTTPException(400, f"'{key}' is a built-in preset and cannot be deleted.")
-    deleted = delete_custom_preset(key)
+    try:
+        deleted = delete_custom_preset(key)
+    except OSError as e:
+        raise HTTPException(500, f"Could not delete custom art style '{key}': {e}") from e
     if not deleted:
         raise HTTPException(404, f"Custom preset '{key}' not found.")
     return {"ok": True, "key": key}

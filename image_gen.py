@@ -1340,12 +1340,34 @@ def _load_custom_presets() -> dict:
 
 
 def _save_custom_presets(presets: dict) -> None:
-    """Persist custom presets to disk."""
+    """Persist custom presets to disk. Atomic, and RAISES on failure.
+
+    Two things were wrong with the previous version, and they compounded:
+
+    1. `open(path, "w")` truncates the target immediately, so a failure part-way through
+       the dump left custom_presets.json empty or half-written. `_load_custom_presets`
+       then swallows the JSONDecodeError and returns {} — so one bad write silently
+       destroyed EVERY saved art style, not just the one being added.
+    2. The failure was swallowed and printed to the server console. The caller
+       (`upsert_custom_preset` -> POST /api/art-styles/custom) returns {"ok": True}
+       unconditionally, so the UI reported a preset saved that was not on disk.
+
+    Writing to a temp file in the same directory and os.replace-ing it is the pattern the
+    engine already uses for every cache write; this brings the app side in line.
+    """
+    tmp = f"{_CUSTOM_PRESETS_PATH}.tmp"
     try:
-        with open(_CUSTOM_PRESETS_PATH, "w", encoding="utf-8") as _f:
+        with open(tmp, "w", encoding="utf-8") as _f:
             _json.dump(presets, _f, indent=2, ensure_ascii=False)
-    except Exception as _e:
-        print(f"  [image_gen] Warning: could not save custom_presets.json: {_e}")
+            _f.flush()
+            _os.fsync(_f.fileno())
+        _os.replace(tmp, _CUSTOM_PRESETS_PATH)   # atomic on Windows and POSIX
+    except Exception:
+        try:
+            _os.unlink(tmp)
+        except OSError:
+            pass
+        raise
 
 
 def get_all_presets() -> dict:
