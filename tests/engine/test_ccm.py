@@ -480,3 +480,47 @@ def test_cross_check_accepts_correct_events(make_card):
         doc, card = _triggered(event, oracle, make_card)
         assert not any("trigger event" in e for e in cross_check(doc, card)), \
             f"{event} should be supported by {oracle!r}"
+
+
+def test_executed_events_matches_the_simulator():
+    """`ccm.EXECUTED_EVENTS` duplicates `sim/tier2._EVENT_TRIGGERS` because semantics must
+    not import the simulator. Pin them so the copy cannot drift."""
+    from mythgauntlet.semantics.ccm import EXECUTED_EVENTS
+    from mythgauntlet.sim.tier2 import _EVENT_TRIGGERS
+
+    assert EXECUTED_EVENTS == _EVENT_TRIGGERS
+
+
+def test_a_synonym_cannot_smuggle_an_unsupported_trigger_past_gate_3():
+    """Gate 3 is permissive about events it does not recognise, on the reasoning that such
+    an event stays inert. That holds for a genuinely unknown word but NOT for a synonym:
+    `canonical_event` turns "beginning_of_combat" into the executable "begin_combat" at run
+    time, while `_TRIGGER_EVIDENCE` is keyed on the canonical spelling — so the raw lookup
+    missed, the gate passed with no evidence, and the trigger then fired every combat.
+
+    Preventive: no stored CCM currently exploits this (all 16 `beginning_of_combat` cards
+    do say "at the beginning of (each) combat").
+    """
+    from mythgauntlet.model.card import Card
+    from mythgauntlet.semantics.ccm import _check_trigger_events
+
+    def gate(oracle, event):
+        card = Card(name="X", mana_cost_str="{2}", type_line="Creature — Human",
+                    oracle_text=oracle)
+        doc = {"abilities": [{"kind": "triggered", "trigger": {"event": event},
+                              "effects": [{"op": "draw", "count": 1}]}]}
+        return _check_trigger_events(doc, card, card.oracle_text)
+
+    no_support = "Whenever this creature deals combat damage to a player, draw a card."
+    assert gate(no_support, "begin_combat")           # canonical: always caught
+    assert gate(no_support, "beginning_of_combat")    # synonym: caught now too
+    assert gate(no_support, "beginning_of_upkeep")
+
+    # A card that really does say it still passes through the synonym.
+    assert not gate("At the beginning of each combat, draw a card.", "beginning_of_combat")
+
+    # Synonyms for events the engine never executes stay permissive — demanding evidence
+    # there would reject correct CCMs (six Heroic cards phrase it "whenever you cast a
+    # spell that targets this creature") for no simulation gain.
+    heroic = "Heroic — Whenever you cast a spell that targets this creature, draw a card."
+    assert not gate(heroic, "targeted_by_spell")

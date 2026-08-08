@@ -97,6 +97,25 @@ def canonical_event(event: object) -> object:
     return _EVENT_SYNONYMS.get(event, event) if isinstance(event, str) else event
 
 
+# Events the SIMULATOR actually executes — mirrors `sim/tier2._EVENT_TRIGGERS`. Duplicated
+# rather than imported because semantics must not depend on the simulator; `test_ccm.py`
+# pins the two in sync, which is the same guard the project uses elsewhere for a constant
+# that would otherwise drift.
+#
+# It exists so the trigger gate can tell the two kinds of re-spelling apart. Gate 3 is
+# deliberately permissive about an event it does not recognise, on the reasoning that such
+# an event stays inert — true for a genuinely unknown word, FALSE for a synonym, which
+# `canonical_event` turns into a real event at run time. But only the synonyms landing in
+# THIS set can fabricate value; the rest canonicalize to events the engine drops anyway, so
+# demanding textual evidence for those would discard whole CCMs for no simulation gain
+# (six Heroic cards say "whenever you cast a spell that targets this creature" rather than
+# "becomes the target", and `becomes_target` is never executed).
+EXECUTED_EVENTS = frozenset({
+    "upkeep", "draw_step", "end_step", "landfall", "cast_creature", "cast_spell",
+    "opponent_casts_spell", "attack", "combat_damage_to_player", "begin_combat",
+})
+
+
 TARGET_KEYS = {"type", "subtype", "controller", "count", "zone"}
 TARGET_CONTROLLERS = {"you", "opponent", "any", "each"}
 EFFECT_COMMON_KEYS = {"op", "optional", "condition", "note", "x_basis"}
@@ -561,14 +580,38 @@ def _check_trigger_events(doc: dict, card: Card, text: str) -> list[str]:
         if not isinstance(ability, dict) or ability.get("kind") != "triggered":
             continue
         trigger = ability.get("trigger")
-        event = trigger.get("event") if isinstance(trigger, dict) else None
-        if not isinstance(event, str) or event == "other" or event in licensed:
+        raw = trigger.get("event") if isinstance(trigger, dict) else None
+        if not isinstance(raw, str) or raw == "other" or raw in licensed:
+            continue
+        # Check the CANONICAL spelling, but only when it names an event the engine will
+        # actually EXECUTE. The "an event outside the vocabulary passes" allowance above is
+        # sound only for events that stay unmapped and therefore stay inert — a known
+        # SYNONYM does not stay unmapped, `canonical_event` turns it into a real event at
+        # run time. Looking up the raw string meant "beginning_of_combat" missed
+        # `_TRIGGER_EVIDENCE` (keyed on "begin_combat") and passed with no evidence at all,
+        # then fired every combat for free.
+        #
+        # This is PREVENTIVE, not corrective: all 58 stored CCMs using a synonym spelling
+        # do have the text (every one of the 16 `beginning_of_combat` cards says "at the
+        # beginning of (each) combat"). The compile pool is still growing, and this is the
+        # gate that is supposed to stop a wrong event, so the hole is worth closing before
+        # something lands in it.
+        #
+        # Restricted to EXECUTED_EVENTS because the harmless synonyms outnumber the
+        # dangerous ones: demanding evidence for `targeted_by_spell` -> `becomes_target`
+        # would reject six Heroic CCMs that say "whenever you cast a spell that targets
+        # this creature" — correct cards, for an event the engine never runs.
+        event = canonical_event(raw)
+        if not isinstance(event, str) or event in licensed:
+            continue
+        if event != raw and event not in EXECUTED_EVENTS:
             continue
         pattern = _TRIGGER_EVIDENCE.get(event)
         if pattern is None or pattern.search(text):
             continue
+        spelling = f"'{raw}' (reads as '{event}')" if event != raw else f"'{event}'"
         errors.append(
-            f"trigger event '{event}' has no support in the oracle text "
+            f"trigger event {spelling} has no support in the oracle text "
             f"(use a matching event or 'other')"
         )
     return errors
