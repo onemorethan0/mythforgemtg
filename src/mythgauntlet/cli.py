@@ -1138,16 +1138,46 @@ def _load_resolved(path: str, db: scryfall.CardDb):
     return resolved
 
 
+_combo_lookup_failures: list[str] = []
+
+
 def _winning_combos(resolved) -> tuple[frozenset[str], ...]:
-    """Best-effort game-ending combos for a deck (network; empty if offline/absent)."""
+    """Best-effort game-ending combos for a deck (network; empty if offline/absent).
+
+    A failure still degrades to "no combos" — that is the right behaviour for a single
+    deck. What was wrong is that it degraded SILENTLY. `pod-brackets` calls this once per
+    deck across the whole corpus, and CLAUDE.md is explicit that the entire B5 lift is the
+    combo model, so a Spellbook outage or a rate-limit part-way through a run gives some
+    decks their real combos and others an empty tuple: one calibration number computed from
+    two different models, with nothing on screen saying so. Failures are recorded and
+    reported by `_report_combo_failures` at the end of a run.
+    """
+    name = getattr(getattr(resolved, "deck", None), "name", "?")
     try:
         report = spellbook.find_combos(
             [(c.name, n) for c, n in resolved.cards],
             [c.name for c in resolved.commanders],
         )
-    except Exception:  # noqa: BLE001 - offline / API hiccup degrades to no combos
+    except Exception as exc:  # noqa: BLE001 - offline / API hiccup degrades to no combos
+        _combo_lookup_failures.append(f"{name}: {type(exc).__name__}: {exc}"[:160])
         return ()
     return tuple(spellbook.winning_combos(report))
+
+
+def _report_combo_failures() -> None:
+    """Say out loud how many decks silently lost their combo data, and to what."""
+    if not _combo_lookup_failures:
+        return
+    console.print(
+        f"[yellow]⚠ combo lookup failed for {len(_combo_lookup_failures)} deck(s) — those "
+        f"decks were rated with NO combos, so this run mixes the combo and no-combo "
+        f"models. Re-run, or use --no-combos for a consistent one.[/yellow]"
+    )
+    for line in _combo_lookup_failures[:5]:
+        console.print(f"[yellow]    {line}[/yellow]")
+    if len(_combo_lookup_failures) > 5:
+        console.print(f"[yellow]    … and {len(_combo_lookup_failures) - 5} more[/yellow]")
+    _combo_lookup_failures.clear()
 
 
 def _cmd_duel(args: argparse.Namespace) -> int:
@@ -2015,7 +2045,13 @@ def main(argv: list[str] | None = None) -> int:
         # Bare 'mythgauntlet': open the interactive menu (or the dashboard when not a TTY)
         # instead of argparse's "command is required" error.
         return nav.run_menu(dispatch=main, console=console)
-    return args.func(args)
+    try:
+        return args.func(args)
+    finally:
+        # Report here rather than in each command: every path that rates a deck goes
+        # through one dispatch, and a silently-degraded combo lookup must never be the
+        # thing the operator finds out about later.
+        _report_combo_failures()
 
 
 if __name__ == "__main__":
