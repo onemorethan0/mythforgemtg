@@ -345,3 +345,48 @@ def test_starting_seat_draws_on_turn_one_in_a_pod():
 
     assert hand_after_first_turn("ab") == 0      # 1v1: starting player skips (103.8a)
     assert hand_after_first_turn("abcd") == 1    # pod: nobody skips (103.8c)
+
+
+def _body(name):
+    return _Permanent(name=name, power=2, toughness=2, is_creature=True, sick=False)
+
+
+def test_board_wipe_spares_its_own_source_in_a_pod_too():
+    """An ETB board-wipe creature resolves BEFORE its trigger fires, so it survives its own
+    wipe — in 1v1 and in a pod alike.
+
+    The CCM pod path ran `_wipe_all(me, opp, just_cast)` and then, per extra seat,
+    `_wipe_all(other, me, None)`. That second call re-wiped `me` with NO exclusion, so the
+    creature destroyed itself at a 4-player table while surviving at a 2-player one.
+    """
+    from mythgauntlet.sim.tier2 import _wipe_table
+
+    for seat_count in (2, 4):
+        seats = [_Player(name=chr(ord("a") + i), library=[], life=40)
+                 for i in range(seat_count)]
+        for p in seats:
+            p.battlefield.append(_body(f"{p.name}-body"))
+        me, opp, others = seats[0], seats[1], tuple(seats[2:])
+        source = _body("Wipe-ETB")
+        me.battlefield.append(source)
+
+        _wipe_table(me, opp, others, source)
+
+        assert source in me.battlefield, f"self-killed at {seat_count} seats"
+        # and every other creature at the table is gone, not just the primary opponent's
+        for p in seats:
+            assert [c.name for c in p.creatures()] == (
+                ["Wipe-ETB"] if p is me else []
+            ), f"{p.name} kept a board at {seat_count} seats"
+
+
+def test_rung1_board_wipe_reaches_every_seat():
+    """The rung-1 path called `_wipe_all(me, opp, just_cast)` with no `others` loop, so a
+    Wrath in a 4-player game left seats C and D's boards untouched."""
+    from mythgauntlet.sim.tier2 import _wipe_table
+
+    seats = [_Player(name=k, library=[], life=40) for k in "abcd"]
+    for p in seats:
+        p.battlefield.append(_body(f"{p.name}-body"))
+    _wipe_table(seats[0], seats[1], tuple(seats[2:]), None)
+    assert all(not p.creatures() for p in seats)

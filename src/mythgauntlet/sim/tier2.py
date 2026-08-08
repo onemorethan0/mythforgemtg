@@ -465,6 +465,29 @@ def _wipe_all(me: _Player, opp: _Player, exclude: _Permanent | None) -> None:
                 _kill(player, creature, other)
 
 
+def _wipe_table(
+    me: _Player, opp: _Player, others: tuple[_Player, ...], exclude: _Permanent | None
+) -> None:
+    """Destroy every creature on the table exactly ONCE, sparing `exclude` everywhere.
+
+    Replaces two broken pod spellings of the same idea:
+
+    - The CCM path ran `_wipe_all(me, opp, just_cast)` and then, per extra seat,
+      `_wipe_all(other, me, None)`. That second call re-wipes `me` with NO exclusion, so an
+      ETB board-wipe creature destroyed ITSELF in a pod while surviving in 1v1 — the card
+      resolves before its own trigger fires, so it should live in both.
+    - The rung-1 path called `_wipe_all(me, opp, just_cast)` with no `others` loop at all,
+      so a Wrath in a 4-player game left seats C and D's boards untouched.
+
+    Each seat is visited once, so a death trigger cannot fire twice for one wipe either.
+    """
+    for player in (me, opp, *others):
+        killer = opp if player is me else me
+        for creature in list(player.creatures()):
+            if creature is not exclude:
+                _kill(player, creature, killer)
+
+
 def _fetch_land(me: _Player) -> None:
     fetched = next((c for c in me.library if c.sim.is_land), None)
     if fetched is not None:
@@ -601,9 +624,7 @@ def _apply_resolved(
         if (target.get("type") or "creature") not in _REMOVAL_TYPES:
             return
         if target.get("count") == "all" or target.get("controller") == "each":
-            _wipe_all(me, opp, just_cast)
-            for other in others:  # a board wipe clears every pod opponent's creatures
-                _wipe_all(other, me, None)
+            _wipe_table(me, opp, others, just_cast)
         elif opp.creatures():
             _kill(opp, max(opp.creatures(), key=lambda c: c.power), me, others)
     elif op == "deal_damage":
@@ -809,8 +830,9 @@ def _resolve(
     if p.fetches_land:
         _fetch_land(me)
     if p.wipe:
-        # an ETB-wipe creature doesn't destroy itself (it resolves, then the wipe fires)
-        _wipe_all(me, opp, just_cast)
+        # an ETB-wipe creature doesn't destroy itself (it resolves, then the wipe fires),
+        # and the wipe reaches every seat at the table, not just the primary opponent
+        _wipe_table(me, opp, others, just_cast)
     for _ in range(p.removal):
         targets = opp.creatures()
         if not targets:
