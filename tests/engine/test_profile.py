@@ -246,3 +246,34 @@ def test_fallback_uses_effect_vector(make_card):
     profile = profile_for(card, None)
     assert profile.rung == 1
     assert profile.fetches_land
+
+
+def _lose_life_doc(name, cost, **extra):
+    effect = {"op": "lose_life", "amount": 3, **extra}
+    return {
+        "name": name, "ccm_version": 1, "cost": {"mana": cost}, "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [{"op": "draw", "count": 2}, effect]}],
+    }
+
+
+def test_lose_life_without_who_is_not_credited_as_reach(make_card):
+    """"You lose 3 life" is a DRAWBACK, not damage to the opponent.
+
+    `who` is optional in the CCM schema and both readers defaulted it to "opponent".
+    Across the 30,861-card compiled store, 126 stored `lose_life` effects omit `who`
+    and 66 of them are cards whose oracle text says YOU lose the life (Bitter
+    Revelation, Castle Locthwain, Dire Tactics, Champion of Dusk, Be'lakor). Each was
+    scored as face damage TO the opponent — a sign flip that turns a cost into a clock.
+    """
+    card = make_card("Blood Price", mana_cost="{2}{B}", type_line="Sorcery")
+    profile = profile_from_ccm(_lose_life_doc("Blood Price", "{2}{B}"), card, analyze(card))
+    assert profile.damage_face == 0
+
+
+def test_lose_life_credited_only_when_who_names_an_opponent(make_card):
+    card = make_card("Drain Life", mana_cost="{2}{B}", type_line="Sorcery")
+    for who, expected in [("opponent", 3), ("each_opponent", 3), ("each", 3),
+                          ("you", 0), ("controller", 0)]:
+        doc = _lose_life_doc("Drain Life", "{2}{B}", who=who)
+        profile = profile_from_ccm(doc, card, analyze(card))
+        assert profile.damage_face == expected, who

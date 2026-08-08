@@ -43,6 +43,21 @@ _PERIODIC_TRIGGERS = {"upkeep", "draw_step", "end_step", "landfall", "cast_creat
 _REMOVAL_TARGET_TYPES = {"creature", "permanent", "artifact", "enchantment", "any",
                          "planeswalker"}
 
+# `lose_life` only counts as reach/drain when the CCM SAYS an opponent loses it.
+#
+# `who` is optional in the CCM schema (ccm.py `_EFFECT_FIELDS`), and both readers here
+# used to default it to "opponent". Measured against the 30,861-card compiled store:
+# 126 stored `lose_life` effects omit `who`, and 66 of them are cards whose oracle text
+# says YOU lose the life — Bitter Revelation, Castle Locthwain, Dire Tactics, Champion
+# of Dusk, Be'lakor. Every one was being scored as face damage TO the opponent, so a
+# self-damage DRAWBACK read as a burn clock and inflated Speed/Ceiling.
+#
+# Requiring the field explicitly costs the 49 omitted-but-really-opponent effects their
+# credit. That is the correct trade: an honest under-count beats a confident
+# fabrication, and a wrong sign is the most confident fabrication there is. Compiling
+# those 49 with an explicit `who` fixes them properly, at the source.
+_DRAIN_WHO = {"opponent", "each_opponent", "each"}
+
 
 @dataclass(frozen=True)
 class ActivatedEffect:
@@ -142,9 +157,7 @@ def _death_from(effects: list[dict]) -> DeathEffect | None:
         target = _as_dict(effect.get("target"))
         if op == "draw":
             draw += _amount(effect.get("count"), 1)
-        elif op == "lose_life" and effect.get("who", "opponent") in (
-            "opponent", "each_opponent", "each",
-        ):
+        elif op == "lose_life" and effect.get("who") in _DRAIN_WHO:
             drain += _amount(effect.get("amount"), 1)
         elif op == "deal_damage" and target.get("type") in ("player", "opponent"):
             drain += _amount(effect.get("amount"), 1)
@@ -298,7 +311,7 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
             elif op == "gain_life":
                 life += max(0, pr.get("amount", 1))
             elif op == "lose_life":
-                if pr.get("who", "opponent") in ("opponent", "each_opponent", "each"):
+                if pr.get("who") in _DRAIN_WHO:
                     face += max(0, pr.get("amount", 1))
             elif op == "search_library":
                 what = _as_dict(pr.get("what"))
