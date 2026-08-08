@@ -14,6 +14,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import time
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -40,6 +41,9 @@ _WINNING_FEATURE_RE = re.compile(
 
 API_URL = "https://backend.commanderspellbook.com/find-my-combos"
 HEADERS = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+# Re-ask Spellbook weekly, matching scryfall.MAX_AGE_DAYS. Their combo database grows
+# continuously and this is the signal that lifts a deck from Bracket 2 to Bracket 3.
+MAX_AGE_DAYS = 7
 
 
 @dataclass(frozen=True)
@@ -314,13 +318,26 @@ def _request_body(cards: list[tuple[str, int]], commanders: list[str]) -> dict:
 
 
 def find_combos(
-    cards: list[tuple[str, int]], commanders: list[str], force: bool = False
+    cards: list[tuple[str, int]],
+    commanders: list[str],
+    force: bool = False,
+    max_age_days: float | None = MAX_AGE_DAYS,
 ) -> ComboReport:
-    """Query find-my-combos for a deck. Cached by decklist hash."""
+    """Query find-my-combos for a deck. Cached by decklist hash, refetched when stale.
+
+    The age check matters more here than for the card stores. The cache key is the
+    DECKLIST, so an edited deck gets a fresh key automatically — but a deck the user keeps
+    unchanged never re-asked. Commander Spellbook's database grows continuously, and this
+    is the one signal that lifts a casual deck from Bracket 2 to Bracket 3
+    (`estimate_bracket`'s combo gate). So a deck saved today kept its "no combos" verdict
+    for good, even after Spellbook learned that two cards in it go infinite.
+
+    Pass `max_age_days=None` to accept any cached copy (offline / test use).
+    """
     body = _request_body(cards, commanders)
     raw = json.dumps(body, sort_keys=True, ensure_ascii=False)
     cache = _cache_path(hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24])
-    if cache.exists() and not force:
+    if cache.exists() and not force and _fresh(cache, max_age_days):
         try:
             with open(cache, encoding="utf-8") as fh:
                 return parse_response(json.load(fh))
@@ -340,3 +357,13 @@ def _cache_path(key: str) -> Path:
     cache = data_dir() / "spellbook"
     cache.mkdir(parents=True, exist_ok=True)
     return cache / f"{key}.json"
+
+
+def _fresh(path: Path, max_age_days: float | None) -> bool:
+    """Whether a cache file is young enough to serve. None = accept any age."""
+    if max_age_days is None:
+        return True
+    try:
+        return (time.time() - path.stat().st_mtime) / 86400 <= max_age_days
+    except OSError:
+        return False

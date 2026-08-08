@@ -106,3 +106,67 @@ def test_winning_combos_returns_normalized_piece_sets():
     assert frozenset({normalize_name("Kiki-Jiki, Mirror Breaker"),
                       normalize_name("Zealous Conscripts")}) in combos
     assert all(isinstance(s, frozenset) for s in combos)
+
+
+# --- cache freshness ---------------------------------------------------------------
+
+class _Reached(Exception):
+    """Raised in place of a real network call."""
+
+
+def _no_network(*_a, **_kw):
+    raise _Reached
+
+
+def _seed_cache(tmp_path, monkeypatch, age_days):
+    """Point data_dir at tmp_path and pre-seed this deck's combo cache, aged."""
+    import hashlib
+    import json
+    import os
+    import time
+
+    from mythgauntlet.data import spellbook
+
+    monkeypatch.setenv("MYTHGAUNTLET_DATA", str(tmp_path))
+    cards, commanders = [("Basalt Monolith", 1)], ["Thrasios, Triton Hero"]
+    body = spellbook._request_body(cards, commanders)
+    raw = json.dumps(body, sort_keys=True, ensure_ascii=False)
+    key = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
+    path = spellbook._cache_path(key)
+    path.write_text(json.dumps({"results": {"included": []}}), encoding="utf-8")
+    when = time.time() - age_days * 86400
+    os.utime(path, (when, when))
+    return cards, commanders
+
+
+def test_find_combos_serves_a_fresh_cache_without_network(tmp_path, monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch, age_days=1)
+    monkeypatch.setattr(spellbook.requests, "post", _no_network)
+    assert spellbook.find_combos(cards, commanders).included == []
+
+
+def test_find_combos_refetches_a_stale_cache(tmp_path, monkeypatch):
+    """The cache key is the DECKLIST, so an edited deck re-asks on its own — but a deck
+    the user leaves alone never did. Spellbook's database grows, and this is the signal
+    that lifts a casual deck from Bracket 2 to Bracket 3, so a stale "no combos" verdict
+    stuck permanently.
+    """
+    import pytest
+
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch,
+                                    age_days=spellbook.MAX_AGE_DAYS + 1)
+    monkeypatch.setattr(spellbook.requests, "post", _no_network)
+    with pytest.raises(_Reached):
+        spellbook.find_combos(cards, commanders)
+
+
+def test_find_combos_max_age_none_accepts_any_cache(tmp_path, monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch, age_days=999)
+    monkeypatch.setattr(spellbook.requests, "post", _no_network)
+    assert spellbook.find_combos(cards, commanders, max_age_days=None).included == []
