@@ -107,11 +107,27 @@ def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
 
 
 # B1-vs-B2 threshold on mana-base colour consistency. See estimate_bracket for the
-# measurement that chose it; accuracy is flat over 0.70-0.78, so this is a recall-balance
-# choice, not a fitted optimum. The PARAMETER defaults to 1.0 (not this value) so every
-# existing caller and any deck we can't measure stays on the Bracket-2 side rather than
-# being silently demoted to Exhibition.
-_EXHIBITION_MANA = 0.78
+# measurement that chose it; it is a recall-balance choice, not a fitted optimum. The
+# PARAMETER defaults to 1.0 (not this value) so every existing caller and any deck we
+# can't measure stays on the Bracket-2 side rather than being silently demoted to
+# Exhibition.
+#
+# Moved 0.78 -> 0.80 on 2026-08-07 because the INPUT changed, not because the old value
+# was mis-fitted. `manabase.count_sources` now credits fetchlands (they carry
+# `produced_mana == []`, so every one of them previously counted as zero colour
+# sources). That lifts consistency on 329 of 482 corpus decks (mean +0.040, max +0.208),
+# which shifts the whole distribution right and would have skewed the split at 0.78.
+# Re-measured over the same 170 labelled B1/B2 anchors, same methodology:
+#
+#   counting     thresh   acc     B1 recall   B2 recall
+#   old (blind)  0.78     0.641     0.603       0.674     <- previous operating point
+#   new (fetch)  0.78     0.624     0.487       0.739     <- skewed toward B2
+#   new (fetch)  0.80     0.635     0.577       0.685     <- restored, and now correct
+#
+# Accuracy is unchanged within noise (0.641 vs 0.635 is one deck in 170) — this axis is
+# weak either way. The point of the change is that the MODEL is right: a deck running
+# four Evolving Wilds is no longer told its mana base is thin.
+_EXHIBITION_MANA = 0.80
 
 
 def _fast_two_card_combo(two_card_combos: int, profile: ComboAssessment | None) -> bool:

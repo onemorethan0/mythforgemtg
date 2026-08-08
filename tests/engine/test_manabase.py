@@ -84,3 +84,56 @@ def test_analyze_ignores_hybrid_and_colorless(make_card):
     report = manabase.analyze([(rock, 1), (hybrid, 1)])
     assert report.requirements == []
     assert report.consistency == 1.0
+
+
+def test_fetchlands_count_as_colour_sources(make_card, forest):
+    """A fetchland taps for nothing, but it is still a source for what it finds.
+
+    Scryfall gives every fetchland `produced_mana == []` — correctly, they tap for no
+    mana — so counting only `produced_mana` scored all of them as ZERO colour sources.
+    That fed the one number the Bracket 1 vs 2 gate reads, and the common cases are the
+    BUDGET fetches casual decks actually run.
+    """
+    island = make_card("Island", type_line="Basic Land — Island", produced_mana=("U",))
+    # Typed fetch: real oracle text says "a Forest or Island CARD" — not "land card".
+    misty = make_card(
+        "Misty Rainforest", type_line="Land", produced_mana=(),
+        oracle_text=("{T}, Pay 1 life, Sacrifice this land: Search your library for a "
+                     "Forest or Island card, put it onto the battlefield, then shuffle."),
+    )
+    # Generic fetch: can only find a basic, so it counts only for the deck's basics.
+    wilds = make_card(
+        "Evolving Wilds", type_line="Land", produced_mana=(),
+        oracle_text=("{T}, Sacrifice this land: Search your library for a basic land card, "
+                     "put it onto the battlefield tapped, then shuffle."),
+    )
+    counts = manabase.count_sources([(forest, 10), (island, 10), (misty, 4), (wilds, 4)])
+    assert counts["G"] == 18   # 10 Forest + 4 Misty + 4 Wilds
+    assert counts["U"] == 18
+    assert counts["W"] == 0    # nothing produces or finds white
+
+
+def test_generic_fetch_only_counts_colours_the_deck_has_basics_in(make_card):
+    """An Evolving Wilds in a deck with no basic Swamp is not a black source."""
+    island = make_card("Island", type_line="Basic Land — Island", produced_mana=("U",))
+    tower = make_card("Command Tower", type_line="Land", produced_mana=("W", "U", "B", "R", "G"))
+    wilds = make_card(
+        "Evolving Wilds", type_line="Land", produced_mana=(),
+        oracle_text=("{T}, Sacrifice this land: Search your library for a basic land card, "
+                     "put it onto the battlefield tapped, then shuffle."),
+    )
+    counts = manabase.count_sources([(island, 10), (tower, 1), (wilds, 4)])
+    assert counts["U"] == 15   # 10 Island + Tower + 4 Wilds (it can find an Island)
+    assert counts["B"] == 1    # Tower only — no basic Swamp for Wilds to find
+
+
+def test_non_fetch_lands_are_not_credited(make_card):
+    """Only "search ... onto the battlefield" counts; hand/graveyard effects don't."""
+    bog = make_card("Bojuka Bog", type_line="Land", produced_mana=("B",),
+                    oracle_text="When Bojuka Bog enters, exile target player's graveyard.")
+    scout = make_card("Expedition Map", type_line="Artifact", produced_mana=(),
+                      oracle_text="{2}, {T}, Sacrifice: Search your library for a land card, "
+                                  "put it into your hand, then shuffle.")
+    counts = manabase.count_sources([(bog, 1), (scout, 1)])
+    assert counts["B"] == 1                       # Bog's own mana, nothing extra
+    assert sum(counts.values()) == 1              # Map is not a land and goes to hand

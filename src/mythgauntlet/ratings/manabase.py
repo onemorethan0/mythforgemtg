@@ -49,6 +49,7 @@ Deliberate simplifications (stated, per repo convention):
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from math import comb
 
@@ -154,11 +155,64 @@ class ManabaseReport:
         return sum(r.probability for r in self.requirements) / len(self.requirements)
 
 
+_BASIC_TYPE_COLORS = {"plains": "W", "island": "U", "swamp": "B", "mountain": "R", "forest": "G"}
+
+# Both real fetch wordings. A TYPED fetch names land types and says "card", not
+# "land card" — Misty Rainforest reads "…for a Forest or Island card" — so a pattern
+# anchored on the literal "land card" silently matched only the generic ones.
+_FETCH_RE = re.compile(
+    r"search your library for (?:an?|up to \w+)\s+([^.]*?)\bcards?\b", re.IGNORECASE
+)
+
+
+def fetched_colors(card, basic_colors: set[str] | None = None) -> set[str]:
+    """Colours a land can put onto the battlefield even if it taps for none itself.
+
+    Fetchlands carry `produced_mana == []` on Scryfall — correctly, they tap for no mana —
+    so counting only `produced_mana` scored every one of them as ZERO colour sources.
+    That is wrong for consistency math: a fetchland IS a source for whatever it can find,
+    which is how manabase counting is normally done.
+
+    This mattered because `manabase_consistency` is the SOLE discriminator for the
+    Bracket 1 vs 2 gate, and the common cases are the BUDGET fetches casual decks
+    actually run — Evolving Wilds, Terramorphic Expanse, Fabled Passage, Prismatic
+    Vista — not the expensive ones. All of them counted zero.
+
+    `basic_colors` is the set of colours the deck can really find with a generic
+    "basic land card" fetch, i.e. colours it runs an actual basic in. Passing it keeps
+    the credit honest: an Evolving Wilds in a deck with no basic Swamp is not a black
+    source. A TYPED fetch is not restricted that way — "a Forest or Island card" finds
+    any land with that type, including duals, so it counts for those colours outright.
+    """
+    if "Land" not in (getattr(card, "type_line", "") or ""):
+        return set()
+    text = getattr(card, "oracle_text", "") or ""
+    match = _FETCH_RE.search(text)
+    if not match or "onto the battlefield" not in text.lower():
+        return set()
+    named = {c for word, c in _BASIC_TYPE_COLORS.items() if word in match.group(1).lower()}
+    if named:
+        return named
+    if "land" not in match.group(1).lower():
+        return set()                       # searches for something that isn't a land
+    return set("WUBRG") if basic_colors is None else set(basic_colors)
+
+
 def count_sources(cards: list[tuple]) -> dict[str, int]:
     """Sources per color across (card, quantity) pairs — anything that produces the color."""
     counts = dict.fromkeys("WUBRG", 0)
+    # Which colours a generic "basic land card" fetch can actually find in THIS deck.
+    basic_colors: set[str] = set()
+    for card, _qty in cards:
+        type_line = getattr(card, "type_line", "") or ""
+        if "Basic" in type_line and "Land" in type_line:
+            basic_colors.update(s for s in (getattr(card, "produced_mana", ()) or ()) if s in counts)
     for card, qty in cards:
         for symbol in getattr(card, "produced_mana", ()) or ():
+            if symbol in counts:
+                counts[symbol] += qty
+        # A land that taps for mana AND fetches (Krosan Verge, Thawing Glaciers) is both.
+        for symbol in fetched_colors(card, basic_colors):
             if symbol in counts:
                 counts[symbol] += qty
     return counts
