@@ -55,7 +55,7 @@ _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)
 # Removal and board wipes, gated on WHAT the card actually acts on.
 #
 # `sim/tier2._apply_resolved` spends these on the opponent's creatures: `p.wipe` calls
-# `_wipe_all`, and each point of `p.removal` kills the opponent's biggest creature. So the
+# `_wipe_table`, and each point of `p.removal` kills the opponent's biggest creature. So the
 # patterns have to mean "can remove a CREATURE from the battlefield" — the same mistake as
 # the old `_CHEAT_RE`, which matched on the verb and ignored the object.
 #

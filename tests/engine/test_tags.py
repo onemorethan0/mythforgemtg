@@ -298,7 +298,7 @@ def test_cheat_into_play_requires_putting_a_CREATURE(make_card):
 
 
 def test_board_wipe_requires_sweeping_CREATURES(make_card):
-    """`p.wipe` makes tier2 call `_wipe_all`, so the pattern must mean creatures.
+    """`p.wipe` makes tier2 call `_wipe_table`, so the pattern must mean creatures.
 
     "destroy all"/"exile all" matched 632 cards in the 34,179-card store; only 458 can
     touch a creature. Gating the swept OBJECT dropped 174 and added none.

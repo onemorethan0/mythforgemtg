@@ -458,13 +458,6 @@ def _toughness(gc: GameCard) -> int:
     return gc.sim.toughness_value
 
 
-def _wipe_all(me: _Player, opp: _Player, exclude: _Permanent | None) -> None:
-    for player, other in ((me, opp), (opp, me)):
-        for creature in list(player.creatures()):
-            if creature is not exclude:
-                _kill(player, creature, other)
-
-
 def _wipe_table(
     me: _Player, opp: _Player, others: tuple[_Player, ...], exclude: _Permanent | None
 ) -> None:
