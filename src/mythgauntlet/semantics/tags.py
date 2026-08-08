@@ -52,17 +52,71 @@ _SACRIFICE_FOR_MANA_RE = re.compile(r"sacrifice (?:this|it)[^:.]*:[^.]*\badd\b")
 _SEARCH_CARD_RE = re.compile(r"search (?:your|their) library for ([^.]*)")
 _DRAW_RE = re.compile(r"draws? (\w+) (?:additional )?cards?")
 _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)")
-_REMOVAL_RES = (
-    re.compile(r"destroy target"),
-    re.compile(r"exile target"),
-    re.compile(r"deals? \d+ damage to (?:target|any target)"),
-)
+# Removal and board wipes, gated on WHAT the card actually acts on.
+#
+# `sim/tier2._apply_resolved` spends these on the opponent's creatures: `p.wipe` calls
+# `_wipe_all`, and each point of `p.removal` kills the opponent's biggest creature. So the
+# patterns have to mean "can remove a CREATURE from the battlefield" — the same mistake as
+# the old `_CHEAT_RE`, which matched on the verb and ignored the object.
+#
+# Measured over the 34,179-card store: "destroy all"/"exile all" matched 632 cards but only
+# 248 can touch a creature. Rest in Peace ("exile all graveyards"), Fracturing Gust
+# (artifacts + enchantments), Identity Crisis (hand + graveyard), Vandalblast, Shatterstorm
+# and Armageddon each fired a full symmetric CREATURE board wipe. On the removal side,
+# "destroy target" matched 324 artifact-only, 125 land-only, 77 enchantment-only and 65
+# graveyard-only cards — a Naturalize or a Stone Rain killed the opponent's biggest creature.
+#
+# `finditer`, not `search`: a modal card only needs ONE mode that hits creatures (Austere
+# Command, Farewell), and the earlier modes name artifacts and enchantments.
+_CREATURE_OBJECT_RE = re.compile(r"\bcreature|\bpermanent")
+# A "creature CARD" is a card in a graveyard/library/hand; a "creature" is a permanent on
+# the battlefield. Ghastly Conscription and Shadow of the Enemy exile all creature CARDS
+# from a graveyard — no board impact at all, but they read like a wrath without this.
+_ZONE_OBJECT_RE = re.compile(r"\bcards?\b")
+_WIPE_ALL_RE = re.compile(r"(?:destroy|exile) all ([^.]{0,70})")
+_REMOVAL_TARGET_RE = re.compile(r"(?:destroy|exile) target ([^.]{0,50})")
+# "any target" reaches a creature; "target player" does not.
+_DAMAGE_TARGET_RE = re.compile(r"deals? \d+ damage to (any target|target [^.,]{0,30})")
+# Already creature-specific, so they need no object gate. The -N/-N form must reduce
+# TOUGHNESS to remove anything: "all creatures get -2/-0" (Marsh Gas, Fyndhorn Pollen) is a
+# power debuff that has never killed a creature.
 _WIPE_RES = (
-    re.compile(r"destroy all"),
-    re.compile(r"exile all"),
     re.compile(r"deals? \d+ damage to each creature"),
-    re.compile(r"all creatures get [-−]"),
+    re.compile(r"all creatures get [-−]\d+/[-−][1-9]"),
 )
+
+
+def _wipe_object(phrase: str) -> str:
+    """The thing actually swept, with trailing prepositions trimmed.
+
+    "destroy all Equipment attached to that creature" (Corrosive Ooze) and "destroy all
+    Auras attached to ..." (Treefolk Mystic) sweep an artifact/enchantment; the creature
+    named afterwards is only where it is attached, and leaked into the object otherwise.
+    """
+    return re.split(r"\battached to\b", phrase, maxsplit=1)[0]
+
+
+def _is_board_wipe(text: str) -> bool:
+    """True only when the sweep can remove CREATURES from the battlefield."""
+    if any(r.search(text) for r in _WIPE_RES):
+        return True
+    for match in _WIPE_ALL_RE.finditer(text):
+        obj = _wipe_object(match.group(1))
+        if _CREATURE_OBJECT_RE.search(obj) and not _ZONE_OBJECT_RE.search(obj):
+            return True
+    return False
+
+
+def _is_removal(text: str) -> bool:
+    """True only when the targeted removal can hit a CREATURE."""
+    for match in _REMOVAL_TARGET_RE.finditer(text):
+        obj = _wipe_object(match.group(1))
+        if _CREATURE_OBJECT_RE.search(obj) and not _ZONE_OBJECT_RE.search(obj):
+            return True
+    return any(
+        m.group(1) == "any target" or _CREATURE_OBJECT_RE.search(m.group(1))
+        for m in _DAMAGE_TARGET_RE.finditer(text)
+    )
 _COUNTER_RE = re.compile(r"counter target .{0,40}spell")
 # A cheat-into-play enabler (Kaalia, Sneak Attack, Elvish Piper, Quicksilver Amulet).
 # `sim/tier0.py` acts on this by pulling the BIGGEST STRANDED CREATURE out of hand and
@@ -231,8 +285,8 @@ def analyze(card: Card) -> EffectVector:
     if m and "land" not in m.group(1):
         tutor = True
 
-    removal = 1 if any(r.search(text) for r in _REMOVAL_RES) else 0
-    board_wipe = any(r.search(text) for r in _WIPE_RES)
+    removal = 1 if _is_removal(text) else 0
+    board_wipe = _is_board_wipe(text)
     counterspell = bool(_COUNTER_RE.search(text))
     cheats_creatures = _cheats_creatures(text)
     draw_cards, engine_draw = _draw_counts(text)

@@ -295,3 +295,54 @@ def test_cheat_into_play_requires_putting_a_CREATURE(make_card):
     assert fx("Thran Temporal Gateway", "Artifact",
               "{4}, {T}: You may put a historic permanent card from your hand onto the "
               "battlefield.")
+
+
+def test_board_wipe_requires_sweeping_CREATURES(make_card):
+    """`p.wipe` makes tier2 call `_wipe_all`, so the pattern must mean creatures.
+
+    "destroy all"/"exile all" matched 632 cards in the 34,179-card store; only 458 can
+    touch a creature. Gating the swept OBJECT dropped 174 and added none.
+    """
+    def w(text):
+        return tags.analyze(make_card("X", mana_cost="{2}", type_line="Sorcery",
+                                      oracle_text=text)).board_wipe
+
+    assert w("Destroy all creatures. They can't be regenerated.")
+    assert w("Exile all nonland permanents that are white.")
+    assert w("Pyroclasm deals 2 damage to each creature.")
+    # A modal card only needs ONE creature mode; the earlier modes name other types.
+    assert w("Choose two — Destroy all artifacts. Destroy all enchantments. "
+             "Destroy all creatures with mana value 3 or less.")
+
+    assert not w("Destroy all artifacts you don't control.")            # Vandalblast
+    assert not w("Destroy all artifacts and enchantments.")             # Fracturing Gust
+    assert not w("Destroy all lands.")                                  # Armageddon
+    assert not w("When this enchantment enters, exile all graveyards.")  # Rest in Peace
+    # A creature CARD lives in a zone; a creature is a battlefield permanent.
+    assert not w("Exile all creature cards from target player's graveyard.")
+    # The creature here is only where the Equipment is attached.
+    assert not w("Whenever this creature blocks, destroy all Equipment attached to that creature.")
+    # A power-only debuff has never killed anything.
+    assert not w("All creatures get -2/-0 until end of turn.")           # Marsh Gas
+    assert w("All creatures get -2/-2 until end of turn.")               # Biting Rain
+
+
+def test_removal_requires_hitting_a_CREATURE(make_card):
+    """Each point of `p.removal` kills the opponent's biggest creature in tier2.
+
+    "destroy target"/"exile target"/damage matched 2,971 cards; 895 of them cannot touch a
+    creature at all — a Reclamation Sage or a Stone Rain was eating a fatty every cast.
+    """
+    def r(text):
+        return tags.analyze(make_card("X", mana_cost="{2}", type_line="Instant",
+                                      oracle_text=text)).removal
+
+    assert r("Destroy target creature.")
+    assert r("Destroy target nonland permanent.")
+    assert r("This spell deals 3 damage to any target.")
+
+    assert not r("Destroy target artifact.")                    # Naturalize
+    assert not r("Destroy target land.")                        # Stone Rain
+    assert not r("Destroy target enchantment.")
+    assert not r("Exile target creature card from a graveyard.")  # zone, not battlefield
+    assert not r("This spell deals 3 damage to target player.")   # Lava Spike
