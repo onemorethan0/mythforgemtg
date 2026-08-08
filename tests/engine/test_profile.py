@@ -277,3 +277,47 @@ def test_lose_life_credited_only_when_who_names_an_opponent(make_card):
         doc = _lose_life_doc("Drain Life", "{2}{B}", who=who)
         profile = profile_from_ccm(doc, card, analyze(card))
         assert profile.damage_face == expected, who
+
+
+def _activated_doc(cost: dict):
+    return {
+        "name": "Outlet", "ccm_version": 1, "cost": {"mana": "{2}"},
+        "types": ["artifact"],
+        "abilities": [{"kind": "activated", "cost": cost,
+                       "effects": [{"op": "draw", "count": 1}]}],
+    }
+
+
+def test_activated_ability_with_unpayable_cost_is_not_an_outlet(make_card):
+    """The engine can pay mana and tap. It cannot discard, sacrifice another permanent,
+    remove a counter, pay energy or pay life — and it has no zones, so it cannot tell a
+    battlefield ability from one activated in the graveyard or hand.
+
+    Reading only mana/tap made every such ability a FREE repeatable outlet. Of the 6,371
+    activated abilities the profile executes across the 30,861-card store, 1,488 (23.4%)
+    carried a dropped cost: Adorned Pouncer's Eternalize ("{3}{W}{W}, exile this card from
+    your graveyard" — not on the battlefield at all), Aang's Iceberg paying "sacrifice this
+    enchantment" through `other` so it slipped past the sacrifice_self guard, and real
+    recurring costs like "discard two cards" or "Pay fifty {E}".
+    """
+    card = make_card("Outlet", mana_cost="{2}", type_line="Artifact")
+
+    # Payable: mana and/or tap only.
+    assert profile_from_ccm(_activated_doc({"mana": "{1}"}), card, analyze(card)).activated
+    assert profile_from_ccm(_activated_doc({"tap": True}), card, analyze(card)).activated
+
+    # Unpayable components -> not a repeatable outlet, even alongside a real mana cost.
+    for cost in (
+        {"mana": "{1}", "other": "discard a card"},
+        {"mana": "{1}", "other": "exile this card from your graveyard"},
+        {"mana": "{1}", "other": "sacrifice another creature"},
+        {"tap": True, "other": "remove a +1/+1 counter from this creature"},
+        {"mana": "{1}", "pay_life": 3},
+    ):
+        assert not profile_from_ccm(_activated_doc(cost), card, analyze(card)).activated, cost
+
+    # A one-shot stays a one-shot however it is spelled.
+    assert not profile_from_ccm(
+        _activated_doc({"mana": "{1}", "sacrifice_self": True}), card, analyze(card)).activated
+    assert not profile_from_ccm(
+        _activated_doc({"mana": "{3}", "other": "sacrifice this enchantment"}), card, analyze(card)).activated

@@ -115,6 +115,27 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
         cost = {}
     if cost.get("sacrifice_self"):
         return None  # one-shot, not a repeatable outlet
+    # The engine can pay mana and it can tap. It cannot discard, sacrifice another
+    # permanent, remove a counter, pay energy, or pay life — and it has no zones, so it
+    # cannot tell a battlefield ability from one activated in the graveyard or hand.
+    #
+    # Reading only mana/tap therefore turned any ability carrying one of those costs into a
+    # FREE repeatable outlet. Measured over the 30,861-card compiled store: of the 6,371
+    # activated abilities this function executes, 1,488 (23.4%) had a dropped cost. Three
+    # flavours, all fabrications:
+    #   zone      Adorned Pouncer "{3}{W}{W}, exile this card from your graveyard" is
+    #             Eternalize — it is not on the battlefield at all. Same for Escape/Embalm
+    #             and for "discard this card" (Madness/Blitz), which activate from hand.
+    #   one-shot  Aang's Iceberg pays "sacrifice this enchantment" via `other`, so it slips
+    #             past the sacrifice_self guard above and reads as a repeatable engine.
+    #   recurring "discard two cards", "sacrifice another creature", "remove a +1/+1
+    #             counter", "Pay fifty {E}" — real costs that bound how often it can fire.
+    #
+    # Skipping them is the same trade `sim/tier2._EVENT_TRIGGERS` already makes for trigger
+    # events it cannot execute: a correct unexecuted ability under-counts honestly, while a
+    # wrong executable one fabricates value.
+    if cost.get("other") or cost.get("pay_life"):
+        return None
     mana = cost.get("mana")
     cost_mana = ManaCost.parse(mana if isinstance(mana, str) else "").mana_value
     needs_tap = bool(cost.get("tap"))
