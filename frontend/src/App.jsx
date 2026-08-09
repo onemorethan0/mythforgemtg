@@ -10,6 +10,8 @@ import StepDeck      from './components/StepDeck'
 import StepHistory   from './components/StepHistory'
 import HealthIndicator from './components/HealthIndicator'
 import LogViewer from './components/LogViewer'
+import Toaster from './components/Toaster'
+import { notify } from './utils/toast'
 import { useGenSettings } from './hooks/useGenSettings'
 import { toGenSettingsPayload } from './config/genSettings'
 
@@ -718,7 +720,7 @@ export default function App() {
             onDone={deckData => { sessionStorage.removeItem(SS_KEY); setDeck(deckData); setStep(STEP.DECK) }}
             onError={msg => {
               sessionStorage.removeItem(SS_KEY)
-              alert(`Build failed: ${msg}`)
+              notify('error', `Build failed: ${msg}`)
               // Keep the card the user authored — going Home destroyed it.
               if (mode === 'card' && cardDraft) { _setJobId(null); setDeck(null); setStep(STEP.COMMANDER) }
               else reset()
@@ -744,6 +746,7 @@ export default function App() {
       </main>
 
       <HealthIndicator />
+      <Toaster />
     </div>
   )
 }

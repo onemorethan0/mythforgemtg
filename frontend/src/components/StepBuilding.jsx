@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useBuildNotifier, getNotifyPref, setNotifyPref, requestPermissionIfNeeded } from '../hooks/useBuildNotifier'
+import { notify } from '../utils/toast'
 
 // ── Styles ────────────────────────────────────────────────────────────────────
 const c = {
@@ -389,7 +390,7 @@ export default function StepBuilding({ jobId, onDone, onError, single = false })
       // On success the UI updates when the build finishes and sends 'done'.
     } catch (err) {
       setCancelState('idle')
-      alert(`Could not cancel the build: ${err.message}. It is still running — try again.`)
+      notify('error', `Could not cancel the build: ${err.message}. It is still running — try again.`)
     }
   }
 

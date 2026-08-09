@@ -4,6 +4,7 @@ import DuelPanel from './DuelPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import SetBible from './SetBible'
+import { notify } from '../utils/toast'
 import { searchCards } from '../utils/searchCards'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1166,7 +1167,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       // a successful one. Fall back to the raw payload rather than showing nothing.
       let msg
       try { msg = JSON.parse(e.data).msg || '' } catch { msg = String(e.data || '').slice(0, 300) }
-      alert(`Regen failed: ${msg || 'the server reported an error but sent no detail.'}`)
+      notify('error', `Regen failed: ${msg || 'the server reported an error but sent no detail.'}`)
     })
 
     src.onerror = () => {
@@ -1223,7 +1224,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       setRegenJobId(data.job_id)
     } catch (err) {
       setRegenPending(new Set())
-      alert(`Could not start regen: ${err.message}`)
+      notify('error', `Could not start regen: ${err.message}`)
     }
   }
 
@@ -1241,7 +1242,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       setRegenJobId(data.job_id)   // reuse the SSE listener (progress + video_ready + done)
     } catch (err) {
       setRegenPending(new Set())
-      alert(`Could not start animation: ${err.message}`)
+      notify('error', `Could not start animation: ${err.message}`)
     }
   }
 
@@ -1279,7 +1280,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       const data = await res.json()
       onRebuild(data.job_id)
     } catch (err) {
-      alert(`Could not start rebuild: ${err.message}`)
+      notify('error', `Could not start rebuild: ${err.message}`)
       setRebuilding(false)
     }
   }
@@ -1296,7 +1297,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       if (onRetheme) onRetheme(newJobId)
       else if (onRebuild) onRebuild(newJobId)  // fallback: treat like rebuild nav
     } catch (err) {
-      alert(`Could not start retheme: ${err.message}`)
+      notify('error', `Could not start retheme: ${err.message}`)
       setRethemeing(false)
     }
   }
@@ -1318,7 +1319,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       if (onRetheme) onRetheme(newJobId)
       else if (onRebuild) onRebuild(newJobId)
     } catch (err) {
-      alert(`Could not start art generation: ${err.message}`)
+      notify('error', `Could not start art generation: ${err.message}`)
       setRethemeing(false)
     }
   }

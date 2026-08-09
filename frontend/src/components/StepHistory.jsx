@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { notify } from '../utils/toast'
 
 const BRACKET_COLORS = {
   1: '#4ade80',
@@ -125,9 +126,9 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
     } catch {
       setLoading(false)
       if (entry.partial) {
-        alert(`This deck is incomplete — ${entry.status === 'building' ? 'it\'s still building. Resume to check progress.' : 'the render data is missing.'}`)
+        notify('error', `This deck is incomplete — ${entry.status === 'building' ? 'it\'s still building. Resume to check progress.' : 'the render data is missing.'}`)
       } else {
-        alert('Failed to load deck — the render data may be missing.')
+        notify('error', 'Failed to load deck — the render data may be missing.')
       }
     }
   }
@@ -143,7 +144,7 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
       if (onDuplicated) onDuplicated()
       setTimeout(() => setDupOk(false), 3000)
     } catch {
-      alert('Duplicate failed. The deck may still be building.')
+      notify('error', 'Duplicate failed. The deck may still be building.')
     } finally {
       setDuping(false)
     }
@@ -162,7 +163,7 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       onDeleted(entry.job_id)
     } catch (err) {
-      alert(`Delete failed: ${err.message}`)
+      notify('error', `Delete failed: ${err.message}`)
       setDeleting(false)
     }
   }
@@ -445,10 +446,11 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
       setDecks(prev => prev.filter(d => !deletedSet.has(d.job_id)))
       setSelected(new Set())
       if (data.skipped?.length) {
-        alert(`${data.deleted.length} deck(s) deleted. ${data.skipped.length} skipped (currently building).`)
+        // Not an error: some deleted, some skipped because they were mid-build.
+        notify('info', `${data.deleted.length} deck(s) deleted. ${data.skipped.length} skipped (currently building).`)
       }
     } catch (err) {
-      alert(`Batch delete failed: ${err.message}`)
+      notify('error', `Batch delete failed: ${err.message}`)
     } finally {
       setBatchDeleting(false)
       setSelectMode(false)
