@@ -191,8 +191,16 @@ def test_advise_prefers_the_cut_that_improves_the_axis_most(deck, store, make_ca
     cfg = SimConfig(runs=80, turns=5, seed=3)
     single = advisor.advise(deck, cfg, store, candidates, axis="consistency", cut_pool=1)
     multi = advisor.advise(deck, cfg, store, candidates, axis="consistency", cut_pool=2)
-    if single.suggestions and multi.suggestions:
-        assert multi.suggestions[0].after >= single.suggestions[0].after - 1e-9
+    # This guard used to be a bare `if ... :` around the assert, so when the fixture
+    # produced no suggestions the test asserted NOTHING and still reported green. It does
+    # produce none today: the candidate is a {1}{G} 2/2 and the cut is also a {1}{G} 2/2,
+    # and the deck is 36 Forests casting only {G}/{1}{G}, so consistency is already at its
+    # ceiling and no single swap can move it (verified — zero suggestions even at
+    # min_delta=-999, and with a mana rock or dork substituted in). Skip rather than pass:
+    # a vacuous test must be visible, not silently counted as coverage.
+    if not (single.suggestions and multi.suggestions):
+        pytest.skip("fixture yields no improving swap, so the cut-pool invariant is untested")
+    assert multi.suggestions[0].after >= single.suggestions[0].after - 1e-9
 
 
 def test_advise_auto_picks_an_axis(deck, store, make_card):

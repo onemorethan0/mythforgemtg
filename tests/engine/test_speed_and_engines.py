@@ -54,10 +54,14 @@ def test_summoning_sickness_delays_damage(make_card, forest):
     titan.power = "40"
     cfg = SimConfig(runs=100, seed=23, turns=6)
     runs = simulate([(forest, 50), (titan, 49)], None, cfg)
-    for r in runs:
-        if r.kill_turn is not None:
-            first_cast_possible = 1  # {G} is castable turn 1
-            assert r.kill_turn >= first_cast_possible + 1
+    killed = [r for r in runs if r.kill_turn is not None]
+    # Assert the precondition. Every assert here sits inside `if r.kill_turn is not None`,
+    # so a change that stopped this deck killing at all would leave the test asserting
+    # nothing and still passing — a 40-power one-drop across 100 runs must kill.
+    assert killed, "no run produced a kill; the summoning-sickness invariant went untested"
+    for r in killed:
+        first_cast_possible = 1  # {G} is castable turn 1
+        assert r.kill_turn >= first_cast_possible + 1
 
 
 def test_draw_engines_draw_more_cards_over_time(make_card, forest):
