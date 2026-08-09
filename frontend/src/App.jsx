@@ -153,8 +153,19 @@ export default function App() {
   useEffect(() => {
     let cancelled = false
 
+    // Ask the server what is actually running. This is the resilient path: it survives a
+    // new tab, a cleared session, and a browser restart.
+    function askServer() {
+      return fetch('/api/deck/active').then(r => r.json()).then(d => {
+        if (cancelled) return
+        if (d.job_id && (d.status === 'building' || d.status === 'done')) {
+          reconnect(d.job_id)
+        }
+      }).catch(() => {})
+    }
+
     function reconnect(id) {
-      fetch(`/api/deck/${id}/status`).then(r => r.json()).then(d => {
+      return fetch(`/api/deck/${id}/status`).then(r => r.json()).then(d => {
         if (cancelled) return
         // 'rendering' is the on-disk checkpoint state of a job still in flight —
         // treating it as "not building" dropped the saved job on a refresh.
@@ -169,7 +180,7 @@ export default function App() {
         } else {
           sessionStorage.removeItem(SS_KEY)
         }
-      }).catch(() => sessionStorage.removeItem(SS_KEY))
+      })
     }
 
     // Try sessionStorage first
@@ -177,18 +188,21 @@ export default function App() {
     if (saved) {
       try {
         const { id, ts } = JSON.parse(saved)
-        if (id && Date.now() - ts < 3 * 60 * 60 * 1000) { reconnect(id); return () => { cancelled = true } }
-      } catch {}
+        if (id && Date.now() - ts < 3 * 60 * 60 * 1000) {
+          // A FAILED status check must fall through to the server, not give up. This used
+          // to `.catch(() => sessionStorage.removeItem(SS_KEY))` and return early, so the
+          // /api/deck/active fallback below never ran: one unreachable moment — a refresh
+          // while the server is restarting, which is the documented way to pick up a
+          // Python edit — deleted the saved id and stranded a build that was still running.
+          // The user landed on the home screen with a GPU busy and no route back to it.
+          reconnect(id).catch(() => { if (!cancelled) askServer() })
+          return () => { cancelled = true }
+        }
+      } catch { /* unparseable entry: fall through and ask the server */ }
       sessionStorage.removeItem(SS_KEY)
     }
 
-    // Fallback: ask server for active job
-    fetch('/api/deck/active').then(r => r.json()).then(d => {
-      if (cancelled) return
-      if (d.job_id && (d.status === 'building' || d.status === 'done')) {
-        reconnect(d.job_id)
-      }
-    }).catch(() => {})
+    askServer()
 
     return () => { cancelled = true }
   }, [])
