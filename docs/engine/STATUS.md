@@ -359,8 +359,11 @@ The reason is the same one behind the B5 rating inversion, now confirmed one tie
 connect. A cEDH deck's real clock is a tutor chain into a two-card combo on a single
 explosive turn — T0 models none of that, so it measures every deck's beatdown plan and
 finds them all similar. The inversion is therefore not only a T2 agent/engine question; the
-T0 speed axis is bracket-blind too. `bracket.py` uses `avg_kill_turn` only inside the
-`_upper_core` "plays up" test (`_UC_KILL_TURN` 9.5) — that narrow use is fine and stays.
+T0 speed axis is bracket-blind too. `bracket.py` used `avg_kill_turn` only inside the
+`_upper_core` "plays up" test (`_UC_KILL_TURN` 9.5) — that narrow use was fine and stayed at
+the time. **Since superseded:** there is no `_UC_KILL_TURN` any more; `plays_up` is now a pure
+band test, `bracket == 2 and (floor, cap) == (1, 2)`, with no kill-turn threshold at all — so
+the speed axis no longer feeds the bracket even there.
 
 **Consequence for calibration:** the newly harvested B1–3 anchors (37/47/43) cannot be
 calibrated against speed. The separating signals have to come from composition and from

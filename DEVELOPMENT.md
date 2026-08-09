@@ -20,7 +20,7 @@ Almost always a stale browser bundle → hard-refresh (`Ctrl+Shift+R`). Otherwis
 ## Tests
 
 ```bash
-python -m pytest tests -q          # everything: 41 app + 464 engine
+python -m pytest tests -q          # everything: 49 app + 527 engine
 python -m pytest tests/engine -q   # engine only
 python tests/test_smoke.py         # app smoke tests, standalone runner
 ```
@@ -28,6 +28,11 @@ python tests/test_smoke.py         # app smoke tests, standalone runner
 `tests/conftest.py` puts `src/` on the path and is what makes pytest *enforce* the app smoke
 tests — their bodies append to a `_fails` list rather than asserting, so without that hook they
 passed unconditionally. Engine tests use plain asserts and are excluded from the hook.
+
+**CI runs `python -m pytest tests`, installed from `requirements.txt`.** It previously ran only
+`python tests/test_smoke.py`, so the engine tests never ran there, and it installed an ad-hoc
+package list — which hid `numpy` missing from the manifest even though `card_video.py` imports
+it unguarded. The suite passes with no `ccm/` store and no `data/` dir, which is CI's state.
 
 ## Working on the engine
 

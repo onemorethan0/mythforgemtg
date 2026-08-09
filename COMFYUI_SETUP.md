@@ -61,14 +61,16 @@ There is a second Python environment (`C:\Users\rvn92\ComfyUI\venv`) with **torc
 
 ## VRAM Management
 
-With NORMAL_VRAM, FLUX stays resident between generations (~16.6 GB used, ~7–8 GB free). The VRAM gate functions in server.py coordinate Ollama and ComfyUI to share the 24 GB without OOM.
+With NORMAL_VRAM, FLUX stays resident between generations (~16.6 GB used, ~7–8 GB free). The VRAM gate functions in server.py coordinate the LLM (llama.cpp via the llama-swap gateway) and ComfyUI to share the 24 GB without OOM.
 
 ### Thresholds
 
 | Constant | Value | Meaning |
 |---|---|---|
 | `_VRAM_FLUX_REQUIRED_GB` | 16.0 | Minimum free VRAM before FLUX is allowed to load |
-| `_VRAM_OLLAMA_CLEAR_GB` | 14.0 | Minimum free VRAM after ComfyUI `/free` before Ollama loads |
+| `_VRAM_LLM_CLEAR_GB` | 14.0 | Target free VRAM after ComfyUI `/free` before the LLM loads |
+
+> Renamed from `_VRAM_OLLAMA_CLEAR_GB` when theming moved off Ollama to llama.cpp behind the llama-swap gateway; the value is unchanged.
 
 ### VRAM metric: nvidia-smi (not ComfyUI internal)
 

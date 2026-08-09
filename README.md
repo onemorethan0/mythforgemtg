@@ -453,10 +453,9 @@ Runs against a **local LLM** — by default an OpenAI-compatible **llama.cpp** s
 
 **Named & depicted as the right *kind of thing*:** each card carries a per-type subject directive so it isn't defaulted to a character. **Non-creature artifacts** (mana rocks, relics, Equipment, Vehicles) get **object/relic/construct** names and art (like real MTG: *Sol Ring*, *Skullclamp*, *Mana Vault*) — never a personal or creature name; **lands** are named/painted as places; **enchantments** as auras/phenomena. Only **artifact *creatures*** (type line says *Creature*) get a creature/being name. (This matters most with auto-reskin on: every card sees a tribe map, and without the type gate a "Artifact — Equipment" was being told it was "a creature of the theme world".)
 
-**Prompt pipeline (togglable):** `USE_ENHANCED_PROMPTS` at the top of `themer.py` switches between two pipelines:
+**Prompt pipeline (dual-anchor):** each card is pre-classified by its mechanical role (`_card_soul()` in `themer.py`), producing a `soul_phrase` (e.g. *"divine judgment, everything obliterated simultaneously"* for a boardwipe). `_batch_prompt_v2` gives the LLM both the soul (what the card *does*) and the theme skin (world aesthetic), so prompts stay true to the MTG mechanic and the setting at once.
 
-- **v1 (legacy):** World-immersion style — prompt wraps card in the theme aesthetic
-- **v2 (dual-anchor, default):** Each card is pre-classified by its mechanical role (`_card_soul()`) producing a `soul_phrase` (e.g. *"divine judgment, everything obliterated simultaneously"* for a boardwipe). The LLM receives both the soul (what the card *does*) and the theme skin (world aesthetic), producing prompts that feel true to both the MTG mechanic and the setting.
+> This used to be described as togglable via `USE_ENHANCED_PROMPTS`, switching to a "v1 (legacy)" world-immersion pipeline. Neither the flag nor v1 exists any more — dual-anchor is the only pipeline.
 
 **Art prompt rules enforced via system prompt:**
 - Color palette driven by the card's mana identity (see above), not a fixed deck palette

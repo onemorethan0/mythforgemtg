@@ -345,7 +345,7 @@ Tutor class), while the DOMINANT cEDH tutors compile as `to:top` (Vampiric Tutor
 or `to:library` (Mystical/Enlightened/Worldly) — both were **silent no-ops**.
 
 **Fix (this increment).** `to:top`/`to:library` tutors now fetch a card to the top of the library
-(drawn next turn), sharing `_tutor_hand`'s missing-combo-piece-first picker and honoring the
+(drawn next turn), sharing `_tutor_pick`'s missing-combo-piece-first picker and honoring the
 `what.type`/`subtype` filter (Mystical → instant/sorcery, etc.). `PlayProfile.tutor` flags a card
 as a tutor (any non-land `search_library`); the greedy agent gets a **finish-only** value bonus —
 it prioritizes a tutor only when exactly one combo piece is missing (fetching it completes the
