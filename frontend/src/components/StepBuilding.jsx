@@ -374,10 +374,23 @@ export default function StepBuilding({ jobId, onDone, onError, single = false })
   async function handleCancel() {
     if (cancelState !== 'idle') return
     setCancelState('cancelling')
+    // A cancel that never reached the server must NOT stay stuck on "Cancelling…".
+    // `canCancel` requires cancelState === 'idle', so leaving it on 'cancelling' disables
+    // the button permanently: the build carries on, the request that would have produced
+    // the 'done' event was never delivered, and the user has no way to try again — on a
+    // long GPU build, which is exactly when they want out. Roll back and say so instead.
     try {
-      await fetch(`/api/deck/${jobId}/cancel`, { method: 'POST' })
-    } catch {}
-    // UI updates when the build finishes and sends 'done'
+      const r = await fetch(`/api/deck/${jobId}/cancel`, { method: 'POST' })
+      if (!r.ok) {
+        let detail = `HTTP ${r.status}`
+        try { const body = await r.json(); if (body?.detail) detail = body.detail } catch { /* keep the status */ }
+        throw new Error(detail)
+      }
+      // On success the UI updates when the build finishes and sends 'done'.
+    } catch (err) {
+      setCancelState('idle')
+      alert(`Could not cancel the build: ${err.message}. It is still running — try again.`)
+    }
   }
 
   const visibleSteps = STEP_ORDER.filter(s => byStep[s])
