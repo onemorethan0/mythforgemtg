@@ -185,21 +185,31 @@ def test_advise_per_swap_cut_multiplies_analyses(deck, store, make_card):
 
 
 def test_advise_prefers_the_cut_that_improves_the_axis_most(deck, store, make_card):
-    # A bigger cut pool can only match or beat the single-cut gain for the same add,
-    # because per-swap selection keeps the best cut it finds.
-    candidates = [_creature(make_card, "Owned A", "{1}{G}", 4000)]
+    """A bigger cut pool can only match or beat the single-cut gain for the same add,
+    because per-swap selection keeps the best cut it finds.
+
+    Targets INTERACTION deliberately. The original version asked for `consistency` with a
+    {1}{G} 2/2 candidate against a {1}{G} 2/2 cut, in a deck of 36 Forests casting only
+    {G}/{1}{G} — consistency is already at its ceiling there and no single swap can move it,
+    so `advise` returned nothing, the assert sat behind `if single.suggestions and ...`, and
+    the test passed having checked NOTHING (zero suggestions even at min_delta=-999, and
+    with a mana rock or a dork substituted for the candidate).
+
+    Interaction fixes both halves: the deck has no removal, so adding a removal spell is a
+    real measurable gain, and interaction is computed deterministically (seed-to-seed sd
+    0.00, unlike speed 1.73 / ceiling 2.31) so the comparison is not fighting sim noise.
+    """
+    removal = make_card("Owned Removal", mana_cost="{1}{G}", type_line="Instant",
+                        color_identity=("G",), edhrec_rank=4000,
+                        oracle_text="Destroy target creature.")
     cfg = SimConfig(runs=80, turns=5, seed=3)
-    single = advisor.advise(deck, cfg, store, candidates, axis="consistency", cut_pool=1)
-    multi = advisor.advise(deck, cfg, store, candidates, axis="consistency", cut_pool=2)
-    # This guard used to be a bare `if ... :` around the assert, so when the fixture
-    # produced no suggestions the test asserted NOTHING and still reported green. It does
-    # produce none today: the candidate is a {1}{G} 2/2 and the cut is also a {1}{G} 2/2,
-    # and the deck is 36 Forests casting only {G}/{1}{G}, so consistency is already at its
-    # ceiling and no single swap can move it (verified — zero suggestions even at
-    # min_delta=-999, and with a mana rock or dork substituted in). Skip rather than pass:
-    # a vacuous test must be visible, not silently counted as coverage.
-    if not (single.suggestions and multi.suggestions):
-        pytest.skip("fixture yields no improving swap, so the cut-pool invariant is untested")
+    single = advisor.advise(deck, cfg, store, [removal], axis="interaction", cut_pool=1)
+    multi = advisor.advise(deck, cfg, store, [removal], axis="interaction", cut_pool=2)
+
+    # Assert the precondition, so this can never silently go vacuous again.
+    assert single.suggestions, "fixture produced no swap; the invariant would go untested"
+    assert multi.suggestions, "fixture produced no swap; the invariant would go untested"
+    assert single.suggestions[0].after > single.baseline   # the add really does help
     assert multi.suggestions[0].after >= single.suggestions[0].after - 1e-9
 
 
