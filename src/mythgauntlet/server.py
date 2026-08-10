@@ -20,7 +20,7 @@ from mythgauntlet.config import corpus_dir, suite_collection_path
 from mythgauntlet.data import scryfall, spellbook
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, ResolvedDeck, resolve
-from mythgauntlet.ratings import advisor, metrics
+from mythgauntlet.ratings import advisor, card_impact, metrics
 from mythgauntlet.ratings.analysis import analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore, load_store
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig
@@ -51,6 +51,19 @@ class AnalyzeRequest(BaseModel):
         description="also run the Commander Spellbook combo gate (a cached network lookup): "
         "grades in-deck game-ending combos and feeds the bracket. Off by default so the "
         "endpoint stays network-free unless the caller opts in.",
+    )
+
+
+class CardImpactRequest(BaseModel):
+    deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
+    card: str = Field(description="the single card name to evaluate against this deck")
+    name: str = "deck"
+    runs: int = Field(default=200, ge=1, le=5_000)
+    seed: int = 42
+    turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
+    cut_pool: int = Field(
+        default=3, ge=1, le=10,
+        description="weakest cards the addition is tested against; the best pairing wins",
     )
 
 
@@ -301,6 +314,50 @@ def create_app(
             "ownership": ownership,
             "insight": _insight_block(a.insight),  # deck-specific narrative for the UI
             "combos": _combos_block(combo_report, a.combo_profile, combos_checked),
+        }
+
+    @app.post("/card-impact")
+    def run_card_impact(req: CardImpactRequest) -> dict:
+        """Would ONE named card help or hurt this deck, and why.
+
+        The inverse of /advise: instead of proposing cards from a pool, it answers the
+        question a player actually asks — "is <card> good in my deck?". Legality is checked
+        first and is disqualifying (an off-colour or banned card is a hard no, whatever its
+        power), then the card is swapped in for each of the weakest slots and the whole
+        Power Profile is re-measured. Any axis move smaller than that axis's own
+        seed-to-seed spread is reported as NO effect rather than as an improvement.
+        """
+        resolved = _resolve_or_400(req.deck, req.name, db)
+        card = db.get(req.card)
+        if card is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No card named '{req.card}' in the card store. Check the spelling, "
+                       "or run `mythgauntlet fetch-data` if it is a very recent printing.",
+            )
+        cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
+        imp = card_impact.assess_card(resolved, card, cfg, store, cut_pool=req.cut_pool)
+        return {
+            "engine_version": __version__,
+            "card": imp.card,
+            "verdict": imp.verdict,
+            "headline": imp.headline,
+            "reasons": imp.reasons,
+            "legal": imp.legal,
+            "already_in_deck": imp.already_in_deck,
+            "cut": imp.cut,
+            "axes": [
+                {
+                    "axis": m.axis,
+                    "label": m.label,
+                    "before": round(m.before, 1),
+                    "after": round(m.after, 1),
+                    "delta": round(m.delta, 1),
+                    "meaningful": m.meaningful,
+                    "noise_floor": m.floor,
+                }
+                for m in imp.axes
+            ],
         }
 
     @app.post("/advise")
