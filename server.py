@@ -4042,8 +4042,82 @@ def _gauntlet_advise(commander, deck, axis=None):
         return None
 
 
+def _gauntlet_card_impact(commander, deck, card_name):
+    """Would ONE named card help or hurt this deck (MythGauntlet /card-impact).
+
+    Same shape as _gauntlet_advise: the JSON on success, {"error": detail} for a
+    meaningful 400/404 (unknown card name is the common one, and the user needs to see
+    that rather than a generic failure), None when the service is unreachable.
+
+    runs is lower than /advise's because this re-simulates the whole Power Profile per
+    candidate cut and the user is waiting on it interactively; cut_pool=3 keeps it to
+    three analyses.
+    """
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/card-impact",
+            json={
+                "deck": _deck_to_lines(commander, deck),
+                "name": (commander or {}).get("name") or "deck",
+                "card": card_name,
+                "runs": 200,
+                "cut_pool": 3,
+            },
+            timeout=120,
+        )
+        if resp.status_code in (400, 404):
+            try:
+                return {"error": resp.json().get("detail", "card lookup failed")}
+            except Exception:
+                return {"error": "card lookup failed"}
+        if resp.status_code != 200:
+            return None
+        return resp.json()
+    except Exception as e:
+        print(f"  [card-impact] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
+class CardImpactDeckRequest(BaseModel):
+    card: str = Field(min_length=1, max_length=200)
+
+
 class AdviseDeckRequest(BaseModel):
     axis: Optional[str] = None  # None -> the deck's weakest axis
+
+
+@app.post("/api/deck/{job_id}/card-impact")
+def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
+    """Ask whether ONE named card would help or hurt this finished deck, and why.
+
+    Legality is judged before anything is simulated, so an off-colour or banned card comes
+    back as a refusal with the reason rather than a power score for a card you cannot play.
+    """
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has no deck to measure against.")
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in cards
+    ]
+    result = _gauntlet_card_impact(commander, deck, req.card.strip())
+    if result is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    if "error" in result:
+        raise HTTPException(400, result["error"])
+    return result
 
 
 @app.post("/api/deck/{job_id}/advise")

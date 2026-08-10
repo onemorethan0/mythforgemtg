@@ -59,15 +59,29 @@ def test_a_legal_card_is_measured_and_explains_its_cut(make_card, forest, bear):
     assert any("Measured by swapping it in for" in r for r in imp.reasons)
 
 
-def test_sub_noise_movement_is_reported_as_no_effect(make_card, forest, bear):
-    """A delta under the axis's own seed-to-seed spread is a re-roll, not a finding. The
-    floors are speed 1.7 / ceiling 2.3 / consistency 0.9; resilience and interaction are
-    deterministic so any nonzero move there is real."""
-    from mythgauntlet.ratings.card_impact import AxisMove
+def test_a_move_must_clear_BOTH_the_noise_floor_and_significance(make_card, forest, bear):
+    """Two separate bars, because they answer different questions.
+
+    The noise floor (speed 1.7 / ceiling 2.3 / consistency 0.9) asks "is this real, or did
+    the RNG re-roll?". MIN_SIGNIFICANT asks "is it worth saying out loud?" — needed because
+    resilience and interaction have ZERO sim variance, so any nonzero delta there is
+    technically real. Without the second bar a -0.1 on a 0-100 axis counted as a finding and
+    produced the headline "costs resilience".
+    """
+    from mythgauntlet.ratings.card_impact import MIN_SIGNIFICANT, AxisMove
+
+    # noisy axis: must clear its own spread
     assert not AxisMove("speed", "Speed", 50.0, 51.0, 1.7).meaningful      # +1.0 < 1.7
     assert AxisMove("speed", "Speed", 50.0, 52.5, 1.7).meaningful          # +2.5 > 1.7
-    assert AxisMove("interaction", "Interaction", 50.0, 50.4, 0.0).meaningful
+
+    # deterministic axis: real, but must still be big enough to mention
+    assert not AxisMove("interaction", "Interaction", 50.0, 50.1, 0.0).meaningful
+    assert not AxisMove("resilience", "Resilience", 50.0, 49.9, 0.0).meaningful
+    assert AxisMove("interaction", "Interaction", 50.0, 56.4, 0.0).meaningful
     assert not AxisMove("interaction", "Interaction", 50.0, 50.0, 0.0).meaningful
+
+    # the significance bar is what rejects the small deterministic moves
+    assert MIN_SIGNIFICANT > 0.1
 
 
 def test_headline_names_the_largest_mover(make_card, forest, bear):

@@ -13,10 +13,12 @@ Three things make the answer honest rather than a vibe:
 2. **Every axis is measured, not one.** "Positive or negative effect" is a whole-deck
    question. A card can buy Speed and cost Consistency, and saying so is the point.
 
-3. **A delta under the axis's own measurement noise is reported as NO effect.** The
-   seed-to-seed spread is speed 1.73, ceiling 2.31, consistency 0.94, resilience and
-   interaction 0.00 (same deck, 8 seeds, runs=150). Calling a +1.0 Speed move an improvement
-   would be reporting a coin flip as a finding, so `_AXIS_NOISE_FLOOR` gates every verdict.
+3. **A move must clear two bars to count.** `_AXIS_NOISE_FLOOR` is the axis's own
+   seed-to-seed spread — speed 1.73, ceiling 2.31, consistency 0.94, resilience and
+   interaction 0.00 (same deck, 8 seeds, runs=150) — and under it a delta is an RNG re-roll,
+   not a change. `MIN_SIGNIFICANT` sits on top, because the two deterministic axes have zero
+   variance, so a -0.1 was "real" and headlined "costs resilience" off a tenth of a point.
+   Reproducibly trivial is still trivial.
 
 The measurement is an ablation, like the advisor's: swap the card in for each of the deck's
 weakest cards, re-run the full analysis, and keep the pairing that comes out best overall.
@@ -44,6 +46,12 @@ from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
 
 
+# Smallest move worth reporting on a 0-100 axis, on top of each axis's noise floor.
+# Guards the deterministic axes (resilience/interaction, sim variance 0.00), where any
+# nonzero delta is technically real but a tenth of a point is not a finding.
+MIN_SIGNIFICANT = 0.5
+
+
 @dataclass
 class AxisMove:
     axis: str
@@ -58,10 +66,16 @@ class AxisMove:
 
     @property
     def meaningful(self) -> bool:
-        """Clears the axis's own run-to-run spread, so it is a move and not a re-roll."""
-        return abs(self.delta) >= self.floor and self.floor > 0 or (
-            self.floor == 0 and self.delta != 0
-        )
+        """Big enough to be both REAL and worth saying out loud.
+
+        Two bars, because they answer different questions. `floor` is the axis's own
+        seed-to-seed spread — under it, a move is a re-roll of the RNG. `MIN_SIGNIFICANT` is
+        a floor on top of that, because determinism only makes a move reproducible, not
+        important: Resilience and Interaction have zero sim variance, so a -0.1 counted as a
+        finding and produced the headline "costs resilience" off a tenth of a point on a
+        0-100 axis. Reproducibly trivial is still trivial.
+        """
+        return abs(self.delta) >= max(self.floor, MIN_SIGNIFICANT)
 
 
 @dataclass
