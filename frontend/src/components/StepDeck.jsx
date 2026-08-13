@@ -1568,6 +1568,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                     style={{ fontSize: 12, padding: '4px 12px', background: '#052e16',
                              border: '1px solid #16a34a', borderRadius: 20, color: '#4ade80' }}>
                 🎴 {deck.collection.owned}/{deck.collection.total} from your collection
+                {deck.collection.source === 'collection' && ' · owned only'}
               </span>
             )}
           </div>
@@ -1722,6 +1723,52 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {stats.cmc_curve && <div style={{ marginTop: 12 }}><CmcChart curve={stats.cmc_curve} /></div>}
             <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
             <div style={{ fontSize: 12, color: '#a8a29e' }}>Lands: <span style={{ color: '#86efac' }}>{stats.land_count}</span></div>
+
+            {/* Deck health — curve vs the reference curve for this commander's mana
+                value, and whether the manabase can actually cast the deck. Advisory:
+                deck_quality measures the built list, it never changes it. */}
+            {stats.quality && (
+              <>
+                <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
+                <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Deck health</div>
+                {stats.quality.curve && (
+                  <div style={{ fontSize: 12, marginBottom: 6 }}>
+                    <span style={{ color: '#a8a29e' }}>Curve: </span>
+                    <span style={{ fontWeight: 700, color:
+                      stats.quality.curve.verdict === 'ok' ? '#86efac' : '#fbbf24' }}>
+                      {stats.quality.curve.verdict}
+                    </span>
+                    <span style={{ color: '#78716c' }}> · avg {stats.quality.curve.average}</span>
+                  </div>
+                )}
+                {stats.quality.colors && (
+                  <div style={{ fontSize: 12, marginBottom: 6 }}>
+                    <span style={{ color: '#a8a29e' }}>Mana: </span>
+                    <span style={{ fontWeight: 700, color: stats.quality.colors.ok ? '#86efac' : '#f87171' }}>
+                      {stats.quality.colors.ok ? 'castable' : 'short on sources'}
+                    </span>
+                    {!stats.quality.colors.ok && Object.entries(stats.quality.colors.short || {}).map(([c, n]) => (
+                      <div key={c} style={{ fontSize: 11, color: '#f87171', marginTop: 2 }}>
+                        {c}: {stats.quality.colors.sources?.[c] ?? 0} sources, wants {stats.quality.colors.required?.[c]}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {(stats.quality.curve?.notes || []).slice(0, 2).map((n, i) => (
+                  <div key={i} style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>{n}</div>
+                ))}
+                {/* Strict collection builds report what the collection could not cover.
+                    Without this the honest reporting stopped at the SSE stream, which is
+                    gone by the time the user reads the finished deck. */}
+                {deck?.collection?.shortfall && Object.keys(deck.collection.shortfall).length > 0 && (
+                  <div style={{ marginTop: 8, fontSize: 11, color: '#fbbf24' }}>
+                    Collection couldn’t cover:{' '}
+                    {Object.entries(deck.collection.shortfall)
+                      .map(([k, v]) => `${k.replace(/_/g, ' ')} (${v})`).join(', ')}
+                  </div>
+                )}
+              </>
+            )}
             {/* Color identity (mana pip counts) */}
             {stats.color_pips && Object.keys(stats.color_pips).length > 0 && (
               <>

@@ -23,6 +23,7 @@ from scryfall_client import ScryfallClient
 from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
 from collection import owned_key
 import collection_pool
+import deck_quality
 
 # ── Color → basic land name ───────────────────────────────────────────────────
 BASIC_LAND: dict[str, str] = {
@@ -154,6 +155,7 @@ class DeckBuilder:
         self._card_source: str = SOURCE_SCRYFALL
         self._pool = None               # collection_pool.CardPool in strict mode
         self.shortfall: dict[str, int] = {}   # strict mode: roles the collection can't fill
+        self._curve_target: dict[int, int] = {}   # MV histogram the fills aim at
 
     # ── Internal helpers ──────────────────────────────────────────────────────
     # Note: collection-aware building draws owned cards from an EXPLICIT resolve
@@ -215,6 +217,63 @@ class DeckBuilder:
         for card in candidates:
             (owned if owned_key(card.get("name", "")) in self._owned else rest).append(card)
         return owned + rest
+
+    def _draft_curve_aware(self, candidates: list[dict], want: int) -> int:
+        """Draft `want` cards, at each step taking the best-ranked candidate whose mana
+        value bucket is still short of target; when every bucket is met, take the best
+        remaining card outright.
+
+        The builder drafts every slot EDHREC-best-first, which is a popularity ordering
+        with no opinion about mana cost — so a commander whose colours are rich in
+        expensive staples reliably came out top-heavy. Within a bucket the EDHREC order
+        is untouched, so the deck still prefers good cards; it just reaches for a good
+        three-drop before a good six-drop while the three-slot is short.
+
+        Re-evaluated per card ON PURPOSE. A one-shot partition (prefer everything in an
+        under-full bucket, then draft in that order) measured WORSE on the same build:
+        it drafted 20+ cards all preferring the same short bucket and overshot it by
+        more than the gap it closed.
+
+        Applied only to the FLEXIBLE fills — goodstuff and the creature floor. Role
+        fetches are left alone: a board wipe is a board wipe, and biasing those by cost
+        would trade a functional slot for a curve slot.
+        """
+        if want <= 0:
+            return 0
+        if not self._curve_target:
+            added = 0
+            for card in candidates:
+                if added >= want:
+                    break
+                if self._add(card):
+                    added += 1
+            return added
+
+        # Incremental histogram: recomputing the curve per pick would be O(n^2) over
+        # the whole deck for no benefit.
+        have: dict[int, int] = {}
+        for card in self._deck:
+            if "land" not in (card.get("type_line", "") or "").lower():
+                b = min(deck_quality.mana_value(card), 7)
+                have[b] = have.get(b, 0) + 1
+
+        remaining = list(candidates)
+        added = 0
+        while added < want and remaining:
+            under = {mv for mv in range(1, 8)
+                     if have.get(mv, 0) < self._curve_target.get(mv, 0)}
+            idx = 0
+            if under:
+                for i, card in enumerate(remaining):
+                    if min(deck_quality.mana_value(card), 7) in under:
+                        idx = i
+                        break
+            card = remaining.pop(idx)
+            if self._add(card):
+                added += 1
+                b = min(deck_quality.mana_value(card), 7)
+                have[b] = have.get(b, 0) + 1
+        return added
 
     def _ci_filter(self, profile: CommanderProfile) -> str:
         """Returns a Scryfall color-identity restriction fragment."""
@@ -374,13 +433,7 @@ class DeckBuilder:
         if want <= 0:
             return 0
         if self._strict():
-            added = 0
-            for card in self._pool.creatures:
-                if added >= want:
-                    break
-                if self._add(card):
-                    added += 1
-            return added
+            return self._draft_curve_aware(self._pool.creatures, want)
         query = (
             f"type:creature "
             f"{self._ci_filter(profile)} "
@@ -392,13 +445,7 @@ class DeckBuilder:
         # Seed with owned creatures first (C4), then EDHREC bodies fill the rest.
         candidates = self._owned_candidates(creatures_only=True) + self._prefer_owned(
             self.client.search_cards_paged(query, max_results=candidates_needed))
-        added = 0
-        for card in candidates:
-            if added >= want:
-                break
-            if self._add(card):
-                added += 1
-        return added
+        return self._draft_curve_aware(candidates, want)
 
     def _fetch_goodstuff(self, profile: CommanderProfile, want: int) -> int:
         """
@@ -406,13 +453,7 @@ class DeckBuilder:
         Fetches enough candidates to go past whatever is already in the deck.
         """
         if self._strict():
-            added = 0
-            for card in self._pool.flex:
-                if added >= want:
-                    break
-                if self._add(card):
-                    added += 1
-            return added
+            return self._draft_curve_aware(self._pool.flex, want)
         query = (
             f"{self._ci_filter(profile)} "
             f"legal:commander -type:land"
@@ -424,13 +465,7 @@ class DeckBuilder:
         # "build from my collection" actually spends the deck on what you own.
         candidates = self._owned_candidates() + self._prefer_owned(
             self.client.search_cards_paged(query, max_results=candidates_needed))
-        added = 0
-        for card in candidates:
-            if added >= want:
-                break
-            if self._add(card):
-                added += 1
-        return added
+        return self._draft_curve_aware(candidates, want)
 
     def _build_lands(self, profile: CommanderProfile, want: int) -> int:
         """
@@ -631,6 +666,11 @@ class DeckBuilder:
         used = sum(plan.values())
         plan["goodstuff"] = 99 - used
 
+        # The curve the flexible fills aim at. Derived from the LAND plan, so a
+        # landfall build that shaves a land automatically budgets one more spell.
+        self._curve_target = deck_quality.curve_target(
+            99 - plan["lands"], int(profile.mana_value))
+
         # Snapshot active_themes into the lambda closures correctly
         _active = active_themes
 
@@ -823,4 +863,33 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
         "cmc_curve": dict(sorted(cmc_curve.items())),
         "land_count": type_counts.get("Land", 0),
         "total_cards": deck_total + 1,  # +1 for commander
+        "quality": deck_quality_block(commander, deck),
+    }
+
+
+def deck_quality_block(commander: dict, deck: list[dict]) -> dict:
+    """Curve and colour-source health for a finished list, as plain JSON.
+
+    Lives on compute_stats so EVERY path gets it from one place — generate, rebuild,
+    retheme, and imported decks (so "Analyze a Deck" reports whether a list the user
+    already owns can actually cast itself). Deliberately advisory: nothing here changes
+    which cards are in the deck, it only measures the one that was built.
+
+    Unlike the sibling `average_cmc`/`cmc_curve` keys above, these figures are
+    quantity-weighted, so an imported deck's aggregated basics don't skew them."""
+    try:
+        curve = deck_quality.assess_curve(deck, int(deck_quality.mana_value(commander)))
+        colors = deck_quality.assess_colors(deck, commander)
+    except Exception:      # noqa: BLE001 — advisory only; never fail a build over stats
+        return {}
+    return {
+        "curve": {
+            "average": curve.average, "verdict": curve.verdict,
+            "buckets": curve.buckets, "target": curve.target,
+            "over": curve.over, "under": curve.under, "notes": curve.notes,
+        },
+        "colors": {
+            "ok": colors.ok, "pips": colors.pips, "sources": colors.sources,
+            "required": colors.required, "short": colors.short, "notes": colors.notes,
+        },
     }
