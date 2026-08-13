@@ -260,6 +260,61 @@ def remove_card(name: str, path: Path | None = None, set_code: str | None = None
     return rows
 
 
+def set_printing(name: str, set_code: str, cn: str, from_set: str | None = None,
+                 from_cn: str | None = None, path: Path | None = None) -> list[dict]:
+    """Move a row to a different PRINTING of the same card, keeping its count.
+
+    If the collection already holds that printing, the two rows merge (counts summed)
+    rather than becoming duplicates of the same physical card.
+    """
+    rows = load_collection(path)
+    src = _find_row(rows, name, from_set, from_cn)
+    if src is None:
+        return rows
+    dest = _find_row(rows, name, (set_code or "").strip().upper() or None, cn)
+    if dest is not None and dest is not src:
+        dest["count"] += src["count"]
+        rows = [r for r in rows if r is not src]
+    else:
+        src["set"] = (set_code or "").strip().upper()
+        src["cn"] = (cn or "").strip()
+    write_collection(rows, path)
+    return rows
+
+
+def bulk_apply(targets: list[dict], action: str, count: int = 0,
+               path: Path | None = None) -> tuple[list[dict], int]:
+    """Apply one action to many printings in a SINGLE write. Returns (rows, affected).
+
+    Every mutating helper above rewrites the whole CSV and refreshes the .bak, so doing a
+    20-row cleanup one call at a time means 20 full rewrites — and 20 chances for the
+    backup to be overwritten with an already-modified file, which would cost the user
+    their Undo. One pass, one write, one .bak.
+
+    `targets` are {"name", "set", "cn"} dicts; `action` is "remove" or "set_count".
+    """
+    rows = load_collection(path)
+    wanted = {printing_key(t.get("name", ""), t.get("set", ""), t.get("cn", ""))
+              for t in targets if (t.get("name") or "").strip()}
+    if not wanted:
+        return rows, 0
+
+    affected = 0
+    kept: list[dict] = []
+    for r in rows:
+        if printing_key(r["name"], r.get("set", ""), r.get("cn", "")) not in wanted:
+            kept.append(r)
+            continue
+        affected += 1
+        if action == "remove" or (action == "set_count" and int(count) <= 0):
+            continue
+        if action == "set_count":
+            r["count"] = int(count)
+        kept.append(r)
+    write_collection(kept, path)
+    return kept, affected
+
+
 def bulk_import(text: str, mode: str = "merge", path: Path | None = None) -> list[dict]:
     """Import a pasted CSV or decklist. mode="merge" adds counts onto the current
     collection; mode="replace" overwrites it. Merging is per PRINTING, so importing a

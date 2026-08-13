@@ -825,6 +825,60 @@ def test_collection_repair():
     check("rep.accept.kept", partial[0]["name"], "1x Abandoned Air Temple (tla) 263 [Land]")
 
 
+def test_collection_bulk_and_printing():
+    """Bulk edits and printing changes target ONE printing, and never lose a count."""
+    import tempfile
+    from pathlib import Path
+    tmp = Path(tempfile.mkdtemp()) / "collection.csv"
+
+    def seed():
+        collection.write_collection([
+            {"name": "Sol Ring",       "count": 2, "set": "LTC", "cn": "273"},
+            {"name": "Sol Ring",       "count": 1, "set": "C21", "cn": "263"},
+            {"name": "Lightning Bolt", "count": 4, "set": "",    "cn": ""},
+        ], tmp)
+
+    seed()
+    rows, n = collection.bulk_apply([{"name": "Sol Ring", "set": "LTC", "cn": "273"}],
+                                    "remove", path=tmp)
+    check("bulk.remove.n", n, 1)
+    check("bulk.remove.right_printing",
+          [(r["name"], r["set"]) for r in rows if r["name"] == "Sol Ring"], [("Sol Ring", "C21")])
+
+    seed()
+    rows, n = collection.bulk_apply([{"name": "Lightning Bolt", "set": "", "cn": ""}],
+                                    "set_count", 1, path=tmp)
+    check("bulk.set_count", [r["count"] for r in rows if r["name"] == "Lightning Bolt"], [1])
+
+    seed()
+    rows, n = collection.bulk_apply([{"name": "Lightning Bolt", "set": "", "cn": ""}],
+                                    "set_count", 0, path=tmp)
+    check("bulk.zero_removes", [r["name"] for r in rows if r["name"] == "Lightning Bolt"], [])
+
+    # An empty selection must be a no-op, NOT a wipe of the whole collection.
+    seed()
+    rows, n = collection.bulk_apply([], "remove", path=tmp)
+    check("bulk.empty_noop", (n, len(collection.load_collection(tmp))), (0, 3))
+
+    # Filling in an unknown printing keeps the count — the reason this exists at all is
+    # that delete-and-re-add would silently reset it to 1.
+    seed()
+    rows = collection.set_printing("Lightning Bolt", "LEA", "161", path=tmp)
+    bolt = [r for r in rows if r["name"] == "Lightning Bolt"][0]
+    check("printing.set", (bolt["set"], bolt["cn"], bolt["count"]), ("LEA", "161", 4))
+
+    # Moving onto a printing already owned merges rather than duplicating it.
+    seed()
+    rows = collection.set_printing("Sol Ring", "C21", "263", from_set="LTC", from_cn="273", path=tmp)
+    sols = [r for r in rows if r["name"] == "Sol Ring"]
+    check("printing.merge", [(r["set"], r["count"]) for r in sols], [("C21", 3)])
+
+    seed()
+    before = collection.load_collection(tmp)
+    rows = collection.set_printing("Nonexistent Card", "LEA", "1", path=tmp)
+    check("printing.unknown_noop", len(rows), len(before))
+
+
 def test_collection_mana_value():
     """Converted mana cost. MTG-rules-facing: a near-miss here is a defect."""
     mv = collection_index.mana_value

@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import CardHover from './CardHover'
 import CollectionStats from './CollectionStats'
+import CollectionGrid from './CollectionGrid'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -43,6 +44,9 @@ function filterQuery(f) {
 // Toggle one value inside a multi-select facet.
 const toggle = (list, v) => (list.includes(v) ? list.filter(x => x !== v) : [...list, v])
 
+// Must match CollectionGrid's — a card owned in two sets is two rows.
+const rowKey = r => `${r.name}|${r.set || ''}|${r.cn || ''}`
+
 export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
   const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false, total_value: 0, priced: 0, prices_updated: null })
@@ -71,8 +75,34 @@ export default function StepCollection({ onBack, onBuild }) {
   const [showStats, setShowStats]   = useState(false)
   const [health, setHealth]         = useState(null)   // {affected, issues, copies_*}
   const [showHealth, setShowHealth] = useState(false)
+  // View preference sticks — someone who browses their binder visually wants it every time.
+  const [view, setView]             = useState(() => localStorage.getItem('mtg_coll_view') || 'list')
+  const [selectMode, setSelectMode] = useState(false)
+  const [selected, setSelected]     = useState(() => new Set())
+  const [printingFor, setPrintingFor] = useState(null) // row whose printing is being chosen
+  const [printings, setPrintings]   = useState([])
+  const [pLoading, setPLoading]     = useState(false)
   const debounce = useRef(null)
   const sugDebounce = useRef(null)
+  const searchRef = useRef(null)
+  const addRef = useRef(null)
+
+  useEffect(() => { localStorage.setItem('mtg_coll_view', view) }, [view])
+
+  // "/" jumps to search from anywhere on the page — the fastest way into a 1000-card list.
+  // Ignored while typing in a field, so it never eats a literal slash.
+  useEffect(() => {
+    const onKey = e => {
+      const tag = (e.target.tagName || '').toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+        if (e.key === 'Escape') e.target.blur()
+        return
+      }
+      if (e.key === '/') { e.preventDefault(); searchRef.current && searchRef.current.focus() }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   // Declared before the callbacks that close over it. `loadBuildable` used to sit
   // above this line and reference it, which is legal only by accident — useCallback
@@ -180,6 +210,8 @@ export default function StepCollection({ onBack, onBuild }) {
       d => `Added ${d.resolved_name || name}`,
     )
     setAddName(''); setAddCount(1)
+    // Keep the caret in the box: adding cards is something you do in a run of ten, not once.
+    addRef.current && addRef.current.focus()
   }
 
   // Rows are PER PRINTING now, so edits must name the set/collector number or they'd
@@ -243,6 +275,62 @@ export default function StepCollection({ onBack, onBuild }) {
   const applyFilter = crit => {
     setFilters(f => ({ ...EMPTY_FILTERS, ...f, ...crit }))
     setShowFilters(true)
+  }
+
+  // ── Bulk selection ──────────────────────────────────────────────────────────
+  const toggleSelect = row => setSelected(s => {
+    const next = new Set(s)
+    const k = rowKey(row)
+    next.has(k) ? next.delete(k) : next.add(k)
+    return next
+  })
+  const selectedRows = () => cards.filter(r => selected.has(rowKey(r)))
+  const clearSelection = () => setSelected(new Set())
+  const exitSelect = () => { setSelectMode(false); clearSelection() }
+
+  // One request, one CSV write, one .bak — see /api/collection/bulk. Doing this per row
+  // would also overwrite the backup with an already-modified file and cost the user Undo.
+  const bulkAction = (action, count = 0) => {
+    const targets = selectedRows().map(r => ({ name: r.name, set: r.set || '', cn: r.cn || '' }))
+    if (!targets.length) return
+    apply(fetch('/api/collection/bulk', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, targets, count }),
+    }), d => `${action === 'remove' ? 'Removed' : 'Updated'} ${d.affected} card${d.affected === 1 ? '' : 's'}`)
+    exitSelect()
+    setTimeout(loadHealth, 400)
+  }
+
+  const copySelection = () => {
+    const text = selectedRows()
+      .map(r => `${r.count} ${r.name}${r.set ? ` (${r.set})${r.cn ? ` ${r.cn}` : ''}` : ''}`)
+      .join('\n')
+    if (!text) return
+    navigator.clipboard.writeText(text)
+      .then(() => flash('ok', `Copied ${selected.size} card${selected.size === 1 ? '' : 's'} as a decklist`))
+      .catch(() => flash('err', 'Could not copy to the clipboard.'))
+  }
+
+  // ── Printing picker ─────────────────────────────────────────────────────────
+  // The endpoint already existed and nothing ever called it; 794 rows don't record which
+  // printing is owned, and re-adding the card to fix that would lose the count.
+  const openPrintings = row => {
+    setPrintingFor(row); setPrintings([]); setPLoading(true)
+    fetch(`/api/collection/printings?name=${encodeURIComponent(row.name)}`)
+      .then(r => r.json())
+      .then(d => setPrintings(d.printings || []))
+      .catch(() => flash('err', 'Could not load printings.'))
+      .finally(() => setPLoading(false))
+  }
+
+  const choosePrinting = p => {
+    const row = printingFor
+    setPrintingFor(null)
+    apply(fetch('/api/collection/printing', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: row.name, set_code: p.set, cn: p.collector_number,
+                             from_set: row.set || null, from_cn: row.cn || null }),
+    }), () => `${row.name} → ${p.set} ${p.collector_number}`)
   }
 
   const btn = (extra = {}) => ({
@@ -435,6 +523,7 @@ export default function StepCollection({ onBack, onBuild }) {
       <div style={{ display: 'flex', gap: 8, margin: '14px 0', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 320px', position: 'relative' }}>
           <input
+            ref={addRef}
             value={addName}
             onChange={e => { setAddName(e.target.value); setShowSug(true) }}
             onKeyDown={e => { if (e.key === 'Enter') { setShowSug(false); addCard() } if (e.key === 'Escape') setShowSug(false) }}
@@ -517,11 +606,23 @@ export default function StepCollection({ onBack, onBuild }) {
       {/* Search + sort + filter toggle */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
         <input
+          ref={searchRef}
           value={q} onChange={e => setQ(e.target.value)}
-          placeholder="Search your collection…"
+          placeholder="Search your collection…   (press / )"
           style={{ flex: '1 1 240px', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
                    border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14 }}
         />
+        {/* List vs binder. Two buttons rather than a dropdown — it's a one-click switch. */}
+        <div style={{ display: 'flex', borderRadius: 8, overflow: 'hidden', border: `1px solid ${c.border}` }}>
+          {[['list', '☰', 'List'], ['grid', '▦', 'Binder']].map(([v, icon, label]) => (
+            <button key={v} onClick={() => setView(v)} title={`${label} view`}
+              style={{ padding: '8px 12px', border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                       fontSize: 14, background: view === v ? '#1c1410' : c.card,
+                       color: view === v ? c.gold : c.dim }}>
+              {icon}
+            </button>
+          ))}
+        </div>
         <select value={sort} onChange={e => setSort(e.target.value)}
           style={{ padding: '9px 10px', borderRadius: 8, background: c.panel,
                    border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 13 }}>
@@ -537,7 +638,44 @@ export default function StepCollection({ onBack, onBuild }) {
             : {})}>
           ⚗ Filters{hasFilters(filters) ? ' •' : ''}
         </button>
+        <button onClick={() => (selectMode ? exitSelect() : setSelectMode(true))}
+          title="Select several cards and act on them at once"
+          style={btn(selectMode
+            ? { background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 }
+            : {})}>
+          ☑ Select
+        </button>
       </div>
+
+      {/* Bulk action bar — only while selecting, and it always says how many. */}
+      {selectMode && (
+        <div style={{ margin: '0 0 10px', padding: '8px 12px', borderRadius: 8, background: '#12100a',
+                      border: `1px solid ${c.gold}`, display: 'flex', gap: 8, alignItems: 'center',
+                      flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 13, color: c.gold, fontWeight: 700 }}>
+            {selected.size} selected
+          </span>
+          <button onClick={() => setSelected(new Set(cards.map(rowKey)))} style={btn({ padding: '4px 10px', fontSize: 12 })}>
+            Select all {cards.length} shown
+          </button>
+          <button onClick={clearSelection} disabled={!selected.size} style={btn({ padding: '4px 10px', fontSize: 12 })}>
+            Clear
+          </button>
+          <span style={{ flex: 1 }} />
+          <button onClick={copySelection} disabled={!selected.size} style={btn({ padding: '4px 10px', fontSize: 12 })}
+            title="Copy as a decklist you can paste into Moxfield or Archidekt">
+            ⧉ Copy as list
+          </button>
+          <button onClick={() => bulkAction('set_count', 1)} disabled={busy || !selected.size}
+            style={btn({ padding: '4px 10px', fontSize: 12 })} title="Set every selected card to a single copy">
+            Set to 1
+          </button>
+          <button onClick={() => bulkAction('remove')} disabled={busy || !selected.size}
+            style={btn({ padding: '4px 10px', fontSize: 12, color: '#f87171', border: '1px solid #3f1d1d' })}>
+            ✕ Remove {selected.size || ''}
+          </button>
+        </div>
+      )}
 
       {/* Facet panel — only values the collection actually contains are offered, so a
           filter can never produce an empty list by surprise. */}
@@ -624,6 +762,12 @@ export default function StepCollection({ onBack, onBuild }) {
         <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
           {q ? 'No matching cards.' : 'Your collection is empty — add a card above.'}
         </div>
+      ) : view === 'grid' ? (
+        <CollectionGrid
+          cards={cards} onSetCount={setCount} onRemove={removeCard}
+          onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
+          onToggleSelect={toggleSelect} busy={busy}
+        />
       ) : (
         <div style={{ border: `1px solid ${c.border}`, borderRadius: 10, overflow: 'hidden' }}>
           {cards.map((row, i) => (
@@ -631,6 +775,10 @@ export default function StepCollection({ onBack, onBuild }) {
               display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px',
               background: i % 2 ? '#141210' : c.card, borderBottom: i < cards.length - 1 ? `1px solid ${c.border}` : 'none',
             }}>
+              {selectMode && (
+                <input type="checkbox" checked={selected.has(rowKey(row))}
+                  onChange={() => toggleSelect(row)} style={{ flexShrink: 0, margin: 0 }} />
+              )}
               {/* Colour identity dot — the fastest read of "what is this card" in a list
                   this long. An unrecognized row gets a hollow dot rather than a wrong one. */}
               <span title={row.resolved ? `${row.type_line || row.type}${row.mana_cost ? ` · ${row.mana_cost}` : ''}`
@@ -649,14 +797,19 @@ export default function StepCollection({ onBack, onBuild }) {
                 {row.resolved ? `${row.type || ''} ${row.cmc}` : ''}
               </span>
               {/* Which printing this row is. Blank = set unknown (use Fill printings). */}
-              <span title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''}` : 'Printing unknown'}
+              {/* The set chip IS the printing control. A row with no printing reads as
+                  "set?" rather than a dash, because it's an invitation, not a value. */}
+              <button onClick={() => openPrintings(row)} disabled={busy}
+                title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''} — click to change printing`
+                               : 'Printing unknown — click to choose one'}
                 style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0,
-                  padding: '1px 6px', borderRadius: 4, minWidth: 40, textAlign: 'center',
+                  padding: '1px 6px', borderRadius: 4, minWidth: 44, textAlign: 'center',
+                  fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer',
                   background: row.set ? '#0c0a09' : 'transparent',
-                  border: `1px solid ${row.set ? c.border : 'transparent'}`,
-                  color: row.set ? c.dim : c.faint }}>
-                {row.set || '—'}
-              </span>
+                  border: `1px solid ${row.set ? c.border : '#3f3a2a'}`,
+                  color: row.set ? c.dim : '#a16207' }}>
+                {row.set || 'set?'}
+              </button>
               {/* Market price for this printing (x count shown on hover) */}
               <span title={row.price ? `$${row.price.toFixed(2)} each · $${(row.price * row.count).toFixed(2)} for ${row.count}` : 'No price yet — hit Get prices'}
                 style={{ fontSize: 11.5, color: row.price ? '#4ade80' : c.faint, minWidth: 52,
@@ -672,8 +825,69 @@ export default function StepCollection({ onBack, onBuild }) {
           ))}
         </div>
       )}
-      {!loading && cards.length >= 500 && (
-        <div style={{ fontSize: 11.5, color: c.faint, marginTop: 8 }}>Showing first 500 — use search to narrow.</div>
+      {!loading && cards.length >= PAGE && (
+        <div style={{ fontSize: 11.5, color: c.faint, marginTop: 8 }}>
+          Showing the first {PAGE} — search, filter, or “Show all” above.
+        </div>
+      )}
+
+      {/* Printing picker */}
+      {printingFor && (
+        <div onClick={() => setPrintingFor(null)}
+          style={{ position: 'fixed', inset: 0, zIndex: 50, background: 'rgba(0,0,0,0.72)',
+                   display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+          <div onClick={e => e.stopPropagation()}
+            style={{ background: c.panel, border: `1px solid ${c.border}`, borderRadius: 12,
+                     padding: 16, maxWidth: 720, width: '100%', maxHeight: '80vh',
+                     overflowY: 'auto' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
+              <h2 style={{ fontSize: 16, color: c.gold, margin: 0 }}>Choose a printing</h2>
+              <span style={{ fontSize: 13, color: '#f5f5f4' }}>{printingFor.name}</span>
+              <button onClick={() => setPrintingFor(null)}
+                style={btn({ marginLeft: 'auto', padding: '4px 10px', fontSize: 12 })}>Close</button>
+            </div>
+            <p style={{ fontSize: 12, color: c.faint, margin: '0 0 12px' }}>
+              Cheapest first. Picking one keeps your count of {printingFor.count} and prices
+              this row as that exact printing instead of a representative one.
+            </p>
+            {pLoading ? (
+              <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
+                Loading printings…
+              </div>
+            ) : printings.length === 0 ? (
+              <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
+                No printings found for this card.
+              </div>
+            ) : (
+              <div style={{ display: 'grid', gap: 10,
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))' }}>
+                {printings.map(p => {
+                  const current = (p.set || '') === (printingFor.set || '') &&
+                                  String(p.collector_number || '') === String(printingFor.cn || '')
+                  return (
+                    <button key={`${p.set}|${p.collector_number}`} onClick={() => choosePrinting(p)}
+                      title={`${p.set_name || p.set} #${p.collector_number}`}
+                      style={{ padding: 6, borderRadius: 8, cursor: 'pointer', textAlign: 'center',
+                               background: current ? '#1c1410' : c.card, fontFamily: 'inherit',
+                               border: `1px solid ${current ? c.gold : c.border}` }}>
+                      {p.image
+                        ? <img src={p.image} alt="" loading="lazy"
+                            style={{ width: '100%', borderRadius: 5, display: 'block' }} />
+                        : <div style={{ aspectRatio: '488 / 680', background: c.panel, borderRadius: 5 }} />}
+                      <div style={{ fontSize: 11, fontWeight: 700, color: c.dim, marginTop: 5 }}>
+                        {p.set} {p.collector_number}
+                      </div>
+                      <div style={{ fontSize: 11, color: p.usd == null ? c.faint : c.green }}>
+                        {p.usd == null ? 'no price' : `$${p.usd.toFixed(2)}`}
+                      </div>
+                      {current && <div style={{ fontSize: 10, color: c.gold }}>current</div>}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        </div>
       )}
     </div>
   )

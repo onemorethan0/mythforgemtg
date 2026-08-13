@@ -53,7 +53,8 @@ from collection         import (
     load_owned_names, owned_count, suite_collection_path,
     load_collection, add_card as coll_add_card, set_count as coll_set_count,
     remove_card as coll_remove_card, bulk_import as coll_bulk_import, owned_key,
-    write_collection as coll_write,
+    write_collection as coll_write, set_printing as coll_set_printing,
+    bulk_apply as coll_bulk_apply,
 )
 import collection_repair as coll_repair
 from collection_index    import enrich_rows, facets as coll_facets, filter_rows, sort_rows
@@ -4328,6 +4329,58 @@ def collection_undo():
     except OSError as e:
         raise HTTPException(500, f"Restore failed: {e}")
     return {"restored": True, **_collection_summary(load_collection())}
+
+
+class CollectionTarget(BaseModel):
+    name: str
+    set:  str = ""
+    cn:   str = ""
+
+
+class CollectionBulkRequest(BaseModel):
+    action:  str                      # "remove" | "set_count"
+    targets: list[CollectionTarget]
+    count:   int = 0                  # for set_count; <=0 removes
+
+
+@app.post("/api/collection/bulk")
+def collection_bulk(req: CollectionBulkRequest):
+    """One action over many printings in a SINGLE write.
+
+    Doing this a row at a time would rewrite the whole CSV per row and refresh the .bak
+    each time — which quietly destroys Undo, since after the second write the backup is
+    itself already-modified.
+    """
+    if req.action not in ("remove", "set_count"):
+        raise HTTPException(400, "action must be 'remove' or 'set_count'.")
+    if not req.targets:
+        raise HTTPException(400, "No cards selected.")
+    rows, affected = coll_bulk_apply([t.model_dump() for t in req.targets],
+                                     req.action, int(req.count))
+    return {"affected": affected, "action": req.action, **_collection_summary(rows)}
+
+
+class CollectionPrintingRequest(BaseModel):
+    name:     str
+    set_code: str
+    cn:       str = ""
+    from_set: Optional[str] = None    # which row to move; None = the first printing
+    from_cn:  Optional[str] = None
+
+
+@app.patch("/api/collection/printing")
+def collection_set_printing(req: CollectionPrintingRequest):
+    """Point a row at a different printing of the same card, keeping its count.
+
+    This is how the 794 rows whose printing is unknown get a real one without the user
+    deleting and re-adding the card (which would lose the count). Merges into the target
+    printing when the collection already holds it.
+    """
+    if not (req.name or "").strip():
+        raise HTTPException(400, "Card name is required.")
+    rows = coll_set_printing(req.name.strip(), req.set_code, req.cn,
+                             from_set=(req.from_set or None), from_cn=(req.from_cn or None))
+    return {"cards": rows[:200], **_collection_summary(rows)}
 
 
 @app.post("/api/collection/prices")

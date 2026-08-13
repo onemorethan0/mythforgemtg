@@ -32,8 +32,18 @@ UNKNOWN_SET = "—"
 _EMPTY_META = {
     "mana_cost": "", "cmc": 0, "type_line": "", "type": "Other",
     "colors": [], "color_identity": [], "rarity": None, "set_name": None,
-    "edhrec_rank": None, "game_changer": False, "is_land": False,
+    "edhrec_rank": None, "game_changer": False, "is_land": False, "image": None,
 }
+
+
+def _thumb(card: dict) -> str | None:
+    """A small card image URL, front face. Only the Scryfall cache carries these — the
+    slim store has no images at all — so a grid tile falls back to /api/card-image."""
+    uris = card.get("image_uris") or {}
+    if not uris:
+        faces = card.get("card_faces") or []
+        uris = (faces[0].get("image_uris") or {}) if faces and isinstance(faces[0], dict) else {}
+    return uris.get("small") or uris.get("normal") or None
 
 
 def index_key(name: str) -> str:
@@ -118,6 +128,7 @@ def _meta_from(card: dict, name: str, rich: bool) -> dict:
         "edhrec_rank":    card.get("edhrec_rank"),
         "game_changer":   bool(card.get("game_changer")),
         "is_land":        kind == "Land",
+        "image":          _thumb(card) if rich else None,
     }
 
 
