@@ -94,15 +94,30 @@ def dispatch(spec: str, model: str, max_tokens: int, temp: float | None,
         data=json.dumps(payload).encode("utf-8"),
         headers={"Content-Type": "application/json"},
     )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            data = json.load(r)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", "replace")[:400]
-        if e.code == 500 and "prematurely" in body:
-            sys.exit(f"llama-swap 500: CUDA OOM loading {model!r} "
-                     f"(desktop is holding VRAM). Close apps or use a smaller model.\n{body}")
-        sys.exit(f"HTTP {e.code} from llama-swap: {body}")
+    # llama-swap answers 502 with an EMPTY body while it is mid-swap — the previous
+    # model has been evicted on its idle TTL and the new llama-server is still loading.
+    # A 30B takes a while, so a cold first request loses the race. Retry rather than
+    # failing a dispatch that would have worked seconds later. This is distinct from the
+    # 500 "prematurely" body, which is a real CUDA OOM and is NOT worth retrying.
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "replace")[:400]
+            if e.code == 500 and "prematurely" in body:
+                sys.exit(f"llama-swap 500: CUDA OOM loading {model!r} "
+                         f"(desktop is holding VRAM). Close apps or use a smaller model.\n{body}")
+            if e.code in (502, 503) and attempt < 3:
+                wait = 20 * (attempt + 1)
+                print(f"[offload] HTTP {e.code} (model still loading) — retrying in {wait}s",
+                      flush=True)
+                time.sleep(wait)
+                continue
+            sys.exit(f"HTTP {e.code} from llama-swap: {body}")
+    else:
+        sys.exit("llama-swap never became ready")
     msg = (data.get("choices") or [{}])[0].get("message") or {}
     return msg.get("content") or "", msg.get("reasoning_content") or ""
 

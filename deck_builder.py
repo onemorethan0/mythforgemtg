@@ -24,6 +24,7 @@ from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
 from collection import owned_key
 import collection_pool
 import deck_quality
+import theme_match
 
 # ── Color → basic land name ───────────────────────────────────────────────────
 BASIC_LAND: dict[str, str] = {
@@ -343,12 +344,40 @@ class DeckBuilder:
         Pull synergy cards for the given theme list (up to 3 active themes).
         Distributes `want` slots proportionally across themes.
         """
-        # Theme synergy is a Scryfall SEARCH by construction, so strict mode has no way
-        # to run it. Returning 0 hands those slots to the goodstuff fill, which draws
-        # from the same owned pool — the deck stays 99 cards, it just isn't theme-tuned.
+        # Strict mode has no Scryfall search, so theme_match reproduces the same queries
+        # locally over the owned pool. Before this, the whole theme package was skipped
+        # and its ~20 slots fell through to the generic goodstuff fill — a strict Dragon
+        # deck got no Dragon payoffs beyond whatever happened to rank well.
         if self._strict():
-            self.shortfall["theme"] = self.shortfall.get("theme", 0) + want
-            return 0
+            active = [t for t in themes if t in theme_match.THEMES][:3]
+            if not active:
+                self.shortfall["theme"] = self.shortfall.get("theme", 0) + want
+                return 0
+            # Match over flex (nonland) — the Scryfall theme queries carry -type:land.
+            matched = theme_match.match_themes(self._pool.flex, active)
+            added = 0
+            per_theme = max(1, want // len(active))
+            remainder = want - per_theme * len(active)
+            for i, theme in enumerate(active):
+                if added >= want:
+                    break
+                slot = min(per_theme + (remainder if i == 0 else 0), want - added)
+                # Curve-aware: every candidate here is equally on-theme (match_themes
+                # already ranked payoffs above vanilla bodies), so preferring the one
+                # that fills a short bucket costs nothing thematic. Without this the
+                # theme block took every flexible slot and curve deviation went 2 -> 24.
+                added += self._draft_curve_aware(matched.get(theme, []), slot)
+            # A theme that ran dry would otherwise waste its slots. The Scryfall path
+            # can afford not to care (its pool is the whole format); an owned pool is
+            # small enough that one thin theme routinely leaves slots unfilled.
+            if added < want:
+                for theme in active:
+                    if added >= want:
+                        break
+                    added += self._draft_curve_aware(matched.get(theme, []), want - added)
+            if added < want:
+                self.shortfall["theme"] = self.shortfall.get("theme", 0) + (want - added)
+            return added
 
         active = [t for t in themes if THEME_SYNERGY_QUERIES.get(t)][:3]
         if not active:
@@ -709,7 +738,12 @@ class DeckBuilder:
             ("Board wipes",    lambda: self._fetch_role(profile, "board_wipe", plan["board_wipe"])),
             ("Protection",     lambda: self._fetch_role(profile, "protection", plan["protection"])),
             ("Finishers",      lambda: self._fetch_role(profile, "finisher", plan["finisher"])),
-            ("Theme synergy",  lambda: self._fetch_theme_synergy_list(profile, _active, plan["theme"])),
+            # Capped at the space actually left, like the creature floor below. The
+            # aggro bump can push the plan over 99 (goodstuff has a max(2,...) floor
+            # that stops it absorbing the overflow); before theme could fill its whole
+            # allocation that never showed, and now the tail silently truncated to 99.
+            ("Theme synergy",  lambda: self._fetch_theme_synergy_list(
+                profile, _active, min(plan["theme"], 99 - len(self._deck)))),
             # Top up bodies to the floor, but never overshoot 99 (leaves goodstuff
             # whatever slots remain). A no-op (want<=0) for creature-centric decks.
             ("Creature floor", lambda: self._fetch_creatures(
@@ -752,7 +786,12 @@ class DeckBuilder:
         # _owned_candidates), so trim the auto-theme package by just enough to seat the
         # eligible owned cards there. A small collection barely touches theme; a large one
         # shifts more of the flexible budget onto what the user actually owns.
-        if self._owned_cards:
+        # NOT in strict mode. The redirect buys goodstuff slots for owned cards because
+        # under prefer_collection goodstuff is the ONLY place they get seated. Strict
+        # mode draws every slot from the collection already, so the trade buys nothing
+        # and costs the theme package: with a 400-card pool it drove theme to its floor
+        # of 4, so a strict Dragon deck got 4 theme cards instead of 26.
+        if self._owned_cards and not self._strict():
             want_owned = min(len(self._owned_cards), 25)
             deficit = want_owned - plan["goodstuff"]
             if deficit > 0:
