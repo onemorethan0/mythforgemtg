@@ -22,6 +22,7 @@ from commander_analysis import CommanderProfile, THEME_SYNERGY_QUERIES
 from scryfall_client import ScryfallClient
 from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
 from collection import owned_key
+import collection_pool
 
 # ── Color → basic land name ───────────────────────────────────────────────────
 BASIC_LAND: dict[str, str] = {
@@ -242,8 +243,14 @@ class DeckBuilder:
     def _fetch_role(self, profile: CommanderProfile, role: str, want: int) -> int:
         if self._strict():
             # collection_pool has already classified and EDHREC-ordered the owned pool.
+            pool_role = _POOL_ROLE.get(role)
+            if pool_role is None:
+                # A role added to ROLE_QUERIES without a _POOL_ROLE entry: skip the slot
+                # and report it, rather than raising KeyError inside the build thread.
+                self.shortfall[role] = self.shortfall.get(role, 0) + want
+                return 0
             added = 0
-            for card in self._pool.roles.get(_POOL_ROLE[role], []):
+            for card in self._pool.roles.get(pool_role, []):
                 if added >= want:
                     break
                 if self._add(card):
@@ -448,9 +455,18 @@ class DeckBuilder:
         if self._strict():
             # Owned nonbasics only. Basics below are still fetched from Scryfall's local
             # cache — every deck may play unlimited basics regardless of what you own.
+            # The bracket land-power cap applies here exactly as it does to a Scryfall
+            # build: without it a Bracket 1 strict deck kept every fetch/shock the user
+            # owned, so the same bracket meant different things per source.
+            # collection_pool.land_tier returns None when it cannot confidently classify,
+            # and None is ALLOWED — mislabelling an ordinary owned dual would gut the
+            # manabase, while admitting one extra good land merely softens the cap.
             for card in self._pool.lands:
                 if added >= nonbasic_cap:
                     break
+                tier = collection_pool.land_tier(card)
+                if tier is not None and tier not in allowed_tiers:
+                    continue
                 if self._add(card):
                     added += 1
         else:
@@ -563,19 +579,23 @@ class DeckBuilder:
         self._card_source = card_source if card_source in CARD_SOURCES else SOURCE_SCRYFALL
         self._pool = None
         self.shortfall = {}
+        self.source_fallback = ""
 
         if self._card_source == SOURCE_COLLECTION:
             if self._owned_cards:
-                import collection_pool
                 self._pool = collection_pool.build_pool(
                     {"name": profile.name, "color_identity": list(profile.color_identity)},
                     self._owned_cards,
                 )
             else:
                 # No usable owned pool — a strict build would be 99 basic lands. Fall
-                # back to Scryfall and let the caller see it in shortfall.
+                # back to Scryfall and say so in words. A sentinel count in `shortfall`
+                # rendered as the meaningless "Collection couldn't cover: collection (-99)".
                 self._card_source = SOURCE_SCRYFALL
-                self.shortfall["collection"] = 99
+                self.source_fallback = (
+                    "No owned cards match this commander's colour identity — "
+                    "built from Scryfall instead."
+                )
 
         # Use overridden themes for synergy fetching, fall back to auto-detected
         active_themes = theme_override if theme_override is not None else profile.themes
@@ -735,6 +755,13 @@ class DeckBuilder:
         shortfall = 99 - len(self._deck)
         if shortfall > 0:
             print(f"\n  Guaranteeing 99 with {shortfall} basic land(s) (Scryfall came up short)...")
+            if self._strict():
+                # An exhausted owned pool used to pad SILENTLY: a small collection got a
+                # deck that was mostly Mountains, and shortfall named only the roles — so
+                # build()'s promise to report what the collection couldn't cover was only
+                # half kept. Goodstuff/creature fill have no want-vs-got to record, but
+                # the padding count is the honest total.
+                self.shortfall["padded_with_basics"] = shortfall
             self._pad_with_basics(profile, shortfall)
 
         return self._deck[:99]

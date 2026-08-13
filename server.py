@@ -55,6 +55,9 @@ from collection         import (
     remove_card as coll_remove_card, bulk_import as coll_bulk_import, owned_key,
     write_collection as coll_write,
 )
+import collection_repair as coll_repair
+from collection_index    import enrich_rows, facets as coll_facets, filter_rows, sort_rows
+from collection_stats    import collection_stats
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
@@ -1461,6 +1464,9 @@ def _run_build(job_id: str, req: BuildRequest):
                 owned           = owned,
                 card_source     = source,
             )
+            if builder.source_fallback:
+                _push(job_id, "progress", json.dumps({"step": "deck",
+                                                      "msg": builder.source_fallback}))
             if builder.shortfall:
                 _push(job_id, "progress", json.dumps({"step": "deck", "msg":
                     "Collection couldn't cover: " + ", ".join(
@@ -1469,11 +1475,16 @@ def _run_build(job_id: str, req: BuildRequest):
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
             stats = compute_stats(card, deck)
-            if req.use_collection:
+            # Gate on the RESOLVED source, not the legacy boolean: a request carrying
+            # only card_source="collection" built strictly but reported no collection
+            # stats at all, so deck.json lost the block and StepDeck's owned badge
+            # vanished. Keys match generate_list's block so both endpoints agree.
+            if source != SOURCE_SCRYFALL:
                 _spells = [card] + [c for c in deck
                                     if "basic" not in (c.get("type_line", "") or "").lower()]
                 have = owned_count(_spells, owned)
                 collection_stats = {
+                    "source": source, "shortfall": builder.shortfall,
                     "enabled": True, "owned": have, "total": len(_spells),
                     "collection_size": len(owned),
                 }
@@ -4214,19 +4225,109 @@ def _collection_summary(rows: list[dict], prices: dict | None = None) -> dict:
     }
 
 
-@app.get("/api/collection")
-def get_collection(q: str = "", offset: int = 0, limit: int = 200):
-    """Owned cards (quantity-aware), optionally filtered by `q` and paginated.
-    limit<=0 returns all matches (still capped at 5000 for safety)."""
+def _csv_param(value: str) -> list[str]:
+    """A comma-separated query param as a list. Blank -> [] (i.e. no constraint)."""
+    return [p.strip() for p in (value or "").split(",") if p.strip()]
+
+
+def _enriched_collection() -> tuple[list[dict], list[dict]]:
+    """(raw rows, rows enriched with cached prices + offline card metadata).
+
+    The raw rows are what the summary counts; the enriched copies are what the browser
+    filters and sorts. Enrichment is a dict lookup per row against an lru_cached index,
+    so this is cheap enough to do per request and always reflects the file on disk.
+    """
     rows = load_collection()
-    ql = (q or "").strip().casefold()
-    filtered = [r for r in rows if ql in r["name"].casefold()] if ql else rows
-    lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
-    page = filtered[max(offset, 0): max(offset, 0) + lim]
-    # Attach cached prices to the returned page (never fetches — see /prices).
     pmap = (_load_prices().get("prices") or {})
-    page = [{**r, "price": _price_of(r, pmap)} for r in page]
-    return {"cards": page, "matched": len(filtered), **_collection_summary(rows)}
+    return rows, enrich_rows([{**r, "price": _price_of(r, pmap)} for r in rows])
+
+
+@app.get("/api/collection")
+def get_collection(q: str = "", offset: int = 0, limit: int = 200,
+                   colors: str = "", types: str = "", rarities: str = "", sets: str = "",
+                   cmc_min: Optional[int] = None, cmc_max: Optional[int] = None,
+                   min_count: Optional[int] = None,
+                   sort: str = "name", direction: str = "asc"):
+    """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
+
+    The CSV stores only name/count/set/collector-number, so colour, type, mana value and
+    rarity are joined in from the local card stores — no network. `colors`/`types`/
+    `rarities`/`sets` are comma-separated; values within one are ORed, the criteria are
+    ANDed. limit<=0 returns all matches (still capped at 5000 for safety).
+    """
+    rows, enriched = _enriched_collection()
+    matched = filter_rows(enriched, q=q, colors=_csv_param(colors), types=_csv_param(types),
+                          rarities=_csv_param(rarities), sets=_csv_param(sets),
+                          cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count)
+    ordered = sort_rows(matched, sort, direction)
+    lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
+    page = ordered[max(offset, 0): max(offset, 0) + lim]
+    # Facets come from the WHOLE collection, not the filtered slice, so narrowing a
+    # filter can never strand the user with no way back.
+    return {"cards": page, "matched": len(matched), "facets": coll_facets(enriched),
+            **_collection_summary(rows)}
+
+
+@app.get("/api/collection/stats")
+def collection_stats_view(top_n: int = 10):
+    """Value, colour spread, mana curve, type/rarity/set breakdown, most valuable cards."""
+    _rows, enriched = _enriched_collection()
+    return collection_stats(enriched, top_n=max(1, min(int(top_n), 50)))
+
+
+@app.get("/api/collection/health")
+def collection_health(limit: int = 300):
+    """Rows whose NAME is really a whole decklist line, and what repairing them would do.
+
+    Read-only: these are PROPOSALS. An older import parser stored lines like
+    "13x Island (msh) 290 [Land]" verbatim as card names, and such a name matches nothing
+    — so those cards are invisible to owned-aware building until they are repaired.
+    """
+    diag = coll_repair.diagnose(load_collection())
+    shown = max(1, int(limit))
+    return {**diag, "issues": diag["issues"][:shown],
+            "shown": min(shown, diag["affected"]),
+            "truncated": diag["affected"] > shown}
+
+
+class CollectionRepairRequest(BaseModel):
+    # Defaults to a dry run on purpose: this rewrites the canonical suite collection.
+    dry_run: bool = True
+    indexes: Optional[list[int]] = None   # issue indexes to accept; None = all of them
+
+
+@app.post("/api/collection/repair")
+def collection_repair_apply(req: CollectionRepairRequest):
+    """Apply the repairs from /health. `dry_run` reports what WOULD change and writes
+    nothing; a real run rewrites the CSV (leaving a .bak that /undo can restore)."""
+    rows = load_collection()
+    accept = set(req.indexes) if req.indexes is not None else None
+    new_rows, report = coll_repair.apply_repairs(rows, accept)
+    if not req.dry_run:
+        coll_write(new_rows)
+        rows = new_rows
+    return {"dry_run": req.dry_run, **report, **_collection_summary(rows)}
+
+
+@app.post("/api/collection/undo")
+def collection_undo():
+    """Restore the previous collection from the .bak every write leaves behind."""
+    p = suite_collection_path()
+    bak = p.with_suffix(p.suffix + ".bak")
+    if not bak.exists():
+        raise HTTPException(404, "No previous version to restore.")
+    try:
+        current, restored = (p.read_bytes() if p.exists() else b""), bak.read_bytes()
+        # SWAP rather than overwrite, so Undo is itself undoable — press it twice and
+        # you are back where you started. A plain restore would leave the .bak equal to
+        # what we just wrote, stranding the newer version with no way to reach it.
+        tmp = p.with_name(f".{p.name}.undo")
+        tmp.write_bytes(restored)
+        os.replace(tmp, p)          # atomic on the same volume, like write_collection
+        bak.write_bytes(current)
+    except OSError as e:
+        raise HTTPException(500, f"Restore failed: {e}")
+    return {"restored": True, **_collection_summary(load_collection())}
 
 
 @app.post("/api/collection/prices")

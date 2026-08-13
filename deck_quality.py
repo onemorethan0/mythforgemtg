@@ -159,9 +159,21 @@ def curve_target(nonland_count: int, commander_mv: int) -> dict[int, int]:
 
 
 def assess_curve(deck: list[dict], commander_mv: int) -> CurveVerdict:
-    buckets = curve(deck)
-    nonland = sum(buckets.values())
-    total_mv = sum(min(mana_value(c), 7) * qty(c) for c in deck if not is_land(c))
+    # One pass, one definition of MV. The average must use the TRUE mana value, not the
+    # bucketing value: clamping at 7 reported a deck of three 9-drops as average 7.0,
+    # understating exactly the top-heavy decks this function exists to detect. Bucketing
+    # still clamps, because bucket 7 IS the "7+" bucket.
+    buckets: dict[int, int] = {}
+    nonland = 0
+    total_mv = 0
+    for card in deck:
+        if is_land(card):
+            continue
+        n = qty(card)
+        mv = mana_value(card)
+        buckets[min(mv, 7)] = buckets.get(min(mv, 7), 0) + n
+        nonland += n
+        total_mv += mv * n
     average = round(total_mv / nonland, 2) if nonland else 0.0
     target = curve_target(nonland, commander_mv)
 

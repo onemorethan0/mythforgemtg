@@ -117,11 +117,46 @@ def is_creature(card: dict) -> bool:
 
 
 def is_commander_legal(card: dict) -> bool:
-    """A MISSING legalities dict returns True — slim card dicts omit it entirely."""
+    """A MISSING legalities dict returns True — slim card dicts omit it entirely.
+
+    This is deliberately LENIENT and deliberately DIFFERENT from
+    deck_builder._resolve_owned_cards, which requires an explicit "legal" and so treats
+    an absent dict as illegal. That asymmetry is safe only because _resolve_owned_cards
+    runs FIRST and is the strict gate: by the time cards reach build_pool they have been
+    hydrated from the live Scryfall client and carry real legalities. A caller that
+    hands build_pool un-hydrated cards (e.g. straight from data/cards_slim.json, which
+    has no legalities key at all) gets NO ban filtering from this module — apply one
+    upstream."""
     leg = card.get("legalities")
     if not isinstance(leg, dict) or "commander" not in leg:
         return True
     return leg["commander"] == "legal"
+
+
+# Deliberately conservative land-tier detection. deck_builder gates nonbasic lands by
+# bracket via Scryfall `otag:` tiers, which strict mode cannot query. Returning None
+# means "not confidently identifiable — allow it": mislabelling an ordinary owned dual
+# as a restricted tier would gut a strict manabase, whereas occasionally admitting one
+# too-good land only softens a bracket cap. Only the tiers that low brackets actually
+# exclude are detected.
+_FETCH_RE = re.compile(r"sacrifice (this|[^.]*?land)[^.]*?:.*?search your library for a",
+                       re.I | re.S)
+_SHOCK_RE = re.compile(r"as this land enters,? you may pay 2 life\.\s*if you don't, "
+                       r"(it|this land) enters tapped", re.I)
+
+
+def land_tier(card: dict) -> str | None:
+    """A NONBASIC_LAND_TIERS label when confident, else None (= allow)."""
+    if not is_land(card) or is_basic_land(card):
+        return None
+    if card.get("name") == "Command Tower":
+        return "Command Tower"
+    text = card_text(card)
+    if _SHOCK_RE.search(text):
+        return "shock"
+    if _FETCH_RE.search(text):
+        return "fetch"
+    return None
 
 
 def in_identity(card: dict, ci: set[str]) -> bool:
@@ -150,7 +185,7 @@ _ADD_RE = re.compile(r"\badd\b", re.I)
 
 def _mana_produced(chunk: str) -> int:
     """Mana produced by an 'Add …' clause. `chunk` is the text after the word Add."""
-    clause = re.split(r"[.;\n]", chunk, 1)[0]
+    clause = re.split(r"[.;\n]", chunk, maxsplit=1)[0]
     syms = [s for s in re.findall(r"\{([^}]+)\}", clause) if s.lower() not in ("t", "q")]
     if syms:
         return len(syms)
@@ -272,7 +307,10 @@ def classify(card: dict) -> set[str]:
             or re.search(r"search your library for .{0,60}land.{0,60}(?:onto|into) the battlefield",
                          low, re.S)
             or re.search(r"play an additional land", low)
-            or re.search(r"creates? (?:a|two|three) treasure token", low)
+            # Counts are spelled as words, as X, or as "that many" (Smaug the
+            # Impenetrable). A literal a|two|three list drops all three of those.
+            or re.search(rf"creates? (?:{_NUM}|a|that many|[^.]{{0,30}}?) treasure token",
+                         low)
             or re.search(r"spells you cast cost \{[^}]+\} less", low)):
         roles.add("ramp")
 
@@ -321,8 +359,13 @@ def build_pool(commander: dict, cards: list[dict]) -> CardPool:
     creatures = sorted((c for c in eligible if is_creature(c)), key=_rank_key)
     flex = sorted((c for c in eligible if not is_land(c)), key=_rank_key)
 
+    # Roles are NONLAND by construction. classify() legitimately tags lands (Command
+    # Tower is a mana source, so it is "ramp"), but every ROLE_QUERY in deck_builder
+    # carries `-type:land`, and a caller drafting role slots out of this dict would
+    # otherwise pull lands into its ramp slots: that bypasses the bracket land-tier
+    # gate, pushes the deck past its planned land count, and starves real ramp.
     roles: dict[str, list[dict]] = {r: [] for r in ROLES}
-    for card in eligible:
+    for card in (c for c in eligible if not is_land(c)):
         for role in classify(card):
             roles[role].append(card)
     for role in ROLES:
