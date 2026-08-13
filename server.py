@@ -46,7 +46,9 @@ from app_paths          import app_path
 from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
-from deck_builder       import DeckBuilder, compute_stats, aggregate_duplicates
+from deck_builder       import (DeckBuilder, compute_stats, aggregate_duplicates,
+                                CARD_SOURCES, SOURCE_SCRYFALL, SOURCE_PREFER,
+                                SOURCE_COLLECTION)
 from collection         import (
     load_owned_names, owned_count, suite_collection_path,
     load_collection, add_card as coll_add_card, set_count as coll_set_count,
@@ -519,6 +521,10 @@ class BuildRequest(BaseModel):
     # (Documents/MythSuite/collection.csv), falling back to unowned EDHREC picks
     # when the collection can't cover a slot. Generate path only (imports ignore it).
     use_collection:    bool          = False
+    # Which pool the builder may draw from: "scryfall" | "prefer_collection" |
+    # "collection". Empty means "derive from use_collection", so every existing caller
+    # keeps its exact behaviour — use_collection=True is prefer_collection, not strict.
+    card_source:       str           = Field("", max_length=24)
     # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration).
     # Now the PRIMARY theming input: themer.build_creative_brief() reads these as
     # distinct labelled dimensions (not the flattened art_theme blob). Persisted so
@@ -1433,10 +1439,13 @@ def _run_build(job_id: str, req: BuildRequest):
             active_themes  = resolve_themes(req.playstyle, profile.themes)
             slot_overrides = get_slot_adjustments(req.playstyle)
 
-            owned = load_owned_names() if req.use_collection else set()
-            if req.use_collection:
+            source = _resolve_card_source(req.card_source, req.use_collection)
+            owned = load_owned_names() if source != SOURCE_SCRYFALL else set()
+            if source != SOURCE_SCRYFALL:
                 _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
-                    f"Building from your collection ({len(owned)} owned cards)…"
+                    (f"Building ONLY from your collection ({len(owned)} owned cards)…"
+                     if source == SOURCE_COLLECTION
+                     else f"Building from your collection ({len(owned)} owned cards)…")
                     if owned else
                     "Collection is empty — building normally "
                     "(export from MythScanner to Documents/MythSuite)."
@@ -1450,7 +1459,12 @@ def _run_build(job_id: str, req: BuildRequest):
                 playstyle_label = ps_label,
                 bracket         = req.bracket,
                 owned           = owned,
+                card_source     = source,
             )
+            if builder.shortfall:
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg":
+                    "Collection couldn't cover: " + ", ".join(
+                        f"{k} (-{v})" for k, v in sorted(builder.shortfall.items()))}))
             # Collapse duplicate basics into quantity entries (theme/render once,
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
@@ -4933,11 +4947,25 @@ async def get_playstyles():
     ]
 
 
+def _resolve_card_source(card_source: str, use_collection: bool) -> str:
+    """Which pool the builder may draft from.
+
+    `card_source` wins when it names a known mode. An empty/unknown value falls back to
+    the legacy boolean so every caller predating this field keeps its exact behaviour:
+    use_collection=True has always meant PREFER owned, never "owned only", and
+    redefining it would silently narrow existing users' decks."""
+    src = (card_source or "").strip().lower()
+    if src in CARD_SOURCES:
+        return src
+    return SOURCE_PREFER if use_collection else SOURCE_SCRYFALL
+
+
 class GenerateListRequest(BaseModel):
     commander_name: str = Field("", max_length=120)
     playstyle:      str = "auto"
     bracket:        int = 3
     use_collection: bool = False   # prefer owned cards (Myth Suite C4)
+    card_source:    str = Field("", max_length=24)   # see _resolve_card_source
 
 
 @app.post("/api/deck/generate-list")
@@ -4956,17 +4984,21 @@ def generate_list(req: GenerateListRequest):
     profile        = build_commander_profile(card)
     active_themes  = resolve_themes(req.playstyle, profile.themes)
     slot_overrides = get_slot_adjustments(req.playstyle)
-    owned = load_owned_names() if req.use_collection else set()
-    deck = DeckBuilder(_scryfall).build(
+    source = _resolve_card_source(req.card_source, req.use_collection)
+    owned = load_owned_names() if source != SOURCE_SCRYFALL else set()
+    builder = DeckBuilder(_scryfall)
+    deck = builder.build(
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
-        playstyle_label=ps_label, bracket=req.bracket, owned=owned)
+        playstyle_label=ps_label, bracket=req.bracket, owned=owned,
+        card_source=source)
     deck  = aggregate_duplicates(deck)
     stats = compute_stats(card, deck)
     collection_stats = None
-    if req.use_collection:
+    if source != SOURCE_SCRYFALL:
         _spells = [card] + [c for c in deck
                             if "basic" not in (c.get("type_line", "") or "").lower()]
         collection_stats = {
+            "source": source, "shortfall": builder.shortfall,
             "enabled": True, "owned": owned_count(_spells, owned),
             "total": len(_spells), "collection_size": len(owned),
         }

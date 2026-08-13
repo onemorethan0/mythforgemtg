@@ -124,6 +124,23 @@ _LAND_TIERS_BY_POWER: dict[int, set[str]] = {
 }
 
 
+# ── Card source modes ─────────────────────────────────────────────────────────
+# Which pool the builder may draft from. `prefer_collection` is the original
+# use_collection=True behaviour, kept under its own name so the flag's meaning never
+# silently changed under existing callers.
+SOURCE_SCRYFALL   = "scryfall"           # ignore the collection entirely (default)
+SOURCE_PREFER     = "prefer_collection"  # owned first, Scryfall staples fill the gaps
+SOURCE_COLLECTION = "collection"         # STRICT: owned cards + basics, nothing else
+CARD_SOURCES = (SOURCE_SCRYFALL, SOURCE_PREFER, SOURCE_COLLECTION)
+
+# deck_builder's slot names -> collection_pool's role names. The two vocabularies
+# differ ("card_draw" vs "draw"); mapping in one place keeps them from drifting.
+_POOL_ROLE = {
+    "ramp": "ramp", "card_draw": "draw", "removal": "removal",
+    "board_wipe": "wipe", "protection": "protection", "finisher": "finisher",
+}
+
+
 class DeckBuilder:
     def __init__(self, client: ScryfallClient):
         self.client = client
@@ -133,6 +150,9 @@ class DeckBuilder:
         self._bracket_filter: BracketFilter = BracketFilter(3)
         self._owned: set[str] = set()   # normalized owned names; empty = collection off
         self._owned_cards: list[dict] = []  # resolved, CI/legal-eligible owned cards (C4)
+        self._card_source: str = SOURCE_SCRYFALL
+        self._pool = None               # collection_pool.CardPool in strict mode
+        self.shortfall: dict[str, int] = {}   # strict mode: roles the collection can't fill
 
     # ── Internal helpers ──────────────────────────────────────────────────────
     # Note: collection-aware building draws owned cards from an EXPLICIT resolve
@@ -212,7 +232,26 @@ class DeckBuilder:
             return True
         return False
 
+    def _strict(self) -> bool:
+        """Strict collection mode: no Scryfall SEARCH is available, only the owned pool.
+
+        Name RESOLUTION still goes to Scryfall (and is cached) — that turns owned names
+        into card data, it doesn't discover new cards."""
+        return self._card_source == SOURCE_COLLECTION and self._pool is not None
+
     def _fetch_role(self, profile: CommanderProfile, role: str, want: int) -> int:
+        if self._strict():
+            # collection_pool has already classified and EDHREC-ordered the owned pool.
+            added = 0
+            for card in self._pool.roles.get(_POOL_ROLE[role], []):
+                if added >= want:
+                    break
+                if self._add(card):
+                    added += 1
+            if added < want:
+                self.shortfall[role] = self.shortfall.get(role, 0) + (want - added)
+            return added
+
         query = (
             f"{ROLE_QUERIES[role]} "
             f"{self._ci_filter(profile)} "
@@ -238,6 +277,13 @@ class DeckBuilder:
         Pull synergy cards for the given theme list (up to 3 active themes).
         Distributes `want` slots proportionally across themes.
         """
+        # Theme synergy is a Scryfall SEARCH by construction, so strict mode has no way
+        # to run it. Returning 0 hands those slots to the goodstuff fill, which draws
+        # from the same owned pool — the deck stays 99 cards, it just isn't theme-tuned.
+        if self._strict():
+            self.shortfall["theme"] = self.shortfall.get("theme", 0) + want
+            return 0
+
         active = [t for t in themes if THEME_SYNERGY_QUERIES.get(t)][:3]
         if not active:
             return 0
@@ -320,6 +366,14 @@ class DeckBuilder:
         with too few bodies to actually carry the payload."""
         if want <= 0:
             return 0
+        if self._strict():
+            added = 0
+            for card in self._pool.creatures:
+                if added >= want:
+                    break
+                if self._add(card):
+                    added += 1
+            return added
         query = (
             f"type:creature "
             f"{self._ci_filter(profile)} "
@@ -344,6 +398,14 @@ class DeckBuilder:
         EDHREC-sorted cards in color identity as a catch-all filler.
         Fetches enough candidates to go past whatever is already in the deck.
         """
+        if self._strict():
+            added = 0
+            for card in self._pool.flex:
+                if added >= want:
+                    break
+                if self._add(card):
+                    added += 1
+            return added
         query = (
             f"{self._ci_filter(profile)} "
             f"legal:commander -type:land"
@@ -383,19 +445,28 @@ class DeckBuilder:
         nonbasic_cap = max(0, min(want - len(colors), nonbasic_target))
         allowed_tiers = _LAND_TIERS_BY_POWER.get(self._bracket_filter.rules.land_power, _LAND_TIERS_BY_POWER[4])
 
-        for _label, land_q in NONBASIC_LAND_TIERS:
-            if added >= nonbasic_cap:
-                break
-            if _label not in allowed_tiers:
-                continue
-            query = f"{land_q} {self._ci_filter(profile)} legal:commander"
-            candidates = self._prefer_owned(
-                self.client.search_cards_paged(query, max_results=15))
-            for card in candidates:
+        if self._strict():
+            # Owned nonbasics only. Basics below are still fetched from Scryfall's local
+            # cache — every deck may play unlimited basics regardless of what you own.
+            for card in self._pool.lands:
                 if added >= nonbasic_cap:
                     break
                 if self._add(card):
                     added += 1
+        else:
+            for _label, land_q in NONBASIC_LAND_TIERS:
+                if added >= nonbasic_cap:
+                    break
+                if _label not in allowed_tiers:
+                    continue
+                query = f"{land_q} {self._ci_filter(profile)} legal:commander"
+                candidates = self._prefer_owned(
+                    self.client.search_cards_paged(query, max_results=15))
+                for card in candidates:
+                    if added >= nonbasic_cap:
+                        break
+                    if self._add(card):
+                        added += 1
 
         # ── Basics ────────────────────────────────────────────────────────────
         basic_slots = want - added
@@ -460,6 +531,7 @@ class DeckBuilder:
         playstyle_label: str = "Auto",
         bracket: int = 3,
         owned: set[str] | None = None,
+        card_source: str = SOURCE_SCRYFALL,
     ) -> list[dict]:
         """
         Build the 99-card deck.
@@ -474,6 +546,13 @@ class DeckBuilder:
             owned:            Normalized owned-card names (Myth Suite collection). When
                               given, every slot prefers cards the user owns, falling back
                               to unowned EDHREC picks when the collection can't cover it.
+            card_source:      One of CARD_SOURCES. "scryfall" ignores the collection;
+                              "prefer_collection" is the historic owned-first behaviour;
+                              "collection" is STRICT — only owned cards (plus basics,
+                              which every deck may play freely). After a strict build,
+                              `self.shortfall` reports the roles the collection could not
+                              cover, so the caller can say so honestly rather than
+                              quietly shipping a worse deck.
         """
         self._deck = []
         self._names = set()
@@ -481,6 +560,22 @@ class DeckBuilder:
         self._bracket_filter = BracketFilter(bracket)
         self._owned = owned or set()   # collection-aware building (C4); empty = off
         self._owned_cards = self._resolve_owned_cards(profile)
+        self._card_source = card_source if card_source in CARD_SOURCES else SOURCE_SCRYFALL
+        self._pool = None
+        self.shortfall = {}
+
+        if self._card_source == SOURCE_COLLECTION:
+            if self._owned_cards:
+                import collection_pool
+                self._pool = collection_pool.build_pool(
+                    {"name": profile.name, "color_identity": list(profile.color_identity)},
+                    self._owned_cards,
+                )
+            else:
+                # No usable owned pool — a strict build would be 99 basic lands. Fall
+                # back to Scryfall and let the caller see it in shortfall.
+                self._card_source = SOURCE_SCRYFALL
+                self.shortfall["collection"] = 99
 
         # Use overridden themes for synergy fetching, fall back to auto-detected
         active_themes = theme_override if theme_override is not None else profile.themes
