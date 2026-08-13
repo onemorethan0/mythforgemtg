@@ -916,6 +916,12 @@ def deck_quality_block(commander: dict, deck: list[dict]) -> dict:
 
     Unlike the sibling `average_cmc`/`cmc_curve` keys above, these figures are
     quantity-weighted, so an imported deck's aggregated basics don't skew them."""
+    # A "deck of one" (mode:single_card) carries deck == [], and compute_stats is also
+    # called with an empty list mid-build. There is no curve and no manabase to judge,
+    # and measuring anyway reported "short on sources" for a single custom card.
+    # An empty block is the honest answer; StepDeck's `stats.quality &&` guard hides it.
+    if not any("land" not in (c.get("type_line", "") or "").lower() for c in deck):
+        return {}
     try:
         curve = deck_quality.assess_curve(deck, int(deck_quality.mana_value(commander)))
         colors = deck_quality.assess_colors(deck, commander)

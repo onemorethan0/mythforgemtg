@@ -132,6 +132,17 @@ def test_quality_block_is_attached_to_every_deck():
     assert "R" in q["colors"]["pips"]               # the commander's pips count
 
 
+def test_no_quality_block_for_a_deck_with_nothing_to_measure():
+    """A single custom card (mode:single_card) carries deck == []. There is no curve
+    and no manabase, and measuring anyway reported it as 'short on sources'."""
+    commander = {"name": "One Card", "mana_cost": "{2}{R}", "cmc": 3,
+                 "color_identity": ["R"], "type_line": "Creature"}
+    assert deck_builder.compute_stats(commander, [])["quality"] == {}
+    lands_only = [{"name": "Mountain", "type_line": "Basic Land — Mountain",
+                   "quantity": 40, "cmc": 0}]
+    assert deck_builder.compute_stats(commander, lands_only)["quality"] == {}
+
+
 def test_quality_block_never_breaks_a_build():
     """It is advisory. A malformed card must not take the whole build down with it."""
     stats = deck_builder.compute_stats({"name": "C"}, [{"name": "junk"}])

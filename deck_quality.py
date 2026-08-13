@@ -286,7 +286,14 @@ def assess_colors(deck: list[dict], commander: dict) -> ColorVerdict:
     # Command Tower and Spire of Industry list all five colours in produced_mana, but
     # they only ever make mana in YOUR commander's identity. Reporting W/U/G sources
     # for a Rakdos deck is noise at best and misleading at worst.
+    #
+    # An IMPORTED deck can carry commander={"name": None, "color_identity": None} — a
+    # 60-card list, or one whose commander zone never resolved. Falling back to the
+    # colours the deck's own pips demand keeps the filter working there: without it an
+    # Izzet import reported B/G/W sources off its five-colour lands.
     ci = {c for c in (commander.get("color_identity") or []) if c in WUBRG}
+    if not ci:
+        ci = set(pips)
     if ci:
         sources = {col: n for col, n in sources.items() if col in ci}
 

@@ -107,6 +107,23 @@ def test_assess_colors_counts_the_commander_and_ignores_off_identity_sources():
     assert v.ok is True
 
 
+def test_null_commander_identity_falls_back_to_the_decks_own_pips():
+    """An imported deck can carry commander={"name": None, "color_identity": None} —
+    a 60-card list, or one whose commander zone never resolved. Without a fallback the
+    five-colour lands leak through and an Izzet deck reports B/G/W sources."""
+    commander = {"name": None, "color_identity": None}
+    deck = [{"name": "Izzet Spell", "mana_cost": "{U}{R}", "cmc": 2,
+             "type_line": "Instant"},
+            {"name": "Command Tower", "type_line": "Land",
+             "produced_mana": ["W", "U", "B", "R", "G"]},
+            {"name": "Island", "type_line": "Basic Land — Island",
+             "produced_mana": ["U"], "quantity": 15},
+            {"name": "Mountain", "type_line": "Basic Land — Mountain",
+             "produced_mana": ["R"], "quantity": 15}]
+    v = dq.assess_colors(deck, commander)
+    assert set(v.sources) == {"U", "R"}, v.sources
+
+
 def test_suggest_cuts_handles_unranked_cards_without_raising():
     """A None edhrec_rank used to raise TypeError mid-sort, and defaulting it to 0 made
     the least-played card look like the best one in the deck."""

@@ -5774,6 +5774,24 @@ def _serializable_job(job: dict) -> dict:
     return {k: v for k, v in job.items() if k not in _INTERNAL_JOB_KEYS}
 
 
+def _backfill_quality(data: dict) -> None:
+    """Derive stats.quality in place for a deck that predates it. No-op when present.
+
+    Read-only on disk: the deck.json is NOT rewritten. Recomputing on load costs
+    microseconds and avoids touching 158 stored files (and their mtimes, which History
+    orders by) for a derived value.
+    """
+    stats = data.get("stats")
+    if not isinstance(stats, dict) or stats.get("quality"):
+        return
+    try:
+        from deck_builder import deck_quality_block
+        stats["quality"] = deck_quality_block(data.get("commander") or {},
+                                              data.get("deck") or [])
+    except Exception:      # noqa: BLE001 — advisory; a bad stored deck must still load
+        pass
+
+
 def _load_deck_from_disk(job_id: str) -> Optional[dict]:
     """Load a completed deck from disk — used after server restarts.
 
@@ -5784,11 +5802,18 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
     Also backfills has_render flags by scanning the cards/ directory so that
     partial/cancelled builds show whatever art was generated rather than
     falling back to Scryfall images for everything.
+
+    Backfills `stats.quality` the same way. It is computed at build time by
+    compute_stats, so every deck built before that existed carries stats without it
+    and StepDeck's Deck Health panel stays hidden — the feature would only ever appear
+    on decks made after the upgrade. deck_quality is pure and offline, so deriving it
+    on load is cheap and makes the whole existing library light up.
     """
     p = RENDER_DIR / job_id / "deck.json"
     if p.exists():
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
+            _backfill_quality(data)
             if data.get("status") == "rendering":
                 # "rendering" means art-gen was in flight when the server was
                 # killed — treat as done so the partial deck is loadable.
