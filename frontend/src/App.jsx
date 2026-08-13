@@ -95,6 +95,11 @@ export default function App() {
   const [playstyle, setPlaystyle] = useState('auto')
   const [bracket, setBracket]     = useState(3)
   const [useCollection, setUseCollection] = useState(false)  // C4: build from owned cards
+  // Which pool the builder may draw from: '' | 'scryfall' | 'prefer_collection' |
+  // 'collection'. '' lets the server derive it from useCollection, so the existing
+  // checkbox keeps meaning "prefer owned" exactly as before. Only the Collection
+  // screen's "Build only from my collection" sets the strict value.
+  const [cardSource, setCardSource] = useState('')
   const [theme, setTheme]         = useState('')   // the "Setting" free-text (vision anchor)
   const [creativity, setCreativity] = useState('balanced')  // Faithful ↔ Imaginative dial
   const [visionMoods, setVisionMoods]       = useState([])
@@ -225,7 +230,7 @@ export default function App() {
     setDeckEntryTab('generate')
     setCommander(null); setPlaystyle('auto')
     setGeneratedDeck(null); setDeckTribes([]); setTribalOverrides({})
-    setBracket(3); setUseCollection(false); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
+    setBracket(3); setUseCollection(false); setCardSource(''); setTheme(''); setCreativity('balanced'); setVisionMoods([]); setVisionGenres([]); setVisionLighting([]); setVisionInspiration(''); setCommanderPrompt(''); setUserName(''); setEmblemPrompt(''); setBorderTheme(''); setFrameStyle('builtin'); setCommanderTribe(''); setCrewPrompt(''); setGenerateArt(false); setArtStyle('mtg_fantasy'); setModelSpeed('quality'); setCheckpoint(''); setLlmModel('qwen3:8b')
     setFaceKey(null); setFaceMethod(null); setFaceGender('either')
     setCrewKey(null); setCrewGender('either')
     setIsCommanderDeck(true); setImportCards([]); setFaceAssignments({})
@@ -266,6 +271,7 @@ export default function App() {
         tribal_overrides:  tribalOverrides || {},
         auto_theme_tribes: autoThemeTribes,
         use_collection:    useCollection,
+        card_source:       cardSource,
         face_key:     faceKey  || null,
         face_gender:  faceGender,
         crew_key:     crewKey  || null,
@@ -303,6 +309,7 @@ export default function App() {
   // ── Home hub: pick one of the three flows ─────────────────────────────────
   function handleChoose(key) {
     setPrefillCommander('')   // fresh hub entry — don't inherit a "Build this" prefill
+    setCardSource('')         // ...nor a strict card_source pin from a previous visit
     if (key === 'card') {
       setMode('card')
     } else if (key === 'collection') {
@@ -315,10 +322,13 @@ export default function App() {
   }
 
   // "Build this" from the Collection's Buildable panel: open the generate flow with
-  // the commander pre-filled and collection-aware building on.
-  function handleBuildFromCollection(commanderName) {
+  // the commander pre-filled and collection-aware building on. `strict` is the separate
+  // "only cards I own" action — it pins card_source so the server never reaches for a
+  // Scryfall staple to fill a slot the collection can't cover.
+  function handleBuildFromCollection(commanderName, strict = false) {
     setPrefillCommander(commanderName || '')
     setUseCollection(true)
+    setCardSource(strict ? 'collection' : '')
     setDeckEntryTab('generate')
     setMode('deck')
     setStep(STEP.COMMANDER)
@@ -611,6 +621,7 @@ export default function App() {
                 onPlaystyleChange={setPlaystyle}
                 useCollection={useCollection}
                 onUseCollectionChange={setUseCollection}
+                cardSource={cardSource}
                 onNext={card => {
                   setCommander(card)
                   // Generated decks carry the pre-built list + tribes from phase 1.

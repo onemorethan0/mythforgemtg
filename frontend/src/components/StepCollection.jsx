@@ -259,6 +259,17 @@ export default function StepCollection({ onBack, onBuild }) {
                         style={btn({ width: '100%', background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 })}>
                         Build this →
                       </button>
+                      {/* The separate strict action. "Build this" prefers your cards but
+                          still lets Scryfall staples fill a slot the collection can't
+                          cover; this one never leaves the collection, so the deck is
+                          sleeve-able tonight. Roles it can't fill are reported after. */}
+                      <button
+                        onClick={() => onBuild && onBuild(cm.commander, true)}
+                        title="Use only cards you own. No Scryfall staples will be added to fill gaps."
+                        style={btn({ width: '100%', marginTop: 6, background: 'transparent',
+                                     border: '1px solid #3f3f46', color: '#a1a1aa', fontWeight: 600, fontSize: 12 })}>
+                        🎴 Only cards I own
+                      </button>
                     </div>
                   ))}
                 </div>

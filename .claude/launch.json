@@ -7,6 +7,14 @@
       "runtimeArgs": ["server.py"],
       "port": 8000,
       "autoPort": false
+    },
+    {
+      "_comment": "UI-only preview. server.py's __main__ spawns ComfyUI + llama-swap and takes the GPU to ~18 GB; uvicorn's lifespan only does connectivity CHECKS and starts nothing. Use this for frontend verification while the card is busy.",
+      "name": "mythforge-ui",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "server:app", "--host", "127.0.0.1", "--port", "8001"],
+      "port": 8001,
+      "autoPort": false
     }
   ]
 }
