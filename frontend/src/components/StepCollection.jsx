@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import CardHover from './CardHover'
+import CollectionStats from './CollectionStats'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -15,6 +16,32 @@ const c = {
 }
 
 const PAGE = 500   // rows fetched by default; "Show all" refetches with limit=0
+
+const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
+               Multicolor: '#c9a227', Colorless: '#8a8a8a' }
+
+const SORTS = [
+  ['name', 'Name'], ['value', 'Value'], ['price', 'Price'], ['count', 'Copies'],
+  ['cmc', 'Mana value'], ['type', 'Type'], ['set', 'Set'], ['edhrec', 'Popularity'],
+]
+
+const EMPTY_FILTERS = { colors: [], types: [], rarities: [], sets: [],
+                        cmc_min: null, cmc_max: null, min_count: null }
+
+const hasFilters = f =>
+  f.colors.length || f.types.length || f.rarities.length || f.sets.length ||
+  f.cmc_min != null || f.cmc_max != null || f.min_count != null
+
+// Filters go on the query string as comma-separated lists; nulls are simply omitted.
+function filterQuery(f) {
+  const p = new URLSearchParams()
+  for (const k of ['colors', 'types', 'rarities', 'sets']) if (f[k].length) p.set(k, f[k].join(','))
+  for (const k of ['cmc_min', 'cmc_max', 'min_count']) if (f[k] != null) p.set(k, String(f[k]))
+  return p
+}
+
+// Toggle one value inside a multi-select facet.
+const toggle = (list, v) => (list.includes(v) ? list.filter(x => x !== v) : [...list, v])
 
 export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
@@ -35,6 +62,15 @@ export default function StepCollection({ onBack, onBuild }) {
   const [buildable, setBuildable]   = useState(null)  // {commanders, scanned, candidates}
   const [bLoading, setBLoading]     = useState(false)
   const [showBuild, setShowBuild]   = useState(false)
+  const [facets, setFacets]         = useState(null)   // available filter values + counts
+  const [filters, setFilters]       = useState(EMPTY_FILTERS)
+  const [sort, setSort]             = useState('name')
+  const [direction, setDirection]   = useState('asc')
+  const [showFilters, setShowFilters] = useState(false)
+  const [stats, setStats]           = useState(null)
+  const [showStats, setShowStats]   = useState(false)
+  const [health, setHealth]         = useState(null)   // {affected, issues, copies_*}
+  const [showHealth, setShowHealth] = useState(false)
   const debounce = useRef(null)
   const sugDebounce = useRef(null)
 
@@ -60,19 +96,41 @@ export default function StepCollection({ onBack, onBuild }) {
   const load = useCallback((query = '', all = false) => {
     setLoading(true)
     setShowingAll(all)
-    fetch(`/api/collection?limit=${all ? 0 : PAGE}&q=${encodeURIComponent(query)}`)
+    const p = filterQuery(filters)
+    p.set('limit', all ? '0' : String(PAGE))
+    p.set('q', query)
+    p.set('sort', sort)
+    p.set('direction', direction)
+    fetch(`/api/collection?${p}`)
       .then(r => r.json())
       .then(d => {
         setCards(d.cards || [])
         setMatched(d.matched || 0)
+        setFacets(d.facets || null)
         setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
                      total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
       })
       .catch(() => flash('err', 'Could not load collection — is the server running?'))
       .finally(() => setLoading(false))
+  }, [filters, sort, direction])
+
+  const loadStats = useCallback(() => {
+    fetch('/api/collection/stats')
+      .then(r => r.json()).then(setStats)
+      .catch(() => flash('err', 'Could not compute collection stats.'))
   }, [])
 
-  useEffect(() => { load('') }, [load])
+  // Read-only scan for rows whose NAME is a whole decklist line. Cheap, so it runs on
+  // mount: a collection can be a quarter invisible to deck building without the user
+  // ever being told, which is the whole reason this banner exists.
+  const loadHealth = useCallback(() => {
+    fetch('/api/collection/health')
+      .then(r => r.json()).then(setHealth)
+      .catch(() => {})
+  }, [])
+
+  useEffect(() => { loadHealth() }, [loadHealth])
+  useEffect(() => { if (showStats) loadStats() }, [showStats, loadStats])
 
   // Debounced search
   useEffect(() => {
@@ -164,6 +222,29 @@ export default function StepCollection({ onBack, onBuild }) {
     setImportText(''); setShowImport(false)
   }
 
+  // Rewrites the canonical CSV, so it is never automatic — the banner explains what
+  // will change and this only runs on an explicit click. A .bak is kept; Undo restores it.
+  const runRepair = () => {
+    apply(fetch('/api/collection/repair', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dry_run: false }),
+    }), d => `Repaired ${d.repaired} row${d.repaired === 1 ? '' : 's'}` +
+             `${d.merged ? `, merged ${d.merged}` : ''} · ` +
+             `${d.copies_after - d.copies_before} copies recovered`)
+    setShowHealth(false)
+    setTimeout(() => { loadHealth(); if (showStats) loadStats() }, 400)
+  }
+
+  const runUndo = () => {
+    apply(fetch('/api/collection/undo', { method: 'POST' }), () => 'Restored the previous version')
+    setTimeout(() => { loadHealth(); if (showStats) loadStats() }, 400)
+  }
+
+  const applyFilter = crit => {
+    setFilters(f => ({ ...EMPTY_FILTERS, ...f, ...crit }))
+    setShowFilters(true)
+  }
+
   const btn = (extra = {}) => ({
     padding: '8px 14px', borderRadius: 8, cursor: busy ? 'wait' : 'pointer',
     background: c.card, border: `1px solid ${c.border}`, color: c.dim,
@@ -210,6 +291,77 @@ export default function StepCollection({ onBack, onBuild }) {
           color: msg.kind === 'ok' ? '#4ade80' : '#f87171',
         }}>{msg.text}</div>
       )}
+
+      {/* Collection health. These rows hold a whole decklist line where a card name
+          should be, so nothing downstream can match them — the user is silently
+          building decks from a fraction of what they own. Proposals only until clicked. */}
+      {health && health.affected > 0 && (
+        <div style={{ margin: '10px 0', padding: 12, borderRadius: 10,
+                      background: '#1c1608', border: '1px solid #a16207' }}>
+          <div style={{ fontSize: 13.5, color: '#fbbf24', fontWeight: 700, marginBottom: 4 }}>
+            ⚠ {health.affected} of {health.rows} rows aren’t stored as card names
+          </div>
+          <div style={{ fontSize: 12.5, color: c.dim, marginBottom: 8 }}>
+            They were imported as whole decklist lines (<code>1x Sol Ring (ltc) 273 [Ramp]</code>),
+            so nothing matches them — deck building, “Build from what I own” and upgrade
+            advice all skip these cards today. Repairing also recovers{' '}
+            <strong style={{ color: '#fbbf24' }}>
+              {health.copies_after - health.copies_before} copies
+            </strong>{' '}
+            whose quantity was lost, and fills in the printing each line named.
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button onClick={runRepair} disabled={busy}
+              style={btn({ background: '#3f2d06', border: '1px solid #eab308',
+                           color: '#fde047', fontWeight: 700 })}>
+              ✓ Repair all {health.affected}
+            </button>
+            <button onClick={() => setShowHealth(v => !v)} style={btn()}>
+              {showHealth ? 'Hide' : 'Review'} changes
+            </button>
+          </div>
+          {showHealth && (
+            <div style={{ marginTop: 10, maxHeight: 280, overflowY: 'auto',
+                          border: `1px solid ${c.border}`, borderRadius: 8 }}>
+              {(health.issues || []).map(iss => (
+                <div key={iss.index} style={{ padding: '6px 10px', fontSize: 11.5,
+                                              borderBottom: `1px solid ${c.border}` }}>
+                  <div style={{ color: c.faint, fontFamily: 'monospace' }}>{iss.current.name}</div>
+                  <div style={{ color: '#4ade80', fontFamily: 'monospace' }}>
+                    → {iss.proposed.name} · x{iss.proposed.count}
+                    {iss.proposed.set ? ` · ${iss.proposed.set} ${iss.proposed.cn}` : ''}
+                    {iss.foil ? ' · foil' : ''}
+                    {iss.count_conflict && (
+                      <span style={{ color: '#fbbf24' }}> (stored count was {iss.current.count})</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {health.truncated && (
+                <div style={{ padding: '6px 10px', fontSize: 11.5, color: c.faint }}>
+                  … and {health.affected - health.shown} more.
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Insights */}
+      <div style={{ margin: '12px 0' }}>
+        <button onClick={() => setShowStats(v => !v)}
+          style={btn({ width: '100%', textAlign: 'left', fontWeight: 700 })}>
+          📊 Collection insights {showStats ? '▲' : '▼'}
+        </button>
+        {showStats && (
+          <div style={{ marginTop: 10 }}>
+            {stats ? <CollectionStats stats={stats} onFilter={applyFilter} />
+                   : <div style={{ color: c.faint, fontSize: 13, padding: 16, textAlign: 'center' }}>
+                       Crunching your collection…
+                     </div>}
+          </div>
+        )}
+      </div>
 
       {/* Buildable-from-collection */}
       <div style={{ margin: '12px 0' }}>
@@ -322,6 +474,10 @@ export default function StepCollection({ onBack, onBuild }) {
           title="Fill in the cheapest printing for any card whose set is unknown (one Scryfall lookup per card — slow on a big collection)">
           🖨 Fill printings
         </button>
+        <button onClick={runUndo} disabled={busy} style={btn()}
+          title="Restore the collection as it was before the last change (every write keeps one backup)">
+          ↶ Undo
+        </button>
       </div>
 
       {/* Bulk import */}
@@ -358,13 +514,93 @@ export default function StepCollection({ onBack, onBuild }) {
         </div>
       )}
 
-      {/* Search */}
-      <input
-        value={q} onChange={e => setQ(e.target.value)}
-        placeholder="Search your collection…"
-        style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
-                 border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14, marginBottom: 10 }}
-      />
+      {/* Search + sort + filter toggle */}
+      <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+        <input
+          value={q} onChange={e => setQ(e.target.value)}
+          placeholder="Search your collection…"
+          style={{ flex: '1 1 240px', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
+                   border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14 }}
+        />
+        <select value={sort} onChange={e => setSort(e.target.value)}
+          style={{ padding: '9px 10px', borderRadius: 8, background: c.panel,
+                   border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 13 }}>
+          {SORTS.map(([v, label]) => <option key={v} value={v}>{label}</option>)}
+        </select>
+        <button onClick={() => setDirection(d => (d === 'asc' ? 'desc' : 'asc'))}
+          title={direction === 'asc' ? 'Ascending' : 'Descending'} style={btn({ padding: '8px 12px' })}>
+          {direction === 'asc' ? '↑' : '↓'}
+        </button>
+        <button onClick={() => setShowFilters(v => !v)}
+          style={btn(hasFilters(filters)
+            ? { background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 }
+            : {})}>
+          ⚗ Filters{hasFilters(filters) ? ' •' : ''}
+        </button>
+      </div>
+
+      {/* Facet panel — only values the collection actually contains are offered, so a
+          filter can never produce an empty list by surprise. */}
+      {showFilters && facets && (
+        <div style={{ margin: '0 0 12px', padding: 12, borderRadius: 10, background: c.panel,
+                      border: `1px solid ${c.border}`, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[['colors', 'Color', facets.colors, MANA],
+            ['types', 'Type', facets.types, null],
+            ['rarities', 'Rarity', facets.rarities, null]].map(([key, label, list, palette]) => (
+            (list || []).length > 0 && (
+              <div key={key}>
+                <div style={{ fontSize: 11, color: c.faint, marginBottom: 5 }}>{label}</div>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  {list.map(f => {
+                    const on = filters[key].includes(f.key)
+                    return (
+                      <button key={f.key}
+                        onClick={() => setFilters(v => ({ ...v, [key]: toggle(v[key], f.key) }))}
+                        style={btn({ padding: '3px 9px', fontSize: 12,
+                          background: on ? '#1c1410' : c.card,
+                          border: `1px solid ${on ? c.gold : c.border}`,
+                          color: on ? c.gold : c.dim, fontWeight: on ? 700 : 400 })}>
+                        {palette && (
+                          <span style={{ display: 'inline-block', width: 8, height: 8, marginRight: 5,
+                                         borderRadius: '50%', background: palette[f.key] || c.faint }} />
+                        )}
+                        {f.key === '—' ? 'printing unknown' : f.key} <span style={{ opacity: 0.6 }}>{f.count}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          ))}
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+            <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <input type="checkbox" checked={filters.min_count === 2}
+                onChange={e => setFilters(v => ({ ...v, min_count: e.target.checked ? 2 : null }))} />
+              Duplicates only (2+ copies)
+            </label>
+            <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
+              Mana value
+              <input type="number" min="0" max={facets.cmc_max || 20} value={filters.cmc_min ?? ''}
+                onChange={e => setFilters(v => ({ ...v, cmc_min: e.target.value === '' ? null : Number(e.target.value) }))}
+                placeholder="min"
+                style={{ width: 56, padding: '4px 6px', borderRadius: 6, background: '#000',
+                         border: `1px solid ${c.border}`, color: '#f5f5f4', fontSize: 12 }} />
+              –
+              <input type="number" min="0" max={facets.cmc_max || 20} value={filters.cmc_max ?? ''}
+                onChange={e => setFilters(v => ({ ...v, cmc_max: e.target.value === '' ? null : Number(e.target.value) }))}
+                placeholder="max"
+                style={{ width: 56, padding: '4px 6px', borderRadius: 6, background: '#000',
+                         border: `1px solid ${c.border}`, color: '#f5f5f4', fontSize: 12 }} />
+            </label>
+            {hasFilters(filters) && (
+              <button onClick={() => setFilters(EMPTY_FILTERS)}
+                style={btn({ marginLeft: 'auto', padding: '4px 10px', fontSize: 12 })}>
+                Clear filters
+              </button>
+            )}
+          </div>
+        </div>
+      )}
       {(q || matched > cards.length) && (
         <div style={{ fontSize: 12, color: matched > cards.length ? '#fbbf24' : c.faint, marginBottom: 8 }}>
           {q && <>{matched} match{matched === 1 ? '' : 'es'}</>}
@@ -395,9 +631,23 @@ export default function StepCollection({ onBack, onBuild }) {
               display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px',
               background: i % 2 ? '#141210' : c.card, borderBottom: i < cards.length - 1 ? `1px solid ${c.border}` : 'none',
             }}>
+              {/* Colour identity dot — the fastest read of "what is this card" in a list
+                  this long. An unrecognized row gets a hollow dot rather than a wrong one. */}
+              <span title={row.resolved ? `${row.type_line || row.type}${row.mana_cost ? ` · ${row.mana_cost}` : ''}`
+                                        : 'Not recognized — check the name'}
+                style={{ width: 10, height: 10, borderRadius: '50%', flexShrink: 0,
+                  background: !row.resolved ? 'transparent'
+                    : (row.colors || []).length > 1 ? MANA.Multicolor
+                    : MANA[(row.colors || [])[0]] || MANA.Colorless,
+                  border: row.resolved ? 'none' : `1px solid ${c.faint}` }} />
               <CardHover name={row.name} style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                 {row.name}
               </CardHover>
+              <span title={row.resolved ? `Mana value ${row.cmc}` : ''}
+                style={{ fontSize: 11, color: c.faint, minWidth: 46, textAlign: 'right',
+                         flexShrink: 0, overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                {row.resolved ? `${row.type || ''} ${row.cmc}` : ''}
+              </span>
               {/* Which printing this row is. Blank = set unknown (use Fill printings). */}
               <span title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''}` : 'Printing unknown'}
                 style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0,

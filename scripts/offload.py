@@ -52,21 +52,24 @@ SYSTEM = (
     "4. Close the ```python fence."
 )
 
-_FENCE = re.compile(r"```(?:python)?\s*\n(.*?)```", re.S)
+# ANY language tag, not just python — this harness drafts .jsx/.ts/.md too, and a
+# ```jsx fence that the pattern didn't recognise was left IN the written file, where it
+# is a syntax error on line 1.
+_FENCE = re.compile(r"```[A-Za-z0-9_+-]*[ \t]*\n(.*?)```", re.S)
 
 
 def extract_code(reply: str) -> str:
     """The largest fenced block, else the reply with an ORPHAN opening fence stripped.
 
-    A truncated reply keeps its opening ```python but never emits the closing fence, so
-    the findall returns nothing and the raw text still carries the fence line — which is
-    a syntax error in the written file. Strip it explicitly.
+    A truncated reply keeps its opening fence but never emits the closing one, so the
+    findall returns nothing and the raw text still carries the fence line — which is a
+    syntax error in the written file. Strip it explicitly.
     """
     blocks = _FENCE.findall(reply)
     if blocks:
         return max(blocks, key=len).strip() + "\n"
     text = reply.strip()
-    text = re.sub(r"^```(?:python)?[ \t]*\n", "", text)
+    text = re.sub(r"^```[A-Za-z0-9_+-]*[ \t]*\n", "", text)
     text = re.sub(r"\n```\s*$", "", text)
     return text.strip() + "\n"
 

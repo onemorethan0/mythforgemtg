@@ -283,8 +283,64 @@ def bulk_import(text: str, mode: str = "merge", path: Path | None = None) -> lis
 
 import re as _re
 
-# Decklist printing suffix: "1 Sol Ring (C21) 263" / "1 Sol Ring (LTC)".
-_DECK_PRINTING_RE = _re.compile(r"^(?P<name>.*?)\s*\((?P<set>[A-Za-z0-9]{2,6})\)\s*(?P<cn>[\w\-★]+)?\s*$")
+# Everything a pasted decklist line can carry around the card name:
+#     "13x Island (msh) 290 *F* [Land]"
+#      qty  name    set  cn  foil  exporter's deckbuilding category
+# All four decorations are optional; only the name is required.
+#
+# This is ONE pattern with TWO callers on purpose. It parses imports here, and
+# `collection_repair` re-parses rows that were imported before it existed — the older
+# parser accepted only a bare "13 Island" (`parts[0].isdigit()`, which "13x" fails) and
+# its printing regex was anchored to end-of-line, so a trailing "*F*" or "[Land]" also
+# defeated it. Both misses stored the WHOLE LINE as the card name, and a name like
+# "1x sol ring (ltc) 273 [ramp]" never equals owned_key("sol ring"), so those cards were
+# invisible to owned-aware building, the buildable scan and /advise alike. 246 of the
+# live collection's 1040 rows were in that state. Two copies of this regex would let the
+# import path and the repair path drift apart, and then a repaired row could be
+# re-broken by the next import — so there is exactly one.
+DECORATED_LINE_RE = _re.compile(
+    r"""^\s*
+        (?:(?P<qty>\d+)\s*(?P<qty_x>[xX])?\s+)? # "13x " or a bare "13 "
+        (?P<name>.+?)                           # the card name (lazy)
+        (?:\s*\((?P<set>[A-Za-z0-9]{2,6})\)     # " (msh)"
+           (?:\s*(?P<cn>[A-Za-z0-9\-★]+))?      # " 290"
+        )?
+        (?:\s*\*(?P<foil>[A-Za-z]{1,2})\*)?     # " *F*" foil, " *E*" etched
+        (?:\s*\[(?P<tag>[^\]]*)\])?             # " [Land]"
+        \s*$""",
+    _re.X,
+)
+
+
+_BLANK_PARSE = {"name": "", "qty": None, "qty_x": False, "set": "", "cn": "",
+                "foil": False, "tag": ""}
+
+
+def parse_decorated_line(raw: str) -> dict:
+    """Split a decklist line into {"name", "qty", "qty_x", "set", "cn", "foil", "tag"}.
+
+    `qty` is None when the line carried no quantity prefix. `qty_x` records whether that
+    prefix was the explicit "13x" form rather than a bare "13" — importing trusts either,
+    but `collection_repair` rewrites a name the user already has stored and so only
+    trusts the unambiguous one ("1996 World Champion" is a card; "1996x Foo" is not).
+
+    `name` is NEVER empty: a line the pattern can't read degrades to "store it verbatim",
+    because losing a card is worse than storing an ugly name.
+    """
+    text = (raw or "").strip()
+    m = DECORATED_LINE_RE.match(text)
+    name = (m.group("name") or "").strip() if m else ""
+    if not m or not name:
+        return {**_BLANK_PARSE, "name": text}
+    return {
+        "name":  name,
+        "qty":   int(m.group("qty")) if m.group("qty") else None,
+        "qty_x": bool(m.group("qty_x")),
+        "set":   (m.group("set") or "").strip().upper(),
+        "cn":    (m.group("cn") or "").strip(),
+        "foil":  bool(m.group("foil")),
+        "tag":   (m.group("tag") or "").strip(),
+    }
 
 
 def _parse_rows(text: str) -> list[dict]:
@@ -344,14 +400,10 @@ def _parse_rows(text: str) -> list[dict]:
                 continue
             if ":" in line.split(" ", 1)[0]:
                 line = line.split(":", 1)[1].strip()
-            cnt = 1
-            parts = line.split(" ", 1)
-            if parts[0].isdigit() and len(parts) > 1:
-                cnt = max(int(parts[0]), 1)
-                line = parts[1].strip()
-            set_code = cn = ""
-            m = _DECK_PRINTING_RE.match(line)
-            if m and m.group("name").strip():
-                line, set_code, cn = m.group("name").strip(), m.group("set"), (m.group("cn") or "")
-            _add(line, cnt, set_code, cn)
+            p = parse_decorated_line(line)
+            # The exporter's "[Land]"/"[Ramp]" tag is a deckbuilding CATEGORY, not
+            # collection data, so it is read off the line and discarded. Foil is real
+            # per-copy data, and write_collection round-trips unmodelled columns.
+            _add(p["name"], max(p["qty"] or 1, 1), p["set"], p["cn"],
+                 {"Foil": "foil"} if p["foil"] else None)
     return [rows[k] for k in order]

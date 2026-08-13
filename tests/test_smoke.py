@@ -19,6 +19,9 @@ import themer
 import cc_frames
 import card_renderer as cr
 import collection
+import collection_repair
+import collection_index
+import collection_stats
 
 _fails = []
 
@@ -743,6 +746,182 @@ def test_collection_parse():
     check_true("parse.dl.cmdr",    "krenko, mob boss" in owned2)
     check_true("parse.dl.setcode", "counterspell" in owned2)  # trailing (SET) 123 stripped
     check("parse.empty", collection.parse_owned(""), set())
+
+
+def test_collection_decorated_lines():
+    """A decklist line carries more than a name, and dropping any of it loses cards.
+
+    Regression: the old parser accepted only a bare "13 Island" (`parts[0].isdigit()`,
+    which "13x" fails) and its printing regex was anchored to end-of-line, so a trailing
+    "*F*" or "[Land]" defeated it too. Both misses stored the WHOLE LINE as the card
+    name, and "1x sol ring (ltc) 273 [ramp]" matches nothing — 246 of the live
+    collection's 1040 rows were invisible to owned-aware building because of this.
+    """
+    rows = collection._parse_rows
+    def one(text):
+        r = rows(text)[0]
+        return (r["name"], r["count"], r["set"], r["cn"])
+
+    check("dec.plain",     one("Sol Ring"),                     ("Sol Ring", 1, "", ""))
+    check("dec.bare_qty",  one("2 Llanowar Elves"),             ("Llanowar Elves", 2, "", ""))
+    check("dec.printing",  one("1 Sol Ring (C21) 263"),         ("Sol Ring", 1, "C21", "263"))
+    check("dec.set_only",  one("1 Sol Ring (LTC)"),             ("Sol Ring", 1, "LTC", ""))
+    check("dec.x_qty",     one("13x Island (msh) 290 [Land]"),  ("Island", 13, "MSH", "290"))
+    check("dec.foil",      one("7x Plains (sos) 273 *F* [Land]"), ("Plains", 7, "SOS", "273"))
+    check("dec.apostrophe", one("1x Archaeomancer's Map (fic) 230 [Ramp]"),
+          ("Archaeomancer's Map", 1, "FIC", "230"))
+    # A name is not a quantity, a split card is not two cards, and the header form stays.
+    check("dec.dfc",       one("Fire // Ice"),                  ("Fire // Ice", 1, "", ""))
+    check("dec.cmdr",      one("Commander: Krenko, Mob Boss"),  ("Krenko, Mob Boss", 1, "", ""))
+    check("dec.x_name",    one("X Marks the Spot"),             ("X Marks the Spot", 1, "", ""))
+    # Foil is real per-copy data and rides along in the unmodelled-columns dict.
+    check("dec.foil_extra", rows("1x Plains (sos) 273 *F*")[0].get("_extra"), {"Foil": "foil"})
+
+
+def test_collection_repair():
+    """Repair proposes; it never guesses a quantity and never mutates its input."""
+    rows = [
+        {"name": "1x Abandoned Air Temple (tla) 263 [Land]", "count": 1, "set": "", "cn": ""},
+        {"name": "13x Island (msh) 290 [Land]", "count": 1, "set": "", "cn": ""},
+        {"name": "Sol Ring", "count": 1, "set": "", "cn": ""},
+        # A stored count above 1 means the junk row was merge-imported twice, NOT that
+        # the user owns two — the "<n>x" is the source quantity and wins.
+        {"name": "1x Archangel of Tithes (ori) 4 [Protection]", "count": 2, "set": "", "cn": ""},
+    ]
+    snapshot = [dict(r) for r in rows]
+    diag = collection_repair.diagnose(rows)
+    check("rep.affected", diag["affected"], 3)
+    check("rep.clean",    diag["clean"], 1)
+    # before 1+1+1+2=5; after 1+13+1(clean Sol Ring)+1=16 — the clean row still counts.
+    check("rep.copies",   (diag["copies_before"], diag["copies_after"]), (5, 16))
+
+    by_index = {i["index"]: i for i in diag["issues"]}
+    check("rep.name",     by_index[1]["proposed"]["name"], "Island")
+    check("rep.qty",      by_index[1]["proposed"]["count"], 13)
+    check("rep.printing", (by_index[1]["proposed"]["set"], by_index[1]["proposed"]["cn"]),
+          ("MSH", "290"))
+    check("rep.conflict", by_index[3]["count_conflict"], True)
+    check("rep.no_fabrication", by_index[3]["proposed"]["count"], 1)
+
+    out, report = collection_repair.apply_repairs(rows)
+    check("rep.applied",  report["repaired"], 3)
+    check("rep.rows",     [r["name"] for r in out],
+          ["Abandoned Air Temple", "Island", "Sol Ring", "Archangel of Tithes"])
+    check("rep.input_untouched", rows, snapshot)
+
+    # A repaired row usually collides with an UNTOUCHED one, so the merge has to look at
+    # every row emitted so far, not just the repaired ones.
+    merged, rep2 = collection_repair.apply_repairs([
+        {"name": "Sol Ring", "count": 1, "set": "LTC", "cn": "273"},
+        {"name": "1x Sol Ring (ltc) 273 [Ramp]", "count": 1, "set": "", "cn": ""},
+    ])
+    check("rep.merge.rows",   len(merged), 1)
+    check("rep.merge.count",  merged[0]["count"], 2)
+    check("rep.merge.report", rep2["merged"], 1)
+
+    # A rejected issue is copied through untouched.
+    partial, rep3 = collection_repair.apply_repairs(rows, accept={1})
+    check("rep.accept.one",  rep3["repaired"], 1)
+    check("rep.accept.kept", partial[0]["name"], "1x Abandoned Air Temple (tla) 263 [Land]")
+
+
+def test_collection_mana_value():
+    """Converted mana cost. MTG-rules-facing: a near-miss here is a defect."""
+    mv = collection_index.mana_value
+    for cost, want in [("", 0), ("{0}", 0), ("{3}", 3), ("{10}", 10), ("{W}", 1),
+                       ("{C}", 1), ("{2}{W}{U}", 4), ("{X}{R}", 1), ("{X}{X}{G}", 1),
+                       ("{W/U}", 1), ("{2/W}", 2), ("{W/P}", 1), ("{1}{G} // {G}", 2)]:
+        check(f"mv.{cost or 'empty'}", mv(cost), want)
+
+
+def test_collection_primary_type():
+    """Type precedence: an Artifact Creature is a Creature, an Artifact Land is a Land."""
+    pt = collection_index.primary_type
+    check("pt.creature",  pt("Legendary Creature — Elf Druid"), "Creature")
+    check("pt.artcrea",   pt("Artifact Creature — Golem"), "Creature")
+    check("pt.enchcrea",  pt("Enchantment Creature — Nymph"), "Creature")
+    check("pt.land",      pt("Basic Land — Island"), "Land")
+    check("pt.landcrea",  pt("Land Creature — Dryad"), "Land")
+    check("pt.equipment", pt("Artifact — Equipment"), "Artifact")
+    check("pt.aura",      pt("Enchantment — Aura"), "Enchantment")
+    check("pt.pw",        pt("Legendary Planeswalker — Jace"), "Planeswalker")
+    check("pt.none",      pt(""), "Other")
+
+
+def _fake_enriched():
+    """Enriched rows without touching the card stores, so this runs anywhere."""
+    def row(name, count, cmc, kind, colors, rarity, price, set_code="", land=False):
+        return {"name": name, "count": count, "set": set_code, "cn": "", "price": price,
+                "cmc": cmc, "type": kind, "colors": colors, "color_identity": colors,
+                "rarity": rarity, "edhrec_rank": None, "is_land": land, "resolved": True}
+    return [
+        row("Sol Ring",       1, 1, "Artifact", [],          "uncommon", 2.50, "LTC"),
+        row("Lightning Bolt", 4, 1, "Instant",  ["R"],       "common",   1.00, "LEA"),
+        row("Boros Charm",    2, 2, "Instant",  ["R", "W"],  "uncommon", None),
+        row("Island",         9, 0, "Land",     [],          "common",   0.25, "LEA", land=True),
+        row("Serra Angel",    1, 5, "Creature", ["W"],       "rare",     0.75, "LTC"),
+    ]
+
+
+def test_collection_sort_and_filter():
+    """Sorting must not crash on a partly-priced collection, and an unknown price is
+    not a small one — it sorts LAST in both directions."""
+    rows = _fake_enriched()
+    names = lambda rs: [r["name"] for r in rs]
+
+    by_value = collection_index.sort_rows(rows, "value", "desc")
+    check("sort.value.top", by_value[0]["name"], "Lightning Bolt")   # 4 x $1.00
+    check("sort.value.none_last", by_value[-1]["name"], "Boros Charm")
+    asc = collection_index.sort_rows(rows, "value", "asc")
+    check("sort.value.none_last_asc", asc[-1]["name"], "Boros Charm")
+    check("sort.unknown_key", names(collection_index.sort_rows(rows, "nope")),
+          names(collection_index.sort_rows(rows, "name")))
+
+    check("filt.color",  names(collection_index.filter_rows(rows, colors=["R"])), ["Lightning Bolt"])
+    check("filt.multi",  names(collection_index.filter_rows(rows, colors=["Multicolor"])), ["Boros Charm"])
+    check("filt.type",   names(collection_index.filter_rows(rows, types=["Instant"])),
+          ["Lightning Bolt", "Boros Charm"])
+    check("filt.cmc",    len(collection_index.filter_rows(rows, cmc_min=1, cmc_max=2)), 3)
+    check("filt.dupes",  names(collection_index.filter_rows(rows, min_count=2)),
+          ["Lightning Bolt", "Boros Charm", "Island"])
+    # ANDed criteria
+    check("filt.and",    names(collection_index.filter_rows(rows, types=["Instant"], colors=["R"])),
+          ["Lightning Bolt"])
+    # A row with no set is filterable as "printing unknown", which is how the user finds
+    # what still needs Fill printings.
+    check("filt.unknown_set",
+          names(collection_index.filter_rows(rows, sets=[collection_index.UNKNOWN_SET])),
+          ["Boros Charm"])
+
+    f = collection_index.facets(rows)
+    check("facet.colors_partition", sum(e["count"] for e in f["colors"]), len(rows))
+    check("facet.cmc_max", f["cmc_max"], 5)
+
+
+def test_collection_stats():
+    rows = _fake_enriched()
+    st = collection_stats.collection_stats(rows, top_n=3)
+    check("st.distinct", st["totals"]["distinct"], 5)
+    check("st.copies",   st["totals"]["copies"], 17)
+    check("st.priced",   (st["totals"]["priced"], st["totals"]["unpriced"]), (4, 1))
+    # 1x2.50 + 4x1.00 + 9x0.25 + 1x0.75 = 9.50 (Boros Charm is unpriced, so contributes 0)
+    check("st.value",    st["totals"]["value"], 9.50)
+    check("st.colors_partition", sum(e["distinct"] for e in st["colors"]), len(rows))
+    # A Boros card is white AND red, so presence overlaps and does NOT sum to the total.
+    presence = {e["key"]: e["distinct"] for e in st["color_presence"]}
+    check("st.presence.w", presence["W"], 2)
+    check("st.presence.r", presence["R"], 2)
+    check("st.presence.all5", len(st["color_presence"]), 5)
+    # The curve excludes lands: 5 rows minus the Island.
+    check("st.curve.buckets", len(st["curve"]), 8)
+    check("st.curve.excludes_lands", sum(b["distinct"] for b in st["curve"]), 4)
+    check("st.top_n", len(st["top_value"]), 3)
+    check("st.top_first", st["top_value"][0]["name"], "Lightning Bolt")
+    # Must not raise on an empty collection.
+    empty = collection_stats.collection_stats([])
+    check("st.empty.distinct", empty["totals"]["distinct"], 0)
+    check("st.empty.curve",    len(empty["curve"]), 8)
+    check("st.empty.presence", len(empty["color_presence"]), 5)
 
 
 def test_collection_owned_count():
