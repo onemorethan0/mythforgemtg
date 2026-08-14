@@ -27,6 +27,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from collection_pool import rank_key
+
 THEMES: tuple[str, ...] = (
     "tribal_dragons",
     "tribal_elves",
@@ -343,19 +345,15 @@ def theme_score(card: dict, theme: str) -> int:
 
 
 def match_themes(cards: list[dict], themes: list[str]) -> dict[str, list[dict]]:
+    """theme -> matching cards, STRONG before WEAK then by shared rank_key.
+
+    The score is the primary sort and rank_key breaks ties, so a genuine payoff
+    outranks a vanilla tribe member — the ordering Scryfall never provided, since it
+    sorted purely by EDHREC."""
     out: dict[str, list[dict]] = {}
     for theme in themes:
-        matched: list[tuple[int, dict]] = []
-        for c in cards:
-            s = theme_score(c, theme)
-            if s != NO_MATCH:
-                matched.append((s, c))
-        def sort_key(item: tuple[int, dict]):
-            score, card = item
-            rank = card.get("edhrec_rank")
-            rank_key = float("inf") if rank is None else rank
-            name = card.get("name", "")
-            return (-score, rank_key, name)
-        matched.sort(key=sort_key)
+        scored = [(theme_score(c, theme), c) for c in cards]
+        matched = [(s, c) for s, c in scored if s != NO_MATCH]
+        matched.sort(key=lambda item: (-item[0],) + rank_key(item[1]))
         out[theme] = [c for _, c in matched]
     return out

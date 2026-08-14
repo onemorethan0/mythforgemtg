@@ -144,6 +144,38 @@ _POOL_ROLE = {
 }
 
 
+def _normalize_plan(plan: dict[str, int]) -> dict[str, int]:
+    """Force the slot plan to sum to exactly 99, trimming the most flexible slots first.
+
+    The plan is adjusted in several independent passes (bracket 1, bracket 5, the aggro
+    bump, the collection redirect) and each recomputes goodstuff as `99 - used` with a
+    max(2, ...) floor. That floor means an over-allocated plan cannot be absorbed: the
+    aggro bump adds 6 to theme, goodstuff clamps at 2, and the plan silently sums to 103.
+    Every consumer then had to defend itself — the theme step and creature floor each
+    grew their own `min(..., 99 - len(deck))` cap, and before those existed the tail just
+    truncated the deck to 99, throwing away whatever was drafted last.
+
+    Normalising once, after every adjustment, means the plan is a promise the steps can
+    trust. Trim order is deliberate: goodstuff is generic filler, theme is the next most
+    elastic, and the essential roles and land count are never touched.
+    """
+    total = sum(plan.values())
+    if total == 99:
+        return plan
+    if total < 99:
+        plan["goodstuff"] = plan.get("goodstuff", 0) + (99 - total)
+        return plan
+    for key, floor in (("goodstuff", 0), ("theme", 4)):
+        if total <= 99:
+            break
+        room = plan.get(key, 0) - floor
+        if room > 0:
+            cut = min(room, total - 99)
+            plan[key] -= cut
+            total -= cut
+    return plan
+
+
 class DeckBuilder:
     def __init__(self, client: ScryfallClient):
         self.client = client
@@ -798,6 +830,10 @@ class DeckBuilder:
                 plan["theme"] = max(4, plan["theme"] - deficit)
                 used = sum(v for k, v in plan.items() if k != "goodstuff")
                 plan["goodstuff"] = max(2, 99 - used)
+
+        # Every adjustment above is done; make the plan sum to 99 exactly so the steps
+        # can trust it instead of each capping itself against the running deck size.
+        plan = _normalize_plan(plan)
 
         from commander_analysis import THEME_LABELS
         active_labels = [THEME_LABELS.get(t, t) for t in active_themes] or ["Goodstuff / Midrange"]

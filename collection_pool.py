@@ -66,10 +66,13 @@ class CardPool:
     stats: PoolStats
 
 
-def _rank_key(card: dict) -> tuple:
+def rank_key(card: dict) -> tuple:
     """EDHREC-best first, unranked last, name as a deterministic tiebreak.
 
-    One helper for every sort in the module — the builder must be reproducible."""
+    PUBLIC and shared: theme_match sorts by the same key. Two independent orderings
+    of the same field drifted apart once already — this one guards a non-int rank
+    with isinstance, the other compared it straight against float('inf') and would
+    have raised TypeError. The builder must be reproducible, so there is one rule."""
     r = card.get("edhrec_rank")
     name = card.get("name", "")
     return (0, r, name) if isinstance(r, int) else (1, 0, name)
@@ -175,7 +178,7 @@ def is_commander_eligible(card: dict) -> bool:
 def owned_commanders(cards: list[dict]) -> list[dict]:
     """Does NOT filter by legality — a banned commander is still surfaced so the
     caller can explain why it is unavailable rather than silently hiding it."""
-    return sorted((c for c in cards if is_commander_eligible(c)), key=_rank_key)
+    return sorted((c for c in cards if is_commander_eligible(c)), key=rank_key)
 
 
 # ── Role gates ───────────────────────────────────────────────────────────────────
@@ -355,9 +358,9 @@ def build_pool(commander: dict, cards: list[dict]) -> CardPool:
                 and is_commander_legal(c)
                 and in_identity(c, ci)]
 
-    lands = sorted((c for c in eligible if is_land(c)), key=_rank_key)
-    creatures = sorted((c for c in eligible if is_creature(c)), key=_rank_key)
-    flex = sorted((c for c in eligible if not is_land(c)), key=_rank_key)
+    lands = sorted((c for c in eligible if is_land(c)), key=rank_key)
+    creatures = sorted((c for c in eligible if is_creature(c)), key=rank_key)
+    flex = sorted((c for c in eligible if not is_land(c)), key=rank_key)
 
     # Roles are NONLAND by construction. classify() legitimately tags lands (Command
     # Tower is a mana source, so it is "ramp"), but every ROLE_QUERY in deck_builder
@@ -369,7 +372,7 @@ def build_pool(commander: dict, cards: list[dict]) -> CardPool:
         for role in classify(card):
             roles[role].append(card)
     for role in ROLES:
-        roles[role].sort(key=_rank_key)
+        roles[role].sort(key=rank_key)
 
     return CardPool(
         commander=commander,

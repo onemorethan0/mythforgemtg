@@ -143,6 +143,43 @@ def test_no_quality_block_for_a_deck_with_nothing_to_measure():
     assert deck_builder.compute_stats(commander, lands_only)["quality"] == {}
 
 
+def test_normalize_plan_makes_the_slot_plan_sum_to_99():
+    """The plan is adjusted in several independent passes and each recomputes goodstuff
+    as `99 - used` behind a max(2, ...) floor, so an over-allocated plan could not be
+    absorbed — the aggro bump pushed it to 103 and the tail truncated the deck."""
+    over = {"lands": 38, "ramp": 10, "card_draw": 10, "removal": 7, "board_wipe": 4,
+            "protection": 3, "finisher": 3, "theme": 26, "goodstuff": 2}
+    assert sum(over.values()) == 103
+    assert sum(deck_builder._normalize_plan(dict(over)).values()) == 99
+
+
+def test_normalize_plan_trims_goodstuff_before_theme():
+    over = {"lands": 38, "theme": 26, "goodstuff": 10, "ramp": 30}   # sums to 104
+    assert sum(over.values()) == 104
+    plan = deck_builder._normalize_plan(dict(over))
+    assert plan["theme"] == 26          # theme untouched while goodstuff still had room
+    assert plan["goodstuff"] == 5       # goodstuff absorbed the whole overflow
+    assert sum(plan.values()) == 99
+
+
+def test_normalize_plan_never_cuts_essential_roles_or_lands():
+    over = {"lands": 38, "ramp": 10, "card_draw": 10, "removal": 7, "board_wipe": 4,
+            "protection": 3, "finisher": 3, "theme": 40, "goodstuff": 2}
+    plan = deck_builder._normalize_plan(dict(over))
+    for role in ("lands", "ramp", "card_draw", "removal", "board_wipe",
+                 "protection", "finisher"):
+        assert plan[role] == over[role], role
+    assert plan["theme"] >= 4           # theme has a floor, it is not zeroed
+    assert sum(plan.values()) == 99
+
+
+def test_normalize_plan_tops_up_an_under_allocated_plan():
+    under = {"lands": 38, "ramp": 10, "goodstuff": 5}
+    plan = deck_builder._normalize_plan(dict(under))
+    assert sum(plan.values()) == 99
+    assert plan["goodstuff"] == 5 + (99 - sum(under.values()))
+
+
 def test_quality_block_never_breaks_a_build():
     """It is advisory. A malformed card must not take the whole build down with it."""
     stats = deck_builder.compute_stats({"name": "C"}, [{"name": "junk"}])

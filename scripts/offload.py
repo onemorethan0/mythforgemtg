@@ -115,9 +115,9 @@ def dispatch(spec: str, model: str, max_tokens: int, temp: float | None,
                       flush=True)
                 time.sleep(wait)
                 continue
+            # Last attempt: fall through and report. (No for/else fallback — the
+            # final attempt always exits here, so one would be unreachable.)
             sys.exit(f"HTTP {e.code} from llama-swap: {body}")
-    else:
-        sys.exit("llama-swap never became ready")
     msg = (data.get("choices") or [{}])[0].get("message") or {}
     return msg.get("content") or "", msg.get("reasoning_content") or ""
 

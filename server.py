@@ -47,8 +47,8 @@ from scryfall_client    import ScryfallClient
 import deck_import
 from commander_analysis import build_commander_profile
 from deck_builder       import (DeckBuilder, compute_stats, aggregate_duplicates,
-                                CARD_SOURCES, SOURCE_SCRYFALL, SOURCE_PREFER,
-                                SOURCE_COLLECTION)
+                                deck_quality_block, CARD_SOURCES, SOURCE_SCRYFALL,
+                                SOURCE_PREFER, SOURCE_COLLECTION)
 from collection         import (
     load_owned_names, owned_count, suite_collection_path,
     load_collection, add_card as coll_add_card, set_count as coll_set_count,
@@ -5785,7 +5785,6 @@ def _backfill_quality(data: dict) -> None:
     if not isinstance(stats, dict) or stats.get("quality"):
         return
     try:
-        from deck_builder import deck_quality_block
         stats["quality"] = deck_quality_block(data.get("commander") or {},
                                               data.get("deck") or [])
     except Exception:      # noqa: BLE001 — advisory; a bad stored deck must still load
