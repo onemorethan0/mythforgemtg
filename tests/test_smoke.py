@@ -777,6 +777,15 @@ def test_collection_decorated_lines():
     # Foil is real per-copy data and rides along in the unmodelled-columns dict.
     check("dec.foil_extra", rows("1x Plains (sos) 273 *F*")[0].get("_extra"), {"Foil": "foil"})
 
+    # A LEADING bracket is Deckstats' set code; a TRAILING one is Archidekt's category.
+    # Position separates them, but "[LAND]" is shaped like a set code — so the token is
+    # always stripped off the NAME, and only adopted as a set when it looks like one.
+    check("dec.lead_set",     one("1 [C21] Sol Ring"),        ("Sol Ring", 1, "C21", ""))
+    check("dec.lead_numeric", one("2 [40K] Blasphemous Act"), ("Blasphemous Act", 2, "40K", ""))
+    check("dec.lead_word",    one("1 [Ramp] Sol Ring"),       ("Sol Ring", 1, "", ""))
+    # An explicit trailing printing is the better evidence and wins.
+    check("dec.lead_vs_trail", one("1 [C21] Sol Ring (ltc) 273"), ("Sol Ring", 1, "LTC", "273"))
+
 
 def test_collection_repair():
     """Repair proposes; it never guesses a quantity and never mutates its input."""

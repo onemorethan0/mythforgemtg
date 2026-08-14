@@ -356,6 +356,7 @@ import re as _re
 DECORATED_LINE_RE = _re.compile(
     r"""^\s*
         (?:(?P<qty>\d+)\s*(?P<qty_x>[xX])?\s+)? # "13x " or a bare "13 "
+        (?:\[(?P<lead>[A-Za-z0-9]{2,6})\]\s*)?  # "[C21] " — Deckstats puts the set FIRST
         (?P<name>.+?)                           # the card name (lazy)
         (?:\s*\((?P<set>[A-Za-z0-9]{2,6})\)     # " (msh)"
            (?:\s*(?P<cn>[A-Za-z0-9\-★]+))?      # " 290"
@@ -387,11 +388,23 @@ def parse_decorated_line(raw: str) -> dict:
     name = (m.group("name") or "").strip() if m else ""
     if not m or not name:
         return {**_BLANK_PARSE, "name": text}
+    set_code = (m.group("set") or "").strip().upper()
+    # A LEADING bracket is Deckstats' set code ("1 [C21] Sol Ring"); a TRAILING one is
+    # Archidekt's deckbuilding category ("... [Ramp]"), handled by `tag`. Position tells
+    # them apart, but not perfectly — a few exporters lead with the category instead, and
+    # "[LAND]" is shaped exactly like a set code. So the token is always stripped off the
+    # NAME (a name that doesn't resolve is the expensive failure), while it is only
+    # ADOPTED as a set when it looks like one: real codes carry a digit or are all-caps,
+    # whereas categories read as words ("Ramp", "Land"). When in doubt the printing stays
+    # unknown, which is honest and fixable, rather than confidently wrong.
+    lead = (m.group("lead") or "").strip()
+    if lead and not set_code and (any(ch.isdigit() for ch in lead) or lead.isupper()):
+        set_code = lead.upper()
     return {
         "name":  name,
         "qty":   int(m.group("qty")) if m.group("qty") else None,
         "qty_x": bool(m.group("qty_x")),
-        "set":   (m.group("set") or "").strip().upper(),
+        "set":   set_code,
         "cn":    (m.group("cn") or "").strip(),
         "foil":  bool(m.group("foil")),
         "tag":   (m.group("tag") or "").strip(),
