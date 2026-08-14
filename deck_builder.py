@@ -23,6 +23,7 @@ from scryfall_client import ScryfallClient
 from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
 from collection import owned_key
 import collection_pool
+import edhrec_lift
 import deck_quality
 import theme_match
 
@@ -219,6 +220,7 @@ class DeckBuilder:
         self.shortfall: dict[str, int] = {}   # strict mode: roles the collection can't fill
         self._curve_target: dict[int, int] = {}   # MV histogram the fills aim at
         self.source_fallback: str = ""   # set when strict mode reverts to Scryfall
+        self._lifts: dict[str, float] = {}   # commander EDHREC lift; {} = hint unavailable
 
     # ── Internal helpers ──────────────────────────────────────────────────────
     # Note: collection-aware building draws owned cards from an EXPLICIT resolve
@@ -268,6 +270,29 @@ class DeckBuilder:
             if "creature" in (c.get("type_line", "") or "").lower()
             and "land" not in (c.get("type_line", "") or "").lower()
         ]
+
+    def _lift_sorted(self, candidates: list[dict]) -> list[dict]:
+        """Reorder a Scryfall candidate window by this COMMANDER's EDHREC lift.
+
+        Every role window arrives sorted by global `edhrec_rank` — popularity, with no
+        opinion about who is commanding the deck. That is why two decks in the same colours
+        draft so similarly: the ordering never asks whether this commander actually wants
+        the card. Lift does (see `edhrec_lift`), so the handful of role candidates EDHREC
+        says this commander plays get drafted first and the rest keep their popularity
+        order untouched.
+
+        Composes with `_prefer_owned` rather than competing with it: apply lift FIRST, then
+        the owned partition on top, and because both are stable the result is owned-cards-
+        in-lift-order followed by unowned-in-lift-order — the C4 contract is unchanged.
+
+        No-op when the commander has no EDHREC page or the fetch failed (`_lifts` empty),
+        so a build is byte-for-byte unchanged whenever the hint is unavailable. Applies to
+        the Scryfall paths only; strict collection mode drafts from an owned pool small
+        enough that its own ordering already dominates.
+        """
+        if not self._lifts:
+            return candidates
+        return edhrec_lift.lift_order(candidates, self._lifts)
 
     def _prefer_owned(self, candidates: list[dict]) -> list[dict]:
         """Reorder EDHREC-ranked candidates so cards the user OWNS come first.
@@ -390,7 +415,8 @@ class DeckBuilder:
             f"legal:commander -type:land"
         )
         buf = self._bracket_filter.candidate_buffer(want)
-        candidates = self._prefer_owned(self.client.search_cards_paged(query, max_results=buf))
+        candidates = self._prefer_owned(
+            self._lift_sorted(self.client.search_cards_paged(query, max_results=buf)))
         added = 0
         for card in candidates:
             if added >= want:
@@ -554,8 +580,8 @@ class DeckBuilder:
         added = self._draft_curve_aware(self._owned_candidates(creatures_only=True), want)
         if added < want:
             added += self._draft_curve_aware(
-                self._prefer_owned(self.client.search_cards_paged(
-                    query, max_results=candidates_needed)), want - added)
+                self._prefer_owned(self._lift_sorted(self.client.search_cards_paged(
+                    query, max_results=candidates_needed))), want - added)
         return added
 
     def _fetch_goodstuff(self, profile: CommanderProfile, want: int) -> int:
@@ -582,8 +608,8 @@ class DeckBuilder:
         added = self._draft_curve_aware(self._owned_candidates(), want)
         if added < want:
             added += self._draft_curve_aware(
-                self._prefer_owned(self.client.search_cards_paged(
-                    query, max_results=candidates_needed)), want - added)
+                self._prefer_owned(self._lift_sorted(self.client.search_cards_paged(
+                    query, max_results=candidates_needed))), want - added)
         return added
 
     def _build_lands(self, profile: CommanderProfile, want: int) -> int:
@@ -727,6 +753,10 @@ class DeckBuilder:
         self._deck = []
         self._names = set()
         self._commander_name = profile.name
+        # This commander's EDHREC lift, fetched once per build and cached on disk. Fails
+        # soft to {} (no page, no network, unofficial API changed shape), which makes
+        # `_lift_sorted` a no-op — a build must never depend on EDHREC being reachable.
+        self._lifts = edhrec_lift.lift_map(profile.name)
         self._bracket_filter = BracketFilter(bracket)
         self._owned = owned or set()   # collection-aware building (C4); empty = off
         self._owned_cards = self._resolve_owned_cards(profile)

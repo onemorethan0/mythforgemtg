@@ -21,6 +21,13 @@ import pytest
 # src/ layout so its PROJECT_ROOT (parents[2]) still resolves to this repo root.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
+# Tests are offline (invariant #5). `DeckBuilder.build` fetches this commander's EDHREC lift
+# to order its candidate windows, so without this every builder test would reach an
+# unofficial third-party endpoint — slow, and red whenever EDHREC is down or rate-limiting.
+# Off means `lift_map` returns {} and `_lift_sorted` is a no-op, i.e. the pre-lift ordering.
+# tests/test_edhrec_lift.py turns it back on for itself (it stubs the HTTP call).
+os.environ.setdefault("MYTHFORGE_EDHREC_LIFT", "off")
+
 import test_smoke
 
 

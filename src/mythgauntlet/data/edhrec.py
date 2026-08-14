@@ -2,7 +2,7 @@
 
 Reads the open JSON endpoints at json.edhrec.com (no key). This is an unofficial API — all
 parsing is defensive and isolated here so upstream changes are contained. Responses are
-cached under data/edhrec/ and refreshed only on --force; per-commander pages change slowly.
+cached under data/edhrec/ with a CACHE_MAX_AGE_DAYS staleness check (and --force).
 
 Per invariant #4 (docs/ARCHITECTURE.md): this data seeds priors and builds gauntlets. It must
 never directly move a measured strength score.
@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,6 +26,11 @@ HEADERS = {
     "User-Agent": f"MythGauntlet/{__version__} (github.com/onemorethan0/mythgauntlet)",
     "Accept": "application/json",
 }
+
+# Per-commander pages change slowly, but "slowly" is not "never" — a new set can add
+# cards to a commander's lists. Two weeks keeps the corpus current without hammering
+# an unofficial endpoint.
+CACHE_MAX_AGE_DAYS = 14
 
 _SLUG_STRIP_RE = re.compile(r"[^a-z0-9 -]")
 
@@ -84,11 +90,34 @@ def _cache_path(slug: str) -> Path:
     return cache / f"{slug}.json"
 
 
-def fetch_commander(name: str, force: bool = False) -> dict:
-    """Fetch (or read cached) EDHREC page payload for a commander."""
+def _cache_is_fresh(path: Path, max_age_days: int) -> bool:
+    """True when the cache file is younger than `max_age_days`.
+
+    An unreadable mtime counts as stale: refetching costs one request, while trusting a
+    file we cannot date risks pinning the corpus forever.
+    """
+    if max_age_days <= 0:
+        return False
+    try:
+        return (time.time() - path.stat().st_mtime) < max_age_days * 86400
+    except OSError:
+        return False
+
+
+def fetch_commander(name: str, force: bool = False, max_age_days: int | None = None) -> dict:
+    """Fetch (or read cached) EDHREC page payload for a commander.
+
+    A cache entry older than `max_age_days` (default `CACHE_MAX_AGE_DAYS`) is refetched.
+    Before that check this cache refreshed ONLY on --force, so a page fetched once stayed
+    forever: new printings never appear in its cardlists, and a corpus that only ever sees
+    old cards can only ever recommend old cards. This repo has already shipped that failure
+    once, with a 26-day-frozen Scryfall bulk that faked an exhausted candidate pool. Pass
+    `max_age_days=0` to force a refetch, or a large value to pin the cache.
+    """
     slug = commander_slug(name)
     path = _cache_path(slug)
-    if path.exists() and not force:
+    age_limit = CACHE_MAX_AGE_DAYS if max_age_days is None else max_age_days
+    if path.exists() and not force and _cache_is_fresh(path, age_limit):
         try:
             with open(path, encoding="utf-8") as fh:
                 return json.load(fh)
