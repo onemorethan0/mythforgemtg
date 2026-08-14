@@ -214,3 +214,40 @@ def test_curve_bias_never_overrides_the_owned_first_contract():
                                        "type_line": "Legendary Creature", "oracle_text": ""})
     b._fetch_goodstuff(profile, 4)
     assert all(c["name"].startswith("OWNED") for c in b._deck), [c["name"] for c in b._deck]
+
+
+def _themed(name, type_line, text, rank):
+    return {"name": name, "type_line": type_line, "oracle_text": text,
+            "edhrec_rank": rank, "cmc": 4, "color_identity": []}
+
+
+def test_score_first_reorders_tribes_but_not_card_type_themes():
+    """The Scryfall theme path orders purely by EDHREC, which has no opinion about
+    whether a card rewards the theme or merely belongs to it."""
+    payoff = _themed("Dragon Tempest", "Enchantment",
+                     "Whenever a Dragon you control enters, it deals damage equal to its "
+                     "flying power to any target.", 842)
+    body = _themed("Goldspan Dragon", "Creature — Dragon",
+                   "Flying, haste\nWhenever this creature attacks or becomes the target "
+                   "of a spell, create a Treasure token.", 399)
+    got = deck_builder._score_first([body, payoff], "tribal_dragons")
+    assert [c["name"] for c in got] == ["Dragon Tempest", "Goldspan Dragon"]
+
+
+def test_score_first_leaves_artifacts_alone():
+    """artifacts has 5 STRONG against 3909 WEAK in the 34k store — reordering there
+    demotes Sol Ring for an obscure artifact-ETB trigger."""
+    sol = _themed("Sol Ring", "Artifact", "{T}: Add {C}{C}.", 1)
+    trigger = _themed("Obscure Payoff", "Enchantment",
+                      "Whenever an artifact enters, draw a card.", 9000)
+    got = deck_builder._score_first([sol, trigger], "artifacts")
+    assert [c["name"] for c in got] == ["Sol Ring", "Obscure Payoff"]
+
+
+def test_score_first_is_stable_within_a_tier():
+    """Stable sort, so the EDHREC order and _prefer_owned's owned-first grouping (which
+    runs before this) survive inside each tier."""
+    a = _themed("Body A", "Creature — Dragon", "Flying", 10)
+    b = _themed("Body B", "Creature — Dragon", "Flying", 20)
+    got = deck_builder._score_first([a, b], "tribal_dragons")
+    assert [c["name"] for c in got] == ["Body A", "Body B"]

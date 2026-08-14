@@ -144,6 +144,28 @@ _POOL_ROLE = {
 }
 
 
+def _score_first(candidates: list[dict], theme: str) -> list[dict]:
+    """Stable-sort Scryfall theme results so the tribe's PAYOFFS lead its bodies.
+
+    The Scryfall theme queries are ordered purely by EDHREC popularity, which has no
+    opinion about whether a card rewards the theme or merely belongs to it. For a Dragon
+    commander that put generically-good Dragons ahead of the actual tribal shell:
+    Goldspan Dragon and Old Gnawbone above Scourge of Valkas and Utvara Hellkite.
+
+    Applied ONLY to theme_match.SCORE_ORDERED — the tribes. Where the WEAK tier is a whole
+    card TYPE the same reordering is destructive: `artifacts` has 5 STRONG cards against
+    3909 WEAK in the 34k store, so score-first would demote Sol Ring, Arcane Signet and
+    Lightning Greaves for five obscure artifact-ETB triggers. Those themes keep the
+    EDHREC order. See theme_match.SCORE_ORDERED for the measured numbers.
+
+    Stable, so within each tier the EDHREC ordering (and _prefer_owned's owned-first
+    grouping, which runs before this) is preserved exactly.
+    """
+    if theme not in theme_match.SCORE_ORDERED:
+        return candidates
+    return sorted(candidates, key=lambda c: -theme_match.theme_score(c, theme))
+
+
 def _normalize_plan(plan: dict[str, int]) -> dict[str, int]:
     """Force the slot plan to sum to exactly 99, trimming the most flexible slots first.
 
@@ -445,6 +467,7 @@ class DeckBuilder:
             )
             candidates = self._prefer_owned(self.client.search_cards_paged(
                 query, max_results=self._bracket_filter.candidate_buffer(slot)))
+            candidates = _score_first(candidates, theme)
             for card in candidates:
                 if added >= want:
                     break

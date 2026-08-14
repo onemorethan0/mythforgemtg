@@ -76,6 +76,30 @@ NO_MATCH: int = 0
 WEAK: int = 1
 STRONG: int = 2
 
+# Themes where ordering STRONG-before-WEAK is an IMPROVEMENT rather than a regression.
+#
+# The score is only meaningful when the WEAK tier means "is a member of the thing" and
+# STRONG means "rewards the thing". That holds for the tribes: a Dragon deck genuinely
+# wants Scourge of Valkas and Utvara Hellkite ahead of a generically-good Dragon, and the
+# store agrees — for tribal_dragons the STRONG cards' median EDHREC rank (7003) is BETTER
+# than the WEAK ones' (11488).
+#
+# It does NOT hold where the WEAK tier is a whole CARD TYPE, because that tier contains
+# every staple. Measured over the 34k-card store:
+#     artifacts    5 STRONG vs 3909 WEAK  — score-first demotes Sol Ring, Arcane Signet,
+#                                           Lightning Greaves, Fellwar Stone for five
+#                                           obscure "whenever an artifact enters" cards
+#     voltron      4 STRONG vs 1909 WEAK  — median ranks 16700 vs 16948, i.e. noise
+#     enchantress  0 STRONG                — the rule never fires at all (see below)
+# so those keep the plain EDHREC ordering.
+#
+# For the 15 themes with no WEAK tier at all (tokens, counters, aristocrats, reanimator,
+# spellslinger, draw_matters, lifegain, landfall, graveyard, etb, energy, chaos, theft,
+# group_hug, voltron_combat) every match is STRONG and score-first is a no-op, so their
+# absence here costs nothing.
+SCORE_ORDERED: frozenset[str] = frozenset(
+    t for t in THEMES if t.startswith("tribal_"))
+
 def _wb(word: str) -> re.Pattern[str]:
     """Word-boundary match that also accepts the regular plural.
 
@@ -260,7 +284,18 @@ THEME_RULES: dict[str, dict[str, Any]] = {
     },
     "enchantress": {
         "weak_type_contains": ["enchantment"],
-        "strong_alternatives": [[_lit("whenever an enchantment enters")]],
+        # The literal from the Scryfall query matched ZERO of the 34k-card store — no
+        # printed card is templated "whenever an enchantment enters" unqualified. The
+        # real wordings are "whenever you cast an enchantment spell" (Argothian
+        # Enchantress, Sythis, Sigil of the Empty Throne) and "whenever an enchantment
+        # you control enters". A STRONG tier that can never fire is a dead rule, so the
+        # theme silently had no payoff signal at all.
+        "strong_alternatives": [
+            [_lit("whenever you cast an enchantment")],
+            [_lit("whenever an enchantment you control enters")],
+            [_lit("whenever another enchantment you control enters")],
+            [_lit("whenever an enchantment enters")],
+        ],
     },
     "artifacts": {
         "weak_type_contains": ["artifact"],

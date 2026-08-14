@@ -171,3 +171,33 @@ def test_match_themes_is_deterministic():
     a = [c["name"] for c in tm.match_themes(pool, ["tribal_dragons"])["tribal_dragons"]]
     b = [c["name"] for c in tm.match_themes(pool, ["tribal_dragons"])["tribal_dragons"]]
     assert a == b
+
+
+def test_score_ordered_covers_the_tribes_and_excludes_card_type_themes():
+    """The score is only meaningful where WEAK means "is a member of the thing".
+
+    Where WEAK is a whole card TYPE it contains every staple, so score-first is
+    destructive: measured over the 34k store, `artifacts` has 5 STRONG against 3909 WEAK,
+    and reordering demotes Sol Ring, Arcane Signet and Lightning Greaves for five obscure
+    artifact-ETB triggers. `voltron` is 4 vs 1909 with medians 16700/16948 — noise."""
+    assert len(tm.SCORE_ORDERED) == 21
+    assert all(t.startswith("tribal_") for t in tm.SCORE_ORDERED)
+    for t in ("artifacts", "voltron", "auras", "enchantress"):
+        assert t not in tm.SCORE_ORDERED, t
+
+
+def test_enchantress_strong_rule_actually_fires():
+    """It used to match zero of 34k cards. The Scryfall query's literal
+    "whenever an enchantment enters" is not how any card is templated; the real wordings
+    are "whenever you cast an enchantment spell" and "whenever an enchantment you control
+    enters". A STRONG tier that can never fire is a dead rule."""
+    argothian = card("Argothian Enchantress", "Creature — Human Druid",
+                     "Whenever you cast an enchantment spell, draw a card.")
+    sigil = card("Sigil of the Empty Throne", "Enchantment",
+                 "Whenever you cast an enchantment spell, create a 4/4 white Angel "
+                 "creature token with flying.")
+    assert tm.theme_score(argothian, "enchantress") == tm.STRONG
+    assert tm.theme_score(sigil, "enchantress") == tm.STRONG
+    # A plain enchantment with no payoff text stays WEAK, not promoted.
+    assert tm.theme_score(card("Plain", "Enchantment", "Creatures get +1/+1."),
+                          "enchantress") == tm.WEAK
