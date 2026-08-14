@@ -1,3 +1,27 @@
+"""
+Theme matching for Myth Forge decks using only local card data.
+Reproduces Scryfall query semantics with type_line and oracle_text.
+
+Gold set
+| Card (type line) | oracle text (abridged, verbatim) | theme | expected |
+|---|---|---|---|
+| Shivan Dragon (Creature — Dragon) | "Flying / {R}: This creature gets +1/+0…" | tribal_dragons | WEAK |
+| Bladewing the Risen (Legendary Creature — Zombie Dragon) | "…{B}{R}: Dragon creatures get +1/+1…" | tribal_dragons | STRONG |
+| Bladewing the Risen | (same — no Zombie payoff text) | tribal_zombies | WEAK |
+| Goblin Chieftain (Creature — Goblin) | "Other Goblin creatures you control get +1/+1 and have haste." | tribal_goblins | STRONG |
+| Jadar, Ghoulcaller (Legendary Creature — Human Wizard) | "…if you control no creatures with decayed, create a 2/2 black Zombie creature token…" | tribal_zombies | STRONG |
+| Storm-Kiln Artist (Creature — Dwarf Shaman) | "…Magecraft — Whenever you cast or copy an instant or sorcery spell, create a Treasure token." | spellslinger | STRONG |
+| Storm-Kiln Artist | "This creature gets +1/+0 for each artifact you control. …" | artifacts | NO_MATCH |
+| Storm-Kiln Artist | "…create a Treasure token." | tokens | STRONG |
+| Grave Pact (Enchantment) | "Whenever a creature you control dies, each other player sacrifices a creature…" | aristocrats | STRONG |
+| Psychosis Crawler (Artifact Creature — Phyrexian Horror) | "…Whenever you draw a card, each opponent loses 1 life." | draw_matters | STRONG |
+| Psychosis Crawler | (same) | artifacts | WEAK |
+| Steel Overseer (Artifact Creature — Construct) | "{T}: Put a +1/+1 counter on each artifact creature you control." | counters | STRONG |
+| Living Death (Sorcery) | "Each player exiles all creature cards from their graveyard…" | reanimator | NO_MATCH |
+| Living Death | (same — "their graveyard", not "your") | graveyard | NO_MATCH |
+| Sol Ring (Artifact) | "{T}: Add {C}{C}." | tribal_dragons | NO_MATCH |
+| Sol Ring | (same) | artifacts | WEAK |
+"""
 from __future__ import annotations
 
 import re
@@ -335,29 +359,3 @@ def match_themes(cards: list[dict], themes: list[str]) -> dict[str, list[dict]]:
         matched.sort(key=sort_key)
         out[theme] = [c for _, c in matched]
     return out
-
-
-"""
-Theme matching for Myth Forge decks using only local card data.
-Reproduces Scryfall query semantics with type_line and oracle_text.
-
-Gold set
-| Card (type line) | oracle text (abridged, verbatim) | theme | expected |
-|---|---|---|---|
-| Shivan Dragon (Creature — Dragon) | "Flying / {R}: This creature gets +1/+0…" | tribal_dragons | WEAK |
-| Bladewing the Risen (Legendary Creature — Zombie Dragon) | "…{B}{R}: Dragon creatures get +1/+1…" | tribal_dragons | STRONG |
-| Bladewing the Risen | (same — no Zombie payoff text) | tribal_zombies | WEAK |
-| Goblin Chieftain (Creature — Goblin) | "Other Goblin creatures you control get +1/+1 and have haste." | tribal_goblins | STRONG |
-| Jadar, Ghoulcaller (Legendary Creature — Human Wizard) | "…if you control no creatures with decayed, create a 2/2 black Zombie creature token…" | tribal_zombies | STRONG |
-| Storm-Kiln Artist (Creature — Dwarf Shaman) | "…Magecraft — Whenever you cast or copy an instant or sorcery spell, create a Treasure token." | spellslinger | STRONG |
-| Storm-Kiln Artist | "This creature gets +1/+0 for each artifact you control. …" | artifacts | NO_MATCH |
-| Storm-Kiln Artist | "…create a Treasure token." | tokens | STRONG |
-| Grave Pact (Enchantment) | "Whenever a creature you control dies, each other player sacrifices a creature…" | aristocrats | STRONG |
-| Psychosis Crawler (Artifact Creature — Phyrexian Horror) | "…Whenever you draw a card, each opponent loses 1 life." | draw_matters | STRONG |
-| Psychosis Crawler | (same) | artifacts | WEAK |
-| Steel Overseer (Artifact Creature — Construct) | "{T}: Put a +1/+1 counter on each artifact creature you control." | counters | STRONG |
-| Living Death (Sorcery) | "Each player exiles all creature cards from their graveyard…" | reanimator | NO_MATCH |
-| Living Death | (same — "their graveyard", not "your") | graveyard | NO_MATCH |
-| Sol Ring (Artifact) | "{T}: Add {C}{C}." | tribal_dragons | NO_MATCH |
-| Sol Ring | (same) | artifacts | WEAK |
-"""

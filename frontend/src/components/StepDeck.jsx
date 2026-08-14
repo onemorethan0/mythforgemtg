@@ -1727,6 +1727,22 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {/* Deck health — curve vs the reference curve for this commander's mana
                 value, and whether the manabase can actually cast the deck. Advisory:
                 deck_quality measures the built list, it never changes it. */}
+            {/* Strict collection builds report what the collection could not cover.
+                Gated on deck.collection ALONE — nesting this inside the quality block
+                meant an empty quality measurement silently suppressed the reporting.
+                Without it the honesty stops at the SSE stream, which is long gone by
+                the time anyone reads the finished deck. */}
+            {deck?.collection?.shortfall && Object.keys(deck.collection.shortfall).length > 0 && (
+              <>
+                <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
+                <div style={{ fontSize: 11, color: '#fbbf24' }}>
+                  Collection couldn’t cover:{' '}
+                  {Object.entries(deck.collection.shortfall)
+                    .map(([k, v]) => `${k.replace(/_/g, ' ')} (${v})`).join(', ')}
+                </div>
+              </>
+            )}
+
             {stats.quality && (
               <>
                 <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
@@ -1757,16 +1773,6 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 {(stats.quality.curve?.notes || []).slice(0, 2).map((n, i) => (
                   <div key={i} style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>{n}</div>
                 ))}
-                {/* Strict collection builds report what the collection could not cover.
-                    Without this the honest reporting stopped at the SSE stream, which is
-                    gone by the time the user reads the finished deck. */}
-                {deck?.collection?.shortfall && Object.keys(deck.collection.shortfall).length > 0 && (
-                  <div style={{ marginTop: 8, fontSize: 11, color: '#fbbf24' }}>
-                    Collection couldn’t cover:{' '}
-                    {Object.entries(deck.collection.shortfall)
-                      .map(([k, v]) => `${k.replace(/_/g, ' ')} (${v})`).join(', ')}
-                  </div>
-                )}
               </>
             )}
             {/* Color identity (mana pip counts) */}

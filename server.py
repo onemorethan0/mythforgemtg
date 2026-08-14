@@ -5813,7 +5813,6 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
     if p.exists():
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
-            _backfill_quality(data)
             if data.get("status") == "rendering":
                 # "rendering" means art-gen was in flight when the server was
                 # killed — treat as done so the partial deck is loadable.
@@ -5822,6 +5821,9 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
                     p.write_text(json.dumps(data), encoding="utf-8")
                 except Exception:
                     pass
+            # AFTER any write above: backfilling first let the derived value ride along
+            # into that write, which contradicts this function's read-only promise.
+            _backfill_quality(data)
             # "cancelled" is left as-is so the frontend can show the correct state.
 
             # Backfill has_render flags: deck.json is written BEFORE art gen

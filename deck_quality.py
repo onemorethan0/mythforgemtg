@@ -125,9 +125,18 @@ def curve(deck: list[dict]) -> dict[int, int]:
     for card in deck:
         if is_land(card):
             continue
-        b = min(mana_value(card), 7)
-        hist[b] = hist.get(b, 0) + qty(card)
+        hist[bucket(card)] = hist.get(bucket(card), 0) + qty(card)
     return hist
+
+
+def bucket(card: dict) -> int:
+    """The curve bucket a card belongs to: 1..7, where 7 is "7 or more".
+
+    MV 0 counts as a one-drop. curve_target has no bucket 0, so leaving zero-cost
+    cards in their own bucket made them unable to satisfy ANY shortfall — Mox Amber
+    and Ornithopter were drafted only after every other bucket was full, which sorts
+    some of the format's strongest cards last."""
+    return max(1, min(mana_value(card), 7))
 
 
 _BASE_CURVE = {1: 0.08, 2: 0.19, 3: 0.21, 4: 0.17, 5: 0.13, 6: 0.10, 7: 0.12}
@@ -170,10 +179,10 @@ def assess_curve(deck: list[dict], commander_mv: int) -> CurveVerdict:
         if is_land(card):
             continue
         n = qty(card)
-        mv = mana_value(card)
-        buckets[min(mv, 7)] = buckets.get(min(mv, 7), 0) + n
+        b = bucket(card)
+        buckets[b] = buckets.get(b, 0) + n
         nonland += n
-        total_mv += mv * n
+        total_mv += mana_value(card) * n
     average = round(total_mv / nonland, 2) if nonland else 0.0
     target = curve_target(nonland, commander_mv)
 
@@ -316,7 +325,7 @@ def suggest_cuts(deck: list[dict], verdict: CurveVerdict, limit: int = 8) -> lis
     if verdict.verdict != "top-heavy":
         return []
     over = set(verdict.over)
-    cands = [c for c in deck if not is_land(c) and min(mana_value(c), 7) in over]
+    cands = [c for c in deck if not is_land(c) and bucket(c) in over]
 
     def _cuttable(card: dict) -> tuple:
         r = card.get("edhrec_rank")

@@ -254,8 +254,8 @@ class DeckBuilder:
         # the whole deck for no benefit.
         have: dict[int, int] = {}
         for card in self._deck:
-            if "land" not in (card.get("type_line", "") or "").lower():
-                b = min(deck_quality.mana_value(card), 7)
+            if not deck_quality.is_land(card):
+                b = deck_quality.bucket(card)
                 have[b] = have.get(b, 0) + 1
 
         remaining = list(candidates)
@@ -266,13 +266,13 @@ class DeckBuilder:
             idx = 0
             if under:
                 for i, card in enumerate(remaining):
-                    if min(deck_quality.mana_value(card), 7) in under:
+                    if deck_quality.bucket(card) in under:
                         idx = i
                         break
             card = remaining.pop(idx)
             if self._add(card):
                 added += 1
-                b = min(deck_quality.mana_value(card), 7)
+                b = deck_quality.bucket(card)
                 have[b] = have.get(b, 0) + 1
         return added
 
@@ -920,7 +920,7 @@ def deck_quality_block(commander: dict, deck: list[dict]) -> dict:
     # called with an empty list mid-build. There is no curve and no manabase to judge,
     # and measuring anyway reported "short on sources" for a single custom card.
     # An empty block is the honest answer; StepDeck's `stats.quality &&` guard hides it.
-    if not any("land" not in (c.get("type_line", "") or "").lower() for c in deck):
+    if not any(not deck_quality.is_land(c) for c in deck):
         return {}
     try:
         curve = deck_quality.assess_curve(deck, int(deck_quality.mana_value(commander)))
