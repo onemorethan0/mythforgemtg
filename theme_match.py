@@ -77,7 +77,17 @@ WEAK: int = 1
 STRONG: int = 2
 
 def _wb(word: str) -> re.Pattern[str]:
-    return re.compile(r"\b" + re.escape(word) + r"\b", re.IGNORECASE)
+    """Word-boundary match that also accepts the regular plural.
+
+    Scryfall's o: operator is a SUBSTRING match, so o:"dragon" hits "Dragons". A bare
+    \\bdragon\\b does not, because the trailing s is a word character — which made strict
+    mode NARROWER than the query it reproduces and dropped 46 real tribal payoffs
+    templated only in the plural (Outpost Siege "choose Khans or Dragons", Death-Priest
+    of Myrkul "Skeletons, Vampires, and Zombies you control get +1/+1").
+
+    Still bounded rather than a raw substring: plain "cat" as a substring matches
+    escalate, duplicate and scatter — the false-positive class \\b exists to stop."""
+    return re.compile(r"\b" + re.escape(word) + r"(?:s|es)?\b", re.IGNORECASE)
 
 def _lit(phrase: str) -> re.Pattern[str]:
     return re.compile(re.escape(phrase), re.IGNORECASE)

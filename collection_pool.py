@@ -22,7 +22,8 @@ Gold set — `classify()` must derive exactly these (verified against live oracl
     Laughing Mad          {draw}            discard 1 -> draw two = net +1
     Dangerous Wager       {draw}
     Darksteel Plate       {protection}      grants indestructible to another
-    Smaug the Impenetrable {}               HAS indestructible — protects only itself
+    Smaug the Impenetrable {ramp}           HAS indestructible — NOT protection, that
+                                            guards only itself; IS ramp, it makes Treasures
     Lightning Greaves     {protection}
     Berserkers' Onslaught {finisher}        attacking creatures gain double strike
     Hellkite Tyrant       {finisher}        "you win the game"
@@ -76,6 +77,18 @@ def rank_key(card: dict) -> tuple:
     r = card.get("edhrec_rank")
     name = card.get("name", "")
     return (0, r, name) if isinstance(r, int) else (1, 0, name)
+
+
+# A discard that is a COST paid to draw — the looting shape. Deliberately narrow: it
+# must be an additional casting cost, an activation cost, or a "discard …, then draw"
+# clause. A card that merely mentions discarding (an opponent-discard payoff, cycling
+# reminder text) is not looting and keeps its draw role.
+_DISCARD_COST = re.compile(
+    r"as an additional cost[^.]{0,60}discard"
+    r"|^\s*discard your hand"
+    r"|,\s*discard[^:.]{0,40}:"
+    r"|discard (?:a card|your hand)[^.]{0,20}(?:,|\.)\s*(?:then )?draw",
+    re.I | re.M)
 
 
 def _count_word(tok: str) -> int:
@@ -234,7 +247,12 @@ def _is_net_draw(text: str) -> bool:
     # Symmetric/opponent draw is not card advantage for us unless we also draw.
     if re.search(r"(each|target) opponent draws", low) and not re.search(r"you draw", low):
         return False
-    has_discard = "discard" in low
+    # A discard COST, not the word appearing anywhere. `"discard" in low` rejected 71
+    # cards carrying a genuine self-draw clause: opponent-discard payoffs (Geth's
+    # Grimoire, "Whenever an opponent discards a card, you may draw a card") and
+    # anything whose reminder text mentions cycling. In strict mode the role lists ARE
+    # the deck, so that was 71 real draw spells the collection could not offer.
+    has_discard = bool(_DISCARD_COST.search(low))
     m = re.search(rf"draws?\s+({_NUM})\s+cards?", low)
     if m:
         # Painful Truths: "you draw X cards". X is unknown but positive by design —

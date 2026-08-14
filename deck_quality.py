@@ -152,8 +152,10 @@ def curve_target(nonland_count: int, commander_mv: int) -> dict[int, int]:
     tgt[3] += nonland_count - sum(tgt.values())      # rounding remainder, deterministic
 
     for _ in range(max(0, commander_mv - 4)):
-        # Move atomically: a half-applied shift would silently rob bucket 3 when the
-        # rounding correction below re-balanced the total.
+        # The two moves are INDEPENDENT, not atomic. _BASE_CURVE weights bucket 7 above
+        # bucket 6, so 6 empties first and further points shift only 7->3; that is the
+        # intended direction (a very expensive commander wants an even cheaper deck) and
+        # the sum guarantee holds regardless, because every move is -1 here and +1 there.
         if tgt[6] > 0:
             tgt[6] -= 1
             tgt[2] += 1

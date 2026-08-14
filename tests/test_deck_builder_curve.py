@@ -185,3 +185,32 @@ def test_quality_block_never_breaks_a_build():
     stats = deck_builder.compute_stats({"name": "C"}, [{"name": "junk"}])
     assert "quality" in stats
     assert stats["total_cards"] == 2
+
+
+def test_curve_bias_never_overrides_the_owned_first_contract():
+    """C4: owned cards are exhausted before the Scryfall pool is touched.
+
+    _fetch_goodstuff used to build `owned + prefer_owned(search)` and hand the MERGED
+    list to _draft_curve_aware, which let the curve bias reorder across the boundary —
+    an unowned staple in a short bucket beat an owned card, silently defeating the
+    "build from my collection" contract the comment above it still claimed to keep.
+    Curve awareness still applies WITHIN each group.
+    """
+    owned = [_card(f"OWNED {i}", 5, 900 + i) for i in range(4)]     # expensive
+    unowned = [_card(f"UNOWNED {i}", 1, 1 + i) for i in range(4)]   # cheap AND better ranked
+
+    class _SearchStub:
+        def search_cards_paged(self, query, max_results=60):
+            return unowned
+
+    b = DeckBuilder(_SearchStub())
+    b._deck, b._names = [], set()
+    b._curve_target = {1: 10, 5: 0}          # bucket 1 starving, bucket 5 already full
+    b._owned = {c["name"].casefold() for c in owned}
+    b._owned_cards = owned
+
+    from commander_analysis import build_commander_profile
+    profile = build_commander_profile({"name": "C", "color_identity": [], "cmc": 3,
+                                       "type_line": "Legendary Creature", "oracle_text": ""})
+    b._fetch_goodstuff(profile, 4)
+    assert all(c["name"].startswith("OWNED") for c in b._deck), [c["name"] for c in b._deck]

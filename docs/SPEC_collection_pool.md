@@ -265,14 +265,15 @@ them in the module docstring as a comment table so a reviewer can check them.
 ## 6. Sorting rule (used everywhere)
 
 ```python
-def _rank_key(card: dict) -> tuple:
+def rank_key(card: dict) -> tuple:
     """EDHREC-best first; unranked cards last; ties broken by name so the order
     is fully deterministic (the deck builder must be reproducible)."""
     r = card.get("edhrec_rank")
     return (0, r, card.get("name", "")) if isinstance(r, int) else (1, 0, card.get("name", ""))
 ```
 
-Use this ONE helper for every sort in the module. Do not inline `or 10**9` variants.
+Use this ONE helper for every sort in the module. Do not inline `or 10**9` variants. (It is now PUBLIC — theme_match imports it, so there is one
+ordering of edhrec_rank in the repo rather than three that drift.)
 
 ---
 

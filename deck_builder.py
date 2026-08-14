@@ -159,6 +159,13 @@ def _normalize_plan(plan: dict[str, int]) -> dict[str, int]:
     trust. Trim order is deliberate: goodstuff is generic filler, theme is the next most
     elastic, and the essential roles and land count are never touched.
     """
+    # Clamp first. sum() over a plan carrying a NEGATIVE goodstuff can land on 99
+    # while the spendable slots still over-allocate, so the function returned "correct"
+    # plans that the per-step caps were quietly rescuing. A slot count below zero is
+    # never meaningful.
+    for key in plan:
+        if plan[key] < 0:
+            plan[key] = 0
     total = sum(plan.values())
     if total == 99:
         return plan
@@ -189,6 +196,7 @@ class DeckBuilder:
         self._pool = None               # collection_pool.CardPool in strict mode
         self.shortfall: dict[str, int] = {}   # strict mode: roles the collection can't fill
         self._curve_target: dict[int, int] = {}   # MV histogram the fills aim at
+        self.source_fallback: str = ""   # set when strict mode reverts to Scryfall
 
     # ── Internal helpers ──────────────────────────────────────────────────────
     # Note: collection-aware building draws owned cards from an EXPLICIT resolve
@@ -223,7 +231,10 @@ class DeckBuilder:
             if (card.get("legalities", {}) or {}).get("commander") != "legal":
                 continue
             out.append(card)
-        out.sort(key=lambda c: c.get("edhrec_rank") or 10**9)
+        # The shared ordering, not a third variant. The old key was
+        # `c.get("edhrec_rank") or 10**9`, which both raised on a non-int rank and — via
+        # `or` — treated rank 0 as unranked.
+        out.sort(key=collection_pool.rank_key)
         return out
 
     def _owned_candidates(self, creatures_only: bool = False) -> list[dict]:
@@ -389,7 +400,10 @@ class DeckBuilder:
             matched = theme_match.match_themes(self._pool.flex, active)
             added = 0
             per_theme = max(1, want // len(active))
-            remainder = want - per_theme * len(active)
+            # max(0, ...): with want < len(active) the remainder goes NEGATIVE and it is
+            # the LEAD theme that loses its slot — a priority inversion, since the lead
+            # theme is meant to get the surplus, not the deficit.
+            remainder = max(0, want - per_theme * len(active))
             for i, theme in enumerate(active):
                 if added >= want:
                     break
@@ -504,9 +518,13 @@ class DeckBuilder:
         # be in the deck; fetch past them like _fetch_goodstuff does.
         candidates_needed = len(self._names) + self._bracket_filter.candidate_buffer(want)
         # Seed with owned creatures first (C4), then EDHREC bodies fill the rest.
-        candidates = self._owned_candidates(creatures_only=True) + self._prefer_owned(
-            self.client.search_cards_paged(query, max_results=candidates_needed))
-        return self._draft_curve_aware(candidates, want)
+        # Same two-group draft as _fetch_goodstuff: owned bodies first, then EDHREC.
+        added = self._draft_curve_aware(self._owned_candidates(creatures_only=True), want)
+        if added < want:
+            added += self._draft_curve_aware(
+                self._prefer_owned(self.client.search_cards_paged(
+                    query, max_results=candidates_needed)), want - added)
+        return added
 
     def _fetch_goodstuff(self, profile: CommanderProfile, want: int) -> int:
         """
@@ -524,9 +542,17 @@ class DeckBuilder:
         candidates_needed = len(self._names) + self._bracket_filter.candidate_buffer(want)
         # Owned cards get first claim on the flexible goodstuff slots (C4) — this is where
         # "build from my collection" actually spends the deck on what you own.
-        candidates = self._owned_candidates() + self._prefer_owned(
-            self.client.search_cards_paged(query, max_results=candidates_needed))
-        return self._draft_curve_aware(candidates, want)
+        # Owned cards are drafted as their OWN group, exhausted before the Scryfall
+        # pool is touched. Handing one merged list to _draft_curve_aware let the curve
+        # bias reorder across the boundary — an unowned staple in a short bucket beat an
+        # owned card, silently defeating the C4 contract this comment claims to keep.
+        # Curve awareness still applies WITHIN each group.
+        added = self._draft_curve_aware(self._owned_candidates(), want)
+        if added < want:
+            added += self._draft_curve_aware(
+                self._prefer_owned(self.client.search_cards_paged(
+                    query, max_results=candidates_needed)), want - added)
+        return added
 
     def _build_lands(self, profile: CommanderProfile, want: int) -> int:
         """
