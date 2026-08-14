@@ -24,11 +24,21 @@ from dataclasses import dataclass, field
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
+from mythgauntlet.ratings import redundancy
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.model import EffectVector
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
+
+# How the cut pool is chosen. `redundant` is the default and the only one worth using;
+# `popularity` is the original rule, kept because the golden-master tests pin its exact
+# ordering and re-analysis counts, and because it is the honest fallback for a deck whose
+# cards the semantics layer cannot read at all. Defined here, above AdviceReport, because
+# a dataclass field default is evaluated at class-definition time.
+CUT_REDUNDANT = "redundant"
+CUT_POPULARITY = "popularity"
+CUT_STRATEGIES = (CUT_REDUNDANT, CUT_POPULARITY)
 
 
 def _speed_score(a: DeckAnalysis) -> float:
@@ -305,12 +315,30 @@ class AdviceReport:
     suggestions: list[SwapSuggestion]
     evaluated: int             # add candidates considered (backward-compatible meaning)
     analyses: int = 0          # total re-simulations run (candidates x cut options)
-    cut_pool: int = 1          # how many weakest cards each add was tested against
+    cut_pool: int = 1          # how many cut candidates each add was tested against
     min_delta: float = 0.0     # gain floor a swap had to clear to be reported
+    cut_strategy: str = CUT_REDUNDANT   # how that cut pool was chosen
+
+
+def _cut_candidates(resolved: ResolvedDeck, k: int, strategy: str) -> list[Card]:
+    """The `k` cards to offer as cuts, per `strategy`.
+
+    `redundant` asks what the deck has too MUCH of; `popularity` asks what is least played.
+    They disagree exactly where it matters: a brew's unpopular pet card is `popularity`'s
+    first cut and `redundant`'s last.
+    """
+    if strategy == CUT_POPULARITY:
+        return _weakest_cuts(resolved, k)
+    return redundancy.rank_redundant(resolved, k)
 
 
 def _weakest_cuts(resolved: ResolvedDeck, k: int) -> list[Card]:
-    """The deck's `k` most droppable nonland spells: highest EDHREC rank (unknown = weakest).
+    """The deck's `k` least-played nonland spells: highest EDHREC rank (unknown = weakest).
+
+    Kept for the `popularity` cut strategy and its golden-master tests. As a way to pick
+    cuts it is actively wrong — the least-played cards in a deck are its pet cards and
+    silver bullets, which are the ones the pilot put there on purpose. See
+    `mythgauntlet.ratings.redundancy` for the rule that replaced it as the default.
 
     Deterministic: ranks tie-break by name so the same deck always yields the same cut pool.
     """
@@ -403,18 +431,28 @@ def advise(
     min_delta: float = 1.0,
     two_card_combos: int = 0,
     combos_checked: bool = False,
+    cut_strategy: str = CUT_REDUNDANT,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
-    axis=None picks the deck's weakest axis. Each candidate is tested against the `cut_pool`
-    weakest nonland cards; the analysis is re-run for every (add, cut) pairing and the add
-    keeps whichever cut improves the axis most. Only positive swaps are returned, best first.
+    axis=None picks the deck's weakest axis. Each candidate is tested against a small pool
+    of cut candidates; the analysis is re-run for every (add, cut) pairing and the add keeps
+    whichever cut improves the axis most. Only positive swaps are returned, best first.
     `max_eval` bounds the number of add candidates; each spends up to `cut_pool` re-analyses,
-    so the total re-sim count is reported as `analyses`. `cut_pool=1` reproduces the MVP's
-    single-global-cut behaviour (and re-analysis count).
+    so the total re-sim count is reported as `analyses`.
+
+    `cut_strategy` picks HOW the cut pool is chosen (see `CUT_STRATEGIES`). The default,
+    `redundant`, offers the cards the deck has too MANY of. `popularity` is the original
+    least-played rule, kept because the golden-master tests pin it — it is not a good rule
+    (see `_weakest_cuts`).
     """
     if axis is not None and axis not in AXES:
         raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(AXES)}")
+    if cut_strategy not in CUT_STRATEGIES:
+        raise ValueError(
+            f"unknown cut_strategy '{cut_strategy}'; "
+            f"choose one of: {', '.join(CUT_STRATEGIES)}"
+        )
     cut_pool = max(1, cut_pool)
 
     # Resilience is a second (paired) sim pass — only run it when it's the target.
@@ -429,7 +467,7 @@ def advise(
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
-    cuts = _weakest_cuts(resolved, cut_pool)
+    cuts = _cut_candidates(resolved, cut_pool, cut_strategy)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0
     analyses = 0
@@ -495,4 +533,5 @@ def advise(
         cut=cuts[0].name if (cuts and cut_pool == 1) else None,
         suggestions=suggestions[:top], evaluated=evaluated,
         analyses=analyses, cut_pool=cut_pool, min_delta=effective_delta,
+        cut_strategy=cut_strategy,
     )

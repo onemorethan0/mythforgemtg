@@ -366,9 +366,10 @@ def create_app(
 
         Mirrors the `advise` CLI verb: candidates are cards the user OWNS (request text or
         the default collection file), nonland, inside the deck's colour identity, not already
-        in the deck — each is tested against the `cut_pool` weakest nonland cards and keeps
-        the cut it improves the axis most from, so every suggestion is a measured delta,
-        never popularity.
+        in the deck — each is tested against a `cut_pool` of the deck's most REDUNDANT
+        nonland cards (the roles it over-supplies, weakest contributor first) and keeps the
+        cut it improves the axis most from, so every suggestion is a measured delta, never
+        popularity. `cut_strategy` in the response names the rule that chose those cuts.
         """
         if req.axis is not None and req.axis not in advisor.AXES:
             raise HTTPException(
@@ -425,6 +426,7 @@ def create_app(
             "evaluated": report.evaluated,
             "analyses": report.analyses,
             "cut_pool": report.cut_pool,
+            "cut_strategy": report.cut_strategy,
             "min_delta": report.min_delta,
             "candidates_that_fit": len(candidates),
             "collection_source": source,
