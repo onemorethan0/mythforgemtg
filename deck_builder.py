@@ -414,6 +414,15 @@ class DeckBuilder:
         # and its ~20 slots fell through to the generic goodstuff fill — a strict Dragon
         # deck got no Dragon payoffs beyond whatever happened to rank well.
         if self._strict():
+            # A theme name the local matcher does not know is dropped here. Record it:
+            # otherwise ["tribal_dragons", "typo_theme"] silently yields an all-dragons
+            # package with nothing telling the caller the second theme never applied.
+            # Latent today (the key sets match exactly, pinned by a test) but silent by
+            # construction, which is how it would stay wrong after a rename.
+            unknown = [t for t in themes if t not in theme_match.THEMES]
+            if unknown:
+                self.shortfall["unrecognised_themes"] = (
+                    self.shortfall.get("unrecognised_themes", 0) + len(unknown))
             active = [t for t in themes if t in theme_match.THEMES][:3]
             if not active:
                 self.shortfall["theme"] = self.shortfall.get("theme", 0) + want

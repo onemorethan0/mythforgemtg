@@ -277,7 +277,8 @@ def test_an_unknown_theme_name_is_skipped_and_recorded_never_raises():
     added = b._fetch_theme_synergy_list(PROFILE, ["not_a_theme", "also_not_a_theme"], 6)
     assert added == 0
     assert b._deck == []
-    assert b.shortfall == {"theme": 6}
+    # Both the unfillable slots AND the fact that two named themes never applied.
+    assert b.shortfall == {"theme": 6, "unrecognised_themes": 2}
 
 
 def test_an_unknown_theme_alongside_a_known_one_costs_the_known_theme_nothing():
@@ -287,7 +288,9 @@ def test_an_unknown_theme_alongside_a_known_one_costs_the_known_theme_nothing():
     assert added == 4
     assert _names(b) == ["Goblin Chieftain", "Goblin Warchief", "Krenko, Mob Boss",
                          "Goblin Matron"]
-    assert b.shortfall == {}
+    # The known theme is untouched, but the dropped name is still REPORTED. Recording
+    # nothing left the caller unable to tell a thin pool from a typo.
+    assert b.shortfall == {"unrecognised_themes": 1}
 
 
 def test_every_theme_name_the_builder_can_be_handed_is_known_locally():
@@ -388,3 +391,22 @@ def test_the_pool_is_nonland_flex_so_theme_slots_never_eat_the_manabase():
     b._fetch_theme_synergy_list(PROFILE, ["tribal_goblins"], 7)
     assert "Command Tower" not in _names(b)
     assert "Den of the Bugbear" not in _names(b)
+
+
+def test_an_unknown_name_does_not_consume_one_of_the_three_theme_slots():
+    """The [:3] cap is applied AFTER the THEMES filter, so a junk name must not push a
+    real theme out of the package.
+
+    Without the filter, ["not_a_theme", goblins, elves, dragons][:3] keeps the junk name
+    and DROPS dragons entirely. A review mutation-tested this file and found that
+    deleting the filter left every test green, because no case ever put an unknown name
+    in a live top-3 slot ahead of a known theme.
+    """
+    b = _strict_builder(GOBLINS + ELVES + DRAGONS)
+    b._fetch_theme_synergy_list(
+        PROFILE, ["not_a_theme", "tribal_goblins", "tribal_elves", "tribal_dragons"], 9)
+    drafted = set(_names(b))
+    assert any(c["name"] in drafted for c in GOBLINS), drafted
+    assert any(c["name"] in drafted for c in ELVES), drafted
+    assert any(c["name"] in drafted for c in DRAGONS), drafted   # the one the filter saves
+    assert b.shortfall.get("unrecognised_themes") == 1
