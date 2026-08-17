@@ -156,6 +156,39 @@ _POOL_ROLE = {
 }
 
 
+LEAD_THEME_SHARE = 0.7
+
+
+def _theme_slot_split(want: int, n_themes: int) -> list[int]:
+    """Divide the theme package across the active themes, LEAD THEME WEIGHTED.
+
+    Not an even split, and that is measured rather than assumed. The Scryfall branch
+    used to give the whole package to the first theme (`slot` was computed and never
+    used), so themes 2 and 3 were unreachable. Fixing that to an even split was
+    correct in principle and WORSE in practice: over the builder benchmark it cost
+    multi-theme commanders 1.65 mean synergy and broke colour castability for Edgar
+    Markov and Shelob, while single-theme decks moved by exactly 0.00.
+
+    The reason is real rather than metric-gaming: the lead theme is the one the
+    commander was actually detected as, and EDHREC lift measures how much a deck looks
+    like other decks with that commander — which concentrate. Secondary themes still
+    deserve representation, so the lead takes `LEAD_THEME_SHARE` and the rest split the
+    remainder evenly. Every theme is guaranteed at least one slot when the package is
+    big enough to give one.
+    """
+    if want <= 0 or n_themes <= 0:
+        return []
+    if n_themes == 1:
+        return [want]
+    if want <= n_themes:
+        # Too small to weight: one each, lead first, rather than starving a theme.
+        return [1] * want + [0] * (n_themes - want)
+    lead = max(1, min(want - (n_themes - 1), round(want * LEAD_THEME_SHARE)))
+    rest, others = want - lead, n_themes - 1
+    base, extra = divmod(rest, others)
+    return [lead] + [base + (1 if i < extra else 0) for i in range(others)]
+
+
 def _score_first(candidates: list[dict], theme: str) -> list[dict]:
     """Stable-sort Scryfall theme results so the tribe's PAYOFFS lead its bodies.
 
@@ -498,14 +531,13 @@ class DeckBuilder:
             return 0
 
         added = 0
-        per_theme = max(1, want // len(active))
-        remainder = want - (per_theme * len(active))
+        splits = _theme_slot_split(want, len(active))
 
         for i, theme in enumerate(active):
             if added >= want:
                 break
             synergy_q = THEME_SYNERGY_QUERIES[theme]
-            slot = per_theme + (1 if i == 0 else 0) * remainder
+            slot = splits[i]
             query = (
                 f"{synergy_q} "
                 f"{self._ci_filter(profile)} "
@@ -524,11 +556,46 @@ class DeckBuilder:
             candidates = self._prefer_owned(self._lift_sorted(self.client.search_cards_paged(
                 query, max_results=self._bracket_filter.candidate_buffer(slot))))
             candidates = _score_first(candidates, theme)
-            for card in candidates:
+            # Bounded by THIS theme's `slot`, not by the whole `want`. The inner loop used
+            # to break on `added >= want`, so `slot` was computed and never used and the
+            # FIRST theme consumed the entire package: a Krenko build (tribal_goblins +
+            # tokens) drafted 20 goblin cards and zero token cards, and a third theme was
+            # unreachable no matter what resolve_themes produced. Pinned by
+            # test_theme_slots_are_split_across_active_themes.
+            added += self._draft_slot(candidates, min(slot, want - added))
+
+        # A theme that ran dry leaves its slots unspent, so sweep the remainder across all
+        # active themes rather than shipping a short package. Mirrors the strict path.
+        if added < want:
+            for theme in active:
                 if added >= want:
                     break
-                if self._add(card):
-                    added += 1
+                query = (
+                    f"{THEME_SYNERGY_QUERIES[theme]} "
+                    f"{self._ci_filter(profile)} "
+                    f"legal:commander -type:land"
+                )
+                candidates = self._prefer_owned(self._lift_sorted(
+                    self.client.search_cards_paged(
+                        query,
+                        max_results=self._bracket_filter.candidate_buffer(want - added))))
+                added += self._draft_slot(_score_first(candidates, theme), want - added)
+        return added
+
+    def _draft_slot(self, candidates: list[dict], want: int) -> int:
+        """Take up to `want` cards from `candidates`, in order.
+
+        Deliberately NOT curve-aware, unlike the flexible fills. `_score_first` has already
+        put the theme's payoffs ahead of its vanilla bodies and `_lift_sorted` has put the
+        cards this commander actually plays ahead of both; reordering by mana value would
+        trade that for a curve slot, which is the same reason the role fetches opted out.
+        """
+        added = 0
+        for card in candidates:
+            if added >= want:
+                break
+            if self._add(card):
+                added += 1
         return added
 
     # Lead archetypes that need a creature base but whose synergy query isn't
