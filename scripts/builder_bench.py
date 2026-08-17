@@ -6,11 +6,11 @@ from a handful of hand-picked commanders. This runs a fixed roster through the r
 path and records what came out, so two commits can be compared as numbers.
 
     python scripts/builder_bench.py --out docs/bench/run.json
-    python scripts/builder_bench.py --compare docs/bench/baseline-c6ddd79.json docs/bench/run.json
+    python scripts/builder_bench.py --compare docs/bench/baseline-c6ddd79.json docs/bench/current.json
 
 Committed reference runs live in docs/bench/ (data/ is gitignored):
-  baseline-c6ddd79.json  the builder before the 2026-08-14 lift/theme work
-  current-7f146f9.json   the same roster after it
+  baseline-c6ddd79.json  the builder before the 2026-08-14 work
+  current.json           the same roster at HEAD; refresh it when the builder changes
 
 The roster is FIXED and committed. Comparing runs over different commanders measures the
 commanders, not the change.

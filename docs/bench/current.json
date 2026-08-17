@@ -32,24 +32,26 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 16,
-        "draw": 11,
-        "removal": 8,
+        "ramp": 21,
+        "draw": 12,
+        "removal": 7,
         "wipe": 0,
         "protection": 5,
         "finisher": 4
       },
       "basics": 28,
-      "curve_deviation": 24.0,
+      "curve_deviation": 22.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 31.1,
+      "synergy": 30.0,
       "baseline": 10.9,
-      "coverage": 0.662,
+      "coverage": 0.592,
       "verdict": "focused-with-spice",
       "on_theme_cards": 28,
       "deck_themes": [
-        "tribal_goblins"
+        "tribal_goblins",
+        "aristocrats",
+        "impulse"
       ]
     },
     {
@@ -62,24 +64,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 19,
+        "ramp": 17,
         "draw": 14,
         "removal": 5,
         "wipe": 1,
-        "protection": 3,
+        "protection": 4,
         "finisher": 1
       },
       "basics": 18,
-      "curve_deviation": 16.0,
+      "curve_deviation": 12.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 20.3,
+      "synergy": 21.1,
       "baseline": 7.3,
-      "coverage": 0.58,
+      "coverage": 0.63,
       "verdict": "on-rails",
       "on_theme_cards": 35,
       "deck_themes": [
-        "tokens"
+        "tokens",
+        "etb"
       ]
     },
     {
@@ -121,24 +124,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 13,
-        "draw": 12,
-        "removal": 3,
-        "wipe": 7,
-        "protection": 6,
-        "finisher": 6
+        "ramp": 14,
+        "draw": 11,
+        "removal": 4,
+        "wipe": 6,
+        "protection": 7,
+        "finisher": 5
       },
       "basics": 23,
-      "curve_deviation": 20.0,
+      "curve_deviation": 16.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 18.5,
+      "synergy": 18.3,
       "baseline": 5.2,
-      "coverage": 0.908,
+      "coverage": 0.895,
       "verdict": "on-rails",
-      "on_theme_cards": 7,
+      "on_theme_cards": 24,
       "deck_themes": [
-        "aristocrats"
+        "aristocrats",
+        "reanimator"
       ]
     },
     {
@@ -196,7 +200,8 @@
       "verdict": "focused-with-spice",
       "on_theme_cards": 3,
       "deck_themes": [
-        "enchantress"
+        "enchantress",
+        "landfall"
       ]
     },
     {
@@ -211,24 +216,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 11,
-        "draw": 15,
+        "ramp": 14,
+        "draw": 17,
         "removal": 6,
         "wipe": 5,
-        "protection": 5,
-        "finisher": 7
+        "protection": 6,
+        "finisher": 5
       },
       "basics": 19,
-      "curve_deviation": 18.0,
+      "curve_deviation": 16.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 23.8,
+      "synergy": 21.8,
       "baseline": 6.3,
-      "coverage": 0.863,
+      "coverage": 0.812,
       "verdict": "focused-with-spice",
-      "on_theme_cards": 26,
+      "on_theme_cards": 31,
       "deck_themes": [
-        "tribal_vampires"
+        "tribal_vampires",
+        "aristocrats"
       ]
     },
     {
@@ -299,24 +305,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
+        "ramp": 15,
         "draw": 19,
-        "removal": 14,
+        "removal": 13,
         "wipe": 4,
-        "protection": 5,
+        "protection": 4,
         "finisher": 2
       },
       "basics": 8,
-      "curve_deviation": 10.0,
+      "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 24.5,
+      "synergy": 22.0,
       "baseline": 12.1,
-      "coverage": 0.538,
-      "verdict": "focused-with-spice",
+      "coverage": 0.473,
+      "verdict": "brew",
       "on_theme_cards": 20,
       "deck_themes": [
         "sagas",
+        "impulse",
         "theft"
       ]
     },
@@ -513,24 +520,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
-        "draw": 22,
-        "removal": 11,
+        "ramp": 15,
+        "draw": 21,
+        "removal": 9,
         "wipe": 0,
-        "protection": 0,
-        "finisher": 4
+        "protection": 1,
+        "finisher": 3
       },
       "basics": 28,
-      "curve_deviation": 24.0,
+      "curve_deviation": 22.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 17.6,
+      "synergy": 16.7,
       "baseline": 5.2,
-      "coverage": 0.577,
-      "verdict": "on-rails",
+      "coverage": 0.704,
+      "verdict": "off-plan",
       "on_theme_cards": 31,
       "deck_themes": [
-        "tokens"
+        "tokens",
+        "spellslinger"
       ]
     },
     {
@@ -543,25 +551,28 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 18,
+        "ramp": 20,
         "draw": 10,
-        "removal": 9,
-        "wipe": 5,
+        "removal": 7,
+        "wipe": 4,
         "protection": 4,
-        "finisher": 4
+        "finisher": 5
       },
       "basics": 24,
-      "curve_deviation": 20.0,
-      "colors_ok": true,
-      "colors_short": {},
-      "synergy": 13.7,
+      "curve_deviation": 16.0,
+      "colors_ok": false,
+      "colors_short": {
+        "R": 14
+      },
+      "synergy": 13.8,
       "baseline": 7.5,
-      "coverage": 0.613,
+      "coverage": 0.667,
       "verdict": "off-plan",
-      "on_theme_cards": 28,
+      "on_theme_cards": 25,
       "deck_themes": [
         "tokens",
-        "aristocrats"
+        "aristocrats",
+        "landfall"
       ]
     },
     {
@@ -574,8 +585,8 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 16,
-        "draw": 15,
+        "ramp": 17,
+        "draw": 17,
         "removal": 5,
         "wipe": 5,
         "protection": 3,
@@ -585,14 +596,15 @@
       "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 11.1,
+      "synergy": 11.2,
       "baseline": 4.4,
-      "coverage": 0.588,
+      "coverage": 0.625,
       "verdict": "off-plan",
-      "on_theme_cards": 17,
+      "on_theme_cards": 16,
       "deck_themes": [
         "graveyard",
-        "reanimator"
+        "reanimator",
+        "aristocrats"
       ]
     }
   ]

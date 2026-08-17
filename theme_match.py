@@ -21,6 +21,35 @@ Gold set
 | Living Death | (same — "their graveyard", not "your") | graveyard | NO_MATCH |
 | Sol Ring (Artifact) | "{T}: Add {C}{C}." | tribal_dragons | NO_MATCH |
 | Sol Ring | (same) | artifacts | WEAK |
+
+Gold set — the five DEAD rules revived 2026-08-14
+-------------------------------------------------
+Each of these themes leads its `THEME_SYNERGY_QUERIES` entry with an `otag:` oracle tag.
+An oracle tag has no local equivalent, so the rule here was left holding only the query's
+literal fallback — and those literals match almost no printed card. Measured over the
+34,846-card store the rules scored: landfall **1** card, chaos 22, aristocrats 34, etb 37,
+draw_matters 50. Same failure shape already documented for `enchantress` and `magecraft`.
+
+| Card (type line) | oracle text (abridged, verbatim) | theme | expected |
+|---|---|---|---|
+| Lotus Cobra (Creature — Snake) | "Landfall — Whenever a land you control enters, create a Treasure token." | landfall | STRONG |
+| Tatyova, Benthic Druid (Legendary Creature — Merfolk Druid) | "Whenever a land you control enters, you gain 1 life and draw a card." | landfall | STRONG |
+| Blood Artist (Creature — Vampire) | "Whenever this creature or another creature dies, target player loses 1 life…" | aristocrats | STRONG |
+| Zulaport Cutthroat (Creature — Human Rogue) | "Whenever this creature or another creature you control dies…" | aristocrats | STRONG |
+| Viscera Seer (Creature — Vampire Wizard) | "Sacrifice a creature: Scry 1." | aristocrats | STRONG (the OUTLET half) |
+| Murder (Instant) | "Destroy target creature." | aristocrats | NO_MATCH |
+| Restoration Angel (Creature — Angel) | "When this creature enters, exile it, then return that card to the battlefield." | etb | STRONG |
+| Mulldrifter (Creature — Elemental) | "When this creature enters, draw two cards." | etb | **NO_MATCH** |
+| Nekusar, the Mindrazer (Legendary Creature — Zombie Wizard) | "Whenever a player draws a card, Nekusar deals 1 damage to that player." | draw_matters | STRONG |
+| Krark's Thumb (Legendary Artifact) | "If you would flip a coin, instead flip two coins and ignore one." | chaos | STRONG |
+| Grenzo, Havoc Raiser (Legendary Creature — Goblin Rogue) | "…you may goad target creature." | chaos | STRONG |
+
+MULLDRIFTER IS THE LOAD-BEARING ROW. Its real wording is "When this creature enters",
+which the old literal ("when this enters") missed — but widening to match it would be
+WORSE than the bug, because most creatures in Magic have an enters trigger and the theme
+would fire on a random pile the way voltron_combat (19.35% of all cards) does. `etb` means
+the cards that CARE about entering, not every card that enters. After the fix the five
+rules score 213 / 430 / 460 / 168 / 124 cards and none is in the noise range.
 """
 from __future__ import annotations
 
@@ -265,8 +294,22 @@ THEME_RULES: dict[str, dict[str, Any]] = {
     "counters": {
         "strong_alternatives": [[_lit("proliferate")], [_lit("+1/+1 counter")]],
     },
+    # `otag:sacrifice-outlet` carried the Scryfall query; the literal fallback left here
+    # matched none of Blood Artist ("Whenever this creature or another creature dies"),
+    # Zulaport Cutthroat ("...or another creature you control dies") or Viscera Seer
+    # (a sacrifice OUTLET, a different signal the tag covered and the literal did not).
+    # Both halves of the archetype are needed: the death PAYOFF and the outlet that
+    # feeds it. "Sacrifice a creature" is required with a colon so it reads an
+    # activated COST rather than a one-shot spell that happens to say the words.
     "aristocrats": {
-        "strong_alternatives": [[_lit("whenever a creature you control dies")]],
+        "strong_alternatives": [
+            [_lit("creature you control dies")],
+            [_lit("another creature dies")],
+            [_lit("or another creature dies")],
+            [_lit("whenever a creature dies")],
+            [_lit("sacrifice a creature:")],
+            [_lit("sacrifice another creature:")],
+        ],
     },
     "reanimator": {
         "strong_alternatives": [
@@ -308,29 +351,74 @@ THEME_RULES: dict[str, dict[str, Any]] = {
         "weak_type_contains": ["equipment", "aura"],
         "strong_alternatives": [[_lit("when equipped")]],
     },
+    # Nekusar, the Mindrazer is the canonical draw-matters commander and its wording is
+    # "Whenever a PLAYER draws a card" — the group-slug half of the archetype, which
+    # neither literal reached.
     "draw_matters": {
         "strong_alternatives": [
             [_lit("whenever you draw a card")],
             [_lit("whenever a card is drawn")],
+            [_lit("whenever a player draws a card")],
+            [_lit("whenever an opponent draws a card")],
+            [_lit("whenever you draw your second card")],
         ],
     },
     "lifegain": {
         "strong_alternatives": [[_lit("whenever you gain life")]],
     },
+    # The Scryfall query's FIRST alternative is `otag:landfall`, and an oracle tag has no
+    # local equivalent — so this rule was left holding only the query's literal fallback,
+    # which no printed card matches. It scored exactly ONE card in the 34,846-card store,
+    # and Lotus Cobra, Tatyova, Avenger of Zendikar and Scute Swarm all came back
+    # NO_MATCH. Modern templating is "Whenever a land you control enters"; the pre-2024
+    # wording is kept for older printings, and "Landfall —" is the printed ability word,
+    # which is the most reliable signal of all. Same failure shape as `enchantress` and
+    # `magecraft` above.
     "landfall": {
-        "strong_alternatives": [[_lit("whenever a land enters the battlefield under your control")]],
+        "strong_alternatives": [
+            [_wb("landfall")],
+            [_lit("a land you control enters")],
+            [_lit("whenever a land enters the battlefield under your control")],
+        ],
     },
     "graveyard": {
         "strong_alternatives": [[_lit("from your graveyard")], [_lit("flashback")]],
     },
+    # PAYOFFS ONLY, never "this card has an ETB". `otag:etb` carried the query and the
+    # literal fallback ("when this enters") matches neither Mulldrifter nor Cloudblazer,
+    # whose real wording is "When this creature enters". But widening to THAT would be
+    # worse than the bug: most creatures in Magic have an enters trigger, so the theme
+    # would fire on a random pile the way voltron_combat (19.35% of all cards) does — see
+    # deck_themes.BASE_RATE. What makes a deck an ETB deck is the cards that CARE:
+    # repeatable blink and "whenever a creature you control enters" triggers.
     "etb": {
-        "strong_alternatives": [[_lit("when this enters")], [_lit("whenever a creature enters")]],
+        "strong_alternatives": [
+            [_lit("whenever a creature you control enters")],
+            [_lit("whenever another creature you control enters")],
+            [_lit("whenever a creature enters the battlefield under your control")],
+            [_lit("whenever a nontoken creature enters")],
+            [_lit("exile it, then return")],
+            [_lit("exile them, then return")],
+            [_lit("exile that card, then return")],
+        ],
     },
     "energy": {
         "strong_alternatives": [[_lit("energy counter")], [_lit("{e}")]],
     },
+    # The one theme whose SCRYFALL QUERY is broken too — it has no otag: alternative to
+    # fall back on, only `(o:"each player" o:"random")`, which misses coin flips, voting
+    # and goad entirely. Krark's Thumb and Grenzo, Havoc Raiser both scored NO_MATCH.
+    # These mirror commander_analysis.THEME_PATTERNS["chaos"], which had the right list
+    # all along; the conjunction is kept as one alternative among many.
     "chaos": {
-        "strong_alternatives": [[_lit("each player"), _lit("random")]],
+        "strong_alternatives": [
+            [_lit("flip a coin")],
+            [_lit("at random")],
+            [_lit("will of the council")],
+            [_wb("vote")],
+            [_wb("goad")],
+            [_lit("each player"), _lit("random")],
+        ],
     },
     "theft": {
         "strong_alternatives": [[_lit("gain control")], [_lit("under your control until end of turn")]],
