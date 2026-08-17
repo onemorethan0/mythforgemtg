@@ -501,8 +501,18 @@ class DeckBuilder:
                 f"{self._ci_filter(profile)} "
                 f"legal:commander -type:land"
             )
-            candidates = self._prefer_owned(self.client.search_cards_paged(
-                query, max_results=self._bracket_filter.candidate_buffer(slot)))
+            # Ordering precedence, innermost first: LIFT (does this commander play it?),
+            # then OWNED (C4), then THEME SCORE. Both outer passes are stable sorts, so
+            # each one only reorders across the previous grouping and lift survives as the
+            # tie-break inside every theme-score tier. Score has to stay outermost: a
+            # vanilla Dragon must not beat a Dragon lord just because it has more lift.
+            #
+            # This is the largest single block in the plan (~20 slots) and it was the last
+            # to get lift. A generated Kadena deck measured `off-plan` on the off-meta read
+            # (synergy 7.2 against a baseline of 11.7) while the role windows were already
+            # lift-ordered, which pointed straight here.
+            candidates = self._prefer_owned(self._lift_sorted(self.client.search_cards_paged(
+                query, max_results=self._bracket_filter.candidate_buffer(slot))))
             candidates = _score_first(candidates, theme)
             for card in candidates:
                 if added >= want:
