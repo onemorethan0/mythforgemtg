@@ -1,0 +1,100 @@
+# Archidekt — Spittin ArtiFACTS / Mendicant Core, Guidelight
+# source: archidekt:12203291
+# fetched: 2026-08-11
+# bracket: 3
+
+Commander:
+1 Mendicant Core, Guidelight
+
+Deck:
+1 Darksteel Citadel
+1 Ancient Den
+1 Thought Monitor
+1 Foundry Inspector
+1 Kappa Cannoneer
+1 Voyage Home
+1 Smuggler's Share
+1 Voyager Quickwelder
+1 Digsite Engineer
+1 Palladium Myr
+1 Muraganda Raceway
+1 Desynchronization
+1 K-9, Mark I
+1 Padeem, Consul of Innovation
+1 Cyberdrive Awakener
+1 Arcane Denial
+1 Razortide Bridge
+1 Spire of Industry
+1 Lonely Arroyo
+1 Steel of the Godhead
+1 Etherium Sculptor
+1 Talisman of Progress
+1 Emry, Lurker of the Loch
+1 Vnwxt, Verbose Host
+1 Dovin's Veto
+1 Seat of the Synod
+1 Rogue's Passage
+1 Buried Ruin
+1 Dispatch
+1 Bident of Thassa
+1 Adaptive Omnitool
+1 Thopter Spy Network
+1 Reliquary Tower
+1 Sunscorched Desert
+1 Command Tower
+1 Port Town
+1 Mystic Gate
+1 Glacial Fortress
+1 Prairie Stream
+1 Mechanized Production
+1 All That Glitters
+1 Adarkar Wastes
+1 Twinning Staff
+1 Phyrexian Metamorph
+1 Mystic Remora
+1 Hallowed Fountain
+1 Scour for Scrap
+1 Ethersworn Sphinx
+1 Filigree Attendant
+1 Guidelight Synergist
+1 Cephalopod Sentry
+1 Drift of Phantasms
+1 Illustrious Wanderglyph
+1 Illusionist's Bracers
+1 Blightsteel Colossus
+1 Waterbender Ascension
+1 Masterful Replication
+1 Silver Myr
+1 Bronze Guardian
+3 Plains
+1 Academy Ruins
+1 Arcane Signet
+1 Worldwalker Helm
+1 Whirler Rogue
+1 Oltec Matterweaver
+1 Steel Seraph
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Nettlecyst
+1 Azorius Chancery
+1 Salvation Engine
+1 Archway of Innovation
+1 Skycloud Expanse
+1 Floodfarm Verge
+7 Island
+1 Cyberman Patrol
+1 Master of Etherium
+1 Drafna, Founder of Lat-Nam
+1 Sculpting Steel
+1 Fabricate
+1 Fierce Guardianship
+1 Path to Exile
+1 Cyclonic Rift
+1 Sol Ring
+1 Crystal Skull, Isu Spyglass
+1 Deserted Beach
+1 Losheel, Clockwork Scholar
+1 Ornithopter of Paradise
+1 Riptide Gearhulk
+1 Simulacrum Synthesizer
+1 Trophy Mage
+1 Sword Coast Sailor

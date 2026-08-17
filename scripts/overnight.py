@@ -78,7 +78,13 @@ DATA.mkdir(parents=True, exist_ok=True)
 # that the night never wrote to and cheerfully report "nothing happened".
 LEDGER = Path(os.environ.get("MYTHGAUNTLET_STORE") or (REPO / "ccm")) / "ledger.json"
 GATEWAY_URL = "http://127.0.0.1:8010/v1/models"
-GATEWAY_BAT = Path("E:/llama/start-llama-swap.bat")
+# Honour the same override services.py does. This was a bare literal until the drive
+# holding it died on 2026-08-11: services.py could be pointed at a rebuilt gateway with
+# MYTHFORGE_LLAMA_SWAP_LAUNCHER while the nightly still went looking on E:, so the app
+# would come up and the overnight run would not.
+GATEWAY_BAT = Path(
+    os.environ.get("MYTHFORGE_LLAMA_SWAP_LAUNCHER") or r"E:\llama\start-llama-swap.bat"
+)
 
 STAMP = datetime.now().strftime("%Y%m%d-%H%M%S")
 LOG_PATH = DATA / f"overnight_{STAMP}.log"

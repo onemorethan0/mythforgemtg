@@ -1,0 +1,101 @@
+# Archidekt — With the grain
+# source: archidekt:24908980
+# fetched: 2026-08-11
+# bracket: 3
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 The Stasis Coffin
+1 Great Divide Guide
+1 Ba Sing Se
+1 Earthbender Ascension
+1 Toph, Earthbending Master
+1 Toph, Greatest Earthbender
+1 Avatar Kyoshi, Earthbender
+1 Urza's Saga
+1 Deflecting Swat
+1 Crop Rotation
+1 Badgermole
+1 Bitter Work
+1 The Cave of Two Lovers
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Rings of Brighthearth
+1 Abandoned Air Temple
+1 Plateau
+1 Strip Mine
+1 Windbrisk Heights
+1 Yavimaya, Cradle of Growth
+1 Spinerock Knoll
+1 Mosswort Bridge
+1 Reliquary Tower
+1 Selesnya Sanctuary
+1 Hall of Heliod's Generosity
+1 Deserted Temple
+1 Command Tower
+1 Abstergo Entertainment
+1 Sword of Hours
+1 Sword of Wealth and Power
+1 Arcane Signet
+1 Lotus Cobra
+1 Bumi, Unleashed
+1 Badgermole Cub
+1 Felidar Retreat
+1 Wilderness Reclamation
+1 Terra Eternal
+1 Expedition Map
+1 Liquimetal Torque
+1 Swiftfoot Boots
+1 Brightglass Gearhulk
+1 Evolution Sage
+1 Cycle of Renewal
+1 Chaos Warp
+1 Moraug, Fury of Akoum
+1 Secret Tunnel
+1 Earthshape
+1 Heroic Intervention
+1 Sandbenders' Storm
+1 Thornglint Bridge
+1 Rustvale Bridge
+7 Forest
+2 Mountain
+1 Nature's Lore
+1 Cracked Earth Technique
+1 Explore
+1 Farseek
+1 Sevinne's Reclamation
+1 Seismic Sense
+1 Mycosynth Lattice
+1 Ichor Wellspring
+1 Buried Ruin
+1 Geier Reach Sanitarium
+1 Hardened Scales
+1 Swords to Plowshares
+1 Savannah
+1 Sol Ring
+1 Planar Engineering
+1 Taiga
+1 Annie Joins Up
+1 Bumi, Eclectic Earthbender
+1 Rebellious Captives
+1 Solid Ground
+1 Great Hall of the Citadel
+1 Mirrorpool
+1 Jasmine Dragon Tea Shop
+1 Scene of the Crime
+1 Tectonic Split
+1 Harrow
+1 Slagwoods Bridge
+1 Gamble
+1 Toph, the Blind Bandit
+1 The Earth Crystal
+1 Plains
+1 Zuran Orb
+1 Toph, Hardheaded Teacher
+1 Ashaya, Soul of the Wild
+1 Omnath, Locus of Rage
+1 Tannuk, Memorial Ensign
+1 Haywire Mite
+1 Gavony Township
+1 Uncle's Musings

@@ -1,0 +1,90 @@
+# Archidekt — Tough Guff Superfriends
+# source: archidekt:25226240
+# fetched: 2026-08-11
+
+Commander:
+1 Commodore Guff
+
+Deck:
+1 Dack Fayden
+1 Tezzeret the Seeker
+1 Teferi, Temporal Archmage
+1 Teferi, Who Slows the Sunset
+1 Deserted Beach
+1 Teferi, Master of Time
+1 Karn's Bastion
+1 Riverglide Pathway // Lavaglide Pathway
+1 Gideon of the Trials
+1 Tamiyo, the Moon Sage
+1 Promise of Loyalty
+1 Vedalken Orrery
+1 Narset Transcendent
+1 Arcane Denial
+1 Arena Rector
+1 Chandra, Flame's Catalyst
+1 Chandra, Legacy of Fire
+1 Chandra, Torch of Defiance
+1 Dreamtide Whale
+1 Elspeth, Sun's Champion
+1 Ral Zarek
+1 Path to Exile
+1 Pramikon, Sky Rampart
+1 Ripples of Potential
+1 Ignite the Beacon
+1 Smothering Tithe
+1 Rugged Prairie
+1 Reflecting Pool
+1 Saheeli Rai
+1 Mystic Gate
+1 Glacial Fortress
+1 Cascade Bluffs
+1 Spark Double
+1 Swords to Plowshares
+1 Teferi, Time Raveler
+1 Teyo, Geometric Tactician
+1 Sacred Foundry
+1 The Eternal Wanderer
+1 Kor Haven
+1 Fierce Guardianship
+1 Battlefield Forge
+1 Skycloud Expanse
+1 Guff Rewrites History
+1 Mandate of Peace
+1 Oath of Teferi
+1 Nahiri, the Harbinger
+1 Narset of the Ancient Way
+1 Tezzeret, Cruel Captain
+1 Steam Vents
+1 Razorgrass Ambush // Razorgrass Field
+1 Aetheric Amplifier
+1 Ichormoon Gauntlet
+1 Arcane Signet
+1 Deepglow Skate
+1 Displacer Kitten
+1 Command Tower
+1 Hallowed Fountain
+1 The Wanderer
+1 Sunbaked Canyon
+1 Flux Channeler
+1 Reliquary Tower
+1 Deploy the Gatewatch
+1 Adarkar Wastes
+1 Shivan Reef
+1 Great Hall of the Citadel
+1 Sink into Stupor // Soporific Springs
+1 Blasphemous Act
+1 Clever Concealment
+1 Ugin, the Spirit Dragon
+1 The Chain Veil
+1 Deification
+1 Azorius Signet
+1 Boros Signet
+1 Izzet Signet
+1 Talisman of Progress
+1 Talisman of Conviction
+5 Island
+5 Mountain
+5 Plains
+1 Arid Mesa
+1 Scalding Tarn
+1 Flooded Strand

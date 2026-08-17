@@ -1,0 +1,80 @@
+# Archidekt — weaponized autism
+# source: archidekt:25117697
+# fetched: 2026-08-11
+
+Commander:
+1 Norin the Wary
+
+Deck:
+1 Red Elemental Blast
+1 Arcane Signet
+1 Fire Diamond
+1 Genesis Chamber
+1 Mind Stone
+1 Panharmonicon
+1 Relic of Legends
+28 Mountain
+1 Agate Instigator
+1 General Kreat, the Boltbringer
+1 Gimli of the Glittering Caves
+1 Iron Myr
+1 Ruby Medallion
+1 Skullclamp
+1 Sol Ring
+1 Springleaf Drum
+1 Teferi's Puzzle Box
+1 Tome of Legends
+1 Etali, Primal Storm
+1 Irreverent Gremlin
+1 Magus of the Wheel
+1 Molten Gatekeeper
+1 Rose Room Treasurer
+1 Slash, Reptile Rampager
+1 Solphim, Mayhem Dominus
+1 Torbran, Thane of Red Fell
+1 Confusion in the Ranks
+1 Grip of Chaos
+1 Impact Tremors
+1 Mechanized Warfare
+1 Mirror March
+1 Outpost Siege
+1 Pandemonium
+1 Planar Chaos
+1 Possibility Storm
+1 Chef's Kiss
+1 Guff Rewrites History
+1 Dwarven Mine
+1 Kher Keep
+1 Mines of Moria
+1 Sokenzan, Crucible of Defiance
+1 Blasphemous Act
+1 Chain Reaction
+1 Faithless Looting
+1 Gamble
+1 Jeska's Will
+1 Prisoner's Dilemma
+1 Scrambleverse
+1 Thieves' Auction
+1 Wand of Wonder
+1 Treasure Nabber
+1 Weftstalker Ardent
+1 Witty Roastmaster
+1 Wild Evocation
+1 Wild Magic Surge
+1 Wild Ricochet
+1 Valakut, the Molten Pinnacle
+1 War Room
+1 Vandalblast
+1 Warp World
+1 Wheel of Misfortune
+1 Terror of the Peaks
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Purphoros, God of the Forge
+1 Solemn Simulacrum
+1 Blood Moon
+1 Powerbalance
+1 Warstorm Surge
+1 Chaos Warp
+1 Reverberate
+1 Tibalt's Trickery
+1 Thrill of Possibility

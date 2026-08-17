@@ -1,0 +1,93 @@
+# Archidekt — Bartolome | Orzhov | My Deck Meets The Requirements For My Companion
+# source: archidekt:7461754
+# fetched: 2026-08-11
+
+Commander:
+1 Bartolomé del Presidio
+
+Deck:
+1 Guildsworn Prowler
+1 Burglar Rat
+1 Cooped Up
+1 Ichor Wellspring
+1 No One Left Behind
+1 Long Goodbye
+1 Loran's Escape
+1 Lurrus of the Dream-Den
+1 Swiftfoot Boots
+1 Fungal Fortitude
+1 Canonized in Blood
+1 Thran Vigil
+1 Scion of Halaster
+1 Deadly Dispute
+1 Petrify
+1 Bitter Triumph
+1 You're Confronted by Robbers
+1 Acrobatic Leap
+1 Unlikely Aid
+1 Condemn
+1 Not on My Watch
+1 Macabre Reconstruction
+1 Sculpted Sunburst
+1 Lay Down Arms
+1 Gravecrawler
+1 Village Rites
+1 Breathe Your Last
+1 Killing Wave
+1 Undying Malice
+1 Dig Site Inventory
+1 Escape Tunnel
+9 Swamp
+8 Plains
+1 Krovod Haunch
+1 Dusk Rose Reliquary
+1 Everflowing Chalice
+1 Vengeful Bloodwitch
+1 Skullcap Snail
+1 Jadar, Ghoulcaller of Nephalia
+1 Intrepid Adversary
+1 Sun-Blessed Healer
+1 Ainok Bond-Kin
+1 Thraben Inspector
+1 Momo, Playful Pet
+1 Nullpriest of Oblivion
+1 Veil of Assimilation
+1 Mind Stone
+1 Key to the City
+1 Evolving Wilds
+1 Forlorn Flats
+1 Goldmire Bridge
+1 Scoured Barrens
+1 Temple of Silence
+1 Thriving Heath
+1 Thriving Moor
+1 Vault of the Archangel
+1 Unearth
+1 Helping Hand
+1 Agent of the Shadow Thieves
+1 Helpful Hunter
+1 Syr Vondam, Sunstar Exemplar
+1 Wishclaw Talisman
+1 Wedding Invitation
+1 Transmogrant's Crown
+1 Throne of Geth
+1 Chromatic Star
+1 Mishra's Bauble
+1 Sol Ring
+1 Unscrupulous Agent
+1 Gixian Infiltrator
+1 Cultist of the Absolute
+1 Dawnbringer Cleric
+1 Miner's Guidewing
+1 Indulgent Aristocrat
+1 Cathar Commando
+1 Fleshtaker
+1 Ruin-Lurker Bat
+1 Felidar Cub
+1 Make Your Move
+1 Join the Dead
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Forum of Amity
+1 Rogue's Passage
+1 Tocasia's Dig Site
+1 Orzhov Guildgate

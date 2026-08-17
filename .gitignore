@@ -96,3 +96,7 @@ ccm/ledger.json
 # the engine's data-ACCESS package (scryfall/edhrec/spellbook/decksources) — and
 # silently excluded six source files, so a fresh clone got an unimportable engine.
 /data/
+
+# Per-task scratch handoff dir for Odysseus dispatches (SPEC.md / REPORT.md).
+# Working state, not source.
+.odysseus/

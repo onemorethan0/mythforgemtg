@@ -1,0 +1,104 @@
+# Archidekt — Kefka's Silly Tricks
+# source: archidekt:25225735
+# fetched: 2026-08-11
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Selective Memory
+1 Hive Mind
+1 Opposition Agent
+1 Show and Tell
+1 Game of Chaos
+1 Mana Clash
+1 Steam Vents
+1 Xander's Lounge
+1 Krark, the Thumbless
+1 Krark's Thumb
+1 Crypt of the Eternals
+1 Command Tower
+1 Crumbling Necropolis
+1 Oscorp Industries
+1 Crosis's Catacombs
+1 Smoldering Marsh
+1 Scorched Geyser
+1 Polluted Delta
+1 Bloodstained Mire
+1 Scalding Tarn
+1 Watery Grave
+1 Blood Crypt
+1 Shivan Reef
+1 Sulfur Falls
+1 Dragonskull Summit
+1 Sunken Hollow
+1 Drowned Catacomb
+1 Luxury Suite
+1 Training Center
+1 Morphic Pool
+1 Mountain
+1 Reliquary Tower
+1 Island
+1 Swamp
+1 Stormcarved Coast
+1 Underground River
+1 Sulfurous Springs
+1 Haunted Ridge
+1 Shipwreck Marsh
+1 Otawara, Soaring City
+1 Takenuma, Abandoned Mire
+1 Sokenzan, Crucible of Defiance
+1 Gamble
+1 Whispering Madness
+1 Tempt with Mayhem
+1 Dark Ritual
+1 Dark Deal
+1 Razorkin Needlehead
+1 Kederekt Parasite
+1 Molten Psyche
+1 Spiteful Visions
+1 Psychosis Crawler
+1 Kami of the Crescent Moon
+1 Liliana's Caress
+1 Wheel of Fortune
+1 Geier Reach Sanitarium
+1 Fevered Visions
+1 Echo of Eons
+1 Font of Mythos
+1 Phyrexian Tyranny
+1 Windfall
+1 Dance with Calamity
+1 Stormfist Crusader
+1 Sheoldred, the Apocalypse
+1 Scrawling Crawler
+1 Waste Not
+1 Underworld Dreams
+1 Underworld Breach
+1 Forced Fruition
+1 Bloodchief Ascension
+1 Teferi's Puzzle Box
+1 Howling Mine
+1 Putrid Goblin
+1 Laboratory Maniac
+1 Goblin Bombardment
+1 First Day of Class
+1 Burning Inquiry
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Rise of the Dark Realms
+1 Arcane Denial
+1 Deflecting Swat
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Swan Song
+1 Chaos Warp
+1 Deadly Rollick
+1 Frantic Search
+1 Pact of the Titan
+1 Lightning Greaves
+1 Arcane Signet
+1 Sol Ring
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Lotus Petal
+1 Thought Vessel

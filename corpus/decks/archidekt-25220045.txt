@@ -1,0 +1,86 @@
+# Archidekt — Chief of the Wilds
+# source: archidekt:25220045
+# fetched: 2026-08-11
+
+Commander:
+1 Chief of the Wilds
+
+Deck:
+1 Master of the Wild Hunt
+1 Cover of Darkness
+1 Wandering Wolf
+1 Turbulent Fen
+1 The Chief Warg
+1 Nighthowl Pursuer
+1 Command Tower
+1 Nature's Lore
+1 Path of Ancestry
+1 Revitalizing Repast // Old-Growth Grove
+1 Necroblossom Snarl
+1 Tainted Wood
+1 Talisman of Resilience
+14 Forest
+1 Reliquary Tower
+1 Woodland Cemetery
+1 Deathcap Glade
+1 Twilight Mire
+1 Bojuka Bog
+1 Cultivate
+1 Shamanic Revelation
+1 Vanquisher's Banner
+1 Springleaf Parade
+9 Swamp
+1 Unnatural Growth
+1 Duskwatch Hunter
+1 Silverfur Partisan
+1 Sarulf, Realm Eater
+1 Banner of Kinship
+1 Wilderland Scrounger
+1 Hollowhenge Overlord
+1 Howling Moon
+1 Assassin's Trophy
+1 Wolfcaller's Howl
+1 Secret Tunnel
+1 Llanowar Wastes
+1 Torgal, A Fine Hound
+1 Chomping Changeling
+1 Arcane Signet
+1 Rhovanion Rampager
+1 Beast Within
+1 Sol Ring
+1 Realmwalker
+1 Herald's Horn
+1 Kindred Dominance
+1 Farseek
+1 Return of the Wildspeaker
+1 Swiftfoot Boots
+1 Spirit of the Hunt
+1 Putrefy
+1 Collective Resistance
+1 Golgari Charm
+1 Three Visits
+1 Feed the Pack
+1 Fog
+1 Tear Asunder
+1 Abrupt Decay
+1 Moonmist
+1 Witchstalker
+1 Skalla Wolf
+1 Ravening Warg
+1 Festering Thicket
+1 Vernal Fen
+1 Ohran Frostfang
+1 Beastmaster Ascension
+1 Door of Destinies
+1 Nightpack Ambusher
+1 Chief Warg's Company
+1 Ascendant Packleader
+1 Cauldron of Essence
+1 Packsong Pup
+1 Hardened Scales
+1 Bejeweled Warg
+1 Young Wolf
+1 Head of the Hunt
+1 Beast Whisperer
+1 Garruk's Uprising
+1 Inspiring Call

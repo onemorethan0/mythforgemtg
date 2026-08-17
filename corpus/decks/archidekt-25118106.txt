@@ -1,0 +1,73 @@
+# Archidekt — Red Baron
+# source: archidekt:25118106
+# fetched: 2026-08-11
+# bracket: 1
+
+Commander:
+1 Tannuk, Steadfast Second
+
+Deck:
+1 Act on Impulse
+1 Trading Post
+1 Audacious Reshapers
+1 Indomitable Creativity
+1 Hangar Scrounger
+1 Intrepid Ace
+1 Akroma's Memorial
+1 Etched Champion
+1 Mind Stone
+1 Worn Powerstone
+1 Crystalline Giant
+1 Metalwork Colossus
+1 Knight Paladin
+1 Mechtitan Core
+37 Mountain
+1 Ogre-Head Helm
+1 Reaver Titan
+1 Reckoner Bankbuster
+1 Skitterbeam Battalion
+1 Scrap Welder
+1 Surgehacker Mech
+1 Su-Chi Cave Guard
+1 Vibranium Mining Mech
+1 Walking Ballista
+1 Automated Artificer
+1 Depthshaker Titan
+1 Combustible Gearhulk
+1 Darksteel Colossus
+1 Foundry Inspector
+1 Loyal Apprentice
+1 Millikin
+1 Steel Overseer
+1 Thought Vessel
+1 Warmaker Gunship
+1 Chandra, Spark Hunter
+1 Extinguisher Battleship
+1 Debris Field Crusher
+1 RMS Titanic
+1 Slagdrill Scrapper
+1 Adrenaline Jockey
+1 Thunderhawk Gunship
+1 Guidelight Matrix
+1 Weapons Manufacturing
+1 Memorial Vault
+1 Reckless Racer
+1 Systems Override
+1 Dawnsire, Sunstar Dreadnought
+1 Invasive Maneuvers
+1 Thaumaton Torpedo
+1 Hangarback Walker
+1 Mighty Servant of Leuk-o
+1 Weatherlight
+1 Sol Ring
+1 Zookeeper Mechan
+1 Cybermen Squadron
+1 The Eternity Elevator
+1 Ajani Unrelenting
+1 Full Throttle
+1 Craterclaw Colossus
+1 Dragon's Smile
+1 Terminal Velocity
+1 Devastating Onslaught
+1 Industrial Advancement
+1 Push the Limit

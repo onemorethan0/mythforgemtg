@@ -1,0 +1,77 @@
+# Archidekt — elfin bombin
+# source: archidekt:20879545
+# fetched: 2026-08-11
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+19 Forest
+12 Swamp
+1 Prowess of the Fair
+1 Realmwalker
+1 End-Raze Forerunners
+1 Morcant's Loyalist
+1 Elves of Deep Shadow
+1 Moldervine Reclamation
+1 Village Rites
+1 Champions of the Perfect
+1 Wolverine Riders
+1 Putrefy
+1 Pride of the Perfect
+1 Elvish Archdruid
+1 Poison-Tip Archer
+1 Crippling Fear
+1 Beast Within
+1 Llanowar Tribe
+1 Reclamation Sage
+1 Wirewood Channeler
+1 Path of Ancestry
+1 Shaman of the Pack
+1 Elvish Harbinger
+1 High Perfect Morcant
+1 Elvish Warmaster
+1 Alpha Authority
+1 Elderfang Venom
+1 Timberwatch Elf
+1 Arcane Signet
+1 Llanowar Wastes
+1 Canopy Tactician
+1 Immaculate Magistrate
+1 Eclipsed Elf
+1 Imperious Perfect
+1 Sol Ring
+1 Return Upon the Tide
+1 Elven Ambush
+1 Jagged-Scar Archers
+1 Haunting Voyage
+1 Abomination of Llanowar
+1 Formidable Speaker
+1 Darkbore Pathway // Slitherbore Pathway
+1 Beast Whisperer
+1 Selfless Safewright
+1 Binding the Old Gods
+1 Golgari Charm
+1 Wellwisher
+1 Hagra Mauling // Hagra Broodpit
+1 Ruthless Winnower
+1 Beastmaster Ascension
+1 Marwyn, the Nurturer
+1 Command Tower
+1 Fyndhorn Elves
+1 Skemfar Avenger
+1 Wood Elves
+1 Elvish Mystic
+1 Llanowar Elves
+1 Pact of the Serpent
+1 Crown of Skemfar
+1 Lys Alana Huntmaster
+1 Elvish Promenade
+1 Talisman of Resilience
+1 Overwhelming Stampede
+1 Dwynen, Gilt-Leaf Daen
+1 Ezuri, Renegade Leader
+1 Farhaven Elf
+1 Skemfar Shadowsage
+1 Jungle Hollow
+1 Elvish Visionary

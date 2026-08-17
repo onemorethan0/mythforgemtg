@@ -1,0 +1,82 @@
+# Archidekt — Homer‘s Odyssey - Millhouse is fun
+# source: archidekt:25158116
+# fetched: 2026-08-11
+
+Commander:
+1 Homer, the Hermit
+
+Deck:
+1 Spider Umbra
+1 Swiftfoot Boots
+1 Explosive Vegetation
+1 Cycle of Renewal
+1 Through the Forest Gate
+1 Azusa, Lost but Seeking
+1 Ancient Greenwarden
+1 Helm of the Host
+1 Ember Island Production
+1 Double Major
+1 Nanogene Conversion
+1 Irenicus's Vile Duplication
+1 Exploration
+1 Dryad of the Ilysian Grove
+1 Gandalf, Shadow's Foe
+1 Tatyova, Benthic Druid
+1 Aesi, Tyrant of Gyre Strait
+1 Command Beacon
+1 Opal Palace
+1 Archway Commons
+1 Command Tower
+1 Bant Panorama
+1 Blighted Woodland
+1 Blighted Fen
+1 Conduit of Worlds
+1 Crucible of Worlds
+1 Blighted Cataract
+11 Forest
+1 Brokers Hideout
+1 Cabaretti Courtyard
+7 Swamp
+10 Island
+1 Aftermath Analyst
+1 Glacierwood Siege
+1 Bloodline Pretender
+1 Icetill Explorer
+1 Ramunap Excavator
+1 Mole Man, Moloid Master
+1 Will of the Sultai
+1 Moonglove Changeling
+1 Graveshifter
+1 Changeling Wayfinder
+1 Chomping Changeling
+1 Masked Vandal
+1 Mutable Explorer
+1 Mischievous Sneakling
+1 Venomous Changeling
+1 Realmwalker
+1 Three Tree Mascot
+1 Webweaver Changeling
+1 Ruin Crab
+1 Hedron Crab
+1 Counterspell
+1 Sinister Starfish
+1 Abnormal Endurance
+1 Absorb Identity
+1 Airship Crash
+1 Deprive
+1 Crop Rotation
+1 Merciless Resolve
+1 Harrow
+1 Abundant Countryside
+1 Chitinous Graspling
+1 Universal Automaton
+1 Mothdust Changeling
+1 Woodland Changeling
+1 Firdoch Core
+1 Maskwood Nexus
+1 Springleaf Parade
+1 Release to the Wind
+1 Imp's Mischief
+1 Lightning Greaves
+1 Heroic Intervention
+1 Ancestral Reminiscence

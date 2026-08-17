@@ -1,0 +1,96 @@
+# Archidekt — Elf ball
+# source: archidekt:25154785
+# fetched: 2026-08-11
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Jarad, Golgari Lich Lord
+1 Abomination of Llanowar
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Assassin's Trophy
+1 Beast Whisperer
+1 Beast Within
+1 Blooming Marsh
+1 Buried Alive
+1 Circle of Dreams Druid
+1 Command Tower
+1 Counterspell
+1 Deathcap Glade
+1 Devoted Druid
+1 Dreamroot Cascade
+1 Elven Ambush
+1 Elven Chorus
+1 Elvish Champion
+1 Elvish Harbinger
+1 Elvish Mystic
+1 Elvish Promenade
+1 Elvish Archdruid
+1 Elvish Warmaster
+1 Eladamri, Korvecdal
+1 Entomb
+1 Essence Warden
+1 Exotic Orchard
+1 Ezuri, Claw of Progress
+1 Ezuri, Renegade Leader
+1 Fabled Passage
+1 Fauna Shaman
+9 Forest
+1 Galadhrim Ambush
+1 Glissa Sunslayer
+1 High Perfect Morcant
+1 Hinterland Harbor
+1 Immaculate Magistrate
+1 Imperious Perfect
+1 Island
+1 Kindred Discovery
+1 Kindred Dominance
+1 Lathril, Blade of the Elves
+1 Leaf-Crowned Visionary
+1 Legolas Greenleaf
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Marwyn, the Nurturer
+1 Nature's Lore
+1 Path of Ancestry
+1 Priest of Titania
+1 Prowess of the Fair
+1 Putrefy
+1 Quirion Ranger
+1 Rejuvenating Springs
+1 Rhys the Exiled
+1 Shaman of the Pack
+1 Skemfar Shadowsage
+1 Sol Ring
+1 Staff of Domination
+5 Swamp
+1 Temple of Malady
+1 Three Visits
+1 Timberwatch Elf
+1 Tyvar the Bellicose
+1 Underground River
+1 Vanquisher's Banner
+1 Wirewood Lodge
+1 Woodland Cemetery
+1 Raise the Palisade
+1 Tyvar Kell
+1 Sunken Hollow
+1 Farseek
+1 Elrond, Moon-Reader
+1 Deathbloom Ritualist
+1 Thranduil's Company
+1 Arbor Elf
+1 Harald Unites the Elves
+1 Rivendell
+1 Temple of Deceit
+1 Harald, King of Skemfar
+1 Snakeskin Veil
+1 Elven Bow
+1 Return Upon the Tide
+1 Necroblossom Snarl
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 My Precious // Allure of Power
+1 Gala Greeters
+1 Elven Passage

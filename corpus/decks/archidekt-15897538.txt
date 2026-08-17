@@ -1,0 +1,107 @@
+# Archidekt — Meren Graveyard Shenanigans
+# source: archidekt:15897538
+# fetched: 2026-08-11
+# bracket: 3
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Grave Researcher // Reanimate
+1 Cauldron of Essence
+1 Mazirek, Kraul Death Priest
+1 Colossal Grave-Reaver
+1 Savra, Queen of the Golgari
+2 Forest
+1 Swamp
+1 Shifting Woodland
+1 Turbulent Fen
+1 Forest
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Altar of Dementia
+1 Ancient Brass Dragon
+1 Arcane Lighthouse
+1 Arcane Signet
+1 Assassin's Trophy
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Blood Artist
+1 Cabal Coffers
+1 Cankerbloom
+1 Command Tower
+1 Conduit of Worlds
+1 Crypt of Agadeem
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathgreeter
+1 Deathrite Shaman
+1 Dictate of Erebos
+1 Drivnod, Carnage Dominus
+1 Emrakul, the Promised End
+1 Entomb
+1 Eternal Witness
+1 Expedition Map
+1 Fabled Passage
+1 Fell the Profane // Fell Mire
+1 Golgari Grave-Troll
+1 Forest
+1 Grave Pact
+1 Grim Haruspex
+1 Haywire Mite
+1 Hermit Druid
+1 High Market
+1 Life from the Loam
+1 Lightning Greaves
+1 Liliana, Dreadhorde General
+1 Llanowar Wastes
+1 Malakir Rebirth // Malakir Mire
+1 Massacre Wurm
+1 Necroblossom Snarl
+1 Nurturing Peatland
+1 Ob Nixilis, Unshackled
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Protean Hulk
+1 Reanimate
+1 Reclamation Sage
+1 Sakura-Tribe Elder
+1 Sidisi, Undead Vizier
+1 Skullclamp
+1 Sol Ring
+1 Solemn Simulacrum
+1 Sothera, the Supervoid
+1 Swiftfoot Boots
+1 Syr Konrad, the Grim
+1 Toxic Deluge
+1 Twilight Mire
+1 Undergrowth Stadium
+1 Underrealm Lich
+1 Urborg, Tomb of Yawgmoth
+1 Vile Entomber
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Zulaport Cutthroat
+1 Buried Alive
+1 Birthing Pod
+1 Stitcher's Supplier
+1 Out of the Tombs
+1 Icetill Explorer
+1 Bloodghast
+1 Barrowgoyf
+1 Wastewood Verge
+1 Dakmor Salvage
+1 Honest Rutstein
+1 Wight of the Reliquary
+1 Takenuma, Abandoned Mire
+1 Old Rutstein
+1 Ripples of Undeath
+1 Bastion of Remembrance
+1 Yawgmoth, Thran Physician
+1 Boseiju, Who Endures
+1 Twilight Diviner
+1 Verdant Catacombs
+1 Swamp
+1 Warren Soultrader
+1 Skull Prophet
+1 Accursed Marauder
+1 Revitalizing Repast // Old-Growth Grove
+1 The Meathook Massacre
+1 Beifong's Bounty Hunters
