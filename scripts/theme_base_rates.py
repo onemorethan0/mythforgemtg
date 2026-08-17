@@ -60,12 +60,13 @@ def main() -> int:
 
     if args.check:
         import deck_themes
-        drift = {
-            t: (deck_themes.BASE_RATE.get(t), r)
-            for t, r in sorted(rates.items())
-            if abs(deck_themes.BASE_RATE.get(t, -1) - r) > 0.002
-        }
         missing = set(rates) - set(deck_themes.BASE_RATE)
+        # Report a theme once: an absent entry is MISSING, not also DRIFT.
+        drift = {
+            t: (deck_themes.BASE_RATE[t], r)
+            for t, r in sorted(rates.items())
+            if t not in missing and abs(deck_themes.BASE_RATE[t] - r) > 0.002
+        }
         stale = set(deck_themes.BASE_RATE) - set(rates)
         for t, (was, now) in drift.items():
             print(f"DRIFT {t}: baked {was} measured {now:.5f}")

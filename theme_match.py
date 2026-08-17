@@ -70,6 +70,9 @@ THEMES: tuple[str, ...] = (
     "theft",
     "group_hug",
     "voltron_combat",
+    "face_down",
+    "sagas",
+    "impulse",
 )
 
 NO_MATCH: int = 0
@@ -347,6 +350,42 @@ THEME_RULES: dict[str, dict[str, Any]] = {
             [_lit("an additional combat")],
             [_lit("whenever this creature attacks")],
             [_lit("whenever it attacks")],
+        ],
+    },
+    # ── Themes added 2026-08-14 to close measured holes in the taxonomy ───────────
+    # Each mirrors its THEME_SYNERGY_QUERIES entry, so strict/collection mode fills the
+    # same theme slots the Scryfall path would.
+    "face_down": {
+        # No WEAK tier on purpose. "Face down" is not a card type you can be a member of
+        # — a card either interacts with the mechanic or it does not, so there is no
+        # "is a face-down card" analogue to a tribe's bodies.
+        "strong_alternatives": [
+            [_lit("morph")],            # also catches megamorph as a substring
+            [_lit("manifest")],
+            [_lit("disguise")],
+            [_lit("face-down creature")],
+            [_lit("turn it face up")],
+        ],
+    },
+    "sagas": {
+        # The WEAK tier is very nearly DEAD, and that is fine: measured over the 34,846-card
+        # store this rule gives 262 STRONG against 2 WEAK, because a Saga's own reminder
+        # text ("...add a lore counter...") makes essentially every Saga STRONG on its own.
+        # The type check is kept only as the safety net for those 2 — it costs nothing.
+        # NOT added to SCORE_ORDERED: score-first only helps where a real WEAK tier of
+        # bodies exists to sort payoffs ahead of, and here there is no such tier.
+        "weak_type_contains": ["saga"],
+        "strong_alternatives": [
+            [_lit("lore counter")],
+            [_wb("saga"), _lit("you control")],
+        ],
+    },
+    "impulse": {
+        "strong_alternatives": [
+            [_lit("exile the top")],
+            [_lit("play the top card of your library")],
+            [_lit("you may play that card")],
+            [_lit("you may cast that card")],
         ],
     },
 }

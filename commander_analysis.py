@@ -73,6 +73,19 @@ THEME_PATTERNS: dict[str, list[str]] = {
     "chaos":            ["flip a coin", "at random", "will of the council", "votes", "goad"],
     "theft":            ["gain control", "under your control until end of turn"],
     "group_hug":        ["each player draws", "each player gains"],
+    # Face-down matters (morph / manifest / disguise / cloak). Added because the
+    # taxonomy had NO entry for it at all: Kadena, Slinking Sorcerer — a commander
+    # whose whole text is about face-down creatures — detected zero themes, so her
+    # ~20 theme slots fell through to generic goodstuff.
+    "face_down":        ["face down", "face-down", "manifest", "morph",
+                         "turned face up", "disguise", "cloak"],
+    "sagas":            ["saga", "lore counter"],
+    # Impulse draw: play cards you do not own yet, off the top or from exile. The
+    # widest genuine gap — 26 of 381 corpus commanders (6.8%), 10 of them previously
+    # themeless. Deliberately NOT "you may play", which is far too broad.
+    "impulse":          ["exile the top", "exiles the top", "play the top card",
+                         "from the top of your library", "play cards from the top",
+                         "you may play that card", "you may cast that card"],
     "voltron_combat":   ["first strike", "double strike", "trample", "unblockable",
                          "can't be blocked", "whenever a creature attacks",
                          "whenever a creature you control attacks", "attacking causes",
@@ -121,6 +134,9 @@ THEME_LABELS: dict[str, str] = {
     "theft":            "Control / Theft",
     "group_hug":        "Group Hug",
     "voltron_combat":   "Combat / Evasion",
+    "face_down":        "Face-Down / Morph",
+    "sagas":            "Sagas",
+    "impulse":          "Impulse Draw",
 }
 
 # Per-theme Scryfall search fragments (appended to the base color-identity query)
@@ -167,6 +183,11 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "chaos":            '(o:"each player" o:"random")',
     "theft":            '(o:"gain control" OR o:"under your control until end of turn")',
     "group_hug":        '(o:"each player draws" OR o:"each player gains")',
+    "face_down":        '(o:"morph" OR o:"megamorph" OR o:"manifest" OR o:"disguise" '
+                        'OR o:"face-down creature" OR o:"turn it face up")',
+    "sagas":            '(type:saga OR o:"lore counter")',
+    "impulse":          '(o:"exile the top" OR o:"play the top card of your library" '
+                        'OR o:"you may play that card" OR o:"you may cast that card")',
     # Combat/Evasion is a CREATURE theme (you need attackers). It used to lead
     # with type:equipment, which flooded combat commanders (e.g. Aurelia) with
     # Equipment artifacts and almost no creatures — equipment is covered by the
