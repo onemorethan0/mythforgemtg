@@ -111,6 +111,15 @@ ROLE_QUERIES: dict[str, str] = {
 # Non-basic land queries (sorted by power level / popularity tier)
 NONBASIC_LAND_TIERS: list[tuple[str, str]] = [
     ("Command Tower",    '!"Command Tower"'),
+    # Any-colour fixing (Exotic Orchard, City of Brass, Mana Confluence, Reflecting Pool,
+    # Path of Ancestry...). Every other tier here is a TWO- or three-colour land, which is
+    # why 4-5 colour decks could not be made castable: the builder benchmark had Atraxa,
+    # Tom Bombadil, Karona, Jegantha and Ur-Dragon all short, and no redistribution of
+    # their ~8 basics fixes five colours. A rainbow land counts as a source for EVERY
+    # colour, which is the only lever that scales with colour count.
+    # DRAFTED ONLY AT 3+ COLOURS (see _build_lands): in a two-colour deck City of Brass
+    # pings you for what a shockland does better, so this tier must not displace them.
+    ("rainbow",         "otag:rainbow-land"),
     ("fetch",           "otag:fetchland"),
     ("shock",           "otag:shockland"),
     ("reveal_dual",     "otag:check-land"),        # Glacial Fortress etc.
@@ -124,9 +133,9 @@ NONBASIC_LAND_TIERS: list[tuple[str, str]] = [
 # (Game-Changer lands like Ancient Tomb are handled by BracketFilter separately)
 _LAND_TIERS_BY_POWER: dict[int, set[str]] = {
     1: {"Command Tower"},                                                           # basics + Command Tower only
-    2: {"Command Tower", "reveal_dual", "tri_cycle"},                               # + check/tri lands
-    3: {"Command Tower", "fetch", "shock", "reveal_dual", "pain", "filter", "tri_cycle"},  # standard
-    4: {"Command Tower", "fetch", "shock", "reveal_dual", "pain", "filter", "tri_cycle", "utility"},  # full
+    2: {"Command Tower", "rainbow", "reveal_dual", "tri_cycle"},                    # + check/tri lands
+    3: {"Command Tower", "rainbow", "fetch", "shock", "reveal_dual", "pain", "filter", "tri_cycle"},  # standard
+    4: {"Command Tower", "rainbow", "fetch", "shock", "reveal_dual", "pain", "filter", "tri_cycle", "utility"},  # full
 }
 
 
@@ -666,6 +675,10 @@ class DeckBuilder:
                 if added >= nonbasic_cap:
                     break
                 if _label not in allowed_tiers:
+                    continue
+                # Rainbow lands are the answer to MANY colours, not to two: City of
+                # Brass pings you for what a shockland does better in Boros.
+                if _label == "rainbow" and len(colors) < 3:
                     continue
                 query = f"{land_q} {self._ci_filter(profile)} legal:commander"
                 candidates = self._prefer_owned(
