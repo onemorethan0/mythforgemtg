@@ -356,6 +356,14 @@ humanoid check (so a Land can carry a face), and unassigned cards get none.
 **Per-card force-face.** In a per-card regen you can drop one uploaded face onto every selected
 card, overriding commander/crew routing and the humanoid check.
 
+**ReActor runs on CPU by default, and that is deliberate.** `onnxruntime-gpu` ships CUDA-12 provider
+DLLs; on a CUDA 13.x box they fail to load (`cublasLt64_12` / WinError 1114). The ReActor node files
+are patched to read `MYTHFORGE_REACTOR_PROVIDER` (`cpu` | `cuda` | `dml` | `auto`) and select
+providers with automatic CPU fallback, so GPU is one flag away the day you have a compatible
+runtime — e.g. `pip install onnxruntime-directml` then `MYTHFORGE_REACTOR_PROVIDER=dml`. PuLID and
+IP-Adapter FaceID are unaffected; they run in ComfyUI on the GPU. See
+[`../COMFYUI_SETUP.md`](../COMFYUI_SETUP.md) → ReActor.
+
 ---
 
 ## Generation settings (Advanced panels)
