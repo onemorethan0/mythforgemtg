@@ -701,6 +701,86 @@ class DeckBuilder:
 
         return added
 
+    def _rebalance_basics(self, profile: CommanderProfile) -> dict[str, int]:
+        """Re-split the BASIC lands to match the pips the drafted deck actually demands.
+
+        `_build_lands` runs FIRST, before a single spell exists, and splits basics evenly
+        across the colour identity (`basic_slots // len(colors)`). It cannot do better —
+        at that point there is nothing to measure. So a deck that goes on to draft mostly
+        black spells still gets a 50/50 Plains/Swamp base.
+
+        That was survivable while every slot was drafted in EDHREC-rank order, because
+        popularity roughly tracks "generically castable". Ordering by commander lift
+        (`_lift_sorted`) deliberately breaks that: it prefers the cards THIS commander
+        wants, which are often more colour-intensive. The builder benchmark caught the
+        cost — colour-castable decks went 10/20 to 8/20 across the roster.
+
+        Basics are fungible, which makes this the cheapest possible correction: swapping a
+        Plains for a Swamp changes nothing structurally. Only basics move; nonbasics were
+        chosen for fixing quality and are left exactly as they are. The total land count
+        is preserved, so the curve and slot plan are untouched.
+
+        Every colour in the identity keeps at least one basic even if nothing demands it —
+        a splash you cannot cast at all is worse than one you cast late, and `pip_counts`
+        cannot see activated abilities or a colour only referenced by a nonbasic.
+
+        Returns the new distribution for reporting; `{}` when there is nothing to do.
+        """
+        colors = list(profile.color_identity)
+        if len(colors) < 2:
+            return {}                      # mono / colourless: nothing to re-split
+
+        by_name = {BASIC_LAND[c]: c for c in colors if c in BASIC_LAND}
+        held = [c for c in self._deck if c.get("name") in by_name]
+        total = len(held)
+        if total < len(colors):
+            return {}                      # too few basics for a split to mean anything
+
+        pips: dict[str, int] = {}
+        for card in self._deck + [profile.card]:
+            if deck_quality.is_land(card):
+                continue
+            for color, n in deck_quality.pip_counts(card).items():
+                if color in by_name.values():
+                    pips[color] = pips.get(color, 0) + n
+        if not pips:
+            return {}
+
+        # Largest-remainder apportionment, then a floor of 1, so the counts always sum to
+        # exactly `total` and no colour is left uncastable.
+        demand = sum(pips.values())
+        exact = {c: total * pips.get(c, 0) / demand for c in colors}
+        alloc = {c: max(1, int(exact[c])) for c in colors}
+        while sum(alloc.values()) > total:               # floors overshot a tiny split
+            worst = max((c for c in colors if alloc[c] > 1),
+                        key=lambda c: alloc[c] - exact[c], default=None)
+            if worst is None:
+                return {}                                # cannot satisfy the floor; leave it
+            alloc[worst] -= 1
+        for color in sorted(colors, key=lambda c: -(exact[c] - int(exact[c]))):
+            if sum(alloc.values()) >= total:
+                break
+            alloc[color] += 1
+
+        current = {c: 0 for c in colors}
+        for card in held:
+            current[by_name[card["name"]]] += 1
+        if alloc == current:
+            return {}
+
+        # Resolve every basic BEFORE removing anything. Otherwise a Scryfall miss on one
+        # colour would drop those slots and leave an illegal sub-99 deck — the swap has to
+        # be all-or-nothing.
+        cards = {c: self._basic_card(BASIC_LAND.get(c)) for c in colors}
+        if any(cards[c] is None for c in colors):
+            return {}
+
+        self._deck = [c for c in self._deck if c.get("name") not in by_name]
+        for color in colors:
+            for _ in range(alloc[color]):
+                self._deck.append(cards[color])
+        return alloc
+
     def _basic_card(self, land_name: str | None) -> dict | None:
         """Fetch (and cache) the Scryfall card for a basic land by name. Basics
         are appended to the deck directly (they bypass _add's name dedup), so
@@ -978,6 +1058,17 @@ class DeckBuilder:
                 # the padding count is the honest total.
                 self.shortfall["padded_with_basics"] = shortfall
             self._pad_with_basics(profile, shortfall)
+
+        # LAST, after every spell (and any padding) is in: only now is there a real pip
+        # demand to measure. See _rebalance_basics for why the even split it replaces
+        # could not have been better at land-drafting time.
+        try:
+            alloc = self._rebalance_basics(profile)
+            if alloc:
+                print("  Basics rebalanced to the deck's pips: "
+                      + ", ".join(f"{BASIC_LAND[c]} x{n}" for c, n in alloc.items()))
+        except Exception as exc:      # noqa: BLE001 - a cosmetic land swap must never
+            print(f"  [basics] rebalance skipped: {exc}")   # cost anyone a built deck
 
         return self._deck[:99]
 
