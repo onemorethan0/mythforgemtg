@@ -26,6 +26,7 @@ import requests
 from mythgauntlet.config import PROJECT_ROOT, USER_AGENT
 from mythgauntlet.model.card import Card, normalize_name
 from mythgauntlet.semantics import ccm
+from mythgauntlet.semantics.ccm_grammar import CCM_GRAMMAR
 
 # v9 targets the three schema classes that account for 939 of the 2,276 quarantine
 # first-errors (41%): the closed activated-cost key set (428), empty effects lists on
@@ -241,10 +242,16 @@ class LlamaSwapClient:
         base_url: str = DEFAULT_LLM_URL,
         model: str = DEFAULT_LLM_MODEL,
         timeout: int = 300,
+        grammar: str | None = CCM_GRAMMAR,
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.timeout = timeout
+        # llama-server constrains sampling to this GBNF, so a token that would break
+        # gate 1 is never emitted (see ccm_grammar). Pass grammar=None to sample freely —
+        # that is how the A/B in docs/engine/CARD_SEMANTICS.md was measured, and the
+        # escape hatch if a future backend does not implement the field.
+        self.grammar = grammar
 
     def available(self) -> bool:
         try:
@@ -254,15 +261,21 @@ class LlamaSwapClient:
             return False
 
     def complete(self, messages: list[dict]) -> str:
+        payload: dict = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0,
+            "max_tokens": 1600,
+        }
+        if self.grammar:
+            # `grammar` is a llama.cpp extension to the OpenAI schema; llama-server reads
+            # it off /v1/chat/completions and ignores unknown fields, so this stays a
+            # no-op against any other OpenAI-compatible backend rather than erroring.
+            payload["grammar"] = self.grammar
         resp = requests.post(
             f"{self.base_url}/v1/chat/completions",
             headers={"User-Agent": USER_AGENT},
-            json={
-                "model": self.model,
-                "messages": messages,
-                "temperature": 0,
-                "max_tokens": 1600,
-            },
+            json=payload,
             timeout=self.timeout,
         )
         resp.raise_for_status()
