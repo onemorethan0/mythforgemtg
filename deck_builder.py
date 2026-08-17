@@ -18,6 +18,7 @@ EDHREC popularity so we get the most-played (i.e. community-vetted) options.
 """
 from __future__ import annotations
 
+import commander_analysis
 from commander_analysis import CommanderProfile, THEME_SYNERGY_QUERIES
 from scryfall_client import ScryfallClient
 from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
@@ -1172,7 +1173,30 @@ def aggregate_duplicates(deck: list[dict]) -> list[dict]:
     return [agg[n] for n in order]
 
 
-def compute_stats(commander: dict, deck: list[dict]) -> dict:
+def _command_zone_card(commander: dict, partners: list[dict] | None) -> dict:
+    """A copy of `commander` carrying the WHOLE command zone's colour identity.
+
+    A copy, never a mutation: the caller's card dict is shared with the render and
+    export paths, and widening its identity in place would silently change what those
+    consider on-colour.
+    """
+    if not partners or not commander:
+        return commander
+    return dict(commander,
+                color_identity=commander_analysis.command_zone_identity(commander, partners))
+
+
+def compute_stats(commander: dict, deck: list[dict],
+                  partners: list[dict] | None = None) -> dict:
+    """Deck statistics. `partners` is the rest of the COMMAND ZONE, if any.
+
+    Partner cards are already folded into `deck` by the import path (so their pips and
+    types count), but the commander dict alone carries only HALF a partner pair's
+    colour identity — and `deck_quality.assess_colors` filters sources by it. An
+    imported Sam + Frodo deck was reported short 15 black sources while holding 32,
+    because black sat outside the half-identity. Passing the zone fixes that.
+    """
+    commander = _command_zone_card(commander, partners)
     non_lands = [c for c in deck if "land" not in c.get("type_line", "").lower()]
     avg_cmc = (
         sum(c.get("cmc", 0) for c in non_lands) / len(non_lands) if non_lands else 0
@@ -1217,7 +1241,7 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
         "offmeta": lift_stats.stats_block(commander, deck),
         # What archetypes the DECK actually plays, vs what the commander's text
         # claims. Pure/offline, so it costs nothing on any path.
-        "archetypes": deck_themes.stats_block(commander, deck),
+        "archetypes": deck_themes.stats_block(commander, deck, partners),
     }
 
 

@@ -250,7 +250,8 @@ def merge_themes(
     return merged[:limit]
 
 
-def stats_block(commander: dict, deck: list[dict]) -> dict:
+def stats_block(commander: dict, deck: list[dict],
+                partners: list[dict] | None = None) -> dict:
     """The `compute_stats` integration point, mirroring `lift_stats.stats_block`.
 
     Unlike that one this is PURE and OFFLINE — `theme_match` is a local text scan — so it
@@ -266,8 +267,10 @@ def stats_block(commander: dict, deck: list[dict]) -> dict:
         if commander:
             # Imported decks can carry a commander dict with no oracle text at all, and a
             # 60-card list may carry none whose front face is legendary; both are fine.
+            # The whole command zone: a partner pair's plan comes from BOTH halves,
+            # and reading the lead alone is why Tymna and Falthis report no themes.
             from commander_analysis import build_commander_profile
-            cmdr = list(build_commander_profile(commander).themes)
+            cmdr = list(build_commander_profile(commander, partners).themes)
         merged = merge_themes(cmdr, detected, deck_counts=counts,
                               deck_scored=_scored_card_count(deck))
         if not merged:

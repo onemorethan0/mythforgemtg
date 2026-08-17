@@ -250,13 +250,46 @@ def _detect_themes(card: dict) -> list[str]:
     return found
 
 
-def build_commander_profile(card: dict) -> CommanderProfile:
+def command_zone_identity(card: dict, partners: list[dict] | None = None) -> list[str]:
+    """The colour identity of the whole COMMAND ZONE, not just one card.
+
+    A partner pair's identity is the UNION — Tymna the Weaver (BW) beside Thrasios, Triton
+    Hero (GU) is a BGUW deck. Reading one half is not an approximation, it is a different
+    deck, and everything downstream that filters by identity then filters out real cards:
+    `deck_quality.assess_colors` reported an imported Sam + Frodo deck as short FIFTEEN
+    black sources while the list actually contained thirty-two, because black was outside
+    the half-identity it was given. Every partner deck measured flipped from ok=False to
+    ok=True once the union was used, so this was a pure false alarm shown to users.
+
+    Sorted for determinism; WUBRG order is not preserved (nothing downstream depends on
+    it, and `assess_colors` keys by colour).
+    """
+    identity = set(card.get("color_identity") or [])
+    for partner in partners or []:
+        identity |= set(partner.get("color_identity") or [])
+    return sorted(identity)
+
+
+def build_commander_profile(card: dict,
+                            partners: list[dict] | None = None) -> CommanderProfile:
+    """Profile the command zone. `partners` covers partner / partner-with / background.
+
+    Themes are the union across the zone: a partner pair's plan comes from BOTH halves,
+    and the lead card's themes stay FIRST so `_theme_slot_split` still weights the
+    commander the deck is named for. Mana value stays the lead card's — it drives the
+    land count and reference curve, which the second commander does not change.
+    """
+    themes = list(_detect_themes(card))
+    for partner in partners or []:
+        for theme in _detect_themes(partner):
+            if theme not in themes:
+                themes.append(theme)
     return CommanderProfile(
         name=card["name"],
-        color_identity=card.get("color_identity", []),
+        color_identity=command_zone_identity(card, partners),
         oracle_text=card.get("oracle_text", ""),
         keywords=card.get("keywords", []),
-        themes=_detect_themes(card),
+        themes=themes,
         mana_value=float(card.get("cmc", 0)),
         type_line=card.get("type_line", ""),
         card=card,

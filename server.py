@@ -1422,7 +1422,10 @@ def _run_build(job_id: str, req: BuildRequest):
             # Partner/companion commanders aren't the face — render them as cards.
             for p in imported.partners:
                 pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
-            stats = compute_stats(card, deck)
+            # Partners also carry COLOUR IDENTITY. Folding them into `deck` covers
+            # their pips and types; passing them through covers the identity that
+            # assess_colors filters sources by.
+            stats = compute_stats(card, deck, partners=imported.partners)
             face_auto = bool(imported.auto_face) and card is imported.commander
             import_meta = {"source": imported.source, "source_name": imported.name,
                            "source_input": src_input, "unresolved": imported.unresolved,
@@ -4935,7 +4938,7 @@ def import_save(req: ImportSaveRequest):
     deck = list(imp.deck)
     for p in imp.partners:                      # partners/companions render as cards
         pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
-    stats = compute_stats(card, deck)
+    stats = compute_stats(card, deck, partners=imp.partners)
     face_auto = bool(imp.auto_face) and card is imp.commander
 
     job_id = uuid.uuid4().hex[:16]
