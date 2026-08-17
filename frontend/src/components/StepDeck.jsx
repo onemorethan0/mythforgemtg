@@ -1815,6 +1815,37 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 </>
               );
             })()}
+            {/* Archetypes — what the DECK plays, vs what the commander's text claims.
+                Worth showing side by side because they routinely disagree: a commander
+                can declare a theme the deck barely supports (and a companion declares
+                none at all while its deck plainly has three). deck_themes is a local
+                text scan, so this costs nothing and is always available. */}
+            {stats.archetypes?.merged?.length > 0 && (() => {
+              const a = stats.archetypes;
+              const pretty = (t) => t.replace(/^tribal_/, '').replace(/_/g, ' ');
+              const dropped = (a.commander || []).filter((t) => !a.merged.includes(t));
+              return (
+                <>
+                  <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
+                  <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Archetypes</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
+                    {a.merged.map((t) => (
+                      <span key={t} style={{
+                        fontSize: 11, padding: '2px 8px', borderRadius: 12,
+                        background: '#1c1917', color: '#a8a29e',
+                        border: `1px solid ${(a.deck || []).includes(t) ? '#44403c' : '#292524'}`,
+                      }}>{pretty(t)}</span>
+                    ))}
+                  </div>
+                  {dropped.length > 0 && (
+                    <div style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>
+                      {dropped.map(pretty).join(', ')} — named by the commander, but the
+                      deck barely plays {dropped.length > 1 ? 'them' : 'it'}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
             {/* Color identity (mana pip counts) */}
             {stats.color_pips && Object.keys(stats.color_pips).length > 0 && (
               <>

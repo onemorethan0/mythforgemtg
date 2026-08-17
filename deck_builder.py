@@ -25,6 +25,7 @@ from collection import owned_key
 import collection_pool
 import edhrec_lift
 import lift_stats
+import deck_themes
 import deck_quality
 import theme_match
 
@@ -1043,6 +1044,9 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
         # rebuild, retheme, import/Analyze) gets it here. `{}` whenever EDHREC has nothing
         # to say, which StepDeck's `stats.offmeta &&` guard hides.
         "offmeta": lift_stats.stats_block(commander, deck),
+        # What archetypes the DECK actually plays, vs what the commander's text
+        # claims. Pure/offline, so it costs nothing on any path.
+        "archetypes": deck_themes.stats_block(commander, deck),
     }
 
 
