@@ -24,6 +24,7 @@ from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
 from collection import owned_key
 import collection_pool
 import edhrec_lift
+import lift_stats
 import deck_quality
 import theme_match
 
@@ -1027,6 +1028,11 @@ def compute_stats(commander: dict, deck: list[dict]) -> dict:
         "land_count": type_counts.get("Land", 0),
         "total_cards": deck_total + 1,  # +1 for commander
         "quality": deck_quality_block(commander, deck),
+        # "How off-meta is this deck" — a different axis from bracket/strength, and the one
+        # a casual pod asks first. Same one-place contract as `quality`: every path (build,
+        # rebuild, retheme, import/Analyze) gets it here. `{}` whenever EDHREC has nothing
+        # to say, which StepDeck's `stats.offmeta &&` guard hides.
+        "offmeta": lift_stats.stats_block(commander, deck),
     }
 
 

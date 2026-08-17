@@ -1775,6 +1775,46 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 ))}
               </>
             )}
+            {/* Off-meta read — how far this list sits from the typical deck under this
+                commander (EDHREC lift). A DIFFERENT axis from bracket/strength: a precon
+                and a wild brew can rate the same bracket. Advisory; lift_stats measures
+                the built list and never changes it.
+                Coverage is shown ALWAYS, not just when low: an EDHREC page lists ~250
+                cards, so a chunk of every deck is simply unmeasured, and a percentage
+                presented without its sample size is a confident fabrication. */}
+            {stats.offmeta && stats.offmeta.measured > 0 && (() => {
+              const om = stats.offmeta;
+              const VERDICTS = {
+                'on-rails':           ['Stock list',    '#fbbf24', 'close to the typical list for this commander'],
+                'focused-with-spice': ['Focused brew',  '#86efac', 'on-theme, with cards outside the usual list'],
+                'brew':               ['Off-beat brew', '#c4b5fd', 'using the commander as a backbone for something else'],
+                'off-plan':           ['Unfocused',     '#a8a29e', 'few cards lean on what this commander rewards'],
+                'insufficient-data':  ['Not enough data', '#78716c', 'too little of this deck appears on EDHREC to judge'],
+              };
+              const [label, color, blurb] = VERDICTS[om.verdict] || ['—', '#a8a29e', ''];
+              return (
+                <>
+                  <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
+                  <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Off-meta read</div>
+                  <div style={{ fontSize: 12, marginBottom: 4 }}>
+                    <span style={{ fontWeight: 700, color }}>{label}</span>
+                    <span style={{ color: '#78716c' }}> · {blurb}</span>
+                  </div>
+                  {om.verdict !== 'insufficient-data' && (
+                    <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 4 }}>
+                      Synergy {om.synergy > 0 ? '+' : ''}{om.synergy}
+                      <span style={{ color: '#78716c' }}> (typical here {om.baseline > 0 ? '+' : ''}{om.baseline})</span>
+                      {' · '}spread {om.synergy_range}
+                      {' · '}{om.staples_pct}% on-theme
+                    </div>
+                  )}
+                  <div style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>
+                    Measured {om.measured} of {om.total} cards ({Math.round(om.coverage * 100)}%)
+                    {om.verdict === 'insufficient-data' && ' — showing raw numbers only'}
+                  </div>
+                </>
+              );
+            })()}
             {/* Color identity (mana pip counts) */}
             {stats.color_pips && Object.keys(stats.color_pips).length > 0 && (
               <>
