@@ -398,7 +398,11 @@ the Coast. *Magic: The Gathering* and all associated names, rules text and desig
 copyrights of Wizards of the Coast. Cards produced by this tool are proxies for personal,
 non-commercial playtesting.
 
-Code is licensed under the [MIT License](LICENSE).
+No AI model weights are distributed here — you download those yourself, and several carry
+non-commercial terms, so check the license of each model you install.
+
+Code is licensed under the [MIT License](LICENSE). Full third-party attribution and the game-content
+notice: [NOTICE.md](NOTICE.md).
 
 ---
 

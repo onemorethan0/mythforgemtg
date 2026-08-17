@@ -19,24 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE ON THIRD-PARTY AND GAME CONTENT
-
-This license covers the code in this repository only.
-
-Myth Forge is an unofficial fan project. It is not produced by, endorsed by,
-supported by, or affiliated with Wizards of the Coast LLC. Magic: The Gathering
-and all associated card names, rules text, mana symbols, frame designs and
-other game content are trademarks and copyrights of Wizards of the Coast.
-
-This repository bundles NO Wizards-copyrighted frame artwork. The optional
-official-style M15 frames are rendered from a Card Conjurer installation that
-you supply yourself; do not commit those assets here. Card data and card images
-are fetched at runtime from the Scryfall API under Scryfall's terms. The
-bundled frame assets under `card_assets/` are sourced from
-wingedsheep/mtg-card-generator. AI model weights (FLUX, SDXL, LoRAs, Hunyuan3D,
-LTX-Video, Wan) are not distributed here and remain under their own licenses.
-
-Cards produced by this tool are proxies for personal, non-commercial playtesting.
