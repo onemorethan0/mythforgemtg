@@ -1,6 +1,6 @@
 # Documentation Index
 
-Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](../README.md) is the main reference; this folder holds deeper guides. For an agent-oriented overview see [`CLAUDE.md`](../CLAUDE.md).
+Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](../README.md) is the tour; this folder holds the manuals. For an agent-oriented overview see [`CLAUDE.md`](../CLAUDE.md).
 
 ---
 
@@ -28,6 +28,14 @@ The engine that measures brackets and deck strength ships in this repo at `src/m
   validation gates and compiler), `LEARNING.md`, `DATA_SOURCES.md`, `SUITE_PLAN.md` (the
   collection contract shared with MythScanner), `STATUS.md` (measured state + what's next).
 
+## Reference
+- **How a card is actually made:** [`INTERNALS.md`](INTERNALS.md) — card renderer, themer, image
+  generation, art-style presets, face conditioning, animation, 3D, and the gotchas that bite.
+- **Every HTTP endpoint:** [`API.md`](API.md) — grouped by area, plus the full `BuildRequest` body.
+- **The gallery:** [`GALLERY.md`](GALLERY.md) — thirteen full themed decks.
+- **Collection build modes:** [`COLLECTION_MODES.md`](COLLECTION_MODES.md) — `scryfall` vs
+  `prefer_collection` vs strict `collection`, and what strict mode can't do.
+
 ## For users
 - **Troubleshooting by symptom:** [`MAINTENANCE.md`](MAINTENANCE.md)
 - **GPU/performance tuning:** [`HARDWARE_OPTIMIZATION_GUIDE.md`](HARDWARE_OPTIMIZATION_GUIDE.md)
@@ -35,6 +43,9 @@ The engine that measures brackets and deck strength ships in this repo at `src/m
 ## For developers
 - **Read before changing code:** [`DEVELOPMENT_GUIDELINES.md`](DEVELOPMENT_GUIDELINES.md)
 - **Architecture & conventions:** [`../CLAUDE.md`](../CLAUDE.md)
+- **Module specs** (`SPEC_*.md`) — the written-first specifications that drafted and now pin
+  `collection_pool`, `deck_quality`, `deck_themes`, `edhrec_lift`, `lift_stats`, `redundancy`,
+  `theme_match` and the collection UI. Tests are written from these, not from the implementation.
 
 ## Real entry-point scripts (root)
 | Script | Purpose |
@@ -47,4 +58,5 @@ The engine that measures brackets and deck strength ships in this repo at `src/m
 
 ---
 
-_Last updated: June 2026 — synced with the actual `manage.bat`/`dev.bat` startup scripts; corrected references to a removed `START.bat`/`paths_config.ps1` system._
+_Last updated: August 2026 — added `INTERNALS.md`, `API.md` and `GALLERY.md`, which absorbed the deep
+reference sections that used to live in the root README._
