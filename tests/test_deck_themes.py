@@ -64,6 +64,56 @@ def test_a_card_saying_basic_but_not_a_land_is_kept():
     assert deck_themes.theme_counts(deck).get("tokens", (0, 0))[0] == 1
 
 
+# ── base rate / lift ────────────────────────────────────────────────────────────
+
+def _trampler(n: int) -> list[dict]:
+    """Cards that score STRONG for voltron_combat — the highest-base-rate theme."""
+    return [{"name": f"Big Guy {i}", "type_line": "Creature — Beast",
+             "oracle_text": "Trample"} for i in range(n)]
+
+
+def test_base_rate_covers_every_theme():
+    """A theme with no entry falls back to `inf` lift and is judged on MIN_STRONG alone.
+
+    That is a deliberate safe default, not a licence to let the table rot — regenerate
+    with `python scripts/theme_base_rates.py` after touching theme_match rules.
+    """
+    missing = set(theme_match.THEMES) - set(deck_themes.BASE_RATE)
+    stale = set(deck_themes.BASE_RATE) - set(theme_match.THEMES)
+    assert not missing, f"BASE_RATE missing themes: {sorted(missing)}"
+    assert not stale, f"BASE_RATE has themes theme_match no longer defines: {sorted(stale)}"
+
+
+def test_theme_lift_math():
+    # voltron_combat is 19.354% of all cards -> 60 cards expect ~11.6
+    assert deck_themes.theme_lift("voltron_combat", 12, 60) == pytest.approx(1.03, abs=0.02)
+    assert deck_themes.theme_lift("voltron_combat", 30, 60) == pytest.approx(2.58, abs=0.02)
+
+
+def test_unknown_theme_is_judged_on_min_strong_alone():
+    """A theme added to theme_match before the table is regenerated must not vanish."""
+    assert deck_themes.theme_lift("brand_new_theme", 3, 100) == float("inf")
+
+
+def test_a_theme_at_its_base_rate_is_rejected():
+    """THE REGRESSION. voltron_combat scores STRONG on 19.35% of every card in Magic, so
+    an absolute 3-card rule fired on 100% of random 60-card piles. Playing it at chance
+    rate is not an archetype."""
+    at_base = _trampler(12) + _token(48)          # 12/60 voltron ~= its 11.6 expectation
+    assert "voltron_combat" not in deck_themes.detect_deck_themes(at_base, top_n=99)
+
+
+def test_a_theme_well_above_its_base_rate_is_kept():
+    above = _trampler(40) + _token(20)             # 40/60 is ~3.4x expectation
+    assert "voltron_combat" in deck_themes.detect_deck_themes(above, top_n=99)
+
+
+def test_a_rare_theme_needs_only_the_absolute_floor():
+    """landfall is 0.003% of cards, so 3 copies is already enormous lift — the floor is
+    what protects it from firing on one or two incidental matches."""
+    assert deck_themes.theme_lift("landfall", 3, 99) > deck_themes.LIFT_FACTOR
+
+
 # ── detection threshold ─────────────────────────────────────────────────────────
 
 def test_min_strong_gates_a_theme():
