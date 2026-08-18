@@ -1,0 +1,184 @@
+# Handoff — recommendation & measurement work (2026-08-14)
+
+Written to be the **first thing a new session reads** before touching the builder, the
+advisor, or the theme taxonomy. `CLAUDE.md` remains the engineering map (and is gitignored,
+so it is local-only); this file is the committed record of what changed, what was measured,
+and what is still open.
+
+Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tests**.
+
+---
+
+## 1. Where this came from
+
+A YouTube video — [*I Built My Own EDHREC… and It Actually Works*](https://www.youtube.com/watch?v=omYfGzrsTRc)
+by GamesfreakSA ([recommander.cards](https://recommander.cards)) — argues that EDHREC's deck
+recommender keys on the **commander**, not on your **deck**, so a precon and a wild brew get
+near-identical suggestions. The author demos it on a Kadena manifest brew.
+
+Myth Forge had the same defect in a stronger form: every role window was ordered by *global*
+`edhrec_rank`. The work below started there and kept going wherever measurement led.
+
+---
+
+## 2. What the builder now does differently
+
+| change | commit | measured effect |
+|---|---|---|
+| Role windows ordered by **commander lift**, not global popularity | `182cafc` | see §3 |
+| Theme package lift-ordered too, **lead-weighted** split | `f420c8b`, `df143ac` | fixed a bug where theme 1 ate all 20 slots |
+| **Strict/collection** pool lift-ordered | `3153cc8` | strict synergy **4.39 → 13.44** |
+| Basics re-split to real pips **after** drafting | `90f2b3e` | colours 8 → 9 |
+| **Rainbow land tier** (3+ colours only) | `d8d0028` | colours 9 → 19 |
+| Dead fetchlands filtered; fetches counted as sources | `45235c0` | colours 19 → **20/20** |
+| Three themes added: `face_down`, `sagas`, `impulse` | `7f146f9` | zero-theme commanders 21.6% → 18.8% |
+| Five dead `theme_match` rules revived | `53c330a` | `landfall` matched **1** card in 34,846 |
+| Partner colour identity = **union** of the zone | `081ddb7` | 16 of 29 partner decks flipped to castable |
+
+Plus, on the analysis side: the **off-meta read** (`lift_stats`), **deck-context archetypes**
+(`deck_themes`), and **redundancy-based cut candidates** (`redundancy`) replacing "cut the
+least-played card".
+
+---
+
+## 3. The measurement infrastructure — use it
+
+Three harnesses now exist. **Nothing in this area should be changed without running them.**
+
+    # Builder, Scryfall path (what an ordinary build runs). ~6 min.
+    python scripts/builder_bench.py --out docs/bench/run.json --pause 6 --rate-delay 0.5
+    python scripts/builder_bench.py --compare docs/bench/baseline-c6ddd79.json docs/bench/run.json
+
+    # Builder, strict/collection path — exercises theme_match, which the above never touches.
+    python scripts/builder_bench.py --out docs/bench/strict.json --strict --pause 3
+
+    # Upgrade advisor. ALWAYS multi-seed (see section 5).
+    python scripts/advisor_bench.py --decks 20            # 4 seeds by default
+    python scripts/advisor_bench.py --decks 10 --show-cuts
+
+Calibration tables are regenerated, never hand-edited:
+
+    python scripts/theme_base_rates.py --check   # deck_themes.BASE_RATE
+    python scripts/role_targets.py --check       # redundancy.ROLE_TARGETS
+
+Committed reference runs live in `docs/bench/`. Neither harness is CI-safe — they need
+`data/cards_slim.json`, a semantics store (`MYTHGAUNTLET_STORE`), and the network.
+
+### Builder state vs baseline
+
+| metric | `c6ddd79` | now |
+|---|---|---|
+| mean synergy | 5.66 | **15.85** |
+| median synergy | 4.35 | 15.2 |
+| above EDHREC baseline | 7/20 | 17/20 |
+| **colours castable** | 10/20 | **20/20** |
+| on-theme cards | 11.75 | 16.9 |
+| curve deviation | 15.40 | 15.5 |
+
+---
+
+## 4. Method that worked, and should be continued
+
+Every substantive find came from **measuring an assumption**, usually one already written
+down as fact. That is the method, not an anecdote:
+
+- *"The theme package is why Kadena rates off-plan"* → **wrong**; after lift-ordering it,
+  Kadena's numbers were byte-identical. The real cause was a taxonomy with no morph entry.
+- *"An even theme split is obviously correct"* → **measurably worse** than lead-weighted
+  (cost multi-theme commanders 1.65 synergy and broke two decks' colours).
+- *"The owned pool is small enough that its own ordering dominates"* → **8.6 points of
+  headroom** left on the table; lift-ordering it tripled strict synergy.
+- *"`oversupply * within_role` is a defect, not an approximation"* → **indistinguishable**
+  from the shipped shape, and its Magic argument is arguably better (see section 5).
+- *"The counterspell target is probably too low"* → **backwards**; the median deck runs zero.
+
+Three specific traps worth knowing:
+
+1. **A raw count is not evidence.** `voltron_combat` scores STRONG on **19.35%** of every
+   card in Magic, so a "3 matching cards = this theme" rule fired on **100%** of *randomly
+   drawn* 60-card piles. Always compare against a base rate (`deck_themes.BASE_RATE`).
+2. **The builder's plan is not the population.** `ROLE_TARGETS` came from
+   `playstyle.DEFAULT_SLOTS` — what the app intends to *build* — and using it to judge decks
+   people already own made draw+ramp 83% of every cut suggestion.
+3. **A degraded run looks like a clean one.** `ScryfallClient._get` returns `None` after four
+   retries, indistinguishable from an empty result, so a throttled role query silently
+   contributes zero cards. `builder_bench` captures the builder's own
+   `"Padding N missing slots"` log rather than guessing.
+
+---
+
+## 5. Read these caveats before quoting any number
+
+- **Advisor seed variance exceeds the effects being measured.** The same strategy on the
+  same 20 decks scores **79 to 231** depending only on the sim seed. An earlier commit in
+  this series quoted `237.92 vs 209.38` from one seed as a clean +13.6% win; across four
+  seeds the honest claim is *"better on 3 of 4 seeds by roughly 8%, and a single seed can
+  reverse it."* `advisor_bench` is multi-seed by default now — keep it that way.
+- **The axis-delta metric cannot see advice quality.** `advise` tests every add against the
+  whole cut pool and keeps the best-measuring pairing, so the simulation partly rescues a bad
+  pool. Redundancy vs popularity is near-tied on delta, but `--show-cuts` shows popularity
+  recommending **Shelob cut "Eaten by Spiders"** and **Sefris cut "Living End"** — the deck's
+  own theme. The redundancy pool is justified on advice quality, *not* on delta.
+- **Two constants are NOT calibratable and are labelled as such**: `redundancy`'s score shape
+  and `deck_themes.WEAK_WEIGHT`. Both were measured; neither has ground truth. Do not "tune"
+  them without a new source of truth.
+
+---
+
+## 6. Recurring bug classes in this codebase
+
+Worth grepping for when touching anything nearby:
+
+- **A top-level `OR` in a Scryfall query un-filters its first branch.** `DeckBuilder` appends
+  `id<=…`, `legal:commander`, `-type:land`, and Scryfall's `OR` binds *looser* than implicit
+  AND. Three of 49 queries had it; a Shelob (BG) deck drafted Professional Face-Breaker
+  `{2}{R}`. Pinned by `tests/test_theme_taxonomy.py`.
+- **An `otag:` alternative has no local equivalent.** `theme_match` reproduces the Scryfall
+  queries for strict mode, but an oracle tag cannot be reproduced, so the rule silently falls
+  back to a literal that may match nothing. Five rules were dead this way. Guarded by
+  `test_no_theme_rule_is_dead`.
+- **Empty `color_identity` is not "colourless-safe".** Fetchlands have `ci=[]` and produce no
+  mana, so `id<=WB` admits every fetch in Magic.
+- **Two structures that must agree, only one of which is tested.** The strict theme branch was
+  tested and correct; the Scryfall branch had no test and carried a dead `slot` variable.
+- **`x or DEFAULT` instead of `x is None`** — has bitten this repo repeatedly (rank 0,
+  `targets={}`, `max_age_days=0`).
+
+---
+
+## 7. Open, in rough priority order
+
+1. **Verify the two UI panels visually.** "Off-meta read" and "Archetypes" render only for
+   decks carrying the new stats. The rendered DOM text and a clean build were confirmed, but
+   no screenshot was captured — the Browser pane was not compositing. Neither is backfilled
+   on load (deliberate: it would make deck-page loads wait on EDHREC), so they appear on
+   newly built/imported decks only.
+2. **Partner decks cannot be BUILT, only analysed.** `BuildRequest.commander_name` is a
+   single name and there is no second-commander UI. 6.6% of corpus decks are partner decks.
+3. **~94 commanders (18.8%) still detect no theme.** Mostly partners and value piles
+   (Progenitus, Karona, Nin) that genuinely have no archetype — deck-context themes is the
+   right answer there, not more patterns. Widening existing patterns was measured at only
+   ~5 more commanders.
+4. **`etb` and `chaos` local rules are newly written** and less battle-tested than the rest.
+   `chaos` is the one theme whose *Scryfall query* is also weak (no `otag:` to lean on).
+5. **Curve deviation is +0.10 vs baseline** — effectively closed, but the theme and role
+   paths are still deliberately not curve-aware. Reasoning is in `_draft_slot`.
+6. **The strict arm's roster under-represents the revived themes** — only 2 of 20 commanders
+   touch one, so `mean_weakest_theme_cards` understates their effect. Extending the roster
+   invalidates the committed baseline, so it needs a fresh baseline pair.
+
+---
+
+## 8. Operational notes
+
+- Local LLM offload: `python scripts/offload.py docs/SPEC_x.md out.py --model qwen3:14b`
+  against llama-swap on `127.0.0.1:8010`. **Every draft in this series carried real bugs** —
+  an invented `theme_match` API, a docstring placed after `from __future__` (four times),
+  `from typing import list, dict`, a stubbed-out central statistic. Specs live in
+  `docs/SPEC_*.md`; tests are written **from the spec**, never from the draft.
+- If llama-swap is down: `E:\llama\start-llama-swap.bat`. **Tear down anything you start** —
+  it holds GPU memory.
+- Scryfall throttles hard under a sweep. `builder_bench` defaults `--rate-delay 0.35`; raise
+  it and `--pause` if you see `[rate limit]` lines, and check `padded_slots` is 0 before
+  trusting a run.
+- `CLAUDE.md` is **gitignored** — edits to it stay on this machine.

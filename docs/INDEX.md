@@ -4,6 +4,12 @@ Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](.
 
 ---
 
+## Start here if you are working on recommendations
+
+**[`HANDOFF.md`](HANDOFF.md)** — the committed record of the 2026-08-14 recommendation/measurement work: what changed and its measured effect, how to run the three benchmark harnesses, the caveats that must accompany any number they produce, the recurring bug classes in this codebase, and what is still open. Read it before touching `deck_builder`, `theme_match`, the theme taxonomy or the advisor.
+
+---
+
 ## Getting started
 1. **First-time setup:** run `setup.bat` (Windows) or `python install.py` (Mac/Linux).
 2. **Download models:** `manage.bat` → Download AI Models, or `python download-models.py`.
