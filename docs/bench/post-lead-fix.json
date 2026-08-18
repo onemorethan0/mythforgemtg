@@ -1,0 +1,706 @@
+{
+  "roster": [
+    "Krenko, Mob Boss",
+    "Ghired, Conclave Exile",
+    "Brudiclad, Telchor Engineer",
+    "Meren of Clan Nel Toth",
+    "Atraxa, Praetors' Voice",
+    "Sythis, Harvest's Hand",
+    "Edgar Markov",
+    "The Ur-Dragon",
+    "Kadena, Slinking Sorcerer",
+    "Tom Bombadil",
+    "Etali, Primal Storm",
+    "Progenitus",
+    "Tymna the Weaver",
+    "Jegantha, the Wellspring",
+    "Karona, False God",
+    "Nin, the Pain Artist",
+    "Kozilek, Butcher of Truth",
+    "Talrand, Sky Summoner",
+    "Shelob, Child of Ungoliant",
+    "Muldrotha, the Gravetide"
+  ],
+  "results": [
+    {
+      "commander": "Krenko, Mob Boss",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tribal_goblins",
+        "tokens"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 21,
+        "draw": 12,
+        "removal": 7,
+        "wipe": 0,
+        "protection": 5,
+        "finisher": 4
+      },
+      "basics": 28,
+      "curve_deviation": 22.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 30.0,
+      "baseline": 10.9,
+      "coverage": 0.592,
+      "verdict": "focused-with-spice",
+      "on_theme_cards": 28,
+      "theme_cards": {
+        "tribal_goblins": 19,
+        "tokens": 14
+      },
+      "deck_themes": [
+        "tribal_goblins",
+        "aristocrats",
+        "impulse"
+      ]
+    },
+    {
+      "commander": "Ghired, Conclave Exile",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tokens",
+        "voltron_combat"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 17,
+        "draw": 14,
+        "removal": 5,
+        "wipe": 1,
+        "protection": 4,
+        "finisher": 1
+      },
+      "basics": 18,
+      "curve_deviation": 12.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 21.1,
+      "baseline": 7.3,
+      "coverage": 0.63,
+      "verdict": "on-rails",
+      "on_theme_cards": 35,
+      "theme_cards": {
+        "tokens": 27,
+        "voltron_combat": 14
+      },
+      "deck_themes": [
+        "tokens",
+        "etb"
+      ]
+    },
+    {
+      "commander": "Brudiclad, Telchor Engineer",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tokens"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 20,
+        "draw": 21,
+        "removal": 7,
+        "wipe": 1,
+        "protection": 4,
+        "finisher": 3
+      },
+      "basics": 24,
+      "curve_deviation": 20.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 20.4,
+      "baseline": 7.2,
+      "coverage": 0.827,
+      "verdict": "on-rails",
+      "on_theme_cards": 39,
+      "theme_cards": {
+        "tokens": 39
+      },
+      "deck_themes": [
+        "tokens"
+      ]
+    },
+    {
+      "commander": "Meren of Clan Nel Toth",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "aristocrats",
+        "reanimator"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 16,
+        "draw": 12,
+        "removal": 4,
+        "wipe": 6,
+        "protection": 6,
+        "finisher": 5
+      },
+      "basics": 23,
+      "curve_deviation": 12.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 17.9,
+      "baseline": 5.2,
+      "coverage": 0.895,
+      "verdict": "on-rails",
+      "on_theme_cards": 23,
+      "theme_cards": {
+        "aristocrats": 18,
+        "reanimator": 6
+      },
+      "deck_themes": [
+        "aristocrats",
+        "reanimator"
+      ]
+    },
+    {
+      "commander": "Atraxa, Praetors' Voice",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "counters"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 15,
+        "draw": 16,
+        "removal": 9,
+        "wipe": 6,
+        "protection": 10,
+        "finisher": 2
+      },
+      "basics": 13,
+      "curve_deviation": 24.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 5.4,
+      "baseline": 3.2,
+      "coverage": 0.721,
+      "verdict": "off-plan",
+      "on_theme_cards": 24,
+      "theme_cards": {
+        "counters": 24
+      },
+      "deck_themes": [
+        "counters"
+      ]
+    },
+    {
+      "commander": "Sythis, Harvest's Hand",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "enchantress"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 18,
+        "draw": 14,
+        "removal": 4,
+        "wipe": 5,
+        "protection": 8,
+        "finisher": 2
+      },
+      "basics": 22,
+      "curve_deviation": 12.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 23.4,
+      "baseline": 9.3,
+      "coverage": 0.688,
+      "verdict": "focused-with-spice",
+      "on_theme_cards": 2,
+      "theme_cards": {
+        "enchantress": 2
+      },
+      "deck_themes": [
+        "landfall"
+      ]
+    },
+    {
+      "commander": "Edgar Markov",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tribal_vampires",
+        "tokens",
+        "counters"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 14,
+        "draw": 17,
+        "removal": 7,
+        "wipe": 5,
+        "protection": 6,
+        "finisher": 5
+      },
+      "basics": 19,
+      "curve_deviation": 18.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 21.8,
+      "baseline": 6.3,
+      "coverage": 0.812,
+      "verdict": "focused-with-spice",
+      "on_theme_cards": 28,
+      "theme_cards": {
+        "tribal_vampires": 17,
+        "tokens": 13,
+        "counters": 7
+      },
+      "deck_themes": [
+        "tribal_vampires",
+        "aristocrats"
+      ]
+    },
+    {
+      "commander": "The Ur-Dragon",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tribal_dragons"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 17,
+        "draw": 10,
+        "removal": 11,
+        "wipe": 3,
+        "protection": 9,
+        "finisher": 3
+      },
+      "basics": 9,
+      "curve_deviation": 26.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 18.1,
+      "baseline": 9.7,
+      "coverage": 0.867,
+      "verdict": "off-plan",
+      "on_theme_cards": 24,
+      "theme_cards": {
+        "tribal_dragons": 24
+      },
+      "deck_themes": [
+        "tribal_dragons"
+      ]
+    },
+    {
+      "commander": "Kadena, Slinking Sorcerer",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "face_down",
+        "etb"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 14,
+        "draw": 14,
+        "removal": 14,
+        "wipe": 2,
+        "protection": 4,
+        "finisher": 1
+      },
+      "basics": 18,
+      "curve_deviation": 26.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 36.0,
+      "baseline": 11.7,
+      "coverage": 0.481,
+      "verdict": "focused-with-spice",
+      "on_theme_cards": 16,
+      "theme_cards": {
+        "face_down": 15,
+        "etb": 1
+      },
+      "deck_themes": [
+        "face_down"
+      ]
+    },
+    {
+      "commander": "Tom Bombadil",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "sagas",
+        "impulse"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 15,
+        "draw": 19,
+        "removal": 13,
+        "wipe": 4,
+        "protection": 4,
+        "finisher": 2
+      },
+      "basics": 8,
+      "curve_deviation": 8.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 22.0,
+      "baseline": 12.1,
+      "coverage": 0.473,
+      "verdict": "brew",
+      "on_theme_cards": 20,
+      "theme_cards": {
+        "sagas": 14,
+        "impulse": 6
+      },
+      "deck_themes": [
+        "sagas",
+        "impulse",
+        "theft"
+      ]
+    },
+    {
+      "commander": "Etali, Primal Storm",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "impulse"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 23,
+        "draw": 24,
+        "removal": 8,
+        "wipe": 2,
+        "protection": 5,
+        "finisher": 3
+      },
+      "basics": 29,
+      "curve_deviation": 14.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 12.3,
+      "baseline": 5.6,
+      "coverage": 0.871,
+      "verdict": "off-plan",
+      "on_theme_cards": 20,
+      "theme_cards": {
+        "impulse": 20
+      },
+      "deck_themes": [
+        "impulse"
+      ]
+    },
+    {
+      "commander": "Progenitus",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 22,
+        "draw": 15,
+        "removal": 9,
+        "wipe": 6,
+        "protection": 4,
+        "finisher": 1
+      },
+      "basics": 9,
+      "curve_deviation": 10.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 3.5,
+      "baseline": 4.7,
+      "coverage": 0.756,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": []
+    },
+    {
+      "commander": "Tymna the Weaver",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 9,
+        "draw": 16,
+        "removal": 7,
+        "wipe": 5,
+        "protection": 7,
+        "finisher": 6
+      },
+      "basics": 22,
+      "curve_deviation": 18.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 8.8,
+      "baseline": 4.1,
+      "coverage": 0.935,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": []
+    },
+    {
+      "commander": "Jegantha, the Wellspring",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 21,
+        "draw": 17,
+        "removal": 8,
+        "wipe": 4,
+        "protection": 5,
+        "finisher": 2
+      },
+      "basics": 8,
+      "curve_deviation": 4.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": -1.3,
+      "baseline": 3.3,
+      "coverage": 0.363,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": []
+    },
+    {
+      "commander": "Karona, False God",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 18,
+        "draw": 14,
+        "removal": 10,
+        "wipe": 4,
+        "protection": 6,
+        "finisher": 2
+      },
+      "basics": 9,
+      "curve_deviation": 0.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 4.5,
+      "baseline": 7.0,
+      "coverage": 0.467,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": []
+    },
+    {
+      "commander": "Nin, the Pain Artist",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 19,
+        "draw": 19,
+        "removal": 10,
+        "wipe": 2,
+        "protection": 8,
+        "finisher": 5
+      },
+      "basics": 22,
+      "curve_deviation": 10.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 12.9,
+      "baseline": 5.5,
+      "coverage": 0.87,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": [
+        "draw_matters"
+      ]
+    },
+    {
+      "commander": "Kozilek, Butcher of Truth",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 25,
+        "draw": 13,
+        "removal": 7,
+        "wipe": 0,
+        "protection": 9,
+        "finisher": 3
+      },
+      "basics": 34,
+      "curve_deviation": 32.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 13.7,
+      "baseline": 4.7,
+      "coverage": 0.831,
+      "verdict": "off-plan",
+      "on_theme_cards": 0,
+      "theme_cards": {},
+      "deck_themes": []
+    },
+    {
+      "commander": "Talrand, Sky Summoner",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "spellslinger",
+        "tokens",
+        "voltron_combat"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 13,
+        "draw": 20,
+        "removal": 8,
+        "wipe": 0,
+        "protection": 1,
+        "finisher": 3
+      },
+      "basics": 28,
+      "curve_deviation": 26.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 16.5,
+      "baseline": 5.2,
+      "coverage": 0.662,
+      "verdict": "off-plan",
+      "on_theme_cards": 31,
+      "theme_cards": {
+        "spellslinger": 19,
+        "tokens": 17,
+        "voltron_combat": 6
+      },
+      "deck_themes": [
+        "spellslinger",
+        "tokens"
+      ]
+    },
+    {
+      "commander": "Shelob, Child of Ungoliant",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "tokens",
+        "aristocrats"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 18,
+        "draw": 9,
+        "removal": 7,
+        "wipe": 4,
+        "protection": 5,
+        "finisher": 5
+      },
+      "basics": 24,
+      "curve_deviation": 14.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 13.4,
+      "baseline": 7.5,
+      "coverage": 0.68,
+      "verdict": "off-plan",
+      "on_theme_cards": 23,
+      "theme_cards": {
+        "tokens": 20,
+        "aristocrats": 5
+      },
+      "deck_themes": [
+        "tokens",
+        "aristocrats",
+        "landfall"
+      ]
+    },
+    {
+      "commander": "Muldrotha, the Gravetide",
+      "shortfall": {},
+      "source_fallback": "",
+      "padded_slots": 0,
+      "rate_limited": false,
+      "themes": [
+        "graveyard",
+        "reanimator"
+      ],
+      "deck_size": 99,
+      "roles": {
+        "ramp": 15,
+        "draw": 17,
+        "removal": 6,
+        "wipe": 5,
+        "protection": 4,
+        "finisher": 5
+      },
+      "basics": 19,
+      "curve_deviation": 8.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 11.7,
+      "baseline": 4.4,
+      "coverage": 0.688,
+      "verdict": "off-plan",
+      "on_theme_cards": 16,
+      "theme_cards": {
+        "graveyard": 16,
+        "reanimator": 6
+      },
+      "deck_themes": [
+        "graveyard",
+        "aristocrats",
+        "reanimator"
+      ]
+    }
+  ]
+}

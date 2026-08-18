@@ -180,6 +180,17 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "gains menace", "gain menace", "have menace", "with menace"],
 }
 
+# Themes broad enough that they should never LEAD over a more specific one. Measured share of
+# the 3,790 legendary creatures each is detected on:
+#   tokens 23.5% · counters 18.5% · voltron_combat 15.4% · reanimator 12.3% · aristocrats 12.1%
+#   ...then a gap to graveyard 8.5%, impulse 5.1%, voltron 3.6%, artifacts 3.1%.
+# `etb` is included despite a smaller count because it is generic BY CONSTRUCTION — nearly every
+# creature has an enters trigger, which is why it stole the lead from `face_down` on Kadena.
+# These still fill theme slots; they just sort after a specific archetype when both are present.
+BROAD_THEMES: frozenset[str] = frozenset({
+    "tokens", "counters", "voltron_combat", "aristocrats", "reanimator", "etb",
+})
+
 THEME_LABELS: dict[str, str] = {
     "tribal_dragons":   "Dragon Tribal",
     "tribal_elves":     "Elf Tribal",
@@ -364,6 +375,18 @@ def _detect_themes(card: dict) -> list[str]:
             if pat in oracle:
                 found.append(theme)
                 break
+    # ORDER IS LOAD-BEARING: `_theme_slot_split` gives the FIRST theme 70% of the ~20-card
+    # theme package, because the lead is meant to be the archetype the commander was actually
+    # detected as. Returning them in THEME_PATTERNS order made the lead depend on where a
+    # theme happens to sit in a dict literal.
+    #
+    # That is not hypothetical. Widening `etb` to the modern "creature you control enters"
+    # templating gave Kadena, Slinking Sorcerer a second theme, and because `etb` is declared
+    # earlier in the dict it took the LEAD from `face_down` — the mechanic Kadena's whole card
+    # is about. Measured on builder_bench: on-theme cards 21 -> 8, synergy 40.5 -> 24.5.
+    # Exactly one commander in the pool was affected, and it was the archetype's own poster
+    # child, which is how close this came to shipping unnoticed.
+    found.sort(key=lambda t: (t in BROAD_THEMES, list(THEME_PATTERNS).index(t)))
     return found
 
 

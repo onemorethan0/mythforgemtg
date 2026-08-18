@@ -264,3 +264,37 @@ def test_the_dead_pattern_set_has_not_grown():
         f"pattern(s) newly match nothing — Magic probably re-templated the wording: {sorted(new)}")
     assert not fixed, (
         f"these are alive again; remove them from KNOWN_DEAD_PATTERNS: {sorted(fixed)}")
+
+
+# ── the LEAD theme decides 70% of the theme package ─────────────────────────────
+
+def test_a_broad_theme_never_leads_over_a_specific_one():
+    """`_theme_slot_split` gives the FIRST detected theme 70% of the ~20-card package.
+
+    Returning themes in `THEME_PATTERNS` order made that lead depend on where a theme happens
+    to sit in a dict literal. Widening `etb` to the modern "creature you control enters"
+    templating gave **Kadena, Slinking Sorcerer** a second theme, and because `etb` is declared
+    earlier it took the lead from `face_down` — the mechanic the whole card is about. Measured
+    on `builder_bench`: on-theme cards 21 -> 8, synergy 40.5 -> 24.5.
+    """
+    kadena = {"name": "Kadena, Slinking Sorcerer",
+              "oracle_text": "The first face-down creature spell you cast each turn costs {3} "
+                             "less to cast.\nWhenever a face-down creature you control enters, "
+                             "draw a card."}
+    detected = commander_analysis._detect_themes(kadena)
+    assert "face_down" in detected and "etb" in detected, detected
+    assert detected[0] == "face_down", (
+        f"the generic theme took the lead from the specific one: {detected}")
+
+
+def test_every_broad_theme_is_a_real_theme():
+    """A typo in `BROAD_THEMES` would silently demote nothing."""
+    unknown = commander_analysis.BROAD_THEMES - set(THEME_PATTERNS)
+    assert not unknown, f"BROAD_THEMES names themes that do not exist: {sorted(unknown)}"
+
+
+def test_detect_themes_is_deterministic():
+    """Two calls must agree — the sort has to be total, not dependent on set iteration."""
+    card = {"name": "X", "oracle_text": "Whenever a creature you control enters, create a "
+                                        "1/1 token. Put a +1/+1 counter on it."}
+    assert commander_analysis._detect_themes(card) == commander_analysis._detect_themes(card)
