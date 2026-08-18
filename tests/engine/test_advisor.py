@@ -269,33 +269,58 @@ def test_advisor_never_suggests_a_card_outside_the_colour_identity(make_card, fo
 
 
 def test_gain_floor_never_drops_below_the_axis_noise():
-    """`min_delta=1.0` was documented as filtering sim noise but had never been checked
-    against it. Measured seed-to-seed spread (same deck, 8 seeds, runs=150): speed 1.73,
-    ceiling 2.31, consistency 0.94, resilience/interaction 0.00. So on the two axes that
-    carry it the old default sat BELOW the noise — the advisor reported swaps whose gain is
-    smaller than re-rolling the RNG on an unchanged deck.
+    """A caller may raise the advisor's gain bar; it must not be able to lower it under the
+    measured run-to-run noise, because a "gain" smaller than that is re-rolling the RNG.
 
-    A caller may raise the bar; it must not be able to lower it under the noise.
+    Calls the REAL `_noise_floor` rather than re-implementing it — the previous version copied
+    the `max(min_delta, ...)` expression into the test, so the two could drift apart silently.
     """
-    from mythgauntlet.ratings.advisor import _AXIS_NOISE_FLOOR
+    from mythgauntlet.ratings.advisor import NOISE_REFERENCE_RUNS, _noise_floor
 
-    def effective(min_delta, target):
-        return max(min_delta, _AXIS_NOISE_FLOOR.get(target, 0.0))
+    def effective(min_delta, target, runs=NOISE_REFERENCE_RUNS):
+        return max(min_delta, _noise_floor(target, runs))
 
     # the default cannot buy a sub-noise suggestion on a simulated axis
-    assert effective(1.0, "speed") == _AXIS_NOISE_FLOOR["speed"] > 1.0
-    assert effective(1.0, "ceiling") == _AXIS_NOISE_FLOOR["ceiling"] > 1.0
+    assert effective(1.0, "speed") > 1.0
+    assert effective(1.0, "ceiling") > 1.0
     # nor can an explicit request for zero
     assert effective(0.0, "speed") > 0.0
     # a caller wanting a stricter bar still gets it
-    assert effective(9.0, "speed") == 9.0
-    # deterministic axes have no sim variance, so the caller's floor stands
-    assert effective(1.0, "resilience") == 1.0
+    assert effective(99.0, "speed") == 99.0
+    # a genuinely deterministic axis leaves the caller's floor alone
     assert effective(1.0, "interaction") == 1.0
-    # the floors are the measured values, not invented ones
-    assert _AXIS_NOISE_FLOOR["speed"] == 1.7
-    assert _AXIS_NOISE_FLOOR["ceiling"] == 2.3
 
+
+def test_resilience_is_not_a_noise_free_axis():
+    """`resilience` was floored at 0.0, and that was an artefact of how it was measured.
+
+    The original sweep called `analyze_deck` WITHOUT `run_resilience`, so resilience was never
+    simulated and came back constant — a clean 0.00 that looked like determinism. It is only
+    ever simulated when it IS the target axis, which is exactly when the floor is consulted,
+    and there its seed-to-seed spread is ~1.24 at runs=150 (~1.9 at runs=60). A floor of zero
+    meant every positive resilience delta passed, so resilience advice was unfiltered noise.
+    """
+    from mythgauntlet.ratings.advisor import _noise_floor
+
+    assert _noise_floor("resilience", 150) > 1.0
+
+
+def test_the_noise_floor_scales_with_run_count():
+    """Simulation noise falls as ~1/sqrt(runs), so a FLAT floor is correct at exactly one run
+    count. The constants were measured at 150 while every caller uses 60 — about 1.6x too low,
+    admitting precisely the noise the floor exists to exclude.
+    """
+    import math
+
+    from mythgauntlet.ratings.advisor import NOISE_REFERENCE_RUNS, _noise_floor
+
+    at_ref = _noise_floor("speed", NOISE_REFERENCE_RUNS)
+    quarter = _noise_floor("speed", NOISE_REFERENCE_RUNS // 4)
+    assert quarter == pytest.approx(at_ref * 2, rel=0.02), "quartering runs doubles the noise"
+    assert _noise_floor("speed", NOISE_REFERENCE_RUNS * 4) == pytest.approx(at_ref / 2, rel=0.02)
+    # a zero-noise axis stays zero at every run count
+    assert _noise_floor("interaction", 10) == 0.0
+    assert math.isclose(_noise_floor("speed", 0), _noise_floor("speed", 0))  # no div-by-zero
 
 def test_advisor_never_suggests_a_banned_card(make_card, forest, bear):
     """A collection-shaped candidate pool contains whatever the user owns, including cards

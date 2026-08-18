@@ -85,7 +85,7 @@ def main() -> int:
                     help="print what each strategy suggests CUTTING — the difference the "
                          "axis delta cannot show")
     ap.add_argument("--runs", type=int, default=60)
-    ap.add_argument("--seeds", type=int, nargs="+", default=[7, 21, 99, 123],
+    ap.add_argument("--seeds", type=int, nargs="+", default=[7, 21, 99, 123, 5, 42, 77, 2024],
                     help="sim seeds to average over. NEVER report a single "
                          "seed: run-to-run spread across this roster is "
                          "LARGER than the gap between the strategies.")
@@ -124,10 +124,30 @@ def main() -> int:
         print(f"{seed:>6} " + "".join(f"{v:>14.2f}" for v in row))
 
     print()
+    # Report the STANDARD ERROR OF THE MEAN, not just the raw spread. "spread 76 - 228" reads
+    # as "this number is meaningless"; the mean of n seeds is far better determined than any
+    # single seed, and sem is the honest measure of how well. Measured relative sd of a single
+    # seed is ~60% at runs=60, so the mean over 8 seeds carries roughly 20% error — enough to
+    # rank two strategies, not enough to quote a percentage difference to two decimals.
     for strat in STRATEGIES:
         v = per_seed[strat]
-        print(f"{strat:11} mean {statistics.fmean(v):8.2f}   "
+        sem = statistics.pstdev(v) / max(1, len(v) ** 0.5)
+        print(f"{strat:11} mean {statistics.fmean(v):8.2f} +/- {sem:6.2f} (sem)   "
               f"spread {min(v):8.2f} - {max(v):8.2f}")
+
+    # The PAIRED difference. Both strategies run on the same seed and the same decks, so the
+    # per-seed difference cancels the shared deck/seed noise that dominates each total. This is
+    # the statistic the comparison should be read from — a mean difference smaller than its own
+    # sem is not a result, however clean the two means look side by side.
+    a_, b_ = STRATEGIES
+    diffs = [x - y for x, y in zip(per_seed[a_], per_seed[b_])]
+    d_mean = statistics.fmean(diffs)
+    d_sem = statistics.pstdev(diffs) / max(1, len(diffs) ** 0.5)
+    verdict = ("INCONCLUSIVE - the difference is within its own error"
+               if abs(d_mean) <= d_sem else
+               f"{a_ if d_mean > 0 else b_} better")
+    print(f"
+paired difference ({a_} - {b_}): {d_mean:+8.2f} +/- {d_sem:.2f} (sem)   {verdict}")
 
     a, b = STRATEGIES
     differ = sum(1 for x, y in zip(pools[a], pools[b]) if x != y)

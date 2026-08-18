@@ -23,7 +23,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
 | S6 | ~~Engine card coverage~~ | **100%** top-100 · **0** uncompiled in top 300 | **Done** | — |
-| S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
+| S7 | Advisor seed variance | **quantified**: ~60% rel sd, needs ~16× runs | **Done** (bounded) | — |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
 
@@ -445,9 +445,66 @@ the thing it measures.** Both wrong answers were confident, specific, and quotab
 
 ## S7 & S8 — known, quantified, lower value
 
-- **S7 Advisor seed variance (79–231)** swamps the effects being measured. `advisor_bench` is
-  multi-seed by default, which is the correct mitigation; genuinely narrowing it means more
-  sims per evaluation, i.e. compute, not cleverness. Do not quote single-seed numbers.
+### S7 — the variance is real, and it is a compute problem. Here is the exact price.
+
+I said this might need compute rather than cleverness, then tried the cleverness first. Worth
+recording what did **not** work, because both attempts were plausible.
+
+**Attempt 1 — the metric.** The bench total is a sum over a THRESHOLDED selection, and per-deck
+deltas arrive in quantised lumps (a suggestion contributes ~7.3 or nothing). Suggestion count
+swings 1–5 across seeds (sd 1.53 on mean 3.00, 51% relative) while delta-per-suggestion is a
+stable 7.30 — so the count *is* the variance. That looked like a metric-shape problem.
+
+**Attempt 2 — the threshold.** It turned out `min_delta` is not the binding constraint;
+`effective_delta` floors at `_AXIS_NOISE_FLOOR`. So I measured that floor properly and found it
+**genuinely wrong** (below), fixed it — and the bench spread did not move at all: **79–231
+became 76–228**. The reported swaps sit around +7, far above even the corrected floor of ~4.
+The threshold was never what gated them.
+
+**What it actually is.** A swap's delta is the difference of two noisy analyses, so its error is
+~√2× the axis sd — about **5 points at runs=60, against a ~7-point effect**. A 7±5 measurement
+flips in and out between seeds no matter where the threshold sits. Measured directly: 4× the
+runs took relative sd **59.9% → 40.6%**, close to the 1/√runs the theory predicts. Extrapolating,
+**~16× the runs** (runs≈960) would be needed for ~15% relative sd.
+
+**So the price is now known rather than guessed**, and the mitigation that works is the one
+already in place: average across seeds and never quote one. Two changes landed:
+
+- **Default seeds 4 → 8**, and the bench now reports the **standard error of the mean** and the
+  **paired per-seed difference**. "spread 76–228" reads as *this number is meaningless*; the mean
+  over 8 seeds is far better determined than any single seed, and the paired difference cancels
+  the deck/seed noise both strategies share. A mean difference smaller than its own sem is now
+  printed as **INCONCLUSIVE** rather than as a winner.
+
+### The noise floor was wrong twice over *(fixed, independent of the above)*
+
+Worth landing on its own even though it did not move the bench:
+
+**It was measured at runs=150 while every caller uses runs=60.** Noise falls as ~1/√runs, so a
+flat constant is correct at exactly one run count and was ~1.6× too low in practice. It now
+**scales** with `cfg.runs` from a documented reference count.
+
+**`resilience` was floored at 0.0, and that was an artefact.** The original sweep called
+`analyze_deck` *without* `run_resilience`, so resilience was never simulated and returned a
+constant — a clean 0.00 that read as determinism. It is only ever simulated when it IS the
+target axis, which is exactly when the floor is consulted, and its real spread there is **1.24 at
+runs=150, ~1.9 at runs=60**. A floor of zero meant every positive resilience delta passed:
+resilience advice was unfiltered noise.
+
+Measured spread against the old floors:
+
+| axis | sd @60 | sd @150 | old floor |
+|---|---|---|---|
+| speed | 3.46 | 2.41 | 1.7 |
+| ceiling | 2.44 | 2.98 | 2.3 |
+| consistency | 1.40 | 0.89 | 0.9 |
+| resilience | **1.91** | **1.24** | **0.0** |
+| interaction | 0.00 | 0.00 | 0.0 |
+
+Regenerate with `python scripts/axis_noise.py` (`--check` diffs against the baked values), in
+the same idiom as `theme_base_rates.py` and `role_targets.py`. The old test re-implemented the
+`max(min_delta, floor)` expression locally, so it could drift from the real function; it now
+calls `_noise_floor` directly, and two new tests pin the scaling and the non-zero resilience.
 
 ### An "intermittent" test error that was neither intermittent nor contention *(fixed 2026-08-18)*
 

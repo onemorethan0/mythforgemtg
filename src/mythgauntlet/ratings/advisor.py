@@ -18,6 +18,7 @@ cross-axis trade-offs.
 from __future__ import annotations
 
 import dataclasses
+import math
 import re
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
@@ -381,13 +382,35 @@ def _swap_variant(resolved: ResolvedDeck, cut: Card, add: Card) -> ResolvedDeck:
 # This is a floor, not a significance test: clearing one sigma is not proof, it just stops
 # the list filling with results a re-run would reverse. Resilience and interaction are
 # computed deterministically, so they keep the caller's floor untouched.
+# Run count the values below were measured at. The floor is SCALED to the caller's actual
+# `cfg.runs`, because simulation noise falls roughly as 1/sqrt(runs) and a flat constant is
+# therefore correct at exactly one run count. It was measured at 150 while every caller uses
+# 60 — about 1.6x too low, admitting precisely the noise it exists to exclude.
+NOISE_REFERENCE_RUNS = 150
+
 _AXIS_NOISE_FLOOR = {
-    "speed": 1.7,
-    "ceiling": 2.3,
-    "consistency": 0.9,
-    "resilience": 0.0,
+    "speed": 2.41,
+    "ceiling": 2.98,
+    "consistency": 0.89,
+    # NOT 0.0. The original sweep called `analyze_deck` WITHOUT `run_resilience`, so
+    # resilience was never simulated and its spread read as a clean zero. It is only ever
+    # simulated when it IS the target axis — exactly when this floor is consulted — and its
+    # real spread there is ~1.24 at runs=150 (~1.91 at runs=60). A floor of zero meant every
+    # positive resilience delta passed, so resilience advice was unfiltered noise.
+    "resilience": 1.24,
     "interaction": 0.0,
 }
+
+
+def _noise_floor(axis: str, runs: int) -> float:
+    """The axis's seed-to-seed spread at THIS run count.
+
+    Regenerate the constants with `python scripts/axis_noise.py`; `--check` diffs them.
+    """
+    base = _AXIS_NOISE_FLOOR.get(axis, 0.0)
+    if not base or runs <= 0:
+        return base
+    return base * math.sqrt(NOISE_REFERENCE_RUNS / runs)
 
 
 def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
@@ -483,7 +506,7 @@ def advise(
     target = axis or weakest_axis(baseline)
     # Never report a gain smaller than the axis's own run-to-run spread, whatever the
     # caller asked for. A caller may raise the bar, not lower it below the noise.
-    effective_delta = max(min_delta, _AXIS_NOISE_FLOOR.get(target, 0.0))
+    effective_delta = max(min_delta, _noise_floor(target, cfg.runs))
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
