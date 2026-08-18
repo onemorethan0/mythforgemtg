@@ -153,11 +153,31 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          # (Yennett, Cryptic Sovereign). Kept as a long literal on purpose —
                          # "reveal the top card" alone is far too broad.
                          "reveal the top card of your library. you may cast"],
-    "voltron_combat":   ["first strike", "double strike", "trample", "unblockable",
-                         "can't be blocked", "whenever a creature attacks",
+    # A keyword this card merely HAS is not a plan. The bare keywords that used to lead this
+    # list (`trample`, `first strike`, `double strike`, `can't be blocked`, `unblockable`)
+    # fired on any creature printed with them, and on a hand-labelled 28-card gold set drawn
+    # from both sides the old list scored **50% accuracy on a balanced sample — chance**, with
+    # 14 false positives and 0 false negatives. It claimed 23.2% of every legend in Magic.
+    # Rakdos, the Showstopper is a coin-flip board wipe with trample; Devil Dinosaur is
+    # Dinosaur tribal with trample. This is the rule `collection_pool` already states —
+    # "having a keyword is not granting it" — and `theme_match` encodes as
+    # `strong_type_required`.
+    #
+    # Replacement scores **89% accuracy / 87% precision / 93% recall** on the same gold set
+    # and claims 15.6% of legends. `scripts/voltron_gold.py` is the scorer; re-run it before
+    # touching this list.
+    "voltron_combat":   ["whenever a creature attacks",
                          "whenever a creature you control attacks", "attacking causes",
                          "deals combat damage to a player", "additional combat phase",
-                         "whenever one or more creatures you control attack"],
+                         "whenever one or more creatures you control attack",
+                         # GRANTED or gained, never merely printed on the body.
+                         "gains trample", "gain trample", "have trample", "with trample",
+                         "gains first strike", "gain first strike", "have first strike",
+                         "with first strike",
+                         "gains double strike", "gain double strike", "have double strike",
+                         "with double strike",
+                         "gains flying", "gain flying", "have flying", "with flying",
+                         "gains menace", "gain menace", "have menace", "with menace"],
 }
 
 THEME_LABELS: dict[str, str] = {

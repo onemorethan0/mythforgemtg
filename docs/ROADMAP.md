@@ -25,7 +25,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S6 | Engine card coverage | **90.0%** — but the top 100 is the WORST band | **High** ↑ | L |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
-| **S9** | `voltron_combat` over-claims | **64.4% precision** · 23.2% of all legends | **High** | M |
+| **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
 
 ---
 
@@ -222,16 +222,41 @@ Candidate fixes, scored against the audit:
 | drop bare keywords | 264 | **96.2%** | 45.0% | 7.0% |
 | drop bare + require the keyword be GRANTED | 411 | 83.0% | 60.4% | 15.6% |
 
-**Deliberately NOT landed yet, and that is the point.** The ground truth here is the model's
-own opinion, and only the "no" side was hand-checked — the 565 it called combat-plan were not.
-Swinging a theme from 23.2% to 7.0% of every legend in Magic on unvalidated labels is precisely
-the mistake the advisor-variance caveat warns about: acting on a metric that cannot see the
-thing you care about.
+### Resolved with a hand-labelled gold set — and it overturned the model's preference
 
-**Plan.** Hand-label a gold set of ~30 drawn from BOTH sides (the audit only validated one),
-score the three candidate sets against it, and land the winner. Then re-run `builder_bench` —
-this theme feeds ~20 slots on 23% of commanders, so it is the single largest lever on what the
-builder drafts, in either direction.
+28 cards drawn from **both** sides (fixed seed 11) and labelled by hand from oracle text before
+anything was scored. Agreement with the model was **24/28 (86%)**; the four disagreements were
+all marginal, and two mattered — it called **Akiri, Line-Slinger** (a textbook equipment-voltron)
+and **Rhonas the Indomitable** *not* combat decks.
+
+| pattern set | accuracy | precision | recall | FP | FN |
+|---|---|---|---|---|---|
+| **original** (bare keywords) | **50%** | 50% | 100% | 14 | 0 |
+| drop bare keywords | 82% | 100% | 64% | 0 | 5 |
+| **drop bare + require the keyword be GRANTED** | **89%** | 87% | 93% | 2 | 1 |
+
+**On a balanced sample the shipped patterns scored 50% — chance.** They could not distinguish a
+combat deck from a non-combat one at all; they simply said yes to everything with a keyword
+(14 false positives, 0 false negatives).
+
+Note the model's own labels favoured *"drop bare keywords"* (96.2% precision there). The hand
+labels favour the granted variant, which keeps Akiri and Rhonas. **This is the case for gold
+sets in one table** — the cheaper signal picked the wrong winner.
+
+**Landed.** `voltron_combat` now claims **584 of 3,790 legends (15.4%)**, down from 879 (23.2%).
+`scripts/voltron_gold.py` is the scorer and pins the ORIGINAL list explicitly, because deriving
+it from the live module made every row identical the moment the fix landed — quietly turning
+the comparison into a no-op.
+
+**The honest cost, stated rather than buried:** themeless legends rose **946 → 1,095 (25.0% →
+28.9%)**, because ~295 legends lost a claim that was mostly false and had no other theme. That
+moves S1's headline the wrong way. It is still the right trade under this project's standing
+bar — an honest under-count beats a confident fabrication — but S1 and S9 pull against each
+other and the S1 number should be read with that in mind.
+
+**Still owed:** a `builder_bench` run. This theme feeds ~20 slots on what was 23% of commanders,
+so it is the single largest lever on what the builder actually drafts, and the bench is the only
+thing that measures that end to end.
 
 ---
 

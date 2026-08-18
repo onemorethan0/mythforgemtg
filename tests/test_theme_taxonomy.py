@@ -225,7 +225,6 @@ KNOWN_DEAD_PATTERNS = {
     ("etb", "flicker"),                          # flavour word, never printed in rules text
     ("energy", "gain {e}"),                      # energy is "you GET {E}", not "gain"
     ("theft", "under your control until end of turn"),
-    ("voltron_combat", "unblockable"),           # re-templated to "can't be blocked"
 }
 
 
