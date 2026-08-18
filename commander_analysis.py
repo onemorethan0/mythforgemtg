@@ -67,7 +67,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          # Tuvasa the Sunlit — the archetype's poster commander — matched none
                          # of the three above: it counts enchantments ("for each enchantment you
                          # control") and triggers on "your FIRST enchantment spell each turn".
-                         "enchantment you control", "enchantment spell", "enchantment cards"],
+                         "enchantment you control", "enchantment spell", "enchantment cards",
+                         # Singular. **Zur the Enchanter** — the archetype's namesake — tutors
+                         # "an enchantment card" and detected NOTHING before this.
+                         "an enchantment card"],
     "artifacts":        ["whenever an artifact enters", "whenever you cast an artifact",
                          "artifact you control",
                          # Plural and the artifact-creature phrasing: Alibou, Ancient Witness
@@ -77,7 +80,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "an artifact card",
                          # Singular card-type references: Szarekh mills for an "artifact creature
                          # card", Tannuk grants warp to "Artifact cards ... in your hand".
-                         "artifact creature card", "artifact cards"],
+                         "artifact creature card", "artifact cards",
+                         # Artifact ABILITIES and artifact ETB, both payoff-shaped (Kurkesh,
+                         # Ashnod the Uncaring, Akal Pakal).
+                         "ability of an artifact", "an artifact entered"],
     "voltron":          ["equip", "equipped creature", "attach", "aura attached"],
     "auras":            ["aura", "enchant creature", "enchanted creature"],
     "tribal_knights":   ["knight"],
@@ -86,12 +92,25 @@ THEME_PATTERNS: dict[str, list[str]] = {
     "draw_matters":     ["whenever you draw a card", "draw a card for each",
                          "whenever a card is drawn"],
     "lifegain":         ["whenever you gain life", "each life you gain",
-                         "whenever you gain 1 or more life"],
+                         "whenever you gain 1 or more life",
+                         # PAYOFF phrasings only. The ensemble surfaced a 33-card "lifegain"
+                         # cluster here, and most of it was `lifelink` (49 rescues, 5.0% of
+                         # legends) and "you gain N life" (44, 5.8%) — which identify lifegain
+                         # SOURCES, not payoffs. Filing those as a theme would spend 20 theme
+                         # slots on bodies that happen to gain life, which is precisely the
+                         # measured reason `big_mana` was dropped. These two pay you FOR the
+                         # life: 6 rescues between them, 0.6% of the pool.
+                         "life you gained", "extort"],
     "landfall":         ["whenever a land enters the battlefield under your control",
                          "landfall",
                          # The gap CLAUDE.md already flagged: extra land drops are the enabler
                          # half of the archetype (Flubs, the Fool detected nothing).
-                         "additional land"],
+                         "additional land",
+                         # 2024 TEMPLATING. Cards now print "a land you control enters", not
+                         # "a land enters the battlefield under your control" — the same change
+                         # that killed five theme_match rules. Tatyova, Steward of Tides and
+                         # Nissa, Vastwood Seer both read as themeless without this.
+                         "land you control enters"],
     "graveyard":        ["from your graveyard", "graveyard into your hand",
                          "when this card is put into your graveyard",
                          "flashback", "unearth", "delve",
@@ -103,7 +122,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "whenever a creature enters the battlefield under your control",
                          "whenever a nontoken creature enters",
                          "exile it, then return", "exile them, then return",
-                         "exile that card, then return", "flicker", "blink"],
+                         "exile that card, then return", "flicker", "blink",
+                         # Modern ETB templating without the "whenever" prefix, so conditional
+                         # and delayed forms match too (Elrond, Clement, Frodo Baggins).
+                         "creature you control enters"],
     "energy":           ["energy counter", "gain {e}", "{e},"],
     "chaos":            ["flip a coin", "at random", "will of the council", "votes", "goad"],
     "theft":            ["gain control", "under your control until end of turn"],

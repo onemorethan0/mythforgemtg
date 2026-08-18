@@ -17,7 +17,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
-| S1 | Commander themes undetected | **64 / 391 (16.4%)** ↓ from 80 | **High** | part done |
+| S1 | Commander themes undetected | corpus **64/391 (16.4%)** ↓80 · all legends **946/3790 (25.0%)** ↓963 | **High** | part done |
 | S2 | ~~Partner decks cannot be BUILT~~ | **built + validated** | **Done** | — |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
@@ -103,6 +103,35 @@ same 43 themes — it is archetypes with no entry.
 
 **Definition of done:** zero-theme under 15% of unique commanders, with no theme added whose
 STRONG rate exceeds ~2% of the card pool, and `builder_bench` mean synergy not down.
+
+### Second offload round: the whole legend pool, not just the corpus
+
+The corpus is 391 commanders; the app serves any of Magic's **3,790 legendary creatures**, and
+a pattern gap that shows up once in the corpus can show up thirty times across the pool. The
+rebuilt harness was run over all **525 themeless legends that have at least one candidate**
+(`scripts/offload/sweep_all_legends.py`) — 14b in 90 seconds, 32b in ten minutes, two passes,
+resumable. Both models scored all 525; they agreed on **257 (49%)**, of which **47** were a
+theme.
+
+**The biggest cluster was a trap, and rejecting it is the result.** 28 agreed on `lifegain`,
+but the shared wording was `lifelink` (49 rescues, **5.0%** of all legends) and "you gain N
+life" (44, **5.8%**) — which identify lifegain **sources**, not payoffs. Filing those would
+spend 20 theme slots on bodies that happen to gain life, which is exactly the measured reason
+`big_mana` was dropped. Only the two payoff phrasings were taken (`life you gained`, `extort`
+— 6 rescues, 0.6%).
+
+**What the round did land: four archetypal commanders the taxonomy should never have missed.**
+
+| commander | was | cause |
+|---|---|---|
+| **Zur the Enchanter** | *nothing* | tutors "**an** enchantment card" — singular, and the patterns only had plural |
+| **Tatyova, Steward of Tides** | *nothing* | **2024 templating**: cards print "a land you control enters", the patterns had the pre-2024 "a land enters the battlefield under your control" |
+| **Kurkesh, Onakke Ancient** | *nothing* | "ability of an artifact" |
+| **Akal Pakal, First Among Equals** | *nothing* | "an artifact entered" |
+
+The Tatyova case is the one to remember: it is the **same templating change that killed five
+`theme_match` rules**, still live in `THEME_PATTERNS` a taxonomy over. Worth a sweep of every
+pattern for pre-2024 wording.
 
 ### The n-gram pass ran, and found nothing worth adding — record it
 
