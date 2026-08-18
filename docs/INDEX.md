@@ -8,6 +8,11 @@ Docs for **Myth Forge — MTG Commander Deck Builder**. The root [`README.md`](.
 
 **[`HANDOFF.md`](HANDOFF.md)** — the committed record of the 2026-08-14 recommendation/measurement work: what changed and its measured effect, how to run the three benchmark harnesses, the caveats that must accompany any number they produce, the recurring bug classes in this codebase, and what is still open. Read it before touching `deck_builder`, `theme_match`, the theme taxonomy or the advisor.
 
+**[`ROADMAP.md`](ROADMAP.md)** — the measured shortfall map and the plan against it (2026-08-18):
+eight shortfalls with the number behind each, prioritised for **casual bracket 1–3 gauging**,
+plus a spec per fix and its definition of done. Also records what the local-model offload is
+and is not trusted for on this codebase, with the gold-set scores behind that call.
+
 ---
 
 ## Getting started
