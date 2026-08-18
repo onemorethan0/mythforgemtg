@@ -175,3 +175,79 @@ def test_no_theme_rule_is_dead():
         if deck_themes.BASE_RATE.get(theme, 0.0) * 34846 < 60:
             dead.append(theme)
     assert not dead, f"themes with no weak tier and a near-dead STRONG rule: {dead}"
+
+
+# ── the same sweep, one level down: individual rule ALTERNATIVES ─────────────────
+
+# `test_no_theme_rule_is_dead` above guards the THEME level — whether a theme is fillable at
+# all. This guards the alternatives INSIDE a rule, which is where re-templating actually bites:
+# a rule keeps working off its surviving alternatives while one of them quietly matches nothing,
+# so the theme looks healthy and is simply narrower than it reads.
+#
+# Measured over the 34,179-card pool. Note these are the SAME literals that were dead in
+# `commander_analysis.THEME_PATTERNS` — the two structures carry the same stale wording, which
+# is exactly the "two structures that must agree" class this repo keeps rediscovering.
+# Stored as the PLAIN phrase. `_lit` builds its patterns with `re.escape`, so the comparison
+# below unescapes rather than making this list carry backslashes — which is both unreadable
+# and an invalid-escape warning waiting to happen.
+KNOWN_DEAD_ALTERNATIVES = {
+    ("reanimator", "reanimate"),
+    ("enchantress", "whenever another enchantment you control enters"),
+    ("enchantress", "whenever an enchantment enters"),
+    ("etb", "exile them, then return"),
+    ("etb", "exile that card, then return"),
+    ("theft", "under your control until end of turn"),
+}
+
+
+def _pool():
+    import json
+    from pathlib import Path
+    p = Path(__file__).resolve().parents[1] / "data" / "cards_slim.json"
+    if not p.exists():
+        pytest.skip("needs data/cards_slim.json (absent in CI)")
+    return [theme_match.card_text(c)
+            for c in json.loads(p.read_text(encoding="utf-8"))["cards"]]
+
+
+def _dead_alternatives(texts):
+    dead = set()
+    for theme in theme_match.THEMES:
+        rule = theme_match.THEME_RULES.get(theme) or {}
+        for key in ("strong_alternatives", "weak_alternatives"):
+            for alt in rule.get(key) or []:
+                # An alternative is a CONJUNCTION: every pattern in it must match.
+                if not any(all(p.search(t) for p in alt) for t in texts):
+                    # `_lit` patterns are re.escape'd; strip that back to the plain phrase so
+                    # the known-set above stays readable. `_wb` patterns carry real regex and
+                    # would be mangled here — none of them are dead, and a newly-dead one
+                    # still reports, just with its escaping intact.
+                    dead.add((theme, " AND ".join(p.pattern.replace("\\", "") for p in alt)))
+    return dead
+
+
+def test_the_dead_alternative_set_has_not_grown():
+    """Ratchet, mirroring `test_the_dead_pattern_set_has_not_grown` for the other structure.
+
+    Magic re-words itself and Scryfall rewrites old cards to the modern Oracle text, so a
+    literal that was correct when written can stop matching with nothing failing.
+    """
+    dead = _dead_alternatives(_pool())
+    new = dead - KNOWN_DEAD_ALTERNATIVES
+    fixed = KNOWN_DEAD_ALTERNATIVES - dead
+    assert not new, (
+        f"rule alternative(s) newly match nothing — check for re-templating: {sorted(new)}")
+    assert not fixed, (
+        f"alive again; remove from KNOWN_DEAD_ALTERNATIVES: {sorted(fixed)}")
+
+
+def test_every_theme_keeps_at_least_one_live_alternative():
+    """The failure that would actually break strict mode: a rule nothing can satisfy."""
+    texts = _pool()
+    dead_by_theme = {}
+    for theme in theme_match.THEMES:
+        rule = theme_match.THEME_RULES.get(theme) or {}
+        alts = (rule.get("strong_alternatives") or []) + (rule.get("weak_alternatives") or [])
+        if alts and not any(any(all(p.search(t) for p in alt) for t in texts) for alt in alts):
+            dead_by_theme[theme] = len(alts)
+    assert not dead_by_theme, f"themes whose every alternative is dead: {dead_by_theme}"

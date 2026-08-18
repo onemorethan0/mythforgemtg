@@ -155,8 +155,24 @@ theme nothing can trigger, silently) and `test_the_dead_pattern_set_has_not_grow
 against `KNOWN_DEAD_PATTERNS`: a newly-dead pattern fails, and so does fixing one without
 removing it from the list.
 
+### And the same sweep on the other structure
+
+`theme_match` carries the same wording, so its 94 rule alternatives were swept too — **6 dead,
+14 thin (<15 cards)**. The dead six are *the same literals* that were dead in `THEME_PATTERNS`
+(`reanimate`, `whenever an enchantment enters`, `exile them, then return`, …), which is this
+repo's standing "two structures that must agree" class arriving once more.
+
+The thin list is its own warning: `whenever you cast a sorcery` matches **one** card,
+`whenever a land enters the battlefield under your control` **one**, `whenever a creature
+enters the battlefield under your control` **two**. Those rules survive only on their sibling
+alternatives.
+
+Both structures now have a matching pair of guards — a hard "no theme has zero live
+alternatives" and a ratchet against a known-dead set. The known sets store the **plain phrase**
+and unescape at comparison time, so they stay readable and carry no backslashes.
+
 **Standing lesson: Magic re-words itself, so a pattern that was correct when written can stop
-matching without anything failing.** That is now tested rather than remembered.
+matching without anything failing.** That is now tested rather than remembered — in both places.
 
 ### The n-gram pass ran, and found nothing worth adding — record it
 
