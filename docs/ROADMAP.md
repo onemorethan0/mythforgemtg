@@ -399,6 +399,31 @@ is raised.
 - **S7 Advisor seed variance (79–231)** swamps the effects being measured. `advisor_bench` is
   multi-seed by default, which is the correct mitigation; genuinely narrowing it means more
   sims per evaluation, i.e. compute, not cleverness. Do not quote single-seed numbers.
+
+### An "intermittent" test error that was neither intermittent nor contention *(fixed 2026-08-18)*
+
+`tests/engine/test_advisor.py` errored twice under load and I twice put it down to resource
+contention. It *was* contention — self-inflicted, and hiding a correctness problem.
+
+`SemanticsStore()` **with no arguments** resolves `compiler.compiled_dir()`, which reads
+`MYTHGAUNTLET_STORE`. On a dev machine that variable is set, so a fixture commented
+*"empty → everything resolves at rung 1 (offline)"* was loading **31,042 CCMs in 7.5 seconds**:
+
+- the rung-1 tests were running at **rung 2/3** against the real compiled store;
+- **CI and a dev machine exercised different code paths** — CI has no store so it genuinely got
+  rung 1, and `CLAUDE.md`'s stated invariant that the suite passes with no ccm store was only
+  accidentally true;
+- each instantiation re-read 31k files, which is where the `OSError` came from — it surfaced
+  only when the suite ran beside another job walking the same store.
+
+Five bare calls across two files now use a session-scoped `empty_store` fixture.
+**Suite runtime 160s → 74s** (2.2×), and everything still passes at genuine rung 1, so nothing
+was quietly depending on real semantics. Guarded by an emptiness assertion plus an **AST scan**
+for bare `SemanticsStore()` — the failure is one of INTENT, since the call works fine and
+merely does something other than what the surrounding test claims.
+
+**Lesson worth keeping: a comment is not a test.** "Offline", "empty" and "synthetic" are
+claims, and this repo now checks all three rather than asserting them in prose.
 - **S8 Native `alert()`** for errors. The `Toaster` component already exists — this is a
   substitution at three sites.
 
