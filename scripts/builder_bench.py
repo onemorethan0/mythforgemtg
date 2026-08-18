@@ -11,6 +11,25 @@ path and records what came out, so two commits can be compared as numbers.
 Committed reference runs live in docs/bench/ (data/ is gitignored):
   baseline-c6ddd79.json  the builder before the 2026-08-14 work
   current.json           the same roster at HEAD; refresh it when the builder changes
+  strict-current.json    the --strict arm at HEAD
+
+TWO ARMS. The default measures the SCRYFALL path, which is what an ordinary build runs.
+`--strict` measures `card_source="collection"`, which drafts from an owned pool via
+`theme_match` — code the Scryfall arm never executes. Five theme_match rules were dead for
+a long time (see tests/test_theme_match_revived.py) precisely because nothing end-to-end
+exercised them.
+
+WHAT THE STRICT ARM TAUGHT US ABOUT MEASURING IT. The obvious metric, `shortfall["theme"]`,
+does NOT detect a dead rule: `_fetch_theme_synergy_list` sweeps a dry theme's unspent slots
+across the other active themes, so the package still fills and the total is unmoved —
+measured at an identical 141 with the rules dead and fixed. What moves is COMPOSITION. A
+strict Shelob build (tokens + aristocrats) drafted 27 tokens / 9 aristocrats with the dead
+rules and 18/18 with them fixed. `mean_weakest_theme_cards` is the detector that follows
+from that, and it is the only summary figure that separates the two arms (7.5 vs 9.12).
+
+That number UNDERSTATES the effect: only 2 of the 20 roster commanders touch a revived
+theme. Extending the roster would sharpen it, but the roster is deliberately fixed —
+changing it invalidates comparison against the committed baseline.
 
 The roster is FIXED and committed. Comparing runs over different commanders measures the
 commanders, not the change.
@@ -37,6 +56,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
+import collection  # noqa: E402
 import collection_pool  # noqa: E402
 import deck_quality  # noqa: E402
 import deck_themes  # noqa: E402
@@ -44,7 +64,7 @@ import edhrec_lift  # noqa: E402
 import lift_stats  # noqa: E402
 import theme_match  # noqa: E402
 from commander_analysis import build_commander_profile  # noqa: E402
-from deck_builder import DeckBuilder  # noqa: E402
+from deck_builder import SOURCE_COLLECTION, DeckBuilder  # noqa: E402
 import scryfall_client  # noqa: E402
 from scryfall_client import ScryfallClient  # noqa: E402
 
@@ -105,7 +125,8 @@ def _role_counts(deck: list[dict]) -> dict[str, int]:
 
 
 def _validate(deck: list[dict], roles: dict[str, int], padded: int,
-              themes: list[str], colourless: bool = False) -> str | None:
+              themes: list[str], colourless: bool = False,
+              strict: bool = False) -> str | None:
     """Why this build must not be counted, or None if it is sound.
 
     `padded` is the builder's own signal and the most reliable one: any padding at
@@ -115,12 +136,16 @@ def _validate(deck: list[dict], roles: dict[str, int], padded: int,
     """
     if len(deck) != 99:
         return f"deck has {len(deck)} cards, not 99"
-    if padded:
+    # In the SCRYFALL arm padding means a role query came back empty and the run would
+    # be measuring the network. In the STRICT arm padding is the expected, honest
+    # outcome of a collection that cannot cover the plan — it is reported in
+    # `shortfall`, which is the whole point of measuring this arm.
+    if padded and not strict:
         return f"builder padded {padded} slots — role queries came back empty"
     # Skipped for colourless commanders: a Kozilek manabase is legitimately ~34 Wastes
     # plus utility lands, which tripped this gate on an otherwise clean build.
     basics = sum(int(c.get("quantity", 1) or 1) for c in deck if _is_basic(c))
-    if not colourless and basics > MAX_BASICS:
+    if not colourless and not strict and basics > MAX_BASICS:
         return f"{basics} basic lands — role queries returned nothing (rate limited?)"
     # Role counts are REPORTED, never a validity gate. The builder drafts roles from
     # Scryfall `otag:` queries while `collection_pool.classify` is the SEPARATE local
@@ -145,8 +170,36 @@ def _curve_deviation(deck: list[dict], commander_mv: int) -> float:
     return float(sum(abs(have.get(mv, 0) - want) for mv, want in target.items()))
 
 
-def run(pause: float) -> dict:
+COLLECTION_DECKS = 40      # corpus decks unioned into the synthetic collection
+
+
+def synthetic_collection() -> set[str]:
+    """A reproducible "collection": every card in the first N corpus decks.
+
+    Strict mode drafts from what you OWN, so measuring it needs a pool. The user's
+    real collection.csv is the wrong choice — it is personal data and it changes, so
+    two runs would not be comparable. The corpus is already committed, deterministic,
+    and made of real decks, which is exactly the shape a collection has.
+    """
+    names: set[str] = set()
+    root = Path(__file__).resolve().parents[1] / "corpus" / "decks"
+    for path in sorted(root.glob("*.txt"))[:COLLECTION_DECKS]:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or line.endswith(":"):
+                continue
+            parts = line.split(None, 1)
+            if len(parts) == 2 and parts[0].rstrip("x").isdigit():
+                names.add(collection.owned_key(parts[1]))
+    return {n for n in names if n}
+
+
+def run(pause: float, strict: bool = False) -> dict:
     client = ScryfallClient()
+    owned = synthetic_collection() if strict else set()
+    if strict:
+        print(f"strict arm: synthetic collection of {len(owned)} unique cards "
+              f"from {COLLECTION_DECKS} corpus decks")
     results = []
     for i, name in enumerate(ROSTER, 1):
         print(f"[{i:2}/{len(ROSTER)}] {name}", flush=True)
@@ -163,8 +216,17 @@ def run(pause: float) -> dict:
             # empty. That is the unambiguous marker, so capture it rather than trying
             # to infer rate-limiting from the finished list.
             buf = io.StringIO()
+            builder = DeckBuilder(client)
             with contextlib.redirect_stdout(buf):
-                deck = DeckBuilder(client).build(profile, bracket=3)
+                deck = builder.build(
+                    profile, bracket=3,
+                    owned=set(owned) if strict else None,
+                    card_source=SOURCE_COLLECTION if strict else "scryfall")
+            # Strict mode REPORTS what the collection could not cover. That is the
+            # metric the Scryfall arm has no equivalent for, and it is exactly what
+            # five dead theme_match rules were silently inflating.
+            row["shortfall"] = dict(builder.shortfall)
+            row["source_fallback"] = builder.source_fallback or ""
             log = buf.getvalue()
             padded = 0
             for line in log.splitlines():
@@ -175,7 +237,7 @@ def run(pause: float) -> dict:
 
             roles = _role_counts(deck)
             invalid = _validate(deck, roles, padded, profile.themes,
-                                colourless=profile.is_colorless)
+                                colourless=profile.is_colorless, strict=strict)
             row.update({
                 "themes": list(profile.themes),
                 "deck_size": len(deck),
@@ -209,6 +271,18 @@ def run(pause: float) -> dict:
                        for t in profile.themes)
             )
             row["on_theme_cards"] = on_theme
+            # PER-THEME, not just the total. A dead theme_match rule does not change
+            # the total: `_fetch_theme_synergy_list` sweeps a dry theme's unspent slots
+            # across the others, so the package still fills and `shortfall` is
+            # unmoved. What shifts is COMPOSITION — with the five dead rules a strict
+            # Shelob build drafted 27 tokens and 9 aristocrats; with them fixed it is
+            # 18/18. Measuring only the total is why the first version of this arm
+            # reported an identical 141 shortfall for both.
+            row["theme_cards"] = {
+                t: sum(1 for c in deck
+                       if theme_match.theme_score(c, t) == theme_match.STRONG)
+                for t in profile.themes
+            }
             row["deck_themes"] = deck_themes.detect_deck_themes(deck)
         except Exception as exc:                      # noqa: BLE001 - one bad commander
             row["invalid"] = f"{type(exc).__name__}: {exc}"
@@ -216,6 +290,13 @@ def run(pause: float) -> dict:
         if pause:
             time.sleep(pause)
     return {"roster": list(ROSTER), "results": results}
+
+
+def _mean_weakest_theme(rows: list[dict]) -> float | None:
+    """Mean, over multi-theme decks, of the LEAST-served active theme's card count."""
+    weakest = [min(r["theme_cards"].values()) for r in rows
+               if len(r.get("theme_cards") or {}) >= 2]
+    return round(statistics.fmean(weakest), 2) if weakest else None
 
 
 def _summary(payload: dict) -> dict:
@@ -235,6 +316,14 @@ def _summary(payload: dict) -> dict:
         "mean_on_theme_cards": round(statistics.fmean(on), 2) if on else None,
         "commanders_with_themes": len(themed),
         "colors_ok": sum(1 for r in rows if r.get("colors_ok")),
+        # Strict-arm only; absent from a Scryfall run.
+        "theme_shortfall": sum(r.get("shortfall", {}).get("theme", 0) for r in rows),
+        "decks_short_on_theme": sum(1 for r in rows
+                                    if r.get("shortfall", {}).get("theme")),
+        "padded_slots": sum(r.get("padded_slots", 0) for r in rows),
+        # The starved-theme detector: the least-served active theme, averaged. A rule
+        # that stops matching shows up here and nowhere else in this summary.
+        "mean_weakest_theme_cards": _mean_weakest_theme(rows),
     }
 
 
@@ -280,6 +369,10 @@ def main() -> int:
     # silently EMPTY, so the run would measure the network instead of the code.
     ap.add_argument("--rate-delay", type=float, default=0.35,
                     help="min seconds between Scryfall requests (default 0.35)")
+    ap.add_argument("--strict", action="store_true",
+                    help="build from the synthetic collection (card_source=collection) "
+                         "instead of Scryfall — exercises theme_match, which the "
+                         "Scryfall arm never touches")
     args = ap.parse_args()
 
     scryfall_client.RATE_LIMIT_DELAY = args.rate_delay
@@ -292,7 +385,7 @@ def main() -> int:
         _compare(before, after)
         return 0
 
-    payload = run(args.pause)
+    payload = run(args.pause, strict=args.strict)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
