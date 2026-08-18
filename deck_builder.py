@@ -339,6 +339,34 @@ class DeckBuilder:
             return candidates
         return edhrec_lift.lift_order(candidates, self._lifts)
 
+    def _lift_sort_pool(self) -> None:
+        """Re-order the STRICT pool by this commander's EDHREC lift, in place.
+
+        `collection_pool.build_pool` sorts every list by `rank_key` — global EDHREC
+        popularity, which is precisely the commander-blind ordering `_lift_sorted` replaced
+        on every Scryfall path. Strict mode returns early in each `_strict()` branch, so it
+        never reached that code and kept drafting by popularity.
+
+        This module previously claimed the owned pool was "small enough that its own
+        ordering already dominates". That was an assumption, and measuring it says
+        otherwise: over the benchmark's synthetic collection (2,231 cards), strict builds
+        averaged 5.1 synergy against a 13.7 ceiling achievable from the SAME collection —
+        8.6 points of headroom left on the table.
+
+        Done ONCE here rather than at each draft site so every strict branch — roles,
+        theme, creature floor, goodstuff — gets it from one place and cannot drift. The
+        lists are views over a shared pool (a three-role card appears in three of them), so
+        each is sorted independently; `_lift_sorted` is a stable partition, which means
+        `rank_key` order survives inside every lift tier.
+        """
+        if not self._pool or not self._lifts:
+            return
+        self._pool.lands = self._lift_sorted(self._pool.lands)
+        self._pool.creatures = self._lift_sorted(self._pool.creatures)
+        self._pool.flex = self._lift_sorted(self._pool.flex)
+        self._pool.roles = {r: self._lift_sorted(cards)
+                            for r, cards in self._pool.roles.items()}
+
     def _prefer_owned(self, candidates: list[dict]) -> list[dict]:
         """Reorder EDHREC-ranked candidates so cards the user OWNS come first.
 
@@ -944,6 +972,7 @@ class DeckBuilder:
                     {"name": profile.name, "color_identity": list(profile.color_identity)},
                     self._owned_cards,
                 )
+                self._lift_sort_pool()
             else:
                 # No usable owned pool — a strict build would be 99 basic lands. Fall
                 # back to Scryfall and say so in words. A sentinel count in `shortfall`

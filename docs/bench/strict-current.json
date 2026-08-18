@@ -34,29 +34,30 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 20,
-        "draw": 17,
+        "ramp": 22,
+        "draw": 16,
         "removal": 8,
         "wipe": 4,
-        "protection": 6,
-        "finisher": 3
+        "protection": 4,
+        "finisher": 4
       },
       "basics": 28,
       "curve_deviation": 14.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 7.6,
+      "synergy": 19.5,
       "baseline": 10.9,
-      "coverage": 0.563,
+      "coverage": 0.521,
       "verdict": "off-plan",
-      "on_theme_cards": 28,
+      "on_theme_cards": 33,
       "theme_cards": {
-        "tribal_goblins": 11,
-        "tokens": 25
+        "tribal_goblins": 15,
+        "tokens": 28
       },
       "deck_themes": [
         "tokens",
-        "tribal_goblins"
+        "tribal_goblins",
+        "aristocrats"
       ]
     },
     {
@@ -71,29 +72,30 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 22,
-        "draw": 14,
-        "removal": 8,
+        "ramp": 20,
+        "draw": 16,
+        "removal": 9,
         "wipe": 4,
-        "protection": 7,
+        "protection": 5,
         "finisher": 3
       },
       "basics": 18,
-      "curve_deviation": 6.0,
+      "curve_deviation": 0.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 8.0,
+      "synergy": 18.5,
       "baseline": 7.3,
-      "coverage": 0.494,
+      "coverage": 0.654,
       "verdict": "off-plan",
-      "on_theme_cards": 34,
+      "on_theme_cards": 41,
       "theme_cards": {
-        "tokens": 21,
-        "voltron_combat": 17
+        "tokens": 30,
+        "voltron_combat": 16
       },
       "deck_themes": [
         "tokens",
-        "landfall"
+        "landfall",
+        "impulse"
       ]
     },
     {
@@ -107,27 +109,29 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 21,
-        "draw": 23,
-        "removal": 11,
+        "ramp": 20,
+        "draw": 22,
+        "removal": 10,
         "wipe": 4,
-        "protection": 4,
-        "finisher": 4
+        "protection": 5,
+        "finisher": 5
       },
       "basics": 24,
-      "curve_deviation": 10.0,
+      "curve_deviation": 4.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 6.9,
+      "synergy": 18.8,
       "baseline": 7.2,
-      "coverage": 0.693,
-      "verdict": "brew",
-      "on_theme_cards": 28,
+      "coverage": 0.813,
+      "verdict": "off-plan",
+      "on_theme_cards": 52,
       "theme_cards": {
-        "tokens": 28
+        "tokens": 52
       },
       "deck_themes": [
-        "tokens"
+        "tokens",
+        "sagas",
+        "tribal_goblins"
       ]
     },
     {
@@ -142,28 +146,29 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 18,
-        "draw": 12,
-        "removal": 8,
-        "wipe": 4,
-        "protection": 4,
-        "finisher": 5
+        "ramp": 12,
+        "draw": 14,
+        "removal": 10,
+        "wipe": 6,
+        "protection": 3,
+        "finisher": 3
       },
       "basics": 23,
-      "curve_deviation": 18.0,
+      "curve_deviation": 10.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 6.6,
+      "synergy": 17.0,
       "baseline": 5.2,
-      "coverage": 0.632,
-      "verdict": "off-plan",
-      "on_theme_cards": 17,
+      "coverage": 0.75,
+      "verdict": "on-rails",
+      "on_theme_cards": 27,
       "theme_cards": {
-        "aristocrats": 10,
-        "reanimator": 7
+        "aristocrats": 20,
+        "reanimator": 8
       },
       "deck_themes": [
         "aristocrats",
+        "graveyard",
         "reanimator"
       ]
     },
@@ -178,24 +183,24 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
+        "ramp": 13,
         "draw": 15,
-        "removal": 10,
-        "wipe": 4,
-        "protection": 7,
-        "finisher": 3
+        "removal": 11,
+        "wipe": 5,
+        "protection": 5,
+        "finisher": 4
       },
       "basics": 13,
-      "curve_deviation": 14.0,
+      "curve_deviation": 0.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": -0.8,
+      "synergy": 7.0,
       "baseline": 3.2,
-      "coverage": 0.616,
+      "coverage": 0.779,
       "verdict": "off-plan",
-      "on_theme_cards": 20,
+      "on_theme_cards": 36,
       "theme_cards": {
-        "counters": 20
+        "counters": 36
       },
       "deck_themes": [
         "counters",
@@ -213,26 +218,28 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 18,
-        "draw": 16,
-        "removal": 9,
+        "ramp": 21,
+        "draw": 15,
+        "removal": 8,
         "wipe": 4,
-        "protection": 6,
+        "protection": 5,
         "finisher": 3
       },
       "basics": 22,
-      "curve_deviation": 6.0,
+      "curve_deviation": 16.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 0.8,
+      "synergy": 13.7,
       "baseline": 9.3,
-      "coverage": 0.494,
+      "coverage": 0.506,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {
         "enchantress": 0
       },
-      "deck_themes": []
+      "deck_themes": [
+        "landfall"
+      ]
     },
     {
       "commander": "Edgar Markov",
@@ -248,30 +255,31 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
+        "ramp": 13,
         "draw": 18,
-        "removal": 10,
+        "removal": 8,
         "wipe": 5,
         "protection": 5,
-        "finisher": 7
+        "finisher": 6
       },
       "basics": 19,
-      "curve_deviation": 6.0,
-      "colors_ok": true,
-      "colors_short": {},
-      "synergy": 3.0,
+      "curve_deviation": 2.0,
+      "colors_ok": false,
+      "colors_short": {
+        "R": 3
+      },
+      "synergy": 8.5,
       "baseline": 6.3,
-      "coverage": 0.575,
+      "coverage": 0.738,
       "verdict": "off-plan",
       "on_theme_cards": 30,
       "theme_cards": {
         "tribal_vampires": 1,
-        "tokens": 20,
-        "counters": 10,
-        "voltron_combat": 11
+        "tokens": 17,
+        "counters": 13,
+        "voltron_combat": 13
       },
       "deck_themes": [
-        "tokens",
         "aristocrats"
       ]
     },
@@ -286,26 +294,24 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 21,
-        "draw": 14,
-        "removal": 12,
+        "ramp": 19,
+        "draw": 16,
+        "removal": 11,
         "wipe": 4,
-        "protection": 3,
+        "protection": 6,
         "finisher": 3
       },
       "basics": 9,
-      "curve_deviation": 12.0,
-      "colors_ok": false,
-      "colors_short": {
-        "W": 1
-      },
-      "synergy": 11.7,
+      "curve_deviation": 18.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 16.7,
       "baseline": 9.7,
-      "coverage": 0.622,
+      "coverage": 0.744,
       "verdict": "off-plan",
-      "on_theme_cards": 18,
+      "on_theme_cards": 24,
       "theme_cards": {
-        "tribal_dragons": 18
+        "tribal_dragons": 24
       },
       "deck_themes": [
         "tribal_dragons"
@@ -314,7 +320,7 @@
     {
       "commander": "Kadena, Slinking Sorcerer",
       "shortfall": {
-        "theme": 18
+        "theme": 19
       },
       "source_fallback": "",
       "padded_slots": 0,
@@ -324,22 +330,20 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 19,
-        "draw": 14,
-        "removal": 10,
-        "wipe": 4,
+        "ramp": 17,
+        "draw": 17,
+        "removal": 7,
+        "wipe": 5,
         "protection": 4,
         "finisher": 4
       },
       "basics": 18,
-      "curve_deviation": 18.0,
-      "colors_ok": false,
-      "colors_short": {
-        "U": 1
-      },
-      "synergy": 1.7,
+      "curve_deviation": 6.0,
+      "colors_ok": true,
+      "colors_short": {},
+      "synergy": 15.4,
       "baseline": 11.7,
-      "coverage": 0.481,
+      "coverage": 0.469,
       "verdict": "off-plan",
       "on_theme_cards": 2,
       "theme_cards": {
@@ -361,38 +365,38 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 23,
-        "draw": 21,
-        "removal": 13,
+        "ramp": 16,
+        "draw": 15,
+        "removal": 12,
         "wipe": 4,
-        "protection": 5,
-        "finisher": 4
+        "protection": 4,
+        "finisher": 5
       },
       "basics": 8,
-      "curve_deviation": 12.0,
+      "curve_deviation": 0.0,
       "colors_ok": false,
       "colors_short": {
-        "U": 1,
-        "W": 3
+        "B": 2
       },
-      "synergy": 6.6,
+      "synergy": 19.3,
       "baseline": 12.1,
-      "coverage": 0.571,
+      "coverage": 0.725,
       "verdict": "off-plan",
-      "on_theme_cards": 20,
+      "on_theme_cards": 44,
       "theme_cards": {
-        "sagas": 10,
-        "impulse": 10
+        "sagas": 34,
+        "impulse": 11
       },
       "deck_themes": [
+        "sagas",
         "impulse",
-        "sagas"
+        "landfall"
       ]
     },
     {
       "commander": "Etali, Primal Storm",
       "shortfall": {
-        "theme": 3
+        "theme": 4
       },
       "source_fallback": "",
       "padded_slots": 0,
@@ -402,28 +406,27 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 25,
-        "draw": 25,
-        "removal": 9,
+        "ramp": 24,
+        "draw": 24,
+        "removal": 10,
         "wipe": 4,
         "protection": 4,
         "finisher": 3
       },
       "basics": 29,
-      "curve_deviation": 18.0,
+      "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 9.1,
+      "synergy": 12.5,
       "baseline": 5.6,
-      "coverage": 0.557,
+      "coverage": 0.729,
       "verdict": "off-plan",
       "on_theme_cards": 18,
       "theme_cards": {
         "impulse": 18
       },
       "deck_themes": [
-        "impulse",
-        "aristocrats"
+        "impulse"
       ]
     },
     {
@@ -438,25 +441,23 @@
       "deck_size": 99,
       "roles": {
         "ramp": 22,
-        "draw": 16,
+        "draw": 13,
         "removal": 10,
         "wipe": 4,
-        "protection": 3,
+        "protection": 4,
         "finisher": 3
       },
       "basics": 9,
-      "curve_deviation": 12.0,
+      "curve_deviation": 6.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": -0.5,
+      "synergy": 6.2,
       "baseline": 4.7,
-      "coverage": 0.678,
+      "coverage": 0.867,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
-      "deck_themes": [
-        "aristocrats"
-      ]
+      "deck_themes": []
     },
     {
       "commander": "Tymna the Weaver",
@@ -469,20 +470,20 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 16,
-        "draw": 17,
+        "ramp": 10,
+        "draw": 13,
         "removal": 10,
         "wipe": 6,
-        "protection": 7,
-        "finisher": 3
+        "protection": 5,
+        "finisher": 6
       },
       "basics": 22,
-      "curve_deviation": 6.0,
+      "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 2.0,
+      "synergy": 8.9,
       "baseline": 4.1,
-      "coverage": 0.675,
+      "coverage": 0.805,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -501,20 +502,20 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 20,
+        "ramp": 19,
         "draw": 17,
         "removal": 9,
         "wipe": 4,
-        "protection": 3,
+        "protection": 5,
         "finisher": 3
       },
       "basics": 8,
-      "curve_deviation": 12.0,
+      "curve_deviation": 2.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": -5.1,
+      "synergy": 3.1,
       "baseline": 3.3,
-      "coverage": 0.582,
+      "coverage": 0.385,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -533,26 +534,24 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 21,
+        "ramp": 15,
         "draw": 16,
         "removal": 9,
         "wipe": 4,
-        "protection": 3,
+        "protection": 4,
         "finisher": 3
       },
       "basics": 9,
-      "curve_deviation": 10.0,
+      "curve_deviation": 0.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 1.2,
+      "synergy": 9.2,
       "baseline": 7.0,
-      "coverage": 0.578,
+      "coverage": 0.689,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
-      "deck_themes": [
-        "aristocrats"
-      ]
+      "deck_themes": []
     },
     {
       "commander": "Nin, the Pain Artist",
@@ -565,24 +564,26 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 19,
-        "draw": 22,
-        "removal": 12,
+        "ramp": 17,
+        "draw": 16,
+        "removal": 14,
         "wipe": 4,
-        "protection": 6,
+        "protection": 5,
         "finisher": 3
       },
       "basics": 22,
-      "curve_deviation": 10.0,
+      "curve_deviation": 2.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 6.0,
+      "synergy": 15.1,
       "baseline": 5.5,
-      "coverage": 0.636,
+      "coverage": 0.805,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
-      "deck_themes": []
+      "deck_themes": [
+        "draw_matters"
+      ]
     },
     {
       "commander": "Kozilek, Butcher of Truth",
@@ -597,20 +598,20 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 30,
-        "draw": 16,
-        "removal": 7,
+        "ramp": 27,
+        "draw": 14,
+        "removal": 8,
         "wipe": 0,
-        "protection": 5,
+        "protection": 7,
         "finisher": 2
       },
       "basics": 34,
-      "curve_deviation": 12.0,
+      "curve_deviation": 10.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 4.2,
+      "synergy": 11.9,
       "baseline": 4.7,
-      "coverage": 0.508,
+      "coverage": 0.492,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -633,27 +634,28 @@
       "deck_size": 99,
       "roles": {
         "ramp": 15,
-        "draw": 24,
-        "removal": 12,
+        "draw": 23,
+        "removal": 11,
         "wipe": 0,
-        "protection": 5,
+        "protection": 4,
         "finisher": 3
       },
       "basics": 28,
-      "curve_deviation": 12.0,
+      "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 9.8,
+      "synergy": 16.6,
       "baseline": 5.2,
-      "coverage": 0.423,
-      "verdict": "brew",
-      "on_theme_cards": 31,
+      "coverage": 0.549,
+      "verdict": "off-plan",
+      "on_theme_cards": 33,
       "theme_cards": {
         "tokens": 30,
-        "spellslinger": 1
+        "spellslinger": 3
       },
       "deck_themes": [
-        "tokens"
+        "tokens",
+        "spellslinger"
       ]
     },
     {
@@ -668,29 +670,29 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 23,
-        "draw": 13,
-        "removal": 8,
+        "ramp": 22,
+        "draw": 12,
+        "removal": 7,
         "wipe": 5,
-        "protection": 5,
-        "finisher": 5
+        "protection": 4,
+        "finisher": 7
       },
       "basics": 24,
-      "curve_deviation": 18.0,
+      "curve_deviation": 16.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 7.0,
+      "synergy": 19.0,
       "baseline": 7.5,
-      "coverage": 0.453,
+      "coverage": 0.64,
       "verdict": "off-plan",
-      "on_theme_cards": 31,
+      "on_theme_cards": 37,
       "theme_cards": {
-        "tokens": 18,
-        "aristocrats": 18
+        "tokens": 25,
+        "aristocrats": 17
       },
       "deck_themes": [
-        "aristocrats",
         "tokens",
+        "aristocrats",
         "landfall"
       ]
     },
@@ -710,23 +712,23 @@
         "draw": 17,
         "removal": 8,
         "wipe": 4,
-        "protection": 4,
-        "finisher": 5
+        "protection": 3,
+        "finisher": 4
       },
       "basics": 19,
-      "curve_deviation": 12.0,
+      "curve_deviation": 8.0,
       "colors_ok": false,
       "colors_short": {
-        "U": 2
+        "U": 6
       },
-      "synergy": 2.0,
+      "synergy": 12.0,
       "baseline": 4.4,
-      "coverage": 0.662,
+      "coverage": 0.787,
       "verdict": "off-plan",
-      "on_theme_cards": 15,
+      "on_theme_cards": 20,
       "theme_cards": {
-        "reanimator": 8,
-        "graveyard": 15
+        "reanimator": 9,
+        "graveyard": 20
       },
       "deck_themes": [
         "graveyard",
