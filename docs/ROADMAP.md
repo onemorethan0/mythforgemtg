@@ -18,7 +18,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
 | S1 | Commander themes undetected | **64 / 391 (16.4%)** ↓ from 80 | **High** | part done |
-| S2 | Partner decks cannot be BUILT | **33 / 483 (6.8%)** | Medium | M |
+| S2 | ~~Partner decks cannot be BUILT~~ | **built + validated** | **Done** | — |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** `insufficient-data` | Medium | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
@@ -106,7 +106,7 @@ STRONG rate exceeds ~2% of the card pool, and `builder_bench` mean synergy not d
 
 ---
 
-## S2 — Partner decks can be analysed but not built
+## S2 — ~~Partner decks can be analysed but not built~~ · DONE 2026-08-18
 
 **Measured.** 33 of 483 corpus decks (6.8%) have 2+ cards in the command zone.
 
@@ -114,18 +114,27 @@ Analysis is already correct — `command_zone_identity` unions the identity and 
 flipped 16 decks from "cannot cast itself" to castable. What does not exist is the **build**
 path: `BuildRequest.commander_name` is a single string and there is no second-commander UI.
 
-**Plan.**
+**Done.** `partner_names` is a **list** on both `BuildRequest` and `GenerateListRequest`
+(Partner, Friends forever, Choose a Background and Doctor's companion all land in one slot),
+resolved by `_resolve_partners` and handed to `build_commander_profile(card, partners)` — which
+already did the right thing, so this was wiring.
 
-1. `BuildRequest.partner_names: list[str] = []` (a list, not a second scalar — Background,
-   *Friends forever* and *Choose a Background* all fit the same field).
-2. `_run_build` resolves them and hands the pair to `build_commander_profile(card, partners)`,
-   which **already** takes `partners` and does the right thing. This is wiring, not new logic.
-3. `StepCommander` gains an optional second search box, shown only when the chosen commander's
-   oracle text names a partner mechanic (`Partner`, `Partner with`, `Friends forever`,
-   `Choose a Background`, `Doctor's companion`) — so it never appears for the 93% that can't
-   use it.
-4. Validate the pairing server-side and **refuse an illegal pair with a clear message**; an
-   illegally-built deck is worse than one the user has to fix.
+**The rules live in `commander_analysis.partner_mechanic` / `can_pair`, read from oracle text
+and type line rather than a curated name list** (a name list goes stale every set). `Partner
+with X` is tested BEFORE bare `Partner`, because its reminder text contains the word "partner"
+too, and it must name its partner **in both directions** — a one-way pairing does not exist.
+
+**An illegal pair is refused, not built.** The zone's colour identity filters every other card,
+so an illegal pair does not make a slightly-wrong deck — it makes 99 cards chosen against an
+identity that is not legal to play. The refusal names the rule: *"That's a 'Partner with' card —
+it pairs only with Toothy, Imaginary Friend."*
+
+Verified end to end against a live build: Tymna + Pir → **HTTP 400** with that message; Tymna +
+Thrasios → **HTTP 200**, a **WBGU** deck with sources in all four colours and `mana: ok`, which
+is the union identity actually driving card selection. `StepCommander` shows the second-commander
+box **only** when the searched commander reports a pairing ability, so the ~93% that cannot
+partner never see a control they can't use — confirmed rendering for Tymna and absent for
+Kozilek. 21 rules tests in `tests/test_partners.py`.
 
 **Risk:** the colour identity widens to 4–5 colours, which is exactly the case the new
 `rainbow` land tier was added for — so run `builder_bench` on a partner roster and check

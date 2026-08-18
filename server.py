@@ -45,6 +45,7 @@ from pydantic import BaseModel, Field, validator
 from app_paths          import app_path
 from scryfall_client    import ScryfallClient
 import deck_import
+import commander_analysis
 from commander_analysis import build_commander_profile
 from deck_builder       import (DeckBuilder, compute_stats, aggregate_duplicates,
                                 deck_quality_block, CARD_SOURCES, SOURCE_SCRYFALL,
@@ -470,6 +471,9 @@ class BuildRequest(BaseModel):
     # Optional when importing an existing decklist (deck_url / deck_list provide
     # the commander). Required for the generate-a-deck path.
     commander_name:    str = Field("", max_length=120)
+    # The command zone can hold TWO cards. A LIST, not a second scalar, because Partner,
+    # Friends forever, Choose a Background and Doctor's companion all land in the same slot.
+    partner_names:     list[str] = Field(default_factory=list, max_length=2)
     # Import an existing deck instead of generating one. deck_url = a Moxfield/
     # Archidekt URL; deck_list = pasted decklist text. When either is set the
     # 99-card generator is skipped and the imported list is themed/rendered.
@@ -1442,7 +1446,11 @@ def _run_build(job_id: str, req: BuildRequest):
                 raise ValueError(f"Commander not found: {req.commander_name}")
             _push(job_id, "progress", json.dumps({"step": "commander", "msg": f"Found: {card['name']}"}))
 
-            profile        = build_commander_profile(card)
+            partners       = _resolve_partners(card, req.partner_names)
+            if partners:
+                _push(job_id, "progress", json.dumps({"step": "commander", "msg":
+                      "Partnered with " + ", ".join(p["name"] for p in partners)}))
+            profile        = build_commander_profile(card, partners)
             active_themes  = resolve_themes(req.playstyle, profile.themes)
             slot_overrides = get_slot_adjustments(req.playstyle)
 
@@ -5001,6 +5009,10 @@ def search_commander(req: SearchRequest):
         "colors":       card.get("color_identity", []),
         "image_url":    (card.get("image_uris") or {}).get("normal", ""),
         "legal":        card.get("legalities", {}).get("commander") in ("legal", "restricted"),
+        # Which command-zone pairing ability this card has, if any. The UI shows its second
+        # commander box only when this is non-null, so the 93% of commanders that cannot
+        # partner never see a control they can't use.
+        "partner":      commander_analysis.partner_mechanic(card),
     }
 
 
@@ -5119,10 +5131,34 @@ def _resolve_card_source(card_source: str, use_collection: bool) -> str:
 
 class GenerateListRequest(BaseModel):
     commander_name: str = Field("", max_length=120)
+    partner_names:  list[str] = Field(default_factory=list, max_length=2)
     playstyle:      str = "auto"
     bracket:        int = 3
     use_collection: bool = False   # prefer owned cards (Myth Suite C4)
     card_source:    str = Field("", max_length=24)   # see _resolve_card_source
+
+
+def _resolve_partners(lead: dict, names: list[str] | None) -> list[dict]:
+    """Resolve second-commander names and REFUSE an illegal pairing.
+
+    Refusing matters more than it looks: the command zone's colour identity filters every
+    other card in the deck, so an illegal pair does not produce a slightly-wrong deck, it
+    produces 99 cards chosen against an identity that is not legal to play. A deck the user
+    has to fix beats one that cannot be registered.
+    """
+    out: list[dict] = []
+    for raw in (names or []):
+        name = (raw or "").strip()
+        if not name:
+            continue
+        card = _scryfall.get_card_by_name(name, fuzzy=True)
+        if not card:
+            raise HTTPException(404, f"Partner not found: {name}")
+        ok, why = commander_analysis.can_pair(lead, card)
+        if not ok:
+            raise HTTPException(400, why)
+        out.append(card)
+    return out
 
 
 @app.post("/api/deck/generate-list")
@@ -5138,7 +5174,8 @@ def generate_list(req: GenerateListRequest):
     if not card:
         raise HTTPException(404, f"Commander not found: {name}")
     ps_label       = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
-    profile        = build_commander_profile(card)
+    partners       = _resolve_partners(card, req.partner_names)
+    profile        = build_commander_profile(card, partners)
     active_themes  = resolve_themes(req.playstyle, profile.themes)
     slot_overrides = get_slot_adjustments(req.playstyle)
     source = _resolve_card_source(req.card_source, req.use_collection)
@@ -5149,7 +5186,7 @@ def generate_list(req: GenerateListRequest):
         playstyle_label=ps_label, bracket=req.bracket, owned=owned,
         card_source=source)
     deck  = aggregate_duplicates(deck)
-    stats = compute_stats(card, deck)
+    stats = compute_stats(card, deck, partners=partners)
     collection_stats = None
     if source != SOURCE_SCRYFALL:
         _spells = [card] + [c for c in deck

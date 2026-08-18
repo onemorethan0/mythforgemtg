@@ -33,6 +33,15 @@ const BRACKETS = [
   { n: 5, label: 'cEDH',       desc: 'Maximum power, no restrictions. A high-power goodstuff list with extra draw + interaction; a tuned tournament combo deck still needs hand-crafting.' },
 ]
 
+const PARTNER_BLURB = {
+  'partner': 'This commander has <strong>Partner</strong> — name a second commander that also has Partner.',
+  'partner_with': 'This commander has <strong>Partner with</strong> — it pairs only with the card it names.',
+  'friends_forever': 'This commander has <strong>Friends forever</strong> — pair it with another Friends forever commander.',
+  'choose_background': 'This commander can <strong>Choose a Background</strong> — name a Background enchantment.',
+  'doctors_companion': "This commander has <strong>Doctor's companion</strong> — pair it with a Doctor.",
+  'background': 'This is a <strong>Background</strong> — pair it with a commander that says “Choose a Background”.',
+}
+
 export default function StepCommander({ onNext, onSaveImported, bracket, onBracketChange, playstyle, onPlaystyleChange, useCollection = false, onUseCollectionChange, cardSource = '', initialTab = 'generate', initialQuery = '' }) {
   const [query, setQuery]           = useState(initialQuery)
   const [loading, setLoading]       = useState(false)
@@ -41,6 +50,7 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
   const [playstyles, setPlaystyles] = useState([])
   const [genLoading, setGenLoading] = useState(false)
   const [genErr, setGenErr]         = useState('')
+  const [partnerQuery, setPartnerQuery] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [showDrop, setShowDrop]     = useState(false)
   const [activeIdx, setActiveIdx]   = useState(-1)
@@ -187,6 +197,9 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           commander_name: result.full_name || result.name,
+          // Only ever sent for a commander that actually has a pairing ability; the server
+          // re-validates the pair and refuses an illegal one with the rule as the message.
+          partner_names: (result.partner && partnerQuery.trim()) ? [partnerQuery.trim()] : [],
           playstyle, bracket, use_collection: useCollection,
           card_source: cardSource,
         }),
@@ -490,6 +503,29 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
               </span>
             </label>
           </div>
+          {result.partner && (
+            <div style={{
+              border: '1px solid #292524', borderRadius: 8, padding: '12px 14px',
+              marginBottom: 12, background: '#1c1917',
+            }}>
+              <div style={{ fontSize: 12, color: '#a8a29e', marginBottom: 8 }}
+                   dangerouslySetInnerHTML={{ __html: PARTNER_BLURB[result.partner] || '' }} />
+              <input
+                value={partnerQuery}
+                onChange={(e) => setPartnerQuery(e.target.value)}
+                placeholder="Second commander (optional)"
+                style={{
+                  width: '100%', padding: '8px 10px', borderRadius: 6,
+                  border: '1px solid #44403c', background: '#0c0a09', color: '#f5f5f4',
+                  fontSize: 14,
+                }}
+              />
+              <div style={{ fontSize: 11, color: '#78716c', marginTop: 6 }}>
+                Both cards go in the command zone, so the deck is built to their COMBINED colour
+                identity. Leave blank to build with one commander.
+              </div>
+            </div>
+          )}
           {genErr && <p style={s.err}>{genErr}</p>}
           <button
             style={{ ...s.btnNext, ...(genLoading ? s.btnDisabled : {}) }}

@@ -319,6 +319,93 @@ def _detect_themes(card: dict) -> list[str]:
     return found
 
 
+# ── Who may share a command zone ─────────────────────────────────────────────
+# Rule 903.10 and friends. Kept as data + one predicate because an illegal pair must be
+# REFUSED, not built: a deck that cannot be registered is worse than one the user has to
+# fix, and the identity of the zone drives colour filtering for all 99 other cards.
+
+PARTNER_PLAIN = "partner"                 # "Partner" — pairs with any other plain Partner
+PARTNER_WITH = "partner_with"             # "Partner with <name>" — that ONE card only
+FRIENDS_FOREVER = "friends_forever"       # pairs with any other Friends forever
+BACKGROUND_CHOOSER = "choose_background"  # pairs with a Background enchantment
+BACKGROUND = "background"                 # the Background itself
+DOCTOR_COMPANION = "doctors_companion"    # pairs with a Doctor
+DOCTOR = "doctor"
+
+
+def partner_mechanic(card: dict) -> str | None:
+    """Which command-zone pairing mechanic this card has, if any.
+
+    Read from oracle text and type line, never from a curated name list — a name list goes
+    stale with every set, and this has to be right for cards printed after today.
+    """
+    text = (card.get("oracle_text") or "").lower()
+    type_line = (card.get("type_line") or "").lower()
+
+    if "background" in type_line:
+        return BACKGROUND
+    if "choose a background" in text:
+        return BACKGROUND_CHOOSER
+    if "friends forever" in text:
+        return FRIENDS_FOREVER
+    if "doctor's companion" in text:
+        return DOCTOR_COMPANION
+    # "Partner with X" is a DIFFERENT mechanic from bare "Partner" and must be tested first,
+    # because its reminder text contains the word "partner" too.
+    if "partner with" in text:
+        return PARTNER_WITH
+    if re.search(r"\bpartner\b", text):
+        return PARTNER_PLAIN
+    # A Doctor is only a pairing card in the presence of a companion, so it is reported last
+    # and only when it is actually a Doctor creature.
+    if "doctor" in type_line and "time lord" in type_line:
+        return DOCTOR
+    return None
+
+
+def _partner_with_target(card: dict) -> str:
+    m = re.search(r"partner with ([^\n(]+)", (card.get("oracle_text") or ""), re.I)
+    return m.group(1).strip().rstrip(".").casefold() if m else ""
+
+
+def can_pair(lead: dict, second: dict) -> tuple[bool, str]:
+    """Whether these two may share a command zone. Returns (ok, reason-if-not).
+
+    The reason is user-facing, so it names the actual rule rather than saying "invalid".
+    """
+    a, b = partner_mechanic(lead), partner_mechanic(second)
+    if a is None or b is None:
+        missing = lead if a is None else second
+        return False, (f"{missing.get('name', 'That card')} has no partner ability, so it "
+                       f"can't share a command zone.")
+    if (lead.get("name") or "").casefold() == (second.get("name") or "").casefold():
+        return False, "A commander can't partner with itself."
+
+    pair = {a, b}
+    if pair == {PARTNER_PLAIN}:
+        return True, ""
+    if pair == {FRIENDS_FOREVER}:
+        return True, ""
+    if pair == {BACKGROUND_CHOOSER, BACKGROUND}:
+        return True, ""
+    if pair == {DOCTOR_COMPANION, DOCTOR}:
+        return True, ""
+    if PARTNER_WITH in pair:
+        # Must name each other. Checking only one direction would admit a one-way pairing,
+        # which does not exist.
+        want_a, want_b = _partner_with_target(lead), _partner_with_target(second)
+        name_a = (lead.get("name") or "").split(" // ")[0].casefold()
+        name_b = (second.get("name") or "").split(" // ")[0].casefold()
+        if want_a == name_b and want_b == name_a:
+            return True, ""
+        named = _partner_with_target(lead) or _partner_with_target(second)
+        return False, (f"That's a “Partner with” card — it pairs only with "
+                       f"{named.title() or 'its named partner'}.")
+    return False, (f"{lead.get('name', 'This commander')} and "
+                   f"{second.get('name', 'that card')} have different partner abilities, "
+                   f"so they can't be paired.")
+
+
 def command_zone_identity(card: dict, partners: list[dict] | None = None) -> list[str]:
     """The colour identity of the whole COMMAND ZONE, not just one card.
 
