@@ -40,7 +40,12 @@ import theme_match
 # It also rejects Shelob's `enchantress` (0 STRONG / 8 WEAK) — incidental matches with no
 # payoff card are not an archetype, which is why WEAK can only ever tie-break.
 MIN_STRONG = 3
-WEAK_WEIGHT = 0.1        # a WEAK match is a tie-break, never evidence
+# A WEAK match is a tie-break, never evidence. Measured over 120 corpus decks it changes
+# the detected themes on 5 of them at 0.1 (4 at 0.05, 7 at 0.5, saturating there), so it is
+# genuinely a tie-break and not inert. There is no ground truth for which theme is "right"
+# in a tie, so this value is NOT calibratable the way LIFT_FACTOR and BASE_RATE are — it is
+# a judgement that WEAK membership is weak evidence, held small on purpose.
+WEAK_WEIGHT = 0.1
 DEFAULT_TOP_N = 3        # DeckBuilder uses at most 3 active themes
 
 # How far above its BASE_RATE expectation a theme must sit to count. CALIBRATED, not

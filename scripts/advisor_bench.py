@@ -8,26 +8,35 @@ measurement behind it. This is the measurement.
     python scripts/advisor_bench.py --decks 30
     python scripts/advisor_bench.py --decks 10 --show-cuts
 
-WHAT IT FOUND, and why both numbers matter (30 corpus decks, full-fidelity store):
+WHAT IT FOUND — and read the seed line first (20 corpus decks, full-fidelity store):
 
-    cut POOLS differ on            29/30 decks
-    total measured gain            237.92 (redundant) vs 209.38 (popularity)
-    decks helped                   13 vs 12
-    head-to-head                   redundant better on 6, WORSE on 6, tied on 18
+    seed        redundant   popularity
+       7           185.83       142.29
+      21            79.38       136.04
+      99           231.04       205.00
+     123           118.96        83.75
+    mean           153.80       141.77     redundant better on 3/4 seeds
 
-By the simulation's own axis delta the two strategies are roughly equivalent. That is
-not a null result to bury — it says the delta metric CANNOT SEE the defect, because
-`advise` tests every add against the whole pool and keeps the best-measuring pairing, so
-the simulation partly rescues a bad cut pool.
+RUN-TO-RUN SPREAD IS LARGER THAN THE EFFECT. A single seed ranges 79 to 231 for the same
+strategy on the same decks, against a ~12-point mean difference between strategies. An
+earlier revision of this file reported 237.92 vs 209.38 from ONE seed and read it as a
+clean +13.6% win; that was overstated precision. Always compare means across seeds — which
+is why --seeds takes a list and defaults to four.
 
-What reaches the USER differs sharply, and `--show-cuts` is how you see it:
+The honest reading: the redundancy cut pool is better on 3 of 4 seeds by roughly 8%, and a
+single seed can reverse it.
 
-    Shelob (spiders)   popularity cuts "Eaten by Spiders", "Gloomwidow's Feast"
-    Sefris (reanimator) popularity cuts "Living End", a reanimator payoff
-    ...redundant suggests neither, offering redundant looters instead.
+THE DELTA METRIC CANNOT SEE THE ACTUAL DEFECT, which is why a near-tie is not a null
+result. `advise` tests every add against the WHOLE pool and keeps the best-measuring
+pairing, so the simulation partly rescues a bad cut pool. What reaches the USER differs
+sharply, and --show-cuts is how you see it:
 
-So the redundancy pool is justified on ADVICE QUALITY — which is why it was built — and
-NOT on measured axis delta, which does not support it. Both halves are the finding.
+    Shelob (spiders)     popularity cuts "Eaten by Spiders", "Gloomwidow's Feast"
+    Ghired (tokens)      popularity cuts "Dollhouse of Horrors"
+    Sefris (reanimator)  popularity cuts "Living End", a reanimator payoff
+
+— the deck's own theme every time. So the redundancy pool is justified on ADVICE QUALITY,
+which is why it was built, and only weakly by measured axis delta.
 
 NOT CI-SAFE: needs data/cards_slim.json and a semantics store (MYTHGAUNTLET_STORE), both
 gitignored. Same status as builder_bench, which needs the network.
@@ -76,7 +85,10 @@ def main() -> int:
                     help="print what each strategy suggests CUTTING — the difference the "
                          "axis delta cannot show")
     ap.add_argument("--runs", type=int, default=60)
-    ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--seeds", type=int, nargs="+", default=[7, 21, 99, 123],
+                    help="sim seeds to average over. NEVER report a single "
+                         "seed: run-to-run spread across this roster is "
+                         "LARGER than the gap between the strategies.")
     args = ap.parse_args()
 
     db = load_card_db()
@@ -85,40 +97,48 @@ def main() -> int:
     owned = sorted(builder_bench.synthetic_collection())
     candidates = [c for c in (db.get(n) for n in owned) if c is not None][:args.candidates]
     decks = load_decks(db, args.decks)
-    cfg = SimConfig(turns=8, runs=args.runs, seed=args.seed)
-    print(f"decks: {len(decks)}   candidate pool: {len(candidates)}\n")
+    print(f"decks: {len(decks)}   candidate pool: {len(candidates)}   "
+          f"seeds: {args.seeds}")
+    print()
 
-    gains: dict[str, list[float]] = {s: [] for s in STRATEGIES}
-    pools: dict[str, list[set]] = {s: [] for s in STRATEGIES}
-    for name, resolved in decks:
-        reports = {}
+    per_seed = {s: [] for s in STRATEGIES}
+    pools = {s: [] for s in STRATEGIES}
+    print(f"{'seed':>6} " + "".join(f"{s:>14}" for s in STRATEGIES))
+    for seed in args.seeds:
+        cfg = SimConfig(turns=8, runs=args.runs, seed=seed)
+        row = []
         for strat in STRATEGIES:
-            rep = advisor.advise(resolved, cfg, store, candidates, top=5, max_eval=10,
-                                 cut_pool=3, cut_strategy=strat)
-            reports[strat] = rep
-            gains[strat].append(sum(s.delta for s in rep.suggestions))
-            pools[strat].append({c.name for c in advisor._cut_candidates(resolved, 3, strat)})
-        if args.show_cuts and any(r.suggestions for r in reports.values()):
-            print(f"{name[:38]}  (axis {reports[STRATEGIES[0]].axis})")
-            for strat, rep in reports.items():
-                cuts = [s.cut for s in rep.suggestions]
-                print(f"   {strat:11} cuts: {cuts or '(none)'}")
+            total = 0.0
+            for name, resolved in decks:
+                rep = advisor.advise(resolved, cfg, store, candidates, top=5,
+                                     max_eval=10, cut_pool=3, cut_strategy=strat)
+                total += sum(x.delta for x in rep.suggestions)
+                if seed == args.seeds[0]:
+                    pools[strat].append(
+                        {c.name for c in advisor._cut_candidates(resolved, 3, strat)})
+                    if args.show_cuts and rep.suggestions:
+                        print(f"   {name[:28]:28} {strat:11} cuts: "
+                              f"{[x.cut for x in rep.suggestions]}")
+            per_seed[strat].append(total)
+            row.append(total)
+        print(f"{seed:>6} " + "".join(f"{v:>14.2f}" for v in row))
 
     print()
     for strat in STRATEGIES:
-        g = gains[strat]
-        print(f"{strat:11} decks helped {sum(1 for v in g if v > 0):3}/{len(g)}   "
-              f"total gain {sum(g):8.2f}   mean/deck {statistics.fmean(g):5.2f}")
+        v = per_seed[strat]
+        print(f"{strat:11} mean {statistics.fmean(v):8.2f}   "
+              f"spread {min(v):8.2f} - {max(v):8.2f}")
 
     a, b = STRATEGIES
     differ = sum(1 for x, y in zip(pools[a], pools[b]) if x != y)
-    better = sum(1 for x, y in zip(gains[a], gains[b]) if x > y + 1e-9)
-    worse = sum(1 for x, y in zip(gains[a], gains[b]) if y > x + 1e-9)
-    print(f"\ncut POOLS differ on {differ}/{len(decks)} decks")
-    print(f"{a} vs {b}: better on {better}, worse on {worse}, "
-          f"tied on {len(decks) - better - worse}")
-    print("\nA tie on axis delta is NOT a null result — see the module docstring. Run with "
-          "--show-cuts for the difference that matters.")
+    wins = sum(1 for x, y in zip(per_seed[a], per_seed[b]) if x > y)
+    print()
+    print(f"cut POOLS differ on {differ}/{len(decks)} decks")
+    print(f"{a} better on {wins}/{len(args.seeds)} seeds")
+    print()
+    print("SEED SPREAD IS LARGE: compare MEANS across seeds, never a single run. A tie "
+          "on axis delta is also not a null result — see the module docstring, and use "
+          "--show-cuts for the difference the metric cannot see.")
     return 0
 
 

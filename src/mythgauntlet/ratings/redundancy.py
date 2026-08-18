@@ -145,9 +145,22 @@ def score_card(
 
     Oversupply raises it — a role the deck has ten too many of is where cuts should come
     from. Within-role strength LOWERS it, because once you've decided ramp is over-served
-    you cut the worst ramp spell, not the best one. Multiplying by strength (the obvious
-    formulation) inverts that and recommends cutting your Cultivate before your worst
-    mana rock, which is a defect, not an approximation.
+    you cut the worst ramp spell, not the best one.
+
+    THE SHAPE IS A DESIGN CHOICE THAT MEASUREMENT CANNOT SETTLE, and an earlier version of
+    this docstring was too confident about it. `oversupply * within_role` — the inverse —
+    was called "a defect, not an approximation" here. Measured over 20 corpus decks it is
+    indistinguishable: mean total advisor gain 164.38 against this shape's 165.42 across
+    four sim seeds, with the per-seed spread (79 to 231) an order of magnitude larger than
+    the difference. A single seed favoured the inverse by 11%, which is noise.
+
+    Nor is the Magic argument one-sided. `within_role` measures DEDICATION to the role, not
+    card quality: a high score means a pure ramp spell, a low one a hybrid doing other work
+    too. On Atraxa the inverse cuts Crop Rotation / Rampant Growth / Farseek and keeps
+    Crystalline Crawler and Biophagus, which also serve the counters plan — a defensible
+    answer. Only 1 of 5 sampled decks produced a different pool at all.
+
+    Kept as-is because nothing measured argues for changing it, not because it is proven.
 
     A card whose roles are all at or under target scores 0.0 — correctly, it is not
     redundant at all.
