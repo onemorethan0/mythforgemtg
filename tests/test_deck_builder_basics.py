@@ -172,3 +172,47 @@ def test_rebalance_is_deterministic():
     a, c = _builder(deck), _builder(deck)
     assert a._rebalance_basics(_Profile(["W", "U", "B"])) == \
            c._rebalance_basics(_Profile(["W", "U", "B"]))
+
+
+# ── dead fetchlands ──────────────────────────────────────────────────────────────
+
+from deck_builder import _land_is_castable  # noqa: E402
+
+
+@pytest.mark.parametrize("name,oracle,produced,colors,expected", [
+    # THE BUG: a fetchland's color_identity is EMPTY and it produces nothing, so `id<=WB`
+    # admits every fetch in Magic. A measured Tymna (WB) build drew Misty Rainforest,
+    # Wooded Foothills and Scalding Tarn — lands that can find NOTHING in a WB deck and
+    # cost a life for the privilege. 36 lands produced only 16 W / 17 B sources.
+    ("Misty Rainforest", "Search your library for a Forest or Island card", None,
+     ["W", "B"], False),
+    ("Wooded Foothills", "Search your library for a Mountain or Forest card", None,
+     ["W", "B"], False),
+    ("Marsh Flats", "Search your library for a Plains or Swamp card", None,
+     ["W", "B"], True),
+    # Same card, a deck that CAN use it.
+    ("Misty Rainforest in Simic", "Search your library for a Forest or Island card", None,
+     ["G", "U"], True),
+    # Names no specific type -> kept. The filter drops a provably dead land, never one it
+    # merely fails to understand.
+    ("Evolving Wilds", "Search your library for a basic land card", None, ["W", "B"], True),
+    ("Myriad Landscape", "two basic lands that share a land type", ["C"], ["W", "B"], True),
+    ("Command Tower", "Add one mana of any color in your commander's color identity",
+     ["W", "B"], ["W", "B"], True),
+    # Produces on-colour mana directly, whatever its text says.
+    ("Godless Shrine", "({T}: Add {W} or {B}.)", ["W", "B"], ["W", "B"], True),
+])
+def test_land_is_castable(name, oracle, produced, colors, expected):
+    card = {"name": name, "oracle_text": oracle, "produced_mana": produced}
+    assert _land_is_castable(card, colors) is expected
+
+
+def test_a_five_colour_deck_keeps_every_fetch():
+    """The filter must not fire where every basic type is playable."""
+    misty = {"name": "Misty Rainforest",
+             "oracle_text": "Search your library for a Forest or Island card"}
+    assert _land_is_castable(misty, ["W", "U", "B", "R", "G"]) is True
+
+
+def test_missing_fields_are_tolerated():
+    assert _land_is_castable({}, ["W"]) is True

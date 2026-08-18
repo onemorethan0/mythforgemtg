@@ -19,6 +19,7 @@ import pytest
 import deck_themes
 import theme_match
 from commander_analysis import THEME_LABELS, THEME_PATTERNS, THEME_SYNERGY_QUERIES
+from deck_builder import ROLE_QUERIES
 
 NEW_THEMES = ("face_down", "sagas", "impulse")
 
@@ -101,3 +102,44 @@ def test_impulse_does_not_swallow_plain_card_draw():
     ramp = {"name": "Explore", "type_line": "Sorcery",
             "oracle_text": "You may play an additional land this turn. Draw a card."}
     assert theme_match.theme_score(ramp, "impulse") == theme_match.NO_MATCH
+
+
+# ── query precedence ─────────────────────────────────────────────────────────────
+
+def _has_top_level_or(query: str) -> bool:
+    """True when an ` OR ` sits at paren depth 0."""
+    depth = 0
+    for i, ch in enumerate(query):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif depth == 0 and query[i:i + 4] == " OR ":
+            return True
+    return False
+
+
+@pytest.mark.parametrize("name,query", sorted(THEME_SYNERGY_QUERIES.items()))
+def test_theme_query_has_no_top_level_or(name, query):
+    """A top-level OR silently un-filters the first branch.
+
+    DeckBuilder appends `id<=WUBRG`, `legal:commander` and `-type:land` to every one of
+    these, and Scryfall's OR binds LOOSER than the implicit AND. So
+    `otag:sacrifice-outlet OR o:"..." id<=BG legal:commander` parses as
+    `otag:sacrifice-outlet` OR `(everything else AND the filters)` — the first branch keeps
+    no colour filter, no legality filter, not even `-type:land`.
+
+    Measured: a Shelob (BG) build drafted Professional Face-Breaker ({2}{R}) out of the
+    aristocrats query, which then demanded 14 red sources the deck could never have and
+    reported the manabase as broken. `tokens` and `counters` had the same shape.
+    """
+    assert not _has_top_level_or(query), (
+        f"{name}: wrap the whole query in parentheses, or the appended colour/legality "
+        f"filters apply to the last branch only — {query}"
+    )
+
+
+@pytest.mark.parametrize("name,query", sorted(ROLE_QUERIES.items()))
+def test_role_query_has_no_top_level_or(name, query):
+    """Same hazard, same fix, for the functional-role queries."""
+    assert not _has_top_level_or(query), f"{name}: needs wrapping parentheses — {query}"

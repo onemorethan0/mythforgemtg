@@ -445,6 +445,26 @@ def advise(
     `redundant`, offers the cards the deck has too MANY of. `popularity` is the original
     least-played rule, kept because the golden-master tests pin it — it is not a good rule
     (see `_weakest_cuts`).
+
+    CHOOSING `cut_pool`. Quality rises MONOTONICALLY with it — there is no quality knee, so
+    the choice is purely quality against latency. Swept over 20 corpus decks (max_eval=10,
+    runs=60, owned-card candidates):
+
+        cut_pool   decks helped   total gain   analyses   gain/analysis   secs
+               1           7/20       106.88        200          0.534      21
+               2           7/20       160.42        400          0.401      40
+               3           9/20       185.83        600          0.310      57
+               5          11/20       227.71       1000          0.228      95
+               8          13/20       283.33       1600          0.177     149
+
+    "Decks helped" is the figure that matters to a user: more slots to displace means
+    fewer "no suggestion found" answers, 7/20 at cut_pool=1 versus 13/20 at 8. Cost is
+    linear (analyses = max_eval x cut_pool) and gain/analysis falls throughout, so a
+    latency budget is what should pick this, not a search for an optimum.
+
+    The default of 3 is deliberately conservative for an unknown library caller. The Forge
+    app's /advise route overrides it to 6 (with max_eval=16, ~60s warm against a 150s
+    timeout) and its interactive card-impact route pins 3 explicitly.
     """
     if axis is not None and axis not in AXES:
         raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(AXES)}")

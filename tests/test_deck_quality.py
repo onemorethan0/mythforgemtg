@@ -151,3 +151,48 @@ def test_empty_deck_does_not_divide_by_zero():
     v = dq.assess_curve([], commander_mv=4)
     assert v.average == 0.0
     assert dq.required_sources({}, 0) == {}
+
+
+# ── fetchlands are sources ───────────────────────────────────────────────────────
+
+def _land(name, oracle, produced=None):
+    return {"name": name, "type_line": "Land", "mana_cost": "", "cmc": 0,
+            "oracle_text": oracle, "produced_mana": produced}
+
+
+def test_a_fetchland_counts_as_a_source_for_what_it_finds():
+    """A fetchland produces NO mana of its own, so counting only `produced_mana` scored
+    Marsh Flats as neither a white nor a black source. In play it is plainly both. A
+    measured Tymna (WB) build had 36 lands and was reported short on black while running
+    eight fetches that could each find a Swamp."""
+    marsh = _land("Marsh Flats",
+                  "{T}, Pay 1 life, Sacrifice this land: Search your library for a "
+                  "Plains or Swamp card, put it onto the battlefield, then shuffle.")
+    assert dq._fetches(marsh) == {"W", "B"}
+    assert dq.color_sources([marsh]) == {"W": 1, "B": 1}
+
+
+def test_a_fetch_counts_only_for_the_types_it_names():
+    misty = _land("Misty Rainforest",
+                  "Search your library for a Forest or Island card")
+    assert dq._fetches(misty) == {"G", "U"}
+
+
+def test_an_any_basic_fetch_counts_for_every_colour():
+    assert dq._fetches(
+        _land("Evolving Wilds", "Search your library for a basic land card")
+    ) == set("WUBRG")
+
+
+def test_a_land_that_produces_mana_is_not_double_counted():
+    """`_fetches` must not fire for a card `_produces` already covers."""
+    shrine = _land("Godless Shrine", "({T}: Add {W} or {B}.)", produced=["W", "B"])
+    assert dq._fetches(shrine) == set()
+    assert dq.color_sources([shrine]) == {"W": 1, "B": 1}
+
+
+def test_a_tutor_that_is_not_a_land_finds_no_colour():
+    """"Search your library for a card" names no land type — not a mana source."""
+    tutor = {"name": "Demonic Tutor", "type_line": "Sorcery", "mana_cost": "{1}{B}{B}",
+             "cmc": 3, "oracle_text": "Search your library for a card, put it into your hand."}
+    assert dq._fetches(tutor) == set()

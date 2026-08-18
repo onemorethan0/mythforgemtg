@@ -166,9 +166,15 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "tribal_ninjas":    '(type:ninja OR (o:"ninja" o:"you control") OR otag:ninjutsu)',
     "tribal_cats":      '(type:cat OR (o:"cat" o:"you control"))',
     "auras":            '(type:aura OR otag:enchantress OR o:"whenever you cast an aura")',
-    "tokens":           'otag:token-producer OR (o:"create" o:"token")',
-    "counters":         'otag:counter-manipulation OR o:"proliferate" OR o:"+1/+1 counter"',
-    "aristocrats":      'otag:sacrifice-outlet OR o:"whenever a creature you control dies"',
+    # WRAPPED IN PARENS, and that is load-bearing: DeckBuilder appends `id<=WUBRG`,
+    # `legal:commander` and `-type:land` to these, and Scryfall's OR binds LOOSER than the
+    # implicit AND. Without the wrapper the filters apply to the LAST branch only, leaving
+    # the first branch completely unconstrained — a Shelob (BG) build drafted Professional
+    # Face-Breaker ({2}{R}) straight out of `otag:sacrifice-outlet`, which then demanded 14
+    # red sources the deck could never have.
+    "tokens":           '(otag:token-producer OR (o:"create" o:"token"))',
+    "counters":         '(otag:counter-manipulation OR o:"proliferate" OR o:"+1/+1 counter")',
+    "aristocrats":      '(otag:sacrifice-outlet OR o:"whenever a creature you control dies")',
     "reanimator":       '(o:"return target creature card from your graveyard" OR o:"reanimate")',
     "spellslinger":     '(o:"whenever you cast an instant" OR o:"whenever you cast a sorcery" OR otag:magecraft)',
     "enchantress":      '(type:enchantment OR o:"whenever an enchantment enters")',

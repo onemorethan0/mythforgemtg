@@ -190,6 +190,36 @@ def _theme_slot_split(want: int, n_themes: int) -> list[int]:
     return [lead] + [base + (1 if i < extra else 0) for i in range(others)]
 
 
+# Basic land type each colour actually plays. A fetchland is only live if it can find one
+# of these.
+_BASIC_TYPE = {"W": "plains", "U": "island", "B": "swamp", "R": "mountain", "G": "forest"}
+_ALL_BASIC_TYPES = frozenset(_BASIC_TYPE.values())
+
+
+def _land_is_castable(card: dict, colors: list[str]) -> bool:
+    """Can this nonbasic land actually produce mana in THIS deck?
+
+    A fetchland's `color_identity` is EMPTY and its `produced_mana` is None — it makes no
+    mana itself — so `id<=WB` admits every fetchland in Magic. A measured Tymna (WB) build
+    drew twelve fetches, including Misty Rainforest (Forest/Island), Wooded Foothills
+    (Mountain/Forest) and Scalding Tarn (Island/Mountain): lands that can find NOTHING in a
+    WB deck and are strictly worse than a Wastes, since they also cost a life. The deck had
+    36 lands producing only 16 white and 17 black sources and was reported short on black.
+
+    Deliberately conservative — reject only when the card NAMES specific basic types and
+    none of them are ones this deck plays. A land that names no type at all (Command Tower,
+    Evolving Wilds' "basic land card", Myriad Landscape) is kept, so the filter can drop a
+    provably dead land but never a card it merely fails to understand.
+    """
+    if any(c in (card.get("produced_mana") or []) for c in colors):
+        return True                       # makes on-colour mana directly
+    named = {t for t in _ALL_BASIC_TYPES
+             if t in (card.get("oracle_text") or "").lower()}
+    if not named:
+        return True                       # says nothing about land types -> keep
+    return bool(named & {_BASIC_TYPE[c] for c in colors if c in _BASIC_TYPE})
+
+
 def _score_first(candidates: list[dict], theme: str) -> list[dict]:
     """Stable-sort Scryfall theme results so the tribe's PAYOFFS lead its bodies.
 
@@ -786,8 +816,12 @@ class DeckBuilder:
                 if _label == "rainbow" and len(colors) < 3:
                     continue
                 query = f"{land_q} {self._ci_filter(profile)} legal:commander"
-                candidates = self._prefer_owned(
-                    self.client.search_cards_paged(query, max_results=15))
+                # A fetchland has an EMPTY colour identity, so the CI filter cannot see
+                # that it fetches types this deck does not play. See _land_is_castable.
+                candidates = self._prefer_owned([
+                    c for c in self.client.search_cards_paged(query, max_results=15)
+                    if _land_is_castable(c, colors)
+                ])
                 for card in candidates:
                     if added >= nonbasic_cap:
                         break

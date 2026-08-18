@@ -89,7 +89,12 @@ class AdviseRequest(BaseModel):
     )
     cut_pool: int = Field(
         default=3, ge=1, le=10,
-        description="weakest cards each candidate is tested against (1 = single global cut)",
+        description=(
+            "cut candidates each add is tested against (1 = single global cut). Quality "
+            "rises monotonically with this and cost is linear, so it is a latency dial, "
+            "not an optimum: measured 7/20 decks helped at 1, 9/20 at 3, 13/20 at 8. "
+            "See advisor.advise for the full sweep."
+        ),
     )
     collection: str | None = Field(
         default=None,

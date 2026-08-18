@@ -253,13 +253,52 @@ def _produces(card: dict) -> set[str]:
     return cols
 
 
+# Basic land type -> the colour it taps for. A fetchland finds one of these.
+_FETCH_TYPE_COLOR = {"plains": "W", "island": "U", "swamp": "B",
+                     "mountain": "R", "forest": "G"}
+_FETCH_RE = re.compile(r"search your library for an? ([^.]*?) card", re.I)
+
+
+def _fetches(card: dict) -> set[str]:
+    """Colours a fetchland effectively provides by finding a basic of that type.
+
+    A fetchland produces NO mana of its own — `produced_mana` is empty — so counting only
+    what a card produces scored Marsh Flats as zero white and zero black sources. In play it
+    is plainly both: it finds the Plains or the Swamp. A measured Tymna (WB) build had 36
+    lands and was reported short on black while running eight fetches that could each find
+    a Swamp.
+
+    Only fires for a card that says "search your library for a ... card" AND produces
+    nothing itself, so a dual land is still counted by `_produces` and never twice here.
+    An unqualified "basic land card" (Evolving Wilds, Fabled Passage) finds ANY basic, so
+    it counts for every colour the deck could want — the caller filters to the commander's
+    identity anyway.
+    """
+    if card.get("produced_mana"):
+        return set()
+    text = _oracle(card)
+    m = _FETCH_RE.search(text)
+    if not m:
+        return set()
+    clause = m.group(1).lower()
+    named = {c for t, c in _FETCH_TYPE_COLOR.items() if t in clause}
+    if named:
+        return named
+    return set(WUBRG) if "basic land" in clause else set()
+
+
 def color_sources(deck: list[dict]) -> dict[str, int]:
-    """Quantity-weighted count of permanents producing each colour. Lands and rocks
-    alike — a Signet fixes colour just as a dual does. Counted once per colour."""
+    """Quantity-weighted count of permanents providing each colour. Lands and rocks
+    alike — a Signet fixes colour just as a dual does. Counted once per colour.
+
+    A FETCHLAND counts for the colours it can find (see `_fetches`): it makes no mana of
+    its own, but scoring Marsh Flats as neither a white nor a black source is wrong about
+    the game."""
     sources: dict[str, int] = {}
     for card in deck:
         n = qty(card)
-        for col in _produces(card):
+        # A fetchland produces nothing itself but IS a source for whatever it finds.
+        for col in (_produces(card) or _fetches(card)):
             sources[col] = sources.get(col, 0) + n
     return sources
 
