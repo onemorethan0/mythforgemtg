@@ -22,7 +22,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
-| S6 | Engine card coverage | **90.0%** — but the top 100 is the WORST band | **High** ↑ | L |
+| S6 | Engine card coverage | **90.0%** pool · **99.0%** top-100 · 3 quarantined | **Low** ↓ | S |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
@@ -377,47 +377,56 @@ signature.
 
 ---
 
-## S6 — the gap is worst exactly where it hurts most *(re-measured, priority raised)*
+## S6 — coverage is fine; my first two readings of it were not *(priority LOWERED)*
 
-**Measured properly 2026-08-18, and the first reading was wrong in an important way.** A
-filename check under-reports by 2.4 points (the store slugifies names, mangling double-faced
-cards and punctuation) and grepping for a name matches the *nested ability names* inside a CCM.
-`scripts/ccm_coverage.py` reads `card.name` out of every stored CCM instead: **30,749 of 34,179
-covered (90.0%)**.
+**This entry has been wrong twice, and both errors are worth keeping because they are the same
+class the rest of this file keeps finding: measuring one structure when there are two.**
 
-The headline number was never the point. This is:
+*First reading* — a filename check against the store, which under-reports by 2.4 points because
+the store slugifies names and mangles double-faced cards.
+
+*Second reading* — reading `card.name` properly, but **only from `compiled/`**. That produced a
+dramatic and completely inverted conclusion: that the **top 100 most-played cards were the
+WORST-covered band (91.0%)**, with Sol Ring, Command Tower, Counterspell, Swords to Plowshares,
+Rhystic Study, Demonic Tutor and Lightning Bolt all "uncompiled" — i.e. the engine guessing at
+the cards every deck plays. I raised this shortfall's priority on that basis and reported it as
+a headline finding.
+
+**It was exactly backwards.** Those 14 cards are `ccm/authored/` — hand-authored **rung 3**, the
+*highest*-quality tier in the store, deliberately written by hand rather than model-compiled.
+`compile-top` skips them by design (`authored_names()`), which is also why they never appear in
+the ledger. And they live in a **different root**: `authored/` sits in this repo while
+`compiled/` follows `MYTHGAUNTLET_STORE`, so a check that assumes one root silently misses a
+whole rung — precisely what `SemanticsStore.__init__` avoids by reading both.
+
+### The corrected picture
 
 | popularity band | cards | covered |
 |---|---|---|
-| **top 0–100** | 100 | **91.0%** |
-| top 100–500 | 400 | 97.8% |
-| top 500–1000 | 500 | 96.8% |
+| **top 0–100** | 100 | **99.0%** |
+| top 100–500 | 400 | 98.5% |
+| top 500–1000 | 500 | 97.0% |
 | top 1000–5000 | 4,000 | 96.5% |
 | top 5000+ | 26,675 | 97.1% |
 
-**The 100 most-played cards in the format are the WORST-covered band**, by six points, against
-a pool that is otherwise uniformly ~97%. Fourteen of the top 300 are uncompiled, and they are
-not obscure:
+Pool-wide **90.0%**, and the most-played band is the **best** covered, not the worst. Only
+**three** of the top 300 are genuinely absent — and all three are **quarantined with specific
+schema errors at prompt v10**, which is the quarantine loop working as designed: it refuses a
+malformed CCM rather than storing a wrong one.
 
-> Sol Ring · Command Tower · Swords to Plowshares · Counterspell · Cultivate · Polluted Delta ·
-> Rhystic Study · Demonic Tutor · The One Ring · Sakura-Tribe Elder · Urza's Saga ·
-> Lightning Bolt · Beast Whisperer · Sensei's Divining Top
+| card | quarantine reason |
+|---|---|
+| The One Ring | `abilities[3].effects[0].target: expected target object, got 'this'` |
+| Urza's Saga | `op search_library missing required param count` |
+| Sensei's Divining Top | `abilities[0]: needs a non-empty effects list` |
 
-Sol Ring is in a large share of all Commander decks. The engine falls back to rung-1
-Oracle-text heuristics on it, and on Rhystic Study, and on Swords to Plowshares — so the
-fallback is not hitting the long tail, it is hitting the cards *every* deck plays. That makes
-this a bracket-accuracy problem rather than a completeness statistic, which is why the priority
-is raised.
+**Plan (small).** Those three are real cards worth having and each names its own failure. Fix
+the compiler/schema gap or hand-author them into `ccm/authored/` alongside the other 14 — which
+is what that directory is *for*. `scripts/ccm_coverage.py` now reads both rungs and has the
+post-mortem in its docstring.
 
-**Plan.**
-
-1. **Compile the missing top-300 first.** Highest value per card in the whole store, and it is
-   14 cards. Find out *why* they were skipped before assuming a re-run fixes it — a uniform
-   ~97% with a 91% hole at the very top is a signature, not noise, and the repo has been burned
-   once by a frozen Scryfall bulk faking an "exhausted" compile pool.
-2. **Then report per-deck coverage**, which `scripts/ccm_coverage.py --deck` already does. A
-   bracket derived from a deck whose staples are uncompiled deserves visibly less weight —
-   the same confidence-band argument as S4, and the same fabrication class as S3.
+**Standing lesson, earned twice on one shortfall: a measurement tool needs the same scrutiny as
+the thing it measures.** Both wrong answers were confident, specific, and quotable.
 
 ## S7 & S8 — known, quantified, lower value
 

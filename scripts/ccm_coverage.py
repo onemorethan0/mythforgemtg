@@ -23,18 +23,31 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "src"))
 
 
-def store_dir() -> Path:
-    base = os.environ.get("MYTHGAUNTLET_STORE")
-    if not base:
-        raise SystemExit("MYTHGAUNTLET_STORE is not set — nothing to measure.")
-    return Path(base) / "compiled"
+def store_dirs() -> list[Path]:
+    """BOTH tiers, exactly as `SemanticsStore.__init__` reads them.
+
+    Reading only `compiled/` was a real bug in the first version of this script, and it
+    produced a dramatic wrong answer: the 14 hand-authored **rung 3** CCMs — Sol Ring,
+    Counterspell, Command Tower, Swords to Plowshares, Rhystic Study, Demonic Tutor,
+    Lightning Bolt and friends — came back as "uncompiled", which read as the engine
+    guessing at the format's most-played cards. They are the opposite: the highest-quality
+    tier in the store, hand-written rather than model-compiled, which is exactly why
+    `compile-top` skips them and why they never appear in the ledger.
+
+    They also live in a DIFFERENT PLACE — `authored/` sits in this repo while `compiled/`
+    follows MYTHGAUNTLET_STORE — so a check that assumes one root silently misses a whole
+    rung. Same class of mistake as the two-structures bugs this file's siblings keep finding.
+    """
+    from mythgauntlet.semantics import compiler  # noqa: PLC0415 — optional engine import
+    return [compiler.compiled_dir(), compiler.authored_dir()]
 
 
-def compiled_names(store: Path) -> set[str]:
+def compiled_names(dirs: list[Path]) -> set[str]:
     names: set[str] = set()
-    for p in store.glob("*.json"):
+    for p in [f for d in dirs if d.is_dir() for f in d.glob("*.json")]:
         try:
             card = (json.loads(p.read_text(encoding="utf-8")).get("card") or {})
         except Exception:          # noqa: BLE001 — a corrupt CCM is a gap, not a crash
@@ -82,9 +95,9 @@ def main() -> int:
     ap.add_argument("--deck", type=Path, help="report coverage for one decklist file")
     args = ap.parse_args()
 
-    names = compiled_names(store_dir())
+    names = compiled_names(store_dirs())
     pool = load_pool()
-    print(f"compiled CCMs indexed: {len(names)} names")
+    print(f"CCM names indexed (compiled + authored): {len(names)}")
 
     if args.deck:
         wanted = deck_names(args.deck)
