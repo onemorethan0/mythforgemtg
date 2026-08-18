@@ -431,9 +431,7 @@
     },
     {
       "commander": "Progenitus",
-      "shortfall": {
-        "theme": 20
-      },
+      "shortfall": {},
       "source_fallback": "",
       "padded_slots": 0,
       "rate_limited": false,
@@ -461,9 +459,7 @@
     },
     {
       "commander": "Tymna the Weaver",
-      "shortfall": {
-        "theme": 20
-      },
+      "shortfall": {},
       "source_fallback": "",
       "padded_slots": 0,
       "rate_limited": false,
@@ -493,9 +489,7 @@
     },
     {
       "commander": "Jegantha, the Wellspring",
-      "shortfall": {
-        "theme": 20
-      },
+      "shortfall": {},
       "source_fallback": "",
       "padded_slots": 0,
       "rate_limited": false,
@@ -525,9 +519,7 @@
     },
     {
       "commander": "Karona, False God",
-      "shortfall": {
-        "theme": 20
-      },
+      "shortfall": {},
       "source_fallback": "",
       "padded_slots": 0,
       "rate_limited": false,
@@ -555,9 +547,7 @@
     },
     {
       "commander": "Nin, the Pain Artist",
-      "shortfall": {
-        "theme": 20
-      },
+      "shortfall": {},
       "source_fallback": "",
       "padded_slots": 0,
       "rate_limited": false,
@@ -589,8 +579,7 @@
       "commander": "Kozilek, Butcher of Truth",
       "shortfall": {
         "board_wipe": 4,
-        "finisher": 2,
-        "theme": 20
+        "finisher": 2
       },
       "source_fallback": "",
       "padded_slots": 0,

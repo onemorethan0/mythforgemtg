@@ -524,7 +524,16 @@ class DeckBuilder:
                     self.shortfall.get("unrecognised_themes", 0) + len(unknown))
             active = [t for t in themes if t in theme_match.THEMES][:3]
             if not active:
-                self.shortfall["theme"] = self.shortfall.get("theme", 0) + want
+                # NOT a collection shortfall. `shortfall` is surfaced to the user as
+                # "Collection couldn't cover: theme (-20)", and with no detected theme
+                # there was nothing to cover — the gap is a property of the COMMANDER,
+                # not of what they own. Six of the twenty benchmark commanders detect no
+                # theme at all (Progenitus, Tymna, Jegantha, Karona, Nin, Kozilek), and
+                # they accounted for 120 of the 143 reported shortfall slots — a false
+                # accusation against the collection in every case. The Scryfall path
+                # returns 0 here silently; the two branches now agree, and goodstuff
+                # (sized `99 - len(deck)`) absorbs the slots either way. A commander that
+                # HAS themes the collection cannot cover is still reported below.
                 return 0
             # Match over flex (nonland) — the Scryfall theme queries carry -type:land.
             matched = theme_match.match_themes(self._pool.flex, active)

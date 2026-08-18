@@ -272,13 +272,39 @@ def test_shortfall_counts_the_deficit_after_redistribution_not_before():
 
 def test_an_unknown_theme_name_is_skipped_and_recorded_never_raises():
     """A theme key the local matcher doesn't know must not take the build thread down
-    with a KeyError; the slots it can't fill are reported instead."""
+    with a KeyError, and the dropped names are reported.
+
+    It does NOT report a `theme` shortfall. `shortfall` renders to the user as
+    "Collection couldn't cover: theme (-6)", and a typo'd or renamed theme key is a code
+    problem, not something missing from what they own — `unrecognised_themes` is the
+    precise signal and it is already here. Blaming the collection for it is a false
+    accusation, the same one that made six themeless benchmark commanders (Progenitus,
+    Tymna, Jegantha, Karona, Nin, Kozilek) report 120 of 143 shortfall slots against
+    collections that were not at fault.
+    """
     b = _strict_builder(GOBLINS)
     added = b._fetch_theme_synergy_list(PROFILE, ["not_a_theme", "also_not_a_theme"], 6)
     assert added == 0
     assert b._deck == []
-    # Both the unfillable slots AND the fact that two named themes never applied.
-    assert b.shortfall == {"theme": 6, "unrecognised_themes": 2}
+    assert b.shortfall == {"unrecognised_themes": 2}
+
+
+def test_a_commander_with_no_themes_does_not_blame_the_collection():
+    """Nothing to cover is not a coverage failure. Goodstuff (sized `99 - len(deck)`)
+    absorbs the slots, exactly as it does on the Scryfall path, which returns 0 silently
+    here."""
+    b = _strict_builder(GOBLINS)
+    assert b._fetch_theme_synergy_list(PROFILE, [], 20) == 0
+    assert b.shortfall == {}
+
+
+def test_a_real_theme_the_collection_cannot_cover_is_still_reported():
+    """The honesty channel must survive: a KNOWN theme with too few owned cards is a
+    genuine collection shortfall and stays reported."""
+    b = _strict_builder(GOBLINS)          # goblins owned, no dragons
+    added = b._fetch_theme_synergy_list(PROFILE, ["tribal_dragons"], 5)
+    assert added == 0
+    assert b.shortfall.get("theme") == 5
 
 
 def test_an_unknown_theme_alongside_a_known_one_costs_the_known_theme_nothing():
