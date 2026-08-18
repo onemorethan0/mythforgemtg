@@ -211,8 +211,13 @@ def _verdict_labels() -> dict[str, str]:
            / "frontend" / "src" / "components" / "StepDeck.jsx").read_text(encoding="utf-8")
     block = re.search(r"const VERDICTS = \{(.*?)\n\s*\};", src, re.S)
     assert block, "StepDeck.jsx no longer defines a VERDICTS map"
-    return {m.group(1): f"{m.group(2)} {m.group(3)}" for m in
-            re.finditer(r"'([a-z-]+)':\s*\['([^']*)',[^,]*?,\s*'([^']*)'\]", block.group(1))}
+    q = r"(?:'([^']*)'|\"([^\"]*)\")"          # a JS string in either quote style
+    out = {}
+    for m in re.finditer(rf"'([a-z-]+)':\s*\[\s*{q}\s*,[^,]*,\s*{q}\s*\]", block.group(1)):
+        label = m.group(2) if m.group(2) is not None else m.group(3)
+        blurb = m.group(4) if m.group(4) is not None else m.group(5)
+        out[m.group(1)] = f"{label} {blurb}"
+    return out
 
 
 def test_every_verdict_has_a_panel_entry():
@@ -227,20 +232,43 @@ def test_every_verdict_has_a_panel_entry():
         f"no StepDeck.jsx wording for: {sorted(emitted - set(_verdict_labels()))}")
 
 
-def test_off_plan_wording_does_not_claim_the_deck_lacks_synergy():
-    """OFF_PLAN is the residual quadrant of a split at POPULATION medians.
+# Median staples_pct per verdict, measured over the 238 corpus decks with a cached EDHREC
+# page. The LOWEST bucket still has ~77% of its measured cards on positive lift, which is
+# why no verdict may describe a deck as lacking synergy.
+MEDIAN_STAPLES_PCT = {
+    lift_stats.ON_RAILS: 98.4,
+    lift_stats.FOCUSED_WITH_SPICE: 88.2,
+    lift_stats.OFF_PLAN: 82.2,
+    lift_stats.BREW: 77.0,
+}
 
-    It is NOT an absolute statement about the deck. Measured over the 238 corpus decks
-    with a cached page, 80% of the decks landing here are above their commander's page
-    median on synergy, with a median 82.2% of measured cards on positive lift. The
-    original blurb — "few cards lean on what this commander rewards" — was therefore
-    false for four out of five decks it appeared on, on a quarter of all decks.
+# Phrases that assert something ABSOLUTE about the deck. Every verdict is a quadrant of a 2x2
+# cut at POPULATION medians, so all of them are comparative claims; wording that reads as an
+# absolute one is false for most of the decks it fires on.
+_ABSOLUTE_CLAIMS = ("few cards", "no synergy", "little synergy", "lacks", "unfocused",
+                    "ignores", "not built around", "backbone for something else",
+                    "random", "pile")
 
-    Pinned as a phrasing test because the wording IS the defect: the classifier was
-    right both before and after the fix.
+
+@pytest.mark.parametrize("verdict", sorted(MEDIAN_STAPLES_PCT))
+def test_no_verdict_wording_claims_the_deck_lacks_synergy(verdict):
+    """Table-driven over EVERY verdict, not just the one that was caught.
+
+    `off-plan` shipped as "Unfocused - few cards lean on what this commander rewards" and was
+    false for four of five decks it appeared on, at a quarter of all decks. `brew` shipped as
+    "using the commander as a backbone for something else" while a median 77.0% of its measured
+    cards are ones the commander wants. Both were the same mistake, found one at a time - so
+    the guard now covers the whole table and a new verdict is covered the day it is added.
     """
-    blurb = _verdict_labels()[lift_stats.OFF_PLAN].casefold()
-    for claim in ("few cards", "no synergy", "little synergy", "ignores", "unfocused"):
-        assert claim not in blurb, (
-            f"off-plan blurb asserts {claim!r} absolutely, but the verdict is only "
-            f"relative to the population: {blurb!r}")
+    text = _verdict_labels()[verdict].casefold()
+    for claim in _ABSOLUTE_CLAIMS:
+        assert claim not in text, (
+            f"{verdict!r} wording asserts {claim!r} absolutely, but a median "
+            f"{MEDIAN_STAPLES_PCT[verdict]}% of its measured cards are on POSITIVE lift: {text!r}")
+
+
+def test_the_staples_table_covers_every_judged_verdict():
+    """A verdict absent from MEDIAN_STAPLES_PCT is silently unguarded above."""
+    judged = {lift_stats.ON_RAILS, lift_stats.FOCUSED_WITH_SPICE,
+              lift_stats.BREW, lift_stats.OFF_PLAN}
+    assert judged == set(MEDIAN_STAPLES_PCT)

@@ -17,24 +17,44 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
-| S1 | Commander themes undetected | **80 / 391 (20.5%)** | **High** | M |
+| S1 | Commander themes undetected | **75 / 391 (19.2%)** ↓ from 80 | **High** | M |
 | S2 | Partner decks cannot be BUILT | **33 / 483 (6.8%)** | Medium | M |
-| S3 | Population-relative labels read as absolute | 1 of 5 fixed | **High** | S |
+| S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** `insufficient-data` | Medium | M |
-| S5 | Dead entries in the theme taxonomy | **3 of 43** never fire | Low | S |
+| S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
 | S6 | Engine card coverage | **31,028 / 34,179 (90.8%)** | Medium | L |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
 | S8 | Errors surface via native `alert()` | 3 sites | Low | S |
 
 ---
 
-## S1 — 20.5% of commanders detect no theme *(highest value)*
+## S1 — 19.2% of commanders detect no theme *(highest value, partially landed)*
 
-**Measured.** 80 of 391 unique corpus commanders return `[]` from
-`commander_analysis._detect_themes`. Their ~20 theme slots then fall through to generic
-goodstuff, so the builder is blind to the deck's whole point. Deck-context themes
-(`deck_themes`) rescue **41 of the 74** that appear as a deck lead (55%) — leaving **45% with
-no archetype from either source**.
+**Measured.** **75** of 391 unique corpus commanders return `[]` from
+`commander_analysis._detect_themes` — down from 80 after the two fixes below. Their ~20 theme
+slots fall through to generic goodstuff, so the builder is blind to the deck's whole point.
+Deck-context themes (`deck_themes`) rescue **39 of the 69** that appear as a deck lead (57%),
+leaving **43% with no archetype from either source**.
+
+### Landed 2026-08-18
+
+**A card's own NAME was being read as a payoff.** `THEME_PATTERNS` matches by SUBSTRING against
+oracle text, and Magic prints a card's name inside its own rules text — so **39 legendary-creature
+tribal detections fired on the name alone**, every one inspected wrong. It was worse than a name
+collision: *Michelangelo* registered as **Angel** tribal and *Desdemona* as **Demon** tribal,
+alongside The Unknown Wizard, Winter Soldier, Green Goblin, Questing Beast and five Skanos
+printings. Each false tribal spends a commander's ~20 theme slots on a tribe with no payoff —
+the same defect `_detect_themes` already refuses the TYPE LINE to prevent.
+`_oracle_without_self_name` strips both the full and pre-comma name per face; 7 cases plus 3
+must-survive payoffs are pinned in `tests/test_theme_taxonomy.py`.
+
+**Three patterns widened**, each from a commander the offload ensemble flagged and I verified by
+hand: `spellslinger` gained `"instant and sorcery spells you cast"` (cost reduction IS the
+payoff — Baral detected nothing), `artifacts` gained the plural and artifact-creature phrasings
+plus `"an artifact card"` (Alibou, Tony Stark), `graveyard` gained `"in all graveyards"` and
+`"each player mills"` (Coram). Over-fire checked: 6 / 47 / 9 legends newly detected, spot-read
+and correct — the 47 is `"artifacts you control"`, which `CLAUDE.md` had already flagged as the
+known gap.
 
 **This is under-stated by the corpus.** In the user's own seven-deck pod, **3 of 7 commanders
 (43%)** detect nothing: Witherbloom, the Balancer · Vorel of the Hull Clade · Avatar Aang.
@@ -46,11 +66,10 @@ same 43 themes — it is archetypes with no entry.
 
 **Plan.**
 
-1. **Generate candidates with the method that already worked — not with the local model.**
-   `face_down`, `sagas` and `impulse` were found by **distinctive-bigram analysis of the
-   zero-theme commanders' oracle text against a baseline**: deterministic, offline, no LLM.
-   Re-run exactly that over the 80 in `shortfall_zero_theme.json`. The local-model sweep was
-   tried this session and **did not earn its place** — see the offload note at the end.
+1. **Work the 24-card review queue** in `docs/data/zero_theme_triage.json`, where the two
+   models disagreed. The 52 they agreed were themeless are the NEW-archetype pool; run the
+   distinctive-bigram analysis (deterministic, offline — how `face_down`, `sagas` and `impulse`
+   were found) over those rather than over all 75.
 2. **Qualify each candidate by measurement, exactly as `face_down`/`sagas`/`impulse` were:**
    - how many of the 80 it would rescue (a candidate under ~8 is not worth a theme slot);
    - its `theme_match` STRONG rate over the 34,179-card store — anything scoring like
@@ -96,7 +115,7 @@ colours-castable, not just that it builds.
 
 ---
 
-## S3 — A population-relative label still reads as an absolute claim
+## S3 — ~~A population-relative label reads as an absolute claim~~ · DONE 2026-08-18
 
 **Measured.** All five off-meta verdicts are quadrants of a 2×2 cut at **population medians**,
 so each is a statement about *other decks*. `off-plan` was fixed this session — its blurb was
@@ -107,14 +126,16 @@ something else" fires on 19.3% of decks with a **median 77.0% of measured cards 
 lift**. That is defensible but it is the same trap, and it was left alone deliberately rather
 than by oversight.
 
-**Plan.** Cheap and worth doing before it bites:
+**Done.** All five audited against their measured medians. Two rewritten:
 
-1. Re-read all five blurbs against their measured quadrant statistics (the cross-tab is in
-   `HANDOFF.md` §9) and rewrite any that assert something absolute.
-2. Extend `test_off_plan_wording_does_not_claim_the_deck_lacks_synergy` into a table-driven
-   check over **every** verdict, so the guard is not one-off.
-3. Show the reader the relativity directly — the panel already prints `typical here +6.5`,
-   which is the honest frame; consider making that comparison the headline rather than the label.
+- `brew` → *"on-theme overall, but a wide gulf between its best and loosest picks"*. The
+  defining feature of that quadrant is the SPREAD, not an absence of synergy.
+- `on-rails` → *"plays this commander's most-played cards, and little else"*, replacing "close
+  to the typical list" for decks sitting +20.1 ABOVE their page median.
+
+The guard is now table-driven over every verdict (`MEDIAN_STAPLES_PCT` × `_ABSOLUTE_CLAIMS`), so
+a verdict added later is covered the day it lands, and a second test fails if the table misses
+one. Verified the guard would have caught both original blurbs.
 
 ---
 
@@ -193,46 +214,36 @@ as S3 and S4.
 
 ---
 
-## Honest note on offloading this work
+## Offloading: the first diagnosis was wrong
 
-Per standing practice the bulk labelling for S1 went to the local stack (`qwen3:14b` on
-llama-swap `:8010`). **A gold set was run first, and it is why the output is used the way it
-is.**
+The first sweep concluded that inferring an archetype from rules text is judgement and sits
+outside what the local model can do. **That was a harness failure misread as a capability
+limit.** The rebuilt harness lives in [`scripts/offload/`](../scripts/offload/README.md) with
+the full post-mortem; the five faults were:
 
-Hand-labelled 8 of the 80 from their oracle text, then scored the model against them:
+1. **`/no_think` on a reasoning model, and empty replies scored as an answer.** qwen3 spent the
+   whole budget in the trace and returned empty content, which the parser recorded as the answer
+   `none` — so every card came back unlabelled and it looked like the model refusing to judge.
+2. **43 labels, a second output field, JSON, and 4 cards per call.** An A/B showed the model
+   answers the *same* discrimination correctly (4/4, both sizes) when the question is narrow.
+   The failure was task complexity per call.
+3. **Undefined jargon.** `aristocrats` and `draw_matters` are this project's vocabulary, not
+   English. Adding a glossary moved the gold set more than any prompt wording — and the
+   definitions have to name Magic's *templating*, not just the concept.
+4. **Loose definitions for base-rate-trap themes.** `voltron_combat` is STRONG on 19.35% of all
+   cards; a loose definition makes it swallow anything mentioning combat.
+5. **Interleaving two models.** llama-swap keeps one model resident, so alternating per card
+   forced an unload+reload every item and 80 cards did not finish in ten minutes. Two passes
+   cost two loads instead of a hundred and sixty.
 
-| round | exact | note |
-|---|---|---|
-| first prompt | **2 / 4** | one batch also returned malformed JSON |
-| + worked examples on the observed confusions | **5 / 8** | |
+**The two models fail in opposite directions, which is the useful part.** On the gold set
+`qwen3:14b` is 1/4 at assigning a label and 4/4 at answering "none"; `qwen3:32b` is the mirror,
+4/4 and 2/4. So the sweep runs both and trusts only agreement — 3/3 correct on gold, 4/4 on the
+real run — and turns disagreement into a review queue. Over the 80 zero-theme commanders: **70%
+agreement** (4 on a theme, 52 on "none"), **24 queued**, i.e. a review list a quarter the size
+of the input.
 
-It is **reliable on the negative case** — 4/4 when the correct answer is "no theme in the
-vocabulary fits" — and **unreliable at assigning labels**: it read *Agent of the Iron Throne*
-("whenever an artifact or creature you control is put into a graveyard from the battlefield,
-each opponent loses 1 life") as `graveyard` rather than `aristocrats` **even after a worked
-example described that exact wording**, and called a sacrifice outlet `draw_matters`.
+Model output is still only a **candidate**: all four proposed themes were verified against
+oracle text by hand before any pattern was widened. What the sweep buys is not judgement, it is
+a much shorter list to judge.
 
-So its labels were **not** used as ground truth — feeding 80 near-miss labels into
-`THEME_PATTERNS` would inject precisely the defect class this project forbids. The fallback
-plan was to use it only as a **candidate generator** for missing archetypes, where a wrong
-suggestion costs a discarded candidate rather than a wrong card in someone's deck.
-
-**That fallback also failed, and the sweep is recorded here as a negative result.** All 80
-were swept (79 returned). Of the nominations for archetypes *missing* from the vocabulary:
-
-- the **most frequent were already in the vocabulary** — `draw_matters` (3), `tokens` (2),
-  `reanimator`, `graveyard`, `lifegain` — a straight violation of the one instruction that
-  defined the field;
-- the genuinely novel names were a 21-long tail at count 1, mostly not archetypes at all:
-  `autostubs`, `disappear`, `warp`, `nightmares`, `villainous`, `legendary`, `mana`;
-- the few real ones (`defenders`, `mill`, `eldrazi`) each appeared **once**, and `defenders`
-  I had already found by hand-labelling 8 cards.
-
-**Net: eight hand-labels produced more usable signal than the 80-card sweep.** The honest
-conclusion is that this task — "infer an archetype from rules text" — is *judgement*, not
-extraction, and sits on the wrong side of the line for this model. S1's plan reverts to the
-deterministic bigram analysis that actually found the last three themes.
-
-Where the local stack **is** worth the VRAM on this codebase: drafting a self-contained module
-from a precise spec (it drafted `collection_pool`, `deck_quality`, `theme_match`), and
-closed-vocabulary extraction where the vocabulary is unambiguous. Not this.

@@ -1813,9 +1813,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {stats.offmeta && stats.offmeta.measured > 0 && (() => {
               const om = stats.offmeta;
               const VERDICTS = {
-                'on-rails':           ['Stock list',    '#fbbf24', 'close to the typical list for this commander'],
+                // Each verdict describes its QUADRANT, and every quadrant is cut at a
+                // population median — so the wording has to stay comparative. Median
+                // staples_pct per bucket, over the 238 corpus decks with a cached page:
+                // on-rails 98.4 · focused-with-spice 88.2 · off-plan 82.2 · brew 77.0.
+                // Nothing here may claim a deck lacks synergy: the LOWEST bucket still has
+                // three quarters of its measured cards on positive lift.
+                'on-rails':           ['Stock list',    '#fbbf24', "plays this commander's most-played cards, and little else"],
                 'focused-with-spice': ['Focused brew',  '#86efac', 'on-theme, with cards outside the usual list'],
-                'brew':               ['Off-beat brew', '#c4b5fd', 'using the commander as a backbone for something else'],
+                // Was "using the commander as a backbone for something else" — which says the
+                // deck is NOT built around its commander, while a median 77.0% of its measured
+                // cards are ones this commander wants. The defining feature of this quadrant is
+                // the SPREAD, not an absence of synergy.
+                'brew':               ['Off-beat brew', '#c4b5fd', 'on-theme overall, but a wide gulf between its best and loosest picks'],
                 // NOT "unfocused": this is the residual quadrant of a 2x2 split at POPULATION
                 // medians, so it means "less commander-leaning than most decks", not "few
                 // synergy cards". Measured over 238 corpus decks, 80% of the decks landing here

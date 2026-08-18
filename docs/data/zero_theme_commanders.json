@@ -5,11 +5,6 @@
     "oracle_text": "Commander creatures you own have \"Whenever an artifact or creature you control is put into a graveyard from the battlefield, each opponent loses 1 life.\""
   },
   {
-    "name": "Alibou, Ancient Witness",
-    "type_line": "Legendary Artifact Creature \u2014 Golem",
-    "oracle_text": "Other artifact creatures you control have haste.\nWhenever one or more artifact creatures you control attack, Alibou deals X damage to any target and you scry X, where X is the number of tapped artifacts you control."
-  },
-  {
     "name": "Arcades, the Strategist",
     "type_line": "Legendary Creature \u2014 Elder Dragon",
     "oracle_text": "Flying, vigilance\nWhenever a creature you control with defender enters, draw a card.\nEach creature you control with defender assigns combat damage equal to its toughness rather than its power and can attack as though it didn't have defender."
@@ -28,11 +23,6 @@
     "name": "Baba Lysaga, Night Witch",
     "type_line": "Legendary Creature \u2014 Human Warlock",
     "oracle_text": "{T}, Sacrifice up to three permanents: If there were three or more card types among the sacrificed permanents, each opponent loses 3 life, you gain 3 life, and you draw three cards."
-  },
-  {
-    "name": "Baral, Chief of Compliance",
-    "type_line": "Legendary Creature \u2014 Human Wizard",
-    "oracle_text": "Instant and sorcery spells you cast cost {1} less to cast.\nWhenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card."
   },
   {
     "name": "Belbe, Corrupted Observer",
@@ -58,11 +48,6 @@
     "name": "Chulane, Teller of Tales",
     "type_line": "Legendary Creature \u2014 Human Druid",
     "oracle_text": "Vigilance\nWhenever you cast a creature spell, draw a card, then you may put a land card from your hand onto the battlefield.\n{3}, {T}: Return target creature you control to its owner's hand."
-  },
-  {
-    "name": "Coram, the Undertaker",
-    "type_line": "Legendary Creature \u2014 Human Warrior",
-    "oracle_text": "Coram gets +X/+0, where X is the greatest power among creature cards in all graveyards.\nWhenever Coram attacks, each player mills a card.\nDuring each of your turns, you may play a land and cast a spell from among cards in graveyards that were put there from libraries this turn."
   },
   {
     "name": "Deadpool, Trading Card",
@@ -340,11 +325,6 @@
     "oracle_text": "This spell can't be countered.\nMenace\nWhenever a player casts a spell, if the amount of mana spent to cast it was less than its mana value, Tokka & Rahzar deal 3 damage to that player."
   },
   {
-    "name": "Tony Stark // The Invincible Iron Man",
-    "type_line": "Legendary Creature \u2014 Human Artificer Hero",
-    "oracle_text": "{1}, {T}: Look at the top four cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\n{4}{U}{R}: Transform Tony Stark. Activate only as a sorcery."
-  },
-  {
     "name": "Tuvasa the Sunlit",
     "type_line": "Legendary Creature \u2014 Merfolk Shaman",
     "oracle_text": "Tuvasa gets +1/+1 for each enchantment you control.\nWhenever you cast your first enchantment spell each turn, draw a card."
@@ -373,11 +353,6 @@
     "name": "Wernog, Rider's Chaplain",
     "type_line": "Legendary Creature \u2014 Human",
     "oracle_text": "When Wernog, Rider's Chaplain enters or leaves the battlefield, each opponent may investigate. Each opponent who doesn't loses 1 life. You investigate X times, where X is one plus the number of opponents who investigated this way.\nPartner\u2014Friends forever (You can have two commanders if both have this ability.)"
-  },
-  {
-    "name": "Witherbloom, the Balancer",
-    "type_line": "Legendary Creature \u2014 Elder Dragon",
-    "oracle_text": "Affinity for creatures (This spell costs {1} less to cast for each creature you control.)\nFlying, deathtouch\nInstant and sorcery spells you cast have affinity for creatures."
   },
   {
     "name": "Y'shtola, Night's Blessed",

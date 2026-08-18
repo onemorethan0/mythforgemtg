@@ -4,6 +4,7 @@ Parses a Scryfall card object for a commander and extracts:
 - Keyword abilities
 - Mechanical themes (used to steer synergy card selection)
 """
+import re
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -44,11 +45,19 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "return it to the battlefield", "return target creature card",
                          "reanimate", "from a graveyard to the battlefield"],
     "spellslinger":     ["whenever you cast an instant", "whenever you cast a sorcery",
-                         "instant or sorcery spell", "magecraft"],
+                         "instant or sorcery spell", "magecraft",
+                         # Cost reduction IS the spellslinger payoff — Baral, Chief of
+                         # Compliance detected nothing without this.
+                         "instant and sorcery spells you cast"],
     "enchantress":      ["whenever an enchantment enters", "whenever you cast an enchantment",
                          "enchantment enters the battlefield"],
     "artifacts":        ["whenever an artifact enters", "whenever you cast an artifact",
-                         "artifact you control"],
+                         "artifact you control",
+                         # Plural and the artifact-creature phrasing: Alibou, Ancient Witness
+                         # ("other artifact creatures you control") detected nothing, and
+                         # "an artifact card" catches artifact tutoring (Tony Stark).
+                         "artifacts you control", "artifact creatures you control",
+                         "an artifact card"],
     "voltron":          ["equip", "equipped creature", "attach", "aura attached"],
     "auras":            ["aura", "enchant creature", "enchanted creature"],
     "tribal_knights":   ["knight"],
@@ -62,7 +71,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "landfall"],
     "graveyard":        ["from your graveyard", "graveyard into your hand",
                          "when this card is put into your graveyard",
-                         "flashback", "unearth", "delve"],
+                         "flashback", "unearth", "delve",
+                         # Graveyards as a shared RESOURCE, and deliberate self-mill —
+                         # Coram, the Undertaker detected nothing without these.
+                         "in all graveyards", "each player mills"],
     "etb":              ["whenever a creature you control enters",
                          "whenever another creature you control enters",
                          "whenever a creature enters the battlefield under your control",
@@ -235,6 +247,30 @@ class CommanderProfile:
         return [THEME_LABELS.get(t, t) for t in self.themes]
 
 
+def _oracle_without_self_name(card: dict) -> str:
+    """Oracle text with the card's OWN printed name removed, lowercased.
+
+    Magic prints a card's name inside its own rules text, so a tribe word that is merely part
+    of the name matched as if it were a payoff: **21 of 558 legendary-creature tribal
+    detections (3.8%) fired on the name alone** — The Unknown Wizard read as Wizard tribal,
+    Winter Soldier as Soldier tribal, Green Goblin as Goblin tribal, Questing Beast and
+    Skanos, Dragon Vassal likewise. Each one spends a commander's ~20 theme slots on a tribe
+    the deck has no payoff for, which is the same defect class as reading the TYPE LINE that
+    this function's docstring already refuses to do.
+
+    Both the full name and the pre-comma short name are stripped, because rules text uses the
+    short form ("Skanos deals 2 damage"), and each face of a multi-face card contributes its
+    own name.
+    """
+    text = card.get("oracle_text") or ""
+    for face in (card.get("name") or "").split(" // "):
+        for form in (face, face.split(",")[0]):
+            form = form.strip()
+            if len(form) > 2:                 # never strip a 1-2 char token; too collision-prone
+                text = re.sub(re.escape(form), " ", text, flags=re.I)
+    return text.lower()
+
+
 def _detect_themes(card: dict) -> list[str]:
     """Detect strategic themes from the commander's ORACLE TEXT only.
 
@@ -245,7 +281,7 @@ def _detect_themes(card: dict) -> list[str]:
     you control", "whenever you cast an Aura", "proliferate"), so oracle-only
     detection both kills those false tribals and still catches the true strategy.
     """
-    oracle = (card.get("oracle_text") or "").lower()
+    oracle = _oracle_without_self_name(card)
 
     found: list[str] = []
     for theme, patterns in THEME_PATTERNS.items():

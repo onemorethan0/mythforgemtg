@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import pytest
 
+import commander_analysis
 import deck_themes
 import theme_match
 from commander_analysis import THEME_LABELS, THEME_PATTERNS, THEME_SYNERGY_QUERIES
@@ -143,3 +144,59 @@ def test_theme_query_has_no_top_level_or(name, query):
 def test_role_query_has_no_top_level_or(name, query):
     """Same hazard, same fix, for the functional-role queries."""
     assert not _has_top_level_or(query), f"{name}: needs wrapping parentheses — {query}"
+
+
+# ── a card's own NAME is not a payoff ───────────────────────────────────────────
+
+_SELF_NAME_CASES = [
+    # (card name, oracle text, tribe that must NOT be detected)
+    ("The Unknown Wizard", "When this creature enters, draw a card.", "tribal_wizards"),
+    ("Winter Soldier, Icy Assassin",
+     "Vigilance, menace\nWinter Soldier gets +2/+0 for each Equipment attached to it.",
+     "tribal_soldiers"),
+    ("Green Goblin, Revenant",
+     "Flying, deathtouch\nWhenever Green Goblin attacks, discard a card.", "tribal_goblins"),
+    ("Skanos, Dragon Vassal",
+     "Whenever Skanos, Dragon Vassal attacks, another target attacking creature gets +1/+1.",
+     "tribal_dragons"),
+    ("Questing Beast",
+     "Vigilance, deathtouch, haste\nQuesting Beast can't be blocked by creatures with power 2 "
+     "or less.", "tribal_beasts"),
+    # Substring matches inside an ordinary word, not even a tribe reference:
+    ("Michelangelo, Game Master", "When Michelangelo enters, create a Turtle token.",
+     "tribal_angels"),
+    ("Desdemona, Freedom's Edge", "Whenever Desdemona attacks, you gain 1 life.",
+     "tribal_demons"),
+]
+
+
+@pytest.mark.parametrize("name,oracle,tribe", _SELF_NAME_CASES,
+                         ids=[c[0] for c in _SELF_NAME_CASES])
+def test_a_cards_own_name_is_not_a_tribal_payoff(name, oracle, tribe):
+    """Magic prints a card's name in its own rules text — that is not a payoff.
+
+    Measured over `data/cards_slim.json`: **39 legendary-creature tribal detections fired on
+    the name alone**, and every one inspected was wrong. Worse, `THEME_PATTERNS` matches by
+    SUBSTRING, so "Michelangelo" registered as Angel tribal and "Desdemona" as Demon tribal.
+    Each false tribal spends a commander's ~20 theme slots on a tribe with no payoff, which is
+    the same defect `_detect_themes` already refuses the TYPE LINE to prevent.
+    """
+    detected = commander_analysis._detect_themes({"name": name, "oracle_text": oracle})
+    assert tribe not in detected, f"{name!r} read as {tribe} off its own name: {detected}"
+
+
+def test_real_tribal_payoffs_still_detect():
+    """The name strip must not cost a genuine payoff — the guard that makes the fix safe."""
+    keep = [
+        ("Slinza, the Spiked Stampede",
+         "Beast spells you cast cost {2} less to cast.\nEach other Beast creature you control "
+         "enters with an additional +1/+1 counter on it.", "tribal_beasts"),
+        ("Sliver Overlord",
+         "{3}: Search your library for a Sliver card.\n{2}: Gain control of target Sliver.",
+         "tribal_slivers"),
+        ("Goblin Chieftain",
+         "Other Goblin creatures you control get +1/+1 and have haste.", "tribal_goblins"),
+    ]
+    for name, oracle, tribe in keep:
+        detected = commander_analysis._detect_themes({"name": name, "oracle_text": oracle})
+        assert tribe in detected, f"{name!r} lost {tribe}: {detected}"
