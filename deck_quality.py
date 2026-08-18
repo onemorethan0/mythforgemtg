@@ -28,6 +28,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+import collection_pool
+
 WUBRG: str = "WUBRG"
 
 _COLOR_SYM = re.compile(r"\{([^}]+)\}")
@@ -354,6 +356,83 @@ def assess_colors(deck: list[dict], commander: dict) -> ColorVerdict:
     notes = [f"{col}: {sources.get(col, 0)} sources, wants {required[col]}"
              for col in sorted(short, key=lambda c: -short[c])][:3]
     return ColorVerdict(pips, sources, required, short, not short, notes)
+
+
+@dataclass
+class ManaBaseVerdict:
+    lands: int
+    ramp: int
+    sources: int
+    verdict: str
+    ok: bool
+    notes: list[str]
+
+
+# Calibrated over 459 corpus decks (95-101 cards, >=95% of names resolved, and excluding
+# 4 rows the corpus fetched WITHOUT their manabase — a landless 102-card "deck" is a bad
+# scrape, not a bad deck, and leaving those in dragged the low tail). Percentiles:
+#   lands    p05 30  p10 32  median 36  p95 40
+#   sources  p05 38  p10 40  median 47  p95 61
+LOW_LANDS = 32          # p10 — below this the deck is leaning on something else
+MIN_SOURCES = 38        # p05 — below this it is short by the standard of real decks
+
+MANA_OK = "ok"
+MANA_RAMP_DEPENDENT = "ramp-dependent"
+MANA_SHORT = "short"
+
+
+def ramp_count(deck: list[dict]) -> int:
+    """Quantity-weighted count of NONLAND cards that produce or fetch mana.
+
+    Delegates to `collection_pool.classify` rather than re-deriving "what is ramp".
+    This repo has been bitten repeatedly by two structures that must agree and only
+    one of which is tested (`tags.py` vs `profile.py`, the two theme branches), and a
+    second ramp definition drifting from the first is the same bug waiting to happen.
+    That classifier is net-positive-aware, so a `{1},{T}: Add {B}` filter — which nets
+    zero — is correctly not counted.
+    """
+    return sum(qty(c) for c in deck
+               if not is_land(c) and "ramp" in collection_pool.classify(c))
+
+
+def assess_mana_base(deck: list[dict]) -> ManaBaseVerdict:
+    """Whether the deck has enough mana, counting RAMP as well as lands.
+
+    A land count alone cannot answer this, and saying otherwise would be the worst kind
+    of wrong — confidently flagging a deliberate build. Measured over the corpus,
+    **10.9% of real decks run under 33 lands and 68% of those clear 40 total sources**:
+    a low land count is usually a choice that ramp pays for, not a mistake. So a deck is
+    only called SHORT when both halves fail; a low land count with the ramp to support it
+    is reported as `ramp-dependent`, which is a description of how it plays (it needs to
+    hit its ramp) and not a fault.
+
+    `sources` is deliberately a coarse figure — a ritual and a Signet are not the same
+    thing, and the notes say "lands + ramp" rather than implying a mana count.
+    """
+    lands = sum(qty(c) for c in deck if is_land(c))
+    ramp = ramp_count(deck)
+    sources = lands + ramp
+
+    # BOTH halves must fail. Testing `sources` alone looks equivalent and is not: it
+    # called a 35-land deck with 2 ramp "short", and 35 lands is the 25th percentile of
+    # real decks — an ordinary manabase attached to a deck that simply does not ramp.
+    # Not ramping is a playstyle (a low-curve aristocrats list wants spells, not rocks),
+    # so the land count is what decides whether the deck is actually missing mana.
+    if lands < LOW_LANDS and sources < MIN_SOURCES:
+        verdict = MANA_SHORT
+    elif lands < LOW_LANDS:
+        verdict = MANA_RAMP_DEPENDENT
+    else:
+        verdict = MANA_OK
+
+    notes: list[str] = []
+    if verdict == MANA_SHORT:
+        notes.append(f"{lands} lands + {ramp} ramp = {sources} sources; "
+                     f"95% of decks run {MIN_SOURCES} or more")
+    elif verdict == MANA_RAMP_DEPENDENT:
+        notes.append(f"{lands} lands is low, but {ramp} ramp brings it to {sources} "
+                     f"— the deck needs to hit its ramp")
+    return ManaBaseVerdict(lands, ramp, sources, verdict, verdict != MANA_SHORT, notes)
 
 
 def suggest_cuts(deck: list[dict], verdict: CurveVerdict, limit: int = 8) -> list[dict]:

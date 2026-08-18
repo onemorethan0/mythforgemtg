@@ -1770,6 +1770,34 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                     ))}
                   </div>
                 )}
+                {/* Whether there is enough mana at all — the "Mana:" row above only asks
+                    whether it is the right COLOURS, so a deck with far too few lands passed
+                    it without comment. "ramp-dependent" is deliberately NOT styled as a
+                    fault: measured over the corpus, 10.9% of real decks run under 33 lands
+                    and 68% of those are carried by ramp, so it describes how the deck plays
+                    rather than accusing it of being broken. */}
+                {stats.quality.mana && (
+                  <div style={{ fontSize: 12, marginBottom: 6 }}>
+                    <span style={{ color: '#a8a29e' }}>Mana sources: </span>
+                    <span style={{
+                      fontWeight: 700,
+                      color: stats.quality.mana.verdict === 'short' ? '#f87171'
+                           : stats.quality.mana.verdict === 'ramp-dependent' ? '#fbbf24'
+                           : '#86efac',
+                    }}>
+                      {stats.quality.mana.sources}
+                    </span>
+                    <span style={{ color: '#78716c' }}>
+                      {' '}({stats.quality.mana.lands} lands + {stats.quality.mana.ramp} ramp)
+                    </span>
+                    {(stats.quality.mana.notes || []).map((n, i) => (
+                      <div key={i} style={{
+                        fontSize: 11, marginTop: 2,
+                        color: stats.quality.mana.verdict === 'short' ? '#f87171' : '#78716c',
+                      }}>{n}</div>
+                    ))}
+                  </div>
+                )}
                 {(stats.quality.curve?.notes || []).slice(0, 2).map((n, i) => (
                   <div key={i} style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>{n}</div>
                 ))}

@@ -5777,6 +5777,11 @@ def _serializable_job(job: dict) -> dict:
     return {k: v for k, v in job.items() if k not in _INTERNAL_JOB_KEYS}
 
 
+# The keys `deck_quality_block` produces. Adding one here is what makes an
+# older stored block count as stale and get recomputed on load.
+_QUALITY_KEYS = frozenset({"curve", "colors", "mana"})
+
+
 def _backfill_quality(data: dict) -> None:
     """Derive stats.quality in place for a deck that predates it. No-op when present.
 
@@ -5785,7 +5790,14 @@ def _backfill_quality(data: dict) -> None:
     orders by) for a derived value.
     """
     stats = data.get("stats")
-    if not isinstance(stats, dict) or stats.get("quality"):
+    if not isinstance(stats, dict):
+        return
+    quality = stats.get("quality")
+    # A block written by an OLDER build is present but missing whatever keys have been
+    # added since (`mana` landed after `curve`/`colors`), and a plain truthiness check
+    # counts that as done — so a newly added panel silently never appears on the decks
+    # built in between. Recompute unless every key the current block produces is there.
+    if isinstance(quality, dict) and quality and _QUALITY_KEYS <= quality.keys():
         return
     try:
         stats["quality"] = deck_quality_block(data.get("commander") or {},

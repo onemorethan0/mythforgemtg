@@ -1336,6 +1336,7 @@ def deck_quality_block(commander: dict, deck: list[dict]) -> dict:
     try:
         curve = deck_quality.assess_curve(deck, int(deck_quality.mana_value(commander)))
         colors = deck_quality.assess_colors(deck, commander)
+        mana = deck_quality.assess_mana_base(deck)
     except Exception:      # noqa: BLE001 — advisory only; never fail a build over stats
         return {}
     return {
@@ -1347,5 +1348,12 @@ def deck_quality_block(commander: dict, deck: list[dict]) -> dict:
         "colors": {
             "ok": colors.ok, "pips": colors.pips, "sources": colors.sources,
             "required": colors.required, "short": colors.short, "notes": colors.notes,
+        },
+        # Whether there is enough mana AT ALL — a different question from `colors`,
+        # which only asks whether the mana is the right COLOURS. A 27-land deck with
+        # no ramp and a 27-land deck with eleven both passed `colors` identically.
+        "mana": {
+            "ok": mana.ok, "verdict": mana.verdict, "lands": mana.lands,
+            "ramp": mana.ramp, "sources": mana.sources, "notes": mana.notes,
         },
     }

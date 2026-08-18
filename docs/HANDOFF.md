@@ -230,3 +230,58 @@ Guarded by two new tests in `test_lift_stats.py`, which parse the `VERDICTS` map
 **The general trap: a label on a population-relative bucket reads as an absolute claim.**
 `brew`'s "using the commander as a backbone for something else" (median 77% on-theme) is the
 next-weakest and was left alone; it is defensible, but it is the same shape.
+
+---
+
+## 10. The manabase was never measured for SIZE (2026-08-18)
+
+Found by running the seven decks in the user's own Archidekt folder through `compute_stats`.
+One (Simic, Vorel) came back with **27 lands** — which looked like a fault and was not: it
+runs 11 ramp sources, so 38 total. Checking that is what exposed the gap.
+
+`deck_quality` measured the curve and whether the mana is the right **colours**. Nothing
+measured whether there is **enough mana at all**. A 27-land deck with 11 ramp and a 27-land
+deck with **zero** ramp produced identical `quality` blocks — and the second one cannot
+function.
+
+`assess_mana_base(deck)` → `{lands, ramp, sources, verdict, ok, notes}`, hung off
+`deck_quality_block` so every path gets it from one place. `ramp_count` delegates to
+`collection_pool.classify` rather than re-deriving "what is ramp" — a second definition
+drifting from the first is this repo's most-repeated bug (`tags.py` vs `profile.py`, the two
+theme branches), and that classifier is already net-mana-aware, so a `{1},{T}: Add {B}`
+filter correctly counts zero.
+
+**Calibrated over 459 corpus decks** (95–101 cards, ≥95% of names resolved, excluding **4
+rows the corpus fetched without their manabase** — a landless 102-card "deck" is a bad
+scrape, not a bad deck, and leaving them in dragged the low tail):
+
+| | p05 | p10 | p25 | median | p95 |
+|---|---|---|---|---|---|
+| lands | 30 | **32** | 34 | 36 | 40 |
+| ramp | 2 | 5 | 8 | 11 | 21 |
+| sources | **38** | 40 | 44 | 47 | 61 |
+
+`LOW_LANDS = 32` (p10), `MIN_SOURCES = 38` (p05).
+
+**BOTH halves must fail before a deck is called short, and getting that wrong was the bug
+this shipped with.** Testing `sources` alone looks equivalent; it flagged a **35-land** deck
+as short because it runs 2 ramp, and 35 lands is the *25th percentile* — an ordinary
+manabase attached to a deck that simply does not ramp, which is a playstyle. The measured
+justification for the third verdict: **10.9% of real decks run under 33 lands and 68% of
+those clear 40 sources**, so a low land count is usually a choice ramp pays for. Those are
+reported as `ramp-dependent` — a description of how the deck plays, styled amber, not red.
+
+Firing rate over the corpus: **ok 91.3% · ramp-dependent 5.7% · short 3.1%** (14 decks, e.g.
+30 lands + 4 ramp). On the user's seven: five `ok`, Vorel `ramp-dependent`, Kaalia `short`
+(31 lands + 6 ramp at average MV 3.63).
+
+### `_backfill_quality` treated an incomplete block as a finished one
+
+Same load-bearing gap as §9's lock-step: it early-returned on any truthy `stats.quality`, so
+a deck built after `curve`/`colors` landed but before `mana` kept its old block forever and
+the new row silently never rendered — only decks with NO block at all were backfilled. It
+now recomputes unless every key in `_QUALITY_KEYS` is present. Only 1 deck on disk was in
+that cohort today (168 have no block and backfill fully), but the class bites on every future
+key. Pinned by `test_a_stale_stored_quality_block_is_recomputed_on_load`.
+
+Suite 958 → 966.
