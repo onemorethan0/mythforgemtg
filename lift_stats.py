@@ -55,6 +55,33 @@ import edhrec_lift
 # genuinely unmeasurable without discarding ordinary decks.
 MIN_COVERAGE = 0.25
 
+# How much weight a reading deserves, from the corpus distribution of coverage over the 244
+# decks with a cached page: p10 0.22 · p25 0.47 · median 0.70 · p75 0.88, and measured-card
+# counts p10 20 · p25 38 · median 58.
+#
+# Coverage alone is not enough: 40% of a 40-card list is a smaller sample than 40% of a
+# 99-card one, so both the SHARE and the absolute COUNT have to clear their bar. A percentage
+# shown without any signal of its own reliability invites the reader to treat a 26% reading
+# and a 96% one as the same claim — which is the fabrication this module already refuses to
+# make with `insufficient-data`, just one step further up the scale.
+CONF_HIGH_COVERAGE = 0.70     # corpus median
+CONF_MED_COVERAGE = 0.47      # corpus p25
+CONF_HIGH_MEASURED = 38       # corpus p25 of measured-card count
+CONF_MED_MEASURED = 25
+
+CONFIDENCE_HIGH = "high"
+CONFIDENCE_MEDIUM = "medium"
+CONFIDENCE_LOW = "low"
+
+
+def _confidence(coverage: float, measured: int) -> str:
+    """Weight for a reading, from BOTH the share measured and the absolute sample size."""
+    if coverage >= CONF_HIGH_COVERAGE and measured >= CONF_HIGH_MEASURED:
+        return CONFIDENCE_HIGH
+    if coverage >= CONF_MED_COVERAGE and measured >= CONF_MED_MEASURED:
+        return CONFIDENCE_MEDIUM
+    return CONFIDENCE_LOW
+
 # Verdict thresholds, CALIBRATED over 144 corpus decks (see the module docstring). They are
 # applied to the deck's figures MINUS this commander's page figures, so the comparison stays
 # commander-relative while the cutoff is an empirical population constant.
@@ -98,6 +125,7 @@ class LiftStats:
     measured: int
     total: int                # cards considered (deck minus basic lands, deduped)
     coverage: float           # measured / total, 0..1
+    confidence: str           # how much weight this reading deserves — see CONFIDENCE_*
     verdict: str
 
 
@@ -185,6 +213,7 @@ def lift_stats(deck: list[dict], lifts: dict[str, float]) -> LiftStats | None:
         measured=measured,
         total=total,
         coverage=round(coverage, 3),
+        confidence=_confidence(coverage, measured),
         verdict=verdict,
     )
 

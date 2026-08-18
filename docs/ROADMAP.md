@@ -20,11 +20,11 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S1 | Commander themes undetected | **64 / 391 (16.4%)** ↓ from 80 | **High** | part done |
 | S2 | ~~Partner decks cannot be BUILT~~ | **built + validated** | **Done** | — |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
-| S4 | Off-meta read too sparse to judge | **12.6%** `insufficient-data` | Medium | M |
+| S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
 | S6 | Engine card coverage | **31,028 / 34,179 (90.8%)** | Medium | L |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
-| S8 | Errors surface via native `alert()` | 3 sites | Low | S |
+| S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 
 ---
 
@@ -104,6 +104,23 @@ same 43 themes — it is archetypes with no entry.
 **Definition of done:** zero-theme under 15% of unique commanders, with no theme added whose
 STRONG rate exceeds ~2% of the card pool, and `builder_bench` mean synergy not down.
 
+### The n-gram pass ran, and found nothing worth adding — record it
+
+The distinctive-n-gram analysis that found `face_down`, `sagas` and `impulse` was re-run over
+the themeless legends (963 of 3790 across ALL of Magic, 25.4% — the corpus figure of 16.4% is
+lower because corpus commanders are the popular ones). At a threshold of ≥6 occurrences and
+≥1.6 lift it produced 179 two-gram and 199 three-gram candidates, and **essentially all of them
+are grammatical fragments**, not mechanics: `or triggered`, `hand the`, `c c`, `before the`,
+`that would`. The one real archetype visible is copying activated/triggered abilities
+(Riku/Kalamax shape, 6–8 commanders) — below the ~8 threshold and with no coherent card
+package to fill 20 slots.
+
+**So the remaining themeless commanders do not share a mechanic**, which is the same conclusion
+the earlier pass reached from the other direction and which the offload ensemble independently
+supported (52 of 80 agreed "no theme in the vocabulary fits"). Deck-context themes
+(`deck_themes`) are the right answer for this tail, not more taxonomy. Re-running the n-gram
+pass is not worth doing again until the card pool has grown substantially.
+
 ---
 
 ## S2 — ~~Partner decks can be analysed but not built~~ · DONE 2026-08-18
@@ -179,8 +196,14 @@ not that it lies.
 1. Measure whether EDHREC exposes more of the page than `edhrec_lift` currently parses
    (themes/budget sub-pages carry additional cards). **Verify the shape against the live
    endpoint before writing any parser** — this repo has been burned by an assumed API shape.
-2. If coverage cannot be raised, report the figure as a **confidence band** on the synergy
-   number rather than a bare percentage, so a 27%-coverage reading visibly carries less weight.
+2. ~~Report the figure as a confidence band~~ **— done 2026-08-18.** Corpus coverage over 244
+   decks with a cached page runs **p10 0.22 · p25 0.47 · median 0.70 · p75 0.88 · p90 0.98**, so
+   a bare percentage invited the reader to weigh a thin reading like a near-complete one.
+   `confidence` is now `high` / `medium` / `low` on the block and a coloured chip in the panel,
+   with a plain-language line under a `low` reading. **Both the share AND the absolute count
+   must clear their bar** — 40% of a 40-card list is a thinner sample than 40% of a 99-card
+   one — so the cutoffs are the corpus median and p25 on each axis (coverage 0.70 / 0.47,
+   measured 38 / 25). Seven cases pinned in `tests/test_lift_stats.py`.
 3. Leave `MIN_COVERAGE` at 0.25. It was calibrated; moving it to manufacture verdicts would
    trade an honest silence for a confident fabrication.
 

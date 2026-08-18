@@ -1852,10 +1852,31 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                       {' · '}{om.staples_pct}% on-theme
                     </div>
                   )}
+                  {/* Coverage carries a CONFIDENCE band, not just a percentage. Corpus
+                      coverage runs p10 0.22 to p90 0.98, so a bare "45%" invites the reader to
+                      weigh a thin reading the same as a near-complete one. Bands are the corpus
+                      median/p25 on coverage AND on the absolute measured count — 40% of a
+                      40-card list is a smaller sample than 40% of a 99-card one. */}
                   <div style={{ fontSize: 11, color: '#78716c', marginTop: 2 }}>
                     Measured {om.measured} of {om.total} cards ({Math.round(om.coverage * 100)}%)
+                    {om.confidence && (
+                      <span style={{
+                        marginLeft: 6, padding: '1px 6px', borderRadius: 3, fontSize: 10,
+                        border: '1px solid currentColor',
+                        color: om.confidence === 'high' ? '#86efac'
+                             : om.confidence === 'medium' ? '#eab308' : '#f87171',
+                      }}>
+                        {om.confidence} confidence
+                      </span>
+                    )}
                     {om.verdict === 'insufficient-data' && ' — showing raw numbers only'}
                   </div>
+                  {om.confidence === 'low' && om.verdict !== 'insufficient-data' && (
+                    <div style={{ fontSize: 11, color: '#78716c', marginTop: 2, fontStyle: 'italic' }}>
+                      Most of this deck isn't on the commander's EDHREC page, so read the verdict
+                      as a hint rather than a measurement.
+                    </div>
+                  )}
                 </>
               );
             })()}

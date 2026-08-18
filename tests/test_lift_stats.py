@@ -272,3 +272,33 @@ def test_the_staples_table_covers_every_judged_verdict():
     judged = {lift_stats.ON_RAILS, lift_stats.FOCUSED_WITH_SPICE,
               lift_stats.BREW, lift_stats.OFF_PLAN}
     assert judged == set(MEDIAN_STAPLES_PCT)
+
+
+# ── confidence band ─────────────────────────────────────────────────────────────
+
+@pytest.mark.parametrize("coverage,measured,expected", [
+    (0.96, 70, lift_stats.CONFIDENCE_HIGH),
+    (0.70, 38, lift_stats.CONFIDENCE_HIGH),      # exactly on both corpus cutoffs
+    (0.69, 70, lift_stats.CONFIDENCE_MEDIUM),    # coverage just under
+    (0.90, 30, lift_stats.CONFIDENCE_MEDIUM),    # plenty of coverage, thin SAMPLE
+    (0.47, 25, lift_stats.CONFIDENCE_MEDIUM),
+    (0.46, 90, lift_stats.CONFIDENCE_LOW),
+    (0.27, 21, lift_stats.CONFIDENCE_LOW),
+])
+def test_confidence_needs_both_share_and_sample_size(coverage, measured, expected):
+    """A share alone is not a sample size.
+
+    40% of a 40-card list is a thinner reading than 40% of a 99-card one, so a high coverage
+    with few measured cards must NOT read as high confidence. Bands are the corpus median and
+    p25 on each axis (coverage 0.70 / 0.47, measured 38 / 25).
+    """
+    assert lift_stats._confidence(coverage, measured) == expected
+
+
+def test_confidence_is_part_of_the_block():
+    """The panel reads it off `stats.offmeta`, so it has to survive `dataclasses.asdict`."""
+    block = lift_stats.stats_block({"name": "C"}, _deck("A"))  # no page -> {}
+    assert block == {}
+    s = _stats_for([0.30, 0.30, 0.30, 0.30])
+    assert s.confidence in {lift_stats.CONFIDENCE_HIGH, lift_stats.CONFIDENCE_MEDIUM,
+                            lift_stats.CONFIDENCE_LOW}
