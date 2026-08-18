@@ -22,9 +22,10 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
-| S6 | Engine card coverage | **31,028 / 34,179 (90.8%)** | Medium | L |
+| S6 | Engine card coverage | **90.0%** — but the top 100 is the WORST band | **High** ↑ | L |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
+| **S9** | `voltron_combat` over-claims | **64.4% precision** · 23.2% of all legends | **High** | M |
 
 ---
 
@@ -193,6 +194,47 @@ pass is not worth doing again until the card pool has grown substantially.
 
 ---
 
+## S9 — the most over-firing theme, now quantified *(new, 2026-08-18)*
+
+Every sweep so far asked "what theme does this card have". This one asked the opposite and more
+dangerous question: **of the cards a theme already claims, how many does it not deserve?**
+
+`voltron_combat` was the case to audit — `theme_match` scores it STRONG on **19.35% of every
+card in Magic** (the documented base-rate trap), and `THEME_PATTERNS` detects it on more legends
+than anything except `counters`. The local model audited all **879 legends the theme claims**,
+one narrow yes/no each: **313 (36%) are not combat-plan cards**.
+
+**Every flagged claim traces to a bare keyword**, and a hand read of a sample agrees with the
+model: `trample` (161), `can't be blocked` (74), `first strike` (58), `double strike` (25).
+Rakdos, the Showstopper is a coin-flip board wipe that happens to have trample. Devil Dinosaur
+is Dinosaur tribal with trample. Beluna Grandsquall is Adventure cost-reduction with trample.
+
+**This is a rule the codebase already states and this file violates**: `collection_pool`
+documents *"having a keyword is not granting it — Smaug HAS indestructible and protects only
+itself; Darksteel Plate grants it to another"*, and `theme_match` encodes it as
+`strong_type_required`. `THEME_PATTERNS` does not.
+
+Candidate fixes, scored against the audit:
+
+| pattern set | claims | precision | recall | share of all legends |
+|---|---|---|---|---|
+| **current** (bare keywords) | 878 | **64.4%** | 100% | **23.2%** |
+| drop bare keywords | 264 | **96.2%** | 45.0% | 7.0% |
+| drop bare + require the keyword be GRANTED | 411 | 83.0% | 60.4% | 15.6% |
+
+**Deliberately NOT landed yet, and that is the point.** The ground truth here is the model's
+own opinion, and only the "no" side was hand-checked — the 565 it called combat-plan were not.
+Swinging a theme from 23.2% to 7.0% of every legend in Magic on unvalidated labels is precisely
+the mistake the advisor-variance caveat warns about: acting on a metric that cannot see the
+thing you care about.
+
+**Plan.** Hand-label a gold set of ~30 drawn from BOTH sides (the audit only validated one),
+score the three candidate sets against it, and land the winner. Then re-run `builder_bench` —
+this theme feeds ~20 slots on 23% of commanders, so it is the single largest lever on what the
+builder drafts, in either direction.
+
+---
+
 ## S2 — ~~Partner decks can be analysed but not built~~ · DONE 2026-08-18
 
 **Measured.** 33 of 483 corpus decks (6.8%) have 2+ cards in the command zone.
@@ -310,19 +352,47 @@ signature.
 
 ---
 
-## S6 — 9.2% of cards have no compiled semantics
+## S6 — the gap is worst exactly where it hurts most *(re-measured, priority raised)*
 
-**Measured.** 31,028 compiled CCMs against a 34,179-card store — **3,151 cards (9.2%)** fall
-back to rung-1 Oracle-text heuristics. (Note: the store is present and full-fidelity locally
-via `MYTHGAUNTLET_STORE`; the "withheld" note in `ENGINE_DATA.md` is about what *ships*.)
+**Measured properly 2026-08-18, and the first reading was wrong in an important way.** A
+filename check under-reports by 2.4 points (the store slugifies names, mangling double-faced
+cards and punctuation) and grepping for a name matches the *nested ability names* inside a CCM.
+`scripts/ccm_coverage.py` reads `card.name` out of every stored CCM instead: **30,749 of 34,179
+covered (90.0%)**.
 
-**Plan.** Continue the existing overnight compile; no new mechanism needed. The one worthwhile
-change is **reporting**: surface per-deck semantic coverage the way the off-meta read surfaces
-EDHREC coverage, so a bracket derived from a deck where a third of the cards are rung-1 is
-visibly less certain. A confident bracket over uncompiled cards is the same fabrication class
-as S3 and S4.
+The headline number was never the point. This is:
 
----
+| popularity band | cards | covered |
+|---|---|---|
+| **top 0–100** | 100 | **91.0%** |
+| top 100–500 | 400 | 97.8% |
+| top 500–1000 | 500 | 96.8% |
+| top 1000–5000 | 4,000 | 96.5% |
+| top 5000+ | 26,675 | 97.1% |
+
+**The 100 most-played cards in the format are the WORST-covered band**, by six points, against
+a pool that is otherwise uniformly ~97%. Fourteen of the top 300 are uncompiled, and they are
+not obscure:
+
+> Sol Ring · Command Tower · Swords to Plowshares · Counterspell · Cultivate · Polluted Delta ·
+> Rhystic Study · Demonic Tutor · The One Ring · Sakura-Tribe Elder · Urza's Saga ·
+> Lightning Bolt · Beast Whisperer · Sensei's Divining Top
+
+Sol Ring is in a large share of all Commander decks. The engine falls back to rung-1
+Oracle-text heuristics on it, and on Rhystic Study, and on Swords to Plowshares — so the
+fallback is not hitting the long tail, it is hitting the cards *every* deck plays. That makes
+this a bracket-accuracy problem rather than a completeness statistic, which is why the priority
+is raised.
+
+**Plan.**
+
+1. **Compile the missing top-300 first.** Highest value per card in the whole store, and it is
+   14 cards. Find out *why* they were skipped before assuming a re-run fixes it — a uniform
+   ~97% with a 91% hole at the very top is a signature, not noise, and the repo has been burned
+   once by a frozen Scryfall bulk faking an "exhausted" compile pool.
+2. **Then report per-deck coverage**, which `scripts/ccm_coverage.py --deck` already does. A
+   bracket derived from a deck whose staples are uncompiled deserves visibly less weight —
+   the same confidence-band argument as S4, and the same fabrication class as S3.
 
 ## S7 & S8 — known, quantified, lower value
 
