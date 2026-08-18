@@ -129,9 +129,34 @@ spend 20 theme slots on bodies that happen to gain life, which is exactly the me
 | **Kurkesh, Onakke Ancient** | *nothing* | "ability of an artifact" |
 | **Akal Pakal, First Among Equals** | *nothing* | "an artifact entered" |
 
-The Tatyova case is the one to remember: it is the **same templating change that killed five
-`theme_match` rules**, still live in `THEME_PATTERNS` a taxonomy over. Worth a sweep of every
-pattern for pre-2024 wording.
+### The templating sweep that followed, and the ratchet it produced
+
+The Tatyova case pointed at a class, so every pattern was swept against the full 34,179-card
+pool. **Scryfall re-templates old cards to the modern Oracle wording, so pre-2024 phrasing
+exists nowhere** — and three patterns were measurably dead:
+
+| theme | dead pattern | matched | modern replacement matches |
+|---|---|---|---|
+| `enchantress` | `enchantment enters the battlefield` | **0** | 63 |
+| `landfall` | `whenever a land enters the battlefield under your control` | **1** | 185 |
+| `etb` | `whenever a creature enters the battlefield under your control` | **2** | 244 |
+
+`enchantress` is the one that mattered: that literal was its ONLY templating pattern, so the
+theme was running purely on its two "whenever you cast" alternatives.
+
+The sweep then found **twelve more dead patterns across eight themes** — `unblockable`
+(re-templated to "can't be blocked"), `flicker` (a flavour word, never printed in rules text),
+`reanimate` (a card *name*), `gain {e}` (energy is "you **get** {E}"). **No theme is fully
+dead**, so this is weight rather than breakage, though `theft` is down to a single live pattern.
+
+Two guards now hold the line, both skipped in CI where the card pool is absent:
+`test_no_theme_has_all_of_its_patterns_dead` (the failure that actually breaks the app — a
+theme nothing can trigger, silently) and `test_the_dead_pattern_set_has_not_grown`, a **ratchet**
+against `KNOWN_DEAD_PATTERNS`: a newly-dead pattern fails, and so does fixing one without
+removing it from the list.
+
+**Standing lesson: Magic re-words itself, so a pattern that was correct when written can stop
+matching without anything failing.** That is now tested rather than remembered.
 
 ### The n-gram pass ran, and found nothing worth adding — record it
 

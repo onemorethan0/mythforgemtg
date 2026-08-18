@@ -200,3 +200,68 @@ def test_real_tribal_payoffs_still_detect():
     for name, oracle, tribe in keep:
         detected = commander_analysis._detect_themes({"name": name, "oracle_text": oracle})
         assert tribe in detected, f"{name!r} lost {tribe}: {detected}"
+
+
+# ── no pattern may quietly stop matching anything ───────────────────────────────
+
+# Patterns that match ZERO of the ~34k cards in `data/cards_slim.json`. They are harmless on
+# their own — a dead pattern simply never fires — but the CLASS is not harmless: Magic
+# re-templates its wording, Scryfall rewrites old cards to the modern Oracle text, and a
+# theme whose patterns all die becomes silently undetectable. That already happened to five
+# `theme_match` rules, and `enchantress` was carrying "enchantment enters the battlefield",
+# which matched **zero** cards while the modern phrasing matched 63.
+#
+# This is a RATCHET, not a wish-list: a newly-dead pattern fails the test, and so does fixing
+# one without removing it here. Regenerate by running the sweep in the test below.
+KNOWN_DEAD_PATTERNS = {
+    ("tribal_humans", "nonhuman"),
+    ("reanimator", "reanimate"),                 # a card NAME, never rules text
+    ("reanimator", "from a graveyard to the battlefield"),
+    ("enchantress", "whenever an enchantment enters"),
+    ("lifegain", "each life you gain"),
+    ("lifegain", "whenever you gain 1 or more life"),
+    ("etb", "exile them, then return"),
+    ("etb", "exile that card, then return"),
+    ("etb", "flicker"),                          # flavour word, never printed in rules text
+    ("energy", "gain {e}"),                      # energy is "you GET {E}", not "gain"
+    ("theft", "under your control until end of turn"),
+    ("voltron_combat", "unblockable"),           # re-templated to "can't be blocked"
+}
+
+
+def _card_pool():
+    import json
+    from pathlib import Path
+    p = Path(__file__).resolve().parents[1] / "data" / "cards_slim.json"
+    if not p.exists():
+        pytest.skip("needs data/cards_slim.json (absent in CI)")
+    return [(c.get("oracle_text") or "").lower()
+            for c in json.loads(p.read_text(encoding="utf-8"))["cards"]]
+
+
+def test_no_theme_has_all_of_its_patterns_dead():
+    """The failure that actually breaks the app: a theme nothing can trigger.
+
+    A commander with that theme detects nothing, its ~20 theme slots fall through to generic
+    goodstuff, and NOTHING reports a problem — the same silent shape as the five dead
+    `theme_match` rules.
+    """
+    texts = _card_pool()
+    fully_dead = [
+        theme for theme, pats in THEME_PATTERNS.items()
+        if not any(any(p in t for t in texts) for p in pats)
+    ]
+    assert not fully_dead, f"themes with no live pattern at all: {fully_dead}"
+
+
+def test_the_dead_pattern_set_has_not_grown():
+    """Ratchet. A pattern that stops matching anything is a re-templating warning."""
+    texts = _card_pool()
+    dead = {(theme, p) for theme, pats in THEME_PATTERNS.items() for p in pats
+            if not any(p in t for t in texts)}
+    new = dead - KNOWN_DEAD_PATTERNS
+    fixed = KNOWN_DEAD_PATTERNS - dead
+    assert not new, (
+        f"pattern(s) newly match nothing — Magic probably re-templated the wording: {sorted(new)}")
+    assert not fixed, (
+        f"these are alive again; remove them from KNOWN_DEAD_PATTERNS: {sorted(fixed)}")

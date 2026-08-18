@@ -63,7 +63,11 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          # with it wants a spell deck (Narset, Enlightened Exile; Thor Odinson).
                          "prowess"],
     "enchantress":      ["whenever an enchantment enters", "whenever you cast an enchantment",
-                         "enchantment enters the battlefield",
+                         # Was "enchantment enters the battlefield", which matched ZERO of the
+                         # 34,179 cards in the pool — Scryfall re-templates old cards to the
+                         # modern Oracle wording, so the pre-2024 phrasing exists nowhere.
+                         # The replacement matches 63.
+                         "enchantment you control enters",
                          # Tuvasa the Sunlit — the archetype's poster commander — matched none
                          # of the three above: it counts enchantments ("for each enchantment you
                          # control") and triggers on "your FIRST enchantment spell each turn".
@@ -101,8 +105,9 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          # measured reason `big_mana` was dropped. These two pay you FOR the
                          # life: 6 rescues between them, 0.6% of the pool.
                          "life you gained", "extort"],
-    "landfall":         ["whenever a land enters the battlefield under your control",
-                         "landfall",
+    # "whenever a land enters the battlefield under your control" was here and matched ONE
+    # card in the whole pool; "land you control enters" below matches 185.
+    "landfall":         ["landfall",
                          # The gap CLAUDE.md already flagged: extra land drops are the enabler
                          # half of the archetype (Flubs, the Fool detected nothing).
                          "additional land",
@@ -117,9 +122,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          # Graveyards as a shared RESOURCE, and deliberate self-mill —
                          # Coram, the Undertaker detected nothing without these.
                          "in all graveyards", "each player mills"],
+    # "whenever a creature enters the battlefield under your control" was here and matched
+    # TWO cards; "creature you control enters" below matches 244.
     "etb":              ["whenever a creature you control enters",
                          "whenever another creature you control enters",
-                         "whenever a creature enters the battlefield under your control",
                          "whenever a nontoken creature enters",
                          "exile it, then return", "exile them, then return",
                          "exile that card, then return", "flicker", "blink",
