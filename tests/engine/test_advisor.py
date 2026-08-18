@@ -96,8 +96,10 @@ def deck(make_card, forest):
 
 
 @pytest.fixture
-def store():
-    return SemanticsStore()  # empty -> everything resolves at rung 1 (offline)
+def store(empty_store):
+    # NOT `SemanticsStore()` — that resolves MYTHGAUNTLET_STORE and loaded 31,042 CCMs on a
+    # dev machine while claiming to be empty. See `empty_store` in conftest.
+    return empty_store
 
 
 # --- pure helpers ------------------------------------------------------------------------

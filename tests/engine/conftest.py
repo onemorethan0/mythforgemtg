@@ -3,6 +3,7 @@
 import pytest
 
 from mythgauntlet.model.card import Card
+from mythgauntlet.semantics.store import SemanticsStore
 
 
 def _make_card(
@@ -53,3 +54,27 @@ def sol_ring_like():
         oracle_text="{T}: Add {C}{C}.",
         produced_mana=("C",),
     )
+
+
+@pytest.fixture(scope="session")
+def empty_store(tmp_path_factory):
+    """A SemanticsStore that is ACTUALLY empty, so rung-1 tests test rung 1.
+
+    `SemanticsStore()` with no arguments resolves `compiler.compiled_dir()`, which reads
+    `MYTHGAUNTLET_STORE`. On a developer machine that variable is set, so a bare
+    `SemanticsStore()` loaded **31,042 compiled CCMs in 7.5 seconds** while the fixture
+    using it was commented "empty -> everything resolves at rung 1 (offline)". Three
+    consequences, all real:
+
+    * the tests did not test what they claimed — they asserted rung-1 behaviour while
+      running at rung 2/3;
+    * CI (no store) and a dev machine (store present) exercised DIFFERENT code paths, so
+      the suite meant something different depending on where it ran;
+    * every instantiation re-read 31k files, which is where the intermittent OSError in
+      `tests/engine/test_advisor.py` came from — it only appeared when the suite ran
+      alongside another job also walking the store.
+
+    Session-scoped: the directories are empty, so there is nothing to isolate between tests.
+    """
+    empty = tmp_path_factory.mktemp("empty_ccm_store")
+    return SemanticsStore(authored=empty, compiled=empty)
