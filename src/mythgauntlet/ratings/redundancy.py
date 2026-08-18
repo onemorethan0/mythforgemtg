@@ -11,15 +11,15 @@ when the functional role it fills is over-supplied relative to that role's targe
 is a weak contributor to that role. A card with no recognised functional role is
 `protected`: it can never be redundant, and it sorts to the back of the pool.
 
-Gold set (spec: docs/SPEC_redundancy.md; role strengths are measured against the real
-`tags.analyze`, not assumed). Deck context: ramp supply 18.0 (target 10 -> oversupply 8.0),
-removal supply 5.0 (target 7 -> oversupply 0.0).
+Gold set (spec: docs/SPEC_redundancy.md; role strengths and scores are measured against the
+real `tags.analyze` and the live ROLE_TARGETS, not assumed). Deck context: ramp supply 18.0
+(target 14 -> oversupply 4.0), removal supply 3.0 (target 4 -> oversupply 0.0).
 
 | card (abridged oracle text)                            | role    | over | within | score |
 |--------------------------------------------------------|---------|------|--------|-------|
-| Llanowar Elves "{T}: Add {G}."                           | ramp    | 8.0  | 1.0    | 4.00  |
-| Worn Powerstone "enters tapped. {T}: Add {C}{C}."        | ramp    | 8.0  | 2.0    | 2.67  |
-| Cultivate "Search ... two basic land cards ... tapped"   | ramp    | 8.0  | 3.0    | 2.00  |
+| Llanowar Elves "{T}: Add {G}."                           | ramp    | 4.0  | 1.0    | 2.00  |
+| Worn Powerstone "enters tapped. {T}: Add {C}{C}."        | ramp    | 4.0  | 2.0    | 1.33  |
+| Cultivate "Search ... two basic land cards ... tapped"   | ramp    | 4.0  | 3.0    | 1.00  |
 | Swords to Plowshares "Exile target creature."            | removal | 0.0  | 1.0    | 0.00  |
 | pet card "Whenever a face-down creature ... scry 1."     | None    | 0.0  | 0.0    | 0.00  |
 
@@ -37,31 +37,43 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.model import EffectVector
 
-# Typical count of each functional role in a 100-card casual Commander deck.
-# ramp/draw/removal/wipe come from the builder's own numbers (playstyle.DEFAULT_SLOTS) and
-# finisher from its default finisher slot, so the advisor cuts against the same shape the
-# builder builds to.
+# What "too much of this role" means, CALIBRATED against real decks — the 60th percentile
+# of what 120 corpus decks actually supply. Regenerate with `python scripts/role_targets.py`
+# (`--check` diffs against this table).
 #
-# `counterspell` and `tutor` are ESTIMATES — the builder has no slot for either, and they
-# are flagged rather than dressed up as derived numbers. This role is named `counterspell`,
-# NOT `protection`: the builder's protection slot also buys ward, hexproof and
-# indestructible, but the rung-1 EffectVector has no field for those, so calling it
-# protection would claim a measurement that isn't happening. Ward/hexproof is not measured
-# here at all — an honest under-count, per this module's stance on unreadable cards.
+# These used to be the BUILDER's slot plan (playstyle.DEFAULT_SLOTS), i.e. the app's opinion
+# of a deck it is about to construct. That is the wrong baseline for judging a deck someone
+# already owns, and measuring showed why: the plan sits BELOW the population median for ramp
+# and draw and ABOVE it for removal and wipe —
 #
-# KNOWN GAP (naming is fixed, the number is not): 3 is the protection slot's figure, and a
-# blue control deck legitimately runs more counterspells than that. Corpus deck
-# archidekt-10354152 supplies 24.0 against it. Its counterspells don't currently top that
-# deck's cut pool, but a counterspell-heavy deck with a tighter draw count would see its
-# interaction offered as redundant. Needs its own calibration.
+#     role          plan   median supply
+#     ramp            10            12.0
+#     draw            10            14.5
+#     removal          7             4.0
+#     wipe             4             3.0
+#     counterspell     3             0.0
+#
+# — so nearly every deck read as draw/ramp-oversupplied and essentially none ever read as
+# removal-oversupplied. The cut pool came out systematically lopsided: draw 48.7% and ramp
+# 34.5% of all suggestions against removal 1.5% and wipe 1.0%. That is an artifact of the
+# baseline, not a judgement about any deck.
+#
+# p60 (not p50) so a role must clear a modest evidential bar before counting as over-served;
+# swept against cut-pool balance, where p60 is the knee and p75 barely improves on it while
+# pushing targets so high that little would ever flag. After: top role 32.8%, draw+ramp
+# 57.8%, removal+wipe 17.1%.
+#
+# `counterspell` = 3 is now DERIVED rather than borrowed from the protection slot, which
+# closes the calibration gap this module shipped with. A floor of 2 applies because the
+# median deck runs ZERO counterspells and "any counterspell is redundant" is obviously wrong.
 ROLE_TARGETS: dict[str, int] = {
-    "ramp": 10,
-    "draw": 10,
-    "removal": 7,
-    "wipe": 4,
+    "ramp": 14,
+    "draw": 16,
+    "removal": 4,
+    "wipe": 3,
     "counterspell": 3,
-    "finisher": 3,
-    "tutor": 3,
+    "finisher": 2,
+    "tutor": 2,
 }
 
 
