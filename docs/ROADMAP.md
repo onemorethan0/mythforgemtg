@@ -17,7 +17,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
-| S1 | Commander themes undetected | **75 / 391 (19.2%)** ↓ from 80 | **High** | M |
+| S1 | Commander themes undetected | **64 / 391 (16.4%)** ↓ from 80 | **High** | part done |
 | S2 | Partner decks cannot be BUILT | **33 / 483 (6.8%)** | Medium | M |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** `insufficient-data` | Medium | M |
@@ -28,13 +28,18 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 ---
 
-## S1 — 19.2% of commanders detect no theme *(highest value, partially landed)*
+## S1 — 16.4% of commanders detect no theme *(was 20.5%; substantially landed)*
 
-**Measured.** **75** of 391 unique corpus commanders return `[]` from
-`commander_analysis._detect_themes` — down from 80 after the two fixes below. Their ~20 theme
-slots fall through to generic goodstuff, so the builder is blind to the deck's whole point.
-Deck-context themes (`deck_themes`) rescue **39 of the 69** that appear as a deck lead (57%),
-leaving **43% with no archetype from either source**.
+**Measured.** **64** of 391 unique corpus commanders return `[]` from
+`commander_analysis._detect_themes` — down from **80 (20.5% → 16.4%)** across three passes.
+Their ~20 theme slots fall through to generic goodstuff, so the builder is blind to the deck's
+whole point. Deck-context themes (`deck_themes`) rescue **34 of the 59** that appear as a deck
+lead (58%), leaving **42% with no archetype from either source**.
+
+**On the user's own pod, 3 of 7 commanders detected nothing; now 1 does.** Witherbloom → 
+`spellslinger`, Vorel of the Hull Clade → `counters`. Only Avatar Aang remains, and honestly so:
+its text is "whenever you waterbend, earthbend, firebend, or airbend" — a brand-new set mechanic
+with no entry anywhere in the taxonomy, which is a NEW-archetype case, not a pattern gap.
 
 ### Landed 2026-08-18
 
@@ -48,13 +53,26 @@ the same defect `_detect_themes` already refuses the TYPE LINE to prevent.
 `_oracle_without_self_name` strips both the full and pre-comma name per face; 7 cases plus 3
 must-survive payoffs are pinned in `tests/test_theme_taxonomy.py`.
 
-**Three patterns widened**, each from a commander the offload ensemble flagged and I verified by
-hand: `spellslinger` gained `"instant and sorcery spells you cast"` (cost reduction IS the
-payoff — Baral detected nothing), `artifacts` gained the plural and artifact-creature phrasings
-plus `"an artifact card"` (Alibou, Tony Stark), `graveyard` gained `"in all graveyards"` and
-`"each player mills"` (Coram). Over-fire checked: 6 / 47 / 9 legends newly detected, spot-read
-and correct — the 47 is `"artifacts you control"`, which `CLAUDE.md` had already flagged as the
-known gap.
+**Eleven patterns widened across seven themes**, every one scored for rescues *and* pool
+footprint before landing, and every candidate adjudicated by hand against oracle text:
+
+| theme | added | why it was missed |
+|---|---|---|
+| `spellslinger` | `instant and sorcery spells you cast`, `prowess` | cost reduction and prowess ARE the payoff (Baral, Narset, Thor) |
+| `artifacts` | `artifacts you control`, `artifact creatures you control`, `an artifact card`, `artifact creature card`, `artifact cards` | only the singular "artifact you control" existed (Alibou, Tony Stark, Szarekh, Tannuk) |
+| `graveyard` | `in all graveyards`, `each player mills` | graveyards as a shared resource, and deliberate self-mill (Coram) |
+| `enchantress` | `enchantment you control`, `enchantment spell`, `enchantment cards` | **Tuvasa the Sunlit, the archetype's poster commander, matched none of the three existing patterns** |
+| `aristocrats` | `is put into a graveyard from the battlefield`, `sacrifice up to` | Magic's other spelling for "dies" (Agent of the Iron Throne); a variable-count sac outlet (Baba Lysaga) |
+| `landfall` | `additional land` | the gap `CLAUDE.md` already flagged (Flubs, the Fool) |
+| `counters` | `each kind of counter` | **doubling** counters is a payoff that places none (Vorel) |
+| `impulse` | `reveal the top card of your library. you may cast` | reveal-and-cast is impulse without the word "exile" (Yennett) |
+
+**Three candidates were measured and rejected**, which is the part that keeps this honest:
+`"sacrifice another"` (0 rescues against 80 legends touched), `"counter on target"` (2.3% of
+legends for the same single rescue `"each kind of counter"` gets at 0.2%), and a loose
+reanimator phrase that risked re-creating the documented cheat-into-play mislabel. No theme now
+exceeds 0.6% of the legend pool from a *new* pattern, and mean themes per commander is **1.38**
+— no detection inflation.
 
 **This is under-stated by the corpus.** In the user's own seven-deck pod, **3 of 7 commanders
 (43%)** detect nothing: Witherbloom, the Balancer · Vorel of the Hull Clade · Avatar Aang.

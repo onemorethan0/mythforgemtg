@@ -37,10 +37,20 @@ THEME_PATTERNS: dict[str, list[str]] = {
     "tribal_wolves":    ["wolves", "wolf "],
     # Mechanical archetypes
     "tokens":           ["create", "token", "populate", "amass", "fabricate"],
-    "counters":         ["+1/+1 counter", "proliferate", "put a counter on", "-1/-1 counter"],
+    "counters":         ["+1/+1 counter", "proliferate", "put a counter on", "-1/-1 counter",
+                         # DOUBLING counters is a counters payoff without placing any — Vorel of
+                         # the Hull Clade, an archetypal counters commander, matched nothing.
+                         # "counter on target" would also catch it but touches 2.3% of legends
+                         # for the same one rescue, so the narrow literal wins.
+                         "each kind of counter"],
     "aristocrats":      ["sacrifice a", "creature you control dies",
                          "another creature dies", "whenever a creature dies",
-                         "dies, ", "pay life"],
+                         "dies, ", "pay life",
+                         # Magic's other spelling for "dies" (Agent of the Iron Throne), and
+                         # a sacrifice outlet that takes a variable number (Baba Lysaga).
+                         # "sacrifice another" was measured and DROPPED: 0 rescues against
+                         # 80 legends touched.
+                         "is put into a graveyard from the battlefield", "sacrifice up to"],
     "reanimator":       ["from your graveyard", "in your graveyard",
                          "return it to the battlefield", "return target creature card",
                          "reanimate", "from a graveyard to the battlefield"],
@@ -48,16 +58,26 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "instant or sorcery spell", "magecraft",
                          # Cost reduction IS the spellslinger payoff — Baral, Chief of
                          # Compliance detected nothing without this.
-                         "instant and sorcery spells you cast"],
+                         "instant and sorcery spells you cast",
+                         # Prowess is a noncreature-spell payoff by definition, so a commander
+                         # with it wants a spell deck (Narset, Enlightened Exile; Thor Odinson).
+                         "prowess"],
     "enchantress":      ["whenever an enchantment enters", "whenever you cast an enchantment",
-                         "enchantment enters the battlefield"],
+                         "enchantment enters the battlefield",
+                         # Tuvasa the Sunlit — the archetype's poster commander — matched none
+                         # of the three above: it counts enchantments ("for each enchantment you
+                         # control") and triggers on "your FIRST enchantment spell each turn".
+                         "enchantment you control", "enchantment spell", "enchantment cards"],
     "artifacts":        ["whenever an artifact enters", "whenever you cast an artifact",
                          "artifact you control",
                          # Plural and the artifact-creature phrasing: Alibou, Ancient Witness
                          # ("other artifact creatures you control") detected nothing, and
                          # "an artifact card" catches artifact tutoring (Tony Stark).
                          "artifacts you control", "artifact creatures you control",
-                         "an artifact card"],
+                         "an artifact card",
+                         # Singular card-type references: Szarekh mills for an "artifact creature
+                         # card", Tannuk grants warp to "Artifact cards ... in your hand".
+                         "artifact creature card", "artifact cards"],
     "voltron":          ["equip", "equipped creature", "attach", "aura attached"],
     "auras":            ["aura", "enchant creature", "enchanted creature"],
     "tribal_knights":   ["knight"],
@@ -68,7 +88,10 @@ THEME_PATTERNS: dict[str, list[str]] = {
     "lifegain":         ["whenever you gain life", "each life you gain",
                          "whenever you gain 1 or more life"],
     "landfall":         ["whenever a land enters the battlefield under your control",
-                         "landfall"],
+                         "landfall",
+                         # The gap CLAUDE.md already flagged: extra land drops are the enabler
+                         # half of the archetype (Flubs, the Fool detected nothing).
+                         "additional land"],
     "graveyard":        ["from your graveyard", "graveyard into your hand",
                          "when this card is put into your graveyard",
                          "flashback", "unearth", "delve",
@@ -97,7 +120,11 @@ THEME_PATTERNS: dict[str, list[str]] = {
     # themeless. Deliberately NOT "you may play", which is far too broad.
     "impulse":          ["exile the top", "exiles the top", "play the top card",
                          "from the top of your library", "play cards from the top",
-                         "you may play that card", "you may cast that card"],
+                         "you may play that card", "you may cast that card",
+                         # Reveal-and-cast off the top is impulse even without the word "exile"
+                         # (Yennett, Cryptic Sovereign). Kept as a long literal on purpose —
+                         # "reveal the top card" alone is far too broad.
+                         "reveal the top card of your library. you may cast"],
     "voltron_combat":   ["first strike", "double strike", "trample", "unblockable",
                          "can't be blocked", "whenever a creature attacks",
                          "whenever a creature you control attacks", "attacking causes",

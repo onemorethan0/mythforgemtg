@@ -1,10 +1,5 @@
 [
   {
-    "name": "Agent of the Iron Throne",
-    "type_line": "Legendary Enchantment \u2014 Background",
-    "oracle_text": "Commander creatures you own have \"Whenever an artifact or creature you control is put into a graveyard from the battlefield, each opponent loses 1 life.\""
-  },
-  {
     "name": "Arcades, the Strategist",
     "type_line": "Legendary Creature \u2014 Elder Dragon",
     "oracle_text": "Flying, vigilance\nWhenever a creature you control with defender enters, draw a card.\nEach creature you control with defender assigns combat damage equal to its toughness rather than its power and can attack as though it didn't have defender."
@@ -18,11 +13,6 @@
     "name": "Athreos, Shroud-Veiled",
     "type_line": "Legendary Enchantment Creature \u2014 God",
     "oracle_text": "Indestructible\nAs long as your devotion to white and black is less than seven, Athreos isn't a creature.\nAt the beginning of your end step, put a coin counter on another target creature.\nWhenever a creature with a coin counter on it dies or is put into exile, return that card to the battlefield under your control."
-  },
-  {
-    "name": "Baba Lysaga, Night Witch",
-    "type_line": "Legendary Creature \u2014 Human Warlock",
-    "oracle_text": "{T}, Sacrifice up to three permanents: If there were three or more card types among the sacrificed permanents, each opponent loses 3 life, you gain 3 life, and you draw three cards."
   },
   {
     "name": "Belbe, Corrupted Observer",
@@ -88,11 +78,6 @@
     "name": "Fang, Fearless l'Cie",
     "type_line": "Legendary Creature \u2014 Human Warrior",
     "oracle_text": "Whenever one or more cards leave your graveyard, you draw a card and you lose 1 life. This ability triggers only once each turn.\n(Melds with Vanille, Cheerful l'Cie.)"
-  },
-  {
-    "name": "Flubs, the Fool",
-    "type_line": "Legendary Creature \u2014 Frog Scout",
-    "oracle_text": "You may play an additional land on each of your turns.\nWhenever you play a land or cast a spell, draw a card if you have no cards in hand. Otherwise, discard a card."
   },
   {
     "name": "Folk Hero",
@@ -200,11 +185,6 @@
     "oracle_text": "Maraxus's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control."
   },
   {
-    "name": "Marina Vendrell",
-    "type_line": "Legendary Creature \u2014 Human Warlock",
-    "oracle_text": "When Marina Vendrell enters, reveal the top seven cards of your library. Put all enchantment cards from among them into your hand and the rest on the bottom of your library in a random order.\n{T}: Lock or unlock a door of target Room you control. Activate only as a sorcery."
-  },
-  {
     "name": "Minthara, Merciless Soul",
     "type_line": "Legendary Creature \u2014 Elf Cleric",
     "oracle_text": "Minthara has ward {X}, where X is the number of experience counters you have.\nAt the beginning of your end step, if a permanent you controlled left the battlefield this turn, you get an experience counter.\nCreatures you control get +1/+0 for each experience counter you have."
@@ -218,11 +198,6 @@
     "name": "Monk Gyatso",
     "type_line": "Legendary Creature \u2014 Human Monk",
     "oracle_text": "Whenever another creature you control becomes the target of a spell or ability, you may airbend that creature. (Exile it. While it's exiled, its owner may cast it for {2} rather than its mana cost.)"
-  },
-  {
-    "name": "Narset, Enlightened Exile",
-    "type_line": "Legendary Creature \u2014 Human Monk",
-    "oracle_text": "Creatures you control have prowess.\nWhenever Narset attacks, exile target noncreature, nonland card with mana value less than Narset's power from a graveyard and copy it. You may cast the copy without paying its mana cost."
   },
   {
     "name": "Nicol Bolas",
@@ -295,24 +270,9 @@
     "oracle_text": "At the beginning of your end step, if a creature died under your control this turn, the Ring tempts you.\nWhenever the Ring tempts you, target opponent reveals cards from the top of their library until they reveal a land card. Put that card onto the battlefield tapped under your control and the rest into their graveyard."
   },
   {
-    "name": "Szarekh, the Silent King",
-    "type_line": "Legendary Artifact Creature \u2014 Necron",
-    "oracle_text": "Flying\nMy Will Be Done \u2014 Whenever Szarekh attacks, mill three cards. You may put an artifact creature card or Vehicle card from among the cards milled this way into your hand."
-  },
-  {
-    "name": "Tannuk, Steadfast Second",
-    "type_line": "Legendary Creature \u2014 Kavu Pilot",
-    "oracle_text": "Other creatures you control have haste.\nArtifact cards and red creature cards in your hand have warp {2}{R}. (You may cast a card from your hand for its warp cost. Exile that permanent at the beginning of the next end step, then you may cast it from exile on a later turn.)"
-  },
-  {
     "name": "The Master, Transcendent",
     "type_line": "Legendary Artifact Creature \u2014 Mutant",
     "oracle_text": "When The Master enters, target player gets two rad counters.\n{T}: Put target creature card in a graveyard that was milled this turn onto the battlefield under your control. It's a green Mutant with base power and toughness 3/3. (It loses its other colors and creature types.)"
-  },
-  {
-    "name": "Thor Odinson",
-    "type_line": "Legendary Creature \u2014 God Warrior Hero",
-    "oracle_text": "Flying, vigilance, prowess, prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn twice.)"
   },
   {
     "name": "Thrasios, Triton Hero",
@@ -323,11 +283,6 @@
     "name": "Tokka & Rahzar, Terrible Twos",
     "type_line": "Legendary Creature \u2014 Turtle Wolf Mutant",
     "oracle_text": "This spell can't be countered.\nMenace\nWhenever a player casts a spell, if the amount of mana spent to cast it was less than its mana value, Tokka & Rahzar deal 3 damage to that player."
-  },
-  {
-    "name": "Tuvasa the Sunlit",
-    "type_line": "Legendary Creature \u2014 Merfolk Shaman",
-    "oracle_text": "Tuvasa gets +1/+1 for each enchantment you control.\nWhenever you cast your first enchantment spell each turn, draw a card."
   },
   {
     "name": "Tymna the Weaver",
@@ -345,11 +300,6 @@
     "oracle_text": "Umbris gets +1/+1 for each card your opponents own in exile.\nWhenever Umbris or another Nightmare or Horror you control enters, target opponent exiles cards from the top of their library until they exile a land card."
   },
   {
-    "name": "Vorel of the Hull Clade",
-    "type_line": "Legendary Creature \u2014 Human Merfolk",
-    "oracle_text": "{G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land."
-  },
-  {
     "name": "Wernog, Rider's Chaplain",
     "type_line": "Legendary Creature \u2014 Human",
     "oracle_text": "When Wernog, Rider's Chaplain enters or leaves the battlefield, each opponent may investigate. Each opponent who doesn't loses 1 life. You investigate X times, where X is one plus the number of opponents who investigated this way.\nPartner\u2014Friends forever (You can have two commanders if both have this ability.)"
@@ -363,11 +313,6 @@
     "name": "Yargle and Multani",
     "type_line": "Legendary Creature \u2014 Frog Spirit Elemental",
     "oracle_text": ""
-  },
-  {
-    "name": "Yennett, Cryptic Sovereign",
-    "type_line": "Legendary Creature \u2014 Sphinx",
-    "oracle_text": "Flying, vigilance, menace\nWhenever Yennett attacks, reveal the top card of your library. You may cast it without paying its mana cost if its mana value is odd. If you don't cast it, draw a card."
   },
   {
     "name": "Yurlok of Scorch Thrash",
