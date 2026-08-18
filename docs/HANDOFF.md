@@ -148,11 +148,13 @@ Worth grepping for when touching anything nearby:
 
 ## 7. Open, in rough priority order
 
-1. **Verify the two UI panels visually.** "Off-meta read" and "Archetypes" render only for
-   decks carrying the new stats. The rendered DOM text and a clean build were confirmed, but
-   no screenshot was captured — the Browser pane was not compositing. Neither is backfilled
-   on load (deliberate: it would make deck-page loads wait on EDHREC), so they appear on
-   newly built/imported decks only.
+1. ~~**Verify the two UI panels visually.**~~ **Done 2026-08-18** — end to end, against a
+   real saved import (Silverquill, job `b98bc2fbe6924e7e`, the only deck on disk carrying
+   these stats): both panels render with live figures. Still **no screenshot** — the Browser
+   pane would not composite again, so the evidence is the rendered DOM text, not an image.
+   Neither panel is backfilled on load (deliberate: it would make deck-page loads wait on
+   EDHREC), so they appear on newly built/imported decks only — confirmed, 0 of the 168
+   pre-existing decks show them. Verifying this is what turned up the labelling defect in §9.
 2. **Partner decks cannot be BUILT, only analysed.** `BuildRequest.commander_name` is a
    single name and there is no second-commander UI. 6.6% of corpus decks are partner decks.
 3. **~94 commanders (18.8%) still detect no theme.** Mostly partners and value piles
@@ -182,3 +184,49 @@ Worth grepping for when touching anything nearby:
   it and `--pause` if you see `[rate limit]` lines, and check `padded_slots` is 0 before
   trusting a run.
 - `CLAUDE.md` is **gitignored** — edits to it stay on this machine.
+
+---
+
+## 9. The verdict labels were describing a different statistic (2026-08-18)
+
+Found while closing §7.1, by the §4 method: the panel asserted something, so it got measured.
+
+`lift_stats` classifies a deck on a 2x2 of (synergy delta, spread delta), both cut at
+**population medians** — so every verdict is *relative to other decks*, and none of them is
+an absolute statement. `off-plan` is the residual quadrant (below the median on both axes),
+and StepDeck rendered it as **"Unfocused · few cards lean on what this commander rewards"**.
+
+Measured over the **238 corpus decks with a cached EDHREC page** (offline — a deck with no
+cached page is skipped, so no fetch can distort the run):
+
+| verdict | n | share | median staples% | median synergy | median Δsyn |
+|---|---|---|---|---|---|
+| focused-with-spice | 62 | 26.1% | 88.2 | 24.5 | 16.4 |
+| **off-plan** | **59** | **24.8%** | **82.2** | 10.6 | 4.8 |
+| brew | 46 | 19.3% | 77.0 | 15.3 | 8.9 |
+| on-rails | 41 | 17.2% | 98.4 | 32.1 | 20.1 |
+| insufficient-data | 30 | 12.6% | 78.2 | 6.2 | −2.2 |
+
+Of the 59 decks labelled "few cards lean on what this commander rewards", **80% sit ABOVE
+their commander's page median on synergy** and **80% have ≥70% of their measured cards on
+positive lift**. Its median `staples_pct` of 82.2 is *higher* than `brew`'s 77.0. The panel
+also contradicted itself two lines apart — "few cards lean on what this commander rewards"
+sat directly above "**81.2% on-theme**" on the verification deck.
+
+**The classifier was right both before and after.** Nothing about the maths, the thresholds
+or the calibration changed, and `off-plan` stays as the internal name (it is accurate as a
+*relative* term — including in the standing "generated decks still mostly rate off-plan"
+finding, which means "less commander-leaning than a typical human list" and still holds).
+Only the user-facing wording moved: **"Relaxed build · evenly on-theme, leaning on the
+commander less than most decks do."**
+
+Guarded by two new tests in `test_lift_stats.py`, which parse the `VERDICTS` map out of
+`StepDeck.jsx` rather than restating it:
+- `test_every_verdict_has_a_panel_entry` — the same silent lock-step failure as the theme
+  taxonomy; a verdict with no entry renders as a bare em-dash and the panel still draws.
+- `test_off_plan_wording_does_not_claim_the_deck_lacks_synergy` — a phrasing test, because
+  here the *wording* was the defect.
+
+**The general trap: a label on a population-relative bucket reads as an absolute claim.**
+`brew`'s "using the commander as a backbone for something else" (median 77% on-theme) is the
+next-weakest and was left alone; it is defensible, but it is the same shape.

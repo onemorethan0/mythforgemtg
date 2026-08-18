@@ -68,10 +68,20 @@ TYPICAL_SYNERGY_DELTA = 11.6   # points above the commander's page median
 TYPICAL_RANGE_DELTA = 8.9      # points above the commander's page spread
 
 # Verdicts, from the 2x2 of (deck vs page median) x (deck spread vs page spread).
+#
+# Every one of these is RELATIVE TO THE POPULATION, because both cutoffs are population
+# medians. Read absolutely they are all wrong, and OFF_PLAN is the one that tempts a
+# reader into doing so — it is the residual quadrant, so "below the median delta on both
+# axes" reads like "this deck ignores its commander". Measured over the 238 corpus decks
+# with a cached page: OFF_PLAN fires on 24.8% of them, and of those, 80% sit ABOVE their
+# commander's page median on synergy and 80% have >=70% of their measured cards on
+# positive lift (median staples_pct 82.2 — HIGHER than BREW's 77.0). It means "leans on
+# the commander less than most decks do", never "few cards lean on the commander".
+# Any user-facing wording for these lives in StepDeck.jsx and must respect that.
 ON_RAILS = "on-rails"                    # high synergy, narrow spread: precon/cycle-deck shape
 FOCUSED_WITH_SPICE = "focused-with-spice"
 BREW = "brew"                            # commander as a backbone for something else
-OFF_PLAN = "off-plan"
+OFF_PLAN = "off-plan"                    # residual quadrant: BOTH deltas below the median
 INSUFFICIENT = "insufficient-data"
 
 

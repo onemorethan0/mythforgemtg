@@ -1788,7 +1788,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 'on-rails':           ['Stock list',    '#fbbf24', 'close to the typical list for this commander'],
                 'focused-with-spice': ['Focused brew',  '#86efac', 'on-theme, with cards outside the usual list'],
                 'brew':               ['Off-beat brew', '#c4b5fd', 'using the commander as a backbone for something else'],
-                'off-plan':           ['Unfocused',     '#a8a29e', 'few cards lean on what this commander rewards'],
+                // NOT "unfocused": this is the residual quadrant of a 2x2 split at POPULATION
+                // medians, so it means "less commander-leaning than most decks", not "few
+                // synergy cards". Measured over 238 corpus decks, 80% of the decks landing here
+                // are still ABOVE their commander's page median with a median 82% of measured
+                // cards on positive lift — the old blurb told a quarter of all decks something
+                // demonstrably false about themselves. See the note in lift_stats.py.
+                'off-plan':           ['Relaxed build', '#a8a29e', 'evenly on-theme, leaning on the commander less than most decks do'],
                 'insufficient-data':  ['Not enough data', '#78716c', 'too little of this deck appears on EDHREC to judge'],
               };
               const [label, color, blurb] = VERDICTS[om.verdict] || ['—', '#a8a29e', ''];

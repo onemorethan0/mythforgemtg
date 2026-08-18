@@ -191,3 +191,56 @@ def test_stats_block_swallows_every_failure(monkeypatch):
 def test_stats_block_is_empty_when_nothing_is_measurable(monkeypatch):
     monkeypatch.setattr(lift_stats.edhrec_lift, "lift_map", lambda n: {})
     assert lift_stats.stats_block({"name": "C"}, _deck("X")) == {}
+
+
+# ── the panel's wording is part of the contract ─────────────────────────────────
+
+def _verdict_labels() -> dict[str, str]:
+    """The `VERDICTS` map StepDeck.jsx renders, as {verdict: "label blurb"}.
+
+    Label and blurb are joined because they are read as one sentence and either half can
+    carry the claim — the original defect lived in BOTH ("Unfocused" / "few cards ...").
+
+    Read out of the JSX rather than duplicated here, so this cannot drift into testing a
+    copy of the wording instead of the wording that ships.
+    """
+    import re
+    from pathlib import Path
+
+    src = (Path(__file__).resolve().parents[1]
+           / "frontend" / "src" / "components" / "StepDeck.jsx").read_text(encoding="utf-8")
+    block = re.search(r"const VERDICTS = \{(.*?)\n\s*\};", src, re.S)
+    assert block, "StepDeck.jsx no longer defines a VERDICTS map"
+    return {m.group(1): f"{m.group(2)} {m.group(3)}" for m in
+            re.finditer(r"'([a-z-]+)':\s*\['([^']*)',[^,]*?,\s*'([^']*)'\]", block.group(1))}
+
+
+def test_every_verdict_has_a_panel_entry():
+    """A verdict with no `VERDICTS` entry renders as an em-dash with no explanation.
+
+    Same lock-step failure as the theme taxonomy: two structures that must agree, and
+    disagreement is silent — the panel still draws, it just says nothing.
+    """
+    emitted = {lift_stats.ON_RAILS, lift_stats.FOCUSED_WITH_SPICE, lift_stats.BREW,
+               lift_stats.OFF_PLAN, lift_stats.INSUFFICIENT}
+    assert emitted <= set(_verdict_labels()), (
+        f"no StepDeck.jsx wording for: {sorted(emitted - set(_verdict_labels()))}")
+
+
+def test_off_plan_wording_does_not_claim_the_deck_lacks_synergy():
+    """OFF_PLAN is the residual quadrant of a split at POPULATION medians.
+
+    It is NOT an absolute statement about the deck. Measured over the 238 corpus decks
+    with a cached page, 80% of the decks landing here are above their commander's page
+    median on synergy, with a median 82.2% of measured cards on positive lift. The
+    original blurb — "few cards lean on what this commander rewards" — was therefore
+    false for four out of five decks it appeared on, on a quarter of all decks.
+
+    Pinned as a phrasing test because the wording IS the defect: the classifier was
+    right both before and after the fix.
+    """
+    blurb = _verdict_labels()[lift_stats.OFF_PLAN].casefold()
+    for claim in ("few cards", "no synergy", "little synergy", "ignores", "unfocused"):
+        assert claim not in blurb, (
+            f"off-plan blurb asserts {claim!r} absolutely, but the verdict is only "
+            f"relative to the population: {blurb!r}")
