@@ -1,0 +1,70 @@
+{
+  "card": {
+    "name": "Urza's Saga",
+    "mana_cost": "",
+    "type_line": "Enchantment Land — Urza's Saga",
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter.)\nI — Urza's Saga gains \"{T}: Add {C}.\"\nII — Urza's Saga gains \"{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This creature gets +1/+1 for each artifact you control.'\"\nIII — Search your library for an artifact card with mana value 0 or 1, put it onto the battlefield, then shuffle. Sacrifice Urza's Saga."
+  },
+  "ccm": {
+    "name": "Urza's Saga",
+    "ccm_version": 1,
+    "rung": 3,
+    "types": [
+      "enchantment",
+      "land"
+    ],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "add_mana",
+            "amount": 1,
+            "colors": "C"
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "mana": "{2}",
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "create_token",
+            "count": 1,
+            "power": 0,
+            "toughness": 0,
+            "types": [
+              "artifact",
+              "creature",
+              "construct"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "saga_chapter"
+        },
+        "effects": [
+          {
+            "op": "search_library",
+            "what": {
+              "type": "artifact",
+              "mana_value_at_most": 1
+            },
+            "count": 1,
+            "to": "battlefield",
+            "shuffle": true
+          }
+        ]
+      }
+    ]
+  }
+}

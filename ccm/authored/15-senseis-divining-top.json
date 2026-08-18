@@ -1,0 +1,46 @@
+{
+  "card": {
+    "name": "Sensei's Divining Top",
+    "mana_cost": "{1}",
+    "type_line": "Artifact",
+    "oracle_text": "{T}: Look at the top three cards of your library, then put them back in any order.\n{1}, {T}: Draw a card, then put Sensei's Divining Top on top of its owner's library."
+  },
+  "ccm": {
+    "name": "Sensei's Divining Top",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{1}"
+    },
+    "types": [
+      "artifact"
+    ],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "scry",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "mana": "{1}",
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "draw",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -22,7 +22,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
-| S6 | Engine card coverage | **90.0%** pool · **99.0%** top-100 · 3 quarantined | **Low** ↓ | S |
+| S6 | ~~Engine card coverage~~ | **100%** top-100 · **0** uncompiled in top 300 | **Done** | — |
 | S7 | Advisor seed variance exceeds its effects | 79–231 on one deck set | Medium | L |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
@@ -420,10 +420,25 @@ malformed CCM rather than storing a wrong one.
 | Urza's Saga | `op search_library missing required param count` |
 | Sensei's Divining Top | `abilities[0]: needs a non-empty effects list` |
 
-**Plan (small).** Those three are real cards worth having and each names its own failure. Fix
-the compiler/schema gap or hand-author them into `ccm/authored/` alongside the other 14 — which
-is what that directory is *for*. `scripts/ccm_coverage.py` now reads both rungs and has the
-post-mortem in its docstring.
+**Done.** All three hand-authored into `ccm/authored/` (15–17), which is what that directory is
+for. Each passes schema **and every validation gate**, and the store now reports them at rung 3.
+
+| band | before | after |
+|---|---|---|
+| top 0–100 | 99.0% | **100.0%** |
+| top 100–500 | 98.5% | 99.0% |
+| uncompiled in top 300 | 3 | **0** |
+
+**Each is a lossy model, and `ccm/authored/README.md` now says exactly where** — because a CCM
+that quietly models the wrong card is worse than none, since the engine executes it at full
+value. Sensei's Top uses `scry 3`, which *overstates* selection (scry can bottom, Top cannot)
+and omits the put-back-on-library loop entirely. Urza's Saga chapter III uses `saga_chapter`,
+which the engine deliberately does **not** execute — the honest under-count the vocabulary is
+built for — while its granted abilities are modelled as always-available, which overstates
+early. The One Ring's indestructible and protection-from-everything have no op at all, so the
+main reason fair decks play it is simply absent.
+
+`scripts/ccm_coverage.py` now reads both rungs and carries the post-mortem in its docstring.
 
 **Standing lesson, earned twice on one shortfall: a measurement tool needs the same scrutiny as
 the thing it measures.** Both wrong answers were confident, specific, and quotable.

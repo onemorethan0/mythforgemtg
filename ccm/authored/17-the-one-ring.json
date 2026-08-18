@@ -1,0 +1,54 @@
+{
+  "card": {
+    "name": "The One Ring",
+    "mana_cost": "{4}",
+    "type_line": "Legendary Artifact",
+    "oracle_text": "Indestructible\nWhen The One Ring enters, if you cast it, you gain protection from everything until your next turn.\nAt the beginning of your upkeep, you lose 1 life for each burden counter on The One Ring.\n{T}: Put a burden counter on The One Ring, then draw a card for each burden counter on The One Ring."
+  },
+  "ccm": {
+    "name": "The One Ring",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{4}"
+    },
+    "types": [
+      "artifact"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "upkeep"
+        },
+        "effects": [
+          {
+            "op": "lose_life",
+            "amount": "x",
+            "who": "you"
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "add_counter",
+            "count": 1,
+            "counter_type": "burden",
+            "target": {
+              "self": true
+            }
+          },
+          {
+            "op": "draw",
+            "count": "x"
+          }
+        ]
+      }
+    ]
+  }
+}
