@@ -148,9 +148,15 @@ OP_SPECS: dict[str, tuple[dict[str, str], dict[str, str]]] = {
     "mill": ({"count": _INT_OR_X}, {"who": _STR}),
     "scry": ({"count": _INT_OR_X}, {}),
     "surveil": ({"count": _INT_OR_X}, {}),
+    # `count` is OPTIONAL and may be a variable. It was required and strictly integral, which
+    # quarantined 76 cards for omitting it and 44 more for writing "X"/"all" — and NOTHING
+    # READS IT: both consumers (`profile._resolve`, `sim/tier2`) fetch exactly one card
+    # regardless. "Search your library for a card" is the standard templating for one, and
+    # "search your library for X basic lands" is real Magic. A required param that no consumer
+    # reads is a gate with no meaning behind it.
     "search_library": (
-        {"what": _TARGET, "count": _INT},
-        {"to": _STR, "tapped": _BOOL, "shuffle": _BOOL},
+        {"what": _TARGET},
+        {"count": _INT_OR_X, "to": _STR, "tapped": _BOOL, "shuffle": _BOOL},
     ),
     "shuffle": ({}, {}),
     "destroy": ({"target": _TARGET}, {}),
@@ -200,8 +206,22 @@ _VARIABLE_QUANTITIES = frozenset({
 })
 
 
+# Spelled-out forms of quantities the vocabulary ALREADY has. The compiler writes "each
+# opponent" where the closed set has "each", and "2X" where it has "x" — the same quantity,
+# a longer name. 33 cards were quarantined for the first and 16 for the second. Both resolve
+# to the same small default downstream, so this widens the SPELLING, not the semantics:
+# genuine garbage ("target_power", "half their life, rounded up", "TK") still rejects.
+_EACH_PREFIX = re.compile(r"^each\b", re.I)
+_MULTIPLE_OF_X = re.compile(r"^\d+\s*[xy]$", re.I)
+
+
 def _is_variable_qty(value) -> bool:
-    return isinstance(value, str) and value.strip().lower() in _VARIABLE_QUANTITIES
+    if not isinstance(value, str):
+        return False
+    text = value.strip().lower()
+    return (text in _VARIABLE_QUANTITIES
+            or bool(_EACH_PREFIX.match(text))
+            or bool(_MULTIPLE_OF_X.match(text)))
 
 
 def _check_value(tag: str, value, where: str, errors: list[str]) -> None:

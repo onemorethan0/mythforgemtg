@@ -3,6 +3,8 @@
 import json
 from pathlib import Path
 
+from mythgauntlet.semantics import ccm
+
 from mythgauntlet.semantics.ccm import (
     cross_check,
     lint_against_card,
@@ -524,3 +526,48 @@ def test_a_synonym_cannot_smuggle_an_unsupported_trigger_past_gate_3():
     # spell that targets this creature") for no simulation gain.
     heroic = "Heroic — Whenever you cast a spell that targets this creature, draw a card."
     assert not gate(heroic, "targeted_by_spell")
+
+
+# ── quarantine-driven schema widenings ──────────────────────────────────────────
+
+def _spell(effects):
+    return {"name": "T", "ccm_version": 1, "types": ["artifact"],
+            "abilities": [{"kind": "spell_effect", "effects": effects}]}
+
+
+def test_search_library_count_is_optional_and_may_be_a_variable():
+    """`count` was required and strictly integral, and NOTHING READS IT.
+
+    Both consumers — `profile._resolve` and `sim/tier2` — fetch exactly one card regardless of
+    `count`. Meanwhile the gate quarantined 76 cards for omitting it (Magic's standard "search
+    your library for a card" means one) and 27 more for writing "X" ("search your library for X
+    basic lands" is real). A required param no consumer reads is a gate with nothing behind it.
+    """
+    assert ccm.validate_schema(_spell([{"op": "search_library", "what": {"type": "land"}}])) == []
+    assert ccm.validate_schema(
+        _spell([{"op": "search_library", "what": {"type": "land"}, "count": "X"}])) == []
+
+
+def test_spelled_out_variables_are_accepted_as_the_ones_we_already_have():
+    """"each opponent" is the vocabulary's own "each"; "2X" is its own "x".
+
+    33 cards were quarantined for the first spelling and 16 for the second. Both resolve to the
+    same small default downstream, so this widens the SPELLING, not the semantics.
+    """
+    for value in ("each opponent", "each player", "each opponent other than defending player"):
+        assert ccm.validate_schema(_spell([{"op": "draw", "count": value}])) == [], value
+    assert ccm.validate_schema(
+        _spell([{"op": "deal_damage", "amount": "2X",
+                 "target": {"type": "creature"}}])) == []
+
+
+def test_genuine_garbage_still_rejects():
+    """The widening must not become an escape hatch — these were quarantined correctly.
+
+    `eachother` is the word-boundary check earning its keep: without `\b` on the `each`
+    prefix it would slip through.
+    """
+    for value in ("target_power", "excess", "TK", "half their life, rounded up", "eachother"):
+        assert ccm.validate_schema(_spell([{"op": "draw", "count": value}])), value
+    # a negative quantity is a modelling error, not a variable
+    assert ccm.validate_schema(_spell([{"op": "gain_life", "amount": -2}]))
