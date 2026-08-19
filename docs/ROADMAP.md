@@ -22,7 +22,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
-| S6 | ~~Engine card coverage~~ | **100%** top-100 · **0** uncompiled in top 300 | **Done** | — |
+| S6 | ~~Engine card coverage~~ | **91.5%** pool · 100% top-100 · quarantine 956→443 | **Done** | — |
 | S7 | Advisor seed variance | **quantified**: ~60% rel sd, needs ~16× runs | **Done** (bounded) | — |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
@@ -442,6 +442,34 @@ main reason fair decks play it is simply absent.
 
 **Standing lesson, earned twice on one shortfall: a measurement tool needs the same scrutiny as
 the thing it measures.** Both wrong answers were confident, specific, and quotable.
+
+### The re-compile that the schema fix unlocked (2026-08-18)
+
+Chose this over a plain training run because the ledger was **96.5% already at prompt v10**: a
+normal run would have re-compiled 1,116 working cards and touched **zero** of the 956
+quarantined. Confirmed exactly — selection returned **0 targets** until `--retry-quarantined`
+existed, then 952.
+
+**Result: quarantined 956 → 443, accepted 31,026 → 31,539 — 513 cards recovered.**
+
+| band | before | after |
+|---|---|---|
+| pool | 90.0% | **91.5%** |
+| top 100–500 | 98.5% | 99.2% |
+| top 500–1000 | 97.0% | 98.2% |
+| top 1000–5000 | 96.5% | **98.2%** |
+| top 5000+ | 97.1% | **98.7%** |
+
+**Do not credit the schema widening with 513.** The run confounds two effects, and only one is
+mine: the widening was predicted to unlock **141**, and that class is now empty (6 fixable-shaped
+errors remain of 443). The other **~372 are the model simply doing better on a second attempt at
+the same prompt version** — compilation is non-deterministic, and no card had been retried since
+being quarantined. So the honest attribution is: the FLAG unlocked 952 retries worth 513 cards,
+of which the schema fix is responsible for roughly 141.
+
+The remaining 443 are genuine model errors the cross-check gates are right to reject — declared
+trigger events with no textual support, CCMs claiming draw/mana/removal the oracle text does not
+have. Those need better prompting, not a looser schema, and that is the next lever.
 
 ## S7 & S8 — known, quantified, lower value
 
