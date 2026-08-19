@@ -178,6 +178,7 @@ def score_card(
         if over > best_over:
             best_role, best_over, best_within = role, over, roles[role]
 
+    best_within += _efficiency(card)
     return RedundancyScore(
         card=card,
         role=best_role,
@@ -186,6 +187,37 @@ def score_card(
         score=best_over / (1.0 + best_within),
         protected=False,
     )
+
+
+# Mana value at or above which a card earns no efficiency credit, and the credit a free
+# spell earns. Deliberately small — this refines an ORDER, it must not swamp `oversupply`.
+_EFFICIENCY_CAP = 4
+_EFFICIENCY_WEIGHT = 0.5
+
+
+def _efficiency(card: Card) -> float:
+    """Within-role quality from mana cost, because the role tag alone supplies none.
+
+    `card_roles` returns a FIXED strength per role, so `within_role` is constant for four of
+    the seven roles — measured over 40 corpus decks: counterspell 3.0 on all 54 cards,
+    removal 1.0 on all 167, tutor 2.0 on all 51, wipe 3.0 on all 49. For those roles
+    `oversupply / (1 + within_role)` is a per-role constant, so the module's central promise
+    — "you cut the worst ramp spell, not the best one" — was simply not implemented: every
+    card in the role tied and the ordering fell through to the least-played tiebreak.
+
+    That is how a Prismari spellslinger deck came to be told to cut **Flusterstorm** and
+    **Mental Misstep**, its two best counterspells, ahead of a 3-mana Mana Sculpt.
+
+    Cost is the honest signal available at rung 1: within one role, the cheaper card is the
+    better one (Swords to Plowshares over a five-mana removal spell; Flusterstorm over Mana
+    Sculpt). Cheap cards earn a higher `within_role`, which LOWERS their cut score, so the
+    expensive member of an over-served role is offered first. It is a refinement, not a
+    quality model — it cannot tell a good three-drop from a bad one.
+    """
+    mv = getattr(card, "mana_value", None)
+    if mv is None:
+        return 0.0
+    return max(0, _EFFICIENCY_CAP - mv) * _EFFICIENCY_WEIGHT
 
 
 def _rank_key(card: Card) -> int:

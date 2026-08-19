@@ -15,6 +15,18 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 ## The map
 
+> **S10 (new, open): `ROLE_TARGETS` is archetype-blind.** `redundancy` judges every deck against
+> ONE population baseline, so a deck that plays to a role as its PLAN reads as over-supplied in
+> exactly the thing it is trying to do. `counterspell`'s target is 3 in supply units — the weight
+> of a **single card** — because the median corpus deck runs zero. A Prismari spellslinger deck
+> with three counterspells is therefore scored 3x over and its interaction offered as the cut
+> pool. The within-role fix below decides WHICH counterspell is offered; it does not stop the
+> role being targeted. This is the same shape as the original `ROLE_TARGETS` correction (which
+> replaced the builder's plan with the population and left the other bias in place), and fixing
+> it properly means weighting targets by the deck's own detected archetype — which lives in
+> Forge (`deck_themes`), not in the engine, so it needs a deliberate contract rather than an
+> import.
+
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
 | S1 | Commander themes undetected | corpus **64/391 (16.4%)** ↓80 · all legends **946/3790 (25.0%)** ↓963 | **High** | part done |

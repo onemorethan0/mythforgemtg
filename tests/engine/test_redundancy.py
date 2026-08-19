@@ -221,3 +221,56 @@ def test_advise_rejects_an_unknown_cut_strategy(build_deck):
     resolved = build_deck([SWORDS])
     with pytest.raises(ValueError, match="cut_strategy"):
         advisor.advise(resolved, None, None, [], cut_strategy="nonsense")
+
+
+# ── within-role quality: the module's central promise, previously unimplemented ──
+
+def test_within_role_can_actually_discriminate(make_card):
+    """`card_roles` returns a FIXED strength per role, so four of seven roles tied.
+
+    Measured over 40 corpus decks: counterspell 3.0 on all 54 cards, removal 1.0 on all 167,
+    tutor 2.0 on all 51, wipe 3.0 on all 49. For those roles `oversupply / (1 + within_role)`
+    was a per-role CONSTANT, so "you cut the worst ramp spell, not the best one" was not
+    implemented at all — every card tied and ordering fell to the least-played tiebreak. That
+    is how a Prismari spellslinger deck was told to cut Flusterstorm and Mental Misstep.
+    """
+    from mythgauntlet.ratings.redundancy import _efficiency
+
+    cheap = make_card("Flusterstorm", mana_cost="{U}")
+    mid = make_card("Mana Sculpt", mana_cost="{2}{U}")
+    dear = make_card("Ponderous Counter", mana_cost="{5}{U}{U}")
+
+    # cheaper card earns MORE within-role credit, which LOWERS its cut score
+    assert _efficiency(cheap) > _efficiency(mid) > _efficiency(dear)
+    assert _efficiency(dear) == 0.0, "at/above the cap there is no credit to earn"
+
+
+def test_the_expensive_member_of_an_over_served_role_is_offered_first(make_card):
+    """The ordering consequence, stated as the behaviour a user sees."""
+    from mythgauntlet.ratings.redundancy import _efficiency
+
+    supply_over = 6.0
+    base_within = 3.0          # what card_roles gives every counterspell
+
+    def score(card):
+        return supply_over / (1.0 + base_within + _efficiency(card))
+
+    cheap = make_card("Flusterstorm", mana_cost="{U}")
+    dear = make_card("Mana Sculpt", mana_cost="{2}{U}")
+    assert score(dear) > score(cheap), (
+        "the pricier card in an over-served role must rank as the more cuttable one")
+
+
+def test_efficiency_refines_order_without_swamping_oversupply(make_card):
+    """It must reorder WITHIN a role, never outrank a genuinely more over-served one.
+
+    `oversupply` is the signal; cost is a tiebreak with teeth. If the credit grew large enough
+    to invert that, a deck's single most over-supplied role would stop leading the pool.
+    """
+    from mythgauntlet.ratings.redundancy import _efficiency
+
+    cheap = make_card("Cheap", mana_cost="{U}")
+    # role A is barely over (1.0), role B is heavily over (8.0)
+    barely = 1.0 / (1.0 + 1.0 + _efficiency(cheap))
+    heavily = 8.0 / (1.0 + 3.0 + 0.0)
+    assert heavily > barely
