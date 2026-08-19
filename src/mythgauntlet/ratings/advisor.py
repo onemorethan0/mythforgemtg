@@ -438,7 +438,41 @@ def _is_legal_candidate(card: Card, identity: frozenset[str]) -> bool:
     """
     if not getattr(card, "commander_legal", True):
         return False
-    return set(getattr(card, "color_identity", ()) or ()) <= identity
+    if not set(getattr(card, "color_identity", ()) or ()) <= identity:
+        return False
+    return _land_is_live(card, identity)
+
+
+_BASIC_FOR_COLOUR = {"W": "plains", "U": "island", "B": "swamp",
+                     "R": "mountain", "G": "forest"}
+_ALL_BASIC_TYPES = frozenset(_BASIC_FOR_COLOUR.values()) | {"wastes"}
+
+
+def _land_is_live(card, identity: set[str]) -> bool:
+    """Can this land actually find or make mana in THIS deck?
+
+    A fetchland's colour identity is EMPTY and it produces no mana itself, so the identity
+    check above admits **every fetchland in Magic into every deck**. Measured on a real pod,
+    the advisor offered *Bloodstained Mire* (Swamp/Mountain) to a Simic deck — a card that
+    finds nothing there and costs a life for the privilege.
+
+    `deck_builder._land_is_castable` already fixed exactly this for the BUILDER; the advisor
+    never got the guard, which is the two-structures-that-must-agree shape this repo keeps
+    finding. Same conservative rule: reject only when the card NAMES basic types and none are
+    playable here, so a land that names none (Command Tower, Evolving Wilds' "basic land
+    card", Myriad Landscape) is kept — it can drop a provably dead land, never one it merely
+    fails to understand.
+    """
+    if "Land" not in (getattr(card, "type_line", "") or ""):
+        return True
+    produced = getattr(card, "produced_mana", None) or ()
+    if any(c in produced for c in identity):
+        return True                       # makes on-colour mana directly
+    text = (getattr(card, "oracle_text", "") or "").lower()
+    named = {t for t in _ALL_BASIC_TYPES if t in text}
+    if not named:
+        return True                       # says nothing about land types -> keep
+    return bool(named & {_BASIC_FOR_COLOUR[c] for c in identity if c in _BASIC_FOR_COLOUR})
 
 
 def advise(
@@ -553,7 +587,22 @@ def advise(
                 if after - base_score >= effective_delta:
                     evals.append((after - base_score, add, cut, after, a))
         # Greedy non-overlapping selection: best gain first, each add + each cut used once.
-        evals.sort(key=lambda e: (-e[0], e[1].name, e[2].name))
+        #
+        # TIES ARE THE NORM HERE, so the tiebreak is load-bearing. The Ceiling axis is
+        # quantised: `speed_component` is `(turns - fast_kill_turn) / turns * 55` over an
+        # INTEGER kill turn, so at the default 8 turns every improvement is a whole-turn step
+        # worth exactly 55/8 = 6.875. Measured over a real 7-deck pod, 21 of 24 suggestions
+        # scored an identical +6.88 and the other 3 an identical +6.67.
+        #
+        # Breaking those ties by NAME sorted them alphabetically, which is why the advice came
+        # back led by Ancient Brass Dragon / Arcane Signet / Arid Mesa / Bloodstained Mire —
+        # an artefact of the alphabet presented as a ranking. Prefer the card the axis prior
+        # says is most likely to move this axis, then the more-played card, then the name for
+        # determinism. The measured delta is still the verdict; this only orders equals.
+        _prior = {c.name: _axis_relevance(tags.analyze(c), target) + _commander_affinity(c, wants)
+                  for c in {e[1].name: e[1] for e in evals}.values()}
+        evals.sort(key=lambda e: (-e[0], -_prior.get(e[1].name, 0.0),
+                                  e[1].edhrec_rank or 10**9, e[1].name, e[2].name))
         used_add: set[str] = set()
         used_cut: set[str] = set()
         for _delta, add, cut, after, a in evals:

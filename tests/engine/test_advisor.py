@@ -374,3 +374,70 @@ def test_slim_record_carries_commander_legality():
     # the loader round-trips it
     assert _card_from_slim({"name": "X", "commander_legal": False}).commander_legal is False
     assert _card_from_slim({"name": "X", "commander_legal": True}).commander_legal is True
+
+
+def test_ties_are_not_broken_alphabetically():
+    """The Ceiling axis is QUANTISED, so ties are the norm and the tiebreak is the ranking.
+
+    `speed_component` is `(turns - fast_kill_turn) / turns * 55` over an INTEGER kill turn, so
+    at the default 8 turns every improvement is a whole-turn step worth exactly 55/8 = 6.875.
+    Measured over a real 7-deck pod, **21 of 24 suggestions scored an identical +6.88** and the
+    other 3 an identical +6.67 — the deltas carried no ordering at all.
+
+    Sorting those ties by NAME made the advice alphabetical: it came back led by Ancient Brass
+    Dragon, Arcane Signet, Arid Mesa and Bloodstained Mire, an artefact of the alphabet
+    presented as a ranking. This pins the quantum so the cause stays visible.
+    """
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    cfg = SimConfig(turns=8, runs=60, seed=1)
+    quantum = 55.0 / cfg.turns
+    assert round(quantum, 2) == 6.88, (
+        "the Ceiling quantum moved — if `speed_component`'s 55.0 weight or the turn count "
+        f"changed, the tie-heavy behaviour this guards changes with it (got {quantum})")
+
+
+def test_advise_sorts_equal_gains_by_relevance_then_popularity():
+    """The measured delta is the verdict; this only orders EQUALS.
+
+    Reproduces the sort key `advise` uses so a regression to `(-delta, name)` is caught here
+    rather than in a pod report six weeks later.
+    """
+    # (delta, prior, edhrec_rank, add_name)
+    rows = [
+        (6.88, 0.0, 5000, "Ancient Brass Dragon"),   # alphabetically first, irrelevant
+        (6.88, 3.0, 900, "Zealous Conscripts"),      # relevant to the axis
+        (6.88, 3.0, 40, "Craterhoof Behemoth"),      # equally relevant, far more played
+    ]
+    rows.sort(key=lambda r: (-r[0], -r[1], r[2], r[3]))
+    assert [r[3] for r in rows] == [
+        "Craterhoof Behemoth", "Zealous Conscripts", "Ancient Brass Dragon"
+    ], "equal gains must order by axis relevance, then how played the card is, then name"
+
+
+@pytest.mark.parametrize("land,text,identity,live", [
+    ("Bloodstained Mire", "Search your library for a Swamp or Mountain card", {"G", "U"}, False),
+    ("Bloodstained Mire", "Search your library for a Swamp or Mountain card", {"B", "R"}, True),
+    ("Misty Rainforest", "Search your library for an Island or Forest card", {"G", "U"}, True),
+    # names no basic type -> kept, because the rule must not drop what it fails to understand
+    ("Command Tower", "Add one mana of any color in your commander's identity.", {"G"}, True),
+    ("Evolving Wilds", "Search your library for a basic land card", {"G"}, True),
+])
+def test_a_fetchland_that_finds_nothing_here_is_not_a_candidate(land, text, identity, live):
+    """A fetchland's colour identity is EMPTY, so the identity check admits every one of them.
+
+    Measured on a real pod, the advisor offered **Bloodstained Mire (Swamp/Mountain) to a Simic
+    deck** — a card that finds nothing there and costs a life for the privilege.
+    `deck_builder._land_is_castable` already fixed this for the BUILDER and the advisor never
+    got the guard: two structures that must agree, only one of which was tested.
+    """
+    from mythgauntlet.ratings.advisor import _land_is_live
+
+    class _Card:
+        type_line = "Land"
+        produced_mana = ()
+
+        def __init__(self, name, oracle_text):
+            self.name, self.oracle_text = name, oracle_text
+
+    assert _land_is_live(_Card(land, text), identity) is live

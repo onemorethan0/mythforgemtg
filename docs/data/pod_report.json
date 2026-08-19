@@ -1,0 +1,1058 @@
+[
+  {
+    "name": "Smaug, Salt to Slag",
+    "commander": "Smaug the Impenetrable",
+    "cards": 100,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (80% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 15.4,
+      "consistency": 80.2,
+      "resilience": 88.4,
+      "interaction": 90.0,
+      "ceiling": 3.4
+    },
+    "quality": {
+      "curve": {
+        "average": 3.64,
+        "verdict": "ok",
+        "buckets": {
+          "4": 11,
+          "3": 10,
+          "2": 14,
+          "5": 7,
+          "6": 8,
+          "7": 3,
+          "1": 8
+        },
+        "target": {
+          "1": 5,
+          "2": 15,
+          "3": 16,
+          "4": 10,
+          "5": 8,
+          "6": 3,
+          "7": 4
+        },
+        "over": {
+          "1": 3,
+          "4": 1,
+          "6": 5
+        },
+        "under": {
+          "2": 1,
+          "3": 6,
+          "5": 1,
+          "7": 1
+        },
+        "notes": [
+          "Heaviest overshoot: MV 6",
+          "Thinnest slot: MV 3"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "R": 65,
+          "B": 23
+        },
+        "sources": {
+          "R": 36,
+          "B": 25
+        },
+        "required": {
+          "R": 19,
+          "B": 15
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ok",
+        "lands": 38,
+        "ramp": 17,
+        "sources": 55,
+        "notes": []
+      }
+    },
+    "offmeta": {
+      "synergy": 22.5,
+      "synergy_range": 62.5,
+      "staples_pct": 81.5,
+      "anti_staples_pct": 18.5,
+      "baseline": 6.6,
+      "baseline_range": 44.9,
+      "measured": 27,
+      "total": 72,
+      "coverage": 0.375,
+      "confidence": "low",
+      "verdict": "focused-with-spice"
+    },
+    "archetypes": {
+      "commander": [
+        "tokens"
+      ],
+      "deck": [],
+      "merged": [
+        "tokens"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Longshot, Rebel Bowman",
+        "cut": "Jennika's Technique",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling. Measured: -3% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Guttersnipe",
+        "cut": "Reckless Blaze",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Scourge of Valkas",
+        "cut": "Ultimate Magic: Meteor",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A scalable X-damage kill.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Scourge of Valkas",
+        "cut": "Jennika's Technique",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A scalable X-damage kill.",
+        "axis": "ceiling"
+      }
+    ]
+  },
+  {
+    "name": "Inspire Table Salt",
+    "commander": "Prismari, the Inspiration",
+    "cards": 100,
+    "bracket": 3,
+    "bracket_label": "Upgraded",
+    "bracket_spread": [
+      3
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "storm/spellslinger go-off (nut-draw kill) -> min Bracket 3",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 5.4,
+      "consistency": 81.7,
+      "resilience": 88.9,
+      "interaction": 95.9,
+      "ceiling": 32.7
+    },
+    "quality": {
+      "curve": {
+        "average": 2.61,
+        "verdict": "ok",
+        "buckets": {
+          "3": 11,
+          "2": 20,
+          "6": 1,
+          "4": 9,
+          "5": 5,
+          "1": 15,
+          "7": 1
+        },
+        "target": {
+          "1": 5,
+          "2": 15,
+          "3": 16,
+          "4": 11,
+          "5": 8,
+          "6": 3,
+          "7": 4
+        },
+        "over": {
+          "1": 10,
+          "2": 5
+        },
+        "under": {
+          "3": 5,
+          "4": 2,
+          "5": 3,
+          "6": 2,
+          "7": 3
+        },
+        "notes": [
+          "Heaviest overshoot: MV 1",
+          "Thinnest slot: MV 3"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "U": 40,
+          "R": 47
+        },
+        "sources": {
+          "R": 37,
+          "U": 27
+        },
+        "required": {
+          "U": 15,
+          "R": 20
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ok",
+        "lands": 37,
+        "ramp": 21,
+        "sources": 58,
+        "notes": []
+      }
+    },
+    "offmeta": {
+      "synergy": 15.8,
+      "synergy_range": 37.4,
+      "staples_pct": 90.9,
+      "anti_staples_pct": 9.1,
+      "baseline": 4.2,
+      "baseline_range": 27.5,
+      "measured": 55,
+      "total": 69,
+      "coverage": 0.797,
+      "confidence": "high",
+      "verdict": "brew"
+    },
+    "archetypes": {
+      "commander": [
+        "spellslinger"
+      ],
+      "deck": [
+        "spellslinger"
+      ],
+      "merged": [
+        "spellslinger"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "James, Wandering Dad // Follow Him",
+        "cut": "Flusterstorm",
+        "seeds": 2,
+        "of": 4,
+        "delta": 6.67,
+        "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "axis": "speed"
+      },
+      {
+        "add": "James, Wandering Dad // Follow Him",
+        "cut": "Mental Misstep",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.67,
+        "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "axis": "speed"
+      }
+    ]
+  },
+  {
+    "name": "Withering Salt",
+    "commander": "Witherbloom, the Balancer",
+    "cards": 98,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (78% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 2.9,
+      "consistency": 81.3,
+      "resilience": 86.8,
+      "interaction": 49.5,
+      "ceiling": 0.0
+    },
+    "quality": {
+      "curve": {
+        "average": 3.1,
+        "verdict": "ok",
+        "buckets": {
+          "1": 5,
+          "2": 18,
+          "3": 19,
+          "4": 12,
+          "5": 3,
+          "7": 3,
+          "6": 1
+        },
+        "target": {
+          "1": 5,
+          "2": 16,
+          "3": 17,
+          "4": 10,
+          "5": 8,
+          "6": 2,
+          "7": 3
+        },
+        "over": {
+          "2": 2,
+          "3": 2,
+          "4": 2
+        },
+        "under": {
+          "5": 5,
+          "6": 1
+        },
+        "notes": [
+          "Heaviest overshoot: MV 2",
+          "Thinnest slot: MV 5"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "G": 49,
+          "B": 48
+        },
+        "sources": {
+          "G": 28,
+          "B": 29
+        },
+        "required": {
+          "G": 19,
+          "B": 15
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ok",
+        "lands": 36,
+        "ramp": 12,
+        "sources": 48,
+        "notes": []
+      }
+    },
+    "offmeta": {
+      "synergy": 5.9,
+      "synergy_range": 38.8,
+      "staples_pct": 65.4,
+      "anti_staples_pct": 34.6,
+      "baseline": 6.8,
+      "baseline_range": 38.1,
+      "measured": 26,
+      "total": 69,
+      "coverage": 0.377,
+      "confidence": "low",
+      "verdict": "off-plan"
+    },
+    "archetypes": {
+      "commander": [
+        "spellslinger"
+      ],
+      "deck": [
+        "lifegain",
+        "aristocrats"
+      ],
+      "merged": [
+        "lifegain",
+        "aristocrats",
+        "spellslinger"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Solemn Simulacrum",
+        "cut": "Shredder's Technique",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.67,
+        "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "axis": "speed"
+      }
+    ]
+  },
+  {
+    "name": "Silverquill",
+    "commander": "Silverquill, the Disputant",
+    "cards": 100,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (60% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 13.3,
+      "consistency": 77.2,
+      "resilience": 73.1,
+      "interaction": 64.1,
+      "ceiling": 1.7
+    },
+    "quality": {
+      "curve": {
+        "average": 2.84,
+        "verdict": "ok",
+        "buckets": {
+          "2": 21,
+          "1": 11,
+          "4": 13,
+          "3": 13,
+          "7": 3,
+          "5": 1,
+          "6": 2
+        },
+        "target": {
+          "1": 5,
+          "2": 12,
+          "3": 14,
+          "4": 11,
+          "5": 8,
+          "6": 6,
+          "7": 8
+        },
+        "over": {
+          "1": 6,
+          "2": 9,
+          "4": 2
+        },
+        "under": {
+          "3": 1,
+          "5": 7,
+          "6": 4,
+          "7": 5
+        },
+        "notes": [
+          "Heaviest overshoot: MV 2",
+          "Thinnest slot: MV 5"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "W": 59,
+          "B": 41
+        },
+        "sources": {
+          "W": 24,
+          "B": 20
+        },
+        "required": {
+          "W": 20,
+          "B": 15
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ok",
+        "lands": 35,
+        "ramp": 2,
+        "sources": 37,
+        "notes": []
+      }
+    },
+    "offmeta": {
+      "synergy": 9.0,
+      "synergy_range": 32.4,
+      "staples_pct": 81.2,
+      "anti_staples_pct": 18.8,
+      "baseline": 6.5,
+      "baseline_range": 30.0,
+      "measured": 32,
+      "total": 71,
+      "coverage": 0.451,
+      "confidence": "low",
+      "verdict": "off-plan"
+    },
+    "archetypes": {
+      "commander": [
+        "aristocrats"
+      ],
+      "deck": [
+        "etb"
+      ],
+      "merged": [
+        "etb",
+        "aristocrats"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Dark Ritual",
+        "cut": "Archaeomancer's Map",
+        "seeds": 2,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Together as One",
+        "cut": "Knight of the White Orchid",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A scalable X-damage kill. Measured: +10% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Guul Draz Overseer",
+        "cut": "Splinter's Technique",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher. Measured: +3% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Together as One",
+        "cut": "Splinter's Technique",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A scalable X-damage kill. Measured: +3% of games close on the clock.",
+        "axis": "ceiling"
+      }
+    ]
+  },
+  {
+    "name": "Salt N Counters",
+    "commander": "Vorel of the Hull Clade",
+    "cards": 100,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (73% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 12.1,
+      "consistency": 72.7,
+      "resilience": 74.7,
+      "interaction": 31.7,
+      "ceiling": 8.6
+    },
+    "quality": {
+      "curve": {
+        "average": 2.74,
+        "verdict": "ok",
+        "buckets": {
+          "1": 19,
+          "3": 14,
+          "5": 6,
+          "4": 8,
+          "2": 19,
+          "6": 5,
+          "7": 1
+        },
+        "target": {
+          "1": 6,
+          "2": 14,
+          "3": 15,
+          "4": 12,
+          "5": 9,
+          "6": 7,
+          "7": 9
+        },
+        "over": {
+          "1": 13,
+          "2": 5
+        },
+        "under": {
+          "3": 1,
+          "4": 4,
+          "5": 3,
+          "6": 2,
+          "7": 8
+        },
+        "notes": [
+          "Heaviest overshoot: MV 1",
+          "Thinnest slot: MV 7"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "G": 65,
+          "U": 52
+        },
+        "sources": {
+          "G": 29,
+          "U": 21
+        },
+        "required": {
+          "G": 23,
+          "U": 17
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ramp-dependent",
+        "lands": 27,
+        "ramp": 11,
+        "sources": 38,
+        "notes": [
+          "27 lands is low, but 11 ramp brings it to 38 \u2014 the deck needs to hit its ramp"
+        ]
+      }
+    },
+    "offmeta": {
+      "synergy": 12.6,
+      "synergy_range": 44.9,
+      "staples_pct": 79.3,
+      "anti_staples_pct": 20.7,
+      "baseline": 6.4,
+      "baseline_range": 31.2,
+      "measured": 29,
+      "total": 78,
+      "coverage": 0.372,
+      "confidence": "low",
+      "verdict": "brew"
+    },
+    "archetypes": {
+      "commander": [
+        "counters"
+      ],
+      "deck": [
+        "counters"
+      ],
+      "merged": [
+        "counters"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Return of the Wildspeaker",
+        "cut": "Oracle's Restoration",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Return of the Wildspeaker",
+        "cut": "Mind into Matter",
+        "seeds": 1,
+        "of": 4,
+        "delta": 13.75,
+        "reason": "A one-shot team finisher. Measured: kills ~0.8 turns sooner; +8% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Jubilation",
+        "cut": "Oracle's Restoration",
+        "seeds": 1,
+        "of": 4,
+        "delta": 13.75,
+        "reason": "A one-shot team finisher. Measured: kills ~0.9 turns sooner; +8% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Bloodstained Mire",
+        "cut": "Mind into Matter",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Tutors toward your finisher. Measured: kills ~0.7 turns sooner; -3% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Windswept Heath",
+        "cut": "Oracle's Restoration",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Tutors toward your finisher. Measured: kills ~0.6 turns sooner; +3% of games close on the clock.",
+        "axis": "ceiling"
+      }
+    ]
+  },
+  {
+    "name": "Salt of the Goth Mommy",
+    "commander": "Kaalia of the Vast",
+    "cards": 100,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (52% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 48.8,
+      "consistency": 71.6,
+      "resilience": 71.1,
+      "interaction": 61.5,
+      "ceiling": 6.9
+    },
+    "quality": {
+      "curve": {
+        "average": 3.63,
+        "verdict": "ok",
+        "buckets": {
+          "6": 8,
+          "7": 8,
+          "4": 10,
+          "5": 5,
+          "2": 16,
+          "3": 11,
+          "1": 10
+        },
+        "target": {
+          "1": 5,
+          "2": 13,
+          "3": 14,
+          "4": 12,
+          "5": 9,
+          "6": 7,
+          "7": 8
+        },
+        "over": {
+          "1": 5,
+          "2": 3,
+          "6": 1
+        },
+        "under": {
+          "3": 3,
+          "4": 2,
+          "5": 4
+        },
+        "notes": [
+          "Heaviest overshoot: MV 1",
+          "Thinnest slot: MV 5"
+        ]
+      },
+      "colors": {
+        "ok": false,
+        "pips": {
+          "W": 23,
+          "B": 48,
+          "R": 38
+        },
+        "sources": {
+          "W": 15,
+          "R": 18,
+          "B": 18
+        },
+        "required": {
+          "W": 16,
+          "B": 16,
+          "R": 16
+        },
+        "short": {
+          "W": 1
+        },
+        "notes": [
+          "W: 15 sources, wants 16"
+        ]
+      },
+      "mana": {
+        "ok": false,
+        "verdict": "short",
+        "lands": 31,
+        "ramp": 6,
+        "sources": 37,
+        "notes": [
+          "31 lands + 6 ramp = 37 sources; 95% of decks run 38 or more"
+        ]
+      }
+    },
+    "offmeta": {
+      "synergy": 15.6,
+      "synergy_range": 43.8,
+      "staples_pct": 81.0,
+      "anti_staples_pct": 19.0,
+      "baseline": 5.8,
+      "baseline_range": 29.9,
+      "measured": 21,
+      "total": 79,
+      "coverage": 0.266,
+      "confidence": "low",
+      "verdict": "brew"
+    },
+    "archetypes": {
+      "commander": [
+        "tribal_dragons",
+        "tribal_angels",
+        "tribal_demons"
+      ],
+      "deck": [
+        "tribal_dragons",
+        "aristocrats"
+      ],
+      "merged": [
+        "tribal_dragons",
+        "aristocrats",
+        "tribal_angels"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Hoarding Broodlord",
+        "cut": "Pestilence Demon",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher. Measured: -13% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Hoarding Broodlord",
+        "cut": "Blasphemous Act",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Hoarding Broodlord",
+        "cut": "Thundermaw Hellkite",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher. Measured: -8% of games close on the clock.",
+        "axis": "ceiling"
+      }
+    ]
+  },
+  {
+    "name": "Bend NaCl",
+    "commander": "Avatar Aang // Aang, Master of Elements",
+    "cards": 100,
+    "bracket": 1,
+    "bracket_label": "Exhibition",
+    "bracket_spread": [
+      1
+    ],
+    "game_changers": 0,
+    "bracket_reasons": [
+      "0 Game Changers -> Brackets 1-2",
+      "thin mana base (71% colour consistency) -> Bracket 1 (exhibition)",
+      "note: combos not checked (run with --combos for the combo gate)"
+    ],
+    "axes": {
+      "speed": 9.6,
+      "consistency": 71.9,
+      "resilience": 84.5,
+      "interaction": 43.1,
+      "ceiling": 0.0
+    },
+    "quality": {
+      "curve": {
+        "average": 3.16,
+        "verdict": "ok",
+        "buckets": {
+          "2": 20,
+          "4": 13,
+          "3": 16,
+          "1": 6,
+          "5": 8,
+          "6": 3,
+          "7": 1
+        },
+        "target": {
+          "1": 5,
+          "2": 13,
+          "3": 14,
+          "4": 11,
+          "5": 9,
+          "6": 7,
+          "7": 8
+        },
+        "over": {
+          "1": 1,
+          "2": 7,
+          "3": 2,
+          "4": 2
+        },
+        "under": {
+          "5": 1,
+          "6": 4,
+          "7": 7
+        },
+        "notes": [
+          "Heaviest overshoot: MV 2",
+          "Thinnest slot: MV 7"
+        ]
+      },
+      "colors": {
+        "ok": true,
+        "pips": {
+          "G": 30,
+          "W": 28,
+          "U": 24,
+          "R": 15,
+          "B": 2
+        },
+        "sources": {
+          "U": 26,
+          "R": 23,
+          "G": 25,
+          "W": 22,
+          "B": 16
+        },
+        "required": {
+          "G": 16,
+          "W": 16,
+          "U": 16,
+          "R": 16,
+          "B": 16
+        },
+        "short": {},
+        "notes": []
+      },
+      "mana": {
+        "ok": true,
+        "verdict": "ok",
+        "lands": 32,
+        "ramp": 14,
+        "sources": 46,
+        "notes": []
+      }
+    },
+    "offmeta": {
+      "synergy": 34.7,
+      "synergy_range": 62.2,
+      "staples_pct": 94.5,
+      "anti_staples_pct": 5.5,
+      "baseline": 12.1,
+      "baseline_range": 51.8,
+      "measured": 73,
+      "total": 85,
+      "coverage": 0.859,
+      "confidence": "high",
+      "verdict": "focused-with-spice"
+    },
+    "archetypes": {
+      "commander": [],
+      "deck": [
+        "counters"
+      ],
+      "merged": [
+        "counters"
+      ]
+    },
+    "suggestions": [
+      {
+        "add": "Jubilation",
+        "cut": "White Lotus Tile",
+        "seeds": 2,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Return of the Wildspeaker",
+        "cut": "White Lotus Tile",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher. Measured: +8% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Longshot, Rebel Bowman",
+        "cut": "Hermitic Herbalist",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling. Measured: +5% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Kaalia of the Vast",
+        "cut": "Great Divide Guide",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Return of the Wildspeaker",
+        "cut": "Great Divide Guide",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Return of the Wildspeaker",
+        "cut": "Hermitic Herbalist",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher. Measured: +5% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Jubilation",
+        "cut": "Great Divide Guide",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Longshot, Rebel Bowman",
+        "cut": "White Lotus Tile",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "Measured to raise ceiling.",
+        "axis": "ceiling"
+      }
+    ]
+  }
+]
