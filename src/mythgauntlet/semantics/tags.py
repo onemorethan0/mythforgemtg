@@ -52,6 +52,10 @@ _SACRIFICE_FOR_MANA_RE = re.compile(r"sacrifice (?:this|it)[^:.]*:[^.]*\badd\b")
 _SEARCH_CARD_RE = re.compile(r"search (?:your|their) library for ([^.]*)")
 _DRAW_RE = re.compile(r"draws? (\w+) (?:additional )?cards?")
 _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)")
+# "If you would draw ..." REPLACES the draw; the sentence names a draw that never happens.
+_DRAW_REPLACEMENT_RE = re.compile(r"\bif [^.]{0,30}?would draw\b")
+# "if you drew two or more cards this turn" is a CONDITION on past draws, not a draw.
+_DREW_CONDITION_RE = re.compile(r"\bdrew\b")
 # Removal and board wipes, gated on WHAT the card actually acts on.
 #
 # `sim/tier2._apply_resolved` spends these on the opponent's creatures: `p.wipe` calls
@@ -226,16 +230,42 @@ def _ramp_from_add_clause(text: str) -> int:
 
 
 def _draw_counts(text: str) -> tuple[int, int]:
-    """(immediate draws on resolution, repeatable engine draws per turn)."""
+    """(immediate draws on resolution, repeatable engine draws per turn).
+
+    A card that says "draw" does not necessarily draw. Three contexts mention drawing while
+    producing none, and counting them credited 85 of the 3,350 drawing cards with draw they
+    do not have — the same VERB-without-CONTEXT mistake as the old `_CHEAT_RE`:
+
+    * **Replacement** — "If you would draw a card, exile the top card face down instead"
+      (Asmodeus the Archfiend) was scored **8 immediate draws**; it draws zero. Teferi's
+      Ageless Insight scored 3 for a doubling replacement.
+    * **Trigger condition** — in "Whenever you draw a card, put a +1/+1 counter", drawing is
+      what FIRES the ability, not what it does (Vodalian Wave-Knight, Hoofprints of the Stag,
+      Moonring Mirror). Only the effect clause, after the trigger's comma, may count.
+    * **Retrospective condition** — "if you drew two or more cards this turn" describes a
+      state, not an action.
+
+    This feeds tier0 and the BRACKET, not just the CCM cross-check, so the error was rating
+    decks on card advantage they never had.
+    """
     immediate = 0
     engine = 0
     for sentence in re.split(r"[.\n]", text):
         s = sentence.strip()
         if not s:
             continue
+        if _DRAW_REPLACEMENT_RE.search(s) or _DREW_CONDITION_RE.search(s):
+            continue
         triggered = bool(_TRIGGER_RE.match(s))
-        for m in _DRAW_RE.finditer(s):
-            window = s[max(0, m.start() - 30) : m.start()]
+        scan = s
+        if triggered:
+            # Count only the EFFECT clause. The trigger condition runs to the first comma;
+            # "whenever you draw a card, put a counter" must contribute nothing.
+            head, sep, tail = s.partition(",")
+            if sep and _DRAW_RE.search(head):
+                scan = tail
+        for m in _DRAW_RE.finditer(scan):
+            window = scan[max(0, m.start() - 30) : m.start()]
             if "opponent" in window:
                 continue
             n = _WORD_NUMBERS.get(m.group(1), 0)

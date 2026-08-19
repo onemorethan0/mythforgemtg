@@ -146,8 +146,8 @@ def main() -> int:
     verdict = ("INCONCLUSIVE - the difference is within its own error"
                if abs(d_mean) <= d_sem else
                f"{a_ if d_mean > 0 else b_} better")
-    print(f"
-paired difference ({a_} - {b_}): {d_mean:+8.2f} +/- {d_sem:.2f} (sem)   {verdict}")
+    print()
+    print(f"paired difference ({a_} - {b_}): {d_mean:+8.2f} +/- {d_sem:.2f} (sem)   {verdict}")
 
     a, b = STRATEGIES
     differ = sum(1 for x, y in zip(pools[a], pools[b]) if x != y)

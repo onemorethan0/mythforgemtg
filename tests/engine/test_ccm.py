@@ -3,6 +3,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from mythgauntlet.semantics import ccm
 
 from mythgauntlet.semantics.ccm import (
@@ -571,3 +573,41 @@ def test_genuine_garbage_still_rejects():
         assert ccm.validate_schema(_spell([{"op": "draw", "count": value}])), value
     # a negative quantity is a modelling error, not a variable
     assert ccm.validate_schema(_spell([{"op": "gain_life", "amount": -2}]))
+
+
+# ── draw tagging: a card that SAYS draw does not necessarily draw ───────────────
+
+@pytest.mark.parametrize("label,text,expected", [
+    # replacement — the draw is replaced, so none happens
+    ("replacement", "if you would draw a card, exile the top card of your library instead", (0, 0)),
+    ("replacement doubling",
+     "if you would draw a card except the first one you draw in each of your draw steps, "
+     "draw two cards instead", (0, 0)),
+    # the draw is the TRIGGER, not the effect
+    ("draw trigger", "whenever you draw a card, put a +1/+1 counter on this creature", (0, 0)),
+    # a retrospective CONDITION on past draws
+    ("retrospective",
+     "at the beginning of each end step, if you drew two or more cards this turn, "
+     "you may put a quest counter on this enchantment", (0, 0)),
+    # ...and the real ones must survive
+    ("real activated", "{t}: draw a card", (1, 0)),
+    ("real with discard", "{t}: draw two cards, then discard three cards", (2, 0)),
+    ("real engine", "whenever a creature you control dies, draw a card", (0, 1)),
+    ("real triggered two", "at the beginning of your upkeep, draw two cards", (0, 2)),
+    ("opponent draw is not yours", "each opponent draws a card", (0, 0)),
+])
+def test_draw_counts_reads_context_not_just_the_verb(label, text, expected):
+    """85 of 3,350 drawing cards were credited with draw they do not have.
+
+    Asmodeus the Archfiend ("if you would draw a card, exile the top card face down") scored
+    **8 immediate draws** and draws zero; Teferi's Ageless Insight scored 3 for a doubling
+    replacement; Vodalian Wave-Knight and Hoofprints of the Stag scored engine draw for
+    "whenever you draw" triggers that draw nothing.
+
+    This tag feeds tier0 and the BRACKET, not just the CCM cross-check, so the error rated
+    decks on card advantage they never had. Same VERB-without-OBJECT shape as the old
+    `_CHEAT_RE` and the destroy-all/destroy-target confusion.
+    """
+    from mythgauntlet.semantics.tags import _draw_counts
+
+    assert _draw_counts(text) == expected, label
