@@ -15,11 +15,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 15.4,
-      "consistency": 80.2,
-      "resilience": 88.4,
+      "speed": 15.1,
+      "consistency": 80.5,
+      "resilience": 88.8,
       "interaction": 90.0,
-      "ceiling": 3.4
+      "ceiling": 5.7
     },
     "quality": {
       "curve": {
@@ -66,8 +66,8 @@
           "B": 23
         },
         "sources": {
-          "R": 36,
-          "B": 25
+          "B": 25,
+          "R": 36
         },
         "required": {
           "R": 19,
@@ -114,7 +114,7 @@
         "seeds": 1,
         "of": 4,
         "delta": 6.88,
-        "reason": "Measured to raise ceiling. Measured: -3% of games close on the clock.",
+        "reason": "Measured to raise ceiling.",
         "axis": "ceiling"
       },
       {
@@ -122,26 +122,26 @@
         "cut": "Reckless Blaze",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
+        "delta": 2.86,
         "reason": "Measured to raise ceiling.",
         "axis": "ceiling"
       },
       {
-        "add": "Scourge of Valkas",
+        "add": "Zhao, Ruthless Admiral",
         "cut": "Ultimate Magic: Meteor",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A scalable X-damage kill.",
+        "delta": 2.86,
+        "reason": "A one-shot team finisher.",
         "axis": "ceiling"
       },
       {
-        "add": "Scourge of Valkas",
+        "add": "Haze of Rage",
         "cut": "Jennika's Technique",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A scalable X-damage kill.",
+        "delta": 2.29,
+        "reason": "A one-shot team finisher. Measured: -3% of games close on the clock.",
         "axis": "ceiling"
       }
     ]
@@ -162,11 +162,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 5.4,
-      "consistency": 81.7,
-      "resilience": 88.9,
+      "speed": 4.9,
+      "consistency": 82.0,
+      "resilience": 89.4,
       "interaction": 95.9,
-      "ceiling": 32.7
+      "ceiling": 34.4
     },
     "quality": {
       "curve": {
@@ -260,10 +260,19 @@
       {
         "add": "James, Wandering Dad // Follow Him",
         "cut": "Flusterstorm",
-        "seeds": 2,
+        "seeds": 3,
         "of": 4,
         "delta": 6.67,
         "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "axis": "speed"
+      },
+      {
+        "add": "Solemn Simulacrum",
+        "cut": "Mental Misstep",
+        "seeds": 2,
+        "of": 4,
+        "delta": 3.33,
+        "reason": "Mana acceleration to deploy earlier. Measured: +3% of games close on the clock.",
         "axis": "speed"
       },
       {
@@ -271,8 +280,26 @@
         "cut": "Mental Misstep",
         "seeds": 1,
         "of": 4,
-        "delta": 6.67,
-        "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "delta": 5.42,
+        "reason": "Mana acceleration to deploy earlier. Measured: +5% of games close on the clock.",
+        "axis": "speed"
+      },
+      {
+        "add": "Solemn Simulacrum",
+        "cut": "Flusterstorm",
+        "seeds": 1,
+        "of": 4,
+        "delta": 2.5,
+        "reason": "Mana acceleration to deploy earlier.",
+        "axis": "speed"
+      },
+      {
+        "add": "Springleaf Drum",
+        "cut": "Mana Sculpt",
+        "seeds": 1,
+        "of": 4,
+        "delta": 1.67,
+        "reason": "Mana acceleration to deploy earlier.",
         "axis": "speed"
       }
     ]
@@ -293,11 +320,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 2.9,
-      "consistency": 81.3,
+      "speed": 2.3,
+      "consistency": 80.5,
       "resilience": 86.8,
       "interaction": 49.5,
-      "ceiling": 0.0
+      "ceiling": 1.7
     },
     "quality": {
       "curve": {
@@ -390,12 +417,30 @@
     },
     "suggestions": [
       {
-        "add": "Solemn Simulacrum",
+        "add": "Jubilation",
         "cut": "Shredder's Technique",
         "seeds": 1,
         "of": 4,
-        "delta": 6.67,
-        "reason": "Mana acceleration to deploy earlier. Measured: +7% of games close on the clock.",
+        "delta": 6.88,
+        "reason": "A one-shot team finisher.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Jubilation",
+        "cut": "Together as One",
+        "seeds": 1,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher. Measured: kills ~0.3 turns sooner.",
+        "axis": "ceiling"
+      },
+      {
+        "add": "Solemn Simulacrum",
+        "cut": "Witherbloom Command",
+        "seeds": 1,
+        "of": 4,
+        "delta": 1.67,
+        "reason": "Mana acceleration to deploy earlier.",
         "axis": "speed"
       }
     ]
@@ -416,11 +461,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 13.3,
-      "consistency": 77.2,
-      "resilience": 73.1,
+      "speed": 13.9,
+      "consistency": 77.0,
+      "resilience": 73.8,
       "interaction": 64.1,
-      "ceiling": 1.7
+      "ceiling": 4.0
     },
     "quality": {
       "curve": {
@@ -514,20 +559,20 @@
     "suggestions": [
       {
         "add": "Dark Ritual",
-        "cut": "Archaeomancer's Map",
+        "cut": "Knight of the White Orchid",
         "seeds": 2,
         "of": 4,
-        "delta": 6.88,
-        "reason": "Measured to raise ceiling.",
+        "delta": 4.58,
+        "reason": "Measured to raise ceiling. Measured: -3% of games close on the clock.",
         "axis": "ceiling"
       },
       {
         "add": "Together as One",
-        "cut": "Knight of the White Orchid",
-        "seeds": 1,
+        "cut": "Archaeomancer's Map",
+        "seeds": 2,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A scalable X-damage kill. Measured: +10% of games close on the clock.",
+        "delta": 2.29,
+        "reason": "A scalable X-damage kill.",
         "axis": "ceiling"
       },
       {
@@ -535,17 +580,8 @@
         "cut": "Splinter's Technique",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A one-shot team finisher. Measured: +3% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Together as One",
-        "cut": "Splinter's Technique",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "A scalable X-damage kill. Measured: +3% of games close on the clock.",
+        "delta": 3.44,
+        "reason": "A one-shot team finisher.",
         "axis": "ceiling"
       }
     ]
@@ -566,11 +602,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 12.1,
-      "consistency": 72.7,
-      "resilience": 74.7,
+      "speed": 11.2,
+      "consistency": 71.5,
+      "resilience": 76.2,
       "interaction": 31.7,
-      "ceiling": 8.6
+      "ceiling": 13.8
     },
     "quality": {
       "curve": {
@@ -617,8 +653,8 @@
           "U": 52
         },
         "sources": {
-          "G": 29,
-          "U": 21
+          "U": 21,
+          "G": 29
         },
         "required": {
           "G": 23,
@@ -664,49 +700,22 @@
     },
     "suggestions": [
       {
-        "add": "Return of the Wildspeaker",
+        "add": "Wayfarer's Bauble",
+        "cut": "Oracle's Restoration",
+        "seeds": 2,
+        "of": 4,
+        "delta": 2.08,
+        "reason": "Mana acceleration to deploy earlier.",
+        "axis": "speed"
+      },
+      {
+        "add": "Sol Ring",
         "cut": "Oracle's Restoration",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A one-shot team finisher.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Return of the Wildspeaker",
-        "cut": "Mind into Matter",
-        "seeds": 1,
-        "of": 4,
-        "delta": 13.75,
-        "reason": "A one-shot team finisher. Measured: kills ~0.8 turns sooner; +8% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Jubilation",
-        "cut": "Oracle's Restoration",
-        "seeds": 1,
-        "of": 4,
-        "delta": 13.75,
-        "reason": "A one-shot team finisher. Measured: kills ~0.9 turns sooner; +8% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Bloodstained Mire",
-        "cut": "Mind into Matter",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "Tutors toward your finisher. Measured: kills ~0.7 turns sooner; -3% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Windswept Heath",
-        "cut": "Oracle's Restoration",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "Tutors toward your finisher. Measured: kills ~0.6 turns sooner; +3% of games close on the clock.",
-        "axis": "ceiling"
+        "delta": 2.08,
+        "reason": "Mana acceleration to deploy earlier.",
+        "axis": "speed"
       }
     ]
   },
@@ -726,11 +735,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 48.8,
-      "consistency": 71.6,
-      "resilience": 71.1,
+      "speed": 47.3,
+      "consistency": 71.2,
+      "resilience": 70.6,
       "interaction": 61.5,
-      "ceiling": 6.9
+      "ceiling": 9.0
     },
     "quality": {
       "curve": {
@@ -839,26 +848,8 @@
         "cut": "Pestilence Demon",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher. Measured: -13% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Hoarding Broodlord",
-        "cut": "Blasphemous Act",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Hoarding Broodlord",
-        "cut": "Thundermaw Hellkite",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher. Measured: -8% of games close on the clock.",
+        "delta": 2.25,
+        "reason": "A big dragon your commander can cheat into play; tutors toward your finisher. Measured: -6% of games close on the clock.",
         "axis": "ceiling"
       }
     ]
@@ -879,11 +870,11 @@
       "note: combos not checked (run with --combos for the combo gate)"
     ],
     "axes": {
-      "speed": 9.6,
-      "consistency": 71.9,
-      "resilience": 84.5,
+      "speed": 10.7,
+      "consistency": 71.8,
+      "resilience": 83.5,
       "interaction": 43.1,
-      "ceiling": 0.0
+      "ceiling": 2.6
     },
     "quality": {
       "curve": {
@@ -934,10 +925,10 @@
         },
         "sources": {
           "U": 26,
-          "R": 23,
-          "G": 25,
           "W": 22,
-          "B": 16
+          "G": 25,
+          "B": 16,
+          "R": 23
         },
         "required": {
           "G": 16,
@@ -982,6 +973,15 @@
     },
     "suggestions": [
       {
+        "add": "Return of the Wildspeaker",
+        "cut": "Hermitic Herbalist",
+        "seeds": 2,
+        "of": 4,
+        "delta": 6.88,
+        "reason": "A one-shot team finisher. Measured: -4% of games close on the clock.",
+        "axis": "ceiling"
+      },
+      {
         "add": "Jubilation",
         "cut": "White Lotus Tile",
         "seeds": 2,
@@ -991,29 +991,11 @@
         "axis": "ceiling"
       },
       {
-        "add": "Return of the Wildspeaker",
-        "cut": "White Lotus Tile",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "A one-shot team finisher. Measured: +8% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
         "add": "Longshot, Rebel Bowman",
-        "cut": "Hermitic Herbalist",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
-        "reason": "Measured to raise ceiling. Measured: +5% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Kaalia of the Vast",
         "cut": "Great Divide Guide",
-        "seeds": 1,
+        "seeds": 2,
         "of": 4,
-        "delta": 6.88,
+        "delta": 3.44,
         "reason": "Measured to raise ceiling.",
         "axis": "ceiling"
       },
@@ -1022,25 +1004,16 @@
         "cut": "Great Divide Guide",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
+        "delta": 3.44,
         "reason": "A one-shot team finisher.",
         "axis": "ceiling"
       },
       {
-        "add": "Return of the Wildspeaker",
+        "add": "Jubilation",
         "cut": "Hermitic Herbalist",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
-        "reason": "A one-shot team finisher. Measured: +5% of games close on the clock.",
-        "axis": "ceiling"
-      },
-      {
-        "add": "Jubilation",
-        "cut": "Great Divide Guide",
-        "seeds": 1,
-        "of": 4,
-        "delta": 6.88,
+        "delta": 3.44,
         "reason": "A one-shot team finisher.",
         "axis": "ceiling"
       },
@@ -1049,7 +1022,7 @@
         "cut": "White Lotus Tile",
         "seeds": 1,
         "of": 4,
-        "delta": 6.88,
+        "delta": 3.44,
         "reason": "Measured to raise ceiling.",
         "axis": "ceiling"
       }

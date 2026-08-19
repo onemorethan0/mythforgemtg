@@ -142,8 +142,24 @@ def compute_ceiling(
 ) -> CeilingReport:
     n = len(runs)
     kills = sorted(r.kill_turn for r in runs if r.kill_turn is not None)
-    # the deck's *best* games — 10th percentile of kill turn (the earliest kills)
-    fast_kill = float(kills[max(0, int(0.1 * len(kills)) - 1)]) if kills else None
+    # The deck's *best* games: the MEAN of the fastest decile, not the single order statistic
+    # that used to sit at that rank.
+    #
+    # Kill turns are whole numbers, so reading one of them made this metric — and therefore
+    # the whole Ceiling axis — move only in WHOLE-TURN steps. `speed_component` scales it by
+    # 55/turns, so at the default 8 turns every possible change was exactly 6.875, and a swap
+    # that genuinely improved the deck's best draws by less than a full turn measured as zero.
+    # Over a real 7-deck pod that quantisation collapsed 24 upgrade suggestions onto TWO
+    # distinct values (21 at +6.88, 3 at +6.67), leaving the advisor's ranking to a tiebreak.
+    #
+    # A mean over the decile is continuous: moving any one of the best games earlier moves it.
+    # Same idiom as `lift_stats._quartile_spread` ("mean of the top quarter"), which this repo
+    # already prefers over a single extreme for the same reason.
+    if kills:
+        decile = max(1, round(0.1 * len(kills)))
+        fast_kill = sum(kills[:decile]) / decile
+    else:
+        fast_kill = None
     nut_turn = max(4, int(cfg.turns * 0.6))
     nut_kill_rate = (sum(1 for k in kills if k <= nut_turn) / n) if n else 0.0
 

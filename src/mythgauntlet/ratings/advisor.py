@@ -389,15 +389,19 @@ def _swap_variant(resolved: ResolvedDeck, cut: Card, add: Card) -> ResolvedDeck:
 NOISE_REFERENCE_RUNS = 150
 
 _AXIS_NOISE_FLOOR = {
-    "speed": 2.41,
-    "ceiling": 2.98,
-    "consistency": 0.89,
+    # Re-measured after `compute_ceiling` stopped reading a single integer order statistic.
+    # The old metric moved only in whole-turn steps, so its seed-to-seed spread was really
+    # measuring how often that step flipped; averaging the fastest decile is both finer AND
+    # steadier — ceiling 2.98 -> 2.27, speed 2.41 -> 1.88.
+    "speed": 1.88,
+    "ceiling": 2.27,
+    "consistency": 0.92,
     # NOT 0.0. The original sweep called `analyze_deck` WITHOUT `run_resilience`, so
     # resilience was never simulated and its spread read as a clean zero. It is only ever
     # simulated when it IS the target axis — exactly when this floor is consulted — and its
     # real spread there is ~1.24 at runs=150 (~1.91 at runs=60). A floor of zero meant every
     # positive resilience delta passed, so resilience advice was unfiltered noise.
-    "resilience": 1.24,
+    "resilience": 1.06,
     "interaction": 0.0,
 }
 

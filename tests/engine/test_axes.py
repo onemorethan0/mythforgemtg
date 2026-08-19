@@ -180,3 +180,54 @@ def test_pod_score_in_range(make_card, forest, bear):
     cfg = SimConfig(runs=100, seed=13, turns=14)
     pod = compute_pod(simulate([(forest, 40), (bear, 59)], None, cfg), cfg, has_finisher=True)
     assert 0.0 <= pod.score <= 100.0
+
+
+# ── the Ceiling estimator must have sub-turn resolution ─────────────────────────
+
+def _runs(kill_turns):
+    import dataclasses
+
+    @dataclasses.dataclass
+    class _R:
+        kill_turn: int | None
+
+    return [_R(k) for k in kill_turns]
+
+
+def test_ceiling_responds_to_an_improvement_smaller_than_a_whole_turn():
+    """It used to read ONE integer order statistic, so it could only move in whole turns.
+
+    `speed_component` scales the fastest-decile kill turn by 55/turns, so at the default 8
+    turns every possible change was exactly 6.875. Over a real 7-deck pod that collapsed 24
+    upgrade suggestions onto TWO distinct values (21 at +6.88, 3 at +6.67) and left the
+    advisor's ranking to a tiebreak. Averaging the decile makes it continuous.
+    """
+    from mythgauntlet.ratings.axes import compute_ceiling
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    cfg = SimConfig(turns=8, runs=60, seed=1)
+    base = compute_ceiling(_runs([6] * 6 + [7] * 20 + [8] * 34), cfg)
+    # exactly one of the deck's best games gets a turn faster
+    better = compute_ceiling(_runs([5] + [6] * 5 + [7] * 20 + [8] * 34), cfg)
+
+    gain = better.score - base.score
+    assert gain > 0, "a real improvement must register"
+    assert gain < 55.0 / cfg.turns, (
+        f"a one-game improvement must cost LESS than a whole-turn quantum "
+        f"({55.0 / cfg.turns:.3f}); got {gain:.3f}")
+
+
+def test_ceiling_resolution_degrades_honestly_when_there_is_little_data():
+    """With few kills the fastest decile is one game, so the estimate IS coarse.
+
+    That is not a bug to paper over: a deck that kills in 3 of 60 goldfish runs genuinely has
+    a poorly-determined ceiling, and more runs is the only real fix. Pinned so the behaviour
+    is a known property rather than a surprise — `pod_report` defaults to runs=120 for this
+    reason, and slow casual decks want more.
+    """
+    from mythgauntlet.ratings.axes import compute_ceiling
+    from mythgauntlet.sim.tier0 import SimConfig
+
+    cfg = SimConfig(turns=8, runs=60, seed=1)
+    sparse = compute_ceiling(_runs([7] + [None] * 59), cfg)
+    assert sparse.fast_kill_turn == 7.0, "one kill -> the decile is that one game"

@@ -121,7 +121,14 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--decks", type=Path, required=True,
                     help='JSON list of {"source": "<url or decklist>"} entries')
-    ap.add_argument("--runs", type=int, default=120)
+    # 240, not 120. The Ceiling estimator averages the FASTEST DECILE of kill turns, so its
+    # resolution scales with how many kills the sim actually observes. Casual decks rarely
+    # kill inside 8 goldfish turns, and at runs=60 the decile collapsed to a single game —
+    # every suggestion tied at one whole-turn step. Measured on a real pod: runs=60 gave 5
+    # distinct suggestion deltas, runs=240 gave 12.
+    ap.add_argument("--runs", type=int, default=240,
+                    help="sim runs per analysis; below ~240 the Ceiling axis loses resolution "
+                         "on slow decks (see compute_ceiling)")
     ap.add_argument("--json", type=Path)
     args = ap.parse_args()
 
