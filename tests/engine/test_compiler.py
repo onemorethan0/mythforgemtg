@@ -29,6 +29,22 @@ BAD_JSON = json.dumps({
 })
 
 
+def _compile_top_args(**overrides):
+    """Build `compile-top` args from the REAL parser, then apply overrides.
+
+    These tests used to hand-build `argparse.Namespace(count=..., force=..., refresh_stale=...)`,
+    so adding ANY new flag to the parser broke them with an AttributeError that had nothing to
+    do with what they test (`--retry-quarantined` did exactly that). Going through the parser
+    means a new flag arrives with its real default, and the tests keep exercising the defaults
+    a user actually gets.
+    """
+    from mythgauntlet import cli          # imported locally, as every test here does
+
+    args = cli.build_parser().parse_args(["compile-top", str(overrides.pop("count", 5))])
+    vars(args).update(overrides)
+    return args
+
+
 def _card(make_card):
     return make_card(
         "Insight Spell", mana_cost="{2}{U}", type_line="Sorcery", oracle_text="Draw two cards."
@@ -282,7 +298,7 @@ def test_compile_top_tops_up_a_partial_chunk_with_refreshes(tmp_path, monkeypatc
         ) or 0,
     )
 
-    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+    cli._cmd_compile_top(_compile_top_args(refresh_stale=True))
 
     assert calls == [(["Fresh Card"], False), (["Stale Card"], True)], (
         "new cards compile first with quarantine-on-failure; the refresh tops up the "
@@ -483,13 +499,13 @@ def test_failed_refresh_is_not_retried_at_the_same_prompt_version(tmp_path, monk
         lambda cards, keep_on_failure=False: calls.append([c.name for c in cards]) or 0,
     )
 
-    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+    cli._cmd_compile_top(_compile_top_args(refresh_stale=True))
     assert calls == [], "a card that already failed at this prompt version is not re-picked"
 
     # --force is the escape hatch: it re-attempts a blocked card, and exactly ONCE —
     # forcing pulls already-accepted cards into `targets`, and every one of those is
     # stale by definition, so the two pools would otherwise both claim it.
-    cli._cmd_compile_top(argparse.Namespace(count=5, force=True, refresh_stale=True))
+    cli._cmd_compile_top(_compile_top_args(force=True, refresh_stale=True))
     assert calls == [[card.name]], "--force retries a blocked card, and does not double it"
 
 
@@ -526,5 +542,5 @@ def test_failed_refresh_is_retried_once_the_prompt_moves(tmp_path, monkeypatch, 
         lambda cards, keep_on_failure=False: calls.append([c.name for c in cards]) or 0,
     )
 
-    cli._cmd_compile_top(argparse.Namespace(count=5, force=False, refresh_stale=True))
+    cli._cmd_compile_top(_compile_top_args(refresh_stale=True))
     assert calls == [[card.name]], "a stale marker from an older prompt must not block"

@@ -128,3 +128,33 @@ def test_run_menu_dispatches_selection_then_quits(isolated, monkeypatch):
     code = nav.run_menu(dispatch=lambda argv: calls.append(argv) or 0, console=console)
     assert code == 0
     assert ["doctor"] in calls  # the chosen command was dispatched verbatim
+
+
+# ── the quarantine retry gate ───────────────────────────────────────────────────
+
+def test_retry_quarantined_opens_the_gate_only_for_quarantined_cards():
+    """A SCHEMA change cannot move PROMPT_VERSION, so the gate sealed quarantined cards in.
+
+    The quarantine loop is documented as retrying "once the prompt/schema has moved forward",
+    but it keys on `prompt_version` alone — so widening the validator left every quarantined
+    card permanently unreachable: the fix that would let them pass could never reach them.
+    Measured on the live ledger, selection returned **0** targets without the flag and **952**
+    with it, all quarantined and none accepted.
+    """
+    from mythgauntlet.cli import _ledger_entry_blocks
+    from mythgauntlet.semantics import compiler
+
+    current = compiler.PROMPT_VERSION
+    accepted = {"status": "accepted", "prompt_version": current}
+    quarantined = {"status": "quarantined", "prompt_version": current}
+    old_quarantine = {"status": "quarantined", "prompt_version": current - 1}
+
+    # an accepted CCM is never re-done, flag or not — that is what keeps this off the 31k
+    assert _ledger_entry_blocks(accepted, False) is True
+    assert _ledger_entry_blocks(accepted, True) is True
+    # a quarantined card at the current version is normally sealed in...
+    assert _ledger_entry_blocks(quarantined, False) is True
+    # ...and the flag is the only thing that opens it
+    assert _ledger_entry_blocks(quarantined, True) is False
+    # a quarantined card from an older prompt was always retryable
+    assert _ledger_entry_blocks(old_quarantine, False) is False

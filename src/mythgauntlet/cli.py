@@ -909,6 +909,26 @@ def _cmd_compile_card(args: argparse.Namespace) -> int:
     return _compile_cards([card])
 
 
+def _ledger_entry_blocks(entry: dict, retry_quarantined: bool) -> bool:
+    """Should this ledger entry stop the card being recompiled?
+
+    Accepted cards stand. Quarantined cards are meant to be retried "once the prompt/schema
+    has moved forward" — but the gate keys on PROMPT_VERSION, which a SCHEMA change does not
+    move. So a widened validator left every quarantined card permanently unreachable: the
+    fix that would let them pass could never be applied to them.
+
+    Bumping PROMPT_VERSION opens the gate but also marks ~31k good CCMs stale, spending weeks
+    of GPU recompiling cards that were already fine; `--force` has the same problem.
+    `--retry-quarantined` is the narrow door — it opens the gate for quarantined entries only,
+    and never for accepted ones.
+    """
+    if entry.get("status") == "accepted":
+        return True
+    if retry_quarantined:
+        return False
+    return entry.get("prompt_version") == compiler.PROMPT_VERSION
+
+
 def _cmd_compile_top(args: argparse.Namespace) -> int:
     db = _load_db()
     ledger = compiler.Ledger()
@@ -928,13 +948,8 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
         if normalize_name(card.name) in authored:
             continue  # already rung 3
         entry = ledger.get(card.name)
-        if entry and not args.force:
-            # accepted cards stand; quarantined cards get retried once the prompt/schema
-            # has moved forward (that's the whole point of the quarantine loop)
-            if entry["status"] == "accepted":
-                continue
-            if entry.get("prompt_version") == compiler.PROMPT_VERSION:
-                continue
+        if entry and not args.force and _ledger_entry_blocks(entry, args.retry_quarantined):
+            continue
         targets.append(card)
 
     # Top up a partly-filled chunk with refreshes rather than only an empty one. The
@@ -1994,6 +2009,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--refresh-stale", action="store_true",
         help="when no uncompiled cards remain, recompile cards accepted at an older "
              "prompt version (oldest first); a failed refresh keeps the existing CCM",
+    )
+    p_ct.add_argument(
+        "--retry-quarantined", action="store_true",
+        help="re-attempt QUARANTINED cards even though they were last tried at the "
+             "current prompt version. Use after a SCHEMA or gate change, which the "
+             "prompt_version gate cannot see; --force would also re-do 30k good CCMs",
     )
     p_ct.set_defaults(func=_cmd_compile_top)
 
