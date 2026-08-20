@@ -285,3 +285,119 @@ that cohort today (168 have no block and backfill fully), but the class bites on
 key. Pinned by `test_a_stale_stored_quality_block_is_recomputed_on_load`.
 
 Suite 958 → 966.
+
+---
+
+## 11. The cut pool: four defects in the same 260 lines (2026-08-19 → 08-20)
+
+`ratings/redundancy.py` decides which cards the advisor offers to CUT. Four things were
+wrong with it at once, and they are worth reading together because three of them are the
+same *shape*: a claim the measurement did not support.
+
+### 11.1 The calibration checker could only agree with itself
+
+`scripts/role_targets.py --check` had always said "ROLE_TARGETS is current". It could not
+say anything else: `measure()` stopped after `DECKS = 120` corpus decks, so the checker
+re-measured the constant against the same sample the constant was generated from.
+
+The corpus is now 499. Over all of them exactly one role moves — **`tutor` 2 → 4**, confirmed
+a population fact by three disjoint thirds each independently giving 4.0. Tutors were judged
+against half their real target: **13.8% → 10.6%** of every cut suggestion, pool changing on
+**16%** of decks. `DECKS = None` now means all of them, and `--limit` is deliberately not the
+default, because the default is what the checker runs.
+
+> **General lesson.** A calibration checker has to be *able* to disagree with the baked value.
+> If it re-derives under the same sample, cap, seed or filter that produced the constant, it
+> is a tautology wearing a test's clothes.
+
+### 11.2 S10 — `ROLE_TARGETS` judged every deck against one population
+
+A deck that plays to a role as its PLAN read as over-supplied in exactly the thing it was
+trying to do. `counterspell`'s population target is **3 supply units — the weight of a single
+card**, because the median corpus deck runs zero; the 24 corpus decks that actually ARE
+spellslinger decks supply a p60 of **12** (individuals at 6, 12, 15, 27). So each was scored
+3x–9x over and its interaction became the cut pool. That is how a Prismari deck was told to
+cut **Flusterstorm and Mental Misstep**.
+
+`ARCHETYPE_ROLE_TARGETS` measures the same p60 per archetype
+(`scripts/archetype_role_targets.py`; `--check` diffs, `--audit` prints every candidate cell
+and the gate that rejected it). Three gates, all load-bearing:
+
+| gate | rejects |
+|---|---|
+| ≥20 decks carry the theme | tribal_dragons/elves/warriors cells whose halves disagree by 8.5–9.0 |
+| **both halves** independently clear the population target | `draw_matters` draw (27/14), `chaos` counterspell (6/0), `theft` wipe (0/6) |
+| margin of ≥3 supply units | `counters` ramp (15 vs 14), `tokens` finisher (4 vs 2) |
+
+Split-half disagreement by sample size — this is what picked 20:
+
+    n >= 30      18 cells   mean |A-B| 1.86   max  4.5
+    20 <= n < 30 24 cells   mean |A-B| 3.04   max 13.0
+    12 <= n < 20 29 cells   mean |A-B| 3.84   max  9.0
+    n < 12       28 cells   mean |A-B| 4.45   max 34.0
+
+Gate 2 is per **(theme, ROLE)**, not per theme: `draw_matters` is unstable on `draw` and
+rock-steady on `counterspell` (9/9), and a theme-level gate would throw the good cell away
+with the bad one.
+
+**Measured at k=6 over the 106 corpus decks carrying an overridden archetype:** cut pool
+changes on **52 (49%)**, own-plan cut slots **64.0% → 33.8%**, removal 7% → 16%.
+
+**The residual 33.8% is correct and must not be driven to zero** — a deck running 27
+counterspells against a target of 12 IS over-served. Pinned by a test.
+
+**The contract is plain strings, because the detector is in the other process.**
+`deck_themes` lives in Forge; the engine runs on :8020 without Forge on its path. So
+`targets_for` is *told* the archetypes and ignores unknown names. Only
+`scripts/archetype_role_targets.py` imports both, offline, to emit a table of strings.
+
+### 11.3 S11 — `card_impact` never moved off the popularity rule
+
+`assess_card` kept calling `advisor._weakest_cuts` for six days after the advisor stopped, so
+the one route a user reaches interactively answered by displacing the deck's most obscure
+card. On the corpus Shelob deck that pool is *Supper for Spiders / Gloomwidow's Feast / Eaten
+by Spiders*.
+
+Measured over 40 (deck, card) cases, full-fidelity store, `cut_pool=3`, `runs=200`:
+**recommended cut changes 95%, final verdict changes 30%.**
+
+Its reason line also said *"the weakest slot it beat"* — never what was measured, since the
+pool was least-played. `_cut_sentence` now names the actual over-supplied role, **and says so
+when there is none** rather than dressing the tiebreak up as redundancy.
+
+### 11.4 S12 (OPEN) — the score is silent on 9% of decks, and the obvious fix is wrong
+
+`oversupply / (1 + within_role)` scores every card **0.0** when a deck over-supplies nothing,
+so ordering falls entirely through to the tiebreak — least-played first, the rule the module
+exists to replace. (Roleless cards are still protected, so it is "least-played card carrying
+a role", not pure popularity.) **45/499 decks (9.0%)**, 40 with all six slots at 0.0, and
+**14.4% of all cut slots corpus-wide**.
+
+It is a **compounding regression from two changes that each measured well**, because raising
+a target is exactly what makes "nothing is over-supplied" more likely:
+
+    original builder-slot targets      19  (3.8%)
+    p60 population      (2026-08-14)   38  (7.6%)
+    + archetype         (2026-08-19)   45  (9.0%)
+
+**Prototyped and rejected — do not retry blind.** Un-clamping `max(0.0, supply - target)` and
+ranking by raw headroom is surgical and moves 38/45 degenerate decks, but (1) targets are
+integers and supply is usually integral, so roles sit *exactly* at target and headroom ties at
+0.0 anyway (four-way on Shelob), and (2) the order then falls to `within_role`, which
+**inverts** as a cuttability proxy: low `within_role` means a hybrid doing other work, which
+at-target means the deck's THEME card. It promoted two spiders in the spider deck. Inverting
+only in the degenerate case makes the ordering discontinuous at zero.
+
+The likely real answer: the **caller** must be told there is no redundancy signal and change
+what it does. `card_impact._cut_sentence` does that for one consumer.
+
+### 11.5 S13 (OPEN) — a fixed per-card role strength makes targets granular
+
+`card_roles` returns a flat **3.0** for `counterspell` and `wipe`, so supply moves in
+whole-card steps and the target can only sit on a card boundary. `counterspell`'s target of 3
+literally means "one card", so any deck with two counterspells is 3.0 over — outranking a role
+that is modestly but genuinely over-served. Landfall deck `archidekt-13708248` has draw 0.5
+over and counterspell 3.0 over, so it is offered *Flusterstorm*. S10's table fixes this only
+where the archetype is in it.
+
+**Suite 1047 → 1064.**
