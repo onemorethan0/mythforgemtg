@@ -32,8 +32,18 @@ Swept, not chosen — top-role share of the cut pool:
 p75 barely improves on p60 while pushing targets so high (ramp 18, draw 20) that little
 would ever flag.
 
+THE SAMPLE IS NOW THE WHOLE CORPUS, and that changed an answer. The sweep above ran under a
+`DECKS = 120` cap; the corpus has since reached 499. Re-measured over all of them, `tutor`
+moves 2 -> 4 and nothing else moves at all. Tutors were therefore judged against half their
+real population target, and the module over-flagged them: 13.8% of every cut suggestion
+against 10.6% after, with the pool changing on 16% of decks.
+
+`--check` could not have caught this, because it re-measured under the SAME cap the constant
+was generated from and so could only ever agree with itself. See `DECKS` below.
+
     python scripts/role_targets.py             # print the table
     python scripts/role_targets.py --check     # diff against the baked-in constant
+    python scripts/role_targets.py --limit 120 # the old sample, for comparison
 
 Needs data/cards_slim.json (gitignored), so it is not CI-safe.
 """
@@ -55,10 +65,23 @@ from mythgauntlet.ratings import redundancy  # noqa: E402
 PERCENTILE = 0.60
 MIN_TARGET = 2      # a floor: counterspell's median is 0.0, and "any counterspell is
                     # redundant" is obviously wrong.
-DECKS = 120
+
+# ALL of them. This used to be `DECKS = 120`, a cap that predates the corpus reaching 499
+# decks, and it silently mis-measured `tutor`: p60 over the first 120 is 2.0, over all 499
+# it is 4.0. Every other role is identical, so the cap looked harmless.
+#
+# The cap was invisible because `--check` INHERITS IT. The checker re-measured with the same
+# 120-deck sample the constant was generated from, re-derived 2, and reported "ROLE_TARGETS
+# is current" — a self-confirming test that could only ever agree with itself. A calibration
+# checker has to be able to disagree with the baked value, and this one structurally could
+# not. Confirmed a population fact, not a shuffle: three disjoint thirds of the corpus each
+# give tutor p60 = 4.0 independently.
+#
+# `--limit` is kept for a fast run while iterating; it is not the default.
+DECKS = None
 
 
-def measure(percentile: float = PERCENTILE) -> dict[str, int]:
+def measure(percentile: float = PERCENTILE, decks: int | None = DECKS) -> dict[str, int]:
     db = load_card_db()
     supplies: dict[str, list[float]] = {r: [] for r in redundancy.ROLE_TARGETS}
     seen = 0
@@ -71,7 +94,7 @@ def measure(percentile: float = PERCENTILE) -> dict[str, int]:
         for role in supplies:
             supplies[role].append(supply.get(role, 0.0))
         seen += 1
-        if seen >= DECKS:
+        if decks is not None and seen >= decks:
             break
     out = {}
     for role, values in supplies.items():
@@ -85,8 +108,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--percentile", type=float, default=PERCENTILE)
+    ap.add_argument("--limit", type=int, default=DECKS,
+                    help="stop after N corpus decks (default: all of them)")
     args = ap.parse_args()
-    targets = measure(args.percentile)
+    targets = measure(args.percentile, args.limit)
 
     if args.check:
         drift = {r: (redundancy.ROLE_TARGETS.get(r), v) for r, v in sorted(targets.items())

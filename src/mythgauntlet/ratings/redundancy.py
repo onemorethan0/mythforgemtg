@@ -66,6 +66,14 @@ from mythgauntlet.semantics.model import EffectVector
 # `counterspell` = 3 is now DERIVED rather than borrowed from the protection slot, which
 # closes the calibration gap this module shipped with. A floor of 2 applies because the
 # median deck runs ZERO counterspells and "any counterspell is redundant" is obviously wrong.
+#
+# `tutor` = 4, was 2. That p60 was measured under a `DECKS = 120` cap in the generator while
+# the corpus has since reached 499; re-measured over all of them tutor is 4.0 and every other
+# role is unchanged, so the cap looked harmless right up until it wasn't. Tutors were judged
+# against HALF their real population target and the module over-flagged them accordingly:
+# 13.8% of every cut suggestion before, 10.6% after, with the pool changing on 16% of decks.
+# `--check` could not catch it because it re-measured under the same cap the constant came
+# from — see the note on `DECKS` in `scripts/role_targets.py`.
 ROLE_TARGETS: dict[str, int] = {
     "ramp": 14,
     "draw": 16,
@@ -73,7 +81,7 @@ ROLE_TARGETS: dict[str, int] = {
     "wipe": 3,
     "counterspell": 3,
     "finisher": 2,
-    "tutor": 2,
+    "tutor": 4,
 }
 
 
