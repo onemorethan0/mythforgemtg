@@ -274,3 +274,161 @@ def test_efficiency_refines_order_without_swamping_oversupply(make_card):
     barely = 1.0 / (1.0 + 1.0 + _efficiency(cheap))
     heavily = 8.0 / (1.0 + 3.0 + 0.0)
     assert heavily > barely
+
+
+# ── Archetype-conditioned targets (S10) ──────────────────────────────────────────
+# `ROLE_TARGETS` judges every deck against ONE population baseline, so a deck that plays to a
+# role as its PLAN reads as over-supplied in exactly the thing it is trying to do. The
+# spellslinger case is the measured one: the population target for `counterspell` is 3 supply
+# units — the weight of a single card, because the median corpus deck runs zero — while the
+# corpus decks that ARE spellslinger decks supply a p60 of 12.
+
+# A deck whose PLAN is counterspells. Four of them is 12.0 supply: against the population
+# target of 3 that is 9.0 over, and against what spellslinger decks really run (12) it is
+# not over at all. Its ramp is genuinely over-served (18.0 against 14) so the pool has
+# somewhere honest to go - without that every card scores 0.0 and the order degenerates to
+# the name tiebreak, which would prove nothing.
+_BASIC_TWO = (
+    "Search your library for up to two basic land cards, reveal those cards, put one onto "
+    "the battlefield tapped and the other into your hand, then shuffle."
+)
+_BASIC_ONE = (
+    "Search your library for a basic land card, put it onto the battlefield tapped, "
+    "then shuffle."
+)
+SPELLSLINGER_DECK = [
+    ("Flusterstorm", "Instant",
+     "Counter target instant or sorcery spell unless its controller pays {1}.", "{U}"),
+    ("Mental Misstep", "Instant", "Counter target spell with mana value 1.", "{U}"),
+    ("Arcane Denial", "Instant",
+     "Counter target spell. Its controller may draw up to two cards at the beginning of "
+     "the next turn's upkeep.", "{1}{U}"),
+    ("Ponderous Denial", "Instant",
+     "Counter target spell unless its controller pays {3}.", "{4}{U}"),
+    ("Cultivate", "Sorcery", _BASIC_TWO, "{2}{G}"),
+    ("Kodama's Reach", "Sorcery", _BASIC_TWO, "{2}{G}"),
+    ("Rampant Growth", "Sorcery", _BASIC_ONE, "{1}{G}"),
+    ("Nature's Lore", "Sorcery", _BASIC_ONE, "{1}{G}"),
+    ("Verdant Errand", "Sorcery", _BASIC_ONE, "{2}{G}"),
+    ("Ponderous Cultivation", "Sorcery", _BASIC_ONE, "{4}{G}"),
+    ("Swords to Plowshares", "Instant",
+     "Exile target creature. Its controller gains life equal to its power.", "{W}"),
+    ("Whisper of the Unseen", "Enchantment",
+     "Whenever a face-down creature you control is turned face up, scry 1.", "{2}{U}"),
+]
+COUNTERSPELLS = {"Flusterstorm", "Mental Misstep", "Arcane Denial", "Ponderous Denial"}
+
+
+@pytest.fixture
+def spellslinger(make_card):
+    """The deck above, resolved — cards carry mana costs so `_efficiency` is live."""
+    cards = [
+        (make_card(n, type_line=tl, oracle_text=ot, mana_cost=mc), 1)
+        for n, tl, ot, mc in SPELLSLINGER_DECK
+    ]
+    return ResolvedDeck(
+        deck=Deck(commanders=[], entries=[]), commanders=[], cards=cards, missing=[]
+    )
+
+
+def test_targets_for_only_ever_raises_a_target():
+    """The table has no lowering half, and that asymmetry is deliberate.
+
+    The defect being fixed is false-positive cut suggestions — telling a deck to cut its own
+    plan — and a LOWER target manufactures more of them. An archetype can earn a higher
+    allowance; it cannot earn a tighter one.
+    """
+    base = redundancy.ROLE_TARGETS
+    for theme in redundancy.ARCHETYPE_ROLE_TARGETS:
+        got = redundancy.targets_for([theme])
+        assert set(got) == set(base), "no role may appear or vanish"
+        for role, value in got.items():
+            assert value >= base[role], f"{theme}.{role} lowered {base[role]} -> {value}"
+        assert got != base, f"{theme} is in the table but changes nothing"
+
+
+def test_targets_for_merges_several_archetypes_by_max():
+    """A deck with two plans is judged against the most permissive target either earns."""
+    both = redundancy.targets_for(["spellslinger", "landfall"])
+    assert both["counterspell"] == redundancy.targets_for(["spellslinger"])["counterspell"]
+    assert both["ramp"] == redundancy.targets_for(["landfall"])["ramp"]
+
+
+def test_targets_for_ignores_an_unknown_archetype():
+    """Forge owns the taxonomy and may learn a new archetype at any time.
+
+    An unknown name must degrade to the population baseline, not raise — the two live in
+    separate processes and cannot be released together.
+    """
+    assert redundancy.targets_for(["not_a_real_theme"]) == redundancy.ROLE_TARGETS
+    assert redundancy.targets_for([]) == redundancy.ROLE_TARGETS
+    assert redundancy.targets_for(None) == redundancy.ROLE_TARGETS
+
+
+def test_targets_for_does_not_mutate_the_baseline():
+    """It returns a new dict; ROLE_TARGETS is module state shared by every caller."""
+    before = dict(redundancy.ROLE_TARGETS)
+    redundancy.targets_for(["spellslinger"])["counterspell"] = 999
+    assert redundancy.ROLE_TARGETS == before
+
+
+def test_a_spellslinger_deck_is_not_offered_its_own_counterspells(spellslinger):
+    """The defect, stated as the behaviour a user saw.
+
+    `counterspell`'s population target is 3 supply units — the weight of a SINGLE card,
+    because the median corpus deck runs zero. A deck playing four of them is scored 3x over
+    and its entire plan becomes the cut pool: the top three cuts offered were all
+    counterspells, Flusterstorm and Mental Misstep among them. Told what the deck is, the
+    role stops being targeted and the genuinely over-served one (ramp, 18.0 against 14)
+    takes over.
+    """
+    supply = redundancy.role_supply(spellslinger)
+    assert supply["counterspell"] == 12.0 and supply["ramp"] == 18.0, "fixture drifted"
+
+    blind = [c.name for c in redundancy.rank_redundant(spellslinger, 3)]
+    assert set(blind) <= COUNTERSPELLS, (
+        f"precondition: the population baseline offers only counterspells, got {blind}")
+
+    aware = [c.name for c in redundancy.rank_redundant(
+        spellslinger, 3, targets=redundancy.targets_for(["spellslinger"]))]
+    assert not (set(aware) & COUNTERSPELLS), (
+        f"a spellslinger deck must not be offered its counterspells, got {aware}")
+
+
+def test_an_archetype_target_still_flags_a_genuine_oversupply(spellslinger):
+    """It raises the bar, it does not remove it — and that limit is the honest half.
+
+    A deck really can over-serve its own plan. The archetype target is what spellslinger
+    decks TYPICALLY run, so a deck well past it is still told so; driving the plan role out
+    of the pool unconditionally would be a different bug in the same place.
+    """
+    generous = redundancy.targets_for(["spellslinger"])
+    stuffed = dict(generous, counterspell=4)   # as if the deck ran far past the archetype p60
+    pool = [c.name for c in redundancy.rank_redundant(spellslinger, 3, targets=stuffed)]
+    assert set(pool) & COUNTERSPELLS, (
+        "a deck past even its archetype's supply must still be able to flag that role")
+
+
+def test_advise_threads_themes_into_the_redundant_pool_only(spellslinger):
+    """`popularity` has no notion of a role, so themes must not change it."""
+    pop_blind = advisor._cut_candidates(spellslinger, 3, advisor.CUT_POPULARITY, ())
+    pop_aware = advisor._cut_candidates(
+        spellslinger, 3, advisor.CUT_POPULARITY, ("spellslinger",))
+    assert [c.name for c in pop_blind] == [c.name for c in pop_aware]
+
+    red_blind = advisor._cut_candidates(spellslinger, 3, advisor.CUT_REDUNDANT, ())
+    red_aware = advisor._cut_candidates(
+        spellslinger, 3, advisor.CUT_REDUNDANT, ("spellslinger",))
+    assert [c.name for c in red_blind] != [c.name for c in red_aware]
+
+
+def test_every_archetype_role_is_a_role_the_module_scores():
+    """A typo'd role name would sit in the table doing nothing, silently.
+
+    Same lock-step class as the theme taxonomy: the table and `ROLE_TARGETS` are edited by
+    different hands (a calibration script regenerates one) and a key present in one and
+    absent from the other fails without any symptom.
+    """
+    for theme, roles in redundancy.ARCHETYPE_ROLE_TARGETS.items():
+        unknown = set(roles) - set(redundancy.ROLE_TARGETS)
+        assert not unknown, f"{theme} targets roles that do not exist: {sorted(unknown)}"

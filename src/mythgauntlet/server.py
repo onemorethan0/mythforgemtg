@@ -101,6 +101,18 @@ class AdviseRequest(BaseModel):
         description="optional collection text (CSV or decklist); default = the collection file",
     )
     use_suite_collection: bool = True
+    themes: list[str] = Field(
+        default_factory=list,
+        description=(
+            "the deck's OWN detected archetypes (Forge's deck_themes.detect_deck_themes), "
+            "as plain strings - e.g. ['spellslinger']. Raises the redundancy targets for "
+            "roles that archetype really plays, so the deck is not offered its own plan as "
+            "the cut pool: a spellslinger deck is judged against the 12 counterspells such "
+            "decks run, not the population's 3. Unknown names are ignored; omitting the "
+            "field judges against the population, which is correct but blunter. Ignored "
+            "when the cut strategy is 'popularity'."
+        ),
+    )
 
 
 class DuelRequest(BaseModel):
@@ -375,6 +387,10 @@ def create_app(
         nonland cards (the roles it over-supplies, weakest contributor first) and keeps the
         cut it improves the axis most from, so every suggestion is a measured delta, never
         popularity. `cut_strategy` in the response names the rule that chose those cuts.
+
+        Pass `themes` when the caller knows the deck's archetypes - without them a deck is
+        judged against one population baseline and reads as over-supplied in exactly what it
+        is trying to do. The engine cannot detect them itself: the detector lives in Forge.
         """
         if req.axis is not None and req.axis not in advisor.AXES:
             raise HTTPException(
@@ -420,7 +436,7 @@ def create_app(
         report = advisor.advise(
             resolved, cfg, store, candidates,
             axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
-            min_delta=req.min_delta,
+            min_delta=req.min_delta, themes=req.themes,
         )
         return {
             "engine_version": __version__,

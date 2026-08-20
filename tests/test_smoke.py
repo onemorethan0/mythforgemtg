@@ -1634,6 +1634,45 @@ _DATA_DIR_NAMES = ("card_assets", "scryfall_cache", "face_uploads", "generated_a
                    "cache", "renders", "cc_config.json")
 
 
+def test_deck_archetypes_handoff():
+    """The deck's archetypes must reach the engine, and must never fabricate one.
+
+    The engine judges "too much of this role" against ONE population baseline unless it is
+    told what the deck is trying to DO, so a spellslinger deck reads as over-supplied in
+    counterspells and its own plan becomes the cut pool. The detector lives HERE, not in the
+    engine on :8020, so `_deck_archetypes` is the handoff.
+
+    The persisted block wins because it was computed from the deck's REAL cards. The
+    fallback re-derives from stored entries and must read `original_type_line`, since a
+    tribe reskin rewrites `type_line` ("Creature - Holo-Priest") and would defeat every
+    tribal rule."""
+    try:
+        import server
+    except Exception as e:                      # fastapi/pydantic missing
+        check("arche.import", f"skipped: {e}", f"skipped: {e}")
+        return
+
+    # 1. the persisted block wins, and the COMMANDER's themes are not what we send
+    job = {"stats": {"archetypes": {"deck": ["spellslinger"],
+                                    "commander": ["tribal_dragons"],
+                                    "merged": ["spellslinger", "tribal_dragons"]}},
+           "deck": []}
+    check("arche.persisted", server._deck_archetypes(job), ["spellslinger"])
+
+    # 2. no block -> re-derive, reading the UN-reskinned type line
+    dragons = [{"original_name": f"Dragon {i}",
+                "original_type_line": "Creature - Dragon",
+                "type_line": "Creature - Holo-Priest",     # the reskin, must be ignored
+                "oracle_text": "Dragon creatures you control get +1/+1."} for i in range(6)]
+    check("arche.fallback", "tribal_dragons" in server._deck_archetypes({"deck": dragons}),
+          True)
+
+    # 3. nothing to read -> no archetype, never an exception
+    check("arche.empty", server._deck_archetypes({}), [])
+    check("arche.junk",  server._deck_archetypes({"deck": [{"nope": 1}]}), [])
+    check("arche.hostile", server._deck_archetypes({"stats": "not a dict"}), [])
+
+
 def test_app_paths_absolute():
     import re
     from pathlib import Path
@@ -1687,7 +1726,7 @@ def main():
                test_import_zone_headers, test_leading_commander_promotion,
                test_archidekt_respects_included_in_deck, test_world_placeholder_unwrap,
                test_fuzzy_substitution_guard, test_deck_identity_is_preserved,
-               test_export_covers_unrendered_cards,
+               test_export_covers_unrendered_cards, test_deck_archetypes_handoff,
                test_app_paths_absolute):
         try:
             fn()

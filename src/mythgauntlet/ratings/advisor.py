@@ -20,7 +20,7 @@ from __future__ import annotations
 import dataclasses
 import math
 import re
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
 
 from mythgauntlet.model.card import Card
@@ -321,16 +321,27 @@ class AdviceReport:
     cut_strategy: str = CUT_REDUNDANT   # how that cut pool was chosen
 
 
-def _cut_candidates(resolved: ResolvedDeck, k: int, strategy: str) -> list[Card]:
+def _cut_candidates(
+    resolved: ResolvedDeck,
+    k: int,
+    strategy: str,
+    themes: Sequence[str] = (),
+) -> list[Card]:
     """The `k` cards to offer as cuts, per `strategy`.
 
     `redundant` asks what the deck has too MUCH of; `popularity` asks what is least played.
     They disagree exactly where it matters: a brew's unpopular pet card is `popularity`'s
     first cut and `redundant`'s last.
+
+    `themes` are the deck's own detected archetypes, and they only reach `redundant` -
+    `popularity` has no notion of a role to be over-supplied in. Empty means "judge against
+    the population", which is the honest default when the caller cannot detect archetypes.
     """
     if strategy == CUT_POPULARITY:
         return _weakest_cuts(resolved, k)
-    return redundancy.rank_redundant(resolved, k)
+    return redundancy.rank_redundant(
+        resolved, k, targets=redundancy.targets_for(themes)
+    )
 
 
 def _weakest_cuts(resolved: ResolvedDeck, k: int) -> list[Card]:
@@ -493,6 +504,7 @@ def advise(
     two_card_combos: int = 0,
     combos_checked: bool = False,
     cut_strategy: str = CUT_REDUNDANT,
+    themes: Sequence[str] = (),
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -526,6 +538,13 @@ def advise(
     The default of 3 is deliberately conservative for an unknown library caller. The Forge
     app's /advise route overrides it to 6 (with max_eval=16, ~60s warm against a 150s
     timeout) and its interactive card-impact route pins 3 explicitly.
+
+    `themes` are the deck's OWN detected archetypes, as plain strings (see
+    `redundancy.targets_for`). Supplying them stops the deck being offered its own plan as
+    the cut pool: a spellslinger deck is judged against what spellslinger decks really run,
+    not against a population whose median deck plays zero counterspells. Omitting them is
+    the population baseline - correct, and merely blunter, for a caller that cannot detect
+    archetypes.
     """
     if axis is not None and axis not in AXES:
         raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(AXES)}")
@@ -548,7 +567,7 @@ def advise(
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
-    cuts = _cut_candidates(resolved, cut_pool, cut_strategy)
+    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0
     analyses = 0

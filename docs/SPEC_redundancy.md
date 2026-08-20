@@ -20,8 +20,12 @@ taxonomy and a simulator, so it can.
 ## Role targets
 
 **Calibrated against real decks, not borrowed from the builder.** Each target is the 60th
-percentile of what 120 corpus decks actually supply in that role; regenerate with
+percentile of what the corpus decks actually supply in that role; regenerate with
 `python scripts/role_targets.py` (`--check` diffs against the constant).
+
+The sample is **all 499** corpus decks. It used to stop at 120, which mis-measured `tutor`
+(2 against a true 4) and was invisible because `--check` re-measured under the same cap the
+constant came from — a checker that could only agree with itself.
 
 | role | target |
 |---|---|
@@ -31,7 +35,7 @@ percentile of what 120 corpus decks actually supply in that role; regenerate wit
 | wipe | 3 |
 | counterspell | 3 |
 | finisher | 2 |
-| tutor | 2 |
+| tutor | 4 |
 
 The first version took these from `playstyle.DEFAULT_SLOTS` — the builder's plan for a deck
 it is about to *construct*. That is the wrong baseline for judging a deck someone already
@@ -126,11 +130,42 @@ matters.
 The last two rows are the whole point: under the old popularity rule the pet card was the
 *first* cut. Here it is the last.
 
+## Archetype targets
+
+One population baseline cannot judge every deck. A deck that plays to a role as its **plan**
+reads as over-supplied in exactly the thing it is trying to do: `counterspell`'s population
+target of 3 is the weight of a *single card* (the median corpus deck runs zero), while the
+corpus decks that actually are spellslinger decks supply a p60 of **12** — so their whole
+plan became the cut pool, Flusterstorm and Mental Misstep included.
+
+`ARCHETYPE_ROLE_TARGETS` records, per archetype, the same p60 of real supply measured over
+only the decks detected as that archetype. Regenerate with
+`python scripts/archetype_role_targets.py` (`--check` diffs, `--audit` shows every candidate
+cell and the gate that rejected it).
+
+| archetype | role | target | population |
+|---|---|---|---|
+| spellslinger | counterspell | 12 | 3 |
+| spellslinger | draw | 26 | 16 |
+| draw_matters | counterspell | 9 | 3 |
+| landfall | ramp | 23 | 14 |
+| chaos | draw | 28 | 16 |
+
+A cell is baked only when it clears three gates: **≥20 decks** carry the theme, **both
+halves** of those decks independently exceed the population target, and the archetype wants
+at least **3 more supply units**. The table only ever raises a target — the defect is
+false-positive cut suggestions, and a lower target manufactures more of them.
+
+It raises the bar; it does not remove it. A deck past even its archetype's supply is still
+flagged, which is why the own-plan share of the cut pool falls to 33.8% rather than to zero.
+
 ## Public API
 
 ```python
 ROLE_TARGETS: dict[str, int]
+ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]]
 
+def targets_for(themes: Iterable[str] | None, base=None) -> dict[str, int]
 def card_roles(ev: EffectVector) -> dict[str, float]
 def role_supply(resolved: ResolvedDeck) -> dict[str, float]
 
@@ -161,6 +196,12 @@ def rank_redundant(resolved, k, *, targets=None) -> list[Card]
 - Deduplicate by card **name**: `Card` is a mutable dataclass and therefore unhashable.
 - `targets=None` means "use `ROLE_TARGETS`". An explicitly-passed empty dict must be
   honoured, so the check is `is None`, not `or`.
+- `targets_for` takes archetype names as **plain strings** and never raises on an unknown
+  one — the detector (`deck_themes`) lives in Forge, a separate process on a separate
+  release cadence, so the engine is *told* what the deck is and cannot look it up. An
+  unrecognised name degrades to the population baseline.
+- `targets_for` merges several archetypes by **max**, only ever RAISES a target above the
+  population, and never mutates `ROLE_TARGETS`.
 - Pure, offline, deterministic. No I/O, no network, no logging.
 
 ## Consumer

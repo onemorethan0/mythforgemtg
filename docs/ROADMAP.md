@@ -15,17 +15,14 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 ## The map
 
-> **S10 (new, open): `ROLE_TARGETS` is archetype-blind.** `redundancy` judges every deck against
-> ONE population baseline, so a deck that plays to a role as its PLAN reads as over-supplied in
-> exactly the thing it is trying to do. `counterspell`'s target is 3 in supply units — the weight
-> of a **single card** — because the median corpus deck runs zero. A Prismari spellslinger deck
-> with three counterspells is therefore scored 3x over and its interaction offered as the cut
-> pool. The within-role fix below decides WHICH counterspell is offered; it does not stop the
-> role being targeted. This is the same shape as the original `ROLE_TARGETS` correction (which
-> replaced the builder's plan with the population and left the other bias in place), and fixing
-> it properly means weighting targets by the deck's own detected archetype — which lives in
-> Forge (`deck_themes`), not in the engine, so it needs a deliberate contract rather than an
-> import.
+> **S11 (new, open): `card_impact` still cuts by POPULARITY.** `redundancy` replaced
+> `_weakest_cuts` as the advisor's cut rule because the least-played cards in a deck are its
+> pet cards and silver bullets — the ones the pilot put there on purpose. But
+> `ratings/card_impact.assess_card` was never moved over: it still calls `_weakest_cuts`, so
+> "is <card> good in my deck?" is answered by swapping the candidate against the deck's
+> most obscure cards. That is the rule this project already measured as actively wrong, on
+> the one route a user reaches interactively. Unmeasured so far; S10's contract is the piece
+> it was waiting on, since `assess_card` would need `themes` threaded the same way.
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
@@ -38,6 +35,8 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S7 | Advisor seed variance | **quantified**: ~60% rel sd, needs ~16× runs | **Done** (bounded) | — |
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
+| **S10** | ~~`ROLE_TARGETS` is archetype-blind~~ | own-plan cut slots **64.0% → 33.8%** · pool changes on 52/106 | **Done** | — |
+| S11 | `card_impact` still cuts by popularity | not yet measured | Medium | S |
 
 ---
 
@@ -269,6 +268,71 @@ other and the S1 number should be read with that in mind.
 **Still owed:** a `builder_bench` run. This theme feeds ~20 slots on what was 23% of commanders,
 so it is the single largest lever on what the builder actually drafts, and the bench is the only
 thing that measures that end to end.
+
+---
+
+## S10 — ~~`ROLE_TARGETS` is archetype-blind~~ · DONE 2026-08-19
+
+**The defect.** `redundancy` judged every deck against ONE population baseline, so a deck
+that plays to a role as its PLAN read as over-supplied in exactly the thing it was trying to
+do. `counterspell`'s population target is **3 supply units — the weight of a single card**,
+because the median corpus deck runs zero. Measured over 499 corpus decks, the 24 that
+actually ARE spellslinger decks supply a p60 of **12**, with individual decks at 6, 12, 15
+and 27. Every one was scored 3x-to-9x over and its interaction became the cut pool. That is
+how a Prismari deck came to be told to cut **Flusterstorm** and **Mental Misstep**.
+
+**The fix is a table, and it is measured the same way `ROLE_TARGETS` is** — the p60 of real
+supply, but over only the decks detected as each archetype
+(`scripts/archetype_role_targets.py`, `--check` diffs, `--audit` shows every candidate cell
+and the gate that rejected it).
+
+**Three gates, and all three do work.** (1) at least **20** decks carry the theme — split-half
+disagreement falls monotonically with sample size (mean |A−B| 4.45 at n<12, 3.84 at 12–20,
+3.04 at 20–30, **1.86 at n≥30**), and relaxing to 12 admits seven cells whose halves disagree
+by 8.5–9.0, which is the noise band itself; (2) **both halves** of the theme's decks must
+independently exceed the population target — this is what rejects `draw_matters` draw (23.0
+overall, halves of 27 and 14), `chaos` counterspell (6 / 0) and `theft` wipe (0 / 6). It is
+per (theme, ROLE) rather than per theme, because `draw_matters` is unstable on `draw` and
+rock-steady on `counterspell` (9 / 9); (3) a **margin of 3** supply units, so the table
+records a difference that changes a judgement rather than a rounding step (this is what drops
+`counters` ramp at 15 vs 14 and `tokens` finisher at 4 vs 2).
+
+Five cells survive, and each is Magic-plausible on its face: spellslinger wants counterspells
+(12) and card draw (26), draw_matters holds up interaction (9), landfall ramps with lands
+(23), chaos draws (28).
+
+**It only ever RAISES a target.** There is no lowering half. The defect is false-positive cut
+suggestions, and a lower target manufactures more of them; it is also where small-sample
+noise would do the damage.
+
+**Measured payoff** at k=6 (the pool Forge's `/advise` asks for), over the 106 corpus decks
+carrying an overridden archetype: the cut pool changes on **52 (49%)**, and the share of cut
+slots drawn from the deck's **own plan role falls 64.0% → 33.8%**. Role balance follows —
+removal 7% → 16%, draw 45% → 37%, ramp 28% → 20%.
+
+**The residual 33.8% is correct and must not be driven to zero.** A deck really can
+over-serve its own plan: the corpus spellslinger deck running **27** counterspells against an
+archetype target of 12 IS over-served, and saying so is the module working. Pinned by
+`test_an_archetype_target_still_flags_a_genuine_oversupply`.
+
+**The contract, since the detector is in the other process.** `deck_themes` lives in Forge;
+the engine runs on :8020 and Forge's modules are not on its path. So `redundancy.targets_for`
+takes archetype names as **plain strings** and ignores unknown ones — a Forge that learns a
+new archetype tomorrow degrades to the population baseline instead of breaking the advisor.
+`advise(themes=…)` threads them, `/advise` accepts a `themes` list, and Forge's
+`_deck_archetypes` supplies them. The calibration script is the one place that imports both,
+offline, to produce a table of strings; the runtime never crosses the boundary.
+
+**Callers pass the deck's OWN themes, not `merge_themes`' output** — the merged list
+deliberately retains commander themes the deck does NOT support (its tier 3), and raising a
+target for a plan the deck is not executing would re-open this bug from the other side.
+
+**Honest limit.** `_deck_archetypes` prefers the persisted `stats.archetypes` block because
+it was computed from the deck's real cards; the fallback re-derives from stored entries,
+where theming has mutated the text those rules read (a tribe reskin rewrites rules text). It
+reads `original_type_line` to dodge the worst of that, but on a tribe-reskinned deck built
+before `stats.archetypes` existed it can under-detect — which costs precision, not
+correctness, since no archetype means the population baseline.
 
 ---
 

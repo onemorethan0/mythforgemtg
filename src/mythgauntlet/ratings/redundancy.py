@@ -30,6 +30,7 @@ point: under the old popularity rule the pet card was the FIRST cut.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 
 from mythgauntlet.model.card import Card
@@ -83,6 +84,68 @@ ROLE_TARGETS: dict[str, int] = {
     "finisher": 2,
     "tutor": 4,
 }
+
+
+# What "too much of this role" means FOR A DECK PLAYING TO IT, where that differs from the
+# population. Measured the same way as ROLE_TARGETS - the p60 of real supply - but over only
+# the corpus decks detected as each archetype. Regenerate with
+# `python scripts/archetype_role_targets.py` (`--check` diffs, `--audit` shows every
+# candidate cell and the gate that rejected it).
+#
+# THE TABLE EXISTS BECAUSE ONE BASELINE CANNOT JUDGE EVERY DECK. `counterspell`'s population
+# target is 3 supply units - the weight of a SINGLE card, because the median corpus deck runs
+# zero - while the 24 corpus decks that are actually spellslinger decks supply a p60 of 12.
+# Each was therefore scored 3x-to-9x over in counterspells and its interaction became the cut
+# pool: the module told a Prismari deck to cut Flusterstorm and Mental Misstep, its two best
+# counterspells. Same shape as "cut Eaten by Spiders from the spider deck", one level up -
+# the earlier fix chose WHICH counterspell to offer, and could not stop the role being
+# targeted at all.
+#
+# IT ONLY EVER RAISES A TARGET. A cell is baked only where the archetype supplies MORE than
+# the population; there is no lowering half. The defect being fixed is false-positive cut
+# suggestions, and a lower target manufactures more of them.
+#
+# Three gates, all measured over 499 corpus decks (full derivation in the script): at least
+# 20 decks carry the theme; both halves of those decks independently exceed the population
+# target; and the archetype wants at least 3 more supply units than the population. Five
+# cells survive out of every candidate, and each is Magic-plausible on its face.
+ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]] = {
+    "chaos": {"draw": 28},
+    "draw_matters": {"counterspell": 9},
+    "landfall": {"ramp": 23},
+    "spellslinger": {"counterspell": 12, "draw": 26},
+}
+
+
+def targets_for(
+    themes: Iterable[str] | None,
+    base: dict[str, int] | None = None,
+) -> dict[str, int]:
+    """Role targets for a deck known to be playing `themes`.
+
+    THIS IS THE CONTRACT, and its shape is the point. Archetype names arrive as PLAIN
+    STRINGS. Detecting them is `deck_themes.detect_deck_themes`, which lives in Forge - a
+    different process, whose modules are not on this engine's path - so the engine cannot
+    import it and does not try. The caller detects; the engine is told. An unknown name is
+    ignored rather than raising, so a Forge that learns a new archetype tomorrow degrades to
+    the population baseline instead of breaking the advisor.
+
+    Pass the deck's OWN detected themes, not `merge_themes`' output. The merged list
+    deliberately retains commander themes the deck does NOT support (its tier 3), and raising
+    a target for a plan the deck is not actually executing would re-open this bug from the
+    other side - the deck would be allowed an oversupply it never had. It is also the signal
+    the table was calibrated against, so anything else applies the numbers to a different
+    measurement than produced them.
+
+    Merges by MAX: with several archetypes, a role is judged against the most permissive
+    target any of them earns. Under-flagging is the safe direction here, and a deck holding
+    two archetypes has two plans to feed.
+    """
+    targets = dict(ROLE_TARGETS if base is None else base)   # never mutate the caller's dict
+    for theme in themes or ():
+        for role, target in ARCHETYPE_ROLE_TARGETS.get(theme, {}).items():
+            targets[role] = max(targets.get(role, 0), target)
+    return targets
 
 
 def card_roles(ev: EffectVector) -> dict[str, float]:

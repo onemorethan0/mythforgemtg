@@ -78,6 +78,12 @@ def analyse(source: str, db, store, candidates, runs: int):
 
     # One analysis per seed. Bracket and the axes are simulation outputs, so a single seed is
     # a sample, not a measurement — the same caveat advisor_bench carries.
+    # The deck's own archetypes, so the redundancy cut pool is not offered the deck's PLAN.
+    # `compute_stats` already detected them from the unthemed cards - this report is where
+    # that defect showed up, as a Prismari spellslinger told to cut its two best
+    # counterspells, so it has to pass them or it cannot show the fix.
+    themes = ((stats.get("archetypes") or {}).get("deck")) or []
+
     brackets, axis_runs, suggestions = [], collections.defaultdict(list), collections.Counter()
     reasons: dict[str, None] = {}
     gc = 0
@@ -92,7 +98,8 @@ def analyse(source: str, db, store, candidates, runs: int):
         gc = a.bracket.game_changers
         for ax in AXES:
             axis_runs[ax].append(advisor.axis_score(a, ax))
-        rep = advisor.advise(resolved, cfg, store, candidates, top=5, max_eval=12, cut_pool=3)
+        rep = advisor.advise(resolved, cfg, store, candidates, top=5, max_eval=12,
+                             cut_pool=3, themes=themes)
         for s in rep.suggestions:
             suggestions[(s.add, s.cut)] += 1
             detail[f"{s.add}|{s.cut}"] = {"delta": round(s.delta, 2), "reason": s.reason,

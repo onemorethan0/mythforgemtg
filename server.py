@@ -4044,11 +4044,53 @@ def _gauntlet_analyze(commander, deck):
         return None
 
 
-def _gauntlet_advise(commander, deck, axis=None):
+def _deck_archetypes(job: dict) -> list[str]:
+    """The deck's OWN detected archetypes, for the engine's redundancy targets.
+
+    The engine judges "what does this deck have too much of" against ONE population
+    baseline unless it is told what the deck is trying to DO, and that reads a deck's plan
+    as oversupply: a spellslinger deck is scored against a population whose median deck
+    plays ZERO counterspells, so its interaction becomes the cut pool. The detector lives
+    here (`deck_themes`), not in the engine on :8020, so this is the handoff.
+
+    PREFER THE PERSISTED BLOCK. `stats.archetypes` was computed by `compute_stats` from the
+    deck's REAL cards, before theming touched them. Re-deriving it from the stored entries
+    is second best on purpose, because theming MUTATES the text those rules read: a tribe
+    reskin rewrites rules text ("equip Knight" -> "equip Cowboy") and the self-reference
+    pass swaps the card's own name in. `original_type_line` is the un-reskinned line and is
+    what the fallback reads; the oracle text has no such rewind, so on a tribe-reskinned
+    deck built before `stats.archetypes` existed this can under-detect.
+
+    Under-detection is the safe failure: no archetype means the population baseline, which
+    is what the engine did before this existed. Never raises - advice must not fail because
+    a descriptive figure could not be derived.
+    """
+    try:
+        stored = ((job.get("stats") or {}).get("archetypes") or {}).get("deck")
+        if stored:
+            return list(stored)
+        import deck_themes
+        return deck_themes.detect_deck_themes([
+            {
+                "name": c.get("original_name", ""),
+                "type_line": c.get("original_type_line") or c.get("type_line", ""),
+                "oracle_text": c.get("oracle_text", ""),
+            }
+            for c in (job.get("deck") or [])
+        ])
+    except Exception:      # noqa: BLE001 - a missing archetype only costs precision
+        return []
+
+
+def _gauntlet_advise(commander, deck, axis=None, themes=None):
     """Owned-card upgrade suggestions from MythGauntlet's ablation advisor.
 
     Returns the advise JSON, {"error": detail} for a meaningful 400 (no collection
     exported / bad axis), or None when the service is unreachable.
+
+    `themes` are the deck's own archetypes (see `_deck_archetypes`); without them the
+    engine judges every role against one population baseline and offers the deck its own
+    plan as the cut pool.
     """
     try:
         payload = {
@@ -4063,6 +4105,8 @@ def _gauntlet_advise(commander, deck, axis=None):
             "max_eval": 16,
             "cut_pool": 6,
         }
+        if themes:
+            payload["themes"] = list(themes)
         if axis:
             payload["axis"] = axis
         resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=150)
@@ -4178,7 +4222,8 @@ def advise_deck(job_id: str, req: AdviseDeckRequest):
         {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
         for c in cards
     ]
-    result = _gauntlet_advise(commander, deck, axis=req.axis)
+    result = _gauntlet_advise(commander, deck, axis=req.axis,
+                              themes=_deck_archetypes(job))
     if result is None:
         raise HTTPException(
             503,

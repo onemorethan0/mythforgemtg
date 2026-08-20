@@ -162,6 +162,21 @@ def test_advise_evaluates_fitting_candidate(client):
     assert resp.json()["candidates_that_fit"] == 0  # in-deck names never suggested
 
 
+def test_advise_accepts_and_tolerates_themes(client):
+    """`themes` is the archetype handoff, and an unknown name must not 400.
+
+    The detector lives in Forge and the engine is a separate release, so Forge can learn a
+    new archetype at any time. The engine must degrade to the population baseline rather
+    than reject the request — an advisor that 500s on an unrecognised string is worse than
+    one that judges the deck a little bluntly.
+    """
+    body = {"deck": DECK, "runs": 40, "max_eval": 2,
+            "collection": "Count,Name\n1,Rhystic Study\n"}
+    for themes in ([], ["spellslinger"], ["not_a_real_theme"], ["spellslinger", "landfall"]):
+        resp = client.post("/advise", json={**body, "themes": themes})
+        assert resp.status_code == 200, f"themes={themes} -> {resp.status_code}"
+
+
 def test_advise_rejects_unknown_axis(client):
     resp = client.post(
         "/advise",
