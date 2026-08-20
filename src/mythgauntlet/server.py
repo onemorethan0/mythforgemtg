@@ -477,6 +477,11 @@ def create_app(
                     "after": round(s.after, 1),
                     "delta": round(s.delta, 1),
                     "reason": s.reason,
+                    # The structured facts behind `reason`. `reason` is the deterministic
+                    # template string and stays the fallback; `brief` is what a generated
+                    # narrative is written FROM and gated AGAINST, so the engine never has to
+                    # call a model and Forge never has to guess what a claim rests on.
+                    "brief": s.brief.as_dict() if s.brief else None,
                 }
                 for s in report.suggestions
             ],

@@ -96,6 +96,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
 | S12 | Redundancy score silent on 9% of decks | **45/499** decks · **14.4%** of all cut slots | Medium | M |
 | S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
+| S14 | Swap reasons are template fragments | narrative shipped, gated · **3/3 first-attempt** | part done | M |
 
 ---
 
@@ -428,6 +429,56 @@ dressing the tiebreak up as redundancy.
 
 `themes` is threaded the same way S10 threaded it into `/advise` — the contract, the plain
 strings, and Forge's `_deck_archetypes` are all reused rather than re-invented.
+
+---
+
+## S14 — the swap reason was a list of fragments, and never said why THAT cut
+
+**The defect.** `advise` assembled `reason` from template fragments — *"A big dragon your
+commander can cheat into play; a one-shot team finisher. Measured: kills ~1.2 turns sooner."*
+It reads as a list because it is one, and it is silent on the half a user actually questions:
+why THAT card is the cut. The advisor has known the answer since `redundancy` landed (the
+role, how over-supplied it is, how strongly the card serves it) and never said it.
+
+**A model writes better prose and also fabricates**, and on an MTG-facing surface a wrong
+claim about a card is a defect. So generation is split, and the split is the design:
+
+    engine   SwapBrief  — the facts, measured, offline, deterministic
+    Forge    prose      — generated locally, then GATED against that brief
+
+**`SwapBrief` is a CLAIM BUDGET.** It carries the only card names that may appear, the only
+numbers that may be cited (`allowed_numbers`), each card's functions as the rung-1 vector
+actually reads them, and whether the cut was backed by real redundancy at all. That is what
+makes the check mechanical instead of a matter of taste — every gate below traces a sentence
+to a measured field, the same way the CCM gates trace a capability model to Oracle text.
+
+**Seven checks, each of which rejected something real:** a card outside the swap; a number not
+in the brief; prose contradicting the measured direction; a function the vector does not show;
+an intensifier a marginal gap has not earned; a claim about an axis nobody measured; and
+redundancy language on a deck that over-supplies nothing (the **S12** guard, reused).
+
+**Four of them were FALSE POSITIVES first, and all four were found by reading real output:**
+
+| bug | why it fired | fix |
+|---|---|---|
+| "team pump" charged to the CUT | nearest-name-either-direction; by the time the phrase appears the cut is closer | attribute to the nearest **preceding** name — English puts the subject first |
+| `Vesuva` flagged as foreign | Magic names nest — the commander is *Omo, Queen of Vesuva* | mask allowed names **before** the foreign-name scan |
+| "card draw" rejected on a draw-role cut | `card_roles` and `card_functions` are **different vocabularies** (role `draw` ← `repeatable draw`) | widen a cut's vocabulary by the role the engine granted it |
+| a board-wipe claim waved through | the negation guard read `n't` **inside the card's own name** — *An Offer You Can't Refuse* | exclude card-name spans from the negator scan |
+
+A false rejection costs only polish, but it silently starves the corpus of exactly the drafts
+worth keeping — which is why they are pinned by name in `tests/test_swap_narrative.py`.
+
+**Measured on qwen3:32b over real briefs:** 3 of 7 attempts survived the gate before the
+prompt was taught the rules it would be judged by; **3 of 3 on first attempt** after. The
+prompt cannot be left to infer them — a rule the gate enforces and the prompt never states is
+a guaranteed rejection, and that is pinned by a test too.
+
+**Still open:** this is the prompted baseline. The point of the brief-and-gate pair is that it
+makes a rejection-sampled corpus possible — teacher drafts, deterministic gates, keep what
+survives — which is exactly how the ~30k CCM corpus was built without human annotation. The
+fine-tune (`scripts/build_ccm_sft.py` + `scripts/train_ccm_lora.py` are the reusable harness)
+has not been built yet.
 
 ---
 

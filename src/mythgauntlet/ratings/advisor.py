@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
-from mythgauntlet.ratings import redundancy
+from mythgauntlet.ratings import redundancy, swap_brief
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.model import EffectVector
@@ -301,6 +301,11 @@ class SwapSuggestion:
     before: float
     after: float
     reason: str = ""
+    # The structured facts behind `reason` — everything this swap is entitled to claim.
+    # `reason` stays the deterministic template string and remains the fallback; the brief is
+    # what a generated narrative is written FROM and gated AGAINST. See
+    # `mythgauntlet.ratings.swap_brief`.
+    brief: "swap_brief.SwapBrief | None" = None
 
     @property
     def delta(self) -> float:
@@ -639,6 +644,13 @@ def advise(
                 reason = f"{reason} Measured: {measured}."
             suggestions.append(SwapSuggestion(
                 add=add.name, cut=cut.name, before=base_score, after=after, reason=reason,
+                brief=swap_brief.build_swap_brief(
+                    resolved, add, cut,
+                    axis=target, axis_label=AXES[target][1],
+                    before=base_score, after=after, noise_floor=effective_delta,
+                    themes=themes, wants=wants,
+                    baseline_report=baseline.report, swap_report=a.report,
+                ),
             ))
             if len(suggestions) >= top:
                 break

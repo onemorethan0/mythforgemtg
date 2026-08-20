@@ -4168,8 +4168,60 @@ class CardImpactDeckRequest(BaseModel):
     card: str = Field(min_length=1, max_length=200)
 
 
+def _narrate_suggestions(result: dict, job: dict) -> dict:
+    """Rewrite each swap's `reason` as prose, keeping the template as the fallback.
+
+    The engine ships a `brief` per suggestion — the facts the swap is entitled to claim — and
+    `swap_narrative` turns one into two or three sentences, then GATES the result against that
+    brief. A draft that names a card outside the swap, cites a number nobody measured, calls a
+    card something its vector does not show, or claims redundancy on a deck that over-supplies
+    nothing is thrown away and the deterministic sentence stands.
+
+    That fallback is what makes the gate affordable: refusing a draft costs polish, while
+    shipping an invented claim costs the one thing an MTG-facing tool cannot afford. Every
+    failure path here — no brief, LLM down, every attempt rejected — lands on the template.
+
+    The original is preserved as `reason_template` rather than discarded, so the UI and any
+    debugging can see both.
+    """
+    suggestions = result.get("suggestions") or []
+    if not suggestions:
+        return result
+    try:
+        import swap_narrative
+    except Exception:                       # noqa: BLE001 - advice must never fail on this
+        return result
+
+    # Every card the deck actually plays, so the gate can catch an invented one. Read from the
+    # stored deck rather than the engine payload: this is the only place that knows the list.
+    deck_names = {c.get("original_name", "") for c in (job.get("deck") or [])}
+    deck_names.discard("")
+    commander = (job.get("commander") or {}).get("original_name")
+    if commander:
+        deck_names.add(commander)
+
+    kept = 0
+    for suggestion in suggestions:
+        brief = suggestion.get("brief")
+        if not brief:
+            continue
+        try:
+            text = swap_narrative.narrate(brief, deck_card_names=deck_names)
+        except Exception:                   # noqa: BLE001 - never fail the route
+            text = None
+        if text:
+            suggestion["reason_template"] = suggestion.get("reason", "")
+            suggestion["reason"] = text
+            kept += 1
+    if suggestions:
+        print(f"  [advise] narrated {kept}/{len(suggestions)} suggestions "
+              f"({len(suggestions) - kept} kept the measured template)")
+    return result
+
+
 class AdviseDeckRequest(BaseModel):
     axis: Optional[str] = None  # None -> the deck's weakest axis
+    narrate: bool = True        # rewrite each reason as prose (gated; falls back silently)
 
 
 @app.post("/api/deck/{job_id}/card-impact")
@@ -4230,6 +4282,8 @@ def advise_deck(job_id: str, req: AdviseDeckRequest):
     ]
     result = _gauntlet_advise(commander, deck, axis=req.axis,
                               themes=_deck_archetypes(job))
+    if result is not None and "error" not in result and req.narrate:
+        result = _narrate_suggestions(result, job)
     if result is None:
         raise HTTPException(
             503,
