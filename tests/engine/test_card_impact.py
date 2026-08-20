@@ -90,3 +90,104 @@ def test_headline_names_the_largest_mover(make_card, forest, bear, empty_store):
              AxisMove("speed", "Speed", 50, 58.3, 1.7)]
     gains = sorted((m for m in moves if m.meaningful and m.delta > 0), key=lambda m: -m.delta)
     assert gains[0].label == "Speed"
+
+
+# ── The cut pool: redundancy, not popularity (S11) ───────────────────────────────
+
+def _spellslinger(make_card, forest):
+    """A deck whose PLAN is counterspells, plus genuinely over-served ramp.
+
+    Counterspell supply 12.0: over the population target of 3 (which is one card's weight,
+    since the median deck runs zero) but exactly at what spellslinger decks really run.
+    Ramp 18.0 against 14 is the honest oversupply the pool should reach for instead.
+    """
+    basic_two = ("Search your library for up to two basic land cards, reveal those cards, "
+                 "put one onto the battlefield tapped and the other into your hand, then "
+                 "shuffle.")
+    basic_one = ("Search your library for a basic land card, put it onto the battlefield "
+                 "tapped, then shuffle.")
+    specs = [
+        ("Flusterstorm", "Instant", "{U}",
+         "Counter target instant or sorcery spell unless its controller pays {1}."),
+        ("Mental Misstep", "Instant", "{U}", "Counter target spell with mana value 1."),
+        ("Arcane Denial", "Instant", "{1}{U}", "Counter target spell."),
+        ("Ponderous Denial", "Instant", "{4}{U}",
+         "Counter target spell unless its controller pays {3}."),
+        ("Cultivate", "Sorcery", "{2}{G}", basic_two),
+        ("Kodama's Reach", "Sorcery", "{2}{G}", basic_two),
+        ("Rampant Growth", "Sorcery", "{1}{G}", basic_one),
+        ("Nature's Lore", "Sorcery", "{1}{G}", basic_one),
+        ("Verdant Errand", "Sorcery", "{2}{G}", basic_one),
+        ("Ponderous Cultivation", "Sorcery", "{4}{G}", basic_one),
+    ]
+    cmdr = make_card("Simic Boss", mana_cost="{2}{G}{U}",
+                     type_line="Legendary Creature — Elf", colors=("G", "U"),
+                     color_identity=("G", "U"))
+    cmdr.power, cmdr.toughness = "3", "3"
+    cards = [(make_card(n, type_line=tl, mana_cost=mc, oracle_text=ot), 1)
+             for n, tl, mc, ot in specs]
+    return ResolvedDeck(deck=Deck(name="slinger"), commanders=[cmdr],
+                        cards=cards + [(forest, 40)], missing=[])
+
+
+def test_the_cut_pool_is_redundancy_not_popularity(make_card, forest, empty_store):
+    """`assess_card` kept calling `_weakest_cuts` long after the advisor stopped.
+
+    That is the rule this project measured as actively wrong — the least-played cards in a
+    deck are its pet cards and silver bullets. Measured over 40 (deck, card) cases the
+    recommended cut changed on 95% and the final verdict on 30%, so it was never cosmetic.
+    """
+    from mythgauntlet.ratings import advisor, redundancy
+
+    deck = _spellslinger(make_card, forest)
+    card = make_card("Owned Rock", mana_cost="{2}", type_line="Artifact",
+                     color_identity=(), oracle_text="{T}: Add {C}{C}.")
+    imp = assess_card(deck, card, _cfg(), empty_store, cut_pool=3)
+
+    redundant = {c.name for c in redundancy.rank_redundant(deck, 3)}
+    least_played = {c.name for c in advisor._weakest_cuts(deck, 3)}
+    assert imp.cut in redundant, "the cut must come from the redundancy pool"
+    assert redundant != least_played, "fixture must actually discriminate the two rules"
+
+
+def test_themes_reach_the_cut_pool(make_card, forest, empty_store):
+    """Same contract as /advise: told what the deck is, it stops offering the deck's plan."""
+    from mythgauntlet.ratings import redundancy
+
+    deck = _spellslinger(make_card, forest)
+    counterspells = {"Flusterstorm", "Mental Misstep", "Arcane Denial", "Ponderous Denial"}
+    assert {c.name for c in redundancy.rank_redundant(deck, 3)} <= counterspells, (
+        "precondition: the population baseline offers the deck's own counterspells")
+
+    card = make_card("Owned Rock", mana_cost="{2}", type_line="Artifact",
+                     color_identity=(), oracle_text="{T}: Add {C}{C}.")
+    imp = assess_card(deck, card, _cfg(), empty_store, cut_pool=3,
+                      themes=["spellslinger"])
+    assert imp.cut not in counterspells, (
+        f"a spellslinger deck must not be told to cut {imp.cut}")
+
+
+def test_the_cut_sentence_does_not_claim_redundancy_it_cannot_show(make_card, forest):
+    """The line it replaced said "the weakest slot it beat" — which was never measured.
+
+    Least-played is close to the OPPOSITE of weakest in a deck someone built on purpose. Now
+    the pool IS redundancy, so the sentence can be true — but only where redundancy exists.
+    A deck over-supplying nothing still owes its caller `k` candidates and falls through to
+    the tiebreak, and on 9.0% of corpus decks that is the whole pool. Claiming redundancy
+    there would be the same over-claim in a new coat.
+    """
+    from mythgauntlet.ratings import redundancy
+    from mythgauntlet.ratings.card_impact import _cut_sentence
+
+    deck = _spellslinger(make_card, forest)
+    supply = redundancy.role_supply(deck)
+    cut = redundancy.rank_redundant(deck, 1)[0]
+
+    real = _cut_sentence(cut, supply, redundancy.ROLE_TARGETS)
+    assert "over-supplied" in real and cut.name in real
+
+    # every role at or under target -> nothing is redundant, and it must say so
+    generous = {role: 999 for role in redundancy.ROLE_TARGETS}
+    none = _cut_sentence(cut, supply, generous)
+    assert "over-supplies no role" in none
+    assert "weakest" not in none.lower(), "the retired over-claim must not return"

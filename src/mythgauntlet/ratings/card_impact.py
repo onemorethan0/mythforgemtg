@@ -20,24 +20,36 @@ Three things make the answer honest rather than a vibe:
    variance, so a -0.1 was "real" and headlined "costs resilience" off a tenth of a point.
    Reproducibly trivial is still trivial.
 
-The measurement is an ablation, like the advisor's: swap the card in for each of the deck's
-weakest cards, re-run the full analysis, and keep the pairing that comes out best overall.
-That matters because a 100-card deck is fixed-size — adding a card always means cutting one,
-and the honest question is "better than the worst thing you are already playing?"
+The measurement is an ablation, like the advisor's: swap the card in for each of a small
+pool of cut candidates, re-run the full analysis, and keep the pairing that comes out best
+overall. That matters because a 100-card deck is fixed-size — adding a card always means
+cutting one, and the honest question is "better than the thing it would displace?"
+
+WHICH CARDS IT IS TESTED AGAINST, and why this changed. That pool used to come from
+`advisor._weakest_cuts` — the deck's LEAST-PLAYED cards — long after the advisor itself
+stopped using that rule. It is the rule this project measured as actively wrong: the
+least-played cards in a deck are its pet cards and silver bullets, the ones the pilot put
+there on purpose, so "is <card> good in my deck?" was answered by displacing the deck's most
+obscure card. On the corpus Shelob deck the pool was Supper for Spiders / Gloomwidow's Feast
+/ Eaten by Spiders — the deck's whole reason for existing. It now uses `redundancy`, like
+the advisor, so the candidate is tested against what the deck has too MUCH of. Measured over
+40 (deck, card) cases: the recommended cut changes on 95% and the final verdict on 30%, so
+this was never cosmetic.
 """
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
+from mythgauntlet.ratings import redundancy
 from mythgauntlet.ratings.advisor import (
     AXES,
     _AXIS_NOISE_FLOOR,
     _commander_identity,
     _swap_variant,
-    _weakest_cuts,
     axis_score,
     commander_wants,
 )
@@ -115,6 +127,33 @@ def _describe(card: Card) -> list[str]:
     return out
 
 
+def _cut_sentence(cut: Card, supply: dict, targets: dict) -> str:
+    """Name the slot the card displaced, and say honestly why THAT slot.
+
+    The line this replaced read "the weakest slot it beat", which was never what was
+    measured: the pool came from the least-played rule, and least-played is close to the
+    OPPOSITE of weakest in a deck someone built on purpose. Now the pool is redundancy, so
+    the sentence can be true — but only when there is redundancy to point at.
+
+    A deck that over-supplies nothing has no redundant card, and `rank_redundant` still owes
+    its caller `k` of them, so it falls through to its tiebreak. On 9.0% of corpus decks that
+    is the whole pool. Claiming redundancy there would be the same over-claim in a new coat,
+    so the sentence says what actually happened instead.
+    """
+    score = redundancy.score_card(cut, supply, targets)
+    if score.oversupply > 0 and score.role:
+        return (
+            f"Measured by swapping it in for {cut.name} — this deck's most over-supplied "
+            f"role is {score.role}, by {score.oversupply:.1f} cards' worth."
+        )
+    return (
+        f"Measured by swapping it in for {cut.name}. This deck over-supplies no role "
+        f"against what real decks run, so there is no redundant card to displace and that "
+        f"slot is the least-played one carrying a role — treat the pairing, not the cut, "
+        f"as the finding."
+    )
+
+
 def assess_card(
     resolved: ResolvedDeck,
     card: Card,
@@ -122,8 +161,14 @@ def assess_card(
     store,
     *,
     cut_pool: int = 3,
+    themes: Sequence[str] = (),
 ) -> CardImpact:
-    """Measure what adding `card` does to `resolved`, and say why."""
+    """Measure what adding `card` does to `resolved`, and say why.
+
+    `themes` are the deck's own detected archetypes, as plain strings — they raise the
+    redundancy targets for roles that archetype really plays, so a spellslinger deck is not
+    offered its counterspells as the slot to displace. See `redundancy.targets_for`.
+    """
     name = card.name
 
     if any(c.name == name for c, _ in resolved.cards) or any(
@@ -155,7 +200,9 @@ def assess_card(
         )
 
     baseline = analyze_deck(resolved, cfg, store, run_resilience=True)
-    cuts = _weakest_cuts(resolved, max(1, cut_pool))
+    supply = redundancy.role_supply(resolved)
+    targets = redundancy.targets_for(themes)
+    cuts = redundancy.rank_redundant(resolved, max(1, cut_pool), targets=targets)
     if not cuts:
         return CardImpact(
             card=name, verdict="neutral",
@@ -217,7 +264,7 @@ def assess_card(
             f"rather than a change ({flat}). It may still matter for reasons the "
             "simulation does not model — politics, a combo line, or a card you enjoy."
         )
-    reasons.append(f"Measured by swapping it in for {cut.name}, the weakest slot it beat.")
+    reasons.append(_cut_sentence(cut, supply, targets))
 
     wants = commander_wants(resolved.commanders)
     if wants.cheats_creatures and card.is_creature and wants.wants_big:

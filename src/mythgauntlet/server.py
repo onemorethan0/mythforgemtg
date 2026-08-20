@@ -63,7 +63,19 @@ class CardImpactRequest(BaseModel):
     turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
     cut_pool: int = Field(
         default=3, ge=1, le=10,
-        description="weakest cards the addition is tested against; the best pairing wins",
+        description=(
+            "cut candidates the addition is tested against; the best pairing wins. Chosen "
+            "by REDUNDANCY (what the deck over-supplies), not by what is least played."
+        ),
+    )
+    themes: list[str] = Field(
+        default_factory=list,
+        description=(
+            "the deck's OWN detected archetypes (Forge's deck_themes.detect_deck_themes). "
+            "Same contract as /advise: raises the redundancy targets for roles that "
+            "archetype really plays, so the card is not tested against the deck's own plan. "
+            "Unknown names are ignored."
+        ),
     )
 
 
@@ -340,9 +352,14 @@ def create_app(
         The inverse of /advise: instead of proposing cards from a pool, it answers the
         question a player actually asks — "is <card> good in my deck?". Legality is checked
         first and is disqualifying (an off-colour or banned card is a hard no, whatever its
-        power), then the card is swapped in for each of the weakest slots and the whole
-        Power Profile is re-measured. Any axis move smaller than that axis's own
-        seed-to-seed spread is reported as NO effect rather than as an improvement.
+        power), then the card is swapped in for each of a small pool of REDUNDANT slots -
+        the roles the deck over-supplies - and the whole Power Profile is re-measured. Any
+        axis move smaller than that axis's own seed-to-seed spread is reported as NO effect
+        rather than as an improvement.
+
+        Pass `themes` for the same reason /advise takes them: without the deck's archetypes
+        the cut pool is judged against one population baseline and can offer the deck its
+        own plan as the slot to displace.
         """
         resolved = _resolve_or_400(req.deck, req.name, db)
         card = db.get(req.card)
@@ -353,7 +370,8 @@ def create_app(
                        "or run `mythgauntlet fetch-data` if it is a very recent printing.",
             )
         cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
-        imp = card_impact.assess_card(resolved, card, cfg, store, cut_pool=req.cut_pool)
+        imp = card_impact.assess_card(resolved, card, cfg, store,
+                                      cut_pool=req.cut_pool, themes=req.themes)
         return {
             "engine_version": __version__,
             "card": imp.card,

@@ -15,14 +15,39 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 ## The map
 
-> **S11 (new, open): `card_impact` still cuts by POPULARITY.** `redundancy` replaced
-> `_weakest_cuts` as the advisor's cut rule because the least-played cards in a deck are its
-> pet cards and silver bullets — the ones the pilot put there on purpose. But
-> `ratings/card_impact.assess_card` was never moved over: it still calls `_weakest_cuts`, so
-> "is <card> good in my deck?" is answered by swapping the candidate against the deck's
-> most obscure cards. That is the rule this project already measured as actively wrong, on
-> the one route a user reaches interactively. Unmeasured so far; S10's contract is the piece
-> it was waiting on, since `assess_card` would need `themes` threaded the same way.
+> **S12 (new, open): the redundancy score is silent on 9% of decks, and says so to nobody.**
+> `rank_redundant` scores `oversupply / (1 + within_role)`. When a deck over-supplies NOTHING
+> every card scores exactly 0.0, and the ordering falls entirely through to the tiebreak —
+> **least-played first**, which is the popularity rule the module exists to replace. Roleless
+> cards are still protected and sort last, so it is not *pure* popularity; it is "the
+> least-played card that carries a role". Measured over 499 corpus decks: **45 (9.0%)**
+> over-supply no role at all, **40 (8.0%)** have all six pool slots at score 0.0, and
+> **426/2966 (14.4%)** of all cut slots corpus-wide are chosen by that tiebreak. The corpus
+> Shelob deck is one: every role sits at or under target, so it offers *Gloomwidow's Feast*
+> and *Eaten by Spiders*. **This is a compounding regression from two changes that each
+> measured well on their own terms** — raising a target is exactly what makes "nothing is
+> over-supplied" more likely:
+>
+>     targets                                 decks over-supplying nothing
+>     original builder-slot                            19  (3.8%)
+>     p60 population        (2026-08-14)               38  (7.6%)
+>     + archetype           (2026-08-19)               45  (9.0%)
+>
+> The module has no defined behaviour here and returns `k` candidates as confidently as ever.
+> `card_impact`'s reason line now says so out loud rather than claiming a redundancy it
+> cannot show, which is the honest half; the ordering itself is still undecided. Note the
+> project has already established that **the sim's axis delta cannot see this class of
+> defect**, so a new tiebreak cannot be settled by `advisor_bench` and needs an argument from
+> doctrine instead.
+
+> **S13 (new, open): a fixed per-card role strength makes the target granular.** `card_roles`
+> returns a FIXED 3.0 for `counterspell` and `wipe`, so supply moves in whole-card steps of
+> 3.0 and the target can only ever sit on a card boundary. `counterspell`'s population target
+> of 3 therefore means **"one card"**, and any deck running two counterspells is scored 3.0
+> over — which then outranks a role that is genuinely but modestly over-served. Corpus deck
+> `archidekt-13708248` is a **landfall** deck holding two counterspells: its draw is 0.5 over
+> and its counterspell 3.0 over, so it is offered *Flusterstorm*. S10's archetype table fixes
+> this only for decks whose archetype is in the table; the granularity is the general case.
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
@@ -36,7 +61,9 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S8 | ~~Errors via native `alert()`~~ | **already fixed** — entry was stale | **Done** | — |
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
 | **S10** | ~~`ROLE_TARGETS` is archetype-blind~~ | own-plan cut slots **64.0% → 33.8%** · pool changes on 52/106 | **Done** | — |
-| S11 | `card_impact` still cuts by popularity | not yet measured | Medium | S |
+| **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
+| S12 | Redundancy score silent on 9% of decks | **45/499** decks · **14.4%** of all cut slots | Medium | M |
+| S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
 
 ---
 
@@ -333,6 +360,42 @@ where theming has mutated the text those rules read (a tribe reskin rewrites rul
 reads `original_type_line` to dodge the worst of that, but on a tribe-reskinned deck built
 before `stats.archetypes` existed it can under-detect — which costs precision, not
 correctness, since no archetype means the population baseline.
+
+---
+
+## S11 — ~~`card_impact` cuts by popularity~~ · DONE 2026-08-20
+
+**The defect.** `redundancy` replaced `advisor._weakest_cuts` because the least-played cards
+in a deck are its pet cards and silver bullets — the ones the pilot put there on purpose.
+`ratings/card_impact.assess_card` was never moved over. So "is <card> good in my deck?" —
+the one route a user reaches interactively — was answered by swapping the candidate against
+the deck's most obscure cards. On the corpus Shelob deck that pool is *Supper for Spiders /
+Gloomwidow's Feast / Eaten by Spiders*, the deck's whole reason for existing, which is the
+canonical failure this project already named.
+
+**Measured** over 40 (deck, card) cases — 20 corpus decks spread across the corpus, two
+legal staples each, full-fidelity store, `cut_pool=3`, `runs=200`:
+
+    recommended CUT changes     38/40  (95%)
+    final VERDICT changes       12/40  (30%)
+
+The verdict moving on 30% is the figure that matters: `assess_card` keeps the BEST pairing
+across the pool, so a better pool gives the candidate a fairer slot to displace, and the
+answer the user reads flips on nearly a third of questions. This was never cosmetic.
+
+**A second defect, stacked on the first.** The user-facing reason line read *"Measured by
+swapping it in for X, **the weakest slot it beat**"* — and that was never what was measured.
+The pool came from the least-played rule, and least-played is close to the **opposite** of
+weakest in a deck someone built on purpose. Same class as S3: wording that claims something
+the measurement does not support. `_cut_sentence` now names the deck's most over-supplied
+role and by how much.
+
+**And it does not over-claim in the other direction.** Where the deck over-supplies nothing
+(S12, 9.0% of corpus decks) there IS no redundant card, so the sentence says that instead of
+dressing the tiebreak up as redundancy.
+
+`themes` is threaded the same way S10 threaded it into `/advise` — the contract, the plain
+strings, and Forge's `_deck_archetypes` are all reused rather than re-invented.
 
 ---
 

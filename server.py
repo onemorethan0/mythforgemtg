@@ -4123,7 +4123,7 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None):
         return None
 
 
-def _gauntlet_card_impact(commander, deck, card_name):
+def _gauntlet_card_impact(commander, deck, card_name, themes=None):
     """Would ONE named card help or hurt this deck (MythGauntlet /card-impact).
 
     Same shape as _gauntlet_advise: the JSON on success, {"error": detail} for a
@@ -4133,6 +4133,10 @@ def _gauntlet_card_impact(commander, deck, card_name):
     runs is lower than /advise's because this re-simulates the whole Power Profile per
     candidate cut and the user is waiting on it interactively; cut_pool=3 keeps it to
     three analyses.
+
+    `themes` are the deck's own archetypes (see `_deck_archetypes`) - same handoff /advise
+    uses, and needed here for the same reason: without them the slot this card is tested
+    against can be part of the deck's own plan.
     """
     try:
         resp = requests.post(
@@ -4143,6 +4147,7 @@ def _gauntlet_card_impact(commander, deck, card_name):
                 "card": card_name,
                 "runs": 200,
                 "cut_pool": 3,
+                "themes": list(themes or []),
             },
             timeout=120,
         )
@@ -4189,7 +4194,8 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
         {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
         for c in cards
     ]
-    result = _gauntlet_card_impact(commander, deck, req.card.strip())
+    result = _gauntlet_card_impact(commander, deck, req.card.strip(),
+                                   themes=_deck_archetypes(job))
     if result is None:
         raise HTTPException(
             503,

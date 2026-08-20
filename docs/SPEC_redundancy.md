@@ -204,8 +204,29 @@ def rank_redundant(resolved, k, *, targets=None) -> list[Card]
   population, and never mutates `ROLE_TARGETS`.
 - Pure, offline, deterministic. No I/O, no network, no logging.
 
+## Known limit — the score is silent when nothing is over-supplied
+
+`score = oversupply / (1 + within_role)`, so a deck that over-supplies NOTHING scores every
+card at exactly 0.0 and the ordering falls entirely through to the tiebreak: **least-played
+first**, which is the rule this module exists to replace. Roleless cards are still protected
+and sort last, so it is "the least-played card carrying a role" rather than pure popularity.
+
+Measured over 499 corpus decks: **45 (9.0%)** over-supply no role at all, **40 (8.0%)** have
+all six pool slots at 0.0, and **426/2966 (14.4%)** of all cut slots are chosen this way. It
+compounds with every calibration that raises a target — builder-slot 3.8% → p60 7.6% →
++archetype 9.0%.
+
+`rank_redundant` still owes its caller `k` candidates, so it returns them. Consumers must not
+present them as measured redundancy: `card_impact._cut_sentence` checks `oversupply > 0` and
+says which it is. Tracked as **S12**.
+
 ## Consumer
 
-`advisor.advise(..., cut_strategy=...)` — `CUT_REDUNDANT` (default) calls `rank_redundant`;
-`CUT_POPULARITY` keeps `_weakest_cuts` for the golden-master tests and as the fallback for
-a deck whose cards the semantics layer cannot read at all.
+`advisor.advise(..., cut_strategy=..., themes=...)` — `CUT_REDUNDANT` (default) calls
+`rank_redundant`; `CUT_POPULARITY` keeps `_weakest_cuts` for the golden-master tests and as
+the fallback for a deck whose cards the semantics layer cannot read at all.
+
+`card_impact.assess_card(..., themes=...)` uses the same pool. It did not until 2026-08-20 —
+it called `_weakest_cuts` directly, so the interactive "is this card good in my deck?" route
+answered by displacing the deck's most obscure card. Measured over 40 (deck, card) cases the
+recommended cut changed on **95%** and the final verdict on **30%**.
