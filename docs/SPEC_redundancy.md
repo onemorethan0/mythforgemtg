@@ -220,6 +220,15 @@ compounds with every calibration that raises a target — builder-slot 3.8% → 
 present them as measured redundancy: `card_impact._cut_sentence` checks `oversupply > 0` and
 says which it is. Tracked as **S12**.
 
+**Do not "fix" this by un-clamping `oversupply`.** Ranking by the raw `supply - target` (cut
+from the role closest to over-supplied) is the obvious continuous extension and was
+prototyped: it is surgical and moves 38 of the 45 degenerate decks, but it makes the
+canonical case worse. Targets are integers and supply is usually integral, so roles sit
+*exactly* at target and headroom ties at 0.0 anyway (four-way on the Shelob deck); the order
+then falls to `within_role`, which **inverts** as a cuttability proxy here — a low
+`within_role` means a hybrid doing other work, which at-target means the deck's theme card,
+not redundant filler. It promoted two spiders in the spider deck. See ROADMAP S12.
+
 ## Consumer
 
 `advisor.advise(..., cut_strategy=..., themes=...)` — `CUT_REDUNDANT` (default) calls

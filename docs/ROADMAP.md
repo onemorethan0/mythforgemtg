@@ -39,6 +39,38 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 > project has already established that **the sim's axis delta cannot see this class of
 > defect**, so a new tiebreak cannot be settled by `advisor_bench` and needs an argument from
 > doctrine instead.
+>
+> **THE OBVIOUS FIX WAS PROTOTYPED AND IT IS WRONG — measured 2026-08-20, not shipped.** The
+> natural repair is to stop throwing the information away: `score_card` computes
+> `over = max(0.0, supply - target)`, and that clamp is what flattens every under-target role
+> to the same value. Ranking instead by *unclamped* headroom — cut from the role CLOSEST to
+> over-supplied — is the continuous extension of the rule the module already follows, and it
+> is surgical (it can only reorder cards scoring exactly 0.0; every positive-score slot is
+> untouched). Applied to the corpus it moves 38 of the 45 degenerate decks and cuts their
+> overlap with the popularity pool from 0.71 to 0.42 of 6. **It still makes the canonical
+> case worse**, for two reasons that are worth writing down because they constrain any future
+> attempt:
+>
+> 1. **Headroom is itself degenerate.** Targets are integers and role supply is frequently
+>    integral, so roles land *exactly* at target far more often than not. On the Shelob deck
+>    ramp, draw, removal and wipe all sit at headroom **0.0** — four-way tie, nothing
+>    discriminated, and the order falls through to the next key anyway.
+> 2. **`within_role` INVERTS as a cuttability proxy when nothing is over-supplied.** The
+>    module's doctrine is that within-role strength LOWERS the cut score — once ramp is
+>    over-served you cut the worst ramp spell. But the module also documents that
+>    `within_role` measures *dedication*, not quality: a low score means a hybrid doing other
+>    work too. When the role is over-served, "weak contributor" means redundant filler. When
+>    the role is merely AT target, "weak contributor" means the card is mostly doing
+>    something else — which is usually the deck's theme. So the doctrine-consistent tiebreak
+>    promoted *Skyfisher Spider* and *Shelob, Dread Weaver* (both `within_role` 1.0, both
+>    spiders in the spider deck) ahead of *Eaten by Spiders*, and re-armed the exact bug the
+>    redundancy pool exists to prevent.
+>
+> Inverting the tiebreak in the degenerate case is not the answer either: it would make the
+> ordering **discontinuous at zero**, flipping a card from most-protected to first-cut as
+> supply crosses its target by 0.1. The likely real answer is that the caller must be told
+> there is no redundancy signal and change what it does, rather than the module inventing an
+> order — which is what `card_impact._cut_sentence` now does for one consumer.
 
 > **S13 (new, open): a fixed per-card role strength makes the target granular.** `card_roles`
 > returns a FIXED 3.0 for `counterspell` and `wipe`, so supply moves in whole-card steps of
