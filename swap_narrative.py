@@ -93,7 +93,9 @@ _FUNCTION_CLAIMS: dict[str, tuple[str, ...]] = {
     "card draw": ("draw", "cantrip", "card advantage"),
     "repeatable draw": ("repeatable draw", "draw engine"),
     "tutor": ("tutor", "searches your library", "finds your"),
-    "removal": ("removal", "removes", "destroys", "exiles"),
+    # NOT "removes": "cutting Xenagos removes a point of ramp" is how anyone describes making
+    # a CUT, and reading it as "this card is a removal spell" rejected a faithful draft.
+    "removal": ("removal spell", "targeted removal", "destroys target", "exiles target"),
     "board wipe": ("board wipe", "wrath", "sweeper", "mass removal"),
     "counterspell": ("counterspell", "counters a spell", "counters target"),
     "cheats creatures into play": ("cheat", "puts creatures onto the battlefield",
@@ -128,6 +130,61 @@ _ROLE_VOCABULARY: dict[str, set[str]] = {
     "finisher": {"team pump", "scaling team pump", "scaling burn", "storm",
                  "cheats creatures into play", "magecraft burn", "burn per cast"},
 }
+
+
+# Functions that differ by a shade no reader distinguishes. A card holding ANY member lets a
+# sentence use any member's wording. Found on real output: "repeatable draw and a bit of ramp"
+# was rejected for calling the card "card draw" - on a card whose vector says repeatable draw -
+# because the bare word "draw" triggers the card-draw phrasing.
+#
+# Deliberately NARROW. `removal` and `board wipe` are NOT one family: targeted removal and a
+# sweeper are different cards and calling one the other is a real error. Nor are `ramp` and
+# `ritual mana` - permanent mana and a one-shot ritual are different promises.
+_FUNCTION_FAMILIES: tuple[frozenset[str], ...] = (
+    frozenset({"card draw", "repeatable draw"}),
+    frozenset({"ramp", "land ramp"}),
+    frozenset({"team pump", "scaling team pump"}),
+    frozenset({"magecraft burn", "burn per cast", "scaling burn"}),
+)
+
+
+def _widen_by_family(held: set[str]) -> set[str]:
+    """Every function `held` licenses, including its family siblings."""
+    widened = set(held)
+    for family in _FUNCTION_FAMILIES:
+        if held & family:
+            widened |= family
+    return widened
+
+
+# Card names that are ALSO the vocabulary this gate hands the model. Magic prints a card
+# called **Counterspell**, and `counterspell` is simultaneously the engine's role name — so a
+# deck holding that card had every honest sentence about an over-supplied counterspell role
+# read as naming a foreign card. Six of thirty-six good drafts died on it.
+#
+# Built from the licensed vocabulary rather than hand-listed, so a role or function added
+# later is covered without anyone remembering to come back here. Duress, Regrowth, Fog and
+# friends land in it the moment their word becomes vocabulary.
+def _vocabulary_names() -> frozenset[str]:
+    words = set(_ROLE_VOCABULARY) | set(_FUNCTION_CLAIMS) | set(_AXIS_STEMS)
+    for phrases in _FUNCTION_CLAIMS.values():
+        words.update(phrases)
+    return frozenset(w.casefold() for w in words)
+
+
+def _looks_like_a_name(text: str, match: re.Match) -> bool:
+    """Is this occurrence a proper NAME rather than the common noun?
+
+    Capitalised and not sentence-initial. Crude, and deliberately biased toward letting the
+    common-noun reading win: missing a mention of a card that shares its name with a role word
+    is a mild under-count, while rejecting honest prose about that role is the failure that
+    was actually happening.
+    """
+    word = text[match.start():match.end()]
+    if not word[:1].isupper():
+        return False
+    before = text[:match.start()].rstrip()
+    return bool(before) and before[-1] not in ".!?"
 
 
 class GateFailure(Exception):
@@ -218,8 +275,12 @@ def check(text: str, brief: dict, *, deck_card_names: set[str] | None = None) ->
         masked = re.sub(re.escape(name), " ", masked, flags=re.IGNORECASE)
     for name in (deck_card_names or set()) - allowed:
         # Word-boundary match so "Bind" does not fire inside "binding".
-        if re.search(rf"\b{re.escape(name)}\b", masked, re.IGNORECASE):
+        for match in re.finditer(rf"\b{re.escape(name)}\b", masked, re.IGNORECASE):
+            if name.casefold() in _vocabulary_names() and not _looks_like_a_name(masked, match):
+                # A ROLE word, not a card. See _VOCABULARY_NAMES.
+                continue
             reasons.append(f"names a card outside the swap: {name!r}")
+            break
 
     # 2. NUMBERS. Anything cited must trace to a measurement.
     budget = allowed_numbers(brief)
@@ -245,12 +306,15 @@ def check(text: str, brief: dict, *, deck_card_names: set[str] | None = None) ->
     # correctness, but it silently starves the corpus of exactly the drafts worth keeping.
     add_card, cut_card = brief.get("add") or {}, brief.get("cut") or {}
     cards = {
-        str(add_card.get("name", "")): ("add", set(add_card.get("functions") or {})),
+        str(add_card.get("name", "")): (
+            "add", _widen_by_family(set(add_card.get("functions") or {}))),
         # The cut also answers to the ROLE the engine assigned it — see _ROLE_VOCABULARY.
         str(cut_card.get("name", "")): (
             "cut",
-            set(cut_card.get("functions") or {})
-            | _ROLE_VOCABULARY.get(str(cut_card.get("role") or ""), set()),
+            _widen_by_family(
+                set(cut_card.get("functions") or {})
+                | _ROLE_VOCABULARY.get(str(cut_card.get("role") or ""), set())
+            ),
         ),
     }
     cards.pop("", None)

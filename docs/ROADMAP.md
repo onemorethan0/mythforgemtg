@@ -474,11 +474,52 @@ prompt was taught the rules it would be judged by; **3 of 3 on first attempt** a
 prompt cannot be left to infer them — a rule the gate enforces and the prompt never states is
 a guaranteed rejection, and that is pinned by a test too.
 
-**Still open:** this is the prompted baseline. The point of the brief-and-gate pair is that it
-makes a rejection-sampled corpus possible — teacher drafts, deterministic gates, keep what
-survives — which is exactly how the ~30k CCM corpus was built without human annotation. The
-fine-tune (`scripts/build_ccm_sft.py` + `scripts/train_ccm_lora.py` are the reusable harness)
-has not been built yet.
+### The corpus builder — `scripts/build_reason_sft.py` (2026-08-20)
+
+Rejection sampling, the same shape that built the ~30k CCM corpus with no human annotation:
+**teacher drafts → deterministic gates → keep what survives**. Writes the same
+`{"messages": [...]}` JSONL that `scripts/train_ccm_lora.py` already consumes.
+
+Two phases, because they are bound by different resources: `--harvest` runs the real advisor
+to collect briefs (sim-bound, ~50s/deck, cached to `briefs.json`), `--draft` samples the
+teacher k times per brief and gates each (LLM-bound, cheap to re-run). Re-running `--draft`
+after tightening the gate is the normal way this corpus improves, which is why they split.
+
+**The split is by DECK, not by swap** — two swaps from one deck share commander, archetype and
+role supply, so a per-suggestion split puts near-duplicate context on both sides and flatters
+the eval. **The trained system prompt is terser than the teacher's**: the teacher is handed
+every rule the gate enforces, and learning those rules is what the fine-tune is *for* — the
+same trade `build_ccm_sft.py` makes when it drops its 14 few-shot exemplars.
+
+**`--axes all` is the default, and volume is the lesser reason.** Targeting only the weakest
+axis yields 0.9 briefs/deck and a corpus dominated by whichever axes are usually weakest;
+sweeping all five yields **7.3 briefs/deck** and covers every axis label the model must write
+about. Projected over the full 499-deck corpus: ~3,600 briefs, ~7 hours — an overnight job,
+the established pattern here.
+
+**THE GATE HAD SEVEN FALSE POSITIVES, AND EVERY ONE WAS FOUND BY READING REAL OUTPUT.** None
+was predicted from the design. Measured over 44 briefs as they were fixed:
+
+| | brief yield | gate pass |
+|---|---|---|
+| first run | 77.8% | 43.8% |
+| after the family + "removes" fixes | 81.8% | 52.2% |
+| after the role-word-is-a-card-name fix | **90.9%** | **64.5%** |
+
+The last one is the sharpest example of the class: Magic prints a card called **Counterspell**,
+and `counterspell` is simultaneously the engine's role name, so a deck holding that card had
+every honest sentence about an over-supplied counterspell role read as naming a foreign card.
+
+**The lesson generalises past this module.** A faithfulness gate cannot be written by reasoning
+about what a model might do — the failure modes are collisions between the checker's vocabulary
+and ordinary English ("removes", "draw", "Counterspell", `n't` inside a card's own title), and
+they only appear when you read what the model actually wrote. Every one is pinned by name in
+`tests/test_swap_narrative.py` so the next tightening cannot silently reintroduce it.
+
+**Still open — the fine-tune itself.** Everything upstream of it now exists. Whether it is even
+needed is an open question worth answering with evidence: the prompted 32b already passes the
+gate on 90.9% of briefs, and the honest argument for training is throughput (the runtime model
+is 14b and a fine-tune would drop the long rule preamble), not quality.
 
 ---
 

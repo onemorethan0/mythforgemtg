@@ -269,3 +269,56 @@ def test_a_genuine_negation_is_still_respected():
     text = ("Jubilation raises Ceiling and is not a board wipe, so the board survives. An "
             "Offer You Can't Refuse is the over-supplied counterspell at 6.0 against 3.")
     assert not any("board wipe" in r for r in sn.check(text, brief(), deck_card_names=DECK))
+
+
+def test_a_family_sibling_is_not_a_false_claim():
+    """"repeatable draw and a bit of ramp" was rejected for calling the card "card draw".
+
+    The card's vector literally says repeatable draw; the bare word "draw" triggers the
+    card-draw phrasing. Within a family the distinction is a shade no reader draws, and the
+    rung-1 vector cannot support policing it.
+    """
+    solemn = brief(add={"name": "Solemn Simulacrum", "mana_value": 4,
+                        "functions": {"ramp": 1.0, "land ramp": 1.0,
+                                      "repeatable draw": 1.0}},
+                   allowed_card_names=["Solemn Simulacrum", "An Offer You Can't Refuse",
+                                       "Omo, Queen of Vesuva"])
+    text = ("Adding Solemn Simulacrum brings repeatable draw and a bit of ramp, which raises "
+            "Ceiling. An Offer You Can't Refuse is the over-supplied counterspell at 6.0.")
+    assert sn.check(text, solemn, deck_card_names=DECK) == []
+
+
+def test_families_stay_narrow():
+    """Targeted removal and a sweeper are different cards; the widening must not merge them."""
+    text = ("Jubilation is a board wipe that resets the table and raises Ceiling. An Offer "
+            "You Can't Refuse is the over-supplied counterspell at 6.0 against 3.")
+    assert any("board wipe" in r for r in sn.check(text, brief(), deck_card_names=DECK))
+
+
+def test_cutting_a_card_is_not_calling_it_removal():
+    """"Cutting X removes a point of ramp" is how anyone describes making a cut."""
+    ramp_cut = brief(cut={"name": "An Offer You Can't Refuse", "role": "ramp",
+                          "functions": {"ramp": 1.0}, "oversupply": 4.0,
+                          "role_supply": 18.0, "role_target": 14})
+    text = ("Jubilation is a team pump that raises Ceiling. Cutting An Offer You Can't "
+            "Refuse removes a single point of ramp from a role already at 18.0 against 14.")
+    assert sn.check(text, ramp_cut, deck_card_names=DECK) == []
+
+
+def test_a_role_word_that_is_also_a_card_name_is_not_an_invention():
+    """Magic prints a card called **Counterspell**, and `counterspell` is the engine's role.
+
+    A deck holding that card had every honest sentence about an over-supplied counterspell
+    role read as naming a foreign card — six of thirty-six good drafts died on it.
+    """
+    text = ("Jubilation is a team pump that raises Ceiling. Cutting An Offer You Can't "
+            "Refuse trims a heavily over-supplied counterspell role at 6.0 against 3.")
+    assert sn.check(text, brief(), deck_card_names={"Counterspell"}) == []
+
+
+def test_the_card_is_still_caught_when_it_is_named_as_a_card():
+    """The exemption is about the common noun, not an amnesty for the card."""
+    text = ("Jubilation is a team pump that raises Ceiling. Your Counterspell already "
+            "covers that slot, so An Offer You Can't Refuse at 6.0 against 3 is the cut.")
+    reasons = sn.check(text, brief(), deck_card_names={"Counterspell"})
+    assert any("Counterspell" in r for r in reasons)
