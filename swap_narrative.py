@@ -65,6 +65,15 @@ _INTENSIFIERS = (
 # STEMS, not the noun. "far more consistent" is a claim about Consistency and the
 # literal "consistency" never matches it - a draft asserting exactly that slipped
 # through the check. Each stem covers the noun and the adjective.
+# Ways a sentence attributes a count to THE DECK rather than to the comparison population.
+# Used by the relational check: the target figure appearing after one of these is the
+# transposition that was observed live.
+_DECK_HAS = (
+    "deck has", "deck already has", "deck supplies", "deck runs", "deck already runs",
+    "deck with", "deck that already has", "you have", "you already have", "already has",
+    "already running", "already runs", "is running",
+)
+
 _AXIS_STEMS = {
     "consistency": "consisten",
     "speed": "speed",
@@ -361,7 +370,26 @@ def check(text: str, brief: dict, *, deck_card_names: set[str] | None = None) ->
         if re.search(rf"\b{stem}\w*", lower):
             reasons.append(f"claims an effect on {axis}, which this swap did not measure")
 
-    # 7. REDUNDANCY. The S12 guard: no calling a cut surplus when nothing was over-supplied.
+    # 7. RELATIONAL MISASSIGNMENT. A number can be real and still be attached to the wrong
+    #    quantity, which checks 2 and 5 both wave through: "a deck that already has 14 ramp
+    #    sources" cited the TARGET while describing the deck's own SUPPLY, understating it by
+    #    19. Narrow on purpose - it fires only when the text attributes the target figure to
+    #    the deck, and only when the two actually differ.
+    cut_card = brief.get("cut") or {}
+    supply = float(cut_card.get("role_supply") or 0.0)
+    target = float(cut_card.get("role_target") or 0.0)
+    if cut_card.get("role") and abs(supply - target) > _NUMBER_TOLERANCE:
+        for match in _NUMBER_RE.finditer(body):
+            if abs(float(match.group()) - target) > _NUMBER_TOLERANCE:
+                continue
+            before = lower[max(0, match.start() - 46):match.start()]
+            if any(phrase in before for phrase in _DECK_HAS):
+                reasons.append(
+                    f"says this deck has {match.group()} {cut_card['role']}, which is what "
+                    f"comparable decks run - this one supplies {supply:g}")
+                break
+
+    # 8. REDUNDANCY. The S12 guard: no calling a cut surplus when nothing was over-supplied.
     cut = brief.get("cut") or {}
     if not cut.get("redundancy_backed"):
         for claim in _REDUNDANCY_CLAIMS:
@@ -526,11 +554,17 @@ def _facts_block(brief: dict) -> str:
         f"  functions: {_fn_text(cut.get('functions'))}",
     ]
     if cut.get("role"):
-        lines.append(
-            f"  role {cut['role']}: deck supplies {cut.get('role_supply')}, "
-            f"decks like this one supply {cut.get('role_target')} "
-            f"(over by {cut.get('oversupply')})"
-        )
+        # Laid out as a table on purpose. The inline form - "deck supplies 33.0, decks like
+        # this one supply 14 (over by 19.0)" - was misread by the model, which wrote "a deck
+        # that already has 14 ramp sources" and understated the deck's own ramp by 19. Every
+        # number was real; one was bound to the wrong quantity. Three labelled rows are much
+        # harder to transpose than three numbers in a sentence.
+        lines += [
+            f"  role {cut['role']}:",
+            f"    THIS deck supplies      {cut.get('role_supply')}",
+            f"    decks like it supply    {cut.get('role_target')}",
+            f"    so this deck is over by {cut.get('oversupply')}",
+        ]
     if cut.get("protected"):
         lines.append("  this card fills no role the engine can read")
     if not cut.get("redundancy_backed"):

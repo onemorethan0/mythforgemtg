@@ -322,3 +322,37 @@ def test_the_card_is_still_caught_when_it_is_named_as_a_card():
             "covers that slot, so An Offer You Can't Refuse at 6.0 against 3 is the cut.")
     reasons = sn.check(text, brief(), deck_card_names={"Counterspell"})
     assert any("Counterspell" in r for r in reasons)
+
+
+def test_a_true_number_bound_to_the_wrong_quantity_is_caught():
+    """Found live, in output the gate had already passed.
+
+    The deck supplied 33.0 ramp against a target of 14, and the draft said "a deck that
+    already has 14 ramp sources" — understating the deck's own ramp by 19. Every number was
+    in the budget, so the numeric check waved it through: the failure is the RELATION, not
+    the value.
+    """
+    ramp = brief(cut={"role": "ramp", "functions": {"ramp": 1.0}, "role_supply": 33.0,
+                      "role_target": 14, "oversupply": 19.0})
+    text = ("Jubilation is a team pump that raises Ceiling. An Offer You Can't Refuse is "
+            "over-supplied in a deck that already has 14 ramp sources, so it is the cut.")
+    assert any("comparable decks run" in r for r in sn.check(text, ramp, deck_card_names=DECK))
+
+
+def test_the_same_figure_is_fine_when_attributed_to_the_population():
+    """The check must not ban citing the target — only claiming it as the deck's own count."""
+    ramp = brief(cut={"role": "ramp", "functions": {"ramp": 1.0}, "role_supply": 33.0,
+                      "role_target": 14, "oversupply": 19.0})
+    text = ("Jubilation is a team pump that raises Ceiling. An Offer You Can't Refuse goes "
+            "because ramp sits at 33.0 where comparable decks run 14, over by 19.0.")
+    assert sn.check(text, ramp, deck_card_names=DECK) == []
+
+
+def test_the_relational_check_stays_quiet_when_supply_equals_target():
+    """Nothing to transpose when the two figures agree, so the check must not fire."""
+    level = brief(cut={"role": "ramp", "functions": {"ramp": 1.0}, "role_supply": 14.0,
+                       "role_target": 14, "oversupply": 0.0, "redundancy_backed": False})
+    text = ("Jubilation is a team pump that raises Ceiling. Nothing here is clearly spare, "
+            "so An Offer You Can't Refuse in a deck that already has 14 ramp is the slot.")
+    assert not any("comparable decks run" in r
+                   for r in sn.check(text, level, deck_card_names=DECK))

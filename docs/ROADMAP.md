@@ -549,6 +549,41 @@ gate's regression set.
 builder and bench all exist, and `scripts/train_ccm_lora.py` consumes the output unchanged.
 The reason not to train is measured.
 
+### Driving the live route found a defect 29 unit tests and the gate both passed
+
+The wiring was verified end to end — engine on :8020, Forge API on :8000, llama-swap on :8010,
+a real stored deck through `POST /api/deck/{id}/advise`. It works, and the improvement over the
+template is not subtle: one suggestion's old reason was the vacuous fallback *"Measured to
+raise ceiling."*
+
+It also produced this, on a deck supplying **33.0** ramp against a target of **14**:
+
+> *"…over-supplied in its ramp role, contributing only 1 function in a deck that **already has
+> 14 ramp sources**"*
+
+**Understating the deck's own ramp by 19, with every number in the budget.** The numeric check
+compares a cited value against a set, so a figure bound to the *wrong quantity* passes it
+cleanly. Call it relational misassignment: `role_supply`, `role_target` and `oversupply` are
+three numbers about one role, and prose can transpose them while staying "faithful" by any
+membership test.
+
+Two fixes, because presentation and checking are different jobs:
+
+1. **The facts block presents the comparison as a labelled table**, not an inline clause. The
+   old form — `deck supplies 33.0, decks like this one supply 14 (over by 19.0)` — is three
+   numbers in a sentence and the model transposed two of them. Three labelled rows are much
+   harder to get wrong, and on the re-run the same swap came back with *"the deck providing
+   33.0 while similar decks only need 14.0"* — the correct relation.
+2. **A narrow gate check** for the specific shape: the target figure attributed to the deck
+   (`deck has`, `already runs`, `you have`) when supply and target actually differ. It stays
+   quiet when they are equal, and never bans citing the target against the population.
+
+**The lesson is about method, not this bug.** The gate passed it, and so did 29 unit tests
+written from the gate's own contract — because both were reasoning about *the checker*. Only
+driving the real route on a real deck produced the sentence that exposed it. Same conclusion
+the seven false positives reached from the other direction: for a faithfulness layer, output
+you have actually read is the only evidence that counts.
+
 ---
 
 ## S2 — ~~Partner decks can be analysed but not built~~ · DONE 2026-08-18
