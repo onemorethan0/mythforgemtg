@@ -65,6 +65,35 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
+      {/* The B2/B3 boundary is NOT resolvable from card gates, and the engine says so.
+          `plays_up` marks a deck the Game Changer gate caps at Core while it sits on the
+          Core/Upgraded edge — measured, 40% of decks their own authors call Upgraded also run
+          zero Game Changers. The engine has computed this and the CLI has printed it since
+          2026-07-28; the web app never showed it, so the one honest caveat on the single most
+          load-bearing number was reaching nobody who uses the app. It fires on 42% of the
+          labelled corpus (124/297), 30 of which their builders called Bracket 3.
+          Amber, not red: this describes uncertainty, not a defect — same convention as the
+          manabase panel's `ramp-dependent`. */}
+      {pp.bracket_plays_up && (
+        <div
+          title={'0 Game Changers caps this at Core. Measured over the corpus, 40% of decks '
+               + 'their authors call Upgraded also run none, so a zero-Game-Changer Core '
+               + 'verdict cannot rule Upgraded out. Read the axes below, and tell your pod '
+               + 'it sits on the line.'}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10,
+            padding: '6px 10px', borderRadius: 8,
+            background: '#1c1408', border: '1px solid #a16207', cursor: 'help',
+          }}
+        >
+          <span style={{ fontSize: 13, color: '#fde047' }}>↗</span>
+          <span style={{ fontSize: 11.5, color: '#fde047', lineHeight: 1.45 }}>
+            <strong>Sits on the Core / Upgraded line.</strong> No Game Changers caps this at
+            Bracket 2, but 40% of decks their own builders call Bracket 3 run none either —
+            this boundary can&rsquo;t be settled from the card list alone.
+          </span>
+        </div>
+      )}
       {Array.isArray(pp.bracket_reasons) && pp.bracket_reasons.length > 0 && (
         <details style={{ marginBottom: 10 }}>
           <summary style={{ fontSize: 11, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>

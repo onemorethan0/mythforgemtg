@@ -302,3 +302,49 @@ def test_confidence_is_part_of_the_block():
     s = _stats_for([0.30, 0.30, 0.30, 0.30])
     assert s.confidence in {lift_stats.CONFIDENCE_HIGH, lift_stats.CONFIDENCE_MEDIUM,
                             lift_stats.CONFIDENCE_LOW}
+
+
+# ── The Core/Upgraded banner (bracket.plays_up) ──────────────────────────────────
+
+def _sim_panel_source() -> str:
+    from pathlib import Path
+    p = (Path(__file__).resolve().parents[1]
+         / "frontend" / "src" / "components" / "SimStrengthPanel.jsx")
+    return p.read_text(encoding="utf-8")
+
+
+def test_the_plays_up_banner_is_rendered_by_the_strength_panel():
+    """The engine computed this for 24 days and the web app never showed it.
+
+    `bracket.plays_up` marks a deck the Game Changer gate caps at Core while it sits on the
+    Core/Upgraded edge — measured, 40% of decks their own authors call Upgraded also run zero
+    Game Changers, so a zero-GC "Core" verdict cannot rule Upgraded out. The engine set the
+    flag, `/analyze` returned it inside `power_profile`, and the CLI printed it; only the UI
+    never read it, so the single most load-bearing number in the app shipped without its one
+    honest caveat. It fires on 42% of the labelled corpus (124/297), 30 of which their
+    builders called Bracket 3.
+
+    Same silent lock-step class as `test_every_verdict_has_a_panel_entry`: a field the engine
+    emits and the panel ignores fails without any symptom — the panel still draws.
+    """
+    source = _sim_panel_source()
+    assert "bracket_plays_up" in source, (
+        "SimStrengthPanel.jsx must read pp.bracket_plays_up — the engine has emitted it "
+        "since 2026-07-28 and the panel ignored it")
+    assert "Core / Upgraded" in source, "the banner must name the boundary it describes"
+
+
+def test_the_banner_does_not_promise_a_bracket_it_cannot_measure():
+    """It reports UNCERTAINTY, not a promotion.
+
+    The wording must not read as "this deck is really a 3" — the whole finding is that the
+    boundary is NOT resolvable from the card list, and two independent measurements (2026-07-28
+    at n=87/33, 2026-08-21 at n=90/40) agree that nothing separates the two. A banner that
+    quietly upgrades the deck would be the false precision the flag replaced.
+    """
+    source = _sim_panel_source()
+    banner = source[source.index("bracket_plays_up"):][:1400]
+    for promise in ("is Bracket 3", "is really a 3", "should be Bracket 3", "upgrade to 3"):
+        assert promise not in banner, f"the banner must not promise a bracket: {promise!r}"
+    assert "can" in banner and "settled" in banner, (
+        "the banner must say the boundary cannot be settled from the card list")

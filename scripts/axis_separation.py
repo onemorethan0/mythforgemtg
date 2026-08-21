@@ -110,7 +110,29 @@ def _card_quality(resolved) -> dict[str, float]:
         "untapped_land_share": 1 - (tapped / (sum(q for _, q in lands) or 1)),
         # Popularity proxy. Invariant 4 (popularity is a prior, never a verdict) means this
         # may inform research but must not drive a verdict — it is measured here precisely so
-        # the question "would popularity have helped?" has a recorded answer. It doesn't.
+        # the question "would popularity have helped?" has a recorded answer.
+        #
+        # CORRECTED 2026-08-21: the recorded answer used to read "It doesn't", and that is
+        # measurably wrong. Re-measured over 159 zero-Game-Changer decks at the B1/B2
+        # boundary (scripts/bracket_boundary.py), a single threshold on this signal scores
+        # **76.1%** against **64.8%** for `manabase_P`, which is what actually ships — an
+        # 11-point gap, on a broad smooth plateau (>=70% across 7.51..8.08), with far better
+        # balance (B1 65% / B2 84% vs 30% / 91%). Cohen's d is -1.02 here and -0.54 at B2/B3,
+        # the strongest non-Game-Changer signal at both casual boundaries.
+        #
+        # IT IS STILL BARRED, and the correction matters precisely because of that: invariant
+        # 4 rests on the argument that a popularity-driven verdict recreates the
+        # static-calculator failure mode this engine exists to replace, NOT on popularity
+        # being weak. Leaving a false empirical claim inside the rule's justification made the
+        # rule look like it was defending a measurement instead of a principle. It is a
+        # principle, and it holds against a signal that works.
+        #
+        # The concrete failure it prevents: EDHREC rank measures how MAINSTREAM a deck is. A
+        # budget pile of staples would rate up and an expensive brew of obscure bombs would
+        # rate down, and every card from a new set carries a poor rank regardless of power —
+        # the same "an absent card is unmeasured, not rejected" trap `edhrec_lift` documents.
+        # It may also be reading the ANNOTATOR rather than the deck: people who build from
+        # published lists label differently from people who brew.
         "edhrec_log_rank": statistics.mean(ranks) if ranks else 0.0,
     }
 

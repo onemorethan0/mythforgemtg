@@ -292,6 +292,28 @@ a placeholder — further engineering there is not worth spending. The signals s
 harness so they are re-measured free as the corpus grows. Note also that the strongest
 ladder-level signal is popularity, which invariant 4 bars from driving a verdict regardless.
 
+**RE-MEASURED 2026-08-21 at a larger n, and both halves of that read hold.** `scripts/
+bracket_boundary.py` fits the 0-GC placement rule directly against the labels. At n=130
+(90 B2 / 40 B3) the B2-vs-B3 baseline is **69.2%** and the best single-threshold rule reaches
+**70.0%** with B3 recall of **2-5%** — "always say B2" wearing a threshold. Two-signal rules
+top out at 70.8%. So the 2026-07-28 finding is confirmed rather than superseded: that boundary
+is not resolvable from the card list.
+
+**One correction, and it strengthens invariant 4 rather than weakening it.** The recorded
+answer to "would popularity have helped?" was *"It doesn't"*, and that is wrong: at the
+**B1/B2** boundary a single threshold on `edhrec_log_rank` scores **76.1%** against **64.8%**
+for the `manabase_P` rule that ships — 11 points, on a broad plateau, better balanced. The
+signal works. It stays barred anyway, because invariant 4 rests on the argument that a
+popularity-driven verdict recreates the static-calculator failure mode this engine exists to
+replace — not on popularity being weak. A false empirical claim inside a rule's justification
+makes the rule look like it is defending a measurement; it is defending a principle.
+
+**A note on the accept criteria.** Phase 5 asks for >=60% bracket-exact. If B2-vs-B3 is
+genuinely not resolvable from the 99 cards — and two independent measurements now say it is
+not — then a large slice of the corpus is unreachable by construction, and **within-one
+(91.6%, target 95%) is the metric that can honestly move**. Exact-match rewards guessing the
+annotator.
+
 ---
 
 ## Which signals actually separate brackets (measured 2026-07-28)
