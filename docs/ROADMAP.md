@@ -96,7 +96,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
 | S12 | Redundancy score silent on 9% of decks | **45/499** decks · **14.4%** of all cut slots | Medium | M |
 | S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
-| S14 | Swap reasons are template fragments | narrative shipped, gated · **3/3 first-attempt** | part done | M |
+| **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
 
 ---
 
@@ -516,10 +516,38 @@ and ordinary English ("removes", "draw", "Counterspell", `n't` inside a card's o
 they only appear when you read what the model actually wrote. Every one is pinned by name in
 `tests/test_swap_narrative.py` so the next tightening cannot silently reintroduce it.
 
-**Still open — the fine-tune itself.** Everything upstream of it now exists. Whether it is even
-needed is an open question worth answering with evidence: the prompted 32b already passes the
-gate on 90.9% of briefs, and the honest argument for training is throughput (the runtime model
-is 14b and a fine-tune would drop the long rule preamble), not quality.
+### `--bench` answered whether to train, and the answer is not yet
+
+The open question was whether a fine-tune is needed at all. `--bench` runs the same briefs
+through several (model, prompt) arms and reports the gate — 44 briefs, k=3:
+
+| arm | brief yield | gate pass | s/brief |
+|---|---|---|---|
+| qwen3:32b / full | 90.9% | 63.5% | 3.8 |
+| **qwen3:14b / full** | **93.2%** | **71.9%** | **1.4** |
+| qwen3:8b / full | 75.0% | 43.4% | 1.1 |
+| qwen3:14b / short | 81.8% | 52.9% | 1.5 |
+| qwen3:8b / short | 81.8% | 52.9% | 0.9 |
+
+**The 14b runtime beats the 32b teacher**, at 2.7× the speed. That is not noise-sized and it
+has a mechanism: this is a constrained phrasing task over supplied facts, and a bigger model
+writes more elaborately — which is more chances to over-claim, not fewer. Its dominant
+rejection is the same one, `claimed a function the vector denies`, just more often. **The
+teacher default in `build_reason_sft.py` changed 32b → 14b on this evidence.**
+
+**So the fine-tune has no quality gap to close** on the path a user actually hits. The rule
+preamble is worth ~19 points of gate pass on 14b (71.9 → 52.9), and closing *that* is exactly
+what training would do — but **dropping the preamble saves no measurable time** (1.4s vs 1.5s
+per brief), so the throughput argument, which was the only one left, is not supported either.
+
+**The case that survives is narrower, and it is a real one:** `8b/full` scores 43.4%. If the
+runtime ever has to drop to 8b for VRAM, a fine-tune that lifts 8b toward 14b is how to do it,
+and this corpus is what that would train on. Until then the corpus earns its keep as the
+gate's regression set.
+
+**Recorded as a decision, not a deferral.** Nothing upstream is missing: brief, gate, corpus
+builder and bench all exist, and `scripts/train_ccm_lora.py` consumes the output unchanged.
+The reason not to train is measured.
 
 ---
 

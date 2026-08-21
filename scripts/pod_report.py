@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import io
 import json
 import os
 import sys
@@ -24,6 +25,29 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 os.chdir(ROOT)
+
+def _ensure_utf8_stdout() -> None:
+    """A card name must not be able to kill a long run.
+
+    Windows hands this process a cp1252 stdout and Magic prints names it cannot encode -
+    AEther Vial, Lim-Dul the Necromancer, Jotun Grunt. This script prints card names, so one
+    such card mid-run raises UnicodeEncodeError and loses everything measured so far.
+
+    Same wrapper `image_gen` and `model3d` install; `errors="replace"` so output degrades to
+    a `?` rather than ever raising.
+    """
+    for attr in ("stdout", "stderr"):
+        stream = getattr(sys, attr, None)
+        if stream is None or not hasattr(stream, "buffer"):
+            continue
+        encoding = (getattr(stream, "encoding", "") or "").lower().replace("-", "")
+        if encoding != "utf8" or getattr(stream, "errors", "") != "replace":
+            setattr(sys, attr,
+                    io.TextIOWrapper(stream.buffer, encoding="utf-8", errors="replace"))
+
+
+_ensure_utf8_stdout()
+
 os.environ.setdefault("MYTHFORGE_EDHREC_LIFT", "on")
 
 import collection                                              # noqa: E402

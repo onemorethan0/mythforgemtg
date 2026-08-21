@@ -546,15 +546,23 @@ def _facts_block(brief: dict) -> str:
     return "\n".join(lines)
 
 
-def build_messages(brief: dict) -> list[dict]:
-    """The chat messages for one brief. Pure - no network, so it is testable and diffable."""
+def build_messages(brief: dict, system: str | None = None) -> list[dict]:
+    """The chat messages for one brief. Pure - no network, so it is testable and diffable.
+
+    `system` substitutes the whole system prompt. That exists for ONE purpose: a fine-tuned
+    model is supposed to have learned the rules, so it would be served the terse prompt
+    instead of the full rule sheet — and the size of that gap is the honest argument for
+    training at all. Measuring it needs the short prompt to be runnable against an untrained
+    model, which is what this override is for. The default is always the full teacher prompt.
+    """
     cut = brief.get("cut") or {}
-    system = _SYSTEM.format(
-        cards=", ".join(brief.get("allowed_card_names") or []) or "none",
-        axis_label=brief.get("axis_label", "the target axis"),
-        redundancy_rule=(_REDUNDANCY_OK if cut.get("redundancy_backed")
-                         else _REDUNDANCY_FORBIDDEN),
-    )
+    if system is None:
+        system = _SYSTEM.format(
+            cards=", ".join(brief.get("allowed_card_names") or []) or "none",
+            axis_label=brief.get("axis_label", "the target axis"),
+            redundancy_rule=(_REDUNDANCY_OK if cut.get("redundancy_backed")
+                             else _REDUNDANCY_FORBIDDEN),
+        )
     return [
         {"role": "system", "content": system},
         {"role": "user", "content": _facts_block(brief)},
@@ -583,6 +591,7 @@ def narrate(
     attempts: int = 2,
     deck_card_names: set[str] | None = None,
     collect: list | None = None,
+    system: str | None = None,
 ) -> str | None:
     """A gated narrative for one swap, or None if no attempt passed.
 
@@ -596,7 +605,7 @@ def narrate(
     """
     from themer import _chat_completion  # deferred: heavy import, and unused by the gate tests
 
-    messages = build_messages(brief)
+    messages = build_messages(brief, system)
     for attempt in range(max(1, attempts)):
         try:
             raw = _chat_completion(
