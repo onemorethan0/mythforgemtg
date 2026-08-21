@@ -314,6 +314,68 @@ not — then a large slice of the corpus is unreachable by construction, and **w
 (91.6%, target 95%) is the metric that can honestly move**. Exact-match rewards guessing the
 annotator.
 
+### The goldfish clock is bracket-invariant, and that changes the diagnosis (2026-08-21)
+
+A player put the B2/B3 line in the terms the format actually uses: *a 2 takes seven or more
+turns to win unimpeded; a 3 accelerates — under perfect conditions it may win on turn 4-5, but
+not consistently.* That is a claim about the **relationship** between the best draw and the
+typical one, and nothing here had measured it: the sweep tried `ceiling`, `kill_turn` and
+`consistency` **separately**, and each came back weak.
+
+Measured over the 291 labelled decks that resolve (horizon 14, runs 150):
+
+    bracket        B1      B2      B3      B4      B5
+    nut-draw     8.64    8.44    8.46    8.72    8.69     <- mean of the FASTEST decile
+    avg kill    10.68   10.56   10.61   10.74   11.10
+    kill rate    0.80    0.92    0.87    0.81    0.77
+
+**Every bracket's best draw lands on turn ~8.5, cEDH included.** A B5 deck holding 22 Game
+Changers nut-draws at 8.92 — slower than the B1 mean. Real cEDH wins on turn 2-4.
+
+    spread of the five bracket MEANS   0.28 turns
+    typical WITHIN-bracket stdev       1.12 turns
+
+The between-bracket signal is **four times smaller than the within-bracket noise**. And the
+region the player's model describes is one the simulator never enters: **0 of 291 decks
+nut-draw by turn 5**, the fastest in the whole corpus is **5.60**, and only 6.5% get inside
+turn 7.
+
+**This reframes the "not resolvable" conclusion above.** That read attributed the B2/B3
+failure to the LABELS — the author's intent rather than a property of the 99 cards. The
+alternative is that the property is in the cards exactly as the player describes, and the
+clock is blind to it. The evidence favours the second: a measurement that cannot separate
+cEDH from Exhibition on speed is not entitled to conclude anything about B2 versus B3. The
+earlier reading stands as *"unresolvable by this simulator"*, which is a different and far
+more actionable claim.
+
+**Why the clock is flat is already half-documented.** Tier 0 goldfishes a combat clock.
+Combos are an INPUT (`two_card_combos`), not something it detects or executes; `sim/storm.py`
+and `sim/overrun.py` exist precisely because "the commander-as-engine is invisible to the
+combat clock". Nobody had measured how far that blindness flattens the whole ladder. It
+flattens it completely.
+
+**Corroborating detail:** re-running the accuracy harness at the app's real horizon (12 turns,
+not the 8 the first version hard-coded) moves bracket-exact **52.9% -> 53.2%**. Doubling the
+simulated horizon changes the verdict on one deck in three hundred, because the Game Changer
+gate is doing the work and the axes are placing inside a band they cannot see into.
+
+**Consequence for the roadmap.** Bracket accuracy is capped by the clock, not by the gates or
+the placement rules, and no amount of threshold-fitting on `ceiling`/`kill_turn`/`consistency`
+will move it while those three are near-constant across the ladder. The lever is making the
+clock able to see a non-combat win. `nut_draw_turn`, `kill_rate` and `speed_gap` are now
+permanent signals in `scripts/axis_separation.py`, so the day the clock improves, the player's
+model is re-tested for free.
+
+**Two harness defects this exposed, both fixed:**
+- `axis_separation` recorded `report.avg_kill_turn or 0.0`, so a deck that NEVER kills inside
+  the horizon was recorded as killing on **turn zero** — the fastest possible value. Six
+  labelled decks are in that state, five of them B1, the bracket whose whole character is
+  being unable to close. Same `edhrec_rank or 10**9` shape this repo has fixed twice already.
+- `bracket_accuracy` hard-coded `turns=8` while `/analyze` runs `DEFAULT_ANALYZE_TURNS = 12`,
+  so it scored a configuration no user ever gets. Not cosmetic: the Ceiling axis scales by
+  `cfg.turns`, and the nut-turn threshold is `max(4, turns*0.6)` — turn 4 at a horizon of 8,
+  turn 7 at 12. It now defaults to the app's value.
+
 ---
 
 ## Which signals actually separate brackets (measured 2026-07-28)

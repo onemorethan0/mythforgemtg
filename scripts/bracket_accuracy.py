@@ -71,6 +71,10 @@ def _ensure_utf8_stdout() -> None:
 
 _ensure_utf8_stdout()
 
+# The app's horizon, so --turns defaults to what a user actually gets.
+sys.path.insert(0, str(ROOT / "src"))
+from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS  # noqa: E402
+
 _LABEL_RE = re.compile(r"^#\s*bracket:\s*([1-5])\s*$", re.MULTILINE)
 
 
@@ -92,6 +96,13 @@ def main() -> int:
     ap.add_argument("--runs", type=int, default=120,
                     help="sim runs per deck. The bracket GATES are rule-based; the axes only "
                          "place a deck within its band, so this is cheaper than /analyze.")
+    ap.add_argument("--turns", type=int, default=DEFAULT_ANALYZE_TURNS,
+                    help="sim horizon. Defaults to the APP's value. The first version of this "
+                         "script hard-coded 8 while /analyze runs 12, so it scored a "
+                         "configuration no user ever gets - and the difference is not "
+                         "cosmetic: the Ceiling axis scales by cfg.turns and the nut-turn "
+                         "threshold is max(4, turns*0.6), i.e. turn 4 at a horizon of 8 and "
+                         "turn 7 at 12.")
     ap.add_argument("--json", type=Path)
     ap.add_argument("--combos", type=int, default=0,
                     help="two-card combos to DECLARE per deck. This is an input from an "
@@ -105,7 +116,7 @@ def main() -> int:
     from mythgauntlet.model.deck import Deck, resolve
     from mythgauntlet.ratings.analysis import analyze_deck
     from mythgauntlet.semantics.store import SemanticsStore
-    from mythgauntlet.sim.tier0 import SimConfig
+    from mythgauntlet.sim.tier0 import SimConfig  # noqa: F811
 
     started = time.time()
     db = load_card_db()
@@ -114,7 +125,7 @@ def main() -> int:
     print(f"store {len(store._by_name)} cards; {len(decks)} labelled decks "
           f"({time.time()-started:.0f}s)", flush=True)
 
-    cfg = SimConfig(turns=8, runs=args.runs, seed=42)
+    cfg = SimConfig(turns=args.turns, runs=args.runs, seed=42)
     rows = []
     for index, (path, label) in enumerate(decks, 1):
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)
@@ -150,7 +161,8 @@ def main() -> int:
     bias = sum(r["predicted"] - r["label"] for r in rows) / len(rows)
     n = len(rows)
 
-    print(f"\n{'='*62}\nscored {n} labelled decks (runs={args.runs})\n{'='*62}")
+    print(f"\n{'='*62}\nscored {n} labelled decks "
+          f"(runs={args.runs}, turns={args.turns})\n{'='*62}")
     print(f"  bracket-exact   {exact:4d}/{n}  {100*exact/n:5.1f}%   (accept: >=60%)")
     print(f"  within-one      {within:4d}/{n}  {100*within/n:5.1f}%   (accept: >=95%)")
     print(f"  signed bias     {bias:+.2f} brackets  (positive = the engine rates HIGHER "

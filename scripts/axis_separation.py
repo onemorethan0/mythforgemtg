@@ -169,7 +169,27 @@ def collect(runs: int, seed: int) -> list[tuple[int, dict[str, float]]]:
             "consistency": report.consistency_score,
             "cmdr_turn": report.avg_commander_turn or 0.0,
             "avg_mv": statistics.mean(nonland) if nonland else 0.0,
-            "kill_turn": report.avg_kill_turn or 0.0,
+            # A deck that NEVER kills inside the horizon has no kill turn. `or 0.0` recorded
+            # it as killing on turn ZERO - the fastest value possible - so the decks that
+            # cannot close at all were pulling the mean DOWN and reading as the fastest in
+            # their bracket. Six labelled decks are in that state (five of them B1, the
+            # bracket whose whole character is "cannot close"), which is exactly backwards.
+            # Same shape as `edhrec_rank or 10**9`, which this repo has already fixed twice.
+            # The horizon is the honest floor: it did not kill by then, so it is at least that.
+            "kill_turn": report.avg_kill_turn if report.avg_kill_turn is not None
+            else float(cfg.turns),
+            # --- speed / consistency, added 2026-08-21 on a player's model of the B2/B3 line:
+            # "a 2 takes 7+ turns unimpeded; a 3 accelerates - under perfect conditions it may
+            # win turn 4-5, but not consistently". That is a claim about the RELATIONSHIP
+            # between the best draw and the typical one, which nothing here measured: the
+            # sweep tried `ceiling`, `kill_turn` and `consistency` separately and each came
+            # back weak. These three make the model directly testable.
+            "nut_draw_turn": (ceiling.fast_kill_turn if ceiling.fast_kill_turn is not None
+                              else float(cfg.turns)),
+            "kill_rate": report.goldfish_kill_rate,
+            "speed_gap": ((report.avg_kill_turn - ceiling.fast_kill_turn)
+                          if report.avg_kill_turn is not None
+                          and ceiling.fast_kill_turn is not None else 0.0),
         }))
     return rows
 
