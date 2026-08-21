@@ -7,6 +7,14 @@ and what is still open.
 
 Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tests**.
 
+> **NEXT SESSION START HERE: [`PLAN_CLOCK.md`](PLAN_CLOCK.md).** The bracket estimate — the one
+> output the casual-gauging goal actually rests on — is capped by a single measurable fact:
+> the goldfish clock is **bracket-invariant**. Every bracket's best draw lands on turn ~8.5,
+> cEDH included, because `kill_turn` is set from cumulative **combat** damage alone
+> (`sim/tier0.py:348`). No threshold-fitting moves the number while that holds. The plan says
+> what to build, in what order, and which four obvious moves have already been measured and
+> rejected.
+
 ---
 
 ## 1. Where this came from
