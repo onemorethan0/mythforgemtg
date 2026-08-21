@@ -210,3 +210,31 @@ def test_exhibition_deck_does_not_play_up(forest, bear):
                            manabase_consistency=0.50)
     assert est.bracket == 1
     assert est.plays_up is False
+
+
+def test_an_unverified_combo_count_is_not_reported_as_unchecked(forest, bear):
+    """The note contradicted the gate sitting two lines above it.
+
+    A caller may supply a combo COUNT without having run a verified check — the engine
+    accepts that and docks confidence. But it then appended "combos not checked", which reads
+    as "no combo information was used" while the gate had already promoted the deck to
+    Bracket 3 on that very count. Confidence is not in the reason list, so the dock was
+    invisible and the two visible lines simply disagreed.
+
+    Found while scoring the estimator against the corpus labels: a harness passed a count by
+    mistake and the contradictory pair is what exposed it.
+    """
+    from mythgauntlet.ratings.bracket import estimate_bracket
+
+    declared = estimate_bracket([(forest, 40), (bear, 59)], [],
+                                two_card_combos=2, combos_checked=False)
+    notes = [r for r in declared.reasons if r.startswith("note:")]
+    assert notes, "an unverified run must still carry a note"
+    assert "DECLARED but not verified" in notes[0]
+    assert declared.bracket >= 3, "the gate still fires on the supplied count"
+
+    silent = estimate_bracket([(forest, 40), (bear, 59)], [],
+                              two_card_combos=0, combos_checked=False)
+    quiet = [r for r in silent.reasons if r.startswith("note:")]
+    assert quiet and "not checked" in quiet[0], "no count -> the plain note is still right"
+    assert "DECLARED" not in quiet[0]

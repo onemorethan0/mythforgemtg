@@ -279,7 +279,19 @@ def estimate_bracket(
     if combos and not combos_checked:
         confidence -= 0.10
     if not combos_checked:
-        reasons.append("note: combos not checked (run with --combos for the combo gate)")
+        # Two different situations, and one flat note described both wrongly. When a caller
+        # supplies a combo COUNT without having run a verified check, the gate above has
+        # already fired ("N in-deck game-ending combo(s) -> min Bracket 3") and saying
+        # "combos not checked" next to it is a contradiction a reader cannot resolve - it
+        # reads as "no combo information was used" while a combo promotion is sitting two
+        # lines up. The confidence dock was the only signal, and confidence is not in the
+        # reason list. Same class as S3: a label that misdescribes what was measured.
+        reasons.append(
+            f"note: {combos} combo(s) were DECLARED but not verified - the gate above used "
+            "an unchecked count (run with --combos to verify)"
+            if combos else
+            "note: combos not checked (run with --combos for the combo gate)"
+        )
         confidence -= 0.05
     confidence *= 0.6 + 0.4 * max(0.0, min(1.0, coverage_share))  # lower if semantics thin
     confidence = max(0.2, min(0.95, confidence))
