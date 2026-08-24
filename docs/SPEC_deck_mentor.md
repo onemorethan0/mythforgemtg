@@ -57,11 +57,32 @@ failure mode the user is asking to avoid — an LLM's parametric knowledge of th
 rules is not verifiable and WILL occasionally be wrong in a way that looks identical to being
 right.
 
-## Phase 0 — the rules/rulings corpus (data layer, no chat, no UI)
+## Phase 0 — the rules/rulings corpus (data layer, no chat, no UI) — SHIPPED 2026-08-24
 
-New module `mythgauntlet/data/rulings.py`, mirroring the existing `edhrec.py`/`spellbook.py`
-shape (explicit fetch command, cached under `data/`, versioned by snapshot date, offline
-after that):
+`mythgauntlet/data/rulings.py`, mirroring the existing `edhrec.py`/`spellbook.py` shape
+(explicit fetch command — `mythgauntlet fetch-rules` — cached under `data/`, staleness-checked,
+offline after that). Full detail and the measured numbers: `docs/engine/DATA_SOURCES.md`.
+
+**The single most important thing this phase found: rule numbers renumber, and an LLM's
+training-time memory of one is not a citation.** While building the parser, the "creature with
+0 toughness dies" rule — cited here in an earlier draft of this very spec's Phase 1 model test
+as 704.5c, from ordinary general knowledge — turned out to actually be **704.5f** in the live
+(Aug 2026) Comprehensive Rules; 704.5c is now the ten-or-more-poison-counters rule. Nobody
+would have caught that without fetching the real document and checking. That is Phase 0's whole
+argument for existing, demonstrated against the person building it, not just asserted.
+
+Measured against the live 2026-08-19 document: parses to **3,308 rules, 739 glossary terms**
+(the module refuses to write a corpus under 1,000/500 as a sanity floor — a format drift is
+a loud error, not a silently-truncated corpus). BM25 search over it correctly ranks the actual
+trample rule (`702.19b`) first for a natural-language question about assigning trample damage
+to a player. One real recall gap was found and closed: a query using "zero" instead of "0"
+missed the toughness rule entirely on pure token mismatch (CR text overwhelmingly writes small
+numbers as digits) — a small number-word normalizer fixed the measured case. A paraphrase using
+different vocabulary entirely ("dies" vs. "put into its owner's graveyard") still isn't found —
+logged as a known BM25 limitation for the Phase 4 gold-set bench to size, not chased further
+here; see the "add a semantic layer only if measured and found wanting" line below, still true.
+
+Original design (below), now built as specified with the two adjustments above:
 
 - **Scryfall rulings bulk data** (`bulk-data` → `rulings` object, same endpoint family
   `cards_slim.json` already uses for `oracle_cards`). Per `oracle_id`: `[{published_at,

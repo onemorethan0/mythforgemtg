@@ -27,7 +27,7 @@ from mythgauntlet.config import (
     data_dir,
     suite_collection_path,
 )
-from mythgauntlet.data import decksources, edhrec, printings, scryfall, spellbook
+from mythgauntlet.data import decksources, edhrec, printings, rulings, scryfall, spellbook
 from mythgauntlet.edhplay import artselect, artsource
 from mythgauntlet.edhplay import export as edh_export
 from mythgauntlet.edhplay import userscript as edh_userscript
@@ -172,6 +172,41 @@ def _cmd_fetch_data(args: argparse.Namespace) -> int:
         console.print(f"[yellow]Card universe is {age:.0f} days stale — cards printed "
                       "since then don't exist to the engine.[/yellow]")
     _nudge("Next: mythgauntlet analyze my_deck.txt   (or 'mythgauntlet menu' to explore)")
+    return 0
+
+
+def _cmd_fetch_rules(args: argparse.Namespace) -> int:
+    """Rulings + Comprehensive Rules corpus (docs/SPEC_deck_mentor.md Phase 0) — a
+    separate command from fetch-data because this is a different data domain (what the
+    game's rules SAY, not what cards exist) with its own staleness cadence."""
+    console.print("[bold]Fetching Scryfall rulings...[/bold]")
+    try:
+        rpath = rulings.fetch_rulings(force=args.force)
+    except requests.RequestException as exc:
+        if rulings.rulings_path().exists():
+            console.print(f"[yellow]Rulings refresh failed ({exc}); using the cached store.[/yellow]")
+            rpath = rulings.rulings_path()
+        else:
+            _die(f"No cached rulings store and the download failed: {exc}")
+    rdb = rulings.load_rulings_db(rpath)
+    n_rulings = sum(len(v) for v in rdb.values())
+    console.print(f"Rulings store ready: [green]{rpath}[/green] "
+                  f"({len(rdb):,} cards, {n_rulings:,} rulings)")
+
+    console.print("[bold]Fetching the Comprehensive Rules...[/bold]")
+    try:
+        cpath = rulings.fetch_comprehensive_rules(force=args.force)
+    except requests.RequestException as exc:
+        if rulings.cr_path().exists():
+            console.print(f"[yellow]Comprehensive Rules refresh failed ({exc}); using the "
+                          "cached store.[/yellow]")
+            cpath = rulings.cr_path()
+        else:
+            _die(f"No cached Comprehensive Rules store and the download failed: {exc}")
+    cr = rulings.load_comprehensive_rules(cpath)
+    console.print(f"Comprehensive Rules ready: [green]{cpath}[/green] "
+                  f"(effective {cr.effective_date}, {len(cr.rules):,} rules, "
+                  f"{len(cr.glossary):,} glossary terms)")
     return 0
 
 
@@ -1704,6 +1739,14 @@ def build_parser() -> argparse.ArgumentParser:
         help=f"refetch when the cached store is older than this (default {scryfall.MAX_AGE_DAYS})",
     )
     p_fetch.set_defaults(func=_cmd_fetch_data)
+
+    p_fetch_rules = sub.add_parser(
+        "fetch-rules",
+        description="Download Scryfall rulings + the official Comprehensive Rules "
+        "(docs/SPEC_deck_mentor.md Phase 0 — the Deck Mentor's ground-truth corpus).",
+    )
+    p_fetch_rules.add_argument("--force", action="store_true", help="re-download even if cached")
+    p_fetch_rules.set_defaults(func=_cmd_fetch_rules)
 
     p_analyze = sub.add_parser(
         "analyze",

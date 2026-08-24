@@ -23,6 +23,11 @@ numpy>=1.26
 # fastapi/uvicorn/requests above are shared with the app.
 rich>=13.0
 json-repair>=0.30
+# Lexical search over the Comprehensive Rules corpus (data/rulings.py, SPEC_deck_mentor.md
+# Phase 0). Deliberately not an embedding index: the corpus is ~3.5k numbered rules, small
+# enough that lexical search over CR's own dense, exact terminology outperforms semantic
+# search here, with no embedding-model dependency or GPU in the loop.
+rank-bm25>=0.2
 
 # --- Deliberately NOT required ----------------------------------------------
 # Audited 2026-08-08 by walking every third-party import in the tracked tree against this

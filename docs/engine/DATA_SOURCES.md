@@ -80,6 +80,48 @@ by decklist hash under `data/spellbook/`. CLI: `mythgauntlet combos DECK.txt` or
   accessible. Strictly for calibrating/validating the rating scale — never required for the
   core loop to function.
 
+## Rulings + Comprehensive Rules (`data/rulings.py`) — implemented 2026-08-24
+
+The Deck Mentor feature (`docs/SPEC_deck_mentor.md`) needs a ground-truth corpus to check an
+LLM's rules claims against — before this, the repo had none at all (confirmed by grep while
+spec'ing that feature: zero hits for "rulings" anywhere in the tree). Two sources, one module:
+
+- **Scryfall rulings bulk data** — same `bulk-data` index the card store uses, `type ==
+  "rulings"`, one JSONL-gzip file of `{oracle_id, source, published_at, comment}` records
+  grouped by `oracle_id` at fetch time (`data/rulings_slim.json`, schema-versioned, hard-fails
+  on mismatch — same doctrine as `scryfall.py`). Joins straight onto the existing `CardDb`
+  identity.
+- **The official Comprehensive Rules** (plain text, `magic.wizards.com/en/rules` — the direct
+  `.txt` link is discovered by scraping that page rather than hardcoded, since the URL's date
+  changes with every rules update; verified live 2026-08-24 the href carries a literal space
+  before the date, not `%20`, so the fetcher re-encodes it). Parsed into `{number, text}`
+  records (the citation unit a Deck Mentor answer must trace back to) plus the Glossary as
+  `{term, text}`. **Measured against the live 2026-08-19 document: 3,308 rules, 739 glossary
+  terms**, both comfortably above the module's own sanity floor (it refuses to write a corpus
+  under 1,000 rules / 500 glossary terms rather than silently caching a broken parse).
+
+**Why this data has to be fetched live and never assumed: rule numbers renumber.** Verified
+while building this — the "creature with 0 toughness dies" state-based action, commonly cited
+as rule 704.5c, is **rule 704.5f** in the current (Aug 2026) rules; 704.5c is now the ten-or-more
+poison-counters rule. An LLM citing 704.5c from training-time memory would be citing the wrong
+rule with the same fluent confidence as a correct citation — exactly the failure this corpus
+exists to catch, and a concrete demonstration of why Phase 0 is a real prerequisite and not
+ceremony.
+
+**Retrieval:** exact rule-number and card-name lookups are dict gets. Free-text questions go
+through BM25 (`rank_bm25`) over rule + glossary text — deliberately not an embedding index, see
+the module docstring. **Measured limitation, not fixed further:** BM25 has no stemming or
+synonymy, so a query using "zero" instead of "0" originally missed rule 704.5f entirely, purely
+on token mismatch (CR text overwhelmingly writes small numbers as digits). A small
+number-word→digit normalizer in `_tokenize` closed the exact case measured, but a paraphrase
+using different vocabulary entirely (e.g. "dies" for a rule that says "put into its owner's
+graveyard") still won't be found by BM25 alone — add a semantic layer only if the Phase 4
+gold-set bench measures this as a real recall problem, not preemptively.
+
+CLI: `mythgauntlet fetch-rules` (mirrors `fetch-data`'s `--force`; rulings refresh weekly like
+card data, the Comprehensive Rules every 14 days since WotC updates it roughly per set release
+rather than daily).
+
 ## Local LLM (semantics compilation) — infrastructure already running
 
 - llama-swap gateway on `127.0.0.1:8010` (OpenAI-compatible), `qwen3:14b` default; used
