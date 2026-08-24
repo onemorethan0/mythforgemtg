@@ -121,7 +121,7 @@ Each of these was measured and rejected. Re-deriving them costs a session.
 
 ## 4. The work
 
-### Phase 1 — teach the clock to see a non-combat win  ⟵ **1a+1b landed, gate not yet met, see 1c below**
+### Phase 1 — teach the clock to see a non-combat win  ⟵ **1a+1b landed; B2/B3 via the clock closed 2026-08-24, target within-one instead**
 
 This is the lever. Nothing downstream can move while the clock is flat.
 
@@ -242,6 +242,28 @@ bracket verdict until it demonstrates separation on the labelled anchors*
 
 `nut_draw_turn`, `kill_rate` and `speed_gap` are already permanent signals in
 `axis_separation`, so this re-tests for free.
+
+**DECIDED 2026-08-24 — B2/B3 exact-match via the clock is closed for now; target within-one.**
+1a and 1b both landed and are real, tested improvements (the B5<B3 inversion is fixed), but the
+gate above is not met and two independent non-combat-kill mechanisms both failed to move it —
+that is enough evidence, not a coin flip, so this is a decision, not an unmeasured guess:
+
+- **Do not restart 1c hoping it fixes B2/B3.** The reasoning in the 1b write-up above still
+  holds (combos already gate placement directly; B2/B3 mostly excludes real combo decks by
+  construction). If 1c is picked up later, it should be justified on its own merits (an honest
+  combo-aware kill_turn is a real gap regardless of B2/B3), not as another attempt at this gate.
+- **Phase 3's B2/B3 attempt is shelved**, per the repo's own invariant that no axis drives a
+  verdict without demonstrated separation — `nut_draw_turn`/`speed_gap` haven't earned a place
+  in B2/B3 placement and should not be wired in.
+- **Phase 3's B1/B2 refit is NOT blocked by this** — a different boundary, already separates
+  well on signals that don't depend on the speed axis (`manabase_P` ships at d=+0.55;
+  `edhrec_log_rank` works at d=-1.02 but stays barred by invariant 4). Untouched by today's
+  finding either way.
+- **Going forward, `within-one` (91.6% → target 95%) is the metric to chase, not bracket-exact
+  at B2/B3.** Bracket-exact stays reported (it's an honest number), but a B2 deck estimated as
+  B3 is a rounding error inside the casual band this project serves, not the failure mode that
+  matters — sending someone to the wrong TABLE is. Any future work aimed at moving the accept
+  bar should target within-one directly rather than re-attempting B2/B3 separation.
 
 ### Phase 2 — "how much interaction does it take to stop them"
 

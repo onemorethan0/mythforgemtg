@@ -17,11 +17,13 @@ Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tes
 > run, then real burn/magecraft/ritual-mana damage modeled directly in the T0 sim). Together
 > they fixed the specific inversion (B5's nut-draw kill is now faster than B3's, was slower)
 > and the bracket-accuracy headline is unchanged as expected (nothing consumes the speed
-> signal for placement yet) — but **the B2/B3 |d|>=0.5 gate is still not met, and 1b barely
-> moved it**, which is itself the finding: two independently-wired non-combat-kill mechanisms
-> both fail to separate B2 from B3 in this corpus. 1c (the combo question) is open but is not
-> expected to close this specific gap either (see PLAN_CLOCK.md §Phase 1 for why) — worth
-> weighing the plan's own within-one fallback before investing further here.
+> signal for placement yet) — but the B2/B3 |d|>=0.5 gate was still not met, and 1b barely
+> moved it. **DECIDED (with user sign-off): B2/B3 exact-match via the clock is closed** — two
+> independently-wired non-combat-kill mechanisms both failed to separate B2 from B3, which is
+> evidence, not a coin flip. Do not restart 1c hoping to fix this specific gate (see
+> PLAN_CLOCK.md's Phase 1 "DECIDED" note for the reasoning). **Target within-one (91.6% → 95%)
+> going forward, not bracket-exact at B2/B3.** Phase 3's B1/B2 refit is untouched by this and
+> may still proceed — it's a different boundary that doesn't depend on the speed axis.
 
 ---
 
