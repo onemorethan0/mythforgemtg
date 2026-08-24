@@ -9,6 +9,7 @@ Brackets define power level and restrict specific categories of cards:
   5 — cEDH       : No restrictions beyond the official ban list
 """
 from __future__ import annotations
+import re
 from dataclasses import dataclass
 
 # ── Bracket metadata ──────────────────────────────────────────────────────────
@@ -31,6 +32,21 @@ BRACKET_DESCRIPTIONS = {
 
 # ── Official Game Changers list (February 9, 2026 — 53 cards) ─────────────────
 # These cards are legal but count toward each bracket's quota.
+#
+# FALLBACK ONLY as of 2026-08-24 — do not treat this as the source of truth. Scryfall
+# ships a live `game_changer` boolean on every card object (confirmed present on both
+# /cards/named and /cards/search, i.e. every card `_add_card` ever sees), refreshed by
+# WotC updates with no redeploy needed here — the same field the engine's own
+# `data/scryfall.py` already reads as authoritative, with a hard schema-version error so
+# it can never go silently stale (see CLAUDE.md). `BracketFilter.allows()` below prefers
+# that live field and only falls back to this frozenset when a card dict lacks the key
+# entirely (synthetic/offline card data). This set existed as the SOLE mechanism until
+# then, with no staleness check — exactly the two-authorities-drift problem the engine
+# merge was supposed to end (root bracket.py vs `ratings/bracket.py` computing the same
+# official quota two different ways). It also already carried a real bug from being a
+# bare name string: some printings of Tergrid report as
+# "Tergrid, God of Fright // Tergrid's Lantern" from Scryfall, which this frozenset (front
+# face only) would silently miss — the live boolean has no such failure mode.
 GAME_CHANGERS: frozenset[str] = frozenset({
     # White
     "Drannith Magistrate", "Enlightened Tutor", "Farewell", "Humility",
@@ -75,13 +91,25 @@ MASS_LAND_DESTRUCTION_CARDS: frozenset[str] = frozenset({
     "Ruination", "Bend or Break",
 })
 
-# Oracle text patterns — catches reprints and new cards with the same effects
-_EXTRA_TURN_PATTERNS  = ("take an extra turn", "takes an extra turn")
-_MLD_PATTERNS         = (
-    "destroy all lands",
-    "each player sacrifices all lands",
-    "destroy all nonbasic lands",
-    "each player destroys all",
+# Oracle text patterns — catches reprints and new cards with the same effects.
+#
+# Ported from `mythgauntlet/ratings/bracket.py`'s `_MLD_RES` (Forge cannot import the
+# engine package — separate process, see CLAUDE.md — so this is a deliberate duplicate,
+# kept byte-for-byte identical on purpose). That version was validated 2026-08-07 against
+# all 34,179 cards in the engine's card store after the naive version (a plain substring
+# check, which is what this file had until 2026-08-24) proved wrong in both directions:
+# it fabricated mass-land-denial on ordinary wraths whose text merely contained "nonland"
+# or a single-land sacrifice ("each player destroys all" with no object gate matches
+# "each player destroys all artifacts" just as readily as "...all lands"), and it MISSED
+# real mass-land-denial cards that don't use the literal string "destroy all lands"
+# (Jokulhaups, Obliterate, Devastation, ...). The two guards below are load-bearing:
+# \b around land/lands stops "nonland" matching, and (?!except) stops a sweeper that
+# explicitly SPARES lands (Scourglass: "destroy all permanents except ... and lands").
+_EXTRA_TURN_RE = re.compile(r"take an extra turn|extra turn after this one", re.IGNORECASE)
+_MLD_RES = (
+    re.compile(r"\b(?:destroy|exile) all\b(?:(?!except)[^.])*?\blands\b", re.IGNORECASE),
+    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\blands\b", re.IGNORECASE),
+    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\bland\b[^.]*?\bfor each\b", re.IGNORECASE),
 )
 
 
@@ -149,10 +177,17 @@ class BracketFilter:
     def allows(self, card: dict) -> bool:
         """Return True if this card is permitted under the current bracket."""
         name   = card.get("name", "")
-        oracle = (card.get("oracle_text") or "").lower()
+        oracle = card.get("oracle_text") or ""
 
-        # Game Changers quota
-        if name in GAME_CHANGERS:
+        # Game Changers quota. Prefer Scryfall's own live `game_changer` field (present
+        # on every card this method has ever been called with in practice — both
+        # /cards/named and /cards/search return it) and fall back to the frozenset only
+        # when a card dict genuinely lacks the key (synthetic/offline data). `.get()`
+        # returning None means "absent", not "false" — a card actually flagged False
+        # must not fall through to a stale name-list lookup.
+        gc_field = card.get("game_changer")
+        is_game_changer = gc_field if gc_field is not None else (name in GAME_CHANGERS)
+        if is_game_changer:
             if self.rules.max_game_changers == -1:
                 self._gc_used += 1
                 return True
@@ -165,14 +200,14 @@ class BracketFilter:
         if not self.rules.allow_extra_turns:
             if name in EXTRA_TURN_CARDS:
                 return False
-            if any(p in oracle for p in _EXTRA_TURN_PATTERNS):
+            if _EXTRA_TURN_RE.search(oracle):
                 return False
 
         # Mass land destruction restriction (Brackets 1–3)
         if not self.rules.allow_mld:
             if name in MASS_LAND_DESTRUCTION_CARDS:
                 return False
-            if any(p in oracle for p in _MLD_PATTERNS):
+            if any(r.search(oracle) for r in _MLD_RES):
                 return False
 
         return True

@@ -97,6 +97,11 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S12 | Redundancy score silent on 9% of decks | **45/499** decks · **14.4%** of all cut slots | Medium | M |
 | S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
 | **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
+| **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |
+| S16 | Conditional CCM effects always resolve `True` | audit-raised, unverified | Medium | M |
+| S17 | Combo determinism defaults `True` on no evidence | audit-raised, unverified | Medium | M |
+| S18 | No legend rule / commander-damage modeling in sim | audit-raised, unverified — honest coverage gap, not a fabrication | Low | L |
+| S19 | `counter target spell` ignores "can't be countered" | audit-raised, unverified | Low | S |
 
 ---
 
@@ -921,4 +926,74 @@ of the input.
 Model output is still only a **candidate**: all four proposed themes were verified against
 oracle text by hand before any pattern was widened. What the sweep buys is not judgement, it is
 a much shorter list to judge.
+
+---
+
+## S15 — `bracket.py` was a second, unguarded authority on the same official-rules gate · DONE 2026-08-24
+
+Surfaced auditing the codebase for the same failure class already fixed twice elsewhere
+(trigger-event fabrication, `destroy all`/`destroy target` object confusion) while spec'ing the
+Deck Mentor feature (`docs/SPEC_deck_mentor.md`) — the audit's brief was "find other places
+making a rules-shaped judgment call with no ground truth to check it against," and root
+`bracket.py` (the deck **builder**'s per-card gate, `BracketFilter.allows()`) turned out to be
+exactly that, in two ways, in the one file:
+
+1. **Game Changers were a hardcoded, dated frozenset (53 names, Feb 9 2026) with no staleness
+   check**, while the engine's `ratings/bracket.py` (the deck **analyzer**) reads the identical
+   quota live off Scryfall's own `game_changer` field via `data/scryfall.py`, which hard-fails
+   on a stale schema by design — the exact "two opinions on one screen drifted" problem the
+   engine merge (CLAUDE.md) already fixed once for bracket/strength ratings, just not for the
+   builder's own gate. **Confirmed live 2026-08-24**: `/cards/search` — what `deck_builder.py`
+   already calls for every candidate — returns `game_changer` on every result, so the fix costs
+   nothing extra to fetch. It also caught a real latent bug the frozenset couldn't have: some
+   printings of Tergrid, God of Fright report from Scryfall as
+   `"Tergrid, God of Fright // Tergrid's Lantern"`, which an exact bare-name match silently
+   misses and the live boolean does not.
+2. **`_MLD_PATTERNS` was a bare substring check with no object gate** — `"each player destroys
+   all"` matches any plural object, not just lands, so a card reading "each player destroys all
+   artifacts they control" would have been wrongly read as mass land denial and pushed a casual
+   deck to Bracket 4. The engine's own parallel implementation of this same pattern was already
+   hardened for precisely this shape on 2026-08-07, validated against all 34,179 cards in the
+   engine's store (see `ratings/bracket.py`'s own docstring for the fabricated/missed examples
+   it names). This file now carries that same validated regex set rather than a second,
+   unfixed copy — ported, not reinvented, so it inherits the existing validation rather than
+   needing its own from scratch.
+
+`BracketFilter.allows()` now prefers `card["game_changer"]` whenever the key is present and
+falls back to the frozenset only when a card dict genuinely lacks it (synthetic/offline data)
+— `.get()` returning `None` means "absent," not "false," so an explicit `False` from Scryfall
+is never overridden by a stale name-list hit. Zero test coverage existed for this gate before
+today; `tests/test_bracket.py` (10 tests) now pins both fixes, including the exact false-positive
+shape named above and the object-blind old behaviour it replaces. Full suite (`tests`, excluding
+`tests/engine`) re-run clean: **500 passed, 0 regressions.**
+
+---
+
+## S16–S19 — further rules-grounding gaps, audit-raised and NOT adversarially verified
+
+Same audit pass that found S15, same failure class, but these are unverified leads, not
+confirmed bugs — flagged so they don't get lost, not fixed. Re-check against real cards/corpus
+before trusting or acting on any of them (same caution `mythforge-review-backlog` already
+applies to other agent-raised findings).
+
+- **S16 — `semantics/interpreter.py`'s `DefaultResolver.condition_holds` always returns `True`**,
+  and X always resolves to a flat magnitude of 1. Wired into `sim/tier2.py`, so a conditional
+  payoff ("if you control a Dragon, draw two cards") is credited at full value regardless of
+  whether the deck or game state can actually satisfy the condition — the same shape as the
+  already-fixed trigger-event fabrication (1,400 cards, prompt v10 gate), just for conditions
+  instead of events, and with no equivalent gate-check yet.
+- **S17 — `semantics/combo_rules.py` defaults combo `deterministic=True` on absence of
+  evidence.** The module's own docstring is candid this is a heuristic; the consumer
+  (`ratings/bracket.py`) treats the boolean as a hard gate promoting a deck to Bracket 5. The
+  risky direction (false positive) for a rating that only ever escalates, and untested against
+  real non-deterministic loops that don't use the module's listed vocabulary.
+- **S18 — no legend rule or commander-damage (21-rule) modeling anywhere in `sim/game.py`.**
+  Combined with the already-documented rung-1 blindness to ward/hexproof/indestructible, an
+  entire Voltron/commander-damage win condition is structurally invisible to the strength
+  engine. This is an honest coverage gap, not a fabrication — consistent with, not contradicting,
+  the engine's stated preference for under-counting over guessing — but unaudited scope worth
+  tracking.
+- **S19 — `semantics/tags.py`'s `_COUNTER_RE` credits "counter target spell" with no check for
+  "can't be countered."** Never cross-referenced anywhere else in the tree. Low severity,
+  same unaudited shape as the others.
 
