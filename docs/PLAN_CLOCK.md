@@ -121,15 +121,57 @@ Each of these was measured and rejected. Re-deriving them costs a session.
 
 ## 4. The work
 
-### Phase 1 — teach the clock to see a non-combat win  ⟵ **start here**
+### Phase 1 — teach the clock to see a non-combat win  ⟵ **in progress, see 1a below**
 
 This is the lever. Nothing downstream can move while the clock is flat.
 
-**1a. Wire the existing go-off into `kill_turn`.** `sim/storm.py` already computes
-`go_off.earliest_turn` and `sim/overrun.py` computes `can_alpha_strike`. Both currently only
-lift the Ceiling *score*. Make them able to set `kill_turn` on the runs where they fire, so the
-speed metrics see them. This is the cheapest possible first step — the detection already
-exists and is already corpus-swept for over-fire.
+**1a. Wire the existing go-off into `kill_turn` — LANDED 2026-08-24.** `sim/storm.py`'s
+`go_off.earliest_turn` and `sim/overrun.py`'s alpha-strike detection used to only lift the
+Ceiling *score* via a flat deck-level bonus; `RunStats.kill_turn` itself stayed combat-only.
+New `sim/clock.apply_nut_kills(runs, cards, turns)` now lowers a run's `kill_turn` whenever
+either detector fires earlier, evaluated **per run against that run's own mana/board curve**
+(`RunStats.mana_available_by_turn`, and two new per-turn fields, `board_power_by_turn` /
+`board_creatures_by_turn`, added to `RunStats` in `tier0.py` for this) rather than a single
+deck-level average — a run's own draw quality decides how early its own engine could
+plausibly come online, the same nut-draw philosophy `estimate_go_off`/`estimate_overrun`
+already used, just resolved per run. Wired into the one shared pipeline
+(`ratings/analysis.analyze_deck`, both the main `runs` and the pod-horizon `pod_runs`) and
+into the acceptance-gate harness itself (`scripts/axis_separation.py`) — the two must not
+drift, so the harness imports the same `apply_nut_kills` the app calls. `damage_by_turn` is
+deliberately untouched (a non-combat kill is a different event the combat curve was never
+modeling; rewriting it would invent combat damage that didn't happen). 1099/1099 tests green.
+
+**Measured effect (corpus, `axis_separation.py --runs 150`, matching the plan's own
+methodology):**
+
+| | B1 | B2 | B3 | B4 | B5 |
+|---|---|---|---|---|---|
+| `nut_draw_turn` before | 8.64 | 8.44 | 8.46 | 8.72 | 8.69 |
+| `nut_draw_turn` after | 8.90 | 8.29 | 8.38 | 8.67 | **8.26** |
+
+**The specific inversion Section 2 flagged is fixed: B5 (8.26) is now faster than B3 (8.38.)**
+It was slower before (8.69 vs 8.46). That's real movement, not noise — it survived both a
+60-run and a 150-run pass at the same relative gap. **The gate is still not met**, though:
+`nut_draw_turn`/`speed_gap` don't crack the top 4 signals by |d| at the B2/B3 boundary (both
+sit under `tutor_density`'s 0.24), nowhere near the required 0.5. Expected — the plan called
+1a "the cheapest possible first step," and only a minority of the zero-Game-Changer B2/B3
+population runs a storm or overrun engine at all, so this pass can only move the decks that
+have one. **1b (burn/direct damage) is very likely necessary before B2/B3 separation is
+possible**, since it's the shape that reaches ordinary (non-combo) casual decks, not just
+engine pieces.
+
+**Also measured, and expected to be unchanged: `scripts/bracket_accuracy.py --runs 120
+--turns 12` is byte-identical to the pre-1a baseline** (53.2% exact / 91.6% within-one / bias
+-0.09, same confusion matrix). This is correct, not a bug: `ratings.bracket.estimate_bracket`
+does not consume `nut_draw_turn`/`speed_gap`/`ceiling.score` as a B2-vs-B3 discriminator today
+— that's precisely why Phase 3 (re-fit placement) is gated behind this section's acceptance
+test in the first place. Fixing the signal without the gate passing, and without wiring it
+into placement, should leave placement untouched. It does.
+
+**1b. Burn and direct damage.** The `EffectVector` already carries `scaling_burn`,
+`cast_damage`, `magecraft_damage` and `ritual_mana`. The semantics layer can see non-combat
+damage; the clock throws it away. Feed it into the same damage accumulator that line 348
+tests.
 
 **1b. Burn and direct damage.** The `EffectVector` already carries `scaling_burn`,
 `cast_damage`, `magecraft_damage` and `ritual_mana`. The semantics layer can see non-combat

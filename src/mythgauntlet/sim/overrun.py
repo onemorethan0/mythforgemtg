@@ -64,3 +64,27 @@ def estimate_overrun(
     dmg = alpha_strike_damage(flat, scales, board_power, board_creatures)
     can = has_finisher and board_creatures >= _MIN_WIDTH and dmg >= _LETHAL
     return OverrunReport(can, dmg, board_creatures, has_finisher)
+
+
+def earliest_alpha_strike_turn(
+    cards: list[tuple[Card, int]],
+    board_power_by_turn: list[int],
+    board_creatures_by_turn: list[int],
+) -> int | None:
+    """Earliest turn (1-indexed) THIS run's own board trajectory could alpha-strike for
+    lethal, using the deck's best one-shot team pump — the per-run sibling of
+    `estimate_overrun`, which reads one nut-percentile snapshot instead of a real run's
+    board as it develops turn by turn (docs/PLAN_CLOCK.md Phase 1a). Feeds
+    `sim/clock.apply_nut_kills`. Same best-case assumption as `estimate_overrun`: the
+    finisher is treated as castable and connecting the instant the board is wide enough,
+    without checking the finisher's own mana cost against that turn's mana.
+    """
+    flat, scales = _best_finisher(cards)
+    if not (flat or scales):
+        return None
+    for i, (power, creatures) in enumerate(zip(board_power_by_turn, board_creatures_by_turn)):
+        if creatures < _MIN_WIDTH:
+            continue
+        if alpha_strike_damage(flat, scales, power, creatures) >= _LETHAL:
+            return i + 1
+    return None

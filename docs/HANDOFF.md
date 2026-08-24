@@ -13,7 +13,10 @@ Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tes
 > cEDH included, because `kill_turn` is set from cumulative **combat** damage alone
 > (`sim/tier0.py:348`). No threshold-fitting moves the number while that holds. The plan says
 > what to build, in what order, and which four obvious moves have already been measured and
-> rejected.
+> rejected. **2026-08-24: Phase 1a (storm/overrun wired into `kill_turn` per run) landed** —
+> it fixed the specific inversion (B5's nut-draw kill is now faster than B3's, was slower) but
+> the B2/B3 gate is still not met and the bracket-accuracy headline hasn't moved (expected;
+> nothing consumes the speed signal for placement yet). 1b (burn/direct damage) is next.
 
 ---
 

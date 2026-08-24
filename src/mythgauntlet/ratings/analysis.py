@@ -28,6 +28,7 @@ from mythgauntlet.ratings.insight import DeckInsight, build_insight
 from mythgauntlet.ratings.metrics import ConsistencyReport
 from mythgauntlet.semantics.combo_rules import DeterminismVerdict, classify_determinism
 from mythgauntlet.semantics.store import CoverageReport, SemanticsStore
+from mythgauntlet.sim.clock import apply_nut_kills
 from mythgauntlet.sim.overrun import OverrunReport, estimate_overrun
 from mythgauntlet.sim.storm import GoOffReport, estimate_go_off
 from mythgauntlet.sim.tier0 import SimConfig, simulate
@@ -69,14 +70,24 @@ def analyze_deck(
 ) -> DeckAnalysis:
     """Run the full single-deck analysis. Deterministic for a given (deck, cfg)."""
     commander: Card | None = resolved.commanders[0] if resolved.commanders else None
+    all_cards = list(resolved.cards) + ([(commander, 1)] if commander else [])
     runs = simulate(resolved.cards, commander, cfg)
+    # Teach the clock to see a non-combat win (docs/PLAN_CLOCK.md Phase 1a): kill_turn is
+    # otherwise combat-damage-only, so a storm deck that goes off turn 4 or a go-wide deck
+    # that alpha-strikes turn 6 reported the same ~turn-8.5 nut draw as a deck with neither.
+    # Mutates kill_turn on the runs where either detector fires, per that run's own
+    # mana/board curve — must run BEFORE metrics.compute so avg_kill_turn/goldfish_kill_rate
+    # see it, and before compute_ceiling so fast_kill_turn/nut_kill_rate do too.
+    apply_nut_kills(runs, all_cards, cfg.turns)
     report = metrics.compute(runs, cfg)
     coverage = store.coverage(resolved.cards, resolved.commanders)
     interaction = compute_interaction(resolved.cards, commander)
 
     # storm/spellslinger go-off: judge the commander-as-engine against the whole spell base,
     # grounded in the deck's real (nut-draw) mana curve (docs/SIMULATION.md; feeds Ceiling+bracket).
-    all_cards = list(resolved.cards) + ([(commander, 1)] if commander else [])
+    # Deck-level (mean curve / nut-percentile board), unlike apply_nut_kills above which reads
+    # each run's OWN curve — kept for compute_ceiling's separate go_off/overrun score bonus and
+    # for the bracket gate's can_go_off, both of which pre-date and are independent of Phase 1a.
     mana_by_turn = _mean_mana_curve(runs, cfg.turns)
     go_off = estimate_go_off(all_cards, mana_by_turn, cfg.turns)
     # go-wide overrun: read the NUT board (a high percentile of the go-wide distribution).
@@ -112,6 +123,7 @@ def analyze_deck(
     else:
         pod_cfg = replace(cfg, turns=_POD_HORIZON)
         pod_runs = simulate(resolved.cards, commander, pod_cfg)
+        apply_nut_kills(pod_runs, all_cards, pod_cfg.turns)
     pod = compute_pod(pod_runs, pod_cfg, has_finisher=has_finisher)
 
     resilience = None

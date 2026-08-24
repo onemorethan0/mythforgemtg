@@ -35,6 +35,7 @@ from mythgauntlet.ratings import metrics  # noqa: E402
 from mythgauntlet.ratings.axes import compute_ceiling, compute_interaction  # noqa: E402
 from mythgauntlet.ratings.manabase import analyze as manabase_analyze  # noqa: E402
 from mythgauntlet.semantics import tags  # noqa: E402
+from mythgauntlet.sim.clock import apply_nut_kills  # noqa: E402
 from mythgauntlet.sim.tier0 import SimConfig, simulate  # noqa: E402
 
 CORPUS = REPO / "corpus" / "decks"
@@ -153,13 +154,16 @@ def collect(runs: int, seed: int) -> list[tuple[int, dict[str, float]]]:
             continue
         commander = resolved.commanders[0]
         sim_runs = simulate(resolved.cards, commander, cfg)
+        all_cards = list(resolved.cards) + [(commander, 1)]
+        # Phase 1a (docs/PLAN_CLOCK.md): kill_turn is combat-only unless this runs first — the
+        # acceptance gate below is measured on the same clock analyze_deck actually ships.
+        apply_nut_kills(sim_runs, all_cards, cfg.turns)
         report = metrics.compute(sim_runs, cfg)
         interaction = compute_interaction(resolved.cards, commander)
         ceiling = compute_ceiling(sim_runs, cfg)
-        every = list(resolved.cards) + [(commander, 1)]
         nonland = [c.mana_value for c, _ in resolved.cards if not c.is_land]
         rows.append((bracket, {
-            "game_changers": float(sum(q for c, q in every if c.game_changer)),
+            "game_changers": float(sum(q for c, q in all_cards if c.game_changer)),
             "manabase_P": manabase_analyze(resolved.cards, resolved.commanders).consistency,
             **_card_quality(resolved),
             "interaction": interaction.score,

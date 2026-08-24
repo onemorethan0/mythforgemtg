@@ -114,6 +114,11 @@ class RunStats:
     kill_turn: int | None = None  # turn cumulative damage reached cfg.goldfish_life
     final_board_power: int = 0  # attacking power on board at the horizon
     final_board_creatures: int = 0  # able-to-attack creatures at the horizon (go-wide proxy)
+    # established (not-summoning-sick) board just before this turn's combat, one entry per
+    # turn — feeds sim/clock.py's per-run overrun detection (final_board_* is just the last
+    # entry of these, kept for callers that only want the horizon snapshot).
+    board_power_by_turn: list[int] = field(default_factory=list)
+    board_creatures_by_turn: list[int] = field(default_factory=list)
 
 
 def build_sim_cards(cards: list[tuple[Card, int]]) -> list[SimCard]:
@@ -334,6 +339,8 @@ def _run_one(
         stats.mana_spent_by_turn.append(spent)
 
         # combat: everything that was already down swings at the goldfish opponent
+        stats.board_power_by_turn.append(board_power)
+        stats.board_creatures_by_turn.append(board_creatures)
         damage += board_power
         if enabler_active:  # Kaalia class: cheat the biggest STRANDED creature in, attacking now
             stranded = [c for c in hand if c.card.is_creature]
