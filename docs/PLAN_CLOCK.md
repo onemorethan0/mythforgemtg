@@ -121,7 +121,7 @@ Each of these was measured and rejected. Re-deriving them costs a session.
 
 ## 4. The work
 
-### Phase 1 — teach the clock to see a non-combat win  ⟵ **in progress, see 1a below**
+### Phase 1 — teach the clock to see a non-combat win  ⟵ **1a+1b landed, gate not yet met, see 1c below**
 
 This is the lever. Nothing downstream can move while the clock is flat.
 
@@ -168,15 +168,56 @@ does not consume `nut_draw_turn`/`speed_gap`/`ceiling.score` as a B2-vs-B3 discr
 test in the first place. Fixing the signal without the gate passing, and without wiring it
 into placement, should leave placement untouched. It does.
 
-**1b. Burn and direct damage.** The `EffectVector` already carries `scaling_burn`,
-`cast_damage`, `magecraft_damage` and `ritual_mana`. The semantics layer can see non-combat
-damage; the clock throws it away. Feed it into the same damage accumulator that line 348
-tests.
+**1b. Burn and direct damage — LANDED 2026-08-24.** Unlike 1a (which only re-reads existing
+best-case estimators per run), this reaches into `tier0._run_one` itself so an ORDINARY
+(non-engine, non-combo) deck's real burn spells count, not just decks with a full storm
+engine. Three additions, gated the same way `engine_active`/`engine_pending` already are
+(one-turn delay after the payoff resolves — a documented rung-1 simplification, not a new
+standard invented for burn specifically):
+- `magecraft_damage`/`cast_damage` payoffs (Guttersnipe/Storm-Kiln class): new
+  `dmg_engine_active`/`dmg_engine_pending` counters; every instant/sorcery cast while a payoff
+  is active adds `dmg_engine_active` direct damage.
+- `ritual_mana` (Dark Ritual class): now actually spendable — resolving one adds temporary
+  ready `_Source`s (the same `temp` flag `sim/tier2.py` already used for this, now wired into
+  T0's own turn loop too) that expire at the next untap, mirroring `game.py:412`'s exact
+  pattern.
+- `scaling_burn` (Fireball class): held OUT of the main greedy-cast loop (casting it the
+  instant it's affordable would lock in X=0, per the documented "X spells are cast for X=0"
+  policy) and given its own pass after every other spell has had first claim on the turn's
+  mana — it then spends whatever mana is left over as X, the way a player actually plays one.
 
-**1b. Burn and direct damage.** The `EffectVector` already carries `scaling_burn`,
-`cast_damage`, `magecraft_damage` and `ritual_mana`. The semantics layer can see non-combat
-damage; the clock throws it away. Feed it into the same damage accumulator that line 348
-tests.
+Verified by hand before trusting the corpus number: a dense synthetic deck (20 Mountains / 20
+Guttersnipes / 20 Shocks) reliably kills by turn 6-8 via non-combat damage alone; the realistic
+99-card version of the same test (1 Guttersnipe) mostly shows no burn damage at all, which
+turned out to be pure draw variance (~17% chance of ever drawing a single copy across a game),
+not a bug — worth recording since it looked exactly like a wiring failure at first glance.
+1099/1099 tests still green.
+
+**Measured effect (`axis_separation.py --runs 150`, 1a+1b together):**
+
+| | B1 | B2 | B3 | B4 | B5 |
+|---|---|---|---|---|---|
+| `nut_draw_turn` (1a only) | 8.90 | 8.29 | 8.38 | 8.67 | 8.26 |
+| `nut_draw_turn` (1a+1b) | 8.90 | 8.27 | 8.34 | 8.56 | **8.20** |
+
+**The B5<B3 ordering fix from 1a holds and widened slightly (0.14 turns).** But **the B2/B3
+gate is still not met, and 1b barely moved it**: `nut_draw_turn`/`speed_gap` still sit outside
+the top 4 signals by |d| at B2/B3 (`game_changers` +1.19, `edhrec_log_rank` -0.54, `kill_rate`
+-0.29, `tutor_density` +0.24 — unchanged from the 1a-only measurement to two decimal places).
+**This is itself a real finding, not a null result to shrug off**: two independent, cheap,
+correctly-wired non-combat-kill mechanisms (engine go-off + ordinary burn) both fail to
+separate B2 from B3. The honest reading is that the zero-Game-Changer B2/B3 population in this
+corpus mostly doesn't run either shape — B2-vs-B3 in practice looks less like "does this deck
+have a faster non-combat kill" and more like the card-quality/tutor-density/interaction
+signals already ranking above it. **1c (the combo question) remains open but should not be
+assumed to close this gap either** — combos gate bracket placement directly already
+(`can_go_off`/`combo_profile`) rather than needing a kill-turn route, and B2/B3 by construction
+mostly excludes real combo decks (those push to B3+ regardless). Before investing in 1c's
+larger integration cost (it needs real per-corpus-deck combo detection wired into the harness,
+which `axis_separation.py` does not do today), it is worth weighing the plan's own §4 Phase 3
+fallback now: **if B2/B3 does not separate with a working clock, within-one (already 91.6%,
+target 95%) is the metric that can honestly move, and exact-match at that boundary may not be
+reachable by construction.**
 
 **1c. Decide the combo question explicitly.** Today `two_card_combos` is an input and the
 bracket gate uses it. Options, in increasing cost: (i) leave it a gate and accept that the

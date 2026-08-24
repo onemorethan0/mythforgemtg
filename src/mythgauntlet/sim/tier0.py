@@ -240,6 +240,13 @@ def _run_one(
     engine_pending = 0
     enabler_active = False  # a cheat-into-play enabler (Kaalia class) is online + can attack
     enabler_pending = False
+    # non-combat damage engines (magecraft/cast-damage payoffs — Storm-Kiln/Guttersnipe class):
+    # same one-turn-delay policy as engine_active above (a payoff that resolves this turn fires
+    # starting NEXT turn, not on spells cast later this same turn — trigger conditions aren't
+    # evaluated at rung 1, so this mirrors the existing engine_draw simplification rather than
+    # inventing a new precision standard for burn specifically).
+    dmg_engine_active = 0
+    dmg_engine_pending = 0
     damage = 0
 
     def draw(n: int) -> None:
@@ -249,13 +256,19 @@ def _run_one(
                 stats.cards_drawn += 1
 
     def apply_effects(sc: SimCard) -> None:
-        nonlocal pending_power, pending_creatures, engine_pending, enabler_pending
+        nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         if sc.card.is_creature:
             pending_power += sc.attack_power
             pending_creatures += 1
         if sc.fx.cheats_creatures:  # active next turn (a creature enabler must untap + attack)
             enabler_pending = True
         engine_pending += sc.fx.engine_draw
+        dmg_engine_pending += sc.fx.magecraft_damage + sc.fx.cast_damage
+        if sc.fx.ritual_mana > 0:  # Dark Ritual class: a one-shot burst, spendable THIS turn
+            sources.extend(
+                _Source(sc.produced_colors(), ready=True, temp=True)
+                for _ in range(sc.fx.ritual_mana)
+            )
         if sc.fx.fetches_land:
             fetched = next((c for c in library if c.is_land), None)
             if fetched is not None:
@@ -270,6 +283,7 @@ def _run_one(
         draw(sc.fx.draw_cards)
 
     for turn in range(1, cfg.turns + 1):
+        sources = [s for s in sources if not s.temp]  # ritual mana expires at untap
         for s in sources:
             s.ready = True
         board_power += pending_power
@@ -278,6 +292,8 @@ def _run_one(
         pending_creatures = 0
         engine_active += engine_pending
         engine_pending = 0
+        dmg_engine_active += dmg_engine_pending
+        dmg_engine_pending = 0
         enabler_active = enabler_active or enabler_pending
         enabler_pending = False
 
@@ -308,10 +324,15 @@ def _run_one(
         stats.mana_available_by_turn.append(mana_available)
 
         spent = 0
+        instant_sorcery_cast = 0  # feeds the magecraft/cast-damage payoffs below
         while True:
             castable: list[tuple[tuple, SimCard, list[int], bool]] = []
             for sc in hand:
-                if sc.is_land:
+                # Scaling-burn (Fireball class) is held back from the greedy loop: cast at its
+                # printed X=0 the moment it's affordable, it would fire early for no damage and
+                # never get another look. It gets its own pass below, once every OTHER spell
+                # this turn has had first claim on the mana.
+                if sc.is_land or sc.fx.scaling_burn:
                     continue
                 payment = _can_pay(sources, sc.card.cost)
                 if payment is not None:
@@ -328,6 +349,8 @@ def _run_one(
                 sources[idx].ready = False
             spent += sc.mana_value
             stats.spells_cast += 1
+            if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
+                instant_sorcery_cast += 1
 
             if is_commander:
                 commander_in_zone = False
@@ -336,12 +359,37 @@ def _run_one(
                 hand.remove(sc)
             apply_effects(sc)
 
+        # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
+        # how a player actually plays a Fireball — as a mana sink, not for X=0). Cheapest
+        # candidate first so a second one still gets a turn if the first didn't need everything.
+        burn_candidates = sorted(
+            (sc for sc in hand if sc.fx.scaling_burn), key=lambda c: c.mana_value
+        )
+        for sc in burn_candidates:
+            payment = _can_pay(sources, sc.card.cost)
+            if payment is None:
+                continue
+            for idx in payment:
+                sources[idx].ready = False
+            x = sum(1 for s in sources if s.ready)
+            for s in sources:
+                if s.ready:
+                    s.ready = False
+            spent += sc.mana_value + x
+            stats.spells_cast += 1
+            if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
+                instant_sorcery_cast += 1
+            hand.remove(sc)
+            apply_effects(sc)
+            damage += x
+
         stats.mana_spent_by_turn.append(spent)
 
         # combat: everything that was already down swings at the goldfish opponent
         stats.board_power_by_turn.append(board_power)
         stats.board_creatures_by_turn.append(board_creatures)
         damage += board_power
+        damage += dmg_engine_active * instant_sorcery_cast  # magecraft/cast-damage payoffs
         if enabler_active:  # Kaalia class: cheat the biggest STRANDED creature in, attacking now
             stranded = [c for c in hand if c.card.is_creature]
             if stranded:

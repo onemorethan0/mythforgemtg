@@ -13,10 +13,15 @@ Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tes
 > cEDH included, because `kill_turn` is set from cumulative **combat** damage alone
 > (`sim/tier0.py:348`). No threshold-fitting moves the number while that holds. The plan says
 > what to build, in what order, and which four obvious moves have already been measured and
-> rejected. **2026-08-24: Phase 1a (storm/overrun wired into `kill_turn` per run) landed** —
-> it fixed the specific inversion (B5's nut-draw kill is now faster than B3's, was slower) but
-> the B2/B3 gate is still not met and the bracket-accuracy headline hasn't moved (expected;
-> nothing consumes the speed signal for placement yet). 1b (burn/direct damage) is next.
+> rejected. **2026-08-24: Phase 1a+1b both landed** (storm/overrun wired into `kill_turn` per
+> run, then real burn/magecraft/ritual-mana damage modeled directly in the T0 sim). Together
+> they fixed the specific inversion (B5's nut-draw kill is now faster than B3's, was slower)
+> and the bracket-accuracy headline is unchanged as expected (nothing consumes the speed
+> signal for placement yet) — but **the B2/B3 |d|>=0.5 gate is still not met, and 1b barely
+> moved it**, which is itself the finding: two independently-wired non-combat-kill mechanisms
+> both fail to separate B2 from B3 in this corpus. 1c (the combo question) is open but is not
+> expected to close this specific gap either (see PLAN_CLOCK.md §Phase 1 for why) — worth
+> weighing the plan's own within-one fallback before investing further here.
 
 ---
 
