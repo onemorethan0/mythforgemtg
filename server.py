@@ -1112,7 +1112,7 @@ def _stored_card_to_raw(d: dict) -> dict:
 _PROVENANCE_KEYS = (
     "imported", "import_source", "import_name", "import_source_input",
     "import_unresolved", "import_auto_face", "is_commander_deck",
-    "face_assignments",
+    "face_assignments", "partners",
     # A single custom card IS a "deck of one", and `mode` is the only thing that
     # says so. Losing it across a rebuild/retheme turned the user's card into a
     # deck with zero cards: the result screen showed deck stats, type filters and
@@ -1403,6 +1403,7 @@ def _run_build(job_id: str, req: BuildRequest):
         ps_label    = PLAYSTYLES.get(req.playstyle, PLAYSTYLES["auto"])["label"]
         import_meta: dict = {}
         collection_stats: Optional[dict] = None  # C4: set in the generate branch when on
+        partners: list[dict] = []   # the rest of the command zone, if any (see compute_stats)
 
         if req.source_deck_id:
             # ── Edit & Rebuild: re-theme a saved deck's EXACT card list ───────
@@ -1422,7 +1423,9 @@ def _run_build(job_id: str, req: BuildRequest):
                 ov = _scryfall.get_card_by_name(override, fuzzy=True)
                 if ov:
                     card = ov
-            stats = compute_stats(card, deck)
+            partners = [c for n in (src.get("partners") or [])
+                        if (c := _scryfall.get_card_by_name(n, fuzzy=True))]
+            stats = compute_stats(card, deck, partners=partners)
             if src.get("imported"):
                 import_meta = {
                     "source":       src.get("import_source", ""),
@@ -1443,7 +1446,11 @@ def _run_build(job_id: str, req: BuildRequest):
             if not card:
                 raise ValueError(f"Commander not found: {req.commander_name}")
             deck = list(req.prebuilt_deck)
-            stats = compute_stats(card, deck)
+            # generate-list (phase 1) already resolved partners for drafting; re-resolve
+            # here so phase 2's own stats (and later the mentor/analyze calls) see the
+            # SAME command-zone identity instead of falling back to the lead card alone.
+            partners = _resolve_partners(card, req.partner_names)
+            stats = compute_stats(card, deck, partners=partners)
             _push(job_id, "progress", json.dumps({"step": "deck", "msg":
                 f"Using pre-generated deck — {stats['total_cards']} cards, commander {card['name']}"}))
         elif req.deck_url or req.deck_list:
@@ -1471,6 +1478,7 @@ def _run_build(job_id: str, req: BuildRequest):
                     "Couldn't read any cards from that deck. Check the URL or "
                     "decklist text and try again.")
             deck = list(imported.deck)
+            partners = imported.partners
             # Partner/companion commanders aren't the face — render them as cards.
             for p in imported.partners:
                 pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
@@ -1534,7 +1542,14 @@ def _run_build(job_id: str, req: BuildRequest):
             # Collapse duplicate basics into quantity entries (theme/render once,
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
-            stats = compute_stats(card, deck)
+            # partners= widens the identity assess_colors filters sources by (see
+            # compute_stats' docstring) — without it a partner build's own union-identity
+            # duals/fetches (Command Tower, City of Brass, ...) get their non-lead colours
+            # filtered OUT of the report, so a real WBUG manabase reads as "0 U sources,
+            # 0 G sources" / colors.ok:False. Found live 2026-08-25 building Tymna the
+            # Weaver + Thrasios, Triton Hero — the deck actually holds an Island, 3
+            # Forests and six 5-colour fixers.
+            stats = compute_stats(card, deck, partners=partners)
             # Gate on the RESOLVED source, not the legacy boolean: a request carrying
             # only card_source="collection" built strictly but reported no collection
             # stats at all, so deck.json lost the block and StepDeck's owned badge
@@ -1776,6 +1791,12 @@ def _run_build(job_id: str, req: BuildRequest):
             # Set Bible (world + per-colour factions + lore) for display / debugging.
             "world_bible":      getattr(themer, "_world_bible", {}) or {},
             "custom_pips":      req.custom_pips,
+            # The rest of the command zone, if any — a partner/background the lead card's
+            # OWN name/colours don't cover. Not folded into `deck` for generated decks (the
+            # 99-card slot plan has no partner-aware target size yet), so this is metadata
+            # only: it lets a later mentor/analyze call see the full colour identity instead
+            # of re-deriving a false "colors.ok: False" off the lead alone.
+            "partners":         [p.get("name") for p in partners if p.get("name")],
             "imported":         bool(import_meta),
             "import_source":    import_meta.get("source", ""),
             "import_name":      import_meta.get("source_name", ""),
@@ -4051,11 +4072,35 @@ class ImportPreviewRequest(BaseModel):
 MYTHGAUNTLET_URL = os.getenv("MYTHGAUNTLET_URL", "http://127.0.0.1:8020").rstrip("/")
 
 
-def _deck_to_lines(commander, deck) -> str:
-    """Render an imported deck as MythGauntlet's decklist text format."""
+def _job_partners(job: dict) -> list[dict]:
+    """The rest of the command zone for a stored job, in `_deck_to_lines`'s shape.
+
+    `job["partners"]` is persisted as plain names (see `_run_build`'s checkpoint) — this
+    is the one place that turns them back into the `{"name": ...}` dicts every
+    `_gauntlet_*` helper expects."""
+    return [{"name": n} for n in (job.get("partners") or [])]
+
+
+def _deck_to_lines(commander, deck, partners=None) -> str:
+    """Render an imported deck as MythGauntlet's decklist text format.
+
+    `partners` is the rest of the command zone. `Deck.commanders` (mythgauntlet's own
+    parser, model/deck.py) reads every line under the "Commander:" header, so a second
+    line here is enough for the engine to resolve BOTH cards and union their colour
+    identity in `manabase.analyze` — mirroring `deck_quality.assess_colors`'s own
+    partners= fix. Omitting it (as this function always did) makes the strength engine
+    and the mentor measure a partner deck's manabase against the LEAD commander's colours
+    alone: a real WBUG manabase (duals/fetches that fix all four colours) reads back as
+    "0 U sources, 0 G sources" because those colours sit outside the half-identity.
+    Found live 2026-08-25 on Tymna the Weaver + Thrasios, Triton Hero.
+    """
     lines = []
     if commander and commander.get("name"):
-        lines += ["Commander:", f"1 {commander['name']}", ""]
+        lines += ["Commander:", f"1 {commander['name']}"]
+        for p in (partners or []):
+            if p.get("name"):
+                lines.append(f"1 {p['name']}")
+        lines.append("")
     lines.append("Deck:")
     for c in deck:
         name = c.get("name", "")
@@ -4064,13 +4109,13 @@ def _deck_to_lines(commander, deck) -> str:
     return "\n".join(lines)
 
 
-def _gauntlet_analyze(commander, deck):
+def _gauntlet_analyze(commander, deck, partners=None):
     """Simulation-grounded strength from MythGauntlet; None if the service is unavailable."""
     try:
         resp = requests.post(
             f"{MYTHGAUNTLET_URL}/analyze",
             json={
-                "deck": _deck_to_lines(commander, deck),
+                "deck": _deck_to_lines(commander, deck, partners),
                 "name": (commander or {}).get("name") or "deck",
                 "runs": 300,
                 "resilience": True,
@@ -4130,7 +4175,7 @@ def _deck_archetypes(job: dict) -> list[str]:
         return []
 
 
-def _gauntlet_advise(commander, deck, axis=None, themes=None):
+def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
     """Owned-card upgrade suggestions from MythGauntlet's ablation advisor.
 
     Returns the advise JSON, {"error": detail} for a meaningful 400 (no collection
@@ -4142,7 +4187,7 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None):
     """
     try:
         payload = {
-            "deck": _deck_to_lines(commander, deck),
+            "deck": _deck_to_lines(commander, deck, partners),
             "name": (commander or {}).get("name") or "deck",
             "runs": 300,
             # The advisor ranks owned candidates by TARGET-AXIS relevance + commander fit
@@ -4171,7 +4216,7 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None):
         return None
 
 
-def _gauntlet_card_impact(commander, deck, card_name, themes=None):
+def _gauntlet_card_impact(commander, deck, card_name, themes=None, partners=None):
     """Would ONE named card help or hurt this deck (MythGauntlet /card-impact).
 
     Same shape as _gauntlet_advise: the JSON on success, {"error": detail} for a
@@ -4190,7 +4235,7 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None):
         resp = requests.post(
             f"{MYTHGAUNTLET_URL}/card-impact",
             json={
-                "deck": _deck_to_lines(commander, deck),
+                "deck": _deck_to_lines(commander, deck, partners),
                 "name": (commander or {}).get("name") or "deck",
                 "card": card_name,
                 "runs": 200,
@@ -4212,7 +4257,7 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None):
         return None
 
 
-def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None):
+def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None, partners=None):
     """Deck Mentor chat turn from MythGauntlet's tool-calling loop + claim-budget gate
     (docs/SPEC_deck_mentor.md Phase 2). Same shape as `_gauntlet_advise`/
     `_gauntlet_card_impact`: JSON on success, {"error": detail} for a meaningful 400/503
@@ -4226,7 +4271,7 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
     """
     try:
         payload = {
-            "deck": _deck_to_lines(commander, deck),
+            "deck": _deck_to_lines(commander, deck, partners),
             "name": (commander or {}).get("name") or "deck",
             "question": question,
             "history": history or [],
@@ -4282,7 +4327,7 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     ]
     result = _gauntlet_mentor_chat(
         commander, deck, req.question.strip(), history=req.history, model=req.model,
-        themes=_deck_archetypes(job),
+        themes=_deck_archetypes(job), partners=_job_partners(job),
     )
     if result is None:
         raise HTTPException(
@@ -4420,7 +4465,7 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
         for c in cards
     ]
     result = _gauntlet_card_impact(commander, deck, req.card.strip(),
-                                   themes=_deck_archetypes(job))
+                                   themes=_deck_archetypes(job), partners=_job_partners(job))
     if result is None:
         raise HTTPException(
             503,
@@ -4457,7 +4502,7 @@ def advise_deck(job_id: str, req: AdviseDeckRequest, request: Request):
         for c in cards
     ]
     result = _gauntlet_advise(commander, deck, axis=req.axis,
-                              themes=_deck_archetypes(job))
+                              themes=_deck_archetypes(job), partners=_job_partners(job))
     if result is not None and "error" not in result and req.narrate:
         result = _narrate_suggestions(result, job)
     if result is None:
@@ -4966,7 +5011,7 @@ def measure_deck(job_id: str):
         {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
         for c in cards
     ]
-    sim = _gauntlet_analyze(commander, deck)
+    sim = _gauntlet_analyze(commander, deck, partners=_job_partners(job))
     if sim is None:
         raise HTTPException(
             503,
@@ -5092,7 +5137,7 @@ class DuelRequest(BaseModel):
     games: int = 120
 
 
-def _gauntlet_duel(commander, deck, opponent_text, name_a, name_b, games):
+def _gauntlet_duel(commander, deck, opponent_text, name_a, name_b, games, partners=None):
     """Head-to-head win rate from MythGauntlet's Tier-2 adversarial engine.
 
     Returns the duel JSON, {"error": detail} for a meaningful 400 (unparseable
@@ -5100,7 +5145,7 @@ def _gauntlet_duel(commander, deck, opponent_text, name_a, name_b, games):
     """
     try:
         payload = {
-            "deck_a": _deck_to_lines(commander, deck),
+            "deck_a": _deck_to_lines(commander, deck, partners),
             "deck_b": opponent_text,
             "name_a": name_a or "Your deck",
             "name_b": name_b or "Opponent",
@@ -5148,7 +5193,8 @@ def duel_deck(job_id: str, req: DuelRequest):
     name_a = (job.get("commander") or {}).get("themed_name") \
         or (job.get("commander") or {}).get("original_name") or "Your deck"
     result = _gauntlet_duel(
-        commander, deck, req.opponent, name_a, req.opponent_name, req.games
+        commander, deck, req.opponent, name_a, req.opponent_name, req.games,
+        partners=_job_partners(job),
     )
     if result is None:
         raise HTTPException(
@@ -5197,7 +5243,7 @@ def import_preview(req: ImportPreviewRequest):
         "total_cards":  imp.total_cards(),
         "colors":       colors,
         "unresolved":   imp.unresolved,
-        "simulation":   _gauntlet_analyze(imp.commander, imp.deck),
+        "simulation":   _gauntlet_analyze(imp.commander, imp.deck, partners=imp.partners),
     }
 
 

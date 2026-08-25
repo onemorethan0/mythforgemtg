@@ -1,4 +1,4 @@
-# Deck Mentor handoff — five live campaign rounds (2026-08-25)
+# Deck Mentor handoff — six live campaign rounds (2026-08-25)
 
 Written for the same reason `HANDOFF.md`/`ROADMAP.md`/`PLAN_CLOCK.md` exist for the builder and
 gauging engine: the mentor's Phase 0-3 build (`docs/SPEC_deck_mentor.md`) shipped with unit
@@ -160,6 +160,73 @@ introduced real collateral damage, found immediately on first live use:
   card name wasn't re-verified that turn) but worth knowing this failure MODE exists: not just
   "invents facts," but "subtly edits a real fact to look freshly measured."
 
+### Round 6 — the deepest gap yet, and it wasn't in the mentor's prompt at all
+
+Set up to close the campaign's last open item: no partner-commander deck had ever been run
+live (ROADMAP S2 claimed the generate path "already works end-to-end — Tymna + Thrasios →
+HTTP 200, a WBGU deck", verified only as far as build success, not correctness). Built that
+exact deck and found the real gap sat two layers below the mentor, in plumbing every prior
+round's fixes sat downstream of without exercising it.
+
+- **The generate-path build never told its own quality report about the second commander.**
+  `_run_build`'s generate branch called `compute_stats(card, deck)` with the LEAD commander
+  only; `deck_quality.assess_colors` filters mana sources by the commander dict it's handed
+  (exactly the bug `command_zone_identity` was built to fix for IMPORTS, 2026-08-14 — see
+  `CLAUDE.md`'s commander_analysis section). The built deck genuinely has an Island, three
+  Forests and six five-colour fixers (Command Tower, City of Brass, Exotic Orchard, Mana
+  Confluence, Cavern of Souls, Reflecting Pool) — real U/G sources — but the report said
+  `colors.ok: False`, "U: 0 sources, wants 15", "G: 0 sources, wants 15." Fixed by threading
+  `partners=` through (same fix `generate-list`, the phase-1 endpoint, already had — phase 2's
+  `prebuilt_deck` branch had the identical gap and got the identical fix).
+- **The strength engine and the mentor never knew a second commander existed at all — not a
+  measurement bug, an INVISIBILITY bug.** `_deck_to_lines` (the ONE function that serializes a
+  Forge deck into MythGauntlet's decklist text for `/analyze`, `/advise`, `/card-impact`, `/duel`
+  AND `/mentor/chat`) only ever wrote one `Commander:` line. Every one of those five call sites
+  silently dropped the partner — meaning `/api/deck/{id}/measure` (the actual bracket/strength
+  GAUGING feature, this project's other stated top priority) graded a partner deck's manabase
+  against half its real colour identity too, and the mentor's `ctx.resolved.commanders` was
+  just Tymna, full stop. Fixed at the root: `_deck_to_lines(commander, deck, partners=)` emits
+  one `Commander:` line per card (mythgauntlet's own `Deck.parse_text` already supported this —
+  it was never exercised), persisted `partners` as new deck.json metadata (added to
+  `_PROVENANCE_KEYS` so rebuild/retheme don't drop it), and threaded it through all five
+  `_gauntlet_*` helpers and their route handlers via a small `_job_partners(job)` shim.
+- **Once the mentor could finally see both commanders, it had no TOOL to say who they were.**
+  Asked "who are my commanders and what's my colour identity" — the single most natural
+  partner-deck question — it answered "I currently don't have access to your decklist,"
+  `tool_trace: []`. True cause: no tool ever surfaced `ctx.resolved.commanders`; the only path
+  to a card's identity is `lookup_card(name)`, which needs a name the player must already
+  supply. Fixed by adding `commanders: [{name, color_identity}]` to `get_deck_stats`'s own
+  return (with `card_names=` so stating them is licensed) rather than a whole new tool, since
+  `get_deck_stats` already means "ask me about this deck's own shape."
+- **The worst finding: a model that correctly RECITES both colour-identity sets can still fail
+  the subset check between them.** Asked whether Chaos Warp (mono-red) could be added to the
+  now-correctly-WBGU deck, it wrote: *"its color identity (red) is covered by your deck's color
+  identity (black, white, green, and blue)"* — red is plainly absent from that list, stated one
+  clause earlier, in the same sentence. Lightning Bolt got the same wrong verdict, plus a
+  fabricated "you have a good number of red sources" (there are none). This is NOT the
+  fame-of-the-card triggering a prior — reproducible on both a household name and Chaos Warp —
+  it's `qwen3:14b` failing basic set-subset arithmetic even with correct premises in hand, and a
+  system-prompt instruction to "check the letters one at a time" did NOT fix it on retest (the
+  model still recited the sets correctly and still drew the wrong conclusion). The gate didn't
+  catch it either — no fabricated card name, no fabricated number, no fabricated rule citation,
+  just wrong REASONING over real, correctly-cited facts, which is outside the claim-budget
+  gate's design by construction (see "what's still open" below, this was already flagged as a
+  gap). Fixed by removing the reasoning step from the model entirely: a new deterministic
+  `check_legality(name)` tool computes the subset check in Python and returns a `legal` bool +
+  `colors_not_in_deck_identity`; the system prompt now says never to do this arithmetic
+  yourself even with both sets already in context, and to report the tool's verdict verbatim.
+  Verified live: Lightning Bolt and Chaos Warp both correctly rejected, Mystic Confluence still
+  correctly accepted, after the fix. Unit-pinned in `tests/engine/test_mentor_tools.py` with a
+  synthetic two-commander (WB + GU) fixture, since no real corpus deck has this shape yet to
+  drive `mentor_bench.py` — the bench stays 45 cases this round; the regression coverage for
+  this class of bug lives at the tool level instead, which is more precise anyway (deterministic
+  inputs, not dependent on the live model's phrasing).
+
+This round is the strongest evidence yet for the campaign's whole premise: every one of these
+four bugs was invisible to the synthetic bench, to code review, and to the ROADMAP's own
+"HTTP 200, a WBGU deck" verification — because none of them are wrong until you actually ask a
+real question about a real two-commander deck and check the answer against ground truth.
+
 ---
 
 ## The honesty-marker whack-a-mole, and why it's a scorer problem, not a gate problem
@@ -189,9 +256,26 @@ than rounded up.
   (`mentor_transcript_audit.py`'s output) as usage accumulates, not more synthetic guessing —
   that's how `trap_unaddressed_nuance` was added, and it's a stronger case than one invented
   from first principles.
-- **No partner-commander deck has been run through a live campaign.** None of the currently
-  built decks in History have a real Partner/Background pair, and the generate path can't build
-  one (see `ROADMAP.md` S2 — analysis-only). Would need an actual import first.
+- **The generate path still cannot BUILD a legal partner-commander deck end to end** — round 6
+  fixed every downstream consumer (quality report, strength engine, advise/card-impact/duel,
+  mentor) to correctly READ a partner pair's union identity, but `DeckBuilder.build()` still
+  always drafts exactly 99 library cards and the second commander is never added to `deck` at
+  all, so the actual persisted deck is a 100-card SINGLE-commander pile built against a widened
+  identity — not a legal 2-commander 100-card deck (which needs 98 library + 2 commanders).
+  Deliberately not attempted this round: `build()`'s slot-planning arithmetic hardcodes the
+  literal `99` at ~20 internal call sites (see `CLAUDE.md`'s own extensive history of bugs in
+  exactly this arithmetic), and there's no partner-commander entry in `builder_bench.py`'s
+  20-commander roster to measure against — the S17 lesson (a plausible-looking widening
+  regressed Thassa's Oracle, caught only by testing broadly and reverted) argues against
+  guessing at a fix to core slot-planning without that measurement in place first.
+- **`check_legality`'s fix removes the model's OWN subset arithmetic but not a residual risk one
+  layer up: a reply could still contradict its own tool's verdict** (e.g. call the tool, get
+  `legal: false`, and write "yes" anyway). Not observed live, but the gate has no mechanism to
+  catch a text/tool-result contradiction in general — see the semantic-entailment gap below,
+  which this is a narrower instance of. Quoting the tool's `legal` field is now trivial for the
+  model (it doesn't have to compute anything, just read a boolean), which is presumed to make
+  this much less likely than the subset-arithmetic failure it replaces, but it hasn't been
+  stress-tested the way the arithmetic failure was.
 - **The rules-paraphrase-without-citation heuristic is bounded, not complete** (documented in
   `gate.py` itself): a definition phrased outside its specific hardcoded patterns still slips
   through with zero mechanical check.
@@ -210,7 +294,10 @@ than rounded up.
 
 `src/mythgauntlet/mentor/{gate,chat,tools,transcript}.py`, `scripts/mentor_bench.py`,
 `scripts/mentor_transcript_audit.py`, `tests/engine/test_mentor_{gate,tools,transcript}.py`,
-`tests/engine/test_server_mentor.py`, `tests/test_mentor_deck_route.py`. The live campaign
+`tests/engine/test_server_mentor.py`, `tests/test_mentor_deck_route.py`. Round 6 also touched
+`server.py` (`_run_build`'s `partners` threading, `_deck_to_lines`/`_gauntlet_*`/`_job_partners`,
+`_PROVENANCE_KEYS`) and `deck_builder.py`/`commander_analysis.py` were READ but not changed —
+see round 6's still-open item on why a full partner-build fix wasn't attempted there. The live campaign
 itself used a throwaway `scripts/_campaign_helper.py` (deleted after each round, not committed)
 — a thin curl-equivalent that threads conversation history through `/api/deck/{id}/mentor` so
 each turn is a one-line command instead of hand-building the history array each time. Recreate

@@ -192,6 +192,64 @@ def test_get_deck_stats_reports_curve_and_roles(make_card, empty_store):
     assert result.data["curve"]["nonland_count"] == 1  # Forest is a land, excluded
 
 
+def test_get_deck_stats_reports_commander_identity(make_card, empty_store):
+    # Found live 2026-08-25: with no way to surface who the commander even IS, the
+    # mentor answered "who are my commanders" with a flat false "I don't have access to
+    # your decklist" instead of calling any tool.
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "get_deck_stats", {})
+    assert result.data["commanders"] == [{"name": "Test Commander", "color_identity": ["G"]}]
+    assert result.card_names == frozenset({"Test Commander"})
+
+
+def _partner_ctx(make_card, empty_store):
+    """A two-commander command zone (WBUG-shaped) for legality-subset tests."""
+    lead = make_card("Lead Commander", type_line="Legendary Creature — Human",
+                      mana_cost="{1}{W}{B}", color_identity=("W", "B"))
+    partner = make_card("Partner Commander", type_line="Legendary Creature — Merfolk",
+                         mana_cost="{G}{U}", color_identity=("G", "U"))
+    on_color = make_card("Fine Fit", type_line="Instant", mana_cost="{U}",
+                          color_identity=("U",))
+    off_color = make_card("Off Color Bolt", type_line="Instant", mana_cost="{R}",
+                           color_identity=("R",))
+    db = CardDb([lead, partner, on_color, off_color])
+    resolved = ResolvedDeck(
+        deck=Deck(name="test"), commanders=[lead, partner], cards=[], missing=[],
+    )
+    return MentorContext(
+        card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+        cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store,
+    )
+
+
+def test_check_legality_accepts_a_card_covered_by_the_union_identity(make_card, empty_store):
+    # Neither partner alone is blue+green -- only their UNION covers a blue card. A
+    # per-card check against just the lead commander would wrongly reject this.
+    ctx = _partner_ctx(make_card, empty_store)
+    result = call_tool(ctx, "check_legality", {"name": "Fine Fit"})
+    assert result.data["legal"] is True
+    assert result.data["colors_not_in_deck_identity"] == []
+
+
+def test_check_legality_rejects_a_color_outside_the_union_identity(make_card, empty_store):
+    # Found live 2026-08-25: asked about a mono-red card against this exact WBUG shape
+    # (Tymna the Weaver + Thrasios, Triton Hero), the model correctly STATED both colour
+    # sets and still concluded the card was legal -- the subset check has to happen here,
+    # in Python, not in the model's own reasoning.
+    ctx = _partner_ctx(make_card, empty_store)
+    result = call_tool(ctx, "check_legality", {"name": "Off Color Bolt"})
+    assert result.data["legal"] is False
+    assert result.data["colors_not_in_deck_identity"] == ["R"]
+    assert result.data["deck_color_identity"] == ["B", "G", "U", "W"]
+
+
+def test_check_legality_not_found(make_card, empty_store):
+    ctx = _partner_ctx(make_card, empty_store)
+    result = call_tool(ctx, "check_legality", {"name": "Zzyzx Prism Wyrm"})
+    assert result.data["found"] is False
+    assert result.card_names == frozenset()
+
+
 def test_deck_card_names_includes_commander_and_nonland_cards(make_card, empty_store):
     ctx = _ctx(make_card, empty_store)
     names = ctx.deck_card_names

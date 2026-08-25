@@ -337,9 +337,55 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         for role in sorted(set(supply) | set(targets))
     }
 
+    # No other tool surfaces WHO the commander(s) are -- a mentor with only lookup_card
+    # (which needs a name the player already supplied) had no path to "who is my
+    # commander" / "what's my full colour identity" at all, and answered a flat "I don't
+    # have access to your decklist," which is itself a fabrication (the deck IS loaded,
+    # it just had nowhere to surface). Found live 2026-08-25 on a Tymna the Weaver +
+    # Thrasios, Triton Hero partner build.
+    commanders = [
+        {"name": c.name, "color_identity": list(c.color_identity)}
+        for c in resolved.commanders
+    ]
     data = {"curve": curve, "manabase": manabase_report, "roles": roles,
-            "detected_themes": list(ctx.themes)}
-    return ToolResult(data=data)
+            "detected_themes": list(ctx.themes), "commanders": commanders}
+    # Licenses stating the commander's name(s): without card_names= here, the gate would
+    # flag "Your commander is Tymna the Weaver" as an unverified claim even though this
+    # tool call is exactly what verified it (gate.py checks budget.card_names, not `data`).
+    return ToolResult(data=data, card_names=frozenset(c.name for c in resolved.commanders))
+
+
+def tool_check_legality(ctx: MentorContext, name: str) -> ToolResult:
+    """Deterministic colour-identity subset check -- this arithmetic must never be done
+    by the model itself.
+
+    `lookup_card` exposing `color_identity` was meant to be enough (its own docstring:
+    "a prerequisite for ever gate-checking a colour claim later"), but that only gives
+    the model the two sets -- it still has to conclude whether one is a subset of the
+    other, and a live campaign caught it failing that step even after CORRECTLY stating
+    both sets: asked about Chaos Warp against a Tymna the Weaver + Thrasios, Triton Hero
+    (WBUG) deck, it wrote "its color identity (red) is covered by your deck's color
+    identity (black, white, green, and blue)" -- red is plainly not in that list, and it
+    said so itself one clause earlier. Doing the subset check in Python removes the
+    failure mode instead of hoping a bigger prompt fixes a small model's arithmetic.
+    """
+    card = ctx.card_db.get(name)
+    if card is None:
+        return ToolResult(data={"found": False, "message": f"No card named {name!r} found."})
+    deck_identity: set[str] = set()
+    for c in ctx.resolved.commanders:
+        deck_identity |= set(c.color_identity)
+    card_identity = set(card.color_identity)
+    missing = sorted(card_identity - deck_identity)
+    data = {
+        "found": True,
+        "card": card.name,
+        "card_color_identity": sorted(card_identity),
+        "deck_color_identity": sorted(deck_identity),
+        "legal": not missing,
+        "colors_not_in_deck_identity": missing,
+    }
+    return ToolResult(data=data, card_names=frozenset({card.name}))
 
 
 def tool_assess_card(ctx: MentorContext, name: str, cut_pool: int = 2) -> ToolResult:
@@ -421,9 +467,11 @@ TOOL_SCHEMAS: list[dict] = [
         "type": "function",
         "function": {
             "name": "get_deck_stats",
-            "description": "Get this deck's measured mana curve, colour-source consistency, "
-                            "and role supply vs. target (ramp/draw/removal/wipe/etc). Use this "
-                            "for any question about curve, colours, or what's over/under-supplied.",
+            "description": "Get this deck's commander(s) and full colour identity, measured "
+                            "mana curve, colour-source consistency, and role supply vs. target "
+                            "(ramp/draw/removal/wipe/etc). Use this for any question about who "
+                            "the commander is, colour identity, curve, or what's "
+                            "over/under-supplied.",
             "parameters": {"type": "object", "properties": {}, "required": []},
         },
     },
@@ -441,6 +489,23 @@ TOOL_SCHEMAS: list[dict] = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "check_legality",
+            "description": "Deterministically check whether a card's colour identity is a "
+                            "legal SUBSET of this deck's commander(s) colour identity. Call "
+                            "this for ANY question of the form 'can/could/would I add X' or "
+                            "'is X legal in this deck' -- do NOT work out the subset "
+                            "relationship yourself even if you already have both colour "
+                            "identities from other tool calls; use this tool's verdict.",
+            "parameters": {
+                "type": "object",
+                "properties": {"name": {"type": "string"}},
+                "required": ["name"],
+            },
+        },
+    },
 ]
 
 _TOOL_FUNCS = {
@@ -450,6 +515,7 @@ _TOOL_FUNCS = {
     "get_rule": tool_get_rule,
     "get_deck_stats": tool_get_deck_stats,
     "assess_card": tool_assess_card,
+    "check_legality": tool_check_legality,
 }
 
 

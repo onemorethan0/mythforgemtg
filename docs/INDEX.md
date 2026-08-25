@@ -22,12 +22,14 @@ buildable (Phase 2's interaction-required measure, Phase 3's B1/B2 refit).
 
 ## Start here if you are working on the Deck Mentor
 
-**[`MENTOR_HANDOFF.md`](MENTOR_HANDOFF.md)** — five real conversation campaigns driven through
+**[`MENTOR_HANDOFF.md`](MENTOR_HANDOFF.md)** — six real conversation campaigns driven through
 the live HTTP route (2026-08-25): the reusable method (duplicate a real deck, ask real
 questions, cross-check every claim against the real source, record genuine feedback), every
 real bug found and fixed (a mutually-exclusive if/otherwise pair double-credited as a win, a
-real-but-wrong sibling rule citation, several card-name false positives), and what's still open.
-Read it before touching `mentor/{gate,chat,tools,transcript}.py` or `mentor_bench.py`.
+real-but-wrong sibling rule citation, several card-name false positives, a partner-commander
+deck invisible to the strength engine and mentor alike, a model that recites two colour sets
+correctly and still fails the subset check between them), and what's still open. Read it before
+touching `mentor/{gate,chat,tools,transcript}.py` or `mentor_bench.py`.
 
 ---
 
