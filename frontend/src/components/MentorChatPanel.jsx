@@ -16,7 +16,7 @@ const boxStyle = {
 
 export default function MentorChatPanel({ jobId }) {
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([])   // [{role, content, gated}]
+  const [messages, setMessages] = useState([])   // [{role, content, gated, turnId, feedback}]
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const [errMsg, setErrMsg] = useState('')
@@ -43,7 +43,10 @@ export default function MentorChatPanel({ jobId }) {
       })
       if (r.ok) {
         const body = await r.json()
-        setMessages(m => [...m, { role: 'assistant', content: body.reply, gated: body.gated }])
+        setMessages(m => [...m, {
+          role: 'assistant', content: body.reply, gated: body.gated,
+          turnId: body.turn_id, feedback: null,
+        }])
       } else {
         let d = `HTTP ${r.status}`
         try { d = (await r.json()).detail || d } catch { /* keep the status */ }
@@ -53,6 +56,28 @@ export default function MentorChatPanel({ jobId }) {
       setErrMsg('Strength API unreachable — is Myth Forge running via manage.bat?')
     }
     setBusy(false)
+  }
+
+  // Thumbs up/down (docs/SPEC_deck_mentor.md, Phase 3 prerequisite): the engine already
+  // logs every turn's tool trace and gate verdict, but "gated: true" only means no
+  // fabrication was CAUGHT, not that the answer was actually good. This is how a human
+  // approval signal gets attached to a turn_id, which is what a future distillation pass
+  // needs alongside the logged transcript to build a training corpus.
+  async function vote(index, rating) {
+    const msg = messages[index]
+    if (!msg?.turnId || msg.feedback) return   // no turn_id (older message) or already voted
+    setMessages(m => m.map((x, i) => i === index ? { ...x, feedback: rating } : x))
+    try {
+      await fetch(`/api/deck/${jobId}/mentor/feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ turn_id: msg.turnId, rating }),
+      })
+    } catch {
+      // Best-effort — a failed feedback POST shouldn't disrupt the conversation. The vote
+      // stays reflected in the UI even if it didn't reach the server; not worth an error
+      // banner over a thumbs-up.
+    }
   }
 
   return (
@@ -106,6 +131,36 @@ export default function MentorChatPanel({ jobId }) {
                     </div>
                   )}
                   {m.content}
+                  {m.role === 'assistant' && m.turnId && (
+                    <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
+                      <button
+                        onClick={() => vote(i, 'up')}
+                        disabled={!!m.feedback}
+                        title="This answer was helpful"
+                        style={{
+                          border: 'none', background: 'transparent', fontSize: 12,
+                          cursor: m.feedback ? 'default' : 'pointer',
+                          opacity: m.feedback && m.feedback !== 'up' ? 0.35 : 1,
+                          filter: m.feedback === 'up' ? 'none' : 'grayscale(1)',
+                        }}
+                      >
+                        👍
+                      </button>
+                      <button
+                        onClick={() => vote(i, 'down')}
+                        disabled={!!m.feedback}
+                        title="This answer was wrong or unhelpful"
+                        style={{
+                          border: 'none', background: 'transparent', fontSize: 12,
+                          cursor: m.feedback ? 'default' : 'pointer',
+                          opacity: m.feedback && m.feedback !== 'down' ? 0.35 : 1,
+                          filter: m.feedback === 'down' ? 'none' : 'grayscale(1)',
+                        }}
+                      >
+                        👎
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
               {busy && (

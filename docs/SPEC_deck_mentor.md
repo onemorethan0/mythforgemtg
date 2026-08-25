@@ -293,6 +293,31 @@ baked into `swap_brief`/`collection_pool`/`theme_match` docstrings). New
    latency/VRAM or improve tool-call reliability. The gate stays in the serving path
    regardless of which model drafts the reply; training never removes the need for it.
 
+   **The data half of this was a real gap, closed 2026-08-24 — until then Phase 1/2 already
+   PRODUCED everything this phase needs and PERSISTED none of it.** `chat.ask()` always
+   returned the full tool trace, the gate's verdict, and every rejected draft with its
+   reasons; the HTTP layer didn't even forward `gate_rejections` to the caller, and nothing
+   on the serving path wrote a single byte to disk. Every real conversation evaporated the
+   moment its response was sent — asked directly, checked rather than assumed, and it was a
+   genuine hole, not a hedge.
+
+   `mythgauntlet.mentor.transcript` closes it: append-only JSONL under `data_dir()` (same
+   convention as every other `data/` module), one `"turn"` record per question — including
+   `gate_rejections`, arguably the single most useful signal here, since a corpus of only
+   *accepted* answers never shows the model's failure modes — and one `"feedback"` record
+   per human rating, joined to its turn by `turn_id` rather than kept in a second file that
+   could drift. `POST /mentor/chat` now returns `turn_id`; `POST /mentor/feedback` (proxied
+   through Forge as `/api/deck/{job_id}/mentor/feedback`) records a rating against it.
+   `MentorChatPanel.jsx` renders a 👍/👎 under every assistant reply.
+
+   **`gated=True` is not the same as "good."** It only means the gate caught no
+   fabrication. The actual Phase 3 training corpus is turns where BOTH `gated=True` in the
+   `"turn"` record AND a later `rating=="up"` `"feedback"` record share a `turn_id` — joining
+   those two event types into that corpus is a future `scripts/build_mentor_sft.py`'s job,
+   once there is enough real usage logged to build from. Verified live end-to-end: asked a
+   real question through the real UI, clicked 👍, and confirmed on disk that the `"turn"` and
+   `"feedback"` records share the same `turn_id` with `rating: "up"`.
+
 ## Explicitly out of scope
 
 - Answering from the model's own training-time Magic knowledge, ungrounded. Every rules claim

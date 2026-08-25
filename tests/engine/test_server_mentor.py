@@ -35,6 +35,9 @@ def _fake_cr() -> ComprehensiveRules:
 @pytest.fixture
 def app_and_db(tmp_path, make_card, forest, bear, monkeypatch):
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path / "suite"))
+    # Hermetic: transcript logging must not write to the real machine's data dir during
+    # tests (see test_mentor_transcript.py for dedicated coverage of the module itself).
+    monkeypatch.setattr(server_mod.transcript, "transcript_path", lambda: tmp_path / "transcripts.jsonl")
     commander = make_card(
         "Test Commander", mana_cost="{2}{G}", type_line="Legendary Creature — Beast",
         color_identity=("G",),
@@ -105,6 +108,58 @@ def test_mentor_chat_happy_path_wraps_the_gated_reply(app_and_db, monkeypatch):
     assert captured["question"] == "How's my curve?"
     assert captured["model"] == "qwen3:14b"
     assert "Test Commander" in captured["deck_card_names"]
+
+
+def test_mentor_chat_returns_a_turn_id_and_logs_the_full_turn(app_and_db, monkeypatch, tmp_path):
+    """Phase 3 prerequisite: the response carries a turn_id, and the logged record on
+    disk includes gate_rejections -- which the HTTP response itself never exposes."""
+    db, store = app_and_db
+    app = server_mod.create_app(db=db, store=store, mentor_cr=_fake_cr(), mentor_rulings_db={})
+
+    def fake_ask(ctx, question, history=None, **kw):
+        return MentorReply(
+            text="honest fallback", gated=False, tool_trace=[],
+            gate_rejections=[("bad draft", ["cites 99, which is not in this turn's tool results"])],
+        )
+
+    monkeypatch.setattr(server_mod.mentor_chat, "ask", fake_ask)
+    resp = TestClient(app).post("/mentor/chat", json={"deck": DECK, "question": "q"})
+    body = resp.json()
+    assert body["turn_id"]
+    assert "gate_rejections" not in body  # not shown to the caller -- internal signal only
+
+    import json
+    records = [json.loads(l) for l in server_mod.transcript.transcript_path().read_text(encoding="utf-8").splitlines()]
+    assert len(records) == 1
+    assert records[0]["turn_id"] == body["turn_id"]
+    assert records[0]["gated"] is False
+    assert records[0]["gate_rejections"][0]["reasons"] == ["cites 99, which is not in this turn's tool results"]
+
+
+def test_mentor_feedback_appends_a_matching_record(app_and_db, monkeypatch):
+    db, store = app_and_db
+    app = server_mod.create_app(db=db, store=store, mentor_cr=_fake_cr(), mentor_rulings_db={})
+    monkeypatch.setattr(server_mod.mentor_chat, "ask",
+                        lambda *a, **kw: MentorReply(text="x", gated=True, tool_trace=[]))
+    client = TestClient(app)
+    chat_body = client.post("/mentor/chat", json={"deck": DECK, "question": "q"}).json()
+
+    resp = client.post("/mentor/feedback",
+                       json={"turn_id": chat_body["turn_id"], "rating": "up", "note": "great"})
+    assert resp.status_code == 200
+
+    import json
+    records = [json.loads(l) for l in server_mod.transcript.transcript_path().read_text(encoding="utf-8").splitlines()]
+    assert records[1]["event"] == "feedback"
+    assert records[1]["turn_id"] == chat_body["turn_id"]
+    assert records[1]["rating"] == "up"
+
+
+def test_mentor_feedback_rejects_invalid_rating(app_and_db):
+    db, store = app_and_db
+    app = server_mod.create_app(db=db, store=store, mentor_cr=_fake_cr(), mentor_rulings_db={})
+    resp = TestClient(app).post("/mentor/feedback", json={"turn_id": "x", "rating": "sideways"})
+    assert resp.status_code == 400
 
 
 def test_mentor_chat_reports_ungated_fallback(app_and_db, monkeypatch):

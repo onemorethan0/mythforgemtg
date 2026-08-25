@@ -4244,6 +4244,45 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest):
     return result
 
 
+class MentorFeedbackDeckRequest(BaseModel):
+    turn_id: str = Field(min_length=1)
+    rating: str = Field(description="'up' or 'down'")
+    note: Optional[str] = Field(default=None, max_length=1000)
+
+
+@app.post("/api/deck/{job_id}/mentor/feedback")
+def mentor_feedback_deck(job_id: str, req: MentorFeedbackDeckRequest):
+    """Thumbs up/down on a logged mentor turn (docs/SPEC_deck_mentor.md, Phase 3
+    prerequisite). `job_id` isn't sent to the engine -- `turn_id` alone identifies the
+    logged record on :8020's side -- but the route is scoped under the deck anyway so a
+    stray or spoofed turn_id from a different session can't be submitted from a page that
+    was never shown that turn_id in the first place.
+    """
+    _require_job_id(job_id)
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/mentor/feedback",
+            json={"turn_id": req.turn_id, "rating": req.rating, "note": req.note},
+            timeout=15,
+        )
+    except Exception as e:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        ) from e
+    if resp.status_code == 400:
+        detail = "invalid feedback"
+        try:
+            detail = resp.json().get("detail", detail)
+        except ValueError:
+            pass
+        raise HTTPException(400, detail)
+    if resp.status_code != 200:
+        raise HTTPException(502, "Feedback was not recorded.")
+    return resp.json()
+
+
 class CardImpactDeckRequest(BaseModel):
     card: str = Field(min_length=1, max_length=200)
 

@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 from mythgauntlet import __version__
 from mythgauntlet.config import corpus_dir, suite_collection_path
 from mythgauntlet.data import rulings, scryfall, spellbook
-from mythgauntlet.mentor import chat as mentor_chat
+from mythgauntlet.mentor import chat as mentor_chat, transcript
 from mythgauntlet.mentor.tools import MentorContext
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, ResolvedDeck, resolve
@@ -151,6 +151,12 @@ class MentorChatRequest(BaseModel):
         default_factory=list,
         description="the deck's own detected archetypes (same contract as /advise's themes)",
     )
+
+
+class MentorFeedbackRequest(BaseModel):
+    turn_id: str = Field(min_length=1)
+    rating: str = Field(description="'up' or 'down'")
+    note: str | None = Field(default=None, max_length=1000)
 
 
 class DuelRequest(BaseModel):
@@ -624,13 +630,41 @@ def create_app(
             cfg=cfg, store=store, themes=tuple(req.themes),
         )
         reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)
+        # Phase 3 prerequisite (docs/SPEC_deck_mentor.md): log the FULL turn, including
+        # gate_rejections, which the HTTP response below deliberately does NOT expose to
+        # the caller -- a rejected draft is internal signal, not something to show a user,
+        # but it is exactly the training data a future distillation pass needs most (see
+        # mentor.transcript's module docstring). Never let logging fail the request.
+        commander = resolved.commanders[0].name if resolved.commanders else None
+        try:
+            turn_id = transcript.record_turn(
+                question=req.question, history=req.history, reply=reply, model=req.model,
+                deck_name=req.name, deck_commander=commander,
+                deck_card_count=resolved.card_count,
+            )
+        except Exception:                       # noqa: BLE001 - logging must never break a reply
+            turn_id = None
         return {
             "engine_version": __version__,
+            "turn_id": turn_id,
             "reply": reply.text,
             "gated": reply.gated,
             "tool_trace": [
                 {"tool": rec.name, "args": rec.args} for rec in reply.tool_trace
             ],
         }
+
+    @app.post("/mentor/feedback")
+    def run_mentor_feedback(req: MentorFeedbackRequest) -> dict:
+        """Human approval signal for one logged turn (docs/SPEC_deck_mentor.md, Phase 3
+        prerequisite). `gated=True` on a turn only means the gate caught no fabrication --
+        it is not the same as the answer being GOOD. A future training corpus is turns
+        where BOTH are true, and this is how the second half gets recorded.
+        """
+        try:
+            transcript.record_feedback(req.turn_id, req.rating, note=req.note)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc))
+        return {"status": "ok"}
 
     return app
