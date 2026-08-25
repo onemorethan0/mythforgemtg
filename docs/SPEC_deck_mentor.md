@@ -258,8 +258,36 @@ baked into `swap_brief`/`collection_pool`/`theme_match` docstrings). New
    13-case run is a smoke test, not the 75-100 case bench this spec calls for at ship time —
    sized honestly, not padded, and the next real work here is growing it, not re-running it.
 
-2. **`/api/mentor/chat` + a chat panel in Forge**, wired to a real deck, reusing Phase 1's
-   loop/gate unchanged.
+2. **`/api/mentor/chat` + a chat panel in Forge — SHIPPED 2026-08-24.** Reuses Phase 1's
+   loop/gate unchanged, through two thin layers, neither of which touches the gate's logic:
+
+   - `mythgauntlet.server` gained `POST /mentor/chat` (stateless, like every other route
+     there — the deck is resolved fresh from decklist text each call, `history` carries the
+     conversation so state lives with the caller). `mentor_cr`/`mentor_rulings_db` are
+     injectable into `create_app()` (same pattern as `db`/`store`) so a deployment that
+     hasn't run `fetch-rules` yet degrades that ONE route to a clear 503 instead of failing
+     to start, and so tests stay hermetic instead of depending on whatever's fetched on disk.
+   - Forge's own `server.py` gained `POST /api/deck/{job_id}/mentor`, a proxy in the exact
+     shape of `_gauntlet_advise`/`_gauntlet_card_impact` (job lookup → `_deck_to_lines` →
+     forward to `:8020` → map 400/503 to `{"error": ...}`, unreachable to `None`). A 503 FROM
+     the engine (rules corpus not fetched) is distinguished from the engine PROCESS being
+     unreachable — the first needs "run fetch-rules," the second needs "start the server,"
+     and collapsing them would send the user to fix the wrong thing.
+   - `MentorChatPanel.jsx`, mounted in `StepDeck.jsx` next to the existing Measure/Advise/
+     CardImpact/Duel panels. A reply with `gated: false` renders with a visibly distinct
+     amber "⚠ unverified" treatment — never the same visual weight as a verified answer, per
+     the spec's own API/UI section above.
+
+   **Verified live end-to-end in the real browser** (not just unit tests): built the full
+   local stack (Forge, the MythGauntlet engine, llama-swap), opened an actual saved deck
+   (Kaalia of the Vast, 100 cards), expanded the panel, and asked real questions through the
+   real UI. "Under what rule does a 0 toughness creature die?" correctly answered **Rule
+   704.5f** (not the wrong 704.5c a plain memory-based answer would risk). A follow-up in the
+   same conversation, "What does the card Zzyzx Prism Wyrm do?", was correctly refused —
+   "there's no card named ... in Magic: The Gathering" — without even needing the ungated
+   fallback path, because the tool call itself came back empty and the model reported that
+   honestly. Multi-turn history round-tripped correctly across both questions.
+
 3. **Optional: distill.** Only after 0-2 are bench-passing and in real use — fine-tune/LoRA a
    smaller local model on the corpus of gated, human-approved transcripts, purely to cut
    latency/VRAM or improve tool-call reliability. The gate stays in the serving path

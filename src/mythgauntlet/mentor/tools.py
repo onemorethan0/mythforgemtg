@@ -160,6 +160,12 @@ def tool_lookup_rulings(ctx: MentorContext, name: str) -> ToolResult:
 
 
 def tool_search_rules(ctx: MentorContext, query: str, k: int = 5) -> ToolResult:
+    # Measured 2026-08-24: building a fresh RulesSearchIndex over the ~4,000-document
+    # corpus is 66ms, search itself 2ms -- negligible next to an LLM round-trip (seconds)
+    # or assess_card's simulation (seconds), so this is NOT cached. Building it from
+    # `ctx.cr` directly (rather than `rulings_data.search_rules`'s file-path-keyed cache)
+    # is also what keeps this tool testable against a small in-memory ComprehensiveRules
+    # fixture instead of coupling it to whatever's on disk.
     index = rulings_data.RulesSearchIndex(ctx.cr)
     results = index.search(query, k=k)
     data = {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import AdvisePanel from './AdvisePanel'
 import CardImpactPanel from './CardImpactPanel'
 import DuelPanel from './DuelPanel'
+import MentorChatPanel from './MentorChatPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import SetBible from './SetBible'
@@ -1999,6 +2000,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               an applied swap changes the list, so a cached verdict is stale. */}
           <CardImpactPanel key={`imp-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <DuelPanel key={`duel-${jobId}`} jobId={jobId} />
+          <MentorChatPanel key={`mentor-${jobId}`} jobId={jobId} />
         </div>
       )}
 

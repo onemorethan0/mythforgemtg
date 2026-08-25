@@ -17,7 +17,9 @@ from pydantic import BaseModel, Field
 
 from mythgauntlet import __version__
 from mythgauntlet.config import corpus_dir, suite_collection_path
-from mythgauntlet.data import scryfall, spellbook
+from mythgauntlet.data import rulings, scryfall, spellbook
+from mythgauntlet.mentor import chat as mentor_chat
+from mythgauntlet.mentor.tools import MentorContext
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, ResolvedDeck, resolve
 from mythgauntlet.ratings import advisor, card_impact, metrics
@@ -127,6 +129,30 @@ class AdviseRequest(BaseModel):
     )
 
 
+class MentorChatRequest(BaseModel):
+    deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
+    question: str = Field(description="the user's question")
+    name: str = "deck"
+    history: list[dict] = Field(
+        default_factory=list,
+        description="prior turns as [{role: 'user'|'assistant', content: str}, ...]. Each "
+        "question re-verifies against fresh tool calls rather than trusting a stale result "
+        "from an earlier turn -- see mentor.chat.ask.",
+    )
+    model: str = Field(
+        default="qwen3:14b",
+        description="llama-swap model id. qwen3:14b is the smoke-tested default -- see "
+        "docs/SPEC_deck_mentor.md, 'Model / serving'.",
+    )
+    runs: int = Field(default=150, ge=1, le=2_000, description="sim games for assess_card")
+    seed: int = 42
+    turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
+    themes: list[str] = Field(
+        default_factory=list,
+        description="the deck's own detected archetypes (same contract as /advise's themes)",
+    )
+
+
 class DuelRequest(BaseModel):
     deck_a: str
     deck_b: str
@@ -210,12 +236,34 @@ def _resolve_or_400(text: str, name: str, db: scryfall.CardDb) -> ResolvedDeck:
     return resolved
 
 
+_UNSET = object()  # distinguishes "not passed -> lazy-load" from "explicitly None"
+
+
 def create_app(
-    db: scryfall.CardDb | None = None, store: SemanticsStore | None = None
+    db: scryfall.CardDb | None = None,
+    store: SemanticsStore | None = None,
+    mentor_cr=_UNSET,
+    mentor_rulings_db=_UNSET,
 ) -> FastAPI:
     app = FastAPI(title="MythGauntlet strength API", version=__version__)
     db = db if db is not None else scryfall.load_card_db()
     store = store if store is not None else load_store()  # cached; ~35s cold, else instant
+
+    # Deck Mentor's ground-truth corpus (docs/SPEC_deck_mentor.md Phase 0/2). Loaded once
+    # at startup like db/store above; a deployment that hasn't run `fetch-rules` yet keeps
+    # every OTHER route working and /mentor/chat degrades to a clear 503 rather than
+    # taking the whole server down over one feature's missing data. Injectable (like
+    # db/store) so tests stay hermetic instead of depending on whatever's on disk --
+    # explicitly passing None (as opposed to leaving it unset) forces the unavailable
+    # path even on a machine that DOES have the real corpus fetched.
+    if mentor_cr is _UNSET or mentor_rulings_db is _UNSET:
+        try:
+            if mentor_cr is _UNSET:
+                mentor_cr = rulings.load_comprehensive_rules()
+            if mentor_rulings_db is _UNSET:
+                mentor_rulings_db = rulings.load_rulings_db()
+        except FileNotFoundError:
+            mentor_cr, mentor_rulings_db = None, None
 
     @app.get("/health")
     def health() -> dict:
@@ -225,6 +273,7 @@ def create_app(
             "cards_in_store": len(db),
             "semantics_entries": len(store),
             "semantics_load_warnings": len(store.skipped),
+            "mentor_rules_loaded": mentor_cr is not None,
         }
 
     @app.post("/analyze")
@@ -547,6 +596,41 @@ def create_app(
             "name": req.name,
             "opponents": len(opponents),
             "rating": dataclasses.asdict(rating),
+        }
+
+    @app.post("/mentor/chat")
+    def run_mentor_chat(req: MentorChatRequest) -> dict:
+        """Deck Mentor (docs/SPEC_deck_mentor.md, Phase 2): answer a question about this
+        deck, a card, or a rule. Runs the same tool-calling loop + claim-budget gate as
+        the Phase 1 CLI (`mythgauntlet mentor`) unchanged -- this route is a thin HTTP
+        wrapper, not a second implementation, so nothing about the gate's guarantees
+        differs between the CLI and this endpoint.
+
+        Stateless per request, like every other route here: the deck is resolved fresh
+        from `deck` text each call, and `history` carries prior turns so the conversation
+        state lives with the CALLER, not the server. Each question re-verifies against
+        fresh tool calls rather than trusting a stale result from an earlier turn.
+        """
+        if mentor_cr is None or mentor_rulings_db is None:
+            raise HTTPException(
+                status_code=503,
+                detail="Rulings/Comprehensive Rules corpus not loaded. "
+                "Run `mythgauntlet fetch-rules` and restart the server.",
+            )
+        resolved = _resolve_or_400(req.deck, req.name, db)
+        cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
+        ctx = MentorContext(
+            card_db=db, cr=mentor_cr, rulings_db=mentor_rulings_db, resolved=resolved,
+            cfg=cfg, store=store, themes=tuple(req.themes),
+        )
+        reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)
+        return {
+            "engine_version": __version__,
+            "reply": reply.text,
+            "gated": reply.gated,
+            "tool_trace": [
+                {"tool": rec.name, "args": rec.args} for rec in reply.tool_trace
+            ],
         }
 
     return app

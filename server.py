@@ -4164,6 +4164,86 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None):
         return None
 
 
+def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None):
+    """Deck Mentor chat turn from MythGauntlet's tool-calling loop + claim-budget gate
+    (docs/SPEC_deck_mentor.md Phase 2). Same shape as `_gauntlet_advise`/
+    `_gauntlet_card_impact`: JSON on success, {"error": detail} for a meaningful 400/503
+    the caller should show verbatim, None when the service process itself is unreachable.
+
+    Unlike the other two, a 503 from :8020 here can mean "the engine is down" (None,
+    same as always) OR "the engine is up but hasn't run fetch-rules yet" (a real detail
+    message worth showing) -- both are surfaced as {"error": ...} rather than being
+    collapsed into the generic "unreachable" case, since only the latter is actionable
+    with "start the server"; the former needs "run fetch-rules" instead.
+    """
+    try:
+        payload = {
+            "deck": _deck_to_lines(commander, deck),
+            "name": (commander or {}).get("name") or "deck",
+            "question": question,
+            "history": history or [],
+        }
+        if model:
+            payload["model"] = model
+        if themes:
+            payload["themes"] = list(themes)
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/mentor/chat", json=payload, timeout=120)
+        if resp.status_code in (400, 503):
+            try:
+                return {"error": resp.json().get("detail", "mentor chat failed")}
+            except Exception:
+                return {"error": "mentor chat failed"}
+        if resp.status_code != 200:
+            return None
+        return resp.json()
+    except Exception as e:
+        print(f"  [mentor] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
+class MentorChatDeckRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=2000)
+    history: list[dict] = Field(default_factory=list)
+    model: Optional[str] = None  # None -> the engine's own default (qwen3:14b)
+
+
+@app.post("/api/deck/{job_id}/mentor")
+def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest):
+    """Ask the Deck Mentor a question about this finished deck (docs/SPEC_deck_mentor.md
+    Phase 2). Every reply is checked against that turn's own tool calls before it comes
+    back — `gated: false` in the response means the answer is an honest "I'm not sure"
+    rather than a claim that failed verification, never a silently-stripped one.
+    """
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    cards = job.get("deck") or []
+    if not cards:
+        raise HTTPException(400, "A single-card build has no deck for the mentor to read.")
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in cards
+    ]
+    result = _gauntlet_mentor_chat(
+        commander, deck, req.question.strip(), history=req.history, model=req.model,
+        themes=_deck_archetypes(job),
+    )
+    if result is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    if "error" in result:
+        raise HTTPException(400, result["error"])
+    return result
+
+
 class CardImpactDeckRequest(BaseModel):
     card: str = Field(min_length=1, max_length=200)
 
