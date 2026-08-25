@@ -38,16 +38,51 @@ from mythgauntlet.mentor.chat import MentorReply
 
 TRANSCRIPT_FILENAME = "mentor_transcripts.jsonl"
 
+# This is a log, not a database -- kept simple on purpose. Every turn (including the full
+# tool trace and every rejected draft, per the module docstring above) is appended
+# forever with no cap, so left alone this file grows without bound. Size-based rotation
+# only, no time-based rotation and no compaction: when the CURRENT file would exceed
+# MAX_TRANSCRIPT_BYTES, it's renamed aside with a timestamp and a fresh file is started;
+# only the newest MAX_ROTATED_FILES rotated files are kept, older ones deleted.
+MAX_TRANSCRIPT_BYTES = 50 * 1024 * 1024  # 50 MB
+MAX_ROTATED_FILES = 5
+
 
 def transcript_path() -> Path:
     return data_dir() / TRANSCRIPT_FILENAME
+
+
+def _rotate_if_needed(path: Path) -> None:
+    """Best-effort, like `_append` itself -- a rotation failure must not break a chat
+    turn. NOTE: rotation happens at append time, so a turn logged in the last instant
+    before a rotation fires moves into the just-rotated file; `turn_exists`/
+    `load_transcript` only ever read the CURRENT file. In practice this only matters if
+    feedback arrives for a turn exactly as the file crosses 50 MB, which is rare enough
+    for a log file that it's an accepted limitation rather than something worth a real
+    index over."""
+    try:
+        if not path.exists() or path.stat().st_size < MAX_TRANSCRIPT_BYTES:
+            return
+        stamp = time.strftime("%Y%m%d-%H%M%S")
+        rotated = path.with_name(f"{path.stem}.{stamp}{path.suffix}")
+        path.rename(rotated)
+        siblings = sorted(
+            path.parent.glob(f"{path.stem}.*{path.suffix}"),
+            key=lambda p: p.stat().st_mtime, reverse=True,
+        )
+        for old in siblings[MAX_ROTATED_FILES:]:
+            old.unlink(missing_ok=True)
+    except OSError:
+        pass
 
 
 def _append(record: dict) -> None:
     # A logging failure must never break a chat turn -- this is telemetry, not the
     # feature. Best-effort: if the disk write fails, the turn still returns to the user.
     try:
-        with open(transcript_path(), "a", encoding="utf-8") as fh:
+        path = transcript_path()
+        _rotate_if_needed(path)
+        with open(path, "a", encoding="utf-8") as fh:
             fh.write(json.dumps(record, ensure_ascii=False, default=str) + "\n")
     except OSError:
         pass
@@ -121,3 +156,16 @@ def load_transcript(path: Path | None = None) -> list[dict]:
             except json.JSONDecodeError:
                 continue
     return records
+
+
+def turn_exists(turn_id: str, path: Path | None = None) -> bool:
+    """Whether `turn_id` names a turn THIS engine actually logged (an `event: "turn"`
+    record) -- the narrow, local check `run_mentor_feedback` makes before recording
+    feedback, so a stray/garbled/made-up `turn_id` is rejected rather than silently
+    accepted. See that route's own docstring for what this does and does NOT protect
+    against (it has no notion of a Forge `job_id`, so it cannot scope a turn_id to a
+    particular session -- only confirm the turn was really logged at all)."""
+    return any(
+        rec.get("event") == "turn" and rec.get("turn_id") == turn_id
+        for rec in load_transcript(path)
+    )

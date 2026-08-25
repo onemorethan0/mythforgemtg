@@ -39,6 +39,20 @@ DEFAULT_MAX_TOKENS = 700
 MAX_TOOL_TURNS = 6
 MAX_GATE_ATTEMPTS = 3
 
+
+class LLMUnavailable(Exception):
+    """The LLM backend (llama-swap on `LLM_BASE`) could not be reached, or answered with
+    an HTTP error -- an INFRASTRUCTURE failure, not an epistemic one. Kept distinct from
+    the gate's own honest-fallback `MentorReply` (see the module docstring below) because
+    the fix is different: "start llama-swap" vs. "the model genuinely doesn't know this."
+    Mirrors how the engine's own `/mentor/chat` route already distinguishes "rules corpus
+    not fetched" (503, run fetch-rules) from "the process is unreachable" (a different
+    503, start the server) -- this is the same shape one layer down, for the model call
+    itself. The caller (`mythgauntlet.server`'s `/mentor/chat` route) turns this into a
+    503 with an actionable detail rather than letting a raw `requests` exception surface
+    as an unhandled 500."""
+
+
 SYSTEM_PROMPT = """You are a Magic: The Gathering Commander deck mentor -- a casual, \
 friendly guide, not a tournament coach. The player's pod plays bracket 1-3 for fun, not \
 optimisation, so keep that register: helpful and specific, never cEDH-flavoured.
@@ -86,8 +100,18 @@ def _post_chat(messages: list[dict], *, model: str, temperature: float,
     if model.startswith("qwen3"):
         # Skip the chain-of-thought pass -- see themer._chat_completion, same convention.
         payload["chat_template_kwargs"] = {"enable_thinking": False}
-    resp = requests.post(f"{LLM_BASE}/v1/chat/completions", json=payload, timeout=timeout)
-    resp.raise_for_status()
+    try:
+        resp = requests.post(f"{LLM_BASE}/v1/chat/completions", json=payload, timeout=timeout)
+        resp.raise_for_status()
+    except requests.exceptions.RequestException as exc:
+        # Connection refused/timeout (llama-swap not running) or an HTTP error status --
+        # both mean the model call itself failed, as opposed to the model answering badly.
+        # Raised rather than swallowed here so every call site (initial draft, the
+        # MAX_TOOL_TURNS fallback prompt, and each gate-retry) fails the same way instead
+        # of needing its own try/except; `ask()` deliberately does NOT catch this -- see
+        # LLMUnavailable's own docstring for why this is an infrastructure failure, not
+        # the gate's honest-fallback path.
+        raise LLMUnavailable(f"POST {LLM_BASE}/v1/chat/completions failed: {exc}") from exc
     return resp.json()["choices"][0]["message"]
 
 
@@ -104,6 +128,29 @@ def _strip(text: str) -> str:
     return " ".join(body.split()).strip()
 
 
+_HISTORY_ROLES = {"user", "assistant"}
+
+
+def _sanitize_history(history: list[dict] | None) -> list[dict]:
+    """Only `user`/`assistant` turns with plain string content are trusted into the
+    outgoing message list. `history` is client-supplied (it round-trips through the
+    Forge UI and the engine's `/mentor/chat` request body), and this endpoint is
+    stateless per request -- nothing here re-derives the real conversation, so a
+    `role: "system"` entry could override `SYSTEM_PROMPT` and a `role: "tool"` entry
+    could forge a fake prior tool result the gate would then treat as genuinely verified.
+    Silently dropped rather than rejected with an error: an old/malformed history entry
+    (a client bug, not necessarily an attack) shouldn't break the whole turn when simply
+    ignoring it is safe."""
+    safe: list[dict] = []
+    for turn in history or []:
+        if not isinstance(turn, dict):
+            continue
+        role, content = turn.get("role"), turn.get("content")
+        if role in _HISTORY_ROLES and isinstance(content, str):
+            safe.append({"role": role, "content": content})
+    return safe
+
+
 def ask(
     ctx: MentorContext,
     question: str,
@@ -117,15 +164,17 @@ def ask(
 
     `history` is prior turns as OpenAI-shaped messages (user/assistant only -- no tool
     calls carried across questions, so each question re-verifies rather than trusting a
-    stale tool result from three questions ago).
+    stale tool result from three questions ago). Sanitized via `_sanitize_history` before
+    use -- a `system`/`tool`-role entry is dropped rather than trusted, since this route
+    is stateless and has no other way to tell a genuine prior turn from an injected one.
     """
     messages: list[dict] = [{"role": "system", "content": SYSTEM_PROMPT}]
-    messages.extend(history or [])
+    messages.extend(_sanitize_history(history))
     messages.append({"role": "user", "content": question})
 
     tool_trace: list[ToolCallRecord] = []
     all_results: list[ToolResult] = []
-    deck_names = ctx.deck_card_names
+    known_names = ctx.all_card_names
 
     for _ in range(MAX_TOOL_TURNS):
         msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
@@ -159,7 +208,7 @@ def ask(
         msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
         draft = _strip(msg.get("content") or "")
 
-    budget = gate_mod.ClaimBudget.from_tool_results(all_results, deck_names)
+    budget = gate_mod.ClaimBudget.from_tool_results(all_results, known_names)
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):

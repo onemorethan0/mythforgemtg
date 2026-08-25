@@ -21,6 +21,12 @@ export default function MentorChatPanel({ jobId }) {
   const [busy, setBusy] = useState(false)
   const [errMsg, setErrMsg] = useState('')
   const scrollRef = useRef(null)
+  // React state (`busy`) updates asynchronously -- a fast double-Enter/double-click can
+  // fire `ask()` twice before the first `setBusy(true)` has re-rendered, so `busy` alone
+  // doesn't guard against it. `busyRef` is set synchronously at the very top of `ask()`,
+  // before any `await`, so the second call sees the in-flight flag immediately regardless
+  // of render timing.
+  const busyRef = useRef(false)
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
@@ -29,7 +35,8 @@ export default function MentorChatPanel({ jobId }) {
   async function ask(e) {
     e?.preventDefault?.()
     const question = input.trim()
-    if (!question || busy) return
+    if (!question || busyRef.current) return
+    busyRef.current = true
     setBusy(true); setErrMsg('')
     const history = messages.map(({ role, content }) => ({ role, content }))
     const next = [...messages, { role: 'user', content: question }]
@@ -54,8 +61,10 @@ export default function MentorChatPanel({ jobId }) {
       }
     } catch {
       setErrMsg('Strength API unreachable — is Myth Forge running via manage.bat?')
+    } finally {
+      busyRef.current = false
+      setBusy(false)
     }
-    setBusy(false)
   }
 
   // Thumbs up/down (docs/SPEC_deck_mentor.md, Phase 3 prerequisite): the engine already

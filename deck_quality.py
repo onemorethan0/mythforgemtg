@@ -14,6 +14,8 @@ Worked examples (SPEC section 4):
     pip_counts {5}{B}{R}    -> {B:1, R:1}
     pip_counts {B/R}{B}     -> {B:2, R:1}   hybrid is payable by EITHER, so it counts
                                             toward both colours' source requirement
+    pip_counts {1}{B/P}{B/P} -> {}          phyrexian is payable with life, so it is
+                                            NOT a hard colour requirement (Dismember)
     curve of a MV-9 card    -> bucket 7      (7+ is one bucket)
     curve_target(63, 7)     -> sums to exactly 63; buckets 6 and 7 each 3 lower than
                                curve_target(63, 4), buckets 2 and 3 each 3 higher
@@ -103,10 +105,20 @@ def mana_value(card: dict) -> int:
 
 def pip_counts(card: dict) -> dict[str, int]:
     """Coloured pips demanded. A hybrid {B/R} adds 1 to BOTH B and R — either colour
-    can pay it, so both colours' source counts must be able to satisfy it."""
+    can pay it, so both colours' source counts must be able to satisfy it.
+
+    A PHYREXIAN symbol ({B/P}) is not a hard colour requirement at all: it can be paid
+    with 2 life instead of a source of that colour, so it must not feed `assess_colors`'
+    "short on <colour>" diagnostic the way a real pip does. Excluded entirely, the same
+    way `mana_value` already drops the "P" half when reading a hybrid/phyrexian symbol
+    — a monocoloured Phyrexian symbol has no OTHER real colour to fall back to (unlike
+    a genuine hybrid), so there is nothing left to count."""
     counts: dict[str, int] = {}
     for tok in _COLOR_SYM.findall(_mana_cost(card)):
-        for part in tok.upper().split("/"):
+        parts = tok.upper().split("/")
+        if "P" in parts:
+            continue
+        for part in parts:
             if part in WUBRG:
                 counts[part] = counts.get(part, 0) + 1
     return counts

@@ -184,17 +184,21 @@ def test_strict_mode_never_searches_and_drafts_only_owned_cards():
 # ── Slot distribution ────────────────────────────────────────────────────────────
 
 def test_slots_split_across_three_themes_with_the_remainder_to_the_first():
-    """want=10 over 3 themes is 3 each with 1 left over, and the leftover goes to the
-    LEAD theme — the one the commander was actually detected as."""
+    """want=10 over 3 themes is LEAD-WEIGHTED (`_theme_slot_split`, `LEAD_THEME_SHARE`),
+    not an even split — the lead theme is the one the commander was actually detected
+    as, and this strict branch must match the Scryfall branch's measured-better
+    behaviour (see `test_deck_builder_theme_scryfall.py`): 7/2/1, not 3/3/3+1."""
     b = _strict_builder(GOBLINS + ELVES + DRAGONS)
     added = b._fetch_theme_synergy_list(
         PROFILE, ["tribal_goblins", "tribal_elves", "tribal_dragons"], 10)
     assert added == 10
     assert _names(b) == [
-        # 4 goblins: payoffs first (STRONG), each tribe in EDHREC order
+        # 7 goblins (the lead theme takes LEAD_THEME_SHARE = 0.7 of the package):
+        # payoffs first (STRONG), each tribe in EDHREC order
         "Goblin Chieftain", "Goblin Warchief", "Krenko, Mob Boss", "Goblin Matron",
-        "Elvish Archdruid", "Imperious Perfect", "Priest of Titania",
-        "Thunderbreak Regent", "Lathliss, Dragon Queen", "Utvara Hellkite",
+        "Skirk Prospector", "Mogg Fanatic", "Raging Goblin",
+        "Elvish Archdruid", "Imperious Perfect",
+        "Thunderbreak Regent",
     ]
 
 
@@ -213,18 +217,23 @@ def test_only_the_first_three_themes_are_active():
 def test_a_theme_with_no_matches_does_not_waste_its_slots():
     """An owned pool is small enough that one thin theme routinely runs dry. The Scryfall
     path can shrug (its pool is the whole format); here the empty theme's slots must be
-    redistributed by the second pass or the deck comes up short."""
+    redistributed by the second pass or the deck comes up short.
+
+    Lead-weighted (`_theme_slot_split`): want=9 over 3 themes splits 6/2/1. The elf
+    theme (2 slots) is dry, so those slots sweep across the remaining active themes in
+    order — goblins first, then dragons."""
     b = _strict_builder(GOBLINS + DRAGONS)        # no elves owned at all
     added = b._fetch_theme_synergy_list(
         PROFILE, ["tribal_goblins", "tribal_elves", "tribal_dragons"], 9)
     assert added == 9
     assert "theme" not in b.shortfall
-    got = _names(b)
-    assert got[:3] == ["Goblin Chieftain", "Goblin Warchief", "Krenko, Mob Boss"]
-    assert got[3:6] == ["Thunderbreak Regent", "Lathliss, Dragon Queen",
-                        "Utvara Hellkite"]
-    # The elf theme's 3 slots came back round to the first theme, not to nobody.
-    assert got[6:] == ["Goblin Matron", "Skirk Prospector", "Mogg Fanatic"]
+    assert _names(b) == [
+        "Goblin Chieftain", "Goblin Warchief", "Krenko, Mob Boss", "Goblin Matron",
+        "Skirk Prospector", "Mogg Fanatic",
+        "Thunderbreak Regent",
+        "Raging Goblin",
+        "Lathliss, Dragon Queen",
+    ]
 
 
 def test_a_card_matching_two_active_themes_is_drafted_once():

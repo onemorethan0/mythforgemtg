@@ -568,15 +568,17 @@ class DeckBuilder:
             # Match over flex (nonland) — the Scryfall theme queries carry -type:land.
             matched = theme_match.match_themes(self._pool.flex, active)
             added = 0
-            per_theme = max(1, want // len(active))
-            # max(0, ...): with want < len(active) the remainder goes NEGATIVE and it is
-            # the LEAD theme that loses its slot — a priority inversion, since the lead
-            # theme is meant to get the surplus, not the deficit.
-            remainder = max(0, want - per_theme * len(active))
+            # Lead-weighted, not even — see `_theme_slot_split`. This branch used to do a
+            # flat `want // len(active)` split with the remainder to theme 1, which the
+            # Scryfall branch also did until it was measured against `builder_bench` and
+            # found worse on every axis (synergy 15.63 vs 16.01, curve deviation 16.40 vs
+            # 15.70). Strict mode never got that fix, so "build only from what I own"
+            # disagreed with the ordinary path on the step's central promise.
+            splits = _theme_slot_split(want, len(active))
             for i, theme in enumerate(active):
                 if added >= want:
                     break
-                slot = min(per_theme + (remainder if i == 0 else 0), want - added)
+                slot = min(splits[i], want - added)
                 # Curve-aware: every candidate here is equally on-theme (match_themes
                 # already ranked payoffs above vanilla bodies), so preferring the one
                 # that fills a short bucket costs nothing thematic. Without this the

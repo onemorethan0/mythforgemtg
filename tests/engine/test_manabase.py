@@ -128,7 +128,10 @@ def test_generic_fetch_only_counts_colours_the_deck_has_basics_in(make_card):
 
 
 def test_non_fetch_lands_are_not_credited(make_card):
-    """Only "search ... onto the battlefield" counts; hand/graveyard effects don't."""
+    """Graveyard-hate/other non-search effects don't count, and a NON-LAND permanent that
+    fetches a land is never itself credited as a mana source (fetched_colors only credits
+    LAND permanents — see test_land_tutor_to_hand_counts_as_a_source below for the
+    land-to-hand case, which a land permanent DOES get credited for)."""
     bog = make_card("Bojuka Bog", type_line="Land", produced_mana=("B",),
                     oracle_text="When Bojuka Bog enters, exile target player's graveyard.")
     scout = make_card("Expedition Map", type_line="Artifact", produced_mana=(),
@@ -136,4 +139,20 @@ def test_non_fetch_lands_are_not_credited(make_card):
                                   "put it into your hand, then shuffle.")
     counts = manabase.count_sources([(bog, 1), (scout, 1)])
     assert counts["B"] == 1                       # Bog's own mana, nothing extra
-    assert sum(counts.values()) == 1              # Map is not a land and goes to hand
+    assert sum(counts.values()) == 1              # Map is an artifact, not a land, itself
+
+
+def test_land_tutor_to_hand_counts_as_a_source(make_card):
+    """A land permanent that searches for a land and puts it into HAND (Edge of Autumn's
+    class) is still real colour fixing -- just a turn later than a battlefield fetch -- and
+    must be credited the same way, not treated as a dead search."""
+    forest = make_card("Forest", type_line="Basic Land — Forest", produced_mana=("G",))
+    edge = make_card(
+        "Edge of Autumn", type_line="Land", produced_mana=(),
+        oracle_text=("When Edge of Autumn enters, if you control three or more other "
+                     "permanents, sacrifice it.\nWhen you sacrifice Edge of Autumn or it "
+                     "dies, search your library for a basic land card, reveal it, put it "
+                     "into your hand, then shuffle."),
+    )
+    counts = manabase.count_sources([(forest, 10), (edge, 1)])
+    assert counts["G"] == 11   # 10 Forest + Edge of Autumn (finds the only basic in the deck)

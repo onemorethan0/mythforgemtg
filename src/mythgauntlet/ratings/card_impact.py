@@ -223,7 +223,19 @@ def assess_card(
             )
             for ax in AXES
         ]
-        total = sum(m.delta for m in moves if m.meaningful)
+        # Normalize each axis's delta by its OWN "meaningful" scale before summing, rather
+        # than adding five 0-100 deltas 1:1. The axes do not share a noise floor --
+        # `advisor._AXIS_NOISE_FLOOR` (imported above as `_AXIS_NOISE_FLOOR`) measures Speed
+        # at 1.88, Ceiling at 2.27, Consistency at 0.92, Resilience at 1.06 and Interaction
+        # at 0.0 (seed-to-seed spread at runs=150; see that dict's comments) -- a raw sum
+        # weighted a Ceiling move that barely cleared its own noise the same as an
+        # Interaction move nearly 5x past its own floor. `max(m.floor, MIN_SIGNIFICANT)` is
+        # exactly the denominator `AxisMove.meaningful` already uses as "how big a change has
+        # to be to count for THIS axis", so expressing each delta as a multiple of it reuses
+        # a measured per-axis scale rather than inventing new weights.
+        total = sum(
+            m.delta / max(m.floor, MIN_SIGNIFICANT) for m in moves if m.meaningful
+        )
         if best is None or total > best[0]:
             best = (total, cut, moves)
 

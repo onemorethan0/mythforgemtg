@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import StepHome from './components/StepHome'
 import StepCommander from './components/StepCommander'
 import StepSingleCard from './components/StepSingleCard'
@@ -153,6 +153,14 @@ export default function App() {
   const [buildSingle, setBuildSingle] = useState(false)
   // Persisted, schema-driven Advanced generation settings (guidance/steps/LoRAs/…)
   const genSettings = useGenSettings()
+  // Re-entry guard for handleEditDeck's multi-await chain (playstyles fetch, then
+  // generate-list fetch). A fast double-click, or clicking Edit on deck A then deck B
+  // before A's chain resolves, let the LATER-arriving response win regardless of which
+  // click was more recent, corrupting the wizard's prefilled state. The ref blocks
+  // synchronously — two clicks in the same tick both still see the pre-update state
+  // value — while `editingDeck` mirrors it so the calling button can show disabled.
+  const editDeckInFlightRef = useRef(false)
+  const [editingDeck, setEditingDeck] = useState(false)
 
   // On mount: reconnect to an in-progress or recently-completed build.
   // Primary: sessionStorage (survives refresh but not new tab).
@@ -414,7 +422,18 @@ export default function App() {
   // Building from here creates a NEW deck — the original is left untouched.
   async function handleEditDeck(d) {
     if (!d) return
+    if (editDeckInFlightRef.current) return   // a chain is already resolving — ignore
+    editDeckInFlightRef.current = true
+    setEditingDeck(true)
+    try {
+      await _handleEditDeck(d)
+    } finally {
+      editDeckInFlightRef.current = false
+      setEditingDeck(false)
+    }
+  }
 
+  async function _handleEditDeck(d) {
     if (d.mode === 'single_card') {
       setCardDraft(cardDraftFromDeck(d))
       _setJobId(null)
@@ -743,7 +762,7 @@ export default function App() {
             calls, so it cannot defend itself against a null deck from the inside without
             making its own hooks conditional. Guard here, before it mounts. */}
         {step === STEP.DECK && deck && (
-          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} onDeckChange={setDeck} />
+          <StepDeck deck={deck} jobId={jobId} onReset={reset} onRebuild={handleRebuild} onRetheme={handleRetheme} onDuplicate={handleDuplicate} onEdit={handleEditDeck} editingDeck={editingDeck} onDeckChange={setDeck} />
         )}
 
         {step === STEP.HISTORY && (

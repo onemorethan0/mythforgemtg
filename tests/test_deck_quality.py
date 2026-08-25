@@ -33,6 +33,30 @@ def test_pip_counts_hybrid_counts_for_both_colours():
     assert dq.pip_counts({"mana_cost": "{B/R}{B}"}) == {"B": 2, "R": 1}
 
 
+def test_pip_counts_phyrexian_is_not_a_hard_colour_requirement():
+    """{B/P} is payable with 2 life instead of a black source, so it must not feed
+    assess_colors' "short on black" diagnostic like a real pip does (Dismember)."""
+    assert dq.pip_counts({"mana_cost": "{1}{B/P}{B/P}"}) == {}
+    # A genuine hybrid alongside a phyrexian symbol still counts the hybrid's colours.
+    assert dq.pip_counts({"mana_cost": "{B/P}{W/U}"}) == {"W": 1, "U": 1}
+
+
+def test_assess_colors_does_not_flag_phyrexian_mana_in_an_off_colour_deck():
+    """Dismember ({1}{B/P}{B/P}) is castable for {3} generic + 4 life in a deck with NO
+    black sources at all. Before the fix, its two Phyrexian symbols were credited as
+    hard black pips and this deck was reported short on black."""
+    commander = {"name": "Cmdr", "mana_cost": "{4}{G}", "cmc": 5,
+                 "color_identity": ["G"], "type_line": "Legendary Creature"}
+    deck = [{"name": "Dismember", "mana_cost": "{1}{B/P}{B/P}", "cmc": 3,
+             "type_line": "Instant"},
+            {"name": "Forest", "type_line": "Basic Land — Forest",
+             "produced_mana": ["G"], "quantity": 36}]
+    v = dq.assess_colors(deck, commander)
+    assert "B" not in v.pips
+    assert "B" not in v.short
+    assert v.ok is True
+
+
 def test_qty_defaults_to_one_and_never_returns_zero():
     assert dq.qty({}) == 1
     assert dq.qty({"quantity": 14}) == 14

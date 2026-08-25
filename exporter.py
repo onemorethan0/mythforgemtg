@@ -98,6 +98,11 @@ def build_zip(
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
         png = resolve(commander)
+        # A malformed/edge-case commander record without a render_key must not crash
+        # the whole export — skip its art like any other missing-art card, rather than
+        # raising an unhandled KeyError on the dict subscript.
+        if png and not commander.get("render_key"):
+            png = None
         if png:
             # A single custom card is a "deck of one": there is no commander and no
             # slot ordering, so name the entry after the card instead of shipping a
@@ -113,7 +118,8 @@ def build_zip(
         slot = 0
         for card in deck:
             png = resolve(card)
-            if not png:
+            render_key = card.get("render_key")
+            if not png or not render_key:
                 continue
             # Imported decks aggregate duplicate basics into one entry with a
             # quantity; emit one numbered copy per physical card so the proxy set
@@ -121,7 +127,7 @@ def build_zip(
             for copy in range(int(card.get("quantity", 1) or 1)):
                 slot += 1
                 suffix = f"_c{copy+1}" if card.get("quantity", 1) > 1 else ""
-                zf.write(png, f"{slot:02d}_{card['render_key']}{suffix}{png.suffix}")
+                zf.write(png, f"{slot:02d}_{render_key}{suffix}{png.suffix}")
 
     buf.seek(0)
     return buf.read()

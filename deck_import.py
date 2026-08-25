@@ -441,6 +441,14 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
     agg: dict[str, dict] = {}
     order: list[str] = []
     for name, qty in raw.card_entries:
+        if qty <= 0:
+            # A source decklist line that explicitly zeroes (or negates) a card's
+            # count is a CUT, not a copy — "0 Sol Ring" means the pilot took it out.
+            # `max(1, qty)` used to clamp this UP to one physical copy, silently
+            # putting a cut card back into the deck. Drop the line entirely: it is
+            # neither a real quantity nor an unresolved name, so it doesn't belong
+            # in the deck or in the unresolved-names report.
+            continue
         c = look(name)
         if not c:
             unresolved.append(name)
@@ -451,7 +459,7 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
             entry["quantity"] = 0
             agg[key] = entry
             order.append(key)
-        agg[key]["quantity"] += max(1, qty)
+        agg[key]["quantity"] += qty
 
     deck = [agg[k] for k in order]
     imported = ImportedDeck(name=raw.name, source=raw.source, commander=commander,

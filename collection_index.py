@@ -65,7 +65,10 @@ def mana_value(mana_cost: str) -> int:
 
         ""            -> 0     "{W/U}"       -> 1   (hybrid colour/colour)
         "{0}"         -> 0     "{2/W}"       -> 2   (monocolour hybrid = HIGHER half,
-        "{3}"         -> 3                           rule 202.3b)
+        "{3}"         -> 3                           CR 202.3f; retagged 2026-08-24 from
+                                                       a stale "202.3b" cite — that letter
+                                                       now covers DFC mana value, content
+                                                       unchanged, only the letter moved)
         "{10}"        -> 10    "{W/P}"       -> 1   (Phyrexian half is free)
         "{W}"         -> 1     "{X}{R}"      -> 1   (X is 0 outside the stack)
         "{C}"         -> 1     "{X}{X}{G}"   -> 1

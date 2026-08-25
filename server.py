@@ -18,6 +18,7 @@ from __future__ import annotations
 import asyncio
 import io
 import json
+import logging
 import os
 import re
 import threading
@@ -176,6 +177,8 @@ async def lifespan(app: FastAPI):
     except asyncio.CancelledError:
         pass
 
+logger = logging.getLogger(__name__)
+
 app = FastAPI(title="Myth Forge", version="1.3", lifespan=lifespan)
 
 # Bind tightly to localhost — this app has no auth layer. If you need
@@ -188,7 +191,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ],
-    allow_methods=["GET", "POST", "DELETE"],
+    allow_methods=["GET", "POST", "PATCH", "DELETE"],
     allow_headers=["Content-Type"],
 )
 
@@ -284,7 +287,15 @@ def _check_rate_limit(client_id: str, max_requests: int = _RATE_LIMIT_BUILD_REQU
 
 
 def _cleanup_expired_jobs():
-    """Remove jobs older than _JOB_TTL_SECONDS to prevent memory leaks."""
+    """Remove jobs older than _JOB_TTL_SECONDS to prevent memory leaks.
+
+    Also sweeps the two other unbounded module-level dicts on the same hourly
+    cadence: `_request_timestamps` (a rate-limit bucket per client IP — an IP
+    that stops sending requests leaves an entry with an empty, but never-removed,
+    timestamp list) and `_deck_regen_locks` (a per-source-deck lock — every deck
+    that ever ran regen-cards left its lock behind forever, even long after the
+    source job itself expired out of `_jobs`).
+    """
     now = time.time()
     expired = [
         job_id for job_id, job in _jobs.items()
@@ -295,6 +306,31 @@ def _cleanup_expired_jobs():
         _progress.pop(job_id, None)
     if expired:
         print(f"  [cleanup] Expired {len(expired)} old job(s) (>{_JOB_TTL_SECONDS//3600}h)")
+
+    # Rate-limit buckets: drop timestamps outside the window, then drop any
+    # client entry left with nothing in it.
+    stale_clients = []
+    for client_id, timestamps in _request_timestamps.items():
+        fresh = [ts for ts in timestamps if (now - ts) < _RATE_LIMIT_WINDOW]
+        if fresh:
+            _request_timestamps[client_id] = fresh
+        else:
+            stale_clients.append(client_id)
+    for client_id in stale_clients:
+        _request_timestamps.pop(client_id, None)
+    if stale_clients:
+        print(f"  [cleanup] Dropped {len(stale_clients)} stale rate-limit bucket(s)")
+
+    # Regen locks: a lock only needs to outlive its source deck's entry in _jobs.
+    with _deck_regen_locks_meta_lock:
+        orphaned_locks = [
+            job_id for job_id in _deck_regen_locks
+            if job_id not in _jobs
+        ]
+        for job_id in orphaned_locks:
+            _deck_regen_locks.pop(job_id, None)
+    if orphaned_locks:
+        print(f"  [cleanup] Dropped {len(orphaned_locks)} orphaned deck-regen lock(s)")
 
 
 def _ensure_frontend_built():
@@ -4208,13 +4244,16 @@ class MentorChatDeckRequest(BaseModel):
 
 
 @app.post("/api/deck/{job_id}/mentor")
-def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest):
+def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     """Ask the Deck Mentor a question about this finished deck (docs/SPEC_deck_mentor.md
     Phase 2). Every reply is checked against that turn's own tool calls before it comes
     back — `gated: false` in the response means the answer is an honest "I'm not sure"
     rather than a claim that failed verification, never a silently-stripped one.
     """
     _require_job_id(job_id)
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
@@ -4251,7 +4290,7 @@ class MentorFeedbackDeckRequest(BaseModel):
 
 
 @app.post("/api/deck/{job_id}/mentor/feedback")
-def mentor_feedback_deck(job_id: str, req: MentorFeedbackDeckRequest):
+def mentor_feedback_deck(job_id: str, req: MentorFeedbackDeckRequest, request: Request):
     """Thumbs up/down on a logged mentor turn (docs/SPEC_deck_mentor.md, Phase 3
     prerequisite). `job_id` isn't sent to the engine -- `turn_id` alone identifies the
     logged record on :8020's side -- but the route is scoped under the deck anyway so a
@@ -4259,6 +4298,9 @@ def mentor_feedback_deck(job_id: str, req: MentorFeedbackDeckRequest):
     was never shown that turn_id in the first place.
     """
     _require_job_id(job_id)
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     try:
         resp = requests.post(
             f"{MYTHGAUNTLET_URL}/mentor/feedback",
@@ -4379,12 +4421,15 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
 
 
 @app.post("/api/deck/{job_id}/advise")
-def advise_deck(job_id: str, req: AdviseDeckRequest):
+def advise_deck(job_id: str, req: AdviseDeckRequest, request: Request):
     """Upgrade suggestions from the user's collection for a FINISHED deck (suite C4).
 
     Every suggestion is a measured axis delta from MythGauntlet's ablation re-simulation,
     never popularity. Needs the strength API (:8020) and a Myth Suite collection export.
     """
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
@@ -4562,7 +4607,8 @@ def collection_undo():
         os.replace(tmp, p)          # atomic on the same volume, like write_collection
         bak.write_bytes(current)
     except OSError as e:
-        raise HTTPException(500, f"Restore failed: {e}")
+        logger.error("collection undo failed", exc_info=e)
+        raise HTTPException(500, "Restore failed.")
     return {"restored": True, **_collection_summary(load_collection())}
 
 
@@ -4630,7 +4676,8 @@ def collection_refresh_prices():
     try:
         prices = _scryfall.fetch_prices(rows)
     except Exception as e:
-        raise HTTPException(503, f"Price lookup failed: {e}")
+        logger.error("collection price refresh failed", exc_info=e)
+        raise HTTPException(503, "Price lookup failed.")
     _save_prices({"updated": _dt.now().isoformat(timespec="seconds"), "prices": prices})
     return _collection_summary(rows)
 
@@ -4694,7 +4741,8 @@ def collection_printings(name: str):
     try:
         return {"printings": _scryfall.get_printings(name.strip())[:60]}
     except Exception as e:
-        raise HTTPException(503, f"Scryfall lookup failed: {e}")
+        logger.error("collection printings lookup failed for %r", name, exc_info=e)
+        raise HTTPException(503, "Scryfall lookup failed.")
 
 
 @app.get("/api/card-image")
@@ -4876,7 +4924,8 @@ def collection_buildable(limit: int = 8):
     try:
         data = buildable.find_buildable(owned, _scryfall, limit=int(limit))
     except Exception as e:
-        raise HTTPException(503, f"Could not scan the collection (Scryfall): {e}")
+        logger.error("buildable collection scan failed", exc_info=e)
+        raise HTTPException(503, "Could not scan the collection (Scryfall).")
     _buildable_cache.update({"key": key, "data": data})
     return {**data, "cached": False}
 
@@ -4890,6 +4939,7 @@ def measure_deck(job_id: str):
     identically. 503 when the strength API is down (the UI says how to start it);
     400 for a single-card build (nothing to measure).
     """
+    _require_job_id(job_id)
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
@@ -4942,6 +4992,7 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     art for it is a later regen, not a blocker for testing. The cached measurement is
     invalidated because the deck changed; the swap is recorded in applied_swaps.
     """
+    _require_job_id(job_id)
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
@@ -5065,6 +5116,7 @@ def duel_deck(job_id: str, req: DuelRequest):
     Battlecruiser-fidelity 1v1 win rate — an honest "how does my deck play against
     my friend's?" read, not a bracket verdict. Needs the strength API (:8020).
     """
+    _require_job_id(job_id)
     if not (req.opponent or "").strip():
         raise HTTPException(400, "Paste an opponent decklist to test against.")
     job = _jobs.get(job_id)
@@ -5108,7 +5160,8 @@ def import_preview(req: ImportPreviewRequest):
     except deck_import.DeckImportError as e:
         raise HTTPException(400, str(e))
     except Exception as e:
-        raise HTTPException(500, f"Import failed: {e}")
+        logger.error("deck import failed", exc_info=e)
+        raise HTTPException(500, "Import failed.")
 
     colors = sorted({c for card in ([imp.commander] if imp.commander else []) + imp.deck
                      for c in (card.get("color_identity") or [])})
@@ -5156,7 +5209,8 @@ def import_save(req: ImportSaveRequest):
     except deck_import.DeckImportError as e:
         raise HTTPException(400, str(e))
     except Exception as e:
-        raise HTTPException(500, f"Import failed: {e}")
+        logger.error("deck import failed", exc_info=e)
+        raise HTTPException(500, "Import failed.")
 
     card = imp.commander
     override = (req.commander_name or "").strip()
@@ -5382,6 +5436,22 @@ def _resolve_partners(lead: dict, names: list[str] | None) -> list[dict]:
         if not ok:
             raise HTTPException(400, why)
         out.append(card)
+
+    # A duplicate name isn't a legal pairing (the same card can't occupy the command
+    # zone twice), and every non-lead partner must ALSO be legally pairable with every
+    # other non-lead partner — checking each against the lead alone would admit e.g. two
+    # cards that can each partner with the lead but not with each other.
+    seen: set[str] = set()
+    for card in out:
+        key = (card.get("name") or "").casefold()
+        if key in seen:
+            raise HTTPException(400, f"{card.get('name', 'That card')} can't be paired with itself.")
+        seen.add(key)
+    for i in range(len(out)):
+        for j in range(i + 1, len(out)):
+            ok, why = commander_analysis.can_pair(out[i], out[j])
+            if not ok:
+                raise HTTPException(400, why)
     return out
 
 
@@ -5561,7 +5631,7 @@ def theme_preview(req: ThemePreviewRequest):
     except Exception as e:
         print(f"  [theme-preview] error: {e}")
         traceback.print_exc()
-        raise HTTPException(503, f"Preview failed (is the LLM gateway up?): {e}")
+        raise HTTPException(503, "Preview failed (is the LLM gateway up?).")
 
     return {
         "world_bible": {k: bible.get(k) for k in
@@ -5683,8 +5753,9 @@ async def style_sample_status(job_id: str):
 
 @app.get("/api/deck/style-sample/{job_id}/img/{idx}")
 async def style_sample_image(job_id: str, idx: int):
+    _require_job_id(job_id)
     path = _STYLE_SAMPLE_DIR / job_id / f"sample_{idx}.png"
-    if not re.fullmatch(r"[0-9a-f]{16}", job_id) or not path.exists():
+    if not path.exists():
         raise HTTPException(404, "Image not found")
     return FileResponse(path, media_type="image/png")
 
@@ -5761,6 +5832,7 @@ async def rebuild_deck(job_id: str, req: RebuildRequest, background_tasks: Backg
     already saved in deck.json.  Returns a new job_id so the original build
     is preserved and the client can watch progress on the new one.
     """
+    _require_job_id(job_id)
     # Rate limiting: prevent request floods
     client_ip = request.client.host if request.client else "unknown"
     if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
@@ -5791,6 +5863,7 @@ async def regen_cards(job_id: str, req: RegenCardsRequest, background_tasks: Bac
     Returns a new job_id for SSE progress — the client should listen to
     ``/api/deck/{new_job_id}/events`` for ``card_ready`` and ``done`` events.
     """
+    _require_job_id(job_id)
     # Rate limiting: prevent request floods
     client_ip = request.client.host if request.client else "unknown"
     if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
@@ -5838,6 +5911,7 @@ async def animate_cards(job_id: str, req: AnimateCardsRequest,
     Returns a new job_id; listen on ``/api/deck/{new_job_id}/events`` for
     ``video_ready`` and ``done`` events. MP4s land in the SOURCE deck's videos/.
     """
+    _require_job_id(job_id)
     client_ip = request.client.host if request.client else "unknown"
     if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
         raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} per {_RATE_LIMIT_WINDOW}s")
@@ -5865,6 +5939,7 @@ async def retheme_deck(job_id: str, req: RethemeRequest, background_tasks: Backg
     Returns a new job_id.  The client can watch progress on
     ``/api/deck/{new_job_id}/events`` and navigate to the new deck when done.
     """
+    _require_job_id(job_id)
     source_ok = (
         (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
         or (RENDER_DIR / job_id / "deck.json").exists()
@@ -5959,7 +6034,8 @@ async def delete_deck(job_id: str):
         try:
             _shutil.rmtree(str(deck_dir))
         except Exception as e:
-            raise HTTPException(500, f"Failed to remove deck directory: {e}")
+            logger.error("failed to remove deck directory for job %r", job_id, exc_info=e)
+            raise HTTPException(500, "Failed to remove deck directory.")
 
     # Remove generated_art directory for this job if it exists
     for art_dir in ART_DIR.glob(f"*_{job_id[:8]}"):
@@ -6019,6 +6095,7 @@ async def delete_decks_batch(req: BatchDeleteRequest):
 
 @app.get("/api/deck/{job_id}/events")
 async def deck_events(job_id: str, request: Request):
+    _require_job_id(job_id)
     if job_id not in _jobs:
         raise HTTPException(404, "Job not found")
     return StreamingResponse(
@@ -6152,6 +6229,7 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
 
 @app.get("/api/deck/{job_id}/status")
 async def deck_status(job_id: str):
+    _require_job_id(job_id)
     job = _jobs.get(job_id)
     if not job:
         # Fall back to disk — server may have reloaded after the build finished
@@ -6165,6 +6243,7 @@ async def deck_status(job_id: str):
 
 @app.get("/api/deck/{job_id}")
 async def get_deck(job_id: str):
+    _require_job_id(job_id)
     job = _jobs.get(job_id)
     if not job:
         disk = _load_deck_from_disk(job_id)
@@ -6671,7 +6750,8 @@ async def upsert_custom_art_style(payload: dict):
     try:
         upsert_custom_preset(key, preset)
     except OSError as e:
-        raise HTTPException(500, f"Could not save custom art style '{key}': {e}") from e
+        logger.error("could not save custom art style %r", key, exc_info=e)
+        raise HTTPException(500, f"Could not save custom art style '{key}'.") from e
     return {"ok": True, "key": key}
 
 
@@ -6684,7 +6764,8 @@ async def delete_custom_art_style(key: str):
     try:
         deleted = delete_custom_preset(key)
     except OSError as e:
-        raise HTTPException(500, f"Could not delete custom art style '{key}': {e}") from e
+        logger.error("could not delete custom art style %r", key, exc_info=e)
+        raise HTTPException(500, f"Could not delete custom art style '{key}'.") from e
     if not deleted:
         raise HTTPException(404, f"Custom preset '{key}' not found.")
     return {"ok": True, "key": key}
@@ -6832,7 +6913,8 @@ def export_zip(job_id: str):
         data = build_zip(job["commander"], job["deck"], render_dir,
                          image_for=_export_image_resolver(job_id))
     except Exception as e:
-        raise HTTPException(500, f"ZIP export failed: {e}")
+        logger.error("ZIP export failed for job %r", job_id, exc_info=e)
+        raise HTTPException(500, "ZIP export failed.")
     if len(data) < 40:   # empty zip — same guard export_videos already had
         # A custom card has no Scryfall printing to fall back on, so if its render
         # is missing there is nothing to put in the archive. Streaming a 22-byte
@@ -6901,7 +6983,8 @@ def export_videos(job_id: str):
     try:
         data = build_video_zip(job["commander"], job["deck"], render_dir)
     except Exception as e:
-        raise HTTPException(500, f"Video export failed: {e}")
+        logger.error("video export failed for job %r", job_id, exc_info=e)
+        raise HTTPException(500, "Video export failed.")
     if len(data) < 40:   # empty zip
         raise HTTPException(404, "No animated cards in this deck")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
@@ -6921,7 +7004,8 @@ def export_pdf(job_id: str):
         data = build_pdf(job["commander"], job["deck"], render_dir,
                          image_for=_export_image_resolver(job_id))
     except Exception as e:
-        raise HTTPException(500, f"PDF export failed: {e}")
+        logger.error("PDF export failed for job %r", job_id, exc_info=e)
+        raise HTTPException(500, "PDF export failed.")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
     return StreamingResponse(
         io.BytesIO(data),
@@ -7030,6 +7114,7 @@ async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
     Start async 3D model generation for the commander of a completed deck.
     Returns {job_3d_id} immediately; poll /api/deck/{job_id}/3d-status/{job_3d_id}.
     """
+    _require_job_id(job_id)
     # Verify the deck exists
     deck_exists = (
         job_id in _jobs
@@ -7064,6 +7149,7 @@ async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
 @app.get("/api/deck/{job_id}/3d-status/{job_3d_id}")
 async def stream_3d_status(job_id: str, job_3d_id: str, request: Request):
     """SSE stream for 3D generation progress."""
+    _require_job_id(job_id)
     async def _gen():
         sent = 0
         while True:

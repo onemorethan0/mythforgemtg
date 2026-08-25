@@ -51,6 +51,49 @@ def test_analyze_deck_can_skip_resilience(make_card, forest, bear, tmp_path):
     assert a.resilience is None and a.wipe_turn is None
 
 
+def _partner_resolved(make_card, forest):
+    """A 2-commander (partner) deck: Tymna-shaped lead + a partner carrying its OWN removal
+    text and a distinct color identity, so the test can tell whether the second commander is
+    actually reaching the simulation-based axes rather than being silently dropped."""
+    from mythgauntlet.data.scryfall import CardDb
+
+    lead = make_card(
+        "Test Lead", mana_cost="{1}{W}{B}", type_line="Legendary Creature — Human Cleric",
+        color_identity=("W", "B"), oracle_text="Partner",
+    )
+    lead.power, lead.toughness = "2", "2"
+    partner = make_card(
+        "Test Partner", mana_cost="{G}{U}", type_line="Legendary Creature — Merfolk Wizard",
+        color_identity=("G", "U"), oracle_text="Partner\nDestroy target creature.",
+    )
+    partner.power, partner.toughness = "1", "1"
+    island = make_card(
+        "Island", type_line="Basic Land — Island", produced_mana=("U",), color_identity=("U",)
+    )
+    db = CardDb([forest, island, lead, partner])
+    deck = Deck.parse_text(
+        "Commander:\n1 Test Lead\n1 Test Partner\n\nDeck:\n30 Forest\n30 Island\n"
+    )
+    return resolve(deck, db)
+
+
+def test_analyze_deck_reflects_both_partner_commanders(make_card, forest, tmp_path):
+    """The second (partner) commander must not be invisible to the simulation-based axes:
+    its own removal text should be counted by Interaction, and the narrative should name
+    both commanders -- not just `commanders[0]`."""
+    resolved = _partner_resolved(make_card, forest)
+    assert len(resolved.commanders) == 2
+    store = SemanticsStore(authored=tmp_path / "a", compiled=tmp_path / "c")
+    a = analyze_deck(resolved, SimConfig(runs=100, seed=5, turns=8), store)
+    # The partner's "Destroy target creature." is now folded into the sim card pool that
+    # feeds compute_interaction, so it is counted as spot removal.
+    assert a.interaction.spot_removal >= 1
+    # The insight narrative names BOTH commanders, not just the lead.
+    assert a.insight is not None
+    assert "Test Lead" in a.insight.gameplan
+    assert "Test Partner" in a.insight.gameplan
+
+
 def test_combo_gate_flows_through(make_card, forest, bear, tmp_path):
     """two_card_combos + combos_checked reach the bracket estimate (the CLI's --combos path)."""
     resolved = _resolved(make_card, forest, bear)

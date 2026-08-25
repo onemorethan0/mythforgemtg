@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // "Test this deck head-to-head" (MythGauntlet Tier-2): paste a friend's decklist and
 // get a simulated 1v1 win rate. Battlecruiser fidelity — an honest "how does it play
@@ -11,6 +11,14 @@ export default function DuelPanel({ jobId }) {
   const [result, setResult] = useState(null)
   const [errMsg, setErrMsg] = useState('')
 
+  // `run()` is user-triggered (a button click), not mount-triggered — so unlike
+  // RecentDecks.jsx's effect-scoped `let cancelled`, the flag has to live past the
+  // click in a ref that an unmount-only effect flips. The simulation this kicks off
+  // takes ~10-30s; without this, closing/navigating away from the panel mid-run and
+  // coming back later still let the stale response call setState on a gone component.
+  const cancelledRef = useRef(false)
+  useEffect(() => () => { cancelledRef.current = true }, [])
+
   async function run() {
     if (phase === 'loading' || !opponent.trim()) return
     setPhase('loading'); setErrMsg('')
@@ -21,13 +29,17 @@ export default function DuelPanel({ jobId }) {
         body: JSON.stringify({ opponent, opponent_name: oppName || 'Opponent', games: 120 }),
       })
       if (response.ok) {
-        setResult(await response.json()); setPhase('done')
+        const data = await response.json()
+        if (cancelledRef.current) return
+        setResult(data); setPhase('done')
       } else {
         let d = 'HTTP ' + response.status
         try { d = (await response.json()).detail || d } catch {}
+        if (cancelledRef.current) return
         setErrMsg(d); setPhase('error')
       }
     } catch {
+      if (cancelledRef.current) return
       setErrMsg('Strength API unreachable'); setPhase('error')
     }
   }

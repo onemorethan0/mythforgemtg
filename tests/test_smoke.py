@@ -1260,6 +1260,29 @@ def test_batch_lookup_retries_and_a_failed_one_is_never_cached():
             di._CACHE_DIR = orig
 
 
+def test_zero_or_negative_quantity_lines_are_dropped_not_clamped():
+    """A source decklist line that explicitly zeroes out a card (a cut, e.g. '0 Sol
+    Ring') must not become one physical copy. `agg[key]["quantity"] += max(1, qty)`
+    used to clamp any non-positive parsed quantity UP to 1, putting a cut card back
+    into the deck; the fix drops qty<=0 lines entirely."""
+    from deck_import import RawDeck, _resolve
+
+    class _Stub:
+        def get_cards_collection(self, names):
+            return {n.lower(): {"name": n, "type_line": "Artifact"} for n in names}
+
+    raw = RawDeck(name="", source="text", commander_names=[],
+                  card_entries=[("Sol Ring", 0), ("Lightning Bolt", -1),
+                                ("Mind Stone", 1)])
+    imported = _resolve(raw, _Stub())
+    names = [c["name"] for c in imported.deck]
+    check_true("import.zero_qty_dropped", "Sol Ring" not in names)
+    check_true("import.negative_qty_dropped", "Lightning Bolt" not in names)
+    check("import.positive_qty_kept", names, ["Mind Stone"])
+    # A dropped cut is not an "unresolved name" either — it was never looked up.
+    check("import.zero_qty_not_unresolved", imported.unresolved, [])
+
+
 def test_leading_commander_promotion():
     """The positional-commander hint may only promote a REAL legendary card.
 
@@ -1383,6 +1406,30 @@ def test_export_covers_unrendered_cards():
     check("exp.slots", len(names), 5)          # commander + 1 + 3 copies
     check_true("exp.commander", any(n.startswith("00_commander_") for n in names))
     check_true("exp.copies", sum(1 for n in names if "Mountain_002" in n) == 3)
+
+
+def test_export_skips_a_card_missing_render_key_instead_of_crashing():
+    """A malformed/edge-case card record without `render_key` must not raise an
+    unhandled KeyError and take down the whole export — it should be skipped like any
+    other missing-art card, matching the module's "graceful degradation" promise."""
+    import io
+    import zipfile
+    from pathlib import Path
+    import exporter
+
+    here = Path(__file__).resolve()
+    cmd_no_key = {"original_name": "NoKeyCommander", "quantity": 1}
+    deck = [{"render_key": "Sol_Ring_001", "quantity": 1},
+            {"original_name": "Broken Card", "quantity": 1}]     # no render_key
+
+    # Must not raise, even with a resolver that finds art for every card.
+    data = exporter.build_zip(cmd_no_key, deck, Path("/nonexistent"),
+                               image_for=lambda c: here)
+    names = zipfile.ZipFile(io.BytesIO(data)).namelist()
+    # The commander (no render_key) and the broken card are both skipped; only the
+    # one good card makes it into the archive.
+    check("exp.missing_key_skipped", len(names), 1)
+    check_true("exp.good_card_present", any("Sol_Ring_001" in n for n in names))
 
 
 def test_fuzzy_substitution_guard():
@@ -1612,6 +1659,32 @@ def test_buildable_scan():
     check("bd.score.draw", s["roles"]["draw"], 5)
     check_true("bd.score.gaps", "ramp" in s["gaps"] and "removal" in s["gaps"])
     check_true("bd.score.pct", s["buildable_pct"] == round(100 * 5 / bd.TARGET_NONLAND))
+
+
+def test_buildable_classify_matches_collection_pool():
+    """buildable.classify_roles delegates to collection_pool.classify (the app's ONE
+    role-classification authority) instead of its own duplicate regex classifier — two
+    structures disagreeing on ramp/wipe/etc is a documented recurring bug class here.
+
+    Pins the two concrete disagreements the duplicate classifier used to have:
+    a mana filter that nets ZERO mana is not ramp, and a pure player-damage card is
+    not a board wipe."""
+    import buildable as bd
+    import collection_pool
+
+    net_zero_filter = {"type_line": "Land", "oracle_text": "{1}, {T}: Add {B}."}
+    check_true("bd.netzero.not_ramp", "ramp" not in bd.classify_roles(net_zero_filter))
+
+    impact_tremors = {"type_line": "Enchantment",
+                       "oracle_text": "Whenever you cast a noncreature spell, Impact "
+                                      "Tremors deals 1 damage to each opponent."}
+    check_true("bd.tremors.not_wipe", "wipe" not in bd.classify_roles(impact_tremors))
+
+    # And a positive control: classify_roles must actually agree with classify(), not
+    # just happen to exclude these two cases.
+    sol_ring = {"type_line": "Artifact", "oracle_text": "{T}: Add {C}{C}."}
+    check("bd.matches_pool", bd.classify_roles(sol_ring),
+          collection_pool.classify(sol_ring) & set(bd._ROLE_FLOORS))
 
 
 def test_prefer_owned():

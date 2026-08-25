@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CardHover from './CardHover'
 
 // "Suggest upgrades from my collection" (Myth Suite C4 advisor): asks MythGauntlet
@@ -15,6 +15,13 @@ export default function AdvisePanel({ jobId, onApplied }) {
   const [applied, setApplied] = useState(null)   // the applied suggestion {add, cut, ...}
   const [applyErr, setApplyErr] = useState('')
 
+  // Both `applySwap` and `run` fire off a button click, not mount, so (unlike
+  // RecentDecks.jsx's effect-scoped `let cancelled`) the flag needs to outlive that
+  // call in a ref; an unmount-only effect flips it. `run`'s re-simulation takes
+  // ~10-30s, long enough to outlive the panel if the user navigates away mid-run.
+  const cancelledRef = useRef(false)
+  useEffect(() => () => { cancelledRef.current = true }, [])
+
   async function applySwap(s) {
     if (applying || applied) return
     setApplying(s.add); setApplyErr('')
@@ -27,16 +34,20 @@ export default function AdvisePanel({ jobId, onApplied }) {
       })
       if (response.ok) {
         const updated = await response.json()
+        if (cancelledRef.current) return
         setApplied(s)
         onApplied?.(updated)   // App swaps in the modified deck; measure resets
       } else {
         let d = 'HTTP ' + response.status
         try { d = (await response.json()).detail || d } catch {}
+        if (cancelledRef.current) return
         setApplyErr(d)
       }
     } catch {
+      if (cancelledRef.current) return
       setApplyErr('Server unreachable')
     }
+    if (cancelledRef.current) return
     setApplying('')
   }
 
@@ -50,15 +61,19 @@ export default function AdvisePanel({ jobId, onApplied }) {
         body: JSON.stringify({ axis: axis || null }),
       })
       if (response.ok) {
-        setResult(await response.json())
+        const data = await response.json()
+        if (cancelledRef.current) return
+        setResult(data)
         setPhase('done')
       } else {
         let d = 'HTTP ' + response.status
         try { d = (await response.json()).detail || d } catch {}
+        if (cancelledRef.current) return
         setErrMsg(d)
         setPhase('error')
       }
     } catch {
+      if (cancelledRef.current) return
       setErrMsg('Strength API unreachable')
       setPhase('error')
     }

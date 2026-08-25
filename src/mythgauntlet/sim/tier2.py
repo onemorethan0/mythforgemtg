@@ -474,11 +474,16 @@ def _wipe_table(
 
     Each seat is visited once, so a death trigger cannot fire twice for one wipe either.
     """
-    for player in (me, opp, *others):
+    all_players = (me, opp, *others)
+    for player in all_players:
         killer = opp if player is me else me
+        # A death-trigger drain (Blood Artist class) must hit every OTHER seat at the
+        # table, not just `killer` -- `rest` is the pod minus (player, killer), matching
+        # the (opponent, *others) convention `_kill` and game.py's combat call sites use.
+        rest = tuple(p for p in all_players if p is not player and p is not killer)
         for creature in list(player.creatures()):
             if creature is not exclude:
-                _kill(player, creature, killer)
+                _kill(player, creature, killer, rest)
 
 
 def _fetch_land(me: _Player) -> None:
@@ -631,10 +636,14 @@ def _apply_resolved(
             for p in each_opp:
                 p.life -= amt
         elif each:  # "deals N to each creature" — every pod player's board
+            all_players = (me, *each_opp)
             for player, killer in ((me, opp), *((o, me) for o in each_opp)):
+                # Same pod-minus-(player,killer) drain fan-out as _wipe_table -- a Blood
+                # Artist dying to this sweep must drain every OTHER seat, not just `killer`.
+                rest = tuple(p for p in all_players if p is not player and p is not killer)
                 for c in list(player.creatures()):
                     if c is not just_cast and c.toughness <= amt:
-                        _kill(player, c, killer)
+                        _kill(player, c, killer, rest)
         elif to_player:
             opp.life -= amt
         else:

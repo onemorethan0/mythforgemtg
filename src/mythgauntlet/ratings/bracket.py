@@ -42,6 +42,24 @@ from dataclasses import dataclass, field
 from mythgauntlet.data.spellbook import ComboAssessment
 from mythgauntlet.model.card import Card
 
+# Root-level Forge module (`<repo>/bracket.py`, NOT this package). Reachable in the engine's
+# real deployed configuration because `manage.bat`'s `:ensure_gauntlet` launches
+# `python -m mythgauntlet serve` with the working directory pinned to the repo root
+# (`start ... /d "%~dp0"`), and a `-m` invocation prepends the CURRENT WORKING DIRECTORY to
+# `sys.path` -- so root `bracket.py` sits on the path even though the engine is otherwise a
+# separate process with no Forge package on it (see CLAUDE.md: "the engine runs on :8020
+# without Forge on its path" refers to `mythgauntlet.*`, a package import, not a bare
+# top-level module next to the launch cwd). Still guarded: this is an implicit dependency on
+# HOW the process is launched, not something to assume in every environment (an installed
+# package elsewhere, a different launcher). Falling back to empty sets there just means the
+# name-list fallback below is inert and `_scan` stays regex-only -- an honest under-count,
+# never a crash, matching this file's own philosophy.
+try:
+    from bracket import EXTRA_TURN_CARDS, MASS_LAND_DESTRUCTION_CARDS
+except ImportError:  # pragma: no cover - exercised only when Forge's root isn't on sys.path
+    EXTRA_TURN_CARDS = frozenset()
+    MASS_LAND_DESTRUCTION_CARDS = frozenset()
+
 BRACKET_LABELS = {1: "Exhibition", 2: "Core", 3: "Upgraded", 4: "Optimized", 5: "cEDH"}
 
 _EXTRA_TURN_RE = re.compile(r"take an extra turn|extra turn after this one", re.IGNORECASE)
@@ -95,13 +113,22 @@ class BracketEstimate:
 
 
 def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
-    """(extra-turn card copies, mass-land-denial card copies) by oracle text."""
+    """(extra-turn card copies, mass-land-denial card copies).
+
+    Primarily oracle-text regex (`_EXTRA_TURN_RE`/`_MLD_RES`). Falls back to the name-list
+    frozensets (`EXTRA_TURN_CARDS`/`MASS_LAND_DESTRUCTION_CARDS`, imported from root
+    `bracket.py` above -- the same lists `BracketFilter.allows()` uses) for a card whose
+    oracle text is missing, blank, or doesn't parse cleanly: a KNOWN extra-turn or MLD card
+    should not silently pass the gate just because its text field is empty. Regex still runs
+    first/always, so a reprint or a new card with the same effect but a name not yet in
+    either list is still caught by wording alone.
+    """
     extra = mld = 0
     for card, count in cards:
         text = card.oracle_text or ""
-        if _EXTRA_TURN_RE.search(text):
+        if _EXTRA_TURN_RE.search(text) or card.name in EXTRA_TURN_CARDS:
             extra += count
-        if any(r.search(text) for r in _MLD_RES):
+        if any(r.search(text) for r in _MLD_RES) or card.name in MASS_LAND_DESTRUCTION_CARDS:
             mld += count
     return extra, mld
 

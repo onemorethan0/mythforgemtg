@@ -39,6 +39,36 @@ from mythgauntlet.sim.tier0 import SimConfig
 NUM_RE = re.compile(r"-?\d+(?:\.\d+)?")
 RULE_NUM_RE = re.compile(r"\b\d{3}\.\d+[a-z]?\b")
 
+# Spelled-out numbers a model reaches for just as often as digits ("about thirty ramp
+# sources", "a dozen creatures") -- without this, the numeric leg of the gate (mentor.gate
+# checks every number `extract_numbers` finds against the tool-result budget) is trivially
+# bypassed by writing the number as a word instead of a digit. Deliberately small (zero
+# through twenty, plus dozen/hundred): this is a word-lookup, not a number parser, and the
+# module docstring's "deliberately generous" bias means missing "thirty-seven" is an
+# acceptable under-count, not a hole worth a full text-to-number grammar for.
+_WORD_NUMBERS: dict[str, float] = {
+    "zero": 0.0, "one": 1.0, "two": 2.0, "three": 3.0, "four": 4.0, "five": 5.0,
+    "six": 6.0, "seven": 7.0, "eight": 8.0, "nine": 9.0, "ten": 10.0,
+    "eleven": 11.0, "twelve": 12.0, "thirteen": 13.0, "fourteen": 14.0,
+    "fifteen": 15.0, "sixteen": 16.0, "seventeen": 17.0, "eighteen": 18.0,
+    "nineteen": 19.0, "twenty": 20.0, "dozen": 12.0, "hundred": 100.0,
+}
+WORD_NUM_RE = re.compile(
+    r"\b(" + "|".join(sorted(_WORD_NUMBERS, key=len, reverse=True)) + r")\b", re.IGNORECASE
+)
+
+
+def extract_numbers(text: str) -> set[float]:
+    """Every number in `text`, digit ("27") or spelled-out ("twenty-seven" -> catches
+    "twenty" and "seven" as separate tokens, "a dozen" -> "dozen"). Used both by
+    `_numbers_in` (licensing a tool result's own numbers) and by `mentor.gate.check`
+    (extracting what the REPLY claims) -- one extraction rule for both sides of the
+    budget check, so a spelled-out number licensed from tool data and a spelled-out
+    number claimed in a reply are recognized the same way."""
+    found = {round(float(m.group()), 1) for m in NUM_RE.finditer(text)}
+    found.update(_WORD_NUMBERS[m.group().lower()] for m in WORD_NUM_RE.finditer(text))
+    return found
+
 
 def _numbers_in(value) -> set[float]:
     """Every number literally present in `value`, walked recursively -- including numbers
@@ -49,7 +79,7 @@ def _numbers_in(value) -> set[float]:
     if isinstance(value, (int, float)):
         found.add(round(float(value), 1))
     elif isinstance(value, str):
-        found.update(round(float(m.group()), 1) for m in NUM_RE.finditer(value))
+        found.update(extract_numbers(value))
     elif isinstance(value, dict):
         for v in value.values():
             found |= _numbers_in(v)
@@ -123,13 +153,27 @@ class MentorContext:
 
     @property
     def deck_card_names(self) -> frozenset[str]:
-        """The deck's own card list -- the risk pool the gate checks free mentions
-        against, exactly mirroring `swap_narrative.check`'s `deck_card_names` parameter:
-        these are the names a model can plausibly reach for without having looked them
-        up, because they're sitting right there in the conversation's own context."""
+        """The deck's own card list -- names a model can plausibly reach for without
+        having looked them up, because they're sitting right there in the conversation's
+        own context. NOTE: this is NOT the gate's card-name risk pool any more (that was
+        a real fabrication gap -- a claim about a card outside the deck was invisible to
+        the old check entirely; see `all_card_names` below and gate.py's module
+        docstring, fixed 2026-08-24). Kept as a general "is this one of my own cards"
+        helper; existing callers/tests still read it directly."""
         names = {c.name for c, _ in self.resolved.cards}
         names.update(c.name for c in self.resolved.commanders)
         return frozenset(names)
+
+    @property
+    def all_card_names(self) -> frozenset[str]:
+        """Every real MTG card name `card_db` knows about -- the SAME index
+        `tool_lookup_card` resolves names against. This is what feeds
+        `mentor.gate.ClaimBudget.known_card_names`: the gate's name check must be able to
+        flag a fabricated claim about ANY real card, not just one already in the deck.
+        `CardDb` has no public enumeration (it only exposes point lookups via `.get`), so
+        this reaches into its `_by_name` index directly; a double-faced card's front-face
+        alias maps to the same `Card`, and collecting by `.name` naturally dedups it."""
+        return frozenset(card.name for card in self.card_db._by_name.values())
 
 
 def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
@@ -253,7 +297,11 @@ TOOL_SCHEMAS: list[dict] = [
         "function": {
             "name": "lookup_card",
             "description": "Look up a Magic: The Gathering card's real oracle text, mana "
-                            "cost, type line and legality by exact or near-exact name.",
+                            "cost, type line and legality by EXACT name only (case and "
+                            "whitespace insensitive, but it does NOT fuzzy-correct a "
+                            "misspelled or approximate name -- a close-but-wrong name "
+                            "returns not-found, so get the spelling right or the deck's "
+                            "own decklist/get_deck_stats).",
             "parameters": {
                 "type": "object",
                 "properties": {"name": {"type": "string"}},

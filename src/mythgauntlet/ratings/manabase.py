@@ -164,9 +164,18 @@ _FETCH_RE = re.compile(
     r"search your library for (?:an?|up to \w+)\s+([^.]*?)\bcards?\b", re.IGNORECASE
 )
 
+# A land-tutor that puts the found card into HAND rather than onto the battlefield is still
+# real colour fixing -- just a turn later once it's cast -- so it should be credited the same
+# as a battlefield fetch, not treated as a dead search. Matched on the Comprehensive-Rules
+# template wording ("search your library for a land card, reveal it, put it into your hand"
+# / "...put that card into your hand") rather than a looser guess, per the same conservatism
+# the battlefield case already applies (a bare "cards" search with neither destination stays
+# uncredited).
+_HAND_RE = re.compile(r"put (?:it|that card) into (?:your|their) hand", re.IGNORECASE)
+
 
 def fetched_colors(card, basic_colors: set[str] | None = None) -> set[str]:
-    """Colours a land can put onto the battlefield even if it taps for none itself.
+    """Colours a land can put onto the battlefield OR into hand, even if it taps for none itself.
 
     Fetchlands carry `produced_mana == []` on Scryfall — correctly, they tap for no mana —
     so counting only `produced_mana` scored every one of them as ZERO colour sources.
@@ -178,6 +187,11 @@ def fetched_colors(card, basic_colors: set[str] | None = None) -> set[str]:
     actually run — Evolving Wilds, Terramorphic Expanse, Fabled Passage, Prismatic
     Vista — not the expensive ones. All of them counted zero.
 
+    A land TUTOR that puts the found land into HAND (Edge of Autumn's class) is credited
+    the same way — it is real fixing, not a dead search, even though the card doesn't tap
+    for mana until the fetched land is later played. Excluded only when the search names
+    something that isn't a land at all (a true dead fetch for this purpose).
+
     `basic_colors` is the set of colours the deck can really find with a generic
     "basic land card" fetch, i.e. colours it runs an actual basic in. Passing it keeps
     the credit honest: an Evolving Wilds in a deck with no basic Swamp is not a black
@@ -188,7 +202,10 @@ def fetched_colors(card, basic_colors: set[str] | None = None) -> set[str]:
         return set()
     text = getattr(card, "oracle_text", "") or ""
     match = _FETCH_RE.search(text)
-    if not match or "onto the battlefield" not in text.lower():
+    if not match:
+        return set()
+    lower = text.lower()
+    if "onto the battlefield" not in lower and not _HAND_RE.search(text):
         return set()
     named = {c for word, c in _BASIC_TYPE_COLORS.items() if word in match.group(1).lower()}
     if named:

@@ -13,7 +13,23 @@ import { searchCards } from '../utils/searchCards'
 // Helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Display/grouping ORDER — creatures and spells first, lands last. This is purely
+// cosmetic (which section/tab appears first) and is independent of the
+// CLASSIFICATION precedence below.
 const TYPE_ORDER = ['Creature', 'Instant', 'Sorcery', 'Enchantment', 'Artifact', 'Planeswalker', 'Land']
+
+// Classification PRECEDENCE — a card can print more than one of these types on one
+// line (an Artifact Creature, a Land Creature like Dryad Arbor, an Artifact Land),
+// so only the first matching bucket should win. This mirrors the server's
+// authoritative `collection_index.primary_type()` (Land > Creature > Planeswalker >
+// Battle > Instant > Sorcery > Enchantment > Artifact) so the two independently
+// computed classifications agree. It IS a duplicated reimplementation, though: deck
+// cards returned by the build/theme pipeline carry no server-computed primary_type
+// field today — that field exists only in collection_index.py, for the separate
+// Collection-manager browsing view (`/api/collection`), not for a deck's own cards.
+// Ideally this reads a server-provided field once one is threaded through to deck
+// cards, instead of re-deriving it here from a substring match on type_line.
+const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Instant', 'Sorcery', 'Enchantment', 'Artifact']
 
 function groupByType(cards) {
   const groups = {}
@@ -22,7 +38,7 @@ function groupByType(cards) {
   for (const c of cards) {
     const tl = c.type_line || ''
     let placed = false
-    for (const type of TYPE_ORDER) {
+    for (const type of TYPE_PRECEDENCE) {
       if (tl.includes(type)) { groups[type].push(c); placed = true; break }
     }
     if (!placed) groups['Other'].push(c)
@@ -977,7 +993,7 @@ function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles,
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit, onDeckChange }) {
+export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit, editingDeck, onDeckChange }) {
   const [filter, setFilter]   = useState('All')
   const [view, setView]       = useState('gallery')
   const [query, setQuery]     = useState('')   // text search across the card list
@@ -1069,6 +1085,41 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   // First-art-run setup for a deck that has none yet (a saved import).
   const [showArtSetup, setShowArtSetup] = useState(false)
   const [artSetupTheme, setArtSetupTheme] = useState(deck.theme || '')
+
+  // The `useState(() => ...)` initializers above (rebuildArtStyle/rebuildModelSpeed/
+  // rebuildVariant/rebuildCheckpoint/artSetupTheme/videoKeys/videoFmts) only run on
+  // this component's FIRST mount. `<StepDeck>` is rendered with no `key` prop, and
+  // `handleDuplicate` deliberately keeps the user on this same instance after
+  // duplicating a deck ("stay on DECK step — user now views the copy"), so a `deck`/
+  // `jobId` prop change with no unmount never re-runs them — stale values from the
+  // OLD deck can leak into modals (rebuild/animate/art-setup) that operate on the
+  // NEW deck's jobId. Re-seed them explicitly whenever the deck's stable identity
+  // (jobId) changes, using React's documented "adjusting state when a prop changes"
+  // pattern (a plain comparison during render, not a useEffect): it applies the reset
+  // in the SAME render the new jobId arrives in — no stale-value frame — and, unlike
+  // an effect, doesn't trip this repo's react-hooks/set-state-in-effect lint rule.
+  const [seededJobId, setSeededJobId] = useState(jobId)
+  if (jobId !== seededJobId) {
+    setSeededJobId(jobId)
+    setRebuildArtStyle(deck.art_style || 'mtg_fantasy')
+    setRebuildModelSpeed(deck.model_speed || 'quality')
+    setRebuildVariant(deck.gen_settings?.style_variant || '')
+    setRebuildCheckpoint(deck.checkpoint || null)
+    setArtSetupTheme(deck.theme || '')
+    setVideoKeys(() => {
+      const s = new Set()
+      if (deck?.commander?.has_video) s.add(deck.commander.render_key)
+      for (const c of deck?.deck || []) if (c.has_video) s.add(c.render_key)
+      return s
+    })
+    setVideoFmts(() => {
+      const m = {}
+      const add = c => { if (c?.has_video) m[c.render_key] = c.video_meta?.format || 'mp4' }
+      add(deck?.commander)
+      for (const c of deck?.deck || []) add(c)
+      return m
+    })
+  }
 
   const evtRef = useRef(null)
 
@@ -1999,8 +2050,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           {/* Ask about ONE named card. Keyed on swap_count like MeasurePanel:
               an applied swap changes the list, so a cached verdict is stale. */}
           <CardImpactPanel key={`imp-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          <DuelPanel key={`duel-${jobId}`} jobId={jobId} />
-          <MentorChatPanel key={`mentor-${jobId}`} jobId={jobId} />
+          {/* Keyed on swap_count too, like the panels above: a duel result or mentor
+              conversation grounded in the pre-swap decklist must not linger on screen
+              looking current after the user applies a swap. */}
+          <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+          <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
         </div>
       )}
 
@@ -2135,13 +2189,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               {onEdit && (
                 <button
                   onClick={() => onEdit(deck)}
-                  disabled={rebuilding || rethemeing || duplicating}
+                  disabled={rebuilding || rethemeing || duplicating || !!editingDeck}
                   title={single
                     ? 'Re-open the card designer with every field of this card pre-filled so you can change it. Generating saves a new card — this one is kept.'
                     : "Re-open the builder with this deck's commander, theme, art style and every setting pre-filled so you can change them. Building saves a new deck — this one is kept."}
-                  style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600 }}
+                  style={{ ...btnBase, background: '#1c1408', color: '#fde047', border: '1px solid #ca8a04', fontWeight: 600, opacity: editingDeck ? 0.7 : 1 }}
                 >
-                  {single ? '✎ Edit this card…' : '🎛️ Change settings…'}
+                  {editingDeck ? '⏳ Opening…' : single ? '✎ Edit this card…' : '🎛️ Change settings…'}
                 </button>
               )}
             </div>
@@ -2220,9 +2274,15 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       {/* Card gallery — a deck of one has its only card in the hero banner */}
       {view === 'gallery' && !single && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
-          {visibleCards.map((card, i) => (
+          {visibleCards.map((card) => (
             <CardTile
-              key={`${card.original_name}-${i}`}
+              // render_key is the deck's own stable, unique-per-card identifier
+              // (already used everywhere else in this file to key per-card state:
+              // selectedKeys/regenPending/regenDone/videoKeys/...) — unlike
+              // original_name+index, it doesn't shift when a swap changes the
+              // list's order, so React can't misattribute a tile's local hover/
+              // video-failure state to the wrong card during the transition.
+              key={card.render_key}
               card={card}
               jobId={jobId}
               selected={selectedKeys.has(card.render_key)}

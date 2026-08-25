@@ -70,8 +70,29 @@ def analyze_deck(
 ) -> DeckAnalysis:
     """Run the full single-deck analysis. Deterministic for a given (deck, cfg)."""
     commander: Card | None = resolved.commanders[0] if resolved.commanders else None
-    all_cards = list(resolved.cards) + ([(commander, 1)] if commander else [])
-    runs = simulate(resolved.cards, commander, cfg)
+    # Partner/background commanders beyond the lead were previously invisible to every
+    # simulation-based axis: `simulate`/`compute_interaction`/`compute_resilience` (tier0,
+    # tier1, axes.py) each take a single `commander: Card | None`, because T0 models "the
+    # commander" as ONE physical card that starts in the command zone with a dedicated
+    # cast-priority slot -- extending that to a real second command-zone card is a
+    # simulator restructure out of scope for this fix (those modules aren't in-scope here).
+    #
+    # What *is* fixed: a second (or third, background) commander is no longer dropped from
+    # these axes outright. It is folded into the ordinary card pool (`sim_cards`) that feeds
+    # `simulate`/`compute_interaction`/`compute_resilience`/`compute_pod`/Ceiling/go_off/
+    # overrun, so its own stats, oracle-text tags (removal/wipe/counterspell/combo pieces)
+    # and color identity are counted wherever those axes already look at "the cards" rather
+    # than "the commander". The trade-off, and the part that remains a documented gap: it
+    # is simulated as a NORMAL library card the deck must draw and cast, not a guaranteed
+    # early command-zone cast like the lead commander gets -- so a partner's presence is
+    # under-counted relative to how reliably a real pilot has it available turn 1, but it is
+    # no longer a hard zero. `coverage`/`bracket`/`manabase.analyze`/game_changers/combo
+    # detection below already took the FULL `resolved.commanders` list independently of this
+    # change and are unaffected.
+    extra_commanders = resolved.commanders[1:]
+    sim_cards = resolved.cards + [(c, 1) for c in extra_commanders]
+    all_cards = list(sim_cards) + ([(commander, 1)] if commander else [])
+    runs = simulate(sim_cards, commander, cfg)
     # Teach the clock to see a non-combat win (docs/PLAN_CLOCK.md Phase 1a): kill_turn is
     # otherwise combat-damage-only, so a storm deck that goes off turn 4 or a go-wide deck
     # that alpha-strikes turn 6 reported the same ~turn-8.5 nut draw as a deck with neither.
@@ -81,7 +102,7 @@ def analyze_deck(
     apply_nut_kills(runs, all_cards, cfg.turns)
     report = metrics.compute(runs, cfg)
     coverage = store.coverage(resolved.cards, resolved.commanders)
-    interaction = compute_interaction(resolved.cards, commander)
+    interaction = compute_interaction(sim_cards, commander)
 
     # storm/spellslinger go-off: judge the commander-as-engine against the whole spell base,
     # grounded in the deck's real (nut-draw) mana curve (docs/SIMULATION.md; feeds Ceiling+bracket).
@@ -122,7 +143,7 @@ def analyze_deck(
         pod_runs, pod_cfg = runs, cfg
     else:
         pod_cfg = replace(cfg, turns=_POD_HORIZON)
-        pod_runs = simulate(resolved.cards, commander, pod_cfg)
+        pod_runs = simulate(sim_cards, commander, pod_cfg)
         apply_nut_kills(pod_runs, all_cards, pod_cfg.turns)
     pod = compute_pod(pod_runs, pod_cfg, has_finisher=has_finisher)
 
@@ -130,7 +151,7 @@ def analyze_deck(
     wipe_turn = None
     if run_resilience:
         wipe_turn = default_wipe_turn(cfg.turns)
-        resilience = compute_resilience(resolved.cards, commander, cfg, wipe_turn)
+        resilience = compute_resilience(sim_cards, commander, cfg, wipe_turn)
 
     game_changers = sorted(
         [c.name for c in resolved.commanders if c.game_changer]

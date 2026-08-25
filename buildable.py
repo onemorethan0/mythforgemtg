@@ -9,13 +9,16 @@ flow (collection-aware) where the deck can be measured for a real bracket.
 
 Scoring is deliberately honest and simple:
   • buildable_pct = how much of the ~63 nonland slots the owned on-color pool covers.
-  • role coverage = lightweight oracle-text heuristics (ramp/draw/removal/wipe/
-    finisher) so we can say "you're thin on removal" without a full build.
+  • role coverage = `collection_pool.classify` (ramp/draw/removal/wipe/finisher) so we
+    can say "you're thin on removal" without a full build. That module is the app's ONE
+    definition of these roles — this module used to keep its own duplicate regex
+    classifier, and the two disagreed (a net-zero mana filter read as ramp, a pure
+    player-damage card read as a board wipe).
 Lands aren't a gating constraint (basics fill freely), so they don't lower the score.
 """
 from __future__ import annotations
 
-import re
+import collection_pool
 
 # A Commander deck is 100 cards: ~37 lands (mostly basics, effectively free) + ~63
 # nonland. So the nonland pool is what gates "can I build this".
@@ -27,35 +30,6 @@ _ROLE_FLOORS = {"ramp": 8, "draw": 8, "removal": 5, "wipe": 2, "finisher": 1}
 _ROLE_LABELS = {
     "ramp": "ramp", "draw": "card draw", "removal": "removal",
     "wipe": "board wipes", "finisher": "finishers",
-}
-
-# Oracle-text heuristics. Rough but useful — good enough to surface "thin on X".
-_ROLE_PATTERNS: dict[str, list[re.Pattern]] = {
-    "ramp": [re.compile(p, re.I) for p in (
-        r"\badd\s+\{[wubrgc0-9]", r"\badd\s+(one|two|three)\b.*\bmana\b",
-        r"search your library for (a|up to \w+)\b.*\bland", r"\bcreate a treasure",
-        r"\bmana of any color", r"\buntap target (land|permanent)",
-    )],
-    "draw": [re.compile(p, re.I) for p in (
-        r"\bdraw (a card|two cards|three cards|\w+ cards|cards equal)",
-        r"\bdraw that many cards", r"\binvestigate\b",
-    )],
-    "removal": [re.compile(p, re.I) for p in (
-        r"\bdestroy target\b", r"\bexile target\b",
-        r"\bdeals? \d+ damage to (target|any)", r"\btarget (creature|player|permanent) gets? -",
-        r"\bfight(s)? target", r"\breturn target .* to (its|their) owner",
-        r"\btarget (creature|permanent) .*can't", r"\bcounter target",
-    )],
-    "wipe": [re.compile(p, re.I) for p in (
-        r"\bdestroy all\b", r"\bexile all\b", r"\ball creatures get -",
-        r"\beach (creature|player) sacrifices", r"\bdestroy each\b",
-        r"\bdeals? \d+ damage to each (creature|player|opponent)",
-    )],
-    "finisher": [re.compile(p, re.I) for p in (
-        r"\bwins? the game\b", r"\bloses? the game\b", r"\bextra (turn|combat)",
-        r"\bcreatures you control get \+\d+/\+\d+ and gain (trample|haste)",
-        r"\bdouble\b.*\bdamage\b", r"\binfinite\b", r"\bcan't be blocked\b.*\bdeals",
-    )],
 }
 
 
@@ -75,15 +49,18 @@ def _type_line(card: dict) -> str:
 
 
 def classify_roles(card: dict) -> set[str]:
-    """The essential roles a card plausibly fills (may be several, or none)."""
-    text = _card_text(card)
-    tl = _type_line(card).lower()
-    roles = {role for role, pats in _ROLE_PATTERNS.items()
-             if any(p.search(text) for p in pats)}
-    # A mana rock/dork is ramp even if the regex missed it.
-    if "artifact" in tl and re.search(r"\{t\}.*add \{", text, re.I):
-        roles.add("ramp")
-    return roles
+    """The essential roles a card plausibly fills (may be several, or none).
+
+    Delegates to `collection_pool.classify` — the ONE definition of these roles this
+    codebase uses, specifically so two structures never disagree about what counts as
+    ramp/removal/wipe/etc (a documented recurring bug class here). This module used to
+    carry its own cruder regex classifier that, among other defects, tagged a net-zero
+    mana filter ("{1},{T}: Add {B}") as ramp (no notion of net mana) and a pure
+    player-damage card like Impact Tremors ("deals 1 damage to each opponent") as a
+    board wipe (its wipe pattern matched "each opponent" as well as "each creature").
+    `collection_pool.classify` returns `ROLES` which is a superset including
+    "protection" — filtered down to the roles this module tracks."""
+    return collection_pool.classify(card) & set(_ROLE_FLOORS)
 
 
 def is_commander_eligible(card: dict) -> bool:

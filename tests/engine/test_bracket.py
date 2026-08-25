@@ -161,6 +161,24 @@ def test_extra_turn_chain_raises_to_four(make_card, forest):
     assert est.extra_turn_cards == 59
 
 
+def test_extra_turn_name_fallback_catches_blank_oracle_text(make_card, forest):
+    """A KNOWN extra-turn card (by name) must still be flagged even when its oracle text is
+    missing/blank -- the regex alone would silently miss it, which is worse than a
+    duplicated-effort under-count. "Time Walk" is in root bracket.py's EXTRA_TURN_CARDS."""
+    time_walk = make_card("Time Walk", mana_cost="{1}{U}", type_line="Sorcery", oracle_text="")
+    est = estimate_bracket([(forest, 40), (time_walk, 59)], [], ceiling=10, speed_kill_rate=0.05)
+    assert est.extra_turn_cards == 59
+    assert est.bracket >= 4
+
+
+def test_mass_land_denial_name_fallback_catches_blank_oracle_text(make_card, forest):
+    """Same fallback for MLD: "Armageddon" is in root bracket.py's MASS_LAND_DESTRUCTION_CARDS."""
+    armageddon = make_card("Armageddon", mana_cost="{2}{W}", type_line="Sorcery", oracle_text="")
+    est = estimate_bracket([(forest, 40), (armageddon, 59)], [], ceiling=10, speed_kill_rate=0.05)
+    assert est.mass_land_denial_cards == 59
+    assert est.bracket >= 4
+
+
 def test_confidence_lower_without_combo_check(make_card, forest, bear):
     checked = estimate_bracket([(forest, 40), (bear, 59)], [], combos_checked=True)
     unchecked = estimate_bracket([(forest, 40), (bear, 59)], [], combos_checked=False)

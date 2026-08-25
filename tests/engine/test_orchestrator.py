@@ -70,6 +70,41 @@ def test_cache_hits_and_invalidation(make_card, tmp_path):
     assert all(cache3.get(j) is None for j in jobs)
 
 
+def test_cache_invalidates_on_deck_content_change_under_the_same_name(make_card, tmp_path):
+    """A corpus deck edited in place (same NAME, different cards) must not silently reuse a
+    cached result computed against the OLD decklist -- the cache key has to be sensitive to
+    deck CONTENT, not just the name used to look it up in `prepared`."""
+    forest = make_card("Forest", type_line="Basic Land - Forest",
+                       produced_mana=("G",), color_identity=("G",))
+
+    def creature(name, cost, power):
+        c = make_card(name, mana_cost=cost, type_line="Creature - Beast", color_identity=("G",))
+        c.power, c.toughness = str(power), str(power)
+        return c
+
+    slow = prepare_deck("slow", [(forest, 60)], None, None)
+    original = {
+        "variant": prepare_deck("variant", [(forest, 24), (creature("Bear", "{1}{G}", 3), 36)],
+                                None, None),
+        "slow": slow,
+    }
+    # Same deck NAME ("variant"), very different contents -- a huge aggro creature instead
+    # of a small one, which should swing the duel outcome against the unchanging "slow" deck.
+    edited = {
+        "variant": prepare_deck("variant", [(forest, 24), (creature("Titan", "{1}{G}", 99), 36)],
+                                None, None),
+        "slow": slow,
+    }
+    jobs = [Job("variant", "slow", DuelConfig(games=12, seed=1, max_turns=20))]
+    path = tmp_path / "cache.json"
+
+    cache = JobCache(path, engine_tag="v1")
+    run_jobs(original, jobs, workers=1, cache=cache)
+    # The stale key (bare deck names) WOULD still be a hit here under the old scheme --
+    # content hashing must force a fresh computation instead.
+    assert cache.get(jobs[0], edited) is None
+
+
 def test_empty_jobs_is_noop(make_card):
     assert run_jobs(_decks(make_card), [], workers=2) == []
 

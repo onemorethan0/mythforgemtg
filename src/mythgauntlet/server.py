@@ -629,7 +629,17 @@ def create_app(
             card_db=db, cr=mentor_cr, rulings_db=mentor_rulings_db, resolved=resolved,
             cfg=cfg, store=store, themes=tuple(req.themes),
         )
-        reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)
+        try:
+            reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)
+        except mentor_chat.LLMUnavailable as exc:
+            # Distinct from the 503 above (rules corpus not fetched): that one needs
+            # `fetch-rules`, this one needs the LLM backend started. Same status code and
+            # response shape as the established pattern, different actionable detail.
+            raise HTTPException(
+                status_code=503,
+                detail=f"Mentor's language model backend is unreachable ({exc}). Make "
+                "sure llama-swap is running (e.g. `manage.bat` option 1/2) and try again.",
+            )
         # Phase 3 prerequisite (docs/SPEC_deck_mentor.md): log the FULL turn, including
         # gate_rejections, which the HTTP response below deliberately does NOT expose to
         # the caller -- a rejected draft is internal signal, not something to show a user,
@@ -660,11 +670,31 @@ def create_app(
         prerequisite). `gated=True` on a turn only means the gate caught no fabrication --
         it is not the same as the answer being GOOD. A future training corpus is turns
         where BOTH are true, and this is how the second half gets recorded.
+
+        This engine is stateless per request (see `/mentor/chat`'s own docstring) and has
+        no concept of a Forge `job_id` -- that mapping lives entirely on the caller's side
+        (Forge's `POST /api/deck/{job_id}/mentor/feedback` proxy), which does not
+        currently forward `job_id` into this call at all, so a genuine "does this turn_id
+        belong to that job_id's session" check cannot be done HERE without a request-shape
+        change on that side. What this endpoint DOES check, on its own: `turn_id` must
+        name a turn this engine actually logged via `/mentor/chat` -- so a stray, garbled,
+        or made-up `turn_id` is rejected (404) rather than being silently appended to the
+        transcript as if it referred to a real conversation. That is real protection
+        against a spoofed/fabricated id; it is not the same as cross-session isolation,
+        and this docstring used to imply the latter without the code doing it -- fixed to
+        say only what is actually checked.
         """
-        try:
-            transcript.record_feedback(req.turn_id, req.rating, note=req.note)
-        except ValueError as exc:
-            raise HTTPException(status_code=400, detail=str(exc))
+        if req.rating not in transcript.VALID_RATINGS:
+            raise HTTPException(
+                status_code=400,
+                detail=f"rating must be one of {sorted(transcript.VALID_RATINGS)}, "
+                       f"got {req.rating!r}",
+            )
+        if not transcript.turn_exists(req.turn_id):
+            raise HTTPException(
+                status_code=404, detail=f"No logged turn with turn_id {req.turn_id!r}.",
+            )
+        transcript.record_feedback(req.turn_id, req.rating, note=req.note)
         return {"status": "ok"}
 
     return app

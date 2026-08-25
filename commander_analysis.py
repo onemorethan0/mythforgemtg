@@ -280,7 +280,12 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "voltron":          '(type:equipment OR type:aura OR o:"when equipped")',
     "draw_matters":     '(o:"whenever you draw a card" OR o:"whenever a card is drawn")',
     "lifegain":         '(otag:lifegain-payoff OR o:"whenever you gain life")',
-    "landfall":         '(otag:landfall OR o:"whenever a land enters the battlefield under your control")',
+    # Literal fallback widened to match THEME_PATTERNS["landfall"]'s detection wording:
+    # 2024 templating prints "a land you control enters", not "...enters the
+    # battlefield under your control" (that pre-2024 phrase now matches ~1 card), and
+    # "additional land" covers the archetype's enabler half (Exploration, Azusa) that
+    # otag:landfall alone does not surface as a payoff.
+    "landfall":         '(otag:landfall OR o:"land you control enters" OR o:"additional land")',
     "graveyard":        '(otag:graveyard-recursion OR o:"from your graveyard" OR o:"flashback")',
     "etb":              '(otag:etb OR o:"when this enters" OR o:"whenever a creature enters")',
     "energy":           '(o:"energy counter" OR o:"{e}")',

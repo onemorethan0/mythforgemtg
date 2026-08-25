@@ -2,8 +2,10 @@
 
 import json
 
+from mythgauntlet.semantics.profile import DeathEffect
 from mythgauntlet.semantics.store import SemanticsStore
-from mythgauntlet.sim.tier2 import DuelConfig, duel
+from mythgauntlet.sim.tier2 import DuelConfig, _Permanent, _Player, _apply_resolved, _wipe_table, duel
+from mythgauntlet.semantics.interpreter import ResolvedEffect
 
 
 def _store_with(tmp_path, docs: dict[str, dict]) -> SemanticsStore:
@@ -132,6 +134,47 @@ def test_death_triggers_swing_mirror_matches(tmp_path, make_card, forest):
         cfg, store=store,
     )
     assert result.winrate_a > 0.6  # every trade drains the opponent
+
+
+def _blood_artist(name: str) -> _Permanent:
+    """A Blood-Artist-class permanent: on death, each opponent loses 1 life."""
+    return _Permanent(
+        name=name, power=0, toughness=1, is_creature=True, sick=False,
+        death=DeathEffect(drain=1),
+    )
+
+
+def _pod(n: int, life: int = 40) -> list[_Player]:
+    return [_Player(name=chr(ord("a") + i), library=[], life=life) for i in range(n)]
+
+
+def test_wipe_table_drains_every_opponent_not_just_one():
+    """A 4-player board wipe killing 4 Blood Artists must drain ALL N-1 opponents per
+    death, not just the single `killer` passed to `_kill` -- each seat's creature death
+    is an "each opponent loses 1" trigger scoped to the WHOLE pod minus its owner."""
+    a, b, c, d = _pod(4)
+    for p in (a, b, c, d):
+        p.battlefield.append(_blood_artist(f"Artist ({p.name})"))
+    _wipe_table(a, b, (c, d), None)
+    # Each of the 4 deaths drains the other 3 seats by 1 -> every seat takes exactly 3.
+    assert a.life == b.life == c.life == d.life == 37
+    for p in (a, b, c, d):
+        assert p.creatures() == []
+
+
+def test_apply_resolved_each_creature_sweep_drains_every_opponent():
+    """`_apply_resolved`'s "deals N to each creature" pod sweep must fan a death drain
+    across every OTHER seat too, matching `_wipe_table`'s fix for the same bug class."""
+    a, b, c, d = _pod(4)
+    for p in (a, b, c, d):
+        p.battlefield.append(_blood_artist(f"Artist ({p.name})"))
+    eff = ResolvedEffect(op="deal_damage", params={
+        "amount": 5, "target": {"type": "creature", "count": "all"},
+    })
+    _apply_resolved(eff, a, b, None, (c, d))
+    assert a.life == b.life == c.life == d.life == 37
+    for p in (a, b, c, d):
+        assert p.creatures() == []
 
 
 def test_combo_assembly_wins_the_game(make_card, forest):

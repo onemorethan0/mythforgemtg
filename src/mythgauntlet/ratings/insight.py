@@ -62,7 +62,10 @@ def _turn(t: float | None) -> str:
 def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
     """`a` is a DeckAnalysis (duck-typed to avoid a circular import)."""
     commander = resolved.commanders[0] if resolved.commanders else None
-    cmd = commander.name if commander else "no commander"
+    # Name every commander (partner/background), not just the lead -- "Tymna the Weaver"
+    # when the deck is actually "Tymna the Weaver and Thrasios, Triton Hero" mislabels the
+    # whole narrative for a 2-commander deck.
+    cmd = " and ".join(c.name for c in resolved.commanders) if resolved.commanders else "no commander"
 
     nonland = [(c, n, tags.analyze(c)) for c, n in resolved.cards if not c.is_land]
     creatures = sum(n for c, n, _ in nonland if c.is_creature)

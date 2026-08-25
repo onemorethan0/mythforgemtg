@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CardHover from './CardHover'
 
 // "Would this card help my deck?" — ask about ONE named card and get a measured answer.
@@ -25,6 +25,13 @@ export default function CardImpactPanel({ jobId }) {
   const [result, setResult] = useState(null)
   const [errMsg, setErrMsg] = useState('')
 
+  // `ask()` runs off a form submit, not mount, so (unlike RecentDecks.jsx's
+  // effect-scoped `let cancelled`) the flag needs to survive past that call in a ref;
+  // an unmount-only effect flips it. The re-simulation this kicks off takes
+  // ~10-30s, long enough to outlive the panel if the user navigates away.
+  const cancelledRef = useRef(false)
+  useEffect(() => () => { cancelledRef.current = true }, [])
+
   async function ask(e) {
     e?.preventDefault?.()
     const card = name.trim()
@@ -37,17 +44,22 @@ export default function CardImpactPanel({ jobId }) {
         body: JSON.stringify({ card }),
       })
       if (r.ok) {
-        setResult(await r.json())
+        const data = await r.json()
+        if (cancelledRef.current) return
+        setResult(data)
       } else {
         // Show the server's detail — for a misspelling it names the card and says to check
         // the spelling, which is far more use than "request failed".
         let d = `HTTP ${r.status}`
         try { d = (await r.json()).detail || d } catch { /* keep the status */ }
+        if (cancelledRef.current) return
         setErrMsg(d)
       }
     } catch {
+      if (cancelledRef.current) return
       setErrMsg('Strength API unreachable — is Myth Forge running via manage.bat?')
     }
+    if (cancelledRef.current) return
     setBusy(false)
   }
 

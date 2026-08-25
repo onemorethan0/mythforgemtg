@@ -91,8 +91,22 @@ def _flux_silhouette(subject: str, timeout_s: int = 180) -> Optional[Image.Image
         "high contrast, vector style"
     )
     try:
+        # Resolve the installed FLUX-dev checkpoint by filename FRAGMENT, the same
+        # way every other model-selection path in this codebase does (`_is_flux`,
+        # `_TURBO_LORA_FRAGMENTS`, `_QWEN_*_FRAGMENTS`, ...) — never a literal
+        # filename. A hardcoded "flux1-dev-fp8.safetensors" silently failed inside
+        # the broad `except Exception` below on any install with a differently
+        # named checkpoint, falling back to the procedural silhouette even though
+        # ComfyUI and a perfectly good FLUX-dev checkpoint were both available.
+        ckpts = image_gen.ImageGen.list_checkpoints(COMFY_URL)
+        dev = [c for c in ckpts.get("dev", []) if not image_gen._is_krea(c)] or ckpts.get("dev", [])
+        checkpoint = (dev or ckpts.get("schnell", []) or ckpts.get("all", []))[0]
+    except Exception as e:
+        print(f"  [mana_pips] no FLUX checkpoint installed, using procedural fallback ({e})")
+        return None
+    try:
         wf = image_gen._build_flux_workflow(
-            "flux1-dev-fp8.safetensors", prompt, 7,
+            checkpoint, prompt, 7,
             negative="", gen=image_gen.GenSettings(steps=20),
         )
         pid = _comfy_post(

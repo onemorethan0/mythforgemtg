@@ -55,17 +55,54 @@ def _run_one(job: Job) -> PairResult:
 # --- disk cache for resumability ---------------------------------------------------------
 
 
-def _job_key(job: Job, engine_tag: str) -> str:
+def _deck_content_hash(pd: PreparedDeck | None) -> str:
+    """Stable content fingerprint for a PreparedDeck: a sha256 over the sorted (card name,
+    count) pairs plus the commander's name. Two decks with the same NAME but different
+    contents (e.g. a corpus deck edited in place) hash differently, and the same contents
+    under a different name hash the same -- the cache key below folds this in specifically
+    so editing a deck's list can't silently return a stale cached result for the old one.
+    `None` (name unresolvable in `prepared`) falls back to a fixed sentinel rather than
+    raising, so a caller inspecting the cache without the prepared decks on hand degrades
+    to a fixed key instead of crashing.
+    """
+    if pd is None:
+        return "unknown"
+    counts: dict[str, int] = {}
+    for gc in pd.cards:
+        counts[gc.name] = counts.get(gc.name, 0) + 1
+    commander_name = pd.commander.name if pd.commander else ""
+    blob = "|".join(f"{name}x{n}" for name, n in sorted(counts.items()))
+    blob += f"||cmdr:{commander_name}"
+    return hashlib.sha256(blob.encode()).hexdigest()
+
+
+def _job_key(
+    job: Job, engine_tag: str, prepared: dict[str, PreparedDeck] | None = None,
+) -> str:
     c = job.cfg
-    parts = (engine_tag, job.a, job.b, c.games, c.seed, c.max_turns, c.start_life,
-             c.agent_a, c.agent_b, c.mcts_iterations, c.mcts_determinizations, c.rollout_depth)
+    # Content hashes when `prepared` is available (the real run_jobs path) -- this is what
+    # makes the key sensitive to a deck's ACTUAL cards rather than just its name. Falling
+    # back to the bare name when `prepared` isn't supplied keeps direct/introspective
+    # `JobCache.get`/`put` calls (no decks on hand) working, at the cost of reverting to the
+    # old name-only behavior for that call only; `run_jobs` below always passes `prepared`.
+    content_a = _deck_content_hash(prepared.get(job.a)) if prepared is not None else job.a
+    content_b = _deck_content_hash(prepared.get(job.b)) if prepared is not None else job.b
+    parts = (engine_tag, job.a, content_a, job.b, content_b, c.games, c.seed, c.max_turns,
+             c.start_life, c.agent_a, c.agent_b, c.mcts_iterations, c.mcts_determinizations,
+             c.rollout_depth)
     return hashlib.sha1("|".join(map(str, parts)).encode()).hexdigest()
 
 
 class JobCache:
     """Tiny disk cache: job hash -> [wins_a, wins_b, draws]. `engine_tag` (e.g. the executable-
     semantics count) is folded into the key, so recompiling the engine naturally invalidates
-    stale results rather than silently reusing them. Flushed atomically after each miss."""
+    stale results rather than silently reusing them. Flushed atomically after each miss.
+
+    The key also folds in a content hash of each deck (`_deck_content_hash`) when the caller
+    supplies `prepared` -- otherwise the key was purely (engine_tag, deck NAME, deck NAME,
+    cfg...), so editing a corpus deck's contents under a fixed name and re-running the
+    gauntlet could return a stale cached result computed against the OLD decklist.
+    """
 
     def __init__(self, path: str | Path, engine_tag: str = "") -> None:
         self.path = Path(path)
@@ -77,14 +114,18 @@ class JobCache:
             except (OSError, json.JSONDecodeError):
                 self._data = {}
 
-    def get(self, job: Job) -> PairResult | None:
-        row = self._data.get(_job_key(job, self.engine_tag))
+    def get(
+        self, job: Job, prepared: dict[str, PreparedDeck] | None = None,
+    ) -> PairResult | None:
+        row = self._data.get(_job_key(job, self.engine_tag, prepared))
         if row is None:
             return None
         return PairResult(a=job.a, b=job.b, wins_a=row[0], wins_b=row[1], draws=row[2])
 
-    def put(self, job: Job, result: PairResult) -> None:
-        self._data[_job_key(job, self.engine_tag)] = [
+    def put(
+        self, job: Job, result: PairResult, prepared: dict[str, PreparedDeck] | None = None,
+    ) -> None:
+        self._data[_job_key(job, self.engine_tag, prepared)] = [
             result.wins_a, result.wins_b, result.draws
         ]
 
@@ -121,7 +162,7 @@ def run_jobs(
     results: list[PairResult | None] = [None] * total
     todo: list[tuple[int, Job]] = []
     for i, job in enumerate(jobs):
-        hit = cache.get(job) if cache else None
+        hit = cache.get(job, prepared) if cache else None
         if hit is not None:
             results[i] = hit
         else:
@@ -138,7 +179,7 @@ def run_jobs(
         for i, job in todo:
             results[i] = _duel(prepared, job)
             if cache:
-                cache.put(job, results[i])
+                cache.put(job, results[i], prepared)
                 cache.flush()
             done += 1
             if on_done:
@@ -152,7 +193,7 @@ def run_jobs(
             i = futures[fut]
             results[i] = fut.result()
             if cache:
-                cache.put(jobs[i], results[i])
+                cache.put(jobs[i], results[i], prepared)
                 cache.flush()
             done += 1
             if on_done:
