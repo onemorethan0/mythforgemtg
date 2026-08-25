@@ -43,6 +43,23 @@ _RULE_RANDOM_OR_CHOICE = (
 # Non-deterministic qualifiers: chance, or a decision the COMBO'S CONTROLLER does not own.
 # Kept tight to avoid false positives -- "you choose"/"you may" are deterministic (you pick
 # the winning line), so only opponent/each-player choices and true randomness are flagged.
+#
+# Widened 2026-08-25 after spot-checking real oracle text (not the Spellbook API -- no
+# network needed, just cards already known to have chance/opponent-choice elements): the
+# original vocabulary missed a real card outright.
+#   - Fact or Fiction: "An opponent SEPARATES those cards into two piles" -- a genuine
+#     opponent-choice, but the verb is "separates", not "chooses"/"choose". MTG templates
+#     this family of split-and-pick effects with several verbs, not just one.
+# A SECOND candidate widening was tried and REVERTED: matching "in a random order" (to
+# catch Possibility Storm) also flagged Thassa's Oracle -- one of the most iconic, fully
+# DETERMINISTIC cEDH win conditions -- because "put the rest on the bottom in a random
+# order" is common, benign anti-stacking templating for the cards you did NOT keep,
+# unrelated to whether the effect's actual outcome (here, a pure count comparison) is
+# deterministic. Reverted rather than shipped, since it broke a far more common, more
+# iconic real combo than the one it was meant to fix. Possibility Storm's own randomness
+# (which specific card gets cast) remains uncaught, alongside Chaos Warp's ("shuffles...
+# then reveals the top card", random in effect but never says the word "random" at all) --
+# both documented as known residual gaps rather than guessed at with an unproven pattern.
 _NONDET_MARKERS: list[tuple[str, re.Pattern[str]]] = [
     ("at random", re.compile(r"\bat random\b", re.IGNORECASE)),
     ("chosen at random", re.compile(r"\bchosen at random\b", re.IGNORECASE)),
@@ -51,9 +68,12 @@ _NONDET_MARKERS: list[tuple[str, re.Pattern[str]]] = [
                              r"(?:six-sided\s+)?(?:dice|die)\b", re.IGNORECASE)),
     ("planar die", re.compile(r"\bplanar die\b", re.IGNORECASE)),
     ("opponent's choice", re.compile(
-        r"\b(?:an?|target|each)\s+opponent\s+chooses?\b", re.IGNORECASE)),
-    ("opponents choose", re.compile(r"\bopponents?\s+choose\b", re.IGNORECASE)),
-    ("each player chooses", re.compile(r"\beach player chooses?\b", re.IGNORECASE)),
+        r"\b(?:an?|target|each)\s+opponent\s+(?:chooses?|separates?|picks?|selects?)\b",
+        re.IGNORECASE)),
+    ("opponents choose", re.compile(
+        r"\bopponents?\s+(?:chooses?|choose|separates?|picks?|selects?)\b", re.IGNORECASE)),
+    ("each player chooses", re.compile(
+        r"\beach player\s+(?:chooses?|separates?|picks?|selects?)\b", re.IGNORECASE)),
     ("vote", re.compile(r"\bvotes?\b", re.IGNORECASE)),
 ]
 

@@ -48,6 +48,26 @@ def test_optional_condition_is_gated():
     assert interpret_ability(ability, _FixedResolver(cond=False)) == []  # condition fails
 
 
+def test_default_resolver_assumes_a_real_condition_holds():
+    ability = {"effects": [{"op": "draw", "count": 1, "condition": "if you control a Dragon"}]}
+    assert interpret_ability(ability)  # DefaultResolver's optimistic-by-design bias
+
+
+def test_default_resolver_does_not_fire_the_otherwise_branch():
+    """Found live 2026-08-25: Approach of the Second Sun compiles to two effects in one
+    ability -- win_game conditioned on "if [cast twice from hand]", and gain_life
+    conditioned on "otherwise". DefaultResolver assumes the IF branch holds (the existing
+    convention), so consistency requires the paired OTHERWISE branch NOT fire too --
+    crediting both is two contradictory outcomes at once, not an optimistic assumption.
+    Same fix needed in sim/tier2.py's _EngineResolver, which shares this exact bug."""
+    ability = {"effects": [
+        {"op": "win_game", "condition": "if you've cast another spell named this"},
+        {"op": "gain_life", "amount": 7, "condition": "otherwise"},
+    ]}
+    resolved = interpret_ability(ability)
+    assert [r.op for r in resolved] == ["win_game"]
+
+
 def test_unknown_op_is_skipped_but_siblings_survive():
     ability = {"effects": [{"op": "time_travel", "amount": 3}, {"op": "draw", "count": 2}]}
     assert [r.op for r in interpret_ability(ability)] == ["draw"]

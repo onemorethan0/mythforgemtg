@@ -54,6 +54,31 @@ def test_dice_roll_is_non_deterministic():
     assert not v.deterministic and "dice roll" in v.markers
 
 
+def test_opponent_separates_is_non_deterministic():
+    """Found live 2026-08-25 spot-checking real cards: Fact or Fiction ("An opponent
+    SEPARATES those cards into two piles") was missed outright because the marker only
+    matched the verb "chooses"/"choose". MTG templates this whole family of split-and-pick
+    effects (Fact or Fiction, Sphinx of Uthuun, Brilliant Ultimatum, ...) with several
+    verbs -- widened to separates/picks/selects, verified against all 8 real cards using
+    any of those verbs near "opponent" in the live card store, zero false positives."""
+    v = classify_determinism(["An opponent separates those cards into two piles."])
+    assert not v.deterministic and "opponent's choice" in v.markers
+
+
+def test_benign_random_order_of_unchosen_cards_is_not_flagged():
+    """A candidate widening (matching "in a random order" to catch Possibility Storm) was
+    tried and REVERTED: it also flagged Thassa's Oracle -- one of the most iconic, fully
+    DETERMINISTIC cEDH win conditions -- because "put the rest on the bottom in a random
+    order" is common, benign anti-stacking templating for cards you did NOT keep, unrelated
+    to whether the effect's actual outcome is deterministic. This pins the non-regression."""
+    v = classify_determinism([
+        "Put up to one of them on top of your library and the rest on the bottom of your "
+        "library in a random order. If X is greater than or equal to the number of cards "
+        "in your library, you win the game."
+    ])
+    assert v.deterministic
+
+
 def test_description_is_searched_too():
     v = classify_determinism(["Vanilla text."], description="Flip a coin until you lose.")
     assert not v.deterministic

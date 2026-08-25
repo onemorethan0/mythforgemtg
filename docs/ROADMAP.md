@@ -98,10 +98,10 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
 | **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
 | **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |
-| S16 | Conditional CCM effects always resolve `True` | audit-raised, unverified | Medium | M |
-| S17 | Combo determinism defaults `True` on no evidence | audit-raised, unverified | Medium | M |
-| S18 | No legend rule / commander-damage modeling in sim | audit-raised, unverified — honest coverage gap, not a fabrication | Low | L |
-| S19 | `counter target spell` ignores "can't be countered" | audit-raised, unverified | Low | S |
+| **S16** | ~~if/otherwise pairs double-credited~~ · condition-check gap partly remains | **24 cards** double-credited (Approach of the 2nd Sun = free win) · **15.78%** of store has a condition | **Done** (otherwise-fix) / open (general case) | S / M |
+| S17 | Combo determinism marker vocabulary | +1 real verb widened, 1 attempted widening reverted (false-positived Thassa's Oracle) | **Done** (this pass) | — |
+| S18 | No legend rule / commander-damage modeling in sim | re-confirmed current 2026-08-25 — honest coverage gap, not a fabrication | Low | L |
+| **S19** | ~~`counter target spell` ignores "can't be countered"~~ | **23 real cards audited, 0 false positives** — non-issue | **Done** | — |
 
 ---
 
@@ -969,31 +969,62 @@ shape named above and the object-blind old behaviour it replaces. Full suite (`t
 
 ---
 
-## S16–S19 — further rules-grounding gaps, audit-raised and NOT adversarially verified
+## S16–S19 — further rules-grounding gaps · S16/S17/S19 VERIFIED 2026-08-25, S18 still open
 
-Same audit pass that found S15, same failure class, but these are unverified leads, not
-confirmed bugs — flagged so they don't get lost, not fixed. Re-check against real cards/corpus
-before trusting or acting on any of them (same caution `mythforge-review-backlog` already
-applies to other agent-raised findings).
+Same audit pass that found S15. All four were unverified leads as of 2026-08-18; this pass
+re-checked each against the real 31,558-card compiled store and the 34,777-card Scryfall pool
+rather than trusting the original description, and two of the four descriptions turned out to
+be partially outdated.
 
-- **S16 — `semantics/interpreter.py`'s `DefaultResolver.condition_holds` always returns `True`**,
-  and X always resolves to a flat magnitude of 1. Wired into `sim/tier2.py`, so a conditional
-  payoff ("if you control a Dragon, draw two cards") is credited at full value regardless of
-  whether the deck or game state can actually satisfy the condition — the same shape as the
-  already-fixed trigger-event fabrication (1,400 cards, prompt v10 gate), just for conditions
-  instead of events, and with no equivalent gate-check yet.
-- **S17 — `semantics/combo_rules.py` defaults combo `deterministic=True` on absence of
-  evidence.** The module's own docstring is candid this is a heuristic; the consumer
-  (`ratings/bracket.py`) treats the boolean as a hard gate promoting a deck to Bracket 5. The
-  risky direction (false positive) for a rating that only ever escalates, and untested against
-  real non-deterministic loops that don't use the module's listed vocabulary.
-- **S18 — no legend rule or commander-damage (21-rule) modeling anywhere in `sim/game.py`.**
-  Combined with the already-documented rung-1 blindness to ward/hexproof/indestructible, an
-  entire Voltron/commander-damage win condition is structurally invisible to the strength
-  engine. This is an honest coverage gap, not a fabrication — consistent with, not contradicting,
-  the engine's stated preference for under-counting over guessing — but unaudited scope worth
-  tracking.
-- **S19 — `semantics/tags.py`'s `_COUNTER_RE` credits "counter target spell" with no check for
-  "can't be countered."** Never cross-referenced anywhere else in the tree. Low severity,
-  same unaudited shape as the others.
+- **S16 — RESOLVED IN PART, DOCUMENTED IN PART.** The original description ("X always resolves
+  to a flat magnitude of 1") was already stale: `sim/tier2._EngineResolver` resolves X against
+  live board state whenever a CCM effect carries an `x_basis` (creatures/permanents/lands/hand
+  count) — a real capability added since the audit was written. `condition_holds` genuinely was
+  still a hardcoded `True` in BOTH resolvers, and measuring its real impact found something
+  worse than the original description: **15.78% of the store (4,981 of 31,558 cards) carry at
+  least one conditional effect** (11.94% of all 49,431 effects), and a subset of those are
+  actually a paired `if`/`otherwise` split within one ability — two MUTUALLY EXCLUSIVE outcomes
+  compiled as two separate conditional effects. Defaulting both to `True` doesn't approximate
+  generously, it credits both outcomes at once: **Approach of the Second Sun's win_game and its
+  "otherwise" gain_life both fired on a single cast**, crediting the simulation with an outright
+  win on turn one for a card that actually requires casting it twice. Fixed: `condition_holds`
+  now returns `False` for a bare `"otherwise"` condition, in both `interpreter.DefaultResolver`
+  and `sim/tier2._EngineResolver` — the IF branch stays assumed-true (unchanged, consistent with
+  the engine's optimistic-default philosophy elsewhere), the paired OTHERWISE branch no longer
+  fires alongside it. Measured scope: **24 cards store-wide** (0.08%) carry an otherwise-branch,
+  several high-profile (Approach of the Second Sun, Oko the Ringleader, Jace the Perfected
+  Mind, Faramir Prince of Ithilien) — small in count, high in per-card severity. Pinned by
+  `test_default_resolver_does_not_fire_the_otherwise_branch` / the matching tier2 test.
+  **What's still open, honestly:** an ordinary (non-paired) conditional effect — "if you control
+  a Dragon, draw two cards" — is still assumed true regardless of board state. That's the
+  larger, harder remainder of S16 (a genuine board-state check would need a bounded vocabulary
+  the way `x_basis` has one for X, not a general condition parser) and is NOT fixed by this
+  pass — only the specific, provably-wrong double-credit case is.
+- **S17 — PARTIALLY WIDENED, ONE ATTEMPTED FIX REVERTED.** `combo_rules.classify_determinism`
+  itself is honestly designed (its own docstring already says "does NOT prove determinism"),
+  so the real question was whether its marker vocabulary has real, verifiable gaps. It did:
+  **Fact or Fiction** ("An opponent SEPARATES those cards into two piles") was missed outright
+  because the opponent-choice marker only matched the verb "chooses". Widened to
+  separates/picks/selects, verified against every one of the 8 real cards in the store using
+  those verbs near "opponent" — zero false positives. A SECOND widening (matching "in a random
+  order" to catch Possibility Storm's real non-determinism) was tried and **reverted**: it also
+  flagged **Thassa's Oracle** — one of the most iconic, fully deterministic cEDH win conditions
+  — as non-deterministic, because "put the rest on the bottom in a random order" is common,
+  benign anti-stacking templating unrelated to whether the effect's actual outcome (a pure count
+  comparison) is deterministic. Reverted rather than shipped; pinned by
+  `test_benign_random_order_of_unchosen_cards_is_not_flagged` as the non-regression case.
+  Possibility Storm's own randomness, and Chaos Warp's ("shuffles... reveals the top card",
+  random in effect but never uses the word "random") remain uncaught — documented as residual
+  gaps rather than guessed at with an unproven pattern.
+- **S18 — STILL OPEN, CONFIRMED CURRENT.** Re-checked 2026-08-25: zero references to a
+  commander-damage counter or the legendary rule anywhere in `sim/game.py` or `sim/tier2.py`.
+  No legend rule or commander-damage (21-rule) modeling anywhere in the simulator. Combined with
+  the already-documented rung-1 blindness to ward/hexproof/indestructible, an entire
+  Voltron/commander-damage win condition is structurally invisible to the strength engine. This
+  is an honest coverage gap, not a fabrication. Unchanged priority (Low/Large) — a real feature
+  addition to the state machine, not a quick fix, and out of scope for this pass.
+- **S19 — AUDITED, NO REAL INSTANCES FOUND.** Swept all 23 real cards in the 34,777-card store
+  matching `_COUNTER_RE` ("counter target ... spell") for a nearby "can't be countered" clause
+  that would make the tag a false positive. Zero found. The originally-suspected failure shape
+  doesn't manifest against the real card pool — closed as a non-issue, not left open.
 

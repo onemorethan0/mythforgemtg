@@ -729,6 +729,14 @@ class _EngineResolver:
         return None
 
     def condition_holds(self, condition: str, effect: dict) -> bool:
+        # "otherwise" is the paired ELSE branch of a preceding if/otherwise split in the
+        # SAME ability (see interpreter.DefaultResolver.condition_holds for the full
+        # writeup) -- Approach of the Second Sun's win_game and its "otherwise" gain_life
+        # are mutually exclusive outcomes, and defaulting both to True credited every
+        # cast as an outright win. The IF branch is assumed satisfied (the existing
+        # convention); consistency requires the paired OTHERWISE branch not fire too.
+        if condition.strip().lower() == "otherwise":
+            return False
         return True  # conditions are free-text; assume they hold (as the flattening did)
 
 

@@ -69,6 +69,20 @@ class DefaultResolver:
         return self.x  # 'X'/'all'/'each'/'half'/... or missing -> default magnitude
 
     def condition_holds(self, condition: str, effect: dict) -> bool:
+        # "otherwise" is the ELSE branch of a preceding if/otherwise pair in the SAME
+        # ability -- e.g. Approach of the Second Sun: "if [X], you win the game.
+        # Otherwise, put it seventh from the top and gain 7 life." Both effects are
+        # separate CCM entries, each carrying its own `condition`, and the flattening's
+        # "assume every condition holds" convention -- correct for an ordinary if-branch
+        # -- makes both mutually exclusive outcomes fire together if applied uniformly:
+        # measured live 2026-08-25, this credited every cast of Approach of the Second
+        # Sun as an outright win. Since the resolver already assumes the IF branch is
+        # satisfied, consistency requires assuming the paired OTHERWISE branch is not --
+        # crediting both is not an optimistic assumption, it's two contradictory outcomes
+        # at once. Affects 24 cards store-wide (measured), several high-profile (Approach
+        # of the Second Sun, Oko the Ringleader, Jace the Perfected Mind).
+        if condition.strip().lower() == "otherwise":
+            return False
         return True  # flattening convention: assume optional/conditional effects happen
 
 

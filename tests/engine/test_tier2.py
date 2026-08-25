@@ -4,7 +4,9 @@ import json
 
 from mythgauntlet.semantics.profile import DeathEffect
 from mythgauntlet.semantics.store import SemanticsStore
-from mythgauntlet.sim.tier2 import DuelConfig, _Permanent, _Player, _apply_resolved, _wipe_table, duel
+from mythgauntlet.sim.tier2 import (
+    DuelConfig, _EngineResolver, _Permanent, _Player, _apply_resolved, _wipe_table, duel,
+)
 from mythgauntlet.semantics.interpreter import ResolvedEffect
 
 
@@ -256,3 +258,21 @@ def test_draw_from_empty_library_loses(make_card, forest):
     tiny = [(forest, 15)]  # will deck itself long before turn 200
     result = duel(tiny, None, [(forest, 60)], None, cfg)
     assert result.decked_losses == 10
+
+
+def test_engine_resolver_assumes_a_real_condition_holds():
+    me = _Player(name="a", library=[])
+    resolver = _EngineResolver(me)
+    assert resolver.condition_holds("if you control a Dragon", {}) is True
+
+
+def test_engine_resolver_does_not_fire_the_otherwise_branch():
+    """Found live 2026-08-25: Approach of the Second Sun's win_game (conditioned on
+    casting it twice from hand) and its paired gain_life ("otherwise") are mutually
+    exclusive, but both defaulted to True -- crediting the simulation with an outright
+    win on the FIRST cast. See interpreter.DefaultResolver's matching fix/writeup;
+    _EngineResolver is the resolver actually used during real simulation and had the
+    identical bug."""
+    me = _Player(name="a", library=[])
+    resolver = _EngineResolver(me)
+    assert resolver.condition_holds("otherwise", {}) is False
