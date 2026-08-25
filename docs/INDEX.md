@@ -13,6 +13,22 @@ eight shortfalls with the number behind each, prioritised for **casual bracket 1
 plus a spec per fix and its definition of done. Also records what the local-model offload is
 and is not trusted for on this codebase, with the gold-set scores behind that call.
 
+**[`PLAN_CLOCK.md`](PLAN_CLOCK.md)** — the bracket-accuracy plan (2026-08-21): the goldfish
+clock is bracket-invariant (a B5 nut draw kills on the same turn as a B1's), why that closes
+exact B2/B3 separation and retargets the accept bar at within-one accuracy, and what's still
+buildable (Phase 2's interaction-required measure, Phase 3's B1/B2 refit).
+
+---
+
+## Start here if you are working on the Deck Mentor
+
+**[`MENTOR_HANDOFF.md`](MENTOR_HANDOFF.md)** — five real conversation campaigns driven through
+the live HTTP route (2026-08-25): the reusable method (duplicate a real deck, ask real
+questions, cross-check every claim against the real source, record genuine feedback), every
+real bug found and fixed (a mutually-exclusive if/otherwise pair double-credited as a win, a
+real-but-wrong sibling rule citation, several card-name false positives), and what's still open.
+Read it before touching `mentor/{gate,chat,tools,transcript}.py` or `mentor_bench.py`.
+
 ---
 
 ## Getting started

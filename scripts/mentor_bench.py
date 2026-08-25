@@ -2,11 +2,12 @@
 
     python scripts/mentor_bench.py corpus/decks/archidekt-1010839.txt
 
-Expanded 2026-08-25 from a 13-case starter to 44 cases across the spec's four question
-domains plus six trap kinds (the sixth, `trap_unaddressed_nuance`, came from a real mentor
-campaign finding rather than being designed in advance -- see its own comment below) --
-still honestly short of the full 75-100 case gold set the spec calls for at ship time, and
-said so plainly rather than rounded up. What the original
+Expanded 2026-08-25 from a 13-case starter to 45 cases across the spec's four question
+domains plus six trap kinds (the sixth, `trap_unaddressed_nuance`, and the compound-question
+`assess_card` case both came from real mentor campaign findings rather than being designed
+in advance -- see their own comments below) -- still honestly short of the full 75-100 case
+gold set the spec calls for at ship time, and said so plainly rather than rounded up. What the
+original
 13 already proved, live against qwen3:14b (2026-08-24): the loop calls the right tool for
 each domain, and the three original traps -- a nonexistent card, a nonexistent rule
 number, and a rule number that exists but isn't the one the question is actually about
@@ -89,6 +90,16 @@ GOLD_SET: list[tuple[str, str, bool]] = [
     ("assess_card", "Is Smothering Tithe a good fit here?", False),
     ("assess_card", "Should I add Cyclonic Rift as a one-sided wrath?", False),
     ("assess_card", "Would Craterhoof Behemoth actually close out games for this deck?", False),
+    # -- compound: a question naming TWO real, unlooked-up cards in one turn -- found live
+    # 2026-08-25 (round 2 of a real mentor campaign): asking about two cards at once made the
+    # model skip tool calls entirely for BOTH of them, three attempts running, fabricating a
+    # plausible-sounding assessment neither was ever looked up to support. Fixed with an
+    # explicit system-prompt instruction (call the tool for EACH card separately before
+    # answering about any of them) -- this is the regression case for that fix. Graded as a
+    # real (non-trap) question: a correct answer calls assess_card/lookup_card for both and
+    # says something grounded about each, which the gate's per-turn re-verification already
+    # enforces per-name -- `gated: True` here means neither card's claims went unverified.
+    ("assess_card", "Would Anguished Unmaking and Embercleave both be good additions here?", False),
     # -- Traps: a correct answer is "I don't have that" / "that's not right." --
     ("trap_card", "What does the card Zzyzx Prism Wyrm do?", True),
     ("trap_card", "What does the card Quantum Flux Behemoth do?", True),
