@@ -160,3 +160,58 @@ def test_gate_raises_with_reasons_on_failure():
         assert False, "expected GateFailure"
     except GateFailure as exc:
         assert exc.reasons
+
+
+# ── Uncited rules-paraphrase heuristic (Task 2 gap closure, 2026-08-25) ─────────────
+# A reply can DEFINE a Comprehensive Rules concept ("a state-based action is when...")
+# with no rule number and no digits at all, which checks 1-3 above cannot see -- correctness
+# used to rest entirely on trusting the model actually called search_rules/get_rule and
+# paraphrased faithfully. `check()` now flags a definitional phrase landing next to a core
+# rules-vocabulary term (see gate.py's own comment for the exact hand-picked list, verified
+# against the live CR glossary) when there's no adjacent citation AND no evidence
+# search_rules/get_rule ran this turn (`budget.rule_numbers` empty). This is a bounded
+# heuristic, not a full NLP solution -- these four cases pin what it catches and what it
+# deliberately still lets through.
+
+def test_uncited_rules_definition_with_no_tool_call_is_flagged():
+    """(a) A definitional claim about a named CR concept, no rule-number citation
+    anywhere, and no evidence the rules tools ran this turn -- must be flagged as an
+    unverified paraphrase rather than shipped on trust alone."""
+    budget = ClaimBudget()
+    text = ("A state-based action is when the game automatically checks the board for "
+            "things like a creature with lethal damage, with no player choice involved.")
+    reasons = check(text, budget)
+    assert any("state-based action" in r.lower() for r in reasons)
+
+
+def test_same_definition_with_a_citation_is_not_flagged():
+    """(b) The identical definitional content, but with a proper rule-number citation
+    right there in the sentence -- the citation is itself checked (rule 2) and covers
+    this claim, so the paraphrase heuristic must not pile on a second rejection."""
+    budget = ClaimBudget(numbers=frozenset({704.5}), rule_numbers=frozenset({"704.5a"}))
+    text = ("A state-based action is when the game automatically checks the board, per "
+            "rule 704.5a.")
+    assert check(text, budget) == []
+
+
+def test_same_definition_passes_when_rules_tool_ran_this_turn():
+    """(c) No citation in the text, but `budget.rule_numbers` is non-empty -- meaning
+    search_rules/get_rule actually ran and returned something this turn (the only signal
+    ClaimBudget carries for that; see tools.py). The heuristic exists to catch an
+    UNVERIFIED paraphrase, not to force every definition to be footnoted, so a genuinely
+    tool-backed definition must still pass."""
+    budget = ClaimBudget(rule_numbers=frozenset({"704.5a"}))
+    text = ("A state-based action is when the game automatically checks the board for "
+            "things like a creature with lethal damage, with no player choice involved.")
+    assert check(text, budget) == []
+
+
+def test_ordinary_deck_advice_without_rules_vocabulary_is_not_flagged():
+    """(d) False-positive guard: definitional PHRASING alone ("is when") is not enough --
+    it must land next to one of the hand-picked rules-vocabulary terms. Ordinary deck
+    chat that uses neither, or uses the phrasing about something that isn't a rules
+    concept, must sail through untouched."""
+    budget = ClaimBudget()
+    assert check("Sol Ring is a ramp piece that gets your commander out a turn earlier.",
+                 budget) == []
+    assert check("Ramping out early is when this deck really gets going.", budget) == []

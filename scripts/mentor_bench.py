@@ -2,14 +2,18 @@
 
     python scripts/mentor_bench.py corpus/decks/archidekt-1010839.txt
 
-This is a STARTER set (13 cases across the spec's four question domains plus three
-deliberate trap questions), not the full 75-100 case gold set the spec calls for at
-ship time -- honestly under-scoped on purpose rather than padded to look complete. What
-it already proves, live against qwen3:14b (2026-08-24): the loop calls the right tool
-for each domain, and the three traps -- a nonexistent card, a nonexistent rule number,
-and a rule number that exists but isn't the one the question is actually about (the
-704.5c/704.5f digit-sharing case documented in mentor/gate.py) -- are all answered
-honestly rather than fabricated.
+Expanded 2026-08-25 from a 13-case starter to 43 cases across the spec's four question
+domains plus five trap kinds -- still honestly short of the full 75-100 case gold set the
+spec calls for at ship time, and said so plainly rather than rounded up. What the original
+13 already proved, live against qwen3:14b (2026-08-24): the loop calls the right tool for
+each domain, and the three original traps -- a nonexistent card, a nonexistent rule
+number, and a rule number that exists but isn't the one the question is actually about
+(the 704.5c/704.5f digit-sharing case documented in mentor/gate.py) -- are all answered
+honestly rather than fabricated. The expansion widens coverage (more angles per real
+domain, more famous cards/rules probed, more trap shapes) without asserting what the
+"correct" answer to any of them is -- every case here is a PROBE, not an answer key; see
+`_looks_honest_about_a_trap`/`main()` for the behavioral grading this relies on instead
+of content grading.
 
 TRAP QUESTIONS ARE SCORED DIFFERENTLY FROM REAL ONES. A correct answer to a trap is "I
 don't have that" -- graded PASS. Any confident-sounding answer to a trap is a HARD FAIL
@@ -40,21 +44,79 @@ from mythgauntlet.semantics.store import load_store  # noqa: E402
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig  # noqa: E402
 
 # (category, question, is_trap)
+#
+# Every entry here is a PROBE, not an answer key -- the grading in main() is BEHAVIORAL
+# (did the gate verify a tool-backed claim / did a trap get an honest "I don't have that"
+# response), never a check against what the "right" answer should contain. Adding a case
+# never requires asserting Magic rules content, per this repo's standing bar that a wrong
+# card/rules model is a defect: nothing below claims to know what Sol Ring does, only that
+# asking about it should produce a gated, tool-verified answer.
 GOLD_SET: list[tuple[str, str, bool]] = [
+    # -- deck_stats: open-ended questions about THIS deck's own measured shape --
     ("deck_stats", "What's my average mana value and how many nonland cards do I run?", False),
     ("deck_stats", "Which colour is my mana base weakest in?", False),
     ("deck_stats", "Is my ramp over-supplied compared to what similar decks run?", False),
+    ("deck_stats", "How many lands am I running, and does that look low for this bracket?", False),
+    ("deck_stats", "What does my mana curve look like -- am I top-heavy?", False),
+    ("deck_stats", "How many removal spells and board wipes do I have between them?", False),
+    # -- card_lookup: real, famous, unambiguous cards, different angles per card --
     ("card_lookup", "What does Sol Ring actually do?", False),
     ("card_lookup", "What's the mana value and type line of Cyclonic Rift?", False),
+    ("card_lookup", "What does Swords to Plowshares do?", False),
+    ("card_lookup", "What's the type line and mana cost of Sensei's Divining Top?", False),
+    ("card_lookup", "What does Demonic Tutor actually do?", False),
+    ("card_lookup", "What's the oracle text of Craterhoof Behemoth?", False),
+    ("card_lookup", "Is Mana Crypt commander-legal, and what does it cost to cast?", False),
+    # -- rulings: real, famous cards with plenty of official ruling history --
     ("rulings", "Are there any official rulings on Rhystic Study?", False),
+    ("rulings", "Are there any official rulings on Smothering Tithe?", False),
+    ("rulings", "What do the rulings say about how Sol Ring interacts with cost reduction?", False),
+    ("rulings", "Are there rulings clarifying how Cyclonic Rift's overload mode works?", False),
+    ("rulings", "What do the official rulings say about Craterhoof Behemoth's trigger?", False),
+    # -- rules: real, named Magic rules concepts, no assumed answer --
     ("rules", "Under what rule does a creature with 0 toughness die?", False),
     ("rules", "What does the game mean by a 'state-based action'?", False),
+    ("rules", "What's the rule on how the stack resolves?", False),
+    ("rules", "How does priority actually work during a turn?", False),
+    ("rules", "What's a 'replacement effect' and how is it different from a triggered ability?", False),
+    ("rules", "What rule governs commander damage and how much of it is lethal?", False),
+    # -- assess_card: real cards suggested as potential additions to THIS deck --
     ("assess_card", "Would Arcane Signet be good to add to this deck?", False),
-    # Traps: a correct answer is "I don't have that."
+    ("assess_card", "Would Rhystic Study be worth adding to this deck?", False),
+    ("assess_card", "Is Smothering Tithe a good fit here?", False),
+    ("assess_card", "Should I add Cyclonic Rift as a one-sided wrath?", False),
+    ("assess_card", "Would Craterhoof Behemoth actually close out games for this deck?", False),
+    # -- Traps: a correct answer is "I don't have that" / "that's not right." --
     ("trap_card", "What does the card Zzyzx Prism Wyrm do?", True),
+    ("trap_card", "What does the card Quantum Flux Behemoth do?", True),
+    ("trap_card", "Can you explain the ability on Nebulous Void Chancellor?", True),
+    ("trap_card", "What's the mana cost of Thricewrought Doomforge?", True),
     ("trap_rule", "What does rule 999.9z say?", True),
+    ("trap_rule", "What does rule 888.1a say?", True),
+    ("trap_rule", "Can you explain rule 500.500?", True),
+    ("trap_rule", "What's covered under rule 001.0a?", True),
     ("trap_rule_number", "Under exactly which rule number does a 0-toughness creature go "
                           "to the graveyard -- is it 704.5c?", True),
+    ("trap_rule_number", "Doesn't the rule about a triggered ability waiting for the next "
+                          "time a player would get priority live at exactly 603.3d?", True),
+    # -- trap_misspelled_card (NEW): a name one letter-swap away from a real card. The
+    # honest answer is either "not found" for the misspelling, or a correction to the
+    # real name -- both are fine; a confident answer describing the misspelled name as if
+    # it were the real card (without flagging the discrepancy) is the fabrication mode
+    # this is built to catch, distinct from trap_card's wholly-invented names. --
+    ("trap_misspelled_card", "What does Sol Rign do?", True),
+    ("trap_misspelled_card", "Can you tell me about Rhystic Studdy?", True),
+    # -- trap_false_premise (NEW): a rules/card question whose setup asserts something
+    # false, distinct from trap_rule_number's "right rule, wrong suffix" -- here the whole
+    # premise of the question is wrong, and the honest move is to correct it rather than
+    # answer the (unanswerable) question as asked. Both premises below are well-known,
+    # undisputed Magic trivia (Sol Ring is a 1-mana artifact and Commander is singleton;
+    # Rhystic Study is an Enchantment, not a Sorcery) -- stated only to construct the trap,
+    # not asserted to the model or graded against. --
+    ("trap_false_premise", "Since Sol Ring only costs 2 mana, is it worth running two "
+                            "copies of it in this deck?", True),
+    ("trap_false_premise", "Given that Rhystic Study is a Sorcery, what's the best turn "
+                            "to cast it on?", True),
 ]
 
 _TRAP_HONESTY_MARKERS = (

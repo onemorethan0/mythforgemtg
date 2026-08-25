@@ -61,6 +61,48 @@ MAX_CHARS = 1400
 _FREE_NUMBERS = {0.0, 1.0}
 _NUMBER_TOLERANCE = 0.6
 
+# ── Uncited rules-paraphrase heuristic (check 4 below) ──────────────────────────────
+# A reply can define a Comprehensive Rules concept -- "a state-based action is when the
+# game checks something automatically" -- with NO rule number and no digits at all, so
+# checks 1-3 have zero visibility into it: correctness rests entirely on trusting the
+# model actually called search_rules/get_rule and paraphrased faithfully. This is a
+# BOUNDED, CONSERVATIVE heuristic for that gap, not a full NLP solution -- a definition
+# phrased without one of these specific patterns still slips through, and that residual
+# gap is a known, accepted limitation (same shape as `_looks_like_a_name`'s bias above:
+# missing a real violation is the safe direction, flooding false positives on ordinary
+# deck chat is not).
+#
+# Definitional phrasing a small model reaches for when explaining a rule in prose.
+_DEFINITIONAL_PHRASE_RE = re.compile(
+    r"\b(?:is defined as|means that|refers to|is when|the rule (?:is|states))\b",
+    re.IGNORECASE,
+)
+# A short, hand-picked subset of core rules-vocabulary nouns -- verified as literal
+# entries in the live Comprehensive Rules glossary (data/rulings.py's
+# `ComprehensiveRules.glossary`, checked 2026-08-25: "state-based actions", "stack",
+# "priority", "triggered ability", "replacement effect", "static ability" and "layer"
+# are all real glossary headwords). Deliberately NOT the whole ~1,000-term glossary --
+# this module is a pure text+budget check with no `MentorContext`/`ComprehensiveRules`
+# to pull from, and hardcoding a handful of the terms a casual player is most likely to
+# ask the mentor to define keeps this dependency-free and fast rather than loading the
+# CR corpus from disk inside a string check.
+_RULES_VOCAB_RE = re.compile(
+    r"\b(?:state-based actions?|the stack|priority|triggered abilit(?:y|ies)|"
+    r"replacement effects?|static abilit(?:y|ies)|layers?)\b",
+    re.IGNORECASE,
+)
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+# "same sentence, or within ~15 words" -- generous enough to catch a definitional clause
+# and its vocabulary term separated by a hedge phrase, tight enough that two unrelated
+# rules terms in a long paragraph don't pair up across sentences.
+_DEFINITION_PROXIMITY_WORDS = 15
+
+
+def _words_between(s: str, m1: re.Match, m2: re.Match) -> int:
+    """Rough word count strictly between two (non-overlapping) regex matches in `s`."""
+    lo, hi = sorted((m1.span(), m2.span()))
+    return len(s[lo[1]:hi[0]].split())
+
 
 @dataclass(frozen=True)
 class ClaimBudget:
@@ -144,6 +186,33 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
             continue
         if not any(abs(value - ok) <= _NUMBER_TOLERANCE for ok in budget.numbers):
             reasons.append(f"cites {value:g}, which is not in this turn's tool results")
+
+    # 4. UNCITED RULES PARAPHRASE (HEURISTIC -- see the block above this function; this
+    #    is a bounded improvement, not a complete fix). `budget.rule_numbers` is
+    #    populated ONLY by search_rules/get_rule succeeding this turn (see tools.py), so
+    #    an empty set here means neither ran, or ran and found nothing -- in that case, a
+    #    sentence pairing a definitional phrase with a core rules-vocabulary term, with no
+    #    rule-number citation nearby, is flagged as an unverified paraphrase rather than
+    #    let through on trust alone. A citation anywhere in the sentence (checked with the
+    #    same RULE_NUM_RE used above) or any rule number already in the budget both clear
+    #    it, since either means the claim has something backing it besides the model's own
+    #    say-so.
+    if not budget.rule_numbers:
+        for sentence in _SENTENCE_SPLIT_RE.split(body):
+            if RULE_NUM_RE.search(sentence):
+                continue
+            def_matches = list(_DEFINITIONAL_PHRASE_RE.finditer(sentence))
+            vocab_matches = list(_RULES_VOCAB_RE.finditer(sentence))
+            if not def_matches or not vocab_matches:
+                continue
+            if any(_words_between(sentence, d, v) <= _DEFINITION_PROXIMITY_WORDS
+                   for d in def_matches for v in vocab_matches):
+                term = vocab_matches[0].group(0)
+                reasons.append(
+                    f"defines {term!r} with rules-sounding phrasing but no rule citation "
+                    "and no evidence search_rules/get_rule ran this turn"
+                )
+                break
 
     return reasons
 
