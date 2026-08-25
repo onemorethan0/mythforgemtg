@@ -50,6 +50,7 @@ COMMAND_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
         [
             ("analyze", "Power Profile + bracket estimate for a decklist (the headline)"),
             ("advise", "Owned-card swaps that improve an axis, measured (upgrade advisor)"),
+            ("mentor", "Ask a question about a deck/card/rule -- gated, tool-calling (Phase 1)"),
             ("combos", "Find combos + one-card-away near-misses (Commander Spellbook)"),
             ("duel", "Simulate 1v1 games between two decks (Tier-2)"),
             ("pod", "Win share in 4-player games vs the corpus (Tier-2 multiplayer)"),

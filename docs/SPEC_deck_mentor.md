@@ -226,11 +226,38 @@ baked into `swap_brief`/`collection_pool`/`theme_match` docstrings). New
 
 ## Phasing
 
-0. **Rulings/CR ingestion.** Offline data module, no model in the loop. Ships when
-   `lookup_rulings`/`search_rules` pass a hand-checked gold set.
-1. **Tool loop + gate, CLI only** (`mythgauntlet mentor` or a standalone script) — no frontend.
-   This is where model choice (qwen3:14b vs muse-glimmer) gets resolved empirically, and where
-   `mentor_bench.py` first runs. Hardest correctness problem, solved before any UI work.
+0. **Rulings/CR ingestion — SHIPPED 2026-08-24.** Offline data module, no model in the loop.
+   Detail and the measured numbers: `docs/engine/DATA_SOURCES.md`.
+1. **Tool loop + gate, CLI only — SHIPPED 2026-08-24.** `mythgauntlet.mentor` (`tools.py`,
+   `gate.py`, `chat.py`) + `mythgauntlet mentor <deck.txt>` (interactive or `-q "question"`).
+   Six tools built: `lookup_card`, `lookup_rulings`, `search_rules`, `get_rule`,
+   `get_deck_stats` (curve/manabase/role-supply, all closed-form — no simulation), and
+   `assess_card` (the one tool that runs a real re-simulation, seconds not milliseconds).
+   `suggest_swap` (the full `advisor.advise` sweep, tens of seconds even bounded) stayed
+   deferred as planned — it would mostly re-prove the loop/gate integration `assess_card`
+   already proves, at a much higher latency cost per call.
+
+   **The gate is a direct generalization of `swap_narrative.check`** (mask allowed card
+   names out longest-first, check the deck's own card list as the risk pool, license numbers
+   within rounding tolerance from every tool result this turn) plus one check that domain
+   didn't need: rule citations are checked as the FULL string, separately from plain numbers,
+   because two different rules can share their leading digits — "704.5c" and "704.5f" both
+   contain "704.5", so a numeric-only check would wave a wrong citation through as long as
+   the right one had ever been retrieved. That is not a hypothetical: it is the exact mistake
+   made earlier in this same session (see DATA_SOURCES.md), and `test_mentor_gate.py`'s
+   `test_wrong_rule_number_sharing_digits_with_a_real_citation_is_rejected` pins it directly.
+
+   **`scripts/mentor_bench.py`** ships a 13-case starter gold set (9 real questions across
+   all four domains + 3 deliberate traps: a nonexistent card, a nonexistent rule number, and
+   — the sharpest one — asking to confirm the WRONG rule number for a rule that does exist).
+   First live run against a real corpus deck: **12/12 correct** once the bench's own scorer
+   was fixed. The one case it initially flagged as a failure — the model correctly saying
+   "704.5c is about poison counters, not toughness, let me check the right one" — was a
+   scoring-heuristic gap in the bench script, not a model error; fixed by widening the
+   honesty-marker list rather than loosening the pass bar (see the script's own comment). A
+   13-case run is a smoke test, not the 75-100 case bench this spec calls for at ship time —
+   sized honestly, not padded, and the next real work here is growing it, not re-running it.
+
 2. **`/api/mentor/chat` + a chat panel in Forge**, wired to a real deck, reusing Phase 1's
    loop/gate unchanged.
 3. **Optional: distill.** Only after 0-2 are bench-passing and in real use — fine-tune/LoRA a

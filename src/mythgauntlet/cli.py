@@ -574,6 +574,68 @@ def _cmd_advise(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_mentor(args: argparse.Namespace) -> int:
+    """Deck Mentor (docs/SPEC_deck_mentor.md, Phase 1) -- ask a question about a deck, a
+    card, or a rule; every answer is checked against this turn's tool calls before it's
+    shown (mentor.gate). CLI-only: no server route, no UI yet."""
+    from mythgauntlet.mentor import chat as mentor_chat
+    from mythgauntlet.mentor.tools import MentorContext
+
+    _require_positive(runs=args.runs, turns=args.turns)
+    deck_path = _deck_path_or_last(args.deck)
+    db = _load_db()
+    resolved = _load_resolved(deck_path, db)
+    if not resolved.cards:
+        _die("No cards resolved - is this a decklist?")
+    set_last_deck(deck_path)
+
+    try:
+        cr = rulings.load_comprehensive_rules()
+        rdb = rulings.load_rulings_db()
+    except FileNotFoundError as exc:
+        _die(f"{exc}\nRun 'mythgauntlet fetch-rules' first.")
+
+    console.print("[dim]Loading semantics store (first call in a session can take a "
+                  "while)...[/dim]")
+    cfg = SimConfig(turns=args.turns, runs=args.runs, seed=args.seed)
+    ctx = MentorContext(
+        card_db=db, cr=cr, rulings_db=rdb, resolved=resolved, cfg=cfg,
+        store=_semantics_store(), themes=tuple(args.themes or ()),
+    )
+    commander = resolved.commanders[0].name if resolved.commanders else "no commander"
+    console.print(f"[bold]Deck Mentor[/bold] — {commander}, {resolved.card_count} cards.")
+
+    def _show(reply) -> None:
+        console.print(f"\n{reply.text}")
+        if not reply.gated:
+            console.print("[yellow](could not verify this precisely — see above)[/yellow]")
+        if args.trace:
+            for rec in reply.tool_trace:
+                console.print(f"[dim]  tool: {rec.name}({rec.args})[/dim]")
+            for _draft, reasons in reply.gate_rejections:
+                console.print(f"[dim]  gate rejected a draft: {'; '.join(reasons)}[/dim]")
+
+    if args.question:
+        reply = mentor_chat.ask(ctx, args.question, model=args.model)
+        _show(reply)
+        return 0
+
+    console.print("[dim]Interactive mode — blank line or Ctrl-D to quit.[/dim]")
+    history: list[dict] = []
+    while True:
+        try:
+            q = console.input("\n[bold cyan]> [/bold cyan]")
+        except (EOFError, KeyboardInterrupt):
+            break
+        if not q.strip():
+            break
+        reply = mentor_chat.ask(ctx, q, history=history, model=args.model)
+        _show(reply)
+        history.append({"role": "user", "content": q})
+        history.append({"role": "assistant", "content": reply.text})
+    return 0
+
+
 def _cmd_info(args: argparse.Namespace) -> int:
     db = _load_db()
     card = db.get(args.name)
@@ -1813,6 +1875,25 @@ def build_parser() -> argparse.ArgumentParser:
     p_advise.add_argument("--turns", type=int, default=DEFAULT_ANALYZE_TURNS)
     p_advise.add_argument("--seed", type=int, default=42)
     p_advise.set_defaults(func=_cmd_advise)
+
+    p_mentor = sub.add_parser(
+        "mentor",
+        description="Ask a question about a deck, a card, or a rule (docs/SPEC_deck_mentor.md "
+        "Phase 1). Every answer is checked against this turn's tool calls before it's shown "
+        "-- no chat, no UI, just the tool loop and the gate.",
+    )
+    p_mentor.add_argument("deck", nargs="?", help="path to a decklist (default: your last deck)")
+    p_mentor.add_argument("-q", "--question", help="ask one question and exit (default: REPL)")
+    p_mentor.add_argument("--model", default="qwen3:14b",
+                          help="llama-swap model id (smoke-tested default; see SPEC_deck_mentor.md)")
+    p_mentor.add_argument("--themes", nargs="*",
+                          help="deck's own detected archetypes, e.g. --themes spellslinger "
+                               "(default: population baseline -- see redundancy.targets_for)")
+    p_mentor.add_argument("--trace", action="store_true", help="show tool calls + gate rejections")
+    p_mentor.add_argument("--runs", type=int, default=200, help="sim games per assess_card call")
+    p_mentor.add_argument("--turns", type=int, default=DEFAULT_ANALYZE_TURNS)
+    p_mentor.add_argument("--seed", type=int, default=42)
+    p_mentor.set_defaults(func=_cmd_mentor)
 
     p_info = sub.add_parser(
         "info", description="Show a card and its rung-1 effect vector."
