@@ -130,6 +130,37 @@ def _rule_numbers_in(value) -> set[str]:
     return found
 
 
+# A minimum length so this doesn't bother masking trivial values ("Instant", "W") that
+# couldn't meaningfully contain a false-positive card-name match anyway.
+_SOURCE_TEXT_MIN_LEN = 12
+
+
+def _strings_in(value) -> set[str]:
+    """Every string value of meaningful length appearing in `value`, walked recursively
+    -- these are licensed for VERBATIM quotation by the gate's card-name check (see
+    `mentor.gate.check`'s masking step), independent of whether the quoted text happens
+    to contain a word that is also a real card name. Found live 2026-08-25 (a real
+    mentor campaign, not the synthetic bench): `lookup_card` correctly returned
+    Anguished Unmaking's real oracle text ("Exile target nonland permanent. You lose 3
+    life."), the model quoted it VERBATIM, and it was gate-rejected anyway because
+    "Exile" is also a real (if unrelated) card name. This generalizes badly -- any
+    fetch-effect or colour-fixing card's oracle text naming a basic land type ("search
+    your library for a Forest") would hit the identical wall, since every basic land
+    name is also a real card name. A card-name-shaped word inside a string the model is
+    directly echoing back isn't an independent claim; it's the tool result itself."""
+    found: set[str] = set()
+    if isinstance(value, str):
+        if len(value) >= _SOURCE_TEXT_MIN_LEN:
+            found.add(value)
+    elif isinstance(value, dict):
+        for v in value.values():
+            found |= _strings_in(v)
+    elif isinstance(value, (list, tuple, set, frozenset)):
+        for v in value:
+            found |= _strings_in(v)
+    return found
+
+
 def _to_jsonable(value):
     """Dataclasses (CardImpact, AxisMove, ...) and sets -> plain JSON-safe structures."""
     if is_dataclass(value) and not isinstance(value, type):
@@ -161,6 +192,10 @@ class ToolResult:
     @property
     def all_rule_numbers(self) -> frozenset[str]:
         return frozenset(self.rule_numbers) | frozenset(_rule_numbers_in(self.data))
+
+    @property
+    def source_texts(self) -> frozenset[str]:
+        return frozenset(_strings_in(self.data))
 
 
 @dataclass

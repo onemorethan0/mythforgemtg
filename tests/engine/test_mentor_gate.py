@@ -105,6 +105,40 @@ def test_a_real_multi_word_card_name_used_as_a_common_word_is_still_flagged():
     assert any("Sol Ring" in r for r in check(text, budget))
 
 
+def test_verbatim_quoted_oracle_text_is_not_scanned_for_embedded_card_names():
+    """Found live 2026-08-25 (real mentor campaign, not the synthetic bench): the model
+    correctly looked up Anguished Unmaking and quoted its REAL oracle text verbatim
+    ("Exile target nonland permanent. You lose 3 life."), and it was gate-rejected
+    anyway because "Exile" is ALSO a real card name -- even though this wasn't an
+    independent claim, it was a faithful echo of exactly what the tool returned. This
+    generalizes badly: any fetch/color-fixing card naming a basic land type in its real
+    oracle text would hit the identical wall, since every basic land name is also a real
+    card name. `source_texts` licenses the verbatim quotation as a whole."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Anguished Unmaking"}),
+        numbers=frozenset({3.0}),
+        known_card_names=frozenset({"Anguished Unmaking", "Exile"}),
+        source_texts=frozenset({"Exile target nonland permanent. You lose 3 life."}),
+    )
+    text = ('Anguished Unmaking has the oracle text: "Exile target nonland permanent. '
+            'You lose 3 life."')
+    assert check(text, budget) == []
+
+
+def test_a_paraphrase_using_a_common_word_card_name_is_still_caught_if_not_in_the_list():
+    """The verbatim-quote exemption only covers an EXACT substring of what a tool
+    returned -- a paraphrase (not quoting the source text) that happens to use a
+    card-name-shaped word NOT on the small common-word exclusion list is still scanned
+    normally. This isn't a blanket "any word overlapping retrieved text is safe" carve-out."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Anguished Unmaking"}),
+        known_card_names=frozenset({"Anguished Unmaking", "Fog", "Duress"}),
+        source_texts=frozenset({"Exile target nonland permanent. You lose 3 life."}),
+    )
+    text = "Anguished Unmaking would work great alongside Duress in this deck."
+    assert any("Duress" in r for r in check(text, budget))
+
+
 def test_markdown_numbered_list_markers_are_not_read_as_cited_numbers():
     """Found live 2026-08-25: a correct 3-point rulings explanation formatted as a
     Markdown ordered list ('1. **Total Cost**... 2. **No Targets**... 3. **Payment**...')

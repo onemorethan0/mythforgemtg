@@ -119,7 +119,7 @@ _LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|\d+\.\s+(?=\*\*)")
 # added 2026-08-25 (fifth bench run, same session): an explanation of how "instant
 # spells, sorcery spells" work on the stack triggered the same false flag on the plain
 # word "Spells" -- a real (joke-set) card name, same as X/Wizards/Overload above.
-_COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells"})
+_COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells", "exile"})
 # "same sentence, or within ~15 words" -- generous enough to catch a definitional clause
 # and its vocabulary term separated by a hedge phrase, tight enough that two unrelated
 # rules terms in a long paragraph don't pair up across sentences.
@@ -144,6 +144,14 @@ class ClaimBudget:
     # fabrication gap): a claim about a card the user doesn't own is exactly as much a
     # fabrication as one about a card in their deck.
     known_card_names: frozenset[str] = frozenset()
+    # Full string values (oracle text, rulings text, ...) this turn's tool calls actually
+    # returned -- licensed for VERBATIM quotation regardless of what card-name-shaped
+    # words they happen to contain. See `_strings_in`'s docstring in tools.py: a real
+    # card's real oracle text saying "Exile target nonland permanent" was gate-rejected
+    # because "Exile" is ALSO a real card name, even though the model was faithfully
+    # quoting the tool result, not making an independent claim. A paraphrase (not a
+    # verbatim substring) still gets scanned normally -- this only exempts an exact echo.
+    source_texts: frozenset[str] = frozenset()
 
     @classmethod
     def from_tool_results(
@@ -152,11 +160,14 @@ class ClaimBudget:
         names: set[str] = set()
         nums: set[float] = set()
         rules: set[str] = set()
+        texts: set[str] = set()
         for r in results:
             names |= r.card_names
             nums |= r.numbers
             rules |= r.all_rule_numbers
-        return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names)
+            texts |= r.source_texts
+        return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
+                    frozenset(texts))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -190,6 +201,14 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
     masked = body
     for name in sorted(allowed, key=len, reverse=True):
         masked = re.sub(re.escape(name), " ", masked, flags=re.IGNORECASE)
+    # A verbatim quotation of something this turn's tools actually returned (oracle
+    # text, rulings text) is licensed as a whole -- mask it out before scanning for
+    # embedded card-name-shaped words, same rationale as masking `allowed` names above.
+    # Longest first, same as `allowed`, so a shorter source text nested inside a longer
+    # one doesn't get masked piecemeal and leave a stray fragment behind.
+    for text in sorted(budget.source_texts, key=len, reverse=True):
+        if text.lower() in masked.lower():
+            masked = re.sub(re.escape(text), " ", masked, flags=re.IGNORECASE)
     masked_lower = masked.lower()
     for name in budget.known_card_names - allowed:
         if len(name.strip()) <= 1 or name.lower() in _COMMON_WORD_CARD_NAMES:

@@ -43,6 +43,25 @@ def test_extract_numbers_still_reads_a_genuine_negative_number():
     assert extract_numbers("you're now at -4 life") == {-4.0}
 
 
+def test_strings_in_collects_meaningful_length_strings_recursively():
+    from mythgauntlet.mentor.tools import _strings_in
+    data = {"name": "Sol Ring", "oracle_text": "Exile target nonland permanent. You lose 3 life.",
+            "nested": {"a": ["short-ok text here"]}}
+    strings = _strings_in(data)
+    assert "Exile target nonland permanent. You lose 3 life." in strings
+    assert "short-ok text here" in strings
+
+
+def test_strings_in_skips_trivially_short_values():
+    from mythgauntlet.mentor.tools import _strings_in
+    assert _strings_in({"type_line": "Instant", "color": "W"}) == set()
+
+
+def test_tool_result_source_texts_property():
+    tr = ToolResult(data={"oracle_text": "Exile target nonland permanent. You lose 3 life."})
+    assert "Exile target nonland permanent. You lose 3 life." in tr.source_texts
+
+
 def test_numbers_in_licenses_repeated_mana_symbol_counts():
     # Found live 2026-08-25: Sol Ring's real oracle_text ("{T}: Add {C}{C}.") only
     # licensed 1.0 (from its {1} cost) until this fix, so a model correctly describing

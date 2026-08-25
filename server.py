@@ -229,6 +229,18 @@ _JOB_TTL_SECONDS = 86400  # 24 hours — auto-expire old jobs to prevent memory 
 _request_timestamps: dict[str, list[float]] = {}  # IP → list of request timestamps
 _RATE_LIMIT_WINDOW = 60  # seconds
 _RATE_LIMIT_BUILD_REQUESTS = 5  # max 5 builds per minute per IP
+# Mentor chat/feedback/advise share `_check_rate_limit`'s mechanism but NOT its bucket
+# or threshold: `_check_rate_limit` keys `_request_timestamps` by client_id ALONE, so
+# passing the bare `client_ip` here (as the initial hardening pass did) put these three
+# routes in the SAME bucket as every build/rebuild/regen route -- a real back-and-forth
+# mentor conversation (one chat call + one feedback call per turn) exhausted a 5-per-60s
+# budget sized for expensive GPU builds within a handful of turns. Found live 2026-08-25
+# running an actual mentor campaign, not guessed. A distinct client-id suffix
+# (`_CHAT_RATE_LIMIT_KEY`) gives these routes their own bucket, and a distinct threshold
+# reflects that a chat turn is LLM-bound, not GPU-bound, so it can tolerate a much
+# higher rate without risking the GPU contention the build limiter exists to prevent.
+_RATE_LIMIT_CHAT_REQUESTS = 30  # max 30 mentor/advise calls per minute per IP
+_CHAT_RATE_LIMIT_KEY = ":mentor"
 
 # Global art-generation lock — ComfyUI is a single-GPU resource.
 # Only one build may run art gen at a time; concurrent builds queue up here.
@@ -4252,8 +4264,8 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     """
     _require_job_id(job_id)
     client_ip = request.client.host if request.client else "unknown"
-    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
-        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
+    if not _check_rate_limit(client_ip + _CHAT_RATE_LIMIT_KEY, _RATE_LIMIT_CHAT_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_CHAT_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
@@ -4299,8 +4311,8 @@ def mentor_feedback_deck(job_id: str, req: MentorFeedbackDeckRequest, request: R
     """
     _require_job_id(job_id)
     client_ip = request.client.host if request.client else "unknown"
-    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
-        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
+    if not _check_rate_limit(client_ip + _CHAT_RATE_LIMIT_KEY, _RATE_LIMIT_CHAT_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_CHAT_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     try:
         resp = requests.post(
             f"{MYTHGAUNTLET_URL}/mentor/feedback",
@@ -4428,8 +4440,8 @@ def advise_deck(job_id: str, req: AdviseDeckRequest, request: Request):
     never popularity. Needs the strength API (:8020) and a Myth Suite collection export.
     """
     client_ip = request.client.host if request.client else "unknown"
-    if not _check_rate_limit(client_ip, _RATE_LIMIT_BUILD_REQUESTS):
-        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_BUILD_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
+    if not _check_rate_limit(client_ip + _CHAT_RATE_LIMIT_KEY, _RATE_LIMIT_CHAT_REQUESTS):
+        raise HTTPException(429, f"Rate limited — max {_RATE_LIMIT_CHAT_REQUESTS} requests per {_RATE_LIMIT_WINDOW}s")
     job = _jobs.get(job_id)
     if not job or "commander" not in job:
         disk = _load_deck_from_disk(job_id)
