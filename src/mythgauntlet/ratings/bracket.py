@@ -265,12 +265,34 @@ def estimate_bracket(
     # fact that is true of every deck in this position: 40% of author-labeled Upgraded decks
     # (33/83) carry zero Game Changers, so a zero-GC "Core" verdict genuinely cannot rule
     # Upgraded out. That is honest uncertainty; the old banner was false precision.
-    plays_up = bracket == 2 and (floor, cap) == (1, 2)
+    #
+    # This band also has a Bracket-1 side (the mana-base sub-placement above lands at 1, not
+    # 2), and it used to carry NO uncertainty flag at all -- `plays_up` required bracket == 2
+    # exactly, on the stated assumption "a deck placed at Bracket 1 isn't at the Core/Upgraded
+    # boundary at all" (see the test this replaced, test_plays_up_not_claimed_for_exhibition).
+    # That assumption was never measured, and checking it (scripts/bracket_accuracy.py --json,
+    # full 297-deck corpus, 2026-08-24) shows it doesn't hold: of decks landing HERE via a thin
+    # manabase, 14.1% (10/71) are called Upgraded by their own builder anyway -- lower than the
+    # 24.2% (30/124) rate on the Bracket-2 side of this same gate, but not the "not at the
+    # boundary at all" the old test claimed. The mechanism is the same reason the Bracket-2
+    # side is silent: manabase CONSISTENCY and deck POWER are different things (a deck can run
+    # a greedy manabase for power reasons and still be genuinely strong), and the Game Changer
+    # gate already can't see power once GC == 0 regardless of which side of the mana-base split
+    # a deck lands on.
+    plays_up = bracket in (1, 2) and (floor, cap) == (1, 2)
     if plays_up:
-        reasons.append(
-            "0 Game Changers caps this at Core, but 40% of decks their authors call Upgraded "
-            "also run none -- this boundary is not resolvable from card gates; read the axes"
-        )
+        if bracket == 2:
+            reasons.append(
+                "0 Game Changers caps this at Core, but 40% of decks their authors call "
+                "Upgraded also run none -- this boundary is not resolvable from card gates; "
+                "read the axes"
+            )
+        else:
+            reasons.append(
+                "0 Game Changers and a thin manabase cap this at Exhibition, but the Game "
+                "Changer gate is nearly silent on power once it reads zero -- 14% of decks "
+                "placed here are called Upgraded by their own builders too; read the axes"
+            )
 
     # --- confidence ---
     confidence = 0.75

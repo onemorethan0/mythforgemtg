@@ -141,6 +141,17 @@ def test_pod_read_core_playing_up(make_card, forest):
     assert "Bracket 2-3" in ins.pod_read and "leaning Upgraded" in ins.pod_read
 
 
+def test_pod_read_exhibition_playing_up(make_card, forest):
+    """A Bracket-1 verdict via a thin manabase carries the same honest uncertainty as the
+    Bracket-2 side of this gate (bracket.plays_up, extended 2026-08-24) -- it must not read
+    as flatly "casual and unoptimized" when the engine itself flagged the ambiguity."""
+    a = _analysis(bracket=SimpleNamespace(bracket=1, label="Exhibition", plays_up=True))
+    ins = build_insight(_resolved([(forest, 40)]), a)
+    assert "Bracket 1" in ins.pod_read
+    assert "casual and unoptimized" not in ins.pod_read
+    assert "Upgraded" in ins.pod_read
+
+
 def test_pod_read_scales_with_bracket(make_card, forest):
     for br, needle in [(1, "Bracket 1"), (3, "Bracket 3"), (4, "Bracket 4"), (5, "cEDH")]:
         a = _analysis(bracket=SimpleNamespace(bracket=br, label="x", plays_up=False))

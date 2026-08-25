@@ -66,20 +66,24 @@ export default function SimStrengthPanel({ simulation }) {
         )
       })()}
       {/* The B2/B3 boundary is NOT resolvable from card gates, and the engine says so.
-          `plays_up` marks a deck the Game Changer gate caps at Core while it sits on the
-          Core/Upgraded edge — measured, 40% of decks their own authors call Upgraded also run
-          zero Game Changers. The engine has computed this and the CLI has printed it since
-          2026-07-28; the web app never showed it, so the one honest caveat on the single most
-          load-bearing number was reaching nobody who uses the app. It fires on 42% of the
-          labelled corpus (124/297), 30 of which their builders called Bracket 3.
+          `plays_up` marks a deck the Game Changer gate caps at Core OR Exhibition while it
+          sits on the Core/Upgraded edge — measured, 40% of decks their own authors call
+          Upgraded also run zero Game Changers on the Core side of this gate, 14% on the
+          Exhibition side (scripts/bracket_accuracy.py --json, full 297-deck corpus,
+          2026-08-24; the Exhibition side used to carry no flag at all, on the never-measured
+          assumption that a thin manabase also meant low power — checking it found otherwise).
           Amber, not red: this describes uncertainty, not a defect — same convention as the
           manabase panel's `ramp-dependent`. */}
       {pp.bracket_plays_up && (
         <div
-          title={'0 Game Changers caps this at Core. Measured over the corpus, 40% of decks '
-               + 'their authors call Upgraded also run none, so a zero-Game-Changer Core '
-               + 'verdict cannot rule Upgraded out. Read the axes below, and tell your pod '
-               + 'it sits on the line.'}
+          title={pp.bracket_estimate === 1
+            ? '0 Game Changers and a thin manabase cap this at Exhibition. The Game Changer '
+              + 'gate is nearly silent on power once it reads zero, so 14% of decks placed '
+              + 'here are called Upgraded by their own builders too — read the axes below.'
+            : '0 Game Changers caps this at Core. Measured over the corpus, 40% of decks '
+              + 'their authors call Upgraded also run none, so a zero-Game-Changer Core '
+              + 'verdict cannot rule Upgraded out. Read the axes below, and tell your pod '
+              + 'it sits on the line.'}
           style={{
             display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10,
             padding: '6px 10px', borderRadius: 8,
@@ -88,9 +92,20 @@ export default function SimStrengthPanel({ simulation }) {
         >
           <span style={{ fontSize: 13, color: '#fde047' }}>↗</span>
           <span style={{ fontSize: 11.5, color: '#fde047', lineHeight: 1.45 }}>
-            <strong>Sits on the Core / Upgraded line.</strong> No Game Changers caps this at
-            Bracket 2, but 40% of decks their own builders call Bracket 3 run none either —
-            this boundary can&rsquo;t be settled from the card list alone.
+            {pp.bracket_estimate === 1 ? (
+              <>
+                <strong>A thin manabase, not necessarily a weak deck.</strong> No Game
+                Changers and inconsistent colours cap this at Bracket 1, but 14% of decks
+                placed here are called Bracket 3 by their own builders too — this can&rsquo;t
+                be settled from the card list alone.
+              </>
+            ) : (
+              <>
+                <strong>Sits on the Core / Upgraded line.</strong> No Game Changers caps this
+                at Bracket 2, but 40% of decks their own builders call Bracket 3 run none
+                either — this boundary can&rsquo;t be settled from the card list alone.
+              </>
+            )}
           </span>
         </div>
       )}

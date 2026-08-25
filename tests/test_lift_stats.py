@@ -343,7 +343,10 @@ def test_the_banner_does_not_promise_a_bracket_it_cannot_measure():
     quietly upgrades the deck would be the false precision the flag replaced.
     """
     source = _sim_panel_source()
-    banner = source[source.index("bracket_plays_up"):][:1400]
+    # 1400 -> 1900 (2026-08-24): the banner now covers TWO cases (Bracket 1 via a thin
+    # manabase, Bracket 2 via the Core/Upgraded line — see bracket.plays_up), so the JSX
+    # block covering both branches runs longer than the original single-case text.
+    banner = source[source.index("bracket_plays_up"):][:1900]
     for promise in ("is Bracket 3", "is really a 3", "should be Bracket 3", "upgrade to 3"):
         assert promise not in banner, f"the banner must not promise a bracket: {promise!r}"
     assert "can" in banner and "settled" in banner, (

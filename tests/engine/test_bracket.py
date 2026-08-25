@@ -190,14 +190,24 @@ def test_plays_up_flags_the_whole_unresolvable_band(forest, bear):
         assert any("Upgraded" in r for r in est.reasons), kwargs
 
 
-def test_plays_up_not_claimed_for_exhibition(forest, bear):
-    """A deck placed at Bracket 1 isn't at the Core/Upgraded boundary at all."""
+def test_plays_up_also_claimed_for_exhibition(forest, bear):
+    """A deck placed at Bracket 1 via a thin manabase is STILL in the unresolvable band.
+
+    Reversed 2026-08-24: the prior version of this test asserted `plays_up is False` here
+    on the stated assumption "a deck placed at Bracket 1 isn't at the Core/Upgraded boundary
+    at all." That was never measured. Checked against the full 297-deck corpus
+    (scripts/bracket_accuracy.py --json): 14.1% (10/71) of decks landing at Bracket 1 via
+    this exact path are called Upgraded (Bracket 3) by their own builder anyway. A thin
+    manabase measures consistency, not power, and the Game Changer gate is silent on power
+    either way once GC == 0.
+    """
     est = estimate_bracket([(forest, 40), (bear, 59)], [], manabase_consistency=0.50)
     assert est.bracket == 1
-    assert est.plays_up is False
+    assert est.plays_up is True
+    assert any("Upgraded" in r for r in est.reasons)
 
 
-def test_plays_up_only_in_the_core_band(make_card, forest):
+def test_plays_up_only_in_the_gc0_band(make_card, forest):
     """The banner is for gc==0/no-combo decks only; an escalated deck never gets it."""
     cards = [(forest, 57)] + [(_gc(make_card, f"GC{i}"), 1) for i in range(2)]
     est = estimate_bracket(cards, [], ceiling=60, speed_kill_rate=0.9, avg_kill_turn=6.0)
@@ -205,11 +215,13 @@ def test_plays_up_only_in_the_core_band(make_card, forest):
     assert est.plays_up is False
 
 
-def test_exhibition_deck_does_not_play_up(forest, bear):
+def test_exhibition_deck_still_plays_up_regardless_of_axes(forest, bear):
+    """The banner is a calibration fact about the GC==0 gate, not a per-deck power reading —
+    it fires the same whether the deck's other axes look strong or, as here, uniformly weak."""
     est = estimate_bracket([(forest, 60), (bear, 39)], [], ceiling=0, speed_kill_rate=0.0,
                            manabase_consistency=0.50)
     assert est.bracket == 1
-    assert est.plays_up is False
+    assert est.plays_up is True
 
 
 def test_an_unverified_combo_count_is_not_reported_as_unchecked(forest, bear):

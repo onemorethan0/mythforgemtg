@@ -192,6 +192,11 @@ def _pod_read(a) -> str:
     """
     b = a.bracket
     if b.bracket == 1:
+        if b.plays_up:
+            return ("Exhibition (Bracket 1), but don't assume it's weak -- 0 Game Changers "
+                    "and a thin manabase land it here, and the Game Changer gate can't tell "
+                    "power apart from manabase consistency; some decks placed at Exhibition "
+                    "this way are called Upgraded by their own builders too (see the axes).")
         return ("Exhibition (Bracket 1) -- casual and unoptimized; ideal for relaxed or "
                 "new-player tables.")
     if b.bracket == 2:
