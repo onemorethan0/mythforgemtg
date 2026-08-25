@@ -36,7 +36,13 @@ from mythgauntlet.ratings import card_impact, manabase, redundancy
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
 
-NUM_RE = re.compile(r"-?\d+(?:\.\d+)?")
+## `(?<![\d.])` guards the leading `-?`: without it, a mana-curve range like "2-4" scans
+## as TWO tokens, "2" and "-4", because the hyphen is a range separator, not a minus sign
+## -- found live 2026-08-25 (mentor_bench.py against a real deck), where a correct "2-4
+## mana range" answer was gate-rejected three times over for citing a nonexistent "-4".
+## A genuine negative number ("lost 3 life, down to -4") still matches fine, since its
+## preceding character is a space/letter, not a digit or dot.
+NUM_RE = re.compile(r"(?<![\d.])-?\d+(?:\.\d+)?")
 RULE_NUM_RE = re.compile(r"\b\d{3}\.\d+[a-z]?\b")
 
 # Spelled-out numbers a model reaches for just as often as digits ("about thirty ramp
@@ -56,6 +62,24 @@ _WORD_NUMBERS: dict[str, float] = {
 WORD_NUM_RE = re.compile(
     r"\b(" + "|".join(sorted(_WORD_NUMBERS, key=len, reverse=True)) + r")\b", re.IGNORECASE
 )
+
+
+# A repeated mana symbol in oracle text ("{C}{C}") is a count the model may honestly
+# translate to English ("two colorless mana") even though no literal digit "2" appears
+# anywhere in the raw tool data -- found live 2026-08-25: Sol Ring's real oracle_text
+# ("{T}: Add {C}{C}.") licensed only 1.0 (from its {1} cost), so "two colorless mana"
+# was gate-rejected as an uncited number despite being a direct, correct reading of the
+# card's own text. `_mana_symbol_counts` licenses the repetition count of each distinct
+# symbol so this generalizes to any card, not just Sol Ring (a triple-green cost like
+# "{G}{G}{G}" licenses 3.0 the same way).
+_MANA_SYMBOL_RE = re.compile(r"\{[0-9WUBRGCXYZS/]{1,4}\}")
+
+
+def _mana_symbol_counts(text: str) -> set[float]:
+    counts: dict[str, int] = {}
+    for sym in _MANA_SYMBOL_RE.findall(text):
+        counts[sym] = counts.get(sym, 0) + 1
+    return {float(n) for n in counts.values() if n > 1}
 
 
 def extract_numbers(text: str) -> set[float]:
@@ -80,6 +104,7 @@ def _numbers_in(value) -> set[float]:
         found.add(round(float(value), 1))
     elif isinstance(value, str):
         found.update(extract_numbers(value))
+        found.update(_mana_symbol_counts(value))
     elif isinstance(value, dict):
         for v in value.values():
             found |= _numbers_in(v)

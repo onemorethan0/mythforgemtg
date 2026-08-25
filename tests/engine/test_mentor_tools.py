@@ -5,7 +5,7 @@ on a dev machine and tests the wrong thing). assess_card still runs a real simul
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.deck import Deck, ResolvedDeck
 from mythgauntlet.mentor.tools import (
-    MentorContext, ToolResult, call_tool,
+    MentorContext, ToolResult, call_tool, extract_numbers,
     _numbers_in, _rule_numbers_in, _to_jsonable,
 )
 from mythgauntlet.sim.tier0 import SimConfig
@@ -29,6 +29,35 @@ def test_rule_numbers_in_finds_cr_shaped_citations_in_text():
     data = {"text": "See rule 704.5f and also 100.1a for background."}
     rules = _rule_numbers_in(data)
     assert rules == {"704.5f", "100.1a"}
+
+
+def test_extract_numbers_reads_a_range_as_two_positive_endpoints():
+    # Found live 2026-08-25 (mentor_bench.py against a real deck): "the 2-4 mana range"
+    # was parsed as {2.0, -4.0} because a bare regex reads the hyphen as a minus sign,
+    # not a range separator -- a correct mana-curve explanation was gate-rejected three
+    # times over for "citing -4", which never appeared as a real claim.
+    assert extract_numbers("the majority fall in the 2-4 mana range") == {2.0, 4.0}
+
+
+def test_extract_numbers_still_reads_a_genuine_negative_number():
+    assert extract_numbers("you're now at -4 life") == {-4.0}
+
+
+def test_numbers_in_licenses_repeated_mana_symbol_counts():
+    # Found live 2026-08-25: Sol Ring's real oracle_text ("{T}: Add {C}{C}.") only
+    # licensed 1.0 (from its {1} cost) until this fix, so a model correctly describing
+    # it as "two colorless mana" was gate-rejected for citing an uncited "2".
+    data = {"oracle_text": "{T}: Add {C}{C}."}
+    assert 2.0 in _numbers_in(data)
+
+
+def test_numbers_in_does_not_license_a_lone_mana_symbol_as_its_count():
+    data = {"oracle_text": "{T}: Add {C}."}
+    assert 1.0 not in (_numbers_in(data) - {1.0})  # 1.0 is a free number regardless
+    # More directly: a single {G} shouldn't manufacture a spurious "1" from symbol
+    # counting on top of whatever extract_numbers already found in the string.
+    from mythgauntlet.mentor.tools import _mana_symbol_counts
+    assert _mana_symbol_counts("{T}: Add {G}.") == set()
 
 
 def test_to_jsonable_handles_dataclasses_and_sets():

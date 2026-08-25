@@ -64,6 +64,80 @@ def test_wholly_invented_card_name_is_not_flagged_by_the_name_check():
     assert check(text, budget) == []
 
 
+def test_x_the_variable_notation_is_not_flagged_as_an_unlooked_up_card():
+    """Found live 2026-08-25: 'X' is a real (joke-set) card name, and the widened
+    known-card scan (fixed above) correctly caught every mention of it -- including the
+    ordinary MTG variable-cost notation in "+X/+X" (Craterhoof Behemoth's real oracle
+    text). Three separate real bench questions about Craterhoof were gate-rejected for
+    'naming a card that was never looked up: X'. A single-letter name is excluded
+    categorically (verified: 'x' is the only one in the whole card index)."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Craterhoof Behemoth"}),
+        known_card_names=frozenset({"Craterhoof Behemoth", "X"}),
+    )
+    text = ("Craterhoof Behemoth gives your creatures trample and +X/+X, where X is the "
+            "number of creatures you control.")
+    assert check(text, budget) == []
+
+
+def test_common_word_card_names_are_not_flagged_in_ordinary_prose():
+    """Found live 2026-08-25: 'Wizards', 'Overload', and (in a later same-session run)
+    'Spells' are all real card names (mostly joke-set/obscure) that are also ordinary
+    English/rules-jargon words. A rulings explanation mentioning 'Wizards of the Coast',
+    the overload keyword, or "instant spells, sorcery spells" was gate-rejected as naming
+    an unlooked-up card, even though none of those uses had anything to do with the
+    actual cards named Wizards/Overload/Spells."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Smothering Tithe"}),
+        known_card_names=frozenset({"Smothering Tithe", "Wizards", "Overload", "Spells"}),
+    )
+    text = ("There's an official ruling on Smothering Tithe from Wizards of the Coast "
+            "about how the overload of triggers resolves for instant spells.")
+    assert check(text, budget) == []
+
+
+def test_a_real_multi_word_card_name_used_as_a_common_word_is_still_flagged():
+    """The exclusion above is narrow (single-character names + an explicit short list),
+    not a blanket carve-out for anything word-shaped -- an ordinary multi-word card name
+    outside that list is still caught exactly as before."""
+    budget = ClaimBudget(card_names=frozenset(), known_card_names=frozenset({"Sol Ring"}))
+    text = "You should really run Sol Ring in this deck."
+    assert any("Sol Ring" in r for r in check(text, budget))
+
+
+def test_markdown_numbered_list_markers_are_not_read_as_cited_numbers():
+    """Found live 2026-08-25: a correct 3-point rulings explanation formatted as a
+    Markdown ordered list ('1. **Total Cost**... 2. **No Targets**... 3. **Payment**...')
+    was gate-rejected for 'citing 2' and 'citing 3', which were never factual claims --
+    just list positions."""
+    budget = ClaimBudget()
+    text = ("1. Overload has no targets when you pay its alternative cost.\n"
+            "2. You can't choose to pay overload if told to cast without paying mana cost.")
+    assert check(text, budget) == []
+
+
+def test_inline_bold_list_markers_within_one_paragraph_are_not_read_as_cited_numbers():
+    """The system prompt asks for plain prose with no lists, but a 14B model doesn't
+    always comply -- found live 2026-08-25 (SECOND bench run, after the line-start-only
+    version of this fix already landed): the model wrote all three points inline in one
+    paragraph ('...unchanged. 2. **No Targeting**: ...'), which never starts a new line,
+    so the original line-start-only marker regex missed it and the same rulings question
+    kept failing on 'cites 2'/'cites 3'/'cites 4'."""
+    budget = ClaimBudget()
+    text = ("Overload has no targets. 2. **No Targeting**: this means it can affect "
+            "hexproof permanents. 3. **Cost Choice**: you can't choose to pay overload "
+            "if told to cast without paying mana cost.")
+    assert check(text, budget) == []
+
+
+def test_a_genuine_number_inside_a_list_item_is_still_checked():
+    """The list-marker strip only removes the leading 'N.' marker itself -- a real,
+    uncited number appearing later in that same list item is still caught."""
+    budget = ClaimBudget()
+    text = "1. This card costs 14 mana, which is far too much."
+    assert any("14" in r for r in check(text, budget))
+
+
 def test_nested_name_is_masked_before_checking():
     """A commander's own name can contain a real card's name as a substring (the
     documented swap_narrative case: 'Omo, Queen of Vesuva' contains 'Vesuva')."""

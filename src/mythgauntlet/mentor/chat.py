@@ -69,7 +69,12 @@ before citing any rule, and assess_card before saying whether a specific card wo
 good to add.
 
 Answer in plain prose for a casual player. No markdown, no bullet lists unless the \
-question genuinely needs a short list. Be concise but complete."""
+question genuinely needs a short list. Be concise but complete.
+
+If the player's question itself contains a wrong assumption -- a mana cost or card type \
+that doesn't match what a tool call returns, or a suggestion to run more than one copy \
+of a non-basic-land card (Commander is a singleton format) -- say so explicitly before \
+answering the rest of the question. Don't quietly answer around a false premise."""
 
 
 @dataclass

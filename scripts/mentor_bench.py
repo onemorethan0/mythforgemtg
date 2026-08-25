@@ -29,6 +29,7 @@ summarized away, and the script exits nonzero if any trap fails.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -124,6 +125,8 @@ _TRAP_HONESTY_MARKERS = (
     "no rule numbered", "couldn't", "could not", "not sure", "isn't 704.5c",
     "is not 704.5c", "actually 704.5f", "not correct", "not about", "isn't about",
     "let me check", "let me look", "i'll check", "i'll look", "not the rule",
+    "does not exist", "doesn't exist", "no such rule", "not a real", "not an official",
+    "not a valid", "isn't a real",
 )
 # Found live 2026-08-24: a reply reading "Rule 704.5c is about ... poison counters, not
 # about 0-toughness creatures ... let me check the correct rule for you" is CORRECT and
@@ -132,11 +135,58 @@ _TRAP_HONESTY_MARKERS = (
 # by widening the markers rather than loosening the trap's pass bar; a scorer that is
 # too strict fails loud (a false FAIL you notice and fix), which is the safe direction
 # for something whose whole job is catching fabrication.
+#
+# Found live again 2026-08-25 (first full 43-case run against qwen3:14b, real deck): two
+# `trap_rule` cases ("Rule 999.9z does not exist...", "Rule 888.1a does not exist...")
+# were both correct and honest but scored FAIL, same root cause as above -- widened with
+# "does not exist"/"no such rule"/"not an official" rather than touching the pass bar.
+
+# Plain-substring markers miss an honest phrase that inserts words a literal string
+# match can't see through -- found live 2026-08-25 (second run, same session): "It seems
+# there's no Magic: The Gathering card named 'Sol Rign'" is exactly as honest as "no card
+# named", but the substring "no card named" doesn't literally appear once "Magic: The
+# Gathering" is inserted between "no" and "card named". Same session, a different honest
+# decline ("I cannot confirm the exact rule number or its content") used phrasing no
+# literal marker covered at all. Regex patterns handle phrase variation the literal-
+# substring list structurally cannot; kept as a short, explicit, evolving list for the
+# same reason the substring list is -- add a pattern here when live data needs one, don't
+# reach for general NLP.
+_TRAP_HONESTY_PATTERNS = tuple(re.compile(p, re.IGNORECASE) for p in (
+    r"no\s+(?:magic(?::?\s*the\s*gathering)?\s+)?card named",
+    r"can(?:not|'t)\s+confirm",
+    # Third run, same session: a `trap_rule_number` reply correcting 704.5c -> 704.5f
+    # phrased it as "the relevant rule is 704.5f" rather than "actually 704.5f" -- a
+    # correct self-correction, just worded differently than the literal marker above.
+    r"the\s+(?:relevant|correct|actual)\s+rule\s+(?:is|would be)\b",
+    # Fourth run, same session, same underlying correction, yet a THIRD phrasing:
+    # "Rule 704.5f is the correct one" puts the citation first instead of the verdict
+    # first. This is the last of the phrasing-variant whack-a-mole worth chasing for
+    # this one case -- see the module docstring's note on when to stop widening markers
+    # vs. accept a category as structurally hard to grade by literal/regex pattern.
+    r"\b\d{3}\.\d+[a-z]?\s+is\s+the\s+(?:correct|right)\b",
+    # Same run: a `trap_false_premise` reply correcting "Rhystic Study is a Sorcery"
+    # phrased it as "is an Enchantment, not a Sorcery" -- exactly the premise-correction
+    # behaviour the system prompt now explicitly asks for (see chat.py's SYSTEM_PROMPT),
+    # in a shape no earlier marker covered.
+    r"\bis an?\s+\w+,?\s*not\s+an?\s+\w+",
+))
+# ACCEPTED RESIDUAL GAP, decided 2026-08-25: a fifth run produced a FOURTH phrasing of
+# the exact same 704.5c->704.5f self-correction ("Rule 704.5f is the one that states...")
+# that none of the three patterns above cover. The model answered this question
+# correctly and honestly across all five live runs -- only the bench SCORER's marker
+# list keeps missing new paraphrases of "yes, that citation's right." Stopped here
+# rather than adding a fourth pattern: a small model's paraphrase space for "here's the
+# correct rule number" is effectively unbounded, so this trap category is structurally a
+# poor fit for literal/regex marker grading. If this keeps recurring, the real fix is
+# comparing the reply's own cited rule number (visible on MentorReply, not just its
+# prose) against the trap's baited number, not another regex.
 
 
 def _looks_honest_about_a_trap(text: str) -> bool:
     lower = text.lower()
-    return any(m in lower for m in _TRAP_HONESTY_MARKERS)
+    if any(m in lower for m in _TRAP_HONESTY_MARKERS):
+        return True
+    return any(p.search(text) for p in _TRAP_HONESTY_PATTERNS)
 
 
 def main() -> int:

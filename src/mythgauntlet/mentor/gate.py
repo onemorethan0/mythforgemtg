@@ -92,6 +92,34 @@ _RULES_VOCAB_RE = re.compile(
     re.IGNORECASE,
 )
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+
+# Markdown ordered-list markers ("1. **Point one**...") read as bare numbers to the
+# NUMBERS check below -- found live 2026-08-25: a correct 3-point rulings explanation
+# was gate-rejected for "citing" 2 and 3, which were never facts, just list positions.
+# Stripped only for the numbers scan (not from the name/rule-citation checks, and never
+# from the text actually shown to the user) since a list marker asserts nothing about
+# the number 2 or 3 itself -- it's formatting, not a claim. Two shapes, both observed
+# live: a marker at the START of its own line ("2)\n" or "2.\n"), and -- despite the
+# system prompt explicitly asking for plain prose, which a 14B model doesn't always
+# follow -- a marker INLINE mid-paragraph immediately before a bold-markdown heading
+# ("...unchanged. 2. **No Targeting**: ..."), which the line-start pattern alone missed
+# on the first fix attempt.
+_LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|\d+\.\s+(?=\*\*)")
+
+# A handful of real MTG card names that are also ordinary English words/notation, found
+# live 2026-08-25 causing false "unverified card" flags on completely innocent prose:
+# "X" is the game's own variable-cost notation (Craterhoof's "+X/+X"), and "Wizards"/
+# "Overload" are common English/rules-jargon words that also happen to name real (mostly
+# joke-set) cards. The cost of ever catching a genuine reference to one of these obscure
+# cards in casual chat is far lower than the cost of blocking every X-cost explanation.
+# Single-character names are excluded categorically (verified: "x" is the only one in
+# the whole card index); multi-character ones are an explicit, evolving list -- add here
+# when live data (mentor_bench.py or a real transcript) surfaces the next one, the same
+# way EXTRA_TURN_CARDS/MASS_LAND_DESTRUCTION_CARDS grow in root bracket.py. "spells"
+# added 2026-08-25 (fifth bench run, same session): an explanation of how "instant
+# spells, sorcery spells" work on the stack triggered the same false flag on the plain
+# word "Spells" -- a real (joke-set) card name, same as X/Wizards/Overload above.
+_COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells"})
 # "same sentence, or within ~15 words" -- generous enough to catch a definitional clause
 # and its vocabulary term separated by a hedge phrase, tight enough that two unrelated
 # rules terms in a long paragraph don't pair up across sentences.
@@ -164,6 +192,8 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
         masked = re.sub(re.escape(name), " ", masked, flags=re.IGNORECASE)
     masked_lower = masked.lower()
     for name in budget.known_card_names - allowed:
+        if len(name.strip()) <= 1 or name.lower() in _COMMON_WORD_CARD_NAMES:
+            continue
         if name.lower() not in masked_lower:
             continue
         for match in re.finditer(rf"\b{re.escape(name)}\b", masked, re.IGNORECASE):
@@ -181,7 +211,9 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
     # 3. NUMBERS. Anything cited must trace to a tool result, within rounding tolerance.
     #    `extract_numbers` catches spelled-out numbers ("about thirty ramp sources") the
     #    same way it catches digits -- see tools.py's own docstring for why that matters.
-    for value in extract_numbers(body):
+    #    List markers are stripped first (see `_LIST_MARKER_RE` above) so a "2." bullet
+    #    isn't read as citing the number 2.
+    for value in extract_numbers(_LIST_MARKER_RE.sub("", body)):
         if value in _FREE_NUMBERS:
             continue
         if not any(abs(value - ok) <= _NUMBER_TOLERANCE for ok in budget.numbers):
