@@ -226,7 +226,7 @@ def test_analyze_combos_grades_and_gates(client, monkeypatch):
     assert combos["checked"] and combos["total"] == 1
     item = combos["items"][0]
     assert item["reliability"] == "fast-win" and item["terminal"] is True
-    assert item["deterministic"] is True and "CR 720" in item["determinism_rule"]
+    assert item["deterministic"] is True and "CR 732" in item["determinism_rule"]
     # the combo gate lifted the bracket off Brackets 1-2
     assert body["power_profile"]["bracket_estimate"] >= 3
 

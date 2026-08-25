@@ -25,7 +25,7 @@ def _combo(cards, produces, **extra):
 def test_clean_text_is_deterministic():
     v = classify_determinism(["Add {C}{C}.", "Untap target artifact."])
     assert v.deterministic and v.markers == ()
-    assert "CR 720" in v.rule
+    assert "CR 732" in v.rule
 
 
 def test_you_choose_is_still_deterministic():

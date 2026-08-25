@@ -105,8 +105,10 @@ def winning_combos(report: ComboReport) -> list[frozenset[str]]:
 # own bracketTag "E") scored the same as a 2-card, zero-mana "each opponent loses the game".
 # These grades expose the qualifiers Spellbook already ships so the gate and the explanations
 # can tell a real wincon from a durdle. Deliberately METADATA-ONLY: rules/errata determinism
-# (random / coin-flip / mandatory-loop draws, CR 720) is a separate Layer 2 and is NOT judged
-# here. is_winning_combo() is left untouched — this only refines the winners it already finds.
+# (random / coin-flip / mandatory-loop draws, CR 732/104.4b -- verified 2026-08-24; a prior
+# version of this comment cited CR 720, since reassigned by WotC to Omen Cards) is a separate
+# Layer 2 and is NOT judged here. is_winning_combo() is left untouched -- this only refines
+# the winners it already finds.
 
 # Features that WIN the turn the loop assembles, with no extra combat step or outlet needed.
 _TERMINAL_FEATURE_RE = re.compile(
@@ -177,7 +179,7 @@ def classify_combo(
     else:
         reliability = "slow"  # advantage-only, or many pieces / high mana / commander-gated
     # A win that hinges on chance or an opponent's choice is never a fast/strong wincon,
-    # however clean its shape (CR 720). Cap it, but keep the floor -- it is still a wincon.
+    # however clean its shape (CR 104.4b). Cap it, but keep the floor -- it is still a wincon.
     if determinism is not None and not determinism.deterministic:
         reliability = "slow"
     return ComboGrade(

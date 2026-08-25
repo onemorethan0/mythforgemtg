@@ -22,21 +22,29 @@ def normalize_name(name: str) -> str:
 class ManaCost:
     """Parsed mana cost.
 
-    Each pip is the set of colors that can pay it (mono = 1 color, hybrid = 2).
-    Simplifications (documented, revisit at Phase 1):
+    `mana_value` is computed directly per CR 202.3 (each symbol's own rule) and is
+    exact, including monocolored hybrid ({2/W} -> 2, the LARGER of its two components
+    per CR 202.3f — verified against the live corpus 2026-08-24; a prior version of
+    this class took `generic + len(pips)`, which silently undercounted {2/W} as 1
+    because `pips` only ever records the colored half) and Phyrexian ({W/P} -> 1 per
+    CR 202.3g). X contributes 0, matching CR 107.3g/202.3e (X is 0 off the stack).
+
+    `generic`/`pips`/`x_count` are a SEPARATE, simplified model used only for PAYMENT
+    simulation (`_can_pay` in `sim/tier0.py`) — they answer "can this be paid with
+    these sources", not "what is this worth on the curve", and intentionally do not
+    need to reconstruct `mana_value`. Payment simplifications (documented, revisit at
+    Phase 1):
       - Phyrexian pips ({G/P}) are treated as their color pip (life payment ignored).
-      - Monocolor-hybrid ({2/W}) is treated as its color pip (never the generic option).
+      - Monocolor-hybrid ({2/W}) is treated as its color pip for PAYMENT ONLY (a deck
+        can always tap 1 W instead of 2 generic, so this is conservative-correct for
+        castability even though `mana_value` now reports the true cost of 2).
       - Snow ({S}) is treated as generic (snow-ness not tracked yet).
-      - X contributes 0 to mana value and is cast for X=0.
     """
 
     generic: int = 0
     pips: tuple[frozenset[str], ...] = ()
     x_count: int = 0
-
-    @property
-    def mana_value(self) -> int:
-        return self.generic + len(self.pips)
+    mana_value: int = 0
 
     @classmethod
     def parse(cls, text: str | None) -> ManaCost:
@@ -45,26 +53,37 @@ class ManaCost:
         generic = 0
         pips: list[frozenset[str]] = []
         x_count = 0
+        mana_value = 0
         for sym in MANA_SYMBOL_RE.findall(text):
             sym = sym.upper()
             if sym.isdigit():
                 generic += int(sym)
+                mana_value += int(sym)
             elif sym == "X":
                 x_count += 1
             elif sym == "S":
                 generic += 1
+                mana_value += 1
             elif sym == "C":
                 pips.append(frozenset(("C",)))
+                mana_value += 1
             else:
                 parts = [p for p in sym.split("/") if p != "P"]
                 colors = frozenset(p for p in parts if p in COLORS or p == "C")
                 if colors:
                     pips.append(colors)
+                    # CR 202.3f: a hybrid symbol's mana-value contribution is the
+                    # LARGER of its components. A pure-color hybrid ({W/U}) has no
+                    # numeric half, so it's 1 either way; a monocolored hybrid
+                    # ({2/W}) is 2, not the 1 that `len(pips)` alone would imply.
+                    nums = [int(p) for p in parts if p.isdigit()]
+                    mana_value += max(nums) if nums else 1
                 else:  # e.g. a lone numeric half after stripping (shouldn't occur)
                     nums = [int(p) for p in parts if p.isdigit()]
                     if nums:
                         generic += min(nums)
-        return cls(generic=generic, pips=tuple(pips), x_count=x_count)
+                        mana_value += min(nums)
+        return cls(generic=generic, pips=tuple(pips), x_count=x_count, mana_value=mana_value)
 
 
 @dataclass

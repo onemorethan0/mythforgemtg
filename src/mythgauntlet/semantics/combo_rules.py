@@ -5,14 +5,21 @@ terminal-vs-outlet). This layer answers the rules question the metadata can't: o
 is assembled, does it deterministically win, or does the outcome hinge on chance or an
 opponent's decision? That is exactly the qualifier the Comprehensive Rules draw a line at.
 
-Grounding (Comprehensive Rules, handling of loops):
-  * CR 720 governs "infinite" loops. A loop built from OPTIONAL actions can be stopped by its
-    controller at the iteration that wins -- so it is a deterministic win (you simply choose
-    the number).
+Grounding (Comprehensive Rules, handling of loops -- numbers verified against the live
+corpus 2026-08-24, `data/rulings.py`; the rule NUMBER a prior version of this docstring
+cited, CR 720, has since been reused by WotC for an unrelated mechanic (Omen Cards) --
+the loop-shortcut content itself moved to CR 732, cross-referencing CR 104.4b):
+  * CR 732 ("Loops") governs the shortcut rules for a repeating action sequence. CR 732.4:
+    "If a loop contains only mandatory actions, the game is a draw." CR 732.5/732.6: no
+    player can be forced to perform an action that would BREAK the loop (an "unless"
+    escape clause is optional, not mandatory) -- so a loop built from OPTIONAL actions can
+    be stopped by its controller at the iteration that wins, a deterministic win (you
+    simply choose the number).
   * A loop whose continuation or result depends on a RANDOM outcome (coin flip, dice, "at
     random") or on an OPPONENT'S choice cannot be shortcut to a guaranteed result -- the win
     is not deterministic. A purely mandatory loop with no way to end and no win is a draw
-    (CR 104.4a), not a win.
+    (CR 104.4b: "If a game... enters a 'loop' of mandatory actions... the game is a draw.
+    Loops that contain an optional action don't result in a draw."), not a win.
 
 Scope + honesty: this is a deliberately conservative TEXT heuristic over the pieces' Oracle
 text (Scryfall Oracle = current errata) and the Spellbook loop description. It flags the
@@ -27,9 +34,9 @@ import re
 from dataclasses import dataclass
 
 # The rule the verdict cites, in plain ASCII (legacy-console safe).
-_RULE_OPTIONAL_LOOP = "CR 720 (an optional loop can be stopped at the iteration that wins)"
+_RULE_OPTIONAL_LOOP = "CR 732.5/732.6 (an optional loop can be stopped at the iteration that wins)"
 _RULE_RANDOM_OR_CHOICE = (
-    "CR 720 (a loop whose outcome depends on chance or an opponent's choice "
+    "CR 104.4b (a loop whose outcome depends on chance or an opponent's choice "
     "cannot be forced to a win)"
 )
 

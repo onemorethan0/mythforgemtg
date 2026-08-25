@@ -8,7 +8,7 @@ finished or partial decklist. This module decides nothing — it measures and re
 
 Worked examples (SPEC section 4):
 
-    mana_value {2/W}{2/W}   -> 4     hybrid takes its HIGHER half (rule 202.3b), twice
+    mana_value {2/W}{2/W}   -> 4     hybrid takes its HIGHER half (CR 202.3f), twice
     mana_value {X}{R}{R}    -> 2     X is 0
     mana_value {R/P}        -> 1     phyrexian
     pip_counts {5}{B}{R}    -> {B:1, R:1}
@@ -87,7 +87,11 @@ def mana_value(card: dict) -> int:
         if t == "X":
             continue                       # X is 0 on the stack for curve purposes
         if "/" in t:
-            # Rule 202.3b: a hybrid's mana value is its HIGHEST possible half.
+            # CR 202.3f: a hybrid's mana value is its HIGHEST possible half. (Verified
+            # against the live Comprehensive Rules corpus 2026-08-24 -- a prior version
+            # of this comment cited 202.3b, which has since become the DFC mana-value
+            # rule as WotC inserted new subrules around it; the content is unchanged,
+            # only the letter moved.)
             halves = [int(p) if p.isdigit() else 1 for p in t.split("/") if p != "P"]
             total += max(halves) if halves else 1
         elif t.isdigit():

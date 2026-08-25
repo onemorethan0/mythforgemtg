@@ -17,7 +17,7 @@ import deck_quality as dq
 
 
 def test_mana_value_hybrid_takes_higher_half():
-    # Rule 202.3b: a hybrid's mana value is its highest possible half.
+    # CR 202.3f: a hybrid's mana value is its highest possible half.
     assert dq.mana_value({"mana_cost": "{2/W}{2/W}"}) == 4
     assert dq.mana_value({"mana_cost": "{W/U}"}) == 1
 

@@ -32,6 +32,17 @@ def test_monocolor_hybrid_treated_as_color():
     assert cost.pips == (frozenset({"W"}),)
 
 
+def test_monocolor_hybrid_mana_value_is_the_larger_half():
+    # CR 202.3f: "use the largest component of each hybrid symbol." Verified against
+    # the live Comprehensive Rules corpus 2026-08-24 -- {2/B}{2/B}{2/B} is 6 in the
+    # rules' own worked example. `pips` still records only the color half (payment
+    # stays a documented simplification, see the ManaCost docstring); mana_value must
+    # not inherit that undercount.
+    assert ManaCost.parse("{2/W}").mana_value == 2
+    assert ManaCost.parse("{2/B}{2/B}{2/B}").mana_value == 6
+    assert ManaCost.parse("{1}{W/U}{W/U}").mana_value == 3
+
+
 def test_phyrexian_treated_as_color():
     cost = ManaCost.parse("{G/P}")
     assert cost.pips == (frozenset({"G"}),)
