@@ -119,7 +119,15 @@ _LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|\d+\.\s+(?=\*\*)")
 # added 2026-08-25 (fifth bench run, same session): an explanation of how "instant
 # spells, sorcery spells" work on the stack triggered the same false flag on the plain
 # word "Spells" -- a real (joke-set) card name, same as X/Wizards/Overload above.
-_COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells", "exile"})
+# "ramp" and "counterspell" added 2026-08-25 (round 3 of a live mentor campaign): both
+# are ALSO two of the deck-building role-classification names this whole app uses
+# constantly (collection_pool.ROLES / get_deck_stats' "roles" block reports "ramp" and
+# "counterspell" as category names, not card names) -- a much higher-frequency collision
+# than the others here, since discussing role supply/targets is one of the mentor's most
+# common conversation types. Note this does NOT stop the gate from catching a genuinely
+# fabricated SPECIFIC card recommendation naming an unlooked-up counterspell like "Mana
+# Drain" -- that's a different card name, still fully scanned.
+_COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells", "exile", "ramp", "counterspell"})
 # "same sentence, or within ~15 words" -- generous enough to catch a definitional clause
 # and its vocabulary term separated by a hedge phrase, tight enough that two unrelated
 # rules terms in a long paragraph don't pair up across sentences.
@@ -199,6 +207,20 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
     #    that DOES appear pays for the word-boundary regex + position check.
     allowed = budget.card_names
     masked = body
+    # A possessive reference to a card already verified this turn ("Urza's ability",
+    # meaning Urza the commander's own ability) is an ordinary, safe construction, not a
+    # fresh claim -- but the model shortens a multi-word name to its FIRST word before
+    # the possessive ("Urza's", not "Urza, Lord High Artificer's"). Found live
+    # 2026-08-25: "Urza's" is ALSO a real (joke-set) card name in the index, same class
+    # as X/Wizards/Overload/Spells/Exile above, but this one recurs structurally for ANY
+    # multi-word commander name, since a short possessive back-reference to the card
+    # already being discussed is extremely common. Masked BEFORE the full-name pass
+    # below (not after), since the full name's own regex wouldn't match the short form
+    # at all and doing this second would be a no-op, not merely redundant.
+    for name in sorted(allowed, key=len, reverse=True):
+        short = name.split(",")[0].strip()
+        if short and short.lower() != name.lower():
+            masked = re.sub(re.escape(short) + r"[''`]s\b", " ", masked, flags=re.IGNORECASE)
     for name in sorted(allowed, key=len, reverse=True):
         masked = re.sub(re.escape(name), " ", masked, flags=re.IGNORECASE)
     # A verbatim quotation of something this turn's tools actually returned (oracle

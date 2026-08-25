@@ -96,6 +96,19 @@ def test_common_word_card_names_are_not_flagged_in_ordinary_prose():
     assert check(text, budget) == []
 
 
+def test_role_vocabulary_words_that_are_also_card_names_are_not_flagged():
+    """Found live 2026-08-25 (round 3): discussing a deck's get_deck_stats role supply
+    ("Ramp" and "Counterspell" are two of the app's own role-category names, per
+    collection_pool.ROLES) triggered the same false flag, since 'Ramp' and 'Counterspell'
+    are ALSO real card names -- a much higher-frequency collision than the others here,
+    since role-supply discussion is one of the most common mentor conversation types."""
+    budget = ClaimBudget(
+        known_card_names=frozenset({"Ramp", "Counterspell"}),
+    )
+    text = "Your Ramp is well-supplied, but your Counterspell count is low for this bracket."
+    assert check(text, budget) == []
+
+
 def test_a_real_multi_word_card_name_used_as_a_common_word_is_still_flagged():
     """The exclusion above is narrow (single-character names + an explicit short list),
     not a blanket carve-out for anything word-shaped -- an ordinary multi-word card name
@@ -181,6 +194,33 @@ def test_nested_name_is_masked_before_checking():
     )
     text = "Your commander is Omo, Queen of Vesuva."
     assert check(text, budget) == []
+
+
+def test_possessive_short_form_of_a_looked_up_name_is_not_flagged():
+    """Found live 2026-08-25 (round 3 of the mentor campaign): the model referred back
+    to 'Urza, Lord High Artificer' -- already looked up this turn -- as "Urza's {5}
+    ability", the ordinary short-possessive form. "Urza's" is ALSO a real (joke-set)
+    card name in the index, so this was gate-rejected as an unlooked-up card despite
+    being a completely safe back-reference to the card already under discussion."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Urza, Lord High Artificer"}),
+        numbers=frozenset({5.0}),
+        known_card_names=frozenset({"Urza, Lord High Artificer", "Urza's"}),
+    )
+    text = "Urza's {5} ability lets you exile the top card of your library."
+    assert check(text, budget) == []
+
+
+def test_possessive_of_an_UNlooked_up_card_is_still_flagged():
+    """The possessive exemption only covers a short-form back-reference to a name
+    that's actually `allowed` this turn -- a possessive of a DIFFERENT, unverified card
+    is still caught normally."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Urza, Lord High Artificer"}),
+        known_card_names=frozenset({"Urza, Lord High Artificer", "Sol Ring"}),
+    )
+    text = "You should also consider Sol Ring's mana to help cast Urza faster."
+    assert any("Sol Ring" in r for r in check(text, budget))
 
 
 def test_wrong_rule_number_sharing_digits_with_a_real_citation_is_rejected():

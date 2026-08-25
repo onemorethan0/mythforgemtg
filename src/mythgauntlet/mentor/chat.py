@@ -78,7 +78,13 @@ answering the rest of the question. Don't quietly answer around a false premise.
 
 If the question asks about MORE THAN ONE card, call the appropriate tool for EACH card \
 separately before answering about any of them -- never answer about a second or third \
-card from memory just because you already looked one up this turn."""
+card from memory just because you already looked one up this turn.
+
+If a search_rules or get_rule result does not actually address the specific question \
+asked, say so plainly and stop there. Do NOT follow that admission with a guess dressed \
+up as a conclusion ("it seems...", "likely...", "probably...", "based on general \
+principles...") -- admitting your evidence is insufficient and then asserting a specific \
+answer anyway is worse than never looking, because it reads as verified when it isn't."""
 
 
 @dataclass

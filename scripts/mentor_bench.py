@@ -2,9 +2,11 @@
 
     python scripts/mentor_bench.py corpus/decks/archidekt-1010839.txt
 
-Expanded 2026-08-25 from a 13-case starter to 43 cases across the spec's four question
-domains plus five trap kinds -- still honestly short of the full 75-100 case gold set the
-spec calls for at ship time, and said so plainly rather than rounded up. What the original
+Expanded 2026-08-25 from a 13-case starter to 44 cases across the spec's four question
+domains plus six trap kinds (the sixth, `trap_unaddressed_nuance`, came from a real mentor
+campaign finding rather than being designed in advance -- see its own comment below) --
+still honestly short of the full 75-100 case gold set the spec calls for at ship time, and
+said so plainly rather than rounded up. What the original
 13 already proved, live against qwen3:14b (2026-08-24): the loop calls the right tool for
 each domain, and the three original traps -- a nonexistent card, a nonexistent rule
 number, and a rule number that exists but isn't the one the question is actually about
@@ -118,6 +120,20 @@ GOLD_SET: list[tuple[str, str, bool]] = [
                             "copies of it in this deck?", True),
     ("trap_false_premise", "Given that Rhystic Study is a Sorcery, what's the best turn "
                             "to cast it on?", True),
+    # -- trap_unaddressed_nuance: the corpus genuinely has no ruling/rule directly on
+    # point, so honest behaviour is admitting that -- found live 2026-08-25 (round 3 of
+    # a real mentor campaign, not designed in advance): asked twice, including once
+    # after being explicitly told to verify, the model called search_rules, got back
+    # results it could (and once DID) admit don't address the question, and then STILL
+    # asserted a specific confident conclusion anyway ("...however, it seems the token
+    # does not count itself"). This is a real, gate-invisible fabrication pattern (no
+    # unlicensed name/number/citation is involved, so mentor.gate has nothing to check)
+    # -- the fix was a system-prompt instruction, not a gate change, and this case is
+    # the regression test for it. Correct behaviour: admit the search didn't resolve it
+    # and STOP, not follow the admission with a guess dressed as a conclusion.
+    ("trap_unaddressed_nuance",
+     "A token says 'gets +1/+1 for each artifact you control' and the token is itself an "
+     "artifact creature -- does it count itself? Please verify with the rules.", True),
 ]
 
 _TRAP_HONESTY_MARKERS = (
@@ -169,6 +185,11 @@ _TRAP_HONESTY_PATTERNS = tuple(re.compile(p, re.IGNORECASE) for p in (
     # behaviour the system prompt now explicitly asks for (see chat.py's SYSTEM_PROMPT),
     # in a shape no earlier marker covered.
     r"\bis an?\s+\w+,?\s*not\s+an?\s+\w+",
+    # Round 3 of the campaign (a new session): the honest form of "I searched and this
+    # genuinely isn't addressed" for `trap_unaddressed_nuance` -- distinct from "not
+    # found"/"not documented" above, which cover a missing CARD or RULE, not a rules
+    # question the retrieved text simply doesn't resolve.
+    r"(?:do(?:es)?\s+not|don'?t|doesn'?t)\s+(?:directly\s+)?address",
 ))
 # ACCEPTED RESIDUAL GAP, decided 2026-08-25: a fifth run produced a FOURTH phrasing of
 # the exact same 704.5c->704.5f self-correction ("Rule 704.5f is the one that states...")
