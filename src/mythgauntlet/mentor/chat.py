@@ -74,7 +74,11 @@ question genuinely needs a short list. Be concise but complete.
 If the player's question itself contains a wrong assumption -- a mana cost or card type \
 that doesn't match what a tool call returns, or a suggestion to run more than one copy \
 of a non-basic-land card (Commander is a singleton format) -- say so explicitly before \
-answering the rest of the question. Don't quietly answer around a false premise."""
+answering the rest of the question. Don't quietly answer around a false premise.
+
+If the question asks about MORE THAN ONE card, call the appropriate tool for EACH card \
+separately before answering about any of them -- never answer about a second or third \
+card from memory just because you already looked one up this turn."""
 
 
 @dataclass
