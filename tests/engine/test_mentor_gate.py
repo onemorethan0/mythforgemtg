@@ -64,6 +64,35 @@ def test_wholly_invented_card_name_is_not_flagged_by_the_name_check():
     assert check(text, budget) == []
 
 
+def test_bare_name_echoed_from_the_players_own_question_is_not_flagged():
+    """Found live 2026-08-25 (round 5): 'I'll check what Utvara Hellkite has to offer'
+    -- zero claims about the card, just announcing intent to look it up while echoing a
+    name the PLAYER's own question already named -- was gate-rejected as an unlooked-up
+    card. The player naming a card in their own message is already common ground, not a
+    claim the model needs to verify."""
+    budget = ClaimBudget(card_names=frozenset(), known_card_names=frozenset({"Utvara Hellkite"}))
+    text = "I'll check what Utvara Hellkite has to offer and how it might fit your deck."
+    question = "Would Utvara Hellkite be a good finisher addition?"
+    assert check(text, budget, question=question) == []
+
+
+def test_a_claim_about_the_players_own_named_card_is_still_checked():
+    """The question-echo exemption only covers the bare NAME mention -- anything the
+    model goes on to ASSERT about that card (a number, a second unlooked-up name) is
+    still caught normally, question-echo or not."""
+    budget = ClaimBudget(card_names=frozenset(), known_card_names=frozenset({"Utvara Hellkite"}))
+    text = "Utvara Hellkite would pair perfectly with Dragon Tempest in this deck."
+    question = "Would Utvara Hellkite be a good finisher addition?"
+    reasons = check(text, budget, question=question)
+    assert reasons == []  # "Utvara Hellkite" itself isn't flagged (echoed from the question)...
+    # ...but a SECOND, different unverified card name still is:
+    budget2 = ClaimBudget(
+        card_names=frozenset(), known_card_names=frozenset({"Utvara Hellkite", "Dragon Tempest"}),
+    )
+    reasons2 = check(text, budget2, question=question)
+    assert any("Dragon Tempest" in r for r in reasons2)
+
+
 def test_x_the_variable_notation_is_not_flagged_as_an_unlooked_up_card():
     """Found live 2026-08-25: 'X' is a real (joke-set) card name, and the widened
     known-card scan (fixed above) correctly caught every mention of it -- including the

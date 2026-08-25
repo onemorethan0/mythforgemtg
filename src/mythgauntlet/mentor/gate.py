@@ -189,8 +189,17 @@ def _looks_like_a_name(text: str, match: re.Match) -> bool:
     return bool(before) and before[-1] not in ".!?"
 
 
-def check(text: str, budget: ClaimBudget) -> list[str]:
-    """Every way `text` over-claims against `budget`. Empty means faithful."""
+def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
+    """Every way `text` over-claims against `budget`. Empty means faithful.
+
+    `question` (optional, the player's OWN message this turn) exempts a bare card-name
+    mention the player already introduced -- found live 2026-08-25: "I'll check what
+    Utvara Hellkite has to offer" (zero claims about the card, just echoing the name
+    back from the player's own question while announcing intent to look it up) was
+    gate-rejected as an unlooked-up card. The player naming a card in their own message
+    isn't a claim the model needs to verify; it's already common ground. This does NOT
+    exempt anything the model goes on to ASSERT about that card -- a fabricated oracle
+    text or number naming the same card is still caught by the other checks below."""
     reasons: list[str] = []
     body = text.strip()
 
@@ -232,8 +241,11 @@ def check(text: str, budget: ClaimBudget) -> list[str]:
         if text.lower() in masked.lower():
             masked = re.sub(re.escape(text), " ", masked, flags=re.IGNORECASE)
     masked_lower = masked.lower()
+    question_lower = question.lower()
     for name in budget.known_card_names - allowed:
         if len(name.strip()) <= 1 or name.lower() in _COMMON_WORD_CARD_NAMES:
+            continue
+        if question_lower and name.lower() in question_lower:
             continue
         if name.lower() not in masked_lower:
             continue

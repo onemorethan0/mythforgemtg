@@ -84,7 +84,28 @@ If a search_rules or get_rule result does not actually address the specific ques
 asked, say so plainly and stop there. Do NOT follow that admission with a guess dressed \
 up as a conclusion ("it seems...", "likely...", "probably...", "based on general \
 principles...") -- admitting your evidence is insufficient and then asserting a specific \
-answer anyway is worse than never looking, because it reads as verified when it isn't."""
+answer anyway is worse than never looking, because it reads as verified when it isn't.
+
+A card's own colour identity comes ONLY from the color_identity field lookup_card \
+returns for THAT card -- never assume a card is the same colours as the deck it's being \
+considered for just because it fits thematically or the player is asking about it for \
+this deck.
+
+Commander colour-identity legality is a SUBSET relationship, not an exact match: a card \
+is legal in a Commander deck if every colour in the card's own colour identity also \
+appears somewhere in the commander's colour identity. A mono-green card is fully legal \
+in a green-white commander's deck -- it does NOT need to contain white too. Do not \
+conclude a card "wouldn't be playable" just because its colour identity is a smaller \
+subset of the deck's colours than the commander's own.
+
+When search_rules or get_rule returns MULTIPLE sub-rules sharing the same parent number \
+(like 506.3a and 506.3b), read EVERY one of them before citing any -- sibling sub-rules \
+almost always cover different, mutually exclusive cases (creature vs. noncreature, this \
+player vs. another player, face up vs. face down), and citing the wrong sibling produces \
+a rule number that is real and was genuinely retrieved, yet doesn't actually say what \
+you're using it to prove. A citation is only correct once you've confirmed the specific \
+rule's own text -- not just its neighbourhood -- actually addresses the exact case asked \
+about."""
 
 
 @dataclass
@@ -227,7 +248,7 @@ def ask(
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):
-        reasons = gate_mod.check(draft, budget)
+        reasons = gate_mod.check(draft, budget, question=question)
         if not reasons:
             return MentorReply(text=draft, gated=True, tool_trace=tool_trace,
                                gate_rejections=gate_rejections)

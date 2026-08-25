@@ -148,6 +148,16 @@ def test_lookup_card_found(make_card, empty_store):
     assert result.card_names == frozenset({"Rock of Ramping"})
 
 
+def test_lookup_card_includes_color_identity(make_card, empty_store):
+    # Found live 2026-08-25: with no color_identity field returned, a reply describing
+    # a mono-green card as "green-white" (conflating "fits the deck" with "is the
+    # deck's colors") went unchecked -- this field is a prerequisite for ever fixing
+    # that class of claim, even before any gate-side check exists for it.
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "lookup_card", {"name": "Test Commander"})
+    assert result.data["color_identity"] == ["G"]
+
+
 def test_lookup_card_not_found_grants_nothing(make_card, empty_store):
     ctx = _ctx(make_card, empty_store)
     result = call_tool(ctx, "lookup_card", {"name": "Zzyzx Prism Wyrm"})

@@ -247,6 +247,14 @@ def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
         "mana_value": card.mana_value,
         "type_line": card.type_line,
         "oracle_text": card.oracle_text,
+        # Found live 2026-08-25 (round 4 of a real mentor campaign): with no
+        # color_identity field returned, a reply describing Heroic Intervention (real
+        # mana cost {1}{G}, mono-green) as "a green-white card" went unchecked -- likely
+        # because the model conflated "fits the green-white deck it's being added to"
+        # with "is green-white itself". The mana cost was already enough to derive this
+        # correctly, but giving the field explicitly removes the need to derive it at
+        # all, and is a prerequisite for ever gate-checking a colour claim later.
+        "color_identity": sorted(card.color_identity),
         "commander_legal": card.commander_legal,
         "game_changer": card.game_changer,
         "edhrec_rank": card.edhrec_rank,
