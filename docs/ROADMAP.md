@@ -34,9 +34,20 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 >     + archetype           (2026-08-19)               45  (9.0%)
 >
 > The module has no defined behaviour here and returns `k` candidates as confidently as ever.
-> `card_impact`'s reason line now says so out loud rather than claiming a redundancy it
-> cannot show, which is the honest half; the ordering itself is still undecided. Note the
-> project has already established that **the sim's axis delta cannot see this class of
+>
+> **CORRECTION 2026-08-25: the "honest half" is more complete than this entry claimed.**
+> Verified live: `redundancy_backed` (`score.oversupply > 0.0`) is computed once in
+> `swap_brief.build_swap_brief` and reaches BOTH real user-facing consumers, not one —
+> `card_impact._cut_sentence` (single-card assessment) AND, via `SwapSuggestion.brief`,
+> Forge's `swap_narrative.check()` gate (the `/advise` swap-suggestion narrative), which
+> explicitly forbids the words redundant/redundancy/over-supplied/oversupplied/over-served/
+> surplus/excess/duplicated/"too many" whenever the flag is False (`swap_narrative.py:394,
+> 570, 597`, tested). Neither consumer can present the tiebreak's output as a measured
+> redundancy finding — confirmed by running `test_swap_narrative.py`'s redundancy-gate case.
+> **What remains open is narrower than "tell the caller" — it's purely the ordering-in-the-
+> degenerate-case doctrine question below**, which two independent attempts already failed to
+> answer and which a third attempt should not be guessed at without a genuinely new idea. Note
+> the project has already established that **the sim's axis delta cannot see this class of
 > defect**, so a new tiebreak cannot be settled by `advisor_bench` and needs an argument from
 > doctrine instead.
 >
@@ -80,6 +91,28 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 > `archidekt-13708248` is a **landfall** deck holding two counterspells: its draw is 0.5 over
 > and its counterspell 3.0 over, so it is offered *Flusterstorm*. S10's archetype table fixes
 > this only for decks whose archetype is in the table; the granularity is the general case.
+>
+> **VERIFIED 2026-08-25, reproduced exactly, not stale.** Re-ran `archidekt-13708248` against
+> the real `targets_for(["landfall"])` table: ramp supply 18 against the landfall-adjusted
+> target 23 (S10) correctly clears (no longer over-supplied), leaving counterspell (supply 6.0,
+> 2 real counterspells at the fixed 3.0-per-card strength, target 3, so 3.0 over) as the single
+> most over-supplied role — `rank_redundant` offers **Flusterstorm** first, exactly as
+> described. Flusterstorm is a narrow storm/combo answer, precisely the "silver bullet the
+> pilot chose on purpose" shape S11 already named as the wrong thing to cut.
+>
+> **A normalization fix was considered and does not obviously resolve it — checked by
+> reasoning, not yet by measurement, so not attempted.** Dividing oversupply by the role's
+> own per-card strength (comparing "cards' worth over target" instead of raw points) would
+> turn counterspell's 3.0-over into 1.0 "extra card equivalent" — but draw's per-card
+> contribution is itself usually 1.0-2.0 (a real "draw 1" vs "draw 2" spell), so its 0.5 raw
+> oversupply normalizes to roughly 0.25-0.5 extra-card-equivalents, STILL smaller than
+> counterspell's 1.0. The problem is not obviously a unit-mismatch a normalization step fixes;
+> it may be that a target sitting exactly on a card boundary (3 = "one average counterspell")
+> is inherently brittle regardless of units, since ANY excess jumps straight to "one whole card
+> over" with no smooth ramp between "at target" and "over." **Not fixed this pass** — the
+> project's own S17 lesson this same session (a plausible-looking fix reverted after it broke
+> Thassa's Oracle) is the reason not to ship an unmeasured normalization scheme here without
+> the same sweep-and-validate rigor S10's archetype table used.
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
@@ -94,8 +127,8 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
 | **S10** | ~~`ROLE_TARGETS` is archetype-blind~~ | own-plan cut slots **64.0% → 33.8%** · pool changes on 52/106 | **Done** | — |
 | **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
-| S12 | Redundancy score silent on 9% of decks | **45/499** decks · **14.4%** of all cut slots | Medium | M |
-| S13 | Fixed role strength makes targets granular | 2 counterspells reads as 3.0 over | Medium | M |
+| S12 | Redundancy score silent on 9% of decks | disclosure verified DONE (both consumers) · ordering doctrine question still open | Low | M |
+| S13 | Fixed role strength makes targets granular | **reproduced exactly** on `archidekt-13708248` 2026-08-25 — Flusterstorm still the #1 offered cut | Medium | M (no safe fix found yet) |
 | **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
 | **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |
 | **S16** | ~~if/otherwise pairs double-credited~~ · condition-check gap partly remains | **24 cards** double-credited (Approach of the 2nd Sun = free win) · **15.78%** of store has a condition | **Done** (otherwise-fix) / open (general case) | S / M |

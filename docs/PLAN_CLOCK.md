@@ -280,15 +280,42 @@ measure.
 **Do Phase 1 first.** Measuring "what stops the win" is meaningless while the clock cannot see
 the win.
 
-### Phase 3 — re-fit placement, only after the Phase 1 gate passes
+### Phase 3 — re-fit placement · ALREADY RUN, and the answer is recorded, not open
 
-Use `scripts/bracket_boundary.py`. It already enforces the discipline: both sweep directions,
-plateau-not-peak, and a printed majority-class baseline. Re-fit B1/B2 and attempt B2/B3.
+**Correction, 2026-08-25: this phase reads as "not blocked, ready to pick up" and that framing
+is stale.** `scripts/bracket_boundary.py` has already been run and its own docstring is a
+completed post-mortem, not a live tool waiting for a first attempt:
 
-**Target the right metric.** If B2/B3 remains unseparable even with a working clock, then
-Phase 5's *"≥60% bracket-exact"* is partly unreachable by construction and **within-one
-(91.6% → 95%) is the metric that can honestly move**. Exact-match rewards guessing the
-annotator; within-one rewards not sending someone to the wrong table.
+- **B1/B2**: a single threshold on `edhrec_log_rank` scores **76.1%** against the shipped
+  `manabase_P` rule's **64.8%** — 11 points, on a broad plateau, better-balanced recall. **Not
+  shipped, on principle, not for lack of trying**: Invariant 4 bars any popularity-driven
+  verdict, because that recreates the static-calculator failure mode this engine exists to
+  replace. The correction that DID land from this run is documentary, not code: a prior claim
+  that "popularity wouldn't have helped" was false, and now says so.
+- **B2/B3, zero Game Changers** (n=130, 90/40): every candidate rule measured is "always say B2"
+  wearing a threshold — best two-signal rule reaches 70.8% against a 69.2% baseline, with B3
+  recall in the 2-5% range. This independently reconfirms the same conclusion this file's own
+  §2 already reached from the clock-invariance angle: **the B2/B3 boundary is not resolvable
+  from the 99 cards**, full stop, by two unrelated measurements now.
+- **A separate, real finding the same script surfaced**: `bracket.estimate_bracket`'s
+  `gc == 0 -> floor 1, cap 2` gate IS a misreading in isolation — Bracket 3 permits *up to* 3
+  Game Changers, it does not require any, so the gate turns a ceiling into a floor, and 40 of
+  97 real Bracket-3-labelled decks hold zero Game Changers and get capped at 2. **But lifting
+  the cap alone makes it WORSE** (the placement code branches on `floor == 1 and cap == 2`
+  exactly, so widening the cap makes every zero-GC deck fall through to `bracket = floor` —
+  Bracket 1 for everything). Confirmed still the current shipped behaviour
+  (`ratings/bracket.py:196-197`) as of 2026-08-25, and correctly so: the cap was never the
+  binding constraint, a working discriminator for WHERE in [1,3] a zero-GC deck sits is, and
+  none has been found. This is exactly what `plays_up` (Phase 4) exists to communicate honestly
+  instead of guessing.
+
+**Nothing here is open work waiting for a next session.** If a future attempt wants to revisit
+B2/B3, it needs a genuinely new signal not yet swept — re-running the existing sweep will
+reproduce the same "always say B2" result, not a new one.
+
+**Target the right metric, which was already the conclusion above independently reached from
+Phase 2's own angle.** Exact-match rewards guessing the annotator; **within-one (91.6% → 95%)**
+is the metric that can honestly move, and stays the accept bar going forward.
 
 ### Phase 4 — surface it honestly
 
