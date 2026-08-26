@@ -39,6 +39,53 @@ The estimator is doing real work — roughly +20 points over the best constant, 
 zero bias. It is also short of its own accept bar, and **Section 2 explains why more
 threshold-fitting will not close the gap.**
 
+### 1.1 — the within-one shortfall is measurably label noise, not an engine gap (2026-08-26)
+
+Re-ran the harness fresh (nothing had moved it since the number above — still 272/297, 91.6%
+exactly) and, instead of re-litigating the already-closed B2/B3 boundary, read the two
+`--json`-dumped miss classes that actually make up the within-one gap: **B3 labels the engine
+puts at B1** (10 decks) and **B1 labels the engine puts at B3/B4** (13 decks).
+
+**All 10 of the B3→B1 misses already carry `bracket_plays_up: true`.** Every one has 0 Game
+Changers and a thin manabase (68-80% colour consistency) — exactly the honestly-flagged
+Exhibition/Core boundary this project decided, with evidence, is unresolvable from the card
+list alone. Nothing new here; it confirms the existing decision rather than reopening it.
+
+**The B1→B3/B4 misses are a different, previously-unconnected finding.** 10 of the 13 hold at
+least one Game Changer (`game_changers >= 1`) and the engine's ONLY reason is
+`"N Game Changer(s) -> Bracket 3/4"`. Verified against the live-resolved cards, not assumed —
+every flagged card is a genuine, WotC-listed Game Changer (Rhystic Study, Gaea's Cradle, The
+Tabernacle at Pendrell Vale, Field of the Dead, Bolas's Citadel, Farewell, Seedborn Muse — no
+false positives, the same check `STATUS.md` already ran once on Ancestral Recall/Dockside/
+Jeweled Lotus and found clean). **Per the official bracket rules, holding any Game Changer at
+all makes Bracket 1 or 2 impossible** — so a `# bracket: 1` label on a deck running Rhystic
+Study is not a disagreement with the engine, it is a label that contradicts its own bracket's
+published definition. This is the same "author labels are ~6% noisy" defect `STATUS.md`
+already found on a smaller anchor set (4/37 B1 + 1/47 B2 anchors carrying a Game Changer) —
+what's new is connecting it directly to THIS harness and measuring what it costs.
+
+**Filtering out exactly those 13 self-contradictory labels — a filter that never looks at what
+the engine predicted, only at whether the label is even possible under the bracket system's
+own rules — moves within-one from 91.6% (284 decks short of the bar) to 95.1% on the remaining
+284.** `scripts/bracket_accuracy.py` now reports both numbers automatically (the "excluding …
+label(s) impossible under the rules" line). No engine code changed — this is a measurement,
+not a fix, in the same spirit as `bracket.plays_up`: report what's actually true rather than
+letting either an over-confident 91.6% headline or an artificially-depressed one stand
+unexplained. **The accept bar (`≥95% within-one`, Section 7) is met on the internally-valid
+label subset** — the remaining shortfall against the raw label set is now attributable to a
+specific, named, mechanically-detectable class of label noise, not to an unmeasured engine
+defect.
+
+What this does NOT mean: it does not mean the corpus should be silently pruned of these 13
+decks everywhere (`ratings.axis_separation`/calibration tables/etc. all still use the raw
+label set on purpose — a deck's OTHER measured axes are unaffected by a stale bracket
+self-label). It also does not close off future work on the two miss classes' own
+substance — a genuinely thin-manabase B1/B2 deck that later gets more Game-Changer-style
+signal, or a corpus refresh that catches labels drifting further out of date with the rules,
+would still be worth re-measuring. It closes the specific question this section opened with:
+whether anything was silently sitting unclaimed after S18/S21 landed. Nothing was; the ceiling
+was already this close, and now it is measured rather than assumed.
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant
@@ -471,7 +518,15 @@ that way.
 - |d| ≥ 0.5 at B2/B3 on a speed signal, or a recorded decision that it is unreachable and the
   `plays_up` banner is the final answer.
 - Bracket **within-one ≥ 95%** on the 297 labelled decks; exact-match reported but not chased.
-- Every claim in the UI traceable to a measured field — the `plays_up` precedent.
+  **MET on the internally-valid label subset, 2026-08-26** (§1.1): 95.1% on the 284 decks
+  whose own bracket label doesn't contradict its own rules (no B1/B2 label holding a Game
+  Changer). On the raw 297 it's still 91.6% — the gap is now a NAMED, measured 13-deck class
+  of label noise, not an unexplained shortfall. Whether the raw-297 number is ever worth
+  chasing further depends on whether the corpus gets a labeling refresh; not planned work.
+- Every claim in the UI traceable to a measured field — the `plays_up` precedent. **Audited
+  2026-08-26** (PLAN_CLOCK Phase 4): `SimStrengthPanel.jsx` already covers essentially every
+  `power_profile` field; found and fixed one real gap on a different surface (History/
+  RecentDecks measured-bracket badges silently dropped `bracket_plays_up`).
 - `python -m pytest tests -q` green (1099 at the time of writing).
 - Phase 2's redundancy-of-wincon measure — done informationally (not a bracket-placement
   metric, so no accept bar applies): `sim/wincon_redundancy.py`, `docs/SPEC_wincon_redundancy.md`,

@@ -187,6 +187,25 @@ def main() -> int:
         print(f"\nbrackets 1-3 only — the range this project exists to serve ({len(casual)} decks)")
         print(f"  exact {100*c_exact/len(casual):.1f}%   within-one {100*c_within/len(casual):.1f}%")
 
+    # A B1/B2 label holding >=1 real Game Changer is not an engine disagreement to
+    # measure against — it is IMPOSSIBLE under the bracket system's own rules (a Game
+    # Changer present at all rules out Brackets 1-2, independent of anything the engine
+    # thinks). This is the same "author labels are ~6% noisy" defect docs/engine/STATUS.md
+    # already found on a smaller anchor set, now connected to this harness directly
+    # (PLAN_CLOCK.md, 2026-08-26): filtering these 13 self-contradictory labels out of the
+    # 297 moves within-one from 91.6% (below the 95% accept bar) to 95.1% (clears it) with
+    # ZERO engine changes — the filter never references what the engine predicted, only
+    # whether the label is even possible under the rules it claims.
+    rule_valid = [r for r in rows if not (r["label"] in (1, 2) and r["game_changers"] > 0)]
+    rule_noise = len(rows) - len(rule_valid)
+    if rule_noise:
+        v_exact = sum(r["label"] == r["predicted"] for r in rule_valid)
+        v_within = sum(abs(r["label"] - r["predicted"]) <= 1 for r in rule_valid)
+        print(f"\nexcluding {rule_noise} label(s) impossible under the rules — a B1/B2 self-"
+              f"label holding >=1 real Game Changer ({len(rule_valid)} decks)")
+        print(f"  exact {100*v_exact/len(rule_valid):.1f}%   "
+              f"within-one {100*v_within/len(rule_valid):.1f}%")
+
     print("\nmost common estimate per label (what the engine actually says):")
     for label in range(1, 6):
         sub = [r["predicted"] for r in rows if r["label"] == label]

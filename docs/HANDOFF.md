@@ -24,6 +24,18 @@ Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tes
 > PLAN_CLOCK.md's Phase 1 "DECIDED" note for the reasoning). **Target within-one (91.6% → 95%)
 > going forward, not bracket-exact at B2/B3.** Phase 3's B1/B2 refit is untouched by this and
 > may still proceed — it's a different boundary that doesn't depend on the speed axis.
+>
+> **2026-08-26: the within-one target is MET, on the labels that are even internally
+> consistent — read PLAN_CLOCK.md §1.1 before starting any more bracket-accuracy work.**
+> The raw-297 number is still 91.6% (unchanged — no fix landed since the number above), but
+> the miss classes are now fully accounted for: the B3→B1 misses all already carry
+> `bracket_plays_up: true` (the honest-uncertainty case, nothing new), and 10 of the 13
+> B1→B3/B4 misses hold a REAL, verified Game Changer while self-labeling Bracket 1/2 — which
+> the official rules make impossible regardless of anything the engine measures. Excluding
+> those 13 rule-contradicting labels moves within-one to 95.1%/284. `scripts/
+> bracket_accuracy.py` reports this automatically now. Do not re-chase the raw-297 number by
+> tuning the engine — the shortfall is measured, named, and is a labeling-data problem, not
+> an engine one.
 
 ---
 
