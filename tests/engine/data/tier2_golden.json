@@ -90,13 +90,13 @@
     "wins_b": 1
   },
   "commander_recast": {
-    "avg_turns": 7.325,
+    "avg_turns": 7.3,
     "combo_wins": 0,
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
-    "wins_a": 0,
-    "wins_b": 40
+    "wins_a": 8,
+    "wins_b": 32
   },
   "counter_control_mirror": {
     "avg_turns": 9.175,

@@ -76,6 +76,17 @@ from mythgauntlet.sim.tier0 import SimCard, _can_pay, _Source
 _REMOVAL_TYPES = {"creature", "permanent", "artifact", "enchantment", "any", "planeswalker"}
 _EACH_CAP = 6  # cap on a "for each creature you control" board-scaled amount
 
+# CR 704.5a: a player with 21+ combat damage from a single commander loses the game.
+COMMANDER_DAMAGE_LETHAL = 21
+
+
+def commander_damage_lost(player: "_Player") -> bool:
+    """Has `player` taken lethal (>=21) combat damage from any ONE opposing commander?
+    The single shared check for every win-condition call site (docs/SPEC_commander_damage.md)
+    -- a duplicated `>= 21` at each site is exactly the "two structures must agree" class this
+    repo has been bitten by before."""
+    return any(dmg >= COMMANDER_DAMAGE_LETHAL for dmg in player.commander_damage_taken.values())
+
 
 @dataclass(frozen=True)
 class DuelConfig:
@@ -146,6 +157,15 @@ class _Player:
     decked: bool = False
     combos: tuple[frozenset[str], ...] = ()  # game-ending combos (normalized piece names)
     combo_pieces: frozenset[str] = frozenset()  # union, for the agent's assemble nudge
+    # CR 704.5a / the "21 rule": cumulative COMBAT damage taken from ONE opposing commander,
+    # keyed by that commander's controller's seat key. A player loses if any single entry
+    # reaches COMMANDER_DAMAGE_LETHAL. Only accrues from unblocked attacks (_apply_declare_
+    # blocks in game.py) -- a blocked commander deals its damage to the blocking creature,
+    # not the player, so nothing here to add. Partner commanders are NOT tracked separately
+    # (this engine represents at most one on-battlefield commander permanent per player, see
+    # _Permanent.is_commander) -- a real partner pair's two counters would need to stay
+    # distinct by SOURCE PERMANENT, not just source player, which this dict does not do.
+    commander_damage_taken: dict[str, int] = field(default_factory=dict)
 
     def draw(self, n: int) -> None:
         for _ in range(n):

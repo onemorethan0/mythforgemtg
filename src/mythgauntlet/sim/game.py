@@ -51,6 +51,7 @@ from mythgauntlet.sim.tier2 import (
     _Permanent,
     _Player,
     _resolve,
+    commander_damage_lost,
 )
 
 # --- actions -----------------------------------------------------------------------------
@@ -231,6 +232,7 @@ def _clone_player(p: _Player) -> _Player:
         decked=p.decked,
         combos=p.combos,
         combo_pieces=p.combo_pieces,
+        commander_damage_taken=dict(p.commander_damage_taken),
     )
 
 
@@ -366,11 +368,12 @@ def _adjudicate(state: GameState) -> None:
 
 
 def _register_deaths(state: GameState) -> bool:
-    """N-player elimination: any living player at <=0 life or decked is out; the game ends when
-    one (or zero) remains. Returns True if the game finished. 1v1 keeps its exact win-checks."""
+    """N-player elimination: any living player at <=0 life, decked, or dealt 21+ combat
+    damage by a single opposing commander (CR 704.5a) is out; the game ends when one (or
+    zero) remains. Returns True if the game finished. 1v1 keeps its exact win-checks."""
     for k in state.living():
         p = state.players[k]
-        if p.decked or p.life <= 0:
+        if p.decked or p.life <= 0 or commander_damage_lost(p):
             state.eliminated.add(k)
     living = state.living()
     if len(living) <= 1:
@@ -437,6 +440,9 @@ def _do_turn_start(state: GameState) -> None:
         if opp.life <= 0:
             _finish(state, state.active, "life")
             return
+        if commander_damage_lost(opp):
+            _finish(state, state.active, "commander_damage")
+            return
     state.land_played = False
     state.casts_this_main = 0
     state.combat_begun = False
@@ -458,6 +464,8 @@ def _do_post_main(state: GameState) -> None:
         _finish(state, state.other, "decked")
     elif opp.life <= 0:
         _finish(state, state.active, "life")
+    elif commander_damage_lost(opp):
+        _finish(state, state.active, "commander_damage")
     elif me.combo_ready():
         _finish(state, state.active, "combo")
     else:
@@ -509,6 +517,10 @@ def _do_end_step(state: GameState) -> None:
         _finish(state, state.active, "life")
     elif me.life <= 0:
         _finish(state, state.other, "life")
+    elif commander_damage_lost(opp):
+        _finish(state, state.active, "commander_damage")
+    elif commander_damage_lost(me):
+        _finish(state, state.other, "commander_damage")
     else:
         state.phase = "next"
 
@@ -893,6 +905,11 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
         blk = assignment.get(i)
         if blk is None or blk not in opp.battlefield:
             opp.life -= atk.power
+            if atk.is_commander:
+                # CR 704.5a: only UNBLOCKED combat damage to a PLAYER counts -- a blocked
+                # commander deals its damage to the blocking creature, tracked nowhere here.
+                key = state.active
+                opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + atk.power
             if atk.triggers:
                 unblocked_hitters.append(atk)
         else:

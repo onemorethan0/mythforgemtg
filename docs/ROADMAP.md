@@ -140,7 +140,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |
 | **S16** | ~~if/otherwise pairs double-credited~~ · condition-check gap partly remains | **24 cards** double-credited (Approach of the 2nd Sun = free win) · **15.78%** of store has a condition | **Done** (otherwise-fix) / open (general case) | S / M |
 | S17 | Combo determinism marker vocabulary | +1 real verb widened, 1 attempted widening reverted (false-positived Thassa's Oracle) | **Done** (this pass) | — |
-| S18 | No legend rule / commander-damage modeling in sim | re-confirmed current 2026-08-25 — honest coverage gap, not a fabrication | Low | L |
+| **S18** | ~~No legend rule / commander-damage modeling in sim~~ | **commander damage fixed + verified** (golden master + 10,240 real games) · legend rule found not applicable (no clone effects modeled) | **Done** | — |
 | **S19** | ~~`counter target spell` ignores "can't be countered"~~ | **23 real cards audited, 0 false positives** — non-issue | **Done** | — |
 | **S20** | ~~Partner-commander build is 99+1, not 98+2~~ | **fixed + verified** 2026-08-25 — `partner_count` param, live on 2 real pairs | **Done** | — |
 
@@ -1159,13 +1159,35 @@ be partially outdated.
   Possibility Storm's own randomness, and Chaos Warp's ("shuffles... reveals the top card",
   random in effect but never uses the word "random") remain uncaught — documented as residual
   gaps rather than guessed at with an unproven pattern.
-- **S18 — STILL OPEN, CONFIRMED CURRENT.** Re-checked 2026-08-25: zero references to a
-  commander-damage counter or the legendary rule anywhere in `sim/game.py` or `sim/tier2.py`.
-  No legend rule or commander-damage (21-rule) modeling anywhere in the simulator. Combined with
-  the already-documented rung-1 blindness to ward/hexproof/indestructible, an entire
-  Voltron/commander-damage win condition is structurally invisible to the strength engine. This
-  is an honest coverage gap, not a fabrication. Unchanged priority (Low/Large) — a real feature
-  addition to the state machine, not a quick fix, and out of scope for this pass.
+- **S18 — COMMANDER DAMAGE FIXED 2026-08-25; LEGEND RULE FOUND NOT APPLICABLE.** Full writeup:
+  `docs/SPEC_commander_damage.md`. A player taking 21+ combat damage from a single opposing
+  commander now loses (CR 704.5a), wired into the T2 state machine at the one shared damage-
+  application site (`_apply_declare_blocks`) and all four existing win-check call sites,
+  behind one shared `commander_damage_lost()` helper rather than a duplicated threshold at
+  each site. **Verified two ways.** The golden master (`tests/data/tier2_golden.json`,
+  93 synthetic scenarios) was deliberately regenerated: exactly ONE scenario changed —
+  `commander_recast` (a 5/5 commander vs. an aggro deck) flipped from a 40-0 blowout to
+  `wins_a: 8, wins_b: 32`, which is the S18 gap made concrete (a 5/5 connecting unblocked
+  reaches 21 damage on its 5th swing, a kill the old engine structurally could not see); the
+  other 92 scenarios are byte-identical, confirming the blast radius is exactly the
+  commander-damage path. Then a live, real-corpus check: `mythgauntlet gauntlet --opponents 3
+  --games 10` — **10,240 real T2 games, zero crashes** (the run's only errors are an
+  unrelated external Commander Spellbook API rate limit, not this change). New unit tests in
+  `tests/engine/test_game.py` pin the exact threshold, clone independence (a field missing
+  from MCTS's own state-clone silently stops existing under search while staying real at the
+  root — checked, and added correctly), blocked-vs-unblocked accrual, and that a
+  non-commander dealing the same raw damage does NOT trigger it.
+  **The legend rule half is NOT a live gap and was not implemented, for a checkable reason**:
+  the engine has no clone/copy-effect modeling anywhere, so no code path can ever put two
+  same-named legendary permanents on one battlefield — the state-based check's own
+  precondition cannot occur under the current card-effect model. Not deferred; not
+  applicable until clone effects are a modeled mechanic, which is real, separate, larger
+  future work. **Still open, documented in the spec**: partner-commander damage isn't
+  tracked per-source-commander (this engine already simulates a second commander as an
+  ordinary library card, not a dedicated attacking permanent, so this inherits rather than
+  introduces that gap), and `score()`/`score_reward()` (turn-cap adjudication, MCTS rollout
+  evaluation) don't read accumulated commander damage — the win condition now fires
+  correctly, only the search heuristic doesn't yet see progress toward it before the kill.
 - **S19 — AUDITED, NO REAL INSTANCES FOUND.** Swept all 23 real cards in the 34,777-card store
   matching `_COUNTER_RE` ("counter target ... spell") for a nearby "can't be countered" clause
   that would make the tag a false positive. Zero found. The originally-suspected failure shape
