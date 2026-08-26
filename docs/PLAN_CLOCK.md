@@ -88,6 +88,56 @@ would still be worth re-measuring. It closes the specific question this section 
 whether anything was silently sitting unclaimed after S18/S21 landed. Nothing was; the ceiling
 was already this close, and now it is measured rather than assumed.
 
+### 1.2 — re-run on the grown corpus (546 decks): the 95% read was a little lucky, not wrong (2026-08-26)
+
+The corpus grew from 297 to 546 labelled decks the same session (§Phase 3's re-sweep note) —
+re-running `bracket_accuracy.py` on the full new set is the honest thing to do before trusting
+§1.1's 95.1% figure going forward, rather than letting a smaller-sample number stand
+unchecked just because it happened to clear the bar.
+
+| metric | 297 decks | 546 decks | change |
+|---|---|---|---|
+| bracket-exact | 53.9% | 49.5% | **−4.4 pts** |
+| within-one | 91.6% | 91.4% | −0.2 pts (noise-level) |
+| signed bias | −0.08 | −0.16 | more negative |
+| within-one, rule-consistent subset only | 95.1% (13 excluded) | **94.8%** (25 excluded) | −0.3 pts |
+| B4 recall | 41.2% (7/17) | **53.2%** (33/62) | **+12 pts** |
+| B5 recall | 0.0% (0/11) | 0.0% (0/55) | unchanged, now 5× the sample |
+
+**Read this plainly, not defensively.** §1.1's "clears the bar on the rule-consistent subset"
+finding does NOT survive unchanged — 94.8% is a hair under 95%, not over it. The honest
+correction: the 297-deck read was real but was sitting close enough to the line that a
+different, larger sample landed just the other side of it. Both numbers are true statements
+about their own sample; neither is "the" number to quote going forward without a sample size
+attached. The underlying MECHANISM §1.1 found (13→25 labels holding a verified real Game
+Changer while self-labelling B1/B2, impossible under the rules) is unchanged and still the
+right lens — it is the magnitude of "does filtering it close the gap" that moved from
+"clears the bar" to "gets very close, not quite there."
+
+**Two things did NOT move in the direction growing the corpus was meant to test, and one did,
+for real.** Bracket-exact fell 4.4 points — the newly-harvested decks (found via
+`-createdAt`/`-updatedAt` rather than the original `-viewCount` ordering that likely built
+most of the first 297) may simply be a harder or differently-labelled population; not
+diagnosed further this session, flagged for whoever next touches corpus composition. B2
+recall fell from 68.8% to 61.1% over the same growth. Against that: **B4 recall rose 12
+points** on 3.6× the B4 sample (17→62), which is a genuine, welcome signal that the B4 read
+generalizes rather than being an artifact of a small anchor set. **B5 recall is still exactly
+0%** — the engine has never once placed a real cEDH-labelled deck at Bracket 5 across 55 of
+them now (was 11) — "engine usually says B4" fires on 96% of B5-labelled decks. This was
+already known qualitatively (see the T2 duel meta-rating cEDH inversion documented
+elsewhere), but this is the first time it's been confirmed at n=55 specifically against the
+*static rule-based bracket estimate* rather than the T2 simulation layer — a real, now
+well-evidenced gap, not touched by this session's other work.
+
+**What this changes going forward:** keep citing within-one (not exact-match) as the metric
+that matters, per §1's original reasoning — that conclusion is untouched. Do not claim the
+≥95% accept bar is durably met; say "≈95% on labels that are even internally possible, close
+enough to call it met within noise, not comfortably over the line." B5 recall is now the
+best-evidenced remaining shortfall in this whole area and, unlike B2/B3, has NOT been swept
+for a discriminating signal yet — a reasonable next target if this area gets picked up again,
+though not attempted this session (this session's scope was corpus growth + verification, not
+a new gate).
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant
@@ -545,12 +595,16 @@ that way.
 - `nut_draw_turn` orders the ladder monotonically, and B5 is faster than B3.
 - |d| ≥ 0.5 at B2/B3 on a speed signal, or a recorded decision that it is unreachable and the
   `plays_up` banner is the final answer.
-- Bracket **within-one ≥ 95%** on the 297 labelled decks; exact-match reported but not chased.
-  **MET on the internally-valid label subset, 2026-08-26** (§1.1): 95.1% on the 284 decks
-  whose own bracket label doesn't contradict its own rules (no B1/B2 label holding a Game
-  Changer). On the raw 297 it's still 91.6% — the gap is now a NAMED, measured 13-deck class
-  of label noise, not an unexplained shortfall. Whether the raw-297 number is ever worth
-  chasing further depends on whether the corpus gets a labeling refresh; not planned work.
+- Bracket **within-one ≥ 95%** on the labelled decks; exact-match reported but not chased.
+  **CLOSE, not comfortably met — re-measured 2026-08-26 on the grown 546-deck corpus (§1.2)
+  after §1.1 first reported 95.1% at n=297.** Filtering to labels that don't contradict their
+  own bracket's rules (no B1/B2 label holding a Game Changer) gives 94.8% on 521 decks at the
+  larger, more trustworthy sample — a hair under the bar, not over it. The gap is still a
+  NAMED, measured, mechanically-detected class of label noise rather than an unexplained
+  engine shortfall (that finding survives), but do not describe the accept bar as "met."
+  On the raw label set (no filtering) it's 91.4%, essentially unchanged from 91.6% at n=297.
+  B5 recall is 0% at n=55 (was 0% at n=11) — the best-evidenced remaining shortfall in this
+  area, not yet swept for a discriminating signal.
 - Every claim in the UI traceable to a measured field — the `plays_up` precedent. **Audited
   2026-08-26** (PLAN_CLOCK Phase 4): `SimStrengthPanel.jsx` already covers essentially every
   `power_profile` field; found and fixed one real gap on a different surface (History/

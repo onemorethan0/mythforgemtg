@@ -25,17 +25,20 @@ Baseline for every number here is commit `c6ddd79`. Suite went **576 → 956 tes
 > going forward, not bracket-exact at B2/B3.** Phase 3's B1/B2 refit is untouched by this and
 > may still proceed — it's a different boundary that doesn't depend on the speed axis.
 >
-> **2026-08-26: the within-one target is MET, on the labels that are even internally
-> consistent — read PLAN_CLOCK.md §1.1 before starting any more bracket-accuracy work.**
-> The raw-297 number is still 91.6% (unchanged — no fix landed since the number above), but
-> the miss classes are now fully accounted for: the B3→B1 misses all already carry
-> `bracket_plays_up: true` (the honest-uncertainty case, nothing new), and 10 of the 13
-> B1→B3/B4 misses hold a REAL, verified Game Changer while self-labeling Bracket 1/2 — which
-> the official rules make impossible regardless of anything the engine measures. Excluding
-> those 13 rule-contradicting labels moves within-one to 95.1%/284. `scripts/
-> bracket_accuracy.py` reports this automatically now. Do not re-chase the raw-297 number by
-> tuning the engine — the shortfall is measured, named, and is a labeling-data problem, not
-> an engine one.
+> **2026-08-26: the within-one target is CLOSE but not comfortably met, and the corpus grew
+> 297→546 the same day — read PLAN_CLOCK.md §1.1 AND §1.2 before starting any more
+> bracket-accuracy work.** The miss classes are fully accounted for: B3→B1 misses all carry
+> `bracket_plays_up: true` (honest uncertainty, nothing new); B1→B3/B4 misses that hold a
+> REAL, verified Game Changer while self-labeling Bracket 1/2 are impossible under the
+> official rules regardless of anything the engine measures (§1.1's finding, now measured
+> against 546 decks too, §1.2). **Correction to an earlier version of this note**: filtering
+> those rule-contradicting labels out gave 95.1%/284 at n=297, which read as "bar met" — but
+> re-measured on the grown 546-deck corpus it's **94.8%/521**, a hair under the bar, not over
+> it. Both numbers are real; the larger one is the more trustworthy one going forward. B5
+> recall is 0% at n=55 now (was 0% at n=11) — the best-evidenced remaining shortfall in this
+> area, not yet swept for a discriminating signal. Do not re-chase the raw label-set number by
+> tuning the engine — the shortfall is measured, named, and is mostly a labeling-data problem
+> — but do not claim the accept bar is durably cleared either.
 
 ---
 
