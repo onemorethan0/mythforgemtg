@@ -272,13 +272,7 @@ The player's third axis, and the one the engine models least well. Today `resili
 combat clock*.
 
 What is wanted is closer to: *how many pieces of interaction must the table spend to stop the
-win?* A deck that folds to a single counterspell is not the deck that needs three. Sketch:
-re-run the sim removing the 1st, 2nd, 3rd most important piece of the winning line and measure
-the kill-turn delay per piece — a redundancy-of-wincon measure rather than a wipe-recovery
-measure. **This redesign is NOT built.** It needs a way to identify "the winning line's most
-important piece" per deck (candidates: combo pieces if `combos_checked`, the storm engine's own
-payoff cards, overrun's alpha-strike enabler, burn payoffs) and a new ablation harness — a real,
-uncalibrated feature, not attempted this pass without a way to measure whether it's right.
+win?* A deck that folds to a single counterspell is not the deck that needs three.
 
 **Do Phase 1 first.** Measuring "what stops the win" is meaningless while the clock cannot see
 the win.
@@ -303,10 +297,65 @@ it, and now it doesn't. New tests: `tests/engine/test_clock.py` (`apply_nut_kill
 direct tests before this — only indirect coverage via `analyze_deck`'s own integration path)
 and two additions to `tests/engine/test_tier1.py`. 1248/1248 tests green.
 
-**What this does NOT do**: it does not build the redundancy-of-wincon ablation measure
-sketched above. `resilience` still only models one disruption class (a board wipe) at one
-fixed turn — this fix makes that EXISTING measurement honest about non-combat wins, it does
-not add the new "how many pieces of interaction" measurement Phase 2 actually calls for.
+**What that fix did NOT do**: it did not build the redundancy-of-wincon ablation measure
+this section calls for. `resilience` still only models one disruption class (a board wipe) at
+one fixed turn — the fix made that EXISTING measurement honest about non-combat wins; it did
+not add the new "how many pieces of interaction" measurement below.
+
+**The redundancy-of-wincon measure itself — BUILT 2026-08-25.** Full design in
+`docs/SPEC_wincon_redundancy.md`; summary here.
+
+Rather than a single "most important piece" ranking (the original sketch's own wording),
+the real design question turned out to be that the deck's four non-combat kill mechanisms
+(the same ones `apply_nut_kills` reads: storm granter, magecraft/cast-damage burn payoffs,
+the overrun finisher, a scaling-burn finisher) **combine cards under three DIFFERENT rules**
+— OR, capped-sum, and max — and a uniform "rank cards, remove the top N" approach silently
+misreports three of the four. `sim/wincon_redundancy.analyze_wincon_redundancy` instead
+re-runs the real `estimate_go_off`/`estimate_overrun` after each candidate removal and lets
+the estimator itself decide, which is what makes the OR-combination case (two storm granters
+— removing one is a complete no-op) come out right without special-casing it.
+
+Cheap by construction: it reuses the SAME nut-draw mana curve and nut board `analyze_deck`
+already computes for the Ceiling axis's own `go_off`/`overrun` figures — no new simulation
+pass, just a handful more deterministic calls. Informational only, like `resilience_score`
+— it does not feed `estimate_bracket` or `compute_ceiling`, so it did not need to clear
+`axis_separation.py`'s Cohen's-d gate (that gate exists to keep an unproven signal out of a
+VERDICT; this doesn't touch one).
+
+**Verified two ways.** Nine synthetic tests (`tests/engine/test_wincon_redundancy.py`) pin
+the exact combination-rule behaviour, including two non-obvious findings caught only by
+actually running the module rather than hand-deriving expected numbers (a spec-writing
+lesson worth naming): a lone cast-damage payoff can report `pieces_to_disable: None` when a
+separate scaling-burn finisher is independently sufficient without it, and a SOLE granter
+with no payoff at all can flip from "irrelevant" to "the whole plan" depending on whether a
+scaling finisher's damage needs the storm copy multiplier to reach lethal. Then a full,
+unmodified sweep of all **499 corpus decks** through the real `analyze_deck` pipeline: **zero
+exceptions, zero out-of-range values** (a `pieces_to_disable` can never legitimately exceed
+its own candidate count or fall below 1 — checked on every hit), and **79 decks (15.8%)**
+have an applicable non-combat wincon — consistent in magnitude with Phase 1b's own finding
+that only a minority of the population runs these mechanisms at all. Spot-checked by hand
+against 8 individual real decks (`mythgauntlet analyze <corpus deck> --runs 100`), including
+a genuinely useful real finding: one deck runs eight named overrun-class finishers but only
+needs its single BEST one removed to stop the alpha strike on that board width — the other
+seven are backup that never independently mattered.
+
+**A real bug caught in that spot-check, not in the synthetic tests**: `cli.py`'s first
+attempt printed `f"wincon redundancy [{role.role}]: ..."`, and Rich's `Console.print`
+interprets a literal `[word]` as a markup tag — an unrecognised one is silently swallowed
+with no error at all, so the live output read as "wincon redundancy : 1 of 1 piece(s)...",
+the role name vanishing without a trace. Caught only by reading the actual terminal output
+against real corpus decks; no synthetic unit test would have caught it, since none of them
+render through `Console.print`. Fixed by using parentheses instead of brackets.
+
+**Still genuinely open, and deliberately not attempted**: a `ritual_mana` role (Dark Ritual
+class) is out of scope by design — ablating a mana-producing card would invalidate the
+cached mana curve this module holds fixed, and modeling that correctly needs a fresh
+`tier0.simulate()` per candidate, not a deterministic re-check. This reports a CARD COUNT,
+not a turn delay — "3 pieces stop the fast plan" does not say what the deck's fallback clock
+looks like after those 3 are gone; translating "goes_off flips False" into a turn figure
+the way `kill_delay_turns` does would need knowing what the residual clock actually is, which
+is real, separate follow-on work. Neither gap blocks what shipped: both are named in
+`docs/SPEC_wincon_redundancy.md`'s own pitfalls section rather than silently approximated.
 
 ### Phase 3 — re-fit placement · ALREADY RUN, and the answer is recorded, not open
 
@@ -401,3 +450,6 @@ that way.
 - Bracket **within-one ≥ 95%** on the 297 labelled decks; exact-match reported but not chased.
 - Every claim in the UI traceable to a measured field — the `plays_up` precedent.
 - `python -m pytest tests -q` green (1099 at the time of writing).
+- Phase 2's redundancy-of-wincon measure — done informationally (not a bracket-placement
+  metric, so no accept bar applies): `sim/wincon_redundancy.py`, `docs/SPEC_wincon_redundancy.md`,
+  9 tests, corpus-wide sweep clean on all 499 decks (2026-08-25).

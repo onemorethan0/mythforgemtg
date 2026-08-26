@@ -33,6 +33,7 @@ from mythgauntlet.sim.overrun import OverrunReport, estimate_overrun
 from mythgauntlet.sim.storm import GoOffReport, estimate_go_off
 from mythgauntlet.sim.tier0 import SimConfig, simulate
 from mythgauntlet.sim.tier1 import ResilienceReport, compute_resilience, default_wipe_turn
+from mythgauntlet.sim.wincon_redundancy import WinconRedundancyReport, analyze_wincon_redundancy
 
 # A pod goes long: the single-opponent goldfish horizon (default 8) is far too short to reach
 # TABLE-lethal damage (3x40), so the Pod clock reads a longer goldfish. Shares the early turns
@@ -53,6 +54,7 @@ class DeckAnalysis:
     wipe_turn: int | None
     go_off: GoOffReport
     overrun: OverrunReport
+    wincon_redundancy: WinconRedundancyReport
     combo_profile: ComboAssessment | None = None  # graded combos (None if no report supplied)
     insight: DeckInsight | None = None  # deck-specific narrative (archetype/why/cards/verdict)
 
@@ -114,6 +116,16 @@ def analyze_deck(
     # go-wide overrun: read the NUT board (a high percentile of the go-wide distribution).
     nut_power, nut_creatures = _nut_board(runs)
     overrun = estimate_overrun(all_cards, nut_power, nut_creatures)
+    # PLAN_CLOCK Phase 2 / docs/SPEC_wincon_redundancy.md: "how many pieces of interaction
+    # does it take to stop the win", for the four non-combat mechanisms go_off/overrun
+    # already read. Reuses the SAME mana_by_turn/nut_power/nut_creatures computed above --
+    # no extra simulation, just a handful more deterministic estimator calls -- so unlike
+    # `resilience` this is not gated behind a flag. Informational only: not consumed by
+    # estimate_bracket or compute_ceiling (see the spec's Scope boundary).
+    wincon_redundancy = analyze_wincon_redundancy(
+        all_cards, mana_by_turn, nut_power, nut_creatures, cfg.turns,
+        commander_names=frozenset(c.name for c in resolved.commanders),
+    )
     ceiling = compute_ceiling(
         runs, cfg, go_off_turn=go_off.earliest_turn, overrun_alpha=overrun.can_alpha_strike
     )
@@ -173,6 +185,7 @@ def analyze_deck(
         report=report, coverage=coverage, interaction=interaction, ceiling=ceiling, pod=pod,
         resilience=resilience, bracket=bracket, game_changers=game_changers,
         wipe_turn=wipe_turn, go_off=go_off, overrun=overrun, combo_profile=combo_profile,
+        wincon_redundancy=wincon_redundancy,
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
     return analysis

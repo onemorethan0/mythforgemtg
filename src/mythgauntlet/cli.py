@@ -384,6 +384,28 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
         )
     if ins is not None and not a.go_off.goes_off and not a.overrun.can_alpha_strike:
         console.print(f"  [dim]why: {ins.axis_why.get('Ceiling', '')}[/dim]")
+    # PLAN_CLOCK Phase 2 / docs/SPEC_wincon_redundancy.md: how many targeted answers would
+    # fully stop the fast non-combat kill(s) above. Only prints roles that are ALREADY part
+    # of a demonstrated kill (see the spec's own scope boundary) -- silent for the majority
+    # of decks with no storm/overrun/burn engine at all.
+    for role in a.wincon_redundancy.roles:
+        # NOT an f-string bracket around role.role -- Console.print treats a literal
+        # "[word]" as Rich markup and silently swallows any tag it doesn't recognise
+        # (verified live: "wincon redundancy [overrun_finisher]: ..." printed as
+        # "wincon redundancy : ...", the role name vanishing with no error at all).
+        cmdr_note = " (includes a commander -- recastable, not truly gone)" if role.involves_commander else ""
+        if role.pieces_to_disable is None:
+            console.print(
+                f"  wincon redundancy ({role.role}): removing "
+                f"{', '.join(role.contributing_cards)} alone does not stop the kill -- "
+                f"another role is independently sufficient{cmdr_note}"
+            )
+        else:
+            console.print(
+                f"  wincon redundancy ({role.role}): {role.pieces_to_disable} of "
+                f"{len(role.contributing_cards)} piece(s) must be answered to fully "
+                f"disable it{cmdr_note}"
+            )
 
     pod = a.pod
     pod_close = (

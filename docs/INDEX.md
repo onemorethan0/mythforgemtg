@@ -74,7 +74,8 @@ The engine that measures brackets and deck strength ships in this repo at `src/m
 - **Architecture & conventions:** [`../CLAUDE.md`](../CLAUDE.md)
 - **Module specs** (`SPEC_*.md`) — the written-first specifications that drafted and now pin
   `collection_pool`, `deck_quality`, `deck_themes`, `edhrec_lift`, `lift_stats`, `redundancy`,
-  `theme_match` and the collection UI. Tests are written from these, not from the implementation.
+  `theme_match`, `wincon_redundancy` and the collection UI. Tests are written from these, not
+  from the implementation.
 
 ## Real entry-point scripts (root)
 | Script | Purpose |

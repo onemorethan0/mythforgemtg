@@ -318,6 +318,23 @@ def create_app(
                 "kill_delay_turns": a.resilience.kill_delay_turns,
             }
 
+        # PLAN_CLOCK Phase 2 / docs/SPEC_wincon_redundancy.md: how many pieces of targeted
+        # interaction would it take to fully disable the deck's fast non-combat kill(s).
+        # Informational, like resilience above -- absent (empty roles) for the majority of
+        # decks that have no storm/overrun/burn engine at all.
+        wincon_redundancy = {
+            "applicable": a.wincon_redundancy.applicable,
+            "roles": [
+                {
+                    "role": r.role,
+                    "contributing_cards": list(r.contributing_cards),
+                    "pieces_to_disable": r.pieces_to_disable,
+                    "involves_commander": r.involves_commander,
+                }
+                for r in a.wincon_redundancy.roles
+            ],
+        }
+
         # A compact, frontend-friendly Power Profile (the measured differentiators).
         power_profile = {
             "consistency": round(report.consistency_score, 1),
@@ -386,6 +403,7 @@ def create_app(
             },
             "report": dataclasses.asdict(report),
             "resilience": resilience,
+            "wincon_redundancy": wincon_redundancy,
             "power_profile": power_profile,
             "semantics_coverage": {
                 "executable_share": coverage.executable_share,
