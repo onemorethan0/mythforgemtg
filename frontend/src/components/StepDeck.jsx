@@ -677,7 +677,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
                 <div style={{ fontSize: 11, color: '#78716c', marginBottom: 6 }}>Deck health</div>
                 {stats.quality.curve && (
-                  <div style={{ fontSize: 12, marginBottom: 6 }}>
+                  <div style={{ fontSize: 12, marginBottom: 8 }}>
                     <span style={{ color: '#a8a29e' }}>Curve: </span>
                     <span style={{ fontWeight: 700, color:
                       stats.quality.curve.verdict === 'ok' ? '#86efac' : '#fbbf24' }}>
@@ -686,6 +686,47 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                     <span style={{ color: '#78716c' }}> · avg {stats.quality.curve.average}</span>
                   </div>
                 )}
+                {/* Mana-value histogram: `buckets`/`target` (per-MV counts, 7 = "7 or more")
+                    have always been in the API response, just never drawn — the panel only
+                    ever showed the top-line verdict + average. A bare "top-heavy" verdict
+                    doesn't say WHERE; this does, at a glance. The white tick is the reference
+                    curve for this commander's own mana value (deck_quality.curve_target),
+                    not a fixed ideal — a 7-drop commander's target already skews cheaper. */}
+                {stats.quality.curve?.buckets && stats.quality.curve?.target && (() => {
+                  const curve = stats.quality.curve
+                  const mvs = [1, 2, 3, 4, 5, 6, 7]
+                  const val = (obj, mv) => obj[mv] ?? obj[String(mv)] ?? 0
+                  const maxVal = Math.max(1, ...mvs.map((mv) => Math.max(val(curve.buckets, mv), val(curve.target, mv))))
+                  const H = 46
+                  return (
+                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: H + 32, marginBottom: 8 }}>
+                      {mvs.map((mv) => {
+                        const actual = val(curve.buckets, mv)
+                        const target = val(curve.target, mv)
+                        const barH = Math.max(actual > 0 ? 2 : 0, Math.round((actual / maxVal) * H))
+                        const tickY = H - Math.round((target / maxVal) * H)
+                        const over = actual > target
+                        const under = actual < target
+                        return (
+                          <div key={mv} title={`MV ${mv === 7 ? '7+' : mv}: ${actual} card${actual === 1 ? '' : 's'} (target ${target})`}
+                               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, cursor: 'help' }}>
+                            <div style={{ position: 'relative', width: '100%', height: H, display: 'flex', alignItems: 'flex-end' }}>
+                              <div style={{
+                                width: '100%', height: barH, borderRadius: '3px 3px 0 0',
+                                background: over ? '#fbbf24' : under ? '#57534e' : '#38bdf8',
+                              }} />
+                              {target > 0 && (
+                                <div style={{ position: 'absolute', left: -1, right: -1, top: tickY, height: 2, background: '#f5f5f4', opacity: 0.85 }} />
+                              )}
+                            </div>
+                            <div style={{ fontSize: 9.5, color: '#78716c', marginTop: 3 }}>{mv === 7 ? '7+' : mv}</div>
+                            <div style={{ fontSize: 9, fontWeight: 600, color: over ? '#fbbf24' : under ? '#a8a29e' : '#86efac' }}>{actual}</div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )
+                })()}
                 {stats.quality.colors && (
                   <div style={{ fontSize: 12, marginBottom: 6 }}>
                     <span style={{ color: '#a8a29e' }}>Mana: </span>
