@@ -942,6 +942,12 @@ def test_collection_sort_and_filter():
 
     check("filt.color",  names(collection_index.filter_rows(rows, colors=["R"])), ["Lightning Bolt"])
     check("filt.multi",  names(collection_index.filter_rows(rows, colors=["Multicolor"])), ["Boros Charm"])
+    # color_presence is colors' complement: "W" must ALSO catch the Boros card (it has a
+    # white pip), which the exclusive `colors` bucket above deliberately does not.
+    check("filt.presence.w", names(collection_index.filter_rows(rows, color_presence=["W"])),
+          ["Boros Charm", "Serra Angel"])
+    check("filt.presence.r", names(collection_index.filter_rows(rows, color_presence=["R"])),
+          ["Lightning Bolt", "Boros Charm"])
     check("filt.type",   names(collection_index.filter_rows(rows, types=["Instant"])),
           ["Lightning Bolt", "Boros Charm"])
     check("filt.cmc",    len(collection_index.filter_rows(rows, cmc_min=1, cmc_max=2)), 3)

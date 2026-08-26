@@ -67,6 +67,7 @@ export default function CollectionStats({ stats, onFilter }) {
 
   const totals    = stats.totals || {}
   const colors    = (stats.colors || []).filter(x => x.distinct > 0)
+  const presence  = (stats.color_presence || []).filter(x => x.distinct > 0)
   const types     = stats.types || []
   const rarities  = stats.rarities || []
   const curve     = stats.curve || []
@@ -124,6 +125,37 @@ export default function CollectionStats({ stats, onFilter }) {
           ))}
         </div>
       </div>
+
+      {/* Colour presence — a DIFFERENT question from the exclusive bucket above: "how much
+          white do I actually have access to" has to count a Boros card as white too, not
+          hide it behind "Multicolor". Same chip style as BreakdownList below, but this one
+          overlaps by design (percentages don't sum to the collection total). */}
+      {presence.length > 0 && (
+        <div style={{ marginTop: 20 }}>
+          <div style={heading}>Colour presence</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {presence.map(entry => (
+              <span key={entry.key}
+                onClick={() => pick({ color_presence: [entry.key] })}
+                title={`${entry.label}: ${entry.distinct} cards with a ${entry.label} pip (incl. multicolor), ${entry.copies} copies`}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5,
+                  padding: '4px 10px', borderRadius: 20, background: c.card,
+                  border: `1px solid ${c.border}`, cursor: onFilter ? 'pointer' : 'default',
+                }}>
+                <span style={{ width: 10, height: 10, borderRadius: '50%',
+                               background: MANA[entry.key] || c.faint, display: 'inline-block' }} />
+                <span style={{ color: c.text }}>{entry.label}</span>
+                <span style={{ color: c.gold, fontWeight: 700 }}>{entry.distinct}</span>
+              </span>
+            ))}
+          </div>
+          <div style={{ fontSize: 11, color: c.faint, marginTop: 6 }}>
+            Counts every card with that colour, including multicolor — not the same as the
+            exclusive buckets above.
+          </div>
+        </div>
+      )}
 
       {/* Mana curve */}
       <div style={{ marginTop: 20 }}>

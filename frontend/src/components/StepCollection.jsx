@@ -26,17 +26,18 @@ const SORTS = [
   ['cmc', 'Mana value'], ['type', 'Type'], ['set', 'Set'], ['edhrec', 'Popularity'],
 ]
 
-const EMPTY_FILTERS = { colors: [], types: [], rarities: [], sets: [],
+const EMPTY_FILTERS = { colors: [], color_presence: [], types: [], rarities: [], sets: [],
                         cmc_min: null, cmc_max: null, min_count: null }
 
 const hasFilters = f =>
-  f.colors.length || f.types.length || f.rarities.length || f.sets.length ||
-  f.cmc_min != null || f.cmc_max != null || f.min_count != null
+  f.colors.length || f.color_presence.length || f.types.length || f.rarities.length ||
+  f.sets.length || f.cmc_min != null || f.cmc_max != null || f.min_count != null
 
 // Filters go on the query string as comma-separated lists; nulls are simply omitted.
 function filterQuery(f) {
   const p = new URLSearchParams()
-  for (const k of ['colors', 'types', 'rarities', 'sets']) if (f[k].length) p.set(k, f[k].join(','))
+  for (const k of ['colors', 'color_presence', 'types', 'rarities', 'sets'])
+    if (f[k].length) p.set(k, f[k].join(','))
   for (const k of ['cmc_min', 'cmc_max', 'min_count']) if (f[k] != null) p.set(k, String(f[k]))
   return p
 }

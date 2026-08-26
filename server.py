@@ -4607,7 +4607,7 @@ def _enriched_collection() -> tuple[list[dict], list[dict]]:
 def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                    colors: str = "", types: str = "", rarities: str = "", sets: str = "",
                    cmc_min: Optional[int] = None, cmc_max: Optional[int] = None,
-                   min_count: Optional[int] = None,
+                   min_count: Optional[int] = None, color_presence: str = "",
                    sort: str = "name", direction: str = "asc"):
     """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
 
@@ -4615,11 +4615,18 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
     rarity are joined in from the local card stores — no network. `colors`/`types`/
     `rarities`/`sets` are comma-separated; values within one are ORed, the criteria are
     ANDed. limit<=0 returns all matches (still capped at 5000 for safety).
+
+    `color_presence` is `colors`' complement, not a duplicate: `colors=W` matches only
+    mono-white rows (the CollectionStats "Colors" bar's exclusive bucket), while
+    `color_presence=W` also matches a Boros card — "does this card have a white pip at
+    all", the question CollectionStats' `color_presence` breakdown answers. See
+    `collection_index.filter_rows`.
     """
     rows, enriched = _enriched_collection()
     matched = filter_rows(enriched, q=q, colors=_csv_param(colors), types=_csv_param(types),
                           rarities=_csv_param(rarities), sets=_csv_param(sets),
-                          cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count)
+                          cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count,
+                          color_presence=_csv_param(color_presence))
     ordered = sort_rows(matched, sort, direction)
     lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
     page = ordered[max(offset, 0): max(offset, 0) + lim]

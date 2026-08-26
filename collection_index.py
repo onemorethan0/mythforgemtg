@@ -243,11 +243,22 @@ def facets(rows: list[dict]) -> dict:
 
 def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
                 rarities=None, sets=None, cmc_min: int | None = None,
-                cmc_max: int | None = None, min_count: int | None = None) -> list[dict]:
+                cmc_max: int | None = None, min_count: int | None = None,
+                color_presence=None) -> list[dict]:
     """Rows matching every supplied criterion. Values within one criterion are ORed;
-    an empty or None criterion constrains nothing."""
+    an empty or None criterion constrains nothing.
+
+    `colors` and `color_presence` ask two DIFFERENT questions about the same field and are
+    deliberately separate params, matching `collection_stats.py`'s own colors/color_presence
+    split: `colors` is the row's single EXCLUSIVE bucket (a Boros card is "Multicolor", not
+    "W" or "R"), so it answers "show me my mono-white cards". `color_presence` asks "does
+    this card have a white pip at all" — a Boros card matches "W" here, because a player
+    asking "how much white do I actually have access to" needs their multicolor cards
+    counted too, not hidden behind a bucket that only ever shows ONE colour per card.
+    """
     ql = (q or "").strip().casefold()
     cset = set(colors or ())
+    pset = set(color_presence or ())
     tset = set(types or ())
     rset = set(rarities or ())
     sset = {str(s).upper() for s in (sets or ())}
@@ -257,6 +268,8 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
         if ql and ql not in (row.get("name") or "").casefold():
             continue
         if cset and color_bucket(row.get("colors", [])) not in cset:
+            continue
+        if pset and not (set(row.get("colors") or ()) & pset):
             continue
         if tset and (row.get("type") or "Other") not in tset:
             continue
