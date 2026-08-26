@@ -477,7 +477,16 @@ export default function StepCollection({ onBack, onBuild }) {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 10 }}>
                   {buildable.commanders.map(cm => (
-                    <div key={cm.commander} style={{ border: `1px solid ${c.border}`, borderRadius: 10, padding: 12, background: c.card }}>
+                    <div key={cm.commander} style={{ border: `1px solid ${c.border}`, borderRadius: 10, padding: 12, background: c.card, display: 'flex', gap: 10 }}>
+                      {/* `image` has been computed by buildable.score_commander all along
+                          (a small Scryfall art crop) but this card was text-only — a grid
+                          of "decks you could build" reads far better with actual portraits. */}
+                      {cm.image && (
+                        <img src={cm.image} alt="" loading="lazy"
+                          style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 8,
+                                   border: `1px solid ${c.border}`, flexShrink: 0 }} />
+                      )}
+                      <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <CardHover name={cm.commander} style={{ flex: 1, fontSize: 14, fontWeight: 700, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                           {cm.commander}
@@ -511,6 +520,7 @@ export default function StepCollection({ onBack, onBuild }) {
                                      border: '1px solid #3f3f46', color: '#a1a1aa', fontWeight: 600, fontSize: 12 })}>
                         🎴 Only cards I own
                       </button>
+                      </div>
                     </div>
                   ))}
                 </div>
