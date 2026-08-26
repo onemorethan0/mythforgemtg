@@ -192,6 +192,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S18** | ~~No legend rule / commander-damage modeling in sim~~ | **commander damage fixed + verified** (golden master + 10,240 real games) · legend rule found not applicable (no clone effects modeled) | **Done** | — |
 | **S19** | ~~`counter target spell` ignores "can't be countered"~~ | **23 real cards audited, 0 false positives** — non-issue | **Done** | — |
 | **S20** | ~~Partner-commander build is 99+1, not 98+2~~ | **fixed + verified** 2026-08-25 — `partner_count` param, live on 2 real pairs | **Done** | — |
+| **S21** | ~~Fast go-off engine capped at Bracket 3 regardless of speed~~ | **fixed + verified** 2026-08-26 — real Prismari deck B3→B4, 0 corpus regressions (proof + rerun) | **Done** | — |
 
 ---
 
@@ -1374,4 +1375,85 @@ own art, name and flavor) + 1 commander = 100, `quality.colors.ok: true`.
 New tests: `tests/test_deck_builder_curve.py::test_normalize_plan_honours_a_smaller_target_for_a_partner_commander`
 pins `_normalize_plan`'s `target` parameter directly (offline, no network) — the `builder_bench`
 live check above is the end-to-end proof; this is the fast regression guard for the arithmetic.
+
+---
+
+## S21 — A fast, genuine engine can't reach Bracket 4 while it has ≤3 Game Changers · DONE 2026-08-26
+
+**Found from a live, real-world counter-example, not the corpus.** The user's own "Prismari,
+the Inspiration" spellslinger/storm deck (a real Archidekt list, `inspire_table_salt`) is rated
+Bracket 4 by its own playgroup on speed and consistency alone. This engine measured it
+accurately in every other respect — `speed_avg_kill_turn: 4.73`, `speed_kill_rate: 1.0`,
+`go_off_turn: 5`, `consistency: 78.7` — but reported **Bracket 3**, because `estimate_bracket`'s
+gate for 0-3 Game Changers is a FIXED point (`floor, cap = 3, 3`), not a band: once a deck's
+combo/go-off gate lands it at Bracket 3, nothing measured about its speed could ever move it
+further, no matter how fast it actually kills.
+
+**The first hypothesis (missing Game Changer flags) was checked and refuted, not assumed.**
+Ancestral Recall, Dockside Extortionist and Jeweled Lotus looked like plausible mis-flags at
+first glance; queried live against Scryfall's own API (not our cache), all three genuinely are
+`game_changer: false` today. Our local card store was independently found to be 28 days stale
+(a real, separate finding — refreshed via `mythgauntlet fetch-data`, though note the ambient
+shell's `MYTHGAUNTLET_DATA` env var points at the OLD pre-merge sibling repo
+`Documents\mythgauntlet\data`, not this repo's `data/`; the refresh must override it explicitly
+or it silently updates the wrong store — a live instance of the exact CWD/env-relative-path
+trap `app_paths.py` exists to prevent on the Forge side). The refresh changed nothing about the
+Game Changer flags in question — 53 cards flagged before and after. **Game Changers really is
+0 for this deck, correctly.**
+
+**`axis_separation.py` was re-run and the obvious "just weight speed more" fix is WRONG at
+corpus scale**, exactly the caution this project applies everywhere: `game_changers` is still
+the single strongest B3-vs-B4 signal (Cohen's d **+1.44, STRONG**), and speed/kill-turn signals
+are flat across the *whole* ladder (`nut_draw_turn` rho -0.12, `kill_rate` rho +0.03, never a
+top-4 signal at any boundary). A population-wide speed-based escalation would have been shipped
+on bad evidence.
+
+**The reason the population-wide test is silent: the corpus has almost no data in the exact
+cell that matters.** Of 297 labelled decks, only **3 ever go off at all** (`can_go_off=True`),
+and **none are labelled Bracket 4** — the population test cannot see a signal that only exists
+in a population it doesn't contain. This is an honest data-scarcity finding, not a reason to
+give up: it means the fix has to come from the guideline text itself, verified not to disturb
+the 3 anchors that do exist, rather than from a corpus-fit that has no B4-go-off examples to
+fit against.
+
+**The fix is guideline-derived, not corpus-fitted, and says so.** The bracket document the user
+supplied states explicit turn-count floors: Bracket 3 promises opponents "at least six turns
+before you win or lose," Bracket 4 "at least four." `estimate_bracket` already accepted an
+`avg_kill_turn` parameter and never used it (dead since the function was written). Wired in:
+when `can_go_off` and the deck's REALIZED average kill turn (not `estimate_go_off`'s own
+best-case ceiling number — the goldfish-clock figure `apply_nut_kills` already teaches to see
+this exact kill pattern) is under six, a gc≤3 deck escalates from the fixed Bracket-3 point to
+a Bracket-4 floor instead. **Verified not to move any of the 3 real anchors** (7.98 / 8.00 /
+10.17, all comfortably clear of six) **and confirmed to fix the 1 concrete case it targets**
+(4.73). `scripts/bracket_accuracy.py`'s full 297-deck sweep is therefore mathematically a
+no-op under this change — reran it anyway rather than trust the proof alone: **identical
+53.9% exact / 91.6% within-one**, zero decks moved.
+
+**Verified live, end to end**, not just in the pure function: re-fetched the real decklist
+through `/api/deck/import-preview` (the exact route "Analyze a Deck" calls) before and after —
+`bracket_estimate: 3` → `bracket_estimate: 4`, with the new reason line
+`"go-off engine converts by turn 4.8 on average, under Bracket 3's own six-turn floor -> min
+Bracket 4"` alongside the pre-existing reasons.
+
+**What this is explicitly NOT**: a statistically powered fix. N=1 real-world case plus 3
+non-firing anchors is a small evidence base, recorded as exactly that in the code comment. It
+is also **narrow by design** — it only ever fires for a verified `can_go_off` engine (a rare
+population: 3/297 corpus decks), so it cannot mis-fire on an ordinary midrange goodstuff pile
+whose average kill turn happens to be fast for unrelated reasons. Growing this specific cell
+(`mythgauntlet fetch-decks --bracket 4` biased toward spellslinger/storm commanders) is the
+natural next step if it needs re-validating at scale.
+
+**A separate, larger, still-open finding from the same accuracy sweep, NOT addressed here**:
+Bracket 4 recall is 41.2% (9/17 author-labelled B4 decks are called B3 by the engine) and
+Bracket 1 recall is 44.3% — most of that gap is almost certainly NOT storm/go-off decks (only
+3 corpus decks touch that mechanism at all) but ordinary decks the Game-Changer gate under- or
+over-calls for reasons this fix does not touch. This is the same shape as the already-documented
+"B2/B3 is not resolvable from the 99 cards" finding, one boundary over, and deserves its own
+`axis_separation.py`-style investigation rather than being folded into this fix.
+
+Tests: `tests/engine/test_bracket.py` — `test_fast_go_off_engine_escalates_past_bracket_3`
+(pins the exact real numbers), `test_slow_go_off_engine_stays_at_bracket_3` (the 3 real anchors,
+unaffected), `test_fast_go_off_does_not_override_a_higher_gate` (a GC-driven Bracket 4+ verdict
+is untouched), `test_missing_avg_kill_turn_does_not_crash_or_escalate` (a caller that doesn't
+measure it degrades safely).
 

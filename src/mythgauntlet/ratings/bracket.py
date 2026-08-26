@@ -221,6 +221,47 @@ def estimate_bracket(
         if floor < 3:
             floor, cap = max(floor, 3), max(cap, 3)
             reasons.append("storm/spellslinger go-off (nut-draw kill) -> min Bracket 3")
+
+        # A genuine engine that converts on a FAST, TYPICAL timeline outgrows the fixed
+        # gc<=3 -> exactly-Bracket-3 band, and the official guidelines hand us the exact
+        # number to test against: Bracket 3 promises opponents "at least six turns before
+        # you win or lose", Bracket 4 promises "at least four". A deck whose REALIZED
+        # average kill turn (not the best-case ceiling `estimate_go_off` itself reports --
+        # this reads `avg_kill_turn`, the same goldfish-clock figure `apply_nut_kills`
+        # already teaches to see this exact kill pattern) sits under six cannot honestly
+        # make Bracket 3's promise, whatever its Game Changer count.
+        #
+        # THIS IS A GUIDELINE-DERIVED THRESHOLD, NOT A CORPUS-FITTED ONE, and that
+        # distinction matters here specifically. `scripts/axis_separation.py` measured
+        # kill-turn signals as flat/weak across the WHOLE labeled corpus (rho ~ -0.09,
+        # never a top-4 B3-vs-B4 signal) -- but that average is diluted by the ~99% of
+        # decks with no non-combat engine at all; among decks that actually go off, the
+        # labeled corpus holds exactly THREE examples (`corpus/decks/manifest.json`), all
+        # zero or three Game Changers, none labeled Bracket 4, none fast enough to trip
+        # this gate (avg_kill_turn 7.98 / 8.00 / 10.17 -- all comfortably clear Bracket 3's
+        # own six-turn floor and are correctly UNCHANGED by this rule). The gate that
+        # motivated it is a real, verified counter-example outside the self-reported
+        # corpus: a live Archidekt decklist (Prismari, the Inspiration -- the exact
+        # "commander-as-engine" case named in the comment above when this module was
+        # built) that this engine measures at avg_kill_turn 4.73 / kill_rate 1.0 / zero
+        # Game Changers, and that its own playgroup places at Bracket 4 on that same
+        # basis (speed + consistency) -- Archidekt carries no self-reported bracket tag
+        # for it (`edhBracket: null`), so this is real community judgment, not another
+        # corpus label of the kind this file's other boundaries were fit against.
+        #
+        # So: verified not to move any of the 3 known anchors, and known to fix the 1
+        # concrete case it was written for. That is a much smaller n than this file's
+        # other measured boundaries and is recorded here as exactly that -- a principled
+        # inference from the rules text, spot-checked, not a statistically powered fit.
+        # Revisit with `scripts/axis_separation.py` once the corpus grows more go-off
+        # anchors (`mythgauntlet fetch-decks --bracket 4` biased toward spellslinger/storm
+        # commanders would be the fastest way to grow this specific cell).
+        if avg_kill_turn is not None and avg_kill_turn < 6.0 and floor < 4:
+            floor, cap = 4, max(cap, 4)
+            reasons.append(
+                f"go-off engine converts by turn {avg_kill_turn:.1f} on average, under "
+                "Bracket 3's own six-turn floor -> min Bracket 4"
+            )
     if mld:
         floor, cap = max(floor, 4), 5
         reasons.append(f"mass land denial ({mld}) -> Brackets 4-5")

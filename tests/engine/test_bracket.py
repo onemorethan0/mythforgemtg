@@ -92,6 +92,55 @@ def test_no_go_off_does_not_raise_floor(make_card, forest, bear):
     assert est.bracket == 1  # no engine -> no bump (the over-fire guard)
 
 
+def test_fast_go_off_engine_escalates_past_bracket_3(make_card, forest, bear):
+    """A genuine engine (`can_go_off`) that converts on a REALIZED average turn under six
+    cannot honestly claim Bracket 3's own promise ("at least six turns before you win or
+    lose"). Real numbers: a live Archidekt decklist this rule was written for measures
+    avg_kill_turn 4.73 / kill_rate 1.0 / zero Game Changers and its playgroup places it at
+    Bracket 4 on exactly that basis — this is that case, not an invented number."""
+    est = estimate_bracket(
+        [(forest, 60), (bear, 39)], [], ceiling=100, speed_kill_rate=1.0,
+        can_go_off=True, avg_kill_turn=4.73, combos_checked=True,
+    )
+    assert est.bracket == 4
+    assert any("min Bracket 4" in r for r in est.reasons)
+
+
+def test_slow_go_off_engine_stays_at_bracket_3(make_card, forest, bear):
+    """The three real corpus anchors that go off at all are all >= six turns average
+    (7.98 / 8.00 / 10.17) and stay at Bracket 3 (or wherever an unrelated gate places
+    them) — the escalation must not fire just because `can_go_off` is true."""
+    est = estimate_bracket(
+        [(forest, 60), (bear, 39)], [], ceiling=40, speed_kill_rate=1.0,
+        can_go_off=True, avg_kill_turn=7.98, combos_checked=True,
+    )
+    assert est.bracket == 3
+    assert not any("min Bracket 4" in r for r in est.reasons)
+
+
+def test_fast_go_off_does_not_override_a_higher_gate(make_card, forest):
+    """A deck already at Bracket 4+ from Game Changers/combos/MLD is untouched — this rule
+    only ever RAISES a gc<=3 deck past its fixed Bracket-3 point, never lowers or re-derives
+    a verdict a stronger gate already set."""
+    cards = [(forest, 40)] + [(_gc(make_card, f"GC {i}"), 1) for i in range(6)]
+    est = estimate_bracket(
+        cards, [], ceiling=30, speed_kill_rate=0.2, can_go_off=True, avg_kill_turn=3.0,
+        combos_checked=True,
+    )
+    assert est.bracket == 4  # unchanged from test_many_game_changers_is_bracket_4_plus
+    assert not any("min Bracket 4" in r for r in est.reasons)  # the GC gate already did it
+
+
+def test_missing_avg_kill_turn_does_not_crash_or_escalate(make_card, forest, bear):
+    """`avg_kill_turn=None` (a caller that doesn't measure it) must degrade to the
+    pre-existing floor-3 behaviour, not raise or silently misbehave."""
+    est = estimate_bracket(
+        [(forest, 60), (bear, 39)], [], ceiling=40, speed_kill_rate=1.0,
+        can_go_off=True, avg_kill_turn=None, combos_checked=True,
+    )
+    assert est.bracket == 3
+
+
 def test_mass_land_denial_raises_to_four(make_card, forest):
     arma = make_card("Wipe Lands", mana_cost="{3}{W}", type_line="Sorcery",
                      oracle_text="Destroy all lands.")
