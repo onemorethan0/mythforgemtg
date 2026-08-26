@@ -758,14 +758,23 @@ looked like rarity and were actually broken patterns.
 So two of the three are **genuine rarity, not dead rules**, and need nothing but this note so
 the next person does not re-investigate them.
 
-`tribal_beasts` is unresolved, and the honest reason is that **my three exemplars were bad
-tests** — Ghalta is a big creature, Kogla is an Ape, Nemata makes Saprolings; none of them is
-a Beast-*tribal* payoff. The open action is to find a commander that genuinely rewards Beasts
-as a tribe and re-test. Note Kogla returned `[]` entirely, so it is also an S1 case.
+`tribal_beasts` was inconclusive at first, and the honest reason was that **my three
+exemplars were bad tests** — Ghalta is a big creature, Kogla is an Ape, Nemata makes
+Saprolings; none of them is a Beast-*tribal* payoff. Note Kogla returned `[]` entirely, so
+it is also an S1 case.
 
-**Remaining plan.** Retest `tribal_beasts` properly; annotate the other two as
-deliberately-rare in `THEME_PATTERNS` so their zero counts stop looking like the dead-rule
-signature.
+**Retested 2026-08-25 against real Beast-tribal payoff commanders, not the corpus's three
+bad exemplars.** A direct search of the 34,179-card store for legendary creatures whose own
+oracle text names Beasts as a payoff surfaced real candidates: **Slinza, the Spiked
+Stampede** ("Beast spells you cast cost {2} less... each other Beast creature you control
+enters with an additional +1/+1 counter") and **Radagast, Wizard of Wilds** / **Toby,
+Beastie Befriender** (Beast-token generators with Beast-scoped keyword grants). All three
+correctly return `tribal_beasts` from `_detect_themes`. **The rule works — it is genuine
+rarity, not a dead pattern**, exactly like `tribal_slivers`/`tribal_werewolves` above: these
+three commanders are recent enough printings that none of them appear in the (older) 391-deck
+corpus, which is why the corpus alone read as 0/391 despite the rule being live. Closes the
+one open thread this entry had left; all three original zero-count patterns are now
+confirmed genuine rarity rather than breakage.
 
 ---
 
