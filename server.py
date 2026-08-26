@@ -75,6 +75,7 @@ from exporter           import build_zip, build_pdf, build_video_zip
 from bracket            import BRACKET_LABELS
 from face_ref           import get_face_paths
 from model3d            import Model3DGen, generate_commander_3d
+import edhrec_lift
 
 # ── In-memory log capture ──────────────────────────────────────────────────────
 # Tee stdout/stderr into a bounded ring buffer so the running server's output
@@ -4212,6 +4213,9 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
             payload["themes"] = list(themes)
         if axis:
             payload["axis"] = axis
+        lift = edhrec_lift.lift_map((commander or {}).get("name") or "")
+        if lift:
+            payload["lift"] = lift
         resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=150)
         if resp.status_code == 400:
             try:
@@ -4242,16 +4246,20 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None, partners=None
     against can be part of the deck's own plan.
     """
     try:
+        payload = {
+            "deck": _deck_to_lines(commander, deck, partners),
+            "name": (commander or {}).get("name") or "deck",
+            "card": card_name,
+            "runs": 200,
+            "cut_pool": 3,
+            "themes": list(themes or []),
+        }
+        lift = edhrec_lift.lift_map((commander or {}).get("name") or "")
+        if lift:
+            payload["lift"] = lift
         resp = requests.post(
             f"{MYTHGAUNTLET_URL}/card-impact",
-            json={
-                "deck": _deck_to_lines(commander, deck, partners),
-                "name": (commander or {}).get("name") or "deck",
-                "card": card_name,
-                "runs": 200,
-                "cut_pool": 3,
-                "themes": list(themes or []),
-            },
+            json=payload,
             timeout=120,
         )
         if resp.status_code in (400, 404):

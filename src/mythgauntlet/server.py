@@ -79,6 +79,15 @@ class CardImpactRequest(BaseModel):
             "Unknown names are ignored."
         ),
     )
+    lift: dict[str, float] = Field(
+        default_factory=dict,
+        description=(
+            "{card name: EDHREC synergy} for this commander (Forge's edhrec_lift). Same "
+            "contract as /advise: refines which cut is offered as the card's fair pairing "
+            "when nothing is over-supplied (S12), so a generic staple is offered instead of "
+            "the deck's own signature piece. Omitting it keeps the pre-existing ordering."
+        ),
+    )
 
 
 class AdviseRequest(BaseModel):
@@ -125,6 +134,19 @@ class AdviseRequest(BaseModel):
             "decks run, not the population's 3. Unknown names are ignored; omitting the "
             "field judges against the population, which is correct but blunter. Ignored "
             "when the cut strategy is 'popularity'."
+        ),
+    )
+    lift: dict[str, float] = Field(
+        default_factory=dict,
+        description=(
+            "{card name: EDHREC synergy} for this commander (Forge's edhrec_lift, a "
+            "commander-relative signed fraction). Refines the cut pool's ORDER for the "
+            "~9% of decks that over-supply nothing (S12 in docs/ROADMAP.md) — negative "
+            "lift (a generic staple) is offered ahead of positive lift (this deck's own "
+            "plan) rather than falling through to a pure least-played tiebreak. A card "
+            "absent from the map is treated as unmeasured, not as a confirmed staple. "
+            "Omitting the field keeps the pre-existing ordering; ignored when the cut "
+            "strategy is 'popularity'."
         ),
     )
 
@@ -450,7 +472,8 @@ def create_app(
             )
         cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
         imp = card_impact.assess_card(resolved, card, cfg, store,
-                                      cut_pool=req.cut_pool, themes=req.themes)
+                                      cut_pool=req.cut_pool, themes=req.themes,
+                                      lift=req.lift or None)
         return {
             "engine_version": __version__,
             "card": imp.card,
@@ -533,7 +556,7 @@ def create_app(
         report = advisor.advise(
             resolved, cfg, store, candidates,
             axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
-            min_delta=req.min_delta, themes=req.themes,
+            min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
         )
         return {
             "engine_version": __version__,

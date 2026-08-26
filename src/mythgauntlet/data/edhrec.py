@@ -84,6 +84,34 @@ def parse_commander_page(payload: dict) -> list[EdhrecCard]:
     return cards
 
 
+def _normalize_lift_name(name: str) -> str:
+    """Front face, casefolded, whitespace collapsed — matches Forge's `edhrec_lift` and
+    `ratings.redundancy._lift_key`, the only two other places this key shape must agree."""
+    return " ".join(name.split(" // ")[0].casefold().split())
+
+
+def lift_map(cards: list[EdhrecCard]) -> dict[str, float]:
+    """`{normalized card name: synergy}` for every card with a measured synergy value.
+
+    Keyed the same way `redundancy._lift_key` normalizes `card.name` before lookup, so this
+    dict is usable by `ratings.redundancy.rank_redundant(lift=...)`/`advisor.advise(lift=...)`
+    whichever side of the Forge/engine boundary built it. A card can appear on more than one
+    cardlist (e.g. both `topcards` and `newcards`); the FIRST occurrence wins, matching
+    Forge's `edhrec_lift._parse_lifts` (a real page never meaningfully disagrees with itself
+    on one card's synergy). Cards with `synergy is None` are omitted rather than defaulted to
+    0.0 — see `_lift_key`, whose whole point is telling "measured neutral" apart from
+    "unmeasured" at the caller boundary.
+    """
+    out: dict[str, float] = {}
+    for c in cards:
+        if c.synergy is None:
+            continue
+        key = _normalize_lift_name(c.name)
+        if key not in out:
+            out[key] = c.synergy
+    return out
+
+
 def _cache_path(slug: str) -> Path:
     cache = data_dir() / "edhrec"
     cache.mkdir(parents=True, exist_ok=True)

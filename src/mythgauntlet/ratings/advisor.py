@@ -331,6 +331,7 @@ def _cut_candidates(
     k: int,
     strategy: str,
     themes: Sequence[str] = (),
+    lift: dict[str, float] | None = None,
 ) -> list[Card]:
     """The `k` cards to offer as cuts, per `strategy`.
 
@@ -341,11 +342,16 @@ def _cut_candidates(
     `themes` are the deck's own detected archetypes, and they only reach `redundant` -
     `popularity` has no notion of a role to be over-supplied in. Empty means "judge against
     the population", which is the honest default when the caller cannot detect archetypes.
+
+    `lift` is a `{card name: EDHREC synergy}` map, also `redundant`-only — see
+    `redundancy.rank_redundant`. It only ever refines a tie (most usefully S12's degenerate
+    case, where nothing is over-supplied and every card ties at score 0.0); omitting it keeps
+    the pre-existing least-played tiebreak exactly as it was.
     """
     if strategy == CUT_POPULARITY:
         return _weakest_cuts(resolved, k)
     return redundancy.rank_redundant(
-        resolved, k, targets=redundancy.targets_for(themes)
+        resolved, k, targets=redundancy.targets_for(themes), lift=lift
     )
 
 
@@ -510,6 +516,7 @@ def advise(
     combos_checked: bool = False,
     cut_strategy: str = CUT_REDUNDANT,
     themes: Sequence[str] = (),
+    lift: dict[str, float] | None = None,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -550,6 +557,14 @@ def advise(
     not against a population whose median deck plays zero counterspells. Omitting them is
     the population baseline - correct, and merely blunter, for a caller that cannot detect
     archetypes.
+
+    `lift` is a `{card name: EDHREC synergy}` map for THIS commander (see
+    `redundancy.rank_redundant`/`_lift_key`), `redundant`-only. It refines the cut ORDER
+    within a tied score bucket and matters most on the ~9% of decks that over-supply nothing
+    (S12 in `docs/ROADMAP.md`), where every candidate ties at score 0.0 and the pool would
+    otherwise fall straight through to least-played. Omit it for the pre-existing ordering;
+    like `themes`, this function does not fetch it - a caller builds it from
+    `mythgauntlet.data.edhrec` and passes it in.
     """
     if axis is not None and axis not in AXES:
         raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(AXES)}")
@@ -572,7 +587,7 @@ def advise(
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
-    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes)
+    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0
     analyses = 0

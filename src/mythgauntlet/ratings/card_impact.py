@@ -162,12 +162,18 @@ def assess_card(
     *,
     cut_pool: int = 3,
     themes: Sequence[str] = (),
+    lift: dict[str, float] | None = None,
 ) -> CardImpact:
     """Measure what adding `card` does to `resolved`, and say why.
 
     `themes` are the deck's own detected archetypes, as plain strings — they raise the
     redundancy targets for roles that archetype really plays, so a spellslinger deck is not
     offered its counterspells as the slot to displace. See `redundancy.targets_for`.
+
+    `lift` is a `{card name: EDHREC synergy}` map for this commander (see
+    `redundancy.rank_redundant`) — it refines the cut pool's ORDER when nothing is
+    over-supplied (S12), so a card's fair pairing is a generic staple rather than the
+    deck's own signature piece. Omitting it keeps the pre-existing ordering.
     """
     name = card.name
 
@@ -202,7 +208,7 @@ def assess_card(
     baseline = analyze_deck(resolved, cfg, store, run_resilience=True)
     supply = redundancy.role_supply(resolved)
     targets = redundancy.targets_for(themes)
-    cuts = redundancy.rank_redundant(resolved, max(1, cut_pool), targets=targets)
+    cuts = redundancy.rank_redundant(resolved, max(1, cut_pool), targets=targets, lift=lift)
     if not cuts:
         return CardImpact(
             card=name, verdict="neutral",

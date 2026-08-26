@@ -422,6 +422,116 @@ def test_advise_threads_themes_into_the_redundant_pool_only(spellslinger):
     assert [c.name for c in red_blind] != [c.name for c in red_aware]
 
 
+# ── EDHREC lift as the degenerate-case tiebreak (S12) ────────────────────────────
+# When nothing is over-supplied every roled card scores 0.0 and ordering fell straight
+# through to least-played — which is the SAME rule this module was built to replace, just
+# reached by a side door. Two prior fixes (un-clamped headroom; inverted tiebreak) were
+# measured and rejected (see the module docstring history in docs/ROADMAP.md, S12); `lift`
+# is a third, independent signal from EDHREC synergy rather than from role/oversupply.
+
+STAPLE_REMOVAL = (
+    "Staple Removal", "Instant",
+    "Exile target creature. Its controller gains life equal to its power.",
+)
+SIGNATURE_REMOVAL = (
+    "Signature Removal", "Instant",
+    "Exile target creature. Its controller gains life equal to its power.",
+)
+
+
+def test_lift_omitted_reproduces_the_prior_ordering(build_deck):
+    """No `lift` argument at all must be byte-identical to every caller before this change."""
+    resolved = build_deck(
+        [STAPLE_REMOVAL, SIGNATURE_REMOVAL],
+        ranks={"Staple Removal": 50, "Signature Removal": 50000},
+    )
+    assert redundancy.rank_redundant(resolved, 2) == redundancy.rank_redundant(
+        resolved, 2, lift=None
+    )
+
+
+def test_degenerate_tie_falls_to_least_played_without_lift(build_deck):
+    """Precondition: both removal spells tie at score 0.0 (removal target is 4, supply 2.0),
+    so today's ordering is purely the least-played tiebreak — the obscure, thematically
+    precious card is offered FIRST. This is the exact S12 failure mode."""
+    resolved = build_deck(
+        [STAPLE_REMOVAL, SIGNATURE_REMOVAL],
+        ranks={"Staple Removal": 50, "Signature Removal": 50000},
+    )
+    supply = redundancy.role_supply(resolved)
+    assert supply["removal"] == 2.0, "fixture drifted off the degenerate case"
+    blind = [c.name for c in redundancy.rank_redundant(resolved, 2)]
+    assert blind[0] == "Signature Removal", "precondition: least-played sorts first today"
+
+
+def test_lift_prefers_cutting_the_generic_staple_over_the_signature_card(build_deck):
+    """Told which card is a generic staple (negative lift) and which concentrates on this
+    commander's own decks (positive lift), the tiebreak should offer the staple first —
+    the opposite of the least-played rule's pick in the same fixture above."""
+    resolved = build_deck(
+        [STAPLE_REMOVAL, SIGNATURE_REMOVAL],
+        ranks={"Staple Removal": 50, "Signature Removal": 50000},
+    )
+    # Keys are normalized (front face, casefolded) — the contract `_normalize_lift_name`
+    # shares with Forge's `edhrec_lift.normalize_name`, since Forge is the realistic
+    # producer of this dict and the two sides must agree on a lookup key.
+    lift = {"staple removal": -0.15, "signature removal": 0.25}
+    aware = [c.name for c in redundancy.rank_redundant(resolved, 2, lift=lift)]
+    assert aware[0] == "Staple Removal", (
+        "a confirmed generic staple must be offered ahead of a card that concentrates on "
+        "this commander's own decks, even though it is the more popular card overall"
+    )
+
+
+def test_lift_unmeasured_card_is_neutral_not_treated_as_safe_to_cut(build_deck):
+    """A card absent from `lift` (EDHREC's page covers only ~250 cards) must NOT be treated
+    as a confirmed staple — that would be exactly the confident-fabrication failure this
+    repo avoids elsewhere. It falls through to the existing least-played tiebreak."""
+    resolved = build_deck(
+        [STAPLE_REMOVAL, SIGNATURE_REMOVAL],
+        ranks={"Staple Removal": 50, "Signature Removal": 50000},
+    )
+    lift = {"signature removal": 0.25}      # Staple Removal is simply not on the page
+    aware = [c.name for c in redundancy.rank_redundant(resolved, 2, lift=lift)]
+    # Staple Removal (unmeasured, key 0.0) still sorts ahead of a KNOWN positive-lift card,
+    # but for a different, still-honest reason: 0.0 < 0.25, not "confirmed safe to cut".
+    assert aware[0] == "Staple Removal"
+
+
+def test_lift_key_normalizes_case_and_dfc_front_face(build_deck):
+    """A `lift` dict is realistically built by Forge (`edhrec_lift`, casefolded/front-face
+    keys) or the engine's own `data.edhrec.lift_map` (same convention) — never by hand with
+    exact display casing, so the lookup must tolerate both."""
+    resolved = build_deck(
+        [STAPLE_REMOVAL, SIGNATURE_REMOVAL],
+        ranks={"Staple Removal": 50, "Signature Removal": 50000},
+    )
+    exact_case_lift = {"Staple Removal": -0.15}   # display-cased, as if hand-authored
+    aware = [c.name for c in redundancy.rank_redundant(resolved, 2, lift=exact_case_lift)]
+    assert aware[0] == "Signature Removal", (
+        "an exact-cased key must NOT match — it would silently look like it worked while "
+        "the real Forge/engine handoff (always lowercase) matched nothing at all"
+    )
+
+
+def test_lift_map_omits_unmeasured_cards():
+    from mythgauntlet.data.edhrec import EdhrecCard, lift_map
+
+    cards = [
+        EdhrecCard("Sol Ring", "topcards", 0.4, 900, 1000),
+        EdhrecCard("Unmeasured Card", "topcards", None, None, None),
+    ]
+    assert lift_map(cards) == {"sol ring": 0.4}
+
+
+def test_lift_map_normalizes_dfc_front_face():
+    from mythgauntlet.data.edhrec import EdhrecCard, lift_map
+
+    cards = [EdhrecCard("Birgi, God of Storytelling // Harnfel, Horn of Bounty",
+                         "topcards", 0.2, 400, 1000)]
+    assert lift_map(cards) == {"birgi, god of storytelling": 0.2}
+
+
 def test_every_archetype_role_is_a_role_the_module_scores():
     """A typo'd role name would sit in the table doing nothing, silently.
 

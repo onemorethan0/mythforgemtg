@@ -15,7 +15,8 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 
 ## The map
 
-> **S12 (new, open): the redundancy score is silent on 9% of decks, and says so to nobody.**
+> **S12 (DONE 2026-08-26 — see the SHIPPED entry below): the redundancy score was silent on
+> 9% of decks, and said so to nobody.**
 > `rank_redundant` scores `oversupply / (1 + within_role)`. When a deck over-supplies NOTHING
 > every card scores exactly 0.0, and the ordering falls entirely through to the tiebreak —
 > **least-played first**, which is the popularity rule the module exists to replace. Roleless
@@ -82,6 +83,54 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 > supply crosses its target by 0.1. The likely real answer is that the caller must be told
 > there is no redundancy signal and change what it does, rather than the module inventing an
 > order — which is what `card_impact._cut_sentence` now does for one consumer.
+>
+> **SHIPPED 2026-08-26: a THIRD attempt, from a data source neither prior one touched, and
+> it measures well.** Both rejected attempts stayed inside the role/oversupply framework
+> (unclamped headroom, inverted tiebreak); this one leaves it entirely and uses **EDHREC
+> lift/synergy** — a commander-relative signed fraction already built for `edhrec_lift.py`'s
+> role-window ordering — as the degenerate-case tiebreak: negative lift (a generic staple,
+> played more OUTSIDE this commander's decks than in them) is offered ahead of positive lift
+> (concentrates on decks with this commander, i.e. the deck's own plan), and a card absent
+> from the map (EDHREC's page covers only ~250 cards) is treated as NEUTRAL, never as a
+> confirmed staple — the same "unmeasured ≠ rejected" judgment `edhrec_lift.py` already makes
+> in the opposite direction. `redundancy.rank_redundant`/`advisor.advise`/
+> `card_impact.assess_card` all take an optional `lift: dict[str, float] | None` (a plain
+> `{normalized card name: synergy}` map, exactly the `themes`-as-plain-strings contract
+> `targets_for` already uses — the module stays pure/offline and does not fetch EDHREC
+> itself); omitting it reproduces the prior ordering byte-for-byte, which every existing
+> caller does until wired. **Wired end to end**: the engine's `/advise` and `/card-impact`
+> routes accept `lift`, and Forge's `_gauntlet_advise`/`_gauntlet_card_impact` build it from
+> `edhrec_lift.lift_map(commander_name)` (fails soft to `{}`, same cache, same kill switch)
+> and pass it through. Keys are normalized (front face, casefolded — `_normalize_lift_name` in
+> both `ratings/redundancy.py` and `data/edhrec.py`, matching Forge's `edhrec_lift.normalize_name`)
+> because the two processes disagree on display casing and a naive exact-string match would
+> have looked wired while silently matching nothing.
+>
+> **Measured, not just reasoned through.** Of the 45 degenerate corpus decks, only 14 had a
+> cached EDHREC page for their commander (coverage is honestly partial, same 16–76% figure
+> `lift_stats.py` already documents) — of those 14, the cut pool changed on **10**, and on the
+> 6 where BOTH the old and new top pick were independently measured, the new pick's lift was
+> strictly LOWER (more generic-staple) every time — **0 regressions in the numerically
+> comparable subset**. The other 4 changed cases pair an unmeasured old pick against a
+> measured-negative new pick; card identity confirms the same direction (a Boros/Rakdos/Dimir
+> Signet, Sol Ring, or Swords to Plowshares replacing a tribal legendary or a build-around
+> piece). The Shelob canary — the deck this whole entry was written about — moves from
+> offering *Gloomwidow's Feast* to offering *Talisman of Resilience*; the Flubs deck moves
+> from offering *Song of Creation* (lift +0.70, a genuine combo piece) to a *Sol Ring* (lift
+> −0.19). **Verified live end to end**, not just in the pure function: a real `/card-impact`
+> call against the corpus Shelob deck, with vs without `lift`, flips two of three tested
+> candidates' VERDICTS (`negative` → `positive`) purely because the fair-pairing cut changes
+> from the deck's own theme card to a generic mana rock — the exact "recommended cut changes
+> on 95%, verdict on 30%" sensitivity `card_impact` already documents for pool quality in
+> general.
+>
+> **What is still honestly open:** the other 19% of degenerate decks with no cached EDHREC
+> page get no benefit from this (falls back to the pre-existing tiebreak, not a regression —
+> just unmeasured), and there is no live-collection-based validation of the 4 qualitative
+> (unmeasured-old-pick) cases beyond reading the card identities. Tests: 7 new cases in
+> `tests/engine/test_redundancy.py` (byte-identical-when-omitted, the degenerate-tie
+> precondition, the staple-over-signature preference, unmeasured-is-neutral, and the
+> cross-process name-normalization contract, including a DFC front-face case).
 
 > **S13 (new, open): a fixed per-card role strength makes the target granular.** `card_roles`
 > returns a FIXED 3.0 for `counterspell` and `wipe`, so supply moves in whole-card steps of
@@ -134,7 +183,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S9** | ~~`voltron_combat` over-claims~~ | **50% → 89% accuracy** · 23.2% → 15.4% of legends | **Done** | — |
 | **S10** | ~~`ROLE_TARGETS` is archetype-blind~~ | own-plan cut slots **64.0% → 33.8%** · pool changes on 52/106 | **Done** | — |
 | **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
-| S12 | Redundancy score silent on 9% of decks | disclosure verified DONE (both consumers) · ordering doctrine question still open | Low | M |
+| **S12** | ~~Redundancy score silent on 9% of decks~~ | disclosure verified · **3rd-attempt lift tiebreak SHIPPED + wired end-to-end** 2026-08-26 — 10/14 measured decks changed, 0 regressions, live verdict flip confirmed | **Done** | — |
 | S13 | Fixed role strength makes targets granular | **reproduced exactly** on `archidekt-13708248` 2026-08-25 — Flusterstorm still the #1 offered cut | Medium | M (no safe fix found yet) |
 | **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
 | **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |

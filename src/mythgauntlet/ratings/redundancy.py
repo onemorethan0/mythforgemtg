@@ -300,21 +300,73 @@ def _rank_key(card: Card) -> int:
     return card.edhrec_rank if card.edhrec_rank is not None else 10**9
 
 
+def _normalize_lift_name(name: str) -> str:
+    """Lookup key for matching `lift` across the Forge/engine process boundary.
+
+    Forge's `edhrec_lift.normalize_name` (front face, casefolded, whitespace collapsed) is
+    the convention a caller's `lift` dict is built under — Forge is the only realistic
+    producer of this data (see `rank_redundant`'s docstring). `card.name` here is the
+    engine's own exact-cased display name, so the lookup must apply the SAME rule or a
+    `lift` dict built by Forge would silently match nothing and this whole tiebreak would
+    be a permanent, undetectable no-op — exactly the kind of quiet failure this repo's
+    process-boundary contracts (e.g. `commander_slug`, pinned by
+    `test_slug_matches_the_engine_implementation`) exist to prevent.
+    """
+    return " ".join(name.split(" // ")[0].casefold().split())
+
+
+def _lift_key(card: Card, lift: dict[str, float] | None) -> float:
+    """EDHREC synergy for tie-breaking, most-generic-staple first (KNOWN OPEN S12).
+
+    `lift` is a commander-relative signed fraction from `mythgauntlet.data.edhrec` — negative
+    means "this card is played more OUTSIDE this commander's decks than in them" (a generic
+    staple, safe to cut), positive means it concentrates on decks with this commander (this
+    deck's own plan). Ascending sort puts the most negative first, i.e. offered as a cut
+    before a positive-lift card at the same redundancy score.
+
+    A missing `lift` (caller didn't supply one) or a card absent from it (EDHREC's page lists
+    only ~250 cards, see `lift_stats.py`'s measured 16-76% coverage) both return 0.0 — NEUTRAL,
+    not "safe to cut". Treating an unmeasured card as a known staple would be exactly the
+    confident-fabrication failure this repo avoids elsewhere (`edhrec_lift.py`'s "unknown
+    outranks measured-negative" rule is the same judgment call in the opposite direction).
+    A 0.0 tie falls through to the existing `_rank_key` least-played tiebreak unchanged, so
+    supplying no `lift` (every caller before this) reproduces the prior ordering byte-for-byte.
+
+    This is the tiebreak S12 (`docs/ROADMAP.md`) flagged as undecided when nothing is
+    over-supplied: `oversupply` is 0.0 for every roled card, so `score` ties across the whole
+    pool and ordering fell through entirely to least-played — the rule this module replaced.
+    Two PRIOR fixes (un-clamped headroom; inverted tiebreak) were measured and rejected; this
+    is a third, independent signal (EDHREC lift, not role/oversupply) tried specifically
+    because it comes from data neither prior attempt touched.
+    """
+    if not lift:
+        return 0.0
+    return lift.get(_normalize_lift_name(card.name), 0.0)
+
+
 def rank_redundant(
     resolved: ResolvedDeck,
     k: int,
     *,
     targets: dict[str, int] | None = None,
+    lift: dict[str, float] | None = None,
 ) -> list[Card]:
     """The deck's `k` best cut candidates, most redundant first.
 
-    Ordering: redundant cards by score (descending), then — among cards the deck is
-    equally over-served by — the least-played one first, since that is the safest of a
-    set of interchangeable pieces. Protected (roleless) cards always sort last and are
-    only returned when there aren't enough scored cards to fill `k`, so a deck of pure
-    pet cards still yields a pool rather than nothing.
+    Ordering: redundant cards by score (descending), then by EDHREC lift ascending (see
+    `_lift_key` — most generic-staple first, a no-op when `lift` is None or a card is
+    unmeasured), then — among cards still tied — the least-played one first, since that is
+    the safest of a set of interchangeable pieces. Protected (roleless) cards always sort
+    last and are only returned when there aren't enough scored cards to fill `k`, so a deck
+    of pure pet cards still yields a pool rather than nothing.
 
-    Deterministic: equal scores and equal ranks fall through to card name.
+    `lift` is a plain `{card name: synergy}` dict, exactly the contract `targets_for(themes)`
+    already uses for archetype names: this module is pure and offline, so it does not fetch
+    EDHREC itself (mirrors why `targets_for` is *told* archetypes rather than detecting them).
+    Build one from `mythgauntlet.data.edhrec.fetch_commander`/`parse_commander_page` and pass
+    it in; omit it for the pre-existing, network-free ordering.
+
+    Deterministic: equal scores, equal lift and equal ranks fall through to card name.
     """
     k = max(1, k)
     supply = role_supply(resolved)
@@ -329,7 +381,9 @@ def rank_redundant(
 
     candidates = [s for s in scored if not s.protected]
     protected = [s for s in scored if s.protected]
-    candidates.sort(key=lambda s: (-s.score, -_rank_key(s.card), s.card.name))
+    candidates.sort(
+        key=lambda s: (-s.score, _lift_key(s.card, lift), -_rank_key(s.card), s.card.name)
+    )
     protected.sort(key=lambda s: s.card.name)
 
     return [s.card for s in (candidates + protected)[:k]]
