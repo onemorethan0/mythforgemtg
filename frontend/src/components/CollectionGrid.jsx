@@ -101,6 +101,18 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
               {typeof row.price === 'number' && (
                 <span style={badge({ right: 6, color: c.green })}>${row.price.toFixed(2)}</span>
               )}
+              {/* `game_changer` has been enriched onto every row all along (the same flag
+                  the S21 bracket work made visible in the strength panel) but never shown
+                  here — a player deciding what to keep sleeved wants to know which of
+                  their own cards are on the official list. Bottom-left: top corners are
+                  already spoken for by the count/price badges. */}
+              {row.game_changer && (
+                <span title="Official WotC Game Changer"
+                  style={badge({ left: 6, bottom: 6, top: 'auto', color: '#fbbf24',
+                                 border: '1px solid #d97706' })}>
+                  ⚡ GC
+                </span>
+              )}
 
               {showBar && (
                 <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0,

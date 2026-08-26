@@ -244,7 +244,7 @@ def facets(rows: list[dict]) -> dict:
 def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
                 rarities=None, sets=None, cmc_min: int | None = None,
                 cmc_max: int | None = None, min_count: int | None = None,
-                color_presence=None) -> list[dict]:
+                color_presence=None, game_changers_only: bool = False) -> list[dict]:
     """Rows matching every supplied criterion. Values within one criterion are ORed;
     an empty or None criterion constrains nothing.
 
@@ -283,6 +283,8 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
         if cmc_max is not None and cmc > cmc_max:
             continue
         if min_count is not None and int(row.get("count") or 0) < min_count:
+            continue
+        if game_changers_only and not row.get("game_changer"):
             continue
         out.append(row)
     return out

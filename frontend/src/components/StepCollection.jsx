@@ -27,11 +27,12 @@ const SORTS = [
 ]
 
 const EMPTY_FILTERS = { colors: [], color_presence: [], types: [], rarities: [], sets: [],
-                        cmc_min: null, cmc_max: null, min_count: null }
+                        cmc_min: null, cmc_max: null, min_count: null, game_changers_only: false }
 
 const hasFilters = f =>
   f.colors.length || f.color_presence.length || f.types.length || f.rarities.length ||
-  f.sets.length || f.cmc_min != null || f.cmc_max != null || f.min_count != null
+  f.sets.length || f.cmc_min != null || f.cmc_max != null || f.min_count != null ||
+  f.game_changers_only
 
 // Filters go on the query string as comma-separated lists; nulls are simply omitted.
 function filterQuery(f) {
@@ -39,6 +40,7 @@ function filterQuery(f) {
   for (const k of ['colors', 'color_presence', 'types', 'rarities', 'sets'])
     if (f[k].length) p.set(k, f[k].join(','))
   for (const k of ['cmc_min', 'cmc_max', 'min_count']) if (f[k] != null) p.set(k, String(f[k]))
+  if (f.game_changers_only) p.set('game_changers_only', 'true')
   return p
 }
 
@@ -728,6 +730,11 @@ export default function StepCollection({ onBack, onBuild }) {
               Duplicates only (2+ copies)
             </label>
             <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <input type="checkbox" checked={filters.game_changers_only}
+                onChange={e => setFilters(v => ({ ...v, game_changers_only: e.target.checked }))} />
+              ⚡ Game Changers only
+            </label>
+            <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
               Mana value
               <input type="number" min="0" max={facets.cmc_max || 20} value={filters.cmc_min ?? ''}
                 onChange={e => setFilters(v => ({ ...v, cmc_min: e.target.value === '' ? null : Number(e.target.value) }))}
@@ -802,6 +809,15 @@ export default function StepCollection({ onBack, onBuild }) {
               <CardHover name={row.name} style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
                 {row.name}
               </CardHover>
+              {/* Same flag CollectionGrid's tile badge reads — enriched onto every row all
+                  along, never shown in the list view either. */}
+              {row.game_changer && (
+                <span title="Official WotC Game Changer" style={{
+                  fontSize: 10, fontWeight: 700, padding: '1px 5px', borderRadius: 5,
+                  flexShrink: 0, color: '#fbbf24', border: '1px solid #d97706',
+                  background: '#78350f22',
+                }}>⚡ GC</span>
+              )}
               <span title={row.resolved ? `Mana value ${row.cmc}` : ''}
                 style={{ fontSize: 11, color: c.faint, minWidth: 46, textAlign: 'right',
                          flexShrink: 0, overflow: 'hidden', whiteSpace: 'nowrap' }}>

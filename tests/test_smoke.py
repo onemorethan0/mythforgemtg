@@ -913,16 +913,19 @@ def test_collection_primary_type():
 
 def _fake_enriched():
     """Enriched rows without touching the card stores, so this runs anywhere."""
-    def row(name, count, cmc, kind, colors, rarity, price, set_code="", land=False):
+    def row(name, count, cmc, kind, colors, rarity, price, set_code="", land=False, gc=False):
         return {"name": name, "count": count, "set": set_code, "cn": "", "price": price,
                 "cmc": cmc, "type": kind, "colors": colors, "color_identity": colors,
-                "rarity": rarity, "edhrec_rank": None, "is_land": land, "resolved": True}
+                "rarity": rarity, "edhrec_rank": None, "is_land": land, "resolved": True,
+                "game_changer": gc}
     return [
         row("Sol Ring",       1, 1, "Artifact", [],          "uncommon", 2.50, "LTC"),
         row("Lightning Bolt", 4, 1, "Instant",  ["R"],       "common",   1.00, "LEA"),
         row("Boros Charm",    2, 2, "Instant",  ["R", "W"],  "uncommon", None),
         row("Island",         9, 0, "Land",     [],          "common",   0.25, "LEA", land=True),
-        row("Serra Angel",    1, 5, "Creature", ["W"],       "rare",     0.75, "LTC"),
+        # `gc=True` here is a synthetic flag for exercising the filter mechanism, not a
+        # claim that Serra Angel is on WotC's real Game Changers list (it is not).
+        row("Serra Angel",    1, 5, "Creature", ["W"],       "rare",     0.75, "LTC", gc=True),
     ]
 
 
@@ -948,6 +951,8 @@ def test_collection_sort_and_filter():
           ["Boros Charm", "Serra Angel"])
     check("filt.presence.r", names(collection_index.filter_rows(rows, color_presence=["R"])),
           ["Lightning Bolt", "Boros Charm"])
+    check("filt.gc", names(collection_index.filter_rows(rows, game_changers_only=True)),
+          ["Serra Angel"])
     check("filt.type",   names(collection_index.filter_rows(rows, types=["Instant"])),
           ["Lightning Bolt", "Boros Charm"])
     check("filt.cmc",    len(collection_index.filter_rows(rows, cmc_min=1, cmc_max=2)), 3)

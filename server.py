@@ -4660,6 +4660,7 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                    colors: str = "", types: str = "", rarities: str = "", sets: str = "",
                    cmc_min: Optional[int] = None, cmc_max: Optional[int] = None,
                    min_count: Optional[int] = None, color_presence: str = "",
+                   game_changers_only: bool = False,
                    sort: str = "name", direction: str = "asc"):
     """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
 
@@ -4678,7 +4679,8 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
     matched = filter_rows(enriched, q=q, colors=_csv_param(colors), types=_csv_param(types),
                           rarities=_csv_param(rarities), sets=_csv_param(sets),
                           cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count,
-                          color_presence=_csv_param(color_presence))
+                          color_presence=_csv_param(color_presence),
+                          game_changers_only=game_changers_only)
     ordered = sort_rows(matched, sort, direction)
     lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
     page = ordered[max(offset, 0): max(offset, 0) + lim]
