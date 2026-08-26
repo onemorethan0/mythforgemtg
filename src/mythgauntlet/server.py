@@ -354,6 +354,12 @@ def create_app(
             "go_off": a.go_off.goes_off,
             "go_off_turn": a.go_off.earliest_turn,
             "overrun_alpha": a.overrun.can_alpha_strike,
+            # PLAN_CLOCK Phase 2 / docs/SPEC_wincon_redundancy.md, duplicated into
+            # power_profile (not just the top-level key above) so it reaches the Forge
+            # frontend for free: Forge's own server.py's _gauntlet_analyze forwards
+            # power_profile verbatim but reshapes everything else, so a field living only
+            # at the top level here never reaches SimStrengthPanel.jsx at all.
+            "wincon_redundancy": wincon_redundancy,
             "semantics_coverage": coverage.executable_share,
             "game_changers": len(game_changers),
             "bracket_hint": metrics.game_changer_bracket_hint(len(game_changers)),

@@ -183,6 +183,19 @@ export default function SimStrengthPanel({ simulation }) {
             Overrun alpha strike
           </span>
         )}
+        {pp.wincon_redundancy?.applicable && pp.wincon_redundancy.roles.map((r) => (
+          <span
+            key={r.role}
+            title={
+              r.pieces_to_disable == null
+                ? `Removing every ${r.role.replace(/_/g, ' ')} card alone doesn't stop this kill -- another wincon is independently sufficient`
+                : `${r.pieces_to_disable} of ${r.contributing_cards.length} ${r.role.replace(/_/g, ' ')} card(s) must be answered to fully disable this kill${r.involves_commander ? ' (includes a commander -- recastable, not truly gone)' : ''}`
+            }
+            style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1e1b4b22', border: '1px solid #818cf8', color: '#c7d2fe' }}
+          >
+            {r.role.replace(/_/g, ' ')}: {r.pieces_to_disable == null ? '?' : r.pieces_to_disable} to stop
+          </span>
+        ))}
       </div>
       <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5 }}>{pp.bracket_hint}</div>
       {simulation.engine_version && (
