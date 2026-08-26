@@ -1,3 +1,20 @@
+import { TERMS, WINCON_ROLE_TERMS, BRACKET_TERMS } from '../glossary'
+import PowerRadar from './PowerRadar'
+
+// A label with a native-tooltip glossary definition attached. Plain `title=` (no custom
+// floating panel) — one sentence doesn't need CardHover-style machinery, and `title` is
+// already this file's convention (the plays-up banner below, the Speed chip). The small
+// "ⓘ" is the only addition: a bare `title` on a label gives no visual hint it's hoverable.
+// NOTE: a Python test locates the plays-up banner below by the first occurrence of its
+// prop name in this file's source text (grep the engine tests before quoting it up here).
+function Term({ children, def }) {
+  return (
+    <span title={def} style={{ cursor: 'help', borderBottom: '1px dotted #57534e' }}>
+      {children}<span style={{ color: '#57534e', fontSize: '0.85em', marginLeft: 2 }}>ⓘ</span>
+    </span>
+  )
+}
+
 // Simulation-grounded strength panel (MythGauntlet, Myth Suite C3) — shared by
 // the import preview (StepCommander) and the result screen's Measure panel
 // (StepDeck), so the two surfaces can't drift. Pure presentation: pass the
@@ -32,10 +49,10 @@ export default function SimStrengthPanel({ simulation }) {
     )
   }
   const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`)
-  const bar = (label, val, suffix = '', detail = null) => (
+  const bar = (label, val, suffix = '', detail = null, term = null) => (
     <div style={{ marginBottom: 7 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: '#a8a29e', marginBottom: 2 }}>
-        <span>{label}</span>
+        <span>{term ? <Term def={term}>{label}</Term> : label}</span>
         <b style={{ color: '#e7e5e4' }}>{val == null ? '—' : `${Math.round(val)}${suffix}`}</b>
       </div>
       <div style={{ height: 5, borderRadius: 4, background: '#1c1917', overflow: 'hidden' }}>
@@ -126,14 +143,25 @@ export default function SimStrengthPanel({ simulation }) {
       {pp.bracket_estimate && (() => {
         const BR = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
         const bc = BR[pp.bracket_estimate] || '#eab308'
+        const bt = BRACKET_TERMS[pp.bracket_estimate]
         return (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-            <span style={{ fontSize: 12, color: '#a8a29e' }}>Simulated bracket</span>
-            <span style={{ fontSize: 13, fontWeight: 800, padding: '2px 12px', borderRadius: 20, background: `${bc}22`, color: bc, border: `1px solid ${bc}` }}>
+            <span style={{ fontSize: 12, color: '#a8a29e' }}>
+              <Term def="WotC's official 1-5 power-level system for Commander matchmaking. Estimated here from what the deck actually holds (Game Changers, combos, mass land denial, extra turns) and how it simulates, not from a target you picked.">Simulated bracket</Term>
+            </span>
+            <span
+              title={bt ? `${bt.label}: ${bt.desc}` : undefined}
+              style={{ fontSize: 13, fontWeight: 800, padding: '2px 12px', borderRadius: 20, background: `${bc}22`, color: bc, border: `1px solid ${bc}`, cursor: bt ? 'help' : 'default' }}
+            >
               {pp.bracket_estimate}. {pp.bracket_label}
             </span>
             {pp.bracket_confidence != null && (
-              <span style={{ fontSize: 10.5, color: '#78716c' }}>{Math.round(pp.bracket_confidence * 100)}% conf.</span>
+              <span
+                title="How much evidence backs this estimate — more Game Changers/combos/gates firing decisively raises confidence; a borderline read lowers it."
+                style={{ fontSize: 10.5, color: '#78716c', cursor: 'help', borderBottom: '1px dotted #57534e' }}
+              >
+                {Math.round(pp.bracket_confidence * 100)}% conf.
+              </span>
             )}
           </div>
         )
@@ -197,7 +225,7 @@ export default function SimStrengthPanel({ simulation }) {
       {Array.isArray(pp.game_changer_names) && pp.game_changer_names.length > 0 && (
         <div style={{ marginBottom: 10 }}>
           <div style={{ fontSize: 11, color: '#78716c', marginBottom: 4 }}>
-            Game Changers ({pp.game_changer_names.length}):
+            <Term def={TERMS.game_changers}>Game Changers</Term> ({pp.game_changer_names.length}):
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {pp.game_changer_names.map((name) => (
@@ -232,8 +260,8 @@ export default function SimStrengthPanel({ simulation }) {
             <div style={{ fontSize: 11.5, color: '#d6d3d1', fontWeight: 600, marginBottom: 6 }}>
               Combos: {cb.total} in deck
               <span style={{ color: '#78716c', fontWeight: 400 }}>
-                {' '}({cb.terminal} terminal, {cb.advantage} need an outlet
-                {cb.nondeterministic ? `, ${cb.nondeterministic} non-deterministic` : ''})
+                {' '}(<span title="Wins the game outright once every piece is assembled — no extra step needed." style={{ cursor: 'help', borderBottom: '1px dotted #57534e' }}>{cb.terminal} terminal</span>, <span title="Generates a resource loop (extra mana, tokens, etc.) but still needs something else on the board to actually close the game." style={{ cursor: 'help', borderBottom: '1px dotted #57534e' }}>{cb.advantage} need an outlet</span>
+                {cb.nondeterministic ? <>, <span title="The loop's result depends on a coin flip, dice roll, or an opponent's choice (CR 720) — it can't be forced to a win the way a deterministic combo can." style={{ cursor: 'help', borderBottom: '1px dotted #57534e' }}>{cb.nondeterministic} non-deterministic</span></> : ''})
               </span>
             </div>
             {shown.map((it, i) => {
@@ -264,25 +292,32 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
-      {bar('Consistency', pp.consistency, '/100', consistencyDetail)}
-      {bar('Resilience vs a board wipe', pp.resilience, '/100', resilienceDetail)}
-      {pp.interaction != null && bar('Interaction', pp.interaction, '/100', interactionDetail)}
-      {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100', ceilingDetail)}
-      {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail)}
+      <PowerRadar axes={[
+        { key: 'consistency', label: 'Consistency', value: pp.consistency, term: TERMS.consistency },
+        { key: 'resilience', label: 'Resilience', value: pp.resilience, term: TERMS.resilience },
+        { key: 'interaction', label: 'Interaction', value: pp.interaction, term: TERMS.interaction },
+        { key: 'ceiling', label: 'Ceiling', value: pp.ceiling, term: TERMS.ceiling },
+        { key: 'pod', label: 'Pod', value: pp.pod, term: TERMS.pod },
+      ]} />
+      {bar('Consistency', pp.consistency, '/100', consistencyDetail, TERMS.consistency)}
+      {bar('Resilience vs a board wipe', pp.resilience, '/100', resilienceDetail, TERMS.resilience)}
+      {pp.interaction != null && bar('Interaction', pp.interaction, '/100', interactionDetail, TERMS.interaction)}
+      {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100', ceilingDetail, TERMS.ceiling)}
+      {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail, TERMS.pod)}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
-        <span title={why.Speed || undefined} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: why.Speed ? 'help' : 'default' }}>
+        <span title={why.Speed ? `${why.Speed}\n\n${TERMS.speed}` : TERMS.speed} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: 'help' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>
         </span>
-        <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+        <span title={TERMS.semantics_coverage} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: 'help' }}>
           Cards simulated at high fidelity: <b style={{ color: '#e7e5e4' }}>{pct(pp.semantics_coverage)}</b>
         </span>
         {pp.go_off && (
-          <span title="A storm/spellslinger nut draw reaches lethal off the combat clock" style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#7c2d1222', border: '1px solid #f97316', color: '#fdba74' }}>
+          <span title={TERMS.storm_go_off} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#7c2d1222', border: '1px solid #f97316', color: '#fdba74', cursor: 'help' }}>
             Storm go-off{pp.go_off_turn ? <b style={{ color: '#fed7aa' }}> ~T{pp.go_off_turn}</b> : null}
           </span>
         )}
         {pp.overrun_alpha && (
-          <span title="A wide board + one-shot team pump kills in one swing on the nut draw" style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#14532d22', border: '1px solid #4ade80', color: '#86efac' }}>
+          <span title={TERMS.overrun_alpha} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#14532d22', border: '1px solid #4ade80', color: '#86efac', cursor: 'help' }}>
             Overrun alpha strike
           </span>
         )}
@@ -290,11 +325,12 @@ export default function SimStrengthPanel({ simulation }) {
           <span
             key={r.role}
             title={
-              r.pieces_to_disable == null
+              (WINCON_ROLE_TERMS[r.role] ? `${WINCON_ROLE_TERMS[r.role]}\n\n` : '') +
+              (r.pieces_to_disable == null
                 ? `Removing every ${r.role.replace(/_/g, ' ')} card alone doesn't stop this kill -- another wincon is independently sufficient`
-                : `${r.pieces_to_disable} of ${r.contributing_cards.length} ${r.role.replace(/_/g, ' ')} card(s) must be answered to fully disable this kill${r.involves_commander ? ' (includes a commander -- recastable, not truly gone)' : ''}`
+                : `${r.pieces_to_disable} of ${r.contributing_cards.length} ${r.role.replace(/_/g, ' ')} card(s) must be answered to fully disable this kill${r.involves_commander ? ' (includes a commander -- recastable, not truly gone)' : ''}`)
             }
-            style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1e1b4b22', border: '1px solid #818cf8', color: '#c7d2fe' }}
+            style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1e1b4b22', border: '1px solid #818cf8', color: '#c7d2fe', cursor: 'help' }}
           >
             {r.role.replace(/_/g, ' ')}: {r.pieces_to_disable == null ? '?' : r.pieces_to_disable} to stop
           </span>

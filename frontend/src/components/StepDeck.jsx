@@ -16,6 +16,7 @@ import { useGenerate3D } from '../hooks/useGenerate3D'
 import { useOwnDeck } from '../hooks/useOwnDeck'
 import { notify } from '../utils/toast'
 import { searchCards } from '../utils/searchCards'
+import { BRACKET_TERMS } from '../glossary'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -589,7 +590,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>}
             {!single && deck.bracket && (
-              <span style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700,
+              <span
+                title={`Built to target: ${(BRACKET_TERMS[deck.bracket] || {}).desc || deck.bracket_label}`}
+                style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700, cursor: 'help',
                 background: ['','#052e16','#1a2e05','#422006','#431407','#450a0a'][deck.bracket] || '#1c1917',
                 border: `1px solid ${['','#4ade80','#a3e635','#eab308','#f97316','#ef4444'][deck.bracket] || '#44403c'}`,
                 color: ['','#4ade80','#a3e635','#eab308','#f97316','#ef4444'][deck.bracket] || '#a8a29e',

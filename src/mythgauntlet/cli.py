@@ -870,6 +870,17 @@ def _cmd_fetch_decks(args: argparse.Namespace) -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     fetched: list[decksources.FetchedDeck] = []
 
+    # Loaded BEFORE fetching (not after, as before) so a growth run can skip decks
+    # already on disk — a large --top against a bracket already partly harvested (e.g.
+    # re-running --order -viewCount) used to re-fetch every one of those every time,
+    # wasting rate-limited requests against an unauthenticated API on pure duplicates.
+    manifest_path = out_dir / "manifest.json"
+    manifest = {"decks": []}
+    if manifest_path.exists():
+        with open(manifest_path, encoding="utf-8") as fh:
+            manifest = json.load(fh)
+    by_file = {entry["file"]: entry for entry in manifest.get("decks", [])}
+
     try:
         if args.commander:
             db = _load_db()
@@ -880,27 +891,27 @@ def _cmd_fetch_decks(args: argparse.Namespace) -> int:
             metas = decksources.archidekt_top(
                 page_size=args.top, order=args.order, bracket=args.bracket
             )
+            skipped = 0
             for meta in metas:
                 # Wild deck names carry emoji; the legacy console is cp1252 (ASCII-only
                 # invariant) — sanitize the PRINT, never the stored decklist.
                 safe_name = meta.name.encode("ascii", "replace").decode("ascii")
+                if not args.refresh_existing and f"archidekt-{meta.id}.txt" in by_file:
+                    skipped += 1
+                    continue
                 console.print(
                     f"[dim]fetching[/dim] {safe_name} (id {meta.id}, {meta.view_count:,} views"
                     + (f", bracket {meta.edh_bracket}" if meta.edh_bracket else "")
                     + ")"
                 )
                 fetched.append(decksources.fetch_archidekt_deck(meta.id))
+            if skipped:
+                console.print(f"[dim]skipped {skipped} already in the corpus "
+                              "(--refresh-existing to re-fetch)[/dim]")
         else:
             _die("Specify --commander NAME (EDHREC) or --source archidekt.")
     except requests.RequestException as exc:
         _die(f"Deck source unavailable: {exc}")
-
-    manifest_path = out_dir / "manifest.json"
-    manifest = {"decks": []}
-    if manifest_path.exists():
-        with open(manifest_path, encoding="utf-8") as fh:
-            manifest = json.load(fh)
-    by_file = {entry["file"]: entry for entry in manifest.get("decks", [])}
 
     for deck in fetched:
         parsed = Deck.parse_text(deck.text)
@@ -2124,6 +2135,11 @@ def build_parser() -> argparse.ArgumentParser:
         "(labeled calibration anchors; 5 = cEDH)",
     )
     p_fetch_decks.add_argument("--out", help="output dir (default: corpus/decks)")
+    p_fetch_decks.add_argument(
+        "--refresh-existing", action="store_true",
+        help="archidekt: re-fetch a deck already on disk instead of skipping it "
+        "(default skips — a growth run shouldn't burn requests re-fetching duplicates)",
+    )
     p_fetch_decks.set_defaults(func=_cmd_fetch_decks)
 
     p_bench = sub.add_parser(

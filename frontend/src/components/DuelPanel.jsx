@@ -1,5 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 
+// A win rate from N simulated games is a sampled proportion, not a fact about the
+// matchup — the standard closed-form Wilson score interval for a binomial proportion
+// (better-behaved than a normal approximation near 0%/100%, which this app hits often:
+// a lopsided matchup can read 100% off a small sample). `wins` here is the same
+// numerator winrate_a already uses (draws count toward `n`, not toward `wins`).
+function wilsonInterval(wins, n, z = 1.96) {
+  if (!n) return [0, 0]
+  const phat = wins / n
+  const denom = 1 + (z * z) / n
+  const center = phat + (z * z) / (2 * n)
+  const margin = z * Math.sqrt((phat * (1 - phat)) / n + (z * z) / (4 * n * n))
+  return [Math.max(0, (center - margin) / denom), Math.min(1, (center + margin) / denom)]
+}
+
 // "Test this deck head-to-head" (MythGauntlet Tier-2): paste a friend's decklist and
 // get a simulated 1v1 win rate. Battlecruiser fidelity — an honest "how does it play
 // against theirs?" read, not a bracket verdict (that's what the strength panel is for).
@@ -64,6 +78,7 @@ export default function DuelPanel({ jobId }) {
   const r = result?.result
   const wa = result ? Math.round(result.winrate_a * 100) : 0
   const names = result?.names || ['Your deck', 'Opponent']
+  const [ciLo, ciHi] = r ? wilsonInterval(r.wins_a, r.games) : [0, 0]
 
   return (
     <div style={{
@@ -144,9 +159,24 @@ export default function DuelPanel({ jobId }) {
           <div style={{ fontSize: 22, fontWeight: 800, color: wa >= 50 ? '#4ade80' : '#f87171', marginBottom: 2 }}>
             {wa}% <span style={{ fontSize: 12, fontWeight: 600, color: '#a8a29e' }}>win rate for {names[0]}</span>
           </div>
-          {/* win-rate bar */}
-          <div style={{ height: 8, borderRadius: 5, background: '#7f1d1d', overflow: 'hidden', margin: '6px 0 10px' }}>
+          {/* A win rate from a fixed number of games is a SAMPLE, not the true matchup
+              odds — the shaded band is the 95% Wilson confidence interval on that
+              proportion, so a 120-game read that could plausibly be 45-71% doesn't look
+              as precise as a single "58%" number implies. Narrows with more games. */}
+          <div
+            title={`95% confidence interval: ${Math.round(ciLo * 100)}–${Math.round(ciHi * 100)}% — with only ${r?.games ?? 0} games simulated, the true win rate against this specific list could plausibly be anywhere in this range.`}
+            style={{ height: 8, borderRadius: 5, background: '#7f1d1d', overflow: 'hidden', margin: '6px 0 2px', position: 'relative', cursor: 'help' }}
+          >
             <div style={{ height: '100%', width: `${wa}%`, background: '#16a34a' }} />
+            <div style={{
+              position: 'absolute', top: 0, bottom: 0,
+              left: `${ciLo * 100}%`, width: `${Math.max(0, (ciHi - ciLo) * 100)}%`,
+              background: 'rgba(255,255,255,0.28)', mixBlendMode: 'overlay',
+            }} />
+          </div>
+          <div style={{ fontSize: 10, color: '#78716c', marginBottom: 8 }}>
+            95% confidence interval: {Math.round(ciLo * 100)}–{Math.round(ciHi * 100)}%
+            {r?.games ? ` (n=${r.games} games)` : ''}
           </div>
           {r && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, fontSize: 11, marginBottom: 8 }}>
