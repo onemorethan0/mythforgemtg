@@ -4141,6 +4141,11 @@ def _gauntlet_analyze(commander, deck, partners=None):
             "engine_version": data.get("engine_version"),
             "power_profile": data.get("power_profile"),
             "combos": data.get("combos"),  # graded in-deck combos for the strength panel
+            # Deck-specific narrative (archetype/gameplan/pod placement/key cards/strengths
+            # & weaknesses) -- fully computed by the engine's own insight.py, deterministic
+            # and free (no extra simulation), but previously dropped here: this function
+            # reshapes the /analyze response and only ever forwarded the three keys above.
+            "insight": data.get("insight"),
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:

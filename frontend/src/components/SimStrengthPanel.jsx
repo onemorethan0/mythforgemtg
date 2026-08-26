@@ -5,6 +5,11 @@
 // ({engine_version, power_profile, unresolved}).
 export default function SimStrengthPanel({ simulation }) {
   const pp = simulation?.power_profile
+  // Deck-specific narrative (archetype/gameplan/pod placement/key cards/strengths &
+  // weaknesses) — deterministic, computed for free alongside power_profile by the same
+  // analyze_deck call (mythgauntlet.ratings.insight), but historically dropped at the
+  // Forge/engine boundary (_gauntlet_analyze only ever forwarded power_profile+combos).
+  const insight = simulation?.insight
   const AC = '#38bdf8'
   // MythGauntlet is the ONLY bracket authority now. Forge used to ship its own heuristic
   // estimator (deck_analysis.py) as a fallback and render it above this panel — two bracket
@@ -41,9 +46,14 @@ export default function SimStrengthPanel({ simulation }) {
       )}
     </div>
   )
+  // Prefer the engine's own authored prose (insight.axis_why — the SAME numbers, written by
+  // the same code that builds the CLI report) when it's present; the hand-rolled versions
+  // below are the fallback for a caller that only has power_profile (e.g. a cached response
+  // from before `insight` was wired through the Forge/engine boundary).
+  const why = insight?.axis_why || {}
   // "2 removal, 6 counters, 0 wipes; breadth 2/3" -- the same breakdown the CLI has always
   // shown, now reaching the panel instead of just a bare 0-100 score.
-  const interactionDetail = pp.interaction_answers != null && (
+  const interactionDetail = why.Interaction || (pp.interaction_answers != null && (
     <>
       {pp.interaction_answers} answer{pp.interaction_answers === 1 ? '' : 's'}
       {pp.interaction_effective_answers != null
@@ -53,23 +63,23 @@ export default function SimStrengthPanel({ simulation }) {
           {pp.interaction_board_wipes} wipes; breadth {pp.interaction_breadth}/3</>
       )}
     </>
-  )
+  ))
   // "vs a turn-5 board wipe (100% -> 100% kill rate, +0.0 turns to kill)" -- what the
   // resilience score actually simulated, not just the composite number.
-  const resilienceDetail = pp.resilience_wipe_turn != null && (
+  const resilienceDetail = why.Resilience || (pp.resilience_wipe_turn != null && (
     <>
       vs a turn-{pp.resilience_wipe_turn} board wipe ({pct(pp.resilience_clean_kill_rate)} → {' '}
       {pct(pp.resilience_wiped_kill_rate)} kill rate
       {pp.resilience_kill_delay_turns != null
         ? `, +${pp.resilience_kill_delay_turns.toFixed(1)} turns to kill` : ''})
     </>
-  )
+  ))
   // The Pod axis answers a DIFFERENT question than the goldfish speed/ceiling numbers above:
   // can this deck actually close a real ~4-player game, or only a 1v1 duel? A deck can read
   // fast and consistent in every other row and still barely dent a pod (Prismari-class storm
   // decks: 100% duel-close, single-digit pod-close) -- exactly the duel-vs-pod gap this axis
   // exists to surface, and it was computed all along but never rendered until now.
-  const podDetail = pp.pod != null && (
+  const podDetail = why['Pod (multiplayer)'] || (pp.pod != null && (
     pp.pod_close_turn != null ? (
       <>
         closes a {(pp.pod_opponents ?? 3) + 1}-player pod ~turn {Math.round(pp.pod_close_turn)}{' '}
@@ -83,7 +93,11 @@ export default function SimStrengthPanel({ simulation }) {
         real table
       </>
     )
-  )
+  ))
+  // Consistency and Ceiling had NO detail line before insight.axis_why existed to supply
+  // one — there was no raw field on power_profile to hand-roll a fallback from.
+  const consistencyDetail = why.Consistency || null
+  const ceilingDetail = why.Ceiling || null
   const speed = pp.speed_avg_kill_turn
     ? `turn ${pp.speed_avg_kill_turn.toFixed(1)} (${pct(pp.speed_kill_rate)})`
     : `no goldfish kill (${pct(pp.speed_kill_rate)})`
@@ -96,6 +110,19 @@ export default function SimStrengthPanel({ simulation }) {
       <div style={{ fontSize: 11, color: '#78716c', marginBottom: 10 }}>
         Measured by simulating games — not a static heuristic.
       </div>
+      {insight?.archetype && (
+        <div style={{ marginBottom: 10 }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 12,
+            background: '#1c1917', border: '1px solid #57534e', color: '#d6d3d1', marginRight: 6,
+          }}>
+            {insight.archetype}
+          </span>
+          {insight.gameplan && (
+            <span style={{ fontSize: 11.5, color: '#a8a29e', lineHeight: 1.5 }}>{insight.gameplan}</span>
+          )}
+        </div>
+      )}
       {pp.bracket_estimate && (() => {
         const BR = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
         const bc = BR[pp.bracket_estimate] || '#eab308'
@@ -111,6 +138,18 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
+      {/* The casual headline takeaway: which pod does this belong in, in plain English —
+          not just the bracket number, but what it MEANS to bring this to a table (e.g.
+          "will overwhelm casual tables" / "a fair fit for a casual Bracket 2 pod"). Reads
+          the same bracket+plays_up state as the badge above, so the two never disagree. */}
+      {insight?.pod_read && (
+        <div style={{
+          fontSize: 11.5, color: '#d6d3d1', lineHeight: 1.5, marginBottom: 10,
+          padding: '6px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524',
+        }}>
+          {insight.pod_read}
+        </div>
+      )}
       {/* The B2/B3 boundary is NOT resolvable from card gates, and the engine says so.
           `plays_up` marks a deck the Game Changer gate caps at Core OR Exhibition while it
           sits on the Core/Upgraded edge — measured, 40% of decks their own authors call
@@ -225,13 +264,13 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
-      {bar('Consistency', pp.consistency, '/100')}
+      {bar('Consistency', pp.consistency, '/100', consistencyDetail)}
       {bar('Resilience vs a board wipe', pp.resilience, '/100', resilienceDetail)}
       {pp.interaction != null && bar('Interaction', pp.interaction, '/100', interactionDetail)}
-      {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100')}
+      {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100', ceilingDetail)}
       {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail)}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
-        <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+        <span title={why.Speed || undefined} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: why.Speed ? 'help' : 'default' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>
         </span>
         <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
@@ -261,6 +300,49 @@ export default function SimStrengthPanel({ simulation }) {
           </span>
         ))}
       </div>
+      {((insight?.strengths?.length || 0) > 0 || (insight?.weaknesses?.length || 0) > 0) && (
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 10,
+          padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524',
+        }}>
+          {insight.strengths?.length > 0 && (
+            <div style={{ flex: '1 1 160px' }}>
+              <div style={{ fontSize: 10.5, color: '#78716c', marginBottom: 4 }}>Strengths</div>
+              {insight.strengths.map((s, i) => (
+                <div key={i} style={{ fontSize: 11, color: '#86efac', lineHeight: 1.5, display: 'flex', gap: 5 }}>
+                  <span>✓</span><span>{s}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {insight.weaknesses?.length > 0 && (
+            <div style={{ flex: '1 1 160px' }}>
+              <div style={{ fontSize: 10.5, color: '#78716c', marginBottom: 4 }}>Weaknesses</div>
+              {insight.weaknesses.map((w, i) => (
+                <div key={i} style={{ fontSize: 11, color: '#fca5a5', lineHeight: 1.5, display: 'flex', gap: 5 }}>
+                  <span>⚠</span><span>{w}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      {insight?.key_cards?.length > 0 && (
+        <details style={{ marginBottom: 10 }}>
+          <summary style={{ fontSize: 11, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>
+            Key cards — what drives each role
+          </summary>
+          <div style={{ marginTop: 6 }}>
+            {insight.key_cards.map((kc) => (
+              <div key={kc.role} style={{ fontSize: 11, marginBottom: 4, lineHeight: 1.5 }}>
+                <span style={{ color: '#78716c' }}>{kc.role}: </span>
+                <span style={{ color: '#d6d3d1' }}>{kc.names.join(', ')}</span>
+                {kc.more > 0 && <span style={{ color: '#78716c' }}> (+{kc.more} more)</span>}
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
       <div style={{ fontSize: 12, color: '#a8a29e', lineHeight: 1.5 }}>{pp.bracket_hint}</div>
       {simulation.engine_version && (
         <div style={{ fontSize: 10, color: '#57534e', marginTop: 6 }}>engine v{simulation.engine_version}</div>
