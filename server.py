@@ -4210,7 +4210,12 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
             # before spending the eval budget, then returns a NON-OVERLAPPING package
             # (distinct cuts). cut_pool=6 gives up to 6 replaceable slots so the package
             # can be more than 3 swaps; max_eval=16 relevant adds compete for them.
-            # 16×6 analyses ~= 60s warm, within the 150s timeout below.
+            # NOT "~60s warm" — that estimate was swept at max_eval=10, runs=60.
+            # MEASURED 2026-08-26 at this exact config against a real 99-card deck with
+            # ComfyUI + llama-swap warm-but-idle: 583s (96 analyses, ~6s/analysis at
+            # runs=300). `_gauntlet_advise` now runs off the request thread (see
+            # `advise_deck`'s docstring), so 900s just needs real margin over that
+            # measurement, not to double as a UI-responsiveness budget.
             "max_eval": 16,
             "cut_pool": 6,
         }
@@ -4221,7 +4226,7 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
         lift = edhrec_lift.lift_map((commander or {}).get("name") or "")
         if lift:
             payload["lift"] = lift
-        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=150)
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=900)
         if resp.status_code == 400:
             try:
                 return {"error": resp.json().get("detail", "advise failed")}
@@ -4500,12 +4505,52 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
     return result
 
 
+def _run_advise_job(advise_job_id: str, commander, deck, axis, themes, partners, narrate, deck_job):
+    """Background body of `advise_deck` — see that route for why this is async.
+
+    Mirrors `_run_style_sample`: write status/result/error into `_jobs[advise_job_id]`
+    rather than returning, since this runs via `BackgroundTasks` after the POST has
+    already responded.
+    """
+    job = _jobs[advise_job_id]
+    try:
+        result = _gauntlet_advise(commander, deck, axis=axis, themes=themes, partners=partners)
+        if result is not None and "error" not in result and narrate:
+            result = _narrate_suggestions(result, deck_job)
+        if result is None:
+            job.update(status="error", error=(
+                "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+                "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'."
+            ))
+        elif "error" in result:
+            job.update(status="error", error=result["error"])
+        else:
+            job.update(status="done", result=result)
+    except Exception as e:
+        traceback.print_exc()
+        job.update(status="error", error=str(e))
+
+
 @app.post("/api/deck/{job_id}/advise")
-def advise_deck(job_id: str, req: AdviseDeckRequest, request: Request):
-    """Upgrade suggestions from the user's collection for a FINISHED deck (suite C4).
+async def advise_deck(job_id: str, req: AdviseDeckRequest, background_tasks: BackgroundTasks, request: Request):
+    """Start upgrade-advice from the user's collection for a FINISHED deck (suite C4).
 
     Every suggestion is a measured axis delta from MythGauntlet's ablation re-simulation,
     never popularity. Needs the strength API (:8020) and a Myth Suite collection export.
+
+    **Runs in the background (2026-08-26) — this used to block on the whole simulation
+    inside the POST.** The advisor's own default (`max_eval=16, cut_pool=6, runs=300`)
+    was measured end to end at **583s** against a real 99-card deck with Myth Forge's own
+    GPU services warm-but-idle (the ordinary state right after a build) — ~10x the "~60s
+    warm" estimate in `advisor.advise`'s docstring, which was swept at a smaller
+    `max_eval=10` and a 5x-lower `runs=60`. That is far past any synchronous HTTP timeout
+    worth setting: covering it would mean holding a live browser connection AND a FastAPI
+    worker thread for ten-plus minutes, and a busier machine or bigger deck can only make
+    it longer. So the fix is not a bigger timeout number or a smaller `max_eval`/`cut_pool`
+    (that would just trade advice quality for a still-dishonest wait) — it's the same
+    start-a-job/poll-for-it shape `style_sample` already uses for its own long ComfyUI
+    renders. The POST returns a job id immediately; poll
+    `GET /api/deck/advise/{advise_job_id}` for the result.
     """
     client_ip = request.client.host if request.client else "unknown"
     if not _check_rate_limit(client_ip + _CHAT_RATE_LIMIT_KEY, _RATE_LIMIT_CHAT_REQUESTS):
@@ -4524,19 +4569,26 @@ def advise_deck(job_id: str, req: AdviseDeckRequest, request: Request):
         {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
         for c in cards
     ]
-    result = _gauntlet_advise(commander, deck, axis=req.axis,
-                              themes=_deck_archetypes(job), partners=_job_partners(job))
-    if result is not None and "error" not in result and req.narrate:
-        result = _narrate_suggestions(result, job)
-    if result is None:
-        raise HTTPException(
-            503,
-            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
-            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
-        )
-    if "error" in result:
-        raise HTTPException(400, result["error"])
-    return result
+    advise_job_id = uuid.uuid4().hex[:16]
+    _jobs[advise_job_id] = {"status": "running", "kind": "advise", "result": None,
+                            "error": None, "created_at": time.time()}
+    background_tasks.add_task(
+        _run_advise_job, advise_job_id, commander, deck, req.axis,
+        _deck_archetypes(job), _job_partners(job), req.narrate, job,
+    )
+    return {"job_id": advise_job_id}
+
+
+@app.get("/api/deck/advise/{advise_job_id}")
+async def advise_status(advise_job_id: str):
+    j = _jobs.get(advise_job_id)
+    if not j or j.get("kind") != "advise":
+        raise HTTPException(404, "Advise job not found")
+    if j.get("status") == "done":
+        return {"status": "done", "result": j.get("result")}
+    if j.get("status") == "error":
+        return {"status": "error", "detail": j.get("error")}
+    return {"status": "running"}
 
 
 # ── Collection manager (edit the canonical MythSuite/collection.csv) ──────────────

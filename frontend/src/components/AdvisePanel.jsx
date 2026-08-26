@@ -14,11 +14,14 @@ export default function AdvisePanel({ jobId, onApplied }) {
   const [applying, setApplying] = useState('')   // add-name of the in-flight swap
   const [applied, setApplied] = useState(null)   // the applied suggestion {add, cut, ...}
   const [applyErr, setApplyErr] = useState('')
+  const [elapsedS, setElapsedS] = useState(0)
 
   // Both `applySwap` and `run` fire off a button click, not mount, so (unlike
   // RecentDecks.jsx's effect-scoped `let cancelled`) the flag needs to outlive that
-  // call in a ref; an unmount-only effect flips it. `run`'s re-simulation takes
-  // ~10-30s, long enough to outlive the panel if the user navigates away mid-run.
+  // call in a ref; an unmount-only effect flips it. `run`'s re-simulation is a
+  // background job the panel polls (measured 2026-08-26: the real ablation pass can
+  // take several MINUTES, not seconds — see the elapsed-time readout below), long
+  // enough to outlive the panel if the user navigates away mid-run.
   const cancelledRef = useRef(false)
   useEffect(() => () => { cancelledRef.current = true }, [])
 
@@ -51,26 +54,55 @@ export default function AdvisePanel({ jobId, onApplied }) {
     setApplying('')
   }
 
+  // Started, not run() to completion — the actual simulation is a background job
+  // (server.py's `advise_deck`/`advise_status`), because the real ablation pass can run
+  // several minutes past what any synchronous HTTP request should hold open. Poll every
+  // 3s; `elapsedS` drives the honest "how much longer" readout below.
   async function run() {
     if (phase === 'loading') return
     setPhase('loading')
+    setElapsedS(0)
+    const startedAt = Date.now()
     try {
       const response = await fetch(`/api/deck/${jobId}/advise`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ axis: axis || null }),
       })
-      if (response.ok) {
-        const data = await response.json()
-        if (cancelledRef.current) return
-        setResult(data)
-        setPhase('done')
-      } else {
+      if (!response.ok) {
         let d = 'HTTP ' + response.status
         try { d = (await response.json()).detail || d } catch {}
         if (cancelledRef.current) return
         setErrMsg(d)
         setPhase('error')
+        return
+      }
+      const { job_id: adviseJobId } = await response.json()
+      while (true) {
+        if (cancelledRef.current) return
+        setElapsedS(Math.round((Date.now() - startedAt) / 1000))
+        await new Promise(r => setTimeout(r, 3000))
+        if (cancelledRef.current) return
+        const poll = await fetch(`/api/deck/advise/${adviseJobId}`)
+        if (!poll.ok) {
+          if (cancelledRef.current) return
+          setErrMsg('HTTP ' + poll.status)
+          setPhase('error')
+          return
+        }
+        const data = await poll.json()
+        if (cancelledRef.current) return
+        if (data.status === 'done') {
+          setResult(data.result)
+          setPhase('done')
+          return
+        }
+        if (data.status === 'error') {
+          setErrMsg(data.detail || 'Advisor failed')
+          setPhase('error')
+          return
+        }
+        // status === 'running' — keep polling.
       }
     } catch {
       if (cancelledRef.current) return
@@ -115,7 +147,12 @@ export default function AdvisePanel({ jobId, onApplied }) {
       </button>
       {busy && (
         <span style={{ fontSize: 11, color: '#78716c' }}>
-          re-simulating the deck once per owned candidate (~10-30s)
+          {/* Measured 2026-08-26: a real 99-card deck against Myth Forge's own GPU
+              services (warm-but-idle) took ~10 minutes. There is no honest short number
+              here — it depends on deck size and whatever else is warm on :8010/:8188 —
+              so this counts up instead of promising a range. */}
+          re-simulating the deck once per owned candidate — can take several minutes,
+          longer if Myth Forge's other services are busy{elapsedS > 0 ? ` (${elapsedS}s elapsed)` : ''}
         </span>
       )}
     </div>
