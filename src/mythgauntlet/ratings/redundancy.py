@@ -338,6 +338,23 @@ def _lift_key(card: Card, lift: dict[str, float] | None) -> float:
     Two PRIOR fixes (un-clamped headroom; inverted tiebreak) were measured and rejected; this
     is a third, independent signal (EDHREC lift, not role/oversupply) tried specifically
     because it comes from data neither prior attempt touched.
+
+    IT ALSO CLOSES S13'S CANARY, UNMODIFIED — measured 2026-08-26, not designed for it. S13
+    is a DIFFERENT tie: `card_roles` gives counterspell/wipe a fixed per-card strength, so two
+    same-cost counterspells score identically once the role is genuinely over target (not the
+    0.0 case above). `_lift_key` sits in the sort key for EVERY tie in `rank_redundant`, not
+    only the degenerate one, so it resolves this shape too, for free. Swept over the 255
+    corpus decks with a cached commander page: the top redundant pick changes for 66, and on
+    the 40 numerically-comparable cases (both old and new picks measured), the new pick's
+    lift is lower every time — 0 regressions, same class of result S12 measured for its own
+    case. Reproduces the real S13 canary (`archidekt-13708248`, Omo/landfall): without lift,
+    Flusterstorm — unmeasured on Omo's own EDHREC page — is offered over An Offer You Can't
+    Refuse (measured there at lift -0.07) purely because it is the less-played of the two on
+    the trailing tiebreak; with lift wired (the live `/advise` route has passed it since S12
+    shipped), the generic staple is offered first instead. Coverage is still the honest
+    partial figure `lift_stats.py` already documents (16-76%) — a deck whose commander has no
+    cached EDHREC page gets none of this, and the underlying fixed-strength scoring in
+    `card_roles` is untouched. See ROADMAP.md S13 for the full write-up.
     """
     if not lift:
         return 0.0

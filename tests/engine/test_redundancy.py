@@ -532,6 +532,49 @@ def test_lift_map_normalizes_dfc_front_face():
     assert lift_map(cards) == {"birgi, god of storytelling": 0.2}
 
 
+# ── S13: lift also resolves the fixed-role-strength tie, not just the S12 zero-score one ──
+# `card_roles` gives counterspell/wipe a FIXED per-card strength (3.0), so two same-cost
+# counterspells score IDENTICALLY once the role clears its target — a real oversupply, not
+# the `oversupply == 0.0` degenerate case S12's lift tiebreak was built for. `_lift_key`
+# participates in EVERY tie in `rank_redundant`'s sort key, not only the degenerate one, so
+# it turns out to resolve this shape too. Reproduces the real corpus canary
+# (archidekt-13708248, Omo/landfall): without lift, Flusterstorm (unmeasured on Omo's own
+# EDHREC page) is offered over An Offer You Can't Refuse (measured there at lift -0.07) only
+# because it is the less-played of the two on the LAST tiebreak; with lift wired (as the live
+# `/advise` route has done since S12 shipped), the generic staple is offered first instead.
+
+def test_lift_resolves_a_tie_in_a_genuinely_over_supplied_role_too(make_card):
+    """Not just the S12 zero-score case — the SAME `_lift_key` also breaks a tie between two
+    cards that are honestly over target, which is what S13's canary actually needed."""
+    narrow = make_card(
+        "Narrow Counter", type_line="Instant", oracle_text="Counter target spell.",
+        mana_cost="{U}",
+    )
+    generic = make_card(
+        "Generic Counter", type_line="Instant", oracle_text="Counter target spell.",
+        mana_cost="{U}",
+    )
+    resolved = ResolvedDeck(
+        deck=Deck(commanders=[], entries=[]), commanders=[],
+        cards=[(narrow, 1), (generic, 1)], missing=[],
+    )
+    supply = redundancy.role_supply(resolved)
+    assert supply["counterspell"] == 6.0   # 2 x 3.0, over the target of 3 (not the 0.0 case)
+
+    s_narrow = redundancy.score_card(narrow, supply)
+    s_generic = redundancy.score_card(generic, supply)
+    assert s_narrow.score == s_generic.score > 0.0, (
+        "precondition: identical mana cost + the fixed per-role strength must tie these"
+    )
+
+    lift = {"generic counter": -0.07}    # Narrow Counter absent from the page -> neutral 0.0
+    aware = [c.name for c in redundancy.rank_redundant(resolved, 1, lift=lift)]
+    assert aware[0] == "Generic Counter", (
+        "a confirmed generic staple must be offered ahead of an unmeasured, narrower "
+        "counterspell even when the two are tied on SCORE, not only when score is 0.0"
+    )
+
+
 def test_every_archetype_role_is_a_role_the_module_scores():
     """A typo'd role name would sit in the table doing nothing, silently.
 

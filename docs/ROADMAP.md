@@ -169,6 +169,41 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 > the project's own S17 lesson this same session (a plausible-looking fix reverted after it
 > broke Thassa's Oracle) is why an unmeasured reordering of `_efficiency`'s own weighting isn't
 > attempted here either without the same sweep-and-validate rigor S10's archetype table used.
+>
+> **LARGELY MITIGATED, FOUND RATHER THAN BUILT — 2026-08-26, the same day S12's lift tiebreak
+> shipped.** `_lift_key` sits in `rank_redundant`'s sort key for *every* tie, not only the
+> `oversupply == 0.0` case S12 was written for — and the S13 canary IS a tie: two same-cost
+> counterspells scoring identically once the fixed per-card strength clears the role's
+> target. Re-running the exact canary with `lift = edhrec_lift.lift_map("Omo, Queen of
+> Vesuva")` (the same call the live `/advise` route already makes) flips the pick: An Offer
+> You Can't Refuse (measured on Omo's own page at lift -0.07, a confirmed generic staple)
+> is offered ahead of Flusterstorm (absent from that page, so neutral). Nobody had re-checked
+> S13 against the wiring S12 landed for a different reason.
+>
+> **Swept, not just re-run once.** Over the 255 corpus decks whose commander has a cached
+> EDHREC page: the top redundant pick (population `ROLE_TARGETS`, no archetype narrowing)
+> changes for **66** when `lift` is supplied. Of the 40 where BOTH the old and new pick are
+> independently measured, the new pick's lift is lower — more generic-staple — **every
+> time: 0 regressions**, the same falsifiable shape S12's own validation used. Script:
+> scratchpad `s13_sweep.py` (not committed; offline, cache-only, re-runnable).
+>
+> **Not a fix to the architecture, and say so plainly.** `card_roles` still returns a flat
+> 3.0 for counterspell/wipe — the granularity S13 named is still real. What changed is that
+> the tiebreak that used to reach for least-played (surfacing the narrow, thematic pick) now
+> more often reaches for EDHREC lift instead (surfacing the generic one), *when the commander
+> has a cached page*. Coverage is the same honest partial figure documented elsewhere
+> (16–76%, `lift_stats.py`) — a deck whose commander has no cached page gets none of this,
+> and still falls through to the old least-played rule. Pinned by
+> `test_lift_resolves_a_tie_in_a_genuinely_over_supplied_role_too` in
+> `tests/engine/test_redundancy.py` (a synthetic case, not a live-data one, so it can't rot
+> if the cache changes).
+>
+> **Effort downgraded to S** because there was nothing to build — this is a measurement that
+> the fix already shipped, one row up, for an unrelated reason. What remains genuinely open
+> is the `_efficiency` reordering question named above (should a narrow-but-cheap card like
+> Flusterstorm earn LESS within-role credit than a generic-but-cheap one, for commanders
+> with no EDHREC page at all) — that still needs S10-grade sweep-and-validate rigor and has
+> not been attempted.
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
@@ -184,7 +219,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | **S10** | ~~`ROLE_TARGETS` is archetype-blind~~ | own-plan cut slots **64.0% → 33.8%** · pool changes on 52/106 | **Done** | — |
 | **S11** | ~~`card_impact` cuts by popularity~~ | recommended cut changes **95%** · verdict **30%** | **Done** | — |
 | **S12** | ~~Redundancy score silent on 9% of decks~~ | disclosure verified · **3rd-attempt lift tiebreak SHIPPED + wired end-to-end** 2026-08-26 — 10/14 measured decks changed, 0 regressions, live verdict flip confirmed | **Done** | — |
-| S13 | Fixed role strength makes targets granular | **reproduced exactly** on `archidekt-13708248` 2026-08-25 — Flusterstorm still the #1 offered cut | Medium | M (no safe fix found yet) |
+| S13 | Fixed role strength makes targets granular | **largely mitigated by S12's lift wiring, found 2026-08-26** — 0 regressions on 40 comparable cases, but coverage-gated | Medium | S (found already shipped) |
 | **S14** | ~~Swap reasons are template fragments~~ | gated narrative shipped · 14b **93.2%** yield / **71.9%** gate | **Done** | — |
 | **S15** | ~~`bracket.py` duplicated + unguarded Game Changers/MLD gate~~ | live field confirmed on every search result · 1 name-match bug found · 10 new tests | **Done** | — |
 | **S16** | ~~if/otherwise pairs double-credited~~ · condition-check gap partly remains | **24 cards** double-credited (Approach of the 2nd Sun = free win) · **15.78%** of store has a condition | **Done** (otherwise-fix) / open (general case) | S / M |
