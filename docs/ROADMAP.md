@@ -302,9 +302,53 @@ supported (52 of 80 agreed "no theme in the vocabulary fits"). Deck-context them
 (`deck_themes`) are the right answer for this tail, not more taxonomy. Re-running the n-gram
 pass is not worth doing again until the card pool has grown substantially.
 
----
+### The `deck_themes` rescue rate's own gap, investigated and closed as correctly calibrated
 
-## S9 — the most over-firing theme, now quantified *(new, 2026-08-18)*
+**Measured 2026-08-25.** Of 87 themeless-commander corpus decks with enough resolved cards to
+judge, `deck_themes.detect_deck_themes` rescues **47 (54%)**, leaving **40 (46%) with no
+archetype from either source** — close to this entry's earlier "42%" figure (the exact count
+moves slightly with corpus resolution rate, not with any code change). Spot-checking several
+of the 40 by hand surfaced a real, sympathetic pattern: Jegantha's `chaos` (2 STRONG cards,
+2.49x lift), Nin's `sagas` (2 STRONG, 2.92x lift), Thrasios's `draw_matters` (2 STRONG, 5.79x
+lift) all clear `LIFT_FACTOR` (2.0) comfortably and fail ONLY on the absolute `MIN_STRONG = 3`
+floor — one card short. On the numbers alone this looked like a real near-miss worth fixing.
+
+**It is not, and the sweep that would have caught this before shipping it now exists
+(`scripts/theme_min_strong_sweep.py`), mirroring the exact methodology that originally
+calibrated `LIFT_FACTOR` against 40 random piles.** Run against 87 real themeless-commander
+decks and 60 random 60-card piles:
+
+| `min_strong` | real recall | random false-positive rate |
+|---|---|---|
+| 3 (current) | 54.0% | 26.7% |
+| 2 | **80.5%** | **81.7%** |
+| 1 | 98.9% | 100.0% |
+
+**Lowering the floor to 2 buys +26.5 points of real recall and costs +55 points of noise** —
+at that setting the gate is nearly as likely to bless a random 60-card pile with a fake
+archetype as it is to correctly find a real one, which destroys the signal `deck_themes`
+exists to provide. This is the same failure shape S12's "un-clamp oversupply" and PLAN_CLOCK's
+"random order" marker both were: a change that looks like it closes a real gap and instead
+trades a smaller, honest miss for a much larger, dishonest hit rate.
+
+**The obvious narrower fix — only lower `MIN_STRONG` for the RARE themes that produced the
+near-misses — is also wrong, and for a specific, checkable reason.** Breaking down which
+themes drive the `min_strong=2` false-positive rate on random piles shows the noise
+concentrated in exactly the LOW base-rate themes (`face_down` 21.7% of random piles, `chaos`
+20.0%, `aristocrats` 20.0%, `impulse` 15.0%) — not the high base-rate ones (`counters` 1.7%,
+`graveyard` 6.7%) a naive intuition would suspect. The reason is arithmetic: `theme_lift =
+strong / (base_rate * scored)`, and a theme with a tiny base rate has a tiny denominator, so
+getting even 2 STRONG hits BY PURE CHANCE already produces a large multiplicative lift —
+`chaos`'s own base rate (1.23%) times a 60-card pile is an EXPECTED 0.74 cards, so 2 real hits
+land at ~2.7x lift from chance alone. The rare themes are exactly the ones two-hits-by-luck
+inflates the most, which is the opposite of where a lower floor would be safe.
+
+**Conclusion: `MIN_STRONG = 3` is correctly calibrated as a single global floor and should not
+be touched in either direction.** The 40 corpus decks that remain themeless from both sources
+are the honest output of a gate doing its job — a felt-real 2-card signal on a rare theme is,
+measured against the population, indistinguishable from noise. `theme_min_strong_sweep.py` is
+kept (not a throwaway) so a future attempt at this exact idea re-measures rather than
+re-guesses.
 
 Every sweep so far asked "what theme does this card have". This one asked the opposite and more
 dangerous question: **of the cards a theme already claims, how many does it not deserve?**
