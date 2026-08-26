@@ -88,7 +88,7 @@ BASE_RATE: dict[str, float] = {
     "impulse": 0.01289,
     "landfall": 0.00611,
     "lifegain": 0.00258,
-    "reanimator": 0.00545,
+    "reanimator": 0.00798,
     "sagas": 0.00752,
     "spellslinger": 0.00600,
     "theft": 0.00760,

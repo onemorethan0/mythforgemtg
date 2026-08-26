@@ -73,6 +73,42 @@ def test_kadena_detects_face_down():
     assert "face_down" in hits
 
 
+@pytest.mark.parametrize("name,oracle", [
+    # Found live 2026-08-25: the existing "from a graveyard TO the battlefield" literal
+    # uses the wrong preposition -- real templating says "onto" -- and Geth's own wording
+    # ("from an opponent's graveyard") never contained "a graveyard" as a substring at
+    # all, so all four of these detected ZERO themes despite being textbook reanimators.
+    ("Chainer, Dementia Master",
+     "{B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the "
+     "battlefield under your control."),
+    ("Geth, Lord of the Vault",
+     "{X}{B}: Put target artifact or creature card with mana value X from an opponent's "
+     "graveyard onto the battlefield under your control tapped."),
+    ("Vhal, Scholar of Mortality",
+     "put target creature card with mana value less than or equal to the number of "
+     "study counters removed this way from a graveyard onto the battlefield under your "
+     "control."),
+    ("Soul of Windgrace",
+     "Whenever Soul of Windgrace enters or attacks, you may put a land card from a "
+     "graveyard onto the battlefield under your control."),
+])
+def test_graveyard_onto_battlefield_typo_fix(name, oracle):
+    hits = [t for t, pats in THEME_PATTERNS.items() if any(p in oracle.lower() for p in pats)]
+    assert "reanimator" in hits, f"{name} should detect reanimator: {hits}"
+
+
+def test_self_blink_is_not_misread_as_reanimator():
+    """Thassa, Deep-Dwelling blinks a creature the player ALREADY controls -- it never
+    touches a graveyard at all. The broader candidate literal considered for this fix
+    ("to the battlefield under your control", no "graveyard" requirement) would have
+    matched Thassa and mislabeled a self-ETB-abuse effect as reanimation; requiring
+    "graveyard" in the same phrase is what correctly excludes it."""
+    thassa = ("At the beginning of your end step, exile up to one other target creature "
+              "you control, then return that card to the battlefield under your control.")
+    hits = [t for t, pats in THEME_PATTERNS.items() if any(p in thassa.lower() for p in pats)]
+    assert "reanimator" not in hits
+
+
 @pytest.mark.parametrize("theme,card,expected_strong", [
     ("face_down", {"name": "Stratus Dancer", "type_line": "Creature — Djinn Monk",
                    "oracle_text": "Flying\nMegamorph {1}{U}"}, True),

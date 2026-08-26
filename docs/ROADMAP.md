@@ -309,6 +309,46 @@ supported (52 of 80 agreed "no theme in the vocabulary fits"). Deck-context them
 (`deck_themes`) are the right answer for this tail, not more taxonomy. Re-running the n-gram
 pass is not worth doing again until the card pool has grown substantially.
 
+### Working the disagreement queue found one real, precisely-scoped miss — and rejected a second
+
+**2026-08-25.** `docs/data/zero_theme_triage.json`'s 24-card disagreement queue (Plan step 1,
+never actually worked before now) was re-checked against the CURRENT taxonomy first: 10 of the
+24 are already fixed by the later offload/templating rounds (Tuvasa, Witherbloom, Yennett,
+etc.), leaving 14 genuinely still open. Read each one's real oracle text by hand rather than
+trusting the "big" model's guessed label (which turned out wrong or too coarse for most of
+them — Deadpool/Omo/Mairsil are correctly zero, Mairsil is the already-rejected Riku/Kalamax
+copy-ability shape; several "lifegain" guesses are the already-documented lifegain-source trap).
+
+**Rejected: "defenders matter" as a new theme.** Arcades, the Strategist genuinely rewards
+defender creatures ("whenever a creature you control with defender enters, draw a card").
+Measured before building anything: only **7** legendary creatures in all of Magic even mention
+"with defender" in their own text, and inspecting them shows only ONE — Arcades itself — is an
+actual payoff; the other six just create Wall tokens as an incidental side effect (Super-Skrull,
+Atla Palani, ...), which a broad substring match conflated with the real archetype. A theme
+that would exist for exactly one commander in the entire card pool fails the bar every other
+addition this session met (`~8` rescues minimum) by an order of magnitude. Not added.
+
+**Fixed: a one-word preposition typo in the `reanimator` pattern, live for years.** The existing
+literal is `"from a graveyard TO the battlefield"` — real templating says **"ONTO"**, not "to"
+(Chainer, Dementia Master: *"Put target creature card from a graveyard **onto** the
+battlefield"*), and Geth, Lord of the Vault's own wording ("from **an opponent's** graveyard")
+never contained "a graveyard" as a substring at all. Measured before shipping: the broader
+`"graveyard onto the battlefield"` literal hits **86** real cards (**0.25%** base rate, safely
+clear of a base-rate trap; `deck_themes.BASE_RATE["reanimator"]` regenerated 0.00545 → 0.00798)
+and rescues **4** previously zero-theme commanders — **Chainer, Dementia Master**; **Geth, Lord
+of the Vault**; **Vhal, Scholar of Mortality**; **Soul of Windgrace** — verified live against
+each one's real card text after the fix. Landed in both structures that must agree
+(`commander_analysis.THEME_PATTERNS` and `theme_match.THEME_RULES`), matching the project's own
+recurring "two structures drift apart" failure class. 1264/1264 tests green.
+
+**A candidate broader phrase was tried first and correctly narrowed.** The initial substring,
+`"to the battlefield under your control"` (no "graveyard" requirement), rescued 10 commanders,
+not 4 — but reading each one's real text showed half were semantically wrong: Thassa,
+Deep-Dwelling blinks a creature YOU ALREADY CONTROL (a self-ETB-abuse effect, not reanimation
+at all) and would have been mislabeled `reanimator`. Requiring "graveyard" in the same phrase
+is what correctly excludes Thassa while keeping every genuine reanimation-shaped hit — the
+extra word is doing real semantic work, not just narrowing the count.
+
 ### The `deck_themes` rescue rate's own gap, investigated and closed as correctly calibrated
 
 **Measured 2026-08-25.** Of 87 themeless-commander corpus decks with enough resolved cards to

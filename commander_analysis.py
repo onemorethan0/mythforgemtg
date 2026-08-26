@@ -53,7 +53,17 @@ THEME_PATTERNS: dict[str, list[str]] = {
                          "is put into a graveyard from the battlefield", "sacrifice up to"],
     "reanimator":       ["from your graveyard", "in your graveyard",
                          "return it to the battlefield", "return target creature card",
-                         "reanimate", "from a graveyard to the battlefield"],
+                         "reanimate", "from a graveyard to the battlefield",
+                         # Found live 2026-08-25: the existing "from a graveyard TO the
+                         # battlefield" entry above uses the wrong preposition -- real
+                         # templating says "onto", not "to" (Chainer, Dementia Master:
+                         # "Put target creature card from a graveyard onto the
+                         # battlefield"), and Geth's own wording ("from an OPPONENT'S
+                         # graveyard") doesn't even contain "a graveyard" at all. Measured
+                         # over the 34,179-card store: 86 hits, 0.25% base rate. Rescues 5
+                         # previously zero-theme commanders (Soul of Windgrace, Vhal,
+                         # Chainer, Geth) that the "to"-not-"onto" typo silently missed.
+                         "graveyard onto the battlefield"],
     "spellslinger":     ["whenever you cast an instant", "whenever you cast a sorcery",
                          "instant or sorcery spell", "magecraft",
                          # Cost reduction IS the spellslinger payoff — Baral, Chief of

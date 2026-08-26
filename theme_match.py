@@ -315,6 +315,15 @@ THEME_RULES: dict[str, dict[str, Any]] = {
         "strong_alternatives": [
             [_lit("return target creature card from your graveyard")],
             [_lit("reanimate")],
+            # Found live 2026-08-25: neither literal above requires "your" graveyard, so
+            # a broader templating -- "put [a/target] creature card from A graveyard onto
+            # the battlefield" (Chainer, Dementia Master; Geth, Lord of the Vault; Vhal,
+            # Scholar of Mortality) went unmatched. Measured over the 34,179-card store:
+            # 86 hits, 0.25% base rate -- real reanimation shape (some explicitly reanimate
+            # from an OPPONENT's graveyard, a normal reanimator sub-strategy, not a
+            # different archetype), well clear of a base-rate trap. Rescues 5 previously
+            # zero-theme commanders (Soul of Windgrace, Vhal, Chainer, Geth).
+            [_lit("graveyard onto the battlefield")],
         ],
     },
     "spellslinger": {
