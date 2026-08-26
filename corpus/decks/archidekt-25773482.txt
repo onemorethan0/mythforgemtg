@@ -1,0 +1,108 @@
+# Archidekt — Krark//Sakashima Andrew Kim List (by piebye726)
+# source: archidekt:25773482
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Sakashima of a Thousand Faces
+1 Krark, the Thumbless
+
+Deck:
+1 Ancestral Anger
+1 Arcane Signet
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Archmage Emeritus
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Brain Freeze
+1 City of Traitors
+1 Crash Through
+1 Crimson Wisps
+1 Dragon's Rage Channeler
+1 Emergence Zone
+1 Expedite
+1 Flooded Strand
+1 Gut Shot
+1 Gamble
+1 Gitaxian Probe
+1 Heroes' Hangout
+1 Irma, Part-Time Mutant
+1 Jeska's Will
+1 Light Up the Stage
+1 Might of the Meek
+1 Lotus Petal
+1 Mental Misstep
+1 Mana Confluence
+1 Mockingbird
+1 Mox Diamond
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mountain
+1 Molten Duplication
+1 Overmaster
+1 Pinnacle Monk // Mystic Peak
+1 Pyroblast
+1 Red Elemental Blast
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Ragavan, Nimble Pilferer
+1 Mystic Remora
+1 Runaway Steam-Kin
+1 Simian Spirit Guide
+1 Sink into Stupor // Soporific Springs
+1 Storm-Kiln Artist
+1 Submerge
+1 Tavern Scoundrel
+1 Thundering Falls
+1 Twinflame
+1 Valley Floodcaller
+1 Vexing Bauble
+1 Vivi Ornitier
+1 Warlord's Fury
+1 Wizard's Staff
+1 Wooded Foothills
+1 Chrome Mox
+1 Relic of Legends
+1 Sol Ring
+1 Mox Amber
+1 Mana Vault
+1 Lion's Eye Diamond
+1 Springleaf Drum
+1 Borne Upon a Wind
+1 Desperate Ritual
+1 Fierce Guardianship
+1 Flare of Duplication
+1 Deflecting Swat
+1 Flusterstorm
+1 Into the Flood Maw
+1 Lightning Bolt
+1 Mogg Salvage
+1 Mystical Tutor
+1 Pact of Negation
+1 Tibalt's Trickery
+1 Arid Mesa
+1 Bloodstained Mire
+1 City of Brass
+1 Command Tower
+1 Pyretic Ritual
+1 Gemstone Caverns
+1 Fiery Islet
+1 Riverpyre Verge
+1 Island
+1 Shivan Reef
+1 Scalding Tarn
+1 Steam Vents
+1 Training Center
+1 Ashling, Flame Dancer
+1 Dualcaster Mage
+1 Electro, Assaulting Battery
+1 Volcanic Island
+1 Harmonic Prodigy
+1 Treasonous Ogre
+1 Veyran, Voice of Duality
+1 End the Festivities
+1 Faithless Looting
+1 Strike It Rich
+1 Rite of Flame
+1 Rhystic Study
+1 Underworld Breach

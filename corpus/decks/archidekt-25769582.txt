@@ -1,0 +1,96 @@
+# Archidekt — Back in my day
+# source: archidekt:25769582
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Gluntch, the Bestower
+
+Deck:
+1 Aysen Bureaucrats
+1 Beast Walkers
+1 Benalish Knight
+1 Cloudchaser Eagle
+1 Combat Medic
+1 Daru Mender
+1 Elvish Healer
+1 Femeref Knight
+1 Kjeldoran Elite Guard
+1 Lawbringer
+1 Mesa Falcon
+1 Monk Idealist
+1 Pikemen
+1 Ramosian Captain
+1 Regal Unicorn
+1 Resistance Fighter
+1 Samite Alchemist
+1 Samite Healer
+1 Serra Angel
+1 Soltari Lancer
+1 Soltari Monk
+1 Soltari Trooper
+1 Trade Caravan
+1 Wall of Swords
+1 Alarum
+1 Aura Extraction
+1 Bandage
+1 Blood of the Martyr
+1 Fog
+1 Guided Strike
+1 Last Breath
+1 Martyrdom
+1 Worthy Cause
+1 Deep Reconnaissance
+1 Desert Twister
+1 Repentance
+1 Vengeance
+1 Arcane Signet
+1 Dungeon Map
+1 Fellwar Stone
+1 Hedron Archive
+1 Ivory Tower
+1 Mind Stone
+1 Network Terminal
+1 Sol Ring
+1 Throne of Bone
+1 Unstable Obelisk
+1 Well of Lost Dreams
+1 Blue Ward
+1 Circle of Protection: Black
+1 Circle of Protection: Blue
+1 Circle of Protection: Green
+1 Circle of Protection: Red
+1 Circle of Protection: Shadow
+1 Circle of Protection: White
+1 Gossamer Chains
+1 Kithkin Armor
+1 Lifeforce
+1 Pacifism
+1 Prismatic Circle
+1 White Scarab
+1 White Ward
+1 Bountiful Promenade
+1 Brushland
+1 Canopy Vista
+1 Creosote Heath
+2 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Fortified Village
+1 Graypelt Refuge
+5 Plains
+1 Plains
+3 Plains
+2 Plains
+2 Plains
+1 Plains
+2 Plains
+1 Plains
+2 Plains
+2 Plains
+1 Sungrass Prairie
+1 Karma

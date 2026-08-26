@@ -1,0 +1,85 @@
+# Archidekt — Teysa Karlov
+# source: archidekt:25777951
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Teysa Karlov
+
+Deck:
+1 Exotic Orchard
+1 Generous Gift
+1 Hallowed Spiritkeeper
+11 Plains
+1 Arcane Signet
+1 Bastion of Remembrance
+1 Bloodghast
+1 Castle Ardenvale
+1 Cathar Commando
+1 Corrupted Conviction
+1 Doomed Traveler
+1 Damn
+1 Deadly Dispute
+1 Isolated Chapel
+1 Midnight Reaper
+1 Ministrant of Obligation
+1 Mirkwood Bats
+1 Nested Shambler
+1 Ophiomancer
+1 Pawn of Ulamog
+1 Pitiless Plunderer
+1 Reassembling Skeleton
+1 Secure the Wastes
+1 Sol Ring
+1 Solemn Simulacrum
+1 Syr Konrad, the Grim
+1 Tainted Field
+1 Talisman of Hierarchy
+1 Teysa, Orzhov Scion
+1 Tithe Taker
+1 Umbral Collar Zealot
+1 Village Rites
+1 Viscera Seer
+1 Woe Strider
+1 Yahenni, Undying Partisan
+1 Zulaport Cutthroat
+1 Diabolic Intent
+1 Grim Haruspex
+1 Orzhov Signet
+14 Swamp
+1 Marionette Apprentice
+1 Eviscerator's Insight
+1 Garrison Cat
+1 Hunted Witness
+1 Indebted Spirit
+1 Infestation Sage
+1 Nether Traitor
+1 Shattered Sanctum
+1 Vengeful Bloodwitch
+1 Witch's Cottage
+1 Wriggling Grub
+1 Sifter of Skulls
+1 Caves of Koilos
+1 Elas il-Kor, Sadistic Pilgrim
+1 Luminous Broodmoth
+1 Cruel Celebrant
+1 Beseech the Mirror
+1 Anguished Unmaking
+1 Warren Soultrader
+1 Path to Exile
+1 Liliana, Dreadhorde General
+1 Rite of Oblivion
+1 Priest of Forgotten Gods
+1 Blood Artist
+1 Braids, Arisen Nightmare
+1 Command Tower
+1 Carrion Feeder
+1 High Market
+1 Eclipsed Steppe
+1 Elenda, the Dusk Rose
+1 Fellwar Stone
+1 Raise the Past
+1 Skullclamp
+1 Swords to Plowshares
+1 Ashnod's Altar
+1 Vanquish the Horde

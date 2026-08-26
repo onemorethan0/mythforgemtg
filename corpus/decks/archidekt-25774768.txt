@@ -1,0 +1,95 @@
+# Archidekt — Da Vinci?
+# source: archidekt:25774768
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Leonardo da Vinci
+
+Deck:
+1 Mystic Sanctuary
+1 Reliquary Tower
+1 Myriad Landscape
+1 Seat of the Synod
+1 Otawara, Soaring City
+1 Rogue's Passage
+1 Urza's Saga
+1 Academy Ruins
+1 Nykthos, Shrine to Nyx
+1 Uthros, Titanic Godcore
+1 Ancient Tomb
+1 Archway of Innovation
+1 Mishra's Workshop
+1 Cavern of Souls
+1 Urza's Tower
+1 Urza's Mine
+1 Urza's Power Plant
+14 Island
+1 Darksteel Citadel
+1 Temple of the False God
+1 Emergence Zone
+1 Foundry Inspector
+1 Lotus Field
+1 Deserted Temple
+1 Sol Ring
+1 Thought Vessel
+1 Arcane Signet
+1 Etherium Sculptor
+1 Unwinding Clock
+1 Darksteel Forge
+1 Ornithopter of Paradise
+1 Sapphire Medallion
+1 Simulacrum Synthesizer
+1 Portal to Phyrexia
+1 Gilded Lotus
+1 Thran Dynamo
+1 The One Ring
+1 Mox Opal
+1 Chimil, the Inner Sun
+1 Mana Vault
+1 The Ten Rings
+1 Nexus of Becoming
+1 The Immortal Sun
+1 Sai, Master Thopterist
+1 Research Thief
+1 Cybermen Squadron
+1 Urza, Lord High Artificer
+1 Spellskite
+1 Whirler Rogue
+1 Rhystic Study
+1 Thopter Spy Network
+1 Teferi's Ageless Insight
+1 Efficient Construction
+1 Mechanized Production
+1 Counterspell
+1 Pongify
+1 An Offer You Can't Refuse
+1 Cyclonic Rift
+1 Mana Drain
+1 Force of Will
+1 Force of Negation
+1 Fierce Guardianship
+1 Desynchronization
+1 Arcane Denial
+1 Whir of Invention
+1 Tezzeret the Seeker
+1 Tezzeret, Artifice Master
+1 Fabricate
+1 March of Progress
+1 Omniscience
+1 Enter the Infinite
+1 Panoptic Mirror
+1 Time Warp
+1 Time Stretch
+1 Timestream Navigator
+1 Training Grounds
+1 Unstoppable Plan
+1 Padeem, Consul of Innovation
+1 Kappa Cannoneer
+1 Blightsteel Colossus
+1 Swan Song
+1 Mystical Tutor
+1 Aetherize
+1 Dramatic Reversal
+1 Access Denied
+1 Spell Pierce

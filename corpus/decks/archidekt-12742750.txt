@@ -1,0 +1,87 @@
+# Archidekt — Open Your Mind
+# source: archidekt:12742750
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Hugs, Grisly Guardian
+
+Deck:
+1 Rootbound Crag
+1 Karplusan Forest
+1 Screamer-Killer
+1 Lavaleaper
+1 Cheering Crowd
+1 Nature's Lore
+1 Fanatic of Rhonas
+1 Loot, Exuberant Explorer
+1 Rampant Growth
+1 Klauth, Unrivaled Ancient
+1 Three Visits
+1 Birds of Paradise
+1 Garruk's Uprising
+1 Up the Beanstalk
+1 Glimpse the Impossible
+1 Inspired Tinkering
+1 Tibalt's Trickery
+1 Stump Stomp // Burnwillow Clearing
+1 Kogla and Yidaro
+1 Kogla, the Titan Ape
+1 Beast Within
+1 Chaos Warp
+1 Fires of Yavimaya
+1 Rhythm of the Wild
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Apex Devastator
+1 Stomping Ground
+1 Keeper of Secrets
+1 Gruul Turf
+1 Commercial District
+1 Thornspire Verge
+1 Cinder Glade
+1 Kessig Wolf Run
+1 Wooded Foothills
+1 Spire Garden
+1 Rockfall Vale
+11 Mountain
+12 Forest
+1 Xenagos, God of Revels
+1 Arid Archway
+1 Sakura-Tribe Elder
+1 Passionate Archaeologist
+1 High Market
+1 Farseek
+1 Delighted Halfling
+1 Trailtracker Scout
+1 Spider Manifestation
+1 Dragonhawk, Fate's Tempest
+1 Shared Roots
+1 Goreclaw, Terror of Qal Sisma
+1 Mina and Denn, Wildborn
+1 Vorinclex // The Grand Evolution
+1 Azusa, Lost but Seeking
+1 Groundchuck & Dirtbag
+1 Urabrask the Hidden
+1 Enduring Courage
+1 Open the Way
+1 Nyxbloom Ancient
+1 Overlord of the Boilerbilges
+1 Chandra's Ignition
+1 Soul Immolation
+1 Nibelheim Aflame
+1 Dragonborn Champion
+1 Monstrous Vortex
+1 Raph & Mikey, Troublemakers
+1 Tlincalli Hunter // Retrieve Prey
+1 Absorbing Man and Titania
+1 Escape to the Wilds
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Training Compound
+1 Command Tower
+1 Moraug, Fury of Akoum
+1 Desert Were-Worm
+1 Valakut, the Molten Pinnacle
+1 Virtue of Strength // Garenbrig Growth
+1 Gladiolus Amicitia
+1 Delayed Blast Fireball
+1 Overlord of the Hauntwoods

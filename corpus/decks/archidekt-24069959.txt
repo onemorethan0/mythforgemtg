@@ -1,0 +1,105 @@
+# Archidekt — Dance of the Elements
+# source: archidekt:24069959
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Ashling, the Limitless
+
+Deck:
+1 Up the Beanstalk
+1 Urza's Incubator
+1 Twinflame Travelers
+1 Sakura-Tribe Elder
+1 Cavalier of Thorns
+1 Vernal Sovereign
+1 Mass of Mysteries
+1 Anointed Procession
+1 Incandescent Soulstoke
+1 Blasphemous Act
+1 Gathering Stone
+1 Bane of Progress
+1 Garruk's Uprising
+1 Path to Exile
+1 Graveshifter
+1 Evolutionary Leap
+1 Fertile Ground
+1 Volcanic Island
+1 Sacred Foundry
+1 Unclaimed Territory
+1 Secluded Courtyard
+1 Path of Ancestry
+1 Primal Beyond
+1 Shimmercreep
+1 Return of the Wildspeaker
+1 Mountain
+1 Flamekin Village
+1 Nyxbloom Ancient
+1 Studious First-Year // Rampant Growth
+1 Muster the Departed
+1 Muldrotha, the Gravetide
+1 Blasphemous Edict
+1 Taiga
+1 Plains
+1 Scrubland
+1 Plateau
+1 Island
+1 Tropical Island
+1 Savannah
+1 Ghired, Mirror of the Wilds
+1 Avenger of Zendikar
+1 Shroudstomper
+1 Swamp
+1 Austere Command
+1 Mulldrifter
+1 Risen Reef
+1 Subterfuge
+1 Lamentation
+1 Jubilation
+1 Shriekmaw
+1 Ingot Chewer
+1 Maelstrom Wanderer
+1 Impulsivity
+1 Fury
+1 Greenwarden of Murasa
+1 Horde of Notions
+1 Fellwar Stone
+1 Smokebraider
+1 Ancient Ziggurat
+1 Exotic Orchard
+1 Haunting Voyage
+5 Forest
+1 Sodden Verdure
+1 Foundation Breaker
+1 Arcane Signet
+1 Command Tower
+1 Chromatic Lantern
+1 Jegantha, the Wellspring
+1 Abundant Countryside
+1 Sol Ring
+1 Godless Shrine
+1 Temple Garden
+1 Stomping Ground
+1 Breeding Pool
+1 Misty Rainforest
+1 Windswept Heath
+1 Steam Vents
+1 Wooded Foothills
+1 Scalding Tarn
+1 Arid Mesa
+1 Marsh Flats
+1 Rampant Growth
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+1 Renewed Solidarity
+1 Sunderflock
+1 Ashnod's Altar
+1 Victimize
+1 Flamebraider
+1 Rise of the Witch-king
+1 Reanimate
+1 Omnath, Locus of Rage
+1 Imoti, Celebrant of Bounty
+1 Yarok, the Desecrated
+1 Titan of Industry
+1 Omnath, Locus of the Roil
+1 Riveteers Ascendancy

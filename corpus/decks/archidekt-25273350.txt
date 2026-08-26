@@ -1,0 +1,89 @@
+# Archidekt — Tap dat ass
+# source: archidekt:25273350
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Hylda of the Icy Crown
+
+Deck:
+1 Talisman of Progress
+1 Azorius Signet
+11 Plains
+10 Island
+1 Tolarian Kraken
+1 Blustersquall
+1 An Offer You Can't Refuse
+1 Verity Circle
+1 Citadel Siege
+1 Tamiyo, the Moon Sage
+1 Topplegeist
+1 Retreat to Coralhelm
+1 Swords to Plowshares
+1 Path to Exile
+1 You See a Guard Approach
+1 Arcane Signet
+1 Propaganda
+1 Bender's Waterskin
+1 Hylda's Crown of Winter
+1 Arcane Denial
+1 Thought Vessel
+1 Stroke of Midnight
+1 Junk Winder
+1 Solitary Sanctuary
+1 Cryptic Command
+1 Hidden Strings
+1 Plunge into Winter
+1 Gideon's Lawkeeper
+1 Borrowing 100,000 Arrows
+1 Split Up
+1 Supreme Verdict
+1 Elvish Mariner
+1 Cone of Cold
+1 Court Street Denizen
+1 Githzerai Monk
+1 Sunblast Angel
+1 Sharae of Numbing Depths
+1 Don't Move
+1 Goldmeadow Harrier
+1 Lossarnach Captain
+1 Ultimecia, Temporal Threat
+1 Plumes of Peace
+1 Piercing Rays
+1 Azorius Chancery
+1 Adarkar Wastes
+1 Command Tower
+1 Glacial Fortress
+1 Prairie Stream
+1 Hallowed Fountain
+1 Myriad Landscape
+1 Reliquary Tower
+1 Temple of Enlightenment
+1 Seachrome Coast
+1 Irrigated Farmland
+1 Castle Vantress
+1 Halimar Depths
+1 Gates of Istfell
+1 Skyline Cascade
+1 Saprazzan Skerry
+1 Remote Farm
+1 Dream's Grip
+1 Suppression Ray // Orderly Plaza
+1 Tiller Engine
+1 Turnabout
+1 Bandit's Haul
+1 Elven Raft-Steerer
+1 Guardian of Tazeem
+1 Requisition Raid
+1 Final Showdown
+1 Teferi, Who Slows the Sunset
+1 Hands of Binding
+1 Palliation Accord
+1 Kang Dynasty
+1 Summon: Shiva
+1 Pongify
+1 Stock Up
+1 Amazing Acrobatics
+1 Hithlain Knots
+1 Quake, Agent of S.H.I.E.L.D.
+1 Sol Ring

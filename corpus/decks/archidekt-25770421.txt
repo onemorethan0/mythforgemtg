@@ -1,0 +1,90 @@
+# Archidekt — Bloody Hell
+# source: archidekt:25770421
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Clavileño, First of the Blessed
+
+Deck:
+1 Nighthawk Scavenger
+1 Arcane Signet
+1 Edgar, Charmed Groom // Edgar Markov's Coffin
+1 Bartolomé del Presidio
+1 Blade of the Bloodchief
+1 Blood Artist
+1 Bloodghast
+1 Legion Lieutenant
+1 Mavren Fein, Dusk Apostle
+1 Unclaimed Territory
+1 Vault of the Archangel
+1 Carmen, Cruel Skymarcher
+1 Charismatic Conqueror
+1 Command Tower
+1 Elenda's Hierophant
+1 March of the Canonized
+1 Master of Dark Rites
+1 Path of Ancestry
+1 Bojuka Bog
+1 Promise of Aclazotz // Foul Rebirth
+1 Redemption Choir
+1 Sanctum Seeker
+1 Twilight Prophet
+1 Windbrisk Heights
+1 Austere Command
+1 Bloodtracker
+1 Utter End
+1 Viscera Seer
+1 Voldaren Estate
+1 Myriad Landscape
+1 Skullclamp
+1 Cordial Vampire
+1 Crossway Troublemakers
+1 Cruel Celebrant
+1 Damn
+1 Drana, Liberator of Malakir
+1 Elenda, the Dusk Rose
+1 Etchings of the Chosen
+1 Bloodline Keeper // Lord of Lineage
+1 Vito, Thorn of the Dusk Rose
+1 Olivia's Wrath
+1 Welcoming Vampire
+1 New Blood
+1 Butcher of Malakir
+1 Glass-Cast Heart
+1 Heirloom Blade
+1 Indulgent Aristocrat
+1 Isolated Chapel
+1 Kindred Boon
+1 Orzhov Basilica
+1 Pact of the Serpent
+1 Patron of the Vein
+7 Plains
+1 Radiant Destiny
+1 Return to Dust
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Shineshadow Snarl
+1 Sol Ring
+1 Sorin, Lord of Innistrad
+13 Swamp
+1 Swords to Plowshares
+1 Tainted Field
+1 Temple of Silence
+1 Temple of the False God
+1 Timothar, Baron of Bats
+1 Split Up
+1 Kindred Dominance
+1 Necropolis Regent
+1 Phyrexian Arena
+1 The Haunt of Hightower
+1 Kalitas, Bloodchief of Ghet
+1 Drana, the Last Bloodchief
+1 Captivating Vampire
+1 Qarsi Revenant
+1 Bloodletter of Aclazotz
+1 Bloodlord of Vaasgoth
+1 Vito, Fanatic of Aclazotz
+1 Dark Impostor
+1 Preacher of the Schism
+1 Yahenni, Undying Partisan

@@ -1,0 +1,87 @@
+# Archidekt — Terraforming
+# source: archidekt:14419528
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Szarel, Genesis Shepherd
+
+Deck:
+1 Mayhem Devil
+1 Traveling Chocobo
+1 Azusa, Lost but Seeking
+1 Nahiri's Lithoforming
+1 Zuran Orb
+1 Exploration Broodship
+1 Tannuk, Memorial Ensign
+1 Gladiolus Amicitia
+1 Blasphemous Act
+1 Sabotender
+1 Ziatora's Proving Ground
+1 Farseek
+1 Titania, Protector of Argoth
+1 Putrefy
+1 Braids, Arisen Nightmare
+1 Aftermath Analyst
+1 Beast Within
+1 Korvold, Fae-Cursed King
+1 The Gitrog Monster
+1 Worldsoul's Rage
+1 Soul of Windgrace
+1 Riveteers Overlook
+1 Sheltered Thicket
+1 Pest Infestation
+1 Arcane Signet
+1 Harrow
+1 Tear Asunder
+1 Nature's Lore
+1 Binding the Old Gods
+1 Rakdos Charm
+1 Bojuka Bog
+1 Cabaretti Courtyard
+1 Cinder Glade
+1 Evolving Wilds
+1 Fabled Passage
+1 Myriad Landscape
+1 Sol Ring
+8 Mountain
+1 Maestros Theater
+1 Smoldering Marsh
+1 Terramorphic Expanse
+1 Canyon Slough
+1 Command Tower
+1 Baloth Prime
+1 Evendo Brushrazer
+1 Festering Thicket
+1 Horizon Explorer
+1 Planetary Annihilation
+1 Vernal Fen
+1 Hearthhull, the Worldseed
+1 Fang, Fearless l'Cie
+1 Vanille, Cheerful l'Cie
+1 Tectonic Split
+1 Splendid Reclamation
+1 Maester Seymour
+1 Loot, Exuberant Explorer
+1 Lord Windgrace
+1 Burgeoning
+1 Pitiless Carnage
+1 Mole Man, Moloid Master
+1 Moraug, Fury of Akoum
+1 Will of the Sultai
+1 Icetill Explorer
+1 Tifa Lockhart
+1 The Earth Crystal
+1 Mightform Harmonizer
+8 Swamp
+1 Twisted Landscape
+1 Oracle of Mul Daya
+1 Famished Worldsire
+1 Iridescent Vinelasher
+1 Escape Tunnel
+1 Spelunking
+1 Lumra, Bellow of the Woods
+8 Forest
+1 Vibrant Cityscape
+1 Hobbit Hole
+1 Case of the Locked Hothouse

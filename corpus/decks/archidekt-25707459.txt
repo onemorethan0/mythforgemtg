@@ -1,0 +1,74 @@
+# Archidekt — Monogreen artifact idea
+# source: archidekt:25707459
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Oviya, Automech Artisan
+
+Deck:
+1 Amonkhet Raceway
+1 Arbor Elf
+1 Archetype of Endurance
+1 Asceticism
+1 Beast Within
+1 Collective Resistance
+1 Concordant Crossroads
+1 Cultivator's Caravan
+1 Defend the Rider
+1 Diamond Weapon
+1 Disciple of Freyalise // Garden of Freyalise
+1 Earthrumbler
+1 Elvish Mystic
+1 Elvish Piper
+1 Emerald Medallion
+1 Fog
+1 Fyndhorn Elves
+1 Heroic Intervention
+1 Hunter's Insight
+1 Instill Energy
+1 Kenrith's Transformation
+1 Kodama of the East Tree
+1 Kogla, the Titan Ape
+1 Lightning Greaves
+1 Llanowar Elves
+1 Lumbering Worldwagon
+1 Meteor Golem
+1 Nature's Claim
+1 Nature's Lore
+1 Ohran Frostfang
+1 Rampant Growth
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Rolling Hamsphere
+1 Rust Goliath
+1 Sakura-Tribe Elder
+1 Saryth, the Viper's Fang
+1 Seeker of Skybreak
+1 Selvala, Heart of the Wilds
+1 Skysovereign, Consul Flagship
+1 Snakeskin Veil
+1 Solemn Simulacrum
+1 Swiftfoot Boots
+1 Tamiyo's Safekeeping
+1 Temple of the False God
+1 Terastodon
+1 Three Visits
+1 Thunderous Velocipede
+1 Utopia Sprawl
+1 Veloheart Bike
+1 Wild Growth
+1 Wrap in Vigor
+1 Shang-Chi, Master of Kung Fu
+1 Gigantic Big Bear
+35 Forest
+1 Skullwinder
+1 Eternal Witness
+1 Dodgy Jalopy
+1 Dermotaxi
+1 Rover Blades
+1 Hedge Shredder
+1 Mobile Garrison
+1 Weatherlight
+1 Smuggler's Buggy
+1 The Thanos-Copter

@@ -1,0 +1,102 @@
+# Archidekt — Y'shtola Random Mock up
+# source: archidekt:25775315
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Talisman of Dominance
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 The One Ring
+1 Sol Ring
+1 Lightning Greaves
+1 Bender's Waterskin
+1 Fellwar Stone
+1 Thought Vessel
+1 Esper Sentinel
+1 Delney, Streetwise Lookout
+1 Sheoldred, the Apocalypse
+1 Alela, Cunning Conqueror
+1 Alela, Artful Provocateur
+1 Y'shtola Rhul
+1 Displacer Kitten
+1 Roaming Throne
+1 Spark Double
+1 Loki, Lord of Misrule
+1 Grand Abolisher
+1 Lotho, Corrupt Shirriff
+1 Keen Duelist
+1 Dark Confidant
+1 Smothering Tithe
+1 Rhystic Study
+1 Black Market Connections
+1 Curiosity
+1 Ophidian Eye
+1 Gleaming Splendor
+1 Helm of the Ghastlord
+1 Bloodchief Ascension
+1 Propaganda
+1 Ghostly Prison
+1 Anguished Unmaking
+1 Counterspell
+1 Swan Song
+1 Deadly Rollick
+1 Cyclonic Rift
+1 Dismember
+1 Rewind
+1 Force of Negation
+1 Unwind
+1 Fierce Guardianship
+1 Frantic Search
+1 Flawless Maneuver
+1 Teferi's Protection
+1 Aetherize
+1 Sink into Stupor // Soporific Springs
+1 Brainsurge
+1 Esper Charm
+1 Void Rend
+1 Baleful Strix
+1 Flusterstorm
+1 Snuff Out
+1 Bleachbone Verge
+1 Cavern of Souls
+1 Command Tower
+1 Demolition Field
+1 Fabled Passage
+1 Drowned Catacomb
+3 Plains
+1 Eclipsed Steppe
+1 Flooded Strand
+1 Floodfarm Verge
+1 Glacial Fortress
+1 Gloomlake Verge
+1 Godless Shrine
+1 Hallowed Fountain
+1 Isolated Chapel
+1 Marsh Flats
+1 Morphic Pool
+1 Reliquary Tower
+1 Polluted Delta
+1 Raffine's Tower
+1 Reflecting Pool
+1 Scavenger Grounds
+1 Sunken Hollow
+1 Sea of Clouds
+1 Sunken Ruins
+1 Vault of Champions
+1 Watery Grave
+3 Swamp
+3 Island
+1 Quantum Misalignment
+1 Multiversal Recruitment
+1 Solve the Equation
+1 Sign in Blood
+1 Irenicus's Vile Duplication
+1 Risky Shortcut
+1 Windfall
+1 Toxic Deluge
+1 Bitterblossom

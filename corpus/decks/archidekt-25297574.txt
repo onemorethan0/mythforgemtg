@@ -1,0 +1,82 @@
+# Archidekt — Maralen
+# source: archidekt:25297574
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Didn't Say Please
+1 Coiling Oracle
+1 Negate
+1 Three Visits
+1 Imprisoned in the Moon
+1 Llanowar Scout
+1 Stolen by the Fae
+1 Command Tower
+1 Mirkwood
+1 Obscura Storefront
+1 Fyndhorn Elves
+1 Llanowar Elves
+10 Swamp
+10 Forest
+1 Lys Alana Bowmaster
+10 Island
+1 Nadier's Nightblade
+1 Sharpshooter Elf
+1 Grasp of Darkness
+1 Primal Forcemage
+1 Unlucky Drop
+1 Rift Sower
+1 Displace
+1 Reality Shift
+1 Rise from the Grave
+1 Blinding Fog
+1 Metropolis Sprite
+1 Joraga Visionary
+1 Nadier, Agent of the Duskenel
+1 Eyeblight Massacre
+1 Exquisite Huntmaster
+1 Greenseeker
+1 Taunting Arbormage
+1 Pixie Illusionist
+1 Greenwood Sentinel
+1 Druid of the Cowl
+1 Barrow Naughty
+1 Argothian Sprite
+1 Cloudseeder
+1 Faerie Snoop
+1 Kujar Seedsculptor
+1 Deepwood Denizen
+1 Pendelhaven Elder
+1 Learn from the Past
+1 Feed the Swarm
+1 Doom Blade
+1 Charcoal Diamond
+1 Solemn Simulacrum
+1 Briarblade Adept
+1 Hobbit Hole
+1 Lys Alana Huntmaster
+1 Jungle Hollow
+1 Shared Roots
+1 Fog
+1 Dismal Backwater
+1 Sultai Banner
+1 Woodland Weavemaster
+1 Thornwood Falls
+1 Thornwind Faeries
+1 Quirion Ranger
+1 Obyra, Dreaming Duelist
+1 Mocking Sprite
+1 Spellscorn Coven // Take It Back
+1 Faerie Dreamthief
+1 Faebloom Trick
+1 Spell Stutter
+1 Picklock Prankster // Free the Fae
+1 Quick Study
+1 Tome Raider
+1 Maraleaf Pixie
+1 Elvish Rejuvenator
+1 Snaremaster Sprite
+1 Ivy Lane Denizen

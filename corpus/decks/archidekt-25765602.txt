@@ -1,0 +1,99 @@
+# Archidekt — TaNuke
+# source: archidekt:25765602
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Tannuk, Steadfast Second
+
+Deck:
+1 Great Train Heist
+10 Mountain
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Urabrask // The Great Work
+1 Electro, Assaulting Battery
+1 Magus of the Wheel
+1 Wheel of Fortune
+1 Memory Jar
+1 Reforge the Soul
+1 Thrill of Possibility
+1 Unexpected Windfall
+1 Seize the Spoils
+1 Tormenting Voice
+1 Pirate's Pillage
+1 Big Score
+1 Wild Guess
+1 Demand Answers
+1 Cathartic Reunion
+1 Gamble
+1 Magmatic Insight
+1 Burning Inquiry
+1 Faithless Looting
+1 Control of the Court
+1 Fervent Mastery
+1 Goblin Lore
+1 Ancient Copper Dragon
+1 Runaway Steam-Kin
+1 Goldspan Dragon
+1 Ruby Medallion
+1 Ganax, Astral Hunter
+1 Helm of Awakening
+1 Hazoret's Monument
+1 Semblance Anvil
+1 Cloud Key
+1 Treasonous Ogre
+1 Jeska's Will
+1 Storm-Kiln Artist
+1 Grinning Ignus
+1 Glitterfang
+1 Coal Stoker
+1 Aetherflux Reservoir
+1 Priest of Urabrask
+1 Ashling, Flame Dancer
+1 Underworld Breach
+1 Past in Flames
+1 Backdraft Hellkite
+1 Dreadhorde Arcanist
+1 Terror of the Peaks
+1 Seasoned Pyromancer
+1 Thermopod
+1 Anje's Ravager
+1 Conspiracy Theorist
+1 Bedlam Reveler
+1 Ox of Agonas
+1 Flamekin Harbinger
+1 Cavalier of Flame
+1 Neheb, Dreadhorde Champion
+1 Jeweled Amulet
+1 Laelia, the Blade Reforged
+1 Lotus Petal
+1 Mox Opal
+1 Gustha's Scepter
+1 Magda, Brazen Outlaw
+1 Cursed Mirror
+1 Sol Ring
+1 Desperate Ritual
+1 Rite of Flame
+1 Battle Hymn
+1 Skirk Prospector
+1 Surly Badgersaur
+1 Seething Song
+1 The Fire Crystal
+1 Springleaf Drum
+1 Smaug the Magnificent
+1 Containment Construct
+1 Inner Fire
+1 Professional Face-Breaker
+1 Mana Geyser
+1 Xorn
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Goldlust Triad
+1 Pinnacle Monk // Mystic Peak
+1 City of Traitors
+1 Lindblum, Industrial Regency // Mage Siege
+1 Valakut Awakening // Valakut Stoneforge
+1 Urza's Saga
+1 Inventors' Fair
+1 Gemstone Caverns
+1 Three Tree City
+1 Nykthos, Shrine to Nyx

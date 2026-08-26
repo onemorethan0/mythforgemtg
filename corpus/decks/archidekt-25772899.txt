@@ -1,0 +1,69 @@
+# Archidekt — Galadriel Scry
+# source: archidekt:25772899
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Galadriel of Lothlórien
+
+Deck:
+1 Elrond, Lord of Rivendell
+1 Arwen Undómiel
+1 Elvish Mariner
+1 Lothlórien Lookout
+1 Legolas, Counter of Kills
+1 Elrond, Master of Healing
+1 Celeborn the Wise
+1 Glorfindel, Dauntless Rescuer
+1 Elven Farsight
+1 Retreat to Coralhelm
+1 Preordain
+1 Birthday Escape
+1 Season of Growth
+1 Tatyova, Benthic Druid
+1 Opt
+1 Lost Isle Calling
+1 Lifecrafter's Bestiary
+1 Tireless Provisioner
+1 Rampaging Baloths
+1 Scute Swarm
+1 Glorious Gale
+1 Matoya, Archon Elder
+1 Avenger of Zendikar
+1 Cryptic Annelid
+1 Thassa, God of the Sea
+1 Llanowar Elves
+1 Fyndhorn Elves
+1 Elvish Mystic
+1 Sigiled Starfish
+1 Arcane Signet
+1 Sol Ring
+1 Fellwar Stone
+40 Forest
+1 Elfsworn Giant
+1 Galadriel, Elven-Queen
+1 Mossborn Hydra
+1 Primeval Bounty
+1 Sapling Nursery
+1 Earthbender Ascension
+1 Shared Roots
+1 Rampant Growth
+1 Nature's Lore
+1 Exploration Broodship
+1 Oracle of Mul Daya
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Shamanic Revelation
+1 Terrasymbiosis
+1 Finale of Devastation
+1 Arwen's Gift
+1 Mystic Speculation
+1 Horses of the Bruinen
+1 Track Down
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Negate
+1 Fog
+1 Ezuri's Predation
+1 Beast Within
+1 Pongify
+1 Foresee

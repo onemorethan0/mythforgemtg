@@ -1,0 +1,96 @@
+# Archidekt — Katara, the Fearless - Aggro / Typal (Allies)
+# source: archidekt:25770360
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Katara, the Fearless
+
+Deck:
+1 Path to Exile
+1 Kor Entanglers
+1 Master Piandao
+1 Panharmonicon
+1 Path of Ancestry
+1 Raise the Palisade
+1 Reflections of Littjara
+1 Sea Gate Loremaster
+8 Plains
+1 Seaside Citadel
+1 Seascape Aerialist
+1 Sokka, Lateral Strategist
+1 Secret Tunnel
+1 South Pole Voyager
+1 Spara's Headquarters
+1 Sokka's Charge
+1 Sol Ring
+1 Starfield Vocalist
+1 Suki, Courageous Rescuer
+1 Spirit Water Revival
+1 Sunpetal Grove
+1 Swords to Plowshares
+1 Tajuru Warcaller
+1 Talisman of Curiosity
+1 Talisman of Progress
+1 Talisman of Unity
+1 Temple Garden
+1 The Earth King
+1 Three Tree City
+1 Suki, Kyoshi Warrior
+1 Urza's Incubator
+1 Unclaimed Territory
+1 United Front
+1 Unsettled Mariner
+1 Waterbender Ascension
+1 White Lotus Reinforcements
+1 White Lotus Tile
+1 Distant Melody
+1 Eerie Interlude
+1 Herald's Horn
+1 Secluded Courtyard
+1 Aang, at the Crossroads // Aang, Destined Savior
+1 Tale of Momo
+1 Aang and Katara
+1 Aang, Airbending Master
+1 Abandoned Air Temple
+1 Agna Qel'a
+1 Airbender Ascension
+1 Airbender's Reversal
+1 Allied Teamwork
+1 Ally Encampment
+1 Appa, Steadfast Guardian
+1 Appa, the Vigilant
+1 Arcane Signet
+1 Avatar Enthusiasts
+1 Avatar's Wrath
+1 Ba Sing Se
+1 Beast Within
+1 Breeding Pool
+1 Cavern of Souls
+1 Command Tower
+1 Counterspell
+1 Cultivate
+1 Earth King's Lieutenant
+1 Exotic Orchard
+1 Fabled Passage
+1 Farseek
+2 Forest
+1 Glacial Fortress
+1 Great Divide Guide
+1 Hakoda, Selfless Commander
+1 Hallowed Fountain
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 Hermitic Herbalist
+1 Hinterland Harbor
+1 Invasion Reinforcements
+5 Island
+1 Harabaz Druid
+1 It'll Quench Ya!
+1 Jasmine Dragon Tea Shop
+1 Kabira Evangel
+1 Katara, Water Tribe's Hope
+1 Jwari Shapeshifter
+1 Katara, Waterbending Master
+1 Katara's Reversal
+1 Kindred Discovery
+1 Kindred Summons

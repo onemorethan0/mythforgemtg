@@ -1,0 +1,85 @@
+# Archidekt — Dude, Where's My Kykar?
+# source: archidekt:25773991
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Kykar, Wind's Fury
+
+Deck:
+1 Sol Ring
+1 Arcane Signet
+1 Azorius Signet
+1 Izzet Signet
+1 Boros Signet
+1 Parhelion II
+1 Reckoner Bankbuster
+1 Skysovereign, Consul Flagship
+1 Kitsune Ace
+1 Sai, Master Thopterist
+1 Reckless Fireweaver
+1 Ingenious Artillerist
+1 Miles "Tails" Prower
+1 Clarion Spirit
+1 Hotshot Mechanic
+1 Surtr, Fiery Jötun
+1 Jhoira's Familiar
+1 Steel Overseer
+1 Iron Man, Bleeding Edge
+1 Emry, Lurker of the Loch
+1 Foundry Inspector
+1 Etherium Sculptor
+1 Academy Ruins
+1 Steam Vents
+1 Sacred Foundry
+1 Glacial Fortress
+1 Swiftwater Cliffs
+1 Clifftop Retreat
+1 Sun Titan
+1 Saheeli, Sublime Artificer
+1 Narset of the Ancient Way
+1 Imposter Mech
+1 Stormcarved Coast
+1 Shorikai, Genesis Engine
+1 Kotori, Pilot Prodigy
+1 Prodigy's Prototype
+1 Smuggler's Copter
+1 Decanter of Endless Water
+1 Enthusiastic Mechanaut
+1 Surgehacker Mech
+1 Solemn Simulacrum
+1 Giant Ox
+10 Island
+12 Plains
+4 Mountain
+1 An Offer You Can't Refuse
+1 Day of Judgment
+1 Mana Leak
+1 Chaos Warp
+1 Dovin's Veto
+1 Planar Cleansing
+1 Faithless Looting
+1 Blasphemous Act
+1 Austere Command
+1 The Regalia
+1 Jackdaw
+1 Hellkite Tyrant
+1 Path to Exile
+1 Swords to Plowshares
+1 Hallowed Fountain
+1 Command Tower
+1 Exotic Orchard
+1 Thopter Fabricator
+1 Anchor to Reality
+1 Aradara Express
+1 Renegade Freighter
+1 Cid, Timeless Artificer
+1 Padeem, Consul of Innovation
+1 Brainstorm
+1 Opt
+1 Hoard Hauler
+1 Voyager Quickwelder
+1 Cloudspire Captain
+1 Thirst for Knowledge
+1 Lightning Strike
+1 Index

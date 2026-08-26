@@ -1,0 +1,87 @@
+# Archidekt — Nezahal, Primal Tide (Nessy)
+# source: archidekt:14344363
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Nezahal, Primal Tide
+
+Deck:
+1 Toothy, Imaginary Friend
+1 Decanter of Endless Water
+1 Bender's Waterskin
+1 Boomerang Basics
+1 Vibrant Cityscape
+1 Shire Terrace
+1 Eluge, the Shoreless Sea
+1 Empyrial Plate
+1 Rakshasa's Disdain
+1 Charix, the Raging Isle
+1 Daze
+1 Blackblade Reforged
+1 Thassa, God of the Sea
+1 Arcane Denial
+1 Strata Scythe
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Illusionist's Gambit
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Ensnare
+1 Dragon Wings
+1 Winged Boots
+1 Cresting Mosasaurus
+1 Flood of Tears
+1 Blustersquall
+1 Desynchronization
+1 Domineering Will
+1 Struggle for Project Purity
+1 Sleep
+1 Apprentice Wizard
+1 Lórien Revealed
+1 Candlekeep Sage
+1 Shark Typhoon
+1 Aetherize
+1 Will of the Temur
+1 Opt
+1 Brainstorm
+1 Finale of Revelation
+1 High Tide
+1 Sol Ring
+1 Preordain
+1 Ponder
+1 Teferi's Ageless Insight
+1 Caged Sun
+1 Phyrexian Metamorph
+1 Palladium Myr
+1 Rogue's Passage
+1 Blitzball
+1 Lonely Sandbar
+1 Reliquary Tower
+1 Coral Atoll
+1 Myriad Landscape
+1 Rivendell
+1 Mystic Sanctuary
+1 The Watcher in the Water
+1 Swan Song
+1 Evolving Wilds
+1 Halimar Depths
+1 Soaring Seacliff
+1 Solemn Simulacrum
+1 Terramorphic Expanse
+1 Ash Barrens
+1 Spellseeker
+1 Thassa's Oracle
+1 Reset
+1 Narset's Reversal
+1 Commander's Plate
+1 Rewind
+1 Propaganda
+1 Sudden Substitution
+22 Island
+1 Archmage of Runes
+1 Sapphire Medallion
+1 Spectral Deluge
+1 Slip Out the Back
+1 Hullbreaker Horror
+1 Most Decrepit Old Bird // Speak Secrets

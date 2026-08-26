@@ -1,0 +1,102 @@
+# Archidekt — Bird Time
+# source: archidekt:25703623
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Feroz, Ulgrotha's Warden
+
+Deck:
+1 Derevi, Empyrial Tactician
+1 Wan Shi Tong, Librarian
+1 Falco Spara, Pactweaver
+1 Shabraz, the Skyshark
+1 Wingmate Roc
+1 Traveling Chocobo
+1 Kastral, the Windcrested
+1 Ishai, Ojutai Dragonspeaker
+1 Aerial Extortionist
+1 Ledger Shredder
+1 Bartz and Boko
+1 Birds of Paradise
+1 Aven Interrupter
+1 Gilded Goose
+1 Cartographer's Hawk
+1 Curiosity Crafter
+1 Celestial Gatekeeper
+1 Eagle of Deliverance
+1 Jackdaw Savior
+1 Airborne Aid
+1 Falcon and Redwing
+1 Gustcloak Savior
+1 Mockingbird
+1 Keeper of the Nine Gales
+1 Priest of the Crossing
+1 Murmuration
+1 Nimble Obstructionist
+1 Nesting Dovehawk
+1 Skycoach Conductor // All Aboard
+1 Steel-Plume Marshal
+1 The Lord of the Eagles
+1 Owlbear Cub
+1 Strix Serenade
+1 Perch Protection
+1 The Goose Mother
+1 Windbrisk Raptor
+1 Chocobo Camp
+1 Most Decrepit Old Bird // Speak Secrets
+1 Swans of Bryn Argoll
+1 Souvenir Snatcher
+1 Sazh's Chocobo
+1 Aven Brigadier
+1 Ravenform
+1 Crookclaw Elder
+1 Animal Sanctuary
+1 Battle Screech
+1 Gwaihir the Windlord
+1 Beck // Call
+1 Choco, Seeker of Paradise
+1 Chocobo Racetrack
+1 Kangee's Lieutenant
+1 Lupinflower Village
+1 Kangee, Sky Warden
+1 Kangee, Aerie Keeper
+1 Migratory Route
+1 Warden of Evos Isle
+1 Sidequest: Raise a Chocobo // Black Chocobo
+1 Restless Anchorage
+1 Seaside Haven
+1 Swan Song
+1 Empyrean Eagle
+1 Watcher of the Spheres
+1 Aarakocra Sneak
+1 Soulcatcher
+1 Storm Crow
+1 Thieving Magpie
+1 Command Tower
+1 Temple Garden
+1 Spara's Headquarters
+1 Bonders' Enclave
+1 Misty Rainforest
+1 Windswept Heath
+1 Breeding Pool
+1 Rimewood Falls
+1 Bountiful Promenade
+1 Overgrown Farmland
+1 Flooded Strand
+1 Hallowed Fountain
+1 Arctic Treeline
+1 Glacial Floodplain
+1 Sea of Clouds
+1 Path of Ancestry
+1 Deserted Beach
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+3 Plains
+3 Forest
+3 Island
+1 Meticulous Archive
+1 Hedge Maze
+1 Lush Portico
+1 Sunbird Standard // Sunbird Effigy
+1 Lilypad Village

@@ -1,0 +1,96 @@
+# Archidekt — Everyone gets a Sliver
+# source: archidekt:25696564
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Elda, Conjurer of Spectacle
+
+Deck:
+1 Akroma's Will
+1 Badgermole Cub
+1 Birds of Paradise
+1 Bonescythe Sliver
+1 Bountiful Promenade
+1 Brood Sliver
+1 Brushland
+1 Canopy Vista
+1 Captain Mar-Vell, Space-Born
+1 Avacyn's Pilgrim
+1 Beast Whisperer
+1 Beast Within
+1 Bilbo's Gambit
+1 Fabled Passage
+1 Firemane Commando
+1 Flumph
+1 Fungus Sliver
+1 Gathering Place
+1 Get Lost
+1 Heartwood Storyteller
+1 Hivestone
+1 Horned Sliver
+1 Lucy MacLean, Positively Armed
+1 Master of Ceremonies
+1 Quilled Sliver
+1 Radagast of Rhosgobel
+1 Razorverge Thicket
+1 Root Sliver
+1 Rootborn Defenses
+1 Shifting Woodland
+1 Sidewinder Sliver
+1 Silverquill Lecturer
+1 Talon Sliver
+1 Vivien, Champion of the Wilds
+1 Ward Sliver
+1 Winding Canyons
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Wooded Bastion
+1 Yume, Chronicler of Valor
+1 Essence Sliver
+1 Branchloft Pathway // Boulderloft Pathway
+1 Command Tower
+1 Craterhoof Behemoth
+1 Druid's Deliverance
+1 Eternal Witness
+7 Forest
+1 Fortified Village
+1 Gemhide Sliver
+1 Gold Myr
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Harmonic Sliver
+1 Heroic Intervention
+1 Horizon Canopy
+1 Hushwood Verge
+1 Insidious Fungus
+1 Karametra, God of Harvests
+1 Llanowar Elves
+1 Lymph Sliver
+1 Magus of the Vineyard
+1 Manaweft Sliver
+1 Might Sliver
+1 Mosswort Bridge
+1 Muscle Sliver
+1 Nesting Dovehawk
+1 Overgrown Farmland
+1 Path to Exile
+7 Plains
+1 Poultice Sliver
+1 Pulmonic Sliver
+1 Quick Sliver
+1 Reconnaissance
+1 Reflex Sliver
+1 Reliquary Tower
+1 Rogue's Passage
+1 Rumor Gatherer
+1 Sliver Hive
+1 Spinneret Sliver
+1 Sundering Growth
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Temple Garden
+1 Thrumming Hivepool
+1 Vedalken Orrery
+1 Veteran Explorer
+1 Wake the Reflections
+1 Windswept Heath
+1 Zenith Chronicler

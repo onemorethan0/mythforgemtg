@@ -1,0 +1,101 @@
+# Archidekt — Marchesa, the Black Rose
+# source: archidekt:17826950
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Vivi Ornitier
+1 Arcane Signet
+1 Izzet Signet
+1 Cormela, Glamour Thief
+1 Inside Information
+1 City of Brass
+1 Warren Soultrader
+1 Malakir Rebirth // Malakir Mire
+5 Swamp
+1 River of Tears
+1 Reanimate
+1 Rev, Tithe Extractor
+1 Juri, Master of the Revue
+1 Unspeakable Symbol
+1 Gev, Scaled Scorch
+1 Iron Apprentice
+1 Grim Haruspex
+1 Uncivil Unrest
+1 Ashnod's Altar
+1 Carrion Feeder
+1 Scorn-Blade Berserker
+1 Goblin Bombardment
+1 Thran Vigil
+1 Mahadi, Emporium Master
+1 Village Rites
+1 Pitiless Plunderer
+1 Deadly Dispute
+1 Corrupted Conviction
+1 Domineering Will
+1 Nasty End
+1 Ensnared by the Mara
+1 Mark of Mutiny
+1 The Golden Throne
+1 High Market
+1 Burnt Offering
+1 Dark Ritual
+1 Underground River
+1 Exotic Orchard
+1 Command Tower
+1 Caldera Lake
+1 Shivan Reef
+1 Sulfurous Springs
+1 Talisman of Dominance
+1 Shadowblood Ridge
+1 Fiery Islet
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Darkwater Catacombs
+1 Graven Cairns
+1 Ferrous Lake
+1 Dimir Aqueduct
+1 Cascade Bluffs
+1 Izzet Boilerworks
+1 Rakdos Carnarium
+1 Temple of Epiphany
+1 Temple of Deceit
+1 Temple of Malice
+1 Mob Rule
+1 Skullclamp
+1 Insurrection
+1 Seize the Spotlight
+1 Kari Zev's Expertise
+1 Living Death
+1 Ghost Lantern // Bind Spirit
+1 Fellwar Stone
+1 Baleful Strix
+1 Satoru, the Infiltrator
+1 Reprocess
+1 Seething Song
+1 Traitorous Greed
+1 Dimir Signet
+1 Rakdos Signet
+1 Sol Ring
+1 Professor Zei, Anthropologist
+1 Act of Aggression
+1 Sunken Ruins
+1 Zealous Conscripts
+1 Deadpool, Trading Card
+1 Grim Hireling
+1 Lightning Greaves
+1 Thundering Raiju
+4 Mountain
+1 Mana Confluence
+1 Seething Landscape
+1 Steam Vents
+1 Nardole, Resourceful Cyborg
+1 Phyrexian Arena
+1 Infernal Vessel
+1 Gleeful Arsonist
+1 Butcher Ghoul
+1 Reliquary Tower
+1 Bribery

@@ -1,0 +1,84 @@
+# Archidekt — Calamity Ganon
+# source: archidekt:25774896
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Yidris, Maelstrom Wielder
+
+Deck:
+1 Arcane Signet
+1 Exotic Orchard
+1 Imoti, Celebrant of Bounty
+1 Maelstrom Wanderer
+1 Ignoble Hierarch
+1 Apex Devastator
+1 Ziatora's Proving Ground
+1 Whispersilk Cloak
+1 Wild-Magic Sorcerer
+1 Swiftfoot Boots
+1 Frontier Bivouac
+1 Bloodbraid Elf
+1 Prosper, Tome-Bound
+1 Beast Within
+1 Assassin's Trophy
+1 Bloom Tender
+1 Crumbling Necropolis
+1 Aqueous Form
+1 Nalfeshnee
+1 Keeper of Secrets
+1 Savage Lands
+1 Etherium-Horn Sorcerer
+1 Bituminous Blast
+1 Sunbird's Invocation
+1 Temur Ascendancy
+1 Natural Reclamation
+1 Dig Through Time
+1 Volcanic Torrent
+1 Abaddon the Despoiler
+1 Shardless Agent
+1 Sol Ring
+1 Rashmi, Eternities Crafter
+1 The Lost and the Damned
+1 Chimil, the Inner Sun
+1 Rhythm of the Wild
+1 Deny Reality
+8 Forest
+1 Rogue's Passage
+1 Kami of Celebration
+1 Champion's Helm
+1 Nico Minoru, Runaway
+1 Asceticism
+1 Ezuri's Predation
+1 Ilharg, the Raze-Boar
+1 Xenagos, the Reveler
+1 Ultimate Magic: Meteor
+1 Flaming Tyrannosaurus
+1 Chandra, Torch of Defiance
+1 The Ruinous Powers
+1 Swamp
+1 Blackblade Reforged
+1 Passionate Archaeologist
+1 Aurora Phoenix
+1 Brainstorm
+1 Wizard's Staff
+1 Etali, Primal Storm
+1 Stolen Strategy
+1 Wildsear, Scouring Maw
+1 Command Tower
+5 Island
+1 Ketria Triome
+14 Mountain
+1 Xander's Lounge
+1 Averna, the Chaos Bloom
+1 Lizard Blades
+1 Fellwar Stone
+1 Growth Spiral
+1 Temur Battlecrier
+1 Call Forth the Tempest
+1 Cultivate
+1 Blasphemous Act
+1 Chaos Warp
+1 Delayed Blast Fireball
+1 Counterspell
+1 Faldorn, Dread Wolf Herald

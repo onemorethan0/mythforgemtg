@@ -1,0 +1,103 @@
+# Archidekt — Xavier Sal: Mycosis Psychosis
+# source: archidekt:25525726
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Xavier Sal, Infested Captain
+
+Deck:
+1 Magosi, the Waterveil
+1 Dreamtide Whale
+1 Ichormoon Gauntlet
+1 Venser, Corpse Puppet
+1 Thallid Shell-Dweller
+1 Lithoform Engine
+1 Peat Bog
+1 Saprazzan Skerry
+1 Hickory Woodlot
+1 Nesting Grounds
+1 Intruder Alarm
+1 Leech Bonder
+1 Dark Depths
+1 Warden of the Grove
+1 Council of Reeds
+1 Tekuthal, Inquiry Dominus
+1 Mutated Cultist
+1 Ba Sing Se
+1 Karn's Bastion
+1 Heroic Intervention
+1 Kiora, Master of the Depths
+1 Ezuri, Stalker of Spheres
+1 Opulent Palace
+1 Simic Ascendancy
+1 Sporesower Thallid
+1 Biovisionary
+1 Double Major
+1 Mutational Advantage
+1 Slimefoot, the Stowaway
+1 Venerated Rotpriest
+1 Prologue to Phyresis
+1 Vraska, Betrayal's Sting
+1 Echo Mage
+1 Undercellar Myconid
+1 Mycoloth
+1 Ferrafor, Young Yew
+1 Vorel of the Hull Clade
+1 Corpsejack Menace
+1 Utopia Mycon
+1 Master Biomancer
+1 Adrix and Nev, Twincasters
+1 Ripples of Potential
+1 Growth Spiral
+1 Expansion Algorithm
+1 Song of Freyalise
+1 Quest for Renewal
+1 Innkeeper's Talent
+1 Command Tower
+1 Golgari Rot Farm
+1 Oran-Rief, the Vastwood
+1 Shroofus Sproutsire
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Primal Vigor
+1 Hollow Trees
+1 Rushwood Grove
+1 Vivid Grove
+1 The Mycotyrant
+1 Craterhoof Behemoth
+5 Forest
+4 Island
+1 Everflowing Chalice
+1 Saproling Burst
+1 Glen Elendra Archmage
+1 The Coming of Galactus
+1 Mirrex
+1 Swamp
+1 Llanowar Reborn
+1 Mirkwood Bats
+1 Path of Ancestry
+1 Second Harvest
+1 Tyvar, Jubilant Brawler
+1 Garruk, Cursed Huntsman
+1 Mimic Vat
+1 Exotic Orchard
+1 Kiora's Follower
+1 Combine Chrysalis
+1 Revitalizing Repast // Old-Growth Grove
+1 Vivid Creek
+1 Junk Winder
+1 Fountainport
+1 Insidious Roots
+1 Myojin of Cryptic Dreams
+1 Secluded Courtyard
+1 Foreboding Landscape
+1 Jace, Cunning Castaway
+1 Admiral's Order
+1 Hinterland Harbor
+1 Repudiate // Replicate
+1 Littjara Mirrorlake
+1 Three Steps Ahead
+1 Fungal Infection
+1 Saproling Symbiosis
+1 Dreamroot Cascade
+1 Enclave Cryptologist

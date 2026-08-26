@@ -1,0 +1,95 @@
+# Archidekt — Slimefoot Irene
+# source: archidekt:25772381
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Slimefoot, the Stowaway
+
+Deck:
+1 Basking Broodscale
+1 Brood Monitor
+1 Dimir House Guard
+1 Dina, Soul Steeper
+1 Dreampod Druid
+1 Golgari Findbroker
+1 Gran Pulse Ochu
+1 Graveshifter
+1 Great Forest Druid
+1 Jade Mage
+1 Jaheira, Friend of the Forest
+1 Michelangelo, Weirdness to 11
+1 Nemata, Primeval Warden
+1 Nested Shambler
+1 Old Man Willow
+1 Phyrexian Vivisector
+1 Slitherhead
+1 Sowing Mycospawn
+1 Sporemound
+1 Thallid Omnivore
+1 The Mycotyrant
+1 Thelon of Havenwood
+1 Torgaar, Famine Incarnate
+1 Verdeloth the Ancient
+1 Vitaspore Thallid
+1 Woodland Mystic
+1 Arcane Signet
+1 Heraldic Banner
+1 Mind Stone
+1 Rhonas's Monument
+1 Sol Ring
+1 Swiftfoot Boots
+1 Bilbo's Deadly Slice
+1 Deadly Dispute
+1 Fake Your Own Death
+1 Fungal Rebirth
+1 Hero's Downfall
+1 Scarblade's Malice
+1 Spore Swarm
+1 Unforgiving Aim
+1 Village Rites
+1 Witherbloom Charm
+1 Worldly Tutor
+1 Battle at the Bridge
+1 Celestial Reunion
+1 Chatterstorm
+1 Culling Ritual
+1 Cultivate
+1 Fell
+1 Final Vengeance
+1 Gaze of Granite
+1 Kodama's Reach
+1 Macabre Waltz
+1 Preposterous Proportions
+1 Send in the Pest
+1 Worthy Cost
+1 Fungal Plots
+1 Life and Limb
+1 Moldervine Reclamation
+1 One with the Kami
+1 Presence of Gond
+1 The Death of Gwen Stacy
+1 Command Tower
+1 Darkmoss Bridge
+1 Evolving Wilds
+1 Exotic Orchard
+1 Foggy Bottom Swamp
+7 Forest
+1 Foul Orchard
+1 Gohn, Town of Ruin
+1 Golgari Guildgate
+1 Golgari Rot Farm
+1 Guildless Commons
+1 Hobbit Hole
+1 Jungle Hollow
+1 Mirkwood
+1 Night Market
+1 Opal Palace
+1 Path of Ancestry
+1 Subterranean Cavern
+8 Swamp
+1 Tectonic Edge
+1 Temple of Malady
+1 Terramorphic Expanse
+1 Thriving Grove
+1 Pick Your Poison

@@ -1,0 +1,107 @@
+# Archidekt — Cabbage Merchant
+# source: archidekt:25751506
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 The Cabbage Merchant
+
+Deck:
+1 Abstergo Entertainment
+1 Academy Manufactor
+1 Allosaurus Shepherd
+1 Ancient Tomb
+1 Archdruid's Charm
+1 Autumn's Veil
+1 Avarice Totem
+1 Bag End Banquet
+1 Beast Within
+1 Bilbo, Fellow Conspirator
+1 Birds of Paradise
+1 Boseiju, Who Endures
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Chord of Calling
+1 Chrome Dome
+1 Chrome Mox
+1 City of Traitors
+1 Clock of Omens
+1 Collective Resistance
+1 Copper Gnomes
+1 Crop Rotation
+1 Damping Sphere
+1 Delighted Halfling
+1 Disruptor Flute
+1 Ecological Appreciation
+1 Elvish Mystic
+1 Elvish Spirit Guide
+1 Emergence Zone
+1 Endurance
+1 Expedition Map
+1 Finale of Devastation
+1 Fomori Vault
+1 Force of Vigor
+2 Forest
+1 Formidable Speaker
+1 Fyndhorn Elves
+1 Geier Reach Sanitarium
+1 Gemstone Caverns
+1 Gilded Goose
+1 Green Sun's Zenith
+1 Grinding Station
+1 Heroic Intervention
+1 Hickory Woodlot
+1 Hobbit Hole
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Inventors' Fair
+1 Jaheira, Friend of the Forest
+1 Krark-Clan Ironworks
+1 Krosan Grip
+1 Legolas's Quick Reflexes
+1 Liberator, Urza's Battlethopter
+1 Llanowar Elves
+1 Lotus Petal
+1 Mana Vault
+1 Mirage Mirror
+1 Misty Rainforest
+1 Mox Diamond
+1 Nature's Claim
+1 Nature's Rhythm
+1 Ninja Pizza
+1 Noxious Revival
+1 Nuka-Cola Vending Machine
+1 Okina, Temple to the Grandfathers
+1 Peerless Recycling
+1 Peregrin Took
+1 Radagast of Rhosgobel
+1 Royal Treatment
+1 Sarinth Steelseeker
+1 Savage Summoning
+1 Sculpting Steel
+1 Second Harvest
+1 Shared Summons
+1 Shifting Woodland
+1 Shimmer Myr
+1 Skittering Cicada
+1 Sol Ring
+1 Soulless Jailer
+1 Strip Mine
+1 Summoner's Pact
+1 Sylvan Safekeeper
+1 Talon Gates of Madara
+1 Tamiyo's Safekeeping
+1 The Mycosynth Gardens
+1 The Underworld Cookbook
+1 Transmutation Font
+1 Tree of Tales
+1 Urza's Saga
+1 Veil of Summer
+1 Verdant Catacombs
+1 Vexing Bauble
+1 Voyager Staff
+1 Walking Ballista
+1 Wandering Archaic // Explore the Vastlands
+1 Wild Growth
+1 Wooded Foothills
+1 Worldly Tutor
+1 Yavimaya, Cradle of Growth
+1 Gaea's Cradle

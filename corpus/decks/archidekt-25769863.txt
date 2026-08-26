@@ -1,0 +1,97 @@
+# Archidekt — Grist, the Hunger Tide
+# source: archidekt:25769863
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Grist, the Hunger Tide
+
+Deck:
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Scute Mob
+1 Scute Swarm
+1 Zask, Skittering Swarmlord
+1 Blightbeetle
+1 Forever Young
+1 Fumulus, the Infestation
+1 Giant Adephage
+1 Gravepurge
+1 Hornet Nest
+1 Hornet Queen
+1 Footbottom Feast
+1 Patriarch's Bidding
+1 Command Tower
+1 Darkbore Pathway // Slitherbore Pathway
+1 Swarmyard
+1 Tainted Wood
+4 Swamp
+1 The Hunger Tide Rises
+1 Amzu, Swarm's Hunger
+1 Bane of the Living
+1 Carrion Grub
+1 Circuit Mender
+1 Huskburster Swarm
+1 Izoni, Thousand-Eyed
+1 Mortician Beetle
+1 Nantuko Elder
+1 Seedship Broodtender
+1 Vorapede
+1 Broodhatch Nantuko
+1 Vraska, Golgari Queen
+1 Persist
+1 Noxious Revival
+1 Grist, Voracious Larva // Grist, the Plague Swarm
+1 Cauldron of Essence
+1 Conduit of Worlds
+1 Aatchik, Emerald Radian
+1 Syr Konrad, the Grim
+1 Mazirek, Kraul Death Priest
+1 The Swarmweaver
+1 Icetill Explorer
+1 Realmwalker
+1 Nantuko Husk
+1 Springheart Nantuko
+1 Haywire Mite
+1 Moldervine Reclamation
+1 Crawling Sensation
+1 Liliana's Talent
+1 Insidious Roots
+1 Putrefy
+1 Assassin's Trophy
+1 Village Rites
+1 Doubling Season
+1 Swarmyard Massacre
+1 Victimize
+1 Cultivate
+1 Rampant Growth
+1 Woodland Cemetery
+1 Undergrowth Stadium
+1 Underground Mortuary
+1 Three Tree City
+1 Twilight Mire
+1 Temple of Malady
+1 Shifting Woodland
+1 Path of Ancestry
+1 Overgrown Tomb
+1 Necroblossom Snarl
+1 Mortuary Mire
+1 Llanowar Wastes
+1 Golgari Rot Farm
+9 Forest
+1 Deathcap Glade
+1 Dakmor Salvage
+1 Bojuka Bog
+1 Verdant Catacombs
+1 Skullclamp
+1 Sol Ring
+1 Talisman of Resilience
+1 Arcane Signet
+1 Golgari Signet
+1 Reanimate
+1 Phyrexian Tower
+1 Deathreap Ritual
+1 Deadbridge Chant
+1 Crawling Infestation
+1 Mortal Combat
+1 Dread Return

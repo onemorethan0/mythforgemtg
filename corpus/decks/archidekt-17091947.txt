@@ -1,0 +1,87 @@
+# Archidekt — Sokka
+# source: archidekt:17091947
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Sokka, Tenacious Tactician
+
+Deck:
+1 Command Tower
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Arcane Signet
+1 Azorius Signet
+1 Izzet Signet
+1 Boros Signet
+1 Cloud Key
+1 Enthusiastic Mechanaut
+1 Etherium Sculptor
+1 Ponder
+1 Opt
+1 Skullclamp
+1 Mishra's Bauble
+1 Idol of Oblivion
+1 Chromatic Star
+1 Chromatic Sphere
+1 Everflowing Chalice
+1 Aether Spellbomb
+1 Arcum's Astrolabe
+1 Mind Stone
+1 Thought Vessel
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Curate
+1 Mystic Gate
+1 Cascade Bluffs
+5 Snow-Covered Plains
+1 Preordain
+1 Demand Answers
+1 Big Score
+1 Mass Hysteria
+1 Gleaming Bastion
+1 Improvisation Capstone
+1 Kindred Discovery
+1 Spirit Water Revival
+1 Teferi's Ageless Insight
+1 Serum Visions
+1 Belladonna Took
+1 Abandon Attachments
+1 Anger
+1 Waterbender Ascension
+1 Glacial Fortress
+1 Mystic Monastery
+1 Prairie Stream
+1 Fellwar Stone
+1 Stenn, Paranoid Partisan
+1 Dovin's Veto
+1 Whirlwind of Thought
+1 Swords to Plowshares
+1 Negate
+1 Consider
+1 Fact or Fiction
+1 Frostcliff Siege
+1 Talisman of Progress
+1 Frantic Search
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Jeskai Ascendancy
+1 Conjurer's Bauble
+1 Vexing Bauble
+1 Cryogen Relic
+1 Rugged Prairie
+1 Secret Tunnel
+1 Skycloud Egg
+6 Snow-Covered Mountain
+15 Snow-Covered Island
+1 Final Showdown
+1 Clifftop Retreat
+1 Ondu Cleric
+1 Gitaxian Probe
+1 Moment of Truth
+1 Thrill of Possibility
+1 Everything Comes to Dust
+1 Sokka's Charge
+1 Fervor
+1 Roar of Resistance
+1 Urza, Lord Protector

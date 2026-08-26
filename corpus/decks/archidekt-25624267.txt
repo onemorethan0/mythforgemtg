@@ -1,0 +1,76 @@
+# Archidekt — this is gruul territory
+# source: archidekt:25624267
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Nikya of the Old Ways
+
+Deck:
+1 Alpha Authority
+1 Borborygmos
+1 Borborygmos Enraged
+1 Burning-Tree Shaman
+1 Cindervines
+1 Goblin Anarchomancer
+1 Ground Assault
+1 Gruul Beastmaster
+1 Gruul Charm
+1 Gruul Cluestone
+1 Gruul Guildgate
+1 Gruul Keyrune
+1 Gruul Locket
+1 Gruul Signet
+1 Gruul Turf
+1 Pillar of the Paruns
+1 Plaza of Harmony
+1 Rabble-Rouser
+1 Ravager Wurm
+1 Rubblebelt Rioters
+1 Scab-Clan Berserker
+1 Scab-Clan Charger
+1 Rhythm of the Wild
+17 Mountain
+1 Rumbling Slum
+1 Savageborn Hydra
+1 Pyrewild Shaman
+1 Rubblebelt Maaka
+1 Ilharg, the Raze-Boar
+1 Rubblebelt Raiders
+1 Ruric Thar, the Unbowed
+1 Rubblehulk
+1 Giant Solifuge
+1 Kronch Wrangler
+1 Scorchwalker
+1 Seal of the Guildpact
+1 Signal the Clans
+1 Skarrg Guildmage
+1 Skullcrack
+1 Skarrg, the Rage Pits
+1 Skarrgan Firebird
+1 Skarrgan Hellkite
+1 Skarrgan Pit-Skulk
+1 Sunder Shaman
+1 Tin Street Hooligan
+1 Zhur-Taa Swine
+1 Collision // Colossus
+1 Domri's Ambush
+1 Thrash // Threat
+1 Decimate
+1 Stomping Ground
+1 Domri, Anarch of Bolas
+17 Forest
+1 Domri, Chaos Bringer
+1 Wilderness Reclamation
+1 Domri Rade
+1 Viashino Shanktail
+1 Wrecking Ogre
+1 End-Raze Forerunners
+1 Burning-Tree Vandal
+1 Zhur-Taa Druid
+1 Tome of the Guildpact
+1 Wasteland Viper
+1 Slaughterhorn
+1 Ghor-Clan Rampager
+1 Wrecking Beast
+1 Axebane Ferox

@@ -1,0 +1,91 @@
+# Archidekt — Mogged +1000 Aura
+# source: archidekt:25736769
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Mog, Moogle Warrior
+
+Deck:
+1 Mogg Assassin
+1 Stiltzkin, Moogle Merchant
+1 Mogg Conscripts
+1 Mogg Infestation
+1 Mogg Alarm
+1 Mogg Cannon
+1 Shrieking Mogg
+1 Mogg Maniac
+1 Summon: Good King Mog XII
+1 Mogg Squad
+1 Mogg Mob
+1 Mogg Jailer
+1 Moggcatcher
+1 Mogg Bombers
+1 Mogg Sentry
+1 Mogg Salvage
+1 Mogg Fanatic
+1 Mogg Toady
+1 Mogg Flunkies
+1 Mogg Raider
+1 Cloudbound Moogle
+1 Mogg War Marshal
+1 Summon: Choco/Mog
+1 Cait Sith, Fortune Teller
+1 Delivery Moogle
+1 Danitha Capashen, Paragon
+1 Darksteel Mutation
+1 Eidolon of Countless Battles
+1 Ethereal Armor
+1 Helm of the Gods
+1 Open the Armory
+1 Retether
+1 Sage's Reverie
+1 Sheltered by Ghosts
+1 Songbirds' Blessing
+1 Spirit Mantle
+1 Sram, Senior Edificer
+1 Starfield Mystic
+1 Thran Power Suit
+1 Three Dog, Galaxy News DJ
+1 Timely Ward
+1 Transcendent Envoy
+1 Unquestioned Authority
+1 Winds of Rath
+1 Mesa Enchantress
+1 All That Glitters
+1 Sticky Fingers
+1 Mantle of the Ancients
+1 Angelic Destiny
+1 Daybreak Coronet
+1 Grakk the Pacifist
+1 Hyena Umbra
+1 Kor Spiritdancer
+1 Pacifism
+1 Petrify
+1 Planar Disruption
+1 Prison Term
+1 Realmbreaker's Grasp
+1 Reprobation
+1 Sol Ring
+1 Arcane Signet
+1 Hall of Heliod's Generosity
+1 Command Tower
+1 Rogue's Passage
+1 Axgard Armory
+17 Plains
+1 Plateau
+1 Arid Mesa
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Exotic Orchard
+1 Furycalm Snarl
+1 Needleverge Pathway // Pillarverge Pathway
+1 Rugged Prairie
+1 Sacred Foundry
+1 Spectator Seating
+1 Sunbillow Verge
+1 Sundown Pass
+1 Sunscorched Divide
+2 Mountain
+1 Pearl-Ear, Imperial Advisor
+1 Light-Paws, Emperor's Voice

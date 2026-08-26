@@ -1,0 +1,74 @@
+# Archidekt — Saproilings
+# source: archidekt:25751132
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Shroofus Sproutsire
+
+Deck:
+35 Forest
+1 Adaptive Automaton
+1 Beast Within
+1 Brightcap Badger // Fungus Frolic
+1 Cankerbloom
+1 Champion of Lambholt
+1 Circle of Dreams Druid
+1 Craterhoof Behemoth
+1 Elvish Farmer
+1 Emerald Medallion
+1 Eternal Witness
+1 Evolution Sage
+1 Ferrafor, Young Yew
+1 Fog
+1 For the Common Good
+1 Fungal Plots
+1 Fungal Rebirth
+1 Fungal Sprouting
+1 Germination Practicum
+1 Guardian Augmenter
+1 Heroic Intervention
+1 Jade Mage
+1 Might of the Masses
+1 Mycoloth
+1 Naturalize
+1 Nemata, Grove Guardian
+1 Oran-Rief, the Vastwood
+1 Overgrown Armasaur
+1 Overprotect
+1 Overrun
+1 Overwhelming Stampede
+1 Pendelhaven
+1 Psychotrope Thallid
+1 Renata, Called to the Hunt
+1 Return of the Wildspeaker
+1 Ruxa, Patient Professor
+1 Saproling Migration
+1 Saproling Symbiosis
+1 Savage Thallid
+1 Scatter the Seeds
+1 Second Harvest
+1 Slimy Piper
+1 Spore Swarm
+1 Sporecrown Thallid
+1 Sporemound
+1 Sporesower Thallid
+1 Sporeweb Weaver
+1 Sporoloth Ancient
+1 Sylvan Anthem
+1 Tendershoot Dryad
+1 Thallid
+1 Thallid Devourer
+1 Thallid Germinator
+1 Thallid Shell-Dweller
+1 Thelonite Hermit
+1 Triumph of the Hordes
+1 Tukatongue Thallid
+1 Undercellar Myconid
+1 Utopia Mycon
+1 Verdant Force
+1 Verdeloth the Ancient
+1 Vitaspore Thallid
+1 Wear Down
+1 Wildwood Mentor
+1 Yavimaya Sapherd

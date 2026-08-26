@@ -1,0 +1,108 @@
+# Archidekt — ough my bones
+# source: archidekt:25770771
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Mr. House, President and CEO
+
+Deck:
+1 Vexing Puzzlebox
+1 Hoarding Ogre
+1 Chaos Channeler
+1 Chaos Dragon
+1 Wand of Wonder
+1 Myrkul's Edict
+1 Strike It Rich
+1 Contraband Livestock
+1 The Deck of Many Things
+1 Iron Mastiff
+1 Ancient Copper Dragon
+1 Delina, Wild Mage
+1 Danse Macabre
+1 Thunderwave
+1 Lightfoot Rogue
+1 Farideh's Fireball
+1 Professional Face-Breaker
+1 Ragavan, Nimble Pilferer
+1 Goldspan Dragon
+1 Grim Hireling
+1 Rev, Tithe Extractor
+1 Component Pouch
+1 Captain Lannery Storm
+1 Generous Plunderer
+1 Kellogg, Dangerous Mind
+1 Wyll, Blade of Frontiers
+1 Decadent Dragon // Expensive Taste
+1 Barbarian Class
+1 Imperial Recruiter
+1 Vampiric Tutor
+1 Goblin Engineer
+1 Recruiter of the Guard
+1 Moon-Blessed Cleric
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Vault of Champions
+1 Deflecting Swat
+1 Academy Manufactor
+1 Losheel, Clockwork Scholar
+1 Esper Sentinel
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Alibou, Ancient Witness
+1 Idol of Oblivion
+1 Flawless Maneuver
+1 Kaya's Ghostform
+1 Caretaker's Talent
+1 Voice of Victory
+1 Mayhem Devil
+1 Bennie Bracks, Zoologist
+1 Deadly Rollick
+1 Sol Ring
+1 Mana Vault
+1 Grim Monolith
+1 Voltaic Key
+1 Mox Opal
+1 Manifold Key
+1 Sonic Screwdriver
+1 Muraganda Raceway
+1 Scrubland
+1 Shadowy Backstreet
+1 Three Tree City
+1 Urza's Saga
+1 Spectator Seating
+1 Vault of Whispers
+1 Wake the Past
+1 Sejiri Shelter // Sejiri Glacier
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 The Mycosynth Gardens
+1 Amonkhet Raceway
+1 Malakir Rebirth // Malakir Mire
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Dawn's Truce
+1 Bloodsoaked Insight // Sanguine Morass
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Blood Crypt
+1 Chrome Mox
+1 Ancient Den
+1 Ancient Tomb
+1 Arena of Glory
+1 Badlands
+1 Buried Ruin
+1 Command Beacon
+1 Phyrexian Tower
+1 Command Tower
+1 Darksteel Citadel
+1 Eiganjo, Seat of the Empire
+1 Elegant Parlor
+1 Godless Shrine
+1 Great Furnace
+1 Luxury Suite
+1 Hall of Heliod's Generosity
+1 Inventors' Fair
+1 Monumental Henge
+1 Raucous Theater
+1 Plateau
+1 Sacred Foundry
+1 Demonic Tutor
+1 Enlightened Tutor

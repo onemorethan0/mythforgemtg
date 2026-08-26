@@ -1,0 +1,102 @@
+# Archidekt — Lightning army of one
+# source: archidekt:25739583
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Lightning, Army of One
+
+Deck:
+1 Aggravated Assault
+1 Sword of Wealth and Power
+1 Mirage Phalanx
+1 Blade of Selves
+1 Command Tower
+3 Plains
+1 Brilliant Wings
+1 Rugged Prairie
+1 Teferi's Protection
+1 Cloud, Midgar Mercenary
+1 Helm of the Host
+1 Grim Reaper's Sprint
+1 Esper Sentinel
+2 Mountain
+1 Firion, Wild Rose Warrior
+1 Rionya, Fire Dancer
+1 Ancient Tomb
+1 Weathered Wayfarer
+1 Anzrag's Rampage
+1 Mox Opal
+1 Spectator Seating
+1 Mox Amber
+1 Lizard Blades
+1 Stoneforge Mystic
+1 Slayers' Stronghold
+1 Guildmages' Forum
+1 Gilded Lotus
+1 Mox Tantalite
+1 Arid Mesa
+1 Giver of Runes
+1 Boros Charm
+1 Genji Glove
+1 Eiganjo, Seat of the Empire
+1 Lightning Helix
+1 Wasteland
+1 Castle Embereth
+1 Sokenzan, Crucible of Defiance
+3 Plains
+1 Valakut Exploration
+1 Gamble
+1 Silver Shroud Costume
+1 Relentless Assault
+1 Overpowering Attack
+1 Chrome Mox
+1 Mirror Box
+1 Prismatic Vista
+1 Sacred Foundry
+1 Clifftop Retreat
+1 Enlightened Tutor
+1 Temple of Triumph
+1 Path to Exile
+1 Nahiri, the Unforgiving
+1 Fated Clash
+1 Jeska's Will
+1 Needleverge Pathway // Pillarverge Pathway
+1 Summon: Bahamut
+1 Cursed Mirror
+1 Spirit Mantle
+1 Embercleave
+1 Combat Celebrant
+1 Flare of Duplication
+1 Leyline Axe
+1 Fighter Class
+1 Furycalm Snarl
+1 Dualcaster Mage
+1 Inspiring Vantage
+1 Sol Ring
+2 Mountain
+1 Strip Mine
+1 Aurelia, the Warleader
+1 Elegant Parlor
+1 Coldsteel Heart
+1 Legion Loyalty
+1 Lightning Bolt
+1 Brotherhood Regalia
+1 Arena of Glory
+1 Summon: Brynhildr
+1 Delina, Wild Mage
+1 Urza's Saga
+1 Sunforger
+1 Kediss, Emberclaw Familiar
+1 Steelshaper's Gift
+1 Gogo, Mysterious Mime
+1 Seize the Day
+1 Tataru Taru
+1 Celestial Armor
+1 Lightning Greaves
+1 Aurelia, Exemplar of Justice
+1 Sunbillow Verge
+1 Plateau
+1 Flawless Maneuver
+1 Inventors' Fair
+1 Sram, Senior Edificer

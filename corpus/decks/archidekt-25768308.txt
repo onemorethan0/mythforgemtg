@@ -1,0 +1,108 @@
+# Archidekt — Don't worry about the storm count, its over 9000!!!
+# source: archidekt:25768308
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+
+Deck:
+1 Mana Vault
+1 Abandon Attachments
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Chrome Mox
+1 Command Tower
+1 Deflecting Swat
+1 Demand Answers
+1 Echo of Eons
+1 Finale of Promise
+1 Flow State
+1 Hex Magic
+1 Hexing Squelcher
+1 Highway Robbery
+1 Invoke Calamity
+1 Jeska's Will
+1 Lava Dart
+1 Lotus Petal
+1 Mental Misstep
+1 Mox Amber
+1 Mox Opal
+1 Mystic Remora
+1 Pinnacle Monk // Mystic Peak
+1 Mox Diamond
+1 Flashback
+1 Bloodstained Mire
+1 Brain Freeze
+1 Electro, Assaulting Battery
+1 Fierce Guardianship
+1 Gamble
+1 Flusterstorm
+1 Gut Shot
+1 Frantic Search
+1 Mystical Tutor
+1 Ancient Tomb
+1 Polluted Delta
+1 Chain of Vapor
+1 Bonus Round
+1 Gitaxian Probe
+1 Grapeshot
+1 Mind's Desire
+1 Past in Flames
+1 An Offer You Can't Refuse
+1 Arid Mesa
+1 Hidden Strings
+1 Quiet Speculation
+1 Ragavan, Nimble Pilferer
+1 Rob the Archives
+1 Romantic Rendezvous
+1 Sazacap's Brew
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sink into Stupor // Soporific Springs
+1 Springleaf Drum
+1 Stock Up
+1 Storm of Memories
+1 Storm-Kiln Artist
+1 Strike It Rich
+1 Sundering Eruption // Volcanic Fissure
+1 Tavern Scoundrel
+1 Tibalt's Trickery
+1 Timetwister
+1 Training Center
+1 Treasonous Ogre
+1 Vexing Bauble
+1 Vision of Love
+1 Wheel of Fortune
+1 Will of the Jeskai
+1 Witch's Mark
+1 Wooded Foothills
+1 Wrenn's Resolve
+1 Sol Ring
+1 Red Elemental Blast
+1 Volcanic Island
+1 Reiterate
+1 Solve the Equation
+1 Snap
+1 Windfall
+1 Reckless Impulse
+1 Scalding Tarn
+1 Recoup
+1 Rite of Flame
+1 Seething Song
+1 Underworld Breach
+1 Wheel of Misfortune
+1 Lion's Eye Diamond
+1 Simian Spirit Guide
+1 Otawara, Soaring City
+1 Pyretic Ritual
+1 Desperate Ritual
+1 Pact of Negation
+1 Pyroblast
+1 Opera Love Song
+1 Steam Vents
+1 Misty Rainforest
+1 Fiery Islet
+1 Shivan Reef
+1 Gemstone Caverns
+1 Thundering Falls
+1 Mountain

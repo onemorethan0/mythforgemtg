@@ -1,0 +1,92 @@
+# Archidekt — Ragost, Deft Gastronaut
+# source: archidekt:16978327
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Ragost, Deft Gastronaut
+
+Deck:
+1 Bag End Banquet
+1 Exalted Sunborn
+1 Liquimetal Coating
+1 Weapons Manufacturing
+1 Sting, the Glinting Dagger
+1 Sol Ring
+1 Edgar, Master Machinist
+1 Myr Retriever
+1 Ratchet, Field Medic // Ratchet, Rescue Racer
+1 Leonin Elder
+1 Traveler's Amulet
+1 Arcane Signet
+1 Skyclave Relic
+1 Osgir, the Reconstructor
+1 Lightning Greaves
+1 Cloud Key
+1 Ugin's Nexus
+1 Solemn Simulacrum
+1 Burnished Hart
+1 Prized Statue
+1 Liquimetal Torque
+1 Organic Extinction
+1 Evolving Wilds
+1 Fellwar Stone
+1 Slagstone Refinery
+1 Hot Dog Cart
+1 Workshop Assistant
+1 Nutrient Block
+1 Arbaaz Mir
+1 Marvin, Murderous Mimic
+1 Dispatch
+1 Apothecary White
+1 Weftstalker Ardent
+1 Ash Barrens
+1 Well of Lost Dreams
+1 Reckless Fireweaver
+1 Wake the Past
+1 Haliya, Guided by Light
+1 Terramorphic Expanse
+1 Command Tower
+1 Astrid Peth
+1 Demand Answers
+1 Spire of Industry
+1 Ancient Den
+1 Monumental Henge
+1 Clifftop Retreat
+1 Secluded Steppe
+1 Great Furnace
+1 Exotic Orchard
+1 Buried Ruin
+1 Rustvale Bridge
+1 Radiant Summit
+1 Nuka-Cola Vending Machine
+1 Aetherflux Reservoir
+1 Scrap Trawler
+1 Swiftfoot Boots
+1 The Battle of Bywater
+1 Loyal Apprentice
+1 Transmutation Font
+1 Spirit Loop
+1 Mycosynth Wellspring
+1 Treasure Nabber
+1 Crime Novelist
+1 Ichor Wellspring
+1 Slobad, Goblin Tinkerer
+1 Path to Exile
+1 Swords to Plowshares
+1 Academy Manufactor
+8 Plains
+1 Stridehangar Automaton
+1 Inventors' Fair
+1 Arid Archway
+1 The Gaffer
+1 Bender's Waterskin
+1 Basilisk Collar
+1 Pristine Talisman
+1 Alhammarret's Archive
+1 Goblin Welder
+1 Fumigate
+10 Mountain
+1 Authority of the Consuls
+1 Bre of Clan Stoutarm
+1 Ocelot Pride

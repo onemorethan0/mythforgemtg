@@ -1,0 +1,91 @@
+# Archidekt — Radha - Extra Combats
+# source: archidekt:10329382
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Grand Warlord Radha
+
+Deck:
+1 Champion of Lambholt
+1 Cinder Glade
+1 Birds of Paradise
+1 Blasphemous Act
+1 Artifact Mutation
+1 Beast Within
+1 Dragonlair Spider
+1 Command Tower
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Elvish Mystic
+10 Forest
+1 Goblin Anarchomancer
+1 Great Train Heist
+1 Guardian Project
+1 Eternal Witness
+1 Radha, Heir to Keld
+1 Return of the Wildspeaker
+1 Fyndhorn Elves
+9 Mountain
+1 Ogre Battledriver
+1 Ohran Frostfang
+1 Stump Stomp // Burnwillow Clearing
+1 Thornspire Verge
+1 Tilonalli's Summoner
+1 Heroic Intervention
+1 Fierce Empath
+1 Stomping Ground
+1 General Marhault Elsdragon
+1 Karplusan Forest
+1 Rampant Growth
+1 Rockfall Vale
+1 Spire Garden
+1 Rootbound Crag
+1 Professional Face-Breaker
+1 Shamanic Revelation
+1 Legion Warboss
+1 Rhythm of the Wild
+1 Krenko, Tin Street Kingpin
+1 Toski, Bearer of Secrets
+1 Sol Ring
+1 Fires of Yavimaya
+1 Wooded Foothills
+1 Xenagos, the Reveler
+1 Song of Totentanz
+1 Kessig Wolf Run
+1 Game Trail
+1 Comet Storm
+1 Grove of the Burnwillows
+1 Nykthos, Shrine to Nyx
+1 Arcane Signet
+1 Wrap in Vigor
+1 Savage Beating
+1 Moraug, Fury of Akoum
+1 Beastmaster Ascension
+1 Druids' Repository
+1 Karlach, Fury of Avernus
+1 Combat Celebrant
+1 Craterhoof Behemoth
+1 Anzrag, the Quake-Mole
+1 Savage Ventmaw
+1 World at War
+1 Asceticism
+1 Collective Resistance
+1 Regrowth
+1 Garruk's Uprising
+1 Vigor
+1 War Cadence
+1 Domri, Anarch of Bolas
+1 Wulfgar of Icewind Dale
+1 Lifecrafter's Bestiary
+1 Beast Whisperer
+1 Dolmen Gate
+1 Jeska's Will
+1 Relentless Assault
+1 Aggravated Assault
+1 Hellkite Charger
+1 Enduring Courage
+1 Ancient Tomb
+1 Deflecting Swat
+1 Worldly Tutor
+1 Chord of Calling
+1 Bulk Up

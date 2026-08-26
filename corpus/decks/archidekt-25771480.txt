@@ -1,0 +1,82 @@
+# Archidekt — It's All On Me
+# source: archidekt:25771480
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Denry Klin, Editor in Chief
+
+Deck:
+1 Nesting Grounds
+1 Sol Ring
+1 Tyrite Sanctum
+1 Karn's Bastion
+1 Diamond City
+1 Adarkar Wastes
+1 Command Tower
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Glacial Fortress
+1 Prairie Stream
+1 Resourceful Defense
+1 Contractual Safeguard
+1 Thrummingbird
+1 Wingspan Mentor
+1 Metastatic Evangel
+1 Boon of Safety
+1 Path to Exile
+1 Avenging Huntbonder
+1 Elspeth Resplendent
+1 Damning Verdict
+1 Luminarch Aspirant
+1 Splendor Mare
+1 Goldberry, River-Daughter
+1 Lae'zel, Vlaakith's Champion
+1 Metropolis Angel
+1 Keensight Mentor
+1 Proud Pack-Rhino
+1 Crystalline Giant
+1 Eagle of Deliverance
+1 Herald of Secret Streams
+1 Scholar of New Horizons
+1 Aven Courier
+1 Dreamtide Whale
+1 Towashi Guide-Bot
+1 Deepglow Skate
+1 Avian Oddity
+1 Patrolling Peacemaker
+1 Ray Fillet, Wave Warrior
+1 Slip Out the Back
+1 Ripples of Potential
+1 Storm of Forms
+1 Counterspell
+1 Wave Goodbye
+1 Contentious Plan
+1 That Which Was Taken
+1 Together Forever
+1 Kindred Boon
+1 Azorius Signet
+1 Talisman of Progress
+1 O'aka, Traveling Merchant
+1 Take Up the Shield
+1 Blitzball Stadium
+1 Zephyr Singer
+1 Wing It
+1 Heroic Sacrifice
+1 Pongify
+1 Arcane Signet
+1 Grateful Apparition
+1 Reluctant Role Model
+1 Swords to Plowshares
+1 Tezzeret's Gambit
+1 Scavenged Brawler
+1 Hopeful Initiate
+1 Sanctuary Warden
+1 Generous Gift
+1 Requisition Raid
+1 Swiftfoot Boots
+1 Austere Command
+1 Abzan Falconer
+1 SP//dr, Piloted by Peni
+10 Island
+18 Plains

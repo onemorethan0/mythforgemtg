@@ -1,0 +1,85 @@
+# Archidekt — Dwarfs
+# source: archidekt:25773396
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Dáin of the Ancient Halls
+
+Deck:
+1 Bifur, Melodic Rider
+1 Ori, Keeper of Songs
+1 Dáin, Lord of the Iron Hills
+1 Glóin the Mighty // Easy Pickings
+1 Dáin's Company
+1 Thorin Oakenshield
+1 Merry, Esquire of Rohan
+1 Gilgamesh, Master-at-Arms
+1 Dáin Ironfoot
+1 Dwarven Mauler
+1 Thorin, Mountain-king
+1 Balin, Loremaster
+1 Mirror Entity
+1 Bofur, Reliable Guardian // Concerted Care
+1 Iron Hills Blacksmith
+1 Dori, Bearer of Friends
+1 Boros Charm
+1 Ori, Plate Stacker
+1 Anger
+1 Captain Lannery Storm
+1 Blazing Firesinger // Seething Song
+1 Vow to Erebor
+1 Redirect Lightning
+1 Big Score
+1 Thrill of Possibility
+1 Abrade
+1 Wild Ride
+1 Impolite Entrance
+1 Full Throttle
+1 Sundering Eruption // Volcanic Fissure
+1 Snort
+1 Twinflame
+1 An Unexpected Party // At the Door
+1 Blasphemous Act
+1 Seize the Spoils
+1 Charred Foyer // Warped Space
+1 Rising of the Day
+1 Celebrate the Mountain-king
+1 Blacksmith's Talent
+1 The Misty Mountains Cold
+1 The Fire Crystal
+1 Thrór's Map
+1 Sol Ring
+1 Ark of Hunger
+1 Glittering Stockpile
+1 Phial of Galadriel
+1 Skateboard
+1 Sword of Vengeance
+1 Sting, Bilbo's Sword
+1 Sting, the Glinting Dagger
+1 Dwarven Mattock
+1 Trailblazer's Boots
+1 Sword of Truth and Justice
+1 Shadowspear
+1 Orcrist, Goblin-cleaver
+1 Long-Lost Lances
+1 Andúril, Flame of the West
+1 Dwarven Shortsword
+1 Brotherhood Regalia
+1 Aettir and Priwen
+1 The Arkenstone // Seek the Heart
+1 Grand Coliseum
+1 Sunhome, Fortress of the Legion
+1 Path of Ancestry
+1 Clifftop Retreat
+10 Plains
+1 Sundown Pass
+1 Temple of Triumph
+1 Battlefield Forge
+1 Evolving Wilds
+1 Rugged Prairie
+1 The Lonely Mountain
+1 Smoldering Crater
+1 Daily Bugle Building
+1 Lindblum, Industrial Regency // Mage Siege
+12 Mountain

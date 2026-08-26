@@ -1,0 +1,90 @@
+# Archidekt — My xanathar
+# source: archidekt:25770755
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Xanathar, Guild Kingpin
+
+Deck:
+1 Abyssal Harvester
+1 Aetherspouts
+1 Arcane Signet
+1 Ashiok, Dream Render
+1 Ashiok, Nightmare Weaver
+1 Behold the Multiverse
+1 Bender's Waterskin
+1 Black Cat, Cunning Thief
+1 Blasphemous Edict
+1 Brainstealer Dragon
+1 Cancel
+1 Chromatic Lantern
+1 Codex Shredder
+1 Commander's Sphere
+1 Command Tower
+1 Consuming Aberration
+1 Crabomination
+1 Curse of Unbinding
+1 Diluvian Primordial
+1 Dimir Aqueduct
+1 Dimir Locket
+1 Dismal Backwater
+1 Dramatic Reversal
+1 Dream Harvest
+1 Drowned Catacomb
+1 Drown in the Loch
+1 Duskmantle, House of Shadow
+1 Elder Brain
+1 Endless Obedience
+1 Exotic Orchard
+1 Expel from Orazca
+1 Extract from Darkness
+1 Fact or Fiction
+1 Fellwar Stone
+1 Gale's Redirection
+1 Ghoulcaller's Bell
+1 Gonti, Lord of Luxury
+1 Gonti, Night Minister
+1 Harbinger of the Seas
+1 Highspire Bell-Ringer
+1 Hinder
+1 Hive of the Eye Tyrant
+1 Imprisoned in the Moon
+13 Island
+1 Lithoform Engine
+1 Memory Lapse
+1 Mind Stone
+1 Misinformation
+1 Myriad Landscape
+1 Nephalia Drownyard
+1 Outrageous Robbery
+1 Path of Ancestry
+1 Phyrexian Arena
+1 Pyxis of Pandemonium
+1 Realmbreaker, the Invasion Tree
+1 Restless Reef
+1 Rogue's Passage
+1 Sage of the Beyond
+1 Shadow of the Second Sun
+1 Sign in Blood
+1 Siphon Insight
+1 Solemn Simulacrum
+1 Sol Ring
+1 Soul Manipulation
+1 Sphinx of the Second Sun
+1 Stolen Goods
+1 Sunken Hollow
+7 Swamp
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Tasha's Hideous Laughter
+1 Tasha, the Witch Queen
+1 Temple of Deceit
+1 Temple of the False God
+1 Terramorphic Expanse
+1 The Eldest Reborn
+1 Trinket Mage
+1 Undercover Operative
+1 Vantress Gargoyle
+1 Weeping Angel
+1 Worn Powerstone

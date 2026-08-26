@@ -1,0 +1,86 @@
+# Archidekt — Tribal/Marqueurs elfe
+# source: archidekt:18302073
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Ezuri, Renegade Leader
+
+Deck:
+1 Asceticism
+1 Genesis Wave
+1 Windswift Slice
+1 Vitalize
+1 Seedborn Muse
+1 Quest for Renewal
+1 Rogue's Passage
+1 Blessings of Nature
+1 Bower Passage
+1 Imperious Perfect
+1 Lys Alana Huntmaster
+1 Fog
+1 Wirewood Pride
+1 Serene Remembrance
+1 Wolverine Riders
+1 Elvish Archdruid
+1 Elvish Promenade
+1 Llanowar Tribe
+1 Marwyn, the Nurturer
+1 Sylvan Messenger
+1 Canopy Tactician
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Immaculate Magistrate
+1 Llanowar Visionary
+1 Wirewood Symbiote
+1 Elvish Guidance
+1 Taunting Elf
+1 Bloomvine Regent // Claim Territory
+1 Evolution Sage
+1 Tromell, Seymour's Butler
+1 Guardian Project
+1 Heroic Intervention
+1 Lifecrafter's Bestiary
+1 Skullclamp
+1 Hardened Scales
+1 Unnatural Growth
+1 Omnath, Locus of Mana
+1 Kindred Summons
+1 Summoner's Pact
+1 Collective Resistance
+1 Bounty of Skemfar
+1 Creeping Renaissance
+1 Door of Destinies
+1 Throne of the God-Pharaoh
+1 Tribute to the World Tree
+1 Descendants' Path
+1 Elvish Champion
+1 Jagged-Scar Archers
+23 Forest
+1 Path of Ancestry
+1 Wirewood Lodge
+1 Castle Garenbrig
+1 Evendo, Waking Haven
+1 Priest of Titania
+1 Copperhorn Scout
+1 Timberwatch Elf
+1 Champions of the Perfect
+1 Arwen, Weaver of Hope
+1 Beast Whisperer
+1 Galadhrim Ambush
+1 Elven Ambush
+1 Quirion Ranger
+1 Three Tree City
+1 Eladamri, Korvecdal
+1 Overwhelming Stampede
+1 Imaryll, Elfhame Elite
+1 Germination Practicum
+1 Wilderness Reclamation
+1 Harmonize
+1 Beastmaster Ascension
+1 Nissa, Who Shakes the World
+1 Sylvan Library
+1 Leaf-Crowned Visionary
+1 Cultivator of Blades
+1 Wren's Run Vanquisher
+1 Yeva, Nature's Herald
+1 Harvest Season

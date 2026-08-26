@@ -1,0 +1,108 @@
+# Archidekt — Budget-friendly Terra, Magical Adept deck
+# source: archidekt:25762189
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Yuna, Hope of Spira
+1 Chromatic Lantern
+1 Summon: Bahamut
+1 City of Brass
+1 Spara's Headquarters
+1 Summon: Knights of Round
+1 Sol Ring
+1 Nesting Grounds
+1 Summon: Titan
+1 Summon: Shiva
+1 Garnet, Princess of Alexandria
+1 Summon: Primal Odin
+1 Summon: Valefor
+1 Rydia, Summoner of Mist
+1 Summon: Fenrir
+1 Gleaming Splendor
+1 Tom Bombadil
+1 Sythis, Harvest's Hand
+1 Summon: Yojimbo
+1 Esper Origins // Summon: Esper Maduin
+1 Jukai Naturalist
+1 Resurgent Belief
+1 Sanctum Weaver
+1 O'aka, Traveling Merchant
+1 Swords to Plowshares
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 An Offer You Can't Refuse
+1 Fierce Guardianship
+1 Birds of Paradise
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Crop Rotation
+1 Ishgard, the Holy See // Faith & Grief
+1 Farseek
+1 Clash of the Eikons
+1 Rhystic Study
+1 Counterspell
+1 Heroic Intervention
+1 Smothering Tithe
+1 Swan Song
+1 Path to Exile
+1 Moonmist
+1 Starting Town
+1 Summoner's Grimoire
+1 Power Conduit
+1 Boseiju, Who Endures
+1 Temple Garden
+1 Binding the Old Gods
+1 Three Visits
+1 Nature's Lore
+1 Enchantress's Presence
+1 Reliquary Tower
+1 The Eldest Reborn
+1 Stomping Ground
+1 Volcanic Island
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Hall of Heliod's Generosity
+1 Command Tower
+1 Otawara, Soaring City
+1 Breeding Pool
+1 Path of Ancestry
+1 Arcane Signet
+1 Exotic Orchard
+1 Ziatora's Proving Ground
+1 Sacred Foundry
+1 Overgrown Tomb
+1 Mistrise Village
+1 Indatha Triome
+1 Godless Shrine
+1 Mana Confluence
+1 Underground Sea
+1 Jetmir's Garden
+1 Hallowed Fountain
+1 Reflecting Pool
+1 Watery Grave
+1 Ketria Triome
+1 Taiga
+1 Scrubland
+1 The World Tree
+1 Tundra
+1 Serra's Sanctum
+1 Blood Crypt
+1 Steam Vents
+1 Zagoth Triome
+1 Bayou
+1 Tropical Island
+1 Badlands
+1 Zur, Eternal Schemer
+1 Crux of Fate
+1 Plateau
+1 Bloom Tender
+1 Destiny Spinner
+1 Anikthea, Hand of Erebos
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Sterling Grove
+1 Mystic Remora
+1 Deadly Rollick
+1 Mana Drain
+1 Yuna, Grand Summoner

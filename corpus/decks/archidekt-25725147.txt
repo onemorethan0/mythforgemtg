@@ -1,0 +1,97 @@
+# Archidekt — Wall
+# source: archidekt:25725147
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 The Walls of Ba Sing Se
+
+Deck:
+1 Excavated Wall
+1 Wall of Spears
+1 Shifting Wall
+1 Coastal Bulwark
+1 Weathered Sentinels
+1 Suspicious Bookcase
+1 Steel Wall
+12 Wastes
+1 Urza's Mine
+1 Razorgrass Screen
+1 Crenellated Wall
+1 Wall of Forgotten Pharaohs
+1 Roving Keep
+1 Amaranthine Wall
+1 Shield Sphere
+1 Wall of Junk
+1 Thespian's Stage
+1 Mobile Fort
+1 Living Wall
+1 Necropolis
+1 Snow Fortress
+1 Wall of Shields
+1 Swiftfoot Boots
+1 Walking Wall
+1 Crashing Drawbridge
+1 Tomb of the Spirit Dragon
+1 Towering Viewpoint
+1 Gleaming Barrier
+1 Consulate Skygate
+1 Reinforced Bulwark
+1 Commander's Plate
+1 Inventors' Fair
+1 Mind Stone
+1 Null Elemental Blast
+1 Urza's Workshop
+1 Worn Powerstone
+1 Pariah's Shield
+1 Forsaken Monument
+1 Reliquary Tower
+1 Urza's Power Plant
+1 Vesuva
+1 Adventurer's Inn
+1 Temple of the False God
+1 Darksteel Citadel
+1 Urza's Tower
+1 Cloud Key
+1 Shrine of the Forsaken Gods
+1 Urza's Saga
+1 Muraganda Raceway
+1 Sol Ring
+1 Thought Vessel
+1 Scavenger Grounds
+1 Hedron Archive
+1 Lightning Greaves
+1 Everflowing Chalice
+1 Ugin, the Ineffable
+1 Eldritch Immunity
+1 Darksteel Monolith
+1 Urza's Cave
+1 Thran Dynamo
+1 Urza's Factory
+1 The Eternity Elevator
+1 Mithril Coat
+1 Silent Arbiter
+1 Tyrite Sanctum
+1 Arc Reactor
+1 Guildless Commons
+1 Deserted Temple
+1 Radiant Fountain
+1 Geier Reach Sanitarium
+1 Buried Ruin
+1 Platinum Emperion
+1 Platinum Angel
+1 Planar Nexus
+1 Crawlspace
+1 Karn, Living Legacy
+1 Strip Mine
+1 Echo Circlet
+1 Tezzeret, Cruel Captain
+1 Ugin, Eye of the Storms
+1 Karn, the Great Creator
+1 Darksteel Forge
+1 All Is Dust
+1 Homeward Path
+1 Warmonger's Chariot
+1 Selective Obliteration
+1 Desecrate Reality
+1 Eldrazi Conscription

@@ -1,0 +1,106 @@
+# Archidekt — B3 Chatterfang Go-Wide
+# source: archidekt:6853640
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Overwhelming Stampede
+1 Swarmyard Massacre
+1 Toski, Bearer of Secrets
+1 Cultivate
+1 Ravenous Squirrel
+1 Saryth, the Viper's Fang
+1 Deep Forest Hermit
+1 Deadly Dispute
+1 Farseek
+1 Necrotic Hex
+1 Krosan Grip
+1 Verdant Command
+1 Chitterspitter
+1 Beastmaster Ascension
+1 Binding the Old Gods
+1 Command Tower
+1 Swarmyard
+1 Gala Greeters
+1 Nature's Lore
+1 Pitiless Plunderer
+1 Garruk, Cursed Huntsman
+1 Yawgmoth, Thran Physician
+1 Tireless Provisioner
+1 Compy Swarm
+1 Species Specialist
+1 Gilded Goose
+1 Birds of Paradise
+1 Vraska, Relic Seeker
+1 Deathsprout
+1 Tear Asunder
+1 Esika's Chariot
+1 Prosperous Innkeeper
+1 Khalni Garden
+1 Barad-dûr
+1 Three Visits
+1 Woodland Chasm
+1 Undergrowth Stadium
+1 Overgrown Tomb
+1 Academy Manufactor
+1 Deranged Hermit
+1 Creakwood Liege
+1 Old Gnawbone
+1 Ohran Frostfang
+1 Black Market Connections
+1 City of Brass
+1 Reflecting Pool
+1 Fanatical Offering
+1 Liliana, Dreadhorde General
+1 Heroic Intervention
+1 Sol Ring
+1 Phyrexian Tower
+1 Windswept Heath
+1 Yavimaya, Cradle of Growth
+1 Verdant Catacombs
+1 Marsh Flats
+1 Camellia, the Seedmiser
+1 Scurry of Squirrels
+1 Three Tree City
+1 Hazel of the Rootbloom
+1 Fountainport
+1 Gingerbread Cabin
+1 Urborg, Tomb of Yawgmoth
+1 Underground Mortuary
+1 Triumph of the Hordes
+1 Evendo, Waking Haven
+1 Arcane Signet
+1 The One Ring
+1 Deathcap Glade
+1 Ancient Tomb
+1 Orcrist, Goblin-cleaver
+1 Craterhoof Behemoth
+1 Doubling Season
+1 Champion of Lambholt
+1 Thunderfoot Baloth
+1 Tendershoot Dryad
+1 Banner of Kinship
+1 Quina, Qu Gourmet
+1 Awakening Zone
+2 Swamp
+1 Revel in Riches
+1 Killer Service
+1 Spider-Ham, Peter Porker
+1 Festering Thicket
+1 Vernal Fen
+2 Forest
+1 Bayou
+1 Gaea's Cradle
+1 Wastewood Verge
+1 Boseiju, Who Endures
+1 Nykthos, Shrine to Nyx
+1 Shizo, Death's Storehouse
+1 Yavimaya Hollow
+1 Tippy-Toe, Terrific Partner
+1 The Unbeatable Squirrel Girl
+1 The Coming of Galactus
+1 Thornvault Forager
+1 Turbulent Fen

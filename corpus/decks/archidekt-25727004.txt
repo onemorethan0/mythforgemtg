@@ -1,0 +1,74 @@
+# Archidekt — Casino
+# source: archidekt:25727004
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Yusri, Fortune's Flame
+
+Deck:
+1 Krark, the Thumbless
+19 Mountain
+1 Contact Other Plane
+17 Island
+1 Farideh, Devil's Chosen
+1 Aberrant Mind Sorcerer
+1 Slight Malfunction
+1 Boing!
+1 Gale's Redirection
+1 Clay Golem
+1 Pixie Guide
+1 Bamboozling Beeble
+1 Feywild Trickster
+1 Negate
+1 Chaos Channeler
+1 Thunderwave
+1 Arcane Endeavor
+1 Power of Persuasion
+1 Molten Birth
+1 Fiery Gambit
+1 Goblin Traprunner
+1 Flick a Coin
+1 Skyclaw Thrash
+1 Two-Headed Giant
+1 Edgar, King of Figaro
+1 Commander's Sphere
+1 Mutalith Vortex Beast
+1 Boompile
+1 Tavern Scoundrel
+1 Invert Polarity
+1 The Gold Saucer
+1 Swarming Goblins
+1 Arcane Investigator
+1 Priority Boarding
+1 Farideh's Fireball
+1 Krark's Thumb
+1 Triple Triad
+1 Master of Predicaments
+1 Ivory Tower
+1 Netherese Puzzle-Ward
+1 Mana Clash
+1 Wyll, Blade of Frontiers
+1 Cone of Cold
+1 Hoarding Ogre
+1 Iron Mastiff
+1 Goblin Morningstar
+1 Wizard's Spellbook
+1 Elixir
+1 Treasure Chest
+1 Barbarian Class
+1 Brazen Dwarf
+1 Adventurer's Inn
+1 Elixir of Immortality
+1 Environmental Sciences
+1 Earth-Cult Elemental
+1 Hot Dog Cart
+1 Body of Knowledge
+1 Roaring Furnace // Steaming Sauna
+1 Thought Vessel
+1 Wizard Class
+1 Vedalken Squirrel-Whacker
+1 Ebony Fly
+1 Loxodon Warhammer
+1 Ornithopter of Paradise
+1 Izzet Signet

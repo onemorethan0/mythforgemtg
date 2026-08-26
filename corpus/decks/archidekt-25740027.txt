@@ -1,0 +1,90 @@
+# Archidekt — I Do Be Burglin'
+# source: archidekt:25740027
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Bilbo, Thief in the Night
+
+Deck:
+1 Aetherflux Reservoir
+1 Agna Qel'a
+1 An Offer You Can't Refuse
+1 Bilbo's Ring
+1 Brain Freeze
+1 Brainstorm
+1 Careful Study
+1 Cephalid Coliseum
+1 Commandeer
+1 Counterbalance
+1 Crystal Skull, Isu Spyglass
+1 Cyclonic Rift
+1 Defense Grid
+1 Fabricate
+1 Faerie Mastermind
+1 Fateful Discovery
+1 Fierce Guardianship
+1 Flare of Denial
+1 Flusterstorm
+1 Fomori Vault
+1 Force of Negation
+1 Force of Will
+1 Future Sight
+1 Gitaxian Probe
+1 High Fae Trickster
+1 High Tide
+1 Into the Flood Maw
+19 Island
+1 Krark-Clan Ironworks
+1 Long-Term Plans
+1 Lotus Petal
+1 Magus of the Future
+1 Mana Drain
+1 Manifold Key
+1 Mindbreak Trap
+1 Mirage Mirror
+1 Mirrormade
+1 Misdirection
+1 Mistrise Village
+1 Moonsilver Key
+1 Muddle the Mixture
+1 Mystic Forge
+1 Mystic Remora
+1 Mystical Tutor
+1 Narset's Reversal
+1 Pact of Negation
+1 Paradigm Shift
+1 Phantasmal Image
+1 Phyrexian Metamorph
+1 Ponder
+1 Psychosis Crawler
+1 Quiet Speculation
+1 Reliquary Tower
+1 Reshape
+1 Rhystic Study
+1 Riddles in the Dark
+1 Sapphire Medallion
+1 Seat of the Synod
+1 Sensei's Divining Top
+1 Sink into Stupor // Soporific Springs
+1 Snap
+1 Sol Ring
+1 Spellseeker
+1 Springleaf Drum
+1 Stifle
+1 Strix Serenade
+1 Swan Song
+1 Teferi, Mage of Zhalfir
+1 Tezzeret the Seeker
+1 Tezzeret, Cruel Captain
+1 Thassa's Oracle
+1 The One Ring
+1 The Reality Chip
+1 Thwart
+1 Tolaria West
+1 Trickbind
+1 Trinket Mage
+1 Urza, Lord High Artificer
+1 Voltaic Key
+1 Whir of Invention
+1 Windfall

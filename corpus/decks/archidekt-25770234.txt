@@ -1,0 +1,85 @@
+# Archidekt — Eshki Dragonclaw
+# source: archidekt:25770234
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Eshki Dragonclaw
+
+Deck:
+1 Abrade
+1 Abundant Growth
+1 Aether Tunnel
+1 Arasta of the Endless Web
+1 Ash Barrens
+1 Blasphemous Act
+1 Bloodbraid Elf
+1 Bountiful Landscape
+1 Brain in a Jar
+1 Brainstorm
+1 Broken Wings
+1 Change the Equation
+1 Cinder Glade
+1 Clockwork Percussionist
+1 Coiling Oracle
+1 Cori-Steel Cutter
+1 Counterflux
+1 Crashing Drawbridge
+1 Cultivate
+1 Dispel
+1 Divergent Equation
+1 Dragon Mantle
+1 Dragonclaw Strike
+1 Electrostatic Field
+1 Evolving Wilds
+1 Expert-Level Safe
+1 Farseek
+3 Forest
+1 Frantic Search
+1 Goblin Electromancer
+1 Temur Charm
+1 Temur Devotee
+1 Temur Tawnyback
+1 Terramorphic Expanse
+1 Trusty Boomerang
+1 Undergrowth Leopard
+1 Great Hall of the Biblioplex
+1 Guttersnipe
+1 Heroes' Hangout
+1 Hurkyl, Master Wizard
+1 Hydro-Channeler
+1 Illvoi Infiltrator
+1 Impractical Joke
+13 Island
+1 Kaho, Minamo Historian
+1 Karakyk Guardian
+1 Maelstrom Artisan // Rocket Volley
+1 Maximize Velocity
+1 Mossfire Valley
+10 Mountain
+1 Mysterious Stranger
+1 Opt
+1 Ovika, Enigma Goliath
+1 Poison Dart Frog
+1 Pond Prophet
+1 Preordain
+1 Rabbit Battery
+1 Rancor
+1 Ravenform
+1 Reckless Lackey
+1 Rootbound Crag
+1 Run Away Together
+1 Runescale Stormbrood // Chilling Screech
+1 Sanar, Unfinished Genius // Wild Idea
+1 Sheltered Thicket
+1 Shocking Sharpshooter
+1 Slickshot Show-Off
+1 Songcrafter Mage
+1 Spider Manifestation
+1 Sticky Fingers
+1 Stock Up
+1 Stormwing Entity
+1 Studious First-Year // Rampant Growth
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Temple of Abandon

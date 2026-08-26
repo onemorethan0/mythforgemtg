@@ -1,0 +1,84 @@
+# Archidekt — Painfully Silent Auction
+# source: archidekt:25635815
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Itazura, Lingering Wick
+
+Deck:
+1 Reliquary Tower
+1 Explosion of Riches
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Alicia Masters, Skilled Sculptor
+1 Molten Psyche
+1 The Ninth Doctor
+1 Creative Technique
+1 Niv-Mizzet, Visionary
+1 Paradox Haze
+1 Thor, Guardian of Midgard
+1 Shadow of the Second Sun
+1 Wheel of Misfortune
+1 Brand
+1 Sphinx of the Second Sun
+1 The Rollercrusher Ride
+13 Mountain
+1 Steam Vents
+1 Talisman of Creativity
+1 Scalding Tarn
+1 Arcane Signet
+1 Izzet Signet
+1 Sapphire Medallion
+1 Ruby Medallion
+1 Roiling Vortex
+1 Thought Vessel
+1 Remand
+1 Counterspell
+1 Into the Flood Maw
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sulfur Falls
+1 Command Tower
+1 Stormcarved Coast
+1 Turbulent Springs
+1 Cascade Bluffs
+1 Ghostly Pilferer
+1 Homeward Path
+13 Island
+1 Well of Ideas
+1 Otherworldly Gaze
+1 Brainstorm
+1 Chaos Warp
+1 Psychic Impetus
+1 Reality Scramble
+1 Death Kiss
+1 Propaganda
+1 Darksteel Colossus
+1 Etali, Primal Storm
+1 Wiccan, Rising Magician
+1 Spaceshift
+1 Release to the Wind
+1 Ludevic, Necro-Alchemist
+1 Planar Incision
+1 Memory Lapse
+1 Tidal Force
+1 Expedition Map
+1 Cursed Mirror
+1 Thran Dynamo
+1 Expressive Iteration
+1 Mind Stone
+1 Staff of Compleation
+1 Worn Powerstone
+1 Strionic Resonator
+1 Eldrazi Confluence
+1 Drakuseth, Maw of Flames
+1 Incinerator of the Guilty
+1 Master of Predicaments
+1 Ponder
+1 Zoyowa's Justice
+1 An Offer You Can't Refuse
+1 Crawlspace
+1 Pathrazer of Ulamog
+1 Mystifying Maze
+1 Scytheclaw Raptor
+1 Imprisoned in the Moon
+1 Razorkin Needlehead

@@ -1,0 +1,83 @@
+# Archidekt — Liliana
+# source: archidekt:25777378
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Liliana the Faultless
+
+Deck:
+1 Adeline, Resplendent Cathar
+1 Aerith Gainsborough
+1 Angel of Destiny
+1 Archangel of Thune
+1 Auriok Champion
+1 Bennie Bracks, Zoologist
+1 Celestine, the Living Saint
+1 Daxos, Blessed by the Sun
+1 Delney, Streetwise Lookout
+1 Dr. Beverly Crusher
+1 Elesh Norn, Mother of Machines
+1 Emeria Shepherd
+1 Enduring Innocence
+1 Exemplar of Light
+1 Felidar Sovereign
+1 God-Eternal Oketra
+1 Guide of Souls
+1 Haliya, Guided by Light
+1 Karmic Guide
+1 Keeper of the Accord
+1 Mangara, the Diplomat
+1 Myrel, Shield of Argive
+1 Ocelot Pride
+1 Recruiter of the Guard
+1 Resplendent Angel
+1 Rhox Faithmender
+1 Serra Ascendant
+1 Serra Paragon
+1 Soul Warden
+1 Soul's Attendant
+1 Sun Titan
+1 Enlightened Tutor
+1 Generous Gift
+1 Miraculous Recovery
+1 Path to Exile
+1 Stroke of Midnight
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Austere Command
+1 Farewell
+1 Fumigate
+1 Vanquish the Horde
+1 Wrath of God
+1 Aetherflux Reservoir
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Caduceus, Staff of Hermes
+1 Halo Fountain
+1 Oketra's Monument
+1 Pearl Medallion
+1 Skullclamp
+1 Sol Ring
+1 Ajani's Welcome
+1 Anointed Procession
+1 Boon Reflection
+1 Cleric Class
+1 Dawn of Hope
+1 Smothering Tithe
+1 Test of Endurance
+1 Ajani, Strength of the Pride
+1 Elspeth, Storm Slayer
+1 Castle Ardenvale
+1 Eiganjo, Seat of the Empire
+1 Emeria, the Sky Ruin
+1 Fountainport
+1 Minas Tirith
+1 Monumental Henge
+1 Nykthos, Shrine to Nyx
+1 Radiant Fountain
+1 Reliquary Tower
+1 Windbrisk Heights
+1 Witch Enchanter // Witch-Blessed Meadow
+26 Plains
+1 Ojer Taq, Deepest Foundation // Temple of Civilization

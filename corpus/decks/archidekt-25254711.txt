@@ -1,0 +1,99 @@
+# Archidekt — Elvessssss
+# source: archidekt:25254711
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Lathril, Blade of the Elves
+1 Selvala, Heart of the Wilds
+1 Tyvar, Jubilant Brawler
+1 Llanowar Elves
+1 Priest of Titania
+1 Dionus, Elvish Archdruid
+1 Immaculate Magistrate
+1 Timberwatch Elf
+1 Deathbloom Ritualist
+1 High Perfect Morcant
+1 Eladamri, Korvecdal
+1 Marwyn, the Nurturer
+1 Devoted Druid
+1 Fauna Shaman
+1 Bloom Tender
+1 Counterspell
+1 Arcane Denial
+1 Sol Ring
+1 Arcane Signet
+1 Elvish Archdruid
+1 Maralen, Fae Ascendant
+1 Beast Within
+1 Genesis Wave
+1 Dark Ritual
+1 Fell the Profane // Fell Mire
+1 Exsanguinate
+1 Revitalizing Repast // Old-Growth Grove
+1 Assassin's Trophy
+1 Trystan's Command
+1 Overwhelming Stampede
+4 Forest
+1 Formidable Speaker
+1 Ripples of Undeath
+1 Aftermath Analyst
+1 Ezuri, Renegade Leader
+1 Three Tree City
+1 Champions of the Perfect
+1 Tyvar, the Pummeler
+1 Elvish Mystic
+1 Lluwen, Imperfect Naturalist
+1 Trystan, Callous Cultivator // Trystan, Penitent Culler
+1 Edric, Spymaster of Trest
+1 Elves of Deep Shadow
+1 Mortuary Mire
+1 Rogue's Passage
+1 Cavern of Souls
+1 Urborg, Tomb of Yawgmoth
+1 Command Beacon
+1 Yavimaya, Cradle of Growth
+1 Beast Whisperer
+1 Llanowar Mentor
+1 Elven Chorus
+1 Haunted One
+1 Raise the Palisade
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Imperious Perfect
+1 Iron-Shield Elf
+1 Elrond, Moon-Reader
+1 Underrealm Lich
+1 Kindred Dominance
+1 Kagha, Shadow Archdruid
+1 Buried Alive
+1 Lively Dirge
+1 Shifting Woodland
+1 Elven Passage
+1 Gwenna, Eyes of Gaea
+1 Incubation Druid
+1 Gyre Sage
+1 Craterhoof Behemoth
+1 Secluded Courtyard
+1 Unclaimed Territory
+1 Dread Return
+1 Growth Spiral
+1 Fabled Passage
+1 Command Tower
+1 Exotic Orchard
+1 Yavimaya Coast
+1 Path of Ancestry
+1 Llanowar Wastes
+1 Hinterland Harbor
+1 Sodden Verdure
+1 Woodland Cemetery
+1 Dakmor Salvage
+1 Vernal Fen
+4 Island
+4 Swamp
+1 Jarad, Golgari Lich Lord
+1 Animate Dead
+1 Reanimate

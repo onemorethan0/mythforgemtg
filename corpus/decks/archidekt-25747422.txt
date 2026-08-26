@@ -1,0 +1,103 @@
+# Archidekt — WHERE'S PROMPTO?!
+# source: archidekt:25747422
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Noctis, Prince of Lucis
+
+Deck:
+1 Bolas's Citadel
+1 Chrome Mox
+1 Mana Vault
+1 Mox Amber
+1 Mox Opal
+1 Vampiric Tutor
+1 Mystical Tutor
+1 Intuition
+1 Entomb
+1 Imperial Seal
+1 Demonic Tutor
+1 Fierce Guardianship
+1 Grand Arbiter Augustin IV
+1 Ripples of Undeath
+1 Sol Ring
+1 Mana Drain
+1 Marsh Flats
+1 Polluted Delta
+1 Reliquary Tower
+1 Tundra
+1 Mana Confluence
+1 Hall of Heliod's Generosity
+1 Gleaming Splendor
+1 Unwinding Clock
+1 Karn Liberated
+1 Deadly Rollick
+1 Orcish Bowmasters
+1 Tataru Taru
+1 Voice of Victory
+1 O'aka, Traveling Merchant
+1 Liberator, Urza's Battlethopter
+1 Urza, Lord High Artificer
+1 Kappa Cannoneer
+1 Flash Photography
+1 Grim Monolith
+1 Gifts Ungiven
+1 Mox Diamond
+1 Necropotence
+1 Karn, Scion of Urza
+1 Wan Shi Tong, Librarian
+1 Zellix, Sanity Flayer
+1 Krark-Clan Ironworks
+1 Scrawling Crawler
+1 The Theorist, Jace Beleren
+1 Underground Sea
+1 Underground River
+3 Island
+1 Morphic Pool
+1 Shuri, Wakandan Inventor
+1 Sea of Clouds
+1 Scrubland
+1 Vault of Champions
+1 Adarkar Wastes
+1 Command Tower
+1 Sensei's Divining Top
+1 Propaganda
+3 Swamp
+1 Void Rend
+1 Grand Abolisher
+1 Otawara, Soaring City
+1 Caves of Koilos
+1 Exotic Orchard
+1 Arcane Signet
+1 Vexing Bauble
+1 Esper Sentinel
+2 Plains
+1 Thought Vessel
+1 Mystic Forge
+1 Windfall
+1 Swords to Plowshares
+1 Etherium Sculptor
+1 Golbez, Crystal Collector
+1 Lotus Petal
+1 Emry, Lurker of the Loch
+1 Dispatch
+1 Baleful Strix
+1 Talisman of Progress
+1 Black Mage's Rod
+1 Seat of the Synod
+1 The One Ring
+1 Foundry Inspector
+1 Dovin's Veto
+1 Talisman of Hierarchy
+1 Talisman of Dominance
+1 Path to Exile
+1 Aetherflux Reservoir
+1 Solemnity
+1 Fellwar Stone
+1 Counterspell
+1 Urza's Saga
+1 Mesmeric Orb
+1 Darkness
+1 Buried Alive
+1 Thoughtcast

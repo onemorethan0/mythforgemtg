@@ -1,0 +1,90 @@
+# Archidekt — vaegina asmathic.
+# source: archidekt:25775351
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Vaevictis Asmadi, the Dire
+
+Deck:
+1 Getaway Barrel
+1 Chaos Warp
+1 Etali, Primal Storm
+1 Dance with Calamity
+1 Ignoble Hierarch
+1 Sakura-Tribe Elder
+1 Mayhem Devil
+1 Abhorrent Overlord
+1 Ziatora, the Incinerator
+1 Harvester of Souls
+1 Augur of Autumn
+1 Overseer of the Damned
+1 Springbloom Druid
+1 Swiftfoot Boots
+1 Honest Rutstein
+1 Arcane Signet
+1 Dragonlair Spider
+1 Aid from the Cowl
+1 Sol Ring
+1 Doors of Durin
+1 Awakening Zone
+1 Soldevi Adnate
+1 Cream of the Crop
+1 Warstorm Surge
+1 Deathreap Ritual
+1 Ichor Wellspring
+1 Lantern of Insight
+1 Explorer's Scope
+1 Chaos Wand
+1 Omen Machine
+1 Bootleggers' Stash
+1 Brainstone
+1 Anger
+1 Wood Elves
+1 Hua Tuo, Honored Physician
+1 Eternal Witness
+1 Sepulchral Primordial
+1 Butcher of Malakir
+1 Greater Good
+1 Kardur, Doomscourge
+1 Wild Magic Surge
+1 Chef's Kiss
+1 Audacious Swap
+1 Fellwar Stone
+1 Rakdos Charm
+1 Wishclaw Talisman
+1 Warp World
+1 Chaotic Transformation
+1 Whims of the Fates
+1 Rites of Flourishing
+1 Colossal Majesty
+1 Colossification
+1 Moldervine Reclamation
+1 Goblin Anarchomancer
+1 Vicious Shadows
+1 Blood Artist
+1 Messenger's Speed
+1 Gruul Signet
+1 Golgari Signet
+1 Rakdos Signet
+1 Nightmare Shepherd
+1 Chevill, Bane of Monsters
+1 Command Tower
+1 Cinder Glade
+1 Smoldering Marsh
+1 Rootbound Crag
+1 Exotic Orchard
+1 Twisted Landscape
+1 Dragonskull Summit
+1 Terramorphic Expanse
+1 Vernal Fen
+1 Myriad Landscape
+1 Rogue's Passage
+1 Temple of Malady
+1 Eumidian Hatchery
+1 Temple of Malice
+1 Game Trail
+1 Temple of Abandon
+7 Mountain
+7 Forest
+7 Swamp

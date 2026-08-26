@@ -1,0 +1,98 @@
+# Archidekt — Ghired's Revolution
+# source: archidekt:9964095
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Ghired, Conclave Exile
+
+Deck:
+1 Command Tower
+1 Jungle Shrine
+1 Exotic Orchard
+1 Sundering Growth
+1 Path to Exile
+1 Druid's Deliverance
+1 Idol of Oblivion
+1 Return of the Wildspeaker
+1 Trostani, Selesnya's Voice
+1 Swiftfoot Boots
+1 Your Temple Is Under Attack
+1 Titanic Ultimatum
+1 Goblin Anarchomancer
+1 Ilysian Caryatid
+1 Thraben Charm
+1 Rootborn Defenses
+1 Omnath, Locus of Rage
+1 Garruk's Uprising
+1 Collective Resistance
+1 Farseek
+1 Timeless Witness
+1 Seize the Spoils
+1 Elturel Survivors
+1 Ezuri's Predation
+1 Rhythm of the Wild
+1 Mouth // Feed
+1 Quartzwood Crasher
+1 Disciple of Freyalise // Garden of Freyalise
+1 Naya Charm
+1 Canopy Vista
+1 Strength of the Harvest // Haven of the Harvest
+1 Cinder Glade
+1 Timeless Dragon
+1 Fires of Yavimaya
+1 Marisi, Breaker of the Coil
+1 Aurelia, the Warleader
+1 Thrill of Possibility
+1 Twitching Doll
+1 Intangible Virtue
+1 God-Eternal Oketra
+1 Draconic Disciple
+1 Faeburrow Elder
+1 Xenagos, the Reveler
+1 Shamanic Revelation
+1 Samut, the Driving Force
+1 General Ferrous Rokiric
+1 Invasion of Ergamon // Truga Cliffcharger
+1 Game Trail
+1 Rootbound Crag
+1 Fortified Village
+1 Karplusan Forest
+1 Mossfire Valley
+7 Forest
+1 Huatli, Poet of Unity // Roar of the Fifth People
+1 Ohran Frostfang
+1 Wayfaring Temple
+1 Selvala, Explorer Returned
+1 Rith, Liberated Primeval
+1 Dire-Strain Rampage
+1 Stump Stomp // Burnwillow Clearing
+1 Selesnya Eulogist
+1 Thrash // Threat
+1 Deafening Clarion
+1 Cleansing Nova
+1 Bushwhack
+1 Tuktuk Rubblefort
+3 Mountain
+1 Scattered Groves
+1 Jetmir's Garden
+1 Sheltered Thicket
+1 Sungrass Prairie
+1 Sacred Foundry
+1 Temple Garden
+1 Stomping Ground
+4 Plains
+1 Lumbering Worldwagon
+1 Go Ninja Go
+1 Radiant Summit
+1 Firemane Commando
+1 Spider Manifestation
+1 Brushland
+1 Sunpetal Grove
+1 Battlefield Forge
+1 Toby, Beastie Befriender
+1 Bitter Work
+1 Draconautics Engineer
+1 Flower // Flourish
+1 Nature's Lore
+1 Gimli's Reckless Might

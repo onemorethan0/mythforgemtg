@@ -1,0 +1,80 @@
+# Archidekt — Pirates
+# source: archidekt:25770810
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Mary Read and Anne Bonny
+
+Deck:
+1 Reckless Lackey
+1 Ragavan, Nimble Pilferer
+1 Lightning-Rig Crew
+1 Impulsive Pilferer
+1 Breeches, Eager Pillager
+1 Captain Lannery Storm
+1 Breeches, Brazen Plunderer
+1 Breeches, the Blastmaker
+1 Captain Storm, Cosmium Raider
+1 Malcolm, Keen-Eyed Navigator
+1 Sol Ring
+1 Monument to Endurance
+1 Izzet Signet
+1 Cultivator's Caravan
+1 Academy Manufactor
+1 The Belligerent
+1 The Indomitable
+1 Gemcutter Buccaneer
+1 Corsair Captain
+1 Enterprising Scallywag
+1 Broadside Bombardiers
+1 Skyswimmer Koi
+1 Angrath's Marauders
+1 Ingenious Artillerist
+1 Xorn
+1 Malcolm, the Eyes
+1 Reckless Fireweaver
+1 Fearless Swashbuckler
+1 Jackdaw
+1 Subterranean Schooner
+1 Boosted Sloop
+1 Alchemist's Talent
+1 Frantic Search
+1 Counterspell
+1 Big Score
+1 Demand Answers
+1 Prismari Command
+1 Fiery Cannonade
+1 Izzet Charm
+1 An Offer You Can't Refuse
+1 Unexpected Windfall
+1 Chaos Warp
+1 Thrill of Possibility
+1 Sulfur Falls
+1 Molten Tributary
+1 Cascade Bluffs
+1 Coastal Peak
+1 Command Tower
+1 Stormcarved Coast
+1 Pirate's Pillage
+1 Blasphemous Act
+1 Seize the Spoils
+1 Change of Fortune
+1 Faithless Looting
+1 RMS Titanic
+1 Desolate Lighthouse
+1 Quicksmith Genius
+1 Magmatic Galleon
+1 Arcane Signet
+1 Smuggler's Copter
+1 Talisman of Creativity
+1 Siren Stormtamer
+1 Deadeye Quartermaster
+1 Spyglass Siren
+10 Island
+20 Mountain
+1 Coercive Recruiter
+1 Marauding Mako
+1 Warkite Marauder
+1 Captain Vargus Wrath
+1 Scrounging Skyray

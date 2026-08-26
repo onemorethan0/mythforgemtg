@@ -1,0 +1,109 @@
+# Archidekt — Even Steven
+# source: archidekt:25750510
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Hashaton, Scarab's Fist
+
+Deck:
+1 Ancient Tomb
+1 Angel of Indemnity
+1 Arcane Signet
+1 Ardyn, the Usurper
+1 Arid Mesa
+1 Bloodstained Mire
+1 Callidus Assassin
+1 Chameleon, Master of Disguise
+1 Charming Prince
+1 Chrome Mox
+1 City of Traitors
+1 Clever Impersonator
+1 Clone
+1 Copycrook
+1 Deceptive Frostkite
+1 Demonic Tutor
+1 Dread Return
+1 Ennis, Debate Moderator
+1 Evil Twin
+1 Exotic Orchard
+1 Felidar Guardian
+1 Auton Soldier
+1 Cabal Ritual
+1 City of Brass
+1 Command Tower
+1 Crystal Vein
+1 Deadly Rollick
+1 Fellwar Stone
+1 Flesh Duplicate
+1 Flooded Strand
+1 Likeness Looter
+1 Lotus Petal
+1 Mana Drain
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Naga Fleshcrafter
+1 Phyrexian Metamorph
+1 Polluted Delta
+1 Gemstone Caverns
+1 Ghostly Pilferer
+1 Gigantoplasm
+1 Gleaming Splendor
+1 Grim Monolith
+1 Hallowed Fountain
+1 Icewind Stalwart
+1 Jeweled Amulet
+1 Kozilek, Butcher of Truth
+1 Lake of the Dead
+1 Lion's Eye Diamond
+1 Lotho, Corrupt Shirriff
+1 Luminous Broodmoth
+1 Mana Confluence
+1 Marsh Flats
+1 Metamorphosis Fanatic
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Pact of Negation
+1 Paradise Mantle
+1 Pentad Prism
+1 Phantasmal Image
+1 Preston, the Vanisher
+1 Psychic Frog
+1 Restoration Angel
+1 Roaming Throne
+1 Ruthless Technomancer
+1 Sakashima of a Thousand Faces
+1 Sakashima the Impostor
+1 Sakashima's Protege
+1 Sakashima's Student
+1 Scalding Tarn
+1 Scrubland
+1 Silver Surfer, Cosmic Voyager
+1 Sister Hospitaller
+1 Smothering Tithe
+1 Snapback
+1 Spark Double
+1 Starfield Vocalist
+1 Starting Town
+1 Stormscape Familiar
+1 Stunt Double
+1 Thassa, Deep-Dwelling
+1 Thassa's Oracle
+1 Tundra
+1 Undercity Sewers
+1 Undercover Operative
+1 Underground Sea
+1 Verdant Catacombs
+1 Visage Bandit
+1 Vizier of Many Faces
+1 Vohar, Vodalian Desecrator
+1 Wall of Stolen Identity
+1 Watery Grave
+1 Waxen Shapethief
+1 Wishclaw Talisman
+1 Wispweaver Angel
+1 Y'shtola Rhul
+1 Gyruda, Doom of Depths
+1 Superior Spider-Man

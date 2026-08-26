@@ -1,0 +1,86 @@
+# Archidekt — THE GIVER
+# source: archidekt:25217253
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Karn's Bastion
+1 Inexorable Tide
+1 Gilded Scuttler
+1 Expansion Algorithm
+1 Vorpal Sword
+13 Island
+1 Dream-Thief's Bandana
+1 Andúril, Flame of the West
+1 Everflowing Chalice
+1 Reservoir Kraken
+1 Bloodthirsty Blade
+1 Sword of the Animist
+1 Sword of Truth and Justice
+1 Mask of Riddles
+1 Rogue's Gloves
+1 Buster Sword
+1 Fog Bank
+1 Fishing Gear
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Reins of Power
+1 Sword of Fire and Ice
+1 Lulu, Stern Guardian
+1 Vashta Nerada
+1 Bojuka Bog
+1 Agna Qel'a
+1 No Mercy
+1 Rise of the Dark Realms
+1 Blasphemous Edict
+1 Imprisoned in the Moon
+1 Propaganda
+1 Sygg, River Cutthroat
+1 Sower of Discord
+1 Coveted Falcon
+1 Aetherize
+1 Counterspell
+1 Arcane Denial
+1 Withering Torment
+1 Sol Ring
+1 Mana Sculpt
+1 Feed the Swarm
+1 Ebonblade Reaper
+1 Plague Reaver
+1 Abyssal Persecutor
+1 Sly Instigator
+1 Thieving Skydiver
+1 Dauthi Voidwalker
+1 Ophiomancer
+1 Baleful Strix
+1 Changeling Outcast
+1 Mana Drain
+1 Mist-Cloaked Herald
+1 Slither Blade
+1 Tormented Soul
+1 Triton Shorestalker
+1 Azure Beastbinder
+1 Dauthi Horror
+1 Dauthi Slayer
+1 Inkfathom Infiltrator
+1 Latch Seeker
+1 Misleading Signpost
+1 Bender's Waterskin
+1 North Pole Patrol
+1 Riptide Laboratory
+1 Giant's Amulet
+1 Rogue's Passage
+1 Command Tower
+1 Reliquary Tower
+1 Hidden Lair
+1 Gloomlake Verge
+1 Sunken Hollow
+1 Drowned Catacomb
+1 Shipwreck Marsh
+1 Underground River
+1 Tainted Isle
+1 Morphic Pool
+10 Swamp

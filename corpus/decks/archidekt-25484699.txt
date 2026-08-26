@@ -1,0 +1,88 @@
+# Archidekt — Crabs
+# source: archidekt:25484699
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Homer, the Hermit
+
+Deck:
+1 Mesmeric Orb
+1 Zuran Orb
+1 Wisdom of Ages
+1 Crabomination
+1 Hermitic Nautilus
+1 Charix, the Raging Isle
+1 Hedron Crab
+1 Iceberg Cancrix
+1 Purple-Crystal Crab
+1 Rikala, Homarid King
+1 Purple Pentapus
+1 Uchuulon
+1 Ruin Crab
+1 Sigiled Starfish
+1 Sinister Starfish
+1 Spiny Starfish
+1 Sol Ring
+1 Shorecomber Crab
+1 Scuttling Sentinel
+1 Chomping Changeling
+1 Roaming Throne
+1 Azusa, Lost but Seeking
+1 Bruvac the Grandiloquent
+1 Icetill Explorer
+1 The Gitrog Monster
+1 Ancient Greenwarden
+1 Reliquary Tower
+1 Command Tower
+1 Propaganda
+1 Spark Double
+1 Victimize
+1 Animist's Awakening
+1 Graveshifter
+1 Behold the Sinister Six!
+1 Yarok, the Desecrated
+1 Tireless Provisioner
+1 Farseek
+1 Planar Engineering
+1 Deadly Rollick
+1 Drown in the Loch
+1 Zagoth Triome
+1 Visions of Beyond
+1 Wonder
+1 Bojuka Bog
+1 Springleaf Parade
+1 Tatyova, Benthic Druid
+1 Aftermath Analyst
+1 Hedge Shredder
+1 Evolving Wilds
+1 Simic Growth Chamber
+1 Kodama's Reach
+1 Terramorphic Expanse
+1 Foreboding Landscape
+1 Golgari Rot Farm
+1 Dimir Aqueduct
+1 Conduit of Worlds
+1 Firdoch Core
+1 Misty Rainforest
+8 Snow-Covered Island
+11 Snow-Covered Forest
+4 Snow-Covered Swamp
+1 Heroic Intervention
+1 Growth Spiral
+1 Hinterland Harbor
+1 Woodland Cemetery
+1 Awaken the Woods
+1 Lumra, Bellow of the Woods
+1 Syr Konrad, the Grim
+1 Drowned Catacomb
+1 Sakashima of a Thousand Faces
+1 Lotus Field
+1 Splendid Reclamation
+1 Uro, Titan of Nature's Wrath
+1 Grim Tutor
+1 Scapeshift
+1 Sheoldred, Whispering One
+1 Pit of Offerings
+1 Polluted Delta
+1 Swiftfoot Boots

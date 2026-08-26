@@ -1,0 +1,75 @@
+# Archidekt — Hellcat Shitpost
+# source: archidekt:24752610
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Hellcat, Undying Vigilante
+
+Deck:
+1 Horned Helm
+1 Grafted Wargear
+1 Sol Ring
+1 Shuko
+1 Ace's Baseball Bat
+1 Adaptive Omnitool
+1 Adventuring Gear
+1 Assault Suit
+1 Belt of Giant Strength
+1 Glowcap Lantern
+1 Hunter's Bow
+1 Blackblade Reforged
+1 Bonesplitter
+1 Brass Knuckles
+1 Champion's Helm
+1 Dream-Thief's Bandana
+1 Forebear's Blade
+1 Gavel of the Righteous
+1 Golem-Skin Gauntlets
+1 Hero's Blade
+1 Hulkbuster Armor
+1 Heirloom Blade
+1 Long-Lost Lances
+1 Masterwork of Ingenuity
+1 Mask of Memory
+1 Mask of Avacyn
+1 Mirror Shield
+1 Nettlecyst
+1 Nuka-Nuke Launcher
+1 O-Naginata
+1 Ring of Kalonia
+1 Ronin Warclub
+1 Sai of the Shinobi
+1 Silver-Inlaid Dagger
+1 Skullclamp
+1 Specter's Shroud
+1 Strength-Testing Hammer
+1 Strata Scythe
+1 Stormrider Rig
+1 Surestrike Trident
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Swordsman's Steel
+1 Tenza, Godo's Maul
+1 Thran Power Suit
+1 Trepanation Blade
+1 Vorrac Battlehorns
+1 The Dominion Bracelet
+1 Wrecking Ball Arm
+1 Ancient Stirrings
+1 Rogue's Passage
+1 Myriad Landscape
+1 Blighted Woodland
+1 Khalni Ambush // Khalni Territory
+1 Grafted Exoskeleton
+1 Hunter's Insight
+34 Forest
+1 Rishkar's Expertise
+1 Conqueror's Flail
+1 Silkguard
+1 Hammer of Nazahn
+1 Strong Back
+1 Lion Umbra
+1 Cultivate
+1 Reliquary Tower
+1 Shrine of the Forsaken Gods

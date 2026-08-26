@@ -1,0 +1,86 @@
+# Archidekt — Thick Thighs End Lives
+# source: archidekt:25777690
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 High Perfect Morcant
+
+Deck:
+1 Assassin's Trophy
+1 Autumn's Veil
+1 Beast Whisperer
+1 Bilious Skulldweller
+1 Blowfly Infestation
+1 Boggart Trawler // Boggart Bog
+1 Bojuka Bog
+1 Cankerbloom
+1 Collective Resistance
+1 Command Tower
+1 Destiny Spinner
+1 Dina's Guidance
+1 Elven Ambush
+1 Elves of Deep Shadow
+1 Elvish Mystic
+1 Elvish Warmaster
+1 Exotic Orchard
+1 Flourishing Defenses
+18 Forest
+1 Fyndhorn Elves
+1 Generous Patron
+1 Glissa Sunslayer
+1 Ichor Rats
+1 Infectious Bite
+1 Infectious Inquiry
+1 Joraga Treespeaker
+1 Llanowar Wastes
+1 Lys Alana Huntmaster
+1 Marwyn, the Nurturer
+1 Necroblossom Snarl
+1 Priest of Titania
+1 Primordial Sage
+1 Quirion Ranger
+1 Revitalizing Repast // Old-Growth Grove
+1 Scavenger Grounds
+1 Shared Summons
+1 Soul of the Harvest
+4 Swamp
+1 Sylvan Offering
+1 Tainted Strike
+1 Temur Sabertooth
+1 Thirsting Roots
+1 Twilight Mire
+1 Vernal Fen
+1 Viridian Corrupter
+1 Virulent Wound
+1 Vraska's Fall
+1 Whisper of the Dross
+1 Wirewood Channeler
+1 Woodland Cemetery
+1 Wrap in Vigor
+1 Champions of the Perfect
+1 Eclipsed Elf
+1 Leaf-Crowned Visionary
+1 Realmwalker
+1 Shamanic Revelation
+1 Toski, Bearer of Secrets
+1 Glistener Elf
+1 Conqueror's Flail
+1 Arbor Elf
+1 Elvish Archdruid
+1 Llanowar Elves
+1 Sol Ring
+1 Abrupt Decay
+1 Reclamation Sage
+1 Celestial Reunion
+1 Imperious Perfect
+1 Lathril, Blade of the Elves
+1 Eldritch Evolution
+1 Nature's Rhythm
+1 Wirewood Symbiote
+1 Parallel Lives
+1 Isareth the Awakener
+1 Bloom Tender
+1 Second Harvest
+1 Selfless Safewright
+1 Selvala, Explorer Returned

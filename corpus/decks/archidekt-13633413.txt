@@ -1,0 +1,81 @@
+# Archidekt — Aesi, Tyrand of Gyre Strait
+# source: archidekt:13633413
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Aesi, Tyrant of Gyre Strait
+
+Deck:
+1 Ba Sing Se
+1 Cultivate
+1 Neutralize
+1 Prime Speaker Zegana
+1 Growth Spiral
+1 Command Tower
+1 Simic Guildgate
+1 Geistwave
+15 Island
+1 Primo, the Unbounded
+1 Overwhelming Stampede
+1 Wizard Class
+1 Counterspell
+1 Evolving Wilds
+1 Ior Ruin Expedition
+1 Swiftfoot Boots
+1 Reclamation Sage
+1 Sol Ring
+1 Peel from Reality
+1 Negate
+1 Druid Class
+1 Simic Charm
+1 Traverse the Outlands
+1 Woodland Stream
+1 Simic Growth Chamber
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Terramorphic Expanse
+1 Khalni Heart Expedition
+1 Reliquary Tower
+1 Command Beacon
+1 Memorial to Genius
+1 Kodama's Reach
+1 Thornwood Falls
+14 Forest
+1 Koma, World-Eater
+1 Studious First-Year // Rampant Growth
+1 The Earth King
+1 Venser's Journal
+1 Azusa, Lost but Seeking
+1 Psychosis Crawler
+1 Scute Swarm
+1 Tatyova, Benthic Druid
+1 Into the Roil
+1 Search for Tomorrow
+1 Oran-Rief, the Vastwood
+1 Sodden Verdure
+1 Myriad Landscape
+1 Vineglimmer Snarl
+1 The Astonishing Ant-Man
+1 Bonny Pall, Clearcutter
+1 Virtue of Strength // Garenbrig Growth
+1 Tireless Provisioner
+1 Topiary Lecturer
+1 Embrace the Paradox
+1 Kami of Whispered Hopes
+1 The Earth Crystal
+1 Evolution Sage
+1 Kodama of the East Tree
+1 Zimone, Paradox Sculptor
+1 Primal Empathy
+1 Sphere Grid
+1 Mole Man, Moloid Master
+1 Innkeeper's Talent
+1 Ozolith, the Shattered Spire
+1 Forgotten Ancient
+1 Germination Practicum
+1 Hullbreaker Horror
+1 Vorinclex, Monstrous Raider
+1 Coiling Oracle
+1 Explore
+1 Dancing from Dark to Dawn
+1 Beorn's Hospitality

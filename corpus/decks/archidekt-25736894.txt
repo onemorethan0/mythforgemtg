@@ -1,0 +1,77 @@
+# Archidekt — Fun budget Tatyova
+# source: archidekt:25736894
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Tatyova, Benthic Druid
+
+Deck:
+1 Uro, Titan of Nature's Wrath
+1 Wrenn and Seven
+1 Wrenn and Seven Emblem
+1 Augur of Autumn
+1 Tireless Tracker
+1 Avenger of Zendikar
+1 Elf Warrior
+1 Koma, World-Eater
+1 Spectral Sailor
+1 Grow from the Ashes
+1 Quakestrider Ceratops
+1 Llanowar Elves
+1 Terra Stomper
+1 Whisperer of the Wilds
+1 Mocking Sprite
+1 Tolarian Terror
+1 Clinquant Skymage
+1 Archmage of Runes
+1 Elfsworn Giant
+1 Lunar Insight
+1 Restock
+1 Self-Reflection
+1 Nissa's Pilgrimage
+1 Bushwhack
+1 Return to the Earth
+1 Snakeskin Veil
+1 Bite Down
+1 Negate
+1 Swiftfoot Boots
+1 Thornwood Falls
+1 Evolving Wilds
+1 Khalni Heart Expedition
+1 Scaled Herbalist
+1 Rampaging Baloths
+1 Territorial Scythecat
+1 Coiling Oracle
+1 Growth Spiral
+1 Cultivate
+1 Urban Evolution
+1 Tatyova, Steward of Tides
+1 Eureka Moment
+1 Zimone, Quandrix Prodigy
+1 Sakura-Tribe Elder
+1 Tam, Observant Sequencer // Deep Sight
+1 Elvish Regrower
+1 Fierce Empath
+1 Beanstalk Giant // Fertile Footsteps
+1 Pelakka Wurm
+1 Prime Speaker Zegana
+1 Glacier Godmaw
+1 Shipwreck Dowser
+1 Vizier of the Menagerie
+1 Voracious Greatshark
+1 Heroes' Bane
+1 Grappling Kraken
+1 Elvish Mystic
+1 Multani, Yavimaya's Avatar
+1 Opt
+1 Evacuation
+1 Deprive
+1 Broken Bond
+21 Forest
+1 Farhaven Elf
+14 Island
+1 High Fae Trickster
+1 Solemn Simulacrum
+1 Jaddi Offshoot
+1 Terramorphic Expanse

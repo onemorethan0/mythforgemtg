@@ -1,0 +1,80 @@
+# Archidekt — Card Draw
+# source: archidekt:25774695
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Keiga, the Tide Star
+
+Deck:
+1 Horn of Greed
+1 The Rack
+1 Sol Ring
+1 Thought Vessel
+1 Venser's Journal
+1 Temple Bell
+1 Spellbook
+1 Sapphire Medallion
+1 Howling Mine
+1 Ivory Tower
+1 Iron Maiden
+1 Folio of Fancies
+1 Arcane Signet
+1 Decanter of Endless Water
+1 Black Vise
+1 Guard Gomazoa
+1 Kefnet the Mindful
+1 Wall of Frost
+1 Walking Atlas
+1 Viseling
+1 The Unagi of Kyoshi Island
+1 Scrawling Crawler
+1 Psychosis Crawler
+1 Phyrexian Metamorph
+1 Jace's Archivist
+1 Body of Knowledge
+1 Fog Bank
+1 Faerie Mastermind
+1 Chasm Skulker
+1 Clever Impersonator
+1 Laboratory Maniac
+1 Homunculus Horde
+1 Consecrated Sphinx
+1 Mirrormade
+1 Alandra, Sky Dreamer
+1 Ominous Seas
+1 Wizard Class
+1 Teferi's Ageless Insight
+1 Rhystic Study
+1 Propaganda
+1 Forced Fruition
+1 Dictate of Kruphix
+1 Vision Skeins
+1 Swan Song
+1 Rapid Hybridization
+1 Pongify
+1 Well of Ideas
+1 High Tide
+1 Evacuation
+1 Counterspell
+1 Cyclonic Rift
+1 Brainstorm
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Aetherize
+1 Terrain Generator
+1 Negate
+1 Mana Drain
+1 Reliquary Tower
+1 Myriad Landscape
+1 Otawara, Soaring City
+1 Mystic Sanctuary
+28 Island
+1 Jace Beleren
+1 Jace, Wielder of Mysteries
+1 Mikokoro, Center of the Sea
+1 Prosperity
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Windfall
+1 Fascination
+1 Enter the Infinite

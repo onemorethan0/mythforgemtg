@@ -1,0 +1,75 @@
+# Archidekt — Mono Green Hydra Ramp
+# source: archidekt:25776603
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Nev, the Practical Dean
+
+Deck:
+1 Arcane Signet
+1 Aspect of Hydra
+1 Basilisk Collar
+1 Become the Avalanche
+1 Bootleggers' Stash
+1 Briar Hydra
+1 Bristling Hydra
+1 Bushwhack
+1 Circuitous Route
+1 Command Tower
+1 Cultivate
+1 Domesticated Hydra
+1 Elemental Bond
+1 Emerald Medallion
+1 Evolution Witness
+34 Forest
+1 Fractal Harness
+1 Garruk's Uprising
+1 Genesis Hydra
+1 Goldvein Hydra
+1 Hardened Scales
+1 Harmonize
+1 Heroes' Bane
+1 Hooded Hydra
+1 Hunter's Insight
+1 Hydra Broodmaster
+1 Hydra Trainer
+1 Ironscale Hydra
+1 Kodama's Reach
+1 Lifeblood Hydra
+1 Lightning Greaves
+1 Llanowar Elves
+1 Manalith
+1 Mind Stone
+1 Mistcutter Hydra
+1 Moss Diamond
+1 Mosswort Bridge
+1 Nature's Lore
+1 Nissa's Pilgrimage
+1 Nyxborn Hydra
+1 Open the Way
+1 Oran-Rief Hydra
+1 Oran-Rief, the Vastwood
+1 Polukranos, World Eater
+1 Primal Might
+1 Primordial Hydra
+1 Raised by Giants
+1 Rampant Growth
+1 Scourge of Skola Vale
+1 Seer's Sundial
+1 Silkguard
+1 Snakeskin Veil
+1 Sol Ring
+1 Stumpsquall Hydra
+1 Sword of the Animist
+1 They Went This Way
+1 Three Visits
+1 Tireless Provisioner
+1 Trailblazer's Boots
+1 Vastwood Hydra
+1 Warden of the Grove
+1 Wild Growth
+1 Wildwood Scourge
+1 Wren's Run Hydra
+1 Yavimaya Bloomsage // Channel
+1 Young Wolf

@@ -1,0 +1,73 @@
+# Archidekt — Elda, Giver of Meh Gifts
+# source: archidekt:25752869
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Elda, Conjurer of Spectacle
+
+Deck:
+1 Shared Roots
+1 Phyrexian Soulgorger
+1 Simian Grunts
+1 Force of Nature
+1 Railway Brawler
+1 Anointed Peacekeeper
+1 Druid of Purification
+1 Endurance
+1 Guardian of Faith
+1 Eternal Witness
+1 Elvish Visionary
+1 Flickerwisp
+1 Lictor
+1 Palace Jailer
+1 Primal Adversary
+1 Seasoned Dungeoneer
+1 Skyclave Apparition
+1 Summon: Yojimbo
+1 Slippery Bogbonder
+1 Tranquil Frillback
+1 Undermountain Adventurer
+1 Werefox Bodyguard
+1 White Plume Adventurer
+1 Deep Gnome Terramancer
+1 Dawn's Truce
+1 Swords to Plowshares
+1 Stroke of Midnight
+1 Parting Gust
+1 Solitude
+1 Path to Exile
+1 Erode
+1 Dust Animus
+1 Aven Interrupter
+1 Kindly Customer
+1 Spirited Companion
+1 Wall of Blossoms
+1 Debt of Loyalty
+1 Sakura-Tribe Elder
+18 Plains
+18 Forest
+1 Masked Vandal
+1 Haywire Mite
+1 Bilbo's Gambit
+1 Beast Whisperer
+1 Avacyn's Pilgrim
+1 Ambush Viper
+1 Cathar Commando
+1 Alms Collector
+1 Fleetfoot Panther
+1 Angel of Grace
+1 Hollowhenge Spirit
+1 Dust Elemental
+1 Stonecloaker
+1 Rampant Growth
+1 Nature's Lore
+1 Three Visits
+1 Command Tower
+1 Temple Garden
+1 Selfless Spirit
+1 Farseek
+1 Mother of Runes
+1 Giver of Runes
+1 Alseid of Life's Bounty
+1 Ocelot Pride

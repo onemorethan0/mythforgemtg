@@ -1,0 +1,108 @@
+# Archidekt — Dragon Go BRRRR
+# source: archidekt:25777387
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Aggravated Assault
+1 Goldspan Dragon
+1 Hallowed Fountain
+1 Haven of the Spirit Dragon
+1 Hellkite Charger
+1 Hellkite Courser
+1 Indatha Triome
+1 Jetmir's Garden
+1 Karrthus, Tyrant of Jund
+1 Ketria Triome
+1 Kindred Dominance
+1 Korlessa, Scale Singer
+1 Lathliss, Dragon Queen
+1 Maelstrom of the Spirit Dragon
+1 Mana Drain
+1 Miirym, Sentinel Wyrm
+1 Misty Rainforest
+1 Old Gnawbone
+1 Orb of Dragonkind
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Path to Exile
+1 Polluted Delta
+1 Raugrin Triome
+1 Reliquary Tower
+1 Replicating Ring
+1 Rivaz of the Claw
+1 Ruinous Ultimatum
+1 Sacred Foundry
+1 Sarkhan Unbroken
+1 Sarkhan, Fireblood
+1 Savai Triome
+1 Scalding Tarn
+1 Scalelord Reckoner
+1 Scion of Draco
+1 Scourge of Valkas
+1 Sivitri, Dragon Master
+1 Skyshroud Claim
+1 Smaug the Magnificent
+1 Smaug, Wicked Worm
+1 Sol Ring
+1 Steam Vents
+1 Stomping Ground
+1 Sunscorch Regent
+1 Swords to Plowshares
+1 Temple of the False God
+1 Tempt with Discovery
+1 Temur Ascendancy
+1 Terror of the Peaks
+1 The World Tree
+1 Three Tree City
+1 Three Visits
+1 Tiamat
+1 Twinflame Tyrant
+1 Ugin, the Spirit Dragon
+1 Urborg, Tomb of Yawgmoth
+1 Ureni of the Unwritten
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Zagoth Triome
+1 Ziatora's Proving Ground
+1 Ancient Brass Dragon
+1 Ancient Bronze Dragon
+1 Ancient Copper Dragon
+1 Ancient Gold Dragon
+1 Anguished Unmaking
+1 Arcane Signet
+1 Arid Mesa
+1 Atarka, World Render
+1 Balefire Dragon
+1 Beledros Witherbloom
+1 Bladewing the Risen
+1 Blood Crypt
+1 Bloodstained Mire
+1 Call the Spirit Dragons
+1 Cavern of Souls
+1 Cavern-Hoard Dragon
+1 Chromatic Lantern
+1 Cleansing Nova
+1 Command Tower
+1 Crucible of the Spirit Dragon
+1 Crux of Fate
+1 Deathbringer Regent
+1 Defense of the Heart
+1 Disorienting Choice
+1 Dracogenesis
+1 Dragon Tempest
+1 Dragon's Hoard
+1 Dragonlord Dromoka
+1 Dragonspeaker Shaman
+1 Eerie Ultimatum
+1 Exotic Orchard
+1 Ganax, Astral Hunter
+1 Garruk's Uprising
+1 Godless Shrine
+1 The Great Henge
+1 Farseek

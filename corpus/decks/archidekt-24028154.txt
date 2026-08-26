@@ -1,0 +1,73 @@
+# Archidekt — Mindskinner Deroldo
+# source: archidekt:24028154
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 The Mindskinner
+
+Deck:
+1 Didn't Say Please
+1 Ghoulcaller's Bell
+1 Fascination
+1 Winds of Rebuke
+1 Disturbing Conversion
+1 Mystic Remora
+1 Memory Erosion
+1 Arcane Denial
+1 The Water Crystal
+1 Psychic Corrosion
+1 Fractured Sanity
+1 Sapphire Medallion
+37 Island
+1 Ruin Crab
+1 Lightning Greaves
+1 Pongify
+1 Windfall
+1 Rapid Hybridization
+1 Frantic Search
+1 Tasha's Hideous Laughter
+1 Visions of Beyond
+1 Archmage's Charm
+1 Riverchurn Monument
+1 Mindcrank
+1 Mesmeric Orb
+1 Court of Cunning
+1 Thought Collapse
+1 Wizard Class
+1 Bruvac the Grandiloquent
+1 Spellskite
+1 Dreamborn Muse
+1 Shadow Kin
+1 Manic Scribe
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 War Room
+1 Bonders' Enclave
+1 Throne of Eldraine
+1 Jace's Archivist
+1 Commander's Plate
+1 Swiftfoot Boots
+1 Vantress Gargoyle
+1 Altar of the Brood
+1 Champion's Helm
+1 Deepmuck Desperado
+1 Brainstorm
+1 Chart a Course
+1 Into the Story
+1 Treasure Cruise
+1 Waterbending Scroll
+1 Flow of Knowledge
+1 Overwhelmed Apprentice
+1 Aether Syphon
+1 Mystic Redaction
+1 Imperious Mindbreaker
+1 Sphinx Mindbreaker
+1 Mithril Coat
+1 High Tide
+1 Endless Atlas
+1 Defiler of Dreams
+1 Faerie Mastermind
+1 Three Steps Ahead
+1 Nykthos, Shrine to Nyx
+1 Archive Trap
+1 Resculpt

@@ -1,0 +1,89 @@
+# Archidekt — Maralen 🧚‍♂️🌘
+# source: archidekt:23572409
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Elvenking's Halls
+1 Unwelcome Sprite
+1 Stolen by the Fae
+1 Mornsong Aria
+1 Starlit Soothsayer
+1 Twilight Diviner
+1 Opulent Palace
+1 Eclipsed Elf
+1 Sharpshooter Elf
+1 Obyra, Dreaming Duelist
+1 Masked Vandal
+1 Negate
+1 Sultai Charm
+1 Death Begets Life
+1 Villainous Wealth
+1 Rakshasa's Bargain
+1 Sower of Temptation
+1 Spellscorn Coven // Take It Back
+1 Tegwyll's Scouring
+1 Rashmi, Eternities Crafter
+1 Nymris, Oona's Trickster
+1 Shamanic Revelation
+1 Cloud of Faeries
+1 Llanowar Dead
+1 Firdoch Core
+1 Maraleaf Pixie
+1 Llanowar Scout
+1 Faebloom Trick
+1 Eclipsed Realms
+1 Thriving Grove
+1 Thriving Isle
+1 Strangled Cemetery
+1 Lakeside Shack
+1 Deathcap Glade
+1 Dimir Aqueduct
+1 Dimir Guildgate
+1 Insidious Fungus
+1 Dismal Backwater
+1 Treno, Dark City
+1 Gloomlake Verge
+8 Forest
+7 Island
+7 Swamp
+1 Chronicle of Victory
+1 Sheltering Boughs
+1 Stone of Erech
+1 Splendid Reclamation
+1 Dreadwaters
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Flight
+1 Wingspan Stride
+1 Il Mheg Pixie
+1 Flourishing Hunter
+1 Fear of Infinity
+1 Scarblade Scout
+1 Broodspinner
+1 Sephiroth's Intervention
+1 Death Denied
+1 Murder
+1 Unforgiving Aim
+1 Lie in Wait
+1 Counsel of the Soratami
+1 Live or Die
+1 Drag to the Roots
+1 Maskwood Nexus
+1 Scion of Oona
+1 Alela, Cunning Conqueror
+1 High Fae Trickster
+1 Glen Elendra Liege
+1 Spellstutter Sprite
+1 Witherbloom Charm
+1 Nadier's Nightblade
+1 Nightmare Sower
+1 Urborg Elf
+1 Lluwen, Exchange Student // Pest Friend
+1 Faerie Seer
+1 Paradise Druid
+1 Jungle Hollow
+1 Kindred Discovery
+1 Craterhoof Behemoth

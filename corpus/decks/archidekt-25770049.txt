@@ -1,0 +1,101 @@
+# Archidekt — Maralen
+# source: archidekt:25770049
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Archdruid's Charm
+1 Awaken the Honored Dead
+1 Beast Whisperer
+1 Bojuka Bog
+1 Bramble Sovereign
+1 Champions of the Perfect
+1 Cloudseeder
+1 Coiling Oracle
+1 Command Tower
+1 Counterspell
+1 Darkwater Catacombs
+1 Dawnhand Dissident
+1 Deadly Brew
+1 Dimir Guildgate
+1 Disciple of Freyalise // Garden of Freyalise
+1 Dismal Backwater
+1 Dream Harvest
+1 Dwynen's Elite
+1 Eclipsed Elf
+1 Elfsworn Giant
+1 Evolving Wilds
+1 Exotic Orchard
+1 Extravagant Replication
+1 Faebloom Trick
+1 Faerie Formation
+1 Fake Your Own Death
+1 Find // Finality
+1 Flitterwing Nuisance
+1 Flooded Grove
+1 Foreboding Landscape
+5 Forest
+1 Glamer Gifter
+1 Glen Elendra Guardian
+1 Glen Elendra's Answer
+1 Gloom Ripper
+1 Golgari Charm
+1 Golgari Guildgate
+1 High Fae Trickster
+1 High Perfect Morcant
+1 Hinterland Harbor
+1 Imperious Perfect
+1 Infernal Grasp
+1 Island
+1 Jwar Isle Refuge
+1 Kinzu of the Bleak Coven
+1 Lantern of Insight
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Lluwen, Imperfect Naturalist
+1 Lys Alana Dignitary
+1 Mana Sculpt
+1 Mischievous Mystic
+1 Morcant's Loyalist
+1 Myriad Landscape
+1 Mystic Sanctuary
+1 Nature's Lore
+1 Nightveil Sprite
+1 Obyra, Dreaming Duelist
+1 Opulent Palace
+1 Overflowing Basin
+1 Path of Ancestry
+1 Planar Genesis
+1 Priest of Titania
+1 Ripples of Undeath
+1 Scarblade's Malice
+1 Selfless Safewright
+1 Sheoldred's Edict
+1 Silkwing Scout
+1 Simic Guildgate
+1 Sneaky Snacker
+1 Sol Ring
+1 Spell Stutter
+1 Springbloom Druid
+1 Stock Up
+1 Sultai Ascendancy
+4 Swamp
+1 Tear Asunder
+1 Temple of Mystery
+1 Thornwood Falls
+1 Thriving Isle
+1 Trystan's Command
+1 Viconia, Drow Apostate
+1 Villainous Wrath
+1 Voracious Tome-Skimmer
+1 Waterlogged Teachings // Inundated Archive
+1 Will of the Abzan
+1 Wirewood Symbiote
+1 Wistfulness
+1 Wood Elves
+1 Woodland Cemetery
+1 Arbor Elf
+1 Arcane Signet

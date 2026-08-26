@@ -1,0 +1,108 @@
+# Archidekt — too many tribals
+# source: archidekt:25775234
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Morophon, the Boundless
+
+Deck:
+1 Maskwood Nexus
+1 Realmwalker
+1 Taurean Mauler
+1 Graveshifter
+1 Chomping Changeling
+1 Unsettled Mariner
+1 Mothdust Changeling
+1 Mutable Explorer
+1 Beast Whisperer
+1 Reflections of Littjara
+1 Esper Sentinel
+1 Kindred Discovery
+1 Marwyn, the Nurturer
+1 Miirym, Sentinel Wyrm
+1 Heronblade Elite
+1 Be'lakor, the Dark Master
+1 Inalla, Archmage Ritualist
+1 Reaper King
+1 Risen Reef
+1 Irregular Cohort
+1 Magda, Brazen Outlaw
+1 Amoeboid Changeling
+1 Omni-Changeling
+1 Voja, Jaws of the Conclave
+1 Harabaz Druid
+1 Manaweft Sliver
+1 Gemhide Sliver
+1 Knight Exemplar
+1 The World Tree
+1 Ancient Amphitheater
+1 Wanderwine Hub
+1 Double Down
+1 Path of Ancestry
+1 Murmuring Bosk
+1 Secluded Glen
+1 Command Tower
+1 Liliana's Contract
+1 Gilt-Leaf Palace
+1 Sol Ring
+1 Drogskol Captain
+1 Mischievous Sneakling
+1 Atla Palani, Nest Tender
+1 Three Tree City
+1 Indatha Triome
+1 Ketria Triome
+1 Zagoth Triome
+1 Roaming Throne
+1 Fist of Suns
+1 Arcane Signet
+1 Jodah, Archmage Eternal
+1 Leyline of Mutation
+1 Demonic Tutor
+1 Bloom Tender
+1 Universal Automaton
+1 Chameleon Colossus
+1 Uugguu, the Omniplasm
+1 Skeletal Changeling
+1 Shapesharer
+1 Changeling Outcast
+1 Masked Vandal
+1 Arcane Adaptation
+1 Wooded Foothills
+1 Flooded Strand
+1 Verdant Catacombs
+1 Jetmir's Garden
+1 Spara's Headquarters
+1 Savai Triome
+1 Tropical Island
+1 Tundra
+1 Bayou
+1 Savannah
+1 Taiga
+1 Underground Sea
+1 Badlands
+1 Plateau
+1 Volcanic Island
+1 Scrubland
+1 Gaea's Cradle
+1 Urborg, Tomb of Yawgmoth
+1 Fortified Beachhead
+1 Auntie's Hovel
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Temple of the Dragon Queen
+1 Cabal Coffers
+1 Vampiric Tutor
+1 Diabolic Tutor
+1 Grim Tutor
+1 Personal Tutor
+1 Freed from the Real
+1 Umbral Mantle
+1 Staff of Domination
+1 Pemmin's Aura
+1 Clock of Omens
+1 Purphoros, God of the Forge
+1 Realmbreaker, the Invasion Tree
+1 Blasting Station
+1 Phyrexian Altar
+1 Ashnod's Altar
+1 Ayula, Queen Among Bears

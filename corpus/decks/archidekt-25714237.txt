@@ -1,0 +1,84 @@
+# Archidekt — Volo Guide to Monsters
+# source: archidekt:25714237
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Volo, Guide to Monsters
+
+Deck:
+1 Reliquary Tower
+1 Thought Vessel
+1 Decanter of Endless Water
+1 Command Tower
+1 Hinterland Harbor
+1 Dreamroot Cascade
+1 Rejuvenating Springs
+1 Temple of Mystery
+1 Tangled Islet
+1 Misty Rainforest
+13 Island
+1 Hedge Maze
+13 Forest
+1 Breeding Pool
+1 Titan of Industry
+1 Rampant Growth
+1 Spark Double
+1 Ornithopter of Paradise
+1 Solemn Simulacrum
+1 Beast Whisperer
+1 Mockingbird
+1 Enduring Vitality
+1 Ohran Frostfang
+1 Chasm Skulker
+1 Consecrated Sphinx
+1 Summon: Bahamut
+1 Badgermole Cub
+1 Wurmcoil Engine
+1 Managorger Hydra
+1 Acidic Slime
+1 Tendershoot Dryad
+1 Prosperous Innkeeper
+1 End-Raze Forerunners
+1 Vaultborn Tyrant
+1 Ilysian Caryatid
+1 Insidious Fungus
+1 Summon: Fenrir
+1 Homunculus Horde
+1 Sire of Seven Deaths
+1 Elder Gargaroth
+1 Railway Brawler
+1 Starwinder
+1 Keeper of Fables
+1 Pathbreaker Ibex
+1 Stunt Double
+1 Primordial Sage
+1 Monstrous Vortex
+1 Maraleaf Pixie
+1 Wall of Frost
+1 Loyal Drake
+1 Lord of Change
+1 Stormsurge Kraken
+1 Wizard's Staff
+1 Star Whale
+1 Twinning Staff
+1 Counterspell
+1 Garruk's Uprising
+1 Beast Within
+1 Silverback Elder
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Reef Worm
+1 Kiora's Follower
+1 Uro, Titan of Nature's Wrath
+1 Noxious Newt
+1 Heroic Intervention
+1 An Offer You Can't Refuse
+1 Perplexing Test
+1 Simic Charm
+1 Three Visits
+1 Nature's Lore
+1 Farseek
+1 Echocasting Symposium
+1 The Great Henge
+1 Guardian Project

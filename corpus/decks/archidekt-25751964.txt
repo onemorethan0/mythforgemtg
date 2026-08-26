@@ -1,0 +1,85 @@
+# Archidekt — Tatyova PDH
+# source: archidekt:25751964
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Tatyova, Benthic Druid
+
+Deck:
+1 Adventuring Gear
+1 Balamb T-Rexaur
+1 Bant Panorama
+1 Biosynthic Burst
+1 Colossal Dreadmask
+1 Confound
+1 Counterspell
+1 Crash of Rhino Beetles
+1 Crop Rotation
+1 Cultivate
+1 Cycle of Renewal
+1 Deep Freeze
+1 Deprive
+1 Disdainful Stroke
+1 Dive Down
+1 Efflorescence
+1 Elfsworn Giant
+1 Escape Tunnel
+1 Evolving Wilds
+1 Expedition Map
+1 Farseek
+11 Forest
+1 Gaea's Gift
+1 Ghostly Flicker
+1 Guadosalam, Farplane Gateway
+1 Gush
+1 Harrow
+1 Into the North
+10 Island
+1 Kazandu Stomper
+1 Keep Safe
+1 Khalni Heart Expedition
+1 Kodama's Reach
+1 Krosan Tusker
+1 Lignify
+1 Llanowar Scout
+1 Lush Oasis
+1 Mulldrifter
+1 Murasa Behemoth
+1 Mystic Sanctuary
+1 Nature's Lore
+1 Negate
+1 Nyxborn Hydra
+1 Origin of Metalbending
+1 Over the Edge
+1 Prishe's Wanderings
+1 Ram Through
+1 Rampant Growth
+1 Rancor
+1 Ranger's Guile
+1 Rocky Rebuke
+1 Sagu Wildling // Roost Seek
+1 Sakura-Tribe Elder
+1 Sakura-Tribe Scout
+1 Scaled Herbalist
+1 Shore Up
+1 Simic Growth Chamber
+1 Simic Guildgate
+3 Snow-Covered Forest
+3 Snow-Covered Island
+1 Tamiyo's Safekeeping
+1 Tangled Islet
+1 Terramorphic Expanse
+1 Territorial Scythecat
+1 Thornwood Falls
+1 Topiary Panther
+1 Tragic Lesson
+1 Vibrant Cityscape
+1 Vines of Vastwood
+1 Walking Atlas
+1 Wickerbough Elder
+1 Windrider Eel
+1 Woodland Stream
+1 World Map
+1 Arcane Denial
+1 Prohibit

@@ -1,0 +1,94 @@
+# Archidekt — K'rrik-B5
+# source: archidekt:25771587
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Ancient Tomb
+1 Animate Dead
+1 Arcane Signet
+1 Asmodeus the Archfiend
+1 Balthor the Defiled
+1 Beseech the Mirror
+1 Beseech the Queen
+1 Bitter Triumph
+1 Blast Zone
+1 Blood Celebrant
+1 Blood Pet
+1 Buried Alive
+1 Cabal Ritual
+1 Chainer, Dementia Master
+1 Chrome Mox
+1 City of Traitors
+1 Corpse Dance
+1 Crystal Vein
+1 Culling the Weak
+1 Cynical Loner
+1 Dark Petition
+1 Dark Ritual
+1 Demonic Tutor
+1 Diabolic Tutor
+1 Emergence Zone
+1 Entomb
+1 Exhume
+1 Final Parting
+1 Fleshwrither
+1 Gemstone Caverns
+1 Gray Merchant of Asphodel
+1 Grim Monolith
+1 Grim Servant
+1 Grim Tutor
+1 Heartless Summoning
+1 Hoarding Broodlord
+1 Imperial Seal
+1 Insatiable Avarice
+1 Jet Medallion
+1 Jeweled Amulet
+1 Lake of the Dead
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Malakir Rebirth // Malakir Mire
+1 Mana Vault
+1 Mausoleum Secrets
+1 Mox Amber
+1 Mox Diamond
+1 Necromancy
+1 Necropotence
+1 Necrotic Ooze
+1 Not Dead After All
+1 Nykthos, Shrine to Nyx
+1 Overeager Apprentice
+1 Peat Bog
+1 Persist
+1 Phyrexian Tower
+1 Praetor's Grasp
+1 Rain of Filth
+1 Razaketh, the Foulblooded
+1 Reanimate
+1 Sacrifice
+1 Saw in Half
+1 Shallow Grave
+1 Shrouded Lore
+1 Sidisi, Undead Vizier
+1 Skirge Familiar
+1 Sol Ring
+1 Soldevi Adnate
+1 Springleaf Drum
+15 Swamp
+1 Talon Gates of Madara
+1 The Master of Lake-town
+1 Unmarked Grave
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Saga
+1 Vampiric Tutor
+1 Vexing Bauble
+1 Vile Entomber
+1 Wishclaw Talisman
+1 Yawgmoth's Will
+1 Vilis, Broker of Blood
+1 Sheoldred, the Apocalypse
+1 Orcish Bowmasters

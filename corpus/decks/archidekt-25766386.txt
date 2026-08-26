@@ -1,0 +1,108 @@
+# Archidekt — Hypermetabolism
+# source: archidekt:25766386
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Necrotic Ooze
+1 Experiment Kraj
+1 Marvin, Murderous Mimic
+1 Machine God's Effigy
+1 Hazel's Brewmaster
+1 Quicksilver Elemental
+1 Devoted Druid
+1 Incubation Druid
+1 Kami of Whispered Hopes
+1 Bloom Tender
+1 Pili-Pala
+1 Palladium Myr
+1 Grand Architect
+1 Gilder Bairn
+1 Walking Ballista
+1 Thrasios, Triton Hero
+1 Forensic Gadgeteer
+1 Fain, the Broker
+1 Kinnan, Bonder Prodigy
+1 Basalt Monolith
+1 Training Grounds
+1 Hardened Scales
+1 Sage of Hours
+1 Channeler Initiate
+1 Soul Diviner
+1 Academy Manufactor
+1 Tireless Provisioner
+1 Gilded Goose
+1 Bristly Bill, Spine Sower
+1 Sol Ring
+1 Mana Vault
+1 Chrome Mox
+1 Mox Diamond
+1 Lotus Petal
+1 Arcane Signet
+1 Birds of Paradise
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Imperial Seal
+1 Worldly Tutor
+1 Entomb
+1 Buried Alive
+1 Survival of the Fittest
+1 Finale of Devastation
+1 Muddle the Mixture
+1 Neoform
+1 Eldritch Evolution
+1 Whir of Invention
+1 Rhystic Study
+1 Mystic Remora
+1 Necropotence
+1 The One Ring
+1 Sylvan Library
+1 Fierce Guardianship
+1 Force of Will
+1 Pact of Negation
+1 Swan Song
+1 Flusterstorm
+1 Mana Drain
+1 Cyclonic Rift
+1 Nature's Claim
+1 Force of Vigor
+1 Assassin's Trophy
+1 Abrupt Decay
+1 Veil of Summer
+1 Command Tower
+1 Exotic Orchard
+1 City of Brass
+1 Mana Confluence
+1 Reflecting Pool
+1 Breeding Pool
+1 Watery Grave
+1 Overgrown Tomb
+1 Tropical Island
+1 Underground Sea
+1 Bayou
+1 Misty Rainforest
+1 Polluted Delta
+1 Verdant Catacombs
+1 Flooded Strand
+1 Windswept Heath
+1 Scalding Tarn
+1 Marsh Flats
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Undergrowth Stadium
+1 Botanical Sanctum
+1 Darkslick Shores
+1 Blooming Marsh
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Takenuma, Abandoned Mire
+1 Ancient Tomb
+1 Minamo, School at Water's Edge
+1 Forest
+1 Island

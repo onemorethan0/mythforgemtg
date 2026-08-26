@@ -1,0 +1,87 @@
+# Archidekt — Jandor’s Horse and Pony Show
+# source: archidekt:25756702
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Jandor, Fortuned Traveler
+
+Deck:
+1 Cultivator's Caravan
+1 Talisman of Conviction
+1 Armored Warhorse
+1 Rocky Roads
+1 Country Roads
+1 Wild Roads
+1 Gilded Ghoda
+1 Calamity, Galloping Inferno
+1 Temur Charger
+1 Crested Sunmare
+1 Lightning Mare
+1 Motivated Pony
+1 Shield Mare
+1 Guardian Sunmare
+1 Bill the Pony
+1 Brightfield Mustang
+1 Chrome Steed
+1 Diamond Mare
+1 Shadowfax, Lord of Horses
+1 Thundering Mightmare
+1 Ambitious Farmhand // Seasoned Cathar
+1 Arrow Storm
+1 Adriana, Captain of the Guard
+1 Banishing Light
+1 Adeline, Resplendent Cathar
+1 Audacity
+1 Call for Aid
+1 Bristling Backwoods
+1 Bucolic Ranch
+1 Minas Tirith
+1 Access Tunnel
+8 Forest
+1 Explore
+1 Forth Eorlingas!
+1 Hammerheim
+1 Path of Ancestry
+1 Command Tower
+1 Citadel Gate
+8 Mountain
+8 Plains
+1 Cathars' Crusade
+1 Charge
+1 Plateau
+1 Stone Quarry
+1 Fear, Fire, Foes!
+1 Great Train Heist
+1 The Spear of Leonidas
+1 Vine Mare
+1 Excava, the Risen Past
+1 Rearing Embermare
+1 Workhorse
+1 Troop of Ponies
+1 Joust Through
+1 Horn of the Mark
+1 Marshal's Anthem
+1 Jandor's Saddlebags
+1 Joust
+1 Cavalier of Flame
+1 Gandalf, White Rider
+1 Hanweir Lancer
+1 Éowyn, Fearless Knight
+1 Márton Stromgald
+1 Knight-Captain of Eos
+1 Lena, Selfless Champion
+1 Moonshaker Cavalry
+1 Miriam, Herd Whisperer
+1 Riders of Rohan
+1 Riders of the Mark
+1 Sidar Kondo of Jamuraa
+1 Silverblade Paladin
+1 Thalia's Lancers
+1 Syr Ginger, the Meal Ender
+1 Weathered Wayfarer
+1 Wylie Duke, Atiin Hero
+1 Cavalier of Thorns
+1 Cavalier of Dawn
+1 Valiant Changeling
+1 Tori D'Avenant, Fury Rider

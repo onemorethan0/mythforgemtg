@@ -1,0 +1,74 @@
+# Archidekt — Brkt 1 Beatdown - Mono Black Pump and Stomp, 1 Creature
+# source: archidekt:25730089
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Kalakscion, Hunger Tyrant
+
+Deck:
+1 Coils of the Medusa
+1 Aspect of Gorgon
+1 Blessing of Leeches
+1 Alien Symbiosis
+1 Cartouche of Ambition
+1 Ancestral Vengeance
+1 Aspect of Lamprey
+1 Consecrated by Blood
+1 Coercive Impetus
+1 Cursed Flesh
+1 Dark Privilege
+1 Dark Favor
+1 Demonic Embrace
+1 Rime Transfusion
+1 Demonic Vigor
+1 Endless Scream
+1 Mark of the Vampire
+1 Feast of the Unicorn
+1 Skeletal Grimace
+1 Grisly Transformation
+1 Sadistic Glee
+1 Twisted Embrace
+1 Unholy Strength
+1 Strength of Lunacy
+1 Infernal Scarring
+1 Molting Snakeskin
+1 Shade's Form
+1 Fear
+1 Soul Channeling
+1 Gruesome Deformity
+1 Dragon Shadow
+1 Phyrexian Boon
+1 Inner Demon
+1 Strands of Undeath
+1 Scourgemark
+1 Untamed Hunger
+1 Sleeper's Guile
+1 Necromancer's Magemark
+1 Twisted Experiment
+1 Thrull Retainer
+1 Mogis's Favor
+1 Predator's Gambit
+1 Sinister Strength
+1 Parasitic Impetus
+1 Scavenged Weaponry
+1 Strange Augmentation
+1 Sultai Runemark
+1 Midnight Covenant
+1 Vampiric Embrace
+1 Krovikan Fetish
+1 Crown of Suspicion
+1 Vow of Malice
+1 Grave Servitude
+1 Ghoulish Impetus
+1 Eternal Thirst
+1 Fungal Fortitude
+1 Vampiric Link
+1 Patriarch's Desire
+1 Maggot Therapy
+1 Necrosynthesis
+1 Vow of Torment
+1 Fallen Ideal
+1 Unholy Indenture
+1 Ordeal of Erebos
+35 Snow-Covered Swamp

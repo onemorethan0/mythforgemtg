@@ -1,0 +1,96 @@
+# Archidekt — Sonic Racing Cross Words ver. 2
+# source: archidekt:23408107
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Bad River
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 Katara, the Fearless
+1 Lotus Field
+1 Amy Rose
+1 Child of Alara
+1 Barktooth Warbeard
+1 Multiversal Passage
+1 Hammer of Nazahn
+1 Etali, Primal Storm
+1 Lightning Greaves
+1 Parker Luck
+1 Sonic the Hedgehog
+1 Ghalta, Primal Hunger
+1 Hot Dog Cart
+1 Evolving Wilds
+1 Swiftfoot Boots
+1 Whoosh!
+1 Spin Out
+1 Wreak Havoc
+1 Sudden Strike
+1 Anthem of Champions
+1 Chandra's Ignition
+1 Harmonize
+1 Frontline Rush
+1 Command Tower
+1 Donatello, Way with Machines
+1 Michelangelo, Improviser
+1 Raphael, Tough Turtle
+1 Leonardo, Leader in Blue
+1 Beledros Witherbloom
+1 Sol Ring
+1 Saw in Half
+1 Monastery Messenger
+1 Zoraline, Cosmos Caller
+1 Jackdaw Savior
+1 Mockingbird
+1 Auxiliary Boosters
+1 The Reaver Cleaver
+1 Turtle Van
+1 Eusocial Engineering
+1 Chaos Warp
+1 Force Spike
+1 News Helicopter
+1 Mithril Coat
+1 Explosive Shot
+1 Bootleggers' Stash
+1 Berserkers' Onslaught
+1 Weatherlight
+1 Perennation
+3 Mountain
+4 Forest
+4 Plains
+3 Island
+3 Swamp
+1 Exotic Orchard
+1 Mystic Monastery
+1 Thespian's Stage
+1 Inspiring Vantage
+1 Mana Confluence
+1 Wind-Scarred Crag
+1 Terramorphic Expanse
+1 Thriving Isle
+1 Savage Mansion
+1 Swiftwater Cliffs
+1 Sinister Hideout
+1 Blossoming Sands
+1 Jungle Hollow
+1 Nomad Outpost
+1 Uncharted Haven
+1 Thornwood Falls
+1 Scoured Barrens
+1 Godless Shrine
+1 Woodland Cemetery
+1 Opulent Palace
+1 Clear Shot
+1 Rise from the Wreck
+1 Saw
+1 Overprotect
+1 Hell's Kitchen
+1 Dr. Eggman
+1 Shadow the Hedgehog
+1 Knuckles the Echidna
+1 Miles "Tails" Prower
+1 Super State
+1 Huatli, Radiant Champion
+1 Arc Reactor

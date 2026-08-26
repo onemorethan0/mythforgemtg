@@ -1,0 +1,103 @@
+# Archidekt — Cptn Nghathrod - it's Scary!
+# source: archidekt:25772814
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Captain N'ghathrod
+
+Deck:
+1 Aboleth Spawn
+1 Brainstealer Dragon
+1 Changeling Outcast
+1 Chasm Skulker
+1 Consuming Aberration
+1 Fleet Swallower
+1 Grazilaxx, Illithid Scholar
+1 Guiltfeeder
+1 Hullbreaker Horror
+1 Hunted Horror
+1 K'rrik, Son of Yawgmoth
+1 Mind Flayer
+1 Mothdust Changeling
+1 Nemesis of Reason
+1 Nighthowler
+1 Overcharged Amalgam
+1 Phyrexian Revoker
+1 Roaming Throne
+1 Sewer Nemesis
+1 Sludge Monster
+1 Spellskite
+1 Thing in the Ice // Awoken Horror
+1 Toxrill, the Corrosive
+1 Uchuulon
+1 Umbris, Fear Manifest
+1 Universal Automaton
+1 Zellix, Sanity Flayer
+1 Altar of Dementia
+1 Arcane Signet
+1 Dimir Signet
+1 Herald's Horn
+1 Mesmeric Orb
+1 Mindcrank
+1 Patchwork Banner
+1 Sol Ring
+1 Talisman of Dominance
+1 Urza's Incubator
+1 Animate Dead
+1 Bloodchief Ascension
+1 Cover of Darkness
+1 Endless Evil
+1 Kindred Discovery
+1 Necromancy
+1 Reflections of Littjara
+1 Counterspell
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Drown in the Loch
+1 Force of Negation
+1 Mana Drain
+1 Pongify
+1 Feed the Swarm
+1 Fractured Sanity
+1 Haunting Voyage
+1 Maddening Cacophony
+1 Patriarch's Bidding
+1 Reanimate
+1 Toxic Deluge
+1 Bloodstained Mire
+1 Cavern of Souls
+1 Choked Estuary
+1 City of Brass
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Darkslick Shores
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Flooded Strand
+1 Island
+1 Mana Confluence
+1 Marsh Flats
+1 Misty Rainforest
+1 Morphic Pool
+1 Otawara, Soaring City
+1 Path of Ancestry
+1 Polluted Delta
+1 Prismatic Vista
+1 Scalding Tarn
+1 Secluded Courtyard
+1 Shipwreck Marsh
+1 Sunken Hollow
+1 Swamp
+1 Tainted Isle
+1 Takenuma, Abandoned Mire
+1 Undercity Sewers
+1 Underground River
+1 Underground Sea
+1 Unclaimed Territory
+1 Urza's Saga
+1 Verdant Catacombs
+1 Watery Grave
+1 Echocasting Symposium
+1 Baleful Strix
+1 The Mindskinner

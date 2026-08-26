@@ -1,0 +1,99 @@
+# Archidekt — Socratic Method
+# source: archidekt:24340240
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Sokrates, Athenian Teacher
+
+Deck:
+1 Minamo, School at Water's Edge
+1 Reliquary Tower
+1 Mystic Sanctuary
+1 Academy Ruins
+1 Command Tower
+1 Prairie Stream
+1 Hallowed Fountain
+1 Temple of Enlightenment
+1 Sea of Clouds
+1 Deserted Beach
+1 Skycloud Expanse
+1 Flooded Strand
+1 Nimbus Maze
+1 Meticulous Archive
+1 Irrigated Farmland
+5 Plains
+1 Traveler's Amulet
+6 Island
+1 Staggering Insight
+1 Unknown Shores
+1 Eidolon of Rhetoric
+1 Elite Instructor
+1 Traveling Philosopher
+1 Eidolon of Philosophy
+1 Words of Wisdom
+1 Intellectual Offering
+1 Cavern of Souls
+1 The Council of Four
+1 Mangara, the Diplomat
+1 Azor's Elocutors
+1 Laboratory Maniac
+1 Psychosis Crawler
+1 Silent Arbiter
+1 Absolute Virtue
+1 Loran of the Third Path
+1 Vizier of Tumbling Sands
+1 Ioreth of the Healing House
+1 Knowledge Seeker
+1 Mentor of the Meek
+1 Scrawling Crawler
+1 Circular Logic
+1 Radical Idea
+1 Meeting of Minds
+1 Perplexing Test
+1 Council's Judgment
+1 Train of Thought
+1 Personal Tutor
+1 Wisdom of Ages
+1 Curse of Verbosity
+1 Thousand-Year Elixir
+1 Knowledge Is Power
+1 Well of Ideas
+1 Confounding Conundrum
+1 Teferi's Tutelage
+1 Freed from the Real
+1 Cowed by Wisdom
+1 Rule of Law
+1 Decanter of Endless Water
+1 Azorius Signet
+1 Talisman of Progress
+1 Thought Vessel
+1 Psychic Corrosion
+1 Consider
+1 Brainstorm
+1 Hall of Oracles
+1 Duelist of the Mind
+1 Overwhelming Intellect
+1 Ponder
+1 Urza's Cave
+1 Cryptic Caves
+1 Echoing Deeps
+1 Volatile Fault
+1 Ghostly Prison
+1 Propaganda
+1 Monologue Tax
+1 Mind Stone
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Grasp of Fate
+1 Logic Knot
+1 Negate
+1 Path to Exile
+1 Supreme Verdict
+1 Swords to Plowshares
+1 Sunken Palace
+1 Maze of Ith
+1 Pit of Offerings
+1 Persuasion
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Port Town

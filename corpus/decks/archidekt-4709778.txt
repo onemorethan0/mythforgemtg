@@ -1,0 +1,101 @@
+# Archidekt — Hyrule Adventure
+# source: archidekt:4709778
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Kydele, Chosen of Kruphix
+1 Reyhan, Last of the Abzan
+
+Deck:
+1 Sengir, the Dark Baron
+1 Hero's Downfall
+1 Heroic Intervention
+1 Scavenging Ooze
+1 Basilica Screecher
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Dictate of Karametra
+1 Overgrown Tomb
+1 Holistic Wisdom
+4 Forest
+1 Gyre Sage
+1 Phyrexian Arena
+1 Temple of Deceit
+1 Temple of Mystery
+1 Sunken Hollow
+1 Watery Grave
+1 Torrential Gearhulk
+1 Woodland Cemetery
+1 Mirror Shield
+1 Sunscorched Desert
+1 Hashep Oasis
+1 Deserted Temple
+1 Okina, Temple to the Grandfathers
+1 Svyelunite Temple
+1 Command Tower
+1 Baleful Strix
+1 Herald of Secret Streams
+1 Dictate of Kruphix
+1 Dictate of Erebos
+1 Bow of Nylea
+1 Winged Boots
+1 Temple of Malady
+1 Painful Truths
+1 Fathom Mage
+1 Academy Ruins
+1 Flooded Grove
+1 High Market
+3 Island
+1 Agatha's Soul Cauldron
+1 Walk the Aeons
+1 Farseek
+3 Swamp
+1 Wooded Foothills
+1 Zagoth Triome
+1 The Ozolith
+1 Sword of the Animist
+1 Twilight Mire
+1 Polluted Delta
+1 Citanul Flute
+1 Yavimaya, Cradle of Growth
+1 Shadowspear
+1 Opulent Palace
+1 Maze of Ith
+1 Hammer of Nazahn
+1 Galloping Lizrog
+1 Arcane Signet
+1 Dimir Signet
+1 Golgari Signet
+1 Verdurous Gearhulk
+1 The Great Henge
+1 Bloodspore Thrinax
+1 Forgotten Ancient
+1 Crystalline Crawler
+1 Emry, Lurker of the Loch
+1 Vorinclex, Monstrous Raider
+1 Maraleaf Pixie
+1 Tezzeret's Gambit
+1 Boomerang
+1 Putrefy
+1 Words of Wisdom
+1 Mask of Griselbrand
+1 Evolution Sage
+1 Three Visits
+1 Torment of Hailfire
+1 Midnight Clock
+1 Mask of Riddles
+1 Ozolith, the Shattered Spire
+1 Shield of Kaldra
+1 Sword of Kaldra
+1 Sol Ring
+1 Cold-Eyed Selkie
+1 Guildpact Informant
+1 Prime Speaker Zegana
+1 Song of Freyalise
+1 The Eldest Reborn
+1 The Earth Crystal
+1 Greater Good
+1 Promise of Power
+1 Verdant Catacombs
+1 Noxious Gearhulk

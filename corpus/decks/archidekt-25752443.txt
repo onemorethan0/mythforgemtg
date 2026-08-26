@@ -1,0 +1,101 @@
+# Archidekt — Dwarves like being tapped
+# source: archidekt:25752443
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Bloodfire Dwarf
+8 Mountain
+1 Sundering Eruption // Volcanic Fissure
+1 Magda, the Hoardmaster
+1 Talon Gates of Madara
+1 Peter Parker's Camera
+1 Abrade
+1 Lifecraft Engine
+1 Universal Automaton
+1 Xorn
+1 Rite of Flame
+1 Barbarian Ring
+1 Treasure Vault
+1 Ancient Tomb
+1 Dead // Gone
+1 Sol Ring
+1 Galvanic Blast
+1 Untimely Malfunction
+1 Portal to Phyrexia
+1 Holdout Settlement
+1 Simian Spirit Guide
+1 Dragon-Cursed Halls
+1 Red Elemental Blast
+1 Twinshot Sniper
+1 Three Tree Mascot
+1 Cavern of Souls
+1 Metallic Mimic
+1 Pyroblast
+1 Enslaved Dwarf
+1 Tezzeret, Cruel Captain
+1 Roaming Throne
+1 Plundering Barbarian
+1 Lightning Bolt
+1 Springleaf Drum
+1 Zoyowa's Justice
+1 Mox Opal
+1 Pinnacle Monk // Mystic Peak
+1 Vexing Bauble
+1 Mana Vault
+1 Flywheel Racer
+1 Dwarven Trader
+1 Fíli and Kíli, Joyous
+1 Sudden Shock
+1 Adaptive Automaton
+1 Stalactite Dagger
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Gogo, Mysterious Mime
+1 Smuggler's Copter
+1 Clock of Omens
+1 Grafdigger's Cage
+1 Great Furnace
+1 Urza's Saga
+1 Jeska's Will
+1 City of Traitors
+1 Clown Car
+1 Pyrokinesis
+1 Cursed Mirror
+1 Dwarven Mauler
+1 Gemstone Caverns
+1 Sculpting Steel
+1 Shinka, the Bloodsoaked Keep
+1 Deflecting Swat
+1 Firdoch Core
+1 Liberated Dwarf
+1 Dwarven Grunt
+1 Disruptor Flute
+1 Volatile Fault
+1 Redirect Lightning
+1 Battered Golem
+1 Sokenzan, Crucible of Defiance
+1 Óin the Brave
+1 Axgard Cavalry
+1 Torpor Orb
+1 Dwarven Armorer
+1 Relic of Legends
+1 Survivors' Encampment
+1 Spark Mage
+1 Grinding Station
+1 Chaos Warp
+1 Maskwood Nexus
+1 Command Beacon
+1 Return the Favor
+1 Lotus Petal
+1 Barkform Harvester
+1 Mutavault
+1 Knuckles the Echidna
+1 Dwarven Scorcher
+1 Chrome Mox
+1 Professional Face-Breaker
+1 Dwarven Bloodboiler
+1 Unlicensed Hearse
+1 Liquimetal Torque

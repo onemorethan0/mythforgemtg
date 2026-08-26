@@ -1,0 +1,108 @@
+# Archidekt — Tayam Toolbox CEDH
+# source: archidekt:25748095
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Elves of Deep Shadow
+1 Birds of Paradise
+1 Tyvar, Jubilant Brawler
+1 The Cabbage Merchant
+1 Walking Ballista
+1 Esper Sentinel
+1 Avacyn's Pilgrim
+1 Carrion Feeder
+1 Deathrite Shaman
+1 Dawnhand Dissident
+1 Llanowar Elves
+1 Bloom Tender
+1 Delighted Halfling
+1 Elvish Mystic
+1 Agatha's Soul Cauldron
+1 Knight of the Reliquary
+1 Weathered Wayfarer
+1 Young Wolf
+1 Moonshadow
+1 Icatian Moneychanger
+1 Abigale, Eloquent First-Year
+1 Worldly Tutor
+1 Devoted Druid
+1 Sylvan Safekeeper
+1 Orcish Bowmasters
+1 Strangleroot Geist
+1 Ethersworn Canonist
+1 Basking Broodscale
+1 Badgermole Cub
+1 Collector Ouphe
+1 Misty Rainforest
+1 Skyclave Apparition
+1 Formidable Speaker
+1 Drannith Magistrate
+1 Ranger-Captain of Eos
+1 Opposition Agent
+1 Hermit Druid
+1 Archon of Emeria
+1 Emperor of Bones
+1 Enduring Vitality
+1 Wall of Roots
+1 Warren Soultrader
+1 Marvin, Murderous Mimic
+1 Demonic Tutor
+1 Super Shredder
+1 Eidolon of Rhetoric
+1 Mox Diamond
+1 Chord of Calling
+1 Aven Interrupter
+1 Lion's Eye Diamond
+1 Crop Rotation
+1 Promise of Bunrei
+1 Ancient Tomb
+1 Rosie Cotton of South Lane
+1 Lethal Scheme
+1 Recruiter of the Guard
+1 Bountiful Promenade
+1 Luminous Broodmoth
+1 Command Tower
+1 Vampiric Tutor
+1 Chrome Mox
+1 Expedition Map
+1 Cryptolith Rite
+1 Phyrexian Tower
+1 Sol Ring
+1 Thousand-Year Elixir
+1 Birthing Ritual
+1 Disruptor Flute
+1 Ashnod's Altar
+1 Flooded Strand
+1 Nature's Chosen
+1 Deafening Silence
+1 Bayou
+1 Survival of the Fittest
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Bloodstained Mire
+1 Urza's Saga
+1 Marsh Flats
+1 Gaea's Cradle
+1 Arid Mesa
+1 Yavimaya, Cradle of Growth
+1 Verdant Catacombs
+1 Boseiju, Who Endures
+1 Gavony Township
+1 Godless Shrine
+1 City of Brass
+1 Gemstone Caverns
+1 Centaur Garden
+1 Temple Garden
+1 Shadowy Backstreet
+1 Polluted Delta
+1 Mana Confluence
+1 Talon Gates of Madara
+1 Overgrown Tomb
+1 Savannah
+1 Wooded Foothills
+1 Scrubland
+1 Windswept Heath
+1 Armored Scrapgorger

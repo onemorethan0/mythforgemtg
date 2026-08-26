@@ -1,0 +1,86 @@
+# Archidekt — In the Arms of an Angel
+# source: archidekt:24457138
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+1 Herald's Horn
+1 Sephara, Sky's Blade
+1 Austere Command
+1 Archangel of Thune
+1 Bishop of Wings
+1 Righteous Valkyrie
+1 Path to Exile
+1 Sol Ring
+1 Swords to Plowshares
+1 Archaeomancer's Map
+1 Wrath of God
+1 Arcane Signet
+1 Nykthos, Shrine to Nyx
+1 Archangel of Tithes
+1 Farewell
+1 Bruna, the Fading Light
+1 Secluded Steppe
+1 Cathars' Crusade
+1 Sunblast Angel
+1 Get Lost
+1 Youthful Valkyrie
+1 Loran's Escape
+1 Akroma's Will
+1 Fellwar Stone
+1 Demolition Field
+1 Monumental Henge
+1 Trouble in Pairs
+1 Teleportation Circle
+1 Vanquisher's Banner
+1 Generous Gift
+1 Valkyrie Harbinger
+1 Path of Ancestry
+1 Grasp of Fate
+1 Idyllic Grange
+1 Sejiri Shelter // Sejiri Glacier
+1 Sanctuary Warden
+1 Pearl Medallion
+1 Battle Angels of Tyr
+1 Eiganjo, Seat of the Empire
+1 Starnheim Aspirant
+1 Lyra Dawnbringer
+1 Windbrisk Heights
+1 Herald of War
+1 Avacyn, Angel of Hope
+1 Urza's Incubator
+23 Plains
+1 Exemplar of Light
+1 Teferi's Protection
+1 Reconnaissance
+1 Sigarda's Splendor
+1 Angel of Finality
+1 Flare of Fortitude
+1 Linvala, Keeper of Silence
+1 Emeria, the Sky Ruin
+1 Luminarch Ascension
+1 War Room
+1 Land Tax
+1 Serra the Benevolent
+1 Flawless Maneuver
+1 Angelic Accord
+1 Entreat the Angels
+1 Authority of the Consuls
+1 Speaker of the Heavens
+1 Gisela, the Broken Blade
+1 Minas Tirith
+1 Cavern of Souls
+1 Smothering Tithe
+1 Resplendent Marshal
+1 Resplendent Angel
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Emeria Shepherd
+1 Mistveil Plains
+1 Karmic Guide
+1 Sword of the Animist
+1 Serra Paragon
+1 Gleaming Splendor
+1 Semester's End

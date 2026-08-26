@@ -1,0 +1,96 @@
+# Archidekt — Muddle, the Bi-Polar Beaver
+# source: archidekt:22902722
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Muddle, the Ever-Changing
+
+Deck:
+1 Expressive Iteration
+1 Keranos, God of Storms
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Talrand, Sky Summoner
+1 Inferno Titan
+1 Tyrant of Discord
+1 Malignus
+1 Flow State
+1 Frostboil Snarl
+1 Steam Vents
+1 Involuntary Cooldown
+1 Essence Capture
+1 Annul
+1 Sleight of Hand
+1 Pearl of Wisdom
+1 Mental Modulation
+1 Ponder
+1 Procrastinate
+1 Run Away Together
+1 Deluge Virtuoso
+1 Curiosity Crafter
+1 Prismari Charm
+1 Abrade
+1 Fire // Ice
+1 Guttersnipe
+1 Playful Shove
+1 Faithless Looting
+1 Solemn Simulacrum
+1 Talisman of Creativity
+1 Izzet Guildgate
+1 Terramorphic Expanse
+1 Prismari Campus
+1 Spectacle Summit
+1 Eclipsed Flamekin
+1 Think Twice
+1 Molten Tributary
+1 Frost Titan
+1 Coastal Peak
+1 Temple of Epiphany
+1 Impolite Entrance
+1 Artful Dodge
+1 Warlord's Fury
+1 Body of Knowledge
+1 Firemantle Mage
+1 Meticulous Artisan
+1 Psychotic Fury
+1 Wild Magic Surge
+1 Desperate Ravings
+1 Hearts on Fire
+1 Defabricate
+1 Meltdown
+1 Involuntary Employment
+1 Izzet Signet
+1 Tablet of Discovery
+1 Forger's Foundry
+1 Island
+1 Mountain
+1 Mountain
+1 Island
+1 Snow-Covered Mountain
+1 Rogue's Passage
+1 Ghost Quarter
+1 Uncovered Clues
+1 Enter the Enigma
+1 Sulfur Falls
+1 Reckless Charge
+1 Silent Departure
+1 Windrider Wizard
+1 Rakka Mar
+1 Juvenile Mist Dragon
+1 Chancellor of the Spires
+1 Pack Attack
+1 Smelt
+1 Shreds of Sanity
+1 Embrace the Unknown
+1 Swiftfoot Boots
+1 Thundermaw Hellkite
+1 Repulse
+1 Eroded Canyon
+1 Evolving Wilds
+1 Trailblazer's Boots
+1 Mugging
+7 Mountain
+1 Island
+7 Island
+1 Mountain
+1 Snow-Covered Island

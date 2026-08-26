@@ -1,0 +1,78 @@
+# Archidekt — The Deep
+# source: archidekt:25767654
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Namor the Sub-Mariner
+
+Deck:
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Arcane Signet
+1 Archmage's Charm
+1 Attuma, Atlantean Warlord
+1 Bident of Thassa
+1 Brainstorm
+1 Cavern of Souls
+1 Coat of Arms
+1 Counterspell
+1 Cryptic Command
+1 Cyclonic Rift
+1 Daughter of the Deep
+1 Deeproot Pilgrimage
+1 Deeproot Waters
+1 Fierce Guardianship
+1 Force of Will
+1 Harmonized Crescendo
+1 Harmonized Trio // Brainstorm
+1 Heraldic Banner
+1 High Tide
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Jace, Wielder of Mysteries
+1 Harbinger of the Seas
+1 Intruder Alarm
+1 Kindred Discovery
+1 Kopala, Warden of Waves
+1 Lullmage Mentor
+1 Mana Drain
+1 Master of the Pearl Trident
+1 Merfolk Sovereign
+1 Merrow Commerce
+1 Merrow Reejerey
+1 Myriad Landscape
+1 Mystic Sanctuary
+1 Mystical Tutor
+1 Namor, Scourge of the Seas
+1 Narset, Parter of Veils
+1 Nykthos, Shrine to Nyx
+1 Opt
+1 Patchwork Banner
+1 Path of Ancestry
+1 Ponder
+1 Pongify
+1 Propaganda
+1 Raise the Palisade
+1 Rapid Hybridization
+1 Reconnaissance Mission
+1 Reliquary Tower
+1 Rhystic Study
+1 Rimefire Torque
+1 Sapphire Medallion
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Seafloor Oracle
+1 Secret of Bloodbending
+1 Skullclamp
+1 Sky Diamond
+1 Sol Ring
+1 Svyelun of Sea and Sky
+1 Swiftfoot Boots
+1 Thassa's Oracle
+1 The Magic Mirror
+1 Thought Vessel
+1 Three Tree City
+1 Transcendent Message
+1 Vodalian Hexcatcher
+1 Wizard Class
+1 Lord of Atlantis
+31 Island

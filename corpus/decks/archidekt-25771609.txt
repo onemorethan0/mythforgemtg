@@ -1,0 +1,79 @@
+# Archidekt — Dodging Money
+# source: archidekt:25771609
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Prosperous Thief
+1 Mistblade Shinobi
+1 Silver-Fur Master
+1 Tetsuko Umezawa, Fugitive
+1 Moon-Circuit Hacker
+1 Ninja of the Deep Hours
+1 Negate
+1 Shadow of Mortality
+1 Nashi, Moon Sage's Scion
+1 Skullsnatcher
+1 Command Tower
+1 Sunken Hollow
+1 Thousand-Faced Shadow
+1 Dig Through Time
+1 Triton Shorestalker
+1 Wingcrafter
+1 Mist-Cloaked Herald
+16 Island
+12 Swamp
+1 Temporal Trespass
+1 Okiba-Gang Shinobi
+1 Moonblade Shinobi
+1 Biting-Palm Ninja
+1 Ninja of the New Moon
+1 Tormented Soul
+1 Aether Figment
+1 Slither Blade
+1 Azra Smokeshaper
+1 Ornithopter
+1 Moonsnare Specialist
+1 Looter il-Kor
+1 Splinter, Hamato Yoshi
+1 Dokuchi Shadow-Walker
+1 Repulse
+1 Murder
+1 Death Rattle
+1 Traumatic Visions
+1 Kaito's Pursuit
+1 Assassinate
+1 Ninja's Blades
+1 Rousing Read
+1 Gossip's Talent
+1 Brainstorm
+1 Murderous Cut
+1 Fallen Shinobi
+1 Boing!
+1 Halimar Depths
+1 Contact Other Plane
+1 Nezumi Prowler
+1 Saiba Cryptomancer
+1 Faerie Seer
+1 Crystal Ball
+1 Study Hall
+1 Opt
+1 Smoke Shroud
+1 Aqueous Form
+1 Treasure Cruise
+1 Silent-Blade Oni
+1 Spy Network
+1 Gingerbrute
+1 Mana Leak
+1 Telling Time
+1 Thalakos Seer
+1 Diabolic Vision
+1 Contingency Plan
+1 Dream Cache
+1 Dissipate
+1 Changeling Outcast
+1 Familiar's Ruse
+1 Deflection

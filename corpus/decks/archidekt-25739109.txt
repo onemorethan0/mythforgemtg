@@ -1,0 +1,105 @@
+# Archidekt — Glarb cedh
+# source: archidekt:25739109
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Seedborn Muse
+1 Carpet of Flowers
+1 Vexing Bauble
+1 Mnemonic Betrayal
+1 High Fae Trickster
+1 Enduring Vitality
+1 Deathrite Shaman
+1 Talisman of Curiosity
+1 Sylvan Library
+1 Laboratory Maniac
+1 Noxious Revival
+1 Springleaf Drum
+1 Force of Negation
+1 Veil of Summer
+1 Boomerang Basics
+1 Swan Song
+1 Thought Lash
+1 Arcane Signet
+1 Gilded Drake
+1 Wild Growth
+1 Force of Will
+1 Vampiric Tutor
+1 Fierce Guardianship
+1 Culling Ritual
+1 Flusterstorm
+1 Borne Upon a Wind
+1 Force of Vigor
+1 Demonic Tutor
+1 Doomsday
+1 Imperial Seal
+1 Mystic Remora
+1 Demonic Consultation
+1 Misdirection
+1 Dark Ritual
+1 Grim Monolith
+1 Cabal Ritual
+1 Chain of Vapor
+1 Mindbreak Trap
+1 An Offer You Can't Refuse
+1 Lim-Dûl's Vault
+1 Tainted Pact
+1 Deadly Rollick
+1 Pollywog Prodigy
+1 Ad Nauseam
+1 Divining Witch
+1 Rhystic Study
+1 Sylvan Tutor
+1 Valley Floodcaller
+1 Mox Amber
+1 Thassa's Oracle
+1 Worldly Tutor
+1 Lotus Petal
+1 Beseech the Mirror
+1 Chrome Mox
+1 Delighted Halfling
+1 Watery Grave
+1 Hermit Druid
+1 Mystical Tutor
+1 Polluted Delta
+1 Mana Vault
+1 Diabolic Intent
+1 Elvish Spirit Guide
+1 Elves of Deep Shadow
+1 Sol Ring
+1 Opposition Agent
+1 Paradigm Shift
+1 Starting Town
+1 City of Traitors
+1 Ancient Tomb
+1 Tropical Island
+1 Verdant Catacombs
+1 Boseiju, Who Endures
+1 Rejuvenating Springs
+1 Prismatic Vista
+1 Undergrowth Stadium
+1 Overgrown Tomb
+1 City of Brass
+1 Underground Sea
+1 Morphic Pool
+1 Breeding Pool
+1 Bayou
+2 Island
+1 Misty Rainforest
+1 Mana Confluence
+1 Multiversal Passage
+1 Otawara, Soaring City
+1 Forest
+1 Swamp
+1 Crystal Vein
+1 Reanimate
+1 Daze
+1 Volatile Stormdrake
+1 Ponder
+1 Mental Misstep
+1 Command Tower
+1 Hedge Maze

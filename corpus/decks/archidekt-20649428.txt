@@ -1,0 +1,100 @@
+# Archidekt — Abzan Dragonspeaker
+# source: archidekt:20649428
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Reyhan, Last of the Abzan
+1 Ishai, Ojutai Dragonspeaker
+
+Deck:
+1 Giggling Skitterspike
+1 Host of the Hereafter
+1 Steelbane Hydra
+1 Yuna, Grand Summoner
+1 Benevolent Hydra
+1 Kurbis, Harvest Celebrant
+1 Vastwood Hydra
+1 Kinetic Ooze
+1 Broodguard Elite
+1 Smothering Tithe
+1 Village Rites
+1 Open the Way
+1 Bojuka Bog
+1 The Great Henge
+1 The Ooze
+1 Duskshell Crawler
+1 My Precious // Allure of Power
+1 Gyre Sage
+1 Michelangelo, Weirdness to 11
+1 Reluctant Role Model
+1 Faerie Bladecrafter
+1 Buzzard-Wasp Colony
+1 Fell Beast of Mordor
+1 Jarad, Golgari Lich Lord
+1 Essence Harvest
+1 Spry and Mighty
+1 Herd Heirloom
+1 Teferi's Protection
+1 Temple Garden
+1 Tender Wildguide
+1 Hardened Scales
+1 Three Visits
+1 Watery Grave
+1 Woodland Cemetery
+1 Yahenni, Undying Partisan
+1 Exotic Orchard
+1 Opulent Palace
+7 Forest
+1 Forgotten Ancient
+1 Bioshift
+1 Birds of Paradise
+1 Bloom Tender
+1 Swamp
+1 Branching Evolution
+1 Branchloft Pathway // Boulderloft Pathway
+1 Breeding Pool
+1 Command Tower
+1 Conclave Mentor
+1 Darkbore Pathway // Slitherbore Pathway
+1 Dreamroot Cascade
+1 Godless Shrine
+1 Hallowed Fountain
+1 Hinterland Harbor
+1 Kami of Whispered Hopes
+1 Maester Seymour
+1 Managorger Hydra
+1 Ordeal of Nylea
+1 Overgrown Tomb
+1 Plains
+1 Rogue's Passage
+1 Stubborn Denial
+1 Sunpetal Grove
+1 Blade of Selves
+1 Resourceful Defense
+1 Hollowmurk Siege
+1 Demonic Tutor
+1 Terrasymbiosis
+1 Hadana's Climb // Winged Temple of Orazca
+1 Rite of Consumption
+1 Dying Wish
+1 Carrion Feeder
+1 Level Up
+1 Swan Song
+1 City of Brass
+1 Flood Plain
+1 Windswept Heath
+1 Grasslands
+1 Foreboding Landscape
+1 Bad River
+1 Tranquil Landscape
+1 Brokers Hideout
+1 An Offer You Can't Refuse
+1 Berserk
+1 Borne Upon a Wind
+1 Ozolith, the Shattered Spire
+1 Kaya's Ghostform
+1 The Ozolith
+1 Underground River
+1 Season of Gathering
+2 Island

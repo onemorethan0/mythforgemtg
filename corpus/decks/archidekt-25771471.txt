@@ -1,0 +1,108 @@
+# Archidekt — Chatterfang cedh
+# source: archidekt:25771471
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Abrupt Decay
+1 Academy Manufactor
+1 Acererak the Archlich
+1 Ad Nauseam
+1 Allosaurus Shepherd
+1 Aluren
+1 Ancient Tomb
+1 Arcane Signet
+1 Archdruid's Charm
+1 Bayou
+1 Beseech the Mirror
+1 Birds of Paradise
+1 Birthing Ritual
+1 Blood Artist
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Braids, Arisen Nightmare
+1 Chord of Calling
+1 Chrome Mox
+1 City of Traitors
+1 Collector Ouphe
+1 Command Tower
+1 Crop Rotation
+1 Culling Ritual
+1 Culling the Weak
+1 Dark Ritual
+1 Deadly Rollick
+1 Deathrite Shaman
+1 Delighted Halfling
+1 Demonic Tutor
+1 Destiny Spinner
+1 Devoted Druid
+1 Diabolic Intent
+1 Earthcraft
+1 Eldritch Evolution
+1 Elves of Deep Shadow
+1 Elvish Mystic
+1 Elvish Spirit Guide
+1 Emergence Zone
+1 Endurance
+1 Enduring Vitality
+1 Entomb
+1 Eternal Witness
+1 Eumidian Hatchery
+1 Finale of Devastation
+1 Forest
+1 Forsaken Miner
+1 Fyndhorn Elves
+1 Gaea's Cradle
+1 Gemstone Caverns
+1 Gilded Goose
+1 Hapatra, Vizier of Poisons
+1 Hazel's Brewmaster
+1 Imperial Seal
+1 Legolas's Quick Reflexes
+1 Lively Dirge
+1 Llanowar Elves
+1 Lotus Petal
+1 Mana Vault
+1 Marsh Flats
+1 Misty Rainforest
+1 Nature's Rhythm
+1 Nurturing Peatland
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Overgrown Tomb
+1 Phyrexian Tower
+1 Pitiless Plunderer
+1 Polluted Delta
+1 Protean Hulk
+1 Reanimate
+1 Runic Armasaur
+1 Ruthless Knave
+1 Savage Summoning
+1 Shifting Woodland
+1 Snow-Covered Swamp
+1 Sol Ring
+1 Spymaster's Vault
+1 Survival of the Fittest
+1 Swamp
+1 Sylvan Library
+1 Sylvan Safekeeper
+1 Sylvan Tutor
+1 Talisman of Resilience
+1 The One Ring
+1 Toski, Bearer of Secrets
+1 Underground Mortuary
+1 Undergrowth Stadium
+1 Vampiric Tutor
+1 Veil of Summer
+1 Verdant Catacombs
+1 Viscera Seer
+1 Warren Soultrader
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Yavimaya, Cradle of Growth
+1 Yawgmoth, Thran Physician
+1 Zulaport Cutthroat

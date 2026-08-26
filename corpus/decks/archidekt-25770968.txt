@@ -1,0 +1,106 @@
+# Archidekt — Nope
+# source: archidekt:25770968
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Force of Will
+1 Tezzeret, Cruel Captain
+1 Windswept Heath
+1 Dismember
+1 Entomb
+1 Esper Sentinel
+1 Lotus Petal
+1 Authority of the Consuls
+1 Rhystic Study
+1 Curiosity
+1 Snuff Out
+1 Aetherflux Reservoir
+1 Sol Ring
+1 Opposition Agent
+1 Mystic Remora
+1 Displacer Kitten
+1 Swan Song
+1 Smothering Tithe
+1 Propaganda
+1 Exotic Orchard
+1 Path to Exile
+1 Whirlwind Denial
+1 Command Tower
+1 Void Rend
+1 Solitary Confinement
+1 Arcane Signet
+1 Drowned Catacomb
+1 Mox Opal
+1 The Queen of Dale
+1 Counterspell
+1 Island
+1 Plains
+1 The One Ring
+1 Glacial Fortress
+1 Brainstorm
+1 Mana Vault
+1 Exsanguinate
+1 Vampiric Tutor
+1 Arid Mesa
+1 Borne Upon a Wind
+1 Logic Knot
+1 Phyrexian Arena
+1 Mindbreak Trap
+1 Sensei's Divining Top
+1 Misty Rainforest
+1 Polluted Delta
+1 Dark Petition
+1 Bilbo's Gambit
+1 Hallowed Fountain
+1 Mnemonic Betrayal
+1 Trouble in Pairs
+1 Raffine's Tower
+1 Chrome Mox
+1 Dovin's Veto
+1 Cyclonic Rift
+1 Reanimate
+1 Tundra
+1 Mox Diamond
+1 Flooded Strand
+1 Erode
+1 Supreme Verdict
+1 Enlightened Tutor
+1 Talisman of Dominance
+1 Cabal Ritual
+1 Teferi's Protection
+1 Bilbo, Thief in the Night
+1 Swamp
+1 Watery Grave
+1 Urza's Saga
+1 Scalding Tarn
+1 Scrubland
+1 Bolas's Citadel
+1 Force of Negation
+1 Gifts Ungiven
+1 Ophidian Eye
+1 Swords to Plowshares
+1 Island
+1 Deadly Rollick
+1 Profane Tutor
+1 Dark Ritual
+1 Underground Sea
+1 Island
+1 Plains
+1 Dig Through Time
+1 Talisman of Hierarchy
+1 Stock Up
+1 Talisman of Progress
+1 Teferi, Time Raveler
+1 Cryptic Command
+1 Black Market Connections
+1 Mystic Forge
+2 Plains
+1 Rottenmouth Viper
+1 Underground River
+1 Spell Pierce
+2 Swamp
+1 Swamp

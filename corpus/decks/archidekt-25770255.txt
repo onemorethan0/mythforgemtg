@@ -1,0 +1,109 @@
+# Archidekt — [cEDH] Marneus Calgar - Mid-Range / Token Combo
+# source: archidekt:25770255
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Marneus Calgar
+
+Deck:
+1 Amphibian Downpour
+1 Underground Sea
+1 Valley Floodcaller
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Voice of Victory
+1 Wan Shi Tong, Librarian
+1 Warren Soultrader
+1 Watery Grave
+1 Windswept Heath
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Arcane Signet
+1 Arid Mesa
+1 Beseech the Mirror
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Cabal Ritual
+1 Chain of Vapor
+1 Charismatic Conqueror
+1 Chrome Mox
+1 City of Brass
+1 City of Traitors
+1 Clever Impersonator
+1 Command Tower
+1 Commandeer
+1 Copy Enchantment
+1 Cyclonic Rift
+1 Dark Ritual
+1 Demonic Consultation
+1 Demonic Tutor
+1 Drannith Magistrate
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Exotic Orchard
+1 Faerie Mastermind
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Gemstone Caverns
+1 Gleaming Splendor
+1 Godless Shrine
+1 Grand Abolisher
+1 Grim Hireling
+1 Grim Monolith
+1 Hallowed Fountain
+1 Imperial Seal
+1 Imposter Mech
+1 Into the Flood Maw
+1 Kambal, Profiteering Mayor
+1 Lotho, Corrupt Shirriff
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mental Misstep
+1 Mindbreak Trap
+1 Mirrormade
+1 Misdirection
+1 Misty Rainforest
+1 Mnemonic Betrayal
+1 Mockingbird
+1 Morphic Pool
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Orim's Chant
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Polluted Delta
+1 Ranger-Captain of Eos
+1 Rhystic Study
+1 Scalding Tarn
+1 Scrubland
+1 Sea of Clouds
+1 Silence
+1 Smothering Tithe
+1 Sol Ring
+1 Starting Town
+1 Stridehangar Automaton
+1 Swan Song
+1 Swords to Plowshares
+1 Tainted Pact
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Tataru Taru
+1 Thassa's Oracle
+1 The One Ring
+1 The Queen of Dale
+1 Toxic Deluge
+1 Tundra
+1 Undercity Sewers
+1 Flash Photography

@@ -1,0 +1,77 @@
+# Archidekt — You're My Boy, Blue
+# source: archidekt:25703699
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Uyo, Silent Prophet
+
+Deck:
+1 Aether Channeler
+1 Sea Gate Oracle
+1 Circuit Mender
+1 Filigree Familiar
+1 Terrain Generator
+1 War Room
+1 Otawara, Soaring City
+1 Academy Ruins
+1 Inventors' Fair
+1 Urza's Saga
+1 Sol Ring
+1 Arcane Signet
+1 Mind Stone
+1 Everflowing Chalice
+1 Sapphire Medallion
+1 Skyclave Relic
+1 Hedron Archive
+1 Thran Dynamo
+1 Gilded Lotus
+1 Caged Sun
+1 Gauntlet of Power
+1 Doubling Cube
+1 Rings of Brighthearth
+1 Illusionist's Bracers
+1 Twinning Staff
+1 Lithoform Engine
+1 Echo Mage
+1 Patron of the Moon
+1 Master Transmuter
+1 Tezzeret the Seeker
+1 Memnarch
+1 The One Ring
+1 Shark Typhoon
+1 Vedalken Shackles
+1 Portal to Phyrexia
+1 Ugin, the Spirit Dragon
+1 Oblivion Stone
+1 Eternal Dominion
+1 Subjugate the Hobbits
+1 Expropriate
+1 Clone Legion
+1 Blatant Thievery
+1 Mass Manipulation
+1 Bribery
+1 Rite of Replication
+1 Sublime Epiphany
+1 Blue Sun's Zenith
+1 Solve the Equation
+1 Swan Song
+1 High Tide
+1 Propaganda
+1 Dissipation Field
+1 Crawlspace
+1 Pongify
+1 Maze of Ith
+1 Reality Shift
+32 Island
+1 Guard Gomazoa
+1 Solemn Simulacrum
+1 Fog Bank
+1 Wall of Tears
+1 Grim Monolith
+1 Mana Vault
+1 Nezahal, Primal Tide
+1 Spellskite
+1 Thought Vessel
+1 Sai, Master Thopterist
+1 Padeem, Consul of Innovation

@@ -1,0 +1,73 @@
+# Archidekt — voltron
+# source: archidekt:25771037
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Cloud, Midgar Mercenary
+
+Deck:
+1 Sol Ring
+1 The Dominion Bracelet
+1 Machinist's Arsenal
+1 Stoneforge Mystic
+1 Sigarda's Aid
+1 Kaldra Compleat
+1 Sword of Body and Mind
+1 Sword of Feast and Famine
+1 Sword of Fire and Ice
+1 Sword of Once and Future
+1 Sword of Sinew and Steel
+1 Sword of Truth and Justice
+1 Sword of War and Peace
+1 Sword of Wealth and Power
+1 Mithril Coat
+1 Swiftfoot Boots
+1 Puresteel Paladin
+1 Sram, Senior Edificer
+1 Elesh Norn, Mother of Machines
+1 Skullclamp
+1 Sword of the Animist
+1 Ugin, Eye of the Storms
+1 Basilisk Collar
+1 Shadowspear
+1 Helm of the Host
+1 Blackblade Reforged
+1 Commander's Plate
+1 Buster Sword
+1 Esper Sentinel
+1 Foundry Inspector
+1 Jhoira's Familiar
+1 Cloud Key
+1 Semblance Anvil
+1 Darksteel Monolith
+1 Smothering Tithe
+1 Gleaming Splendor
+1 Marble Diamond
+1 Pearl Medallion
+1 Panharmonicon
+1 Cloudshift
+1 Teleportation Circle
+1 Enlightened Tutor
+1 Ardenn, Intrepid Archaeologist
+1 Leonin Shikari
+1 Danitha Capashen, Paragon
+1 Balan, Wandering Knight
+1 Mother of Runes
+1 Armored Skyhunter
+1 Trouble in Pairs
+1 Archivist of Oghma
+1 Smuggler's Share
+1 Captain America's Shield
+1 Thunder Lasso
+1 Sigiled Sword of Valeron
+1 Accorder's Shield
+1 Sword of Vengeance
+1 Forebear's Blade
+1 Brotherhood Regalia
+1 Genji Glove
+1 Excalibur, Sword of Eden
+1 Loxodon Warhammer
+1 Darksteel Plate
+1 Thran Power Suit
+36 Plains

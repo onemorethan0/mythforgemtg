@@ -1,0 +1,90 @@
+# Archidekt — Rivaz da Garra
+# source: archidekt:25390234
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Rivaz of the Claw
+
+Deck:
+1 Hellkite Tyrant
+1 Chaos Warp
+1 Tormenting Voice
+1 Hostile Negotiations
+1 Cathartic Reunion
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Zirilan of the Claw
+1 Burnt Offering
+1 Animate Dead
+1 Dark Ritual
+1 Reanimate
+1 Orb of Dragonkind
+1 Rise of the Dark Realms
+1 Arcane Signet
+1 Persist
+1 Bladewing the Risen
+1 Drakuseth, Maw of Flames
+1 Haven of the Spirit Dragon
+1 Canyon Slough
+1 Temple of Malice
+1 Kolaghan, the Storm's Fury
+1 Dragonlord's Servant
+1 Terror of Mount Velus
+1 Hero's Downfall
+1 Bloodfell Caves
+1 Infernal Grasp
+1 Unclaimed Territory
+1 Immersturm Predator
+1 Tainted Peak
+1 Terminate
+1 Bonders' Enclave
+1 Anger
+1 Dragonspeaker Shaman
+1 Backdraft Hellkite
+1 Blasphemous Act
+1 Big Score
+1 Cathartic Pyre
+1 Demand Answers
+1 Scourge of the Throne
+1 Leyline Tyrant
+1 Crux of Fate
+1 Bedevil
+1 Ganax, Astral Hunter
+1 Bladewing, Deathless Tyrant
+1 Faithless Looting
+1 Secluded Courtyard
+1 Scavenger Regent // Exude Toxin
+1 Junji, the Midnight Sky
+1 Smoldering Marsh
+1 Talisman of Indulgence
+12 Mountain
+8 Swamp
+1 Flameshadow Conjuring
+1 Skyline Despot
+1 Command Tower
+1 Spinerock Knoll
+1 Scourge of Valkas
+1 Utvara Hellkite
+1 Hellkite Charger
+1 Flameblast Dragon
+1 Bogardan Hellkite
+1 Lathliss, Dragon Queen
+1 Hoard-Smelter Dragon
+1 Balefire Dragon
+1 Steel Hellkite
+1 Dragon Tempest
+1 Dragon Mage
+1 Where Ancients Tread
+1 Warstorm Surge
+1 Crucible of Fire
+1 Seething Song
+1 Sarkhan's Triumph
+1 Sol Ring
+1 Dragon's Hoard
+1 Dragonstorm
+1 Conjurer's Closet
+1 Panharmonicon
+1 Swiftfoot Boots
+1 Rakdos Guildgate
+1 Rogue's Passage

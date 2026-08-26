@@ -1,0 +1,86 @@
+# Archidekt — Sweet Sacrifice
+# source: archidekt:6061270
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+
+Deck:
+1 Cabal Stronghold
+1 Meathook Massacre II
+1 Dictate of Erebos
+1 Swiftfoot Boots
+1 Imp's Mischief
+1 Bojuka Bog
+1 Crypt of Agadeem
+1 Soul Shatter
+1 Temple of the False God
+1 Plaguecrafter
+1 Grave Pact
+1 Cabal Coffers
+1 Sangromancer
+1 Archfiend of Depravity
+1 Massacre Wurm
+1 Sheoldred, Whispering One
+1 Arcane Signet
+1 Jet Medallion
+1 Urborg, Tomb of Yawgmoth
+1 Priest of Forgotten Gods
+1 Torment of Hailfire
+1 Phyrexian Obliterator
+1 Ghoulcaller Gisa
+1 The Cruelty of Gix
+1 Command Beacon
+1 Blighted Fen
+1 Castle Locthwain
+1 Gray Merchant of Asphodel
+1 Shadowgrange Archfiend
+1 Sheoldred // The True Scriptures
+1 Sol Ring
+1 Rankle, Master of Pranks
+1 Throne of Eldraine
+1 Myriad Landscape
+1 Dark Ritual
+1 Sacrifice
+1 War Room
+1 Season of Loss
+1 Rottenmouth Viper
+1 Crypt Ghast
+1 Blasphemous Edict
+1 My Precious // Allure of Power
+1 Skullclamp
+1 Midgar, City of Mako // Reactor Raid
+1 Illuminor Szeras
+1 Sceptre of Eternal Glory
+1 Ophiomancer
+1 Accursed Marauder
+1 Forsaken Miner
+1 Fleshbag Marauder
+1 Caged Sun
+1 Zulaport Cutthroat
+1 Bastion of Remembrance
+1 Morbid Opportunist
+1 Viscera Seer
+1 Feed the Swarm
+1 Syr Konrad, the Grim
+1 Bontu's Monument
+1 Ayara, First of Locthwain
+1 Dross Harvester
+1 Heartless Summoning
+1 Abhorrent Overlord
+1 K'rrik, Son of Yawgmoth
+1 Zodiark, Umbral God
+1 The Darkness Crystal
+1 Behold the Sinister Six!
+1 Tragic Slip
+1 The Soul Stone
+1 Agent Venom
+1 Dark Confidant
+23 Swamp
+1 Nykthos, Shrine to Nyx
+1 Nine-Lives Familiar
+1 Withering Curse
+1 Toxic Deluge
+1 Kingpin, Wilson Fisk
+1 Culling the Weak

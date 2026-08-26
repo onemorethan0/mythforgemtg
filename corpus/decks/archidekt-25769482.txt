@@ -1,0 +1,99 @@
+# Archidekt — Najeela, the Blade-Blossom Warrior
+# source: archidekt:25769482
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Herald of Dromoka
+1 Mirri, Weatherlight Duelist
+1 Champion of Lambholt
+1 Belladonna Took
+1 Chatterfang, Squirrel General
+1 Alesha, Who Laughs at Fate
+1 Grand Warlord Radha
+1 Brutal Hordechief
+1 Marisi, Breaker of the Coil
+1 Zurgo Stormrender
+1 Winota, Joiner of Forces
+1 Iroas, God of Victory
+1 Samut, Voice of Dissent
+1 Teferi's Protection
+1 Path to Exile
+1 Vampiric Tutor
+1 Silence
+1 Great Train Heist
+1 Archetype of Aggression
+1 Baylen, the Haymaker
+1 Birds of Paradise
+1 Blood-Chin Rager
+1 Bloom Tender
+1 Bramblewood Paragon
+1 Brighthearth Banneret
+1 Combat Celebrant
+1 Devilish Valet
+1 Faeburrow Elder
+1 Ignoble Hierarch
+1 Lovisa Coldeyes
+1 Marneus Calgar
+1 Nivea, Beloved Battlemage
+1 Noble Hierarch
+1 Rushblade Commander
+1 Simian Spirit Guide
+1 Vexilus Praetor
+1 Surrak Dragonclaw
+1 Worldly Tutor
+1 Will of the Mardu
+1 Swords to Plowshares
+1 Heroic Intervention
+1 Cyclonic Rift
+1 And They Shall Know No Fear
+1 Akroma's Will
+1 Nature's Lore
+1 Distant Melody
+1 Kindred Dominance
+1 Farseek
+1 Overpowering Attack
+1 Skyshroud Claim
+1 Three Visits
+1 Sol Ring
+1 Lotus Petal
+1 Sword of Feast and Famine
+1 Arcane Signet
+1 Chrome Mox
+1 Dolmen Gate
+1 Fellwar Stone
+1 Mana Vault
+1 Orcrist, Goblin-cleaver
+3 Mountain
+2 Swamp
+3 Island
+3 Plains
+1 Aggravated Assault
+1 Nature's Will
+1 Cryptolith Rite
+1 Rhythm of the Wild
+1 Smothering Tithe
+1 Polluted Delta
+1 Misty Rainforest
+1 Hallowed Fountain
+1 Godless Shrine
+1 Flooded Strand
+1 Breeding Pool
+1 Blood Crypt
+1 Arid Mesa
+1 Three Tree City
+1 Overgrown Tomb
+1 Sacred Foundry
+1 Scalding Tarn
+1 Temple Garden
+1 Indatha Triome
+1 Ketria Triome
+1 Jetmir's Garden
+1 Cavern of Souls
+1 Secluded Courtyard
+1 Command Tower
+1 Verdant Catacombs
+3 Forest

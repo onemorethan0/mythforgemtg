@@ -1,0 +1,73 @@
+# Archidekt — just according to keikaku
+# source: archidekt:25694824
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Phage the Untouchable
+
+Deck:
+1 Lake of the Dead
+1 Spoils of the Vault
+1 Slaughter Pact
+1 Dark Ritual
+1 Demonic Consultation
+1 Jet Medallion
+1 Demonic Pact
+1 Hatred
+1 Culling the Weak
+1 Abyssal Persecutor
+1 Wall of Blood
+1 Mischievous Poltergeist
+1 Sol Ring
+1 Necrologia
+1 Toxic Deluge
+1 Necropotence
+1 Arcane Signet
+1 Commander's Sphere
+1 Immortal Coil
+1 Mind Stone
+1 Leveler
+1 Tormod's Crypt
+1 Night's Whisper
+1 Aphotic Wisps
+1 Ad Nauseam
+1 Read the Bones
+1 Bojuka Bog
+36 Swamp
+1 Sign in Blood
+1 Nefarious Lich
+1 Feed the Swarm
+1 Lich
+1 Withering Torment
+1 Diabolic Tutor
+1 Souldrinker
+1 Unspeakable Symbol
+1 Doomsday
+1 Cabal Ritual
+1 Ashnod's Altar
+1 Plaguecrafter
+1 Dark Prophecy
+1 Fleshbag Marauder
+1 Heartless Summoning
+1 Village Rites
+1 Bitterblossom
+1 Corrupted Conviction
+1 Ophiomancer
+1 Plunge into Darkness
+1 Necrodominance
+1 Dismember
+1 Gravestorm
+1 Forbidden Crypt
+1 Bubbling Muck
+1 Fellwar Stone
+1 Worn Powerstone
+1 Charcoal Diamond
+1 Dark Petition
+1 Profane Tutor
+1 Pharika's Chosen
+1 Hired Poisoner
+1 Cremate
+1 Reassembling Skeleton
+1 Nighthaze
+1 Rain of Filth

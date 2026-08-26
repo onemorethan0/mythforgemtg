@@ -1,0 +1,94 @@
+# Archidekt — Night/Day
+# source: archidekt:25775635
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Vadrik, Astral Archmage
+
+Deck:
+1 Fantastic Elasticity
+1 Epiphany at the Drownyard
+1 Cyclonic Rift
+1 Sol Ring
+1 Past in Flames
+1 Hexing Squelcher
+1 Mizzix's Mastery
+1 Veyran, Voice of Duality
+1 Vivi Ornitier
+1 Guild Artisan
+1 Seize the Spoils
+1 Comet Storm
+1 Jaya's Immolating Inferno
+1 Gamble
+1 Flame On!
+1 Monstrous Rage
+1 Desperate Ritual
+1 Arcane Lighthouse
+1 Reliquary Tower
+1 Sulfur Falls
+1 Steam Vents
+1 Cascade Bluffs
+1 Command Tower
+1 Shivan Reef
+1 Silundi Vision // Silundi Isle
+1 Snapcaster Mage
+1 Flux Channeler
+1 Clockspinning
+1 Deep Analysis
+1 Archmage Emeritus
+1 Frantic Search
+1 Recurring Insight
+1 Here Comes a New Hero!
+1 Drown in Dreams
+1 Mystical Tutor
+1 Consult the Star Charts
+1 Curse of the Swine
+1 Decoy Gambit
+1 Aetherize
+1 Aetherspouts
+1 Gifts Ungiven
+1 Spellseeker
+1 Mystic Remora
+1 Whispers of the Muse
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+1 Syncopate
+1 Unwind
+1 Force of Negation
+1 Mystic Confluence
+1 Sublime Epiphany
+1 Echoing Truth
+1 Traumatic Critique
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Banefire
+1 Electrodominance
+1 Twinferno
+1 Reiterate
+1 Harmonic Prodigy
+1 Storm-Kiln Artist
+1 Unexpected Windfall
+1 Big Score
+1 Mana Geyser
+1 Simian Spirit Guide
+1 Shellshock
+1 Bulk Up
+1 Nova Flame
+1 Pyretic Ritual
+1 Molten-Core Maestro
+1 Terrain Generator
+1 Scorched Geyser
+1 Cephalid Coliseum
+1 Scalding Tarn
+1 Frostboil Snarl
+1 Turbulent Springs
+1 Mystic Sanctuary
+1 Hall of Oracles
+8 Island
+1 Emergence Zone
+1 Desolate Lighthouse
+1 Restless Spire
+8 Mountain
+1 Super Intelligence
+1 Inspired Tinkering
+1 Seething Anger
+1 Haze of Rage

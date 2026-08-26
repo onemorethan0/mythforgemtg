@@ -1,0 +1,84 @@
+# Archidekt — Cani/Gatti Illegal
+# source: archidekt:25751923
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Abandoned Air Temple
+1 Abraded Bluffs
+1 Ainok Strike Leader
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Ajani's Pridemate
+1 Akroma's Will
+1 Arahbo, the First Fang
+1 Arbor Adherent
+1 Arcane Signet
+1 Archetype of Aggression
+1 Arena of Glory
+1 Asgardian Citadel
+1 Birnin Zana Plaza
+1 Boros Charm
+1 Bounding Felidar
+1 Brimaz, King of Oreskos
+1 Bristling Backwoods
+1 Bronzehide Lion
+1 Cascading Cataracts
+1 Centaur Garden
+1 Claws Out
+1 Crashing Drawbridge
+1 Cultivate
+1 District Mascot
+1 Dogmeat, Ever Loyal
+1 Eerie Interlude
+1 Envoy of the Ancestors
+1 Felidar Savior
+1 Felidar Sovereign
+1 Feline Sovereign
+1 Fires of Yavimaya
+1 Fleecemane Lion
+9 Forest
+1 Forum Familiar
+1 Garruk's Uprising
+1 Generous Pup
+1 Helpful Hunter
+1 Heroic Intervention
+1 Invigorating Hot Spring
+1 Ironpaw Aspirant
+1 Jareth, Leonine Titan
+1 Khenra Charioteer
+1 King of the Pride
+1 Kodama of the West Tree
+1 Kodama's Reach
+1 Lightning Greaves
+1 Loam Lion
+1 Longshot Squad
+1 Loyal Warhound
+1 Mentor of the Meek
+1 Mischievous Pup
+4 Mountain
+1 Pack Leader
+1 Phelia, Exuberant Shepherd
+13 Plains
+1 Pride Sovereign
+1 Pridemalkin
+1 Rampant Growth
+1 Red XIII, Proud Warrior
+1 Regal Caracal
+1 Rumor Gatherer
+1 Sacred Cat
+1 Sevinne's Reclamation
+1 Skullclamp
+1 Skyknight Squire
+1 Sol Ring
+1 Summon: G.F. Cerberus
+1 Tanuki Transplanter
+1 Territorial Aetherkite
+1 Tigra, Feline Fury
+1 Tocasia's Welcome
+1 Vivid Meadow
+1 Vivien, Champion of the Wilds
+1 Welcoming Vampire
+1 Windurst, Federation Center

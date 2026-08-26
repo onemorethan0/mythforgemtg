@@ -1,0 +1,100 @@
+# Archidekt — Heliod-B2
+# source: archidekt:25772336
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+
+Deck:
+1 Windfall
+1 Prosperity
+1 Emrakul, the Promised End
+1 Loran of the Third Path
+1 Sol Ring
+1 Arcane Signet
+1 Esper Sentinel
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Vision Skeins
+1 Jin-Gitaxias, Core Augur
+1 Cut a Deal
+1 Swords to Plowshares
+1 Path to Exile
+1 Arcane Denial
+1 Faerie Mastermind
+1 Wan Shi Tong, Librarian
+1 Spellseeker
+1 Mana Drain
+1 Counterspell
+1 Dovin's Veto
+1 Swan Song
+1 Pact of Negation
+1 Force of Negation
+1 An Offer You Can't Refuse
+1 Sink into Stupor // Soporific Springs
+1 Generous Gift
+1 Flusterstorm
+1 Supreme Verdict
+1 Aminatou's Augury
+1 Blind Obedience
+1 Omniscience
+1 Expropriate
+1 Divine Reckoning
+1 Mnemonic Deluge
+1 Mystic Remora
+1 Mind's Dilation
+1 Land Tax
+1 Teferi's Puzzle Box
+1 Time Spiral
+1 Time Reversal
+1 Merchant Scroll
+1 Talisman of Progress
+1 Geier Reach Sanitarium
+1 Reliquary Tower
+1 Mikokoro, Center of the Sea
+1 Urza's Saga
+1 Otawara, Soaring City
+1 Cephalid Coliseum
+1 Hall of Heliod's Generosity
+3 Plains
+1 Command Tower
+1 Tundra
+1 Hallowed Fountain
+1 Scalding Tarn
+1 Prairie Stream
+1 Meticulous Archive
+1 Irrigated Farmland
+1 Mystic Gate
+1 Strip Mine
+1 Hengegate Pathway // Mistgate Pathway
+1 Gemstone Caverns
+1 Misty Rainforest
+1 Flooded Strand
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Prismatic Vista
+1 Polluted Delta
+1 Arid Mesa
+1 Marsh Flats
+1 Windswept Heath
+1 Mox Opal
+7 Island
+1 Scrawling Crawler
+1 Thran Dynamo
+1 Basalt Monolith
+1 Gilded Lotus
+1 Unwinding Clock
+1 Grafdigger's Cage
+1 Chromatic Orrery
+1 Sensei's Divining Top
+1 Archivist of Oghma
+1 Ghostly Prison
+1 Propaganda
+1 Timetwister
+1 Wheel and Deal
+1 Shark Typhoon
+1 Strix Serenade
+1 Capsize
+1 Whir of Invention
+1 Day's Undoing
+1 Blue Sun's Zenith
+1 Nexus of Fate

@@ -1,0 +1,108 @@
+# Archidekt — Assimilation
+# source: archidekt:25766441
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Lonis, Cryptozoologist
+1 Tireless Provisioner
+1 Agatha's Soul Cauldron
+1 Necrotic Ooze
+1 Experiment Kraj
+1 Marvin, Murderous Mimic
+1 Quicksilver Elemental
+1 Volrath, the Shapestealer
+1 Myr Welder
+1 Machine God's Effigy
+1 Hazel's Brewmaster
+1 Memnarch
+1 Cytoplast Manipulator
+1 Willbreaker
+1 Devoted Druid
+1 Incubation Druid
+1 Kami of Whispered Hopes
+1 Bloom Tender
+1 Pili-Pala
+1 Grand Architect
+1 Gilder Bairn
+1 Vigean Graftmage
+1 Walking Ballista
+1 Thrasios, Triton Hero
+1 Fain, the Broker
+1 Knacksaw Clique
+1 Soul Diviner
+1 Academy Manufactor
+1 Chatterfang, Squirrel General
+1 Warren Soultrader
+1 Springheart Nantuko
+1 Myr Propagator
+1 Sai, Master Thopterist
+1 Faerie Artisans
+1 Adrix and Nev, Twincasters
+1 Encroaching Mycosynth
+1 Mycosynth Lattice
+1 Rise and Shine
+1 Liquimetal Torque
+1 Basalt Monolith
+1 Training Grounds
+1 Hardened Scales
+1 Mesmeric Orb
+1 Altar of Dementia
+1 Sol Ring
+1 Arcane Signet
+1 Rhystic Study
+1 Mystic Remora
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Entomb
+1 Buried Alive
+1 Survival of the Fittest
+1 Muddle the Mixture
+1 Finale of Devastation
+1 Nature's Claim
+1 Abrupt Decay
+1 Assassin's Trophy
+1 Cyclonic Rift
+1 Swan Song
+1 Heroic Intervention
+1 Veil of Summer
+1 Fierce Guardianship
+1 Command Tower
+1 Exotic Orchard
+1 Reflecting Pool
+1 City of Brass
+1 Mana Confluence
+1 Breeding Pool
+1 Watery Grave
+1 Overgrown Tomb
+1 Hedge Maze
+1 Undercity Sewers
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Undergrowth Stadium
+1 Botanical Sanctum
+1 Darkslick Shores
+1 Blooming Marsh
+1 Yavimaya Coast
+1 Llanowar Wastes
+1 Underground River
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Polluted Delta
+1 Prismatic Vista
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Takenuma, Abandoned Mire
+1 Nesting Grounds
+1 Inkmoth Nexus
+1 Ba Sing Se
+1 Minamo, School at Water's Edge
+1 Karn's Bastion
+1 Treasure Vault
+1 Power Depot
+1 Forest
+1 Island
+1 Swamp

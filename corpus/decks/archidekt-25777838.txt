@@ -1,0 +1,83 @@
+# Archidekt — Alania
+# source: archidekt:25777838
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Alania, Divergent Storm
+
+Deck:
+12 Island
+12 Mountain
+1 Kitsa, Otterball Elite
+1 Rapid Hybridization
+1 Thundertrap Trainer
+1 Valley Floodcaller
+1 Daring Waverider
+1 Coruscation Mage
+1 Stormsplitter
+1 Stormcatch Mentor
+1 Stormchaser's Talent
+1 Swan Song
+1 Hit the Mother Lode
+1 Frantic Search
+1 Ember Island Production
+1 Big Score
+1 Unexpected Windfall
+1 Pirate's Pillage
+1 Pyretic Ritual
+1 Glimpse the Impossible
+1 Counterspell
+1 Negate
+1 Kindred Charge
+1 An Offer You Can't Refuse
+1 Flame of Anor
+1 Talisman of Creativity
+1 Redirect Lightning
+1 Return the Favor
+1 Untimely Malfunction
+1 Seething Song
+1 Into the Flood Maw
+1 Mana Sculpt
+1 Narset's Reversal
+1 Sink into Stupor // Soporific Springs
+1 Frolicking Familiar // Blow Off Steam
+1 Irenicus's Vile Duplication
+1 Harnesser of Storms
+1 Season of Weaving
+1 Season of the Bold
+1 Mizzium Mortars
+1 Lightning Bolt
+1 Ashling's Command
+1 Seize the Spoils
+1 Izzet Signet
+1 Harmonized Crescendo
+1 River's Rebuke
+1 Collective Inferno
+1 Brass's Bounty
+1 Raise the Palisade
+1 Bender's Waterskin
+1 Bria, Riptide Rogue
+1 Cavern of Souls
+1 Three Tree City
+1 Arcane Signet
+1 Coldsteel Heart
+1 Pongify
+1 Mind Stone
+1 Solar Transformer
+1 Expressive Iteration
+1 Peculiar Lighthouse
+1 Riverpyre Verge
+1 Shivan Reef
+1 Spirebluff Canal
+1 Steam Vents
+1 Stormcarved Coast
+1 Thundering Falls
+1 Multiversal Recruitment
+1 Rapturous Moment
+1 Lórien Revealed
+1 Patchwork Banner
+1 Wizard's Staff
+1 Sundering Eruption // Volcanic Fissure
+1 Pearl of Wisdom
+1 Ral, Crackling Wit

@@ -1,0 +1,74 @@
+# Archidekt — Philosophische Gespräche
+# source: archidekt:21148480
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Sokrates, Athenian Teacher
+
+Deck:
+1 Minds Aglow
+1 Illusionist's Gambit
+1 Daxos of Meletis
+1 Prognostic Sphinx
+1 Absorb
+1 Mandate of Peace
+1 Azor, the Lawbringer
+1 Intellectual Offering
+1 Azor's Elocutors
+1 Words of Wisdom
+1 Scholarship Sponsor
+1 Propaganda
+1 Fractured Identity
+1 Promise of Loyalty
+1 Council's Judgment
+1 Plea for Power
+1 Ghostly Prison
+1 Monologue Tax
+1 Well of Ideas
+1 Curse of Verbosity
+1 Minamo, School at Water's Edge
+1 Messenger Jays
+1 Trap the Trespassers
+1 Model of Unity
+1 Split Decision
+1 Council Guardian
+1 Custodi Squire
+1 Lieutenants of the Guard
+1 Coercive Portal
+1 Cowed by Wisdom
+1 Zur's Weirding
+1 Teachings of the Archaics
+1 Ethereal Haze
+1 Reciprocate
+1 Reality Shift
+1 Akroan Horse
+1 Dakra Mystic
+1 Revoke Existence
+1 Temple of Enlightenment
+18 Plains
+17 Island
+1 Traveler's Amulet
+1 Traveling Philosopher
+1 Unknown Shores
+1 Glimpse of Freedom
+1 Staggering Insight
+1 Eidolon of Philosophy
+1 Zndrsplt's Judgment
+1 Replication Technique
+1 Excavation Technique
+1 Curator of Destinies
+1 Jace, Architect of Thought
+1 Eidolon of Rhetoric
+1 Thought Reflection
+1 Regna's Sanction
+1 Unesh, Criosphinx Sovereign
+1 Sphinx of Uthuun
+1 Fact or Fiction
+1 Pacifism
+1 Dictate of Heliod
+1 Render Silent
+1 Mangara, the Diplomat
+1 Silent Arbiter
+1 Dream Trawler
+1 Windborn Muse

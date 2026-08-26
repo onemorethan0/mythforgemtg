@@ -1,0 +1,80 @@
+# Archidekt — Whitest deck you know
+# source: archidekt:25671428
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Minwu, White Mage
+
+Deck:
+1 Emeria, the Sky Ruin
+1 Celestial Mantle
+1 Quicksand
+1 Restoration Magic
+1 Murder Investigation
+1 White Mage's Staff
+1 Moogles' Valor
+1 Sinstriker's Will
+1 Perimeter Captain
+1 Crossroads Village
+1 Suture Priest
+1 Soulmender
+1 Machinist's Arsenal
+1 Excalibur II
+1 Gift of Immortality
+1 Unyielding Gatekeeper
+1 Due Respect
+1 Monk's Fist
+1 Elixir
+1 Ultimate Magic: Holy
+1 Congregate
+1 Slash of Light
+1 Coeurl
+1 Ascendant Dustspeaker
+1 Gather the Townsfolk
+1 White Auracite
+1 Snow Villiers
+1 Duty Beyond Death
+1 Gaelicat
+1 Kitsune Diviner
+1 Auron, Venerated Guardian
+1 G'raha Tia
+1 Jund Panorama
+1 Buried Ruin
+1 Hanweir Militia Captain // Westvale Cult Leader
+1 Owlin Historian
+1 Ennis, Debate Moderator
+1 Aegis Angel
+1 Dread Statuary
+1 Joined Researchers // Secret Rendezvous
+1 Tragic Arrogance
+1 Cleric of the Forward Order
+1 Celestial Archon
+1 True Conviction
+1 Lunatic Pandora
+1 Honorbound Page // Forum's Favor
+1 Paladin's Arms
+1 Terramorphic Expanse
+1 The Wind Crystal
+1 Sol Ring
+1 Luminous Wake
+1 Dazzling Ramparts
+1 Serra Angel
+1 Purify the Grave
+1 Delivery Moogle
+1 Aerith Rescue Mission
+1 You're Not Alone
+28 Plains
+1 The Tabernacle at Pendrell Vale
+1 War Room
+1 Hall of Heliod's Generosity
+1 Inventors' Fair
+1 Aettir and Priwen
+1 Dancer's Chakrams
+1 World Map
+1 Dragoon's Lance
+1 Remorseful Cleric
+1 Adventurer's Inn
+1 Containment Priest
+1 Grafdigger's Cage
+1 Phyrexian Revoker

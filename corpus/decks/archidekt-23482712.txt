@@ -1,0 +1,105 @@
+# Archidekt — Good and Honest Loki
+# source: archidekt:23482712
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Loki, the Deceiver
+
+Deck:
+1 Living Lies of Loki
+1 Loki, Lord of Misrule
+1 Loki, God of Mischief
+1 Loki's Scepter
+1 Spark Double
+1 Mysterio, Master of Illusion
+1 Doctor Octopus, Master Planner
+1 Venom, Eddie Brock
+1 Prowler, Clawed Thief
+1 Carnage, Crimson Chaos
+1 Scorpion, Seething Striker
+1 Morbius the Living Vampire
+1 Tombstone, Career Criminal
+1 Norman Osborn // Green Goblin
+1 Common Crook
+1 Mob Lookout
+1 Agents of HYDRA
+1 Red Room Recruit
+1 Ares, God of War
+1 Crimson Cowl, Master of Evil
+1 Baron Strucker, HYDRA Overlord
+1 Ultron, Unlimited
+1 Leader, Super-Genius
+1 Madame Hydra
+1 Doctor Doom, King of Latveria
+1 Thanos, Death's Consort
+1 Crossbones, Malicious Mercenary
+1 Taskmaster, Mercenary Mimic
+1 Kang, Temporal Tyrant
+1 Drowned Catacomb
+1 Steam Vents
+2 Mountain
+1 The Masters of Evil
+1 Doctor Doom
+1 Sulfur Falls
+1 Crumbling Necropolis
+1 Xander's Lounge
+1 Villainous Hideout
+2 Island
+1 Stormcarved Coast
+1 Command Tower
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Shipwreck Marsh
+2 Swamp
+1 Rogue's Passage
+1 Watery Grave
+1 Haunted Ridge
+1 Training Center
+1 Blood Crypt
+1 Clearwater Pathway // Murkwater Pathway
+1 Undercity Sewers
+1 Otawara, Soaring City
+1 Raucous Theater
+1 Luxury Suite
+1 Underground Sea
+1 Morphic Pool
+1 Cavern of Souls
+1 Avengers: Under Siege
+1 Archnemesis
+1 Volcanic Island
+1 Badlands
+1 Thundering Falls
+1 Riverglide Pathway // Lavaglide Pathway
+1 Command Beacon
+1 Doom Reigns Supreme
+1 Blightstep Pathway // Searstep Pathway
+1 Takenuma, Abandoned Mire
+1 Valentina Allegra de Fontaine
+1 Unstable Experiment
+1 Thunderbolts Conspiracy
+1 Glorious Purpose
+1 Mask of the Schemer
+1 Construct a Cosmic Cube
+1 Lightning Greaves
+1 Arcane Signet
+1 Sol Ring
+1 Swiftfoot Boots
+1 Urza's Incubator
+1 Deadly Rollick
+1 Deflecting Swat
+1 Herald's Horn
+1 Fierce Guardianship
+1 Cover of Darkness
+1 Feed the Swarm
+1 Helm of the Host
+1 Sakashima of a Thousand Faces
+1 Sokenzan, Crucible of Defiance
+1 Raise the Palisade
+1 Kindred Dominance
+1 Mithril Coat
+1 Terminate
+1 Bedevil
+1 Arcane Denial
+1 Withering Torment
+1 Shocker, Unshakable

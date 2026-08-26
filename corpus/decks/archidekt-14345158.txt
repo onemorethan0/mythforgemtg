@@ -1,0 +1,98 @@
+# Archidekt — Tom Bombadil (/World Tree)
+# source: archidekt:14345158
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Tom Bombadil
+
+Deck:
+1 Scapeshift
+1 Settle the Wreckage
+1 Defense of the Heart
+1 Zodiark, Umbral God
+1 Iroas, God of Victory
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Wight of the Reliquary
+1 Khalni Heart Expedition
+1 Expedition Map
+1 Anzrag, the Quake-Mole
+1 The Necrobloom
+1 Purphoros, Bronze-Blooded
+1 Dryad of the Ilysian Grove
+1 Retreat to Coralhelm
+1 Urban Evolution
+1 Omnath, Locus of Creation
+1 Ancient Greenwarden
+1 Lotus Cobra
+1 Rampant Growth
+1 Maskwood Nexus
+1 Arcane Signet
+1 Sol Ring
+1 Dawn's Truce
+1 Perch Protection
+1 Roiling Regrowth
+1 Harrow
+1 Spelunking
+1 Echoing Deeps
+1 Explore
+1 Growth Spiral
+1 Eureka Moment
+1 Titania's Command
+1 Sylvan Scrying
+1 Bring to Light
+1 Mythos of Brokkos
+1 Nylea's Intervention
+1 Sylvan Library
+1 The World Tree
+1 Plains
+1 Command Tower
+1 Tireless Provisioner
+1 Xenagos, God of Revels
+1 Urza's Saga
+1 Vesuva
+1 Thespian's Stage
+1 Exotic Orchard
+1 Tolaria West
+1 Evolving Wilds
+1 Urza's Cave
+1 Terramorphic Expanse
+1 Island
+1 Mountain
+1 Swamp
+1 Planar Nexus
+1 Scute Swarm
+1 Summon: Titan
+1 Greensleeves, Maro-Sorcerer
+1 Path of Ancestry
+1 Bloom Tender
+1 Finale of Devastation
+1 Wayfarer's Bauble
+11 Forest
+1 Cultivate
+1 Pernicious Deed
+1 Wrath of God
+1 Nature's Rhythm
+1 Snow-Covered Forest
+1 Snow-Covered Swamp
+1 Snow-Covered Plains
+1 Snow-Covered Island
+1 Snow-Covered Mountain
+1 Bast, Panther Goddess
+1 Purphoros, God of the Forge
+1 Amulet of Vigor
+1 Felidar Retreat
+1 Tiller Engine
+1 Tireless Tracker
+1 Crop Rotation
+1 Field of the Dead
+1 Ashaya, Soul of the Wild
+1 Nissa, Resurgent Animist
+1 Lotus Field
+1 Strip Mine
+1 Ramunap Excavator
+1 Elven Raft-Steerer
+1 Awaken the Woods
+1 Icetill Explorer
+1 Fabled Passage
+1 Heroic Intervention

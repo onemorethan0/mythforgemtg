@@ -1,0 +1,108 @@
+# Archidekt — Malcom & Vial - Ye Be Landlubbers
+# source: archidekt:25753160
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Vial Smasher the Fierce
+1 Malcolm, Keen-Eyed Navigator
+
+Deck:
+1 Crystal Vein
+1 Talon Gates of Madara
+1 Jeska's Will
+1 Redirect Lightning
+1 Lim-Dûl's Vault
+1 Talisman of Dominance
+1 Lightning-Rig Crew
+1 Deadly Rollick
+1 Mystical Tutor
+1 Flooded Strand
+1 Valley Floodcaller
+1 Gemstone Caverns
+1 Ancient Tomb
+1 City of Traitors
+1 Otawara, Soaring City
+1 Cavern of Souls
+1 Sink into Stupor // Soporific Springs
+1 Mockingbird
+1 Spectral Sailor
+1 Demonic Tutor
+1 Rite of Flame
+1 Beseech the Mirror
+1 Wheel of Fortune
+1 Praetor's Grasp
+1 Force of Negation
+1 Flusterstorm
+1 Mindbreak Trap
+1 Lotus Petal
+1 Mox Opal
+1 Swan Song
+1 Entomb
+1 Into the Flood Maw
+1 Pyroblast
+1 Mox Amber
+1 Arcane Signet
+1 Reanimate
+1 Deflecting Swat
+1 Bloodstained Mire
+1 Skirk Prospector
+1 Simian Spirit Guide
+1 Dark Ritual
+1 Scalding Tarn
+1 Misty Rainforest
+1 Marsh Flats
+1 An Offer You Can't Refuse
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Siren Stormtamer
+1 Polluted Delta
+1 Gamble
+1 Fellwar Stone
+1 Talisman of Creativity
+1 Hexing Squelcher
+1 Cyclonic Rift
+1 Kediss, Emberclaw Familiar
+1 Strike It Rich
+1 Lion's Eye Diamond
+1 Lively Dirge
+1 Thassa's Oracle
+1 Imperial Seal
+1 Professional Face-Breaker
+1 Tainted Pact
+1 Demonic Consultation
+1 Brain Freeze
+1 Orcish Bowmasters
+1 Glint-Horn Buccaneer
+1 Underworld Breach
+1 Artificial Evolution
+1 Vampiric Tutor
+1 Mayhem Devil
+1 Wishclaw Talisman
+1 Necropotence
+1 Intuition
+1 Mystic Remora
+1 Ad Nauseam
+1 Rhystic Study
+1 Ragavan, Nimble Pilferer
+1 Mox Diamond
+1 Mana Vault
+1 Chrome Mox
+1 Mountain
+1 Sol Ring
+1 Volcanic Island
+1 Command Tower
+1 Force of Will
+1 Arid Mesa
+1 Emergence Zone
+1 Wooded Foothills
+1 Exotic Orchard
+1 Borne Upon a Wind
+1 Verdant Catacombs
+1 Swamp
+1 Island
+1 Underground Sea
+1 Fierce Guardianship
+1 Badlands
+1 Watery Grave
+1 Blood Crypt
+1 Steam Vents

@@ -1,0 +1,105 @@
+# Archidekt — Ob Nix - Captive Kingpin 8.6.26
+# source: archidekt:25063724
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Ob Nixilis, Captive Kingpin
+
+Deck:
+1 Jeska's Will
+1 Pain Distributor
+1 Valgavoth, Harrower of Souls
+1 Chandra, Dressed to Kill
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Unstable Amulet
+1 Mind Stone
+1 All Will Be One
+1 Desperate Ritual
+1 Iridescent Vinelasher
+1 Kessig Flamebreather
+1 Scrawling Crawler
+1 Fell the Profane // Fell Mire
+1 Hidden Hideout
+1 Bolt Bend
+1 Stormfist Crusader
+1 Kederekt Parasite
+1 Professional Face-Breaker
+1 Command Tower
+1 Coruscation Mage
+1 Dark Fortress
+1 The Vision and Scarlet Witch
+1 Shivan Gorge
+1 Jagged Barrens
+1 Rampaging Ferocidon
+1 Roiling Vortex
+1 Rakdos Signet
+1 Creeping Bloodsucker
+1 Shadow of the Goblin
+1 Strike It Rich
+1 Fire Covenant
+1 Redirect Lightning
+1 Deflecting Swat
+1 Imp's Mischief
+1 Rakdos Charm
+1 Untimely Malfunction
+1 Haunted Ridge
+1 Withering Torment
+1 Luxury Suite
+1 Graven Cairns
+1 Dragonskull Summit
+1 Toxic Deluge
+1 Smoldering Marsh
+1 Raucous Theater
+1 Sundering Eruption // Volcanic Fissure
+1 Sulfurous Springs
+1 Sol Ring
+1 Mount Doom
+1 Blightstep Pathway // Searstep Pathway
+1 Foreboding Ruins
+1 Bloodstained Mire
+1 Arena of Glory
+1 Blackcleave Cliffs
+1 Blazemire Verge
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Fellwar Stone
+1 Lightning Greaves
+1 Ruby Medallion
+1 Chaos Warp
+1 Ob Nixilis, the Hate-Twisted
+1 Canyon Slough
+1 Spiteful Visions
+1 Bitter Triumph
+1 Malakir Rebirth // Malakir Mire
+1 Dark Ritual
+2 Swamp
+1 Firebrand Archer
+1 Swamp
+1 Swamp
+1 Spikefield Hazard // Spikefield Cave
+1 Kazuul's Fury // Kazuul's Cliffs
+2 Mountain
+2 Mountain
+1 Fabled Passage
+1 Party Thrasher
+1 Lindblum, Industrial Regency // Mage Siege
+1 Gut Shot
+1 Faithless Looting
+1 Urabrask // The Great Work
+1 Razorkin Needlehead
+1 Flick a Coin
+1 Pyretic Ritual
+1 Prosper, Tome-Bound
+1 Kami of Celebration
+1 Storm-Kiln Artist
+1 Grapeshot
+1 Feed the Swarm
+1 Tibalt's Trickery
+1 Wild Magic Surge
+1 Goldhound
+1 Asgardian Inspiration
+1 Tainted Peak
+1 Blood Crypt
+1 The Last Agni Kai
+1 Mayhem Devil

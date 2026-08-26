@@ -1,0 +1,85 @@
+# Archidekt — Dina Futuro
+# source: archidekt:25737247
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Dina, Essence Brewer
+
+Deck:
+1 Eternal Witness
+1 Reliquary Tower
+1 Mechanical Glider
+1 Reassembling Skeleton
+1 Gravedigger
+1 Viridescent Bog
+1 Exotic Orchard
+1 Path of Ancestry
+1 Arachnogenesis
+1 Command Tower
+1 Defiling Daemogoth
+1 Meren of Clan Nel Toth
+1 Pest Rescuer
+1 Culling Ritual
+1 Beledros Witherbloom
+1 Priest of Forgotten Gods
+1 Exsanguinate
+1 Cauldron of Essence
+1 Victimize
+1 Emeritus of Woe // Demonic Tutor
+1 Jenova, Ancient Calamity
+1 Golgari Signet
+1 Wight of the Reliquary
+1 Natural State
+1 Foul Orchard
+1 Thriving Grove
+1 Thriving Moor
+1 Synapse Necromage
+1 Epic Downfall
+1 Wolfwillow Haven
+1 Explore
+1 Ambush Viper
+1 Price of Fame
+1 Spark Harvest
+1 Raucous Audience
+1 Buzzard-Wasp Colony
+1 Natural Reclamation
+1 Sol Ring
+1 Pillar Launch
+1 Ancient Animus
+1 Yavimaya Dryad
+1 Perilous Myr
+1 Flopsie, Bumi's Buddy
+1 Long Feng, Grand Secretariat
+1 Jumbo Cactuar
+1 Dina's Guidance
+1 Wall of Blood
+1 Llanowar Wastes
+1 Twilight Mire
+1 Seismic Tutelage
+1 Badgermole
+1 Setessan Petitioner
+1 Scaled Herbalist
+1 Fleshbag Marauder
+1 Neverwinter Dryad
+1 Oversold Cemetery
+1 Abundance
+1 Ashnod's Altar
+1 Dina, Soul Steeper
+1 Conduit of Worlds
+1 Savra, Queen of the Golgari
+1 Lesser Masticore
+1 Pitiless Plunderer
+1 Elixir of Immortality
+1 Bighorner Rancher
+1 Primal Vigor
+1 Witchbane Orb
+1 Spore Frog
+1 Praetor's Counsel
+1 Fecundity
+15 Forest
+11 Swamp
+1 Syr Konrad, the Grim
+1 Gemstone Array
+1 Staff of Domination
+1 Necropotence

@@ -1,0 +1,104 @@
+# Archidekt — Peasants
+# source: archidekt:19408151
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Xantcha, Sleeper Agent
+
+Deck:
+1 Mogis, God of Slaughter
+1 Kardur, Doomscourge
+1 Geode Rager
+1 Grenzo, Havoc Raiser
+1 Spinerock Knoll
+1 Opal Palace
+1 Tainted Peak
+1 Vow of Malice
+1 Taunting Kobold
+1 Insufferable Balladeer
+1 Incriminating Impetus
+1 Goblin Racketeer
+1 Curse of the Nightly Hunt
+1 Bloodthirsty Blade
+1 Besmirch
+1 Assault Suit
+1 Death Kiss
+1 Sol Ring
+1 Kain, Traitorous Dragoon
+1 Zuko, Conflicted
+1 Ghoulish Impetus
+1 Shiny Impetus
+1 Captive Audience
+1 Fumiko the Lowblood
+1 Parasitic Impetus
+1 Khârn the Betrayer
+1 Sleeper Agent
+1 Vengeful Ancestor
+1 Burnt Offering
+1 Insurrection
+1 Pendant of Prosperity
+1 Baeloth Barrityl, Entertainer
+1 Havoc Eater
+1 Sontaran General
+1 Skin Invasion // Skin Shedder
+1 Komainu Battle Armor
+1 Vow of Torment
+1 Vislor Turlough
+1 Kazuul, Tyrant of the Cliffs
+1 Disrupt Decorum
+1 Mass Hysteria
+1 Day of the Moon
+1 Rite of the Raging Storm
+1 Vow of Lightning
+1 Coronation of Chaos
+1 Thriving Moor
+1 Razortrap Gorge
+1 Repercussion
+1 Arcane Signet
+1 Puppet Master, String Puller
+1 War's Toll
+1 Spectacular Showdown
+1 Goblin Diplomats
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Frontier Warmonger
+1 Bothersome Quasit
+1 Agitator Ant
+1 Seifer, Balamb Rival
+1 Bedlam
+1 Havoc Festival
+1 Crawlspace
+1 Hot Pursuit
+1 Frenzied Gorespawn
+1 Life of the Party
+1 Eye of Nidhogg
+1 Karazikar, the Eye Tyrant
+1 No Mercy
+1 Plague Reaver
+1 Alexios, Deimos of Kosmos
+1 Dragonskull Summit
+1 Blackcleave Cliffs
+1 Canyon Slough
+1 Bloodfell Caves
+1 Command Tower
+1 Evolving Wilds
+1 Smoldering Marsh
+1 Temple of Malice
+1 Foreboding Ruins
+2 Swamp
+1 Geothermal Bog
+1 Sulfurous Springs
+2 Mountain
+1 Uncharted Haven
+1 Terramorphic Expanse
+1 Mountain
+1 Mountain
+2 Mountain
+1 Mountain
+1 Mountain
+2 Mountain
+1 Swamp
+2 Swamp
+1 Swamp
+1 Pit of Offerings
+1 Temple of the False God

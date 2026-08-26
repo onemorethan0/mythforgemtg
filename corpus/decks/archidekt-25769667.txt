@@ -1,0 +1,84 @@
+# Archidekt — Chief of the Wilds
+# source: archidekt:25769667
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Chief of the Wilds
+
+Deck:
+1 Damnation
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Worldly Tutor
+1 Reliquary Tower
+1 Rogue's Passage
+1 Head of the Hunt
+1 Chief Warg's Company
+1 Bejeweled Warg
+1 Wilderland Scrounger
+1 Hollowhenge Overlord
+1 Sol Ring
+1 Arcane Signet
+1 Nightpack Ambusher
+1 Doubling Season
+1 Parallel Lives
+1 Unnatural Growth
+1 Wolfcaller's Howl
+1 Hardened Scales
+1 Garruk's Uprising
+1 The Earth Crystal
+1 Ranger Class
+1 Sword of Body and Mind
+1 Wolfrider's Saddle
+1 Vanquisher's Banner
+1 Emerald Medallion
+1 Coat of Arms
+1 Shadowspear
+1 Moonlight Hunt
+1 Putrefy
+1 Predator's Howl
+1 Beast Within
+1 Deadly Rollick
+1 Dark Ritual
+1 Go for the Throat
+1 Gaea's Cradle
+1 Rampant Growth
+1 Kodama's Reach
+1 Herald's Horn
+1 Howl of the Night Pack
+1 Farseek
+1 Gnashing of Teeth
+1 Crippling Fear
+1 Yavimaya, Cradle of Growth
+1 Nature's Lore
+1 Secret Tunnel
+1 Patchwork Banner
+1 Necklace of Girion
+1 Woodland Cemetery
+1 Command Tower
+1 Bayou
+1 Tainted Wood
+1 Woodland Chasm
+13 Forest
+1 Garruk, Cursed Huntsman
+1 Master of the Wild Hunt
+1 Ferocious Pup
+13 Swamp
+1 Ravening Warg
+1 Torgal, A Fine Hound
+1 Duskwatch Hunter
+1 Wandering Wolf
+1 Rot Wolf
+1 Somberwald Beastmaster
+1 Ohran Frostfang
+1 Germination Practicum
+1 In Garruk's Wake
+1 Howl of the Hunt
+1 Mantle of the Wolf
+1 Primal Vigor
+1 Howlpack Resurgence
+1 Sarulf, Realm Eater
+1 Garruk Relentless // Garruk, the Veil-Cursed
+1 Arlinn, Voice of the Pack
+1 Packsong Pup

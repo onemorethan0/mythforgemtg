@@ -1,0 +1,96 @@
+# Archidekt — Esika, God of the Tree // The Prismatic Bridge
+# source: archidekt:25777056
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Adverse Conditions
+1 Ancestral Anger
+1 Aphotic Wisps
+1 Armillary Sphere
+1 Ash Barrens
+1 Bandage
+1 Twisted Image
+1 Viridescent Wisps
+1 Wanderer's Twig
+1 Warped Landscape
+1 Thriving Heath
+1 Thriving Isle
+1 Thriving Moor
+1 Traitorous Greed
+1 Transmogrify
+1 Traveler's Amulet
+1 Swell of Growth
+1 Tamiyo's Safekeeping
+1 Teferi's Time Twist
+1 Terramorphic Expanse
+1 Thriving Bluff
+1 Thriving Grove
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Spawning Breath
+1 Startle
+1 Sudden Breakthrough
+1 Supplant Form
+2 Swamp
+1 Search for Tomorrow
+1 Sejiri Shelter // Sejiri Glacier
+1 Shelter
+1 Sheltering Light
+1 Simic Charm
+1 Slip Through Space
+1 Reality Scramble
+1 Renegade Tactics
+1 Renegade's Getaway
+1 Revenge of the Drowned
+1 Roiling Regrowth
+1 Scale the Heights
+1 Nighthaze
+1 Niveous Wisps
+1 Path of Ancestry
+2 Plains
+1 Rampant Growth
+1 Razor Barrier
+1 Leap
+1 Make Mischief
+2 Mountain
+1 Myriad Landscape
+1 Mythos of Illuna
+1 Naya Panorama
+1 Ink-Treader Nephilim
+1 Irresistible Prey
+3 Island
+1 Kari Zev's Expertise
+1 Kodama's Reach
+1 Krosan Verge
+8 Forest
+1 Fungal Infection
+1 Gaea's Blessing
+1 Geistwave
+1 Harrow
+1 Improvised Weaponry
+1 Exotic Orchard
+1 Expedite
+1 Expel from Orazca
+1 Faith's Shield
+1 Fists of Flame
+1 Fleeting Distraction
+1 Depths of Desire
+1 Edge of Autumn
+1 Enter the Unknown
+1 Esper Panorama
+1 Evolving Wilds
+1 Cloak of Feathers
+1 Command Tower
+1 Confront the Unknown
+1 Croaking Counterpart
+1 Cultivate
+1 Defiant Strike
+1 Bant Panorama
+1 Blacksmith's Skill
+1 Blighted Woodland
+1 Catch // Release
+1 Charge Through
+1 Clear the Mind

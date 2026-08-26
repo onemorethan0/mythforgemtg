@@ -1,0 +1,95 @@
+# Archidekt — Cedh Das Blau
+# source: archidekt:25764414
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Narset's Reversal
+1 Cyclonic Rift
+1 Counterspell
+1 Mystic Remora
+1 Enter the Infinite
+1 Jace, Wielder of Mysteries
+1 Pact of Negation
+1 Force of Will
+1 Force of Negation
+1 Isochron Scepter
+1 Mishra's Bauble
+1 Consecrated Sphinx
+1 Flusterstorm
+1 Snapcaster Mage
+1 Thassa's Oracle
+1 Triskaidekaphile
+1 Shark Typhoon
+1 Rhystic Study
+1 Emergence Zone
+1 Propaganda
+1 Omniscience
+1 Back to Basics
+1 Preordain
+1 Temporal Manipulation
+1 Ponder
+1 Merchant Scroll
+1 War Room
+1 Lion's Eye Diamond
+1 Reliquary Tower
+1 Mox Diamond
+1 Otawara, Soaring City
+1 Primal Amulet // Primal Wellspring
+1 Mystic Sanctuary
+1 Cavern of Souls
+1 Ancient Tomb
+1 Into the Flood Maw
+1 Sink into Stupor // Soporific Springs
+1 Academy Ruins
+1 Whirlwind Denial
+1 Swan Song
+1 Mystical Tutor
+1 Muddle the Mixture
+1 Minamo, School at Water's Edge
+1 Timetwister
+1 Chrome Mox
+1 Mana Vault
+1 Sapphire Medallion
+1 Sensei's Divining Top
+1 Sol Ring
+1 The One Ring
+1 Thought Vessel
+1 Vedalken Orrery
+1 Baral, Chief of Compliance
+1 Hullbreaker Horror
+1 Laboratory Maniac
+1 Pollywog Prodigy
+1 Mana Drain
+1 Fierce Guardianship
+1 Dramatic Reversal
+1 Arcane Denial
+1 An Offer You Can't Refuse
+1 Urza's Saga
+1 Strip Mine
+1 Seat of the Synod
+1 Tolarian Academy
+1 Paradise Mantle
+1 Fabricate
+1 Grim Monolith
+1 Unwinding Clock
+1 Brainstorm
+1 Pili-Pala
+1 Marvin, Murderous Mimic
+1 Winter Orb
+1 Mox Amber
+1 Forensic Gadgeteer
+1 Thespian's Stage
+1 Dark Depths
+14 Island
+1 Mox Opal
+1 Paradigm Shift
+1 Time Spiral
+1 Wan Shi Tong, Librarian
+1 Displacer Kitten
+1 Howling Mine
+1 Twenty-Toed Toad
+1 Faerie Mastermind

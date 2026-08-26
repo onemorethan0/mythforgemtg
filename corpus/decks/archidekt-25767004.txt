@@ -1,0 +1,83 @@
+# Archidekt — Idk ähhhhhhh REVIVE!
+# source: archidekt:25767004
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Imotekh the Stormlord
+
+Deck:
+1 Bone Splinters
+1 Chromatic Star
+1 Dockside Chef
+1 Fountainport Bell
+1 Fountain of Renewal
+1 Rattleblaze Scarecrow
+1 Wingrattle Scarecrow
+1 Cauldron of Souls
+1 Lesser Masticore
+1 Lingering Tormentor
+1 Persistent Constrictor
+1 Puppeteer Clique
+1 Putrid Goblin
+1 Argivian Avenger
+1 Barkform Harvester
+1 Bitterthorn, Nissa's Animus
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Egon, God of Death // Throne of Death
+1 Tinybones, the Pickpocket
+1 The Soul Stone
+1 Scrap Trawler
+1 Sol Ring
+1 Myr Retriever
+1 Ashnod's Altar
+1 Wurmcoil Engine
+1 Phyrexian Altar
+1 Tortured Existence
+1 Nim Deathmantle
+1 Sensei's Divining Top
+1 Cloud Key
+1 Mystic Forge
+1 Junk Diver
+1 Krark-Clan Ironworks
+1 Mycosynth Golem
+1 Abyssal Harvester
+1 Arcane Signet
+1 Cryptek
+1 Manakin
+1 Mind Stone
+1 Anrakyr the Traveller
+1 Chronomancer
+1 Urza's Saga
+1 Technomancer
+1 Szarekh, the Silent King
+1 Triarch Praetorian
+1 Necron Deathmark
+1 Flayed One
+1 Illuminor Szeras
+1 Everflowing Chalice
+1 Walking Ballista
+1 Thought Vessel
+1 Trailblazer's Boots
+1 Valgavoth's Lair
+1 Corrupted Conviction
+1 Aphotic Wisps
+1 Dark Ritual
+1 Gravestorm
+1 Village Rites
+1 Echoes of Eternity
+1 Skull Storm
+1 Blighted Fen
+1 Zero Point Ballad
+1 Access Tunnel
+1 Their Name Is Death
+1 Final Act
+1 Orcish Bowmasters
+1 Mikaeus, the Unhallowed
+1 Abundant Countryside
+1 Abstergo Entertainment
+1 Cabal Coffers
+1 Bojuka Bog
+1 Barren Moor
+26 Swamp
+1 Crypt of Agadeem

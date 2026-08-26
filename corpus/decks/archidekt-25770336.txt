@@ -1,0 +1,98 @@
+# Archidekt — Rocco, Street Chef - Combo / Exile (self)
+# source: archidekt:25770336
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Rocco, Street Chef
+
+Deck:
+1 Ancient Tomb
+1 Arid Mesa
+1 Avatar's Wrath
+1 Basking Broodscale
+1 Baylen, the Haymaker
+1 Bountiful Promenade
+1 Birds of Paradise
+1 The Cabbage Merchant
+1 Uba Mask
+1 Urabrask, Heretic Praetor
+1 Windswept Heath
+1 Yotian Dissident
+1 The War Doctor
+1 Temple Garden
+1 Wooded Foothills
+1 Blasphemous Act
+1 Cinder Glade
+1 Clifftop Retreat
+1 Doubling Season
+1 Cultivate
+1 Damning Verdict
+1 Escape to the Wilds
+1 Delayed Blast Fireball
+1 Beast Within
+1 Evolution Witness
+1 Exotic Orchard
+4 Forest
+1 Herd Baloth
+1 Generous Gift
+1 Guff Rewrites History
+1 Heroic Intervention
+1 Hardened Scales
+1 Annie Joins Up
+1 Jaheira, Friend of the Forest
+1 Jeska's Will
+1 Incubation Druid
+1 Inspiring Statuary
+1 Jetmir's Garden
+1 Jungle Shrine
+1 Arcane Signet
+1 Battlefield Forge
+1 Canopy Vista
+1 Rootbound Crag
+1 Samwise Gamgee
+1 Scurry Oak
+1 Rosie Cotton of South Lane
+1 Sacred Foundry
+1 Shalai and Hallar
+1 Share the Spoils
+1 Soul Partition
+1 Sol Ring
+1 Spectator Seating
+1 Kami of Celebration
+7 Mountain
+1 Night of the Sweets' Revenge
+1 Nuka-Cola Vending Machine
+2 Plains
+1 Quintorius Kand
+1 Ragost, Deft Gastronaut
+1 Pia Nalaar, Consul of Revival
+1 Reckless Fireweaver
+1 Nature's Lore
+1 Path to Exile
+1 Passionate Archaeologist
+1 Mosswort Bridge
+1 Overgrown Farmland
+1 Rockfall Vale
+1 Academy Manufactor
+1 Stomping Ground
+1 Aerial Extortionist
+1 Dusk Legion Duelist
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Faldorn, Dread Wolf Herald
+1 Conclave Mentor
+1 Gilded Goose
+1 Flaming Tyrannosaurus
+1 Hedron Detonator
+1 Laelia, the Blade Reforged
+1 Party Thrasher
+1 Peregrin Took
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Charred Foyer // Warped Space
+1 Idol of Oblivion
+1 Swiftfoot Boots
+1 Command Tower
+1 Spire Garden
+1 Smothering Tithe
+1 Sunpetal Grove

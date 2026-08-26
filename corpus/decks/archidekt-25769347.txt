@@ -1,0 +1,96 @@
+# Archidekt — Crystal Eyes
+# source: archidekt:25769347
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Crystal, Inhuman Princess
+
+Deck:
+1 Wild Growth
+1 Exploration
+1 Windswept Heath
+1 Tinder Wall
+1 Wild Cantor
+1 Strike It Rich
+1 Birds of Paradise
+1 Delighted Halfling
+1 Orcish Lumberjack
+1 Llanowar Elves
+1 Noble Hierarch
+1 Simian Spirit Guide
+1 Utopia Sprawl
+1 Stomping Ground
+1 Taiga
+1 Savannah
+1 Breeding Pool
+1 Tropical Island
+1 Temple Garden
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Arid Mesa
+1 Scalding Tarn
+1 Flooded Strand
+1 Mountain
+10 Forest
+1 Island
+1 Plains
+1 Command Tower
+1 Prismatic Vista
+1 Forbidden Orchard
+1 Gemstone Mine
+1 Mana Confluence
+1 City of Brass
+1 Bant Charm
+1 Crystallization
+1 Endless Detour
+1 Treva's Charm
+1 Finest Hour
+1 Brokers Charm
+1 Supply // Demand
+1 Jeskai Ascendancy
+1 Riverwheel Sweep
+1 Whirlwind of Thought
+1 Boseiju, Who Endures
+1 Fierce Guardianship
+1 Deflecting Swat
+1 Keen Sense
+1 Curiosity
+1 Rhystic Study
+1 Ophidian Eye
+1 Snake Umbra
+1 An Offer You Can't Refuse
+1 Manamorphose
+1 Lotus Petal
+1 Elvish Spirit Guide
+1 Noxious Revival
+1 Tandem Lookout
+1 Vivi Ornitier
+1 Veil of Summer
+1 Swords to Plowshares
+1 Sevinne's Reclamation
+1 Jeska's Will
+1 Smothering Tithe
+1 Redirect Lightning
+1 Annie Joins Up
+1 Bloom Tender
+1 The Cabbage Merchant
+1 Valley Floodcaller
+1 Dovin's Veto
+1 Faerie Mastermind
+1 Boros Charm
+1 Faeburrow Elder
+1 Path to Exile
+1 Wargate
+1 Pure // Simple
+1 Artist's Talent
+1 Displacer Kitten
+1 Death to Our Enemies
+1 Bria, Riptide Rogue
+1 Monastery Mentor
+1 Vivi's Persistence
+1 Elemental Teachings
+1 Planar Engineering
+1 Thor, God of Thunder
+1 Tempt with Discovery

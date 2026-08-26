@@ -1,0 +1,91 @@
+# Archidekt — I am Da One
+# source: archidekt:25765235
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 The Ancient One
+
+Deck:
+1 Ashiok, Sculptor of Fears
+1 Extract from Darkness
+1 Aven Heartstabber
+1 Psychic Strike
+1 Paranoid Delusions
+1 Glimpse the Unthinkable
+1 Grasping Tentacles
+1 Singularity Rupture
+1 Siren of the Silent Song
+1 Bruvac the Grandiloquent
+1 The Cyber-Controller
+1 Angel of Suffering
+1 Cruel Somnophage // Can't Wake Up
+1 The Master of Lake-town
+1 Thought Scour
+1 Unseal the Necropolis
+1 Hedron Crab
+1 Broken Ambitions
+1 Drowner Initiate
+1 Krydle of Baldur's Gate
+1 Dreamborn Muse
+1 Riddlekeeper
+1 Thought Collapse
+1 Inspiration from Beyond
+1 Cut Your Losses
+1 Merfolk Windrobber
+1 Fractured Sanity
+1 Fraying Sanity
+1 Nemesis of Reason
+1 Jace, Wielder of Mysteries
+1 Tidal Control
+1 Maddening Cacophony
+1 Kitsune's Technique
+1 Memory Erosion
+1 Psychic Corrosion
+1 Riverchurn Monument
+1 Ruin Crab
+1 The Mindskinner
+1 Zellix, Sanity Flayer
+1 Shadow Kin
+1 The Enigma Jewel // Locus of Enlightenment
+1 Training Grounds
+1 Startled Awake // Persistent Nightmare
+1 Grim Hireling
+1 Crypt of Agadeem
+1 Sol Ring
+1 Darkwater Catacombs
+1 Mindcrank
+1 Temple of the False God
+1 Hidden Lair
+1 Solemn Simulacrum
+1 Midnight Clock
+1 Consuming Aberration
+1 Sheoldred, the Apocalypse
+1 Dimir Aqueduct
+1 Dark Ritual
+1 Ornithopter of Paradise
+1 Arcane Denial
+1 Watery Grave
+1 The Water Crystal
+1 Bojuka Bog
+1 Rogue's Passage
+1 Talisman of Dominance
+1 Arcane Signet
+1 Tainted Isle
+1 Shipwreck Marsh
+1 Choked Estuary
+1 Underground River
+1 Sunken Ruins
+1 Sunken Hollow
+1 Drowned Catacomb
+1 Command Tower
+1 Myriad Landscape
+18 Island
+1 Swamp
+1 Thassa's Oracle
+1 Doomsday
+1 Grave Researcher // Reanimate
+1 Reanimate
+1 Arcane Heist
+1 Whispering Madness
+1 Fandaniel, Telophoroi Ascian

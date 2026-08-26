@@ -1,0 +1,83 @@
+# Archidekt — Greven, Predator (Complimentary) Captain
+# source: archidekt:25771733
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Greven, Predator Captain
+
+Deck:
+1 Zulaport Cutthroat
+1 Phyrexian Lens
+1 Furnace Reins
+1 Rite of the Raging Storm
+1 Snuff Out
+1 Obsidian Battle-Axe
+1 Sword of War and Peace
+1 Psychotic Fury
+1 Loxodon Warhammer
+1 Hedron Archive
+1 Moltensteel Dragon
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Solemn Simulacrum
+1 Soul Conduit
+1 Captivating Crew
+1 Immolating Souleater
+1 Phyrexian Processor
+1 Charcoal Diamond
+1 Fists of Flame
+1 Chain Reaction
+1 Anticausal Vestige
+1 Act of Aggression
+1 Breath of Darigaaz
+1 Tentative Connection
+1 Vorrac Battlehorns
+1 Temur Battle Rage
+1 Bedevil
+1 Mask of Memory
+1 Labyrinth Raptor
+1 Fire Covenant
+1 Vexing Bauble
+1 Unbreakable Bond
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Tenza, Godo's Maul
+1 Poet's Quill
+1 Reckless Charge
+1 Faithless Looting
+1 Rakdos Charm
+1 Cunning Rhetoric
+1 Systems Override
+1 Mob Rule
+1 Act of Treason
+1 Rakdos Signet
+1 Inner Fire
+1 Seize the Day
+1 Daring Fiendbonder
+1 Dismember
+1 Victimize
+1 Dawn of the Dead
+1 Noxious Gearhulk
+1 Ring of Valkas
+1 Rabbit Battery
+1 Sangromancer
+1 Dark Ritual
+1 Eternal Thirst
+1 Wall of Blood
+1 Treasonous Ogre
+1 Undercity Scrounger
+1 Fatal Frenzy
+1 Kari Zev's Expertise
+1 Reliquary Tower
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Bojuka Bog
+1 Spinerock Knoll
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Smoldering Marsh
+1 Command Tower
+1 Shadowblood Ridge
+1 Temple of Malice
+1 Rakdos Carnarium
+13 Swamp
+14 Mountain
+1 Fire Diamond

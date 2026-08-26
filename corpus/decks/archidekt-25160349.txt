@@ -1,0 +1,108 @@
+# Archidekt — Rude Buster
+# source: archidekt:25160349
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Tsagan, Raider Warlord
+
+Deck:
+1 Sundering Eruption // Volcanic Fissure
+1 Ainok Strike Leader
+1 Bilbo, Unexpected Adventurer
+1 Odric, Lunarch Marshal
+1 Thalia, Heretic Cathar
+1 Muraganda Raceway
+1 Amonkhet Raceway
+1 Far Fortune, End Boss
+1 Gastal Thrillseeker
+1 Thalia, Guardian of Thraben
+1 Momentum Breaker
+1 Burnout Bashtronaut
+1 The Wandering Rescuer
+1 Dusk // Dawn
+1 Queen Marchesa
+1 Endrider Catalyzer
+1 Tymna the Weaver
+1 Ankle Shanker
+1 Thraben Charm
+1 Firemane Commando
+1 Dragonskull Summit
+1 Blackcleave Cliffs
+1 Shattered Landscape
+1 Gas Guzzler
+1 Defacing Duskmage // Vandal's Edit
+1 All-Out Assault
+1 Avenger of the Fallen
+1 Boros Charm
+1 The Speed Demon
+1 Split Up
+1 Elegy Acolyte
+1 Gix, Yawgmoth Praetor
+1 Command Tower
+1 Shattered Sanctum
+1 Nomad Outpost
+1 Sundown Pass
+1 Battlefield Forge
+1 Caves of Koilos
+1 Sulfurous Springs
+1 Path of Ancestry
+1 Rugged Prairie
+1 Fetid Heath
+1 Graven Cairns
+1 Concealed Courtyard
+1 Inspiring Vantage
+1 Sevinne's Reclamation
+1 Despark
+1 Anguished Unmaking
+1 Rakdos Charm
+1 Inevitable Defeat
+1 Professional Face-Breaker
+1 Aurelia, the Law Above
+1 Creeping Bloodsucker
+1 Odric, Master Tactician
+1 Great Train Heist
+1 White Plume Adventurer
+1 Unstoppable Slasher
+1 Kolaghan's Command
+1 Enduring Courage
+1 Orzhov Basilica
+1 Rakdos Carnarium
+1 Forlorn Flats
+1 Jagged Barrens
+1 Abraded Bluffs
+1 Legion Leadership // Legion Stronghold
+1 Savai Triome
+1 Vault of Champions
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+1 Abigale, Eloquent First-Year
+1 Crackling Doom
+1 Scheming Silvertongue // Sign in Blood
+1 Kinscaer Sentry
+1 Brutal Hordechief
+1 Shadowblood Ridge
+1 Desolate Mire
+1 Sunscorched Divide
+1 Stormfist Crusader
+1 Selfless Spirit
+1 Alesha, Who Laughs at Fate
+1 Kytheon, Hero of Akros // Gideon, Battle-Forged
+1 Legion Loyalist
+1 Get Lost
+1 Massacre Girl, Known Killer
+1 Parting Gust
+1 The Arkenstone // Seek the Heart
+1 Hazoret, Godseeker
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Detective's Phoenix
+1 Galadriel's Dismissal
+1 Mountain
+1 Swamp
+1 Reconnaissance
+1 Boros Garrison
+1 Breena, the Demagogue
+1 Austere Command
+1 Plains
+1 Ash Barrens

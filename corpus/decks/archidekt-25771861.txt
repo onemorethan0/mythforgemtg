@@ -1,0 +1,108 @@
+# Archidekt — Untap upkeep take 3
+# source: archidekt:25771861
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Ghyrson Starn, Kelermorph
+
+Deck:
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Artist's Talent
+1 Blazing Volley
+1 Bloodstained Mire
+1 Brainstorm
+1 Chandra, Dressed to Kill
+1 Command Tower
+1 Coruscation Mage
+1 Counterspell
+1 Curiosity
+1 Deflecting Swat
+1 Delay
+1 Electrickery
+1 Electrolyze
+1 Electrostatic Field
+1 End the Festivities
+1 Eroded Canyon
+1 Essence Flux
+1 Expressive Iteration
+1 Fierce Guardianship
+1 Firebrand Archer
+1 Flashback
+1 Flooded Strand
+1 Force of Negation
+1 Force of Will
+1 Gamble
+1 Gitaxian Probe
+1 Gut Shot
+1 Hexing Squelcher
+1 Hydroblast
+1 Immolation Shaman
+1 Into the Flood Maw
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Kessig Flamebreather
+1 Ledger Shredder
+1 Lindblum, Industrial Regency // Mage Siege
+1 Mana Drain
+1 Merchant Scroll
+1 Mistrise Village
+1 Mockingbird
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Multiversal Passage
+1 Mystic Remora
+1 Mystic Sanctuary
+1 Mystical Tutor
+1 Negate
+1 Niv-Mizzet, Parun
+1 Opt
+1 Overmaster
+1 Personal Tutor
+1 Polluted Delta
+1 Ponder
+1 Pongify
+1 Preordain
+1 Pyroblast
+1 Ral, Storm Conduit
+1 Razorkin Needlehead
+1 Red Elemental Blast
+1 Redirect Lightning
+1 Reflecting Pool
+1 Reliquary Tower
+1 Rhystic Study
+1 Riverglide Pathway // Lavaglide Pathway
+1 Riverpyre Verge
+1 Ruby Medallion
+1 Saheeli Rai
+1 Sapphire Medallion
+1 Scalding Viper // Steam Clean
+1 Scorched Geyser
+1 Simian Spirit Guide
+1 Sink into Stupor // Soporific Springs
+1 Sol Ring
+1 Spirebluff Canal
+1 Steam Vents
+1 Stock Up
+1 Stormcarved Coast
+1 Strix Serenade
+1 Sulfur Falls
+1 Suspend
+1 Swiftfoot Boots
+1 Tectonic Hazard
+1 The One Ring
+1 Thought Vessel
+1 Training Center
+1 Untimely Malfunction
+1 Urabrask // The Great Work
+1 Veyran, Voice of Duality
+1 Vivi Ornitier

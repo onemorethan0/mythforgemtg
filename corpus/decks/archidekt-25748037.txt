@@ -1,0 +1,107 @@
+# Archidekt — Tax evasion
+# source: archidekt:25748037
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Grenzo, Dungeon Warden
+
+Deck:
+1 Barkform Harvester
+1 Basal Sliver
+1 Basal Thrull
+1 Blood Vassal
+1 Bog Witch
+1 Bronze Walrus
+1 City of Traitors
+1 Crystal Grotto
+1 Grave Defiler
+1 Hedron Crawler
+1 Imperial Seal
+1 Lion's Eye Diamond
+1 Manakin
+1 Metalworker
+1 Mox Amber
+1 Nykthos, Shrine to Nyx
+1 Pinnacle Monk // Mystic Peak
+1 Pit Automaton
+1 Priest of Gix
+1 Priest of Urabrask
+1 Tomb Trawler
+1 Workhorse
+1 Zhalfirin Void
+1 Ancient Tomb
+1 Arid Mesa
+1 Ashnod's Altar
+1 Badlands
+1 Balthor the Defiled
+1 Blightstep Pathway // Searstep Pathway
+1 Blood Crypt
+1 Blood Pet
+1 Bloodstained Mire
+1 Body Snatcher
+1 Brass Herald
+1 Carrion Feeder
+1 Catalyst Elemental
+1 Chrome Mox
+1 Clone Shell
+1 Crypt Ghast
+1 Demonic Tutor
+1 Dragonskull Summit
+1 Faceless Butcher
+1 Fear of Missing Out
+1 Gamble
+1 Gemstone Caverns
+1 Generator Servant
+1 Goblin Cratermaker
+1 Goblin Engineer
+1 Goblin Matron
+1 Goblin Recruiter
+1 Goblin Ringleader
+1 Goblin Welder
+1 Graven Cairns
+1 Grinning Ignus
+1 Heartstone
+1 Imperial Recruiter
+1 Iron Myr
+1 Kiki-Jiki, Mirror Breaker
+1 Leaden Myr
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Luxury Suite
+1 Magus of the Moon
+1 Marsh Flats
+1 Millikin
+1 Moggcatcher
+1 Mountain
+1 Mox Diamond
+1 Myr Convert
+1 Ornithopter of Paradise
+1 Overeager Apprentice
+1 Palladium Myr
+1 Pawn of Ulamog
+1 Phyrexian Tower
+1 Skirk Prospector
+1 Pitiless Plunderer
+1 Sol Ring
+1 Soldevi Adnate
+1 Plague Myr
+1 Command Tower
+2 Swamp
+1 Polluted Delta
+1 The Grey Havens
+1 Prismatic Vista
+1 Treasonous Ogre
+1 Urborg, Tomb of Yawgmoth
+1 Professional Face-Breaker
+1 Urza's Saga
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Prowling Geistcatcher
+1 Viscera Seer
+1 Wooded Foothills
+1 Reckless Barbarian
+1 Anger
+1 Ruthless Technomancer
+1 Scalding Tarn
+1 Simian Spirit Guide
+1 Redirect Lightning

@@ -1,0 +1,90 @@
+# Archidekt — Villains
+# source: archidekt:25770315
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Abrade
+1 Arcane Signet
+1 Avengers: Under Siege
+1 Baron Strucker, HYDRA Overlord
+1 Big Score
+1 Common Crook
+1 Construct a Cosmic Cube
+1 Dark Withering
+1 Darkwater Catacombs
+1 Dimir Signet
+1 Dismal Backwater
+1 Dispelling Exhale
+1 Doctor Doom
+1 Elektra, Daughter of the Hand
+1 Evolving Wilds
+1 Fanatic of the Harrowing
+1 Feed the Swarm
+1 Fetid Pools
+1 Green Goblin, Revenant
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Infernal Grasp
+4 Island
+1 Jaws of Defeat
+1 Kaito, Bane of Nightmares
+1 Kang, Temporal Tyrant
+1 Kylox's Voltstrider
+1 Leader, Super-Genius
+1 Looter il-Kor
+1 Madame Hydra
+1 Molten Man, Inferno Incarnate
+1 Monastery Siege
+1 Moonstone, Harsh Mistress
+1 Morbius the Living Vampire
+1 Morlun, Devourer of Spiders
+6 Mountain
+1 Mystic Sanctuary
+1 Negate
+1 Norman Osborn // Green Goblin
+1 Ominous Asylum
+1 Prison Break
+1 Prowler, Clawed Thief
+1 Refute
+1 Return from Extinction
+1 Robot Domination
+1 Rogues' Gallery
+1 Sandman's Quicksand
+1 Scatter to the Winds
+1 Secluded Courtyard
+1 Seething Landscape
+1 Seismic Assault
+1 Shriek, Treblemaker
+1 Sky Diamond
+1 Sol Ring
+1 Spectacle Summit
+1 Spectral Adversary
+1 Spell Snare
+1 Spyglass Siren
+1 Steam Vents
+1 Stock Up
+1 Stormcarved Coast
+1 Supernatural Stamina
+11 Swamp
+1 Swarm, Being of Bees
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Temple of Deceit
+1 Temple of Epiphany
+1 The Masters of Evil
+1 Thunderbolts Conspiracy
+1 Tombstone, Career Criminal
+1 Treasure Cruise
+1 Venom, Evil Unleashed
+1 Villainous Hideout
+1 Villainous Wrath
+1 Visions of Villainy
+1 Vulture, Scheming Scavenger
+1 Welcome the Dead
+1 Wild Magic Surge
+1 Wonder
+1 Yellowjacket, Heartless Marauder

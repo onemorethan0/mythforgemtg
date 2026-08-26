@@ -1,0 +1,105 @@
+# Archidekt — Counter Intelligence
+# source: archidekt:25045296
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Kilo, Apogee Mind
+
+Deck:
+1 Expansion Algorithm
+1 Walking Ballista
+1 Living Brain, Mechanical Marvel
+1 Gleaming Bastion
+1 Rugged Prairie
+1 Angel of the Ruins
+1 Chaos Warp
+1 Cloud Key
+1 Terramorphic Expanse
+1 Depthshaker Titan
+1 Urza's Cave
+1 Patchwork Automaton
+1 Plaza of Heroes
+1 Consult the Star Charts
+1 Tezzeret, Cruel Captain
+1 Nanoform Sentinel
+1 Virulent Silencer
+1 Focus Fire
+1 Emry, Lurker of the Loch
+1 Kappa Cannoneer
+1 Alibou, Ancient Witness
+1 Resourceful Defense
+1 Battlefield Forge
+1 Chain Reaction
+1 Cyberdrive Awakener
+1 Chrome Host Seedshark
+1 Phyrexian Metamorph
+1 Organic Extinction
+1 Thought Monitor
+1 Tekuthal, Inquiry Dominus
+1 Sol Ring
+1 Command Tower
+2 Plains
+2 Mountain
+1 Astral Cornucopia
+1 Darksteel Reactor
+1 Everflowing Chalice
+1 Golem Foundry
+1 Lux Artillery
+1 Lux Cannon
+1 Pentad Prism
+1 Crystalline Crawler
+1 Enthusiastic Mechanaut
+1 Etherium Sculptor
+1 Jhoira, Weatherlight Captain
+1 Steel Overseer
+1 Swords to Plowshares
+1 Thirst for Knowledge
+1 Adarkar Wastes
+1 Ancient Den
+1 Buried Ruin
+1 Cascade Bluffs
+1 Clifftop Retreat
+1 Exotic Orchard
+1 Glacial Fortress
+1 Great Furnace
+1 Irrigated Farmland
+2 Island
+1 Karn's Bastion
+1 Mystic Monastery
+1 Razortide Bridge
+1 Rustvale Bridge
+1 Seat of the Synod
+1 Shivan Reef
+1 Silverbluff Bridge
+1 Skycloud Expanse
+1 Spire of Industry
+1 The Mycosynth Gardens
+1 Tezzeret's Gambit
+1 Wake the Past
+1 Arcane Signet
+1 Experimental Augury
+1 Hangarback Walker
+1 Thrummingbird
+1 Ripples of Potential
+1 Temple of Enlightenment
+1 Temple of Epiphany
+1 Dispatch
+1 Solar Array
+1 Swan Song
+1 Sulfur Falls
+1 Long-Range Sensor
+1 Glittering Massif
+1 Temple of Triumph
+1 Insight Engine
+1 Patrolling Peacemaker
+1 Surge Conductor
+1 Uthros Research Craft
+1 Radiant Summit
+1 Crystal Skull, Isu Spyglass
+1 Shimmer Myr
+1 Sculpting Steel
+1 Voltaic Servant
+1 Threefold Thunderhulk
+1 Inspirit, Flagship Vessel
+1 Uthros, Titanic Godcore

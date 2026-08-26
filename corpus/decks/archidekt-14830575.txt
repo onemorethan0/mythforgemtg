@@ -1,0 +1,105 @@
+# Archidekt — Bears With Swords
+# source: archidekt:14830575
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Sephiroth, Fallen Hero
+
+Deck:
+1 Firion, Wild Rose Warrior
+1 Hushbringer
+1 Drannith Magistrate
+1 Archon of Emeria
+1 Stoneforge Mystic
+1 Cloud, Midgar Mercenary
+1 Phelia, Exuberant Shepherd
+1 Puresteel Paladin
+1 Ethersworn Canonist
+1 Mother of Runes
+1 Thalia, Heretic Cathar
+1 Esper Sentinel
+1 Professional Face-Breaker
+1 Mask of Memory
+1 Imperial Recruiter
+1 Recruiter of the Guard
+1 Boromir, Warden of the Tower
+1 Magus of the Moon
+1 Aven Mindcensor
+1 Spirit of the Labyrinth
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Thalia, Guardian of Thraben
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Enlightened Tutor
+1 Claim Jumper
+1 Sand Scout
+1 Weathered Wayfarer
+1 Surveyor's Scope
+1 Dowsing Dagger // Lost Vale
+1 Planetary Annihilation
+1 Glimmer Lens
+1 Requisition Raid
+1 Swords to Plowshares
+1 Path to Exile
+1 Boros Charm
+1 Buster Sword
+1 Lightning, Army of One
+1 Masterwork of Ingenuity
+1 The Mycosynth Gardens
+1 Thraben Charm
+1 Sword of the Animist
+1 Winds of Abandon
+1 Grand Abolisher
+1 Sword of Sinew and Steel
+1 Sword of Hearth and Home
+1 Sword of Feast and Famine
+1 Adaptive Omnitool
+1 Sword of Forge and Frontier
+1 Hammer of Nazahn
+1 Command Tower
+1 Urza's Cave
+1 Sundering Eruption // Volcanic Fissure
+1 Arena of Glory
+1 Urza's Saga
+1 Shadowspear
+1 Strength-Testing Hammer
+1 War Room
+1 Lion Sash
+1 Battlefield Forge
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Legion Leadership // Legion Stronghold
+1 Sejiri Shelter // Sejiri Glacier
+1 Lotus Field
+1 Bonders' Enclave
+1 Scavenger Grounds
+1 Exotic Orchard
+1 Boros Garrison
+1 Clifftop Retreat
+1 Sacred Foundry
+1 Arid Archway
+1 Rugged Prairie
+1 Guildless Commons
+1 Eiganjo, Seat of the Empire
+1 Sunbaked Canyon
+1 Fabled Passage
+4 Plains
+1 Elegant Parlor
+1 Untimely Malfunction
+1 Detective's Phoenix
+1 Thespian's Stage
+1 Sheltered by Ghosts
+1 Abandoned Air Temple
+1 Ishgard, the Holy See // Faith & Grief
+1 Great Furnace
+1 Ancient Den
+2 Mountain
+1 Erode
+1 Selfless Spirit
+1 Taunt from the Rampart
+1 Disrupt Decorum
+1 Lorehold Charm
+1 Mizzium Mortars
+1 Guardian of Faith
+1 Turbulent Steppe
+1 Sol Ring
+1 Skateboard

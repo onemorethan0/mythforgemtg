@@ -1,0 +1,105 @@
+# Archidekt — Yshtola
+# source: archidekt:23342291
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Emeritus of Woe // Demonic Tutor
+1 Valeria Richards, Precocious
+1 Solve the Equation
+1 Alisaie Leveilleur
+1 Alphinaud Leveilleur
+1 Deluge Virtuoso
+1 Hermes, Overseer of Elpis
+1 High Fae Trickster
+1 Hraesvelgr of the First Brood
+1 Jin-Gitaxias // The Great Synthesis
+1 Kambal, Consul of Allocation
+1 Liesa, Shroud of Dusk
+1 Locke Cole
+1 Lyse Hext
+1 Papalymo Totolymo
+1 Sygg, River Cutthroat
+1 Thancred Waters
+1 Ulna Alley Shopkeep
+1 Vito, Thorn of the Dusk Rose
+1 Kaya, Ghost Assassin
+1 Dismember
+1 Overkill
+1 Quick Study
+1 Slaughter
+1 Snuff Out
+1 Swords to Plowshares
+1 Undermine
+1 Void Rend
+1 Cleansing Nova
+1 Decorum Dissertation
+1 Diabolic Tutor
+1 Final Judgment
+1 Fraying Omnipotence
+1 Idyllic Tutor
+1 Rush of Dread
+1 Toxic Deluge
+1 Vindicate
+1 Will of the Abzan
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Dimir Signet
+1 Norn's Annex
+1 Relic of Legends
+1 Sol Ring
+1 Sword of Wealth and Power
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Thought Vessel
+1 White Auracite
+1 Authority of the Consuls
+1 Curiosity
+1 Grasp of Fate
+1 Grievous Wound
+1 Helm of the Ghastlord
+1 Observed Stasis
+1 Ophidian Eye
+1 Phyresis
+1 Propaganda
+1 Smothering Tithe
+1 Web Up
+1 Arcane Sanctum
+1 Bojuka Bog
+1 Choked Estuary
+1 Command Tower
+1 Darkwater Catacombs
+1 Demolition Field
+1 Desolate Mire
+1 Drowned Catacomb
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fetid Heath
+1 Glacial Fortress
+1 Idyllic Beachfront
+1 Island
+1 Island
+1 Island
+1 Isolated Chapel
+1 Path of Ancestry
+1 Plains
+1 Plains
+2 Plains
+1 Port Town
+1 Prairie Stream
+1 Reliquary Tower
+1 Shineshadow Snarl
+1 Skycloud Expanse
+1 Sunken Hollow
+1 Sunken Ruins
+1 Sunlit Marsh
+1 Swamp
+3 Swamp
+1 Thriving Moor
+1 Underground River
+1 Deadly Rollick
+1 Appa, Steadfast Guardian

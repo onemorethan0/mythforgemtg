@@ -1,0 +1,81 @@
+# Archidekt — Jandor, Mounting Everything
+# source: archidekt:25770033
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Jandor, Fortuned Traveler
+
+Deck:
+1 Disciple of Freyalise // Garden of Freyalise
+1 Elder Gargaroth
+1 Jandor's Ring
+1 Miriam, Herd Whisperer
+1 Motivated Pony
+1 Nature's Lore
+1 Night of the Sweets' Revenge
+1 Ninja Pizza
+1 Nuka-Cola Vending Machine
+1 Peregrin Took
+1 Pest Infestation
+1 Guardian Sunmare
+1 Heroic Intervention
+1 Provisions Merchant
+1 Quartzwood Crasher
+1 Settle the Wreckage
+1 Spire Garden
+1 Three Visits
+1 Yavimaya, Cradle of Growth
+1 Teferi's Protection
+1 Trace of Abundance
+1 Troop of Ponies
+1 Wicked Wolf
+1 Windswept Heath
+1 Academy Manufactor
+1 Bag End Banquet
+1 Baylen, the Haymaker
+1 Bejeweled Warg
+1 Bilbo, Fellow Conspirator
+1 Blossoming Bogbeast
+1 Boros Charm
+1 Boseiju, Who Endures
+1 Campsite Cuisine
+1 Clever Concealment
+1 Conclave Evangelist
+1 Craterclaw Colossus
+1 Defend the Rider
+1 Deflecting Swat
+1 Annie Joins Up
+1 Jeska's Will
+1 Smothering Tithe
+1 Worldly Tutor
+1 Gilded Ghoda
+15 Forest
+1 The Notary Hobbits
+1 Summoning Station
+1 Krark-Clan Ironworks
+1 Bear Umbra
+1 Nature's Will
+1 Gleaming Splendor
+1 Aura Shards
+1 Beast Within
+1 Chaos Warp
+1 Doubling Season
+1 Enlightened Tutor
+1 Farseek
+1 Flawless Maneuver
+1 Jaheira, Friend of the Forest
+1 Jandor's Saddlebags
+1 Kona, Rescue Beastie
+5 Mountain
+1 Primal Vigor
+1 Sacred Foundry
+1 Stomping Ground
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Craterhoof Behemoth
+1 Aggravated Assault
+1 Arcane Signet
+1 Kolodin, Triumph Caster
+1 Sol Ring
+10 Plains

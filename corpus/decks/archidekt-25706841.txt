@@ -1,0 +1,96 @@
+# Archidekt — Junked Up Gluntch Deck
+# source: archidekt:25706841
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Gluntch, the Bestower
+
+Deck:
+1 Fangren Marauder
+1 Academy Manufactor
+1 Bloodthirsty Blade
+1 Astrid Peth
+1 Tireless Tracker
+1 Peregrin Took
+1 Bootleggers' Stash
+1 Bilbo's Gambit
+1 Discerning Financier
+1 Silverquill Lecturer
+1 Gala Greeters
+1 Fountainport
+1 Generous Patron
+1 Monologue Tax
+1 Heap Gate
+1 Tireless Provisioner
+1 Treasure Vault
+1 Banquet Guests
+1 Farmer Cotton
+1 Hobbit's Sting
+1 Killer Service
+1 Pawpatch Formation
+1 Lita, Little Orphan Amphibian
+8 Plains
+6 Forest
+1 Rosie Cotton of South Lane
+1 Abandoned Air Temple
+1 Samwise Gamgee
+1 Sam, Loyal Attendant
+1 The Battle of Bywater
+1 Tippy-Toe, Terrific Partner
+1 The Shire
+1 Basilisk Gate
+1 Baldur's Gate
+1 Thran Portal
+1 Gond Gate
+1 Selesnya Guildgate
+1 Citadel Gate
+1 Manor Gate
+1 Bygone Bishop
+1 Circuitous Route
+1 Conservatory
+1 Innocuous Researcher
+1 Dusk // Dawn
+1 Sarah Jane Smith
+1 Duelist's Heritage
+1 Wojek Investigator
+1 Nils, Discipline Enforcer
+1 Immortal Obligation
+1 Skullwinder
+1 Command Tower
+1 Orzhov Advokist
+1 Noble Heritage
+1 Loran of the Third Path
+1 Druid of Purification
+1 Joined Researchers // Secret Rendezvous
+1 Tangle
+1 Parting Gust
+1 Wear Down
+1 Starfall Invocation
+1 Belladonna Took
+1 Forgotten Ancient
+1 Yotian Dissident
+1 Second Harvest
+1 Inspiring Statuary
+1 Treebeard, Gracious Host
+1 Sarinth Steelseeker
+1 Haliya, Guided by Light
+1 Idol of Oblivion
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Razorverge Thicket
+1 Tree of Tales
+1 Sunpetal Grove
+1 Ancient Den
+1 Thornglint Bridge
+1 Canopy Vista
+1 Fortified Village
+1 Brushland
+1 Karn, Scion of Urza
+1 Digsite Engineer
+1 Guidelight Synergist
+1 Scavenger Grounds
+1 Emergence Zone
+1 Leonin Elder
+1 Teething Wurmlet
+1 Thopter Architect
+1 Lucy MacLean, Positively Armed

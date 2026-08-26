@@ -1,0 +1,84 @@
+# Archidekt — MTSDP (Maybe The Stupidest Deck Possible) Luck Bobble Baby
+# source: archidekt:25731494
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Saheeli, the Sun's Brilliance
+
+Deck:
+1 Luck Bobblehead
+1 Echo Storm
+1 Copy Artifact
+1 Court of Vantress
+1 Artificer Class
+1 Drafna, Founder of Lat-Nam
+1 Esoteric Duplicator
+1 Hulking Metamorph
+1 Kurkesh, Onakke Ancient
+1 Jin-Gitaxias, Progress Tyrant
+1 Mirage Mirror
+1 Mirrorworks
+1 Mechanized Production
+1 Mirage Mockery
+1 Mirrormade
+1 Mizzium Transreliquat
+1 Phyrexian Metamorph
+1 Prototype Portal
+1 Replication Specialist
+1 Vesuvan Duplimancy
+1 Saheeli, the Gifted
+1 Stolen Identity
+1 Season of Weaving
+1 Three Steps Ahead
+1 Schema Thief
+1 Sculpting Steel
+1 Tawnos, Urza's Apprentice
+1 The Mycosynth Gardens
+1 Worldwalker Helm
+1 Dyfed, the Guiding Hand
+1 Fabricate
+1 Goblin Engineer
+1 Inventors' Fair
+1 Moonsilver Key
+1 Reckless Handling
+1 Tezzeret the Seeker
+1 Renowned Weaponsmith
+1 Scour for Scrap
+1 Reshape
+1 Trophy Mage
+1 Mirrorform
+1 Abstruse Archaic
+1 Jhoira, Weatherlight Captain
+1 Barbarian Class
+1 Pixie Guide
+1 Wyll, Blade of Frontiers
+1 Izzet Boilerworks
+1 Command Tower
+1 Vexing Puzzlebox
+1 Academy Ruins
+1 Temple of Epiphany
+1 Archway of Innovation
+1 Sulfur Falls
+1 Shivan Reef
+21 Island
+1 Spire of Industry
+1 Cascade Bluffs
+1 Steam Vents
+1 Stormcarved Coast
+1 Silverbluff Bridge
+5 Mountain
+1 Idol of Oblivion
+1 Intelligence Bobblehead
+1 Unwinding Clock
+1 Riddlekeeper
+1 War Tax
+1 Energy Field
+1 Crawlspace
+1 Propaganda
+1 Dissipation Field
+1 Stroke of Genius
+1 Jaya's Immolating Inferno
+1 Banefire
+1 Drown in Dreams
+1 Mathemagics

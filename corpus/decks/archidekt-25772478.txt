@@ -1,0 +1,84 @@
+# Archidekt — Jerren, Turbo Mono Black
+# source: archidekt:25772478
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Jerren, Corrupted Bishop // Ormendahl, the Corrupter
+
+Deck:
+1 Sacrifice
+1 Agatha's Soul Cauldron
+1 Karn, the Great Creator
+1 Reanimate
+1 Hoarding Broodlord
+1 Saw in Half
+1 Tree of Perdition
+1 Necrotic Ooze
+1 Manifold Key
+1 Guardian Beast
+1 Skirge Familiar
+1 Asmodeus the Archfiend
+1 Razaketh, the Foulblooded
+1 Infernal Denizen
+1 Minion of Leshrac
+1 Hazel's Brewmaster
+1 Ulamog's Dreadsire
+1 Sadistic Hypnotist
+1 Doom Whisperer
+1 Skullclamp
+1 Heir of Falkenrath // Heir to the Night
+1 Diabolic Intent
+1 Animate Dead
+1 Soul Exchange
+1 Dance of the Dead
+1 Necromancy
+1 Buried Alive
+1 Final Parting
+1 Victimize
+1 Cabal Coffers
+1 Dark Ritual
+1 Culling the Weak
+1 Lake of the Dead
+1 Lotus Petal
+1 Ad Nauseam
+1 Necropotence
+1 Magus of the Coffers
+1 Urborg, Tomb of Yawgmoth
+1 Entomb
+1 Lion's Eye Diamond
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Imperial Seal
+1 Unspeakable Symbol
+1 Metallic Mimic
+1 Orcish Bowmasters
+1 Siegfried, Famed Swordsman
+1 Dreadhorde Invasion
+1 Jet Medallion
+1 Cabal Ritual
+1 Crypt of Agadeem
+1 Nykthos, Shrine to Nyx
+1 Crypt Rats
+1 Gravecrawler
+1 Warren Soultrader
+1 Snarling Gorehound
+1 Carrionette
+1 Blood Pet
+1 Scorn-Blade Berserker
+1 Easterling Vanguard
+1 Chrome Mox
+1 Mox Diamond
+1 Mesmeric Orb
+1 Dread Return
+1 Cynical Loner
+1 Blood Artist
+1 Emperor of Bones
+1 Butcher Ghoul
+25 Swamp
+1 Myr Retriever
+1 Deadly Rollick
+1 Dismember
+1 Peer into the Abyss
+1 Gemstone Caverns
+1 Morality Shift

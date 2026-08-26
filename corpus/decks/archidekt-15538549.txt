@@ -1,0 +1,102 @@
+# Archidekt — Noch ein Pfefferminzblättchen
+# source: archidekt:15538549
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Wilson, Refined Grizzly
+1 Noble Heritage
+
+Deck:
+1 Temple Garden
+1 Brotherhood Regalia
+1 Flaming Fist
+1 Duelist's Heritage
+1 Urdnan, Dromoka Warrior
+1 Bilbo's Gambit
+1 Sunpetal Grove
+1 Overgrown Farmland
+1 Command Tower
+1 Mother of Runes
+1 Avacyn's Pilgrim
+1 Giver of Runes
+1 Flawless Maneuver
+1 Brushland
+1 Hushwood Verge
+1 Utopia Sprawl
+1 Arashin Foremost
+1 Exotic Orchard
+1 Branchloft Pathway // Boulderloft Pathway
+1 Opal Palace
+1 Plaza of Heroes
+1 Land Tax
+1 Haywire Mite
+1 Bountiful Promenade
+1 Sol Ring
+1 Mosswort Bridge
+1 Savannah
+1 Command Beacon
+1 Tower of the Magistrate
+1 The One Ring
+1 Teferi's Protection
+1 Fanatic of Rhonas
+1 Meltstrider's Resolve
+1 Bear Umbra
+1 Terrasymbiosis
+1 Tamiyo's Safekeeping
+1 Blacksmith's Skill
+1 Obscuring Haze
+1 Tail Swipe
+1 Gemstone Caverns
+1 One with Nature
+1 Talon Gates of Madara
+1 Silverblade Paladin
+1 Yavimaya Hollow
+1 Delighted Halfling
+1 Homeward Path
+1 Path to Exile
+1 Reprieve
+1 Defend the Rider
+1 Keen Sense
+1 Sixth Sense
+1 Galadriel's Dismissal
+1 Snake Umbra
+1 Force of Vigor
+1 Tithe
+1 Boseiju, Who Endures
+1 Mutant's Prey
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Hunter's Insight
+1 Windswept Heath
+1 The Ozolith
+1 Orim's Chant
+1 Commander's Plate
+1 Infiltration Lens
+1 Level Up
+1 Kutzil, Malamet Exemplar
+1 Wooded Bastion
+1 Clever Concealment
+3 Forest
+1 Alpha Authority
+1 Swords to Plowshares
+1 Canopy Cover
+1 Court of Garenbrig
+4 Plains
+1 The Great Henge
+1 Innkeeper's Talent
+1 Chrome Mox
+1 Shadowspear
+1 Basilisk Collar
+1 Solitude
+1 Birds of Paradise
+1 Yavimaya, Cradle of Growth
+1 Trouble in Pairs
+1 Sheltered by Ghosts
+1 Mox Amber
+1 Prismatic Vista
+1 Rest in Peace
+1 Null Elemental Blast
+1 Avatar's Wrath
+1 Mikey & Leo, Chaos & Order
+1 Solidarity of Heroes
+1 Gleaming Splendor

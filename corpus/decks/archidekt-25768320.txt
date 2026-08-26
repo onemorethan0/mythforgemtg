@@ -1,0 +1,80 @@
+# Archidekt — Gev persist
+# source: archidekt:25768320
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Gev, Scaled Scorch
+
+Deck:
+1 Desperate Plea
+1 Redirect Lightning
+1 Bojuka Bog
+1 Umbral Collar Zealot
+1 Zulaport Cutthroat
+1 Lesser Masticore
+1 Viscera Seer
+1 Spear Spewer
+1 Coruscation Mage
+1 Dross Hopper
+1 Stormfist Crusader
+1 Marionette Apprentice
+1 Hissing Iguanar
+1 Putrid Goblin
+1 Wingrattle Scarecrow
+1 Hagra Constrictor
+1 Woe Strider
+1 Judith, the Scourge Diva
+1 Puppeteer Clique
+1 Molten Gatekeeper
+1 Witty Roastmaster
+1 Yahenni, Undying Partisan
+1 Murderous Redcap
+1 Spawn of Mayhem
+1 Phyrexian Plaguelord
+1 Rattleblaze Scarecrow
+1 Falkenrath Noble
+1 Lingering Tormentor
+1 Mezzio Mugger
+1 Vindictive Vampire
+1 Fiery Confluence
+1 First Day of Class
+1 Final Parting
+1 Dreadbore
+1 Vicious Rumors
+1 Feed the Swarm
+1 Flame Rift
+1 Terminate
+1 Illicit Shipment
+1 Faithless Looting
+1 Chain Reaction
+1 Thrill of Possibility
+1 Village Rites
+1 Razaketh's Rite
+1 Abrade
+1 Wayfarer's Bauble
+1 Corrupted Conviction
+1 Chaos Warp
+1 Kolaghan's Command
+1 Big Score
+1 Goblin Bombardment
+1 Impact Tremors
+1 Bastion of Remembrance
+1 Warstorm Surge
+1 Sol Ring
+1 Everflowing Chalice
+1 Mind Stone
+1 Fellwar Stone
+1 Arcane Signet
+1 Smoldering Marsh
+1 Tainted Peak
+1 Foreboding Ruins
+1 Command Tower
+1 Exotic Orchard
+16 Mountain
+1 Not Dead After All
+15 Swamp
+1 Undying Malice
+1 Supernatural Stamina
+1 Fake Your Own Death
+1 Grab the Prize

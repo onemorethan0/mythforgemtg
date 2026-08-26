@@ -1,0 +1,109 @@
+# Archidekt — Daemon Horde
+# source: archidekt:24662389
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Be'lakor, the Dark Master
+
+Deck:
+1 Whip of Erebos
+1 Urza's Incubator
+1 City on Fire
+1 Plague Drone
+1 Rune-Scarred Demon
+1 Ob Nixilis, Unshackled
+1 Burning-Rune Demon
+1 Orcus, Prince of Undeath
+1 Dread Cacodemon
+1 Lord Xander, the Collector
+1 Night's Whisper
+1 Horizon of Progress
+1 Fiery Emancipation
+1 Keen Duelist
+1 Kindred Dominance
+1 Cascade Bluffs
+1 Fabled Passage
+1 Bloodstained Mire
+1 Firemind Vessel
+1 Arcane Signet
+1 Archfiend of Depravity
+1 Archfiend of Despair
+1 Basilisk Collar
+1 Black Market Connections
+1 Bloodgift Demon
+1 Bloodletter of Aclazotz
+1 Bloodthirster
+1 Bothersome Quasit
+1 Chandra's Ignition
+1 Charcoal Diamond
+1 Chronicle of Victory
+1 Coldsteel Heart
+1 Defiling Daemogoth
+1 Demon of Wailing Agonies
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Fire Diamond
+1 Gilded Lotus
+1 Harvester of Souls
+1 Herald of Slaanesh
+1 Improvisation Capstone
+1 Lord of Change
+1 Phyrexian Arena
+1 Prince of Thralls
+1 Rakdos, Patron of Chaos
+1 Rakdos, the Showstopper
+1 Reaper from the Abyss
+1 Wooded Foothills
+1 Marsh Flats
+1 Shadowgrange Archfiend
+1 Shadowspear
+1 Shelob, Dread Weaver
+1 Sky Diamond
+1 Sol Ring
+1 Sol'kanar the Swamp King
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 The Balrog of Moria
+1 The Eternity Elevator
+1 The Soul Stone
+1 Valgavoth, Terror Eater
+1 Vanquisher's Banner
+1 Varragoth, Bloodsky Sire
+1 Vilis, Broker of Blood
+1 Worn Powerstone
+1 Command Tower
+1 Starting Town
+1 Polluted Delta
+1 Verdant Catacombs
+1 Blood Crypt
+1 Cavern of Souls
+1 Watery Grave
+1 Volcanic Island
+1 Misty Rainforest
+1 Urborg, Tomb of Yawgmoth
+1 Underground Sea
+1 Sink into Stupor // Soporific Springs
+1 Scalding Tarn
+1 Flooded Strand
+1 Arid Mesa
+1 Steam Vents
+1 Luxury Suite
+1 Training Center
+1 Morphic Pool
+1 Badlands
+1 Fell the Profane // Fell Mire
+1 Prismatic Vista
+1 Xander's Lounge
+1 Graven Cairns
+1 Sunken Ruins
+1 Blazemire Verge
+1 Riverpyre Verge
+1 Island
+1 Swamp
+1 Gloomlake Verge
+1 Chromatic Orrery
+1 Mountain
+1 Thran Dynamo
+1 Palladium Myr
+1 Chromatic Lantern

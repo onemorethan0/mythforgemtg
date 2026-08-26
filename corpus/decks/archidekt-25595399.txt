@@ -1,0 +1,74 @@
+# Archidekt — Landfall Purity
+# source: archidekt:25595399
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of Rage
+
+Deck:
+1 Cultivate
+1 Nature's Lore
+1 Farseek
+18 Forest
+1 Arch of Orazca
+1 Bonders' Enclave
+1 Fountainport
+1 Horizon of Progress
+1 Mariposa Military Base
+1 War Room
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Myriad Landscape
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Fabled Passage
+1 Scalding Tarn
+1 Boseiju, Who Endures
+1 Verdant Catacombs
+1 Kessig Wolf Run
+1 Field of the Dead
+1 Talon Gates of Madara
+1 Plaza of Heroes
+1 Thespian's Stage
+1 Riveteers Overlook
+1 Escape Tunnel
+1 Oran-Rief, the Vastwood
+1 Cabaretti Courtyard
+1 Maestros Theater
+1 Dark Depths
+1 Vibrant Cityscape
+1 Blast Zone
+1 Ba Sing Se
+1 Inkmoth Nexus
+1 Lair of the Hydra
+1 Diamond City
+1 Skarrg, the Rage Pits
+1 Wayfarer's Bauble
+1 Spawning Bed
+1 Three Visits
+1 Entish Restoration
+1 Skyshroud Claim
+1 Burgeoning
+1 Case of the Locked Hothouse
+1 Druid Class
+1 Traverse the Outlands
+1 Majestic Genesis
+1 Broken Bond
+1 Reshape the Earth
+1 Planar Engineering
+1 Conduit of Worlds
+1 Crucible of Worlds
+1 Sapling Nursery
+1 Seer's Sundial
+1 Chocobo Racetrack
+1 Eusocial Engineering
+1 Weather Maker
+1 Claim the Kingdom
+1 Zendikar's Roil
+1 Earthbender Ascension
+18 Mountain
+1 Dancing from Dark to Dawn
+1 Valakut Exploration
+1 Storm Cauldron

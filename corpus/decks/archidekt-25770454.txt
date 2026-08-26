@@ -1,0 +1,105 @@
+# Archidekt — Nine-Fingers Keene - Control / Lands Matter (Gates)
+# source: archidekt:25770454
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Nine-Fingers Keene
+
+Deck:
+1 Archdruid's Charm
+1 Assassin's Trophy
+1 Basilisk Gate
+1 Bonny Pall, Clearcutter
+1 Circuitous Route
+1 Disorienting Choice
+1 Dryad of the Ilysian Grove
+4 Forest
+1 Gateway Plaza
+1 Island
+1 Joint Exploration
+1 Negate
+1 Plaza of Harmony
+1 Sage of the Maze
+1 Spelunking
+1 Swamp
+1 The Black Gate
+1 Tireless Provisioner
+1 Tolaria West
+1 Urza's Cave
+1 Villainous Wealth
+1 Wrenn and Seven
+1 Urban Evolution
+1 Vesuva
+1 Aesi, Tyrant of Gyre Strait
+1 Archelos, Lagoon Mystic
+1 Azusa, Lost but Seeking
+1 Gate Colossus
+1 Gateway Sneak
+1 Omo, Queen of Vesuva
+1 Oracle of Mul Daya
+1 Rampaging Baloths
+1 Seedborn Muse
+1 Scute Swarm
+1 Tiller Engine
+1 Tatyova, Benthic Druid
+1 Ulvenwald Hydra
+1 Casualties of War
+1 Broken Bond
+1 Culling Ritual
+1 Explore
+1 In Garruk's Wake
+1 Explore the Underdark
+1 Nylea's Intervention
+1 Open the Way
+1 Reshape the Earth
+1 Scapeshift
+1 Pir's Whim
+1 Sylvan Scrying
+1 Splendid Reclamation
+1 Tempt with Discovery
+1 Titania's Command
+1 Toxic Deluge
+1 Beast Within
+1 Counterspell
+1 Crop Rotation
+1 Cyclonic Rift
+1 Growth Spiral
+1 Eureka Moment
+1 Sultai Charm
+1 Planar Genesis
+1 Burgeoning
+1 Exploration
+1 Guild Summit
+1 Amulet of Vigor
+1 Arcane Signet
+1 Blackblade Reforged
+1 Conduit of Worlds
+1 Crucible of Worlds
+1 Expedition Map
+1 Navigation Orb
+1 Sol Ring
+1 Ancient Tomb
+1 Baldur's Gate
+1 Opulent Palace
+1 Black Dragon Gate
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 Command Tower
+1 Dimir Guildgate
+1 Exotic Orchard
+1 Field of the Dead
+1 Golgari Guildgate
+1 Heap Gate
+1 Gond Gate
+1 Manor Gate
+1 Maze's End
+1 Otawara, Soaring City
+1 Planar Nexus
+1 Rogue's Passage
+1 Sea Gate
+1 Simic Guildgate
+1 Talon Gates of Madara
+1 Thespian's Stage
+1 Thran Portal
+1 Zagoth Triome

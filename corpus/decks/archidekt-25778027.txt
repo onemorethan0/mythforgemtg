@@ -1,0 +1,103 @@
+# Archidekt — ALICE THE DINO
+# source: archidekt:25778027
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 Jungle Shrine
+1 Command Tower
+1 Jetmir's Garden
+1 Rootbound Crag
+1 Stomping Ground
+1 Temple Garden
+1 Sacred Foundry
+1 Sunpetal Grove
+1 Clifftop Retreat
+1 Unclaimed Territory
+1 Path of Ancestry
+1 Cavern of Souls
+1 City of Brass
+1 Mana Confluence
+1 Exotic Orchard
+1 Windswept Heath
+1 Wooded Foothills
+1 Arid Mesa
+1 Bountiful Promenade
+1 Spire Garden
+1 Brushland
+1 Spectator Seating
+1 Rogue's Passage
+1 Yavimaya, Cradle of Growth
+1 Karplusan Forest
+1 Boseiju, Who Endures
+1 Battlefield Forge
+1 Misty Rainforest
+1 Marsh Flats
+1 Verdant Catacombs
+1 Flooded Strand
+1 Bloodstained Mire
+1 Scalding Tarn
+1 Prismatic Vista
+1 Sol Ring
+1 Arcane Signet
+1 The Great Henge
+1 Roaming Throne
+1 Lightning Greaves
+1 Urza's Incubator
+1 Swiftfoot Boots
+1 Sylvan Library
+1 Mirari's Wake
+1 Garruk's Uprising
+1 Rhythm of the Wild
+1 Deflecting Swat
+1 Beast Within
+1 Heroic Intervention
+1 Swords to Plowshares
+1 Path to Exile
+1 Akroma's Will
+1 Boros Charm
+1 Farseek
+1 Nature's Lore
+1 Three Visits
+1 Cultivate
+1 Rampant Growth
+1 Kodama's Reach
+1 Skyshroud Claim
+1 Return of the Wildspeaker
+1 Flawless Maneuver
+1 Rishkar's Expertise
+1 Thunderherd Migration
+1 Savage Order
+1 Zacama, Primal Calamity
+1 Apex Altisaur
+1 Ghalta, Stampede Tyrant
+1 Etali, Primal Storm
+1 Ghalta, Primal Hunger
+1 Regisaur Alpha
+1 Quartzwood Crasher
+1 Temple Altisaur
+1 Topiary Stomper
+1 Ghalta and Mavren
+1 Earthshaker Dreadmaw
+1 Hulking Raptor
+1 Llanowar Elves
+1 Mana Vault
+1 Birds of Paradise
+1 Delighted Halfling
+1 Bloom Tender
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Wakening Sun's Avatar
+1 Wayward Swordtooth
+1 Pantlaza, Sun-Favored
+1 Kinjalli's Sunwing
+1 Curious Altisaur
+1 Regal Behemoth
+1 Hunting Velociraptor
+1 Ripjaw Raptor
+1 Polyraptor
+1 Runic Armasaur
+1 Vaultborn Tyrant
+1 Bonehoard Dracosaur

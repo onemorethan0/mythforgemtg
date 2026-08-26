@@ -1,0 +1,16 @@
+# Archidekt — No Board Presence
+# source: archidekt:25711352
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Falthis, Shadowcat Familiar
+
+Deck:
+1 Tormod's Crypt
+93 Swamp
+1 Culling the Weak
+1 Sinkhole
+1 Demonic Consultation
+1 One with Nothing

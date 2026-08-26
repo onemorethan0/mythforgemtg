@@ -1,0 +1,93 @@
+# Archidekt — I drink your milkshake
+# source: archidekt:11014875
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Swarmyard
+1 Eviscerator's Insight
+1 Arasta of the Endless Web
+1 Victimize
+7 Swamp
+1 Jungle Hollow
+1 Cultivate
+1 Geier Reach Sanitarium
+1 Spire of Industry
+1 Wastewood Verge
+1 Riveteers Overlook
+1 Evolving Wilds
+1 Overgrown Tomb
+1 Terramorphic Expanse
+1 Undergrowth Stadium
+1 Foundation Breaker
+1 Roar of Challenge
+1 Underground Mortuary
+1 Harvester of Souls
+1 Keen Duelist
+1 Solemn Simulacrum
+1 Myriad Landscape
+1 Exotic Orchard
+1 Heritage Reclamation
+1 Season of Growth
+1 Satyr Wayfinder
+1 Aveline de Grandpré
+1 Collective Resistance
+1 Chainweb Aracnir
+1 Twitching Doll
+1 Karn, the Great Creator
+11 Forest
+1 Ohran Frostfang
+1 Silklash Spider
+1 Kodama's Reach
+1 Skyfisher Spider
+1 Tail Swipe
+1 Grim Backwoods
+1 Command Tower
+1 Prizefight
+1 Master's Rebuke
+1 Daring Fiendbonder
+1 Morbid Opportunist
+1 Eternal Witness
+1 Sol Ring
+1 Arachnogenesis
+1 Ulvenwald Tracker
+1 Contest of Claws
+1 Shadowspear
+1 Deadly Recluse
+1 Cauldron Familiar
+1 Hunter's Talent
+1 Arboreal Grazer
+1 Inscription of Abundance
+1 Shriekwood Devourer
+1 Spinner of Souls
+1 Emergent Woodwurm
+1 Ishkanah, Grafwidow
+1 Explore
+1 Broodspinner
+1 Deadly Dispute
+1 Oviya, Automech Artisan
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Viridian Longbow
+1 Tainted Wood
+1 Woodland Cemetery
+1 Revitalizing Repast // Old-Growth Grove
+1 Mosswort Bridge
+1 Masked Vandal
+1 Ripples of Undeath
+1 Kaya's Ghostform
+1 Rishkar's Expertise
+1 Saryth, the Viper's Fang
+1 Trailtracker Scout
+1 High-Society Hunter
+1 Archpriest of Shadows
+1 Somberwald Sage
+1 Flare of Cultivation
+1 Liquimetal Torque
+1 Nature's Way
+1 Herd Heirloom
+1 Quilled Greatwurm
+1 Power Fist
+1 Wayward Swordtooth

@@ -1,0 +1,96 @@
+# Archidekt — Hatsune Miku!
+# source: archidekt:25741445
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Trostani, Selesnya's Voice
+
+Deck:
+1 Ghalta and Mavren
+1 Fanatic of Rhonas
+1 Shamanic Revelation
+1 Conclave Evangelist
+1 Lathiel, the Bounteous Dawn
+1 Voice of Resurgence
+1 Aetherflux Reservoir
+1 Gavony Township
+7 Plains
+1 Avacyn's Pilgrim
+1 Llanowar Elves
+1 Cleric Class
+1 Path to Exile
+1 Rootborn Defenses
+1 Swords to Plowshares
+1 Blossoming Sands
+1 Command Tower
+1 Graypelt Refuge
+1 Krosan Verge
+1 Radiant Fountain
+1 Rogue's Passage
+1 Selesnya Sanctuary
+1 Resplendent Angel
+1 Silverquill Lecturer
+1 Soul of Eternity
+1 Voice of the Blessed
+1 Ancient Cornucopia
+1 Angelic Chorus
+1 Boon Reflection
+1 Crested Sunmare
+1 Elenda's Hierophant
+1 Grand Crescendo
+1 Cultivate
+1 Archangel of Thune
+1 Angel of Indemnity
+1 Arasta of the Endless Web
+1 Blossoming Bogbeast
+1 Bramble Sovereign
+1 Nykthos Paragon
+1 Rhys the Redeemed
+1 Prosperous Innkeeper
+1 Sundering Growth
+1 Sapseep Forest
+7 Forest
+1 Temple of Plenty
+1 Explore
+1 Idol of Oblivion
+1 Selesnya Signet
+1 Skullclamp
+1 Shalai, Voice of Plenty
+1 Song of the Worldsoul
+1 Soul Warden
+1 Break Down
+1 Finale of Devastation
+1 Bountiful Promenade
+1 Seraph Sanctuary
+1 Farseek
+1 Lazotep Quarry
+1 Restless Prairie
+1 Vorinclex, Voice of Hunger
+1 Halo Fountain
+1 Speaker of the Heavens
+1 Mirari's Wake
+1 Canopy Vista
+1 Grove of the Guardian
+1 Overgrown Farmland
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Camaraderie
+1 Hour of Reckoning
+1 Pest Infestation
+1 Storm Herd
+1 Growing Ranks
+1 Invincible Hymn
+1 Congregate
+1 Suture Priest
+1 Brokers Hideout
+1 Nature's Lore
+1 Sol Ring
+1 Springleaf Drum
+1 Ajani's Pridemate
+1 Birds of Paradise
+1 The Earth Crystal
+1 Witch Enchanter // Witch-Blessed Meadow
+1 The Wind Crystal
+1 Plains
+1 Forest

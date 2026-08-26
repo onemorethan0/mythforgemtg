@@ -1,0 +1,101 @@
+# Archidekt — Yarrok
+# source: archidekt:25769866
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Yarok, the Desecrated
+
+Deck:
+1 Altar of the Brood
+1 Analyze the Pollen
+1 Arcane Signet
+1 Assassin's Trophy
+1 Baleful Strix
+1 Beast Within
+1 Blasphemous Edict
+1 Cavern Harpy
+1 Cloud of Faeries
+1 Coiling Oracle
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Deadly Rollick
+1 Dimir Aqueduct
+1 Drowned Catacomb
+1 Eldritch Evolution
+1 Cultivate
+1 Deadeye Navigator
+1 Encroaching Dragonstorm
+1 Ertai Resurrected
+1 Eternal Witness
+1 Elvish Visionary
+1 Farseek
+1 Exotic Orchard
+1 Fierce Empath
+1 Ghostly Flicker
+1 Flusterstorm
+1 Gray Merchant of Asphodel
+1 Hoarding Broodlord
+1 Hinterland Harbor
+1 Ice-Fang Coatl
+1 Honest Rutstein
+1 Ignis Scientia
+1 Peregrine Drake
+1 Planar Incision
+1 Pond Prophet
+1 Prime Speaker Zegana
+1 Illusionist's Stratagem
+3 Island
+1 Lim-Dûl's Vault
+1 Mulldrifter
+1 Mystic Sanctuary
+1 Nature's Lore
+1 Negate
+1 Neoform
+1 Otawara, Soaring City
+1 Panharmonicon
+1 Ravenous Chupacabra
+1 Reclamation Sage
+1 Reliquary Tower
+1 Shrieking Drake
+1 Roiling Dragonstorm
+1 Scholar of the Lost Trove
+1 Shipwreck Marsh
+1 Simic Growth Chamber
+1 Skullwinder
+1 Spelunking
+1 Sol Ring
+1 Springheart Nantuko
+1 Starfield Vocalist
+3 Swamp
+1 Tatyova, Benthic Druid
+1 Takenuma, Abandoned Mire
+1 Temple of the False God
+1 Tear Asunder
+1 Three Steps Ahead
+1 Three Visits
+1 Timeless Witness
+1 Tireless Provisioner
+1 Temur Sabertooth
+1 Twilight Mire
+1 Venser, Shaper Savant
+1 Vineglimmer Snarl
+1 Viridescent Bog
+1 Wall of Blossoms
+1 Watery Grave
+1 Whirlpool Rider
+1 Wild Growth
+1 Yavimaya Coast
+1 Wood Elves
+1 Mystical Tutor
+1 Vampiric Tutor
+1 Worldly Tutor
+1 Crop Rotation
+1 Ancient Tomb
+1 Undercity Sewers
+1 Hedge Maze
+1 Polluted Delta
+1 Underground Mortuary
+1 Misty Rainforest
+1 Verdant Catacombs
+4 Forest

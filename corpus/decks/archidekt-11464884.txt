@@ -1,0 +1,90 @@
+# Archidekt — Gonti, Night Minister
+# source: archidekt:11464884
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Gonti, Night Minister
+
+Deck:
+1 Dream-Thief's Bandana
+1 Disciple of the Vault
+1 Saw in Half
+1 War Room
+1 Nadier's Nightblade
+1 Dauthi Slayer
+1 The Soul Stone
+1 Cruelclaw's Heist
+1 Brainstealer Dragon
+1 Dauthi Voidwalker
+1 Changeling Outcast
+1 Dismember
+1 Feed the Swarm
+1 Takenuma, Abandoned Mire
+1 No Mercy
+1 Trailblazer's Boots
+1 Castle Locthwain
+1 Thieves' Tools
+1 Mikokoro, Center of the Sea
+1 Muraganda Raceway
+1 Bitterblossom
+1 Nether Traitor
+1 Leechridden Swamp
+1 Blinkmoth Nexus
+1 Witch's Cottage
+1 Access Tunnel
+1 Mutilate
+1 Thieving Varmint
+1 Lobelia, Defender of Bag End
+1 Black Market Connections
+1 Howling Mine
+1 Orochi Soul-Reaver
+1 Flare of Malice
+1 Revel in Riches
+1 Tempting Contract
+1 Soul Shatter
+1 Deadly Dispute
+1 Cabal Coffers
+1 Urborg, Tomb of Yawgmoth
+1 Liquimetal Torque
+1 Crypt Ghast
+1 Bojuka Bog
+1 Talon Gates of Madara
+1 Lantern of Insight
+1 Shizo, Death's Storehouse
+1 Marionette Master
+1 Force of Despair
+1 Krark-Clan Ironworks
+1 Nashi, Moon Sage's Scion
+1 Bucknard's Everfull Purse
+1 Grim Hireling
+1 Etherium Pteramander
+1 Sol Ring
+1 Academy Manufactor
+1 Marionette Apprentice
+1 Gix, Yawgmoth Praetor
+1 Darkstar Augur
+1 Currency Converter
+1 Court of Locthwain
+1 Blood Money
+1 Bitter Triumph
+1 Inspiring Statuary
+1 Nykthos, Shrine to Nyx
+1 Stridehangar Automaton
+1 Mirkwood Bats
+1 Consuming Corruption
+1 Bitterbloom Bearer
+1 Petty Larceny
+1 Darkness
+1 Realm of Koh
+1 Treasure Map // Treasure Cove
+1 Misinformation
+1 Treasure Vault
+1 Technodrome
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Coin of Mastery
+1 Ultron the Annihilator
+1 Withering Torment
+18 Swamp
+1 Dragon-Cursed Halls
+1 Kuroki, Thief of Talents

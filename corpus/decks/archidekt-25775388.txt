@@ -1,0 +1,92 @@
+# Archidekt — Evereth
+# source: archidekt:25775388
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Evereth, Viceroy of Plunder
+
+Deck:
+9 Swamp
+1 Academy Manufactor
+1 Alesha, Who Laughs at Fate
+1 Arcane Signet
+1 Arena of Glory
+1 Astarion's Thirst
+1 Big Score
+1 Blasphemous Act
+1 Blazemire Verge
+1 Blightstep Pathway // Searstep Pathway
+1 Blood Crypt
+1 Blood Money
+1 Boggart Trawler // Boggart Bog
+1 Bolt Bend
+1 Braids, Arisen Nightmare
+1 Bulk Up
+1 Cavern-Hoard Dragon
+1 Chaos Warp
+1 Command Tower
+1 Corrupted Conviction
+1 Crime Novelist
+1 Dark Fortress
+1 Dark Ritual
+1 Deadly Dispute
+1 Deadly Rollick
+1 Deflecting Swat
+1 Demand Answers
+1 Descent into Avernus
+1 Dragon-Cursed Halls
+1 Dragonskull Summit
+1 Drossforge Bridge
+1 Fake Your Own Death
+1 Feign Death
+1 Fellwar Stone
+1 Flare of Malice
+1 Go for the Throat
+1 Goldspan Dragon
+1 Grave Pact
+1 Graven Cairns
+1 Haunted Ridge
+1 Infantry Shield
+1 Jadar, Ghoulcaller of Nephalia
+1 Jet Medallion
+1 Loyal Apprentice
+1 Luxury Suite
+1 Malakir Rebirth // Malakir Mire
+1 Marionette Apprentice
+1 Marionette Master
+1 Mind Stone
+1 Mines of Moria
+1 Mirkwood Bats
+1 Night's Whisper
+1 Nine-Lives Familiar
+1 Ophiomancer
+1 Ozox, the Clattering King
+1 Phyresis
+1 Phyrexian Tower
+1 Pitiless Plunderer
+1 Rev, Tithe Extractor
+1 Sign in Blood
+1 Sol Ring
+1 Tainted Peak
+1 Tainted Strike
+1 Terminate
+1 The Ozolith
+1 The Reaver Cleaver
+1 Tibalt's Trickery
+1 Undying Malice
+1 Unleash Fury
+1 Untimely Malfunction
+1 Urza's Saga
+1 Valakut Awakening // Valakut Stoneforge
+1 Village Rites
+1 Xorn
+1 Smaug, Wicked Worm
+1 Coin of Mastery
+1 Smaug the Magnificent
+1 The Sackville-Bagginses
+1 Smaug the Impenetrable
+1 Kingpin, Wilson Fisk
+1 Ruby Medallion
+9 Mountain
+1 Knuckles the Echidna

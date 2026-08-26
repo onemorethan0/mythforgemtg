@@ -1,0 +1,92 @@
+# Archidekt — Ched Krrik
+# source: archidekt:25754505
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Ancient Tomb
+1 Animate Dead
+1 Asmodeus the Archfiend
+1 Ayara, First of Locthwain
+1 Balthor the Defiled
+1 Blood Celebrant
+1 Bloodletter of Aclazotz
+1 Bloodthirsty Conqueror
+1 Bolas's Citadel
+1 Buried Alive
+1 Cabal Coffers
+1 Cabal Ritual
+1 Chainer, Dementia Master
+1 Chrome Mox
+1 City of Traitors
+1 Culling the Weak
+1 Dark Confidant
+1 Dark Ritual
+1 Dauthi Voidwalker
+1 Deadly Rollick
+1 Defiant Bloodlord
+1 Defile
+1 Demonic Tutor
+1 Dismember
+1 Duress
+1 Enduring Tenacity
+1 Entomb
+1 Exhume
+1 Exquisite Blood
+1 Exsanguinate
+1 Gemstone Caverns
+1 Grasp of Darkness
+1 Gray Merchant of Asphodel
+1 Grim Monolith
+1 Grim Tutor
+1 Heartless Summoning
+1 Hoarding Broodlord
+1 Imp's Mischief
+1 Imperial Seal
+1 Infernal Grasp
+1 Jet Medallion
+1 Lake of the Dead
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mana Vault
+1 Mox Amber
+1 Necromancy
+1 Necropotence
+1 Necrotic Ooze
+1 Nykthos, Shrine to Nyx
+1 Opposition Agent
+1 Overeager Apprentice
+1 Peat Bog
+1 Peer into the Abyss
+1 Persist
+1 Phyrexian Tower
+1 Rain of Filth
+1 Razaketh, the Foulblooded
+1 Reanimate
+1 Sacrifice
+1 Sanguine Bond
+1 Shallow Grave
+1 Sheoldred, the Apocalypse
+1 Shrouded Lore
+1 Skirge Familiar
+1 Sol Ring
+1 Soldevi Adnate
+1 Sower of Discord
+17 Swamp
+1 Tainted Pact
+1 The Master of Lake-town
+1 Thoughtseize
+1 Torment of Hailfire
+1 Unmarked Grave
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Saga
+1 Vampiric Tutor
+1 Vexing Bauble
+1 Vilis, Broker of Blood
+1 Vito, Thorn of the Dusk Rose
+1 Word of Command
+1 Wound Reflection
+1 Yawgmoth's Will

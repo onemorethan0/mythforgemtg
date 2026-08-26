@@ -1,0 +1,82 @@
+# Archidekt — Rhys the Redeemed
+# source: archidekt:25770726
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Rhys the Redeemed
+
+Deck:
+1 Doubling Season
+1 Parallel Lives
+1 Sol Ring
+1 Savannah
+1 Worldly Tutor
+1 Anointed Procession
+1 Skullclamp
+1 Elvish Archdruid
+1 Imperious Perfect
+1 Cryptolith Rite
+1 Path to Exile
+1 Swords to Plowshares
+1 Mondrak, Glory Dominus
+1 March of the Multitudes
+1 Aura Shards
+1 Teferi's Protection
+1 Enlightened Tutor
+1 Smothering Tithe
+1 Gaea's Cradle
+1 Farewell
+1 Queen Allenal of Ruadach
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Scute Swarm
+1 Marwyn, the Nurturer
+1 Elesh Norn, Grand Cenobite
+1 Emmara Tandris
+1 Avenger of Zendikar
+1 King Darien XLVIII
+1 Wolverine Riders
+1 Maja, Bretagard Protector
+1 Elspeth, Storm Slayer
+1 Command Tower
+1 Elspeth, Sun's Champion
+1 Garruk, Primal Hunter
+1 Yavimaya, Cradle of Growth
+1 Bountiful Promenade
+1 Castle Ardenvale
+1 Abandoned Air Temple
+1 Temple Garden
+1 Overgrown Farmland
+14 Forest
+1 Halo Fountain
+1 Akroma's Memorial
+1 Staff of Domination
+1 Staff of the Storyteller
+1 Bow of Nylea
+1 Vanquisher's Banner
+1 Cathars' Crusade
+1 Intangible Virtue
+1 Felidar Retreat
+1 Divine Visitation
+1 Caretaker's Talent
+1 Rampant Growth
+1 Kodama's Reach
+1 Nature's Lore
+1 Awaken the Woods
+1 Finale of Glory
+1 Austere Command
+1 Farseek
+1 Idyllic Tutor
+1 Eladamri's Call
+1 Aura Mutation
+1 Elven Ambush
+1 Elvish Champion
+1 Arasta of the Endless Web
+1 Lys Alana Huntmaster
+1 Llanowar Elves
+1 Priest of Titania
+1 Throne of the God-Pharaoh
+1 Beastmaster Ascension
+14 Plains
+1 Rogue's Passage
+1 Arcane Signet

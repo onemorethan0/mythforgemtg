@@ -1,0 +1,99 @@
+# Archidekt — Liberty Prime
+# source: archidekt:25770534
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Liberty Prime, Recharged
+
+Deck:
+1 Aether Spike
+1 Aether Tunnel
+1 All That Glitters
+1 Arcade Gannon
+1 Arcane Signet
+1 Archway of Innovation
+1 Assaultron Dominator
+1 Automated Assembly Line
+1 Behemoth of Vault 0
+1 Bottle-Cap Blast
+1 Brotherhood Scribe
+1 Buried Ruin
+1 Cayth, Famed Mechanist
+1 Chaos Warp
+1 Chromatic Star
+1 Command Tower
+1 Dalakos, Crafter of Wonders
+1 Dispatch
+1 Dr. Madison Li
+1 Drafna, Founder of Lat-Nam
+1 Electrosiphon
+1 Evolving Wilds
+1 Ferrous Lake
+1 Galvanic Discharge
+1 Glacial Fortress
+1 Glassblower's Puzzleknot
+1 Glimmer of Genius
+1 Goblin Engineer
+1 HELIOS One
+1 Hall of Tagsin
+1 Ichor Wellspring
+1 Inventor's Axe
+1 Iron Lad, Diverging Destiny
+1 Iron Man, Master of Machines
+1 Ironheart, Clever Champion
+1 Irrigated Farmland
+4 Island
+1 Izzet Generatorium
+1 Jolted Awake
+1 Loyal Apprentice
+1 Maximus, Knight Apparent
+1 Mechanized Production
+1 Megaton's Fate
+5 Mountain
+1 Mystic Forge
+1 Mystic Monastery
+1 No More Lies
+1 One with the Machine
+1 Open the Vaults
+1 Paladin Danse, Steel Maverick
+1 Path of Ancestry
+3 Plains
+1 Prairie Stream
+1 Raff Capashen, Ship's Mage
+1 Razortide Bridge
+1 Rex, Cyber-Hound
+1 Robobrain War Mind
+1 Rogue's Passage
+1 Roil Cartographer
+1 Rush of Inspiration // Crackling Falls
+1 Sai, Master Thopterist
+1 Scour for Scrap
+1 Sea of Clouds
+1 Seachrome Coast
+1 Semblance Anvil
+1 Shaun, Father of Synths
+1 Shuri, Wakandan Inventor
+1 Silver Shroud Costume
+1 Silverbluff Bridge
+1 Skycloud Expanse
+1 Slobad, Goblin Tinkerer
+1 Sol Ring
+1 Solar Transformer
+1 Solemn Simulacrum
+1 Spire of Industry
+1 Spirit Mantle
+1 Steel Overseer
+1 Sulfur Falls
+1 Suppression Ray // Orderly Plaza
+1 T-45 Power Armor
+1 Temple of Enlightenment
+1 Temple of Epiphany
+1 The Motherlode, Excavator
+1 Thran Spider
+1 Treasure Vault
+1 Tune the Narrative
+1 Voltaic Key
+1 Wake the Past
+1 Whirler Rogue
+1 Wrath of the Skies

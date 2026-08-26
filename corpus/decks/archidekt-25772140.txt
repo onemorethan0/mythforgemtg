@@ -1,0 +1,95 @@
+# Archidekt — SQUAAAAAAAD
+# source: archidekt:25772140
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Marneus Calgar
+
+Deck:
+1 Arco-Flagellant
+1 Gary Clone
+1 Roadkill Rodney
+1 Securitron Squadron
+1 Sicarian Infiltrator
+1 Space Marine Devastator
+1 Ultramarines Honour Guard
+1 Vanguard Suppressor
+1 Wasteland Raider
+1 Zephyrim
+1 Endless Foot Assault
+1 Sol Ring
+1 Arcane Signet
+1 Solemn Simulacrum
+1 Fellwar Stone
+1 Commander's Sphere
+1 Obelisk of Esper
+1 In Garruk's Wake
+1 Kambal, Profiteering Mayor
+1 Deny the Witch
+1 Path to Exile
+1 Swords to Plowshares
+1 Mortify
+1 Utter End
+1 Entrapment Maneuver
+1 Inkshield
+1 Void Rend
+1 Hour of Reckoning
+1 Thrilling Encore
+1 Halo Fountain
+1 Skullclamp
+1 Mirkwood Bats
+1 Counterspell
+1 Prince Imrahil the Fair
+1 Thalisse, Reverent Medium
+1 Assault Intercessor
+1 Mister Fantastic, Reed Richards
+1 Monologue Tax
+1 Reconnaissance Mission
+1 Elspeth, Sun's Champion
+1 Baleful Strix
+1 Drogskol Reaver
+1 Siphon Insight
+1 Command the Dreadhorde
+1 Skrelv's Hive
+1 Teferi's Ageless Insight
+1 Memorial to Glory
+1 Vault of the Archangel
+1 Command Tower
+1 Arcane Sanctum
+1 Prairie Stream
+1 Marsh Flats
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Path of Ancestry
+1 Port Town
+1 Skycloud Expanse
+1 Darkwater Catacombs
+1 Isolated Chapel
+1 Glacial Fortress
+1 Rogue's Passage
+9 Plains
+2 Island
+1 Anointed Procession
+1 Corpse Knight
+1 God-Eternal Oketra
+1 Grave Titan
+1 Thaumatic Compass // Spires of Orazca
+1 Gift of Estates
+1 Supreme Verdict
+1 Nadir Kraken
+1 Bastion of Remembrance
+1 Felidar Retreat
+1 Profane Tutor
+1 Frantic Search
+5 Swamp
+1 Castle Ardenvale
+1 Castle Vantress
+1 Exotic Orchard
+1 Myriad Landscape
+1 Sunken Hollow
+1 Choked Estuary
+1 Queza, Augur of Agonies
+1 Replication Technique
+1 Ashnod's Altar
+1 Perplexing Test

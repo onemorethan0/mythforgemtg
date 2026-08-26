@@ -1,0 +1,86 @@
+# Archidekt — Tannuk's Scorched Earth Policy
+# source: archidekt:25234620
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Tannuk, Memorial Ensign
+
+Deck:
+1 Horizon of Progress
+1 Three Visits
+1 Evolving Wilds
+1 Brokers Hideout
+1 Glimpse the Core
+1 Rampant Growth
+1 Cycle of Renewal
+1 Vivien Reid
+1 Terramorphic Expanse
+1 Tifa Lockhart
+1 Virtue of Courage // Embereth Blaze
+1 Sabotender
+1 Sakura-Tribe Elder
+1 Beast Within
+1 Nature's Lore
+1 Collector Ouphe
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Fabled Passage
+1 Cabaretti Courtyard
+1 Riveteers Overlook
+1 Myriad Landscape
+1 Hull Breach
+1 Sheltered Thicket
+1 Toph, Hardheaded Teacher
+1 Maestros Theater
+1 Ghost Town
+1 Hobbit Hole
+11 Snow-Covered Mountain
+1 Crop Rotation
+1 Animist's Awakening
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Aftermath Analyst
+1 Mole Man, Moloid Master
+1 Oracle of Mul Daya
+1 Splendid Reclamation
+1 Mossborn Hydra
+1 Open the Way
+1 Awaken the Woods
+1 Into the North
+1 Ancient Greenwarden
+1 Explore
+1 Commercial District
+1 Demolition Field
+1 Tunneling Geopede
+1 Archdruid's Charm
+1 Nature's Claim
+1 Sapling Nursery
+1 Icetill Explorer
+1 Case of the Locked Hothouse
+1 Traveling Chocobo
+1 Nahiri's Lithoforming
+1 Stump Stomp // Burnwillow Clearing
+1 Timeless Witness
+1 Seer's Sundial
+1 Nissa, Vital Force
+1 Redirect Lightning
+1 Snake Umbra
+1 Entish Restoration
+1 Valakut Exploration
+1 Blasphemous Act
+1 Zell Dincht
+1 Vandalblast
+1 Spitfire Lagac
+1 Farseek
+1 Harrow
+1 Worldsoul's Rage
+1 Shared Roots
+1 Keen Sense
+1 Lotus Cobra
+1 Summon: Titan
+1 Avenger of Zendikar
+1 Escape Tunnel
+1 Blighted Woodland
+1 Highland Forest
+13 Snow-Covered Forest
+1 Cinder Glade
+1 Gruul Turf

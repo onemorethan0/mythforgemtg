@@ -1,0 +1,98 @@
+# Archidekt — Teaching you the meaning of Sacrifice
+# source: archidekt:24857403
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Extus, Oriq Overlord // Awaken the Blood Avatar
+
+Deck:
+1 Morbid Opportunist
+1 Isshin, Two Heavens as One
+1 Skrelv's Hive
+1 Flamekin Herald
+1 Windcrag Siege
+1 Assemble the Legion
+1 Pitiless Plunderer
+1 Mahadi, Emporium Master
+1 Elspeth, Sun's Champion
+1 Rootborn Defenses
+1 Solemn Simulacrum
+1 Elenda, the Dusk Rose
+1 Grand Crescendo
+1 Hour of Reckoning
+1 Call the Coppercoats
+1 Crawling Chorus
+1 Crowded Crypt
+1 Sol Ring
+1 White Sun's Twilight
+1 Doomed Traveler
+1 Thalisse, Reverent Medium
+1 Arcane Signet
+1 Orzhov Signet
+1 Shattered Sanctum
+1 Lagomos, Hand of Hatred
+1 Talisman of Indulgence
+1 Monastery Mentor
+1 Fury Storm
+1 Kher Keep
+1 Silverquill, the Disputant
+1 Ophiomancer
+1 Secure the Wastes
+1 Blot Out the Sky
+1 Increasing Vengeance
+1 Tempt with Bunnies
+1 Tempt with Vengeance
+1 Sengir Autocrat
+1 Sram's Expertise
+1 Rise of the Dread Marn
+1 Séance Board
+1 Wriggling Grub
+1 March of the Canonized
+1 Pyromancer's Goggles
+1 Firebender Ascension
+1 Primal Amulet // Primal Wellspring
+1 Talisman of Hierarchy
+1 Talisman of Conviction
+1 Norn's Wellspring
+1 Outlaws' Merriment
+1 Case of the Stashed Skeleton
+1 Weatherlight Compleated
+1 Kambal, Profiteering Mayor
+1 Idol of Oblivion
+1 Rush of Dread
+1 Come Back Wrong
+1 Endrek Sahr, Master Breeder
+1 Prismari Pianist
+1 Harried Spearguard
+5 Plains
+1 Sulfurous Springs
+1 Command Tower
+4 Mountain
+1 Return the Favor
+1 Exotic Orchard
+4 Swamp
+1 Clifftop Retreat
+1 Nomad Outpost
+1 Temple of Silence
+1 Battlefield Forge
+1 Tainted Peak
+1 Temple of Triumph
+1 Shattered Landscape
+1 Isolated Chapel
+1 Caves of Koilos
+1 Dragonskull Summit
+1 Terramorphic Expanse
+1 Temple of Malice
+1 Fetid Heath
+1 Orzhov Basilica
+1 Rugged Prairie
+1 Boros Garrison
+1 Rakdos Carnarium
+1 Tainted Field
+1 Evolving Wilds
+1 Wildfire Awakener
+1 Reassembling Skeleton
+1 Aziza, Mage Tower Captain
+1 Jirina Kudro
+1 Garrison Cat

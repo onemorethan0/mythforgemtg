@@ -1,0 +1,96 @@
+# Archidekt — Jeskai Trash
+# source: archidekt:25768871
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Zurgo and Ojutai
+
+Deck:
+1 Open the Armory
+1 Wayfarer's Bauble
+1 Raugrin Triome
+1 Empyrial Plate
+1 Azorius Chancery
+1 Detection Tower
+1 Hallowed Fountain
+1 Sol Ring
+1 Blackblade Reforged
+1 Shipwreck Dowser
+1 Serra's Emissary
+1 Sunforger
+1 Elspeth, Sun's Champion
+1 Deep Analysis
+1 Aura of Silence
+1 Fog Bank
+1 Dualcaster Mage
+1 Niv-Mizzet, the Firemind
+1 Jeskai Ascendancy
+1 Whirlwind of Thought
+1 Wall of Denial
+1 Port Town
+1 Approach of the Second Sun
+1 Wild Ricochet
+1 Deafening Clarion
+1 Steam Vents
+1 Ghostly Flicker
+1 Inspired Ultimatum
+1 Hypersonic Dragon
+1 Glacial Fortress
+1 Dovin's Veto
+1 Nin, the Pain Artist
+2 Snow-Covered Plains
+1 Temple of Enlightenment
+1 Shivan Reef
+1 Exotic Orchard
+1 Mystic Monastery
+1 Tragic Arrogance
+1 Fact or Fiction
+1 Needle Spires
+1 Swiftwater Cliffs
+1 Generous Gift
+1 Spectator Seating
+1 Taigam, Ojutai Master
+1 Numot, the Devastator
+1 Path to Exile
+1 Hour of Revelation
+1 Deflecting Palm
+1 Myriad Landscape
+1 Soul Snare
+1 Arcane Denial
+1 Mishra's Factory
+1 Energy Flux
+1 Nahiri, the Harbinger
+1 Nevermore
+1 Jeskai Charm
+1 Spirebluff Canal
+1 Return to Dust
+1 Wrath of God
+1 Mission Briefing
+1 Secrets of the Golden City
+1 Solemn Simulacrum
+1 Evolving Wilds
+1 Control Magic
+1 Swords to Plowshares
+1 Loch Dragon
+1 Coveted Jewel
+1 Archaeomancer
+1 Command Tower
+1 Wear // Tear
+1 Compulsive Research
+4 Plains
+1 The Mirari Conjecture
+1 Clifftop Retreat
+1 Day of Judgment
+4 Mountain
+1 Battlefield Forge
+1 Silundi Vision // Silundi Isle
+1 Teferi, Time Raveler
+1 Ojutai's Command
+1 Snow-Covered Mountain
+1 Brainstorm
+1 Akroma's Vengeance
+1 Sacred Foundry
+1 Supreme Verdict
+5 Island
+2 Snow-Covered Island

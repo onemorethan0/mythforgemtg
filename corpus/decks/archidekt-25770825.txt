@@ -1,0 +1,81 @@
+# Archidekt — Lifegain Pt. 1 Billion
+# source: archidekt:25770825
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Qala, Ajani's Pridemate
+
+Deck:
+1 Adagia, Windswept Bastion
+1 Adeline, Resplendent Cathar
+1 Ajani's Pridemate
+1 Angel of Vitality
+1 Attended Healer
+1 Auriok Champion
+1 Bilbo's Gambit
+1 Brave the Elements
+1 Castle Ardenvale
+1 Cat Collector
+1 Cleric Class
+1 Clever Concealment
+1 Crested Sunmare
+1 Dawn's Truce
+1 Daxos, Blessed by the Sun
+1 Defiler of Faith
+1 Distinguished Conjurer
+1 Eerie Interlude
+1 Eiganjo, Seat of the Empire
+1 Elenda's Hierophant
+1 Emeria, the Sky Ruin
+1 Enduring Innocence
+1 Essence Channeler
+1 Exemplar of Light
+1 Flare of Fortitude
+1 Flawless Maneuver
+1 Grand Crescendo
+1 Gwaihir, Greatest of the Eagles
+1 Haliya, Guided by Light
+1 Healer's Hawk
+1 Hinterland Sanctifier
+1 Knight of Dawn's Light
+1 Knight of the White Orchid
+1 Lae'zel's Acrobatics
+1 Legion's Landing // Adanto, the First Fort
+1 Leonin Warleader
+1 Linden, the Steadfast Queen
+1 Loran of the Third Path
+1 Loyal Warhound
+1 Lunarch Veteran // Luminous Phantom
+1 Minas Tirith
+1 Moogles' Valor
+1 Nykthos Paragon
+1 Oketra's Monument
+1 Ornithopter of Paradise
+1 Path to Exile
+1 Pearl Medallion
+28 Plains
+1 Regal Caracal
+1 Reprieve
+1 Resplendent Angel
+1 Restoration Magic
+1 Rhox Faithmender
+1 Rumor Gatherer
+1 Sejiri Shelter // Sejiri Glacier
+1 Skyclave Cleric // Skyclave Basilica
+1 Soul Warden
+1 Soul's Attendant
+1 Speaker of the Heavens
+1 Sun Titan
+1 Sunscorch Regent
+1 Suture Priest
+1 Swords to Plowshares
+1 The Gaffer
+1 True Conviction
+1 Unbreakable Formation
+1 Voice of the Blessed
+1 Welcoming Vampire
+1 Windbrisk Heights
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Your Temple Is Under Attack
+1 Dolmen Gate

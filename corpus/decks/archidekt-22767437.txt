@@ -1,0 +1,95 @@
+# Archidekt — ral , moonson mage
+# source: archidekt:22767437
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+
+Deck:
+1 Gemstone Caverns
+1 Echo of Eons
+1 Faithless Looting
+1 Mind's Desire
+1 Spellseeker
+1 Artist's Talent
+1 Grapeshot
+1 Improvisation Capstone
+1 Peregrine Drake
+1 Personal Tutor
+1 Solve the Equation
+1 Temporal Mastery
+1 Thousand-Year Storm
+1 Treasonous Ogre
+1 Unexpected Windfall
+1 Will of the Jeskai
+1 Thundering Falls
+1 Cascade Bluffs
+1 Command Tower
+1 Exotic Orchard
+1 Fiery Islet
+1 Mistrise Village
+1 Scalding Tarn
+1 Steam Vents
+1 Shivan Reef
+1 City of Brass
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Forbidden Orchard
+1 Big Score
+1 Dualcaster Mage
+1 Baral, Chief of Compliance
+1 Gitaxian Probe
+1 Ponder
+1 Sol Ring
+1 Arcane Signet
+1 Brain Freeze
+1 Demand Answers
+1 Boomerang
+1 Highway Robbery
+1 Thrill of Possibility
+1 Snap
+1 Underworld Breach
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blazing Firesinger // Seething Song
+1 Frantic Search
+1 Windfall
+1 Displacer Kitten
+1 Sink into Stupor // Soporific Springs
+1 Reiterate
+1 Mizzix's Mastery
+1 Seize the Spoils
+1 Valakut Awakening // Valakut Stoneforge
+1 Abandon Attachments
+1 Bonus Round
+1 Brainstorm
+1 Desperate Ritual
+1 Dragon's Rage Channeler
+1 Electro, Assaulting Battery
+1 Fellwar Stone
+1 Flow State
+1 Goblin Electromancer
+1 Jeska's Will
+1 Lotus Petal
+1 Mana Geyser
+1 Merchant Scroll
+1 Mystical Tutor
+1 Pyretic Ritual
+1 Ral, Crackling Wit
+1 Rite of Flame
+1 Ruby Medallion
+1 Seething Song
+1 Stock Up
+1 Storm-Kiln Artist
+1 Strike It Rich
+1 Talisman of Creativity
+1 Vivi Ornitier
+1 Reflecting Pool
+1 Riverglide Pathway // Lavaglide Pathway
+1 Spirebluff Canal
+1 Sulfur Falls
+1 Turbulent Springs
+6 Island
+1 Tormenting Voice
+8 Mountain
+1 Wheel of Fortune

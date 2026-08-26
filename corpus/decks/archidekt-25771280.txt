@@ -1,0 +1,103 @@
+# Archidekt — A New hope
+# source: archidekt:25771280
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Hope Estheim
+
+Deck:
+1 Angel of Destiny
+1 Access Tunnel
+1 Adarkar Wastes
+1 Adventurer's Inn
+1 Ajani, Strength of the Pride
+1 Alhammarret's Archive
+1 Altar of the Brood
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Approach of the Second Sun
+1 Auriok Champion
+1 Avatar's Wrath
+1 Azorius Chancery
+1 Beacon of Immortality
+1 Claim Jumper
+1 Command Tower
+1 Cyclonic Rift
+1 Dawn of a New Age
+1 Daxos of Meletis
+1 Delney, Streetwise Lookout
+1 Authority of the Consuls
+1 Demolition Field
+1 Deserted Beach
+1 Dennick, Pious Apprentice // Dennick, Pious Apparition
+1 Doctor Strange, Surgeon
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Enduring Innocence
+1 Exemplar of Light
+1 Farewell
+1 Fabled Passage
+1 Felidar Sovereign
+1 Flooded Strand
+1 Floodfarm Verge
+1 Glacial Fortress
+1 Final Showdown
+1 Haliya, Guided by Light
+1 Grand Crescendo
+1 Hallowed Fountain
+1 Heliod, Sun-Crowned
+1 Heliod's Intervention
+1 Hengegate Pathway // Mistgate Pathway
+1 Honor the Fallen
+1 Illusions of Grandeur
+1 Into the Story
+2 Island
+1 Jidoor, Aristocratic Capital // Overture
+1 K-9, Mark I
+1 Knight of the White Orchid
+1 Maddening Cacophony
+1 Kwain, Itinerant Meddler
+1 Marina Vendrell's Grimoire
+1 Mana Drain
+1 Mystic Gate
+1 Path to Exile
+5 Plains
+1 Port Town
+1 Prairie Stream
+1 Pristine Talisman
+1 Profane Memento
+1 Radiant Fountain
+1 Ranger-Captain of Eos
+1 Razorgrass Ambush // Razorgrass Field
+1 Restoration Magic
+1 Ruin Crab
+1 Meticulous Archive
+1 Sea of Clouds
+1 Scavenger Grounds
+1 Seachrome Coast
+1 Sink into Stupor // Soporific Springs
+1 Skycloud Expanse
+1 Dovin's Veto
+1 Sheltered by Ghosts
+1 Sol Ring
+1 Soul Warden
+1 Soul's Attendant
+1 Space-Time Anomaly
+1 Springleaf Drum
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Starfield Shepherd
+1 Talisman of Progress
+1 Talon Gates of Madara
+1 The Wind Crystal
+1 Trading Post
+1 The Gaffer
+1 Trinket Mage
+1 Voice of Victory
+1 Well of Lost Dreams
+1 Will, Scion of Peace
+1 Windfall
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Y'shtola Rhul
+1 Dusk // Dawn
+1 Archangel of Thune

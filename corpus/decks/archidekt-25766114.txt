@@ -1,0 +1,90 @@
+# Archidekt — Im Fire im Death!!
+# source: archidekt:25766114
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Smaug, Wicked Worm
+
+Deck:
+1 Drakuseth, Maw of Flames
+1 Mind Stone
+1 Dragonlord's Servant
+1 Dragonspeaker Shaman
+1 Dracogenesis
+1 Return the Favor
+1 Flameshadow Conjuring
+1 Lathliss, Dragon Queen
+1 Molten Echoes
+1 Ganax, Astral Hunter
+1 Faithless Looting
+1 Path of Ancestry
+1 Scourge of Valkas
+1 Swiftfoot Boots
+1 Victimize
+1 Fabled Passage
+1 Urborg, Tomb of Yawgmoth
+1 Skullclamp
+1 Cavern-Hoard Dragon
+1 Living Death
+8 Swamp
+1 Blood Crypt
+12 Mountain
+1 Utvara Hellkite
+1 Professional Face-Breaker
+1 Terror of the Peaks
+1 Fellwar Stone
+1 Toxic Deluge
+1 Bedevil
+1 Bladewing the Risen
+1 Rivaz of the Claw
+1 Exotic Orchard
+1 Haunted Ridge
+1 Animate Dead
+1 Arcane Signet
+1 Sol Ring
+1 Temple of the Dragon Queen
+1 Atsushi, the Blazing Sky
+1 Wrathful Red Dragon
+1 Dragon Tempest
+1 Reanimate
+1 Revel in Riches
+1 Goldspan Dragon
+1 Lightning Greaves
+1 Smoldering Marsh
+1 Foreboding Ruins
+1 Treasure Vault
+1 Twinflame Tyrant
+1 Sarkhan's Triumph
+1 Buried Alive
+1 Chaos Warp
+1 Command Tower
+1 Dragonskull Summit
+1 Talisman of Indulgence
+1 Blasphemous Act
+1 Abrade
+1 There and Back Again
+1 The Misty Mountains Cold
+1 Wayfarer's Bauble
+1 Brass's Bounty
+1 Rain of Riches
+1 Seething Song
+1 Dark Ritual
+1 Brotherhood's End
+1 Feed the Swarm
+1 Go for the Throat
+1 Saw in Half
+1 Rakdos Joins Up
+1 Unexpected Windfall
+1 Desolation of Smaug
+1 Big Score
+1 Seize the Spoils
+1 Hellkite Tyrant
+1 Wake the Dragon
+1 Mines of Moria
+1 Deadly Dispute
+1 Last Light of Durin's Day
+1 Rakdos Signet
+1 Dragon's Hoard
+1 Rogue's Passage
+1 Patron of the Arts

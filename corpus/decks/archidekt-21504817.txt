@@ -1,0 +1,87 @@
+# Archidekt — General Ferrous Deroldo
+# source: archidekt:21504817
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 General Ferrous Rokiric
+
+Deck:
+1 Battlefield Forge
+1 Pursue the Past
+1 Deflecting Palm
+1 Response // Resurgence
+1 Wear // Tear
+1 Neyali, Suns' Vanguard
+12 Mountain
+1 Command Tower
+1 Turbulent Steppe
+1 Clifftop Retreat
+1 Radiant Summit
+1 Sunbillow Verge
+1 Needleverge Pathway // Pillarverge Pathway
+1 Sundown Pass
+1 Spectator Seating
+1 Rugged Prairie
+1 Sacred Foundry
+1 Sunscorched Divide
+1 Fabled Passage
+1 Rip Apart
+1 Justice Strike
+1 Balefire Liege
+1 Legion's Initiative
+1 Idol of Oblivion
+1 Bonders' Enclave
+1 Caretaker's Talent
+1 Trouble in Pairs
+1 Smuggler's Share
+1 Four Knocks
+1 Tocasia's Welcome
+1 Aurelia, the Law Above
+1 Bennie Bracks, Zoologist
+1 Losheel, Clockwork Scholar
+1 Lorehold Command
+1 Tome of the Guildpact
+1 Borrowed Knowledge
+1 Lightning Helix
+1 Thrilling Discovery
+1 War Room
+1 Invasion of Kylem // Valor's Reach Tag Team
+1 Showdown of the Skalds
+1 Squee's Embrace
+1 Chivalric Alliance
+1 Warleader's Call
+1 Symmetry Matrix
+1 Heartwarming Redemption
+1 Alibou, Ancient Witness
+1 Rem Karolus, Stalwart Slayer
+1 Duergar Hedge-Mage
+1 Master Warcraft
+1 Angelfire Ignition
+1 Intimidation Bolt
+1 Ride Down
+1 Éowyn, Fearless Knight
+1 Olórin's Searing Light
+1 Taunt from the Rampart
+1 Firemane Avenger
+1 Reconstruct History
+1 Shattering Blow
+1 Take the Bait
+1 Boros Reckoner
+1 Sacred Fire
+1 Lorehold Charm
+1 Paladin Elizabeth Taggerdy
+1 Glory of Warfare
+1 Heroic Reinforcements
+1 Suspend Aggression
+1 Flame-Kin Zealot
+1 Blade Historian
+1 Arid Mesa
+11 Plains
+1 Minas Tirith
+1 Legion Leadership // Legion Stronghold
+1 Chance for Glory
+1 Warleader's Helix
+1 Catharsis
+1 Integrity // Intervention
+1 Black Widow, Agile Avenger

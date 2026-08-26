@@ -1,0 +1,106 @@
+# Archidekt — Vegan Goblin O's
+# source: archidekt:25757814
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 The Great Goblin
+
+Deck:
+1 Goblin Lackey
+1 Skirk Prospector
+1 Warren Soultrader
+1 Goblin Chirurgeon
+1 Torch Courier
+1 Hexing Squelcher
+1 Goblin Recruiter
+1 Conspicuous Snoop
+1 Kiki-Jiki, Mirror Breaker
+1 Lightning Crafter
+1 Goblin Matron
+1 Doomsday
+1 Mogg Fanatic
+1 Bolas's Citadel
+1 Goblin Welder
+1 Goblin Engineer
+1 Boggart Mischief
+1 Boggart Cursecrafter
+1 Underworld Breach
+1 Sling-Gang Lieutenant
+1 Grinding Station
+1 Wheel of Fortune
+1 Lion's Eye Diamond
+1 Tendrils of Agony
+1 Party Thrasher
+1 Dark Ritual
+1 Culling the Weak
+1 Imperial Seal
+1 Cabal Ritual
+1 Desperate Ritual
+1 Infernal Plunge
+1 Vampiric Tutor
+1 Pyretic Ritual
+1 Diabolic Intent
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Rite of Flame
+1 Prosper, Tome-Bound
+1 Sol Ring
+1 Mox Opal
+1 Chrome Mox
+1 Lotus Petal
+1 Mana Vault
+1 Phyrexian Altar
+1 Deadly Rollick
+1 _____ Goblin
+1 Defense Grid
+1 Deflecting Swat
+1 Goblin Sharpshooter
+1 Grim Monolith
+1 Pyroblast
+1 Patriarch's Bidding
+1 Reanimate
+1 Entomb
+1 Wishclaw Talisman
+1 Krenko, Mob Boss
+1 Imperial Recruiter
+1 Jeska's Will
+1 Arcane Signet
+1 Muxus, Goblin Grandee
+1 Flare of Duplication
+1 Talisman of Indulgence
+1 Vandalblast
+1 Opposition Agent
+1 Vexing Bauble
+1 Impulsive Pilferer
+1 Twinflame
+1 Ancient Tomb
+1 Lively Dirge
+1 Blazemire Verge
+3 Mountain
+1 Dualcaster Mage
+1 Gemstone Caverns
+1 Bloodstained Mire
+1 Blood Crypt
+1 Arena of Glory
+1 Emergence Zone
+1 Badlands
+1 Mana Confluence
+1 Cavern of Souls
+1 City of Brass
+1 Command Tower
+1 Luxury Suite
+1 Mount Doom
+1 Phyrexian Tower
+1 Spymaster's Vault
+1 Vault of Whispers
+1 Swamp
+1 Sulfurous Springs
+1 Urborg, Tomb of Yawgmoth
+1 Great Furnace
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Malakir Rebirth // Malakir Mire
+1 Blightstep Pathway // Searstep Pathway
+1 Boggart Trawler // Boggart Bog
+1 Skullclamp
+1 Polluted Delta
+1 Wooded Foothills

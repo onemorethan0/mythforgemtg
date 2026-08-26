@@ -1,0 +1,79 @@
+# Archidekt — spell railgun
+# source: archidekt:25769495
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+15 Mountain
+1 Sol Ring
+1 Arcane Signet
+1 Counterspell
+1 Blasphemous Act
+1 Mithril Coat
+1 Swiftfoot Boots
+1 Izzet Signet
+1 Niv-Mizzet, Visionary
+1 Niv-Mizzet, Parun
+1 Rhystic Study
+1 Cyclonic Rift
+1 Mana Drain
+1 Veyran, Voice of Duality
+1 Harmonic Prodigy
+1 Wild Ride
+1 Titan's Strength
+1 Opt
+1 Preordain
+1 Sleight of Hand
+1 Curiosity
+1 Tandem Lookout
+1 Crackle with Power
+1 Thousand-Year Storm
+1 Wizard's Staff
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Ophidian Eye
+1 Lightning Bolt
+1 Brainstorm
+1 Ponder
+1 Archmage Emeritus
+1 Jeska's Will
+1 Mystical Tutor
+1 Guttersnipe
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Stormcatch Mentor
+1 Goblin Electromancer
+1 Deflecting Swat
+1 Fire Magic
+1 Abrade
+1 Vandalblast
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Suplex
+1 Time Warp
+1 Astrologian's Planisphere
+1 Omniscience
+1 Wizard Class
+1 Ral, Crackling Wit
+1 Lotus Petal
+1 Thought Vessel
+1 Frostboil Snarl
+1 Overwhelming Intellect
+1 Command Tower
+1 Reliquary Tower
+1 Steam Vents
+1 Sulfur Falls
+1 Stormcarved Coast
+1 Training Center
+15 Island
+1 Thundering Falls
+1 Hullbreaker Horror
+1 Electrodominance
+1 Jin-Gitaxias, Core Augur
+1 Jin-Gitaxias, Progress Tyrant
+1 Etali, Primal Storm
+1 Ulamog, the Ceaseless Hunger
+1 Ulamog, the Defiler
+1 Emrakul, the Promised End
+1 Comet Storm
+1 Insurrection

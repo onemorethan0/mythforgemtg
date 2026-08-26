@@ -1,0 +1,87 @@
+# Archidekt — Okiba Beep Beep
+# source: archidekt:15511133
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Greasefang, Okiba Boss
+
+Deck:
+1 Cunning Lethemancer
+1 Lively Dirge
+1 Putrid Imp
+1 Nautiloid Ship
+1 Delirium Skeins
+1 Necrogen Mists
+1 Solitary Confinement
+1 Salvation Engine
+1 Valor's Flagship
+1 Mind Rake
+1 Cryptcaller Chariot
+1 Thunderhawk Gunship
+1 Fetid Heath
+1 Bojuka Bog
+1 Vault of Champions
+1 Shineshadow Snarl
+11 Plains
+1 Shadowy Backstreet
+1 Monument to Endurance
+1 Refurbished Familiar
+1 Miasmic Mummy
+1 N'Yami-Class Mother Ship
+1 Stronghold Rats
+1 Teleportation Circle
+1 Daydream
+1 Charming Prince
+1 Stern Constable
+1 Fleeting Spirit
+1 Seasoned Hallowblade
+1 Fell the Profane // Fell Mire
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Entomb
+1 Mighty Servant of Leuk-o
+1 Skysovereign, Consul Flagship
+1 Ripclaw Wrangler
+1 Parhelion II
+1 Smuggler's Copter
+1 The Falcon, Airship Restored
+1 Unidentified Hovership
+1 Surgehacker Mech
+1 Mech Hangar
+1 Imperial Recovery Unit
+1 Demonic Junker
+1 Carrion Cruiser
+1 Dispatch
+1 Command Tower
+1 Godless Shrine
+1 Braids, Arisen Nightmare
+1 From Father to Son
+1 Swords to Plowshares
+1 Isolated Chapel
+1 Swarmyard
+1 Tune Up
+1 Damn
+1 Ripples of Undeath
+1 Temple of Silence
+1 Bomat Bazaar Barge
+1 Hotshot Mechanic
+1 Cynical Loner
+1 Morbid Curiosity
+1 Dogged Detective
+1 Flayed One
+1 Imposing Sovereign
+1 Spirit of the Labyrinth
+1 Loran of the Third Path
+1 Restoration Gearsmith
+1 The Fire Nation Drill
+1 Vile Entomber
+1 Bitter Triumph
+1 Reckoner's Bargain
+12 Swamp
+1 Weatherlight
+1 Shattered Sanctum
+1 Iron-Shield Elf
+1 Caves of Koilos
+1 Tainted Field
+1 Bone Shards
+1 Austere Command

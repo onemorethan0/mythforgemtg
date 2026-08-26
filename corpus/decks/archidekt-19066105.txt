@@ -1,0 +1,85 @@
+# Archidekt — Karlach
+# source: archidekt:19066105
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Karlach, Fury of Avernus
+1 Hardy Outlander
+
+Deck:
+1 Screaming Nemesis
+1 Roxanne, Starfall Savant
+1 Ashroot Animist
+1 Vincent, Vengeful Atoner
+1 Guardian Augmenter
+1 Jurin, Leading the Charge
+1 Gogo, Mysterious Mime
+1 Anzrag, the Quake-Mole
+1 Fyndhorn Elves
+1 Rhonas the Indomitable
+1 Goldlust Triad
+1 Knuckles the Echidna
+1 Ruby, Daring Tracker
+1 Llanowar Elves
+1 Goblin Anarchomancer
+1 Surrak, Elusive Hunter
+1 The Fire Crystal
+1 Brotherhood Regalia
+1 Shadowspear
+1 Alien Invasion
+1 Fire-Lit Thicket
+1 Spire Garden
+1 Stomping Ground
+1 Tome of Legends
+1 Arcane Signet
+1 Two-Handed Axe // Sweeping Cleave
+1 Bloomvine Regent // Claim Territory
+1 Nevinyrral's Disk
+1 Perilous Vault
+1 Deflecting Swat
+1 Untimely Malfunction
+1 Collective Resistance
+1 Chaos Warp
+1 Bolt Bend
+1 Utopia Sprawl
+1 Elvish Mystic
+1 Goreclaw, Terror of Qal Sisma
+1 Enduring Courage
+1 Frenzied Baloth
+1 Xenagos, God of Revels
+1 Fanatic of Rhonas
+1 Birds of Paradise
+1 Ancient Bronze Dragon
+1 Hexing Squelcher
+1 Sol Ring
+1 Swiftfoot Boots
+1 Herd Heirloom
+1 Garruk's Uprising
+1 Rhythm of the Wild
+1 Cinder Glade
+1 Command Tower
+1 Rockfall Vale
+1 Thornspire Verge
+13 Forest
+12 Mountain
+1 Wulfgar of Icewind Dale
+1 Ghalta, Primal Hunger
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Nature's Lore
+1 Rishkar's Expertise
+1 Loki's Scepter
+1 Heroic Intervention
+1 Mind Stone
+1 Savage Summoning
+1 Prowling Serpopard
+1 Champion's Helm
+1 Gaea's Gift
+1 Royal Treatment
+1 Emerald Medallion
+1 Chandra's Ignition
+1 Samut, Vizier of Naktamun
+1 Neyith of the Dire Hunt
+1 Klothys, God of Destiny
+1 Legolas's Quick Reflexes
+1 Basilisk Collar

@@ -1,0 +1,92 @@
+# Archidekt — Themberchaud
+# source: archidekt:16895277
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Themberchaud
+
+Deck:
+1 Troop of Ponies
+1 Hobbit Hole
+1 Thrór's Map
+1 Jaxis, the Troublemaker
+1 Return the Favor
+1 Thaumatic Compass // Spires of Orazca
+1 Brass's Bounty
+1 Geomancer's Gambit
+1 Sojourner's Companion
+1 Orthion, Hero of Lavabrink
+1 Abstruse Archaic
+1 Basilisk Collar
+1 Sundering Eruption // Volcanic Fissure
+1 Sol Ring
+1 Delina, Wild Mage
+1 Demand Answers
+1 Solemn Simulacrum
+1 Burnished Hart
+1 Mana Geyser
+1 Koth, Fire of Resistance
+1 Stuffy Doll
+1 Brash Taunter
+1 Reverberate
+1 Koth of the Hammer
+1 Moonsilver Key
+1 Flare of Duplication
+1 Devastating Onslaught
+1 Cleansing Wildfire
+1 Geological Appraiser
+1 Scampering Surveyor
+1 Scaretiller
+1 Cabaretti Courtyard
+1 Expedition Map
+1 Urza's Cave
+1 Maestros Theater
+1 Cascading Cataracts
+1 Darksteel Citadel
+1 Evolving Wilds
+1 Vibrant Cityscape
+1 Ash Barrens
+1 Myriad Landscape
+1 Terramorphic Expanse
+1 Witch's Clinic
+1 Auntie Blyte, Bad Influence
+1 Arena of Glory
+1 Blightsteel Colossus
+1 Ashling, Flame Dancer
+1 Electro, Assaulting Battery
+1 Faithless Looting
+1 Big Score
+1 Walking Atlas
+1 Vandalblast
+1 Thrill of Possibility
+1 Gadrak, the Crown-Scourge
+1 Untimely Malfunction
+1 Blasphemous Act
+1 Valakut, the Molten Pinnacle
+1 Balefire Dragon
+1 City on Fire
+1 Ghost Quarter
+1 Gratuitous Violence
+1 Solphim, Mayhem Dominus
+1 Fiery Emancipation
+1 Molten Duplication
+1 Arid Archway
+1 Wayfarer's Bauble
+1 Thor, God of Thunder
+1 Hex Magic
+1 Command Beacon
+1 Leyline Tyrant
+1 Helm of the Host
+1 Twinflame Tyrant
+1 Heat Shimmer
+1 Lithoform Engine
+1 Hellkite Courser
+1 Smoke Spirits' Aid
+1 Dracogenesis
+1 Ruby Medallion
+1 Smaug the Magnificent
+1 Repercussion
+1 Desolation of Smaug
+1 Maze of Ith
+17 Mountain

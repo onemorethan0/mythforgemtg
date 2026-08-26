@@ -1,0 +1,87 @@
+# Archidekt — Spider-Man
+# source: archidekt:25772418
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Peter Parker // Amazing Spider-Man
+
+Deck:
+1 Volo, Guide to Monsters
+1 Radiant Grove
+1 Llanowar Visionary
+1 Humble Naturalist
+7 Plains
+1 Cryptolith Rite
+1 Deduce
+1 Michelangelo, Game Master
+1 Blossoming Sands
+1 Kodama of the East Tree
+1 Faeburrow Elder
+1 Aunt May
+1 Spider-Man India
+1 Aesi, Tyrant of Gyre Strait
+1 Lorthos, the Tidemaker
+1 Surly Farrier
+1 Grow Extra Arms
+1 Temporal Adept
+1 Ghalta and Mavren
+1 Absolute Virtue
+1 Koma, World-Eater
+1 City Pigeon
+1 Simic Guildgate
+1 Gene Pollinator
+1 Spectacular Tactics
+1 Avacyn's Memorial
+1 Kellan Joins Up
+1 Avacyn's Pilgrim
+1 Chameleon, Master of Disguise
+1 Caelorna, Coral Tyrant
+1 Tranquil Cove
+1 Fog
+1 Thornwood Falls
+1 Tenderize
+1 Spectacular Spider-Man
+1 Imoti, Celebrant of Bounty
+1 Nine Lives
+1 Scout the City
+1 Daily Bugle Building
+1 Springleaf Drum
+1 Koma, Cosmos Serpent
+1 Helga, Skittish Seer
+1 SP//dr, Piloted by Peni
+1 Prime Speaker Zegana
+1 Calciform Pools
+1 Temple of Enlightenment
+1 Doc Ock's Tentacles
+1 Thwip!
+1 Withstand Death
+1 Elven Chorus
+1 Thrun, Breaker of Silence
+1 The Clone Saga
+1 Vorinclex, Voice of Hunger
+1 Suburban Sanctuary
+1 Powerful Broker
+1 Tranquil Expanse
+1 Sudden Strike
+1 Perrie, the Pulverizer
+1 Web-Shooters
+1 Strength of Will
+1 Prairie Stream
+1 Kapow!
+1 Terrific Team-Up
+1 The Notary Hobbits
+1 Flopsie, Bumi's Buddy
+1 Spider-Ham, Peter Porker
+1 Magnificent End
+1 Donatello's Technique
+1 Bilbo, Luckwearer // Burglar's Plot
+7 Island
+1 Galadriel, Light of Valinor
+1 Dundoolin Weaver
+1 Trostani, Selesnya's Voice
+1 Hornet Queen
+1 Taeko, the Patient Avalanche
+1 Rancor
+10 Forest
+1 Rocket-Powered Goblin Glider

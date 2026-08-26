@@ -1,0 +1,97 @@
+# Archidekt — Final Fantasy, DnD addition
+# source: archidekt:23485784
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 The Destined Warrior
+
+Deck:
+1 The Destined White Mage
+1 The Destined Black Mage
+1 The Destined Thief
+1 Dark Confidant
+1 Chaos Shrine's Black Crystal
+1 Aerith Gainsborough
+1 Restoration Magic
+1 White Mage's Staff
+1 Ardbert, Warrior of Darkness
+1 Alphinaud Leveilleur
+1 Alisaie Leveilleur
+1 Locke Cole
+1 Black Mage's Rod
+1 Overkill
+1 Tymna the Weaver
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Cornered by Black Mages
+1 Golbez, Crystal Collector
+1 Sage's Nouliths
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 The Wind Crystal
+1 Ice Magic
+1 Minwu, White Mage
+1 Rosa, Resolute White Mage
+1 Zenos yae Galvus // Shinryu, Transcendent Rival
+1 The Water Crystal
+1 The Darkness Crystal
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Arcane Signet
+1 Vincent's Limit Break
+1 Path to Exile
+1 An Offer You Can't Refuse
+1 Blue Mage's Cane
+1 Morbid Opportunist
+1 Thancred Waters
+1 Search for Dagger
+1 Astrologian's Planisphere
+1 Louisoix's Sacrifice
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Magic Damper
+1 Quistis Trepe
+1 Gogo, Master of Mimicry
+1 Ultimate Magic: Holy
+1 Despark
+1 Blitzball
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Sol Ring
+1 Cloud's Limit Break
+1 Ultimecia, Temporal Threat
+1 Fight On!
+1 World Map
+1 Kain, Traitorous Dragoon
+1 Sephiroth, Planet's Heir
+1 Zack Fair
+1 Estinien Varlineau
+1 Ultimecia, Time Sorceress // Ultimecia, Omnipotent
+1 Starting Town
+1 Ishgard, the Holy See // Faith & Grief
+1 Thief's Knife
+1 Elena, Turk Recruit
+1 Al Bhed Salvagers
+1 Isolated Chapel
+5 Plains
+1 Siegfried, Famed Swordsman
+1 Varragoth, Bloodsky Sire
+1 Choked Estuary
+1 Desolate Mire
+1 Darkwater Catacombs
+1 Path of Ancestry
+1 Capital City
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Prairie Stream
+1 Shineshadow Snarl
+1 Exotic Orchard
+1 Fetid Heath
+1 Arcane Sanctum
+1 Command Tower
+1 Underground River
+1 Jidoor, Aristocratic Capital // Overture
+1 Port Town
+5 Swamp
+1 Temple of the False God
+1 Midgar, City of Mako // Reactor Raid
+4 Island
+1 Skycloud Expanse
+1 Sunken Ruins
+1 Void Rend

@@ -1,0 +1,90 @@
+# Archidekt — Columbo
+# source: archidekt:25744057
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Morska, Undersea Sleuth
+
+Deck:
+1 Academy Manufactor
+1 Adrix and Nev, Twincasters
+1 Alquist Proft, Master Sleuth
+1 Anointed Procession
+1 Armed with Proof
+1 Bard, King of Dale
+1 Bennie Bracks, Zoologist
+1 Bountiful Promenade
+1 Brainstorm
+1 Case of the Pilfered Proof
+1 Command Tower
+1 Confirm Suspicions
+1 Confront the Unknown
+1 Deduce
+1 Deserted Beach
+1 Disorder in the Court
+1 Doubling Season
+1 Dreamroot Cascade
+1 Duggan, Private Detective
+1 Enlightened Tutor
+1 Erdwal Illuminator
+1 Esix, Fractal Bloom
+1 Exotic Orchard
+1 Ezrim, Agency Chief
+1 Fateful Discovery
+1 Flooded Strand
+1 Forensic Gadgeteer
+7 Forest
+1 Hallowed Fountain
+1 Idol of Oblivion
+1 Innocuous Researcher
+1 Inventors' Fair
+7 Island
+1 Lavinia, Foil to Conspiracy
+1 Lonis, Cryptozoologist
+1 Magnifying Glass
+1 Martha Jones
+1 Mechanized Production
+1 Merchant of Truth
+1 Misty Rainforest
+1 Novice Inspector
+1 Officious Interrogation
+1 Ongoing Investigation
+1 Overgrown Farmland
+1 Parallel Lives
+1 Path of Ancestry
+1 Peregrin Took
+1 Piper Wright, Publick Reporter
+7 Plains
+1 Private Eye
+1 Ransom Note
+1 Rejuvenating Springs
+1 Sea of Clouds
+1 Search the Premises
+1 Second Harvest
+1 Serene Sleuth
+1 Spara's Headquarters
+1 Tamiyo's Journal
+1 Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar
+1 Temple Garden
+1 The Mechanist, Aerial Artisan
+1 The Third Doctor
+1 Thorough Investigation
+1 Tireless Tracker
+1 Ulvenwald Mysteries
+1 Wavesifter
+1 Windswept Heath
+1 Wojek Investigator
+1 Worldly Tutor
+1 Idyllic Tutor
+1 Personal Tutor
+1 Mystical Tutor
+1 Hotshot Investigators
+1 Detective of the Month
+1 Dig Through Time
+1 Treasure Cruise
+1 Stock Up
+1 Ponder
+1 Consider
+1 Flow State
+1 Preordain

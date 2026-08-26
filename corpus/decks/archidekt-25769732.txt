@@ -1,0 +1,108 @@
+# Archidekt — cEDH Turbo Slop
+# source: archidekt:25769732
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Silas Renn, Seeker Adept
+1 Yoshimaru, Ever Faithful
+
+Deck:
+1 Bard, King of Dale
+1 Clever Impersonator
+1 Esper Sentinel
+1 Faerie Mastermind
+1 Grand Abolisher
+1 King T'Challa // Black Panther, Hope Enduring
+1 Lotho, Corrupt Shirriff
+1 Mockingbird
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Ranger-Captain of Eos
+1 Thassa's Oracle
+1 The Queen of Dale
+1 Voice of Victory
+1 Ad Nauseam
+1 An Offer You Can't Refuse
+1 Angel's Grace
+1 Chain of Vapor
+1 Commandeer
+1 Dark Ritual
+1 Daze
+1 Demonic Consultation
+1 Dispel
+1 Disrupting Shoal
+1 Enlightened Tutor
+1 Fierce Guardianship
+1 Flare of Fortitude
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Into the Flood Maw
+1 Intuition
+1 Mental Misstep
+1 Mindbreak Trap
+1 Misdirection
+1 Mystical Tutor
+1 Orim's Chant
+1 Pact of Negation
+1 Silence
+1 Spell Pierce
+1 Sudden Substitution
+1 Swan Song
+1 Swords to Plowshares
+1 Tainted Pact
+1 Vampiric Tutor
+1 Vision Skeins
+1 Beseech the Mirror
+1 Demonic Tutor
+1 Flash Photography
+1 Mnemonic Betrayal
+1 Praetor's Grasp
+1 Sevinne's Reclamation
+1 Timetwister
+1 Arcane Signet
+1 Chrome Mox
+1 Lotus Petal
+1 Mana Vault
+1 Mox Amber
+1 Mox Diamond
+1 Sol Ring
+1 Springleaf Drum
+1 Copy Enchantment
+1 Gleaming Splendor
+1 Mirrormade
+1 Mystic Remora
+1 Necropotence
+1 Rhystic Study
+1 Smothering Tithe
+1 Standstill
+1 Steal Enchantment
+1 Touch the Spirit Realm
+1 Ancient Tomb
+1 Arid Mesa
+1 Bloodstained Mire
+1 City of Traitors
+1 Command Tower
+1 Crystal Vein
+1 Flooded Strand
+1 Gemstone Caverns
+1 Godless Shrine
+1 Hallowed Fountain
+1 Mana Confluence
+1 Marsh Flats
+1 Misty Rainforest
+1 Morphic Pool
+1 Otawara, Soaring City
+1 Plains
+1 Polluted Delta
+1 Scalding Tarn
+1 Scrubland
+1 Sea of Clouds
+1 Tundra
+1 Undercity Sewers
+1 Underground Sea
+1 Vault of Champions
+1 Verdant Catacombs
+1 Watery Grave
+1 Windswept Heath

@@ -1,0 +1,84 @@
+# Archidekt — 20 Heads, 1 Braincell
+# source: archidekt:25776776
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Selvala, Heart of the Wilds
+
+Deck:
+1 Asceticism
+1 Branching Evolution
+1 Canopy Gargantuan
+1 Castle Garenbrig
+1 Cavern of Souls
+1 Cultivate
+1 Emerald Medallion
+1 Evendo, Waking Haven
+1 Explosive Vegetation
+1 Extraplanar Lens
+1 Fanatic of Rhonas
+25 Forest
+1 Goldvein Hydra
+1 Heroes' Bane
+1 Hungering Hydra
+1 Hydra Broodmaster
+1 Hydra Omnivore
+1 Kalonian Hydra
+1 Karn's Bastion
+1 Kodama of the West Tree
+1 Lifeblood Hydra
+1 Lifestream's Blessing
+1 Loading Zone
+1 Managorger Hydra
+1 Mirri's Guile
+1 Monstrous Onslaught
+1 Necklace of Girion
+1 Nissa, Who Shakes the World
+1 Nissa's Pilgrimage
+1 Nykthos, Shrine to Nyx
+1 Nylea, God of the Hunt
+1 Nylea, Keen-Eyed
+1 Nyxbloom Ancient
+1 Opal Palace
+1 Ouroboroid
+1 Ozolith, the Shattered Spire
+1 Primal Vigor
+1 Primordial Hydra
+1 Ram Through
+1 Rampant Rejuvenator
+1 Realmwalker
+1 Rhonas's Monument
+1 Rogue's Passage
+1 Runadi, Behemoth Caller
+1 Shared Summons
+1 Sphere Grid
+1 Steelbane Hydra
+1 Temple of the False God
+1 The Earth Crystal
+1 The Great Henge
+1 The Ozolith
+1 The Skullspore Nexus
+1 Thickest in the Thicket
+1 Time of Need
+1 Traverse the Outlands
+1 Triumph of the Hordes
+1 Ulvenwald Tracker
+1 Unnatural Growth
+1 Vernal Bloom
+1 Vigor
+1 Virtue of Strength // Garenbrig Growth
+1 Vivien, Champion of the Wilds
+1 Voracious Hydra
+1 Vorinclex, Monstrous Raider
+1 Vorinclex, Voice of Hunger
+1 Whiptongue Hydra
+1 Yavimaya Hollow
+1 Yavimaya, Cradle of Growth
+1 Zopandrel, Hunger Dominus
+1 Shadowspear
+1 Vivien Reid
+1 Worldly Tutor
+1 Terrasymbiosis
+1 Doubling Season
+1 Mossborn Hydra

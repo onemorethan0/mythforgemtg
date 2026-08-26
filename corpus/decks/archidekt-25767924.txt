@@ -1,0 +1,94 @@
+# Archidekt — Oops! All Stax
+# source: archidekt:25767924
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Grand Arbiter Augustin IV
+
+Deck:
+1 Loxodon Gatekeeper
+1 Esior, Wardwing Familiar
+1 Farewell
+1 Pearl Medallion
+1 Sapphire Medallion
+1 Callaphe, Beloved of the Sea
+1 Aura of Silence
+1 God-Pharaoh's Statue
+1 Smothering Tithe
+1 Monastery Siege
+1 Inventive Iteration // Living Breakthrough
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Impede Momentum
+1 Mjölnir, Storm Hammer
+1 Out Cold
+1 Stall for Time
+1 Solitary Sanctuary
+1 Sensational Spider-Man
+1 Sharae of Numbing Depths
+1 Aerith Rescue Mission
+1 Homesickness
+1 Stunning Shot
+1 Wicked Slumber
+1 Ultros, Obnoxious Octopus
+1 Sol Ring
+1 Summon: Shiva
+1 Mind Spiral
+1 Kang Dynasty
+1 Authority of the Consuls
+1 Aether Barrier
+1 Grafdigger's Cage
+1 Ethersworn Canonist
+1 Ghostly Prison
+1 Spelltithe Enforcer
+1 Cyclonic Rift
+1 Windborn Muse
+1 Rhystic Study
+1 Propaganda
+1 Static Orb
+1 Hushbringer
+1 Soulless Jailer
+1 Torpor Orb
+1 Grand Abolisher
+1 Ensnaring Bridge
+1 Winter Orb
+1 Clock of Omens
+1 Glacian, Powerstone Engineer
+1 Merchant's Dockhand
+1 Leonin Abunas
+1 Orbs of Warding
+1 Shimmer Dragon
+1 Crystal Barricade
+1 Whirler Rogue
+1 Belisarius Cawl
+1 Glaring Spotlight
+1 Nimbus Maze
+1 Restricted Office // Lecture Hall
+1 Ward of Bones
+1 Sphere of Safety
+1 Family Reunion
+1 Consuming Tide
+1 Greater Auramancy
+1 Sea of Clouds
+1 Absolute Virtue
+1 Glacial Fortress
+1 Floodfarm Verge
+1 Borrowing 100,000 Arrows
+1 Command Tower
+1 Exotic Orchard
+1 Mystic Gate
+1 Hallowed Fountain
+1 Deserted Beach
+1 Evolving Wilds
+1 Razortide Bridge
+1 Azorius Chancery
+1 Hengegate Pathway // Mistgate Pathway
+1 Flooded Strand
+1 Myriad Landscape
+1 Irrigated Farmland
+1 Terramorphic Expanse
+8 Plains
+1 Reflecting Pool
+8 Island
+1 Fabled Passage
+1 Frozen Aether

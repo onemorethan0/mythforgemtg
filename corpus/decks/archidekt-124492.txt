@@ -1,0 +1,99 @@
+# Archidekt — James Eugene Mizzet II
+# source: archidekt:124492
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Niv-Mizzet Reborn
+
+Deck:
+1 Counterflux
+1 Congregation at Dawn
+1 Bioessence Hydra
+1 Simic Guildgate
+1 Gateway Plaza
+1 Wear // Tear
+1 Maze's End
+1 Assemble the Legion
+1 Aurelia, the Warleader
+1 Biovisionary
+1 Isperia, Supreme Judge
+1 Azor's Elocutors
+2 Mountain
+2 Swamp
+1 Phytohydra
+3 Plains
+3 Forest
+1 Ghost Quarter
+1 Merciless Eviction
+1 Decimate
+1 Quasiduplicate
+5 Island
+1 Selesnya Guildgate
+1 Izzet Guildgate
+1 Golgari Guildgate
+1 Dimir Guildgate
+1 Boros Guildgate
+1 Chromatic Lantern
+1 Niv-Mizzet, Parun
+1 Ionize
+1 Assassin's Trophy
+1 Guild Summit
+1 Guildmages' Forum
+1 Expansion // Explosion
+1 Vraska, Golgari Queen
+1 Knight of Autumn
+1 Circuitous Route
+1 Thief of Sanity
+1 Mnemonic Betrayal
+1 Privileged Position
+1 Rogue's Passage
+1 Simic Ascendancy
+1 Growth Spiral
+1 Bedevil
+1 Absorb
+1 Rakdos Guildgate
+1 Gruul Guildgate
+1 Azorius Guildgate
+1 Ravager Wurm
+1 Theater of Horrors
+1 Kaya's Wrath
+1 Plaza of Harmony
+1 Ethereal Absolution
+1 Tome of the Guildpact
+1 Captive Audience
+1 Repudiate // Replicate
+1 Simic Growth Chamber
+1 Progenitor Mimic
+1 Zhur-Taa Druid
+1 Dreadbore
+1 Angel of Despair
+1 Azorius Chancery
+1 Interplanar Beacon
+1 Emergence Zone
+1 Time Wipe
+1 Ajani, the Greathearted
+1 Jace, Wielder of Mysteries
+1 Karn's Bastion
+1 Kaya, Bane of the Dead
+1 Teferi, Time Raveler
+1 Dovin's Veto
+1 Leyline Prowler
+1 Deathsprout
+1 Solar Blaze
+1 Saheeli, Sublime Artificer
+1 Domri, Anarch of Bolas
+1 Orzhov Guildgate
+1 Tamiyo, Collector of Tales
+1 Firemind Vessel
+1 Ashiok, Dream Render
+1 Soul Diviner
+1 Blast Zone
+1 Casualties of War
+1 Heartwarming Redemption
+1 Despark
+1 Supreme Verdict
+1 Invasion of Ravnica // Guildpact Paragon
+1 General Ferrous Rokiric
+1 Hellkite Tyrant
+1 Niv-Mizzet, Supreme

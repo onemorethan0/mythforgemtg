@@ -1,0 +1,99 @@
+# Archidekt — deck
+# source: archidekt:25772535
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Jeska, Thrice Reborn
+1 Tymna the Weaver
+
+Deck:
+1 Breena, the Demagogue
+1 Gix, Yawgmoth Praetor
+1 Tempt with Vengeance
+1 Loyal Apprentice
+1 Alesha, Who Laughs at Fate
+1 Gisela, Blade of Goldnight
+1 Aurelia, the Law Above
+1 Duelist's Heritage
+1 Ainok Strike Leader
+1 Otharri, Suns' Glory
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Aurelia, the Warleader
+1 Adeline, Resplendent Cathar
+1 Ragavan, Nimble Pilferer
+1 Windcrag Siege
+1 Combat Celebrant
+1 Karlach, Fury of Avernus
+1 Fellwar Stone
+1 Sol Ring
+1 Boros Signet
+1 Orzhov Signet
+1 Rakdos Signet
+1 Infantry Shield
+1 Swords to Plowshares
+1 Generous Gift
+1 Deadly Rollick
+1 Path to Exile
+1 Anguished Unmaking
+1 Boros Charm
+1 Rakdos Charm
+1 Akroma's Will
+1 Flawless Maneuver
+1 All-Out Assault
+1 Voice of Victory
+1 Professional Face-Breaker
+1 Anim Pakal, Thousandth Moon
+1 Hero of Bladehold
+1 Redoubled Stormsinger
+1 Ruinous Ultimatum
+1 Damn
+1 Toxic Deluge
+1 Bone-Cairn Butcher
+1 Zurgo Stormrender
+1 Bastion of Remembrance
+3 Plains
+1 Blood Crypt
+4 Swamp
+1 Godless Shrine
+1 Command Tower
+1 Exotic Orchard
+1 Arid Mesa
+1 Sacred Foundry
+1 Battlefield Forge
+1 Dragonskull Summit
+1 Isolated Chapel
+1 Luxury Suite
+1 Caves of Koilos
+1 Bloodstained Mire
+1 Clifftop Retreat
+1 Marsh Flats
+1 Spectator Seating
+1 Vault of Champions
+1 Nomad Outpost
+1 Elegant Parlor
+1 Savai Triome
+1 Raucous Theater
+1 Urborg, Tomb of Yawgmoth
+1 Shadowy Backstreet
+1 The Regalia
+1 Neheb, the Eternal
+1 Isshin, Two Heavens as One
+1 Kardur, Doomscourge
+1 Sunbillow Verge
+1 Bleachbone Verge
+1 City of Brass
+1 Mana Confluence
+5 Mountain
+1 Mardu Siegebreaker
+1 Kambal, Profiteering Mayor
+1 Serra Ascendant
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Howlsquad Heavy
+1 Goblin Rabblemaster
+1 Legion Warboss
+1 Warleader's Call

@@ -1,0 +1,95 @@
+# Archidekt — Slimefoot Riccardo
+# source: archidekt:25772532
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Slimefoot, the Stowaway
+
+Deck:
+1 Dina, Soul Steeper
+1 Jade Mage
+1 Jaheira, Friend of the Forest
+1 Nemata, Primeval Warden
+1 Sporemound
+1 Thallid Omnivore
+1 The Mycotyrant
+1 Thelon of Havenwood
+1 Tukatongue Thallid
+1 Verdeloth the Ancient
+1 Vitaspore Thallid
+1 Arcane Signet
+1 Mind Stone
+1 Sol Ring
+1 Swiftfoot Boots
+1 Fungal Rebirth
+1 Putrefy
+1 Spore Swarm
+1 Village Rites
+1 Witherbloom Charm
+1 Worldly Tutor
+1 Culling Ritual
+1 Cultivate
+1 Feed the Swarm
+1 Gaze of Granite
+1 Kodama's Reach
+1 Rampant Growth
+1 Saproling Migration
+1 Fists of Ironwood
+1 Fungal Plots
+1 Life and Limb
+1 Moldervine Reclamation
+1 Command Tower
+1 Darkmoss Bridge
+1 Evolving Wilds
+1 Exotic Orchard
+1 Foggy Bottom Swamp
+8 Forest
+1 Golgari Guildgate
+1 Golgari Rot Farm
+1 Jungle Hollow
+1 Path of Ancestry
+1 Temple of Malady
+1 Terramorphic Expanse
+1 Deathspore Thallid
+1 Undercellar Myconid
+1 Saproling Symbiosis
+1 Utopia Mycon
+1 Woodland Cemetery
+1 Mycoloth
+1 Necrogenesis
+1 Tendershoot Dryad
+1 Tainted Wood
+1 Sporoloth Ancient
+1 Sporesower Thallid
+1 Sporecrown Thallid
+1 Mirkwood Bats
+1 Skullclamp
+1 Zulaport Cutthroat
+1 Verdant Force
+1 Thallid Germinator
+1 Verdant Embrace
+1 Second Harvest
+1 Scatter the Seeds
+1 Savage Thallid
+1 Ashnod's Altar
+1 Poison-Tip Archer
+1 Llanowar Wastes
+1 Thallid
+1 Blood Artist
+1 Thallid Shell-Dweller
+1 Bojuka Bog
+1 Golgari Signet
+1 Psychotrope Thallid
+1 Thelonite Hermit
+1 Assassin's Trophy
+1 Bastion of Remembrance
+1 Cankerbloom
+1 Ivy Lane Denizen
+1 Doubling Season
+1 Undergrowth Stadium
+1 Twilight Mire
+1 Necroblossom Snarl
+1 Rogue's Passage
+1 Reliquary Tower
+7 Swamp

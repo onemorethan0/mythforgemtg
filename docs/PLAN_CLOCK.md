@@ -5,8 +5,10 @@
 to build next, why, in what order, and — just as importantly — **what not to rebuild**,
 because several of the obvious moves have already been measured and rejected.
 
-Every number here was measured against `corpus/decks` (297 bracket-labelled decks). Nothing is
-an estimate unless it says so.
+Every number here was measured against `corpus/decks` (297 bracket-labelled decks, unless a
+later dated note says otherwise — **grown to 546 as of 2026-08-26**, see §1.1 and Phase 3's
+re-sweep note; historical numbers below are left as measured at the time, not rewritten).
+Nothing is an estimate unless it says so.
 
 ---
 
@@ -436,6 +438,32 @@ completed post-mortem, not a live tool waiting for a first attempt:
 **Nothing here is open work waiting for a next session.** If a future attempt wants to revisit
 B2/B3, it needs a genuinely new signal not yet swept — re-running the existing sweep will
 reproduce the same "always say B2" result, not a new one.
+
+**RE-SWEPT AT 60% MORE STATISTICAL POWER, 2026-08-26 — the null result gets STRONGER, not
+weaker.** The standing caveat on this whole section was always "a moderate effect (d≥0.5)
+would have surfaced at n=130; a small one cannot be ruled out." That caveat is now closed by
+data, not by more reasoning: the corpus was grown specifically to test it (Archidekt's
+`edhBracket` server-side filter, `fetch-decks --bracket N --order=-createdAt/-updatedAt`,
+297→546 labelled decks, +84%; B4 17→62, B5 11→55 — the two brackets with the thinnest
+evidence before). Re-running `bracket_boundary.py` on the larger corpus:
+
+- **B2/B3, zero Game Changers is now n=209 (161 B2 / 48 B3), up from n=130.** The baseline
+  ("always say B2") is **77.0%**. The best SINGLE-threshold rule (`low_curve_share ≥ 0.762`)
+  reaches 77.5% — a fraction of a point. Every two-signal rule tops out at EXACTLY 77.0%,
+  matching the baseline to the decimal, not beating it at all. More data made the effect
+  SMALLER, not larger — the opposite of what a real-but-underpowered signal would do.
+- **B1/B2 reproduces almost exactly**, which is itself a useful check on measurement
+  stability: `edhrec_log_rank` scores 75.5% now vs 76.1% at n=84 (barred by Invariant 4,
+  unchanged); the shipped `manabase_P` scores 63.9% now vs 64.8% before (essentially the same
+  rule, same conclusion, still shipped). Two new candidates surface this time — `consistency`
+  (63.9%) and `low_curve_share` (62.1%) — both barely above the 59.9% baseline, not close to
+  the b1/b2 discriminators that matter; noted, not pursued.
+
+**Consequence: B2/B3 is not "underpowered," it is measured twice at two different sample
+sizes with the same answer both times.** This was the one open thread PLAN_CLOCK's own
+Section 1 caveat left genuinely unresolved-by-data (as opposed to unresolved-by-effort); it
+no longer is. Do not revisit B2/B3 on the strength of "maybe a bigger corpus would help" —
+the bigger corpus is the thing that was tried, and it didn't.
 
 **Target the right metric, which was already the conclusion above independently reached from
 Phase 2's own angle.** Exact-match rewards guessing the annotator; **within-one (91.6% → 95%)**

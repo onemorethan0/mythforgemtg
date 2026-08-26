@@ -1,0 +1,104 @@
+# Archidekt — Capitoline Triad  (Artifacts battleship)
+# source: archidekt:18016769
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 The Capitoline Triad
+
+Deck:
+1 Echoes of Eternity
+1 Urza's Cave
+1 Warping Wail
+1 Shrine of the Forsaken Gods
+1 Thespian's Stage
+1 Palantír of Orthanc
+1 Lightning Greaves
+1 Sanctum of Ugin
+1 Ugin's Labyrinth
+1 Selective Obliteration
+1 Liberator, Urza's Battlethopter
+1 Darksteel Forge
+1 Moonsilver Key
+1 Blightsteel Colossus
+1 Eldrazi Confluence
+1 Scorched Ruins
+1 Buried Ruin
+1 Maze of Ith
+1 Expedition Map
+1 Forsaken Monument
+1 Sol Ring
+1 Wurmcoil Engine
+1 Arcane Lighthouse
+1 Inventors' Fair
+1 Reliquary Tower
+1 Urza's Saga
+1 All Is Dust
+1 Codex Shredder
+1 Altar of Dementia
+1 Altar of the Brood
+1 Kozilek, Butcher of Truth
+1 Solemn Simulacrum
+1 Jhoira's Familiar
+1 Foundry Inspector
+1 Perpetual Timepiece
+1 Karn, Legacy Reforged
+1 Mikokoro, Center of the Sea
+1 Ugin, the Ineffable
+1 Ugin, Eye of the Storms
+1 Rogue's Passage
+1 Crystal Vein
+1 Geier Reach Sanitarium
+1 Planar Bridge
+1 Shimmer Myr
+1 The Mightstone and Weakstone
+1 Thrór's Map
+1 Kozilek's Command
+1 Krang, Utrom Warlord
+1 The Warring Triad
+1 Zuko's Exile
+1 The Immortal Sun
+1 Homeward Path
+1 Fomori Vault
+1 Secluded Starforge
+1 Thopter Assembly
+1 Darksteel Citadel
+1 Eldritch Immunity
+1 Null Elemental Blast
+1 Tomb of the Spirit Dragon
+1 Treasure Vault
+1 Karn, Living Legacy
+1 Palladium Myr
+1 Mycosynth Golem
+1 Vibranium Mining Mech
+1 Akroma's Memorial
+1 Academy Manufactor
+1 Kuldotha Forgemaster
+1 Millikin
+1 Myr Battlesphere
+1 Hangarback Walker
+1 Junk Diver
+1 Ultron, Artificial Malevolence
+1 Gallifrey Council Chamber
+1 The Grey Havens
+1 Abstergo Entertainment
+1 Trading Post
+1 Introduction to Annihilation
+1 The One Ring
+1 Mishra's Workshop
+1 Tezzeret, Cruel Captain
+1 Thought Vessel
+1 Portal to Phyrexia
+1 Metalworker
+1 Mystic Forge
+1 Scrap Trawler
+1 Sensei's Divining Top
+1 Rings of Brighthearth
+1 War Room
+1 Scrapyard Recombiner
+1 Semblance Anvil
+1 Ancient Tomb
+1 Cybermen Squadron
+1 Unwinding Clock
+1 Scavenger Grounds
+5 Wastes

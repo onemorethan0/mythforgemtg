@@ -1,0 +1,108 @@
+# Archidekt — Ashling B2 2.0
+# source: archidekt:25773427
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Ashling, the Limitless
+
+Deck:
+1 Dovin's Veto
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Arcane Signet
+1 Strionic Resonator
+1 Sol Ring
+1 Semblance Anvil
+1 Panharmonicon
+1 Urza's Incubator
+1 Lithoform Engine
+1 Idol of Oblivion
+1 Kindle the Inner Flame
+1 Haunting Voyage
+1 Bloodline Bidding
+1 Life's Legacy
+1 Nulldrifter
+1 Up the Beanstalk
+1 Warstorm Surge
+1 From the Rubble
+1 Reflections of Littjara
+1 Elemental Bond
+1 Impostor Syndrome
+1 Muster the Departed
+1 Garruk's Uprising
+1 Riveteers Ascendancy
+1 Molten Echoes
+1 Kindred Discovery
+1 Phyrexian Reclamation
+1 Renewed Solidarity
+1 Heartless Summoning
+1 Guardian Project
+1 Animar, Soul of Elements
+1 Yarok, the Desecrated
+1 Graveshifter
+1 Maha, Its Feathers Night
+1 Incandescent Soulstoke
+1 Maelstrom Wanderer
+1 Ashling's Command
+1 Mulldrifter
+1 Fury
+1 Bane of Progress
+1 Twinflame Travelers
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+1 Brighthearth Banneret
+1 Muldrotha, the Gravetide
+1 Smokebraider
+1 Subterfuge
+1 Risen Reef
+1 Omnath, Locus of Rage
+1 Flamebraider
+1 Titan of Industry
+1 Enraged Flamecaster
+1 Lamentation
+1 Champion of the Path
+1 Temur Battlecrier
+1 Tanufel Rimespeaker
+1 Greenwarden of Murasa
+1 Roaming Throne
+1 Rottenmouth Viper
+1 Foundation Breaker
+1 Sunderflock
+1 Hivespine Wolverine
+1 Seaside Citadel
+1 Nomad Outpost
+1 Exotic Orchard
+1 Secluded Courtyard
+1 Primal Beyond
+1 Arcane Sanctum
+1 Swamp
+1 Mountain
+1 Llanowar Wastes
+1 Three Tree City
+1 Caves of Koilos
+1 Path of Ancestry
+1 Crumbling Necropolis
+1 Yavimaya Coast
+1 Forest
+1 Abundant Countryside
+1 Karplusan Forest
+1 Plains
+1 Cavern of Souls
+1 Unclaimed Territory
+1 Opulent Palace
+1 Adarkar Wastes
+1 Frontier Bivouac
+1 Sulfurous Springs
+1 Battlefield Forge
+1 Sandsteppe Citadel
+1 Island
+1 Flamekin Village
+1 Mystic Monastery
+1 Underground River
+1 Command Tower
+1 Shivan Reef
+1 Brushland
+1 Jungle Shrine
+1 Savage Lands
+1 The World Tree
+1 Ancient Ziggurat

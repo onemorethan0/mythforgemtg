@@ -1,0 +1,97 @@
+# Archidekt — Robot
+# source: archidekt:21672309
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Mendicant Core, Guidelight
+
+Deck:
+1 Thopter Spy Network
+1 Talisman of Progress
+1 Ancient Den
+1 Voyager Quickwelder
+1 Spire of Industry
+1 Razortide Bridge
+1 Amonkhet Raceway
+1 Exotic Orchard
+1 Archway of Innovation
+1 Temple of Enlightenment
+1 Tranquil Cove
+1 Port Town
+1 Azorius Chancery
+1 Muraganda Raceway
+1 Command Tower
+9 Island
+1 Azorius Signet
+4 Plains
+1 Arcane Signet
+1 Etherium Sculptor
+1 Foundry Inspector
+1 Solemn Simulacrum
+1 Gold-Forged Thopteryx
+1 Thought Monitor
+1 Mind Stone
+1 Fellwar Stone
+1 Sculpting Steel
+1 Voyage Home
+1 Dispatch
+1 Sol Ring
+1 Organic Extinction
+1 Thoughtcast
+1 Shimmer Myr
+1 Avishkar Raceway
+1 Silver Myr
+1 Buried Ruin
+1 Jhoira's Familiar
+1 Nesting Bot
+1 Efficient Construction
+1 Gold Myr
+1 Diversion Unit
+1 Racers' Scoreboard
+1 Perilous Snare
+1 Negate
+1 March of Progress
+1 Myr Battlesphere
+1 Unstoppable Plan
+1 Dance of the Manse
+1 Arcane Denial
+1 Counterspell
+1 Swords to Plowshares
+1 Kappa Cannoneer
+1 Artificer's Assistant
+1 Ornithopter of Paradise
+1 Bronze Guardian
+1 Research Thief
+1 Guidelight Synergist
+1 Guidelight Optimizer
+1 Steel Overseer
+1 Ethersworn Sphinx
+1 Cloud Key
+1 Guidelight Pathmaker
+1 Ethersworn Canonist
+1 Treasure Vault
+1 Mechanized Production
+1 Seat of the Synod
+1 Chief of the Foundry
+1 Cephalopod Sentry
+1 Scour for Scrap
+1 Rogue's Passage
+1 Worldwalker Helm
+1 One with the Machine
+1 The Mycosynth Gardens
+1 Stroke of Midnight
+1 Sharding Sphinx
+1 Memory Guardian
+1 Fugitive Droid
+1 Manifold Key
+1 Thopter Fabricator
+1 Silver Raven
+1 Sai, Master Thopterist
+1 Midnight Clock
+1 Reality Heist
+1 Swooping Lookout
+1 Adarkar Wastes
+1 Vnwxt, Verbose Host
+1 Tempered Steel
+1 Ornithopter

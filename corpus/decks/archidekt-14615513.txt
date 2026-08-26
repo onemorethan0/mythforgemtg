@@ -1,0 +1,102 @@
+# Archidekt — Kaust the Kaiser
+# source: archidekt:14615513
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Kaust, Eyes of the Glade
+
+Deck:
+1 Broodhatch Nantuko
+1 Nantuko Vigilante
+1 Boros Charm
+1 Bloom Tender
+1 Ancient Tomb
+1 Bountiful Promenade
+1 Spire Garden
+1 Spectator Seating
+1 Ainok Survivalist
+1 Arcane Signet
+1 Arid Mesa
+1 Battlefield Forge
+1 Ohran Frostfang
+1 Boltbender
+1 Goro-Goro, Disciple of Ryusei
+1 Branch of Vitu-Ghazi
+1 Brushland
+1 Canopy Vista
+1 Cinder Glade
+1 Command Tower
+1 Deathmist Raptor
+1 Decimate
+1 Den Protector
+1 Dream Chisel
+1 Essence of Antiquity
+1 Exotic Orchard
+1 Expose the Culprit
+1 Aurelia's Vindicator
+3 Forest
+1 Forsaken Monument
+1 Frontline Strategist
+1 Experiment Twelve
+1 Heroic Intervention
+1 Hidden Dragonslayer
+1 Hide in Plain Sight
+1 Hooded Hydra
+1 Jeering Instigator
+1 Jetmir's Garden
+2 Mountain
+1 Obscuring Aether
+1 Panoptic Projektor
+3 Plains
+1 Printlifter Ooze
+1 Pyrotechnic Performer
+1 Rhythm of the Wild
+1 Sacred Foundry
+1 Shrine of the Forsaken Gods
+1 Sidar Kondo of Jamuraa
+1 Sol Ring
+1 Stomping Ground
+1 Swords to Plowshares
+1 Temple Garden
+1 Trail of Mystery
+1 True Identity
+1 Ugin's Mastery
+1 Unexplained Absence
+1 Unyielding Gatekeeper
+1 Veiled Ascension
+1 Windswept Heath
+1 Wooded Bastion
+1 Wooded Foothills
+1 Zoetic Cavern
+1 Yedora, Grave Gardener
+1 Ugin, the Ineffable
+1 Birds of Paradise
+1 Hauntwoods Shrieker
+1 Scattered Groves
+1 Sunpetal Grove
+1 Jungle Shrine
+1 Clifftop Retreat
+1 Rootbound Crag
+1 Yarus, Roar of the Old Gods
+1 Path to Exile
+1 Mastery of the Unseen
+1 Jasmine Boreal of the Seven
+1 Salt Road Ambushers
+1 Exalted Angel
+1 Temur War Shaman
+1 Saryth, the Viper's Fang
+1 Krosan Cloudscraper
+1 Dusk // Dawn
+1 Ashcloud Phoenix
+1 Duskana, the Rage Mother
+1 Seedborn Muse
+1 Three Visits
+1 Farseek
+1 Kodama's Reach
+1 Titanic Ultimatum
+1 Mox Amber
+1 Delney, Streetwise Lookout
+1 Skirk Alarmist
+1 Fellwar Stone
+1 Smothering Tithe

@@ -1,0 +1,98 @@
+# Archidekt — Unrivaled under the Sun
+# source: archidekt:25728474
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Isshin, Two Heavens as One
+
+Deck:
+1 Greatsword of Tyr
+1 Godo, Bandit Warlord
+1 Access Tunnel
+1 Akrasan Squire
+1 Altar of the Goyf
+1 Angelic Benediction
+1 Angelic Exaltation
+1 Arcane Signet
+1 Aven Squire
+1 Battlegrace Angel
+1 Boros Signet
+1 Cathartic Reunion
+1 Chaos Warp
+1 Crawlspace
+1 Derelict Attic // Widow's Walk
+1 Despark
+1 Drakuseth, Maw of Flames
+1 Duelist's Heritage
+1 Duty-Bound Dead
+1 Eiganjo Exemplar
+1 Fell the Mighty
+1 Full Throttle
+1 Generous Gift
+1 Goblin Champion
+1 Great Train Heist
+1 Guardians of Akrasa
+1 Idolized
+1 Judoon Enforcers
+1 Knight of Glory
+1 Knight of Infamy
+1 Lightmine Field
+1 Mangara, the Diplomat
+1 Orzhov Signet
+1 Overpowering Attack
+1 Night's Whisper
+1 Akki Ronin
+1 Demand Answers
+1 Austere Command
+1 Fellwar Stone
+1 Big Score
+1 Painful Truths
+1 Raiyuu, Storm's Edge
+1 Rakdos Signet
+1 Read the Bones
+1 Response // Resurgence
+1 Revenge of Ravens
+1 Rogue's Passage
+1 Seifer Almasy
+1 Selfless Samurai
+1 Sigil of Valor
+1 Sigiled Paladin
+1 Silent Arbiter
+1 Sol Ring
+1 Squall, SeeD Mercenary
+1 Stroke of Midnight
+1 Sublime Archangel
+1 Syphon Mind
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Wayfarer's Bauble
+1 Thrill of Possibility
+1 Shadowblood Ridge
+1 Tainted Peak
+1 Boros Garrison
+1 Caves of Koilos
+1 Fetid Heath
+1 Tainted Field
+1 Dragonskull Summit
+1 Orzhov Basilica
+1 Furycalm Snarl
+1 Sulfurous Springs
+1 Shineshadow Snarl
+1 Rakdos Carnarium
+1 Battlefield Forge
+1 Concealed Courtyard
+1 Canyon Slough
+1 Smoldering Marsh
+1 Command Tower
+1 Nomad Outpost
+1 Foreboding Ruins
+1 Path of Ancestry
+4 Swamp
+4 Plains
+5 Mountain
+1 Michiko Konda, Truth Seeker
+1 Brave the Sands
+1 Sword of the Animist
+1 Akki Battle Squad

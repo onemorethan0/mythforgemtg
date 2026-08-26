@@ -1,0 +1,99 @@
+# Archidekt — Cormela V3
+# source: archidekt:25776811
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Cormela, Glamour Thief
+
+Deck:
+1 Exhume
+1 Lord Xander, the Collector
+1 Kokusho, the Evening Star
+1 Massacre Wurm
+1 Archfiend of Ifnir
+1 Sepulchral Primordial
+1 Gray Merchant of Asphodel
+1 Apprentice Necromancer
+1 Viscera Seer
+1 Yahenni, Undying Partisan
+1 Dockside Chef
+1 Archaeomancer
+1 Stitcher's Supplier
+1 Nightscape Familiar
+1 Mayhem Devil
+1 Sneak Attack
+1 Ashnod's Altar
+1 Spawning Pit
+1 Goblin Bombardment
+1 Carrion Feeder
+1 Woe Strider
+1 Village Rites
+1 Reanimate
+1 Animate Dead
+1 Victimize
+1 Persist
+1 Dread Return
+1 Unearth
+1 Buried Alive
+1 Living Death
+1 Faithless Looting
+1 Frantic Search
+1 Thrill of Possibility
+1 Careful Study
+1 Cathartic Reunion
+1 Sign in Blood
+1 Big Score
+1 Windfall
+1 Counterspell
+1 Arcane Denial
+1 Negate
+1 An Offer You Can't Refuse
+1 Izzet Charm
+1 Chaos Warp
+1 Terminate
+1 Go for the Throat
+1 Sheoldred's Edict
+1 Feign Death
+1 Undying Malice
+1 Feed the Swarm
+1 Lightning Greaves
+1 Sol Ring
+1 Arcane Signet
+1 Crumbling Necropolis
+1 Exotic Orchard
+1 Xander's Lounge
+1 Path of Ancestry
+1 Dimir Signet
+1 Izzet Signet
+1 Rakdos Signet
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Fellwar Stone
+1 Wayfarer's Bauble
+1 Command Tower
+1 Geier Reach Sanitarium
+1 Temple of Deceit
+1 Temple of Epiphany
+1 Bojuka Bog
+1 Swiftwater Cliffs
+1 Temple of Malice
+1 Dismal Backwater
+1 Bloodfell Caves
+1 Myriad Landscape
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Mystic Sanctuary
+1 Desolate Lighthouse
+1 Sunken Hollow
+1 Smoldering Marsh
+1 Choked Estuary
+1 Foreboding Ruins
+1 Sulfur Falls
+1 Dragonskull Summit
+1 Drowned Catacomb
+5 Island
+4 Swamp
+3 Mountain
+1 Entomb

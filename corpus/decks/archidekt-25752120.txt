@@ -1,0 +1,71 @@
+# Archidekt — Loot
+# source: archidekt:25752120
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Loot, Exuberant Explorer
+
+Deck:
+1 Rampaging Baloths
+1 Llanowar Elves
+1 Rampant Growth
+1 Avenger of Zendikar
+1 Augur of Autumn
+1 Garruk's Uprising
+1 Courser of Kruphix
+1 Cultivate
+1 Elvish Mystic
+1 Reclamation Sage
+1 Ulvenwald Hydra
+1 Tireless Tracker
+1 Terastodon
+1 Fog
+1 Bushwhack
+38 Forest
+1 Oran-Rief Hydra
+1 Harrow
+1 Snakeskin Veil
+1 Naturalize
+1 Return to Nature
+1 Roiling Regrowth
+1 Harmonize
+1 Heritage Reclamation
+1 Explore
+1 Conduit of Worlds
+1 Planar Engineering
+1 Fecund Greenshell
+1 Snapping Creeper
+1 Territorial Baloth
+1 Vinelasher Kudzu
+1 Baloth Woodcrasher
+1 Canopy Baloth
+1 Territorial Scythecat
+1 Kazandu Nectarpot
+1 Eumidian Terrabotanist
+1 Grazing Gladehart
+1 Turntimber Basilisk
+1 Jaddi Offshoot
+1 Sporemound
+1 Sol Ring
+1 Undergrowth Champion
+1 Embodiment of Insight
+1 Topiary Stomper
+1 Springbloom Druid
+1 Scute Mob
+1 Sakura-Tribe Elder
+1 Farhaven Elf
+1 Wood Elves
+1 Evolving Wilds
+1 Zendikar's Roil
+1 Khalni Heart Expedition
+1 Myriad Landscape
+1 Seer's Sundial
+1 Terramorphic Expanse
+1 Memorial to Unity
+1 Khalni Garden
+1 Blighted Woodland
+1 Skyshroud Ranger
+1 Scythe Leopard
+1 Llanowar Scout
+1 Elvish Pioneer

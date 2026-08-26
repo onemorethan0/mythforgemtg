@@ -1,0 +1,88 @@
+# Archidekt — Artificer Artifact Afffinity
+# source: archidekt:25766616
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Breya, Etherium Shaper
+
+Deck:
+1 Great Furnace
+1 Scourglass
+1 Radiant Lotus
+1 Skullclamp
+1 Tezzeret the Seeker
+1 Sai, Master Thopterist
+1 Seat of the Synod
+1 Emry, Lurker of the Loch
+1 Etherium Sculptor
+1 Vault of Whispers
+1 Ancient Den
+1 Thopter Spy Network
+1 Ashnod's Altar
+1 Sculpting Steel
+1 Swords to Plowshares
+1 Baleful Strix
+1 Tezzeret, Betrayer of Flesh
+1 Tezzeret, Master of the Bridge
+1 Nim Deathmantle
+1 Midnight Clock
+1 Gilded Lotus
+1 Time Sieve
+1 Mystic Forge
+1 Unwinding Clock
+1 Basalt Monolith
+1 Izzet Signet
+1 Nettlecyst
+1 Orzhov Signet
+1 Lightning Greaves
+1 Azorius Signet
+1 Storm the Vault // Vault of Catlacan
+1 Jin-Gitaxias, Progress Tyrant
+1 Boros Signet
+1 Vedalken Orrery
+1 Mechanized Production
+1 Sol Ring
+1 Bronze Guardian
+1 Repurposing Bay
+1 Thopter Fabricator
+1 Master Transmuter
+1 Efficient Construction
+1 Research Thief
+1 Esper Sentinel
+1 Hangarback Walker
+1 Chief Engineer
+1 Saheeli, the Sun's Brilliance
+1 Alibou, Ancient Witness
+1 Forensic Gadgeteer
+1 Losheel, Clockwork Scholar
+1 Jhoira, Ageless Innovator
+1 Deadeye Navigator
+1 Vedalken Archmage
+1 Ornithopter of Paradise
+1 Urza, Lord High Artificer
+1 Kappa Cannoneer
+1 Jhoira, Weatherlight Captain
+1 Master of Etherium
+1 Padeem, Consul of Innovation
+1 Marionette Master
+1 Cyberdrive Awakener
+1 Mistvault Bridge
+1 Silverbluff Bridge
+1 Spire of Industry
+1 Drossforge Bridge
+1 Sharuum the Hegemon
+1 Razortide Bridge
+1 Arcane Signet
+1 Thought Vessel
+1 Rustvale Bridge
+1 Tezzeret, Cruel Captain
+21 Island
+1 Enthusiastic Mechanaut
+1 Jan Jansen, Chaos Crafter
+1 Counterspell
+1 Weapons Manufacturing
+1 Swan Song
+1 Path to Exile
+1 Access Denied
+1 Myr Retriever

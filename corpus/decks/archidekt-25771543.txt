@@ -1,0 +1,101 @@
+# Archidekt — Kenrith, Lost but Seeking
+# source: archidekt:25771543
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Gleaming Splendor
+1 Smothering Tithe
+1 Rhystic Study
+1 Teferi's Protection
+1 The One Ring
+1 Seedborn Muse
+1 Cyclonic Rift
+1 Birds of Paradise
+1 Noble Hierarch
+1 Farseek
+1 Nature's Lore
+1 Cultivate
+1 Ignoble Hierarch
+1 Delighted Halfling
+1 Deathrite Shaman
+1 Training Grounds
+1 Biomancer's Familiar
+1 Zirda, the Dawnwaker
+1 Eternal Witness
+1 Esper Sentinel
+1 Lotho, Corrupt Shirriff
+1 Ragavan, Nimble Pilferer
+1 Tataru Taru
+1 Deadly Rollick
+1 Assassin's Trophy
+1 Beast Within
+1 Heroic Intervention
+1 Deflecting Swat
+1 Reanimate
+1 Three Visits
+1 Toxic Deluge
+1 Buried Alive
+1 Finale of Devastation
+1 Sol Ring
+1 Arcane Signet
+1 Mystic Remora
+1 Sylvan Library
+1 Smaug, Wicked Worm
+1 Animate Dead
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Sheoldred, Whispering One
+1 Atraxa, Grand Unifier
+1 Avacyn, Angel of Hope
+1 Elesh Norn, Grand Cenobite
+1 Living Death
+1 Blasphemous Act
+1 Monologue Tax
+1 Goldspan Dragon
+1 Ancient Copper Dragon
+1 Old Gnawbone
+1 Scuzzback Scrounger
+1 Damn
+1 Ancient Brass Dragon
+1 Verdant Catacombs
+1 Command Tower
+1 Path of Ancestry
+1 Exotic Orchard
+1 Overgrown Tomb
+1 Misty Rainforest
+1 Temple Garden
+1 Windswept Heath
+1 Wooded Foothills
+1 City of Brass
+1 Stomping Ground
+1 Scalding Tarn
+1 Hallowed Fountain
+1 Polluted Delta
+1 Breeding Pool
+1 Godless Shrine
+1 Blood Crypt
+1 Marsh Flats
+1 Arid Mesa
+1 Sacred Foundry
+1 Steam Vents
+1 Spara's Headquarters
+1 Indatha Triome
+3 Forest
+1 Island
+3 Swamp
+3 Plains
+1 Faeburrow Elder
+1 Archon of Cruelty
+1 Consecrated Sphinx
+1 Nyxbloom Ancient
+1 Gifts Ungiven
+1 Faithless Looting
+1 Lightning Greaves
+1 Wilderness Reclamation
+1 Chromatic Lantern
+1 Talisman of Resilience
+2 Mountain
+1 Bloom Tender

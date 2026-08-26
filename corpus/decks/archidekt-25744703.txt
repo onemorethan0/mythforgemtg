@@ -1,0 +1,108 @@
+# Archidekt — death by 1000 pings
+# source: archidekt:25744703
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Ob Nixilis, Captive Kingpin
+
+Deck:
+1 Jeska's Will
+1 Grapeshot
+1 Wheel of Fortune
+1 Beseech the Mirror
+1 Imperial Seal
+1 Rite of Flame
+1 Praetor's Grasp
+1 Demonic Tutor
+1 Gamble
+1 City of Traitors
+1 Arid Mesa
+1 Blood Crypt
+1 Diabolic Intent
+1 Yawgmoth's Will
+1 Wooded Foothills
+1 Starting Town
+1 Urza's Saga
+1 Luxury Suite
+1 Scalding Tarn
+1 Emergence Zone
+1 Badlands
+1 Ancient Tomb
+1 Marsh Flats
+1 Polluted Delta
+1 Barbarian Ring
+1 Spire of Industry
+1 Sulfurous Springs
+1 Snow-Covered Mountain
+1 Gemstone Caverns
+1 Bloodstained Mire
+1 Blazemire Verge
+1 Mount Doom
+1 Mana Confluence
+1 Shadow of the Goblin
+1 Command Tower
+1 City of Brass
+1 Snow-Covered Swamp
+1 Manifold Key
+1 Underworld Breach
+1 Necropotence
+1 Sensei's Divining Top
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Grinding Station
+1 Grim Monolith
+1 Mox Diamond
+1 Talisman of Indulgence
+1 Sol Ring
+1 Black Mage's Rod
+1 Wishclaw Talisman
+1 Arcane Signet
+1 Unstable Amulet
+1 Chrome Mox
+1 Mox Opal
+1 Vexing Bauble
+1 Mox Amber
+1 Fellwar Stone
+1 Mana Vault
+1 Agatha's Soul Cauldron
+1 Voltaic Key
+1 Pyroblast
+1 Razorkin Needlehead
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Scrawling Crawler
+1 Ragavan, Nimble Pilferer
+1 Coruscation Mage
+1 Kederekt Parasite
+1 Hexing Squelcher
+1 Party Thrasher
+1 Simian Spirit Guide
+1 Casey Jones, Back Alley Brute
+1 Firebrand Archer
+1 Walking Ballista
+1 Prosper, Tome-Bound
+1 Reckless Fireweaver
+1 Lightning Bolt
+1 Kessig Flamebreather
+1 Dark Ritual
+1 Untimely Malfunction
+1 Vivi's Persistence
+1 Flare of Duplication
+1 Slaughter Pact
+1 Final Fortune
+1 Tainted Pact
+1 Ad Nauseam
+1 Red Elemental Blast
+1 Deflecting Swat
+1 Desperate Ritual
+1 Rain of Filth
+1 Cabal Ritual
+1 Seething Song
+1 The Last Agni Kai
+1 Redirect Lightning
+1 Culling the Weak
+1 Fling
+1 Deadly Rollick
+1 Vampiric Tutor
+1 Bolt Bend
+1 Pyretic Ritual

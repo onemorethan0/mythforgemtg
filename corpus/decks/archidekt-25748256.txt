@@ -1,0 +1,97 @@
+# Archidekt — Gwenom
+# source: archidekt:25748256
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Gwenom, Remorseless
+
+Deck:
+1 Aetherflux Reservoir
+1 Ancient Tomb
+1 Arcane Signet
+1 Beseech the Queen
+1 Blood Pet
+1 Bloodstained Mire
+1 Bloodthirsty Conqueror
+1 Bolas's Citadel
+1 Cabal Ritual
+1 Chain of Smog
+1 Chrome Mox
+1 Codex Shredder
+1 Crashing Drawbridge
+1 Cruel Tutor
+1 Crystal Vein
+1 Culling the Weak
+1 Dark Petition
+1 Dark Ritual
+1 Death Cultist
+1 Demonic Counsel
+1 Demonic Tutor
+1 Diabolic Tutor
+1 Diamond Lion
+1 Doom Whisperer
+1 Doomsday
+1 Ebon Stronghold
+1 Enduring Tenacity
+1 Exquisite Blood
+1 Fellwar Stone
+1 Gemstone Caverns
+1 Gray Merchant of Asphodel
+1 Grim Monolith
+1 Grim Tutor
+1 Hall of the Bandit Lord
+1 Imp's Mischief
+1 Imperial Seal
+1 Insidious Dreams
+1 Jet Medallion
+1 Jeweled Amulet
+1 K'rrik, Son of Yawgmoth
+1 Lavaspur Boots
+1 Lightning Greaves
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Malakir Rebirth // Malakir Mire
+1 Mana Vault
+1 Marsh Flats
+1 Mausoleum Secrets
+1 Mortuary
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Necropotence
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Ornithopter
+1 Peat Bog
+1 Polluted Delta
+1 Praetor's Grasp
+1 Prismatic Vista
+1 Professor Onyx
+1 Pyxis of Pandemonium
+1 Reanimate
+1 Sacrifice
+1 Sanguine Bond
+1 Scheming Symmetry
+1 Sensei's Divining Top
+1 Shard of the Nightbringer
+1 Sheoldred, the Apocalypse
+1 Shield Sphere
+1 Shizo, Death's Storehouse
+1 Skateboard
+1 Slaughter Pact
+1 Sol Ring
+12 Swamp
+1 Tendrils of Agony
+1 The Soul Stone
+1 Umbral Collar Zealot
+1 Urza's Saga
+1 Vampiric Tutor
+1 Vault of Whispers
+1 Verdant Catacombs
+1 Viscera Seer
+1 Wand of Vertebrae
+1 Wandering Archaic // Explore the Vastlands
+1 Wishclaw Talisman
+1 Inside Information
+1 Doctor Doom, Unrivaled

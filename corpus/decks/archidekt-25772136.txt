@@ -1,0 +1,82 @@
+# Archidekt — Avacyn - B3
+# source: archidekt:25772136
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Avacyn, Angel of Hope
+
+Deck:
+1 Arcane Signet
+1 Stonespeaker Crystal
+1 Aven Mindcensor
+1 Serra Ascendant
+1 Grand Abolisher
+1 Stoneforge Mystic
+1 Mother of Runes
+1 Weathered Wayfarer
+1 Chancellor of the Annex
+1 Elesh Norn, Grand Cenobite
+1 Kozilek, the Great Distortion
+1 Gilded Lotus
+1 Sol Ring
+1 Mind Stone
+1 Pearl Medallion
+1 Manifold Key
+1 Linvala, Keeper of Silence
+1 Kataki, War's Wage
+1 Archivist of Oghma
+1 Deep Gnome Terramancer
+1 Elesh Norn, Mother of Machines
+1 Sigarda's Aid
+1 Land Tax
+1 Blind Obedience
+1 Aura of Silence
+1 Grasp of Fate
+1 Smothering Tithe
+1 Deafening Silence
+1 Trouble in Pairs
+1 Enlightened Tutor
+1 Swords to Plowshares
+1 Not of This World
+1 Reprieve
+1 Hour of Revelation
+1 Wrath of God
+1 Steelshaper's Gift
+1 Open the Armory
+1 Dismantling Wave
+1 Vanquish the Horde
+1 Lightning Greaves
+1 Throne of Eldraine
+1 Emeria Shepherd
+1 Starnheim Aspirant
+1 Lyra Dawnbringer
+1 Giada, Font of Hope
+1 Commander's Plate
+1 Knight of the White Orchid
+1 Linden, the Steadfast Queen
+1 Righteous Valkyrie
+27 Plains
+1 Sword of the Animist
+1 Baneslayer Angel
+1 Teferi's Protection
+1 Archangel of Thune
+1 Angel of Jubilation
+1 Authority of the Consuls
+1 Endless Atlas
+1 Thalia, Heretic Cathar
+1 Shadowspear
+1 Rogue's Passage
+1 Command Tower
+1 Minas Tirith
+1 Emeria, the Sky Ruin
+1 Rebuff the Wicked
+1 Akroma's Will
+1 True Conviction
+1 Ghostly Prison
+1 Planar Cleansing
+1 Day of Judgment
+1 Cleansing Nova
+1 Wayfarer's Bauble
+1 Thran Dynamo
+1 Swiftfoot Boots

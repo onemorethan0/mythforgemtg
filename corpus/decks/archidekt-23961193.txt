@@ -1,0 +1,67 @@
+# Archidekt — Tymna's Cult Meeting (WIP)
+# source: archidekt:23961193
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Tymna the Weaver
+1 Sidar Kondo of Jamuraa
+
+Deck:
+1 Destiny Spinner
+1 Valgavoth, Terror Eater
+1 Fix What's Broken
+1 Raise the Past
+1 Infernal Sovereign
+1 Valgavoth's Faithful
+1 Zulaport Cutthroat
+1 Bayou
+1 Overgrown Tomb
+1 Scrubland
+1 Godless Shrine
+1 Haywire Mite
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Command Tower
+1 Liliana's Contract
+1 Bleachbone Verge
+1 Deathcap Glade
+1 Shattered Sanctum
+1 Concealed Courtyard
+1 Caves of Koilos
+1 Blooming Marsh
+1 Llanowar Wastes
+1 Bloodstained Mire
+1 Polluted Delta
+1 Silent Clearing
+1 Windswept Heath
+1 Nurturing Peatland
+1 Twilight Mire
+1 Fetid Heath
+1 Undergrowth Stadium
+1 City of Brass
+1 Mana Confluence
+1 Patriarch's Bidding
+1 Verdant Catacombs
+1 Vault of Champions
+1 Shizo, Death's Storehouse
+1 Cavern of Souls
+1 Unclaimed Territory
+1 Secluded Courtyard
+1 Alseid of Life's Bounty
+1 Shigeki, Jukai Visionary
+1 Takenuma, Abandoned Mire
+1 Marsh Flats
+1 Archfiend of Depravity
+1 Command the Dreadhorde
+1 Skirsdag Flayer
+40 Shadowborn Apostle
+1 Immortal Servitude
+1 Tragic Poet
+1 Angel of Glory's Rise
+1 Children of Korlis
+1 Razaketh, the Foulblooded
+4 Swamp
+1 Cathars' Crusade
+1 Dreadfeast Demon

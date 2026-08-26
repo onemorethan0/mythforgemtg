@@ -1,0 +1,95 @@
+# Archidekt — Kefka
+# source: archidekt:25749210
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Worldgorger Dragon
+1 Kefka, Dancing Mad
+1 Purphoros, God of the Forge
+1 Saw in Half
+1 Underworld Breach
+1 Essence Flux
+1 Hoarding Broodlord
+1 Harmonic Prodigy
+1 Displacer Kitten
+1 Thassa, Deep-Dwelling
+1 Dauthi Voidwalker
+1 Phantasmal Image
+1 Ultimecia, Time Sorceress // Ultimecia, Omnipotent
+1 Rakdos, Lord of Riots
+1 Tinybones, Bauble Burglar
+1 Reanimate
+1 Waste Not
+1 Black Waltz No. 3
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Veyran, Voice of Duality
+1 Niv-Mizzet, Parun
+1 Espers to Magicite
+1 Animate Dead
+1 Arena of Glory
+1 Necromancy
+1 Ardyn, the Usurper
+1 Rhystic Study
+1 Demonic Tutor
+1 Demonic Counsel
+1 Imperial Seal
+1 Mnemonic Betrayal
+1 Jeska's Will
+1 Gamble
+1 Yawgmoth's Will
+1 Praetor's Grasp
+1 An Offer You Can't Refuse
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Cabal Ritual
+1 Dark Ritual
+1 Deflecting Swat
+1 Entomb
+1 Fierce Guardianship
+1 Vampiric Tutor
+1 Flusterstorm
+1 Force of Negation
+1 Fellwar Stone
+1 Arcane Signet
+1 Sol Ring
+1 Mystic Remora
+1 Razaketh, the Foulblooded
+1 Archon of Cruelty
+1 Terror of the Peaks
+1 Unsubstantiate
+1 Ancient Brass Dragon
+1 Bloodchief Ascension
+1 Planar Incision
+1 Cursed Mirror
+1 A-Vivi Ornitier
+1 Cyclonic Rift
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Will of the Jeskai
+1 Anger
+1 Psychosis Crawler
+1 Impact Tremors
+1 Polluted Delta
+1 Command Tower
+1 Crumbling Necropolis
+1 Exotic Orchard
+1 Choked Estuary
+1 Path of Ancestry
+1 Bojuka Bog
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Temple of Malice
+1 Sunken Hollow
+1 Smoldering Marsh
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Underground River
+1 Raucous Theater
+1 Shivan Reef
+1 Ash Barrens
+5 Island
+5 Mountain
+5 Swamp
+1 Victimize

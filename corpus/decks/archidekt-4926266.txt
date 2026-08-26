@@ -1,0 +1,89 @@
+# Archidekt — Rohan Calvary
+# source: archidekt:4926266
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Éowyn, Shieldmaiden
+
+Deck:
+1 Aragorn, King of Gondor
+1 Archivist of Gondor
+1 Lossarnach Captain
+1 Prince Imrahil the Fair
+1 Théoden, King of Rohan
+1 Éomer, King of Rohan
+1 Fealty to the Realm
+1 Oath of Eorl
+1 Shared Animosity
+1 Lost to Legend
+1 Call for Aid
+1 Forth Eorlingas!
+1 Evolving Wilds
+1 Sol Ring
+1 Bastion Protector
+1 Beregond of the Guard
+1 Champions of Minas Tirith
+1 Faramir, Steward of Gondor
+1 Frontier Warmonger
+1 Flamerush Rider
+1 Frontline Medic
+1 Court of Ire
+1 Battlefield Forge
+1 Command Tower
+1 Field of Ruin
+1 Crown of Gondor
+1 Path of Ancestry
+1 Taunt from the Rampart
+1 Herald's Horn
+1 Talisman of Conviction
+1 Talisman of Progress
+1 Harsh Mentor
+1 Selfless Squire
+1 Verge Rangers
+1 Weathered Wayfarer
+1 Marshal's Anthem
+1 Path to Exile
+1 Reprieve
+1 Increasing Devotion
+1 Sunset Revelry
+1 Visions of Glory
+1 Smite the Deathless
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Throne of the High City
+8 Island
+1 Éowyn, Fearless Knight
+1 Horn of Gondor
+1 Éomer, Marshal of Rohan
+1 Desolate Lighthouse
+1 Dawn of a New Age
+1 Faramir, Field Commander
+1 Mentor of the Meek
+1 Fell the Mighty
+1 Great Hall of the Citadel
+1 Rangers of Ithilien
+1 Vanquisher's Banner
+1 Combat Celebrant
+1 Arcane Signet
+1 Door of Destinies
+1 Banish from Edoras
+1 Erkenbrand, Lord of Westfold
+1 Faramir, Prince of Ithilien
+1 Rising of the Day
+1 Dusk // Dawn
+1 Minas Tirith Garrison
+1 Scroll of Isildur
+1 Flowering of the White Tree
+1 Swords to Plowshares
+1 Now for Wrath, Now for Ruin!
+1 Riders of the Mark
+1 Courageous Resolve
+8 Mountain
+1 Ghost Quarter
+1 Bard, King of Dale
+1 Bard, Heir of Girion
+1 Bard the Bowman
+1 Lake-town
+7 Plains
+1 Minas Tirith

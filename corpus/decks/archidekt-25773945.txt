@@ -1,0 +1,85 @@
+# Archidekt — Rin and Seri
+# source: archidekt:25773945
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Felidar Cub
+1 Felidar Guardian
+1 Felidar Savior
+1 Felidar Umbra
+1 Felidar Sovereign
+1 Felidar Retreat
+1 Scythecat Cub
+1 Scythe Leopard
+1 Scythe Tiger
+1 Feline Sovereign
+1 Generous Stray
+1 Generous Pup
+1 Helpful Hunter
+1 Regal Caracal
+1 Selfless Savior
+1 Spirited Companion
+1 Beastmaster Ascension
+1 Animal Sanctuary
+1 Long-Bodied Grey Dog
+1 Pack Leader
+1 Arahbo, the First Fang
+1 Arahbo, Roar of the World
+1 Keeper of Fables
+1 Loyal Warhound
+1 Prideful Parent
+1 Pride Sovereign
+1 Ephemerate
+1 Enduring Courage
+1 Phelia, Exuberant Shepherd
+1 Bast, Panther Goddess
+1 Yoshimaru, Ever Faithful
+1 Faithful Watchdog
+1 Bolt Hound
+1 Rambunctious Mutt
+1 Alpine Watchdog
+1 Maskwood Nexus
+1 Claws Out
+1 Naya Charm
+1 Rampant Growth
+1 Release the Dogs
+1 Rhythm of the Wild
+1 Banner of Kinship
+1 Primal Vigor
+1 Three Tree City
+1 Patchwork Banner
+1 Commander's Sphere
+1 Path of Ancestry
+1 Isamaru, Hound of Konda
+1 Dogpile
+1 Blasphemous Act
+1 Harmonize
+1 Impact Tremors
+1 Sol Ring
+1 Talisman of Impulse
+1 Talisman of Unity
+1 Farseek
+1 Beast Whisperer
+1 Tesak, Judith's Hellhound
+1 Chaos Warp
+1 Cultivate
+1 Austere Command
+1 Path to Exile
+1 White Sun's Zenith
+1 Blossoming Sands
+1 Razorverge Thicket
+1 Wooded Ridgeline
+1 Sundown Pass
+1 Fields of Strife
+1 Furycalm Snarl
+1 Radiant Summit
+1 Arcane Signet
+1 Command Tower
+1 Rip Apart
+15 Plains
+1 Mountain
+10 Forest

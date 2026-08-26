@@ -1,0 +1,101 @@
+# Archidekt — Old Man Willow Golgari CDA
+# source: archidekt:18256509
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Old Man Willow
+
+Deck:
+1 Dungrove Elder
+1 Skyshroud War Beast
+1 Cultivator Colossus
+1 Dauntless Dourbark
+1 Beanstalk Giant // Fertile Footsteps
+1 Coiling Woodworm
+1 Sima Yi, Wei Field Marshal
+1 Ashaya, Soul of the Wild
+1 Allosaurus Rider
+1 Squelching Leeches
+1 Greensleeves, Maro-Sorcerer
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Lumra, Bellow of the Woods
+1 Dakmor Sorceress
+1 Nightmare
+1 Korlash, Heir to Blackblade
+1 Molimo, Maro-Sorcerer
+1 Lumbering Worldwagon
+1 Braulios of Pheres Band
+1 People of the Woods
+1 Kalonian Twingrove
+1 Harmonious Grovestrider
+1 Swampbenders
+1 Invasion of Lorwyn // Winnowing Forces
+1 Sandman, Shifting Scoundrel
+1 Ulvenwald Hydra
+1 Awakened Amalgam
+1 Traproot Kami
+1 Uktabi Wildcats
+1 Treefolk Seedlings
+1 Demolition Field
+1 Woodland Cemetery
+1 Command Tower
+1 Overgrown Tomb
+1 Golgari Rot Farm
+1 Undergrowth Stadium
+1 Tainted Wood
+1 Twilight Mire
+1 Verdant Catacombs
+1 Viridescent Bog
+1 Deathcap Glade
+1 Urza's Cave
+1 Boseiju, Who Endures
+1 Wastewood Verge
+1 Bayou
+1 Midgar, City of Mako // Reactor Raid
+1 Mosswort Bridge
+1 Bojuka Bog
+1 Castle Locthwain
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Castle Garenbrig
+1 Shifting Woodland
+1 Rogue's Passage
+1 Path of Ancestry
+1 Access Tunnel
+1 War Room
+1 Bonders' Enclave
+1 Scavenger Grounds
+1 Festering Thicket
+2 Swamp
+1 Explore
+1 Exploration
+1 Three Visits
+1 Farseek
+1 Druid Class
+1 Nature's Lore
+1 Crystalline Armor
+1 Blackblade Reforged
+1 Putrefy
+1 Archdruid's Charm
+1 Dryad of the Ilysian Grove
+1 The Great Henge
+1 Black Market Connections
+1 Phyrexian Arena
+1 Guardian Project
+1 Read the Bones
+1 Skullclamp
+1 Night's Whisper
+1 Return of the Wildspeaker
+1 Beast Whisperer
+1 Sign in Blood
+1 Rishkar's Expertise
+1 Sylvan Library
+1 Harmonize
+1 Kenrith's Transformation
+1 Kindred Dominance
+1 Beast Within
+1 Deadly Rollick
+1 Krosan Grip
+1 Lifestream's Blessing
+7 Forest

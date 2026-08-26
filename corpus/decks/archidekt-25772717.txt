@@ -1,0 +1,83 @@
+# Archidekt — Experiment Kraj
+# source: archidekt:25772717
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Experiment Kraj
+
+Deck:
+1 Sol Ring
+1 Worldly Tutor
+1 Tribute to the World Tree
+1 Walking Ballista
+1 Birds of Paradise
+1 Arixmethes, Slumbering Isle
+1 Eternal Witness
+1 Drover of the Mighty
+1 Fathom Mage
+1 Fauna Shaman
+1 Gyre Engineer
+1 Hardbristle Bandit
+1 Horseshoe Crab
+1 Incubation Druid
+1 Kami of Whispered Hopes
+1 Kamahl, Fist of Krosa
+1 Kinnan, Bonder Prodigy
+1 Llanowar Loamspeaker
+1 Nyxbloom Ancient
+1 Renata, Called to the Hunt
+1 Seedborn Muse
+1 Shigeki, Jukai Visionary
+1 Simic Ragworm
+1 Somberwald Sage
+1 Toski, Bearer of Secrets
+1 Conduit of Worlds
+1 Triskelion
+1 Basalt Monolith
+1 Ozolith, the Shattered Spire
+1 Paradise Mantle
+1 Staff of Domination
+1 Swiftfoot Boots
+1 Counterspell
+1 Dissipate
+1 Fading Hope
+1 Growth Spiral
+1 Krosan Grip
+1 Plasm Capture
+1 Sinister Sabotage
+1 Snakeskin Veil
+1 Eldritch Evolution
+1 Cultivate
+1 Green Sun's Zenith
+1 Green Sun's Twilight
+1 Kodama's Reach
+1 Traverse the Ulvenwald
+1 Cryptolith Rite
+1 Freed from the Real
+1 Hardened Scales
+1 Mana Reflection
+1 Pemmin's Aura
+1 Propaganda
+1 Primal Empathy
+1 Rhystic Study
+1 Season of Growth
+1 Utopia Sprawl
+1 Simic Ascendancy
+1 Wild Growth
+1 Command Tower
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Flooded Grove
+14 Forest
+1 Hinterland Harbor
+13 Island
+1 Llanowar Reborn
+1 Simic Growth Chamber
+1 Simic Guildgate
+1 Thornwood Falls
+1 Temple of Mystery
+1 Vineglimmer Snarl
+1 Woodland Stream
+1 Yavimaya Coast
+1 Shared Summons
+1 Quench

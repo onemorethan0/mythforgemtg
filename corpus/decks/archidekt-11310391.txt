@@ -1,0 +1,103 @@
+# Archidekt — Enzo
+# source: archidekt:11310391
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Drivnod, Carnage Dominus
+1 Luxury Suite
+1 Command Tower
+1 Commercial District
+1 Underground Mortuary
+1 Rockfall Vale
+1 Exotic Orchard
+1 Wooded Foothills
+1 Woodland Cemetery
+3 Swamp
+1 Verdant Catacombs
+1 Undergrowth Stadium
+1 Blood Crypt
+1 Bloodstained Mire
+1 Stomping Ground
+1 Overgrown Tomb
+1 Spire Garden
+1 Dragonskull Summit
+1 Blazemire Verge
+1 Wastewood Verge
+1 Haunted Ridge
+3 Forest
+1 Rootbound Crag
+1 Deathcap Glade
+1 Thornspire Verge
+1 Overlord of the Hauntwoods
+1 Etali, Primal Storm
+1 Primeval Herald
+1 Solemn Simulacrum
+1 Junji, the Midnight Sky
+1 Victimize
+1 Blasphemous Act
+1 Birds of Paradise
+1 Giant Adephage
+1 Goreclaw, Terror of Qal Sisma
+1 Honest Rutstein
+1 Archon of Cruelty
+1 Grim Haruspex
+1 Disciple of Freyalise // Garden of Freyalise
+1 Braids, Arisen Nightmare
+1 Gruff Triplets
+1 Balor
+1 Beast Within
+1 Terminate
+1 Malakir Rebirth // Malakir Mire
+1 Chaos Warp
+1 Assassin's Trophy
+1 Tear Asunder
+1 Fell the Profane // Fell Mire
+1 Greater Good
+1 Dictate of Erebos
+1 Reanimate
+1 Drakuseth, Maw of Flames
+1 The Great Henge
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Temple of the False God
+1 Kardur, Doomscourge
+1 Rampant Rejuvenator
+1 Wight of the Reliquary
+1 Grave Titan
+2 Mountain
+1 Sakura-Tribe Elder
+1 Bladewing, Deathless Tyrant
+1 Atsushi, the Blazing Sky
+1 Kogla, the Titan Ape
+1 Living Death
+1 Ilharg, the Raze-Boar
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Inferno Titan
+1 Ignoble Hierarch
+1 Evercoat Ursine
+1 Overlord of the Boilerbilges
+1 Bringer of the Last Gift
+1 Gwenna, Eyes of Gaea
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Not Dead After All
+1 Up the Beanstalk
+1 Seedguide Ash
+1 Roxanne, Starfall Savant
+1 Bane of Progress
+1 Raucous Theater
+1 Colossal Grave-Reaver
+1 Body Snatcher
+1 Elves of Deep Shadow
+1 Elvish Mystic
+1 Deathrite Shaman
+1 Timeless Witness
+1 Apex Devastator
+1 Llanowar Elves
+1 Incinerator of the Guilty
+1 Gray Merchant of Asphodel
+1 Ziatora, the Incinerator
+1 Chainer, Nightmare Adept
+1 Anger

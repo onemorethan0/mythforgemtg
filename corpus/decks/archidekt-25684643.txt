@@ -1,0 +1,95 @@
+# Archidekt — Dr. Doom's OnlyLands
+# source: archidekt:25684643
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Svyelunite Temple
+1 Agna Qel'a
+1 Avishkar Raceway
+1 Restless Vents
+1 Cephalid Coliseum
+1 Fogwell's Gym
+1 Desolate Lighthouse
+1 Geier Reach Sanitarium
+1 Immersturm Skullcairn
+1 Rix Maadi, Dungeon Palace
+1 Mikokoro, Center of the Sea
+1 Barren Moor
+1 Capital City
+1 Ice Floe
+1 Kher Keep
+1 Lavaclaw Reaches
+1 Labyrinth of Skophos
+1 Plaza of Heroes
+1 Mishra's Factory
+1 Restless Spire
+1 Restless Reef
+1 Northampton Farm
+1 Piranha Marsh
+1 Mariposa Military Base
+1 Sokenzan, Crucible of Defiance
+1 Ash Barrens
+1 Memorial to Genius
+1 Drownyard Temple
+1 The Great Mound
+1 Canyon Slough
+1 Blasted Landscape
+1 Coastal Peak
+1 Fetid Pools
+1 Desert of the Mindful
+1 Lonely Sandbar
+1 Forgotten Cave
+1 Night Market
+1 Polluted Mire
+1 Remote Isle
+1 Seething Landscape
+1 Arid Archway
+1 Dimir Aqueduct
+1 Coral Atoll
+1 Dormant Volcano
+1 Everglades
+1 Guildless Commons
+1 Izzet Boilerworks
+1 Rakdos Carnarium
+1 Spymaster's Vault
+1 Crumbling Necropolis
+1 Surtland Frostpyre
+1 Stensia Bloodhall
+1 Soured Springs
+1 Ramunap Ruins
+1 Eroded Canyon
+1 Jagged Barrens
+1 Dark Depths
+1 Creeping Tar Pit
+1 Faerie Conclave
+1 Ghitu Encampment
+1 Tyrite Sanctum
+1 Oscorp Industries
+1 Command Tower
+1 Mount Doom
+6 Swamp
+6 Island
+6 Mountain
+1 Myriad Landscape
+1 Blinkmoth Nexus
+1 Desert of the Glorified
+1 Desert of the Fervent
+1 Thespian's Stage
+1 Shivan Gorge
+1 Smoldering Crater
+1 Vesuva
+1 Sunken Citadel
+1 Echoing Deeps
+1 Tolaria West
+1 Muraganda Raceway
+1 Sulfur Vent
+1 Peat Bog
+1 Dwarven Ruins
+1 Sandstone Needle
+1 Ebon Stronghold
+1 Saprazzan Skerry
+1 Temple of the False God

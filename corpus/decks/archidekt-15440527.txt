@@ -1,0 +1,75 @@
+# Archidekt — Seb McKinnon ESPER
+# source: archidekt:15440527
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Aminatou, the Fateshifter
+
+Deck:
+1 Attended Knight
+1 Giver of Runes
+1 Enchanted Evening
+1 Answered Prayers
+1 Bankrupt in Blood
+1 Blind Obedience
+1 Blood for Bones
+1 Chilling Grasp
+1 Compelling Deterrence
+1 Conclave Tribunal
+1 Covenant of Blood
+1 Cuombajj Witches
+1 Dirge of Dread
+1 Displacement Wave
+1 Mire Triton
+1 Nagging Thoughts
+1 Necromancer's Stockpile
+1 Noosegraf Mob
+1 Odunos River Trawler
+1 Pale Rider of Trostad
+1 Parting Thoughts
+1 Pontiff of Blight
+1 Promise of Tomorrow
+1 Rakshasa's Disdain
+1 Returned Phalanx
+1 Sadistic Skymarcher
+1 Sandblast
+1 Scheming Symmetry
+1 Selfless Spirit
+1 Silent Clearing
+1 Soulflayer
+1 Soulherder
+1 Spectral Reserves
+1 Stream of Thought
+1 String of Disappearances
+1 Temporal Fissure
+1 Thirsting Shade
+1 Topplegeist
+1 Unholy Indenture
+1 Vaporkin
+1 Wander in Death
+1 Order of Midnight // Alter Fate
+1 Twilight Prophet
+1 Martyr's Bond
+12 Swamp
+1 Nighthowler
+1 Sower of Temptation
+12 Plains
+1 Vryn Wingmare
+1 Unknown Shores
+1 Essence Flux
+1 Farewell
+1 Feast of Succession
+1 Fogwalker
+1 Force of Despair
+1 Grasping Thrull
+1 Grim Haruspex
+1 Grim Return
+1 Grisly Survivor
+1 Immortal Servitude
+1 Essence Scatter
+1 Aminatou's Augury
+1 Damnation
+12 Island
+1 Akroan Horse
+1 Game Plan

@@ -1,0 +1,84 @@
+# Archidekt — Burn One, Burn All
+# source: archidekt:25777145
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Imodane, the Pyrohammer
+
+Deck:
+1 Arcane Bombardment
+1 Arcane Lighthouse
+1 Basilisk Collar
+1 Blitz of the Thunder-Raptor
+1 Braid of Fire
+1 Brash Taunter
+1 Burn from Within
+1 Chandra, Hope's Beacon
+1 Chandra's Incinerator
+1 City on Fire
+1 Collector's Vault
+1 Command Beacon
+1 Crackle with Power
+1 Defiler of Instinct
+1 Deflecting Swat
+1 Demolition Field
+1 Dictate of the Twin Gods
+1 Double Vision
+1 Dualcaster Mage
+1 Electrodominance
+1 Electrostatic Field
+1 Emergence Zone
+1 Endless Atlas
+1 Extraplanar Lens
+1 Fiery Emancipation
+1 Fire Servant
+1 Forgotten Cave
+1 Furnace of Rath
+1 Grafted Exoskeleton
+1 Grapeshot
+1 Guttersnipe
+1 Humble Defector
+1 Impact Resonance
+1 Increasing Vengeance
+1 Into the Maw of Hell
+1 Koth, Fire of Resistance
+1 Leyline Tyrant
+1 Lightning Bolt
+1 Magus of the Wheel
+1 Mana Geyser
+1 Nahiri's Warcrafting
+1 Neheb, the Eternal
+1 Nykthos, Shrine to Nyx
+1 Obliterating Bolt
+1 Price of Progress
+1 Purphoros's Intervention
+1 Pyroblast
+1 Radiant Performer
+1 Radiate
+1 Reforge the Soul
+1 Ruby Medallion
+1 Sceptre of Eternal Glory
+1 Seething Song
+1 Shivan Meteor
+1 Skred
+1 Smite the Deathless
+1 Smoldering Crater
+1 Sol Ring
+1 Solphim, Mayhem Dominus
+1 Soul Sear
+1 Spinerock Knoll
+1 Stonesplitter Bolt
+1 Storm-Kiln Artist
+1 Swiftfoot Boots
+1 Thrill of Possibility
+1 Torch Breath
+1 Treasonous Ogre
+1 Urabrask // The Great Work
+1 Valakut Awakening // Valakut Stoneforge
+1 Valakut, the Molten Pinnacle
+1 Vindictive Flamestoker
+1 Wheel of Misfortune
+1 Witch's Clinic
+1 Shadowspear
+25 Snow-Covered Mountain

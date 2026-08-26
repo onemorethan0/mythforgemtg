@@ -1,0 +1,108 @@
+# Archidekt — The First Sliver
+# source: archidekt:25739713
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Imperial Seal
+1 Demonic Tutor
+1 Food Chain
+1 Heart Sliver
+1 Sliver Hivelord
+1 Diffusion Sliver
+1 Cavern of Souls
+1 Training Grounds
+1 Quick Sliver
+1 Sol Ring
+1 Abrupt Decay
+1 Cyclonic Rift
+1 Birds of Paradise
+1 Chrome Mox
+1 Nature's Claim
+1 Force of Will
+1 Swan Song
+1 Unclaimed Territory
+1 Worldly Tutor
+1 Brood Sliver
+1 Galerider Sliver
+1 Vampiric Tutor
+1 Underworld Breach
+1 Sliver Legion
+1 Finale of Devastation
+1 Veil of Summer
+1 Necropotence
+1 Spiteful Sliver
+1 Exotic Orchard
+1 Enlightened Tutor
+1 Pact of Negation
+1 Tainted Pact
+1 Mystical Tutor
+1 Mox Diamond
+1 Harmonic Sliver
+1 City of Brass
+1 Thassa's Oracle
+1 Cloudshredder Sliver
+1 Flusterstorm
+1 Silence
+1 Mana Echoes
+1 Sliver Gravemother
+1 Lavabelly Sliver
+1 Force of Negation
+1 Striking Sliver
+1 Command Tower
+1 Ashnod's Altar
+1 Flooded Strand
+1 Misty Rainforest
+1 Polluted Delta
+1 Scalding Tarn
+1 Windswept Heath
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Marsh Flats
+1 Breeding Pool
+1 Watery Grave
+1 Overgrown Tomb
+1 Steam Vents
+1 Stomping Ground
+1 Temple Garden
+1 Hallowed Fountain
+1 Blood Crypt
+1 Forest
+1 Island
+1 Basal Sliver
+1 Virulent Sliver
+1 Reflecting Pool
+1 Ad Nauseam
+1 Syphon Sliver
+1 Arid Mesa
+1 Rhystic Study
+1 Root Sliver
+1 Eladamri's Call
+1 Bonescythe Sliver
+1 Demonic Consultation
+1 Sliver Hive
+1 Phyrexian Altar
+1 Lion's Eye Diamond
+1 Sliver Queen
+1 Mana Confluence
+1 Hibernation Sliver
+1 Brain Freeze
+1 Sliver Overlord
+1 Necrotic Sliver
+1 Realmwalker
+1 Gemhide Sliver
+1 Lotus Petal
+1 Bloodstained Mire
+1 Squee, the Immortal
+1 Morophon, the Boundless
+1 Mana Vault
+1 Carpet of Flowers
+1 Manaweft Sliver
+1 The First Sliver
+1 Secluded Courtyard
+1 Mystic Remora
+1 Gemstone Caverns
+1 Crystalline Sliver
+1 Homing Sliver
+
+Deck:

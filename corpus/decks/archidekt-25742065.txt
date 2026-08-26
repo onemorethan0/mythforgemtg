@@ -1,0 +1,92 @@
+# Archidekt — Aerith FF Remake
+# source: archidekt:25742065
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Aerith, Last Ancient
+
+Deck:
+1 White Mage's Staff
+1 Sol Ring
+1 Sunpetal Grove
+1 Capital City
+1 Adventurer's Inn
+1 Eden, Seat of the Sanctum
+1 Prishe's Wanderings
+1 Temple of Plenty
+1 Duskshell Crawler
+8 Forest
+1 Lightning Greaves
+1 Canopy Vista
+1 The Earth Crystal
+1 Dancer's Chakrams
+1 Nesting Grounds
+10 Plains
+1 Windurst, Federation Center
+1 Ishgard, the Holy See // Faith & Grief
+1 Aerith Gainsborough
+1 Ashe, Princess of Dalmasca
+1 Behemoth Sledge
+1 Radiant Grove
+1 Tromell, Seymour's Butler
+1 Temple of the False God
+1 Esper Origins // Summon: Esper Maduin
+1 Sungrass Prairie
+1 Battle Menu
+1 High Market
+1 Summon: Ixion
+1 Fortified Village
+1 Arcane Signet
+1 Rampant Growth
+1 Ash Barrens
+1 Nature's Lore
+1 Command Tower
+1 Exotic Orchard
+1 The Warring Triad
+1 Crystal Fragments // Summon: Alexander
+1 Cleansing Nova
+1 Lifestream's Blessing
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Zack Fair
+1 Excalibur II
+1 Path of Discovery
+1 Shelinda, Yevon Acolyte
+1 Restoration Magic
+1 Goobbue Gardener
+1 Cultivate
+1 Clash of the Eikons
+1 Commune with Beavers
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 G'raha Tia
+1 Summon: Good King Mog XII
+1 Inspiring Call
+1 Summon: Fenrir
+1 Instant Ramen
+1 Bugenhagen, Wise Elder
+1 Torgal, A Fine Hound
+1 Grateful Apparition
+1 Garnet, Princess of Alexandria
+1 Harmonize
+1 Town Greeter
+1 Commander's Sphere
+1 Maester Seymour
+1 Angel of the Ruins
+1 Three Visits
+1 Chocobo Knights
+1 Tragic Arrogance
+1 Summon: Titan
+1 Wakka, Devoted Guardian
+1 Rinoa Heartilly
+1 Yuna's Decision
+1 Aerith Rescue Mission
+1 Promise of Loyalty
+1 Summoner's Grimoire
+1 Minwu, White Mage
+1 Weapons Vendor
+1 Damning Verdict
+1 Lunatic Pandora
+1 Sunscorch Regent
+1 Cyan, Vengeful Samurai
+1 Skullclamp
+1 Authority of the Consuls

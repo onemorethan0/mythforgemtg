@@ -1,0 +1,103 @@
+# Archidekt — Ravnica.dec 🌈🐉 Niv-Mizzet, Guildpact
+# source: archidekt:8847565
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Niv-Mizzet, Guildpact
+
+Deck:
+1 Gruul Guildgate
+1 Plaza of Harmony
+1 Simic Guildgate
+1 Case of the Shattered Pact
+1 Dimir Guildmage
+1 Golgari Guildmage
+1 Azorius Guildgate
+1 Selesnya Guildgate
+1 Guildmages' Forum
+1 Combine Guildmage
+1 Pillar of the Paruns
+2 Mountain
+2 Forest
+1 Command Tower
+1 Cult Guildmage
+1 Azorius Signet
+1 Golgari Guildgate
+1 Selesnya Sanctuary
+1 Rakdos Guildmage
+1 Open the Gates
+1 Boros Garrison
+1 Dimir Aqueduct
+1 Azorius Chancery
+1 Simic Growth Chamber
+1 Prime Speaker Zegana
+1 Scene of the Crime
+1 Boros Guildgate
+1 Dimir Guildgate
+1 Izzet Guildgate
+1 Orzhov Guildgate
+1 Rakdos Guildgate
+1 Boros Guildmage
+1 Gruul Guildmage
+1 Izzet Guildmage
+1 Selesnya Guildmage
+1 Orzhov Guildmage
+1 Simic Guildmage
+2 Plains
+2 Island
+2 Swamp
+1 Clan Guildmage
+1 House Guildmage
+1 League Guildmage
+1 Legion Guildmage
+1 Senate Guildmage
+1 Exotic Orchard
+1 Path of Ancestry
+1 Gateway Plaza
+1 Golgari Rot Farm
+1 Gruul Turf
+1 Izzet Boilerworks
+1 Orzhov Basilica
+1 Rakdos Carnarium
+1 District Guide
+1 Expansion // Explosion
+1 Dreadbore
+1 Notion Rain
+1 Rhythm of the Wild
+1 Lightning Helix
+1 Maze's End
+1 Borborygmos
+1 Circuitous Route
+1 Izoni, Thousand-Eyed
+1 Sage of the Maze
+1 Tolsimir Wolfblood
+1 Mortify
+1 Chromatic Lantern
+1 Boros Signet
+1 Dimir Signet
+1 Golgari Signet
+1 Selesnya Signet
+1 Rakdos Signet
+1 Orzhov Signet
+1 Izzet Signet
+1 Gruul Signet
+1 Simic Signet
+1 Niv-Mizzet, Parun
+1 Karlov of the Ghost Council
+1 Lavinia, Azorius Renegade
+1 Syndicate Guildmage
+1 Judith, the Scourge Diva
+1 Repudiate // Replicate
+1 Assure // Assemble
+1 Aurelia, Exemplar of Justice
+1 Putrefy
+1 Swarm Guildmage
+1 Absorb
+1 Niv-Mizzet Reborn
+1 Conclave Guildmage
+1 Azorius Guildmage
+1 Glaive of the Guildpact
+1 Invasion of Ravnica // Guildpact Paragon
+1 Lazav, the Multifarious
+1 Guild Summit

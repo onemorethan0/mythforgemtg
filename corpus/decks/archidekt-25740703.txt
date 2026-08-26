@@ -1,0 +1,104 @@
+# Archidekt — Rowan (That's My name!)
+# source: archidekt:25740703
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Rowan, Scion of War
+
+Deck:
+1 Slaughter Pact
+1 Cabal Ritual
+1 Ancient Tomb
+1 Imperial Seal
+1 Peer into the Abyss
+1 Ragavan, Nimble Pilferer
+1 Vampiric Tutor
+1 Black Market Connections
+1 Pinnacle Monk // Mystic Peak
+1 Mox Amber
+1 Spire of Industry
+1 Command Tower
+1 Rite of Flame
+1 Inspired Tinkering
+1 Ricochet Trap
+1 Tibalt's Trickery
+1 Lotus Petal
+1 Bolt Bend
+1 Ifnir Deadlands
+1 Wheel of Fortune
+1 Wishclaw Talisman
+1 The Black Gate
+1 Ramunap Ruins
+1 Arena of Glory
+1 Reiterate
+1 Simian Spirit Guide
+1 Tainted Pact
+1 Hall of the Bandit Lord
+1 Big Score
+1 Unexpected Windfall
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Dark Confidant
+1 Burnout
+1 The One Ring
+1 Stinging Study
+1 Rending Volley
+1 Read the Bones
+1 Storm-Kiln Artist
+1 Molten Duplication
+1 Abrade
+1 Gamble
+1 K'rrik, Son of Yawgmoth
+1 Seize the Spoils
+1 Tarnished Citadel
+1 Pirate's Pillage
+1 Ad Nauseam
+1 Ambition's Cost
+1 Treasonous Ogre
+1 Underworld Breach
+1 Untimely Malfunction
+1 Dark Petition
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Return the Past
+1 Apex of Power
+1 Pyretic Ritual
+1 Ancient Craving
+1 Mox Diamond
+1 Dualcaster Mage
+1 Badlands
+1 Fork
+1 Sheoldred, the Apocalypse
+1 Blood Crypt
+1 Dauthi Voidwalker
+1 Defense Grid
+1 Boggart Trawler // Boggart Bog
+1 Scalding Tarn
+1 Return the Favor
+1 Searing Touch
+1 Stargaze
+1 Red Elemental Blast
+1 Deflecting Swat
+1 Demonic Tutor
+1 Imperial Recruiter
+1 Gemstone Caverns
+1 Dark Ritual
+1 Pyroblast
+1 Orcish Bowmasters
+1 Chrome Mox
+1 Jeska's Will
+1 Desperate Ritual
+1 Lion's Eye Diamond
+1 Luxury Suite
+1 Bloodstained Mire
+1 Sulfurous Springs
+1 Mount Doom
+1 Withering Torment
+1 Mox Opal
+1 Mana Confluence
+1 Grapeshot
+1 City of Brass
+1 Seething Song
+1 Reverberate
+1 Chaos Warp
+1 Deadly Rollick
+1 Darkstar Augur

@@ -1,0 +1,91 @@
+# Archidekt — emet
+# source: archidekt:25774124
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+
+Deck:
+1 Boseiju, Who Shelters All
+1 Riverchurn Monument
+1 Dimir Aqueduct
+1 Blasphemous Edict
+1 Snap
+1 Enduring Curiosity
+1 Tomb Fortress
+1 Buried Alive
+1 Takenuma, Abandoned Mire
+1 Phyrexian Arena
+1 Cephalid Coliseum
+1 Cemetery Tampering
+1 Command Tower
+1 Darkwater Catacombs
+1 Glimpse the Unthinkable
+1 Tainted Isle
+1 Toxic Deluge
+1 Fell the Profane // Fell Mire
+1 Waterlogged Teachings // Inundated Archive
+1 Jace's Erasure
+1 Vohar, Vodalian Desecrator
+1 Shinra Reinforcements
+1 Y'shtola Rhul
+1 Resentful Revelation
+1 The Ancient One
+1 Cryogen Relic
+1 Gitaxian Probe
+1 Memories Returning
+1 An Offer You Can't Refuse
+1 Jin-Gitaxias, Progress Tyrant
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Watery Grave
+1 Dark Ritual
+1 Victimize
+1 Valgavoth, Terror Eater
+1 Overkill
+1 Reanimate
+1 Counterspell
+1 Gwenom, Remorseless
+1 Otawara, Soaring City
+1 Sygg, River Cutthroat
+1 Sink into Stupor // Soporific Springs
+1 Arcane Signet
+1 Stitcher's Supplier
+1 Into the Flood Maw
+1 Long River's Pull
+1 Wonder
+1 The Warring Triad
+1 Drowned Catacomb
+1 Exsanguinate
+1 Frantic Search
+1 Valgavoth's Faithful
+1 Emry, Lurker of the Loch
+1 Lightning Greaves
+1 Emet-Selch of the Third Seat
+1 Choked Estuary
+1 Dimir Signet
+1 Talisman of Dominance
+1 Everflowing Chalice
+1 Fountainport Bell
+1 Stitch Together
+1 Temple of Deceit
+1 Wayfarer's Bauble
+1 Cephalid Inkmage
+1 Consuming Aberration
+1 Eerie Gravestone
+1 Thought Scour
+1 The Darkness Crystal
+1 Sinister Hideout
+1 Ludevic, Necrogenius // Olag, Ludevic's Hubris
+1 Sol Ring
+1 Swiftfoot Boots
+1 Dimir Cluestone
+1 Restless Reef
+1 Secret Passage
+1 Behold the Sinister Six!
+1 World Map
+1 Fell Gravship
+10 Island
+1 Combat Tutorial
+9 Swamp

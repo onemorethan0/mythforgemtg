@@ -1,0 +1,102 @@
+# Archidekt — Choco, Seeker of Paradise (Commander) - Tempest Hawk
+# source: archidekt:17565675
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Choco, Seeker of Paradise
+
+Deck:
+1 Dovescape
+1 Enlightened Tutor
+1 Fierce Guardianship
+1 Worldly Tutor
+1 Flurry of Wings
+1 Cultivate
+1 Stroke of Midnight
+1 Beast Within
+1 Clever Concealment
+3 Forest
+1 Path to Exile
+3 Island
+1 Ascend from Avernus
+1 Command Tower
+1 Spelunking
+1 Emeria Angel
+1 Bower Passage
+1 Hallowed Fountain
+1 Temple Garden
+1 Selesnya Sanctuary
+1 Cavern of Souls
+1 Azorius Chancery
+1 Glacial Fortress
+1 Misty Rainforest
+1 Sunpetal Grove
+1 Prairie Stream
+1 Breeding Pool
+1 Spara's Headquarters
+1 Plumecreed Escort
+1 Sea of Clouds
+1 Deserted Beach
+1 Overgrown Farmland
+1 Canopy Vista
+1 Windswept Heath
+1 Bountiful Promenade
+1 Flooded Strand
+1 Rejuvenating Springs
+1 Traveling Chocobo
+1 Watcher of the Spheres
+1 Mockingbird
+1 Empyrean Eagle
+1 Swords to Plowshares
+1 Heroic Intervention
+1 Rapid Hybridization
+1 Dazzling Denial
+1 Flare of Fortitude
+1 Dawn's Truce
+1 Raise the Palisade
+1 Airborne Aid
+1 Akroma's Will
+1 Lofty Denial
+1 Seaside Haven
+1 Murmuration
+1 Soulcatchers' Aerie
+1 Muraganda Raceway
+1 Arcane Signet
+1 Sol Ring
+1 Tawnos, the Toymaker
+1 Kodama of the East Tree
+1 Simic Growth Chamber
+1 Dreamroot Cascade
+1 Jackdaw Savior
+1 Talisman of Progress
+1 Three Visits
+1 Nature's Lore
+1 Patchwork Banner
+1 Roaming Throne
+1 Rampant Growth
+1 Talisman of Curiosity
+1 Talisman of Unity
+1 Fellwar Stone
+1 Warden of Evos Isle
+1 Kangee, Sky Warden
+1 Gwaihir the Windlord
+3 Plains
+1 Chocobo Camp
+1 Meticulous Archive
+1 Farewell
+1 Lush Portico
+1 Chronicle of Victory
+1 Sidequest: Raise a Chocobo // Black Chocobo
+1 Chocobo Kick
+1 Derevi, Empyrial Tactician
+1 Aven Interrupter
+1 Pongify
+1 Bartz and Boko
+1 Return to Nature
+1 Esior, Wardwing Familiar
+1 Owlbear Cub
+1 Kastral, the Windcrested
+1 Birds of Paradise
+1 Ledger Shredder
+1 Hedge Maze

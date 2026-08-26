@@ -1,0 +1,93 @@
+# Archidekt — Dina - Eating Fat People
+# source: archidekt:21588325
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Dina, Essence Brewer
+
+Deck:
+1 Turbulent Fen
+1 Wastewood Verge
+1 Kalakscion, Hunger Tyrant
+1 The Skullspore Nexus
+1 Reliquary Tower
+1 Exotic Orchard
+1 Command Tower
+7 Forest
+1 Midgar, City of Mako // Reactor Raid
+1 Jarad, Golgari Lich Lord
+1 Vincent Valentine // Galian Beast
+1 Birds of Paradise
+1 Hunted Horror
+1 Daemogoth Titan
+1 Terrasymbiosis
+1 Elves of Deep Shadow
+1 Malakir Rebirth // Malakir Mire
+1 Jumbo Cactuar
+1 Deathcap Glade
+1 Llanowar Wastes
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Fabled Passage
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Rise of the Witch-king
+1 Wall of Blood
+1 Enduring Tenacity
+1 Ghalta, Primal Hunger
+1 Slumbering Trudge
+1 Assassin's Trophy
+1 Vernal Fen
+1 Big Mother Mouser
+1 High Market
+1 The Gitrog, Ravenous Ride
+1 The Great Henge
+1 Woodland Cemetery
+1 Ochre Jelly
+1 Haywire Mite
+1 Delighted Halfling
+1 Sol Ring
+1 Cankerbloom
+1 Infernal Grasp
+1 Sakura-Tribe Elder
+1 Black Market Connections
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Warden of the Grove
+1 Disciple of Freyalise // Garden of Freyalise
+1 Anticausal Vestige
+1 Deadly Rollick
+1 Undergrowth Stadium
+1 Thought Vessel
+1 Disciple of Bolas
+1 Llanowar Elves
+1 Swiftfoot Boots
+7 Swamp
+1 Utopia Sprawl
+1 Wild Growth
+1 Moseo, Vein's New Dean
+1 Defiling Daemogoth
+1 Forgotten Ancient
+1 Liliana, Dreadhorde General
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Lightning Greaves
+1 Soul Shatter
+1 The Ozolith
+1 Garruk's Uprising
+1 Concordant Crossroads
+1 Managorger Hydra
+1 Urza's Saga
+1 Gwenna, Eyes of Gaea
+1 Cultivate
+1 Tom, Bert, and William
+1 Goreclaw, Terror of Qal Sisma
+1 Vaultborn Tyrant
+1 Underground Mortuary
+1 Fake Your Own Death
+1 Supernatural Stamina
+1 Finale of Devastation
+1 Dawnsire, Sunstar Dreadnought
+1 Boseiju, Who Endures
+1 Snow-Covered Forest
+1 Beifong's Bounty Hunters
+1 Shakedown Heavy

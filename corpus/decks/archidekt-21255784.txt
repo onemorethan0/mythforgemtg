@@ -1,0 +1,73 @@
+# Archidekt — Kangee, flying (Bulk Commander)
+# source: archidekt:21255784
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Kangee, Sky Warden
+
+Deck:
+1 Warden of Evos Isle
+1 Unexpectedly Absent
+1 Fact or Fiction
+1 Azorius Charm
+21 Plains
+16 Island
+1 Springleaf Drum
+1 Ojutai Monument
+1 Battle Screech
+1 Sphinx's Disciple
+1 Darksteel Ingot
+1 Mimic Vat
+1 Letter of Acceptance
+1 Wrath of God
+1 Stormbound Geist
+1 ED-E, Lonesome Eyebot
+1 Firemind Vessel
+1 Dolmen Gate
+1 Deep Analysis
+1 Watcher of the Spheres
+1 Seraph of Dawn
+1 Radiant, Serra Archangel
+1 Spyglass Siren
+1 Skywatcher Adept
+1 Slith Ascendant
+1 Magus of the Moat
+1 Malcator's Watcher
+1 Esior, Wardwing Familiar
+1 Cloudfin Raptor
+1 Curator of Mysteries
+1 Hanged Executioner
+1 Etherium Spinner
+1 Reflector Mage
+1 Spirit of the Labyrinth
+1 Claim Jumper
+1 Jazal Goldmane
+1 Favorable Winds
+1 Mana Breach
+1 Negate
+1 Blade of Selves
+1 Silverblade Paladin
+1 Murmuration
+1 Combat Tutorial
+1 Ephara, God of the Polis
+1 Land Tax
+1 Fortune Teller's Talent
+1 Rowdy Research
+1 Blinding Angel
+1 God-Eternal Kefnet
+1 Il Mheg Pixie
+1 Whirler Rogue
+1 Public Enemy
+1 Momentary Blink
+1 Blazing Archon
+1 Cartographer's Hawk
+1 Restoration Angel
+1 Thraben Charm
+1 Explorer's Scope
+1 Hidden Strings
+1 Angel of the Ruins
+1 Oblivion Ring
+1 Imprisoned in the Moon
+1 Martial Impetus
+1 Run Away Together

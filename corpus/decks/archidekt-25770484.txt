@@ -1,0 +1,74 @@
+# Archidekt — Rabbit Attack
+# source: archidekt:25770484
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Baylen, the Haymaker
+
+Deck:
+1 Cadira, Caller of the Small
+1 Warren Warleader
+1 Second Harvest
+1 Regal Bunnicorn
+1 Burrowguard Mentor
+1 Valley Questcaller
+1 Finneas, Ace Archer
+1 Thickest in the Thicket
+1 Tempt with Bunnies
+1 Harvest Season
+1 To Arms!
+1 Swords to Plowshares
+1 Rabbit Battery
+1 Intrepid Rabbit
+1 Rabbit Response
+1 Nasty Little Rabbit
+1 Head of the Homestead
+1 Harvestrite Host
+1 Hop to It
+1 Hinterland Sanctifier
+1 Pawpatch Recruit
+1 Druid of the Spade
+1 Warren Elder
+1 Season of the Burrow
+1 Hazardroot Herbalist
+1 Brave-Kin Duo
+1 Treeguard Duo
+1 Claim Jumper
+1 Lupinflower Village
+1 Explosive Vegetation
+1 Cultivate
+1 Cheeky House-Mouse // Squeak By
+1 Canyon Jerboa
+1 Pests of Honor
+1 Nettle Guard
+1 Armory Mice
+1 Three Blind Mice
+1 Split Up
+20 Plains
+12 Forest
+1 Peregrin Took
+1 Baird, Argivian Recruiter
+1 Loyal Apprentice
+1 Doomed Artisan
+1 Assemble the Legion
+1 Verdant Force
+1 Rith, the Awakener
+1 Nesting Dragon
+1 Horn of Valhalla // Ysgard's Call
+1 March of the Multitudes
+1 Increasing Devotion
+1 Crash the Party
+1 Nomads' Assembly
+1 Deploy to the Front
+1 Rootborn Defenses
+1 Sundering Growth
+1 Hour of Reckoning
+1 Wayfarer's Bauble
+1 Font of Fertility
+1 Fertile Ground
+1 Wear Down
+1 Cindervines
+1 Capricious Efreet
+1 Rustler Rampage
+5 Mountain

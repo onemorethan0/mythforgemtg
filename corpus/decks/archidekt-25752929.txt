@@ -1,0 +1,108 @@
+# Archidekt — CEDH - Kiki Combo
+# source: archidekt:25752929
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Birds of Paradise
+1 Allosaurus Shepherd
+1 Corridor Monitor
+1 Mystical Tutor
+1 Deathrite Shaman
+1 Delighted Halfling
+1 Brainstorm
+1 Esper Sentinel
+1 Felidar Guardian
+1 Skullclamp
+1 Transmute Artifact
+1 Imperial Recruiter
+1 Karmic Guide
+1 Kiki-Jiki, Mirror Breaker
+1 Noble Hierarch
+1 Grand Abolisher
+1 Orcish Bowmasters
+1 Ragavan, Nimble Pilferer
+1 Ranger-Captain of Eos
+1 Finale of Devastation
+1 Entomb
+1 Spellseeker
+1 Green Sun's Zenith
+1 Mana Drain
+1 Birthing Pod
+1 Chrome Mox
+1 Lotus Petal
+1 Mana Vault
+1 Concordant Crossroads
+1 Mox Diamond
+1 Sol Ring
+1 Sylvan Tutor
+1 Sylvan Safekeeper
+1 Mystic Remora
+1 Rhystic Study
+1 Survival of the Fittest
+1 Candelabra of Tawnos
+1 An Offer You Can't Refuse
+1 Shadowspear
+1 Chain of Vapor
+1 Grim Monolith
+1 Reanimate
+1 Deflecting Swat
+1 Legolas's Quick Reflexes
+1 Enlightened Tutor
+1 Fierce Guardianship
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Mental Misstep
+1 Pact of Negation
+1 Pyroblast
+1 Agatha's Soul Cauldron
+1 Silence
+1 Swan Song
+1 Cyclonic Rift
+1 Vampiric Tutor
+1 Goblin Welder
+1 Worldly Tutor
+1 Demonic Tutor
+1 Diabolic Intent
+1 Tainted Pact
+1 Walking Ballista
+1 Gamble
+1 Mother of Runes
+1 Imperial Seal
+1 Jeska's Will
+1 Mox Amber
+1 Sensei's Divining Top
+1 Mox Opal
+1 City of Traitors
+1 Ancient Tomb
+1 Badlands
+1 Bayou
+1 Bloodstained Mire
+1 City of Brass
+1 Boseiju, Who Endures
+1 Cavern of Souls
+1 Flooded Strand
+1 Reflecting Pool
+1 Gaea's Cradle
+1 Gemstone Caverns
+1 Mana Confluence
+1 Marsh Flats
+1 Misty Rainforest
+1 Plateau
+1 Polluted Delta
+1 Savannah
+1 Scalding Tarn
+1 Scrubland
+1 Arid Mesa
+1 Taiga
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Verdant Catacombs
+1 Volcanic Island
+1 Urza's Saga
+1 Wooded Foothills

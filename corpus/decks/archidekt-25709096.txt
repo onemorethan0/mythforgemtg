@@ -1,0 +1,93 @@
+# Archidekt — Biblically Accurate Angels
+# source: archidekt:25709096
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Seluma, Light of Aysen
+
+Deck:
+1 Arcane Signet
+1 Chromatic Lantern
+1 Fellwar Stone
+1 Herald's Horn
+1 Lightning Greaves
+1 Mask of Memory
+1 Patchwork Banner
+1 Pearl Medallion
+1 Sol Ring
+1 Swiftfoot Boots
+1 Urza's Incubator
+1 Abundant Countryside
+1 Cavern of Souls
+1 City of Brass
+1 Emeria, the Sky Ruin
+1 Exotic Orchard
+1 Fabled Passage
+2 Forest
+2 Island
+1 Mana Confluence
+2 Mountain
+1 Path of Ancestry
+11 Plains
+1 Secluded Courtyard
+1 Seraph Sanctuary
+3 Swamp
+1 Three Tree City
+1 Unclaimed Territory
+1 Angel of Despair
+1 Angel of Suffering
+1 Angel of the Ruins
+1 Angelic Skirmisher
+1 Archangel of Thune
+1 Archangel of Tithes
+1 Atraxa, Grand Unifier
+1 Atraxa, Praetors' Voice
+1 Aurelia, the Law Above
+1 Aurelia, the Warleader
+1 Avacyn, Angel of Hope
+1 Battle Angels of Tyr
+1 Bruna, the Fading Light
+1 Mind Stone
+1 Darksteel Angel
+1 Drana and Linvala
+1 Errant and Giada
+1 Exemplar of Light
+1 Firemane Commando
+1 Firja, Judge of Valor
+1 Giada, Font of Hope
+1 Gisela, Blade of Goldnight
+1 Gisela, the Broken Blade
+1 Herald of War
+1 Liesa, Forgotten Archangel
+1 Lyra Dawnbringer
+1 Maelstrom Archangel
+1 Righteous Valkyrie
+1 Selenia, the Cursed Heart
+1 Sephara, Sky's Blade
+1 Serra's Emissary
+1 Shalai, Voice of Plenty
+1 Sigarda, Font of Blessings
+1 Sigarda, Host of Herons
+1 Starnheim Aspirant
+1 Tariel, Reckoner of Souls
+1 Youthful Valkyrie
+1 Chivalric Alliance
+1 Court of Grace
+1 Land Tax
+1 Akroma's Will
+1 Flawless Maneuver
+1 Generous Gift
+1 Path to Exile
+1 Swords to Plowshares
+1 Austere Command
+1 Defy Death
+1 Vanquish the Horde
+1 Wrath of God
+1 Restoration Seminar
+1 Angel of Destiny
+1 Evolving Wilds
+1 Ancient Ziggurat
+1 Plaza of Heroes
+1 Serra the Benevolent
+1 Folk Hero

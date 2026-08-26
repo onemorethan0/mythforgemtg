@@ -1,0 +1,100 @@
+# Archidekt — Ketramine on Crack
+# source: archidekt:25692056
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Ketramose, the New Dawn
+
+Deck:
+1 All-Fates Stalker
+1 Cloudshift
+1 Ephemerate
+1 Felidar Guardian
+1 Flicker of Fate
+1 Getaway Glamer
+1 Lae'zel's Acrobatics
+1 Phelia, Exuberant Shepherd
+1 Glasswing Grace // Age-Graced Chapel
+1 Black Market Connections
+1 Angel of Destiny
+1 Cling to Dust
+1 Esper Sentinel
+1 Haliya, Guided by Light
+1 Necropotence
+1 Head of the Hunt
+1 Abyssal Harvester
+1 Emperor of Bones
+1 Liesa, Forgotten Archangel
+1 Ghost Vacuum
+1 Lion Sash
+1 Soul-Guide Lantern
+1 Sol Ring
+1 My Precious // Allure of Power
+1 Aettir and Priwen
+1 Excalibur, Sword of Eden
+1 Inquisitor's Flail
+1 Short Bow
+1 Sword of Hearth and Home
+1 Auriok Replica
+1 Dawn's Truce
+1 Flare of Fortitude
+1 The Stasis Coffin
+1 The Wanderer
+1 Anguished Unmaking
+1 Baleful Mastery
+1 Deadly Rollick
+1 Legions to Ashes
+1 Parting Gust
+1 Path to Exile
+1 Swords to Plowshares
+1 Beseech the Mirror
+1 Beseech the Queen
+1 Demonic Tutor
+1 Diabolic Tutor
+1 Emeritus of Woe // Demonic Tutor
+1 Grim Tutor
+1 Insatiable Avarice
+1 Wishclaw Talisman
+5 Plains
+1 Godless Shrine
+1 Bojuka Bog
+1 Rogue's Passage
+1 Flooded Strand
+1 Boggart Trawler // Boggart Bog
+1 Polluted Delta
+1 Vibrant Cityscape
+1 Marsh Flats
+1 Vault of Champions
+1 Evolving Wilds
+1 Silent Clearing
+1 Bloodstained Mire
+1 Orzhov Basilica
+1 Fetid Heath
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Prismatic Vista
+1 Verdant Catacombs
+1 Terramorphic Expanse
+1 Abstergo Entertainment
+1 Arid Mesa
+1 Turbulent Moor
+1 Windswept Heath
+1 Obscura Storefront
+1 Fabled Passage
+1 Rest in Peace
+5 Swamp
+1 Super State
+1 The Mind Stone
+1 With Great Power . . .
+1 Currency Converter
+1 Starfield Shepherd
+1 The Darkness Crystal
+1 Stone of Erech
+1 Withered Wretch
+1 Dauthi Voidwalker
+1 Swiftfoot Boots
+1 Thran Power Suit
+1 Anticausal Vestige
+1 Timeline Culler
+1 Knight Luminary
+1 Shadowy Backstreet

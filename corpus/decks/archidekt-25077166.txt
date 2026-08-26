@@ -1,0 +1,104 @@
+# Archidekt — Thranduil
+# source: archidekt:25077166
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Lathril, Blade of the Elves
+1 Sol Ring
+1 High Perfect Morcant
+1 Elvish Archdruid
+4 Forest
+1 Ripples of Undeath
+1 Aftermath Analyst
+1 Iron-Shield Elf
+1 Selvala, Heart of the Wilds
+1 Malakir Rebirth // Malakir Mire
+1 Exotic Orchard
+1 Trystan, Callous Cultivator // Trystan, Penitent Culler
+1 Undergrowth Stadium
+1 Tyvar, Jubilant Brawler
+1 Morphic Pool
+1 Champions of the Perfect
+1 Patriar's Seal
+1 Thranduil's Company
+1 Incubation Druid
+1 Imperious Perfect
+1 Legolas Greenleaf
+1 Llanowar Elves
+1 Tyvar, the Pummeler
+1 Thranduil, Sindarin Liege // Silvan Rally
+2 Swamp
+1 Island
+1 Verdant Catacombs
+1 Polluted Delta
+1 Cephalid Coliseum
+1 Deathcap Glade
+1 Underground Mortuary
+1 Misty Rainforest
+1 Flooded Grove
+1 Hedge Maze
+1 Willowrush Verge
+1 Zagoth Triome
+1 Wastewood Verge
+1 Dreamroot Cascade
+1 Path of Ancestry
+1 Three Tree City
+1 Fell the Profane // Fell Mire
+1 Woodland Cemetery
+1 Llanowar Wastes
+1 Llanowar Loamspeaker
+1 Glissa Sunslayer
+1 Lys Alana Dignitary
+1 Wonder
+1 Elvish Warmaster
+1 Ruthless Winnower
+1 Gloom Ripper
+1 Eclipsed Elf
+1 Maralen, Fae Ascendant
+1 Paradise Druid
+1 Woodland Weavemaster
+1 Arwen, Weaver of Hope
+1 Arbor Elf
+1 Jarad, Golgari Lich Lord
+1 Elvish Piper
+1 Elven Raft-Steerer
+1 Emil, Vastlands Roamer
+1 Dawnhand Dissident
+1 Selfless Safewright
+1 Fyndhorn Elves
+1 Lightning Greaves
+1 Elven Chorus
+1 Entish Restoration
+1 Stillness in Motion
+1 Buried Alive
+1 Stubborn Denial
+1 Tear Asunder
+1 In Garruk's Wake
+1 Genesis Wave
+1 Veil of Summer
+1 Revitalizing Repast // Old-Growth Grove
+1 Putrefy
+1 Smuggler's Surprise
+1 Kishla Village
+1 Haldir, Lórien Lieutenant
+1 Death Begets Life
+1 Coastal Piracy
+1 Drag to the Roots
+1 Crop Rotation
+1 Yavimaya, Cradle of Growth
+1 Watery Grave
+1 Command Tower
+1 Eclipsed Realms
+1 Breeding Pool
+1 Overgrown Tomb
+1 Rejuvenating Springs
+1 Wood Elves
+1 Marwyn, the Nurturer
+1 Lluwen, Imperfect Naturalist
+1 Galadhrim Ambush
+1 Grisly Salvage
+1 Auroral Procession

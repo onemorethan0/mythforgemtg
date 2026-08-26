@@ -1,0 +1,81 @@
+# Archidekt — The Char Deck
+# source: archidekt:25772876
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Caesar, Legion's Emperor
+
+Deck:
+1 Inevitable Defeat
+1 All-Out Assault
+1 Jirina Kudro
+10 Swamp
+10 Mountain
+10 Plains
+1 Jan Jansen, Chaos Crafter
+1 Megatron, Tyrant // Megatron, Destructive Force
+1 Mr. House, President and CEO
+1 Ruinous Ultimatum
+1 Chain Reaction
+1 Thunder of Unity
+1 Lita, Mechanical Engineer
+1 Alloy Myr
+1 Altar Golem
+1 Artificer's Dragon
+1 Arcane Signet
+1 Mardu Banner
+1 Sol Ring
+1 Peacewalker Colossus
+1 Blitzwing, Cruel Tormentor // Blitzwing, Adaptive Assailant
+1 Blitz Automaton
+1 Cait Sith, Fortune Teller
+1 Cataclysmic Gearhulk
+1 Chaos Defiler
+1 Cityscape Leveler
+1 Containment Construct
+1 Crimson Operative
+1 Cryptothrall
+1 Dalek Drone
+1 Dalek Squadron
+1 Depthshaker Titan
+1 Flayed One
+1 Flamewar, Brash Veteran // Flamewar, Streetwise Operative
+1 Aerial Surveyor
+1 Brute Suit
+1 Dragonfly Suit
+1 Murder
+1 Ghost Ark
+1 Knight Paladin
+1 Reaver Titan
+1 Kill! Maim! Burn!
+1 Surgehacker Mech
+1 Vibranium Mining Mech
+1 Thundersteel Colossus
+1 Kolodin, Triumph Caster
+1 Valor's Flagship
+1 Chandra, Spark Hunter
+1 Setzer, Wandering Gambler
+1 Canyon Vaulter
+1 Cloudspire Coordinator
+1 Cloudspire Skycycle
+1 Warmaker Gunship
+1 Thunderhawk Gunship
+1 Hotshot Mechanic
+1 Intrepid Ace
+1 Arena of Glory
+1 Blasted Landscape
+1 Blast Zone
+1 Bojuka Bog
+1 Encroaching Wastes
+1 Akki War Paint
+1 Alchemist's Gift
+1 Ardent Recruit
+1 Arc Spitter
+1 Blaze
+1 Lightning Strike
+1 Swords to Plowshares
+1 Settle the Wreckage
+1 Boon of Safety
+1 Call to the Netherworld
+1 Break the Spell

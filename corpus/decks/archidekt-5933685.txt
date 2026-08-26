@@ -1,0 +1,92 @@
+# Archidekt — Alela, Flash/Instant Control
+# source: archidekt:5933685
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Alela, Cunning Conqueror
+
+Deck:
+1 Opt
+1 Path of Ancestry
+1 Malleable Impostor
+1 Bojuka Bog
+1 Faerie Harbinger
+1 Sol Ring
+1 Go for the Throat
+1 Roaming Throne
+1 Pongify
+1 Faerie Trickery
+1 Favorable Winds
+1 Nowhere to Run
+1 Wash Away
+1 Cavern of Souls
+1 Corrupted Conviction
+1 Shadow Puppeteers
+1 Polluted Delta
+1 Obyra, Dreaming Duelist
+1 Archmage of Echoes
+1 Misleading Signpost
+1 Quickling
+1 Scion of Oona
+1 Tegwyll, Duke of Splendor
+1 Likeness Looter
+1 Notorious Throng
+1 Mistbind Clique
+1 Oona's Blackguard
+1 Brazen Borrower // Petty Theft
+1 Sower of Temptation
+1 Kindred Dominance
+1 Asinine Antics
+1 Lightning Greaves
+1 Mocking Sprite
+1 Faerie Mastermind
+1 Talion, the Kindly Lord
+1 Leyline of Anticipation
+1 Reflections of Littjara
+1 Voracious Tome-Skimmer
+1 Bitterbloom Bearer
+1 Faerie Bladecrafter
+1 Familiar's Ruse
+1 Snap
+1 Resculpt
+1 Bitterblossom
+1 Rhystic Study
+1 Kindred Discovery
+1 Wavebreak Hippocamp
+1 Sapphire Medallion
+1 Consider
+1 Arcane Signet
+1 Choked Estuary
+1 Reality Shift
+1 Command Tower
+1 Dimir Signet
+1 Faerie Fencing
+1 Sunken Hollow
+1 Darkwater Catacombs
+1 Secluded Glen
+1 Spell Stutter
+1 Talisman of Dominance
+1 Infernal Grasp
+1 Counterspell
+1 Negate
+1 Countersquall
+1 Cunning Nightbonder
+1 Drowned Catacomb
+1 Watery Grave
+1 Brainstorm
+1 Thought Vessel
+1 Reliquary Tower
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Underground River
+1 Clearwater Pathway // Murkwater Pathway
+1 Mystic Sanctuary
+13 Island
+5 Swamp
+1 Muddle the Mixture
+1 Rapid Hybridization
+1 Enduring Curiosity
+1 Slitherwisp
+1 Spellstutter Sprite
+1 Thought Scour

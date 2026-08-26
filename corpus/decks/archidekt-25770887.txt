@@ -1,0 +1,103 @@
+# Archidekt — Tazri's Infinite Friends
+# source: archidekt:25770887
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 General Tazri
+
+Deck:
+1 Akoum Battlesinger
+1 Bala Ged Thief
+1 Beastcaller Savant
+1 Birds of Paradise
+1 Chasm Guide
+1 Great Divide Guide
+1 Hagra Diabolist
+1 Hakoda, Selfless Commander
+1 Halimar Excavator
+1 Harabaz Druid
+1 Hero of Goma Fada
+1 Jwari Shapeshifter
+1 Kabira Evangel
+1 Kalastria Healer
+1 Katara, the Fearless
+1 Masked Vandal
+1 Mirror Entity
+1 Realmwalker
+1 Resolute Blademaster
+1 Sea Gate Loremaster
+1 Sokka, Lateral Strategist
+1 Sokka, Tenacious Tactician
+1 South Pole Voyager
+1 Tuktuk Scrapper
+1 Turntimber Ranger
+1 Arcane Signet
+1 Chromatic Lantern
+1 Fellwar Stone
+1 Farseek
+1 Nature's Lore
+1 Rampant Growth
+1 Sol Ring
+1 Three Visits
+1 Arcane Adaptation
+1 Artificial Evolution
+1 Bring to Light
+1 Fabricate
+1 Idyllic Tutor
+1 Impact Tremors
+1 Maskwood Nexus
+1 Tale of Momo
+1 Wishclaw Talisman
+1 Distant Melody
+1 Herald's Horn
+1 Kindred Discovery
+1 Panharmonicon
+1 Shared Animosity
+1 Skullclamp
+1 Another Round
+1 Eerie Interlude
+1 Ephemerate
+1 Living Death
+1 March from the Tomb
+1 Patriarch's Bidding
+1 Anguished Unmaking
+1 Arcane Denial
+1 Assassin's Trophy
+1 Beast Within
+1 Dovin's Veto
+1 Nature's Claim
+1 Path to Exile
+1 Raise the Palisade
+1 Swan Song
+1 Swords to Plowshares
+1 Adarkar Wastes
+1 Ally Encampment
+1 Battlefield Forge
+1 Brushland
+1 Canopy Vista
+1 Caves of Koilos
+1 Cinder Glade
+1 Command Tower
+1 Exotic Orchard
+1 Fabled Passage
+1 Forbidden Orchard
+3 Forest
+1 Gemstone Mine
+2 Island
+1 Karplusan Forest
+1 Llanowar Wastes
+1 Mountain
+1 Path of Ancestry
+2 Plains
+1 Prairie Stream
+1 Secluded Courtyard
+1 Shivan Reef
+1 Smoldering Marsh
+2 Swamp
+1 Sulfurous Springs
+1 Sunken Hollow
+1 The World Tree
+1 Unclaimed Territory
+1 Underground River
+1 Yavimaya Coast

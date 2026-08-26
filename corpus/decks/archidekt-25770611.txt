@@ -1,0 +1,100 @@
+# Archidekt — Saskia the Unyielding - Aggro / Typal (Big Lady)
+# source: archidekt:25770611
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Saskia the Unyielding
+
+Deck:
+1 Thalia and The Gitrog Monster
+1 Thalia, Heretic Cathar
+1 The Great Henge
+1 Verdant Catacombs
+1 Vraska Joins Up
+1 Wooded Foothills
+1 Worldly Tutor
+1 Windswept Heath
+1 Ziatora's Proving Ground
+1 Adeline, Resplendent Cathar
+1 Akroma's Will
+1 Annie Joins Up
+1 Aurelia, the Warleader
+1 Bloodstained Mire
+1 Delighted Halfling
+1 Exotic Orchard
+4 Forest
+1 Great Hall of the Citadel
+1 Godless Shrine
+1 Halana and Alena, Partners
+1 Heronblade Elite
+1 Jetmir's Garden
+1 Marsh Flats
+1 Mountain
+1 Nature's Lore
+6 Plains
+1 Relic of Legends
+1 Samut, Voice of Dissent
+1 Savai Triome
+1 Sol Ring
+1 Swamp
+1 Swords to Plowshares
+1 Alesha, Who Laughs at Fate
+1 Alesha, Who Smiles at Death
+1 Anafenza, the Foremost
+1 Aurelia, the Law Above
+1 Champion of Lambholt
+1 Bloom Tender
+1 Commissar Severina Raine
+1 Éowyn, Fearless Knight
+1 General's Enforcer
+1 Eternal Witness
+1 Gisela, Blade of Goldnight
+1 Jirina Kudro
+1 Jirina, Dauntless General
+1 Karlach, Fury of Avernus
+1 Loran of the Third Path
+1 Maja, Bretagard Protector
+1 Lightning, Army of One
+1 Mirri, Weatherlight Duelist
+1 Myrel, Shield of Argive
+1 Old Gnawbone
+1 Professional Face-Breaker
+1 Saryth, the Viper's Fang
+1 Shanid, Sleepers' Scourge
+1 Sigarda, Font of Blessings
+1 Rampant Growth
+1 Ruinous Ultimatum
+1 Taunt from the Rampart
+1 Three Visits
+1 Urza's Ruinous Blast
+1 Assassin's Trophy
+1 Boros Charm
+1 Path to Exile
+1 Heroic Intervention
+1 Teferi's Protection
+1 Dihada, Binder of Wills
+1 Aura Shards
+1 Flowering of the White Tree
+1 Guardian Project
+1 Mirari's Wake
+1 Rhythm of the Wild
+1 Smothering Tithe
+1 Fellwar Stone
+1 Arcane Signet
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Arid Mesa
+1 Blood Crypt
+1 Bojuka Bog
+1 Cavern of Souls
+1 Command Tower
+1 Indatha Triome
+1 Minas Tirith
+1 Mosswort Bridge
+1 Overgrown Tomb
+1 Rogue's Passage
+1 Plaza of Heroes
+1 Sacred Foundry
+1 Stomping Ground
+1 Temple Garden

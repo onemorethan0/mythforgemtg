@@ -1,0 +1,108 @@
+# Archidekt — Bard King of Slop
+# source: archidekt:25764726
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Bard, King of Dale
+
+Deck:
+1 Mirrormade
+1 The Queen of Dale
+1 Mystic Remora
+1 Tataru Taru
+1 Lotus Petal
+1 Mana Vault
+1 Rhystic Study
+1 Esper Sentinel
+1 Smothering Tithe
+1 Grim Monolith
+1 Fellwar Stone
+1 Ranger-Captain of Eos
+1 Voice of Victory
+1 Mox Opal
+1 Arcane Signet
+1 Mox Amber
+1 Mox Diamond
+1 Sol Ring
+1 Pact of Negation
+1 Gleaming Splendor
+1 Mental Misstep
+1 Swan Song
+1 Copy Enchantment
+1 Grand Abolisher
+1 Misdirection
+1 Commandeer
+1 Force of Will
+1 Force of Negation
+1 An Offer You Can't Refuse
+1 Orim's Chant
+1 Fierce Guardianship
+1 Flusterstorm
+1 Silence
+1 Mindbreak Trap
+1 Flash Photography
+1 Mockingbird
+1 Wan Shi Tong, Librarian
+1 Faerie Mastermind
+1 Clever Impersonator
+1 Into the Flood Maw
+1 The One Ring
+1 King T'Challa // Black Panther, Hope Enduring
+1 Enlightened Tutor
+1 Sevinne's Reclamation
+1 Angel's Grace
+1 Gitaxian Probe
+1 Hullbreaker Horror
+1 Intuition
+1 Disrupting Shoal
+1 Mystical Tutor
+1 Timetwister
+1 Cyclonic Rift
+1 Teferi, Time Raveler
+1 Valley Floodcaller
+1 Drannith Magistrate
+1 Swords to Plowshares
+1 Borne Upon a Wind
+1 Exotic Orchard
+1 Snapback
+1 Steal Enchantment
+1 Talisman of Progress
+1 Subtlety
+1 Blind Obedience
+1 Chain of Vapor
+1 Archivist of Oghma
+1 Urza's Saga
+1 Displacer Kitten
+1 Misty Rainforest
+1 Bilbo's Gambit
+1 City of Traitors
+1 Meticulous Archive
+1 Sudden Substitution
+1 Sink into Stupor // Soporific Springs
+1 Minamo, School at Water's Edge
+1 Ancient Tomb
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Cavern of Souls
+1 Otawara, Soaring City
+1 Tundra
+1 Starting Town
+1 City of Brass
+1 Mana Confluence
+1 Crystal Vein
+1 Command Tower
+1 Flooded Strand
+1 Sea of Clouds
+1 Polluted Delta
+1 Arid Mesa
+1 Windswept Heath
+1 Adarkar Wastes
+1 Scalding Tarn
+1 Gemstone Caverns
+1 Marsh Flats
+1 Hallowed Fountain
+1 Floodfarm Verge
+1 Prismatic Vista
+1 Snow-Covered Island
+1 Apple of Eden, Isu Relic
+1 Snow-Covered Plains

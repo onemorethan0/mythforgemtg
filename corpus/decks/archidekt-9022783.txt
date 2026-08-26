@@ -1,0 +1,89 @@
+# Archidekt — Bristly Bill, Spine Snapper
+# source: archidekt:9022783
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Bristly Bill, Spine Sower
+
+Deck:
+1 Reliquary Tower
+1 Tribute to the World Tree
+1 Harrow
+1 Prismatic Vista
+1 Kodama's Reach
+1 Heroic Intervention
+1 Hardened Scales
+1 Three Visits
+1 Myriad Landscape
+1 Inspiring Call
+1 Nature's Lore
+1 Evolution Witness
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Windswept Heath
+1 Mossborn Hydra
+1 Wooded Foothills
+1 Fabled Passage
+1 Boseiju, Who Endures
+1 Duskshell Crawler
+1 Cultivate
+1 Forgotten Ancient
+1 Emerald Medallion
+1 Gyre Sage
+1 Yavimaya, Cradle of Growth
+1 Nykthos, Shrine to Nyx
+1 Ramunap Excavator
+1 Kalonian Hydra
+1 Sylvan Library
+22 Forest
+1 The Great Henge
+1 Crucible of Worlds
+1 Scute Swarm
+1 Tifa Lockhart
+1 The Earth Crystal
+1 Branching Evolution
+1 Vorinclex, Monstrous Raider
+1 Kodama of the West Tree
+1 Scythecat Cub
+1 Terrasymbiosis
+1 Evolution Sage
+1 Rogue's Passage
+1 Goldvein Hydra
+1 Kami of Whispered Hopes
+1 Cabaretti Courtyard
+1 Brokers Hideout
+1 Riveteers Overlook
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Sphere Grid
+1 Managorger Hydra
+1 Sylvan Safekeeper
+1 Traveling Chocobo
+1 Tamiyo's Safekeeping
+1 Awaken the Woods
+1 Toski, Bearer of Secrets
+1 Lotus Cobra
+1 Green Sun's Zenith
+1 Ouroboroid
+1 Beast Within
+1 Ancient Greenwarden
+1 Snakeskin Veil
+1 Force of Vigor
+1 Gnarlid Colony
+1 Return of the Wildspeaker
+1 The Ozolith
+1 Loot, Exuberant Explorer
+1 Gaea's Gift
+1 Azusa, Lost but Seeking
+1 Exploration
+1 Oracle of Mul Daya
+1 Vibrant Cityscape
+1 Entish Restoration
+1 Mole Man, Moloid Master
+1 Collective Resistance
+1 Necklace of Girion
+1 Level Up
+1 Commander's Plate
+1 Herd Heirloom
+1 Worldly Tutor

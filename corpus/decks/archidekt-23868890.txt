@@ -1,0 +1,90 @@
+# Archidekt — Hatch & Burn
+# source: archidekt:23868890
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Through the Forest Gate
+1 Cream of the Crop
+1 Sterling Grove
+1 Goblin Bombardment
+1 Garruk's Uprising
+1 Rhythm of the Wild
+1 Lurking Predators
+1 Warstorm Surge
+1 Worldspine Wurm
+1 Quilled Greatwurm
+1 Dinosaur Egg
+1 Skullclamp
+1 Ashnod's Altar
+1 Illusionist's Bracers
+1 Thornbite Staff
+1 Cosmic Cube
+1 Patriar's Seal
+1 Blasting Station
+1 Apex Devastator
+1 Twinflame Tyrant
+1 Utvara Hellkite
+1 Canopy Gargantuan
+1 Nesting Dragon
+1 Trumpeting Carnosaur
+1 Apex Altisaur
+1 Ghalta, Stampede Tyrant
+1 Pantlaza, Sun-Favored
+1 Tyrranax Rex
+1 Emergent Woodwurm
+1 Lightning Greaves
+1 Etali, Primal Storm
+1 Nature's Lore
+1 Sol Ring
+1 Farseek
+1 Arcane Signet
+1 Three Visits
+1 Kodama's Reach
+1 Cultivate
+1 Swords to Plowshares
+1 Chandra's Ignition
+1 Path to Exile
+1 Wear // Tear
+1 Balefire Dragon
+1 Temple Garden
+1 Stomping Ground
+1 Command Tower
+1 Overgrown Farmland
+1 Sacred Foundry
+1 Rootbound Crag
+1 Sunpetal Grove
+1 Rockfall Vale
+1 Sundown Pass
+7 Mountain
+13 Forest
+1 Plains
+1 High Market
+1 Mosswort Bridge
+1 Hall of Heliod's Generosity
+1 Buried Ruin
+1 Fabled Passage
+1 Doubling Season
+1 Kodama of the East Tree
+1 Parallel Lives
+1 Hanweir Battlements
+1 Springleaf Parade
+1 Maskwood Nexus
+1 Belonging
+1 Ghalta and Mavren
+1 Traverse the Outlands
+1 Monster Manual // Zoological Study
+1 Mirror Entity
+1 Selvala, Heart of the Wilds
+1 Hydra Omnivore
+1 Quartzwood Crasher
+1 Vaultborn Tyrant
+1 Tamiyo's Safekeeping
+1 Enlightened Tutor
+1 Winds of Abandon
+1 Descendants' Path
+1 Sneak Attack
+1 Terror of the Peaks

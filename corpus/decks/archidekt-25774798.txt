@@ -1,0 +1,101 @@
+# Archidekt — Go-shintai
+# source: archidekt:25774798
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Go-Shintai of Life's Origin
+
+Deck:
+1 Arcane Signet
+1 Chromatic Lantern
+1 Sol Ring
+1 Swan Song
+1 Clever Concealment
+1 Dovin's Veto
+1 Arcane Denial
+1 An Offer You Can't Refuse
+1 Redress Fate
+1 Extinguish All Hope
+1 Idyllic Tutor
+1 Aang's Journey
+1 Ondu Spiritdancer
+1 Starfield Mystic
+1 Eidolon of Blossoms
+1 Nyxbloom Ancient
+1 Entity Tracker
+1 Inquisitive Glimmer
+1 Destiny Spinner
+1 Moon-Blessed Cleric
+1 Shrine Steward
+1 Yenna, Redtooth Regent
+1 Herald of the Pantheon
+1 Jukai Naturalist
+1 Aang's Iceberg
+1 Imprisoned in the Moon
+1 Kyoshi Island Plaza
+1 Sanctum of Shattered Heights
+1 Song of the Dryads
+1 Honden of Night's Reach
+1 Sanctum of Stone Fangs
+1 Go-Shintai of Ancient Wars
+1 Northern Air Temple
+1 Solitary Confinement
+1 Sythis, Harvest's Hand
+1 Sanctum of Calm Waters
+1 Karmic Justice
+1 Honden of Seeing Winds
+1 Sanctum of Tranquil Light
+1 Weaver of Harmony
+1 Honden of Infinite Rage
+1 Sanctum Weaver
+1 Satyr Enchanter
+1 Ghen, Arcanum Weaver
+1 Argothian Enchantress
+1 Amphibian Downpour
+1 Sanctum of All
+1 Go-Shintai of Lost Wisdom
+1 The Spirit Oasis
+1 Enchantress's Presence
+1 Paradox Haze
+1 Southern Air Temple
+1 Go-Shintai of Hidden Cruelty
+1 Sanctum of Fruitful Harvest
+1 Propaganda
+1 Sterling Grove
+1 Ghostly Prison
+1 Greater Auramancy
+1 Sphere of Safety
+1 Honden of Cleansing Fire
+1 The World Tree
+1 Temple Garden
+1 Stomping Ground
+1 Breeding Pool
+1 Exotic Orchard
+1 Hallowed Fountain
+1 Karplusan Forest
+1 Caves of Koilos
+2 Island
+3 Forest
+1 Llanowar Wastes
+1 Godless Shrine
+1 Overgrown Tomb
+2 Mountain
+1 Reliquary Tower
+1 Sacred Foundry
+1 Blood Crypt
+1 Battlefield Forge
+1 White Lotus Hideout
+1 Hall of Heliod's Generosity
+1 Command Tower
+1 Shivan Reef
+1 Yavimaya Coast
+1 Monumental Henge
+1 Sulfurous Springs
+1 Steam Vents
+1 Underground River
+1 Brushland
+1 Watery Grave
+1 Adarkar Wastes
+2 Swamp
+3 Plains

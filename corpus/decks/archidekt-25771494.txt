@@ -1,0 +1,82 @@
+# Archidekt — Simic merfolk Hakbal
+# source: archidekt:25771494
+# fetched: 2026-08-26
+# bracket: 4
+
+Commander:
+1 Spider-Sense
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Signature Slam
+1 Aetherize
+1 Plasm Capture
+1 Over the Edge
+1 Spry and Mighty
+1 Dawn-Blessed Pennant
+1 Blackblade Reforged
+1 Swiftfoot Boots
+1 Mindspring Merfolk
+1 Tide Shaper
+1 Triton Shorestalker
+1 Deeproot Elite
+1 Kenessos, Priest of Thassa
+1 Kiora's Follower
+1 Lord of Atlantis
+1 Masked Vandal
+1 Master of the Pearl Trident
+1 Nicanzil, Current Conductor
+1 Thieving Skydiver
+1 Kumena, Tyrant of Orazca
+1 Merfolk Sovereign
+1 Shapers of Nature
+1 Svyelun of Sea and Sky
+1 Jade Guardian
+1 Froghemoth
+1 Tatyova, Benthic Druid
+1 The Unagi of Kyoshi Island
+1 Aesi, Tyrant of Gyre Strait
+1 Grappling Kraken
+1 Hullbreaker Horror
+1 Stormtide Leviathan
+1 Force Spike
+1 Nature's Claim
+1 Royal Treatment
+1 Snakeskin Veil
+1 Three Steps Ahead
+1 Decisive Denial
+1 Disdainful Stroke
+1 Rocky Rebuke
+1 Solidarity of Heroes
+1 Archdruid's Charm
+1 Blinding Fog
+1 Lumbering Worldwagon
+1 Patchwork Banner
+1 Bident of Thassa
+1 Aqueous Form
+1 Hardened Scales
+1 Claim the Kingdom
+1 Deeproot Pilgrimage
+1 Nylea's Presence
+1 Command Tower
+1 Daily Bugle Building
+12 Forest
+16 Island
+1 Opal Palace
+1 Overflowing Basin
+1 Quandrix Campus
+1 Reliquary Tower
+1 Secret Tunnel
+1 Simic Growth Chamber
+1 Unclaimed Territory
+1 Primal Rage
+1 Unforgiving Aim
+1 Amazing Acrobatics
+1 Counterspell
+1 Annul
+1 Negate
+1 Tishana's Tidebinder
+1 Vodalian Hexcatcher
+1 Lullmage Mentor
+1 Tazeem Roilmage
+1 Harbinger of the Seas

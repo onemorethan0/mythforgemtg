@@ -1,0 +1,108 @@
+# Archidekt — Terraform!
+# source: archidekt:25726736
+# fetched: 2026-08-26
+# bracket: 1
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Legion's Landing // Adanto, the First Fort
+1 The Kami War // O-Kagachi Made Manifest
+1 Awaken the Honored Dead
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Hadana's Climb // Winged Temple of Orazca
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 The Rise of Sozin // Fire Lord Sozin
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Hidetsugu Consumes All // Vessel of the All-Consuming
+1 The Restoration of Eiganjo // Architect of Restoration
+1 Inventive Iteration // Living Breakthrough
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Tribute to Horobi // Echo of Death's Wail
+1 Azusa's Many Journeys // Likeness of the Seeker
+1 Crystal Fragments // Summon: Alexander
+1 Teachings of the Kirin // Kirin-Touched Orochi
+1 The Legend of Yangchen // Avatar Yangchen
+1 Michiko's Reign of Truth // Portrait of Michiko
+1 Vance's Blasting Cannons // Spitfire Bastion
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 The Dragon-Kami Reborn // Dragon-Kami's Egg
+1 The Legend of Kuruk // Avatar Kuruk
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Esper Origins // Summon: Esper Maduin
+1 Mischievous Catgeist // Catlike Curiosity
+1 Grasping Shadows // Shadows' Lair
+1 Wedding Announcement // Wedding Festivity
+1 The Modern Age // Vector Glider
+1 Twinblade Geist // Twinblade Invocation
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Serah Farron // Crystallized Serah
+1 Golden Guardian // Gold-Forge Garrison
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Archangel Avacyn // Avacyn, the Purifier
+1 Kytheon, Hero of Akros // Gideon, Battle-Forged
+1 Henrika Domnathi // Henrika, Infernal Seer
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Hostile Hostel // Creeping Inn
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Foreboding Statue // Forsaken Thresher
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Aang, at the Crossroads // Aang, Destined Savior
+1 The Everflowing Well // The Myriad Pools
+1 Treasure Map // Treasure Cove
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Thaumatic Compass // Spires of Orazca
+1 Profane Procession // Tomb of the Dusk Rose
+1 Matzalantli, the Great Door // The Core
+1 Sundering Eruption // Volcanic Fissure
+1 Pelakka Predation // Pelakka Caverns
+1 Ultimecia, Time Sorceress // Ultimecia, Omnipotent
+1 Vastwood Fortification // Vastwood Thicket
+1 Monica Rambeau // Photon, Living Light
+1 Grist, Voracious Larva // Grist, the Plague Swarm
+1 Blackbloom Rogue // Blackbloom Bog
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Suppression Ray // Orderly Plaza
+1 Boggart Trawler // Boggart Bog
+1 Legion Leadership // Legion Stronghold
+1 Akoum Warrior // Akoum Teeth
+1 Kabira Takedown // Kabira Plateau
+1 Kazandu Mammoth // Kazandu Valley
+1 Beyeen Veil // Beyeen Coast
+1 Rush of Inspiration // Crackling Falls
+1 Bloodsoaked Insight // Sanguine Morass
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Umara Wizard // Umara Skyfalls
+1 Glasswing Grace // Age-Graced Chapel
+1 Makindi Stampede // Makindi Mesas
+1 Tangled Florahedron // Tangled Vale
+1 Waterlogged Teachings // Inundated Archive
+1 Drowner of Truth // Drowned Jungle
+1 Strength of the Harvest // Haven of the Harvest
+1 Stump Stomp // Burnwillow Clearing
+1 Khalni Ambush // Khalni Territory
+1 Spikefield Hazard // Spikefield Cave
+1 Zof Consumption // Zof Bloodbog
+1 Razorgrass Ambush // Razorgrass Field
+1 Silundi Vision // Silundi Isle
+1 Jwari Disruption // Jwari Ruins
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Skyclave Cleric // Skyclave Basilica
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 Boseiju Reaches Skyward // Branch of Boseiju
+1 Avatar Aang // Aang, Master of Elements
+1 Uninvited Geist // Unimpeded Trespasser
+1 Revitalizing Repast // Old-Growth Grove
+1 Khenra Spellspear // Gitaxian Spellstalker
+1 Exdeath, Void Warlock // Neo Exdeath, Dimension's End
+1 Deathbonnet Sprout // Deathbonnet Hulk
+1 Mystic Skull // Mystic Monstrosity

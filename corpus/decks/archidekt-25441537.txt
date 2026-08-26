@@ -1,0 +1,92 @@
+# Archidekt — Tovolar - Werewolf
+# source: archidekt:25441537
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Tovolar, Dire Overlord // Tovolar, the Midnight Scourge
+
+Deck:
+9 Forest
+1 Avabruck Caretaker // Hollowhenge Huntmaster
+1 Arlinn, the Pack's Hope // Arlinn, the Moon's Fury
+1 Ballista Watcher // Ballista Wielder
+1 Bird Admirer // Wing Shredder
+1 Burly Breaker // Dire-Strain Demolisher
+1 Child of the Pack // Savage Packmate
+1 Ill-Tempered Loner // Howlpack Avenger
+1 Fearful Villager // Fearsome Werewolf
+1 Harvesttide Infiltrator // Harvesttide Assailant
+1 Hookhand Mariner // Riphook Raider
+1 Hound Tamer // Untamed Pup
+1 Howlpack Piper // Wildsong Howler
+1 Infestation Expert // Infested Werewolf
+1 Kessig Naturalist // Lord of the Ulvenwald
+1 Outland Liberator // Frenzied Trapbreaker
+1 Reckless Stormseeker // Storm-Charged Slasher
+1 Spellrune Painter // Spellrune Howler
+1 Tireless Hauler // Dire-Strain Brawler
+1 Tavern Ruffian // Tavern Smasher
+1 Tovolar's Huntmaster // Tovolar's Packleader
+1 Volatile Arsonist // Dire-Strain Anarchist
+1 Weary Prisoner // Wrathful Jailbreaker
+1 Wolfkin Outcast // Wedding Crasher
+1 Weaver of Blossoms // Blossom-Clad Werewolf
+1 Ulrich of the Krallenhorde // Ulrich, Uncontested Alpha
+1 Yavimaya, Cradle of Growth
+1 Path of Ancestry
+1 Command Tower
+1 Skarrg, the Rage Pits
+1 Three Tree City
+1 Castle Garenbrig
+1 Castle Embereth
+1 Kessig Wolf Run
+1 Reliquary Tower
+1 Game Trail
+1 Mossfire Valley
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Thornspire Verge
+1 Cinder Glade
+1 Rockfall Vale
+1 Rootbound Crag
+1 Spire Garden
+1 Fabled Passage
+9 Mountain
+1 Fire-Lit Thicket
+1 Cavern of Souls
+1 Howlpack Resurgence
+1 Howl of the Hunt
+1 Full Moon's Rise
+1 Moonmist
+1 Hollowhenge Overlord
+1 Immerwolf
+1 Nightpack Ambusher
+1 Packsong Pup
+1 Heroic Intervention
+1 Rampant Growth
+1 Moonlight Hunt
+1 Beast Within
+1 Chaos Warp
+1 Deflecting Swat
+1 Cultivate
+1 Kodama's Reach
+1 Wolf Strike
+1 Savage Beating
+1 Moonrager's Slash
+1 Kindred Summons
+1 Overwhelming Stampede
+1 Storm the Festival
+1 Herald's Horn
+1 Lifecrafter's Bestiary
+1 Tribute to the World Tree
+1 Guardian Project
+1 Bear Umbra
+1 Sylvan Library
+1 Descendants' Path
+1 Shadow in the Warp
+1 Faithless Looting
+1 Sol Ring
+1 Mask of Memory
+1 Return to Nature
+1 Infiltration Lens
+1 Explore

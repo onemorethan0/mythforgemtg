@@ -1,0 +1,104 @@
+# Archidekt — Venom/ Eddie Brock
+# source: archidekt:25699308
+# fetched: 2026-08-26
+# bracket: 3
+
+Commander:
+1 Eddie Brock // Venom, Lethal Protector
+
+Deck:
+1 Fiend Artisan
+1 Rionya, Fire Dancer
+1 Sakura-Tribe Elder
+1 The Reaper, King No More
+1 Enduring Courage
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Ilharg, the Raze-Boar
+1 Anzrag, the Quake-Mole
+2 Forest
+1 Blazemire Verge
+1 Command Tower
+1 Spire Garden
+1 Bloodstained Mire
+1 Stomping Ground
+2 Swamp
+1 Shifting Woodland
+1 Haunted Ridge
+1 Undergrowth Stadium
+1 Ziatora's Proving Ground
+1 Luxury Suite
+1 Blood Crypt
+1 Rockfall Vale
+1 Overgrown Tomb
+1 Disciple of Freyalise // Garden of Freyalise
+1 Mountain
+1 Exotic Orchard
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Deathcap Glade
+1 Kessig Wolf Run
+1 Rogue's Passage
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Thornspire Verge
+1 Wastewood Verge
+1 Twisted Landscape
+1 Turbulent Fen
+1 Blightstep Pathway // Searstep Pathway
+1 Darkbore Pathway // Slitherbore Pathway
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Sol Ring
+1 Command Beacon
+1 Birds of Paradise
+1 Delighted Halfling
+1 Tinder Wall
+1 Atsushi, the Blazing Sky
+1 Animate Dead
+1 Ignoble Hierarch
+1 Nature's Lore
+1 Reanimate
+1 Saw in Half
+1 Three Visits
+1 Toxic Deluge
+1 Victimize
+1 Beast Within
+1 Heroic Intervention
+1 Assassin's Trophy
+1 Blasphemous Act
+1 Chaos Warp
+1 Untimely Malfunction
+1 Hoarding Broodlord
+1 Metamorphosis Fanatic
+1 Ares, God of War
+1 Kodama of the East Tree
+1 Sneak Attack
+1 Anticausal Vestige
+1 Greater Good
+1 The Great Henge
+1 Terror of the Peaks
+1 Professional Face-Breaker
+1 Grim Hireling
+1 Fanatic of Rhonas
+1 Kellogg, Dangerous Mind
+1 Anger
+1 Bloodthirster
+1 Goldspan Dragon
+1 The Gitrog, Ravenous Ride
+1 Raph & Mikey, Troublemakers
+1 Ghalta, Primal Hunger
+1 Ghalta, Stampede Tyrant
+1 Rhythm of the Wild
+1 Nature's Will
+1 Vicious Rivalry
+1 Malakir Rebirth // Malakir Mire
+1 Savage Beating
+1 Dina's Guidance
+1 Llanowar Wastes
+1 Arena of Glory
+1 Vernal Fen
+1 Beseech the Mirror
+1 Protean Hulk
+1 Junji, the Midnight Sky
+1 Archpriest of Shadows
+1 Chainer, Nightmare Adept
+1 Arcane Signet
+1 Grim Reaper's Sprint

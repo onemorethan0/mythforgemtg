@@ -1,0 +1,108 @@
+# Archidekt — Riku
+# source: archidekt:25754520
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Riku of Two Reflections
+
+Deck:
+1 Spellseeker
+1 Minamo, School at Water's Edge
+1 Shifting Woodland
+1 Lion's Eye Diamond
+1 Veil of Summer
+1 Chrome Mox
+1 Talon Gates of Madara
+1 Rhystic Study
+1 Mana Vault
+1 Underworld Breach
+1 Elvish Spirit Guide
+1 Boseiju, Who Endures
+1 Gamble
+1 Mox Amber
+1 Finale of Devastation
+1 Flusterstorm
+1 Mystic Remora
+1 Food Chain
+1 Squee, the Immortal
+1 Mental Misstep
+1 Mana Confluence
+1 Taiga
+1 Pyroblast
+1 Brain Freeze
+1 Flooded Strand
+1 Grapeshot
+1 Force of Will
+1 Borne Upon a Wind
+1 Polluted Delta
+1 Mindbreak Trap
+1 Mox Diamond
+1 Lotus Petal
+1 City of Brass
+1 Deflecting Swat
+1 Gemstone Caverns
+1 Force of Negation
+1 Verdant Catacombs
+1 Ancient Tomb
+1 Frantic Search
+1 Spire Garden
+1 Simian Spirit Guide
+1 Hexing Squelcher
+1 Volcanic Island
+1 Fierce Guardianship
+1 Phantasmal Image
+1 Tropical Island
+1 Kinnan, Bonder Prodigy
+1 Nature's Rhythm
+1 Flesh Duplicate
+1 Red Elemental Blast
+1 Delighted Halfling
+1 Eldritch Evolution
+1 Windswept Heath
+1 Clever Impersonator
+1 Mystical Tutor
+1 Worldly Tutor
+1 Badgermole Cub
+1 Jeska's Will
+1 Displacer Kitten
+1 Grim Monolith
+1 Phyrexian Metamorph
+1 Imperial Recruiter
+1 Birds of Paradise
+1 Flare of Duplication
+1 Eternal Witness
+1 Into the Flood Maw
+1 Basalt Monolith
+1 Sol Ring
+1 Training Center
+1 Mockingbird
+1 Swan Song
+1 Seedborn Muse
+1 Dualcaster Mage
+1 Command Tower
+1 An Offer You Can't Refuse
+1 Ketria Triome
+1 Chatterstorm
+1 Brainstorm
+1 Rejuvenating Springs
+1 Biovisionary
+1 Stomping Ground
+1 Mistrise Village
+1 Breeding Pool
+1 Steam Vents
+1 Quandrix, the Proof
+1 Prismari, the Inspiration
+1 Exotic Orchard
+1 Maelstrom Wanderer
+1 Mana Drain
+1 Archmage Emeritus
+1 Green Sun's Zenith
+1 Counterspell
+1 Chord of Calling
+1 Rite of Replication
+1 Storm-Kiln Artist
+1 Neoform
+1 Bloom Tender
+1 Terror of the Peaks
+1 Manamorphose

@@ -1,0 +1,92 @@
+# Archidekt — Shroofus Sproutsire
+# source: archidekt:15402802
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Shroofus Sproutsire
+
+Deck:
+1 Orcrist, Goblin-cleaver
+1 Secret Tunnel
+1 Daily Bugle Building
+1 Patchwork Banner
+1 Konda's Banner
+1 Arid Archway
+1 Utopia Mycon
+1 Fungal Plots
+1 Saproling Symbiosis
+1 Royal Treatment
+1 Boreal Druid
+1 Tendershoot Dryad
+1 Utopia Sprawl
+1 Fyndhorn Elves
+1 Gene Pollinator
+1 Get a Leg Up
+1 Arbor Elf
+1 Jaspera Sentinel
+1 Cryptolith Rite
+1 Elvish Mystic
+1 Blossoming Defense
+1 Arboreal Grazer
+1 Llanowar Elves
+1 Vitalize
+1 Sol Ring
+1 Birds of Paradise
+1 Blinding Fog
+1 Vines of Vastwood
+1 Wild Growth
+1 Heraldic Banner
+1 Return of the Wildspeaker
+1 Collective Resistance
+1 Tyvar's Stand
+1 Snakeskin Veil
+1 Gaea's Gift
+1 Defend the Rider
+1 Beastmaster Ascension
+1 Echoing Courage
+1 Invigorate
+1 Might of the Masses
+1 Ash Barrens
+1 Hunter's Insight
+1 Idol of Oblivion
+1 Sylvan Anthem
+1 Season of Growth
+1 Green Slime
+1 Terramorphic Expanse
+1 Biosynthic Burst
+1 Ruxa, Patient Professor
+1 Diamond City
+1 Saryth, the Viper's Fang
+1 You Look Upon the Tarrasque
+1 Toski, Bearer of Secrets
+1 Emergence Zone
+1 Oran-Rief, the Vastwood
+1 Savage Summoning
+1 Rogue's Passage
+1 Evolving Wilds
+1 Fertile Thicket
+1 Terrain Generator
+1 Overprotect
+1 Delighted Halfling
+1 Verdant Force
+1 Mutavault
+1 Evendo, Waking Haven
+1 Access Tunnel
+1 Fountainport
+1 Brightcap Badger // Fungus Frolic
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Elvish Farmer
+1 War Room
+1 Coat of Arms
+1 Sylvan Library
+1 Land Grant
+1 Instill Energy
+1 Roaming Throne
+1 Ohran Frostfang
+17 Forest
+1 Springleaf Parade
+1 Pest Infestation
+1 Silkguard
+1 Goldvein Hydra
+1 For the Common Good

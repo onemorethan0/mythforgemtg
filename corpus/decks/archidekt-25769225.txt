@@ -1,0 +1,108 @@
+# Archidekt — [CEDH]Hyper-Velocity Philly Sub
+# source: archidekt:25769225
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 The Master of Keys
+
+Deck:
+1 Abdel Adrian, Gorion's Ward
+1 Abeyance
+1 Academy Rector
+1 Ancient Tomb
+1 Animate Dead
+1 Arcane Signet
+1 Arid Mesa
+1 Aura Thief
+1 Beseech the Mirror
+1 Bilbo's Gambit
+1 Blind Obedience
+1 Bloodstained Mire
+1 Buried Alive
+1 Cabal Ritual
+1 Chain of Vapor
+1 Chains of Mephistopheles
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Commandeer
+1 Confounding Conundrum
+1 Consecrated Sphinx
+1 Copy Enchantment
+1 Culling the Weak
+1 Dance of the Dead
+1 Dark Ritual
+1 Demonic Tutor
+1 Diabolic Intent
+1 Drana and Linvala
+1 Enlightened Tutor
+1 Entomb
+1 Erode
+1 Esper Sentinel
+1 Exhibition Tidecaller
+1 Fellwar Stone
+1 Filter Out
+1 Flooded Strand
+1 Force of Negation
+1 Force of Will
+1 Gemstone Caverns
+1 Ghostly Pilferer
+1 Gifts Ungiven
+1 Godless Shrine
+1 Grafdigger's Cage
+1 Grand Abolisher
+1 Hallowed Fountain
+1 Harbinger of the Seas
+1 Imperial Seal
+1 Island
+1 King T'Challa // Black Panther, Hope Enduring
+1 Leyline of the Void
+1 Liliana's Caress
+1 Lotho, Corrupt Shirriff
+1 Lotus Petal
+1 Lurrus of the Dream-Den
+1 Marsh Flats
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mornsong Aria
+1 Mox Diamond
+1 Mystic Remora
+1 Mystical Tutor
+1 Necromancy
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Orim's Chant
+1 Otawara, Soaring City
+1 Phyrexian Tower
+1 Plains
+1 Polluted Delta
+1 Raffine's Tower
+1 Rhystic Study
+1 Ripples of Undeath
+1 Rule of Law
+1 Scalding Tarn
+1 Scrubland
+1 Sevinne's Reclamation
+1 Silence
+1 Sol Ring
+1 Standstill
+1 Steal Enchantment
+1 Stock Up
+1 Swamp
+1 Tainted Pact
+1 Talisman of Hierarchy
+1 Thassa's Oracle
+1 The Queen of Dale
+1 Tinybones Joins Up
+1 Toxic Deluge
+1 Tundra
+1 Undercity Sewers
+1 Underground Sea
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Voice of Victory
+1 Volatile Stormdrake
+1 Watery Grave
+1 Windswept Heath
+1 Wipe Away

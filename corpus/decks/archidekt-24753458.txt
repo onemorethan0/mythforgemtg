@@ -1,0 +1,99 @@
+# Archidekt — Thranduil, the Elvenking - Roots of the Undergrowth
+# source: archidekt:24753458
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Allosaurus Shepherd
+1 Bloom Tender
+1 Borne Upon a Wind
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 Buried Alive
+1 Cavern of Souls
+1 Command Tower
+1 Counterspell
+1 Dark Ritual
+1 Deathbloom Ritualist
+1 Deathrite Shaman
+1 Dreamroot Cascade
+1 Eldritch Evolution
+1 Elven Passage
+1 Elvish Archdruid
+1 Entomb
+1 Fauna Shaman
+1 Finale of Devastation
+1 Force of Negation
+1 Force of Vigor
+1 Formidable Speaker
+1 Fyndhorn Elves
+1 Gemstone Caverns
+1 Genesis Wave
+1 Harmonized Crescendo
+1 Hedge Maze
+1 Heroic Intervention
+1 Incubation Druid
+1 Instill Energy
+1 Lathril, Blade of the Elves
+1 Legolas's Quick Reflexes
+1 Llanowar Elves
+1 Mana Drain
+1 Marwyn, the Nurturer
+1 Minamo, School at Water's Edge
+1 Mistrise Village
+1 Misty Rainforest
+1 Morphic Pool
+1 Mystic Remora
+1 Noxious Revival
+1 Otawara, Soaring City
+1 Overgrown Tomb
+1 Palantír of Orthanc
+1 Polluted Delta
+1 Ponder
+1 Prime Speaker Vannifar
+1 Quirion Ranger
+1 Reclamation Sage
+1 Rejuvenating Springs
+1 Ripples of Undeath
+1 Selvala, Heart of the Wilds
+1 Shifting Woodland
+1 Sol Ring
+1 Sylvan Library
+1 Thousand-Year Elixir
+1 Toxic Deluge
+1 Tyvar, the Pummeler
+1 Urborg, Tomb of Yawgmoth
+1 Veil of Summer
+1 Verdant Catacombs
+1 Vexing Bauble
+1 Wastewood Verge
+1 Watery Grave
+1 Willowrush Verge
+1 Yavimaya, Cradle of Growth
+4 Island
+1 Arcane Signet
+1 Tyvar, Jubilant Brawler
+1 Ezuri, Renegade Leader
+1 Marvin, Murderous Mimic
+1 Eladamri, Korvecdal
+1 Miara, Thorn of the Glade
+1 Eladamri, Lord of Leaves
+1 Yeva, Nature's Herald
+1 Nissa, Resurgent Animist
+1 Abomination of Llanowar
+1 Priest of Titania
+6 Forest
+2 Swamp
+1 Undergrowth Stadium
+1 Swan Song
+1 Assassin's Trophy
+1 Elvish Champion
+1 Tyvar the Bellicose
+1 Sting, the Glinting Dagger
+1 Arwen, Weaver of Hope
+1 Elven Chorus
+1 Elrond, Moon-Reader

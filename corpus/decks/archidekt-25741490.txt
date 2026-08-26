@@ -1,0 +1,73 @@
+# Archidekt — mahoraga
+# source: archidekt:25741490
+# fetched: 2026-08-26
+# bracket: 5
+
+Commander:
+1 Elesh Norn, Mother of Machines
+
+Deck:
+1 Generous Gift
+1 Ajani Goldmane
+1 Panharmonicon
+1 Swords to Plowshares
+36 Plains
+1 Sol Ring
+1 Impassioned Orator
+1 Darien, King of Kjeldor
+1 Enlightened Tutor
+1 Liliana the Faultless
+1 Dr. Beverly Crusher
+1 Smothering Tithe
+1 Heliod, Sun-Crowned
+1 Farewell
+1 Aerith Gainsborough
+1 Soul Warden
+1 Celestine, the Living Saint
+1 Rune-Tail, Kitsune Ascendant // Rune-Tail's Essence
+1 The Wind Crystal
+1 Haliya, Guided by Light
+1 Anti-Venom, Horrifying Healer
+1 The Gaffer
+1 Avacyn, Angel of Hope
+1 Daxos, Blessed by the Sun
+1 Authority of the Consuls
+1 Gleaming Splendor
+1 Voice of the Blessed
+1 Fumigate
+1 Felidar Sovereign
+1 Ancient Tomb
+1 Esper Sentinel
+1 Exemplar of Light
+1 Archangel of Thune
+1 Pearl Medallion
+1 Angel of Vitality
+1 Oketra's Monument
+1 Marble Diamond
+1 Teferi's Protection
+1 Soul's Attendant
+1 Inspiring Overseer
+1 Path to Exile
+1 Angel of Destiny
+1 Rebuff the Wicked
+1 Hinterland Sanctifier
+1 Suture Priest
+1 Dazzling Angel
+1 Reprieve
+1 Ajani's Welcome
+1 Arcane Signet
+1 Ajani, Strength of the Pride
+1 Dawn of Hope
+1 Test of Endurance
+1 Mind Stone
+1 Pristine Talisman
+1 Cleric Class
+1 Adeline, Resplendent Cathar
+1 Hallowed Priest
+1 Excalibur II
+1 Essence Channeler
+1 Martyr of Sands
+1 Sunscorch Regent
+1 Aetherflux Reservoir
+1 Wrath of God
+1 Leonin Vanguard

@@ -1,0 +1,98 @@
+# Archidekt — I'm Feeling Peckish
+# source: archidekt:25775146
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Thromok the Insatiable
+
+Deck:
+1 Command Tower
+1 Cinder Glade
+1 Rootbound Crag
+1 Beast Within
+1 Arcane Signet
+1 Goblin Anarchomancer
+1 Rhythm of the Wild
+1 Cultivate
+1 Stomping Ground
+1 Rockfall Vale
+1 Rampant Growth
+1 Rogue's Passage
+1 Game Trail
+1 Chandra's Ignition
+1 Blasphemous Act
+1 Kessig Wolf Run
+1 Swiftfoot Boots
+1 Chaos Warp
+1 Gruul Turf
+1 Heroic Intervention
+1 Kodama's Reach
+1 Artifact Mutation
+1 Karplusan Forest
+1 Spire Garden
+1 Elvish Mystic
+1 Dragonlair Spider
+1 Fling
+1 Garruk's Uprising
+1 Nature's Lore
+1 Mycoloth
+1 Soul's Fire
+1 Warstorm Surge
+1 Awakening Zone
+1 Arasta of the Endless Web
+1 Anger
+1 Brawn
+1 Avenger of Zendikar
+1 Reliquary Tower
+1 Return of the Wildspeaker
+1 Farseek
+1 Wooded Foothills
+1 Fungal Sprouting
+1 Doubling Season
+1 Lightning Greaves
+1 Khalni Garden
+1 Skarrg, the Rage Pits
+1 Three Visits
+1 Arachnogenesis
+1 Tendershoot Dryad
+1 Krenko, Mob Boss
+1 Dragon Broodmother
+1 Fecundity
+1 Evolving Wilds
+1 Thornspire Verge
+1 Rishkar's Expertise
+1 Hordeling Outburst
+1 Kediss, Emberclaw Familiar
+1 Sakura-Tribe Elder
+1 Cryptolith Rite
+1 Kher Keep
+1 Talisman of Impulse
+1 Krenko, Tin Street Kingpin
+1 Ulasht, the Hate Seed
+1 Parallel Lives
+1 Dragon Fodder
+1 The Ozolith
+1 Twitching Doll
+1 Tamiyo's Safekeeping
+6 Forest
+6 Mountain
+1 Sol Ring
+1 Scute Swarm
+1 Second Harvest
+1 Enduring Vitality
+1 Song of Totentanz
+1 Thud
+1 Pest Infestation
+1 Skullclamp
+1 Mage Slayer
+1 Fresh Meat
+1 Shamanic Revelation
+1 Xenagos, the Reveler
+1 Jaheira, Friend of the Forest
+1 Impact Tremors
+1 Tempt with Vengeance
+1 Siege-Gang Commander
+1 Battle Hymn
+1 Awaken the Woods
+1 Windswift Slice

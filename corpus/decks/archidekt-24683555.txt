@@ -1,0 +1,108 @@
+# Archidekt — Gandalf, Party Guest: Wizard Party
+# source: archidekt:24683555
+# fetched: 2026-08-26
+# bracket: 2
+
+Commander:
+1 Gandalf, Party Guest
+
+Deck:
+1 Harmonic Prodigy
+1 Gandalf the Grey
+1 Hurkyl, Master Wizard
+1 Gale, Waterdeep Prodigy
+1 Baral, Chief of Compliance
+1 Stock Up
+1 Arcane Signet
+1 Arid Mesa
+1 Cavern of Souls
+1 Sacred Foundry
+1 Thought Vessel
+1 Riptide Laboratory
+1 Flame of Anor
+1 Consult the Star Charts
+1 Full Throttle
+1 Volcanic Vision
+1 Inspired Ultimatum
+1 Wisdom of Ages
+1 Port Town
+1 Plains
+1 Roaming Throne
+1 Insurrection
+1 Multiversal Incursion
+1 Kaza, Roil Chaser
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Kitsa, Otterball Elite
+1 Veyran, Voice of Duality
+1 Krile Baldesion
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Azami, Lady of Scrolls
+1 Jori En, Ruin Diver
+1 Alania, Divergent Storm
+1 Lier, Disciple of the Drowned
+1 Deflecting Swat
+1 Sol Ring
+1 Thundering Falls
+1 Plaza of Heroes
+1 Meticulous Archive
+1 Deserted Beach
+1 Sulfur Falls
+1 Elegant Parlor
+1 Sundown Pass
+1 Stormcarved Coast
+1 Glacial Fortress
+1 Raugrin Triome
+1 Flooded Strand
+1 Training Center
+1 Hallowed Fountain
+1 Sea of Clouds
+1 Scalding Tarn
+1 Spectator Seating
+1 Steam Vents
+1 Command Tower
+1 Clifftop Retreat
+1 Reliquary Tower
+1 Three Tree City
+1 Mistrise Village
+1 And They Shall Know No Fear
+1 Silundi Vision // Silundi Isle
+1 Furycalm Snarl
+1 Island
+1 Mountain
+1 Baral's Expertise
+1 Teferi, Mage of Zhalfir
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Olórin's Searing Light
+1 Sink into Stupor // Soporific Springs
+1 Winnowing
+1 Surge to Victory
+1 Mnemonic Deluge
+1 Aminatou's Augury
+1 Improvisation Capstone
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Adeliz, the Cinder Wind
+1 Balmor, Battlemage Captain
+1 Gogo, Master of Mimicry
+1 Raise the Palisade
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+1 Uvilda, Dean of Perfection // Nassari, Dean of Expression
+1 Vadrik, Astral Archmage
+1 Call Forth the Tempest
+1 Rivendell
+1 Storm King's Thunder
+1 Proft's Eidetic Memory
+1 Akroma's Will
+1 Protection Magic
+1 Flawless Maneuver
+1 Vivi Ornitier
+1 Stenn, Paranoid Partisan
+1 Irenicus's Vile Duplication
+1 Wizard's Staff
+1 Taunt from the Rampart
+1 Irencrag Feat
+1 Tempted by the Oriq
+1 Seize the Day
+1 Traverse Eternity
+1 Talent of the Telepath
+1 Disrupt Decorum
+1 Plea for Power
