@@ -1314,6 +1314,16 @@ def compute_stats(commander: dict, deck: list[dict],
 
     # total counts every physical copy (quantity>1 for imported duplicate basics)
     deck_total = sum(int(c.get("quantity", 1) or 1) for c in deck)
+    # Computed once, ahead of `offmeta`, so its theme-sub-page coverage widening can use the
+    # DECK's own detected themes (S4, 2026-08-26) — the same "deck's plan, not the
+    # commander's unsupported claims" contract `redundancy.targets_for` already documents.
+    # `deck_themes.stats_block` re-derives this again for `archetypes` below; that recompute
+    # is pure/offline (a local text scan), so doing it twice costs nothing measurable and
+    # keeps `archetypes`' own contract (`{}` -> {}` on any failure) independent of `offmeta`.
+    try:
+        detected_themes = deck_themes.detect_deck_themes(deck) if deck else []
+    except Exception:      # noqa: BLE001 - advisory measurement, never fails a build
+        detected_themes = []
     return {
         "average_cmc": round(avg_cmc, 2),
         "color_pips": {k: v for k, v in color_pips.items() if v},
@@ -1326,7 +1336,7 @@ def compute_stats(commander: dict, deck: list[dict],
         # a casual pod asks first. Same one-place contract as `quality`: every path (build,
         # rebuild, retheme, import/Analyze) gets it here. `{}` whenever EDHREC has nothing
         # to say, which StepDeck's `stats.offmeta &&` guard hides.
-        "offmeta": lift_stats.stats_block(commander, deck),
+        "offmeta": lift_stats.stats_block(commander, deck, themes=detected_themes),
         # What archetypes the DECK actually plays, vs what the commander's text
         # claims. Pure/offline, so it costs nothing on any path.
         "archetypes": deck_themes.stats_block(commander, deck, partners),

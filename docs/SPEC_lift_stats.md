@@ -61,9 +61,14 @@ class LiftStats:
     total: int                # cards considered (deck minus basic lands)
     coverage: float           # measured / total, 0..1, 3dp
     verdict: str              # see below
+    theme_extra: int = 0      # (S4) cards measured ONLY via a theme sub-page — informational
+    theme_tag: str | None = None   # which EDHREC tag supplied them, or None
 
-def lift_stats(deck: list[dict], lifts: dict[str, float]) -> LiftStats | None
-def stats_block(commander: dict, deck: list[dict]) -> dict
+def lift_stats(
+    deck: list[dict], lifts: dict[str, float], *,
+    extra: dict[str, float] | None = None, extra_tag: str | None = None,
+) -> LiftStats | None
+def stats_block(commander: dict, deck: list[dict], themes: list[str] | None = None) -> dict
 ```
 
 ### `lift_stats(deck, lifts)`
@@ -93,7 +98,7 @@ Compare the deck against the commander's own page, then map to the 2x2:
 - `not high and not wide` → `"off-plan"`
 - `coverage < MIN_COVERAGE` → `"insufficient-data"` (checked FIRST, overrides all)
 
-### `stats_block(commander, deck)`
+### `stats_block(commander, deck, themes=None)`
 
 The `compute_stats` integration point, mirroring `deck_builder.deck_quality_block`:
 
@@ -103,6 +108,29 @@ The `compute_stats` integration point, mirroring `deck_builder.deck_quality_bloc
   when `lift_stats` returns `None`. These figures are advisory and must never fail a
   build. (`deck_quality_block` has exactly this contract.)
 - Otherwise returns the `LiftStats` fields as a plain dict via `dataclasses.asdict`.
+
+### Theme sub-page coverage widening (S4, 2026-08-26)
+
+`themes` should be the deck's own detected archetypes (`deck_themes.detect_deck_themes`),
+strongest first. `stats_block` resolves the first one with a known tag
+(`edhrec_lift.tag_for_themes`), fetches that theme's sub-page
+(`edhrec_lift.theme_lift_map`), and passes it to `lift_stats` as `extra`/`extra_tag`.
+
+**This is informational ONLY** — see `edhrec_lift.theme_lift_map`'s docstring and
+`docs/SPEC_edhrec_lift.md` for why: a sub-page's synergy was measured to be a
+scale-mismatched statistic (same sign ~98% of the time, but a different magnitude,
+worse the narrower the sub-tag is relative to the commander's whole population), and
+`coverage`/`synergy`/`baseline`/`verdict` above were all calibrated against main-page-only
+data. Folding sub-page values into them would silently invalidate that calibration.
+`theme_extra`/`theme_tag` report what WOULD be newly measurable, without touching anything
+the verdict thresholds actually consume.
+
+Omitting `themes` (or passing only unmapped ones) is a no-op — no extra network call, and
+the result is byte-identical to before this parameter existed.
+
+**Measured impact**, 25 corpus decks with a mapped detected theme (`scratchpad/s4_sweep.py`):
+18/25 (72%) gained newly-measurable cards; mean coverage delta +4.7 points, median +2.4,
+max +25.9 (Eshki, Temur's Roar / `dragons`).
 
 ## Style requirements
 

@@ -238,6 +238,77 @@ def test_lift_map_returns_empty_on_total_failure(cache_dir, monkeypatch):
     assert edhrec_lift.lift_map("") == {}
 
 
+# ── theme sub-pages (S4, 2026-08-26) ─────────────────────────────────────────────
+
+def test_tag_for_themes_picks_the_first_mapped_theme():
+    """Caller's own priority order wins — the deck's strongest detected theme first."""
+    assert edhrec_lift.tag_for_themes(["not_a_theme", "landfall", "tokens"]) == "landfall"
+
+
+def test_tag_for_themes_returns_none_for_no_match():
+    assert edhrec_lift.tag_for_themes(["draw_matters"]) is None    # deliberately unmapped
+    assert edhrec_lift.tag_for_themes([]) is None
+    assert edhrec_lift.tag_for_themes(None) is None
+
+
+def test_archetype_tags_are_plausible_slugs():
+    """Every value must look like a real EDHREC slug (lower-case, hyphen-separated) —
+    catches a copy-paste of a THEME_PATTERNS key instead of the verified tag."""
+    import re
+    slug_re = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+    for theme, tag in edhrec_lift.ARCHETYPE_EDHREC_TAGS.items():
+        assert slug_re.match(tag), f"{theme} -> {tag!r} is not a plausible EDHREC slug"
+
+
+def test_archetype_tags_are_known_deck_themes_keys():
+    """Every key must be a real `commander_analysis.THEME_PATTERNS` name — the same
+    lock-step class this repo has caught repeatedly (theme taxonomy, role targets)."""
+    import commander_analysis
+    unknown = set(edhrec_lift.ARCHETYPE_EDHREC_TAGS) - set(commander_analysis.THEME_PATTERNS)
+    assert not unknown, f"mapped themes that do not exist: {sorted(unknown)}"
+
+
+def test_theme_lift_map_fetches_the_tag_specific_url(cache_dir, monkeypatch):
+    calls = []
+
+    def fake_get(url, **kw):
+        calls.append(url)
+        return _Resp(_payload(("Lotus Cobra", 0.4)))
+
+    monkeypatch.setattr(edhrec_lift.requests, "get", fake_get)
+    got = edhrec_lift.theme_lift_map("Omo, Queen of Vesuva", "landfall")
+    assert got == {"lotus cobra": 0.4}
+    assert calls == ["https://json.edhrec.com/pages/commanders/omo-queen-of-vesuva/"
+                      "landfall.json"]
+    assert (cache_dir / "omo-queen-of-vesuva__landfall.json").exists()
+
+
+def test_theme_lift_map_cache_is_separate_from_the_main_page(cache_dir, monkeypatch):
+    """The main page and a theme sub-page must not collide on one cache file."""
+    monkeypatch.setattr(edhrec_lift.requests, "get",
+                        lambda url, **kw: _Resp(_payload(("Main Card", 0.2))))
+    edhrec_lift.lift_map("Omo, Queen of Vesuva")
+    monkeypatch.setattr(edhrec_lift.requests, "get",
+                        lambda url, **kw: _Resp(_payload(("Sub Card", 0.3))))
+    edhrec_lift.theme_lift_map("Omo, Queen of Vesuva", "landfall")
+    assert (cache_dir / "omo-queen-of-vesuva.json").exists()
+    assert (cache_dir / "omo-queen-of-vesuva__landfall.json").exists()
+    assert edhrec_lift.lift_map("Omo, Queen of Vesuva") == {"main card": 0.2}
+
+
+def test_theme_lift_map_respects_the_kill_switch(monkeypatch):
+    def boom(*a, **kw):
+        raise AssertionError("theme_lift_map touched the network while disabled")
+
+    monkeypatch.setenv("MYTHFORGE_EDHREC_LIFT", "off")
+    monkeypatch.setattr(edhrec_lift.requests, "get", boom)
+    assert edhrec_lift.theme_lift_map("Omo, Queen of Vesuva", "landfall") == {}
+
+
+def test_theme_lift_map_degrades_to_empty_without_a_tag():
+    assert edhrec_lift.theme_lift_map("Omo, Queen of Vesuva", "") == {}
+
+
 def test_cache_refresh_overwrites_an_existing_file(cache_dir, monkeypatch):
     """Windows: Path.rename() raises when the target exists, so a refresh would silently
     never update. The write must use replace()."""

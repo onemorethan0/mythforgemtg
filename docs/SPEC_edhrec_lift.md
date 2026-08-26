@@ -99,6 +99,65 @@ exists to avoid.
 Returns a **new list**; never mutates the input. `lifts == {}` returns the input order
 unchanged (so a missing/failed EDHREC page is a no-op, byte for byte).
 
+## Theme sub-pages (S4, 2026-08-26) — widen coverage, never touch the main baseline
+
+`GET https://json.edhrec.com/pages/commanders/{slug}/{tag}.json` serves the same shape as
+the main page, scoped to decks EDHREC tagged with that theme. Its own `panels.taglinks` on
+the MAIN page lists every tag slug that page has a sub-page for — a full sample across four
+commanders spanning different colour identities (Omo, Edgar Markov, Kaalia, Krenko) surfaced
+the tags in `ARCHETYPE_EDHREC_TAGS` below.
+
+**Measured, not assumed: a sub-page's `synergy` is a DIFFERENT statistic, not more data on
+the same one.** Its `potential_decks` is the count of decks carrying that TAG, not every
+deck running the commander (Atraxa main: 43,585; Atraxa `infect` sub-page: 4,331). Fetched
+live and compared card-by-card:
+
+| commander/tag | overlapping cards | sign agreement | example (main → sub) |
+|---|---|---|---|
+| Omo / `landfall` | 230 | 225/230 (97.8%) | Rhystic Study -0.056 → -0.048 |
+| Atraxa / `infect` | 5 (spot check) | 5/5 | Rhystic Study -0.106 → -0.048 |
+
+Sign agreement is high — the 5 Omo disagreements all sit within ±0.04 of zero on both sides
+(noise at the boundary, not a reversal). **Magnitude is NOT interchangeable**: the same card
+can differ by up to ~50% relative, and the gap is bigger the narrower the sub-tag is relative
+to the commander's whole population (Atraxa/infect, ~10% of Atraxa decks, diverges more than
+Omo/landfall, a much larger share of Omo's own decks). **Consequence: never union a
+`theme_lift_map` result into a `lift_map` result for the same commander and treat it as one
+population** — `lift_stats.lift_stats`'s `extra`/`extra_tag` parameters exist specifically so
+a sub-page can widen `theme_extra` (an informational count) without ever entering `coverage`,
+`synergy`, `baseline`, or `verdict`, all of which were calibrated against main-page-only data.
+
+**Measured impact** (`scratchpad/s4_sweep.py`, not committed — offline-reproducible against
+the engine's card db + live EDHREC): 25 corpus decks whose own detected theme
+(`deck_themes.detect_deck_themes`, NOT the commander's unsupported claims) maps to a real
+tag: **18/25 (72%) gained at least one newly-measured card**, mean coverage delta **+4.7
+points**, median **+2.4**, max **+25.9** (Eshki, Temur's Roar / `dragons`: 70.6% → 96.5%).
+
+### `ARCHETYPE_EDHREC_TAGS: dict[str, str]`
+`commander_analysis.THEME_PATTERNS` key → EDHREC tag slug. Only entries with real evidence
+(seen on a live page) are included — a wrong slug 404s silently to `{}`, indistinguishable
+from "this deck has no theme", so a guessed entry would look wired while doing nothing.
+`draw_matters` is deliberately OMITTED: its pattern is a payoff ("whenever you draw a card"),
+EDHREC's `card-draw` tag is a shopping list of draw SOURCES — the sources-vs-payoffs trap
+already caught once for `lifegain` and rejected for `big_mana`. `face_down` maps to `morph`
+only (EDHREC has no combined morph/manifest/disguise tag — under-covers rather than
+over-claims). `impulse` maps to the real tag `impulse-draw` (naming mismatch, not semantic).
+`voltron` and `voltron_combat` both map to EDHREC's single `voltron` tag — safe, since this
+only ever widens coverage, never overwrites.
+
+### `def tag_for_themes(themes: list[str] | None) -> str | None`
+First entry in `themes` (the caller's own priority order) with a known tag, else `None`.
+Callers must pass the DECK's own detected themes, not `merge_themes`' output — the "deck's
+plan, not the commander's unsupported claims" contract `redundancy.targets_for` already
+documents; using the merged list would widen coverage toward a theme the deck isn't playing.
+
+### `def theme_lift_map(commander_name, tag, *, max_age_days=None, force=False) -> dict[str, float]`
+Same cache-then-fetch-then-degrade contract as `lift_map`, against `THEME_URL` and a
+SEPARATE cache file (`app_path("cache", "edhrec", f"{slug}__{tag}.json")` — must not collide
+with the main page's `{slug}.json`). `{}` when disabled, no tag, no commander, or on any
+failure. Shares its HTTP/cache mechanics with `lift_map` via a private `_fetch_lifts` helper
+so the two paths cannot silently diverge on staleness or atomic-write behaviour.
+
 ## Style requirements
 
 - `from __future__ import annotations` first, then the module docstring rules below.

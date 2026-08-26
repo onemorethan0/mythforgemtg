@@ -210,7 +210,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S1 | Commander themes undetected | corpus **64/391 (16.4%)** ↓80 · all legends **946/3790 (25.0%)** ↓963 | **High** | part done |
 | S2 | ~~Partner decks cannot be BUILT~~ | **fully fixed + verified** 2026-08-25 — analysis/report path AND the physical 98+2 deck (S20) | **Done** | — |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
-| S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
+| S4 | Off-meta read too sparse to judge | theme sub-page widening shipped 2026-08-26, informational only — **12.6% insufficient-data unchanged on purpose** | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
 | S6 | ~~Engine card coverage~~ | **91.5%** pool · 100% top-100 · quarantine 956→443 | **Done** | — |
 | S7 | Advisor seed variance | **quantified**: ~60% rel sd, needs ~16× runs | **Done** (bounded) | — |
@@ -964,6 +964,44 @@ not that it lies.
    actually helps before shipping the extra per-build network fetch it costs. Scoped, not
    guessed at: the next session picking this up should build the mapping table and measure
    it exactly the way `archetype_role_targets.py` measured its own table, not skip the gate.
+
+   **SHIPPED 2026-08-26, as an INFORMATIONAL-ONLY widening — the "does the value column
+   corrupt anything" question was checked before writing a line of wiring code, not after.**
+   Fetched Omo's own `landfall` sub-page live and diffed against its main page on all 230
+   overlapping cards: sign agreed on 225/230 (97.8%; the 5 disagreements all sit within
+   ±0.04 of zero on both sides — noise at the boundary, not a reversal), but **magnitude
+   does NOT carry over** — the same card can differ by up to ~50% relative, worse the
+   narrower the sub-tag is relative to the commander's whole population (a spot check on
+   Atraxa's much-narrower `infect` page, ~10% of Atraxa's decks, showed a bigger gap than
+   Omo/landfall, which covers a large share of Omo's own decks: Rhystic Study -0.106 main
+   vs -0.048 sub in both cases, by coincidence the same infect-page value). **Consequence:
+   this is NOT more data on the same statistic, and treating it as such would corrupt the
+   `synergy`/`baseline` numbers this module's own verdict thresholds were calibrated
+   against.** Shipped it purely additive instead: `edhrec_lift.ARCHETYPE_EDHREC_TAGS`
+   (verified against four live commander pages of different colour identities — a slug not
+   actually seen is left OUT, not guessed) + `theme_lift_map`/`tag_for_themes`;
+   `lift_stats.lift_stats(..., extra=, extra_tag=)` counts a card measurable ONLY via the
+   sub-page into a new `theme_extra`/`theme_tag` pair on the block, and touches nothing
+   else — `coverage`, `synergy`, `baseline`, `verdict`, `confidence` are byte-identical to
+   before, checked by a test that asserts every one of those fields is unchanged when
+   `extra` is supplied. `draw_matters` is deliberately NOT mapped: its
+   `commander_analysis` pattern is a payoff ("whenever you draw a card"), EDHREC's
+   `card-draw` tag is a shopping list of draw SOURCES — the exact sources-vs-payoffs trap
+   already caught for `lifegain` and rejected for `big_mana`.
+   **Measured over 25 corpus decks whose own detected theme (not the commander's
+   unsupported claims) maps to a real tag**: 18/25 (72%) gained at least one newly
+   measurable card; mean coverage delta **+4.7 points**, median **+2.4**, max **+25.9**
+   (Eshki, Temur's Roar / `dragons`: 70.6% → 96.5%). This does NOT move the 12.6%
+   `insufficient-data` figure at the top of this section — that number is computed from
+   `coverage` alone, which this change deliberately never touches. Whether `theme_extra`
+   is worth surfacing in the UI, or whether the underlying `coverage`/verdict math should
+   ever be recalibrated to include it (a materially bigger, riskier change requiring its
+   own `builder_bench`-grade validation), is still open — this pass shipped the honest
+   measurement, not a UI change or a recalibration. Script: scratchpad `s4_sweep.py` (not
+   committed; reproducible offline against the engine's card db + live EDHREC).
+   Full write-up: `docs/SPEC_edhrec_lift.md` ("Theme sub-pages"), `docs/SPEC_lift_stats.md`
+   ("Theme sub-page coverage widening"). Tests: `tests/test_edhrec_lift.py`,
+   `tests/test_lift_stats.py`.
 2. ~~Report the figure as a confidence band~~ **— done 2026-08-18.** Corpus coverage over 244
    decks with a cached page runs **p10 0.22 · p25 0.47 · median 0.70 · p75 0.88 · p90 0.98**, so
    a bare percentage invited the reader to weigh a thin reading like a near-complete one.
@@ -1278,7 +1316,7 @@ shape named above and the object-blind old behaviour it replaces. Full suite (`t
 
 ---
 
-## S16–S19 — further rules-grounding gaps · S16/S17/S19 VERIFIED 2026-08-25, S18 still open
+## S16–S19 — further rules-grounding gaps · S16/S17/S19 VERIFIED 2026-08-25, S18 DONE 2026-08-25
 
 Same audit pass that found S15. All four were unverified leads as of 2026-08-18; this pass
 re-checked each against the real 31,558-card compiled store and the 34,777-card Scryfall pool

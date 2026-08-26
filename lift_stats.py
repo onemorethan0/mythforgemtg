@@ -127,6 +127,13 @@ class LiftStats:
     coverage: float           # measured / total, 0..1
     confidence: str           # how much weight this reading deserves — see CONFIDENCE_*
     verdict: str
+    # Cards found ONLY on a theme sub-page (absent from the main page), and which tag
+    # supplied them — informational, never folded into coverage/synergy/verdict/confidence
+    # above. See `lift_stats`'s docstring for why: a sub-page's synergy is a scale-mismatched
+    # statistic (S4, 2026-08-26), and every threshold above was calibrated against
+    # main-page-only figures.
+    theme_extra: int = 0
+    theme_tag: str | None = None
 
 
 def _is_basic_land(card: dict) -> bool:
@@ -150,11 +157,25 @@ def _quartile_spread(sorted_values: list[float]) -> float:
     return statistics.fmean(sorted_values[-q:]) - statistics.fmean(sorted_values[:q])
 
 
-def lift_stats(deck: list[dict], lifts: dict[str, float]) -> LiftStats | None:
+def lift_stats(
+    deck: list[dict],
+    lifts: dict[str, float],
+    *,
+    extra: dict[str, float] | None = None,
+    extra_tag: str | None = None,
+) -> LiftStats | None:
     """Deck-level lift statistics, or None when there is nothing measurable to say.
 
     `lifts` is the WHOLE commander page (as returned by `edhrec_lift.lift_map`), not just
     the deck's cards — that is what makes the page median available as a baseline.
+
+    `extra` is an OPTIONAL theme sub-page (`edhrec_lift.theme_lift_map`), used ONLY to
+    count cards this deck plays that `lifts` has nothing to say about — `theme_extra` on
+    the result. It never touches `coverage`, `synergy`, `baseline`, `verdict` or
+    `confidence`: a sub-page's synergy is measured to be a DIFFERENT, scale-mismatched
+    statistic (see `edhrec_lift.theme_lift_map`'s docstring), and every threshold this
+    module uses was calibrated against main-page-only figures. Folding it in would corrupt
+    a calibrated number to report an uncalibrated one as if it were the same kind of thing.
 
     `quantity` is deliberately ignored: a second copy of a card says nothing about how
     off-meta the deck is, and counting basics by quantity would swamp everything else.
@@ -182,6 +203,9 @@ def lift_stats(deck: list[dict], lifts: dict[str, float]) -> LiftStats | None:
     coverage = measured / total
     if measured == 0:
         return None
+
+    extra = extra or {}
+    theme_extra = sum(1 for n in names if n not in lifts and n in extra)
 
     page = sorted(lifts.values())
     baseline = statistics.median(page)
@@ -215,11 +239,20 @@ def lift_stats(deck: list[dict], lifts: dict[str, float]) -> LiftStats | None:
         coverage=round(coverage, 3),
         confidence=_confidence(coverage, measured),
         verdict=verdict,
+        theme_extra=theme_extra,
+        theme_tag=extra_tag if theme_extra else None,
     )
 
 
-def stats_block(commander: dict, deck: list[dict]) -> dict:
+def stats_block(commander: dict, deck: list[dict], themes: list[str] | None = None) -> dict:
     """The `compute_stats` integration point, mirroring `deck_builder.deck_quality_block`.
+
+    `themes` should be the DECK's own detected themes (`deck_themes.detect_deck_themes`),
+    not `merge_themes`' output — the same "the deck's own plan, not the commander's
+    unsupported claims" contract `redundancy.targets_for` documents. Used only to pick a
+    theme sub-page to widen coverage with (`theme_extra` on the block); omitting it (or
+    passing themes with no known EDHREC tag) is a no-op, byte-identical to before this
+    parameter existed.
 
     Returns `{}` on anything at all — no commander, no EDHREC page, an unofficial API that
     changed shape, a network failure. These figures are advisory and must never fail a
@@ -229,7 +262,11 @@ def stats_block(commander: dict, deck: list[dict]) -> dict:
         name = (commander or {}).get("name")
         if not name:
             return {}
-        stats = lift_stats(deck or [], edhrec_lift.lift_map(name))
+        extra: dict[str, float] = {}
+        tag = edhrec_lift.tag_for_themes(themes)
+        if tag:
+            extra = edhrec_lift.theme_lift_map(name, tag)
+        stats = lift_stats(deck or [], edhrec_lift.lift_map(name), extra=extra, extra_tag=tag)
         return dataclasses.asdict(stats) if stats is not None else {}
     except Exception:      # noqa: BLE001 - advisory measurement, never fails a build
         return {}

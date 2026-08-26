@@ -162,6 +162,43 @@ def test_all_four_quadrants_are_reachable(deck_lifts, expected):
     assert s.verdict == expected
 
 
+# ── theme sub-page coverage widening (S4, 2026-08-26) ────────────────────────────
+
+def test_extra_widens_theme_extra_without_touching_anything_else():
+    """`extra` must count toward `theme_extra` ONLY — coverage/synergy/baseline/verdict
+    are calibrated against main-page-only figures and must stay byte-identical."""
+    deck = _deck("Known", "SubOnly")
+    lifts = _page(known=0.5)
+    without = lift_stats.lift_stats(deck, lifts)
+    with_extra = lift_stats.lift_stats(
+        deck, lifts, extra={"subonly": 0.9}, extra_tag="landfall"
+    )
+    assert without.theme_extra == 0 and without.theme_tag is None
+    assert with_extra.theme_extra == 1 and with_extra.theme_tag == "landfall"
+    # Every field a real number was calibrated against must be unchanged.
+    for field in ("synergy", "synergy_range", "staples_pct", "anti_staples_pct",
+                  "baseline", "baseline_range", "measured", "total", "coverage",
+                  "confidence", "verdict"):
+        assert getattr(without, field) == getattr(with_extra, field), field
+
+
+def test_extra_does_not_count_a_card_already_on_the_main_page():
+    """A card measured on the main page must not be double-counted via `extra`."""
+    deck = _deck("Known")
+    s = lift_stats.lift_stats(deck, _page(known=0.5), extra={"known": 0.9})
+    assert s.theme_extra == 0 and s.theme_tag is None
+
+
+def test_theme_tag_is_none_when_nothing_extra_was_found():
+    """A supplied but useless `extra` (nothing the deck plays) must not report a tag —
+    `theme_tag` means 'this actually widened something', not 'a tag was passed'."""
+    deck = _deck("Known")
+    s = lift_stats.lift_stats(
+        deck, _page(known=0.5), extra={"irrelevant card": 0.1}, extra_tag="landfall"
+    )
+    assert s.theme_extra == 0 and s.theme_tag is None
+
+
 # ── stats_block ─────────────────────────────────────────────────────────────────
 
 def test_stats_block_returns_a_plain_dict(monkeypatch):
@@ -191,6 +228,34 @@ def test_stats_block_swallows_every_failure(monkeypatch):
 def test_stats_block_is_empty_when_nothing_is_measurable(monkeypatch):
     monkeypatch.setattr(lift_stats.edhrec_lift, "lift_map", lambda n: {})
     assert lift_stats.stats_block({"name": "C"}, _deck("X")) == {}
+
+
+def test_stats_block_does_not_fetch_a_theme_page_without_a_mapped_theme(monkeypatch):
+    """No `themes`, or none the mapping recognises: byte-identical to before this param
+    existed, and no extra network call is made."""
+    monkeypatch.setattr(lift_stats.edhrec_lift, "lift_map", lambda n: {"known": 0.5})
+    monkeypatch.setattr(lift_stats.edhrec_lift, "theme_lift_map",
+                        lambda *a, **kw: pytest.fail("should not fetch a theme page"))
+    block = lift_stats.stats_block({"name": "C"}, _deck("Known"))
+    assert block["theme_extra"] == 0 and block["theme_tag"] is None
+    block2 = lift_stats.stats_block({"name": "C"}, _deck("Known"), themes=["not_a_theme"])
+    assert block2["theme_extra"] == 0 and block2["theme_tag"] is None
+
+
+def test_stats_block_widens_coverage_from_the_first_mapped_theme(monkeypatch):
+    calls = []
+    monkeypatch.setattr(lift_stats.edhrec_lift, "lift_map", lambda n: {"known": 0.5})
+    monkeypatch.setattr(
+        lift_stats.edhrec_lift, "theme_lift_map",
+        lambda name, tag, **kw: calls.append((name, tag)) or {"subonly": 0.9},
+    )
+    block = lift_stats.stats_block(
+        {"name": "Omo, Queen of Vesuva"}, _deck("Known", "SubOnly"),
+        themes=["draw_matters", "landfall"],   # draw_matters is unmapped; landfall wins
+    )
+    assert calls == [("Omo, Queen of Vesuva", "landfall")]
+    assert block["theme_extra"] == 1
+    assert block["theme_tag"] == "landfall"
 
 
 # ── the panel's wording is part of the contract ─────────────────────────────────
