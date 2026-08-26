@@ -218,7 +218,19 @@ export default function AdvisePanel({ jobId, onApplied }) {
                   </span>
                  </div>
                  {s.reason && (
-                   <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}>
+                   <div
+                     style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}
+                     title={
+                       // `reason_template` is only present when an LLM-narrated `reason`
+                       // replaced it (gate.py::_narrate_suggestions) — the deterministic,
+                       // strictly-measured sentence the prose was written from and checked
+                       // against. Surfacing it on hover is the same "show your work" move
+                       // as `bracket_reasons`/`tool_trace`: the prose reads better, but the
+                       // measured claim underneath it is always one hover away.
+                       s.reason_template && s.reason_template !== s.reason
+                         ? `Measured: ${s.reason_template}` : undefined
+                     }
+                   >
                      {s.reason}
                    </div>
                  )}
