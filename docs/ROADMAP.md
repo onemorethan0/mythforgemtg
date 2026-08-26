@@ -271,6 +271,47 @@ same 43 themes — it is archetypes with no entry.
 **Definition of done:** zero-theme under 15% of unique commanders, with no theme added whose
 STRONG rate exceeds ~2% of the card pool, and `builder_bench` mean synergy not down.
 
+### Plan step 1 (the 24-case review queue) — WORKED, 2026-08-25/26
+
+Ran `commander_analysis._detect_themes` against all 24 disagreement cases in
+`docs/data/zero_theme_triage.json` (`agree: False`) against the taxonomy AS IT STANDS after
+this session's shipped patterns (reanimator's `"graveyard onto the battlefield"`, plus the
+earlier landfall/enchantress/artifacts/spellslinger/impulse widenings). **10 of 24 are already
+rescued** — Agent of the Iron Throne, Baba Lysaga, Flubs the Fool, Marina Vendrell, Szarekh,
+Tannuk, Thor Odinson, Witherbloom, Tuvasa the Sunlit, Yennett — by patterns landed for OTHER
+reasons earlier in the same taxonomy pass, not by anything new. **The remaining 14 were
+individually read against real oracle text and are genuinely themeless, not a pattern gap:**
+
+- **Arcades, the Strategist** and **The Master, Transcendent** — already investigated and
+  correctly rejected earlier this session (defenders-matter: 1/7 real payoffs; milled-reanimator
+  phrasing: only 1 additional rescue).
+- **Deadpool, Trading Card**, **Mairsil, the Pretender**, **Omo, Queen of Vesuva** — one-off
+  joke/build-around mechanics (text-box swap, ability-theft, universal-type counters) with no
+  generalizable archetype to attach to.
+- **Arixmethes**, **Selvala**, **Liesa**, **Y'shtola** — real but idiosyncratic triggers (a
+  dozing land-creature, power-conditioned draw, symmetric life-loss tax, life-loss-this-turn
+  draw) that don't cleanly map onto any of the 43 existing themes without either being too
+  narrow to clear the ~8-rescue bar or broad enough to become a base-rate trap.
+- **Karona, False God** and **Tymna the Weaver** — confirms `lift_stats.py`'s already-documented
+  finding (see `CLAUDE.md`) that these are "value"/partner commanders with genuinely no
+  archetype; deck-context themes, not more patterns, is the right answer for them.
+- **Candlekeep Sage** and **Folk Hero** — both use the "Commander creatures you own have ..."
+  Background templating. **Measured, not assumed**: 28 cards in the full 34,179-card pool use
+  this exact lead-in, and every one of the 28 grants a DIFFERENT ability (ETB draw, tribal-spell
+  draw, +1/+1 doubling, menace, goad, copy-ability, …) — there is no single payoff phrase that
+  rescues more than the 1-2 cards that happen to share it, and matching the shared lead-in
+  itself would be matching the MECHANIC (Background), not an archetype, exactly the trap
+  `big_mana` and the rejected `"sacrifice another"`/`"counter on target"` candidates already
+  fell into. Correctly left themeless.
+
+**No new pattern is worth shipping from this queue.** Every disagreement case is now accounted
+for — either already fixed, or read against real text and confirmed to have no archetype a
+40-theme taxonomy should own. Zero-theme unique-commander rate is unaffected by this pass (no
+new detections beyond the 10 already counted in the 16.4% headline above); what changed is that
+the review queue itself is now fully worked rather than an open action item. The path forward
+for S1's remaining ~16.4% is plan step 2 as written — the wider legend pool's distinctive-bigram
+sweep — not further hand-review of this specific 80-case triage set.
+
 ### Second offload round: the whole legend pool, not just the corpus
 
 The corpus is 391 commanders; the app serves any of Magic's **3,790 legendary creatures**, and
