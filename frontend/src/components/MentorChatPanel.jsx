@@ -14,6 +14,21 @@ const boxStyle = {
   overflow: 'hidden',
 }
 
+// Plain-English label for one logged tool call (mentor.tools) — the whole point of the
+// claim-budget gate is that an answer is checked against real lookups before it ships, so
+// showing WHICH lookups is the natural trust-building follow-through: the engine already
+// logs this on every turn (see the vote() comment below), it just never reached the UI.
+const TOOL_LABELS = {
+  lookup_card: (a) => `Looked up card: ${a?.name ?? '?'}`,
+  lookup_rulings: (a) => `Checked rulings: ${a?.name ?? '?'}`,
+  search_rules: (a) => `Searched the rules: "${a?.query ?? '?'}"`,
+  get_rule: (a) => `Read rule ${a?.number ?? '?'}`,
+  get_deck_stats: () => 'Read this deck’s stats',
+  assess_card: (a) => `Measured impact of: ${a?.name ?? '?'}`,
+  check_legality: (a) => `Checked legality: ${a?.name ?? '?'}`,
+}
+const toolLabel = (t) => (TOOL_LABELS[t.tool]?.(t.args) ?? `${t.tool}(${JSON.stringify(t.args)})`)
+
 export default function MentorChatPanel({ jobId }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([])   // [{role, content, gated, turnId, feedback}]
@@ -52,7 +67,7 @@ export default function MentorChatPanel({ jobId }) {
         const body = await r.json()
         setMessages(m => [...m, {
           role: 'assistant', content: body.reply, gated: body.gated,
-          turnId: body.turn_id, feedback: null,
+          turnId: body.turn_id, feedback: null, toolTrace: body.tool_trace,
         }])
       } else {
         let d = `HTTP ${r.status}`
@@ -140,6 +155,18 @@ export default function MentorChatPanel({ jobId }) {
                     </div>
                   )}
                   {m.content}
+                  {m.role === 'assistant' && m.toolTrace?.length > 0 && (
+                    <details style={{ marginTop: 6 }}>
+                      <summary style={{ fontSize: 10.5, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>
+                        🔍 Checked {m.toolTrace.length} source{m.toolTrace.length === 1 ? '' : 's'}
+                      </summary>
+                      <ul style={{ margin: '4px 0 0', paddingLeft: 16 }}>
+                        {m.toolTrace.map((t, ti) => (
+                          <li key={ti} style={{ fontSize: 10.5, color: '#a8a29e', lineHeight: 1.5 }}>{toolLabel(t)}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
                   {m.role === 'assistant' && m.turnId && (
                     <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
                       <button

@@ -161,6 +161,11 @@ export default function DuelPanel({ jobId }) {
                   Combo kills: <b style={{ color: '#e7e5e4' }}>{r.combo_wins}</b>
                 </span>
               )}
+              {r.decked_losses > 0 && (
+                <span title="Games where a player lost by drawing from an empty library" style={{ padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
+                  Decked out: <b style={{ color: '#e7e5e4' }}>{r.decked_losses}</b>
+                </span>
+              )}
             </div>
           )}
           <div style={{ fontSize: 10.5, color: '#78716c', lineHeight: 1.5 }}>
