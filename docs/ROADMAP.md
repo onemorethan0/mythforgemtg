@@ -722,9 +722,31 @@ not that it lies.
 
 **Plan.** Do not paper over it by widening the verdict. Instead raise real coverage:
 
-1. Measure whether EDHREC exposes more of the page than `edhrec_lift` currently parses
-   (themes/budget sub-pages carry additional cards). **Verify the shape against the live
-   endpoint before writing any parser** — this repo has been burned by an assumed API shape.
+1. ~~Measure whether EDHREC exposes more of the page than `edhrec_lift` currently parses~~
+   **— measured 2026-08-25, and it does.** Verified live against `json.edhrec.com` (not
+   assumed): the MAIN commander page's `container.json_dict.cardlists` already captures
+   every card list on that page — for Atraxa, Praetors' Voice, 13 cardlists / 292 unique
+   cards, matching this module's own worked docstring example exactly, so nothing on the
+   main page itself is being missed. But EDHREC also serves per-THEME sub-pages at
+   `.../commanders/{slug}/{theme-tag}.json` (discoverable from the main page's own
+   `panels.taglinks`), and one of those genuinely carries more: fetching Atraxa's real
+   `infect` sub-page live returned **32 cards** (Blightsteel Colossus, Blight Mamba, Fynn
+   the Fangbearer, Dark Ritual, ...) that never appear anywhere on the main page at all —
+   an 11% expansion for a deck actually built toward that theme.
+   **Not integrated this pass, and the reason is a real design gap, not effort alone: which
+   theme sub-page to fetch for a given build is not self-evident.** The main page's own
+   `taglinks` are sorted by POPULARITY across all decks with this commander, which is a
+   different question from "what does THIS deck actually do" — the same distinction
+   `redundancy.py`'s `ARCHETYPE_ROLE_TARGETS` and Invariant 4 already exist to enforce
+   elsewhere. Auto-fetching the top taglink would silently conflate "popular sub-strategy"
+   with "this build's plan" for the majority of Atraxa builds that are NOT infect decks.
+   Doing this correctly needs a maintained mapping from `deck_themes`'s own archetype keys
+   to EDHREC tag slugs — a real "two structures must agree" surface this repo has been
+   burned by repeatedly (the five dead `theme_match` rules, the `edhrec_lift`/
+   `mythgauntlet.data.edhrec` slug duplication) — plus a `builder_bench` pass to confirm it
+   actually helps before shipping the extra per-build network fetch it costs. Scoped, not
+   guessed at: the next session picking this up should build the mapping table and measure
+   it exactly the way `archetype_role_targets.py` measured its own table, not skip the gate.
 2. ~~Report the figure as a confidence band~~ **— done 2026-08-18.** Corpus coverage over 244
    decks with a cached page runs **p10 0.22 · p25 0.47 · median 0.70 · p75 0.88 · p90 0.98**, so
    a bare percentage invited the reader to weigh a thin reading like a near-complete one.
