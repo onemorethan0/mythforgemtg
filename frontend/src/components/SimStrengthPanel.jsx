@@ -27,7 +27,7 @@ export default function SimStrengthPanel({ simulation }) {
     )
   }
   const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`)
-  const bar = (label, val, suffix = '') => (
+  const bar = (label, val, suffix = '', detail = null) => (
     <div style={{ marginBottom: 7 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: '#a8a29e', marginBottom: 2 }}>
         <span>{label}</span>
@@ -36,7 +36,53 @@ export default function SimStrengthPanel({ simulation }) {
       <div style={{ height: 5, borderRadius: 4, background: '#1c1917', overflow: 'hidden' }}>
         <div style={{ height: '100%', width: `${Math.max(0, Math.min(100, val || 0))}%`, background: AC }} />
       </div>
+      {detail && (
+        <div style={{ fontSize: 10, color: '#78716c', marginTop: 2, lineHeight: 1.4 }}>{detail}</div>
+      )}
     </div>
+  )
+  // "2 removal, 6 counters, 0 wipes; breadth 2/3" -- the same breakdown the CLI has always
+  // shown, now reaching the panel instead of just a bare 0-100 score.
+  const interactionDetail = pp.interaction_answers != null && (
+    <>
+      {pp.interaction_answers} answer{pp.interaction_answers === 1 ? '' : 's'}
+      {pp.interaction_effective_answers != null
+        ? ` (${pp.interaction_effective_answers.toFixed(1)} castable-weighted)` : ''}
+      {pp.interaction_spot_removal != null && (
+        <> — {pp.interaction_spot_removal} removal, {pp.interaction_counterspells} counters,{' '}
+          {pp.interaction_board_wipes} wipes; breadth {pp.interaction_breadth}/3</>
+      )}
+    </>
+  )
+  // "vs a turn-5 board wipe (100% -> 100% kill rate, +0.0 turns to kill)" -- what the
+  // resilience score actually simulated, not just the composite number.
+  const resilienceDetail = pp.resilience_wipe_turn != null && (
+    <>
+      vs a turn-{pp.resilience_wipe_turn} board wipe ({pct(pp.resilience_clean_kill_rate)} → {' '}
+      {pct(pp.resilience_wiped_kill_rate)} kill rate
+      {pp.resilience_kill_delay_turns != null
+        ? `, +${pp.resilience_kill_delay_turns.toFixed(1)} turns to kill` : ''})
+    </>
+  )
+  // The Pod axis answers a DIFFERENT question than the goldfish speed/ceiling numbers above:
+  // can this deck actually close a real ~4-player game, or only a 1v1 duel? A deck can read
+  // fast and consistent in every other row and still barely dent a pod (Prismari-class storm
+  // decks: 100% duel-close, single-digit pod-close) -- exactly the duel-vs-pod gap this axis
+  // exists to surface, and it was computed all along but never rendered until now.
+  const podDetail = pp.pod != null && (
+    pp.pod_close_turn != null ? (
+      <>
+        closes a {(pp.pod_opponents ?? 3) + 1}-player pod ~turn {Math.round(pp.pod_close_turn)}{' '}
+        ({pct(pp.pod_close_rate)} of games) — duel-close {pct(pp.pod_duel_close_rate)}
+        {pp.pod_via_finisher ? ' · via a game-ending finisher' : ''}
+      </>
+    ) : (
+      <>
+        doesn&rsquo;t reliably close a full {(pp.pod_opponents ?? 3) + 1}-player pod within the
+        horizon (duel-close {pct(pp.pod_duel_close_rate)}) — reads faster 1-on-1 than at a
+        real table
+      </>
+    )
   )
   const speed = pp.speed_avg_kill_turn
     ? `turn ${pp.speed_avg_kill_turn.toFixed(1)} (${pct(pp.speed_kill_rate)})`
@@ -109,6 +155,23 @@ export default function SimStrengthPanel({ simulation }) {
           </span>
         </div>
       )}
+      {Array.isArray(pp.game_changer_names) && pp.game_changer_names.length > 0 && (
+        <div style={{ marginBottom: 10 }}>
+          <div style={{ fontSize: 11, color: '#78716c', marginBottom: 4 }}>
+            Game Changers ({pp.game_changer_names.length}):
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {pp.game_changer_names.map((name) => (
+              <span
+                key={name}
+                style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#78350f22', border: '1px solid #d97706', color: '#fbbf24' }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
       {Array.isArray(pp.bracket_reasons) && pp.bracket_reasons.length > 0 && (
         <details style={{ marginBottom: 10 }}>
           <summary style={{ fontSize: 11, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>
@@ -163,9 +226,10 @@ export default function SimStrengthPanel({ simulation }) {
         )
       })()}
       {bar('Consistency', pp.consistency, '/100')}
-      {bar('Resilience vs a board wipe', pp.resilience, '/100')}
-      {pp.interaction != null && bar('Interaction', pp.interaction, '/100')}
+      {bar('Resilience vs a board wipe', pp.resilience, '/100', resilienceDetail)}
+      {pp.interaction != null && bar('Interaction', pp.interaction, '/100', interactionDetail)}
       {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100')}
+      {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail)}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
         <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>

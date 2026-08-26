@@ -366,6 +366,14 @@ def create_app(
             "interaction": round(interaction.score, 1),
             "interaction_answers": interaction.answers,
             "interaction_effective_answers": interaction.effective_answers,
+            # Breakdown by TYPE, same numbers the CLI already prints ("2 removal, 6 counters,
+            # 0 wipes; breadth 2/3") but previously computed only there -- duplicated into
+            # power_profile for the same reason as everything else on this list: Forge's
+            # _gauntlet_analyze forwards power_profile verbatim and drops the rest.
+            "interaction_spot_removal": interaction.spot_removal,
+            "interaction_counterspells": interaction.counterspells,
+            "interaction_board_wipes": interaction.board_wipes,
+            "interaction_breadth": interaction.breadth,
             "ceiling": round(ceiling.score, 1),
             "pod": round(a.pod.score, 1),
             "pod_opponents": a.pod.opponents,
@@ -373,6 +381,14 @@ def create_app(
             "pod_close_rate": a.pod.pod_close_rate,
             "pod_duel_close_rate": a.pod.duel_close_rate,
             "pod_via_finisher": a.pod.via_finisher,
+            # Resilience DETAIL (score alone already lives in "resilience" above) -- the wipe
+            # turn simulated against and how much it delays the kill, same numbers the CLI's
+            # "Resilience (T1): 89/100 vs a turn-5 board wipe (... +0.0 turns to kill)" line
+            # already shows. None when resilience wasn't run (run_resilience=False callers).
+            "resilience_wipe_turn": resilience["wipe_turn"] if resilience else None,
+            "resilience_clean_kill_rate": resilience["clean_kill_rate"] if resilience else None,
+            "resilience_wiped_kill_rate": resilience["wiped_kill_rate"] if resilience else None,
+            "resilience_kill_delay_turns": resilience["kill_delay_turns"] if resilience else None,
             "go_off": a.go_off.goes_off,
             "go_off_turn": a.go_off.earliest_turn,
             "overrun_alpha": a.overrun.can_alpha_strike,
@@ -384,6 +400,12 @@ def create_app(
             "wincon_redundancy": wincon_redundancy,
             "semantics_coverage": coverage.executable_share,
             "game_changers": len(game_changers),
+            # The NAMES, not just the count -- "why is this Bracket 3" is answered far better
+            # by seeing which cards did it. The top-level `game_changers` key below already
+            # carries this, but that key is dropped by Forge's _gauntlet_analyze (it forwards
+            # power_profile verbatim and reshapes everything else away), so it never reached
+            # the frontend until now.
+            "game_changer_names": game_changers,
             "bracket_hint": metrics.game_changer_bracket_hint(len(game_changers)),
             "bracket_estimate": a.bracket.bracket,
             "bracket_label": a.bracket.label,
