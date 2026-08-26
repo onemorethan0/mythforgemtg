@@ -101,18 +101,25 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 > pilot chose on purpose" shape S11 already named as the wrong thing to cut.
 >
 > **A normalization fix was considered and does not obviously resolve it — checked by
-> reasoning, not yet by measurement, so not attempted.** Dividing oversupply by the role's
-> own per-card strength (comparing "cards' worth over target" instead of raw points) would
-> turn counterspell's 3.0-over into 1.0 "extra card equivalent" — but draw's per-card
-> contribution is itself usually 1.0-2.0 (a real "draw 1" vs "draw 2" spell), so its 0.5 raw
-> oversupply normalizes to roughly 0.25-0.5 extra-card-equivalents, STILL smaller than
-> counterspell's 1.0. The problem is not obviously a unit-mismatch a normalization step fixes;
-> it may be that a target sitting exactly on a card boundary (3 = "one average counterspell")
-> is inherently brittle regardless of units, since ANY excess jumps straight to "one whole card
-> over" with no smooth ramp between "at target" and "over." **Not fixed this pass** — the
-> project's own S17 lesson this same session (a plausible-looking fix reverted after it broke
-> Thassa's Oracle) is the reason not to ship an unmeasured normalization scheme here without
-> the same sweep-and-validate rigor S10's archetype table used.
+> reasoning first, then actually MEASURED 2026-08-25, and the reasoning holds up.** Dividing
+> oversupply by the role's own per-card strength (comparing "cards' worth over target" instead
+> of raw points) would turn counterspell's 3.0-over into 1.0 "extra card equivalent". Measured
+> the real per-card strength distribution across the full 34,179-card pool rather than
+> assuming it: median **ramp 1.0, draw 1.5, removal 1.0, wipe 3.0, counterspell 3.0, tutor
+> 2.0, finisher 2.0**. Re-running `archidekt-13708248`'s exact canary through this: draw's
+> 0.5-point oversupply normalizes to **0.5 / 1.5 = 0.33** card-equivalents, counterspell's
+> stays **3.0 / 3.0 = 1.0** — counterspell still wins, Flusterstorm is still offered first.
+> **The normalization does not change the outcome on the case it was proposed to fix.**
+>
+> Worth naming why, since it reframes what S13 actually is: 2 counterspells against a
+> population median of ~0 genuinely IS an above-average count for a non-spellslinger deck —
+> that read is not the bug. The real complaint is Flusterstorm being a poor pick *within* an
+> honestly over-supplied role (a silver bullet, not filler) — which is the `_efficiency`
+> within-role ordering question this module already has a mechanism for (mana-value-based
+> tiebreak), not the cross-role granularity question S13 was framed as. **Still not fixed** —
+> the project's own S17 lesson this same session (a plausible-looking fix reverted after it
+> broke Thassa's Oracle) is why an unmeasured reordering of `_efficiency`'s own weighting isn't
+> attempted here either without the same sweep-and-validate rigor S10's archetype table used.
 
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
