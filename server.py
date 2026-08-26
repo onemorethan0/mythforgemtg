@@ -1446,9 +1446,12 @@ def _run_build(job_id: str, req: BuildRequest):
             if not card:
                 raise ValueError(f"Commander not found: {req.commander_name}")
             deck = list(req.prebuilt_deck)
-            # generate-list (phase 1) already resolved partners for drafting; re-resolve
-            # here so phase 2's own stats (and later the mentor/analyze calls) see the
-            # SAME command-zone identity instead of falling back to the lead card alone.
+            # generate-list (phase 1) already drafted against the union identity AND
+            # appended the partner card(s) into this exact list (`deck.append(pc)`,
+            # mirroring the import branch) — do NOT append them again here. Re-resolve
+            # partners anyway so phase 2's own stats (and later the mentor/analyze
+            # calls) see the SAME command-zone identity instead of falling back to the
+            # lead card alone.
             partners = _resolve_partners(card, req.partner_names)
             stats = compute_stats(card, deck, partners=partners)
             _push(job_id, "progress", json.dumps({"step": "deck", "msg":
@@ -1531,6 +1534,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 bracket         = req.bracket,
                 owned           = owned,
                 card_source     = source,
+                partner_count   = len(partners),
             )
             if builder.source_fallback:
                 _push(job_id, "progress", json.dumps({"step": "deck",
@@ -1539,6 +1543,12 @@ def _run_build(job_id: str, req: BuildRequest):
                 _push(job_id, "progress", json.dumps({"step": "deck", "msg":
                     "Collection couldn't cover: " + ", ".join(
                         f"{k} (-{v})" for k, v in sorted(builder.shortfall.items()))}))
+            # Partner/companion commanders aren't the face — render them as cards, same
+            # convention the import branch already uses. build()'s `partner_count`
+            # already shrank the drafted library by this many, so appending them here
+            # lands on exactly 100 total (library + face + partners), not 101.
+            for p in partners:
+                pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
             # Collapse duplicate basics into quantity entries (theme/render once,
             # export replicates) — same model as imported decks.
             deck = aggregate_duplicates(deck)
@@ -5536,7 +5546,13 @@ def generate_list(req: GenerateListRequest):
     deck = builder.build(
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
         playstyle_label=ps_label, bracket=req.bracket, owned=owned,
-        card_source=source)
+        card_source=source, partner_count=len(partners))
+    # Partner/companion commanders aren't the face — render them as cards, same as the
+    # import branch. This deck round-trips to phase 2 as `prebuilt_deck`, so appending
+    # here (once) is what carries the partner through to the actual themed/rendered
+    # build — phase 2 must NOT append it again.
+    for p in partners:
+        pc = dict(p); pc.setdefault("quantity", 1); deck.append(pc)
     deck  = aggregate_duplicates(deck)
     stats = compute_stats(card, deck, partners=partners)
     collection_stats = None

@@ -117,7 +117,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | # | Shortfall | Measured | Casual impact | Effort |
 |---|---|---|---|---|
 | S1 | Commander themes undetected | corpus **64/391 (16.4%)** ↓80 · all legends **946/3790 (25.0%)** ↓963 | **High** | part done |
-| S2 | Partner decks cannot be BUILT | analysis/report path **fixed + verified** 2026-08-25 (was silently reading the lead commander alone) — see S20 for the still-open physical-deck gap | part done | — |
+| S2 | ~~Partner decks cannot be BUILT~~ | **fully fixed + verified** 2026-08-25 — analysis/report path AND the physical 98+2 deck (S20) | **Done** | — |
 | S3 | ~~Population-relative labels~~ | **audited, 5 of 5** | **Done** | — |
 | S4 | Off-meta read too sparse to judge | **12.6%** no verdict · band shipped | part done | M |
 | S5 | ~~Dead entries in the theme taxonomy~~ | **3 of 3 cleared** | **Done** | — |
@@ -135,7 +135,7 @@ Companion docs: [`HANDOFF.md`](HANDOFF.md) (what changed and what it measured),
 | S17 | Combo determinism marker vocabulary | +1 real verb widened, 1 attempted widening reverted (false-positived Thassa's Oracle) | **Done** (this pass) | — |
 | S18 | No legend rule / commander-damage modeling in sim | re-confirmed current 2026-08-25 — honest coverage gap, not a fabrication | Low | L |
 | **S19** | ~~`counter target spell` ignores "can't be countered"~~ | **23 real cards audited, 0 false positives** — non-issue | **Done** | — |
-| S20 | Partner-commander build is 99+1, not 98+2 | second commander never persisted as a card; slot-planning arithmetic hardcodes `99` at ~20 sites | Medium | M (needs `builder_bench` partner roster first) |
+| **S20** | ~~Partner-commander build is 99+1, not 98+2~~ | **fixed + verified** 2026-08-25 — `partner_count` param, live on 2 real pairs | **Done** | — |
 
 ---
 
@@ -1091,45 +1091,53 @@ be partially outdated.
 
 ---
 
-## S20 — Partner-commander build is 99+1, not a legal 98+2 · OPEN 2026-08-25
+## S20 — ~~Partner-commander build is 99+1, not a legal 98+2~~ · DONE 2026-08-25
 
 **Found via the mentor campaign's round 6** (see `MENTOR_HANDOFF.md`), while verifying S2's
 "Tymna + Thrasios → HTTP 200, a WBGU deck" claim more deeply than build-success. S2's OWN fix
-(this round) closed how every downstream consumer *reads* a partner pair's identity — but
+(that round) closed how every downstream consumer *reads* a partner pair's identity — but
 building one was never actually checked against what a legal Commander deck requires.
 
 A real Commander deck with two partnered commanders has **100 cards total: 2 in the command
-zone + 98 in the library.** `DeckBuilder.build()` always drafts exactly **99** library cards
-regardless of partner count (the literal `99` is hardcoded at ~20 internal call sites — plan
-normalization, the creature floor, the 99-card guarantee tail, `_build_lands`'s land count — see
-`CLAUDE.md`'s own extensive history of bugs in exactly this arithmetic), and the generate path
-never adds the second commander into `deck` at all (the import path does, for exactly this
-reason — "Partner/companion commanders aren't the face — render them as cards"). So a generated
-Tymna + Thrasios build ships **99 library cards + 1 commander (Tymna) = 100 cards**, with
-Thrasios entirely absent from the persisted deck, export, render, and card count — not a
+zone + 98 in the library.** `DeckBuilder.build()` always drafted exactly **99** library cards
+regardless of partner count (the literal `99` was hardcoded at ~20 internal call sites — plan
+normalization, the creature floor, the 99-card guarantee tail — see `CLAUDE.md`'s own extensive
+history of bugs in exactly this arithmetic), and the generate path never added the second
+commander into `deck` at all (the import path already did, for exactly this reason —
+"Partner/companion commanders aren't the face — render them as cards"). A generated Tymna +
+Thrasios build shipped **99 library cards + 1 commander (Tymna) = 100 cards**, with Thrasios
+entirely absent from the persisted deck, export, render, and card count — not a
 slightly-imperfect partner deck, a single-commander deck built against a widened identity.
 
-**Deliberately not fixed this pass.** The two candidate approaches both carry real risk under
-this session's remaining scope:
-1. Parameterize `build()`'s target size (`99 - len(partners)`) and append the partner card(s) as
-   one of the resulting slots, mirroring the import convention exactly. Touches ~20 call sites
-   inside a single method with a documented history of arithmetic regressions (S16's
-   if/otherwise double-credit and this repo's own CLAUDE.md log of curve/goodstuff-slot bugs are
-   both in this exact area), and `builder_bench.py`'s 20-commander roster has **zero** partner
-   pairs to measure the change against before shipping.
-2. Leave `build()` untouched and special-case the partner append only at the server layer,
-   accepting a deck that is 100 library + 2 commanders = 101 cards. This is a definitely-illegal
-   decklist, strictly worse than the current (legal-count, wrong-composition) status quo.
+**Fixed the same session**, once a way to measure it existed. `build()` gained a
+`partner_count: int = 0` parameter; every one of the ~20 internal `99` literals inside `build()`
+and `_normalize_plan` now reads a `library_size = 99 - partner_count` computed once at the top
+— a mechanical, single-purpose substitution, not a rewrite of the arithmetic itself, chosen
+specifically to keep the blast radius small against a method with a documented regression
+history. `partner_count` defaults to 0, so every existing single-commander call site (including
+the fixed 20-commander `builder_bench.py` roster) is byte-for-byte unaffected — verified by
+re-running the roster and diffing against the committed baseline: the only two rows that moved
+(`valid`/`colors_ok` 20→19) were a live Scryfall rate-limit on one unrelated commander that
+session, not a code effect, and every per-commander synergy figure that DID drift by a fraction
+of a point tracks live EDHREC-lift data staleness, not this change (`_normalize_plan`'s own
+existing tests, which never pass a `target`, are untouched). Both server call sites
+(`/api/deck/build`'s generate branch and `/api/deck/generate-list`'s phase 1) now pass
+`partner_count=len(partners)` and append the partner card(s) into `deck` afterward — mirroring
+the import branch's exact convention — landing on `library_size + partner + face = 100`.
 
-Neither is a same-session fix without a way to measure the result, which is exactly the
-S17-style trap already recorded twice in this doc ("a plausible-looking widening regressed
-Thassa's Oracle, caught only by testing broadly and reverted"). The honest path is: add a
-partner-commander pair (or two) to `builder_bench.py`'s roster first, THEN attempt option 1
-against that measurement.
+**The measurement gap this needed is now permanent, not one-off.** `builder_bench.py` gained a
+`--partners` arm (`PARTNER_PAIRS`, kept deliberately SEPARATE from the fixed, baseline-comparable
+`ROSTER`) that checks the three things that were wrong: library size is exactly
+`99 - partner_count`, the partner is actually present in the returned deck, and the total lands
+on 100. Run live against two real, structurally different pairs — Tymna the Weaver + Thrasios,
+Triton Hero (WBGU) and Vial Smasher the Fierce + Kraum, Ludevic's Opus (BRU, near-disjoint
+identities sharing one colour) — both came back `library=98 total=100 partner_in_deck=True
+colors_ok=True`. Reference run committed at `docs/bench/partners-s20-fix.json`. Also verified
+live through the actual running app (`/api/deck/build` → poll → fetch): the persisted deck.json
+holds 99 deck-array entries (98 library + Thrasios, itself a fully themed/rendered card with its
+own art, name and flavor) + 1 commander = 100, `quality.colors.ok: true`.
 
-**What this does NOT affect:** every consumer of an *already-built* partner deck (mana-base
-report, the strength/gauging engine, advise/card-impact/duel, the Deck Mentor) now reads the
-correct union identity end to end (S2, this round) — the residual gap is specifically that the
-persisted decklist under-represents the command zone by one physical card, not that anything
-downstream mis-measures the deck it's actually given.
+New tests: `tests/test_deck_builder_curve.py::test_normalize_plan_honours_a_smaller_target_for_a_partner_commander`
+pins `_normalize_plan`'s `target` parameter directly (offline, no network) — the `builder_bench`
+live check above is the end-to-end proof; this is the fast regression guard for the arithmetic.
 

@@ -1,0 +1,47 @@
+{
+  "pairs": [
+    [
+      "Tymna the Weaver",
+      "Thrasios, Triton Hero"
+    ],
+    [
+      "Vial Smasher the Fierce",
+      "Kraum, Ludevic's Opus"
+    ]
+  ],
+  "results": [
+    {
+      "lead": "Tymna the Weaver",
+      "partner": "Thrasios, Triton Hero",
+      "library_size": 98,
+      "expected_library_size": 98,
+      "partner_in_deck": true,
+      "total_cards": 100,
+      "expected_total_cards": 100,
+      "colors_ok": true,
+      "colors_short": {},
+      "union_identity": [
+        "B",
+        "G",
+        "U",
+        "W"
+      ]
+    },
+    {
+      "lead": "Vial Smasher the Fierce",
+      "partner": "Kraum, Ludevic's Opus",
+      "library_size": 98,
+      "expected_library_size": 98,
+      "partner_in_deck": true,
+      "total_cards": 100,
+      "expected_total_cards": 100,
+      "colors_ok": true,
+      "colors_short": {},
+      "union_identity": [
+        "B",
+        "R",
+        "U"
+      ]
+    }
+  ]
+}

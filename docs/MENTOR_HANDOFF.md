@@ -256,18 +256,13 @@ than rounded up.
   (`mentor_transcript_audit.py`'s output) as usage accumulates, not more synthetic guessing —
   that's how `trap_unaddressed_nuance` was added, and it's a stronger case than one invented
   from first principles.
-- **The generate path still cannot BUILD a legal partner-commander deck end to end** — round 6
-  fixed every downstream consumer (quality report, strength engine, advise/card-impact/duel,
-  mentor) to correctly READ a partner pair's union identity, but `DeckBuilder.build()` still
-  always drafts exactly 99 library cards and the second commander is never added to `deck` at
-  all, so the actual persisted deck is a 100-card SINGLE-commander pile built against a widened
-  identity — not a legal 2-commander 100-card deck (which needs 98 library + 2 commanders).
-  Deliberately not attempted this round: `build()`'s slot-planning arithmetic hardcodes the
-  literal `99` at ~20 internal call sites (see `CLAUDE.md`'s own extensive history of bugs in
-  exactly this arithmetic), and there's no partner-commander entry in `builder_bench.py`'s
-  20-commander roster to measure against — the S17 lesson (a plausible-looking widening
-  regressed Thassa's Oracle, caught only by testing broadly and reverted) argues against
-  guessing at a fix to core slot-planning without that measurement in place first.
+- ~~**The generate path still cannot BUILD a legal partner-commander deck end to end**~~ — FIXED
+  the same session, once `builder_bench.py` gained the `--partners` measurement this item asked
+  for. `DeckBuilder.build()` now takes `partner_count`, shrinks its drafted library by that many
+  cards (`library_size = 99 - partner_count`, threaded through the ~20 internal call sites
+  documented above), and the server appends the partner card(s) into `deck` afterward — landing
+  on a legal 100-card zone. Verified live on Tymna+Thrasios and Vial Smasher+Kraum (see
+  `ROADMAP.md` S20 for the full writeup and `docs/bench/partners-s20-fix.json` for the run).
 - **`check_legality`'s fix removes the model's OWN subset arithmetic but not a residual risk one
   layer up: a reply could still contradict its own tool's verdict** (e.g. call the tool, get
   `legal: false`, and write "yes" anyway). Not observed live, but the gate has no mechanism to

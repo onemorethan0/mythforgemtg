@@ -242,22 +242,23 @@ def _score_first(candidates: list[dict], theme: str) -> list[dict]:
     return sorted(candidates, key=lambda c: -theme_match.theme_score(c, theme))
 
 
-def _normalize_plan(plan: dict[str, int]) -> dict[str, int]:
-    """Force the slot plan to sum to exactly 99, trimming the most flexible slots first.
+def _normalize_plan(plan: dict[str, int], target: int = 99) -> dict[str, int]:
+    """Force the slot plan to sum to exactly `target` (99 minus any partner commanders —
+    see `build`'s `partner_count`), trimming the most flexible slots first.
 
     The plan is adjusted in several independent passes (bracket 1, bracket 5, the aggro
-    bump, the collection redirect) and each recomputes goodstuff as `99 - used` with a
+    bump, the collection redirect) and each recomputes goodstuff as `target - used` with a
     max(2, ...) floor. That floor means an over-allocated plan cannot be absorbed: the
-    aggro bump adds 6 to theme, goodstuff clamps at 2, and the plan silently sums to 103.
-    Every consumer then had to defend itself — the theme step and creature floor each
-    grew their own `min(..., 99 - len(deck))` cap, and before those existed the tail just
-    truncated the deck to 99, throwing away whatever was drafted last.
+    aggro bump adds 6 to theme, goodstuff clamps at 2, and the plan silently sums over
+    target. Every consumer then had to defend itself — the theme step and creature floor
+    each grew their own `min(..., target - len(deck))` cap, and before those existed the
+    tail just truncated the deck to `target`, throwing away whatever was drafted last.
 
     Normalising once, after every adjustment, means the plan is a promise the steps can
     trust. Trim order is deliberate: goodstuff is generic filler, theme is the next most
     elastic, and the essential roles and land count are never touched.
     """
-    # Clamp first. sum() over a plan carrying a NEGATIVE goodstuff can land on 99
+    # Clamp first. sum() over a plan carrying a NEGATIVE goodstuff can land on target
     # while the spendable slots still over-allocate, so the function returned "correct"
     # plans that the per-step caps were quietly rescuing. A slot count below zero is
     # never meaningful.
@@ -265,17 +266,17 @@ def _normalize_plan(plan: dict[str, int]) -> dict[str, int]:
         if plan[key] < 0:
             plan[key] = 0
     total = sum(plan.values())
-    if total == 99:
+    if total == target:
         return plan
-    if total < 99:
-        plan["goodstuff"] = plan.get("goodstuff", 0) + (99 - total)
+    if total < target:
+        plan["goodstuff"] = plan.get("goodstuff", 0) + (target - total)
         return plan
     for key, floor in (("goodstuff", 0), ("theme", 4)):
-        if total <= 99:
+        if total <= target:
             break
         room = plan.get(key, 0) - floor
         if room > 0:
-            cut = min(room, total - 99)
+            cut = min(room, total - target)
             plan[key] -= cut
             total -= cut
     return plan
@@ -974,9 +975,12 @@ class DeckBuilder:
         bracket: int = 3,
         owned: set[str] | None = None,
         card_source: str = SOURCE_SCRYFALL,
+        partner_count: int = 0,
     ) -> list[dict]:
         """
-        Build the 99-card deck.
+        Build the 99-card deck (98 when `partner_count` is 1, 97 if — hypothetically — 2:
+        a legal Commander deck is always 100 cards, library + command zone, and a second
+        or third commander occupies a command-zone slot, not a library one).
 
         Args:
             profile:          Commander profile from commander_analysis.
@@ -995,10 +999,19 @@ class DeckBuilder:
                               `self.shortfall` reports the roles the collection could not
                               cover, so the caller can say so honestly rather than
                               quietly shipping a worse deck.
+            partner_count:    How many OTHER commanders share the command zone (0 for a
+                              normal single-commander deck). Shrinks the drafted library
+                              by that many cards so the caller can add the partner
+                              card(s) themselves and still land on a legal 100-card deck
+                              — this method never drafts or returns the partner(s)
+                              itself, same as it never drafts the lead commander.
         """
         self._deck = []
         self._names = set()
         self._commander_name = profile.name
+        # See partner_count's docstring above: a legal command zone always totals 100
+        # cards with the library, so each extra commander shrinks what THIS method drafts.
+        library_size = 99 - max(0, partner_count)
         # This commander's EDHREC lift, fetched once per build and cached on disk. Fails
         # soft to {} (no page, no network, unofficial API changed shape), which makes
         # `_lift_sorted` a no-op — a build must never depend on EDHREC being reachable.
@@ -1060,12 +1073,12 @@ class DeckBuilder:
             "theme":      20,
         }
         used = sum(plan.values())
-        plan["goodstuff"] = 99 - used
+        plan["goodstuff"] = library_size - used
 
         # The curve the flexible fills aim at. Derived from the LAND plan, so a
         # landfall build that shaves a land automatically budgets one more spell.
         self._curve_target = deck_quality.curve_target(
-            99 - plan["lands"], int(profile.mana_value))
+            library_size - plan["lands"], int(profile.mana_value))
 
         # Snapshot active_themes into the lambda closures correctly
         _active = active_themes
@@ -1095,7 +1108,7 @@ class DeckBuilder:
         if theme_cap is not None:
             plan["theme"]     = theme_cap
             used = sum(v for k, v in plan.items() if k != "goodstuff")
-            plan["goodstuff"] = max(2, 99 - used)
+            plan["goodstuff"] = max(2, library_size - used)
 
         steps: list[tuple[str, object]] = [
             ("Lands",          lambda: self._build_lands(profile, plan["lands"])),
@@ -1106,17 +1119,17 @@ class DeckBuilder:
             ("Protection",     lambda: self._fetch_role(profile, "protection", plan["protection"])),
             ("Finishers",      lambda: self._fetch_role(profile, "finisher", plan["finisher"])),
             # Capped at the space actually left, like the creature floor below. The
-            # aggro bump can push the plan over 99 (goodstuff has a max(2,...) floor
-            # that stops it absorbing the overflow); before theme could fill its whole
-            # allocation that never showed, and now the tail silently truncated to 99.
+            # aggro bump can push the plan over library_size (goodstuff has a max(2,...)
+            # floor that stops it absorbing the overflow); before theme could fill its
+            # whole allocation that never showed, and now the tail silently truncated.
             ("Theme synergy",  lambda: self._fetch_theme_synergy_list(
-                profile, _active, min(plan["theme"], 99 - len(self._deck)))),
-            # Top up bodies to the floor, but never overshoot 99 (leaves goodstuff
-            # whatever slots remain). A no-op (want<=0) for creature-centric decks.
+                profile, _active, min(plan["theme"], library_size - len(self._deck)))),
+            # Top up bodies to the floor, but never overshoot library_size (leaves
+            # goodstuff whatever slots remain). A no-op (want<=0) for creature-centric decks.
             ("Creature floor", lambda: self._fetch_creatures(
                 profile, min(creature_floor - self._count_creatures(),
-                             99 - len(self._deck)))),
-            ("Goodstuff fill", lambda: self._fetch_goodstuff(profile, max(0, 99 - len(self._deck)))),
+                             library_size - len(self._deck)))),
+            ("Goodstuff fill", lambda: self._fetch_goodstuff(profile, max(0, library_size - len(self._deck)))),
         ]
 
         # Bracket 5 (cEDH): lean heavier on draw/interaction, lighter on theme
@@ -1125,13 +1138,13 @@ class DeckBuilder:
             plan["protection"] = plan.get("protection", 3) + 3
             plan["theme"]      = max(8, plan.get("theme", 20) - 7)
             used = sum(v for k, v in plan.items() if k != "goodstuff")
-            plan["goodstuff"] = 99 - used
+            plan["goodstuff"] = library_size - used
 
         # Bracket 1 (Exhibition): more theme, less raw goodstuff
         if bracket == 1:
             plan["theme"]     = plan.get("theme", 20) + 5
             used = sum(v for k, v in plan.items() if k != "goodstuff")
-            plan["goodstuff"] = max(2, 99 - used)
+            plan["goodstuff"] = max(2, library_size - used)
 
         # Aggressive go-wide archetypes (any tribe / tokens / combat) want a wider
         # creature base than balanced goodstuff gives. Theme-synergy picks are mostly
@@ -1146,7 +1159,7 @@ class DeckBuilder:
         if _aggro and bracket != 5:
             plan["theme"]     = plan.get("theme", 20) + 6
             used = sum(v for k, v in plan.items() if k != "goodstuff")
-            plan["goodstuff"] = max(2, 99 - used)
+            plan["goodstuff"] = max(2, library_size - used)
 
         # Collection-aware building (Myth Suite C4): make room for the user's OWNED cards.
         # Owned cards are drafted first into the goodstuff slots (_fetch_goodstuff prepends
@@ -1164,18 +1177,19 @@ class DeckBuilder:
             if deficit > 0:
                 plan["theme"] = max(4, plan["theme"] - deficit)
                 used = sum(v for k, v in plan.items() if k != "goodstuff")
-                plan["goodstuff"] = max(2, 99 - used)
+                plan["goodstuff"] = max(2, library_size - used)
 
-        # Every adjustment above is done; make the plan sum to 99 exactly so the steps
-        # can trust it instead of each capping itself against the running deck size.
-        plan = _normalize_plan(plan)
+        # Every adjustment above is done; make the plan sum to library_size exactly so
+        # the steps can trust it instead of each capping itself against the running deck.
+        plan = _normalize_plan(plan, library_size)
 
         from commander_analysis import THEME_LABELS
         active_labels = [THEME_LABELS.get(t, t) for t in active_themes] or ["Goodstuff / Midrange"]
         bracket_label = BRACKET_LABELS.get(bracket, str(bracket))
         gc_limit_str  = str(self._bracket_filter.gc_limit) if self._bracket_filter.gc_limit >= 0 else "unlimited"
 
-        print(f"\n  Building 99-card deck for {profile.name}")
+        print(f"\n  Building {library_size}-card library for {profile.name}"
+              + (f" (+ {partner_count} partner commander(s))" if partner_count else ""))
         print(f"  Color identity : {profile.color_id_str or 'Colorless'}")
         print(f"  Playstyle      : {playstyle_label}")
         print(f"  Bracket        : {bracket} — {bracket_label}  (Game Changers: {gc_limit_str})")
@@ -1187,7 +1201,7 @@ class DeckBuilder:
             n = fn()
             print(f"  [{label:<18}] {n:>2} cards   (running total: {len(self._deck)})")
 
-        # ── Guarantee exactly 99 cards ────────────────────────────────────────
+        # ── Guarantee exactly library_size cards ─────────────────────────────
         # Scryfall can under-deliver — a transient rate-limit beyond the client's
         # own 4-try backoff, or an exhausted on-color pool — which would otherwise
         # leave an ILLEGAL sub-100 deck. Pad with goodstuff first (prefers real
@@ -1196,15 +1210,15 @@ class DeckBuilder:
         # guarantee the count with on-color basics, which are always legal and
         # served from the local cache even if Scryfall is unreachable.
         for _ in range(3):
-            shortfall = 99 - len(self._deck)
+            shortfall = library_size - len(self._deck)
             if shortfall <= 0:
                 break
             print(f"\n  Padding {shortfall} missing slots with goodstuff...")
             if self._fetch_goodstuff(profile, shortfall) == 0:
                 break
-        shortfall = 99 - len(self._deck)
+        shortfall = library_size - len(self._deck)
         if shortfall > 0:
-            print(f"\n  Guaranteeing 99 with {shortfall} basic land(s) (Scryfall came up short)...")
+            print(f"\n  Guaranteeing {library_size} with {shortfall} basic land(s) (Scryfall came up short)...")
             if self._strict():
                 # An exhausted owned pool used to pad SILENTLY: a small collection got a
                 # deck that was mostly Mountains, and shortfall named only the roles — so
@@ -1225,7 +1239,7 @@ class DeckBuilder:
         except Exception as exc:      # noqa: BLE001 - a cosmetic land swap must never
             print(f"  [basics] rebalance skipped: {exc}")   # cost anyone a built deck
 
-        return self._deck[:99]
+        return self._deck[:library_size]
 
 
 # ── Deck stats ────────────────────────────────────────────────────────────────

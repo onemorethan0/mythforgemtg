@@ -58,13 +58,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import collection  # noqa: E402
 import collection_pool  # noqa: E402
+import commander_analysis  # noqa: E402
 import deck_quality  # noqa: E402
 import deck_themes  # noqa: E402
 import edhrec_lift  # noqa: E402
 import lift_stats  # noqa: E402
 import theme_match  # noqa: E402
 from commander_analysis import build_commander_profile  # noqa: E402
-from deck_builder import SOURCE_COLLECTION, DeckBuilder  # noqa: E402
+from deck_builder import SOURCE_COLLECTION, DeckBuilder, compute_stats  # noqa: E402
 import scryfall_client  # noqa: E402
 from scryfall_client import ScryfallClient  # noqa: E402
 
@@ -101,6 +102,17 @@ ROSTER: tuple[str, ...] = (
 ROLE_PLAN = {"ramp": 10, "draw": 10, "removal": 7, "wipe": 4, "protection": 3, "finisher": 3}
 MAX_BASICS = 30          # a healthy 37-land base is mostly nonbasic at bracket 3
 MIN_ROLE_COVERAGE = 0.5  # fraction of the role plan a real build clears easily
+
+# A SEPARATE, small roster of real partner/background pairs (S20: the generate path's
+# `partner_count` parameterization needs a way to be measured — the main ROSTER above is
+# explicitly fixed for baseline comparability and stays single-commander). Each pair
+# spans different rules territory: Tymna+Thrasios is the plain WBUG case ROADMAP S2 was
+# verified against; Vial Smasher+Kraum forces a colour-identity union across a mono-black
+# and Izzet card entirely disjoint except for one shared colour.
+PARTNER_PAIRS: tuple[tuple[str, str], ...] = (
+    ("Tymna the Weaver", "Thrasios, Triton Hero"),
+    ("Vial Smasher the Fierce", "Kraum, Ludevic's Opus"),
+)
 
 
 def _is_basic(card: dict) -> bool:
@@ -292,6 +304,84 @@ def run(pause: float, strict: bool = False) -> dict:
     return {"roster": list(ROSTER), "results": results}
 
 
+def run_partners(pause: float) -> dict:
+    """S20: does a partner-commander build actually land on a legal 100-card deck.
+
+    Separate from `run()` on purpose — `PARTNER_PAIRS` is not part of the fixed,
+    baseline-comparable ROSTER. Each row checks the two things S20 was about: the
+    LIBRARY is exactly `99 - partner_count` cards (not still 99, and not the second
+    commander silently missing from the count), and the second commander is actually
+    present in the returned deck as a real card (not just an identity used for drafting
+    and then discarded, which is what the generate path did before this fix).
+    """
+    client = ScryfallClient()
+    results: list[dict] = []
+    for lead_name, partner_name in PARTNER_PAIRS:
+        row: dict = {"lead": lead_name, "partner": partner_name}
+        try:
+            lead = client.get_card_by_name(lead_name)
+            partner = client.get_card_by_name(partner_name)
+            if lead is None or partner is None:
+                row["invalid"] = "commander(s) not found"
+                results.append(row)
+                continue
+            ok, why = commander_analysis.can_pair(lead, partner)
+            if not ok:
+                row["invalid"] = f"not a legal pair: {why}"
+                results.append(row)
+                continue
+            profile = build_commander_profile(lead, [partner])
+            builder = DeckBuilder(client)
+            library = builder.build(profile, bracket=3, partner_count=1)
+            # Mirrors server.py's own append convention exactly — this is what proves
+            # the fix, not a re-derivation of it.
+            pc = dict(partner)
+            pc.setdefault("quantity", 1)
+            deck = library + [pc]
+            row["library_size"] = len(library)
+            row["expected_library_size"] = 98
+            row["partner_in_deck"] = any(
+                c.get("name") == partner["name"] for c in deck
+            )
+            row["total_cards"] = 1 + sum(int(c.get("quantity", 1) or 1) for c in deck)
+            row["expected_total_cards"] = 100
+            stats = compute_stats(lead, deck, partners=[partner])
+            colours = stats["quality"]["colors"]
+            row["colors_ok"] = bool(colours["ok"])
+            row["colors_short"] = dict(colours.get("short") or {})
+            row["union_identity"] = commander_analysis.command_zone_identity(lead, [partner])
+            invalid = []
+            if row["library_size"] != 98:
+                invalid.append(f"library has {row['library_size']} cards, not 98")
+            if not row["partner_in_deck"]:
+                invalid.append(f"{partner['name']} is not in the returned deck")
+            if row["total_cards"] != 100:
+                invalid.append(f"total is {row['total_cards']} cards, not 100")
+            if invalid:
+                row["invalid"] = "; ".join(invalid)
+        except Exception as exc:                      # noqa: BLE001 - one bad pair
+            row["invalid"] = f"{type(exc).__name__}: {exc}"
+        results.append(row)
+        if pause:
+            time.sleep(pause)
+    return {"pairs": [list(p) for p in PARTNER_PAIRS], "results": results}
+
+
+def _print_partner_results(payload: dict) -> None:
+    print("\n=== PARTNER-COMMANDER RESULTS (S20)")
+    for r in payload["results"]:
+        label = f"{r['lead']} + {r['partner']}"
+        if r.get("invalid"):
+            print(f"    FAIL {label}: {r['invalid']}")
+            continue
+        print(f"    OK   {label}")
+        print(f"         library={r['library_size']} total={r['total_cards']} "
+              f"partner_in_deck={r['partner_in_deck']} colors_ok={r['colors_ok']} "
+              f"union_identity={''.join(r['union_identity'])}")
+        if r["colors_short"]:
+            print(f"         colors_short={r['colors_short']}")
+
+
 def _mean_weakest_theme(rows: list[dict]) -> float | None:
     """Mean, over multi-theme decks, of the LEAST-served active theme's card count."""
     weakest = [min(r["theme_cards"].values()) for r in rows
@@ -373,6 +463,10 @@ def main() -> int:
                     help="build from the synthetic collection (card_source=collection) "
                          "instead of Scryfall — exercises theme_match, which the "
                          "Scryfall arm never touches")
+    ap.add_argument("--partners", action="store_true",
+                    help="measure PARTNER_PAIRS instead of the main ROSTER (S20: is the "
+                         "partner actually in the deck, and is the total 100 cards) — "
+                         "a separate arm, not part of the fixed baseline-comparable roster")
     args = ap.parse_args()
 
     scryfall_client.RATE_LIMIT_DELAY = args.rate_delay
@@ -384,6 +478,15 @@ def main() -> int:
         _print_summary(f"AFTER  {args.compare[1].name}", after)
         _compare(before, after)
         return 0
+
+    if args.partners:
+        payload = run_partners(args.pause)
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+            print(f"\nwrote {args.out}")
+        _print_partner_results(payload)
+        return 1 if any(r.get("invalid") for r in payload["results"]) else 0
 
     payload = run(args.pause, strict=args.strict)
     if args.out:

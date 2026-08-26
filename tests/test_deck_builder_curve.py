@@ -180,6 +180,21 @@ def test_normalize_plan_tops_up_an_under_allocated_plan():
     assert plan["goodstuff"] == 5 + (99 - sum(under.values()))
 
 
+def test_normalize_plan_honours_a_smaller_target_for_a_partner_commander():
+    # S20: a partner-commander deck drafts a 98-card library (98 + 2 commanders = a
+    # legal 100), not 99 -- every one of these arithmetic paths must respect a target
+    # other than the hardcoded 99, or a partner build silently ships 101 cards.
+    over = {"lands": 38, "ramp": 10, "card_draw": 10, "removal": 7, "board_wipe": 4,
+            "protection": 3, "finisher": 3, "theme": 26, "goodstuff": 2}
+    plan = deck_builder._normalize_plan(dict(over), target=98)
+    assert sum(plan.values()) == 98
+
+    under = {"lands": 38, "ramp": 10, "goodstuff": 5}
+    plan = deck_builder._normalize_plan(dict(under), target=98)
+    assert sum(plan.values()) == 98
+    assert plan["goodstuff"] == 5 + (98 - sum(under.values()))
+
+
 def test_quality_block_never_breaks_a_build():
     """It is advisory. A malformed card must not take the whole build down with it."""
     stats = deck_builder.compute_stats({"name": "C"}, [{"name": "junk"}])
