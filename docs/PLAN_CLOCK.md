@@ -403,6 +403,29 @@ bracket ("Sits on the Core / Upgraded line"), firing on **42% of the labelled co
 API-returned and CLI-printed, for 24 days before anything rendered it. Check the UI actually
 reads what the engine emits.
 
+**Audited 2026-08-26.** `SimStrengthPanel.jsx` — the panel this precedent was actually about
+— already reads essentially every `power_profile` field the engine emits (checked by
+enumerating all ~37 keys against the component's own references): consistency, resilience
++ its wipe/kill-rate detail, interaction + its removal/counter/wipe breakdown, ceiling, pod
++ its close-turn/close-rate/via-finisher detail, speed, semantics coverage, go-off,
+overrun-alpha, wincon-redundancy, all four bracket fields including `plays_up`, game changer
+names, bracket reasons, and the combos/insight blocks. Nothing there was missing.
+
+**One real gap found on a DIFFERENT surface the precedent never covered: the compact "⚡ Bn"
+measured-bracket badges on History and RecentDecks tiles read `bracket_estimate`/
+`bracket_label` from the same cached `power_profile` but silently dropped `bracket_plays_up`
+— so a deck the engine itself flags as sitting on an unresolvable boundary could show a bare
+"B2" on those tiles with no honesty marker at all, the exact failure this phase exists to
+catch, just one layer removed from where the precedent was checked before.** Fixed:
+`/api/decks` now includes `measured_plays_up` (server.py); both badges append a small amber
+`↗` and extend their tooltip with the same "sits on a bracket boundary..." wording the main
+panel uses, so a user hovering either surface gets the same honesty, not a stripped-down one.
+Verified live against a real on-disk deck already flagged `bracket_plays_up: true`
+(Kaalia of the Vast, job `a95811cc95974372`) — the History tile shows `⚡ B2↗` distinct from
+ordinary `⚡ B3` tiles elsewhere in the same list, tooltip text confirmed via DOM read.
+3 new tests in `tests/test_deck_list_route.py` (a route neither History nor RecentDecks had
+any prior test coverage for at all).
+
 ---
 
 ## 5. The harnesses

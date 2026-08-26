@@ -89,10 +89,14 @@ export default function RecentDecks({ onLoad }) {
                   {entry.single_card && <span style={{ color: '#c084fc' }}>🂠 card</span>}
                   {entry.measured_bracket && (
                     <span
-                      title={`Simulation-measured bracket: ${entry.measured_bracket}. ${entry.measured_label || ''}`}
+                      title={`Simulation-measured bracket: ${entry.measured_bracket}. ${entry.measured_label || ''}`
+                        + (entry.measured_plays_up
+                          ? ' — sits on a bracket boundary the engine can’t resolve from '
+                            + 'the card list alone; see the strength panel for detail.' : '')}
                       style={{ padding: '0px 6px', borderRadius: 10, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844', fontWeight: 700 }}
                     >
                       ⚡ B{entry.measured_bracket}
+                      {entry.measured_plays_up && <span style={{ color: '#fde047' }}>↗</span>}
                     </span>
                   )}
                 </div>

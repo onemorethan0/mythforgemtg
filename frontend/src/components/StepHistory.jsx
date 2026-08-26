@@ -276,10 +276,14 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
                 </span>
                 {entry.measured_bracket && (
                   <span
-                    title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`}
+                    title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`
+                      + (entry.measured_plays_up
+                        ? ' — sits on a bracket boundary the engine can’t resolve from the '
+                          + 'card list alone; see the strength panel for detail.' : '')}
                     style={{ ...s.bracket, background: '#38bdf822', color: '#38bdf8', border: '1px solid #38bdf844' }}
                   >
                     ⚡ B{entry.measured_bracket}
+                    {entry.measured_plays_up && <span style={{ color: '#fde047' }}>↗</span>}
                   </span>
                 )}
                 <span style={s.count}>{entry.card_count} cards</span>

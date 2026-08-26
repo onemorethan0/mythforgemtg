@@ -5522,6 +5522,15 @@ async def list_decks():
                 "has_bible":        bool((data.get("world_bible") or {}).get("world")),
                 "measured_bracket": lm_pp.get("bracket_estimate"),
                 "measured_label":   lm_pp.get("bracket_label", ""),
+                # PLAN_CLOCK Phase 4: the engine's own honesty flag for a bracket estimate
+                # sitting on the Core/Upgraded (or Exhibition/Core) boundary it can't resolve
+                # from the card list alone (see SimStrengthPanel.jsx's `bracket_plays_up`
+                # banner). It was already fetched and cached here (`lm_pp` is the whole
+                # persisted power_profile) but silently dropped on the way into this compact
+                # badge — so a History/RecentDecks tile could show a bare "B2" for a deck the
+                # engine itself says is honestly ambiguous, the exact failure mode this flag
+                # exists to prevent, just on a surface nobody had checked yet.
+                "measured_plays_up": bool(lm_pp.get("bracket_plays_up", False)),
             })
         except Exception:
             continue
