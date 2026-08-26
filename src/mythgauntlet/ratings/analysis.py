@@ -151,7 +151,7 @@ def analyze_deck(
     wipe_turn = None
     if run_resilience:
         wipe_turn = default_wipe_turn(cfg.turns)
-        resilience = compute_resilience(sim_cards, commander, cfg, wipe_turn)
+        resilience = compute_resilience(sim_cards, commander, cfg, wipe_turn, all_cards=all_cards)
 
     game_changers = sorted(
         [c.name for c in resolved.commanders if c.game_changer]

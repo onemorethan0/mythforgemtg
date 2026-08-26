@@ -19,6 +19,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from mythgauntlet.model.card import Card
+from mythgauntlet.sim.clock import apply_nut_kills
 from mythgauntlet.sim.tier0 import RunStats, SimConfig, simulate
 
 
@@ -54,10 +55,27 @@ def _mean(values: list[float]) -> float:
 
 
 def compute_resilience(
-    cards: list[tuple[Card, int]], commander: Card | None, cfg: SimConfig, wipe_turn: int
+    cards: list[tuple[Card, int]], commander: Card | None, cfg: SimConfig, wipe_turn: int,
+    all_cards: list[tuple[Card, int]] | None = None,
 ) -> ResilienceReport:
+    """`all_cards` is `cards` plus the LEAD commander (mirrors `ratings.analysis.analyze_deck`'s
+    own `all_cards` — the commander is simulated specially and isn't in `cards`), passed
+    through to `apply_nut_kills` so a non-combat kill counts here too (PLAN_CLOCK Phase 2:
+    this axis called `sim.tier0.simulate` directly and never got the Phase 1a/1b fix that
+    the main `runs`/`pod_runs` batches did, so a storm/burn/overrun deck's resilience was
+    still measured against a combat-only kill_turn that doesn't reflect how it actually
+    wins). Defaults to `cards` when the caller has no lead commander to add (a strict
+    subset of the real fix, still correct, just missing the commander's own contribution).
+    """
     clean = simulate(cards, commander, cfg)
     wiped = simulate(cards, commander, cfg, board_wipe_turn=wipe_turn)
+    nut_kill_cards = all_cards if all_cards is not None else cards
+    # A board wipe clears creatures, not mana or hand -- so a storm kill_turn (mana-curve
+    # driven) is UNCHANGED by the wipe, correctly: a counterspell-free wipe doesn't stop a
+    # combo. An overrun kill_turn CAN move later post-wipe, because it reads the run's own
+    # rebuilt board_power_by_turn/board_creatures_by_turn, which the wipe actually reset.
+    apply_nut_kills(clean, nut_kill_cards, cfg.turns)
+    apply_nut_kills(wiped, nut_kill_cards, cfg.turns)
 
     retained = []
     for c, w in zip(clean, wiped, strict=True):

@@ -269,16 +269,44 @@ that is enough evidence, not a coin flip, so this is a decision, not an unmeasur
 
 The player's third axis, and the one the engine models least well. Today `resilience` is
 `sim/tier1.compute_resilience`: **one board wipe at a fixed turn**, measured *through the
-combat clock* — so it inherits Phase 1's blindness entirely, and it only models a wipe.
+combat clock*.
 
 What is wanted is closer to: *how many pieces of interaction must the table spend to stop the
 win?* A deck that folds to a single counterspell is not the deck that needs three. Sketch:
 re-run the sim removing the 1st, 2nd, 3rd most important piece of the winning line and measure
 the kill-turn delay per piece — a redundancy-of-wincon measure rather than a wipe-recovery
-measure.
+measure. **This redesign is NOT built.** It needs a way to identify "the winning line's most
+important piece" per deck (candidates: combo pieces if `combos_checked`, the storm engine's own
+payoff cards, overrun's alpha-strike enabler, burn payoffs) and a new ablation harness — a real,
+uncalibrated feature, not attempted this pass without a way to measure whether it's right.
 
 **Do Phase 1 first.** Measuring "what stops the win" is meaningless while the clock cannot see
 the win.
+
+**A diagnosed instance of exactly that blindness was fixed 2026-08-25, before the redesign
+above.** `compute_resilience` called `sim.tier0.simulate()` directly and never received Phase
+1a/1b's `apply_nut_kills` fix — the ONE place `ratings.analysis.analyze_deck`'s main `runs`/
+`pod_runs` batches get taught to see a non-combat kill. So even after Phase 1 landed, a storm/
+burn/overrun deck's resilience score was STILL measured against a combat-only `kill_turn`
+that doesn't reflect how the deck actually wins: a synthetic storm-engine deck (granter +
+burn payoff + ramp, no real attackers) reported **zero kills at any turn** — `clean_kill_rate:
+0.0` — because the axis had no notion of its non-combat win at all, wipe or no wipe.
+
+**Fixed**: `compute_resilience` now takes an optional `all_cards` (mirroring `analyze_deck`'s
+own `sim_cards` + lead-commander shape) and calls `apply_nut_kills` on both the clean and
+wiped run batches, exactly like the main pipeline. Verified live on the same synthetic
+storm deck: `clean_kill_rate: 0.82`, `clean_avg_kill_turn: 8.21` (previously `None` /
+undefined) — and, correctly, `wiped_avg_kill_turn` comes back **identical** to the clean
+figure (`kill_delay_turns: 0.0`), because a board wipe destroys creatures, not a storm
+engine's spells and mana. A wipe that cannot stop a combo must not read as having delayed
+it, and now it doesn't. New tests: `tests/engine/test_clock.py` (`apply_nut_kills` had NO
+direct tests before this — only indirect coverage via `analyze_deck`'s own integration path)
+and two additions to `tests/engine/test_tier1.py`. 1248/1248 tests green.
+
+**What this does NOT do**: it does not build the redundancy-of-wincon ablation measure
+sketched above. `resilience` still only models one disruption class (a board wipe) at one
+fixed turn — this fix makes that EXISTING measurement honest about non-combat wins, it does
+not add the new "how many pieces of interaction" measurement Phase 2 actually calls for.
 
 ### Phase 3 — re-fit placement · ALREADY RUN, and the answer is recorded, not open
 
