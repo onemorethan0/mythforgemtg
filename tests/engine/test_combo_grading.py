@@ -129,7 +129,7 @@ def test_graded_slow_combo_holds_floor_at_three_with_honest_reason(make_card, fo
                          ["Infinite creature tokens"]))
     profile = assess_combos(r, frozenset({"Aang, the Last Airbender"}))
     est = estimate_bracket(
-        [(forest, 60), (bear, 39)], [], ceiling=0, speed_kill_rate=0.0,
+        [(forest, 60), (bear, 39)], [], speed_kill_rate=0.0,
         combo_profile=profile, combos_checked=True,
     )
     assert est.bracket >= 3
@@ -145,7 +145,7 @@ def test_graded_slow_combo_does_not_escalate_to_five(make_card, forest):
     cards = [(forest, 40)] + [(gc(f"GC {i}"), 1) for i in range(5)]
     slow = assess_combos(_report(_variant(["A", "B", "C"], ["Infinite creature tokens"])))
     est = estimate_bracket(
-        cards, [], ceiling=60, speed_kill_rate=0.5, combo_profile=slow, combos_checked=True,
+        cards, [], speed_kill_rate=0.5, combo_profile=slow, combos_checked=True,
     )
     assert est.bracket == 4  # slow combo -> no fast-combo push to 5
 
@@ -159,7 +159,7 @@ def test_graded_fast_combo_escalates_to_five(make_card, forest):
     fast = assess_combos(_report(_variant(["Thassa's Oracle", "Demonic Consultation"],
                                           ["Win the game"], manaValueNeeded=2)))
     est = estimate_bracket(
-        cards, [], ceiling=60, speed_kill_rate=0.5, combo_profile=fast, combos_checked=True,
+        cards, [], speed_kill_rate=0.5, combo_profile=fast, combos_checked=True,
     )
     assert est.bracket == 5
 
@@ -181,11 +181,11 @@ def test_low_combat_reliance_is_the_cedh_signal_not_high(make_card, forest):
     fast = assess_combos(_report(_variant(["Thassa's Oracle", "Demonic Consultation"],
                                           ["Win the game"], manaValueNeeded=2)))
     low_combat = estimate_bracket(
-        cards, [], ceiling=0, speed_kill_rate=0.1, combo_profile=fast, combos_checked=True,
+        cards, [], speed_kill_rate=0.1, combo_profile=fast, combos_checked=True,
     )
     assert low_combat.bracket == 5, "low combat reliance + a real combo IS the cEDH signal"
     high_combat = estimate_bracket(
-        cards, [], ceiling=100, speed_kill_rate=0.95, combo_profile=fast, combos_checked=True,
+        cards, [], speed_kill_rate=0.95, combo_profile=fast, combos_checked=True,
     )
     assert high_combat.bracket == 4, (
         "a deck that reliably kills via plain combat reads as B4 goodstuff, "
@@ -215,7 +215,7 @@ def test_graded_strong_two_card_combo_also_escalates_to_five(make_card, forest):
     assert grade.reliability == "strong" and grade.pieces == 2 and grade.terminal, (
         "fixture drifted off the 'strong, not fast-win' precondition this test needs")
     est = estimate_bracket(
-        cards, [], ceiling=60, speed_kill_rate=0.5, combo_profile=strong, combos_checked=True,
+        cards, [], speed_kill_rate=0.5, combo_profile=strong, combos_checked=True,
     )
     assert est.bracket == 5
 

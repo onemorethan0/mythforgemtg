@@ -269,7 +269,7 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
             continue
         if cset and color_bucket(row.get("colors", [])) not in cset:
             continue
-        if pset and not (set(row.get("colors") or ()) & pset):
+        if pset and not (set(row.get("color_identity") or ()) & pset):
             continue
         if tset and (row.get("type") or "Other") not in tset:
             continue

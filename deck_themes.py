@@ -182,6 +182,7 @@ def detect_deck_themes(
     *,
     top_n: int = DEFAULT_TOP_N,
     min_strong: int = MIN_STRONG,
+    counts: dict[str, tuple[int, int]] | None = None,
 ) -> list[str]:
     """The deck's own archetypes, strongest first.
 
@@ -189,8 +190,11 @@ def detect_deck_themes(
     `LIFT_FACTOR` times the count a random pile of the same size would produce. The second
     is what makes the answer mean anything — see BASE_RATE. Ranked by
     `strong + WEAK_WEIGHT * weak`, ties broken on theme name ASCENDING for reproducibility.
+
+    `counts` lets a caller that already ran `theme_counts(deck)` (e.g. `stats_block` below)
+    pass it in rather than re-running the same oracle-text scan over the deck a second time.
     """
-    counts = theme_counts(deck)
+    counts = theme_counts(deck) if counts is None else counts
     scored = _scored_card_count(deck)
     qualifying = [
         (strong + WEAK_WEIGHT * weak, theme)
@@ -256,18 +260,23 @@ def merge_themes(
 
 
 def stats_block(commander: dict, deck: list[dict],
-                partners: list[dict] | None = None) -> dict:
+                partners: list[dict] | None = None, *,
+                detected: list[str] | None = None) -> dict:
     """The `compute_stats` integration point, mirroring `lift_stats.stats_block`.
 
     Unlike that one this is PURE and OFFLINE — `theme_match` is a local text scan — so it
     costs nothing on any path and never waits on a third party. Returns `{}` when there is
     nothing to describe, or on any exception: a descriptive figure must never fail a build.
+
+    `detected` lets a caller that already ran `detect_deck_themes(deck)` for its own
+    purposes (`deck_builder.compute_stats` does, to widen `lift_stats`'s theme coverage)
+    pass that result straight through instead of re-deriving it here.
     """
     try:
         if not deck:
             return {}
         counts = theme_counts(deck)
-        detected = detect_deck_themes(deck)
+        detected = detect_deck_themes(deck, counts=counts) if detected is None else detected
         cmdr: list[str] = []
         if commander:
             # Imported decks can carry a commander dict with no oracle text at all, and a

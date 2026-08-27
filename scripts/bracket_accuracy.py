@@ -90,6 +90,38 @@ def labelled_decks(limit: int | None = None) -> list[tuple[Path, int]]:
     return out
 
 
+def real_combo_lookup(resolved, label: str, *, throttle: float = 0.2):
+    """The REAL per-deck Commander Spellbook lookup, the same call /analyze makes live
+    (spellbook.find_combos) -- cached by decklist hash, so a re-run is free. Only
+    throttled when the lookup is NOT already cached: find_combos has no throttle of
+    its own since a live /analyze call is always exactly one request, but a corpus
+    sweep fires hundreds in a row -- and sleeping unconditionally would tax a fully-
+    cached rerun for network politeness it never needed (a 546-deck rerun would burn
+    ~109s of dead time for zero requests). `bracket_b5_gate.py` used to duplicate this
+    whole loop with no throttle at all; sharing it here means that gap can't reopen in
+    a third script.
+
+    Returns `(combo_report, failed)`; `combo_report` is None on a failed lookup, in
+    which case the caller should analyze without it (`combos_checked=False`) rather
+    than treat one bad deck as fatal to the whole sweep.
+    """
+    from mythgauntlet.data import spellbook
+    import requests
+    names = [(c.name, n) for c, n in resolved.cards]
+    commanders = [c.name for c in resolved.commanders]
+    cached = spellbook.is_cached(names, commanders)
+    combo_report = None
+    failed = False
+    try:
+        combo_report = spellbook.find_combos(names, commanders)
+    except requests.RequestException as exc:
+        failed = True
+        print(f"  {label}: combo lookup failed ({exc}), analyzing without it", flush=True)
+    if not cached:
+        time.sleep(throttle)
+    return combo_report, failed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--limit", type=int)
@@ -131,9 +163,6 @@ def main() -> int:
     from mythgauntlet.ratings.analysis import analyze_deck
     from mythgauntlet.semantics.store import SemanticsStore
     from mythgauntlet.sim.tier0 import SimConfig  # noqa: F811
-    if args.real_combos:
-        from mythgauntlet.data import spellbook
-        import requests as _requests
 
     started = time.time()
     db = load_card_db()
@@ -154,21 +183,11 @@ def main() -> int:
                 # The REAL per-deck lookup, same call /analyze makes live
                 # (server.py's route, spellbook.find_combos) -- cached by decklist hash,
                 # so this is one network round-trip per NEW deck, free on any re-run.
-                # A politeness delay between calls (Archidekt's corpus-harvest uses the
-                # same convention): find_combos has no throttle of its own since a live
-                # /analyze call is always exactly one request, but this script fires
-                # hundreds in a row.
-                combo_report = None
-                try:
-                    names = [(c.name, n) for c, n in resolved.cards]
-                    combo_report = spellbook.find_combos(
-                        names, [c.name for c in resolved.commanders]
-                    )
-                except _requests.RequestException as exc:
+                # Shared with bracket_b5_gate.py so the politeness throttle (and the
+                # cache-aware skip of it) live in exactly one place.
+                combo_report, failed = real_combo_lookup(resolved, f"[{index}] {path.name}")
+                if failed:
                     combo_failures += 1
-                    print(f"  [{index}] {path.name}: combo lookup failed ({exc}), "
-                          "analyzing without it", flush=True)
-                time.sleep(0.2)
                 analysis = analyze_deck(resolved, cfg, store,
                                         combo_report=combo_report,
                                         combos_checked=combo_report is not None)
@@ -191,13 +210,21 @@ def main() -> int:
                      "predicted": estimate.bracket,
                      "confidence": round(getattr(estimate, "confidence", 0.0) or 0.0, 2),
                      "game_changers": getattr(estimate, "game_changers", 0),
-                     # Whether the "-> min Bracket 3" combo gate actually fired for this deck.
-                     # `estimate.two_card_combos` just echoes the raw input parameter (stays 0
-                     # under --real-combos, where combos come from combo_profile instead), so
-                     # it can't answer this -- the reason string is the only place the engine
-                     # records that the gate fired at all. Same convention as reading
+                     # Whether the REAL in-deck game-ending combo gate fired for this deck --
+                     # not the separate storm/spellslinger go-off heuristic, which ALSO ends
+                     # its reason in "-> min Bracket 3" (bracket.py's `can_go_off` branch) but
+                     # is an unverified nut-draw signal, not a Spellbook-confirmed combo, and
+                     # must not count as "impossible under the rules" below. Both the ungraded
+                     # and graded combo reasons (bracket.py:247, spellbook.py's `gate_reason()`)
+                     # share the "in-deck game-ending combo" phrase that the go-off reason does
+                     # not, so matching on that phrase (rather than the shared suffix every
+                     # Bracket-3-escalation reason ends with) is what actually discriminates
+                     # them. `estimate.two_card_combos` just echoes the raw input parameter
+                     # (stays 0 under --real-combos, where combos come from combo_profile
+                     # instead), so it can't answer this -- the reason string is the only place
+                     # the engine records that the gate fired at all. Same convention as reading
                      # `bracket_plays_up` from emitted text elsewhere in this codebase.
-                     "has_combo_gate": any("-> min Bracket 3" in r for r in reasons),
+                     "has_combo_gate": any("in-deck game-ending combo" in r for r in reasons),
                      "reasons": reasons})
         if index % 25 == 0:
             print(f"  {index}/{len(decks)} ({int(time.time()-started)}s)", flush=True)

@@ -373,6 +373,19 @@ def find_combos(
     return parse_response(payload)
 
 
+def is_cached(cards: list[tuple[str, int]], commanders: list[str],
+              max_age_days: float | None = MAX_AGE_DAYS) -> bool:
+    """Whether `find_combos` would serve this exact decklist from a fresh cache entry
+    rather than making a live request. A corpus harness sweeping hundreds of decks
+    needs this to decide whether a politeness throttle applies to a given deck --
+    sleeping after every call regardless defeats the point of the cache on a rerun.
+    """
+    body = _request_body(cards, commanders)
+    raw = json.dumps(body, sort_keys=True, ensure_ascii=False)
+    cache = _cache_path(hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24])
+    return cache.exists() and _fresh(cache, max_age_days)
+
+
 def _cache_path(key: str) -> Path:
     cache = data_dir() / "spellbook"
     cache.mkdir(parents=True, exist_ok=True)

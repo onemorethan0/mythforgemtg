@@ -1317,13 +1317,19 @@ def compute_stats(commander: dict, deck: list[dict],
     # Computed once, ahead of `offmeta`, so its theme-sub-page coverage widening can use the
     # DECK's own detected themes (S4, 2026-08-26) — the same "deck's plan, not the
     # commander's unsupported claims" contract `redundancy.targets_for` already documents.
-    # `deck_themes.stats_block` re-derives this again for `archetypes` below; that recompute
-    # is pure/offline (a local text scan), so doing it twice costs nothing measurable and
-    # keeps `archetypes`' own contract (`{}` -> {}` on any failure) independent of `offmeta`.
+    # Passed straight into `deck_themes.stats_block` below for `archetypes` too, so the
+    # same O(cards x themes) oracle-text scan doesn't run twice on every build/rebuild/
+    # retheme/import request for two call sites that want the identical answer.
     try:
         detected_themes = deck_themes.detect_deck_themes(deck) if deck else []
+        themes_detected_ok = True
     except Exception:      # noqa: BLE001 - advisory measurement, never fails a build
         detected_themes = []
+        # NOT reused below on this path: `deck_themes.stats_block` must get the chance
+        # to run its own (identically-failing) computation and fall back to `{}` via its
+        # own try/except, rather than being handed a bare `[]` that reads as "genuinely
+        # zero themes detected" instead of "detection failed".
+        themes_detected_ok = False
     return {
         "average_cmc": round(avg_cmc, 2),
         "color_pips": {k: v for k, v in color_pips.items() if v},
@@ -1339,7 +1345,9 @@ def compute_stats(commander: dict, deck: list[dict],
         "offmeta": lift_stats.stats_block(commander, deck, themes=detected_themes),
         # What archetypes the DECK actually plays, vs what the commander's text
         # claims. Pure/offline, so it costs nothing on any path.
-        "archetypes": deck_themes.stats_block(commander, deck, partners),
+        "archetypes": deck_themes.stats_block(
+            commander, deck, partners,
+            detected=detected_themes if themes_detected_ok else None),
     }
 
 

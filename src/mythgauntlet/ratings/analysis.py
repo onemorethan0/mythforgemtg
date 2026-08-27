@@ -171,7 +171,7 @@ def analyze_deck(
     )
     bracket = estimate_bracket(
         resolved.cards, resolved.commanders,
-        ceiling=ceiling.score, speed_kill_rate=report.goldfish_kill_rate,
+        speed_kill_rate=report.goldfish_kill_rate,
         consistency=report.consistency_score, interaction=interaction.score,
         avg_kill_turn=report.avg_kill_turn,
         # Mana-base consistency decides B1 vs B2 (measured; see bracket.estimate_bracket).

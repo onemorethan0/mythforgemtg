@@ -201,7 +201,6 @@ def estimate_bracket(
     cards: list[tuple[Card, int]],
     commanders: list[Card],
     *,
-    ceiling: float = 0.0,
     speed_kill_rate: float = 0.0,
     consistency: float = 0.0,  # T0 consistency_score (0-100)
     interaction: float = 0.0,  # Interaction axis (0-100)

@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import argparse
 import collections
-import io
 import json
 import sys
 import time
@@ -45,29 +44,21 @@ sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts"))
 
-
-def _ensure_utf8_stdout() -> None:
-    for attr in ("stdout", "stderr"):
-        stream = getattr(sys, attr, None)
-        if stream is None or not hasattr(stream, "buffer"):
-            continue
-        encoding = (getattr(stream, "encoding", "") or "").lower().replace("-", "")
-        if encoding != "utf8" or getattr(stream, "errors", "") != "replace":
-            setattr(sys, attr,
-                    io.TextIOWrapper(stream.buffer, encoding="utf-8", errors="replace"))
-
+from bracket_boundary import plateau, sweep  # noqa: E402 - reused, not reimplemented
+# `_ensure_utf8_stdout` and `real_combo_lookup` (the per-deck resolve -> real Spellbook
+# lookup -> analyze_deck step, throttled but cache-aware) are shared with
+# bracket_accuracy.py rather than re-typed here -- this script used to duplicate that
+# loop with no throttle at all, silently hammering the Spellbook API across 252 decks.
+from bracket_accuracy import (  # noqa: E402
+    _ensure_utf8_stdout, labelled_decks, real_combo_lookup,
+)
 
 _ensure_utf8_stdout()
-
-from bracket_boundary import plateau, sweep  # noqa: E402 - reused, not reimplemented
-from bracket_accuracy import labelled_decks  # noqa: E402
 
 
 def collect(runs: int, seed: int, limit: int | None = None) -> list[tuple[int, dict]]:
     """One row per B3/B4/B5-labelled deck: real combo data + ceiling/speed. B1/B2 are
     irrelevant to this specific gate and skipped to keep the network+sim cost bounded."""
-    import requests
-    from mythgauntlet.data import spellbook
     from mythgauntlet.data.scryfall import load_card_db
     from mythgauntlet.model.deck import Deck, resolve
     from mythgauntlet.ratings.analysis import analyze_deck
@@ -87,12 +78,7 @@ def collect(runs: int, seed: int, limit: int | None = None) -> list[tuple[int, d
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)
         if resolved.card_count < 90:
             continue
-        combo_report = None
-        try:
-            names = [(c.name, n) for c, n in resolved.cards]
-            combo_report = spellbook.find_combos(names, [c.name for c in resolved.commanders])
-        except requests.RequestException as exc:
-            print(f"  [{i}/{len(decks)}] {path.name}: combo lookup failed ({exc})", flush=True)
+        combo_report, _failed = real_combo_lookup(resolved, f"[{i}/{len(decks)}] {path.name}")
         try:
             a = analyze_deck(resolved, cfg, store, combo_report=combo_report,
                              combos_checked=combo_report is not None)
