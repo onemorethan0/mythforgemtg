@@ -222,3 +222,52 @@ def test_stats_block_swallows_failure(monkeypatch):
     monkeypatch.setattr(deck_themes, "theme_counts",
                         lambda d: (_ for _ in ()).throw(RuntimeError("boom")))
     assert deck_themes.stats_block({}, _goblin(5)) == {}
+
+
+def test_stats_block_detected_pass_through_is_trusted_verbatim():
+    """A caller (deck_builder.compute_stats) that already ran `detect_deck_themes(deck)`
+    passes its result straight through instead of stats_block re-deriving it -- proven
+    here by handing it a value the real deck could never produce on its own, and
+    confirming stats_block used exactly that instead of recomputing."""
+    block = deck_themes.stats_block({}, _goblin(5), detected=["not_a_real_theme"])
+    assert block["deck"] == ["not_a_real_theme"]
+
+
+def test_stats_block_detected_none_recomputes():
+    """The default (`detected=None`) must reproduce the pre-existing recompute-everything
+    behavior exactly -- this is the fallback path a caller's own detection FAILURE relies
+    on (see deck_builder.compute_stats: it passes `detected=None` on that path so this
+    function gets its own, independent, identically-failing attempt rather than being
+    handed a bare `[]` that would read as "genuinely zero themes")."""
+    block = deck_themes.stats_block({}, _goblin(5), detected=None)
+    assert block["deck"] == ["tribal_goblins"]
+
+
+def test_stats_block_counts_pass_through_drives_merge_themes_demotion(monkeypatch):
+    """`counts` short-circuits the SAME theme_counts(deck) scan `detected` was meant to
+    avoid recomputing -- passing `detected` alone still left this function running
+    theme_counts a second time (for merge_themes' `deck_counts`). Proven here the same
+    way test_merge_demotes_a_commander_theme_the_deck_contradicts proves merge_themes
+    itself: a commander theme demotes to unsupported (and out of a 1-slot budget) when
+    the SUPPLIED counts say the deck doesn't back it, even though `detected` (the deck's
+    own themes) is identical in both cases -- so the difference is attributable to
+    `counts`, not `detected`.
+    """
+    import commander_analysis
+
+    class _FakeProfile:
+        themes = ["aristocrats"]
+
+    monkeypatch.setattr(commander_analysis, "build_commander_profile",
+                        lambda commander, partners: _FakeProfile())
+
+    supported = deck_themes.stats_block(
+        {"name": "fake"}, _goblin(5), detected=["tribal_goblins"],
+        counts={"aristocrats": (5, 0), "tribal_goblins": (5, 0)})
+    unsupported = deck_themes.stats_block(
+        {"name": "fake"}, _goblin(5), detected=["tribal_goblins"],
+        counts={"aristocrats": (0, 0), "tribal_goblins": (5, 0)})
+
+    assert supported["merged"][0] == "aristocrats", "counts said the deck backs it -> stays first"
+    assert unsupported["merged"][0] == "tribal_goblins", "counts said 0 support -> demoted"
+    assert "aristocrats" in unsupported["merged"], "demoted, not dropped -- there's room"

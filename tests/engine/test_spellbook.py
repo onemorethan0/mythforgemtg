@@ -170,3 +170,58 @@ def test_find_combos_max_age_none_accepts_any_cache(tmp_path, monkeypatch):
     cards, commanders = _seed_cache(tmp_path, monkeypatch, age_days=999)
     monkeypatch.setattr(spellbook.requests, "post", _no_network)
     assert spellbook.find_combos(cards, commanders, max_age_days=None).included == []
+
+
+# --- is_cached: MUST mirror find_combos' cache-hit condition exactly ---------------
+# (a corpus harness gates a politeness throttle on this: reporting "cached" for a file
+# find_combos is about to refetch live anyway would silently skip the throttle on a
+# real network call.)
+
+def test_is_cached_true_for_a_fresh_cache(tmp_path, monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch, age_days=1)
+    assert spellbook.is_cached(cards, commanders) is True
+
+
+def test_is_cached_false_for_a_stale_cache(tmp_path, monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch,
+                                    age_days=spellbook.MAX_AGE_DAYS + 1)
+    assert spellbook.is_cached(cards, commanders) is False
+
+
+def test_is_cached_false_when_no_cache_file_exists(tmp_path, monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    monkeypatch.setenv("MYTHGAUNTLET_DATA", str(tmp_path))
+    assert spellbook.is_cached([("Sol Ring", 1)], ["Selvala, Heart of the Wilds"]) is False
+
+
+def test_is_cached_false_for_a_fresh_but_corrupt_cache_file(tmp_path, monkeypatch):
+    """The bug this pins: a cache file that EXISTS and is fresh by mtime but fails to
+    parse as JSON is a cache MISS to `find_combos` (it catches JSONDecodeError/OSError
+    and falls through to a live request) -- `is_cached` reporting True here would make
+    a caller skip its politeness throttle on a call that is actually about to hit the
+    network live.
+    """
+    import hashlib
+    import json
+
+    import pytest
+
+    from mythgauntlet.data import spellbook
+
+    cards, commanders = _seed_cache(tmp_path, monkeypatch, age_days=1)
+    body = spellbook._request_body(cards, commanders)
+    raw = json.dumps(body, sort_keys=True, ensure_ascii=False)
+    key = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
+    spellbook._cache_path(key).write_text("{not valid json", encoding="utf-8")
+
+    assert spellbook.is_cached(cards, commanders) is False
+    # And find_combos genuinely treats it as a miss too -- proving the two functions
+    # agree, not just that is_cached independently says False.
+    monkeypatch.setattr(spellbook.requests, "post", _no_network)
+    with pytest.raises(_Reached):
+        spellbook.find_combos(cards, commanders)

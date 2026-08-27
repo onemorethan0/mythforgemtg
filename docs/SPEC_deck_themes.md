@@ -144,12 +144,25 @@ Verified end to end on the three corpus decks above:
 | Ghired | `tokens, voltron_combat, counters` — correct answer untouched |
 | Jegantha | `voltron_combat, graveyard, tokens` — a plan where there was none |
 
-### `stats_block(commander, deck) -> dict`
+### `stats_block(commander, deck, partners=None, *, detected=None, counts=None) -> dict`
 The `compute_stats` integration point, mirroring `lift_stats.stats_block`. Returns
 `{"commander": [...], "deck": [...], "merged": [...]}` or `{}` when there is nothing to
-say. Reads commander themes via `commander_analysis.build_commander_profile`. Returns `{}`
-on any exception — descriptive figures must never fail a build. **Pure and offline**: no
-network, unlike `lift_stats.stats_block`.
+say. Reads the WHOLE command zone via `commander_analysis.build_commander_profile(commander,
+partners)` — a partner pair's themes are the union of both halves, not just the lead's.
+Returns `{}` on any exception — descriptive figures must never fail a build. **Pure and
+offline**: no network, unlike `lift_stats.stats_block`.
+
+`detected` and `counts` let a caller that already ran `detect_deck_themes(deck)` /
+`theme_counts(deck)` for its own purposes (`deck_builder.compute_stats` does, to widen
+`lift_stats`'s theme coverage) pass those results straight through instead of this function
+re-deriving them — the whole point being that the O(cards x themes) oracle-text scan runs
+once per request, not once per caller. Both default to `None` (recompute), so passing
+neither reproduces the pre-existing behavior exactly. Pass a genuinely-empty result (`[]`/
+`{}`) only when detection actually succeeded and found nothing; on a caller's own detection
+FAILURE, pass `None` (not `[]`/`{}`) so this function gets the chance to independently
+(and, since `detect_deck_themes`/`theme_counts` are pure functions of `deck`, identically)
+fail and fall back to `{}` — a bare empty value would otherwise read as "the deck genuinely
+has zero themes" rather than "detection failed".
 
 ## Style requirements
 

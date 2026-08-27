@@ -13,8 +13,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import time
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -366,7 +368,14 @@ def find_combos(
     resp = requests.post(API_URL, headers=HEADERS, json=body, timeout=60)
     resp.raise_for_status()
     payload = resp.json()
-    tmp = cache.with_suffix(".json.part")
+    # Unique per call (pid + a random suffix), not a fixed ".json.part" -- two processes
+    # racing to cache the SAME decklist (the live server's /analyze route and a corpus
+    # sweep script both hash to the identical cache key) would otherwise share one temp
+    # path with no locking, and an interleaved write there can rename a garbled file into
+    # place despite the rename itself being atomic. A unique temp name per writer means
+    # the atomic rename is the only thing that can happen to `cache` -- last writer wins
+    # with a WHOLE, valid file, never a splice of two.
+    tmp = cache.with_suffix(f".{os.getpid()}.{uuid.uuid4().hex[:8]}.part")
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False)
     tmp.replace(cache)  # atomic
@@ -379,11 +388,24 @@ def is_cached(cards: list[tuple[str, int]], commanders: list[str],
     rather than making a live request. A corpus harness sweeping hundreds of decks
     needs this to decide whether a politeness throttle applies to a given deck --
     sleeping after every call regardless defeats the point of the cache on a rerun.
+
+    MUST mirror `find_combos`'s cache-hit condition exactly, not just approximate it:
+    `find_combos` treats a fresh-but-CORRUPT cache file as a miss (`json.JSONDecodeError`/
+    `OSError` on read falls through to a live request), so checking only
+    `exists() and _fresh()` here would report "cached" -- and skip the caller's throttle --
+    for a file `find_combos` is about to refetch live anyway. Read+parse it here too.
     """
     body = _request_body(cards, commanders)
     raw = json.dumps(body, sort_keys=True, ensure_ascii=False)
     cache = _cache_path(hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24])
-    return cache.exists() and _fresh(cache, max_age_days)
+    if not (cache.exists() and _fresh(cache, max_age_days)):
+        return False
+    try:
+        with open(cache, encoding="utf-8") as fh:
+            json.load(fh)
+        return True
+    except (json.JSONDecodeError, OSError):
+        return False
 
 
 def _cache_path(key: str) -> Path:

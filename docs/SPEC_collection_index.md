@@ -166,16 +166,26 @@ each — so the UI only ever offers filters that match something.
 }
 ```
 
-## 8. `filter_rows(rows, q=None, colors=None, types=None, rarities=None, sets=None, cmc_min=None, cmc_max=None, min_count=None) -> list[dict]`
+## 8. `filter_rows(rows, q=None, colors=None, types=None, rarities=None, sets=None, cmc_min=None, cmc_max=None, min_count=None, color_presence=None, game_changers_only=False) -> list[dict]`
 
-Every criterion is optional; `None` or an empty collection means "no constraint". All
-supplied criteria are ANDed; values *within* one criterion are ORed.
+Every criterion is optional; `None` or an empty collection (or `False` for
+`game_changers_only`) means "no constraint". All supplied criteria are ANDed; values
+*within* one criterion are ORed.
 
 - `q` — case-insensitive substring of the row `name`.
 - `colors` — a collection of bucket keys, matched against `color_bucket(row["colors"])`.
+  This is the row's single EXCLUSIVE bucket (a Boros card is "Multicolor", not "W" or "R").
+- `color_presence` — a DIFFERENT question about the same cards: "does this card have a
+  pip of this colour at all". Matched against `row["color_identity"]`, NOT `row["colors"]`
+  — a Boros card matches both "W" and "R" here, because "how much white do I actually have
+  access to" needs multicolour cards counted too, and `color_identity` (not the top-level
+  `colors` field, which can differ on modal/double-faced cards) is what
+  `collection_stats.py`'s own `color_presence` aggregation counts against, so this filter
+  must agree with the chip counts that drive it.
 - `types` / `rarities` / `sets` — membership, case-insensitively for `sets`.
 - `cmc_min` / `cmc_max` — inclusive bounds on `cmc`.
 - `min_count` — inclusive lower bound on `count` (this is the "show me my duplicates" lever).
+- `game_changers_only` — when true, keep only rows where `row["game_changer"]` is truthy.
 
 ## 9. `sort_rows(rows, sort="name", direction="asc") -> list[dict]`
 

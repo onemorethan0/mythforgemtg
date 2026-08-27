@@ -261,7 +261,8 @@ def merge_themes(
 
 def stats_block(commander: dict, deck: list[dict],
                 partners: list[dict] | None = None, *,
-                detected: list[str] | None = None) -> dict:
+                detected: list[str] | None = None,
+                counts: dict[str, tuple[int, int]] | None = None) -> dict:
     """The `compute_stats` integration point, mirroring `lift_stats.stats_block`.
 
     Unlike that one this is PURE and OFFLINE — `theme_match` is a local text scan — so it
@@ -270,12 +271,17 @@ def stats_block(commander: dict, deck: list[dict],
 
     `detected` lets a caller that already ran `detect_deck_themes(deck)` for its own
     purposes (`deck_builder.compute_stats` does, to widen `lift_stats`'s theme coverage)
-    pass that result straight through instead of re-deriving it here.
+    pass that result straight through instead of re-deriving it here. `counts` does the
+    same for `theme_counts(deck)` -- without it, passing `detected` alone still left this
+    function running the O(cards x themes) scan a SECOND time (for `merge_themes`'s
+    `deck_counts`), just down from three calls to two rather than to the one a caller that
+    already has both values on hand should have to pay for.
     """
     try:
         if not deck:
             return {}
-        counts = theme_counts(deck)
+        if counts is None:
+            counts = theme_counts(deck)
         detected = detect_deck_themes(deck, counts=counts) if detected is None else detected
         cmdr: list[str] = []
         if commander:

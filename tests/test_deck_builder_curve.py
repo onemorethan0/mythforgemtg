@@ -202,6 +202,31 @@ def test_quality_block_never_breaks_a_build():
     assert stats["total_cards"] == 2
 
 
+def test_archetypes_falls_back_to_empty_on_a_theme_detection_failure(monkeypatch):
+    """A failed `detect_deck_themes` must read as "detection failed", not "the deck
+    genuinely has zero themes" -- `compute_stats` catches the exception itself (to feed
+    `offmeta` a safe `[]`) and must pass `detected=None`/`counts=None` through to
+    `deck_themes.stats_block` on that path, not the bare `[]`/`{}` it fell back to
+    locally, so `stats_block` gets its own (independent, identically-failing) attempt
+    and its `except Exception: return {}` actually fires.
+    """
+    import deck_themes as deck_themes_module
+
+    def _boom(deck):
+        raise RuntimeError("boom")
+    monkeypatch.setattr(deck_themes_module, "theme_counts", _boom)
+
+    deck = [{"name": f"Goblin Lord {i}", "type_line": "Creature — Goblin",
+            "oracle_text": "Other Goblin creatures you control get +1/+1.",
+            "mana_cost": "{1}{R}", "cmc": 2} for i in range(5)]
+    stats = deck_builder.compute_stats({"name": "C"}, deck)
+
+    assert stats["archetypes"] == {}, (
+        "a detection failure must fall back to {}, not a real archetypes block built "
+        "from an empty detected/counts pair that reads as 'zero themes'"
+    )
+
+
 def test_curve_bias_never_overrides_the_owned_first_contract():
     """C4: owned cards are exhausted before the Scryfall pool is touched.
 

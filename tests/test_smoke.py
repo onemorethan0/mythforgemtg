@@ -972,6 +972,36 @@ def test_collection_sort_and_filter():
     check("facet.cmc_max", f["cmc_max"], 5)
 
 
+def test_collection_color_presence_reads_color_identity_not_colors():
+    """`_fake_enriched` above sets `color_identity` identically to `colors` on every row
+    (so it can't tell the two fields apart), which is exactly the blind spot that let
+    `filter_rows`'s `color_presence` match on the wrong field ship undetected once
+    already. A modal double-faced card is the real-world case where they diverge:
+    Scryfall's top-level `colors` can be the front face alone (or absent) while
+    `color_identity` is the union across both faces — `collection_stats.py`'s own
+    `color_presence` aggregation counts against `color_identity`, so the filter must too,
+    or a click on a presence chip silently disagrees with the chip's own count.
+    """
+    dfc_row = {"name": "Growing Rites of Itlimoc", "count": 1, "set": "KLD", "cn": "",
+              "price": 1.0, "cmc": 2, "type": "Enchantment",
+              "colors": [], "color_identity": ["G"],
+              "rarity": "rare", "edhrec_rank": None, "is_land": False, "resolved": True,
+              "game_changer": False}
+    rows = [dfc_row]
+    names = lambda rs: [r["name"] for r in rs]
+
+    check("filt.presence.dfc_matches_color_identity",
+          names(collection_index.filter_rows(rows, color_presence=["G"])),
+          ["Growing Rites of Itlimoc"])
+    check("filt.presence.dfc_does_not_match_colors",
+          names(collection_index.filter_rows(rows, color_presence=["C"])), [])
+    # And the exclusive `colors` bucket (a different question) still reads `colors`,
+    # unaffected: an empty `colors` list buckets as colourless, not green.
+    check("filt.colors_bucket_unaffected_by_color_identity",
+          names(collection_index.filter_rows(rows, colors=["Colorless"])),
+          ["Growing Rites of Itlimoc"])
+
+
 def test_collection_stats():
     rows = _fake_enriched()
     st = collection_stats.collection_stats(rows, top_n=3)

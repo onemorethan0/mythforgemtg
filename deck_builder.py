@@ -1317,18 +1317,23 @@ def compute_stats(commander: dict, deck: list[dict],
     # Computed once, ahead of `offmeta`, so its theme-sub-page coverage widening can use the
     # DECK's own detected themes (S4, 2026-08-26) — the same "deck's plan, not the
     # commander's unsupported claims" contract `redundancy.targets_for` already documents.
-    # Passed straight into `deck_themes.stats_block` below for `archetypes` too, so the
-    # same O(cards x themes) oracle-text scan doesn't run twice on every build/rebuild/
-    # retheme/import request for two call sites that want the identical answer.
+    # Both `theme_counts` and its derived `detect_deck_themes` are passed straight into
+    # `deck_themes.stats_block` below for `archetypes` too, so the O(cards x themes)
+    # oracle-text scan runs exactly ONCE per build/rebuild/retheme/import request instead
+    # of once per call site that wants the same answer.
     try:
-        detected_themes = deck_themes.detect_deck_themes(deck) if deck else []
+        deck_theme_counts = deck_themes.theme_counts(deck) if deck else {}
+        detected_themes = (
+            deck_themes.detect_deck_themes(deck, counts=deck_theme_counts) if deck else []
+        )
         themes_detected_ok = True
     except Exception:      # noqa: BLE001 - advisory measurement, never fails a build
+        deck_theme_counts = {}
         detected_themes = []
         # NOT reused below on this path: `deck_themes.stats_block` must get the chance
         # to run its own (identically-failing) computation and fall back to `{}` via its
-        # own try/except, rather than being handed a bare `[]` that reads as "genuinely
-        # zero themes detected" instead of "detection failed".
+        # own try/except, rather than being handed a bare `[]`/`{}` that reads as
+        # "genuinely zero themes detected" instead of "detection failed".
         themes_detected_ok = False
     return {
         "average_cmc": round(avg_cmc, 2),
@@ -1347,7 +1352,8 @@ def compute_stats(commander: dict, deck: list[dict],
         # claims. Pure/offline, so it costs nothing on any path.
         "archetypes": deck_themes.stats_block(
             commander, deck, partners,
-            detected=detected_themes if themes_detected_ok else None),
+            detected=detected_themes if themes_detected_ok else None,
+            counts=deck_theme_counts if themes_detected_ok else None),
     }
 
 

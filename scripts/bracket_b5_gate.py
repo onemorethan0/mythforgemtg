@@ -78,8 +78,13 @@ def collect(runs: int, seed: int, limit: int | None = None) -> list[tuple[int, d
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)
         if resolved.card_count < 90:
             continue
-        combo_report, _failed = real_combo_lookup(resolved, f"[{i}/{len(decks)}] {path.name}")
         try:
+            # `real_combo_lookup` only catches `requests.RequestException` internally --
+            # a malformed Spellbook response body or a cache-dir permissions error would
+            # otherwise propagate out of this loop and kill the whole 252-deck sweep, the
+            # same "one deck is not fatal" guard `analyze_deck` already gets below.
+            combo_report, _failed = real_combo_lookup(
+                resolved, f"[{i}/{len(decks)}] {path.name}")
             a = analyze_deck(resolved, cfg, store, combo_report=combo_report,
                              combos_checked=combo_report is not None)
         except Exception as exc:                      # noqa: BLE001 - one deck is not fatal
