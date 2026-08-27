@@ -309,6 +309,58 @@ Game-Changer counts (5–24, none low) — a second, unrelated signal agreeing w
 
 **No trade-off to bring to the user this time — this one ships on the numbers alone.**
 
+### 1.6 — closing §1.2's undiagnosed corpus-composition thread: combos are the same noise class Game Changers already were (2026-08-27)
+
+§1.2 flagged, but explicitly did not diagnose, why the newly-harvested cohort (249 decks,
+found via `-createdAt`/`-updatedAt`) scored a lower B2 recall than the original 297
+(found via `-viewCount`) — 68.8% → 61.1% on the combined corpus at the time. Split the
+per-deck `--real-combos` output (already collected verifying §1.5) by fetch cohort to check:
+
+| cohort | n | bracket-exact | within-one | B2 recall |
+|---|---|---|---|---|
+| original 297 (`-viewCount`) | 297 | 53.5% | 90.2% | 55.9% |
+| new 249 (`-createdAt`/`-updatedAt`) | 249 | 48.2% | **93.2%** | 43.2% |
+
+The new cohort is genuinely lower on exact-match and B2 recall specifically — but within-one is
+actually HIGHER, not lower, which rules out "worse engine performance on this cohort" as the
+whole story. Reading the new cohort's B2→B3 misses' reasons text directly (not guessing):
+**29 of them are decks holding a real, live-verified in-deck game-ending combo** (`"-> min
+Bracket 3"` fired in the reasons) while self-labelling Bracket 2 — the identical shape to
+§1.2's Game-Changer finding, just via the OTHER hard-gated category. The official bracket
+rules restrict **both** Game Changers and Two-Card Combos starting at Bracket 3 — a real
+combo present makes Bracket 1/2 exactly as impossible as a real Game Changer does, and the
+engine's own `"N in-deck game-ending combo(s) ... -> min Bracket 3"` gate already enforces
+this; the harness just wasn't checking it.
+
+**These 29 were invisible to §1.2's original filter for a mechanical reason, not a judgment
+call**: the default `--combos 0` harness mode never runs a real Spellbook lookup at all, so no
+combo gate could ever fire, so this class of label noise couldn't be seen until `--real-combos`
+existed (§1.3) and got run on the full corpus. It isn't that the new cohort has more real
+combos than the old one by nature — both cohorts get the same real lookup now — it's that the
+new cohort happens to carry more of them, which is itself unremarkable (bracket labels are
+self-reported per §1.1/§1.2, not drawn from a controlled population).
+
+**Extended `scripts/bracket_accuracy.py`'s rule-consistency filter** (the same one §1.1/§1.2
+introduced for Game Changers) to also exclude a B1/B2 label sitting on a real detected combo,
+detected the same way the harness already reads `bracket_plays_up` elsewhere — from the
+reasons text, since `BracketEstimate.two_card_combos` only echoes the raw input parameter and
+stays 0 under `--real-combos` (a separate, currently-inert gap, not touched here — nothing
+reads that field today). Re-run on the full 546-deck corpus:
+
+| filter | n | excluded | exact | within-one |
+|---|---|---|---|---|
+| none (raw) | 546 | — | 51.1% | 91.6% |
+| Game Changers only (§1.1/§1.2, unchanged) | 521 | 25 | 53.6% | 95.0% |
+| **+ real combos (new, §1.6)** | **492** | **54** | **56.7%** | **96.1%** |
+
+No engine code changed — same discipline as §1.1: this is purely a measurement getting more
+honest about which labels the rules even permit, using a gate the engine already had.
+**This also closes §1.2's open question**: the new cohort's lower B2 recall was never a sign
+the corpus grew "harder" or the engine regressed on it — a third of its B2→B3 misses (29 of
+the ~87 B2 decks the new cohort holds) are labels the official rules already forbid, the same
+"self-reported labels are ~6% noisy" finding STATUS.md made originally, now shown to apply via
+combos as well as Game Changers.
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant
@@ -767,15 +819,22 @@ that way.
 - |d| ≥ 0.5 at B2/B3 on a speed signal, or a recorded decision that it is unreachable and the
   `plays_up` banner is the final answer.
 - Bracket **within-one ≥ 95%** on the labelled decks; exact-match reported but not chased.
-  **CLOSE, not comfortably met — re-measured 2026-08-26 on the grown 546-deck corpus (§1.2)
-  after §1.1 first reported 95.1% at n=297.** Filtering to labels that don't contradict their
-  own bracket's rules (no B1/B2 label holding a Game Changer) gives 94.8% on 521 decks at the
-  larger, more trustworthy sample — a hair under the bar, not over it. The gap is still a
-  NAMED, measured, mechanically-detected class of label noise rather than an unexplained
-  engine shortfall (that finding survives), but do not describe the accept bar as "met."
-  On the raw label set (no filtering) it's 91.4%, essentially unchanged from 91.6% at n=297.
-  B5 recall is 0% at n=55 (was 0% at n=11) — the best-evidenced remaining shortfall in this
-  area, not yet swept for a discriminating signal.
+  **MET as of 2026-08-27 (§1.5).** History: §1.1 first reported 95.1% at n=297 (rule-consistent
+  subset); §1.2's re-measurement on the grown 546-deck corpus found that read a little lucky
+  (94.8%, a hair under the bar); §1.3/§1.4 fixed a harness gap and shipped a combo-gate
+  widening that cost 0.6 points of within-one as a deliberate, user-approved trade-off for B5
+  recall; §1.5 then reversed the B5 speed-gate direction (`speed_kill_rate <= 0.77`, not
+  `>= 0.4`), which recovered all of that cost and then some — raw within-one **91.6%**, rule-
+  consistent subset **95.0%**, both back over or at the original §1.1 baseline, this time on
+  the larger, more trustworthy 546-deck sample. On the raw label set (no filtering) it's 91.6%.
+  B5 recall moved from the 0% that motivated this whole sub-thread to **36.4%** (20/55).
+  **§1.6 (2026-08-27) extended the rule-consistency filter itself** to also exclude a B1/B2
+  label sitting on a real detected in-deck combo (not just a real Game Changer) — the same
+  "impossible under the rules" class, just via the OTHER hard gate the official rules name
+  (Two-Card Combos, alongside Game Changers, are both barred below Bracket 3). That moves the
+  rule-consistent subset further, to **96.1%** on 492 decks — see §1.6 for the exact figures
+  and why this also explains most of the new corpus cohort's lower B2 recall flagged
+  (undiagnosed) in §1.2.
 - Every claim in the UI traceable to a measured field — the `plays_up` precedent. **Audited
   2026-08-26** (PLAN_CLOCK Phase 4): `SimStrengthPanel.jsx` already covers essentially every
   `power_profile` field; found and fixed one real gap on a different surface (History/

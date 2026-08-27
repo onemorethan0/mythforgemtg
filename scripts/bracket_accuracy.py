@@ -186,11 +186,19 @@ def main() -> int:
             print(f"  [{index}] {path.name}: FAILED {exc}", flush=True)
             continue
         estimate = analysis.bracket
+        reasons = list(getattr(estimate, "reasons", []) or [])
         rows.append({"deck": path.name, "label": label,
                      "predicted": estimate.bracket,
                      "confidence": round(getattr(estimate, "confidence", 0.0) or 0.0, 2),
                      "game_changers": getattr(estimate, "game_changers", 0),
-                     "reasons": list(getattr(estimate, "reasons", []) or [])})
+                     # Whether the "-> min Bracket 3" combo gate actually fired for this deck.
+                     # `estimate.two_card_combos` just echoes the raw input parameter (stays 0
+                     # under --real-combos, where combos come from combo_profile instead), so
+                     # it can't answer this -- the reason string is the only place the engine
+                     # records that the gate fired at all. Same convention as reading
+                     # `bracket_plays_up` from emitted text elsewhere in this codebase.
+                     "has_combo_gate": any("-> min Bracket 3" in r for r in reasons),
+                     "reasons": reasons})
         if index % 25 == 0:
             print(f"  {index}/{len(decks)} ({int(time.time()-started)}s)", flush=True)
 
@@ -232,22 +240,29 @@ def main() -> int:
         print(f"\nbrackets 1-3 only — the range this project exists to serve ({len(casual)} decks)")
         print(f"  exact {100*c_exact/len(casual):.1f}%   within-one {100*c_within/len(casual):.1f}%")
 
-    # A B1/B2 label holding >=1 real Game Changer is not an engine disagreement to
-    # measure against — it is IMPOSSIBLE under the bracket system's own rules (a Game
-    # Changer present at all rules out Brackets 1-2, independent of anything the engine
-    # thinks). This is the same "author labels are ~6% noisy" defect docs/engine/STATUS.md
-    # already found on a smaller anchor set, now connected to this harness directly
-    # (PLAN_CLOCK.md, 2026-08-26): filtering these 13 self-contradictory labels out of the
-    # 297 moves within-one from 91.6% (below the 95% accept bar) to 95.1% (clears it) with
-    # ZERO engine changes — the filter never references what the engine predicted, only
-    # whether the label is even possible under the rules it claims.
-    rule_valid = [r for r in rows if not (r["label"] in (1, 2) and r["game_changers"] > 0)]
+    # A B1/B2 label holding >=1 real Game Changer, OR a real detected in-deck game-ending
+    # combo, is not an engine disagreement to measure against — both are IMPOSSIBLE under
+    # the bracket system's own rules (Game Changers and Two-Card Combos are both restricted
+    # starting at Bracket 3, independent of anything the engine thinks). The Game-Changer
+    # half is the "author labels are ~6% noisy" defect docs/engine/STATUS.md already found
+    # on a smaller anchor set, connected to this harness in PLAN_CLOCK.md (2026-08-26): 13
+    # self-contradictory labels out of 297 moved within-one from 91.6% (below the 95% accept
+    # bar) to 95.1% (clears it) with ZERO engine changes. The combo half was added
+    # 2026-08-27 after diagnosing why the corpus's newly-harvested cohort scored lower B2
+    # recall than the original 297 (PLAN_CLOCK.md §1.6): --real-combos surfaces real in-deck
+    # combos that --combos 0 never could, so a B1/B2 label sitting on a verified combo is the
+    # exact same shape of noise, just invisible until real combo detection existed to see it.
+    # Neither half of this filter ever references what the engine PREDICTED, only whether the
+    # label is even possible under the rules it claims.
+    rule_valid = [r for r in rows if not (r["label"] in (1, 2)
+                                          and (r["game_changers"] > 0 or r["has_combo_gate"]))]
     rule_noise = len(rows) - len(rule_valid)
     if rule_noise:
         v_exact = sum(r["label"] == r["predicted"] for r in rule_valid)
         v_within = sum(abs(r["label"] - r["predicted"]) <= 1 for r in rule_valid)
         print(f"\nexcluding {rule_noise} label(s) impossible under the rules — a B1/B2 self-"
-              f"label holding >=1 real Game Changer ({len(rule_valid)} decks)")
+              f"label holding >=1 real Game Changer or a real in-deck combo "
+              f"({len(rule_valid)} decks)")
         print(f"  exact {100*v_exact/len(rule_valid):.1f}%   "
               f"within-one {100*v_within/len(rule_valid):.1f}%")
 
