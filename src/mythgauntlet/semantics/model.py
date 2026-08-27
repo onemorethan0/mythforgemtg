@@ -30,6 +30,7 @@ class EffectVector:
     cast_damage: int = 0  # burn per CAST only (Guttersnipe class) -- storm copies do NOT trigger it
     scaling_burn: bool = False  # an X-damage-to-player finisher (Fireball / Comet Storm class)
     spell_cost_reduction: int = 0  # your instant/sorcery spells cost {N} less
+    self_reduction_per_creature: int = 0  # THIS spell costs {N} less for each creature in play
     ritual_mana: int = 0  # net mana this spell yields when cast (Dark Ritual class), for storm
     # go-wide / overrun finisher (docs/SIMULATION.md, feeds the Ceiling axis): a ONE-SHOT team pump
     overrun_pump: int = 0  # "creatures you control get +N/+N ... until end of turn" (Overrun class)

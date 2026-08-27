@@ -15,6 +15,14 @@ Documented simplifications (T0 is built to be fast, deterministic, and honest â€
   - The goldfish clock: creatures attack a single non-blocking opponent (goldfish_life,
     default 40) starting the turn after they resolve; kill_turn is when cumulative combat
     damage crosses that threshold. Noncombat damage isn't modeled at rung 1.
+  - Self-referential cost reduction (`fx.self_reduction_per_creature`, "this spell costs
+    {N} less for each creature on the battlefield/you control" â€” Blasphemous Act, Affinity
+    for creatures) IS modeled against T0's own live creature count (`_effective_cost`),
+    since leaving it unmodeled means gating castability on the full printed cost, which
+    silently turns a card a real pilot casts for 2-4 mana into one T0 almost never casts at
+    all. Only THIS one board-state signal (creatures) is wired, because T0 tracks it
+    already; a reduction keyed on artifacts, graveyard contents, or anything else T0 does
+    not track stays unmodeled and the card is judged by its full printed cost, honestly.
 
 All randomness flows through SeededRng (invariant #1). No card names appear here
 (invariant #2): behavior comes exclusively from the semantics layer.
@@ -22,7 +30,7 @@ All randomness flows through SeededRng (invariant #1). No card names appear here
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.semantics import tags
@@ -162,6 +170,33 @@ def _can_pay(sources: list[_Source], cost) -> list[int] | None:
         return None
     used.extend(remaining[: cost.generic])
     return used
+
+
+def _effective_cost(sc: SimCard, board_creatures: int):
+    """SC's cost for a `_can_pay` check, discounted for a self-referential board-state
+    reduction (Blasphemous Act / Affinity-for-creatures class, `fx.self_reduction_per_creature`)
+    tier0 would otherwise ignore entirely -- gating castability on the full PRINTED cost turns
+    a spell routinely cast for 2-4 mana in a real game (Blasphemous Act is {8}{R}, MV 9) into
+    one that almost never gets cast in a 12-turn goldfish run, which is a wrong model of the
+    card, not a judgement that it is bad or the deck holds too many of its kind.
+
+    Only the GENERIC portion is discounted, capped so it never goes negative -- a cost
+    reduction never lowers what COLOUR you need to pay, only how much untyped mana. `pips`
+    (and `mana_value`, which tracks `generic` in lockstep per symbol in `ManaCost.from_string`)
+    both stay internally consistent because both drop by the identical, capped amount.
+
+    `board_creatures` is tier0's own live count of creatures established as of the START of
+    this turn (before this turn's own casts) -- a real reading, not a guess. tier0 has no
+    modeled opponent (`sim/tier0.py`'s own docstring: "One player, no opponent"), so for
+    "on the battlefield" wording (Vanquish the Horde class) this undercounts a real pod, where
+    every player's creatures would also count -- a conservative direction, never a fabrication.
+    """
+    discount = sc.fx.self_reduction_per_creature * board_creatures
+    if discount <= 0:
+        return sc.card.cost
+    cost = sc.card.cost
+    discount = min(discount, cost.generic)  # never discount past the coloured-pip minimum
+    return replace(cost, generic=cost.generic - discount, mana_value=cost.mana_value - discount)
 
 
 def _keepable(hand: list[SimCard], size: int, cfg: SimConfig) -> bool:
@@ -334,11 +369,11 @@ def _run_one(
                 # this turn has had first claim on the mana.
                 if sc.is_land or sc.fx.scaling_burn:
                     continue
-                payment = _can_pay(sources, sc.card.cost)
+                payment = _can_pay(sources, _effective_cost(sc, board_creatures))
                 if payment is not None:
                     castable.append((_cast_priority(sc, turn, cfg), sc, payment, False))
             if commander_in_zone and commander is not None:
-                payment = _can_pay(sources, commander.card.cost)
+                payment = _can_pay(sources, _effective_cost(commander, board_creatures))
                 if payment is not None:
                     castable.append(((1, commander.mana_value), commander, payment, True))
             if not castable:
@@ -347,7 +382,7 @@ def _run_one(
             _, sc, payment, is_commander = min(castable, key=lambda t: t[0])
             for idx in payment:
                 sources[idx].ready = False
-            spent += sc.mana_value
+            spent += len(payment)  # actual sources tapped -- correct even under a discount
             stats.spells_cast += 1
             if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
                 instant_sorcery_cast += 1

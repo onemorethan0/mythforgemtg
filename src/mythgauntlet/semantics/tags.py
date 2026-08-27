@@ -167,6 +167,22 @@ _SCALING_BURN_RE = re.compile(  # Fireball / Blaze / Comet Storm finisher (must 
 _COST_REDUCE_RE = re.compile(  # your instant/sorcery spells cost {N} less
     r"(?:instant and sorcery|noncreature|instant, sorcery)[^.]{0,25}spells?[^.]{0,25}"
     r"cost \{(\d+)\} less|spells you cast cost \{(\d+)\} less")
+# THIS spell costs {N} less for each creature already in play (Blasphemous Act / Vanquish
+# the Horde class) -- a SEPARATE mechanism from _COST_REDUCE_RE above (that one discounts
+# OTHER spells; this one discounts itself). Left unmodeled, sim/tier0.py's castability
+# check gates on the full PRINTED mana value (9 for Blasphemous Act), so a card that is
+# routinely cast for 2-4 mana in a real game never becomes castable in a goldfish run that
+# rarely reaches turn 9 -- it sits dead in every simulated hand, which is a wrong model of
+# the card, not a judgement that the deck has too many wipes. "on the battlefield" (Vanquish
+# the Horde) counts every player's creatures in a real pod; tier0 has no opponent, so using
+# the caster's own live creature count for it is a conservative UNDER-count, not a fabrication.
+_SELF_COST_REDUCE_CREATURES_RE = re.compile(
+    r"costs? \{(\d+)\} less to cast for each creature\b[^.]{0,20}(?:on the battlefield|you control)")
+# "Affinity for creatures" is a KEYWORD whose {1}-less-per-creature rule lives only in its
+# reminder text -- which `_clean_text` strips as parenthetical before any regex above ever
+# sees it. The keyword itself is a fixed, always-{1} ability (no printed variant reduces by
+# more), so recognising the keyword name alone is exact, not a guess.
+_AFFINITY_CREATURES_RE = re.compile(r"affinity for creatures")
 # one-shot overrun finisher (Overrun / Craterhoof / End-Raze). The "until end of turn" is the
 # precision guard: it excludes STATIC anthem lords (Intangible Virtue, Diregraf Captain), which
 # pump permanently and are NOT alpha-strike finishers.
@@ -354,6 +370,12 @@ def analyze(card: Card) -> EffectVector:
     scaling_burn = bool(_SCALING_BURN_RE.search(text))
     m_cr = _COST_REDUCE_RE.search(text)
     spell_cost_reduction = int(next((g for g in m_cr.groups() if g), 0)) if m_cr else 0
+    m_self_cr = _SELF_COST_REDUCE_CREATURES_RE.search(text)
+    self_reduction_per_creature = (
+        int(m_self_cr.group(1)) if m_self_cr
+        else 1 if _AFFINITY_CREATURES_RE.search(text)
+        else 0
+    )
     ritual_mana = 0
     if card.has_type("Instant") or card.has_type("Sorcery"):
         m_add = _ADD_MANA_RE.search(text)
@@ -384,6 +406,7 @@ def analyze(card: Card) -> EffectVector:
         cast_damage=cast_damage,
         scaling_burn=scaling_burn,
         spell_cost_reduction=spell_cost_reduction,
+        self_reduction_per_creature=self_reduction_per_creature,
         ritual_mana=ritual_mana,
         overrun_pump=overrun_pump,
         overrun_scales=overrun_scales,

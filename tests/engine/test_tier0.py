@@ -155,3 +155,44 @@ def test_report_score_in_range(make_card, forest, bear):
     report = metrics.compute(simulate(_deck(forest, bear, 38, 61), None, cfg), cfg)
     assert 0.0 <= report.consistency_score <= 100.0
     assert report.runs == 100
+
+
+def test_self_cost_reduction_makes_a_wipe_actually_castable(make_card):
+    """Blasphemous Act class: 'This spell costs {1} less to cast for each creature on the
+    battlefield', printed {8}{R} (MV 9). Left unmodeled, tier0's castability check gates on
+    the full printed cost, so a card routinely cast for 2-4 mana in a real game sits dead in
+    hand almost every simulated game -- a wrong model of the card (it looks like a brick),
+    not a signal that the deck holds too many of its kind. A discounted card and an
+    un-discounted control of the SAME printed cost, in decks that are otherwise identical,
+    isolate the effect: only the discount differs, so any measured gap is the fix.
+    """
+    mountain = make_card(
+        "Mountain", type_line="Basic Land — Mountain", produced_mana=("R",), color_identity=("R",)
+    )
+    dork = make_card(
+        "Cheap Creature", mana_cost="{R}", type_line="Creature — Elemental",
+        colors=("R",), color_identity=("R",),
+    )
+    dork.power, dork.toughness = "1", "1"
+    discounted = make_card(
+        "Board-State Wipe", mana_cost="{8}{R}", type_line="Sorcery",
+        colors=("R",), color_identity=("R",),
+        oracle_text=(
+            "This spell costs {1} less to cast for each creature on the battlefield.\n"
+            "Destroy all creatures."
+        ),
+    )
+    control = make_card(
+        "Plain Wipe", mana_cost="{8}{R}", type_line="Sorcery",
+        colors=("R",), color_identity=("R",), oracle_text="Destroy all creatures.",
+    )
+    cfg = SimConfig(runs=300, seed=17, turns=6)
+    with_discount = metrics.compute(
+        simulate([(mountain, 40), (dork, 58), (discounted, 1)], None, cfg), cfg
+    )
+    without_discount = metrics.compute(
+        simulate([(mountain, 40), (dork, 58), (control, 1)], None, cfg), cfg
+    )
+    # The discounted wipe gets cast in a meaningful share of runs once a few creatures are
+    # out; the control, needing the full 9 mana in only 6 turns, essentially never does.
+    assert with_discount.avg_spells_cast > without_discount.avg_spells_cast
