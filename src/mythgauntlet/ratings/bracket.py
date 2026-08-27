@@ -159,11 +159,25 @@ _EXHIBITION_MANA = 0.80
 
 def _fast_two_card_combo(two_card_combos: int, profile: ComboAssessment | None) -> bool:
     """The cEDH escalation signal. With a graded profile, require the 2-card combo to be a
-    FAST TERMINAL win (not e.g. a 2-card infinite-mana engine with no outlet). Without a
+    TERMINAL win (not e.g. a 2-card infinite-mana engine with no outlet). Without a
     profile (counts-only callers, existing tests), fall back to the old 'any 2-card' rule.
+
+    Widened from `fast_terminal_two_card` (requiring the "fast-win" reliability grade
+    specifically) to `terminal_two_card` (any reliability grade, still 2-card + terminal)
+    on 2026-08-26 — measured, not guessed, against 252 real B3/B4/B5-labelled decks with a
+    live Spellbook lookup (`scripts/bracket_b5_gate.py`, `docs/PLAN_CLOCK.md` Sec 1.4).
+    Requiring "fast-win" left only 38 decks even ELIGIBLE for this gate (9 of them real B5);
+    the wider check more than doubles that to 78 and triples the real-B5 share within it
+    (9 -> 28) — most real cEDH decks' actual combos are genuine terminal 2-card wins that
+    `classify_combo` simply doesn't grade "fast" (a higher mana cost or a notable
+    prerequisite doesn't make an assembled combo less game-ending). The name keeps saying
+    "fast" for the function/reason text since a 2-card TERMINAL combo (wins outright once
+    assembled, needs no outlet) is still meaningfully faster than the alternative — an
+    advantage-only loop still needing something else to close the game. See the docstring
+    on `ComboAssessment.terminal_two_card` for the full write-up.
     """
     if profile is not None:
-        return profile.fast_terminal_two_card
+        return profile.terminal_two_card
     return bool(two_card_combos)
 
 

@@ -164,6 +164,33 @@ def test_graded_fast_combo_escalates_to_five(make_card, forest):
     assert est.bracket == 5
 
 
+def test_graded_strong_two_card_combo_also_escalates_to_five(make_card, forest):
+    """Widened 2026-08-26 (`docs/PLAN_CLOCK.md` Sec 1.4, measured against 252 real B3/B4/B5
+    decks with a live Spellbook lookup): a 2-card TERMINAL combo escalates even when its
+    mana cost is too high to earn the "fast-win" grade (here manaValueNeeded=3, so
+    classify_combo grades it "strong" per its own mv<=2 cutoff, not "fast-win") — because
+    requiring "fast-win" specifically left only 9 of the corpus's real B5 decks even
+    eligible for this gate, while dropping just the reliability requirement (keeping
+    terminal + <=2 pieces) more than triples that to 28. Contrast with the slow/3-piece
+    test above, which correctly still does NOT escalate — this is testing the boundary
+    the widening actually moved, not re-testing the old one.
+    """
+    def gc(name):
+        c = make_card(name, mana_cost="{2}", type_line="Artifact")
+        c.game_changer = True
+        return c
+    cards = [(forest, 40)] + [(gc(f"GC {i}"), 1) for i in range(5)]
+    strong = assess_combos(_report(_variant(["Thassa's Oracle", "Demonic Consultation"],
+                                            ["Win the game"], manaValueNeeded=3)))
+    grade = strong.grades[0]
+    assert grade.reliability == "strong" and grade.pieces == 2 and grade.terminal, (
+        "fixture drifted off the 'strong, not fast-win' precondition this test needs")
+    est = estimate_bracket(
+        cards, [], ceiling=60, speed_kill_rate=0.5, combo_profile=strong, combos_checked=True,
+    )
+    assert est.bracket == 5
+
+
 # --- the two surfaces must agree ---------------------------------------------------------
 
 def test_pod_finisher_agrees_between_cli_and_api_combo_inputs(make_card):

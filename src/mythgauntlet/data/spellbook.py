@@ -213,6 +213,24 @@ class ComboAssessment:
         return any(g.reliability == "fast-win" and g.pieces <= 2 for g in self.grades)
 
     @property
+    def terminal_two_card(self) -> bool:
+        """>=1 2-card, terminal combo, at ANY reliability grade — not just fast-win.
+
+        Measured against 252 real B3/B4/B5-labelled decks with a live Spellbook lookup
+        (`scripts/bracket_b5_gate.py`, `docs/PLAN_CLOCK.md` Sec 1.4): requiring `fast-win`
+        specifically found the qualifying signal on only 38 decks (9 of them real B5).
+        Dropping the reliability requirement (keeping terminal + <=2 pieces) more than
+        doubles the pool to 78 decks and TRIPLES the real-B5 share within it (9 -> 28) —
+        most real cEDH decks' actual win conditions are genuine 2-card terminal combos that
+        `classify_combo` simply doesn't grade as "fast" (a slower mana cost, a notable
+        prerequisite, etc. do not make a combo any less game-ending once assembled). This
+        is a strict superset of `fast_terminal_two_card`, so it only ever WIDENS which
+        decks are even eligible for a B5 gate to consider — it does not by itself promote
+        anything (the gate's ceiling/speed checks still have to clear separately).
+        """
+        return any(g.terminal and g.pieces <= 2 for g in self.grades)
+
+    @property
     def nondeterministic_count(self) -> int:
         """Winning combos whose result hinges on chance / an opponent's choice (Layer 2)."""
         return sum(

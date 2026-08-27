@@ -198,6 +198,72 @@ for anyone who wants a B4-vs-B5 read closer to what `/analyze` actually returns 
 default `--combos 0` behaviour is unchanged (still the cheap, network-free, "combos not
 checked" run), and `--real-combos` is strictly opt-in.
 
+### 1.4 — the properly-scoped sweep, and a real trade-off shipped with the user's sign-off (2026-08-26)
+
+Built `scripts/bracket_b5_gate.py` — the sweep §1.3 explicitly deferred, reusing
+`bracket_boundary.py`'s `sweep`/`plateau` rather than reimplementing them. Ran it against all
+252 real B3/B4/B5-labelled decks with a live per-deck Spellbook lookup (mostly cache hits from
+§1.3's earlier `--real-combos` run).
+
+**Requiring the `fast-win` reliability grade specifically was the single biggest constraint,
+and it was measurably too strict.** Only 38 decks in the whole corpus even carry a `fast-win`
+2-card terminal combo (9 of them real B5). Dropping the reliability requirement — keeping
+`terminal AND pieces<=2`, any grade — widens that to 78 decks and **triples the real-B5 share
+within it (9 → 28)**: most real cEDH decks' actual win conditions ARE genuine 2-card terminal
+combos that `classify_combo` simply doesn't grade "fast" (a mana cost over 2, a commander
+piece, etc. — none of which make an assembled combo less game-ending).
+
+**The `ceiling >= 40` threshold, by contrast, turned out NOT to be the problem the n=11 sample
+suggested.** Swept against the widened-gate B4-vs-B5 subset (n=49: 21/28), ceiling alone barely
+beats baseline (59.2% vs 57.1%) — weak, not the lever. The real signal in that subset is
+`speed_kill_rate <= 0.77` (73.5% accuracy, balanced 76%/71% recall, a real plateau not a
+spike) — **the OPPOSITE direction from the shipped gate's `>= 0.4`.** Plausible reading: a
+cEDH deck's real clock is the combo turn, not creatures connecting, so its raw goldfish
+combat-kill-rate reads LOWER than a Bracket-4 goodstuff pile that still wins a fair share of
+games on combat alone. **NOT shipped.** This reverses the original gate's design intent on a
+single sweep at n=49 — a real, defensible finding, but a bigger and more consequential change
+than a pool-widening, and it was surfaced to the user rather than auto-applied. Flagged here
+for whoever picks this area up again; the sweep script and its JSON output are reusable.
+
+**Shipped the widening**, `ComboAssessment.terminal_two_card` (`data/spellbook.py`) +
+`_fast_two_card_combo` now reading it (`ratings/bracket.py`) — measured, then verified live on
+the full 546-deck corpus with `--real-combos`, and the result is a genuine trade-off, reported
+honestly rather than spun as a clean win:
+
+| metric | before | after |
+|---|---|---|
+| B5 recall | 3.6% (2/55) | **9.1% (5/55)** |
+| within-one (raw) | 91.6% | **91.0%** |
+| within-one, rule-consistent subset | 95.0% | **94.4%** |
+| bracket-exact | 48.0% | 48.5% |
+
+Widening the gate more than doubles B5 recall but costs **3 new B3→B5 mispredictions** — a
+2-bracket miss, exactly what within-one exists to penalise — moving the project's own
+accept-bar metric slightly the wrong way. **Read the 3 misses before deciding what they mean,
+which is what separated this from a coin flip:** one holds **13 real in-deck game-ending
+combos** (8 graded "strong", 5 "slow") while self-labelling Bracket 3 — implausible on its
+face, the same "author label contradicts what the deck actually is" shape as the Game-Changer
+label-noise finding in §1.2, not a fresh engine defect. The other two arrived via *stacked*
+independent gates (chained extra turns / a sub-6-turn go-off engine, *plus* the combo signal),
+not the combo gate acting alone. Meanwhile all 5 new true-positive B5 hits carry high
+Game-Changer counts (4-19) — consistent with genuinely powerful decks, not noise.
+
+**Decision, with the user's explicit sign-off (asked directly, not assumed): KEEP the
+widening.** The reasoning put to them and accepted: Bracket 5 going from *structurally
+near-unreachable* to *correctly identifies ~9% of real cEDH decks, occasionally over-calls a
+deck that arguably deserved a look anyway* reads as a net improvement in what a user actually
+experiences, even though the raw within-one number ticks down 0.6 points. This is recorded as
+a judgement call, not a clean measurement win — if the within-one number matters more to a
+future session's goals than it did to this one, the revert is a one-line change (`bracket.py`'s
+`_fast_two_card_combo` back to `profile.fast_terminal_two_card`) and the finding above still
+stands as the reason it was tried.
+
+`speed_kill_rate <= 0.77` remains the one clearly-measured, NOT-yet-shipped lever in this
+area — the properly-scoped next step for anyone who picks it up, with the same caution: it is
+one sweep at n=49, and it reverses a design intent, so it deserves a second look (a different
+seed, a check against the B3/B4 side for false positives the same way this section just did)
+before it goes anywhere near the shipped gate.
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant
