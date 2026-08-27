@@ -138,6 +138,66 @@ for a discriminating signal yet — a reasonable next target if this area gets p
 though not attempted this session (this session's scope was corpus growth + verification, not
 a new gate).
 
+### 1.3 — B5's 0% recall was a HARNESS gap, not (only) an engine one, and the fix already ships (2026-08-26)
+
+`estimate_bracket`'s only two paths to Bracket 5 are `meta_rating >= 1650` (never computed by
+`bracket_accuracy.py`) or `fast_terminal_two_card and ceiling >= 40 and speed_kill_rate >=
+0.4` — and that second path needs a REAL Commander Spellbook lookup, which the harness never
+made (its default `--combos 0` means "not checked"). So the 0% B5 recall reported in §1.2 was
+not purely a measurement of engine quality — it was in part measuring a harness that made
+Bracket 5 structurally unreachable, independent of anything the engine got right or wrong.
+
+**Fixed the harness, not the engine, first — `scripts/bracket_accuracy.py --real-combos`.**
+Mirrors exactly what the live `/analyze` route already does (`spellbook.find_combos` per
+deck, cached by decklist hash, degrades to "not checked" on a network failure rather than
+aborting the run). Re-ran the full 546-deck corpus with it:
+
+| metric | `--combos 0` (structurally blind) | `--real-combos` |
+|---|---|---|
+| B5 recall | 0.0% (0/55) | **3.6% (2/55)** |
+| bracket-exact | 49.5% | 48.0% |
+| within-one | 91.4% | 91.6% |
+| rule-consistent within-one | 94.8% | 95.0% |
+
+**B5 recall moving off exactly zero, for the first time, confirms the diagnosis was right —
+and the size of the move (2 of 55) says the harness gap explains only part of the shortfall.**
+Everything else moved by less than a point either way (noise), which is itself informative:
+real combo detection is not a free lunch that inflates every deck's estimate, it precisely
+targets the ~4% of decks the gate was actually built for.
+
+**Diagnosed the remaining 51 misses with a hand-run sample (n=11, NOT a full sweep — read
+these as directional, not calibrated)**, pulling each deck's real `ComboAssessment` alongside
+its ceiling/speed:
+
+| blocking reason | count (of 11) | example |
+|---|---|---|
+| `fast_terminal_two_card=True` but `ceiling < 40` | **3** | archidekt-11453507: ceiling 14, needs ≥40 |
+| a real 2-card terminal combo, graded `strong` not `fast-win` | **4** | archidekt-1727139: ceiling 48 (clears!), speed 0.83 (clears!) — reliability grade is the ONLY blocker |
+| a 2-card combo but `slow`/non-terminal | 2 | — |
+| no game-ending combo detected at all | 2 | — |
+
+**The `ceiling >= 40` threshold looks like the single highest-leverage lever, but this is NOT
+enough evidence to change it.** Three of eleven sampled misses have exactly the signal the
+gate was designed to trust (`fast_terminal_two_card=True`) and get vetoed by a ceiling
+requirement more than double what they measured (14, 18, 20 vs a 40 floor) — and a fourth
+class (four decks) is blocked purely by `classify_combo`'s reliability grading calling their
+combo `strong` rather than `fast-win`, with ceiling/speed both already clearing the bar in at
+least one of those cases. Both look like real, fixable miscalibrations on a first read. **Do
+not act on n=11 the way S10/`archetype_role_targets.py` acted on a real sweep** — this repo's
+own standing rule is that a threshold gets changed after measuring it against the labelled
+corpus with both-halves/margin gates, not after reading eleven rows. The properly-scoped next
+step, if this gets picked up: run `--real-combos`' combo data across all 55 B5 decks (and a
+comparable B3/B4 sample, to check false-positive risk before loosening anything) and sweep
+the ceiling threshold and the `fast-win` reliability cutoff the same way `bracket_boundary.py`
+already sweeps B1/B2 and B2/B3 — not attempted this session; flagged as the properly-scoped
+follow-on rather than guessed at.
+
+**`--real-combos` is a durable, reusable capability, independent of whether the threshold
+question above ever gets picked up.** It is the honest way to run this harness going forward
+for anyone who wants a B4-vs-B5 read closer to what `/analyze` actually returns live — the
+default `--combos 0` behaviour is unchanged (still the cheap, network-free, "combos not
+checked" run), and `--real-combos` is strictly opt-in.
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant

@@ -109,7 +109,21 @@ def main() -> int:
                          "external Spellbook lookup, not a detector - the offline default "
                          "of 0 means 'not checked', which is what the engine can honestly "
                          "know without the network.")
+    ap.add_argument("--real-combos", action="store_true",
+                    help="run a REAL per-deck Commander Spellbook lookup (find-my-combos, "
+                         "the same one /analyze makes live) instead of --combos' blanket "
+                         "declared count. This is what a real /analyze call does and what "
+                         "the shipped bracket_estimate B4-vs-B5 gate actually needs "
+                         "(estimate_bracket's ONLY paths to Bracket 5 are meta_rating>=1650, "
+                         "which this script never computes, or a real fast 2-card combo -- "
+                         "so every prior run of this script, at --combos 0 default, made "
+                         "Bracket 5 STRUCTURALLY unreachable regardless of engine quality, "
+                         "not merely uncalibrated). Needs the network; cached by decklist "
+                         "hash (spellbook.find_combos), so a re-run is free. Mutually "
+                         "exclusive with --combos.")
     args = ap.parse_args()
+    if args.real_combos and args.combos:
+        ap.error("--real-combos and --combos are mutually exclusive")
     combos = args.combos
 
     from mythgauntlet.data.scryfall import load_card_db
@@ -117,6 +131,9 @@ def main() -> int:
     from mythgauntlet.ratings.analysis import analyze_deck
     from mythgauntlet.semantics.store import SemanticsStore
     from mythgauntlet.sim.tier0 import SimConfig  # noqa: F811
+    if args.real_combos:
+        from mythgauntlet.data import spellbook
+        import requests as _requests
 
     started = time.time()
     db = load_card_db()
@@ -127,19 +144,44 @@ def main() -> int:
 
     cfg = SimConfig(turns=args.turns, runs=args.runs, seed=42)
     rows = []
+    combo_failures = 0
     for index, (path, label) in enumerate(decks, 1):
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)
         if resolved.card_count < 90:
             continue
         try:
-            # two_card_combos is an INPUT count from an external Spellbook lookup, not a
-            # request to go and detect them. Passing 2 here (which the first version of this
-            # script did) tells the engine every deck holds two game-ending combos, and the
-            # gate promotes all of them to "min Bracket 3" - producing a confusion matrix
-            # where the engine never emits 1 or 2 and looks catastrophically miscalibrated.
-            # It was the harness lying to the engine. Leave it at the honest default.
-            analysis = analyze_deck(resolved, cfg, store,
-                                    two_card_combos=combos, combos_checked=bool(combos))
+            if args.real_combos:
+                # The REAL per-deck lookup, same call /analyze makes live
+                # (server.py's route, spellbook.find_combos) -- cached by decklist hash,
+                # so this is one network round-trip per NEW deck, free on any re-run.
+                # A politeness delay between calls (Archidekt's corpus-harvest uses the
+                # same convention): find_combos has no throttle of its own since a live
+                # /analyze call is always exactly one request, but this script fires
+                # hundreds in a row.
+                combo_report = None
+                try:
+                    names = [(c.name, n) for c, n in resolved.cards]
+                    combo_report = spellbook.find_combos(
+                        names, [c.name for c in resolved.commanders]
+                    )
+                except _requests.RequestException as exc:
+                    combo_failures += 1
+                    print(f"  [{index}] {path.name}: combo lookup failed ({exc}), "
+                          "analyzing without it", flush=True)
+                time.sleep(0.2)
+                analysis = analyze_deck(resolved, cfg, store,
+                                        combo_report=combo_report,
+                                        combos_checked=combo_report is not None)
+            else:
+                # two_card_combos is an INPUT count from an external Spellbook lookup, not
+                # a request to go and detect them. Passing 2 here (which the first version
+                # of this script did) tells the engine every deck holds two game-ending
+                # combos, and the gate promotes all of them to "min Bracket 3" - producing
+                # a confusion matrix where the engine never emits 1 or 2 and looks
+                # catastrophically miscalibrated. It was the harness lying to the engine.
+                # Leave it at the honest default (or pass --real-combos instead).
+                analysis = analyze_deck(resolved, cfg, store,
+                                        two_card_combos=combos, combos_checked=bool(combos))
         except Exception as exc:                     # noqa: BLE001 - one deck is not fatal
             print(f"  [{index}] {path.name}: FAILED {exc}", flush=True)
             continue
@@ -162,11 +204,14 @@ def main() -> int:
     n = len(rows)
 
     print(f"\n{'='*62}\nscored {n} labelled decks "
-          f"(runs={args.runs}, turns={args.turns})\n{'='*62}")
+          f"(runs={args.runs}, turns={args.turns}"
+          f"{', real combo lookups' if args.real_combos else ''})\n{'='*62}")
     print(f"  bracket-exact   {exact:4d}/{n}  {100*exact/n:5.1f}%   (accept: >=60%)")
     print(f"  within-one      {within:4d}/{n}  {100*within/n:5.1f}%   (accept: >=95%)")
     print(f"  signed bias     {bias:+.2f} brackets  (positive = the engine rates HIGHER "
           f"than the builder)")
+    if args.real_combos and combo_failures:
+        print(f"  ({combo_failures} combo lookups failed and were analyzed without them)")
 
     print("\nconfusion — rows are the builder's label, columns the engine's estimate")
     header = "        " + "".join(f"{p:>6}" for p in range(1, 6)) + "     n   recall"
