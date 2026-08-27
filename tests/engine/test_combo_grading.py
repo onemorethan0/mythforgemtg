@@ -164,6 +164,35 @@ def test_graded_fast_combo_escalates_to_five(make_card, forest):
     assert est.bracket == 5
 
 
+def test_low_combat_reliance_is_the_cedh_signal_not_high(make_card, forest):
+    """REVERSED 2026-08-27 (`docs/PLAN_CLOCK.md` Sec 1.5): a real cEDH deck's clock is the
+    combo turn, not creatures connecting, so a LOW goldfish combat-kill-rate is the signal
+    that beats baseline on the labelled corpus -- not a high one, which the shipped gate
+    required until this landed. Ceiling was dropped from the gate entirely (measured
+    noise-level at two seeds), so this pins the ONLY remaining condition alongside the
+    combo check: a combo deck that ALSO reliably kills via plain combat (kill_rate above
+    the threshold) reads as a goodstuff Bracket-4 pile with an incidental combo, not cEDH.
+    """
+    def gc(name):
+        c = make_card(name, mana_cost="{2}", type_line="Artifact")
+        c.game_changer = True
+        return c
+    cards = [(forest, 40)] + [(gc(f"GC {i}"), 1) for i in range(5)]
+    fast = assess_combos(_report(_variant(["Thassa's Oracle", "Demonic Consultation"],
+                                          ["Win the game"], manaValueNeeded=2)))
+    low_combat = estimate_bracket(
+        cards, [], ceiling=0, speed_kill_rate=0.1, combo_profile=fast, combos_checked=True,
+    )
+    assert low_combat.bracket == 5, "low combat reliance + a real combo IS the cEDH signal"
+    high_combat = estimate_bracket(
+        cards, [], ceiling=100, speed_kill_rate=0.95, combo_profile=fast, combos_checked=True,
+    )
+    assert high_combat.bracket == 4, (
+        "a deck that reliably kills via plain combat reads as B4 goodstuff, "
+        "even holding the same real combo"
+    )
+
+
 def test_graded_strong_two_card_combo_also_escalates_to_five(make_card, forest):
     """Widened 2026-08-26 (`docs/PLAN_CLOCK.md` Sec 1.4, measured against 252 real B3/B4/B5
     decks with a live Spellbook lookup): a 2-card TERMINAL combo escalates even when its

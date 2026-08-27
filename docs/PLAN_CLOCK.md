@@ -264,6 +264,51 @@ one sweep at n=49, and it reverses a design intent, so it deserves a second look
 seed, a check against the B3/B4 side for false positives the same way this section just did)
 before it goes anywhere near the shipped gate.
 
+### 1.5 — the second look, and this one shipped clean (2026-08-27)
+
+Did the second look §1.4 asked for: re-ran `bracket_b5_gate.py` at a different seed (7,
+against seed 42) before touching anything.
+
+**The threshold reproduced almost exactly.** `speed_kill_rate <= 0.77` at seed 42 and
+`<= 0.77` at seed 7 — the identical value, independently, from two different random draws.
+Accuracy held (73.5% / 75.5%, both well above the ~57% baseline) with balanced recall both
+times (~76%/~71-75%). `ceiling` stayed noise-level at both seeds (59.2% / 59.2%, barely above
+baseline) — dropped from the gate entirely rather than kept as an unhelpful extra condition.
+
+**Shipped**: `_CEDH_MAX_COMBAT_RELIANCE = 0.77` replaces the old `ceiling >= 40 and
+speed_kill_rate >= 0.4` pair in `ratings/bracket.py`'s B5 branch. New test
+(`test_low_combat_reliance_is_the_cedh_signal_not_high`) pins the reversed direction
+directly: the SAME real combo escalates to Bracket 5 at low combat reliance and stays at
+Bracket 4 at high combat reliance — the shape the whole finding is about, not just a number
+change. 1300 tests green.
+
+**Verified live on the full 546-deck corpus, and this time it is a clean improvement, not
+another trade-off:**
+
+| metric | before (widening only, §1.4) | after (+ speed reversal) |
+|---|---|---|
+| B5 recall | 9.1% (5/55) | **36.4% (20/55)** |
+| within-one (raw) | 91.0% | **91.6%** |
+| within-one, rule-consistent subset | 94.4% | **95.0%** |
+| bracket-exact | 48.5% | **51.1%** |
+| signed bias | −0.04 | **−0.01** |
+
+Within-one is back at the pre-investigation baseline (91.6%, matching §1.2's very first
+number) — this change fully absorbs §1.4's own within-one cost and adds real B5 detection on
+top, rather than trading one for the other. The rule-consistent subset clears the accept bar
+again (95.0%).
+
+**Checked the residual big misses before calling it done, same discipline as §1.4.** Two
+B1→B5 and one B2→B5 mispredictions appeared (4- and 3-bracket misses) — worth real scrutiny
+before declaring victory on an aggregate number. All three are already-known rule-invalid
+labels: the B1-labelled decks hold 9 and 1 real Game Changers respectively, the B2-labelled
+one holds 5 — every one of them a `# bracket: 1/2` label on a deck the official rules
+forbid from being Bracket 1 or 2 at all (the exact class §1.2 already named and measured).
+Not fresh engine errors. Independently, all 20 correctly-identified B5 decks carry high
+Game-Changer counts (5–24, none low) — a second, unrelated signal agreeing with the verdict.
+
+**No trade-off to bring to the user this time — this one ships on the numbers alone.**
+
 ---
 
 ## 2. The blocking finding: the goldfish clock is bracket-invariant

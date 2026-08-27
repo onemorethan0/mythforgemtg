@@ -156,6 +156,22 @@ def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
 # four Evolving Wilds is no longer told its mana base is thin.
 _EXHIBITION_MANA = 0.80
 
+# The B4-vs-B5 combo escalation's second half, alongside `_fast_two_card_combo` below.
+# REVERSED 2026-08-27 from the original `speed_kill_rate >= 0.4` (`scripts/bracket_b5_gate.py`,
+# `docs/PLAN_CLOCK.md` Sec 1.4/1.5) -- measured against the widened-gate B4/B5 subset of the
+# labelled corpus (all decks holding a real terminal 2-card combo), a LOW combat-goldfish kill
+# rate predicts B5 better than a high one, not worse. The Magic reading: a cEDH deck's real
+# clock is the combo turn, not creatures connecting, so its raw combat kill rate reads lower
+# than a Bracket-4 goodstuff pile that still wins a fair share of games on combat alone even
+# without its combo assembling. `ceiling >= 40` (the OTHER original half of this gate) was
+# dropped entirely, not just loosened -- swept at two different seeds it never cleared much
+# above the "always say B4" baseline (59.2%/59.2%), while this single threshold reproduced to
+# two decimal places across seeds 42 and 7 (0.77 both times) with balanced recall (~75%/~73%)
+# well above baseline (~57%). Verified live on the full 546-deck corpus before shipping (see
+# PLAN_CLOCK.md for the exact confusion-matrix numbers), not just on the sweep's own accuracy
+# figure.
+_CEDH_MAX_COMBAT_RELIANCE = 0.77
+
 
 def _fast_two_card_combo(two_card_combos: int, profile: ComboAssessment | None) -> bool:
     """The cEDH escalation signal. With a graded profile, require the 2-card combo to be a
@@ -323,10 +339,13 @@ def estimate_bracket(
         if meta_rating is not None and meta_rating >= 1650:
             bracket = 5
             reasons.append(f"high gauntlet rating ({meta_rating:.0f}) -> Bracket 5 (cEDH)")
-        elif _fast_two_card_combo(two_card_combos, combo_profile) and ceiling >= 40 \
-                and speed_kill_rate >= 0.4:
+        elif _fast_two_card_combo(two_card_combos, combo_profile) \
+                and speed_kill_rate <= _CEDH_MAX_COMBAT_RELIANCE:
             bracket = 5
-            reasons.append("fast combo kill + high ceiling -> Bracket 5 (cEDH) range")
+            reasons.append(
+                "terminal 2-card combo, not primarily a combat-kill deck -> "
+                "Bracket 5 (cEDH) range"
+            )
         else:
             bracket = 4
             reasons.append("optimized power; not clearly cEDH-tuned -> Bracket 4")
