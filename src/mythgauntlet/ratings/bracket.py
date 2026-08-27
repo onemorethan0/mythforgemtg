@@ -110,6 +110,15 @@ class BracketEstimate:
     extra_turn_cards: int = 0
     mass_land_denial_cards: int = 0
     plays_up: bool = False  # capped at Core by the gates, but measures at the Core/Upgraded edge
+    # A VERIFIED in-deck game-ending combo, independent of whether it actually raised
+    # the floor. The combo gate only appends a reason to `reasons` when it changes
+    # something (`if floor < 3:` -- i.e. gc == 0): a deck that already has Game Changers
+    # gets no combo reason even while holding a real combo, so a caller that grepped
+    # `reasons` for combo text (the only prior way to observe this) systematically
+    # under-reported for that population. `two_card_combos` doesn't answer it either --
+    # it just echoes the raw input parameter and stays 0 whenever the caller used
+    # `combo_profile` instead. This field is always correct regardless of `gc` or `cap`.
+    has_verified_combo: bool = False
 
 
 def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
@@ -428,4 +437,5 @@ def estimate_bracket(
         extra_turn_cards=extra_turns,
         mass_land_denial_cards=mld,
         plays_up=plays_up,
+        has_verified_combo=bool(combos) and combos_checked,
     )

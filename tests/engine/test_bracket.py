@@ -46,6 +46,7 @@ def test_fast_combo_pushes_to_five(make_card, forest):
         cards, [], speed_kill_rate=0.5, two_card_combos=1, combos_checked=True
     )
     assert est.bracket == 5
+    assert est.has_verified_combo is True
 
 
 def test_meta_rating_distinguishes_5(make_card, forest):
@@ -71,6 +72,52 @@ def test_multi_card_combo_also_raises_floor_to_three(make_card, forest, bear):
     )
     assert est.bracket >= 3
     assert any("game-ending combo" in r for r in est.reasons)
+    assert est.has_verified_combo is True
+
+
+def test_has_verified_combo_true_even_when_game_changers_already_raised_the_floor(
+    make_card, forest,
+):
+    """The bug this pins: `reasons` only gets a combo entry when the gate actually
+    CHANGES the floor (`if floor < 3:`, i.e. gc == 0) -- a deck that already has Game
+    Changers gets no combo reason even while holding a real verified combo, so grepping
+    `reasons` for combo text (the only way to observe this before `has_verified_combo`
+    existed) silently read False for the entire gc>=1 population.
+    """
+    cards = [(forest, 40)] + [(_gc(make_card, f"GC {i}"), 1) for i in range(6)]  # gc=6 > 3
+    est = estimate_bracket(cards, [], speed_kill_rate=0.2,
+                           two_card_combos=1, combos_checked=True)
+    assert est.game_changers == 6
+    assert not any("in-deck game-ending combo" in r for r in est.reasons), (
+        "the reasons list genuinely carries no combo text here -- that's the exact gap "
+        "has_verified_combo exists to close, not a mistake in this test"
+    )
+    assert est.has_verified_combo is True
+
+
+def test_has_verified_combo_false_when_declared_but_not_verified(make_card, forest, bear):
+    """A DECLARED combo count without `combos_checked=True` is not a verified combo --
+    `has_verified_combo` must not report one just because the floor still moved on the
+    unchecked count."""
+    est = estimate_bracket([(forest, 40), (bear, 59)], [], speed_kill_rate=0.1,
+                           two_card_combos=1, combos_checked=False)
+    assert est.bracket >= 3  # the gate still fires on the declared count
+    assert est.has_verified_combo is False
+
+
+def test_has_verified_combo_false_for_the_go_off_heuristic_alone(make_card, forest, bear):
+    """A storm/spellslinger go-off is a real Bracket-3+ escalation but is NOT a
+    Spellbook-verified in-deck combo -- the two must not be conflated."""
+    est = estimate_bracket([(forest, 60), (bear, 39)], [], speed_kill_rate=0.0,
+                           can_go_off=True, combos_checked=True)
+    assert est.bracket >= 3
+    assert est.has_verified_combo is False
+
+
+def test_has_verified_combo_false_with_no_combo_at_all(make_card, forest, bear):
+    est = estimate_bracket([(forest, 40), (bear, 59)], [], speed_kill_rate=0.1,
+                           combos_checked=True)
+    assert est.has_verified_combo is False
 
 
 def test_go_off_raises_floor_to_three(make_card, forest, bear):

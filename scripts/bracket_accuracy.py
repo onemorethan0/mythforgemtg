@@ -122,27 +122,6 @@ def real_combo_lookup(resolved, label: str, *, throttle: float = 0.2):
     return combo_report, failed
 
 
-def has_combo_gate(reasons: list[str]) -> bool:
-    """Whether the REAL in-deck game-ending combo gate fired -- not the separate storm/
-    spellslinger go-off heuristic, which ALSO ends its reason in "-> min Bracket 3"
-    (bracket.py's `can_go_off` branch) but is an unverified nut-draw signal, not a
-    Spellbook-confirmed combo, and must not count as "impossible under the rules" by a
-    caller like `main`'s `rule_valid` filter below. Both the ungraded and graded combo
-    reasons (bracket.py's flat template, spellbook.py's `ComboAssessment.gate_reason()`)
-    share the "in-deck game-ending combo" phrase that the go-off reason does not, so
-    matching on that phrase (rather than the shared suffix every Bracket-3-escalation
-    reason ends with) is what actually discriminates them.
-
-    SCOPE: bracket.py only appends this reason when the combo gate actually RAISES the
-    floor (`if floor < 3:`, i.e. gc == 0) -- a deck that already has Game Changers
-    (gc >= 1) gets no combo reason even if it also holds a real verified combo, so this
-    reads False there regardless. That's fine for `rule_valid` (those rows are already
-    excluded via `game_changers > 0`), but do not reuse this to mean "does this deck
-    have a verified combo" anywhere else -- for the gc>=1 population it under-reports.
-    """
-    return any("in-deck game-ending combo" in r for r in reasons)
-
-
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--limit", type=int)
@@ -231,11 +210,18 @@ def main() -> int:
                      "predicted": estimate.bracket,
                      "confidence": round(getattr(estimate, "confidence", 0.0) or 0.0, 2),
                      "game_changers": getattr(estimate, "game_changers", 0),
-                     # See `has_combo_gate`'s own docstring for what this does and does
-                     # NOT discriminate (real combo vs. the unrelated go-off heuristic;
-                     # under-reports for gc>=1 decks, which is fine for `rule_valid` below
-                     # since those rows are excluded via `game_changers>0` regardless).
-                     "has_combo_gate": has_combo_gate(reasons),
+                     # Whether a REAL, verified in-deck game-ending combo exists --
+                     # `BracketEstimate.has_verified_combo`, not a `reasons`-text grep.
+                     # It used to be `any("in-deck game-ending combo" in r for r in
+                     # reasons)`, which was correct against the UNRELATED storm/go-off
+                     # heuristic (that reason never contains the phrase) but wrong in
+                     # the other direction: bracket.py only appends a combo reason when
+                     # the gate actually RAISES the floor (gc == 0), so a deck that
+                     # already has Game Changers read False here even while holding a
+                     # real verified combo. `has_verified_combo` is computed in
+                     # `estimate_bracket` independent of whether it changed anything,
+                     # so it is correct for BOTH populations with no text-matching at all.
+                     "has_combo_gate": getattr(estimate, "has_verified_combo", False),
                      "reasons": reasons})
         if index % 25 == 0:
             print(f"  {index}/{len(decks)} ({int(time.time()-started)}s)", flush=True)
