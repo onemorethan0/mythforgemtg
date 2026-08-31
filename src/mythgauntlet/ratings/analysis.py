@@ -126,27 +126,37 @@ def analyze_deck(
         all_cards, mana_by_turn, nut_power, nut_creatures, cfg.turns,
         commander_names=frozenset(c.name for c in resolved.commanders),
     )
-    ceiling = compute_ceiling(
-        runs, cfg, go_off_turn=go_off.earliest_turn, overrun_alpha=overrun.can_alpha_strike
-    )
     # Grade the combos (metadata) + judge determinism (rules/errata) so the bracket gate and
     # explanation can tell a fast terminal wincon from a slow durdle or a chance-based loop,
     # instead of "any combo -> min Bracket 3".
     #
-    # Graded BEFORE the pod score, because the pod score needs it. The two callers supply
-    # combo evidence in different shapes: the CLI counts combos itself and passes
+    # Graded BEFORE compute_ceiling AND the pod score, because both need it. The two callers
+    # supply combo evidence in different shapes: the CLI counts combos itself and passes
     # `game_ending_combos`, while the API passes the whole `combo_report` and leaves the
     # counts at 0. `estimate_bracket` already reconciles the two (it takes
     # `max(combo_count, two_card_combos, combo_profile.total)`), but `has_finisher` below
     # read the raw count only — so over HTTP it was ALWAYS False and the app's pod score
     # never reflected a combo finisher, while the CLI's did. Same deck, two answers, from
     # the pipeline whose comment says the surfaces "can't drift".
+    #
+    # THIS BLOCK USED TO RUN AFTER compute_ceiling, which is why compute_ceiling's own
+    # `has_game_ending_combo` bonus (+15, axes.py) was NEVER APPLIED to any deck ever
+    # analyzed: the call below had no combo_profile/has_finisher yet to pass it, so it
+    # silently took the parameter's own `False` default -- the exact same "graded too late
+    # for a caller that needs it" shape the comment above already documents for the pod
+    # score, just missed for Ceiling. A real 2-card infinite combo deck (Smaug + Pyrohemia)
+    # measured Ceiling 19-21/100 with this bug live; the fix is moving this block earlier,
+    # not touching axes.py at all -- the bonus was always there, just never reachable.
     combo_profile = None
     if combo_report is not None:
         commander_names = frozenset(c.name for c in resolved.commanders)
         det_fn = make_determinism_fn(resolved.cards, resolved.commanders)
         combo_profile = assess_combos(combo_report, commander_names, determinism_fn=det_fn)
     has_finisher = game_ending_combos > 0 or (combo_profile is not None and combo_profile.total > 0)
+    ceiling = compute_ceiling(
+        runs, cfg, go_off_turn=go_off.earliest_turn, overrun_alpha=overrun.can_alpha_strike,
+        has_game_ending_combo=has_finisher,
+    )
 
     # Pod (multiplayer) closing power: a longer goldfish (a pod runs long) tells whether the deck
     # can generate TABLE-lethal unopposed damage; a game-ending combo closes the table combat
