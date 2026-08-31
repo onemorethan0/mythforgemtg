@@ -12,13 +12,26 @@
 // the reader can see an axis exists and is honestly blank rather than the shape silently
 // collapsing toward that corner.
 
-const SIZE = 220
-const CENTER = SIZE / 2
-const MAX_R = 78
+// The plot (rings/spokes/polygon) is a circle of radius MAX_R. Labels sit OUTSIDE that
+// circle and are edge-anchored ('start'/'end', not just 'middle') for every axis that
+// isn't at the very top or bottom, so their text runs sideways away from the circle —
+// a "Consistency 82"-length label anchored near the horizontal can extend 70-90px past
+// its anchor point. The canvas used to be a tight SIZE x SIZE square sized to the circle
+// alone (viewBox == width/height), so those labels ran past the SVG's own bounds — and an
+// <svg> defaults to `overflow: hidden`, so the ones that ran off got silently clipped
+// mid-word ("Resilience" -> "Resi", "Pod 44" -> "d 44") instead of overflowing visibly.
+// WIDTH/HEIGHT now carry real label margin beyond the circle so every anchored label —
+// including a full-width horizontal one, the worst case — has room to render complete.
+const MAX_R = 74
+const LABEL_R = MAX_R + 16
+const WIDTH = 380
+const HEIGHT = 260
+const CENTER_X = WIDTH / 2
+const CENTER_Y = HEIGHT / 2
 const RINGS = [0.25, 0.5, 0.75, 1.0]
 
 function point(angle, r) {
-  return [CENTER + r * Math.cos(angle), CENTER + r * Math.sin(angle)]
+  return [CENTER_X + r * Math.cos(angle), CENTER_Y + r * Math.sin(angle)]
 }
 
 export default function PowerRadar({ axes, accent = '#38bdf8' }) {
@@ -35,7 +48,10 @@ export default function PowerRadar({ axes, accent = '#38bdf8' }) {
   })
 
   return (
-    <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={{ display: 'block', margin: '4px auto 8px' }}>
+    <svg
+      width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+      style={{ display: 'block', margin: '4px auto 8px', maxWidth: '100%', height: 'auto' }}
+    >
       {/* background rings, faint */}
       {RINGS.map((frac, ri) => {
         const ringPts = axes.map((_, i) => point(angleFor(i), MAX_R * frac).join(',')).join(' ')
@@ -46,7 +62,7 @@ export default function PowerRadar({ axes, accent = '#38bdf8' }) {
       {/* spokes */}
       {axes.map((a, i) => {
         const [x, y] = point(angleFor(i), MAX_R)
-        return <line key={a.key} x1={CENTER} y1={CENTER} x2={x} y2={y} stroke="#292524" strokeWidth={1} />
+        return <line key={a.key} x1={CENTER_X} y1={CENTER_Y} x2={x} y2={y} stroke="#292524" strokeWidth={1} />
       })}
       {/* data polygon — only drawn when every axis is measured, so an unmeasured axis
           can't silently pull a straight edge through where its vertex would have been */}
@@ -69,8 +85,8 @@ export default function PowerRadar({ axes, accent = '#38bdf8' }) {
       })}
       {/* labels, each with a native tooltip carrying the axis's glossary definition */}
       {axes.map((a, i) => {
-        const [lx, ly] = point(angleFor(i), MAX_R + 18)
-        const anchor = Math.abs(lx - CENTER) < 4 ? 'middle' : lx > CENTER ? 'start' : 'end'
+        const [lx, ly] = point(angleFor(i), LABEL_R)
+        const anchor = Math.abs(lx - CENTER_X) < 4 ? 'middle' : lx > CENTER_X ? 'start' : 'end'
         return (
           <text
             key={`label-${a.key}`}
