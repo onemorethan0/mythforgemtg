@@ -202,8 +202,12 @@ def _archive_gauntlet(tag: str) -> Path | None:
     return dest
 
 
-# Weekday the weekly agent-contrast phase runs on (0=Mon). Sunday keeps it off work nights.
-AGENT_CONTRAST_WEEKDAY = 6
+# Weekday the weekly agent-contrast phase runs on (0=Mon). Friday, not Sunday: the Windows
+# scheduled task ("MythGauntlet Overnight Training") only fires Tue-Fri (DaysOfWeek bitmask
+# 60 = Tue|Wed|Thu|Fri), so a Sunday target was permanently unreachable and this phase never
+# ran (2026-09-01). Friday->Saturday-morning is the least workday-disruptive of the days that
+# actually run.
+AGENT_CONTRAST_WEEKDAY = 4
 _WEEKDAY_NAMES = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                   "Saturday", "Sunday")
 
