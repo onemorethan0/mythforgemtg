@@ -400,18 +400,32 @@ def lint_against_card(doc: dict, card: Card) -> list[str]:
         if t.casefold() not in type_line:
             errors.append(f"declared type {t!r} not in type line {card.type_line!r}")
 
-    # Instants/sorceries are one-shot spells: they cannot carry mana/activated/triggered
-    # abilities on the battlefield (they never sit there).
+    # Instants/sorceries are one-shot spells: they cannot carry a MANA ability, since
+    # nothing about them ever sits on the battlefield to tap for mana. But "never has an
+    # activated/triggered ability" was too absolute (v11, 2026-09-02) — real cards print
+    # genuine activated/triggered abilities that fire from hand or the graveyard, not the
+    # battlefield: Cycling ({cost}, Discard this card: Draw a card — 18 of 25 measured
+    # false rejections), a graveyard-recursion clause ("Sacrifice a snow land: return this
+    # card from your graveyard to your hand" — Whiteout), or a cast-triggered copy effect
+    # (Replicate: "When you cast this spell, copy it..." — Echo Storm, Lose Focus). What
+    # must never happen is the RESOLUTION ITSELF being modeled as something other than
+    # spell_effect, so the gate now requires at least one spell_effect ability whenever the
+    # card has any abilities at all, rather than rejecting every non-spell_effect kind.
     is_pure_spell = ("instant" in type_line or "sorcery" in type_line) and not any(
         t in type_line for t in ("creature", "artifact", "enchantment", "land", "planeswalker")
     )
     if is_pure_spell:
-        for ability in doc.get("abilities") or []:
-            kind = ability.get("kind") if isinstance(ability, dict) else None
-            if kind not in (None, "spell_effect", "static"):
-                errors.append(
-                    f"instant/sorcery cannot have a {kind!r} ability — use spell_effect"
-                )
+        abilities = doc.get("abilities") or []
+        kinds = [a.get("kind") if isinstance(a, dict) else None for a in abilities]
+        for kind in kinds:
+            if kind == "mana_ability":
+                errors.append("instant/sorcery cannot have a mana_ability — it never sits on the battlefield to tap")
+        if abilities and not any(k in (None, "spell_effect") for k in kinds):
+            errors.append(
+                "instant/sorcery has abilities but none is spell_effect — its resolution "
+                "must be modeled as spell_effect (a Cycling/recursion/cast-trigger ability "
+                "may accompany it, but cannot replace it)"
+            )
 
     for _ability, effect in _iter_effects(doc):
         op = effect.get("op")

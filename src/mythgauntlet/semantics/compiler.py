@@ -35,7 +35,24 @@ from mythgauntlet.semantics.ccm_grammar import CCM_GRAMMAR
 # by example without saying the key set was closed, and never mentioned "other" at all,
 # so the model invented keys like "discard". Bumping the version also re-arms the
 # quarantine retry gate in compile-top for all 2,276 entries.
-PROMPT_VERSION = 10  # v10: trigger events must match the text (gate 3 now checks them)
+# v11 targets the failure shapes measured across the 1,114 cards still stuck on v10
+# after 6-7 refresh nights (each blocked entry's ledger `refresh_errors` gives the
+# actual gate that rejected its last retry — read, not guessed): 156 of the 330
+# recorded reasons (47%) were still trigger-event cross_check failures, dominated by
+# ONE unstated confusion — "{T}: <effect>" (a plain tap-COST activated ability) being
+# read as a tap_for_mana TRIGGER (Glasses of Urza, Cinder Pyromancer, Burning Anger,
+# Gideon's Avenger's "becomes tapped" reading the same way). Also: Target.controller
+# is a closed 4-value enum but got invented free text ("target_player", "defending",
+# "owner", 15 cards); "dies" got read as leaves_battlefield instead of death (Ashcloud
+# Phoenix); Ward's reminder text got promoted into a phantom becomes_target ability
+# (Archive Dragon); Cycling — a real activated ability printed ON an instant/sorcery —
+# was rejected by v10's absolute "instant/sorcery is always spell_effect" rule
+# (Rebuild, Lay Waste, Whiteout, 26 cards); and every sampled planeswalker (Jace
+# Unraveler of Secrets, Liliana Death Wielder, Nicol Bolas, Jaya Ballard) failed
+# "needs a non-empty effects list" because v10 gave no guidance at all for
+# representing a +N/-N loyalty cost. All six are addressed above with an explicit
+# rule plus a worked example, not just a restated generality.
+PROMPT_VERSION = 11  # v11: tap-cost vs tap_for_mana, controller enum, death vs leaves_battlefield, keyword reminder text, cycling-on-spells, planeswalker loyalty costs
 DEFAULT_LLM_URL = os.environ.get("MYTHGAUNTLET_LLM_URL", "http://127.0.0.1:8010")
 DEFAULT_LLM_MODEL = os.environ.get("MYTHGAUNTLET_LLM_MODEL", "qwen3:14b")
 
@@ -54,26 +71,33 @@ Ability kinds:
 
 Effect ops (params; amounts may be "X" — when a numeric param is "X", also put "x_basis" on that effect saying what X counts: one of mana_paid (X in the mana cost), chosen, creatures_you_control, lands_you_control, artifacts_you_control, permanents_you_control, cards_in_hand, life_paid, counters_on_this, target_power, other):
 add_mana(amount, colors: concatenated letters like "G", "C", "GU" — for "one mana of any color" use "any"; never write "G or U") ; draw(count) ; discard(count, who) ; mill(count, who) ; scry(count) ; surveil(count) ; search_library(what: Target, count, to: "battlefield"|"hand"|"graveyard", tapped, shuffle) ; shuffle() ; destroy(target) ; exile(target) ; return_to_hand(target) ; gain_control(target) ; attach(target) — for Equip/attach abilities ; counter_spell(unless_pays) ; deal_damage(amount, target) ; gain_life(amount, who) ; lose_life(amount, who) ; create_token(count, power, toughness, types) ; pump(power, toughness, target, duration) ; add_counter(count, counter_type, target) — for +1/+1 and other counters ; tap(target) ; untap(target) ; sacrifice(target, who) ; reanimate(target) ; extra_turn() ; cost_reduction(amount, applies_to) ; win_game(condition)
-Target: {"type": "creature"|"permanent"|"land"|"artifact"|"card"|"any"|..., "subtype": opt, "controller": "you"|"opponent"|"any"|"each", "count": int|"all", "zone": opt}
+Target: {"type": "creature"|"permanent"|"land"|"artifact"|"card"|"player"|"any"|..., "subtype": opt, "controller": "you"|"opponent"|"any"|"each", "count": int|"all", "zone": opt}
+"controller" is a CLOSED enum of exactly those four words — NEVER invent a value like "target_player", "attacking_player", "defending", or "owner". This applies to type:"player" targets too: "target player" is {"type":"player","controller":"any"}; "target opponent" is {"type":"player","controller":"opponent"}; "each opponent" is {"type":"player","controller":"opponent","count":"all"}.
 Any effect may carry "optional": true (player may decline) and "condition": "<short text>" (restrictions the ops cannot express).
 
 Rules:
 - cost.mana must EXACTLY equal the printed mana cost. types must be words from the type line, lowercase.
-- An activated/mana ability's "cost" object may use ONLY these five keys: "mana" (string), "tap" (bool), "sacrifice_self" (bool), "pay_life" (int), "other" (string). This list is CLOSED. Any other cost component — discarding, exiling, removing a counter, sacrificing another permanent, revealing, tapping other creatures — goes in "other" as plain text, e.g. {"mana":"{1}","other":"discard a card"}. NEVER invent a cost key like "discard" or "sacrifice" or "exile".
+- An activated/mana ability's "cost" object may use ONLY these five keys: "mana" (string), "tap" (bool), "sacrifice_self" (bool), "pay_life" (int), "other" (string). This list is CLOSED. Any other cost component — discarding, exiling, removing a counter, sacrificing another permanent, revealing, tapping other creatures, a PLANESWALKER LOYALTY COST — goes in "other" as plain text, e.g. {"mana":"{1}","other":"discard a card"} or {"other":"+1 loyalty"} / {"other":"-2 loyalty"} / {"other":"0 loyalty"}. NEVER invent a cost key like "discard" or "sacrifice" or "exile" or "loyalty".
+- A planeswalker's "+N:"/"-N:"/"0:" line is an "activated" ability (cost per the loyalty rule above). If its effect is a big multi-clause payoff that doesn't fit the ops below (an emblem, a multi-step chain like "deals 7 damage... discards seven... sacrifices seven permanents"), use {"kind":"static","note":"<what it does>"} for that ability rather than leaving effects empty — see the next rule.
 - Every ability EXCEPT "static" must have a non-empty "effects" list. If the ability's effect cannot be expressed with the ops below, do not emit an empty list and do not omit the key — emit {"kind":"static","note":"<what it does>"} instead. A cost with nothing to pay for is never valid.
 - A "mana_ability" contains ONLY add_mana effects. If the card also does something else when that ability is used (scry, damage, a counter, a drawback), put THAT in a separate "triggered" or "static" ability — never inside the mana ability's effects.
 - Model ONLY what the text says. If a clause cannot be expressed with these ops, represent it as {"kind":"static","note":...} rather than inventing ops or forcing a bad fit.
 - "static" is an ability KIND, never an effect op. Every effect's "op" must come from the op list above. Any effect may carry a "note" string for details the params cannot express.
-- An instant or sorcery resolves once and goes to the graveyard: model its text as spell_effect (plus static notes), never as mana_ability, activated, or triggered.
+- An instant or sorcery's RESOLUTION effect (what the card does when it resolves off the stack) must be spell_effect — never mana_ability, activated, or triggered. But the same card CAN separately carry a genuine activated or triggered ability alongside that: Cycling, Flashback-with-a-rider, or a graveyard-recursion clause ("Sacrifice a snow land: return this card from your graveyard to your hand") are real abilities usable outside resolution — model those as their own "activated" (Cycling: cost {"mana":"{2}","other":"discard this card"}, effects [draw(1)]) or "triggered" (a "When you cycle this card, ..." rider) entry. Only the spell's OWN resolution must be spell_effect; do not force Cycling into it.
+- "{T}: <effect>" (or any cost paid to use an ability) is an ACTIVATED ability whose cost includes "tap": true — it is NEVER a "triggered" ability with event tap_for_mana. tap_for_mana is reserved for the rare genuine trigger "Whenever this/a permanent is tapped for mana" — a card simply having a tap-cost ability, even one that adds mana, does not trigger anything by itself (that ability IS the mana_ability or activated ability; there is no separate trigger to record).
 - THE TRIGGER EVENT MUST MATCH THE TEXT EXACTLY. A trigger on the wrong event is a different card, not a close-enough one. If no event in the list fits, use "other" — that is always correct and always better than a near miss. Specifically:
   * "is dealt damage" / "is dealt noncombat damage" is dealt_damage. It is NOT combat_damage_to_player — noncombat damage is the opposite of combat damage.
-  * "deals combat damage to a player" is combat_damage_to_player.
+  * "deals combat damage to a player" (or planeswalker) is combat_damage_to_player. "deals combat damage" with NO "to a player" (e.g. combat damage to a blocking creature, or the target unspecified) is NOT combat_damage_to_player — use other.
+  * "Whenever this creature deals damage" (this permanent's own damage OUTPUT, combat or not) has no matching event — it is the opposite of dealt_damage (which is damage received). Use other. dealt_damage is ONLY for "is dealt damage" / "deals damage to it/this".
   * "When you cast this spell" is self_cast — it happens ONCE. "Whenever you cast a creature spell" is cast_creature and happens every time. Never use cast_creature for a card's own cast.
   * "blocks" is blocks and "becomes blocked" is becomes_blocked. Neither is attack — blocking is the opposite side of combat from attacking.
-  * landfall is a land ENTERING the battlefield. A land being destroyed, sacrificed, or put into a graveyard is not landfall; a land being tapped for mana is tap_for_mana.
+  * landfall is a land ENTERING the battlefield. A land being destroyed, sacrificed, or put into a graveyard is not landfall; a land being tapped for mana is tap_for_mana (the genuine trigger, not an ordinary tap-cost ability — see above).
   * A Saga's chapter abilities (I, II, III) are saga_chapter, never upkeep or draw_step.
-  * "Whenever another creature dies" is creature_dies. "When this creature dies" is death.
-- A card with no triggered ability must not have one. Prevention effects, activated abilities, and static keywords are not triggers — do not invent an "etb" for a card that never mentions entering.
+  * "Whenever another creature dies" is creature_dies. "When this creature dies" is death — and so is the spelled-out version some cards use instead of the keyword, "is put into a graveyard from the battlefield" (that IS the rules definition of dying, CR 700.4). Dying (going to the graveyard FROM the battlefield, however worded) is NEVER leaves_battlefield — leaves_battlefield is for other zone changes (exile, bounce, put on top/bottom of library) that are not specifically dying. This holds even when the EFFECT also returns the card to the battlefield (a phoenix-style "When this creature dies, return it to the battlefield" ability): the trigger is still death (the cause), not leaves_battlefield (a description of the result) — and the effect for "return it to the battlefield" is reanimate, never return_to_hand.
+  * "becomes tapped" (generic — NOT "is tapped for mana") has no matching event; use other. A creature "becomes the target" is becomes_target ONLY when that is real card text, never when it is reminder text for a keyword (see the next rule).
+- Parenthetical REMINDER TEXT that explains a keyword (Ward, Flying, Trample, Deathtouch, Flash, Hexproof, Menace, ...) is not separate card text — do not turn it into its own ability. "Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)" is ONE keyword; represent it as {"kind":"static","note":"Ward {2}"} (or fold into an existing static note), never as a second "becomes_target" triggered ability duplicating the reminder text.
+- A card with no triggered ability must not have one. Prevention effects, activated abilities, and static keywords are not triggers — do not invent an "etb" for a card that never mentions entering. Example: "{T}: Draw a card, then discard a card." is ONLY an activated ability — it has no ETB, no trigger of any kind, even though drawing/discarding sounds like it could be one.
+- search_library's "count" is REQUIRED even when the text says "a card" (count:1) or "up to N cards" (count:N, and mark the effect "optional":true) — never omit it.
 - Output must be strictly valid JSON: double-quoted keys, no trailing commas, no | alternatives inside values.
 /no_think"""
 

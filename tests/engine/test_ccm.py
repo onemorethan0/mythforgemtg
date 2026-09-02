@@ -320,7 +320,7 @@ def test_cross_check_allows_intrinsic_mana_on_typed_lands(make_card):
     assert not any("never says add" in e for e in cross_check(doc, shock))
 
 
-def test_lint_rejects_activated_ability_on_instant(make_card):
+def test_lint_rejects_mana_ability_on_instant(make_card):
     card = make_card("Ritual Spell", mana_cost="{B}", type_line="Instant",
                      oracle_text="Add {B}{B}{B}.")
     doc = {
@@ -331,10 +331,50 @@ def test_lint_rejects_activated_ability_on_instant(make_card):
             "effects": [{"op": "add_mana", "amount": 3, "colors": "B"}],
         }],
     }
-    assert any("use spell_effect" in e for e in lint_against_card(doc, card))
+    assert any("mana_ability" in e for e in lint_against_card(doc, card))
     doc["abilities"][0] = {
         "kind": "spell_effect",
         "effects": [{"op": "add_mana", "amount": 3, "colors": "B"}],
+    }
+    assert lint_against_card(doc, card) == []
+
+
+def test_lint_rejects_instant_with_no_spell_effect_at_all(make_card):
+    """The RESOLUTION must be spell_effect. An instant whose only ability is 'activated'
+    (the old absolute-ban bug's flip side: the model wrapped the whole card in the wrong
+    kind instead of adding a legitimate second ability) is still rejected."""
+    card = make_card("Bolt Spell", mana_cost="{R}", type_line="Instant",
+                     oracle_text="Deal 3 damage to any target.")
+    doc = {
+        "name": "Bolt Spell", "ccm_version": 1, "cost": {"mana": "{R}"},
+        "types": ["instant"],
+        "abilities": [{
+            "kind": "activated", "cost": {"mana": "{R}"},
+            "effects": [{"op": "deal_damage", "amount": 3, "target": {"type": "any"}}],
+        }],
+    }
+    errors = lint_against_card(doc, card)
+    assert any("none is spell_effect" in e for e in errors)
+
+
+def test_lint_allows_cycling_alongside_spell_effect_on_instant(make_card):
+    """v11 (2026-09-02): Cycling and other real secondary abilities (graveyard
+    recursion, a cast-triggered copy effect like Replicate) are genuine card text on an
+    instant/sorcery, not the resolution — they must not be flatly rejected as long as the
+    resolution itself is still spell_effect."""
+    card = make_card(
+        "Cycling Bolt", mana_cost="{R}", type_line="Instant",
+        oracle_text="Deal 3 damage to any target.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+    )
+    doc = {
+        "name": "Cycling Bolt", "ccm_version": 1, "cost": {"mana": "{R}"},
+        "types": ["instant"],
+        "abilities": [
+            {"kind": "spell_effect",
+             "effects": [{"op": "deal_damage", "amount": 3, "target": {"type": "any"}}]},
+            {"kind": "activated", "cost": {"mana": "{2}", "other": "discard this card"},
+             "effects": [{"op": "draw", "count": 1}]},
+        ],
     }
     assert lint_against_card(doc, card) == []
 
