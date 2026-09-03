@@ -360,10 +360,27 @@ def write_report(
         f"- ledger before: {before or 'n/a'}",
         f"- ledger after:  {after or 'n/a'}",
         f"- newly accepted: {after.get('accepted', 0) - before.get('accepted', 0)}",
-        f"- newly quarantined: {after.get('quarantined', 0) - before.get('quarantined', 0)}",
+        f"- net change in quarantine: {after.get('quarantined', 0) - before.get('quarantined', 0)} "
+        "(negative means quarantined cards got rescued tonight, not that fewer were newly quarantined)",
+    ]
+    # `at_latest_prompt` is counted against whatever PROMPT_VERSION was current at each
+    # snapshot. On an ordinary night before/after share that version and the subtraction
+    # is a real delta. On a version-bump night (before.prompt_version != after's) it is
+    # not: `before` counted cards against the OLD "latest" and could not possibly have
+    # counted any against the NEW one, so the naive subtraction reads as a huge phantom
+    # regression — a v10->v11 bump once printed "-25744" here, when zero cards regressed
+    # and 5,192 had genuinely landed on v11 overnight (2026-09-03, found while reading a
+    # routine morning report). Detect the bump and reset the baseline to zero instead.
+    bumped = before.get("prompt_version") != after.get("prompt_version")
+    before_at_latest = 0 if bumped else before.get("at_latest_prompt", 0)
+    lines += [
         f"- refreshed to prompt v{after.get('prompt_version', '?')}: "
-        f"{after.get('at_latest_prompt', 0) - before.get('at_latest_prompt', 0)}"
-        f" (now {after.get('at_latest_prompt', 0)}/{after.get('total', 0)})",
+        f"{after.get('at_latest_prompt', 0) - before_at_latest}"
+        f" (now {after.get('at_latest_prompt', 0)}/{after.get('total', 0)})"
+        + (f" — prompt bumped v{before.get('prompt_version', '?')}"
+           f"->v{after.get('prompt_version', '?')} this run, so the whole store just became"
+           " 'stale' and this counts only tonight's compiles, not a regression"
+           if bumped else ""),
         f"- remaining on an older prompt: "
         f"{after.get('total', 0) - after.get('at_latest_prompt', 0)}"
         + (
