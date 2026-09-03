@@ -341,8 +341,16 @@ def _ratings(path: Path | None) -> dict[str, float]:
         return {}
 
 
+def _ccm_health(path: Path) -> dict | None:
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
 def write_report(
-    before: dict[str, int], gauntlet_args: list[str], started: float
+    before: dict[str, int], gauntlet_args: list[str], started: float, health_path: Path
 ) -> None:
     after = ledger_stats()
     labels = _bracket_labels()
@@ -397,6 +405,36 @@ def write_report(
             "genuinely exhausted (check the log for 'Nothing to compile') or the "
             "gateway/compile step failed - these look identical in the counts above."
         )
+
+    # Ranked WHY-cards-are-failing, every night, not just after a version bump -
+    # 2026-09-03: the v10->v11 rollout was scoped by hand-sampling 330 blocked cards'
+    # refresh_errors, which is exactly the kind of archaeology this is meant to make
+    # unnecessary. Surfacing the top classes here means a new dominant failure (like
+    # 'enters_tapped', which only became visible once v11's refresh queue reached lands
+    # outside the original trigger-event-heavy backlog) shows up on the FIRST morning it
+    # exists, not whenever someone next goes digging.
+    health = _ccm_health(health_path)
+    lines += ["", "## Compiler health - top failure classes (mythgauntlet ccm-health)"]
+    if health:
+        lines.append(
+            f"- quarantined: {health.get('quarantined_total', 0)}   "
+            f"blocked-refresh: {health.get('blocked_total', 0)} "
+            f"({health.get('blocked_with_data', 0)} with a recorded reason)"
+        )
+        for pool, label in (("quarantined_classes", "Quarantined"), ("blocked_classes", "Blocked-refresh")):
+            classes = health.get(pool) or []
+            if not classes:
+                lines.append(f"- {label}: none")
+                continue
+            lines.append(f"- {label} (top {len(classes)}):")
+            for cls in classes:
+                examples = ", ".join(cls["examples"][:3])
+                lines.append(
+                    f"    {cls['count']:>4}  [{cls['gate']}] {cls['message']} ({examples})"
+                )
+    else:
+        lines.append(f"- unavailable: no {health_path.name} written (see log)")
+
     lines += [
         "",
         "## Gauntlet ratings (greedy, full), pre vs post compile",
@@ -558,7 +596,9 @@ def main() -> int:
         _archive_gauntlet("mcts")
 
     run("ccm-status", "ccm-status")
-    write_report(before, gauntlet_args, started)
+    health_path = DATA / f"ccm_health_{STAMP}.json"
+    run("ccm-health", "ccm-health", "--top", "6", "--samples", "3", "--json", str(health_path))
+    write_report(before, gauntlet_args, started, health_path)
     log("overnight pipeline done")
     return 0
 

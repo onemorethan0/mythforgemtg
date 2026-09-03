@@ -36,7 +36,7 @@ from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, resolve
 from mythgauntlet.ratings import advisor, manabase, metrics
 from mythgauntlet.ratings.analysis import analyze_deck, make_determinism_fn
-from mythgauntlet.semantics import compiler, tags
+from mythgauntlet.semantics import compiler, health, tags
 from mythgauntlet.semantics.store import SemanticsStore, load_store
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig, simulate
 from mythgauntlet.sim.tier2 import DuelConfig, duel
@@ -1188,6 +1188,56 @@ def _cmd_ccm_status(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_ccm_health(args: argparse.Namespace) -> int:
+    """Rank WHY cards are failing to compile, not just how many — see semantics/health.py.
+
+    Run this BEFORE deciding to bump PROMPT_VERSION (it tells you what a new prompt
+    revision actually needs to fix) and periodically between bumps (a fresh dominant
+    class can surface once the refresh queue reaches a different slice of the store —
+    2026-09-02's v11 rollout surfaced 'enters_tapped' as the next class the moment it
+    started touching cards beyond the original trigger-event-heavy backlog).
+    """
+    ledger = compiler.Ledger()
+    result = health.analyze_failures(
+        ledger.entries, top_n=args.top, samples_per_class=args.samples
+    )
+
+    if args.json:
+        out_path = Path(args.json)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as fh:
+            json.dump(result, fh, indent=2, ensure_ascii=False)
+        console.print(f"[dim]wrote {out_path}[/dim]")
+
+    console.print(f"[bold]CCM failure classes[/bold] (prompt v{result['prompt_version']})")
+    console.print(
+        f"  quarantined: {result['quarantined_total']}   "
+        f"blocked-refresh: {result['blocked_total']} "
+        f"({result['blocked_with_data']} with a recorded reason)"
+    )
+
+    def _render(title: str, classes: list[dict]) -> None:
+        console.print()
+        if not classes:
+            console.print(f"[dim]  no {title.lower()} failures recorded[/dim]")
+            return
+        table = Table(title=title, show_header=True, header_style="bold")
+        table.add_column("gate")
+        table.add_column("message")
+        table.add_column("cards", justify="right")
+        table.add_column("examples")
+        for cls in classes:
+            examples = ", ".join(cls["examples"][:3])
+            if len(cls["examples"]) > 3:
+                examples += " ..."
+            table.add_row(cls["gate"], cls["message"], str(cls["count"]), examples)
+        console.print(table)
+
+    _render("Quarantined — top failure classes", result["quarantined_classes"])
+    _render("Blocked-refresh — top failure classes", result["blocked_classes"])
+    return 0
+
+
 def _cmd_benchmark(args: argparse.Namespace) -> int:
     """Run Tier-0 analysis over every corpus deck; check axis separation by bracket."""
     db = _load_db()
@@ -2184,6 +2234,18 @@ def build_parser() -> argparse.ArgumentParser:
         "ccm-status", description="CCM ledger coverage stats."
     )
     p_cs.set_defaults(func=_cmd_ccm_status)
+
+    p_ch = sub.add_parser(
+        "ccm-health",
+        description="Rank the ledger's compile-failure classes (quarantined + "
+                     "blocked-refresh) by how many cards they affect, with examples. "
+                     "Run before a PROMPT_VERSION bump to see what it actually needs "
+                     "to fix, or any time to check for an emerging systemic issue.",
+    )
+    p_ch.add_argument("--top", type=int, default=12, help="classes to show per pool")
+    p_ch.add_argument("--samples", type=int, default=5, help="example cards per class")
+    p_ch.add_argument("--json", help="also write the full result as JSON to this path")
+    p_ch.set_defaults(func=_cmd_ccm_health)
 
     # Navigation / creature comforts.
     p_decks = sub.add_parser(
