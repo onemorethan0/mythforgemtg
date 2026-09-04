@@ -100,9 +100,24 @@ def log(message: str) -> None:
             fh.write(line + "\n")
 
 
-def run(name: str, *cli_args: str) -> int:
-    """Run a mythgauntlet CLI verb, streaming output to the log. Never raises."""
-    log(f"START {name}: mythgauntlet {' '.join(cli_args)}")
+def run(name: str, *cli_args: str, timeout: float | None = None) -> int:
+    """Run a mythgauntlet CLI verb, streaming output to the log. Never raises.
+
+    `timeout` (seconds) hard-kills the WHOLE process tree, not just the top-level
+    process. This matters because a CLI verb like `gauntlet` forks its own worker
+    subprocesses (`--jobs N`), and `Popen.kill()` alone only kills the parent, leaving
+    the workers orphaned and still running — exactly what happened 2026-09-04: Phase
+    7's ISMCTS half started within the --max-hours budget and then ran unbounded past
+    it, past the scheduled task's own blunt 14h ExecutionTimeLimit, which killed only
+    the top-level python.exe and left 15 worker processes running uselessly for hours
+    while ccm-status/ccm-health/write_report — everything after Phase 7 in main() —
+    never got to run. Returns -2 on timeout (distinct from a real exit code) so a
+    caller can tell "ran out of budget" apart from "the tool itself failed".
+    """
+    log(
+        f"START {name}: mythgauntlet {' '.join(cli_args)}"
+        + (f" (timeout {timeout / 3600:.1f}h)" if timeout else "")
+    )
     started = time.time()
     try:
         proc = subprocess.Popen(
@@ -110,17 +125,39 @@ def run(name: str, *cli_args: str) -> int:
             cwd=REPO, env=_ENV, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True, encoding="utf-8", errors="replace",
         )
-        assert proc.stdout is not None
+    except OSError as exc:
+        log(f"FAIL  {name}: could not launch ({exc})")
+        return -1
+
+    assert proc.stdout is not None
+
+    def _drain() -> None:
         for raw in proc.stdout:
             line = raw.rstrip()
             if line:
                 with _LOG_LOCK, open(LOG_PATH, "a", encoding="utf-8") as fh:
                     fh.write(f"    | {line}\n")
+
+    drainer = threading.Thread(target=_drain, daemon=True)
+    drainer.start()
+    timed_out = False
+    try:
+        rc = proc.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        # taskkill /T walks the real Windows process tree by parent PID, unlike
+        # proc.kill() (one PID only) — the same cleanup Stop-ScheduledTask alone did
+        # NOT do for us on 2026-09-04, which is how the 15-process orphan happened.
+        subprocess.run(
+            ["taskkill", "/PID", str(proc.pid), "/T", "/F"], capture_output=True
+        )
         rc = proc.wait()
-    except OSError as exc:
-        log(f"FAIL  {name}: could not launch ({exc})")
-        return -1
+    drainer.join(timeout=5)
+
     minutes = (time.time() - started) / 60
+    if timed_out:
+        log(f"KILLED {name}: exceeded its {timeout / 3600:.1f}h budget, tree terminated ({minutes:.1f} min)")
+        return -2
     log(f"END   {name}: rc={rc} ({minutes:.1f} min)")
     return rc
 
@@ -201,6 +238,14 @@ def _archive_gauntlet(tag: str) -> Path | None:
     log(f"gauntlet {tag} -> {dest.name}")
     return dest
 
+
+# The Windows scheduled task ("MythGauntlet Overnight Training") has a hard
+# ExecutionTimeLimit of 14h — keep this in sync if that ever changes. `run(timeout=...)`
+# uses it to bound Phase 7 (the only phase that can run long enough to matter) so the
+# night degrades to "ISMCTS skipped, ran out of time" instead of a silent no-report
+# night when Task Scheduler's own kill lands (2026-09-04).
+_SCHEDULED_TASK_HARD_LIMIT_HOURS = 14.0
+_REPORT_TAIL_MARGIN_HOURS = 0.5  # ccm-status + ccm-health + write_report's own pytest run
 
 # Weekday the weekly agent-contrast phase runs on (0=Mon). Friday, not Sunday: the Windows
 # scheduled task ("MythGauntlet Overnight Training") only fires Tue-Fri (DaysOfWeek bitmask
@@ -588,12 +633,42 @@ def main() -> int:
                        "(--agent-contrast always to force)")
     else:
         cores = max(1, (os.cpu_count() or 4) - 2)
-        run("gauntlet reduced (greedy)", "gauntlet",
-            *_agent_gauntlet_args("greedy", cores, args.smoke))
-        _archive_gauntlet("rgreedy")
-        run("gauntlet reduced (ISMCTS)", "gauntlet",
-            *_agent_gauntlet_args(f"mcts:{args.mcts_iters}", cores, args.smoke))
-        _archive_gauntlet("mcts")
+        hard_deadline = (
+            started + _SCHEDULED_TASK_HARD_LIMIT_HOURS * 3600
+            - _REPORT_TAIL_MARGIN_HOURS * 3600
+        )
+        budget = hard_deadline - time.time()
+        if budget < 600:
+            _skip_contrast(
+                f"only {budget / 60:.0f} min left before the scheduled task's "
+                f"{_SCHEDULED_TASK_HARD_LIMIT_HOURS:.0f}h hard limit - not worth starting"
+            )
+        else:
+            rc = run(
+                "gauntlet reduced (greedy)", "gauntlet",
+                *_agent_gauntlet_args("greedy", cores, args.smoke),
+                timeout=min(budget, 1800),
+            )
+            _archive_gauntlet("rgreedy")
+            if rc == -2:
+                _skip_contrast("the greedy half alone exceeded its time budget - ISMCTS half skipped")
+            else:
+                remaining = hard_deadline - time.time()
+                if remaining < 600:
+                    _skip_contrast("ran out of budget after the greedy half - ISMCTS half skipped")
+                else:
+                    mcts_rc = run(
+                        "gauntlet reduced (ISMCTS)", "gauntlet",
+                        *_agent_gauntlet_args(f"mcts:{args.mcts_iters}", cores, args.smoke),
+                        timeout=remaining,
+                    )
+                    _archive_gauntlet("mcts")
+                    if mcts_rc == -2:
+                        _skip_contrast(
+                            f"ISMCTS half exceeded its {remaining / 3600:.1f}h budget and was "
+                            "killed - the known corpus-scale problem (see the NOT NIGHTLY "
+                            "comment above), not a fresh bug"
+                        )
 
     run("ccm-status", "ccm-status")
     health_path = DATA / f"ccm_health_{STAMP}.json"
