@@ -81,8 +81,11 @@ comfyui_restart.log.err
 # it consumes are not — ccm/compiled/ is ~30k JSON documents produced by many
 # overnight GPU-hours of LLM compilation plus a hand-tuned prompt and three
 # validation gates, and it is still being trained (the quarantine backlog is
-# actively shrinking night over night). It is withheld until that work is
-# complete; distribution terms are undecided and may be commercial.
+# actively shrinking night over night). It isn't bundled here because baking a
+# moving, imperfect dataset into a versioned git tree means every user is stuck
+# with whatever vintage they cloned. Periodic snapshots may be published instead
+# (download-ccm.py) once training reaches a good point, under CC BY-NC 4.0 with a
+# commercial-contact note (see docs/ENGINE_DATA.md) - decided 2026-09-07.
 #
 # Consequence for a fresh clone: the engine falls back to rung-1 Oracle-text
 # heuristics, so it RUNS but measures less precisely. See docs/ENGINE_DATA.md.
@@ -90,6 +93,8 @@ comfyui_restart.log.err
 # source, not compiled output.
 ccm/compiled/
 ccm/ledger.json
+ccm/_manifest.json
+ccm/LICENSE-CCM-DATA.txt
 
 # Scryfall bulk cache the engine downloads on demand (mythgauntlet fetch-data).
 # LEADING SLASH IS LOAD-BEARING: a bare "data/" also matched src/mythgauntlet/data/ —

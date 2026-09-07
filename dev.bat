@@ -1,14 +1,7 @@
 @echo off
 REM Quick start - Development server
-REM This is a shortcut to: manage.bat → Option 1
-
-echo.
-echo ============================================
-echo     MYTH FORGE - Development Server
-echo ============================================
-echo.
-echo [*] Starting server...
-echo [*] Make sure ComfyUI is running on port 8188
-echo [*] Open browser: http://localhost:8000
-echo.
-python server.py
+REM Actually delegates to manage.bat start (was a bare `python server.py` that skipped
+REM the llama-swap/strength-engine ensure steps despite this comment always claiming
+REM otherwise - that gap produced unthemed decks and "bracket unavailable" for anyone
+REM who used this instead of the menu. See CLAUDE.md.
+call "%~dp0manage.bat" start

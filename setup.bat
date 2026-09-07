@@ -29,8 +29,9 @@ echo [OK] Setup complete!
 echo ============================================
 echo.
 echo Next steps:
-echo   1. Download models: manage.bat (option 7)
-echo   2. Start server: dev.bat
-echo   3. Open browser: http://localhost:8000
+echo   1. Download AI models (optional): manage.bat (option 8)
+echo   2. Download deck-strength data (optional): manage.bat (option 10)
+echo   3. Start server: dev.bat
+echo   4. Open browser: http://localhost:8000
 echo.
 pause

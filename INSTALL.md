@@ -83,10 +83,21 @@ python -m mythgauntlet fetch-data     # Scryfall bulk -> data/
 python -m mythgauntlet doctor         # verify data / gateways / collection
 ```
 
-⚠️ **The ~30k compiled card semantics are NOT included in this repo.** They are still being
-trained and are withheld — see **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)**. Without them the
+⚠️ **The ~32k compiled card semantics are NOT bundled in this repo.** They're still being
+trained nightly (Tue–Fri) — see **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)**. Without them the
 engine falls back to Oracle-text heuristics: brackets and axes still compute, with lower
-fidelity, and every report states its coverage. If you have a store of your own, point at it:
+fidelity, and every report states its coverage.
+
+A **beta** snapshot (currently 32% on the latest compiler prompt, licensed CC BY-NC 4.0) can be
+fetched into `ccm/` with:
+
+```bash
+python download-ccm.py       # optional; Windows: download-ccm.bat, or manage.bat option 10
+```
+
+It's updated as training continues — re-run the command later for a fresher copy.
+
+Or point at your own store (or someone else's):
 
 ```bash
 setx MYTHGAUNTLET_STORE "D:\my-ccm-store"   # a dir containing compiled/ and ledger.json

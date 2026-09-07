@@ -5,7 +5,6 @@ uvicorn>=0.47.0
 # Imported directly by both servers for the request models, not just pulled in behind
 # fastapi — declare what we actually import.
 pydantic>=2.0
-anthropic>=0.100.0
 python-multipart>=0.0.9
 pixie-python>=4.3.0
 imageio>=2.34.0

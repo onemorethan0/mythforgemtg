@@ -208,10 +208,13 @@ On a finished or imported deck you get:
 There is exactly **one** analysis implementation in this repo. When the engine isn't running, the UI
 says a number is unavailable rather than substituting a second, weaker guess.
 
-> ⚠️ **The engine's ~30k compiled card semantics are NOT included.** That store is still being
-> trained and is withheld for now. The engine runs without it on Oracle-text fallbacks, at reduced
-> fidelity. See **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)** for exactly what's missing and how to
-> build your own. Engine internals live in **[docs/engine/](docs/engine/)**.
+> ⚠️ **The engine's ~32k compiled card semantics are NOT bundled in this repo — get them with
+> `python download-ccm.py`.** That store is still training nightly (Tue–Fri) and the download is
+> a **beta**, currently 32% on the latest compiler prompt; re-run the downloader occasionally for
+> a fresher copy. Without it the engine runs on Oracle-text fallbacks, at reduced fidelity — the
+> bracket estimate itself doesn't need it at all. See **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)**
+> for exactly what the download contains, its license (CC BY-NC 4.0), and how to build your own.
+> Engine internals live in **[docs/engine/](docs/engine/)**.
 
 ---
 

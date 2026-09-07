@@ -26,11 +26,12 @@ echo   -- Setup --
 echo     7.  First-time setup      (install deps, then build the UI)
 echo     8.  Download AI models
 echo     9.  Rebuild frontend      (after UI changes)
+echo    10.  Download deck-strength data (CCM, optional - see docs/ENGINE_DATA.md)
 echo.
 echo     0.  Exit
 echo.
 set "choice="
-set /p choice="Choose an option (0-9): "
+set /p choice="Choose an option (0-10): "
 
 if "%choice%"=="1" goto start_dev
 if "%choice%"=="2" goto start_clean
@@ -41,10 +42,11 @@ if "%choice%"=="6" goto cleanup
 if "%choice%"=="7" goto setup
 if "%choice%"=="8" goto download_models
 if "%choice%"=="9" goto rebuild_frontend
+if "%choice%"=="10" goto download_ccm
 if "%choice%"=="0" goto exit_menu
 
 echo.
-echo [WARN] Invalid choice "%choice%" - enter a number from 0 to 9.
+echo [WARN] Invalid choice "%choice%" - enter a number from 0 to 10.
 timeout /t 2 >nul
 goto menu
 
@@ -223,6 +225,21 @@ echo [OK] Done.
 pause
 goto menu
 
+:download_ccm
+cls
+echo ============================================
+echo      MYTH FORGE  -  Download Deck-Strength Data
+echo ============================================
+echo.
+echo [*] This is OPTIONAL. Without it, brackets and Power Profile still compute
+echo     from Oracle-text heuristics - see docs/ENGINE_DATA.md.
+echo.
+python download-ccm.py
+echo.
+echo [OK] Done. Restart the strength API to pick it up (option 5, then option 1).
+pause
+goto menu
+
 :rebuild_frontend
 cls
 echo ============================================
@@ -247,18 +264,31 @@ REM ---- helpers (reached only via CALL) ---------------------------------------
 :ensure_llama
 REM Make sure the llama-swap LLM gateway (:8010) is running; start it if not.
 REM The boot Startup-folder shortcut was removed - manage.bat owns startup now.
+REM Skipped entirely on the Ollama backend, which doesn't use llama-swap at all - this
+REM used to print a spurious "launcher missing" warning for Ollama users every time.
+if /i "%MYTHFORGE_LLM_BACKEND%"=="ollama" (
+  echo [i] MYTHFORGE_LLM_BACKEND=ollama - skipping llama-swap ^(theming uses Ollama on :11434^).
+  goto :eof
+)
 netstat -aon 2>nul | find ":8010" | find "LISTENING" >nul
 if !errorlevel! equ 0 (
   echo [OK] llama-swap LLM gateway already running on :8010.
   goto :eof
 )
-if not exist "E:\llama\start-llama-swap.bat" (
-  echo [X] llama-swap launcher missing: E:\llama\start-llama-swap.bat
-  echo     Theming needs the :8010 gateway - start it manually.
+REM MYTHFORGE_LLAMA_SWAP_LAUNCHER overrides the launcher path - the hardcoded default
+REM below is this dev machine's own path and won't exist on a fresh clone elsewhere.
+set "_llama_launcher=%MYTHFORGE_LLAMA_SWAP_LAUNCHER%"
+if not defined _llama_launcher set "_llama_launcher=E:\llama\start-llama-swap.bat"
+if not exist "!_llama_launcher!" (
+  echo [X] llama-swap launcher not found: !_llama_launcher!
+  echo     Theming needs the :8010 gateway. Either install llama-swap there, set
+  echo     MYTHFORGE_LLAMA_SWAP_LAUNCHER to its start script, or use Ollama instead
+  echo     ^(set MYTHFORGE_LLM_BACKEND=ollama^). See INSTALL.md.
   goto :eof
 )
 echo [*] Starting llama-swap LLM gateway (:8010) in its own window...
-start "llama-swap" /min /d "E:\llama" cmd /c "E:\llama\start-llama-swap.bat"
+for %%F in ("!_llama_launcher!") do set "_llama_dir=%%~dpF"
+start "llama-swap" /min /d "!_llama_dir!" cmd /c "!_llama_launcher!"
 set "_ll="
 for /l %%i in (1,1,20) do (
   if not defined _ll (
