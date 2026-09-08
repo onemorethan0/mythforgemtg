@@ -1117,7 +1117,11 @@ def _cmd_compile_top(args: argparse.Namespace) -> int:
             # Already tried and failed AT THIS PROMPT VERSION (see the marker written
             # on the keep path in _compile_cards): don't spend the GPU on it again
             # until the prompt itself changes. --force still re-attempts everything.
-            if entry.get("refresh_failed_at") == compiler.PROMPT_VERSION and not args.force:
+            if (
+                entry.get("refresh_failed_at") == compiler.PROMPT_VERSION
+                and not args.force
+                and not args.retry_blocked
+            ):
                 blocked += 1
                 continue
             stale.append((version, card))
@@ -2227,6 +2231,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="re-attempt QUARANTINED cards even though they were last tried at the "
              "current prompt version. Use after a SCHEMA or gate change, which the "
              "prompt_version gate cannot see; --force would also re-do 30k good CCMs",
+    )
+    p_ct.add_argument(
+        "--retry-blocked", action="store_true",
+        help="re-attempt cards accepted at an older prompt version whose refresh to "
+             "the current one already failed and got marked refresh_failed_at (needs "
+             "--refresh-stale too). Same narrow-door idea as --retry-quarantined, but "
+             "for the stale-refresh pool: --force would also re-touch every one of the "
+             "~31k already-current accepted CCMs, which is the weeks-of-GPU cost the "
+             "refresh_failed_at marker exists to avoid. Use after a compiler-side fix "
+             "(not a prompt/schema change) that only some blocked cards need.",
     )
     p_ct.set_defaults(func=_cmd_compile_top)
 

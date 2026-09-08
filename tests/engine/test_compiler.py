@@ -120,6 +120,41 @@ def test_compile_overrides_a_self_declared_rung(make_card):
     assert result.doc["rung"] == 2
 
 
+def test_compile_auto_sets_enters_tapped_from_oracle_text(make_card):
+    """One unreinforced prompt sentence (`compiler.py` line 63) vs the ~15 lines every
+    other rule gets — measured 2026-09-08 at 289 of 832 blocked-refresh cards (35%,
+    the largest class): the model's attention goes to the land's other ability and it
+    forgets the top-level field. `tags.analyze()` already computes this fact
+    deterministically off the same regex the gate itself grades against (and the gate
+    already excludes conditional "unless" wording), so the compiler patches the field
+    in rather than gating on the LLM restating a fact already known.
+    """
+    card = make_card("Slow Caves", type_line="Land",
+                     oracle_text="Slow Caves enters the battlefield tapped.")
+    doc = {
+        "name": "Slow Caves", "ccm_version": 1, "cost": {"mana": ""},
+        "types": ["land"], "abilities": [],
+    }  # enters_tapped omitted, as the model does in practice
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["enters_tapped"] is True
+
+
+def test_compile_does_not_invent_enters_tapped_for_an_untapped_land(make_card):
+    """The patch must only fire on lands that actually enter tapped."""
+    card = make_card("Forest", type_line="Basic Land — Forest", produced_mana=("G",))
+    doc = {
+        "name": "Forest", "ccm_version": 1, "cost": {"mana": ""},
+        "types": ["land"], "abilities": [
+            {"kind": "mana_ability", "cost": {"tap": True},
+             "effects": [{"op": "add_mana", "amount": 1, "colors": "G"}]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert "enters_tapped" not in result.doc
+
+
 def test_compile_retries_with_feedback_then_accepts(make_card):
     calls = []
 

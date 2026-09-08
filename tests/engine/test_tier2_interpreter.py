@@ -109,3 +109,104 @@ def test_each_amount_scales_to_the_board(tmp_path, make_card):
     opp = _Player(name="opp", library=[])
     _resolve(gc, me, opp, False)
     assert len(me.creatures()) == 6                    # 3 existing + 3 tokens ("each" = 3)
+
+
+def test_add_counter_self_target_buffs_power_and_toughness(tmp_path, make_card):
+    """add_counter was a complete no-op store-wide before this (4,519 uses, the 2nd most
+    common op in the compiled store) — this is the additive fix for its dominant real
+    shape: a creature counting up on itself (Managorger Hydra, Walking Ballista, ...)."""
+    card = make_card("Test Grower", mana_cost="{1}{G}", type_line="Creature — Ooze")
+    card.power, card.toughness = "1", "1"
+    ccm = _spell_ccm(
+        "Test Grower", [{"op": "add_counter", "count": 2, "counter_type": "plus"}],
+        kind="triggered", trigger={"event": "etb"},
+    )
+    gc = make_game_card(card, _store(tmp_path, "Test Grower", ccm))
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    grower = next(p for p in me.battlefield if p.name == "Test Grower")
+    assert (grower.power, grower.toughness, grower.counters) == (3, 3, 2)
+
+
+def test_add_counter_other_creature_target_is_not_modeled(tmp_path, make_card):
+    """No targeting infra exists for this op — guessing WHICH creature gets the counter
+    would fabricate a value, so an explicit non-self target stays a no-op (honest
+    under-count), same as before this change."""
+    card = make_card("Test Blesser", mana_cost="{1}{G}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Blesser", [{"op": "add_counter", "count": 2,
+                                        "counter_type": "plus",
+                                        "target": {"type": "creature", "controller": "you"}}])
+    gc = make_game_card(card, _store(tmp_path, "Test Blesser", ccm))
+    me = _Player(name="me", library=[], battlefield=[_bear("A")])
+    opp = _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    bear = me.battlefield[0]
+    assert (bear.power, bear.toughness, bear.counters) == (2, 2, 0)  # untouched
+
+
+def test_counters_on_this_x_basis_resolves_from_the_permanent(make_card):
+    """A later trigger reading back counters an earlier resolution placed on itself —
+    the same x_basis mechanism as creatures_you_control/lands_you_control, now covering
+    the single most common non-cost basis in the store (118 uses)."""
+    from mythgauntlet.sim.tier2 import _fire_perm_triggers
+
+    ability = {
+        "kind": "triggered", "trigger": {"event": "upkeep"},
+        "effects": [{"op": "deal_damage", "amount": "X", "x_basis": "counters_on_this",
+                     "target": {"type": "opponent"}}],
+    }
+    # 12 counters, deliberately above _EACH_CAP (6) -- a counter pile is a STAT, not a
+    # board count, and an Ashling/Braid-of-Fire-style engine exists specifically to grow
+    # past that. A board-count cap would silently gut the exact deck this basis is for.
+    perm = _Permanent(name="Counter Pile", power=0, toughness=0, is_creature=False,
+                       sick=False, counters=12, triggers=(("upkeep", ability),))
+    me = _Player(name="me", library=[], battlefield=[perm])
+    opp = _Player(name="opp", library=[], life=40)
+    _fire_perm_triggers(perm, me, opp, "upkeep")
+    assert opp.life == 28  # X resolved to the 12 live counters, not capped at 6
+
+
+def test_artifacts_you_control_x_basis_resolves_from_the_board(tmp_path, make_card):
+    card = make_card("Test Inventory", mana_cost="{2}{R}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Inventory", [{"op": "deal_damage", "amount": "X",
+                                         "x_basis": "artifacts_you_control",
+                                         "target": {"type": "opponent"}}])
+    gc = make_game_card(card, _store(tmp_path, "Test Inventory", ccm))
+    rock = _Permanent(name="Rock", power=0, toughness=0, is_creature=False, is_artifact=True)
+    me = _Player(name="me", library=[], battlefield=[_bear("A"), rock, rock])
+    opp = _Player(name="opp", library=[], life=40)
+    _resolve(gc, me, opp, False)
+    assert opp.life == 38  # 2 artifacts, the non-artifact bear doesn't count
+
+
+def test_target_power_x_basis_resolves_to_the_source_creatures_power():
+    """target_power is NOT the damage recipient's power -- sampled real cards (Abyssal
+    Hunter, Aggressive Instinct) and the dominant shape is a fight effect: the SOURCE
+    creature deals damage equal to its own power."""
+    from mythgauntlet.sim.tier2 import _fire_perm_triggers
+
+    ability = {
+        "kind": "triggered", "trigger": {"event": "upkeep"},
+        "effects": [{"op": "deal_damage", "amount": "X", "x_basis": "target_power",
+                     "target": {"type": "player", "controller": "opponent"}}],
+    }
+    fighter = _Permanent(name="Fighter", power=7, toughness=7, is_creature=True,
+                         sick=False, triggers=(("upkeep", ability),))
+    me = _Player(name="me", library=[], battlefield=[fighter])
+    opp = _Player(name="opp", library=[], life=40)
+    _fire_perm_triggers(fighter, me, opp, "upkeep")
+    assert opp.life == 33  # X resolved to the source's power (7), not the default 1
+
+
+def test_target_power_x_basis_stays_default_without_a_creature_source(tmp_path, make_card):
+    """A mass-effect SPELL scaling off someone else's power (Alpha Brawl, Allies at Last)
+    has no creature source in this context -- fall back to the honest default rather than
+    guessing whose power it means."""
+    card = make_card("Test Alpha Brawl", mana_cost="{2}{B}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Alpha Brawl", [{"op": "deal_damage", "amount": "X",
+                                           "x_basis": "target_power",
+                                           "target": {"type": "player", "controller": "opponent"}}])
+    gc = make_game_card(card, _store(tmp_path, "Test Alpha Brawl", ccm))
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[], life=40)
+    _resolve(gc, me, opp, False)
+    assert opp.life == 39  # no creature source (an instant/sorcery) -> default 1

@@ -25,7 +25,7 @@ import requests
 
 from mythgauntlet.config import PROJECT_ROOT, USER_AGENT
 from mythgauntlet.model.card import Card, normalize_name
-from mythgauntlet.semantics import ccm
+from mythgauntlet.semantics import ccm, tags
 from mythgauntlet.semantics.ccm_grammar import CCM_GRAMMAR
 
 # v9 targets the three schema classes that account for 939 of the 2,276 quarantine
@@ -343,6 +343,18 @@ def compile_card(
             feedback = errors[0]
             continue
         was_repaired = bool(doc.pop("_json_repaired", False))
+        # enters_tapped is a rung-1-derivable FACT (tags._ENTERS_TAPPED_RE, the same
+        # regex the cross_check gate itself grades against) that the prompt gives one
+        # unreinforced sentence — measured 2026-09-08 at 289 of 832 blocked-refresh
+        # cards (35%, the single largest class), because the model's attention goes to
+        # the land's other ability and it forgets the top-level field. Since we already
+        # have a reliable ground truth for the unconditional case (the gate excludes
+        # "unless" text, so conditional tapped lands never reach here), the compiler
+        # sets the field itself rather than gating on the LLM restating a fact we
+        # already know — same idiom as `intrinsic_mana` overriding the add_mana check
+        # for typed lands below in ccm.cross_check.
+        if card.is_land and tags.analyze(card).enters_tapped and not doc.get("enters_tapped"):
+            doc["enters_tapped"] = True
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]
         if not errors:

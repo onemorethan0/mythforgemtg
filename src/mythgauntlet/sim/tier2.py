@@ -75,6 +75,13 @@ from mythgauntlet.sim.tier0 import SimCard, _can_pay, _Source
 # Target types the engine treats as "a creature-ish thing" for removal.
 _REMOVAL_TYPES = {"creature", "permanent", "artifact", "enchantment", "any", "planeswalker"}
 _EACH_CAP = 6  # cap on a "for each creature you control" board-scaled amount
+# A raw stat (a creature's power, a counter pile) is not a board COUNT and routinely runs
+# past 6 in a normal game — capping it at _EACH_CAP would silently gut exactly the decks
+# these bases exist to measure (a big fighter, an Ashling-style counter-storm engine).
+# Mirrors ccm.py's own deal_damage sanity ceiling (_SANITY_MAX) rather than inventing a
+# new number.
+_STAT_CAP = 40
+_STAT_BASES = {"target_power", "counters_on_this"}
 
 # CR 704.5a: a player with 21+ combat damage from a single commander loses the game.
 COMMANDER_DAMAGE_LETHAL = 21
@@ -134,6 +141,7 @@ class _Permanent:
     power: int
     toughness: int
     is_creature: bool
+    is_artifact: bool = False
     sick: bool = True
     tapped: bool = False
     engine_draw: int = 0
@@ -141,6 +149,7 @@ class _Permanent:
     activated: tuple[ActivatedEffect, ...] = ()
     death: DeathEffect | None = None
     triggers: tuple[tuple[str, dict], ...] = ()  # (event, CCM ability) pairs
+    counters: int = 0  # +1/+1-style counters currently on this permanent (self-target only, see add_counter)
 
 
 @dataclass
@@ -613,9 +622,12 @@ def _apply_resolved(
 
     Mirrors the flattened-profile mutations op-for-op, but executed per effect (so every
     token spawns, every removal resolves) instead of aggregated. Ops the engine doesn't model
-    (counter_spell -> stack, add_counter/scry/mill/discard) are skipped, matching the
-    flattening. Resolved `add_mana` (ritual class) and `search_library to:hand` (tutors)
-    ARE executed — the cEDH fidelity increment (docs/SIMULATION.md).
+    (counter_spell -> stack, scry/mill/discard) are skipped, matching the flattening.
+    Resolved `add_mana` (ritual class) and `search_library to:hand` (tutors) ARE executed —
+    the cEDH fidelity increment (docs/SIMULATION.md). `add_counter` executes for a SELF
+    target only (2026-09-08) — the dominant real shape for a counters-matter creature; a
+    counter placed on a chosen other target isn't modeled (no targeting infra for this op,
+    and guessing the target would fabricate a value rather than measure one).
 
     `opp` is `me`'s PRIMARY opponent; `others` are `me`'s remaining opponents in a pod. Single-
     target effects hit `opp`; **"each opponent"** effects (drains, group-slug, each-creature
@@ -697,6 +709,27 @@ def _apply_resolved(
             _tutor_to_top(me, what)
     elif op == "add_mana":
         _ritual_mana(me, pr.get("amount", 1), pr.get("colors"))
+    elif op == "add_counter":
+        # Self-target only (the dominant real shape — a creature counting up on itself:
+        # Managorger Hydra, Hangarback Walker's own ETB, Ashling the Pilgrim, Walking
+        # Ballista). "Put a counter on TARGET creature" (a genuine other-permanent choice)
+        # is not modeled — the engine has no targeting infra for this op, and guessing
+        # which creature would be a fabrication, not a measurement. `add_counter` was a
+        # complete no-op before this (the single most common unmodeled op store-wide,
+        # 4,519 uses) so this is additive: previously-silent cards now do something only
+        # in the one case that's safe to resolve without inventing a target.
+        target = _tgt("target")
+        is_self = just_cast is not None and (not target or target.get("self") is True)
+        if is_self:
+            count = max(0, pr.get("count", 1))
+            ctype = str(pr.get("counter_type") or "").strip().lower()
+            just_cast.counters += count
+            if ctype in ("", "plus", "+1/+1", "p1p1", "plus_one_plus_one"):
+                just_cast.power += count
+                just_cast.toughness += count
+            # minus/-1/-1 and other non-P/T counter types (charge, loyalty, generic
+            # payoff-only counters): tracked in .counters for x_basis reads, but no P/T
+            # or state-based-death interaction yet — an honest under-count, not a guess.
 
 
 class _EngineResolver:
@@ -710,8 +743,9 @@ class _EngineResolver:
     at the default: the CCM store shows bare X is overwhelmingly a COST or CHOSEN amount.
     """
 
-    def __init__(self, me: _Player):
+    def __init__(self, me: _Player, source: "_Permanent | None" = None):
         self._me = me
+        self._source = source  # the permanent whose ability is resolving, for counters_on_this
 
     def amount(self, raw: object, op: str, param: str, effect: dict | None = None) -> int:
         if isinstance(raw, bool):
@@ -728,7 +762,8 @@ class _EngineResolver:
                 basis = str(effect.get("x_basis") or "").strip().lower()
                 live = self._x_from_basis(basis)
                 if live is not None:
-                    return max(1, min(live, _EACH_CAP))
+                    cap = _STAT_CAP if basis in _STAT_BASES else _EACH_CAP
+                    return max(1, min(live, cap))
         return 1  # bare X/'all'/'half'/... — chosen/cost/ambiguous, keep the modest default
 
     def _x_from_basis(self, basis: str) -> int | None:
@@ -746,6 +781,25 @@ class _EngineResolver:
             return len(me.hand)
         if basis == "lands_you_control":
             return len(me.sources)
+        if basis == "artifacts_you_control":
+            return sum(1 for p in me.battlefield if p.is_artifact)
+        if basis == "counters_on_this":
+            return self._source.counters if self._source is not None else None
+        if basis == "target_power":
+            # NOT the damage recipient's power, despite the name -- sampled 12 real cards
+            # (2026-09-08) and the dominant shape is a FIGHT effect: "this creature deals
+            # damage equal to ITS OWN power to target creature" (Abyssal Hunter, Aggressive
+            # Instinct, Abomination's power-up). The engine's existing deal_damage handling
+            # already picks who gets hit; this only needed to fix the AMOUNT. Falls through
+            # to the honest default when there's no creature source (a mass-effect spell
+            # scaling off someone else's power, e.g. Alpha Brawl, Allies at Last) rather
+            # than guess. target_toughness is deliberately NOT handled the same way — a
+            # sample of THOSE showed no single referent (the creature that died, that was
+            # sacrificed, that just entered, that's attacking...), so a source.toughness
+            # guess would be wrong more often than not.
+            if self._source is not None and self._source.is_creature:
+                return self._source.power
+            return None
         return None
 
     def condition_holds(self, condition: str, effect: dict) -> bool:
@@ -773,7 +827,7 @@ def _fire_perm_triggers(
     """
     if not perm.triggers:
         return
-    resolver = _EngineResolver(controller)
+    resolver = _EngineResolver(controller, source=perm)
     for ev, ability in perm.triggers:
         if ev != event:
             continue
@@ -795,7 +849,7 @@ def _fire_attack_triggers(
     """
     if not perm.triggers:
         return
-    resolver = _EngineResolver(controller)
+    resolver = _EngineResolver(controller, source=perm)
     for ev, ability in perm.triggers:
         if ev != "attack" or ability.get("_attack_scope", "self") != scope:
             continue
@@ -830,7 +884,8 @@ def _resolve(
     if card.is_creature:
         just_cast = _Permanent(
             name=card.name, power=gc.sim.attack_power, toughness=max(1, _toughness(gc)),
-            is_creature=True, engine_draw=engine_draw, is_commander=is_commander,
+            is_creature=True, is_artifact=card.has_type("Artifact"),
+            engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers,
         )
         me.battlefield.append(just_cast)
@@ -838,6 +893,7 @@ def _resolve(
         me.battlefield.append(
             _Permanent(
                 name=card.name, power=0, toughness=0, is_creature=False,
+                is_artifact=card.has_type("Artifact"),
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers,
             )
@@ -850,7 +906,7 @@ def _resolve(
         # CCM path: execute each resolution effect through the interpreter, with a board-aware
         # resolver ("for each creature" scales to the caster's board; X stays default — see
         # _EngineResolver). Effects fire per-effect, not aggregated.
-        resolver = _EngineResolver(me)
+        resolver = _EngineResolver(me, source=just_cast)
         for ability in gc.resolve_abilities:
             for eff in interpret_ability(ability, resolver):
                 _apply_resolved(eff, me, opp, just_cast, others)
