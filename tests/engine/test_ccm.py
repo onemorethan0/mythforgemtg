@@ -311,6 +311,30 @@ def test_cross_check_catches_a_keyword_grant_disguised_as_a_counter(make_card):
     assert cross_check(doc, card) == []
 
 
+def test_cross_check_accepts_a_mass_negative_pump_as_a_board_wipe(make_card):
+    """'All creatures get -2/-2' (Biting Rain, Infest, Pestilence-shape) genuinely wipes
+    the board via state-based actions once toughness hits 0 -- there's no op other than
+    pump to represent it, so the gate must recognize it rather than demanding a
+    destroy/exile/deal_damage-shaped wipe that doesn't match how the card is worded.
+    Found 2026-09-08 auditing an independent XMage-derived CCM extraction against these
+    same gates -- Biting Rain's real XMage ability is exactly BoostAllEffect(-2, -2,
+    ...), so a correct LLM compile choosing pump here hits the identical false gate."""
+    card = make_card("Test Biting Rain", mana_cost="{2}{B}", type_line="Sorcery",
+                     oracle_text="All creatures get -2/-2 until end of turn.")
+    doc = dict(GOOD_DRAW_CCM, name="Test Biting Rain", types=["sorcery"], abilities=[
+        {"kind": "spell_effect", "effects": [
+            {"op": "pump", "power": -2, "toughness": -2, "target": {"type": "creature", "count": "all"}},
+        ]},
+    ])
+    assert not any("board wipe" in e for e in cross_check(doc, card))
+
+    # A positive pump to all creatures is NOT a wipe and must still be flagged.
+    doc["abilities"][0]["effects"][0] = {
+        "op": "pump", "power": 2, "toughness": 2, "target": {"type": "creature", "count": "all"},
+    }
+    assert any("board wipe" in e for e in cross_check(doc, card))
+
+
 def test_full_validate_pass(make_card):
     card = make_card("Insight Spell", mana_cost="{2}{U}", type_line="Sorcery",
                      oracle_text="Draw two cards.")

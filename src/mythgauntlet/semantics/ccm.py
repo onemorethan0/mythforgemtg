@@ -740,9 +740,29 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     if fx.removal > 0 and not ops_present & {"destroy", "exile", "deal_damage"}:
         errors.append("oracle text is targeted removal but CCM has no removal effect")
     if fx.board_wipe:
+        # tags._is_board_wipe is text-side and deliberately broad: "True only when the
+        # sweep can remove CREATURES from the battlefield" -- which a mass -X/-X pump
+        # (Biting Rain: "All creatures get -2/-2 until end of turn", same shape as
+        # Infest/Pestilence/Toxic Deluge) genuinely does via state-based actions once
+        # toughness hits 0, even though it kills selectively rather than universally.
+        # This side only checked destroy/exile/deal_damage, so a CCM that correctly
+        # modeled the card as `pump` (there is no other op for "-X/-X") was flagged as
+        # having "no removal" for a wipe it plainly represents. Found 2026-09-08 auditing
+        # an independent XMage-derived extraction against these same gates -- Biting
+        # Rain's real ability is exactly `BoostAllEffect(-2, -2, ...)`, so an LLM
+        # compile that (correctly) chose pump here would hit the identical false gate.
         wipes = [
             e for _a, e in _iter_effects(doc)
-            if e.get("op") in {"destroy", "exile", "deal_damage"}
+            if (
+                e.get("op") in {"destroy", "exile", "deal_damage"}
+                or (
+                    e.get("op") == "pump"
+                    and (
+                        (isinstance(e.get("power"), int) and e["power"] < 0)
+                        or (isinstance(e.get("toughness"), int) and e["toughness"] < 0)
+                    )
+                )
+            )
             and (
                 (e.get("target") or {}).get("count") == "all"
                 or (e.get("target") or {}).get("controller") == "each"
