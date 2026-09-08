@@ -627,7 +627,11 @@ def _apply_resolved(
     the cEDH fidelity increment (docs/SIMULATION.md). `add_counter` executes for a SELF
     target only (2026-09-08) — the dominant real shape for a counters-matter creature; a
     counter placed on a chosen other target isn't modeled (no targeting infra for this op,
-    and guessing the target would fabricate a value rather than measure one).
+    and guessing the target would fabricate a value rather than measure one). `proliferate`
+    (2026-09-08, a new op — see ccm.py OP_SPECS) grows every one of the CASTER's own
+    already-countered permanents by one; it does not touch an opponent's or a player's
+    counters (poison, a rival planeswalker's loyalty), which would need a genuine choice
+    this engine has no way to model.
 
     `opp` is `me`'s PRIMARY opponent; `others` are `me`'s remaining opponents in a pod. Single-
     target effects hit `opp`; **"each opponent"** effects (drains, group-slug, each-creature
@@ -730,6 +734,39 @@ def _apply_resolved(
             # minus/-1/-1 and other non-P/T counter types (charge, loyalty, generic
             # payoff-only counters): tracked in .counters for x_basis reads, but no P/T
             # or state-based-death interaction yet — an honest under-count, not a guess.
+    elif op == "proliferate":
+        # CR 122.7: choose any number of permanents/players that already have a counter,
+        # add one more of a kind already there. There's no infrastructure here to model a
+        # genuine per-permanent choice (or -1/-1-vs-poison-vs-+1/+1 discrimination — this
+        # engine tracks one generic counter/power/toughness bundle per permanent), so this
+        # models the always-correct-to-take subset: every permanent the CASTER controls
+        # that already has counters. Skips the opponent's/players' counters entirely
+        # (poison, a rival planeswalker's loyalty) rather than guess whether the caster
+        # would choose to grow them too — an honest under-count, same doctrine as
+        # add_counter's self-only scope just above.
+        for p in me.battlefield:
+            if p.counters > 0:
+                p.counters += 1
+                if p.is_creature:  # this model doesn't distinguish counter TYPE, so
+                    p.power += 1  # assume +1/+1 (the overwhelming common case) only
+                    p.toughness += 1  # where a P/T bump could ever mean anything
+    elif op == "grant_ability":
+        # A granted keyword is not modeled the same way as a real one: this engine's
+        # combat resolution doesn't read evasion/damage-prevention keywords for ANY
+        # creature yet, printed or granted (see the module docstring — "No evasion/
+        # keywords" is a standing simplification, not specific to this op), so flying/
+        # trample/menace/deathtouch/etc. correctly land as inert until that lands.
+        # HASTE is the one exception worth taking: it maps directly to the `sick` field
+        # this engine already tracks and already reads for attack/tap eligibility, so
+        # granting it is a real, checkable state change, not a guess. Self-target only,
+        # same discipline as add_counter -- "gain control of X, it gains haste" (Act of
+        # Treason) targets the STOLEN creature, not the caster's own permanent, and stays
+        # an honest no-op until gain_control itself is executed.
+        ability_name = str(pr.get("ability") or "").strip().lower()
+        target = _tgt("target")
+        is_self = just_cast is not None and (not target or target.get("self") is True)
+        if is_self and ability_name == "haste":
+            just_cast.sick = False
 
 
 class _EngineResolver:

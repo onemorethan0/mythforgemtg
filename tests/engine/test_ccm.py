@@ -33,10 +33,10 @@ def test_schema_tolerates_unknown_op_and_flags_it():
     alongside them is still validated, so real behavior is still checked."""
     doc = dict(GOOD_DRAW_CCM, abilities=[{
         "kind": "spell_effect",
-        "effects": [{"op": "proliferate"}, {"op": "draw", "count": 2}],
+        "effects": [{"op": "roll_dice"}, {"op": "draw", "count": 2}],
     }])
     assert validate_schema(doc) == []
-    assert unsupported_ops(doc) == ["proliferate"]
+    assert unsupported_ops(doc) == ["roll_dice"]
 
 
 def test_schema_tolerates_unknown_target_keys_and_trigger_events():
@@ -277,6 +277,37 @@ def test_cross_check_tapland_flag(make_card):
     }
     assert any("enters_tapped" in e for e in cross_check(doc, card))
     doc["enters_tapped"] = True
+    assert cross_check(doc, card) == []
+
+
+def test_cross_check_catches_a_keyword_grant_disguised_as_a_counter(make_card):
+    """'Target creature gains flying until end of turn' was being compiled as
+    add_counter/counter_type:'flying' (measured 2026-09-08: 67-152 cards per keyword) --
+    a fabricated game object, since a granted keyword has no physical counter at all
+    (CR 121 vs a plain continuous effect). grant_ability is the real op for this."""
+    card = make_card("Test Flight", mana_cost="{1}{U}", type_line="Instant",
+                     oracle_text="Target creature gains flying until end of turn.")
+    doc = dict(GOOD_DRAW_CCM, name="Test Flight", types=["instant"], abilities=[
+        {"kind": "spell_effect", "effects": [
+            {"op": "add_counter", "count": 1, "counter_type": "flying",
+             "target": {"type": "creature", "count": 1}},
+        ]},
+    ])
+    errors = cross_check(doc, card)
+    assert any("granted KEYWORD" in e for e in errors)
+
+    # The real op draws no such error.
+    doc["abilities"][0]["effects"][0] = {
+        "op": "grant_ability", "ability": "flying", "duration": "until end of turn",
+        "target": {"type": "creature", "count": 1},
+    }
+    assert cross_check(doc, card) == []
+
+    # A genuine counter with the same name-shaped confusion is untouched -- only the
+    # closed keyword-ability set is flagged, not counter types in general.
+    doc["abilities"][0]["effects"][0] = {
+        "op": "add_counter", "count": 1, "counter_type": "+1/+1", "target": {"self": True},
+    }
     assert cross_check(doc, card) == []
 
 

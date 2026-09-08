@@ -210,3 +210,77 @@ def test_target_power_x_basis_stays_default_without_a_creature_source(tmp_path, 
     me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[], life=40)
     _resolve(gc, me, opp, False)
     assert opp.life == 39  # no creature source (an instant/sorcery) -> default 1
+
+
+def test_proliferate_grows_the_casters_own_countered_permanents(tmp_path, make_card):
+    """proliferate (CR 122.7) is a new op (2026-09-08) -- 94 cards use the real keyword and
+    none could be modeled before (no op existed for it at all). Grows every one of the
+    caster's own already-countered permanents; a permanent with no counters is untouched,
+    and a non-creature's power/toughness (base 0/0 in this engine) doesn't move."""
+    card = make_card("Test Proliferate", mana_cost="{1}{U}", type_line="Instant")
+    ccm = _spell_ccm("Test Proliferate", [{"op": "proliferate"}])
+    gc = make_game_card(card, _store(tmp_path, "Test Proliferate", ccm))
+    grown = _Permanent(name="Grown", power=3, toughness=3, is_creature=True, counters=2)
+    untouched_creature = _Permanent(name="Bystander", power=2, toughness=2, is_creature=True)
+    grown_artifact = _Permanent(name="Gadget", power=0, toughness=0, is_creature=False,
+                                is_artifact=True, counters=1)
+    me = _Player(name="me", library=[], battlefield=[grown, untouched_creature, grown_artifact])
+    opp = _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    assert (grown.counters, grown.power, grown.toughness) == (3, 4, 4)
+    assert (untouched_creature.counters, untouched_creature.power,
+            untouched_creature.toughness) == (0, 2, 2)
+    assert (grown_artifact.counters, grown_artifact.power, grown_artifact.toughness) == (2, 0, 0)
+
+
+def test_proliferate_does_not_touch_the_opponents_counters(tmp_path, make_card):
+    """No infrastructure exists for a genuine per-permanent CHOICE, so the safe scope is
+    the caster's own board only -- an opponent's counters (poison, a rival planeswalker's
+    loyalty) are left alone rather than guessed at."""
+    card = make_card("Test Proliferate 2", mana_cost="{1}{U}", type_line="Instant")
+    ccm = _spell_ccm("Test Proliferate 2", [{"op": "proliferate"}])
+    gc = make_game_card(card, _store(tmp_path, "Test Proliferate 2", ccm))
+    theirs = _Permanent(name="Their Hydra", power=5, toughness=5, is_creature=True, counters=3)
+    me = _Player(name="me", library=[], battlefield=[])
+    opp = _Player(name="opp", library=[], battlefield=[theirs])
+    _resolve(gc, me, opp, False)
+    assert (theirs.counters, theirs.power, theirs.toughness) == (3, 5, 5)
+
+
+def test_grant_ability_haste_self_clears_summoning_sickness(tmp_path, make_card):
+    """grant_ability is new (2026-09-08) -- add_counter was being fabricated with fake
+    counter types like 'haste'/'flying' for exactly this shape of effect. Haste is the
+    one keyword worth executing here: it maps directly to the `sick` field the engine
+    already reads for attack/tap eligibility, so granting it self-target is a real state
+    change, not a guess."""
+    card = make_card("Test Hasty", mana_cost="{2}{R}", type_line="Creature — Elemental")
+    card.power, card.toughness = "3", "3"
+    ccm = _spell_ccm(
+        "Test Hasty", [{"op": "grant_ability", "ability": "haste"}],
+        kind="triggered", trigger={"event": "etb"},
+    )
+    gc = make_game_card(card, _store(tmp_path, "Test Hasty", ccm))
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    hasty = next(p for p in me.battlefield if p.name == "Test Hasty")
+    assert hasty.sick is False
+
+
+def test_grant_ability_other_keywords_and_targets_stay_inert(tmp_path, make_card):
+    """Evasion/damage-prevention keywords (flying, trample, indestructible, ...) are
+    correctly NOT executed -- this engine's combat resolution doesn't read them for any
+    creature yet, printed or granted, so pretending otherwise would fabricate an
+    advantage this engine can't actually enforce in combat. A non-self target (the
+    common real shape: "target creature gains X") also stays inert -- no targeting
+    infra, same discipline as add_counter."""
+    card = make_card("Test Flight Grant", mana_cost="{1}{U}", type_line="Instant")
+    ccm = _spell_ccm("Test Flight Grant", [
+        {"op": "grant_ability", "ability": "flying",
+         "target": {"type": "creature", "count": 1}},
+    ])
+    gc = make_game_card(card, _store(tmp_path, "Test Flight Grant", ccm))
+    bear = _Permanent(name="Bear", power=2, toughness=2, is_creature=True, sick=True)
+    me = _Player(name="me", library=[], battlefield=[bear])
+    opp = _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    assert bear.sick is True  # untouched -- not self, and not haste anyway

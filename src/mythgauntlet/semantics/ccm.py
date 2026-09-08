@@ -180,6 +180,20 @@ OP_SPECS: dict[str, tuple[dict[str, str], dict[str, str]]] = {
         {"count": _INT_OR_X},
         {"counter_type": _STR, "target": _TARGET, "duration": _STR},
     ),
+    # "Proliferate" (CR 122.7): a real keyword action, not a numeric effect -- it names
+    # no amount and no single target (the player chooses any number of permanents/players
+    # that already have a counter). No required params; a card's extra conditions
+    # ("proliferate, then...") land in the shared `condition` key like any other effect.
+    "proliferate": ({}, {}),
+    # "Target creature gains flying/haste/trample/... until end of turn" was being
+    # shoehorned into add_counter with an invented counter_type like "haste" or "flying"
+    # (measured 2026-09-08: 67-152 cards per keyword) -- those are not counters at all
+    # (CR 121 counters are a distinct, normally-permanent game object; a granted keyword is
+    # a continuous effect with no physical marker), so the compiler was recording a
+    # fabricated game object for a real one. `ability` is the closed keyword name (see the
+    # prompt); `duration` is free text ("until end of turn", "permanently") since only a
+    # few durations are common enough to make a closed enum worth it.
+    "grant_ability": ({"ability": _STR}, {"target": _TARGET, "duration": _STR}),
     "tap": ({"target": _TARGET}, {}),
     "untap": ({"target": _TARGET}, {}),
     "sacrifice": ({"target": _TARGET}, {"who": _STR}),
@@ -197,6 +211,22 @@ _SANITY_MAX = {
 }
 
 _ACTIVATED_COST_KEYS = {"mana", "tap", "sacrifice_self", "pay_life", "other"}
+
+# Evergreen/common keyword ABILITIES, not counter types. Measured 2026-09-08: add_counter
+# was carrying one of these as counter_type on 67-152 cards each (e.g. "target creature
+# gains flying until end of turn" compiled as add_counter/counter_type:"flying") because
+# the compiler had no dedicated op for a granted keyword. That is not a near-miss on a
+# real counter (CR 121, a physical marker with its own rules) -- it is a different game
+# object entirely, so it gets its own gate rather than being tolerated as an approximation.
+# grant_ability's own `ability` param intentionally is NOT validated against this set (a
+# few less-common keywords aren't worth a closed enum there), but add_counter's
+# counter_type IS checked against it, because every one of these names is a keyword this
+# vocabulary already has a real op for.
+_KEYWORD_NOT_COUNTER_NAMES = frozenset({
+    "flying", "haste", "trample", "vigilance", "menace", "reach", "lifelink", "hexproof",
+    "deathtouch", "indestructible", "first strike", "double strike", "defender", "flash",
+    "ward", "protection", "shroud",
+})
 
 # Natural-language variable quantities the LLM uses where a number would go. Accepted as a
 # CLOSED set (genuine garbage still rejects); the profile resolves them to a small default,
@@ -670,6 +700,13 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         ops_present.add(op)
         if ability.get("kind") == "triggered":
             triggered_ops.add(op)
+        if op == "add_counter":
+            ctype = str(effect.get("counter_type") or "").strip().lower()
+            if ctype in _KEYWORD_NOT_COUNTER_NAMES:
+                errors.append(
+                    f"add_counter counter_type {ctype!r} is a granted KEYWORD, not a "
+                    f"counter (CR 121) — use grant_ability instead"
+                )
     has_mana_ability = any(
         a.get("kind") == "mana_ability" for a in doc.get("abilities") or []
         if isinstance(a, dict)
