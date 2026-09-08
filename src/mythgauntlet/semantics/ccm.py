@@ -702,7 +702,17 @@ def cross_check(doc: dict, card: Card) -> list[str]:
             triggered_ops.add(op)
         if op == "add_counter":
             ctype = str(effect.get("counter_type") or "").strip().lower()
-            if ctype in _KEYWORD_NOT_COUNTER_NAMES:
+            # "Keyword counters" (CR 122.1j-ish, Kaldheim onward) are a REAL, distinct
+            # mechanic: "put a flying counter on it" is a genuine, removable, proliferable
+            # game object -- not the "gains flying until end of turn" pattern this gate
+            # exists to catch. Missed on first ship (2026-09-08) and confirmed as a false
+            # positive against real cards: Abigale, Eloquent First-Year ("Put a flying
+            # counter, a first strike counter, and a lifelink counter on that creature"),
+            # Agent's Toolkit, Arwen Mortal Queen, Denry Klin -- all correctly used
+            # add_counter and would have been wrongly forced toward grant_ability. The
+            # printed text is the tell: a real keyword counter is always worded "a <kind>
+            # counter", never just "gains <kind>".
+            if ctype in _KEYWORD_NOT_COUNTER_NAMES and f"{ctype} counter" not in text:
                 errors.append(
                     f"add_counter counter_type {ctype!r} is a granted KEYWORD, not a "
                     f"counter (CR 121) — use grant_ability instead"

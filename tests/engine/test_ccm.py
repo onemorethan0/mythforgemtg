@@ -311,6 +311,35 @@ def test_cross_check_catches_a_keyword_grant_disguised_as_a_counter(make_card):
     assert cross_check(doc, card) == []
 
 
+def test_cross_check_does_not_flag_a_genuine_keyword_counter(make_card):
+    """'Keyword counters' (Kaldheim onward) are a REAL, distinct game object -- "put a
+    flying counter on it" is removable/proliferable, not the "gains flying until end of
+    turn" pattern the gate above exists to catch. Missed on first ship (2026-09-08) and
+    caught by auditing real output: Abigale, Eloquent First-Year ("Put a flying counter,
+    a first strike counter, and a lifelink counter on that creature") got its correct
+    add_counter compile REJECTED by this gate and was forced into a wrong grant_ability
+    retry -- a regression this test pins against recurring. The tell is the printed word
+    "counter" right after the keyword; without it, the flag from the sibling test above
+    must still fire."""
+    card = make_card(
+        "Test Abigale", mana_cost="{2}{W}{U}", type_line="Legendary Creature — Human Wizard",
+        oracle_text="Flying, first strike, lifelink\nWhen this creature enters, up to one "
+                     "other target creature loses all abilities. Put a flying counter, a "
+                     "first strike counter, and a lifelink counter on that creature.",
+    )
+    doc = dict(GOOD_DRAW_CCM, name="Test Abigale", types=["creature"], abilities=[
+        {"kind": "triggered", "trigger": {"event": "etb"}, "effects": [
+            {"op": "add_counter", "count": 1, "counter_type": "flying",
+             "target": {"type": "creature", "count": 1}},
+            {"op": "add_counter", "count": 1, "counter_type": "first strike",
+             "target": {"type": "creature", "count": 1}},
+            {"op": "add_counter", "count": 1, "counter_type": "lifelink",
+             "target": {"type": "creature", "count": 1}},
+        ]},
+    ])
+    assert cross_check(doc, card) == []
+
+
 def test_cross_check_accepts_a_mass_negative_pump_as_a_board_wipe(make_card):
     """'All creatures get -2/-2' (Biting Rain, Infest, Pestilence-shape) genuinely wipes
     the board via state-based actions once toughness hits 0 -- there's no op other than
