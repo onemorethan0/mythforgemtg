@@ -188,6 +188,38 @@ def test_noncommander_attacker_does_not_accrue_commander_damage():
     assert not opp.commander_damage_taken  # but it is NOT commander damage
 
 
+# --- vigilance (CR 508.1f, docs/PLAN_FIDELITY.md Phase B2) --------------------------------
+
+
+def test_attacking_taps_a_creature_without_vigilance():
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Plain Beater", power=3, toughness=3, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {})
+    assert atk.tapped is True
+
+
+def test_vigilance_keeps_the_attacker_untapped_and_able_to_block():
+    """The old resolver tapped every attacker unconditionally ('no vigilance' was a documented
+    simplification) -- a vigilant creature could swing and then never block back. Pinning both
+    outcomes on the same shape (only `keywords` differs) is the regression."""
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Vigilant Beater", power=3, toughness=3, is_creature=True, sick=False,
+                      keywords=frozenset({"vigilance"}))
+    me.battlefield.append(atk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {})
+    assert atk.tapped is False
+    assert atk in [c for c in me.creatures() if not c.tapped]  # eligible to block next turn
+
+
 def test_repeated_unblocked_commander_attacks_end_the_game_at_21(make_card, forest):
     """End-to-end: a 5/5 commander attacking unblocked into an empty board reaches the 21
     threshold on its 5th swing (25 total) well before combat-only life loss (40) would ever

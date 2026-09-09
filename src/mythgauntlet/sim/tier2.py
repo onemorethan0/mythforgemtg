@@ -165,6 +165,16 @@ class _Permanent:
     # card back. None for TOKENS -- and that is correct rather than a gap: a bounced token
     # ceases to exist (CR 111.7), which falls out of this for free.
     source: object | None = None
+    # PRINTED keywords only (Card.keywords, lowercased, see docs/PLAN_FIDELITY.md Phase B).
+    # A GRANTED keyword (grant_ability) is a separate, narrower mechanism -- today only
+    # haste, modeled by clearing `sick` directly rather than adding to this set, since
+    # nothing read evasion/combat keywords at all before Phase B existed to give it
+    # somewhere to land. Tokens get whatever the CCM's create_token effect states
+    # (`_spawn_tokens`), everything else copies its source Card's own keywords verbatim.
+    keywords: frozenset[str] = frozenset()
+
+    def has_keyword(self, name: str) -> bool:
+        return name in self.keywords
 
 
 @dataclass
@@ -1352,6 +1362,7 @@ def _resolve(
             is_creature=True, is_artifact=card.has_type("Artifact"),
             engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers, source=gc,
+            keywords=card.keywords,
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1361,6 +1372,7 @@ def _resolve(
                 is_artifact=card.has_type("Artifact"),
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers, source=gc,
+                keywords=card.keywords,
             )
         )
 

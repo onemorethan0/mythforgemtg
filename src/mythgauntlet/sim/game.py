@@ -959,7 +959,12 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
     attackers = state.combat_attackers
     unblocked_hitters: list[_Permanent] = []
     for i, atk in enumerate(attackers):
-        atk.tapped = True  # attacking taps (no vigilance) -> can't block next turn
+        # CR 508.1f: vigilance means attacking does not tap this creature. The comment
+        # here used to say "no vigilance" as a documented simplification -- docs/
+        # PLAN_FIDELITY.md Phase B2 (2026-09-10) is what gave that gap somewhere to land:
+        # Card.keywords didn't exist before Phase B1, so there was nothing to check.
+        if not atk.has_keyword("vigilance"):
+            atk.tapped = True
         blk = assignment.get(i)
         if blk is None or blk not in opp.battlefield:
             opp.life -= atk.power

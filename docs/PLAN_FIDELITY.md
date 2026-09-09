@@ -239,6 +239,19 @@ how `is_artifact`/`is_commander` already get copied onto `_Permanent` at constru
 `_resolve`, same pattern). Cheapest possible first keyword to ship; good smoke test for the
 whole B1 plumbing before touching anything harder.
 
+**Shipped 2026-09-09.** `_Permanent.keywords` (+ `has_keyword()`) threaded from `card.keywords`
+at both construction sites in `tier2._resolve`; `_apply_declare_blocks` gates the tap on
+`not atk.has_keyword("vigilance")` exactly as scoped above. Confirmed `_spawn_tokens` correctly
+stays at the empty default — `create_token`'s `OP_SPECS` has no keywords/abilities field, so a
+token-granted keyword ("1/1 flying Spirit") is a separate, still-open gap, not a regression here.
+Two synthetic regression tests in `tests/engine/test_game.py`
+(`test_attacking_taps_a_creature_without_vigilance`,
+`test_vigilance_keeps_the_attacker_untapped_and_able_to_block`) pin both outcomes off the same
+shape — only `keywords` differs — matching this file's own §5 acceptance bar ("a synthetic
+before/after test proving the old resolver gets it wrong and the new one doesn't"). Full suite
+(1501 tests) green, including the golden-master test — no existing fixture had a vigilant
+attacker, so nothing pinned the old unconditional-tap behavior.
+
 ### B3 — flying / reach (block LEGALITY, `agents/greedy.py:49` `greedy_block_assignment`)
 
 `blockers = [c for c in defender.creatures() if not c.tapped]` — currently any untapped creature
@@ -385,10 +398,10 @@ measurement this session did) before committing to one shared function vs. sever
 
 ## 5. Definition of done
 
-- [ ] Phase A run and recorded (§1.1), whichever direction it comes out.
-- [ ] Phase B1 (keyword data capture) shipped, schema-bumped, tested.
+- [x] Phase A run and recorded (§1.1, §1.2).
+- [x] Phase B1 (keyword data capture) shipped, schema-bumped, tested (2026-09-09).
 - [ ] Phase B2–B5 shipped as one slice, each with a synthetic before/after test proving the old
-      resolver gets it wrong and the new one doesn't.
+      resolver gets it wrong and the new one doesn't. **B2 done (2026-09-09); B3–B5 pending.**
 - [ ] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
       for it — may conclude "not yet," which is a valid outcome, not a failure to close it.
 - [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.
