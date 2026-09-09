@@ -33,7 +33,12 @@ SLIM_FILENAME = "cards_slim.json"
 # v3: adds commander_legal, so the advisor can stop recommending BANNED cards. A mismatch
 #     is a loud, actionable error (see load_card_db) rather than a missing field that would
 #     make the ban filter silently inert — the bulk refetches weekly anyway.
-SLIM_SCHEMA = 3
+# v4: adds keywords (Flying, Trample, Deathtouch, ...), lowercased. Combat resolution read
+#     none of this before (docs/PLAN_FIDELITY.md Phase B) — measured 2026-09-10, 39.5% of
+#     all creature cards in the store carry at least one. Same "hard error, not a silent
+#     gap" reasoning as v3: an old store without this field must not let a keyword check
+#     read as "no keywords" for every card, it must refuse to load until refetched.
+SLIM_SCHEMA = 4
 
 
 def slim_path() -> Path:
@@ -48,10 +53,29 @@ def _face_fields(raw: dict) -> dict:
     return raw
 
 
+# Layouts where the printed object is genuinely TWO DIFFERENT faces/permanents, not one
+# object split across zones — Scryfall's `keywords` array is TOP-LEVEL ONLY and aggregates
+# across every face (verified live: Delver of Secrets // Insectile Aberration reports
+# `["Flying", "Transform"]`, but Flying belongs to the BACK face; the front face this Card
+# represents has no keywords of its own). Crediting the front face with a back-face-only
+# keyword would be a fabrication, not an under-count — Delver isn't a flier until it
+# transforms, which this engine does not model at all. `adventure`/`split`/`prototype`/
+# `leveler` etc. are NOT in this set: those are one physical object (a creature that can
+# also be cast as a spell, or has alternate stats/levels), so a printed keyword genuinely
+# belongs to it. Measured 2026-09-10: 343 of 19,199 creature cards (1.8%) sit on a risky
+# layout — small, so an honest omission here costs little and fabricating would cost more.
+_FACE_AMBIGUOUS_KEYWORD_LAYOUTS = frozenset({"transform", "modal_dfc", "meld", "flip"})
+
+
 def _slim(raw: dict) -> dict | None:
     if raw.get("layout") in SKIP_LAYOUTS:
         return None
     face = _face_fields(raw)
+    layout = raw.get("layout", "normal")
+    keywords = (
+        [] if layout in _FACE_AMBIGUOUS_KEYWORD_LAYOUTS
+        else [str(k).casefold() for k in (raw.get("keywords") or [])]
+    )
     return {
         "name": raw.get("name", ""),
         "mana_cost": face.get("mana_cost", raw.get("mana_cost", "")),
@@ -68,8 +92,9 @@ def _slim(raw: dict) -> dict | None:
         # Only "legal" is playable: "banned" is the ban list, and "not_legal" covers cards
         # that were never in the format at all (acorn/Un-cards, Conspiracy, playtest cards).
         "commander_legal": (raw.get("legalities") or {}).get("commander") == "legal",
-        "layout": raw.get("layout", "normal"),
+        "layout": layout,
         "oracle_id": raw.get("oracle_id", ""),
+        "keywords": keywords,
     }
 
 
@@ -183,6 +208,7 @@ def _card_from_slim(rec: dict) -> Card:
         commander_legal=bool(rec.get("commander_legal", True)),
         layout=rec.get("layout") or "normal",
         oracle_id=rec.get("oracle_id") or "",
+        keywords=frozenset(rec.get("keywords") or ()),
     )
 
 

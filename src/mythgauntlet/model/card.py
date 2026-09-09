@@ -107,6 +107,14 @@ class Card:
     commander_legal: bool = True
     layout: str = "normal"
     oracle_id: str = ""
+    # Scryfall's own `keywords` array (Flying, Trample, Deathtouch, ...), lowercased at
+    # the slim-schema boundary so every reader compares against the same casing without
+    # re-normalizing. PRINTED keywords only — a GRANTED one ("target creature gains
+    # flying until end of turn") is a CCM `grant_ability` effect, a separate mechanism,
+    # not this field. See docs/PLAN_FIDELITY.md Phase B: added because combat resolution
+    # read none of this at all (measured 2026-09-10: 39.5% of all creature cards carry
+    # at least one keyword here).
+    keywords: frozenset[str] = frozenset()
 
     cost: ManaCost = field(init=False, repr=False)
 
