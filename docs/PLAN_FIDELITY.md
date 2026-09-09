@@ -706,6 +706,86 @@ built for temporary buffs only). Almost certainly the single largest remaining r
 hole in the whole CCM->simulator pipeline, bigger in scope than the `gain_control` confusion
 above. **Not attempted this session — sized and recorded, `attach` stays blocked on it.**
 
+**Revisited and shipped later the same session, scoped to exactly the FIXED subset the
+measurement above identified as safe.** Rather than the full continuous-effect schema (anthems,
+cost reduction, characteristic-defining P/T — still out of scope, still needs the layer-system
+work described above), `attach`'s OWN slice of the 7,268-ability gap — a plain P/T delta and/or
+a closed set of boolean keyword grants, no scaling/conditional/type-change/free-text-ability —
+turned out to be **275 of 421 real attach+static-note cards (65.3%)**, a large, clean, precisely
+bounded population, mirroring the exact "measure the shape, ship the safe well-defined subset"
+discipline B2–B5 and `return_to_hand` already used.
+
+**Compiler side**: `attach`'s `OP_SPECS` gained optional `grant_power`/`grant_toughness`/
+`grant_keywords` fields (`semantics/ccm.py`). `semantics/compiler.parse_attach_grant` is a
+DETERMINISTIC regex parser (no LLM call) reading "Equipped/Enchanted creature gets ±X/±Y[, has
+KEYWORD[, KEYWORD...]]" off the paired static note, rejecting the WHOLE note the instant one
+keyword token isn't in the closed vocabulary (`ccm._KEYWORD_NOT_COUNTER_NAMES` minus `ward`/
+`protection`/`shroud`, which need a parameter this shape doesn't carry) — a typo in the STORE's
+own data (Batterbone: "vigilance and lifellink") correctly declines rather than silently
+granting the half it can parse. Verified over the real store: **253 matched precisely** (fewer
+than the 275 estimate, from the stricter closed-vocabulary + excluded-keyword choices); every
+one of 104 sampled rejections-with-an-otherwise-clean-P/T-prefix had a genuine out-of-scope
+clause (scaling, a granted type, free-text ability, an excluded/unknown keyword) — zero false
+positives found. Runs automatically on every future compile (`compile_card`) AND was applied
+retroactively via `scripts/backfill_attach_grants.py` — a one-off, LLM-free rewrite of the
+253 already-accepted CCMs in the sibling `mythgauntlet` data repo, so the fix didn't have to
+wait for a prompt-version bump and a nightly recompile.
+
+**Simulator side**: `attach`'s dispatch had to clear a hurdle before it could even be REACHED —
+`profile.INTERPRETER_EXECUTABLE_OPS` (the restated vocabulary that decides which activated
+abilities route to the interpreter at all) didn't include `attach`, so even with the branch
+built an Equip-only activated ability would have been silently DROPPED before ever reaching
+`_apply_resolved` (caught by the existing lock-step test, `test_an_op_no_path_can_run_is_still_
+dropped`, which had `attach` as its OWN "this op runs nowhere" example — re-pointed to
+`reanimate`, still genuinely unrun). Added `attach` to that set + a weight (1.0, matching
+`add_counter`'s "permanent stat gain" tier) in `_INTERPRETER_ACTIVATION_VALUE`, or the rescued
+ability would have scored 0 and never been chosen (the exact `deal_damage` near-miss this
+project's own history already recorded once). The dispatch itself (`tier2._apply_resolved`)
+targets `controller:"you"` + `type:"creature"` — the dominant real shape (72.4% / 76.1%) and,
+unlike `return_to_hand`, structurally SAFE from that op's exact failure mode: equipment cannot
+attach to a card sitting in a graveyard, so there is no equivalent zone-omission risk to
+misjudge. `_pick_attach_target` picks the creature that doesn't already have every granted
+keyword (a redundant grant wastes value), then the highest power among those — a greedy
+heuristic, not a claim of optimal play, matching `_card_value`'s own documented character.
+
+**New state, and a real lifecycle to get right**: `_Permanent` gained `attached_to`/
+`attach_grant` (on the equipment: who it currently boosts and the exact recorded delta, so
+detaching can subtract back out precisely — the same idiom `temp_power`/`temp_toughness`
+already use for a different duration) and `granted_keywords` (on the creature: kept SEPARATE
+from printed `keywords` so removing one equipment's contribution can never delete a keyword the
+creature actually has printed; `has_keyword` now checks both). `_detach_on_leave`, called from
+BOTH `_kill` and `_bounce` before either mutates the battlefield, unwinds either direction — the
+equipment leaving (reverse its grant off the target) or the CREATURE leaving (reverse every
+attached source's contribution off it too, not just reset the sources' own state). That second
+half matters for a reason found only by tracing the interaction, not by inspection: **Undying
+returns the SAME Python object as a "new object" (CR 400.7)** — without stripping the equipment
+bonus from the dying creature's own `.power`/`.toughness` before Undying's counter-and-return
+logic runs, a stale equipment bonus would silently survive onto the "new" object. A dedicated
+test (`test_undying_creature_does_not_carry_a_stale_equipment_bonus_back`) pins this. Known,
+accepted narrow simplification, documented in code: two equipment granting the IDENTICAL
+keyword to one creature, with one then detaching, incorrectly drops both (a set difference, not
+a per-source refcount) — rare enough on a real board to accept rather than build full
+multi-source keyword accounting for it.
+
+**Verified.** 14 synthetic tests (`tests/engine/test_attach.py`) cover the grant itself (P/T +
+keywords, single-string vs list keyword input, no-grant-fields honest no-op), the picker (avoids
+a redundant keyword, prefers higher power, declines with no creature/wrong controller), the full
+detach lifecycle (equipment destroyed/bounced, a printed keyword surviving its source equipment
+leaving, the equipped creature dying, the Undying interaction), and re-equipping (no double-
+application, moving to a new target correctly unwinds the old one). Live, not just unit-tested:
+two real stored cards resolved end-to-end through the REAL `profile._activated_from` ->
+`game._apply_activation` -> `_apply_resolved` pipeline — **+2 Mace** correctly turned a 2/2 into
+a 4/4, **Cobbled Wings** correctly granted flying. A random 15-pair/225-game duel trace found
+attach firing **zero** times — checked against rarity rather than assumed broken (matching this
+session's own established discipline the last three times a rare direction showed zero): a
+targeted trace against three real corpus decks known to run several Equipment cards found **87
+real grants applied across 90 games**, confirming the mechanism is genuinely live and the
+zero-count was population rarity (most corpus decks simply don't run enough equipment to fire
+in a 15-game sample), not a defect. `sim-health` re-confirms the shift: `attach` moved from
+100% inert to **530 cards / 707 effects correctly counted as executing (guarded/partial)**, 78
+cards / 91 effects honestly remaining inert (targets outside the shipped `controller:"you"` +
+`type:"creature"` scope). Full suite green (1547 tests) throughout.
+
 ### Death-triggered effects: a third gauge blind spot, and Undying shipped (2026-09-09)
 
 Investigating `reanimate` (the CCM op for "put a card onto the battlefield", declared in
@@ -834,15 +914,22 @@ consistent with its small (22-card) population. Full suite green (1534 tests).
       section above. `any`/absent controller and graveyard/non-permanent types stay declined.
 - [ ] `return_to_hand`'s own `any`/absent-controller majority (53% of "chosen", genuinely
       ambiguous — needs a real decision, not a default guess).
-- [x] `attach` investigated (2026-09-09) — concluded blocked, not "not yet started": its
-      targeting shape is clean, but 17,438 static abilities store-wide (496 of attach's own 608
-      cards) store their bonus as unstructured prose with no op/amount/keyword field at all.
+- [x] `attach` investigated AND SHIPPED, scoped to the fixed subset (2026-09-09). Its
+      targeting shape was clean, but 17,438 static abilities store-wide (496 of attach's own
+      608 cards) stored their bonus as unstructured prose with no op/amount/keyword field —
       10,169 of those are keyword restatements Phase B1 already covers; the genuine 7,268-
-      ability gap (anthems, cost reduction, characteristic-defining P/T, attach/enchant bonuses,
-      replacement effects) needs a new CCM sub-schema + prompt/gate work + a corpus recompile +
-      simulator-side continuous-effect infrastructure this engine doesn't have (no layer
-      system). Sized as likely the largest remaining representational gap in the pipeline;
-      recorded as its own major follow-on, not attempted this session.
+      ability gap (anthems, cost reduction, characteristic-defining P/T, replacement effects)
+      still needs a new CCM sub-schema + a real continuous-effect layer this engine doesn't
+      have, and STAYS a recorded, not-attempted follow-on. But attach's OWN slice of that gap
+      — a plain P/T delta and/or closed-vocabulary keyword grant, no scaling/conditional/type-
+      change — was 253 of 421 real cases, precise and safely buildable: a deterministic
+      compiler-side parser (`compile.parse_attach_grant`, no LLM), a one-off backfill of the
+      already-accepted store, and the simulator dispatch + full attach/detach lifecycle
+      (including a real Undying interaction bug found and fixed along the way). See the
+      writeup above for the full account.
+- [ ] `attach`'s remaining scope: the 7,268-ability continuous-effect gap (anthems, cost
+      reduction, characteristic-defining P/T) is unattempted and needs its own schema; `attach`
+      effects outside `controller:"you"`+`type:"creature"` (78 cards) stay declined too.
 - [x] `reanimate` investigated (2026-09-09) — never dispatched anywhere (confirmed); the
       compiler is inconsistent about which op it picks for "put a card onto the battlefield"
       (return_to_hand/gain_control/reanimate/~55 other op values all used for the same real

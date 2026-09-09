@@ -163,7 +163,19 @@ OP_SPECS: dict[str, tuple[dict[str, str], dict[str, str]]] = {
     "exile": ({"target": _TARGET}, {}),
     "return_to_hand": ({"target": _TARGET}, {}),
     "gain_control": ({"target": _TARGET}, {}),
-    "attach": ({"target": _TARGET}, {}),
+    # `grant_*` (2026-09-09): what the equipped/enchanted permanent gets, moved off the
+    # paired static ability's free-text `note` and onto the attach effect itself, for the
+    # FIXED/unconditional subset that's actually machine-readable -- "Equipped creature
+    # gets +2/+1[, has KEYWORD[, KEYWORD...]]." A scaling bonus ("+1/+1 for each land you
+    # control"), a base-P/T SET ("has base power and toughness 10/10"), a granted
+    # type/color change, or a granted triggered/activated ability as free text are all
+    # explicitly OUT of scope here and stay note-only -- see docs/PLAN_FIDELITY.md's
+    # measurement (275 of 421 real attach+static-note cards are this fixed shape; the
+    # other 146 are one of the excluded shapes above). Optional: a `note`-only static
+    # ability the compiler couldn't confidently reduce to this shape carries neither key.
+    "attach": ({"target": _TARGET},
+              {"grant_power": _INT_SIGNED, "grant_toughness": _INT_SIGNED,
+               "grant_keywords": _STR_OR_LIST}),
     "counter_spell": ({}, {"unless_pays": _STR, "target": _TARGET}),
     "deal_damage": ({"amount": _INT_OR_X, "target": _TARGET}, {}),
     "gain_life": ({"amount": _INT_OR_X}, {"who": _STR}),

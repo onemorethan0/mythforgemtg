@@ -183,11 +183,15 @@ def test_a_guarded_if_elif_nested_inside_a_real_else_still_reads_as_guarded():
 # written against pump the hour before it was dispatched, and all three broke the moment
 # it shipped — which is the anti-drift design working (the gauge re-read the source and
 # stopped reporting a closed gap), but it means a fixture op has to be one that is still
-# open. This fixture has now been re-pointed TWICE by the guard below (pump, then
-# return_to_hand) as each got implemented — which is the guard working. `attach` needs an
-# equipment/attachment model this engine does not have, so it is the most durable choice;
-# if it too is ever implemented these fail loudly rather than silently asserting nothing.
-STILL_INERT = "attach"
+# open. This fixture has now been re-pointed THREE times by the guard below (pump, then
+# return_to_hand, then attach) as each got implemented — which is the guard working.
+# `reanimate` is declared in OP_SPECS and confirmed (docs/PLAN_FIDELITY.md Phase C,
+# 2026-09-09) to be dispatched by neither path -- most of its real population needs a
+# persistent graveyard zone this engine doesn't have (the one tractable slice, Undying,
+# was rescued a different way entirely: reading Card.keywords in `_kill`, never touching
+# the `reanimate` op at all) -- so it is the new durable choice; if it too is ever
+# implemented these fail loudly rather than silently asserting nothing.
+STILL_INERT = "reanimate"
 
 
 def test_the_fixture_op_is_actually_still_inert():

@@ -378,6 +378,108 @@ def _strip_combat_phase_confused_extra_turn(doc: dict, card: Card) -> None:
     doc["abilities"] = kept
 
 
+# The FIXED, unconditional subset of "Equipped/Enchanted creature ..." static notes that
+# is safely machine-readable (docs/PLAN_FIDELITY.md Phase C, 2026-09-09): a plain power/
+# toughness delta and/or a closed set of boolean keyword grants, with no scaling term, no
+# base-P/T SET, no granted type/color, no granted triggered/activated ability as free
+# text, and no conditional ("as long as ..."). `ward`/`protection`/`shroud` are excluded
+# even though they're in `ccm._KEYWORD_NOT_COUNTER_NAMES` -- the first two are parametric
+# (need a cost/quality this shape doesn't capture) and shroud is left out as a matching
+# conservative default. Measured over the real store: 253 of 421 real attach+static-note
+# cards match cleanly; every rejection sampled (104 cards with an otherwise-clean P/T
+# prefix) had a genuine out-of-scope clause -- scaling ("+1/+1 for each land you
+# control"), a granted ability as prose, a type/color change, or a keyword outside this
+# vocabulary (afflict, wither, goaded) -- never a false positive.
+_ATTACH_GRANT_KEYWORDS = ccm._KEYWORD_NOT_COUNTER_NAMES - {"ward", "protection", "shroud"}
+_ATTACH_GRANT_PT_RE = re.compile(
+    r"^(?:equipped|enchanted) creature gets ([+-]\d+)/([+-]\d+)"
+    r"(?:,?\s*and\s+has\s+(.+?)|,?\s+has\s+(.+?))?\.?$", re.I,
+)
+_ATTACH_GRANT_KEYWORDS_ONLY_RE = re.compile(
+    r"^(?:equipped|enchanted) creature has\s+(.+?)\.?$", re.I,
+)
+
+
+def _split_attach_grant_keywords(blob: str) -> list[str] | None:
+    """The keyword clause split on ','/'and', each checked against the closed vocabulary.
+
+    Rejecting the WHOLE note the moment one token doesn't match (rather than keeping the
+    recognised ones) matters: "vigilance and lifellink" (Batterbone's real stored note --
+    a typo in the source data) must decline entirely, not silently grant vigilance while
+    dropping the misspelled half — a partial grant here would be a confident half-fabrication,
+    not the honest under-count this project's doctrine asks for.
+    """
+    tokens = [t.strip().lower() for t in re.split(r",\s*|\s+and\s+", blob) if t.strip()]
+    if not tokens or not all(t in _ATTACH_GRANT_KEYWORDS for t in tokens):
+        return None
+    return tokens
+
+
+def parse_attach_grant(note: str) -> tuple[int, int, tuple[str, ...]] | None:
+    """A static "Equipped/Enchanted creature ..." note -> (power, toughness, keywords), or
+    None if it's not the fixed, unconditional shape this can safely read. Pure and
+    deterministic -- no LLM call, so it applies equally to a fresh compile (called from
+    `compile_card` below) and to a one-off backfill over already-accepted CCMs
+    (`scripts/backfill_attach_grants.py`), which is how the 253 real matches were reached
+    without spending any GPU time re-compiling cards whose note the compiler already got
+    right the first time.
+    """
+    note = note.strip()
+    m = _ATTACH_GRANT_PT_RE.match(note)
+    if m:
+        power, toughness = int(m.group(1)), int(m.group(2))
+        kw_blob = m.group(3) or m.group(4)
+        keywords: list[str] = []
+        if kw_blob:
+            kws = _split_attach_grant_keywords(kw_blob)
+            if kws is None:
+                return None
+            keywords = kws
+        return (power, toughness, tuple(sorted(keywords)))
+    m2 = _ATTACH_GRANT_KEYWORDS_ONLY_RE.match(note)
+    if m2:
+        kws = _split_attach_grant_keywords(m2.group(1))
+        if kws is None:
+            return None
+        return (0, 0, tuple(sorted(kws)))
+    return None
+
+
+def _populate_attach_grants(doc: dict) -> None:
+    """Deterministically copy each attach effect's paired static bonus onto the effect
+    itself (`grant_power`/`grant_toughness`/`grant_keywords`), when `parse_attach_grant`
+    can read it cleanly. Modifies `doc` in place; a card with no attach effect, no static
+    note, or a note outside the parseable shape is left untouched -- an honest omission,
+    not a guess (see `parse_attach_grant`'s own docstring for what's excluded and why).
+    """
+    abilities = doc.get("abilities")
+    if not isinstance(abilities, list):
+        return
+    static_notes = [
+        a.get("note") for a in abilities
+        if isinstance(a, dict) and a.get("kind") == "static" and isinstance(a.get("note"), str)
+    ]
+    grant = None
+    for note in static_notes:
+        grant = parse_attach_grant(note)
+        if grant is not None:
+            break
+    if grant is None:
+        return
+    power, toughness, keywords = grant
+    for ability in abilities:
+        if not isinstance(ability, dict):
+            continue
+        for effect in ability.get("effects") or []:
+            if isinstance(effect, dict) and effect.get("op") == "attach":
+                if power:
+                    effect["grant_power"] = power
+                if toughness:
+                    effect["grant_toughness"] = toughness
+                if keywords:
+                    effect["grant_keywords"] = list(keywords)
+
+
 def compile_card(
     card: Card,
     complete,
@@ -409,6 +511,7 @@ def compile_card(
         if card.is_land and tags.analyze(card).enters_tapped and not doc.get("enters_tapped"):
             doc["enters_tapped"] = True
         _strip_combat_phase_confused_extra_turn(doc, card)
+        _populate_attach_grants(doc)
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]
         if not errors:

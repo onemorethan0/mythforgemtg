@@ -93,8 +93,12 @@ def test_cost_gates_still_drop_their_abilities():
 
 
 def test_an_op_no_path_can_run_is_still_dropped():
-    """`attach` is in neither vocabulary -- rescuing it would promise nothing."""
-    effs = [{"op": "attach", "target": {"type": "creature"}}]
+    """`reanimate` is in neither vocabulary -- rescuing it would promise nothing.
+
+    `attach` used to be this test's example; it moved into
+    INTERPRETER_EXECUTABLE_OPS (docs/PLAN_FIDELITY.md Phase C, 2026-09-09) once its
+    dispatch existed, so it no longer demonstrates "an op no path can run."""
+    effs = [{"op": "reanimate", "target": {"type": "creature"}}]
     assert profile._activated_from(_ability({"mana": "{3}"}, *effs), effs) is None
 
 

@@ -172,9 +172,24 @@ class _Permanent:
     # somewhere to land. Tokens get whatever the CCM's create_token effect states
     # (`_spawn_tokens`), everything else copies its source Card's own keywords verbatim.
     keywords: frozenset[str] = frozenset()
+    # Attach (docs/PLAN_FIDELITY.md Phase C, 2026-09-09). `attached_to`/`attach_grant` live
+    # on the EQUIPMENT/AURA: which creature it currently boosts, and the exact (power,
+    # toughness, keywords) delta it contributed -- recorded so detaching (the equipment
+    # dies/bounces, or is re-equipped) can subtract back out precisely, the same
+    # subtract-back-out idiom `temp_power`/`temp_toughness` already uses for a different
+    # duration. `granted_keywords` lives on the CREATURE: the union of every attached
+    # source's granted keywords, kept separate from printed `keywords` so removing one
+    # equipment's contribution can never delete a keyword the creature actually has
+    # printed. Known, narrow simplification: two equipment granting the IDENTICAL keyword
+    # to the same creature, with one then detaching, incorrectly drops both (a set
+    # difference, not a per-source refcount) -- rare enough in real boards to accept
+    # rather than build full multi-source keyword accounting for it.
+    attached_to: "_Permanent | None" = None
+    attach_grant: tuple[int, int, frozenset[str]] | None = None
+    granted_keywords: frozenset[str] = frozenset()
 
     def has_keyword(self, name: str) -> bool:
-        return name in self.keywords
+        return name in self.keywords or name in self.granted_keywords
 
     def deals_lethal_to(self, other: "_Permanent") -> bool:
         """CR 702.2b: any nonzero combat damage from a deathtouch source is lethal,
@@ -396,10 +411,62 @@ def _spawn_tokens(player: _Player, tokens: tuple[int, int, int]) -> None:
         )
 
 
+def _detach_on_leave(owner: _Player, permanent: _Permanent) -> None:
+    """Attach (docs/PLAN_FIDELITY.md Phase C): unwind attachment before `permanent` leaves
+    the battlefield -- called from `_kill`/`_bounce` before either mutates
+    `owner.battlefield`. Two directions, since either side of an attach relationship can be
+    the one leaving:
+
+    - `permanent` IS the equipment/aura (has `attached_to`): subtract its exact recorded
+      grant back out of the target creature, same subtract-back-out idiom
+      `expire_until_end_of_turn` already uses for temp_power/temp_toughness.
+    - `permanent` IS the creature something else is attached to: reverse each attached
+      source's grant off `permanent` too and reset THEIR attachment state, so a later
+      Equip can retarget them. Reversing `permanent`'s own stats here (not just the
+      source's) matters even though `permanent` is leaving -- Undying (`_kill`, below)
+      returns it as a NEW OBJECT (CR 400.7) sharing the same Python object, and a stale
+      equipment bonus baked into .power/.toughness would otherwise silently survive.
+    """
+    if permanent.attached_to is not None and permanent.attach_grant is not None:
+        target = permanent.attached_to
+        dp, dt, kw = permanent.attach_grant
+        target.power -= dp
+        target.toughness -= dt
+        target.granted_keywords -= kw
+        permanent.attached_to = None
+        permanent.attach_grant = None
+    for other in owner.battlefield:
+        if other.attached_to is permanent:
+            dp, dt, kw = other.attach_grant or (0, 0, frozenset())
+            permanent.power -= dp
+            permanent.toughness -= dt
+            permanent.granted_keywords -= kw
+            other.attached_to = None
+            other.attach_grant = None
+
+
+def _pick_attach_target(me: _Player, grant_keywords: frozenset[str]) -> _Permanent | None:
+    """Which of my creatures benefits most from THIS specific bonus (docs/PLAN_FIDELITY.md
+    Phase C's own framing: "a +0/+3 vigilance equipment is wasted on a creature that's
+    already a wall"). Prefers a creature that does not already have every keyword being
+    granted (a redundant grant wastes value) and, among those, the highest power (a flat
+    P/T bonus matters most on a creature already worth investing in). A greedy heuristic
+    in the same spirit as `_card_value`/`_activation_value` -- not a claim of optimal play.
+    """
+    creatures = me.creatures()
+    if not creatures:
+        return None
+    def _score(c: _Permanent) -> tuple[bool, int]:
+        already_has_all = grant_keywords <= (c.keywords | c.granted_keywords)
+        return (not already_has_all, c.power)
+    return max(creatures, key=_score)
+
+
 def _kill(
     owner: _Player, permanent: _Permanent, opponent: _Player,
     others: tuple[_Player, ...] = (),
 ) -> None:
+    _detach_on_leave(owner, permanent)
     owner.battlefield.remove(permanent)
     if permanent.is_commander:
         owner.commander_in_zone = True  # returns to the command zone (tax already counted)
@@ -775,6 +842,7 @@ def _bounce(owner: _Player, perm: _Permanent) -> None:
     """
     if perm not in owner.battlefield:
         return
+    _detach_on_leave(owner, perm)
     owner.battlefield.remove(perm)
     if perm.is_commander:
         owner.commander_in_zone = True  # commander goes back to the command zone
@@ -1081,11 +1149,16 @@ def _apply_resolved(
                     p.power += 1  # assume +1/+1 (the overwhelming common case) only
                     p.toughness += 1  # where a P/T bump could ever mean anything
     elif op == "grant_ability":
-        # A granted keyword is not modeled the same way as a real one: this engine's
-        # combat resolution doesn't read evasion/damage-prevention keywords for ANY
-        # creature yet, printed or granted (see the module docstring — "No evasion/
-        # keywords" is a standing simplification, not specific to this op), so flying/
-        # trample/menace/deathtouch/etc. correctly land as inert until that lands.
+        # A granted keyword is not modeled the same way as a real (printed) one. Combat
+        # resolution reads flying/vigilance/deathtouch/trample/reach for real now (Phase
+        # B, docs/PLAN_FIDELITY.md) via Card.keywords -- this comment used to say combat
+        # reads NONE of that "for ANY creature, printed or granted", which stopped being
+        # true the moment B2 shipped. What's still open is specifically GRANTED evasion/
+        # combat keywords ("target creature gains flying until end of turn") -- unlike
+        # `attach`'s permanent grant (see `granted_keywords`, a different duration model:
+        # "as long as attached" vs "until end of turn"), a temporary grant would need its
+        # own expire-at-cleanup mechanism mirroring temp_power/temp_toughness, not reuse
+        # of attach's field. Sized, not attempted here.
         # HASTE is the one exception worth taking: it maps directly to the `sick` field
         # this engine already tracks and already reads for attack/tap eligibility, so
         # granting it is a real, checkable state change, not a guess. Self-target only,
@@ -1097,6 +1170,48 @@ def _apply_resolved(
         is_self = just_cast is not None and (not target or target.get("self") is True)
         if is_self and ability_name == "haste":
             just_cast.sick = False
+    elif op == "attach":
+        # Equip-class activated ability: the equipment IS the resolving permanent
+        # (just_cast), targeting a creature I control -- the dominant real shape
+        # (docs/PLAN_FIDELITY.md Phase C, 2026-09-09: 72.4% of attach's chosen
+        # population is controller:"you", 76.1% type:"creature"). Unlike
+        # return_to_hand, this has no equivalent graveyard-zone-omission risk to
+        # decline -- you cannot attach equipment to a card sitting in a graveyard,
+        # so a target here is unambiguously a battlefield creature already.
+        target = _tgt("target")
+        controller = str(target.get("controller") or "").strip().lower()
+        ttype = str(target.get("type") or "").strip().lower()
+        if just_cast is not None and controller == "you" and ttype == "creature":
+            grant_power = pr.get("grant_power")
+            grant_toughness = pr.get("grant_toughness")
+            grant_power = grant_power if isinstance(grant_power, int) and not isinstance(grant_power, bool) else 0
+            grant_toughness = grant_toughness if isinstance(grant_toughness, int) and not isinstance(grant_toughness, bool) else 0
+            raw_keywords = pr.get("grant_keywords")
+            if isinstance(raw_keywords, str):
+                grant_keywords = frozenset({raw_keywords.strip().lower()})
+            elif isinstance(raw_keywords, list):
+                grant_keywords = frozenset(
+                    str(k).strip().lower() for k in raw_keywords if str(k).strip()
+                )
+            else:
+                grant_keywords = frozenset()
+            if grant_power or grant_toughness or grant_keywords:
+                # Re-equipping: this equipment may already be attached elsewhere --
+                # unwind that grant first so it isn't double-applied.
+                if just_cast.attached_to is not None:
+                    _detach_on_leave(me, just_cast)
+                pick = _pick_attach_target(me, grant_keywords)
+                if pick is not None:
+                    pick.power += grant_power
+                    pick.toughness += grant_toughness
+                    pick.granted_keywords |= grant_keywords
+                    just_cast.attached_to = pick
+                    just_cast.attach_grant = (grant_power, grant_toughness, grant_keywords)
+            # A static note the compiler couldn't reduce to grant_power/toughness/
+            # keywords (scaling, a granted type, a granted ability as free text --
+            # docs/PLAN_FIDELITY.md's measurement) has nothing to apply; the
+            # equipment still moves conceptually but grants nothing observable,
+            # an honest omission rather than a guess at what it should do.
     elif op == "return_to_hand":
         # SELF or MASS were the only shapes executed until Phase C (docs/PLAN_FIDELITY.md,
         # 2026-09-09) unlocked one further chosen-target direction below: "an opponent
@@ -1645,11 +1760,18 @@ def _main_phase(me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> None:
 # caught by the same live duel: a rescued "{T}: deal 1 damage and add a counter" scored
 # only the counter, and a damage-only mixed ability scored 0.0 and was never chosen --
 # enumerated as a legal action and silently never taken.
+# `attach` is weighted like `add_counter` -- both are a PERMANENT stat gain, unlike
+# `pump`'s until-end-of-turn one. Deliberately NOT added to _BOARD_DEPENDENT_ACTIVATION_OPS
+# below: that check reads `opp`, but attach's own precondition (do I have a creature to
+# equip) is about `me`, which this function does not receive -- threading it through would
+# touch three call sites for a minor inefficiency (the agent may activate Equip on an
+# empty board and get the honest no-op _apply_resolved already declines to), not a
+# correctness gap. Accepted rather than built.
 _INTERPRETER_ACTIVATION_VALUE = {
     "extra_turn": 50.0,  # an extra untap/draw/attack dwarfs any other mana sink
     "destroy": 3.0, "exile": 3.0, "sacrifice": 2.5, "search_library": 2.0,
     "look_and_select": 1.8, "create_token": 1.5, "draw": 1.4, "return_to_hand": 1.2,
-    "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8, "discard": 0.8, "tap": 0.8,
+    "add_counter": 1.0, "attach": 1.0, "pump": 0.8, "lose_life": 0.8, "discard": 0.8, "tap": 0.8,
     "proliferate": 0.7, "untap": 0.6, "grant_ability": 0.5, "scry": 0.4,
     "surveil": 0.4, "mill": 0.3, "gain_life": 0.3, "add_mana": 0.0,
 }
