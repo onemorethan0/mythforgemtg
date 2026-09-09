@@ -1,11 +1,19 @@
 """return_to_hand's chosen-target picker (docs/PLAN_FIDELITY.md Phase C, 2026-09-09).
 
 Self and mass were the only executed shapes before this; a chosen target was declined
-entirely (2,686 of 3,324 stored effects) because picking one could fabricate in either
-direction. This unlocks the two UNAMBIGUOUS controller directions only -- "you" (protect/
-re-trigger the permanent whose card is worth the most) and "opponent" + type:creature
-(bounce their biggest threat, reusing _instant_target's own metric) -- and keeps declining
-everything genuinely ambiguous (any/absent controller, a non-battlefield zone or type).
+entirely (2,686 of 3,324 stored effects) because picking one could fabricate. This unlocks
+ONE direction: "opponent" + type:creature (bounce their biggest threat, reusing
+_instant_target's own metric). Everything else stays declined, including "controller: you"
+-- shipped once (protect/re-trigger the permanent worth the most), then PULLED after a
+live re-measurement: a random 30-card sample of "controller: you", no explicit zone found
+ZERO genuine battlefield bounces -- every one turned out to be graveyard-recursion text
+("return target creature card from your graveyard to your hand/battlefield") with the zone
+field simply omitted by the compiler, not stated on the effect at all. This engine has no
+graveyard zone, so those correctly stay declined; there was no reliable signal in the
+compiled CCM to separate the two shapes, so picking would have executed the WRONG effect,
+not just under-counted. The surviving "opponent" direction's own version of this risk
+measured far lower (~5%, concentrated in unusual delegated-choice/multi-step cards) and its
+flagship real-card verification (Into the Flood Maw) is unambiguously correct, so it stays.
 """
 
 from __future__ import annotations
@@ -32,43 +40,23 @@ def _eff(op: str, **params) -> ResolvedEffect:
     return ResolvedEffect(op=op, params=params)
 
 
-# --- controller: "you" -- bounce the one worth the most to protect/re-trigger --------------
+# --- controller: "you" -- DECLINED (pulled after live measurement, see module docstring) --
 
 
-def test_chosen_you_bounces_the_highest_impact_permanent_i_control():
+def test_chosen_you_stays_declined_even_with_a_clearly_better_pick_available():
+    """This USED to bounce the highest-impact permanent -- reverted because "controller:
+    you" with no explicit zone turned out to be overwhelmingly graveyard-recursion text
+    with the zone field simply omitted, not a battlefield protect/re-trigger. Regression
+    pin: even an unambiguous-looking "better" candidate must not be picked."""
     me = _Player(name="a", library=[])
     weak = _perm("Weak", impact=1.0)
     strong = _perm("Strong", impact=9.0)
     me.battlefield = [weak, strong]
     eff = _eff("return_to_hand", target={"type": "creature", "controller": "you", "count": 1})
     _apply_resolved(eff, me, _Player(name="b", library=[]), None)
-    assert strong not in me.battlefield
     assert weak in me.battlefield
-    assert any(gc.name == "Strong" for gc in me.hand)
-
-
-def test_chosen_you_excludes_the_permanent_whose_ability_is_resolving():
-    """A bounce ability's own target is conventionally 'ANOTHER target permanent you
-    control' -- the resolving permanent itself must never be a candidate."""
-    me = _Player(name="a", library=[])
-    resolving = _perm("Resolving Source", impact=99.0)  # highest impact, but excluded
-    other = _perm("Other", impact=1.0)
-    me.battlefield = [resolving, other]
-    eff = _eff("return_to_hand", target={"type": "creature", "controller": "you", "count": 1})
-    _apply_resolved(eff, me, _Player(name="b", library=[]), resolving)
-    assert other not in me.battlefield
-    assert resolving in me.battlefield
-
-
-def test_chosen_you_a_token_is_never_picked_it_has_no_card_to_recast():
-    me = _Player(name="a", library=[])
-    token = _perm("Token", impact=None, is_token=True)
-    real = _perm("Real Card", impact=0.1)  # low impact, but still the only real candidate
-    me.battlefield = [token, real]
-    eff = _eff("return_to_hand", target={"type": "creature", "controller": "you", "count": 1})
-    _apply_resolved(eff, me, _Player(name="b", library=[]), None)
-    assert real not in me.battlefield
-    assert token in me.battlefield
+    assert strong in me.battlefield
+    assert not me.hand
 
 
 # --- controller: "opponent" + type creature -- bounce their biggest threat -----------------

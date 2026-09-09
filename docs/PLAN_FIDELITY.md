@@ -631,6 +631,53 @@ population than `you`'s 417 cards) by resolving Into the Flood Maw directly, whi
 mechanism works and the zero count is sampling rarity, not a defect. Full suite green (1526
 tests).
 
+### CORRECTION, 2026-09-09 (same session, later): the "you" direction above was WRONG and has been reverted
+
+Re-examining `return_to_hand`'s "any"/absent-controller decline (while chasing the `reanimate`/
+blink investigation below) meant re-sampling real oracle text for effects this session had
+already classified — including, as a sanity check, the "you"-direction population already
+SHIPPED above. It should not have shipped. A random 30-card sample of `controller:"you"` with no
+explicit `zone` (the exact shape `_best_of_mine_to_bounce` executed) found **zero genuine
+battlefield bounces — every single one was graveyard-recursion text** ("Return target creature
+card from your graveyard to your hand," Raise Dead; "...to the battlefield," several Unearth/
+Aura-reanimation cards mislabeled under this op too) with the `zone` field simply never stated.
+The original design measured this risk (Shipwreck Dowser was the cited example) but judged it a
+"real minority" — a 6-30-card spot-check at the time, not the 30-card *random* sample that
+overturned it. **The `zone`-absent population for `controller:"you"` turned out to be
+dominated by the graveyard-recursion archetype, not the battlefield-protect archetype the
+picker was built for** — an assumption ("zone absent defaults to battlefield") that held for
+the `opponent` direction (Into the Flood Maw and its kin) but not this one. Checked for a
+rescuable signal before reverting: neither the compiled effect's own fields (only 7 of 112
+flagged effects mention "grave" anywhere in their own JSON) nor a `mana_value`/`subtype`
+pattern reliably separates the two populations — this is a genuine compiler data gap (the LLM
+knows from the oracle text which zone it means; it just doesn't consistently write `zone` down),
+not something answerable from the simulator side without either fabricating or over-declining
+the OTHER, safe direction too.
+
+**Reverted**: `_best_of_mine_to_bounce` removed entirely (not left dead/unwired — it had zero
+remaining callers and no near-term path back without a compiler-level zone fix); the `you`
+branch in `_apply_resolved`'s `return_to_hand` dispatch removed, falling through to the existing
+decline. The **`opponent`+creature direction stays** — its own version of this same risk
+measured far lower (**3 of 61, ~5%**, concentrated in unusual delegated-choice/multi-step cards
+like Mausoleum Turnkey and Neyam Shai Murad, not the common "return target creature an opponent
+controls" shape) and Into the Flood Maw, its flagship live-verification card, is unambiguously
+correct. Re-verified directly against real cards after reverting: Into the Flood Maw still
+correctly bounces the bigger of two opposing creatures; Argivian Find (a real `controller:"you"`
+graveyard-recursion card) now correctly leaves the caster's battlefield untouched instead of
+wrongly bouncing an unrelated permanent. Tests updated (`test_return_to_hand_chosen.py`): the
+three `you`-direction execute tests replaced with one decline regression pin. Full suite green
+(1532 tests, net -2 from the removed/consolidated tests).
+
+**The lesson, stated plainly so it isn't re-learned the hard way**: a population measured as
+"looks clean" from a 6-20-card SPOT sample is not the same claim as a random sample proving it,
+and the gap between those two bars is exactly where this shipped a live defect for one work
+session before catching it. Every other "clean" claim in this document (`return_to_hand`'s
+`opponent` direction, `attach`'s targeting shape, `gain_control`'s `opponent`/`any` genuine
+cases) was reached the same spot-sample way and has NOT been re-verified at random-sample rigor
+— they are more likely correct (their samples were larger and more varied than the six-card
+first pass here), but this correction is the standing reminder that "sampled clean" is a
+probabilistic claim, not a proof, until it's been tested against a case built to break it.
+
 ### `attach` — the TARGETING shape is clean, the BONUS itself is not representable at all (2026-09-09)
 
 Started `attach` next (per the plan's own ordering — the third and last op step 1 measured
@@ -775,15 +822,16 @@ consistent with its small (22-card) population. Full suite green (1534 tests).
       op-vocabulary confusion). `attach`'s targeting shape is ALSO clean, but its underlying
       BONUS is a much bigger, separate blocker — see below, corrected from this line's first
       draft which called it simply "clean, ready for picker work."
-- [x] Phase C's picker generalized from `_instant_target`/`_tutor_pick`'s existing metrics,
-      wired through `return_to_hand`'s two unambiguous directions (2026-09-09, re-sequenced
-      from `gain_control` per the step-1 finding) — `you` (505 effects/417 cards, ranked by
-      source-card impact) and `opponent`+creature (40 effects/33 cards, `_instant_target`
-      reused as-is across the pod). `any`/absent controller and graveyard/non-permanent types
-      stay declined (fabrication risk / no graveyard zone, respectively). Found and fixed a
-      real, fourth instance of the gauge's own most-repeated self-flattery class in the
-      process (`_has_unelsed_if` didn't recurse into a real else's own nested guarded
-      if/elif) — see the writeup above.
+- [x] Phase C's picker generalized from `_instant_target`, wired through `return_to_hand`'s
+      `opponent`+creature direction (2026-09-09, re-sequenced from `gain_control` per the
+      step-1 finding; 40 effects/33 cards, `_instant_target` reused as-is across the pod).
+      Found and fixed a real, fourth instance of the gauge's own most-repeated self-flattery
+      class in the process (`_has_unelsed_if` didn't recurse into a real else's own nested
+      guarded if/elif) — see the writeup above. **The `you` direction was ALSO shipped this
+      way (505 effects/417 cards, ranked by source-card impact) and then REVERTED the same
+      session** — a random-sample re-check found it was systematically wrong (graveyard-
+      recursion text with `zone` omitted, not battlefield bounces); see the dated CORRECTION
+      section above. `any`/absent controller and graveyard/non-permanent types stay declined.
 - [ ] `return_to_hand`'s own `any`/absent-controller majority (53% of "chosen", genuinely
       ambiguous — needs a real decision, not a default guess).
 - [x] `attach` investigated (2026-09-09) — concluded blocked, not "not yet started": its
