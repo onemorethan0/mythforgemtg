@@ -262,6 +262,26 @@ chump-block" logic stays the same, it just draws blockers from a per-attacker-fi
 instead of the whole board. The natural next step after B2 because it's still additive/filtering,
 not restructuring the assignment's data shape.
 
+**Shipped 2026-09-09.** `_legal_blockers(atk, blockers)` filters the candidate pool per CR
+702.9b (flying attacker -> flying-or-reach blockers only; a non-flying attacker is unaffected,
+so a flier can still block a grounded creature) and is applied in BOTH of the function's passes
+(winning-trade and chump-block) — the chump pass needed its own filter too, or a defender facing
+lethal from a flier would illegally chump-block with a grounded creature. `_block_candidates`
+(the ISMCTS-side block enumeration in `game.py`) calls `greedy_block_assignment` directly rather
+than reimplementing it, so it inherited the fix with no separate change. Four unit tests in
+`tests/engine/test_greedy_block.py` pin both passes and both legality directions. **Closed a real
+plumbing gap neither B2 nor B3's own unit tests reached**: nothing had verified `_resolve()`
+actually copies `Card.keywords` onto the `_Permanent` it puts on the battlefield (every existing
+test hand-built `_Permanent` directly) — two new tests in `test_tier2_interpreter.py` resolve a
+real `Card` through the real path and check the resulting permanent's `has_keyword()`. Verified
+live, not just via unit tests: `mythgauntlet duel` runs clean end-to-end on real corpus decks
+(confirmed `Card.keywords` populated correctly off the live store too, e.g. Serra Angel ->
+`{'flying', 'vigilance'}`), and a traced run across 5 real deck pairs / 75 games recorded 201
+real flying-attack block decisions, 151 of which had at least one illegal grounded blocker
+filtered out of the pool, and 14 of which still found a legal flying/reach blocker to assign —
+the fix is actually live in real games, not just reachable in theory. Full suite green (1507
+tests) throughout.
+
 ### B4 — deathtouch (combat math, `game.py:974-977`)
 
 `if atk.power >= blk.toughness: _kill(opp, blk, ...)` — with deathtouch, ANY nonzero combat
@@ -401,7 +421,7 @@ measurement this session did) before committing to one shared function vs. sever
 - [x] Phase A run and recorded (§1.1, §1.2).
 - [x] Phase B1 (keyword data capture) shipped, schema-bumped, tested (2026-09-09).
 - [ ] Phase B2–B5 shipped as one slice, each with a synthetic before/after test proving the old
-      resolver gets it wrong and the new one doesn't. **B2 done (2026-09-09); B3–B5 pending.**
+      resolver gets it wrong and the new one doesn't. **B2, B3 done (2026-09-09); B4–B5 pending.**
 - [ ] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
       for it — may conclude "not yet," which is a valid outcome, not a failure to close it.
 - [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.

@@ -46,6 +46,16 @@ from mythgauntlet.sim.tier2 import (
 )
 
 
+def _legal_blockers(atk: _Permanent, blockers: list[_Permanent]) -> list[_Permanent]:
+    """CR 702.9b: a flying attacker can only be blocked by a creature with flying or reach.
+
+    A non-flying attacker is unaffected by this filter -- a flier can still block it.
+    """
+    if not atk.has_keyword("flying"):
+        return blockers
+    return [b for b in blockers if b.has_keyword("flying") or b.has_keyword("reach")]
+
+
 def greedy_block_assignment(
     attackers: list[_Permanent], defender: _Player
 ) -> dict[int, _Permanent]:
@@ -56,8 +66,9 @@ def greedy_block_assignment(
     blockers = [c for c in defender.creatures() if not c.tapped]
     assignments: dict[int, _Permanent] = {}
     for i, atk in enumerate(attackers):  # winning trades
+        legal = _legal_blockers(atk, blockers)
         pick = next(
-            (b for b in blockers if b.power >= atk.toughness and b.toughness > atk.power),
+            (b for b in legal if b.power >= atk.toughness and b.toughness > atk.power),
             None,
         )
         if pick is not None:
@@ -65,10 +76,13 @@ def greedy_block_assignment(
             blockers.remove(pick)
     unblocked = sum(a.power for i, a in enumerate(attackers) if i not in assignments)
     if unblocked >= defender.life:  # chump-block the biggest threats with what's left
-        for i, _atk in enumerate(attackers):
+        for i, atk in enumerate(attackers):
             if i in assignments or not blockers:
                 continue
-            pick = min(blockers, key=lambda b: b.power)
+            legal = _legal_blockers(atk, blockers)
+            if not legal:
+                continue
+            pick = min(legal, key=lambda b: b.power)
             assignments[i] = pick
             blockers.remove(pick)
     return assignments

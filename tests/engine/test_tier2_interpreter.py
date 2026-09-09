@@ -28,6 +28,33 @@ def test_rung1_card_has_no_resolve_abilities(make_card):
     assert make_game_card(card, None).resolve_abilities is None  # no store -> flattened path
 
 
+def test_resolving_a_card_threads_its_printed_keywords_onto_the_permanent(make_card):
+    """docs/PLAN_FIDELITY.md Phase B2/B3: neither the vigilance gate nor the flying/reach block
+    filter is worth anything if `_resolve()` never actually copies `Card.keywords` onto the
+    `_Permanent` it puts on the battlefield -- this is the plumbing both phases' unit tests
+    (which hand-build `_Permanent` directly) don't reach."""
+    card = make_card("Test Drake", mana_cost="{2}{U}", type_line="Creature — Drake")
+    card.power, card.toughness = "2", "2"
+    card.keywords = frozenset({"flying", "vigilance"})
+    gc = make_game_card(card, None)
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    perm = next(p for p in me.battlefield if p.name == "Test Drake")
+    assert perm.has_keyword("flying")
+    assert perm.has_keyword("vigilance")
+    assert not perm.has_keyword("reach")
+
+
+def test_resolving_a_vanilla_card_gives_an_empty_keyword_set(make_card):
+    card = make_card("Vanilla Bear", mana_cost="{1}{G}", type_line="Creature — Bear")
+    card.power, card.toughness = "2", "2"
+    gc = make_game_card(card, None)
+    me, opp = _Player(name="me", library=[]), _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    perm = next(p for p in me.battlefield if p.name == "Vanilla Bear")
+    assert perm.keywords == frozenset()
+
+
 def test_ccm_etb_draw_fires_via_interpreter(tmp_path, make_card):
     card = make_card("Test Drawer", mana_cost="{1}{U}", type_line="Creature — Wizard")
     card.power, card.toughness = "1", "1"
