@@ -85,6 +85,8 @@ COMMAND_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
             ("ccm-status", "CCM ledger coverage stats"),
             ("ccm-health", "Rank compile-failure classes by cards affected, with examples"),
             ("sim-health", "Rank what the SIMULATOR discards from the store, by cards affected"),
+            ("ccm-recheck", "Re-validate ACCEPTED CCMs against today's gates after a gate change"),
+            ("compile-names", "Recompile an explicit list of card names (ccm-recheck's worklist)"),
         ],
     ),
     (

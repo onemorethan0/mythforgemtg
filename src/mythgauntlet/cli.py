@@ -36,7 +36,7 @@ from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, resolve
 from mythgauntlet.ratings import advisor, manabase, metrics
 from mythgauntlet.ratings.analysis import analyze_deck, make_determinism_fn
-from mythgauntlet.semantics import compiler, health, tags
+from mythgauntlet.semantics import compiler, health, recheck, tags
 from mythgauntlet.semantics.store import SemanticsStore, load_store
 from mythgauntlet.sim import health as sim_health
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig, simulate
@@ -1354,6 +1354,101 @@ def _cmd_sim_health(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_ccm_recheck(args: argparse.Namespace) -> int:
+    """Re-validate ACCEPTED CCMs against the CURRENT gates — see semantics/recheck.py.
+
+    Run this straight after landing a gate change. `ccm-health` shows why cards FAIL to
+    compile; this shows which already-accepted cards a new gate has just invalidated,
+    which nothing else in the pipeline can see (the prompt_version gate only reaches
+    older-prompt and failed cards, never accepted-and-current ones).
+    """
+    db = _load_db()
+    store = compiler.compiled_dir()
+    if not store.exists():
+        console.print("[yellow]No compiled CCM store found — nothing to recheck.[/yellow]")
+        return 0
+
+    def _envelopes():
+        for path in sorted(store.glob("*.json")):
+            try:
+                yield json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+
+    result = recheck.recheck_accepted(
+        _envelopes(), db.get, top_n=args.top, samples_per_class=args.samples
+    )
+
+    checked = result["checked"]
+    failing = result["failing"]
+    console.print("[bold]CCM recheck[/bold] (accepted CCMs re-run through today's gates)")
+    console.print(
+        f"  checked: {checked:,}   now failing: [bold]{failing:,}[/bold]"
+        + (f" ({failing / checked:.2%})" if checked else "")
+    )
+    if result["unresolved"]:
+        console.print(
+            f"  [yellow]{result['unresolved']:,} stored cards are not in the card DB[/yellow]"
+            " — run fetch-data; they were NOT checked"
+        )
+
+    if result["classes"]:
+        table = Table(title="Newly-invalid classes", show_header=True, header_style="bold")
+        table.add_column("gate")
+        table.add_column("message")
+        table.add_column("cards", justify="right")
+        table.add_column("examples")
+        for cls in result["classes"]:
+            examples = ", ".join(cls["examples"][:3])
+            if len(cls["examples"]) > 3:
+                examples += " ..."
+            table.add_row(cls["gate"], cls["message"], str(cls["count"]), examples)
+        console.print(table)
+    else:
+        console.print("[green]  every accepted CCM still passes every gate[/green]")
+
+    if args.names_out and result["failing_names"]:
+        out_path = Path(args.names_out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text("\n".join(result["failing_names"]) + "\n", encoding="utf-8")
+        console.print(f"[dim]wrote {out_path} ({failing} names)[/dim]")
+        console.print(
+            "  recompile them with: [bold]mythgauntlet compile-names "
+            f"{out_path}[/bold]"
+        )
+    return 0
+
+
+def _cmd_compile_names(args: argparse.Namespace) -> int:
+    """Recompile an explicit list of card names (one per line).
+
+    The companion to `ccm-recheck`: that command decides WHICH cards a gate change
+    invalidated, this one spends the GPU on exactly those. Keeps the existing CCM when a
+    recompile fails, like every other refresh path — a gate change must never be able to
+    demote a working card to quarantined on a bad roll.
+    """
+    db = _load_db()
+    names = [
+        line.strip()
+        for line in Path(args.names_file).read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    ]
+    cards, missing = [], []
+    for name in names:
+        card = db.get(name)
+        (cards.append(card) if card is not None else missing.append(name))
+    if missing:
+        err.print(f"[yellow]{len(missing)} name(s) not in the card DB, skipped[/yellow]")
+        for name in missing[:5]:
+            err.print(f"  ? {name}")
+    if not cards:
+        _die("No resolvable card names in that file.")
+    if args.limit:
+        cards = cards[: args.limit]
+    console.print(f"Recompiling {len(cards)} card(s)…")
+    return _compile_cards(cards, keep_on_failure=True)
+
+
 def _cmd_benchmark(args: argparse.Namespace) -> int:
     """Run Tier-0 analysis over every corpus deck; check axis separation by bracket."""
     db = _load_db()
@@ -2384,6 +2479,29 @@ def build_parser() -> argparse.ArgumentParser:
     p_sh.add_argument("--samples", type=int, default=4, help="example cards per op")
     p_sh.add_argument("--json", help="also write the full result as JSON to this path")
     p_sh.set_defaults(func=_cmd_sim_health)
+
+    p_rc = sub.add_parser(
+        "ccm-recheck",
+        description="Re-validate ACCEPTED CCMs against TODAY's gates. ccm-health says why "
+                    "cards fail to compile; this says which already-accepted cards a gate "
+                    "change has just invalidated — which nothing else in the pipeline can "
+                    "see, since the prompt_version gate only reaches older-prompt and "
+                    "failed cards. Costs no GPU; run it right after landing a gate.",
+    )
+    p_rc.add_argument("--top", type=int, default=12, help="classes to show")
+    p_rc.add_argument("--samples", type=int, default=5, help="example cards per class")
+    p_rc.add_argument("--names-out", help="write the failing card names to this file")
+    p_rc.set_defaults(func=_cmd_ccm_recheck)
+
+    p_cn = sub.add_parser(
+        "compile-names",
+        description="Recompile an explicit list of card names (one per line) — the "
+                    "companion to ccm-recheck, which produces that list. Keeps the "
+                    "existing CCM if a recompile fails.",
+    )
+    p_cn.add_argument("names_file")
+    p_cn.add_argument("--limit", type=int, help="only compile the first N names")
+    p_cn.set_defaults(func=_cmd_compile_names)
 
     # Navigation / creature comforts.
     p_decks = sub.add_parser(
