@@ -485,6 +485,90 @@ measurement this session did) before committing to one shared function vs. sever
    (needs "would this bonus actually help this creature," not just "biggest/best"), so it
    shouldn't block the simpler wins above.
 
+### Step 1 measured, 2026-09-09 — and it overturned step 3's own sequencing
+
+Classification (mirroring `_apply_resolved`'s own self/mass check exactly, not a second
+reimplementation) over the live store (34,562 CCMs):
+
+| op | total effects | self | mass | chosen (declined) |
+|---|---|---|---|---|
+| `return_to_hand` | 3,324 | 296 (8.9%) | 342 (10.3%) | **2,686 (80.8%)** |
+| `gain_control` | 2,526 | 218 (8.6%) | 488 (19.3%) | **1,816 (71.9%)** |
+| `attach` | 798 | 20 (2.5%) | 11 (1.4%) | **767 (96.1%)** |
+
+(Close to but not identical to the store-wide figures quoted earlier in this doc and in
+CLAUDE.md — 3,232/2,067 vs 3,324/2,526 — because the store has grown since those were recorded
+and the nightly compiler keeps adding cards; same order of magnitude confirms this measurement's
+classifier matches the engine's real one.)
+
+**`return_to_hand` and `attach`'s "chosen" populations are clean.** Two random 20-card samples
+(seeds 9) of each op's non-self/non-mass effects read as genuinely on-topic for the op every
+time — real bounce effects, real Equip/Aura-attach effects, a couple of compound cases (Mantle
+of the Ancients' graveyard-to-battlefield-attached is arguably two effects in one) but nothing
+mislabeled. These two are ready for picker-generalization work as originally planned.
+
+**`gain_control` is NOT clean — a large fraction of its "chosen" population is a different
+effect entirely, mislabeled by the compiler.** Sampled 55 real `gain_control` effects across all
+three `target.controller` values (`you`/`opponent`/`any`) with full oracle text, the same
+discipline this session used to catch the Reaper-of-the-Wilds mistake in the B4 write-up above.
+The `controller: "you"` bucket (524 effects, 28.9% of "chosen") is the worst: of 37 sampled, only
+Jon Irenicus and (arguably) one or two others describe anything resembling "gain_control" — the
+rest are OTHER effects entirely, wearing `gain_control`'s op name. Categorized by what they
+actually are:
+
+- **Blink / exile-then-return** (Gossip's Talent, Ghostway, Turn to Mist) — "exile it, return it
+  to the battlefield under its owner's control" is not a control CHANGE (the owner already
+  controlled it), it's a temporary removal-and-reset. A separate, real effect shape with no op
+  of its own today.
+- **`return_to_hand`-shaped** (Cephalid Constable, Tidecaller Mentor, Ares God of War, Ancestral
+  Statue, Aether Tradewinds) — genuinely "return X to hand," using the sibling op's own
+  vocabulary, mislabeled as `gain_control` instead.
+- **"Becomes a creature" / Crew** (Corrupted Zendikon, Subway Train, Unctus's Retrofitter) — the
+  ALREADY-KNOWN catch-all pattern from this doc's own gain_control history (CLAUDE.md), now
+  confirmed as one slice of a bigger problem, not the whole of it.
+- **Restriction / evasion grants** ("can't attack or block", "can't be blocked", "doesn't
+  untap") — Whirlwind Killer Cyclone, Spara's Adjudicators, Briber's Purse, Splinter Radical Rat,
+  Ty Lee — `grant_ability`-shaped, mislabeled.
+- **Monarch** (Crown of Gondor) — an unrelated mechanic; `target.type` is even `"player"`, not a
+  permanent, which should have been a structural tell.
+- **Play-from-exile / impulse** (Ob Nixilis Captive Kingpin, Bloodsoaked Insight, Chandra Hope's
+  Beacon) — "you may play/cast that card" from exile, a distinct mechanic this doc's own
+  CLAUDE.md history already names (`impulse` theme) with no dedicated resolution op either.
+- **`add_counter`, `sacrifice`-with-condition, graveyard recursion** — one-off further
+  mislabelings (Nils Discipline Enforcer, Painwracker Oni, Serra Paragon).
+- **Genuinely reversed-polarity gain_control** (Sleeper Agent, Jinxed Ring, Drooling Ogre) — the
+  OP is arguably right (a creature/permanent's control changes), but the BENEFICIARY is not "you,
+  the effect's controller" — it's "target opponent," a player CHOICE this engine's one-directional
+  `gain_control` (which always assumes the caster ends up controlling the result) cannot
+  represent at all. Executing these as ordinary `gain_control` would hand the caster control of
+  their own creature — a silent no-op at best, backwards at worst.
+- **Genuinely correct `gain_control`** (Orcish Squatters, Sliver Overlord, Jet's Brainwashing,
+  Geyadrone Dihada, Jeering Instigator, Possession Engine, Govern the Guildless, Merieke Ri
+  Berit) — these exist in real numbers too, concentrated more in the `opponent`/`any` controller
+  buckets than in `you` (roughly half of the `opponent` sample, a bit under half of `any`).
+
+**This overturns step 3's own reasoning.** The plan proposed wiring `gain_control` first
+specifically *because* it looked like the cleanest test case (declined entirely, no partial logic
+to reconcile) — that premise is now known to be wrong. A large, uncounted fraction of what
+`gain_control` "declined" was never a targeting-infrastructure gap at all; it's a compiler
+op-vocabulary confusion that a `_pick_target` helper would paper over by confidently executing
+the WRONG effect (stealing a creature for a card that actually meant tap-lock, or return-to-hand,
+or nothing related to control at all). Building Phase C's picker against this population first
+would be building on the exact kind of near-miss defect this project's whole doctrine exists to
+catch — worse than declining, because it would look wired and be wrong.
+
+**Revised sequencing, effective now**: start Phase C's picker-generalization work on
+`return_to_hand` (confirmed clean, 80.8% of its own effects, 2,686 real chosen-target bounces)
+instead of `gain_control`. Treat "diagnose and fix `gain_control`'s op-vocabulary confusion at
+the compiler layer" as its own separate, sized-but-not-yet-scoped follow-on item — it needs the
+same kind of prompt-guidance/gate work this session already did for the extra_turn-vs-combat-
+phase confusion and the search_library-vs-bounded-reveal confusion (both cited elsewhere in this
+doc), not a simulator-side fix. Rough scope from this sample: at least 7 distinct real effect
+shapes are hiding under `gain_control`'s name, several of which (blink, restriction/evasion
+grants, impulse-play-from-exile) have no dedicated op today either — this is closer in size to
+the `look_and_select` op-creation effort than to a prompt tweak. Not attempted this session;
+sized and recorded here so it can be picked up on its own.
+
 ### Acceptance gate for Phase C
 
 - Live-verify (recompile or replay, not just unit-test) that a picked target is never the
@@ -526,8 +610,13 @@ measurement this session did) before committing to one shared function vs. sever
       doing eventually) but the cost is structural (multi-blocker data shape + damage-sequencing
       change), not a threshold edit, so it's deferred as its own follow-on phase rather than
       rushed. A valid outcome per this checklist's own wording, not a failure to close it.
-- [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.
-- [ ] Phase C's `gain_control` unlock shipped and reflected in a re-run `sim-health`.
+- [x] Phase C's shape-measurement (step 1) run and recorded (2026-09-09) — and it changed the
+      plan: `return_to_hand`/`attach`'s declined populations are clean, `gain_control`'s is not
+      (a compiler op-vocabulary confusion, not a targeting-infra gap — see the step-1 writeup).
+- [ ] Phase C's picker generalized from `_instant_target`, wired through `return_to_hand` first
+      (re-sequenced from `gain_control` per the step-1 finding), reflected in a re-run `sim-health`.
+- [ ] `gain_control`'s compiler-layer op-vocabulary confusion diagnosed further and fixed —
+      its own follow-on item, sized but not scoped, do not bolt it onto the picker work above.
 - [ ] This file updated in place, dated sub-sections, as each item above lands — not rewritten
       from scratch, following `PLAN_CLOCK.md`'s own convention of preserving prior dated findings
       even when a later measurement supersedes them.
