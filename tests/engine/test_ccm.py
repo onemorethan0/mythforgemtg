@@ -793,6 +793,70 @@ def _errs(doc, card):
     return [e for e in _ccm.cross_check(doc, card) if "PERMANENT" in e]
 
 
+# --- search_library vs bounded top-N reveal (2026-09-10) --------------------------
+
+def _search_lib_doc(*ops):
+    return {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{2}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [
+            {"op": "search_library", "what": {"type": "card"}, "count": 1} for _ in ops
+        ]}],
+    }
+
+
+def _search_lib_card(text: str):
+    from mythgauntlet.model.card import Card
+
+    return Card(name="Trickster", mana_cost_str="{2}{U}", type_line="Sorcery",
+               oracle_text=text)
+
+
+def test_search_library_names_the_bounded_reveal_confusion_specifically():
+    """The single largest recurring compiler confusion in the whole ledger (measured
+    2026-09-10: 253 cards ever failed the plain 'never says search' gate; 138 of them are
+    exactly this shape). A real search sees the ENTIRE library and shuffles it away;
+    "reveal the top N cards... put a matching one into hand" (Ad Nauseam, Ajani Mentor of
+    Heroes) only ever sees a bounded window and never shuffles."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card("Reveal the top card of your library and put that card into "
+                            "your hand. You lose life equal to its mana value.")
+    errs = cross_check(_search_lib_doc(1), card)
+    assert any("BOUNDED reveal" in e for e in errs)
+    assert not any(e == "CCM declares search_library but text never says search"
+                  for e in errs)
+
+
+def test_search_library_with_no_textual_support_at_all_keeps_the_generic_message():
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card("Draw a card.")
+    errs = cross_check(_search_lib_doc(1), card)
+    assert "CCM declares search_library but text never says search" in errs
+
+
+def test_a_genuine_search_is_not_flagged():
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card("Search your library for a card, put it into your hand, "
+                            "then shuffle.")
+    errs = cross_check(_search_lib_doc(1), card)
+    assert not any("search_library" in e for e in errs)
+
+
+def test_partner_with_licenses_search_library():
+    """"Partner with X (When this creature enters, target player may put X into their
+    hand from their library, then shuffle.)" -- a real search-and-shuffle by CR, just
+    never spelled "search". Same keyword this session already licensed for etb."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card(
+        "Partner with Rory Williams (When this creature enters, target player may put "
+        "Rory into their hand from their library, then shuffle.)")
+    assert not any("search_library" in e for e in cross_check(_search_lib_doc(1), card))
+
+
 def test_a_stated_duration_recorded_nowhere_is_a_gate_failure():
     """An omitted duration is invisible downstream — the engine cannot tell it from a
     genuinely permanent effect, so Aberrant Manawurm gains a PERMANENT +X/+0 on every

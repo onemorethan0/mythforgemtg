@@ -532,6 +532,11 @@ _KEYWORD_IMPLIED_OPS: tuple[tuple[re.Pattern[str], str], ...] = (
     (re.compile(r"\b\w+cycling\b", re.I), "search_library"),  # land/basic land/typecycling
     (re.compile(r"\bward\b", re.I), "counter_spell"),         # counter it unless they pay
     (re.compile(r"\btransmute\b", re.I), "search_library"),
+    # "Partner with X (When this creature enters, target player may put X into their
+    # hand from their library, then shuffle.)" -- a real search-and-shuffle by CR, just
+    # never spelled "search". Same shape as this table's other entries: found 2026-09-10
+    # alongside the etb licensing for the same keyword (_KEYWORD_IMPLIED_EVENTS above).
+    (re.compile(r"\bpartner with\b", re.I), "search_library"),
 )
 
 
@@ -783,7 +788,23 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         errors.append("oracle text searches the library but CCM has no search_library")
     if ("search_library" in ops_present and "search" not in text
             and "search_library" not in licensed):
-        errors.append("CCM declares search_library but text never says search")
+        # The single largest recurring compiler confusion in the whole ledger (measured
+        # 2026-09-10: 253 cards ever failed this check; 138 of them are exactly this
+        # shape). A real search sees the ENTIRE library and shuffles it away; "reveal the
+        # top N cards, put a matching one into your hand" (Ad Nauseam, Ajani Mentor of
+        # Heroes) and "mill N cards, you may keep a matching one" (Ainok Wayfarer) only
+        # ever see a BOUNDED window and never shuffle. The vocabulary has no op for that
+        # yet, so the honest answer is to omit the clause -- naming the confusion here is
+        # what the compiler prompt's own search_library guidance now also states.
+        if re.search(r"reveal (the )?(top|cards from the top)|look at the top", text):
+            errors.append(
+                "CCM declares search_library but text describes a BOUNDED reveal/look "
+                "at the top of the library, not a real search — a real search sees the "
+                "WHOLE library and shuffles it away; the vocabulary has no op for a "
+                "bounded look-and-select, omit the clause"
+            )
+        else:
+            errors.append("CCM declares search_library but text never says search")
     if not card.is_land and _ADD_TEXT_RE.search(text) and "add_mana" not in ops_present:
         errors.append("oracle text adds mana but CCM has no add_mana")
     # Typed lands (shocks/duals) carry their mana ability as reminder text or via land
