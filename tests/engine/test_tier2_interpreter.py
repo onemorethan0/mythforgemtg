@@ -212,6 +212,113 @@ def test_target_power_x_basis_stays_default_without_a_creature_source(tmp_path, 
     assert opp.life == 39  # no creature source (an instant/sorcery) -> default 1
 
 
+def test_power_x_basis_is_an_alias_for_target_power(tmp_path, make_card):
+    """`power` and `target_power` are the SAME concept under two names, not different
+    ones -- the compiler's x_basis field is free text with no closed enum, and sampling
+    all 104 stored `power`-basis effects (2026-09-10) showed the same "deals damage equal
+    to its power" shape target_power already resolves (Aerie Ouphes, Cyclops Gladiator,
+    Durkwood Tracker, Cinder Shade, Champion of Wits)."""
+    from mythgauntlet.sim.tier2 import _fire_perm_triggers
+
+    ability = {
+        "kind": "triggered", "trigger": {"event": "upkeep"},
+        "effects": [{"op": "deal_damage", "amount": "X", "x_basis": "power",
+                     "target": {"type": "player", "controller": "opponent"}}],
+    }
+    fighter = _Permanent(name="Fighter", power=7, toughness=7, is_creature=True,
+                         sick=False, triggers=(("upkeep", ability),))
+    me = _Player(name="me", library=[], battlefield=[fighter])
+    opp = _Player(name="opp", library=[], life=40)
+    _fire_perm_triggers(fighter, me, opp, "upkeep")
+    assert opp.life == 33  # resolved via the same source-power path as target_power
+
+
+def test_greatest_power_x_basis_resolves_from_the_board(tmp_path, make_card):
+    """"gain life equal to the greatest power among creatures you control" (Huatli,
+    Warrior Poet; Garruk, Primal Hunter) -- sampled all 14 stored uses, unambiguous
+    every time, unlike target_toughness's mixed referents."""
+    card = make_card("Test Huatli", mana_cost="{2}{G}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Huatli", [{"op": "gain_life", "amount": "X",
+                                      "x_basis": "greatest_power"}])
+    gc = make_game_card(card, _store(tmp_path, "Test Huatli", ccm))
+    me = _Player(name="me", library=[], life=40,
+                battlefield=[_bear("A"), _Permanent(name="Big", power=9, toughness=9,
+                                                     is_creature=True)])
+    opp = _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    assert me.life == 49  # 9, the greatest power on board, not the 2/2 bear's
+
+
+def test_greatest_power_with_no_creatures_is_a_real_zero_not_a_fabricated_one(
+    tmp_path, make_card
+):
+    """The bug this whole pair of fixes exists for: Huatli's "+2: gain life equal to the
+    greatest power among creatures you control" is trivially reachable with an EMPTY
+    board (activate turn 1, no creatures out) -- and the shared `max(1, ...)` floor in
+    `amount()` used to turn that real zero into a fabricated 1 life gained. Live-resolved
+    values are measurements, not guesses, so they must not be floored up."""
+    card = make_card("Test Huatli", mana_cost="{2}{G}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Huatli", [{"op": "gain_life", "amount": "X",
+                                      "x_basis": "greatest_power"}])
+    gc = make_game_card(card, _store(tmp_path, "Test Huatli", ccm))
+    me = _Player(name="me", library=[], life=40, battlefield=[])
+    opp = _Player(name="opp", library=[])
+    _resolve(gc, me, opp, False)
+    assert me.life == 40  # gained exactly 0, not floored to 1
+
+
+def test_a_zero_power_source_deals_zero_not_one(tmp_path, make_card):
+    """Retroactive fix, not a new one: a 0-power creature (a manland before animation, a
+    freshly-made 0/0 token) "dealing damage equal to its power" via target_power/power
+    was dealing 1 before this fix -- the same near-miss shape, one basis over."""
+    from mythgauntlet.sim.tier2 import _fire_perm_triggers
+
+    ability = {
+        "kind": "triggered", "trigger": {"event": "upkeep"},
+        "effects": [{"op": "deal_damage", "amount": "X", "x_basis": "target_power",
+                     "target": {"type": "player", "controller": "opponent"}}],
+    }
+    dud = _Permanent(name="Dud", power=0, toughness=1, is_creature=True,
+                     sick=False, triggers=(("upkeep", ability),))
+    me = _Player(name="me", library=[], battlefield=[dud])
+    opp = _Player(name="opp", library=[], life=40)
+    _fire_perm_triggers(dud, me, opp, "upkeep")
+    assert opp.life == 40  # 0 power -> 0 damage, not the old floor of 1
+
+
+def test_counters_on_this_with_zero_counters_is_zero_not_one():
+    """Same fix, third basis: a permanent with no counters yet (activated the turn it
+    entered, before anything grew it) reading X from counters_on_this must resolve 0."""
+    from mythgauntlet.sim.tier2 import _fire_perm_triggers
+
+    ability = {
+        "kind": "triggered", "trigger": {"event": "upkeep"},
+        "effects": [{"op": "deal_damage", "amount": "X", "x_basis": "counters_on_this",
+                     "target": {"type": "opponent"}}],
+    }
+    perm = _Permanent(name="Empty Pile", power=0, toughness=0, is_creature=False,
+                      sick=False, counters=0, triggers=(("upkeep", ability),))
+    me = _Player(name="me", library=[], battlefield=[perm])
+    opp = _Player(name="opp", library=[], life=40)
+    _fire_perm_triggers(perm, me, opp, "upkeep")
+    assert opp.life == 40  # 0 counters -> 0 damage
+
+
+def test_the_genuinely_unknown_fallback_still_defaults_to_one(tmp_path, make_card):
+    """The floor-of-0 fix is scoped to LIVE-RESOLVED values only. A bare X with no
+    x_basis at all is still genuinely unknown (a chosen/cost amount, per the module's own
+    doctrine) and keeps the modest default of 1 -- not 0, which would silently zero out
+    every unresolved X spell instead of under-counting it honestly."""
+    card = make_card("Test Fireball", mana_cost="{X}{R}", type_line="Sorcery")
+    ccm = _spell_ccm("Test Fireball", [{"op": "deal_damage", "amount": "X",
+                                        "target": {"type": "opponent"}}])
+    gc = make_game_card(card, _store(tmp_path, "Test Fireball", ccm))
+    me = _Player(name="me", library=[])
+    opp = _Player(name="opp", library=[], life=40)
+    _resolve(gc, me, opp, False)
+    assert opp.life == 39  # unknown X -> the modest default of 1, unchanged
+
+
 def test_proliferate_grows_the_casters_own_countered_permanents(tmp_path, make_card):
     """proliferate (CR 122.7) is a new op (2026-09-08) -- 94 cards use the real keyword and
     none could be modeled before (no op existed for it at all). Grows every one of the

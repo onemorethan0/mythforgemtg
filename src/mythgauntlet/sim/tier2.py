@@ -86,7 +86,7 @@ _EACH_CAP = 6  # cap on a "for each creature you control" board-scaled amount
 # Mirrors ccm.py's own deal_damage sanity ceiling (_SANITY_MAX) rather than inventing a
 # new number.
 _STAT_CAP = 40
-_STAT_BASES = {"target_power", "counters_on_this"}
+_STAT_BASES = {"target_power", "power", "greatest_power", "counters_on_this"}
 
 # CR 704.5a: a player with 21+ combat damage from a single commander loses the game.
 COMMANDER_DAMAGE_LETHAL = 21
@@ -1124,9 +1124,20 @@ class _EngineResolver:
                 basis = str(effect.get("x_basis") or "").strip().lower()
                 live = self._x_from_basis(basis)
                 if live is not None:
+                    # A live-resolved value is a MEASUREMENT, not a guess -- flooring it
+                    # to 1 turns a real zero into a fabrication. Found 2026-09-10 adding
+                    # greatest_power: Huatli, Warrior Poet's "+2: gain life equal to the
+                    # greatest power among creatures you control" on an empty board is a
+                    # real, easily-reached zero (activate turn 1 with no creatures out),
+                    # and the old `max(1, ...)` gained 1 life instead of the correct 0 --
+                    # the same near-miss-is-a-defect shape this project keeps finding one
+                    # layer down. Applies retroactively to target_power/counters_on_this
+                    # too (a 0-power creature "dealing damage equal to its power" was
+                    # dealing 1; a freshly-placed counter permanent with 0 counters removed
+                    # was drawing 1 card it hadn't earned) -- same bug, not a new one.
                     cap = _STAT_CAP if basis in _STAT_BASES else _EACH_CAP
-                    return max(1, min(live, cap))
-        return 1  # bare X/'all'/'half'/... — chosen/cost/ambiguous, keep the modest default
+                    return max(0, min(live, cap))
+        return 1  # bare X/'all'/'half'/... — genuinely UNKNOWN, keep the modest default
 
     def _x_from_basis(self, basis: str) -> int | None:
         """Live-state X for the board-derived bases the engine tracks; None otherwise.
@@ -1147,7 +1158,7 @@ class _EngineResolver:
             return sum(1 for p in me.battlefield if p.is_artifact)
         if basis == "counters_on_this":
             return self._source.counters if self._source is not None else None
-        if basis == "target_power":
+        if basis in ("target_power", "power"):
             # NOT the damage recipient's power, despite the name -- sampled 12 real cards
             # (2026-09-08) and the dominant shape is a FIGHT effect: "this creature deals
             # damage equal to ITS OWN power to target creature" (Abyssal Hunter, Aggressive
@@ -1159,9 +1170,24 @@ class _EngineResolver:
             # sample of THOSE showed no single referent (the creature that died, that was
             # sacrificed, that just entered, that's attacking...), so a source.toughness
             # guess would be wrong more often than not.
+            #
+            # `power` (2026-09-10) is the SAME concept under a different spelling, not a
+            # different one -- sampled all 104 stored uses: Aerie Ouphes / Cyclops
+            # Gladiator / Durkwood Tracker / Cinder Shade all read "deals damage equal to
+            # ITS power", Champion of Wits "draw cards equal to its power" -- the compiler's
+            # x_basis field is free text (no closed enum), so the model split one concept
+            # across two names. Same resolution, same fallback, same doctrine.
             if self._source is not None and self._source.is_creature:
                 return self._source.power
             return None
+        if basis == "greatest_power":
+            # "the greatest power among creatures you control" (Garruk Primal Hunter,
+            # Huatli Warrior Poet, Tumbleweed Rising, ...) -- sampled all 14 stored uses,
+            # unambiguous every time, unlike target_toughness's mixed referents above.
+            # 0 with no creatures is correct (not None -> default 1): "greatest power
+            # among your creatures" IS zero when you control none, not unknown.
+            creatures = me.creatures()
+            return max((c.power for c in creatures), default=0)
         return None
 
     def condition_holds(self, condition: str, effect: dict) -> bool:
