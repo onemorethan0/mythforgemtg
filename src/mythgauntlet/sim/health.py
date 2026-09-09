@@ -252,17 +252,25 @@ def _has_unelsed_if(stmt: ast.stmt) -> bool:
 
 
 def executed_ops() -> dict[str, frozenset[str]]:
-    """The two live dispatch vocabularies, by the path that owns each.
+    """The three live dispatch vocabularies, by the path that owns each.
 
     They are genuinely different sets, not one set read twice: `resolved` is the newer
     interpreter path (spell_effect / ETB / triggered), `activated` is the older
     flattening in `semantics/profile` that turns an activated ability into six fixed
-    `ActivatedEffect` fields. An op in one and not the other means the SAME printed
-    effect is executed or dropped depending on which kind of ability prints it.
+    `ActivatedEffect` fields, and `death` is a THIRD, separate flattening
+    (`profile._death_from`) that a `{"kind": "triggered", "trigger": "death"}` ability's
+    effects go through instead of `_apply_resolved` -- `ccm._EXECUTED_EVENTS` calls
+    `sim/tier2._EVENT_TRIGGERS` "the authority" on which trigger events are executed, but
+    `"death"` is NOT in that set at all (see docs/PLAN_FIDELITY.md); it is executed only
+    via this narrower, separate path (draw/lose_life/deal_damage/gain_life/create_token —
+    5 ops, nothing else, unconditionally on match, so it is never "guarded", only inert
+    or executed). An op in one vocabulary and not the others means the SAME printed effect
+    is executed or dropped depending on which kind of ability prints it.
     """
     return {
         "resolved": _dispatched_ops(tier2._apply_resolved),
         "activated": _dispatched_ops(profile._activated_from),
+        "death": _dispatched_ops(profile._death_from),
     }
 
 
@@ -282,6 +290,7 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
     guarded = {
         "resolved": _guarded_ops(tier2._apply_resolved),
         "activated": _guarded_ops(profile._activated_from),
+        "death": _guarded_ops(profile._death_from),
         "dropped": frozenset(),
     }
     vocab = dict(vocab, dropped=frozenset())  # an ability nothing runs executes no op
@@ -292,7 +301,7 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
     # `counter_spell` is resolved by profile._has_counter_spell feeding game.py's
     # reactive counter-war, so calling it a simulator gap would send a session to fix
     # something that already works. Its own bucket, not silently on either side.
-    elsewhere = frozenset(consumers) - vocab["resolved"] - vocab["activated"]
+    elsewhere = frozenset(consumers) - vocab["resolved"] - vocab["activated"] - vocab["death"]
 
     effect_counts: Counter[str] = Counter()
     card_counts: Counter[str] = Counter()
@@ -321,7 +330,16 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
                 continue
             kind = ability.get(_ABILITY_KIND_KEY)
             is_activated = kind == "activated"
-            path = "activated" if is_activated else "resolved"
+            # A death-triggered ability's effects never reach _apply_resolved at all --
+            # profile._build_profile diverts kind=="triggered"+trigger=="death" straight
+            # into profile._death_from's own narrower flattening (see executed_ops()'s
+            # docstring). Judging these against the "resolved" vocabulary, as the default
+            # branch below did before this existed, misclassified every op _death_from
+            # doesn't happen to also share with _apply_resolved.
+            trig = ability.get("trigger")
+            trigger_event = trig.get("event") if isinstance(trig, dict) else None
+            is_death = kind == "triggered" and trigger_event == "death"
+            path = "activated" if is_activated else "death" if is_death else "resolved"
             if is_activated:
                 # WHICH vocabulary an activated ability's effects are judged against is
                 # not fixed any more. `_activated_from` either flattens it into six

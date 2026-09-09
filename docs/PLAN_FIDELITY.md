@@ -631,6 +631,104 @@ population than `you`'s 417 cards) by resolving Into the Flood Maw directly, whi
 mechanism works and the zero count is sampling rarity, not a defect. Full suite green (1526
 tests).
 
+### `attach` — the TARGETING shape is clean, the BONUS itself is not representable at all (2026-09-09)
+
+Started `attach` next (per the plan's own ordering — the third and last op step 1 measured
+clean) and found the real blocker sits one layer under targeting. Every sampled Equipment/Aura
+card stores its actual bonus — "+2/+1", "gets +0/+3 and has vigilance", "Equipped creature has
+flying" — as a **free-text `note` on a `kind:"static"` ability, with no structured op/amount/
+keyword field at all**. Measured store-wide: **17,438 static abilities, EVERY ONE note-only**.
+Even a perfect `attach` picker would move an Equipment onto the right creature and grant it
+nothing, because the bonus doesn't exist anywhere machine-readable to apply.
+
+Refined before treating this as one giant number, the way this session treats every population:
+cross-referencing each note against the card's own `Card.keywords` (Phase B1's Scryfall-backed
+field) shows **10,169 of 17,438 (58.3%) are pure printed-keyword restatements already covered**
+by Phase B — "Flying", "Trample, Ward {2}" and similar are functionally fine even though the CCM
+itself never structures them. The genuine, still-open gap is the other **7,268 (41.7%)**:
+anthems and other-affecting statics ("Other creatures you control get +1/+1", "Other untapped
+creatures you control have hexproof"), attach/enchant bonuses (attach's own 496-of-608-card
+problem — Vow of Lightning: "Enchanted creature gets +2/+2, has first strike..."), cost
+reductions ("Creature spells you cast cost {1} less"), characteristic-defining values (Duggan's
+"power and toughness are each equal to the number of cards in your hand"), block/attack/cast
+restrictions on self or others, and replacement effects. **This is a CCM-schema-level gap, not a
+simulator dispatch gap** — fixing it needs a structured static/continuous-effect sub-schema,
+prompt + gate work, a corpus recompile, AND simulator-side infrastructure to apply a CONTINUOUS
+effect at all (this engine has no layer system — see `expire_until_end_of_turn`'s own docstring,
+built for temporary buffs only). Almost certainly the single largest remaining representational
+hole in the whole CCM->simulator pipeline, bigger in scope than the `gain_control` confusion
+above. **Not attempted this session — sized and recorded, `attach` stays blocked on it.**
+
+### Death-triggered effects: a third gauge blind spot, and Undying shipped (2026-09-09)
+
+Investigating `reanimate` (the CCM op for "put a card onto the battlefield", declared in
+`ccm.OP_SPECS` and — per this doc's own earlier notes — never dispatched anywhere) surfaced two
+more findings before any code was written, plus one real fix.
+
+**Finding 1 — `sim-health` itself couldn't see what happens to `death`-triggered abilities.**
+`ccm._EXECUTED_EVENTS` names `"death"` as engine-executed and calls `sim/tier2._EVENT_TRIGGERS`
+"the authority" — but `_EVENT_TRIGGERS` does not contain `"death"` at all. It IS executed, just
+through a THIRD, separate flattening (`semantics/profile._death_from`, 5 fixed ops: draw/
+lose_life/deal_damage/gain_life/create_token) that a death-triggered ability's effects go
+through instead of `_apply_resolved` — and `sim/health.py`'s `analyze_store` didn't know this
+path existed, so it judged every death-triggered effect against the WRONG vocabulary
+(`_apply_resolved`'s "resolved" set) by default. **This is a real, 5th instance of the gauge not
+seeing everything** — this project's most-repeated bug class, and a different SHAPE from the
+4th (a whole missing dispatch path this time, not a detection gap within one already-targeted
+function). Fixed: `executed_ops()`/`analyze_store` now read `profile._death_from`'s own AST as
+a third vocabulary (`"death"`) and route `kind:"triggered", trigger:"death"` abilities through
+it. Verified: `reanimate` now reports as a clean, correctly-attributed 132 cards / 140 effects
+inert (previously silently misjudged); `executed_share_ceiling` moved down (0.6847 -> 0.6723),
+the expected direction for a gauge becoming MORE honest, not less.
+
+**Finding 2 — the compiler is inconsistent about which op it picks for "put a card onto the
+battlefield," and it isn't only `reanimate` at stake.** Sampling `return_to_hand`'s and
+`gain_control`'s "any"/absent-controller populations with real oracle text (re-testing my own
+earlier "genuinely ambiguous, decline" call from the return_to_hand writeup rather than assuming
+it — the call held for genuine bounces, but a large share of that same bucket turned out to be
+BLINK effects — "exile it, return it to the battlefield" — mislabeled under `return_to_hand`'s
+or `gain_control`'s op name, e.g. Momentary Blink, Galepowder Mage, Spaceshift, Abuelo). A
+store-wide scan for the oracle-text signature "battlefield under \\<its/their/his/her\\> owner"
+found it scattered across **return_to_hand (173 cards), exile (146), gain_control (49),
+add_counter (42), reanimate (20, i.e. correctly labeled), draw (17)** and a long tail of ~55
+other op values — including several UNOFFICIAL, schema-tolerated-but-never-dispatched invented
+names the compiler minted for the same idea (`return_to_battlefield`, `put_into_play`,
+`put_into_play_under_control`, ...). `reanimate` already exists in the vocabulary for exactly
+this pattern; the compiler simply doesn't use it consistently. **This is its own follow-on
+item** — prompt guidance naming the confusion explicitly (the same fix shape as this session's
+earlier extra_turn-vs-combat-phase and search_library-vs-bounded-reveal fixes) plus a recompile
+of the affected population — not attempted this session, but the `return_to_hand`/`gain_control`
+"any"/absent declines it flows through remain SAFE regardless (declining means neither wrong op
+executes the wrong thing).
+
+**What shipped: Undying (CR 702.92c), reached through `Card.keywords` rather than the CCM's own
+inconsistent `reanimate` op.** Measuring `reanimate`'s self-target population precisely (not the
+rough estimate from the first pass) found only 18 cards genuinely shaped as a `death`-triggered
+self-return with a checkable condition — small, and most of those conditions are literally
+Undying's own wording ("if it had no +1/+1 counters on it") or Persist's ("...no -1/-1 counters
+on it"). Checking `Card.keywords` directly (Phase B1's Scryfall-backed field, the same source
+that already carries `undying`/`persist` as printed keywords) found a materially larger and far
+more reliable population: **22 real Undying creatures, 24 real Persist creatures store-wide** —
+worth building against `Card.keywords` instead of the CCM's inconsistent op, exactly matching
+the reasoning that made Phase B's combat keywords reliable in the first place. **Persist is
+declined**: `_Permanent.counters` is a single undifferentiated int (`add_counter`'s own comment:
+non-+1/+1 counter types are "tracked in `.counters` ... but no P/T ... interaction"), so "had no
+-1/-1 counters" is not answerable without either building real counter-type tracking or
+fabricating. **Undying shipped**: in `tier2._kill`, `has_keyword("undying") and counters == 0`
+returns the permanent to the battlefield with a +1/+1 counter, resetting it as a NEW OBJECT per
+CR 400.7 (sickness, tap state, and any "until end of turn" temp buff all reset, mirroring
+`expire_until_end_of_turn`'s own subtract-back-out pattern) — composes correctly with the
+existing self-death-trigger mutations (draw/drain/gain_life/tokens still fire) and with mass
+kills (`_wipe_table`/the sacrifice-mass loop both snapshot via `list(player.creatures())` before
+killing, so a returning creature is never double-processed in the same wipe). A returning
+creature's own ETB does NOT re-fire — a known, documented under-count, not attempted this
+session (would need `_kill` to reach back into resolve-ability machinery it doesn't have access
+to today). Eight synthetic tests (`tests/engine/test_undying.py`) plus live verification: a
+real store card (Butcher Ghoul) resolved through the real pipeline correctly returns as a 2/2
+with a counter on its first death and stays dead on a second (the counter now blocks the
+condition) — and a traced 15-pair/225-game duel run found it firing twice with no crashes,
+consistent with its small (22-card) population. Full suite green (1534 tests).
+
 ### Acceptance gate for Phase C
 
 - Live-verify (recompile or replay, not just unit-test) that a picked target is never the
@@ -673,8 +771,10 @@ tests).
       change), not a threshold edit, so it's deferred as its own follow-on phase rather than
       rushed. A valid outcome per this checklist's own wording, not a failure to close it.
 - [x] Phase C's shape-measurement (step 1) run and recorded (2026-09-09) — and it changed the
-      plan: `return_to_hand`/`attach`'s declined populations are clean, `gain_control`'s is not
-      (a compiler op-vocabulary confusion, not a targeting-infra gap — see the step-1 writeup).
+      plan: `return_to_hand`'s TARGETING shape is clean, `gain_control`'s is not (a compiler
+      op-vocabulary confusion). `attach`'s targeting shape is ALSO clean, but its underlying
+      BONUS is a much bigger, separate blocker — see below, corrected from this line's first
+      draft which called it simply "clean, ready for picker work."
 - [x] Phase C's picker generalized from `_instant_target`/`_tutor_pick`'s existing metrics,
       wired through `return_to_hand`'s two unambiguous directions (2026-09-09, re-sequenced
       from `gain_control` per the step-1 finding) — `you` (505 effects/417 cards, ranked by
@@ -684,9 +784,31 @@ tests).
       real, fourth instance of the gauge's own most-repeated self-flattery class in the
       process (`_has_unelsed_if` didn't recurse into a real else's own nested guarded
       if/elif) — see the writeup above.
-- [ ] `return_to_hand`'s remaining scope: `attach` (confirmed clean in step 1, not yet
-      started) and a second pass at `return_to_hand`'s own `any`/absent-controller majority
-      (53% of "chosen", genuinely ambiguous — needs a real decision, not a default guess).
+- [ ] `return_to_hand`'s own `any`/absent-controller majority (53% of "chosen", genuinely
+      ambiguous — needs a real decision, not a default guess).
+- [x] `attach` investigated (2026-09-09) — concluded blocked, not "not yet started": its
+      targeting shape is clean, but 17,438 static abilities store-wide (496 of attach's own 608
+      cards) store their bonus as unstructured prose with no op/amount/keyword field at all.
+      10,169 of those are keyword restatements Phase B1 already covers; the genuine 7,268-
+      ability gap (anthems, cost reduction, characteristic-defining P/T, attach/enchant bonuses,
+      replacement effects) needs a new CCM sub-schema + prompt/gate work + a corpus recompile +
+      simulator-side continuous-effect infrastructure this engine doesn't have (no layer
+      system). Sized as likely the largest remaining representational gap in the pipeline;
+      recorded as its own major follow-on, not attempted this session.
+- [x] `reanimate` investigated (2026-09-09) — never dispatched anywhere (confirmed); the
+      compiler is inconsistent about which op it picks for "put a card onto the battlefield"
+      (return_to_hand/gain_control/reanimate/~55 other op values all used for the same real
+      pattern across the store) — its own sized-but-unscoped follow-on, same shape as
+      `gain_control`'s confusion. **Undying (CR 702.92c) shipped** from this investigation,
+      reached via `Card.keywords` rather than the CCM's unreliable `reanimate` op (22 real
+      creatures store-wide); Persist stays declined (needs counter-type tracking this engine's
+      single undifferentiated `.counters` field doesn't have).
+- [x] Found and fixed a 5th instance of the `sim-health` gauge's own self-flattery class
+      (2026-09-09): `analyze_store` judged death-triggered abilities' effects against
+      `_apply_resolved`'s vocabulary, but they never reach it — they go through a THIRD,
+      separate flattening (`profile._death_from`) the gauge didn't know existed. Fixed by
+      reading that function's own AST as a third dispatch vocabulary, same "read the source,
+      never restate it" discipline as the other four fixes.
 - [ ] `gain_control`'s compiler-layer op-vocabulary confusion diagnosed further and fixed —
       its own follow-on item, sized but not scoped, do not bolt it onto the picker work above.
 - [ ] This file updated in place, dated sub-sections, as each item above lands — not rewritten

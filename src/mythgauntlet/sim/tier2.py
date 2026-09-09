@@ -415,6 +415,33 @@ def _kill(
         owner.life += death.gain_life
         if death.tokens:
             _spawn_tokens(owner, death.tokens)
+    # CR 702.92c (Undying): if it had no +1/+1 counters on it, return it to the battlefield
+    # under its owner's control with a +1/+1 counter on it -- reads Card.keywords (the
+    # Phase B mechanism), not the CCM's own `reanimate` op, because the store's `reanimate`
+    # effects turned out inconsistent about this exact shape (docs/PLAN_FIDELITY.md).
+    # Persist (the -1/-1 mirror) is declined: `.counters` tracks ALL counter types
+    # undifferentiated (add_counter's own comment: non-+1/+1 types "tracked in .counters
+    # ... but no P/T ... interaction"), so "had no -1/-1 counters" is not answerable
+    # without fabricating -- and for the same reason `counters == 0` here is a close but
+    # not exact proxy for undying's real condition (a stray -1/-1 counter from something
+    # else would also block it from firing; rare, and under-counts rather than fabricates).
+    # A returning creature is a NEW OBJECT (CR 400.7) -- sickness/tap/temp buffs reset; its
+    # own ETB does NOT re-fire (a known, accepted under-count, not attempted this session).
+    if permanent.has_keyword("undying") and permanent.counters == 0:
+        # A new object carries none of the old one's "until end of turn" deltas (CR
+        # 400.7) -- subtract them back out first, same as expire_until_end_of_turn.
+        permanent.power -= permanent.temp_power
+        permanent.toughness -= permanent.temp_toughness
+        permanent.temp_power = 0
+        permanent.temp_toughness = 0
+        permanent.counters = 1
+        permanent.power += 1
+        permanent.toughness += 1
+        permanent.sick = True
+        permanent.tapped = False
+        if permanent.is_commander:
+            owner.commander_in_zone = False  # returns directly, not via the command zone
+        owner.battlefield.append(permanent)
 
 
 def _card_value(gc: GameCard, me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> float:
