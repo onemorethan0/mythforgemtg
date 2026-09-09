@@ -94,10 +94,57 @@ signal-separation gate for *placement* rule changes, a `PLAN_CLOCK.md` concern; 
 session touched bracket placement logic, only what the simulator executes). It does not need a
 controlled CCM-store diff — the store isn't the variable under test here, the code is.
 
-### 1.1 — result (pending)
+### 1.1 — the harness was pointed at the wrong layer, found by running it (2026-09-10)
 
-*(Fill in when run: before/after table, direction, and a one-line verdict — "the session's
-simulator changes measurably [helped/hurt/didn't move] calibration, n=___, confidence: ___".)*
+Ran the controlled test exactly as designed above (git worktree at `21c2a06`, corpus
+population matched between worktrees — the current checkout had 93 untracked deck fetches, 17
+labelled, that the pre-session worktree lacked; copied them across so both draw from an
+identical population before comparing anything). `--limit 150 --runs 40`, same seed, same store.
+
+**The two runs produced byte-identical output — not just the same rounded summary, `diff` on
+the raw `--json` files returns nothing.** 57.3% exact / 94.0% within-one / -0.01 bias, cell-for-
+cell identical confusion matrix.
+
+**That is not evidence tonight's work made no difference — it's evidence this harness cannot
+see tonight's work at all, structurally, and picking it was a mistake.** Traced it rather than
+accepting the surprising result at face value:
+
+- `ratings/bracket.py` (the module `estimate_bracket` lives in) has **zero imports** from
+  `sim`/`tier`/`interpret` anywhere in the file.
+- `estimate_bracket` DOES take simulation-derived parameters (`speed_kill_rate`,
+  `avg_kill_turn`, `consistency`) — but they're computed by the CALLER from **tier0**, not
+  tier2. Confirmed by reading tier0's own module docstring: *"Commander tax, haste, and
+  ACTIVATED ABILITIES ARE IGNORED"* and *"Noncombat damage isn't modeled at rung 1."*
+  `grep -n "\.activated\b" sim/tier0.py` and `grep -n "PlayProfile\|interpret_ability"
+  sim/tier0.py` both return **zero hits**. Tier0 is a fast, deterministic, intentionally-simple
+  goldfish consistency simulator (mulligans/land-drops/color-access/curve) — a genuinely
+  separate simulator from tier2, not a lighter view of the same one.
+- `estimate_bracket` also accepts `meta_rating` (which WOULD be a tier2 Bradley-Terry figure) —
+  but `bracket_accuracy.py` never populates it (matches the already-known "B5 recall was
+  structurally 0% until `--real-combos`" finding in `PLAN_CLOCK.md` §1.3, same root shape: the
+  harness silently runs a cheaper, blinder path than the live app does).
+
+**Every fix landed 2026-09-08 through 2026-09-10 lives in `sim/tier2.py`,
+`semantics/interpreter.py`, or `semantics/profile._activated_from`'s ability-routing branch —
+none of which `bracket_accuracy.py` exercises.** The byte-identical result is therefore
+expected, not informative, and does not answer the question this phase exists to answer.
+
+**Corrected instrument: `mythgauntlet gauntlet` (Bradley-Terry ratings via real tier2
+round-robin duels) or a direct `tier2.duel()` win-rate comparison — not `bracket_accuracy.py`.**
+Same controlled-worktree technique, same store held fixed, re-run against the layer that
+actually changed. See §1.2.
+
+**Standing lesson for this whole project, not just this phase**: before treating any harness as
+"the" validation for a change, check what it actually imports/computes from, the same way this
+session's own doctrine already insists on checking a claim before reporting it. A harness
+silently running the cheaper/older code path (bracket_accuracy → tier0; the original B5-recall
+harness → `--combos 0`) is a repeating shape in this specific codebase, not a one-off.
+
+### 1.2 — the corrected test, tier2 (pending)
+
+*(Fill in when run: `gauntlet`/`duel`-based before/after on the matched corpus, same worktree
+technique, holding the store fixed. This is the actual answer to "did tonight's tier2 work move
+anything.")*
 
 ---
 
