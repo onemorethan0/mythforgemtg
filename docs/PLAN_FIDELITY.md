@@ -569,6 +569,68 @@ grants, impulse-play-from-exile) have no dedicated op today either — this is c
 the `look_and_select` op-creation effort than to a prompt tweak. Not attempted this session;
 sized and recorded here so it can be picked up on its own.
 
+### `return_to_hand`'s chosen-target picker — shipped 2026-09-09
+
+Scoped narrowly and precisely rather than to the full 2,686-effect "chosen" population,
+following this project's own repeated discipline of shipping the safe subset first and
+measuring before widening (the same shape as `pump`/`sacrifice`/`add_counter` all shipping
+self-or-mass-only originally). Two more measurements narrowed the scope further than step 1's
+headline numbers suggested, each done BEFORE writing code, not after:
+
+- **This engine has no graveyard zone** (already true of `discard`/`scry`/`mill`/`surveil`, see
+  `tests/engine/test_hand_library_ops.py`'s own docstring) — ~39% of the "chosen" population
+  (1,047 effects, `zone: "graveyard"`) is recursion, permanently out of scope regardless of
+  picker quality. A real minority of graveyard-sourced effects omit the `zone` field entirely
+  even though their oracle text says "from your graveyard" (Shipwreck Dowser is one) — caught
+  because `type` itself is diagnostic: `instant`/`sorcery`/generic `"card"` can never be a
+  battlefield permanent, so those types are declined regardless of what `zone` says or doesn't.
+- **Cross-tabbing `controller` against `type`/`zone`** (not just reading the marginals) found
+  the two unambiguous-direction populations smaller than the headline suggested: **505 effects
+  / 417 cards** for `controller: "you"` (any real permanent type: creature/permanent/artifact/
+  land/enchantment, battlefield-only) and **40 effects / 33 cards** for `controller:
+  "opponent"`/`"each_opponent"` restricted to `type: "creature"` (a non-creature permanent's
+  `power` is always 0 in this engine, making "biggest by power" meaningless for that side).
+
+**Implementation**, both directions reusing an EXISTING picker rather than inventing a new
+metric per the plan's own design question: `_best_of_mine_to_bounce(player, exclude)`
+(`tier2.py`, new) ranks MY OWN permanents by `.source.profile.impact` — the exact "best of
+mine" metric `_tutor_pick` already uses, reused rather than re-derived — excluding both tokens
+(no card to re-cast) and the permanent whose ability is currently resolving (a bounce ability's
+target is conventionally "ANOTHER target permanent you control"). The opponent direction calls
+`_instant_target` (unchanged) across every opponent's board via the EXISTING `_affected_boards`
+helper (already used by the mass branch two lines above — one definition of "who counts as an
+opponent" in a multiplayer pod, not a second one that could drift) and bounces the single
+biggest-power creature found. Everything else — `any`/absent controller (the genuinely ambiguous
+53% majority), non-battlefield zones/types — stays declined exactly as before.
+
+**A real, fourth instance of this project's most-repeated bug class, found by this exact
+change**: adding the new code changed `_apply_resolved`'s `return_to_hand` branch from a flat
+`if self / elif mass` (falls through silently, correctly read as "guarded" by `sim/health.py`'s
+detector) to `if self / elif mass / else: <setup> if you: ... elif opponent: ...` — a REAL
+terminal `else` whose own body is a further guarded if/elif. `sim/health.py`'s `_has_unelsed_if`
+only ever checked "does the chain terminate in a real else", not "does that else's own body
+still fall through one level deeper" — so `return_to_hand` silently dropped out of the guarded
+set the moment this shipped, which `test_an_if_elif_chain_with_no_else_reads_as_guarded`
+(pinned at the top of Phase B this session) caught immediately. Same self-flattery shape
+CLAUDE.md already documents twice over (branch-exists-≠-effect-happens; the elif-chain not
+walked) — this is the third instance in the gauge itself, fixed by recursing into a real else's
+own body rather than treating "has a body" as "handles every case." A new synthetic test
+(`test_a_guarded_if_elif_nested_inside_a_real_else_still_reads_as_guarded`) pins the AST shape
+directly, independent of `return_to_hand`'s own implementation ever changing again.
+
+**Verified.** Nine synthetic tests (`tests/engine/test_return_to_hand_chosen.py`) cover both
+directions, the token/self-exclusion, the multiplayer-pod reach, and all three still-declined
+shapes (any, absent, graveyard, non-creature-opponent). Live, not just unit-tested: a real
+stored card, **Into the Flood Maw** (`{"op":"return_to_hand","target":{"type":"creature",
+"controller":"opponent","count":1}}`), resolved end-to-end through the real semantics store
+correctly bounced the bigger of two opposing creatures to its owner's hand. A traced 10-pair/
+150-game duel run found the `you`-direction firing **11 times** in real games with no crashes;
+the `opponent`-direction fired **zero** times in that same sample — checked whether that meant
+broken rather than merely rare (70 real cards carry the shape store-wide, a much smaller
+population than `you`'s 417 cards) by resolving Into the Flood Maw directly, which confirmed the
+mechanism works and the zero count is sampling rarity, not a defect. Full suite green (1526
+tests).
+
 ### Acceptance gate for Phase C
 
 - Live-verify (recompile or replay, not just unit-test) that a picked target is never the
@@ -613,8 +675,18 @@ sized and recorded here so it can be picked up on its own.
 - [x] Phase C's shape-measurement (step 1) run and recorded (2026-09-09) — and it changed the
       plan: `return_to_hand`/`attach`'s declined populations are clean, `gain_control`'s is not
       (a compiler op-vocabulary confusion, not a targeting-infra gap — see the step-1 writeup).
-- [ ] Phase C's picker generalized from `_instant_target`, wired through `return_to_hand` first
-      (re-sequenced from `gain_control` per the step-1 finding), reflected in a re-run `sim-health`.
+- [x] Phase C's picker generalized from `_instant_target`/`_tutor_pick`'s existing metrics,
+      wired through `return_to_hand`'s two unambiguous directions (2026-09-09, re-sequenced
+      from `gain_control` per the step-1 finding) — `you` (505 effects/417 cards, ranked by
+      source-card impact) and `opponent`+creature (40 effects/33 cards, `_instant_target`
+      reused as-is across the pod). `any`/absent controller and graveyard/non-permanent types
+      stay declined (fabrication risk / no graveyard zone, respectively). Found and fixed a
+      real, fourth instance of the gauge's own most-repeated self-flattery class in the
+      process (`_has_unelsed_if` didn't recurse into a real else's own nested guarded
+      if/elif) — see the writeup above.
+- [ ] `return_to_hand`'s remaining scope: `attach` (confirmed clean in step 1, not yet
+      started) and a second pass at `return_to_hand`'s own `any`/absent-controller majority
+      (53% of "chosen", genuinely ambiguous — needs a real decision, not a default guess).
 - [ ] `gain_control`'s compiler-layer op-vocabulary confusion diagnosed further and fixed —
       its own follow-on item, sized but not scoped, do not bolt it onto the picker work above.
 - [ ] This file updated in place, dated sub-sections, as each item above lands — not rewritten

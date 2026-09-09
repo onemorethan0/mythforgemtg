@@ -766,6 +766,28 @@ def _weakest_creature(player: _Player) -> _Permanent | None:
     return min(creatures, key=lambda c: (c.power, c.toughness)) if creatures else None
 
 
+# Card TYPES that can never be a battlefield permanent -- an instant/sorcery/generic "card"
+# target is always graveyard/hand/exile recursion regardless of what (or whether) the CCM's
+# own `zone` field says (docs/PLAN_FIDELITY.md Phase C step 1, 2026-09-09: ~39% of
+# return_to_hand's chosen-target population is graveyard-sourced, and a real minority of
+# those omit `zone` even though the oracle text says "from your graveyard" -- Shipwreck
+# Dowser is one). This engine has no graveyard zone at all, so these stay declined regardless.
+_NEVER_BATTLEFIELD_TYPES = frozenset({"card", "instant", "sorcery", "spell"})
+
+
+def _best_of_mine_to_bounce(
+    player: _Player, exclude: _Permanent | None
+) -> _Permanent | None:
+    """Which of MY OWN permanents is worth protecting or re-triggering by bouncing it --
+    ranked by its source card's `impact` (the same "how good is this card" proxy `_tutor_pick`
+    already uses for the analogous "best of mine" shape). A token has no card to re-cast and a
+    bounce ability's target is conventionally "ANOTHER target permanent you control" when it
+    belongs to a permanent already on the battlefield, so both are excluded from the pool.
+    """
+    candidates = [p for p in player.battlefield if p is not exclude and p.source is not None]
+    return max(candidates, key=lambda p: p.source.profile.impact, default=None)
+
+
 _DISCARD_ME = frozenset({"you", "self", "controller"})
 _DISCARD_OPP = frozenset({"opponent", "target_player", "each_opponent"})
 _DISCARD_ALL = frozenset({"each", "all", "any"})
@@ -1062,11 +1084,13 @@ def _apply_resolved(
         if is_self and ability_name == "haste":
             just_cast.sick = False
     elif op == "return_to_hand":
-        # SELF or MASS only, the standing discipline. A chosen target ("return target
-        # creature to its owner's hand") is 2,668 of 3,232 stored effects and is a
-        # decision the engine has no targeting infra to make -- and picking one would
-        # fabricate in BOTH directions at once here, since bouncing my own creature is
-        # value (a saved blocker, a re-used ETB) while bouncing theirs is tempo.
+        # SELF or MASS were the only shapes executed until Phase C (docs/PLAN_FIDELITY.md,
+        # 2026-09-09) unlocked the two UNAMBIGUOUS chosen-target directions below. A chosen
+        # target with an "any"/absent controller is still declined -- the caster could
+        # legally bounce either side and guessing which one the card actually wants would
+        # fabricate (measured: 53% of the chosen population is any/absent). Battlefield-only:
+        # this engine has no graveyard zone, so a graveyard-sourced return (~39% of the
+        # chosen population) stays declined regardless of direction.
         target = _tgt("target")
         if just_cast is not None and (not target or target.get("self") is True):
             _bounce(me, just_cast)
@@ -1074,6 +1098,29 @@ def _apply_resolved(
             for player in _affected_boards(target, me, opp, others):
                 for perm in list(player.creatures()):
                     _bounce(player, perm)
+        else:
+            ttype = str(target.get("type") or "").strip().lower()
+            zone = str(target.get("zone") or "").strip().lower()
+            controller = str(target.get("controller") or "").strip().lower()
+            on_battlefield = zone in ("", "battlefield") and ttype not in _NEVER_BATTLEFIELD_TYPES
+            if on_battlefield and controller == "you":
+                # "Return target permanent YOU control" -- protect/re-trigger the one whose
+                # card is worth the most (_tutor_pick's own "best of mine" metric).
+                pick = _best_of_mine_to_bounce(me, just_cast)
+                if pick is not None:
+                    _bounce(me, pick)
+            elif on_battlefield and controller in ("opponent", "each_opponent") and ttype == "creature":
+                # "Return target creature an opponent controls" -- tempo/removal, so this
+                # reuses _instant_target's exact "biggest threat by power" pick across every
+                # opponent's board (not just the reactive `opp` seat, for a multiplayer pod).
+                candidates = [
+                    (player, _instant_target(player))
+                    for player in _affected_boards(target, me, opp, others)
+                ]
+                candidates = [(p, c) for p, c in candidates if c is not None]
+                if candidates:
+                    owner, pick = max(candidates, key=lambda pc: pc[1].power)
+                    _bounce(owner, pick)
     elif op == "sacrifice":
         # Sacrifice IS a death, so this routes through `_kill` and correctly fires the
         # aristocrat payoffs a bounce must not.

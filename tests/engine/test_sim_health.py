@@ -135,6 +135,50 @@ def test_an_if_elif_chain_with_no_else_reads_as_guarded():
     assert {"extra_turn", "scry", "mill"} & set(guarded) == set()
 
 
+def test_a_guarded_if_elif_nested_inside_a_real_else_still_reads_as_guarded():
+    """The detector's THIRD miss (docs/PLAN_FIDELITY.md Phase C, 2026-09-09).
+
+    `return_to_hand`'s new chosen-target picker is `if self ... elif mass ... else: <setup>
+    if controller=="you": ... elif controller=="opponent": ...` -- a REAL terminal else (so
+    the OUTER chain no longer trivially falls through), whose own BODY is a further guarded
+    if/elif that still declines the any/absent-controller majority one level deeper. The
+    detector's second fix only walked a flat elif chain; it had no reason yet to recurse
+    INTO an else body, so this shape read as fully handled the moment it existed -- caught
+    by this exact function acquiring it and the existing `return_to_hand` assertion above
+    briefly failing. A synthetic function pins the AST shape directly, independent of
+    return_to_hand's own implementation ever changing.
+    """
+
+    def fake_dispatch(op, target):  # pragma: no cover -- source is read, never executed
+        if op == "return_to_hand_like":
+            if target.get("self"):
+                return "handled"
+            elif target.get("mass"):
+                return "handled"
+            else:
+                controller = target.get("controller")
+                if controller == "you":
+                    return "handled"
+                elif controller == "opponent":
+                    return "handled"
+                # any/absent controller falls through here -- the gap this test pins
+
+    assert "return_to_hand_like" in health._guarded_ops(fake_dispatch)
+
+    def fake_dispatch_fully_handled(op, target):  # pragma: no cover
+        if op == "return_to_hand_like":
+            if target.get("self"):
+                return "handled"
+            else:
+                controller = target.get("controller")
+                if controller == "you":
+                    return "handled"
+                else:
+                    return "handled"  # a real else at EVERY level -- fully handled
+
+    assert "return_to_hand_like" not in health._guarded_ops(fake_dispatch_fully_handled)
+
+
 # A vocabulary op the simulator still has no branch for. NOT `pump`: these tests were
 # written against pump the hour before it was dispatched, and all three broke the moment
 # it shipped — which is the anti-drift design working (the gauge re-read the source and

@@ -225,6 +225,17 @@ def _has_unelsed_if(stmt: ast.stmt) -> bool:
     the majority of what reaches them, which is the exact self-flattery `partial_ops`
     exists to prevent. An `elif` is just an `If` nested in the previous `orelse`, so the
     question is only ever whether the chain TERMINATES in a real `else`.
+
+    A real `else:` still isn't automatically "every path does something" — its own body can
+    contain a FURTHER guarded if/elif (docs/PLAN_FIDELITY.md Phase C, 2026-09-09:
+    `return_to_hand`'s new chosen-target picker is exactly this shape, `else: <setup> if
+    controller=="you": ... elif controller=="opponent": ...` with any/absent controller
+    still falling off the end one level deeper). Recursing into the else body's own
+    statements is the same "walk deeper before declaring fully handled" principle the
+    elif-chain fix already established, one level further in. A real else with a FLAT body
+    (`draw`'s `(opp if who=="opponent" else me).draw(n)` is an expression, not a nested `If`
+    statement at all) still correctly reads as fully handled, since recursing into a
+    non-if/for/while/with statement falls through to the base case below.
     """
     if isinstance(stmt, ast.If):
         node = stmt
@@ -234,7 +245,7 @@ def _has_unelsed_if(stmt: ast.stmt) -> bool:
             if len(node.orelse) == 1 and isinstance(node.orelse[0], ast.If):
                 node = node.orelse[0]  # an elif; keep walking
                 continue
-            return False  # a real else: every path does something
+            return any(_has_unelsed_if(s) for s in node.orelse)  # a real else -- look deeper
     if isinstance(stmt, (ast.For, ast.While, ast.With)):
         return any(_has_unelsed_if(s) for s in stmt.body)
     return False
