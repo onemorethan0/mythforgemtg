@@ -624,6 +624,82 @@ def _tutor_to_top(me: _Player, what: dict) -> None:
         me.library.append(gc)
 
 
+_DISCARD_ME = frozenset({"you", "self", "controller"})
+_DISCARD_OPP = frozenset({"opponent", "target_player", "each_opponent"})
+_DISCARD_ALL = frozenset({"each", "all", "any"})
+# Below this many mana sources the engine is still developing, so a land is the most
+# useful card off the top; above it, take the highest-impact spell. Crude, but it is the
+# actual scry decision and it uses only state _apply_resolved already holds.
+_SCRY_LAND_HUNGRY_SOURCES = 5
+
+
+def _discard_targets(who: object, target: dict, me: _Player, opp: _Player,
+                     others: tuple[_Player, ...]) -> tuple[_Player, ...]:
+    """Who actually discards. Returns () when the CCM does not say — declining rather
+    than guessing, since discarding the wrong player's hand is a fabrication either way."""
+    w = str(who or "").strip().lower()
+    if w in _DISCARD_ME:
+        return (me,)
+    if w in _DISCARD_OPP:
+        return (opp, *others)
+    if w in _DISCARD_ALL:
+        return (me, opp, *others)
+    controller = str(target.get("controller") or "").strip().lower()
+    if controller == "you":
+        return (me,)
+    if controller in ("opponent", "each_opponent"):
+        return (opp, *others)
+    return ()
+
+
+def _discard_from(player: _Player, n: int) -> None:
+    """Discard `n` cards, worst first.
+
+    Both players discard their OWN least useful card, so ranking by the engine's existing
+    value prior (`profile.impact`, the same field `_tutor_pick` uses to choose the BEST
+    card) is symmetric and models normal play rather than an advantageous choice. There
+    is no graveyard in this engine, so a discarded card simply leaves the game -- the
+    graveyard payoff a madness/reanimator deck is really buying goes unmodelled, an
+    honest under-count.
+    """
+    for _ in range(n):
+        if not player.hand:
+            return
+        player.hand.remove(min(player.hand, key=lambda gc: gc.profile.impact))
+
+
+def _look_at_top(me: _Player, n: int) -> None:
+    """Scry/surveil: reorder the top `n` cards so the most useful is drawn next.
+
+    The library is drawn from the END (`_Player.draw` pops), so "top" is the tail.
+
+    Nothing is bottomed and nothing is binned. Real scry also lets you put cards on the
+    bottom, and real surveil puts them in the graveyard -- both DIG, and both are left
+    unmodelled, so this is a strict under-count of either. Modelling only the reorder is
+    what keeps it honest: it needs no judgement about which cards are worth losing, only
+    which of the same cards you would rather see first.
+
+    Sorting purely by `impact` would be actively WORSE than doing nothing -- impact is a
+    popularity prior, so it would happily bury the land a mana-light draw needs under a
+    seven-drop bomb. So the key is land-aware: while the engine is still developing mana a
+    land IS the best card off the top, and only after that does impact decide.
+    """
+    if n <= 0 or len(me.library) < 2:
+        return
+    top = me.library[-n:]
+    if len(top) < 2:
+        return
+    land_hungry = len(me.sources) < _SCRY_LAND_HUNGRY_SOURCES
+
+    def rank(gc: GameCard) -> tuple[int, float]:
+        is_land = 1 if getattr(gc.card, "is_land", False) else 0
+        if land_hungry:
+            return (is_land, gc.profile.impact)
+        return (1 - is_land, gc.profile.impact)
+
+    me.library[-n:] = sorted(top, key=rank)  # best last == drawn first
+
+
 _TEMPORARY_DURATIONS = ("turn",)  # "until end of turn", "until_end_of_turn", "this turn"
 
 
@@ -820,6 +896,30 @@ def _apply_resolved(
         is_self = just_cast is not None and (not target or target.get("self") is True)
         if is_self and ability_name == "haste":
             just_cast.sick = False
+    elif op == "discard":
+        # 1,126 cards; 949 of them name WHO discards unambiguously. When the CCM does not
+        # say, `_discard_targets` returns nothing rather than guessing -- emptying the
+        # wrong player's hand is a fabrication in whichever direction it lands.
+        who = pr.get("who")
+        n = pr.get("count", 1)
+        n = n if isinstance(n, int) and not isinstance(n, bool) else 1
+        for player in _discard_targets(who, _tgt("target"), me, opp, others):
+            _discard_from(player, max(0, n))
+    elif op in ("scry", "surveil"):
+        # Both are card SELECTION over the top of the library; the engine has no
+        # graveyard, so surveil's bin-it half is unmodelled and it degrades to scry.
+        n = pr.get("count", 1)
+        _look_at_top(me, n if isinstance(n, int) and not isinstance(n, bool) else 1)
+    elif op == "mill":
+        # No graveyard zone, so milling models only LIBRARY DEPLETION -- which is real:
+        # `_Player.draw` sets `decked` on an empty library, so a mill plan can still win
+        # and self-mill still costs the deck its cards. Everything a graveyard deck is
+        # actually buying (recursion, delirium, threshold) is not modelled at all, so a
+        # self-mill card under-counts rather than over-counts.
+        n = pr.get("count", 1)
+        n = n if isinstance(n, int) and not isinstance(n, bool) else 1
+        for player in _discard_targets(pr.get("who"), _tgt("target"), me, opp, others):
+            del player.library[max(0, len(player.library) - max(0, n)):]
     elif op == "pump":
         # SELF-TARGET ONLY, same discipline as add_counter and grant_ability above.
         #
@@ -1238,8 +1338,9 @@ def _main_phase(me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> None:
 # enumerated as a legal action and silently never taken.
 _INTERPRETER_ACTIVATION_VALUE = {
     "destroy": 3.0, "exile": 3.0, "search_library": 2.0, "create_token": 1.5,
-    "draw": 1.4, "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8,
-    "proliferate": 0.7, "grant_ability": 0.5, "gain_life": 0.3, "add_mana": 0.0,
+    "draw": 1.4, "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8, "discard": 0.8,
+    "proliferate": 0.7, "grant_ability": 0.5, "scry": 0.4, "surveil": 0.4,
+    "mill": 0.3, "gain_life": 0.3, "add_mana": 0.0,
 }
 _BOARD_DEPENDENT_ACTIVATION_OPS = frozenset({"destroy", "exile"})
 

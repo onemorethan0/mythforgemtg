@@ -67,9 +67,9 @@ _DRAIN_WHO = {"opponent", "each_opponent", "each"}
 # branch is added or removed there. Widening this set without widening the dispatch would
 # hand the engine abilities it silently cannot run.
 INTERPRETER_EXECUTABLE_OPS = frozenset({
-    "add_counter", "add_mana", "create_token", "deal_damage", "destroy", "draw",
-    "exile", "gain_life", "grant_ability", "lose_life", "proliferate", "pump",
-    "search_library",
+    "add_counter", "add_mana", "create_token", "deal_damage", "destroy", "discard",
+    "draw", "exile", "gain_life", "grant_ability", "lose_life", "mill", "proliferate",
+    "pump", "scry", "search_library", "surveil",
 })
 
 # The ops `_activated_from`'s own six numeric fields can express. Anything the
