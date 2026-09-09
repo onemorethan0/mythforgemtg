@@ -618,6 +618,24 @@ _KEYWORD_IMPLIED_EVENTS: tuple[tuple[re.Pattern[str], frozenset[str]], ...] = (
     # Squad and living weapon are ENTERS triggers, not combat ones ("When this creature
     # enters, create that many tokens that are copies of it").
     (re.compile(r"\bsquad\b|\bliving weapon\b", re.I), frozenset({"etb"})),
+    # Four more ENTERS-shaped keywords whose whole definition lives in reminder text, so
+    # the same "compiler is right, the paren-strip erased the evidence" gap as squad/
+    # living weapon above -- found 2026-09-10 chasing the trigger-event failure list: 16
+    # of 48 stored 'etb' failures have "enters" ONLY inside a parenthetical, and these
+    # four keywords account for all of them. Sampled every occurrence in the store, all
+    # consistent: Job select "(When this Equipment enters, create a 1/1 ... Hero ...
+    # token, then attach this to it.)" (Bard's Bow, Dark Knight's Greatsword, Sage's
+    # Nouliths, Samurai's Katana); Hideaway N "(When this [enchantment/creature] enters,
+    # look at the top N cards ...)" (Cemetery Tampering, Fight Rigging, Evercoat Ursine);
+    # Partner with <Name> "(When this creature enters, target player may put <Name> into
+    # their hand from their library, then shuffle.)" (Jacob Frye, Khorvath Brightflame,
+    # Pir Imaginative Rascal, Sam Loyal Attendant) -- "partner with", never bare "partner"
+    # (which just means "you may have two commanders", no ETB at all); Graft N "(This
+    # creature enters with N +1/+1 counters on it. Whenever ANOTHER creature enters, you
+    # may move a +1/+1 counter...)" (Novijen Sages, Vigean Graftmage/Hydropon) -- two
+    # etb-shaped clauses about different subjects, both real.
+    (re.compile(r"\bjob select\b|\bhideaway\b|\bpartner with\b|\bgraft\b", re.I),
+     frozenset({"etb"})),
     # A Saga's reminder text is "As this Saga enters AND AFTER YOUR DRAW STEP, add a lore
     # counter" — so etb and draw_step are both literally supported, they just live inside
     # the parenthetical the check strips. saga_chapter is the preferred answer (the prompt

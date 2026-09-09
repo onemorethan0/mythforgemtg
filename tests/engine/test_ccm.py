@@ -610,6 +610,47 @@ def test_cross_check_accepts_correct_events(make_card):
             f"{event} should be supported by {oracle!r}"
 
 
+def test_job_select_hideaway_partner_with_and_graft_license_an_etb_trigger(make_card):
+    """Four ENTERS-shaped keywords whose whole definition lives in reminder text -- the
+    same gap squad/living weapon already had a fix for. Found 2026-09-10 chasing the
+    trigger-event failure list: 16 of 48 stored 'etb' gate failures had "enters" ONLY
+    inside a parenthetical, all four of these keywords. Sampled every occurrence in the
+    store before adding (Bard's Bow / Dark Knight's Greatsword / Sage's Nouliths /
+    Samurai's Katana for Job select; Cemetery Tampering / Fight Rigging / Evercoat Ursine
+    for Hideaway; Jacob Frye / Khorvath Brightflame / Pir Imaginative Rascal / Sam Loyal
+    Attendant for Partner with; Novijen Sages / Vigean Graftmage / Vigean Hydropon for
+    Graft) -- verified live end to end via a real recompile too: Bard's Bow and Dark
+    Knight's Greatsword went from failing (or needing a feedback retry that still fell
+    back to the unexecutable 'other' event) to accepting a real etb trigger on attempt 1.
+    """
+    for oracle in (
+        "Job select (When this Equipment enters, create a 1/1 colorless Hero creature "
+        "token, then attach this to it.)",
+        "Hideaway 5 (When this enchantment enters, look at the top five cards of your "
+        "library, exile one face down, then put the rest on the bottom in a random "
+        "order.)",
+        "Partner with Evie Frye (When this creature enters, target player may put Evie "
+        "into their hand from their library, then shuffle.)",
+        "Graft 4 (This creature enters with four +1/+1 counters on it. Whenever another "
+        "creature enters, you may move a +1/+1 counter from this creature onto it.)",
+    ):
+        doc, card = _triggered("etb", oracle, make_card)
+        assert not any("trigger event" in e for e in cross_check(doc, card)), oracle
+
+
+def test_bare_partner_does_not_license_etb():
+    """Bare "Partner" (you may have two commanders) has NO enters trigger at all -- only
+    "Partner with <name>" (the tutor-your-partner variant) does. Conflating the two would
+    license an etb trigger on hundreds of ordinary partner commanders that don't have one."""
+    from mythgauntlet.semantics.ccm import _keyword_licensed_events
+
+    assert "etb" not in _keyword_licensed_events("Partner (You can have two commanders "
+                                                  "if both have partner.)")
+    assert "etb" in _keyword_licensed_events(
+        "Partner with Evie Frye (When this creature enters, target player may put Evie "
+        "into their hand from their library, then shuffle.)")
+
+
 def test_executed_events_matches_the_simulator():
     """`ccm.EXECUTED_EVENTS` duplicates `sim/tier2._EVENT_TRIGGERS` because semantics must
     not import the simulator. Pin them so the copy cannot drift."""
