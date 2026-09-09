@@ -150,6 +150,12 @@ class _Permanent:
     death: DeathEffect | None = None
     triggers: tuple[tuple[str, dict], ...] = ()  # (event, CCM ability) pairs
     counters: int = 0  # +1/+1-style counters currently on this permanent (self-target only, see add_counter)
+    # P/T granted "until end of turn", already ADDED into power/toughness above and
+    # subtracted back out by `expire_until_end_of_turn` at the cleanup step. Kept as a
+    # running delta rather than a list of effects because this engine has no layer system
+    # and never needs to un-apply one specific pump — only "everything temporary, gone".
+    temp_power: int = 0
+    temp_toughness: int = 0
 
 
 @dataclass
@@ -614,6 +620,49 @@ def _tutor_to_top(me: _Player, what: dict) -> None:
         me.library.append(gc)
 
 
+_TEMPORARY_DURATIONS = ("turn",)  # "until end of turn", "until_end_of_turn", "this turn"
+
+
+def _is_until_end_of_turn(duration: object) -> bool:
+    """Does this duration expire at the cleanup step of the turn it was created?
+
+    Measured over the 31.7k-card store, `pump`'s duration field is 92.1% temporary and
+    arrives in at least six spellings ("until end of turn" 69.6%, "until_end_of_turn"
+    19.7%, "this_turn", "this turn", "end_of_turn", "until your next turn"). Matching the
+    substring "turn" covers every one of them and is the SAFE direction to err: an effect
+    wrongly called temporary under-counts by expiring early, while one wrongly called
+    permanent compounds forever — a turn-3 Giant Growth still +3/+3 on turn 12.
+
+    "until your next turn" (22 uses) genuinely outlasts this and is deliberately
+    truncated to end-of-turn rather than modeled: it is 0.5% of the population and the
+    engine has no round-scoped timer, so ending it early under-counts honestly.
+    """
+    d = str(duration or "").strip().lower()
+    return any(tok in d for tok in _TEMPORARY_DURATIONS)
+
+
+def expire_until_end_of_turn(players) -> None:
+    """Cleanup step (CR 514.2): every "until end of turn" P/T change wears off.
+
+    Called for EVERY player, not just the active one — "until end of turn" ends for all
+    permanents at the same moment regardless of who controls them, so expiring only the
+    turn player's board would leave an opponent's combat trick live through their own
+    turn. Mirrors the existing ritual-mana expiry (`_Source.temp`, cleared at untap);
+    this engine has no layer system, so the delta is simply subtracted back out.
+
+    This is the infrastructure `pump` needed before it could be dispatched at all — see
+    _apply_resolved. Without it, executing a temporary pump is strictly WORSE than the
+    honest no-op it replaces.
+    """
+    for p in players:
+        for perm in p.battlefield:
+            if perm.temp_power or perm.temp_toughness:
+                perm.power -= perm.temp_power
+                perm.toughness -= perm.temp_toughness
+                perm.temp_power = 0
+                perm.temp_toughness = 0
+
+
 def _apply_resolved(
     eff: ResolvedEffect, me: _Player, opp: _Player, just_cast: _Permanent | None,
     others: tuple[_Player, ...] = (),
@@ -767,6 +816,47 @@ def _apply_resolved(
         is_self = just_cast is not None and (not target or target.get("self") is True)
         if is_self and ability_name == "haste":
             just_cast.sick = False
+    elif op == "pump":
+        # SELF-TARGET ONLY, same discipline as add_counter and grant_ability above.
+        #
+        # `pump` was the largest inert op in the store (3,925 cards / 4,295 effects; see
+        # `mythgauntlet sim-health`) and executing it needed TWO things this engine did
+        # not have, both found by measuring the shape rather than assuming it:
+        #
+        #  1. 92.1% of stored pumps are "until end of turn" and there was no cleanup
+        #     step at all — so dispatching them naively made every combat trick
+        #     PERMANENT and compounding. `expire_until_end_of_turn` (above, called from
+        #     game._do_end_step) is that missing layer; this branch is only safe on top
+        #     of it.
+        #  2. 86.3% target `type: creature` — a genuine choice of WHICH creature. The
+        #     store does distinguish the shapes (`target.count: 1` is one chosen
+        #     creature; `controller: "you"` with count "all"/absent is the whole team —
+        #     Giant Growth vs Overrun), but a chosen target is a decision this engine has
+        #     no targeting infra to make, and picking one would fabricate.
+        #
+        # MASS pump ("creatures you control get +X/+X") is deliberately NOT executed here
+        # even though it is unambiguous: sim/overrun.py already credits exactly that card
+        # class on the Ceiling axis, and having tier2 execute it too would put the same
+        # effect on two independently-calibrated axes. That is a calibration decision, not
+        # a bug fix, and it needs a corpus sweep before it moves.
+        target = _tgt("target")
+        is_self = just_cast is not None and (not target or target.get("self") is True)
+        if is_self:
+            dp = pr.get("power")
+            dt = pr.get("toughness")
+            dp = dp if isinstance(dp, int) and not isinstance(dp, bool) else 0
+            dt = dt if isinstance(dt, int) and not isinstance(dt, bool) else 0
+            if dp or dt:
+                just_cast.power += dp
+                just_cast.toughness += dt
+                if _is_until_end_of_turn(pr.get("duration")):
+                    just_cast.temp_power += dp
+                    just_cast.temp_toughness += dt
+                # A permanent self-pump that drops toughness to 0 or below should die to
+                # state-based actions; this engine checks creature death only in combat,
+                # so a self-shrink stays on the board -- an honest under-count of a rare
+                # shape (a negative self-pump is 12.9% of pumps overall and nearly all of
+                # those target an OPPONENT'S creature, which this branch already declines).
 
 
 class _EngineResolver:

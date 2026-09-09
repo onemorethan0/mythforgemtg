@@ -41,6 +41,7 @@ from mythgauntlet.sim.tier2 import (
     GameCard,
     _apply_instant_removal,
     _commander_cost,
+    expire_until_end_of_turn,
     _find_counter,
     _find_instant_removal,
     _fire_attack_triggers,
@@ -508,6 +509,12 @@ def _others(state: GameState) -> tuple[_Player, ...]:
 def _do_end_step(state: GameState) -> None:
     me, opp = state.me_opp()
     _fire_triggers(me, opp, "end_step", _others(state))
+    # CR 514.2 cleanup: "until end of turn" effects wear off, AFTER the end step's own
+    # triggers have fired (an end-step trigger still sees the pumped board). Placed here
+    # rather than in _to_next_halfturn because that function has several early exits, and
+    # a cleanup that a win/adjudication path can skip would leak a pump into the next
+    # turn -- the exact failure this layer exists to prevent. Runs for EVERY player.
+    expire_until_end_of_turn(state.players.values())
     if state.multiplayer:
         if _register_deaths(state):
             return

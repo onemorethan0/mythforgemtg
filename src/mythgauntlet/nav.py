@@ -84,6 +84,7 @@ COMMAND_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
             ("compile-top", "Compile the top-N EDHREC cards not yet in the ledger"),
             ("ccm-status", "CCM ledger coverage stats"),
             ("ccm-health", "Rank compile-failure classes by cards affected, with examples"),
+            ("sim-health", "Rank what the SIMULATOR discards from the store, by cards affected"),
         ],
     ),
     (

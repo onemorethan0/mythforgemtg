@@ -38,6 +38,7 @@ from mythgauntlet.ratings import advisor, manabase, metrics
 from mythgauntlet.ratings.analysis import analyze_deck, make_determinism_fn
 from mythgauntlet.semantics import compiler, health, tags
 from mythgauntlet.semantics.store import SemanticsStore, load_store
+from mythgauntlet.sim import health as sim_health
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig, simulate
 from mythgauntlet.sim.tier2 import DuelConfig, duel
 from mythgauntlet.state import get_last_deck, set_last_deck
@@ -1242,6 +1243,103 @@ def _cmd_ccm_health(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_sim_health(args: argparse.Namespace) -> int:
+    """Rank what the SIMULATOR discards from the store — the mirror of `ccm-health`.
+
+    `ccm-health` asks why cards fail to compile. This asks what happens to the ones that
+    succeed, and the answer is the reason it exists: on the day it was written 45% of
+    the store's effects reached a dispatch that had no branch for them, and nothing
+    anywhere reported it. Run it before deciding what to teach the simulator next —
+    the top row is the largest single rating error the engine can currently fix.
+    """
+    def _envelopes():
+        for fp in sorted(compiler.compiled_dir().glob("*.json")):
+            try:
+                yield json.loads(fp.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+
+    result = sim_health.analyze_store(
+        _envelopes(), top_n=args.top, samples_per_op=args.samples
+    )
+
+    if args.json:
+        out_path = Path(args.json)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as fh:
+            json.dump(result, fh, indent=2, ensure_ascii=False)
+        console.print(f"[dim]wrote {out_path}[/dim]")
+
+    if not result["cards_scanned"]:
+        console.print(
+            "[yellow]No compiled CCM store found.[/yellow] The engine is running at "
+            "rung-1 heuristics, so there is no simulation fidelity to measure."
+        )
+        return 0
+
+    console.print("[bold]Simulator fidelity[/bold] (what the store records vs what the engine runs)")
+    console.print(
+        f"  effects executed: [bold]{result['executed_share']:.1%} - "
+        f"{result['executed_share_ceiling']:.1%}[/bold] of {result['total_effects']:,}   "
+        f"[dim](a range: the gap is {result['partial_effects']:,} effects on GUARDED "
+        "branches that may decline them)[/dim]"
+    )
+    console.print(
+        f"    fully executed {result['executed_effects']:,}  |  "
+        f"partial {result['partial_effects']:,}  |  "
+        f"inert {result['inert_effects']:,}     cards scanned: {result['cards_scanned']:,}"
+    )
+    console.print(
+        f"  cards fully executed: {result['cards_fully_executed']:,}   "
+        f"cards fully inert: [bold]{result['cards_fully_inert']:,}[/bold]"
+    )
+    console.print(
+        f"  activated abilities surviving the flattening: "
+        f"{result['activated_kept']:,} / {result['activated_total']:,} "
+        f"({result['activated_share']:.1%})"
+    )
+    ops = result["executed_ops"]
+    console.print(
+        f"  dispatch vocabularies — resolved: {len(ops['resolved'])} ops, "
+        f"activated: {len(ops['activated'])} ops "
+        "[dim](read from the source, not restated)[/dim]"
+    )
+
+    def _render(title: str, rows: list[dict], note: str) -> None:
+        console.print()
+        if not rows:
+            console.print(f"[dim]  {title}: none[/dim]")
+            return
+        table = Table(title=title, show_header=True, header_style="bold", caption=note)
+        table.add_column("op")
+        table.add_column("cards", justify="right")
+        table.add_column("effects", justify="right")
+        table.add_column("examples")
+        for row in rows:
+            examples = ", ".join(row["examples"][:3])
+            if len(row["examples"]) > 3:
+                examples += " ..."
+            table.add_row(row["op"], f"{row['cards']:,}", f"{row['effects']:,}", examples)
+        console.print(table)
+
+    _render(
+        "Inert — in the CCM vocabulary, dispatched by no branch",
+        result["inert_ops"],
+        "a gap in the simulator: the compiler learned this and the engine drops it",
+    )
+    _render(
+        "Partial — a branch exists but guards what it will act on",
+        result["partial_ops"],
+        "counted as NEITHER executed nor inert; how much each declines needs the sim to say",
+    )
+    _render(
+        "Unknown — outside ccm.OP_SPECS entirely",
+        result["unknown_ops"],
+        "a gap in the VOCABULARY (schema gate tolerates these by design; see unsupported_ops)",
+    )
+    return 0
+
+
 def _cmd_benchmark(args: argparse.Namespace) -> int:
     """Run Tier-0 analysis over every corpus deck; check axis separation by bracket."""
     db = _load_db()
@@ -2260,6 +2358,18 @@ def build_parser() -> argparse.ArgumentParser:
     p_ch.add_argument("--samples", type=int, default=5, help="example cards per class")
     p_ch.add_argument("--json", help="also write the full result as JSON to this path")
     p_ch.set_defaults(func=_cmd_ccm_health)
+
+    p_sh = sub.add_parser(
+        "sim-health",
+        description="Rank what the SIMULATOR discards from the compiled store, by cards "
+                    "affected. The mirror of ccm-health: that one asks why cards fail to "
+                    "compile, this one asks what happens to the ones that succeed. Run it "
+                    "before choosing what to teach the engine next.",
+    )
+    p_sh.add_argument("--top", type=int, default=20, help="ops to show per pool")
+    p_sh.add_argument("--samples", type=int, default=4, help="example cards per op")
+    p_sh.add_argument("--json", help="also write the full result as JSON to this path")
+    p_sh.set_defaults(func=_cmd_sim_health)
 
     # Navigation / creature comforts.
     p_decks = sub.add_parser(
