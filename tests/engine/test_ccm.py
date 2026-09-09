@@ -803,3 +803,50 @@ def test_a_permanent_effect_whose_text_states_no_duration_is_not_flagged():
                {"op": "pump", "power": 2, "toughness": 2,
                 "target": {"type": "creature", "count": 1}}]}]}
     assert not _errs(doc, card)
+
+
+# --- extra_turn vs additional-combat-phase confusion (2026-09-10) ------------------
+
+def _extra_turn_card(text: str):
+    from mythgauntlet.model.card import Card
+
+    return Card(name="Trickster", mana_cost_str="{3}{R}{R}", type_line="Artifact",
+                oracle_text=text)
+
+
+def _extra_turn_doc():
+    return {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{3}{R}{R}"},
+        "types": ["Artifact"],
+        "abilities": [{"kind": "activated", "cost": {"mana": "{3}{R}{R}"},
+                       "effects": [{"op": "extra_turn"}]}],
+    }
+
+
+def _extra_turn_errs(card):
+    from mythgauntlet.semantics import ccm as _ccm
+
+    return [e for e in _ccm.cross_check(_extra_turn_doc(), card) if "extra_turn" in e]
+
+
+def test_extra_turn_names_the_additional_combat_confusion_specifically():
+    """31 of 66 real extra_turn gate failures ever recorded are this exact shape --
+    an additional COMBAT phase within the same turn, not a second turn. The generic
+    message didn't say why, so the same marquee cards (Aggravated Assault, Aurelia the
+    Warleader, Godo Bandit Warlord) kept failing identically every retry."""
+    card = _extra_turn_card("{3}{R}{R}: Untap all creatures you control. After this "
+                            "main phase, there is an additional combat phase.")
+    errs = _extra_turn_errs(card)
+    assert any("ADDITIONAL COMBAT" in e for e in errs)
+    assert not any(e == "CCM declares extra_turn but text never says extra turn"
+                  for e in errs)
+
+
+def test_extra_turn_with_no_textual_support_at_all_keeps_the_generic_message():
+    card = _extra_turn_card("Draw a card.")
+    assert "CCM declares extra_turn but text never says extra turn" in _extra_turn_errs(card)
+
+
+def test_a_genuine_extra_turn_card_is_not_flagged():
+    card = _extra_turn_card("Take an extra turn after this one.")
+    assert _extra_turn_errs(card) == []

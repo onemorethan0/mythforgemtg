@@ -579,3 +579,70 @@ def test_failed_refresh_is_retried_once_the_prompt_moves(tmp_path, monkeypatch, 
 
     cli._cmd_compile_top(_compile_top_args(refresh_stale=True))
     assert calls == [[card.name]], "a stale marker from an older prompt must not block"
+
+
+def test_compile_strips_a_combat_phase_confused_extra_turn(make_card):
+    """31 of 66 recorded extra_turn gate failures are the model confusing "an
+    additional combat phase" (a second combat within the SAME turn) with a whole
+    extra turn — marquee cards (Aggravated Assault, Aurelia the Warleader, Godo
+    Bandit Warlord) that failed identically on every nightly retry. This is a
+    deterministic backstop for the harder cases the sharpened prompt/gate message
+    alone don't catch: strip only the wrong effect, keep the rest of the ability.
+    """
+    card = make_card(
+        "Aggravated Assault", mana_cost="{3}{R}{R}", type_line="Artifact",
+        oracle_text="{3}{R}{R}: Untap all creatures you control. After this main "
+                    "phase, there is an additional combat phase.",
+    )
+    doc = {
+        "name": "Aggravated Assault", "ccm_version": 1, "cost": {"mana": "{3}{R}{R}"},
+        "types": ["artifact"],
+        "abilities": [{"kind": "activated", "cost": {"mana": "{3}{R}{R}"},
+                       "effects": [
+                           {"op": "untap", "target": {"type": "creature",
+                                                      "controller": "you",
+                                                      "count": "all"}},
+                           {"op": "extra_turn"},
+                       ]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    effects = result.doc["abilities"][0]["effects"]
+    assert [e["op"] for e in effects] == ["untap"]  # extra_turn gone, untap kept
+
+
+def test_compile_drops_the_whole_ability_when_nothing_else_remains(make_card):
+    """An ability whose ONLY effect was the wrong extra_turn is dropped entirely —
+    the schema requires a non-empty effects list, and an honest omission of the
+    whole clause beats inventing a replacement effect to keep it non-empty."""
+    card = make_card(
+        "Aggravated Assault", mana_cost="{3}{R}{R}", type_line="Artifact",
+        oracle_text="{3}{R}{R}: After this main phase, there is an additional "
+                    "combat phase.",
+    )
+    doc = {
+        "name": "Aggravated Assault", "ccm_version": 1, "cost": {"mana": "{3}{R}{R}"},
+        "types": ["artifact"],
+        "abilities": [
+            {"kind": "activated", "cost": {"mana": "{3}{R}{R}"},
+             "effects": [{"op": "extra_turn"}]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"] == []
+
+
+def test_compile_does_not_strip_a_genuine_extra_turn_card(make_card):
+    """The patch must only fire when the text says "additional combat", never on a
+    card that genuinely grants an extra turn."""
+    card = make_card("Time Warp", mana_cost="{3}{U}", type_line="Sorcery",
+                     oracle_text="Target player takes an extra turn after this one.")
+    doc = {
+        "name": "Time Warp", "ccm_version": 1, "cost": {"mana": "{3}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [{"op": "extra_turn"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"][0]["effects"] == [{"op": "extra_turn"}]

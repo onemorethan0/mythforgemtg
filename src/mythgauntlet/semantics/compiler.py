@@ -70,7 +70,7 @@ Ability kinds:
 - {"kind":"static","note":"<short description>"} — continuous effects that fit no op
 
 Effect ops (params; amounts may be "X" — when a numeric param is "X", also put "x_basis" on that effect saying what X counts: one of mana_paid (X in the mana cost), chosen, creatures_you_control, lands_you_control, artifacts_you_control, permanents_you_control, cards_in_hand, life_paid, counters_on_this, target_power, other):
-add_mana(amount, colors: concatenated letters like "G", "C", "GU" — for "one mana of any color" use "any"; never write "G or U") ; draw(count) ; discard(count, who) ; mill(count, who) ; scry(count) ; surveil(count) ; search_library(what: Target, count, to: "battlefield"|"hand"|"graveyard", tapped, shuffle) ; shuffle() ; destroy(target) ; exile(target) ; return_to_hand(target) ; gain_control(target, duration) ; attach(target) — for Equip/attach abilities ; counter_spell(unless_pays) ; deal_damage(amount, target) ; gain_life(amount, who) ; lose_life(amount, who) ; create_token(count, power, toughness, types) ; pump(power, toughness, target, duration) ; add_counter(count, counter_type, target) — ONLY for a real counter object (+1/+1, -1/-1, charge, loyalty, or a named counter like "storage"). NEVER use it for a granted keyword — "gains flying/haste/trample/vigilance/menace/reach/lifelink/hexproof/deathtouch/indestructible/first strike (until end of turn or otherwise)" is grant_ability, not a counter, even though some cards phrase a real counter-granting mechanic that reads similarly (read the text: an actual printed "counter" word or CR-defined counter type means add_counter; a plain "gains <keyword>" sentence means grant_ability) ; grant_ability(ability, target, duration) — "target creature gains flying until end of turn", "enchanted creature has trample", "this creature has haste as long as..." — ability is the keyword name, duration is free text like "until end of turn" or "permanently" ; proliferate() — the keyword action "Proliferate" (CR 122.7); it takes no amount and no target, use it exactly once per instance of the keyword ; tap(target, duration) ; untap(target, duration) ; sacrifice(target, who) ; reanimate(target) ; extra_turn() ; cost_reduction(amount, applies_to) ; win_game(condition)
+add_mana(amount, colors: concatenated letters like "G", "C", "GU" — for "one mana of any color" use "any"; never write "G or U") ; draw(count) ; discard(count, who) ; mill(count, who) ; scry(count) ; surveil(count) ; search_library(what: Target, count, to: "battlefield"|"hand"|"graveyard", tapped, shuffle) ; shuffle() ; destroy(target) ; exile(target) ; return_to_hand(target) ; gain_control(target, duration) ; attach(target) — for Equip/attach abilities ; counter_spell(unless_pays) ; deal_damage(amount, target) ; gain_life(amount, who) ; lose_life(amount, who) ; create_token(count, power, toughness, types) ; pump(power, toughness, target, duration) ; add_counter(count, counter_type, target) — ONLY for a real counter object (+1/+1, -1/-1, charge, loyalty, or a named counter like "storage"). NEVER use it for a granted keyword — "gains flying/haste/trample/vigilance/menace/reach/lifelink/hexproof/deathtouch/indestructible/first strike (until end of turn or otherwise)" is grant_ability, not a counter, even though some cards phrase a real counter-granting mechanic that reads similarly (read the text: an actual printed "counter" word or CR-defined counter type means add_counter; a plain "gains <keyword>" sentence means grant_ability) ; grant_ability(ability, target, duration) — "target creature gains flying until end of turn", "enchanted creature has trample", "this creature has haste as long as..." — ability is the keyword name, duration is free text like "until end of turn" or "permanently" ; proliferate() — the keyword action "Proliferate" (CR 122.7); it takes no amount and no target, use it exactly once per instance of the keyword ; tap(target, duration) ; untap(target, duration) ; sacrifice(target, who) ; reanimate(target) ; extra_turn() — ONLY for "take an extra turn after this one" / "target player takes an extra turn". NEVER use it for "there is an additional combat phase" / "an additional main phase" (Aggravated Assault, Aurelia the Warleader, Godo Bandit Warlord, Hellkite Charger, Moraug) — an extra COMBAT is not an extra TURN, it is a second combat within the SAME turn. The vocabulary has no op for an additional combat phase; omit that clause rather than mis-labeling it extra_turn (an honest omission beats a wrong effect) ; cost_reduction(amount, applies_to) ; win_game(condition)
 Target: {"type": "creature"|"permanent"|"land"|"artifact"|"card"|"player"|"any"|..., "subtype": opt, "controller": "you"|"opponent"|"any"|"each", "count": int|"all", "zone": opt}
 "controller" is a CLOSED enum of exactly those four words — NEVER invent a value like "target_player", "attacking_player", "defending", or "owner". This applies to type:"player" targets too: "target player" is {"type":"player","controller":"any"}; "target opponent" is {"type":"player","controller":"opponent"}; "each opponent" is {"type":"player","controller":"opponent","count":"all"}.
 Any effect may carry "optional": true (player may decline) and "condition": "<short text>" (restrictions the ops cannot express).
@@ -326,6 +326,58 @@ def _ops_used(doc: dict) -> list[str]:
     return sorted(ops)
 
 
+_ADDITIONAL_COMBAT_RE = re.compile(r"additional combat phase|additional main phase", re.I)
+_EXTRA_TURN_TEXT_RE = re.compile(r"\bextra turn\b", re.I)
+
+
+def _strip_combat_phase_confused_extra_turn(doc: dict, card: Card) -> None:
+    """Deterministically remove an `extra_turn` effect the model emits for an
+    ADDITIONAL COMBAT phase — a second combat within the SAME turn, not a whole extra
+    turn, and the vocabulary has no op for it (see the prompt's own extra_turn note).
+
+    Measured 2026-09-10: 31 of 66 recorded extra_turn gate failures ever seen are this
+    exact confusion, on marquee cards (Aggravated Assault, Aurelia the Warleader, Godo
+    Bandit Warlord, Hellkite Charger, Moraug) that fail identically on every nightly
+    retry. Sharpening the gate message and the prompt (same night) measurably helped —
+    2 of a 6-card sample compiled clean with no extra_turn at all — but qwen3:14b at
+    temp 0.2 still guesses extra_turn on the harder cases; this is the deterministic
+    backstop, in the same spirit as `enters_tapped` above: a fact this function can
+    verify from the oracle text itself is not worth a second GPU round-trip to fix.
+
+    Removes ONLY the extra_turn effect, not the whole ability — Aggravated Assault's
+    "{3}{R}{R}: Untap all creatures you control. After this main phase, there is an
+    additional combat phase" is one ability with an untap effect worth keeping and an
+    extra_turn effect that is not. An ability left with zero effects after stripping is
+    dropped entirely (schema requires a non-empty effects list) — the whole clause goes
+    unmodeled, an honest omission rather than a wrong one.
+
+    Scoped narrowly on purpose: only fires when the text names an additional combat/main
+    phase and never says "extra turn" outright — a card that genuinely grants both (rare,
+    but real) keeps its extra_turn untouched.
+    """
+    text = card.oracle_text or ""
+    if not _ADDITIONAL_COMBAT_RE.search(text) or _EXTRA_TURN_TEXT_RE.search(text):
+        return
+    abilities = doc.get("abilities")
+    if not isinstance(abilities, list):
+        return
+    kept: list = []
+    for ability in abilities:
+        if not isinstance(ability, dict):
+            kept.append(ability)
+            continue
+        effects = ability.get("effects")
+        if isinstance(effects, list):
+            remaining = [e for e in effects
+                        if not (isinstance(e, dict) and e.get("op") == "extra_turn")]
+            if len(remaining) != len(effects):
+                if not remaining:
+                    continue  # drop the whole ability, it had nothing else
+                ability = {**ability, "effects": remaining}
+        kept.append(ability)
+    doc["abilities"] = kept
+
+
 def compile_card(
     card: Card,
     complete,
@@ -356,6 +408,7 @@ def compile_card(
         # for typed lands below in ccm.cross_check.
         if card.is_land and tags.analyze(card).enters_tapped and not doc.get("enters_tapped"):
             doc["enters_tapped"] = True
+        _strip_combat_phase_confused_extra_turn(doc, card)
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]
         if not errors:

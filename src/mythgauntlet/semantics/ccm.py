@@ -811,7 +811,23 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         if not wipes:
             errors.append("oracle text is a board wipe but CCM has no all/each removal")
     if "extra_turn" in ops_present and "extra turn" not in text:
-        errors.append("CCM declares extra_turn but text never says extra turn")
+        # Same shape gets this wrong recurringly (measured 2026-09-10: 31 of 66
+        # extra_turn gate failures ever recorded, on marquee cards -- Aggravated
+        # Assault, Aurelia the Warleader, Godo Bandit Warlord, Hellkite Charger,
+        # Moraug): "there is an additional combat phase" is a second combat WITHIN
+        # the same turn, not a second turn, and the vocabulary has no op for it. The
+        # generic message doesn't say why, so it kept recompiling the same wrong
+        # guess every retry; naming the actual confusion here is what the compiler
+        # prompt's own extra_turn guidance now also states.
+        if "additional combat" in text or "additional main phase" in text:
+            errors.append(
+                "CCM declares extra_turn but text describes an ADDITIONAL COMBAT "
+                "phase, not an extra turn — these are different (a second combat "
+                "within the same turn vs. a whole extra turn); the vocabulary has "
+                "no op for an additional combat phase, omit the clause"
+            )
+        else:
+            errors.append("CCM declares extra_turn but text never says extra turn")
     if "win_game" in ops_present and "win" not in text:
         errors.append("CCM declares win_game but text never says win")
     if card.is_land and fx.enters_tapped and not doc.get("enters_tapped"):
