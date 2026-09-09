@@ -201,6 +201,16 @@ OP_SPECS: dict[str, tuple[dict[str, str], dict[str, str]]] = {
     "extra_turn": ({}, {}),
     "cost_reduction": ({"amount": _INT}, {"applies_to": _STR}),
     "win_game": ({}, {"condition": _STR}),
+    # A BOUNDED look-and-select: "look at the top N cards, you may put a matching one
+    # into your hand, the rest on the bottom" (Acclaimed Contender, Astor Bearer of
+    # Blades, Augur of Bolas). NOT search_library -- see cross_check's own comment on
+    # that check: a real search sees the ENTIRE library and shuffles it away, this only
+    # ever sees `look` cards and never shuffles. Added 2026-09-10 after measuring 131
+    # stored cards use exactly this shape with no op to express it (the single largest
+    # unmodeled-op-shaped gap found this session). `what` absent means "any card"
+    # (Codecracker Hound: "Put one into your hand and the other into your graveyard").
+    "look_and_select": ({"look": _INT_OR_X}, {"what": _TARGET, "take": _INT_OR_X,
+                                              "to": _STR, "tapped": _BOOL}),
 }
 
 # Gate-2 numeric sanity ceilings per (op, param)
@@ -787,21 +797,27 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     if (fx.fetches_land or fx.tutor) and "search_library" not in ops_present:
         errors.append("oracle text searches the library but CCM has no search_library")
     if ("search_library" in ops_present and "search" not in text
-            and "search_library" not in licensed):
+            and "search_library" not in licensed
+            and "until you reveal" not in text and "until you find" not in text):
         # The single largest recurring compiler confusion in the whole ledger (measured
         # 2026-09-10: 253 cards ever failed this check; 138 of them are exactly this
         # shape). A real search sees the ENTIRE library and shuffles it away; "reveal the
         # top N cards, put a matching one into your hand" (Ad Nauseam, Ajani Mentor of
         # Heroes) and "mill N cards, you may keep a matching one" (Ainok Wayfarer) only
-        # ever see a BOUNDED window and never shuffle. The vocabulary has no op for that
-        # yet, so the honest answer is to omit the clause -- naming the confusion here is
-        # what the compiler prompt's own search_library guidance now also states.
+        # ever see a BOUNDED window and never shuffle. `look_and_select` (added the same
+        # day) is the real op for that shape -- naming the confusion here is what the
+        # compiler prompt's own search_library guidance now also states.
+        #
+        # "reveal cards from the top of your library UNTIL you reveal a [X]" (Abundant
+        # Harvest, Clifftop Lookout, Hermit Druid) is deliberately EXCLUDED above: it
+        # terminates on a guaranteed match, which IS functionally a real search, so it
+        # must not be pushed toward look_and_select or flagged here at all.
         if re.search(r"reveal (the )?(top|cards from the top)|look at the top", text):
             errors.append(
                 "CCM declares search_library but text describes a BOUNDED reveal/look "
                 "at the top of the library, not a real search — a real search sees the "
-                "WHOLE library and shuffles it away; the vocabulary has no op for a "
-                "bounded look-and-select, omit the clause"
+                "WHOLE library and shuffles it away; use look_and_select for a bounded "
+                "reveal/look instead"
             )
         else:
             errors.append("CCM declares search_library but text never says search")

@@ -633,6 +633,73 @@ def _tutor_to_top(me: _Player, what: dict) -> None:
         me.library.append(gc)
 
 
+def _look_and_select(me: _Player, pr: dict) -> None:
+    """look_and_select: reveal the top `look` cards, take up to `take` matching ones.
+
+    Added 2026-09-10 -- the single largest unmodeled-op-shaped gap the store had: 131
+    stored cards say "look at/reveal the top N cards, you may put a matching one into
+    your hand, put the rest on the bottom" (Acclaimed Contender, Astor Bearer of Blades,
+    Augur of Bolas) with no op to express it, so the compiler kept mislabeling it
+    `search_library` -- a real search sees the ENTIRE library and shuffles it, this only
+    ever sees `look` cards and never shuffles (see ccm.py's cross_check comment on the
+    same class).
+
+    Destination is `to`, default "hand" (the dominant shape, 91 of 131 sampled uses).
+    `to="battlefield"` is executed ONLY for a land filter (`what.type == "land"`),
+    reusing the exact same source-conversion `_fetch_land` already uses -- lands have no
+    P/T or triggers at this engine's fidelity, so there is nothing extra to construct.
+    A non-land `to="battlefield"` (Collected Company's creatures, Bag of Tricks) is
+    declined: materializing a real `_Permanent` OUTSIDE the cast path (triggers,
+    activated abilities, P/T, all of it) is a genuine engine gap `reanimate` has always
+    had too, not something to invent inline here. The card stays in the library rather
+    than vanishing -- an honest omission, not a loss.
+
+    The cards NOT taken go back to the BOTTOM in the SAME relative order they were seen,
+    not randomized. This engine has no RNG threaded into effect resolution (only at deck
+    shuffle + per-game spawn, see the module's determinism invariant), and nothing
+    downstream cares about the exact arrangement except a LATER scry, which establishes
+    its own fresh top-N regardless of whether this reshuffled anything -- the same
+    reasoning that makes a bare `shuffle` of an already-random library a no-op.
+    """
+    look = pr.get("look")
+    look = look if isinstance(look, int) and not isinstance(look, bool) else 0
+    if look <= 0 or not me.library:
+        return
+    n = min(look, len(me.library))
+    window = me.library[-n:]  # top n cards; window[-1] is the very top (drawn first)
+    del me.library[-n:]
+
+    what = pr.get("what")
+    what = what if isinstance(what, dict) else {}
+    matcher = _tutor_matcher(what)
+    take = pr.get("take", 1)
+    take = max(0, take) if isinstance(take, int) and not isinstance(take, bool) else 1
+
+    matched = sorted(
+        (i for i, gc in enumerate(window) if matcher(gc)),
+        key=lambda i: window[i].profile.impact, reverse=True,
+    )
+    taken_idx = set(matched[:take])
+
+    to = str(pr.get("to") or "hand").strip().lower()
+    is_land_battlefield = (
+        to == "battlefield" and str(what.get("type") or "").strip().lower() == "land"
+    )
+
+    rest = []
+    for i, gc in enumerate(window):
+        if i not in taken_idx:
+            rest.append(gc)
+        elif to == "hand":
+            me.hand.append(gc)
+        elif is_land_battlefield:
+            me.sources.append(_Source(gc.sim.produced_colors(), ready=False))
+        else:
+            rest.append(gc)  # unexecutable destination -- card is not lost, stays in library
+
+    me.library[0:0] = rest  # back to the BOTTOM, same relative order
+
+
 _MASS_COUNTS = frozenset({"all", "each"})
 
 
@@ -921,6 +988,8 @@ def _apply_resolved(
             # Vampiric/Mystical/Imperial-Seal class: fetch to top, drawn next turn. Previously a
             # silent no-op -- the dominant cEDH tutor kind, so combos never assembled.
             _tutor_to_top(me, what)
+    elif op == "look_and_select":
+        _look_and_select(me, pr)
     elif op == "add_mana":
         _ritual_mana(me, pr.get("amount", 1), pr.get("colors"))
     elif op == "add_counter":
@@ -1498,8 +1567,8 @@ def _main_phase(me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> None:
 _INTERPRETER_ACTIVATION_VALUE = {
     "extra_turn": 50.0,  # an extra untap/draw/attack dwarfs any other mana sink
     "destroy": 3.0, "exile": 3.0, "sacrifice": 2.5, "search_library": 2.0,
-    "create_token": 1.5, "draw": 1.4, "return_to_hand": 1.2, "add_counter": 1.0,
-    "pump": 0.8, "lose_life": 0.8, "discard": 0.8, "tap": 0.8,
+    "look_and_select": 1.8, "create_token": 1.5, "draw": 1.4, "return_to_hand": 1.2,
+    "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8, "discard": 0.8, "tap": 0.8,
     "proliferate": 0.7, "untap": 0.6, "grant_ability": 0.5, "scry": 0.4,
     "surveil": 0.4, "mill": 0.3, "gain_life": 0.3, "add_mana": 0.0,
 }

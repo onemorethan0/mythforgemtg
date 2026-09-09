@@ -68,9 +68,9 @@ _DRAIN_WHO = {"opponent", "each_opponent", "each"}
 # hand the engine abilities it silently cannot run.
 INTERPRETER_EXECUTABLE_OPS = frozenset({
     "add_counter", "add_mana", "create_token", "deal_damage", "destroy", "discard",
-    "draw", "exile", "extra_turn", "gain_life", "grant_ability", "lose_life", "mill",
-    "proliferate", "pump", "return_to_hand", "sacrifice", "scry", "search_library",
-    "surveil", "tap", "untap",
+    "draw", "exile", "extra_turn", "gain_life", "grant_ability", "look_and_select",
+    "lose_life", "mill", "proliferate", "pump", "return_to_hand", "sacrifice", "scry",
+    "search_library", "surveil", "tap", "untap",
 })
 
 # The ops `_activated_from`'s own six numeric fields can express. Anything the
