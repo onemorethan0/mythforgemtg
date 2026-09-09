@@ -271,7 +271,9 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
     guarded = {
         "resolved": _guarded_ops(tier2._apply_resolved),
         "activated": _guarded_ops(profile._activated_from),
+        "dropped": frozenset(),
     }
+    vocab = dict(vocab, dropped=frozenset())  # an ability nothing runs executes no op
     known = _known_ops()
 
     consumers = op_consumers()
@@ -310,9 +312,22 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
             is_activated = kind == "activated"
             path = "activated" if is_activated else "resolved"
             if is_activated:
+                # WHICH vocabulary an activated ability's effects are judged against is
+                # not fixed any more. `_activated_from` either flattens it into six
+                # numeric fields (the narrow four-op vocabulary), routes it WHOLE to the
+                # interpreter (the full resolved vocabulary), or drops it outright -- and
+                # asking the real function is the only way to know which. Judging every
+                # activated effect against the narrow set, as this did at first, reported
+                # `pump`/`add_counter`/`exile` as inert on hundreds of cards whose
+                # abilities had just been wired to run them.
                 activated_total += 1
-                if _activated_survives(ability, vocab["activated"]):
+                kept = _activated_effect(ability)
+                if kept is None:
+                    path = "dropped"  # nothing runs; every effect below is inert
+                else:
                     activated_kept += 1
+                    if getattr(kept, "ability", None) is not None:
+                        path = "resolved"  # interpreter-routed: full vocabulary
 
             for eff in ability.get("effects") or []:
                 if not isinstance(eff, dict):
@@ -419,22 +434,23 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
     }
 
 
-def _activated_survives(ability: dict, ops: frozenset[str]) -> bool:
-    """Does `_activated_from` keep this ability, or drop it?
+def _activated_effect(ability: dict):
+    """What `_activated_from` actually makes of this ability: an ActivatedEffect or None.
 
     ASKS THE REAL FUNCTION rather than re-deriving its gates. An earlier version of this
-    module reimplemented them, on the reasoning that `_activated_from` returns an
-    already-aggregated `ActivatedEffect` and so answers "what value did this become"
-    rather than "was anything lost". That was a mistake of exactly the kind this file
-    warns about everywhere else: when `_activated_from` gained the interpreter path (and
-    started keeping 2,175 abilities it used to drop), the copy here would have kept
-    reporting the old 11.7% survival and argued for a fix that had already shipped.
+    module reimplemented them, reasoning that `_activated_from` returns an already
+    aggregated result and so answers "what value did this become" rather than "was
+    anything lost". That was a mistake of exactly the kind this file warns about
+    everywhere else: when `_activated_from` gained the interpreter path and started
+    keeping 2,175 abilities it used to drop, the copy here would have kept reporting the
+    old 11.7% survival and argued for a fix that had already shipped.
 
-    `ops` is unused and kept only so the call site stays symmetric with the dispatch
-    lookup beside it; the authority is profile._activated_from itself.
+    The returned object also says HOW it survived -- a non-None `.ability` means the whole
+    ability was routed to the interpreter, so its effects run against the full resolved
+    vocabulary rather than the flattening's four ops.
     """
     effects = [e for e in (ability.get("effects") or []) if isinstance(e, dict)]
     try:
-        return profile._activated_from(ability, effects) is not None
+        return profile._activated_from(ability, effects)
     except Exception:  # a malformed stored ability must not kill the gauge
-        return False
+        return None

@@ -189,20 +189,36 @@ def test_a_card_counts_once_per_op_however_many_times_it_prints_it():
     assert row["effects"] == 3
 
 
-def test_the_same_op_is_executed_or_inert_depending_on_the_ability_kind():
-    """The two paths have different vocabularies, so one printed effect has two fates.
+def test_the_same_op_no_longer_has_two_FATES_by_ability_kind():
+    """This test used to assert the DIVERGENCE; it now asserts it is gone.
 
-    `add_counter` is dispatched by the interpreter and unknown to the activated
-    flattening. Collapsing the two vocabularies into one would erase this, and it is a
-    real source of rating error, not a reporting detail.
+    `add_counter` was dispatched by the interpreter and unknown to the activated
+    flattening, so one printed effect executed or vanished depending on which kind of
+    ability printed it — a real source of rating error, and the largest single structural
+    loss this gauge found (2,175 abilities). Routing activated abilities through the
+    interpreter closed it, so the same effect now has the same fate either way.
     """
-    resolved = _env("ETB", [{"kind": "etb", "effects": [{"op": "add_counter",
-                                                         "counter_type": "+1/+1"}]}])
+    counter = {"op": "add_counter", "counter_type": "+1/+1"}
+    resolved = _env("ETB", [{"kind": "etb", "effects": [counter]}])
     activated = _env("Outlet", [{"kind": "activated", "cost": {"mana": "{2}"},
-                                 "effects": [{"op": "add_counter",
-                                              "counter_type": "+1/+1"}]}])
+                                 "effects": [counter]}])
     assert health.analyze_store([resolved])["inert_effects"] == 0
-    assert health.analyze_store([activated])["inert_effects"] == 1
+    assert health.analyze_store([activated])["inert_effects"] == 0
+
+
+def test_an_activated_ability_the_cost_gates_DROP_has_every_effect_inert():
+    """The other half of following the real routing: when `_activated_from` refuses an
+    ability outright, nothing it prints runs, however well the interpreter knows the op.
+
+    Judging those against a dispatch vocabulary instead — as the gauge did at first —
+    reported them as executed and hid a loss that is entirely real.
+    """
+    dropped = _env("Sac Outlet", [{"kind": "activated", "cost": {"sacrifice_self": True},
+                                   "effects": [{"op": "draw", "count": 1}]}])
+    r = health.analyze_store([dropped])
+    assert r["executed_effects"] == 0
+    assert r["inert_effects"] == 1
+    assert r["activated_kept"] == 0
 
 
 def test_activated_survival_applies_the_cost_gates():
