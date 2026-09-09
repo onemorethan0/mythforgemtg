@@ -1287,6 +1287,7 @@ def _cmd_sim_health(args: argparse.Namespace) -> int:
     console.print(
         f"    fully executed {result['executed_effects']:,}  |  "
         f"partial {result['partial_effects']:,}  |  "
+        f"read elsewhere {result['elsewhere_effects']:,}  |  "
         f"inert {result['inert_effects']:,}     cards scanned: {result['cards_scanned']:,}"
     )
     console.print(
@@ -1332,6 +1333,19 @@ def _cmd_sim_health(args: argparse.Namespace) -> int:
         result["partial_ops"],
         "counted as NEITHER executed nor inert; how much each declines needs the sim to say",
     )
+    if result["elsewhere_ops"]:
+        console.print()
+        table = Table(
+            title="Read elsewhere — no dispatch branch, but a subsystem consumes it",
+            show_header=True, header_style="bold",
+            caption="NOT a gap: these already work by another route. Do not 'fix' them.",
+        )
+        table.add_column("op")
+        table.add_column("cards", justify="right")
+        table.add_column("consumed by")
+        for row in result["elsewhere_ops"]:
+            table.add_row(row["op"], f"{row['cards']:,}", ", ".join(row.get("consumers", [])))
+        console.print(table)
     _render(
         "Unknown — outside ccm.OP_SPECS entirely",
         result["unknown_ops"],

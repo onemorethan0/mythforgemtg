@@ -25,6 +25,7 @@ against what it actually counts (docs/ROADMAP.md Phase 6).
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Protocol, runtime_checkable
 
@@ -50,6 +51,43 @@ class Resolver(Protocol):
     def condition_holds(self, condition: str, effect: dict) -> bool:
         """Whether a conditional/optional effect actually happens this time."""
         ...
+
+
+_UNPAID_COST_CONDITION = re.compile(
+    r"\bif you (pay|paid|discard|sacrifice|exile|reveal|tap|remove)\b"
+    r"|\bunless you pay\b|\bif you do\b|\bpay \{"
+    r"|\bwas kicked\b|\bkicker (cost )?was paid\b|\bif its \w+ cost was paid\b"
+    r"|\bwas cast for its\b|\byou may pay\b",
+    re.I,
+)
+
+
+def condition_names_an_unpaid_cost(condition: str) -> bool:
+    """Does this free-text condition gate the effect behind a COST the player must pay?
+
+    Both resolvers otherwise assume every condition holds — an optimistic default
+    inherited from the flattening, and defensible for a board condition the engine cannot
+    evaluate ("if a creature died this turn"). It is NOT defensible when the condition IS
+    a payment: "if you pay {E}{E}", "if this spell was kicked", "discard a card. If you
+    do, draw two" — assuming those true hands over the payoff and skips the price.
+
+    That is the same defect this codebase has already fixed twice one layer down, and the
+    CLAUDE.md engineering map names the class outright: *an effect read without its COST*.
+    `profile._activated_from` reading mana/tap but not `other`/`pay_life` made 1,488
+    abilities free repeatable outlets; `ramp_sources` counting an Azorius Signet's gross 2
+    instead of its net 1 was the same shape. This is the third instance, at the resolver.
+
+    Measured over the 31.7k store: 3,368 executed effects carry an assumed-true condition
+    (13.2% of all executed resolved-path effects, 2,971 cards). **466 of them across 436
+    cards are cost-bearing** — this predicate's scope. The remaining ~81% are genuine
+    board conditions and are deliberately left assumed-true: flipping those would deflate
+    every rating in the corpus and invalidate the bracket calibration, which is a sweep,
+    not a bug fix. Narrow on purpose.
+
+    Declining means the effect does not happen — an honest under-count, per the standing
+    doctrine that beats a confident fabrication.
+    """
+    return bool(_UNPAID_COST_CONDITION.search(condition or ""))
 
 
 @dataclass
@@ -82,6 +120,10 @@ class DefaultResolver:
         # at once. Affects 24 cards store-wide (measured), several high-profile (Approach
         # of the Second Sun, Oko the Ringleader, Jace the Perfected Mind).
         if condition.strip().lower() == "otherwise":
+            return False
+        # A condition that IS a payment is not an assumption this resolver gets to make
+        # for free -- see condition_names_an_unpaid_cost.
+        if condition_names_an_unpaid_cost(condition):
             return False
         return True  # flattening convention: assume optional/conditional effects happen
 

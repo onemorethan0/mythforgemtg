@@ -61,7 +61,11 @@ from dataclasses import dataclass, field, replace
 from mythgauntlet.model.card import Card, normalize_name
 from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.ccm import canonical_event, normalize_colors
-from mythgauntlet.semantics.interpreter import ResolvedEffect, interpret_ability
+from mythgauntlet.semantics.interpreter import (
+    ResolvedEffect,
+    condition_names_an_unpaid_cost,
+    interpret_ability,
+)
 from mythgauntlet.semantics.profile import (
     ActivatedEffect,
     DeathEffect,
@@ -937,6 +941,12 @@ class _EngineResolver:
         # cast as an outright win. The IF branch is assumed satisfied (the existing
         # convention); consistency requires the paired OTHERWISE branch not fire too.
         if condition.strip().lower() == "otherwise":
+            return False
+        # Delegated so the engine resolver and DefaultResolver cannot drift apart on the
+        # same rule -- an effect gated behind a payment ("if you pay {E}{E}", "if this
+        # spell was kicked", "discard a card. If you do, ...") must not be handed over
+        # free. 466 effects / 436 cards store-wide; see the predicate's docstring.
+        if condition_names_an_unpaid_cost(condition):
             return False
         return True  # conditions are free-text; assume they hold (as the flattening did)
 

@@ -76,6 +76,35 @@ def test_a_guarded_op_is_counted_as_neither_executed_nor_inert():
     assert r["inert_ops"] == []
 
 
+def test_an_op_handled_by_another_subsystem_is_not_called_a_gap():
+    """`counter_spell` has no dispatch branch and is NOT inert — the counter-war is
+    resolved via profile._has_counter_spell feeding game.py's reactive window.
+
+    The dispatch-only version of this gauge reported all 484 of its cards as a simulator
+    gap, which would have sent a session to reimplement working code. "Inert" has to mean
+    no consumer ANYWHERE, not absent from one if/elif chain.
+    """
+    r = health.analyze_store([_env("Counterspell", [_spell({"op": "counter_spell"})])])
+    assert r["elsewhere_effects"] == 1
+    assert r["inert_effects"] == 0
+    assert r["executed_effects"] == 0
+    (row,) = r["elsewhere_ops"]
+    assert row["op"] == "counter_spell"
+    assert "profile._has_counter_spell" in row["consumers"]
+    assert r["inert_ops"] == []
+
+
+def test_consumer_scan_reads_the_inline_get_op_spelling():
+    """profile.py tests `effect.get("op") == ...` inline as well as via an `op` local.
+
+    Reading only the local missed _has_counter_spell — i.e. missed precisely the consumer
+    whose absence made the gauge accuse a working subsystem.
+    """
+    consumers = health.op_consumers()
+    assert "profile._has_counter_spell" in consumers.get("counter_spell", [])
+    assert "tier2._apply_resolved" in consumers.get("draw", [])
+
+
 def test_the_guard_detector_finds_the_known_guarded_branches():
     """Pinned against branches whose scope is documented in tier2 itself.
 
