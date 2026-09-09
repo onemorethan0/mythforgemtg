@@ -334,6 +334,44 @@ because of deathtouch (the old plain comparison would have gotten these wrong), 
 trample-excess-to-player events — both mechanics are live in real games, not just reachable in
 theory. Full suite green (1516 tests) throughout.
 
+### B2–B5 calibration checkpoint (2026-09-09) — closing the loop Phase A opened
+
+Phase A's whole point (§1) was to check whether a code-only change moves real simulated
+outcomes, using a controlled technique: hold the CCM store fixed, re-run the exact same 24-deck
+subset (`--opponents 8 --games 15 --seed 777 --no-combos`, 1,695 games) before/after. §1.2 ran
+that technique against the state right before Phase B started and found real movement (mean
+`|Δrating|` 36.9) from that session's broader tier2 fixes. B2–B5 landed since, so re-running the
+identical subset/params now (same 24 decks, preserved from §1.2's run) isolates what the four
+combat-keyword fixes alone contributed, apples-to-apples.
+
+**Mean `|Δrating|` = 22.2, signed mean 0.00** (zero-sum reordering again, as Bradley-Terry
+requires — consistent with §1.2). Smaller than §1.2's 36.9, which is the expected shape: B2–B5
+are four narrow, surgical combat-math fixes, not the broad activated-ability/pump/duration
+layers §1.2 measured. Real movement, not noise, at this sample size. Biggest movers: **Seluma,
+Light of Aysen (archidekt-25709096) 1748.1 → 1832.8 (+84.7)** and **Storm, Force of Nature
+(archidekt-10056486) 1610.6 → 1685.0 (+74.4)**, both up; **Peter Parker // Amazing Spider-Man
+(archidekt-25772418) 1506.1 → 1466.3 (−39.8)** and **Bjorna, Nightfall Alchemist
+(archidekt-25747263) 1227.7 → 1195.7 (−32.0)**, both down.
+
+Checked plausibility before writing this down (same discipline as §1.2's Tellah check): Seluma's
+deck carries 38 creatures, **35 of which (92%) have at least one combat keyword**; Storm, Force
+of Nature carries 16 creatures, 11 (69%) keyworded. Both are exactly the kind of
+keyword-dense deck B2–B5 should move the most, and both moved *up* — consistent with "these
+creatures now actually get to use the vigilance/deathtouch/trample/flying-evasion they were
+always printed with." **Tellah itself (§1.2's biggest mover, −207.2 from the broader fix set)
+barely moved this round (−5.1)** — expected, since its own commander ability keys off
+`mana_paid`, unrelated to combat keywords, and §1.2 already established that basis stays at its
+honest unresolved default.
+
+Not investigated further (out of scope for a calibration checkpoint, same boundary §1.2 drew for
+Tellah): *why* specifically Peter Parker and Bjorna fell, beyond noting Bradley-Terry is
+zero-sum so a keyword-dense deck's opponents in the round-robin necessarily absorb some of its
+gain. Raw before/after JSON kept in this session's scratchpad (`gauntlet_after.json` from §1.2,
+`gauntlet_after_B2B5.json` from this run), not committed — regenerable from the commands above
+against the preserved `gauntlet_subset` directory. **This closes Phase B's acceptance gate for
+B2–B5**: real, non-trivial, direction-plausible movement, verified against the same instrument
+and the same controlled subset Phase A itself validated.
+
 ### B6 — menace and first/double strike (STRUCTURAL, size separately before starting)
 
 Both of these are a different *shape* of change from B2–B5, not just a bigger version of the
