@@ -140,11 +140,60 @@ session's own doctrine already insists on checking a claim before reporting it. 
 silently running the cheaper/older code path (bracket_accuracy → tier0; the original B5-recall
 harness → `--combos 0`) is a repeating shape in this specific codebase, not a one-off.
 
-### 1.2 — the corrected test, tier2 (pending)
+### 1.2 — the corrected test, tier2: real, substantial movement (2026-09-10)
 
-*(Fill in when run: `gauntlet`/`duel`-based before/after on the matched corpus, same worktree
-technique, holding the store fixed. This is the actual answer to "did tonight's tier2 work move
-anything.")*
+Same controlled-worktree technique as §1.1 (store held fixed, only `sim/tier2.py` +
+`semantics/interpreter.py` + `semantics/profile.py` differ between the two runs), but through
+`mythgauntlet gauntlet` — real tier2 round-robin duels, Bradley-Terry ratings — instead of
+`bracket_accuracy.py`. A 24-deck deterministic subset (every 24th of 563 labelled decks, sorted,
+spanning brackets), `--opponents 8 --games 15 --seed 777 --no-combos` (1,695 T2 games per run,
+~2 minutes each).
+
+**Byte-identical was the wrong outcome to expect from the wrong instrument; this one moved for
+real.** Mean `|Δrating|` across the 24 decks: **36.9 points**. Signed mean: −0.0 (expected — a
+Bradley-Terry system conserves total rating mass, so this is a *reordering*, not an inflation).
+
+The single largest mover: **Tellah, Great Sage (archidekt-25958277), 1806.5 → 1599.3 (−207.2),
+win rate 81.7% → 58.3% over the same 120 games (98-22 → 70-50).** That is not noise at this
+sample size — it's the kind of swing that would flip a real matchup's expected outcome. Checked
+what's plausible before writing this down: Tellah's own commander ability keys off `mana_paid`
+(x_basis), which this session's §"THE `x_basis` FIELD HAS NO CLOSED ENUM" work (see CLAUDE.md)
+explicitly measured as genuinely unresolvable and left at the honest default — that part of the
+deck's behavior should be unchanged by anything that shipped. The swing is therefore coming from
+elsewhere in the 99 (or from opponents in the subset gaining), not diagnosed further this
+session — that's real follow-on work, not this phase's job.
+
+**What this phase set out to answer is answered: yes, the session's tier2 code changes move
+real simulated outcomes, by a magnitude too large to be sampling noise at n=1,695 games.**
+Whether that movement is a net *improvement* (ratings getting closer to true relative strength)
+or just *different* is a separate question this bounded test cannot resolve on its own — it
+would need either a much larger labelled sample run through `gauntlet`/`meta_rating` (feeding
+`estimate_bracket`, which — per §1.1 — is the one path that WOULD let `bracket_accuracy.py` see
+this layer, and today doesn't) or human/expert spot-review of specific reordered matchups.
+Flagged as the natural larger-scale follow-up, not attempted here.
+
+**A concrete, well-evidenced hypothesis worth flagging for whoever picks this up**: several of
+tonight's fixes made previously-inert options newly *available* to the greedy agent (activated
+abilities routing especially — survival 11.7%→40%). Making an option executable is not the same
+as weighing it correctly; `_INTERPRETER_ACTIVATION_VALUE`'s weights (tier2.py) are hand-set, not
+measured against the corpus the way this project insists thresholds be measured elsewhere
+(`PLAN_CLOCK.md` §6 trap 3). If a newly-visible option is *mis*-weighted, the agent can now make
+a worse decision than the old behavior of leaving that mana unspent — a real candidate
+explanation for a deck's win rate *falling* after its own capabilities were expanded, and
+directly the kind of thing Phase A's own review flagged in the abstract ("an effect firing
+correctly can still be weighed wrong by value heuristics") now showing up as a concrete,
+measured instance rather than a theoretical concern.
+
+**Verdict for §1**: Phase A's original design (bracket_accuracy.py) was the wrong instrument and
+that is now corrected and documented for future work in this codebase, not just this session.
+The right instrument (gauntlet/tier2) shows real, large, non-noise movement. Whether it's *net
+positive* needs a bigger run or expert review to answer with confidence, and the activation-
+weight-calibration hypothesis above is a concrete, actionable next step that's cheaper than a
+full corpus re-run and worth doing before scaling this test up.
+
+Worktree cleaned up (`git worktree remove ../mtg_deck_builder-before`) — raw JSON before/after
+kept in this session's scratchpad, not committed (regenerable in ~2 minutes from the commands
+above).
 
 ---
 
