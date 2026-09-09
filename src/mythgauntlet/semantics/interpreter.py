@@ -62,6 +62,23 @@ _UNPAID_COST_CONDITION = re.compile(
 )
 
 
+# Ops where "assume the condition holds" stops being an optimistic default and becomes a
+# fabricated game result. Measured over the 31.7k store: **all 34 `win_game` effects carry
+# a condition**, every one of them board state this engine cannot evaluate -- "if you have
+# 200 or more cards in your library" (Battle of Wits), "if you control four or more
+# creatures named Biovisionary", "if this creature has five or more filibuster counters"
+# (Azor's Elocutors). Under the ordinary convention each of those wins the game outright on
+# resolution, so implementing the op at all would have fabricated 34 instant wins.
+# `extra_turn` is the same shape one notch down: 42 of its 56 effects are unconditional and
+# safe, while the other 14 ("if it's not your turn", "if time gets more votes", "if it had
+# seven or more verse counters") would hand out free turns on an assumption.
+#
+# Alt-wins are NOT thereby lost to the engine -- `data/spellbook.py` detects them from
+# oracle text and credits them through the combo/bracket path, which is where a "you win
+# the game" card actually belongs in a deck RATING.
+_GAME_DECIDING_OPS = frozenset({"win_game", "extra_turn"})
+
+
 def condition_names_an_unpaid_cost(condition: str) -> bool:
     """Does this free-text condition gate the effect behind a COST the player must pay?
 
@@ -88,6 +105,15 @@ def condition_names_an_unpaid_cost(condition: str) -> bool:
     doctrine that beats a confident fabrication.
     """
     return bool(_UNPAID_COST_CONDITION.search(condition or ""))
+
+
+def condition_is_too_decisive_to_assume(condition: str, effect: dict) -> bool:
+    """Is this a condition we must NOT wave through, because the effect decides the game?
+
+    See `_GAME_DECIDING_OPS`. A wrongly-assumed +1/+1 counter is an approximation; a
+    wrongly-assumed "you win the game" is the whole result.
+    """
+    return bool(condition) and effect.get("op") in _GAME_DECIDING_OPS
 
 
 @dataclass
@@ -124,6 +150,8 @@ class DefaultResolver:
         # A condition that IS a payment is not an assumption this resolver gets to make
         # for free -- see condition_names_an_unpaid_cost.
         if condition_names_an_unpaid_cost(condition):
+            return False
+        if condition_is_too_decisive_to_assume(condition, effect):
             return False
         return True  # flattening convention: assume optional/conditional effects happen
 

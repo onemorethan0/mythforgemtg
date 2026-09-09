@@ -59,13 +59,37 @@ def test_default_resolver_does_not_fire_the_otherwise_branch():
     conditioned on "otherwise". DefaultResolver assumes the IF branch holds (the existing
     convention), so consistency requires the paired OTHERWISE branch NOT fire too --
     crediting both is two contradictory outcomes at once, not an optimistic assumption.
-    Same fix needed in sim/tier2.py's _EngineResolver, which shares this exact bug."""
+    Same fix needed in sim/tier2.py's _EngineResolver, which shares this exact bug.
+
+    UPDATED 2026-09-09: this used to assert the win_game DID survive, on the "assume the
+    IF branch holds" convention. That was only ever harmless because `win_game` has no
+    dispatch branch in `_apply_resolved` -- the resolved effect was produced and then
+    silently dropped. Measuring the op to decide whether to implement it showed why it
+    must not be: **all 34 stored win_game effects carry a condition**, every one of them
+    board state the engine cannot evaluate, so implementing the op under that convention
+    would have made all 34 cards win outright on resolution. `win_game` and `extra_turn`
+    are now refused a condition they cannot verify (interpreter._GAME_DECIDING_OPS), so
+    NEITHER branch of Approach of the Second Sun fires. The original point of this test --
+    the paired `otherwise` must never fire alongside its if-branch -- is unchanged and
+    still asserted below.
+    """
     ability = {"effects": [
         {"op": "win_game", "condition": "if you've cast another spell named this"},
         {"op": "gain_life", "amount": 7, "condition": "otherwise"},
     ]}
     resolved = interpret_ability(ability)
-    assert [r.op for r in resolved] == ["win_game"]
+    assert "gain_life" not in [r.op for r in resolved]  # the original guard
+    assert resolved == []  # and the win is no longer assumed either
+
+
+def test_an_unconditional_life_gain_beside_a_refused_win_still_resolves():
+    """The refusal is per-EFFECT, not per-ability -- a card that wins under a condition
+    and does something else unconditionally keeps the unconditional half."""
+    ability = {"effects": [
+        {"op": "win_game", "condition": "if you have 200 or more cards in your library"},
+        {"op": "gain_life", "amount": 7},
+    ]}
+    assert [r.op for r in interpret_ability(ability)] == ["gain_life"]
 
 
 def test_unknown_op_is_skipped_but_siblings_survive():

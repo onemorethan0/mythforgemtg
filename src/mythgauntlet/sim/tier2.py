@@ -63,6 +63,7 @@ from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.ccm import canonical_event, normalize_colors
 from mythgauntlet.semantics.interpreter import (
     ResolvedEffect,
+    condition_is_too_decisive_to_assume,
     condition_names_an_unpaid_cost,
     interpret_ability,
 )
@@ -160,6 +161,10 @@ class _Permanent:
     # and never needs to un-apply one specific pump — only "everything temporary, gone".
     temp_power: int = 0
     temp_toughness: int = 0
+    # The GameCard this permanent was cast from, so `return_to_hand` can put the actual
+    # card back. None for TOKENS -- and that is correct rather than a gap: a bounced token
+    # ceases to exist (CR 111.7), which falls out of this for free.
+    source: object | None = None
 
 
 @dataclass
@@ -185,6 +190,10 @@ class _Player:
     # _Permanent.is_commander) -- a real partner pair's two counters would need to stay
     # distinct by SOURCE PERMANENT, not just source player, which this dict does not do.
     commander_damage_taken: dict[str, int] = field(default_factory=dict)
+    # Extra turns this player has banked but not yet taken (CR 505 / "take an extra turn
+    # after this one"). Held on the PLAYER rather than the GameState because _apply_resolved
+    # only ever sees players; sim/game._to_next_halfturn spends them.
+    extra_turns: int = 0
 
     def draw(self, n: int) -> None:
         for _ in range(n):
@@ -624,6 +633,57 @@ def _tutor_to_top(me: _Player, what: dict) -> None:
         me.library.append(gc)
 
 
+_MASS_COUNTS = frozenset({"all", "each"})
+
+
+def _is_mass(target: dict) -> bool:
+    return str(target.get("count") or "").strip().lower() in _MASS_COUNTS
+
+
+def _affected_boards(target: dict, me: _Player, opp: _Player,
+                     others: tuple[_Player, ...]) -> tuple[_Player, ...]:
+    """Whose permanents a MASS effect touches, from the target's `controller`.
+
+    An absent controller means "all creatures" in real templating (Wrath of God), so it
+    correctly returns everyone. `_is_mass` is checked by the caller — this only answers
+    whose board, never how many.
+    """
+    controller = str(target.get("controller") or "").strip().lower()
+    if controller == "you":
+        return (me,)
+    if controller in ("opponent", "each_opponent"):
+        return (opp, *others)
+    return (me, opp, *others)
+
+
+def _bounce(owner: _Player, perm: _Permanent) -> None:
+    """Return a permanent to its owner's hand. NOT a death: no death trigger fires.
+
+    A token has no `source` card, so it simply ceases to exist (CR 111.7) -- which is
+    exactly right and needs no special case. Routing this through `_kill` instead would
+    have been wrong twice over: it fires aristocrat death payoffs that a bounce does not,
+    and it destroys a card the owner is supposed to get back.
+    """
+    if perm not in owner.battlefield:
+        return
+    owner.battlefield.remove(perm)
+    if perm.is_commander:
+        owner.commander_in_zone = True  # commander goes back to the command zone
+    elif perm.source is not None:
+        owner.hand.append(perm.source)
+
+
+def _weakest_creature(player: _Player) -> _Permanent | None:
+    """What a player sacrifices when SOMETHING ELSE forces the choice.
+
+    The choice belongs to that player, and they give up their least valuable creature --
+    so an edict models normal play rather than an advantageous pick invented for whoever
+    cast it. Ranked by power, the engine's own combat currency.
+    """
+    creatures = player.creatures()
+    return min(creatures, key=lambda c: (c.power, c.toughness)) if creatures else None
+
+
 _DISCARD_ME = frozenset({"you", "self", "controller"})
 _DISCARD_OPP = frozenset({"opponent", "target_player", "each_opponent"})
 _DISCARD_ALL = frozenset({"each", "all", "any"})
@@ -896,6 +956,56 @@ def _apply_resolved(
         is_self = just_cast is not None and (not target or target.get("self") is True)
         if is_self and ability_name == "haste":
             just_cast.sick = False
+    elif op == "return_to_hand":
+        # SELF or MASS only, the standing discipline. A chosen target ("return target
+        # creature to its owner's hand") is 2,668 of 3,232 stored effects and is a
+        # decision the engine has no targeting infra to make -- and picking one would
+        # fabricate in BOTH directions at once here, since bouncing my own creature is
+        # value (a saved blocker, a re-used ETB) while bouncing theirs is tempo.
+        target = _tgt("target")
+        if just_cast is not None and (not target or target.get("self") is True):
+            _bounce(me, just_cast)
+        elif _is_mass(target):
+            for player in _affected_boards(target, me, opp, others):
+                for perm in list(player.creatures()):
+                    _bounce(player, perm)
+    elif op == "sacrifice":
+        # Sacrifice IS a death, so this routes through `_kill` and correctly fires the
+        # aristocrat payoffs a bounce must not.
+        target = _tgt("target")
+        who = str(pr.get("who") or "").strip().lower()
+        if just_cast is not None and (target.get("self") is True
+                                      or who in ("self", "this")):
+            _kill(me, just_cast, opp, others)
+        elif _is_mass(target) or who in _DISCARD_ALL:
+            for player in _affected_boards(target, me, opp, others):
+                for perm in list(player.creatures()):
+                    _kill(player, perm, opp if player is me else me, others)
+        elif who in _DISCARD_OPP or target.get("controller") in ("opponent", "each_opponent"):
+            # An EDICT ("each opponent sacrifices a creature") -- no target is chosen by
+            # the caster, so this is executable without fabricating a pick.
+            for player in (opp, *others):
+                victim = _weakest_creature(player)
+                if victim is not None:
+                    _kill(player, victim, me, others)
+    elif op in ("tap", "untap"):
+        # Both are pure state on a permanent this engine already tracks, so the only
+        # question is WHICH permanents -- self or a whole board, never a chosen one.
+        target = _tgt("target")
+        tapped = op == "tap"
+        if just_cast is not None and (not target or target.get("self") is True):
+            just_cast.tapped = tapped
+        elif _is_mass(target):
+            for player in _affected_boards(target, me, opp, others):
+                for perm in player.battlefield:
+                    perm.tapped = tapped
+    elif op == "extra_turn":
+        # Only ever reached UNCONDITIONALLY: `condition_is_too_decisive_to_assume` refuses
+        # to wave a condition through for this op, so the 14 stored effects gated on board
+        # state the engine cannot check ("if it's not your turn", "if time gets more
+        # votes") decline instead of handing out a free turn. The other 42 are flat "take
+        # an extra turn after this one" and are exactly what this executes.
+        me.extra_turns += 1
     elif op == "discard":
         # 1,126 cards; 949 of them name WHO discards unambiguously. When the CCM does not
         # say, `_discard_targets` returns nothing rather than guessing -- emptying the
@@ -1048,6 +1158,8 @@ class _EngineResolver:
         # free. 466 effects / 436 cards store-wide; see the predicate's docstring.
         if condition_names_an_unpaid_cost(condition):
             return False
+        if condition_is_too_decisive_to_assume(condition, effect):
+            return False
         return True  # conditions are free-text; assume they hold (as the flattening did)
 
 
@@ -1123,7 +1235,7 @@ def _resolve(
             name=card.name, power=gc.sim.attack_power, toughness=max(1, _toughness(gc)),
             is_creature=True, is_artifact=card.has_type("Artifact"),
             engine_draw=engine_draw, is_commander=is_commander,
-            activated=p.activated, death=p.death, triggers=triggers,
+            activated=p.activated, death=p.death, triggers=triggers, source=gc,
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1132,7 +1244,7 @@ def _resolve(
                 name=card.name, power=0, toughness=0, is_creature=False,
                 is_artifact=card.has_type("Artifact"),
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
-                activated=p.activated, death=p.death, triggers=triggers,
+                activated=p.activated, death=p.death, triggers=triggers, source=gc,
             )
         )
 
@@ -1337,10 +1449,12 @@ def _main_phase(me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> None:
 # only the counter, and a damage-only mixed ability scored 0.0 and was never chosen --
 # enumerated as a legal action and silently never taken.
 _INTERPRETER_ACTIVATION_VALUE = {
-    "destroy": 3.0, "exile": 3.0, "search_library": 2.0, "create_token": 1.5,
-    "draw": 1.4, "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8, "discard": 0.8,
-    "proliferate": 0.7, "grant_ability": 0.5, "scry": 0.4, "surveil": 0.4,
-    "mill": 0.3, "gain_life": 0.3, "add_mana": 0.0,
+    "extra_turn": 50.0,  # an extra untap/draw/attack dwarfs any other mana sink
+    "destroy": 3.0, "exile": 3.0, "sacrifice": 2.5, "search_library": 2.0,
+    "create_token": 1.5, "draw": 1.4, "return_to_hand": 1.2, "add_counter": 1.0,
+    "pump": 0.8, "lose_life": 0.8, "discard": 0.8, "tap": 0.8,
+    "proliferate": 0.7, "untap": 0.6, "grant_ability": 0.5, "scry": 0.4,
+    "surveil": 0.4, "mill": 0.3, "gain_life": 0.3, "add_mana": 0.0,
 }
 _BOARD_DEPENDENT_ACTIVATION_OPS = frozenset({"destroy", "exile"})
 

@@ -216,9 +216,25 @@ def _ops_tested_by(test: ast.expr) -> set[str]:
 
 
 def _has_unelsed_if(stmt: ast.stmt) -> bool:
-    """Is this statement (or something it wraps) an `if` with no `else`?"""
-    if isinstance(stmt, ast.If) and not stmt.orelse:
-        return True
+    """Does this statement contain an if/elif chain that can fall through doing NOTHING?
+
+    Walks the whole `elif` chain rather than looking at one `if`. The first version only
+    recognised a bare `if` with no `else`, and the moment branches were written as
+    `if self-target ... elif mass ...` — with a chosen target deliberately falling off the
+    end — those read as fully handled. The gauge jumped ~10 points on ops that decline
+    the majority of what reaches them, which is the exact self-flattery `partial_ops`
+    exists to prevent. An `elif` is just an `If` nested in the previous `orelse`, so the
+    question is only ever whether the chain TERMINATES in a real `else`.
+    """
+    if isinstance(stmt, ast.If):
+        node = stmt
+        while True:
+            if not node.orelse:
+                return True  # the chain can end with nothing done
+            if len(node.orelse) == 1 and isinstance(node.orelse[0], ast.If):
+                node = node.orelse[0]  # an elif; keep walking
+                continue
+            return False  # a real else: every path does something
     if isinstance(stmt, (ast.For, ast.While, ast.With)):
         return any(_has_unelsed_if(s) for s in stmt.body)
     return False

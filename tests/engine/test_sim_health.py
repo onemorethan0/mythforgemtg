@@ -119,13 +119,31 @@ def test_the_guard_detector_finds_the_known_guarded_branches():
     assert "draw" not in guarded
 
 
+def test_an_if_elif_chain_with_no_else_reads_as_guarded():
+    """The detector's second miss, and the same self-flattery as the first.
+
+    `return_to_hand`/`sacrifice`/`tap` are written `if self-target ... elif mass ...`
+    with a CHOSEN target deliberately falling off the end. The first detector only
+    recognised a bare `if` with no `else`, so all three read as fully handled and the
+    reported ceiling jumped ~10 points on ops that decline most of what reaches them.
+    An `elif` is an `If` inside the previous `orelse`, so the whole chain has to be
+    walked to see whether it terminates in a real `else`.
+    """
+    guarded = health.analyze_store([])["guarded_ops"]["resolved"]
+    assert {"return_to_hand", "sacrifice", "tap", "untap"} <= set(guarded)
+    # Ops whose branch acts unconditionally on whatever arrives stay unguarded.
+    assert {"extra_turn", "scry", "mill"} & set(guarded) == set()
+
+
 # A vocabulary op the simulator still has no branch for. NOT `pump`: these tests were
 # written against pump the hour before it was dispatched, and all three broke the moment
 # it shipped — which is the anti-drift design working (the gauge re-read the source and
 # stopped reporting a closed gap), but it means a fixture op has to be one that is still
-# open. If `return_to_hand` is ever implemented, these fail loudly and want re-pointing,
-# rather than silently asserting nothing.
-STILL_INERT = "return_to_hand"
+# open. This fixture has now been re-pointed TWICE by the guard below (pump, then
+# return_to_hand) as each got implemented — which is the guard working. `attach` needs an
+# equipment/attachment model this engine does not have, so it is the most durable choice;
+# if it too is ever implemented these fail loudly rather than silently asserting nothing.
+STILL_INERT = "attach"
 
 
 def test_the_fixture_op_is_actually_still_inert():
@@ -137,14 +155,14 @@ def test_the_fixture_op_is_actually_still_inert():
 
 
 def test_inert_vocabulary_op_is_reported_against_the_simulator():
-    r = health.analyze_store([_env("Boomerang", [_spell({"op": STILL_INERT})])])
+    r = health.analyze_store([_env("Bonesplitter", [_spell({"op": STILL_INERT})])])
     assert r["executed_effects"] == 0
     assert r["cards_fully_inert"] == 1
     (row,) = r["inert_ops"]
     assert row["op"] == STILL_INERT
     assert row["cards"] == 1
     assert row["in_vocabulary"] is True
-    assert row["examples"] == ["Boomerang"]
+    assert row["examples"] == ["Bonesplitter"]
     assert r["unknown_ops"] == []
 
 

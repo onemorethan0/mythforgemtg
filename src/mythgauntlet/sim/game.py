@@ -150,6 +150,7 @@ class GameState:
     combat_begun: bool = False
     activation_reserve: int = 0
     activations_done: int = 0
+    extra_turns_taken: int = 0  # game-wide, bounds an extra-turn loop
     combat_attackers: list[_Permanent] = field(default_factory=list)
     # Who the attack was declared against, LOCKED for the whole combat.
     #
@@ -383,7 +384,36 @@ def _register_deaths(state: GameState) -> bool:
     return False
 
 
+_MAX_EXTRA_TURNS_PER_GAME = 12  # safety rail; see _spend_extra_turn
+
+
+def _spend_extra_turn(state: GameState) -> bool:
+    """If the active player banked an extra turn, keep the seat instead of rotating.
+
+    The turn counter is deliberately NOT advanced. A "turn" here is a round, and the
+    whole point of an extra turn is that the OPPONENT does not get one -- bumping the
+    counter would make a Time Warp deck read as SLOWER, which is backwards.
+
+    That removes the natural bound, so `_MAX_EXTRA_TURNS_PER_GAME` is the rail: a deck
+    that assembles a genuine extra-turn loop would otherwise never reach `max_turns` and
+    the game would not terminate. Twelve is far past what any fair deck chains and is a
+    termination guard, not a balance number.
+    """
+    player = state.players[state.active]
+    if player.extra_turns <= 0:
+        return False
+    if state.extra_turns_taken >= _MAX_EXTRA_TURNS_PER_GAME:
+        player.extra_turns = 0
+        return False
+    player.extra_turns -= 1
+    state.extra_turns_taken += 1
+    state.phase = "turn_start"
+    return True
+
+
 def _to_next_halfturn(state: GameState) -> None:
+    if _spend_extra_turn(state):
+        return
     if not state.multiplayer:
         if state.pos == 0:  # 1v1 path: unchanged (golden master byte-identical)
             state.pos = 1
