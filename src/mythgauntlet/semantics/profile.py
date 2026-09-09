@@ -58,6 +58,25 @@ _REMOVAL_TARGET_TYPES = {"creature", "permanent", "artifact", "enchantment", "an
 # those 49 with an explicit `who` fixes them properly, at the source.
 _DRAIN_WHO = {"opponent", "each_opponent", "each"}
 
+# Ops `sim/tier2._apply_resolved` can execute. Restated here because tier2 IMPORTS this
+# module, so profile cannot import tier2 to ask -- and a restated vocabulary is exactly
+# the silent-drift class this repo keeps re-learning (a theme in THEME_PATTERNS but not
+# theme_match.THEMES; a key missing from _QUALITY_KEYS). So it is PINNED: the lock-step
+# test in tests/engine/test_activated_interpreter.py asserts this set equals the one
+# `sim/health.executed_ops()` reads out of tier2's own AST, and fails loudly the moment a
+# branch is added or removed there. Widening this set without widening the dispatch would
+# hand the engine abilities it silently cannot run.
+INTERPRETER_EXECUTABLE_OPS = frozenset({
+    "add_counter", "add_mana", "create_token", "deal_damage", "destroy", "draw",
+    "exile", "gain_life", "grant_ability", "lose_life", "proliferate", "pump",
+    "search_library",
+})
+
+# The ops `_activated_from`'s own six numeric fields can express. Anything the
+# interpreter runs but this set does not is what sends an ability down the interpreter
+# path instead of being flattened. Pinned by the same lock-step test.
+_FLATTENED_OPS = frozenset({"draw", "deal_damage", "create_token", "gain_life"})
+
 
 @dataclass(frozen=True)
 class ActivatedEffect:
@@ -70,6 +89,12 @@ class ActivatedEffect:
     damage_any: int = 0
     tokens: tuple[int, int, int] | None = None
     gain_life: int = 0
+    # The raw CCM ability, set ONLY when this function's own four-op vocabulary found
+    # nothing but the interpreter can still run the effects (see _activated_from). When
+    # present, every numeric field above is 0 and the engine executes the ability through
+    # `interpret_ability` at activation time instead -- so an effect can never be applied
+    # twice, once numerically and once interpreted.
+    ability: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -171,6 +196,36 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
     needs_tap = bool(cost.get("tap"))
     if cost_mana == 0 and not needs_tap:
         return None  # nothing bounds it; skip rather than loop
+
+    # Does this ability do anything the six numeric fields below CANNOT express, that the
+    # interpreter can? If so the whole ability goes to the interpreter rather than being
+    # flattened -- see the ActivatedEffect.ability docstring.
+    #
+    # This function predates the interpreter. It squeezes an ability into six numbers over
+    # a FOUR-op vocabulary; `sim/tier2._apply_resolved` executes THIRTEEN ops per effect.
+    # Two parallel effect paths with different vocabularies, and the older one was silently
+    # discarding what the newer one can run. `mythgauntlet sim-health` measured it: of
+    # 9,108 stored activated abilities, **2,175 (23.9%) were dropped for the vocabulary
+    # gap alone** -- 1,104 `pump`, 570 `add_counter`, 188 `exile`, 147 `grant_ability`,
+    # 105 `destroy` -- every one an op the interpreter already runs when the same card
+    # prints it as a spell or a trigger. A further 179 abilities across 172 cards were
+    # MIXED (a draw the flattening kept, plus a counter it threw away), which is why the
+    # test is "has an op the flattening cannot express" rather than "has NO flattenable
+    # op": handling only the pure case would have left those 179 half-modelled.
+    #
+    # Routing the whole ability is what keeps this safe. The six numeric fields stay ZERO
+    # on this path and the interpreter runs every effect including the flattenable ones,
+    # so nothing can be applied twice -- once numerically and once interpreted.
+    #
+    # The COST GATES above are untouched and remain correct: they are 43.7% of the total
+    # drop and they exist so an ability the engine cannot pay for never becomes a free
+    # repeatable outlet (the documented defect that made 1,488 abilities free once). This
+    # only rescues abilities that pass every cost gate and then fall off a vocabulary that
+    # was merely narrower than the engine's.
+    ops = {e.get("op") for e in effects if isinstance(e, dict)}
+    if (ops & INTERPRETER_EXECUTABLE_OPS) - _FLATTENED_OPS:
+        return ActivatedEffect(cost_mana=cost_mana, needs_tap=needs_tap, ability=ability)
+
     draw = face = any_dmg = life = 0
     tokens: tuple[int, int, int] | None = None
     for effect in effects:
@@ -193,7 +248,7 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
         elif op == "gain_life":
             life += _amount(effect.get("amount"), 1)
     if not (draw or face or any_dmg or life or tokens):
-        return None
+        return None  # nothing either path can execute
     return ActivatedEffect(
         cost_mana=cost_mana, needs_tap=needs_tap, draw=draw,
         damage_face=face, damage_any=any_dmg, tokens=tokens, gain_life=life,

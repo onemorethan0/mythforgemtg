@@ -1206,7 +1206,72 @@ def _main_phase(me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> None:
     run_greedy_main_phase(me, opp, turn, cfg)
 
 
+# Rough activation priority for an INTERPRETER-BACKED ability (profile._activated_from's
+# `ability` path), whose six numeric fields are all zero by construction. Without this the
+# greedy agent scores every one of them 0.0 and its `value > 0` gate means none is ever
+# activated -- the 2,175 abilities rescued from the vocabulary gap would be enumerated as
+# legal actions and then never chosen, which looks like a working feature and is not.
+#
+# Deliberately COARSE and deliberately BELOW the numeric abilities' scale: those are
+# measured (a real draw count, real damage), these are a guess at "is this mana sink worth
+# the leftover mana". Removal outranks a self-pump because it answers a board; add_mana is
+# near-zero because ramping into nothing at the activation step is close to a no-op here.
+#
+# `add_mana` is deliberately 0.0, not a small positive. The ACTIVATION phase runs AFTER
+# casting, so mana made here is never spent -- measured in a live 40-game duel, a 0.2
+# score had the agent activating mana abilities 65 times for nothing, burning the
+# activation budget and tapping the permanent. Zero means `value > 0` never selects it
+# for its own sake, while an ability that makes mana AND does something else still scores
+# on the something else.
+#
+# `add_mana` is deliberately 0.0, not a small positive. The ACTIVATION phase runs AFTER
+# casting, so mana made here is never spent -- measured in a live 40-game duel, a 0.2
+# score had the agent activating mana abilities 65 times for nothing, burning the
+# activation budget and tapping the permanent. Zero means `value > 0` never selects it
+# for its own sake, while an ability that makes mana AND does something else still scores
+# on the something else.
+#
+# Every op the interpreter can run needs an entry, INCLUDING the four the flattening also
+# knows (a mixed ability reaches this path too). Omitting `deal_damage` was a real bug
+# caught by the same live duel: a rescued "{T}: deal 1 damage and add a counter" scored
+# only the counter, and a damage-only mixed ability scored 0.0 and was never chosen --
+# enumerated as a legal action and silently never taken.
+_INTERPRETER_ACTIVATION_VALUE = {
+    "destroy": 3.0, "exile": 3.0, "search_library": 2.0, "create_token": 1.5,
+    "draw": 1.4, "add_counter": 1.0, "pump": 0.8, "lose_life": 0.8,
+    "proliferate": 0.7, "grant_ability": 0.5, "gain_life": 0.3, "add_mana": 0.0,
+}
+_BOARD_DEPENDENT_ACTIVATION_OPS = frozenset({"destroy", "exile"})
+
+
+def _interpreter_activation_value(ability: dict, opp: _Player) -> float:
+    """Value an ability the interpreter will run, from the ops it declares.
+
+    Removal is worth nothing against an empty board and `_apply_resolved`'s destroy/exile
+    branch declines when the opponent has no creatures, so scoring it above zero there
+    would spend mana on a guaranteed no-op every turn.
+    """
+    value = 0.0
+    for effect in ability.get("effects") or []:
+        if not isinstance(effect, dict):
+            continue
+        op = effect.get("op")
+        if op in _BOARD_DEPENDENT_ACTIVATION_OPS and not opp.creatures():
+            continue
+        if op == "deal_damage":
+            # Mirrors the numeric path's own damage weighting so the two agree about what
+            # a burn activation is worth; lethal is decisive, everything else is linear.
+            amount = effect.get("amount")
+            amount = amount if isinstance(amount, int) and not isinstance(amount, bool) else 1
+            value += 100.0 if amount >= opp.life else amount * 0.9
+            continue
+        value += _INTERPRETER_ACTIVATION_VALUE.get(op, 0.0)
+    return value
+
+
 def _activation_value(eff: ActivatedEffect, opp: _Player) -> float:
+    if getattr(eff, "ability", None) is not None:
+        return _interpreter_activation_value(eff.ability, opp)
     value = 1.4 * eff.draw + 0.3 * eff.gain_life
     if eff.tokens:
         count, power, tough = eff.tokens

@@ -854,6 +854,27 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
             paid += 1
     if eff.needs_tap:
         perm.tapped = True
+    if getattr(eff, "ability", None) is not None:
+        # Interpreter-backed: this ability's effects are outside _activated_from's
+        # four-op vocabulary but inside the interpreter's thirteen, so it runs through
+        # the SAME path a spell_effect or a trigger on this card would (see
+        # profile._activated_from). Every numeric field below is 0 on this path, so
+        # nothing is applied twice.
+        #
+        # `perm` is passed as the resolution source, which is what makes the self-target
+        # ops correct: "{1}: This creature gets +1/+0" and "{T}: Put a +1/+1 counter on
+        # this" resolve against the permanent whose ability was activated -- exactly the
+        # scope _apply_resolved's pump/add_counter/grant_ability branches already require.
+        #
+        # `others` is empty here: _apply_activation has no pod context, so an "each
+        # opponent" activated effect hits only the primary opponent. Byte-identical in
+        # 1v1 and an honest under-count in a pod, matching the convention elsewhere.
+        from mythgauntlet.semantics.interpreter import interpret_ability
+        from mythgauntlet.sim.tier2 import _apply_resolved, _EngineResolver
+
+        resolver = _EngineResolver(me, source=perm)
+        for resolved in interpret_ability(eff.ability, resolver):
+            _apply_resolved(resolved, me, opp, perm)
     me.draw(eff.draw)
     if eff.damage_any:
         killable = [c for c in opp.creatures() if c.toughness <= eff.damage_any]

@@ -404,23 +404,21 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
 
 
 def _activated_survives(ability: dict, ops: frozenset[str]) -> bool:
-    """Reproduce `_activated_from`'s accept/reject WITHOUT importing its private guts.
+    """Does `_activated_from` keep this ability, or drop it?
 
-    Deliberately a re-derivation rather than a call: `_activated_from` returns an
-    `ActivatedEffect` whose fields are already aggregated, so calling it answers "what
-    value did this become", not "was anything lost". The three gates below are the ones
-    that DROP an ability outright (documented at length in semantics/profile.py); this
-    module only needs to know whether the ability reached the dispatch at all.
+    ASKS THE REAL FUNCTION rather than re-deriving its gates. An earlier version of this
+    module reimplemented them, on the reasoning that `_activated_from` returns an
+    already-aggregated `ActivatedEffect` and so answers "what value did this become"
+    rather than "was anything lost". That was a mistake of exactly the kind this file
+    warns about everywhere else: when `_activated_from` gained the interpreter path (and
+    started keeping 2,175 abilities it used to drop), the copy here would have kept
+    reporting the old 11.7% survival and argued for a fix that had already shipped.
+
+    `ops` is unused and kept only so the call site stays symmetric with the dispatch
+    lookup beside it; the authority is profile._activated_from itself.
     """
-    cost = ability.get("cost")
-    cost = cost if isinstance(cost, dict) else {}
-    if cost.get("sacrifice_self") or cost.get("other") or cost.get("pay_life"):
+    effects = [e for e in (ability.get("effects") or []) if isinstance(e, dict)]
+    try:
+        return profile._activated_from(ability, effects) is not None
+    except Exception:  # a malformed stored ability must not kill the gauge
         return False
-    mana = cost.get("mana")
-    mana = mana if isinstance(mana, str) else ""
-    if not mana.strip() and not cost.get("tap"):
-        return False
-    for eff in ability.get("effects") or []:
-        if isinstance(eff, dict) and eff.get("op") in ops:
-            return True
-    return False
