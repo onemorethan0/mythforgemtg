@@ -176,6 +176,11 @@ class _Permanent:
     def has_keyword(self, name: str) -> bool:
         return name in self.keywords
 
+    def deals_lethal_to(self, other: "_Permanent") -> bool:
+        """CR 702.2b: any nonzero combat damage from a deathtouch source is lethal,
+        regardless of the target's toughness."""
+        return self.power >= other.toughness or (self.has_keyword("deathtouch") and self.power > 0)
+
 
 @dataclass
 class _Player:

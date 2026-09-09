@@ -67,8 +67,11 @@ def greedy_block_assignment(
     assignments: dict[int, _Permanent] = {}
     for i, atk in enumerate(attackers):  # winning trades
         legal = _legal_blockers(atk, blockers)
+        # deals_lethal_to accounts for deathtouch (CR 702.2b): a low-power, high-toughness
+        # deathtouch blocker can profitably trade with a much bigger attacker, which a plain
+        # power/toughness comparison would miss entirely.
         pick = next(
-            (b for b in legal if b.power >= atk.toughness and b.toughness > atk.power),
+            (b for b in legal if b.deals_lethal_to(atk) and not atk.deals_lethal_to(b)),
             None,
         )
         if pick is not None:

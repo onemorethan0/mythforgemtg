@@ -976,9 +976,28 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
             if atk.triggers:
                 unblocked_hitters.append(atk)
         else:
-            if atk.power >= blk.toughness:
+            # CR 702.2b (deathtouch) via _Permanent.deals_lethal_to: any nonzero damage from
+            # a deathtouch source is lethal regardless of toughness, both directions.
+            if atk.deals_lethal_to(blk):
                 _kill(opp, blk, me, others)
-            if blk.power >= atk.toughness:
+                if atk.has_keyword("trample"):
+                    # CR 702.19e: a deathtouch trampler need only assign 1 damage to the
+                    # blocker (that's already lethal via deathtouch) before trampling the
+                    # rest over -- docs/PLAN_FIDELITY.md Phase B4/B5 shipped as one change
+                    # for exactly this interaction.
+                    assigned = 1 if atk.has_keyword("deathtouch") else blk.toughness
+                    excess = max(0, atk.power - assigned)
+                    if excess:
+                        opp.life -= excess
+                        if atk.is_commander:
+                            # Trampled damage is still combat damage dealt to the player BY
+                            # the attacking creature (CR 702.19e) -- counts as commander
+                            # damage exactly like the unblocked branch above.
+                            key = state.active
+                            opp.commander_damage_taken[key] = (
+                                opp.commander_damage_taken.get(key, 0) + excess
+                            )
+            if blk.deals_lethal_to(atk):
                 _kill(me, atk, opp, others)
     for atk in unblocked_hitters:
         _fire_perm_triggers(atk, me, opp, "combat_damage_to_player")

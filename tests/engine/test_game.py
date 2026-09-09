@@ -220,6 +220,128 @@ def test_vigilance_keeps_the_attacker_untapped_and_able_to_block():
     assert atk in [c for c in me.creatures() if not c.tapped]  # eligible to block next turn
 
 
+# --- deathtouch + trample (CR 702.2b / 702.19e, docs/PLAN_FIDELITY.md Phase B4/B5) ---------
+
+
+def test_deathtouch_attacker_kills_a_much_bigger_blocker():
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Deadly Adder", power=1, toughness=1, is_creature=True, sick=False,
+                      keywords=frozenset({"deathtouch"}))
+    blk = _Permanent(name="Huge Wall", power=0, toughness=10, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert blk not in opp.battlefield  # 1 damage is lethal via deathtouch
+    assert atk in me.battlefield       # 0-power blocker never hurt it back
+
+
+def test_deathtouch_blocker_kills_a_much_bigger_attacker():
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Huge Beater", power=10, toughness=10, is_creature=True, sick=False)
+    blk = _Permanent(name="Deadly Mouse", power=1, toughness=11, is_creature=True, sick=False,
+                      keywords=frozenset({"deathtouch"}))
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert atk not in me.battlefield   # 1 damage from a deathtouch blocker is lethal
+    assert blk in opp.battlefield      # 11 toughness comfortably survives 10 power
+
+
+def test_no_lethal_no_kill_and_no_deathtouch_no_shortcut():
+    """Regression pin for the base case both deathtouch tests special-case away from."""
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Modest Beater", power=2, toughness=2, is_creature=True, sick=False)
+    blk = _Permanent(name="Sturdy Wall", power=0, toughness=10, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert atk in me.battlefield
+    assert blk in opp.battlefield      # neither dies -- 2 power doesn't threaten 10 toughness
+
+
+def test_trample_carries_excess_damage_to_the_player():
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Trampling Ogre", power=7, toughness=7, is_creature=True, sick=False,
+                      keywords=frozenset({"trample"}))
+    blk = _Permanent(name="Chump", power=1, toughness=3, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert blk not in opp.battlefield
+    assert opp.life == 36               # 40 - (7 power - 3 toughness assigned) = 36
+
+
+def test_trample_without_lethal_deals_no_excess():
+    """A trampler that can't get through its blocker doesn't get to dump extra damage anyway --
+    trample only ever carries the EXCESS over lethal, and there is none here."""
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Weak Trampler", power=2, toughness=2, is_creature=True, sick=False,
+                      keywords=frozenset({"trample"}))
+    blk = _Permanent(name="Big Wall", power=0, toughness=10, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert blk in opp.battlefield       # survives, not lethal
+    assert opp.life == 40               # nothing tramples over without lethal damage assigned
+
+
+def test_deathtouch_trample_only_assigns_one_before_trampling_the_rest():
+    """CR 702.19e: a deathtouch trampler needs to assign only 1 damage (already lethal via
+    deathtouch) to its blocker, then tramples the rest -- the old trample-alone math
+    (power - toughness) would have massively undercounted this."""
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    atk = _Permanent(name="Vicious Rammer", power=6, toughness=6, is_creature=True, sick=False,
+                      keywords=frozenset({"trample", "deathtouch"}))
+    blk = _Permanent(name="Huge Wall", power=0, toughness=10, is_creature=True, sick=False)
+    me.battlefield.append(atk)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [atk]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert blk not in opp.battlefield
+    assert opp.life == 35               # 40 - (6 power - 1 assigned) = 35, not 40 - 0
+
+
+def test_trampled_excess_counts_as_commander_damage():
+    """A blocked commander's trampled excess is still combat damage it dealt TO THE PLAYER
+    (CR 702.19e) -- it must accrue commander damage the same way the unblocked branch does."""
+    me = _Player(name="a", library=[], life=40)
+    opp = _Player(name="b", library=[], life=40)
+    st = _main_state(me, opp)
+    cmdr = _Permanent(name="Trampling Commander", power=8, toughness=8, is_creature=True,
+                       sick=False, is_commander=True, keywords=frozenset({"trample"}))
+    blk = _Permanent(name="Chump", power=1, toughness=2, is_creature=True, sick=False)
+    me.battlefield.append(cmdr)
+    opp.battlefield.append(blk)
+    st.combat_attackers = [cmdr]
+    st.combat_defender = "b"
+    _apply_declare_blocks(st, {0: blk})
+    assert opp.life == 34                              # 40 - (8 - 2) = 34
+    assert opp.commander_damage_taken.get("a") == 6     # the trampled 6, not the full 8
+
+
 def test_repeated_unblocked_commander_attacks_end_the_game_at_21(make_card, forest):
     """End-to-end: a 5/5 commander attacking unblocked into an empty board reaches the 21
     threshold on its 5th swing (25 total) well before combat-only life loss (40) would ever

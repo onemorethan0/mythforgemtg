@@ -52,3 +52,29 @@ def test_non_flying_attacker_can_still_be_blocked_by_a_flier():
     flier = _perm("Watchful Griffin", power=5, toughness=5, keywords=("flying",))
     defender.battlefield.append(flier)
     assert greedy_block_assignment([atk], defender) == {0: flier}
+
+
+# --- deathtouch changes what counts as a "winning trade" (Phase B4) ------------------------
+
+
+def test_a_small_deathtouch_blocker_is_a_winning_trade_against_a_much_bigger_attacker():
+    """A plain power/toughness comparison would never pick this blocker -- 1 power can't
+    threaten a 10-toughness attacker by the numbers alone. Deathtouch makes it lethal, and
+    the blocker's own 10 toughness comfortably survives the attacker's 8 power, so this is a
+    genuine winning trade the old `b.power >= atk.toughness` check missed entirely."""
+    defender = _Player(name="b", library=[], life=40)
+    atk = _perm("Huge Beater", power=8, toughness=10)
+    small_dt = _perm("Deadly Mouse", power=1, toughness=10, keywords=("deathtouch",))
+    defender.battlefield.append(small_dt)
+    assert greedy_block_assignment([atk], defender) == {0: small_dt}
+
+
+def test_deathtouch_does_not_manufacture_a_trade_that_kills_the_blocker_too():
+    """Deathtouch only changes whether the BLOCKER kills the attacker -- if the attacker also
+    kills the blocker, this is a mutual trade, not a "winning" one, and the winning-trade pass
+    must still decline it (it may still be picked by the later chump pass)."""
+    defender = _Player(name="b", library=[], life=40)
+    atk = _perm("Huge Beater", power=8, toughness=10)
+    doomed_dt = _perm("Doomed Mouse", power=1, toughness=8, keywords=("deathtouch",))
+    defender.battlefield.append(doomed_dt)
+    assert greedy_block_assignment([atk], defender) == {}

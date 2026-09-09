@@ -301,6 +301,39 @@ Interacts with B4 (a deathtouch+trample attacker only needs to assign 1 damage t
 before trampling the rest over) — sequence B4 before B5 for that reason, or handle both in the
 same change once both are understood.
 
+**B4+B5 shipped together, 2026-09-09** (the interaction made a combined change the natural
+shape once both were understood, per the note above). `_Permanent.deals_lethal_to(other)`
+(`tier2.py`) is the single shared predicate — `self.power >= other.toughness or
+(self.has_keyword("deathtouch") and self.power > 0)` — used in three places so the definition
+of "lethal" can't drift between them: `game._apply_declare_blocks`'s combat-damage resolution
+(both directions), and `greedy_block_assignment`'s winning-trade pick (`b.deals_lethal_to(atk)
+and not atk.deals_lethal_to(b)`, replacing the old plain power/toughness comparison). Trample
+excess: `assigned = 1 if atk.has_keyword("deathtouch") else blk.toughness`, `excess = max(0,
+atk.power - assigned)`, added to `opp.life` — the deathtouch case matches CR 702.19e (only 1
+damage need be assigned to the blocker once it's already lethal via deathtouch). **Extended one
+step beyond the plan's literal scope, deliberately, not as creep**: trampled excess to the player
+now also accrues `commander_damage_taken` when the attacker is a commander, mirroring the
+UNBLOCKED branch three lines above it in the exact same function — omitting it would have been a
+freshly-introduced near-miss in a mechanic (commander damage) this codebase already treats as
+load-bearing (the S18 fix). Did NOT extend to firing `combat_damage_to_player` triggers off
+trampled excess (a blocked attacker doesn't join `unblocked_hitters` today) — a real CR-accurate
+nuance, but a separate, independent trigger-plumbing concern from "the life total and commander
+damage are right," left as a known open gap rather than bundled in.
+
+Ten synthetic regression tests (`test_game.py`: 7 covering both `deals_lethal_to` directions, the
+un-shortcut base case, plain trample, no-lethal-no-excess, the deathtouch+trample combo, and
+commander-damage-from-trample; `test_greedy_block.py`: 2 covering the winning-trade pick both
+gaining a case via deathtouch and correctly declining a mutual-kill). Verified live: real store
+has 352 deathtouch creatures / 988 trample creatures / 1 with both (Odric, Blood-Cursed) — a
+first attempt to hand-pick verification examples from memory (Reaper of the Wilds, Thorn
+Elemental) turned out to be WRONG (checked live against Scryfall before trusting it: Reaper's
+deathtouch/hexproof are activated-ability GRANTS, not printed keywords — correctly absent from
+`Card.keywords` by the same design already documented for B1). A traced 6-deck-pair/90-game run
+recorded 71 real `deals_lethal_to` calls from a deathtouch source, 16 of which were lethal ONLY
+because of deathtouch (the old plain comparison would have gotten these wrong), and 6 real
+trample-excess-to-player events — both mechanics are live in real games, not just reachable in
+theory. Full suite green (1516 tests) throughout.
+
 ### B6 — menace and first/double strike (STRUCTURAL, size separately before starting)
 
 Both of these are a different *shape* of change from B2–B5, not just a bigger version of the
@@ -420,8 +453,8 @@ measurement this session did) before committing to one shared function vs. sever
 
 - [x] Phase A run and recorded (§1.1, §1.2).
 - [x] Phase B1 (keyword data capture) shipped, schema-bumped, tested (2026-09-09).
-- [ ] Phase B2–B5 shipped as one slice, each with a synthetic before/after test proving the old
-      resolver gets it wrong and the new one doesn't. **B2, B3 done (2026-09-09); B4–B5 pending.**
+- [x] Phase B2–B5 shipped, each with a synthetic before/after test proving the old resolver
+      gets it wrong and the new one doesn't (B2, B3, B4+B5 all landed 2026-09-09).
 - [ ] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
       for it — may conclude "not yet," which is a valid outcome, not a failure to close it.
 - [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.
