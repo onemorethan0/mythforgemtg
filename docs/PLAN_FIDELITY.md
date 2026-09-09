@@ -393,6 +393,26 @@ same filter/threshold edit, and should not be estimated by analogy to B2–B5's 
 follow-on plan phase** (size it with real numbers the way every other decision in this project
 gets made, not by assumption) rather than bundling it into the same estimate.
 
+**B6 sized, 2026-09-09 — real numbers, per the plan's own instruction above.** Measured
+store-wide creature prevalence (19,202 unique creature cards) for direct comparison against
+B2–B5's own shipped keywords: **menace 380 (2.0%), first strike 388 (2.0%), double strike 121
+(0.6%)** — for reference, the already-shipped keywords are flying 3,202 (16.7%), trample 975
+(5.1%), vigilance 718 (3.7%), reach 434 (2.3%), deathtouch 347 (1.8%). **The population argument
+against B6 does NOT hold**: menace and first strike sit in the exact same prevalence band as
+deathtouch, which was clearly worth shipping. What actually distinguishes B6 from B2–B5 is not
+size, it's shape, exactly as this section already said before any numbers existed — menace needs
+a real data-shape change (`DeclareBlocks.assignment`'s one-blocker-per-attacker-index tuple
+becoming a multi-blocker mapping, cascading through attack declaration, block resolution,
+`greedy_block_assignment`, and ISMCTS block enumeration), and first/double strike needs the
+combat-damage step split into two sequential passes with a state-based-action check between them
+— a sequencing change, not a threshold or a filter, and the most invasive of all six keywords in
+this phase. **Conclusion: worth doing eventually (real, non-trivial, deathtouch-comparable
+population), explicitly NOT done in this session** — each of the two sub-problems is its own
+small design task (the multi-blocker data shape; the two-pass damage sequencing with SBA
+in between), and bolting either onto the B2–B5 pattern under time pressure risks exactly the
+kind of near-miss defect this project's own doctrine treats as worse than an honest gap. Left as
+a named, sized, ready-to-pick-up follow-on phase rather than attempted at the end of this slice.
+
 ### Acceptance gate for Phase B
 
 Following this project's own standing rule (`PLAN_CLOCK.md` §6 trap 1 / the `axis_separation.py`
@@ -406,6 +426,14 @@ from "does combat resolve correctly." The gate for THIS phase is narrower and mo
 - Re-run Phase A's controlled harness (same before/after worktree technique, "before" = the
   commit right before Phase B started) to see whether keyword-aware combat moves calibration —
   record it the same honest way, whichever direction it goes.
+
+**Both bullets satisfied, 2026-09-09.** First: every landed keyword (B2 vigilance, B3
+flying/reach, B4 deathtouch, B5 trample) has a synthetic before/after test in
+`tests/engine/test_game.py` / `tests/engine/test_greedy_block.py` pinning exactly this shape.
+Second: the B2–B5 calibration checkpoint above IS this re-run (same 24-deck subset, same
+`--opponents 8 --games 15 --seed 777 --no-combos`, "before" = the state right before B2 started,
+captured in §1.2's own run) — real, zero-sum, direction-plausible movement (mean `|Δrating|`
+22.2). **Phase B's combat-keyword work (B1–B5) is DONE; B6 is sized and deliberately deferred.**
 
 ---
 
@@ -493,8 +521,11 @@ measurement this session did) before committing to one shared function vs. sever
 - [x] Phase B1 (keyword data capture) shipped, schema-bumped, tested (2026-09-09).
 - [x] Phase B2–B5 shipped, each with a synthetic before/after test proving the old resolver
       gets it wrong and the new one doesn't (B2, B3, B4+B5 all landed 2026-09-09).
-- [ ] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
-      for it — may conclude "not yet," which is a valid outcome, not a failure to close it.
+- [x] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
+      for it (2026-09-09) — concluded "not yet": prevalence is deathtouch-comparable (worth
+      doing eventually) but the cost is structural (multi-blocker data shape + damage-sequencing
+      change), not a threshold edit, so it's deferred as its own follow-on phase rather than
+      rushed. A valid outcome per this checklist's own wording, not a failure to close it.
 - [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.
 - [ ] Phase C's `gain_control` unlock shipped and reflected in a re-run `sim-health`.
 - [ ] This file updated in place, dated sub-sections, as each item above lands — not rewritten
