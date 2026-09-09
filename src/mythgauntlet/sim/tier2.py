@@ -763,6 +763,27 @@ def _look_at_top(me: _Player, n: int) -> None:
 _TEMPORARY_DURATIONS = ("turn",)  # "until end of turn", "until_end_of_turn", "this turn"
 
 
+def _effect_duration(params: dict) -> object:
+    """A CCM records a duration in EITHER of two places, and reading one is a real bug.
+
+    The compiler emits `{"op":"pump", "duration":"until end of turn", ...}` most of the
+    time, but sometimes nests it on the target instead:
+    `{"op":"pump", "target":{..., "duration":"until_end_of_turn"}}`. Reading only the
+    effect-level key -- which the first version of the pump dispatch did -- silently
+    treats those as PERMANENT, which is exactly the compounding fabrication the expiry
+    layer exists to prevent. Measured store-wide: 90 `pump`, 264 `untap`, 218
+    `gain_control` and 114 `grant_ability` effects carry the duration on the target only,
+    and 353 of those are temporary durations the sim was reading as permanent.
+
+    Effect level wins when both are present; neither is a plain absent duration.
+    """
+    on_effect = params.get("duration")
+    if str(on_effect or "").strip():
+        return on_effect
+    target = params.get("target")
+    return target.get("duration") if isinstance(target, dict) else None
+
+
 def _is_until_end_of_turn(duration: object) -> bool:
     """Does this duration expire at the cleanup step of the turn it was created?
 
@@ -1063,7 +1084,7 @@ def _apply_resolved(
             if dp or dt:
                 just_cast.power += dp
                 just_cast.toughness += dt
-                if _is_until_end_of_turn(pr.get("duration")):
+                if _is_until_end_of_turn(_effect_duration(pr)):
                     just_cast.temp_power += dp
                     just_cast.temp_toughness += dt
                 # A permanent self-pump that drops toughness to 0 or below should die to

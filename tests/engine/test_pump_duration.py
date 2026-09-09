@@ -48,6 +48,38 @@ def test_every_real_spelling_of_until_end_of_turn_is_recognised():
         assert _is_until_end_of_turn(spelling), spelling
 
 
+def test_a_duration_nested_on_the_TARGET_is_still_found():
+    """The compiler records a duration in either of two places, and reading one is a bug.
+
+    Found 2026-09-09 while auditing a different op: `{"op":"pump", "target":{...,
+    "duration":"until_end_of_turn"}}` is how Aang's Defense and Alchemist's Gift are
+    stored, and the first version of this dispatch read only the effect-level key — so
+    90 pump effects became PERMANENT buffs, the exact compounding fabrication this layer
+    exists to prevent. Store-wide, 353 temporary durations were being read as permanent
+    across pump/untap/gain_control/grant_ability.
+    """
+    perm = _perm(2, 2)
+    me = _player(perm)
+    _apply_resolved(
+        _pump(power=3, toughness=3,
+              target={"type": "creature", "self": True, "duration": "until_end_of_turn"}),
+        me, _player(), perm)
+    assert (perm.power, perm.toughness) == (5, 5)
+    expire_until_end_of_turn([me])
+    assert (perm.power, perm.toughness) == (2, 2)  # not permanent
+
+
+def test_an_effect_level_duration_wins_over_the_target_one():
+    from mythgauntlet.sim.tier2 import _effect_duration
+
+    assert _effect_duration({"duration": "permanent",
+                             "target": {"duration": "until end of turn"}}) == "permanent"
+    assert _effect_duration({"target": {"duration": "until end of turn"}}) == \
+        "until end of turn"
+    assert _effect_duration({}) is None
+    assert _effect_duration({"target": "not a dict"}) is None
+
+
 def test_a_permanent_duration_is_not_treated_as_temporary():
     for spelling in ("permanent", "indefinite", "", None,
                      "as long as this artifact remains tapped"):

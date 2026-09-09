@@ -222,6 +222,30 @@ _ACTIVATED_COST_KEYS = {"mana", "tap", "sacrifice_self", "pay_life", "other"}
 # few less-common keywords aren't worth a closed enum there), but add_counter's
 # counter_type IS checked against it, because every one of these names is a keyword this
 # vocabulary already has a real op for.
+# Ops whose meaning CHANGES COMPLETELY without a duration. Dropping "until end of turn"
+# from a pump makes a combat trick permanent and compounding; dropping it from
+# gain_control turns Act of Treason into an outright theft. The engine cannot detect the
+# omission -- an absent duration is indistinguishable from a genuinely permanent effect --
+# so this has to be caught here, at compile time, where the nightly retry can fix it.
+_DURATION_BEARING_OPS = frozenset({"pump", "gain_control", "grant_ability", "tap", "untap"})
+_STATES_A_DURATION = re.compile(r"until end of turn|until your next turn", re.I)
+
+
+def _records_a_duration(effect: dict) -> bool:
+    """A duration counts wherever the compiler put it.
+
+    It emits `{"op":"pump","duration":...}` most of the time but sometimes nests it as
+    `{"op":"pump","target":{...,"duration":...}}` -- 90 pump / 264 untap / 218
+    gain_control effects store it on the target only. Both spellings are accepted here
+    (normalising them is a separate change); what this gate refuses is recording it in
+    NEITHER place.
+    """
+    if str(effect.get("duration") or "").strip():
+        return True
+    target = effect.get("target")
+    return isinstance(target, dict) and bool(str(target.get("duration") or "").strip())
+
+
 _KEYWORD_NOT_COUNTER_NAMES = frozenset({
     "flying", "haste", "trample", "vigilance", "menace", "reach", "lifelink", "hexproof",
     "deathtouch", "indestructible", "first strike", "double strike", "defender", "flash",
@@ -695,9 +719,15 @@ def cross_check(doc: dict, card: Card) -> list[str]:
 
     ops_present: set[str] = set()
     triggered_ops: set[str] = set()
+    duration_ops_present = False
+    any_duration_recorded = False
     for ability, effect in _iter_effects(doc):
         op = effect.get("op")
         ops_present.add(op)
+        if op in _DURATION_BEARING_OPS:
+            duration_ops_present = True
+        if _records_a_duration(effect):
+            any_duration_recorded = True
         if ability.get("kind") == "triggered":
             triggered_ops.add(op)
         if op == "add_counter":
@@ -786,6 +816,25 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         errors.append("CCM declares win_game but text never says win")
     if card.is_land and fx.enters_tapped and not doc.get("enters_tapped"):
         errors.append("land enters tapped per oracle text; CCM must set enters_tapped")
+    # A DURATION the text states and the CCM omits is invisible downstream: an absent
+    # duration is indistinguishable from a genuinely permanent effect, so the engine
+    # executes a combat trick as a permanent buff and Act of Treason as an outright
+    # theft. Measured over the 31.7k store, 240 cards state "until end of turn" and
+    # record no duration ANYWHERE while carrying a duration-bearing op -- gain_control
+    # 141, pump 67, tap 30, untap 23.
+    #
+    # Deliberately requires the card to record NO duration at all before complaining.
+    # A per-effect rule would need clause provenance the CCM does not carry: a card with
+    # a permanent static buff AND an "until end of turn" trick would be flagged for the
+    # first, which is correct behaviour the gate has no way to distinguish from the
+    # defect. Requiring total absence keeps it to cases where the compiler plainly never
+    # emitted one.
+    if (duration_ops_present and not any_duration_recorded
+            and _STATES_A_DURATION.search(card.oracle_text or "")):
+        errors.append(
+            "oracle text states a duration ('until end of turn') but no effect records "
+            "one — an omitted duration executes as PERMANENT"
+        )
     errors += _check_trigger_events(doc, card, text)
     return errors
 

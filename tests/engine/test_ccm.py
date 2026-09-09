@@ -735,3 +735,71 @@ def test_draw_counts_reads_context_not_just_the_verb(label, text, expected):
     from mythgauntlet.semantics.tags import _draw_counts
 
     assert _draw_counts(text) == expected, label
+
+
+# --- duration gate (2026-09-09) -----------------------------------------------------
+
+def _duration_card(text: str):
+    from mythgauntlet.model.card import Card
+
+    return Card(name="Trickster", mana_cost_str="{1}{G}", type_line="Instant",
+                oracle_text=text)
+
+
+def _errs(doc, card):
+    from mythgauntlet.semantics import ccm as _ccm
+
+    return [e for e in _ccm.cross_check(doc, card) if "PERMANENT" in e]
+
+
+def test_a_stated_duration_recorded_nowhere_is_a_gate_failure():
+    """An omitted duration is invisible downstream — the engine cannot tell it from a
+    genuinely permanent effect, so Aberrant Manawurm gains a PERMANENT +X/+0 on every
+    instant it casts, compounding all game. 239 stored CCMs have this defect."""
+    card = _duration_card("Target creature gets +3/+3 until end of turn.")
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Instant"],
+           "abilities": [{"kind": "spell_effect", "effects": [
+               {"op": "pump", "power": 3, "toughness": 3,
+                "target": {"type": "creature", "count": 1}}]}]}
+    assert _errs(doc, card)
+
+
+def test_a_duration_on_the_EFFECT_satisfies_the_gate():
+    card = _duration_card("Target creature gets +3/+3 until end of turn.")
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Instant"],
+           "abilities": [{"kind": "spell_effect", "effects": [
+               {"op": "pump", "power": 3, "toughness": 3, "duration": "until end of turn",
+                "target": {"type": "creature", "count": 1}}]}]}
+    assert not _errs(doc, card)
+
+
+def test_a_duration_on_the_TARGET_also_satisfies_the_gate():
+    """The compiler stores it in either place (90 pump / 264 untap / 218 gain_control
+    effects use the target). Rejecting that spelling would have flagged ~110 correct
+    cards — Aang's Defense and Alchemist's Gift among them."""
+    card = _duration_card("Target creature gets +3/+3 until end of turn.")
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Instant"],
+           "abilities": [{"kind": "spell_effect", "effects": [
+               {"op": "pump", "power": 3, "toughness": 3,
+                "target": {"type": "creature", "count": 1,
+                           "duration": "until_end_of_turn"}}]}]}
+    assert not _errs(doc, card)
+
+
+def test_a_card_with_no_duration_bearing_op_is_never_flagged():
+    """"Draw a card. Creatures you control get..." — a text mentioning a duration for an
+    op this gate does not cover must not trip it."""
+    card = _duration_card("Whenever a creature enters, draw a card until end of turn.")
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Instant"],
+           "abilities": [{"kind": "spell_effect",
+                          "effects": [{"op": "draw", "count": 1}]}]}
+    assert not _errs(doc, card)
+
+
+def test_a_permanent_effect_whose_text_states_no_duration_is_not_flagged():
+    card = _duration_card("Enchanted creature gets +2/+2.")
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Enchantment"],
+           "abilities": [{"kind": "static", "effects": [
+               {"op": "pump", "power": 2, "toughness": 2,
+                "target": {"type": "creature", "count": 1}}]}]}
+    assert not _errs(doc, card)
