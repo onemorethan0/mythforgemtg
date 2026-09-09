@@ -386,7 +386,8 @@ def _ratings(path: Path | None) -> dict[str, float]:
         return {}
 
 
-def _ccm_health(path: Path) -> dict | None:
+def _load_json_report(path: Path) -> dict | None:
+    """Generic loader for a --json artifact (ccm-health, ccm-recheck, ...)."""
     try:
         with open(path, encoding="utf-8") as fh:
             return json.load(fh)
@@ -395,7 +396,8 @@ def _ccm_health(path: Path) -> dict | None:
 
 
 def write_report(
-    before: dict[str, int], gauntlet_args: list[str], started: float, health_path: Path
+    before: dict[str, int], gauntlet_args: list[str], started: float, health_path: Path,
+    recheck_path: Path | None = None,
 ) -> None:
     after = ledger_stats()
     labels = _bracket_labels()
@@ -458,7 +460,7 @@ def write_report(
     # 'enters_tapped', which only became visible once v11's refresh queue reached lands
     # outside the original trigger-event-heavy backlog) shows up on the FIRST morning it
     # exists, not whenever someone next goes digging.
-    health = _ccm_health(health_path)
+    health = _load_json_report(health_path)
     lines += ["", "## Compiler health - top failure classes (mythgauntlet ccm-health)"]
     if health:
         lines.append(
@@ -479,6 +481,44 @@ def write_report(
                 )
     else:
         lines.append(f"- unavailable: no {health_path.name} written (see log)")
+
+    # A DIFFERENT question than the block above: not "why do cards fail to compile" but
+    # "which ALREADY-ACCEPTED cards has a gate change since invalidated". Nothing else in
+    # the pipeline can see this — prompt_version-driven retries only ever reach
+    # older-prompt or failed cards, never accepted-and-current ones (semantics/recheck.py).
+    # Found the night this got wired in: 269 of 31,710 (0.85%) were failing a gate landed
+    # months earlier, with nobody re-asking. No GPU, no writes, so it costs nothing to run
+    # every night rather than only when someone remembers to.
+    recheck_result = _load_json_report(recheck_path) if recheck_path else None
+    lines += ["", "## Accepted-CCM recheck (mythgauntlet ccm-recheck)"]
+    if recheck_result:
+        checked = recheck_result.get("checked", 0)
+        failing = recheck_result.get("failing", 0)
+        lines.append(
+            f"- checked: {checked}   now failing a gate: {failing}"
+            + (f" ({failing / checked:.2%})" if checked else "")
+        )
+        if recheck_result.get("unresolved"):
+            lines.append(
+                f"- {recheck_result['unresolved']} stored cards not in the card DB — "
+                "not checked"
+            )
+        classes = recheck_result.get("classes") or []
+        if classes:
+            lines.append("- newly-invalid classes:")
+            for cls in classes:
+                examples = ", ".join(cls["examples"][:3])
+                lines.append(
+                    f"    {cls['count']:>4}  [{cls['gate']}] {cls['message']} ({examples})"
+                )
+            lines.append(
+                "  -> worklist: "
+                f"{DATA / f'ccm_recheck_names_{STAMP}.txt'} (feed to `compile-names`)"
+            )
+        else:
+            lines.append("- every accepted CCM still passes every gate.")
+    else:
+        lines.append(f"- unavailable: no {recheck_path.name if recheck_path else '?'} written (see log)")
 
     lines += [
         "",
@@ -673,7 +713,19 @@ def main() -> int:
     run("ccm-status", "ccm-status")
     health_path = DATA / f"ccm_health_{STAMP}.json"
     run("ccm-health", "ccm-health", "--top", "6", "--samples", "3", "--json", str(health_path))
-    write_report(before, gauntlet_args, started, health_path)
+    # ccm-recheck answers a DIFFERENT question than ccm-health: not "why do cards fail
+    # to compile" but "which ALREADY-ACCEPTED cards has a gate change since invalidated" —
+    # a gap nothing else in the pipeline can see, since prompt_version-driven retries only
+    # ever reach older-prompt or failed cards, never accepted-and-current ones (see
+    # semantics/recheck.py). Found the same night this got wired in: 269 of 31,710 (0.85%)
+    # were failing a gate landed months earlier with nobody re-asking. Cheap (no GPU, no
+    # writes) so it costs nothing to run every night rather than only when someone
+    # remembers to.
+    recheck_path = DATA / f"ccm_recheck_{STAMP}.json"
+    recheck_names_path = DATA / f"ccm_recheck_names_{STAMP}.txt"
+    run("ccm-recheck", "ccm-recheck", "--top", "6", "--samples", "3",
+        "--json", str(recheck_path), "--names-out", str(recheck_names_path))
+    write_report(before, gauntlet_args, started, health_path, recheck_path)
     log("overnight pipeline done")
     return 0
 

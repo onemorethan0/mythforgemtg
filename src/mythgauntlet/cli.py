@@ -1379,6 +1379,13 @@ def _cmd_ccm_recheck(args: argparse.Namespace) -> int:
         _envelopes(), db.get, top_n=args.top, samples_per_class=args.samples
     )
 
+    if args.json:
+        out_path = Path(args.json)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as fh:
+            json.dump(result, fh, indent=2, ensure_ascii=False)
+        console.print(f"[dim]wrote {out_path}[/dim]")
+
     checked = result["checked"]
     failing = result["failing"]
     console.print("[bold]CCM recheck[/bold] (accepted CCMs re-run through today's gates)")
@@ -2491,6 +2498,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_rc.add_argument("--top", type=int, default=12, help="classes to show")
     p_rc.add_argument("--samples", type=int, default=5, help="example cards per class")
     p_rc.add_argument("--names-out", help="write the failing card names to this file")
+    p_rc.add_argument("--json", help="also write the full result as JSON to this path")
     p_rc.set_defaults(func=_cmd_ccm_recheck)
 
     p_cn = sub.add_parser(
