@@ -1,0 +1,302 @@
+# Plan — validate, then close the two structural gaps under the simulator (2026-09-10)
+
+**Read this alongside [`CLAUDE.md`](../CLAUDE.md)'s engine section (what already shipped, in
+prose, dated) and [`PLAN_CLOCK.md`](PLAN_CLOCK.md) (the bracket-*placement* layer — a different
+boundary from this file, which is about the *simulator* underneath it). This file exists so a
+context cutoff loses no state: each phase records what was measured, what shipped, what was
+rejected and why, in dated sub-sections, the same convention `PLAN_CLOCK.md` already uses.
+Update it in place as work lands — do not let it go stale while code moves.**
+
+Nothing here is an estimate unless it says so. Every number was either measured this session or
+is marked as pending measurement.
+
+---
+
+## 0. Why this plan exists — the review that produced it (2026-09-10)
+
+A multi-session effort (2026-09-08 through 2026-09-10, commits `fe78c27`..`caedd49`) found and
+closed a real structural gap: the text→CCM boundary was ~99% gate-instrumented while the
+CCM→simulation boundary had **zero** instrumentation and was silently discarding roughly half of
+what the store recorded. `mythgauntlet sim-health` (the missing gauge) and `mythgauntlet
+ccm-recheck` (re-validates *accepted* CCMs against *today's* gates — nothing else in the
+pipeline ever did that) were built, and a long tail of individual ops/compiler-confusions were
+closed against them: `pump`, `discard`/`scry`/`surveil`/`mill`, `return_to_hand`/`sacrifice`/
+`tap`/`untap`/`extra_turn`, activated-ability interpreter routing, four `x_basis` fixes, an
+`extra_turn`-vs-additional-combat compiler confusion, four ETB keyword-licensing gaps, the
+`search_library`-vs-bounded-reveal confusion, and a new op (`look_and_select`) for the class that
+confusion pointed at. Full history: `git log --oneline fe78c27..caedd49` in this repo, and the
+matching commits in the `mythgauntlet` data repo.
+
+**Every one of those fixes was individually verified**: live-recompiled against real cards,
+tested, checked for regressions via `ccm-recheck`. **None of them were verified in aggregate**
+against the metric that actually matters — does a deck's *rating* get closer to how it actually
+performs. That gap, plus two structural capabilities the whole session kept running into and
+declining around, are this plan's three phases:
+
+| Phase | Question | Cost class |
+|---|---|---|
+| **A — Validate** | Did the session's simulator-code changes move bracket calibration, holding the CCM store fixed? | Cheap (~30 min) |
+| **B — Combat keywords** | Combat resolution reads no evasion/keyword text at all. Measured 2026-09-10: **39.5% of all 19,709 creature cards** (7,784) carry flying/trample/menace/deathtouch/first strike/double strike/reach/vigilance/hexproof/indestructible. | Medium, staged B1–B6 below |
+| **C — Targeting infrastructure** | Every op declined this session for a "chosen target" is the SAME missing capability showing up repeatedly, not five independent gaps. | Medium, unlocks existing declined work rather than adding new coverage |
+
+None of these three phases block each other. They can land in any order; A is listed first
+because it's the cheapest and answers whether the *direction* of the last three days was even
+correct before investing more hours continuing it.
+
+---
+
+## 1. Phase A — validate: did tonight's simulator code actually help?
+
+**The problem.** `scripts/bracket_accuracy.py` is the project's own accept-bar harness (see
+`PLAN_CLOCK.md` §7 — within-one ≥95% is the met, tracked bar). A 40-deck live sample tonight
+read 52.5% exact / 92.5% within-one — in the same neighborhood as the last recorded full-corpus
+number (53.9%/91.6%, n=546, dated in `PLAN_CLOCK.md`), but **that is not a controlled
+comparison**: different sample size, different deck subset, and — critically — the CCM *store*
+changed throughout tonight's session too (both my simulator-code edits AND separate compiler
+recompiles happened together), so a naive before/after conflates "did the code get better" with
+"did the data change."
+
+**The design.** Hold the CCM store **fixed at its current (latest) state** — that's what ships,
+reverting it would be dishonest theater — and vary **only the simulator code**, via a git
+worktree of `mtg_deck_builder` at the pre-session commit. Run the same harness, same store, same
+seed, from both worktrees.
+
+- **"Before" boundary**: commit `21c2a06` (2026-09-07 12:38) — the last commit before this whole
+  investigation began (`fe78c27` at 2026-09-08 08:51 is the first fidelity-session commit).
+- **"After"**: current `HEAD` (`caedd49` at time of writing, or later if this plan resumes after
+  more work landed — always diff against the actual current HEAD, not this pinned hash).
+- Both runs point `MYTHGAUNTLET_STORE` at the same, single, current `ccm/` directory. Neither
+  run touches it.
+- Sample: start with `--limit 150 --runs 40` for a fast first read (a few minutes); if the
+  direction is unclear or borderline, escalate to the full labelled corpus (`--limit 0`, or
+  omit `--limit`) at the harness's default `--runs`/`--turns` (matches the app's own
+  `DEFAULT_ANALYZE_TURNS` — see `PLAN_CLOCK.md` trap #4, "match the app's configuration or the
+  number is about nothing").
+
+**Steps:**
+1. `git worktree add ../mtg_deck_builder-before 21c2a06` (isolated, does not disturb the working
+   tree; matches the `Agent` tool's own `isolation: "worktree"` idea, done manually here since
+   this is a direct comparison run, not a subagent task).
+2. From the "before" worktree: `PYTHONPATH=src MYTHGAUNTLET_STORE=<current store>
+   MYTHGAUNTLET_DATA=<current data> python scripts/bracket_accuracy.py --limit 150 --runs 40
+   --json before.json`
+3. From current `HEAD` (this checkout): same command, `--json after.json`.
+4. Diff: bracket-exact, within-one, signed bias, the confusion matrix, and (if the harness
+   supports it) the rule-consistent-subset figures `PLAN_CLOCK.md` §1.1 introduced.
+5. Record the result below, dated, whichever way it comes out. **A null or negative result is
+   not a failure to hide** — it's exactly the kind of finding `PLAN_CLOCK.md`'s own §4 Phase 1
+   (`nut_draw_turn`/1b) recorded honestly when two real, correctly-wired mechanisms both failed
+   to move a gate.
+6. `git worktree remove ../mtg_deck_builder-before` when done — don't leave it lying around.
+
+**What this phase does NOT need**: it does not need to re-run `axis_separation.py` (that's the
+signal-separation gate for *placement* rule changes, a `PLAN_CLOCK.md` concern; nothing in this
+session touched bracket placement logic, only what the simulator executes). It does not need a
+controlled CCM-store diff — the store isn't the variable under test here, the code is.
+
+### 1.1 — result (pending)
+
+*(Fill in when run: before/after table, direction, and a one-line verdict — "the session's
+simulator changes measurably [helped/hurt/didn't move] calibration, n=___, confidence: ___".)*
+
+---
+
+## 2. Phase B — combat keywords: the resolver reads no keyword text at all
+
+**Current state, quoted exactly** (`sim/tier2.py`, the combat model's own scope docstring):
+> "Combat: every non-sick creature attacks; the defender makes winning trades and chump-blocks
+> only lethal damage. No evasion/keywords (invisible at rung 1-2)."
+
+**This is not a CCM-effect gap** — it doesn't need the LLM compiler, prompt work, or a new op.
+It's the *native* combat math the resolver runs regardless of any card's compiled effects, and
+it's foundational: it affects whether combat itself produces a correct outcome, for **39.5% of
+every creature card in the format**, measured 2026-09-10 (`grep`-verified against the live
+Scryfall API and the local card store — Scryfall's own `keywords` field, confirmed live:
+`curl https://api.scryfall.com/cards/named?exact=Serra+Angel` returns `"keywords":
+["Flying","Vigilance"]`, structured, reliable, and **currently captured nowhere** — `grep -rn
+"keywords" src/mythgauntlet/` returns zero hits on the card model).
+
+**Key scoping fact, found this session**: printed (base) keywords are pure DATA from Scryfall,
+not something the LLM compiler needs to produce. Only *granted* keywords (a card giving another
+creature flying "until end of turn") go through the CCM `grant_ability` op — already partially
+modeled (haste only, see `tier2._apply_resolved`'s `grant_ability` branch). This means Phase B
+splits cleanly into a cheap data phase (B1) and a series of combat-logic phases (B2–B6) that can
+land independently and each be measured on its own.
+
+### B1 — capture printed keywords as data (cheap, no LLM)
+
+- Add `keywords: frozenset[str]` (or similar) to `Card` (`model/card.py`).
+- Wire it through the slim-schema fetch (`data/scryfall.py`) — this is a **schema version
+  bump**, which this repo treats as a hard, actionable error by design (see CLAUDE.md's card
+  store section) rather than a silently-tolerant optional field. Bump `SLIM_SCHEMA_VERSION`,
+  regenerate via `mythgauntlet fetch-data --force`.
+- No simulator behavior changes yet — this phase is purely "the data exists and is loadable."
+  Acceptance: a test asserts a known card (e.g. a fixture Serra-Angel-shaped card) round-trips
+  `keywords: {"flying", "vigilance"}` through slim-schema serialization.
+
+### B2 — vigilance (one-line, `game.py:962`)
+
+`_apply_declare_blocks`: `atk.tapped = True  # attacking taps (no vigilance) -> can't block next
+turn` — the comment already names the gap. Once B1 lands, gate this on `"vigilance" not in
+atk.keywords` (needs `keywords` threaded onto `_Permanent`, not just `GameCard`/`Card` — check
+how `is_artifact`/`is_commander` already get copied onto `_Permanent` at construction time in
+`_resolve`, same pattern). Cheapest possible first keyword to ship; good smoke test for the
+whole B1 plumbing before touching anything harder.
+
+### B3 — flying / reach (block LEGALITY, `agents/greedy.py:49` `greedy_block_assignment`)
+
+`blockers = [c for c in defender.creatures() if not c.tapped]` — currently any untapped creature
+can block anything. Needs: a flying (or menace-adjacent-but-simpler-first) attacker can only be
+blocked by a creature with flying or reach. This is a **legality filter on the candidate pool**,
+not a new decision shape — `greedy_block_assignment`'s existing "winning trades first, then
+chump-block" logic stays the same, it just draws blockers from a per-attacker-filtered pool
+instead of the whole board. The natural next step after B2 because it's still additive/filtering,
+not restructuring the assignment's data shape.
+
+### B4 — deathtouch (combat math, `game.py:974-977`)
+
+`if atk.power >= blk.toughness: _kill(opp, blk, ...)` — with deathtouch, ANY nonzero combat
+damage from the source is lethal, i.e. the check becomes `atk.power >= blk.toughness or
+("deathtouch" in atk.keywords and atk.power > 0)`, both directions (attacker deals it, or a
+deathtouch *blocker* kills an attacker that connects with it). Also affects
+`greedy_block_assignment`'s own "winning trade" definition — a small deathtouch blocker profitably
+trades with something much bigger, which the current `b.power >= atk.toughness` check misses
+entirely. **Touches both files together**, so land as one unit.
+
+### B5 — trample (damage assignment, `game.py:973-977`)
+
+Currently a blocked attacker's damage either fully trades with the blocker or (if the blocker
+dies) simply vanishes — no excess ever reaches the player. Trample should let `max(0, atk.power
+- blk.toughness)` carry over to `opp.life` when the attacker has trample and the blocker dies.
+Interacts with B4 (a deathtouch+trample attacker only needs to assign 1 damage to the blocker
+before trampling the rest over) — sequence B4 before B5 for that reason, or handle both in the
+same change once both are understood.
+
+### B6 — menace and first/double strike (STRUCTURAL, size separately before starting)
+
+Both of these are a different *shape* of change from B2–B5, not just a bigger version of the
+same filter/threshold edit, and should not be estimated by analogy to B2–B5's cost:
+
+- **Menace** needs 2+ blockers assigned to the same attacker. `DeclareBlocks.assignment` is
+  currently `tuple[tuple[int, _Permanent], ...]` — one blocker per attacker index, structurally.
+  Supporting menace means either changing that shape to `dict[int, list[_Permanent]]` (cascades
+  through `_apply_declare_attackers`, `_apply_declare_blocks`, `greedy_block_assignment`, and
+  any ISMCTS-side block enumeration) or a narrower bolt-on. **Measure how many attacking
+  creatures in the corpus actually carry menace before designing this** — if it's a small
+  population relative to B2–B5's keywords, the ROI may not justify the structural cost yet.
+- **First strike / double strike** needs the combat-damage step split into two passes (first-
+  strikers deal damage, state-based kills happen, THEN remaining creatures deal damage) instead
+  of `_apply_declare_blocks`'s current single simultaneous pass. This is the most invasive of
+  the six — it changes the *sequencing* of combat, not just a threshold inside one existing pass.
+
+**Recommendation: land B1–B5 as one coherent slice, re-measure, and treat B6 as its own
+follow-on plan phase** (size it with real numbers the way every other decision in this project
+gets made, not by assumption) rather than bundling it into the same estimate.
+
+### Acceptance gate for Phase B
+
+Following this project's own standing rule (`PLAN_CLOCK.md` §6 trap 1 / the `axis_separation.py`
+discipline: *no signal drives a verdict without demonstrated separation*): B1–B5 shipping is not
+itself required to move `bracket_accuracy.py` — that's a placement-layer question, a step removed
+from "does combat resolve correctly." The gate for THIS phase is narrower and more honest:
+
+- A synthetic test board where the old resolver gets the outcome wrong and the new one gets it
+  right, for each keyword landed (a flying attacker connecting through a ground-only defense; a
+  vigilant attacker still available to block; a deathtouch 1-power blocker trading up).
+- Re-run Phase A's controlled harness (same before/after worktree technique, "before" = the
+  commit right before Phase B started) to see whether keyword-aware combat moves calibration —
+  record it the same honest way, whichever direction it goes.
+
+---
+
+## 3. Phase C — targeting infrastructure: one gap wearing five names
+
+**The pattern.** This session declined the chosen-target majority of `return_to_hand` (2,668 of
+3,232 effects), `gain_control` (1,499 of 2,067, and the op was declined *entirely*), `attach`
+(every sampled instance), and part of `sacrifice`. Each was declined for the identical reason:
+*picking which enemy permanent to hit, or which of my own to boost, is a decision this engine has
+no general way to make, and guessing would fabricate.* That is one missing capability, not four
+separate op-level gaps — and it already has two real, working, narrow instances to generalize
+from instead of building blind:
+
+- `sim/tier2.py:1473` `_instant_target(active)` — picks the active player's **biggest threat by
+  power** for reactive removal. "Steal/remove the best enemy creature" shape.
+- `sim/tier2.py` `_tutor_pick(me, what)` — picks the **highest-impact matching card** from a
+  pool (library), with a missing-combo-piece priority layered on top. "Best of mine, filtered"
+  shape, already generalized once this session for `_look_and_select`'s battlefield window.
+- `sim/tier2.py` `_weakest_creature(player)` (added this session for `sacrifice`'s edict case) —
+  picks the **worst** creature, for "the affected player chooses" shapes (an edict).
+
+**The design question Phase C actually needs to answer**, not yet decided: is a single
+`_pick_target(pool, key, direction)` utility (parameterized: rank by what, biggest or smallest,
+whose creatures) enough, or do "remove their best" / "boost mine" / "they sacrifice their worst"
+need to stay as three distinct named helpers because the CALLING op's cost/benefit reasoning
+differs per shape (e.g. `attach`'s pick should weigh "which of my creatures most benefits from
+this specific bonus," not just raw impact — a +0/+3 vigilance equipment is wasted on a creature
+that's already a wall). **Measure before designing**: sample what each currently-declined op's
+`target.controller` values actually look like across the store (mirroring every other
+measurement this session did) before committing to one shared function vs. several.
+
+**Proposed sequence** (not yet started, revise if measurement changes the picture):
+
+1. Measure the `target.controller`/`target.type` shape distribution for `return_to_hand`,
+   `gain_control`, and `attach`'s currently-declined effects (same method as every op measured
+   this session: sample real stored CCMs, bucket by shape).
+2. Generalize `_instant_target`'s "biggest enemy threat" pattern into a reusable helper if the
+   measurement shows `gain_control`/`return_to_hand`'s declined majority is dominantly
+   "opponent's best creature" (steal/bounce tempo plays) — the common EDH shape for both ops.
+3. Wire `gain_control` (self/mass already shipped, declined-chosen-target majority is the
+   target) through it first — it was declined *entirely* this session (not even a partial
+   branch), so it's the cleanest test of the new capability with no prior partial logic to
+   reconcile.
+4. Re-measure `sim-health`'s partial/inert split for `gain_control` and `return_to_hand` to
+   confirm the fix actually shifted effects out of "declined" rather than just adding a branch
+   that never fires (the exact self-flattery class `sim-health` itself was built to catch — hold
+   this new work to the same bar).
+5. `attach` last — it's the biggest population (608/635 cards) but structurally different
+   (needs "would this bonus actually help this creature," not just "biggest/best"), so it
+   shouldn't block the simpler wins above.
+
+### Acceptance gate for Phase C
+
+- Live-verify (recompile or replay, not just unit-test) that a picked target is never the
+  fabricating kind this project's doctrine forbids — e.g. `gain_control` stealing a creature
+  must still respect the existing duration/subtype declines already shipped (Act of Aggression's
+  duration-reliability finding, the subtype-filtered-mass finding) — Phase C only unlocks the
+  *chosen-target* subset, it does not relitigate why the mass/duration subset stays declined.
+- `sim-health` shows the targeted op's inert/partial count moving, with the specific before/after
+  numbers recorded here the same way every op this session recorded them.
+
+---
+
+## 4. What NOT to do (decided, don't re-litigate)
+
+- **Don't treat "more effects execute" as self-evidently "more accurate."** That's the whole
+  reason Phase A exists — it's an unverified assumption, not yet a measured fact, however
+  plausible it sounds.
+- **Don't build Phase B's menace/first-strike (B6) at the same estimated cost as B2–B5.** They
+  are a different kind of change (restructuring combat's sequencing/data shape, not filtering or
+  thresholding an existing pass) and deserve their own sizing pass, not an assumption they're
+  "just two more keywords."
+- **Don't build Phase C as five separate per-op targeting hacks.** That's exactly the pattern
+  that produced five separate declines this session in the first place; the point of naming it
+  as one phase is to generalize once, per the measurement in step 1, not to ship op #6's bespoke
+  picker next week.
+- **Don't skip live verification for either B or C on the grounds that unit tests passed.**
+  This exact session found three real bugs (the floor-of-1 fabrication, the Augur-of-Bolas
+  double-effect risk, the gauge's own three self-flattery bugs) that passing unit tests did not
+  catch and a live recompile/duel did.
+
+## 5. Definition of done
+
+- [ ] Phase A run and recorded (§1.1), whichever direction it comes out.
+- [ ] Phase B1 (keyword data capture) shipped, schema-bumped, tested.
+- [ ] Phase B2–B5 shipped as one slice, each with a synthetic before/after test proving the old
+      resolver gets it wrong and the new one doesn't.
+- [ ] Phase B6 sized (real numbers on menace/first-strike prevalence) before any code is written
+      for it — may conclude "not yet," which is a valid outcome, not a failure to close it.
+- [ ] Phase C's shape-measurement (step 1) run and recorded before any picker code is written.
+- [ ] Phase C's `gain_control` unlock shipped and reflected in a re-run `sim-health`.
+- [ ] This file updated in place, dated sub-sections, as each item above lands — not rewritten
+      from scratch, following `PLAN_CLOCK.md`'s own convention of preserving prior dated findings
+      even when a later measurement supersedes them.
