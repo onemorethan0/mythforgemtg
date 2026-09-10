@@ -1,0 +1,104 @@
+# Archidekt — Copy of - Dino Deck
+# source: archidekt:25945335
+# fetched: 2026-09-01
+
+Commander:
+1 Indoraptor, the Perfect Hybrid
+
+Deck:
+1 Ulvenwald Tracker
+1 Wrathful Raptors
+1 Belt of Giant Strength
+1 Blightstep Pathway // Searstep Pathway
+1 Creeping Bloodsucker
+1 Delayed Blast Fireball
+1 Labyrinth Raptor
+1 Obscuring Haze
+1 Sokenzan, Crucible of Defiance
+1 Spitting Dilophosaurus
+1 Arcane Signet
+1 Brass Squire
+1 Caltrops
+1 Champion's Helm
+1 Flame Rift
+1 Rampaging Ferocidon
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Tamiyo's Safekeeping
+1 Thran Power Suit
+1 Fiery Confluence
+1 Gravitic Punch
+1 Hagra Mauling // Hagra Broodpit
+1 Homeward Path
+1 Pyrohemia
+1 Bladegraft Aspirant
+1 Blazing Sunsteel
+1 Sword of Forge and Frontier
+1 Blackblade Reforged
+1 Fire Covenant
+1 Foundry Inspector
+1 Mountain
+1 Pestilence
+1 Plague Spitter
+1 Return of the Wildspeaker
+1 Chandra's Ignition
+1 Cinder Glade
+1 Command Tower
+1 Deathcap Glade
+1 Exotic Orchard
+1 Farseek
+2 Forest
+1 Goblin Sharpshooter
+1 Hammer of Nazahn
+1 Haunted Ridge
+1 Llanowar Wastes
+1 Jund Panorama
+1 Temple of Abandon
+1 Meria, Scholar of Antiquity
+1 Mithril Coat
+1 Ring of Valkas
+1 Ripjaw Raptor
+1 Rockfall Vale
+1 Rogue's Passage
+1 Rootbound Crag
+1 Savage Lands
+1 Savage Stomp
+1 Scytheclaw Raptor
+1 Shadowspear
+1 Silkguard
+1 Smoldering Marsh
+1 Sol Ring
+1 Spire Garden
+1 Stomping Ground
+1 Swamp
+1 Swiftfoot Boots
+1 Sword of Body and Mind
+1 Sword of Feast and Famine
+1 Sword of Fire and Ice
+1 Sword of Light and Shadow
+1 Sword of Sinew and Steel
+1 Talisman of Indulgence
+1 Talisman of Resilience
+1 The Skullspore Nexus
+1 Three Visits
+1 Toxic Deluge
+1 Twilight Mire
+1 Undergrowth Stadium
+1 Viridian Longbow
+1 Zhur-Taa Druid
+1 Krosan Grip
+1 Seething Song
+1 Bolt Bend
+1 Riveteers Overlook
+1 Terminate
+1 Sulfurous Springs
+1 Malakir Rebirth // Malakir Mire
+1 Golgari Charm
+1 Rocky Tar Pit
+1 Karplusan Forest
+1 Temple of Malice
+1 Bojuka Bog
+1 Grafted Exoskeleton
+1 Forerunner of the Empire
+1 Path of Ancestry
+1 Woodland Cemetery
+1 Foreboding Ruins

@@ -1,0 +1,107 @@
+# Archidekt — Copy of - The Second Person
+# source: archidekt:25628611
+# fetched: 2026-09-04
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Errant and Giada
+1 Ellie and Alan, Paleontologists
+1 Run for Your Life
+1 Shalai and Hallar
+1 Tibor and Lumia
+1 Start Your Engines
+1 Harold and Bob, First Numens
+1 The Royal Scions
+1 You Find a Cursed Idol
+1 An Offer You Can't Refuse
+1 Blow Your House Down
+1 Buy Your Silence
+1 Make Your Own Luck
+1 Make Your Mark
+1 Make Your Move
+1 Pick Your Poison
+1 You Cannot Pass!
+1 You Look Upon the Tarrasque
+1 You Meet in a Tavern
+1 Your Temple Is Under Attack
+1 You See a Pair of Goblins
+1 You've Been Caught Stealing
+1 Anax and Cymede
+1 Mina and Denn, Wildborn
+1 Ghalta and Mavren
+1 Inga and Esika
+1 Aragorn and Arwen, Wed
+1 Djeru and Hazoret
+1 Wrenn and Realmbreaker
+1 Rashmi and Ragavan
+1 Kogla and Yidaro
+1 Choose Your Weapon
+1 Saint Traft and Rem Karolus
+1 Pia and Kiran Nalaar
+1 Baral and Kari Zev
+1 Plargg and Nassari
+1 Korvold and the Noble Thief
+1 You Come to the Gnoll Camp
+1 You Happen On a Glade
+1 Surrak and Goreclaw
+1 You Find Some Prisoners
+1 Rin and Seri, Inseparable
+1 Tusk and Whiskers
+1 Zurgo and Ojutai
+1 You're Not Alone
+1 Cut Your Losses
+1 You're Confronted by Robbers
+1 Katilda and Lier
+1 You Find the Villains' Lair
+1 You See a Guard Approach
+1 You Hear Something on Watch
+1 You Come to a River
+1 Halana and Alena, Partners
+1 Adrix and Nev, Twincasters
+1 Wrenn and Six
+1 Borborygmos and Fblthp
+1 Iceman and Firestar
+1 Gatta and Luzzu
+1 Radiant Summit
+1 Raph & Mikey, Troublemakers
+1 Clifftop Retreat
+1 Moon Girl and Devil Dinosaur
+1 Jetmir's Garden
+1 Fabled Passage
+1 Training Compound
+1 Path of Ancestry
+1 Gathering Place
+1 Glacial Fortress
+1 Flooded Strand
+1 Windswept Heath
+1 Hengegate Pathway // Mistgate Pathway
+1 Port Town
+1 Floodfarm Verge
+1 Skycloud Expanse
+1 Sodden Verdure
+1 Rejuvenating Springs
+1 Overflowing Basin
+1 Hinterland Harbor
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Gleaming Bastion
+1 Bountiful Promenade
+1 Hushwood Verge
+1 Canopy Vista
+1 Exotic Orchard
+1 Command Tower
+1 Cinder Glade
+1 Sunpetal Grove
+1 Sungrass Prairie
+1 Rogue's Passage
+1 Temple of Plenty
+1 Sulfur Falls
+1 Thornspire Verge
+1 Rootbound Crag
+1 Scorched Geyser
+1 Cascade Bluffs
+1 Spara's Headquarters
+1 You're Ambushed on the Road
+1 Wrenn and Seven
+1 Firesong and Sunspeaker

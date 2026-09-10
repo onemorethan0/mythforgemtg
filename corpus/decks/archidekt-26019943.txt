@@ -1,0 +1,107 @@
+# Archidekt — Go Commit a Crime
+# source: archidekt:26019943
+# fetched: 2026-09-03
+
+Commander:
+1 Marchesa, Dealer of Death
+
+Deck:
+1 Talisman of Creativity
+1 Reliquary Tower
+1 Watery Grave
+1 Talisman of Dominance
+1 Steam Vents
+1 Blasphemous Act
+1 Counterspell
+1 Arcane Signet
+1 Command Tower
+1 Blood Crypt
+1 An Offer You Can't Refuse
+1 Reanimate
+1 Talisman of Indulgence
+1 Feed the Swarm
+1 Fellwar Stone
+1 Terminate
+1 Morphic Pool
+1 Dimir Signet
+1 Frantic Search
+1 Arcane Denial
+1 Izzet Signet
+1 Luxury Suite
+1 Faithless Looting
+1 Kaervek, the Punisher
+1 Rakdos Signet
+1 Magda, the Hoardmaster
+1 Negate
+1 Snap
+1 Training Center
+1 Nightscape Familiar
+1 Swan Song
+1 Victimize
+1 Bloodstained Mire
+1 Sulfurous Springs
+1 Underground River
+1 Abrade
+1 Rakdos Charm
+1 Toxic Deluge
+1 Glasses of Urza
+1 Animate Dead
+1 Gitaxian Probe
+1 Lazav, Familiar Stranger
+1 Thought Vessel
+1 Rhystic Study
+1 Exotic Orchard
+1 Thundering Falls
+1 Flooded Strand
+1 Swamp
+1 Polluted Delta
+1 Scalding Tarn
+1 Island
+1 Undercity Sewers
+1 Shivan Reef
+1 Vandalblast
+1 Sol Ring
+1 Mystic Remora
+1 Mountain
+1 Liquimetal Torque
+1 Kess, Dissident Mage
+1 Ghost Vacuum
+1 Lightning Bolt
+1 Storm-Kiln Artist
+1 Red Death, Shipwrecker
+1 Pongify
+1 Codex Shredder
+1 Marsh Flats
+1 Duelist of the Mind
+1 Stitch Together
+1 Untimely Malfunction
+1 Spatial Binding
+1 Misty Rainforest
+1 Rapid Hybridization
+1 Bender's Waterskin
+1 City of Brass
+1 Mental Misstep
+1 Mindbreak Trap
+1 Hullbreaker Horror
+1 Spellskite
+1 Verdant Catacombs
+1 Arid Mesa
+1 Raven of Fell Omens
+1 Necromancy
+1 Wooded Foothills
+1 Bandit's Haul
+1 Into the Flood Maw
+1 Pact of Negation
+1 Hex Parasite
+1 Flusterstorm
+1 Rise of the Dark Realms
+1 Sink into Stupor // Soporific Springs
+1 Mystic Sanctuary
+1 Fiery Islet
+1 Urza's Saga
+1 Malakir Rebirth // Malakir Mire
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Forbidden Orchard
+1 Ardyn, the Usurper
+1 Archon of Cruelty
+1 Bojuka Bog

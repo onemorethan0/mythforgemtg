@@ -1,0 +1,103 @@
+# Archidekt — DOGGO DECK
+# source: archidekt:6660286
+# fetched: 2026-09-03
+# bracket: 3
+
+Commander:
+1 Sophia, Dogged Detective
+
+Deck:
+1 Command Tower
+1 Exotic Orchard
+1 Overgrown Farmland
+1 Hallowed Fountain
+1 Temple Garden
+1 Deserted Beach
+1 Dreamroot Cascade
+1 Mischievous Pup
+1 Pack Leader
+1 Azorius Signet
+1 Rex, Cyber-Hound
+1 Flooded Strand
+1 Animal Sanctuary
+1 Yavimaya, Cradle of Growth
+1 Selfless Savior
+1 Mushroom Watchdogs
+1 K-9, Mark I
+1 Yoshimaru, Ever Faithful
+1 Supply Runners
+1 Resolute Watchdog
+1 Trusty Retriever
+1 Alpine Watchdog
+1 Greater Tanuki
+1 Realmwalker
+1 Warclamp Mastiff
+1 Tireless Tracker
+1 Karvanista, Loyal Lupari // Lupari Shield
+1 Tireless Provisioner
+1 Abzan Beastmaster
+1 Teferi's Protection
+1 Heroic Intervention
+1 Dovin's Veto
+1 Kindred Discovery
+1 Guardian Project
+1 Chulane, Teller of Tales
+1 Sterling Hound
+1 Faithful Watchdog
+1 Raise the Palisade
+1 Generous Pup
+1 Urban Retreat
+1 District Mascot
+1 Chrome Companion
+1 Three Tree City
+1 Spirited Companion
+1 Mongrel Pack
+1 Stroke of Midnight
+1 Selesnya Signet
+1 Nuka-Cola Vending Machine
+1 Elven Warhounds
+1 Seaside Citadel
+1 Path to Exile
+1 Herald of Secret Streams
+1 Krovod Haunch
+2 Island
+1 Gingerbread Cabin
+1 Swords to Plowshares
+3 Forest
+1 Maskwood Nexus
+1 Beast Within
+1 Rambunctious Mutt
+1 Release the Dogs
+1 Breeding Pool
+1 Reliquary Tower
+1 Bountiful Promenade
+1 Counterspell
+1 Austere Command
+1 Isamaru, Hound of Konda
+1 Tanuki Transplanter
+1 Abzan Falconer
+1 Mowu, Loyal Companion
+1 Smothering Tithe
+1 Rejuvenating Springs
+1 Sea of Clouds
+1 Boros Mastiff
+1 Loyal Warhound
+1 Longshot Squad
+1 Gavony Township
+1 Prairie Stream
+1 Lonis, Cryptozoologist
+3 Plains
+1 Canopy Vista
+1 Windswept Heath
+1 Floodhound
+1 Spara's Headquarters
+1 Brokers Ascendancy
+1 Mordenkainen
+1 Snow Hound
+1 Ainok Bond-Kin
+1 Academy Manufactor
+1 Minas Tirith
+1 The Shire
+1 Misty Rainforest
+1 Phelia, Exuberant Shepherd
+1 Many Partings

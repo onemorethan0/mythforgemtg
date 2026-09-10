@@ -1,0 +1,91 @@
+# Archidekt — Curse Me
+# source: archidekt:26222222
+# fetched: 2026-09-09
+# bracket: 3
+
+Commander:
+1 Lynde, Cheerful Tormentor
+
+Deck:
+1 Accursed Witch // Infectious Curse
+1 Cruel Reality
+1 Curse of Bloodletting
+1 Curse of the Restless Dead
+1 Maddening Hex
+1 Curse of Hospitality
+1 Curse of Chaos
+1 Curse of Death's Hold
+1 Curse of Misfortunes
+1 Curse of Inertia
+1 Curse of Disturbance
+1 Curse of Echoes
+1 Curse of Fool's Wisdom
+1 Curse of Oblivion
+1 Curse of Shallow Graves
+1 Curse of Obsession
+1 Curse of the Pierced Heart
+1 Curse of Surveillance
+1 Curse of the Bloody Tome
+1 Curse of Opulence
+1 Curse of Shaken Faith
+1 Curse of Stalked Prey
+1 Curse of the Nightly Hunt
+1 Curse of Thirst
+1 Curse of Vengeance
+1 Curse of Verbosity
+1 Curse of Unbinding
+1 Fraying Sanity
+1 Torment of Scarabs
+1 Trespasser's Curse
+1 Asinine Antics
+1 Ashiok's Reaper
+1 Bitterheart Witch
+1 Demon of Fate's Design
+1 Chaos Warp
+1 Talisman of Creativity
+1 Doomwake Giant
+1 Grim Guardian
+1 Nightscape Familiar
+1 Bedevil
+1 Negate
+1 Cyclonic Rift
+1 Protean Thaumaturge
+1 Counterspell
+1 Claws of Gix
+1 Terminate
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Feed the Swarm
+1 Beseech the Mirror
+1 Blasphemous Act
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Vandalblast
+1 Lightning Greaves
+1 Sol Ring
+1 Exotic Orchard
+1 Dark Ritual
+1 Training Center
+1 Crumbling Necropolis
+1 Xander's Lounge
+1 Mana Drain
+1 Damnation
+1 Copy Enchantment
+1 Fierce Guardianship
+1 Cloud Key
+1 Mirrormade
+1 Clever Impersonator
+1 Sphinx of the Second Sun
+1 Stuffy Doll
+1 Exsanguinate
+1 Swan Song
+1 Fellwar Stone
+1 Balemurk Leech
+7 Swamp
+5 Mountain
+6 Island
+1 Luxury Suite
+1 Command Tower
+1 Morphic Pool
+1 Bojuka Bog
+1 Reliquary Tower

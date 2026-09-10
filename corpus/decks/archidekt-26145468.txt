@@ -1,0 +1,83 @@
+# Archidekt — Tops
+# source: archidekt:26145468
+# fetched: 2026-09-08
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Down in the Valley
+1 Vibrant Cityscape
+1 Friendly Neighborhood
+8 Plains
+10 Forest
+8 Mountain
+1 Toph, Hardheaded Teacher
+1 Bumi, King of Three Trials
+1 Badgermole
+1 Suki, Courageous Rescuer
+1 Wandering Musicians
+1 Foggy Swamp Vinebender
+1 Turtle-Duck
+1 Ostrich-Horse
+1 Boar-q-pine
+1 Tiger-Dillo
+1 Omashu City
+1 The Walls of Ba Sing Se
+1 Kyoshi Island Plaza
+1 Earth Kingdom Jailer
+1 Giant's Boulder
+1 Well-Worn Spatula
+1 Earthbender Ascension
+1 Bitter Work
+1 Rocky Rebuke
+1 Shared Roots
+1 Sandbenders' Storm
+1 Earthbending Lesson
+1 Firebending Lesson
+1 How to Start a Riot
+1 Allies at Last
+1 Price of Freedom
+1 Pinecone Strike
+1 Moment of Glory
+1 Vow to Erebor
+1 Roads Go Ever, Ever On
+1 Kree Sentinel
+1 Patriot, Shield Wielder
+1 Iron Hills Blacksmith
+1 Iron Hills Stalwart
+1 Dáin, Lord of the Iron Hills
+1 Thorin, Mountain-king
+1 Bifur, Melodic Rider
+1 Nori, Teller of Tales
+1 Óin the Brave
+1 Glóin the Mighty // Easy Pickings
+1 Beorn, Reluctant Host // Till and Tend
+1 Wood Elves
+1 Kyoshi Battle Fan
+1 S.H.I.E.L.D. Spy Kit
+1 Dwarven Shortsword
+1 Dwarven Mattock
+1 Thrór's Map
+1 Key to the Side-Door
+1 Secret Tunnel
+1 Asgardian Citadel
+1 Gathering Place
+1 Iron Hills
+1 World War Hulk
+1 Surveillance Room
+1 Mole Man, Moloid Master
+1 Claim the Kingdom
+1 Birnin Zana Plaza
+1 Baxter Building
+1 The Ten Rings
+1 Through the Forest Gate
+1 Fire Nation Palace
+1 The Legend of Roku // Avatar Roku
+1 Darksteel Citadel
+1 Toph, Greatest Earthbender
+1 Abandoned Air Temple
+1 Sol Ring
+1 Lotus Field
+1 H.E.R.B.I.E. Scout Unit
+1 Go Nuts!

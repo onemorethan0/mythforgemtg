@@ -1,0 +1,96 @@
+# Archidekt — Kirri Drift
+# source: archidekt:24148855
+# fetched: 2026-09-04
+# bracket: 2
+
+Commander:
+1 Kirri, Talented Sprout
+
+Deck:
+1 Sapling Nursery
+1 Nissa, Resurgent Animist
+1 Astral Slide
+1 Six
+1 Chomping Changeling
+1 Astral Drift
+1 Crib Swap
+1 Generous Ent
+1 Orchard Strider
+1 Topiary Panther
+1 Timberland Ancient
+1 Topiary Stomper
+1 Spelunking
+1 Avenger of Zendikar
+1 Phylath, World Sculptor
+1 Cabaretti Courtyard
+1 Fabled Passage
+1 Sacred Foundry
+1 Stomping Ground
+1 Temple Garden
+1 Lush Portico
+1 Commercial District
+1 Elegant Parlor
+1 Glittering Massif
+4 Plains
+4 Forest
+1 Wooded Foothills
+1 Mutable Explorer
+1 Arid Mesa
+1 Windswept Heath
+4 Mountain
+1 Toph, Hardheaded Teacher
+1 Moon-Blessed Cleric
+1 Recruiter of the Guard
+1 Sterling Grove
+1 Idyllic Tutor
+1 Elvish Harbinger
+1 Enlightened Tutor
+1 Cultivator Colossus
+1 Aurora Awakener
+1 Annie Joins Up
+1 Springbloom Druid
+1 Sunken Citadel
+1 Volatile Fault
+1 Scampering Surveyor
+1 Promising Vein
+1 Urza's Cave
+1 Mole Man, Moloid Master
+1 Tilling Treefolk
+1 Sutina, Speaker of the Tajuru
+1 Adagia, Windswept Bastion
+1 Titania, Voice of Gaea
+1 Argoth, Sanctum of Nature
+1 Sheltered Thicket
+1 Jetmir's Garden
+1 Sheltering Landscape
+1 Scattered Groves
+1 Monument to Endurance
+1 Cool but Rude
+1 Quintorius, History Chaser
+1 Drifting Meadow
+1 Tranquil Thicket
+1 Slippery Karst
+1 Smoldering Crater
+1 Forgotten Cave
+1 Secluded Steppe
+1 Cycle of Renewal
+1 Anger
+1 Entish Restoration
+1 Harrow
+1 Roiling Regrowth
+1 Spectacular Pileup
+1 Flamekin Village
+1 Haze of Pollen
+1 Lull
+1 Magmatic Insight
+1 Life from the Loam
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Satyr Wayfinder
+1 Midnight Tilling
+1 Eternal Witness
+1 Fluctuator
+1 Valakut Exploration
+1 Aftermath Analyst
+1 Tireless Tracker
+1 The Sentry, Golden Guardian
+1 Balefang the Unslayable

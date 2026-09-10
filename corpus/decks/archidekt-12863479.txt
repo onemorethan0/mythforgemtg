@@ -1,0 +1,80 @@
+# Archidekt — kairi clone control
+# source: archidekt:12863479
+# fetched: 2026-09-10
+# bracket: 3
+
+Commander:
+1 Kairi, the Swirling Sky
+
+Deck:
+1 Glasspool Mimic // Glasspool Shore
+1 Cackling Counterpart
+1 Silundi Vision // Silundi Isle
+1 Quasiduplicate
+1 Rite of Replication
+1 High Tide
+1 Sublime Epiphany
+1 Machine God's Effigy
+1 Frantic Search
+1 River's Rebuke
+1 Echo of Eons
+1 Sapphire Medallion
+1 Worn Powerstone
+1 War Room
+1 Season of Weaving
+1 Fellwar Stone
+1 Reliquary Tower
+1 Volatile Stormdrake
+1 Mystic Sanctuary
+1 Arcane Signet
+1 Thought Vessel
+1 Decanter of Endless Water
+1 Fated Infatuation
+1 Palladium Myr
+1 High Market
+1 Sol Ring
+1 Propaganda
+1 Temporal Manipulation
+1 Mass Manipulation
+30 Island
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Mind Stone
+1 Blatant Thievery
+1 Archmage's Charm
+1 Sink into Stupor // Soporific Springs
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Stubborn Denial
+1 Counterspell
+1 Lonely Sandbar
+1 Commandeer
+1 Reins of Power
+1 Memory Deluge
+1 Phyrexian Metamorph
+1 Myriad Landscape
+1 Slip Out the Back
+1 Negate
+1 Spectral Deluge
+1 Flood of Tears
+1 Solve the Equation
+1 Recall
+1 Bender's Waterskin
+1 Preordain
+1 Visions of Beyond
+1 Cryptic Command
+1 Aetherize
+1 Engulf the Shore
+1 Haughty Djinn
+1 Three Steps Ahead
+1 Thran Dynamo
+1 Coalition Relic
+1 Agent of Treachery
+1 Solemn Simulacrum
+1 Phantasmal Image
+1 Baral, Chief of Compliance
+1 Eluge, the Shoreless Sea
+1 See Double
+1 Thieving Skydiver
+1 Invoke the Winds
+1 Pensive Professor
+1 Shadow of the Second Sun

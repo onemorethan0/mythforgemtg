@@ -1,0 +1,74 @@
+# Archidekt — Said moggitud
+# source: archidekt:26192262
+# fetched: 2026-09-08
+
+Commander:
+1 The Great Goblin
+
+Deck:
+1 Bolg's Company
+1 Persist
+1 Zoyowa Lava-Tongue
+1 Dawn-Blessed Pennant
+1 Blasphemous Act
+1 Gristle Glutton
+1 Frogtosser Banneret
+1 Taurean Mauler
+1 Redcap Gutter-Dweller
+1 Skirk Prospector
+1 Sundering Eruption // Volcanic Fissure
+1 Gorbag of Minas Morgul
+1 Impulsive Pilferer
+1 Gempalm Incinerator
+1 Dragon Fodder
+1 Sourbread Auntie
+1 Krenko, Tin Street Kingpin
+1 Mogg War Marshal
+1 Boggart Trawler // Boggart Bog
+1 Orcish Medicine
+1 Goblin Matron
+1 Village Rites
+1 Rage into the Valley
+1 Night's Whisper
+1 Vampiric Rites
+1 Bloodsoaked Insight // Sanguine Morass
+1 Big Score
+1 Ghost Lantern // Bind Spirit
+1 Deadly Dispute
+1 Eclipsed Boggart
+1 Gathering Stone
+1 Honor the God-Pharaoh
+1 Mauhúr, Uruk-hai Captain
+1 Uglúk of the White Hand
+1 Unbury
+1 Grishnákh, Brash Instigator
+1 Shared Animosity
+1 Abrade
+1 Feed the Swarm
+1 Crude Bent Blade
+1 Goblin Plate Mail
+1 My Precious // Allure of Power
+1 Front Porch Sentries
+1 Ragged Short Spear
+1 Rush the Room
+1 Fearsome Goblin Pair
+1 Goblin-town Flunkies
+1 Gollum, Silent Slinker // Meager Meal
+1 Gundabad Opportunist
+1 Olog-hai Crusher
+1 Stony-Voiced Goblins
+1 Snowslope Hunter
+1 Go for the Throat
+1 Improvised Club
+1 Smite the Deathless
+1 Stir Up Trouble
+1 Inside Information
+1 Gnashing of Teeth
+1 Gathering of Darkness
+1 Tidings of War
+1 Smaug's Fury
+1 Burn, Burn, Tree and Fern
+1 Bilbo's Deadly Slice
+1 Mount Doom
+18 Mountain
+17 Swamp

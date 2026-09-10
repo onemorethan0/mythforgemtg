@@ -1,0 +1,90 @@
+# Archidekt — Kaalia - Heavean And Hell
+# source: archidekt:5963976
+# fetched: 2026-09-08
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Adarkar Valkyrie
+1 Reya Dawnbringer
+1 Wrath of God
+1 Damnation
+6 Plains
+1 Arcane Signet
+1 Boros Signet
+1 Commander's Sphere
+1 Sephara, Sky's Blade
+1 Blood Crypt
+1 Gisela, Blade of Goldnight
+1 Bloodstained Mire
+1 Serra's Emissary
+1 Drakuseth, Maw of Flames
+1 Phyrexian Arena
+1 Clifftop Retreat
+1 Windswept Heath
+1 City of Brass
+4 Mountain
+1 Drana and Linvala
+1 Command Tower
+1 Hellkite Tyrant
+1 Damn
+1 Path to Exile
+1 Anguished Unmaking
+1 Rakdos Signet
+1 Urborg, Tomb of Yawgmoth
+1 Talisman of Hierarchy
+1 Savai Triome
+1 Angel of Serenity
+1 Lavaspur Boots
+1 Brotherhood Regalia
+1 Reconnaissance
+1 Aurelia, the Warleader
+1 Karmic Guide
+1 Rune-Scarred Demon
+1 Firemane Commando
+1 Avacyn, Angel of Hope
+1 Steel Hellkite
+1 Read the Bones
+1 Liesa, Forgotten Archangel
+1 Sword of the Animist
+1 Rogue's Passage
+1 Deadly Rollick
+1 Burning-Rune Demon
+1 Grand Abolisher
+1 Inkshield
+1 Comeuppance
+1 Ancient Gold Dragon
+1 Reforge the Soul
+1 Sign in Blood
+1 Land Tax
+1 Underworld Connections
+1 Ritual of Soot
+1 Isolated Chapel
+1 Marsh Flats
+1 Dragon Mage
+1 Night's Whisper
+1 Dragonskull Summit
+1 Godless Shrine
+1 Sacred Foundry
+1 Painful Truths
+1 Sol Ring
+1 Flawless Maneuver
+1 Sensei's Divining Top
+1 War Room
+1 Chromatic Lantern
+1 Vampiric Tutor
+1 Magus of the Moat
+5 Swamp
+1 Orzhov Signet
+1 Ruinous Ultimatum
+1 Pyroblast
+1 Generous Gift
+1 Demonic Tutor
+1 Castle Locthwain
+1 Arid Mesa
+1 Minas Tirith
+1 Sunbaked Canyon
+1 Lightning Greaves
+1 Rakdos, Patron of Chaos
+1 Archfiend of Depravity

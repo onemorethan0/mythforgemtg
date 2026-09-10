@@ -1,0 +1,85 @@
+# Archidekt — Mass Polymorph Sydri
+# source: archidekt:24486133
+# fetched: 2026-09-02
+
+Commander:
+1 Sydri, Galvanic Genius
+
+Deck:
+1 Command Tower
+1 Arcane Signet
+1 Vault of Whispers
+1 Spire of Industry
+1 Razortide Bridge
+1 Goldmire Bridge
+1 Shorikai, Genesis Engine
+1 Skysovereign, Consul Flagship
+1 Weatherlight
+1 Despark
+1 Parhelion II
+1 Supreme Verdict
+1 The Indomitable
+1 Contaminated Landscape
+8 Swamp
+9 Island
+1 The Regalia
+1 Metalwork Colossus
+1 Mass Polymorph
+1 The Prydwen, Steel Flagship
+1 Valor's Flagship
+1 Triplicate Titan
+1 Phyrexian Triniform
+1 Darksteel Colossus
+1 Myr Battlesphere
+1 Thought Monitor
+1 Thoughtcast
+1 Thought Vessel
+1 Hedron Archive
+1 Uthros Research Craft
+1 Tezzeret, Agent of Bolas
+1 Tezzeret, Cruel Machinist
+1 Azorius Signet
+1 Bronze Guardian
+1 Counterspell
+1 Damn
+1 Dimir Signet
+1 Dispatch
+1 Emry, Lurker of the Loch
+1 Gilded Lotus
+1 Losheel, Clockwork Scholar
+1 Mind Stone
+1 Organic Extinction
+1 Orzhov Signet
+1 Stoic Rebuttal
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Thirst for Knowledge
+1 Thopter Spy Network
+1 Thran Dynamo
+1 Urza, Chief Artificer
+1 Void Rend
+1 Voyage Home
+1 Ancient Den
+1 Seat of the Synod
+1 Darksteel Citadel
+1 Buried Ruin
+1 Sol Ring
+1 Soul of New Phyrexia
+1 Salvation Engine
+1 Cyberdrive Awakener
+1 Kappa Cannoneer
+1 Mistvault Bridge
+1 Arcane Sanctum
+1 Talisman of Dominance
+1 Synthetic Destiny
+1 Darksteel Juggernaut
+8 Plains
+1 Foundry Inspector
+1 Panther Robot
+1 Illustrious Wanderglyph
+1 Sharuum the Hegemon
+1 Desynchronization
+1 Crystal Skull, Isu Spyglass
+1 Day of the Dragons
+1 Polymorph
+1 Etherium Sculptor

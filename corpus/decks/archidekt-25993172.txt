@@ -1,0 +1,97 @@
+# Archidekt — Max Abuse (budget)
+# source: archidekt:25993172
+# fetched: 2026-09-02
+
+Commander:
+1 Kalamax, the Stormsire
+
+Deck:
+1 Sigil Tracer
+1 Patron Wizard
+1 Flame of Anor
+1 Harmonic Prodigy
+1 Snap
+1 Krark, the Thumbless
+1 Galecaster Colossus
+1 Gush
+1 Collective Resistance
+1 Pongify
+1 Chomping Changeling
+1 Eternal Witness
+1 Return of the Wildspeaker
+1 Waterlogged Grove
+1 Veyran, Voice of Duality
+1 Mystic Confluence
+1 Lier, Disciple of the Drowned
+1 Cyber Conversion
+1 Rapid Hybridization
+1 Dreamroot Cascade
+1 Frantic Search
+1 Simic Charm
+1 Lumbering Worldwagon
+1 Dragonologist
+1 Flooded Grove
+1 Hunter's Insight
+1 Ashling's Command
+1 Archmage Emeritus
+1 Arcane Proxy
+1 Azami, Lady of Scrolls
+1 Planar Genesis
+1 Shivan Reef
+1 Survivors' Encampment
+1 Path of Ancestry
+1 Snapback
+1 Stormcatch Mentor
+1 Archaeomancer
+1 Frontier Bivouac
+1 Frostboil Snarl
+1 Cinder Glade
+1 Rootbound Crag
+1 Cascade Bluffs
+1 Escape Tunnel
+1 Prismari Command
+1 Sage of the Maze
+1 Bountiful Landscape
+1 Hinterland Harbor
+1 Decisive Denial
+1 Sulfur Falls
+1 Terramorphic Expanse
+1 Blink of an Eye
+1 Game Trail
+1 Embrace the Paradox
+1 Eureka Moment
+1 Evolving Wilds
+1 Goblin Electromancer
+1 Explosive Derailment
+1 Vibrant Cityscape
+1 Step Through
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Thirst for Identity
+1 Whiplash Trap
+1 Giantfall
+1 HULK SMASH!
+1 Holdout Settlement
+1 Prophetic Bolt
+1 Vineglimmer Snarl
+1 Slice in Twain
+1 Brutal Expulsion
+1 Command Tower
+1 Rushing River
+1 Whoosh!
+1 Savage Alliance
+1 Chemister's Insight
+1 Cultivator's Caravan
+5 Island
+1 Dependable Quinjet
+4 Forest
+1 Chaos Warp
+4 Mountain
+1 Veloheart Bike
+1 Flywheel Racer
+1 Cycle of Renewal
+1 Relic of Legends
+1 Auroral Procession
+1 Entish Restoration
+1 Harrow
+1 Roiling Regrowth
+1 Vedalken Aethermage

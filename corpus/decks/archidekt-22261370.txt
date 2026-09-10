@@ -1,0 +1,103 @@
+# Archidekt — Balatro Balatrez?
+# source: archidekt:22261370
+# fetched: 2026-09-04
+# bracket: 3
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Wizard's Staff
+1 Arcane Signet
+1 Sol Ring
+1 Kefka, Dancing Mad
+1 Essence Flux
+1 Megrim
+1 Harmonic Prodigy
+1 Conjurer's Closet
+1 Y'shtola Rhul
+1 Candlekeep Sage
+1 Black Waltz No. 3
+1 Ghostly Flicker
+1 Dauthi Voidwalker
+1 Kroxa, Titan of Death's Hunger
+1 Laughing Mad
+1 Run for Your Life
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Nekusar, the Mindrazer
+1 Garland, Knight of Cornelia // Chaos, the Endless
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Dark Ritual
+1 Ghostly Pilferer
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Frantic Search
+1 Rapid Hybridization
+1 Espers to Magicite
+1 Blur
+1 Relm's Sketching
+1 An Offer You Can't Refuse
+1 Blasphemous Act
+1 Izzet Signet
+1 Dimir Signet
+1 Rakdos Signet
+1 Insatiable Avarice
+1 Gamble
+1 Oversold Cemetery
+1 Expedition Map
+1 Seifer Almasy
+1 Talisman of Creativity
+1 Reliquary Tower
+1 Shivan Reef
+1 Sulfur Falls
+2 Mountain
+4 Swamp
+1 Blackcleave Cliffs
+1 Maestros Theater
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Command Tower
+1 Exotic Orchard
+1 Underground River
+1 Fetid Pools
+1 Bojuka Bog
+1 Nightscape Familiar
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Training Grounds
+1 Gogo, Master of Mimicry
+1 Teferi's Ageless Insight
+1 Wizard Class
+1 Norman Osborn // Green Goblin
+1 Tinybones, Pocket Nuisance
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Captain Howler, Sea Scourge
+1 Faithless Looting
+1 Abrade
+1 Chaos Warp
+1 Fire Magic
+1 Kardur, Doomscourge
+1 Dragonskull Summit
+1 Canyon Slough
+1 Sunken Hollow
+1 A.I.M. Labs
+1 Foreboding Ruins
+1 Evolving Wilds
+1 Stormcarved Coast
+1 Rakdos Carnarium
+1 Thriving Bluff
+1 Oscorp Industries
+3 Island
+1 Waste Not
+1 Niv-Mizzet, Parun
+1 Psychosis Crawler
+1 Tinybones, Bauble Burglar
+1 Crumbling Necropolis
+1 Solemn Simulacrum
+1 Geth's Grimoire
+1 Thought Vessel
+1 Iron Man, Armored Avenger
+1 Counterspell
+1 Arcane Denial
+1 Victimize
+1 Lightning Greaves
+1 Wishclaw Talisman

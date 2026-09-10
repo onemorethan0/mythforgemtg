@@ -1,0 +1,88 @@
+# Archidekt — elf guy
+# source: archidekt:25166332
+# fetched: 2026-09-01
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Mirkwood Pathmaker
+1 Elvenking's Harper
+1 Guardian of the Halls
+1 Silvan Reveler
+1 Thranduil's Company
+1 Wood Elves
+1 Woodland Weavemaster
+1 Elven Passage
+1 Llanowar Elves
+1 Imperious Perfect
+1 Maralen, Fae Ascendant
+1 Reclamation Sage
+1 Zameck Guildmage
+1 Morcant's Loyalist
+1 Aftermath Analyst
+1 Deepwood Denizen
+1 Greenhilt Trainee
+1 Haldir, Lórien Lieutenant
+1 Beast Within
+1 Frantic Search
+1 Harmonized Crescendo
+1 Thranduil's Decree
+1 Windswift Slice
+1 Confusticate and Bebother
+1 Mind's Dilation
+1 Tear Asunder
+1 Farseek
+1 Trystan's Command
+1 Through the Forest Gate
+1 Lluwen, Imperfect Naturalist
+1 Overwhelming Stampede
+1 Living Death
+1 My Precious // Allure of Power
+1 Flourishing Defenses
+1 Arcane Signet
+1 Command Tower
+1 Talisman of Curiosity
+1 Exotic Orchard
+1 Opulent Palace
+1 Hinterland Harbor
+1 Dreamroot Cascade
+1 Yavimaya Coast
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Foreboding Landscape
+1 Path of Ancestry
+7 Forest
+8 Island
+1 Abomination of Llanowar
+1 Elder Druid
+1 Eclipsed Elf
+1 Elrond, Moon-Reader
+1 Elrond of the White Council
+1 Ezuri, Claw of Progress
+1 Emil, Vastlands Roamer
+1 Elvish Pathcutter
+1 Formidable Speaker
+1 Elvish Archdruid
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Priest of Titania
+1 Devoted Druid
+1 Galadriel of Lothlórien
+1 Lathril, Blade of the Elves
+1 Elrond, Master of Healing
+1 Elrond, Lord of Rivendell
+1 Galadriel, Elven-Queen
+1 Tyvar, Jubilant Brawler
+1 Immaculate Magistrate
+1 Seeker of Skybreak
+1 Counterspell
+1 Raise the Palisade
+1 Negate
+1 Kindred Dominance
+1 Down in the Valley
+1 Sunken Hollow
+1 Temple of Malady
+1 Darkwater Catacombs
+1 Temple of Deceit
+1 Temple of Mystery
+7 Swamp

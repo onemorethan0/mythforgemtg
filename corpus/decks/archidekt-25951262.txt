@@ -1,0 +1,99 @@
+# Archidekt — Fallen Kingdom (Kenrith Voltron/Abilities only)
+# source: archidekt:25951262
+# fetched: 2026-09-01
+# bracket: 2
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Heartbeat of Spring
+11 Forest
+1 Plains
+1 Virtue of Strength // Garenbrig Growth
+1 Mana Reflection
+1 Mana Flare
+1 Mountain
+1 Swamp
+1 Island
+1 Doubling Cube
+1 Overabundance
+1 Mirari's Wake
+1 Dictate of Karametra
+1 Zendikar Resurgent
+1 Colossus Hammer
+1 Sword of the Animist
+1 Hammer of Nazahn
+1 Commander's Plate
+1 The Reaver Cleaver
+1 Swiftfoot Boots
+1 Darksteel Plate
+1 Loxodon Warhammer
+1 Mithril Coat
+1 Resurrection Orb
+1 The Key to the Vault
+1 Talisman of Progress
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Talisman of Impulse
+1 Talisman of Unity
+1 Azorius Signet
+1 Boros Signet
+1 Dimir Signet
+1 Golgari Signet
+1 Gruul Signet
+1 Izzet Signet
+1 Orzhov Signet
+1 Rakdos Signet
+1 Selesnya Signet
+1 Simic Signet
+1 Arcane Signet
+1 Talisman of Curiosity
+1 Talisman of Hierarchy
+1 Talisman of Resilience
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Tempt with Discovery
+1 Blackblade Reforged
+1 Path to Exile
+1 Gleaming Splendor
+1 Rampant Growth
+1 Shared Roots
+1 Beneath the Sands
+1 Tempting Contract
+1 Thunderherd Migration
+1 Harrow
+1 Cultivate
+1 Adarkar Wastes
+1 Battlefield Forge
+1 Brushland
+1 Caves of Koilos
+1 Karplusan Forest
+1 Llanowar Wastes
+1 Shivan Reef
+1 Sulfurous Springs
+1 Underground River
+1 Yavimaya Coast
+1 Cascade Bluffs
+1 Fetid Heath
+1 Fire-Lit Thicket
+1 Flooded Grove
+1 Graven Cairns
+1 Mystic Gate
+1 Rugged Prairie
+1 Sunken Ruins
+1 Twilight Mire
+1 Wooded Bastion
+1 Swords to Plowshares
+1 Deflecting Swat
+1 Untimely Malfunction
+1 Tamiyo's Safekeeping
+1 Erode
+1 Counterspell
+1 Generous Gift
+1 Beast Within
+1 Planar Portal
+1 Planar Bridge
+1 Chromatic Orrery
+1 Heartstone
+1 Scytheclaw

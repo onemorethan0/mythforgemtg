@@ -1,0 +1,109 @@
+# Archidekt — The World Revolving
+# source: archidekt:25909681
+# fetched: 2026-09-01
+# bracket: 1
+
+Commander:
+1 The Madcap Jester
+
+Deck:
+1 Deadeye Navigator
+1 Peer into the Abyss
+1 Sepulchral Primordial
+1 Jester's Cap
+1 Uba Mask
+1 Tasha's Hideous Laughter
+1 Praetor's Grasp
+1 Faces of the Past
+1 Bitter Ordeal
+1 Maskwood Nexus
+1 Leyline of Anticipation
+1 Reanimate
+1 Blatant Thievery
+1 Dack Fayden
+1 Archmage's Charm
+1 Ashnod's Altar
+1 Luxury Suite
+1 Morphic Pool
+1 Blood Crypt
+1 Steam Vents
+1 Watery Grave
+1 Prismatic Vista
+1 Sulfur Falls
+1 Riverglide Pathway // Lavaglide Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Blightstep Pathway // Searstep Pathway
+1 Urborg, Tomb of Yawgmoth
+1 Scalding Tarn
+1 Shipwreck Marsh
+1 Xander's Lounge
+1 Shivan Reef
+1 Command Tower
+1 Underground River
+1 Training Center
+1 Bloodstained Mire
+1 Polluted Delta
+1 Gloomlake Verge
+1 Blazemire Verge
+1 Riverpyre Verge
+1 Mountain
+1 Island
+1 Swamp
+1 Sulfurous Springs
+1 Talisman of Indulgence
+1 Talisman of Dominance
+1 Fellwar Stone
+1 Arcane Signet
+1 Talisman of Creativity
+1 Sol Ring
+1 Mana Drain
+1 Mana Sculpt
+1 Dark Ritual
+1 Seething Song
+1 Jeska's Will
+1 Mana Geyser
+1 Inner Fire
+1 Grim Monolith
+1 Mana Vault
+1 Chromatic Orrery
+1 Aetherize
+1 Counterspell
+1 Disallow
+1 Declaration of Naught
+1 Archaeomancer
+1 Blue Elemental Blast
+1 Red Elemental Blast
+1 Anchor to the Aether
+1 Sadistic Sacrament
+1 Extract
+1 Metamorphose
+1 Time Ebb
+1 Totally Lost
+1 Vanishment
+1 Stormfist Crusader
+1 Mystic Remora
+1 Kami of the Crescent Moon
+1 Demonic Tutor
+1 Grim Tutor
+1 Wishclaw Talisman
+1 Thran Dynamo
+1 Black Market Connections
+1 Tempting Contract
+1 Homunculus Horde
+1 Teferi's Puzzle Box
+1 Gix, Yawgmoth Praetor
+1 Narset's Reversal
+1 Faerie Mastermind
+1 Memory Lapse
+1 Reliquary Tower
+1 Maze of Ith
+1 Badlands
+1 Underground Sea
+1 Volcanic Island
+1 Fishing Gear
+1 Spider-Sense
+1 Return the Favor
+1 Chromatic Lantern
+1 Lingering Tormentor
+1 Impact Tremors
+1 Reckless Fireweaver

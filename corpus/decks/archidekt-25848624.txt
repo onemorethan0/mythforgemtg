@@ -1,0 +1,84 @@
+# Archidekt — 1
+# source: archidekt:25848624
+# fetched: 2026-09-03
+
+Commander:
+1 Klauth, Unrivaled Ancient
+
+Deck:
+1 Arcane Signet
+1 Atarka, World Render
+1 Beast Within
+1 Blossoming Defense
+1 Broken Wings
+1 Chaos Warp
+1 Cinder Glade
+1 Clan Defiance
+1 Coalition Relic
+1 Command Tower
+1 Dragon Tempest
+1 Dragon's Hoard
+1 Dragonkin Berserker
+1 Dragonspeaker Shaman
+1 Elvish Mystic
+1 Elvish Spirit Guide
+1 Emerald Medallion
+1 Explosive Derailment
+1 Fiery Annihilation
+1 Fires of Yavimaya
+13 Forest
+1 Frontier Siege
+1 Gamble
+1 Game Trail
+1 Garruk's Uprising
+1 Gift of the Viper
+1 Gilded Lotus
+1 Glimpse the Impossible
+1 Goldspan Dragon
+1 Harmonize
+1 Hellkite Tyrant
+1 Horrific Assault
+1 Hunter's Insight
+1 Kessig Wolf Run
+1 Kodama's Reach
+1 Lathliss, Dragon Queen
+1 Llanowar Elves
+1 Magda, the Hoardmaster
+1 Magmaquake
+1 Malevolent Rumble
+1 Meltdown
+1 Mind Stone
+13 Mountain
+1 Nature's Rhythm
+1 Nightshade Dryad
+1 Path of Annihilation
+1 Preposterous Proportions
+1 Primal Might
+1 Professional Face-Breaker
+1 Rampant Growth
+1 Return of the Wildspeaker
+1 Return to Nature
+1 Rite of the Dragoncaller
+1 Sakura-Tribe Elder
+1 Savage Ventmaw
+1 Scourge of Valkas
+1 Shamanic Revelation
+1 Siege Smash
+1 Snakeskin Veil
+1 Sol Ring
+1 Solar Transformer
+1 Swiftfoot Boots
+1 Sylvan Safekeeper
+1 Talisman of Impulse
+1 Terror of the Peaks
+1 Thrakkus the Butcher
+1 Thrill of Possibility
+1 Thundermaw Hellkite
+1 Trash the Town
+1 Vandalblast
+1 Lavaspur Boots
+1 Arbor Elf
+1 Rionya, Fire Dancer
+1 Manaform Hellkite
+1 Fyndhorn Elves
+1 Combat Celebrant

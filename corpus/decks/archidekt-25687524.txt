@@ -1,0 +1,84 @@
+# Archidekt — Gotta Go Fast
+# source: archidekt:25687524
+# fetched: 2026-09-09
+# bracket: 2
+
+Commander:
+1 Sonic the Hedgehog
+
+Deck:
+1 Blasphemous Act
+1 Aurelia, the Warleader
+1 Thundering Raiju
+1 Herald of Secret Streams
+1 Loyal Apprentice
+1 Amy Rose
+1 Anger
+1 Guardian of Faith
+1 Dovin's Veto
+1 Negate
+1 Damning Verdict
+1 Winged Hive Tyrant
+1 Selfless Squire
+1 Errant and Giada
+1 Plumecreed Escort
+1 Rising of the Day
+1 Ponder
+1 Pondering Mage
+1 Brainstorm
+1 Professional Face-Breaker
+1 The Wandering Rescuer
+1 Arthur, Marigold Knight
+1 Rogue's Passage
+1 Frostcliff Siege
+1 Adult Gold Dragon
+1 Hellrider
+1 Big Score
+1 Akroma, Angel of Wrath
+9 Island
+9 Mountain
+1 Counterspell
+1 Unbreakable Formation
+1 Biorganic Carapace
+1 Soul Warden
+1 Wave Goodbye
+1 Laelia, the Blade Reforged
+1 Sol Ring
+1 Aurelia, the Law Above
+1 Stormcarved Coast
+1 Knuckles the Echidna
+1 Bident of Thassa
+1 Kilo, Apogee Mind
+1 Academy Manufactor
+1 Arcane Signet
+1 The Fire Crystal
+1 Exotic Orchard
+1 Path to Exile
+1 Izzet Signet
+1 Thought Vessel
+1 Malcolm, Alluring Scoundrel
+1 Cathar Commando
+1 Command Tower
+1 Swords to Plowshares
+1 Mystic Monastery
+1 Glacial Fortress
+1 Shivan Reef
+1 Battlefield Forge
+1 Lightning Greaves
+1 Talisman of Progress
+1 Talisman of Creativity
+1 Clifftop Retreat
+1 Sulfur Falls
+1 Talisman of Conviction
+1 Swiftfoot Boots
+1 Fellwar Stone
+9 Plains
+1 Azorius Signet
+1 Boros Signet
+1 Unexpected Windfall
+1 Evolving Wilds
+1 Urabrask the Hidden
+1 Preordain
+1 Arcane Denial
+1 Vandalblast
+1 Soul's Attendant

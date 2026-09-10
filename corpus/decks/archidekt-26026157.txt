@@ -1,0 +1,87 @@
+# Archidekt — Kitty
+# source: archidekt:26026157
+# fetched: 2026-09-03
+
+Commander:
+1 Lurrus of the Dream-Den
+
+Deck:
+1 Academy Rector
+1 Ad Nauseam
+1 Aetherflux Reservoir
+1 Arcane Signet
+1 Auriok Salvagers
+1 Barren Glory
+1 Beseech the Mirror
+1 Beseech the Queen
+1 Black Sun's Zenith
+1 Blood Pet
+1 Bloodstained Mire
+1 Bubbling Muck
+1 Cabal Coffers
+1 Cabal Ritual
+1 Candelabra of Tawnos
+1 Cathar Commando
+1 Children of Korlis
+1 Dark Petition
+1 Culling the Weak
+1 Dark Ritual
+1 Defense Grid
+1 Demonic Tutor
+1 Expedition Map
+1 Flooded Strand
+1 Gauntlet of Power
+1 Grim Monolith
+1 Helm of Awakening
+1 Imp's Mischief
+1 Jeweled Amulet
+1 Kaervek's Spite
+1 Enlightened Tutor
+1 Entomb
+1 Lich
+1 Lion's Eye Diamond
+1 Library of Leng
+1 Manifold Key
+1 Marsh Flats
+1 Memory Jar
+1 Mirage Mirror
+1 Necropotence
+1 Necrotic Ooze
+1 Night's Whisper
+1 Nirkana Revenant
+1 Peer into the Abyss
+1 Phyrexian Devourer
+2 Plains
+1 Platinum Angel
+1 Polluted Delta
+1 Prismatic Vista
+1 Putrid Imp
+1 Scroll Rack
+1 Shadowy Backstreet
+1 Snowfield Sinkhole
+1 Sol Ring
+1 Lotus Petal
+1 Mana Vault
+1 Sensei's Divining Top
+1 Silence
+1 Skullclamp
+1 Sacrifice
+1 Songs of the Damned
+1 Sunbeam Spellbomb
+1 Sunlit Marsh
+20 Swamp
+1 Tendrils of Agony
+1 Torgaar, Famine Incarnate
+1 Unburial Rites
+1 Urborg, Tomb of Yawgmoth
+1 Verdant Catacombs
+1 Voltaic Key
+1 Weathered Wayfarer
+1 Wayfarer's Bauble
+1 Windswept Heath
+1 Yawgmoth's Will
+1 Mox Opal
+1 Chrome Mox
+1 Land Tax
+1 Walking Ballista
+1 Vampiric Tutor

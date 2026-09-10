@@ -1,0 +1,81 @@
+# Archidekt — My X Is Crazy
+# source: archidekt:11571248
+# fetched: 2026-09-02
+# bracket: 2
+
+Commander:
+1 Zaxara, the Exemplary
+
+Deck:
+1 Pull from Tomorrow
+1 Hydra Broodmaster
+1 Drown in Dreams
+1 Invigorating Surge
+1 Cathedral Acolyte
+1 Unbound Flourishing
+1 Lattice Library
+1 Owlin Spiralmancer
+1 Managorger Hydra
+1 Heroes' Bane
+1 Cultivate
+1 Command Tower
+1 Simic Signet
+1 Vorel of the Hull Clade
+1 Goldvein Hydra
+1 Herald of Secret Streams
+1 Branching Evolution
+1 Grakmaw, Skyclave Ravager
+1 Warden of the Grove
+1 Sol Ring
+1 Temperamental Oozewagg
+1 Kalonian Hydra
+1 Littjara Mirrorlake
+1 Slice from the Shadows
+1 Woodland Cemetery
+1 Hungering Hydra
+1 Nessian Wilds Ravager
+1 Master Biomancer
+1 Whiptongue Hydra
+1 Genesis Hydra
+1 Curse of the Swine
+1 Fog
+1 Tear Asunder
+1 Gargos, Vicious Watcher
+1 Steelbane Hydra
+1 Garruk's Uprising
+11 Island
+11 Forest
+1 Hydroid Krasis
+1 Simic Growth Chamber
+1 Oran-Rief, the Vastwood
+1 Aetherize
+1 Rampant Growth
+1 Night's Whisper
+10 Swamp
+1 Stonecoil Serpent
+1 Procrastinate
+1 Animist's Awakening
+1 Mind into Matter
+1 Expansion Algorithm
+1 Nev, the Practical Dean
+1 Syncopate
+1 Nyxborn Hydra
+1 Prosperity
+1 Profane Command
+1 Lifeblood Hydra
+1 Exponential Growth
+1 Zimone, Infinite Analyst
+1 Adrix and Nev, Twincasters
+1 Brass Infiniscope
+1 Topiary Lecturer
+1 Thassa's Intervention
+1 The Eternity Elevator
+1 Open into Wonder
+1 Nexos
+1 Pterafractyl
+1 Mind Spring
+1 Condescend
+1 Ascendant Acolyte
+1 Geometer's Arthropod
+1 Sultai Devotee
+1 Mana Reflection

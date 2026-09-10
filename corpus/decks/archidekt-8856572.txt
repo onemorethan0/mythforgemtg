@@ -1,0 +1,90 @@
+# Archidekt — The Brotherhood
+# source: archidekt:8856572
+# fetched: 2026-09-01
+
+Commander:
+1 Ezio Auditore da Firenze
+
+Deck:
+1 Senu, Keen-Eyed Protector
+1 Achilles Davenport
+1 Izzet Guildgate
+1 Kassandra, Eagle Bearer
+1 Roshan, Hidden Magister
+1 Soured Springs
+4 Mountain
+1 Diabolic Tutor
+1 Arbaaz Mir
+1 Rooftop Bypass
+1 Olivia, Opulent Outlaw
+1 Conduit Pylons
+1 Simic Guildgate
+1 Reconstruct History
+1 Sword of Light and Shadow
+1 Aya of Alexandria
+1 Festering Gulch
+1 Queen Marchesa
+1 Ratonhnhaké꞉ton
+1 Terminate
+4 Island
+1 Lush Oasis
+1 Ramses, Assassin Lord
+1 Bristling Backwoods
+1 Desynchronization
+1 Coastal Piracy
+1 Orzhov Guildgate
+1 Lonely Arroyo
+1 Rakdos Guildgate
+1 Vanquisher's Banner
+1 Jagged Barrens
+1 Shay Cormac
+1 Cover of Darkness
+1 Jacob Frye
+1 Forlorn Flats
+1 Zendikar Resurgent
+1 Reconnaissance
+1 Assassin Gauntlet
+1 Boros Guildgate
+1 Mortify
+1 Selesnya Guildgate
+1 Macabre Waltz
+1 What Must Be Done
+1 Viewpoint Synchronization
+1 Ruinous Ultimatum
+1 The Spear of Leonidas
+1 Arcane Signet
+1 Haystack
+1 Depopulate
+1 Surtr, Fiery Jötun
+1 Chromatic Lantern
+1 Sword of Feast and Famine
+1 Sol Ring
+1 Excalibur, Sword of Eden
+1 Crystal Skull, Isu Spyglass
+1 Layla Hassan
+1 The Capitoline Triad
+1 Cleopatra, Exiled Pharaoh
+1 Mari, the Killing Quill
+1 Desmond Miles
+1 Evie Frye
+1 Lydia Frye
+1 Eivor, Battle-Ready
+1 Ezio, Brash Novice
+1 Basim Ibn Ishaq
+1 Ezio, Blade of Vengeance
+1 Bayek of Siwa
+1 Gruul Guildgate
+1 Bleeding Effect
+1 Arno Dorian
+1 Propaganda
+4 Swamp
+1 Golgari Guildgate
+1 Abraded Bluffs
+4 Forest
+1 Assassin's Trophy
+1 Eroded Canyon
+4 Plains
+1 Abstergo Entertainment
+1 Azorius Guildgate
+1 Demonic Tutor
+1 Vampiric Tutor

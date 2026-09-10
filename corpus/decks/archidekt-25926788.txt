@@ -1,0 +1,96 @@
+# Archidekt — Crabs
+# source: archidekt:25926788
+# fetched: 2026-09-02
+
+Commander:
+1 Homer, the Hermit
+
+Deck:
+1 Gandalf, Shadow's Foe
+1 Maskwood Nexus
+1 Dark Depths
+1 Thespian's Stage
+1 Glacial Chasm
+1 Maze of Ith
+1 Flare of Cultivation
+1 Shared Roots
+1 Scapeshift
+1 Traverse the Ulvenwald
+1 Jace's Archivist
+1 Reanimate
+1 Deathsprout
+1 Oppression
+1 Nature's Lore
+1 Hedron Crab
+1 Rampant Growth
+1 The Gitrog Monster
+1 Changeling Wayfinder
+1 Three Visits
+1 Studious First-Year // Rampant Growth
+1 Farseek
+1 Cultivate
+1 Kodama's Reach
+1 Exploration
+1 Burgeoning
+1 Memory Erosion
+1 Loot, Exuberant Explorer
+1 Necromancy
+1 Animate Dead
+1 Ancient Greenwarden
+1 Bottomless Pit
+1 Mesmeric Orb
+1 Life from the Loam
+1 Purple Pentapus
+1 Black Market Connections
+1 Muldrotha, the Gravetide
+1 Ramunap Excavator
+1 Icetill Explorer
+1 Virtue of Persistence // Locthwain Scorn
+1 Tatyova, Benthic Druid
+1 Grave Researcher // Reanimate
+1 Aesi, Tyrant of Gyre Strait
+1 Windfall
+1 Sinister Starfish
+1 Sigiled Starfish
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Sink into Stupor // Soporific Springs
+1 Waterlogged Teachings // Inundated Archive
+1 Fell the Profane // Fell Mire
+1 Vampiric Tutor
+1 Didn't Say Please
+1 Singularity Rupture
+1 Chomping Changeling
+1 Thought Collapse
+1 Drown in the Loch
+1 Constant Mists
+1 Abyssal Harvester
+1 Coffin Queen
+1 Dimir Doppelganger
+1 Ruin Crab
+1 Uchuulon
+1 The Wise Mothman
+1 Hedge Shredder
+1 Iceberg Cancrix
+1 Mirelurk Queen
+1 Bruvac the Grandiloquent
+3 Snow-Covered Island
+1 Marsh Flats
+1 Polluted Delta
+1 Wooded Foothills
+1 Flooded Strand
+1 Fabled Passage
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Prismatic Vista
+1 Misty Rainforest
+1 Windswept Heath
+1 Bloodstained Mire
+1 Oboro, Palace in the Clouds
+1 Boseiju, Who Endures
+1 Takenuma, Abandoned Mire
+7 Snow-Covered Forest
+4 Snow-Covered Swamp
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya, Cradle of Growth

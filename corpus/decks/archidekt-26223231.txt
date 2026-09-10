@@ -1,0 +1,81 @@
+# Archidekt — Tifa Landfall
+# source: archidekt:26223231
+# fetched: 2026-09-10
+
+Commander:
+1 Tifa Lockhart
+
+Deck:
+1 Traveling Chocobo
+1 Heroic Intervention
+1 Sazh Katzroy
+1 Sazh's Chocobo
+1 Snakeskin Veil
+1 Azusa, Lost but Seeking
+1 Sword of the Animist
+1 Rampant Growth
+1 Mightform Harmonizer
+1 Cultivate
+1 Tireless Provisioner
+1 Kodama's Reach
+1 Swiftfoot Boots
+1 Explore
+1 Nature's Lore
+1 Icetill Explorer
+1 Ancient Greenwarden
+1 Mossborn Hydra
+1 Springbloom Druid
+1 Summon: Titan
+1 Forgotten Ancient
+1 Ride the Shoopuf
+1 Claim the Kingdom
+1 Prishe's Wanderings
+1 Archdruid's Charm
+1 Blossoming Defense
+1 Blade of Selves
+1 Origin of Metalbending
+1 Strength of Will
+1 Heritage Reclamation
+1 Three Visits
+1 Chocobo Kick
+1 Planar Engineering
+1 Arcane Signet
+1 Twitching Doll
+1 Ordeal of Nylea
+1 Sol Ring
+1 Evolving Wilds
+1 Felling Blow
+1 Ouroboroid
+1 Scale the Heights
+1 Tale of Katara and Toph
+1 Tribute to the World Tree
+1 Fertilid's Favor
+1 Vibrant Cityscape
+1 Quilled Greatwurm
+1 Command Beacon
+1 Escape Tunnel
+1 Riveteers Overlook
+1 Terramorphic Expanse
+1 Emerald Medallion
+1 The Earth Crystal
+1 Hardened Scales
+1 Ozolith, the Shattered Spire
+1 Nature's Claim
+1 Bristly Bill, Spine Sower
+1 Gaea's Gift
+1 Nissa, Voice of Zendikar
+27 Forest
+1 Warden of the Grove
+1 Hunter's Insight
+1 Lifestream's Blessing
+1 Rogue's Passage
+1 Guardian Augmenter
+1 Scythecat Cub
+1 Defiler of Vigor
+1 Birds of Paradise
+1 Terrasymbiosis
+1 Kami of Whispered Hopes
+1 Innkeeper's Talent
+1 Ram Through
+1 Reclamation Sage
+1 Fabled Passage

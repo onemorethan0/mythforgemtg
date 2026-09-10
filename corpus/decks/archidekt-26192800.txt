@@ -1,0 +1,76 @@
+# Archidekt — vanilla’s
+# source: archidekt:26192800
+# fetched: 2026-09-08
+
+Commander:
+1 Yargle and Multani
+
+Deck:
+1 Giant Cockroach
+1 Yargle, Glutton of Urborg
+1 Alpine Grizzly
+1 Terrian, World Tyrant
+1 Kalakscion, Hunger Tyrant
+1 Bear Cub
+1 Ancient Brontodon
+1 Balduvian Bears
+1 Dune Beetle
+1 Elvish Warrior
+1 Forest Bear
+1 Gigantosaurus
+1 Golgari Longlegs
+1 Grizzly Bears
+1 Headless Horseman
+1 Icehide Golem
+1 Kalonian Tusker
+1 Sliver Construct
+1 Memnite
+1 Leatherback Baloth
+1 Metallic Sliver
+1 Muck Rats
+1 Norwood Ranger
+1 Nyxborn Colossus
+1 Panther Warriors
+1 Ordinary Bear
+1 Orazca Frillback
+1 Phyrexian Walker
+1 Quilled Slagwurm
+1 Quakestrider Ceratops
+1 Wandering Tombshell
+1 Skeletal Crocodile
+1 Silverback Ape
+1 Skeletal Snake
+1 Garruk's Gorehorn
+1 Terrain Elemental
+1 Swordwise Centaur
+1 Trained Jackal
+1 Vorstclaw
+1 Willow Elf
+1 Woodland Druid
+1 Rampant Growth
+8 Snow-Covered Swamp
+25 Snow-Covered Forest
+1 Wayfarer's Bauble
+1 Sol Ring
+1 Command Tower
+1 Damnation
+1 Dark Confidant
+1 Corrupt
+1 Dauthi Voidwalker
+1 Doom Blade
+1 Harmonize
+1 Oxidize
+1 Recollect
+1 Reliquary Tower
+1 Sakura-Tribe Elder
+1 Fyndhorn Elves
+1 Harrow
+1 Sign in Blood
+1 Giant Growth
+1 Infest
+1 Utopia Sprawl
+1 Nameless Inversion
+1 Putrefy
+1 Terror
+1 Urza's Saga
+1 Zombify

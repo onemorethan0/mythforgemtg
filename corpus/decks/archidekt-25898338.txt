@@ -1,0 +1,98 @@
+# Archidekt — Esper Zombies 2
+# source: archidekt:25898338
+# fetched: 2026-09-02
+
+Commander:
+1 Varina, Lich Queen
+
+Deck:
+1 Tainted Adversary
+1 Razorlash Transmogrant
+1 Grim Hireling
+1 Gathering Stone
+1 Graveborn Muse
+1 Zul Ashur, Lich Lord
+1 Retrofitted Transmogrant
+1 Cyclonic Rift
+1 Nykthos Paragon
+1 Patriarch's Bidding
+1 Embalmed Ascendant
+1 Undead Alchemist
+1 Wilhelt, the Rotcleaver
+1 Glory
+1 Wayward Servant
+1 Desolate Mire
+1 Drowned Catacomb
+1 Grave Titan
+1 Champion of the Perished
+1 Exotic Orchard
+1 Hashaton, Scarab's Fist
+1 Hengegate Pathway // Mistgate Pathway
+2 Island
+1 Isolated Chapel
+1 Knowledge Is Power
+1 Plains
+1 Raffine's Tower
+1 Rooftop Storm
+1 Rot Hulk
+1 Sol Ring
+1 Sunken Hollow
+1 Bone Miser
+1 Endless Ranks of the Dead
+1 Kindred Discovery
+1 Fell the Profane // Fell Mire
+1 City of Brass
+1 Mana Confluence
+1 Godless Shrine
+1 Reliquary Tower
+1 Dawn's Truce
+9 Swamp
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 An Offer You Can't Refuse
+1 Arcane Sanctum
+1 Arcane Signet
+1 Bloodline Bidding
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caves of Koilos
+1 Cryptbreaker
+1 Cryptcaller Chariot
+1 Damn
+1 Fetid Heath
+1 Mikaeus, the Unhallowed
+1 Mystic Gate
+1 Noxious Ghoul
+1 Temmet, Naktamun's Will
+1 Terramorphic Expanse
+1 Murderous Rider // Swift End
+1 Underground River
+1 Watery Grave
+1 Wonder
+1 Raise the Palisade
+1 Wand of Orcus
+1 Containment Construct
+1 Counterspell
+1 Path of Ancestry
+1 Army of the Damned
+1 Silversmote Ghoul
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Sink into Stupor // Soporific Springs
+1 Jadar, Ghoulcaller of Nephalia
+1 Entomb
+1 Command Tower
+1 Carrion Feeder
+1 Corpse Knight
+1 Undead Augur
+1 Diregraf Captain
+1 Wizened Mentor
+1 Diregraf Colossus
+1 Undead Warchief
+1 Renewed Solidarity
+1 Zombie Apocalypse
+1 Field of the Dead
+1 Village Rites
+1 Black Market Connections
+1 Gravecrawler
+1 Relentless Dead
+1 Apprentice Necromancer
+1 Foulmire Knight // Profane Insight
+1 Archghoul of Thraben

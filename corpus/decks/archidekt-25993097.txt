@@ -1,0 +1,85 @@
+# Archidekt — Marcile and the winged lion
+# source: archidekt:25993097
+# fetched: 2026-09-02
+# bracket: 4
+
+Commander:
+1 Inalla, Archmage Ritualist
+
+Deck:
+1 Mindcrank
+1 Warlock Class
+1 Slave of Bolas
+1 Black Mage's Rod
+1 Viscera Seer
+1 Gathering Stone
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Lim-Dûl the Necromancer
+1 Stormcatch Mentor
+1 Cornered by Black Mages
+1 Duress
+1 Urborg Uprising
+1 Bogslither's Embrace
+1 Necromantic Selection
+1 Doom Blade
+1 Noggle Hedge-Mage
+1 Vivi Ornitier
+1 Sparkmage Apprentice
+1 Teach by Example
+1 Alania, Divergent Storm
+1 Izzet Chronarch
+1 Balmor, Battlemage Captain
+1 Wee Dragonauts
+1 Expressive Iteration
+1 Temporal Mastery
+1 Talrand, Sky Summoner
+1 Izzet Charm
+1 Adaptive Training Post
+1 Merchant of Secrets
+1 Irma, Part-Time Mutant
+1 Cloudkin Seer
+1 Mind's Desire
+1 Karn's Temporal Sundering
+1 Vedalken Dismisser
+1 Archaeomancer
+1 Inspired Sprite
+1 Thrill of Possibility
+1 Kitsune's Technique
+1 Curate
+1 Cyclonic Rift
+1 Devastation Tide
+1 Stolen Identity
+1 Telling Time
+1 Mana Leak
+1 Ravenform
+1 Sage's Dousing
+1 Condescend
+1 Artist's Talent
+1 Alania's Pathmaker
+1 Erebor Flamesmith
+1 Queen Brahne
+1 Firebrand Archer
+1 Opt
+1 Spell Shrivel
+1 Guttersnipe
+1 Boiling Earth
+1 Coruscation Mage
+1 Grapeshot
+1 Mizzix's Mastery
+1 Cathartic Adept
+1 Volcanic Vision
+1 Mana Geyser
+1 Battle Hymn
+1 Wild Ricochet
+1 Twinferno
+1 Seething Song
+1 Reiterate
+1 Unclaimed Territory
+1 Temple of Epiphany
+1 Sulfur Falls
+1 Baron, Airship Kingdom
+1 Swiftwater Cliffs
+6 Swamp
+10 Mountain
+10 Island
+1 Desperate Ritual

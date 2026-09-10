@@ -1,0 +1,103 @@
+# Archidekt — Arty Myr - Ms. Bumbleflower
+# source: archidekt:17382004
+# fetched: 2026-09-08
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Path of Ancestry
+1 Pongify
+1 Nature's Lore
+1 Sejiri Shelter // Sejiri Glacier
+1 Snap
+1 Wilderness Reclamation
+1 Rejuvenating Springs
+1 Get Lost
+1 Seaside Citadel
+1 Esper Sentinel
+1 Lavinia, Foil to Conspiracy
+1 Wavebreak Hippocamp
+1 Pollywog Prodigy
+1 Peerless Recycling
+1 Brainstorm
+1 Into the Flood Maw
+1 Opt
+1 Dreamtide Whale
+1 Cosmogrand Zenith
+1 Reliquary Tower
+1 Uthros Psionicist
+1 Consult the Star Charts
+1 Yavimaya Coast
+1 Farseek
+1 Silkguard
+2 Plains
+3 Forest
+1 Mishra's Bauble
+1 Consider
+1 Bristly Bill, Spine Sower
+1 Noble Hierarch
+1 Borne Upon a Wind
+1 Sublime Epiphany
+1 Quicken
+1 Bloom Tender
+1 Gifts Ungiven
+1 Swords to Plowshares
+1 Path to Exile
+1 Nature's Claim
+1 Loran of the Third Path
+1 Wear Down
+1 Inspiring Call
+3 Island
+1 Monk Class
+1 Hinterland Harbor
+1 Ice-Fang Coatl
+1 Jolrael, Mwonvuli Recluse
+1 Ledger Shredder
+1 Command Tower
+1 Gitaxian Probe
+1 Flooded Strand
+1 Frantic Search
+1 Misty Rainforest
+1 Glacial Fortress
+1 Hardened Scales
+1 Sunpetal Grove
+1 On the Trail
+1 Urza's Bauble
+1 Hallowed Fountain
+1 Windswept Heath
+1 Hullbreaker Horror
+1 Three Visits
+1 Temple Garden
+1 Sea of Clouds
+1 Spara's Headquarters
+1 Whitemane Lion
+1 Avacyn's Pilgrim
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Birds of Paradise
+1 Bountiful Promenade
+1 Breeding Pool
+1 Noxious Revival
+1 An Offer You Can't Refuse
+1 Generous Gift
+1 Arcane Signet
+1 Sol Ring
+1 Fellwar Stone
+1 Faeburrow Elder
+1 Cathar Commando
+1 Exotic Orchard
+1 Dreamroot Cascade
+1 Llanowar Elves
+1 Preordain
+1 Multiversal Passage
+1 Rivendell
+1 Brushland
+1 Overgrown Farmland
+1 Growth Spiral
+1 Tezzeret's Gambit
+1 Herald of Secret Streams
+1 Enter the Avatar State
+1 Ponder
+1 Dusk Legion Duelist
+1 Loki, God of Mischief
+1 Alphinaud Leveilleur

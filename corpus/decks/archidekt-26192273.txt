@@ -1,0 +1,72 @@
+# Archidekt — mono blue
+# source: archidekt:26192273
+# fetched: 2026-09-08
+
+Commander:
+1 Talrand, Sky Summoner
+
+Deck:
+1 Counterspell
+1 Disruption Protocol
+1 Teferi, Master of Time
+1 The Mechanist, Aerial Artisan
+1 Negate
+1 Spy Network
+1 Dismiss
+1 Disperse
+1 Downpour
+1 Spell Pierce
+1 Annul
+1 Cancel
+1 Wild Unraveling
+1 Seal of Removal
+1 Thing in the Ice // Awoken Horror
+1 Syncopate
+1 Mister Fantastic, Reed Richards
+1 Divination
+1 Sol Ring
+1 Tempest Djinn
+1 Meekstone
+1 Confounding Riddle
+1 Eluge, the Shoreless Sea
+1 Jin-Gitaxias, Core Augur
+1 Expropriate
+1 Desculpting Blast
+1 Jin-Gitaxias, Progress Tyrant
+1 Essence Capture
+1 Essence Scatter
+1 Contact Other Plane
+1 Pongify
+1 Kraken's Eye
+1 Tezzeret, Artifice Master
+1 Depths of Desire
+1 Kaito, Cunning Infiltrator
+1 Stock Up
+1 Tolarian Terror
+1 Navigator's Ruin
+1 Tezzeret's Gambit
+1 The Magic Mirror
+1 Recall
+1 Curse of the Swine
+1 Switcheroo
+1 Textbook Tabulator
+1 Elrond, Moon-Reader
+1 Domineer
+1 No Escape
+1 Quick Study
+1 Augur of Bolas
+1 Witness Protection
+1 Spectral Interference
+1 Anticognition
+1 Octavia, Living Thesis
+1 Guile
+1 Fatespinner
+1 We Say Thee Nay!
+1 Confusticate and Bebother
+1 Saw It Coming
+1 The Unagi of Kyoshi Island
+1 Echo, Perceptive Prodigy
+1 Repulse
+1 Ember Island Production
+1 Bender's Waterskin
+36 Island

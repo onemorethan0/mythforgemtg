@@ -1,0 +1,102 @@
+# Archidekt — b3 tayam
+# source: archidekt:26026216
+# fetched: 2026-09-03
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Arcane Signet
+1 Mana Confluence
+1 Cryptolith Rite
+1 Moonshadow
+1 Rishkar, Peema Renegade
+1 Orcish Bowmasters
+1 Carrion Feeder
+1 Marsh Flats
+1 Marvin, Murderous Mimic
+1 Exotic Orchard
+1 Delighted Halfling
+1 Bloom Tender
+1 Deathcap Glade
+1 Swamp
+1 Icatian Moneychanger
+1 Command Tower
+1 Avacyn's Pilgrim
+1 Yavimaya, Cradle of Growth
+1 Path of Ancestry
+1 Gaea's Cradle
+1 Young Wolf
+1 Woodland Cemetery
+1 Temple Garden
+1 Bojuka Bog
+1 Overgrown Tomb
+1 Windswept Heath
+1 Birds of Paradise
+1 Swords to Plowshares
+1 Strangleroot Geist
+1 Slumbering Trudge
+1 Plains
+1 Plains
+1 Indatha Triome
+1 Forest
+1 Gavony Township
+1 Ashnod's Altar
+1 Scrubland
+1 Bayou
+1 Undergrowth Stadium
+1 Elves of Deep Shadow
+1 Godless Shrine
+1 Urborg, Tomb of Yawgmoth
+1 Sol Ring
+1 Tyvar, Jubilant Brawler
+1 Boseiju, Who Endures
+1 Canopy Vista
+1 Verdant Catacombs
+1 Knight of the Reliquary
+1 Weathered Wayfarer
+1 Phyrexian Tower
+1 Faeburrow Elder
+1 Enduring Vitality
+1 Archon of Emeria
+1 Emperor of Bones
+1 Wall of Roots
+1 Bartolomé del Presidio
+1 Savannah
+1 Bountiful Promenade
+1 Shang-Chi, Master of Kung Fu
+1 Ranger-Captain of Eos
+1 Esper Sentinel
+1 Sylvan Safekeeper
+1 City of Brass
+1 Chord of Calling
+1 Badgermole Cub
+1 Circle of Dreams Druid
+1 Patrolling Peacemaker
+1 Llanowar Elves
+1 Aven Interrupter
+1 Gemstone Caverns
+1 Incubation Druid
+1 Hammerhead, Maggia Boss
+1 Earthcraft
+1 Green Sun's Zenith
+1 Recruiter of the Guard
+1 Fyndhorn Elves
+1 Deathrite Shaman
+1 Talon Gates of Madara
+1 Dryad Arbor
+1 Abigale, Eloquent First-Year
+1 Basking Broodscale
+1 Felothar, Dawn of the Abzan
+1 Lion's Eye Diamond
+1 Finale of Devastation
+1 Abzan Ascendancy
+1 Expedition Map
+1 Cavern of Souls
+1 Manglehorn
+1 The Queen of Dale
+1 Urza's Saga
+1 Voice of Victory
+1 Pulsemage Advocate
+1 Managorger Hydra
+1 Command Beacon

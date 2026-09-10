@@ -1,0 +1,100 @@
+# Archidekt — [TEST] Revival Trance - 3rd Verse
+# source: archidekt:26026207
+# fetched: 2026-09-03
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Adeline, Resplendent Cathar
+1 Alesha, Who Laughs at Fate
+1 Alesha, Who Smiles at Death
+1 Anger
+1 Aurelia, the Law Above
+1 Banon, the Returners' Leader
+1 Celes, Rune Knight
+1 Caesar, Legion's Emperor
+1 Combustible Gearhulk
+1 Cyan, Vengeful Samurai
+1 Dihada, Binder of Wills
+1 Flayer of the Hatebound
+1 Garna, the Bloodflame
+1 Gau, Feral Youth
+1 General Leo Cristophe
+1 Gogo, Mysterious Mime
+1 Interceptor, Shadow's Hound
+1 Kefka, Dancing Mad
+1 Locke, Treasure Hunter
+1 Millikin
+1 Mind Stone
+1 Mog, Moogle Warrior
+1 Moira, Urborg Haunt
+1 Morbid Opportunist
+1 Neyali, Suns' Vanguard
+1 Otharri, Suns' Glory
+1 Pitiless Plunderer
+1 Priest of Fell Rites
+1 Sabin, Master Monk
+1 Sepulchral Primordial
+1 Setzer, Wandering Gambler
+1 Shadow, Mysterious Assassin
+1 Siegfried, Famed Swordsman
+1 Solemn Simulacrum
+1 Stitcher's Supplier
+1 Strago and Relm
+1 Sun Titan
+1 The Warring Triad
+1 Whisper, Blood Liturgist
+1 Arcane Signet
+1 Boros Signet
+1 Sol Ring
+1 Swiftfoot Boots
+1 Key to the City
+1 Talisman of Conviction
+1 Talisman of Indulgence
+1 Bedevil
+1 Big Score
+1 Boros Charm
+1 Crackling Doom
+1 Flawless Maneuver
+1 Mortify
+1 Swords to Plowshares
+1 Faithless Looting
+1 Legions to Ashes
+1 Night's Whisper
+1 Reanimate
+1 Rejoin the Fight
+1 Rise of the Dark Realms
+1 Ruinous Ultimatum
+1 Stitch Together
+1 Anointed Procession
+1 Mardu Ascendancy
+1 Ash Barrens
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Command Tower
+1 Demolition Field
+1 Dragonskull Summit
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fetid Heath
+1 Foreboding Ruins
+1 Furycalm Snarl
+1 Geothermal Bog
+1 Graven Cairns
+1 High Market
+1 Isolated Chapel
+3 Mountain
+1 Nomad Outpost
+1 Path of Ancestry
+4 Plains
+1 Rugged Prairie
+1 Sacred Peaks
+1 Shadowblood Ridge
+1 Shineshadow Snarl
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Sunlit Marsh
+1 Sunscorched Divide
+3 Swamp
+1 Takenuma, Abandoned Mire

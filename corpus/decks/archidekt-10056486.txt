@@ -1,0 +1,104 @@
+# Archidekt — Storm, Omega Level Mutant
+# source: archidekt:10056486
+# fetched: 2026-09-01
+# bracket: 3
+
+Commander:
+1 Storm, Force of Nature
+
+Deck:
+1 Manamorphose
+1 Lightning Bolt
+1 Enter the Enigma
+1 Growth Spiral
+1 Sol Ring
+1 Rockfall Vale
+1 Frontier Bivouac
+1 Spire Garden
+1 Stomping Ground
+1 Sulfur Falls
+1 Fiery Confluence
+1 Solve the Equation
+1 Jeska's Will
+1 Training Center
+1 Ketria Triome
+1 Command Tower
+1 Mystic Sanctuary
+1 Boltwave
+1 End the Festivities
+1 Birds of Paradise
+1 Arcane Signet
+1 Wildfire Devils
+1 Brainstorm
+1 Twinferno
+1 Crackle with Power
+1 Prisoner's Dilemma
+2 Island
+1 Exotic Orchard
+1 Rootbound Crag
+1 Untimely Malfunction
+1 Deflecting Swat
+1 Bear Umbra
+1 Mana Drain
+1 Scalding Tarn
+1 Brotherhood Regalia
+1 Delayed Blast Fireball
+1 Vivi Ornitier
+1 Comet Storm
+1 Riverglide Pathway // Lavaglide Pathway
+1 Mob Verdict
+1 Ensnared by the Mara
+1 Sword of Feast and Famine
+1 Riverpyre Verge
+1 Bloom Tender
+1 Karplusan Forest
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Sticky Fingers
+1 Lier, Disciple of the Drowned
+1 Frostboil Snarl
+1 Cinder Glade
+1 Copperline Gorge
+1 Distortion Strike
+1 Narset's Reversal
+1 Frantic Search
+1 Fleeting Effigy
+1 Seize the Spotlight
+1 Electro, Assaulting Battery
+1 Dance with Calamity
+1 Kaho, Minamo Historian
+1 Truth or Consequences
+1 Reinforced Ronin
+1 Mystical Tutor
+1 Buster Sword
+1 Farseek
+1 Personal Tutor
+1 Shivan Reef
+1 Multiversal Passage
+1 Restless Spire
+1 Thornspire Verge
+1 Breeding Pool
+1 Stormcarved Coast
+1 Steam Vents
+1 Spirebluff Canal
+3 Mountain
+1 Silundi Vision // Silundi Isle
+1 Lizard Blades
+1 Hedge Maze
+1 Improvisation Capstone
+1 Longshot, Rebel Bowman
+1 Temur Battle Rage
+1 Harrow
+2 Forest
+1 Rhystic Study
+1 Emeritus of Abundance // Regrowth
+1 Electrodominance
+1 Resonating Lute
+1 Royal Treatment
+1 Pym Particles
+1 Scarlet Witch, Chaotic Avenger
+1 Talisman of Creativity
+1 Gruul Signet
+1 Into the Flood Maw
+1 Fire Nation Palace
+1 Runaway Steam-Kin
+1 Wizards of Thay

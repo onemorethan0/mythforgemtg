@@ -1,0 +1,89 @@
+# Archidekt — Syr Vondam Warp
+# source: archidekt:20963089
+# fetched: 2026-09-02
+
+Commander:
+1 Syr Vondam, Sunstar Exemplar
+
+Deck:
+1 Eclipsed Steppe
+1 Elas il-Kor, Sadistic Pilgrim
+1 Spirited Companion
+1 Bleachbone Verge
+1 Desolate Mire
+1 Isolated Chapel
+1 Caves of Koilos
+1 Shineshadow Snarl
+1 Marsh Flats
+1 Godless Shrine
+1 Tainted Field
+1 Astelli Reclaimer
+1 Cosmogrand Zenith
+1 Knight Luminary
+1 Personify
+1 Morbid Opportunist
+1 Knight of the White Orchid
+1 Decode Transmissions
+1 Avatar's Wrath
+1 Damn
+1 Victimize
+1 Arcane Signet
+1 Hylderblade
+1 Sol Ring
+1 Sothera, the Supervoid
+1 Command Tower
+1 Exotic Orchard
+1 Dalkovan Encampment
+1 Susur Secundi, Void Altar
+1 Abandoned Air Temple
+1 Bojuka Bog
+1 Village Rites
+1 Morningtide's Light
+1 All-Fates Stalker
+1 Restoration Angel
+1 Fetid Heath
+1 Vault of the Archangel
+1 Solemn Simulacrum
+1 Conciliator's Duelist
+1 Shattered Sanctum
+10 Swamp
+10 Plains
+1 Teysa Karlov
+1 Flickerwisp
+1 Timeline Culler
+1 Path to Exile
+1 Swords to Plowshares
+1 Talisman of Hierarchy
+1 Alpharael, Stonechosen
+1 Anticausal Vestige
+1 Blood Artist
+1 Charming Prince
+1 Corpse Knight
+1 Dalkovan Packbeasts
+1 Conjurer's Closet
+1 Ashnod's Altar
+1 Elegy Acolyte
+1 Hero's Blade
+1 Skullclamp
+1 Adeline, Resplendent Cathar
+1 Cathars' Crusade
+1 Gilraen, Dúnedain Protector
+1 Gray Merchant of Asphodel
+1 Haliya, Guided by Light
+1 Ketramose, the New Dawn
+1 Smile at Death
+1 Zulaport Cutthroat
+1 Phyrexian Arena
+1 Starfield Shepherd
+1 Airbender Ascension
+1 Umbral Collar Zealot
+1 Viscera Seer
+1 Teleportation Circle
+1 Tocasia's Welcome
+1 Touch the Spirit Realm
+1 Corrupted Conviction
+1 Dark Ritual
+1 Flicker of Fate
+1 Parting Gust
+1 Archenemy's Charm
+1 Cloudshift

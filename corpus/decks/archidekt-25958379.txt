@@ -1,0 +1,77 @@
+# Archidekt — THORINN
+# source: archidekt:25958379
+# fetched: 2026-09-01
+
+Commander:
+1 Thorin, Company's Leader
+
+Deck:
+1 Aggravated Assault
+1 Alchemist's Talent
+1 Arcane Signet
+1 Arena of Glory
+1 Axgard Cavalry
+1 Bearded Axe
+1 Big Score
+1 Bitterthorn, Nissa's Animus
+1 Blasphemous Act
+1 Blazing Firesinger // Seething Song
+1 Bloodforged Battle-Axe
+1 Bolt Bend
+1 Bombur, Gentle Dreamer
+1 Brass's Bounty
+1 Breakneck Berserker
+1 Chaos Warp
+1 Curse of Opulence
+1 Diamond Pick-Axe
+1 Dwarven Grunt
+1 Dwarven Mauler
+1 Dwarven Mine
+1 Embercleave
+1 Fearless Liberator
+1 Fíli and Kíli, Joyous
+1 Gimli of the Glittering Caves
+1 Gimli's Reckless Might
+1 Gimli, Counter of Kills
+1 Glóin the Mighty // Easy Pickings
+1 Glóin, Dwarf Emissary
+1 Goldvein Pick
+1 Hammer of Nazahn
+1 Hell to Pay
+1 Hellkite Tyrant
+1 Iron Hills Stalwart
+1 Lightning Bolt
+1 Lightning Greaves
+1 Magda, Brazen Outlaw
+1 Magda, the Hoardmaster
+1 Mines of Moria
+31 Mountain
+1 Patchwork Banner
+1 Pirate's Pillage
+1 Plundering Barbarian
+1 Professional Face-Breaker
+1 RMS Titanic
+1 Rain of Riches
+1 Relentless Assault
+1 Rogue's Passage
+1 Ruby Medallion
+1 Runaway Steam-Kin
+1 Seize the Spoils
+1 Sol Ring
+1 Spark Mage
+1 Sticky Fingers
+1 Storm-Kiln Artist
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Taurean Mauler
+1 The Lonely Mountain
+1 The Reaver Cleaver
+1 There and Back Again
+1 Thorin, Mountain-king
+1 Torbran, Thane of Red Fell
+1 Unexpected Windfall
+1 Universal Automaton
+1 Vault Robber
+1 Coin of Mastery
+1 Dori, Bearer of Friends
+1 Dáin Ironfoot

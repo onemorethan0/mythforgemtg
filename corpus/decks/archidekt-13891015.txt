@@ -1,0 +1,90 @@
+# Archidekt — Deadpool
+# source: archidekt:13891015
+# fetched: 2026-09-04
+
+Commander:
+1 Deadpool, Trading Card
+
+Deck:
+1 Resurrection Orb
+1 Minion Reflector
+1 Flamerush Rider
+1 Jaxis, the Troublemaker
+1 Mirror Box
+1 Orthion, Hero of Lavabrink
+1 The Fire Crystal
+1 Gogo, Mysterious Mime
+1 Midgar, City of Mako // Reactor Raid
+1 Vandalblast
+1 Twinflame
+1 Mirage Phalanx
+1 Nasty End
+1 Meathook Massacre II
+1 Molten Echoes
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Fellwar Stone
+1 Cursed Mirror
+1 Dragonskull Summit
+1 Command Tower
+1 Sanctum of Eternity
+1 Arcane Signet
+1 Blackcleave Cliffs
+1 Blightstep Pathway // Searstep Pathway
+1 Echoing Assault
+1 Terminate
+1 Not Dead After All
+1 Feign Death
+1 Malakir Rebirth // Malakir Mire
+1 Fake Your Own Death
+1 Heat Shimmer
+1 Undying Evil
+1 Ring of the Lucii
+1 Necromancy
+1 Reliquary Tower
+1 Electroduplicate
+1 Chandra, Flameshaper
+1 Village Rites
+1 Dark Ritual
+1 Abnormal Endurance
+1 Blade of Selves
+1 The Master, Multiplied
+1 Delina, Wild Mage
+1 Mirror Gallery
+1 Golden Argosy
+1 Mordor on the March
+1 Vincent's Limit Break
+1 Redoubled Stormsinger
+1 Rionya, Fire Dancer
+1 Splinter Twin
+1 Molten Duplication
+1 Conjurer's Closet
+1 Helm of the Host
+1 Saw in Half
+1 Commander's Sphere
+1 Rogue's Passage
+1 Temple of the False God
+1 Talisman of Indulgence
+1 Rakdos Signet
+1 Thought Vessel
+1 Smoldering Marsh
+1 Haunted Ridge
+1 Deadly Rollick
+1 Sol Ring
+1 Graven Cairns
+1 Fabled Passage
+1 Voyager Staff
+1 Flameshadow Conjuring
+1 Mirror March
+7 Swamp
+12 Mountain
+1 Worldgorger Dragon
+1 Undying Malice
+1 Supernatural Stamina
+1 Blasphemous Edict
+1 Come Back Wrong
+1 Blasphemous Act
+1 Rakdos Charm
+1 Demonic Gifts
+1 Dollhouse of Horrors
+1 Feldon of the Third Path
+1 Kiki-Jiki, Mirror Breaker

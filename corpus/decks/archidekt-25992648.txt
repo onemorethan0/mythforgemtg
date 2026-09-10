@@ -1,0 +1,95 @@
+# Archidekt — The Endless Growth
+# source: archidekt:25992648
+# fetched: 2026-09-02
+
+Commander:
+1 Nylea, Keen-Eyed
+
+Deck:
+1 Andúril, Narsil Reforged
+1 Court of Garenbrig
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Bow of Nylea
+1 Selvala, Heart of the Wilds
+1 Llanowar Elves
+1 Priest of Titania
+1 Nature's Lore
+1 Nykthos, Shrine to Nyx
+1 Benevolent Hydra
+1 Goldvein Hydra
+1 Fabled Passage
+1 Beast Within
+1 Wooded Foothills
+1 Kinetic Ooze
+1 Return of the Wildspeaker
+1 Sylvan Library
+1 Misty Rainforest
+13 Forest
+1 Legolas's Quick Reflexes
+1 Saryth, the Viper's Fang
+1 Elvish Mystic
+1 Utopia Sprawl
+1 Endurance
+1 Wild Growth
+1 Walking Ballista
+1 Chord of Calling
+1 Quirion Ranger
+1 Evendo, Waking Haven
+1 Eternal Witness
+1 Finale of Devastation
+1 The Ozolith
+1 Force of Vigor
+1 Forgotten Ancient
+1 Three Visits
+1 Fyndhorn Elves
+1 Kami of Whispered Hopes
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Winding Canyons
+1 Lightning Greaves
+1 Haywire Mite
+1 Hardened Scales
+1 Renata, Called to the Hunt
+1 Terrasymbiosis
+1 The Great Henge
+1 Castle Garenbrig
+1 Deserted Temple
+1 Urza's Mine
+1 Windswept Heath
+1 Yavimaya, Cradle of Growth
+1 Vigor
+1 Ashaya, Soul of the Wild
+1 Fanatic of Rhonas
+1 Nylea, God of the Hunt
+1 Archdruid's Charm
+1 Song of the Dryads
+1 Green Sun's Zenith
+1 Heroic Intervention
+1 Sol Ring
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Seedborn Muse
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Bane of Progress
+1 Summoner's Pact
+1 The Earth Crystal
+1 Worldly Tutor
+1 Noxious Revival
+1 Reclamation Sage
+1 Karametra's Acolyte
+1 Ulamog, the Infinite Gyre
+1 Germination Practicum
+1 Scryb Ranger
+1 Ghalta, Stampede Tyrant
+1 Ozolith, the Shattered Spire
+1 Beast Whisperer
+1 Last March of the Ents
+1 Disciple of Freyalise // Garden of Freyalise
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Boseiju, Who Endures
+1 Oran-Rief, the Vastwood
+1 Urza's Power Plant
+1 Urza's Tower
+1 Verdant Catacombs
+1 Allosaurus Shepherd
+1 Arbor Elf
+1 Circle of Dreams Druid
+1 Emerald Medallion

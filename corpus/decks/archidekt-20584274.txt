@@ -1,0 +1,89 @@
+# Archidekt — Hasty bois
+# source: archidekt:20584274
+# fetched: 2026-09-08
+
+Commander:
+1 Ognis, the Dragon's Lash
+
+Deck:
+1 Samut, Vizier of Naktamun
+6 Swamp
+1 Sol Ring
+6 Forest
+1 Arcane Signet
+6 Mountain
+1 Command Tower
+1 Dragonskull Summit
+1 Talisman of Resilience
+1 Cursed Mirror
+1 Nature's Lore
+1 Llanowar Wastes
+1 Fellwar Stone
+1 Rockfall Vale
+1 Great Train Heist
+1 Heroic Intervention
+1 Spire Garden
+1 Woodland Cemetery
+1 Exotic Orchard
+1 Cinder Glade
+1 Ziatora's Proving Ground
+1 Rootbound Crag
+1 Loyal Apprentice
+1 Game Trail
+1 Three Visits
+1 Smoldering Marsh
+1 Undergrowth Stadium
+1 Karplusan Forest
+1 Haunted Ridge
+1 Savage Lands
+1 Sulfurous Springs
+1 Talisman of Impulse
+1 Foreboding Ruins
+1 Thornspire Verge
+1 Farseek
+1 Deathcap Glade
+1 Rhythm of the Wild
+1 Grand Warlord Radha
+1 Blazemire Verge
+1 Goldspan Dragon
+1 Reckless Fireweaver
+1 Captain Lannery Storm
+1 Kellogg, Dangerous Mind
+1 Ruby, Daring Tracker
+1 Mirkwood Bats
+1 Urabrask the Hidden
+1 Atalan Jackal
+1 Professional Face-Breaker
+1 Xorn
+1 Deathleaper, Terror Weapon
+1 Jolene, the Plunder Queen
+1 Beast Whisperer
+1 Academy Manufactor
+1 Anger
+1 Wulfgar of Icewind Dale
+1 Shadow the Hedgehog
+1 The Balrog, Durin's Bane
+1 Ohran Frostfang
+1 Goldvein Hydra
+1 Toski, Bearer of Secrets
+1 Ziatora's Envoy
+1 Hellkite Tyrant
+1 Beastcaller Savant
+1 Bloodbraid Elf
+1 Knuckles the Echidna
+1 Dreadhorde Butcher
+1 Questing Beast
+1 Enduring Courage
+1 Beastmaster Ascension
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Birds of Paradise
+1 Terminate
+1 Guardian Project
+1 Blasphemous Edict
+1 Tear Asunder
+1 Blasphemous Act
+1 Phyrexian Arena
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Goro-Goro, Disciple of Ryusei
+1 Talisman of Indulgence

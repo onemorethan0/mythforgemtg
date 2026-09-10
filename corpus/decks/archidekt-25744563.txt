@@ -1,0 +1,97 @@
+# Archidekt — Golgari Casual
+# source: archidekt:25744563
+# fetched: 2026-09-04
+
+Commander:
+1 Grist, the Hunger Tide
+
+Deck:
+1 Pillage the Bog
+1 Twilight Mire
+1 Hissing Quagmire
+1 Town Greeter
+1 Command Tower
+1 Bojuka Bog
+1 Sol Ring
+1 Liliana of the Veil
+1 Vernal Fen
+1 Deathcap Glade
+1 Overgrown Tomb
+1 Wood Elves
+1 Starting Town
+1 Takenuma, Abandoned Mire
+1 Wastewood Verge
+1 Underground Mortuary
+1 Tainted Wood
+1 Disciple of Freyalise // Garden of Freyalise
+1 Phyrexian Tower
+1 Assassin's Trophy
+1 Professor Dellian Fel
+5 Forest
+7 Swamp
+1 Elves of Deep Shadow
+1 Accursed Marauder
+1 Zulaport Cutthroat
+1 Six
+1 Dread Return
+1 Malevolent Rumble
+1 Dark Confidant
+1 Troll of Khazad-dûm
+1 Stony-Voiced Goblins
+1 Deathrite Shaman
+1 Will of the Abzan
+1 Vicious Rivalry
+1 Cauldron of Essence
+1 Boggart Trawler // Boggart Bog
+1 Altanak, the Thrice-Called
+1 Wight of the Reliquary
+1 Chthonian Nightmare
+1 Ripples of Undeath
+1 Evendo, Waking Haven
+1 Ral Zarek, Guest Lecturer
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Troop of Ponies
+1 Tom, Bert, and William
+1 Vanille, Cheerful l'Cie
+1 Fang, Fearless l'Cie
+1 Alpha Deathclaw
+1 Thrór's Map
+1 My Precious // Allure of Power
+1 Honest Rutstein
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Elvish Visionary
+1 Tear Asunder
+1 Liliana, Dreadhorde General
+1 The Sackville-Bagginses
+1 Lluwen, Imperfect Naturalist
+1 Fell the Profane // Fell Mire
+1 Vraska, Relic Seeker
+1 Scheming Silvertongue // Sign in Blood
+1 Grave Venerations
+1 Colossal Grave-Reaver
+1 Woodland Cemetery
+1 Night's Whisper
+1 Eternal Witness
+1 Emeritus of Abundance // Regrowth
+1 Drownyard Temple
+1 Witherbloom Charm
+1 Ba Sing Se
+1 Resentful Revelation
+1 Fabled Passage
+1 Aftermath Analyst
+1 Hobbit Hole
+1 Spore Frog
+1 Tortured Existence
+1 Rise of the Witch-king
+1 Tragic Slip
+1 Undergrowth Stadium
+1 The Last Ronin
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Elegy Acolyte
+1 Birds of Paradise
+1 Obsessive Pursuit
+1 Kozilek, the Great Distortion
+1 Ardyn, the Usurper
+1 Deadly Rollick
+1 The Cabbage Merchant
+1 Amonkhet Raceway

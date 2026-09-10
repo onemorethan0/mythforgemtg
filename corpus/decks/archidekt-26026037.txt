@@ -1,0 +1,95 @@
+# Archidekt — Version 2 - Doomsday Cult
+# source: archidekt:26026037
+# fetched: 2026-09-03
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Norman Osborn // Green Goblin
+1 Solve the Equation
+1 Tainted Pact
+1 Wash Away
+1 Black Widow, Super Spy
+1 Cool but Rude
+1 Dark Fortress
+1 Bitter Triumph
+1 Flame Slash
+1 Hidden Lair
+1 Multiversal Passage
+1 Spell Snare
+1 Thoughtseize
+6 Island
+1 Doctor Doom, Unrivaled
+1 Consider
+1 Doomsday
+1 Mana Leak
+1 Mistrise Village
+8 Swamp
+1 Reanimate
+1 Swan Song
+1 Talisman of Indulgence
+1 Toxic Deluge
+1 Demonic Consultation
+1 Laboratory Maniac
+1 Talisman of Dominance
+1 Sol Ring
+1 Scheming Symmetry
+1 Dig Through Time
+1 Hexing Squelcher
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Cut Down
+1 Exotic Orchard
+1 Go for the Throat
+1 Lightning Bolt
+1 Dark Ritual
+1 Psychic Frog
+1 Thassa's Oracle
+1 Shivan Reef
+1 Steam Vents
+1 Underground River
+1 Doctor Doom
+1 An Offer You Can't Refuse
+1 Leader, Super-Genius
+1 Frantic Search
+1 Leveler
+1 Counterspell
+1 Abrade
+1 Demonic Tutor
+1 Archnemesis
+1 Luxury Suite
+1 Sunken Hollow
+1 Black Market Connections
+1 Withering Torment
+1 Scorched Geyser
+1 Doom's Time Platform
+1 Choked Estuary
+1 Reliquary Tower
+1 Shipwreck Marsh
+1 Stormcarved Coast
+1 Bojuka Bog
+1 Faithless Looting
+1 Inquisition of Kozilek
+1 Command Tower
+1 Duress
+1 Arcane Signet
+1 Daze
+1 Flusterstorm
+1 Spell Pierce
+1 Vampiric Tutor
+1 Preordain
+1 Drowned Catacomb
+1 Crumbling Necropolis
+1 Talisman of Creativity
+1 Chaos Warp
+1 Dragonskull Summit
+1 Blasphemous Act
+1 Path of Ancestry
+1 Fellwar Stone
+1 Terminate
+1 Swiftfoot Boots
+1 Sulfur Falls
+1 Windfall
+1 Doomsday Excruciator
+1 Monument to Endurance
+1 Oscorp Industries

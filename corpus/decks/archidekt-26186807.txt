@@ -1,0 +1,93 @@
+# Archidekt — SALT_TEST
+# source: archidekt:26186807
+# fetched: 2026-09-08
+
+Commander:
+1 Killian, Decisive Mentor
+
+Deck:
+1 All That Glitters
+1 Alseid of Life's Bounty
+1 Animate Dead
+1 Arcane Lighthouse
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Archon of Sun's Grace
+1 Ash Barrens
+1 Black Market Connections
+1 Anguished Unmaking
+1 Bojuka Bog
+1 Case of the Stashed Skeleton
+1 Caves of Koilos
+1 Chains of Custody
+1 Changing Loyalty
+1 Cloudstone Curio
+1 Coercive Impetus
+1 Command Tower
+1 Dark Ritual
+1 Daxos the Returned
+1 Demolition Field
+1 Kor Spiritdancer
+1 Desolate Mire
+1 Eiganjo Dynastorian // Replenish
+1 Eriette of the Charmed Apple
+1 Ethereal Armor
+1 Fabled Passage
+1 Fell the Profane // Fell Mire
+1 Fellwar Stone
+1 Fetid Heath
+1 Flickerform
+1 Flickering Ward
+1 Fracture
+1 Godless Shrine
+1 Grim Guardian
+1 Idyllic Tutor
+1 Isolated Chapel
+1 Katilda, Dawnhart Martyr // Katilda's Rising Dawn
+1 Minas Tirith
+1 Mistveil Plains
+1 Moon-Blessed Cleric
+1 Necropotence
+1 Light-Paws, Emperor's Voice
+1 Ondu Spiritdancer
+1 Optimistic Scavenger
+1 Orzhov Signet
+1 Pearl-Ear, Imperial Advisor
+9 Plains
+1 Psemilla, Meletian Poet
+1 Radiant Grace // Radiant Restraints
+1 Raffine's Guidance
+1 Sage's Reverie
+1 Secret Arcade // Dusty Parlor
+1 Shardmage's Rescue
+1 Shay Cormac
+1 Sheltered by Ghosts
+1 Sol Ring
+1 Spellbook Vendor
+1 Spire of Industry
+1 Sporogenic Infection
+1 Sram, Senior Edificer
+1 Starfield Mystic
+1 Study Hall
+1 Summon: Yojimbo
+7 Swamp
+1 Swiftfoot Boots
+1 Malakir Rebirth // Malakir Mire
+1 Swords to Plowshares
+1 Talisman of Hierarchy
+1 Tempest Technique
+1 The Black Gate
+1 The Creation of Avacyn
+1 The Legend of Yangchen // Avatar Yangchen
+1 The Restoration of Eiganjo // Architect of Restoration
+1 Turbulent Moor
+1 Underworld Coinsmith
+1 Unquestioned Authority
+1 Valgavoth's Lair
+1 Mantle of the Ancients
+1 Vampiric Tutor
+1 Victor, Valgavoth's Seneschal
+1 Visions of Brutality
+1 War Room
+1 Kaya's Ghostform
+1 Mesa Enchantress

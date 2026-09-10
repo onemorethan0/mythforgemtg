@@ -1,0 +1,108 @@
+# Archidekt — Sokka B4
+# source: archidekt:26011042
+# fetched: 2026-09-03
+# bracket: 4
+
+Commander:
+1 Sokka, Tenacious Tactician
+
+Deck:
+1 Spectator Seating
+1 Command Tower
+1 Arcane Signet
+1 Path to Exile
+1 Talisman of Creativity
+1 Talisman of Progress
+1 Talisman of Conviction
+1 Whirlwind of Thought
+1 Counterspell
+1 Shivan Reef
+1 Sacred Foundry
+1 Hallowed Fountain
+1 Steam Vents
+1 Fellwar Stone
+1 Scalding Tarn
+1 Frantic Search
+1 Jeskai Ascendancy
+1 Snap
+1 Sea of Clouds
+1 Training Center
+1 Impact Tremors
+1 Flooded Strand
+1 Thought Vessel
+1 Arid Mesa
+1 Longshot, Rebel Bowman
+1 Storm-Kiln Artist
+1 Veyran, Voice of Duality
+1 Redirect Lightning
+1 Smothering Tithe
+1 Abandon Attachments
+1 Warleader's Call
+1 Sol Ring
+1 Gitaxian Probe
+1 Jeska's Will
+1 Deflecting Swat
+1 Roaming Throne
+1 Cyclonic Rift
+1 Mystic Remora
+1 Rhystic Study
+1 Teferi's Protection
+1 Narset, Enlightened Exile
+1 Otawara, Soaring City
+1 Enlightened Tutor
+1 Volcanic Island
+1 Mana Drain
+1 Mystical Tutor
+1 Plateau
+1 Tundra
+1 Esper Sentinel
+1 Thundering Falls
+1 City of Brass
+1 Windfall
+1 Vivi Ornitier
+1 Big Score
+1 Narset's Reversal
+1 Mana Confluence
+1 Stormcatch Mentor
+1 Polluted Delta
+1 Lotus Petal
+1 Force of Negation
+1 Bloodstained Mire
+1 Underworld Breach
+1 Ancient Tomb
+1 Chrome Mox
+1 Wooded Foothills
+1 Force of Will
+1 Gamble
+1 Reflecting Pool
+1 Cavern of Souls
+1 Gemstone Caverns
+1 Sink into Stupor // Soporific Springs
+1 J. Jonah Jameson
+1 Flashback
+1 Wheel of Fortune
+1 Starting Town
+1 Fierce Guardianship
+1 An Offer You Can't Refuse
+1 Desperate Ritual
+1 Yue, the Moon Spirit
+1 Goblin Electromancer
+1 Lyse Hext
+1 Glen Elendra's Answer
+1 Pyretic Ritual
+1 Reverberate
+1 Vivi's Persistence
+1 Wizard's Staff
+1 Reiterate
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Reprieve
+1 Bilbo's Gambit
+1 Akroma's Will
+1 Swords to Plowshares
+1 Mindbreak Trap
+1 Mental Misstep
+1 Smellerbee, Rebel Fighter
+1 Wartime Protestors
+1 Mountain
+1 Island
+1 Mox Diamond

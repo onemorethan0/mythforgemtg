@@ -1,0 +1,90 @@
+# Archidekt — Cloud Ex Soldier
+# source: archidekt:26219777
+# fetched: 2026-09-10
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Austere Command
+1 Aerith Rescue Mission
+1 Cultivate
+1 Sol Ring
+6 Mountain
+7 Forest
+1 Temple of the False God
+1 The Gold Saucer
+1 Copperline Gorge
+1 Thriving Grove
+7 Plains
+1 Blossoming Sands
+1 Surveillance Room
+1 Fields of Strife
+1 Command Tower
+1 Seismic Tutelage
+1 Sheltered Thicket
+1 Wind-Scarred Crag
+1 Gleaming Splendor
+1 Forge Anew
+1 Roads Go Ever, Ever On
+1 Summon: Fenrir
+1 Ultima
+1 Commune with Beavers
+1 Blasphemous Act
+1 Fireshrieker
+1 Gaea's Gift
+1 Bulk Up
+1 Potioner's Trove
+1 Big Score
+1 Sword of Hearth and Home
+1 Stone by Sunlight
+1 Sting, Bilbo's Sword
+1 Chaos Warp
+1 Blackblade Reforged
+1 Swiftfoot Boots
+1 Champion's Helm
+1 Arcane Signet
+1 Civic Saber
+1 Trusty Machete
+1 Mind Stone
+1 Umezawa's Jitte
+1 Colossus Hammer
+1 Dwarven Mattock
+1 Basilisk Collar
+1 Doc Ock's Tentacles
+1 Argentum Armor
+1 Tangleweave Armor
+1 Lightning Greaves
+1 Hard-Won Jitte
+1 Necklace of Girion
+1 The Spear of Bashenga
+1 Wayfarer's Bauble
+1 Prophetic Prism
+1 Sword of Sinew and Steel
+1 Ultima Weapon
+1 Behemoth Sledge
+1 Smaug the Magnificent
+1 Gilgamesh, Master-at-Arms
+1 Sephiroth, Fallen Hero
+1 Firion, Wild Rose Warrior
+1 Tifa, Martial Artist
+1 Danitha Capashen, Paragon
+1 Tireless Provisioner
+1 Red XIII, Proud Warrior
+1 Troop of Ponies
+1 Metropolis Reformer
+1 Cid, Freeflier Pilot
+1 Dori, Bearer of Friends
+1 Puresteel Paladin
+1 Bastion Protector
+1 Frodo, Determined Hero
+1 Vincent, Vengeful Atoner
+1 Manaform Hellkite
+1 Abrade
+1 Repel Calamity
+1 Hero's Blade
+1 Latulla, Keldon Overseer
+1 Aven Cloudchaser
+1 Dáin Ironfoot
+1 Jumbo Cactuar
+1 Blessed Wind

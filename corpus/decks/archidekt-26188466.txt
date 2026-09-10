@@ -1,0 +1,101 @@
+# Archidekt — Copy of - The Vortex Gang
+# source: archidekt:26188466
+# fetched: 2026-09-08
+
+Commander:
+1 The Muckslinger Gang
+
+Deck:
+1 Leaf Gilder
+1 Splinter's Technique
+1 Cruel Tutor
+1 Monstrous Vortex
+1 Razaketh's Rite
+1 Grim Tutor
+1 Beseech the Mirror
+1 Draconautics Engineer
+1 Goro-Goro, Disciple of Ryusei
+1 Reckless Barbarian
+1 Raucous Entertainer
+1 Labyrinth Raptor
+1 Burning-Tree Emissary
+1 Paradise Druid
+1 Hajar, Loyal Bodyguard
+1 Servant of the Conduit
+1 Raucous Audience
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Bramblewood Paragon
+1 Shang-Chi, Master of Kung Fu
+1 Undergrowth Stadium
+1 Spire Garden
+1 Luxury Suite
+1 Fire-Lit Thicket
+1 Blood Crypt
+1 Command Tower
+1 Dragonskull Summit
+1 Overgrown Tomb
+1 Stomping Ground
+1 Diabolic Tutor
+1 Commercial District
+1 Blazemire Verge
+1 Twilight Mire
+1 Graven Cairns
+1 Mountain
+1 Savage Lands
+1 Smoldering Marsh
+2 Swamp
+1 Wooded Foothills
+1 Thornspire Verge
+1 Mosswort Bridge
+1 Susur Secundi, Void Altar
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Deadly Rollick
+1 Soul Immolation
+1 Khalni Ambush // Khalni Territory
+1 Boundary Lands Ranger
+1 Colfenor's Urn
+1 Disciple of Freyalise // Garden of Freyalise
+1 Kami of Whispered Hopes
+1 Leafkin Avenger
+1 Jenova, Ancient Calamity
+1 Animal Attendant
+1 Spider Manifestation
+1 Heartfire Immolator
+1 Greater Good
+1 Bramble Familiar // Fetch Quest
+1 Nest Invader
+1 Sunset Strikemaster
+1 Twitching Doll
+1 Basking Broodscale
+1 Elvish Warmaster
+1 Bristly Bill, Spine Sower
+1 Dwynen's Elite
+1 Winding Constrictor
+1 Redshift, Rocketeer Chief
+1 Return of the Wildspeaker
+1 Become the Avalanche
+1 Toxic Deluge
+1 Bloodstained Mire
+1 Deathcap Glade
+1 Haunted Ridge
+1 Exotic Orchard
+2 Forest
+1 Sarkhan's Unsealing
+1 Raucous Theater
+1 Rockfall Vale
+1 Rootbound Crag
+1 Deflecting Swat
+1 Living Death
+1 Bolt Bend
+1 Wastewood Verge
+1 Woodland Cemetery
+1 Ziatora's Proving Ground
+1 Beseech the Queen
+1 Radha, Heir to Keld
+1 Swarm Guildmage
+1 Gnarlid Colony
+1 Cursed Wombat
+1 Sundering Eruption // Volcanic Fissure
+1 Targ Nar, Demon-Fang Gnoll
+1 Quirion Sentinel

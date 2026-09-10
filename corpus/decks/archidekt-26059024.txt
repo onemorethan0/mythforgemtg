@@ -1,0 +1,105 @@
+# Archidekt — Copy of - Gori Gori Gori the Explori
+# source: archidekt:26059024
+# fetched: 2026-09-04
+
+Commander:
+1 Gorion, Wise Mentor
+
+Deck:
+1 Virtue of Strength // Garenbrig Growth
+1 Virtue of Knowledge // Vantress Visions
+1 Generous Gift
+1 Growth Spiral
+1 Heroic Intervention
+1 Counterspell
+1 Faerie Slumber Party
+1 Peel from Reality
+1 Avatar's Wrath
+1 Time Wipe
+1 Primal Amulet // Primal Wellspring
+1 Mirari's Wake
+1 Threadbind Clique // Rip the Seams
+1 Jidoor, Aristocratic Capital // Overture
+1 Three Visits
+1 Sage of the Beyond
+1 Boseiju, Who Endures
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Windswept Heath
+1 Flooded Strand
+1 Misty Rainforest
+1 Otawara, Soaring City
+1 Savannah
+1 Tropical Island
+1 Tundra
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Gaea's Cradle
+1 Ishgard, the Holy See // Faith & Grief
+1 Primeval Bounty
+1 Lucky Clover
+1 Guardian Naga // Banishing Coils
+1 Edgewall Innkeeper
+1 Beanstalk Giant // Fertile Footsteps
+1 Chancellor of Tales
+1 Giant Killer // Chop Down
+1 Blessed Hippogriff // Tyr's Blessing
+1 Storyteller Pixie
+1 Sword Coast Serpent // Capsizing Wave
+1 Temple Garden
+1 Fae Offering
+1 Deekah, Fractal Theorist
+1 Grazilaxx, Illithid Scholar
+1 Nature's Lore
+1 Paradoxical Outcome
+1 Sunpetal Grove
+1 Sea of Clouds
+1 Bountiful Promenade
+1 Woodland Acolyte // Mend the Wilds
+1 Rejuvenating Springs
+1 Sailors' Bane
+1 Extraordinary Journey
+1 Elusive Otter // Grove's Bounty
+1 Chromatic Lantern
+1 Tlincalli Hunter // Retrieve Prey
+1 Chulane, Teller of Tales
+1 Glacial Fortress
+1 Stormkeld Vanguard // Bear Down
+1 Canopy Vista
+1 Prairie Stream
+1 Sentinel of Lost Lore
+1 Edgewall Inn
+2 Forest
+1 Island
+2 Plains
+1 Doc Aurlock, Grizzled Genius
+1 Vega, the Watcher
+1 Command Tower
+1 Arcane Signet
+1 Sol Ring
+1 Kellan, the Kid
+1 Quandrix Apprentice
+1 Cunning Evasion
+1 Twinning Staff
+1 Seaside Citadel
+1 Candlekeep Inspiration
+1 Exotic Orchard
+1 Spara's Headquarters
+1 Sodden Verdure
+1 Dreamroot Cascade
+1 Crystal Shard
+1 Mysterious Pathlighter
+1 Swords to Plowshares
+1 Familiar's Ruse
+1 Hinterland Harbor
+1 Run Away Together
+1 Path to Exile
+1 Breeding Pool
+1 Reliquary Tower
+1 Wandermare
+1 Hallowed Fountain
+1 Savvy Trader
+1 Horn of Valhalla // Ysgard's Call
+1 Rosethorn Acolyte // Seasonal Ritual
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Shepherd of the Flock // Usher to Safety
+1 Brightcap Badger // Fungus Frolic
+1 Brokers Charm

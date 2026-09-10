@@ -1,0 +1,95 @@
+# Archidekt — Paper - Legends of the Pride
+# source: archidekt:25877278
+# fetched: 2026-09-03
+
+Commander:
+1 Jedit Ojanen, Mercenary
+
+Deck:
+1 Kutzil, Malamet Exemplar
+1 Jazal Goldmane
+1 Arahbo, the First Fang
+1 Sovereign Okinec Ahau
+1 Mirri, Weatherlight Duelist
+1 Mirri, Cat Warrior
+1 Jolrael, Mwonvuli Recluse
+1 Y'shtola Rhul
+1 Loran of the Third Path
+1 Basri, Tomorrow's Champion
+1 Denry Klin, Editor in Chief
+1 Tataru Taru
+1 Edric, Spymaster of Trest
+1 Rhys the Redeemed
+1 Galadriel, Light of Valinor
+1 King Darien XLVIII
+1 Leonin Warleader
+1 Brago, King Eternal
+1 Gandalf the White
+1 Chulane, Teller of Tales
+1 Qasali Slingers
+1 Kellan Joins Up
+1 Felidar Retreat
+1 Sally Pride, Lioness Leader
+1 Displacer Kitten
+1 Beastmaster Ascension
+1 Doubling Season
+1 Mirari's Wake
+1 Flowering of the White Tree
+1 Brimaz, King of Oreskos
+1 Qala, Ajani's Pridemate
+1 Runadi, Behemoth Caller
+1 Jedit Ojanen of Efrava
+1 Prava of the Steel Legion
+1 Hungry Lynx
+1 Kaheera, the Orphanguard
+1 Regal Caracal
+1 Feline Sovereign
+1 Jaheira, Friend of the Forest
+1 Kindred Discovery
+1 Adrix and Nev, Twincasters
+1 Bast, Panther Goddess
+1 Song of the Dryads
+1 Relic of Legends
+1 Unbreakable Formation
+1 Clever Concealment
+1 Command Tower
+1 Secluded Courtyard
+1 Urban Retreat
+1 Path of Ancestry
+1 Seaside Citadel
+1 Sungrass Prairie
+1 Skycloud Expanse
+1 Fortified Village
+1 Canopy Vista
+1 Port Town
+1 Branchloft Pathway // Boulderloft Pathway
+1 Prairie Stream
+1 Sea of Clouds
+1 Generous Gift
+1 Path to Exile
+1 Chromatic Lantern
+1 Nature's Lore
+1 Sol Ring
+1 Arcane Signet
+1 Kodama's Reach
+1 Farseek
+5 Forest
+1 Island
+8 Plains
+1 Swords to Plowshares
+1 Beast Within
+1 Plaza of Heroes
+1 Pride Sovereign
+1 Heroic Intervention
+1 Sphere Grid
+1 Cultivate
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Exotic Orchard
+1 Tyrite Sanctum
+1 Fountainport
+1 Abandoned Air Temple
+1 Hallowed Fountain
+1 Overgrown Farmland
+1 Temple Garden
+1 Deserted Beach
+1 Overwhelming Stampede

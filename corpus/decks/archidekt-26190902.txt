@@ -1,0 +1,88 @@
+# Archidekt — Prime Speaker Birthing Pod
+# source: archidekt:26190902
+# fetched: 2026-09-08
+
+Commander:
+1 Prime Speaker Vannifar
+
+Deck:
+1 Llanowar Elves
+1 Birds of Paradise
+1 Elvish Mystic
+1 Fblthp, the Lost
+1 Little Bear
+1 Pestermite
+1 Deceiver Exarch
+1 Eldritch Evolution
+1 Fyndhorn Elves
+1 Brainstorm
+1 Shore Up
+1 An Offer You Can't Refuse
+1 Swan Song
+1 Vitalize
+1 Corridor Monitor
+1 Neoform
+1 Scryb Ranger
+1 Crashing Drawbridge
+1 Giant-Sized Flying Ant
+1 Breaching Hippocamp
+1 Body Double
+1 Disciple of the Ring
+1 Woodland Bellower
+1 Chakram Retriever
+1 Protean Hulk
+1 Koma, Cosmos Serpent
+1 Quirion Ranger
+1 Hyrax Tower Scout
+1 Great Oak Guardian
+1 Bounding Krasis
+1 Koma, World-Eater
+1 Disciple of Freyalise // Garden of Freyalise
+1 Boreal Druid
+1 Delighted Halfling
+1 Craterhoof Behemoth
+1 Arbor Elf
+1 Phyrexian Metamorph
+1 Bane of Progress
+1 Avenger of Zendikar
+1 Rapid Hybridization
+1 Dispel
+1 Pongify
+1 Magic Damper
+1 Legolas's Quick Reflexes
+1 Coiling Oracle
+1 Growth Spiral
+1 Noxious Revival
+1 Planar Genesis
+1 Memory's Journey
+1 Feldon's Cane
+1 Concordant Crossroads
+1 Shang-Chi, Master of Kung Fu
+1 Turn Aside
+1 Piper's Melody
+1 Ponder
+1 Eternal Witness
+1 Abhorrent Oculus
+1 Rejuvenating Springs
+1 Misty Rainforest
+1 Windswept Heath
+1 Hedge Maze
+1 Willowrush Verge
+1 Flooded Strand
+1 Shifting Woodland
+1 Boseiju, Who Endures
+1 Ancient Tomb
+1 Minamo, School at Water's Edge
+1 Otawara, Soaring City
+1 Wirewood Lodge
+1 Yavimaya, Cradle of Growth
+1 Farseek
+1 Nature's Lore
+1 Three Visits
+8 Island
+13 Forest
+1 Seeker of Skybreak
+1 Teardrop Kami
+1 Kiora's Follower
+1 Octopus Form
+1 Volatile Stormdrake

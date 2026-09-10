@@ -1,0 +1,67 @@
+# Archidekt — Hot merfolk lady
+# source: archidekt:26058907
+# fetched: 2026-09-04
+
+Commander:
+1 Neerdiv, Devious Diver
+
+Deck:
+1 Isochron Scepter
+1 Lier, Disciple of the Drowned
+1 Rapid Hybridization
+1 Counterspell
+1 Deep Analysis
+1 Mystic Sanctuary
+1 Kiora, the Rising Tide
+1 Sapphire Medallion
+1 Springleaf Drum
+1 Cyclonic Rift
+1 Arcane Denial
+1 Reality Shift
+1 Laboratory Maniac
+1 Dream Twist
+1 Thought Vessel
+1 High Tide
+1 Fatestitcher
+1 Jace, Wielder of Mysteries
+1 Lightning Greaves
+1 Combat Courier
+1 Aetherize
+1 Swan Song
+1 Swiftfoot Boots
+1 Rogue's Passage
+1 Snap
+1 Arcane Signet
+1 An Offer You Can't Refuse
+1 Pongify
+1 Reliquary Tower
+1 Relic of Legends
+1 Propaganda
+1 Frantic Search
+1 Freed from the Real
+1 Ponder
+1 Windfall
+1 Secrets of the Dead
+1 Thassa's Oracle
+1 Consider
+1 Mana Drain
+1 Rhystic Study
+1 Mystic Remora
+1 Honor-Worn Shaku
+1 Emry, Lurker of the Loch
+1 Defy Gravity
+1 Pemmin's Aura
+1 Paradise Mantle
+1 Chemister's Insight
+1 Radical Idea
+1 Otherworldly Gaze
+1 Negate
+1 Think Twice
+1 Snapcaster Mage
+1 Increasing Confusion
+1 Sol Ring
+1 Artful Dodge
+36 Island
+1 Brainstorm
+1 Archmage's Newt
+1 Wonder

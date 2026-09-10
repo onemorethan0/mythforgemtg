@@ -1,0 +1,101 @@
+# Archidekt — SALT_TEST
+# source: archidekt:26021450
+# fetched: 2026-09-03
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Abundant Countryside
+1 Aether Channeler
+1 Botanical Sanctum
+1 Breeding Pool
+1 Ancient Ziggurat
+1 Bristly Bill, Spine Sower
+1 Broodguard Elite
+1 Cinder Glade
+1 City of Brass
+1 Arcane Signet
+1 Cloudstone Curio
+1 Command Tower
+1 Crop Rotation
+1 Decisive Denial
+1 Desperate Ritual
+1 Dreamroot Cascade
+1 Dryad of the Ilysian Grove
+1 Elvish Mystic
+1 Elvish Spirit Guide
+1 Benevolent Hydra
+1 Endurance
+1 Fabled Passage
+1 Faerie Mastermind
+1 Fanatic of Rhonas
+1 Finale of Devastation
+1 Flamekin Harbinger
+1 Flamekin Village
+1 Birds of Paradise
+1 Flooded Grove
+5 Forest
+1 Garruk's Uprising
+1 Irma, Part-Time Mutant
+1 Genesis Hydra
+1 Guardian Augmenter
+1 Hardened Scales
+1 Hidden Hideout
+1 Hinterland Harbor
+3 Island
+1 Hullbreaker Horror
+1 Hydroid Krasis
+1 Maelstrom Wanderer
+1 Moraug, Fury of Akoum
+1 Kami of Whispered Hopes
+1 Mountain
+1 Nature's Rhythm
+1 Nev, the Practical Dean
+1 Nissa, Voice of Zendikar
+1 Kinetic Ooze
+1 Nulldrifter
+1 Opal Palace
+1 Oran-Rief, the Vastwood
+1 Ozolith, the Shattered Spire
+1 Kozilek's Unsealing
+1 Primal Beyond
+1 Primordial Hydra
+1 Pyretic Ritual
+1 Radagast of Rhosgobel
+1 Rapid Hybridization
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Repulsive Mutation
+1 Lightning Greaves
+1 Rishkar, Peema Renegade
+1 Rishkar's Expertise
+1 Zoanthrope
+1 Rootbound Crag
+1 Selvala, Heart of the Wilds
+1 Shivan Reef
+1 Simian Spirit Guide
+1 Spark Double
+1 Sol Ring
+1 Spider-Sense
+1 Sporocyst
+1 Steam Vents
+1 Stomping Ground
+1 Stonecoil Serpent
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Sunderflock
+1 Swan Song
+1 Swiftfoot Boots
+1 Tangled Florahedron // Tangled Vale
+1 Temur Ascendancy
+1 Terrasymbiosis
+1 The Goose Mother
+1 Vigor
+1 Vineglimmer Snarl
+1 Vivid Grove
+1 Voracious Hydra
+1 Walking Ballista
+1 Wizard Class
+1 Wood Elves
+1 Yavimaya Coast

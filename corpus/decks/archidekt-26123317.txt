@@ -1,0 +1,82 @@
+# Archidekt — Hit me bb one more time
+# source: archidekt:26123317
+# fetched: 2026-09-09
+
+Commander:
+1 Darien, King of Kjeldor
+
+Deck:
+1 Teferi's Protection
+1 The One Ring
+1 Welcoming Vampire
+1 Esper Sentinel
+1 Anointer Priest
+1 Weathered Wayfarer
+1 Impassioned Orator
+1 Healer of the Pride
+1 Haliya, Guided by Light
+1 Enduring Innocence
+1 Sun Titan
+1 Moonshaker Cavalry
+1 Mangara, the Diplomat
+1 Bennie Bracks, Zoologist
+1 Lifecreed Duo
+1 Exemplar of Light
+1 Roaming Throne
+1 Lightning Greaves
+1 Aetherflux Reservoir
+1 Archaeomancer's Map
+1 The Wind Crystal
+1 Sword of the Animist
+1 Alhammarret's Archive
+1 Phyrexian Altar
+1 Akroma's Memorial
+1 Divine Visitation
+1 True Conviction
+1 Gift of Immortality
+1 Dawn of a New Age
+1 Angelic Chorus
+1 Minas Tirith
+1 Nykthos, Shrine to Nyx
+1 Reliquary Tower
+1 Command Beacon
+1 Emeria, the Sky Ruin
+1 Extraplanar Lens
+21 Plains
+1 Sejiri Shelter // Sejiri Glacier
+1 Grand Coliseum
+1 City of Brass
+6 Snow-Covered Plains
+1 Flawless Maneuver
+1 Akroma's Will
+1 Brave the Elements
+1 Reprieve
+1 Blood of the Martyr
+1 Angel's Grace
+1 Mana Tithe
+1 Dawn Charm
+1 Settle the Wreckage
+1 Everybody Lives!
+1 Oblation
+1 Final Showdown
+1 Ravnica at War
+1 Dazzling Angel
+1 Hinterland Sanctifier
+1 Land Tax
+1 Knight of the White Orchid
+1 War Room
+1 Archangel of Thune
+1 Fumigate
+1 Farewell
+1 Daxos, Blessed by the Sun
+1 Keeper of the Accord
+1 Jade Monolith
+1 Soul's Attendant
+1 Skullclamp
+1 Soul Warden
+1 Nomad Stadium
+1 Catapult Master
+1 Ajani's Welcome
+1 Suture Priest
+1 Anointed Procession
+1 Pearl Medallion

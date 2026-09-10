@@ -1,0 +1,80 @@
+# Archidekt — dancing bears
+# source: archidekt:25512136
+# fetched: 2026-09-09
+
+Commander:
+1 Beorn the Fierce
+
+Deck:
+1 Beast Whisperer
+1 Roaming Throne
+1 Eldrazi Monument
+1 Argoth, Sanctum of Nature
+1 Ayula's Influence
+1 Banner of Kinship
+1 Beast Within
+1 Bonders' Enclave
+1 Caller of the Claw
+1 Castle Garenbrig
+1 Dancing from Dark to Dawn
+1 Entish Restoration
+1 Evendo, Waking Haven
+1 Ayula, Queen Among Bears
+1 Goreclaw, Terror of Qal Sisma
+1 Guardian Project
+1 Harrow
+1 Kodama's Reach
+1 Lumra, Bellow of the Woods
+1 Masked Vandal
+1 Mother Bear
+1 Nature's Lore
+1 Ohran Frostfang
+1 Owlbear Cub
+1 Sol Ring
+1 Rampaging Yao Guai
+1 Surrak and Goreclaw
+1 Tamiyo's Safekeeping
+1 The Great Henge
+1 Three Tree City
+1 Three Visits
+1 Utopia Sprawl
+1 War Room
+1 Wild Growth
+1 Lightning Greaves
+1 Metallic Mimic
+1 Heroic Intervention
+1 Toski, Bearer of Secrets
+1 Realmwalker
+1 Descendants' Path
+1 Door of Destinies
+1 Elemental Bond
+1 Nykthos, Shrine to Nyx
+1 Garruk's Uprising
+1 Bloodline Pretender
+1 Asceticism
+1 Adaptive Automaton
+1 Overwhelming Stampede
+1 Yavimaya Hollow
+28 Forest
+1 Guardian Augmenter
+1 Circle of Dreams Druid
+1 Akroma's Memorial
+1 The Ozolith
+1 Vanquisher's Banner
+1 Cavern of Souls
+1 Tribute to the World Tree
+1 Return of the Wildspeaker
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Necklace of Girion
+1 Hardened Scales
+1 Doubling Season
+1 Branching Evolution
+1 Kindred Summons
+1 Ozolith, the Shattered Spire
+1 Traverse the Outlands
+1 Kami of Whispered Hopes
+1 Exploration
+1 Inspiring Call
+1 Ancient Greenwarden
+1 Azusa, Lost but Seeking
+1 Tuskguard Captain

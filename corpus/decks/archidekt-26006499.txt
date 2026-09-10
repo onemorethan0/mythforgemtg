@@ -1,0 +1,95 @@
+# Archidekt — Be Not
+# source: archidekt:26006499
+# fetched: 2026-09-03
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Arcane Signet
+1 Birds of Paradise
+1 Breeding Pool
+1 Hallowed Fountain
+1 Command Tower
+1 Exotic Orchard
+1 Farseek
+1 Tekuthal, Inquiry Dominus
+1 Evolution Sage
+1 Chromatic Lantern
+1 Swords to Plowshares
+1 Ezuri, Stalker of Spheres
+1 Vraska, Betrayal's Sting
+1 Thrummingbird
+1 Inexorable Tide
+1 Path to Exile
+1 Astral Cornucopia
+1 Watery Grave
+1 Tezzeret's Gambit
+1 Cultivate
+1 Counterspell
+1 Cyclonic Rift
+1 Flooded Strand
+1 Windswept Heath
+1 Everflowing Chalice
+1 Polluted Delta
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Reliquary Tower
+1 Nature's Lore
+1 Brokers Ascendancy
+1 Path of Ancestry
+1 Cankerbloom
+1 Experimental Augury
+1 Deepglow Skate
+1 Dreamtide Whale
+1 Unnatural Restoration
+1 Glistening Sphere
+1 Fellwar Stone
+1 Metastatic Evangel
+1 Doubling Season
+1 Contagion Engine
+1 Three Visits
+1 Contentious Plan
+1 Drown in Ichor
+1 Ajani, Sleeper Agent
+1 Rampant Growth
+1 Sol Ring
+1 Godless Shrine
+1 Flux Channeler
+1 Marsh Flats
+1 Lightning Greaves
+1 Tamiyo, Field Researcher
+1 Heroic Intervention
+1 Assassin's Trophy
+1 Vorinclex, Monstrous Raider
+1 Plains
+8 Island
+1 Swamp
+5 Forest
+1 Karn's Bastion
+1 Tevesh Szat, Doom of Fools
+1 Emrakul, the Promised End
+1 Narset, Parter of Veils
+1 Ashiok, Dream Render
+1 Oko, Thief of Crowns
+1 Ashiok, Sculptor of Fears
+1 Ichormoon Gauntlet
+1 Teferi, Master of Time
+1 Replicating Ring
+1 Sword of Truth and Justice
+1 Esper Sentinel
+1 Oath of Teferi
+1 The Chain Veil
+1 Staff of Compleation
+1 Mana Drain
+1 Innkeeper's Talent
+1 Overgrown Tomb
+1 Atomize
+1 Temple Garden
+1 Carth the Lion
+1 Teferi, Hero of Dominaria
+1 Spark Double
+1 Shalai, Voice of Plenty
+1 Ugin, the Spirit Dragon
+1 Teferi, Temporal Archmage
+1 Emrakul, the World Anew

@@ -1,0 +1,80 @@
+# Archidekt — Otter Chaos
+# source: archidekt:17532102
+# fetched: 2026-09-08
+
+Commander:
+1 Alania, Divergent Storm
+
+Deck:
+1 Shivan Reef
+1 Pearl of Wisdom
+1 Cascade Bluffs
+1 Big Score
+1 Thieving Otter
+1 Daring Waverider
+1 Bria, Riptide Rogue
+1 Kindlespark Duo
+1 Gandalf the Grey
+1 Lilypad Village
+1 Archmage Emeritus
+1 Run Away Together
+1 Path of Ancestry
+1 Splash Portal
+1 Gandalf's Sanction
+1 Curiosity
+1 Exotic Orchard
+1 Coruscation Mage
+1 Deep Analysis
+1 Abrade
+1 Arcane Signet
+1 Command Tower
+1 Faithless Looting
+1 Fiery Inscription
+1 Lightshell Duo
+1 Otterball Antics
+1 Playful Shove
+1 Rapid Augmenter
+1 Roar of the Crowd
+1 Rockface Village
+1 Sazacap's Brew
+1 Storm-Kiln Artist
+1 Stormcatch Mentor
+1 Sulfur Falls
+1 Swiftwater Cliffs
+1 Talisman of Creativity
+1 Tempest Angler
+1 Temple of Epiphany
+1 Valley Flamecaller
+1 Ferrous Lake
+1 An Offer You Can't Refuse
+1 Thousand-Year Storm
+1 Aetherize
+1 Stock Up
+1 Rabid Gnaw
+1 Mind Spring
+1 Truth or Consequences
+1 Archmage of Runes
+1 Brass's Bounty
+1 Narset, Parter of Veils
+1 Frantic Search
+1 Frostboil Snarl
+1 Goblin Electromancer
+12 Island
+1 Izzet Charm
+1 Kaza, Roil Chaser
+1 Mind Stone
+12 Mountain
+1 Opt
+1 Reliquary Tower
+1 Rolling Thunder
+1 Seize the Spoils
+1 Sol Ring
+1 Eon Frolicker
+1 Niv-Mizzet, Parun
+1 Harnesser of Storms
+1 Temple of the False God
+1 Izzet Guildgate
+1 Stormchaser Mage
+1 Display of Power
+1 Lórien Revealed
+1 Disperse

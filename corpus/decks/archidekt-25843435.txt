@@ -1,0 +1,104 @@
+# Archidekt — Jon Irenicus
+# source: archidekt:25843435
+# fetched: 2026-09-02
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Dauthi Voidwalker
+1 Negate
+1 Mana Drain
+1 Reliquary Tower
+1 Tainted Isle
+1 Mind Stone
+1 Dimir Signet
+1 Abyssal Persecutor
+1 Watery Grave
+1 Blighted Agent
+1 Desecration Elemental
+1 Master of the Feast
+1 Rotting Regisaur
+1 Mystic Sanctuary
+1 Demonic Tutor
+1 Reanimate
+1 Toxic Deluge
+1 Animate Dead
+1 Ebon Drake
+1 Hellcarver Demon
+1 Ebonblade Reaper
+1 Thought Eater
+1 Sol Ring
+1 Bojuka Bog
+1 Command Tower
+1 Rogue's Passage
+3 Snow-Covered Swamp
+1 Victimize
+1 Arcane Signet
+1 Vampiric Tutor
+1 Underground River
+1 Strip Mine
+1 Changeling Outcast
+1 Greater Harvester
+1 Diplomatic Immunity
+1 Plaguecrafter
+1 Drinker of Sorrow
+1 Rhystic Study
+1 Taniwha
+1 Deadly Rollick
+1 Necromancy
+1 Fierce Guardianship
+1 Intuition
+1 Prismatic Vista
+1 Darkwater Catacombs
+1 Drowned Catacomb
+1 Takenuma, Abandoned Mire
+1 Underground Sea
+1 Buried Alive
+1 Unearth
+1 Thought Devourer
+1 Clearwater Pathway // Murkwater Pathway
+1 Evil Eye of Orms-by-Gore
+1 Scalding Tarn
+1 Fabled Passage
+1 Verdant Catacombs
+1 Unmarked Grave
+1 Misty Rainforest
+1 Talisman of Dominance
+1 Exchange of Words
+1 Archfiend of the Dross
+1 Flesh Reaver
+1 Mystical Tutor
+1 Maze of Ith
+1 Urborg, Tomb of Yawgmoth
+1 Strionic Resonator
+1 Heartless Act
+1 Propaganda
+1 Slither Blade
+1 Homeward Path
+1 Entomb
+1 Thought Vessel
+1 Baleful Strix
+1 Evil Eye of Urborg
+1 Phyrexian Metamorph
+1 Sower of Discord
+1 Black Market Connections
+1 Arcane Denial
+1 Counterspell
+1 Infernal Grasp
+1 Pongify
+1 Ancient Tomb
+1 Choked Estuary
+1 Command Beacon
+1 Exotic Orchard
+1 Fetid Pools
+1 Morphic Pool
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Shipwreck Marsh
+2 Snow-Covered Island
+1 Sunken Ruins
+1 Temple of Deceit
+1 All Is Dust
+1 Commander's Sphere
+1 Fellwar Stone

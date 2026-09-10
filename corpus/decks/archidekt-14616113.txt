@@ -1,0 +1,92 @@
+# Archidekt — A Bayou Where Elves Say "You can't get nyeah from 'e-uh..."
+# source: archidekt:14616113
+# fetched: 2026-09-09
+# bracket: 3
+
+Commander:
+1 Kodama of the East Tree
+1 Tevesh Szat, Doom of Fools
+
+Deck:
+1 Scute Swarm
+1 Llanowar Elves
+1 Kishla Village
+1 Fertile Thicket
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Blood Money
+1 Necrotic Hex
+1 Harrow
+7 Forest
+1 Morbid Opportunist
+1 Ghoulish Procession
+1 Deathsprout
+1 Myriad Landscape
+1 Thorn Mammoth
+1 Consumed by Greed
+1 Command Tower
+1 Grapple with the Past
+1 Lumra, Bellow of the Woods
+1 Deathreap Ritual
+1 Arasta of the Endless Web
+1 Brawn
+1 Rise of the Witch-king
+1 Rakshasa Debaser
+1 Sakura-Tribe Elder
+1 Malakir Rebirth // Malakir Mire
+1 Golgari Rot Farm
+1 Tireless Provisioner
+1 Underworld Sentinel
+1 Woodland Chasm
+1 Beanstalk Giant // Fertile Footsteps
+1 Moldervine Reclamation
+1 Grisly Salvage
+1 Eaten Alive
+1 Tainted Wood
+1 Binding the Old Gods
+1 Scurry Oak
+1 Vindictive Vampire
+1 Meathook Massacre II
+1 Assassin's Trophy
+1 Vastlands Scavenger // Bind to Life
+1 Sapling Nursery
+1 Questing Beast
+1 Coiling Rebirth
+1 Fiend Artisan
+1 Nightshade Harvester
+1 Asceticism
+1 Orcish Bowmasters
+1 Village Rites
+1 Forum Necroscribe
+1 Germination Practicum
+1 Cauldron of Essence
+1 Colossal Grave-Reaver
+1 Dawnhand Dissident
+1 Mutable Explorer
+1 Diregraf Rebirth
+1 Mirkwood Bats
+1 Szat's Will
+1 Saw in Half
+1 Meren of Clan Nel Toth
+1 Persist
+1 Feed the Swarm
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Zulaport Cutthroat
+1 Midnight Tilling
+1 Grave Researcher // Reanimate
+1 Deathcap Glade
+1 Bayou
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Will of the Abzan
+1 Espers to Magicite
+1 Eliminate the Competition
+1 Part in Friendship
+1 Dancing from Dark to Dawn
+1 Necklace of Girion
+1 Chief Warg's Company
+1 Beastmaster Ascension
+1 Insidious Roots
+1 Savra, Queen of the Golgari
+1 Overgrown Tomb
+11 Swamp
+1 Twilight Diviner
+1 Immoral Bargain

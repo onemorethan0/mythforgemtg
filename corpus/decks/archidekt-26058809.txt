@@ -1,0 +1,83 @@
+# Archidekt — henzie
+# source: archidekt:26058809
+# fetched: 2026-09-04
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Sol Ring
+1 Savage Lands
+1 Kogla, the Titan Ape
+1 Greenwarden of Murasa
+1 Junji, the Midnight Sky
+1 Woodland Cemetery
+1 Sakura-Tribe Elder
+1 Cultivate
+1 Three Visits
+1 Command Tower
+1 Farseek
+1 Ignoble Hierarch
+1 Riveteers Ascendancy
+1 Exotic Orchard
+1 Spire Garden
+1 Dragonskull Summit
+1 Assassin's Trophy
+1 Cinder Glade
+1 Arcane Signet
+1 Ziatora's Proving Ground
+1 Undergrowth Stadium
+1 Rampant Rejuvenator
+1 Birds of Paradise
+1 Archon of Cruelty
+1 Beast Within
+1 Evolving Wilds
+1 Treeshaker Chimera
+8 Mountain
+1 Etali, Primal Storm
+1 Terminate
+1 Solemn Simulacrum
+1 Smoldering Marsh
+1 Blood Crypt
+1 Rootbound Crag
+1 Goreclaw, Terror of Qal Sisma
+8 Forest
+1 Garruk's Uprising
+1 Rampant Growth
+1 Reanimate
+1 Honest Rutstein
+1 Nature's Lore
+1 Ravenous Chupacabra
+1 Timeless Witness
+1 Anger
+1 Birthing Ritual
+1 Mikaeus, the Unhallowed
+8 Swamp
+1 Ziatora, the Incinerator
+1 Llanowar Elves
+1 Noxious Gearhulk
+1 Kodama's Reach
+1 Roxanne, Starfall Savant
+1 Fabled Passage
+1 Archpriest of Shadows
+1 Protean Hulk
+1 Birthing Pod
+1 Evolutionary Leap
+1 Toxic Deluge
+1 Overlord of the Hauntwoods
+1 Woodfall Primus
+1 Village Rites
+1 Abrupt Decay
+1 Rushed Rebirth
+1 Heroic Intervention
+1 Luxury Suite
+1 Greater Good
+1 Druid of Purification
+1 Wild Growth
+1 Blasphemous Act
+1 Fellwar Stone
+1 Primeval Herald
+1 Rise of the Witch-king
+1 Elvish Mystic
+1 Seedguide Ash
+1 Inferno Titan

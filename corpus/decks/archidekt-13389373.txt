@@ -1,0 +1,86 @@
+# Archidekt — Dragon Debauchery
+# source: archidekt:13389373
+# fetched: 2026-09-09
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Atsushi, the Blazing Sky
+1 Electroduplicate
+1 Fiery Emancipation
+1 Carnelian Orb of Dragonkind
+1 Aetherize
+1 Arcane Signet
+1 Archdruid's Charm
+1 Atarka, World Render
+1 Austere Command
+1 Blasphemous Edict
+1 Crucible of Fire
+1 Deep Reconnaissance
+1 Deflecting Palm
+1 Didn't Say Please
+1 Divine Resilience
+1 Dragon's Hoard
+1 Dragonback Assault
+1 Dragonlord Ojutai
+1 Dragonstorm
+1 Dragonstorm Globe
+1 Duty Beyond Death
+1 Encroaching Dragonstorm
+1 Ferrous Lake
+5 Forest
+1 Hoard-Smelter Dragon
+1 Invasion of Tarkir // Defiant Thundermaw
+5 Island
+1 Korlessa, Scale Singer
+1 Miirym, Sentinel Wyrm
+1 Moment's Peace
+5 Mountain
+1 Mystic Monastery
+1 Nomad Outpost
+1 Opulent Palace
+5 Plains
+1 Rush of Dread
+1 Sandsteppe Citadel
+1 Skanos Dragonheart
+1 Skycloud Expanse
+5 Swamp
+1 Twinflame Tyrant
+1 Urza's Incubator
+1 Sonic Shrieker
+1 Purging Stormbrood // Absorb Essence
+1 Sol Ring
+1 Kiora, Behemoth Beckoner
+1 Tiamat
+1 Teferi's Protection
+1 Rite of the Dragoncaller
+1 Sarkhan, Dragonsoul
+1 Ganax, Astral Hunter
+1 Draconic Lore
+1 Cinder Glade
+1 Mox Jasper
+1 Timeless Lotus
+1 Dragonlord's Servant
+1 Banner of Kinship
+1 Temporal Mastery
+1 Coalition Victory
+1 Underworld Breach
+1 Call the Spirit Dragons
+1 Dracogenesis
+1 Neriv, Heart of the Storm
+1 Shiko, Paragon of the Way
+1 Commercial District
+1 Thornspire Verge
+1 Windswept Heath
+1 Marang River Regent // Coil and Catch
+1 Ancient Copper Dragon
+1 Ancient Bronze Dragon
+1 Bonehoard Dracosaur
+1 Crop Rotation
+1 Emergent Ultimatum
+1 Obliterate
+1 Smaug the Magnificent
+1 Sagu Wildling // Roost Seek
+1 Renari, Merchant of Marvels
+1 Herigast, Erupting Nullkite

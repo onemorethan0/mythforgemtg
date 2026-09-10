@@ -1,0 +1,104 @@
+# Archidekt — Trap Network
+# source: archidekt:25958440
+# fetched: 2026-09-01
+
+Commander:
+1 Kadena, Slinking Sorcerer
+
+Deck:
+1 Arcane Signet
+1 Ainok Survivalist
+1 Alchemist's Refuge
+1 Assassin's Trophy
+1 Bane of the Living
+1 Bayou
+1 Beast Within
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 Brine Elemental
+1 Chromeshell Crab
+1 City of Brass
+1 Command Tower
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Den Protector
+1 Dream Chisel
+1 Exit Specialist
+1 Exotic Orchard
+1 Farseek
+1 Flooded Strand
+2 Forest
+1 Gift of Doom
+1 Heroic Intervention
+1 Hide in Plain Sight
+2 Island
+1 Ixidron
+1 Kadena's Silencer
+1 Kheru Spellsnatcher
+1 Leyline of Anticipation
+1 Mana Confluence
+1 Marsh Flats
+1 Mischievous Quanar
+1 Misty Rainforest
+1 Morphic Pool
+1 Nantuko Vigilante
+1 Nature's Lore
+1 Otawara, Soaring City
+1 Overgrown Tomb
+1 Overwhelming Stampede
+1 Polluted Delta
+1 Primordial Mist
+1 Printlifter Ooze
+1 Prismatic Vista
+1 Birds of Paradise
+1 Bloom Tender
+1 Etrata, Deadly Fugitive
+1 Reality Shift
+1 Reflecting Pool
+1 Rejuvenating Springs
+1 Scalding Tarn
+1 Scroll of Fate
+1 Secret Plans
+1 Seedborn Muse
+1 Silumgar Assassin
+1 Skinthinner
+1 Stratus Dancer
+2 Swamp
+1 Swan Song
+1 Takenuma, Abandoned Mire
+1 They Came from the Pipes
+1 Thieving Amalgam
+1 Thousand Winds
+1 Threats Around Every Corner
+1 Three Visits
+1 Toxic Deluge
+1 Trail of Mystery
+1 Tropical Island
+1 Ugin's Mastery
+1 Underground Sea
+1 Undergrowth Stadium
+1 Urborg, Tomb of Yawgmoth
+1 Valgavoth's Onslaught
+1 Yavimaya, Cradle of Growth
+1 Vannifar, Evolved Enigma
+1 Verdant Catacombs
+1 Vesuvan Shapeshifter
+1 Voidmage Apprentice
+1 Watery Grave
+1 Whisperwood Elemental
+1 Willbender
+1 Windswept Heath
+1 Wooded Foothills
+1 Zagoth Triome
+1 Zimone, Mystery Unraveler
+1 Vedalken Orrery
+1 Sol Ring
+1 Talisman of Curiosity
+1 Talisman of Dominance
+1 Panoptic Projektor
+1 Hooded Hydra
+1 Hauntwoods Shrieker
+1 Icefeather Aven
+1 Experiment Twelve
+1 Grim Haruspex

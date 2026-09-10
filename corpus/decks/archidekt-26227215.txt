@@ -1,0 +1,107 @@
+# Archidekt — Smaug v3
+# source: archidekt:26227215
+# fetched: 2026-09-09
+
+Commander:
+1 Smaug the Impenetrable
+
+Deck:
+1 Ragavan, Nimble Pilferer
+1 Orcish Bowmasters
+1 Dauthi Voidwalker
+1 Opposition Agent
+1 Magda, Brazen Outlaw
+1 Xorn
+1 Academy Manufactor
+1 Professional Face-Breaker
+1 Grim Hireling
+1 Goldspan Dragon
+1 Cavern-Hoard Dragon
+1 Smaug the Magnificent
+1 Mayhem Devil
+1 Reckless Fireweaver
+1 Ingenious Artillerist
+1 Imperial Recruiter
+1 Dualcaster Mage
+1 Smaug, Wicked Worm
+1 Crime Novelist
+1 Mirkwood Bats
+1 Marionette Apprentice
+1 Disciple of the Vault
+1 Sol Ring
+1 Mana Vault
+1 Grim Monolith
+1 Chrome Mox
+1 Mox Diamond
+1 Mox Opal
+1 Lotus Petal
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Lion's Eye Diamond
+1 Grinding Station
+1 Wishclaw Talisman
+1 Nadier's Nightblade
+1 The One Ring
+1 Blazing Sunsteel
+1 Underworld Breach
+1 Big Score
+1 Pyrohemia
+1 Pestilence
+1 Black Market Connections
+1 Revel in Riches
+1 Vampiric Tutor
+1 Dark Ritual
+1 Deflecting Swat
+1 Deadly Rollick
+1 Deadly Dispute
+1 Snuff Out
+1 Pyroblast
+1 Red Elemental Blast
+1 Lightning Bolt
+1 Fire Covenant
+1 Imp's Mischief
+1 Demonic Tutor
+1 Imperial Seal
+1 Gamble
+1 Jeska's Will
+1 Strike It Rich
+1 Rite of Flame
+1 Toxic Deluge
+1 Blasphemous Act
+1 Twinflame
+1 Reanimate
+1 Diabolic Intent
+1 Beseech the Mirror
+1 Badlands
+1 Blood Crypt
+1 Luxury Suite
+1 Blightstep Pathway // Searstep Pathway
+1 Unexpected Windfall
+1 Wheel of Fortune
+1 Cabal Ritual
+1 Mana Confluence
+1 Gemstone Caverns
+1 Sulfurous Springs
+1 Blackcleave Cliffs
+1 Dragonskull Summit
+1 Foreboding Ruins
+1 Mount Doom
+1 Command Tower
+1 City of Brass
+1 Ancient Tomb
+1 Urza's Saga
+1 Bloodstained Mire
+1 Marsh Flats
+1 Polluted Delta
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Arid Mesa
+1 Prismatic Vista
+1 Exotic Orchard
+1 Phyrexian Tower
+1 Takenuma, Abandoned Mire
+1 Sokenzan, Crucible of Defiance
+1 Swamp
+1 Mountain
+1 Necropotence

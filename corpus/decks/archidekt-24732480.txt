@@ -1,0 +1,89 @@
+# Archidekt — (massacre) Girl of my Dreams
+# source: archidekt:24732480
+# fetched: 2026-09-10
+# bracket: 4
+
+Commander:
+1 Massacre Girl
+
+Deck:
+1 Slaughter Specialist
+1 Massacre Wurm
+1 Thanos, Death's Consort
+1 Yahenni, Undying Partisan
+1 Massacre Girl, Known Killer
+1 Sol Ring
+1 Dark Ritual
+1 Rise of the Dread Marn
+1 Clackbridge Troll
+1 Hunted Bonebrute
+1 Hunted Horror
+1 Tribute to Horobi // Echo of Death's Wail
+1 Thoughtseize
+1 Revel in Riches
+1 Genesis Chamber
+1 The Meathook Massacre
+1 Black Market Connections
+1 Jet Medallion
+1 Reanimate
+1 Dauthi Voidwalker
+1 Black Market
+1 Super Shredder
+1 Bloodghast
+1 Boggart Trawler // Boggart Bog
+1 Cabal Coffers
+1 Bojuka Bog
+1 Nykthos, Shrine to Nyx
+1 Cabal Stronghold
+1 Castle Locthwain
+1 Spymaster's Vault
+1 Sanctum of Eternity
+1 Forbidden Orchard
+1 Malakir Rebirth // Malakir Mire
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Cabal Ritual
+1 Inquisition of Kozilek
+1 Duress
+1 Spoils of Blood
+1 Culling the Weak
+1 Ancient Tomb
+1 Grim Tutor
+1 Skullclamp
+1 Decorum Dissertation
+1 Sword of Hearth and Home
+1 The Soul Stone
+1 Phyrexian Arena
+1 Meathook Massacre II
+1 Sceptre of Eternal Glory
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Bolas's Citadel
+1 Necropotence
+1 The One Ring
+1 Takenuma, Abandoned Mire
+1 Fellwar Stone
+1 Deadly Rollick
+1 Dowsing Dagger // Lost Vale
+1 Infernal Genesis
+1 Withering Torment
+1 Feed the Swarm
+1 Akroan Horse
+1 Cursed Totem
+1 Venomcrawler
+1 Flare of Malice
+1 Dismember
+21 Swamp
+1 Mox Diamond
+1 Mana Vault
+1 Damping Sphere
+1 Lotus Petal
+1 Volrath's Stronghold
+1 Snuff Out
+1 Nashi, Moon Sage's Scion
+1 Blade of the Bloodchief
+1 Karn, the Great Creator
+1 Karn, Silver Golem
+1 Throne of Eldraine
+1 Ink-Eyes, Servant of Oni
+1 Chalice of the Void
+1 Gate to Phyrexia

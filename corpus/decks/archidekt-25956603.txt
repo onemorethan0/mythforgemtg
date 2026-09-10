@@ -1,0 +1,79 @@
+# Archidekt — avacyn
+# source: archidekt:25956603
+# fetched: 2026-09-01
+
+Commander:
+1 Avacyn, Angel of Hope
+
+Deck:
+1 Minas Tirith
+1 Cavern of Souls
+1 Youthful Valkyrie
+1 Ghostly Prison
+1 Caged Sun
+1 Tithe
+1 Teferi's Protection
+1 Linvala, Keeper of Silence
+1 Serra Ascendant
+1 Metropolis Reformer
+1 Recruiter of the Guard
+1 Exemplar of Light
+1 Inspiring Overseer
+1 Mangara, the Diplomat
+29 Plains
+1 Commander's Plate
+1 Grand Abolisher
+1 Smothering Tithe
+1 Wrath of God
+1 Speaker of the Heavens
+1 Herald of War
+1 Giada, Font of Hope
+1 Cleansing Nova
+1 Starnheim Aspirant
+1 Land Tax
+1 Akroma's Vengeance
+1 Angel of Serenity
+1 Knight of the White Orchid
+1 Righteous Valkyrie
+1 Myriad Landscape
+1 Swords to Plowshares
+1 Reliquary Tower
+1 Battle Angels of Tyr
+1 Archangel of Thune
+1 Selfless Squire
+1 Sol Ring
+1 Weathered Wayfarer
+1 Angel of the Ruins
+1 Thalia, Guardian of Thraben
+1 Elspeth, Sun's Champion
+1 Resplendent Angel
+1 Skullclamp
+1 Bishop of Wings
+1 Twilight Shepherd
+1 Entreat the Angels
+1 Angel of Finality
+1 Thalia's Lancers
+1 Day of Judgment
+1 Monologue Tax
+1 Emeria, the Sky Ruin
+1 Angelic Field Marshal
+1 Restoration Angel
+1 Angel of Vitality
+1 Gisela, the Broken Blade
+1 Lyra Dawnbringer
+1 Archangel of Tithes
+1 Path to Exile
+1 Settle the Wreckage
+1 Mother of Runes
+1 Terminus
+1 Thalia, Heretic Cathar
+1 Nykthos, Shrine to Nyx
+1 Oketra's Monument
+1 Pearl Medallion
+1 Angel of Glory's Rise
+1 Bruna, the Fading Light
+1 Emeria Shepherd
+1 Steelshaper's Gift
+1 Ranger of Eos
+1 Starnheim Unleashed
+1 Ms. Bumbleflower

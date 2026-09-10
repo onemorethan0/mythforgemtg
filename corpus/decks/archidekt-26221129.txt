@@ -1,0 +1,89 @@
+# Archidekt — Seizan, Perverter of Truth
+# source: archidekt:26221129
+# fetched: 2026-09-09
+
+Commander:
+1 Seizan, Perverter of Truth
+
+Deck:
+1 Underworld Dreams
+1 Fate Unraveler
+1 Howling Mine
+1 Ob Nixilis, the Hate-Twisted
+1 Master of the Feast
+1 Scrawling Crawler
+1 Price of Knowledge
+1 Font of Mythos
+1 Jet Medallion
+1 Temple Bell
+1 Cabal Ritual
+1 Peer into the Abyss
+1 Crypt Ghast
+1 Dark Ritual
+1 Dark Deal
+1 Cabal Coffers
+1 Psychosis Crawler
+1 Howling Golem
+1 Black Vise
+1 Feed the Swarm
+1 Gray Merchant of Asphodel
+1 Baleful Mastery
+1 Sheoldred, the Apocalypse
+1 Sangromancer
+1 Mutilate
+1 Iron Maiden
+1 Fell Specter
+1 Gix, Yawgmoth Praetor
+1 Magus of the Coffers
+1 Elder Brain
+1 Teferi's Puzzle Box
+1 Sudden Spoiling
+1 Dauthi Voidwalker
+1 Darkness
+1 Toxic Deluge
+1 Runed Servitor
+1 Memory Jar
+1 Thought Vessel
+1 Sol Ring
+1 Arcane Signet
+1 Wound Reflection
+1 Fellwar Stone
+1 Otherworld Atlas
+1 Night's Whisper
+1 Eldritch Pact
+1 Damnation
+1 Blasphemous Edict
+1 Deadly Rollick
+1 Bubbling Muck
+1 Anvil of Bogardan
+1 Consuming Corruption
+1 Sign in Blood
+1 Venser's Journal
+1 No Mercy
+1 Maze of Ith
+1 Koskun Falls
+1 Exquisite Blood
+1 Crawlspace
+1 Expedition Map
+1 Charcoal Diamond
+1 Grim Tutor
+1 Profane Tutor
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Urza's Cave
+1 Nykthos, Shrine to Nyx
+1 Urborg, Tomb of Yawgmoth
+1 Thespian's Stage
+19 Swamp
+1 Vesuva
+1 Malakir Rebirth // Malakir Mire
+1 Fell the Profane // Fell Mire
+1 Bojuka Bog
+1 Boggart Trawler // Boggart Bog
+1 Mikokoro, Center of the Sea
+1 Geier Reach Sanitarium
+1 The Mycosynth Gardens
+1 Reliquary Tower
+1 Buried Ruin
+1 Sculpting Steel
+1 Mirage Mirror
+1 Liliana's Caress

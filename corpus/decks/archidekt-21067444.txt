@@ -1,0 +1,91 @@
+# Archidekt — The Funnest Guys I Know or Mycellia Your Fate
+# source: archidekt:21067444
+# fetched: 2026-09-02
+
+Commander:
+1 Thelon of Havenwood
+1 Ghave, Guru of Spores
+
+Deck:
+1 Jade Mage
+1 The Mycotyrant
+1 Spore Flower
+1 Skullcap Snail
+1 Slimefoot, the Stowaway
+1 Necrogenesis
+1 Triumph of the Hordes
+1 Vastwood Surge
+1 Germination Practicum
+12 Forest
+3 Swamp
+1 Vivid Grove
+1 Sporoloth Ancient
+1 Sporemound
+1 Sporesower Thallid
+1 Fungal Bloom
+1 Cankerbloom
+1 Deathspore Thallid
+1 Crawling Barrens
+1 Holdout Settlement
+1 Twilight Mire
+1 Mortuary Mire
+1 Opal Palace
+1 Quicksand
+1 Escape Tunnel
+1 Crumbling Vestige
+1 Grim Backwoods
+1 Sapseep Forest
+1 Spawning Pool
+1 Llanowar Reborn
+1 Oran-Rief, the Vastwood
+1 Darkmoss Bridge
+1 Golgari Rot Farm
+1 Hissing Quagmire
+1 Khalni Garden
+1 Strangled Cemetery
+1 Overgrown Tomb
+1 Yavimaya Sapherd
+1 Pallid Mycoderm
+1 Pallid Mycoderm
+1 Twilight Panther
+1 Thallid Germinator
+1 Thallid Shell-Dweller
+1 Synapse Necromage
+1 Swarm Shambler
+1 Emeritus of Abundance // Regrowth
+1 Copperhorn Scout
+1 Eye Collector
+1 Vitaspore Thallid
+1 Sporecrown Thallid
+1 Krosan Restorer
+1 Bloom Hulk
+1 Selesnya Evangel
+1 Utopia Mycon
+1 Avatar of the Resolute
+1 Thallid
+1 Felothar, Dawn of the Abzan
+1 Fungusaur
+1 Psychotrope Thallid
+1 Corpsejack Menace
+1 Deathcap Cultivator
+1 Deathbloom Thallid
+1 Powerful Broker
+1 Augur il-Vec
+1 Tukatongue Thallid
+1 Molder Slug
+1 Wilderness Reclamation
+1 Death's Oasis
+1 Song of the Dryads
+1 Intangible Virtue
+1 Deafening Silence
+1 Noxious Assault
+1 Carnivorous Canopy
+1 Death Mutation
+1 Single Combat
+1 Fungal Sprouting
+1 Expand the Sphere
+1 Harsh Sustenance
+1 Scale Blessing
+1 Spore Swarm
+1 Barkshell Blessing
+1 Seeds of Strength

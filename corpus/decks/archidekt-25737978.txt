@@ -1,0 +1,90 @@
+# Archidekt — Tayam
+# source: archidekt:25737978
+# fetched: 2026-09-01
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Ashnod's Altar
+1 Moonshadow
+1 Emperor of Bones
+1 Slumbering Trudge
+1 Fabled Passage
+1 Prismatic Vista
+1 Wight of the Reliquary
+1 Cathar Commando
+1 Syr Vondam, Sunstar Exemplar
+1 Dyadrine, Synthesis Amalgam
+1 Evolution Sage
+1 Aftermath Analyst
+1 Lion Sash
+1 Scavenging Ooze
+1 Sol Ring
+1 Sazh's Chocobo
+1 Spymaster's Vault
+1 Lethal Scheme
+1 Overgrown Tomb
+1 Temple Garden
+1 Godless Shrine
+1 Mirror Entity
+1 Dreadhorde Invasion
+1 Rhovanion Rampager
+1 Managorger Hydra
+1 Hardened Scales
+1 Along the Crooked Way
+1 Archon of Emeria
+1 Aven Interrupter
+1 Basking Broodscale
+1 Bebop & Rocksteady
+1 Breena, the Demagogue
+1 Dawnhand Dissident
+1 Felothar, Dawn of the Abzan
+1 Insidious Roots
+1 Kenrith's Transformation
+1 Kutzil, Malamet Exemplar
+1 Recruiter of the Guard
+1 Ripples of Undeath
+1 Rishkar, Peema Renegade
+1 Souls of the Lost
+1 The Queen of Dale
+1 Verrak, Warped Sengir
+1 Vraska Joins Up
+1 Wall of Roots
+1 Warden of the Grove
+1 Weathered Wayfarer
+1 Abandoned Air Temple
+1 Drana, Liberator of Malakir
+1 Inspiring Call
+1 Bloodstained Mire
+1 Minas Tirith
+1 Polluted Delta
+1 Windswept Heath
+1 Verdant Catacombs
+1 Arid Mesa
+1 Marsh Flats
+1 Misty Rainforest
+1 Flooded Strand
+1 Wooded Foothills
+7 Forest
+7 Swamp
+5 Plains
+1 Gala Greeters
+1 Scythecat Cub
+1 Grave Researcher // Reanimate
+1 Azog, Moria's Ruin
+1 Guide of Souls
+1 Pip-Boy 3000
+1 Animation Module
+1 Millikin
+1 The Warring Triad
+1 Crop Rotation
+1 Revitalizing Repast // Old-Growth Grove
+1 Heartstone
+1 Codex Shredder
+1 Damning Verdict
+1 Command Tower
+1 Song of Freyalise
+1 Clever Concealment
+1 Plaguecrafter
+1 Fauna Shaman

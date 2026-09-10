@@ -1,0 +1,91 @@
+# Archidekt — Spirits Phasing
+# source: archidekt:17233727
+# fetched: 2026-09-02
+
+Commander:
+1 King of the Oathbreakers
+
+Deck:
+1 Swords to Plowshares
+1 Thalisse, Reverent Medium
+1 Andúril, Flame of the West
+1 Ao, the Dawn Sky
+1 Horobi, Death's Wail
+1 Cauldron Haze
+1 Twilight Drover
+1 Eerie Interlude
+1 Katilda, Dawnhart Martyr // Katilda's Rising Dawn
+1 Lingering Souls
+1 Drumbellower
+1 Scapegoat
+1 Priest of the Blessed Graf
+1 Village Rites
+1 Mentor of the Meek
+1 Dark Ritual
+1 Clever Concealment
+1 Remedy
+1 Benevolent Offering
+1 Deadly Dispute
+1 Generous Gift
+1 Triplicate Spirits
+1 Afterlife Insurance
+1 V.A.T.S.
+1 Akroma's Will
+1 Reprieve
+1 Vindicate
+1 Unbreakable Formation
+1 Austere Command
+1 Deadly Rollick
+1 Tainted Field
+1 Flawless Maneuver
+1 Caretaker's Talent
+1 Herald's Horn
+1 Folk Hero
+1 Kaya's Wrath
+1 Pearl Medallion
+1 Halo Fountain
+1 Reliquary Tower
+1 Anointed Procession
+1 Vault of the Archangel
+1 Commander's Sphere
+1 Arcane Signet
+1 Patchwork Banner
+1 Isolated Chapel
+1 Shineshadow Snarl
+1 Heraldic Banner
+1 Orzhov Signet
+1 Godless Shrine
+1 Fetid Heath
+1 Vault of Champions
+1 Talon Gates of Madara
+1 Caves of Koilos
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Bleachbone Verge
+1 Command Tower
+12 Plains
+5 Swamp
+1 Cavern of Souls
+1 Mondrak, Glory Dominus
+1 Skullclamp
+1 Idol of Oblivion
+1 Everybody Lives!
+1 Merciless Eviction
+1 Guardian of Faith
+1 Galadriel's Dismissal
+1 Moonshaker Cavalry
+1 Coat of Arms
+1 Sol Ring
+1 Heaven's Gate
+1 Touch of Darkness
+1 Banner of Kinship
+1 Esper Sentinel
+1 Inspiring Leader
+1 Haunted Library
+1 Staff of the Storyteller
+1 Marsh Flats
+1 Flooded Strand
+1 Verdant Catacombs
+1 Arid Mesa
+1 Polluted Delta
+1 Bloodstained Mire
+1 Windswept Heath

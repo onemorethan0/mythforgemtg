@@ -1,0 +1,86 @@
+# Archidekt — Life Mill
+# source: archidekt:26058306
+# fetched: 2026-09-04
+
+Commander:
+1 Hope Estheim
+
+Deck:
+1 Command Tower
+1 Jidoor, Aristocratic Capital // Overture
+1 Kabira Crossroads
+1 Blighted Steppe
+1 Adventurer's Inn
+1 Rogue's Passage
+1 Radiant Fountain
+10 Plains
+10 Island
+1 Glacial Fortress
+1 Tranquil Cove
+1 Azorius Chancery
+1 Will, Scion of Peace
+1 Sejiri Refuge
+1 Prairie Stream
+1 Port Town
+1 Azorius Signet
+1 White Auracite
+1 Commander's Sphere
+1 Seachrome Coast
+1 Old Thrush
+1 Solemn Simulacrum
+1 Mind Stone
+1 Arcane Signet
+1 Wayfarer's Bauble
+1 Well of Lost Dreams
+1 Drogskol Reaver
+1 Sphinx of the Revelation
+1 Pristine Talisman
+1 Revitalize
+1 Sphinx's Revelation
+1 Sanctify
+1 Cloudblazer
+1 Absorb
+1 Fountain of Renewal
+1 Dawn of Hope
+1 Union of the Third Path
+1 Instant Ramen
+1 Didn't Say Please
+1 Light of Hope
+1 Space-Time Anomaly
+1 Path to Exile
+1 Invoke the Divine
+1 Curious Farm Animals
+1 Supreme Verdict
+1 Riot Control
+1 Stroke of Midnight
+1 Angel of Vitality
+1 Congregate
+1 Daxos, Blessed by the Sun
+1 Time Wipe
+1 Leyline of Hope
+1 Fumigate
+1 Nyx-Fleece Ram
+1 Aetherize
+1 Ruin Crab
+1 Cleric Class
+1 Aerith Gainsborough
+1 Sunscorch Regent
+1 Wall of Reverence
+1 Hinterland Sanctifier
+1 Drown in Dreams
+1 Nykthos Paragon
+1 Knight of Dawn's Light
+1 Terisian Mindbreaker
+1 Ajani's Pridemate
+1 War Report
+1 Impassioned Orator
+1 Daxos of Meletis
+1 Manic Scribe
+1 Kitsune's Technique
+1 Thought Collapse
+1 Excalibur II
+1 Profane Memento
+1 Fractured Sanity
+1 Griffin Aerie
+1 Fraying Sanity
+1 Sphinx's Tutelage

@@ -1,0 +1,101 @@
+# Archidekt — What's New?
+# source: archidekt:26058327
+# fetched: 2026-09-04
+
+Commander:
+1 Morska, Undersea Sleuth
+
+Deck:
+1 Yavimaya, Cradle of Growth
+1 Heroic Intervention
+1 Lightning Greaves
+1 Trouble in Pairs
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Dawn's Truce
+1 Minn, Wily Illusionist
+1 Displaced Dinosaurs
+1 Mister Fantastic, Reed Richards
+1 Homunculus Horde
+1 Doubling Season
+1 Consecrated Sphinx
+1 Teferi's Protection
+1 Swan Song
+1 Arcane Denial
+1 Cyclonic Rift
+1 Fateful Discovery
+1 Belladonna Took
+1 Bard, King of Dale
+1 Kodama's Reach
+1 Three Visits
+1 Misty Rainforest
+1 Temple Garden
+1 Hallowed Fountain
+1 Breeding Pool
+1 Flooded Strand
+1 Spara's Headquarters
+1 Willowrush Verge
+1 Hushwood Verge
+1 Floodfarm Verge
+1 Bountiful Promenade
+1 Mondrak, Glory Dominus
+1 Rejuvenating Springs
+1 Sea of Clouds
+1 Sink into Stupor // Soporific Springs
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Mutagen Man, Living Ooze
+1 Mana Drain
+1 Academy Manufactor
+1 Adrix and Nev, Twincasters
+1 Alandra, Sky Dreamer
+1 Arcane Signet
+1 Beast Within
+1 Bennie Bracks, Zoologist
+1 Command Tower
+1 Cyberdrive Awakener
+1 Detective of the Month
+1 Disorder in the Court
+1 Erdwal Illuminator
+1 Esix, Fractal Bloom
+1 Ethereal Investigator
+1 Exotic Orchard
+1 Farseek
+1 Five Hundred Year Diary
+1 Forensic Gadgeteer
+3 Forest
+1 Generous Gift
+1 Idol of Oblivion
+1 Inspiring Statuary
+3 Island
+1 Jaheira, Friend of the Forest
+1 Jolrael, Mwonvuli Recluse
+1 Junk Winder
+1 Kappa Cannoneer
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Knowledge Is Power
+1 Lonis, Cryptozoologist
+1 Merchant of Truth
+1 Officious Interrogation
+1 Path to Exile
+3 Plains
+1 Reliquary Tower
+1 Rise and Shine
+1 Shimmer Dragon
+1 Sol Ring
+1 Spire of Industry
+1 Swords to Plowshares
+1 Tamiyo's Journal
+1 Tangletrove Kelp
+1 Teferi's Ageless Insight
+1 Tezzeret, Betrayer of Flesh
+1 Tireless Tracker
+1 Ulvenwald Mysteries
+1 Urza, Lord High Artificer
+1 Wilderness Reclamation
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Mechanized Production
+1 Esper Sentinel
+1 Gleaming Bastion
+1 Duggan, Private Detective
+1 Spirit Water Revival
+1 Noble Hierarch

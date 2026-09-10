@@ -1,0 +1,95 @@
+# Archidekt — Maralen Blink
+# source: archidekt:25162142
+# fetched: 2026-09-01
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Raise the Palisade
+1 Thornmantle Striker
+1 Rooftop Percher
+1 High Perfect Morcant
+1 Spaceshift
+1 Glen Elendra's Answer
+1 Thranduil the Strategist
+1 Skemfar Shadowsage
+1 Shaman of the Pack
+1 Aberrant Mind Sorcerer
+1 Teferi's Time Twist
+1 Dwynen's Elite
+1 Blur
+1 Essence Flux
+1 Elrond, Moon-Reader
+1 Ghostly Flicker
+1 Planar Incision
+1 Cantankerous Keepers
+1 Hide on the Ceiling
+1 Omni-Changeling
+1 Selfless Safewright
+1 Coiling Oracle
+1 Waterbender's Restoration
+1 Gilt-Leaf Winnower
+1 Llanowar Empath
+1 Elvish Visionary
+1 Llanowar Visionary
+1 Farhaven Elf
+1 Reclamation Sage
+1 Scuttling Sentinel
+1 Voice of Many
+1 Springbloom Druid
+1 Wood Elves
+1 Sutina, Speaker of the Tajuru
+1 Sylvan Ranger
+1 Masked Vandal
+1 Mutable Explorer
+1 Cavern of Souls
+1 Disciple of Freyalise // Garden of Freyalise
+1 Clearwater Pathway // Murkwater Pathway
+1 Darkbore Pathway // Slitherbore Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Llanowar Wastes
+1 Yavimaya Coast
+1 Polluted Delta
+1 Boseiju, Who Endures
+1 Takenuma, Abandoned Mire
+1 Otawara, Soaring City
+1 Watery Grave
+1 Verdant Catacombs
+5 Island
+1 Breeding Pool
+1 Frilled Mystic
+1 Command Tower
+1 Elvish Rejuvenator
+1 Elven Passage
+6 Forest
+1 Misty Rainforest
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Swamp
+1 Underground River
+1 Repudiate // Replicate
+1 See Double
+1 Three Steps Ahead
+1 Fated Infatuation
+1 Cackling Counterpart
+1 Rimefire Torque
+1 Mirror Room // Fractured Realm
+1 Vesuvan Duplimancy
+1 Tamiyo's Safekeeping
+1 Ivy, Gleeful Spellthief
+1 Galadhrim Ambush
+1 Roaming Throne
+1 Celestial Reunion
+1 Blessed Respite
+1 Elves of Deep Shadow
+1 Deathrite Shaman
+1 Elvish Mystic
+1 Llanowar Elves
+1 Kindred Summons
+1 Fyndhorn Elves
+1 Gala Greeters
+1 Virulent Emissary
+1 Elvish Dreadlord
+1 Gilt-Leaf Palace
+1 Fabled Passage

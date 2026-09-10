@@ -1,0 +1,91 @@
+# Archidekt — Kilo
+# source: archidekt:25549375
+# fetched: 2026-09-09
+
+Commander:
+1 Kilo, Apogee Mind
+
+Deck:
+1 Fabricate
+1 Counterspell
+1 Dovin's Veto
+1 Blighted Agent
+1 Skrelv, Defector Mite
+1 Isochron Scepter
+1 Freed from the Real
+1 Plague Myr
+1 Ral Zarek
+1 Metastatic Evangel
+1 Etherium Sculptor
+1 Mm'menon, the Right Hand
+1 Magistrate's Scepter
+1 Insight Engine
+1 Hangarback Walker
+1 Tekuthal, Inquiry Dominus
+1 Resourceful Defense
+1 Lady Octopus, Inspired Inventor
+1 Inspirit, Flagship Vessel
+1 Cayth, Famed Mechanist
+1 Pensive Professor
+1 The Seriema
+1 Crystalline Crawler
+1 Ancient Den
+4 Mountain
+1 Swords to Plowshares
+1 Mystic Forge
+1 Arcane Signet
+1 Emry, Lurker of the Loch
+1 Swan Song
+1 Jhoira, Weatherlight Captain
+1 The Mycosynth Gardens
+9 Island
+1 Mystic Monastery
+5 Plains
+1 Long-Range Sensor
+1 Organic Extinction
+1 Inexorable Tide
+1 Sol Ring
+1 Phyrexian Metamorph
+1 Steel Overseer
+1 Patrolling Peacemaker
+1 Moxite Refinery
+1 Rugged Prairie
+1 Pentad Prism
+1 Buried Ruin
+1 Command Tower
+1 Dispatch
+1 Everflowing Chalice
+1 Relic of Legends
+1 Surge Conductor
+1 Battlefield Forge
+1 Skycloud Expanse
+1 Cyberdrive Awakener
+1 Evolving Wilds
+1 Supreme Verdict
+1 Darksteel Reactor
+1 Exotic Orchard
+1 Karn's Bastion
+1 Pemmin's Aura
+1 Spire of Industry
+1 Astral Cornucopia
+1 Solar Array
+1 Thought Vessel
+1 Great Furnace
+1 Shivan Reef
+1 Adarkar Wastes
+1 Enthusiastic Mechanaut
+1 Lux Cannon
+1 Alibou, Ancient Witness
+1 Uthros Research Craft
+1 Seat of the Synod
+1 Chaos Warp
+1 Cascade Bluffs
+1 Manifold Key
+1 Golem Foundry
+1 Hawkeye's Bow
+1 Dreamtide Whale
+1 Contagion Engine
+1 Mindless Automaton
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Deepglow Skate
+1 Pull from Tomorrow

@@ -1,0 +1,107 @@
+# Archidekt — SQ buylist
+# source: archidekt:25762410
+# fetched: 2026-09-04
+
+Commander:
+1 Silverquill, the Disputant
+
+Deck:
+1 City of Traitors
+1 Caves of Koilos
+1 Phyrexian Censor
+1 Grand Abolisher
+1 Voice of Victory
+1 Final Parting
+1 Chain of Smog
+1 Opposition Agent
+1 Snuff Out
+1 Emergence Zone
+1 Remote Farm
+1 Grim Tutor
+1 Peat Bog
+1 Imperial Seal
+1 Susurian Voidborn
+1 Dauntless Dismantler
+1 Tax Collector
+1 Vexing Bauble
+1 Charitable Levy
+1 Lively Dirge
+1 Gleaming Splendor
+1 Cabal Ritual
+1 Kambal, Profiteering Mayor
+1 Forsaken Miner
+1 Greedy Freebooter
+1 Talisman of Hierarchy
+1 Exotic Orchard
+1 Starting Town
+1 Tataru Taru
+1 Orim's Chant
+1 Shambling Ghast
+1 Gemstone Caverns
+1 Phyrexian Tower
+1 Command Tower
+1 Verdant Catacombs
+1 Marsh Flats
+1 Polluted Delta
+1 Wishclaw Talisman
+1 Orcish Bowmasters
+1 Vault of Champions
+1 Silent Clearing
+1 City of Brass
+1 Bloodstained Mire
+1 Mana Confluence
+1 Flooded Strand
+1 Arid Mesa
+1 Silence
+1 Unearth
+1 Culling the Weak
+1 Arena Rector
+1 Ranger-Captain of Eos
+1 Diabolic Intent
+1 Mana Vault
+1 Eidolon of Rhetoric
+1 Gravecrawler
+1 Toxic Deluge
+1 Drannith Magistrate
+1 Dauthi Voidwalker
+1 Necropotence
+1 Warren Soultrader
+1 Esper Sentinel
+1 Vault of Whispers
+1 Black Market Connections
+1 The One Ring
+1 Buried Alive
+1 Archivist of Oghma
+1 Lotho, Corrupt Shirriff
+1 Braids, Arisen Nightmare
+1 The Queen of Dale
+1 Smuggler's Share
+1 Ethersworn Canonist
+1 Smothering Tithe
+1 Arcane Signet
+1 Fetid Heath
+1 Mox Opal
+1 Sol Ring
+1 Urza's Saga
+1 Dark Ritual
+1 Scrubland
+1 Chrome Mox
+1 Godless Shrine
+1 Archon of Emeria
+1 Memnite
+1 Ancient Tomb
+1 Defense Grid
+1 Reanimate
+1 Entomb
+1 Demonic Counsel
+1 Beseech the Mirror
+1 Demonic Tutor
+1 Lotus Petal
+1 Mox Diamond
+1 Dark Petition
+1 Serra Ascendant
+1 Professor Onyx
+1 Vampiric Tutor
+1 Lethal Scheme
+1 Fellwar Stone
+1 Swords to Plowshares

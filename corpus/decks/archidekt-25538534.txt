@@ -1,0 +1,85 @@
+# Archidekt — Dwarf ball
+# source: archidekt:25538534
+# fetched: 2026-09-09
+
+Commander:
+1 Thorin, King of Durin's Folk
+
+Deck:
+1 Vow to Erebor
+1 Dwarven Mauler
+1 Bearded Axe
+1 Bruenor Battlehammer
+1 Nori, Teller of Tales
+1 Kíli the Resourceful
+1 Dáin, Lord of the Iron Hills
+1 Dori, Bearer of Friends
+1 Thorin, Mountain-king
+1 Bifur, Melodic Rider
+1 Dáin's Company
+1 Fíli the Pathfinder
+1 Glóin, Dwarf Emissary
+1 Thorin Oakenshield
+1 Boros Charm
+1 Dáin Ironfoot
+1 Balin, Loremaster
+1 Dwarven Mattock
+1 Diamond Pick-Axe
+1 The Arkenstone // Seek the Heart
+1 Firdoch Core
+1 Glóin the Mighty // Easy Pickings
+1 Rubble Rouser
+1 Winnowing
+1 Shattered Acolyte
+1 Sting, Bilbo's Sword
+1 Bofur, Reliable Guardian // Concerted Care
+1 Iron Hills Stalwart
+1 An Unexpected Party // At the Door
+1 Improvised Arsenal
+1 Suspend Aggression
+1 Herald's Horn
+1 Desert Were-Worm
+1 Magda, Brazen Outlaw
+1 Outpost Siege
+1 Rain of Riches
+1 Dwarven Shortsword
+1 Long-Lost Lances
+1 Sacred Foundry
+1 Elegant Parlor
+1 Belladonna Took
+1 Command Tower
+1 Clifftop Retreat
+1 Radiant Summit
+1 Furycalm Snarl
+1 Arena of Glory
+1 Buried Ruin
+14 Plains
+11 Mountain
+1 Vanquisher's Banner
+1 Iron Hills
+1 Path of Ancestry
+1 Cadric, Soul Kindler
+1 Reyav, Master Smith
+1 Depala, Pilot Exemplar
+1 Sram, Senior Edificer
+1 Unbreakable Formation
+1 Celebrate the Mountain-king
+1 Monologue Tax
+1 Koll, the Forgemaster
+1 The Lonely Mountain
+1 Dwalin, Weaponmaster
+1 Dan Lewis
+1 Scourge of the Throne
+1 Gleaming Splendor
+1 Chaos Warp
+1 Balefire Liege
+1 Dispatch
+1 Magda, the Hoardmaster
+1 Plundering Barbarian
+1 Stone by Sunlight
+1 Dwarven Hammer
+1 Glittering Stockpile
+1 Urza's Ruinous Blast
+1 Harsh Mercy
+1 The Misty Mountains Cold
+1 The Soul Stone

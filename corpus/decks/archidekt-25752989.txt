@@ -1,0 +1,102 @@
+# Archidekt — Post  The Enchnater
+# source: archidekt:25752989
+# fetched: 2026-09-01
+
+Commander:
+1 Zur the Enchanter
+
+Deck:
+1 Archon of Emeria
+1 Isolated Chapel
+1 Stasis
+1 Torpor Orb
+1 An Offer You Can't Refuse
+1 Command Tower
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Orzhov Signet
+1 Dimir Signet
+1 Counterspell
+1 Azorius Signet
+1 Daybreak Coronet
+1 Authority of the Consuls
+1 Static Orb
+1 Darksteel Mutation
+1 Notion Thief
+1 Vault of Champions
+1 All That Glitters
+1 Smothering Tithe
+1 Grasp of Fate
+1 Greater Auramancy
+1 Deserted Beach
+1 Sea of Clouds
+1 Spirit of the Labyrinth
+1 Raffine's Tower
+1 Watery Grave
+1 Hallowed Fountain
+1 Arcane Denial
+1 Talisman of Hierarchy
+1 Vampiric Tutor
+1 Flooded Strand
+1 Fierce Guardianship
+1 Swamp
+1 Ethereal Armor
+1 Dawn's Truce
+1 Force of Negation
+1 Lightning Greaves
+1 Lavinia, Azorius Renegade
+1 Floodfarm Verge
+1 Shipwreck Marsh
+1 Underground River
+1 Enlightened Tutor
+1 Supreme Verdict
+1 Rhystic Study
+1 Mirrormade
+1 Stony Silence
+1 Glacial Fortress
+1 Damping Sphere
+1 Morphic Pool
+1 Polluted Delta
+1 Adarkar Wastes
+1 Teferi's Protection
+1 Esper Sentinel
+1 Necropotence
+1 Ghostly Prison
+1 Grand Abolisher
+1 Grand Arbiter Augustin IV
+3 Plains
+1 Blind Obedience
+1 Propaganda
+1 Aura of Silence
+1 Hall of the Bandit Lord
+1 Godless Shrine
+1 Marsh Flats
+1 Steel of the Godhead
+1 Phyresis
+1 Deafening Silence
+1 Hall of Heliod's Generosity
+1 Gloomlake Verge
+1 Diplomatic Immunity
+1 Bleachbone Verge
+1 Clarion Conqueror
+1 Thalia, Heretic Cathar
+1 Rest in Peace
+1 Opposition Agent
+1 Armageddon
+1 Mystic Remora
+1 Rule of Law
+1 Winter Orb
+1 Shielded by Faith
+1 Solemnity
+4 Island
+1 Drowned Catacomb
+1 Caves of Koilos
+1 Shattered Sanctum
+1 Demonic Tutor
+1 Imprisoned in the Moon
+1 Negate
+1 Sol Ring
+1 Cyclonic Rift
+1 Dovin's Veto
+1 Swan Song
+1 Drannith Magistrate

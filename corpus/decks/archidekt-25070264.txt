@@ -1,0 +1,93 @@
+# Archidekt — "Blink" and You'll Miss It (revised)
+# source: archidekt:25070264
+# fetched: 2026-09-03
+# bracket: 3
+
+Commander:
+1 Niko, Light of Hope
+
+Deck:
+1 Academy Ruins
+1 Temple of Enlightenment
+1 Gleaming Bastion
+1 Patriar's Seal
+1 Thousand-Year Elixir
+1 Teleportation Circle
+1 Thassa, Deep-Dwelling
+1 Cloudshift
+1 Eerie Interlude
+1 Ghostway
+1 Path to Exile
+1 Swan Song
+1 Swords to Plowshares
+1 Adarkar Wastes
+1 Command Tower
+1 Deserted Beach
+1 Exotic Orchard
+1 Fabled Passage
+1 Flooded Strand
+1 Glacial Fortress
+1 Hall of Heliod's Generosity
+1 Hallowed Fountain
+1 Mystic Gate
+1 Otawara, Soaring City
+1 Plaza of Heroes
+1 Prismatic Vista
+1 Reflecting Pool
+1 Sea of Clouds
+1 Seachrome Coast
+1 Aether Channeler
+1 Preston, the Vanisher
+1 Displacer Kitten
+1 Mulldrifter
+1 Nesting Dovehawk
+1 Reveillark
+1 Sun Titan
+1 Silent Hallcreeper
+1 Dovin's Veto
+1 Sundial of the Infinite
+1 Curiosity Crafter
+1 Panharmonicon
+1 Angel of the Ruins
+1 Battle Angels of Tyr
+1 Esper Sentinel
+1 Felidar Guardian
+1 Loran of the Third Path
+1 Restoration Angel
+1 Reflector Mage
+1 Skyclave Apparition
+1 Soulherder
+1 Anointed Procession
+1 Abuelo, Ancestral Echo
+1 Dream Trawler
+1 Austere Command
+1 Stroke of Midnight
+1 Conjurer's Closet
+1 Prairie Stream
+1 Meticulous Archive
+1 Rapid Hybridization
+1 Eiganjo, Seat of the Empire
+1 Peregrine Drake
+1 Ephemerate
+1 Teferi's Protection
+1 Ephara, God of the Polis
+1 Arcane Signet
+1 Belladonna Took
+1 Trouble in Pairs
+1 Entity Tracker
+1 Riptide Gearhulk
+1 Ghostly Flicker
+1 Commander's Sphere
+1 Nulldrifter
+1 Hero of Bladehold
+1 Phyrexian Metamorph
+1 Gilded Lotus
+1 Talisman of Progress
+1 Dour Port-Mage
+1 Cloudblazer
+1 Sol Ring
+1 Fellwar Stone
+6 Island
+9 Plains
+1 Consecrated Sphinx
+1 Avatar's Wrath

@@ -1,0 +1,102 @@
+# Archidekt — Ludevic & Vial Smasher: Turn 'n Burn!
+# source: archidekt:4806846
+# fetched: 2026-09-01
+# bracket: 3
+
+Commander:
+1 Vial Smasher the Fierce
+1 Ludevic, Necro-Alchemist
+
+Deck:
+1 The Rani
+1 The Master, Mesmerist
+1 Ash Barrens
+1 Solphim, Mayhem Dominus
+1 Gilded Drake
+1 Nightscape Familiar
+1 Royal Assassin
+1 Wandering Fumarole
+1 Volcanic Island
+1 Lavaclaw Reaches
+1 Izzet Boilerworks
+1 Sol Ring
+1 Arcane Signet
+1 Curse of Opulence
+1 Izzet Signet
+1 Dimir Signet
+1 Rakdos Signet
+1 Xantcha, Sleeper Agent
+1 Emberwilde Captain
+1 Karazikar, the Eye Tyrant
+1 Sygg, River Cutthroat
+1 Clackbridge Troll
+1 Captive Audience
+1 Swan Song
+1 Hunted Dragon
+1 Hunted Horror
+1 Hunted Phantasm
+1 Blasphemous Act
+1 Cut // Ribbons
+1 Deflecting Swat
+1 Electrodominance
+1 Crawlspace
+1 Kardur, Doomscourge
+1 Bloodthirsty Blade
+1 Lightning Bolt
+1 Propaganda
+1 Firkraag, Cunning Instigator
+1 Grenzo, Havoc Raiser
+1 Chaos Warp
+1 No Mercy
+1 Sudden Spoiling
+1 Vengeful Ancestor
+1 Tree of Perdition
+1 Mocking Doppelganger
+1 Arcane Denial
+1 Varragoth, Bloodsky Sire
+1 Scheming Symmetry
+1 Reins of Power
+1 Repercussion
+1 Brash Taunter
+1 Gix, Yawgmoth Praetor
+1 Rakdos Charm
+1 Delayed Blast Fireball
+1 Thought Vessel
+1 Polluted Delta
+1 Blood Crypt
+3 Swamp
+1 Crumbling Necropolis
+1 Luxury Suite
+1 Steam Vents
+1 Watery Grave
+1 Bloodstained Mire
+1 Temple of Epiphany
+1 Temple of Malice
+2 Island
+1 Sulfur Falls
+1 Rakdos Carnarium
+1 Myriad Landscape
+1 Graven Cairns
+1 Exotic Orchard
+1 Drowned Catacomb
+1 Dragonskull Summit
+1 Command Tower
+1 Cascade Bluffs
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Baleful Mastery
+1 Maze of Ith
+1 Guff Rewrites History
+1 Death Kiss
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Red Death, Shipwrecker
+1 Reliquary Tower
+1 Faerie Mastermind
+1 Hot Pursuit
+1 Mob Verdict
+1 Tempt with Mayhem
+1 Duskmantle Seer
+1 Gonti, Night Minister
+1 Alexios, Deimos of Kosmos
+4 Mountain
+1 Forbidden Orchard
+1 Xander's Lounge

@@ -1,0 +1,107 @@
+# Archidekt — Druids
+# source: archidekt:12199613
+# fetched: 2026-09-03
+
+Commander:
+1 Chulane, Teller of Tales
+
+Deck:
+1 Farewell
+1 Bloom Tender
+1 Beast Whisperer
+1 Augur of Autumn
+1 Akroma's Will
+1 Eladamri's Call
+1 Krosan Grip
+1 Worldly Tutor
+1 Sodden Verdure
+1 Rain-Slicked Copse
+1 Dreamroot Cascade
+1 Meticulous Archive
+1 Equilibrium
+1 Hedge Maze
+1 Lush Portico
+1 Overgrown Farmland
+1 Verdant Catacombs
+1 Wirewood Lodge
+1 Gilt-Leaf Archdruid
+1 Deeproot Historian
+1 Aluren
+1 Sylvan Tutor
+1 Circle of Dreams Druid
+1 Defense of the Heart
+1 Boreal Druid
+1 Elvish Archdruid
+1 Heritage Druid
+1 Priest of Titania
+1 Noble Hierarch
+1 Llanowar Elves
+1 Wood Elves
+1 Kinnan, Bonder Prodigy
+1 Joiner Adept
+1 Fyndhorn Elves
+1 Path to Exile
+1 Gaea's Cradle
+1 Swan Song
+1 Swords to Plowshares
+1 Arcane Denial
+1 Heroic Intervention
+1 Fierce Guardianship
+1 An Offer You Can't Refuse
+1 Teferi's Protection
+1 Beast Within
+1 Finale of Devastation
+1 Aura Shards
+1 Nature's Lore
+1 Three Visits
+1 Farseek
+1 Tooth and Nail
+1 Dusk // Dawn
+1 Elven Chorus
+1 Reliquary Tower
+1 Three Tree City
+1 Galadriel, Light of Valinor
+1 Elvish Mystic
+1 Realmwalker
+1 Elvish Harbinger
+1 Formidable Speaker
+1 Shrieking Drake
+1 Nature's Claim
+1 Cloudstone Curio
+1 Raise the Palisade
+1 The Great Henge
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Arcane Signet
+1 Hinterland Harbor
+1 Sunpetal Grove
+1 Bountiful Promenade
+1 Canopy Vista
+1 Command Tower
+1 Flooded Strand
+1 Hallowed Fountain
+1 Rejuvenating Springs
+1 Windswept Heath
+1 Command Beacon
+1 Spara's Headquarters
+1 Sol Ring
+1 Breeding Pool
+1 Misty Rainforest
+1 Temple Garden
+1 Prairie Stream
+1 Seaside Citadel
+1 Glacial Fortress
+1 Yavimaya Coast
+1 Sea of Clouds
+1 Tundra
+1 Brushland
+1 Tropical Island
+1 Savannah
+1 Clement, the Worrywort
+1 Craterhoof Behemoth
+1 Hermit Druid
+1 Moonshaker Cavalry
+1 Tatyova, Benthic Druid
+1 Thassa's Oracle
+1 Guardian Project
+1 Survival of the Fittest

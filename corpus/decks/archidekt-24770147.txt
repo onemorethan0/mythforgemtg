@@ -1,0 +1,107 @@
+# Archidekt — GODS
+# source: archidekt:24770147
+# fetched: 2026-09-02
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Yavimaya, Cradle of Growth
+1 Gaea's Cradle
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Urborg, Tomb of Yawgmoth
+1 Three Tree City
+1 Nykthos, Shrine to Nyx
+1 Trailblazer's Boots
+1 Atreus, Impulsive Son
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Avacyn, Angel of Hope
+1 Deflecting Swat
+1 Zodiark, Umbral God
+1 Agatha's Soul Cauldron
+1 Volrath's Stronghold
+1 Thriving Moor
+1 The World Tree
+1 Plains
+1 Swamp
+1 Plaza of Heroes
+1 Command Tower
+1 Cavern of Souls
+1 Boseiju, Who Endures
+1 Takenuma, Abandoned Mire
+1 Jetmir's Garden
+1 Reflecting Pool
+1 Sol Ring
+1 Athreos, God of Passage
+1 Exotic Orchard
+1 Path of Ancestry
+1 Ares, God of War
+1 Athreos, Shroud-Veiled
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Thriving Heath
+1 Thriving Bluff
+1 Thriving Isle
+1 Thriving Grove
+1 Mirrodin's Core
+1 Teferi's Protection
+1 Fellwar Stone
+1 Chromatic Lantern
+1 Relic of Legends
+1 Faeburrow Elder
+1 Heroic Intervention
+1 Dryad of the Ilysian Grove
+1 Sisay, Weatherlight Captain
+1 Shalai, Voice of Plenty
+1 Doubling Season
+1 Koma, Cosmos Serpent
+1 Raff Capashen, Ship's Mage
+1 Mondrak, Glory Dominus
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Vorinclex, Monstrous Raider
+1 Elesh Norn, Mother of Machines
+1 Sheoldred // The True Scriptures
+1 Path to Exile
+1 Fierce Guardianship
+1 Anguished Unmaking
+1 Delighted Halfling
+1 God-Eternal Oketra
+1 Aurelia, the Warleader
+1 Kinnan, Bonder Prodigy
+1 Flawless Maneuver
+1 Akroma's Will
+1 Assassin's Trophy
+1 Damn
+1 Arcane Signet
+1 Ratadrabik of Urborg
+1 Helm of the Host
+1 Blade of Selves
+1 Primevals' Glorious Rebirth
+1 Indatha Triome
+1 Ketria Triome
+1 Parallel Lives
+1 The Great Henge
+1 Caged Sun
+1 Nylea, Keen-Eyed
+1 Keranos, God of Storms
+1 Kruphix, God of Horizons
+1 Thassa, Deep-Dwelling
+1 Heliod, Sun-Crowned
+1 Purphoros, God of the Forge
+1 Xenagos, God of Revels
+1 Djeru and Hazoret
+1 Havi, the All-Father
+1 Phenax, God of Deception
+1 Kratos, Stoic Father
+1 Loki, God of Lies
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 The Capitoline Triad
+1 Thassa, God of the Sea
+1 Thran Dynamo
+1 Gilded Lotus
+1 Kethis, the Hidden Hand
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Rhonas the Indomitable
+1 Island
+1 Mountain
+1 Forest

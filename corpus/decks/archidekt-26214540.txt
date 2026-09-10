@@ -1,0 +1,72 @@
+# Archidekt — Food Matters
+# source: archidekt:26214540
+# fetched: 2026-09-09
+
+Commander:
+1 Hazel of the Rootbloom
+
+Deck:
+36 Swamp
+1 Bilbo, Fellow Conspirator
+1 Nuka-Cola Vending Machine
+1 Academy Manufactor
+1 Mirkwood Bats
+1 Ygra, Eater of All
+1 Chatterfang, Squirrel General
+1 Chitterspitter
+1 Disciple of the Vault
+1 Honored Dreyleader
+1 Hazel's Brewmaster
+1 Thornvault Forager
+1 Chatterstorm
+1 Rootcast Apprenticeship
+1 Gilded Goose
+1 Nadier's Nightblade
+1 Camellia, the Seedmiser
+1 Deranged Hermit
+1 Ravenous Squirrel
+1 Peregrin Took
+1 Valley Rotcaller
+1 Parallel Lives
+1 For the Common Good
+1 Zulaport Cutthroat
+1 The Unbeatable Squirrel Girl
+1 Tireless Provisioner
+1 Scurry Oak
+1 Marionette Apprentice
+1 Curious Forager
+1 Sol Ring
+1 Golgari Signet
+1 Skullclamp
+1 Talisman of Resilience
+1 Deep Forest Hermit
+1 Saw in Half
+1 Cauldron of Essence
+1 Second Harvest
+1 Heroic Intervention
+1 Arcane Signet
+1 Scavenger's Talent
+1 Doubling Season
+1 Tippy-Toe, Terrific Partner
+1 Gourmand's Talent
+1 Many Partings
+1 Rampant Growth
+1 Deathrite Shaman
+1 Toski, Bearer of Secrets
+1 Scurry of Squirrels
+1 Protean Hulk
+1 The Odd Acorn Gang
+1 Squirrel Nest
+1 Fellwar Stone
+1 Meatsqueak, Hoard Lord
+1 Diabolic Intent
+1 Deadly Dispute
+1 Sylvan Library
+1 Court of Garenbrig
+1 Black Market Connections
+1 Beastmaster Ascension
+1 Earthcraft
+1 Mimic Vat
+1 Abrupt Decay
+1 Garruk, Cursed Huntsman
+1 Swarmyard Massacre

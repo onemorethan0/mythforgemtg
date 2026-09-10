@@ -1,0 +1,86 @@
+# Archidekt — Imoti B2
+# source: archidekt:25710415
+# fetched: 2026-09-04
+
+Commander:
+1 Imoti, Celebrant of Bounty
+
+Deck:
+11 Forest
+1 Aminatou's Augury
+1 Annoyed Altisaur
+1 Apex Devastator
+1 Artisan of Kozilek
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Beanstalk Giant // Fertile Footsteps
+1 Breeding Pool
+1 Bygone Colossus
+1 Castle Garenbrig
+1 Chimil, the Inner Sun
+1 Command Tower
+1 Cultivate
+1 Darksteel Angel
+1 Darksteel Monolith
+1 Dig Through Time
+1 Dreamroot Cascade
+1 Eldrazi Temple
+1 Emrakul, the Promised End
+1 Emrakul, the World Anew
+1 End-Raze Forerunners
+1 Farseek
+1 Fierce Empath
+1 Flooded Grove
+1 Garruk's Uprising
+1 Ghalta, Primal Hunger
+1 Goreclaw, Terror of Qal Sisma
+1 Guardian Project
+1 Gwenna, Eyes of Gaea
+1 Hullbreaker Horror
+1 Kiora, Behemoth Beckoner
+1 Kodama's Reach
+1 Kogla, the Titan Ape
+1 Kozilek's Unsealing
+1 Kozilek, Butcher of Truth
+1 Last March of the Ents
+1 Lightning Greaves
+1 Maelstrom Colossus
+1 Monstrous Vortex
+1 Mosswort Bridge
+1 Nature's Lore
+1 Negate
+1 Nulldrifter
+1 Overflowing Basin
+1 Path of Annihilation
+1 Pathrazer of Ulamog
+1 Portal to Phyrexia
+1 Quandrix, the Proof
+1 Radagast of Rhosgobel
+1 Rampant Growth
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Rishkar's Expertise
+1 Sol Ring
+1 Summon: Bahamut
+1 Tatyova, Benthic Druid
+1 Temple of the False God
+1 Temporal Trespass
+1 Terastodon
+1 The Great Henge
+1 The Notary Hobbits
+1 The Skullspore Nexus
+1 The Ten Rings
+1 Three Visits
+1 Thunderous Snapper
+1 Treasure Cruise
+1 Turbulent Wilderness
+1 Ugin's Binding
+1 Ulamog, the Ceaseless Hunger
+1 Ulamog, the Defiler
+1 Ulamog, the Infinite Gyre
+1 Up the Beanstalk
+1 Willowrush Verge
+1 Yavimaya Coast
+11 Island
+1 Mind's Desire
+1 Auton Soldier
+1 Panglacial Wurm

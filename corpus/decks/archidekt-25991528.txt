@@ -1,0 +1,91 @@
+# Archidekt — Echoforging
+# source: archidekt:25991528
+# fetched: 2026-09-02
+
+Commander:
+1 The Everforger
+
+Deck:
+1 Chromatic Orrery
+1 Shimmer Myr
+1 Mycosynth Golem
+1 Copper Myr
+1 Silver Myr
+1 Alloy Myr
+1 Plague Myr
+1 Blightsteel Colossus
+1 Prismatic Lens
+1 Foundry Inspector
+1 Steel Overseer
+1 Krang, Utrom Warlord
+1 Cyberman Patrol
+1 Cryptothrall
+1 Master of Etherium
+1 Skorpekh Lord
+1 Tezzeret, Cruel Captain
+1 Voyager Quickwelder
+1 Zuko's Exile
+1 Meteor Golem
+1 All Is Dust
+1 Bonders' Enclave
+1 War Room
+1 Selective Obliteration
+1 The Great Mound
+1 Unwinding Clock
+1 Horizon Stone
+1 Introduction to Annihilation
+1 Platoon Dispenser
+1 Sicarian Infiltrator
+1 Ethersworn Adjudicator
+1 Urza's Tower
+1 Urza's Saga
+1 Urza's Cave
+1 Planar Nexus
+1 Urza's Mine
+1 Urza's Workshop
+1 Urza's Power Plant
+1 Chromatic Lantern
+1 Urza's Factory
+1 Scour from Existence
+1 Vesuva
+1 Thespian's Stage
+1 Stonecoil Serpent
+1 Haywire Mite
+1 The Immortal Sun
+1 Buried Ruin
+1 Sharuum the Hegemon
+1 Sanctum Gargoyle
+5 Plains
+5 Mountain
+5 Swamp
+1 Darksteel Angel
+5 Island
+1 Mariposa Military Base
+1 Baxter Building
+1 Arch of Orazca
+1 Environmental Sciences
+1 Aang's Journey
+1 Darksteel Forge
+1 Mind's Eye
+1 Mox Opal
+1 The Eternity Elevator
+1 Thran Dynamo
+1 Sol Ring
+1 Cybermen Squadron
+1 Darksteel Colossus
+1 Enthusiastic Mechanaut
+1 Etherium Sculptor
+1 Angel of the Ruins
+1 Chrome Dome
+1 Auton Soldier
+1 Gold Myr
+1 Chief of the Foundry
+1 Canoptek Spyder
+1 Illustrious Wanderglyph
+1 Iron Myr
+1 Karn, Legacy Reforged
+1 Jhoira's Familiar
+1 Lodestone Golem
+1 Ornithopter of Paradise
+1 Palladium Myr
+1 Leaden Myr

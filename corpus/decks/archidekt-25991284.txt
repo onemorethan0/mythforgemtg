@@ -1,0 +1,77 @@
+# Archidekt — This Ole Ruby Rider
+# source: archidekt:25991284
+# fetched: 2026-09-02
+
+Commander:
+1 Gonti, Canny Acquisitor
+1 Vihaan, Goldwaker
+
+Deck:
+1 Go for the Throat
+1 Ossification
+1 Disdainful Stroke
+1 Lightning Strike
+1 Snakeskin Veil
+1 Gonti, Night Minister
+1 Sand Scout
+1 We Ride at Dawn
+1 Arcane Heist
+1 Forger's Foundry
+1 Smirking Spelljacker
+1 Back in Town
+1 Heartless Conscription
+1 Charred Graverobber
+1 Cataclysmic Prospecting
+1 Elemental Eruption
+1 Dune Chanter
+1 Graywater's Fixer
+1 Dream-Thief's Bandana
+1 Leyline Dowser
+1 Cactus Preserve
+1 Oblivion Sower
+1 Dazzling Sphinx
+1 Stolen Goods
+1 Murmuring Mystic
+1 Mari, the Killing Quill
+1 Rankle, Master of Pranks
+1 Massacre Girl
+1 Massacre Girl, Known Killer
+1 Angrath's Marauders
+1 Captain Lannery Storm
+1 Captain Vargus Wrath
+1 Captivating Crew
+1 Impulsive Pilferer
+1 Hostage Taker
+1 Life Insurance
+1 Villainous Wealth
+1 Sol Ring
+1 Command Tower
+1 Tower Winder
+1 Locke, Treasure Hunter
+1 Treasure Vault
+1 Guild Artisan
+1 Bill Ferny, Bree Swindler
+1 Fiery Inscription
+1 Rising of the Day
+1 The One Ring
+1 Mines of Moria
+1 Plundering Barbarian
+1 Magda, the Hoardmaster
+1 Assassin Initiate
+1 Brotherhood Patriarch
+1 Edward Kenway
+1 Thorin, King of Durin's Folk
+1 Adéwalé, Breaker of Chains
+1 Eyeblight Assassin
+1 Hired Blade
+1 Stingblade Assassin
+1 Guildsworn Prowler
+1 Hooded Assassin
+1 King's Assassin
+10 Swamp
+1 Plains
+1 Boneyard Desecrator
+5 Forest
+5 Island
+1 Magda, Brazen Outlaw
+10 Mountain

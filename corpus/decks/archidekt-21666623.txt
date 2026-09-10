@@ -1,0 +1,79 @@
+# Archidekt — Braids Budget
+# source: archidekt:21666623
+# fetched: 2026-09-03
+
+Commander:
+1 Braids, Arisen Nightmare
+
+Deck:
+1 Obsessive Pursuit
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Strionic Resonator
+1 Abhorrent Overlord
+1 Arcane Signet
+1 Dire Fleet Ravager
+1 Foreboding Fruit
+1 Heartless Act
+1 Hopeless Nightmare
+1 Momentum Breaker
+1 Nimblewright Schematic
+1 Omen of the Dead
+1 Prized Statue
+1 Nested Shambler
+1 Pointed Discussion
+1 The Long Reach of Night // Animus of Night's Reach
+1 Tithing Blade // Consuming Sepulcher
+1 Vile Mutilator
+1 Defile
+1 Demolition Field
+1 Gray Merchant of Asphodel
+1 Sadistic Shell Game
+1 Mutilate
+1 Army of the Damned
+1 Barren Moor
+1 Blood Fountain
+1 Feed the Swarm
+1 Foggy Swamp Visions
+1 Goremand
+1 Overseer of the Damned
+1 Servo Schematic
+1 Spellbook
+1 The Eldest Reborn
+1 Treacherous Blessing
+1 Malakir Rebirth // Malakir Mire
+1 Blasphemous Edict
+1 Boggart Trawler // Boggart Bog
+29 Swamp
+1 Coiling Rebirth
+1 Decanter of Endless Water
+1 Dreadhorde Invasion
+1 Everflowing Chalice
+1 Fellwar Stone
+1 Gix's Command
+1 Infernal Grasp
+1 Liquimetal Torque
+1 Mimic Vat
+1 Mind Stone
+1 Mycosynth Wellspring
+1 Myr Battlesphere
+1 Myriad Landscape
+1 Planar Atlas
+1 Prismatic Lens
+1 Reliquary Tower
+1 Sepulchral Primordial
+1 Shambling Ghast
+1 Sol Ring
+1 Solemn Simulacrum
+1 Soul Shatter
+1 Syphon Mind
+1 Thought Vessel
+1 Wayfarer's Bauble
+1 Withering Torment
+1 Ichor Wellspring
+1 Massacre Wurm
+1 Torment of Hailfire
+1 Charcoal Diamond
+1 Crypt Ghast
+1 Bojuka Bog
+1 Exsanguinate

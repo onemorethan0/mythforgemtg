@@ -1,0 +1,108 @@
+# Archidekt — Ashling, the Limitless
+# source: archidekt:23652500
+# fetched: 2026-09-01
+# bracket: 3
+
+Commander:
+1 Ashling, the Limitless
+
+Deck:
+1 Aethersnipe
+1 Belonging
+1 Birds of Paradise
+1 Brighthearth Banneret
+1 Cavalier of Dawn
+1 Champion of the Path
+1 Endurance
+1 Faeburrow Elder
+1 Flamebraider
+1 Flamekin Harbinger
+1 Foundation Breaker
+1 Fury
+1 Grave Sifter
+1 Graveshifter
+1 Greenwarden of Murasa
+1 Helga, Skittish Seer
+1 Ignoble Hierarch
+1 Impulsivity
+1 Incandescent Soulstoke
+1 Interdisciplinary Mascot
+1 Jubilation
+1 Mulldrifter
+1 Risen Reef
+1 Roaming Throne
+1 Shinestriker
+1 Shroudstomper
+1 Smokebraider
+1 Subterfuge
+1 Sunderflock
+1 Temur Battlecrier
+1 Titan of Industry
+1 Twinflame Travelers
+1 Yarok, the Desecrated
+1 Semblance Anvil
+1 Urza's Incubator
+1 Living Death
+1 Birthing Ritual
+1 Diplomatic Immunity
+1 Elemental Bond
+1 Garruk's Uprising
+1 Temur Ascendancy
+1 Abundant Countryside
+1 Ancient Ziggurat
+1 Blood Crypt
+1 Breeding Pool
+1 City of Brass
+1 Command Tower
+1 Dreamroot Cascade
+1 Eclipsed Realms
+1 Exotic Orchard
+1 Fabled Passage
+1 Flamekin Village
+1 Forest
+1 Frontier Bivouac
+1 Hall of Heliod's Generosity
+1 Hallowed Fountain
+1 Island
+1 Mountain
+1 Opulent Palace
+1 Overgrown Tomb
+1 Herald's Horn
+1 Farseek
+1 Greater Good
+1 Nature's Lore
+1 Three Visits
+1 Swords to Plowshares
+1 Path to Exile
+1 Enlightened Tutor
+1 An Offer You Can't Refuse
+1 Chromatic Lantern
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Path of Ancestry
+1 Plains
+1 Primal Beyond
+1 Sea of Clouds
+1 Seaside Citadel
+1 Secluded Courtyard
+1 Shattered Sanctum
+1 Spire Garden
+1 Starting Town
+1 Stomping Ground
+1 Stormcarved Coast
+1 Sundown Pass
+1 Swamp
+1 Unclaimed Territory
+1 Eclipsed Flamekin
+1 Beza, the Bounding Spring
+1 Mass of Mysteries
+1 Maelstrom Wanderer
+1 Lamentation
+1 Lumra, Bellow of the Woods
+1 Survival of the Fittest
+1 Sandsteppe Citadel
+1 Heartless Summoning
+1 Panharmonicon
+1 Sol Ring
+1 Animar, Soul of Elements
+1 Avenger of Zendikar

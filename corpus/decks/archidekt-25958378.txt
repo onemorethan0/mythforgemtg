@@ -1,0 +1,94 @@
+# Archidekt — Saint Traft
+# source: archidekt:25958378
+# fetched: 2026-09-01
+
+Commander:
+1 Saint Traft and Rem Karolus
+
+Deck:
+1 Transcendent Message
+1 Dazzling Theater // Prop Room
+1 Stoke the Flames
+1 Zephyr Singer
+1 Stonybrook Schoolmaster
+1 Whirlwind of Thought
+1 Cut Short
+1 Talisman of Progress
+1 Bennie Bracks, Zoologist
+1 Flockchaser Phantom
+1 Captain America, Living Legend
+1 City on Fire
+1 Prosperous Partnership
+1 Wildfire Awakener
+1 Knight-Errant of Eos
+1 Conclave Tribunal
+1 Mystic Monastery
+1 Sulfur Falls
+1 Command Tower
+1 Battlefield Forge
+1 Adarkar Wastes
+1 Perilous Landscape
+1 Temple of Enlightenment
+1 Deserted Beach
+1 Stormcarved Coast
+1 Sundown Pass
+1 Myriad Landscape
+1 Evolving Wilds
+1 Exotic Orchard
+1 Shivan Reef
+1 Razortide Bridge
+1 Clifftop Retreat
+1 Tranquil Cove
+1 Rustvale Bridge
+1 Silverbluff Bridge
+1 Great Furnace
+1 Hengegate Pathway // Mistgate Pathway
+1 Irrigated Farmland
+1 Wind-Scarred Crag
+1 Needleverge Pathway // Pillarverge Pathway
+1 Prairie Stream
+1 Glacial Fortress
+4 Plains
+4 Mountain
+3 Island
+1 Venerated Loxodon
+1 Kykar, Wind's Fury
+1 Impact Tremors
+1 Third Path Iconoclast
+1 Clever Concealment
+1 Ephemeral Shields
+1 The Wandering Rescuer
+1 Drumbellower
+1 Kasla, the Broken Halo
+1 Springleaf Drum
+1 Thought Vessel
+1 Monastery Mentor
+1 Artistic Refusal
+1 Adept Watershaper
+1 Fallowsage
+1 Surge Conductor
+1 Sol Ring
+1 Seraph of the Masses
+1 Chant of Vitu-Ghazi
+1 Mentor of the Meek
+1 Jeskai Ascendancy
+1 Halo Fountain
+1 Idol of Oblivion
+1 Devouring Light
+1 Temporal Cleansing
+1 Talisman of Creativity
+1 Unexpected Assistance
+1 Arcane Signet
+1 Talisman of Conviction
+1 Hour of Reckoning
+1 Calamity of Cinders
+1 Patrolling Peacemaker
+1 Skullclamp
+1 Party Thrasher
+1 Split Up
+1 Collective Effort
+1 Blasphemous Act
+1 Welcoming Vampire
+1 Chief Engineer
+1 Staff of the Storyteller
+1 Throne of the God-Pharaoh
