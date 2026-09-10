@@ -538,6 +538,20 @@ def normalize_colors(colors: str) -> set[str]:
 
 _ADD_TEXT_RE = re.compile(r"\badd [^.]*\{")
 
+# "Reveal cards from the top of your library UNTIL you reveal a [X]" (Abundant Harvest,
+# Clifftop Lookout, Hermit Druid, Demonic Consultation) terminates on a guaranteed match
+# (or an exhausted library) -- functionally a real search, per the compiler prompt's own
+# search_library carve-out. Deliberately anchored on the fuller compound phrase, not the
+# bare word "until" or "reveal": a looser match would false-positive on "choose Magic
+# cards at random until you find one..." (The Traveling Postman -- a random-card generator,
+# not a library search) and Banding's reminder text ("Just ask around until you find
+# someone who knows.", pure flavor). Requiring "top of ... library/deck ... until you
+# reveal/find" together is what the whole live sample (85 cards) validates cleanly against.
+_REVEAL_UNTIL_RE = re.compile(
+    r"reveal(?:ing)? cards? from the top of .{0,30}(?:library|deck) until you (?:reveal|find)",
+    re.I,
+)
+
 # Keyword abilities whose EFFECT lives entirely in reminder text. The hallucination half
 # of gate 3 reads oracle text with parentheticals stripped, so "Cycling {2} ({2}, Discard
 # this card: Draw a card.)" becomes "Cycling {2}" — the word "draw" disappears and a CCM
@@ -833,6 +847,37 @@ def cross_check(doc: dict, card: Card) -> list[str]:
             )
         else:
             errors.append("CCM declares search_library but text never says search")
+    if _REVEAL_UNTIL_RE.search(text) and "search_library" not in ops_present:
+        # The MIRROR of the over-use check above, closing the gap that let this exact
+        # card family compile wrong in the other direction. Measured live 2026-09-10
+        # against the whole store: of 85 cards matching this phrasing, only 5 correctly
+        # used search_library -- 18 (Hermit Druid included) were compiled to
+        # look_and_select instead (a bounded, fixed-N look that may find nothing -- the
+        # wrong shape for an UNBOUNDED reveal that terminates on a guaranteed match), and
+        # ~40 more landed on an invented non-op ("reveal", "put", ...) that the schema
+        # gate tolerates as unsupported and the simulator silently skips. Both failure
+        # shapes trace back to the SAME gap: the fetches_land/tutor rung-1 signal that
+        # gate 3 otherwise leans on (below) requires the literal word "search", and this
+        # whole card family never uses it -- "reveal ... until" is a different vocabulary
+        # for the same real search, so that heuristic can't catch its own absence here.
+        # The prompt has named these cards explicitly since the carve-out was written,
+        # which was not enough on its own to move the model off its first guess.
+        if "look_and_select" in ops_present:
+            errors.append(
+                "CCM declares look_and_select but oracle text reveals cards from the "
+                "top of the library UNTIL a match is found -- that terminates on a "
+                "guaranteed match (or an exhausted library), which is functionally a "
+                "real search, not a bounded look_and_select (which only ever sees a "
+                "fixed window and may find nothing); use search_library instead "
+                "(count matching the stated number of cards, usually 1)"
+            )
+        else:
+            errors.append(
+                "oracle text reveals cards from the top of the library UNTIL a match "
+                "is found -- that terminates on a guaranteed match (or an exhausted "
+                "library), which is functionally a real search, but CCM has no "
+                "search_library"
+            )
     if not card.is_land and _ADD_TEXT_RE.search(text) and "add_mana" not in ops_present:
         errors.append("oracle text adds mana but CCM has no add_mana")
     # Typed lands (shocks/duals) carry their mana ability as reminder text or via land

@@ -857,6 +857,88 @@ def test_partner_with_licenses_search_library():
     assert not any("search_library" in e for e in cross_check(_search_lib_doc(1), card))
 
 
+def test_reveal_until_a_match_without_search_library_is_flagged():
+    """The MIRROR of the bounded-reveal check above: "reveal cards from the top of
+    your library until you reveal a [X]" (Abundant Harvest, Clifftop Lookout, Hermit
+    Druid, Demonic Consultation) terminates on a guaranteed match -- a real search --
+    but the compiler kept landing on an invented non-op ("reveal", "put", ...) instead.
+    Measured live 2026-09-10: of 85 stored cards with this phrasing, only 5 correctly
+    used search_library."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card(
+        "Reveal cards from the top of your library until you reveal a basic land "
+        "card. Put that card into your hand and all other cards revealed this way "
+        "into your graveyard."
+    )
+    doc = {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{2}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [{"op": "reveal"}]}],
+    }
+    errs = cross_check(doc, card)
+    assert any("reveals cards from the top of the library UNTIL" in e for e in errs)
+
+
+def test_reveal_until_names_look_and_select_specifically_when_thats_the_wrong_guess():
+    """The exact failure this gate was added for: Hermit Druid compiled to
+    look_and_select(look:1) twice in a row at temp 0 (2026-09-10), silently, because
+    nothing checked the reverse direction. The message should name look_and_select by
+    name so a retry knows what to fix, not just that something's missing."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card(
+        "Reveal cards from the top of your library until you reveal a basic land "
+        "card. Put that card into your hand and all other cards revealed this way "
+        "into your graveyard."
+    )
+    doc = {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{2}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [
+            {"op": "look_and_select", "look": 1, "to": "hand"}
+        ]}],
+    }
+    errs = cross_check(doc, card)
+    assert any("CCM declares look_and_select but oracle text reveals" in e for e in errs)
+
+
+def test_reveal_until_with_search_library_present_is_not_flagged():
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card(
+        "Reveal cards from the top of your library until you reveal a basic land "
+        "card. Put that card into your hand and all other cards revealed this way "
+        "into your graveyard."
+    )
+    errs = cross_check(_search_lib_doc(1), card)
+    assert not any("reveals cards from the top of the library UNTIL" in e for e in errs)
+
+
+def test_reveal_until_regex_does_not_false_positive_on_unrelated_until_you_find():
+    """"Choose Magic cards at random until you find one that creates a token other
+    than a copy" (The Traveling Postman) is a random-card generator, not a library
+    search, and must not be pushed toward search_library. Verified against the whole
+    store (2026-09-10): this and Banding's "Just ask around until you find someone
+    who knows" reminder text are the only two false-positive risks in the corpus for
+    a looser "until you reveal/find" match."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _search_lib_card(
+        "Whenever this creature deals combat damage to a player, choose Magic cards "
+        "at random until you find one that creates a token other than a copy. "
+        "Create a token of the type of your choice that card can create."
+    )
+    doc = {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{2}{U}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "combat_damage_to_player"},
+                       "effects": [{"op": "create_token", "count": 1}]}],
+    }
+    errs = cross_check(doc, card)
+    assert not any("reveals cards from the top of the library UNTIL" in e for e in errs)
+
+
 def test_a_stated_duration_recorded_nowhere_is_a_gate_failure():
     """An omitted duration is invisible downstream — the engine cannot tell it from a
     genuinely permanent effect, so Aberrant Manawurm gains a PERMANENT +X/+0 on every
