@@ -1,0 +1,74 @@
+# Archidekt — Ashling, discard slinger
+# source: archidekt:21955240
+# fetched: 2026-09-11
+
+Commander:
+1 Ashling, Flame Dancer
+
+Deck:
+1 Torbran, Thane of Red Fell
+1 Basilisk Collar
+1 Flashback
+1 Volcanic Spray
+1 Braid of Fire
+1 Chain Lightning
+1 Lightning Bolt
+1 Urabrask // The Great Work
+1 Harmonic Prodigy
+1 Leyline Tyrant
+1 Seething Song
+1 Chandra Ablaze
+1 Chandra, Hope's Beacon
+1 Overmaster
+1 Coruscation Mage
+1 Squee, Goblin Nabob
+1 Increasing Vengeance
+1 Storm-Kiln Artist
+1 Crimson Wisps
+1 Dreadhorde Arcanist
+1 Caldera Pyremaw
+1 Banefire
+1 Faithless Looting
+1 Runaway Steam-Kin
+1 Invoke Calamity
+1 Count on Luck
+1 Guttersnipe
+1 Fiery Inscription
+1 Sweltering Suns
+1 Fall of the Titans
+1 Change of Fortune
+1 Thrill of Possibility
+1 Avacyn's Judgment
+1 Warlord's Fury
+1 Dead // Gone
+1 Abrade
+1 Renegade Tactics
+1 Crash Through
+1 Faithless Salvaging
+1 Tablet of Discovery
+1 Flame Slash
+1 Arcane Bombardment
+1 Chandra, Fire of Kaladesh // Chandra, Roaring Flame
+1 Fiery Temper
+1 Big Score
+1 Fiery Confluence
+1 Vandalblast
+1 Finale of Promise
+1 Castle Embereth
+1 Flamekin Village
+1 Fire Nation Palace
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Avatar Roku, Firebender
+1 Mechanized Warfare
+32 Mountain
+1 Fork
+1 Lava Dart
+1 Reverberate
+1 Brallin, Skyshark Rider
+1 Blasphemous Act
+1 Electro, Assaulting Battery
+1 Lindblum, Industrial Regency // Mage Siege
+1 Photon Blast Barrage
+1 Inti, Seneschal of the Sun
+1 Shenanigans
+1 Hawkeye, Young Avenger

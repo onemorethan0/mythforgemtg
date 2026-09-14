@@ -1,0 +1,103 @@
+# Archidekt — Y'shtola's PhD in Mechanical Engineering
+# source: archidekt:25424387
+# fetched: 2026-09-11
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Void Rend
+1 Cloud Key
+1 Sol Ring
+1 Thought Vessel
+1 Curiosity
+1 Tezzeret, Master of the Bridge
+1 Evolving Wilds
+1 Glacial Fortress
+1 Command Tower
+1 Isolated Chapel
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Lyse Hext
+1 Path of Ancestry
+1 Talisman of Progress
+1 Papalymo Totolymo
+1 The Reality Chip
+1 Cyclonic Rift
+1 Caduceus, Staff of Hermes
+1 Damn
+1 Norn's Annex
+1 Underground River
+1 Propaganda
+1 Exotic Orchard
+1 Exsanguinate
+1 Snuff Out
+1 Unstoppable Plan
+1 Fell the Profane // Fell Mire
+1 Frantic Search
+1 Watery Grave
+1 Etherium Sculptor
+1 Emry, Lurker of the Loch
+1 Sea of Clouds
+1 Alhammarret's Archive
+1 Command Beacon
+1 Marsh Flats
+1 Floodfarm Verge
+1 Solve the Equation
+1 Drowned Catacomb
+1 Misty Rainforest
+1 Spire of Industry
+1 Inventors' Fair
+1 Chromatic Lantern
+1 Caves of Koilos
+1 Tainted Field
+1 Flooded Strand
+1 Tainted Isle
+1 Terramorphic Expanse
+1 Windswept Heath
+1 Mana Confluence
+1 Adarkar Wastes
+1 Hallowed Fountain
+4 Island
+1 Arcane Sanctum
+1 Lightning Greaves
+1 An Offer You Can't Refuse
+1 Bolas's Citadel
+1 Shark Typhoon
+1 Lithoform Engine
+1 Simulacrum Synthesizer
+1 Luck Bobblehead
+1 Intelligence Bobblehead
+1 Perception Bobblehead
+1 Fabricate
+1 Mystic Forge
+1 Baleful Strix
+1 Fateful Discovery
+1 Academy Ruins
+1 The Queen of Dale
+1 The Mycosynth Gardens
+1 Arcane Signet
+1 Shadowspear
+1 Swiftfoot Boots
+1 Foundry Inspector
+1 Unwinding Clock
+1 Ophidian Eye
+1 Helm of the Ghastlord
+1 Dismember
+1 Path to Exile
+1 Kambal, Consul of Allocation
+1 Rogue's Passage
+1 Black Market Connections
+1 Stensian Sanguinist // Exsanguinate
+1 Anguished Unmaking
+1 Godless Shrine
+1 Spellskite
+1 Gleaming Splendor
+1 Teferi's Protection
+1 Gwenom, Remorseless
+1 Grafted Exoskeleton
+1 Semblance Anvil
+1 Enlightened Tutor
+1 Sanguine Bond
+1 Exquisite Blood
+1 Endurance Bobblehead

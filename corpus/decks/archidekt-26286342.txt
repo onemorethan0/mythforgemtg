@@ -1,0 +1,94 @@
+# Archidekt — muddle v1.1
+# source: archidekt:26286342
+# fetched: 2026-09-11
+
+Commander:
+1 Muddle, the Ever-Changing
+
+Deck:
+1 Abrade
+1 Scorched Geyser
+1 Fabled Passage
+7 Mountain
+1 Steam Vents
+1 Shivan Reef
+1 Scavenger Grounds
+1 Training Center
+1 Stormcarved Coast
+1 Scalding Tarn
+1 Reliquary Tower
+1 Spirebluff Canal
+1 Sulfur Falls
+1 Thundering Falls
+1 Turbulent Springs
+1 Sol Ring
+1 Izzet Signet
+1 Desperate Ritual
+1 Riverglide Pathway // Lavaglide Pathway
+1 Talisman of Creativity
+1 Enter the Enigma
+1 Redoubled Stormsinger
+1 Goldlust Triad
+1 Goldspan Dragon
+1 Path of Ancestry
+1 Riverpyre Verge
+1 Strike It Rich
+1 Expedite
+1 Astral Dragon
+1 Port Razer
+1 Twinflame Tyrant
+1 Vesuvan Duplimancy
+1 Reality Shift
+1 Thrill of Possibility
+1 Savage Beating
+1 Shore Up
+1 Archmage Emeritus
+1 Valakut Awakening // Valakut Stoneforge
+1 Expressive Iteration
+1 Opt
+1 Twinflame
+1 Slip Through Space
+1 Impolite Entrance
+1 Command Tower
+1 Full Throttle
+1 Gitaxian Probe
+1 Crash Through
+1 Cascade Bluffs
+1 Exotic Orchard
+1 Prismatic Vista
+1 Volcanic Island
+1 Ferrous Lake
+1 Anticausal Vestige
+1 Combustible Gearhulk
+1 Pongify
+1 Rapid Hybridization
+1 Into the Flood Maw
+1 Third Path Iconoclast
+1 Sundial of the Infinite
+1 Marang River Regent // Coil and Catch
+1 Young Pyromancer
+1 Swiftfoot Boots
+1 Volatile Stormdrake
+1 Caldera Pyremaw
+1 Trumpeting Carnosaur
+1 Subterfuge
+1 Mulldrifter
+1 Curiosity Crafter
+1 Priest of Urabrask
+1 Stormsplitter
+1 Coercive Recruiter
+1 Brainstorm
+1 Terror of the Peaks
+1 Consider
+1 Counterspell
+1 Chase Inspiration
+1 Arena of Glory
+1 Quantum Misalignment
+1 Frantic Search
+1 Artful Dodge
+1 Lightning Bolt
+1 You Come to a River
+1 Blasphemous Act
+7 Island
+1 Ponder
+1 Leap

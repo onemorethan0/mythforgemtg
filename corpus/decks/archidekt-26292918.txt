@@ -1,0 +1,75 @@
+# Archidekt — Nori, Teller of Tales 21
+# source: archidekt:26292918
+# fetched: 2026-09-11
+
+Commander:
+1 Nori, Teller of Tales
+
+Deck:
+1 Wind-Scarred Crag
+1 Deflecting Palm
+1 Goblin Ruinblaster
+18 Plains
+1 Ori, Keeper of Songs
+1 Guttersnipe
+1 Coretapper
+1 Swiftblade Vindicator
+1 Hanweir Watchkeep // Bane of Hanweir
+1 Runed Servitor
+1 Flames of the Firebrand
+1 Seraph Sanctuary
+1 Coordinated Assault
+1 Seismic Rupture
+1 Rakish Heir
+13 Mountain
+1 Immobilizer Eldrazi
+1 Archetype of Aggression
+1 Brimstone Volley
+1 Staff of the Flame Magus
+1 Curse of the Nightly Hunt
+1 Abrade
+1 Kessig Malcontents
+1 Puresteel Paladin
+1 Firemantle Mage
+1 Peak Eruption
+1 Hellraiser Goblin
+1 Tunneling Geopede
+1 Shepherd of the Flock // Usher to Safety
+1 Devout Decree
+1 Blessing
+1 Anointer of Champions
+1 Loyal Pegasus
+1 Group Project
+1 Serra's Guardian
+1 Path to Exile
+1 Deafening Silence
+1 Knight of Grace
+1 Twinblade Blessing
+1 Burdened Stoneback
+1 Sightless Brawler
+1 Glare of Heresy
+1 Oust
+1 Stasis Snare
+1 Alpine Houndmaster
+1 Repel Calamity
+1 Valorous Stance
+1 Seal Away
+1 Zhalfirin Decoy
+1 Dauntless Onslaught
+1 Heroic Reinforcements
+1 Fencing Ace
+1 Warden of the Beyond
+1 Brave the Sands
+1 Soulcatcher
+1 Phalanx Leader
+1 Prison Realm
+1 Ordruun Veteran
+1 Rule of Law
+1 Molten Note
+1 Boros Charm
+1 Hovel Hurler
+1 Practiced Scrollsmith
+1 Truefire Captain
+1 Akroan Hoplite
+1 Tenth District Legionnaire
+1 Fireborn Knight

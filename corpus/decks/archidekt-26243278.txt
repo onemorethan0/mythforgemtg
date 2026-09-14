@@ -1,0 +1,88 @@
+# Archidekt — Guess Who's Back
+# source: archidekt:26243278
+# fetched: 2026-09-11
+
+Commander:
+1 Lucius the Eternal
+
+Deck:
+1 Rakdos Signet
+1 Luxury Suite
+1 Sulfurous Springs
+1 Blood Crypt
+1 Graven Cairns
+1 Mahadi, Emporium Master
+1 Skullclamp
+1 Tome of Legends
+1 Arcane Signet
+1 Urborg, Tomb of Yawgmoth
+1 Hero's Blade
+1 Deadly Dispute
+1 Eaten Alive
+1 Warstorm Surge
+1 Morbid Opportunist
+1 Judith, the Scourge Diva
+1 Phyrexian Tower
+1 Terror of the Peaks
+1 Command Tower
+1 Garna, Bloodfist of Keld
+1 Arcane Lighthouse
+1 Detection Tower
+1 Bone Splinters
+1 Warren Soultrader
+1 Talisman of Indulgence
+1 Reanimate
+1 Grim Haruspex
+1 Zulaport Cutthroat
+1 Reckoner's Bargain
+1 The Black Gate
+1 Dragonskull Summit
+12 Swamp
+1 Betrayer's Bargain
+1 Blasphemous Act
+1 Yawgmoth, Thran Physician
+1 Shadowspear
+1 Dread Return
+1 Nowhere to Run
+1 Rakdos Charm
+1 Fling
+1 Morbid Curiosity
+1 Thud
+1 Village Rites
+1 Corrupted Conviction
+1 Pawn of Ulamog
+1 Blazemire Verge
+1 Smoldering Marsh
+1 Bloodstained Mire
+1 Reliquary Tower
+1 Shizo, Death's Storehouse
+1 Forbidden Orchard
+8 Mountain
+1 Mayhem Devil
+1 Forsaken Miner
+1 Terminate
+1 Sol Ring
+1 Skullport Merchant
+1 Broadside Bombardiers
+1 Stalking Vengeance
+1 Exhume
+1 Lyzolda, the Blood Witch
+1 Doomed Necromancer
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Enterprising Scallywag
+1 Corpse Explosion
+1 Malakir Rebirth // Malakir Mire
+1 Mind Stone
+1 Genesis Chamber
+1 Lazotep Quarry
+1 Pitiless Plunderer
+1 Attrition
+1 Stronghold Assassin
+1 Viscera Seer
+1 Goblin Bombardment
+1 Dark Ritual
+1 Falkenrath Aristocrat
+1 Demonic Tutor
+1 Toxic Deluge
+1 Imp's Mischief
+1 Ruthless Knave

@@ -1,0 +1,83 @@
+# Archidekt — Big Boys Simic
+# source: archidekt:26291760
+# fetched: 2026-09-11
+
+Commander:
+1 Brinelin, the Moon Kraken
+1 Gilanra, Caller of Wirewood
+
+Deck:
+1 Goreclaw, Terror of Qal Sisma
+1 Keruga, the Macrosage
+1 Garruk's Uprising
+1 The Great Henge
+1 Thryx, the Sudden Storm
+1 Gyre Engineer
+1 Urban Evolution
+1 Embrace the Paradox
+1 Troyan, Gutsy Explorer
+1 Eureka Moment
+1 Lessons from Life
+1 Plasm Capture
+1 Stormkeld Vanguard // Bear Down
+1 Arixmethes, Slumbering Isle
+1 Kiora, Behemoth Beckoner
+1 Weaver of Currents
+1 Cultivate
+1 Kodama's Reach
+1 Krosan Drover
+1 Monstrous Vortex
+1 Voidslime
+1 Mystic Genesis
+1 Garruk's Packleader
+1 Through the Forest Gate
+1 Archetype of Imagination
+1 Prime Speaker Zegana
+1 Archetype of Endurance
+1 Dancing from Dark to Dawn
+1 Surrak and Goreclaw
+1 Thunderous Snapper
+1 Nyxbloom Ancient
+1 Nezahal, Primal Tide
+1 Castle Garenbrig
+1 Nissa's Renewal
+1 Progenitor Mimic
+1 Starwinder
+1 Sandwurm Convergence
+1 Unnatural Growth
+1 New Generation's Technique
+1 Invasion of Zendikar // Awakened Skyclave
+1 Migration Path
+1 Skyshroud Claim
+1 Explosive Vegetation
+1 Map the Frontier
+1 Reach the Horizon
+1 Turbulent Wilderness
+1 Circuitous Route
+1 Sodden Verdure
+1 Tropical Island
+1 Breeding Pool
+1 Ranger's Path
+1 Zopandrel, Hunger Dominus
+1 Primeval Bounty
+1 Apex Devastator
+1 Rishkar's Expertise
+1 Terastodon
+1 Auton Soldier
+1 Bane of Progress
+1 Vigor
+1 Krosan Grip
+1 Soul of the Harvest
+1 Beanstalk Giant // Fertile Footsteps
+1 Vaultborn Tyrant
+1 Giant Adephage
+1 Jumbo Cactuar
+1 Command Tower
+1 Bonny Pall, Clearcutter
+1 Rain-Slicked Copse
+1 Hedge Maze
+1 Beast Within
+1 Tangled Islet
+1 Rimewood Falls
+17 Snow-Covered Forest
+10 Snow-Covered Island

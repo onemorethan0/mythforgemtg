@@ -1,0 +1,85 @@
+# Archidekt — toffee
+# source: archidekt:19230347
+# fetched: 2026-09-11
+
+Commander:
+1 Toph, Earthbending Master
+
+Deck:
+1 Vibrant Cityscape
+1 Evolution Sage
+1 Fabled Passage
+1 Mosswort Bridge
+1 Level Up
+1 Terrasymbiosis
+1 Entish Restoration
+1 Terramorphic Expanse
+1 Mossborn Hydra
+1 Secret Tunnel
+1 Lotus Cobra
+1 Cathedral Acolyte
+1 Heroic Intervention
+1 Mightform Harmonizer
+1 Doubling Season
+1 Harrow
+1 Flopsie, Bumi's Buddy
+1 Gaea's Touch
+1 Ashaya, Soul of the Wild
+1 Nissa, Who Shakes the World
+1 Rumble Arena
+1 Rampaging Baloths
+1 Origin of Metalbending
+1 Avoid Fate
+1 Cycle of Renewal
+1 Riveteers Overlook
+1 Earthbender Ascension
+1 Earth Kingdom General
+1 Cabaretti Courtyard
+1 Springheart Nantuko
+1 Burgeoning
+1 Rampant Growth
+1 Beast Within
+1 Lumbering Worldwagon
+1 Kodama of the West Tree
+1 Evolving Wilds
+1 The Earth King
+1 Invasion of Zendikar // Awakened Skyclave
+1 Case of the Locked Hothouse
+1 Azusa, Lost but Seeking
+1 Overlord of the Hauntwoods
+1 Branching Evolution
+1 Innkeeper's Talent
+1 Escape Tunnel
+1 Force of Vigor
+1 Dryad of the Ilysian Grove
+1 Cultivator Colossus
+1 Nature's Will
+1 Sapling Nursery
+1 Raking Canopy
+1 Veil of Summer
+1 The Earth Crystal
+1 Lifestream's Blessing
+1 Vigor
+1 Scute Mob
+1 Treetop Village
+1 Shared Roots
+1 Scythecat Cub
+1 Scute Swarm
+1 Planar Engineering
+1 Lotus Field
+1 Famished Worldsire
+1 Tectonic Split
+1 Assemble the Entmoot
+1 Sphere Grid
+1 Duskshell Crawler
+1 Wilderness Reclamation
+1 Staff of Titania
+23 Forest
+1 Hobbit Hole
+1 Throne of the High City
+1 Helm of the Host
+1 Myriad Landscape
+1 Guildless Commons
+1 Sword of the Animist
+1 Quilled Greatwurm
+1 Spelunking

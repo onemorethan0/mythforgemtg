@@ -1,0 +1,81 @@
+# Archidekt — Alle skal få!
+# source: archidekt:6174954
+# fetched: 2026-09-11
+# bracket: 1
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Fog Bank
+1 Curiosity
+1 Wall of Souls
+1 Gaseous Form
+1 Whelming Wave
+1 Clone
+1 Grollub
+1 Windfall
+1 Necrotic Hex
+1 Manakin
+1 Burnished Hart
+16 Island
+13 Swamp
+1 Command Tower
+1 Tainted Isle
+1 Morphic Pool
+1 Meteor Crater
+1 Fellwar Stone
+1 Springleaf Drum
+1 Ornithopter
+1 Cephalid Constable
+1 Apprentice Wizard
+1 Leap
+1 Twitch
+1 Evolving Wilds
+1 Thriving Isle
+1 Thriving Moor
+1 Sky Diamond
+1 Charcoal Diamond
+1 Bad River
+1 Lantern of Revealing
+1 Interdict
+1 Vedalken Infiltrator
+1 Triton Shorestalker
+1 Servant of Volrath
+1 Sibilant Spirit
+1 Drinker of Sorrow
+1 Filthy Cur
+1 Flesh Reaver
+1 Graf Reaver
+1 Master of the Feast
+1 Wretched Anurid
+1 Curse of Verbosity
+1 Grinning Demon
+1 Sly Instigator
+1 Archfiend of the Dross
+1 Noble Benefactor
+1 Shadow Rift
+1 Enter the Enigma
+1 Inkfathom Infiltrator
+1 Baleful Strix
+1 Bellowing Fiend
+1 Deadeye Tracker
+1 Dominating Licid
+1 Man-o'-War
+1 Mist-Cloaked Herald
+1 Mindwrack Demon
+1 Priest of the Blood Rite
+1 Rebound
+1 Thought Eater
+1 Forbid
+1 Turnabout
+1 Rust Elemental
+1 Slither Blade
+1 Cannibalize
+1 Sygg, River Cutthroat
+1 Tormented Soul
+1 Psychic Impetus
+1 Counterspell
+1 Reins of Power
+1 Teferi, Temporal Pilgrim
+1 Legerdemain

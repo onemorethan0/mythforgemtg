@@ -1,0 +1,94 @@
+# Archidekt — Inquisitive tapping
+# source: archidekt:25841073
+# fetched: 2026-09-11
+
+Commander:
+1 Inquisitor Greyfax
+
+Deck:
+1 Sun Titan
+1 Verity Circle
+1 Borrowing 100,000 Arrows
+1 Time of Ice
+1 Sharae of Numbing Depths
+1 Summon: Shiva
+1 Lost in the Maze
+1 Junk Winder
+1 Royal Assassin
+1 Thran Turbine
+1 Solitary Sanctuary
+1 Crashing Wave
+1 Trap the Trespassers
+1 Deluge
+1 Blustersquall
+1 Cone of Cold
+1 Authority of the Consuls
+1 Observed Stasis
+1 Scroll of Isildur
+1 Betrayal
+1 Hylda's Crown of Winter
+1 Theft of Dreams
+1 Seizures
+1 Raven of Fell Omens
+1 Duelist of the Mind
+1 Succumb to the Cold
+1 Assassin Gauntlet
+1 Illithid Harvester // Plant Tadpoles
+1 Lulu, Stern Guardian
+1 Hands of Binding
+1 Sleep
+1 Merfolk Trickster
+1 Ghostly Prison
+1 Grateful Apparition
+1 Thrummingbird
+1 Drift of Phantasms
+1 Proft's Eidetic Memory
+1 Clackbridge Troll
+1 Army of the Damned
+1 Dovin's Veto
+1 Austere Command
+1 Teferi's Protection
+1 An Offer You Can't Refuse
+1 Despark
+1 Moon-Blessed Cleric
+1 Mausoleum Secrets
+1 Empyrial Plate
+1 Utter End
+1 Liliana's Reaver
+1 Drana, Liberator of Malakir
+1 Dreamstealer
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Azorius Signet
+1 Mjölnir, Storm Hammer
+1 Mortify
+1 Fracture
+1 Servant of the Stinger
+1 Mission Briefing
+1 Thought Vessel
+1 Lion Sash
+1 Prairie Stream
+1 Exotic Orchard
+1 Command Tower
+1 Caves of Koilos
+1 Rogue's Passage
+1 Reliquary Tower
+1 Sunken Hollow
+1 Path of Ancestry
+1 Azorius Chancery
+1 Orzhov Basilica
+1 Adarkar Wastes
+1 Sea of Clouds
+1 Morphic Pool
+1 Temple of Enlightenment
+1 Nimbus Maze
+1 Ash Barrens
+1 Dimir Aqueduct
+1 Fetid Heath
+6 Island
+1 Temple of Deceit
+6 Swamp
+4 Plains
+1 The Council of Four
+1 Irrigated Farmland
+1 Parting Gust

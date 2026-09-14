@@ -1,0 +1,73 @@
+# Archidekt — Lost Chaos
+# source: archidekt:26283132
+# fetched: 2026-09-11
+
+Commander:
+1 Shadow the Hedgehog
+
+Deck:
+16 Mountain
+1 Mycosynth Lattice
+1 Vandalblast
+1 Command Tower
+1 Sol Ring
+16 Swamp
+1 Swiftfoot Boots
+1 Arcane Signet
+1 Valakut Awakening // Valakut Stoneforge
+1 Badlands
+1 Blazemire Verge
+1 Accelerate
+1 A Good Day to Die
+1 Afflict
+1 Akoum Stonewaker
+1 Akoum Firebird
+1 Cunning Maneuver
+1 Anger
+1 Burn Down the House
+1 Beseech the Mirror
+1 Army of the Damned
+1 Bottle-Cap Blast
+1 Buried Alive
+1 Bulk Up
+1 Talisman of Indulgence
+1 Vault of Whispers
+1 Blasphemous Act
+1 Great Furnace
+1 Dark Ritual
+1 Pitiless Plunderer
+1 Knuckles the Echidna
+1 The Fire Crystal
+1 Lightning Greaves
+1 Mirkwood Bats
+1 Mahadi, Emporium Master
+1 Disciple of Bolas
+1 Phyrexian Arena
+1 Wheel of Fortune
+1 Sign in Blood
+1 Staff of Nin
+1 Demonic Tutor
+1 Grim Tutor
+1 Diabolic Tutor
+1 Endrek Sahr, Master Breeder
+1 Jadar, Ghoulcaller of Nephalia
+1 Ophiomancer
+1 Act of Treason
+1 Unexpected Windfall
+1 Deadly Dispute
+1 Loyal Apprentice
+1 Rakdos Charm
+1 Blood Artist
+1 Thought Vessel
+1 Dualcaster Mage
+1 Xorn
+1 Lagomos, Hand of Hatred
+1 Toxic Deluge
+1 Urabrask's Forge
+1 Faithless Looting
+1 Super State
+1 Skullclamp
+1 Academy Manufactor
+1 Warren Soultrader
+1 Professional Face-Breaker
+1 Cursed Mirror

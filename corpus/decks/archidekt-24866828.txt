@@ -1,0 +1,104 @@
+# Archidekt — Necro Doom
+# source: archidekt:24866828
+# fetched: 2026-09-11
+
+Commander:
+1 The Necrobloom
+
+Deck:
+1 Restless Fortress
+1 Knight of the White Orchid
+1 Undergrowth Recon
+1 Vault of Champions
+1 Sol Ring
+1 Sire of Seven Deaths
+1 Get Lost
+1 Traveling Chocobo
+1 Summon: Bahamut
+1 Command Bridge
+1 Phyrexian Arena
+1 Elesh Norn, Mother of Machines
+1 Fabled Passage
+1 Woodland Cemetery
+1 Urza's Saga
+1 Path of Ancestry
+1 Insidious Roots
+1 Prismatic Vista
+1 Vampiric Rites
+1 Cauldron of Essence
+1 Sunpetal Grove
+1 Reliquary Tower
+1 Sandsteppe Citadel
+1 Fountainport
+1 Dust Bowl
+1 Fell the Mighty
+3 Forest
+1 Krosan Verge
+1 Urza's Cave
+1 Crossroads Village
+1 Exalted Sunborn
+1 Iridescent Vinelasher
+1 Enduring Vitality
+1 Icetill Explorer
+1 Field of the Dead
+1 Victimize
+1 Haunted Mire
+1 Sylvan Safekeeper
+1 Rite of Harmony
+1 Spelunking
+1 Chatterfang, Squirrel General
+1 Wishclaw Talisman
+1 Ghalta and Mavren
+1 Temple Garden
+1 Plains
+1 Loot, Exuberant Explorer
+1 Jet Medallion
+1 Druid Class
+1 Razorverge Thicket
+1 Dark Ritual
+1 Blood Artist
+1 Vernal Fen
+1 Bloodghast
+1 Restless Cottage
+1 Six
+1 Zulaport Cutthroat
+1 Mossborn Hydra
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Joel, Resolute Survivor
+1 Caretaker's Talent
+1 Command Tower
+1 Planar Engineering
+1 Inkmoth Nexus
+1 Turbulent Fen
+1 Guide of Souls
+1 Fatal Push
+1 Golgari Rot Farm
+1 Windswept Heath
+1 Abrupt Decay
+1 Outrageous Robbery
+1 Kyoshi Village
+1 Arcane Signet
+1 Fell the Profane // Fell Mire
+1 Selesnya Sanctuary
+1 Orzhov Basilica
+1 Selesnya Guildgate
+1 Moldervine Reclamation
+1 Overgrown Tomb
+1 Titania, Protector of Argoth
+1 Ba Sing Se
+1 Dark Depths
+1 Polluted Bonds
+1 Compy Swarm
+1 Umbral Collar Zealot
+1 Wastewood Verge
+1 Teysa Karlov
+1 Selesnya Cluestone
+1 Felidar Retreat
+1 World Shaper
+2 Swamp
+1 Ocelot Pride
+1 Crucible of Worlds
+1 Fanatic of Rhonas
+1 Azusa, Lost but Seeking
+1 Feed the Swarm
+1 Swords to Plowshares

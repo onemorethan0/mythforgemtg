@@ -1,0 +1,86 @@
+# Archidekt — Enchatemente
+# source: archidekt:26173123
+# fetched: 2026-09-11
+
+Commander:
+1 Zur, Eternal Schemer
+
+Deck:
+1 Ghostly Prison
+1 Propaganda
+1 Stormplain Detainment
+1 The Legend of Kuruk // Avatar Kuruk
+1 Web Up
+1 Kinbinding
+1 Primary Research
+1 An Unexpected Party // At the Door
+1 Love Song of Night and Day
+1 Fortune Teller's Talent
+1 Citizen's Arrest
+1 Dreadhorde Invasion
+1 Bident of Thassa
+1 Call of the Ring
+1 Sigil of the New Dawn
+1 War of the Last Alliance
+1 The Mountain-king's Return
+1 Omen of the Sea
+1 Flowering of the White Tree
+1 Elrond, Moon-Reader
+1 Moonshaker Cavalry
+1 Pollywog Prodigy
+1 Morbid Opportunist
+1 Plumecreed Escort
+1 Luminous Broodmoth
+1 Restoration Angel
+1 Emeritus of Truce // Swords to Plowshares
+1 Loyal Warhound
+1 Spirited Companion
+1 Selfless Spirit
+1 Rhys, the Evermore
+1 Path to Exile
+1 The Eagles Are Coming!
+1 Tale's End
+1 Rapid Hybridization
+1 Counterspell
+1 Erode
+1 Settle the Wreckage
+1 Surge of Salvation
+1 Mana Sculpt
+1 Angel's Grace
+1 All That Glitters
+1 Secret Invasion
+1 Farewell
+1 Balance
+1 Donatello's Technique
+1 Leonardo's Technique
+1 Toxic Deluge
+1 Azorius Signet
+1 The Arkenstone // Seek the Heart
+1 Sol Ring
+1 Fellwar Stone
+1 Arcane Signet
+1 Command Tower
+1 Adarkar Wastes
+1 Exotic Orchard
+1 Glacial Fortress
+1 Fabled Passage
+1 Caves of Koilos
+1 Skycloud Expanse
+1 Drowned Catacomb
+1 Evolving Wilds
+1 Prairie Stream
+1 Abandoned Air Temple
+1 Port Town
+1 Shattered Sanctum
+3 Swamp
+13 Plains
+8 Island
+1 Pippin, Guard of the Citadel
+1 Karai, Future of the Foot
+1 Lotho, Corrupt Shirriff
+1 Lightning Greaves
+1 Relic of Legends
+1 Savanti Romero, Time's Exile
+1 Neva, Stalked by Nightmares
+1 Grasp of Fate
+1 Phyrexian Arena
