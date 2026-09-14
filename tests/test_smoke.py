@@ -1155,6 +1155,80 @@ def test_import_zone_headers():
           _parse_text("1 A\n1 B\n1 C\n\n1 Sol Ring\n").leading_names, [])
 
 
+def test_import_captures_exact_printing():
+    """A decklist line's printing metadata must be CAPTURED, not just stripped.
+
+    `get_cards_collection` resolves by name only, so before this fix "1 Sol Ring
+    (C21) 263" and "1 Sol Ring (30A) 288" resolved to the SAME (Scryfall's default)
+    printing regardless of which one the source deck actually named — verified live:
+    plain name resolution for Sol Ring returns the `soc` printing, not `c21`. Every
+    source (pasted text, Moxfield, Archidekt) is checked; Moxfield/Archidekt both
+    carry a real Scryfall printing UUID (`scryfall_id` / `card.uid`) rather than a
+    set+collector-number pair, verified live against the API (fetching the id back
+    from Scryfall returns exactly the set/collector_number the site shows)."""
+    from deck_import import _parse_text, _parse_archidekt, _strip_line_metadata, _resolve
+
+    # (SET) CN — Moxfield/MTGA/Archidekt paste style.
+    name, tags, printing = _strip_line_metadata("Sol Ring (C21) 263")
+    check("printing.paren.name", name, "Sol Ring")
+    check("printing.paren.set", printing, {"set": "C21", "collector_number": "263"})
+
+    # [SET] CN — MTGO/Deckbox style.
+    name, tags, printing = _strip_line_metadata("Sol Ring [C21] 263")
+    check("printing.brack.set", printing, {"set": "C21", "collector_number": "263"})
+
+    # A category tag (no digits after) must NOT be misread as a printing.
+    name, tags, printing = _strip_line_metadata("Sol Ring [Ramp{noPrice}]")
+    check("printing.category_not_printing", printing, None)
+
+    raw = _parse_text("1 Sol Ring (C21) 263\n1 Lightning Bolt (M11) 149\n1 Mountain\n")
+    check("printing.text.sol_ring", raw.printings.get("sol ring"),
+          {"set": "C21", "collector_number": "263"})
+    check("printing.text.bolt", raw.printings.get("lightning bolt"),
+          {"set": "M11", "collector_number": "149"})
+    check_true("printing.text.no_entry_when_absent", "mountain" not in raw.printings)
+
+    # Archidekt: card.uid is the Scryfall printing id, buried under card.oracleCard.name.
+    arch = _parse_archidekt({"name": "T", "categories": [], "cards": [
+        {"quantity": 1, "categories": [],
+         "card": {"uid": "d349901d-f9a6-4f09-a881-531c695cf1c4",
+                   "oracleCard": {"name": "Nature's Claim"}}},
+    ]})
+    check("printing.archidekt.uid", arch.printings.get("nature's claim"),
+          {"id": "d349901d-f9a6-4f09-a881-531c695cf1c4"})
+
+    # _resolve must overlay the printing-specific fields onto the name-resolved card,
+    # and must be a no-op for a scryfall client that doesn't implement the method
+    # (older test stubs elsewhere in this file rely on exactly that fallback).
+    class _StubWithPrintings:
+        def get_cards_collection(self, names):
+            return {n.lower(): {"name": n, "type_line": "Artifact",
+                                  "set": "generic", "collector_number": "1"}
+                    for n in names}
+
+        def get_printing_overrides(self, entries):
+            out = {}
+            for name, printing in entries:
+                if printing == {"set": "C21", "collector_number": "263"}:
+                    out[name.lower()] = {"set": "c21", "collector_number": "263"}
+            return out
+
+    raw2 = _parse_text("1 Sol Ring (C21) 263\n")
+    imported = _resolve(raw2, _StubWithPrintings())
+    sol_ring = imported.deck[0]
+    check("printing.resolve.overlaid_set", sol_ring["set"], "c21")
+    check("printing.resolve.overlaid_cn", sol_ring["collector_number"], "263")
+    # type_line must still come from the name-based resolution, untouched.
+    check("printing.resolve.type_line_unchanged", sol_ring["type_line"], "Artifact")
+
+    class _StubNoPrintingSupport:
+        def get_cards_collection(self, names):
+            return {n.lower(): {"name": n, "type_line": "Artifact"} for n in names}
+
+    imported2 = _resolve(raw2, _StubNoPrintingSupport())
+    check("printing.resolve.graceful_fallback", imported2.deck[0]["name"], "Sol Ring")
+
+
 def test_world_placeholder_unwrap():
     """The world description must not keep the template's square brackets.
 

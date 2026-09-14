@@ -71,6 +71,14 @@ class RawDeck:
     # `_resolve` promotes these only if Scryfall says they're legendary — otherwise
     # they stay ordinary maindeck cards. See _promote_leading_commander.
     leading_names: list[str] = field(default_factory=list)
+    # name_lower -> {"id": scryfall_id} | {"set":..., "collector_number":...} | {"set":...}
+    # — the EXACT printing the source deck names, when it names one. Populated from
+    # Moxfield's card.scryfall_id, Archidekt's card.uid (both verified live to be real
+    # Scryfall printing UUIDs — Scryfall's /cards/<id> resolves each straight back to the
+    # same set+collector_number), or a pasted line's "(SET) 123" / "[SET] 123" tail.
+    # `_resolve` uses it to overlay the exact printing's art/set/rarity/price onto the
+    # card `get_cards_collection` resolved by name — see scryfall_client.get_printing_overrides.
+    printings: dict[str, dict] = field(default_factory=dict)
 
 
 @dataclass
@@ -152,6 +160,7 @@ def _fetch_moxfield(url: str) -> RawDeck:
     if not public_id:
         raise DeckImportError("Could not read the Moxfield deck id from that URL.")
     data = _http_json(f"https://api2.moxfield.com/v2/decks/all/{public_id}")
+    printings: dict[str, dict] = {}
 
     def _entries(board) -> list[tuple[str, int]]:
         # v2 boards are dicts: {cardName: {quantity, card:{name}}}
@@ -162,13 +171,22 @@ def _fetch_moxfield(url: str) -> RawDeck:
                 name = card.get("name") or entry.get("name")
                 if name:
                     out.append((name, int(entry.get("quantity", 1) or 1)))
+                    # `card.scryfall_id` is Moxfield's own copy of the Scryfall printing
+                    # UUID for exactly this printing — verified live (fetching it back
+                    # from Scryfall returns the same set+collector_number Moxfield shows).
+                    # Recording it is what lets a recalled import show the printing the
+                    # user actually has instead of Scryfall's default art for the name.
+                    sf_id = card.get("scryfall_id")
+                    if sf_id:
+                        printings[name.strip().lower()] = {"id": sf_id}
         return out
 
     commander_names = [n for n, _ in _entries(data.get("commanders"))]
     commander_names += [n for n, _ in _entries(data.get("companions"))]
     card_entries = _entries(data.get("mainboard"))
     return RawDeck(name=data.get("name", "Imported deck"), source="moxfield",
-                   commander_names=commander_names, card_entries=card_entries)
+                   commander_names=commander_names, card_entries=card_entries,
+                   printings=printings)
 
 
 def _fetch_archidekt(url: str) -> RawDeck:
@@ -202,22 +220,29 @@ def _parse_archidekt(data: dict) -> RawDeck:
 
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
+    printings: dict[str, dict] = {}
     for c in data.get("cards", []):
         qty = int(c.get("quantity", 1) or 1)
         cats = [str(x) for x in (c.get("categories") or [])]
-        name = (((c.get("card") or {}).get("oracleCard") or {}).get("name")
-                or (c.get("card") or {}).get("name"))
+        card_obj = c.get("card") or {}
+        name = ((card_obj.get("oracleCard") or {}).get("name") or card_obj.get("name"))
         if not name:
             continue
         low = [x.lower() for x in cats]
         if any(k in excluded or (k not in known and k in _DEFAULT_EXCLUDED) for k in low):
             continue
+        # `card.uid` is Archidekt's own copy of the Scryfall printing UUID for exactly
+        # this printing — verified live the same way as Moxfield's `scryfall_id` above.
+        uid = card_obj.get("uid")
+        if uid:
+            printings[name.strip().lower()] = {"id": uid}
         if "commander" in low:
             commander_names.append(name)
         else:
             card_entries.append((name, qty))
     return RawDeck(name=data.get("name", "Imported deck"), source="archidekt",
-                   commander_names=commander_names, card_entries=card_entries)
+                   commander_names=commander_names, card_entries=card_entries,
+                   printings=printings)
 
 
 def _fetch_manabox(url: str) -> RawDeck:
@@ -253,7 +278,9 @@ _QTY_RE = re.compile(r"^\s*(?P<qty>\d+)\s*[xX]?\s+(?P<rest>\S.*)$")
 # and _apply_auto_face then elected some other card into the face slot.
 _TRAIL_FLAG  = re.compile(r"\s*\*(?P<tag>[^*]*)\*\s*$")
 _TRAIL_BRACK = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s*$")
-_TRAIL_SET   = re.compile(r"\s*\((?P<tag>[A-Za-z0-9]{2,6})\)(?:\s+[A-Za-z0-9★*\-]{1,8})?\s*$")
+# The trailing collector-number group (`cn`) is captured, not just consumed — it's
+# what lets a pasted decklist name its EXACT printing (see RawDeck.printings above).
+_TRAIL_SET   = re.compile(r"\s*\((?P<tag>[A-Za-z0-9]{2,6})\)(?:\s+(?P<cn>[A-Za-z0-9★*\-]{1,8}))?\s*$")
 _TRAIL_HASH  = re.compile(r"\s+#\S*\s*$")
 # "[M11] 149" — a bracketed set followed by its collector number, matched as ONE
 # unit. It has to be one pattern: a general "strip a bare trailing number" rule
@@ -261,19 +288,24 @@ _TRAIL_HASH  = re.compile(r"\s+#\S*\s*$")
 # stripping it truncated five real cards in the corpus — Pip-Boy 3000, Black Waltz
 # No. 3, Avalanche of Sector 7, Behemoth of Vault 0, Michelangelo, Weirdness to 11.
 # The number is only metadata when a printing token is sitting right in front of it.
-_TRAIL_BRACK_CN = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s+\d{1,5}[a-z★]?\s*$")
+_TRAIL_BRACK_CN = re.compile(r"\s*\[(?P<tag>[^\[\]]*)\]\s+(?P<cn>\d{1,5}[a-z★]?)\s*$")
 # "SB: 1 Sol Ring" — Apprentice/MWS sideboard prefix.
 _SB_PREFIX   = re.compile(r"^\s*SB:\s*", re.I)
 
 
-def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
+def _strip_line_metadata(rest: str) -> tuple[str, list[str], Optional[dict]]:
     """Peel trailing printing/category metadata off a decklist line.
 
-    Returns ``(card_name, tags)`` where tags are the lower-cased contents of any
-    ``*flag*`` / ``[category]`` groups found — the caller reads those to spot a
-    commander or a sideboard entry. Set codes and collector numbers are dropped.
+    Returns ``(card_name, tags, printing)`` where tags are the lower-cased contents
+    of any ``*flag*`` / ``[category]`` groups found — the caller reads those to spot
+    a commander or a sideboard entry — and ``printing`` is the set+collector-number
+    this line named (``{"set":..., "collector_number":...}`` or ``{"set":...}`` alone),
+    or ``None`` when the line named no printing. Only the FIRST such group found
+    (scanning right-to-left, so the rightmost/most-specific one) is kept — a real
+    decklist line never carries two.
     """
     tags: list[str] = []
+    printing: Optional[dict] = None
     for _ in range(12):          # bounded: a line has a handful of trailing groups
         m = _TRAIL_FLAG.search(rest)
         if m and rest[:m.start()].strip():
@@ -281,13 +313,25 @@ def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
             rest = rest[:m.start()].rstrip()
             continue
         # "[M11] 149" before plain "[M11]", so the number goes with its bracket.
-        m = _TRAIL_BRACK_CN.search(rest) or _TRAIL_BRACK.search(rest)
+        m = _TRAIL_BRACK_CN.search(rest)
+        if m and rest[:m.start()].strip():
+            set_code = (m.group("tag") or "").strip()
+            cn = (m.group("cn") or "").strip()
+            if printing is None and set_code and cn:
+                printing = {"set": set_code, "collector_number": cn}
+            rest = rest[:m.start()].rstrip()
+            continue
+        m = _TRAIL_BRACK.search(rest)
         if m and rest[:m.start()].strip():
             tags.append((m.group("tag") or "").strip().lower())
             rest = rest[:m.start()].rstrip()
             continue
         m = _TRAIL_SET.search(rest)
         if m and rest[:m.start()].strip():
+            set_code = (m.group("tag") or "").strip()
+            cn = (m.group("cn") or "").strip()
+            if printing is None and set_code:
+                printing = {"set": set_code, "collector_number": cn} if cn else {"set": set_code}
             rest = rest[:m.start()].rstrip()
             continue
         m = _TRAIL_HASH.search(rest)
@@ -295,7 +339,7 @@ def _strip_line_metadata(rest: str) -> tuple[str, list[str]]:
             rest = rest[:m.start()].rstrip()
             continue
         break
-    return rest.strip(), [t for t in tags if t]
+    return rest.strip(), [t for t in tags if t], printing
 
 # Zone headers. Every real export decorates them differently, and all three
 # decorations below used to miss — which is worse than dropping a card, because a
@@ -332,6 +376,7 @@ _IGNORE_SECTIONS = {"sideboard", "maybeboard", "token", "tokens"}
 def _parse_text(text: str) -> RawDeck:
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
+    printings: dict[str, dict] = {}
     section = "deck"            # current section
     tagged_commander = False    # a header/tag named the commander explicitly
     # Entries in the first paragraph, recorded for the header-less Moxfield form
@@ -360,10 +405,12 @@ def _parse_text(text: str) -> RawDeck:
         if m_inline:
             # "Commander: <name>" names the commander on the same line — record it and
             # stay in the deck section (the following lines are the maindeck).
-            name, _ = _strip_line_metadata(m_inline.group("name").strip())
+            name, _, printing = _strip_line_metadata(m_inline.group("name").strip())
             if name:
                 commander_names.append(name)
                 tagged_commander = True
+                if printing:
+                    printings[name.strip().lower()] = printing
             continue
         # A non-zone category header ("Creatures (30)", "//Artifacts") returns the
         # reader to the maindeck. Without this a Deckstats list that opens
@@ -381,12 +428,14 @@ def _parse_text(text: str) -> RawDeck:
         if not m:
             # A bare "Commander Name" line with no quantity right under the header
             if section == "commander":
-                name, _ = _strip_line_metadata(line)
+                name, _, printing = _strip_line_metadata(line)
                 if name:
                     commander_names.append(name)
+                    if printing:
+                        printings[name.strip().lower()] = printing
             continue
         qty  = int(m.group("qty"))
-        name, tags = _strip_line_metadata(m.group("rest"))
+        name, tags, printing = _strip_line_metadata(m.group("rest"))
         if not name:
             continue
         if sb_line or section in _IGNORE_SECTIONS:
@@ -396,6 +445,8 @@ def _parse_text(text: str) -> RawDeck:
         # section headers at all.
         if any(t.startswith(("sideboard", "maybeboard", "token")) for t in tags):
             continue
+        if printing:
+            printings[name.strip().lower()] = printing
         if (section == "commander"
                 or any(t.startswith(("cmdr", "commander")) for t in tags)):
             commander_names.append(name)
@@ -416,7 +467,7 @@ def _parse_text(text: str) -> RawDeck:
                    or len(card_entries) <= len(leading)) else list(leading))
     return RawDeck(name="Imported deck", source="text",
                    commander_names=commander_names, card_entries=card_entries,
-                   leading_names=hint)
+                   leading_names=hint, printings=printings)
 
 
 # ── Resolve names → cards ───────────────────────────────────────────────────────
@@ -424,6 +475,21 @@ def _parse_text(text: str) -> RawDeck:
 def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
     all_names = list(raw.commander_names) + [n for n, _ in raw.card_entries]
     resolved = scryfall.get_cards_collection(all_names)   # name_lower -> card
+
+    # Overlay the EXACT printing the source deck named (see RawDeck.printings) onto
+    # the generic card `get_cards_collection` resolved by name. Purely additive and
+    # best-effort: `get_printing_overrides` is a real method on the live ScryfallClient
+    # but isn't implemented by every test stub, and a printing lookup can itself fail
+    # (a stale id) — either way the import falls back to exactly the pre-fix behavior
+    # for that card rather than blocking on it.
+    if raw.printings and hasattr(scryfall, "get_printing_overrides"):
+        entries = [(n, raw.printings[key]) for n in all_names
+                   if (key := n.strip().lower()) in raw.printings]
+        overrides = scryfall.get_printing_overrides(entries) if entries else {}
+        for key, fields in overrides.items():
+            card = resolved.get(key)
+            if card:
+                resolved[key] = {**card, **fields}
 
     def look(n: str) -> Optional[dict]:
         return resolved.get((n or "").strip().lower())
