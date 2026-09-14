@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import ManaCost from './ManaCost'
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
-export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true }) {
+export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true }) {
   const [hover, setHover] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
 
@@ -109,8 +109,12 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
       )}
 
       {/* Ownership. EVERY card here has custom art, so the badge conveys whether you own
-          a real copy — not "proxy" (which read as "you don't own this"). */}
-      {card.owned === true && (
+          a real copy — not "proxy" (which read as "you don't own this"). Gated on
+          showOwnership (the caller passes false when the deck header's own "Own N/M"
+          badge already says "all owned" or "0 owned" — repeating that verdict on
+          every single tile is pure noise; the badges earn their keep only when
+          ownership is MIXED and each one narrows down which cards you're missing). */}
+      {showOwnership && card.owned === true && (
         <div title="Custom art for a card you own (in your collection)"
           style={{
             position: 'absolute', bottom: 5, left: 5, fontSize: 8.5,
@@ -120,7 +124,7 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
           ✓ OWNED
         </div>
       )}
-      {card.owned === false && (
+      {showOwnership && card.owned === false && (
         <div title="You don't own a real copy of this card yet"
           style={{
             position: 'absolute', bottom: 5, left: 5, fontSize: 8.5,

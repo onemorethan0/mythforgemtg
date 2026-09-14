@@ -40,6 +40,14 @@ const TYPE_ORDER = ['Creature', 'Instant', 'Sorcery', 'Enchantment', 'Artifact',
 // cards, instead of re-deriving it here from a substring match on type_line.
 const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Instant', 'Sorcery', 'Enchantment', 'Artifact']
 
+// Physical count, not unique-entry count — an imported deck's aggregated basics
+// (one dict entry, quantity: 34) must read as 34 cards, not 1. Every OTHER count on
+// this screen (the "100 cards" badge, the Deck Stats sidebar, exportThemed's own
+// section headers below) already counts this way; the type-filter tab labels didn't,
+// so a deck with duplicated basics showed two different numbers for "Land" a few
+// pixels apart (34 in the sidebar, 15 — the unique card count — in the tab).
+const qty = c => Math.max(1, parseInt(c.quantity, 10) || 1)
+
 function groupByType(cards) {
   const groups = {}
   for (const type of TYPE_ORDER) groups[type] = []
@@ -71,7 +79,6 @@ function triggerDownload(url) {
 // duplicate-dropping bug the original-names export had. An auto-elected display face
 // is a maindeck card, so it is only labelled "Commander:" on a real Commander deck.
 function exportThemed(deck) {
-  const qty = c => Math.max(1, parseInt(c.quantity, 10) || 1)
   const isCmd = deck.is_commander_deck !== false && !deck.import_auto_face
   const lines = []
   let cards = deck.deck
@@ -125,6 +132,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   // "I own this deck in paper" -> merge its cards into the collection (state +
   // handler live in the hook; the badge/button JSX lives in OwnershipBadge).
   const { ownDeck, addDeckToCollection } = useOwnDeck(deck, jobId, onDeckChange)
+  // Per-card OWNED/NOT OWNED tiles are only informative when ownership is MIXED —
+  // when every card (or none) is owned, the header's own "Own N/M · all owned"
+  // badge (OwnershipBadge.jsx) already says so once; repeating it on all 100 tiles
+  // is noise, not signal.
+  const ownershipMixed = Array.isArray(deck.deck) && deck.deck.some(c => 'owned' in c) &&
+    (() => {
+      const cards = [deck.commander, ...deck.deck].filter(Boolean)
+      const own = cards.filter(c => c.owned).length
+      return own > 0 && own < cards.length
+    })()
 
   // ── Selection state ───────────────────────────────────────────────────────
   const [selectedKeys, setSelectedKeys]   = useState(new Set())
@@ -625,7 +642,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={{ fontSize: 11.5, color: '#78716c', marginTop: 8, maxWidth: 460 }}>
               {['Creature','Instant','Sorcery','Artifact','Enchantment','Planeswalker','Land']
                 .filter(t => stats.type_counts[t])
-                .map(t => `${stats.type_counts[t]} ${t.toLowerCase()}${stats.type_counts[t] > 1 ? (t === 'Sorcery' ? ' sorceries' : 's') : ''}`)
+                .map(t => {
+                  const n = stats.type_counts[t]
+                  const word = n > 1 ? (t === 'Sorcery' ? 'sorceries' : `${t.toLowerCase()}s`) : t.toLowerCase()
+                  return `${n} ${word}`
+                })
                 .join(' · ')}
               {stats.average_cmc != null && ` · avg MV ${stats.average_cmc.toFixed(1)}`}
             </div>
@@ -652,9 +673,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {stats.type_counts && Object.entries(stats.type_counts).map(([type, count]) => (
               <StatBar key={type} label={type} value={count} max={30} color='#ca8a04' />
             ))}
-            {stats.cmc_curve && <div style={{ marginTop: 12 }}><CmcChart curve={stats.cmc_curve} /></div>}
+            {/* The richer "Deck health" histogram below (actual vs. this commander's
+                target curve, per-bucket) supersedes this plain chart whenever it's
+                available — showing both stacked two near-identical mana-curve bar
+                charts in the same 200px column. Kept only as the fallback for a deck
+                predating the quality-curve data. */}
+            {stats.cmc_curve && !(stats.quality?.curve?.buckets && stats.quality?.curve?.target) &&
+              <div style={{ marginTop: 12 }}><CmcChart curve={stats.cmc_curve} /></div>}
             <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
-            <div style={{ fontSize: 12, color: '#a8a29e' }}>Lands: <span style={{ color: '#86efac' }}>{stats.land_count}</span></div>
 
             {/* Deck health — curve vs the reference curve for this commander's mana
                 value, and whether the manabase can actually cast the deck. Advisory:
@@ -990,7 +1016,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               color: filter === t ? '#0c0a09' : '#a8a29e',
               fontWeight: filter === t ? 700 : 400,
             }}>
-              {t} {t !== 'All' && groups[t] ? `(${groups[t].length})` : t === 'All' ? `(${deck.deck.length})` : ''}
+              {t} {t !== 'All' && groups[t] ? `(${groups[t].reduce((n, c) => n + qty(c), 0)})`
+                : t === 'All' ? `(${deck.deck.reduce((n, c) => n + qty(c), 0)})` : ''}
             </button>
           ))}
         </div>
@@ -1214,6 +1241,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               showMotion={showMotion}
               videoTs={videoTs[card.render_key] || 0}
               videoFmt={videoFmts[card.render_key]}
+              showOwnership={ownershipMixed}
             />
           ))}
         </div>
