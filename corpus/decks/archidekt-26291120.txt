@@ -1,0 +1,99 @@
+# Archidekt — y'shtola midrange hell
+# source: archidekt:26291120
+# fetched: 2026-09-15
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Snuff Out
+1 Gwenom, Remorseless
+1 Estinien Varlineau
+1 Void Rend
+1 Urianger Augurelt
+1 Papalymo Totolymo
+1 Dig Through Time
+1 Archmage Emeritus
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Sheoldred, the Apocalypse
+1 The Wind Crystal
+1 Baleful Strix
+1 Kambal, Consul of Allocation
+1 Transpose
+1 Tataru Taru
+1 Torrential Gearhulk
+1 Fandaniel, Telophoroi Ascian
+1 Vito, Thorn of the Dusk Rose
+1 Sublime Epiphany
+1 Into the Story
+1 Talisman of Progress
+1 Relic of Legends
+1 Negate
+1 Krile Baldesion
+1 Coveted Jewel
+1 Swords to Plowshares
+1 Path to Exile
+1 Culling the Weak
+1 Counterspell
+1 Arcane Signet
+1 Lethal Scheme
+1 Aetherflux Reservoir
+1 Thought Vessel
+1 The Darkness Crystal
+1 Curiosity
+1 Wizard's Staff
+1 Helm of the Ghastlord
+1 Astrologian's Planisphere
+1 Blue Mage's Cane
+1 Exquisite Blood
+1 Propaganda
+1 Reaper's Scythe
+1 Talisman of Dominance
+1 Quantum Misalignment
+1 Exsanguinate
+1 Talisman of Hierarchy
+1 Sensei's Divining Top
+1 Prairie Stream
+1 Dancer's Chakrams
+1 Vindicate
+1 Sol Ring
+1 Authority of the Consuls
+1 Rhystic Study
+1 Bolas's Citadel
+1 Sanguine Bond
+1 Ghostly Prison
+1 Eye of Nidhogg
+1 Rite of Replication
+1 Lingering Souls
+1 Syphon Mind
+1 Idyllic Beachfront
+1 Demonic Tutor
+1 Circle of Power
+1 Cut a Deal
+4 Swamp
+1 Sunken Hollow
+1 Drowned Catacomb
+4 Plains
+1 Skycloud Expanse
+3 Island
+1 Underground River
+1 Glacial Fortress
+1 Contaminated Aquifer
+1 Desolate Mire
+1 Darkwater Catacombs
+1 Port Town
+1 Choked Estuary
+1 Isolated Chapel
+1 Command Tower
+1 Sunlit Marsh
+1 Shineshadow Snarl
+1 Summon: Good King Mog XII
+1 G'raha Tia, Scion Reborn
+1 Watery Grave
+1 Polluted Delta
+1 Hallowed Fountain
+1 Delney, Streetwise Lookout
+1 Bloodstained Mire
+1 Helm of the Host
+1 Godless Shrine
+1 Misty Rainforest

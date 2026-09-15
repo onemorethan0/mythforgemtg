@@ -1,0 +1,107 @@
+# Archidekt — If you stay and fight, you gain: 2 Experience
+# source: archidekt:12052958
+# fetched: 2026-09-15
+# bracket: 3
+
+Commander:
+1 Minthara, Merciless Soul
+
+Deck:
+1 Nested Shambler
+1 Priest of Fell Rites
+1 Cathar Commando
+1 Fetid Heath
+1 Settle the Wreckage
+1 Isolated Chapel
+1 Ashnod's Altar
+1 Elenda, the Dusk Rose
+1 Reckoner's Bargain
+1 Teysa Karlov
+1 Swiftfoot Boots
+1 Hidden Stockpile
+1 Drown in Ichor
+1 Altar's Reap
+1 Skullclamp
+1 Damn
+1 Farewell
+1 Vat Emergence
+1 Akroma's Will
+1 Lae'zel, Vlaakith's Champion
+1 Celestial Armor
+1 Call for Unity
+1 Metastatic Evangel
+1 Nasty End
+1 Contagion Engine
+1 Spectacular Pileup
+1 No Witnesses
+1 Get Lost
+1 Skrelv's Hive
+1 Tarrian's Soulcleaver
+1 Wretched Confluence
+1 Lurrus of the Dream-Den
+1 Unearth
+1 Elas il-Kor, Sadistic Pilgrim
+1 Fight as One
+1 Cultist of the Absolute
+1 Syr Vondam, Sunstar Exemplar
+1 Ruthless Lawbringer
+1 Arid Archway
+1 Final Vengeance
+1 Patrolling Peacemaker
+1 Tolls of War
+1 Buzzard-Wasp Colony
+1 Witch's Cottage
+1 Jacked Rabbit
+1 Restless Fortress
+1 Orzhov Signet
+1 Viscera Seer
+1 Tainted Field
+1 Darksteel Mutation
+1 Warren Warleader
+1 Hei Bai, Spirit of Balance
+1 Felidar Retreat
+1 Deadly Dispute
+1 Desolate Mire
+1 Orzhov Basilica
+1 Swamp
+1 Swamp
+1 Swamp
+1 Plains
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Plains
+1 Plains
+1 Plains
+2 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Culling Dais
+1 Dark Privilege
+1 Bolas's Citadel
+1 Nine-Lives Familiar
+1 Guildless Commons
+1 Luminous Broodmoth
+1 Dictate of Erebos
+1 Yahenni, Undying Partisan
+1 Scheming Aspirant
+1 Martyred Rusalka
+1 Requiting Hex
+1 Phyrexian Tower
+1 Scrubland
+1 Godless Shrine
+1 Sword of Truth and Justice
+1 Lazotep Quarry
+1 The Soul Stone
+1 Everybody Lives!
+1 Dark Ritual
+1 Vault of Champions
+1 Dawn's Truce
+1 Daxos the Returned

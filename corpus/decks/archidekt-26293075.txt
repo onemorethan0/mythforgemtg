@@ -1,0 +1,94 @@
+# Archidekt — Copy of - [B4] Elesh Norn
+# source: archidekt:26293075
+# fetched: 2026-09-15
+
+Commander:
+1 Elesh Norn, Mother of Machines
+
+Deck:
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Swords to Plowshares
+1 Thought Vessel
+1 Tocasia's Welcome
+1 Wall of Omens
+1 Welcoming Vampire
+1 Buried Ruin
+1 Wasteland
+1 Drannith Magistrate
+1 Elspeth, Storm Slayer
+1 Enduring Innocence
+1 Enlightened Tutor
+1 Ephemerate
+1 Esper Sentinel
+1 Farewell
+1 Felidar Guardian
+1 Flickerwisp
+1 Ghostly Prison
+1 Ghostway
+1 Gleaming Splendor
+1 Grand Abolisher
+1 Haliya, Guided by Light
+1 Idyllic Tutor
+1 Karmic Guide
+1 Knight of the White Orchid
+1 Lae'zel's Acrobatics
+1 Land Tax
+1 Silence
+1 Smothering Tithe
+1 Sol Ring
+1 Soul Warden
+1 Suture Priest
+1 Swiftfoot Boots
+1 Sword of Hearth and Home
+1 Tax Collector
+1 Teferi's Protection
+1 Teleportation Circle
+1 The Mind Stone
+1 The Queen of Dale
+1 War Room
+1 Pearl Medallion
+1 Phelia, Exuberant Shepherd
+1 Preston, the Vanisher
+1 Raise the Past
+1 Ranger-Captain of Eos
+1 Ancient Tomb
+1 Crystal Vein
+1 Eiganjo Castle
+1 Eiganjo, Seat of the Empire
+1 Emeria, the Sky Ruin
+1 Flagstones of Trokair
+1 Hall of Heliod's Generosity
+1 Idyllic Grange
+1 Inventors' Fair
+1 Lotus Field
+1 Nykthos, Shrine to Nyx
+11 Plains
+1 Reliquary Tower
+1 Secluded Steppe
+1 Strip Mine
+1 Abdel Adrian, Gorion's Ward
+1 Akroma's Will
+1 Altar of the Brood
+1 Authority of the Consuls
+1 Beza, the Bounding Spring
+1 Blind Obedience
+1 Cathars' Crusade
+1 Charming Prince
+1 Cloudshift
+1 Darksteel Mutation
+1 Delney, Streetwise Lookout
+1 Lightning Greaves
+1 Loran of the Third Path
+1 Mind Stone
+1 Mondrak, Glory Dominus
+1 Panharmonicon
+1 Recruiter of the Guard
+1 Reprieve
+1 Restoration Angel
+1 Spirited Companion
+1 Path to Exile
+1 Arcane Signet
+1 Inspiring Overseer
+1 Generous Gift
+1 Extraction Specialist
+1 Voice of Victory

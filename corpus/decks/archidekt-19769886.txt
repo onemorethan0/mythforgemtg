@@ -1,0 +1,92 @@
+# Archidekt — arrakis
+# source: archidekt:19769886
+# fetched: 2026-09-15
+
+Commander:
+1 Felothar, Dawn of the Abzan
+
+Deck:
+1 Ghave, Guru of Spores
+1 Enlisted Wurm
+1 Deceptive Landscape
+1 Branching Evolution
+1 Basking Broodscale
+1 Abzan Falconer
+1 Host of the Hereafter
+1 Armorcraft Judge
+1 Guardian Scalelord
+1 Hamza, Guardian of Arashin
+1 Terrasymbiosis
+1 Sothera, the Supervoid
+1 Swords to Plowshares
+1 Kin-Tree Severance
+1 Abzan Charm
+1 Anguished Unmaking
+1 Corpsejack Menace
+1 Incubation Druid
+1 Despark
+1 Dyadrine, Synthesis Amalgam
+1 Sandsteppe Citadel
+1 Sunpetal Grove
+1 Undergrowth Stadium
+1 Enduring Scalelord
+1 Cultivate
+1 Farseek
+1 Evolving Wilds
+1 Will of the Abzan
+1 Damning Verdict
+7 Forest
+1 Terramorphic Expanse
+1 Exotic Orchard
+1 Isolated Chapel
+1 Canopy Vista
+1 Command Tower
+1 Overgrown Farmland
+1 Woodland Cemetery
+7 Plains
+1 Darkbore Pathway // Slitherbore Pathway
+1 Arbor Adherent
+1 Arcane Signet
+1 Temple Garden
+1 Mosswood Dreadknight // Dread Whispers
+1 Syr Vondam, Sunstar Exemplar
+1 Kodama of the West Tree
+1 Scute Swarm
+1 Eerie Ultimatum
+1 Elegy Acolyte
+1 Bonders' Enclave
+1 Deathreap Ritual
+1 Rabble Rousing
+1 Deathcap Glade
+1 Bleachbone Verge
+1 Sol Ring
+1 Wildwood Scourge
+1 Requisition Raid
+1 Loading Zone
+1 Ferrafor, Young Yew
+1 Soul's Majesty
+1 Rosie Cotton of South Lane
+1 Lifestream's Blessing
+1 Increasing Devotion
+1 Lethal Scheme
+1 One with the Kami
+1 Soul Shatter
+1 Vampiric Tutor
+1 Demonic Tutor
+1 God-Eternal Bontu
+1 Emeritus of Woe // Demonic Tutor
+5 Swamp
+1 Elite Scaleguard
+1 Divine Visitation
+1 Witherbloom, the Balancer
+1 Immoral Bargain
+1 Tooth and Nail
+1 Shamanic Revelation
+1 Inspiring Call
+1 Enduring Vitality
+1 Grand Crescendo
+1 Cryptolith Rite
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Arachnogenesis
+1 Plumb the Forbidden
+1 Springleaf Parade

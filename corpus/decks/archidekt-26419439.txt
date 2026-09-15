@@ -1,0 +1,72 @@
+# Archidekt — Geralf's Zombie Army
+# source: archidekt:26419439
+# fetched: 2026-09-15
+
+Commander:
+1 Geralf, Visionary Stitcher
+
+Deck:
+1 Wall of Frost
+1 Charix, the Raging Isle
+1 The Walls of Ba Sing Se
+1 Wall of Junk
+1 Rooftop Storm
+1 Caelorna, Coral Tyrant
+1 Geralf, the Fleshwright
+1 Cleaver Skaab
+1 Sol Ring
+1 Arcane Signet
+1 Corrupted Shapeshifter
+1 Slagwurm Armor
+1 Ioreth of the Healing House
+1 Crenellated Wall
+1 Preordain
+1 Consider
+1 Stock Up
+36 Island
+1 Dragon's Eye Savants
+1 Hover Barrier
+1 Fatestitcher
+1 Stitcher Geralf
+1 Wall of Mist
+1 Vizier of Tumbling Sands
+1 Murmuring Phantasm
+1 Shield Sphere
+1 Kraken Hatchling
+1 Bygone Colossus
+1 Kelpie Guide
+1 Undead Alchemist
+1 Canyon Crab
+1 Excavated Wall
+1 Ambling Stormshell
+1 Ornithopter of Paradise
+1 Silver Myr
+1 High Tide
+1 Dragon Turtle
+1 Perplexing Test
+1 Shore Up
+1 Lazotep Plating
+1 Opt
+1 Winged Words
+1 Sapphire Medallion
+1 Swiftfoot Boots
+1 Wayfarer's Bauble
+1 Colfenor's Urn
+1 Rogue's Passage
+1 Serum Visions
+1 Favorable Winds
+1 Sky Diamond
+1 God-Eternal Kefnet
+1 Karfell Harbinger
+1 Eternal Skylord
+1 Falcon Abomination
+1 Aven Eternal
+1 Floodgate
+1 Aegis Turtle
+1 Wall of Runes
+1 Riptide Turtle
+1 Counterspell
+1 Gleaming Barrier
+1 Rapid Hybridization
+1 Pongify
+1 Octopus Form

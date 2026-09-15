@@ -1,0 +1,102 @@
+# Archidekt — Not naming it yet
+# source: archidekt:26423663
+# fetched: 2026-09-15
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Arcane Sanctum
+1 Crumbling Necropolis
+1 Savage Lands
+1 Jungle Shrine
+1 Seaside Citadel
+1 Nomad Outpost
+1 Sandsteppe Citadel
+1 Frontier Bivouac
+1 Opulent Palace
+1 Indatha Triome
+1 Ketria Triome
+1 Savai Triome
+1 Zagoth Triome
+1 Raffine's Tower
+1 Xander's Lounge
+1 Ziatora's Proving Ground
+1 Jetmir's Garden
+1 Spara's Headquarters
+1 Steam Vents
+1 Blood Crypt
+1 Raugrin Triome
+1 Overgrown Tomb
+1 Command Tower
+1 Polluted Delta
+1 Misty Rainforest
+1 Breeding Pool
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Crucible of Fire
+1 Path of Ancestry
+1 Wooded Foothills
+1 Stomping Ground
+1 Go for the Throat
+1 Flooded Strand
+1 Island
+1 Forest
+1 Mountain
+1 Swamp
+1 Sol Ring
+1 Bloodstained Mire
+1 Prismatic Vista
+1 Arcane Signet
+1 Cultivate
+1 Ornithopter of Paradise
+1 Birds of Paradise
+1 Three Visits
+1 Kodama's Reach
+1 Farseek
+1 Sakura-Tribe Elder
+1 Mind Stone
+1 Boros Signet
+1 Izzet Signet
+1 Gruul Signet
+1 Orzhov Signet
+1 Simic Signet
+1 Selesnya Signet
+1 Golgari Signet
+1 Rakdos Signet
+1 Rampant Growth
+1 The Ring Goes South
+1 Honest Rutstein
+1 Elvish Mystic
+1 Fyndhorn Elves
+1 Infernal Grasp
+1 Llanowar Elves
+1 Force of Will
+1 Fatal Push
+1 Dragonlord's Servant
+1 Force of Negation
+1 Murder
+1 Hero's Downfall
+1 Counterspell
+1 Flusterstorm
+1 Dragonspeaker Shaman
+1 Mana Tithe
+1 Old Gnawbone
+1 Dragon's Hoard
+1 Daze
+1 Arcane Denial
+1 Mana Drain
+1 Terror of the Peaks
+1 Crux of Fate
+1 Lathliss, Dragon Queen
+1 Haven of the Spirit Dragon
+1 Exotic Orchard
+1 Goldspan Dragon
+1 Utvara Hellkite
+1 Dragonlord Dromoka
+1 Dragon Tempest
+1 Ancient Copper Dragon
+1 Atarka, World Render
+1 Miirym, Sentinel Wyrm
+1 Nature's Lore
+1 Dracogenesis

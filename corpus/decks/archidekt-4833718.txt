@@ -1,0 +1,97 @@
+# Archidekt — Avatar Aang, Allies + Bending
+# source: archidekt:4833718
+# fetched: 2026-09-15
+
+Commander:
+1 Avatar Aang // Aang, Master of Elements
+
+Deck:
+1 Herald's Horn
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Negate
+1 Swords to Plowshares
+1 Sea of Clouds
+1 Chromatic Lantern
+1 Windswept Heath
+1 Island
+1 Rivendell
+1 Annie Joins Up
+1 Furycalm Snarl
+1 Prairie Stream
+1 Port Town
+1 Glacial Fortress
+1 Clifftop Retreat
+2 Forest
+1 Cultivate
+1 Exotic Orchard
+4 Mountain
+1 Toph, Hardheaded Teacher
+1 Appa, Loyal Sky Bison
+1 Swiftfoot Boots
+1 Sol Ring
+1 Arcane Signet
+1 Iroh, Grand Lotus
+1 Elemental Teachings
+1 Fire Lord Zuko
+1 Aang's Iceberg
+1 Aang, at the Crossroads // Aang, Destined Savior
+1 Sokka, Tenacious Tactician
+1 Hakoda, Selfless Commander
+1 Enter the Avatar State
+1 Crashing Wave
+1 North Pole Patrol
+1 Dai Li Indoctrination
+1 Airbending Lesson
+1 Earthbending Lesson
+1 Abandon Attachments
+1 Origin of Metalbending
+1 Waterbending Lesson
+1 Water Tribe Rallier
+1 Bitter Work
+1 Cycle of Renewal
+1 Katara, Bending Prodigy
+1 Island
+1 Swamp
+1 Path of Ancestry
+1 Fellwar Stone
+1 Kodama's Reach
+1 Shared Roots
+1 Aang, the Last Airbender
+1 Haru, Hidden Talent
+1 Katara, the Fearless
+1 Yue, the Moon Spirit
+1 Spirit Water Revival
+1 Moonmist
+1 The Legend of Kuruk // Avatar Kuruk
+1 Command Tower
+1 Secret of Bloodbending
+1 Earth King's Lieutenant
+1 Toph, the Blind Bandit
+1 Avatar's Wrath
+1 Toph, the First Metalbender
+1 Suki, Kyoshi Warrior
+1 Flexible Waterbender
+1 Master Piandao
+1 Airbender's Reversal
+1 Earth Rumble
+1 Silence
+1 It'll Quench Ya!
+1 Bender's Waterskin
+1 Plains
+1 Island
+1 South Pole Voyager
+1 Katara, Water Tribe's Hope
+7 Plains
+1 Ba Sing Se
+1 Abandoned Air Temple
+1 Agna Qel'a
+1 Glider Staff
+1 United Front
+1 Great Divide Guide
+1 Sun Warriors
+1 Boiling Rock Rioter
+1 Firebending Student
+1 Legion's Initiative
+1 Hinterland Harbor
+1 Rejuvenating Springs

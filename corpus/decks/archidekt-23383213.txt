@@ -1,0 +1,70 @@
+# Archidekt — Mono Red Spellslinger Budget
+# source: archidekt:23383213
+# fetched: 2026-09-15
+
+Commander:
+1 Captain Lannery Storm
+
+Deck:
+1 Dragon's Claw
+1 Insult // Injury
+1 Painter's Studio // Defaced Gallery
+1 Spectrum Sentinel
+1 Lukka, Coppercoat Outcast
+1 Blasphemous Act
+1 Hunted Dragon
+1 Crystalline Giant
+1 Fling
+1 Act of Treason
+1 Skewer the Critics
+1 Lightning Bolt
+1 Flame Channeler // Embodiment of Flame
+1 Guttersnipe
+1 Party Thrasher
+1 Mezzio Mugger
+1 Light Up the Stage
+1 Galvanic Relay
+1 Grapeshot
+1 Blazing Crescendo
+1 Goblin Wizardry
+1 Stoke the Flames
+1 Apex of Power
+1 Big Score
+1 Battle Hymn
+1 Rogue's Gloves
+1 Catalyst Elemental
+1 Electric Revelation
+1 Goldvein Pick
+1 Explosive Singularity
+1 Young Pyromancer
+1 Emrakul's Hatcher
+1 Glittering Stockpile
+1 Infernal Plunge
+1 Goldhound
+1 Grinning Ignus
+1 Electrodominance
+1 Aria of Flame
+1 Double Vision
+1 Dual Casting
+1 Radiant Performer
+1 Doublecast
+1 Satyr Firedancer
+1 Shiny Impetus
+1 The Akroan War
+1 Flick a Coin
+1 Beamtown Beatstick
+1 Brass's Bounty
+1 Mirrorwing Dragon
+1 Laelia, the Blade Reforged
+1 Cut Propulsion
+1 Dance with Devils
+1 Dead // Gone
+1 Crackling Spellslinger
+1 Blisterspit Gremlin
+1 Bloodlust Inciter
+1 Blazing Firesinger // Seething Song
+1 Dual Strike
+1 Electrickery
+1 Ore-Rich Stalactite // Cosmium Catalyst
+1 Slith Firewalker
+38 Mountain

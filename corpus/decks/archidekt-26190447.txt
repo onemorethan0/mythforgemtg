@@ -1,0 +1,80 @@
+# Archidekt — My Turn
+# source: archidekt:26190447
+# fetched: 2026-09-15
+
+Commander:
+1 Urabrask, Heretic Praetor
+
+Deck:
+1 Firebrand Archer
+1 The Reaver Cleaver
+1 Abrade
+1 Rite of Flame
+1 Mind Stone
+1 Sol Ring
+1 Runaway Steam-Kin
+1 Passionate Archaeologist
+1 Chandra, Torch of Defiance
+1 Pyretic Ritual
+1 Light Up the Stage
+1 Jeska's Will
+1 Goldspan Dragon
+1 Nico Minoru, Runaway
+1 Bolt Bend
+1 Disrupt Decorum
+1 Improvisation Capstone
+1 Vandalblast
+1 Dragon's Smile
+1 Mox Amber
+1 Curse of Opulence
+1 Strike It Rich
+1 Vessel of Volatility
+1 Beamtown Beatstick
+1 Generous Plunderer
+1 Treasure Vault
+1 Ruby Medallion
+1 Arcane Signet
+14 Snow-Covered Mountain
+1 Arena of Glory
+1 Demolition Field
+1 Witch's Clinic
+1 Volatile Fault
+15 Mountain
+1 Chrome Mox
+1 Defense Grid
+1 Sol Talisman
+1 Lotus Petal
+1 Party Thrasher
+1 Scavenger Grounds
+1 Glóin the Mighty // Easy Pickings
+1 War Room
+1 Return the Favor
+1 Deflecting Swat
+1 Sticky Fingers
+1 Desperate Ritual
+1 Diamond Pick-Axe
+1 Captain Lannery Storm
+1 Winter Moon
+1 Aggravated Assault
+1 Nalfeshnee
+1 Simian Spirit Guide
+1 Solphim, Mayhem Dominus
+1 Twinflame Tyrant
+1 Chimil, the Inner Sun
+1 Professional Face-Breaker
+1 Wild Wasteland
+1 Harsh Mentor
+1 Seething Song
+1 Valakut Exploration
+1 Tectonic Giant
+1 Laelia, the Blade Reforged
+1 Grenzo, Havoc Raiser
+1 Wrenn's Resolve
+1 Redirect Lightning
+1 Delayed Blast Fireball
+1 Temple of the False God
+1 Storm-Kiln Artist
+1 Wily Goblin
+1 Untimely Malfunction
+1 Embercleave
+1 Heartless Hidetsugu

@@ -1,0 +1,91 @@
+# Archidekt — Regular OSHA Violations
+# source: archidekt:14457646
+# fetched: 2026-09-15
+
+Commander:
+1 Arcades, the Strategist
+
+Deck:
+1 Tetsuko Umezawa, Fugitive
+1 Seaside Citadel
+1 Riptide Turtle
+1 Curator's Ward
+1 Fierce Guardianship
+1 Will of the Mardu
+1 Jungle Barrier
+1 Jeskai Barricade
+1 Sidar Kondo of Jamuraa
+1 Perimeter Captain
+1 Wall of Stolen Identity
+1 Wall of Tanglecord
+1 Akroma's Will
+1 Consulate Skygate
+1 Bant Charm
+1 High Alert
+1 Drift of Phantasms
+1 Arcane Signet
+1 Hover Barrier
+1 Wall of Air
+1 Wall of Denial
+1 Assault Formation
+1 Crenellated Wall
+1 Tower Defense
+1 Overgrown Battlement
+1 Mnemonic Wall
+1 Heroic Intervention
+1 Axebane Guardian
+1 Krosan Grip
+1 Wall of Tears
+1 Sol Ring
+6 Island
+1 Simic Signet
+1 Evolving Wilds
+1 Overgrown Farmland
+1 Rogue's Passage
+1 Temple of Mystery
+1 Tree of Redemption
+7 Plains
+1 Command Bridge
+1 Opal Palace
+1 Prairie Stream
+1 Eerie Interlude
+1 Steel Wall
+1 The Walls of Ba Sing Se
+1 Sylvan Caryatid
+1 Stalwart Shield-Bearers
+1 Towering Titan
+1 Cryptolith Rite
+1 Wall of Junk
+1 The Pride of Hull Clade
+1 Meekstone
+1 Wall of Omens
+1 Shield Sphere
+1 Wall of Blossoms
+1 Carven Caryatid
+1 Flawless Maneuver
+1 Teferi's Protection
+1 Swan Song
+1 Swiftfoot Boots
+1 Breeding Pool
+1 Hallowed Fountain
+1 Crashing Drawbridge
+1 Weathered Sentinels
+1 Temple Garden
+1 Reflecting Pool
+6 Forest
+1 Exotic Orchard
+1 Windswept Heath
+1 Wall of Mulch
+1 Portcullis Vine
+1 Vine Trellis
+1 Overgrown Arch
+1 Triumph of the Hordes
+1 Freed from the Real
+1 Shield-Wall Sentinel
+1 Wall of Roots
+1 Wall of Frost
+1 Flumph
+1 Command Beacon
+1 Command Tower
+1 Mistrise Village
+1 Sakashima of a Thousand Faces
