@@ -48,6 +48,16 @@ def test_tokens_are_skipped():
     assert _slim(_raw_card(layout="token")) is None
 
 
+def test_front_card_theme_labels_are_skipped():
+    """Found live 2026-09-16: a Jumpstart-style booster theme label ("Savage Lands",
+    oracle_text "(Theme color: {G})", layout front_card) shares a name with the real
+    tri-land. CardDb.__init__'s setdefault means whichever entry loads first wins the
+    name slot — if the label loads before the real card, the real card becomes
+    unreachable by name. Must be filtered at slim-build time, same as token/emblem/etc."""
+    assert _slim(_raw_card(name="Savage Lands", layout="front_card",
+                            type_line="Card", oracle_text="(Theme color: {G})")) is None
+
+
 def test_dfc_uses_front_face_fields():
     raw = {
         "name": "Delver of Secrets // Insectile Aberration",

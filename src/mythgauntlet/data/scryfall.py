@@ -27,6 +27,18 @@ HEADERS = {
 SKIP_LAYOUTS = {
     "token", "double_faced_token", "emblem", "art_series",
     "vanguard", "scheme", "planar", "augment", "host",
+    # Jumpstart-style booster THEME LABELS ("Thunderbolts", oracle_text "(Theme color:
+    # {B})") — not a playable card at all. Found live 2026-09-16: 291 of these share the
+    # slim store's flat name->Card dict with real cards on name collision, and
+    # `CardDb.__init__`'s `setdefault` means whichever entry loads FIRST wins — for at
+    # least 8 real cards (Savage Lands, Inferno, Spider-Verse, Pym Particles, Bounty
+    # Hunter, Agents of S.H.I.E.L.D., Drowned, Heroes for Hire, Blink, Grave Robbers)
+    # this silently shadowed the genuine card with the unplayable label ("type_line":
+    # "Card", "commander_legal": false) depending on bulk-file order — Savage Lands'
+    # compile then failed a lint comparing its declared "land" type against the label's
+    # own type_line, "Card". Needs a `fetch-data` refresh to take effect; this is a
+    # build-time filter, not a stored-field addition, so no schema version bump.
+    "front_card",
 }
 SLIM_FILENAME = "cards_slim.json"
 # v2: adds game_changer (Scryfall's WotC Game Changers flag)

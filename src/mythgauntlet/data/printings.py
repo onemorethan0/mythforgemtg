@@ -33,6 +33,9 @@ HEADERS = {"User-Agent": USER_AGENT, "Accept": "application/json"}
 SKIP_LAYOUTS = {
     "token", "double_faced_token", "emblem", "art_series",
     "vanguard", "scheme", "planar", "augment", "host",
+    # Jumpstart-style booster theme labels, not a real card — see scryfall.SKIP_LAYOUTS'
+    # own comment (2026-09-16) for the name-collision bug this caused.
+    "front_card",
 }
 
 SLIM_FILENAME = "printings_slim.json"
