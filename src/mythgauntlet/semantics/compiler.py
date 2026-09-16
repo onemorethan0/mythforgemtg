@@ -378,6 +378,66 @@ def _strip_combat_phase_confused_extra_turn(doc: dict, card: Card) -> None:
     doc["abilities"] = kept
 
 
+def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
+    """Deterministically relabel a `look_and_select` effect as `search_library` when the
+    oracle text is the "reveal cards from the top of your library UNTIL you reveal a
+    match" template (`ccm._REVEAL_UNTIL_RE`) — an unbounded search that terminates on a
+    guaranteed match, not a bounded N-card look.
+
+    This is the exact confusion `ccm.cross_check` was sharpened for on 2026-09-10
+    (Hermit Druid and friends), and that fix worked on the easy cases — 49/67 cleared on
+    the automated feedback retry. The remaining 4 needed a one-off hand relabel
+    (`ccm/compiled/explosive-revelation.json` etc., `provenance.hand_corrected`), which
+    is the exact transplant this function now does automatically: keep the model's own
+    `what`/`to`/`tapped`, drop `look`/`take` (search_library has no bounded window),
+    `count: 1` (the gate's own message: "usually 1" — a `take` other than 1 is carried
+    through instead of assumed), `shuffle: false` (the card puts the REJECTED cards on
+    the bottom in a set/random order, not a full-library shuffle — same reasoning the
+    hand-corrected examples used, not a default).
+
+    Confirmed still recurring at the model's normal failure rate, not a one-off: the
+    2026-09-16 nightly's ccm-recheck flagged 9 cards on this exact template, and 7 of
+    them (Avenging Druid, Calibrated Blast, House Cartographer, Madcap Experiment, Part
+    in Friendship, The Regalia, and 2 more) reproduced the look_and_select mislabel on
+    BOTH of compile_card's automated attempts — prompt guidance and gate feedback alone
+    are not reliable at qwen3:14b/temp 0.2 for this pattern, same shape as
+    `_strip_combat_phase_confused_extra_turn` above. Only fires on an actual
+    look_and_select effect; a card that omits the mechanic entirely (no look_and_select,
+    no search_library) is left alone — this function corrects a wrong op, it does not
+    invent a missing one.
+    """
+    text = card.oracle_text or ""
+    if not ccm._REVEAL_UNTIL_RE.search(text):
+        return
+    abilities = doc.get("abilities")
+    if not isinstance(abilities, list):
+        return
+    for ability in abilities:
+        if not isinstance(ability, dict):
+            continue
+        effects = ability.get("effects")
+        if not isinstance(effects, list):
+            continue
+        for i, effect in enumerate(effects):
+            if not isinstance(effect, dict) or effect.get("op") != "look_and_select":
+                continue
+            take = effect.get("take")
+            count = take if isinstance(take, int) and take > 0 else 1
+            # search_library's `what` is REQUIRED, unlike look_and_select's optional one
+            # (there, absent means "any card" per the op's own doc comment) — carry that
+            # meaning forward with an explicit permissive filter rather than dropping a
+            # required field and trading one schema error for another.
+            what = effect.get("what") if isinstance(effect.get("what"), dict) else {"type": "card"}
+            new_effect: dict = {
+                "op": "search_library", "what": what, "count": count, "shuffle": False,
+            }
+            if "to" in effect:
+                new_effect["to"] = effect["to"]
+            if "tapped" in effect:
+                new_effect["tapped"] = effect["tapped"]
+            effects[i] = new_effect
+
+
 # The FIXED, unconditional subset of "Equipped/Enchanted creature ..." static notes that
 # is safely machine-readable (docs/PLAN_FIDELITY.md Phase C, 2026-09-09): a plain power/
 # toughness delta and/or a closed set of boolean keyword grants, with no scaling term, no
@@ -511,6 +571,7 @@ def compile_card(
         if card.is_land and tags.analyze(card).enters_tapped and not doc.get("enters_tapped"):
             doc["enters_tapped"] = True
         _strip_combat_phase_confused_extra_turn(doc, card)
+        _coerce_reveal_until_to_search_library(doc, card)
         _populate_attach_grants(doc)
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]

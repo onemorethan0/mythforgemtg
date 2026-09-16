@@ -646,3 +646,83 @@ def test_compile_does_not_strip_a_genuine_extra_turn_card(make_card):
     result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
     assert result.status == "accepted"
     assert result.doc["abilities"][0]["effects"] == [{"op": "extra_turn"}]
+
+
+def test_compile_coerces_reveal_until_look_and_select_to_search_library(make_card):
+    """The 2026-09-10 cross_check fix for this exact confusion (Hermit Druid) only
+    cleared the easy cases on the automated feedback retry (49/67); the 2026-09-16
+    nightly's ccm-recheck found the model reproducing the SAME look_and_select mislabel
+    on 7 more cards, on both of compile_card's automated attempts. Deterministic
+    backstop, same idiom as the extra_turn strip above: relabel the op, keep the
+    model's own what/to, drop look/take (search_library has no bounded window),
+    shuffle:false (the rejected cards go to the bottom, not a full-library shuffle —
+    matches the hand-corrected examples already in the store)."""
+    # An activated ability, not the real card's own triggered one — the point under
+    # test is the look_and_select->search_library relabel in isolation, not Avenging
+    # Druid's real (separate, unfixed) trigger-event mismatch.
+    card = make_card(
+        "Avenging Druid", mana_cost="{2}{G}", type_line="Creature — Human Druid",
+        oracle_text="{T}: Reveal cards from the top of your library until you reveal "
+                    "a land card. Put that card onto the battlefield and put all "
+                    "other cards revealed this way into your graveyard.",
+    )
+    doc = {
+        "name": "Avenging Druid", "ccm_version": 1, "cost": {"mana": "{2}{G}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "activated", "cost": {"tap": True},
+                       "effects": [{"op": "look_and_select", "look": 1,
+                                    "what": {"type": "land"}, "take": 1,
+                                    "to": "battlefield"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    effect = result.doc["abilities"][0]["effects"][0]
+    assert effect == {
+        "op": "search_library", "what": {"type": "land"}, "count": 1,
+        "shuffle": False, "to": "battlefield",
+    }
+
+
+def test_compile_reveal_until_coercion_fills_missing_what(make_card):
+    """look_and_select's `what` is optional (absent means "any card"); search_library's
+    is required, so a missing filter must be backfilled rather than left out and
+    traded for a different schema error."""
+    card = make_card(
+        "Codecracker Hound II", mana_cost="{1}{U}", type_line="Sorcery",
+        oracle_text="Reveal cards from the top of your library until you reveal a "
+                    "card. Put it into your hand and the rest on the bottom in a "
+                    "random order.",
+    )
+    doc = {
+        "name": "Codecracker Hound II", "ccm_version": 1, "cost": {"mana": "{1}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "look_and_select", "look": 1, "take": 1,
+                                    "to": "hand"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    effect = result.doc["abilities"][0]["effects"][0]
+    assert effect["op"] == "search_library"
+    assert effect["what"] == {"type": "card"}
+
+
+def test_compile_does_not_coerce_a_genuine_bounded_look(make_card):
+    """Must only fire on the unbounded "reveal ... until you reveal" template — a real
+    bounded look (Augur of Bolas: "Look at the top 3 cards... you may reveal") must
+    keep its look_and_select untouched."""
+    card = make_card(
+        "Augur of Bolas", mana_cost="{1}{U}", type_line="Creature — Homarid Soldier",
+        oracle_text="When Augur of Bolas enters, look at the top three cards of your "
+                    "library. You may reveal an instant or sorcery card from among "
+                    "them and put it into your hand. Put the rest on the bottom of "
+                    "your library in any order.",
+    )
+    doc = {
+        "name": "Augur of Bolas", "ccm_version": 1, "cost": {"mana": "{1}{U}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "etb"},
+                       "effects": [{"op": "look_and_select", "look": 3,
+                                    "what": {"type": "instant or sorcery"}, "take": 1,
+                                    "to": "hand"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.doc["abilities"][0]["effects"][0]["op"] == "look_and_select"
