@@ -263,7 +263,19 @@ def _draw_counts(text: str) -> tuple[int, int]:
 
     This feeds tier0 and the BRACKET, not just the CCM cross-check, so the error was rating
     decks on card advantage they never had.
+
+    A fourth context has the same shape: quoted text GRANTING another object an ability
+    ('target creature gains "When this creature dies, draw two cards."' — a Saga's
+    payoff chapter). The granting sentence is not itself phrased as a trigger ("whenever
+    ..."), so the trigger-condition guard above never sees it, and the quoted clause
+    reads as this card's own immediate draw — found live 2026-09-16, Fall of Gil-galad's
+    chapter III scored 2 immediate draws it never has (the draw belongs to whatever
+    creature that ability gets granted to, on ITS death, later). A quoted span in oracle
+    text is always the verbatim text of an ability being NAMED or GRANTED, never part of
+    the enclosing sentence's own direct action — stripped before scanning, same
+    reasoning as the parenthetical reminder text `_clean_text` already strips upstream.
     """
+    text = re.sub(r'"[^"]*"', "", text)
     immediate = 0
     engine = 0
     for sentence in re.split(r"[.\n]", text):

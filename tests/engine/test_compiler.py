@@ -817,3 +817,156 @@ def test_compile_keeps_a_fixed_cost_reduction(make_card):
     assert result.status == "accepted"
     ops = [e["op"] for e in result.doc["abilities"][0]["effects"]]
     assert "cost_reduction" in ops
+
+
+def test_compile_coerces_an_unsupported_trigger_event_to_other(make_card):
+    """The prompt already tells the model to use "other" when no event fits, and the
+    gate's own error message repeats it — both lose to genuine vocabulary gaps at
+    qwen3:14b/temp 0.2. Found live 2026-09-16: Urianger Augurelt ("Whenever you play a
+    land from exile or cast a spell from exile, you gain 2 life") has no matching event
+    (cast_spell doesn't carry the "from exile" qualifier) and the model guessed `etb` on
+    every attempt instead of declining. Deterministic backstop, same idiom as the other
+    backstops: enforce the rule the prompt already states rather than re-asking."""
+    card = make_card(
+        "Urianger Augurelt", mana_cost="{W}{U}", type_line="Legendary Creature — Elf Advisor",
+        oracle_text="Whenever you play a land from exile or cast a spell from exile, "
+                    "you gain 2 life.",
+    )
+    doc = {
+        "name": "Urianger Augurelt", "ccm_version": 1, "cost": {"mana": "{W}{U}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "etb"},
+                       "effects": [{"op": "gain_life", "amount": 2, "who": "you"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    ability = result.doc["abilities"][0]
+    assert ability["trigger"]["event"] == "other"
+    # the effect itself survives — only the event is rewritten
+    assert ability["effects"] == [{"op": "gain_life", "amount": 2, "who": "you"}]
+
+
+def test_compile_does_not_coerce_a_genuinely_supported_trigger(make_card):
+    """Must never touch an event the text actually supports — a real etb trigger keeps
+    its event untouched."""
+    card = make_card(
+        "Kitsune Dawnblade", mana_cost="{4}{W}", type_line="Creature — Fox Samurai",
+        oracle_text="When this creature enters, you may tap target creature.",
+    )
+    doc = {
+        "name": "Kitsune Dawnblade", "ccm_version": 1, "cost": {"mana": "{4}{W}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "etb"},
+                       "effects": [{"op": "tap", "target": {"type": "creature", "count": 1}}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"][0]["trigger"]["event"] == "etb"
+
+
+def test_compile_does_not_coerce_a_keyword_licensed_trigger(make_card):
+    """A trigger event licensed by a keyword whose definition lives in reminder text
+    (Cascade -> cast_spell) must survive untouched, same as the gate itself allows."""
+    card = make_card(
+        "Bituminous Blast", mana_cost="{3}{R}{R}", type_line="Instant",
+        oracle_text="Cascade (When you cast this spell, exile cards from the top of "
+                    "your library until you exile a nonland card that costs less. You "
+                    "may cast it without paying its mana cost. Put the exiled cards on "
+                    "the bottom in a random order.)\nDestroy target creature.",
+    )
+    doc = {
+        "name": "Bituminous Blast", "ccm_version": 1, "cost": {"mana": "{3}{R}{R}"},
+        "types": ["instant"],
+        "abilities": [
+            {"kind": "spell_effect",
+             "effects": [{"op": "destroy", "target": {"type": "creature", "count": 1}}]},
+            {"kind": "triggered", "trigger": {"event": "cast_spell"}, "effects": [
+                {"op": "cost_reduction", "amount": 0, "applies_to": "exiled_card"}]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    triggered = [a for a in result.doc["abilities"] if a.get("kind") == "triggered"][0]
+    assert triggered["trigger"]["event"] == "cast_spell"
+
+
+def test_compile_reclassifies_an_additional_combat_spell_as_spell_effect(make_card):
+    """A pure sorcery whose content is "additional combat phases" reliably gets
+    mis-kinded: the model puts the real modelable clause (untap) in a "triggered"
+    ability with a guessed event, and the additional-combat text itself in a note-only
+    "static" ability — leaving NO spell_effect, which the lint requires. Found live
+    2026-09-16: Full Throttle ("After this main phase, there are two additional combat
+    phases. At the beginning of each combat this turn, untap all creatures that
+    attacked this turn.") reproduced this shape on repeat attempts."""
+    card = make_card(
+        "Full Throttle", mana_cost="{4}{R}{R}", type_line="Sorcery",
+        oracle_text="After this main phase, there are two additional combat phases. "
+                    "At the beginning of each combat this turn, untap all creatures "
+                    "that attacked this turn.",
+    )
+    doc = {
+        "name": "Full Throttle", "ccm_version": 1, "cost": {"mana": "{4}{R}{R}"},
+        "types": ["sorcery"],
+        "abilities": [
+            {"kind": "static",
+             "note": "After this main phase, there are two additional combat phases."},
+            {"kind": "triggered", "trigger": {"event": "combat_damage_to_player"},
+             "effects": [{"op": "untap", "target": {"type": "creature", "count": "all",
+                                                     "controller": "you"}}]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    kinds = [a["kind"] for a in result.doc["abilities"]]
+    assert "spell_effect" in kinds
+    promoted = next(a for a in result.doc["abilities"] if a["kind"] == "spell_effect")
+    assert promoted["effects"] == [{"op": "untap", "target": {"type": "creature",
+                                                               "count": "all",
+                                                               "controller": "you"}}]
+    assert "trigger" not in promoted
+
+
+def test_compile_does_not_reclassify_when_nothing_is_left_to_promote(make_card):
+    """World at War: the extra_turn strip already empties the only ability with real
+    effects (its sole content was a wrong extra_turn guess), so there is nothing left
+    to promote — an honest full decline is correct, not a fabricated spell_effect."""
+    card = make_card(
+        "World at War", mana_cost="{3}{R}{R}", type_line="Sorcery",
+        oracle_text="After the second main phase this turn, there's an additional "
+                    "combat phase followed by an additional main phase.",
+    )
+    doc = {
+        "name": "World at War", "ccm_version": 1, "cost": {"mana": "{3}{R}{R}"},
+        "types": ["sorcery"],
+        "abilities": [
+            {"kind": "static", "note": "additional combat phase and main phase"},
+            {"kind": "triggered", "trigger": {"event": "upkeep"},
+             "effects": [{"op": "extra_turn"}]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "quarantined"
+    assert result.doc is None
+
+
+def test_compile_does_not_reclassify_a_card_without_additional_combat_text(make_card):
+    """Scoped to the exact population the extra_turn strip already proved safe — a
+    mis-kinded instant/sorcery for an unrelated reason (no "additional combat" text)
+    must be left for its own fix, not swept in by a broader trigger."""
+    card = make_card(
+        "Into the Time Vortex", mana_cost="{4}{R}", type_line="Sorcery",
+        oracle_text="Cascade (When you cast this spell, exile cards from the top of "
+                    "your library until you exile a nonland card that costs less. You "
+                    "may cast it without paying its mana cost. Put the exiled cards on "
+                    "the bottom in a random order.)",
+    )
+    doc = {
+        "name": "Into the Time Vortex", "ccm_version": 1, "cost": {"mana": "{4}{R}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "cast_spell"},
+                       "effects": [{"op": "exile", "target": {"type": "card",
+                                                              "count": "all"}}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "quarantined"
+    assert result.doc is None

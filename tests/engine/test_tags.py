@@ -41,6 +41,23 @@ def test_opponent_draw_not_counted(make_card):
     assert tags.analyze(card).draw_cards == 0
 
 
+def test_a_draw_inside_a_granted_abilitys_quoted_text_is_not_this_cards_own(make_card):
+    """Found live 2026-09-16: Fall of Gil-galad's Saga chapter III grants a creature
+    'When this creature dies, draw two cards.' — the granting sentence isn't itself
+    phrased as a trigger, so the trigger-condition guard doesn't catch it, and the
+    quoted clause used to read as THIS card's own immediate draw. The draw belongs to
+    whatever creature the ability gets granted to, on its own later death."""
+    card = make_card(
+        "Fall of Gil-galad", mana_cost="{2}{B}", type_line="Enchantment — Saga",
+        oracle_text='Until end of turn, target creature you control gains "When this '
+                    'creature dies, draw two cards." Then that creature fights up to '
+                    "one other target creature.",
+    )
+    fx = tags.analyze(card)
+    assert fx.draw_cards == 0
+    assert fx.engine_draw == 0
+
+
 def test_tapland_detected(make_card):
     card = make_card(
         "Slow Caves", mana_cost="", type_line="Land",

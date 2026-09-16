@@ -378,6 +378,58 @@ def _strip_combat_phase_confused_extra_turn(doc: dict, card: Card) -> None:
     doc["abilities"] = kept
 
 
+def _reclassify_additional_combat_spell_effect(doc: dict, card: Card) -> None:
+    """A pure instant/sorcery whose real content is "there are additional combat
+    phases" reliably gets mis-kinded: the model puts the actual modelable clause
+    (usually an untap effect) in a "triggered" ability with a guessed-wrong event
+    (Full Throttle: `combat_damage_to_player`), and the "additional combat" text itself
+    in a note-only "static" ability — leaving NO ability of kind spell_effect, which
+    `ccm.cross_check`'s lint requires whenever a pure spell has any abilities at all.
+    Static/triggered are PERMANENT-only kinds; nothing about an instant/sorcery ever
+    sits on the battlefield to carry either, so the model's classification is simply
+    wrong, not a close call.
+
+    Run this AFTER `_strip_combat_phase_confused_extra_turn` — an ability whose only
+    effect was a wrong extra_turn is already gone by the time this looks for something
+    to promote, so this never promotes an ability that's about to be emptied out.
+
+    Promotes the FIRST ability that still has real effects to kind spell_effect,
+    dropping its (inapplicable) trigger/cost keys — collapsing "at the beginning of
+    each combat this turn, untap..." to "untap once, immediately" is an honest
+    UNDER-count (this engine has no delayed/repeating-trigger infrastructure to fire it
+    the additional times a real game would), never an over-count, matching this
+    project's standing doctrine. Scoped to exactly the population
+    `_strip_combat_phase_confused_extra_turn` already proved safe (the same
+    `_ADDITIONAL_COMBAT_RE` match) rather than any instant/sorcery with a mis-kinded
+    ability — a broader trigger would need its own corpus measurement first. A card
+    with nothing left to promote (every ability empty or note-only) is left alone: an
+    honest full decline, still failing the lint, is correct when there is truly nothing
+    modelable rather than something merely mis-kinded.
+    """
+    text = card.oracle_text or ""
+    if not _ADDITIONAL_COMBAT_RE.search(text):
+        return
+    type_line = card.type_line.casefold()
+    is_pure_spell = ("instant" in type_line or "sorcery" in type_line) and not any(
+        t in type_line for t in ("creature", "artifact", "enchantment", "land", "planeswalker")
+    )
+    if not is_pure_spell:
+        return
+    abilities = doc.get("abilities")
+    if not isinstance(abilities, list):
+        return
+    if any((a.get("kind") if isinstance(a, dict) else None) in (None, "spell_effect")
+           for a in abilities):
+        return  # already has a spell_effect (or nothing to fix); not this card's defect
+    for i, ability in enumerate(abilities):
+        if not isinstance(ability, dict):
+            continue
+        effects = ability.get("effects")
+        if isinstance(effects, list) and effects:
+            abilities[i] = {"kind": "spell_effect", "effects": effects}
+            return
+
+
 def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
     """Deterministically relabel a `look_and_select` effect as `search_library` when the
     oracle text is the "reveal cards from the top of your library UNTIL you reveal a
@@ -506,6 +558,51 @@ def _strip_unresolvable_cost_reduction(doc: dict) -> None:
                 ability = {**ability, "effects": remaining}
         kept.append(ability)
     doc["abilities"] = kept
+
+
+def _coerce_unsupported_trigger_to_other(doc: dict, card: Card) -> None:
+    """Deterministically rewrite a triggered ability's `event` to "other" when it has no
+    textual support — the exact condition `ccm._check_trigger_events` gates on, applied
+    BEFORE that gate runs rather than after it fails.
+
+    The prompt already states the correct behaviour in the model's own words ("If no
+    event in the list fits, use 'other' — that is always correct and always better than
+    a near miss"), and the gate's error message repeats it ("use a matching event or
+    'other'") as retry feedback. Both still lose to genuine vocabulary gaps at qwen3:14b/
+    temp 0.2: found live 2026-09-16, Urianger Augurelt ("Whenever you play a land from
+    exile or cast a spell from exile...") and Gaze of Pain (a sorcery that grants a
+    delayed "whenever a creature attacks" trigger for the rest of the turn) both guessed
+    `etb` on every attempt — the model reaches for the most common trigger when the real
+    shape (a cast/play-from-exile condition; a spell setting up a temporary triggered
+    ability with no permanent to carry it) has no vocabulary entry at all.
+
+    "other" is a fully legitimate, executed-nowhere-but-structurally-honest state this
+    schema already uses everywhere for "correct but unexecutable" (extra_turn's own
+    additional-combat carve-out, win_game's condition refusal) — rewriting to it
+    preserves the ability and its effects (the card's SHAPE stays on record) while making
+    it inert instead of wrong, strictly safer than deleting the ability outright. Reuses
+    `ccm`'s own evidence check exactly (same canonicalization, same keyword-licensing,
+    same EXECUTED_EVENTS restriction) so this can never disagree with what the gate
+    itself would have failed.
+    """
+    text = re.sub(r"\([^)]*\)", "", card.oracle_text or "").casefold()
+    licensed = ccm._keyword_licensed_events(card.oracle_text)
+    for ability in doc.get("abilities") or []:
+        if not isinstance(ability, dict) or ability.get("kind") != "triggered":
+            continue
+        trigger = ability.get("trigger")
+        raw = trigger.get("event") if isinstance(trigger, dict) else None
+        if not isinstance(raw, str) or raw == "other" or raw in licensed:
+            continue
+        event = ccm.canonical_event(raw)
+        if not isinstance(event, str) or event in licensed:
+            continue
+        if event != raw and event not in ccm.EXECUTED_EVENTS:
+            continue
+        pattern = ccm._TRIGGER_EVIDENCE.get(event)
+        if pattern is None or pattern.search(text):
+            continue
+        trigger["event"] = "other"
 
 
 # The FIXED, unconditional subset of "Equipped/Enchanted creature ..." static notes that
@@ -641,9 +738,11 @@ def compile_card(
         if card.is_land and tags.analyze(card).enters_tapped and not doc.get("enters_tapped"):
             doc["enters_tapped"] = True
         _strip_combat_phase_confused_extra_turn(doc, card)
+        _reclassify_additional_combat_spell_effect(doc, card)
         _coerce_reveal_until_to_search_library(doc, card)
         _default_missing_pump_axis(doc)
         _strip_unresolvable_cost_reduction(doc)
+        _coerce_unsupported_trigger_to_other(doc, card)
         _populate_attach_grants(doc)
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]
