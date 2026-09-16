@@ -79,6 +79,59 @@ def test_omitted_model_and_themes_are_not_sent():
     assert "themes" not in payload
 
 
+def test_offmeta_is_threaded_through_when_present():
+    with patch("server.requests.post", return_value=_resp(200, {})) as m:
+        server._gauntlet_mentor_chat(
+            {"name": "X"}, [], "q", offmeta={"synergy": 7.2, "verdict": "off-plan"},
+        )
+    payload = m.call_args.kwargs["json"]
+    assert payload["offmeta"] == {"synergy": 7.2, "verdict": "off-plan"}
+
+
+def test_omitted_offmeta_is_not_sent():
+    """Mirrors `themes`: an empty/falsy offmeta must not send a literal null and
+    override the engine's own `None` default."""
+    with patch("server.requests.post", return_value=_resp(200, {})) as m:
+        server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+    payload = m.call_args.kwargs["json"]
+    assert "offmeta" not in payload
+
+
+def test_mentor_chat_deck_route_passes_the_decks_persisted_offmeta():
+    """`/api/deck/{job_id}/mentor` reads `stats.offmeta` from the deck it already has on
+    disk (the same block `lift_stats.stats_block` writes at build/analyse time) and
+    threads it through -- no recomputation, no network call from this route."""
+    client = TestClient(server.app)
+    job = {
+        "commander": {"original_name": "Test Commander"},
+        "deck": [{"original_name": "Sol Ring", "quantity": 1}],
+        "stats": {"offmeta": {"synergy": 5.0, "verdict": "brew"}},
+    }
+    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+         patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
+        resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "how off-meta is this?"})
+    assert resp.status_code == 200
+    payload = m.call_args.kwargs["json"]
+    assert payload["offmeta"] == {"synergy": 5.0, "verdict": "brew"}
+
+
+def test_mentor_chat_deck_route_omits_offmeta_when_the_deck_has_none():
+    """An older deck (predates `lift_stats`, or lift_stats returned `{}` for insufficient
+    coverage) must not send a fabricated or empty offmeta block."""
+    client = TestClient(server.app)
+    job = {
+        "commander": {"original_name": "Test Commander"},
+        "deck": [{"original_name": "Sol Ring", "quantity": 1}],
+        "stats": {},
+    }
+    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+         patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
+        resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "q"})
+    assert resp.status_code == 200
+    payload = m.call_args.kwargs["json"]
+    assert "offmeta" not in payload
+
+
 # ── /api/deck/{job_id}/mentor/feedback ──────────────────────────────────────────────
 
 def test_feedback_route_forwards_to_the_engine():

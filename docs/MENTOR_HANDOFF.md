@@ -1,4 +1,4 @@
-# Deck Mentor handoff — six live campaign rounds (2026-08-25)
+# Deck Mentor handoff — seven live campaign rounds (2026-08-25, +round 7 2026-09-15)
 
 Written for the same reason `HANDOFF.md`/`ROADMAP.md`/`PLAN_CLOCK.md` exist for the builder and
 gauging engine: the mentor's Phase 0-3 build (`docs/SPEC_deck_mentor.md`) shipped with unit
@@ -229,6 +229,113 @@ real question about a real two-commander deck and check the answer against groun
 
 ---
 
+### Round 7 — closing the "what should I even ask" gap, and two more false positives found live
+
+Started from a different angle than rounds 1-6: not a bug report, but an audit of the mentor
+against this app's own stated top-level purpose ([[user-myth-suite-goal]], casual bracket 1-3
+pod-fit gauging). Reading `tools.py`'s tool table against that bar found two real, load-bearing
+gaps — the mentor covered curve/colours/role-supply in real depth but had **no path at all**
+to "what bracket is this deck" or "what should I cut", arguably the two most on-mission
+questions a real user would ask first.
+
+- **`get_bracket_estimate` (new tool).** Wires `ratings.analysis.analyze_deck` →
+  `ratings.bracket.estimate_bracket` in-process — the same pipeline `mythgauntlet analyze` and
+  Forge's Analyze panel already use — with `run_resilience=False` and no live Spellbook combo
+  lookup, both disclosed honestly via a `combos_checked: false` field the tool adds itself
+  (`BracketEstimate` doesn't carry that flag; the HTTP `/analyze` route surfaces it as its own
+  top-level key for the same reason, and this tool mirrors that convention). Priced like
+  `assess_card` — a few seconds, its own tool rather than folded into the free `get_deck_stats`.
+- **`suggest_swap` (un-deferred).** SPEC Phase 1 explicitly deferred this pending the loop being
+  "proven live" — six rounds and a hardened gate later, it has been. Suggests ONLY from the
+  player's own Myth Suite collection (never general Magic knowledge), reusing the exact
+  candidate-selection rule `/advise`'s HTTP route already used — factored into a new shared
+  `advisor.owned_candidates()` so the two callers can't drift, this repo's own most-repeated bug
+  class. Bounded well below Forge's patient `/advise` panel (`max_eval=4, cut_pool=1` vs.
+  `max_eval=16, cut_pool=6, runs=300` — that config measured ~583s off the request thread,
+  useless inside a synchronous chat turn). Licenses `SwapBrief.allowed_card_names` in addition
+  to the add/cut names themselves, so the swap's own measured reasoning can name a synergy card
+  without a false gate rejection.
+- **Archetype detection turned out to already be fully wired** (`themes` → Forge's
+  `_deck_archetypes(job)` → `get_deck_stats`'s `detected_themes` field) — the audit's initial
+  assumption that this was also missing was wrong, caught by reading the code before building
+  anything, not by trusting an old write-up.
+- **Off-meta (`lift_stats`) is a Forge-root capability, not an engine one** — it needs a live
+  EDHREC fetch and Forge's own cache, neither of which the engine process has. `get_deck_stats`
+  gained an `offmeta` field that's a PASS-THROUGH of whatever Forge already had cached in
+  `deck.json`'s `stats.offmeta`, threaded through `MentorChatRequest.offmeta` exactly like
+  `themes` already is — zero new engine-side measurement, zero new network calls from `:8020`.
+  `None`/`{"available": false}` when Forge has nothing cached (an older deck, or `lift_stats`
+  itself returning `{}` for insufficient EDHREC coverage) — the system prompt says to report
+  that honestly rather than guess.
+- **`check_legality` had ZERO bench coverage since it shipped in round 6** — a real gap noticed
+  while adding the two tools above, not something this round set out to find. Two cases added;
+  a live spot-check (outside the full bench) confirmed it's still exactly as solid as round 6
+  left it: Lightning Bolt (R) correctly rejected against this session's BG test deck, Golgari
+  Signet (BG) correctly accepted, Sun Titan (W) correctly rejected even when the question
+  baited a "but it fits my curve" justification.
+- **A residual the round-6 writeup named but never stress-tested got its first mechanical
+  check**: a reply could call `check_legality`, get a verdict back, and still write the OPPOSITE
+  conclusion in prose. `ClaimBudget` now carries `legality_verdicts` (detected structurally from
+  a tool result's own shape — `found`+`legal`(bool)+`card`+`colors_not_in_deck_identity`
+  together, since `ToolResult` carries no tool name) and `check()` flags a reply whose own
+  sentence naming that card uses an explicit legal/illegal phrase contradicting the verdict.
+  Deliberately narrow (requires the card name AND an explicit legal/add verb in the same
+  sentence) — the same under-flag-over-false-positive bias every other heuristic check in this
+  file already follows. Not observed live this session (the model never actually contradicted
+  itself in the spot-check above), same as round 6 left it — this closes the mechanism gap, not
+  a reproduced bug.
+
+**Two more false positives found by actually re-running `mentor_bench.py` (now 52 cases, +7
+covering `bracket`/`suggest_swap`/`check_legality`) against a real corpus deck (Shelob, Child
+of Ungoliant) through the live model** — exactly the round 1-6 method, applied to code that
+had never been driven live before:
+
+- **"How many lands am I running?" had no licensed number to answer with.** `get_deck_stats`
+  reported `nonland_count` but never a land count, so the model either summed per-colour
+  manabase sources itself (`15 + 39 = 54`) — a derived number that never appears literally in
+  any tool result, correctly gate-rejected three times over — or refused outright. Fixed by
+  adding `curve.land_count` (a plain count from `resolved.cards`, auto-licensed the same way
+  every other number in `get_deck_stats`'s response already is — no new gate logic needed).
+- **A mana-curve bucket LABEL read as a claimed number, the same shape as three already-fixed
+  bugs in this file** (the "2-4 mana range" hyphen, list markers, mana-symbol repeats). "5
+  **six**-mana cards" was gate-rejected for "citing 6" — the word "six" names which curve
+  bucket the licensed "5" belongs to, not an independent fact, and this deck's curve happened
+  to contain no literal 6 anywhere to license it against. Fixed with `_CURVE_BUCKET_LABEL_RE`,
+  stripped from the NUMBERS scan only, same pattern as the existing `_LIST_MARKER_RE`.
+- **Both fixes verified live, twice**: re-running the exact same 50-case bench after each fix
+  flipped both cases from FAIL to PASS with no other case moving — the standard proof this
+  file's method calls for, not just a passing unit test.
+- **Net: 45/50 → 47/50** across the two live runs (bracket ×3 and suggest_swap ×2 all passed on
+  first try in both runs). The **remaining 3 failures are the exact same accepted bench-scorer
+  residual `_TRAP_HONESTY_PATTERNS`' own comment already names** (a sixth/seventh phrasing of
+  "yes, 704.5f is correct" and of an honest false-premise correction, plus a sixth phrasing of
+  "the rules I found don't address this") — read individually and confirmed honest/correct
+  answers, not new mentor defects. **One of them is worth flagging as a live recurrence, not
+  just a scorer gap**: on the second run, `trap_unaddressed_nuance`'s reply admitted "None of
+  the rules provided directly address whether a token counts itself" and then continued anyway
+  — "However, based on general Magic: The Gathering principles, a token generally does not
+  count itself..." — which is the EXACT failure shape round 3 already named and tried to fix
+  with a system-prompt instruction ("Do NOT follow that admission with a guess dressed up as a
+  conclusion"). It didn't recur on the first run's phrasing of the same question. This is
+  gate-invisible by construction (no unlicensed name/number/citation), consistent with the
+  SPEC's own documented "the gate cannot verify semantic entailment" limit — recorded here as
+  confirmation the prompt-only fix is not fully reliable at temp 0.2, not chased further this
+  round (see "what's still open" below for why).
+- **This bench run also confirms something structural, not a bug**: `mentor_bench.py` calls
+  `mentor_chat.ask()` directly, bypassing the HTTP route entirely — `data/mentor_transcripts.jsonl`
+  stayed at exactly 3 lines (0 growth) across ~100 live LLM turns run this session. This is
+  correct isolation (synthetic bench probes must not pollute the real-usage signal Phase 3 is
+  built to mine), but it also means **the bench cannot be the thing that grows real usage** —
+  see "what's still open."
+
+Also touched, lower-stakes: the panel (`MentorChatPanel.jsx`) defaulted `open` to `false` and
+showed only a placeholder hint before the first message — checked directly, `data/mentor_transcripts.jsonl`
+held exactly 3 turns and 0 feedback records three weeks after round 6 shipped, i.e. real usage
+had stayed near zero. Panel now defaults open and shows three one-click starter prompts (one
+per new tool) so a real conversation has a lower bar than composing a question from scratch.
+
+---
+
 ## The honesty-marker whack-a-mole, and why it's a scorer problem, not a gate problem
 
 `scripts/mentor_bench.py`'s `_TRAP_HONESTY_MARKERS`/`_TRAP_HONESTY_PATTERNS` exist to recognize
@@ -243,19 +350,50 @@ recurs, the real fix is comparing `MentorReply`'s own structured rule-number fie
 trap's baited number, not another regex** — the model was answering correctly every time across
 five live runs; only the bench's ability to RECOGNIZE that kept lagging.
 
-`scripts/mentor_bench.py` is now 44 cases (13 → 43 → 44), including a sixth trap kind added
-directly from a real campaign finding (`trap_unaddressed_nuance`, mined from round 5's
-506.3a/506.3b miscitation) — still short of the spec's 75-100 target, said so plainly rather
-than rounded up.
+`scripts/mentor_bench.py` was 44 cases as of round 6 (13 → 43 → 44), including a sixth trap
+kind added directly from a real campaign finding (`trap_unaddressed_nuance`, mined from round
+5's 506.3a/506.3b miscitation). Round 7 grew it to 52 (45 → 50 → 52: three new domains —
+`bracket`, `suggest_swap`, `check_legality`, the last retroactively covering a tool that had
+shipped with zero bench coverage since round 6) — still short of the spec's 75-100 target,
+said so plainly rather than rounded up.
 
 ---
 
 ## What's still open
 
-- **The bench is 44/75-100.** Growing it further should come from real transcript data
+- **The bench is 52/75-100.** Growing it further should come from real transcript data
   (`mentor_transcript_audit.py`'s output) as usage accumulates, not more synthetic guessing —
   that's how `trap_unaddressed_nuance` was added, and it's a stronger case than one invented
   from first principles.
+- **Real usage is still the actual bottleneck, and round 7 confirmed it rather than fixing it.**
+  `data/mentor_transcripts.jsonl` sat at 3 turns / 0 feedback records for three weeks before
+  this round and is STILL at 3 after it — `mentor_bench.py` deliberately bypasses the HTTP
+  route (calls `mentor_chat.ask()` directly), so ~100 live LLM turns run this session correctly
+  logged NOTHING to the real-usage file. The panel now defaults open with starter prompts
+  (round 7's UI change) specifically to lower the bar for a real conversation, but that is a
+  bet, not a measurement — check `data/mentor_transcripts.jsonl`'s line count next time this
+  file is picked up to see whether it worked. Every item below this one (bench growth past 52,
+  the two structural gaps, Phase 3 distillation) is downstream of this one actually moving.
+- **Two structural gaps were reconsidered this round, deliberately not built, for a reason
+  worth recording rather than leaving as a silent TODO:**
+  - *Completeness gaps* (round 2's Embercleave case — a reply 100% faithful to what it
+    retrieved, still missing the single most decision-relevant fact) remain unfixed. A
+    per-tool "did you check X/Y/Z" checklist was considered again this round and rejected for
+    the same reason the SPEC already gives: with real usage still at ~zero, there is no
+    frequency signal to size the fix against, and shipping an untested heuristic checklist
+    risks new false positives to guard against a pattern observed exactly once, ever. Waits on
+    the item above.
+  - *Citation-doesn't-support-the-claim* (round 5's 506.3a/506.3b case) — the SPEC's own
+    suggested structural fix ("feed the cited rule's text back to the model as a second-pass
+    self-check") was reconsidered and rejected on a sharper basis than "not built yet": it IS a
+    second LLM call, which `gate.py`'s own module docstring already states this whole
+    architecture is built to avoid ("a second model checking the first is not a mechanical
+    check, it's a second chance to hallucinate"). Telling "704.5c is real and retrieved but
+    about poison counters, not toughness" apart from "704.5f actually establishes this" is a
+    semantic-entailment judgment, not a string/regex-checkable one — genuinely not mechanizable
+    without an LLM in the loop. Recorded here as a considered-and-declined structural fix, not
+    an unattempted one: the prompt-level mitigation (read every sibling before citing) is very
+    likely the ceiling for a purely mechanical gate on this specific gap.
 - ~~**The generate path still cannot BUILD a legal partner-commander deck end to end**~~ — FIXED
   the same session, once `builder_bench.py` gained the `--partners` measurement this item asked
   for. `DeckBuilder.build()` now takes `partner_count`, shrinks its drafted library by that many
@@ -263,27 +401,22 @@ than rounded up.
   documented above), and the server appends the partner card(s) into `deck` afterward — landing
   on a legal 100-card zone. Verified live on Tymna+Thrasios and Vial Smasher+Kraum (see
   `ROADMAP.md` S20 for the full writeup and `docs/bench/partners-s20-fix.json` for the run).
-- **`check_legality`'s fix removes the model's OWN subset arithmetic but not a residual risk one
-  layer up: a reply could still contradict its own tool's verdict** (e.g. call the tool, get
-  `legal: false`, and write "yes" anyway). Not observed live, but the gate has no mechanism to
-  catch a text/tool-result contradiction in general — see the semantic-entailment gap below,
-  which this is a narrower instance of. Quoting the tool's `legal` field is now trivial for the
-  model (it doesn't have to compute anything, just read a boolean), which is presumed to make
-  this much less likely than the subset-arithmetic failure it replaces, but it hasn't been
-  stress-tested the way the arithmetic failure was.
+- ~~**`check_legality`'s fix removes the model's OWN subset arithmetic but not a residual risk one
+  layer up: a reply could still contradict its own tool's verdict**~~ — MECHANICAL CHECK ADDED
+  round 7. `ClaimBudget.legality_verdicts` + a new gate check catches a reply whose own sentence
+  naming a checked card uses an explicit legal/illegal phrase contradicting that turn's
+  `check_legality` result. Deliberately narrow (same card name + explicit verb, same sentence)
+  to keep the under-flag bias every heuristic in this file follows. Still not observed live as
+  a genuine failure (the round-7 spot-check on Lightning Bolt/Golgari Signet/Sun Titan never
+  contradicted itself) — this closes the mechanism gap, it doesn't confirm the failure mode
+  reproduces, same distinction round 6 already drew for the arithmetic fix it replaced.
 - **The rules-paraphrase-without-citation heuristic is bounded, not complete** (documented in
   `gate.py` itself): a definition phrased outside its specific hardcoded patterns still slips
   through with zero mechanical check.
-- **The gate cannot verify semantic entailment** — round 5's 506.3a/506.3b case proved a
-  citation can be real, genuinely-retrieved, AND still not establish the claim it's attached to.
-  The prompt-level fix (read every sibling before citing) narrows this but doesn't close it; a
-  structural fix would need something like feeding the specific cited rule's own text back to
-  the model as a second-pass self-check before shipping the reply, which hasn't been built.
-- **Completeness gaps (round 2's Embercleave case) are structurally outside what a grounding
-  gate can check.** A reply can be 100% faithful to what it retrieved and still leave out the
-  single most decision-relevant fact. This needs either a "did you check X, Y, Z about this
-  card" prompt checklist per tool, or more `mentor_transcript_audit.py`-driven downvoting to
-  surface the pattern's real frequency before designing a fix.
+- **The gate cannot verify semantic entailment, and completeness gaps are structurally outside
+  what a grounding gate can check** — see round 7's two bullets above (both reconsidered and
+  deliberately left unbuilt this round, with the reasoning recorded there rather than repeated
+  here).
 
 ## Files this touches, if you're picking this up fresh
 
@@ -298,3 +431,16 @@ itself used a throwaway `scripts/_campaign_helper.py` (deleted after each round,
 each turn is a one-line command instead of hand-building the history array each time. Recreate
 it from this doc's "the method" section if you pick this back up; it's ~70 lines and not worth
 version-controlling since it's pure plumbing with no logic of its own.
+
+**Round 7** additionally touched `src/mythgauntlet/ratings/advisor.py` (new `owned_candidates()`
+shared helper, extracted from the `/advise` route's own inline loop), `src/mythgauntlet/server.py`
+(`MentorChatRequest.offmeta`, the route threading it into `MentorContext`, and the `/advise`
+route now calling `advisor.owned_candidates`), root `server.py` (`_gauntlet_mentor_chat`'s
+`offmeta` param, `mentor_chat_deck` reading `job["stats"]["offmeta"]`), and
+`frontend/src/components/MentorChatPanel.jsx` (default-open, starter prompts, two new tool
+labels). New tests in `tests/engine/test_mentor_tools.py` (bracket + suggest_swap, including a
+real positive-swap end-to-end case using the exact fixture shape `test_advisor.py` already
+proved reliable), `tests/engine/test_mentor_gate.py` (the contradiction check + the curve-bucket
+false-positive fix), `tests/engine/test_server_mentor.py` and `tests/test_mentor_deck_route.py`
+(`offmeta` threading both directions). Full repo suite (`python -m pytest tests`) re-run clean
+at 1569 passed, 0 failures, before and after every change in this round.

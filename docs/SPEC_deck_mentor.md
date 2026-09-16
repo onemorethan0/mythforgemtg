@@ -111,13 +111,33 @@ must trace back to a tool result from *this turn* — this is the literal genera
 
 | tool | wraps | domain |
 |---|---|---|
-| `get_deck_stats(deck_id)` | `compute_stats` (curve/colors/mana_base/archetypes/offmeta) | A |
-| `assess_card(deck_id, card_name)` | engine `/card-impact` | A |
-| `suggest_swap(deck_id, axis?)` | engine `/advise` → `SwapBrief` | A |
-| `lookup_card(name)` | `cards_slim.json` exact/fuzzy | A/B (oracle text) |
+| `get_deck_stats()` | curve/manabase/roles + commanders + detected themes + (2026-09-15) an `offmeta` pass-through | A |
+| `get_bracket_estimate()` | (2026-09-15) `ratings.analysis.analyze_deck` → `ratings.bracket.estimate_bracket`, in-process | A |
+| `assess_card(name)` | `ratings.card_impact.assess_card`, in-process | A |
+| `suggest_swap(axis?)` | (2026-09-15, un-deferred) `ratings.advisor.advise` over the player's OWN collection, in-process | A |
+| `check_legality(name)` | deterministic colour-identity subset check (campaign round 6) | A |
+| `lookup_card(name)` | `CardDb` exact/fuzzy | A/B (oracle text) |
 | `lookup_rulings(name)` | Phase 0 rulings corpus | B |
 | `search_rules(query)` | Phase 0 BM25 over CR | B |
 | `get_rule(number)` | Phase 0 CR exact lookup | B |
+
+**`get_bracket_estimate`/`suggest_swap` were the two real gaps found 2026-09-15** while
+auditing the mentor against this app's own stated top-level purpose (casual bracket 1-3
+pod-fit gauging, [[user-myth-suite-goal]]): the mentor covered curve/colours/role-supply
+in detail but had literally no path to "what bracket is this deck" or "what should I
+cut", the two most on-mission questions a user would actually ask. `suggest_swap` was
+this table's own original Phase 1 design intent, deferred (see the paragraph below the
+tool contract in Phase 1's own write-up) until the loop was proven live — it now is,
+across six campaign rounds. **Off-meta (`lift_stats`) is a Forge-root capability, not an
+engine one** (`lift_stats.py`/`edhrec_lift.py` live at the repo root, need a live EDHREC
+fetch, and the engine process has no network path to them) — so `get_deck_stats`'s
+`offmeta` field is a PASS-THROUGH of whatever Forge's `/api/deck/{job_id}/mentor` proxy
+already had cached in `deck.json`'s `stats.offmeta`, threaded through
+`MentorChatRequest.offmeta` exactly like `themes` already is, not a new engine-side
+measurement. `Archetype` detection was, on inspection, already fully wired (`themes` →
+`_deck_archetypes(job)` → `get_deck_stats`'s `detected_themes` field) — the audit's
+assumption that it was missing turned out to be wrong, verified by reading the code
+rather than trusted from a prior write-up.
 
 No tool means no claim. If a question needs a fact no tool can produce (e.g. "what will the
 next set do to my deck"), the correct answer is the mentor saying so — not a guess.

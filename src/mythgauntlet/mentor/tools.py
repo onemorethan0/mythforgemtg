@@ -29,10 +29,13 @@ import re
 from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
+from mythgauntlet.config import suite_collection_path
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
+from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
-from mythgauntlet.ratings import card_impact, manabase, redundancy
+from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy
+from mythgauntlet.ratings.analysis import analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
 
@@ -210,6 +213,14 @@ class MentorContext:
     cfg: SimConfig
     store: SemanticsStore
     themes: Sequence[str] = field(default_factory=tuple)
+    # {"synergy":..., "synergy_range":..., "staples_pct":..., "verdict":..., ...} from
+    # Forge's own `lift_stats.stats_block` (root, EDHREC-backed) -- computed OUTSIDE this
+    # process (the engine has no EDHREC cache/network path of its own) and threaded
+    # through by Forge's `/api/deck/{job_id}/mentor` proxy, same handoff `themes` already
+    # gets. None when Forge has none cached (an older deck predates `lift_stats`, or the
+    # deck was never analysed) -- `get_deck_stats` reports that honestly rather than
+    # fabricating a reading.
+    offmeta: dict | None = None
 
     @property
     def deck_card_names(self) -> frozenset[str]:
@@ -305,9 +316,10 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     "what's over-supplied" without the mentor ever computing a number itself."""
     resolved = ctx.resolved
     buckets: dict[int, int] = {}
-    total_mv, total_n = 0.0, 0
+    total_mv, total_n, land_n = 0.0, 0, 0
     for card, qty in resolved.cards:
         if "Land" in card.type_line:
+            land_n += qty
             continue
         b = min(max(card.mana_value, 1), 7)
         buckets[b] = buckets.get(b, 0) + qty
@@ -317,6 +329,14 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         "buckets": {str(k): v for k, v in sorted(buckets.items())},
         "average_mana_value": round(total_mv / total_n, 2) if total_n else 0.0,
         "nonland_count": total_n,
+        # Found live 2026-09-15 (mentor bench, real deck): asked "how many lands am I
+        # running", the model had no licensed total to cite -- `nonland_count` is the
+        # only count this tool ever reported -- and either fabricated one by summing
+        # per-colour manabase sources itself (correctly gate-rejected: a sum is not a
+        # literal number in any tool result) or refused outright. A land count is
+        # exactly the kind of already-known fact this tool exists to hand over rather
+        # than let the model derive.
+        "land_count": land_n,
     }
 
     mb = manabase.analyze(list(resolved.cards), resolved.commanders)
@@ -349,10 +369,116 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     ]
     data = {"curve": curve, "manabase": manabase_report, "roles": roles,
             "detected_themes": list(ctx.themes), "commanders": commanders}
+    # "How off-meta is this deck" (lift_stats.stats_block) is computed OUTSIDE this
+    # process -- see MentorContext.offmeta's own docstring for why -- so this is a
+    # pass-through, not a measurement: whatever Forge already persisted for this deck,
+    # narrated honestly rather than recomputed or guessed at. `offmeta` is None for a
+    # deck Forge never analysed with it (an old build, or lift_stats itself returning {}
+    # for insufficient EDHREC coverage) -- reported as unavailable rather than omitted
+    # silently, so the model can say "I don't have an off-meta reading for this deck"
+    # instead of staying quiet in a way indistinguishable from not having asked.
+    data["offmeta"] = ctx.offmeta if ctx.offmeta else {"available": False}
     # Licenses stating the commander's name(s): without card_names= here, the gate would
     # flag "Your commander is Tymna the Weaver" as an unverified claim even though this
     # tool call is exactly what verified it (gate.py checks budget.card_names, not `data`).
     return ToolResult(data=data, card_names=frozenset(c.name for c in resolved.commanders))
+
+
+def tool_get_bracket_estimate(ctx: MentorContext) -> ToolResult:
+    """The official-rules Commander Bracket estimate (1-5, WotC Feb 2026 system) -- the
+    SAME pipeline `mythgauntlet analyze` and Forge's Analyze panel already show
+    (`ratings.analysis.analyze_deck` -> `ratings.bracket.estimate_bracket`), run here
+    in-process rather than re-derived, matching the domain-A doctrine this whole tool
+    module follows: never let the mentor compute a rating itself.
+
+    This is the headline "is this deck too strong/weak for my pod" question, and until
+    this tool existed the mentor had no path to it at all -- `get_deck_stats` covers
+    curve/colours/roles, none of which is what a bracket number actually gates on
+    (Game Changers, in-deck combos, mass land denial, measured speed/consistency).
+
+    Runs a real (bounded) goldfish simulation, so this is priced like `assess_card` (a
+    few seconds), not free like `get_deck_stats` -- its own tool rather than folded in.
+    Deliberately skips two of `analyze_deck`'s optional, heavier inputs: the resilience
+    pass (a second full simulation, only needed for the separate resilience axis) and a
+    live Spellbook combo lookup (a real network call, cached by decklist hash elsewhere
+    in this app but not worth paying for on every mentor turn). The reply's own
+    `combos_checked: false` discloses that scope honestly -- exactly the field
+    `estimate_bracket` exists to report -- rather than silently answering as if a full
+    `/analyze` had run.
+    """
+    analysis = analyze_deck(ctx.resolved, ctx.cfg, ctx.store, run_resilience=False)
+    data = _to_jsonable(analysis.bracket)
+    data["found"] = True
+    data["game_changer_cards"] = list(analysis.game_changers)
+    # `BracketEstimate` itself doesn't carry this flag (it's a parameter to
+    # `estimate_bracket`, not a stored field) -- the HTTP `/analyze` route surfaces it as
+    # its own top-level response key for exactly this reason, and this tool mirrors that
+    # convention rather than letting the model infer scope from what's absent.
+    data["combos_checked"] = False
+    return ToolResult(data=data, card_names=frozenset(analysis.game_changers))
+
+
+def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
+    """What to add/cut, measured by re-simulation -- `ratings.advisor.advise`'s full
+    ablation sweep, deferred out of Phase 1 (see this module's own docstring) until the
+    tool loop was proven live. It has been: six campaign rounds, the gate hardened
+    against real failures found driving it, `check_legality` shipped from the same
+    process. This is the single most natural mentor question ("what should I cut for a
+    wrath effect") and until now had no tool backing it at all.
+
+    Suggests ONLY from the player's own Myth Suite collection (`collection.csv`) --
+    same contract as Forge's `/advise` panel and the SAME selection rule
+    (`advisor.owned_candidates`, factored out for exactly this reuse) -- never from all
+    of Magic. `found: False` with an explanatory message when there is no collection
+    file to read from; the model is expected to report that honestly rather than
+    inventing a suggestion from general card knowledge, which the system prompt and the
+    gate's card-name check both already forbid.
+
+    Bounded well below Forge's own patient `/advise` panel (max_eval=16, cut_pool=6,
+    runs=300, measured ~583s off the request thread) since this runs synchronously
+    inside a chat turn, itself inside Forge's own 120s proxy timeout alongside whatever
+    other tool calls the same turn makes: max_eval=4, cut_pool=1 (4 re-simulations,
+    each roughly `assess_card`-priced) and `ctx.cfg.runs` (the same run count already
+    used for `assess_card` this session). `advisor.advise`'s own docstring sweep table
+    shows quality rises with these knobs but there is no knee, so this is a latency
+    choice, not an accuracy ceiling -- a single global cut (cut_pool=1) still measures a
+    real swap, just without per-candidate cut tailoring.
+    """
+    path = suite_collection_path()
+    if not path.exists():
+        return ToolResult(data={
+            "found": False,
+            "message": "No Myth Suite collection file found, so there's nothing owned "
+                       "to suggest a swap from.",
+        })
+    try:
+        collection = Collection.load(path)
+    except (OSError, UnicodeDecodeError):
+        return ToolResult(data={"found": False, "message": "Could not read the collection file."})
+    candidates = advisor.owned_candidates(ctx.card_db, ctx.resolved, collection)
+    if not candidates:
+        return ToolResult(data={
+            "found": True, "suggestions": [],
+            "message": "No owned, in-colour cards outside the deck to test as adds.",
+        })
+    report = advisor.advise(
+        ctx.resolved, ctx.cfg, ctx.store, candidates,
+        axis=axis, top=3, max_eval=4, cut_pool=1, themes=ctx.themes,
+    )
+    data = _to_jsonable(report)
+    data["found"] = True
+    names: set[str] = set()
+    for s in report.suggestions:
+        names.add(s.add)
+        names.add(s.cut)
+        # SwapBrief.allowed_card_names is the FULL claim budget for this one swap's own
+        # reasoning (see swap_brief.py) -- e.g. a synergy card the brief cites without
+        # that card being the add or the cut itself. Licensing only add/cut would gate-
+        # reject an honest narration of a well-measured reason the brief already vouches
+        # for, the same class of gap `source_texts` exists to close for verbatim quotes.
+        if s.brief is not None:
+            names.update(s.brief.allowed_card_names)
+    return ToolResult(data=data, card_names=frozenset(names))
 
 
 def tool_check_legality(ctx: MentorContext, name: str) -> ToolResult:
@@ -506,6 +632,45 @@ TOOL_SCHEMAS: list[dict] = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_bracket_estimate",
+            "description": "Get the official-rules Commander Bracket estimate (1-5) for "
+                            "this deck, via a real (bounded) simulation -- WotC's Feb 2026 "
+                            "bracket system (Game Changers, in-deck combos, mass land denial, "
+                            "measured speed/consistency). Use this for ANY question of the "
+                            "form 'what bracket is this', 'is this deck too strong/weak for "
+                            "my pod', or 'is this deck fun/on-level for casual play'. Slower "
+                            "than get_deck_stats -- a real simulation, priced like "
+                            "assess_card.",
+            "parameters": {"type": "object", "properties": {}, "required": []},
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "suggest_swap",
+            "description": "Suggest a measured add/cut swap from the player's OWN Myth "
+                            "Suite collection (never from outside it), verified by "
+                            "re-simulating the deck with the swap applied. Use this for "
+                            "'what should I cut', 'what should I add', or 'how can I improve "
+                            "this deck' questions. Slower than the other tools -- several "
+                            "re-simulations.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "axis": {
+                        "type": "string",
+                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling"],
+                        "description": "which Power Profile axis to improve; omit to target "
+                                       "the deck's own weakest axis",
+                    },
+                },
+                "required": [],
+            },
+        },
+    },
 ]
 
 _TOOL_FUNCS = {
@@ -515,6 +680,8 @@ _TOOL_FUNCS = {
     "get_rule": tool_get_rule,
     "get_deck_stats": tool_get_deck_stats,
     "assess_card": tool_assess_card,
+    "get_bracket_estimate": tool_get_bracket_estimate,
+    "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }
 
@@ -526,4 +693,10 @@ def call_tool(ctx: MentorContext, name: str, args: dict) -> ToolResult:
     try:
         return fn(ctx, **args)
     except TypeError as exc:
+        return ToolResult(data={"found": False, "message": f"Bad arguments for {name!r}: {exc}"})
+    except ValueError as exc:
+        # A model-supplied enum-shaped argument (suggest_swap's `axis`) can still arrive
+        # malformed despite the schema's enum hint -- advisor.advise raises ValueError for
+        # an unknown axis rather than silently falling back, which is correct for a real
+        # caller but must not surface as an unhandled 500 from inside the tool loop.
         return ToolResult(data={"found": False, "message": f"Bad arguments for {name!r}: {exc}"})

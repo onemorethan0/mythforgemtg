@@ -192,6 +192,15 @@ def test_get_deck_stats_reports_curve_and_roles(make_card, empty_store):
     assert result.data["curve"]["nonland_count"] == 1  # Forest is a land, excluded
 
 
+def test_get_deck_stats_reports_land_count(make_card, empty_store):
+    """Found live 2026-09-15 (mentor bench, real deck): asked 'how many lands am I
+    running', the model had no licensed total to cite and either fabricated one by
+    summing per-colour manabase sources itself (correctly gate-rejected) or refused."""
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "get_deck_stats", {})
+    assert result.data["curve"]["land_count"] == 35  # the Forest x35 fixture card
+
+
 def test_get_deck_stats_reports_commander_identity(make_card, empty_store):
     # Found live 2026-08-25: with no way to surface who the commander even IS, the
     # mentor answered "who are my commanders" with a flat false "I don't have access to
@@ -276,3 +285,157 @@ def test_assess_card_already_in_deck(make_card, empty_store):
     assert result.data["found"] is True
     assert result.data["already_in_deck"] is True
     assert "Rock of Ramping" in result.card_names
+
+
+# ── get_bracket_estimate (2026-09-15) ───────────────────────────────────────────────
+# The mentor had curve/colour/role-supply (get_deck_stats) but no path at all to "what
+# bracket is this deck" -- the headline question for this app's whole stated purpose
+# (casual bracket 1-3 pod-fit gauging). This wires `ratings.analysis.analyze_deck` ->
+# `ratings.bracket.estimate_bracket` in-process, the SAME pipeline `mythgauntlet analyze`
+# and Forge's Analyze panel already use.
+
+def test_get_bracket_estimate_returns_a_real_bracket(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "get_bracket_estimate", {})
+    assert result.data["found"] is True
+    assert 1 <= result.data["bracket"] <= 5
+    assert isinstance(result.data["reasons"], list) and result.data["reasons"]
+    # Documented scope: no live Spellbook lookup, no resilience pass -- disclosed via the
+    # same field `estimate_bracket` already carries for exactly this purpose.
+    assert result.data["combos_checked"] is False
+
+
+def test_get_bracket_estimate_licenses_game_changer_names(make_card, empty_store):
+    from mythgauntlet.model.card import Card
+
+    commander = make_card("Test Commander", type_line="Legendary Creature — Human",
+                           mana_cost="{2}{G}", color_identity=("G",))
+    gc_card = Card(name="Bomb Effect", type_line="Sorcery", mana_cost_str="{2}{G}",
+                    color_identity=("G",), game_changer=True)
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+    db = CardDb([commander, gc_card, forest])
+    resolved = ResolvedDeck(
+        deck=Deck(name="test"), commanders=[commander],
+        cards=[(gc_card, 1), (forest, 35)], missing=[],
+    )
+    ctx = MentorContext(card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+                         cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+    result = call_tool(ctx, "get_bracket_estimate", {})
+    assert result.data["game_changer_cards"] == ["Bomb Effect"]
+    assert "Bomb Effect" in result.card_names
+    # 1 Game Changer -> the official gate floors this at Bracket 3 (see estimate_bracket).
+    assert result.data["bracket"] >= 3
+
+
+# ── suggest_swap (2026-09-15) ───────────────────────────────────────────────────────
+# Deferred out of Phase 1 on purpose (see tools.py's module docstring) until the tool
+# loop was proven live across the 6-round campaign in MENTOR_HANDOFF.md. Suggests ONLY
+# from the player's own Myth Suite collection -- these tests exercise the "no collection"
+# and "no eligible candidates" honesty paths, which don't need a real positive swap to
+# be measured (that's what mentor_bench.py / a live campaign turn is for).
+
+def test_suggest_swap_reports_honestly_with_no_collection_file(make_card, empty_store, monkeypatch, tmp_path):
+    from mythgauntlet.mentor import tools as tools_mod
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: tmp_path / "missing.csv")
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "suggest_swap", {})
+    assert result.data["found"] is False
+    assert "collection" in result.data["message"].lower()
+    assert result.card_names == frozenset()
+
+
+def test_suggest_swap_reports_honestly_with_no_eligible_candidates(make_card, empty_store, monkeypatch, tmp_path):
+    """A collection file exists, but everything in it is either already in the deck, a
+    land, or outside the deck's colour identity -- `found: True` with an empty
+    suggestion list, not a fabricated recommendation."""
+    from mythgauntlet.mentor import tools as tools_mod
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Rock of Ramping\n1,Off Color Bolt\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    off_color = make_card("Off Color Bolt", type_line="Instant", mana_cost="{R}",
+                           color_identity=("R",))
+    ctx = _ctx(make_card, empty_store)
+    # Rebuild the card_db so it also knows about the off-color card the collection
+    # names -- `owned_candidates` looks each owned name up via `card_db.get`.
+    db = CardDb([*[c for c, _ in ctx.resolved.cards], *ctx.resolved.commanders, off_color])
+    ctx2 = MentorContext(card_db=db, cr=ctx.cr, rulings_db=ctx.rulings_db,
+                          resolved=ctx.resolved, cfg=ctx.cfg, store=ctx.store)
+    result = call_tool(ctx2, "suggest_swap", {})
+    assert result.data["found"] is True
+    assert result.data["suggestions"] == []
+
+
+def test_suggest_swap_returns_a_real_measured_swap(make_card, empty_store, monkeypatch, tmp_path):
+    """End-to-end positive case, reusing the exact fixture shape
+    `test_advisor.py::test_advise_prefers_the_cut_that_improves_the_axis_most` documents
+    as the one that reliably measures positive -- that test's own docstring records an
+    earlier version of ITSELF going silently vacuous on a 'consistency + vanilla bear'
+    combo (zero suggestions, assertions all vacuously true), which is exactly the mistake
+    an earlier draft of THIS test made. `interaction` against a deck with zero removal
+    is deterministic (seed-to-seed sd 0.00) and a real removal spell is a genuine,
+    in-kind gain -- not fighting sim noise the way a same-shape creature swap does.
+    """
+    from mythgauntlet.mentor import tools as tools_mod
+
+    cmdr = make_card("Test Commander", mana_cost="{2}{G}",
+                      type_line="Legendary Creature — Elf", color_identity=("G",))
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+
+    def _bear(name, rank):
+        c = make_card(name, mana_cost="{1}{G}", type_line="Creature — Bear",
+                      color_identity=("G",), edhrec_rank=rank)
+        c.power, c.toughness = "2", "2"
+        return c
+
+    strong = _bear("Popular Bear", 500)
+    weak = _bear("Obscure Bear", 90000)
+    removal = make_card("Owned Removal", mana_cost="{1}{G}", type_line="Instant",
+                         color_identity=("G",), edhrec_rank=4000,
+                         oracle_text="Destroy target creature.")
+
+    resolved = ResolvedDeck(
+        deck=Deck(name="t"), commanders=[cmdr],
+        cards=[(forest, 36), (strong, 40), (weak, 23)], missing=[],
+    )
+    db = CardDb([cmdr, forest, strong, weak, removal])
+    ctx = MentorContext(
+        card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+        cfg=SimConfig(turns=5, runs=80, seed=3), store=empty_store,
+    )
+
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Owned Removal\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    result = call_tool(ctx, "suggest_swap", {"axis": "interaction"})
+    assert result.data["found"] is True
+    assert result.data["suggestions"], "fixture is proven to produce a positive swap"
+    top = result.data["suggestions"][0]
+    assert top["add"] == "Owned Removal"
+    assert top["after"] > result.data["baseline"]
+    assert "Owned Removal" in result.card_names
+    assert top["cut"] in result.card_names
+
+
+def test_suggest_swap_bad_axis_returns_a_graceful_error(make_card, empty_store, monkeypatch, tmp_path):
+    """advisor.advise raises ValueError for an unknown axis -- call_tool must turn that
+    into a normal found:False result, not an unhandled exception from inside the tool
+    loop. Needs at least one ELIGIBLE candidate (owned, in-colour, not already in the
+    deck) or `tool_suggest_swap` never reaches `advise()` at all -- "Rock of Ramping"
+    alone is already in the deck and wouldn't exercise this path."""
+    from mythgauntlet.mentor import tools as tools_mod
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Rock of Ramping\n1,Second Green Card\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    second_green = make_card("Second Green Card", type_line="Creature — Bear",
+                              mana_cost="{1}{G}", color_identity=("G",))
+    ctx = _ctx(make_card, empty_store)
+    db = CardDb([*[c for c, _ in ctx.resolved.cards], *ctx.resolved.commanders, second_green])
+    ctx2 = MentorContext(card_db=db, cr=ctx.cr, rulings_db=ctx.rulings_db,
+                          resolved=ctx.resolved, cfg=ctx.cfg, store=ctx.store)
+    result = call_tool(ctx2, "suggest_swap", {"axis": "not_a_real_axis"})
+    assert result.data["found"] is False

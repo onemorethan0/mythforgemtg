@@ -26,11 +26,28 @@ const TOOL_LABELS = {
   get_deck_stats: () => 'Read this deck’s stats',
   assess_card: (a) => `Measured impact of: ${a?.name ?? '?'}`,
   check_legality: (a) => `Checked legality: ${a?.name ?? '?'}`,
+  get_bracket_estimate: () => 'Ran a bracket estimate',
+  suggest_swap: (a) => `Looked for a swap${a?.axis ? ` (${a.axis})` : ''}`,
 }
 const toolLabel = (t) => (TOOL_LABELS[t.tool]?.(t.args) ?? `${t.tool}(${JSON.stringify(t.args)})`)
 
+// Quick-start prompts shown before the first message. The panel used to open on a blank
+// input with only a placeholder hint, and real usage stayed near zero (checked directly:
+// data/mentor_transcripts.jsonl held 3 logged turns and 0 feedback records three weeks
+// after the campaign that built this panel) -- a one-click question is a much lower bar
+// than composing one from scratch, and each of these exercises a distinct tool so a first
+// click actually shows what the mentor can do rather than just answering one thing well.
+const STARTER_PROMPTS = [
+  'What bracket is this deck?',
+  'What should I cut or add?',
+  'Why does my curve feel bad?',
+]
+
 export default function MentorChatPanel({ jobId }) {
-  const [open, setOpen] = useState(false)
+  // Defaults open (was `false`) -- collapsed-by-default next to four other collapsed
+  // panels (Measure/Advise/CardImpact/Duel) meant a real conversation required a user to
+  // notice, expand, AND compose a question before this feature did anything for them.
+  const [open, setOpen] = useState(true)
   const [messages, setMessages] = useState([])   // [{role, content, gated, turnId, feedback}]
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
@@ -47,9 +64,9 @@ export default function MentorChatPanel({ jobId }) {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
   }, [messages, busy])
 
-  async function ask(e) {
+  async function ask(e, overrideText) {
     e?.preventDefault?.()
-    const question = input.trim()
+    const question = (overrideText ?? input).trim()
     if (!question || busyRef.current) return
     busyRef.current = true
     setBusy(true); setErrMsg('')
@@ -126,6 +143,26 @@ export default function MentorChatPanel({ jobId }) {
             <span style={{ color: '#eab308' }}>⚠ unverified</span> means the mentor couldn't
             confirm it precisely enough and is telling you so rather than guessing.
           </div>
+
+          {messages.length === 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+              {STARTER_PROMPTS.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  disabled={busy}
+                  onClick={() => ask(undefined, p)}
+                  style={{
+                    padding: '5px 10px', borderRadius: 999, border: '1px solid #292524',
+                    background: '#0c0a09', color: '#a8a29e', fontSize: 11.5,
+                    cursor: busy ? 'default' : 'pointer', fontFamily: 'inherit',
+                  }}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          )}
 
           {messages.length > 0 && (
             <div

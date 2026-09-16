@@ -23,7 +23,9 @@ import re
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
 
+from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.card import Card
+from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import redundancy, swap_brief
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
@@ -40,6 +42,32 @@ from mythgauntlet.sim.tier0 import SimConfig
 CUT_REDUNDANT = "redundant"
 CUT_POPULARITY = "popularity"
 CUT_STRATEGIES = (CUT_REDUNDANT, CUT_POPULARITY)
+
+
+def owned_candidates(card_db: CardDb, resolved: ResolvedDeck, collection: Collection) -> list[Card]:
+    """The owned, in-identity, non-land, not-already-in-deck pool `advise()` tests as
+    adds — factored out of the `/advise` HTTP route (2026-09-15) so a second caller (the
+    Deck Mentor's `suggest_swap` tool) can't quietly drift from this exact selection rule,
+    this repo's own most-repeated bug class (see CLAUDE.md's running list of "two opinions
+    on one screen" incidents). Behaviour-preserving extraction — the route's own inline
+    loop moved here unchanged, byte-for-byte, not reinvented.
+
+    EDHREC-rank sorted (unranked last), matching `_gauntlet_advise`'s "best owned cards
+    first" comment.
+    """
+    ci_source = resolved.commanders or [c for c, _ in resolved.cards]
+    deck_ci = set().union(*[set(c.color_identity) for c in ci_source]) if ci_source else set()
+    in_deck = {c.name for c, _ in resolved.cards} | {c.name for c in resolved.commanders}
+    candidates = []
+    for owned_name in collection.counts:
+        card = card_db.get(owned_name)
+        if card is None or card.name in in_deck or card.is_land:
+            continue
+        if set(card.color_identity) - deck_ci:
+            continue
+        candidates.append(card)
+    candidates.sort(key=lambda c: (c.edhrec_rank or 10**9))
+    return candidates
 
 
 def _speed_score(a: DeckAnalysis) -> float:

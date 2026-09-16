@@ -4285,7 +4285,8 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None, partners=None
         return None
 
 
-def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None, partners=None):
+def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None,
+                           partners=None, offmeta=None):
     """Deck Mentor chat turn from MythGauntlet's tool-calling loop + claim-budget gate
     (docs/SPEC_deck_mentor.md Phase 2). Same shape as `_gauntlet_advise`/
     `_gauntlet_card_impact`: JSON on success, {"error": detail} for a meaningful 400/503
@@ -4296,6 +4297,10 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
     message worth showing) -- both are surfaced as {"error": ...} rather than being
     collapsed into the generic "unreachable" case, since only the latter is actionable
     with "start the server"; the former needs "run fetch-rules" instead.
+
+    `offmeta` is this deck's own persisted `lift_stats.stats_block` reading (see
+    `mentor_chat_deck`) -- the engine has no EDHREC cache of its own, so this is a
+    pass-through of what Forge already computed, exactly like `themes` already is.
     """
     try:
         payload = {
@@ -4308,6 +4313,8 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
             payload["model"] = model
         if themes:
             payload["themes"] = list(themes)
+        if offmeta:
+            payload["offmeta"] = offmeta
         resp = requests.post(f"{MYTHGAUNTLET_URL}/mentor/chat", json=payload, timeout=120)
         if resp.status_code in (400, 503):
             try:
@@ -4356,6 +4363,7 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     result = _gauntlet_mentor_chat(
         commander, deck, req.question.strip(), history=req.history, model=req.model,
         themes=_deck_archetypes(job), partners=_job_partners(job),
+        offmeta=(job.get("stats") or {}).get("offmeta") or None,
     )
     if result is None:
         raise HTTPException(

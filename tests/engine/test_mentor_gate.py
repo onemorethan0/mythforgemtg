@@ -214,6 +214,27 @@ def test_a_genuine_number_inside_a_list_item_is_still_checked():
     assert any("14" in r for r in check(text, budget))
 
 
+def test_curve_bucket_labels_are_not_read_as_cited_numbers():
+    """Found live 2026-09-15 (mentor bench, real deck): 'Your mana curve has 5 one-mana
+    cards, 20 two-mana cards, ... 5 six-mana cards, and 1 seven-mana card' was
+    gate-rejected for 'citing 6' -- the word 'six' in 'six-mana' is a BUCKET LABEL (which
+    curve slot the licensed count '5' belongs to), not an independent numeric claim, and
+    no bucket in this deck's curve happened to contain a literal 6 to license it against."""
+    budget = ClaimBudget(numbers=frozenset({5.0, 20.0, 13.0, 9.0, 7.0, 1.0}))
+    text = ("Your mana curve has 5 one-mana cards, 20 two-mana cards, 13 three-mana "
+            "cards, 9 four-mana cards, 7 five-mana cards, 5 six-mana cards, and 1 "
+            "seven-mana card.")
+    assert check(text, budget) == []
+
+
+def test_a_genuine_number_next_to_a_curve_bucket_label_is_still_checked():
+    """The bucket-label strip only removes the WORD/digit immediately before '-mana' --
+    an unrelated, uncited number elsewhere in the same sentence is still caught."""
+    budget = ClaimBudget()
+    text = "You have 5 six-mana cards, and your deck also runs 41 lands."
+    assert any("41" in r for r in check(text, budget))
+
+
 def test_nested_name_is_masked_before_checking():
     """A commander's own name can contain a real card's name as a substring (the
     documented swap_narrative case: 'Omo, Queen of Vesuva' contains 'Vesuva')."""
@@ -392,3 +413,67 @@ def test_ordinary_deck_advice_without_rules_vocabulary_is_not_flagged():
     assert check("Sol Ring is a ramp piece that gets your commander out a turn earlier.",
                  budget) == []
     assert check("Ramping out early is when this deck really gets going.", budget) == []
+
+
+# ── check_legality contradiction heuristic (2026-09-15) ─────────────────────────────
+# `check_legality` removed the model's own subset ARITHMETIC (see tools.py's own
+# docstring for the live Chaos Warp failure that motivated it), but MENTOR_HANDOFF.md
+# named a narrower residual, never observed live: a reply could call the tool, get a
+# verdict back, and still write the OPPOSITE conclusion in prose. These four cases pin
+# what the new check catches and what it deliberately leaves alone.
+
+def test_claim_budget_from_tool_results_captures_legality_verdicts():
+    results = [ToolResult(data={
+        "found": True, "card": "Chaos Warp", "card_color_identity": ["R"],
+        "deck_color_identity": ["B", "G", "U", "W"], "legal": False,
+        "colors_not_in_deck_identity": ["R"],
+    }, card_names=frozenset({"Chaos Warp"}))]
+    budget = ClaimBudget.from_tool_results(results)
+    assert ("Chaos Warp", False) in budget.legality_verdicts
+
+
+def test_reply_contradicting_an_illegal_verdict_is_flagged():
+    """The named residual, reproduced directly: check_legality said False, the reply
+    says the card can be added anyway."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Chaos Warp"}),
+        known_card_names=frozenset({"Chaos Warp"}),
+        legality_verdicts=frozenset({("Chaos Warp", False)}),
+    )
+    text = "Chaos Warp can be added to this deck as a removal spell."
+    reasons = check(text, budget)
+    assert any("Chaos Warp" in r and "contradicting" in r for r in reasons)
+
+
+def test_reply_contradicting_a_legal_verdict_is_flagged():
+    """The mirror case: check_legality said True, the reply says it can't be added."""
+    budget = ClaimBudget(
+        card_names=frozenset({"Mystic Confluence"}),
+        known_card_names=frozenset({"Mystic Confluence"}),
+        legality_verdicts=frozenset({("Mystic Confluence", True)}),
+    )
+    text = "Unfortunately, Mystic Confluence cannot be added to this deck."
+    reasons = check(text, budget)
+    assert any("Mystic Confluence" in r and "contradicting" in r for r in reasons)
+
+
+def test_reply_agreeing_with_the_verdict_is_not_flagged():
+    budget = ClaimBudget(
+        card_names=frozenset({"Chaos Warp"}),
+        known_card_names=frozenset({"Chaos Warp"}),
+        legality_verdicts=frozenset({("Chaos Warp", False)}),
+    )
+    text = "Chaos Warp cannot be added to this deck -- red isn't in your colour identity."
+    assert check(text, budget) == []
+
+
+def test_unrelated_use_of_the_word_legal_does_not_misfire():
+    """The check only fires when a legal/add phrase lands in a sentence that also NAMES
+    the checked card -- an unrelated 'is legal' elsewhere in the reply (about a rules
+    concept, or a different card entirely) must not trip this heuristic."""
+    budget = ClaimBudget(
+        known_card_names=frozenset({"Chaos Warp"}),
+        legality_verdicts=frozenset({("Chaos Warp", False)}),
+    )
+    text = "That target is a legal choice for the spell's ability."
+    assert check(text, budget) == []

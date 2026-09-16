@@ -5,7 +5,11 @@
 Expanded 2026-08-25 from a 13-case starter to 45 cases across the spec's four question
 domains plus six trap kinds (the sixth, `trap_unaddressed_nuance`, and the compound-question
 `assess_card` case both came from real mentor campaign findings rather than being designed
-in advance -- see their own comments below) -- still honestly short of the full 75-100 case
+in advance -- see their own comments below). Expanded again 2026-09-15 to 52 cases with three
+new domains, `bracket`, `suggest_swap`, and `check_legality` (the last had ZERO coverage
+despite shipping in campaign round 6), covering the two tools added that session
+(`get_bracket_estimate`, `suggest_swap`) plus the pre-existing one that never had a
+regression case -- still honestly short of the full 75-100 case
 gold set the spec calls for at ship time, and said so plainly rather than rounded up. What the
 original
 13 already proved, live against qwen3:14b (2026-08-24): the loop calls the right tool for
@@ -100,6 +104,29 @@ GOLD_SET: list[tuple[str, str, bool]] = [
     # says something grounded about each, which the gate's per-turn re-verification already
     # enforces per-name -- `gated: True` here means neither card's claims went unverified.
     ("assess_card", "Would Anguished Unmaking and Embercleave both be good additions here?", False),
+    # -- bracket: the headline "is this deck strong/weak for my pod" question, wired
+    # 2026-09-15 (get_bracket_estimate) -- this app's own stated top-level purpose is
+    # casual bracket 1-3 pod-fit gauging, and until this tool existed the mentor had NO
+    # path to it at all despite covering curve/colours/role-supply in detail.
+    ("bracket", "What bracket is this deck?", False),
+    ("bracket", "Is this deck too strong for a casual playgroup?", False),
+    ("bracket", "Would this deck be fun to play against a bracket 2 pod?", False),
+    # -- suggest_swap: "what should I cut/add", wired 2026-09-15 -- deferred out of
+    # Phase 1 on purpose (see tools.py's own docstring) until the tool loop was proven
+    # live across MENTOR_HANDOFF.md's 6-round campaign. Only ever suggests from the
+    # player's OWN Myth Suite collection, so an honest "no collection file" reply is a
+    # correct, GATED answer here, not a failure -- this bench doesn't stub the
+    # collection path, same as `assess_card` already running a real local simulation
+    # against whatever's actually on this machine.
+    ("suggest_swap", "What should I cut from this deck?", False),
+    ("suggest_swap", "Is there anything I own that would improve my curve?", False),
+    # -- check_legality: had ZERO bench coverage before 2026-09-15 despite shipping in
+    # campaign round 6 -- the subset-arithmetic failure that motivated it (a model
+    # correctly stating both colour-identity sets and still drawing the wrong
+    # conclusion) was found live, not by this bench, and nothing was ever added here to
+    # regression-guard it or the contradiction check layered on top the same session.
+    ("check_legality", "Would Lightning Bolt be legal to add to this deck?", False),
+    ("check_legality", "Could I add Golgari Signet to this deck?", False),
     # -- Traps: a correct answer is "I don't have that" / "that's not right." --
     ("trap_card", "What does the card Zzyzx Prism Wyrm do?", True),
     ("trap_card", "What does the card Quantum Flux Behemoth do?", True),

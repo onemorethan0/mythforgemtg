@@ -173,6 +173,13 @@ class MentorChatRequest(BaseModel):
         default_factory=list,
         description="the deck's own detected archetypes (same contract as /advise's themes)",
     )
+    offmeta: dict | None = Field(
+        default=None,
+        description="Forge's own lift_stats.stats_block reading for this deck (EDHREC "
+        "synergy/staples%), computed outside this process and passed through as-is -- "
+        "this engine has no EDHREC cache of its own. None when Forge has no reading "
+        "cached for this deck (an older build, or an unmeasured commander).",
+    )
 
 
 class MentorFeedbackRequest(BaseModel):
@@ -559,20 +566,7 @@ def create_app(
                 "text, or place a collection file at ~/Documents/MythSuite/collection.csv.",
             )
 
-        ci_source = resolved.commanders or [c for c, _ in resolved.cards]
-        deck_ci = (
-            set().union(*[set(c.color_identity) for c in ci_source]) if ci_source else set()
-        )
-        in_deck = {c.name for c, _ in resolved.cards} | {c.name for c in resolved.commanders}
-        candidates = []
-        for owned_name in col.counts:
-            card = db.get(owned_name)
-            if card is None or card.name in in_deck or card.is_land:
-                continue
-            if set(card.color_identity) - deck_ci:
-                continue
-            candidates.append(card)
-        candidates.sort(key=lambda c: (c.edhrec_rank or 10**9))  # best owned cards first
+        candidates = advisor.owned_candidates(db, resolved, col)
 
         cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
         report = advisor.advise(
@@ -696,7 +690,7 @@ def create_app(
         cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
         ctx = MentorContext(
             card_db=db, cr=mentor_cr, rulings_db=mentor_rulings_db, resolved=resolved,
-            cfg=cfg, store=store, themes=tuple(req.themes),
+            cfg=cfg, store=store, themes=tuple(req.themes), offmeta=req.offmeta,
         )
         try:
             reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)

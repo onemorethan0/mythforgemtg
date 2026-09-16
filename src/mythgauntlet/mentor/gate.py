@@ -106,6 +106,21 @@ _SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 # on the first fix attempt.
 _LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|\d+\.\s+(?=\*\*)")
 
+# A mana-curve BUCKET LABEL ("six-mana cards", "2-mana spells") reads as a claimed
+# number to the NUMBERS check below -- found live 2026-09-15 (mentor bench, real deck):
+# "5 six-mana cards" was gate-rejected for "citing 6," which was never a fact, just the
+# adjective naming which curve bucket the "5" belongs to (the "5" itself was already
+# licensed from `get_deck_stats`'s own bucket counts). Same shape as the list-marker fix
+# above -- a word/digit immediately before "-mana" is describing a SLOT, not asserting a
+# quantity, and `extract_numbers`' word-number lookup (built for phrases like "about
+# thirty ramp sources") has no way to tell "thirty ramp sources" from "thirty-mana" apart
+# without this exemption. Stripped only for the numbers scan, same as the list-marker
+# fix -- it asserts nothing about the number itself, it's a label.
+_CURVE_BUCKET_LABEL_RE = re.compile(
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|\d+)-mana\b",
+    re.IGNORECASE,
+)
+
 # A handful of real MTG card names that are also ordinary English words/notation, found
 # live 2026-08-25 causing false "unverified card" flags on completely innocent prose:
 # "X" is the game's own variable-cost notation (Craterhoof's "+X/+X"), and "Wizards"/
@@ -132,6 +147,25 @@ _COMMON_WORD_CARD_NAMES = frozenset({"wizards", "overload", "spells", "exile", "
 # and its vocabulary term separated by a hedge phrase, tight enough that two unrelated
 # rules terms in a long paragraph don't pair up across sentences.
 _DEFINITION_PROXIMITY_WORDS = 15
+
+# ── check_legality contradiction heuristic (check 5 below) ─────────────────────────
+# Deliberately narrow, same bias as the rules-paraphrase heuristic above: a missed
+# contradiction is a mild under-count (the same failure mode `check_legality` was built
+# to prevent just goes unflagged this once), flagging ordinary prose that happens to use
+# the word "legal" near a card name for an unrelated reason is worse. Both patterns
+# require an explicit legal/add verb, not a bare "yes"/"no", since a short affirmative
+# near a card name is too common in casual chat to gate on safely.
+_LEGAL_PHRASE_RE = re.compile(
+    r"\b(?:is legal|can be added|could be added|would be legal|you can add|"
+    r"you could add|is allowed|is playable in (?:this|your) deck)\b",
+    re.IGNORECASE,
+)
+_ILLEGAL_PHRASE_RE = re.compile(
+    r"\b(?:is (?:not|n't) legal|isn't legal|is illegal|can(?:not|'t) be added|"
+    r"couldn't be added|wouldn't be legal|you can(?:not|'t) add|is not allowed|"
+    r"is not playable|is banned from)\b",
+    re.IGNORECASE,
+)
 
 
 def _words_between(s: str, m1: re.Match, m2: re.Match) -> int:
@@ -160,6 +194,16 @@ class ClaimBudget:
     # quoting the tool result, not making an independent claim. A paraphrase (not a
     # verbatim substring) still gets scanned normally -- this only exempts an exact echo.
     source_texts: frozenset[str] = frozenset()
+    # (card name, legal) for every `check_legality` call this turn -- lets `check()`
+    # catch a reply that CONTRADICTS its own tool's verdict (call the tool, get
+    # legal=False, then write "yes" anyway), the one residual risk `check_legality`'s own
+    # docstring names as real but unobserved live: "quoting the tool's `legal` field is
+    # now trivial... but it hasn't been stress-tested the way the arithmetic failure was."
+    # Detected structurally, by the RESULT'S OWN SHAPE (the exact key combination
+    # `tools.tool_check_legality` returns), rather than by tool name -- `ToolResult`
+    # carries no tool identifier, and this key combination is unambiguous: no other tool
+    # returns `found`+`legal`(bool)+`card`(str)+`colors_not_in_deck_identity` together.
+    legality_verdicts: frozenset[tuple[str, bool]] = frozenset()
 
     @classmethod
     def from_tool_results(
@@ -169,13 +213,21 @@ class ClaimBudget:
         nums: set[float] = set()
         rules: set[str] = set()
         texts: set[str] = set()
+        verdicts: set[tuple[str, bool]] = set()
         for r in results:
             names |= r.card_names
             nums |= r.numbers
             rules |= r.all_rule_numbers
             texts |= r.source_texts
+            data = r.data
+            if (
+                isinstance(data, dict) and data.get("found") is True
+                and isinstance(data.get("legal"), bool) and isinstance(data.get("card"), str)
+                and "colors_not_in_deck_identity" in data
+            ):
+                verdicts.add((data["card"], data["legal"]))
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
-                    frozenset(texts))
+                    frozenset(texts), frozenset(verdicts))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -264,9 +316,11 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
     # 3. NUMBERS. Anything cited must trace to a tool result, within rounding tolerance.
     #    `extract_numbers` catches spelled-out numbers ("about thirty ramp sources") the
     #    same way it catches digits -- see tools.py's own docstring for why that matters.
-    #    List markers are stripped first (see `_LIST_MARKER_RE` above) so a "2." bullet
-    #    isn't read as citing the number 2.
-    for value in extract_numbers(_LIST_MARKER_RE.sub("", body)):
+    #    List markers and curve-bucket labels ("six-mana cards") are stripped first (see
+    #    `_LIST_MARKER_RE`/`_CURVE_BUCKET_LABEL_RE` above) so neither a "2." bullet nor a
+    #    bucket adjective is read as citing that number as a fact.
+    scan_body = _CURVE_BUCKET_LABEL_RE.sub("", _LIST_MARKER_RE.sub("", body))
+    for value in extract_numbers(scan_body):
         if value in _FREE_NUMBERS:
             continue
         if not any(abs(value - ok) <= _NUMBER_TOLERANCE for ok in budget.numbers):
@@ -298,6 +352,28 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
                     "and no evidence search_rules/get_rule ran this turn"
                 )
                 break
+
+    # 5. CHECK_LEGALITY CONTRADICTION (HEURISTIC -- see the block above this function).
+    #    `check_legality` removed the model's own subset ARITHMETIC, but not the
+    #    possibility of contradicting the tool's own verdict in prose -- call the tool,
+    #    get legal=False back, and still write "yes, you can add that". Scoped to a
+    #    sentence that names the checked card AND uses an explicit legal/add verb, so an
+    #    unrelated use of "legal" elsewhere in the reply can't misfire.
+    for card_name, is_legal in budget.legality_verdicts:
+        name_re = re.compile(rf"\b{re.escape(card_name)}\b", re.IGNORECASE)
+        for sentence in _SENTENCE_SPLIT_RE.split(body):
+            if not name_re.search(sentence):
+                continue
+            if is_legal and _ILLEGAL_PHRASE_RE.search(sentence):
+                reasons.append(
+                    f"says {card_name!r} cannot be added, contradicting this turn's "
+                    "check_legality result (legal=True)"
+                )
+            elif not is_legal and _LEGAL_PHRASE_RE.search(sentence):
+                reasons.append(
+                    f"says {card_name!r} can be added, contradicting this turn's "
+                    "check_legality result (legal=False)"
+                )
 
     return reasons
 

@@ -110,6 +110,47 @@ def test_mentor_chat_happy_path_wraps_the_gated_reply(app_and_db, monkeypatch):
     assert "Test Commander" in captured["deck_card_names"]
 
 
+def test_mentor_chat_threads_offmeta_into_the_context(app_and_db, monkeypatch):
+    """`offmeta` (Forge's own `lift_stats.stats_block` reading, computed outside this
+    process) round-trips through the request into `MentorContext`, same handoff `themes`
+    already gets -- see MentorContext.offmeta's own docstring for why this engine can't
+    compute it itself."""
+    db, store = app_and_db
+    app = server_mod.create_app(db=db, store=store, mentor_cr=_fake_cr(), mentor_rulings_db={})
+    captured = {}
+
+    def fake_ask(ctx, question, history=None, **kw):
+        captured["offmeta"] = ctx.offmeta
+        return MentorReply(text="x", gated=True, tool_trace=[])
+
+    monkeypatch.setattr(server_mod.mentor_chat, "ask", fake_ask)
+    payload = {
+        "deck": DECK, "question": "how off-meta is this deck?",
+        "offmeta": {"synergy": 7.2, "verdict": "off-plan"},
+    }
+    resp = TestClient(app).post("/mentor/chat", json=payload)
+    assert resp.status_code == 200
+    assert captured["offmeta"] == {"synergy": 7.2, "verdict": "off-plan"}
+
+
+def test_mentor_chat_offmeta_defaults_to_none(app_and_db, monkeypatch):
+    """A caller that omits `offmeta` entirely (an older deck Forge never analysed with
+    it) must not crash the route -- `MentorContext.offmeta` stays None, and
+    `get_deck_stats` reports that as unavailable rather than fabricating a reading."""
+    db, store = app_and_db
+    app = server_mod.create_app(db=db, store=store, mentor_cr=_fake_cr(), mentor_rulings_db={})
+    captured = {}
+
+    def fake_ask(ctx, question, history=None, **kw):
+        captured["offmeta"] = ctx.offmeta
+        return MentorReply(text="x", gated=True, tool_trace=[])
+
+    monkeypatch.setattr(server_mod.mentor_chat, "ask", fake_ask)
+    resp = TestClient(app).post("/mentor/chat", json={"deck": DECK, "question": "q"})
+    assert resp.status_code == 200
+    assert captured["offmeta"] is None
+
+
 def test_mentor_chat_returns_a_turn_id_and_logs_the_full_turn(app_and_db, monkeypatch, tmp_path):
     """Phase 3 prerequisite: the response carries a turn_id, and the logged record on
     disk includes gate_rejections -- which the HTTP response itself never exposes."""
