@@ -1030,6 +1030,78 @@ def test_a_duration_stated_outside_any_paren_still_flags():
     assert _errs(doc, card)
 
 
+# --- look_and_select zone evidence (2026-09-16) -------------------------------------
+
+def _las_doc(**effect_overrides):
+    effect = {"op": "look_and_select", "look": 1, "take": 1, "to": "hand"}
+    effect.update(effect_overrides)
+    return {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{1}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect", "effects": [effect]}],
+    }
+
+
+def _las_card(text: str):
+    from mythgauntlet.model.card import Card
+
+    return Card(name="Trickster", mana_cost_str="{1}{U}", type_line="Sorcery",
+               oracle_text=text)
+
+
+def _las_errs(doc, card):
+    from mythgauntlet.semantics.ccm import cross_check
+
+    return [e for e in cross_check(doc, card) if "look_and_select" in e]
+
+
+def test_look_and_select_with_no_zone_evidence_is_flagged():
+    """look_and_select's simulator dispatch (sim/tier2._look_and_select) always reads
+    the ACTING PLAYER's own library — a card whose real source is an opponent's hand
+    (Coercion) would execute as a wrong-zone read if dispatched this way. Measured live
+    2026-09-16: 53 stored CCMs use look_and_select for an effect with no library/deck/
+    mill/self-exile evidence at all, dominated by exactly this "target opponent reveals
+    their hand, you choose a card" shape."""
+    card = _las_card("Target opponent reveals their hand. You choose a card from it. "
+                     "That player discards that card.")
+    assert _las_errs(_las_doc(), card)
+
+
+def test_look_and_select_wish_cycle_is_flagged():
+    """The Wish cycle ("reveal a card you own from OUTSIDE THE GAME") is a different
+    zone the vocabulary has no way to represent — also flagged, not just hand-attack."""
+    card = _las_card("You may reveal a sorcery card you own from outside the game and "
+                     "put it into your hand. Exile Burning Wish.")
+    assert _las_errs(_las_doc(), card)
+
+
+def test_look_and_select_with_library_evidence_is_not_flagged():
+    card = _las_card("Look at the top three cards of your library. You may put one of "
+                     "them into your hand. Put the rest on the bottom in any order.")
+    assert not _las_errs(_las_doc(), card)
+
+
+def test_look_and_select_with_mill_evidence_is_not_flagged():
+    """Established precedent (Ainok Wayfarer, cited in the search_library hallucination
+    check above): "mill N, select a matching one" is this op's territory too, not a
+    defect — both are a bounded reveal-then-select window over the player's own
+    library, differing only in where the rejected cards land, which this engine does
+    not model as a distinct zone either way."""
+    card = _las_card("Mill four cards. You may put a land card from among them into "
+                     "your hand.")
+    assert not _las_errs(_las_doc(), card)
+
+
+def test_look_and_select_referencing_its_own_exile_is_not_flagged():
+    """Averna, the Chaos Bloom's cascade follow-up ("you may put a land card from among
+    the exiled cards onto the battlefield") selects from ITS OWN earlier exile, not a
+    fresh library look — still the player's own resources, just already set aside by an
+    earlier clause on the same card."""
+    card = _las_card("As you cascade, you may put a land card from among the exiled "
+                     "cards onto the battlefield tapped.")
+    assert not _las_errs(_las_doc(), card)
+
+
 # --- extra_turn vs additional-combat-phase confusion (2026-09-10) ------------------
 
 def _extra_turn_card(text: str):

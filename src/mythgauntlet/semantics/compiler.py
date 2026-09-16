@@ -432,9 +432,11 @@ def _reclassify_additional_combat_spell_effect(doc: dict, card: Card) -> None:
 
 def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
     """Deterministically relabel a `look_and_select` effect as `search_library` when the
-    oracle text is the "reveal cards from the top of your library UNTIL you reveal a
-    match" template (`ccm._REVEAL_UNTIL_RE`) — an unbounded search that terminates on a
-    guaranteed match, not a bounded N-card look.
+    oracle text matches either surface template a real library search uses: "reveal
+    cards from the top of your library UNTIL you reveal a match" (`ccm._REVEAL_UNTIL_RE`
+    — an unbounded search that terminates on a guaranteed match, not a bounded N-card
+    look) or "search your library [and/or graveyard] for a card named X"
+    (`ccm._NAMED_CARD_SEARCH_RE` — the classic named-card tutor).
 
     This is the exact confusion `ccm.cross_check` was sharpened for on 2026-09-10
     (Hermit Druid and friends), and that fix worked on the easy cases — 49/67 cleared on
@@ -443,24 +445,29 @@ def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
     is the exact transplant this function now does automatically: keep the model's own
     `what`/`to`/`tapped`, drop `look`/`take` (search_library has no bounded window),
     `count: 1` (the gate's own message: "usually 1" — a `take` other than 1 is carried
-    through instead of assumed), `shuffle: false` (the card puts the REJECTED cards on
-    the bottom in a set/random order, not a full-library shuffle — same reasoning the
-    hand-corrected examples used, not a default).
+    through instead of assumed).
 
-    Confirmed still recurring at the model's normal failure rate, not a one-off: the
-    2026-09-16 nightly's ccm-recheck flagged 9 cards on this exact template, and 7 of
-    them (Avenging Druid, Calibrated Blast, House Cartographer, Madcap Experiment, Part
-    in Friendship, The Regalia, and 2 more) reproduced the look_and_select mislabel on
-    BOTH of compile_card's automated attempts — prompt guidance and gate feedback alone
-    are not reliable at qwen3:14b/temp 0.2 for this pattern, same shape as
-    `_strip_combat_phase_confused_extra_turn` above. Only fires on an actual
-    look_and_select effect; a card that omits the mechanic entirely (no look_and_select,
-    no search_library) is left alone — this function corrects a wrong op, it does not
+    Confirmed still recurring at the model's normal failure rate, not a one-off, on
+    BOTH templates: the 2026-09-16 nightly's ccm-recheck flagged 9 reveal-until cards
+    and 7 of them reproduced the look_and_select mislabel on both of compile_card's
+    automated attempts; a separate corpus sweep the same night found the named-search
+    template at 66/73 (90.4%) already correct but 7/73 still on look_and_select —
+    prompt guidance and gate feedback alone are not reliable at qwen3:14b/temp 0.2 for
+    this op distinction, same shape as `_strip_combat_phase_confused_extra_turn` above.
+
+    `shuffle` differs by template and is read from the text rather than hardcoded either
+    way: the named-search template's own reminder ("If you search your library this
+    way, shuffle") means a REAL library shuffle, while the reveal-until template puts
+    only the rejected cards on the bottom (never a full shuffle, matching the existing
+    hand-corrected examples in the store). Only fires on an actual look_and_select
+    effect; a card that omits the mechanic entirely (no look_and_select, no
+    search_library) is left alone — this function corrects a wrong op, it does not
     invent a missing one.
     """
     text = card.oracle_text or ""
-    if not ccm._REVEAL_UNTIL_RE.search(text):
+    if not (ccm._REVEAL_UNTIL_RE.search(text) or ccm._NAMED_CARD_SEARCH_RE.search(text)):
         return
+    shuffles = bool(re.search(r"\bshuffle", text, re.I))
     abilities = doc.get("abilities")
     if not isinstance(abilities, list):
         return
@@ -481,7 +488,7 @@ def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
             # required field and trading one schema error for another.
             what = effect.get("what") if isinstance(effect.get("what"), dict) else {"type": "card"}
             new_effect: dict = {
-                "op": "search_library", "what": what, "count": count, "shuffle": False,
+                "op": "search_library", "what": what, "count": count, "shuffle": shuffles,
             }
             if "to" in effect:
                 new_effect["to"] = effect["to"]

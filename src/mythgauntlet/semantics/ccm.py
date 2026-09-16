@@ -552,6 +552,39 @@ _REVEAL_UNTIL_RE = re.compile(
     re.I,
 )
 
+# "Search your library [and/or graveyard] for a card named [X]" (Angrath's Fury, Jace's
+# Ruse, Oko's Hospitality) -- the classic named-card tutor, and squarely what
+# search_library exists for. A SEPARATE surface template from the reveal-until one
+# above, but the same underlying confusion: measured live 2026-09-16, 73 stored cards
+# carry this template and 90.4% (66/73) already compile as search_library, but 7 use
+# look_and_select instead -- the model's normal failure rate on this op distinction, not
+# a one-off. Requires "library" specifically (not "graveyard" alone, which several of
+# these cards also search as a secondary zone) so a pure graveyard-reanimation tutor
+# with no library clause is never swept in.
+_NAMED_CARD_SEARCH_RE = re.compile(
+    r"search (?:your|target \w+'s) library(?: and/or graveyard)? for (?:a|up to \w+) "
+    r"cards? named",
+    re.I,
+)
+
+# Positive evidence that a `look_and_select` effect's source zone is genuinely the
+# acting player's own library, per the op's fixed simulator dispatch (see the
+# cross_check comment where this is used). "mill" counts because this store's own
+# established precedent (Ainok Wayfarer, cited in the search_library hallucination
+# check below) already treats "mill N, select a matching one" as this op's territory,
+# not a defect -- both are a bounded reveal-then-select window over the player's own
+# library, differing only in where the rejected cards land (bottom vs graveyard),
+# which this engine does not model as a distinct zone either way. The self-exile
+# phrases license a card that selects from ITS OWN earlier exile (Averna's cascade
+# follow-up, a Saga's own chapter II/III) rather than a fresh library look -- still the
+# player's own resources, just already set aside a clause earlier.
+_LOOK_AND_SELECT_ZONE_RE = re.compile(
+    r"\blibrary\b|\bdeck\b|\bmill(?:s|ed|ing)?\b"
+    r"|\bexiled with (?:this|it)\b|\bamong the exiled cards\b|\bamong the cards exiled\b"
+    r"|\bcards? exiled this way\b",
+    re.I,
+)
+
 # Keyword abilities whose EFFECT lives entirely in reminder text. The hallucination half
 # of gate 3 reads oracle text with parentheticals stripped, so "Cycling {2} ({2}, Discard
 # this card: Draw a card.)" becomes "Cycling {2}" — the word "draw" disappears and a CCM
@@ -878,6 +911,36 @@ def cross_check(doc: dict, card: Card) -> list[str]:
                 "library), which is functionally a real search, but CCM has no "
                 "search_library"
             )
+    if "look_and_select" in ops_present and not _LOOK_AND_SELECT_ZONE_RE.search(text):
+        # look_and_select's own OP_SPECS comment (and its simulator dispatch,
+        # sim/tier2._look_and_select) both fix the SOURCE zone as `me.library` -- it
+        # reveals the top `look` cards of the ACTING PLAYER's own library, full stop.
+        # Measured live 2026-09-16: 53 stored CCMs use it for an effect whose text gives
+        # no library/deck/mill evidence at all (and doesn't reference this same card's
+        # own earlier exile, licensed below) -- overwhelmingly "target opponent reveals
+        # their hand, you choose a card from it" (Coercion, Mind Warp, Extortion and 22
+        # more), the Wish cycle ("reveal a card you own from OUTSIDE THE GAME" -- Burning
+        # Wish, Cunning Wish and 6 more), and "put a card from your hand or graveyard
+        # onto the battlefield" (Nissa of Shadowed Boughs, Chulane, Nahiri and 8 more).
+        # Every one of these would execute as a wrong-zone read if dispatched: an
+        # opponent's-hand-attack card peeking the CASTER's own library instead, a Wish
+        # peeking library instead of the outside-the-game pool, a hand/graveyard
+        # recursion effect peeking the library instead. This is the mirror of the
+        # search_library hallucination check above, scoped the same conservative way —
+        # `mill` counts as evidence (Ainok Wayfarer's shape, cited above, is the
+        # established precedent for this op covering a milled-then-selected window too,
+        # not just a looked-at one) and any mention of "library"/"deck" anywhere in the
+        # text counts too, even off a different clause, rather than risk a false
+        # positive on a card this check cannot fully parse.
+        errors.append(
+            "CCM declares look_and_select but oracle text shows no evidence of looking "
+            "at/revealing/milling the top of a library or deck (look_and_select's "
+            "source zone is always the acting player's own library) -- the real source "
+            "is something else this op cannot represent (an opponent's hand, a card "
+            "owned outside the game, a hand/graveyard recursion, ...); represent what "
+            "the vocabulary CAN express and omit the rest rather than modeling a "
+            "wrong-zone effect"
+        )
     if not card.is_land and _ADD_TEXT_RE.search(text) and "add_mana" not in ops_present:
         errors.append("oracle text adds mana but CCM has no add_mana")
     # Typed lands (shocks/duals) carry their mana ability as reminder text or via land

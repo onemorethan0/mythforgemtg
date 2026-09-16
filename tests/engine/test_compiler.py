@@ -705,6 +705,39 @@ def test_compile_reveal_until_coercion_fills_missing_what(make_card):
     assert effect["what"] == {"type": "card"}
 
 
+def test_compile_coerces_a_named_card_search_look_and_select(make_card):
+    """A SEPARATE surface template from reveal-until — "search your library for a card
+    named X" is the classic named-card tutor, squarely what search_library exists for.
+    Measured live 2026-09-16: 66/73 (90.4%) of stored cards on this template already
+    compile correctly, but 7 still land on look_and_select — the model's normal failure
+    rate on this op distinction, not a one-off. `shuffle` must come from the card's own
+    "If you search your library this way, shuffle" reminder — true here, unlike the
+    reveal-until template's own false."""
+    card = make_card(
+        "Angrath's Fury", mana_cost="{2}{B}{R}", type_line="Instant",
+        oracle_text="Destroy target creature. You may search your library and/or "
+                    "graveyard for a card named Angrath, Minotaur Pirate, reveal it, "
+                    "and put it into your hand. If you search your library this way, "
+                    "shuffle.",
+    )
+    doc = {
+        "name": "Angrath's Fury", "ccm_version": 1, "cost": {"mana": "{2}{B}{R}"},
+        "types": ["instant"],
+        "abilities": [{"kind": "spell_effect", "effects": [
+            {"op": "destroy", "target": {"type": "creature", "count": 1}},
+            {"op": "look_and_select", "look": 1,
+             "what": {"type": "card", "name": "Angrath, Minotaur Pirate"},
+             "take": 1, "to": "hand"},
+        ]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    effect = result.doc["abilities"][0]["effects"][1]
+    assert effect == {
+        "op": "search_library", "what": {"type": "card", "name": "Angrath, Minotaur Pirate"},
+        "count": 1, "shuffle": True, "to": "hand",
+    }
+
+
 def test_compile_does_not_coerce_a_genuine_bounded_look(make_card):
     """Must only fire on the unbounded "reveal ... until you reveal" template — a real
     bounded look (Augur of Bolas: "Look at the top 3 cards... you may reveal") must
