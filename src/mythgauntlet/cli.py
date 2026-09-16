@@ -957,11 +957,16 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
 
     keep_on_failure guards the REFRESH path (recompiling cards that are already
     accepted at an older prompt version). A refresh must never be a downgrade: if
-    the new attempt fails the gates, the existing accepted entry is restored, so a
-    card that works today can't be demoted to quarantined by a worse roll. Without
-    it, `ledger.record` overwrites unconditionally while `save_compiled` is skipped
-    — leaving the ledger saying "quarantined" with a stale accepted CCM still on
-    disk (a desync, not just a loss).
+    the new attempt fails the gates AND the existing CCM still passes them, the
+    accepted entry is restored, so a card that works today can't be demoted to
+    quarantined by a worse roll.
+
+    When the existing CCM does NOT still pass (a genuine gate-invalidated card,
+    not just a bad roll), the quarantine branch below deletes the stale compiled
+    file — SemanticsStore reads every file under compiled/ unconditionally, never
+    consulting the ledger, so leaving it in place served the quarantined CCM to
+    real games regardless of what the ledger said. Found live 2026-09-16 on 3
+    cards quarantined this way with no recompile attempt reaching them since.
     """
     client = _llm_client()
     exemplars = compiler.load_exemplars()
@@ -1014,6 +1019,18 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
                 f"{card.name} — refresh failed gates, prior CCM retained[/dim]"
             )
         else:
+            # The desync this whole function's docstring names: a refresh whose prior
+            # was "accepted" but no longer passes current gates falls through to here,
+            # and until this branch existed nothing removed the STALE compiled file —
+            # SemanticsStore.__init__ reads every *.json in compiled/ unconditionally,
+            # never consulting the ledger, so the simulator kept serving a CCM the
+            # ledger itself calls quarantined. Found live 2026-09-16: 3 stored cards
+            # (Ascendant Spirit, Sparksmith, Spara's Adjudicators) had been quarantined
+            # this way, some since a 2026-08 gate change, and were still being played.
+            if keep_on_failure and prior is not None and prior.get("status") == "accepted":
+                stale = compiler.compiled_path(card)
+                if stale.exists():
+                    stale.unlink()
             ledger.save()
             quarantined += 1
             console.print(f"[yellow]quarantined[/yellow] ({i}/{len(cards)}) {card.name}")

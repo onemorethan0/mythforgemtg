@@ -389,6 +389,12 @@ def test_refresh_does_not_keep_a_prior_that_fails_todays_gates(tmp_path, monkeyp
     assert Ledger(path=ledger_file).get(card.name)["status"] == "quarantined", (
         "a prior CCM that fails today's gates must not be retained"
     )
+    assert not (store / "smaug.json").exists(), (
+        "the stale compiled file must be removed too — SemanticsStore reads every "
+        "file under compiled/ unconditionally, never consulting the ledger, so "
+        "leaving it in place serves the quarantined CCM to real games regardless "
+        "of what the ledger says (found live 2026-09-16 on 3 real stored cards)"
+    )
 
 
 def test_refresh_still_keeps_a_prior_that_remains_valid(tmp_path, monkeypatch, make_card):
@@ -420,6 +426,10 @@ def test_refresh_still_keeps_a_prior_that_remains_valid(tmp_path, monkeypatch, m
     cli._compile_cards([card], keep_on_failure=True)
     entry = Ledger(path=ledger_file).get(card.name)
     assert entry["status"] == "accepted" and entry["prompt_version"] == 5
+    assert (store / "insight-spell.json").exists(), (
+        "the stale-file cleanup must only fire on a genuine quarantine, never on "
+        "the 'kept' path — a valid prior's file stays exactly where it was"
+    )
 
 
 def test_ledger_save_is_atomic(tmp_path, monkeypatch, make_card):

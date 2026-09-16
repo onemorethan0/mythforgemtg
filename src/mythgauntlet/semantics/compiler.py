@@ -886,6 +886,11 @@ def _slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.casefold()).strip("-")
 
 
+def compiled_path(card: Card) -> Path:
+    """The file a compiled CCM for this card lives at (whether or not it exists yet)."""
+    return compiled_dir() / f"{_slug(card.name)}.json"
+
+
 def save_compiled(card: Card, doc: dict) -> Path:
     out_dir = compiled_dir()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -904,7 +909,7 @@ def save_compiled(card: Card, doc: dict) -> Path:
     # _slug is lossy (drops punctuation), so two distinct names can collide on one file
     # while the store keys by normalize_name — the loser would silently drop to rung 1.
     # Reuse the same file for the same card; disambiguate a genuine cross-name collision.
-    path = out_dir / f"{_slug(card.name)}.json"
+    path = compiled_path(card)
     if path.exists():
         try:
             existing = normalize_name(read_envelope(path)["card"]["name"])
