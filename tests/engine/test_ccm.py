@@ -992,6 +992,44 @@ def test_a_permanent_effect_whose_text_states_no_duration_is_not_flagged():
     assert not _errs(doc, card)
 
 
+def test_a_duration_inside_a_keyword_reminder_does_not_flag_an_unrelated_effect():
+    """Found live 2026-09-16: Kitsune Dawnblade ("Bushido 1 (...gets +1/+1 until end of
+    turn.) When this creature enters, you may tap target creature.") failed this gate —
+    its etb `tap` effect (which has no duration field in the vocabulary; a one-shot tap
+    doesn't need one) tripped over Bushido's reminder text three sentences away. The
+    "until end of turn" belongs entirely to Bushido's OWN definition, not to the tap
+    effect, so it must not count as evidence for a duration the tap effect never needed.
+    """
+    card = _duration_card(
+        "Bushido 1 (Whenever this creature blocks or becomes blocked, it gets +1/+1 "
+        "until end of turn.) When this creature enters, you may tap target creature."
+    )
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Creature"],
+           "abilities": [
+               {"kind": "static", "note": "Bushido 1"},
+               {"kind": "triggered", "trigger": {"event": "etb"}, "effects": [
+                   {"op": "tap", "target": {"type": "creature", "count": 1}}]},
+           ]}
+    assert not _errs(doc, card)
+
+
+def test_a_duration_stated_outside_any_paren_still_flags():
+    """The paren-stripping fix above must not blunt the gate's ordinary case — a duration
+    stated in the card's own main body (not inside a keyword reminder) still has to be
+    caught when no effect records it."""
+    card = _duration_card(
+        "Bushido 1 (...) Target creature gets +2/+2 until end of turn."
+    )
+    doc = {"name": "Trickster", "mana_cost": "{1}{G}", "types": ["Creature"],
+           "abilities": [
+               {"kind": "static", "note": "Bushido 1"},
+               {"kind": "spell_effect", "effects": [
+                   {"op": "pump", "power": 2, "toughness": 2,
+                    "target": {"type": "creature", "count": 1}}]},
+           ]}
+    assert _errs(doc, card)
+
+
 # --- extra_turn vs additional-combat-phase confusion (2026-09-10) ------------------
 
 def _extra_turn_card(text: str):

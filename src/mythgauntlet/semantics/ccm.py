@@ -957,8 +957,20 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     # first, which is correct behaviour the gate has no way to distinguish from the
     # defect. Requiring total absence keeps it to cases where the compiler plainly never
     # emitted one.
+    #
+    # Reads the PAREN-STRIPPED `text` (same variable the hallucination checks above
+    # already use), not raw oracle_text — a keyword whose whole definition lives in
+    # reminder text (Bushido: "gets +1/+1 until end of turn") states the duration for
+    # ITS OWN effect, not for an unrelated duration-bearing op elsewhere on the card.
+    # Found live 2026-09-16: Kitsune Dawnblade ("Bushido 1 (...until end of turn.) When
+    # this creature enters, you may tap target creature.") failed this gate because its
+    # UNRELATED etb `tap` effect (which has no duration field in the vocabulary at all —
+    # a one-shot tap doesn't need one) tripped over Bushido's reminder text three
+    # sentences away. Same reasoning gate 3's hallucination check already applies to
+    # "draw" disappearing inside Cycling's reminder text, mirrored for the opposite
+    # failure direction (a phrase leaking IN instead of an op-word being stripped out).
     if (duration_ops_present and not any_duration_recorded
-            and _STATES_A_DURATION.search(card.oracle_text or "")):
+            and _STATES_A_DURATION.search(text)):
         errors.append(
             "oracle text states a duration ('until end of turn') but no effect records "
             "one — an omitted duration executes as PERMANENT"

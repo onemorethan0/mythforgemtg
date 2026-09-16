@@ -438,6 +438,76 @@ def _coerce_reveal_until_to_search_library(doc: dict, card: Card) -> None:
             effects[i] = new_effect
 
 
+def _default_missing_pump_axis(doc: dict) -> None:
+    """`pump` requires BOTH `power` and `toughness` (a "+1/+0" card needs to record the
+    untouched axis too, or the engine can't tell "no change" from "the model forgot").
+    The model reliably writes the axis that changes and omits the other because it reads
+    as zero/insignificant — measured live 2026-09-16: Blizzard Brawl ("+1/+0") produced a
+    schema-valid `power` and no `toughness` key at all, not a malformed one.
+
+    Safe to default deterministically because BOTH fields already have a hard int/'X'
+    schema (see OP_SPECS) — this only fires when exactly one is a valid value and the
+    other is absent, so there is nothing to guess: a card that genuinely changes both
+    stats states both, and a card that changes neither wouldn't use `pump` at all. An
+    effect missing BOTH axes, or with an explicitly-wrong (non-int, non-'X') value on
+    either, is left alone — that is a different failure this function must not paper over.
+    """
+    for _ability, effect in ccm._iter_effects(doc):
+        if not isinstance(effect, dict) or effect.get("op") != "pump":
+            continue
+        has_power = "power" in effect
+        has_toughness = "toughness" in effect
+        if has_power and not has_toughness and _is_valid_pump_axis(effect["power"]):
+            effect["toughness"] = 0
+        elif has_toughness and not has_power and _is_valid_pump_axis(effect["toughness"]):
+            effect["power"] = 0
+
+
+def _is_valid_pump_axis(value) -> bool:
+    return (isinstance(value, int) and not isinstance(value, bool)) or (
+        isinstance(value, str) and value.upper() in ("X", "-X")
+    )
+
+
+def _strip_unresolvable_cost_reduction(doc: dict) -> None:
+    """`cost_reduction`'s `amount` is a plain fixed int (OP_SPECS) — deliberately, unlike
+    every other numeric field in the vocabulary, none of which accept a variable X-style
+    quantity. A reduction that scales ("costs {1} less for each opponent you attacked",
+    Fast Forward) has no way to be expressed correctly: this engine's cast-cost resolution
+    has no per-condition counting hook for it (same class of gap as `mana_paid` — a real
+    payment-choice axis, correctly left unresolved rather than guessed, per the compiler's
+    own x_basis notes). The model still reaches for `amount: "x"` on these cards because
+    every OTHER numeric field in the schema accepts one.
+
+    Drops only the unresolvable effect, not the whole ability — Fast Forward's Goad clause
+    is a separate, valid effect worth keeping. An ability left with nothing else is dropped
+    entirely (schema requires a non-empty effects list), same idiom as the extra_turn strip.
+    """
+    abilities = doc.get("abilities")
+    if not isinstance(abilities, list):
+        return
+    kept: list = []
+    for ability in abilities:
+        if not isinstance(ability, dict):
+            kept.append(ability)
+            continue
+        effects = ability.get("effects")
+        if isinstance(effects, list):
+            remaining = [
+                e for e in effects
+                if not (isinstance(e, dict) and e.get("op") == "cost_reduction"
+                        and not (isinstance(e.get("amount"), int)
+                                 and not isinstance(e.get("amount"), bool)
+                                 and e.get("amount") >= 0))
+            ]
+            if len(remaining) != len(effects):
+                if not remaining:
+                    continue  # drop the whole ability, it had nothing else
+                ability = {**ability, "effects": remaining}
+        kept.append(ability)
+    doc["abilities"] = kept
+
+
 # The FIXED, unconditional subset of "Equipped/Enchanted creature ..." static notes that
 # is safely machine-readable (docs/PLAN_FIDELITY.md Phase C, 2026-09-09): a plain power/
 # toughness delta and/or a closed set of boolean keyword grants, with no scaling term, no
@@ -572,6 +642,8 @@ def compile_card(
             doc["enters_tapped"] = True
         _strip_combat_phase_confused_extra_turn(doc, card)
         _coerce_reveal_until_to_search_library(doc, card)
+        _default_missing_pump_axis(doc)
+        _strip_unresolvable_cost_reduction(doc)
         _populate_attach_grants(doc)
         gates = ccm.validate(doc, card)
         errors = [f"[{gate}] {msg}" for gate, msgs in gates.items() for msg in msgs]

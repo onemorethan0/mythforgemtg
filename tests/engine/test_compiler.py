@@ -726,3 +726,94 @@ def test_compile_does_not_coerce_a_genuine_bounded_look(make_card):
     }
     result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
     assert result.doc["abilities"][0]["effects"][0]["op"] == "look_and_select"
+
+
+def test_compile_defaults_a_missing_pump_axis_to_zero(make_card):
+    """`pump` requires both power and toughness; the model reliably omits whichever axis
+    doesn't change (Blizzard Brawl's "+1/+0" produced `power` with no `toughness` key at
+    all, found live 2026-09-16) because it reads as zero/insignificant rather than a
+    field to fill in."""
+    card = make_card(
+        "Giant Growth", mana_cost="{G}", type_line="Instant",
+        oracle_text="Target creature gets +1/+0 until end of turn.",
+    )
+    doc = {
+        "name": "Giant Growth", "ccm_version": 1, "cost": {"mana": "{G}"},
+        "types": ["instant"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "pump", "power": 1,
+                                    "duration": "until end of turn",
+                                    "target": {"type": "creature", "count": 1}}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"][0]["effects"][0]["toughness"] == 0
+
+
+def test_compile_does_not_invent_a_pump_axis_when_both_are_missing(make_card):
+    """Nothing to default from when the model omitted BOTH axes — that's a different,
+    genuine failure this backstop must not paper over."""
+    card = make_card(
+        "Giant Growth", mana_cost="{G}", type_line="Instant",
+        oracle_text="Target creature gets +1/+0 until end of turn.",
+    )
+    doc = {
+        "name": "Giant Growth", "ccm_version": 1, "cost": {"mana": "{G}"},
+        "types": ["instant"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "pump", "duration": "until end of turn",
+                                    "target": {"type": "creature", "count": 1}}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "quarantined"
+
+
+def test_compile_strips_an_unresolvable_variable_cost_reduction(make_card):
+    """`cost_reduction.amount` is a plain fixed int (OP_SPECS), deliberately unlike every
+    other numeric field, because this engine's cast-cost resolution has no per-condition
+    counting hook — a reduction that scales ("costs {1} less for each opponent you
+    attacked", Fast Forward, found live 2026-09-16) can't be expressed correctly. Drops
+    only that effect; a separate valid ability (the Goad static here) survives."""
+    card = make_card(
+        "Fast Forward", mana_cost="{4}{R}", type_line="Sorcery",
+        oracle_text="This spell costs {1} less to cast for each opponent you attacked "
+                    "this turn. Goad all creatures your opponents control.",
+    )
+    doc = {
+        "name": "Fast Forward", "ccm_version": 1, "cost": {"mana": "{4}{R}"},
+        "types": ["sorcery"],
+        "abilities": [
+            {"kind": "spell_effect",
+             "effects": [
+                 {"op": "cost_reduction", "amount": "x",
+                  "x_basis": "opponents_attacked_this_turn",
+                  "applies_to": "this_spell"},
+                 {"op": "grant_ability", "ability": "goad",
+                  "target": {"type": "creature", "controller": "opponent",
+                             "count": "all"}},
+             ]},
+        ],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    ops = [e["op"] for e in result.doc["abilities"][0]["effects"]]
+    assert ops == ["grant_ability"]
+
+
+def test_compile_keeps_a_fixed_cost_reduction(make_card):
+    card = make_card(
+        "Discount Charm", mana_cost="{3}{U}", type_line="Sorcery",
+        oracle_text="This spell costs {1} less to cast. Draw a card.",
+    )
+    doc = {
+        "name": "Discount Charm", "ccm_version": 1, "cost": {"mana": "{3}{U}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "cost_reduction", "amount": 1,
+                                    "applies_to": "this_spell"},
+                                   {"op": "draw", "count": 1}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    ops = [e["op"] for e in result.doc["abilities"][0]["effects"]]
+    assert "cost_reduction" in ops
