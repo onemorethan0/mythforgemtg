@@ -615,6 +615,27 @@ _KEYWORD_IMPLIED_OPS: tuple[tuple[re.Pattern[str], str], ...] = (
     (re.compile(r"\brecruit\b", re.I), "draw"),
     (re.compile(r"\brecruit\b", re.I), "discard"),
     (re.compile(r"\brecruit\b", re.I), "create_token"),
+    # "Hideaway N (When this permanent enters, look at the top N cards of your library,
+    # exile one face down, then put the rest on the bottom in a random order.)" -- the
+    # WHOLE look-and-exile-one definition lives in reminder text. Found live 2026-09-16
+    # hitting the new look_and_select zone-evidence gate: 12 stored Hideaway cards
+    # (Windbrisk Heights, Mosswort Bridge, Spinerock Knoll, Clive's Hideaway, Watcher
+    # for Tomorrow, Collector's Cage, Smuggler's Buggy, Howltooth Hollow, Rabble
+    # Rousing, Widespread Thieving, Fight Rigging and more) correctly modeled the
+    # reminder's own look_and_select shape and were flagged because the paren-stripped
+    # check erases its only evidence -- the exact same class as recruit/cycling above,
+    # just discovered by a newer gate.
+    (re.compile(r"\bhideaway\b", re.I), "look_and_select"),
+    # "Manifest dread. (Look at the top two cards of your library. Put one onto the
+    # battlefield face down as a 2/2 creature and the other into your graveyard...)" --
+    # same reminder-only shape as Hideaway, one card found live 2026-09-16.
+    (re.compile(r"\bmanifest dread\b", re.I), "look_and_select"),
+    # "Surveil N (... look at the top N cards of your library, then put any number of
+    # them into your graveyard and the rest on top ...)" -- Mission Briefing's real
+    # effect is the dedicated `surveil` op, but the reminder text's own "look at the
+    # top" phrasing can pull a compile toward look_and_select instead; licensed rather
+    # than left to fail on the same reminder-erasure shape.
+    (re.compile(r"\bsurveil \d+\b", re.I), "look_and_select"),
 )
 
 
@@ -920,7 +941,8 @@ def cross_check(doc: dict, card: Card) -> list[str]:
                 "library), which is functionally a real search, but CCM has no "
                 "search_library"
             )
-    if "look_and_select" in ops_present and not _LOOK_AND_SELECT_ZONE_RE.search(text):
+    if ("look_and_select" in ops_present and "look_and_select" not in licensed
+            and not _LOOK_AND_SELECT_ZONE_RE.search(text)):
         # look_and_select's own OP_SPECS comment (and its simulator dispatch,
         # sim/tier2._look_and_select) both fix the SOURCE zone as `me.library` -- it
         # reveals the top `look` cards of the ACTING PLAYER's own library, full stop.

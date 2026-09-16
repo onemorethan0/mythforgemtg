@@ -1125,6 +1125,25 @@ def test_recruit_licenses_draw_discard_and_create_token():
     assert not any("never says draw" in e for e in errs)
 
 
+def test_hideaway_licenses_look_and_select():
+    """Hideaway's WHOLE "look at the top N cards... exile one face down" definition
+    lives in reminder text. Found live 2026-09-16: 12 stored Hideaway cards correctly
+    modeled it as look_and_select and were flagged by the new zone-evidence gate
+    because the paren-stripped text erases the only evidence."""
+    card = _las_card(
+        "Hideaway 4 (When this land enters, look at the top four cards of your "
+        "library, exile one face down, then put the rest on the bottom in a random "
+        "order.)\nThis land enters tapped.\n{T}: Add {W}."
+    )
+    doc = {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": ""}, "types": ["land"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "etb"}, "effects": [
+            {"op": "look_and_select", "look": 4,
+             "what": {"type": "card"}, "take": 1, "to": "exile"}]}],
+    }
+    assert not _las_errs(doc, card)
+
+
 # --- extra_turn vs additional-combat-phase confusion (2026-09-10) ------------------
 
 def _extra_turn_card(text: str):
