@@ -1,0 +1,62 @@
+{
+  "card": {
+    "name": "Chulane, Teller of Tales",
+    "mana_cost": "{2}{G}{W}{U}",
+    "type_line": "Legendary Creature — Human Druid",
+    "oracle_text": "Vigilance\nWhenever you cast a creature spell, draw a card, then you may put a land card from your hand onto the battlefield.\n{3}, {T}: Return target creature you control to its owner's hand.",
+    "power": "2",
+    "toughness": "4"
+  },
+  "ccm": {
+    "name": "Chulane, Teller of Tales",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{2}{G}{W}{U}"
+    },
+    "types": [
+      "creature"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "cast_creature"
+        },
+        "effects": [
+          {
+            "op": "draw",
+            "count": 1
+          },
+          {
+            "op": "reanimate",
+            "target": {
+              "type": "land",
+              "controller": "you",
+              "zone": "hand",
+              "count": 1,
+              "optional": true
+            }
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "mana": "{3}",
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "return_to_hand",
+            "target": {
+              "type": "creature",
+              "controller": "you",
+              "count": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

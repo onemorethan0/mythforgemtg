@@ -1,0 +1,20 @@
+{
+  "card": {
+    "name": "Cunning Wish",
+    "mana_cost": "{2}{U}",
+    "type_line": "Instant",
+    "oracle_text": "You may reveal an instant card you own from outside the game and put it into your hand. Exile Cunning Wish."
+  },
+  "ccm": {
+    "name": "Cunning Wish",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{2}{U}"
+    },
+    "types": [
+      "instant"
+    ],
+    "abilities": []
+  }
+}

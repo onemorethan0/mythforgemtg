@@ -1,0 +1,20 @@
+{
+  "card": {
+    "name": "Forgotten Lore",
+    "mana_cost": "{G}",
+    "type_line": "Sorcery",
+    "oracle_text": "Target opponent chooses a card in your graveyard. You may pay {G}. If you do, repeat this process except that opponent can't choose a card already chosen for Forgotten Lore. Then put the last chosen card into your hand."
+  },
+  "ccm": {
+    "name": "Forgotten Lore",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{G}"
+    },
+    "types": [
+      "sorcery"
+    ],
+    "abilities": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "card": {
+    "name": "Abundance",
+    "mana_cost": "{2}{G}{G}",
+    "type_line": "Enchantment",
+    "oracle_text": "If you would draw a card, you may instead choose land or nonland and reveal cards from the top of your library until you reveal a card of the chosen kind. Put that card into your hand and put all other cards revealed this way on the bottom of your library in any order."
+  },
+  "ccm": {
+    "name": "Abundance",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{2}{G}{G}"
+    },
+    "types": [
+      "enchantment"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "other"
+        },
+        "effects": [
+          {
+            "op": "search_library",
+            "what": {
+              "type": "card"
+            },
+            "count": 1,
+            "to": "hand",
+            "shuffle": false,
+            "optional": true,
+            "condition": "REPLACES a draw, does not happen on its own; land-or-nonland is chosen at that time"
+          }
+        ]
+      }
+    ]
+  }
+}

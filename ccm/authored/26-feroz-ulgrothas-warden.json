@@ -1,0 +1,74 @@
+{
+  "card": {
+    "name": "Feroz, Ulgrotha's Warden",
+    "mana_cost": "{3}{G}{W}{U}",
+    "type_line": "Legendary Planeswalker — Feroz",
+    "oracle_text": "+2: Create two 1/1 blue Bird creature tokens with flying.\n0: Draw a card. You may put a permanent card with mana value 4 or less from your hand onto the battlefield.\n−7: Create a Feroz's Ban token. (It's a {6} artifact with \"Creature spells cost {2} more to cast.\")\nFeroz, Ulgrotha's Warden can be your commander."
+  },
+  "ccm": {
+    "name": "Feroz, Ulgrotha's Warden",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{3}{G}{W}{U}"
+    },
+    "types": [
+      "planeswalker"
+    ],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {
+          "other": "+2 loyalty"
+        },
+        "effects": [
+          {
+            "op": "create_token",
+            "count": 2,
+            "power": 1,
+            "toughness": 1,
+            "types": ["creature", "bird"],
+            "note": "real card also grants flying; create_token has no keyword-grant field"
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "other": "0 loyalty"
+        },
+        "effects": [
+          {
+            "op": "draw",
+            "count": 1
+          },
+          {
+            "op": "reanimate",
+            "target": {
+              "type": "permanent",
+              "controller": "you",
+              "zone": "hand",
+              "count": 1,
+              "optional": true,
+              "condition": "mana value 4 or less"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "other": "-7 loyalty"
+        },
+        "effects": [
+          {
+            "op": "create_token",
+            "count": 1,
+            "types": ["artifact"],
+            "note": "the token's own static ability (\"Creature spells cost {2} more\") has no representation; token existence only"
+          }
+        ]
+      }
+    ]
+  }
+}

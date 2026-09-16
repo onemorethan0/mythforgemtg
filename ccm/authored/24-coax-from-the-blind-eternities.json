@@ -1,0 +1,20 @@
+{
+  "card": {
+    "name": "Coax from the Blind Eternities",
+    "mana_cost": "{2}{U}",
+    "type_line": "Sorcery",
+    "oracle_text": "You may reveal an Eldrazi card you own from outside the game or choose a face-up Eldrazi card you own in exile. Put that card into your hand."
+  },
+  "ccm": {
+    "name": "Coax from the Blind Eternities",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{2}{U}"
+    },
+    "types": [
+      "sorcery"
+    ],
+    "abilities": []
+  }
+}

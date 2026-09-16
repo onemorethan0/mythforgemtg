@@ -1,0 +1,20 @@
+{
+  "card": {
+    "name": "Living Wish",
+    "mana_cost": "{1}{G}",
+    "type_line": "Sorcery",
+    "oracle_text": "You may reveal a creature or land card you own from outside the game and put it into your hand. Exile Living Wish."
+  },
+  "ccm": {
+    "name": "Living Wish",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{1}{G}"
+    },
+    "types": [
+      "sorcery"
+    ],
+    "abilities": []
+  }
+}

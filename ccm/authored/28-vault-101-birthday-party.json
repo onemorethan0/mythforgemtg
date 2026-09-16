@@ -1,0 +1,62 @@
+{
+  "card": {
+    "name": "Vault 101: Birthday Party",
+    "mana_cost": "{3}{W}",
+    "type_line": "Enchantment — Saga",
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Create a 1/1 white Human Soldier creature token and a Food token. (A Food token is an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nII, III — You may put an Aura or Equipment card from your hand or graveyard onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control."
+  },
+  "ccm": {
+    "name": "Vault 101: Birthday Party",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{3}{W}"
+    },
+    "types": [
+      "enchantment"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "saga_chapter"
+        },
+        "effects": [
+          {
+            "op": "create_token",
+            "count": 1,
+            "power": 1,
+            "toughness": 1,
+            "types": ["creature", "human", "soldier"]
+          },
+          {
+            "op": "create_token",
+            "count": 1,
+            "types": ["artifact", "food"],
+            "note": "the Food token's own sacrifice-for-life ability has no representation; token existence only"
+          }
+        ]
+      },
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "saga_chapter"
+        },
+        "effects": [
+          {
+            "op": "reanimate",
+            "target": {
+              "type": "card",
+              "subtype": "aura or equipment",
+              "zone": "hand or graveyard",
+              "controller": "you",
+              "count": 1,
+              "optional": true
+            },
+            "note": "chapters II and III repeat this trigger; the follow-up \"attach the Equipment\" clause is not modeled"
+          }
+        ]
+      }
+    ]
+  }
+}

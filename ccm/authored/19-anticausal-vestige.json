@@ -1,0 +1,46 @@
+{
+  "card": {
+    "name": "Anticausal Vestige",
+    "mana_cost": "{6}",
+    "type_line": "Creature — Eldrazi",
+    "oracle_text": "When this creature leaves the battlefield, draw a card, then you may put a permanent card with mana value less than or equal to the number of lands you control from your hand onto the battlefield tapped.\nWarp {4} (You may cast this card from your hand for its warp cost. Exile this creature at the beginning of the next end step, then you may cast it from exile on a later turn.)",
+    "power": "7",
+    "toughness": "5"
+  },
+  "ccm": {
+    "name": "Anticausal Vestige",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{6}"
+    },
+    "types": [
+      "creature"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "leaves_battlefield"
+        },
+        "effects": [
+          {
+            "op": "draw",
+            "count": 1
+          },
+          {
+            "op": "reanimate",
+            "target": {
+              "type": "permanent",
+              "controller": "you",
+              "zone": "hand",
+              "count": 1,
+              "optional": true,
+              "condition": "mana value <= lands you control"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

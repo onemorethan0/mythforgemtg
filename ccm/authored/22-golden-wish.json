@@ -1,0 +1,20 @@
+{
+  "card": {
+    "name": "Golden Wish",
+    "mana_cost": "{3}{W}{W}",
+    "type_line": "Sorcery",
+    "oracle_text": "You may reveal an artifact or enchantment card you own from outside the game and put it into your hand. Exile Golden Wish."
+  },
+  "ccm": {
+    "name": "Golden Wish",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{3}{W}{W}"
+    },
+    "types": [
+      "sorcery"
+    ],
+    "abilities": []
+  }
+}

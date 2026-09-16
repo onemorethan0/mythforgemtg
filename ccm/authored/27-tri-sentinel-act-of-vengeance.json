@@ -1,0 +1,59 @@
+{
+  "card": {
+    "name": "Tri-Sentinel, Act of Vengeance",
+    "mana_cost": "{7}",
+    "type_line": "Legendary Artifact Creature — Robot Villain",
+    "oracle_text": "Flying, menace, trample\nWhen Tri-Sentinel enters, for each opponent, Tri-Sentinel deals 3 damage to up to one target creature that player controls.\nUnearth {7} ({7}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)",
+    "power": "7",
+    "toughness": "7"
+  },
+  "ccm": {
+    "name": "Tri-Sentinel, Act of Vengeance",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {
+      "mana": "{7}"
+    },
+    "types": [
+      "artifact",
+      "creature"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "etb"
+        },
+        "effects": [
+          {
+            "op": "deal_damage",
+            "amount": 3,
+            "target": {
+              "type": "creature",
+              "controller": "opponent",
+              "count": 1
+            },
+            "optional": true,
+            "condition": "real card fires ONCE PER OPPONENT (a 4-player pod: up to 3 times); vocabulary has no per-opponent repetition, modeled as a single application -- an honest under-count rather than repeating the effect a pod-size-dependent number of times"
+          }
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {
+          "other": "{7}: unearth from graveyard"
+        },
+        "effects": [
+          {
+            "op": "reanimate",
+            "target": {
+              "self": true,
+              "zone": "graveyard"
+            },
+            "note": "reanimate is declared in the vocabulary but never dispatched by the simulator; this ability is structurally recorded and inert"
+          }
+        ]
+      }
+    ]
+  }
+}
