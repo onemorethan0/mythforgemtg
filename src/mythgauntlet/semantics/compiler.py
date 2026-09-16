@@ -528,6 +528,33 @@ def _is_valid_pump_axis(value) -> bool:
     )
 
 
+def _default_missing_discard_count(doc: dict) -> None:
+    """`discard`'s `count` is required (OP_SPECS: `_INT_OR_X`). Measured live
+    2026-09-16: 7 of the cards this session's new look_and_select gate flagged (a
+    hand-attack shape — "target opponent reveals their hand, you choose a card, they
+    discard it") self-corrected to a real `discard` effect on recompile — a genuinely
+    better fix than the wrong-zone look_and_select it replaced — but omitted `count`
+    entirely on 7 of them (Brainbite, Coercion, Discordant Dirge, Lay Bare the Heart,
+    Ostracize, Shattered Dreams, Thrull Surgeon). Six of the seven name a SINGLE chosen
+    card ("that card"); the seventh (Discordant Dirge, "up to X cards") states a
+    variable the model still dropped the field for. Defaulting an unresolvable count to
+    1 is this codebase's own established convention for a genuinely-unknown bare X (see
+    `_EngineResolver.amount()`'s own floor-of-1 fallback) — same reasoning applies here:
+    a discard IS happening (the gate that would catch a hallucinated one is separate and
+    unaffected), only the exact count is unrecorded, and the doctrine is an honest
+    modest default over blocking a real effect entirely on a schema technicality.
+    """
+    for _ability, effect in ccm._iter_effects(doc):
+        if not isinstance(effect, dict) or effect.get("op") != "discard":
+            continue
+        count = effect.get("count")
+        valid = (isinstance(count, int) and not isinstance(count, bool)) or (
+            isinstance(count, str) and ccm._is_variable_qty(count)
+        )
+        if not valid:
+            effect["count"] = 1
+
+
 def _strip_unresolvable_cost_reduction(doc: dict) -> None:
     """`cost_reduction`'s `amount` is a plain fixed int (OP_SPECS) — deliberately, unlike
     every other numeric field in the vocabulary, none of which accept a variable X-style
@@ -748,6 +775,7 @@ def compile_card(
         _reclassify_additional_combat_spell_effect(doc, card)
         _coerce_reveal_until_to_search_library(doc, card)
         _default_missing_pump_axis(doc)
+        _default_missing_discard_count(doc)
         _strip_unresolvable_cost_reduction(doc)
         _coerce_unsupported_trigger_to_other(doc, card)
         _populate_attach_grants(doc)

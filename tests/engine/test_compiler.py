@@ -801,6 +801,45 @@ def test_compile_does_not_invent_a_pump_axis_when_both_are_missing(make_card):
     assert result.status == "quarantined"
 
 
+def test_compile_defaults_a_missing_discard_count_to_one(make_card):
+    """Found live 2026-09-16: Coercion-shape cards ("target opponent reveals their
+    hand, you choose a card, they discard it") self-corrected to a real `discard`
+    effect once the wrong-zone look_and_select was gated off — a genuinely better fix —
+    but 7 of them omitted the required `count` field. Six name a single card ("that
+    card"); default to 1, this codebase's own established convention for a
+    genuinely-unresolvable bare quantity."""
+    card = make_card(
+        "Coercion", mana_cost="{2}{B}", type_line="Sorcery",
+        oracle_text="Target opponent reveals their hand. You choose a card from it. "
+                    "That player discards that card.",
+    )
+    doc = {
+        "name": "Coercion", "ccm_version": 1, "cost": {"mana": "{2}{B}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "discard", "who": "opponent"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"][0]["effects"][0]["count"] == 1
+
+
+def test_compile_does_not_touch_a_valid_discard_count(make_card):
+    card = make_card(
+        "Mind Rot", mana_cost="{2}{B}", type_line="Sorcery",
+        oracle_text="Target player discards two cards.",
+    )
+    doc = {
+        "name": "Mind Rot", "ccm_version": 1, "cost": {"mana": "{2}{B}"},
+        "types": ["sorcery"],
+        "abilities": [{"kind": "spell_effect",
+                       "effects": [{"op": "discard", "count": 2, "who": "opponent"}]}],
+    }
+    result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
+    assert result.status == "accepted"
+    assert result.doc["abilities"][0]["effects"][0]["count"] == 2
+
+
 def test_compile_strips_an_unresolvable_variable_cost_reduction(make_card):
     """`cost_reduction.amount` is a plain fixed int (OP_SPECS), deliberately unlike every
     other numeric field, because this engine's cast-cost resolution has no per-condition

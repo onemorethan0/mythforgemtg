@@ -1102,6 +1102,29 @@ def test_look_and_select_referencing_its_own_exile_is_not_flagged():
     assert not _las_errs(_las_doc(), card)
 
 
+def test_recruit_licenses_draw_discard_and_create_token():
+    """Recruit's WHOLE definition lives in reminder text ("Draw a card, then discard a
+    card. If you discarded a nonland card, create a 1/1..."). Found live 2026-09-16:
+    Bard's Company correctly modeled recruit as `draw` and failed the hallucination
+    check because the paren-stripped text erases its only evidence — same shape as
+    cycling/ward/transmute above."""
+    from mythgauntlet.semantics.ccm import cross_check
+
+    card = _las_card(
+        "Whenever this creature enters or attacks, recruit. (Draw a card, then "
+        "discard a card. If you discarded a nonland card, create a 1/1 white Human "
+        "Soldier creature token.)"
+    )
+    doc = {
+        "ccm_version": 1, "name": "Trickster", "cost": {"mana": "{1}{U}"},
+        "types": ["creature"],
+        "abilities": [{"kind": "triggered", "trigger": {"event": "attack"},
+                       "effects": [{"op": "draw", "count": 1}]}],
+    }
+    errs = cross_check(doc, card)
+    assert not any("never says draw" in e for e in errs)
+
+
 # --- extra_turn vs additional-combat-phase confusion (2026-09-10) ------------------
 
 def _extra_turn_card(text: str):

@@ -606,6 +606,15 @@ _KEYWORD_IMPLIED_OPS: tuple[tuple[re.Pattern[str], str], ...] = (
     # never spelled "search". Same shape as this table's other entries: found 2026-09-10
     # alongside the etb licensing for the same keyword (_KEYWORD_IMPLIED_EVENTS above).
     (re.compile(r"\bpartner with\b", re.I), "search_library"),
+    # "Recruit N (Draw a card, then discard a card. If you discarded a nonland card,
+    # create N 1/1 white Human Soldier creature tokens.)" -- found live 2026-09-16:
+    # Bard's Company correctly modeled recruit as `draw`, then failed the hallucination
+    # check because "draw" only exists inside the reminder parenthetical this check
+    # strips. Same shape as cycling above; the discard/create_token half is licensed too
+    # since recruit's own definition states both in the same breath.
+    (re.compile(r"\brecruit\b", re.I), "draw"),
+    (re.compile(r"\brecruit\b", re.I), "discard"),
+    (re.compile(r"\brecruit\b", re.I), "create_token"),
 )
 
 
