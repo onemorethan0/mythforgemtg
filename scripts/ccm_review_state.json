@@ -1,7 +1,15 @@
 {
+  "ace's baseball bat": {
+    "name": "Ace's Baseball Bat",
+    "status": "fixed"
+  },
   "aerid konstrari": {
     "name": "Aerid Konstrari",
     "status": "legit"
+  },
+  "ancestral blade": {
+    "name": "Ancestral Blade",
+    "status": "fixed"
   },
   "arcane artisan": {
     "name": "Arcane Artisan",
@@ -14,6 +22,10 @@
   "ashling flame dancer": {
     "name": "Ashling Flame Dancer",
     "status": "legit"
+  },
+  "astrologian's planisphere": {
+    "name": "Astrologian's Planisphere",
+    "status": "fixed"
   },
   "auxiliary boosters": {
     "name": "Auxiliary Boosters",
@@ -31,10 +43,18 @@
     "name": "Bag of Holding",
     "status": "fixed"
   },
+  "barbed batterfist": {
+    "name": "Barbed Batterfist",
+    "status": "fixed"
+  },
   "barbflare gremlin": {
     "name": "Barbflare Gremlin",
     "reason": "fabricated 'tap' effect with no oracle basis on a tap_for_mana replacement trigger; tap_for_mana isn't executed so currently inert.",
     "status": "deferred"
+  },
+  "basri, devoted paladin": {
+    "name": "Basri, Devoted Paladin",
+    "status": "fixed"
   },
   "betrothed of fire": {
     "name": "Betrothed of Fire",
@@ -43,6 +63,14 @@
   "biogenic ooze": {
     "name": "Biogenic Ooze",
     "status": "legit"
+  },
+  "black mage's rod": {
+    "name": "Black Mage's Rod",
+    "status": "fixed"
+  },
+  "blackblade reforged": {
+    "name": "Blackblade Reforged",
+    "status": "fixed"
   },
   "bomb squad": {
     "name": "Bomb Squad",
@@ -64,6 +92,10 @@
     "name": "Brash Taunter",
     "status": "fixed"
   },
+  "brightfield glider": {
+    "name": "Brightfield Glider",
+    "status": "legit"
+  },
   "bronzebeak foragers": {
     "name": "Bronzebeak Foragers",
     "status": "legit"
@@ -73,12 +105,20 @@
     "reason": "Encore keyword has no schema representation (N copies, tapped/attacking/sac at end step) -- create_token via Encore is a different structural gap, not a misattachment.",
     "status": "deferred"
   },
+  "brotherhood regalia": {
+    "name": "Brotherhood Regalia",
+    "status": "fixed"
+  },
   "bullseye death-dealer": {
     "name": "Bullseye Death-Dealer",
     "status": "legit"
   },
   "callous oppressor": {
     "name": "Callous Oppressor",
+    "status": "legit"
+  },
+  "canoptek tomb sentinel": {
+    "name": "Canoptek Tomb Sentinel",
     "status": "legit"
   },
   "carnival of souls": {
@@ -93,9 +133,17 @@
     "name": "Chaos Moon",
     "status": "legit"
   },
+  "charnel troll": {
+    "name": "Charnel Troll",
+    "status": "legit"
+  },
   "cheering crowd": {
     "name": "Cheering Crowd",
     "status": "legit"
+  },
+  "citizen's crowbar": {
+    "name": "Citizen's Crowbar",
+    "status": "fixed"
   },
   "cleric class": {
     "name": "Cleric Class",
@@ -107,6 +155,10 @@
   },
   "cogworker's puzzleknot": {
     "name": "Cogworker's Puzzleknot",
+    "status": "legit"
+  },
+  "collector's case": {
+    "name": "Collector's Case",
     "status": "legit"
   },
   "colossal plow": {
@@ -125,8 +177,16 @@
     "name": "Crime Novelist",
     "status": "legit"
   },
+  "cursed ronin": {
+    "name": "Cursed Ronin",
+    "status": "legit"
+  },
   "cytoplast root-kin": {
     "name": "Cytoplast Root-Kin",
+    "status": "fixed"
+  },
+  "dancer's chakrams": {
+    "name": "Dancer's Chakrams",
     "status": "fixed"
   },
   "darwin, adaptive mutant": {
@@ -169,6 +229,14 @@
     "name": "Emrakul, the Exigent Doom",
     "status": "fixed"
   },
+  "esoteric duplicator": {
+    "name": "Esoteric Duplicator",
+    "status": "fixed"
+  },
+  "excalibur, sword of eden": {
+    "name": "Excalibur, Sword of Eden",
+    "status": "fixed"
+  },
   "exuberant firestoker": {
     "name": "Exuberant Firestoker",
     "status": "fixed"
@@ -176,6 +244,14 @@
   "fabrication module": {
     "name": "Fabrication Module",
     "status": "fixed"
+  },
+  "faerie mastermind": {
+    "name": "Faerie Mastermind",
+    "status": "legit"
+  },
+  "fathom feeder": {
+    "name": "Fathom Feeder",
+    "status": "legit"
   },
   "fire lord ozai": {
     "name": "Fire Lord Ozai",
@@ -217,12 +293,28 @@
     "name": "Gelatinous Cube",
     "status": "fixed"
   },
+  "gilded goose": {
+    "name": "Gilded Goose",
+    "status": "legit"
+  },
   "glaring fleshraker": {
     "name": "Glaring Fleshraker",
     "status": "fixed"
   },
+  "glass-cast heart": {
+    "name": "Glass-Cast Heart",
+    "status": "fixed"
+  },
+  "glassblower's puzzleknot": {
+    "name": "Glassblower's Puzzleknot",
+    "status": "legit"
+  },
   "glint hawk idol": {
     "name": "Glint Hawk Idol",
+    "status": "legit"
+  },
+  "glorious protector": {
+    "name": "Glorious Protector",
     "status": "legit"
   },
   "glorious sunrise": {
@@ -241,6 +333,14 @@
     "name": "Hardened Academic",
     "status": "fixed"
   },
+  "harvester of misery": {
+    "name": "Harvester of Misery",
+    "status": "legit"
+  },
+  "hulkbuster armor": {
+    "name": "Hulkbuster Armor",
+    "status": "fixed"
+  },
   "hydra disintegrator": {
     "name": "HYDRA Disintegrator",
     "status": "fixed"
@@ -257,6 +357,18 @@
     "name": "Jaxis, the Troublemaker",
     "status": "fixed"
   },
+  "jinxed choker": {
+    "name": "Jinxed Choker",
+    "status": "legit"
+  },
+  "jukai preserver": {
+    "name": "Jukai Preserver",
+    "status": "legit"
+  },
+  "kemba's banner": {
+    "name": "Kemba's Banner",
+    "status": "fixed"
+  },
   "kiora of fire and ashes": {
     "name": "Kiora of Fire and Ashes",
     "status": "legit"
@@ -265,9 +377,42 @@
     "name": "Klothys, God of Destiny",
     "status": "legit"
   },
+  "konda's banner": {
+    "name": "Konda's Banner",
+    "status": "fixed"
+  },
+  "kyoshi battle fan": {
+    "name": "Kyoshi Battle Fan",
+    "status": "fixed"
+  },
+  "kytheon's irregulars": {
+    "name": "Kytheon's Irregulars",
+    "status": "fixed"
+  },
+  "leader's talent": {
+    "name": "Leader's Talent",
+    "note": "ability[0]'s 'whenever you attack' counter target is modeled as count:'all' (every creature you control), but the real text says 'target attacking creature' -- singular, chosen. Fixed the two duplicated Level-2/3 activated-ability effects this session but left this scope error alone; a chosen single target vs. an unconditional mass effect is a much bigger swing than the usual decline-vs-fabricate call and deserves its own look.",
+    "status": "fixed"
+  },
+  "lothlórien blade": {
+    "name": "Lothlórien Blade",
+    "status": "fixed"
+  },
   "lotus field": {
     "name": "Lotus Field",
     "status": "fixed"
+  },
+  "marshaling cry": {
+    "name": "Marshaling Cry",
+    "status": "fixed"
+  },
+  "matsu-tribe decoy": {
+    "name": "Matsu-Tribe Decoy",
+    "status": "fixed"
+  },
+  "merfolk pupil": {
+    "name": "Merfolk Pupil",
+    "status": "legit"
   },
   "mizzium tank": {
     "name": "Mizzium Tank",
@@ -298,6 +443,14 @@
     "name": "Overabundance",
     "status": "legit"
   },
+  "paladin's arms": {
+    "name": "Paladin's Arms",
+    "status": "fixed"
+  },
+  "pariah's shield": {
+    "name": "Pariah's Shield",
+    "status": "fixed"
+  },
   "rakdos, the muscle": {
     "name": "Rakdos, the Muscle",
     "status": "legit"
@@ -306,18 +459,38 @@
     "name": "Rogue Class",
     "status": "legit"
   },
+  "sword of the squeak": {
+    "name": "Sword of the Squeak",
+    "status": "fixed"
+  },
   "the bath song": {
     "name": "The Bath Song",
     "status": "legit"
+  },
+  "the irencrag": {
+    "name": "The Irencrag",
+    "status": "fixed"
   },
   "the legend of roku // avatar roku": {
     "name": "The Legend of Roku // Avatar Roku",
     "reason": "saga chapters I and II merged into one ability object, chapter III (transform) missing entirely; saga_chapter event isn't in sim/tier2._EVENT_TRIGGERS so currently inert.",
     "status": "deferred"
   },
+  "trickster's talisman": {
+    "name": "Trickster's Talisman",
+    "status": "fixed"
+  },
+  "two-handed axe // sweeping cleave": {
+    "name": "Two-Handed Axe // Sweeping Cleave",
+    "status": "fixed"
+  },
   "urabrask, the great work": {
     "name": "Urabrask, the Great Work",
     "status": "legit"
+  },
+  "white mage's staff": {
+    "name": "White Mage's Staff",
+    "status": "fixed"
   },
   "winter's night": {
     "name": "Winter's Night",
@@ -326,6 +499,14 @@
   },
   "wizard class": {
     "name": "Wizard Class",
+    "status": "fixed"
+  },
+  "wooden cane": {
+    "name": "Wooden Cane",
+    "status": "fixed"
+  },
+  "wrecking ball arm": {
+    "name": "Wrecking Ball Arm",
     "status": "fixed"
   },
   "zuko, conflicted": {
