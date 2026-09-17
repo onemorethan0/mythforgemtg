@@ -117,6 +117,10 @@
     "name": "Bullseye Death-Dealer",
     "status": "legit"
   },
+  "bullseye, death dealer": {
+    "name": "Bullseye, Death Dealer",
+    "status": "legit"
+  },
   "callous oppressor": {
     "name": "Callous Oppressor",
     "status": "legit"
@@ -148,6 +152,11 @@
   "cheering crowd": {
     "name": "Cheering Crowd",
     "status": "legit"
+  },
+  "chromatic armor": {
+    "name": "Chromatic Armor",
+    "reason": "choose_color op, not dispatched.",
+    "status": "deferred"
   },
   "citizen's crowbar": {
     "name": "Citizen's Crowbar",
@@ -205,6 +214,11 @@
     "name": "Davvol, Evincar of Rath",
     "status": "legit"
   },
+  "death kiss": {
+    "name": "Death Kiss",
+    "reason": "monstrosity op, not dispatched.",
+    "status": "deferred"
+  },
   "deathrender": {
     "name": "Deathrender",
     "status": "fixed"
@@ -240,6 +254,11 @@
   "esoteric duplicator": {
     "name": "Esoteric Duplicator",
     "status": "fixed"
+  },
+  "evereth, viceroy of plunder": {
+    "name": "Evereth, Viceroy of Plunder",
+    "reason": "gain_effect op, not dispatched.",
+    "status": "deferred"
   },
   "excalibur, sword of eden": {
     "name": "Excalibur, Sword of Eden",
@@ -357,6 +376,11 @@
     "name": "Harvester of Misery",
     "status": "legit"
   },
+  "hero's blade": {
+    "name": "Hero's Blade",
+    "reason": "optional-as-an-op artifact of the scanner, not a real effect.",
+    "status": "deferred"
+  },
   "hulkbuster armor": {
     "name": "Hulkbuster Armor",
     "status": "fixed"
@@ -380,6 +404,11 @@
   "jinxed choker": {
     "name": "Jinxed Choker",
     "status": "legit"
+  },
+  "jolting merfolk": {
+    "name": "Jolting Merfolk",
+    "reason": "remove_counter op, not dispatched.",
+    "status": "deferred"
   },
   "jukai preserver": {
     "name": "Jukai Preserver",
@@ -466,6 +495,10 @@
     "name": "Molten-Core Maestro",
     "status": "legit"
   },
+  "myth realized": {
+    "name": "Myth Realized",
+    "status": "legit"
+  },
   "necropotence": {
     "name": "Necropotence",
     "status": "fixed"
@@ -474,8 +507,16 @@
     "name": "Neheb, Dreadhorde Champion",
     "status": "legit"
   },
+  "nephalia moondrakes": {
+    "name": "Nephalia Moondrakes",
+    "status": "legit"
+  },
   "nuka-cola vending machine": {
     "name": "Nuka-Cola Vending Machine",
+    "status": "legit"
+  },
+  "odunos river trawler": {
+    "name": "Odunos River Trawler",
     "status": "legit"
   },
   "oko, the ringleader": {
@@ -487,12 +528,20 @@
     "reason": "fabricated add_counter(counter_type:\"aura\") removed this session, but the death trigger still fabricates return_to_hand/gain_control with zero oracle basis, and none of it can correctly represent 'returns as an Aura enchanting a Forest, which gains two granted abilities' -- this schema has no continuous-effect/granted-ability-on-another-permanent representation. Needs real modeling work, not a hand-edit.",
     "status": "deferred"
   },
+  "omen of the sea": {
+    "name": "Omen of the Sea",
+    "status": "legit"
+  },
   "omnath, locus of all": {
     "name": "Omnath, Locus of All",
     "status": "legit"
   },
   "omnath, locus of creation": {
     "name": "Omnath, Locus of Creation",
+    "status": "legit"
+  },
+  "ongoing investigation": {
+    "name": "Ongoing Investigation",
     "status": "legit"
   },
   "opal acrolith": {
@@ -515,6 +564,10 @@
     "name": "Pariah's Shield",
     "status": "fixed"
   },
+  "plague boiler": {
+    "name": "Plague Boiler",
+    "status": "legit"
+  },
   "possibility technician": {
     "name": "Possibility Technician",
     "status": "legit"
@@ -527,6 +580,10 @@
     "name": "Proficient Pyrodancer",
     "status": "legit"
   },
+  "puca's eye": {
+    "name": "Puca's Eye",
+    "status": "legit"
+  },
   "rakdos, the muscle": {
     "name": "Rakdos, the Muscle",
     "status": "legit"
@@ -534,6 +591,10 @@
   "recantation": {
     "name": "Recantation",
     "status": "fixed"
+  },
+  "reconnaissance mission": {
+    "name": "Reconnaissance Mission",
+    "status": "legit"
   },
   "ring of evos isle": {
     "name": "Ring of Evos Isle",
@@ -547,9 +608,17 @@
     "name": "Rogue Class",
     "status": "legit"
   },
+  "rona, disciple of gix": {
+    "name": "Rona, Disciple of Gix",
+    "status": "legit"
+  },
   "rumbling crescendo": {
     "name": "Rumbling Crescendo",
     "status": "fixed"
+  },
+  "sage of the fang": {
+    "name": "Sage of the Fang",
+    "status": "legit"
   },
   "sauron, the lidless eye": {
     "name": "Sauron, the Lidless Eye",
@@ -558,6 +627,19 @@
   "shelob, dread weaver": {
     "name": "Shelob, Dread Weaver",
     "status": "fixed"
+  },
+  "shrewd hatchling": {
+    "name": "Shrewd Hatchling",
+    "reason": "remove_counter op, not dispatched.",
+    "status": "deferred"
+  },
+  "skeletal vampire": {
+    "name": "Skeletal Vampire",
+    "status": "legit"
+  },
+  "skoa, embermage": {
+    "name": "Skoa, Embermage",
+    "status": "legit"
   },
   "sleep magic": {
     "name": "Sleep Magic",
@@ -579,17 +661,41 @@
     "name": "Spare Supplies",
     "status": "legit"
   },
+  "sting, bilbo's sword": {
+    "name": "Sting, Bilbo's Sword",
+    "status": "fixed"
+  },
+  "stone-seeder hierophant": {
+    "name": "Stone-Seeder Hierophant",
+    "status": "legit"
+  },
   "super speed": {
     "name": "Super Speed",
+    "status": "fixed"
+  },
+  "sword of the meek": {
+    "name": "Sword of the Meek",
     "status": "fixed"
   },
   "sword of the squeak": {
     "name": "Sword of the Squeak",
     "status": "fixed"
   },
+  "the ancient one": {
+    "name": "The Ancient One",
+    "status": "fixed"
+  },
   "the bath song": {
     "name": "The Bath Song",
     "status": "legit"
+  },
+  "the circle of loyalty": {
+    "name": "The Circle of Loyalty",
+    "status": "legit"
+  },
+  "the falcon, airship restored": {
+    "name": "The Falcon, Airship Restored",
+    "status": "fixed"
   },
   "the irencrag": {
     "name": "The Irencrag",
@@ -600,16 +706,72 @@
     "reason": "saga chapters I and II merged into one ability object, chapter III (transform) missing entirely; saga_chapter event isn't in sim/tier2._EVENT_TRIGGERS so currently inert.",
     "status": "deferred"
   },
+  "the master, transcendent": {
+    "name": "The Master, Transcendent",
+    "status": "fixed"
+  },
+  "the water crystal": {
+    "name": "The Water Crystal",
+    "status": "fixed"
+  },
+  "thrill-kill disciple": {
+    "name": "Thrill-Kill Disciple",
+    "status": "fixed"
+  },
+  "thrull parasite": {
+    "name": "Thrull Parasite",
+    "status": "fixed"
+  },
+  "tideforce elemental": {
+    "name": "Tideforce Elemental",
+    "status": "legit"
+  },
+  "torture chamber": {
+    "name": "Torture Chamber",
+    "status": "legit"
+  },
+  "touch the spirit realm": {
+    "name": "Touch the Spirit Realm",
+    "status": "legit"
+  },
   "trickster's talisman": {
     "name": "Trickster's Talisman",
     "status": "fixed"
+  },
+  "twinshot sniper": {
+    "name": "Twinshot Sniper",
+    "status": "legit"
   },
   "two-handed axe // sweeping cleave": {
     "name": "Two-Handed Axe // Sweeping Cleave",
     "status": "fixed"
   },
+  "ultimo, civilization's end": {
+    "name": "Ultimo, Civilization's End",
+    "status": "legit"
+  },
   "urabrask, the great work": {
     "name": "Urabrask, the Great Work",
+    "status": "legit"
+  },
+  "vizier of tumbling sands": {
+    "name": "Vizier of Tumbling Sands",
+    "status": "legit"
+  },
+  "voodoo doll": {
+    "name": "Voodoo Doll",
+    "status": "legit"
+  },
+  "vulshok splitter": {
+    "name": "Vulshok Splitter",
+    "status": "fixed"
+  },
+  "walking archive": {
+    "name": "Walking Archive",
+    "status": "legit"
+  },
+  "whirlpool warrior": {
+    "name": "Whirlpool Warrior",
     "status": "legit"
   },
   "white mage's staff": {
@@ -621,6 +783,10 @@
     "reason": "same tap_for_mana shape as Barbflare Gremlin, currently inert.",
     "status": "deferred"
   },
+  "witch-king of angmar": {
+    "name": "Witch-king of Angmar",
+    "status": "legit"
+  },
   "wizard class": {
     "name": "Wizard Class",
     "status": "fixed"
@@ -629,9 +795,31 @@
     "name": "Wooden Cane",
     "status": "fixed"
   },
+  "woodweaver's puzzleknot": {
+    "name": "Woodweaver's Puzzleknot",
+    "status": "legit"
+  },
   "wrecking ball arm": {
     "name": "Wrecking Ball Arm",
     "status": "fixed"
+  },
+  "wren's run hydra": {
+    "name": "Wren's Run Hydra",
+    "status": "legit"
+  },
+  "yggdrasil, rebirth engine": {
+    "name": "Yggdrasil, Rebirth Engine",
+    "status": "legit"
+  },
+  "yidaro, wandering monster": {
+    "name": "Yidaro, Wandering Monster",
+    "reason": "shuffle op, not dispatched.",
+    "status": "deferred"
+  },
+  "zareth san, the trickster": {
+    "name": "Zareth San, the Trickster",
+    "reason": "put_into_battlefield op, not dispatched.",
+    "status": "deferred"
   },
   "zuko, conflicted": {
     "name": "Zuko, Conflicted",
