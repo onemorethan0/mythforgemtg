@@ -64,6 +64,10 @@
     "name": "Biogenic Ooze",
     "status": "legit"
   },
+  "bitter chill": {
+    "name": "Bitter Chill",
+    "status": "fixed"
+  },
   "black mage's rod": {
     "name": "Black Mage's Rod",
     "status": "fixed"
@@ -132,6 +136,10 @@
   "chaos moon": {
     "name": "Chaos Moon",
     "status": "legit"
+  },
+  "charmed sleep": {
+    "name": "Charmed Sleep",
+    "status": "fixed"
   },
   "charnel troll": {
     "name": "Charnel Troll",
@@ -237,6 +245,10 @@
     "name": "Excalibur, Sword of Eden",
     "status": "fixed"
   },
+  "expert-level safe": {
+    "name": "Expert-Level Safe",
+    "status": "legit"
+  },
   "exuberant firestoker": {
     "name": "Exuberant Firestoker",
     "status": "fixed"
@@ -249,6 +261,10 @@
     "name": "Faerie Mastermind",
     "status": "legit"
   },
+  "fatal attraction": {
+    "name": "Fatal Attraction",
+    "status": "fixed"
+  },
   "fathom feeder": {
     "name": "Fathom Feeder",
     "status": "legit"
@@ -256,6 +272,10 @@
   "fire lord ozai": {
     "name": "Fire Lord Ozai",
     "status": "legit"
+  },
+  "fire whip": {
+    "name": "Fire Whip",
+    "status": "fixed"
   },
   "fireforger's puzzleknot": {
     "name": "Fireforger's Puzzleknot",
@@ -389,6 +409,10 @@
     "name": "Kytheon's Irregulars",
     "status": "fixed"
   },
+  "lantern of the lost": {
+    "name": "Lantern of the Lost",
+    "status": "legit"
+  },
   "leader's talent": {
     "name": "Leader's Talent",
     "note": "ability[0]'s 'whenever you attack' counter target is modeled as count:'all' (every creature you control), but the real text says 'target attacking creature' -- singular, chosen. Fixed the two duplicated Level-2/3 activated-ability effects this session but left this scope error alone; a chosen single target vs. an unconditional mass effect is a much bigger swing than the usual decline-vs-fabricate call and deserves its own look.",
@@ -414,21 +438,53 @@
     "name": "Merfolk Pupil",
     "status": "legit"
   },
+  "metalspinner's puzzleknot": {
+    "name": "Metalspinner's Puzzleknot",
+    "status": "legit"
+  },
+  "midnight clock": {
+    "name": "Midnight Clock",
+    "status": "legit"
+  },
+  "mimic vat": {
+    "name": "Mimic Vat",
+    "status": "fixed"
+  },
+  "minion of leshrac": {
+    "name": "Minion of Leshrac",
+    "status": "fixed"
+  },
   "mizzium tank": {
     "name": "Mizzium Tank",
     "status": "legit"
+  },
+  "mobilizer mech": {
+    "name": "Mobilizer Mech",
+    "status": "fixed"
   },
   "molten-core maestro": {
     "name": "Molten-Core Maestro",
     "status": "legit"
   },
+  "necropotence": {
+    "name": "Necropotence",
+    "status": "fixed"
+  },
   "neheb, dreadhorde champion": {
     "name": "Neheb, Dreadhorde Champion",
     "status": "legit"
   },
+  "nuka-cola vending machine": {
+    "name": "Nuka-Cola Vending Machine",
+    "status": "legit"
+  },
+  "oko, the ringleader": {
+    "name": "Oko, the Ringleader",
+    "status": "fixed"
+  },
   "old-growth troll": {
     "name": "Old-Growth Troll",
-    "reason": "death trigger fabricates return_to_hand/gain_control/add_counter/add_mana with zero oracle basis, but none of those ops are in profile._death_from's 5-op dispatch set, so currently inert; needs 'becomes an Aura enchanting a land, land gains 2 granted abilities' modeling this schema doesn't have.",
+    "reason": "fabricated add_counter(counter_type:\"aura\") removed this session, but the death trigger still fabricates return_to_hand/gain_control with zero oracle basis, and none of it can correctly represent 'returns as an Aura enchanting a Forest, which gains two granted abilities' -- this schema has no continuous-effect/granted-ability-on-another-permanent representation. Needs real modeling work, not a hand-edit.",
     "status": "deferred"
   },
   "omnath, locus of all": {
@@ -438,6 +494,14 @@
   "omnath, locus of creation": {
     "name": "Omnath, Locus of Creation",
     "status": "legit"
+  },
+  "opal acrolith": {
+    "name": "Opal Acrolith",
+    "status": "legit"
+  },
+  "otherworldly escort": {
+    "name": "Otherworldly Escort",
+    "status": "fixed"
   },
   "overabundance": {
     "name": "Overabundance",
@@ -451,13 +515,73 @@
     "name": "Pariah's Shield",
     "status": "fixed"
   },
+  "possibility technician": {
+    "name": "Possibility Technician",
+    "status": "legit"
+  },
+  "preston garvey, minuteman": {
+    "name": "Preston Garvey, Minuteman",
+    "status": "fixed"
+  },
+  "proficient pyrodancer": {
+    "name": "Proficient Pyrodancer",
+    "status": "legit"
+  },
   "rakdos, the muscle": {
     "name": "Rakdos, the Muscle",
     "status": "legit"
   },
+  "recantation": {
+    "name": "Recantation",
+    "status": "fixed"
+  },
+  "ring of evos isle": {
+    "name": "Ring of Evos Isle",
+    "status": "fixed"
+  },
+  "ringing strike mastery": {
+    "name": "Ringing Strike Mastery",
+    "status": "fixed"
+  },
   "rogue class": {
     "name": "Rogue Class",
     "status": "legit"
+  },
+  "rumbling crescendo": {
+    "name": "Rumbling Crescendo",
+    "status": "fixed"
+  },
+  "sauron, the lidless eye": {
+    "name": "Sauron, the Lidless Eye",
+    "status": "fixed"
+  },
+  "shelob, dread weaver": {
+    "name": "Shelob, Dread Weaver",
+    "status": "fixed"
+  },
+  "sleep magic": {
+    "name": "Sleep Magic",
+    "status": "fixed"
+  },
+  "slogurk, the overslime": {
+    "name": "Slogurk, the Overslime",
+    "status": "legit"
+  },
+  "solitude": {
+    "name": "Solitude",
+    "status": "legit"
+  },
+  "soul-guide lantern": {
+    "name": "Soul-Guide Lantern",
+    "status": "legit"
+  },
+  "spare supplies": {
+    "name": "Spare Supplies",
+    "status": "legit"
+  },
+  "super speed": {
+    "name": "Super Speed",
+    "status": "fixed"
   },
   "sword of the squeak": {
     "name": "Sword of the Squeak",
