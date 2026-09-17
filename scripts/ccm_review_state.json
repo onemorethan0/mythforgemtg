@@ -1,0 +1,335 @@
+{
+  "aerid konstrari": {
+    "name": "Aerid Konstrari",
+    "status": "legit"
+  },
+  "arcane artisan": {
+    "name": "Arcane Artisan",
+    "status": "legit"
+  },
+  "arni slays the troll": {
+    "name": "Arni Slays the Troll",
+    "status": "legit"
+  },
+  "ashling flame dancer": {
+    "name": "Ashling Flame Dancer",
+    "status": "legit"
+  },
+  "auxiliary boosters": {
+    "name": "Auxiliary Boosters",
+    "status": "legit"
+  },
+  "aven fateshaper": {
+    "name": "Aven Fateshaper",
+    "status": "legit"
+  },
+  "baaallerina": {
+    "name": "Baaallerina",
+    "status": "legit"
+  },
+  "bag of holding": {
+    "name": "Bag of Holding",
+    "status": "fixed"
+  },
+  "barbflare gremlin": {
+    "name": "Barbflare Gremlin",
+    "reason": "fabricated 'tap' effect with no oracle basis on a tap_for_mana replacement trigger; tap_for_mana isn't executed so currently inert.",
+    "status": "deferred"
+  },
+  "betrothed of fire": {
+    "name": "Betrothed of Fire",
+    "status": "fixed"
+  },
+  "biogenic ooze": {
+    "name": "Biogenic Ooze",
+    "status": "legit"
+  },
+  "bomb squad": {
+    "name": "Bomb Squad",
+    "status": "legit"
+  },
+  "boros garrison": {
+    "name": "Boros Garrison",
+    "status": "fixed"
+  },
+  "bounty of the luxa": {
+    "name": "Bounty of the Luxa",
+    "status": "legit"
+  },
+  "bramble wurm": {
+    "name": "Bramble Wurm",
+    "status": "legit"
+  },
+  "brash taunter": {
+    "name": "Brash Taunter",
+    "status": "fixed"
+  },
+  "bronzebeak foragers": {
+    "name": "Bronzebeak Foragers",
+    "status": "legit"
+  },
+  "broodmate tyrant": {
+    "name": "Broodmate Tyrant",
+    "reason": "Encore keyword has no schema representation (N copies, tapped/attacking/sac at end step) -- create_token via Encore is a different structural gap, not a misattachment.",
+    "status": "deferred"
+  },
+  "bullseye death-dealer": {
+    "name": "Bullseye Death-Dealer",
+    "status": "legit"
+  },
+  "callous oppressor": {
+    "name": "Callous Oppressor",
+    "status": "legit"
+  },
+  "carnival of souls": {
+    "name": "Carnival of Souls",
+    "status": "legit"
+  },
+  "cavern harpy": {
+    "name": "Cavern Harpy",
+    "status": "legit"
+  },
+  "chaos moon": {
+    "name": "Chaos Moon",
+    "status": "legit"
+  },
+  "cheering crowd": {
+    "name": "Cheering Crowd",
+    "status": "legit"
+  },
+  "cleric class": {
+    "name": "Cleric Class",
+    "status": "fixed"
+  },
+  "coalition relic": {
+    "name": "Coalition Relic",
+    "status": "legit"
+  },
+  "cogworker's puzzleknot": {
+    "name": "Cogworker's Puzzleknot",
+    "status": "legit"
+  },
+  "colossal plow": {
+    "name": "Colossal Plow",
+    "status": "legit"
+  },
+  "constrictor sage": {
+    "name": "Constrictor Sage",
+    "status": "legit"
+  },
+  "coveted falcon": {
+    "name": "Coveted Falcon",
+    "status": "legit"
+  },
+  "crime novelist": {
+    "name": "Crime Novelist",
+    "status": "legit"
+  },
+  "cytoplast root-kin": {
+    "name": "Cytoplast Root-Kin",
+    "status": "fixed"
+  },
+  "darwin, adaptive mutant": {
+    "name": "Darwin, Adaptive Mutant",
+    "status": "legit"
+  },
+  "davvol, evincar of rath": {
+    "name": "Davvol, Evincar of Rath",
+    "status": "legit"
+  },
+  "deathrender": {
+    "name": "Deathrender",
+    "status": "fixed"
+  },
+  "defenders of humanity": {
+    "name": "Defenders of Humanity",
+    "status": "legit"
+  },
+  "drowner of truth // drowned jungle": {
+    "name": "Drowner of Truth // Drowned Jungle",
+    "status": "fixed"
+  },
+  "dueling coach": {
+    "name": "Dueling Coach",
+    "status": "legit"
+  },
+  "dwarven shortsword": {
+    "name": "Dwarven Shortsword",
+    "status": "legit"
+  },
+  "electric eel": {
+    "name": "Electric Eel",
+    "status": "legit"
+  },
+  "electric seaweed": {
+    "name": "Electric Seaweed",
+    "status": "legit"
+  },
+  "emrakul, the exigent doom": {
+    "name": "Emrakul, the Exigent Doom",
+    "status": "fixed"
+  },
+  "exuberant firestoker": {
+    "name": "Exuberant Firestoker",
+    "status": "fixed"
+  },
+  "fabrication module": {
+    "name": "Fabrication Module",
+    "status": "fixed"
+  },
+  "fire lord ozai": {
+    "name": "Fire Lord Ozai",
+    "status": "legit"
+  },
+  "fireforger's puzzleknot": {
+    "name": "Fireforger's Puzzleknot",
+    "status": "legit"
+  },
+  "fires of mount doom": {
+    "name": "Fires of Mount Doom",
+    "status": "fixed"
+  },
+  "fleetwheel cruiser": {
+    "name": "Fleetwheel Cruiser",
+    "status": "legit"
+  },
+  "floating shield": {
+    "name": "Floating Shield",
+    "status": "legit"
+  },
+  "fortitude": {
+    "name": "Fortitude",
+    "status": "legit"
+  },
+  "frostwalk bastion": {
+    "name": "Frostwalk Bastion",
+    "status": "fixed"
+  },
+  "galadriel, light of valinor": {
+    "name": "Galadriel, Light of Valinor",
+    "status": "legit"
+  },
+  "gavel of the righteous": {
+    "name": "Gavel of the Righteous",
+    "status": "fixed"
+  },
+  "gelatinous cube": {
+    "name": "Gelatinous Cube",
+    "status": "fixed"
+  },
+  "glaring fleshraker": {
+    "name": "Glaring Fleshraker",
+    "status": "fixed"
+  },
+  "glint hawk idol": {
+    "name": "Glint Hawk Idol",
+    "status": "legit"
+  },
+  "glorious sunrise": {
+    "name": "Glorious Sunrise",
+    "status": "fixed"
+  },
+  "goldwarden's helm": {
+    "name": "Goldwarden's Helm",
+    "status": "legit"
+  },
+  "grimgrin, corpse-born": {
+    "name": "Grimgrin, Corpse-Born",
+    "status": "legit"
+  },
+  "hardened academic": {
+    "name": "Hardened Academic",
+    "status": "fixed"
+  },
+  "hydra disintegrator": {
+    "name": "HYDRA Disintegrator",
+    "status": "fixed"
+  },
+  "implement of examination": {
+    "name": "Implement of Examination",
+    "status": "legit"
+  },
+  "irascible wolverine": {
+    "name": "Irascible Wolverine",
+    "status": "legit"
+  },
+  "jaxis, the troublemaker": {
+    "name": "Jaxis, the Troublemaker",
+    "status": "fixed"
+  },
+  "kiora of fire and ashes": {
+    "name": "Kiora of Fire and Ashes",
+    "status": "legit"
+  },
+  "klothys, god of destiny": {
+    "name": "Klothys, God of Destiny",
+    "status": "legit"
+  },
+  "lotus field": {
+    "name": "Lotus Field",
+    "status": "fixed"
+  },
+  "mizzium tank": {
+    "name": "Mizzium Tank",
+    "status": "legit"
+  },
+  "molten-core maestro": {
+    "name": "Molten-Core Maestro",
+    "status": "legit"
+  },
+  "neheb, dreadhorde champion": {
+    "name": "Neheb, Dreadhorde Champion",
+    "status": "legit"
+  },
+  "old-growth troll": {
+    "name": "Old-Growth Troll",
+    "reason": "death trigger fabricates return_to_hand/gain_control/add_counter/add_mana with zero oracle basis, but none of those ops are in profile._death_from's 5-op dispatch set, so currently inert; needs 'becomes an Aura enchanting a land, land gains 2 granted abilities' modeling this schema doesn't have.",
+    "status": "deferred"
+  },
+  "omnath, locus of all": {
+    "name": "Omnath, Locus of All",
+    "status": "legit"
+  },
+  "omnath, locus of creation": {
+    "name": "Omnath, Locus of Creation",
+    "status": "legit"
+  },
+  "overabundance": {
+    "name": "Overabundance",
+    "status": "legit"
+  },
+  "rakdos, the muscle": {
+    "name": "Rakdos, the Muscle",
+    "status": "legit"
+  },
+  "rogue class": {
+    "name": "Rogue Class",
+    "status": "legit"
+  },
+  "the bath song": {
+    "name": "The Bath Song",
+    "status": "legit"
+  },
+  "the legend of roku // avatar roku": {
+    "name": "The Legend of Roku // Avatar Roku",
+    "reason": "saga chapters I and II merged into one ability object, chapter III (transform) missing entirely; saga_chapter event isn't in sim/tier2._EVENT_TRIGGERS so currently inert.",
+    "status": "deferred"
+  },
+  "urabrask, the great work": {
+    "name": "Urabrask, the Great Work",
+    "status": "legit"
+  },
+  "winter's night": {
+    "name": "Winter's Night",
+    "reason": "same tap_for_mana shape as Barbflare Gremlin, currently inert.",
+    "status": "deferred"
+  },
+  "wizard class": {
+    "name": "Wizard Class",
+    "status": "fixed"
+  },
+  "zuko, conflicted": {
+    "name": "Zuko, Conflicted",
+    "status": "legit"
+  }
+}
