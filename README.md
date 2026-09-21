@@ -210,7 +210,7 @@ says a number is unavailable rather than substituting a second, weaker guess.
 
 > ⚠️ **The engine's ~32k compiled card semantics are NOT bundled in this repo — get them with
 > `python download-ccm.py`.** That store is still training nightly (Tue–Fri) and the download is
-> a **beta**, currently 32% on the latest compiler prompt; re-run the downloader occasionally for
+> a **beta**, currently 99% on the latest compiler prompt; re-run the downloader occasionally for
 > a fresher copy. Without it the engine runs on Oracle-text fallbacks, at reduced fidelity — the
 > bracket estimate itself doesn't need it at all. See **[docs/ENGINE_DATA.md](docs/ENGINE_DATA.md)**
 > for exactly what the download contains, its license (CC BY-NC 4.0), and how to build your own.

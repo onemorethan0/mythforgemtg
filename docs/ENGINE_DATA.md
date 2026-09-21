@@ -83,9 +83,9 @@ coverage. After downloading, the script prints that manifest, including `status`
 snapshot compiled under the *current* compiler prompt version versus an older one. That number
 matters more than the raw card count — an older-prompt card can carry error classes (misread
 triggers, wrong costs, phantom targets) that a later prompt revision fixed but hasn't
-re-compiled yet. **As of this snapshot: 31,703 cards compiled, 32.2% on the current prompt
-(v11).** It's still strictly better than rung-1 fallback for every card it covers — it's just
-not finished, and the manifest says so rather than hiding it.
+re-compiled yet. **As of this snapshot (2026-09-21): 31,906 cards compiled, 99.2% on the
+current prompt (v11), 260 quarantined.** It's still strictly better than rung-1 fallback for
+every card it covers — it's just not finished, and the manifest says so rather than hiding it.
 
 The compiler runs nightly and this number will climb; there's no notification when it does,
 so re-run `download-ccm.py` occasionally (it asks before overwriting an existing store) rather
