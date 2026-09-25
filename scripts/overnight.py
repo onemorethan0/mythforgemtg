@@ -239,22 +239,17 @@ def _archive_gauntlet(tag: str) -> Path | None:
     return dest
 
 
-# The Windows scheduled task ("MythGauntlet Overnight Training") has a hard
-# ExecutionTimeLimit of 14h — keep this in sync if that ever changes. `run(timeout=...)`
-# uses it to bound Phase 7 (the only phase that can run long enough to matter) so the
-# night degrades to "ISMCTS skipped, ran out of time" instead of a silent no-report
-# night when Task Scheduler's own kill lands (2026-09-04).
-_SCHEDULED_TASK_HARD_LIMIT_HOURS = 14.0
+# Phase 7's ISMCTS half is bounded by --max-hours, NOT a second hand-tracked constant
+# (fixed 2026-09-24). It used to be bounded by a SEPARATE `_SCHEDULED_TASK_HARD_LIMIT_HOURS
+# = 14.0`, restated by hand to "match" the Windows scheduled task's ExecutionTimeLimit —
+# the exact "constant restated instead of read from source" shape this repo has been bitten
+# by repeatedly (THEME_PATTERNS/theme_match.THEMES, _QUALITY_KEYS, ...). It drifted: the
+# user's actual overnight window is 2am-noon (10h, matching --max-hours' own default), but
+# the restated constant said 14h, so a Friday run was free to (and did, 2026-09-18) run past
+# noon into the afternoon before its own tail steps even started. There is now exactly one
+# budget — `deadline` (`started + args.max_hours * 3600`, computed in main()) — and Phase 7's
+# hard_deadline is derived from it, not tracked separately.
 _REPORT_TAIL_MARGIN_HOURS = 0.5  # ccm-status + ccm-health + write_report's own pytest run
-
-# Weekday the weekly agent-contrast phase runs on (0=Mon). Friday, not Sunday: the Windows
-# scheduled task ("MythGauntlet Overnight Training") only fires Tue-Fri (DaysOfWeek bitmask
-# 60 = Tue|Wed|Thu|Fri), so a Sunday target was permanently unreachable and this phase never
-# ran (2026-09-01). Friday->Saturday-morning is the least workday-disruptive of the days that
-# actually run.
-AGENT_CONTRAST_WEEKDAY = 4
-_WEEKDAY_NAMES = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                  "Saturday", "Sunday")
 
 REDUCED_SEED = "778"  # distinct from the full-gauntlet seed so caches don't collide
 
@@ -608,9 +603,12 @@ def main() -> int:
     parser.add_argument("--chunks", type=int, default=4)
     parser.add_argument(
         "--agent-contrast", choices=("auto", "always", "never"), default="auto",
-        help="greedy-vs-ISMCTS phase. auto (default) = weekly, and only if the night is "
-             "still inside --max-hours; always = force it; never = skip. It was nightly "
-             "until its matchups tripled with the corpus and it stopped fitting in a night",
+        help="greedy-vs-ISMCTS phase. auto (default) = every night, time-boxed to whatever "
+             "is left of --max-hours (was weekly-only 2026-07-30 to 2026-09-24 while its "
+             "own time budget was misaligned with the scheduled task's; --cache makes a "
+             "capped attempt resume for free rather than lose progress, so nightly now "
+             "makes steady headway instead of an all-or-nothing weekly gamble); "
+             "always = force it even past --max-hours; never = skip",
     )
     parser.add_argument(
         "--mcts-iters", type=int, default=120,
@@ -651,37 +649,36 @@ def main() -> int:
 
     # Phase-7 re-basing: two reduced-scope gauntlets at the SAME scope/seed, differing ONLY in
     # the agent. The morning question was whether a stronger agent moves the bracket picture
-    # (esp. the cEDH/B5 inversion).
+    # (esp. the cEDH/B5 inversion) — and per docs/engine/STATUS.md's 2026-07-31 correction,
+    # that question was NOT settled the way the original weekly-only comment here claimed:
+    # agent strength turned out to matter "far more than previously concluded" (ISMCTS-120
+    # roughly doubled measured cEDH win rates over greedy in a re-test), so this is live,
+    # useful work, not a check being run out of habit.
     #
-    # NOT NIGHTLY ANY MORE (2026-07-30). Matchups scale with the corpus, and the corpus tripled
-    # when the B1-3 anchors were harvested: 389 -> 449 -> 1066. At 1066 the ISMCTS half ran
-    # 13+ HOURS and still hadn't finished when the 7/29 run died, so that night produced no
+    # WAS WEEKLY-ONLY 2026-07-30 to 2026-09-24. Matchups scale with the corpus, and the corpus
+    # tripled when the B1-3 anchors were harvested: 389 -> 449 -> 1066. At 1066 the ISMCTS half
+    # ran 13+ HOURS and still hadn't finished when the 7/29 run died, so that night produced no
     # report at all and the 7/30 run was refused because the previous instance was still
-    # registered as running. Two nights lost to a phase whose headline question is already
-    # answered (the inversion is engine fidelity, not agent strength — docs/engine/STATUS.md).
-    #
-    # So it runs WEEKLY by default and only if the night is still within budget. The compile
-    # workstream and the full greedy gauntlet — the parts that actually feed calibration — now
-    # always get to finish and report.
+    # registered as running. Two nights lost — but the actual cause was `hard_deadline` below
+    # being tracked from a separately-restated 14h constant instead of the real --max-hours
+    # budget (fixed 2026-09-24, see the comment above `_REPORT_TAIL_MARGIN_HOURS`), not that
+    # the phase is inherently too big for a night. With that fixed and `--cache` already making
+    # a killed attempt resume rather than restart, nightly now costs at most one capped attempt
+    # (never orphans processes past `run()`'s own taskkill /T, 2026-09-04) and banks whatever
+    # matchups it completes toward the next night instead of losing them to a weekly reset.
     if args.agent_contrast == "never":
         _skip_contrast("disabled (--agent-contrast never)")
     elif time.time() > deadline:
         _skip_contrast(f"past the {args.max_hours}h budget "
                        "(compile + gauntlet results are already written)")
-    elif args.agent_contrast == "auto" and datetime.now().weekday() != AGENT_CONTRAST_WEEKDAY:
-        _skip_contrast(f"runs weekly on {_WEEKDAY_NAMES[AGENT_CONTRAST_WEEKDAY]} "
-                       "(--agent-contrast always to force)")
     else:
         cores = max(1, (os.cpu_count() or 4) - 2)
-        hard_deadline = (
-            started + _SCHEDULED_TASK_HARD_LIMIT_HOURS * 3600
-            - _REPORT_TAIL_MARGIN_HOURS * 3600
-        )
+        hard_deadline = deadline - _REPORT_TAIL_MARGIN_HOURS * 3600
         budget = hard_deadline - time.time()
         if budget < 600:
             _skip_contrast(
-                f"only {budget / 60:.0f} min left before the scheduled task's "
-                f"{_SCHEDULED_TASK_HARD_LIMIT_HOURS:.0f}h hard limit - not worth starting"
+                f"only {budget / 60:.0f} min left before the {args.max_hours:.0f}h "
+                "overnight budget - not worth starting"
             )
         else:
             rc = run(
@@ -706,8 +703,9 @@ def main() -> int:
                     if mcts_rc == -2:
                         _skip_contrast(
                             f"ISMCTS half exceeded its {remaining / 3600:.1f}h budget and was "
-                            "killed - the known corpus-scale problem (see the NOT NIGHTLY "
-                            "comment above), not a fresh bug"
+                            "killed - the known corpus-scale problem (see the Phase-7 "
+                            "comment above); --cache means tonight's partial progress "
+                            "carries over rather than being lost"
                         )
 
     run("ccm-status", "ccm-status")
