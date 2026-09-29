@@ -8,6 +8,7 @@ these gates dispose.
 
 from __future__ import annotations
 
+import dataclasses
 import re
 
 from mythgauntlet.model.card import Card
@@ -538,6 +539,20 @@ def normalize_colors(colors: str) -> set[str]:
 
 _ADD_TEXT_RE = re.compile(r"\badd [^.]*\{")
 
+# Text inside double quotes is an ability the card GIVES to a token or another object
+# ('create a 0/1 Eldrazi Spawn token with "Sacrifice this token: Add {C}."', 'Foods you
+# control have "{T}: Add {G}."', 'create a token with "When this leaves the battlefield,
+# it deals 2 damage to any target."'). The card itself does not add mana / burn, so the
+# OMISSION checks (text says X, CCM has no X) must not demand the effect -- the CCM
+# vocabulary cannot express a granted ability's inner effect, and forcing one in would be
+# a fabrication (the card would produce mana it does not). Omitting it is an honest
+# under-count; quarantining the whole card down to "no CCM at all" was strictly worse.
+_QUOTED_SPAN_RE = re.compile(r'"[^"]*"')
+
+
+def _without_quoted_abilities(text: str) -> str:
+    return _QUOTED_SPAN_RE.sub("", text or "")
+
 # "Reveal cards from the top of your library UNTIL you reveal a [X]" (Abundant Harvest,
 # Clifftop Lookout, Hermit Druid, Demonic Consultation) terminates on a guaranteed match
 # (or an exhausted library) -- functionally a real search, per the compiler prompt's own
@@ -612,6 +627,12 @@ _KEYWORD_IMPLIED_OPS: tuple[tuple[re.Pattern[str], str], ...] = (
     # check because "draw" only exists inside the reminder parenthetical this check
     # strips. Same shape as cycling above; the discard/create_token half is licensed too
     # since recruit's own definition states both in the same breath.
+    # "Connive (Draw a card, then discard a card. If you discarded a nonland card, put a
+    # +1/+1 counter on this creature.)" -- Ledger Shredder, Prowler, Baron Strucker: modeled
+    # as draw (+discard), then failed because "draw" exists only in the stripped reminder.
+    (re.compile(r"\bconnives?\b", re.I), "draw"),
+    (re.compile(r"\bconnives?\b", re.I), "discard"),
+    (re.compile(r"\bconnives?\b", re.I), "add_counter"),
     (re.compile(r"\brecruit\b", re.I), "draw"),
     (re.compile(r"\brecruit\b", re.I), "discard"),
     (re.compile(r"\brecruit\b", re.I), "create_token"),
@@ -835,8 +856,13 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     conditions are the compiler's job to get right, ours to spot-audit.
     """
     errors: list[str] = []
-    fx = tags.analyze(card)
+    # Omission checks (heuristic sees an effect, CCM lacks it) read the card with any
+    # quoted granted/token ability removed; hallucination checks keep the full `text` so a
+    # CCM that does model a quoted effect is never failed for it.
+    own_card = dataclasses.replace(card, oracle_text=_without_quoted_abilities(card.oracle_text))
+    fx = tags.analyze(own_card)
     text = re.sub(r"\([^)]*\)", "", card.oracle_text or "").casefold()
+    own_text = re.sub(r"\([^)]*\)", "", own_card.oracle_text or "").casefold()
     licensed = _keyword_licensed_ops(card.oracle_text)
 
     ops_present: set[str] = set()
@@ -972,7 +998,7 @@ def cross_check(doc: dict, card: Card) -> list[str]:
             "the vocabulary CAN express and omit the rest rather than modeling a "
             "wrong-zone effect"
         )
-    if not card.is_land and _ADD_TEXT_RE.search(text) and "add_mana" not in ops_present:
+    if not card.is_land and _ADD_TEXT_RE.search(own_text) and "add_mana" not in ops_present:
         errors.append("oracle text adds mana but CCM has no add_mana")
     # Typed lands (shocks/duals) carry their mana ability as reminder text or via land
     # types, so "add" may be absent from stripped text; produced_mana is the referee.

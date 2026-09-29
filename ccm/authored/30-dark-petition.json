@@ -1,0 +1,27 @@
+{
+  "card": {
+    "name": "Dark Petition",
+    "mana_cost": "{3}{B}{B}",
+    "type_line": "Sorcery",
+    "oracle_text": "Search your library for a card, put that card into your hand, then shuffle.\nSpell mastery — If there are two or more instant and/or sorcery cards in your graveyard, add {B}{B}{B}."
+  },
+  "ccm": {
+    "name": "Dark Petition",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{3}{B}{B}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [
+          {"op": "search_library", "what": {"type": "card"}, "count": 1, "to": "hand", "shuffle": true}
+        ]
+      },
+      {
+        "kind": "static",
+        "note": "Spell mastery (2+ instants/sorceries in graveyard) adds {B}{B}{B} on resolution. NOT modelled: the sim ignores `condition`, so an add_mana here would give BBB unconditionally (a fabrication)."
+      }
+    ]
+  }
+}

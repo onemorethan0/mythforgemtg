@@ -114,3 +114,25 @@ def test_gauntlet_parser_accepts_jobs_and_cache():
 
     args = build_parser().parse_args(["gauntlet", "--jobs", "8", "--cache", "--agent", "mcts:100"])
     assert args.jobs == 8 and args.cache is True and args.agent == "mcts:100"
+
+
+def test_deck_hash_is_deterministic_and_sensitive_to_recompiled_semantics(make_card):
+    """A card re-compiled in place (same name, same count of semantics) must change the deck's
+    cache identity; rebuilding the same deck must not."""
+    import dataclasses
+
+    from mythgauntlet.ratings.orchestrator import _deck_content_hash
+
+    forest = make_card("Forest", type_line="Basic Land - Forest",
+                       produced_mana=("G",), color_identity=("G",))
+    bear = make_card("Bear", mana_cost="{1}{G}", type_line="Creature - Beast",
+                     color_identity=("G",))
+    bear.power, bear.toughness = "2", "2"
+    build = lambda: prepare_deck("d", [(forest, 24), (bear, 36)], None, None)  # noqa: E731
+    assert _deck_content_hash(build()) == _deck_content_hash(build())
+
+    deck = build()
+    idx = next(i for i, gc in enumerate(deck.cards) if gc.name == "Bear")
+    deck.cards[idx] = dataclasses.replace(
+        deck.cards[idx], resolve_abilities=({"kind": "spell_effect", "effects": []},))
+    assert _deck_content_hash(deck) != _deck_content_hash(build())

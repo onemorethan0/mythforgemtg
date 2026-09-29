@@ -629,7 +629,12 @@ def main() -> int:
         gauntlet_args = ["--opponents", "2", "--games", "8", "--seed", "777"]
     else:
         chunks = [args.chunk_size] * args.chunks
-        gauntlet_args = ["--opponents", "61", "--games", "40", "--seed", "777"]
+        # --jobs/--cache: this ran serial and uncached (74 min/night even when nothing had
+        # changed). Results are identical to serial (test_parallel_matches_serial) and the
+        # cache key folds in each deck's per-card CCM behaviour, so a re-compiled card
+        # re-rates exactly the decks that play it and nothing else.
+        gauntlet_args = ["--opponents", "61", "--games", "40", "--seed", "777",
+                         "--jobs", str(max(1, (os.cpu_count() or 4) - 2)), "--cache"]
 
     cpu = threading.Thread(target=cpu_worker, args=(args.smoke, gauntlet_args))
     cpu.start()

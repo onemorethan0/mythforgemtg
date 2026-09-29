@@ -68,11 +68,19 @@ def _deck_content_hash(pd: PreparedDeck | None) -> str:
     if pd is None:
         return "unknown"
     counts: dict[str, int] = {}
-    for gc in pd.cards:
+    semantics: dict[str, str] = {}
+    for gc in [*pd.cards, *([pd.commander] if pd.commander else [])]:
         counts[gc.name] = counts.get(gc.name, 0) + 1
+        # The CCM-derived behaviour of each card is part of the deck's identity: the
+        # engine_tag (a semantics COUNT) cannot see a card being RE-compiled in place, and
+        # a stale hit would silently rate a deck with behaviour it no longer has.
+        semantics.setdefault(gc.name, repr((gc.resolve_abilities, gc.trigger_abilities,
+                                            gc.profile)))
     commander_name = pd.commander.name if pd.commander else ""
     blob = "|".join(f"{name}x{n}" for name, n in sorted(counts.items()))
     blob += f"||cmdr:{commander_name}"
+    blob += "||sem:" + hashlib.sha256(
+        "|".join(f"{k}={v}" for k, v in sorted(semantics.items())).encode()).hexdigest()
     return hashlib.sha256(blob.encode()).hexdigest()
 
 

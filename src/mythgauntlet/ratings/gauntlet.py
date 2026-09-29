@@ -12,6 +12,7 @@ and ratings from different engine/agent versions must never be mixed (docs/LEARN
 
 from __future__ import annotations
 
+import hashlib
 import math
 from dataclasses import dataclass
 
@@ -30,21 +31,41 @@ class PairResult:
     draws: int = 0
 
 
+def pair_hash(a: str, b: str, seed: int) -> int:
+    """Order-independent, position-independent 32-bit hash of a matchup.
+
+    Both the schedule and each job's game seed derive from this rather than from a deck's index
+    in the sorted name list, so adding decks to the corpus (the nightly fetch does) leaves every
+    existing matchup, its seed and therefore its `--cache` entry untouched."""
+    lo, hi = (a, b) if a < b else (b, a)
+    digest = hashlib.sha1(f"{seed}|{lo}|{hi}".encode("utf-8")).digest()
+    return int.from_bytes(digest[:4], "big")
+
+
+def _nomination_hash(deck: str, foe: str, seed: int) -> int:
+    # directional (unlike pair_hash) so the two sides' nominations are independent draws
+    return int.from_bytes(hashlib.sha1(f"{seed}>{deck}>{foe}".encode("utf-8")).digest()[:4], "big")
+
+
 def sample_pairs(names: list[str], opponents_each: int, seed: int) -> list[tuple[str, str]]:
-    """Deterministic sparse matchup schedule: ~opponents_each distinct foes per deck."""
-    rng = SeededRng(seed)
-    pairs: set[tuple[str, str]] = set()
+    """Deterministic sparse matchup schedule of ~`opponents_each` foes per deck on average.
+
+    Each deck nominates its ceil(k/2) lowest-hash foes and a pair plays if EITHER side
+    nominated it, so the average degree is ~k (same cost as the old schedule) and every deck
+    faces at least ceil(k/2).
+
+    Stable under corpus growth: a new deck only displaces an existing deck's foes with
+    probability ~k/n, unlike drawing from a positional RNG stream, which reshuffled the whole
+    schedule (and every seed) whenever one deck was added."""
     n = len(names)
     if n < 2:
         return []
-    for i, name in enumerate(names):
-        others = names[:i] + names[i + 1 :]
-        for _ in range(min(opponents_each, n - 1) * 2):  # oversample; dedupe below
-            opponent = rng.choice(others)
-            pair = (name, opponent) if name < opponent else (opponent, name)
-            pairs.add(pair)
-            if sum(1 for p in pairs if name in p) >= opponents_each:
-                break
+    k = min(max(1, -(-opponents_each // 2)), n - 1)
+    pairs: set[tuple[str, str]] = set()
+    for name in names:
+        foes = sorted((o for o in names if o != name), key=lambda o: (_nomination_hash(name, o, seed), o))
+        for opponent in foes[:k]:
+            pairs.add((name, opponent) if name < opponent else (opponent, name))
     return sorted(pairs)
 
 

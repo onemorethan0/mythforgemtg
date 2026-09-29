@@ -1189,3 +1189,56 @@ def test_extra_turn_with_no_textual_support_at_all_keeps_the_generic_message():
 def test_a_genuine_extra_turn_card_is_not_flagged():
     card = _extra_turn_card("Take an extra turn after this one.")
     assert _extra_turn_errs(card) == []
+
+
+# --- quoted (granted / token) abilities are not the card's own effects ------------------
+
+
+def _card(name, cost, type_line, text):
+    from mythgauntlet.model.card import Card
+    return Card(name=name, mana_cost_str=cost, type_line=type_line, oracle_text=text)
+
+
+def _doc(types, abilities, cost=""):
+    return {"name": "T", "ccm_version": 1, "cost": {"mana": cost}, "types": types,
+            "abilities": abilities}
+
+
+def test_spawn_token_mana_is_not_the_cards_mana():
+    card = _card("Awakening Zone", "{2}{G}", "Enchantment",
+                 'At the beginning of your upkeep, you may create a 0/1 colorless Eldrazi '
+                 'Spawn creature token. It has "Sacrifice this token: Add {C}."')
+    doc = _doc(["enchantment"], [{"kind": "triggered", "trigger": {"event": "upkeep"},
+                                  "effects": [{"op": "create_token", "count": 1,
+                                               "power": 0, "toughness": 1}]}], "{2}{G}")
+    assert not any("adds mana" in e for e in cross_check(doc, card))
+
+
+def test_unquoted_mana_is_still_demanded():
+    card = _card("Dark Petition", "{3}{B}{B}", "Sorcery",
+                 "Search your library for a card, put that card into your hand, then shuffle.\n"
+                 "Spell mastery — If there are two or more instant and/or sorcery cards in "
+                 "your graveyard, add {B}{B}{B}.")
+    doc = _doc(["sorcery"], [{"kind": "spell_effect", "effects": [
+        {"op": "search_library", "count": 1, "to": "hand", "shuffle": True}]}], "{3}{B}{B}")
+    assert any("adds mana" in e for e in cross_check(doc, card))
+
+
+def test_quoted_token_damage_is_not_demanded_as_removal():
+    card = _card("Weapons Manufacturing", "{1}{R}", "Enchantment",
+                 'Whenever a nontoken artifact you control enters, create a colorless artifact '
+                 'token named Munitions with "When this token leaves the battlefield, it deals '
+                 '2 damage to any target."')
+    doc = _doc(["enchantment"], [{"kind": "triggered", "trigger": {"event": "other"},
+                                  "effects": [{"op": "create_token", "count": 1}]}], "{1}{R}")
+    assert not any("removal" in e for e in cross_check(doc, card))
+
+
+def test_connive_licenses_draw():
+    card = _card("Ledger Shredder", "{1}{U}", "Creature — Bird Advisor",
+                 "Flying\nWhenever a player casts their second spell each turn, this creature "
+                 "connives. (Draw a card, then discard a card. If you discarded a nonland card, "
+                 "put a +1/+1 counter on this creature.)")
+    doc = _doc(["creature"], [{"kind": "triggered", "trigger": {"event": "cast_spell"},
+                               "effects": [{"op": "draw", "count": 1}]}], "{1}{U}")
+    assert not any("never says draw" in e for e in cross_check(doc, card))

@@ -102,6 +102,19 @@ adds to the ACTIVATING player's own pool, immediately) — using it here would m
 delayed, granted ability as this card producing mana on the spot, the exact "quietly wrong CCM"
 this file's own opening section warns against. Left quarantined.
 
+### `29-aetherflux-reservoir`
+The lifegain trigger is modelled as a flat `gain_life 1` per spell cast; the real card gains 1 life
+per spell cast **this turn** (storm count), so this **under**-counts on multi-spell turns. The
+50-damage ability carries `pay_life: 50`, which the profile deliberately skips (a real cost that
+bounds firing), so the sim never *fires* it -- the card's actual win condition (reach 50 life, then
+kill) is absent. The model compiler could not produce this at all: the 50-damage figure trips the
+lint sanity ceiling (40), which is right for compiled cards and wrong for this one.
+
+### `30-dark-petition`
+Modelled as a plain Demonic Tutor at 5 mana. Spell mastery's `add {B}{B}{B}` is a `static` note
+only: the sim ignores `condition`, so an `add_mana` would grant BBB on *every* cast. Under-counts
+(the card is closer to a free tutor in spell-heavy decks, which is where it is played).
+
 ## Adding one
 
 1. Match the envelope shape: `{"card": {...}, "ccm": {...}}`, `ccm_version` 1, `rung` 3.

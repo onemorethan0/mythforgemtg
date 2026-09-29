@@ -1883,7 +1883,7 @@ def _cmd_ladder(args: argparse.Namespace) -> int:
 
 def _cmd_gauntlet(args: argparse.Namespace) -> int:
     """Sparse round-robin over a deck corpus -> Bradley-Terry ratings (Meta-strength v0)."""
-    from mythgauntlet.ratings.gauntlet import fit_bradley_terry, sample_pairs
+    from mythgauntlet.ratings.gauntlet import fit_bradley_terry, pair_hash, sample_pairs
     from mythgauntlet.sim.tier2 import prepare_deck
 
     _require_positive(games=args.games, turns=args.turns, opponents=args.opponents)
@@ -1933,11 +1933,11 @@ def _cmd_gauntlet(args: argparse.Namespace) -> int:
 
     jobs = [
         Job(a, b, DuelConfig(
-            games=args.games, seed=(args.seed * 1_000_003 + idx) & 0xFFFF_FFFF,
+            games=args.games, seed=pair_hash(a, b, args.seed),
             max_turns=args.turns, start_life=args.life,
             agent_a=agent, agent_b=agent, mcts_iterations=getattr(args, "mcts_iters", 0),
         ))
-        for idx, (a, b) in enumerate(pairs, 1)
+        for a, b in pairs
     ]
     workers = getattr(args, "jobs", 1)
     cache = None

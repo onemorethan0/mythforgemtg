@@ -1,0 +1,31 @@
+{
+  "card": {
+    "name": "Aetherflux Reservoir",
+    "mana_cost": "{4}",
+    "type_line": "Artifact",
+    "oracle_text": "Whenever you cast a spell, you gain 1 life for each spell you've cast this turn.\nPay 50 life: This artifact deals 50 damage to any target."
+  },
+  "ccm": {
+    "name": "Aetherflux Reservoir",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{4}"},
+    "types": ["artifact"],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {"event": "cast_spell"},
+        "effects": [
+          {"op": "gain_life", "amount": 1, "who": "you", "condition": "actually 1 life per spell cast this turn (storm count)"}
+        ]
+      },
+      {
+        "kind": "activated",
+        "cost": {"pay_life": 50},
+        "effects": [
+          {"op": "deal_damage", "amount": 50, "target": {"type": "any", "controller": "any", "count": 1}}
+        ]
+      }
+    ]
+  }
+}

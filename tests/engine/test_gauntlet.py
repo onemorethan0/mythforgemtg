@@ -1,6 +1,6 @@
 """Bradley-Terry fitting and matchup sampling (offline, synthetic results)."""
 
-from mythgauntlet.ratings.gauntlet import PairResult, fit_bradley_terry, sample_pairs
+from mythgauntlet.ratings.gauntlet import PairResult, fit_bradley_terry, pair_hash, sample_pairs
 
 
 def test_transitive_strength_ordering_recovered():
@@ -54,3 +54,18 @@ def test_sample_pairs_small_pools():
     assert sample_pairs(["only"], opponents_each=3, seed=1) == []
     pairs = sample_pairs(["a", "b"], opponents_each=5, seed=1)
     assert pairs == [("a", "b")]
+
+
+def test_sample_pairs_stable_when_decks_are_added():
+    """The nightly fetch adds decks; existing matchups must survive so --cache carries over."""
+    names = [f"deck{i:03d}" for i in range(200)]
+    before = set(sample_pairs(names, opponents_each=6, seed=778))
+    after = set(sample_pairs(names + ["deck999"], opponents_each=6, seed=778))
+    assert len(before - after) <= 0.05 * len(before)
+    assert pair_hash("a", "b", 1) == pair_hash("b", "a", 1)
+
+
+def test_sample_pairs_average_degree_near_requested():
+    names = [f"deck{i:03d}" for i in range(200)]
+    pairs = sample_pairs(names, opponents_each=6, seed=778)
+    assert 4.5 <= 2 * len(pairs) / len(names) <= 7.5
