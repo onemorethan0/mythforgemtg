@@ -1,0 +1,43 @@
+{
+  "card": {
+    "name": "Unlicensed Hearse",
+    "mana_cost": "{2}",
+    "type_line": "Artifact — Vehicle",
+    "oracle_text": "{T}: Exile up to two target cards from a single graveyard.\nUnlicensed Hearse's power and toughness are each equal to the number of cards exiled with it.\nCrew 2"
+  },
+  "ccm": {
+    "cost": {
+      "mana": "{2}"
+    },
+    "types": [
+      "artifact"
+    ],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "exile",
+            "target": {
+              "type": "card",
+              "controller": "any",
+              "count": 2,
+              "zone": "graveyard"
+            },
+            "optional": true
+          }
+        ]
+      },
+      {
+        "kind": "static",
+        "note": "P/T = cards exiled with it; Crew 2. Not modelled: it never attacks/blocks here (an under-count of its body)."
+      }
+    ],
+    "ccm_version": 1,
+    "rung": 3,
+    "name": "Unlicensed Hearse"
+  }
+}

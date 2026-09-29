@@ -115,6 +115,23 @@ Modelled as a plain Demonic Tutor at 5 mana. Spell mastery's `add {B}{B}{B}` is 
 only: the sim ignores `condition`, so an `add_mana` would grant BBB on *every* cast. Under-counts
 (the card is closer to a free tutor in spell-heavy decks, which is where it is played).
 
+### `31-bazaar-of-baghdad`
+Exact: `{T}: draw 2, discard 3`. (The compiler kept modelling it as a mana land.)
+
+### `32-unlicensed-hearse`
+Only the tap-to-exile-from-graveyard ability. The Vehicle body (P/T = cards exiled, Crew 2) is a
+static note: it never attacks or blocks in the sim, an under-count. Graveyard hate is modelled as an
+optional `exile` of up to two cards.
+
+### `33-nirkana-revenant`
+Only `{B}: +1/+1 until end of turn`, with NO `target`, which is how the sim
+recognises a self-pump (`tier2` executes pump only when the target is absent or `self`). The signature Swamp-mana doubling is NOT modelled:
+a `tap_for_mana` trigger can't filter on Swamp, so it would double every land's mana.
+
+### `34-lord-skitters-butcher`
+Modal ETB: only the Rat-token mode. Modelling all three modes as effects would over-count, since the
+player picks ONE.
+
 ## Adding one
 
 1. Match the envelope shape: `{"card": {...}, "ccm": {...}}`, `ccm_version` 1, `rung` 3.

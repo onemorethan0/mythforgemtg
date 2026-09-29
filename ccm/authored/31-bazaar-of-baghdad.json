@@ -1,0 +1,36 @@
+{
+  "card": {
+    "name": "Bazaar of Baghdad",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}: Draw two cards, then discard three cards."
+  },
+  "ccm": {
+    "cost": {},
+    "types": [
+      "land"
+    ],
+    "abilities": [
+      {
+        "kind": "activated",
+        "cost": {
+          "tap": true
+        },
+        "effects": [
+          {
+            "op": "draw",
+            "count": 2
+          },
+          {
+            "op": "discard",
+            "count": 3,
+            "who": "you"
+          }
+        ]
+      }
+    ],
+    "ccm_version": 1,
+    "rung": 3,
+    "name": "Bazaar of Baghdad"
+  }
+}

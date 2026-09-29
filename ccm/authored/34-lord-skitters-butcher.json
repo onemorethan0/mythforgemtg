@@ -1,0 +1,42 @@
+{
+  "card": {
+    "name": "Lord Skitter's Butcher",
+    "mana_cost": "{2}{B}",
+    "type_line": "Creature — Rat Peasant",
+    "oracle_text": "When this creature enters, choose one —\n• Create a 1/1 black Rat creature token with \"This token can't block.\"\n• You may sacrifice another creature. If you do, scry 2, then draw a card.\n• Creatures you control gain menace until end of turn."
+  },
+  "ccm": {
+    "cost": {
+      "mana": "{2}{B}"
+    },
+    "types": [
+      "creature"
+    ],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {
+          "event": "etb"
+        },
+        "effects": [
+          {
+            "op": "create_token",
+            "count": 1,
+            "power": 1,
+            "toughness": 1,
+            "types": [
+              "creature"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "static",
+        "note": "Modal ETB (choose one): only the Rat-token mode is modelled -- summing all three modes would over-count. The 'token can't block' rider is dropped."
+      }
+    ],
+    "ccm_version": 1,
+    "rung": 3,
+    "name": "Lord Skitter's Butcher"
+  }
+}
