@@ -49,6 +49,7 @@ from mythgauntlet.sim.tier2 import (
     _fire_triggers,
     _instant_target,
     _kill,
+    loyalty_ready,
     _Permanent,
     _Player,
     _resolve,
@@ -449,6 +450,7 @@ def _do_turn_start(state: GameState) -> None:
     for c in me.battlefield:
         c.sick = False
         c.tapped = False
+        c.loyalty_used = False
     # CR 103.8a: "In a two-player game, the player who plays first skips the draw step of
     # their first turn." CR 103.8c: "In all other multiplayer games, no player skips the
     # draw step of their first turn." The skip is a TWO-PLAYER rule; applying it in a pod
@@ -674,6 +676,8 @@ def legal_actions(state: GameState) -> list[object]:
                         continue
                     if eff.needs_tap and (perm.tapped or (perm.sick and perm.is_creature)):
                         continue
+                    if not loyalty_ready(perm, eff):
+                        continue
                     actions.append(Activate(perm, eff))
         return actions
     if kind == COUNTER_WINDOW:
@@ -884,6 +888,10 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
             paid += 1
     if eff.needs_tap:
         perm.tapped = True
+    loyalty_delta = getattr(eff, "loyalty_delta", None)
+    if loyalty_delta is not None:
+        perm.loyalty += loyalty_delta  # the cost, paid up front (CR 606.4)
+        perm.loyalty_used = True
     if getattr(eff, "ability", None) is not None:
         # Interpreter-backed: this ability's effects are outside _activated_from's
         # four-op vocabulary but inside the interpreter's thirteen, so it runs through
@@ -916,6 +924,8 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
     me.life += eff.gain_life
     if eff.tokens:
         _spawn_tokens(me, eff.tokens)
+    if loyalty_delta is not None and perm.loyalty <= 0 and perm in me.battlefield:
+        _kill(me, perm, opp)  # 0 loyalty: state-based action (CR 704.5i)
     if getattr(eff, "sacrifice_self", False) and perm in me.battlefield:
         # The cost, paid AFTER the effects here only so self-referencing effects resolve
         # against a live source; a sacrificed permanent is gone either way.

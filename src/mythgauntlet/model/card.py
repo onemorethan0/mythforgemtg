@@ -99,6 +99,7 @@ class Card:
     produced_mana: tuple[str, ...] = ()
     power: str | None = None
     toughness: str | None = None
+    loyalty: str | None = None  # planeswalker starting loyalty as printed ("3", or "X")
     edhrec_rank: int | None = None
     game_changer: bool = False  # WotC Game Changers list, via Scryfall's game_changer flag
     # Scryfall legalities.commander == "legal". Defaults True so a hand-built Card (tests,

@@ -324,6 +324,11 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
         cards_total += 1
         seen_here: set[str] = set()
         card_exec = card_inert = 0
+        pw_kept = (
+            profile.planeswalker_activations(
+                doc.get("abilities") or [], str((env.get("card") or {}).get("oracle_text") or ""))
+            if "planeswalker" in (doc.get("types") or []) else {}
+        )
 
         for ability in doc.get("abilities") or []:
             if not isinstance(ability, dict):
@@ -350,8 +355,13 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
                 # `pump`/`add_counter`/`exile` as inert on hundreds of cards whose
                 # abilities had just been wired to run them.
                 activated_total += 1
-                kept = _activated_effect(
-                    ability, "creature" not in (doc.get("types") or []))
+                if "planeswalker" in (doc.get("types") or []):
+                    # Loyalty abilities are paired to the oracle text's loyalty lines and
+                    # never priced in mana (see profile.planeswalker_activations).
+                    kept = pw_kept.get(id(ability))
+                else:
+                    kept = _activated_effect(
+                        ability, "creature" not in (doc.get("types") or []))
                 if kept is None:
                     path = "dropped"  # nothing runs; every effect below is inert
                 else:

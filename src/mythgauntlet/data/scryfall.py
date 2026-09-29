@@ -98,6 +98,10 @@ def _slim(raw: dict) -> dict | None:
         "produced_mana": raw.get("produced_mana", face.get("produced_mana", [])),
         "power": face.get("power"),
         "toughness": face.get("toughness"),
+        # Starting loyalty of a planeswalker's front face ("3", "5", or "X"/"*" strings).
+        # Additive: an older slim store simply lacks it (readers use .get), and the
+        # weekly refetch fills it in.
+        "loyalty": face.get("loyalty"),
         "edhrec_rank": raw.get("edhrec_rank"),
         "game_changer": bool(raw.get("game_changer", False)),
         # Scryfall's legalities.commander is one of legal/not_legal/restricted/banned.
@@ -215,6 +219,7 @@ def _card_from_slim(rec: dict) -> Card:
         produced_mana=tuple(rec.get("produced_mana") or ()),
         power=rec.get("power"),
         toughness=rec.get("toughness"),
+        loyalty=rec.get("loyalty"),
         edhrec_rank=rec.get("edhrec_rank"),
         game_changer=bool(rec.get("game_changer", False)),
         commander_legal=bool(rec.get("commander_legal", True)),

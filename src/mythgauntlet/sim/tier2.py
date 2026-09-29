@@ -155,6 +155,10 @@ class _Permanent:
     death: DeathEffect | None = None
     triggers: tuple[tuple[str, dict], ...] = ()  # (event, CCM ability) pairs
     counters: int = 0  # +1/+1-style counters currently on this permanent (self-target only, see add_counter)
+    # Planeswalker loyalty. `loyalty_used` = a loyalty ability already activated this turn
+    # (CR 606.3: one per planeswalker per turn); reset at its controller's turn start.
+    loyalty: int = 0
+    loyalty_used: bool = False
     # P/T granted "until end of turn", already ADDED into power/toughness above and
     # subtracted back out by `expire_until_end_of_turn` at the cleanup step. Kept as a
     # running delta rather than a list of effects because this engine has no layer system
@@ -460,6 +464,22 @@ def _pick_attach_target(me: _Player, grant_keywords: frozenset[str]) -> _Permane
         already_has_all = grant_keywords <= (c.keywords | c.granted_keywords)
         return (not already_has_all, c.power)
     return max(creatures, key=_score)
+
+
+def _starting_loyalty(card: Card) -> int:
+    """Printed starting loyalty, 0 for a non-planeswalker or a non-numeric ("X") value."""
+    raw = getattr(card, "loyalty", None)
+    return int(raw) if isinstance(raw, str) and raw.isdigit() else 0
+
+
+def loyalty_ready(perm: _Permanent, eff: object) -> bool:
+    """Can this activation be paid right now, as far as LOYALTY goes? True for any
+    non-loyalty ability. Once per planeswalker per turn, and a minus ability needs the
+    loyalty to pay it (CR 606.6) -- a 3-loyalty walker cannot use its -5."""
+    delta = getattr(eff, "loyalty_delta", None)
+    if delta is None:
+        return True
+    return not perm.loyalty_used and perm.loyalty + delta >= 0
 
 
 def _kill(
@@ -1546,7 +1566,7 @@ def _resolve(
             is_creature=True, is_artifact=card.has_type("Artifact"),
             engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers, source=gc,
-            keywords=card.keywords,
+            keywords=card.keywords, loyalty=_starting_loyalty(card),
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1556,7 +1576,7 @@ def _resolve(
                 is_artifact=card.has_type("Artifact"),
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers, source=gc,
-                keywords=card.keywords,
+                keywords=card.keywords, loyalty=_starting_loyalty(card),
             )
         )
 
@@ -1806,6 +1826,10 @@ def _interpreter_activation_value(ability: dict, opp: _Player) -> float:
 def _activation_value(eff: ActivatedEffect, opp: _Player) -> float:
     if getattr(eff, "ability", None) is not None:
         return _interpreter_activation_value(eff.ability, opp)
+    if (getattr(eff, "loyalty_delta", None) or 0) > 0 and not (
+        eff.draw or eff.damage_face or eff.damage_any or eff.gain_life or eff.tokens
+    ):
+        return 0.05  # loyalty-only plus: worth doing only when nothing better is payable
     value = 1.4 * eff.draw + 0.3 * eff.gain_life
     if eff.tokens:
         count, power, tough = eff.tokens

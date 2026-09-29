@@ -31,6 +31,8 @@ rung-1 cards (no CCM) keep the whole `profile_from_fx` EffectVector path. Delibe
 
 from __future__ import annotations
 
+import dataclasses
+import re
 from dataclasses import dataclass
 
 from mythgauntlet.model.card import Card, ManaCost
@@ -99,6 +101,10 @@ class ActivatedEffect:
     # One-shot: the source is sacrificed as part of the cost (Clue, Banner, Monument...).
     # The engine removes it via `_kill` after the effects resolve, so it fires at most once.
     sacrifice_self: bool = False
+    # Planeswalker loyalty ability: the loyalty added (+) or removed (-) by activating it.
+    # None for every non-loyalty ability. cost_mana/needs_tap are 0/False on these; the
+    # engine gates them by "once per planeswalker per turn" and "loyalty >= cost" instead.
+    loyalty_delta: int | None = None
 
 
 @dataclass(frozen=True)
@@ -166,6 +172,89 @@ def _net_mana_from(ability: dict, effects: list[dict]) -> int:
         _amount(e.get("amount"), 1) for e in effects if e.get("op") == "add_mana"
     )
     return max(0, produced - cost_mana)
+
+
+_MINUS = "−–-"
+_ORACLE_LOYALTY_RE = re.compile(rf"(?m)^([+{_MINUS}]?)\s?(\d+|X):")
+_LOYALTY_MANA_RE = re.compile(rf"\{{?([+{_MINUS}]?)(\d+)\}}?")
+_LOYALTY_OTHER_RE = re.compile(rf"([+{_MINUS}]?)(\d+)(?:\s+loyalty)?:?", re.I)
+
+
+def oracle_loyalty_deltas(oracle_text: str) -> list[int | None]:
+    """The loyalty cost of each loyalty ability, in printed order, read from ORACLE TEXT.
+
+    "+1:" -> 1, "−2:" -> -2, "0:" -> 0. An X cost (or a bare unsigned non-zero number,
+    which oracle text never prints) is None: not resolvable, so not executable."""
+    out: list[int | None] = []
+    for sign, digits in _ORACLE_LOYALTY_RE.findall(oracle_text or ""):
+        if digits == "X":
+            out.append(None)
+        elif sign == "":
+            out.append(0 if int(digits) == 0 else None)
+        else:
+            out.append(int(digits) if sign == "+" else -int(digits))
+    return out
+
+
+def _loyalty_cost_consistent(cost: object, delta: int) -> bool:
+    """Does the CCM's OWN spelling of the cost agree with the oracle text's delta?
+
+    The compiler encodes a loyalty cost six different ways ("{2}", "-2", "+1", "−3 loyalty",
+    the same number in both `mana` and `other`, ...), which is why the profile used to read
+    "{2}" as TWO GENERIC MANA and let a planeswalker's -2 be paid for in mana, repeatedly,
+    with no loyalty at all. The number is therefore only a CROSS-CHECK on the oracle-derived
+    delta, never the source of it: any other cost text, real coloured mana, or a number/sign
+    that disagrees means the alignment is not trustworthy and the ability is dropped."""
+    if not isinstance(cost, dict):
+        return True  # nothing to contradict the oracle text
+    numbers: list[tuple[str, int]] = []
+    for key, pattern in (("mana", _LOYALTY_MANA_RE), ("other", _LOYALTY_OTHER_RE)):
+        raw = str(cost.get(key) or "").strip()
+        if not raw:
+            continue
+        m = pattern.fullmatch(raw)
+        if m is None:
+            return False
+        numbers.append((m.group(1), int(m.group(2))))
+    if cost.get("sacrifice_self") or cost.get("tap") or cost.get("pay_life"):
+        return False
+    for sign, n in numbers:
+        if n != abs(delta):
+            return False
+        if sign and delta != 0 and (sign == "+") != (delta > 0):
+            return False
+    return True
+
+
+def planeswalker_activations(
+    abilities: list[dict], oracle_text: str,
+) -> dict[int, ActivatedEffect | None]:
+    """Map id(ability) -> the loyalty ActivatedEffect for each activated ability, or None.
+
+    Abilities pair with the oracle text's loyalty lines BY POSITION, which only holds when
+    the counts agree (86% of the store); on any mismatch every ability is dropped rather
+    than guessing which is which. Dropped is an honest under-count; a mis-paired delta
+    would fire an ultimate for a plus ability's price."""
+    acts = [a for a in abilities if isinstance(a, dict) and a.get("kind") == "activated"]
+    deltas = oracle_loyalty_deltas(oracle_text)
+    out: dict[int, ActivatedEffect | None] = {id(a): None for a in acts}
+    if len(acts) != len(deltas):
+        return out
+    for ability, delta in zip(acts, deltas):
+        if delta is None or not _loyalty_cost_consistent(ability.get("cost"), delta):
+            continue
+        effects = [e for e in ability.get("effects") or [] if isinstance(e, dict)]
+        base = _activated_from(dict(ability, cost={"tap": True}), effects)
+        if base is None:
+            if delta > 0:
+                # A plus ability whose effect the engine cannot run still RAISES loyalty --
+                # the planeswalker ticks up toward its ultimates instead of being spent
+                # down and dying, which is what a real player's plus is for.
+                out[id(ability)] = ActivatedEffect(cost_mana=0, needs_tap=False,
+                                                   loyalty_delta=delta)
+            continue
+        out[id(ability)] = dataclasses.replace(base, needs_tap=False, loyalty_delta=delta)
+    return out
 
 
 def _activated_from(
@@ -454,6 +543,9 @@ def profile_from_ccm(doc: dict, card: Card, fx: EffectVector) -> PlayProfile:
     death_effects: list[dict] = []
 
     is_permanent = not (card.has_type("Instant") or card.has_type("Sorcery"))
+    is_planeswalker = card.has_type("Planeswalker")
+    loyalty_acts = (planeswalker_activations(doc.get("abilities") or [], card.oracle_text)
+                    if is_planeswalker else {})
 
     for ability in doc.get("abilities") or []:
         if not isinstance(ability, dict):
@@ -471,8 +563,11 @@ def profile_from_ccm(doc: dict, card: Card, fx: EffectVector) -> PlayProfile:
             # among them, which is also one of the cost-ignoring cases below.
             ramp = max(ramp, net)
         elif kind == "activated" and is_permanent:
-            act = _activated_from(ability, effects,
-                                  allow_sacrifice_self=not card.has_type("Creature"))
+            if is_planeswalker:
+                act = loyalty_acts.get(id(ability))
+            else:
+                act = _activated_from(ability, effects,
+                                      allow_sacrifice_self=not card.has_type("Creature"))
             if act is not None:
                 activated.append(act)
         elif kind == "triggered" and trigger == "death" and is_permanent:

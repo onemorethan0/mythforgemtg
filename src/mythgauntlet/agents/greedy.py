@@ -33,6 +33,7 @@ from mythgauntlet.sim.tier2 import (
     _COUNTER_MIN_VALUE,
     _TAP_OUT_VALUE,
     _activation_value,
+    loyalty_ready,
     _card_value,
     _commander_cost,
     _find_counter,
@@ -184,6 +185,8 @@ class GreedyAgent:
                 if eff.cost_mana > ready - reserve:
                     continue
                 if eff.needs_tap and (perm.tapped or (perm.sick and perm.is_creature)):
+                    continue
+                if not loyalty_ready(perm, eff):
                     continue
                 value = _activation_value(eff, opp)
                 if value > 0 and (best is None or value > best[0]):
