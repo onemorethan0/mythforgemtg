@@ -916,6 +916,10 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
     me.life += eff.gain_life
     if eff.tokens:
         _spawn_tokens(me, eff.tokens)
+    if getattr(eff, "sacrifice_self", False) and perm in me.battlefield:
+        # The cost, paid AFTER the effects here only so self-referencing effects resolve
+        # against a live source; a sacrificed permanent is gone either way.
+        _kill(me, perm, opp)
 
 
 def _apply_declare_attackers(state: GameState, declared: tuple[_Permanent, ...]) -> None:

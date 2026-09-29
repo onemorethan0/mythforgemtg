@@ -350,7 +350,8 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
                 # `pump`/`add_counter`/`exile` as inert on hundreds of cards whose
                 # abilities had just been wired to run them.
                 activated_total += 1
-                kept = _activated_effect(ability)
+                kept = _activated_effect(
+                    ability, "creature" not in (doc.get("types") or []))
                 if kept is None:
                     path = "dropped"  # nothing runs; every effect below is inert
                 else:
@@ -463,7 +464,7 @@ def analyze_store(envelopes, top_n: int = 20, samples_per_op: int = 4) -> dict:
     }
 
 
-def _activated_effect(ability: dict):
+def _activated_effect(ability: dict, allow_sacrifice_self: bool = False):
     """What `_activated_from` actually makes of this ability: an ActivatedEffect or None.
 
     ASKS THE REAL FUNCTION rather than re-deriving its gates. An earlier version of this
@@ -480,6 +481,6 @@ def _activated_effect(ability: dict):
     """
     effects = [e for e in (ability.get("effects") or []) if isinstance(e, dict)]
     try:
-        return profile._activated_from(ability, effects)
+        return profile._activated_from(ability, effects, allow_sacrifice_self)
     except Exception:  # a malformed stored ability must not kill the gauge
         return None

@@ -263,6 +263,7 @@ def test_an_activated_ability_the_cost_gates_DROP_has_every_effect_inert():
     """
     dropped = _env("Sac Outlet", [{"kind": "activated", "cost": {"sacrifice_self": True},
                                    "effects": [{"op": "draw", "count": 1}]}])
+    dropped["ccm"]["types"] = ["creature"]  # a creature's self-sacrifice is still refused
     r = health.analyze_store([dropped])
     assert r["executed_effects"] == 0
     assert r["inert_effects"] == 1
@@ -280,7 +281,8 @@ def test_activated_survival_applies_the_cost_gates():
     # Costs the engine cannot pay — reading past them makes a free repeatable outlet.
     assert health.analyze_store([one({"mana": "{2}", "pay_life": 3})])["activated_kept"] == 0
     assert health.analyze_store([one({"mana": "{2}", "other": "discard a card"})])["activated_kept"] == 0
-    assert health.analyze_store([one({"sacrifice_self": True})])["activated_kept"] == 0
+    # A non-creature's one-shot self-sacrifice (Clue/Banner) is kept: the sacrifice bounds it.
+    assert health.analyze_store([one({"sacrifice_self": True})])["activated_kept"] == 1
     # Nothing bounds it at all -> skipped rather than looped.
     assert health.analyze_store([one({})])["activated_kept"] == 0
 

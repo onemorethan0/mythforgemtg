@@ -316,8 +316,15 @@ def test_activated_ability_with_unpayable_cost_is_not_an_outlet(make_card):
     ):
         assert not profile_from_ccm(_activated_doc(cost), card, analyze(card)).activated, cost
 
-    # A one-shot stays a one-shot however it is spelled.
-    assert not profile_from_ccm(
+    # A self-sacrifice is a ONE-SHOT: kept for a non-creature permanent (Clue/Banner/Monument)
+    # and flagged so the engine removes the source after use; still refused for a creature,
+    # whose sacrifice is a board decision the greedy agent must not make on its own.
+    kept = profile_from_ccm(
         _activated_doc({"mana": "{1}", "sacrifice_self": True}), card, analyze(card)).activated
+    assert len(kept) == 1 and kept[0].sacrifice_self
+    creature = make_card("Bear", mana_cost="{1}", type_line="Creature - Bear")
+    creature_doc = _activated_doc({"mana": "{1}", "sacrifice_self": True})
+    creature_doc["types"] = ["creature"]
+    assert not profile_from_ccm(creature_doc, creature, analyze(creature)).activated
     assert not profile_from_ccm(
         _activated_doc({"mana": "{3}", "other": "sacrifice this enchantment"}), card, analyze(card)).activated

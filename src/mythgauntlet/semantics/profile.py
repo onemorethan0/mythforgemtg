@@ -96,6 +96,9 @@ class ActivatedEffect:
     # `interpret_ability` at activation time instead -- so an effect can never be applied
     # twice, once numerically and once interpreted.
     ability: dict | None = None
+    # One-shot: the source is sacrificed as part of the cost (Clue, Banner, Monument...).
+    # The engine removes it via `_kill` after the effects resolve, so it fires at most once.
+    sacrifice_self: bool = False
 
 
 @dataclass(frozen=True)
@@ -165,11 +168,23 @@ def _net_mana_from(ability: dict, effects: list[dict]) -> int:
     return max(0, produced - cost_mana)
 
 
-def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | None:
+def _activated_from(
+    ability: dict, effects: list[dict], allow_sacrifice_self: bool = False,
+) -> ActivatedEffect | None:
+    """`allow_sacrifice_self`: the caller vouches the source is a NON-creature permanent.
+
+    A "{cost}, sacrifice this: <effect>" ability is one-shot, so it cannot become a free
+    repeatable outlet -- the defect the cost gates below exist to prevent. It is still
+    refused for creatures: the greedy agent activates anything with positive value, and
+    a creature sacrificing itself the moment it could draw a card is a self-inflicted
+    board loss the real player would not make (a sac outlet is a situational decision this
+    engine does not take). Clues, Banners, Monuments, Treasure-likes do not have that
+    problem: nothing else the permanent does is lost that the sacrifice choice weighs."""
     cost = ability.get("cost")
     if not isinstance(cost, dict):  # tolerate a malformed hand-authored cost (str/None/…)
         cost = {}
-    if cost.get("sacrifice_self"):
+    sacrifice_self = bool(cost.get("sacrifice_self"))
+    if sacrifice_self and not allow_sacrifice_self:
         return None  # one-shot, not a repeatable outlet
     # The engine can pay mana and it can tap. It cannot discard, sacrifice another
     # permanent, remove a counter, pay energy, or pay life — and it has no zones, so it
@@ -195,7 +210,7 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
     mana = cost.get("mana")
     cost_mana = ManaCost.parse(mana if isinstance(mana, str) else "").mana_value
     needs_tap = bool(cost.get("tap"))
-    if cost_mana == 0 and not needs_tap:
+    if cost_mana == 0 and not needs_tap and not sacrifice_self:
         return None  # nothing bounds it; skip rather than loop
 
     # Does this ability do anything the six numeric fields below CANNOT express, that the
@@ -225,7 +240,8 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
     # was merely narrower than the engine's.
     ops = {e.get("op") for e in effects if isinstance(e, dict)}
     if (ops & INTERPRETER_EXECUTABLE_OPS) - _FLATTENED_OPS:
-        return ActivatedEffect(cost_mana=cost_mana, needs_tap=needs_tap, ability=ability)
+        return ActivatedEffect(cost_mana=cost_mana, needs_tap=needs_tap, ability=ability,
+                               sacrifice_self=sacrifice_self)
 
     draw = face = any_dmg = life = 0
     tokens: tuple[int, int, int] | None = None
@@ -253,6 +269,7 @@ def _activated_from(ability: dict, effects: list[dict]) -> ActivatedEffect | Non
     return ActivatedEffect(
         cost_mana=cost_mana, needs_tap=needs_tap, draw=draw,
         damage_face=face, damage_any=any_dmg, tokens=tokens, gain_life=life,
+        sacrifice_self=sacrifice_self,
     )
 
 
@@ -454,7 +471,8 @@ def profile_from_ccm(doc: dict, card: Card, fx: EffectVector) -> PlayProfile:
             # among them, which is also one of the cost-ignoring cases below.
             ramp = max(ramp, net)
         elif kind == "activated" and is_permanent:
-            act = _activated_from(ability, effects)
+            act = _activated_from(ability, effects,
+                                  allow_sacrifice_self=not card.has_type("Creature"))
             if act is not None:
                 activated.append(act)
         elif kind == "triggered" and trigger == "death" and is_permanent:

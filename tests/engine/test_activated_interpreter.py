@@ -192,3 +192,28 @@ def test_numeric_abilities_keep_their_original_scoring():
     """The rescue must not perturb how the 1,068 existing abilities are valued."""
     eff = ActivatedEffect(cost_mana=1, needs_tap=False, draw=2)
     assert _activation_value(eff, _player()) == 1.4 * 2
+
+
+# --- one-shot sacrifice-self (Clue / Banner / Monument class) ----------------------
+
+def test_sacrifice_self_activation_draws_once_and_removes_the_source():
+    """"{2}, Sacrifice this: Draw a card." -- the effect runs, then the permanent is gone."""
+    perm = _Permanent(name="Clue", power=0, toughness=0, is_creature=False)
+    me, opp = _player(perm), _player()
+    me.library = [object()] * 5
+    effects = [{"op": "draw", "count": 1}]
+    eff = profile._activated_from(
+        _ability({"mana": "{2}", "sacrifice_self": True}, *effects), effects,
+        allow_sacrifice_self=True)
+    assert eff is not None and eff.sacrifice_self and eff.draw == 1
+    _apply_activation(me, opp, perm, eff)
+    assert len(me.library) == 4
+    assert perm not in me.battlefield
+
+
+def test_a_zero_cost_sacrifice_is_bounded_by_the_sacrifice():
+    """No mana and no tap normally means 'nothing bounds it'; the sacrifice does."""
+    effects = [{"op": "draw", "count": 1}]
+    ab = _ability({"sacrifice_self": True}, *effects)
+    assert profile._activated_from(ab, effects, allow_sacrifice_self=True) is not None
+    assert profile._activated_from(ab, effects) is None
