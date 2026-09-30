@@ -176,3 +176,12 @@ def test_colour_recommending_an_outside_colour_fails():
     assert ok is False
     ok, _ = rub.grade_colour([_reply("You should add more black sources to fix your mana.")], _truth())
     assert ok is True
+
+
+def test_weakest_does_not_flag_a_truncated_deck_card_name():
+    # The model shortens "Gloomwidow's Feast" to "Gloomwidow", also a real card name.
+    t = _truth()
+    t["ctx"].all_card_names = t["ctx"].all_card_names | {"Gloomwidow"}
+    text = "I found no measured improvement, and Gloomwidow is part of your plan."
+    ok, why = rub.grade("weakest", _reply(text, trace=[_EMPTY_SWAP]), t)
+    assert ok is True, why

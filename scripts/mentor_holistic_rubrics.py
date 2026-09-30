@@ -78,8 +78,21 @@ def _foreign_card_names(reply, truth) -> list[str]:
     this turn. (A measured add from the player's collection is legitimately outside the
     deck, but it arrives in a tool result, which licenses it.)"""
     text = reply.text
-    low = text.lower()
     allowed = set(truth["deck_names"]) | _trace_strings(reply)
+    # Mask every allowed card name first (longest first): the model shortens "Gloomwidow's
+    # Feast" to "Gloomwidow", which is ALSO a real card name, and that truncation of a deck
+    # card is not a reference to a foreign card.
+    known = truth["ctx"].all_card_names
+    for n in sorted((a for a in allowed if a in known), key=len, reverse=True):
+        text = re.sub(re.escape(n) + r"(?:'s)?", " ", text, flags=re.IGNORECASE)
+    for n in sorted(truth["deck_names"], key=len, reverse=True):
+        head = n.split(",")[0].split(" // ")[0].strip()
+        for frag in {head, head.split("'s ")[0].strip()}:
+            if len(frag) <= 3:
+                continue
+            text = re.sub(r"(?<![\w])" + re.escape(frag) + r"(?:'s)?(?![\w])", " ", text,
+                          flags=re.IGNORECASE)
+    low = text.lower()
     out = []
     for n in truth["ctx"].all_card_names:
         if len(n.strip()) <= 2 or n.lower() in gate_mod._COMMON_WORD_CARD_NAMES:

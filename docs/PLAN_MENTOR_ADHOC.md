@@ -388,6 +388,17 @@ starts, and owns merging `mentor-adhoc` to `main`.
 | date | phase | bench (pass/total) | notes |
 |---|---|---|---|
 | 2026-09-30 | probe (pre-A0) | ~1/8 on Shelob | see §1 |
+| 2026-09-30 | **A0 baseline** (pre-A1, commit 917173a, qwen3:14b, runs=150, 9 decks) | **22/72 (31%)**; gated on first attempt 59/72 | per rubric, decks passing: overview 8/9, cards 2/9, faster 0/9, resilience 1/9, wincon 3/9, weakest 4/9, vs_b3 2/9, removal n/a, colour 2/9. Detail below. |
+
+**A0 baseline detail** (`scripts/mentor_holistic_bench.py`, full run ~25 min wall incl. cold store
+load; decks = shelob, tymna, kess, ghired, isshin, najeela, arahbo, kaalia, meren). The overview
+rubric passes because it only requires verdict phrases not to contradict and one measured strength
+topic to appear; the colour rubric and `faster`/`resilience` carry the signal. The failure classes
+match section 1 exactly and repeat across decks, so they are systematic rather than Shelob-specific:
+"lacks counterspells" advice on 7 of 9 decks with no blue in identity (colour 2/9); `faster`
+recommending a cut (or saying nothing) with no measured swap, 9/9; `resilience` said
+moderate/vulnerable for decks measured 71-93/100, 8/9; `vs_b3` first draft rejected for "cites 3"
+on 7/9; `wincon` naming "finishers" on a deck with finisher supply 0 and/or no archetype/win route.
 
 ## 7. Out of scope
 
