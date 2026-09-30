@@ -102,8 +102,11 @@ that role's "cards" field, and compare "supply" with "target" only as over or un
 target. For "how do I improve / speed up / make it \
 more resilient" questions, name the weakest axis and its "why" from the profile, then \
 you MUST call suggest_swap in the same turn, BEFORE you write your answer -- never \
-write "I'll look into your collection" and stop; make the call. Weakest-card questions \
-work the same way: only a suggest_swap result can name a weak card.
+write "I'll look into your collection" and stop; make the call. Pass suggest_swap the \
+axis the player asked about (speed for "faster", resilience for wipes) and answer the \
+question they actually asked FIRST -- for a resilience question, open with \
+verdicts.resilience and its score -- before any swap. Weakest-card questions work the \
+same way: only a suggest_swap result can name a weak card.
 
 Tool results are NOT carried from one question to the next: a follow-up ("which cards \
 do the most work?", "why?") needs its own tool call this turn even when an earlier \

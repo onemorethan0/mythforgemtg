@@ -219,6 +219,23 @@ COMBAT_ROUTE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# How a family WINS, in the words the engine's own `insight.gameplan` uses ("grinds value
+# into a midrange finish", "floods the board and closes with a team-pump alpha strike",
+# "chains cheap spells into a storm/magecraft burn finish") -- a reply that restates the win
+# route without ever writing "<family> deck" still says how the deck wins.
+ROUTE_PHRASES: dict[str, re.Pattern] = {
+    "midrange": re.compile(
+        r"\b(?:grind\w*|midrange|outlast\w*|value|goodstuff|good[\s-]stuff|ramp\w*)\b", re.IGNORECASE),
+    "go_wide": re.compile(
+        r"\b(?:go(?:es|ing)?\s+wide|wide\s+board|tokens?|alpha[\s-]strike|team[\s-]pump|swarm\w*|"
+        r"overwhelm\w*)\b", re.IGNORECASE),
+    "aggro": re.compile(r"\b(?:aggress\w*|pressure|fast\s+damage|voltron|attack\w*)\b", re.IGNORECASE),
+    "spellslinger": re.compile(
+        r"\b(?:storm|magecraft|spells?|burn|go[\s-]off|chains?)\b", re.IGNORECASE),
+    "combo": re.compile(r"\b(?:combo\w*|infinite|assembl\w*)\b", re.IGNORECASE),
+    "control": re.compile(r"\b(?:answers?|counter\w*|grind\w*|control\w*|removal)\b", re.IGNORECASE),
+}
+
 # `insight.strengths` strings begin with a fixed lead ("Consistent engine ...", "Resilient
 # to wipes ...", "Deep interaction ...", "High ceiling ...", "Strong multiplayer closing
 # power ..."). The topic of each -> a regex a reply must hit to count as "mentions it".
@@ -250,8 +267,18 @@ def strength_topic(strength: str) -> str | None:
 # ── detectors ───────────────────────────────────────────────────────────────────────
 
 
+_MARKDOWN_EMPHASIS_RE = re.compile(r"[*_`#]+")
+
+
+def plain(text: str) -> str:
+    """Reply text with markdown emphasis stripped. The model writes "**midrange goodstuff**
+    build" despite the no-markdown rule, and the asterisks sit between the words a label
+    pattern needs to see adjacent."""
+    return _MARKDOWN_EMPHASIS_RE.sub("", text or "")
+
+
 def split_sentences(text: str) -> list[str]:
-    return [s for s in SENTENCE_SPLIT_RE.split(text or "") if s.strip()]
+    return [s for s in SENTENCE_SPLIT_RE.split(plain(text)) if s.strip()]
 
 
 _TOPIC_WINDOW_WORDS = 6
@@ -322,7 +349,8 @@ def speed_agrees(band: str, claimed: set[str]) -> bool:
 
 def claimed_archetype_families(text: str) -> set[str]:
     """Families the reply LABELS the deck with ("a control deck", "a tokens strategy")."""
-    return {fam for fam, pat in ARCHETYPE_PHRASES.items() if pat.search(text or "")}
+    body = plain(text)
+    return {fam for fam, pat in ARCHETYPE_PHRASES.items() if pat.search(body)}
 
 
 def archetype_contradictions(text: str, archetype: str | None) -> list[str]:
@@ -342,4 +370,7 @@ def states_archetype_or_route(text: str, archetype: str | None) -> bool:
     ok = compatible_families(fam)
     if claimed_archetype_families(text) & ok:
         return True
-    return fam in _COMPAT_GROUPS[0] and bool(COMBAT_ROUTE_RE.search(text or ""))
+    body = plain(text)
+    if any(ROUTE_PHRASES[f].search(body) for f in ok if f in ROUTE_PHRASES):
+        return True
+    return fam in _COMPAT_GROUPS[0] and bool(COMBAT_ROUTE_RE.search(body))

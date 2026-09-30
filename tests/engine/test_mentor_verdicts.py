@@ -173,3 +173,23 @@ def test_verdict_phrase_must_sit_near_the_topic_word():
     text = "The deck has moderate interaction with 4.5 castable answers (4 removal, 0 counters, 1 wipes)."
     assert v.claimed_resilience(text) == set()
     assert v.claimed_resilience("Its resilience to a wipe is moderate.") == {"moderate"}
+
+
+def test_markdown_emphasis_does_not_hide_a_label():
+    # "**midrange goodstuff** build": the asterisks sat between the words the label needs.
+    assert v.claimed_archetype_families("This is a **midrange goodstuff** build.") == {"midrange"}
+    assert v.archetype_contradictions("It is a **control** deck.", "Midrange goodstuff") == ["control"]
+
+
+def test_win_route_restated_from_the_gameplan_counts_as_stating_it():
+    assert v.states_archetype_or_route("It wins by grinding value into a midrange finish.",
+                                       "Midrange goodstuff")
+    assert v.states_archetype_or_route("It wins by going wide with tokens and overwhelming the table.",
+                                       "Go-wide / tokens")
+    assert v.states_archetype_or_route("It chains cheap spells into a magecraft finish.",
+                                       "Spellslinger / storm")
+    assert not v.states_archetype_or_route("It is a solid, well-tuned deck.", "Midrange goodstuff")
+
+
+def test_markdown_does_not_hide_a_resilience_claim():
+    assert v.claimed_resilience("It is **vulnerable** to board wipes.") == {"vulnerable"}
