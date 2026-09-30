@@ -462,6 +462,21 @@ def test_get_power_profile_shares_the_analysis_cache(make_card, empty_store, mon
     assert len(calls) == 1
 
 
+def test_get_power_profile_rates_also_come_as_percents(make_card, empty_store):
+    """Kess: the model narrated goldfish_kill_rate 0.5 as "50%" and the gate rejected the
+    honest conversion for citing 50. The percent form is licensed by carrying it."""
+    from mythgauntlet.mentor.tools import _pct
+    ctx = _ctx(make_card, empty_store)
+    clock = call_tool(ctx, "get_power_profile", {}).data["clock"]
+    for key in ("goldfish_kill_rate", "commander_cast_rate", "keep_rate", "curve_efficiency"):
+        # the fraction is rounded to 1 dp, the percent is not: they agree within rounding
+        assert abs(clock[key + "_pct"] - clock[key] * 100) <= 5
+        assert isinstance(clock[key + "_pct"], int)
+    assert _pct(0.5) == 50 and _pct(None) is None
+    result = call_tool(ctx, "get_power_profile", {})
+    assert float(clock["keep_rate_pct"]) in result.numbers
+
+
 def test_get_power_profile_scores_are_rounded_to_one_decimal(make_card, empty_store):
     ctx = _ctx(make_card, empty_store)
     data = call_tool(ctx, "get_power_profile", {}).data

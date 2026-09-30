@@ -86,3 +86,56 @@ def test_non_profile_turn_keeps_the_tight_limits(monkeypatch):
     assert set(seen) == {chat.DEFAULT_MAX_TOKENS}
     # 1600 chars is over the default ceiling, so the gate rejects it.
     assert any("length" in r for _d, rs in reply.gate_rejections for r in rs)
+
+
+# ── announce-then-stop nudge ─────────────────────────────────────────────────────────
+
+import pytest
+
+
+@pytest.mark.parametrize("text,expect", [
+    ("I'll look into your collection to find a card that could help.", True),
+    ("Let me check the rules for that.", True),
+    ("I will now search for a suitable swap.", True),
+    ("Let me know if you'd like me to check anything else.", False),
+    ("The deck looks into the graveyard for value.", False),
+    ("", False),
+])
+def test_announces_a_lookup(text, expect):
+    assert chat._announces_a_lookup(text) is expect
+
+
+def test_ask_nudges_once_when_the_model_announces_a_lookup_and_stops(monkeypatch):
+    seen_messages = []
+    script = [
+        {"role": "assistant", "content": "I'll look into your collection to find a card."},
+        {"role": "assistant", "content": "", "tool_calls": [
+            {"id": "1", "function": {"name": "suggest_swap", "arguments": "{}"}}]},
+        {"role": "assistant", "content": "I didn't find a measured improvement from your collection."},
+    ]
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        seen_messages.append([m.get("content") for m in messages[-2:]])
+        return script[len(seen_messages) - 1]
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    monkeypatch.setattr(chat, "call_tool", lambda ctx, name, args: ToolResult(data={"found": True}))
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "how could I make it faster?")
+    assert [t.name for t in reply.tool_trace] == ["suggest_swap"]
+    assert chat._LOOKUP_NUDGE in seen_messages[1][-1]
+    assert reply.gated is True
+    assert "measured improvement" in reply.text
+
+
+def test_ask_nudges_at_most_once(monkeypatch):
+    calls = []
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        calls.append(1)
+        return {"role": "assistant", "content": "I'll look into that for you, one moment here."}
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "anything")
+    # one draft + one nudge + (gate attempts reuse the last draft; retries re-ask)
+    assert calls[:2] == [1, 1]
+    assert reply.tool_trace == []

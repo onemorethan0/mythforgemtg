@@ -105,6 +105,12 @@ you MUST call suggest_swap in the same turn, BEFORE you write your answer -- nev
 write "I'll look into your collection" and stop; make the call. Weakest-card questions \
 work the same way: only a suggest_swap result can name a weak card.
 
+Tool results are NOT carried from one question to the next: a follow-up ("which cards \
+do the most work?", "why?") needs its own tool call this turn even when an earlier \
+answer in the conversation covered the same ground. Call the tool again, and never say \
+you cannot provide something without having called the relevant tool first. If you say \
+you will look something up, call the tool in that same turn instead of ending it.
+
 get_deck_stats' "offmeta" field may report {"available": false} when Forge has no \
 off-meta reading cached for this deck -- say plainly that you don't have one rather than \
 guessing how typical or unusual the deck is.
@@ -220,6 +226,21 @@ def _strip(text: str) -> str:
     return body.strip()
 
 
+_ANNOUNCE_RE = re.compile(
+    r"\b(?:i'?ll|i\s+will|let\s+me|i'?m\s+going\s+to|i\s+am\s+going\s+to)\s+"
+    r"(?:now\s+|go\s+ahead\s+and\s+|first\s+|just\s+)?(?:look|check|search|find|see|run|measure|pull)\b",
+    re.IGNORECASE,
+)
+_LOOKUP_NUDGE = (
+    "You said you would look into it, but you did not call a tool. Do that now: call the "
+    "appropriate tool, then answer from its result."
+)
+
+
+def _announces_a_lookup(draft: str) -> bool:
+    return bool(_ANNOUNCE_RE.search(draft or ""))
+
+
 def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
     """(max_tokens, max_chars) for this turn: widened once get_power_profile has run."""
     if any(t.name == "get_power_profile" for t in tool_trace):
@@ -275,12 +296,23 @@ def ask(
     all_results: list[ToolResult] = []
     known_names = ctx.all_card_names
 
+    nudged = False
     for _ in range(MAX_TOOL_TURNS):
         msg = _post_chat(messages, model=model, temperature=temperature,
                          max_tokens=_limits(tool_trace, max_tokens)[0])
         tool_calls = msg.get("tool_calls") or []
         if not tool_calls:
             draft = _strip(msg.get("content") or "")
+            if not nudged and _announces_a_lookup(draft):
+                # The model SAID it would look something up and ended its turn instead of
+                # calling the tool (live, qwen3:14b: "I'll look into your collection to
+                # find a card..." with no suggest_swap call, so the answer never contained
+                # the measurement it promised). One nudge per turn, then whatever it says
+                # goes to the gate as usual.
+                nudged = True
+                messages.append({"role": "assistant", "content": draft})
+                messages.append({"role": "user", "content": _LOOKUP_NUDGE})
+                continue
             break
         messages.append(msg)
         for tc in tool_calls:

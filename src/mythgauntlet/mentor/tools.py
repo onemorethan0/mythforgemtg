@@ -474,6 +474,14 @@ def tool_get_bracket_estimate(ctx: MentorContext) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset(analysis.game_changers))
 
 
+def _pct(x):
+    """A 0-1 rate as a whole percent. A model narrating `goldfish_kill_rate: 0.5` says
+    "50%" -- a number no tool result contains, so the gate rejected the honest conversion
+    (found live on Kess: "cites 50"). Reporting the percent alongside the fraction licenses
+    the form the prose will use, without loosening the gate itself."""
+    return None if x is None else int(round(float(x) * 100))
+
+
 def _r1(x):
     """Round a score/turn to one decimal; None passes through (a turn that never happened)."""
     return None if x is None else round(float(x), 1)
@@ -531,6 +539,12 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
             "curve_efficiency": _r1(r.curve_efficiency),
             "fast_kill_turn": _r1(ceil.fast_kill_turn),
             "pod_close_turn": _r1(pod.pod_close_turn),
+            # the same rates as whole percents (see _pct)
+            "goldfish_kill_rate_pct": _pct(r.goldfish_kill_rate),
+            "commander_cast_rate_pct": _pct(r.commander_cast_rate),
+            "keep_rate_pct": _pct(r.keep_rate),
+            "curve_efficiency_pct": _pct(r.curve_efficiency),
+            "pod_close_rate_pct": _pct(pod.pod_close_rate),
         },
         "resilience": {
             "score": _r1(res.resilience_score),

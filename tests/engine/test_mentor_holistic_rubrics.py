@@ -201,3 +201,9 @@ def test_wincon_lacking_a_finisher_is_not_naming_one_as_the_win_route():
 def test_faster_accepts_the_honest_no_swap_phrasings_seen_live(text):
     ok, why = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
     assert ok is True, why
+
+
+def test_faster_accepts_a_multi_adjective_no_improvement_phrasing():
+    text = "There aren't any clear, measurable improvements to be made in terms of speed from your collection."
+    ok, why = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
+    assert ok is True, why
