@@ -46,6 +46,11 @@ from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, extract_numbers
 # and started composing, same logic, wider ceiling.
 MIN_CHARS = 15
 MAX_CHARS = 1400
+# A holistic overview built from get_power_profile (strengths, weaknesses, win route, speed,
+# resilience, key cards) is legitimately longer than a one-fact answer, and 1400 would
+# reject a complete one -- the caller passes this when that tool ran this turn
+# (chat.ask); every other turn keeps the tighter ceiling.
+MAX_CHARS_PROFILE = 2400
 
 # Shrunk from {0.0, 1.0, 2.0} to {0.0, 1.0} on 2026-08-24. 0 and 1 as ordinary English
 # ("a second copy", "one of your two commanders") still don't need licensing. 2 was
@@ -257,7 +262,8 @@ def _looks_like_a_name(text: str, match: re.Match) -> bool:
     return bool(before) and before[-1] not in ".!?"
 
 
-def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
+def check(text: str, budget: ClaimBudget, question: str = "",
+          max_chars: int = MAX_CHARS) -> list[str]:
     """Every way `text` over-claims against `budget`. Empty means faithful.
 
     `question` (optional, the player's OWN message this turn) exempts a bare card-name
@@ -271,8 +277,8 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
     reasons: list[str] = []
     body = text.strip()
 
-    if not MIN_CHARS <= len(body) <= MAX_CHARS:
-        reasons.append(f"length {len(body)} outside {MIN_CHARS}-{MAX_CHARS}")
+    if not MIN_CHARS <= len(body) <= max_chars:
+        reasons.append(f"length {len(body)} outside {MIN_CHARS}-{max_chars}")
 
     # 1. CARD NAMES. Mask the allowed names out first (longest first: nested names --
     #    "Vesuva" sitting inside "Omo, Queen of Vesuva" is the exact case swap_narrative

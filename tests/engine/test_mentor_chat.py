@@ -18,3 +18,71 @@ def test_system_prompt_keeps_the_existing_rules():
     for needle in ("check_legality", "suggest_swap", "get_bracket_estimate",
                    "NEVER state a card's oracle text", "SUBSET relationship"):
         assert needle in p
+
+
+# ── A6: output shape ─────────────────────────────────────────────────────────────────
+
+import json
+from types import SimpleNamespace
+
+from mythgauntlet.mentor import gate
+from mythgauntlet.mentor.tools import ToolResult
+
+
+def test_strip_keeps_paragraph_breaks_and_collapses_the_rest():
+    raw = "<think>hmm</think>Answer:  First   paragraph.\t\n\n\n\nSecond  paragraph. \n  tail line  "
+    assert chat._strip(raw) == "First paragraph.\n\nSecond paragraph.\ntail line"
+
+
+def test_strip_still_removes_fences_and_labels():
+    assert chat._strip("```\nSome text here.\n```") == "Some text here."
+    assert chat._strip("Reply: hello there") == "hello there"
+    assert chat._strip(None) == ""
+
+
+def test_strip_normalises_crlf():
+    assert chat._strip("one.\r\n\r\n\r\n\r\ntwo.") == "one.\n\ntwo."
+
+
+def test_gate_max_chars_default_is_unchanged_and_overridable():
+    budget = gate.ClaimBudget()
+    long_text = "word " * 400            # ~2000 chars
+    assert any("length" in r for r in gate.check(long_text, budget))
+    assert gate.check(long_text, budget, max_chars=gate.MAX_CHARS_PROFILE) == []
+    assert gate.MAX_CHARS == 1400 and gate.MAX_CHARS_PROFILE == 2400
+
+
+def _scripted_ask(monkeypatch, tool_name, final_text):
+    """Run `ask` against a scripted model: first reply calls `tool_name`, second is the
+    final answer. Returns (reply, list of max_tokens seen per model call)."""
+    seen = []
+    script = [
+        {"role": "assistant", "content": "",
+         "tool_calls": [{"id": "1", "function": {"name": tool_name, "arguments": "{}"}}]},
+        {"role": "assistant", "content": final_text},
+    ]
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        seen.append(max_tokens)
+        return script[min(len(seen) - 1, 1)]   # gate retries re-get the final answer
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    monkeypatch.setattr(chat, "call_tool",
+                        lambda ctx, name, args: ToolResult(data={"found": True}))
+    ctx = SimpleNamespace(all_card_names=frozenset())
+    return chat.ask(ctx, "tell me about my deck"), seen
+
+
+def test_profile_turn_widens_token_budget_and_gate_length(monkeypatch):
+    long_answer = ("The deck is resilient to wipes. " * 50).strip()   # ~1600 chars
+    reply, seen = _scripted_ask(monkeypatch, "get_power_profile", long_answer)
+    assert seen == [chat.DEFAULT_MAX_TOKENS, chat.PROFILE_MAX_TOKENS]   # tool call, then the answer
+    assert reply.gated is True, reply.gate_rejections
+
+
+def test_non_profile_turn_keeps_the_tight_limits(monkeypatch):
+    long_answer = ("The deck is resilient to wipes. " * 50).strip()
+    reply, seen = _scripted_ask(monkeypatch, "get_deck_stats", long_answer)
+    assert set(seen) == {chat.DEFAULT_MAX_TOKENS}
+    # 1600 chars is over the default ceiling, so the gate rejects it.
+    assert any("length" in r for _d, rs in reply.gate_rejections for r in rs)

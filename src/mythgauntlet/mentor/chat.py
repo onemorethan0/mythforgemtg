@@ -33,6 +33,10 @@ LLM_BASE = os.getenv("MYTHGAUNTLET_LLM_BASE", "http://127.0.0.1:8010").rstrip("/
 DEFAULT_MODEL = "qwen3:14b"
 DEFAULT_TEMPERATURE = 0.2
 DEFAULT_MAX_TOKENS = 700
+# A get_power_profile overview needs room for strengths + weaknesses + win route + speed +
+# resilience + key cards; 700 tokens truncates it mid-thought. Applied (as a floor) once that
+# tool has run this turn, together with gate.MAX_CHARS_PROFILE.
+PROFILE_MAX_TOKENS = 1100
 
 # muse-glimmer, smoke-tested, kept re-querying a question it had already answered rather
 # than converging -- this is the backstop against that shape recurring with any model.
@@ -195,12 +199,28 @@ _THINK_TAG_RE = re.compile(r"<think>.*?</think>", re.DOTALL)
 
 def _strip(text: str) -> str:
     """Drop wrappers a small model adds: a stray <think> block, code fences, a leading
-    label -- same tidy-up `swap_narrative._strip` does for the narrower case."""
+    label -- same tidy-up `swap_narrative._strip` does for the narrower case.
+
+    PARAGRAPH BREAKS SURVIVE: runs of spaces/tabs collapse, trailing spaces go, and three or
+    more newlines become two, but a blank line between paragraphs is kept. This used to
+    collapse ALL whitespace into one line, which was fine for a 2-sentence answer and turns a
+    holistic overview (strengths / weaknesses / how it wins) into one unreadable block."""
     body = _THINK_TAG_RE.sub("", text or "").strip()
     if body.startswith("```"):
         body = body.split("\n", 1)[-1].rsplit("```", 1)[0]
     body = re.sub(r"^\s*(answer|reply|response)\s*[:\-]\s*", "", body, flags=re.I)
-    return " ".join(body.split()).strip()
+    body = body.replace("\r\n", "\n").replace("\r", "\n")
+    body = re.sub(r"[ \t\f\v]+", " ", body)
+    body = re.sub(r" ?\n ?", "\n", body)
+    body = re.sub(r"\n{3,}", "\n\n", body)
+    return body.strip()
+
+
+def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
+    """(max_tokens, max_chars) for this turn: widened once get_power_profile has run."""
+    if any(t.name == "get_power_profile" for t in tool_trace):
+        return max(max_tokens, PROFILE_MAX_TOKENS), gate_mod.MAX_CHARS_PROFILE
+    return max_tokens, gate_mod.MAX_CHARS
 
 
 _HISTORY_ROLES = {"user", "assistant"}
@@ -252,7 +272,8 @@ def ask(
     known_names = ctx.all_card_names
 
     for _ in range(MAX_TOOL_TURNS):
-        msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
+        msg = _post_chat(messages, model=model, temperature=temperature,
+                         max_tokens=_limits(tool_trace, max_tokens)[0])
         tool_calls = msg.get("tool_calls") or []
         if not tool_calls:
             draft = _strip(msg.get("content") or "")
@@ -280,14 +301,16 @@ def ask(
             "content": "Stop calling tools now and answer directly from what you already "
                        "have, or say you don't have enough to answer precisely.",
         })
-        msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
+        msg = _post_chat(messages, model=model, temperature=temperature,
+                         max_tokens=_limits(tool_trace, max_tokens)[0])
         draft = _strip(msg.get("content") or "")
 
+    tokens, chars = _limits(tool_trace, max_tokens)
     budget = gate_mod.ClaimBudget.from_tool_results(all_results, known_names)
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):
-        reasons = gate_mod.check(draft, budget, question=question)
+        reasons = gate_mod.check(draft, budget, question=question, max_chars=chars)
         if not reasons:
             return MentorReply(text=draft, gated=True, tool_trace=tool_trace,
                                gate_rejections=gate_rejections)
@@ -303,7 +326,7 @@ def ask(
             )},
         ]
         msg = _post_chat(retry_messages, model=model, temperature=temperature + 0.1,
-                          max_tokens=max_tokens)
+                          max_tokens=tokens)
         draft = _strip(msg.get("content") or "")
 
     fallback = (
