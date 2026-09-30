@@ -108,6 +108,10 @@ question they actually asked FIRST -- for a resilience question, open with \
 verdicts.resilience and its score -- before any swap. Weakest-card questions work the \
 same way: only a suggest_swap result can name a weak card.
 
+For "which cards are my ramp / removal / draw", "what's in my deck" or any question \
+about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
+name cards only from its rows; its "roles" use the same role names as get_deck_stats.
+
 Tool results are NOT carried from one question to the next: a follow-up ("which cards \
 do the most work?", "why?") needs its own tool call this turn even when an earlier \
 answer in the conversation covered the same ground. Call the tool again, and never say \

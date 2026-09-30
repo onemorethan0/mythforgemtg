@@ -32,7 +32,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
 from mythgauntlet.config import suite_collection_path
-from mythgauntlet.mentor import verdicts
+from mythgauntlet.mentor import deckview, verdicts
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
@@ -564,6 +564,30 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset(names))
 
 
+def tool_list_deck_cards(ctx: MentorContext, role: str | None = None) -> ToolResult:
+    """The deck's actual card list with the functional roles each card fills -- the
+    card-level view no other tool gave (PLAN_MENTOR_ADHOC G2). `role` filters to one role;
+    role names are `redundancy.card_roles`' own plus "land" (one taxonomy, never a new one).
+    An unknown role is `found: False` listing the valid ones. Every returned name is
+    licensed, so the model may name any card it was shown here."""
+    rows = deckview.deck_card_rows(ctx.resolved)
+    valid = sorted(set(redundancy.ROLE_TARGETS) | {"land"})
+    if role is not None:
+        role = str(role).strip().lower()
+        if role not in valid:
+            return ToolResult(data={
+                "found": False, "valid_roles": valid,
+                "message": f"No role named {role!r}; valid roles are {', '.join(valid)}.",
+            })
+        rows = [r for r in rows if role in r["roles"]]
+    data = {
+        "found": True, "role": role, "valid_roles": valid,
+        "count": len(rows), "copies": sum(r["qty"] for r in rows),
+        "cards": rows,
+    }
+    return ToolResult(data=data, card_names=frozenset(r["name"] for r in rows))
+
+
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
     """What to add/cut, measured by re-simulation -- `ratings.advisor.advise`'s full
     ablation sweep, deferred out of Phase 1 (see this module's own docstring) until the
@@ -824,6 +848,29 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "list_deck_cards",
+            "description": "List the deck's actual cards (commander first) with quantity, "
+                            "mana value, type line and the functional roles each fills "
+                            "(ramp/draw/removal/wipe/counterspell/tutor/finisher/land). Pass "
+                            "role to see only one role's cards. Use this for 'which cards are "
+                            "my ramp/removal/draw', 'what is in my deck' or any question "
+                            "about which specific cards fill a role.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string",
+                        "description": "optional role filter: ramp, draw, removal, wipe, "
+                                       "counterspell, tutor, finisher or land",
+                    },
+                },
+                "required": [],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "suggest_swap",
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
@@ -858,6 +905,7 @@ _TOOL_FUNCS = {
     "assess_card": tool_assess_card,
     "get_bracket_estimate": tool_get_bracket_estimate,
     "get_power_profile": tool_get_power_profile,
+    "list_deck_cards": tool_list_deck_cards,
     "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }

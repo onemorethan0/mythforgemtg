@@ -637,3 +637,63 @@ def test_suggest_swap_bad_axis_returns_a_graceful_error(make_card, empty_store, 
                           resolved=ctx.resolved, cfg=ctx.cfg, store=ctx.store)
     result = call_tool(ctx2, "suggest_swap", {"axis": "not_a_real_axis"})
     assert result.data["found"] is False
+
+
+# ── list_deck_cards / deckview (PLAN_MENTOR_ADHOC B1) ───────────────────────────────
+
+def _deck_view_ctx(make_card, empty_store):
+    commander = make_card("Test Commander", type_line="Legendary Creature — Human",
+                           mana_cost="{2}{G}", color_identity=("G",))
+    ramp = make_card("Rock of Ramping", type_line="Artifact",
+                      oracle_text="{T}: Add {G}.", produced_mana=("G",), mana_cost="{2}")
+    wipe = make_card("Sweeper of Doom", type_line="Sorcery", mana_cost="{2}{B}{B}",
+                      oracle_text="Destroy all creatures.")
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+    db = CardDb([commander, ramp, wipe, forest])
+    resolved = ResolvedDeck(
+        deck=Deck(name="t"), commanders=[commander],
+        cards=[(ramp, 1), (wipe, 1), (forest, 20), (forest, 15)], missing=[],
+    )
+    return MentorContext(card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+                         cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+
+
+def test_deck_card_rows_shape_order_and_roles(make_card, empty_store):
+    from mythgauntlet.mentor.deckview import deck_card_rows
+    rows = deck_card_rows(_deck_view_ctx(make_card, empty_store).resolved)
+    assert [r["name"] for r in rows] == ["Test Commander", "Rock of Ramping",
+                                         "Sweeper of Doom", "Forest"]
+    cmdr, ramp, wipe, forest = rows
+    assert cmdr["commander"] is True and cmdr["qty"] == 1 and "commander" not in ramp
+    assert ramp["roles"] == ["ramp"] and ramp["mana_value"] == 2
+    assert wipe["roles"] == ["wipe"] and wipe["type_line"] == "Sorcery"
+    assert forest["roles"] == ["land"] and forest["qty"] == 35   # duplicate rows merged
+    assert set(ramp) == {"name", "qty", "mana_value", "type_line", "roles"}
+
+
+def test_deck_card_rows_never_merges_a_commander_with_a_same_named_card(make_card):
+    from mythgauntlet.mentor.deckview import deck_card_rows
+    c = make_card("Twin", type_line="Legendary Creature — Elf")
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[c], cards=[(c, 1)], missing=[])
+    rows = deck_card_rows(resolved)
+    assert len(rows) == 2 and rows[0]["commander"] is True and rows[1]["qty"] == 1
+
+
+def test_list_deck_cards_filters_by_role_and_licenses_names(make_card, empty_store):
+    ctx = _deck_view_ctx(make_card, empty_store)
+    allr = call_tool(ctx, "list_deck_cards", {})
+    assert allr.data["found"] is True and allr.data["count"] == 4
+    assert allr.card_names == {"Test Commander", "Rock of Ramping", "Sweeper of Doom", "Forest"}
+    ramp = call_tool(ctx, "list_deck_cards", {"role": "Ramp"})
+    assert [c["name"] for c in ramp.data["cards"]] == ["Rock of Ramping"]
+    assert ramp.card_names == {"Rock of Ramping"}
+    land = call_tool(ctx, "list_deck_cards", {"role": "land"})
+    assert land.data["copies"] == 35
+
+
+def test_list_deck_cards_unknown_role_lists_valid_roles(make_card, empty_store):
+    r = call_tool(_deck_view_ctx(make_card, empty_store), "list_deck_cards", {"role": "flying"})
+    assert r.data["found"] is False
+    assert {"ramp", "removal", "wipe", "counterspell", "land"} <= set(r.data["valid_roles"])
+    assert r.card_names == frozenset()

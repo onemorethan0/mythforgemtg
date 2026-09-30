@@ -139,3 +139,8 @@ def test_ask_nudges_at_most_once(monkeypatch):
     # one draft + one nudge + (gate attempts reuse the last draft; retries re-ask)
     assert calls[:2] == [1, 1]
     assert reply.tool_trace == []
+
+
+def test_system_prompt_routes_which_cards_questions_to_list_deck_cards():
+    assert "list_deck_cards" in chat.SYSTEM_PROMPT
+    assert any(t["function"]["name"] == "list_deck_cards" for t in chat.TOOL_SCHEMAS)
