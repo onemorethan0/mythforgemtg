@@ -165,3 +165,11 @@ def test_strength_leads_match_insight_source():
     assert leads
     for lead in leads:
         assert v.strength_topic(lead) is not None, lead
+
+
+def test_verdict_phrase_must_sit_near_the_topic_word():
+    # Found live on Shelob: a moderate INTERACTION sentence whose answer list ends in
+    # "1 wipes" was read as a moderate wipe-resilience claim.
+    text = "The deck has moderate interaction with 4.5 castable answers (4 removal, 0 counters, 1 wipes)."
+    assert v.claimed_resilience(text) == set()
+    assert v.claimed_resilience("Its resilience to a wipe is moderate.") == {"moderate"}

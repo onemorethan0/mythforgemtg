@@ -191,3 +191,13 @@ def test_wincon_lacking_a_finisher_is_not_naming_one_as_the_win_route():
     text = "It is a midrange deck that wins in combat and lacks a strong finisher or combo."
     ok, why = rub.grade("wincon", _reply(text), _truth())
     assert ok is True, why
+
+
+@pytest.mark.parametrize("text", [
+    "It seems there's no immediate way to significantly improve the deck with cards from your collection.",
+    "Based on your current collection, there aren't any obvious swaps to make it faster.",
+    "There's no clear improvement to be made in terms of speed based on the cards you own.",
+])
+def test_faster_accepts_the_honest_no_swap_phrasings_seen_live(text):
+    ok, why = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
+    assert ok is True, why

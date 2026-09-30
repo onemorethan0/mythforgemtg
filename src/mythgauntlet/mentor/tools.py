@@ -814,9 +814,11 @@ TOOL_SCHEMAS: list[dict] = [
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
                             "re-simulating the deck with the swap applied. Use this for "
-                            "'what should I cut', 'what should I add', or 'how can I improve "
-                            "this deck' questions. Slower than the other tools -- several "
-                            "re-simulations.",
+                            "'what should I cut', 'what should I add', 'what are my weakest "
+                            "cards' or 'how can I improve / make it faster' questions -- call "
+                            "it even after get_power_profile, with the axis the question is "
+                            "about (speed for 'faster'); only its result can name a card to "
+                            "change. Slower than the other tools -- several re-simulations.",
             "parameters": {
                 "type": "object",
                 "properties": {

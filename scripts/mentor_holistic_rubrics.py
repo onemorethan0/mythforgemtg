@@ -118,7 +118,12 @@ _NO_IMPROVEMENT_RE = re.compile(
     r"nothing\s+(?:in\s+your\s+collection\s+)?(?:measurably\s+)?(?:improv\w*|beat|cleared)|"
     r"no\s+measured\s+swap|noise\s+floor|"
     r"no\s+(?:collection\s+file|owned\s+cards)|"
-    r"(?:did\s*n[o']t|didn'?t|did\s+not)\s+find\s+any)",
+    r"(?:did\s*n[o']t|didn'?t|did\s+not)\s+find\s+any|"
+    # phrasings seen live: "no immediate way to ... improve", "there aren't any obvious
+    # swaps", "no clear improvement to be made ... based on the cards you own"
+    r"no\s+(?:immediate|obvious|clear|significant|easy)\s+(?:way|swaps?|improvements?|upgrades?)|"
+    r"(?:aren'?t|are\s+not|isn'?t|is\s+not)\s+any\s+(?:\w+\s+)?(?:swaps?|improvements?|upgrades?)|"
+    r"no\s+(?:\w+\s+){0,2}swaps?\s+(?:to|that|i\s+can)\b)",
     re.IGNORECASE,
 )
 _CUT_VERB_RE = re.compile(

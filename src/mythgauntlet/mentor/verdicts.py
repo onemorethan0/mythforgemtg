@@ -254,11 +254,26 @@ def split_sentences(text: str) -> list[str]:
     return [s for s in SENTENCE_SPLIT_RE.split(text or "") if s.strip()]
 
 
-def _phrase_hits(sentence: str, pattern: re.Pattern) -> list[str]:
+_TOPIC_WINDOW_WORDS = 6
+
+
+def _topic_near(sentence: str, m: re.Match, topic: re.Pattern) -> bool:
+    """The topic appears inside the phrase or within a few words of it. A sentence-wide
+    topic test lets "moderate interaction ... (4 removal, 0 counters, 1 wipes)" read as a
+    moderate WIPE-RESILIENCE claim because the list ends in "wipes" -- found on the first
+    live Shelob run after A2."""
+    before = " ".join(sentence[:m.start()].split()[-_TOPIC_WINDOW_WORDS:])
+    after = " ".join(sentence[m.end():].split()[:_TOPIC_WINDOW_WORDS])
+    return bool(topic.search(f"{before} {m.group(0)} {after}"))
+
+
+def _phrase_hits(sentence: str, pattern: re.Pattern, topic: re.Pattern | None = None) -> list[str]:
     """Phrase matches in `sentence` that are neither negated nor hedged -> "plain";
-    hedged -> "hedged"; negated -> dropped."""
+    hedged -> "hedged"; negated -> dropped. With `topic`, the phrase must sit near it."""
     out: list[str] = []
     for m in pattern.finditer(sentence):
+        if topic is not None and not _topic_near(sentence, m, topic):
+            continue
         before = sentence[:m.start()]
         if _NEGATOR_RE.search(before):
             continue
@@ -274,7 +289,7 @@ def claimed_resilience(text: str) -> set[str]:
         if not RESILIENCE_TOPIC_RE.search(sentence):
             continue
         for band, pat in PHRASES["resilience"].items():
-            for kind in _phrase_hits(sentence, pat):
+            for kind in _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE):
                 claimed.add(band if kind == "plain" else "moderate")
     return claimed
 
