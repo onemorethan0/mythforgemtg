@@ -77,6 +77,23 @@ questions -- it only ever suggests cards the player OWNS (their Myth Suite colle
 never a card from general Magic knowledge, so if it reports no collection file or no \
 suggestion, say that plainly rather than naming a card yourself.
 
+For any OPEN-ENDED question about the deck as a whole -- what it does well or poorly, \
+strengths, weaknesses, observations, "is it good", how it wins, how fast it is, how \
+resilient it is to a board wipe, how strong its interaction is, which cards do the \
+most work -- call get_power_profile FIRST. Describe the archetype, the win route, the \
+speed and the wipe-resilience ONLY from its fields: its "verdicts" object already \
+states the resilience (resilient / moderate / vulnerable), speed (fast / moderate / \
+slow / none), consistency, interaction and archetype family, so use those words as \
+they are and never argue against one (if verdicts say resilient, do not call the deck \
+vulnerable to wipes). The speed axis score is the share of games that kill within the \
+horizon, not how early; the clock and verdicts.speed say how fast. When you name cards \
+that "do the work", take them from key_cards, not from your own guess. "strengths" and \
+"weaknesses" are the measured ones: lead with them. interaction_counts are real card \
+counts; get_deck_stats' role "supply" is a strength score, not a card count, so never \
+read it as how many cards the deck has. For "how do I improve / speed up / make it \
+more resilient" questions, name the weakest axis and its "why" from the profile, then \
+call suggest_swap for a measured swap.
+
 get_deck_stats' "offmeta" field may report {"available": false} when Forge has no \
 off-meta reading cached for this deck -- say plainly that you don't have one rather than \
 guessing how typical or unusual the deck is.
