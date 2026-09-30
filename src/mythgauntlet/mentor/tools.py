@@ -399,7 +399,11 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     }
 
     supply = redundancy.role_supply(resolved)
-    targets = redundancy.targets_for(ctx.themes)
+    # Colour-aware (PLAN_MENTOR_ADHOC C1): the colour-blind population target told every
+    # non-blue deck it "lacks counterspells". An empty identity (unresolved commander) is
+    # unknown, not colourless -- `role_applicable` leaves every role applicable then.
+    identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+    targets = redundancy.targets_for(ctx.themes, color_identity=identity)
     role_cards = redundancy.role_card_counts(resolved)
     # `supply` and `target` are STRENGTH scores (redundancy.card_roles: a board wipe counts
     # 3.0, a counterspell 3.0, a tutor 2.0), NOT card counts -- the unit-less pair read as
@@ -408,9 +412,16 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     # only as over/under target.
     roles = {
         role: {"supply": round(supply.get(role, 0.0), 1), "target": targets.get(role, 0),
-               "cards": role_cards.get(role, 0), "unit": "strength"}
+               "cards": role_cards.get(role, 0), "unit": "strength",
+               "applicable": redundancy.role_applicable(role, identity)}
         for role in sorted(set(supply) | set(targets))
     }
+    colour_word = "/".join(identity)
+    for role, entry in roles.items():
+        if not entry["applicable"]:
+            entry["note"] = (
+                f"not applicable: no colour in this deck's identity ({colour_word}) usually "
+                "supplies this role, so it is not a gap")
 
     # No other tool surfaces WHO the commander(s) are -- a mentor with only lookup_card
     # (which needs a name the player already supplied) had no path to "who is my

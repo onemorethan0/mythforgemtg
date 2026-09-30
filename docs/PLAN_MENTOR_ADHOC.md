@@ -435,6 +435,29 @@ one measured strength topic); `removal` is n/a until Phase B. `mentor_bench.py`'
 are the documented honest-answer scorer residuals (a 704.5f correction and a Sol Ring
 premise correction that says "costs {1}").
 
+**C1 sweep (2026-09-30, `python scripts/role_targets.py --by-identity`, 862 corpus decks with a
+resolved commander; 9 more have an EMPTY identity = unresolved commander and are excluded, because
+8 of those 9 carry counterspells and would contaminate every "lacks" half).** p60 supply (strength
+units) and share of decks running any, decks HAVING vs LACKING the enabling colour(s):
+
+| role (baseline target) | needs any of | has: n / p60 / %>0 | lacks: n / p60 / %>0 | shipped |
+|---|---|---|---|---|
+| counterspell (3) | U | 450 / 9.0 / 84% | 412 / 0.0 / 12% | **yes** |
+| wipe (3) | W, B, R | 774 / 3.0 / 63% | 88 / 0.0 / 10% | **yes** |
+| finisher (2) | R, G | 639 / 3.0 / 60% | 223 / 0.0 / 17% | **yes** |
+| ramp (14), lacking G | G | 417 / 18.0 / 99% | 445 / 10.0 / 96% | no: colourless rocks keep p60 at 10 |
+| draw (16), lacking U | U | 450 / 18.5 / 99% | 412 / 13.0 / 99% | no: every colour draws |
+| removal (4), tutor (4), wipe/finisher single colours | -- | differences of 1 or none | -- | no |
+
+The bar (documented at `ROLE_COLOR_REQUIREMENTS`): the LACKING half's p60 is zero while the HAVING
+half sits at or above the role's own baseline. Only those three pairs clear it; the plan expected
+only `counterspell`, and the data added `wipe` and `finisher` (both measured as ANY-of sets, since
+several colours fill them). `wipe` and `finisher` are the debatable two -- colourless options exist
+(the residual 10-17%), which is why the mentor flag says "not applicable", never "impossible"; drop an
+entry from the table to revert it. `targets_for(..., color_identity=None)` is byte-identical to the
+old behaviour and `advise`/`card_impact`/`swap_brief` do not pass an identity (only the mentor's
+`get_deck_stats` does); an empty identity counts as unknown, not colourless.
+
 **A0 baseline detail** (`scripts/mentor_holistic_bench.py`, full run ~25 min wall incl. cold store
 load; decks = shelob, tymna, kess, ghired, isshin, najeela, arahbo, kaalia, meren). The overview
 rubric passes because it only requires verdict phrases not to contradict and one measured strength

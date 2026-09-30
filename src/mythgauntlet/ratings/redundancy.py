@@ -117,9 +117,47 @@ ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]] = {
 }
 
 
+# Roles a deck's COLOURS cannot (usefully) fill -- measured, not assumed. ROLE_TARGETS is a
+# colour-blind population baseline, so a Golgari deck was told it "lacks counterspells": a
+# target of 3 supply units is one card the deck's colours do not print. A role is listed here
+# only when the corpus shows the gap, by `python scripts/role_targets.py --by-identity` over 862
+# decks with a resolved commander (9 more, identity empty = unresolved commander, excluded):
+#
+#     role          needs any of   decks WITH: p60 / share running any   decks LACKING: p60 / share
+#     counterspell  U              9.0 / 84%   (n=450)                   0.0 / 12%   (n=412)
+#     wipe          W, B or R      3.0 / 63%   (n=774)                   0.0 / 10%   (n=88)
+#     finisher      R or G         3.0 / 60%   (n=639)                   0.0 / 17%   (n=223)
+#
+# THE BAR: the lacking half's p60 is ZERO (a typical such deck supplies none at all, so a target
+# of MIN_TARGET or more is unreachable by colours alone) while the having half sits at or above
+# the role's own baseline target. Every other role/colour pair failed it -- ramp lacking G is
+# still p60 10 (colourless rocks), draw lacking U/B is 12.5, removal and tutor barely move with
+# colour -- so they are deliberately absent. The residual 10-17% of lacking decks that DO run the
+# role (colourless artifacts) are why the flag says "not applicable", never "impossible".
+#
+# A requirement only ever ZEROES a target in `targets_for` when a colour identity is passed, and
+# an EMPTY identity is treated as unknown (an unresolved commander looks identical to a true
+# colourless one, and the two behave oppositely in the corpus).
+ROLE_COLOR_REQUIREMENTS: dict[str, frozenset[str]] = {
+    "counterspell": frozenset("U"),
+    "wipe": frozenset("WBR"),
+    "finisher": frozenset("RG"),
+}
+
+
+def role_applicable(role: str, color_identity: Iterable[str] | None) -> bool:
+    """False only when `color_identity` is known (non-empty) and shares no colour with the
+    role's `ROLE_COLOR_REQUIREMENTS` entry. None / empty identity / an unlisted role: True."""
+    required = ROLE_COLOR_REQUIREMENTS.get(role)
+    if required is None or not color_identity:
+        return True
+    return bool(required & set(color_identity))
+
+
 def targets_for(
     themes: Iterable[str] | None,
     base: dict[str, int] | None = None,
+    color_identity: Iterable[str] | None = None,
 ) -> dict[str, int]:
     """Role targets for a deck known to be playing `themes`.
 
@@ -140,11 +178,22 @@ def targets_for(
     Merges by MAX: with several archetypes, a role is judged against the most permissive
     target any of them earns. Under-flagging is the safe direction here, and a deck holding
     two archetypes has two plans to feed.
+
+    `color_identity` (opt-in, default None = exactly the behaviour above) makes the targets
+    colour-aware: a role whose `ROLE_COLOR_REQUIREMENTS` colours the deck lacks gets target 0,
+    applied LAST so it beats an archetype raise (a spellslinger deck with no blue has no
+    counterspell plan). Callers that do not pass it -- `advise`, `card_impact`, `swap_brief` --
+    are unchanged; only the mentor opts in. See `role_applicable` for the empty-identity rule.
     """
     targets = dict(ROLE_TARGETS if base is None else base)   # never mutate the caller's dict
     for theme in themes or ():
         for role, target in ARCHETYPE_ROLE_TARGETS.get(theme, {}).items():
             targets[role] = max(targets.get(role, 0), target)
+    if color_identity is not None:
+        identity = frozenset(color_identity)
+        for role in ROLE_COLOR_REQUIREMENTS:
+            if role in targets and not role_applicable(role, identity):
+                targets[role] = 0
     return targets
 
 

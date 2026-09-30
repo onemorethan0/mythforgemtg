@@ -737,3 +737,33 @@ def test_removal_coverage_is_a_registered_tool_with_a_routing_line():
     assert any(t["function"]["name"] == "removal_coverage" for t in TOOL_SCHEMAS)
     assert "removal_coverage" in chat.SYSTEM_PROMPT
     assert "no_unrestricted_answer_for" in chat.SYSTEM_PROMPT
+
+
+# ── colour-aware role targets in get_deck_stats (PLAN_MENTOR_ADHOC C1) ──────────────
+
+def test_get_deck_stats_marks_counterspell_not_applicable_for_a_non_blue_deck(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)            # green commander
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    cs = roles["counterspell"]
+    assert cs["applicable"] is False and cs["target"] == 0 and "not applicable" in cs["note"]
+    assert roles["ramp"]["applicable"] is True and "note" not in roles["ramp"]
+    assert roles["wipe"]["applicable"] is False      # green-only: no W/B/R
+    assert roles["finisher"]["applicable"] is True   # G can fill it
+
+
+def test_get_deck_stats_blue_deck_keeps_counterspell_applicable(make_card, empty_store):
+    from dataclasses import replace
+    ctx = _ctx(make_card, empty_store)
+    blue = make_card("Blue Commander", type_line="Legendary Creature — Merfolk",
+                     mana_cost="{U}{U}", color_identity=("U",))
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
+                                cards=ctx.resolved.cards, missing=[])
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert roles["counterspell"]["applicable"] is True and roles["counterspell"]["target"] == 3
+
+
+def test_get_deck_stats_unresolved_commander_leaves_every_role_applicable(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[], cards=ctx.resolved.cards, missing=[])
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert all(r["applicable"] for r in roles.values())
