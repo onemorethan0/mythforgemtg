@@ -204,6 +204,33 @@ def test_get_deck_stats_reports_curve_and_roles(make_card, empty_store):
     assert result.data["curve"]["nonland_count"] == 1  # Forest is a land, excluded
 
 
+def test_get_deck_stats_roles_carry_a_card_count_and_a_unit(make_card, empty_store):
+    """A7: `supply` is a strength score (a board wipe scores 3.0), so one wipe printed as
+    "supply 3.0" was narrated as three wipes. `cards` is the real count; `unit` names the
+    scale of supply/target."""
+    from mythgauntlet.mentor import tools as tools_mod
+    commander = make_card("Test Commander", type_line="Legendary Creature — Human",
+                           mana_cost="{2}{G}", color_identity=("G",))
+    wrath = make_card("Mass Wrath", type_line="Sorcery", mana_cost="{2}{W}{W}",
+                       oracle_text="Destroy all creatures.", color_identity=("W",))
+    rock = make_card("Rock of Ramping", type_line="Artifact", oracle_text="{T}: Add {G}.",
+                      produced_mana=("G",), mana_cost="{2}")
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[commander],
+                            cards=[(wrath, 1), (rock, 2), (forest, 30)], missing=[])
+    ctx = MentorContext(card_db=CardDb([commander, wrath, rock, forest]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert roles["wipe"]["cards"] == 1 and roles["wipe"]["supply"] == 3.0
+    assert roles["ramp"]["cards"] == 2            # quantity-weighted
+    assert all(r["unit"] == "strength" for r in roles.values())
+    assert roles["counterspell"]["cards"] == 0     # a target with no supply still reports a count
+    # the commander is excluded, matching role_supply
+    assert sum(r["cards"] for r in roles.values()) == 3
+
+
 def test_get_deck_stats_reports_land_count(make_card, empty_store):
     """Found live 2026-09-15 (mentor bench, real deck): asked 'how many lands am I
     running', the model had no licensed total to cite and either fabricated one by

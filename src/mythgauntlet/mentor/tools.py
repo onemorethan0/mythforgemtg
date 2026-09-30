@@ -400,8 +400,15 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
 
     supply = redundancy.role_supply(resolved)
     targets = redundancy.targets_for(ctx.themes)
+    role_cards = redundancy.role_card_counts(resolved)
+    # `supply` and `target` are STRENGTH scores (redundancy.card_roles: a board wipe counts
+    # 3.0, a counterspell 3.0, a tutor 2.0), NOT card counts -- the unit-less pair read as
+    # "wipes 3/3" and was narrated as three board wipes for a deck with one (found on the
+    # 2026-09-30 Shelob probe). `cards` is the real card count; compare supply with target
+    # only as over/under target.
     roles = {
-        role: {"supply": round(supply.get(role, 0.0), 1), "target": targets.get(role, 0)}
+        role: {"supply": round(supply.get(role, 0.0), 1), "target": targets.get(role, 0),
+               "cards": role_cards.get(role, 0), "unit": "strength"}
         for role in sorted(set(supply) | set(targets))
     }
 

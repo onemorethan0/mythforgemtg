@@ -97,7 +97,9 @@ horizon, not how early; the clock and verdicts.speed say how fast. When you name
 that "do the work", take them from key_cards, not from your own guess. "strengths" and \
 "weaknesses" are the measured ones: lead with them. interaction_counts are real card \
 counts; get_deck_stats' role "supply" is a strength score, not a card count, so never \
-read it as how many cards the deck has. For "how do I improve / speed up / make it \
+read it as how many cards the deck has: talk about how many cards fill a role using \
+that role's "cards" field, and compare "supply" with "target" only as over or under \
+target. For "how do I improve / speed up / make it \
 more resilient" questions, name the weakest axis and its "why" from the profile, then \
 call suggest_swap for a measured swap.
 

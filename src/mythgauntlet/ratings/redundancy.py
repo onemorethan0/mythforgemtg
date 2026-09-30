@@ -190,6 +190,21 @@ def role_supply(resolved: ResolvedDeck) -> dict[str, float]:
     return supply
 
 
+def role_card_counts(resolved: ResolvedDeck) -> dict[str, int]:
+    """How many nonland CARDS (copies counted) fill each role -- the unit a player means by
+    "how many wipes do I run". `role_supply` is a STRENGTH score (a wipe is 3.0, a
+    counterspell 3.0, a tutor 2.0) and reads as a card count the moment it is printed next
+    to a target; this is the count. Same commander exclusion and land skip as `role_supply`
+    so the two always describe the same cards."""
+    counts: dict[str, int] = {}
+    for card, count in resolved.cards:
+        if card.is_land:
+            continue
+        for role in card_roles(tags.analyze(card)):
+            counts[role] = counts.get(role, 0) + count
+    return counts
+
+
 @dataclass(frozen=True)
 class RedundancyScore:
     """Why one card is (or isn't) a cut candidate."""
