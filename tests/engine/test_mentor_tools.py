@@ -10,6 +10,18 @@ from mythgauntlet.mentor.tools import (
 )
 from mythgauntlet.sim.tier0 import SimConfig
 
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _fresh_analysis_cache():
+    """`_analysis_for` memoises per process; tests that build equal decks must not see each
+    other's cached analysis (or a monkeypatched counter)."""
+    from mythgauntlet.mentor import tools as tools_mod
+    tools_mod._analysis_cache_clear()
+    yield
+    tools_mod._analysis_cache_clear()
+
 
 # ── extraction helpers ──────────────────────────────────────────────────────────────
 
@@ -326,6 +338,59 @@ def test_get_bracket_estimate_licenses_game_changer_names(make_card, empty_store
     assert "Bomb Effect" in result.card_names
     # 1 Game Changer -> the official gate floors this at Bracket 3 (see estimate_bracket).
     assert result.data["bracket"] >= 3
+
+
+# ── _analysis_for cache (PLAN_MENTOR_ADHOC A1) ─────────────────────────────────────
+
+def _count_analyze(monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    real = tools_mod.analyze_deck
+    calls = []
+
+    def counting(*a, **kw):
+        calls.append(kw)
+        return real(*a, **kw)
+
+    monkeypatch.setattr(tools_mod, "analyze_deck", counting)
+    return calls
+
+
+def test_analysis_for_runs_the_simulation_once_per_deck(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    first = call_tool(ctx, "get_bracket_estimate", {})
+    second = call_tool(ctx, "get_bracket_estimate", {})
+    assert len(calls) == 1
+    assert calls[0]["run_resilience"] is True   # one entry must serve the profile tool too
+    assert first.data == second.data
+
+
+def test_analysis_for_is_keyed_on_the_deck_and_the_sim_config(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    from dataclasses import replace
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    tools_mod._analysis_for(ctx)
+    tools_mod._analysis_for(ctx)
+    assert len(calls) == 1
+    # a different run count is a different measurement
+    tools_mod._analysis_for(replace(ctx, cfg=SimConfig(turns=5, runs=11, seed=1)))
+    assert len(calls) == 2
+    # a different decklist is a different deck
+    other = _ctx(make_card, empty_store)
+    other.resolved.cards.append((make_card("Extra Rock", type_line="Artifact", mana_cost="{1}"), 1))
+    tools_mod._analysis_for(other)
+    assert len(calls) == 3
+
+
+def test_analysis_cache_is_bounded(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    from dataclasses import replace
+    _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    for runs in range(10, 10 + tools_mod._ANALYSIS_CACHE_MAX + 3):
+        tools_mod._analysis_for(replace(ctx, cfg=SimConfig(turns=5, runs=runs, seed=1)))
+    assert len(tools_mod._ANALYSIS_CACHE) == tools_mod._ANALYSIS_CACHE_MAX
 
 
 # ── suggest_swap (2026-09-15) ───────────────────────────────────────────────────────

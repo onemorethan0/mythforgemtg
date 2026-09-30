@@ -26,6 +26,8 @@ higher latency cost per call. Worth adding once the loop is proven, not before.
 from __future__ import annotations
 
 import re
+import threading
+from collections import OrderedDict
 from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
@@ -35,7 +37,7 @@ from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy
-from mythgauntlet.ratings.analysis import analyze_deck
+from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
 
@@ -247,6 +249,51 @@ class MentorContext:
         return frozenset(card.name for card in self.card_db._by_name.values())
 
 
+# ── the per-process analysis cache (PLAN_MENTOR_ADHOC A1) ───────────────────────────
+# Every tool that needs the engine's own read of the deck (`get_bracket_estimate`,
+# `get_power_profile`, ...) used to run its own fresh `analyze_deck` -- the same ~seconds-long
+# simulation, repeated per tool call and per chat turn, because the route is stateless and
+# builds a new MentorContext each request. The analysis is a pure function of (deck, cfg), so
+# a small bounded cache keyed on exactly that makes a follow-up question free. An
+# OrderedDict rather than `functools.lru_cache`: `ctx` is not hashable (it holds a card DB
+# and a store), and the key is a value-derived tuple anyway. Always computed with
+# `run_resilience=True` so ONE entry serves every consumer -- a second, cheaper variant would
+# split the cache and re-simulate.
+_ANALYSIS_CACHE_MAX = 8
+_ANALYSIS_CACHE: "OrderedDict[tuple, DeckAnalysis]" = OrderedDict()
+# Held across the compute so two simultaneous requests for the same deck run ONE simulation
+# (single-flight) instead of racing two -- the engine serves the mentor route from threads.
+_ANALYSIS_LOCK = threading.RLock()
+
+
+def _analysis_key(ctx: "MentorContext") -> tuple:
+    cards = tuple(sorted((c.name, int(q)) for c, q in ctx.resolved.cards))
+    commanders = tuple(sorted(c.name for c in ctx.resolved.commanders))
+    cfg = ctx.cfg
+    return ((cards, commanders), cfg.runs, cfg.turns, cfg.seed, tuple(ctx.themes))
+
+
+def _analysis_for(ctx: "MentorContext") -> DeckAnalysis:
+    """The deck's full `DeckAnalysis` (resilience included), memoised per process. Callers
+    must treat the result as read-only -- it is shared across turns."""
+    key = _analysis_key(ctx)
+    with _ANALYSIS_LOCK:
+        hit = _ANALYSIS_CACHE.get(key)
+        if hit is not None:
+            _ANALYSIS_CACHE.move_to_end(key)
+            return hit
+        analysis = analyze_deck(ctx.resolved, ctx.cfg, ctx.store, run_resilience=True)
+        _ANALYSIS_CACHE[key] = analysis
+        while len(_ANALYSIS_CACHE) > _ANALYSIS_CACHE_MAX:
+            _ANALYSIS_CACHE.popitem(last=False)
+        return analysis
+
+
+def _analysis_cache_clear() -> None:
+    with _ANALYSIS_LOCK:
+        _ANALYSIS_CACHE.clear()
+
+
 def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
     card = ctx.card_db.get(name)
     if card is None:
@@ -397,16 +444,17 @@ def tool_get_bracket_estimate(ctx: MentorContext) -> ToolResult:
     (Game Changers, in-deck combos, mass land denial, measured speed/consistency).
 
     Runs a real (bounded) goldfish simulation, so this is priced like `assess_card` (a
-    few seconds), not free like `get_deck_stats` -- its own tool rather than folded in.
-    Deliberately skips two of `analyze_deck`'s optional, heavier inputs: the resilience
-    pass (a second full simulation, only needed for the separate resilience axis) and a
-    live Spellbook combo lookup (a real network call, cached by decklist hash elsewhere
-    in this app but not worth paying for on every mentor turn). The reply's own
+    few seconds) on the FIRST call for a deck, not free like `get_deck_stats` -- its own
+    tool rather than folded in. The analysis is shared through `_analysis_for`'s cache
+    (resilience pass included, since `get_power_profile` needs it and one cache entry must
+    serve both), so later calls for the same deck cost nothing. Deliberately skips a live
+    Spellbook combo lookup (a real network call, cached by decklist hash elsewhere in this
+    app but not worth paying for on every mentor turn). The reply's own
     `combos_checked: false` discloses that scope honestly -- exactly the field
     `estimate_bracket` exists to report -- rather than silently answering as if a full
     `/analyze` had run.
     """
-    analysis = analyze_deck(ctx.resolved, ctx.cfg, ctx.store, run_resilience=False)
+    analysis = _analysis_for(ctx)
     data = _to_jsonable(analysis.bracket)
     data["found"] = True
     data["game_changer_cards"] = list(analysis.game_changers)
