@@ -281,6 +281,24 @@ finishers.
 
 ### Phase D — Measured improvement levers (G8, G9)
 
+**D0. A "clock" axis that measures EARLINESS** — **CLAUDE**, `ratings/advisor.py` (added
+2026-09-30 from the orchestrator's review of Phase A). The existing `speed` axis is
+`goldfish_kill_rate` (share of games that kill at all within the horizon), NOT how early. Shelob
+reads speed 96.7 with a T9 clock, so no speed swap can ever help it, and the model answered
+"make it faster" with a CEILING swap (Return of the Wildspeaker) whose own brief shows
+`kill_turn_before 9.32 -> kill_turn_after 9.45` — i.e. the deck gets SLOWER on average. Add an
+additive axis `clock` to `advisor.AXES` (score = a monotone decreasing map of
+`report.avg_kill_turn`, e.g. `100 * (horizon - avg_kill_turn) / horizon` clamped, 0 when no
+kill; document the formula), measure its seed-to-seed noise the way `_AXIS_NOISE_FLOOR` was
+measured and add its floor there, add `clock` to `suggest_swap`'s enum, and route "faster" →
+`clock` in the prompt. `weakest_axis` must NOT start preferring `clock` by accident — decide
+explicitly and test it. Any swap reported for "faster" must show `kill_turn_after <
+kill_turn_before`; the holistic bench's `faster` rubric gains that check.
+**D0b. Disclose an unbacked cut** — **CLAUDE**. When a suggested swap's
+`brief.cut.redundancy_backed` is false, the tool data carries `"cut_is_redundant": false` and
+the prompt says the cut was the pool's default, not evidence the card is weak (Shelob's
+Gloomwidow's Feast — its own theme card — keeps surfacing this way).
+
 **D1. `diagnose_axis(axis)`** — **OFFLOAD** the driver table (muse-glimmer), **CLAUDE** wiring.
 Deterministic, reads `_analysis_for(ctx)` only (no new sim). Returns `{"axis", "score", "why",
 "drivers": [{"name", "value", "direction": "higher_is_better"|"lower_is_better",
@@ -391,6 +409,8 @@ starts, and owns merging `mentor-adhoc` to `main`.
 | 2026-09-30 | **A0 baseline** (pre-A1, commit 917173a, qwen3:14b, runs=150, 9 decks) | **22/72 (31%)**; gated on first attempt 59/72 | per rubric, decks passing: overview 8/9, cards 2/9, faster 0/9, resilience 1/9, wincon 3/9, weakest 4/9, vs_b3 2/9, removal n/a, colour 2/9. Detail below. |
 
 | 2026-09-30 | **Phase A exit check** (HEAD = "A-exit fix 2", qwen3:14b, runs=150, 9 decks; 3 full runs after A1-A7 + 2 fix iterations) | final run **64/72 (89%)** under the final rubric (56/72 as it was originally graded); baseline re-graded under the same rubric **25/72 (35%)**. `mentor_bench.py` on Shelob **50/52** (exit bar 47). Full pytest 1739 passed. | per rubric, final run: overview 9/9, cards 9/9, faster 9/9, resilience 8/9, wincon 9/9, weakest 9/9, vs_b3 8/9, removal n/a, colour 3/9. **Phase A exit met** (every listed rubric >= 80% of decks); `colour` is Phase C's, not Phase A's. Detail and caveats below. |
+
+| 2026-09-30 | orchestrator re-verification (Opus, Shelob only, fresh run) | 6/8 | Reproduced the gain independently. Correct now: archetype/win route (midrange, combat, ~T9), resilient 93%, real key cards, empty-swap honesty. Remaining: `faster` answered with a CEILING swap that makes the average kill slower (9.32->9.45) -> new task D0; cut is the deck's theme card (Gloomwidow's Feast) -> D0b; 'no counterspells' still called a weakness (C1); removal answer generic (B2 wiring); overview FAIL was a rubric false positive ('moderately interactive' read as a resilience claim) -> fix in F1's phrase map. B2 (removal.py) merged into mentor-adhoc; full suite 1798 passed. |
 
 **Phase A exit detail.** Three full runs after the fixes, each re-graded offline under the FINAL
 rubric (`--regrade`, no model calls): run 1 62/72, run 2 67/72 (93%), run 3 64/72 (89%) — model
