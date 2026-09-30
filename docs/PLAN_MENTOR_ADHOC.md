@@ -388,6 +388,7 @@ starts, and owns merging `mentor-adhoc` to `main`.
 | date | phase | bench (pass/total) | notes |
 |---|---|---|---|
 | 2026-09-30 | probe (pre-A0) | ~1/8 on Shelob | see §1 |
+| 2026-09-30 | E1 | n/a (reference table) | `scripts/bracket_axis_reference.py` baked `ratings/reference.py` from 569 labelled decks (runs=120, seed 42, turns=12, 0 failures, ~32 min): B1 129 / B2 172 / B3 147 / B4 66 / B5 55; **no thin cells** (min n=55); avg_kill_turn None for 8 B1 + 2 B2 + 2 B3 decks, avg_commander_turn None for 3 B1. Medians barely separate brackets: only `interaction` (57.8/63.4/59.5/74.7/90.0) and `consistency`/`speed` at B5 (lower) move; `avg_kill_turn` is flat ~10.0-10.2 (goldfish horizon 12), `ceiling` p50 flat 17-19 (only p75 rises at B5: 36.4 vs 25), `resilience` drifts down 89.9 -> 85.4, `pod` peaks B2-B3 and is LOWEST at B5. Bands are useful for within-bracket placement, weak as a B3-vs-B4 discriminator. |
 
 ## 7. Out of scope
 
