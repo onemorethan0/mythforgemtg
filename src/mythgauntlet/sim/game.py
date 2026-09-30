@@ -116,6 +116,9 @@ class PassReaction:
 @dataclass(frozen=True)
 class DeclareAttackers:
     attackers: tuple[_Permanent, ...]
+    # (attacker, planeswalker) pairs: that attacker is declared against the walker rather than
+    # the defending player (CR 508.1b). Every other attacker still attacks the player.
+    walkers: tuple[tuple[_Permanent, _Permanent], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -164,6 +167,9 @@ class GameState:
     # None outside combat. In 1v1 there is only ever one opponent, so this is a no-op there
     # and the golden master is unaffected.
     combat_defender: str | None = None
+    # attacker index (into combat_attackers) -> the planeswalker that attacker was declared
+    # against. Empty outside combat and whenever nothing attacks a planeswalker.
+    combat_walkers: dict[int, _Permanent] = field(default_factory=dict)
     # a spell on the stack awaiting counter/resolution: (card, is_commander, value, caster_key)
     pending_spell: tuple[GameCard, bool, float, str] | None = None
     counters_on_stack: int = 0  # counters played over the pending spell (LIFO parity)
@@ -268,6 +274,15 @@ def clone(state: GameState) -> GameState:
         idx = {id(p): i for i, p in enumerate(src)}
         dst = new.players[new.active].battlefield
         new.combat_attackers = [dst[idx[id(p)]] for p in state.combat_attackers if id(p) in idx]
+    if state.combat_walkers:
+        # the walkers live on the DEFENDER's battlefield, not the attacker's
+        dkey = state.combat_defender_key
+        dsrc = state.players[dkey].battlefield
+        didx = {id(p): i for i, p in enumerate(dsrc)}
+        ddst = new.players[dkey].battlefield
+        new.combat_walkers = {
+            i: ddst[didx[id(w)]] for i, w in state.combat_walkers.items() if id(w) in didx
+        }
     return new
 
 
@@ -625,6 +640,44 @@ def advance(state: GameState) -> None:
 # --- legal actions (for search) ----------------------------------------------------------
 
 
+def walker_attack_plan(
+    attackers: list[_Permanent], opp: _Player,
+) -> tuple[tuple[_Permanent, _Permanent], ...]:
+    """Which attackers to send at `opp`'s planeswalkers: (attacker, walker) pairs, or ().
+
+    KILL OR IGNORE: a walker is attacked only when the attackers that remain can be assigned
+    power >= its loyalty, because chip damage on a walker that then ticks back up spends
+    power that would have hit the player and removes nothing. The player is never ignored
+    for a walker when the whole attack is lethal on them. Walkers go cheapest-kill first, and
+    each is assigned the FEWEST attackers that suffice (strongest first), leaving the rest on
+    the player. Blockers are not modelled here -- the damage can still be stopped, as in real
+    play, and the blocker AI is free to try."""
+    targets = sorted(
+        (w for w in opp.battlefield if w.is_planeswalker and w.loyalty > 0),
+        key=lambda w: w.loyalty,
+    )
+    if not targets or not attackers:
+        return ()
+    if sum(a.power for a in attackers) >= opp.life:
+        return ()  # lethal on the player: go face
+    pool = sorted(attackers, key=lambda a: a.power, reverse=True)
+    plan: list[tuple[_Permanent, _Permanent]] = []
+    for walker in targets:
+        picked: list[_Permanent] = []
+        dealt = 0
+        for atk in pool:
+            if dealt >= walker.loyalty:
+                break
+            picked.append(atk)
+            dealt += atk.power
+        if dealt < walker.loyalty:
+            continue  # cannot kill it with what is left: ignore this walker
+        for atk in picked:
+            pool.remove(atk)
+            plan.append((atk, walker))
+    return tuple(plan)
+
+
 def _eligible_attackers(me: _Player) -> list[_Permanent]:
     atk = [c for c in me.creatures() if not c.sick and not c.tapped and c.power > 0]
     atk.sort(key=lambda c: c.power, reverse=True)
@@ -722,6 +775,10 @@ def legal_actions(state: GameState) -> list[object]:
             if key not in seen_c:
                 seen_c.add(key)
                 out.append(DeclareAttackers(c))
+        _, opp_for_walkers = state.me_opp()
+        plan = walker_attack_plan(eligible, opp_for_walkers)
+        if plan:  # one extra candidate: the all-out attack with the kill-the-walker split
+            out.append(DeclareAttackers(tuple(eligible), plan))
         return out
     if kind == COMBAT_BLOCK:
         defender = state.players[state.pending.player]
@@ -831,7 +888,7 @@ def apply(state: GameState, action: object) -> None:
         return
 
     if isinstance(action, DeclareAttackers):
-        _apply_declare_attackers(state, action.attackers)
+        _apply_declare_attackers(state, action.attackers, action.walkers)
         return
 
     if isinstance(action, DeclareBlocks):
@@ -932,7 +989,10 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
         _kill(me, perm, opp)
 
 
-def _apply_declare_attackers(state: GameState, declared: tuple[_Permanent, ...]) -> None:
+def _apply_declare_attackers(
+    state: GameState, declared: tuple[_Permanent, ...],
+    walkers: tuple[tuple[_Permanent, _Permanent], ...] = (),
+) -> None:
     """Fire attack triggers (subject-scope aware), drop attackers that died, queue blocks.
 
     Three subject scopes fan out differently (see tier2._attack_subject_scope):
@@ -959,6 +1019,10 @@ def _apply_declare_attackers(state: GameState, declared: tuple[_Permanent, ...])
             _fire_attack_triggers(perm, me, opp, "global_once", 1, others)
     attackers = [c for c in attackers if c in me.battlefield]
     state.combat_attackers = attackers
+    target_of = {id(a): w for a, w in walkers if w in opp.battlefield and w.is_planeswalker}
+    state.combat_walkers = {
+        i: target_of[id(a)] for i, a in enumerate(attackers) if id(a) in target_of
+    }
     if attackers:
         state.phase = COMBAT_BLOCK
     else:  # every attacker died to its own trigger; combat is over, release the lock
@@ -980,7 +1044,18 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
         if not atk.has_keyword("vigilance"):
             atk.tapped = True
         blk = assignment.get(i)
+        walker = state.combat_walkers.get(i)
+        if walker is not None and walker not in opp.battlefield:
+            continue  # its planeswalker already died this combat: nothing left to hit
         if blk is None or blk not in opp.battlefield:
+            if walker is not None:
+                # Unblocked attacker declared against a planeswalker: damage removes loyalty
+                # (CR 120.3c), not life, and is NOT combat damage to a player -- so no
+                # commander damage and no "deals combat damage to a player" trigger.
+                walker.loyalty -= atk.power
+                if walker.loyalty <= 0:
+                    _kill(opp, walker, me, others)
+                continue
             opp.life -= atk.power
             if atk.is_commander:
                 # CR 704.5a: only UNBLOCKED combat damage to a PLAYER counts -- a blocked
@@ -1001,7 +1076,11 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
                     # for exactly this interaction.
                     assigned = 1 if atk.has_keyword("deathtouch") else blk.toughness
                     excess = max(0, atk.power - assigned)
-                    if excess:
+                    if excess and walker is not None:
+                        walker.loyalty -= excess  # trample over a blocker onto the walker
+                        if walker.loyalty <= 0 and walker in opp.battlefield:
+                            _kill(opp, walker, me, others)
+                    elif excess:
                         opp.life -= excess
                         if atk.is_commander:
                             # Trampled damage is still combat damage dealt to the player BY
@@ -1016,6 +1095,7 @@ def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -
     for atk in unblocked_hitters:
         _fire_perm_triggers(atk, me, opp, "combat_damage_to_player")
     state.combat_attackers = []
+    state.combat_walkers = {}
     state.combat_defender = None
     state.phase = "end_step"
 

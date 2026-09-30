@@ -159,6 +159,7 @@ class _Permanent:
     # (CR 606.3: one per planeswalker per turn); reset at its controller's turn start.
     loyalty: int = 0
     loyalty_used: bool = False
+    is_planeswalker: bool = False  # attackable: combat damage to it removes loyalty
     # P/T granted "until end of turn", already ADDED into power/toughness above and
     # subtracted back out by `expire_until_end_of_turn` at the cleanup step. Kept as a
     # running delta rather than a list of effects because this engine has no layer system
@@ -1567,6 +1568,7 @@ def _resolve(
             engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers, source=gc,
             keywords=card.keywords, loyalty=_starting_loyalty(card),
+            is_planeswalker=card.has_type("Planeswalker"),
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1577,6 +1579,7 @@ def _resolve(
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers, source=gc,
                 keywords=card.keywords, loyalty=_starting_loyalty(card),
+            is_planeswalker=card.has_type("Planeswalker"),
             )
         )
 

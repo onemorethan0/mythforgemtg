@@ -27,6 +27,7 @@ from mythgauntlet.sim.game import (
     PassReaction,
     PlayLand,
     _eligible_attackers,
+    walker_attack_plan,
 )
 from mythgauntlet.sim.tier0 import _can_pay
 from mythgauntlet.sim.tier2 import (
@@ -58,7 +59,8 @@ def _legal_blockers(atk: _Permanent, blockers: list[_Permanent]) -> list[_Perman
 
 
 def greedy_block_assignment(
-    attackers: list[_Permanent], defender: _Player
+    attackers: list[_Permanent], defender: _Player,
+    on_walker: dict[int, _Permanent] | None = None,
 ) -> dict[int, _Permanent]:
     """The old _combat block logic: winning trades first, then chump-block only lethal damage.
 
@@ -78,10 +80,32 @@ def greedy_block_assignment(
         if pick is not None:
             assignments[i] = pick
             blockers.remove(pick)
-    unblocked = sum(a.power for i, a in enumerate(attackers) if i not in assignments)
+    on_walker = on_walker or {}
+    # PROTECT a walker that would die: block the attackers aimed at it with the cheapest legal
+    # bodies until the loyalty survives. A planeswalker is a whole card that keeps paying
+    # (a token maker costs far more than the 1/1 that chumps for it); without this the
+    # attack-the-walker plan alone overcorrected and walkers simply died (Elspeth, Sun's
+    # Champion went 24 -> 3 wins of 60 against a bear deck that had three chump tokens).
+    for walker in {id(w): w for w in on_walker.values()}.values():
+        idxs = sorted((i for i, w in on_walker.items() if w is walker and i not in assignments),
+                      key=lambda i: attackers[i].power, reverse=True)
+        incoming = sum(attackers[i].power for i in idxs)
+        for i in idxs:
+            if incoming < walker.loyalty:
+                break
+            legal = _legal_blockers(attackers[i], blockers)
+            if not legal:
+                continue
+            pick = min(legal, key=lambda b: b.power + b.toughness)
+            assignments[i] = pick
+            blockers.remove(pick)
+            incoming -= attackers[i].power
+    # attackers declared against a planeswalker threaten its loyalty, not the life total
+    unblocked = sum(a.power for i, a in enumerate(attackers)
+                    if i not in assignments and i not in on_walker)
     if unblocked >= defender.life:  # chump-block the biggest threats with what's left
         for i, atk in enumerate(attackers):
-            if i in assignments or not blockers:
+            if i in assignments or i in on_walker or not blockers:
                 continue
             legal = _legal_blockers(atk, blockers)
             if not legal:
@@ -197,9 +221,12 @@ class GreedyAgent:
 
     def _attack(self, state) -> object:
         me, _ = state.me_opp()
-        return DeclareAttackers(tuple(_eligible_attackers(me)))  # every eligible creature attacks
+        _, opp = state.me_opp()
+        eligible = _eligible_attackers(me)  # every eligible creature attacks
+        return DeclareAttackers(tuple(eligible), walker_attack_plan(eligible, opp))
 
     def _block(self, state) -> object:
         defender = state.players[state.pending.player]
-        assignment = greedy_block_assignment(state.combat_attackers, defender)
+        assignment = greedy_block_assignment(
+            state.combat_attackers, defender, state.combat_walkers)
         return DeclareBlocks(tuple(sorted(assignment.items())))
