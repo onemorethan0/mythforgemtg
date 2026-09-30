@@ -305,8 +305,124 @@ def _g_vs_b3(reply, truth):
     return False, "needed a regeneration -- first draft rejected: " + "; ".join(reasons[:2])
 
 
+# -- removal (Phase B2-wiring): every "can't answer X" claim must be backed by removal_coverage.
+#
+# A claim = a clause with a deficit cue ("can't answer", "struggles against", "no answer for",
+# "weak to", "vulnerable to", "lacks ways to deal with") that names a permanent type or a
+# qualifier. Backing, from the tool's own data:
+#   - a bare type (creature/artifact/enchantment/planeswalker/land/spell) is backed when it is in
+#     `no_answer_for` / `no_unrestricted_answer_for`, or (land/spell, which those lists do not
+#     cover) when `answers_by_type` / `unrestricted_answers_by_type` for it is empty;
+#   - a qualifier ("flyers", "tokens", "black creatures", "big creatures") is backed when some
+#     card's quoted restriction names it. When a qualifier is present the type word is just its
+#     noun, not a second claim ("can't answer big creatures" is about "big", not "creatures");
+#   - a qualifier the tool cannot speak to (hexproof, indestructible, ...) is never backed.
+# Bias: UNDER-flag -- a clause with a cue but no recognised target is ignored.
+
+_REMOVAL_TYPE_WORDS = {
+    "creature": "creature", "creatures": "creature",
+    "artifact": "artifact", "artifacts": "artifact",
+    "enchantment": "enchantment", "enchantments": "enchantment",
+    "planeswalker": "planeswalker", "planeswalkers": "planeswalker",
+    "land": "land", "lands": "land",
+    "spell": "spell", "spells": "spell", "counterspell": "spell", "counterspells": "spell",
+}
+_TYPE_WORD_RE = re.compile(r"\b(" + "|".join(sorted(_REMOVAL_TYPE_WORDS, key=len, reverse=True)) + r")\b",
+                           re.IGNORECASE)
+# qualifier -> (recognising regex on the clause, regex a card restriction must match to back it)
+_QUALIFIERS = {
+    "flying": (re.compile(r"\b(?:fl(?:y|ies|yers?|iers?|ying))\b", re.I), re.compile(r"flying")),
+    "token": (re.compile(r"\btokens?\b", re.I), re.compile(r"token")),
+    "colour": (re.compile(r"\b(?:white|blue|black|red|green|colou?rless|multicolou?red|monocolou?red)\b", re.I),
+               re.compile(r"\b(?:white|blue|black|red|green|colou?rless|multicolou?red|monocolou?red|"
+                          r"non(?:white|blue|black|red|green))\b")),
+    "size": (re.compile(r"\b(?:big|large|huge|massive|high[- ](?:power|toughness)|high\s+mana\s+value|"
+                        r"expensive|powerful)\b", re.I),
+             re.compile(r"power|toughness|mana value|damage|-\d|-x")),
+    "legendary": (re.compile(r"\blegendary\b", re.I), re.compile(r"legendary")),
+    "attacking": (re.compile(r"\b(?:attacking|blocking|untapped)\b", re.I), re.compile(r"attacking|blocking|tapped")),
+    # no quoted restriction can ever back these: the tool knows nothing about them
+    "protection": (re.compile(r"\b(?:hexproof|shroud|ward|indestructible|protection|regenerat\w*|"
+                              r"recursion|reanimat\w*|graveyard|lifelink|trample)\b", re.I), None),
+}
+_CUE_RE = re.compile(
+    r"\b(?:can'?t|cannot|can\s+not|unable\s+to|couldn'?t|struggl\w+|no\s+(?:real\s+|good\s+|clean\s+)?"
+    r"(?:answers?|ways?|outs?|removal)|lacks?|lacking|weak(?:ness(?:es)?)?\s+(?:to|against|vs)|"
+    r"vulnerab\w+\s+(?:to|against)|trouble|difficult\w*|gaps?|doesn'?t\s+(?:handle|answer|deal|cover|hit)|"
+    r"not\s+(?:able|great|good)\s+(?:at|against|with|to))\b",
+    re.IGNORECASE,
+)
+_CLAUSE_SPLIT_RE = re.compile(r"\s+(?:but|while|although|though|whereas|however)\s+|;|,\s+and\s+(?=\w+\s+(?:can|could|does))", re.I)
+_RESTRICTION_MENTION_RE = re.compile(
+    r"\b(?:restrict\w*|limited|limits?|conditional|narrow\w*|situational|only\s+(?:hit|hits|answer|answers|"
+    r"work|works|kill|kills|deal|deals|handle|handles|target|targets|affect|affects)|"
+    r"certain\s+(?:types|kinds|creatures|permanents)|specific\s+(?:types|kinds|creatures))\b",
+    re.IGNORECASE,
+)
+
+
+def _removal_truth(truth) -> dict:
+    cov = truth.get("removal")
+    if cov is None:
+        from mythgauntlet.mentor import removal as removal_mod
+        cov = removal_mod.coverage(truth["ctx"].resolved)
+    return cov
+
+
 def _g_removal(reply, truth):
-    return None, "n/a until Phase B (removal_coverage)"
+    cov = _removal_truth(truth)
+    called = [t for t in reply.tool_trace if t.name == "removal_coverage"
+              and isinstance(t.result_data, dict) and t.result_data.get("found")]
+    if not called:
+        return False, "never called removal_coverage"
+    none_at_all = set(cov["no_answer_for"])
+    none_unrestricted = set(cov["no_unrestricted_answer_for"])
+    restriction_text = " ".join(r.lower() for row in cov["cards"] for r in row["restrictions"])
+    by_type = cov["answers_by_type"]
+    unr_by_type = cov["unrestricted_answers_by_type"]
+
+    def type_backed(typ: str) -> bool:
+        if typ in none_at_all or typ in none_unrestricted:
+            return True
+        return typ in ("land", "spell") and (not by_type.get(typ) or not unr_by_type.get(typ))
+
+    problems: list[str] = []
+    claims = 0
+    for sentence in verdicts.split_sentences(reply.text):
+        for clause in _CLAUSE_SPLIT_RE.split(sentence):
+            cue = _CUE_RE.search(clause)
+            if not cue:
+                continue
+            # a cue that is itself negated ("no gaps", "not a gap") is praise, not a claim
+            if re.search(r"\b(?:no|not\s+a|without\s+any|few)\s+(?:real\s+)?gaps?\b", clause, re.I):
+                continue
+            quals = [(name, rx_back) for name, (rx_find, rx_back) in _QUALIFIERS.items()
+                     if rx_find.search(clause)]
+            if quals:
+                for name, rx_back in quals:
+                    claims += 1
+                    if rx_back is None or not rx_back.search(restriction_text):
+                        problems.append(f"claims a gap for {name!r} with no backing restriction: "
+                                        f"{clause.strip()[:90]!r}")
+                continue
+            types = {_REMOVAL_TYPE_WORDS[m.group(1).lower()] for m in _TYPE_WORD_RE.finditer(clause)}
+            for typ in sorted(types):
+                claims += 1
+                if not type_backed(typ):
+                    problems.append(f"claims it can't answer {typ} but the tool shows unrestricted "
+                                    f"answers ({', '.join(unr_by_type.get(typ, [])[:2]) or 'restricted ones'}): "
+                                    f"{clause.strip()[:90]!r}")
+    if problems:
+        return False, "; ".join(problems[:3])
+    if none_unrestricted:
+        low = reply.text.lower()
+        named_restriction = any(len(r) >= 6 and r.lower() in low
+                                for row in cov["cards"] for r in row["restrictions"]
+                                if ": " not in r)
+        if not (_RESTRICTION_MENTION_RE.search(reply.text) or named_restriction):
+            return False, (f"no_unrestricted_answer_for={sorted(none_unrestricted)} but the reply never "
+                           "mentions restriction-limited coverage")
+    return True, f"{claims} gap claim(s), all backed by removal_coverage"
 
 
 GRADERS = {

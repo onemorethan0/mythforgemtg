@@ -697,3 +697,43 @@ def test_list_deck_cards_unknown_role_lists_valid_roles(make_card, empty_store):
     assert r.data["found"] is False
     assert {"ramp", "removal", "wipe", "counterspell", "land"} <= set(r.data["valid_roles"])
     assert r.card_names == frozenset()
+
+
+# ── removal_coverage (PLAN_MENTOR_ADHOC B2-wiring) ──────────────────────────────────
+
+def _removal_ctx(make_card, empty_store):
+    cmdr = make_card("Test Commander", type_line="Legendary Creature — Human",
+                     mana_cost="{2}{G}", color_identity=("G",))
+    hate = make_card("Flyer Hate", type_line="Instant", mana_cost="{1}{G}",
+                     oracle_text="Destroy target creature with flying.")
+    smash = make_card("Smash", type_line="Instant", mana_cost="{1}{R}",
+                      oracle_text="Destroy target artifact.")
+    bear = make_card("Bear", type_line="Creature — Bear", mana_cost="{1}{G}")
+    db = CardDb([cmdr, hate, smash, bear])
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(hate, 1), (smash, 1), (bear, 1)], missing=[])
+    return MentorContext(card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+                         cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+
+
+def test_removal_coverage_tool_shape_counts_and_licensing(make_card, empty_store):
+    r = call_tool(_removal_ctx(make_card, empty_store), "removal_coverage", {})
+    d = r.data
+    assert d["found"] is True
+    assert {"answers_by_type", "unrestricted_answers_by_type", "no_answer_for",
+            "no_unrestricted_answer_for", "counts_by_type", "cards", "reading_guide"} <= set(d)
+    assert d["counts_by_type"]["creature"] == {"answers": 1, "unrestricted": 0}
+    assert d["counts_by_type"]["artifact"] == {"answers": 1, "unrestricted": 1}
+    assert "creature" in d["no_unrestricted_answer_for"] and "creature" not in d["no_answer_for"]
+    assert "enchantment" in d["no_answer_for"]
+    assert r.card_names == {"Flyer Hate", "Smash"}     # interaction cards only; the Bear is not one
+    assert [row["restrictions"] for row in d["cards"] if row["name"] == "Flyer Hate"] == [["with flying"]]
+    assert 1.0 in r.numbers
+
+
+def test_removal_coverage_is_a_registered_tool_with_a_routing_line():
+    from mythgauntlet.mentor import chat
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS
+    assert any(t["function"]["name"] == "removal_coverage" for t in TOOL_SCHEMAS)
+    assert "removal_coverage" in chat.SYSTEM_PROMPT
+    assert "no_unrestricted_answer_for" in chat.SYSTEM_PROMPT

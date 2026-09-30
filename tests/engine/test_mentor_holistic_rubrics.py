@@ -149,10 +149,6 @@ def test_vs_b3_requires_first_attempt_gated():
     assert rub.grade("vs_b3", _reply("x", gated=False, rejections=rej), _truth())[0] is False
 
 
-def test_removal_is_na_before_phase_b():
-    assert rub.grade("removal", _reply("anything"), _truth())[0] is None
-
-
 # ── colour ──────────────────────────────────────────────────────────────────────────
 
 def test_colour_counterspell_advice_without_blue_fails():
@@ -225,3 +221,91 @@ def test_faster_still_fails_a_confident_recommendation_without_a_decline():
     text = "You should add a bigger finisher and cut Gloomwidow's Feast to speed things up."
     ok, _ = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
     assert ok is False
+
+
+# ── removal (Phase B2-wiring) ───────────────────────────────────────────────────────
+
+def _cov(no_answer=(), no_unrestricted=("creature",), restrictions=("with flying",),
+         by_type=None, unr_by_type=None):
+    rows = [{"name": "Eaten by Spiders", "kind": "spot", "hits": ["creature"], "mode": "destroy",
+             "speed": "instant", "restrictions": list(restrictions)}]
+    return {
+        "cards": rows, "no_answer_for": list(no_answer),
+        "no_unrestricted_answer_for": list(no_unrestricted),
+        "answers_by_type": by_type or {"creature": ["Eaten by Spiders"], "artifact": ["Naturalize"],
+                                       "enchantment": ["Naturalize"], "planeswalker": [], "land": [],
+                                       "spell": []},
+        "unrestricted_answers_by_type": unr_by_type or {"creature": [], "artifact": ["Naturalize"],
+                                                        "enchantment": ["Naturalize"], "planeswalker": [],
+                                                        "land": [], "spell": []},
+    }
+
+
+def _rm_reply(text, called=True):
+    trace = [("removal_coverage", {"found": True})] if called else []
+    return _reply(text, trace=trace)
+
+
+def _rm_truth(**kw):
+    t = _truth()
+    t["removal"] = _cov(**kw)
+    return t
+
+
+def test_removal_requires_the_tool_call():
+    ok, why = rub.grade("removal", _rm_reply("Your removal is fine.", called=False), _rm_truth())
+    assert ok is False and "never called" in why
+
+
+def test_removal_unbacked_type_claim_fails():
+    truth = _rm_truth(no_unrestricted=("planeswalker",))
+    ok, why = rub.grade("removal", _rm_reply(
+        "It can't answer artifacts at all, though restrictions limit the creature answers."), truth)
+    assert ok is False and "artifact" in why
+
+
+def test_removal_backed_type_claim_passes():
+    truth = _rm_truth(no_answer=("planeswalker",), no_unrestricted=("creature", "planeswalker"))
+    ok, _ = rub.grade("removal", _rm_reply(
+        "It has no answer for planeswalkers, and the creature removal is limited to flyers."), truth)
+    assert ok is True
+
+
+def test_removal_qualifier_claim_needs_a_restriction():
+    ok, why = rub.grade("removal", _rm_reply(
+        "It struggles against tokens, and the creature answers are restriction-limited."),
+        _rm_truth(restrictions=("with flying",)))
+    assert ok is False and "token" in why
+    ok, _ = rub.grade("removal", _rm_reply(
+        "It struggles against tokens, and the creature answers are restriction-limited."),
+        _rm_truth(restrictions=("nontoken",)))
+    assert ok is True
+
+
+def test_removal_protection_keyword_claims_are_never_backed():
+    ok, why = rub.grade("removal", _rm_reply(
+        "It can't deal with hexproof creatures, and the creature answers are restriction-limited."),
+        _rm_truth())
+    assert ok is False and "protection" in why
+
+
+def test_removal_must_mention_restriction_limits_when_none_unrestricted():
+    truth = _rm_truth()
+    ok, why = rub.grade("removal", _rm_reply("Your removal covers creatures, artifacts and enchantments."),
+                        truth)
+    assert ok is False and "restriction-limited" in why
+    ok, _ = rub.grade("removal", _rm_reply(
+        "Your creature removal is mostly restricted, hitting only creatures with flying."), truth)
+    assert ok is True
+
+
+def test_removal_no_limits_needed_when_everything_is_unrestricted():
+    truth = _rm_truth(no_unrestricted=())
+    ok, _ = rub.grade("removal", _rm_reply("Your removal is broad and covers every permanent type."), truth)
+    assert ok is True
+
+
+def test_removal_praise_with_no_gaps_is_not_a_claim():
+    truth = _rm_truth(no_unrestricted=())
+    ok, _ = rub.grade("removal", _rm_reply("There are no gaps in creature coverage."), truth)
+    assert ok is True

@@ -112,6 +112,15 @@ For "which cards are my ramp / removal / draw", "what's in my deck" or any quest
 about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
 name cards only from its rows; its "roles" use the same role names as get_deck_stats.
 
+For "is my removal good enough", "what can't my removal answer", "what am I weak \
+against" or "how good is my interaction" call removal_coverage. Describe gaps ONLY \
+from its no_answer_for and no_unrestricted_answer_for lists and the restrictions \
+quoted on each card -- never guess what kinds of permanents the removal can or cannot \
+hit. A type in no_unrestricted_answer_for but not in no_answer_for is answered only by \
+restriction-limited cards (say so, naming the restriction, e.g. "only flyers"); when \
+no_unrestricted_answer_for is non-empty, mention that some coverage is \
+restriction-limited. Use its counts_by_type for any count, never count list items.
+
 Tool results are NOT carried from one question to the next: a follow-up ("which cards \
 do the most work?", "why?") needs its own tool call this turn even when an earlier \
 answer in the conversation covered the same ground. Call the tool again, and never say \

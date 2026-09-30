@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mythgauntlet.data import rulings  # noqa: E402
 from mythgauntlet.data.scryfall import load_card_db  # noqa: E402
 from mythgauntlet.mentor import chat as mentor_chat  # noqa: E402
+from mythgauntlet.mentor import removal  # noqa: E402
 from mythgauntlet.mentor.tools import MentorContext, tool_get_deck_stats  # noqa: E402
 from mythgauntlet.model.deck import Deck, resolve  # noqa: E402
 from mythgauntlet.ratings.analysis import analyze_deck  # noqa: E402
@@ -94,6 +95,8 @@ def build_truth(key: str, path: Path, world: tuple, runs: int, turns: int) -> di
         "stats": stats,
         "identity": identity,
         "deck_names": deck_names,
+        # removal_coverage ground truth, for the `removal` rubric
+        "removal": removal.coverage(resolved),
     }
     return truth
 

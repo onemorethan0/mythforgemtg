@@ -32,7 +32,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
 from mythgauntlet.config import suite_collection_path
-from mythgauntlet.mentor import deckview, verdicts
+from mythgauntlet.mentor import deckview, removal, verdicts
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
@@ -588,6 +588,36 @@ def tool_list_deck_cards(ctx: MentorContext, role: str | None = None) -> ToolRes
     return ToolResult(data=data, card_names=frozenset(r["name"] for r in rows))
 
 
+def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
+    """What the deck's interaction can actually ANSWER, read clause by clause from each card's
+    oracle text (`mentor.removal.coverage`) -- the answer to "is my removal good enough / what
+    can't it answer" that no other tool could give (the mentor used to speculate "might
+    struggle vs flyers"). Deterministic and offline. `answers_by_type` lists every card that
+    can hit a type; `unrestricted_answers_by_type` keeps only those with no target-limiting
+    restriction ("with flying", "nonblack", "power 3 or less" ...), so a deck whose creature
+    answers are mostly "with flying" does not read as well covered. `counts_by_type` carries
+    the counts so the model never counts list items itself. Licenses every card name."""
+    cov = removal.coverage(ctx.resolved)
+    counts = {
+        typ: {"answers": len(cov["answers_by_type"][typ]),
+              "unrestricted": len(cov["unrestricted_answers_by_type"][typ])}
+        for typ in cov["answers_by_type"]
+    }
+    data = {
+        "found": True,
+        **cov,
+        "counts_by_type": counts,
+        "reading_guide": (
+            "answers_by_type lists every card that can hit that type, including ones limited "
+            "by a restriction; unrestricted_answers_by_type keeps only answers with no "
+            "target-limiting restriction. no_answer_for = types with no answer at all; "
+            "no_unrestricted_answer_for = types with no unrestricted answer (includes "
+            "no_answer_for). Restrictions are quoted from the card text."
+        ),
+    }
+    return ToolResult(data=data, card_names=frozenset(r["name"] for r in cov["cards"]))
+
+
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
     """What to add/cut, measured by re-simulation -- `ratings.advisor.advise`'s full
     ablation sweep, deferred out of Phase 1 (see this module's own docstring) until the
@@ -871,6 +901,20 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "removal_coverage",
+            "description": "What the deck's removal, board wipes and counterspells can "
+                            "actually answer (creatures, artifacts, enchantments, "
+                            "planeswalkers, spells), read from each card's oracle text, with "
+                            "each card's restrictions (e.g. 'with flying', 'nonblack') and "
+                            "the types with no answer or no UNRESTRICTED answer. Call this "
+                            "for 'is my removal good enough', 'what can't my removal answer' "
+                            "or 'what am I weak against' questions.",
+            "parameters": {"type": "object", "properties": {}, "required": []},
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "suggest_swap",
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
@@ -906,6 +950,7 @@ _TOOL_FUNCS = {
     "get_bracket_estimate": tool_get_bracket_estimate,
     "get_power_profile": tool_get_power_profile,
     "list_deck_cards": tool_list_deck_cards,
+    "removal_coverage": tool_removal_coverage,
     "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }

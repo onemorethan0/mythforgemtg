@@ -14,7 +14,44 @@ Row shape (one per distinct interaction card, commanders included):
 Aggregate: `answers_by_type` (creature/artifact/enchantment/planeswalker/land/spell -> names;
 `nonland_permanent` and `any_permanent` count toward the four permanent types, `any_permanent`
 also toward land; `spell` (counterspells) never answers a permanent type), `no_answer_for`
-(of creature/artifact/enchantment/planeswalker), `exile_count`, `instant_speed_count`, `cards`.
+(of creature/artifact/enchantment/planeswalker), `unrestricted_answers_by_type` /
+`no_unrestricted_answer_for` (below), `exile_count`, `instant_speed_count`, `cards`.
+
+Unrestricted coverage (PLAN_MENTOR_ADHOC B2-wiring)
+---------------------------------------------------
+`answers_by_type` alone flatters a deck: Shelob's creature answers are mostly "with flying",
+yet every one of them lands in `answers_by_type["creature"]`. `unrestricted_answers_by_type`
+keeps, per type, only answers with NO restriction limiting WHICH permanents of that type they
+can hit; `no_unrestricted_answer_for` lists the permanent types left empty (a superset of
+`no_answer_for`: a type answered ONLY by restricted cards is in it too). The rule is
+`restriction_limits_targets(text)` and it is a WHITELIST of non-limiting phrases -- anything
+not recognised is limiting, so the failure direction is an under-count, never a flattering
+over-count.
+
+NOT limiting (the answer still reaches any permanent of the type):
+- Who controls it: "an opponent controls", "you don't control", "your opponents control",
+  "each opponent controls", "target opponent controls", "that player controls", "that
+  opponent controls", "defending player controls". Removal is aimed at opposing permanents
+  anyway, so this costs nothing in practice.
+- Additional or alternative COSTS: "sacrifice ...", "pay ...", "discard ...", "exile a card
+  from your graveyard", "overload {..}" / "cleave {..}". A cost taxes the caster; it does not
+  shrink the target pool.
+- Durability caveats: "until this <permanent> leaves the battlefield" and the Fiend Hunter
+  "when this creature leaves the battlefield, return ..." clause. The answer is temporary, but
+  it still reaches anything of the type. (The caveat stays visible in `restrictions`.)
+- A caster-chosen X magnitude: "x damage", "get -x/-x" (a scalable sweep), and any literal
+  damage / -N/-N of 10 or more ("13 damage", Blasphemous Act), which kills essentially every
+  creature.
+LIMITING (everything else), notably: evasion/state words ("with flying", "tapped",
+"attacking"), "nonblack"/"nonartifact"/"nontoken"/colour words, "power 3 or less", "with mana
+value ...", "noncreature", "unless its controller pays {N}" (a soft counter the opponent can
+pay), "instant or sorcery", small fixed magnitudes ("3 damage", "get -2/-2": a 3-damage bolt is
+not a Doom Blade), conditional upgrades ("if it was kicked"), and parser residue we cannot
+interpret.
+A hit-prefixed restriction ("creature: with flying") applies only to the hits named in its
+prefix; an unprefixed restriction applies to every hit of the card. EDICTS (mode "sacrifice":
+the opponent chooses what to lose) never count as unrestricted -- they cannot answer a
+SPECIFIC permanent.
 
 Selection
 ---------
@@ -638,6 +675,85 @@ def _row_for(card) -> tuple[dict, set[str]] | None:
 # --------------------------------------------------------------------------- public API
 
 
+_CONTROL_NON_LIMITING = {
+    "an opponent controls", "you don't control", "your opponents control",
+    "each opponent controls", "target opponent controls", "that player controls",
+    "that opponent controls", "defending player controls",
+}
+_NON_LIMITING_RES = tuple(re.compile(p) for p in (
+    r"^sacrifice\b", r"^pay\b", r"^discard\b", r"^exile an? .+ from your graveyard$",
+    r"^(?:overload|cleave)\b",
+    r"^until this [a-z]+ leaves the battlefield$",
+    r"^when this [a-z]+ leaves the battlefield, return\b",
+    r"^x damage$", r"^gets? -x/-x$",
+))
+_MAGNITUDE_RE = re.compile(r"^(?:(\d+) damage|gets? -(\d+)/-(\d+))$")
+_SWEEP_MAGNITUDE = 10  # damage / -N/-N at least this large kills essentially every creature
+_PREFIX_RE = re.compile(r"^([a-z_]+(?:/[a-z_]+)*): (.*)$")
+
+
+def restriction_limits_targets(text: str) -> bool:
+    """True when `text` (one `restrictions` entry, prefix already removed) limits WHICH
+    permanents of a type the card can answer. A whitelist of non-limiting phrases; anything
+    unrecognised is limiting (an honest under-count). See the module docstring."""
+    t = (text or "").strip().lower()
+    if t in _CONTROL_NON_LIMITING:
+        return False
+    if any(rx.match(t) for rx in _NON_LIMITING_RES):
+        return False
+    m = _MAGNITUDE_RE.match(t)
+    if m:
+        nums = [int(g) for g in m.groups() if g is not None]
+        return not (nums and min(nums) >= _SWEEP_MAGNITUDE)
+    return True
+
+
+def _split_prefix(restriction: str) -> tuple[set[str] | None, str]:
+    m = _PREFIX_RE.match(restriction)
+    if m and all(p in _HIT_ORDER for p in m.group(1).split("/")):
+        return set(m.group(1).split("/")), m.group(2)
+    return None, restriction
+
+
+def _covers(label_hits: set[str], typ: str) -> bool:
+    if typ in label_hits:
+        return True
+    if typ in _PERMANENT_TYPES and ({"nonland_permanent", "any_permanent"} & label_hits):
+        return True
+    return typ == "land" and "any_permanent" in label_hits
+
+
+def _unrestricted_types(row: dict, modes: set[str]) -> set[str]:
+    """The answer types (keys of `answers_by_type`) this row answers with no limiting
+    restriction that applies to that type. Edicts answer nothing specific."""
+    if "sacrifice" in modes:
+        return set()
+    types: set[str] = set()
+    for h in row["hits"]:
+        if h in ("nonland_permanent", "any_permanent"):
+            types.update(_PERMANENT_TYPES)
+            if h == "any_permanent":
+                types.add("land")
+        elif h in _ANSWER_TYPES:
+            types.add(h)
+    out = set()
+    for typ in types:
+        limited = False
+        for r in row["restrictions"]:
+            labels, body = _split_prefix(r)
+            if labels is not None and not _covers(labels, typ):
+                continue
+            if restriction_limits_targets(body):
+                limited = True
+                break
+        if not limited:
+            out.add(typ)
+    return out
+
+
+_ANSWER_TYPES = ("creature", "artifact", "enchantment", "planeswalker", "land", "spell")
+
+
 def coverage_for_cards(cards) -> dict:
     """Same as `coverage` for an iterable of Card objects (commanders first, duplicates ok)."""
     rows: list[dict] = []
@@ -662,6 +778,11 @@ def coverage_for_cards(cards) -> dict:
         if name not in answers[typ]:
             answers[typ].append(name)
 
+    unrestricted: dict[str, list[str]] = {t: [] for t in answers}
+    for r in rows:
+        for typ in _ANSWER_TYPES:
+            if typ in _unrestricted_types(r, all_modes[r["name"]]) and r["name"] not in unrestricted[typ]:
+                unrestricted[typ].append(r["name"])
     for r in rows:
         for h in r["hits"]:
             if h in ("nonland_permanent", "any_permanent"):
@@ -674,6 +795,8 @@ def coverage_for_cards(cards) -> dict:
     return {
         "answers_by_type": answers,
         "no_answer_for": [t for t in _PERMANENT_TYPES if not answers[t]],
+        "unrestricted_answers_by_type": unrestricted,
+        "no_unrestricted_answer_for": [t for t in _PERMANENT_TYPES if not unrestricted[t]],
         "exile_count": sum(1 for r in rows if "exile" in all_modes[r["name"]]),
         "instant_speed_count": sum(1 for r in rows if r["speed"] == "instant"),
         "cards": rows,

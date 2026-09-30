@@ -341,3 +341,110 @@ def test_tags_flagged_but_unparseable_card_is_unknown_not_guessed(make_card):
               "Creature — Bear")
     row = removal.coverage_for_cards([card])["cards"][0]
     assert row["mode"] == "unknown" and row["hits"] == []
+
+
+# ---- unrestricted coverage (B2-wiring)
+
+@pytest.mark.parametrize("text,limits", [
+    ("an opponent controls", False), ("you don't control", False),
+    ("your opponents control", False), ("that player controls", False),
+    ("sacrifice a creature", False), ("sacrifice another creature", False),
+    ("pay x life", False), ("pay {2}", False), ("discard a card", False),
+    ("overload {6}{u}", False), ("cleave {4}{w}", False),
+    ("until this enchantment leaves the battlefield", False),
+    ("until this creature leaves the battlefield", False),
+    ("x damage", False), ("get -x/-x", False), ("13 damage", False), ("get -10/-10", False),
+    # limiting
+    ("with flying", True), ("without flying", True), ("nonblack", True), ("nonartifact", True),
+    ("power 3 or less", True), ("with power 4 or greater", True),
+    ("with mana value 3 or less", True), ("tapped", True), ("attacking", True),
+    ("nontoken", True), ("noncreature", True), ("3 damage", True), ("get -2/-2", True),
+    ("9 damage", True), ("unless its controller pays {3}", True), ("red", True),
+    ("if it was kicked", True), ("instant or sorcery", True),
+    ("some parser residue we do not understand", True),   # unknown => limiting (under-count)
+    ("", True),
+])
+def test_restriction_limits_targets(text, limits):
+    assert removal.restriction_limits_targets(text) is limits
+
+
+def test_unrestricted_aggregate_separates_restricted_answers(make_card):
+    cards = [
+        _c(make_card, "Flyer Hate", "Destroy target creature with flying."),
+        _c(make_card, "Black Hate", "Destroy target nonblack creature."),
+        _c(make_card, "Tax Kill", "As an additional cost to cast this spell, sacrifice a creature.\n"
+                                   "Destroy target creature an opponent controls."),
+        _c(make_card, "Smash", "Destroy target artifact."),
+        _c(make_card, "Bolt", "Bolt deals 3 damage to target creature or planeswalker."),
+    ]
+    cov = removal.coverage_for_cards(cards)
+    assert cov["answers_by_type"]["creature"] == ["Flyer Hate", "Black Hate", "Tax Kill", "Bolt"]
+    assert cov["unrestricted_answers_by_type"]["creature"] == ["Tax Kill"]
+    assert cov["unrestricted_answers_by_type"]["artifact"] == ["Smash"]
+    assert cov["unrestricted_answers_by_type"]["planeswalker"] == []   # Bolt's 3 damage limits it
+    # planeswalker is answered (by Bolt) but only under a restriction
+    assert "planeswalker" not in cov["no_answer_for"]
+    assert cov["no_unrestricted_answer_for"] == ["enchantment", "planeswalker"]
+
+
+def test_hit_prefixed_restriction_applies_only_to_its_own_hits(make_card):
+    card = _c(make_card, "Thunder", "Choose one —\n• Thunder deals 3 damage to target planeswalker.\n"
+                                    "• Destroy target artifact.")
+    cov = removal.coverage_for_cards([card])
+    assert cov["unrestricted_answers_by_type"]["artifact"] == ["Thunder"]
+    assert cov["unrestricted_answers_by_type"]["planeswalker"] == []
+
+
+def test_edicts_and_soft_counters_are_not_unrestricted(make_card):
+    cov = removal.coverage_for_cards([
+        _c(make_card, "Edict", "Target opponent sacrifices a creature."),
+        _c(make_card, "Soft", "Counter target spell unless its controller pays {3}."),
+        _c(make_card, "Hard", "Counter target spell."),
+    ])
+    assert cov["answers_by_type"]["creature"] == ["Edict"]
+    assert cov["unrestricted_answers_by_type"]["creature"] == []
+    assert cov["unrestricted_answers_by_type"]["spell"] == ["Hard"]
+
+
+def test_empty_deck_has_no_unrestricted_answers(make_card):
+    cov = removal.coverage_for_cards([make_card("Bear", oracle_text="")])
+    assert cov["no_unrestricted_answer_for"] == ["creature", "artifact", "enchantment", "planeswalker"]
+
+
+# gold set (real card DB): card -> answer types with NO limiting restriction
+UNRESTRICTED_GOLD = [
+    ("Swords to Plowshares", ["creature"]),
+    ("Beast Within", ["creature", "artifact", "enchantment", "planeswalker", "land"]),
+    ("Cyclonic Rift", ["creature", "artifact", "enchantment", "planeswalker"]),
+    ("Damnation", ["creature"]),
+    ("Blasphemous Act", ["creature"]),
+    ("Doom Blade", []),
+    ("Culling Sun", []),
+    ("Eaten by Spiders", []),
+    ("Lightning Bolt", []),
+    ("Negate", []),
+    ("Mana Leak", []),
+    ("Counterspell", ["spell"]),
+    ("Assassin's Trophy", ["creature", "artifact", "enchantment", "planeswalker", "land"]),
+    ("Skyfisher Spider", ["creature", "artifact", "enchantment", "planeswalker"]),
+    ("Toxic Deluge", ["creature"]),
+    ("Tergrid's Shadow", []),
+    ("Abrade", ["artifact"]),
+]
+
+
+@pytest.mark.parametrize("name,types", UNRESTRICTED_GOLD, ids=[g[0] for g in UNRESTRICTED_GOLD])
+def test_unrestricted_gold(db, name, types):
+    cov = removal.coverage_for_cards([db.get(name)])
+    got = [t for t, names in cov["unrestricted_answers_by_type"].items() if names]
+    assert got == types
+
+
+def test_shelob_creature_answers_are_mostly_restricted(db):
+    from mythgauntlet.model.deck import Deck, resolve
+    path = Path(__file__).resolve().parents[2] / "corpus" / "decks" / "archidekt-1010839.txt"
+    if not path.exists():
+        pytest.skip("corpus deck absent")
+    cov = removal.coverage(resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db))
+    assert len(cov["answers_by_type"]["creature"]) > 2 * len(cov["unrestricted_answers_by_type"]["creature"])
+    assert "Eaten by Spiders" not in cov["unrestricted_answers_by_type"]["creature"]
