@@ -193,3 +193,22 @@ def test_win_route_restated_from_the_gameplan_counts_as_stating_it():
 
 def test_markdown_does_not_hide_a_resilience_claim():
     assert v.claimed_resilience("It is **vulnerable** to board wipes.") == {"vulnerable"}
+
+
+def test_vulnerable_needs_a_wipe_as_its_object():
+    # Live, Tymna: "no counterspells or board wipes, making it vulnerable to decks with
+    # strong interaction" is about interaction, not wipe-resilience.
+    text = "It has no counterspells or board wipes, making it vulnerable to decks with strong interaction."
+    assert v.claimed_resilience(text) == set()
+    assert v.claimed_resilience("It is vulnerable to a board wipe.") == {"vulnerable"}
+    assert v.claimed_resilience("The deck folds to sweepers.") == {"vulnerable"}
+    assert v.claimed_resilience("It is somewhat vulnerable to wipes.") == {"moderate"}
+
+
+def test_bare_moderate_in_an_interaction_sentence_is_not_a_resilience_claim():
+    # Live, Ghired/Arahbo: "...(3 removal, 0 counters, 1 wipe), giving it a moderate but not
+    # strong interaction score".
+    text = ("It has limited interaction, with only 3.4 castable answers (3 removal, 0 counters, "
+            "1 wipe), giving it a moderate but not strong interaction score.")
+    assert v.claimed_resilience(text) == set()
+    assert v.claimed_resilience("Its resilience to a wipe is moderate.") == {"moderate"}

@@ -2,6 +2,7 @@
 
     python scripts/mentor_holistic_bench.py [--decks a,b] [--questions x,y]
         [--json out.json] [--model qwen3:14b] [--runs 150] [--turns N] [--list]
+        [--regrade saved.json]
 
 `scripts/mentor_bench.py` grades non-trap questions on `gated` alone, so a reply can be
 fully grounded and still wrong about the deck ("somewhat vulnerable to wipes" for a deck the
@@ -233,8 +234,51 @@ def print_table(rows, deck_keys, qids):
                 gated_count += 1
     print(f"gated on first attempt: {gated_count}/{total_gated}")
 
+def _stand_in_reply(row: dict):
+    """A MentorReply look-alike rebuilt from a saved JSON row (for --regrade)."""
+    from types import SimpleNamespace
+    return SimpleNamespace(
+        text=row["reply"], gated=row["gated"],
+        gate_rejections=[(r["draft"], r["reasons"]) for r in row["rejections"]],
+        tool_trace=[SimpleNamespace(name=t["name"], args=t["args"], result_data=t["result"])
+                    for t in row["tool_trace"]],
+    )
+
+
+def regrade(data: dict, world: tuple, runs: int, turns: int) -> list[dict]:
+    """Re-grade a saved --json run with the CURRENT rubrics -- no model calls. Ground truth
+    is recomputed (analyze_deck is deterministic for a given deck and SimConfig). Used to
+    compare a baseline and a later run under ONE rubric version after the rubrics were
+    refined from reading replies."""
+    out: list[dict] = []
+    by_deck: dict[str, list[dict]] = {}
+    for row in data["rows"]:
+        by_deck.setdefault(row["deck"], []).append(row)
+    for key, filename, _note in DECKS:
+        rows = by_deck.get(key)
+        if not rows:
+            continue
+        truth = build_truth(key, ROOT / "corpus" / "decks" / filename, world, runs, turns)
+        if truth is None:
+            continue
+        replies = []
+        for row in rows:
+            if row["qid"] == "colour":
+                continue
+            reply = _stand_in_reply(row)
+            replies.append(reply)
+            passed, reason = rubrics.grade(row["qid"], reply, truth)
+            out.append({**row, "passed": passed, "reason": reason})
+        passed, reason = rubrics.grade_colour(replies, truth)
+        colour = next((r for r in rows if r["qid"] == "colour"), {"deck": key, "qid": "colour"})
+        out.append({**colour, "passed": passed, "reason": reason})
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Mentor holistic bench")
+    parser.add_argument("--regrade", type=Path,
+                        help="re-grade a saved --json run with the current rubrics (no model calls)")
     parser.add_argument("--decks", type=str, default="shelob,tymna,kess,ghired,isshin,najeela,arahbo,kaalia,meren")
     parser.add_argument("--questions", type=str, default="overview,cards,faster,resilience,wincon,weakest,vs_b3,removal")
     parser.add_argument("--json", type=Path, help="Output JSON file")
@@ -248,6 +292,14 @@ def main() -> int:
         print("Available decks:")
         for key, filename, note in DECKS:
             print(f"- {key}: {filename} - {note}")
+        return 0
+
+    if args.regrade:
+        data = json.loads(args.regrade.read_text(encoding="utf-8"))
+        rows = regrade(data, load_world(), data.get("runs", args.runs), data.get("turns", args.turns))
+        deck_keys = [k for k, _f, _n in DECKS if any(r["deck"] == k for r in rows)]
+        qids = [q[0] for q in QUESTIONS] + ["colour"]
+        print_table(rows, deck_keys, qids)
         return 0
 
     decks = []

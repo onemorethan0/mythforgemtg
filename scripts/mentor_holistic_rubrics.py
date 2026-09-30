@@ -123,7 +123,14 @@ _NO_IMPROVEMENT_RE = re.compile(
     # swaps", "no clear improvement to be made ... based on the cards you own"
     r"no\s+(?:immediate|obvious|clear|significant|easy)\s+(?:way|swaps?|improvements?|upgrades?)|"
     r"(?:aren'?t|are\s+not|isn'?t|is\s+not)\s+any\s+(?:[\w,]+\s+){0,3}(?:swaps?|improvements?|upgrades?)|"
-    r"no\s+(?:\w+\s+){0,2}swaps?\s+(?:to|that|i\s+can)\b)",
+    r"no\s+(?:\w+\s+){0,2}swaps?\s+(?:to|that|i\s+can)\b|"
+    # the honest-decline space is wide ("no measurable way to make it faster", "no
+    # significant measured gain", "none of the cards I evaluated provided a significant
+    # enough boost", "wasn't a clear improvement"): a negator and an improvement word in
+    # one clause. Lenient by design -- it is only consulted when the tool found NO swap,
+    # and the separate no-cut-recommendation check still applies.
+    r"(?:\bno\b|\bnot\b|n't|\bnone\b|\bnothing\b)[^.]{0,60}"
+    r"\b(?:measur\w*|improv\w*|gains?|boosts?|swaps?|upgrades?)\b)",
     re.IGNORECASE,
 )
 _CUT_VERB_RE = re.compile(

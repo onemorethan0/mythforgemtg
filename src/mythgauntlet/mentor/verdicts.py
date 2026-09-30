@@ -161,6 +161,12 @@ RESILIENCE_TOPIC_RE = re.compile(
     re.IGNORECASE,
 )
 
+_RESILIENCE_WORD_RE = re.compile(r"\bresilien\w*", re.IGNORECASE)
+_OTHER_AXIS_RE = re.compile(
+    r"\b(?:interaction|answers?|removal|counterspells?|counters|consisten\w*|ceiling|speed)\b",
+    re.IGNORECASE,
+)
+
 PHRASES: dict[str, dict[str, re.Pattern]] = {
     "resilience": {
         "moderate": re.compile(
@@ -173,11 +179,14 @@ PHRASES: dict[str, dict[str, re.Pattern]] = {
             r"|well[\s-]protected\s+(?:against|from)|resilience\s+(?:is|of)\s+(?:high|strong|excellent|great))\b",
             re.IGNORECASE,
         ),
+        # "vulnerable/weak/exposed/folds" only count when their OBJECT is a wipe: "vulnerable
+        # to decks with strong interaction" (live, Tymna) is not a wipe-resilience claim even
+        # though "board wipes" sat a few words earlier in the sentence.
         "vulnerable": re.compile(
-            r"\b(?:vulnerable|fragile|folds?\s+(?:to|against)|falls?\s+apart|crumbles?|"
-            r"devastated|(?:set|sets)\s+(?:it\s+)?back\s+hard|struggles?\s+to\s+recover|"
-            r"weak\s+(?:to|against)|susceptible|exposed\s+to|hurts?\s+(?:a\s+lot|badly)|"
-            r"creature[\s-]reliant)\b",
+            r"\b(?:(?:vulnerable|susceptible|exposed|weak|folds?|falls?)\s+(?:to|against)\s+"
+            r"(?:(?:an?|the|any|mass|board|single|one)\s+)*(?:wipes?|sweepers?|wraths?|mass\s+removal|resets?)"
+            r"|fragile|falls?\s+apart|crumbles?|devastated|(?:set|sets)\s+(?:it\s+)?back\s+hard|"
+            r"struggles?\s+to\s+recover|hurts?\s+(?:a\s+lot|badly)|creature[\s-]reliant)\b",
             re.IGNORECASE,
         ),
     },
@@ -284,22 +293,25 @@ def split_sentences(text: str) -> list[str]:
 _TOPIC_WINDOW_WORDS = 6
 
 
-def _topic_near(sentence: str, m: re.Match, topic: re.Pattern) -> bool:
+def _topic_near(sentence: str, m: re.Match, topic: re.Pattern,
+                window: int = _TOPIC_WINDOW_WORDS) -> bool:
     """The topic appears inside the phrase or within a few words of it. A sentence-wide
     topic test lets "moderate interaction ... (4 removal, 0 counters, 1 wipes)" read as a
     moderate WIPE-RESILIENCE claim because the list ends in "wipes" -- found on the first
     live Shelob run after A2."""
-    before = " ".join(sentence[:m.start()].split()[-_TOPIC_WINDOW_WORDS:])
-    after = " ".join(sentence[m.end():].split()[:_TOPIC_WINDOW_WORDS])
+    before = " ".join(sentence[:m.start()].split()[-window:])
+    after = " ".join(sentence[m.end():].split()[:window])
     return bool(topic.search(f"{before} {m.group(0)} {after}"))
 
 
-def _phrase_hits(sentence: str, pattern: re.Pattern, topic: re.Pattern | None = None) -> list[str]:
+def _phrase_hits(sentence: str, pattern: re.Pattern, topic: re.Pattern | None = None,
+                 window: int = _TOPIC_WINDOW_WORDS) -> list[str]:
     """Phrase matches in `sentence` that are neither negated nor hedged -> "plain";
-    hedged -> "hedged"; negated -> dropped. With `topic`, the phrase must sit near it."""
+    hedged -> "hedged"; negated -> dropped. With `topic`, the phrase must sit within
+    `window` words of it."""
     out: list[str] = []
     for m in pattern.finditer(sentence):
-        if topic is not None and not _topic_near(sentence, m, topic):
+        if topic is not None and not _topic_near(sentence, m, topic, window):
             continue
         before = sentence[:m.start()]
         if _NEGATOR_RE.search(before):
@@ -315,8 +327,18 @@ def claimed_resilience(text: str) -> set[str]:
     for sentence in split_sentences(text):
         if not RESILIENCE_TOPIC_RE.search(sentence):
             continue
+        about_resilience = bool(_RESILIENCE_WORD_RE.search(sentence))
         for band, pat in PHRASES["resilience"].items():
-            for kind in _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE):
+            if band == "moderate":
+                # A bare "moderate/decent/average" is the loosest word in this map: it only
+                # counts right next to the topic, and not in a sentence about another axis
+                # ("a moderate interaction score ... 1 wipe"), unless it says "resilience".
+                if _OTHER_AXIS_RE.search(sentence) and not about_resilience:
+                    continue
+                hits = _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE, window=3)
+            else:
+                hits = _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE)
+            for kind in hits:
                 claimed.add(band if kind == "plain" else "moderate")
     return claimed
 

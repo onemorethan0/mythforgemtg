@@ -207,3 +207,21 @@ def test_faster_accepts_a_multi_adjective_no_improvement_phrasing():
     text = "There aren't any clear, measurable improvements to be made in terms of speed from your collection."
     ok, why = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
     assert ok is True, why
+
+
+@pytest.mark.parametrize("text", [
+    "There's no measurable way to make it faster with cards you own.",
+    "After testing your collection, there's no significant measured gain to be found in speed.",
+    "None of the cards I evaluated provided a significant enough boost to make a difference.",
+    "After testing, no measurable speed boost was found.",
+    "Unfortunately there wasn't a clear improvement to be made in this area.",
+])
+def test_faster_accepts_more_honest_decline_phrasings(text):
+    ok, why = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
+    assert ok is True, why
+
+
+def test_faster_still_fails_a_confident_recommendation_without_a_decline():
+    text = "You should add a bigger finisher and cut Gloomwidow's Feast to speed things up."
+    ok, _ = rub.grade("faster", _reply(text, trace=[_EMPTY_SWAP]), _truth())
+    assert ok is False

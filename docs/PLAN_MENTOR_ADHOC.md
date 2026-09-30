@@ -390,6 +390,31 @@ starts, and owns merging `mentor-adhoc` to `main`.
 | 2026-09-30 | probe (pre-A0) | ~1/8 on Shelob | see §1 |
 | 2026-09-30 | **A0 baseline** (pre-A1, commit 917173a, qwen3:14b, runs=150, 9 decks) | **22/72 (31%)**; gated on first attempt 59/72 | per rubric, decks passing: overview 8/9, cards 2/9, faster 0/9, resilience 1/9, wincon 3/9, weakest 4/9, vs_b3 2/9, removal n/a, colour 2/9. Detail below. |
 
+| 2026-09-30 | **Phase A exit check** (HEAD = "A-exit fix 2", qwen3:14b, runs=150, 9 decks; 3 full runs after A1-A7 + 2 fix iterations) | final run **64/72 (89%)** under the final rubric (56/72 as it was originally graded); baseline re-graded under the same rubric **25/72 (35%)**. `mentor_bench.py` on Shelob **50/52** (exit bar 47). Full pytest 1739 passed. | per rubric, final run: overview 9/9, cards 9/9, faster 9/9, resilience 8/9, wincon 9/9, weakest 9/9, vs_b3 8/9, removal n/a, colour 3/9. **Phase A exit met** (every listed rubric >= 80% of decks); `colour` is Phase C's, not Phase A's. Detail and caveats below. |
+
+**Phase A exit detail.** Three full runs after the fixes, each re-graded offline under the FINAL
+rubric (`--regrade`, no model calls): run 1 62/72, run 2 67/72 (93%), run 3 64/72 (89%) — model
+variance between identical-code runs is 3-5 cells, so read every figure as +-5 points. The two
+fix iterations, each from reading failing replies: (1) `clock` carries `*_pct` percents (the
+model's "50%" for `goldfish_kill_rate 0.5` was gate-rejected, two decks fell back to the
+uncertainty reply), tools are re-called on follow-ups, and a model that announces "I'll look
+into your collection" and stops gets one nudge to make the `suggest_swap` call; (2) verdict
+detectors see through markdown, win-route phrases count as stating the route, resilience
+phrases need the wipe as their object, and the prompt asks for the asked-about axis first.
+Rubric refinements made while reading replies (so the as-run and re-graded figures differ):
+honest "no measured improvement" phrasings, "lacks a finisher" negating a finisher mention,
+truncated deck-card names ("Gloomwidow") not counted as foreign cards, markdown/proximity fixes
+in `verdicts`. Re-grading the baseline with the same rubric moved it 22 -> 25, so the rubric
+changes are not what produced the improvement. **Cold `_analysis_for` at runs=150: 3.4-4.1 s**
+(shelob 3.4, kess 3.9, najeela 3.7, tymna partner deck 4.1) — nowhere near the 120 s Forge proxy
+timeout; `suggest_swap` (4 re-simulations) remains the slow tool. **Still failing / open:**
+`colour` 3/9 (the colour-blind `counterspell` target, Phase C1); `faster` replies often say "your
+deck is already quite fast" while `verdicts.speed` is "slow" (ungated verdict contradiction,
+Phase F1's job); `overview` is lenient by the plan's own definition (contradiction-free plus
+one measured strength topic); `removal` is n/a until Phase B. `mentor_bench.py`'s two failures
+are the documented honest-answer scorer residuals (a 704.5f correction and a Sol Ring
+premise correction that says "costs {1}").
+
 **A0 baseline detail** (`scripts/mentor_holistic_bench.py`, full run ~25 min wall incl. cold store
 load; decks = shelob, tymna, kess, ghired, isshin, najeela, arahbo, kaalia, meren). The overview
 rubric passes because it only requires verdict phrases not to contradict and one measured strength
