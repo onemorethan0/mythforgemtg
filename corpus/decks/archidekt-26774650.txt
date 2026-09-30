@@ -1,0 +1,107 @@
+# Archidekt — Kobalt Kykar
+# source: archidekt:26774650
+# fetched: 2026-09-29
+
+Commander:
+1 Kykar, Wind's Fury
+
+Deck:
+1 Mindbreak Trap
+1 Redirect Lightning
+1 Esper Sentinel
+1 Belladonna Took
+1 Valley Floodcaller
+1 Dragon's Rage Channeler
+1 Lorehold Apprentice
+1 Ledger Shredder
+1 Mockingbird
+1 Storm-Kiln Artist
+1 Wan Shi Tong, Librarian
+1 Balmor, Battlemage Captain
+1 Millicent, Restless Revenant
+1 Impulse
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Unexpected Assistance
+1 Pyroblast
+1 Opt
+1 Pyrokinesis
+1 An Offer You Can't Refuse
+1 Consider
+1 Brainstorm
+1 Red Elemental Blast
+1 Return the Favor
+1 Retraction Helix
+1 Dramatic Reversal
+1 Misdirection
+1 Commandeer
+1 Flusterstorm
+1 Vision of Love
+1 Seize the Spoils
+1 Silence
+1 Word of Seizing
+1 Angel's Grace
+1 Big Score
+1 Whirlwind of Thought
+1 Finale of Revelation
+1 Faithless Looting
+1 Orim's Chant
+1 Strike It Rich
+1 Swords to Plowshares
+1 Portent of Calamity
+1 Mystic Remora
+1 Sorceress's Schemes
+1 Grapeshot
+1 Monologue Tax
+1 Pinnacle Monk // Mystic Peak
+1 Rimefire Torque
+1 Requisition Raid
+1 Dovescape
+1 Wisdom of Ages
+1 Borrowed Knowledge
+1 Sol Ring
+1 Jeskai Ascendancy
+1 Cosmic Epiphany
+1 Artist's Talent
+1 Skullclamp
+1 Gleaming Splendor
+1 Springleaf Drum
+1 Sensei's Divining Top
+1 Aetherflux Reservoir
+1 Arcane Signet
+1 Talisman of Progress
+1 Azorius Signet
+1 Sewer-veillance Cam
+1 Talisman of Conviction
+1 Urn of Godfire
+1 Hallowed Fountain
+1 Mountain
+1 Mana Confluence
+1 Sacred Foundry
+1 Path of Ancestry
+1 Plains
+1 Arid Mesa
+1 Command Tower
+1 Exotic Orchard
+1 Steam Vents
+1 Scalding Tarn
+1 Spire of Industry
+1 Island
+1 Battlefield Forge
+1 Reliquary Tower
+1 Plateau
+1 Flooded Strand
+1 Mystic Sanctuary
+1 Otawara, Soaring City
+1 Urza's Saga
+1 Volcanic Island
+1 City of Brass
+1 Tundra
+1 Cephalid Coliseum
+1 Mana Geyser
+1 Hexing Squelcher
+1 Frantic Search
+1 Swan Song
+1 Lorehold Charm
+1 Everflowing Chalice
+1 Ragavan, Nimble Pilferer
+1 Sea Gate Restoration // Sea Gate, Reborn

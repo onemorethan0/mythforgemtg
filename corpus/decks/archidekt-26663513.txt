@@ -1,0 +1,76 @@
+# Archidekt — Giada, Calling All Angels Precon
+# source: archidekt:26663513
+# fetched: 2026-09-22
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+1 Swiftfoot Boots
+1 Secluded Steppe
+1 Arcane Signet
+1 Destroy Evil
+1 Exorcise
+1 Inspiring Overseer
+1 Invoke the Divine
+1 Secret Rendezvous
+1 Segovian Angel
+1 Starnheim Aspirant
+1 Swords to Plowshares
+1 Thraben Watcher
+1 Valorous Stance
+1 Vanguard Seraph
+1 Youthful Valkyrie
+1 Grasp of Fate
+1 Always Watching
+1 Angel of the Ruins
+1 Angelic Destiny
+1 Austere Command
+1 Angelic Field Marshal
+1 Angelic Sleuth
+1 Serra Avenger
+1 Speaker of the Heavens
+1 Sunblast Angel
+1 Endless Atlas
+1 Vanquisher's Banner
+1 Angel of Finality
+1 Cut a Deal
+1 Metallic Mimic
+1 Tome of Legends
+1 Bonders' Enclave
+1 War Room
+1 Commander's Sphere
+1 Mind Stone
+1 Patchwork Banner
+1 Sol Ring
+1 Cleansing Nova
+1 Court of Grace
+1 Defy Death
+1 Heraldic Banner
+1 Marble Diamond
+1 Radiant Fountain
+1 Seraph Sanctuary
+1 Temple of the False God
+32 Plains
+1 Bishop of Wings
+1 Emeria Shepherd
+1 Angel of Vitality
+1 Herald of War
+1 Linvala, the Preserver
+1 Lyra Dawnbringer
+1 Merchant of Truth
+1 Metropolis Reformer
+1 Norn's Choirmaster
+1 Reya Dawnbringer
+1 Righteous Valkyrie
+1 Dazzling Angel
+1 Day of Judgment
+1 Exemplar of Light
+1 Fateful Absence
+1 Firemane Commando
+1 Herald of Eternal Dawn
+1 Search the Premises
+1 Sephara, Sky's Blade
+1 Seraph of the Sword
+1 Wojek Investigator
+1 Archangel of Tithes

@@ -1,0 +1,89 @@
+# Archidekt — Browser History
+# source: archidekt:26423842
+# fetched: 2026-09-16
+
+Commander:
+1 River Song
+
+Deck:
+1 Arcane Signet
+1 Conjurer's Bauble
+1 Fellwar Stone
+1 Lightning Greaves
+1 Reito Lantern
+10 Island
+8 Mountain
+1 Barkform Harvester
+1 Boldwyr Heavyweights
+1 Chrome Companion
+1 Dutiful Knowledge Seeker
+1 Goblin Electromancer
+1 Hired Giant
+1 Junktroller
+1 Krenko's Buzzcrusher
+1 Magmatic Hellkite
+1 Myr Custodian
+1 Neera, Wild Mage
+1 Noble Benefactor
+1 Radiant Performer
+1 Curiosity
+1 Eyes Everywhere
+1 Propaganda
+1 Chaos Warp
+1 Counterspell
+1 Deliberate
+1 Experimental Augury
+1 Frantic Search
+1 Impulse
+1 Negate
+1 Opt
+1 Cascade Bluffs
+1 Command Tower
+1 Demolition Field
+1 Field of Ruin
+1 Frostboil Snarl
+1 Ghost Quarter
+1 Izzet Boilerworks
+1 Reliquary Tower
+1 Avengers Disassembled
+1 Blasphemous Act
+1 Cleansing Wildfire
+1 Geomancer's Gambit
+1 Ingenious Mastery
+1 Preordain
+1 Price of Freedom
+1 Serum Visions
+1 Sol Ring
+1 Swiftfoot Boots
+1 Talisman of Creativity
+1 Teferi's Puzzle Box
+1 Tel-Jilad Stylus
+1 Thought Vessel
+1 The Reality Chip
+1 Timestream Navigator
+1 Tomb Trawler
+1 Transplant Theorist
+1 Wizard Class
+1 Slip Out the Back
+1 Shivan Reef
+1 Steam Vents
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Temple of Epiphany
+1 Training Center
+1 Trenzalore Clocktower
+1 Volatile Fault
+1 Sundering Eruption // Volcanic Fissure
+1 Vandalblast
+1 Trinket Mage
+1 Anticipate
+1 Purphoros, God of the Forge
+1 Thassa, Deep-Dwelling
+1 Jace, the Mind Sculptor
+1 Eager Construct
+1 Brittle Effigy
+1 World Map
+1 Tribute Mage
+1 Combat Research
+1 Sleight of Hand
+1 Giant's Boulder

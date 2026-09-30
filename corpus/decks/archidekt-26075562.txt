@@ -1,0 +1,96 @@
+# Archidekt — Queza
+# source: archidekt:26075562
+# fetched: 2026-09-18
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Niv-Mizzet, Ghost Counsel
+1 Deserted Beach
+1 Floodfarm Verge
+1 Glacial Fortress
+1 Isolated Chapel
+1 Reliquary Tower
+1 Shattered Sanctum
+1 Shipwreck Marsh
+1 Supreme Verdict
+1 Laboratory Maniac
+1 Propaganda
+1 Exalted Sunborn
+1 Path of Ancestry
+5 Plains
+3 Swamp
+1 Bojuka Bog
+1 Caves of Koilos
+1 Command Tower
+1 Adarkar Wastes
+1 Arcane Sanctum
+1 Bleachbone Verge
+1 Contaminated Landscape
+1 Drowned Catacomb
+1 Gloomlake Verge
+1 Godless Shrine
+1 Hallowed Fountain
+1 Ishgard, the Holy See // Faith & Grief
+1 Jidoor, Aristocratic Capital // Overture
+1 Maze of Ith
+1 Midgar, City of Mako // Reactor Raid
+1 Petrified Hamlet
+1 Underground River
+1 Watery Grave
+1 Refute
+5 Island
+1 Arcane Denial
+1 Confound
+1 Three Steps Ahead
+1 Sol Ring
+1 Arcane Signet
+1 Mana Drain
+1 Reprieve
+1 Decanter of Endless Water
+1 Gleaming Splendor
+1 Monologue Tax
+1 Disenchant
+1 Esper Charm
+1 Sheltered by Ghosts
+1 Void Rend
+1 Path to Exile
+1 Faerie Mastermind
+1 Lotho, Corrupt Shirriff
+1 Teferi's Ageless Insight
+1 Swords to Plowshares
+1 Ponder
+1 Notion Thief
+1 Damn
+1 Cyclonic Rift
+1 Tivit, Seller of Secrets
+1 Tamiyo's Journal
+1 Insatiable Avarice
+1 Windfall
+1 Inquisitor Greyfax
+1 Academy Manufactor
+1 Smothering Tithe
+1 Rhystic Study
+1 Bard, King of Dale
+1 Teysa, Opulent Oligarch
+1 Mirkwood Bats
+1 Gríma, Saruman's Footman
+1 Grand Arbiter Augustin IV
+1 Kambal, Profiteering Mayor
+1 Gregor, Shrewd Magistrate
+1 Karlov of the Ghost Council
+1 Minister of Impediments
+1 Tataru Taru
+1 Nita, Forum Conciliator
+1 Senator Peacock
+1 Kambal, Consul of Allocation
+1 Time Sieve
+1 Alhammarret's Archive
+1 Chimil, the Inner Sun
+1 Persuasive Interrogators
+1 Krark-Clan Ironworks
+1 The Endstone
+1 Stridehangar Automaton
+1 June, Bounty Hunter
+1 Grand Abolisher

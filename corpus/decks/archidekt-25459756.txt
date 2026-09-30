@@ -1,0 +1,78 @@
+# Archidekt — SUCCUMB TO THE OCEANS MIGHT!
+# source: archidekt:25459756
+# fetched: 2026-09-23
+
+Commander:
+1 Namor, Atlantean King
+
+Deck:
+1 Mathemagics
+1 Wanderwine Farewell
+1 Pym Particles
+1 Austere Command
+1 Negate
+1 Amazing Acrobatics
+1 We Say Thee Nay!
+1 Glen Elendra's Answer
+1 Ooze Spill
+1 Invoke the Divine
+1 Congregate
+1 Vanish into Eternity
+1 Stroke of Genius
+1 Intangible Virtue
+1 Valor in Akros
+1 Team Avatar
+1 Frozen in Ice
+1 Quantum Reduction
+1 The Indomitable
+1 Midnight Clock
+1 Azorius Cluestone
+1 Mist-Cloaked Herald
+1 Fellwar Stone
+1 Gathering Stone
+1 Sky Diamond
+1 Azorius Locket
+1 Arcane Signet
+1 Callaphe, Beloved of the Sea
+1 Talisman of Progress
+1 Sol Ring
+1 Astral Cornucopia
+1 Daughter of the Deep
+1 Triton Wavebreaker
+1 Shipwreck Patrol
+1 Tide Shaper
+1 Atlantean Cavalry
+1 Mistcaller
+1 Cleric of Chill Depths
+1 Library Larcenist
+1 Gravelgill Scoundrel
+1 Vodalian Mage
+1 Disruptor of Currents
+1 Wanderbrine Preacher
+1 Encumbered Reejerey
+1 Eclipsed Merrow
+1 Harbinger of the Seas
+1 Wanderbrine Trapper
+1 Namor the Sub-Mariner
+1 Ambassador Laquatus
+1 Tishana's Tidebinder
+1 Meanders Guide
+1 Eluge, the Shoreless Sea
+1 Tromokratis
+1 Sharae of Numbing Depths
+1 Attuma, Atlantean Warlord
+1 Sygg, Wanderwine Wisdom // Sygg, Wanderbrine Shield
+1 Namor, Scourge of the Seas
+1 Namora, the Sea Queen
+1 Kiora, the Rising Tide
+1 Reliquary Tower
+1 Command Tower
+1 Path of Ancestry
+1 Terramorphic Expanse
+1 Temple of the False God
+6 Plains
+24 Island
+1 Thriving Isle
+1 Prairie Stream
+1 Unstable Experiment
+1 Emry, Lurker of the Loch

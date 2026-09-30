@@ -1,0 +1,88 @@
+# Archidekt — IT'S ALIVE
+# source: archidekt:24261873
+# fetched: 2026-09-24
+
+Commander:
+1 Xu-Ifit, Osteoharmonist
+
+Deck:
+1 Ancient Stone Idol
+1 Arcane Signet
+1 Altar of the Wretched // Wretched Bonemass
+1 Bojuka Bog
+1 Archenemy's Charm
+1 Breach the Multiverse
+1 Codex Shredder
+1 Conduit Pylons
+1 Conjurer's Closet
+1 Crypt Ghast
+1 Crypt of Agadeem
+1 Deadly Rollick
+1 Hidden Grotto
+1 Incarnation Technique
+1 Malakir Rebirth // Malakir Mire
+1 Meathook Massacre II
+1 Metamorphosis Fanatic
+1 Morbid Curiosity
+1 Out of the Tombs
+1 Phyrexian Dreadnought
+1 Ripples of Undeath
+1 Shadowgrange Archfiend
+1 Shadowheart, Dark Justiciar
+1 Sol Ring
+1 Soldevi Adnate
+1 Sting, the Glinting Dagger
+1 Surveillance Room
+1 Sword of Hearth and Home
+1 Takenuma, Abandoned Mire
+1 The Warring Triad
+1 Thousand-Year Elixir
+1 Tortured Existence
+1 Toxic Deluge
+1 Triplicate Titan
+1 Troll of Khazad-dûm
+1 Golgari Thug
+1 Ulamog's Dreadsire
+1 Undead Butler
+1 Urborg, Tomb of Yawgmoth
+1 Valgavoth, Terror Eater
+1 Victimize
+1 Void Beckoner
+1 Whip of Erebos
+1 Witch's Cottage
+1 Zephyr Boots
+20 Swamp
+1 Ulamog, the Ceaseless Hunger
+1 Dark Deal
+1 Jet Medallion
+1 Lightning Greaves
+1 Gray Merchant of Asphodel
+1 High Market
+1 Matzalantli, the Great Door // The Core
+1 Millikin
+1 Nykthos, Shrine to Nyx
+1 Living Death
+1 Qarsi Revenant
+1 Reanimate
+1 Shizo, Death's Storehouse
+1 Saw in Half
+1 Stinkweed Imp
+1 Ancient Brass Dragon
+1 Disciple of Bolas
+1 Twilight Diviner
+1 Phyrexian Tower
+1 Death's Shadow
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Afterlife from the Loam
+1 Altar of Dementia
+1 Accursed Duneyard
+1 Marvin, Murderous Mimic
+1 Cabal Coffers
+1 Ghoulcaller Gisa
+1 Golden Argosy
+1 Dakmor Salvage
+1 It That Betrays
+1 Imp's Mischief
+1 Lethal Scheme
+1 Stitcher's Supplier
+1 Susur Secundi, Void Altar

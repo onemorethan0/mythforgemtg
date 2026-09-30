@@ -1,0 +1,97 @@
+# Archidekt — Ria Ivor
+# source: archidekt:12934997
+# fetched: 2026-09-25
+# bracket: 2
+
+Commander:
+1 Ria Ivor, Bane of Bladehold
+
+Deck:
+1 Sol Ring
+1 Skullclamp
+1 Elesh Norn, Mother of Machines
+1 Elesh Norn // The Argent Etchings
+1 Sheoldred, the Apocalypse
+1 Mondrak, Glory Dominus
+1 Brimaz, Blight of Oreskos
+1 Cranial Plating
+1 Phyrexian Obliterator
+1 Bitterthorn, Nissa's Animus
+1 Skrelv's Hive
+1 Mite Overseer
+1 Elas il-Kor, Sadistic Pilgrim
+1 Nettlecyst
+1 Realmbreaker, the Invasion Tree
+1 Norn's Decree
+1 Phyrexian Arena
+1 Norn's Annex
+1 Norn's Choirmaster
+1 Metastatic Evangel
+1 Essence of Orthodoxy
+1 Filigree Vector
+1 Skithiryx, the Blight Dragon
+1 Grafted Exoskeleton
+1 Throne of Geth
+1 Massacre Wurm
+1 Ichor Rats
+1 Argent Dais
+1 Vraska, Betrayal's Sting
+1 Phyrexian Atlas
+1 Urza's Incubator
+1 Glistening Sphere
+1 Phyrexian Reclamation
+1 Vat of Rebirth
+1 Trailblazer's Boots
+1 White Sun's Twilight
+1 Black Sun's Twilight
+1 Phyrexian Rebirth
+1 Sunfall
+1 Toxic Deluge
+1 Monumental Corruption
+1 Vraska's Fall
+1 Go for the Throat
+1 Night's Whisper
+1 Infectious Inquiry
+1 Phyresis Outbreak
+1 Charge of the Mites
+1 Praetor's Grasp
+1 Excise the Imperfect
+1 Feed the Infection
+1 Vault of the Archangel
+1 Inkmoth Nexus
+1 Bojuka Bog
+1 Necrogen Communion
+1 Phyrexian Tower
+1 Shineshadow Snarl
+1 Glistening Oil
+1 Shizo, Death's Storehouse
+1 Command Tower
+1 Karn's Bastion
+1 Fetid Heath
+1 The Mycosynth Gardens
+1 Staff of Compleation
+7 Plains
+1 The Seedcore
+1 Vault of Champions
+1 Terramorphic Expanse
+1 Concealed Courtyard
+1 Evolving Wilds
+1 Shattered Sanctum
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Bleachbone Verge
+1 Rogue's Passage
+1 Myriad Landscape
+1 Elesh Norn, Grand Cenobite
+1 Sheoldred, Whispering One
+1 Chittering Skitterling
+1 Fallen Ideal
+1 Skrelv, Defector Mite
+1 Phyrexian Vindicator
+1 Dispatch
+1 Sheoldred // The True Scriptures
+1 Yawgmoth, Thran Physician
+7 Swamp
+1 Phyrexian Scriptures
+1 Tainted Strike
+1 Phyrexian Altar
+1 Smokestack

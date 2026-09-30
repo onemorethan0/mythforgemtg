@@ -1,0 +1,104 @@
+# Archidekt — Korvold, Fae-Cursed King
+# source: archidekt:26745728
+# fetched: 2026-09-25
+
+Commander:
+1 Prossh, Skyraider of Kher
+
+Deck:
+1 Goblin Bombardment
+1 Korvold, Fae-Cursed King
+1 Phyrexian Altar
+1 Ashnod's Altar
+1 Pitiless Plunderer
+1 Viscera Seer
+1 Purphoros, God of the Forge
+1 Ophiomancer
+1 Skullclamp
+1 Moldervine Reclamation
+1 Smothering Abomination
+1 Chatterfang, Squirrel General
+1 Tendershoot Dryad
+1 Wishclaw Talisman
+1 Awakening Zone
+1 From Beyond
+1 Impact Tremors
+1 Blood Artist
+1 Zulaport Cutthroat
+1 Bastion of Remembrance
+1 Beseech the Mirror
+1 Diabolic Intent
+1 Grim Tutor
+1 Bolas's Citadel
+1 Mayhem Devil
+1 Jadar, Ghoulcaller of Nephalia
+1 Gravecrawler
+1 Dreadhorde Invasion
+1 Talisman of Indulgence
+1 Sol Ring
+1 Golgari Signet
+1 Ancient Tomb
+1 Wild Growth
+1 Arcane Signet
+1 Talisman of Impulse
+1 Gruul Signet
+1 Rakdos Signet
+1 Talisman of Resilience
+1 Utopia Sprawl
+1 Sakura-Tribe Elder
+1 Rampant Growth
+1 Nature's Lore
+1 Farseek
+1 Three Visits
+1 Food Chain
+1 Tear Asunder
+1 Shamble Back
+1 Terminate
+1 Rotten Reunion
+1 Abrupt Decay
+1 Beast Within
+1 No Way Out
+1 Assassin's Trophy
+1 Lightning Bolt
+1 Regrowth
+1 Veil of Summer
+1 Eternal Witness
+1 Prismite
+1 Command Tower
+1 Heroic Intervention
+1 Warren Soultrader
+1 Victimize
+1 Parallel Lives
+2 Swamp
+1 Exotic Orchard
+1 Sulfurous Springs
+1 Blood Crypt
+1 Mountain
+1 Spire Garden
+2 Forest
+1 Luxury Suite
+1 Undergrowth Stadium
+1 Boseiju, Who Endures
+1 Mana Confluence
+1 Verdant Catacombs
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Llanowar Wastes
+1 Overgrown Tomb
+1 Stomping Ground
+1 City of Brass
+1 Karplusan Forest
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Phyrexian Tower
+1 Ziatora's Proving Ground
+1 Blightstep Pathway // Searstep Pathway
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Rockfall Vale
+1 Temple of the False God
+1 Urza's Saga
+1 Forbidden Orchard
+1 Dragonskull Summit
+1 Savage Lands
+1 Rootbound Crag
+1 Woodland Cemetery

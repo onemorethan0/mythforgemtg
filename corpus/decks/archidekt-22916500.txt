@@ -1,0 +1,96 @@
+# Archidekt — UnBy - Saruman - The Power Of My Army
+# source: archidekt:22916500
+# fetched: 2026-09-18
+# bracket: 2
+
+Commander:
+1 Saruman, the White Hand
+
+Deck:
+1 The Black Gate
+1 Call Forth the Tempest
+1 Arcane Bombardment
+1 Arcane Denial
+1 Summons of Saruman
+1 Isengard Unleashed
+1 Fling
+1 Sorcerous Squall
+1 Command Tower
+1 Scalding Tarn
+1 Shivan Reef
+1 Sulfur Falls
+1 Widespread Brutality
+1 Path of Ancestry
+1 Rogue's Passage
+1 Blasphemous Act
+1 Watery Grave
+1 Archmage Emeritus
+3 Mountain
+1 Storm-Kiln Artist
+1 Mystic Sanctuary
+1 Fall of Cair Andros
+1 Mount Doom
+1 Swiftfoot Boots
+1 Xander's Lounge
+1 Relic of Sauron
+1 Talisman of Creativity
+1 Steam Vents
+1 Nightscape Familiar
+1 Arcane Signet
+1 Kess, Dissident Mage
+1 Exotic Orchard
+1 Archmage of Runes
+4 Island
+6 Mountain
+4 Island
+1 Gríma, Saruman's Footman
+1 Aqueous Form
+1 Morphic Pool
+1 Volcanic Salvo
+1 Luxury Suite
+1 Training Center
+1 Blood Crypt
+1 Chandra's Ignition
+1 Goblin Electromancer
+1 Harmonic Prodigy
+1 Soul's Fire
+1 Reinterpret
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Izzet Signet
+1 The Magic Mirror
+1 Dimir Signet
+1 Talisman of Dominance
+1 Dreadhorde Invasion
+1 Changeling Outcast
+1 Barad-dûr
+1 Minas Morgul, Dark Fortress
+1 Rite of Consumption
+1 Profane Transfusion
+1 Samut, Tyrant of Naktamun
+1 Dark Ritual
+1 Call of the Ring
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Shadowspear
+1 Wizard's Staff
+1 Guttersnipe
+1 Saruman's Trickery
+1 Bothersome Noisemaker
+1 Shark Typhoon
+1 One with the Multiverse
+1 Thought Vessel
+1 Storm of Saruman
+1 Valakut Awakening // Valakut Stoneforge
+1 Callous Sell-Sword // Burn Together
+1 Third Path Iconoclast
+1 Orcish Siegemaster
+1 Distortion Strike
+1 Faithless Looting
+1 Darkness
+1 Deflecting Swat
+1 Corpse Cobble
+1 Dying Wish
+1 Burning Anger
+1 Counterspell
+1 Lazotep Plating
+1 Consider
+1 Lightning Greaves

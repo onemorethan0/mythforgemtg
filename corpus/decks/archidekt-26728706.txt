@@ -1,0 +1,79 @@
+# Archidekt — Zur
+# source: archidekt:26728706
+# fetched: 2026-09-24
+
+Commander:
+1 Zur the Enchanter
+
+Deck:
+1 All That Glitters
+1 Imprisoned in the Moon
+1 Arcane Laboratory
+1 Banishing Light
+1 Rule of Law
+1 Solitary Confinement
+1 Aqueous Form
+1 Nevermore
+1 Ethereal Armor
+1 Grasp of Fate
+1 Energy Field
+1 Battle Mastery
+1 Phyresis
+1 Feed the Swarm
+1 Ghostly Prison
+1 Authority of the Consuls
+1 Aura of Silence
+1 Propaganda
+1 Diplomatic Immunity
+1 Swords to Plowshares
+1 Curator's Ward
+1 Detention Sphere
+1 Path to Exile
+1 Stubborn Denial
+1 Negate
+1 Go for the Throat
+1 Utter End
+1 Brainstorm
+1 Counterspell
+1 Preordain
+1 Rest in Peace
+1 Ponder
+1 Fatal Push
+1 Read the Bones
+1 Sign in Blood
+1 Night's Whisper
+1 Fact or Fiction
+1 Azorius Signet
+1 Chart a Course
+1 Steel of the Godhead
+1 Spirit Mantle
+1 Mesa Enchantress
+1 Pacifism
+1 Sphere of Safety
+1 Aegis of the Gods
+1 Solemn Simulacrum
+1 Arcane Signet
+1 Mind Stone
+1 Dimir Signet
+1 Mulldrifter
+1 Baleful Strix
+1 Sol Ring
+1 Blade Splicer
+1 Cloudblazer
+1 Arcane Sanctum
+1 Aven Mindcensor
+1 Fiend Hunter
+1 Port Town
+1 Azorius Chancery
+19 Plains
+1 Selfless Spirit
+1 Orzhov Basilica
+1 Command Tower
+1 Dismal Backwater
+1 Auramancer
+1 Dimir Aqueduct
+1 Tranquil Cove
+1 Tainted Field
+1 Scoured Barrens
+10 Island
+2 Swamp

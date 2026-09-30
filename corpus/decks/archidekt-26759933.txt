@@ -1,0 +1,109 @@
+# Archidekt — Foodge
+# source: archidekt:26759933
+# fetched: 2026-09-25
+
+Commander:
+1 Halana, Kessig Ranger
+1 Tymna the Weaver
+
+Deck:
+1 Eladamri's Call
+1 Birds of Paradise
+1 Windswept Heath
+1 Savvy Hunter
+1 Camellia, the Seedmiser
+1 Ygra, Eater of All
+1 Samwise Gamgee
+1 Assassin's Trophy
+1 Academy Manufactor
+1 Night's Whisper
+1 Chatterfang, Squirrel General
+1 Many Partings
+1 Tippy-Toe, Terrific Partner
+1 Bayou
+1 Voice of Victory
+1 Green Sun's Zenith
+1 Belladonna Took
+1 Revive the Shire
+1 Swords to Plowshares
+1 Path to Exile
+1 Chord of Calling
+1 Mana Confluence
+1 Carrion Feeder
+1 The Shire
+1 Exotic Orchard
+1 Bilbo, Fellow Conspirator
+1 Fortified Village
+1 Elves of Deep Shadow
+1 Experimental Confectioner
+1 Nuka-Cola Vending Machine
+1 Jaheira, Friend of the Forest
+1 Toxic Deluge
+1 The Cabbage Merchant
+1 Activated Sleeper
+1 Isolated Chapel
+1 Temple Garden
+1 Necroblossom Snarl
+1 Viscera Seer
+1 Cauldron Familiar
+1 Witch's Oven
+1 Delighted Halfling
+1 Sunpetal Grove
+1 Nature's Lore
+1 Shineshadow Snarl
+1 Gilded Goose
+1 Peregrin Took
+1 Lotho, Corrupt Shirriff
+1 Silence
+1 Vault of Champions
+1 Avacyn's Pilgrim
+1 Savannah
+1 Protean Hulk
+1 Reanimate
+1 Collector Ouphe
+1 The Underworld Cookbook
+1 Carpet of Flowers
+1 Diabolic Intent
+1 Plains
+1 Command Tower
+1 Undergrowth Stadium
+1 Overgrown Tomb
+1 Animate Dead
+1 Warren Soultrader
+1 Delney, Streetwise Lookout
+1 Sol Ring
+1 Forest
+1 Esper Sentinel
+1 Swamp
+1 Woodland Cemetery
+1 Entomb
+1 Ranger-Captain of Eos
+1 Verdant Catacombs
+1 Marsh Flats
+1 Godless Shrine
+1 Grand Abolisher
+1 Arcane Signet
+1 Bloom Tender
+1 Scrubland
+1 Wishclaw Talisman
+1 Bountiful Promenade
+1 City of Brass
+1 Culling Ritual
+1 Dark Ritual
+1 Starting Town
+1 Archivist of Oghma
+1 Llanowar Elves
+1 Gemstone Caverns
+1 Deathrite Shaman
+1 Fyndhorn Elves
+1 Phyrexian Tower
+1 Sylvan Safekeeper
+1 Elvish Mystic
+1 Three Visits
+1 Lazotep Quarry
+1 Formidable Speaker
+1 Deadly Rollick
+1 Abrupt Decay
+1 Nature's Rhythm
+1 Unmarked Grave
+1 Pattern of Rebirth

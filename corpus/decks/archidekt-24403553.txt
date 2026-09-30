@@ -1,0 +1,85 @@
+# Archidekt — Niv-Mizzet
+# source: archidekt:24403553
+# fetched: 2026-09-24
+# bracket: 2
+
+Commander:
+1 Niv-Mizzet, Visionary
+
+Deck:
+1 Alania, Divergent Storm
+1 Aminatou's Augury
+1 Amphibian Downpour
+1 Archmage of Runes
+1 Baral, Chief of Compliance
+1 Boltwave
+1 Bonus Round
+1 Brainstorm
+1 Chandra's Ignition
+1 Chandra's Incinerator
+1 Choreographed Sparks
+1 Coruscation Mage
+1 Counterspell
+1 Lightning Strike
+1 Dirgur Focusmage // Braingeyser
+1 End the Festivities
+1 Faithless Looting
+1 Finale of Revelation
+1 Flashback
+1 Goblin Electromancer
+1 Grapeshot
+1 High Tide
+1 Illuminate History
+1 Improvisation Capstone
+1 Increasing Vengeance
+1 Inner Fire
+1 Invoke the Firemind
+1 Lightning Bolt
+1 Mind Spring
+1 Mindsplice Apparatus
+1 Mizzix's Mastery
+1 Mnemonic Deluge
+1 Naga Fleshcrafter
+1 Niv-Mizzet, Parun
+1 Niv-Mizzet, the Firemind
+1 Omni-Changeling
+1 Pyretic Ritual
+1 Redirect Lightning
+1 Reliquary Tower
+1 Seething Song
+1 Mystic Retrieval
+1 Sorceress's Schemes
+1 Spinerock Tyrant
+1 Storm-Kiln Artist
+1 Tablet of Discovery
+1 Tannuk, Steadfast Second
+1 Thousand-Year Storm
+1 Twinning Staff
+1 Waterbender's Restoration
+1 Spark Double
+1 Fiery Confluence
+1 Narset's Reversal
+1 An Offer You Can't Refuse
+1 Deekah, Fractal Theorist
+1 Ashling, Flame Dancer
+1 Frostboil Snarl
+1 Cascade Bluffs
+1 Blasphemous Act
+1 Sulfur Falls
+1 Stormcarved Coast
+1 Command Tower
+1 Training Center
+2 Mountain
+12 Island
+1 Valakut Awakening // Valakut Stoneforge
+1 Pinnacle Monk // Mystic Peak
+1 Mystic Sanctuary
+12 Mountain
+1 Temple of Epiphany
+1 Ferrous Lake
+1 City on Fire
+1 Role Reversal
+1 Repercussion
+1 Twinflame Tyrant
+1 Reckless Blaze
+1 Vandalblast

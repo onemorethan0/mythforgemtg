@@ -1,0 +1,84 @@
+# Archidekt — vi vi
+# source: archidekt:26456252
+# fetched: 2026-09-17
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+12 Island
+1 Brainstorm
+1 Counterspell
+1 Abrade
+1 Amphibian Downpour
+1 An Offer You Can't Refuse
+1 Archmage Emeritus
+1 Archmage of Runes
+1 Artist's Talent
+1 Ashling, Flame Dancer
+1 Big Score
+1 Blasphemous Act
+1 Consider
+1 Coruscation Mage
+1 Crackle with Power
+1 Curiosity
+1 Electro, Assaulting Battery
+1 Emeritus of Conflict // Lightning Bolt
+1 Expressive Iteration
+1 Faithless Looting
+1 Fire Magic
+1 Flashback
+1 Frantic Search
+1 Gitaxian Probe
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Goblin Electromancer
+1 Harmonic Prodigy
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Into the Flood Maw
+1 Lightning Bolt
+1 Mana Sculpt
+1 Monstrous Rage
+1 Mystic Sanctuary
+1 Omniscience
+1 Opt
+1 Personal Tutor
+1 Ponder
+1 Preordain
+1 Prismari Command
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Reliquary Tower
+1 Resonating Lute
+1 Ruby Medallion
+1 Sink into Stupor // Soporific Springs
+1 Snap
+1 Sol Ring
+1 Stock Up
+1 Storm-Kiln Artist
+1 Stormcatch Mentor
+1 Strike It Rich
+1 Swiftfoot Boots
+1 Tablet of Discovery
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Thousand-Year Storm
+1 Time Warp
+1 Uncover the Moon-Letters
+1 Vandalblast
+1 Veyran, Voice of Duality
+1 Windfall
+1 Wizard's Staff
+1 Dualcaster Mage
+1 Propaganda
+1 Grapeshot
+13 Mountain
+1 Cascade Bluffs
+1 City of Brass
+1 Command Tower
+1 Exotic Orchard
+1 Frostboil Snarl
+1 Steam Vents
+1 Stormcarved Coast
+1 Turbulent Springs
+1 The Dawning Archaic
+1 Cosmic Epiphany
+1 Prismari, the Inspiration
+1 Flow State

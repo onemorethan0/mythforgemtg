@@ -1,0 +1,93 @@
+# Archidekt — Wizard Extermination
+# source: archidekt:15831187
+# fetched: 2026-09-25
+# bracket: 3
+
+Commander:
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+
+Deck:
+1 Basalt Ravager
+1 Rakdos Signet
+1 Queen Brahne
+1 Talisman of Indulgence
+1 Harmonic Prodigy
+1 Arcane Signet
+1 Bloodstained Mire
+1 Sol Ring
+1 Command Tower
+1 Coruscation Mage
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Cornered by Black Mages
+1 Chaos Warp
+1 Black Waltz No. 3
+1 Rakdos Charm
+1 Artist's Talent
+1 Circle of Power
+1 Terminate
+1 Rockslide Sorcerer
+1 Bedevil
+1 Phyrexian Arena
+1 Blazemire Verge
+1 Fandaniel, Telophoroi Ascian
+1 Blackcleave Cliffs
+1 Pinnacle Monk // Mystic Peak
+1 Go for the Throat
+1 Dark Confidant
+1 Lightning Greaves
+1 Dark Ritual
+1 Blightstep Pathway // Searstep Pathway
+1 Bloodsoaked Insight // Sanguine Morass
+1 Anathemancer
+1 Bojuka Bog
+9 Mountain
+1 Exotic Orchard
+1 Rakdos Carnarium
+1 Lindblum, Industrial Regency // Mage Siege
+1 Guttersnipe
+1 Lavaclaw Reaches
+1 Restless Vents
+1 Shadowblood Ridge
+7 Swamp
+1 Temple of Malice
+1 Tainted Peak
+1 Urabrask // The Great Work
+1 Storm-Kiln Artist
+1 Abrade
+1 Mana Geyser
+1 Blasphemous Act
+1 Big Score
+1 Bitter Triumph
+1 Infernal Grasp
+1 Night's Whisper
+1 Faithless Looting
+1 Kaya's Ghostform
+1 Mizzix's Mastery
+1 Sheoldred's Edict
+1 Midgar, City of Mako // Reactor Raid
+1 Light Up the Stage
+1 Black Mage's Rod
+1 Sign in Blood
+1 Fiery Inscription
+1 Raucous Theater
+1 Pact of the Serpent
+1 Read the Bones
+1 Grab the Prize
+1 Kessig Flamebreather
+1 Virtue of Courage // Embereth Blaze
+1 Ob Nixilis, Captive Kingpin
+1 Transpose
+1 Withering Torment
+1 Reliquary Tower
+1 Cursed Mirror
+1 Blood Crypt
+1 Thrill of Possibility
+1 Solphim, Mayhem Dominus
+1 Deadly Dispute
+1 City on Fire
+1 Tor Wauki the Younger
+1 Black Market Connections
+1 Vandalblast
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Roaming Throne

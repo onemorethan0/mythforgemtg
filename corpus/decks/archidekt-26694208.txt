@@ -1,0 +1,100 @@
+# Archidekt — just try and attack me
+# source: archidekt:26694208
+# fetched: 2026-09-25
+
+Commander:
+1 Doran, Besieged by Time
+
+Deck:
+1 Doran, the Siege Tower
+1 Bark of Doran
+1 Rolling Stones
+1 Akroan Horse
+1 Archers' Parapet
+1 Barrier of Bones
+1 Clockwork Drawbridge
+1 Amaranthine Wall
+1 Crashing Drawbridge
+1 Crystal Barricade
+1 Concealing Curtains // Revealing Eye
+1 Dazzling Ramparts
+1 Demon Wall
+1 Escarpment Fortress
+1 Floriferous Vinewall
+1 Fortified Rampart
+1 Gleaming Barrier
+1 Gibbering Barricade
+1 Jeskai Barricade
+1 Assault Formation
+1 Great Forest Druid
+1 Bedrock Tortoise
+1 Jaws of Defeat
+1 Betor, Kin to All
+1 Tower Defense
+1 Fecund Greenshell
+1 Arbor Adherent
+1 Swords to Plowshares
+1 Tree of Perdition
+1 Indomitable Ancients
+1 Baldin, Century Herdmaster
+1 Ancient Lumberknot
+1 Ikra Shidiqi, the Usurper
+1 Tree of Redemption
+1 Sylvan Caryatid
+1 Slaughter the Strong
+1 The Walls of Ba Sing Se
+1 Sol Ring
+1 Seedborn Muse
+1 Arcane Signet
+1 Herd Heirloom
+1 Chromatic Lantern
+1 Fell the Mighty
+1 Dusk // Dawn
+1 Eerie Ultimatum
+1 Path to Exile
+1 Anguished Unmaking
+1 Brave the Sands
+1 Stoneskin
+1 Unnatural Growth
+1 Primal Rage
+1 Sapling Nursery
+1 Smile at Death
+1 Assemble the Entmoot
+1 Angelic Chorus
+1 Birds of Paradise
+1 Last March of the Ents
+4 Plains
+1 Sandsteppe Citadel
+1 Swamp
+1 Command Tower
+1 Exotic Orchard
+1 Woodland Cemetery
+4 Forest
+1 Canopy Vista
+1 Isolated Chapel
+1 Sunpetal Grove
+1 Temple of Plenty
+1 Boseiju, Who Endures
+1 Path of Ancestry
+1 Reliquary Tower
+1 Golgari Rot Farm
+1 Brushland
+1 Lush Portico
+1 Fabled Passage
+1 Sungrass Prairie
+1 Shadowy Backstreet
+1 Access Tunnel
+1 Temple of Malady
+1 Temple Garden
+1 Bountiful Promenade
+1 Fortified Village
+1 Overgrown Farmland
+1 Felothar the Steadfast
+1 Ghalta the Immovable
+1 Overgrown Battlement
+1 Axebane Guardian
+1 Three Visits
+1 Rampant Growth
+1 Cultivate
+1 Abzan Monument
+1 Diabolic Tutor

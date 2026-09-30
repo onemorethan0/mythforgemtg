@@ -1,0 +1,97 @@
+# Archidekt — Malfegor - Hellbent/Heckbent
+# source: archidekt:15388596
+# fetched: 2026-09-24
+# bracket: 2
+
+Commander:
+1 Malfegor
+
+Deck:
+1 Ivora, Insatiable Heir
+1 Cool but Rude
+1 Carnage Interpreter
+1 Dark Suspicions
+1 Avaricious Dragon
+1 Rakdos Pit Dragon
+1 Blasphemous Act
+1 Shadowgrange Archfiend
+1 Stingerback Terror
+1 Filth
+1 Urborg, Tomb of Yawgmoth
+1 Rakdos Carnarium
+1 Sulfurous Springs
+1 Raucous Theater
+1 Blazemire Verge
+1 Haunted Ridge
+1 Takenuma, Abandoned Mire
+8 Mountain
+1 Graven Cairns
+1 Arena of Glory
+1 Sundering Eruption // Volcanic Fissure
+1 Prismatic Vista
+1 Reanimate
+1 Gustha's Scepter
+1 Key to the City
+1 Cabal Ritual
+1 Rite of Flame
+1 Lotus Petal
+1 Phial of Galadriel
+1 Blood Scrivener
+1 Grafted Skullcap
+1 Ghirapur Orrery
+1 Bitter Triumph
+1 Currency Converter
+1 Vengeful Pharaoh
+1 Bog Witch
+1 Avatar of Discord
+1 Rakdos Augermage
+1 Ultimate Green Goblin
+1 Carrionette
+1 Coffin Purge
+1 Bone Shards
+1 Faithless Looting
+1 Zenith Festival
+1 Sea Gate Wreckage
+1 Rogue's Passage
+1 The Black Gate
+1 Drownyard Temple
+1 Anthem of Rakdos
+1 Hazoret the Fervent
+1 Case of the Crimson Pulse
+5 Swamp
+1 Pyretic Ritual
+1 Blood Crypt
+1 Command Tower
+1 Luxury Suite
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Fabled Passage
+1 Bloodstained Mire
+1 Big Game Hunter
+1 Tainted Peak
+1 Gemstone Caverns
+1 Fury
+1 Dragonskull Summit
+1 Seething Song
+1 Firestorm
+1 Black Market Connections
+1 Nibelheim Aflame
+1 Decorum Dissertation
+1 Witch-king of Angmar
+1 Oblivion Crown
+1 Land's Edge
+1 Phyrexian Arena
+1 The Ten Rings
+1 Dragon's Desire
+1 Rain of Gore
+1 Improvisation Capstone
+1 Mana Geyser
+1 Curse of Obsession
+1 Moonstone, Harsh Mistress
+1 Boggart Trawler // Boggart Bog
+1 Null Brooch
+1 Animate Dead
+1 Dark Ritual
+1 Simian Spirit Guide
+1 Anger
+1 Open the Omenpaths
+1 Jiang Yanggu, Alone

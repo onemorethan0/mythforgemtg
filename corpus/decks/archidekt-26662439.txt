@@ -1,0 +1,76 @@
+# Archidekt — oh god he brought his friends.
+# source: archidekt:26662439
+# fetched: 2026-09-22
+# bracket: 4
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Deflecting Swat
+1 Stoneforge Mystic
+1 Yuffie, Materia Hunter
+1 Barret, Avalanche Leader
+1 Command Beacon
+1 Swords to Plowshares
+1 Puresteel Paladin
+1 Nature's Lore
+1 Farseek
+1 Sol Ring
+1 Arcane Signet
+1 Command Tower
+1 Cultivate
+1 Path to Exile
+1 Rampant Growth
+1 Enlightened Tutor
+1 Cloud, Midgar Mercenary
+1 Harmonize
+1 Heroic Intervention
+1 Zack Fair
+1 Slayers' Stronghold
+1 Colossus Hammer
+1 Ultimate Magic: Holy
+1 Cid, Freeflier Pilot
+1 Behemoth Sledge
+1 Bugenhagen, Wise Elder
+1 Buster Sword
+1 Champion's Helm
+1 Sigarda's Aid
+1 Sephiroth, Fallen Hero
+1 Red XIII, Proud Warrior
+1 Conqueror's Flail
+1 Wrecking Ball Arm
+1 Open the Armory
+1 Dispatch
+1 Vandalblast
+1 Steelshaper's Gift
+1 Darksteel Plate
+1 Sram, Senior Edificer
+1 The Reaver Cleaver
+1 Forge Anew
+1 Sword of Feast and Famine
+1 Danitha Capashen, Paragon
+1 Conformer Shuriken
+1 Firion, Wild Rose Warrior
+1 Bastion Protector
+1 Swiftfoot Boots
+1 Hammer of Nazahn
+1 Lightning, Army of One
+1 Unfinished Business
+1 Blackblade Reforged
+1 Boros Charm
+1 Genji Glove
+1 Kutzil, Malamet Exemplar
+1 Akiri, Fearless Voyager
+1 Shadowspear
+1 Inventory Management
+11 Mountain
+9 Forest
+15 Plains
+1 Rogue's Passage
+1 Nibelheim Aflame
+1 Aggravated Assault
+1 Cloud's Limit Break
+1 Hellkite Charger
+1 Smothering Tithe
+1 Aerith, Last Ancient

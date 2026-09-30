@@ -1,0 +1,96 @@
+# Archidekt — 💰🦈 Captain Howler - Plunder & Pummel
+# source: archidekt:18373987
+# fetched: 2026-09-29
+# bracket: 3
+
+Commander:
+1 Captain Howler, Sea Scourge
+
+Deck:
+1 Bitter Reunion
+1 Cool but Rude
+1 Mechanical Mobster
+1 Sink into Stupor // Soporific Springs
+1 Rush of Inspiration // Crackling Falls
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Firefright Mage
+1 Cephalid Coliseum
+1 Daily Bugle Building
+1 Arcane Signet
+1 Charming Scoundrel
+1 Pip-Boy 3000
+1 Currency Converter
+1 Agna Qel'a
+1 Fire Nation Palace
+1 Ferrous Lake
+1 Relentless Assault
+1 Stubborn Denial
+1 Untimely Malfunction
+1 Izzet Charm
+1 Into the Flood Maw
+1 Winged Boots
+1 Wonder
+1 Kaito, Cunning Infiltrator
+1 Aqueous Form
+1 Avian Oddity
+1 Artful Dodge
+1 Chart a Course
+1 Faithless Looting
+1 Cathartic Reunion
+1 Inti, Seneschal of the Sun
+1 Fear of Missing Out
+1 Frantic Search
+1 Conspiracy Theorist
+1 Jace's Archivist
+1 Rousing Read
+1 Bolt Bend
+1 Broadside Barrage
+1 Lightning Greaves
+1 Windfall
+1 Slip Out the Back
+1 Boundary Lands Ranger
+1 Bag of Holding
+1 Siren Stormtamer
+1 Cascade Bluffs
+1 Command Tower
+1 Exotic Orchard
+1 Lonely Sandbar
+1 Ash Barrens
+1 Talisman of Creativity
+1 Izzet Signet
+1 Fellwar Stone
+1 Rogue's Passage
+1 Geier Reach Sanitarium
+1 Desolate Lighthouse
+1 Sulfur Falls
+1 Stormcarved Coast
+1 Shivan Reef
+8 Mountain
+6 Island
+1 Frostboil Snarl
+1 Forgotten Cave
+1 Channeled Force
+1 Pit of Offerings
+1 Careful Study
+1 Solar Transformer
+1 Fierce Guardianship
+1 Silver Shroud Costume
+1 Dragonfire Blade
+1 Brotherhood Regalia
+1 An Offer You Can't Refuse
+1 Otawara, Soaring City
+1 Sol Ring
+1 Prismari Command
+1 Path of the Pyromancer
+1 Liquimetal Torque
+1 Mind Stone
+1 Seize the Day
+1 Nibelheim Aflame
+1 Desperate Ritual
+1 Underworld Breach
+1 Great Train Heist
+1 Gamble
+1 Overpowering Attack
+1 Chaos Warp
+1 Key to the City
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift

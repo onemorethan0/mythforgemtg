@@ -1,0 +1,94 @@
+# Archidekt — Copy of - Shock Trooper
+# source: archidekt:23616086
+# fetched: 2026-09-30
+
+Commander:
+1 Satya, Aetherflux Genius
+
+Deck:
+1 Roil Cartographer
+1 Aether Spike
+1 Radiant Summit
+1 Suppression Ray // Orderly Plaza
+1 Tempest Caller
+1 Firebender Ascension
+1 Rugged Prairie
+1 Sunscorched Divide
+1 Azorius Chancery
+1 Aether Revolt
+1 Consulate Surveillance
+1 Razorfield Ripper
+1 Conversion Apparatus
+1 Starfield Vocalist
+1 Emissary of Soulfire
+1 Academy Ruins
+1 Aether Hub
+1 Ferrous Lake
+1 Frostboil Snarl
+1 Furycalm Snarl
+5 Island
+1 Izzet Generatorium
+4 Mountain
+1 Mystic Gate
+1 Mystic Monastery
+1 Panharmonicon
+1 Port Town
+1 Prairie Stream
+1 Reconnaissance
+1 Rogue's Passage
+1 Sea of Clouds
+1 Sol Ring
+1 Professional Face-Breaker
+1 Whirler Rogue
+1 Whirler Virtuoso
+1 Counterspell
+1 Cascade Bluffs
+1 HELIOS One
+1 Windcrag Siege
+1 Skycloud Expanse
+1 All Will Be One
+1 Duelist's Heritage
+7 Plains
+1 Bespoke Battlewagon
+1 Solar Transformer
+1 Aetheric Amplifier
+1 Akroma's Will
+1 Arcane Signet
+1 Bolt Bend
+1 Castle Vantress
+1 Command Tower
+1 Decoction Module
+1 Disallow
+1 Dr. Madison Li
+1 Guide of Souls
+1 Dragonfire Blade
+1 Azorius Signet
+1 Sphinx of the Revelation
+1 Unstable Amulet
+1 Aetherworks Marvel
+1 Localized Destruction
+1 Vandalblast
+1 Electrostatic Pummeler
+1 Electrosiphon
+1 Headliner Scarlett
+1 Swooping Pteranodon
+1 Silent Hallcreeper
+1 Weftstalker Ardent
+1 Midnight Clock
+1 Hourglass of the Lost
+1 Loyal Unicorn
+1 Summon: Yojimbo
+1 Bard's Company
+1 Reflector Mage
+1 Skyclave Apparition
+1 Aerial Extortionist
+1 Aetherstorm Roc
+1 Moonshaker Cavalry
+1 Grazilaxx, Illithid Scholar
+1 Terror of the Peaks
+1 Cursed Mirror
+1 Esper Sentinel
+1 Angel of Invention
+1 Brotherhood Scribe
+1 Illustrious Wanderglyph
+1 Nesting Dovehawk

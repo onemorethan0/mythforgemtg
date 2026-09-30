@@ -1,0 +1,100 @@
+# Archidekt — Nissa, Leyline Tamer
+# source: archidekt:26663379
+# fetched: 2026-09-22
+
+Commander:
+1 Nissa, Leyline Tamer
+
+Deck:
+1 Ancient Tomb
+1 Elesh Norn, Grand Cenobite
+1 Sheoldred, Whispering One
+1 Elesh Norn, Mother of Machines
+1 Solemn Simulacrum
+1 Ob Nixilis, the Fallen
+1 Roil Elemental
+1 Hullbreaker Horror
+1 Blightsteel Colossus
+1 Archfiend of Despair
+1 Sakashima of a Thousand Faces
+1 Void Winnower
+1 Toxic Deluge
+1 Flawless Maneuver
+1 Blasphemous Act
+1 Wizard's Staff
+1 Reliquary Tower
+1 Thought Vessel
+2 Island
+1 Oboro, Palace in the Clouds
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Talisman of Hierarchy
+1 Chromatic Lantern
+1 Mana Vault
+1 Flooded Strand
+1 Bloodstained Mire
+1 Polluted Delta
+1 Marsh Flats
+1 Arid Mesa
+1 Scalding Tarn
+1 Hallowed Fountain
+1 Fabled Passage
+1 Prismatic Vista
+1 Exotic Orchard
+1 Wooded Foothills
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Windswept Heath
+1 Horizon of Progress
+1 Urza's Cave
+1 Ghost Town
+1 Crucible of Worlds
+1 Retreat to Hagra
+1 Expedition Map
+1 Lightning Greaves
+1 Mana Drain
+1 Spark Double
+1 Gisela, Blade of Goldnight
+1 Avacyn, Angel of Hope
+1 Swan Song
+1 Wayfarer's Bauble
+1 Walking Atlas
+1 Troop of Ponies
+1 Badlands
+1 PuPu UFO
+1 Vampiric Tutor
+1 Zell Dincht
+1 Underground Sea
+1 Volcanic Island
+1 Nezahal, Primal Tide
+1 Memnarch, the Warden
+1 Tundra
+1 Plateau
+1 Scrubland
+2 Swamp
+2 Plains
+2 Mountain
+1 Reanimate
+1 Land Tax
+1 Valakut Exploration
+1 Omnath, Locus of the Void
+1 An Offer You Can't Refuse
+1 Summon: Bahamut
+1 Arcane Signet
+1 Avacyn, Angel of Horror
+1 Swords to Plowshares
+1 Talon Gates of Madara
+1 Archon of Cruelty
+1 Brainstorm
+1 Sol Ring
+1 Absolute Virtue
+1 Fellwar Stone
+1 Dark Ritual
+1 Starfield Vocalist
+1 Serra's Emissary
+1 Archaeomancer's Map
+1 Command Tower
+1 Reflecting Pool
+1 Path to Exile

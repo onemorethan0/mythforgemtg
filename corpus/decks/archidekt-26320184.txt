@@ -1,0 +1,98 @@
+# Archidekt — Huatli, Bardasaurus
+# source: archidekt:26320184
+# fetched: 2026-09-24
+
+Commander:
+1 Huatli, Poet of Unity // Roar of the Fifth People
+
+Deck:
+1 Thirsting Roots
+1 Akroma's Will
+1 Gruul Charm
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Pantlaza, Sun-Favored
+1 Wakening Sun's Avatar
+1 Kinjalli's Sunwing
+1 Ixalli's Lorekeeper
+1 Atla Palani, Nest Tender
+1 Dinosaur Egg
+1 The Great Henge
+1 Dinosaurs on a Spaceship
+1 Palani's Hatcher
+1 Swooping Pteranodon
+1 Wayta, Trainer Prodigy
+1 Monstrous Vortex
+1 Curator of Sun's Creation
+1 Silverclad Ferocidons
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Intangible Virtue
+1 Temple Altisaur
+1 Gruul War Chant
+1 Cosmium Confluence
+1 Wayward Swordtooth
+1 Harnessed Snubhorn
+1 Urban Daggertooth
+1 Wrathful Raptors
+1 Garruk's Uprising
+4 Forest
+4 Plains
+1 Welcome to . . . // Jurassic Park
+1 Promising Vein
+4 Mountain
+1 Jungle Shrine
+1 Mountain Valley
+1 Restless Prairie
+1 Restless Ridgeline
+1 Rogue's Passage
+1 Forgotten Monument
+1 Temple Garden
+1 Hidden Nursery
+1 Sunken Citadel
+1 Hidden Volcano
+1 Hidden Courtyard
+1 Sheltering Landscape
+1 Cinder Glade
+1 Rootbound Crag
+1 Clifftop Retreat
+1 Canopy Vista
+1 Sunpetal Grove
+1 Path of Ancestry
+1 Cavern of Souls
+1 Command Tower
+1 Arch of Orazca
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Forerunner of the Empire
+1 Don't Move
+1 Polyraptor
+1 Ravenous Tyrannosaurus
+1 Makeshift Munitions
+1 Get Lost
+1 Life Finds a Way
+1 Marauding Raptor
+1 Doubling Season
+1 Sol Ring
+1 Devil Dinosaur
+1 Lightning Greaves
+1 Urza's Incubator
+1 Huatli's Raptor
+1 Huatli, Dinosaur Knight
+1 Huatli, Warrior Poet
+1 Huatli, the Sun's Heart
+1 The Skullspore Nexus
+1 Nahiri's Resolve
+1 Shapers' Sanctuary
+1 Ward of Bones
+1 Mother of Runes
+1 Chimil, the Inner Sun
+1 Intrepid Paleontologist
+1 Otepec Huntmaster
+1 Gishath, Sun's Avatar
+1 Ghalta, Stampede Tyrant
+1 Hulking Raptor
+1 Greater Auramancy
+1 Bonehoard Dracosaur
+1 Zacama, Primal Calamity
+1 Ghalta, Primal Hunger
+1 Next of Kin
+1 Spelunking
+1 Poetic Ingenuity

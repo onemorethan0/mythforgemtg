@@ -1,0 +1,94 @@
+# Archidekt — Valgavoth
+# source: archidekt:26455908
+# fetched: 2026-09-16
+
+Commander:
+1 Valgavoth, Harrower of Souls
+
+Deck:
+1 Lightning Greaves
+1 Mind Stone
+1 Rakdos Signet
+7 Mountain
+1 Blood Artist
+1 Blood Seeker
+1 Brash Taunter
+1 Fate Unraveler
+1 Gideon the Oathless
+1 Gleeful Arsonist
+1 Gray Merchant of Asphodel
+1 Arcane Signet
+1 Basilisk Collar
+1 Fellwar Stone
+1 Harsh Mentor
+1 Kaervek the Merciless
+1 Kardur, Doomscourge
+1 Kederekt Parasite
+1 Massacre Wurm
+1 Mayhem Devil
+1 Mogis, God of Slaughter
+1 Nightshade Harvester
+1 Orcish Bowmasters
+1 Persistent Constrictor
+1 Rampaging Ferocidon
+1 Razorkin Needlehead
+1 Rug of Smothering
+1 Scrawling Crawler
+1 Bloodchief Ascension
+1 Painful Quandary
+1 Polluted Bonds
+1 Bedevil
+1 Chaos Warp
+1 Dark Ritual
+1 Deadly Rollick
+1 Deflecting Swat
+1 Infernal Grasp
+1 Rakdos Charm
+1 Blackcleave Cliffs
+1 Blazemire Verge
+1 Blood Crypt
+1 Bloodstained Mire
+1 Command Tower
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Foreboding Ruins
+1 Graven Cairns
+1 Haunted Ridge
+1 Leechridden Swamp
+1 Luxury Suite
+1 Reliquary Tower
+1 Chandra, Awakened Inferno
+1 Blasphemous Act
+1 Chandra's Ignition
+1 Feed the Swarm
+1 Jeska's Will
+1 Sadistic Shell Game
+1 Sol Ring
+1 Swiftfoot Boots
+1 Talisman of Indulgence
+1 Thought Vessel
+8 Swamp
+1 Sheoldred, the Apocalypse
+1 Solphim, Mayhem Dominus
+1 The Lord of Pain
+1 Zo-Zu the Punisher
+1 Spiked Corridor // Torture Pit
+1 Spiteful Visions
+1 Sulfuric Vortex
+1 Underworld Dreams
+1 Terminate
+1 Untimely Malfunction
+1 Withering Torment
+1 Shadowblood Ridge
+1 Shivan Gorge
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Tainted Peak
+1 Temple of Malice
+1 Witch's Clinic
+1 Sign in Blood
+1 Toxic Deluge
+1 Vandalblast
+1 Commander's Plate
+1 No Mercy
+1 Pain for All

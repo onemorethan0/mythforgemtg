@@ -1,0 +1,90 @@
+# Archidekt — Skull-Tron
+# source: archidekt:7591609
+# fetched: 2026-09-29
+
+Commander:
+1 Skullbriar, the Walking Grave
+
+Deck:
+1 Entomb
+1 Diresight
+1 Snakeskin Veil
+1 Witch's Clinic
+1 Hardened Scales
+1 Daring Fiendbonder
+1 Sixth Sense
+1 Keen Sense
+1 Beast Within
+1 Ozolith, the Shattered Spire
+1 Sonic Screwdriver
+1 Rogue's Passage
+1 Reliquary Tower
+1 Arboreal Grazer
+1 Homeward Path
+1 Command Tower
+1 Darkbore Pathway // Slitherbore Pathway
+1 Invigorating Surge
+1 Karn's Bastion
+7 Swamp
+1 Tyrite Sanctum
+1 Undergrowth Stadium
+1 Woodland Cemetery
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Minas Morgul, Dark Fortress
+1 Nurturing Peatland
+1 Harmonize
+1 Twilight Mire
+1 Shizo, Death's Storehouse
+1 Silkguard
+1 Return of the Wildspeaker
+1 Mandate of Abaddon
+1 Boseiju, Who Endures
+1 Urza's Cave
+1 Blood Curdle
+1 Fully Grown
+1 Hunger of the Howlpack
+1 Inscription of Abundance
+1 Kaya's Ghostform
+1 Obscuring Haze
+1 Scale the Heights
+1 Snake Umbra
+1 Solidarity of Heroes
+1 Unexpected Fangs
+1 Visions of Dominance
+1 Scavenged Brawler
+1 Slippery Bogbonder
+1 Vraska Joins Up
+1 Fog
+1 Nature's Claim
+1 Ancient Animus
+1 Assassin's Trophy
+1 Night's Whisper
+1 Sign in Blood
+1 Read the Bones
+1 Enter the Unknown
+1 Delighted Halfling
+1 Tamiyo's Safekeeping
+1 Rancor
+1 Hornbash Mentor
+1 Duskfang Mentor
+1 Not Dead After All
+1 Titanoth Rex
+1 Revitalizing Repast // Old-Growth Grove
+1 Elves of Deep Shadow
+1 Krosan Wayfarer
+1 Birds of Paradise
+1 Putrefy
+1 Astarion's Thirst
+1 Canopy Cover
+1 Sowing Mycospawn
+1 Qarsi Revenant
+1 Culling Ritual
+1 Champion of Dusan
+1 Hunter's Insight
+1 Darkness
+1 Beorn the Fierce
+1 Family's Favor
+1 Explore
+1 Duskshell Crawler
+13 Forest

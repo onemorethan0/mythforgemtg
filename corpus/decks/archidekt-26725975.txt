@@ -1,0 +1,83 @@
+# Archidekt — Mi comandante es tu comandante
+# source: archidekt:26725975
+# fetched: 2026-09-24
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Chorale of the Void
+1 Acquired Mutation
+1 Aqueous Form
+1 Cloak of Confusion
+1 Martial Impetus
+1 Coercive Impetus
+1 Contaminated Bond
+1 Extra Arms
+1 Luminous Wake
+1 Mirror Mockery
+1 Ordeal of Nylea
+1 Farrel's Mantle
+1 Nettling Curse
+1 Ordeal of Purphoros
+1 Ordeal of Erebos
+1 Ordeal of Thassa
+1 Ordeal of Heliod
+1 Parasitic Impetus
+1 Shiny Impetus
+1 Super-Soldier Serum
+1 Songbirds' Blessing
+1 Sinister Possession
+1 Seismic Tutelage
+1 Psychic Impetus
+1 Abduction
+1 Ferocity of the Hunt
+1 Gift of Immortality
+1 Flickerform
+1 Fungal Fortitude
+1 Andúril, Flame of the West
+1 Greatsword of Tyr
+1 Andúril, Narsil Reforged
+1 Invasion of New Capenna // Holy Frazzle-Cannon
+1 Bone Sabres
+1 Argentum Armor
+1 Armory of Iroas
+1 Sword of Hours
+1 Animal Friend
+1 Captain's Claws
+1 Creeping Crystal Coating
+1 Invocation of Saint Traft
+1 Infested Fleshcutter
+1 Inquisitorial Rosette
+1 Diamond Pick-Axe
+1 Staff of Titania
+1 Sigiled Sword of Valeron
+1 Dorothea, Vengeful Victim // Dorothea's Retribution
+1 Savage Lands
+1 Urban Retreat
+1 The World Tree
+1 Seaside Citadel
+1 Turbulent Shore
+1 Turbulent Moor
+1 Turbulent Steppe
+1 Turbulent Crater
+1 Turbulent Wetlands
+1 Turbulent Fen
+1 Turbulent Springs
+1 Turbulent Wilderness
+1 Tavern Brawler
+1 Raised by Giants
+1 Hardy Outlander
+1 Dragon Cultist
+8 Plains
+3 Island
+7 Swamp
+3 Mountain
+3 Forest
+1 Flaming Fist
+1 Criminal Past
+1 Sword Coast Sailor
+1 Inspiring Leader
+1 Inspiring Leader
+1 Cloakwood Hermit
+1 Agent of the Shadow Thieves

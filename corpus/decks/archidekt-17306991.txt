@@ -1,0 +1,94 @@
+# Archidekt — Sokka's allies
+# source: archidekt:17306991
+# fetched: 2026-09-30
+
+Commander:
+1 Sokka, Tenacious Tactician
+
+Deck:
+1 Sea Gate Loremaster
+1 Sokka, Lateral Strategist
+1 Izzet Signet
+1 Raugrin Triome
+1 Storm-Kiln Artist
+1 Veyran, Voice of Duality
+1 Bender's Waterskin
+1 Brainstorm
+1 Frantic Search
+1 Lightning Bolt
+1 Narset's Reversal
+1 Expressive Iteration
+1 Swords to Plowshares
+1 United Front
+1 Cathars' Crusade
+1 Dollmaker's Shop // Porcelain Gallery
+1 Frostcliff Siege
+1 Whirlwind of Thought
+1 Adarkar Wastes
+1 Reliquary Tower
+1 Rugged Prairie
+1 Clifftop Retreat
+1 Shivan Reef
+1 Skycloud Expanse
+1 Glacial Fortress
+1 Prairie Stream
+1 Sulfur Falls
+1 Cascade Bluffs
+1 Exotic Orchard
+1 Command Tower
+1 Ferrous Lake
+1 Mystic Monastery
+1 Path of Ancestry
+7 Island
+1 Mountain
+1 Archmage Emeritus
+1 Arcane Signet
+1 Sol Ring
+1 Austere Command
+1 An Offer You Can't Refuse
+1 Abandoned Air Temple
+1 Abandon Attachments
+1 Octopus Form
+1 Archaeomancer's Map
+1 Enter the Avatar State
+1 Lier, Disciple of the Drowned
+1 Pongify
+1 Hero of Goma Fada
+1 Kazuul Warlord
+1 Redirect Lightning
+1 Wartime Protestors
+1 Yip Yip!
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 Balmor, Battlemage Captain
+1 Flawless Maneuver
+1 Consider
+1 Windbrisk Heights
+1 Elspeth, Storm Slayer
+1 Bria, Riptide Rogue
+1 Clever Concealment
+1 Deflecting Palm
+1 Bident of Thassa
+1 Tocasia's Welcome
+1 Treasure Cruise
+1 Grand Crescendo
+1 Big Score
+1 South Pole Voyager
+1 Sundering Eruption // Volcanic Fissure
+1 Winnowing
+1 Three Tree City
+1 Will of the Mardu
+1 Crash Through
+1 Path to Exile
+1 Counterspell
+1 Negate
+1 Spirit Water Revival
+1 Akroma's Will
+1 Spectacular Showdown
+1 Azorius Signet
+1 Run Away Together
+1 Mother of Runes
+1 Settle the Wreckage
+1 Shared Animosity
+1 Erode
+7 Plains
+1 Lindblum, Industrial Regency // Mage Siege

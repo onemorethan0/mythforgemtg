@@ -1,0 +1,93 @@
+# Archidekt — The great Goblin Destroyer of Zada
+# source: archidekt:25327957
+# fetched: 2026-09-23
+
+Commander:
+1 The Great Goblin
+
+Deck:
+1 Fellwar Stone
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Boggart Mischief
+1 Scuzzback Scrounger
+1 Collective Inferno
+1 Moria Scavenger
+1 Barad-dûr
+1 Deadly Dispute
+1 Bolg, Erebor's Reckoning
+1 Great Ugly-Looking Goblin // Clap! Snap!
+1 Goblin Bombardment
+1 Boggart Shenanigans
+1 Impact Tremors
+1 Grub's Command
+1 Krenko, Mob Boss
+1 Goblin Trashmaster
+1 Howlsquad Heavy
+1 Searslicer Goblin
+1 Siege-Gang Lieutenant
+1 Skirk Prospector
+1 Conspicuous Snoop
+1 Broadside Bombardiers
+1 Pashalik Mons
+1 Goblin Chieftain
+1 Goblin Lackey
+1 General Kreat, the Boltbringer
+1 Goblin Warchief
+1 Impulsive Pilferer
+1 Mogg War Marshal
+1 Moggcatcher
+1 Brightstone Ritual
+1 Battle Hymn
+1 Tibalt's Trickery
+1 Desperate Ritual
+1 Skullclamp
+1 Sol Ring
+1 Ruby Medallion
+1 Blasphemous Act
+1 Empty the Warrens
+1 Dragon Fodder
+1 Bloodline Bidding
+1 Rage into the Valley
+1 Doom Blade
+1 Azog, Moria's Ruin
+1 Bolg of the North
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Eclipsed Boggart
+1 Boggart Cursecrafter
+1 Sling-Gang Lieutenant
+1 Arena of Glory
+1 Fountainport
+1 Shinka, the Bloodsoaked Keep
+1 Goblin Burrows
+1 Reliquary Tower
+1 Goblin-town
+1 Bolg's Company
+1 Uglúk of the White Hand
+1 Gorbag of Minas Morgul
+1 Champion of the Weird
+1 Sourbread Auntie
+1 Widespread Brutality
+1 First Day of Class
+1 Talisman of Indulgence
+1 Graven Cairns
+1 Command Tower
+4 Mountain
+4 Mountain
+4 Mountain
+1 Roaming Throne
+1 Mount Doom
+1 Mirkwood Bats
+1 Sulfurous Springs
+2 Swamp
+2 Swamp
+3 Swamp
+1 Reanimate
+1 My Precious // Allure of Power
+2 Swamp
+1 Goblin Plate Mail
+1 Mauhúr, Uruk-hai Captain
+1 Diabolic Intent
+1 Dread Return
+1 Defile
+1 Gollum, Riddle Master

@@ -1,0 +1,84 @@
+# Archidekt — Infinity
+# source: archidekt:26899695
+# fetched: 2026-09-29
+
+Commander:
+1 Bartolomé del Presidio
+
+Deck:
+1 Leonin Relic-Warder
+1 Funeral Rites
+1 Angelic Renewal
+1 Werefox Bodyguard
+1 Gnawing Vermin
+1 Fiend Hunter
+1 Boonweaver Giant
+1 Mind Stone
+1 Another Chance
+1 Wake the Dead
+1 Stitcher's Supplier
+1 Necrogen Communion
+1 Infernal Offering
+1 Summon Undead
+1 Charcoal Diamond
+1 Kaya's Ghostform
+1 Intercessor's Arrest
+1 Wayfarer's Bauble
+1 Diresight
+1 Ninja Teen
+1 Seal from Existence
+1 Bastion of Remembrance
+1 Undead Butler
+1 Orzhov Signet
+1 The Warring Triad
+1 Millikin
+1 Dusk // Dawn
+1 Scavenger's Talent
+1 Sun Titan
+1 Valgavoth's Faithful
+1 Marionette Apprentice
+1 Danitha, Benalia's Hope
+1 Dread Return
+1 Sevinne's Reclamation
+1 Fungal Fortitude
+1 Unseal the Necropolis
+1 Shepherd of the Cosmos
+1 Corpse Augur
+1 Bound in Gold
+1 Generous Gift
+1 Body Snatcher
+1 Prismatic Lens
+1 Unburial Rites
+1 Arcane Signet
+1 Demonic Bargain
+1 Angel of Indemnity
+1 Changing Loyalty
+1 Paramecia Coloniex
+1 Talisman of Hierarchy
+1 Brotherhood Outcast
+1 Dimir House Guard
+1 Redemption Choir
+1 Throne of the Grim Captain // The Grim Captain
+1 Exotic Orchard
+1 Hidden Grotto
+1 Rogue's Passage
+1 Thriving Moor
+1 Orzhov Basilica
+1 Tainted Field
+1 Command Tower
+1 Path of Ancestry
+1 Mariposa Military Base
+1 Great Hall of the Citadel
+1 Surveillance Room
+1 Dakmor Salvage
+1 Memorial to Folly
+1 Myriad Landscape
+1 Bojuka Bog
+1 Zulaport Cutthroat
+1 Agent of the Iron Throne
+1 Crow of Dark Tidings
+1 Minion's Return
+1 Final Parting
+12 Plains
+1 Corpse Churn
+10 Swamp

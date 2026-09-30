@@ -1,0 +1,91 @@
+# Archidekt — Tresserhornra Borealis
+# source: archidekt:26194040
+# fetched: 2026-09-25
+# bracket: 3
+
+Commander:
+1 Tresserhorn's Lord, Returned
+
+Deck:
+1 Ghost Lantern // Bind Spirit
+6 Island
+1 Scalding Tarn
+1 Prismatic Vista
+1 Goblin Bombardment
+1 Blood Crypt
+1 Steam Vents
+1 Watery Grave
+1 Bloodstained Mire
+1 Fabled Passage
+1 Polluted Delta
+1 Raucous Theater
+1 Thundering Falls
+1 Undercity Sewers
+7 Mountain
+1 Gray Merchant of Asphodel
+1 Cultist of the Absolute
+1 Endrek Sahr, Master Breeder
+1 Chasm Skulker
+1 Bloodghast
+1 Head of the Hunt
+1 Gravecrawler
+1 Anger
+1 Wonder
+1 Bitterblossom
+1 Raise the Palisade
+1 Chittering Witch
+1 Filth
+1 Braids, Arisen Nightmare
+1 Faerie Mastermind
+1 Embercleave
+1 Xander's Lounge
+1 Command Tower
+1 Luxury Suite
+1 Morphic Pool
+1 Training Center
+8 Swamp
+1 Tarrian's Soulcleaver
+1 Bitterbloom Bearer
+1 Not of This World
+1 Blasphemous Act
+1 Chandra's Ignition
+1 Forsaken Miner
+1 Talisman of Indulgence
+1 Talisman of Dominance
+1 Sire of Stagnation
+1 Nether Traitor
+1 Reassembling Skeleton
+1 Thought Vessel
+1 An Offer You Can't Refuse
+1 Sol Ring
+1 Arcane Signet
+1 Deadly Dispute
+1 Kozilek, the Great Distortion
+1 Strix Serenade
+1 Desynchronization
+1 Eldrazi Skyspawner
+1 Glaring Fleshraker
+1 Dimensional Infiltrator
+1 Flayer Drone
+1 Bismuth Mindrender
+1 Carrier Thrall
+1 Endless One
+1 Emrakul's Messenger
+1 Eldrazi Linebreaker
+1 Immobilizer Eldrazi
+1 Eldritch Immunity
+1 It That Heralds the End
+1 Gravity Negator
+1 Herald of Kozilek
+1 Idol of False Gods
+1 Glimpse the Impossible
+1 Kozilek's Unsealing
+1 Smothering Abomination
+1 Salvage Drone
+1 Thought Harvester
+1 Pawn of Ulamog
+1 Sifter of Skulls
+1 Mutated Cultist
+1 Skittering Precursor
+1 Tide Drifter
+1 Ruination Guide

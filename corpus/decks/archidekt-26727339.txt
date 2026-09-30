@@ -1,0 +1,102 @@
+# Archidekt — Dr.Doom
+# source: archidekt:26727339
+# fetched: 2026-09-24
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Ultron, Unlimited
+1 Chameleon, Master of Disguise
+1 Prowler, Clawed Thief
+1 Iron Monger, Sadistic Tycoon
+1 Tombstone, Career Criminal
+1 Arcane Signet
+1 Chromatic Lantern
+1 Baron Strucker, HYDRA Overlord
+1 Lethal Scheme
+1 Scavenger Grounds
+1 Sol Ring
+1 Monument to Endurance
+1 Archfiend of Ifnir
+1 Doom Reigns Supreme
+1 Archnemesis
+1 Crucible of Worlds
+1 Spark Double
+1 Polluted Mire
+1 Barren Moor
+1 Frantic Search
+1 Night's Whisper
+1 Green Goblin, Nemesis
+1 Faithless Looting
+1 Feed the Swarm
+1 Mana Drain
+1 Doom's Time Platform
+1 Counterspell
+1 Mana Confluence
+1 Oscorp Industries
+1 Wizard's Staff
+1 Helm of the Host
+1 Desert of the Glorified
+1 Ash Barrens
+1 No Mercy
+1 Lonely Sandbar
+1 Forgotten Cave
+1 Otawara, Soaring City
+1 Remote Isle
+1 Desert of the Mindful
+1 Coastal Peak
+1 Smoldering Crater
+1 Relic of Sauron
+1 Volcanic Island
+1 City of Brass
+1 Badlands
+1 Canyon Slough
+1 Fetid Pools
+1 Amulet of Vigor
+1 Underground Sea
+1 Thrill of Possibility
+1 Withering Torment
+1 Arcane Denial
+1 Big Score
+1 Dark Ritual
+1 Unexpected Windfall
+1 Deflecting Swat
+1 The One Ring
+1 The Spot's Portal
+1 Demand Answers
+1 Visions of Villainy
+1 Doom Blade
+1 Mysterio, Master of Illusion
+1 Aerial Doombot
+1 Roaming Throne
+1 Magmakin Artillerist
+1 Ultimate Green Goblin
+1 Takenuma, Abandoned Mire
+1 Tarnished Citadel
+1 Maze of Ith
+1 Agna Qel'a
+1 Patchwork Banner
+1 The Soul Stone
+1 Mount Doom
+1 Crumbling Necropolis
+1 Luxury Suite
+1 Watery Grave
+1 Bloodstained Mire
+1 Blood Crypt
+1 Steam Vents
+1 Training Center
+1 Xander's Lounge
+1 Polluted Delta
+1 Morphic Pool
+1 Scalding Tarn
+1 Shivan Reef
+1 Underground River
+1 Sulfurous Springs
+1 Urborg, Tomb of Yawgmoth
+1 Reflecting Pool
+1 Shredder's Technique
+1 Sign in Blood
+1 Ravenform
+1 Vandalblast
+1 Resculpt

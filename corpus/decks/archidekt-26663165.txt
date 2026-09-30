@@ -1,0 +1,108 @@
+# Archidekt — Funny Bounceland Shenanigans
+# source: archidekt:26663165
+# fetched: 2026-09-22
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Dryad of the Ilysian Grove
+1 Farseek
+1 Archdruid's Charm
+1 Planar Genesis
+1 Horizon of Progress
+1 Thrasios, Triton Hero
+1 Wrenn and Seven
+1 Animist's Awakening
+1 Azusa, Lost but Seeking
+1 Reshape the Earth
+1 Walking Atlas
+1 Risen Reef
+1 Worldsoul's Rage
+1 Defense of the Heart
+1 Fauna Shaman
+1 Formidable Speaker
+1 Green Sun's Zenith
+1 Wishclaw Talisman
+1 Recruiter of the Guard
+1 Imperial Recruiter
+1 Burgeoning
+1 Splendid Reclamation
+1 Six
+1 Wrenn and Six
+1 Wrenn and Realmbreaker
+1 Ramunap Excavator
+1 Lotus Field
+1 The Gitrog Monster
+1 Exploration Broodship
+1 Scapeshift
+1 Hearthhull, the Worldseed
+1 Nahiri's Lithoforming
+1 Evendo Brushrazer
+1 Crucible of Worlds
+1 Wooded Foothills
+1 Arid Mesa
+1 Polluted Delta
+1 Scalding Tarn
+1 Marsh Flats
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Flooded Strand
+1 Verdant Catacombs
+1 Windswept Heath
+1 Mole Man, Moloid Master
+1 Ancient Greenwarden
+1 Arboreal Grazer
+1 Aftermath Analyst
+1 Aesi, Tyrant of Gyre Strait
+1 Tatyova, Benthic Druid
+1 Icetill Explorer
+1 Tannuk, Memorial Ensign
+1 Nissa, Resurgent Animist
+1 Ob Nixilis, the Fallen
+1 Mossborn Hydra
+1 Felidar Retreat
+1 Kodama of the East Tree
+1 Toggo, Goblin Weaponsmith
+1 Delighted Halfling
+1 Clifftop Lookout
+1 Birds of Paradise
+1 Ziatora's Proving Ground
+1 Indatha Triome
+1 Savai Triome
+1 Boros Garrison
+1 Hedge Maze
+1 Simic Growth Chamber
+1 Underground Mortuary
+1 Lush Portico
+1 Selesnya Sanctuary
+1 Dimir Aqueduct
+1 Orzhov Basilica
+1 Raucous Theater
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Rakdos Carnarium
+1 Golgari Rot Farm
+1 Azorius Chancery
+1 Gruul Turf
+1 Izzet Boilerworks
+1 Ketria Triome
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Thundering Falls
+1 Abundance
+1 Meticulous Archive
+1 Shadowy Backstreet
+1 Commercial District
+1 Elegant Parlor
+1 Undercity Sewers
+1 Sink into Stupor // Soporific Springs
+1 Spara's Headquarters
+1 Zagoth Triome
+1 Pinnacle Monk // Mystic Peak
+1 Fell the Profane // Fell Mire
+1 Raugrin Triome
+1 Omo, Queen of Vesuva
+1 Command Tower
+1 Jetmir's Garden
+1 Xander's Lounge
+1 Raffine's Tower
+1 Exploration

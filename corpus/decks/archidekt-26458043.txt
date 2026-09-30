@@ -1,0 +1,80 @@
+# Archidekt — smeagol
+# source: archidekt:26458043
+# fetched: 2026-09-24
+# bracket: 2
+
+Commander:
+1 Gollum, Scheming Guide
+
+Deck:
+1 Hoarder's Greed
+1 Coveted Jewel
+1 Clackbridge Troll
+1 This Is How It Ends
+1 Incriminate
+1 Arcane Signet
+1 Armory of Iroas
+1 Assassin Initiate
+1 Barren Moor
+1 Bladebrand
+1 Bladed Battle-Fan
+1 Buried Ruin
+1 Burrog Banemaker
+1 Charcoal Diamond
+1 Cruelclaw's Heist
+1 Deliver Unto Evil
+1 Dredge the Mire
+1 Eternal Thirst
+1 Expert-Level Safe
+1 Explorer's Scope
+1 Fraying Line
+1 Gollum, Riddle Master
+1 Gonti, Lord of Luxury
+1 Hobbit Hole
+1 Hostile Negotiations
+1 Howl from Beyond
+1 Leaden Myr
+1 Lord Skitter's Blessing
+1 Mortuary Mire
+1 My Precious // Allure of Power
+1 Old Thrush
+1 Ophiomancer
+1 Orcish Medicine
+1 Petty Larceny
+1 Reverent Howl
+1 Sadistic Shell Game
+1 Shade's Form
+1 Shoot the Sheriff
+1 Short Bow
+1 Sign in Blood
+1 Skeletal Grimace
+1 Sol Ring
+1 Sorcerer's Strongbox
+1 Star Compass
+1 Strength-Testing Hammer
+1 Sugar Rush
+29 Swamp
+1 Sword of the Animist
+1 Terror
+1 The Toymaker's Trap
+1 Feed the Swarm
+1 Cathedral of War
+1 Tragic Slip
+1 Trepanation Blade
+1 Undying Malice
+1 Wayfarer's Bauble
+1 Vorpal Sword
+1 Crude Bent Blade
+1 Keen Duelist
+1 Oft-Nabbed Goat
+1 Myriad Landscape
+1 Avarice Totem
+1 Bronze Walrus
+1 Conduit Pylons
+1 Vexing Arcanix
+1 Lobelia, Defender of Bag End
+1 Great Fierce Bee
+1 Exploding Barrel
+1 Underdark Rift
+1 Gollum, Silent Slinker // Meager Meal
+1 Bottle of Suleiman

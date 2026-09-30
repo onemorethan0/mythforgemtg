@@ -1,0 +1,89 @@
+# Archidekt — Heiho! Heiho!
+# source: archidekt:26068249
+# fetched: 2026-09-16
+
+Commander:
+1 Thorin, King of Durin's Folk
+
+Deck:
+1 Fíli the Pathfinder
+1 Fíli and Kíli, Joyous
+1 Magda, Brazen Outlaw
+1 Thorin Oakenshield
+1 Bifur, Melodic Rider
+1 An Unexpected Party // At the Door
+1 Kíli the Resourceful
+1 Glóin, Dwarf Emissary
+1 Gimli of the Glittering Caves
+1 Orcrist, Goblin-cleaver
+1 Dáin, Lord of the Iron Hills
+1 Dáin's Company
+1 The Lonely Mountain
+1 Dáin Ironfoot
+1 Thorin, Mountain-king
+1 Dori, Bearer of Friends
+1 Glóin the Mighty // Easy Pickings
+1 Bofur, Reliable Guardian // Concerted Care
+1 Balin, Loremaster
+1 Ori, Plate Stacker
+1 Iron Hills Blacksmith
+1 Smaug the Magnificent
+1 Óin the Brave
+1 Nori, Teller of Tales
+1 Thorin, Company's Leader
+1 Bombur, Gentle Dreamer
+1 Dwarven Recruiter
+1 Goldspan Dragon
+1 Torbran, Thane of Red Fell
+1 Shattered Acolyte
+1 Troop of Ponies
+1 Path to Exile
+1 Galadriel's Dismissal
+1 Boros Charm
+1 Bilbo's Gambit
+1 Chaos Warp
+1 Thorin's Last Stand
+1 Swords to Plowshares
+1 Unbreakable Formation
+1 Great Train Heist
+1 Vandalblast
+1 Blasphemous Act
+1 Taunt from the Rampart
+1 Diamond Pick-Axe
+1 Mithril Coat
+1 Long-Lost Lances
+1 The Reaver Cleaver
+1 The Misty Mountains Cold
+1 Bearded Axe
+1 Gleaming Splendor
+1 There and Back Again
+1 Flowering of the White Tree
+1 Radiant Summit
+1 Path of Ancestry
+1 Dwarven Mine
+1 Dragon-Cursed Halls
+1 Gimli's Reckless Might
+1 Mines of Moria
+1 Rogue's Passage
+1 Minas Tirith
+1 Sol Ring
+1 Arcane Signet
+1 Spectator Seating
+1 Talisman of Conviction
+1 Iron Hills
+1 Patchwork Banner
+1 Command Tower
+1 Fabled Passage
+1 Clifftop Retreat
+1 Arid Mesa
+1 Evolving Wilds
+1 Hobbit Hole
+1 Elegant Parlor
+1 Dwalin, Weaponmaster
+8 Mountain
+8 Plains
+1 Reprieve
+1 Sacred Foundry
+1 Cavern of Souls
+1 The Eagles Are Coming!
+1 Goldvein Pick

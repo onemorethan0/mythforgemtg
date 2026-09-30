@@ -1,0 +1,100 @@
+# Archidekt — Copy of - Umbris Vmax (Xile)
+# source: archidekt:26760104
+# fetched: 2026-09-25
+
+Commander:
+1 Umbris, Fear Manifest
+
+Deck:
+1 Kitsune's Technique
+1 Abstergo Entertainment
+1 Nuclear Fallout
+1 Stone of Erech
+1 Drown in Dreams
+1 Tasha's Hideous Laughter
+1 Consuming Aberration
+1 Ancient Tomb
+1 Thing in the Ice // Awoken Horror
+1 Maze of Ith
+1 Scavenger Grounds
+1 Dauthi Voidwalker
+1 Rite of Consumption
+1 Psychic Corrosion
+1 Guiltfeeder
+1 Dark Ritual
+1 Beseech the Mirror
+1 Shizo, Death's Storehouse
+1 Oblivion Sower
+1 Propaganda
+1 Chariot of Victory
+1 Silent Hallcreeper
+1 Stonespeaker Crystal
+1 Thran Dynamo
+1 Worn Powerstone
+1 Pendrell Mists
+1 Sire of Stagnation
+1 Urborg, Tomb of Yawgmoth
+1 Sunken Palace
+1 Maddening Cacophony
+1 Singularity Rupture
+1 Midnight Clock
+1 Otawara, Soaring City
+1 Shipwreck Marsh
+1 Mesmeric Orb
+1 Cabal Coffers
+1 Ruthless Technomancer
+1 War Room
+1 Morphic Pool
+1 Essence Harvest
+6 Island
+1 Command Beacon
+1 Leyline of the Void
+1 Black Market Connections
+1 Sphinx's Tutelage
+1 Cabal Ritual
+1 Shadow Kin
+1 Web of Inertia
+1 Notion Thief
+1 Ruin Crab
+1 Nephalia Drownyard
+1 Sol Ring
+1 Mana Drain
+1 Underground Sea
+1 Watery Grave
+1 The Black Gate
+1 Minas Morgul, Dark Fortress
+1 Windfall
+1 Geier Reach Sanitarium
+1 Urza's Saga
+1 Jace's Archivist
+1 Mind Grind
+1 Bojuka Bog
+1 Ipnu Rivulet
+1 Jidoor, Aristocratic Capital // Overture
+1 Whispering Madness
+1 Imperious Mindbreaker
+1 Altar of Dementia
+1 Reliquary Tower
+1 Command Tower
+1 Bruvac the Grandiloquent
+1 Uba Mask
+1 Relic of Progenitus
+1 Cruel Somnophage // Can't Wake Up
+1 Koskun Falls
+1 Cowardice
+1 The Mindskinner
+1 Rite of Replication
+1 Boggart Trawler // Boggart Bog
+1 Swiftfoot Boots
+1 Mystic Remora
+1 Petrified Field
+1 Culling the Weak
+1 Expedition Map
+1 Mystical Tutor
+1 Three Steps Ahead
+1 Psychic Possession
+1 Temple of the False God
+4 Swamp
+1 The Water Crystal
+1 Gollum, Riddle Master
+1 Painful Quandary

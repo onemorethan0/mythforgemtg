@@ -1,0 +1,103 @@
+# Archidekt — Helga
+# source: archidekt:26663357
+# fetched: 2026-09-24
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Wan Shi Tong, Librarian
+1 Rishkar's Expertise
+1 Intruder Alarm
+1 Kozilek's Unsealing
+1 Hamza, Guardian of Arashin
+1 Kiora's Follower
+1 Kalonian Hydra
+1 Kami of Whispered Hopes
+1 Mockingbird
+1 Unbound Flourishing
+1 Thryx, the Sudden Storm
+1 Selvala, Heart of the Wilds
+1 Imoti, Celebrant of Bounty
+1 Fanatic of Rhonas
+1 Zimone, Paradox Sculptor
+1 Stubborn Denial
+1 The Great Henge
+1 Ozolith, the Shattered Spire
+1 The Earth Crystal
+1 Defiler of Vigor
+1 Ouroboroid
+1 Chakram Retriever
+1 Garruk's Uprising
+1 Galadriel, Light of Valinor
+1 Disciple of Freyalise // Garden of Freyalise
+1 Temple Garden
+1 Herald of Secret Streams
+1 Zimone, Infinite Analyst
+1 Voracious Hydra
+1 Goldvein Hydra
+1 Owlin Spiralmancer
+1 Geometer's Arthropod
+1 Steelbane Hydra
+1 Nev, the Practical Dean
+1 Ingenious Prodigy
+1 Tyrant Guard
+1 Inspiring Call
+1 Kinetic Ooze
+1 Rampaging Yao Guai
+1 Sporocyst
+1 Benevolent Hydra
+1 Genesis Hydra
+1 Glacial Fortress
+2 Island
+1 Mana Confluence
+1 Sunpetal Grove
+1 Overgrown Farmland
+1 Breeding Pool
+1 Hallowed Fountain
+1 Flooded Strand
+1 Command Tower
+1 Spara's Headquarters
+1 Urban Retreat
+1 Otawara, Soaring City
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Dreamroot Cascade
+1 Windswept Heath
+1 Misty Rainforest
+1 Sea of Clouds
+1 Rejuvenating Springs
+1 Hedge Maze
+1 Lush Portico
+1 Terrasymbiosis
+1 Bountiful Promenade
+1 Hushwood Verge
+5 Forest
+1 Meticulous Archive
+1 Deserted Beach
+1 Boseiju, Who Endures
+1 Branching Evolution
+1 Willowrush Verge
+1 Prismatic Vista
+1 Monstrous Vortex
+1 Yavimaya, Cradle of Growth
+1 Silverback Elder
+1 Innkeeper's Talent
+1 Wild Growth
+1 Damning Verdict
+1 Legolas's Quick Reflexes
+1 Swan Song
+1 Wave Goodbye
+1 Shore Up
+1 Repulsive Mutation
+1 Guiding Hydra
+1 Goreclaw, Terror of Qal Sisma
+1 Birds of Paradise
+1 Surrak and Goreclaw
+1 Chulane, Teller of Tales
+1 Retreat to Coralhelm
+1 Radagast of Rhosgobel
+1 Kiora, Behemoth Beckoner
+1 Delighted Halfling
+1 Hydroid Krasis
+1 Inga and Esika
+1 Noble Hierarch

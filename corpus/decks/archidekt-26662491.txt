@@ -1,0 +1,85 @@
+# Archidekt — Stingerquill poison
+# source: archidekt:26662491
+# fetched: 2026-09-23
+
+Commander:
+1 Tomik, Izzet Sparkmage
+1 Ingris Stingerquill
+
+Deck:
+1 Anoint with Affliction
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Malakir Rebirth // Malakir Mire
+1 Geth's Summons
+1 Infectious Inquiry
+1 Phyresis Outbreak
+1 Vraska's Fall
+1 Sol Ring
+1 Rakdos Signet
+1 Talisman of Indulgence
+1 Blood Crypt
+1 Blazemire Verge
+1 Turbulent Crater
+1 Raucous Theater
+14 Swamp
+1 Phyresis
+1 Terminate
+1 Abyssal Specter
+1 Untimely Malfunction
+1 Hypnotic Specter
+1 Chaos Warp
+1 Chandra's Spitfire
+1 Infernal Grasp
+1 Lightning Bolt
+12 Mountain
+1 Black Market Connections
+1 Professional Face-Breaker
+1 Bloodstained Mire
+1 Arcane Signet
+1 Phyrexian Arena
+1 Dolmen Gate
+1 Jet Medallion
+1 Access Tunnel
+1 Blasphemous Act
+1 Sulfurous Springs
+1 Whispersilk Cloak
+1 Maha, Its Feathers Night
+1 Insatiable Avarice
+1 Lively Dirge
+1 Night's Whisper
+1 Sign in Blood
+1 Inkmoth Nexus
+1 Corpse Cur
+1 Flesh-Eater Imp
+1 Ichor Rats
+1 Core Prowler
+1 Hand of the Praetors
+1 Plague Myr
+1 Septic Rats
+1 Plague Stinger
+1 Skithiryx, the Blight Dragon
+1 Contagious Nim
+1 Flensermite
+1 Phyrexian Crusader
+1 Razor Swine
+1 Necropede
+1 Ichorclaw Myr
+1 Reaper of Sheoldred
+1 Vector Asp
+1 Whispering Specter
+1 Whisper of the Dross
+1 Karn's Bastion
+1 Contagion Engine
+1 Drown in Ichor
+1 Contagion Clasp
+1 Glistening Sphere
+1 Staff of Compleation
+1 Blightbelly Rat
+1 Volt Charge
+1 Vraska, Betrayal's Sting
+1 Hazoret, Godseeker
+1 Break Through the Line
+1 Escape Tunnel
+1 Pathmaker Initiate
+1 Goblin Tunneler

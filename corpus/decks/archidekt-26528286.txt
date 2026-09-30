@@ -1,0 +1,109 @@
+# Archidekt — jupi
+# source: archidekt:26528286
+# fetched: 2026-09-23
+# bracket: 2
+
+Commander:
+1 Tam, the Possibility
+
+Deck:
+1 Flooded Grove
+1 Waterlogged Grove
+1 Undergrowth Stadium
+1 Tarnished Citadel
+1 Aether Hub
+1 Evolution Sage
+1 Liliana, Death's Majesty
+1 Elminster
+1 Feroz, Ulgrotha's Warden
+1 Despark
+1 Gideon of the Trials
+1 Dovin, Grand Arbiter
+1 Turbulent Moor
+1 Scavenger Regent // Exude Toxin
+1 Elspeth Tirel
+1 Identity Echo
+1 Way of the Paradox
+1 Way of the Mentor
+1 Sivitri, Dragon Master
+1 Ugin, the Spirit Dragon
+1 Ral, Caller of Storms
+1 Island
+1 Forest
+1 Plains
+1 Chandra, Acolyte of Flame
+1 Jace, Unraveler of Secrets
+1 Nicol Bolas, Planeswalker
+1 Ob Nixilis Reignited
+1 Professor Dellian Fel
+1 Saheeli, Sublime Artificer
+1 Tevesh Szat, Doom of Fools
+1 Tezzeret, Artifice Master
+1 Tibalt, Rakish Instigator
+1 Vraska, Betrayal's Sting
+1 Interplanar Beacon
+1 Oath of Ajani
+1 The Chain Veil
+1 Noble Hierarch
+1 Ignoble Hierarch
+1 Command Tower
+1 Swamp
+1 Dack Fayden
+1 Garruk Wildspeaker
+1 All Will Be One
+1 Birds of Paradise
+1 Llanowar Elves
+1 Muddle the Mixture
+1 Expansion Algorithm
+1 Wrenn and Realmbreaker
+1 Winds of Abandon
+1 Underground River
+1 Overflowing Basin
+1 Breeding Pool
+1 Steam Vents
+1 Stomping Ground
+1 Blood Crypt
+1 Leyline of the Guildpact
+1 Chromatic Lantern
+1 Godless Shrine
+1 Temple Garden
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Overgrown Tomb
+1 Watery Grave
+1 Rejuvenating Springs
+1 Yavimaya Coast
+1 Willowrush Verge
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Fatehold Annex
+1 Formidable Commons
+1 Meticulous Commons
+1 Anguished Unmaking
+1 Fracture
+1 Teferi, Hero of Dominaria
+1 Norn's Annex
+1 Ballad of the Black Flag
+1 Monumental Henge
+1 Prologue to Phyresis
+1 Sorin, Lord of Innistrad
+1 Great Hall of the Citadel
+1 Kamahl's Druidic Vow
+1 Primevals' Glorious Rebirth
+1 Arzakon
+1 Arcane Signet
+1 Nissa, Voice of Zendikar
+1 Tekuthal, Inquiry Dominus
+1 Onakke Oathkeeper
+1 Exotic Orchard
+1 City of Brass
+1 Brushland
+1 Hushwood Verge
+1 Caves of Koilos
+1 Fetid Heath
+1 Shred Memory
+1 Ripples of Potential
+1 Karn's Bastion
+1 Plaza of Heroes
+1 Way of the Necromancer
+1 Way of the Pyromancer
+1 Sarkhan Vol

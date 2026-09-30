@@ -1,0 +1,86 @@
+# Archidekt — Poison Stings
+# source: archidekt:26457049
+# fetched: 2026-09-17
+
+Commander:
+1 Ingris Stingerquill
+
+Deck:
+1 Shadowblood Ridge
+1 Fabled Passage
+1 Raucous Theater
+15 Swamp
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Command Tower
+1 Luxury Suite
+1 Rogue's Passage
+1 Blood Crypt
+1 Blazemire Verge
+1 Exotic Orchard
+1 Haunted Ridge
+1 Bloodstained Mire
+1 Malakir Rebirth // Malakir Mire
+1 Tainted Peak
+1 Phyresis
+1 Rakdos Charm
+1 Big Score
+1 Razor Swine
+1 Urza's Cave
+1 Plague Stinger
+1 Ichor Rats
+1 Hand of the Praetors
+8 Mountain
+1 Whispering Specter
+1 Untimely Malfunction
+1 Tibalt's Trickery
+1 Glistening Oil
+1 Night's Whisper
+1 Withering Torment
+1 Vat Emergence
+1 Phyresis Outbreak
+1 Imp's Mischief
+1 Corpse Cur
+1 Plague Myr
+1 Skithiryx, the Blight Dragon
+1 Flesh-Eater Imp
+1 Phyrexian Crusader
+1 Blasphemous Act
+1 Drown in Ichor
+1 Tainted Strike
+1 Flensermite
+1 Ichorclaw Myr
+1 Infectious Inquiry
+1 Feed the Swarm
+1 Septic Rats
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Toxic Deluge
+1 Vraska's Fall
+1 Vandalblast
+1 Reanimate
+1 Warstorm Surge
+1 Phyrexian Arena
+1 Arcane Signet
+1 Rakdos Signet
+1 Sol Ring
+1 Lightning Greaves
+1 Dolmen Gate
+1 Core Prowler
+1 Glistening Sphere
+1 Talisman of Indulgence
+1 Unexpected Windfall
+1 Terminate
+1 Sign in Blood
+1 Black Market Connections
+1 Cursed Mirror
+1 Ruby Medallion
+1 The Soul Stone
+1 Thought Vessel
+1 Fiery Emancipation
+1 Anger
+1 Solphim, Mayhem Dominus
+1 Hawkeye, Young Avenger
+1 Jet Medallion
+1 Geth's Summons
+1 Chandra's Ignition
+1 City on Fire

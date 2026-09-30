@@ -1,0 +1,76 @@
+# Archidekt — Jhoira $30 Budget build artifacts spam
+# source: archidekt:26322645
+# fetched: 2026-09-16
+
+Commander:
+1 Jhoira, Weatherlight Captain
+
+Deck:
+1 Artificer's Assistant
+1 Etherium Sculptor
+1 Reckless Fireweaver
+1 Manakin
+1 Foundry Inspector
+1 Trinket Mage
+1 Quicksmith Genius
+1 Whirler Rogue
+1 Brudiclad, Telchor Engineer
+1 Saheeli, Sublime Artificer
+1 Bone Saw
+1 Aether Spellbomb
+1 Chromatic Sphere
+1 Chromatic Star
+1 Codex Shredder
+1 Sentinel Totem
+1 Springleaf Drum
+1 Wanderer's Twig
+1 Elsewhere Flask
+1 Ichor Wellspring
+1 Mind Stone
+1 Prophetic Prism
+1 Golem Foundry
+1 Spell Pierce
+1 Mana Leak
+1 Lava Coil
+1 One with the Machine
+1 Jhoira's Familiar
+1 Enthusiastic Mechanaut
+1 Sai, Master Thopterist
+1 Emry, Lurker of the Loch
+1 Soul-Guide Lantern
+1 Grapeshot
+1 Shuri, Wakandan Inventor
+11 Mountain
+19 Island
+1 Ornithopter
+1 Negate
+1 Iron Man, Master of Machines
+1 Machinesmith Automaton
+1 Ironheart, Clever Champion
+1 Iron Lad, Diverging Destiny
+1 Rebuild
+1 Gingerbrute
+1 Sol Ring
+1 Golden Egg
+1 Whirlermaker
+1 Iron Myr
+1 Conjurer's Bauble
+1 Izzet Signet
+1 Brainstone
+1 Halo Hopper
+1 Barrels of Blasting Jelly
+1 Solemn Simulacrum
+1 Giant's Boulder
+1 Iron Lad, Young Avenger
+1 Cloud Key
+1 Kappa Cannoneer
+1 Cyberdrive Awakener
+1 Uthros Research Craft
+1 Chaos Warp
+1 Wayfarer's Bauble
+1 Candy Trail
+1 Dramatic Reversal
+1 Brainstorm
+1 Thoughtcast
+1 Efficient Construction
+1 Silver Myr

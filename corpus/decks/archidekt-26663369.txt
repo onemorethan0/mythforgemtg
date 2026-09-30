@@ -1,0 +1,100 @@
+# Archidekt — eldrazi
+# source: archidekt:26663369
+# fetched: 2026-09-22
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Prismatic Vista
+1 Overgrown Tomb
+1 Spire Garden
+1 Stomping Ground
+1 Sulfurous Springs
+2 Swamp
+1 Taiga
+1 Tainted Peak
+1 Thornspire Verge
+1 Tainted Wood
+1 Birds of Paradise
+1 Delighted Halfling
+1 Gilded Goose
+1 Elves of Deep Shadow
+1 Ignoble Hierarch
+1 Wild Cantor
+1 Strike It Rich
+1 Utopia Sprawl
+1 Assassin's Trophy
+1 Bitter Triumph
+1 Kozilek's Command
+1 Beast Within
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Deadly Rollick
+1 Sowing Mycospawn
+1 Snuff Out
+1 Thought-Knot Seer
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Diabolic Intent
+1 Fauna Shaman
+1 Survival of the Fittest
+1 Formidable Speaker
+1 Imperial Recruiter
+1 Hoarding Dragon
+1 Blade of the Bloodchief
+1 Ghost Lantern // Bind Spirit
+1 Agate Instigator
+1 Tarrian's Soulcleaver
+1 Basking Broodscale
+1 Goblin Bombardment
+1 Impact Tremors
+1 Nim Deathmantle
+1 Ashnod's Altar
+1 Food Chain
+1 Eternal Scourge
+1 Glaring Fleshraker
+1 Long Feng, Grand Secretariat
+1 Molten Gatekeeper
+1 Phyrexian Altar
+1 Skittering Precursor
+1 Eyeless Watcher
+1 Kozilek's Predator
+1 Mana Echoes
+1 Sifter of Skulls
+1 Emrakul's Hatcher
+1 Herd Baloth
+1 Sol Ring
+1 Mountain
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Ziatora's Proving Ground
+1 Wastewood Verge
+1 Gemstone Caverns
+1 Invasion of Ixalan // Belligerent Regisaur
+1 Fire-Lit Thicket
+5 Forest
+1 Sensei's Divining Top
+1 Eldrazi Temple
+1 Skullclamp
+1 Cache Grab
+1 Vessel of Nascency
+1 Bond of Flourishing
+1 Malevolent Rumble
+1 Bloodstained Mire
+1 Luxury Suite
+1 Seed of Hope
+1 Glimpse the Impossible
+1 Bayou
+1 Llanowar Wastes
+1 Sylvan Library
+1 Mystic Forge
+1 Command Tower
+1 Witherbloom Charm
+1 Midnight Tilling
+1 Blood Crypt
+1 Karplusan Forest
+1 Badlands
+1 Command Beacon
+1 Eye of Ugin

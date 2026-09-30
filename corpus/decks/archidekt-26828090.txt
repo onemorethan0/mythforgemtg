@@ -1,0 +1,95 @@
+# Archidekt — Oswald Fiddlebender
+# source: archidekt:26828090
+# fetched: 2026-09-30
+
+Commander:
+1 Oswald Fiddlebender
+
+Deck:
+1 Chrome Mox
+1 Mox Diamond
+1 Mox Opal
+1 Lotus Petal
+1 Archivist of Oghma
+1 The One Ring
+1 Ichor Wellspring
+1 Esper Sentinel
+1 Sensei's Divining Top
+1 Basalt Monolith
+1 Rings of Brighthearth
+1 Walking Ballista
+1 Staff of Domination
+1 Mystic Forge
+1 Foundry Inspector
+1 Lesser Masticore
+1 Metallic Mimic
+1 Blasting Station
+1 Drannith Magistrate
+1 Sphere of Resistance
+1 Trinisphere
+1 Torpor Orb
+1 Vexing Bauble
+1 Metalworker
+1 Illusionist's Bracers
+1 Lodestone Golem
+1 Thousand-Year Elixir
+1 Magewright's Stone
+1 Mana Vault
+1 Lightning Greaves
+1 Grim Monolith
+1 Arcum's Astrolabe
+1 Phyrexian Walker
+1 Ornithopter
+1 Ethersworn Canonist
+1 Myr Retriever
+1 Skrelv, Defector Mite
+1 Enlightened Tutor
+1 Tezzeret, Cruel Captain
+1 Defense Grid
+1 Swords to Plowshares
+1 Path to Exile
+1 Erode
+1 Silence
+1 Reprieve
+1 Mishra's Workshop
+1 Inventors' Fair
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Buried Ruin
+1 Urza's Saga
+1 Arid Mesa
+1 Chromatic Star
+1 Grand Abolisher
+1 Marsh Flats
+1 Flooded Strand
+1 Windswept Heath
+1 Prismatic Vista
+1 The Mycosynth Gardens
+1 Sol Ring
+13 Snow-Covered Plains
+1 Recruiter of the Guard
+1 Memnite
+1 Ancient Den
+1 Treasure Vault
+1 Darksteel Citadel
+1 Burst of Energy
+1 Generous Gift
+1 Mox Amber
+1 Goblin Cannon
+1 Arcane Signet
+1 Mishra's Bauble
+1 Scrap Trawler
+1 Djeru's Resolve
+1 Patriar's Seal
+1 Get Lost
+1 Soulless Jailer
+1 Winter Orb
+1 Veteran's Reflexes
+1 Teshar, Ancestor's Apostle
+1 Cathodion
+1 Peter Parker's Camera
+1 Phyrexian Revoker
+1 Flawless Maneuver
+1 Uba Mask
+1 Mother of Runes
+1 Giver of Runes

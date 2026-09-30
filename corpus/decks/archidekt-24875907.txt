@@ -1,0 +1,80 @@
+# Archidekt — squall duelist
+# source: archidekt:24875907
+# fetched: 2026-09-22
+
+Commander:
+1 Squall, Gunblade Duelist
+
+Deck:
+1 The Sound of Drums
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Ring of the Lucii
+1 Evolving Wilds
+1 Read the Bones
+1 Sign in Blood
+1 Generous Gift
+1 Wayfarer's Bauble
+1 Rakdos Signet
+1 Orzhov Signet
+1 Ruby Medallion
+1 Fated Clash
+1 Pain for All
+1 Wrecking Ball Arm
+1 Conqueror's Flail
+1 World Map
+1 Ultimate Magic: Holy
+1 Aettir and Priwen
+1 Damn
+1 Dragonfire Blade
+1 Cloud's Limit Break
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Legion Leadership // Legion Stronghold
+1 Bulk Up
+1 Cloud, Midgar Mercenary
+1 Vandalblast
+1 Syr Vondam, the Lucent
+1 Syr Vondam, Sunstar Exemplar
+1 Haliya, Guided by Light
+1 Vincent's Limit Break
+1 Caduceus, Staff of Hermes
+1 Felidar Umbra
+1 Leech Gauntlet
+1 Sheltered by Ghosts
+1 Sol Ring
+1 Seifer, Balamb Rival
+1 Breena, the Demagogue
+1 Duelist's Flame
+1 Windcrag Siege
+1 Swords to Plowshares
+1 Path to Exile
+1 Arcane Signet
+1 Rite of the Raging Storm
+1 Boros Signet
+1 Professional Face-Breaker
+1 Lightning, Security Sergeant
+1 Gisela, Blade of Goldnight
+1 Genji Glove
+1 Anguished Unmaking
+1 Duelist's Heritage
+1 Sacred Foundry
+1 Isshin, Two Heavens as One
+10 Swamp
+10 Mountain
+10 Plains
+1 Eye of Nidhogg
+1 Frenzied Gorespawn
+1 Ball Lightning
+1 Disrupt Decorum
+1 Hammer of Nazahn
+1 Squall, SeeD Mercenary
+1 Lightning, Army of One
+1 Gavel of the Righteous
+1 Vengeful Ancestor
+1 Rinoa, Angel Wing
+1 Seifer Almasy
+1 Lightning Bolt
+1 Furnace of Rath
+1 Life of the Party
+1 Dictate of the Twin Gods
+1 Quest for Pure Flame

@@ -1,0 +1,79 @@
+# Archidekt — Tannuk, Steadfast Second
+# source: archidekt:23722623
+# fetched: 2026-09-22
+# bracket: 3
+
+Commander:
+1 Tannuk, Steadfast Second
+
+Deck:
+1 Blasphemous Act
+31 Mountain
+1 Nalfeshnee
+1 Seething Song
+1 The Endstone
+1 Chimil, the Inner Sun
+1 Etali, Primal Storm
+1 Solemn Simulacrum
+1 Sandstone Oracle
+1 Mana Geyser
+1 Charred Foyer // Warped Space
+1 Extinguisher Battleship
+1 Dragon Mage
+1 Conjurer's Closet
+1 Trumpeting Carnosaur
+1 Faithless Looting
+1 Ilharg, the Raze-Boar
+1 Coveted Jewel
+1 Wild-Magic Sorcerer
+1 Ruby Medallion
+1 Chaos Warp
+1 Maelstrom Colossus
+1 Sundial of the Infinite
+1 War Room
+1 Neheb, the Eternal
+1 The Fire Crystal
+1 Arcane Signet
+1 Goldspan Dragon
+1 Cursed Mirror
+1 Combustible Gearhulk
+1 Lightning Greaves
+1 Cityscape Leveler
+1 Drakuseth, Maw of Flames
+1 Mind Stone
+1 Hellkite Tyrant
+1 Rogue's Passage
+1 Hazoret's Monument
+1 Myojin of Roaring Blades
+1 Molten Primordial
+1 Sunbird's Invocation
+1 Fire Diamond
+1 Scourge of the Throne
+1 Ornithopter of Paradise
+1 Buried Ruin
+1 Sol Ring
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Defiler of Instinct
+1 Flameshadow Conjuring
+1 Alena, Kessig Trapper
+1 Caged Sun
+1 The Last Agni Kai
+1 Iron Myr
+1 Balefire Dragon
+1 Untimely Malfunction
+1 Spinerock Knoll
+1 Pinnacle Monk // Mystic Peak
+1 Twinflame Tyrant
+1 Jeska's Will
+1 Heartless Hidetsugu
+1 Skitterbeam Battalion
+1 Meteor Golem
+1 Portal to Phyrexia
+1 Blightsteel Colossus
+1 Terror of Mount Velus
+1 Knollspine Dragon
+1 Aurora Phoenix
+1 Mithril Coat
+1 Blast-Furnace Hellkite
+1 Cavern-Hoard Dragon
+1 Myriad Landscape

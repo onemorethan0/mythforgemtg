@@ -1,0 +1,91 @@
+# Archidekt — Hakballin
+# source: archidekt:24046304
+# fetched: 2026-09-17
+# bracket: 3
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Vineglimmer Snarl
+1 Llanowar Reborn
+1 Mosswort Bridge
+1 Karn's Bastion
+1 Reliquary Tower
+1 Herald's Horn
+1 Deeproot Waters
+1 Hinterland Harbor
+1 Rogue's Passage
+1 Coastal Piracy
+1 Kumena, Tyrant of Orazca
+1 Alchemist's Refuge
+1 Metallic Mimic
+1 Topography Tracker
+1 Rapid Hybridization
+1 Merfolk Skydiver
+1 Quandrix Command
+1 Deeproot Elite
+1 Herald of Secret Streams
+1 Ripples of Potential
+1 Emperor Mihail II
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Realmwalker
+1 Temple of Mystery
+1 Kopala, Warden of Waves
+1 Branching Evolution
+1 Silvergill Adept
+1 Benthic Biomancer
+1 Kodama's Reach
+1 Simic Signet
+1 Echoing Deeps
+1 Rhystic Study
+1 Kindred Discovery
+1 Swiftfoot Boots
+1 Bident of Thassa
+1 Sol Ring
+1 Beast Within
+1 Command Tower
+1 Myriad Landscape
+1 Hardened Scales
+1 Roaming Throne
+1 Distant Melody
+1 Wave Goodbye
+1 Mist-Cloaked Herald
+1 Deeproot Pilgrimage
+1 Ruinous Intrusion
+1 Inspiring Call
+11 Island
+1 Raise the Palisade
+1 Vodalian Hexcatcher
+1 Merrow Commerce
+1 Singer of Swift Rivers
+1 Simic Growth Chamber
+1 Merfolk Looter
+1 Tishana's Tidebinder
+1 Attuma, Atlantean Warlord
+1 Daughter of the Deep
+1 Summon: Leviathan
+1 Lord of Atlantis
+1 Mindspring Merfolk
+1 Jadelight Spelunker
+1 Negate
+1 Wonder
+1 Zegana, Utopian Speaker
+1 Arcane Signet
+1 Counterspell
+1 Lullmage Mentor
+1 Unclaimed Territory
+1 Merrow Reejerey
+1 Svyelun of Sea and Sky
+1 Sink into Stupor // Soporific Springs
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Merfolk Sovereign
+1 Master of the Pearl Trident
+1 Cold-Eyed Selkie
+8 Forest
+1 Kiora's Follower
+1 Nicanzil, Current Conductor
+1 Stonybrook Banneret
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Secluded Courtyard
+1 Path of Discovery

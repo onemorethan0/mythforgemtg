@@ -1,0 +1,96 @@
+# Archidekt — Rock and Roll, Golem Time
+# source: archidekt:26491558
+# fetched: 2026-09-17
+
+Commander:
+1 Toggo, Goblin Weaponsmith
+1 Ich-Tekik, Salvage Splicer
+
+Deck:
+1 Arch of Orazca
+1 Karn, Legacy Reforged
+1 Sculpting Steel
+1 Golden Guardian // Gold-Forge Garrison
+1 Elemental Bond
+1 Slobad, Goblin Tinkerer
+1 Dread Statuary
+1 Vandalblast
+1 Hammer of Purphoros
+1 Tooth and Nail
+1 Blasphemous Act
+1 Maul Splicer
+1 Fangren Marauder
+1 Darksteel Sentinel
+1 Mindslaver
+1 Arcbound Reclaimer
+1 Darksteel Colossus
+1 Tree of Tales
+1 Goblin Welder
+1 Phyrexia's Core
+1 Haunted Fengraf
+1 Decimate
+1 Karn's Bastion
+1 Goblin Engineer
+1 Terramorphic Expanse
+1 Feldon of the Third Path
+1 Selesnya Eulogist
+1 Triplicate Titan
+1 Skarrg, the Rage Pits
+1 Regrowth
+1 Brass's Bounty
+1 Vital Splicer
+1 Indomitable Creativity
+1 Inspiring Statuary
+1 Full Flowering
+1 Great Furnace
+1 Ghost Quarter
+1 Trading Post
+1 Eldrazi Monument
+1 Daretti, Scrap Savant
+1 All Is Dust
+1 Temple of Abandon
+1 Soul-Guide Lantern
+1 Mosswort Bridge
+1 Gruul Turf
+1 Tireless Tracker
+1 Chaos Warp
+1 Blightsteel Colossus
+1 Solemn Simulacrum
+1 Gingerbrute
+1 Scarecrone
+1 Kuldotha Forgemaster
+1 Throne of Geth
+1 Darksteel Citadel
+1 Darksteel Forge
+1 Ash Barrens
+1 Buried Ruin
+1 Sol Ring
+1 Command Tower
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Khalni Ambush // Khalni Territory
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Valakut Awakening // Valakut Stoneforge
+1 Forsaken Monument
+1 Panharmonicon
+1 Mina and Denn, Wildborn
+1 Return of the Wildspeaker
+1 Reliquary Tower
+1 Three Visits
+1 Jeska's Will
+1 Command Beacon
+1 Kodama's Reach
+1 Guildless Commons
+1 Phyrexian Triniform
+1 Cultivate
+1 Beast Within
+1 Meteor Golem
+6 Forest
+1 Rogue's Passage
+1 Evolving Wilds
+5 Mountain
+1 Labyrinth of Skophos
+1 Rhythm of the Wild
+1 Cradle Clearcutter
+1 Legion Extruder
+1 Molten Gatekeeper
+1 Nexus of Becoming

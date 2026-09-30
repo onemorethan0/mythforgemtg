@@ -1,0 +1,65 @@
+# Archidekt — frong
+# source: archidekt:26526185
+# fetched: 2026-09-18
+
+Commander:
+1 Blor the Impervious
+
+Deck:
+1 Level Up
+1 Strong Back
+1 Basilisk Collar
+1 Blanchwood Armor
+1 Tajuru Preserver
+1 Silent Arbiter
+1 Hydra's Growth
+1 Forgotten Ancient
+1 Arbor Elf
+1 Spore Frog
+1 Bugenhagen, Wise Elder
+1 Setessan Champion
+1 Eidolon of Blossoms
+1 Reclamation Sage
+1 Verduran Enchantress
+1 Brass Squire
+1 Poison Dart Frog
+1 Frog Butler
+1 Tanuki Transplanter
+1 Primal Bellow
+1 Fog
+1 Inscription of Abundance
+1 Epic Fight
+1 Explore
+38 Forest
+1 Sanctum Weaver
+1 Llanowar Elves
+1 Elvish Mystic
+1 Beast Within
+1 Emerald Medallion
+1 Unnatural Growth
+1 Utopia Sprawl
+1 Collective Resistance
+1 Rishkar's Expertise
+1 Solidarity of Heroes
+1 Invigorating Surge
+1 Sol Ring
+1 Nature's Lore
+1 Bear Umbra
+1 Staff of Titania
+1 Lion Umbra
+1 Obscuring Haze
+1 Pariah's Shield
+1 Fireshrieker
+1 Short Bow
+1 Inquisitor's Flail
+1 Belt of Giant Strength
+1 Blackblade Reforged
+1 Gift of the Viper
+1 Sixth Sense
+1 Hunter's Insight
+1 Return of the Wildspeaker
+1 Soul's Majesty
+1 Keen Sense
+1 Wings of Hubris
+1 Trailblazer's Boots
+1 Genji Glove

@@ -1,0 +1,102 @@
+# Archidekt — Y'shtola, Night's Blessed
+# source: archidekt:14010731
+# fetched: 2026-09-17
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Windswept Heath
+1 Hallowed Fountain
+1 Sanguine Bond
+1 Arcane Sanctum
+1 Authority of the Consuls
+1 Command Tower
+1 Dig Through Time
+1 Emet-Selch of the Third Seat
+1 Exotic Orchard
+1 Fetid Heath
+1 Propaganda
+1 Sunken Ruins
+1 Swords to Plowshares
+3 Swamp
+1 Underground River
+1 Vindicate
+1 Void Rend
+1 Archmage's Charm
+1 Path to Exile
+1 Smothering Tithe
+1 Caves of Koilos
+1 Adarkar Wastes
+1 Godless Shrine
+1 Raffine's Tower
+1 Watery Grave
+1 City of Brass
+1 Meticulous Archive
+1 Shadowy Backstreet
+1 Silent Clearing
+1 Dark Ritual
+1 Irenicus's Vile Duplication
+1 Glacial Chasm
+1 Supreme Verdict
+1 Consecrated Sphinx
+1 Rhystic Study
+1 Fierce Guardianship
+1 Misty Rainforest
+1 Flooded Strand
+3 Island
+1 Cruel Tutor
+1 Sink into Stupor // Soporific Springs
+1 Reliquary Tower
+1 Hullbreaker Horror
+1 Vault of Champions
+1 Sea of Clouds
+1 Starting Town
+1 Snuff Out
+1 Bloodstained Mire
+3 Plains
+1 Spark Double
+1 Sakashima the Impostor
+1 Lotho, Corrupt Shirriff
+1 Fell the Profane // Fell Mire
+1 Bloodthirsty Conqueror
+1 Curiosity
+1 Lyse Hext
+1 Sol Ring
+1 Esper Sentinel
+1 Bolas's Citadel
+1 Sygg, River Cutthroat
+1 Helm of the Ghastlord
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Enduring Tenacity
+1 Talisman of Progress
+1 Talisman of Dominance
+1 Black Market Connections
+1 Mystic Remora
+1 Unholy Annex // Ritual Chamber
+1 Grim Tutor
+1 Demonic Tutor
+1 Stock Up
+1 Vito, Thorn of the Dusk Rose
+1 Ophidian Eye
+1 Bloodchief Ascension
+1 Kambal, Consul of Allocation
+1 Dovin's Veto
+1 Ghostly Prison
+1 Grand Abolisher
+1 Lórien Revealed
+1 Toxic Deluge
+1 Cyclonic Rift
+1 Sigil of Sleep
+1 Exquisite Blood
+1 Farewell
+1 Malakir Rebirth // Malakir Mire
+1 Mana Drain
+1 Counterspell
+1 Force of Negation
+1 Force of Will
+1 Anguished Unmaking
+1 Frantic Search
+1 Temporal Manipulation

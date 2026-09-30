@@ -1,0 +1,85 @@
+# Archidekt — Selesnya
+# source: archidekt:26447514
+# fetched: 2026-09-16
+
+Commander:
+1 Kwia Vigorbloom
+
+Deck:
+1 Ajani, Strength of the Pride
+1 Command Tower
+1 Exemplar of Light
+1 Swords to Plowshares
+1 Arcane Signet
+1 Sunpetal Grove
+1 Cultivate
+1 Trostani, Selesnya's Voice
+1 Rampant Growth
+1 Avacyn's Pilgrim
+1 Lathiel, the Bounteous Dawn
+1 March of the Multitudes
+1 Haliya, Guided by Light
+1 Prosperous Innkeeper
+1 Authority of the Consuls
+1 Essence Warden
+18 Plains
+1 Soul's Attendant
+1 Guide of Souls
+1 Belladonna Took
+1 Sylvan Library
+1 Canopy Vista
+1 The Wind Crystal
+1 Exotic Orchard
+1 Well of Lost Dreams
+1 Storm Herd
+1 Shalai, Voice of Plenty
+1 Swiftfoot Boots
+1 Sol Ring
+1 Sunscorch Regent
+1 The Gaffer
+1 Farseek
+1 Blossoming Sands
+1 Graypelt Refuge
+1 Blossoming Bogbeast
+1 Shamanic Revelation
+6 Forest
+1 Exalted Sunborn
+1 Second Harvest
+1 Trelasarra, Moon Dancer
+1 Suture Priest
+1 Pristine Talisman
+1 Selesnya Signet
+1 Rhox Faithmender
+1 Riot Control
+1 Nykthos Paragon
+1 Razorverge Thicket
+1 Heliod's Intervention
+1 Fumigate
+1 Aerith, Last Ancient
+1 Enlightened Confidant
+1 Soul Warden
+1 Resplendent Angel
+1 Daxos, Blessed by the Sun
+1 Hinterland Sanctifier
+1 Cosmic Rebirth
+1 Peregrin Took
+1 Path to Exile
+1 Shattered Angel
+1 Alhammarret's Archive
+1 Cleric Class
+1 Sun Droplet
+1 Fabled Passage
+1 Aerith Gainsborough
+1 Grand Crescendo
+1 Voice of the Blessed
+1 Pest Infestation
+1 Restoration Magic
+1 Caduceus, Staff of Hermes
+1 Genesis Wave
+1 Elenda's Hierophant
+1 Ajani's Pridemate
+1 Cosmos Elixir
+1 Accomplished Alchemist
+1 Mirari's Wake
+1 Mana Reflection
+1 Hurricane

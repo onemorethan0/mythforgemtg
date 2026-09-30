@@ -1,0 +1,101 @@
+# Archidekt — Magecraft & Muscle Mass (Trigger Warning: Swole Wizards)
+# source: archidekt:13640362
+# fetched: 2026-09-16
+# bracket: 3
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Pym Particles
+1 Boomerang Basics
+1 Mental Modulation
+1 Rabid Attack
+1 Warlord's Fury
+1 Siren Stormtamer
+1 Black Waltz No. 3
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Feign Death
+1 Kari Zev's Expertise
+1 Sunken Ruins
+1 Metallic Mimic
+1 Puppeteer Clique
+1 Viscera Seer
+1 Spark Double
+1 Irenicus's Vile Duplication
+1 Adeliz, the Cinder Wind
+1 Harmonic Prodigy
+1 Vivi Ornitier
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Enter the Enigma
+1 Flame Jab
+1 Shadow Rift
+1 Impolite Entrance
+1 Behind the Mask
+1 Flux Channeler
+1 Watery Grave
+1 Xander's Lounge
+1 Steam Vents
+1 Teleportal
+1 Diviner's Wand
+1 Black Mage's Rod
+1 Coruscation Mage
+1 Stormcatch Mentor
+1 Naru Meha, Master Wizard
+1 Sage of Fables
+1 Stonybrook Banneret
+1 Triton Wavebreaker
+1 Flame of Anor
+1 Brute Force
+1 Graven Cairns
+1 Distortion Strike
+1 Andúril, Narsil Reforged
+1 Maximum Overdrive
+1 Professor's Warning
+1 The Ooze
+1 Hall of Oracles
+1 Mystic Sanctuary
+1 Primal Amulet // Primal Wellspring
+1 Experimental Augury
+1 Inexorable Tide
+1 Command Tower
+1 Path of Ancestry
+3 Swamp
+1 Undying Malice
+1 Glen Elendra Archmage
+1 Flame On!
+1 Balmor, Battlemage Captain
+1 Gandalf, Goblins' Bane // Flameshape
+1 Veyran, Voice of Duality
+1 Improvisation Capstone
+1 Riverglide Pathway // Lavaglide Pathway
+1 Blightstep Pathway // Searstep Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Wizard's Staff
+1 Seething Landscape
+1 Frostcliff Siege
+1 Stormchaser's Talent
+1 Blood Crypt
+1 Cascade Bluffs
+1 Crash Through
+1 Dynacharge
+1 Plaza of Heroes
+4 Island
+1 Gitaxian Probe
+1 Slip Through Space
+1 Cytoplast Manipulator
+1 Fake Your Own Death
+1 Patchwork Banner
+1 Krark, the Thumbless
+1 Exotic Orchard
+1 Luxury Suite
+1 Training Center
+1 Drowned Catacomb
+1 City of Brass
+1 Underground River
+1 Spirebluff Canal
+1 Sulfurous Springs
+1 Dragonskull Summit
+1 Shivan Reef
+1 Sulfur Falls
+3 Mountain

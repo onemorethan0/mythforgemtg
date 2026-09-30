@@ -1,0 +1,98 @@
+# Archidekt — Copy of - Terra
+# source: archidekt:26663626
+# fetched: 2026-09-22
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Destiny Spinner
+1 Savage Lands
+1 Frontier Bivouac
+1 Jungle Shrine
+1 Path of Ancestry
+1 Command Tower
+1 Evolving Wilds
+1 Ash Barrens
+1 Summon: Bahamut
+1 Yuna, Hope of Spira
+1 Summon: Valefor
+1 Summon: Titan
+1 Summon: Shiva
+1 Summon: Esper Valigarmanda
+1 Summon: Fenrir
+1 Sythis, Harvest's Hand
+1 Summon: Brynhildr
+1 In the Darkness Bind Them
+1 Flicker of Fate
+1 Swords to Plowshares
+1 Yenna, Redtooth Regent
+1 O'aka, Traveling Merchant
+1 Rydia, Summoner of Mist
+1 Summon: Magus Sisters
+1 Redress Fate
+1 Restoration Magic
+1 Summon: Primal Garuda
+1 Touch the Spirit Realm
+1 Garnet, Princess of Alexandria
+1 Enchantress's Presence
+1 The Bath Song
+1 Awaken the Honored Dead
+1 Tom Bombadil
+1 Summon: Kujata
+1 Summon: Knights of Round
+1 The Apprentice's Folly
+1 Estrid's Invocation
+1 Eidolon of Blossoms
+1 Verduran Enchantress
+1 Satyr Enchanter
+1 Resurgent Belief
+1 Sanctum Weaver
+1 Elspeth Conquers Death
+1 Binding the Old Gods
+1 Murmuring Bosk
+1 Temple of Plenty
+1 Swamp
+1 Flooded Grove
+1 Brushland
+1 Cinder Glade
+1 Prairie Stream
+1 Arcane Sanctum
+1 Mystic Monastery
+1 Terramorphic Expanse
+1 Rampant Growth
+1 Farseek
+1 Extinguish All Hope
+1 Idyllic Tutor
+1 Esper Origins // Summon: Esper Maduin
+1 Clash of the Eikons
+1 Ballad of the Black Flag
+1 Adagia, Windswept Bastion
+1 Canopy Vista
+1 Sandsteppe Citadel
+1 Opulent Palace
+1 Seaside Citadel
+1 Nesting Grounds
+1 Starting Town
+1 The Kami War // O-Kagachi Made Manifest
+1 Roar of Endless Song
+1 Fertile Ground
+1 Sol Ring
+1 Arcane Signet
+1 Faeburrow Elder
+1 Path to Exile
+2 Island
+2 Mountain
+5 Forest
+4 Plains
+1 Mystic Remora
+1 Chromatic Lantern
+1 Crystal Fragments // Summon: Alexander
+1 Mesa Enchantress
+1 Birds of Paradise
+1 Jukai Naturalist
+1 Herald of the Pantheon
+1 Narci, Fable Singer
+1 Monologue Tax
+1 Copy Enchantment
+1 Utopia Sprawl

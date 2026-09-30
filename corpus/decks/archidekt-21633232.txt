@@ -1,0 +1,77 @@
+# Archidekt — Castle Black
+# source: archidekt:21633232
+# fetched: 2026-09-17
+
+Commander:
+1 Ayara, First of Locthwain
+
+Deck:
+1 Cabal Stronghold
+1 Bojuka Bog
+1 Castle Locthwain
+1 Sheoldred's Edict
+1 Dark Ritual
+1 Ashnod's Altar
+1 Culling the Weak
+1 Viscera Seer
+1 Jadar, Ghoulcaller of Nephalia
+1 Witch of the Moors
+1 Bontu's Monument
+1 Erebos, God of the Dead
+1 Withering Torment
+1 Nine-Lives Familiar
+1 Army of the Damned
+1 Crowded Crypt
+1 Vraan, Executioner Thane
+1 Infestation Sage
+1 Priest of Forgotten Gods
+1 Paralyze
+1 Chittering Witch
+1 Sign in Blood
+1 Crypt Ghast
+1 Tragic Slip
+1 Mutilate
+1 Darkness
+1 Defile
+1 Ophiomancer
+1 Sengir Autocrat
+1 Night's Whisper
+1 Dread Presence
+1 Oubliette
+1 Phyrexian Reclamation
+1 Unearth
+1 Enduring Tenacity
+1 Pitiless Plunderer
+1 Jet Medallion
+1 Soul Shatter
+1 Fell the Profane // Fell Mire
+1 Endrek Sahr, Master Breeder
+1 Victimize
+1 Feed the Swarm
+1 Plague of Vermin
+1 Toxic Deluge
+1 Vampire of the Dire Moon
+1 Reassembling Skeleton
+1 Abhorrent Overlord
+1 Infernal Grasp
+1 Blood Artist
+1 Haunt of the Dead Marshes
+1 Zulaport Cutthroat
+1 Shambling Ghast
+1 K'rrik, Son of Yawgmoth
+1 Bolas's Citadel
+1 Fell Beast of Mordor
+1 Vito, Thorn of the Dusk Rose
+1 Vat of Rebirth
+1 Curse of the Restless Dead
+1 Ghoulish Procession
+1 Go for the Throat
+1 Doom Blade
+1 Decree of Pain
+1 Titan Hunter
+1 Rank Officer
+31 Swamp
+1 Witch's Cottage
+1 Spymaster's Vault
+1 Polluted Mire
+1 Piper of the Swarm

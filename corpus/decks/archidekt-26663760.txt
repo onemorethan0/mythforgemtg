@@ -1,0 +1,94 @@
+# Archidekt — la reinona
+# source: archidekt:26663760
+# fetched: 2026-09-22
+
+Commander:
+1 The Queen of Dale
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Cavern of Souls
+1 Helping Hand
+1 Welcoming Vampire
+1 Delney, Streetwise Lookout
+1 Leonin Arbiter
+1 Nykthos, Shrine to Nyx
+1 Purify the Grave
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Archon of Emeria
+1 Pyre of Heroes
+1 Gemstone Caverns
+1 Urza's Saga
+1 Esper Sentinel
+1 Cursed Totem
+1 Blacksmith's Skill
+1 Thalia, Guardian of Thraben
+1 March of Otherworldly Light
+1 Weathered Wayfarer
+1 Deep Gnome Terramancer
+1 Aven Mindcensor
+1 Mother of Runes
+1 Thorn of Amethyst
+1 Calamity's Wake
+1 Enlightened Tutor
+1 Damping Sphere
+1 Phyrexian Censor
+1 Pearl Medallion
+1 Sanctum Prelate
+1 Eiganjo Castle
+1 Benevolent Bodyguard
+1 Smothering Tithe
+1 Ancient Tomb
+1 Linvala, Keeper of Silence
+1 City of Traitors
+1 Phyrexian Revoker
+1 Silence
+1 Aether Vial
+1 Giver of Runes
+1 Ranger-Captain of Eos
+1 Coat of Arms
+1 Eidolon of Rhetoric
+1 Elesh Norn, Grand Cenobite
+1 Abeyance
+1 Ethersworn Canonist
+1 Expedition Map
+1 Drannith Magistrate
+1 Aven Interrupter
+1 Orim's Chant
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Thraben Charm
+1 Disruptor Flute
+1 Razorgrass Ambush // Razorgrass Field
+1 Tax Collector
+1 Three Tree City
+1 Grafdigger's Cage
+1 Enduring Innocence
+1 Banner of Kinship
+1 Swords to Plowshares
+1 Monument to Endurance
+1 Voice of Victory
+1 Tataru Taru
+1 Phoenix Down
+1 Restoration Magic
+1 Abandoned Air Temple
+1 Springleaf Drum
+1 Moonshaker Cavalry
+1 Patchwork Banner
+1 Path to Exile
+1 Skullclamp
+1 Bilbo's Gambit
+1 Solitude
+1 Bennie Bracks, Zoologist
+14 Plains
+1 Glowrider
+1 Mox Amber
+1 Chrome Mox
+1 Mana Vault
+1 Lotus Petal
+1 Mox Diamond
+1 Sol Ring
+1 Tocasia's Welcome
+1 Caretaker's Talent
+1 Archivist of Oghma
+1 Deafening Silence
+1 Touch the Spirit Realm

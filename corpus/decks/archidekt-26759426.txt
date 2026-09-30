@@ -1,0 +1,100 @@
+# Archidekt — Doctor Doom does not beg
+# source: archidekt:26759426
+# fetched: 2026-09-25
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Foreboding Ruins
+1 Tainted Peak
+1 Feed the Swarm
+1 Dragonskull Summit
+1 Arcane Signet
+1 Fellwar Stone
+1 Sol Ring
+1 Construct a Cosmic Cube
+1 Smoldering Marsh
+1 Sulfurous Springs
+1 Shadowblood Ridge
+1 Command Tower
+1 Daze
+1 Prowler, Clawed Thief
+1 Hobbit Hole
+1 Confusticate and Bebother
+1 Thrór's Map
+1 Chameleon, Master of Disguise
+1 Iron Monger, Sadistic Tycoon
+1 Baron Strucker, HYDRA Overlord
+1 Living Laser
+1 Oscorp Industries
+1 Lethal Scheme
+1 Terminate
+1 Kang, Temporal Tyrant
+1 Moonstone, Harsh Mistress
+1 Ultron, Unlimited
+1 Loki, the Deceiver
+1 Currency Converter
+1 Typhoid Mary, Fractured
+1 Kid Loki
+1 Blasphemous Act
+1 Glorious Purpose
+1 Containment Construct
+1 Frantic Search
+1 Leader, Super-Genius
+1 Archfiend of Ifnir
+1 Green Goblin, Revenant
+1 Ultimate Green Goblin
+1 Captain Howler, Sea Scourge
+1 Faith of the Devoted
+1 Taskmaster, Mercenary Mimic
+1 Chaos Warp
+1 Faithless Looting
+1 Compulsive Research
+1 Seize the Spoils
+3 Swamp
+1 Desert of the Fervent
+1 Fetid Pools
+1 Big Score
+1 Extract Power
+1 Frostboil Snarl
+1 Thirst for Knowledge
+1 Thrill of Possibility
+1 Unstable Experiment
+1 Visions of Villainy
+1 Demand Answers
+1 Remote Isle
+1 Scorched Geyser
+1 Canyon Slough
+1 Barren Moor
+1 Sulfur Falls
+1 Desolate Lighthouse
+1 Forgotten Cave
+1 Desert of the Glorified
+1 Pumpkin Bombs
+1 Lonely Sandbar
+1 Polluted Mire
+1 Dark Deal
+1 Drowned Catacomb
+1 Coastal Peak
+1 Fogwell's Gym
+1 Desert of the Mindful
+1 Geier Reach Sanitarium
+3 Island
+3 Mountain
+1 Sunken Hollow
+1 Ob Nixilis, the Fallen
+1 Night Market
+1 Choked Estuary
+1 Ash Barrens
+1 Magus of the Wheel
+1 Wheel of Fate
+1 Windfall
+1 Incendiary Command
+1 Scaretiller
+1 Expedition Map
+1 Nicol Bolas, God-Pharaoh
+1 Chain Reaction
+1 Swiftfoot Boots
+1 Curse of the Swine
+1 Decree of Pain

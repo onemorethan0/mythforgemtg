@@ -1,0 +1,89 @@
+# Archidekt — Shilgengar, Sire of Famine
+# source: archidekt:12816872
+# fetched: 2026-09-18
+
+Commander:
+1 Shilgengar, Sire of Famine
+
+Deck:
+1 Isolated Chapel
+1 Temple of Silence
+1 Fetid Heath
+1 Takenuma, Abandoned Mire
+1 Starfall Invocation
+1 Metropolis Reformer
+1 Minas Tirith
+1 Spymaster's Vault
+1 Requiem Angel
+1 Starnheim Aspirant
+1 Archangel of Tithes
+1 Vault of the Archangel
+1 Generous Gift
+1 Giada, Font of Hope
+1 Avacyn, Angel of Hope
+1 Resplendent Angel
+1 Angel of Suffering
+1 Buried Alive
+1 Solemnity
+1 Drana and Linvala
+1 Sanctuary Warden
+1 Liesa, Forgotten Archangel
+1 Luminarch Ascension
+1 Rampage of the Valkyries
+1 Urza's Incubator
+1 Angel of Destiny
+1 The Book of Exalted Deeds
+1 Bishop of Wings
+10 Swamp
+1 Sol Ring
+1 Valkyrie Harbinger
+1 Divine Visitation
+1 Ripples of Undeath
+1 Orzhov Signet
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Renegade Reaper
+1 Angel of Despair
+1 Rodolf Duskbringer
+1 Serra Paragon
+1 Damn
+1 Sunblast Angel
+1 Subjugator Angel
+1 Angel of Indemnity
+1 Mesmeric Orb
+1 Exemplar of Light
+1 Herald of Eternal Dawn
+1 Gisela, the Broken Blade
+1 Bruna, the Fading Light
+1 Lyra Dawnbringer
+1 Caves of Koilos
+1 Thief of Blood
+10 Plains
+1 Toxic Deluge
+1 Battle Angels of Tyr
+1 Shineshadow Snarl
+1 Angel of the Ruins
+1 Land Tax
+1 Akroma's Will
+1 Nesting Grounds
+1 Firemane Commando
+1 Boggart Trawler // Boggart Bog
+1 Dark Ritual
+1 Herald of the Host
+1 Exquisite Blood
+1 Vito, Thorn of the Dusk Rose
+1 Palantír of Orthanc
+1 Wojek Investigator
+1 Archangel of Thune
+1 Court of Grace
+1 Mirkwood Bats
+1 Sephara, Sky's Blade
+1 Youthful Valkyrie
+1 Serra's Emissary
+1 Seraph Sanctuary
+1 Command Tower
+1 Black Market Connections
+1 Righteous Valkyrie
+1 Angel of Finality
+1 Exalted Sunborn
+1 Godless Shrine

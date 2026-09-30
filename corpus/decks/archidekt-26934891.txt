@@ -1,0 +1,84 @@
+# Archidekt — Avacyn, Angel of Horror
+# source: archidekt:26934891
+# fetched: 2026-09-30
+
+Commander:
+1 Avacyn, Angel of Horror
+
+Deck:
+1 Archon of Cruelty
+1 Bloodline Recollector // Ancestral Craving
+1 Break Under Pressure
+1 Lich's Relic
+1 Apex Witchstalker
+1 Cast Away Doubt
+1 Rank Rat
+1 Multiply by Zero
+1 Silence the Echo
+1 Rampart Hunter
+1 Last Gasp
+1 Terminal Criticism
+1 Screeching Soulbreaker
+1 Rise of the Deathbringer
+1 Theoretical Necromancer
+1 Dark Matter Manipulator
+1 Massacre Girl, Most Wanted
+1 Loot, the Anomaly
+1 Proft, Sinister Mastermind
+1 Winter, Tormented Loner
+1 Carrion Feeder
+1 Archfiend of Despair
+1 Bad Moon
+1 Ambition's Cost
+1 Ayara, First of Locthwain
+1 Consuming Corruption
+1 Consumed by Greed
+1 Fleshbag Marauder
+1 Marchesa's Decree
+1 God-Eternal Bontu
+1 Go for the Throat
+1 Midnight Reaper
+1 Sign in Blood
+1 Wight of Precinct Six
+1 Gray Merchant of Asphodel
+1 Mire Triton
+1 Necrotic Hex
+1 Night's Whisper
+1 Open the Graves
+1 Withering Torment
+1 Oversold Cemetery
+1 Razorlash Transmogrant
+1 Living Library
+1 The Echoverse Fulcrum
+1 Tendrils of Corruption
+1 Undead Butler
+1 Sol Ring
+1 Arcane Signet
+1 Meteor Golem
+1 Mind Stone
+1 Eye of Jace
+1 Charcoal Diamond
+1 Steel Hellkite
+1 Commander's Sphere
+1 Currency Converter
+1 Bontu's Monument
+1 Heraldic Banner
+1 Nevinyrral's Disk
+1 Ornithopter of Paradise
+1 Bojuka Bog
+1 Hall of Echoes
+1 Bonders' Enclave
+1 Swiftfoot Boots
+1 Radiant Fountain
+24 Swamp
+1 Barren Moor
+1 Geier Reach Sanitarium
+1 Memorial to Folly
+1 War Room
+1 Castle Locthwain
+1 Rogue's Passage
+1 Witch's Cottage
+1 Scavenger Grounds
+1 Witch's Clinic
+1 Liliana the Repentant
+1 Scrawling Crawler

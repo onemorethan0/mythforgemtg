@@ -1,0 +1,68 @@
+# Archidekt — Like Takin' Candy From A Baby
+# source: archidekt:26429744
+# fetched: 2026-09-16
+
+Commander:
+1 Tergrid, God of Fright // Tergrid's Lantern
+
+Deck:
+35 Swamp
+1 Sol Ring
+1 Arcane Signet
+1 Tourach, Dread Cantor
+1 Geth's Grimoire
+1 Lightning Greaves
+1 Jet Medallion
+1 Burglar Rat
+1 Crypt Ghast
+1 Demon's Disciple
+1 Elderfang Disciple
+1 Nezumi Informant
+1 Plaguecrafter
+1 Rankle, Master of Pranks
+1 Sedgemoor Witch
+1 Accursed Marauder
+1 Braids, Cabal Minion
+1 Gray Merchant of Asphodel
+1 Mindslicer
+1 Sangromancer
+1 Sheoldred // The True Scriptures
+1 Phyrexian Obliterator
+1 Sheoldred, the Apocalypse
+1 Braids, Arisen Nightmare
+1 Sheoldred, Whispering One
+1 The Raven Man
+1 Phyrexian Altar
+1 Bottomless Pit
+1 Necrogen Mists
+1 Painful Quandary
+1 Grave Pact
+1 Oppression
+1 Waste Not
+1 Phyrexian Arena
+1 Auntie's Sentence
+1 Day of Black Sun
+1 Death Cloud
+1 Decorum Dissertation
+1 Demonic Tutor
+1 Extract a Confession
+1 Feed the Swarm
+1 Rankle's Prank
+1 Smallpox
+1 Syphon Mind
+1 Torment of Hailfire
+1 Dark Deal
+1 Chain of Smog
+1 Liliana of the Veil
+1 Culling the Weak
+1 Feign Death
+1 Malakir Rebirth // Malakir Mire
+1 Not Dead After All
+1 Sheoldred's Edict
+1 Dark Ritual
+1 Imp's Mischief
+1 Liliana's Triumph
+1 Pharika's Libation
+1 Sudden Edict
+1 Withering Torment
+1 Professor Onyx

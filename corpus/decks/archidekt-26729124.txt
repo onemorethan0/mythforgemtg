@@ -1,0 +1,91 @@
+# Archidekt — Copy of - TFH, Niv Mizzet (Orhzov?) [Aristocrats]
+# source: archidekt:26729124
+# fetched: 2026-09-24
+
+Commander:
+1 Niv-Mizzet, Ghost Counsel
+
+Deck:
+1 The Soul Stone
+1 Mana Vault
+1 Words of Worship
+1 Sheoldred, the Apocalypse
+1 Swords to Plowshares
+1 Words of Waste
+1 Approach of the Second Sun
+1 Anguished Unmaking
+1 Urborg, Tomb of Yawgmoth
+1 Mana Tithe
+1 Land Tax
+1 Path to Exile
+1 Despark
+1 Talisman of Hierarchy
+1 Bolas's Citadel
+1 Sensei's Divining Top
+1 Aetherflux Reservoir
+1 Reprieve
+1 Lapse of Certainty
+1 Imp's Mischief
+1 Command Beacon
+1 Sol Ring
+1 Teferi's Protection
+1 Malakir Rebirth // Malakir Mire
+1 Urza's Saga
+1 Shadowspear
+1 Hall of Heliod's Generosity
+1 Heliod's Intervention
+1 Enlightened Tutor
+1 Scroll Rack
+1 Reanimate
+1 Dark Ritual
+1 Shattered Sanctum
+1 Godless Shrine
+1 Serra Ascendant
+1 Command Tower
+1 Blind Obedience
+1 Arcane Signet
+1 Authority of the Consuls
+1 Damn
+1 Isolated Chapel
+1 Caves of Koilos
+1 Reliquary Tower
+1 Black Market Connections
+1 Bleachbone Verge
+1 Shadowy Backstreet
+1 Exsanguinate
+1 Ancient Tomb
+1 Gleaming Splendor
+1 Kambal, Consul of Allocation
+1 Vault of Champions
+1 Lightning Greaves
+1 Thought Vessel
+1 Orzhov Signet
+1 Mother of Runes
+1 Skrelv, Defector Mite
+1 Gift of Estates
+1 Enduring Tenacity
+1 Creeping Bloodsucker
+1 Grand Abolisher
+1 Archaeomancer's Map
+1 Dawn's Truce
+1 Ivory Tower
+1 Swiftfoot Boots
+1 Doctor Doom, Unrivaled
+1 Rebuff the Wicked
+1 Blessed Reversal
+1 Psychosis Crawler
+1 Lotus Petal
+1 Tainted Sigil
+1 Elixir of Immortality
+1 Chromatic Lantern
+1 Isochron Scepter
+1 Riot Control
+8 Swamp
+10 Plains
+1 Silent Clearing
+1 Tainted Field
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Mox Opal
+1 Vault of Whispers
+1 Ancient Den
+1 Marble Diamond

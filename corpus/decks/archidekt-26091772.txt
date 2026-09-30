@@ -1,0 +1,90 @@
+# Archidekt — sauron my style
+# source: archidekt:26091772
+# fetched: 2026-09-29
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Artifist Acumen
+1 Murmuring Volume
+1 Multiply by Zero
+1 Eye of Jace
+1 Rampart Hunter
+7 Swamp
+1 Stingerquill Annex
+1 Room of Refuge
+2 Island
+1 Theorix Annex
+1 Innovative Commons
+1 Frostboil Snarl
+1 Exotic Orchard
+1 Path of Ancestry
+1 Crumbling Necropolis
+1 Scorched Geyser
+1 Dragonskull Summit
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Command Tower
+1 Sol Ring
+1 Drowned Catacomb
+1 Sunken Hollow
+1 Progenitor's Icon
+1 Sulfur Falls
+1 Isildur's Fateful Strike
+1 Angrath, Captain of Chaos
+1 Deceive the Messenger
+1 Treason of Isengard
+1 Mordor Trebuchet
+1 Fellwar Stone
+1 Foray of Orcs
+1 The Mouth of Sauron
+1 Gothmog, Morgul Lieutenant
+1 Book of Mazarbul
+1 Spiteful Banditry
+1 Mauhúr, Uruk-hai Captain
+1 Inherited Envelope
+1 Swarming of Moria
+1 The Theorist, Jace Beleren
+1 Fall of Cair Andros
+1 Big Score
+1 Dunland Crebain
+1 Ajani's Anguish
+1 Koth, the Geomancer
+1 Rising of the Day
+1 Face Yourself
+7 Mountain
+1 Mortuary Mire
+1 Bothersome Noisemaker
+1 Great Ugly-Looking Goblin // Clap! Snap!
+1 Rage into the Valley
+1 Fearsome Goblin Pair
+1 Along the Crooked Way
+1 Down, Down to Goblin-town
+1 Gathering of Darkness
+1 Rhovanion Rampager
+1 Goblin-town Flunkies
+1 Tidings of War
+1 Bolg of the North
+1 Misty Mountains Raider
+1 My Precious // Allure of Power
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Key to the Side-Door
+1 Reverent Howl
+1 Smaug's Fury
+1 Confusticate and Bebother
+1 Call of the Ring
+1 Sound the Trumpets
+1 Balduvian Atrocity
+1 Long-Bodied Grey Dog
+1 Smaug, Wicked Worm
+1 Inside Information
+1 Bilbo's Deadly Slice
+1 Desert Were-Worm
+1 Glóin the Mighty // Easy Pickings
+1 Hoarding Ogre
+1 Xorn
+1 March from the Black Gate
+1 Rogue's Passage
+1 Relic of Sauron
+1 Smaug the Magnificent

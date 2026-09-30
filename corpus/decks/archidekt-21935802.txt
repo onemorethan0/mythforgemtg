@@ -1,0 +1,86 @@
+# Archidekt — Demon Goad
+# source: archidekt:21935802
+# fetched: 2026-09-22
+
+Commander:
+1 Kardur, Doomscourge
+
+Deck:
+1 Cursed Mirror
+1 Arcane Signet
+1 Sol Ring
+1 Emeritus of Woe // Demonic Tutor
+1 Thriving Moor
+1 Thriving Bluff
+1 Secluded Courtyard
+1 Path of Ancestry
+1 Improvisation Capstone
+1 Grim Tutor
+1 Kazuul, Tyrant of the Cliffs
+1 Goblin Spymaster
+1 Fumiko the Lowblood
+1 Varragoth, Bloodsky Sire
+5 Mountain
+1 Orcus, Prince of Undeath
+1 Ob Nixilis, the Fallen
+1 Liliana's Contract
+1 Rune-Scarred Demon
+1 Ob Nixilis, Unshackled
+1 Alexios, Deimos of Kosmos
+1 Kaervek the Merciless
+1 Archfiend of Depravity
+1 Conjurer's Closet
+1 Indulgent Tormentor
+1 Demonic Counsel
+1 Bedevil
+1 Rakshasa Debaser
+1 Rakdos Charm
+1 Massacre Wurm
+1 Command Tower
+1 Rise of the Dark Realms
+15 Swamp
+1 Undying Malice
+1 Swiftfoot Boots
+1 Fell
+1 Murder
+1 Curse of Opulence
+1 Rakdos Signet
+1 Chaos Warp
+1 Fake Your Own Death
+1 Not Dead After All
+1 Supernatural Stamina
+1 Feign Death
+1 Embodiment of Agonies
+1 Taborax, Hope's Demise
+1 Disrupt Decorum
+1 Bojuka Bog
+1 Vengeful Ancestor
+1 Master of Cruelties
+1 Curse of Disturbance
+1 Soul Shatter
+1 Geode Rager
+1 Death Kiss
+1 Seifer, Balamb Rival
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Rakdos Carnarium
+1 Foreboding Ruins
+1 Shadowblood Ridge
+1 Rakdos Guildgate
+1 Akoum Refuge
+1 Leechridden Swamp
+1 Witch's Cottage
+1 Boiling Rock Prison
+1 Bloodfell Caves
+1 Sangromancer
+1 Blade of Selves
+1 Cinder Barrens
+1 Demon of Loathing
+1 Desecration Demon
+1 Sepulchral Primordial
+1 Helm of the Host
+1 Undying Evil
+1 Orthion, Hero of Lavabrink
+1 Kaya's Ghostform
+1 Delina, Wild Mage
+1 Mirage Phalanx

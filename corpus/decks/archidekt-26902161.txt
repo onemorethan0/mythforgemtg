@@ -1,0 +1,108 @@
+# Archidekt — Tam, the possibility
+# source: archidekt:26902161
+# fetched: 2026-09-30
+
+Commander:
+1 Tam, the Possibility
+
+Deck:
+1 Tamiyo, Field Researcher
+1 Faeburrow Elder
+1 Ajani Unrelenting
+1 Farseek
+1 Arcane Signet
+1 Nature's Lore
+1 Oath of Teferi
+1 Jace, Multiverse Architect
+1 Exotic Orchard
+1 Command Tower
+1 Commodore Guff
+1 Vraska, Betrayal's Sting
+1 Birds of Paradise
+1 Carth the Lion
+1 Sanctum Lurker
+1 The World Tree
+1 Flux Channeler
+1 Oath of Nissa
+1 Teferi, Temporal Archmage
+1 Oath of Gideon
+1 Sol Ring
+1 Doubling Season
+1 Ripples of Potential
+1 Fellwar Stone
+1 Oko, Thief of Crowns
+1 Chandra, Torch of Defiance
+1 Delighted Halfling
+1 Mutational Advantage
+1 Liliana, Dreadhorde General
+1 Oath of Ajani
+1 Elspeth, Sun's Champion
+1 Onakke Oathkeeper
+1 Chandra, Chill of Compliance
+1 Path to Exile
+1 The Eternal Wanderer
+1 Blasphemous Act
+1 Entrust the Spark
+1 The Theorist, Jace Beleren
+1 Vronos, Masked Inquisitor
+1 Narset of the Ancient Way
+1 Loyal Tutor
+1 Dreamtide Whale
+1 Interplanar Beacon
+1 Forest
+1 Mountain
+1 Swords to Plowshares
+1 Island
+1 Swamp
+1 Plains
+1 Deepglow Skate
+1 Way of the Pyromancer
+1 Narset, Parter of Veils
+1 Thrummingbird
+1 Noble Hierarch
+1 Dihada, Binder of Wills
+1 Ignoble Hierarch
+1 Farewell
+1 Kaya the Inexorable
+1 Kasmina, Enigmatic Mentor
+1 Way of the Mind Sculptor
+1 Arena Rector
+1 Theorix Annex
+1 Transformative Commons
+1 Spire Garden
+1 Battlefield Forge
+1 Prairie Stream
+1 Indatha Triome
+1 Inexorable Tide
+1 Dedicated Commons
+1 Spara's Headquarters
+1 Ketria Triome
+1 City of Brass
+1 Vigorbloom Annex
+1 Bloom Tender
+1 Innovative Commons
+1 Chandra, Legacy of Fire
+1 Konstrari Annex
+1 Formidable Commons
+1 Meticulous Commons
+1 Starfall Invocation
+1 Llanowar Wastes
+1 Shivan Reef
+1 Brushland
+1 Smoldering Marsh
+1 Adarkar Wastes
+1 Undergrowth Stadium
+1 Karplusan Forest
+1 Caves of Koilos
+1 Underground River
+1 Three Visits
+1 Ajani, Sleeper Agent
+1 Teyo, Geometric Tactician
+1 Nicol Bolas, God-Pharaoh
+1 Dreamroot Cascade
+1 Temple Garden
+1 Stomping Ground
+1 Sulfurous Springs
+1 Tomik, Wielder of Law
+1 Tomik, Orzhov Lawmage
+1 Geist of Saint Thalia

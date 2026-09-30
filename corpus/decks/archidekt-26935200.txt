@@ -1,0 +1,90 @@
+# Archidekt — Silverquill
+# source: archidekt:26935200
+# fetched: 2026-09-30
+
+Commander:
+1 Silverquill, the Disputant
+
+Deck:
+1 Adeline, Resplendent Cathar
+1 Charismatic Conqueror
+1 Lotho, Corrupt Shirriff
+1 Monastery Mentor
+1 Mondrak, Glory Dominus
+1 Sedgemoor Witch
+1 Afterlife Insurance
+1 Call the Coppercoats
+1 Culling the Weak
+1 Dark Ritual
+1 Erode
+1 Kaya's Guile
+1 Malakir Rebirth // Malakir Mire
+1 Secure the Wastes
+1 Will of the Mardu
+1 Wand of the Worldsoul
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caves of Koilos
+1 Fountainport
+1 Phyrexian Tower
+1 Turbulent Moor
+1 Vault of Champions
+1 Blot Out the Sky
+1 Dark Petition
+1 Diabolic Intent
+1 Finale of Glory
+1 Hop to It
+1 Increasing Devotion
+1 Lingering Souls
+1 Season of the Burrow
+1 Social Snub
+1 Sram's Expertise
+1 Exotic Orchard
+1 Command Tower
+1 The Queen of Dale
+1 Corpse Knight
+1 Mirkwood Bats
+1 Kambal, Profiteering Mayor
+1 Corrupted Conviction
+1 Deadly Dispute
+1 Village Rites
+1 Enduring Innocence
+1 Exsanguinate
+1 Isolated Chapel
+1 Tainted Field
+1 Shattered Sanctum
+1 Bojuka Bog
+1 Bleachbone Verge
+1 Marsh Flats
+1 Moogles' Valor
+1 Grand Crescendo
+1 Inkshield
+1 Teferi's Protection
+1 Arcane Signet
+1 Orzhov Signet
+1 Talisman of Hierarchy
+1 Fellwar Stone
+1 Sol Ring
+1 Cabal Ritual
+1 Despark
+1 Path to Exile
+1 Deadly Rollick
+1 Visions of Glory
+1 White Sun's Twilight
+1 Caretaker's Talent
+1 Divine Visitation
+1 Dollmaker's Shop // Porcelain Gallery
+1 Elspeth, Storm Slayer
+1 Tempt with Bunnies
+1 Professor Onyx
+1 Torment of Hailfire
+1 Temporal Extortion
+1 Twinning Staff
+1 Demonic Tutor
+1 Panoptic Mirror
+1 Fell the Profane // Fell Mire
+1 Horn of Valhalla // Ysgard's Call
+1 Saw in Half
+9 Swamp
+10 Plains
+1 The Arkenstone // Seek the Heart
+1 Reanimate

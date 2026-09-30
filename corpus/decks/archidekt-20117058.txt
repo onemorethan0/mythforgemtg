@@ -1,0 +1,99 @@
+# Archidekt — Cucked by a Hotdog
+# source: archidekt:20117058
+# fetched: 2026-09-22
+
+Commander:
+1 Ygra, Eater of All
+
+Deck:
+1 Disciple of Freyalise // Garden of Freyalise
+1 Experimental Confectioner
+1 Fade from History
+1 Greta, Sweettooth Scourge
+1 Illegitimate Business
+1 Essence Warden
+1 Night of the Sweets' Revenge
+1 Tend the Pests
+1 Titan's Grave
+1 Saryth, the Viper's Fang
+1 Yedora, Grave Gardener
+1 Academy Manufactor
+1 Assassin's Trophy
+1 Awakening Zone
+1 Bojuka Bog
+1 Braids, Cabal Minion
+1 Butcher of Malakir
+1 Camellia, the Seedmiser
+1 Cauldron Familiar
+1 Chatterfang, Squirrel General
+1 Darkbore Pathway // Slitherbore Pathway
+1 Doubling Season
+1 Evolving Wilds
+1 Exsanguinate
+1 Festering Thicket
+1 Garruk's Uprising
+1 Golgari Guildgate
+1 Golgari Rot Farm
+1 Hardened Scales
+1 High Market
+1 Hissing Quagmire
+1 Jungle Hollow
+1 Many Partings
+1 Liliana of the Dark Realms
+1 Dark Ritual
+1 Cryptolith Rite
+1 Command Tower
+6 Forest
+1 Corrupted Conviction
+1 Marionette Apprentice
+1 Mirkwood Bats
+1 Momentous Fall
+1 Mortality Spear
+1 Mortuary Mire
+1 Necroblossom Snarl
+1 Nature's Claim
+1 Night of Souls' Betrayal
+1 Night's Whisper
+1 Nine-Lives Familiar
+1 Overgrown Tomb
+1 Putrefy
+1 Reliquary Tower
+1 Restless Cottage
+1 Rogue's Passage
+1 Shredder, Shadow Master
+1 Sheoldred, Whispering One
+1 Rishkar's Expertise
+1 Syr Ginger, the Meal Ender
+1 Tainted Wood
+1 The Shire
+1 The Unbeatable Squirrel Girl
+4 Swamp
+1 Toxic Deluge
+1 Twilight Mire
+1 Urborg, Tomb of Yawgmoth
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Witch's Cottage
+1 Vito, Thorn of the Dusk Rose
+1 Twitching Doll
+1 Umbral Collar Zealot
+1 Woodland Cemetery
+1 Germination Practicum
+1 Deathcap Glade
+1 Diabolic Intent
+1 Kormus Bell
+1 Sol Ring
+1 Berserk
+1 Nuka-Cola Vending Machine
+1 Beledros Witherbloom
+1 Ashnod's Altar
+1 Qarsi Revenant
+1 Nadier's Nightblade
+1 Syr Konrad, the Grim
+1 Arcane Signet
+1 Pitiless Plunderer
+1 Cultivate
+1 Pristine Talisman
+1 Pest Infestation
+1 Esper Origins // Summon: Esper Maduin
+1 Braids, Arisen Nightmare
+1 Peregrin Took

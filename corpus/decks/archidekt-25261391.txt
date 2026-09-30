@@ -1,0 +1,91 @@
+# Archidekt — FALCON PUNCH
+# source: archidekt:25261391
+# fetched: 2026-09-16
+
+Commander:
+1 Arna Kennerüd, Skycaptain
+
+Deck:
+1 The Pandorica
+1 Bender's Waterskin
+1 Kíli the Resourceful
+1 Armor of Shadows
+1 Puresteel Paladin
+1 Spirit Mantle
+1 Illvoi Light Jammer
+1 Spire of Industry
+1 Spirit Link
+1 Promise of Loyalty
+1 Reroute Systems
+1 Lightfoot Technique
+1 Avatar's Wrath
+1 Ring of Xathrid
+1 Patriar's Seal
+1 Desolate Mire
+1 Arcane Signet
+1 Shardmage's Rescue
+1 All That Glitters
+1 Divine Resilience
+1 Shore Up
+6 Swamp
+1 Talisman of Progress
+1 The Mighty Thor, Jane Foster
+1 Sheltered by Ghosts
+1 Celestial Armor
+1 Spectacular Tactics
+1 Valorous Stance
+1 Take Up the Shield
+1 Crumb and Get It
+1 Stolen Stark Tech
+1 Super Suit
+1 Solar Transformer
+1 Gold Pan
+1 Proud Pack-Rhino
+1 Darkwater Catacombs
+1 Super-Soldier Serum
+7 Plains
+1 Invasion of Theros // Ephara, Ever-Sheltering
+1 Buster Sword
+1 Ring of Thune
+1 Skycloud Expanse
+1 Adarkar Wastes
+1 Seachrome Coast
+1 Deserted Beach
+1 Watery Grave
+1 Underground River
+6 Island
+1 Keleth, Sunmane Familiar
+1 Boon of Safety
+1 Crude Bent Blade
+1 Stone by Sunlight
+1 Caves of Koilos
+1 Fetid Heath
+1 Godless Shrine
+1 Talisman of Hierarchy
+1 Command Tower
+1 Aquitect's Defenses
+1 Strength-Testing Hammer
+1 Dog Umbra
+1 Network Terminal
+1 Contaminated Landscape
+1 Split Up
+1 Ocelot Pride
+1 Vanquish the Horde
+1 Noble Heritage
+1 S.H.I.E.L.D. Spy Kit
+1 Skrelv, Defector Mite
+1 Thunder Lasso
+1 Chosen by Heliod
+1 Hyena Umbra
+1 Great Hall of the Citadel
+1 Path of Ancestry
+1 Jacked Rabbit
+1 Grasp of the Hieromancer
+1 Bofur, Reliable Guardian // Concerted Care
+1 Opal Palace
+1 Haystack
+1 Commander's Sphere
+1 Wrench
+1 Loran's Escape
+1 Bulwark Ox
+1 Feat of Resistance

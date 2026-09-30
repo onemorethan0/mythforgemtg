@@ -1,0 +1,78 @@
+# Archidekt — Strefan Master Vampire
+# source: archidekt:26481999
+# fetched: 2026-09-22
+
+Commander:
+1 Strefan, Maurer Progenitor
+
+Deck:
+1 New Blood
+1 Bloodline Necromancer
+1 Vat of Rebirth
+1 Lich-Knights' Conquest
+1 Sinister Monolith
+1 Falkenrath Forebear
+1 Blood Fountain
+1 Voldaren Ambusher
+1 Timothar, Baron of Bats
+1 Tempt with Immortality
+1 Bloodtithe Harvester
+1 Blood Pact
+1 Terminate
+1 Ceremonial Knife
+1 Patron of the Vein
+1 Blood Money
+1 Vampire's Kiss
+1 Pointed Discussion
+1 Crossway Troublemakers
+1 Anje, Maid of Dishonor
+1 Champion of Dusk
+1 Kamber, the Plunderer
+1 Eviscerator's Insight
+1 Pact of the Serpent
+1 Risky Shortcut
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Bloodcrazed Socialite
+1 Deadly Dispute
+1 Blood Hypnotist
+1 Belligerent Guest
+1 Bloody Betrayal
+1 Falkenrath Celebrants
+1 Idol of Oblivion
+1 Olivia's Attendants
+1 Oni-Cult Anvil
+16 Swamp
+1 Glass-Cast Heart
+15 Mountain
+1 Gluttonous Guest
+1 Scion of Opulence
+1 Voldaren Estate
+1 Leechridden Swamp
+1 Inspiring Statuary
+1 Commander's Sphere
+1 Arcane Signet
+1 Sanctum Seeker
+1 Rakdos Signet
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Sol Ring
+1 Sengir Connoisseur
+1 Lightning Greaves
+1 Restless Bloodseeker // Bloodsoaked Reveler
+1 Anowon, the Ruin Sage
+1 Captivating Vampire
+1 Vein Ripper
+1 Wedding Security
+1 Vampires' Vengeance
+1 Rakdos Guildgate
+1 Tramway Station
+1 Reanimate
+1 Swiftfoot Boots
+1 Mass Hysteria
+1 Anger
+1 Call to the Netherworld
+1 Markov Baron
+1 Bloodline Bidding
+1 Nearheath Stalker
+1 Stitch Together
+1 Thriving Moor
+1 Markov Enforcer

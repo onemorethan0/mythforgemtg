@@ -1,0 +1,96 @@
+# Archidekt — EDH - Lathril - Elves
+# source: archidekt:5507064
+# fetched: 2026-09-17
+# bracket: 2
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Elvish Visionary
+1 Fyndhorn Elves
+1 Galadhrim Ambush
+1 Gilt-Leaf Palace
+1 Galadhrim Brigade
+1 Roaming Throne
+1 Formidable Speaker
+1 Veil of Summer
+1 Llanowar Elves
+1 Elvish Champion
+1 Beast Within
+1 Paradise Druid
+1 Elvish Mystic
+1 Necroblossom Snarl
+1 Secluded Courtyard
+1 Elven Ambush
+1 Elvish Archdruid
+1 Swiftfoot Boots
+1 Beast Whisperer
+1 Leaf-Crowned Visionary
+1 Abrupt Decay
+1 Immaculate Magistrate
+1 Priest of Titania
+1 Lightning Greaves
+1 Skullclamp
+1 Green Sun's Zenith
+1 Elven Chorus
+1 Arbor Elf
+1 Lys Alana Huntmaster
+1 Morcant's Loyalist
+1 Command Tower
+1 Wellwisher
+1 Putrefy
+1 Chord of Calling
+1 Cultivate
+1 Dark Ritual
+1 Nature's Rhythm
+1 Elvish Guidance
+1 Disciple of Freyalise // Garden of Freyalise
+1 Wastewood Verge
+1 Shizo, Death's Storehouse
+1 Archdruid's Charm
+1 Marwyn, the Nurturer
+1 Alpha Authority
+1 Copperhorn Scout
+1 Craterhoof Behemoth
+1 Essence Warden
+1 Herald's Horn
+1 Eladamri, Korvecdal
+1 Heroic Intervention
+1 Coat of Arms
+1 Throne of the God-Pharaoh
+1 Dwynen, Gilt-Leaf Daen
+1 Imperious Perfect
+1 Champions of the Perfect
+1 Shamanic Revelation
+1 Reclamation Sage
+1 Overgrown Tomb
+1 Llanowar Wastes
+1 Path of Ancestry
+1 Undergrowth Stadium
+1 Verdant Catacombs
+1 Woodland Cemetery
+1 Farhaven Elf
+1 Elvish Warmaster
+1 Heritage Druid
+1 Sol Ring
+1 Quirion Ranger
+1 Tireless Provisioner
+1 Elvish Promenade
+1 Finale of Devastation
+1 Assassin's Trophy
+1 Canopy Tactician
+1 Elvish Harbinger
+1 Wolverine Riders
+1 Ezuri, Renegade Leader
+1 Eclipsed Elf
+1 Nurturing Peatland
+1 Blooming Marsh
+10 Forest
+4 Swamp
+1 Arcane Signet
+1 Timberwatch Elf
+1 Circle of Dreams Druid
+1 Starting Town
+1 Darkbore Pathway // Slitherbore Pathway
+1 Eclipsed Realms

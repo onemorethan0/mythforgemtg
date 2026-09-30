@@ -1,0 +1,88 @@
+# Archidekt — Urza sells out
+# source: archidekt:26455702
+# fetched: 2026-09-16
+
+Commander:
+1 Urza, Chief Artificer
+
+Deck:
+1 Leaden Myr
+1 Ornithopter of Paradise
+1 Organic Extinction
+1 Ornithopter
+1 March of Progress
+1 Silver Myr
+1 Gold Myr
+1 Ancient Den
+1 Reverse Engineer
+1 Foundry Inspector
+1 Thought Monitor
+1 Etherium Sculptor
+1 Mistvault Bridge
+1 Digsite Engineer
+1 Lonely Sandbar
+1 Barren Moor
+1 Memnite
+1 Power Depot
+1 Razortide Bridge
+1 Vault of Whispers
+1 Exotic Orchard
+1 Scene of the Crime
+1 Goldmire Bridge
+1 Secluded Steppe
+1 Seat of the Synod
+1 Sol Ring
+1 Command Tower
+1 Unbreakable Formation
+1 Voyager Quickwelder
+1 Darksteel Citadel
+1 Rootborn Defenses
+1 Noxious Gearhulk
+1 Muster the Departed
+1 Vindicate
+1 Phyrexian Walker
+1 Arcane Signet
+1 Welding Jar
+1 Wayfarer's Bauble
+1 Wake the Reflections
+1 Tormod's Crypt
+1 Mana Leak
+1 Crystal Skull, Isu Spyglass
+1 Fellwar Stone
+1 Midnight Clock
+1 Traveler's Amulet
+1 Sign in Blood
+1 Negate
+1 Legions to Ashes
+1 Rite of Oblivion
+1 Read the Bones
+1 Hindering Light
+1 Platoon Dispenser
+1 Frantic Search
+1 Spell Pierce
+1 Bronze Guardian
+7 Plains
+1 Vanishing Verse
+1 Kappa Cannoneer
+1 Traxos, Scourge of Kroog
+1 Metalwork Colossus
+1 Chrome Courier
+1 Barbed Servitor
+1 Chief of the Foundry
+1 Burnished Hart
+1 Gold-Forged Thopteryx
+1 Sai, Master Thopterist
+1 Patchwork Automaton
+1 Iron Lad, Diverging Destiny
+13 Island
+2 Swamp
+1 Voyage Home
+1 Scrapyard Recombiner
+1 Miscalculation
+1 Riddlesmith
+1 Mind's Eye
+1 Thirst for Knowledge
+1 Thoughtcast
+1 Mystery Key
+1 Uthros Research Craft
+1 Mask of Memory

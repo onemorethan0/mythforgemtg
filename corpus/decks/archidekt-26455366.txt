@@ -1,0 +1,95 @@
+# Archidekt — Tinnitus Challengers
+# source: archidekt:26455366
+# fetched: 2026-09-16
+
+Commander:
+1 Wayta, Trainer Prodigy
+
+Deck:
+1 Hexhaven Invigorator
+1 Dragon's Rage Channeler
+1 Sandstorm
+1 Pyroblast
+1 Red Elemental Blast
+1 Guttural Response
+1 Ripjaw Raptor
+1 Flawless Maneuver
+1 Fire Magic
+1 Ranging Raptors
+1 Reconnaissance
+1 Nature's Claim
+1 Marrow Shards
+1 Craterhoof Behemoth
+1 Lightning Bolt
+1 Finale of Devastation
+1 Avoid Fate
+1 Natural State
+1 Swords to Plowshares
+1 Radagast of Rhosgobel
+1 Flame Slash
+1 Rending Volley
+1 Mountain
+1 Plains
+11 Forest
+1 Mana Tithe
+1 Pyrokinesis
+1 Mentor of the Meek
+1 Force of Vigor
+1 Flare of Fortitude
+1 Polyraptor
+1 Manamorphose
+1 Moonshaker Cavalry
+1 Fury
+1 Red Hulk
+1 Mortal Wound
+1 Rite of Passage
+1 Fungus Sliver
+1 Faithless Looting
+1 Unbreakable Formation
+1 Collected Company
+1 Urza's Incubator
+1 Vigor
+1 Herald's Horn
+1 Sinew Sliver
+1 Might Sliver
+1 Harmonic Sliver
+1 Predatory Sliver
+1 Spined Sliver
+1 Megantic Sliver
+1 Semblance Anvil
+1 Spiteful Sliver
+1 Cavern of Souls
+1 Gemhide Sliver
+1 Command Tower
+1 Root Sliver
+1 Muscle Sliver
+1 Forbidden Orchard
+1 Emerald Medallion
+1 Cloudshredder Sliver
+1 Windswept Heath
+1 Temple Garden
+1 Wooded Foothills
+1 Battlefield Forge
+1 Exotic Orchard
+1 Brushland
+1 Myriad Landscape
+1 Jetmir's Garden
+1 Stomping Ground
+1 Sheltering Landscape
+1 Krosan Verge
+1 Karplusan Forest
+1 Sunbillow Verge
+1 Hushwood Verge
+1 Thornspire Verge
+1 Arid Mesa
+1 Lush Portico
+1 Two-Headed Sliver
+1 Heart Sliver
+1 Poultice Sliver
+1 Thorncaster Sliver
+1 Ward Sliver
+1 Sol Ring
+1 Thirsting Roots
+1 Evolution Sage
+1 Sword of Truth and Justice
+1 Urban Daggertooth

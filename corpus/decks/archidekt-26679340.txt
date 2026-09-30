@@ -1,0 +1,90 @@
+# Archidekt — Gogonodrazi
+# source: archidekt:26679340
+# fetched: 2026-09-23
+
+Commander:
+1 Gogo, Master of Mimicry
+
+Deck:
+1 Thought Vessel
+1 Emergence Zone
+1 Desynchronization
+1 Rolling Hamsphere
+1 Pit Automaton
+1 Mulldrifter
+1 The Legend of Kuruk // Avatar Kuruk
+1 Thought Monitor
+1 Howling Mine
+1 Terramorphic Expanse
+1 Shire Terrace
+1 Sol Ring
+1 Burnished Hart
+1 Karn Liberated
+1 Bant Panorama
+1 Buried Ruin
+1 Esper Panorama
+1 Obscura Storefront
+1 Maestros Theater
+1 Kami of the Crescent Moon
+1 Solemn Simulacrum
+1 Liquimetal Torque
+1 Venser, Shaper Savant
+1 Brokers Hideout
+1 Evolving Wilds
+1 Grixis Panorama
+1 Promising Vein
+1 Sphinx of the Second Sun
+1 Myriad Landscape
+1 Cryogen Relic
+1 Omen Hawker
+1 Training Grounds
+1 Wayfarer's Bauble
+1 The Mightstone and Weakstone
+1 Troop of Ponies
+1 The Enigma Jewel // Locus of Enlightenment
+1 Hithlain Rope
+1 Hobbit Hole
+1 Kitesail Larcenist
+1 Mind Stone
+1 Reality Shift
+1 Aetherize
+1 Counterspell
+1 Scourge of Fleets
+1 An Offer You Can't Refuse
+1 Benthic Anomaly
+1 Flood Plain
+1 Aetherspouts
+1 Aether Spellbomb
+1 Swan Song
+1 Seal of Removal
+1 Thieving Skydiver
+1 Escape Tunnel
+18 Island
+1 Bad River
+1 Fabled Passage
+1 Unstoppable Plan
+1 Collector's Case
+1 Malcolm, Alluring Scoundrel
+1 James, Wandering Dad // Follow Him
+1 The Unagi of Kyoshi Island
+1 Ugin, the Ineffable
+1 Teferi, Timeless Voyager
+1 Tamiyo, the Moon Sage
+1 Mu Yanling, Sky Dancer
+1 Mu Yanling, Celestial Wind
+1 Tezzeret, Artifice Master
+1 Teferi, Temporal Pilgrim
+1 Elven Passage
+1 Bag of Holding
+1 Echo, Perceptive Prodigy
+1 Arcanis the Omnipotent
+1 Aether Channeler
+1 Archivist
+1 Azami, Lady of Scrolls
+1 Shadow of the Second Sun
+1 Waterbending Scroll
+1 Eden, Seat of the Sanctum
+1 Silent Arbiter
+1 Dreamscape Artist
+1 Endless Sands
+1 Fugitive Droid

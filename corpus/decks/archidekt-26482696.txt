@@ -1,0 +1,98 @@
+# Archidekt — SALT_TEST
+# source: archidekt:26482696
+# fetched: 2026-09-17
+
+Commander:
+1 Éowyn, Shieldmaiden
+
+Deck:
+1 Adarkar Wastes
+1 Aether Channeler
+1 Andúril, Narsil Reforged
+1 Aragorn, King of Gondor
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Bastion Protector
+1 Battlefield Forge
+1 Beregond of the Guard
+1 Boromir, Gondor's Hope
+1 Boros Signet
+1 Cascade Bluffs
+1 Combat Celebrant
+1 Command Tower
+1 Counterspell
+1 Court of Ire
+1 Denethor, Stone Seer
+1 Door of Destinies
+1 Dovin's Veto
+1 Earthquake
+1 Éomer, King of Rohan
+1 Erkenbrand, Lord of Westfold
+1 Evolving Wilds
+1 Fabled Passage
+1 Field of Ruin
+1 Fiend Hunter
+1 Fiery Islet
+1 Firdoch Core
+1 Forth Eorlingas!
+1 Frontline Medic
+1 Gilraen, Dúnedain Protector
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Harsh Mentor
+1 Heirloom Blade
+1 Herald's Horn
+1 Horn of Gondor
+1 Impact Tremors
+1 Inventors' Fair
+2 Island
+1 Kari Zev, Skyship Raider
+1 Keeper of the Accord
+1 Lossarnach Captain
+1 Lost to Legend
+1 Mangara, the Diplomat
+1 Marshal's Anthem
+1 Minas Tirith
+1 Minas Tirith Garrison
+5 Mountain
+1 Mystic Gate
+1 Olórin's Searing Light
+1 Palace Jailer
+1 Path of Ancestry
+1 Path to Exile
+5 Plains
+1 Plaza of Heroes
+1 Prairie Stream
+1 Prince Imrahil the Fair
+1 Raise the Palisade
+1 Rammas Echor, Ancient Shield
+1 Rogue's Passage
+1 Rugged Prairie
+1 Sacred Foundry
+1 Secluded Courtyard
+1 Selfless Spirit
+1 Selfless Squire
+1 Shared Animosity
+1 Shivan Reef
+1 Simian Spirit Guide
+1 Sol Ring
+1 Steam Vents
+1 Sulfur Falls
+1 Sunset Revelry
+1 Sunset Strikemaster
+1 Swan Song
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 Terramorphic Expanse
+1 Thought Vessel
+1 Unbreakable Formation
+1 Unclaimed Territory
+1 Vanquisher's Banner
+1 Verge Rangers
+1 Village Bell-Ringer
+1 Wayfarer's Bauble
+1 Weathered Wayfarer
+1 Windbrisk Heights
+1 Quarrel's End

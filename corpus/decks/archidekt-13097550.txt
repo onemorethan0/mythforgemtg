@@ -1,0 +1,96 @@
+# Archidekt — Tataru Taru
+# source: archidekt:13097550
+# fetched: 2026-09-25
+# bracket: 2
+
+Commander:
+1 Tataru Taru
+
+Deck:
+1 Reprieve
+1 Mikokoro, Center of the Sea
+1 Loran of the Third Path
+1 Dewdrop Cure
+1 Scavenger Grounds
+1 Generous Gift
+1 Swords to Plowshares
+1 Cosmogrand Zenith
+1 Soul Warden
+1 Thraben Charm
+1 Adeline, Resplendent Cathar
+1 Eiganjo, Seat of the Empire
+1 Moonshaker Cavalry
+1 Ultimate Magic: Holy
+1 Galadriel's Dismissal
+1 Path to Exile
+1 Restoration Magic
+1 Belladonna Took
+1 Bilbo's Gambit
+1 Dawn's Truce
+1 The Queen of Dale
+1 White Plume Adventurer
+1 Suture Priest
+1 The Battle of Bywater
+1 Boromir, Warden of the Tower
+1 Elesh Norn, Grand Cenobite
+1 Flare of Fortitude
+1 Lapse of Certainty
+12 Plains
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Razorgrass Ambush // Razorgrass Field
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Parting Gust
+1 Perch Protection
+1 Scrawling Crawler
+1 Temple Bell
+1 Winds of Abandon
+1 Dusk // Dawn
+1 Ocelot Pride
+1 Ondu Inversion // Ondu Skyruins
+1 Sejiri Shelter // Sejiri Glacier
+1 Kabira Takedown // Kabira Plateau
+1 Makindi Stampede // Makindi Mesas
+1 Skyclave Cleric // Skyclave Basilica
+1 Happily Ever After
+1 Arid Archway
+1 Glorious Protector
+1 Urza's Cave
+1 Cradle of the Accursed
+1 Reliquary Tower
+1 Fountainport
+1 Approach of the Second Sun
+1 Sand Scout
+1 God-Eternal Oketra
+1 Ainok Strike Leader
+1 Season of the Burrow
+1 Teyo, Geometric Tactician
+1 Aven Interrupter
+1 Palace Jailer
+1 Spectacular Spider-Man
+1 Selfless Spirit
+1 Caretaker's Talent
+1 Gavony Dawnguard
+1 Fíli the Pathfinder
+1 Muraganda Raceway
+1 Aang, Airbending Master
+1 Skrelv, Defector Mite
+1 Guide of Souls
+1 Nuka-Nuke Launcher
+1 Ishgard, the Holy See // Faith & Grief
+1 Castle Ardenvale
+1 Geier Reach Sanitarium
+1 Halo Fountain
+1 Whitemane Lion
+1 Academy Manufactor
+1 Thorough Investigation
+1 Grateful Apparition
+1 Myriad Landscape
+1 Merchant of Truth
+1 Delney, Streetwise Lookout
+1 Sunpearl Kirin
+1 Jeskai Barricade
+1 Ambrosia Whiteheart
+1 Flickering Hound
+1 Archivist of Oghma
+1 Enduring Innocence
+1 Welcoming Vampire

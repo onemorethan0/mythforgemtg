@@ -1,0 +1,86 @@
+# Archidekt — Yarok (WIP)
+# source: archidekt:26157399
+# fetched: 2026-09-30
+
+Commander:
+1 Yarok, the Desecrated
+
+Deck:
+1 The Scarab God
+1 Aether Adept
+1 Riftwing Cloudskate
+1 Acidic Slime
+1 Yavimaya Dryad
+1 Vizier of Many Faces
+1 Altered Ego
+1 Baru, Fist of Krosa
+1 Wood Elves
+1 Sporemound
+1 Walking Atlas
+1 Wall of Blossoms
+1 Wild Wanderer
+1 Springbloom Druid
+1 Tatyova, Benthic Druid
+1 Soul of the Harvest
+1 Quirion Trailblazer
+1 Rampaging Baloths
+1 Ondu Giant
+1 Regal Force
+1 Mirror Image
+1 Gonti, Lord of Luxury
+1 Llanowar Scout
+1 Dusk Legion Zealot
+1 Fblthp, the Lost
+1 Fertilid
+1 Fierce Empath
+1 Dream Stalker
+1 Elvish Rejuvenator
+1 Coiling Oracle
+1 Budoka Gardener // Dokai, Weaver of Life
+1 Clone
+1 Edge of Autumn
+1 Negate
+1 Harrow
+1 Grow from the Ashes
+1 Essence Flux
+1 Displace
+1 Wild Pair
+1 Zendikar's Roil
+1 Khalni Heart Expedition
+1 Retreat to Hagra
+1 Retreat to Coralhelm
+1 Woodland Stream
+2 Swamp
+1 Vivid Creek
+1 Dimir Aqueduct
+1 Foul Orchard
+1 Golgari Rot Farm
+1 Agent of Treachery
+1 Yavimaya Granger
+1 Skyshroud Ranger
+1 Shared Summons
+1 Ghostly Flicker
+1 Shrieking Drake
+1 Gigantoplasm
+1 End-Raze Forerunners
+1 Peregrine Drake
+1 Illusionist's Stratagem
+1 Man-o'-War
+1 Phyrexian Delver
+1 Roil Elemental
+1 Elvish Visionary
+1 Reclamation Sage
+1 Unwind
+1 Roaring Earth
+1 Rampant Growth
+14 Forest
+8 Island
+1 Evolving Wilds
+1 Thornwood Falls
+1 Terramorphic Expanse
+1 Opulent Palace
+1 Jungle Hollow
+1 Quandrix Campus
+1 Pym Technologies
+1 Command Tower
+1 Path of Ancestry

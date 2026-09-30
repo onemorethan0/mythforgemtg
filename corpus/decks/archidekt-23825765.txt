@@ -1,0 +1,95 @@
+# Archidekt — really dumb
+# source: archidekt:23825765
+# fetched: 2026-09-17
+
+Commander:
+1 King T'Challa // Black Panther, Hope Enduring
+
+Deck:
+1 Flare of Fortitude
+1 Continue?
+1 Irma, Part-Time Mutant
+1 Baxter, Fly in the Ointment
+1 Here Comes a New Hero!
+1 Krang, the All-Powerful
+1 The Legend of Yangchen // Avatar Yangchen
+1 Pensive Professor
+1 Avatar's Wrath
+1 Captain America, Living Legend
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 The Mighty Thor, Jane Foster
+1 Ms. Marvel, Kamala Khan
+1 Enter the Avatar State
+1 Dimensional Exile
+1 Brought Back
+1 Surveillance Room
+1 Rebuff the Wicked
+1 Quake, Agent of S.H.I.E.L.D.
+1 Folk Hero
+1 Iron Lad, Diverging Destiny
+1 Path to Exile
+1 Phyrexian Vindicator
+1 Lita, Little Orphan Amphibian
+1 Tocasia's Welcome
+1 Icy Blast
+1 Argent Dais
+1 Marshal's Anthem
+1 Gwafa Hazid, Profiteer
+1 Spire of Industry
+1 Minn, Wily Illusionist
+1 Anti-Venom, Horrifying Healer
+1 Ghostly Prison
+1 Leader's Talent
+1 Minamo, School at Water's Edge
+1 Dour Port-Mage
+1 Suki, Courageous Rescuer
+1 Chariot of Victory
+1 Gold Myr
+1 Avengers Hangar
+1 Sol Ring
+1 Hoofprints of the Stag
+1 Thriving Isle
+1 Arcane Signet
+1 Exotic Orchard
+1 Thriving Heath
+1 Abundant Countryside
+1 Command Tower
+1 Path of Ancestry
+1 Opal Palace
+10 Plains
+4 Island
+1 Hallowed Fountain
+1 Terramorphic Expanse
+1 Escape Tunnel
+1 Evolving Wilds
+1 Great Hall of the Biblioplex
+1 Prairie Stream
+1 Reliquary Tower
+1 Azorius Chancery
+1 Dream Trawler
+1 Wizard Class
+1 The Watcher in the Water
+1 Chasm Skulker
+1 Lyla, Holographic Assistant
+1 Teferi, Hero of Dominaria
+1 Shabraz, the Skyshark
+1 Teferi, Temporal Pilgrim
+1 Restoration Magic
+1 Agna Qel'a
+1 Abandoned Air Temple
+1 Sokka, Lateral Strategist
+1 Crashing Wave
+1 Lucy MacLean, Positively Armed
+1 Gods Willing
+1 Coastal Piracy
+1 Grazilaxx, Illithid Scholar
+1 The Eagles Are Coming!
+1 The Queen of Dale
+1 Ponder
+1 Thought Vessel
+1 Reciprocate
+1 Swords to Plowshares
+1 Vanquish the Horde
+1 Gleaming Splendor
+1 Wan Shi Tong, Librarian
+1 Counterspell

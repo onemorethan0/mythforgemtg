@@ -1,0 +1,100 @@
+# Archidekt — Terra Sagas upgraded
+# source: archidekt:26192601
+# fetched: 2026-09-16
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Setessan Champion
+1 Temple Garden
+5 Forest
+1 Summon: Bahamut
+1 Path to Exile
+1 Clash of the Eikons
+1 Esper Origins // Summon: Esper Maduin
+1 Command Tower
+1 Arcane Signet
+1 Canopy Vista
+1 Cinder Glade
+1 Moonmist
+1 Restoration Magic
+1 Rydia, Summoner of Mist
+1 Faeburrow Elder
+1 Sigurd, Jarl of Ravensthorpe
+1 Smoldering Marsh
+1 Mesa Enchantress
+1 Satyr Enchanter
+1 Verduran Enchantress
+1 Flicker of Fate
+1 Extinguish All Hope
+1 Together Forever
+1 Farseek
+1 Summon: Shiva
+1 Overgrown Tomb
+1 Steam Vents
+1 Hallowed Fountain
+1 Stomping Ground
+1 Godless Shrine
+1 Breeding Pool
+1 Tom Bombadil
+1 Summon: Knights of Round
+1 Summon: Anima
+1 Summon: Brynhildr
+1 Summon: Kujata
+1 Garnet, Princess of Alexandria
+1 Jukai Naturalist
+1 O'aka, Traveling Merchant
+1 Prairie Stream
+1 Summoner's Grimoire
+1 Summon: Magus Sisters
+1 Summon: Esper Valigarmanda
+1 Summon: Titan
+1 Summon: Primal Odin
+1 Roar of Endless Song
+1 Rampant Growth
+1 Seaside Citadel
+1 Sol Ring
+1 Exotic Orchard
+1 Dance of the Manse
+2 Island
+2 Mountain
+1 Swamp
+1 Swords to Plowshares
+1 Nesting Grounds
+1 The Eldest Reborn
+1 Goldberry, River-Daughter
+1 Yuna, Hope of Spira
+1 Narci, Fable Singer
+1 Hall of Heliod's Generosity
+1 Summon: Yojimbo
+3 Plains
+1 Weaver of Harmony
+1 Bloom Tender
+1 Dryad of the Ilysian Grove
+1 Birds of Paradise
+1 Satsuki, the Living Lore
+1 Summon: Good King Mog XII
+1 Path of Ancestry
+1 Sacred Foundry
+1 The World Tree
+1 Reliquary Tower
+1 Indatha Triome
+1 Ketria Triome
+1 Blood Crypt
+1 Zagoth Triome
+1 Lightning Greaves
+1 Summon: G.F. Ifrit
+1 Heroic Intervention
+1 Sanctum Weaver
+1 Awaken the Honored Dead
+1 Eerie Ultimatum
+1 Utopia Sprawl
+1 Ghen, Arcanum Weaver
+1 Sevinne's Reclamation
+1 Enchantress's Presence
+1 Elspeth Conquers Death
+1 Ballad of the Black Flag
+1 Sythis, Harvest's Hand
+1 Eidolon of Blossoms
+1 Touch the Spirit Realm

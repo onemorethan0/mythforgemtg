@@ -1,0 +1,84 @@
+# Archidekt — MonoWhite Angels
+# source: archidekt:25684932
+# fetched: 2026-09-22
+# bracket: 3
+
+Commander:
+1 Lyra Dawnbringer
+
+Deck:
+1 Phyrexian Processor
+1 Teferi's Protection
+1 Mana Tithe
+1 Light of Hope
+1 Champions from Beyond
+1 Heliod's Pilgrim
+1 Angelic Purge
+1 Well of Lost Dreams
+1 Resplendent Angel
+1 Three Tree City
+1 Serra Angel
+1 Riot Control
+1 Swords to Plowshares
+1 Lightstall Inquisitor
+1 Farewell
+1 Martial Coup
+1 Cleansing Nova
+1 Split Up
+1 True Conviction
+1 Sol Ring
+1 Angel of Finality
+1 Planar Disruption
+1 Mistveil Plains
+1 Starfield Shepherd
+1 Youthful Valkyrie
+1 False Prophet
+1 Odric, Lunarch Marshal
+1 Decanter of Endless Water
+1 Idyllic Grange
+1 Thought Vessel
+1 Pristine Talisman
+1 Emeria Angel
+1 Entreat the Angels
+1 Karmic Guide
+1 Emeria, the Sky Ruin
+25 Plains
+1 Restoration Seminar
+1 Boon Reflection
+1 Staff of Compleation
+1 Linvala, Keeper of Silence
+1 The Wind Crystal
+1 Serra's Sanctum
+1 Alhammarret's Archive
+1 Nykthos, Shrine to Nyx
+1 Archangel of Thune
+1 Land Tax
+1 Seraph Sanctuary
+1 Celestial Unicorn
+1 Cosmos Elixir
+1 Gleam of Authority
+1 Inspiring Overseer
+1 Hall of Heliod's Generosity
+1 Exemplar of Light
+1 Radiant Fountain
+1 Spear of Heliod
+1 Tocasia's Welcome
+1 Emancipation Angel
+1 Linden, the Steadfast Queen
+1 Dazzling Angel
+1 Angel of Vitality
+1 Bishop of Wings
+1 Answered Prayers
+1 Daxos, Blessed by the Sun
+1 Giada, Font of Hope
+1 Storm Herd
+1 Angelic Accord
+1 Angelsong
+1 Sephara, Sky's Blade
+1 Ghostly Prison
+1 Austere Command
+1 Sanctify
+1 Githzerai Monk
+1 Sevinne's Reclamation
+1 Pacifism
+1 Rally of Wings

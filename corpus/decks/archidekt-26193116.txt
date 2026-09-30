@@ -1,0 +1,93 @@
+# Archidekt — The Infamous Cruelclaw - Bloomburrow Rakdos Burn and Drain
+# source: archidekt:26193116
+# fetched: 2026-09-22
+
+Commander:
+1 The Infamous Cruelclaw
+
+Deck:
+1 Talisman of Indulgence
+1 Sol Ring
+1 Prosperous Bandit
+1 Olinda the Oblivious
+1 Coruscation Mage
+1 Hearthborn Battler
+1 Agate Instigator
+1 Iridescent Vinelasher
+1 Rottenmouth Viper
+1 Glidedive Duo
+1 Artist's Talent
+1 Raccoon Rallier
+1 Stargaze
+1 Darkstar Augur
+1 Ruthless Negotiation
+1 Osteomancer Adept
+1 Consumed by Greed
+1 Downwind Ambusher
+1 Etali, Primal Storm
+1 Chaos Warp
+1 Coiling Rebirth
+1 Haunted Ridge
+1 Tainted Peak
+1 Temple of Malice
+1 Rogue's Passage
+1 Mudflat Village
+8 Swamp
+1 Command Tower
+1 Dragonskull Summit
+1 Canyon Slough
+1 Blightstep Pathway // Searstep Pathway
+1 Arcane Signet
+1 Gev, Scaled Scorch
+1 Mari, the Killing Quill
+1 Fell
+1 Squee, Goblin Nabob
+1 Monument to Endurance
+1 Insatiable Avarice
+1 Lizard Blades
+1 Witch's Cottage
+1 Peat Bog
+1 Fireglass Mentor
+1 Brotherhood Regalia
+1 Massacre Wurm
+1 Delayed Blast Fireball
+1 Lightning Greaves
+1 Metamorphosis Fanatic
+1 Reforge the Soul
+1 Glint-Horn Buccaneer
+1 Master of Barbs
+1 Scourge of the Throne
+1 Maha, Its Feathers Night
+1 Sensei's Divining Top
+1 Scroll Rack
+1 Scheming Symmetry
+1 Soul Immolation
+1 Cruelclaw's Heist
+1 Spectacular Showdown
+1 Brazen Collector
+1 Early Winter
+1 Arena of Glory
+1 Jeweled Amulet
+1 Cunning Coyote
+8 Mountain
+1 Sandstone Needle
+1 Havoc Festival
+1 Graywater's Fixer
+1 Mongoose Lizard
+1 Immolation Shaman
+1 Dagger Caster
+1 Kediss, Emberclaw Familiar
+1 Mezzio Mugger
+1 Viashino Lashclaw
+1 Tibalt's Trickery
+1 Throne of the High City
+1 Blackcleave Cliffs
+1 Luxury Suite
+1 Dawnhand Dissident
+1 Valley Flamecaller
+1 Victimize
+1 Byway Barterer
+1 Gratuitous Violence
+1 Savage Beating
+1 Teapot Slinger
+1 Sword of Fire and Ice

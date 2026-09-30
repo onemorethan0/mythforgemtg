@@ -1,0 +1,87 @@
+# Archidekt — Gruul Rocks
+# source: archidekt:26726351
+# fetched: 2026-09-24
+
+Commander:
+1 Aerid Konstrari
+
+Deck:
+1 Sarinth Greatwurm
+1 Sarinth Steelseeker
+1 Roxanne, Starfall Savant
+1 Slag Strider
+1 Akki Scrapchomper
+1 Sokenzan Smelter
+1 Toggo, Goblin Weaponsmith
+1 Destructive Digger
+1 Bloodboil Sorcerer
+1 Farid, Enterprising Salvager
+1 Demand Answers
+1 Laurine, the Diversion
+1 Marwyn, the Clearcutter
+1 Tempestra, Dame of Games
+1 Trading Post
+1 Conjurer's Closet
+1 Vision of Love
+1 Sword of Hearth and Home
+1 Idol of Oblivion
+1 Blade of Selves
+1 Karn, Living Legacy
+1 Hungering Puppetbeast
+1 Tenured Tethermage
+1 Woodwork Prodigy // Soul Tether
+1 Heartwood Crafter // Soul Tether
+1 Devastating Onslaught
+1 Teething Wurmlet
+1 Orthion, Hero of Lavabrink
+1 Jaxis, the Troublemaker
+1 Tireless Provisioner
+1 Molten Duplication
+1 City of Death
+1 Coin of Mastery
+1 Electroduplicate
+1 Arachnogenesis
+1 Twinflame
+1 Mirrormind Crown
+1 The Brothers' War
+1 Voyager Staff
+1 Goblin Engineer
+1 Buried Ruin
+1 Druid's Deliverance
+1 Selesnya Eulogist
+1 Wooded Foothills
+1 Rootbound Crag
+1 Fomori Vault
+1 Cinder Glade
+1 Beast Within
+1 Stridehangar Automaton
+1 Rockfall Vale
+1 Spire Garden
+1 Ingenious Artillerist
+1 Stomping Ground
+1 Reckless Fireweaver
+1 Tree of Tales
+1 Great Furnace
+1 Commercial District
+1 Treasure Vault
+1 Darksteel Citadel
+1 Slagwoods Bridge
+1 Blasphemous Act
+1 Garruk's Uprising
+9 Mountain
+1 Inventors' Fair
+1 Ezuri's Predation
+1 Weftstalker Ardent
+12 Forest
+1 Solemn Simulacrum
+1 Farseek
+1 Arcane Signet
+1 Chaos Warp
+1 Heroic Intervention
+1 Hull Breach
+1 Boseiju, Who Endures
+1 Reclamation Sage
+1 Decimate
+1 Chomping Changeling
+1 Fabled Passage
+1 Meteor Golem

@@ -1,0 +1,92 @@
+# Archidekt — gambling knight
+# source: archidekt:26726612
+# fetched: 2026-09-25
+
+Commander:
+1 Arthur, Marigold Knight
+
+Deck:
+1 Mystic Monastery
+1 Haytham Kenway
+1 Exotic Orchard
+1 Clifftop Retreat
+1 Sulfur Falls
+1 Command Tower
+1 Ponder
+1 Hallowed Fountain
+4 Mountain
+1 Battlefield Forge
+1 Sol Ring
+1 Raugrin Triome
+1 Windcrag Siege
+1 Sacred Foundry
+1 Adarkar Wastes
+1 Glacial Fortress
+1 Arni Metalbrow
+8 Island
+6 Plains
+1 Shivan Reef
+1 Beza, the Bounding Spring
+1 Luminous Broodmoth
+1 Herald of Hoofbeats
+1 Cavalier of Gales
+1 Medomai the Ageless
+1 Anticausal Vestige
+1 Brainstorm
+1 Éowyn, Fearless Knight
+1 Dour Port-Mage
+1 Ilharg, the Raze-Boar
+1 Samut, Hazoret's Champion
+1 Port Razer
+1 Riptide Gearhulk
+1 Scroll Rack
+1 Astral Dragon
+1 Ancient Copper Dragon
+1 Combustible Gearhulk
+1 Starfield Vocalist
+1 Curious Colossus
+1 Echoing Assault
+1 Ancient Silver Dragon
+1 Mabel, Heir to Cragflame
+1 Agent of Treachery
+1 Scalding Tarn
+1 Arid Mesa
+1 Pollywog Prodigy
+1 Flooded Strand
+1 Evolving Wilds
+1 An Offer You Can't Refuse
+1 Path of Ancestry
+1 Spire of Industry
+1 Dawn's Truce
+1 Swords to Plowshares
+1 Steam Vents
+1 Brainsurge
+1 Arcane Signet
+1 Path to Exile
+1 Boros Signet
+1 Knight Exemplar
+1 Vodalian Wave-Knight
+1 Khorvath Brightflame
+1 Ancient Gold Dragon
+1 Elesh Norn, Grand Cenobite
+1 Urabrask the Hidden
+1 Dovin's Veto
+1 Swan Song
+1 Manifold Mouse
+1 Arcane Denial
+1 Counterspell
+1 Sway of the Stars
+1 War's Toll
+1 Flood of Tears
+1 Rem Karolus, Stalwart Slayer
+1 Sun Titan
+1 Sword of Feast and Famine
+1 Blightsteel Colossus
+1 Brago, King Eternal
+1 Penance
+1 Gisela, Blade of Goldnight
+1 Talisman of Progress
+1 Whispersilk Cloak
+1 Aether Channeler
+1 Talisman of Creativity
+1 Cavern-Hoard Dragon

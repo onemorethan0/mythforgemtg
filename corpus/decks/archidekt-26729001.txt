@@ -1,0 +1,102 @@
+# Archidekt — Terra, Herald of Hope
+# source: archidekt:26729001
+# fetched: 2026-09-24
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Altar of Dementia
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Ashnod's Altar
+1 Arid Mesa
+1 Battlefield Forge
+1 Blood Crypt
+1 Bloodstained Mire
+1 Caves of Koilos
+1 Clifftop Retreat
+1 Sol Ring
+1 Talisman of Conviction
+1 Grave Researcher // Reanimate
+1 Kirol, History Buff // Pack a Punch
+1 Command Tower
+1 Dragonskull Summit
+1 Elegant Parlor
+1 Celes, Rune Knight
+1 Accursed Marauder
+1 Exotic Orchard
+1 Fetid Heath
+1 Godless Shrine
+1 Isolated Chapel
+1 Luxury Suite
+1 Marsh Flats
+3 Mountain
+1 Phyrexian Tower
+3 Plains
+1 Raucous Theater
+1 Rogue's Passage
+1 Rugged Prairie
+1 Sacred Foundry
+1 Savai Triome
+1 Shadowy Backstreet
+1 Spectator Seating
+1 Sulfurous Springs
+3 Swamp
+1 Vault of Champions
+1 Alesha, Who Laughs at Fate
+1 Anger
+1 Aurelia, the Warleader
+1 Boromir, Warden of the Tower
+1 Braids, Arisen Nightmare
+1 Dauthi Voidwalker
+1 Esper Sentinel
+1 Fear of Missing Out
+1 Grand Abolisher
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Pinnacle Monk // Mystic Peak
+1 Priest of Fell Rites
+1 Selfless Spirit
+1 Sister Hospitaller
+1 Vile Entomber
+1 Viscera Seer
+1 Sevinne's Reclamation
+1 Stitch Together
+1 Luminous Broodmoth
+1 Locke, Treasure Hunter
+1 Lotho, Corrupt Shirriff
+1 Summon: Knights of Round
+1 Meteor Golem
+1 Pitiless Plunderer
+1 Professional Face-Breaker
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Squall, SeeD Mercenary
+1 Demonic Tutor
+1 Twilight Diviner
+1 Warren Soultrader
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Animate Dead
+1 Goblin Bombardment
+1 Ripples of Undeath
+1 Smothering Tithe
+1 Anguished Unmaking
+1 Dark Ritual
+1 Deadly Rollick
+1 Deflecting Swat
+1 Teferi's Protection
+1 Vampiric Tutor
+1 Gamble
+1 Buried Alive
+1 Faithless Looting
+1 Reanimate
+1 Ruinous Ultimatum
+1 Victimize
+1 Stitcher's Supplier
+1 Loran of the Third Path
+1 Karmic Guide
+1 Path to Exile
+1 Entomb
+1 Swords to Plowshares

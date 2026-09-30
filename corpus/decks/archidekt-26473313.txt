@@ -1,0 +1,83 @@
+# Archidekt — Muscle Mommy
+# source: archidekt:26473313
+# fetched: 2026-09-24
+
+Commander:
+1 Judith, Carnage Connoisseur
+
+Deck:
+1 Archetype of Finality
+1 Black Waltz No. 3
+1 Charmbreaker Devils
+1 Dark Confidant
+1 Emeritus of Conflict // Lightning Bolt
+1 Guttersnipe
+1 Juri, Master of the Revue
+1 Lagomos, Hand of Hatred
+1 Mahadi, Emporium Master
+1 Mayhem Devil
+1 Morbid Opportunist
+1 Pestilent Spirit
+1 Raphael, Fiendish Savior
+1 Scheming Silvertongue // Sign in Blood
+1 Storm-Kiln Artist
+1 The Lord of Pain
+1 Tor Wauki the Younger
+1 Viscera Seer
+1 Young Pyromancer
+1 Abrade
+1 Bedevil
+1 Big Score
+1 Corrupted Conviction
+1 Dark Ritual
+1 Deadly Dispute
+1 Dual Shot
+1 Electrickery
+1 Fake Your Own Death
+1 Fire Covenant
+1 Flare of Duplication
+1 Flare of Malice
+1 Kolaghan's Command
+1 Masterful Flourish
+1 Pinecone Strike
+1 Plumb the Forbidden
+1 Rakdos Charm
+1 Savage Alliance
+1 Scorchmark
+1 Spikefield Hazard // Spikefield Cave
+1 Terminate
+1 Twin Bolt
+1 Village Rites
+1 Wail of the Nim
+1 Blasphemous Act
+1 Blazing Volley
+1 End the Festivities
+1 Feed the Swarm
+1 Final Vengeance
+1 Molten Collapse
+1 Pillar of Flame
+1 Smash to Dust
+1 Tectonic Hazard
+1 Arcane Signet
+1 Black Mage's Rod
+1 Bolas's Citadel
+1 Glittering Stockpile
+1 Rakdos Signet
+1 Relic of Legends
+1 Sol Ring
+1 Dark Prophecy
+1 Fiery Inscription
+1 Sanguine Bond
+1 Theater of Horrors
+1 Blood Crypt
+1 Command Tower
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Fabled Passage
+13 Mountain
+1 Myriad Landscape
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Sulfurous Springs
+13 Swamp
+1 Tainted Peak

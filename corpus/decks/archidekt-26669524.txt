@@ -1,0 +1,99 @@
+# Archidekt — Homer The Hermit of Mill
+# source: archidekt:26669524
+# fetched: 2026-09-29
+
+Commander:
+1 Homer, the Hermit
+
+Deck:
+1 Windswept Heath
+1 Sakashima of a Thousand Faces
+1 Spark Double
+1 Awaken the Woods
+1 Nanogene Conversion
+1 Scapeshift
+1 Bitter Ordeal
+1 Roaming Throne
+1 Springleaf Parade
+1 Victimize
+1 Azusa, Lost but Seeking
+1 Scute Swarm
+1 Sylvan Safekeeper
+1 Uro, Titan of Nature's Wrath
+7 Forest
+2 Island
+2 Swamp
+1 Uchuulon
+1 Wear Down
+1 Overgrown Tomb
+1 Farseek
+1 Shifting Woodland
+1 Command Tower
+1 Polluted Delta
+1 Flooded Grove
+1 Watery Grave
+1 Flooded Strand
+1 Sunken Ruins
+1 Zagoth Triome
+1 Twilight Mire
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Breeding Pool
+1 Hedge Shredder
+1 Bojuka Bog
+1 Fabled Passage
+1 Reanimate
+1 Animate Dead
+1 Splendid Reclamation
+1 Rise of the Dark Realms
+1 Mutable Explorer
+1 Undergrowth Stadium
+1 Singularity Rupture
+1 Yavimaya, Cradle of Growth
+1 Bruvac the Grandiloquent
+1 Crucible of Worlds
+1 Wooded Foothills
+1 Morphic Pool
+1 Marsh Flats
+1 Yarok, the Desecrated
+1 Scalding Tarn
+1 Urborg, Tomb of Yawgmoth
+1 Bloodstained Mire
+1 Reliquary Tower
+1 Chameleon, Master of Disguise
+1 Irenicus's Vile Duplication
+1 Altar of the Brood
+1 Aftermath Analyst
+1 Burgeoning
+1 Arcane Denial
+1 Heroic Intervention
+1 Maskwood Nexus
+1 Tatyova, Benthic Druid
+1 The Gitrog Monster
+1 Psychic Corrosion
+1 Rhystic Study
+1 Springbloom Druid
+1 Dryad of the Ilysian Grove
+1 Sol Ring
+1 Three Visits
+1 Lotus Cobra
+1 Tireless Provisioner
+1 Ancient Greenwarden
+1 Golgari Charm
+1 Strix Serenade
+1 Assassin's Trophy
+1 Cyclonic Rift
+1 Zimone, Mystery Unraveler
+1 Sakashima the Impostor
+1 Nissa, Resurgent Animist
+1 Barkform Harvester
+1 Ruin Crab
+1 Hedron Crab
+1 Nature's Lore
+1 Cruel Calculations
+1 Multiversal Recruitment
+1 Esix, Fractal Bloom
+1 Springheart Nantuko
+1 Swan Song
+1 Talisman of Curiosity
+1 Talisman of Resilience

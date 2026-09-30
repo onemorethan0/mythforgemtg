@@ -1,0 +1,90 @@
+# Archidekt — Volo, Guide to Monsters B3 ish
+# source: archidekt:26490782
+# fetched: 2026-09-22
+
+Commander:
+1 Volo, Guide to Monsters
+
+Deck:
+1 Murkfiend Liege
+1 Loyal Guardian
+1 Counterspell
+1 Junk Winder
+1 Command Tower
+1 Rampant Growth
+11 Forest
+1 Exotic Orchard
+1 Arcane Denial
+1 Cultivate
+1 Ornithopter of Paradise
+1 Nature's Lore
+1 Peregrine Drake
+1 Simic Growth Chamber
+1 Prosperous Innkeeper
+1 Vineglimmer Snarl
+1 An Offer You Can't Refuse
+1 Farseek
+1 Craterhoof Behemoth
+1 Yavimaya Coast
+1 Negate
+1 Hinterland Harbor
+1 Birds of Paradise
+1 Breeding Pool
+1 Flooded Grove
+1 Reliquary Tower
+1 Heroic Intervention
+1 Arcane Signet
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+1 Swiftfoot Boots
+1 Growth Spiral
+1 Temple of Mystery
+1 Three Visits
+1 Spark Double
+1 Double Major
+1 Octomancer
+1 Simic Signet
+1 Kiora's Follower
+1 Acidic Slime
+1 Garruk's Uprising
+1 Yavimaya, Cradle of Growth
+1 Scute Swarm
+1 Fabled Passage
+1 Thought Vessel
+1 Maraleaf Pixie
+1 Sodden Verdure
+1 Consecrated Sphinx
+1 Swan Song
+1 Mana Drain
+1 Managorger Hydra
+8 Island
+1 Sol Ring
+1 Explore
+1 Uro, Titan of Nature's Wrath
+1 Wizard's Staff
+1 Lightning Greaves
+1 Radagast of Rhosgobel
+1 Solemn Simulacrum
+1 Man-o'-War
+1 End-Raze Forerunners
+1 Apex Devastator
+1 Twitching Doll
+1 Terastodon
+1 Tendershoot Dryad
+1 Delighted Halfling
+1 Reef Worm
+1 Ouroboroid
+1 Myr Battlesphere
+1 Beast Within
+1 Adrix and Nev, Twincasters
+1 Hullbreaker Horror
+1 Worldly Tutor
+1 Silverback Elder
+1 Aetherize
+1 Willowrush Verge
+1 Wild Growth
+1 Life Finds a Way
+1 Parallel Lives
+1 Rhystic Study
+1 Twinning Staff
+1 Vigor

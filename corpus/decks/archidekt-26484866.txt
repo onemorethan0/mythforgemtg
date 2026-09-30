@@ -1,0 +1,102 @@
+# Archidekt — SALT_TEST
+# source: archidekt:26484866
+# fetched: 2026-09-17
+
+Commander:
+1 Galadriel, Light of Valinor
+
+Deck:
+1 Adarkar Wastes
+1 Andúril, Narsil Reforged
+1 Arboreal Alliance
+1 Arcane Denial
+1 Beast Within
+1 Birds of Paradise
+1 Bloom Tender
+1 Bountiful Promenade
+1 Bramblewood Paragon
+1 Breeding Pool
+1 Bristly Bill, Spine Sower
+1 Brushland
+1 Canopy Vista
+1 Celestial Reunion
+1 Champions of the Perfect
+1 Coat of Arms
+1 Coiling Oracle
+1 Command Tower
+1 Devoted Druid
+1 Door of Destinies
+1 Dreamroot Cascade
+1 Elrond, Moon-Reader
+1 Elven Passage
+1 Elvish Archdruid
+1 Elvish Harbinger
+1 Elvish Spirit Guide
+1 Elvish Visionary
+1 Elvish Warmaster
+1 End-Raze Forerunners
+1 Enduring Innocence
+1 Evolution Witness
+1 Fabled Passage
+1 Faeburrow Elder
+1 Finale of Devastation
+1 Flooded Grove
+5 Forest
+1 Fortified Village
+1 Galadhrim Brigade
+1 Galadriel's Dismissal
+1 Gavony Township
+1 Glacial Fortress
+1 Grand Crescendo
+1 Haldir, Lórien Lieutenant
+1 Hallowed Fountain
+1 Hardened Scales
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Incubation Druid
+1 Island
+1 Kami of Whispered Hopes
+1 Kindred Discovery
+1 Lightning Greaves
+1 Llanowar Elves
+1 Mirror Entity
+1 Moon-Blessed Cleric
+1 Moonshaker Cavalry
+1 Mystic Gate
+1 Novijen, Heart of Progress
+1 Oran-Rief, the Vastwood
+1 Overgrown Farmland
+1 Ozolith, the Shattered Spire
+1 Path of Ancestry
+1 Path to Exile
+2 Plains
+1 Port Town
+1 Raise the Palisade
+1 Rapid Hybridization
+1 Realmwalker
+1 Rejuvenating Springs
+1 Rhys the Redeemed
+1 Rishkar, Peema Renegade
+1 Rumor Gatherer
+1 Seachrome Coast
+1 Seaside Citadel
+1 Selfless Safewright
+1 Selfless Spirit
+1 Selvala, Heart of the Wilds
+1 Skyclave Apparition
+1 Sodden Verdure
+1 Sol Ring
+1 Sunpetal Grove
+1 Swan Song
+1 Swords to Plowshares
+1 Temple Garden
+1 Terrasymbiosis
+1 Thranduil's Company
+1 Unclaimed Territory
+1 Vanquisher's Banner
+1 Vigor
+1 Vineglimmer Snarl
+1 Walking Ballista
+1 Wave Goodbye
+1 Wood Elves
+1 Quandrix Charm

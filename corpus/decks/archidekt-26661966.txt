@@ -1,0 +1,99 @@
+# Archidekt — Snakes...why'd it have to be snakes
+# source: archidekt:26661966
+# fetched: 2026-09-24
+
+Commander:
+1 The Serpent Society
+
+Deck:
+1 Animal Sanctuary
+1 Minas Morgul, Dark Fortress
+1 Nesting Grounds
+1 Revitalizing Repast // Old-Growth Grove
+1 Vastwood Fortification // Vastwood Thicket
+1 Field of the Dead
+1 Poison Dart Frog
+1 Shared Roots
+1 Assassin's Trophy
+1 Glimmerpost
+1 Contagion Engine
+1 Crippling Fear
+1 Season of Loss
+1 Triumph of the Hordes
+1 Blightwidow
+1 Ophiomancer
+1 Sol Ring
+1 Fynn, the Fangbearer
+1 Tainted Strike
+1 Archpriest of Shadows
+1 Bloated Contaminator
+1 Blight Mamba
+1 Inkmoth Nexus
+1 Grafted Exoskeleton
+1 Plague Myr
+1 Viridian Corrupter
+1 Skithiryx, the Blight Dragon
+1 Ohran Frostfang
+1 The Seedcore
+1 Feed the Infection
+1 Anoint with Affliction
+1 Bow of Nylea
+1 Contaminant Grafter
+1 Cankerbloom
+1 Drown in Ichor
+1 Vraska, Betrayal's Sting
+1 Stensian Sanguinist // Exsanguinate
+1 Karn's Bastion
+1 Hapatra, Vizier of Poisons
+1 Evolution Sage
+1 Infectious Bite
+1 Hooded Blightfang
+1 Coat with Venom
+1 Deathcap Cultivator
+1 Archetype of Finality
+1 Dragon Sniper
+1 Deathbloom Gardener
+1 Frog Butler
+1 Foulmire Knight // Profane Insight
+1 Geth's Summons
+1 Phyrexian Swarmlord
+1 Underground Mortuary
+1 Overgrown Tomb
+1 Command Tower
+3 Swamp
+4 Forest
+3 Snow-Covered Forest
+3 Snow-Covered Swamp
+1 Gift of the Viper
+1 Ichor Rats
+1 Infectious Inquiry
+1 Glissa's Retriever
+1 Pistus Strike
+1 Venerated Rotpriest
+1 Wurmquake
+1 Vraska's Fall
+1 War Room
+1 Font of Fertility
+1 Cabal Coffers
+1 Elvish Mystic
+1 Wild Growth
+1 Rancor
+1 Burgeoning
+1 Utopia Sprawl
+1 Birds of Paradise
+1 Farseek
+1 Blightsteel Colossus
+1 Monument to Perfection
+1 Expedition Map
+1 Yavimaya, Cradle of Growth
+1 Wayfarer's Bauble
+1 Urborg, Tomb of Yawgmoth
+1 The Dross Pits
+1 World Map
+1 The Mycosynth Gardens
+1 Mirrex
+1 The Hunter Maze
+1 Cloudpost
+1 Trenchpost
+1 Carnivorous Cultivator // Enroot
+1 Nylea's Intervention

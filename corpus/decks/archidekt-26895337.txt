@@ -1,0 +1,81 @@
+# Archidekt — Reality Fracture Deez Nuts! (Tam, The Possibility)
+# source: archidekt:26895337
+# fetched: 2026-09-30
+
+Commander:
+1 Tam, the Possibility
+
+Deck:
+1 The Theorist, Jace Beleren
+1 Liliana the Faultless
+1 Extrapolate the Impossible
+1 Overgrown Farmland
+1 Shipwreck Marsh
+1 Vigorbloom Annex
+1 Theorix Annex
+1 Stingerquill Annex
+1 Codie, Ravenous Codex
+1 Theorix Charm
+1 Kiora of Salt and Sand
+1 Campus Crier
+1 Tam's Resistance
+1 No Admittance
+1 Countersculpt
+1 Way of the Warlord
+1 Fatehold Charm
+1 Arcane Amphisbaena
+1 Way of the Necromancer
+1 Keeper of the Quiet Hour
+1 Cast Away Doubt
+1 Face Yourself
+1 Ruric Thar, Biomagus
+1 Mabel, Bitter Recluse
+1 Chandra's Emberling
+1 Search for Tomorrow
+1 Don't Make a Sound
+1 Rogues' Gallery
+1 Decisive Denial
+1 Obscura Charm
+1 Command Tower
+1 Explore
+1 Repeated Reverberation
+1 Tempt with Discovery
+1 Murder
+1 Path to Exile
+1 Farseek
+1 Sol Ring
+1 Oath of Ajani
+1 Way of the Pyromancer
+1 Arcane Signet
+1 Brokers Ascendancy
+1 Oath of Gideon
+1 Way of the Mind Sculptor
+1 Propaganda
+1 Oath of Jace
+1 Way of the Mentor
+1 Urza Assembles the Titans
+1 Diabolic Tutor
+1 Way of the Wildspeaker
+1 Chandra, Legacy of Fire
+1 Jace, Multiverse Architect
+1 Jace, Reality Sculptor
+1 Reliquary Tower
+1 Jace, Unraveler of Secrets
+1 Teferi, Hero of Dominaria
+1 Vronos, Masked Inquisitor
+1 Kasmina, Enigmatic Mentor
+1 Nicol Bolas, Planeswalker
+1 Vraska the Unseen
+1 Dovin, Grand Arbiter
+1 Counterspell
+1 Ajani Steadfast
+1 Jace, Arcane Strategist
+1 Aminatou, the Fateshifter
+1 Tekuthal, Inquiry Dominus
+1 Timeless Lotus
+1 Onakke Oathkeeper
+6 Plains
+8 Island
+4 Swamp
+4 Forest
+4 Mountain

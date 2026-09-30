@@ -1,0 +1,84 @@
+# Archidekt — Battlehammer
+# source: archidekt:26899802
+# fetched: 2026-09-29
+
+Commander:
+1 Bruenor Battlehammer
+
+Deck:
+1 Bastion Protector
+1 Goblin Welder
+1 Commander's Sphere
+1 Sol Ring
+1 Sword of Vengeance
+1 Great Hall of the Citadel
+1 Combat Celebrant
+1 Hammer of Nazahn
+11 Plains
+1 Fiery Emancipation
+1 Swords to Plowshares
+1 Akiri, Fearless Voyager
+1 Exotic Orchard
+1 Sunbillow Verge
+1 Abrade
+1 Kediss, Emberclaw Familiar
+1 Thrill of Possibility
+1 Tarrian's Soulcleaver
+1 Vandalblast
+1 Forge Anew
+1 Cathar Commando
+1 Open the Armory
+1 Raiyuu, Storm's Edge
+1 Inventory Management
+1 Colossus Hammer
+1 Ardenn, Intrepid Archaeologist
+1 Embercleave
+1 Deflecting Palm
+1 Umezawa's Jitte
+1 Enlightened Tutor
+1 Blasphemous Act
+1 Bloodcrusher of Khorne
+1 Mithril Coat
+1 Astor, Bearer of Blades
+1 Puresteel Paladin
+1 Shadowspear
+1 Stranglehold
+1 Stoneforge Mystic
+1 Mother of Runes
+1 Seize the Day
+1 Erode
+1 The Aetherspark
+1 Command Tower
+1 Path of Ancestry
+1 Thorin Oakenshield
+1 Kíli the Resourceful
+1 Armored Skyhunter
+1 The Lonely Mountain
+1 Gimli, Counter of Kills
+1 Orcrist, Goblin-cleaver
+1 Koll, the Forgemaster
+1 Rogue's Passage
+1 Temple of Triumph
+1 Magda, Brazen Outlaw
+1 Dwarven Mine
+1 Dwarven Recruiter
+1 Nahiri, Forged in Fury
+1 Inventors' Fair
+1 Bureau Headmaster
+1 All That Glitters
+1 Kor Blademaster
+1 Dispatch
+1 Path to Exile
+1 Arcane Signet
+1 Fighter Class
+1 Loxodon Warhammer
+1 Swiftfoot Boots
+1 Clifftop Retreat
+14 Mountain
+1 Sram, Senior Edificer
+1 Tenza, Godo's Maul
+1 Sword of the Animist
+1 Archetype of Aggression
+1 The Reaver Cleaver
+1 Reyav, Master Smith
+1 Aggravated Assault

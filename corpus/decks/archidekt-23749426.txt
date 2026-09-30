@@ -1,0 +1,80 @@
+# Archidekt — Beorn's Menagerie of Bangers and Doublers
+# source: archidekt:23749426
+# fetched: 2026-09-24
+# bracket: 3
+
+Commander:
+1 Beorn the Fierce
+
+Deck:
+1 Genesis
+1 Greater Good
+1 Nylea, Keen-Eyed
+1 Nykthos, Shrine to Nyx
+1 Finale of Devastation
+1 Bonders' Enclave
+1 Archdruid's Charm
+1 Railway Brawler
+1 Werebear
+1 Questing Beast
+1 Innkeeper's Talent
+1 Germination Practicum
+1 Agonasaur Rex
+1 Dancing from Dark to Dawn
+1 Defense of the Heart
+1 Canopy Gargantuan
+1 Vorinclex // The Grand Evolution
+1 Rhonas the Indomitable
+1 Medusa, Inhuman Queen
+1 Forgotten Ancient
+1 Kodama of the West Tree
+1 Warden of the Grove
+1 Evolution Witness
+1 Tempt with Discovery
+1 Radagast of Rhosgobel
+1 Tribute to the World Tree
+1 Oran-Rief, the Vastwood
+1 Myriad Landscape
+1 Castle Garenbrig
+1 Branching Evolution
+1 Lumra, Bellow of the Woods
+1 Biophagus
+1 Kami of Whispered Hopes
+30 Forest
+1 Vigor
+1 Hit-Monkey
+1 Ohran Frostfang
+1 Kalonian Hydra
+1 Silverback Elder
+1 Studious First-Year // Rampant Growth
+1 Fanatic of Rhonas
+1 Managorger Hydra
+1 Vorinclex, Monstrous Raider
+1 Vastlands Scavenger // Bind to Life
+1 Defiler of Vigor
+1 Elder Gargaroth
+1 The Earth King
+1 Argoth, Sanctum of Nature
+1 The Great Henge
+1 The Earth Crystal
+1 Sol Ring
+1 Ayula, Queen Among Bears
+1 Dragon Sniper
+1 Bristly Bill, Spine Sower
+1 Sphere Grid
+1 Wilson, Refined Grizzly
+1 Augur of Autumn
+1 Saryth, the Viper's Fang
+1 Necklace of Girion
+1 War Room
+1 Ulvenwald Tracker
+1 Court of Garenbrig
+1 Quilled Greatwurm
+1 Halana, Kessig Ranger
+1 Crop Rotation
+1 Hexhaven Invigorator
+1 Hexhaven Dueling Arena
+1 Ouroboroid
+1 Seedborn Muse
+1 Dawnstrider
+1 Kogla, the Titan Ape

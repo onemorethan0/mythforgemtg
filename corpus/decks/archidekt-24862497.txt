@@ -1,0 +1,91 @@
+# Archidekt — miku dayooo
+# source: archidekt:24862497
+# fetched: 2026-09-18
+
+Commander:
+1 Brago, King Eternal
+
+Deck:
+1 Djeru, With Eyes Open
+1 Elspeth, Sun's Champion
+1 Ephemerate
+1 Exotic Orchard
+1 Fblthp, the Lost
+1 Fellwar Stone
+1 Flickerwisp
+1 Floodfarm Verge
+1 Genku, Future Shaper
+1 Ghostly Flicker
+1 Glacial Fortress
+9 Island
+1 Knight of the White Orchid
+1 Lembas
+1 Liquimetal Torque
+1 Loran of the Third Path
+1 Marang River Regent // Coil and Catch
+1 Final Showdown
+1 Moonshaker Cavalry
+1 Negate
+1 Oath of Teferi
+1 The Seriema
+1 Transit Mage
+1 Tribute Mage
+1 Urza, Lord Protector
+1 Venser, the Sojourner
+1 Wedding Invitation
+9 Plains
+1 Prairie Stream
+1 Prismatic Lens
+1 Prized Statue
+1 Recruiter of the Guard
+1 Reflector Mage
+1 Seachrome Coast
+1 Skyclave Apparition
+1 Skycloud Expanse
+1 Snow-Covered Island
+1 Sol Ring
+1 Solemn Simulacrum
+1 Soulherder
+1 Phelia, Exuberant Shepherd
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Yorion, Sky Nomad
+1 Teferi, Hero of Dominaria
+1 Teferi, Time Raveler
+1 Thalia's Lancers
+1 The Mightstone and Weakstone
+1 The Mycosynth Gardens
+1 Abstergo Entertainment
+1 Adarkar Wastes
+1 Aether Channeler
+1 Anticausal Vestige
+1 Argent Dais
+1 Azorius Chancery
+1 Azorius Signet
+1 Charming Prince
+1 Command Tower
+1 Conjurer's Closet
+1 Cryogen Relic
+1 Demolition Field
+1 Deputy of Detention
+1 Deserted Beach
+1 Kykar, Zephyr Awakener
+1 Strionic Resonator
+1 Commandeer
+1 Venser, Shaper Savant
+1 Wall of Omens
+1 The Eternal Wanderer
+1 Foil
+1 Counterspell
+1 Dovin's Veto
+1 Riptide Gearhulk
+1 Talisman of Progress
+1 The Mighty Thor, Jane Foster
+1 Hengegate Pathway // Mistgate Pathway
+1 Arcane Signet
+1 Mind Stone
+1 Access Tunnel
+1 Rogue's Passage
+1 Snow-Covered Plains
+1 Thought Vessel
+1 Thundertrap Trainer
+1 Hallowed Fountain
