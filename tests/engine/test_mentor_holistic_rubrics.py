@@ -185,3 +185,9 @@ def test_weakest_does_not_flag_a_truncated_deck_card_name():
     text = "I found no measured improvement, and Gloomwidow is part of your plan."
     ok, why = rub.grade("weakest", _reply(text, trace=[_EMPTY_SWAP]), t)
     assert ok is True, why
+
+
+def test_wincon_lacking_a_finisher_is_not_naming_one_as_the_win_route():
+    text = "It is a midrange deck that wins in combat and lacks a strong finisher or combo."
+    ok, why = rub.grade("wincon", _reply(text), _truth())
+    assert ok is True, why

@@ -32,7 +32,8 @@ QUESTION_IDS = ("overview", "cards", "faster", "resilience", "wincon", "weakest"
 
 _NEG_BEFORE_RE = re.compile(
     r"\b(?:not|no|never|isn'?t|aren'?t|doesn'?t|don'?t|didn'?t|wouldn'?t|shouldn'?t|won'?t|"
-    r"without|cannot|can'?t|nothing)\b(?:\W+\w+){0,4}\W*$",
+    r"without|cannot|can'?t|nothing|lack\w*|missing|absent|short\s+on|shy\s+of)\b"
+    r"(?:\W+\w+){0,4}\W*$",
     re.IGNORECASE,
 )
 
