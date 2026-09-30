@@ -583,15 +583,32 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
     candidates = advisor.owned_candidates(ctx.card_db, ctx.resolved, collection)
     if not candidates:
         return ToolResult(data={
-            "found": True, "suggestions": [],
+            "found": True, "improving_swap_found": False, "suggestions": [],
             "message": "No owned, in-colour cards outside the deck to test as adds.",
         })
     report = advisor.advise(
         ctx.resolved, ctx.cfg, ctx.store, candidates,
         axis=axis, top=3, max_eval=4, cut_pool=1, themes=ctx.themes,
     )
+    if not report.suggestions:
+        # `AdviceReport.cut` is the head of the cut POOL, not a verdict -- with no swap
+        # clearing the noise floor it reads exactly like advice ("cut X to be faster") and
+        # was narrated as such: the plan's Shelob probe had the mentor recommend cutting the
+        # deck's own theme card from an empty result. So an empty search returns no card
+        # name at all and licenses none; the message is the whole finding.
+        return ToolResult(data={
+            "found": True, "improving_swap_found": False,
+            "axis": report.axis, "baseline": report.baseline, "evaluated": report.evaluated,
+            "message": (
+                f"Tested {report.evaluated} owned cards as adds on {report.axis_label}; none "
+                f"beat the noise floor (min gain {report.min_delta:g}). No measured swap to "
+                "recommend."
+            ),
+        })
     data = _to_jsonable(report)
+    data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
     data["found"] = True
+    data["improving_swap_found"] = True
     names: set[str] = set()
     for s in report.suggestions:
         names.add(s.add)

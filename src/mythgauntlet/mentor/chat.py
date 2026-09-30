@@ -75,7 +75,10 @@ that framing as the point of the question, not a tournament-legality check; and 
 suggest_swap before answering "what should I cut/add" or "how can I improve this deck" \
 questions -- it only ever suggests cards the player OWNS (their Myth Suite collection), \
 never a card from general Magic knowledge, so if it reports no collection file or no \
-suggestion, say that plainly rather than naming a card yourself.
+suggestion, say that plainly rather than naming a card yourself. \
+When suggest_swap reports improving_swap_found false, tell the player "I didn't find a \
+measured improvement from your collection" -- never present any card as a cut or an \
+add in that case, because nothing was measured to recommend.
 
 For any OPEN-ENDED question about the deck as a whole -- what it does well or poorly, \
 strengths, weaknesses, observations, "is it good", how it wins, how fast it is, how \

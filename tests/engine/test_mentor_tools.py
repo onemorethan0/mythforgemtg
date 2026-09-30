@@ -532,6 +532,48 @@ def test_suggest_swap_returns_a_real_measured_swap(make_card, empty_store, monke
     assert top["after"] > result.data["baseline"]
     assert "Owned Removal" in result.card_names
     assert top["cut"] in result.card_names
+    # A4: the pool head is not advice -- only each suggestion's own cut remains.
+    assert "cut" not in result.data
+    assert result.data["improving_swap_found"] is True
+
+
+def test_suggest_swap_empty_result_names_no_card_and_says_so(make_card, empty_store, monkeypatch, tmp_path):
+    """PLAN_MENTOR_ADHOC A4 (found on Shelob): an empty search still carried a top-level
+    `cut` (the head of the cut pool) that the mentor narrated as advice -- it recommended
+    cutting the deck's own theme card from a result that found NO improving swap. An empty
+    result must license no card name and carry no `cut`/`suggestions` to read as advice."""
+    from mythgauntlet.mentor import tools as tools_mod
+
+    cmdr = make_card("Test Commander", mana_cost="{2}{G}",
+                      type_line="Legendary Creature — Elf", color_identity=("G",))
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+
+    def _bear(name, rank):
+        c = make_card(name, mana_cost="{1}{G}", type_line="Creature — Bear",
+                      color_identity=("G",), edhrec_rank=rank)
+        c.power, c.toughness = "2", "2"
+        return c
+
+    in_deck = _bear("Popular Bear", 500)
+    other = _bear("Owned Bear", 4000)   # identical to a deck card: cannot improve interaction
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(forest, 36), (in_deck, 63)], missing=[])
+    ctx = MentorContext(card_db=CardDb([cmdr, forest, in_deck, other]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=40, seed=3), store=empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Owned Bear\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    result = call_tool(ctx, "suggest_swap", {"axis": "interaction"})
+    d = result.data
+    assert d["found"] is True and d["improving_swap_found"] is False
+    assert "cut" not in d and "suggestions" not in d
+    assert result.card_names == frozenset()
+    assert d["axis"] == "interaction" and d["evaluated"] >= 1
+    assert "none beat the noise floor" in d["message"]
+    assert "No measured swap to recommend" in d["message"]
 
 
 def test_suggest_swap_bad_axis_returns_a_graceful_error(make_card, empty_store, monkeypatch, tmp_path):
