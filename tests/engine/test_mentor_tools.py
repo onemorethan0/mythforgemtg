@@ -767,3 +767,58 @@ def test_get_deck_stats_unresolved_commander_leaves_every_role_applicable(make_c
     ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[], cards=ctx.resolved.cards, missing=[])
     roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
     assert all(r["applicable"] for r in roles.values())
+
+
+# ── finisher against the measured plan (PLAN_MENTOR_ADHOC C2) ───────────────────────
+
+def _fake_analysis(archetype, kill_rate):
+    from types import SimpleNamespace
+    return SimpleNamespace(insight=SimpleNamespace(archetype=archetype),
+                           report=SimpleNamespace(goldfish_kill_rate=kill_rate))
+
+
+@pytest.mark.parametrize("archetype,rate,expect_applicable", [
+    ("Midrange goodstuff", 0.6, False),     # the Shelob shape
+    ("Midrange goodstuff", 0.5, False),     # boundary is inclusive
+    ("Midrange goodstuff", 0.49, True),     # does not reliably kill: a finisher could matter
+    ("Creature aggro", 0.9, False),
+    ("Go-wide / tokens", 0.7, False),
+    ("Combo", 0.9, True),                   # not a combat plan
+    ("Control", 0.9, True),
+    ("Ramp / midrange", 0.9, True),         # not in the plan's list
+])
+def test_finisher_not_applicable_when_the_measured_plan_is_combat(
+        make_card, empty_store, monkeypatch, archetype, rate, expect_applicable):
+    from mythgauntlet.mentor import tools as tools_mod
+    monkeypatch.setattr(tools_mod, "_analysis_for", lambda ctx: _fake_analysis(archetype, rate))
+    fin = call_tool(_ctx(make_card, empty_store), "get_deck_stats", {}).data["roles"]["finisher"]
+    assert fin["applicable"] is expect_applicable
+    if not expect_applicable:
+        assert fin["target"] == 0 and fin["note"] == "wins through combat (measured)"
+    else:
+        assert fin["target"] == 2 and "note" not in fin
+
+
+def test_finisher_colour_rule_short_circuits_the_analysis(make_card, empty_store, monkeypatch):
+    """A deck with no R/G has no finisher role by colour; the simulation is not needed."""
+    from mythgauntlet.mentor import tools as tools_mod
+    ctx = _ctx(make_card, empty_store)
+    blue = make_card("Blue Commander", type_line="Legendary Creature — Merfolk",
+                     mana_cost="{U}{U}", color_identity=("U",))
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
+                                cards=ctx.resolved.cards, missing=[])
+
+    def boom(_ctx):
+        raise AssertionError("analysis must not run")
+
+    monkeypatch.setattr(tools_mod, "_analysis_for", boom)
+    fin = call_tool(ctx, "get_deck_stats", {}).data["roles"]["finisher"]
+    assert fin["applicable"] is False and "not applicable" in fin["note"]
+
+
+def test_get_deck_stats_shares_the_analysis_cache(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    call_tool(ctx, "get_deck_stats", {})
+    call_tool(ctx, "get_power_profile", {})
+    assert len(calls) == 1

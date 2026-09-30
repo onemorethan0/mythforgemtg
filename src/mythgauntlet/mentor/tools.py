@@ -357,6 +357,18 @@ def tool_get_rule(ctx: MentorContext, number: str) -> ToolResult:
                        rule_numbers=frozenset({number}))
 
 
+_COMBAT_ARCHETYPES = frozenset({"Creature aggro", "Go-wide / tokens", "Midrange goodstuff"})
+_COMBAT_KILL_RATE = 0.5
+
+
+def _wins_through_combat(a: DeckAnalysis) -> bool:
+    """The engine measured this deck as a combat deck: a combat-based archetype AND the
+    goldfish actually kills in at least half of games. Both halves are needed -- the archetype
+    alone is a label, the kill rate alone could be a combo deck's."""
+    return (a.insight.archetype in _COMBAT_ARCHETYPES
+            and (a.report.goldfish_kill_rate or 0.0) >= _COMBAT_KILL_RATE)
+
+
 def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     """Curve, colour sources, and role supply-vs-target -- every one a closed-form or
     counting measurement (no simulation), matching `manabase.py`'s own "deterministic
@@ -422,6 +434,18 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
             entry["note"] = (
                 f"not applicable: no colour in this deck's identity ({colour_word}) usually "
                 "supplies this role, so it is not a gap")
+    # C2 (PLAN_MENTOR_ADHOC): `finisher` counts overrun/storm/burn/cheat payoffs, none of which a
+    # deck that simply wins by attacking needs -- "finisher 0/2" on a measured combat deck was
+    # narrated as a gap (Shelob: Midrange goodstuff, 27 creatures, goldfish kill ~T9). The plan
+    # comes from the engine's own read, so this needs the (cached) analysis; only paid when the
+    # role is still applicable after the colour rule.
+    fin = roles.get("finisher")
+    if fin is not None and fin["applicable"]:
+        a = _analysis_for(ctx)
+        if a.insight is not None and _wins_through_combat(a):
+            fin["applicable"] = False
+            fin["target"] = 0
+            fin["note"] = "wins through combat (measured)"
 
     # No other tool surfaces WHO the commander(s) are -- a mentor with only lookup_card
     # (which needs a name the player already supplied) had no path to "who is my
