@@ -112,12 +112,19 @@ def run_deck(key, truth, questions, model) -> list[dict]:
                             ]
                             break
                     break
-        try:
-            start = time.time()
-            reply = mentor_chat.ask(truth["ctx"], question, history, model=model)
-        except mentor_chat.LLMUnavailable:
-            print(f"LLM unavailable for {key} {qid}", file=sys.stderr)
-            sys.exit(2)
+        # llama-swap answers 502/503 while it swaps a model in (the previous one was evicted
+        # on its idle TTL); that is transient, so retry before giving up on a long run.
+        for attempt in range(4):
+            try:
+                start = time.time()
+                reply = mentor_chat.ask(truth["ctx"], question, history, model=model)
+                break
+            except mentor_chat.LLMUnavailable as exc:
+                print(f"LLM unavailable for {key} {qid} (attempt {attempt + 1}/4): {exc}",
+                      file=sys.stderr)
+                if attempt == 3:
+                    sys.exit(2)
+                time.sleep(20 * (attempt + 1))
         dt = time.time() - start
         passed, reason = rubrics.grade(qid, reply, truth)
         row = {
