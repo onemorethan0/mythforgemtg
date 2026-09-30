@@ -100,6 +100,14 @@ def log(message: str) -> None:
             fh.write(line + "\n")
 
 
+# Wall-clock start of the most recent run(); _archive_gauntlet only accepts output written
+# after it. A killed/failed gauntlet writes NO result file, and "the latest un-renamed
+# gauntlet_<date>.json" is then whatever an earlier run (or a manual experiment) left in
+# DATA -- it was archived as that run's result, so the greedy-vs-ISMCTS section of the
+# report compared greedy against a stale file whenever the ISMCTS half was killed.
+_LAST_RUN_STARTED = 0.0
+
+
 def run(name: str, *cli_args: str, timeout: float | None = None) -> int:
     """Run a mythgauntlet CLI verb, streaming output to the log. Never raises.
 
@@ -119,6 +127,8 @@ def run(name: str, *cli_args: str, timeout: float | None = None) -> int:
         + (f" (timeout {timeout / 3600:.1f}h)" if timeout else "")
     )
     started = time.time()
+    global _LAST_RUN_STARTED
+    _LAST_RUN_STARTED = started
     try:
         proc = subprocess.Popen(
             [PYTHON, "-m", "mythgauntlet", *cli_args],
@@ -232,6 +242,10 @@ def _archive_gauntlet(tag: str) -> Path | None:
     doesn't overwrite it. Returns the archived path."""
     latest = latest_gauntlet_file()
     if latest is None:
+        return None
+    if latest.stat().st_mtime < _LAST_RUN_STARTED - 2:
+        log(f"gauntlet {tag}: no result file written by that run (latest is {latest.name}, "
+            "older than the run) - NOT archiving a stale file as its result")
         return None
     dest = latest.with_name(f"{latest.stem}_{tag}_{STAMP}{latest.suffix}")
     latest.rename(dest)
