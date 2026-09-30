@@ -168,6 +168,22 @@ _ILLEGAL_PHRASE_RE = re.compile(
 )
 
 
+# A bracket number the PLAYER typed ("a bracket 3 pod", "B2") is common ground, not a
+# claim the model must have a tool result for -- found live (2026-09-30 Shelob probe): the
+# first draft of "biggest weakness vs a bracket 3 pod?" was gate-rejected for "citing 3".
+# Deliberately SCOPED to exactly this shape (bracket N / BN, N in 1-5) and to the turn the
+# question was asked in: licensing every number in the question would let a model launder
+# an invented statistic by echoing one the player happened to type ("my deck is 7 turns
+# fast" does not make "7" a measured fact).
+_TYPED_BRACKET_RE = re.compile(r"\bbracket\s*([1-5])\b|\bB([1-5])\b", re.IGNORECASE)
+
+
+def typed_bracket_numbers(question: str) -> frozenset[float]:
+    return frozenset(
+        float(m.group(1) or m.group(2)) for m in _TYPED_BRACKET_RE.finditer(question or "")
+    )
+
+
 def _words_between(s: str, m1: re.Match, m2: re.Match) -> int:
     """Rough word count strictly between two (non-overlapping) regex matches in `s`."""
     lo, hi = sorted((m1.span(), m2.span()))
@@ -320,8 +336,9 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
     #    `_LIST_MARKER_RE`/`_CURVE_BUCKET_LABEL_RE` above) so neither a "2." bullet nor a
     #    bucket adjective is read as citing that number as a fact.
     scan_body = _CURVE_BUCKET_LABEL_RE.sub("", _LIST_MARKER_RE.sub("", body))
+    typed_brackets = typed_bracket_numbers(question)
     for value in extract_numbers(scan_body):
-        if value in _FREE_NUMBERS:
+        if value in _FREE_NUMBERS or value in typed_brackets:
             continue
         if not any(abs(value - ok) <= _NUMBER_TOLERANCE for ok in budget.numbers):
             reasons.append(f"cites {value:g}, which is not in this turn's tool results")
