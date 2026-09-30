@@ -393,6 +393,55 @@ def test_analysis_cache_is_bounded(make_card, empty_store, monkeypatch):
     assert len(tools_mod._ANALYSIS_CACHE) == tools_mod._ANALYSIS_CACHE_MAX
 
 
+# ── get_power_profile (PLAN_MENTOR_ADHOC A2) ────────────────────────────────────────
+
+_PROFILE_KEYS = {
+    "found", "archetype", "gameplan", "pod_read", "strengths", "weaknesses", "axes",
+    "weakest_axis", "clock", "resilience", "interaction_counts", "key_cards",
+    "wincon_redundancy", "bracket", "verdicts",
+}
+
+
+def test_get_power_profile_returns_every_top_level_key(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    assert data["found"] is True
+    assert _PROFILE_KEYS <= set(data)
+    assert set(data["axes"]) == {"consistency", "speed", "resilience", "interaction", "ceiling", "pod"}
+    for ax in data["axes"].values():
+        assert set(ax) == {"score", "why"}
+    assert data["weakest_axis"] in data["axes"]
+    assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction", "archetype"}
+    assert set(data["bracket"]) == {"bracket", "label", "plays_up"}
+    assert set(data["interaction_counts"]) == {"spot_removal", "counterspells", "board_wipes", "breadth"}
+    assert data["resilience"]["score"] == data["axes"]["resilience"]["score"]
+
+
+def test_get_power_profile_licenses_key_cards_and_commanders(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "get_power_profile", {})
+    named = {n for k in result.data["key_cards"] for n in k["cards"]}
+    assert "Rock of Ramping" in named
+    assert named <= result.card_names
+    assert "Test Commander" in result.card_names
+
+
+def test_get_power_profile_shares_the_analysis_cache(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    call_tool(ctx, "get_power_profile", {})
+    call_tool(ctx, "get_bracket_estimate", {})
+    call_tool(ctx, "get_power_profile", {})
+    assert len(calls) == 1
+
+
+def test_get_power_profile_scores_are_rounded_to_one_decimal(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    for ax in data["axes"].values():
+        assert ax["score"] == round(ax["score"], 1)
+
+
 # ── suggest_swap (2026-09-15) ───────────────────────────────────────────────────────
 # Deferred out of Phase 1 on purpose (see tools.py's module docstring) until the tool
 # loop was proven live across the 6-round campaign in MENTOR_HANDOFF.md. Suggests ONLY

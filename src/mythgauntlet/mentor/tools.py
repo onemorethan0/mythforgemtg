@@ -32,6 +32,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
 from mythgauntlet.config import suite_collection_path
+from mythgauntlet.mentor import verdicts
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
@@ -466,6 +467,82 @@ def tool_get_bracket_estimate(ctx: MentorContext) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset(analysis.game_changers))
 
 
+def _r1(x):
+    """Round a score/turn to one decimal; None passes through (a turn that never happened)."""
+    return None if x is None else round(float(x), 1)
+
+
+def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
+    """The deck's MEASURED Power Profile -- the structured answer the engine already holds
+    for "what does this deck do well and poorly / how does it win / how fast / how resilient
+    to a wipe". `get_bracket_estimate` ran the same `analyze_deck` and kept only the bracket;
+    every other field here (six axis scores and their one-line whys, archetype, gameplan,
+    pod placement, strengths/weaknesses, key cards per role, clock, resilience, interaction
+    card COUNTS, win-condition redundancy) was computed and thrown away, which is why the
+    mentor answered these questions from `get_deck_stats`' role numbers alone and inverted
+    verdicts the engine had already measured (docs/PLAN_MENTOR_ADHOC.md, section 1).
+
+    Everything comes from `_analysis_for(ctx)` (one cached simulation, resilience included);
+    nothing is computed here, and `verdicts` is `mentor.verdicts.classify_profile` -- the
+    same bands the holistic bench grades against -- so the model is handed the verdict word
+    rather than asked to derive it from a score."""
+    a = _analysis_for(ctx)
+    ins = a.insight
+    if ins is None or a.resilience is None:
+        return ToolResult(data={"found": False,
+                                "message": "The deck's power profile could not be computed."})
+    r, res, ceil, pod, inter, b = a.report, a.resilience, a.ceiling, a.pod, a.interaction, a.bracket
+    why = ins.axis_why
+    axes = {
+        ax: {"score": _r1(advisor.axis_score(a, ax)), "why": why.get(label, "")}
+        for ax, (_fn, label) in advisor.AXES.items()
+    }
+    axes["pod"] = {"score": _r1(pod.score), "why": why.get("Pod (multiplayer)", "")}
+    wincon = _to_jsonable(a.wincon_redundancy)
+    names: set[str] = {c.name for c in ctx.resolved.commanders}
+    key_cards = []
+    for k in ins.key_cards:
+        key_cards.append({"role": k.role, "cards": list(k.names), "more": k.more})
+        names.update(k.names)
+    for role in wincon.get("roles", []):
+        names.update(role.get("contributing_cards", []))
+    data = {
+        "found": True,
+        "archetype": ins.archetype,
+        "gameplan": ins.gameplan,
+        "pod_read": ins.pod_read,
+        "strengths": list(ins.strengths),
+        "weaknesses": list(ins.weaknesses),
+        "axes": axes,
+        "weakest_axis": advisor.weakest_axis(a),
+        "clock": {
+            "avg_kill_turn": _r1(r.avg_kill_turn),
+            "goldfish_kill_rate": _r1(r.goldfish_kill_rate),
+            "avg_commander_turn": _r1(r.avg_commander_turn),
+            "commander_cast_rate": _r1(r.commander_cast_rate),
+            "keep_rate": _r1(r.keep_rate),
+            "curve_efficiency": _r1(r.curve_efficiency),
+            "fast_kill_turn": _r1(ceil.fast_kill_turn),
+            "pod_close_turn": _r1(pod.pod_close_turn),
+        },
+        "resilience": {
+            "score": _r1(res.resilience_score),
+            "wipe_turn": a.wipe_turn,
+            "kill_delay_turns": _r1(res.kill_delay_turns),
+        },
+        # CARD COUNTS (copies), unlike get_deck_stats' role `supply`, which is a strength score.
+        "interaction_counts": {
+            "spot_removal": inter.spot_removal, "counterspells": inter.counterspells,
+            "board_wipes": inter.board_wipes, "breadth": inter.breadth,
+        },
+        "key_cards": key_cards,
+        "wincon_redundancy": wincon,
+        "bracket": {"bracket": b.bracket, "label": b.label, "plays_up": b.plays_up},
+        "verdicts": verdicts.classify_profile(a),
+    }
+    return ToolResult(data=data, card_names=frozenset(names))
+
+
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
     """What to add/cut, measured by re-simulation -- `ratings.advisor.advise`'s full
     ablation sweep, deferred out of Phase 1 (see this module's own docstring) until the
@@ -698,6 +775,17 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "get_power_profile",
+            "description": "The deck's measured Power Profile -- what it does well and poorly, "
+                            "how it wins, speed, resilience to wipes, interaction, key cards "
+                            "per role. Call FIRST for any strengths/weaknesses/observations/"
+                            "'how does it win'/'how fast'/'how resilient' question.",
+            "parameters": {"type": "object", "properties": {}, "required": []},
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "suggest_swap",
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
@@ -729,6 +817,7 @@ _TOOL_FUNCS = {
     "get_deck_stats": tool_get_deck_stats,
     "assess_card": tool_assess_card,
     "get_bracket_estimate": tool_get_bracket_estimate,
+    "get_power_profile": tool_get_power_profile,
     "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }
