@@ -27,6 +27,12 @@ const TOOL_LABELS = {
   assess_card: (a) => `Measured impact of: ${a?.name ?? '?'}`,
   check_legality: (a) => `Checked legality: ${a?.name ?? '?'}`,
   get_bracket_estimate: () => 'Ran a bracket estimate',
+  get_power_profile: (a) => (a?.compare_bracket
+    ? `Read this deck’s power profile (vs bracket ${a.compare_bracket})`
+    : 'Read this deck’s power profile'),
+  list_deck_cards: (a) => `Listed the deck’s cards${a?.role ? ` (${a.role})` : ''}`,
+  removal_coverage: () => 'Checked what the removal can and can’t answer',
+  diagnose_axis: (a) => `Diagnosed why ${a?.axis ?? 'an axis'} scores what it does`,
   suggest_swap: (a) => `Looked for a swap${a?.axis ? ` (${a.axis})` : ''}`,
   get_measured_swaps: (a) => `Read the full swap search${a?.axis ? ` (${a.axis})` : ''}`,
 }
@@ -42,6 +48,8 @@ const STARTER_PROMPTS = [
   'What bracket is this deck?',
   'What should I cut or add?',
   'Why does my curve feel bad?',
+  'What does this deck do well and poorly?',
+  'How could I make it faster or more resilient?',
 ]
 
 export default function MentorChatPanel({ jobId }) {
@@ -114,7 +122,7 @@ export default function MentorChatPanel({ jobId }) {
     if (swapRuns[axis]?.phase === 'running') return
     const set = (v) => { if (!unmountedRef.current) setSwapRuns(r => ({ ...r, [axis]: v })) }
     set({ phase: 'running', elapsedS: 0 })
-    const startedAt = Date.now()
+    let polls = 0
     try {
       const r = await fetch(`/api/deck/${jobId}/advise`, {
         method: 'POST',
@@ -135,7 +143,7 @@ export default function MentorChatPanel({ jobId }) {
         const data = await poll.json()
         if (data.status === 'done') { set({ phase: 'done' }); return }
         if (data.status === 'error') { set({ phase: 'error', detail: data.detail || 'Search failed' }); return }
-        set({ phase: 'running', elapsedS: Math.round((Date.now() - startedAt) / 1000) })
+        set({ phase: 'running', elapsedS: ++polls * 3 })
       }
     } catch {
       set({ phase: 'error', detail: 'Strength API unreachable' })
