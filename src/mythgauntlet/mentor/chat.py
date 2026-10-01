@@ -118,6 +118,12 @@ same way: only a suggest_swap result can name a weak card. When a suggestion car
 role) and is NOT evidence the card is weak -- say so plainly (it may be a theme card) and \
 never call it a weak or redundant card.
 
+For "why is my X low", "what is holding my speed back" or "how do I improve X" \
+questions, also call diagnose_axis for that axis (clock for how EARLY the deck kills) and \
+explain from its drivers: name the weak ones with their values and offer its levers as the \
+fixes. A driver marked not_applicable is never a gap. Levers name no cards, so for \
+card-level changes still call suggest_swap.
+
 For "which cards are my ramp / removal / draw", "what's in my deck" or any question \
 about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
 name cards only from its rows; its "roles" use the same role names as get_deck_stats.

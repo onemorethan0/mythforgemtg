@@ -32,7 +32,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
 from mythgauntlet.config import suite_collection_path
-from mythgauntlet.mentor import deckview, removal, verdicts
+from mythgauntlet.mentor import deckview, diagnose as diagnose_mod, removal, verdicts
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
@@ -40,6 +40,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
+from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
 
 ## `(?<![\d.])` guards the leading `-?`: without it, a mana-curve range like "2-4" scans
@@ -803,6 +804,110 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
     return ToolResult(data=data, card_names=frozenset(names))
 
 
+# D1: facts the `diagnose` table reads, all from the cached analysis plus closed-form counts
+# (no new simulation). Rates are carried as fractions AND whole percents (the gate rejects a
+# "77%" that no tool result contains -- same reason `get_power_profile` carries `*_pct`).
+_RATE_FACTS = frozenset({"goldfish_kill_rate", "keep_rate", "curve_efficiency",
+                         "commander_cast_rate", "manabase_consistency", "creature_share",
+                         "nut_kill_rate"})
+DIAGNOSE_AXES = tuple(diagnose_mod.DRIVER_TABLE)
+
+
+def _diagnose_facts(ctx: MentorContext, a: DeckAnalysis) -> dict:
+    r, res, ceil, inter = a.report, a.resilience, a.ceiling, a.interaction
+    resolved = ctx.resolved
+    identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+    nonland = [(c, q) for c, q in resolved.cards if not c.is_land]
+    nonland_n = sum(q for _c, q in nonland)
+    creatures = sum(q for c, q in nonland if "Creature" in c.type_line)
+    engines = 0
+    for c, q in nonland:
+        if "Creature" in c.type_line:
+            continue
+        roles = redundancy.card_roles(tags.analyze(c))
+        if "ramp" in roles or "draw" in roles:
+            engines += q
+    role_cards = redundancy.role_card_counts(resolved)
+    try:
+        no_answer = list(removal.coverage(resolved).get("no_answer_for", []))
+    except Exception:  # advisory: an unreadable card must not sink the whole diagnosis
+        no_answer = None
+    return {
+        "avg_kill_turn": r.avg_kill_turn, "goldfish_kill_rate": r.goldfish_kill_rate,
+        "avg_commander_turn": r.avg_commander_turn, "curve_efficiency": r.curve_efficiency,
+        "keep_rate": r.keep_rate, "avg_mulligans": r.avg_mulligans,
+        "commander_cast_rate": r.commander_cast_rate,
+        "average_mana_value": (sum(c.mana_value * q for c, q in nonland) / nonland_n
+                               if nonland_n else None),
+        "land_count": sum(q for c, q in resolved.cards if c.is_land),
+        "ramp_cards": role_cards.get("ramp", 0), "creature_count": creatures,
+        "creature_share": creatures / nonland_n if nonland_n else None,
+        "noncreature_engine_count": engines,
+        "manabase_consistency": manabase.analyze(list(resolved.cards),
+                                                 resolved.commanders).consistency,
+        "resilience_score": res.resilience_score if res is not None else None,
+        "kill_delay_turns": res.kill_delay_turns if res is not None else None,
+        "spot_removal": inter.spot_removal, "counterspells": inter.counterspells,
+        "board_wipes": inter.board_wipes, "breadth": inter.breadth,
+        "no_answer_for": no_answer,
+        "counterspell_applicable": redundancy.role_applicable("counterspell", identity),
+        "wipe_applicable": redundancy.role_applicable("wipe", identity),
+        "fast_kill_turn": ceil.fast_kill_turn, "nut_kill_rate": ceil.nut_kill_rate,
+        "has_game_ending_combo": bool(ceil.has_game_ending_combo),
+        # a deck that never goes off is a known "no", not an unmeasured fact
+        "go_off_turn": ceil.go_off_turn or False, "overrun_alpha": bool(ceil.overrun_alpha),
+    }
+
+
+def tool_diagnose_axis(ctx: MentorContext, axis: str) -> ToolResult:
+    """WHY an axis scores what it does, and what moves it: the axis's measured drivers (value,
+    direction, and a strong/typical/weak reading against the deck's bracket where the reference
+    table has the metric, fixed documented thresholds otherwise) plus fixed lever sentences keyed
+    off the weak drivers. Deterministic and cache-backed (`_analysis_for`): no new simulation,
+    so it is cheap to call before `suggest_swap`, which names the actual cards."""
+    if axis not in diagnose_mod.DRIVER_TABLE:
+        return ToolResult(data={"found": False, "message":
+                                f"unknown axis {axis!r}; choose one of: {', '.join(DIAGNOSE_AXES)}."})
+    a = _analysis_for(ctx)
+    if a.insight is None:
+        return ToolResult(data={"found": False,
+                                "message": "The deck's power profile could not be computed."})
+    facts = _diagnose_facts(ctx, a)
+    label = "Speed" if axis == "clock" else advisor.AXES[axis][1]
+    why = a.insight.axis_why.get(label, "")
+    if axis == "interaction" and not facts["counterspell_applicable"]:
+        why = _without_counterspells(why)
+    out = diagnose_mod.diagnose(axis, _r1(advisor.axis_score(a, axis)), why, facts,
+                                a.bracket.bracket)
+    for row in out["drivers"]:
+        value = row["value"]
+        if row["name"] == "counterspells" and not facts["counterspell_applicable"]:
+            row["value"] = "n/a (no blue in this deck's colour identity)"
+            row["reading"] = "not_applicable"
+        elif row["name"] == "board_wipes" and not facts["wipe_applicable"]:
+            row["value"] = "n/a (no colour in this deck's identity plays wipes)"
+            row["reading"] = "not_applicable"
+        elif row["name"] in _RATE_FACTS and isinstance(value, (int, float)) \
+                and not isinstance(value, bool):
+            row["value_pct"] = _pct(value)
+            row["value"] = round(float(value), 2)
+        elif isinstance(value, float):
+            row["value"] = round(value, 2)
+    data = {
+        "found": True, **out,
+        "bracket_basis": a.bracket.bracket,
+        "reading_guide": (
+            "Each driver is a measured fact about the deck; reading says how it compares with "
+            "typical decks (basis bracket_percentile = decks labelled with the deck's own "
+            "bracket, fixed_threshold = documented cut-offs). A 'not_applicable' driver is "
+            "never a gap. levers are the fixed fixes for the weak drivers; they name no "
+            "cards -- call suggest_swap for those."
+            + (" The clock score is how EARLY the average kill comes (higher = earlier)."
+               if axis == "clock" else "")),
+    }
+    return ToolResult(data=data)
+
+
 def tool_check_legality(ctx: MentorContext, name: str) -> ToolResult:
     """Deterministic colour-identity subset check -- this arithmetic must never be done
     by the model itself.
@@ -1020,6 +1125,30 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "diagnose_axis",
+            "description": "Why one Power Profile axis scores what it does: its measured "
+                            "drivers (each with its value and a strong/typical/weak reading "
+                            "against decks of the deck's bracket) and the fixed levers that "
+                            "move it. Cheap (no new simulation). Call it for 'why is my X "
+                            "low', 'what is holding my speed back' or 'how do I improve X' "
+                            "BEFORE suggest_swap, which then names the actual cards. Use "
+                            "clock for how EARLY the deck kills.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "axis": {
+                        "type": "string",
+                        "enum": list(DIAGNOSE_AXES),
+                        "description": "the axis to explain",
+                    },
+                },
+                "required": ["axis"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "suggest_swap",
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
@@ -1059,6 +1188,7 @@ _TOOL_FUNCS = {
     "get_power_profile": tool_get_power_profile,
     "list_deck_cards": tool_list_deck_cards,
     "removal_coverage": tool_removal_coverage,
+    "diagnose_axis": tool_diagnose_axis,
     "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }

@@ -890,6 +890,69 @@ def test_suggest_swap_schema_offers_the_clock_axis():
     assert set(enum) == set(advisor.AXES)   # the enum cannot drift from the advisor again
 
 
+# ── diagnose_axis (PLAN_MENTOR_ADHOC D1) ────────────────────────────────────────────
+
+def test_diagnose_axis_covers_every_axis_with_licensed_numbers(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    bracket = call_tool(ctx, "get_power_profile", {}).data["bracket"]["bracket"]
+    for axis in tools_mod.DIAGNOSE_AXES:
+        result = call_tool(ctx, "diagnose_axis", {"axis": axis})
+        d = result.data
+        assert d["found"] is True and d["axis"] == axis
+        assert d["drivers"] and isinstance(d["levers"], list)
+        assert d["bracket_basis"] == bracket
+        for row in d["drivers"]:
+            assert row["reading"] in {"strong", "typical", "weak", "unknown", "not_applicable"}
+            assert row["basis"] in {"bracket_percentile", "fixed_threshold", "none"}
+    assert len(calls) == 1, "diagnose_axis must read the cached analysis, not re-simulate"
+
+
+def test_diagnose_axis_facts_cover_every_driver_fact(make_card, empty_store):
+    """Lock-step: every fact the table reads is one `_diagnose_facts` supplies (a driver whose
+    fact is never produced would read 'unknown' forever and nobody would notice)."""
+    from mythgauntlet.mentor import diagnose as dg
+    from mythgauntlet.mentor import tools as tools_mod
+    ctx = _ctx(make_card, empty_store)
+    facts = tools_mod._diagnose_facts(ctx, tools_mod._analysis_for(ctx))
+    needed = {d.fact for drivers in dg.DRIVER_TABLE.values() for d in drivers}
+    needed |= {lv.requires for lv in dg.LEVERS if lv.requires}
+    assert needed <= set(facts), needed - set(facts)
+
+
+def test_diagnose_axis_rates_carry_a_percent_and_values_are_rounded(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    d = call_tool(ctx, "diagnose_axis", {"axis": "consistency"}).data
+    by = {row["name"]: row for row in d["drivers"]}
+    assert isinstance(by["keep_rate"]["value_pct"], int)
+    assert abs(by["keep_rate"]["value_pct"] - by["keep_rate"]["value"] * 100) <= 1
+    assert by["keep_rate"]["value"] == round(by["keep_rate"]["value"], 2)
+
+
+def test_diagnose_axis_marks_counterspells_not_applicable_without_blue(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)             # a mono-green deck
+    d = call_tool(ctx, "diagnose_axis", {"axis": "interaction"}).data
+    by = {row["name"]: row for row in d["drivers"]}
+    assert by["counterspells"]["reading"] == "not_applicable"
+    assert str(by["counterspells"]["value"]).startswith("n/a")
+    assert not any("counterspell" in t.lower() for t in d["levers"])
+    assert "counters" not in d["why"]
+
+
+def test_diagnose_axis_unknown_axis_is_a_graceful_error(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    assert call_tool(ctx, "diagnose_axis", {"axis": "pod"}).data["found"] is False
+    assert call_tool(ctx, "diagnose_axis", {}).data["found"] is False     # missing arg
+
+
+def test_diagnose_axis_schema_offers_every_axis():
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS, DIAGNOSE_AXES
+    schema = next(t for t in TOOL_SCHEMAS if t["function"]["name"] == "diagnose_axis")
+    assert schema["function"]["parameters"]["properties"]["axis"]["enum"] == list(DIAGNOSE_AXES)
+    assert "clock" in DIAGNOSE_AXES
+
+
 # ── C-residual: counterspells are not a gap without blue; suggest_swap states where it stands ──
 
 def test_power_profile_does_not_list_counterspells_for_a_deck_without_blue(make_card, empty_store):
