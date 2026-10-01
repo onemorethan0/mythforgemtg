@@ -128,6 +128,8 @@ speed) -- and answer with its measured swap or its "no measured improvement" res
 
 For any "what should I cut/add", "weakest cards", "make it faster" or "improve X" question, call get_measured_swaps FIRST, with the axis the question is about (clock for "faster" / "speed up" / "quicker"; the same routing rules as suggest_swap): it returns the swaps from the full, deep swap search the player already ran on the deck page. Treat its result exactly as you would suggest_swap's (same fields, same "cut_is_redundant" rule, same "I didn't find a measured improvement" wording when improving_swap_found is false). Only when it reports available false, call suggest_swap instead, tell the player that quick in-chat search is shallow, and add that running Advise on the deck page for that axis (it takes a few minutes) gives a much deeper search.
 
+A swap is measured on ONE axis only: the axis named in its result (clock re-simulates how early the deck kills, resilience the wipe score). Describe its effect ONLY on that axis, from its own before/after numbers. NEVER say or imply that the swap leaves ANOTHER axis unharmed, unaffected or "maintained" ("cutting it doesn't hurt your interaction or resilience", "while maintaining its consistency"): nothing simulated that, so it is an invented claim. If the other axes matter, say you only measured the one and offer to measure the other. When the question names TWO goals ("faster or more resilient", "speed it up and survive wipes"), address EACH: look up a swap for each axis (get_measured_swaps, or suggest_swap when it reports available false, once per axis: clock for faster, resilience for wipes), answer each from its own result, and if one axis found no measured improvement say so for that axis alone. Do not close with generic card-type advice that no tool backed ("consider adding a card that provides a strong, scalable win condition"): end after the measured answer, or offer a measurement.
+
 Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
 players labelled with a bracket (its "standing": top_quarter / above_median / \
 below_median / bottom_quarter, already oriented so a top standing is always the better \
@@ -330,6 +332,55 @@ def _measured_first(ctx, args: dict, tool_trace: list):
     return call_tool(ctx, "get_measured_swaps", {"axis": axis})
 
 
+# A question naming TWO goals ("How could I make it faster or more resilient?") was answered for
+# speed only (live, 2026-10-01): the prompt says "address each" and qwen3:14b ignores it, so, like
+# the swap nudge, one deterministic nudge per turn. Narrow on purpose: the question must already be a
+# swap question (`_wants_a_swap`) AND name at least two DIFFERENT axes by these words; each axis is
+# the one the swap tools take (clock for faster, resilience for wipes). "removal" and "fast" alone are
+# not goals: they name cards / describe the deck, and a false dual-goal only costs extra lookups.
+_GOAL_AXIS_RES: dict[str, re.Pattern] = {
+    "clock": re.compile(r"\b(?:faster|quicker|speed(?:ing)?\s+up|speedier)\b", re.IGNORECASE),
+    "resilience": re.compile(
+        r"\b(?:resilien\w*|survive\s+(?:a\s+)?(?:board\s+)?(?:wipes?|sweepers?|wraths?)|"
+        r"(?:board\s+)?wipes?|sweepers?)\b", re.IGNORECASE),
+    "interaction": re.compile(r"\b(?:more\s+interact\w*|interactive|interaction)\b", re.IGNORECASE),
+    "consistency": re.compile(r"\b(?:consisten\w*)\b", re.IGNORECASE),
+}
+
+
+def _goal_axes(question: str) -> list[str]:
+    """The swap-tool axes a swap question names, in a fixed order; two or more = a dual-goal
+    question. Empty unless the question is a swap question at all."""
+    if not _wants_a_swap(question):
+        return []
+    return [ax for ax, pat in _GOAL_AXIS_RES.items() if pat.search(question or "")]
+
+
+def _axes_looked_up(tool_trace: list) -> set[str]:
+    """Axes a swap tool was called for this turn (an unavailable get_measured_swaps counts: the
+    lookup ran, and the suggest_swap fallback is the swap nudge's job)."""
+    return {t.args.get("axis") for t in tool_trace
+            if t.name in ("suggest_swap", "get_measured_swaps") and t.args.get("axis")}
+
+
+def _missing_goal_axes(question: str, tool_trace: list) -> list[str]:
+    axes = _goal_axes(question)
+    if len(axes) < 2:
+        return []
+    done = _axes_looked_up(tool_trace)
+    return [ax for ax in axes if ax not in done]
+
+
+def _dual_goal_nudge(missing: list[str]) -> str:
+    return (
+        "The player named more than one goal, and you have not looked up a swap for "
+        + ", ".join(missing) + ". Call get_measured_swaps now with axis "
+        + " and then ".join(missing) + " (if it reports available false, call suggest_swap for "
+        "that axis), then answer EACH goal from its own result. Describe each swap only on the "
+        "axis it was measured on."
+    )
+
+
 def _has_swap_answer(tool_trace: list) -> bool:
     """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
     full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
@@ -414,6 +465,7 @@ def ask(
 
     nudged = False
     swap_nudged = False
+    dual_nudged = False
     for _ in range(MAX_TOOL_TURNS):
         msg = _post_chat(messages, model=model, temperature=temperature,
                          max_tokens=_limits(tool_trace, max_tokens)[0])
@@ -436,6 +488,13 @@ def ask(
                 messages.append({"role": "assistant", "content": draft})
                 messages.append({"role": "user", "content": _SWAP_NUDGE})
                 continue
+            if not dual_nudged:
+                missing = _missing_goal_axes(question, tool_trace)
+                if missing:
+                    dual_nudged = True
+                    messages.append({"role": "assistant", "content": draft})
+                    messages.append({"role": "user", "content": _dual_goal_nudge(missing)})
+                    continue
             break
         messages.append(msg)
         for tc in tool_calls:
