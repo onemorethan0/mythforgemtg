@@ -78,6 +78,30 @@ def _resilience_score(a: DeckAnalysis) -> float:
     return a.resilience.resilience_score if a.resilience is not None else 0.0
 
 
+def _clock_score(a: DeckAnalysis) -> float:
+    """EARLINESS of the goldfish kill, 0-100, higher = earlier.
+
+    `speed` is the SHARE of games that kill within the horizon -- not how early: Shelob reads
+    speed 96.7 with a turn-9 clock, so no swap can ever raise it and "make it faster" had no
+    axis to target (a ceiling swap whose own brief showed kill_turn 9.32 -> 9.45, i.e. SLOWER,
+    was reported for it). This is the missing measure:
+
+        clock = 100 * (horizon - avg_kill_turn) / horizon      clamped to [0, 100]
+
+    `horizon` is the analysis horizon (`report.turns`, 12 by default) and `avg_kill_turn` the
+    mean kill turn OVER THE GAMES THAT KILL; no kill at all scores 0. A turn-1 average is ~92,
+    turn 6 is 50, the horizon is 0. It is deliberately a LENS for "faster", not a profile axis
+    that competes with the others (see `PROFILE_AXES` / `weakest_axis`): on this scale the
+    median corpus deck (avg kill ~10.1 of 12) scores ~16, so it would be "the weakest axis"
+    of nearly every deck and say nothing about it.
+    """
+    turn = a.report.avg_kill_turn
+    horizon = a.report.turns
+    if turn is None or horizon <= 0:
+        return 0.0
+    return max(0.0, min(100.0, 100.0 * (horizon - turn) / horizon))
+
+
 # axis name -> (extractor, label). Every score is ~0-100, higher = better, so they compare.
 AXES: dict[str, tuple[Callable[[DeckAnalysis], float], str]] = {
     "consistency": (lambda a: a.report.consistency_score, "Consistency"),
@@ -85,7 +109,14 @@ AXES: dict[str, tuple[Callable[[DeckAnalysis], float], str]] = {
     "resilience":  (_resilience_score, "Resilience"),
     "interaction": (lambda a: a.interaction.score, "Interaction"),
     "ceiling":     (lambda a: a.ceiling.score, "Ceiling"),
+    "clock":       (_clock_score, "Clock"),
 }
+
+# The axes that describe the deck's PROFILE and compete for "weakest": everything except the
+# `clock` lens. `weakest_axis`, `card_impact`'s per-axis movement sweep and the corpus
+# reference all use this, so adding `clock` to AXES (so `advise`/`suggest_swap` can target it)
+# changes none of their behaviour.
+PROFILE_AXES: tuple[str, ...] = tuple(ax for ax in AXES if ax != "clock")
 
 
 def axis_score(analysis: DeckAnalysis, axis: str) -> float:
@@ -93,9 +124,13 @@ def axis_score(analysis: DeckAnalysis, axis: str) -> float:
 
 
 def weakest_axis(analysis: DeckAnalysis) -> str:
-    """The lowest-scoring measurable axis (skips resilience if it wasn't computed)."""
+    """The lowest-scoring measurable PROFILE axis (skips resilience if it wasn't computed).
+
+    Never returns `clock`: it is a lens for "make it faster", on a scale where nearly every
+    deck scores low (see `_clock_score`), so letting it compete would make it the weakest
+    axis of almost every deck. A caller who wants it asks for it by name."""
     candidates = [
-        ax for ax in AXES if ax != "resilience" or analysis.resilience is not None
+        ax for ax in PROFILE_AXES if ax != "resilience" or analysis.resilience is not None
     ]
     return min(candidates, key=lambda ax: axis_score(analysis, ax))
 
@@ -453,6 +488,14 @@ _AXIS_NOISE_FLOOR = {
     # positive resilience delta passed, so resilience advice was unfiltered noise.
     "resilience": 1.06,
     "interaction": 0.0,
+    # `clock` is horizon-relative (100 * (turns - avg_kill_turn) / turns), so its spread depends
+    # on the horizon it is read at: measured 2026-09-30 with `scripts/axis_noise.py --turns N`
+    # (8 corpus decks x 8 seeds, runs=150): 0.71 at turns=12 (the mentor / analyze / advise
+    # default, DEFAULT_ANALYZE_TURNS) and 1.10 at turns=8. 0.71 is baked because the clock is
+    # only ever targeted at the default horizon; 0.71 points is ~0.09 of a turn, so in practice
+    # the caller's own `min_delta` (default 1.0, ~0.12 turn) is the binding floor. The other
+    # floors above were measured at turns=8.
+    "clock": 0.71,
 }
 
 

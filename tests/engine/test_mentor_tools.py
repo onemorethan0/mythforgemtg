@@ -822,3 +822,12 @@ def test_get_deck_stats_shares_the_analysis_cache(make_card, empty_store, monkey
     call_tool(ctx, "get_deck_stats", {})
     call_tool(ctx, "get_power_profile", {})
     assert len(calls) == 1
+
+
+def test_suggest_swap_schema_offers_the_clock_axis():
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS
+    schema = next(t for t in TOOL_SCHEMAS if t["function"]["name"] == "suggest_swap")
+    enum = schema["function"]["parameters"]["properties"]["axis"]["enum"]
+    assert "clock" in enum
+    from mythgauntlet.ratings import advisor
+    assert set(enum) == set(advisor.AXES)   # the enum cannot drift from the advisor again

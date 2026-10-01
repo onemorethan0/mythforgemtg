@@ -543,9 +543,11 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
                                 "message": "The deck's power profile could not be computed."})
     r, res, ceil, pod, inter, b = a.report, a.resilience, a.ceiling, a.pod, a.interaction, a.bracket
     why = ins.axis_why
+    # `clock` is a lens for "faster" (see advisor.PROFILE_AXES), not a profile axis: its numbers
+    # are the `clock` block below, so it stays out of `axes` (and out of vs_bracket's axes).
     axes = {
-        ax: {"score": _r1(advisor.axis_score(a, ax)), "why": why.get(label, "")}
-        for ax, (_fn, label) in advisor.AXES.items()
+        ax: {"score": _r1(advisor.axis_score(a, ax)), "why": why.get(advisor.AXES[ax][1], "")}
+        for ax in advisor.PROFILE_AXES
     }
     axes["pod"] = {"score": _r1(pod.score), "why": why.get("Pod (multiplayer)", "")}
     wincon = _to_jsonable(a.wincon_redundancy)
@@ -957,16 +959,19 @@ TOOL_SCHEMAS: list[dict] = [
                             "'what should I cut', 'what should I add', 'what are my weakest "
                             "cards' or 'how can I improve / make it faster' questions -- call "
                             "it even after get_power_profile, with the axis the question is "
-                            "about (speed for 'faster'); only its result can name a card to "
+                            "about (clock for 'faster' / 'speed up' / 'quicker'); only its result can name a card to "
                             "change. Slower than the other tools -- several re-simulations.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "axis": {
                         "type": "string",
-                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling"],
+                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling",
+                                 "clock"],
                         "description": "which Power Profile axis to improve; omit to target "
-                                       "the deck's own weakest axis",
+                                       "the deck's own weakest axis. clock = how EARLY the "
+                                       "deck kills (use it for 'faster' / 'speed up' / "
+                                       "'quicker'); speed = how often it kills at all",
                     },
                 },
                 "required": [],

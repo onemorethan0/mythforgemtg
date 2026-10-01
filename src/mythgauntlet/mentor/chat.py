@@ -105,7 +105,8 @@ lacks it or suggest adding cards for it. For "how do I improve / speed up / make
 more resilient" questions, name the weakest axis and its "why" from the profile, then \
 you MUST call suggest_swap in the same turn, BEFORE you write your answer -- never \
 write "I'll look into your collection" and stop; make the call. Pass suggest_swap the \
-axis the player asked about (speed for "faster", resilience for wipes) and answer the \
+axis the player asked about (clock for "faster" / "speed up" / "quicker" -- it measures \
+how EARLY the deck kills, which the speed axis does not; resilience for wipes) and answer the \
 question they actually asked FIRST -- for a resilience question, open with \
 verdicts.resilience and its score -- before any swap. Weakest-card questions work the \
 same way: only a suggest_swap result can name a weak card.

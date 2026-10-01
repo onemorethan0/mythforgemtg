@@ -164,7 +164,23 @@ def _cut_recommendations(text: str, deck_names) -> list[str]:
     return found
 
 
-def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: str):
+def _slower_swaps(text: str, suggestions: list[dict]) -> list[str]:
+    """Suggestions the reply NAMES (by add) whose own brief shows the kill getting no earlier
+    (`kill_turn_after >= kill_turn_before`) -- the Phase D0 failure: a ceiling swap was
+    reported for "make it faster" although its brief read 9.32 -> 9.45 turns."""
+    out = []
+    for sug in suggestions:
+        brief = sug.get("brief") or {}
+        before, after = brief.get("kill_turn_before"), brief.get("kill_turn_after")
+        if before is None or after is None or after < before:
+            continue
+        if names_in(text, [sug["add"]]):
+            out.append(f"{sug['add']!r} (kill turn {before:.2f} -> {after:.2f})")
+    return out
+
+
+def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: str,
+                       require_earlier_kill: bool = False):
     calls = _swap_calls(reply)
     note = ""
     if calls:
@@ -178,6 +194,11 @@ def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: s
         measured = _measured_suggestions(cache[cache_key])
         note = " (suggest_swap not called; graded against the tool's own result)"
     text = reply.text
+    if measured and require_earlier_kill:
+        slower = _slower_swaps(text, measured)
+        if slower:
+            return False, ("reports a swap that does not make the deck kill earlier: "
+                           + "; ".join(slower) + note)
     if measured:
         top = measured[0]
         add_ok = bool(names_in(text, [top["add"]]))
@@ -233,7 +254,7 @@ def _g_cards(reply, truth):
 
 
 def _g_faster(reply, truth):
-    return _grade_swap_answer(reply, truth, "speed", "speed")
+    return _grade_swap_answer(reply, truth, "clock", "clock", require_earlier_kill=True)
 
 
 def _g_weakest(reply, truth):

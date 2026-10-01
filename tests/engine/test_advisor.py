@@ -441,3 +441,70 @@ def test_a_fetchland_that_finds_nothing_here_is_not_a_candidate(land, text, iden
             self.name, self.oracle_text = name, oracle_text
 
     assert _land_is_live(_Card(land, text), identity) is live
+
+
+# --- the `clock` axis (PLAN_MENTOR_ADHOC D0) ---------------------------------------------
+
+
+def _stub_analysis(avg_kill_turn, turns=12, *, consistency=70.0, kill_rate=0.9,
+                   resilience=80.0, interaction=60.0, ceiling=30.0):
+    from types import SimpleNamespace as NS
+    return NS(
+        report=NS(avg_kill_turn=avg_kill_turn, turns=turns, consistency_score=consistency,
+                  goldfish_kill_rate=kill_rate),
+        resilience=NS(resilience_score=resilience),
+        interaction=NS(score=interaction), ceiling=NS(score=ceiling),
+    )
+
+
+@pytest.mark.parametrize("turn,expected", [
+    (1.0, 100.0 * 11 / 12), (6.0, 50.0), (9.32, 100.0 * (12 - 9.32) / 12), (12.0, 0.0),
+])
+def test_clock_score_is_earliness_of_the_kill(turn, expected):
+    """Monotone DEcreasing in avg_kill_turn: 100 * (horizon - avg_kill_turn) / horizon."""
+    assert advisor.axis_score(_stub_analysis(turn), "clock") == pytest.approx(expected)
+
+
+def test_clock_score_edges():
+    assert advisor.axis_score(_stub_analysis(None), "clock") == 0.0      # never kills
+    assert advisor.axis_score(_stub_analysis(15.0), "clock") == 0.0      # clamped, not negative
+    assert advisor.axis_score(_stub_analysis(0.0), "clock") == 100.0
+    # horizon-relative: the same turn 6 is a different fraction of an 8-turn horizon
+    assert advisor.axis_score(_stub_analysis(6.0, turns=8), "clock") == pytest.approx(25.0)
+
+
+def test_clock_is_not_speed():
+    """The reason the axis exists: speed (kill RATE) can be ~97 while the clock is late."""
+    a = _stub_analysis(9.32, kill_rate=0.967)
+    assert advisor.axis_score(a, "speed") == pytest.approx(96.7)
+    assert advisor.axis_score(a, "clock") < 25.0
+
+
+def test_weakest_axis_never_returns_clock():
+    """Decision (D0): `clock` is a lens for "faster", not a competing profile axis. On this
+    scale the median deck scores ~16, so letting it compete would make it the weakest axis
+    of nearly every deck. Pinned with a deck whose clock is the lowest number by far."""
+    a = _stub_analysis(11.5, consistency=60.0, kill_rate=0.8, resilience=70.0,
+                       interaction=65.0, ceiling=50.0)
+    assert advisor.axis_score(a, "clock") < min(
+        advisor.axis_score(a, ax) for ax in advisor.PROFILE_AXES)
+    assert advisor.weakest_axis(a) != "clock"
+    assert "clock" not in advisor.PROFILE_AXES
+    assert "clock" in advisor.AXES
+
+
+def test_clock_axis_has_a_measured_noise_floor():
+    assert advisor._AXIS_NOISE_FLOOR["clock"] > 0.0
+    # scales with the run count like every other measured floor
+    assert advisor._noise_floor("clock", 60) > advisor._noise_floor("clock", 150)
+
+
+def test_advise_targets_clock_and_only_reports_an_earlier_kill(deck, store, make_card):
+    candidates = [_creature(make_card, f"Owned {i}", "{G}", 4000 + i) for i in range(4)]
+    rep = advisor.advise(deck, SimConfig(runs=60, turns=8, seed=1), store, candidates,
+                         axis="clock", max_eval=4)
+    assert rep.axis == "clock" and rep.axis_label == "Clock"
+    for s in rep.suggestions:
+        # A reported "faster" swap must actually kill sooner by its own brief.
+        assert s.after > s.before
+        assert s.brief.kill_turn_after < s.brief.kill_turn_before
