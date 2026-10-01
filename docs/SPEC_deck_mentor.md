@@ -115,6 +115,11 @@ must trace back to a tool result from *this turn* — this is the literal genera
 | `get_bracket_estimate()` | (2026-09-15) `ratings.analysis.analyze_deck` → `ratings.bracket.estimate_bracket`, in-process | A |
 | `assess_card(name)` | `ratings.card_impact.assess_card`, in-process | A |
 | `suggest_swap(axis?)` | (2026-09-15, un-deferred) `ratings.advisor.advise` over the player's OWN collection, in-process | A |
+| `get_power_profile(compare_bracket?)` | (round 8) `_analysis_for` -> axis scores + `verdicts` (resilient/moderate/vulnerable, fast/slow...), archetype, win route, key cards, `vs_bracket` standings (`ratings/reference`) | A |
+| `list_deck_cards(role?)` | (round 8) `mentor/deckview.py`: every card with qty, MV, type, roles from `redundancy.card_roles(tags.analyze(card))` | A |
+| `removal_coverage()` | (round 8) `mentor/removal.py`: what the deck's removal can and cannot answer, clause by clause, with restrictions | A |
+| `diagnose_axis(axis)` | (round 8) `mentor/diagnose.py`: measured drivers (strong/typical/weak vs the deck's bracket) and fixed levers for one axis; no new simulation | A |
+| `get_measured_swaps(axis)` | (round 8, D2) the cached result of the full Advise search Forge ran for this deck + collection (same fields and licensing as `suggest_swap`), or `available: false`; never simulates | A |
 | `check_legality(name)` | deterministic colour-identity subset check (campaign round 6) | A |
 | `lookup_card(name)` | `CardDb` exact/fuzzy | A/B (oracle text) |
 | `lookup_rulings(name)` | Phase 0 rulings corpus | B |

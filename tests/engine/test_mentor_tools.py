@@ -10,6 +10,18 @@ from mythgauntlet.mentor.tools import (
 )
 from mythgauntlet.sim.tier0 import SimConfig
 
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _fresh_analysis_cache():
+    """`_analysis_for` memoises per process; tests that build equal decks must not see each
+    other's cached analysis (or a monkeypatched counter)."""
+    from mythgauntlet.mentor import tools as tools_mod
+    tools_mod._analysis_cache_clear()
+    yield
+    tools_mod._analysis_cache_clear()
+
 
 # ── extraction helpers ──────────────────────────────────────────────────────────────
 
@@ -192,6 +204,33 @@ def test_get_deck_stats_reports_curve_and_roles(make_card, empty_store):
     assert result.data["curve"]["nonland_count"] == 1  # Forest is a land, excluded
 
 
+def test_get_deck_stats_roles_carry_a_card_count_and_a_unit(make_card, empty_store):
+    """A7: `supply` is a strength score (a board wipe scores 3.0), so one wipe printed as
+    "supply 3.0" was narrated as three wipes. `cards` is the real count; `unit` names the
+    scale of supply/target."""
+    from mythgauntlet.mentor import tools as tools_mod
+    commander = make_card("Test Commander", type_line="Legendary Creature — Human",
+                           mana_cost="{2}{G}", color_identity=("G",))
+    wrath = make_card("Mass Wrath", type_line="Sorcery", mana_cost="{2}{W}{W}",
+                       oracle_text="Destroy all creatures.", color_identity=("W",))
+    rock = make_card("Rock of Ramping", type_line="Artifact", oracle_text="{T}: Add {G}.",
+                      produced_mana=("G",), mana_cost="{2}")
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[commander],
+                            cards=[(wrath, 1), (rock, 2), (forest, 30)], missing=[])
+    ctx = MentorContext(card_db=CardDb([commander, wrath, rock, forest]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert roles["wipe"]["cards"] == 1 and roles["wipe"]["supply"] == 3.0
+    assert roles["ramp"]["cards"] == 2            # quantity-weighted
+    assert all(r["unit"] == "strength" for r in roles.values())
+    assert roles["counterspell"]["cards"] == 0     # a target with no supply still reports a count
+    # the commander is excluded, matching role_supply
+    assert sum(r["cards"] for r in roles.values()) == 3
+
+
 def test_get_deck_stats_reports_land_count(make_card, empty_store):
     """Found live 2026-09-15 (mentor bench, real deck): asked 'how many lands am I
     running', the model had no licensed total to cite and either fabricated one by
@@ -328,6 +367,123 @@ def test_get_bracket_estimate_licenses_game_changer_names(make_card, empty_store
     assert result.data["bracket"] >= 3
 
 
+# ── _analysis_for cache (PLAN_MENTOR_ADHOC A1) ─────────────────────────────────────
+
+def _count_analyze(monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    real = tools_mod.analyze_deck
+    calls = []
+
+    def counting(*a, **kw):
+        calls.append(kw)
+        return real(*a, **kw)
+
+    monkeypatch.setattr(tools_mod, "analyze_deck", counting)
+    return calls
+
+
+def test_analysis_for_runs_the_simulation_once_per_deck(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    first = call_tool(ctx, "get_bracket_estimate", {})
+    second = call_tool(ctx, "get_bracket_estimate", {})
+    assert len(calls) == 1
+    assert calls[0]["run_resilience"] is True   # one entry must serve the profile tool too
+    assert first.data == second.data
+
+
+def test_analysis_for_is_keyed_on_the_deck_and_the_sim_config(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    from dataclasses import replace
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    tools_mod._analysis_for(ctx)
+    tools_mod._analysis_for(ctx)
+    assert len(calls) == 1
+    # a different run count is a different measurement
+    tools_mod._analysis_for(replace(ctx, cfg=SimConfig(turns=5, runs=11, seed=1)))
+    assert len(calls) == 2
+    # a different decklist is a different deck
+    other = _ctx(make_card, empty_store)
+    other.resolved.cards.append((make_card("Extra Rock", type_line="Artifact", mana_cost="{1}"), 1))
+    tools_mod._analysis_for(other)
+    assert len(calls) == 3
+
+
+def test_analysis_cache_is_bounded(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    from dataclasses import replace
+    _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    for runs in range(10, 10 + tools_mod._ANALYSIS_CACHE_MAX + 3):
+        tools_mod._analysis_for(replace(ctx, cfg=SimConfig(turns=5, runs=runs, seed=1)))
+    assert len(tools_mod._ANALYSIS_CACHE) == tools_mod._ANALYSIS_CACHE_MAX
+
+
+# ── get_power_profile (PLAN_MENTOR_ADHOC A2) ────────────────────────────────────────
+
+_PROFILE_KEYS = {
+    "found", "archetype", "gameplan", "pod_read", "strengths", "weaknesses", "axes",
+    "weakest_axis", "clock", "resilience", "interaction_counts", "key_cards",
+    "wincon_redundancy", "bracket", "verdicts", "bracket_reference",
+}
+
+
+def test_get_power_profile_returns_every_top_level_key(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    assert data["found"] is True
+    assert _PROFILE_KEYS <= set(data)
+    assert set(data["axes"]) == {"consistency", "speed", "resilience", "interaction", "ceiling", "pod"}
+    for ax in data["axes"].values():
+        assert {"score", "why"} <= set(ax) <= {"score", "why", "vs_bracket"}
+    assert data["weakest_axis"] in data["axes"]
+    assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction", "archetype"}
+    assert set(data["bracket"]) == {"bracket", "label", "plays_up"}
+    assert set(data["interaction_counts"]) == {"spot_removal", "counterspells", "counterspells_applicable", "board_wipes", "breadth", "breadth_max"}
+    assert data["resilience"]["score"] == data["axes"]["resilience"]["score"]
+
+
+def test_get_power_profile_licenses_key_cards_and_commanders(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    result = call_tool(ctx, "get_power_profile", {})
+    named = {n for k in result.data["key_cards"] for n in k["cards"]}
+    assert "Rock of Ramping" in named
+    assert named <= result.card_names
+    assert "Test Commander" in result.card_names
+
+
+def test_get_power_profile_shares_the_analysis_cache(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    call_tool(ctx, "get_power_profile", {})
+    call_tool(ctx, "get_bracket_estimate", {})
+    call_tool(ctx, "get_power_profile", {})
+    assert len(calls) == 1
+
+
+def test_get_power_profile_rates_also_come_as_percents(make_card, empty_store):
+    """Kess: the model narrated goldfish_kill_rate 0.5 as "50%" and the gate rejected the
+    honest conversion for citing 50. The percent form is licensed by carrying it."""
+    from mythgauntlet.mentor.tools import _pct
+    ctx = _ctx(make_card, empty_store)
+    clock = call_tool(ctx, "get_power_profile", {}).data["clock"]
+    for key in ("goldfish_kill_rate", "commander_cast_rate", "keep_rate", "curve_efficiency"):
+        # the fraction is rounded to 1 dp, the percent is not: they agree within rounding
+        assert abs(clock[key + "_pct"] - clock[key] * 100) <= 5
+        assert isinstance(clock[key + "_pct"], int)
+    assert _pct(0.5) == 50 and _pct(None) is None
+    result = call_tool(ctx, "get_power_profile", {})
+    assert float(clock["keep_rate_pct"]) in result.numbers
+
+
+def test_get_power_profile_scores_are_rounded_to_one_decimal(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    for ax in data["axes"].values():
+        assert ax["score"] == round(ax["score"], 1)
+
+
 # ── suggest_swap (2026-09-15) ───────────────────────────────────────────────────────
 # Deferred out of Phase 1 on purpose (see tools.py's module docstring) until the tool
 # loop was proven live across the 6-round campaign in MENTOR_HANDOFF.md. Suggests ONLY
@@ -418,6 +574,48 @@ def test_suggest_swap_returns_a_real_measured_swap(make_card, empty_store, monke
     assert top["after"] > result.data["baseline"]
     assert "Owned Removal" in result.card_names
     assert top["cut"] in result.card_names
+    # A4: the pool head is not advice -- only each suggestion's own cut remains.
+    assert "cut" not in result.data
+    assert result.data["improving_swap_found"] is True
+
+
+def test_suggest_swap_empty_result_names_no_card_and_says_so(make_card, empty_store, monkeypatch, tmp_path):
+    """PLAN_MENTOR_ADHOC A4 (found on Shelob): an empty search still carried a top-level
+    `cut` (the head of the cut pool) that the mentor narrated as advice -- it recommended
+    cutting the deck's own theme card from a result that found NO improving swap. An empty
+    result must license no card name and carry no `cut`/`suggestions` to read as advice."""
+    from mythgauntlet.mentor import tools as tools_mod
+
+    cmdr = make_card("Test Commander", mana_cost="{2}{G}",
+                      type_line="Legendary Creature — Elf", color_identity=("G",))
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+
+    def _bear(name, rank):
+        c = make_card(name, mana_cost="{1}{G}", type_line="Creature — Bear",
+                      color_identity=("G",), edhrec_rank=rank)
+        c.power, c.toughness = "2", "2"
+        return c
+
+    in_deck = _bear("Popular Bear", 500)
+    other = _bear("Owned Bear", 4000)   # identical to a deck card: cannot improve interaction
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(forest, 36), (in_deck, 63)], missing=[])
+    ctx = MentorContext(card_db=CardDb([cmdr, forest, in_deck, other]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=40, seed=3), store=empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Owned Bear\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    result = call_tool(ctx, "suggest_swap", {"axis": "interaction"})
+    d = result.data
+    assert d["found"] is True and d["improving_swap_found"] is False
+    assert "cut" not in d and "suggestions" not in d
+    assert result.card_names == frozenset()
+    assert d["axis"] == "interaction" and d["evaluated"] >= 1
+    assert "none beat the noise floor" in d["message"]
+    assert "No measured swap to recommend" in d["message"]
 
 
 def test_suggest_swap_bad_axis_returns_a_graceful_error(make_card, empty_store, monkeypatch, tmp_path):
@@ -439,3 +637,447 @@ def test_suggest_swap_bad_axis_returns_a_graceful_error(make_card, empty_store, 
                           resolved=ctx.resolved, cfg=ctx.cfg, store=ctx.store)
     result = call_tool(ctx2, "suggest_swap", {"axis": "not_a_real_axis"})
     assert result.data["found"] is False
+
+
+# ── list_deck_cards / deckview (PLAN_MENTOR_ADHOC B1) ───────────────────────────────
+
+def _deck_view_ctx(make_card, empty_store):
+    commander = make_card("Test Commander", type_line="Legendary Creature — Human",
+                           mana_cost="{2}{G}", color_identity=("G",))
+    ramp = make_card("Rock of Ramping", type_line="Artifact",
+                      oracle_text="{T}: Add {G}.", produced_mana=("G",), mana_cost="{2}")
+    wipe = make_card("Sweeper of Doom", type_line="Sorcery", mana_cost="{2}{B}{B}",
+                      oracle_text="Destroy all creatures.")
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+    db = CardDb([commander, ramp, wipe, forest])
+    resolved = ResolvedDeck(
+        deck=Deck(name="t"), commanders=[commander],
+        cards=[(ramp, 1), (wipe, 1), (forest, 20), (forest, 15)], missing=[],
+    )
+    return MentorContext(card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+                         cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+
+
+def test_deck_card_rows_shape_order_and_roles(make_card, empty_store):
+    from mythgauntlet.mentor.deckview import deck_card_rows
+    rows = deck_card_rows(_deck_view_ctx(make_card, empty_store).resolved)
+    assert [r["name"] for r in rows] == ["Test Commander", "Rock of Ramping",
+                                         "Sweeper of Doom", "Forest"]
+    cmdr, ramp, wipe, forest = rows
+    assert cmdr["commander"] is True and cmdr["qty"] == 1 and "commander" not in ramp
+    assert ramp["roles"] == ["ramp"] and ramp["mana_value"] == 2
+    assert wipe["roles"] == ["wipe"] and wipe["type_line"] == "Sorcery"
+    assert forest["roles"] == ["land"] and forest["qty"] == 35   # duplicate rows merged
+    assert set(ramp) == {"name", "qty", "mana_value", "type_line", "roles"}
+
+
+def test_deck_card_rows_never_merges_a_commander_with_a_same_named_card(make_card):
+    from mythgauntlet.mentor.deckview import deck_card_rows
+    c = make_card("Twin", type_line="Legendary Creature — Elf")
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[c], cards=[(c, 1)], missing=[])
+    rows = deck_card_rows(resolved)
+    assert len(rows) == 2 and rows[0]["commander"] is True and rows[1]["qty"] == 1
+
+
+def test_list_deck_cards_filters_by_role_and_licenses_names(make_card, empty_store):
+    ctx = _deck_view_ctx(make_card, empty_store)
+    allr = call_tool(ctx, "list_deck_cards", {})
+    assert allr.data["found"] is True and allr.data["count"] == 4
+    assert allr.card_names == {"Test Commander", "Rock of Ramping", "Sweeper of Doom", "Forest"}
+    ramp = call_tool(ctx, "list_deck_cards", {"role": "Ramp"})
+    assert [c["name"] for c in ramp.data["cards"]] == ["Rock of Ramping"]
+    assert ramp.card_names == {"Rock of Ramping"}
+    land = call_tool(ctx, "list_deck_cards", {"role": "land"})
+    assert land.data["copies"] == 35
+
+
+def test_list_deck_cards_unknown_role_lists_valid_roles(make_card, empty_store):
+    r = call_tool(_deck_view_ctx(make_card, empty_store), "list_deck_cards", {"role": "flying"})
+    assert r.data["found"] is False
+    assert {"ramp", "removal", "wipe", "counterspell", "land"} <= set(r.data["valid_roles"])
+    assert r.card_names == frozenset()
+
+
+# ── removal_coverage (PLAN_MENTOR_ADHOC B2-wiring) ──────────────────────────────────
+
+def _removal_ctx(make_card, empty_store):
+    cmdr = make_card("Test Commander", type_line="Legendary Creature — Human",
+                     mana_cost="{2}{G}", color_identity=("G",))
+    hate = make_card("Flyer Hate", type_line="Instant", mana_cost="{1}{G}",
+                     oracle_text="Destroy target creature with flying.")
+    smash = make_card("Smash", type_line="Instant", mana_cost="{1}{R}",
+                      oracle_text="Destroy target artifact.")
+    bear = make_card("Bear", type_line="Creature — Bear", mana_cost="{1}{G}")
+    db = CardDb([cmdr, hate, smash, bear])
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(hate, 1), (smash, 1), (bear, 1)], missing=[])
+    return MentorContext(card_db=db, cr=_fake_cr(), rulings_db={}, resolved=resolved,
+                         cfg=SimConfig(turns=5, runs=10, seed=1), store=empty_store)
+
+
+def test_removal_coverage_tool_shape_counts_and_licensing(make_card, empty_store):
+    r = call_tool(_removal_ctx(make_card, empty_store), "removal_coverage", {})
+    d = r.data
+    assert d["found"] is True
+    assert {"answers_by_type", "unrestricted_answers_by_type", "no_answer_for",
+            "no_unrestricted_answer_for", "counts_by_type", "cards", "reading_guide"} <= set(d)
+    assert d["counts_by_type"]["creature"] == {"answers": 1, "unrestricted": 0}
+    assert d["counts_by_type"]["artifact"] == {"answers": 1, "unrestricted": 1}
+    assert "creature" in d["no_unrestricted_answer_for"] and "creature" not in d["no_answer_for"]
+    assert "enchantment" in d["no_answer_for"]
+    assert r.card_names == {"Flyer Hate", "Smash"}     # interaction cards only; the Bear is not one
+    assert [row["restrictions"] for row in d["cards"] if row["name"] == "Flyer Hate"] == [["with flying"]]
+    assert 1.0 in r.numbers
+
+
+def test_removal_coverage_is_a_registered_tool_with_a_routing_line():
+    from mythgauntlet.mentor import chat
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS
+    assert any(t["function"]["name"] == "removal_coverage" for t in TOOL_SCHEMAS)
+    assert "removal_coverage" in chat.SYSTEM_PROMPT
+    assert "no_unrestricted_answer_for" in chat.SYSTEM_PROMPT
+
+
+# ── colour-aware role targets in get_deck_stats (PLAN_MENTOR_ADHOC C1) ──────────────
+
+def test_get_deck_stats_marks_counterspell_not_applicable_for_a_non_blue_deck(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)            # green commander
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    cs = roles["counterspell"]
+    assert cs["applicable"] is False and cs["target"] == 0 and "not applicable" in cs["note"]
+    assert roles["ramp"]["applicable"] is True and "note" not in roles["ramp"]
+    assert roles["wipe"]["applicable"] is False      # green-only: no W/B/R
+    assert roles["finisher"]["applicable"] is True   # G can fill it
+
+
+def test_get_deck_stats_blue_deck_keeps_counterspell_applicable(make_card, empty_store):
+    from dataclasses import replace
+    ctx = _ctx(make_card, empty_store)
+    blue = make_card("Blue Commander", type_line="Legendary Creature — Merfolk",
+                     mana_cost="{U}{U}", color_identity=("U",))
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
+                                cards=ctx.resolved.cards, missing=[])
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert roles["counterspell"]["applicable"] is True and roles["counterspell"]["target"] == 3
+
+
+def test_get_deck_stats_unresolved_commander_leaves_every_role_applicable(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[], cards=ctx.resolved.cards, missing=[])
+    roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
+    assert all(r["applicable"] for r in roles.values())
+
+
+# ── finisher against the measured plan (PLAN_MENTOR_ADHOC C2) ───────────────────────
+
+def _fake_analysis(archetype, kill_rate):
+    from types import SimpleNamespace
+    return SimpleNamespace(insight=SimpleNamespace(archetype=archetype),
+                           report=SimpleNamespace(goldfish_kill_rate=kill_rate))
+
+
+@pytest.mark.parametrize("archetype,rate,expect_applicable", [
+    ("Midrange goodstuff", 0.6, False),     # the Shelob shape
+    ("Midrange goodstuff", 0.5, False),     # boundary is inclusive
+    ("Midrange goodstuff", 0.49, True),     # does not reliably kill: a finisher could matter
+    ("Creature aggro", 0.9, False),
+    ("Go-wide / tokens", 0.7, False),
+    ("Combo", 0.9, True),                   # not a combat plan
+    ("Control", 0.9, True),
+    ("Ramp / midrange", 0.9, True),         # not in the plan's list
+])
+def test_finisher_not_applicable_when_the_measured_plan_is_combat(
+        make_card, empty_store, monkeypatch, archetype, rate, expect_applicable):
+    from mythgauntlet.mentor import tools as tools_mod
+    monkeypatch.setattr(tools_mod, "_analysis_for", lambda ctx: _fake_analysis(archetype, rate))
+    fin = call_tool(_ctx(make_card, empty_store), "get_deck_stats", {}).data["roles"]["finisher"]
+    assert fin["applicable"] is expect_applicable
+    if not expect_applicable:
+        assert fin["target"] == 0 and fin["note"] == "wins through combat (measured)"
+    else:
+        assert fin["target"] == 2 and "note" not in fin
+
+
+def test_finisher_colour_rule_short_circuits_the_analysis(make_card, empty_store, monkeypatch):
+    """A deck with no R/G has no finisher role by colour; the simulation is not needed."""
+    from mythgauntlet.mentor import tools as tools_mod
+    ctx = _ctx(make_card, empty_store)
+    blue = make_card("Blue Commander", type_line="Legendary Creature — Merfolk",
+                     mana_cost="{U}{U}", color_identity=("U",))
+    ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
+                                cards=ctx.resolved.cards, missing=[])
+
+    def boom(_ctx):
+        raise AssertionError("analysis must not run")
+
+    monkeypatch.setattr(tools_mod, "_analysis_for", boom)
+    fin = call_tool(ctx, "get_deck_stats", {}).data["roles"]["finisher"]
+    assert fin["applicable"] is False and "not applicable" in fin["note"]
+
+
+def test_get_deck_stats_shares_the_analysis_cache(make_card, empty_store, monkeypatch):
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    call_tool(ctx, "get_deck_stats", {})
+    call_tool(ctx, "get_power_profile", {})
+    assert len(calls) == 1
+
+
+def test_suggest_swap_discloses_a_cut_that_is_not_redundancy_backed(
+        make_card, empty_store, monkeypatch, tmp_path):
+    """PLAN_MENTOR_ADHOC D0b: when `brief.cut.redundancy_backed` is False the cut was the
+    pool's default (nothing in the deck is over-supplied) -- Shelob's own theme card kept
+    surfacing this way. The tool data must say so, per suggestion, with a note; a backed
+    cut carries `cut_is_redundant: True` and no note."""
+    import dataclasses
+    from mythgauntlet.mentor import tools as tools_mod
+    from mythgauntlet.ratings import advisor as advisor_mod
+
+    cmdr = make_card("Test Commander", mana_cost="{2}{G}",
+                      type_line="Legendary Creature — Elf", color_identity=("G",))
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+
+    def _bear(name, rank):
+        c = make_card(name, mana_cost="{1}{G}", type_line="Creature — Bear",
+                      color_identity=("G",), edhrec_rank=rank)
+        c.power, c.toughness = "2", "2"
+        return c
+
+    strong, weak = _bear("Popular Bear", 500), _bear("Obscure Bear", 90000)
+    removal = make_card("Owned Removal", mana_cost="{1}{G}", type_line="Instant",
+                         color_identity=("G",), edhrec_rank=4000,
+                         oracle_text="Destroy target creature.")
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(forest, 36), (strong, 40), (weak, 23)], missing=[])
+    ctx = MentorContext(card_db=CardDb([cmdr, forest, strong, weak, removal]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=80, seed=3), store=empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Owned Removal\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    real_advise = advisor_mod.advise
+
+    def _advise_with(backed):
+        def _wrapped(*a, **kw):
+            rep = real_advise(*a, **kw)
+            assert rep.suggestions, "fixture is proven to produce a positive swap"
+            for s in rep.suggestions:
+                s.brief = dataclasses.replace(
+                    s.brief, cut=dataclasses.replace(s.brief.cut, redundancy_backed=backed))
+            return rep
+        return _wrapped
+
+    monkeypatch.setattr(advisor_mod, "advise", _advise_with(False))
+    sug = call_tool(ctx, "suggest_swap", {"axis": "interaction"}).data["suggestions"][0]
+    assert sug["cut_is_redundant"] is False
+    assert sug["cut"] in sug["cut_note"] and "not evidence" in sug["cut_note"]
+
+    monkeypatch.setattr(advisor_mod, "advise", _advise_with(True))
+    sug = call_tool(ctx, "suggest_swap", {"axis": "interaction"}).data["suggestions"][0]
+    assert sug["cut_is_redundant"] is True
+    assert "cut_note" not in sug
+
+
+def test_suggest_swap_schema_offers_the_clock_axis():
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS
+    schema = next(t for t in TOOL_SCHEMAS if t["function"]["name"] == "suggest_swap")
+    enum = schema["function"]["parameters"]["properties"]["axis"]["enum"]
+    assert "clock" in enum
+    from mythgauntlet.ratings import advisor
+    assert set(enum) == set(advisor.AXES)   # the enum cannot drift from the advisor again
+
+
+# ── get_power_profile vs_bracket (PLAN_MENTOR_ADHOC E2) ─────────────────────────────
+
+def test_power_profile_axes_carry_vs_bracket_for_the_estimated_bracket(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    ref = data["bracket_reference"]
+    assert ref["bracket"] == data["bracket"]["bracket"]
+    assert "estimated" in ref["basis"] and "NOT evidence" in ref["note"]
+    for ax, entry in data["axes"].items():
+        vs = entry["vs_bracket"]
+        assert vs["bracket"] == ref["bracket"] and vs["n"] >= 20
+        assert vs["percentile_band"] in {"below_p25", "p25_p50", "p50_p75", "above_p75"}
+        assert vs["p25"] <= vs["p50"] <= vs["p75"]
+        assert vs["direction"] == "higher_is_better"
+    assert "clock" not in data["axes"]     # the lens stays out of the profile axes
+
+
+def test_power_profile_compare_bracket_overrides_the_estimate(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    base = call_tool(ctx, "get_power_profile", {}).data
+    other = 3 if base["bracket"]["bracket"] != 3 else 2
+    data = call_tool(ctx, "get_power_profile", {"compare_bracket": other}).data
+    assert data["bracket_reference"]["bracket"] == other
+    assert "asked about" in data["bracket_reference"]["basis"]
+    assert all(e["vs_bracket"]["bracket"] == other for e in data["axes"].values())
+    # the deck's own bracket estimate is untouched by what it is compared against
+    assert data["bracket"] == base["bracket"]
+    assert [a["score"] for a in data["axes"].values()] == [a["score"] for a in base["axes"].values()]
+
+
+def test_power_profile_rejects_a_bad_compare_bracket(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    for bad in (0, 6, -1):
+        assert call_tool(ctx, "get_power_profile", {"compare_bracket": bad}).data["found"] is False
+
+
+def test_vs_bracket_orients_lower_is_better_metrics():
+    """`percentile_band` describes the RAW value; for kill turn "below_p25" is the FAST end.
+    The tool hands the model the oriented `standing` so it never has to flip it."""
+    from mythgauntlet.mentor.tools import _vs_bracket
+    from mythgauntlet.ratings import reference
+    cell = reference.BRACKET_AXIS_REFERENCE[3]["avg_kill_turn"]
+    early = _vs_bracket(3, "avg_kill_turn", cell["p25"] - 1)
+    assert early["percentile_band"] == "below_p25" and early["standing"] == "top_quarter"
+    assert early["direction"] == "lower_is_better"
+    late = _vs_bracket(3, "avg_kill_turn", cell["p75"] + 1)
+    assert late["percentile_band"] == "above_p75" and late["standing"] == "bottom_quarter"
+    cons = reference.BRACKET_AXIS_REFERENCE[3]["consistency"]
+    high = _vs_bracket(3, "consistency", cons["p75"] + 1)
+    assert high["standing"] == "top_quarter" and high["direction"] == "higher_is_better"
+    low = _vs_bracket(3, "consistency", cons["p25"] - 1)
+    assert low["standing"] == "bottom_quarter"
+
+
+def test_vs_bracket_is_omitted_when_unmeasured_or_thin(monkeypatch):
+    from mythgauntlet.mentor.tools import _vs_bracket
+    from mythgauntlet.ratings import reference
+    assert _vs_bracket(3, "avg_kill_turn", None) is None          # deck never kills
+    assert _vs_bracket(3, "no_such_metric", 5.0) is None
+    thin = {3: {"consistency": {"p25": 1.0, "p50": 2.0, "p75": 3.0, "n": 5, "thin": True}}}
+    monkeypatch.setattr(reference, "BRACKET_AXIS_REFERENCE", thin)
+    assert _vs_bracket(3, "consistency", 2.0) is None
+
+
+# ── diagnose_axis (PLAN_MENTOR_ADHOC D1) ────────────────────────────────────────────
+
+def test_diagnose_axis_covers_every_axis_with_licensed_numbers(make_card, empty_store, monkeypatch):
+    from mythgauntlet.mentor import tools as tools_mod
+    calls = _count_analyze(monkeypatch)
+    ctx = _ctx(make_card, empty_store)
+    bracket = call_tool(ctx, "get_power_profile", {}).data["bracket"]["bracket"]
+    for axis in tools_mod.DIAGNOSE_AXES:
+        result = call_tool(ctx, "diagnose_axis", {"axis": axis})
+        d = result.data
+        assert d["found"] is True and d["axis"] == axis
+        assert d["drivers"] and isinstance(d["levers"], list)
+        assert d["bracket_basis"] == bracket
+        for row in d["drivers"]:
+            assert row["reading"] in {"strong", "typical", "weak", "unknown", "not_applicable"}
+            assert row["basis"] in {"bracket_percentile", "fixed_threshold", "none"}
+    assert len(calls) == 1, "diagnose_axis must read the cached analysis, not re-simulate"
+
+
+def test_diagnose_axis_facts_cover_every_driver_fact(make_card, empty_store):
+    """Lock-step: every fact the table reads is one `_diagnose_facts` supplies (a driver whose
+    fact is never produced would read 'unknown' forever and nobody would notice)."""
+    from mythgauntlet.mentor import diagnose as dg
+    from mythgauntlet.mentor import tools as tools_mod
+    ctx = _ctx(make_card, empty_store)
+    facts = tools_mod._diagnose_facts(ctx, tools_mod._analysis_for(ctx))
+    needed = {d.fact for drivers in dg.DRIVER_TABLE.values() for d in drivers}
+    needed |= {lv.requires for lv in dg.LEVERS if lv.requires}
+    assert needed <= set(facts), needed - set(facts)
+
+
+def test_diagnose_axis_rates_carry_a_percent_and_values_are_rounded(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    d = call_tool(ctx, "diagnose_axis", {"axis": "consistency"}).data
+    by = {row["name"]: row for row in d["drivers"]}
+    assert isinstance(by["keep_rate"]["value_pct"], int)
+    assert abs(by["keep_rate"]["value_pct"] - by["keep_rate"]["value"] * 100) <= 1
+    assert by["keep_rate"]["value"] == round(by["keep_rate"]["value"], 2)
+
+
+def test_diagnose_axis_marks_counterspells_not_applicable_without_blue(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)             # a mono-green deck
+    d = call_tool(ctx, "diagnose_axis", {"axis": "interaction"}).data
+    by = {row["name"]: row for row in d["drivers"]}
+    assert by["counterspells"]["reading"] == "not_applicable"
+    assert str(by["counterspells"]["value"]).startswith("n/a")
+    assert not any("counterspell" in t.lower() for t in d["levers"])
+    assert "counters" not in d["why"]
+
+
+def test_diagnose_axis_unknown_axis_is_a_graceful_error(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    assert call_tool(ctx, "diagnose_axis", {"axis": "pod"}).data["found"] is False
+    assert call_tool(ctx, "diagnose_axis", {}).data["found"] is False     # missing arg
+
+
+def test_diagnose_axis_schema_offers_every_axis():
+    from mythgauntlet.mentor.tools import TOOL_SCHEMAS, DIAGNOSE_AXES
+    schema = next(t for t in TOOL_SCHEMAS if t["function"]["name"] == "diagnose_axis")
+    assert schema["function"]["parameters"]["properties"]["axis"]["enum"] == list(DIAGNOSE_AXES)
+    assert "clock" in DIAGNOSE_AXES
+
+
+# ── C-residual: counterspells are not a gap without blue; suggest_swap states where it stands ──
+
+def test_power_profile_does_not_list_counterspells_for_a_deck_without_blue(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)             # mono-green
+    data = call_tool(ctx, "get_power_profile", {}).data
+    counts = data["interaction_counts"]
+    assert counts["counterspells_applicable"] is False
+    assert str(counts["counterspells"]).startswith("n/a") and counts["breadth_max"] == 2
+    blob = " ".join([data["axes"]["interaction"]["why"], *data["strengths"], *data["weaknesses"]])
+    assert "counters" not in blob and "/3" not in blob
+
+
+def test_power_profile_keeps_counterspells_for_a_blue_deck(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    ctx.resolved.commanders[0].color_identity = ("G", "U")
+    counts = call_tool(ctx, "get_power_profile", {}).data["interaction_counts"]
+    assert counts["counterspells_applicable"] is True
+    assert isinstance(counts["counterspells"], int) and counts["breadth_max"] == 3
+
+
+def test_without_counterspells_rewrites_the_insight_sentences():
+    from mythgauntlet.mentor.tools import _without_counterspells
+    assert _without_counterspells(
+        "4.5 castable answers -- 4 removal, 0 counters, 1 wipes (breadth 2/3)"
+    ) == "4.5 castable answers -- 4 removal, 1 wipes (breadth 2 of 2 playable types)"
+    assert _without_counterspells(
+        "Thin interaction (only 2 answers) -- light on removal/counters"
+    ) == "Thin interaction (only 2 answers) -- light on removal"
+    assert _without_counterspells("Deep interaction (7 answers, 3/3 types)").endswith(
+        "(7 answers, 3 of 2 playable types)")   # unreachable shape for a no-blue deck; harmless
+
+
+def test_suggest_swap_result_states_the_current_axis_verdict(make_card, empty_store, monkeypatch, tmp_path):
+    """Shelob/Tymna answered a wipe-resilience question with only a swap and no verdict."""
+    from mythgauntlet.mentor import tools as tools_mod
+    from mythgauntlet.ratings.advisor import AdviceReport
+    ctx = _ctx(make_card, empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Some Card\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+    extra = make_card("Some Card", type_line="Instant", mana_cost="{G}", color_identity=("G",))
+    ctx2 = MentorContext(card_db=CardDb([*[c for c, _ in ctx.resolved.cards],
+                                         *ctx.resolved.commanders, extra]),
+                         cr=ctx.cr, rulings_db={}, resolved=ctx.resolved, cfg=ctx.cfg,
+                         store=ctx.store)
+    monkeypatch.setattr(tools_mod.advisor, "advise", lambda *a, **k: AdviceReport(
+        axis="resilience", axis_label="Resilience", baseline=93.04, cut=None,
+        suggestions=[], evaluated=4, analyses=4, cut_pool=1, min_delta=1.3))
+    d = call_tool(ctx2, "suggest_swap", {"axis": "resilience"}).data
+    assert d["current"]["axis"] == "resilience" and d["current"]["score"] == 93.0
+    assert d["current"]["verdict"] == "resilient" and "resilient" in d["current"]["instruction"]
+
+
+def test_removal_coverage_does_not_list_spells_as_a_gap_without_blue(make_card, empty_store):
+    """The empty "spell" entry (only counterspells answer spells) read as a coverage gap and
+    non-blue decks were told to consider counterspells (C-residual, colour 6/9)."""
+    ctx = _ctx(make_card, empty_store)                  # mono-green
+    d = call_tool(ctx, "removal_coverage", {}).data
+    assert "spell" not in d["answers_by_type"] and "spell" not in d["counts_by_type"]
+    assert "spell" not in d["no_answer_for"] and "spell" not in d["no_unrestricted_answer_for"]
+    assert "never recommend" in d["not_applicable_types"]["spell"]
+    ctx.resolved.commanders[0].color_identity = ("G", "U")
+    d = call_tool(ctx, "removal_coverage", {}).data
+    assert "spell" in d["answers_by_type"] and d["not_applicable_types"] == {}

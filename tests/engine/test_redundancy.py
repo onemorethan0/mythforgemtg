@@ -585,3 +585,53 @@ def test_every_archetype_role_is_a_role_the_module_scores():
     for theme, roles in redundancy.ARCHETYPE_ROLE_TARGETS.items():
         unknown = set(roles) - set(redundancy.ROLE_TARGETS)
         assert not unknown, f"{theme} targets roles that do not exist: {sorted(unknown)}"
+
+
+# ── colour-aware targets (PLAN_MENTOR_ADHOC C1) ─────────────────────────────────────
+
+def test_color_identity_none_is_the_unchanged_baseline():
+    """Backward compatibility: no identity passed -> byte-identical to the old behaviour."""
+    for themes in ([], ["spellslinger"], ["landfall", "chaos"], None):
+        assert redundancy.targets_for(themes, color_identity=None) == redundancy.targets_for(themes)
+    assert redundancy.targets_for([]) == redundancy.ROLE_TARGETS
+
+
+def test_a_non_blue_deck_has_no_counterspell_target():
+    got = redundancy.targets_for([], color_identity="BG")
+    assert got["counterspell"] == 0
+    assert got["ramp"] == redundancy.ROLE_TARGETS["ramp"]          # nothing else moves
+
+
+def test_a_blue_deck_keeps_its_counterspell_target_and_archetype_raise():
+    assert redundancy.targets_for([], color_identity="UB")["counterspell"] == 3
+    assert redundancy.targets_for(["spellslinger"], color_identity="UR")["counterspell"] == 12
+
+
+def test_the_requirement_beats_an_archetype_raise():
+    """A spellslinger deck with no blue has no counterspell plan."""
+    assert redundancy.targets_for(["spellslinger"], color_identity="RG")["counterspell"] == 0
+
+
+def test_any_of_colour_requirements():
+    assert redundancy.targets_for([], color_identity="UG")["wipe"] == 0   # no W/B/R
+    assert redundancy.targets_for([], color_identity="UR")["wipe"] == redundancy.ROLE_TARGETS["wipe"]
+    assert redundancy.targets_for([], color_identity="WUB")["finisher"] == 0
+    assert redundancy.targets_for([], color_identity="WUBG")["finisher"] == redundancy.ROLE_TARGETS["finisher"]
+
+
+def test_an_empty_identity_is_unknown_not_colourless():
+    assert redundancy.targets_for([], color_identity=[]) == redundancy.ROLE_TARGETS
+    assert redundancy.role_applicable("counterspell", []) is True
+    assert redundancy.role_applicable("counterspell", None) is True
+
+
+def test_color_requirements_only_name_real_roles_and_colours():
+    for role, colours in redundancy.ROLE_COLOR_REQUIREMENTS.items():
+        assert role in redundancy.ROLE_TARGETS
+        assert colours and set(colours) <= set("WUBRG")
+
+
+def test_color_aware_targets_do_not_mutate_the_baseline():
+    before = dict(redundancy.ROLE_TARGETS)
+    redundancy.targets_for(["spellslinger"], color_identity="G")
+    assert redundancy.ROLE_TARGETS == before

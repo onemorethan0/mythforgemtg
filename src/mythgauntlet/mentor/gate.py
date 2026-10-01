@@ -36,8 +36,9 @@ On failure the caller regenerates with the reasons named, same pattern as
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
+from mythgauntlet.mentor import verdicts as verdicts_mod
 from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, extract_numbers
 
 # A mentor answer can legitimately be longer than one swap's 2-3 sentences (explaining a
@@ -46,6 +47,11 @@ from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, extract_numbers
 # and started composing, same logic, wider ceiling.
 MIN_CHARS = 15
 MAX_CHARS = 1400
+# A holistic overview built from get_power_profile (strengths, weaknesses, win route, speed,
+# resilience, key cards) is legitimately longer than a one-fact answer, and 1400 would
+# reject a complete one -- the caller passes this when that tool ran this turn
+# (chat.ask); every other turn keeps the tighter ceiling.
+MAX_CHARS_PROFILE = 2400
 
 # Shrunk from {0.0, 1.0, 2.0} to {0.0, 1.0} on 2026-08-24. 0 and 1 as ordinary English
 # ("a second copy", "one of your two commanders") still don't need licensing. 2 was
@@ -168,6 +174,22 @@ _ILLEGAL_PHRASE_RE = re.compile(
 )
 
 
+# A bracket number the PLAYER typed ("a bracket 3 pod", "B2") is common ground, not a
+# claim the model must have a tool result for -- found live (2026-09-30 Shelob probe): the
+# first draft of "biggest weakness vs a bracket 3 pod?" was gate-rejected for "citing 3".
+# Deliberately SCOPED to exactly this shape (bracket N / BN, N in 1-5) and to the turn the
+# question was asked in: licensing every number in the question would let a model launder
+# an invented statistic by echoing one the player happened to type ("my deck is 7 turns
+# fast" does not make "7" a measured fact).
+_TYPED_BRACKET_RE = re.compile(r"\bbracket\s*([1-5])\b|\bB([1-5])\b", re.IGNORECASE)
+
+
+def typed_bracket_numbers(question: str) -> frozenset[float]:
+    return frozenset(
+        float(m.group(1) or m.group(2)) for m in _TYPED_BRACKET_RE.finditer(question or "")
+    )
+
+
 def _words_between(s: str, m1: re.Match, m2: re.Match) -> int:
     """Rough word count strictly between two (non-overlapping) regex matches in `s`."""
     lo, hi = sorted((m1.span(), m2.span()))
@@ -204,6 +226,14 @@ class ClaimBudget:
     # carries no tool identifier, and this key combination is unambiguous: no other tool
     # returns `found`+`legal`(bool)+`card`(str)+`colors_not_in_deck_identity` together.
     legality_verdicts: frozenset[tuple[str, bool]] = frozenset()
+    # The `verdicts` object of this turn's `get_power_profile` result ({"resilience":
+    # "resilient", "speed": "slow", ..., "archetype": "midrange"}) -- lets `check()` catch a
+    # reply that argues against the measured verdict ("somewhat vulnerable to wipes" for a
+    # deck the engine measured resilient) without naming a card, number or rule, which is
+    # everything checks 1-3 can see. Detected structurally, like `legality_verdicts`: the
+    # `verdicts` + `axes` key pair is unique to that tool. When the profile was called twice
+    # the later result wins. Empty when the tool did not run this turn.
+    profile_verdicts: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def from_tool_results(
@@ -214,6 +244,7 @@ class ClaimBudget:
         rules: set[str] = set()
         texts: set[str] = set()
         verdicts: set[tuple[str, bool]] = set()
+        profile: dict[str, str] = {}
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -226,8 +257,13 @@ class ClaimBudget:
                 and "colors_not_in_deck_identity" in data
             ):
                 verdicts.add((data["card"], data["legal"]))
+            if (
+                isinstance(data, dict) and data.get("found") is True
+                and isinstance(data.get("verdicts"), dict) and isinstance(data.get("axes"), dict)
+            ):
+                profile = {k: v for k, v in data["verdicts"].items() if isinstance(v, str)}
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
-                    frozenset(texts), frozenset(verdicts))
+                    frozenset(texts), frozenset(verdicts), profile)
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -241,7 +277,8 @@ def _looks_like_a_name(text: str, match: re.Match) -> bool:
     return bool(before) and before[-1] not in ".!?"
 
 
-def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
+def check(text: str, budget: ClaimBudget, question: str = "",
+          max_chars: int = MAX_CHARS) -> list[str]:
     """Every way `text` over-claims against `budget`. Empty means faithful.
 
     `question` (optional, the player's OWN message this turn) exempts a bare card-name
@@ -255,8 +292,8 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
     reasons: list[str] = []
     body = text.strip()
 
-    if not MIN_CHARS <= len(body) <= MAX_CHARS:
-        reasons.append(f"length {len(body)} outside {MIN_CHARS}-{MAX_CHARS}")
+    if not MIN_CHARS <= len(body) <= max_chars:
+        reasons.append(f"length {len(body)} outside {MIN_CHARS}-{max_chars}")
 
     # 1. CARD NAMES. Mask the allowed names out first (longest first: nested names --
     #    "Vesuva" sitting inside "Omo, Queen of Vesuva" is the exact case swap_narrative
@@ -320,8 +357,9 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
     #    `_LIST_MARKER_RE`/`_CURVE_BUCKET_LABEL_RE` above) so neither a "2." bullet nor a
     #    bucket adjective is read as citing that number as a fact.
     scan_body = _CURVE_BUCKET_LABEL_RE.sub("", _LIST_MARKER_RE.sub("", body))
+    typed_brackets = typed_bracket_numbers(question)
     for value in extract_numbers(scan_body):
-        if value in _FREE_NUMBERS:
+        if value in _FREE_NUMBERS or value in typed_brackets:
             continue
         if not any(abs(value - ok) <= _NUMBER_TOLERANCE for ok in budget.numbers):
             reasons.append(f"cites {value:g}, which is not in this turn's tool results")
@@ -374,6 +412,15 @@ def check(text: str, budget: ClaimBudget, question: str = "") -> list[str]:
                     f"says {card_name!r} can be added, contradicting this turn's "
                     "check_legality result (legal=False)"
                 )
+
+    # 6. VERDICT CONTRADICTION (HEURISTIC -- see `verdicts.profile_contradictions`). Checks
+    #    1-5 verify that what the reply NAMES was retrieved; none can see a reply that argues
+    #    against a verdict the engine already measured ("somewhat vulnerable to wipes" for a
+    #    deck measured 93/100 resilient names no card, number or rule). Only runs when
+    #    `get_power_profile` ran this turn, and only flags the OPPOSITE end of a measured
+    #    verdict -- same under-flag bias as check 5.
+    if budget.profile_verdicts:
+        reasons.extend(verdicts_mod.profile_contradictions(body, budget.profile_verdicts))
 
     return reasons
 

@@ -2,6 +2,10 @@
 
     python scripts/mentor_bench.py corpus/decks/archidekt-1010839.txt
 
+See also `scripts/mentor_holistic_bench.py` (docs/PLAN_MENTOR_ADHOC.md, MENTOR_HANDOFF round 8):
+the acceptance gate for OPEN-ENDED questions. This bench grades non-trap cases on `gated` alone,
+which cannot see a grounded-but-wrong answer; the holistic bench grades substance. Run both.
+
 Expanded 2026-08-25 from a 13-case starter to 45 cases across the spec's four question
 domains plus six trap kinds (the sixth, `trap_unaddressed_nuance`, and the compound-question
 `assess_card` case both came from real mentor campaign findings rather than being designed

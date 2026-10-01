@@ -180,6 +180,22 @@ class MentorChatRequest(BaseModel):
         "this engine has no EDHREC cache of its own. None when Forge has no reading "
         "cached for this deck (an older build, or an unmeasured commander).",
     )
+    advice: dict | None = Field(
+        default=None,
+        description="{axis key ('auto' or an axis name): {'result': <the /advise JSON>, "
+        "'computed_at': ...}} -- the full swap searches Forge has already run for THIS deck "
+        "(Forge verifies deck hash + collection mtime before sending). Passed through to "
+        "MentorContext.advice for the get_measured_swaps tool; None = none run.",
+    )
+
+
+def _trace_entry(rec) -> dict:
+    """One tool-trace row for the HTTP reply. Args only, except `get_measured_swaps`, whose
+    `available` flag the UI needs to offer "Run full swap search" (D2)."""
+    entry = {"tool": rec.name, "args": rec.args}
+    if rec.name == "get_measured_swaps":
+        entry["available"] = bool((rec.result_data or {}).get("available"))
+    return entry
 
 
 class MentorFeedbackRequest(BaseModel):
@@ -691,6 +707,7 @@ def create_app(
         ctx = MentorContext(
             card_db=db, cr=mentor_cr, rulings_db=mentor_rulings_db, resolved=resolved,
             cfg=cfg, store=store, themes=tuple(req.themes), offmeta=req.offmeta,
+            advice=req.advice,
         )
         try:
             reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)
@@ -722,9 +739,7 @@ def create_app(
             "turn_id": turn_id,
             "reply": reply.text,
             "gated": reply.gated,
-            "tool_trace": [
-                {"tool": rec.name, "args": rec.args} for rec in reply.tool_trace
-            ],
+            "tool_trace": [_trace_entry(rec) for rec in reply.tool_trace],
         }
 
     @app.post("/mentor/feedback")

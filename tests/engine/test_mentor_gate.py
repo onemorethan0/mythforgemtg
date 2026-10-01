@@ -477,3 +477,35 @@ def test_unrelated_use_of_the_word_legal_does_not_misfire():
     )
     text = "That target is a legal choice for the spell's ability."
     assert check(text, budget) == []
+
+
+# ── A5: a bracket number the player typed is licensed for that turn only ─────────────
+
+def test_typed_bracket_number_is_licensed_for_this_turn():
+    budget = ClaimBudget(numbers=frozenset({1.0}))
+    question = "What is this deck's biggest weakness against a bracket 3 pod?"
+    text = "Against a bracket 3 pod the deck is short on interaction."
+    assert check(text, budget, question=question) == []
+
+
+def test_bracket_number_not_typed_by_the_player_is_still_flagged():
+    budget = ClaimBudget(numbers=frozenset({1.0}))
+    reasons = check("Against a bracket 3 pod the deck is short on interaction.", budget,
+                    question="What is this deck's biggest weakness?")
+    assert any("cites 3" in r for r in reasons)
+
+
+def test_shorthand_bracket_b2_is_licensed():
+    budget = ClaimBudget()
+    assert check("Versus a B2 table you are fine.", budget, question="how does it do at a B2 table?") == []
+
+
+def test_typed_bracket_licence_is_scoped_to_bracket_numbers_only():
+    # The player typing another number ("7 turns") must NOT license it, and "bracket 3"
+    # licenses 3, not 4.
+    budget = ClaimBudget()
+    q = "Is a bracket 3 pod okay if my deck wins on turn 7?"
+    reasons = check("It wins by turn 7 and sits in bracket 4 territory.", budget, question=q)
+    assert any("cites 7" in r for r in reasons)
+    assert any("cites 4" in r for r in reasons)
+    assert not any("cites 3" in r for r in reasons)

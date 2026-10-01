@@ -105,3 +105,4 @@ ccm/LICENSE-CCM-DATA.txt
 # Per-task scratch handoff dir for Odysseus dispatches (SPEC.md / REPORT.md).
 # Working state, not source.
 .odysseus/
+.cache/

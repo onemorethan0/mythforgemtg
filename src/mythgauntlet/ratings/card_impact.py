@@ -47,6 +47,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import redundancy
 from mythgauntlet.ratings.advisor import (
     AXES,
+    PROFILE_AXES,
     _AXIS_NOISE_FLOOR,
     _commander_identity,
     _swap_variant,
@@ -227,7 +228,7 @@ def assess_card(
                 before=axis_score(baseline, ax), after=axis_score(after, ax),
                 floor=_AXIS_NOISE_FLOOR.get(ax, 0.0),
             )
-            for ax in AXES
+            for ax in PROFILE_AXES  # not the `clock` lens: card verdicts predate it
         ]
         # Normalize each axis's delta by its OWN "meaningful" scale before summing, rather
         # than adding five 0-100 deltas 1:1. The axes do not share a noise floor --

@@ -281,6 +281,24 @@ finishers.
 
 ### Phase D — Measured improvement levers (G8, G9)
 
+**D0. A "clock" axis that measures EARLINESS** — **CLAUDE**, `ratings/advisor.py` (added
+2026-09-30 from the orchestrator's review of Phase A). The existing `speed` axis is
+`goldfish_kill_rate` (share of games that kill at all within the horizon), NOT how early. Shelob
+reads speed 96.7 with a T9 clock, so no speed swap can ever help it, and the model answered
+"make it faster" with a CEILING swap (Return of the Wildspeaker) whose own brief shows
+`kill_turn_before 9.32 -> kill_turn_after 9.45` — i.e. the deck gets SLOWER on average. Add an
+additive axis `clock` to `advisor.AXES` (score = a monotone decreasing map of
+`report.avg_kill_turn`, e.g. `100 * (horizon - avg_kill_turn) / horizon` clamped, 0 when no
+kill; document the formula), measure its seed-to-seed noise the way `_AXIS_NOISE_FLOOR` was
+measured and add its floor there, add `clock` to `suggest_swap`'s enum, and route "faster" →
+`clock` in the prompt. `weakest_axis` must NOT start preferring `clock` by accident — decide
+explicitly and test it. Any swap reported for "faster" must show `kill_turn_after <
+kill_turn_before`; the holistic bench's `faster` rubric gains that check.
+**D0b. Disclose an unbacked cut** — **CLAUDE**. When a suggested swap's
+`brief.cut.redundancy_backed` is false, the tool data carries `"cut_is_redundant": false` and
+the prompt says the cut was the pool's default, not evidence the card is weak (Shelob's
+Gloomwidow's Feast — its own theme card — keeps surfacing this way).
+
 **D1. `diagnose_axis(axis)`** — **OFFLOAD** the driver table (muse-glimmer), **CLAUDE** wiring.
 Deterministic, reads `_analysis_for(ctx)` only (no new sim). Returns `{"axis", "score", "why",
 "drivers": [{"name", "value", "direction": "higher_is_better"|"lower_is_better",
@@ -388,6 +406,81 @@ starts, and owns merging `mentor-adhoc` to `main`.
 | date | phase | bench (pass/total) | notes |
 |---|---|---|---|
 | 2026-09-30 | probe (pre-A0) | ~1/8 on Shelob | see §1 |
+| 2026-09-30 | E1 | n/a (reference table) | `scripts/bracket_axis_reference.py` baked `ratings/reference.py` from 569 labelled decks (runs=120, seed 42, turns=12, 0 failures, ~32 min): B1 129 / B2 172 / B3 147 / B4 66 / B5 55; **no thin cells** (min n=55); avg_kill_turn None for 8 B1 + 2 B2 + 2 B3 decks, avg_commander_turn None for 3 B1. Medians barely separate brackets: only `interaction` (57.8/63.4/59.5/74.7/90.0) and `consistency`/`speed` at B5 (lower) move; `avg_kill_turn` is flat ~10.0-10.2 (goldfish horizon 12), `ceiling` p50 flat 17-19 (only p75 rises at B5: 36.4 vs 25), `resilience` drifts down 89.9 -> 85.4, `pod` peaks B2-B3 and is LOWEST at B5. Bands are useful for within-bracket placement, weak as a B3-vs-B4 discriminator. |
+| 2026-09-30 | **A0 baseline** (pre-A1, commit 917173a, qwen3:14b, runs=150, 9 decks) | **22/72 (31%)**; gated on first attempt 59/72 | per rubric, decks passing: overview 8/9, cards 2/9, faster 0/9, resilience 1/9, wincon 3/9, weakest 4/9, vs_b3 2/9, removal n/a, colour 2/9. Detail below. |
+
+| 2026-09-30 | **Phase A exit check** (HEAD = "A-exit fix 2", qwen3:14b, runs=150, 9 decks; 3 full runs after A1-A7 + 2 fix iterations) | final run **64/72 (89%)** under the final rubric (56/72 as it was originally graded); baseline re-graded under the same rubric **25/72 (35%)**. `mentor_bench.py` on Shelob **50/52** (exit bar 47). Full pytest 1739 passed. | per rubric, final run: overview 9/9, cards 9/9, faster 9/9, resilience 8/9, wincon 9/9, weakest 9/9, vs_b3 8/9, removal n/a, colour 3/9. **Phase A exit met** (every listed rubric >= 80% of decks); `colour` is Phase C's, not Phase A's. Detail and caveats below. |
+
+| 2026-09-30 | orchestrator re-verification (Opus, Shelob only, fresh run) | 6/8 | Reproduced the gain independently. Correct now: archetype/win route (midrange, combat, ~T9), resilient 93%, real key cards, empty-swap honesty. Remaining: `faster` answered with a CEILING swap that makes the average kill slower (9.32->9.45) -> new task D0; cut is the deck's theme card (Gloomwidow's Feast) -> D0b; 'no counterspells' still called a weakness (C1); removal answer generic (B2 wiring); overview FAIL was a rubric false positive ('moderately interactive' read as a resilience claim) -> fix in F1's phrase map. B2 (removal.py) merged into mentor-adhoc; full suite 1798 passed. |
+
+| 2026-09-30 | **Phase B/C exit check** (orchestrator-run after the B/C agent stopped at a usage limit with all four tasks committed; qwen3:14b, runs=150, 9 decks) | **72/81 (89%)**; gated on first attempt 72/72. `mentor_bench.py` Shelob **47/52** (bar 47; 3 gate fallbacks). Full pytest 1892 passed. | per rubric: overview 8/9, cards 9/9, faster 8/9, resilience 7/9, wincon 9/9, weakest 9/9, vs_b3 9/9, **removal 9/9** (new), **colour 4/9** (target 8/9 MISSED). Colour residual is mostly the TOOL, not the model: `insight.axis_why['Interaction']` always says 'N counters' and the replies echo 'no counterspells' as a weakness for non-blue decks; plus a rubric that cannot tell a factual mention from advice (Arahbo's 'consider adding counterspells' is the genuine failure). Resilience residual: Shelob/Tymna answered with a swap and never stated the verdict, and called the cut card 'somewhat redundant' with no redundancy backing (D0b). Both handed to the Phase D agent. |
+| 2026-09-30 | **D0 / D0b / D1 / E2 / F1 + C-residual exit check** (branch `mentor-adhoc-d`, qwen3:14b, runs=150, 9 decks; 3 full runs) | final run **79/81 (98%)** as run; **80/81** after one offline rubric-ack tweak (`--regrade`). `mentor_bench.py` Shelob **48/52** (runs: 49, 48, 48; bar 47). Full pytest **2008 passed, 4 skipped** (baseline 1892). | per rubric, final run: overview 9, cards 9, **faster 9/9 (was 5/9 on run 1)**, resilience 9 (was 7 on bc_exit), wincon 9, weakest 9, vs_b3 9, removal 9, colour 7 as run / 8 regraded (was 4 on bc_exit). Gated on first attempt **70/72** (run 1: 69, run 2: 65). Details below. |
+
+**D0 clock noise floor** (`scripts/axis_noise.py --turns N`, 8 corpus decks x 8 seeds, runs=150): `clock` seed-to-seed sd **0.71 at turns=12** (baked: the mentor/analyze/advise horizon) and 1.10 at turns=8; 0.71 points is ~0.09 of a turn, so the caller's `min_delta` (1.0, ~0.12 turn) is the binding floor in practice. Same sweep at turns=12 for the other axes: speed 1.48, ceiling 1.98, consistency 0.87, resilience 0.73, interaction 0.00 (turns=8: 1.71 / 2.20 / 0.82 / 1.03 / 0.00) - sweep-to-sweep noise around the baked turns=8 constants, which were left alone. **Decision, pinned by `test_weakest_axis_never_returns_clock`:** `weakest_axis` never returns `clock`. On the formula `100*(horizon-avg_kill_turn)/horizon` the median corpus deck scores ~16 (avg kill ~10.1 of 12), so the axis would be "the weakest" of nearly every deck. `advisor.PROFILE_AXES` (AXES minus clock) drives `weakest_axis`, `card_impact`'s per-axis sweep (card verdicts unchanged) and the E1 reference; `get_power_profile.axes` keeps its six keys (the kill turn is already in its `clock` block).
+
+**Discrepancies vs the plan text** (code won): (1) D0 adds `clock` to `AXES` as written but several callers iterate `AXES` (card_impact, E1's reference test, get_power_profile) - hence `PROFILE_AXES`. (2) E2: the plan's "D1's bands switch to these" is only true for the metrics that exist in the reference table (avg_kill_turn, avg_commander_turn, the axis scores: resilience_score reads the `resilience` cell, goldfish_kill_rate the `speed` cell x100); every other driver has a fixed threshold (corpus p25/p75 over 866 decks, 30 sampled for the simulated facts, measured 2026-09-30 - documented in `mentor/diagnose.py`). (3) E2 adds an oriented `standing` next to `percentile_band` because the table describes the RAW value and kill turn is lower-is-better. (4) A faster/quicker/speed-up question is now routed to `suggest_swap(axis="clock")` by `chat._route_swap_axis` whatever axis the model passed (live: it kept passing `ceiling`).
+
+**D1 offload review** (`mentor/diagnose.py`, muse-glimmer from `docs/specs/mentor_adhoc/D1.md`; first dispatch HTTP 500 "bad allocation" while two sweeps shared the box, retry 252 s, no qwen fallback needed). The table, thresholds and lever texts matched the spec; review changed: the module docstring was emitted as a bare string after the imports (not a docstring) and omitted the gold-set table; `avg_commander_turn` lacked `none_reading="weak"`; the breadth lever named counterspells (wrong for a no-blue deck - the tool test caught it); every Driver is also a public module constant (unrequested, harmless). The facts builder, tool, schema, prompt and tests are hand-written; a lock-step test pins that every fact the table reads is one the builder supplies.
+
+**Exit-run reading** (replies read, not just scored). Run 1: `faster` 5/9 - three decks stopped after `diagnose_axis` (it explains the cause, so the answer felt complete) and never called `suggest_swap`; Najeela passed `axis="ceiling"` for "faster" and reported a swap whose own brief showed the kill later (9.56 -> 9.79, the new slower-kill check caught it); three non-blue decks were told to "consider counterspells" because `removal_coverage` listed the empty `spell` type as a gap. Fix 1: a once-per-turn nudge when an improvement question ends with no `suggest_swap`, deterministic clock routing, `spell` moved to `not_applicable_types` for a deck without blue. Run 2: `faster` 9/9 but first-attempt gating fell to 65/72 - **10 of 11 rejections were F1's own**: a bare "a quick" read "Provides a quick source of mana" (an Isshin key-cards list) as "the deck is fast" (three rejections, answer fell back to uncertainty), "fast win conditions" described opposing decks, and "already quite fast for its bracket" / "consistency below average for bracket 3 decks" are relative claims the new `vs_bracket` standings license (avg kill turn ~9 is the top quarter of every bracket's decks while the absolute band says slow). Fix 2 (the second and last iteration): the speed phrases only count as a frame for the deck, opponent speech is skipped, relative-to-bracket sentences are exempt from the gate (the absolute verdict is enforced everywhere else), prompt: a standing is not a speed verdict. Run 3: the table above. **F1 rejection counts:** 1 / 10 / 1 verdict rejections in runs 1 / 2 / 3; the run-1 one was genuine ("already quite fast" for a slow deck) and the run-3 one was a false positive ("needs more answers against decks with strong interaction" - the opponent's interaction; fixed after the run, test-pinned, not re-run live); both were repaired by the model on retry. **Colour:** the root cause was the tool (insight lists "0 counters" for every deck): `get_power_profile` now drops the counter count and rewrites breadth to "b of 2 playable types" when `role_applicable("counterspell", identity)` is false; the bench rubric stopped failing factual mentions (re-grade of the saved bc_exit run: colour 4/9 -> 7/9 from the rubric alone). Still failing as run: Tymna ("lacks counterspells due to its colour identity, which does not include blue" - identity-aware, rubric false positive, fixed by an ack tweak) and Isshin (a closing "it lacks the ability to counter spells directly" right after saying that is not a gap - the model contradicting itself; left failing). **Resilience** answers now carry the verdict because `suggest_swap`'s result states the current axis score/verdict; 9/9 on the final run. Not fixed: the removal rubric once failed Tymna on "Haywire Mite, which can't target creatures" (a true statement about a card read as a creature-gap claim) - not reproduced in run 3.
+
+| 2026-09-30 | **Orchestrator independent verification after merging D/E2/F** (merge d19b984, qwen3:14b, runs=150, 9 decks, fresh run) | **78/81 (96%)**; gated on first attempt 69/72. `mentor_bench.py` Shelob **49/52**. Full pytest 2010 passed. | overview/cards/faster/resilience/wincon/weakest/vs_b3 all 9/9; removal 8/9; colour 7/9. Of the 3 FAILs, 2 are rubric false positives (Kaalia: 'This is not considered a gap'; Ghired: 'cannot answer spells, it lacks blue' is TRUE) -- the colour/removal rubrics still match on keywords near a negation. 1 genuine: Shelob overview 'interaction is only moderate ... no counterspell' (mild framing, not advice). vs probe baseline (~1/8 Shelob, 25/72 re-graded): the open-ended feature is now trustworthy on every question type the plan targeted. |
+
+**Phase A exit detail.** Three full runs after the fixes, each re-graded offline under the FINAL
+rubric (`--regrade`, no model calls): run 1 62/72, run 2 67/72 (93%), run 3 64/72 (89%) — model
+variance between identical-code runs is 3-5 cells, so read every figure as +-5 points. The two
+fix iterations, each from reading failing replies: (1) `clock` carries `*_pct` percents (the
+model's "50%" for `goldfish_kill_rate 0.5` was gate-rejected, two decks fell back to the
+uncertainty reply), tools are re-called on follow-ups, and a model that announces "I'll look
+into your collection" and stops gets one nudge to make the `suggest_swap` call; (2) verdict
+detectors see through markdown, win-route phrases count as stating the route, resilience
+phrases need the wipe as their object, and the prompt asks for the asked-about axis first.
+Rubric refinements made while reading replies (so the as-run and re-graded figures differ):
+honest "no measured improvement" phrasings, "lacks a finisher" negating a finisher mention,
+truncated deck-card names ("Gloomwidow") not counted as foreign cards, markdown/proximity fixes
+in `verdicts`. Re-grading the baseline with the same rubric moved it 22 -> 25, so the rubric
+changes are not what produced the improvement. **Cold `_analysis_for` at runs=150: 3.4-4.1 s**
+(shelob 3.4, kess 3.9, najeela 3.7, tymna partner deck 4.1) — nowhere near the 120 s Forge proxy
+timeout; `suggest_swap` (4 re-simulations) remains the slow tool. **Still failing / open:**
+`colour` 3/9 (the colour-blind `counterspell` target, Phase C1); `faster` replies often say "your
+deck is already quite fast" while `verdicts.speed` is "slow" (ungated verdict contradiction,
+Phase F1's job); `overview` is lenient by the plan's own definition (contradiction-free plus
+one measured strength topic); `removal` is n/a until Phase B. `mentor_bench.py`'s two failures
+are the documented honest-answer scorer residuals (a 704.5f correction and a Sol Ring
+premise correction that says "costs {1}").
+
+**C1 sweep (2026-09-30, `python scripts/role_targets.py --by-identity`, 862 corpus decks with a
+resolved commander; 9 more have an EMPTY identity = unresolved commander and are excluded, because
+8 of those 9 carry counterspells and would contaminate every "lacks" half).** p60 supply (strength
+units) and share of decks running any, decks HAVING vs LACKING the enabling colour(s):
+
+| role (baseline target) | needs any of | has: n / p60 / %>0 | lacks: n / p60 / %>0 | shipped |
+|---|---|---|---|---|
+| counterspell (3) | U | 450 / 9.0 / 84% | 412 / 0.0 / 12% | **yes** |
+| wipe (3) | W, B, R | 774 / 3.0 / 63% | 88 / 0.0 / 10% | **yes** |
+| finisher (2) | R, G | 639 / 3.0 / 60% | 223 / 0.0 / 17% | **yes** |
+| ramp (14), lacking G | G | 417 / 18.0 / 99% | 445 / 10.0 / 96% | no: colourless rocks keep p60 at 10 |
+| draw (16), lacking U | U | 450 / 18.5 / 99% | 412 / 13.0 / 99% | no: every colour draws |
+| removal (4), tutor (4), wipe/finisher single colours | -- | differences of 1 or none | -- | no |
+
+The bar (documented at `ROLE_COLOR_REQUIREMENTS`): the LACKING half's p60 is zero while the HAVING
+half sits at or above the role's own baseline. Only those three pairs clear it; the plan expected
+only `counterspell`, and the data added `wipe` and `finisher` (both measured as ANY-of sets, since
+several colours fill them). `wipe` and `finisher` are the debatable two -- colourless options exist
+(the residual 10-17%), which is why the mentor flag says "not applicable", never "impossible"; drop an
+entry from the table to revert it. `targets_for(..., color_identity=None)` is byte-identical to the
+old behaviour and `advise`/`card_impact`/`swap_brief` do not pass an identity (only the mentor's
+`get_deck_stats` does); an empty identity counts as unknown, not colourless.
+
+**A0 baseline detail** (`scripts/mentor_holistic_bench.py`, full run ~25 min wall incl. cold store
+load; decks = shelob, tymna, kess, ghired, isshin, najeela, arahbo, kaalia, meren). The overview
+rubric passes because it only requires verdict phrases not to contradict and one measured strength
+topic to appear; the colour rubric and `faster`/`resilience` carry the signal. The failure classes
+match section 1 exactly and repeat across decks, so they are systematic rather than Shelob-specific:
+"lacks counterspells" advice on 7 of 9 decks with no blue in identity (colour 2/9); `faster`
+recommending a cut (or saying nothing) with no measured swap, 9/9; `resilience` said
+moderate/vulnerable for decks measured 71-93/100, 8/9; `vs_b3` first draft rejected for "cites 3"
+on 7/9; `wincon` naming "finishers" on a deck with finisher supply 0 and/or no archetype/win route.
 
 ## 7. Out of scope
 

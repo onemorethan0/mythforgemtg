@@ -33,6 +33,10 @@ LLM_BASE = os.getenv("MYTHGAUNTLET_LLM_BASE", "http://127.0.0.1:8010").rstrip("/
 DEFAULT_MODEL = "qwen3:14b"
 DEFAULT_TEMPERATURE = 0.2
 DEFAULT_MAX_TOKENS = 700
+# A get_power_profile overview needs room for strengths + weaknesses + win route + speed +
+# resilience + key cards; 700 tokens truncates it mid-thought. Applied (as a floor) once that
+# tool has run this turn, together with gate.MAX_CHARS_PROFILE.
+PROFILE_MAX_TOKENS = 1100
 
 # muse-glimmer, smoke-tested, kept re-querying a question it had already answered rather
 # than converging -- this is the backstop against that shape recurring with any model.
@@ -72,10 +76,91 @@ whether a card CAN be added at all; get_bracket_estimate before answering ANY qu
 of the form "what bracket is this", "is this deck too strong/weak for my pod", or "is \
 this deck fun/on-level for casual play" -- this is a casual bracket 1-3 pod, so treat \
 that framing as the point of the question, not a tournament-legality check; and \
-suggest_swap before answering "what should I cut/add" or "how can I improve this deck" \
-questions -- it only ever suggests cards the player OWNS (their Myth Suite collection), \
+suggest_swap before answering "what should I cut/add", "which are my weakest cards" or \
+"how can I improve / speed up this deck" questions -- it only ever suggests cards the player OWNS (their Myth Suite collection), \
 never a card from general Magic knowledge, so if it reports no collection file or no \
-suggestion, say that plainly rather than naming a card yourself.
+suggestion, say that plainly rather than naming a card yourself. \
+When suggest_swap reports improving_swap_found false, tell the player "I didn't find a \
+measured improvement from your collection" -- never present any card as a cut or an \
+add in that case, because nothing was measured to recommend.
+
+For any OPEN-ENDED question about the deck as a whole -- what it does well or poorly, \
+strengths, weaknesses, observations, "is it good", how it wins, how fast it is, how \
+resilient it is to a board wipe, how strong its interaction is, which cards do the \
+most work -- call get_power_profile FIRST. Describe the archetype, the win route, the \
+speed and the wipe-resilience ONLY from its fields: its "verdicts" object already \
+states the resilience (resilient / moderate / vulnerable), speed (fast / moderate / \
+slow / none), consistency, interaction and archetype family, so use those words as \
+they are and never argue against one (if verdicts say resilient, do not call the deck \
+vulnerable to wipes). The speed axis score is the share of games that kill within the \
+horizon, not how early; the clock and verdicts.speed say how fast. When you name cards \
+that "do the work", take them from key_cards, not from your own guess. "strengths" and \
+"weaknesses" are the measured ones: lead with them. interaction_counts are real card \
+counts; get_deck_stats' role "supply" is a strength score, not a card count, so never \
+read it as how many cards the deck has: talk about how many cards fill a role using \
+that role's "cards" field, and compare "supply" with "target" only as over or under \
+target. A role with "applicable": false (get_deck_stats) is NOT a gap -- the deck's \
+colours or measured plan do not call for it (see its "note") -- so never say the deck \
+lacks it or suggest adding cards for it. The same goes for counterspells in \
+get_power_profile: when interaction_counts.counterspells_applicable is false the deck's \
+colours cannot play them, so never list their absence as a weakness or recommend them. \
+For "how do I improve / speed up / make it \
+more resilient" questions, name the weakest axis and its "why" from the profile, then \
+you MUST call suggest_swap in the same turn, BEFORE you write your answer -- never \
+write "I'll look into your collection" and stop; make the call. Pass suggest_swap the \
+axis the player asked about (clock for "faster" / "speed up" / "quicker" -- it measures \
+how EARLY the deck kills, which the speed axis does not; resilience for wipes) and answer the \
+question they actually asked FIRST -- for a resilience question, open with \
+verdicts.resilience and its score (or, if you only have suggest_swap's result, its \
+"current" verdict and score) -- before any swap. Weakest-card questions work the \
+same way: only a suggest_swap result can name a weak card. When a suggestion carries \
+"cut_is_redundant": false, its cut was only the default pick (the deck over-supplies no \
+role) and is NOT evidence the card is weak -- say so plainly (it may be a theme card) and \
+never call it a weak or redundant card.
+
+For "why is my X low", "what is holding my speed back" or "how do I improve X" \
+questions, also call diagnose_axis for that axis (clock for how EARLY the deck kills) and \
+explain from its drivers: name the weak ones with their values and offer its levers as the \
+fixes. A driver marked not_applicable is never a gap. Levers name no cards, and \
+diagnose_axis NEVER replaces suggest_swap: for any "faster", "improve" or "weakest" \
+question you must ALSO call suggest_swap -- with axis clock for "faster" (never ceiling or \
+speed) -- and answer with its measured swap or its "no measured improvement" result.
+
+For any "what should I cut/add", "weakest cards", "make it faster" or "improve X" question, call get_measured_swaps FIRST, with the axis the question is about (clock for "faster" / "speed up" / "quicker"; the same routing rules as suggest_swap): it returns the swaps from the full, deep swap search the player already ran on the deck page. Treat its result exactly as you would suggest_swap's (same fields, same "cut_is_redundant" rule, same "I didn't find a measured improvement" wording when improving_swap_found is false). Only when it reports available false, call suggest_swap instead, tell the player that quick in-chat search is shallow, and add that running Advise on the deck page for that axis (it takes a few minutes) gives a much deeper search.
+
+Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
+players labelled with a bracket (its "standing": top_quarter / above_median / \
+below_median / bottom_quarter, already oriented so a top standing is always the better \
+end). Say "does X poorly" or "does X well" relative to other decks ONLY from a standing: \
+"in the bottom quarter of bracket 3 decks for interaction" is a measured statement, a \
+bare score is not. When the player names a bracket ("against a bracket 3 pod"), call \
+get_power_profile with compare_bracket set to it and answer from those standings. These \
+standings only say above or below typical for decks of THAT bracket -- never use them to \
+argue the deck belongs in a different bracket (most axes barely differ between brackets; \
+get_bracket_estimate answers that question). A standing is also not a speed verdict: \
+call the deck fast or slow only as verdicts.speed says, and report a standing only as \
+"for its bracket".
+
+For "which cards are my ramp / removal / draw", "what's in my deck" or any question \
+about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
+name cards only from its rows; its "roles" use the same role names as get_deck_stats.
+
+For "is my removal good enough", "what can't my removal answer", "what am I weak \
+against" or "how good is my interaction" call removal_coverage. Describe gaps ONLY \
+from its no_answer_for and no_unrestricted_answer_for lists and the restrictions \
+quoted on each card -- never guess what kinds of permanents the removal can or cannot \
+hit. A type in no_unrestricted_answer_for but not in no_answer_for is answered only by \
+restriction-limited cards (say so, naming the restriction, e.g. "only flyers"); when \
+no_unrestricted_answer_for is non-empty, mention that some coverage is \
+restriction-limited. A type under not_applicable_types (spells, when the deck has no blue) \
+is never a gap and never a reason to suggest counterspells. Use its counts_by_type for any \
+count, never count list items.
+
+Tool results are NOT carried from one question to the next: a follow-up ("which cards \
+do the most work?", "why?") needs its own tool call this turn even when an earlier \
+answer in the conversation covered the same ground. Call the tool again, and never say \
+you cannot provide something without having called the relevant tool first. If you say \
+you will look something up, call the tool in that same turn instead of ending it.
 
 get_deck_stats' "offmeta" field may report {"available": false} when Forge has no \
 off-meta reading cached for this deck -- say plainly that you don't have one rather than \
@@ -175,12 +260,108 @@ _THINK_TAG_RE = re.compile(r"<think>.*?</think>", re.DOTALL)
 
 def _strip(text: str) -> str:
     """Drop wrappers a small model adds: a stray <think> block, code fences, a leading
-    label -- same tidy-up `swap_narrative._strip` does for the narrower case."""
+    label -- same tidy-up `swap_narrative._strip` does for the narrower case.
+
+    PARAGRAPH BREAKS SURVIVE: runs of spaces/tabs collapse, trailing spaces go, and three or
+    more newlines become two, but a blank line between paragraphs is kept. This used to
+    collapse ALL whitespace into one line, which was fine for a 2-sentence answer and turns a
+    holistic overview (strengths / weaknesses / how it wins) into one unreadable block."""
     body = _THINK_TAG_RE.sub("", text or "").strip()
     if body.startswith("```"):
         body = body.split("\n", 1)[-1].rsplit("```", 1)[0]
     body = re.sub(r"^\s*(answer|reply|response)\s*[:\-]\s*", "", body, flags=re.I)
-    return " ".join(body.split()).strip()
+    body = body.replace("\r\n", "\n").replace("\r", "\n")
+    body = re.sub(r"[ \t\f\v]+", " ", body)
+    body = re.sub(r" ?\n ?", "\n", body)
+    body = re.sub(r"\n{3,}", "\n\n", body)
+    return body.strip()
+
+
+_ANNOUNCE_RE = re.compile(
+    r"\b(?:i'?ll|i\s+will|let\s+me|i'?m\s+going\s+to|i\s+am\s+going\s+to)\s+"
+    r"(?:now\s+|go\s+ahead\s+and\s+|first\s+|just\s+)?(?:look|check|search|find|see|run|measure|pull)\b",
+    re.IGNORECASE,
+)
+_LOOKUP_NUDGE = (
+    "You said you would look into it, but you did not call a tool. Do that now: call the "
+    "appropriate tool, then answer from its result."
+)
+
+
+def _announces_a_lookup(draft: str) -> bool:
+    return bool(_ANNOUNCE_RE.search(draft or ""))
+
+
+# An IMPROVEMENT question ("make it faster", "how could I improve that", "weakest cards", "what
+# should I cut") is only answered by a measured swap. Once diagnose_axis existed the model
+# started stopping after it (it explains the cause, so the answer "feels" complete) -- live,
+# 3 of 9 `faster` replies named no measured swap -- so, like the announce-then-stop case, one
+# deterministic nudge per turn.
+_SWAP_QUESTION_RE = re.compile(
+    r"\b(?:faster|quicker|speed(?:ing)?\s+up|improv\w*|weakest|what\s+should\s+i\s+"
+    r"(?:cut|add|swap|replace)|which\s+cards?\s+should\s+i\s+(?:cut|replace|swap))\b",
+    re.IGNORECASE,
+)
+_SWAP_NUDGE = (
+    "This is an improvement question: you must call get_measured_swaps (or, when it reports "
+    "available false, suggest_swap) before you answer -- diagnose_axis explains the cause but "
+    "cannot name a card. Use axis clock for faster / speed up / quicker, resilience for wipes, "
+    "otherwise the axis the player asked about. Call it now and answer from its result."
+)
+
+
+_SHALLOW_NOTE = (
+    "This is the quick in-chat search (a handful of candidates), so it is shallow. Tell the "
+    "player so, and that Advise on the deck page runs a much deeper search (a few minutes)."
+)
+
+
+def _measured_first(ctx, args: dict, tool_trace: list):
+    """`get_measured_swaps` for the axis a `suggest_swap` call targets, or None when there is
+    nothing to look up (no axis to key on) or it was already looked up this turn."""
+    axis = args.get("axis")
+    if not axis:
+        advice = getattr(ctx, "advice", None) or {}
+        auto = (advice.get("auto") or {}).get("result") or {}
+        axis = auto.get("axis")
+    if not axis or any(t.name == "get_measured_swaps" and t.args.get("axis") == axis
+                       for t in tool_trace):
+        return None
+    return call_tool(ctx, "get_measured_swaps", {"axis": axis})
+
+
+def _has_swap_answer(tool_trace: list) -> bool:
+    """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
+    full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
+    return any(
+        t.name == "suggest_swap"
+        or (t.name == "get_measured_swaps" and (t.result_data or {}).get("available"))
+        for t in tool_trace
+    )
+
+
+def _wants_a_swap(question: str) -> bool:
+    return bool(_SWAP_QUESTION_RE.search(question or ""))
+
+
+# "Faster" is the CLOCK axis (how early the deck kills). The model keeps passing `ceiling` (live:
+# Najeela's "faster" answer was a ceiling swap whose own brief showed the kill 9.56 -> 9.79,
+# i.e. slower) or `speed` (a kill RATE that no swap moves on a deck already at ~97). The prompt
+# says clock; this routes it deterministically. The trace records the axis actually run.
+_SPEED_QUESTION_RE = re.compile(r"\b(?:faster|quicker|speed(?:ing)?\s+up)\b", re.IGNORECASE)
+
+
+def _route_swap_axis(question: str, args: dict) -> dict:
+    if (_SPEED_QUESTION_RE.search(question or "") and args.get("axis") in ("speed", "ceiling")):
+        return {**args, "axis": "clock"}
+    return args
+
+
+def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
+    """(max_tokens, max_chars) for this turn: widened once get_power_profile has run."""
+    if any(t.name == "get_power_profile" for t in tool_trace):
+        return max(max_tokens, PROFILE_MAX_TOKENS), gate_mod.MAX_CHARS_PROFILE
+    return max_tokens, gate_mod.MAX_CHARS
 
 
 _HISTORY_ROLES = {"user", "assistant"}
@@ -231,11 +412,30 @@ def ask(
     all_results: list[ToolResult] = []
     known_names = ctx.all_card_names
 
+    nudged = False
+    swap_nudged = False
     for _ in range(MAX_TOOL_TURNS):
-        msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
+        msg = _post_chat(messages, model=model, temperature=temperature,
+                         max_tokens=_limits(tool_trace, max_tokens)[0])
         tool_calls = msg.get("tool_calls") or []
         if not tool_calls:
             draft = _strip(msg.get("content") or "")
+            if not nudged and _announces_a_lookup(draft):
+                # The model SAID it would look something up and ended its turn instead of
+                # calling the tool (live, qwen3:14b: "I'll look into your collection to
+                # find a card..." with no suggest_swap call, so the answer never contained
+                # the measurement it promised). One nudge per turn, then whatever it says
+                # goes to the gate as usual.
+                nudged = True
+                messages.append({"role": "assistant", "content": draft})
+                messages.append({"role": "user", "content": _LOOKUP_NUDGE})
+                continue
+            if (not swap_nudged and _wants_a_swap(question)
+                    and not _has_swap_answer(tool_trace)):
+                swap_nudged = True
+                messages.append({"role": "assistant", "content": draft})
+                messages.append({"role": "user", "content": _SWAP_NUDGE})
+                continue
             break
         messages.append(msg)
         for tc in tool_calls:
@@ -244,7 +444,34 @@ def ask(
                 args = json.loads(tc["function"].get("arguments") or "{}")
             except json.JSONDecodeError:
                 args = {}
+            if fn_name in ("suggest_swap", "get_measured_swaps"):
+                args = _route_swap_axis(question, args)
+            if fn_name == "suggest_swap":
+                # D2: a cached FULL search beats the quick in-chat one, and qwen3:14b keeps
+                # reaching for suggest_swap regardless of the prompt -- so look first,
+                # deterministically. Available: that result IS the answer (no 4-simulation
+                # search). Unavailable: the trace still records it (the UI offers "Run full
+                # swap search" from it) and the quick search runs, flagged as shallow.
+                measured = _measured_first(ctx, args, tool_trace)
+                if measured is not None and measured.data.get("available"):
+                    all_results.append(measured)
+                    tool_trace.append(ToolCallRecord(
+                        name="get_measured_swaps", args={"axis": measured.data.get("axis")},
+                        result_data=measured.data))
+                    messages.append({
+                        "role": "tool", "tool_call_id": tc.get("id", fn_name),
+                        "content": json.dumps(measured.data, ensure_ascii=False, default=str),
+                    })
+                    continue
+                if measured is not None:
+                    tool_trace.append(ToolCallRecord(
+                        name="get_measured_swaps", args={"axis": measured.data.get("axis")},
+                        result_data=measured.data))
             result = call_tool(ctx, fn_name, args)
+            if fn_name == "suggest_swap" and result.data.get("found"):
+                result = ToolResult(
+                    data={**result.data, "search_depth": _SHALLOW_NOTE},
+                    card_names=result.card_names, rule_numbers=result.rule_numbers)
             all_results.append(result)
             tool_trace.append(ToolCallRecord(name=fn_name, args=args, result_data=result.data))
             messages.append({
@@ -260,14 +487,16 @@ def ask(
             "content": "Stop calling tools now and answer directly from what you already "
                        "have, or say you don't have enough to answer precisely.",
         })
-        msg = _post_chat(messages, model=model, temperature=temperature, max_tokens=max_tokens)
+        msg = _post_chat(messages, model=model, temperature=temperature,
+                         max_tokens=_limits(tool_trace, max_tokens)[0])
         draft = _strip(msg.get("content") or "")
 
+    tokens, chars = _limits(tool_trace, max_tokens)
     budget = gate_mod.ClaimBudget.from_tool_results(all_results, known_names)
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):
-        reasons = gate_mod.check(draft, budget, question=question)
+        reasons = gate_mod.check(draft, budget, question=question, max_chars=chars)
         if not reasons:
             return MentorReply(text=draft, gated=True, tool_trace=tool_trace,
                                gate_rejections=gate_rejections)
@@ -283,7 +512,7 @@ def ask(
             )},
         ]
         msg = _post_chat(retry_messages, model=model, temperature=temperature + 0.1,
-                          max_tokens=max_tokens)
+                          max_tokens=tokens)
         draft = _strip(msg.get("content") or "")
 
     fallback = (
