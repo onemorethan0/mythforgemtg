@@ -688,6 +688,25 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset(r["name"] for r in cov["cards"]))
 
 
+_AXIS_BAND = {"resilience": verdicts.resilience_band, "consistency": verdicts.consistency_band,
+              "interaction": verdicts.interaction_band}
+
+
+def _axis_current(report) -> dict:
+    """Where the deck stands on the axis a swap search targeted, so the answer can open with it
+    even when the model skipped `get_power_profile` (C-residual: Shelob and Tymna answered "how
+    resilient is it to a wipe" with only a swap, no verdict). `verdict` is the same band the
+    profile's `verdicts` object uses, where one exists for the axis."""
+    current: dict = {"axis": report.axis, "score": _r1(report.baseline)}
+    band = _AXIS_BAND.get(report.axis)
+    if band is not None:
+        current["verdict"] = band(report.baseline)
+        current["instruction"] = (
+            f"State the deck's {report.axis} verdict ({current['verdict']}) and score "
+            f"({current['score']}) first, then the swap result.")
+    return current
+
+
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
     """What to add/cut, measured by re-simulation -- `ratings.advisor.advise`'s full
     ablation sweep, deferred out of Phase 1 (see this module's own docstring) until the
@@ -744,6 +763,7 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
         return ToolResult(data={
             "found": True, "improving_swap_found": False,
             "axis": report.axis, "baseline": report.baseline, "evaluated": report.evaluated,
+            "current": _axis_current(report),
             "message": (
                 f"Tested {report.evaluated} owned cards as adds on {report.axis_label}; none "
                 f"beat the noise floor (min gain {report.min_delta:g}). No measured swap to "
@@ -754,6 +774,7 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
     data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
     data["found"] = True
     data["improving_swap_found"] = True
+    data["current"] = _axis_current(report)
     # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
     # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
     # the card is weak -- Shelob's own theme card, Gloomwidow's Feast, kept surfacing this way

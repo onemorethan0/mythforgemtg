@@ -111,7 +111,8 @@ write "I'll look into your collection" and stop; make the call. Pass suggest_swa
 axis the player asked about (clock for "faster" / "speed up" / "quicker" -- it measures \
 how EARLY the deck kills, which the speed axis does not; resilience for wipes) and answer the \
 question they actually asked FIRST -- for a resilience question, open with \
-verdicts.resilience and its score -- before any swap. Weakest-card questions work the \
+verdicts.resilience and its score (or, if you only have suggest_swap's result, its \
+"current" verdict and score) -- before any swap. Weakest-card questions work the \
 same way: only a suggest_swap result can name a weak card. When a suggestion carries \
 "cut_is_redundant": false, its cut was only the default pick (the deck over-supplies no \
 role) and is NOT evidence the card is weak -- say so plainly (it may be a theme card) and \

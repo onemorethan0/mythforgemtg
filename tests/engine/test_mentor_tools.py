@@ -920,3 +920,24 @@ def test_without_counterspells_rewrites_the_insight_sentences():
     ) == "Thin interaction (only 2 answers) -- light on removal"
     assert _without_counterspells("Deep interaction (7 answers, 3/3 types)").endswith(
         "(7 answers, 3 of 2 playable types)")   # unreachable shape for a no-blue deck; harmless
+
+
+def test_suggest_swap_result_states_the_current_axis_verdict(make_card, empty_store, monkeypatch, tmp_path):
+    """Shelob/Tymna answered a wipe-resilience question with only a swap and no verdict."""
+    from mythgauntlet.mentor import tools as tools_mod
+    from mythgauntlet.ratings.advisor import AdviceReport
+    ctx = _ctx(make_card, empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Some Card\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+    extra = make_card("Some Card", type_line="Instant", mana_cost="{G}", color_identity=("G",))
+    ctx2 = MentorContext(card_db=CardDb([*[c for c, _ in ctx.resolved.cards],
+                                         *ctx.resolved.commanders, extra]),
+                         cr=ctx.cr, rulings_db={}, resolved=ctx.resolved, cfg=ctx.cfg,
+                         store=ctx.store)
+    monkeypatch.setattr(tools_mod.advisor, "advise", lambda *a, **k: AdviceReport(
+        axis="resilience", axis_label="Resilience", baseline=93.04, cut=None,
+        suggestions=[], evaluated=4, analyses=4, cut_pool=1, min_delta=1.3))
+    d = call_tool(ctx2, "suggest_swap", {"axis": "resilience"}).data
+    assert d["current"]["axis"] == "resilience" and d["current"]["score"] == 93.0
+    assert d["current"]["verdict"] == "resilient" and "resilient" in d["current"]["instruction"]
