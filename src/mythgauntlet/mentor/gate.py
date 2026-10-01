@@ -39,7 +39,7 @@ import re
 from dataclasses import dataclass, field
 
 from mythgauntlet.mentor import verdicts as verdicts_mod
-from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, extract_numbers
+from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, _COPY_EXCEPTION_RE, extract_numbers
 
 # A mentor answer can legitimately be longer than one swap's 2-3 sentences (explaining a
 # curve, walking through several role gaps), so these are looser than swap_narrative's
@@ -190,6 +190,10 @@ def typed_bracket_numbers(question: str) -> frozenset[float]:
     )
 
 
+_COPY_COUNT_RE = re.compile(
+    r"\b(?:cop(?:y|ies)|second|duplicate|singleton)\b", re.IGNORECASE)
+
+
 def _words_between(s: str, m1: re.Match, m2: re.Match) -> int:
     """Rough word count strictly between two (non-overlapping) regex matches in `s`."""
     lo, hi = sorted((m1.span(), m2.span()))
@@ -244,6 +248,13 @@ class ClaimBudget:
     # The clock-axis swap results (`_swap_result` dicts with axis == "clock") of this turn: check 8
     # flags "1.7 turns" when 1.7 is a clock SCORE figure and no kill-turn figure.
     clock_swaps: tuple = ()
+    # (card name, type_line) for every card a `lookup_card` result returned this turn: check 9
+    # flags "Sol Ring is a non-basic land" -- a licensed name with a fabricated TYPE. Detected
+    # structurally (found + name + type_line + oracle_text is `lookup_card`'s shape).
+    card_types: tuple = ()
+    # Cards this turn's tool results show OVERRIDE the singleton rule ("a deck can have any
+    # number of cards named ..."): check 10 exempts a multiple-copies sentence naming one.
+    copy_exception_names: frozenset[str] = frozenset()
 
     @classmethod
     def from_tool_results(
@@ -257,6 +268,8 @@ class ClaimBudget:
         profile: dict[str, str] = {}
         swap_axes: set[str] = set()
         clock_swaps: list[dict] = []
+        card_types: dict[str, str] = {}
+        copy_exceptions: set[str] = set()
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -281,9 +294,20 @@ class ClaimBudget:
                 swap_axes.add(data["axis"])
                 if data["axis"] == "clock":
                     clock_swaps.append(data)
+            if (
+                isinstance(data, dict) and data.get("found") is True
+                and isinstance(data.get("name"), str) and isinstance(data.get("type_line"), str)
+                and "oracle_text" in data
+            ):
+                card_types[data["name"]] = data["type_line"]
+                if _COPY_EXCEPTION_RE.search(data.get("oracle_text") or ""):
+                    copy_exceptions.add(data["name"])
+            if (isinstance(data, dict) and data.get("copy_limit_exception") is True
+                    and isinstance(data.get("card"), str)):
+                copy_exceptions.add(data["card"])
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
-                    tuple(clock_swaps))
+                    tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -422,6 +446,11 @@ def check(text: str, budget: ClaimBudget, question: str = "",
         for sentence in _SENTENCE_SPLIT_RE.split(body):
             if not name_re.search(sentence):
                 continue
+            # A copy-count sentence ("you can't add a second copy of Sol Ring") is about the
+            # singleton rule, not colour identity -- check 10's job. Found live 2026-10-01: it was
+            # read as "Sol Ring cannot be added" and rejected a CORRECT singleton answer.
+            if _COPY_COUNT_RE.search(sentence):
+                continue
             if is_legal and _ILLEGAL_PHRASE_RE.search(sentence):
                 reasons.append(
                     f"says {card_name!r} cannot be added, contradicting this turn's "
@@ -458,6 +487,20 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     if budget.clock_swaps:
         reasons.extend(verdicts_mod.turn_confusion_reasons(
             body, budget.clock_swaps, tolerance=_NUMBER_TOLERANCE))
+
+    # 9. CARD-TYPE CONTRADICTION (HEURISTIC -- see `verdicts.type_claim_reasons`). A looked-up
+    #    card's NAME is licensed, so "Sol Ring is a non-basic land" passes checks 1-8 even though
+    #    the type is invented. Flags a sentence giving a looked-up card a card type its own
+    #    type_line lacks; the type word must end the noun phrase, so attributive uses ("a creature
+    #    removal spell") never fire.
+    if budget.card_types:
+        reasons.extend(verdicts_mod.type_claim_reasons(body, budget.card_types))
+
+    # 10. SINGLETON CONTRADICTION (HEURISTIC -- see `verdicts.singleton_reasons`). "You can run
+    #     multiple copies of Sol Ring" names no unlicensed card, number or rule, so checks 1-9
+    #     cannot see it; it contradicts CR 903.5b. Always on (it is a rules claim, not a claim
+    #     about a tool result); exempts basic lands and cards whose own text overrides the rule.
+    reasons.extend(verdicts_mod.singleton_reasons(body, budget.copy_exception_names))
 
     return reasons
 

@@ -560,6 +560,26 @@ main already failed `resilience` (0/3)** -- after an unavailable `get_measured_s
 now runs the owed `suggest_swap` itself (synthetic tool_calls need `type: function`). Still open: `dual` is 5/9 live
 (model skips the speed half or omits the no-improvement statement); the Simulacrum "repeatable draw" tagger defect is untouched.
 
+**Card types and the singleton rule (2026-10-01, Opus, branch `mentor-types`).** A live trap reply said "Sol Ring
+is a non-basic land, so you can only run one copy" and PASSED: the name was licensed (via `check_legality`), only the
+TYPE was invented. Four pieces, each found by fixing the previous one live: (1) **gate check 9** flags a licensed card
+given a card type its own type line lacks (`verdicts.type_claim_reasons`; the type word must end the noun phrase, so
+"a creature removal spell" never fires), and `chat._with_card_types` gives it the DB type line of EVERY licensed name,
+not only `lookup_card` results; on a check-9 failure the loop runs `lookup_card` itself (`_lookup_mistyped_cards`).
+(2) With the type corrected the model said **"you can run multiple copies of Sol Ring"** -- the fake type had been
+hiding a wrong RULE. **Gate check 10** flags a multiple-copies permission (`verdicts.singleton_reasons`) unless
+negated, about basic lands, or naming a card whose own oracle text overrides it (`copy_limit_exception`; the regex
+matches exactly 13 cards store-wide: Relentless Rats, Persistent Petitioners, Seven Dwarves, Nazgul, ...);
+`check_legality` and `lookup_card` now carry `singleton_rule` = CR 903.5b **read from the rules corpus at runtime**.
+Check 5 (legality contradiction) now skips copy-count sentences ("can't add a second copy" is not "can't be added").
+(3) **`chat._prelookup_question_cards`** looks up up to 3 cards the PLAYER names before the model writes, so a false
+premise ("only costs 2 mana") can be corrected from the real cost. It first broke two fake-card traps ("Quantum Flux
+Behemoth" contains the real card "Flux") -- a name embedded in a longer capitalised run is now skipped, and
+possessives ("Craterhoof Behemoth's") still match. (4) A fraction in a tool result also licenses its percent form
+(0.78 -> "78%"). Result on the trap: "Sol Ring only costs 1 mana, not 2 ... you can only have one copy", gated 3/3.
+Residual: qwen3:14b still paraphrases 903.5b as "one copy of any non-basic land card" even with the rule text in hand
+(the conclusion is right; the wording is not) -- a prompt-level nit, not gate-checkable without false positives.
+
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
 :8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the

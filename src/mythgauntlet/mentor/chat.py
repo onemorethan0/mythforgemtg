@@ -22,6 +22,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import dataclasses
 from dataclasses import dataclass, field
 
 import requests
@@ -530,6 +531,103 @@ def _route_swap_axis(question: str, args: dict) -> dict:
     return args
 
 
+def _with_card_types(budget, ctx):
+    """Give gate check 9 the REAL type line of every card name this turn licensed, not only the
+    ones `lookup_card` returned. Live 2026-10-01: "Sol Ring is a non-basic land" passed because
+    the turn licensed Sol Ring through `check_legality`, whose result carries no type line --
+    so the check had nothing to compare against. The card DB is the authority either way; a
+    name it cannot resolve is simply left out (the check then stays silent, never guesses)."""
+    known = dict(budget.card_types)
+    for name in budget.card_names:
+        if name in known:
+            continue
+        card = ctx.card_db.get(name)
+        type_line = getattr(card, "type_line", None) if card is not None else None
+        if isinstance(type_line, str) and type_line:
+            known[name] = type_line
+    if len(known) == len(budget.card_types):
+        return budget
+    return dataclasses.replace(budget, card_types=tuple(known.items()))
+
+
+_PRELOOKUP_MAX = 3
+
+
+def _question_card_names(question: str, known_names) -> list[str]:
+    """Real card names the player wrote, case-sensitively (a capitalised name, not the common
+    word -- "Exile", "Ramp"), longest first with nested names masked, at most `_PRELOOKUP_MAX`."""
+    if not question:
+        return []
+    found: list[str] = []
+    masked = question
+    candidates = [n for n in known_names if len(n) >= 4 and n in question
+                  and n.lower() not in gate_mod._COMMON_WORD_CARD_NAMES]
+    for name in sorted(candidates, key=len, reverse=True):
+        # (?!'(?!s\b)) lets a possessive through ("Craterhoof Behemoth's trigger").
+        m = re.search(rf"(?<![\w']){re.escape(name)}(?!\w)(?!'(?!s\b))", masked)
+        if not m:
+            continue
+        # A real name EMBEDDED in a longer capitalised name is not the player's card: "Quantum
+        # Flux Behemoth" (a trap, no such card) contains the real card "Flux", and looking Flux
+        # up made the mentor describe Flux instead of saying the card does not exist (live
+        # 2026-10-01). Skip when a capitalised word touches the match on either side.
+        before, after = masked[:m.start()], masked[m.end():]
+        if re.search(r"\b[A-Z][\w'-]*\s+$", before) or re.match(r"\s+[A-Z][\w'-]*\b", after):
+            if not re.search(r"(?:^|[.!?]\s+)[A-Z][\w'-]*\s+$", before):
+                continue
+        found.append(name)
+        masked = masked[:m.start()] + " " * len(name) + masked[m.end():]
+        if len(found) == _PRELOOKUP_MAX:
+            break
+    return found
+
+
+def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages):
+    names = _question_card_names(question, known_names)
+    if not names:
+        return
+    calls = [{"id": f"auto-q-lookup-{i}", "type": "function",
+              "function": {"name": "lookup_card", "arguments": json.dumps({"name": n})}}
+             for i, n in enumerate(names)]
+    messages.append({"role": "assistant", "content": "", "tool_calls": calls})
+    for call, name in zip(calls, names):
+        result = call_tool(ctx, "lookup_card", {"name": name})
+        all_results.append(result)
+        tool_trace.append(ToolCallRecord(name="lookup_card", args={"name": name},
+                                         result_data=result.data))
+        messages.append({"role": "tool", "tool_call_id": call["id"],
+                         "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+
+
+_MISTYPED_RE = re.compile(r"calls '([^']+)' an? \w+, but its type line this turn is")
+
+
+def _lookup_mistyped_cards(ctx, reasons, tool_trace, all_results, messages) -> list[str]:
+    """Run lookup_card for each card a check-9 reason names that was not already looked up
+    this turn; append the synthetic call + result to `messages`, `tool_trace` and `all_results`
+    (the same shape the tool loop writes). Returns the names looked up."""
+    already = {str(t.args.get("name", "")).lower() for t in tool_trace if t.name == "lookup_card"}
+    names: list[str] = []
+    for reason in reasons:
+        m = _MISTYPED_RE.search(reason)
+        if m and m.group(1).lower() not in already and m.group(1) not in names:
+            names.append(m.group(1))
+    if not names:
+        return []
+    calls = [{"id": f"auto-lookup-{i}", "type": "function",
+              "function": {"name": "lookup_card", "arguments": json.dumps({"name": n})}}
+             for i, n in enumerate(names)]
+    messages.append({"role": "assistant", "content": "", "tool_calls": calls})
+    for call, name in zip(calls, names):
+        result = call_tool(ctx, "lookup_card", {"name": name})
+        all_results.append(result)
+        tool_trace.append(ToolCallRecord(name="lookup_card", args={"name": name},
+                                         result_data=result.data))
+        messages.append({"role": "tool", "tool_call_id": call["id"],
+                         "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    return names
+
+
 def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
     """(max_tokens, max_chars) for this turn: widened once get_power_profile has run."""
     if any(t.name == "get_power_profile" for t in tool_trace):
@@ -584,6 +682,11 @@ def ask(
     tool_trace: list[ToolCallRecord] = []
     all_results: list[ToolResult] = []
     known_names = ctx.all_card_names
+    # A card the PLAYER names is the subject of the question, so its real text is always looked
+    # up before the model writes a word -- live 2026-10-01 a false premise ("Since Sol Ring only
+    # costs 2 mana...") went uncorrected because the model never looked Sol Ring up and so had
+    # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
+    _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False
@@ -688,6 +791,7 @@ def ask(
 
     tokens, chars = _limits(tool_trace, max_tokens)
     budget = gate_mod.ClaimBudget.from_tool_results(all_results, known_names)
+    budget = _with_card_types(budget, ctx)
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):
@@ -699,11 +803,22 @@ def ask(
         gate_rejections.append((draft, reasons))
         if attempt == MAX_GATE_ATTEMPTS - 1:
             break
+        # Check 9 (a licensed card given the wrong TYPE): the model usually never looked the card
+        # up -- live 2026-10-01 it licensed Sol Ring via check_legality, wrote "Sol Ring is a
+        # non-basic land", and ignored the rejection's own correction on every retry. Hand it
+        # the real card text by running lookup_card ourselves, exactly as if it had called it.
+        looked_up = _lookup_mistyped_cards(ctx, reasons, tool_trace, all_results, messages)
+        if looked_up:
+            budget = _with_card_types(
+                gate_mod.ClaimBudget.from_tool_results(all_results, known_names), ctx)
         retry_messages = messages + [
             {"role": "assistant", "content": draft},
             {"role": "user", "content": (
                 "That answer is not acceptable: " + "; ".join(reasons) + ". "
-                "Rewrite it using ONLY facts from the tool results above. If you cannot "
+                + (f"The lookup_card result for {', '.join(looked_up)} is above: use its type "
+                   "line and mana cost exactly, and if the question assumed something those "
+                   "contradict, correct that assumption first. " if looked_up else "")
+                + "Rewrite it using ONLY facts from the tool results above. If you cannot "
                 "answer precisely with what you have, say so honestly instead of guessing."
             )},
         ]

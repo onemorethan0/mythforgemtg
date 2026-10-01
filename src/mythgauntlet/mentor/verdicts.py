@@ -897,3 +897,79 @@ def turn_confusion_reasons(text: str, clock_datas, tolerance: float = 0.6) -> li
                 "from kill_turn_change / the kill_turn_before and kill_turn_after fields, or say "
                 "points")
     return reasons
+
+
+# ── Card-type contradiction (gate check 9) ───────────────────────────────────────────
+# Found 2026-10-01 in a mentor_bench trap reply: "Sol Ring is a non-basic land, so you can
+# only run one copy". Sol Ring was legitimately looked up this turn, so the name is licensed;
+# the TYPE is the fabrication, and a type is a mechanical fact the lookup already returned
+# (`lookup_card`'s `type_line`). Flags "<card> is a(n) [<= 3 modifier words] <card type>" (or
+# the appositive "<card>, a(n) ... <card type>") when that card type is absent from the card's
+# own type line. Narrow by design (under-flag, same as checks 5-8): the type word must END the
+# noun phrase -- followed by punctuation, a clause word, or "card" -- so attributive uses
+# ("Swords is a creature removal spell", "an instant-speed answer") never fire.
+_TYPE_PHRASE = (
+    r"(?:\s+is|,)\s+(?:an?|another)\s+((?:[\w'-]+\s+){0,3}?)"
+    r"(land|creature|artifact|enchantment|instant|sorcery|planeswalker|battle)s?"
+    r"(?=\s*(?:[.,;:!?)]|$)|\s+(?:card|that|which|with|and|but|so|for|in|you|it)\b)"
+)
+
+
+# ── Singleton contradiction (gate check 10) ──────────────────────────────────────────
+# CR 903.5b: "Other than basic lands, each card in a Commander deck must have a different
+# English name." Found 2026-10-01: once check 9 fixed "Sol Ring is a non-basic land", the
+# model concluded "Sol Ring is not a land, therefore you can run multiple copies" -- a wrong
+# RULE with no citation, invisible to checks 1-9. Flags a sentence permitting more than one copy
+# unless it is negated, is about basic lands, or names a card whose own oracle text overrides
+# the rule ("a deck can have any number of cards named ..."; 13 cards store-wide, measured).
+_MULTI_COPY_RE = re.compile(
+    r"\b(?:run|play|include|have|use|add|put|running|playing|including|having|using|adding)\s+"
+    r"(?:multiple|two|three|four|several|more\s+than\s+one|extra|additional|a\s+second|"
+    r"another)\s+cop(?:y|ies)\b|\bmore\s+than\s+one\s+copy\b|\bmultiple\s+copies\b",
+    re.IGNORECASE,
+)
+_COPY_NEGATION_RE = re.compile(
+    r"\b(?:not|cannot|can't|can’t|couldn't|only|never|no|isn't|aren't|don't|doesn't|"
+    r"shouldn't|won't|illegal|singleton)\b", re.IGNORECASE)
+_BASIC_LAND_RE = re.compile(r"(?<![\w-])basic\s+lands?\b|\b(?:Plains|Island|Swamp|Mountain|Forest|Wastes)\b")
+
+
+def singleton_reasons(text: str, exception_names=()) -> list[str]:
+    """Gate/bench reasons: a sentence that lets a deck run more than one copy of a card."""
+    exceptions = [n for n in (exception_names or ()) if n]
+    for sentence in split_sentences(text):
+        m = _MULTI_COPY_RE.search(sentence)
+        if not m:
+            continue
+        if _COPY_NEGATION_RE.search(sentence[:m.start()]):
+            continue
+        if _BASIC_LAND_RE.search(sentence):
+            continue
+        if any(re.search(rf"\b{re.escape(n)}\b", sentence, re.IGNORECASE) for n in exceptions):
+            continue
+        return [
+            "says a deck can run more than one copy of a card, but Commander is singleton: "
+            "other than basic lands each card must have a different English name (rule 903.5b, "
+            "returned by check_legality as singleton_rule); only a card whose own oracle text "
+            "says 'a deck can have any number of cards named' is an exception"]
+    return []
+
+
+def type_claim_reasons(text: str, card_types) -> list[str]:
+    """Gate/bench reasons: one per sentence that gives a looked-up card a card type its own
+    type line does not have. `card_types` is an iterable of (card name, type_line)."""
+    reasons: list[str] = []
+    for name, type_line in card_types or ():
+        if not name or not isinstance(type_line, str):
+            continue
+        tl = type_line.lower()
+        pat = re.compile(re.escape(name) + _TYPE_PHRASE, re.IGNORECASE)
+        for m in pat.finditer(text):
+            claimed = m.group(2).lower()
+            if claimed in tl:
+                continue
+            reasons.append(
+                f"calls {name!r} a {claimed}, but its type line this turn is {type_line!r}: "
+                "state a card's type only as lookup_card returned it")
+            break
+    return reasons

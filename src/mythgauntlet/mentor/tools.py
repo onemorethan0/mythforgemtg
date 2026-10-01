@@ -109,6 +109,11 @@ def _numbers_in(value) -> set[float]:
         return found
     if isinstance(value, (int, float)):
         found.add(round(float(value), 1))
+        # A fraction is routinely narrated as a percent ("78% consistency" for a returned
+        # 0.78) -- live 2026-10-01 that honest reading was rejected three times as "cites 78".
+        # Same generous bias as the rest of this function: license the percent form too.
+        if isinstance(value, float) and 0.0 < value < 1.0:
+            found.add(round(value * 100.0, 1))
     elif isinstance(value, str):
         found.update(extract_numbers(value))
         found.update(_mana_symbol_counts(value))
@@ -324,6 +329,13 @@ def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
         "game_changer": card.game_changer,
         "edhrec_rank": card.edhrec_rank,
     }
+    # Same corpus-sourced singleton rule check_legality carries (see there): a copy-count
+    # question often reaches the model through a plain lookup, and with no rule text in hand it
+    # paraphrased CR 903.5b as "one copy of any non-basic land card" (live 2026-10-01).
+    singleton = _singleton_rule(ctx)
+    if singleton and "Basic" not in card.type_line:
+        data["singleton_rule"] = singleton
+        data["copy_limit_exception"] = bool(_COPY_EXCEPTION_RE.search(card.oracle_text or ""))
     return ToolResult(data=data, card_names=frozenset({card.name}))
 
 
@@ -1070,7 +1082,29 @@ def tool_check_legality(ctx: MentorContext, name: str) -> ToolResult:
         "legal": not missing,
         "colors_not_in_deck_identity": missing,
     }
+    # The singleton rule rides along, READ FROM THE RULES CORPUS (never restated here), because
+    # a copy-count question ("is it worth running two copies of Sol Ring?") is the natural
+    # follow-up to a legality check and qwen3:14b answered it from a wrong prior: live
+    # 2026-10-01 it said "you can run multiple copies of Sol Ring". `_rule_numbers_in` licenses
+    # the number for citation. Basic lands are the CR's own exception; cards that print "a deck
+    # can have any number of cards named ..." override it, and `copy_limit_exception` surfaces
+    # that from THIS card's own oracle text so the model never has to recall which cards do.
+    singleton = _singleton_rule(ctx)
+    if singleton:
+        data["singleton_rule"] = singleton
+    data["copy_limit_exception"] = bool(_COPY_EXCEPTION_RE.search(card.oracle_text or ""))
     return ToolResult(data=data, card_names=frozenset({card.name}))
+
+
+_SINGLETON_RULE = "903.5b"
+_COPY_EXCEPTION_RE = re.compile(
+    r"a deck can have (?:any number|up to \w+) (?:of )?cards named", re.IGNORECASE)
+
+
+def _singleton_rule(ctx) -> dict | None:
+    cr = getattr(ctx, "cr", None)
+    text = cr.get_rule(_SINGLETON_RULE) if cr is not None else None
+    return {"number": _SINGLETON_RULE, "text": text} if text else None
 
 
 def tool_assess_card(ctx: MentorContext, name: str, cut_pool: int = 2) -> ToolResult:
