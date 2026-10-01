@@ -167,17 +167,62 @@ def test_faster_question_routes_get_measured_swaps_to_clock(monkeypatch):
     assert len(seen) == 2                       # an available result is an answer: no nudge
 
 
-def test_unavailable_measured_swaps_still_nudges_to_the_suggest_swap_fallback(monkeypatch):
+def test_unavailable_measured_swaps_runs_the_suggest_swap_fallback_itself(monkeypatch):
+    """qwen3:14b stops at "run Advise" after an unavailable lookup and ignores a nudge (resilience
+    1/9 on the holistic bench), so the quick search the prompt promises is run deterministically."""
     seen, ran = _drive(
         monkeypatch,
         [_call("get_measured_swaps", '{"axis": "clock"}'),
-         {"role": "assistant", "content": "No full search has been run yet."},
-         _call("suggest_swap", '{"axis": "clock"}'),
+         {"role": "assistant", "content": "No full search has been run yet; run Advise."},
          {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}],
         lambda name: {"available": False} if name == "get_measured_swaps" else {"found": True})
     reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
     assert [t.name for t in reply.tool_trace] == ["get_measured_swaps", "suggest_swap"]
-    assert chat._SWAP_NUDGE in seen[2]
+    assert ran == [("get_measured_swaps", {"axis": "clock"}), ("suggest_swap", {"axis": "clock"})]
+    assert chat._SWAP_NUDGE not in "".join(s or "" for s in seen)      # no nudge needed
+    assert "shallow" in reply.tool_trace[1].result_data["search_depth"]
+
+
+def test_the_forced_tool_call_message_is_shaped_like_a_real_one(monkeypatch):
+    """A synthetic assistant tool_calls message without `"type": "function"` made llama-server
+    answer HTTP 500 (live, 2026-10-01), so the shape is pinned."""
+    sent = []
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        sent.append(list(messages))
+        return [_call("get_measured_swaps", '{"axis": "clock"}'),
+                {"role": "assistant", "content": "Run Advise."},
+                {"role": "assistant", "content": "I didn't find a measured improvement."}][len(sent) - 1]
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    monkeypatch.setattr(chat, "call_tool", lambda ctx, name, args: ToolResult(
+        data={"available": False} if name == "get_measured_swaps" else {"found": True}))
+    chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    forced = next(m for m in sent[-1] if m.get("tool_calls") and m["tool_calls"][0]["id"].startswith("auto-"))
+    tc = forced["tool_calls"][0]
+    assert tc["type"] == "function" and tc["function"]["name"] == "suggest_swap"
+    assert tc["function"]["arguments"] == '{"axis": "clock"}'
+
+
+def test_fallback_is_not_forced_for_a_non_swap_question(monkeypatch):
+    seen, ran = _drive(
+        monkeypatch,
+        [_call("get_measured_swaps", '{"axis": "clock"}'),
+         {"role": "assistant", "content": "Nothing cached."}],
+        lambda name: {"available": False})
+    chat.ask(SimpleNamespace(all_card_names=frozenset()), "Tell me about this deck.")
+    assert ran == [("get_measured_swaps", {"axis": "clock"})]
+
+
+def test_fallback_is_forced_once_per_turn_per_axis(monkeypatch):
+    seen, ran = _drive(
+        monkeypatch,
+        [_call("get_measured_swaps", '{"axis": "clock"}'),
+         {"role": "assistant", "content": "Run Advise."},
+         {"role": "assistant", "content": "Run Advise."}],
+        lambda name: {"available": False} if name == "get_measured_swaps" else {"found": True})
+    chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    assert [r[0] for r in ran].count("suggest_swap") == 1
 
 
 def test_suggest_swap_is_answered_from_a_cached_full_search_without_running_it(monkeypatch):

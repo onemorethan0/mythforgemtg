@@ -128,7 +128,7 @@ speed) -- and answer with its measured swap or its "no measured improvement" res
 
 For any "what should I cut/add", "weakest cards", "make it faster" or "improve X" question, call get_measured_swaps FIRST, with the axis the question is about (clock for "faster" / "speed up" / "quicker"; the same routing rules as suggest_swap): it returns the swaps from the full, deep swap search the player already ran on the deck page. Treat its result exactly as you would suggest_swap's (same fields, same "cut_is_redundant" rule, same "I didn't find a measured improvement" wording when improving_swap_found is false). Only when it reports available false, call suggest_swap instead, tell the player that quick in-chat search is shallow, and add that running Advise on the deck page for that axis (it takes a few minutes) gives a much deeper search.
 
-A swap is measured on ONE axis only: the axis named in its result (clock re-simulates how early the deck kills, resilience the wipe score). Describe its effect ONLY on that axis, from its own before/after numbers. NEVER say or imply that the swap leaves ANOTHER axis unharmed, unaffected or "maintained" ("cutting it doesn't hurt your interaction or resilience", "while maintaining its consistency"): nothing simulated that, so it is an invented claim. If the other axes matter, say you only measured the one and offer to measure the other. When the question names TWO goals ("faster or more resilient", "speed it up and survive wipes"), address EACH: look up a swap for each axis (get_measured_swaps, or suggest_swap when it reports available false, once per axis: clock for faster, resilience for wipes), answer each from its own result, and if one axis found no measured improvement say so for that axis alone. Do not close with generic card-type advice that no tool backed ("consider adding a card that provides a strong, scalable win condition"): end after the measured answer, or offer a measurement.
+A swap is measured on ONE axis only: the axis named in its result (clock re-simulates how early the deck kills, resilience the wipe score). Describe its effect ONLY on that axis, from its own before/after numbers. NEVER say or imply that the swap leaves ANOTHER axis unharmed, unaffected or "maintained" ("cutting it doesn't hurt your interaction or resilience", "while maintaining its consistency"): nothing simulated that, so it is an invented claim; say plainly that you measured only that axis, and add nothing about the others. When get_measured_swaps reports available false you must STILL call suggest_swap for that axis before you answer: never answer with only "run Advise". When the question names TWO goals ("faster or more resilient", "speed it up and survive wipes"), address EACH: do that lookup once per axis (clock for faster, resilience for wipes), answer each from its own result, and if one axis found no measured improvement say so for that axis alone. Do not close with generic card-type advice that no tool backed ("consider adding a card that provides a strong, scalable win condition"): stop after the measured answer.
 
 Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
 players labelled with a bracket (its "standing": top_quarter / above_median / \
@@ -356,28 +356,30 @@ def _goal_axes(question: str) -> list[str]:
     return [ax for ax, pat in _GOAL_AXIS_RES.items() if pat.search(question or "")]
 
 
-def _axes_looked_up(tool_trace: list) -> set[str]:
-    """Axes a swap tool was called for this turn (an unavailable get_measured_swaps counts: the
-    lookup ran, and the suggest_swap fallback is the swap nudge's job)."""
+def _axes_answered(tool_trace: list) -> set[str]:
+    """Axes a swap answer exists for this turn: suggest_swap ran for it, or get_measured_swaps found
+    a cached full search. An UNAVAILABLE lookup is not an answer (live: the model stopped at
+    "run Advise" for both goals) -- the suggest_swap fallback is still owed."""
     return {t.args.get("axis") for t in tool_trace
-            if t.name in ("suggest_swap", "get_measured_swaps") and t.args.get("axis")}
+            if t.args.get("axis") and (t.name == "suggest_swap" or (
+                t.name == "get_measured_swaps" and (t.result_data or {}).get("available")))}
 
 
 def _missing_goal_axes(question: str, tool_trace: list) -> list[str]:
     axes = _goal_axes(question)
     if len(axes) < 2:
         return []
-    done = _axes_looked_up(tool_trace)
+    done = _axes_answered(tool_trace)
     return [ax for ax in axes if ax not in done]
 
 
 def _dual_goal_nudge(missing: list[str]) -> str:
     return (
-        "The player named more than one goal, and you have not looked up a swap for "
-        + ", ".join(missing) + ". Call get_measured_swaps now with axis "
-        + " and then ".join(missing) + " (if it reports available false, call suggest_swap for "
-        "that axis), then answer EACH goal from its own result. Describe each swap only on the "
-        "axis it was measured on."
+        "The player named more than one goal, and you have no swap answer yet for "
+        + ", ".join(missing) + ". For each of those axes call get_measured_swaps and, when it "
+        "reports available false, suggest_swap with that axis (do not stop at telling the player to "
+        "run Advise), then answer EACH goal from its own result. Describe each swap only on the axis "
+        "it was measured on."
     )
 
 
@@ -389,6 +391,21 @@ def _has_swap_answer(tool_trace: list) -> bool:
         or (t.name == "get_measured_swaps" and (t.result_data or {}).get("available"))
         for t in tool_trace
     )
+
+
+def _owed_fallback_axes(question: str, tool_trace: list) -> list[str]:
+    """Axes whose cached full search was UNAVAILABLE and that have no swap answer since: the
+    suggest_swap quick search is still owed for each (swap questions only)."""
+    if not _wants_a_swap(question):
+        return []
+    answered = _axes_answered(tool_trace)
+    out: list[str] = []
+    for t in tool_trace:
+        axis = t.args.get("axis")
+        if (t.name == "get_measured_swaps" and axis and not (t.result_data or {}).get("available")
+                and axis not in answered and axis not in out):
+            out.append(axis)
+    return out
 
 
 def _wants_a_swap(question: str) -> bool:
@@ -466,36 +483,50 @@ def ask(
     nudged = False
     swap_nudged = False
     dual_nudged = False
+    fallback_forced = False
     for _ in range(MAX_TOOL_TURNS):
         msg = _post_chat(messages, model=model, temperature=temperature,
                          max_tokens=_limits(tool_trace, max_tokens)[0])
         tool_calls = msg.get("tool_calls") or []
         if not tool_calls:
             draft = _strip(msg.get("content") or "")
-            if not nudged and _announces_a_lookup(draft):
-                # The model SAID it would look something up and ended its turn instead of
-                # calling the tool (live, qwen3:14b: "I'll look into your collection to
-                # find a card..." with no suggest_swap call, so the answer never contained
-                # the measurement it promised). One nudge per turn, then whatever it says
-                # goes to the gate as usual.
-                nudged = True
-                messages.append({"role": "assistant", "content": draft})
-                messages.append({"role": "user", "content": _LOOKUP_NUDGE})
-                continue
-            if (not swap_nudged and _wants_a_swap(question)
-                    and not _has_swap_answer(tool_trace)):
-                swap_nudged = True
-                messages.append({"role": "assistant", "content": draft})
-                messages.append({"role": "user", "content": _SWAP_NUDGE})
-                continue
-            if not dual_nudged:
-                missing = _missing_goal_axes(question, tool_trace)
-                if missing:
-                    dual_nudged = True
+            owed = [] if fallback_forced else _owed_fallback_axes(question, tool_trace)
+            if owed:
+                # D2 residual (found 2026-10-01 running the bench against main): with no cached full
+                # search qwen3:14b stops at "run Advise" after get_measured_swaps says available
+                # false, and ignores the nudge too (resilience 1/9). The quick search is owed, so run
+                # it ourselves, once per axis, exactly as if the model had called it.
+                fallback_forced = True
+                msg = {"role": "assistant", "content": "", "tool_calls": [
+                    {"id": f"auto-{ax}", "type": "function", "function": {"name": "suggest_swap",
+                                                        "arguments": json.dumps({"axis": ax})}}
+                    for ax in owed]}
+                tool_calls = msg["tool_calls"]
+            else:
+                if not nudged and _announces_a_lookup(draft):
+                    # The model SAID it would look something up and ended its turn instead of
+                    # calling the tool (live, qwen3:14b: "I'll look into your collection to
+                    # find a card..." with no suggest_swap call, so the answer never contained
+                    # the measurement it promised). One nudge per turn, then whatever it says
+                    # goes to the gate as usual.
+                    nudged = True
                     messages.append({"role": "assistant", "content": draft})
-                    messages.append({"role": "user", "content": _dual_goal_nudge(missing)})
+                    messages.append({"role": "user", "content": _LOOKUP_NUDGE})
                     continue
-            break
+                if (not swap_nudged and _wants_a_swap(question)
+                        and not _has_swap_answer(tool_trace)):
+                    swap_nudged = True
+                    messages.append({"role": "assistant", "content": draft})
+                    messages.append({"role": "user", "content": _SWAP_NUDGE})
+                    continue
+                if not dual_nudged:
+                    missing = _missing_goal_axes(question, tool_trace)
+                    if missing:
+                        dual_nudged = True
+                        messages.append({"role": "assistant", "content": draft})
+                        messages.append({"role": "user", "content": _dual_goal_nudge(missing)})
+                        continue
+                break
         messages.append(msg)
         for tc in tool_calls:
             fn_name = tc["function"]["name"]

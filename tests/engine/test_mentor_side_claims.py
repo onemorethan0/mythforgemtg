@@ -33,7 +33,8 @@ def test_prompt_restricts_swap_narration_to_the_measured_axis():
     p = chat.SYSTEM_PROMPT
     assert "Describe its effect ONLY on that axis" in p
     assert "NEVER say or imply that the swap leaves ANOTHER axis" in p
-    assert "offer to measure the other" in p
+    assert "measured only that axis" in p
+    assert "STILL call suggest_swap" in p and 'never answer with only "run Advise"' in p
 
 
 def test_prompt_asks_for_each_goal_and_bans_the_generic_closer():
@@ -58,15 +59,18 @@ def test_goal_axes(question, axes):
     assert chat._goal_axes(question) == axes
 
 
-def _t(name, axis):
-    return SimpleNamespace(name=name, args={"axis": axis}, result_data={})
+def _t(name, axis, available=None):
+    data = {} if available is None else {"available": available}
+    return SimpleNamespace(name=name, args={"axis": axis}, result_data=data)
 
 
-def test_missing_goal_axes_counts_unavailable_lookups_as_looked_up():
+def test_missing_goal_axes_needs_an_answer_not_just_a_lookup():
     q = "How could I make it faster or more resilient?"
     assert chat._missing_goal_axes(q, []) == ["clock", "resilience"]
-    assert chat._missing_goal_axes(q, [_t("get_measured_swaps", "clock")]) == ["resilience"]
-    assert chat._missing_goal_axes(q, [_t("suggest_swap", "clock"), _t("get_measured_swaps", "resilience")]) == []
+    assert chat._missing_goal_axes(q, [_t("get_measured_swaps", "clock", True)]) == ["resilience"]
+    # an UNAVAILABLE cached search is not an answer: the suggest_swap fallback is still owed
+    assert chat._missing_goal_axes(q, [_t("get_measured_swaps", "clock", False)]) == ["clock", "resilience"]
+    assert chat._missing_goal_axes(q, [_t("suggest_swap", "clock"), _t("get_measured_swaps", "resilience", True)]) == []
     assert chat._missing_goal_axes("How could I make this deck faster?", []) == []   # single goal: never
 
 
