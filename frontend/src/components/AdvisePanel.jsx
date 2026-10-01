@@ -130,6 +130,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
           <option value="resilience">Resilience</option>
           <option value="interaction">Interaction</option>
           <option value="ceiling">Ceiling</option>
+          <option value="clock">Clock (how early it kills)</option>
         </select>
       )}
       <button

@@ -444,3 +444,88 @@ proved reliable), `tests/engine/test_mentor_gate.py` (the contradiction check + 
 false-positive fix), `tests/engine/test_server_mentor.py` and `tests/test_mentor_deck_route.py`
 (`offmeta` threading both directions). Full repo suite (`python -m pytest tests`) re-run clean
 at 1569 passed, 0 failures, before and after every change in this round.
+
+## Round 8 — holistic questions (docs/PLAN_MENTOR_ADHOC.md, 2026-09-30)
+
+**Why.** An ad hoc probe on the Shelob deck (about 1 of 8 holistic questions answered correctly)
+showed the mentor was grounded but wrong about the deck: "what does it do well and poorly",
+"make it faster", "how resilient is it to a wipe", "which cards do the most work", "what can my
+removal not answer" all reached the model with no tool that carried the answer, so it improvised
+from verdict-free numbers. Rounds 1-7 graded non-trap questions on `gated` alone, which cannot see
+that. Round 8 adds the tools, the verdict vocabulary and an acceptance bench that grades the
+substance.
+
+**What shipped (by phase).**
+- **A0 bench**: `scripts/mentor_holistic_bench.py` + `mentor_holistic_rubrics.py`, 9 decks x 8
+  questions (+ colour), MECHANICAL rubrics only (never an LLM judge). Baseline **22/72 (31%)**.
+- **A** (`get_power_profile`, verdict phrases in `mentor/verdicts.py`, `_analysis_for` cache,
+  archetype/win route/key cards): **64/72 (89%)**; Shelob `mentor_bench.py` 50/52.
+- **B** (`list_deck_cards`, `removal_coverage` with unrestricted coverage) + **C** (colour-aware role
+  targets for counterspell/wipe/finisher): **72/81 (89%)**, `removal` 9/9, `colour` 4/9 (target
+  missed; the cause was the tool, not the model).
+- **D0** (`clock` axis = how EARLY the deck kills; `advisor.PROFILE_AXES` is AXES minus clock and
+  drives `weakest_axis`), **D0b** (unbacked-cut disclosure), **D1** (`diagnose_axis`), **E2** (bracket
+  standings via `vs_bracket`), **F1** (verdict gate: a reply that contradicts `verdicts.*` is
+  rejected and retried), C-residual fixes: **79/81 (98%)**, 80/81 after one offline rubric tweak;
+  gated on first attempt 70/72; Shelob `mentor_bench.py` 48/52 (bar 47). Full suite then 2008 passed.
+- **D2**: `get_measured_swaps` + Forge `advice_cache` (below).
+- **G1/G2**: starter prompts, a label for every tool (parity-tested), these docs. Full suite
+  **2041 passed, 4 skipped**.
+Read every figure as +-5 points: identical-code runs vary 3-5 cells.
+
+**D2 design (measured swaps).** `suggest_swap` is a 4-simulation, in-chat search; Forge's Advise
+panel runs the deep one (minutes). `_run_advise_job` now persists
+`deck.json["advice_cache"][axis | "auto"] = {result, deck_hash, collection_mtime, computed_at}`
+(NOT in `_PROVENANCE_KEYS`: a rebuilt deck is a different deck). `mentor_chat_deck` sends only
+entries whose sha1 of `_deck_to_lines(...)` AND the suite `collection.csv` mtime still match, as
+`advice` -> `MentorChatRequest.advice` -> `MentorContext.advice` (pass-through, same as `offmeta`).
+`get_measured_swaps(axis)` shares `_swap_result` with `suggest_swap` (same licensing, `cut_is_redundant`
+disclosure, `current` block) or returns `{"available": False, ...}`. **qwen3:14b ignores a prompt
+rule that says "call get_measured_swaps first"** (live smoke: it went straight to suggest_swap), so
+`chat.ask` enforces it: a `suggest_swap` call first runs `get_measured_swaps` for that axis; an
+available result IS the answer (the quick search is skipped), an unavailable one is traced (the UI
+keys its "Run full swap search (<axis>)" button on `tool_trace[].available === false`, which the HTTP
+reply now carries for that one tool) and the quick search runs with a `search_depth` note telling
+the model to call it shallow. Live smoke (Shelob, "How could I make this deck faster?"): with a
+cached clock search the reply named the cached swap (Sol Ring for Eaten by Spiders) and disclosed the
+cut was not evidence of weakness; with `advice=None` it said no measured improvement was found and
+pointed at Advise on the deck page.
+
+**Still open.**
+- **E1: the axes do not separate brackets.** Over 569 labelled decks only `interaction` (and
+  consistency/speed at B5) move between brackets; `avg_kill_turn` is flat ~10 and `ceiling` p50 is flat
+  17-19. `vs_bracket` standings are a within-bracket placement, not a B3-vs-B4 discriminator, and the
+  prompt says so. A bracket call still belongs to `get_bracket_estimate`.
+- **`tags.py` is verb-gated and misclassifies some interaction** (found while writing B2: "destroy
+  target" sweeps Naturalize/Vandalblast into creature removal). `mentor/removal.py` reads the OBJECT
+  clause by clause and is the authority for what removal can hit; but `get_deck_stats` role supply and
+  `list_deck_cards` roles still come from `tags.analyze`, so a role COUNT can disagree with
+  `removal_coverage`. Not fixed (it is engine-wide: bracket and the advisor read the same tags).
+- **Isshin colour self-contradiction.** One closing sentence ("it lacks the ability to counter spells
+  directly") after correctly saying counters are not applicable; the colour rubric fails it, the model
+  contradicted itself. Left failing (colour 8/9 regraded).
+- Plan section 5/7 leftovers: no second LLM judge (rejected, round 7); no suggestions outside the
+  player's collection; no cEDH line analysis (casual B1-3 pod). `colour` was the one rubric that needed
+  a tool fix, not a prompt fix, so check the TOOL first for the next failing rubric.
+- The "Run full swap search" button starts the SAME job as the Advise panel with `narrate: false`
+  (fast); it tells the user to ask again rather than re-asking for them. A swap applied or a collection
+  edit invalidates the cached search silently (the mentor then says none has been run). An axis-less
+  `suggest_swap` call with no cached "auto" search skips the lookup, so no button is offered for it.
+- The nudge/route logic in `chat.py` (`_wants_a_swap`, `_route_swap_axis`, `_measured_first`) is regex
+  and call-shaped: re-run the holistic bench after touching any of it.
+
+**The acceptance gate for any future mentor change** is
+`python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
+:8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the
+existing `scripts/mentor_bench.py` on Shelob (bar 47/52). Compare against the 80/81 row above; a
+regression on any rubric is a defect until the replies are read and shown to be a rubric artefact.
+Rubrics and the gate share ONE phrase vocabulary (`mythgauntlet.mentor.verdicts`), so a wording
+that the bench calls a contradiction is also rejected live, and a verdict phrase added to the gate
+is automatically graded.
+
+Files round 8 touches: `src/mythgauntlet/mentor/{tools,chat,verdicts,diagnose,removal,deckview}.py`,
+`src/mythgauntlet/ratings/{advisor,reference,redundancy}.py`, `src/mythgauntlet/server.py`
+(`MentorChatRequest.advice`, trace `available` flag), root `server.py` (`_run_advise_job`,
+`_valid_advice`, `_persist_advice`), `frontend/src/components/{MentorChatPanel,AdvisePanel}.jsx`,
+`scripts/mentor_holistic_{bench,rubrics}.py`, `tests/engine/test_mentor_measured_swaps.py`,
+`tests/test_mentor_advice_cache.py`, `tests/test_mentor_panel_labels.py`.
