@@ -188,7 +188,8 @@ def test_ask_nudges_to_suggest_swap_when_diagnose_axis_ends_an_improvement_turn(
         {"role": "assistant", "content": "I didn't find a measured improvement from your collection."},
     ])
     reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
-    assert [t.name for t in reply.tool_trace] == ["diagnose_axis", "suggest_swap"]
+    # D2: suggest_swap is preceded by a deterministic get_measured_swaps lookup
+    assert [t.name for t in reply.tool_trace] == ["diagnose_axis", "get_measured_swaps", "suggest_swap"]
     assert chat._SWAP_NUDGE in seen[2][-1]
     assert "measured improvement" in reply.text
 
@@ -251,5 +252,5 @@ def test_ask_runs_suggest_swap_on_clock_for_a_faster_question(monkeypatch):
     monkeypatch.setattr(chat, "_post_chat", fake_post)
     monkeypatch.setattr(chat, "call_tool", fake_call)
     reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
-    assert ran == [("suggest_swap", {"axis": "clock"})]
-    assert reply.tool_trace[0].args == {"axis": "clock"}
+    assert ran == [("get_measured_swaps", {"axis": "clock"}), ("suggest_swap", {"axis": "clock"})]
+    assert reply.tool_trace[-1].args == {"axis": "clock"}

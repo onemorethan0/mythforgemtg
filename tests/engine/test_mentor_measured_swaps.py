@@ -180,6 +180,46 @@ def test_unavailable_measured_swaps_still_nudges_to_the_suggest_swap_fallback(mo
     assert chat._SWAP_NUDGE in seen[2]
 
 
+def test_suggest_swap_is_answered_from_a_cached_full_search_without_running_it(monkeypatch):
+    """qwen3 keeps calling suggest_swap; with a cached search for that axis the loop answers
+    from it (get_measured_swaps in the trace) and never runs the 4-simulation quick search."""
+    seen, ran = _drive(
+        monkeypatch,
+        [_call("suggest_swap", '{"axis": "ceiling"}'),
+         {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}],
+        lambda name: {"available": True, "axis": "clock", "improving_swap_found": True})
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset(), advice={"clock": {}}),
+                     "How could I make this deck faster?")
+    assert ran == [("get_measured_swaps", {"axis": "clock"})]      # routed to clock, quick search skipped
+    assert [t.name for t in reply.tool_trace] == ["get_measured_swaps"]
+    assert len(seen) == 2
+
+
+def test_quick_search_fallback_is_flagged_shallow_and_the_miss_is_traced(monkeypatch):
+    seen, ran = _drive(
+        monkeypatch,
+        [_call("suggest_swap", '{"axis": "clock"}'),
+         {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}],
+        lambda name: ({"available": False, "axis": "clock"} if name == "get_measured_swaps"
+                      else {"found": True, "improving_swap_found": False}))
+
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    assert ran == [("get_measured_swaps", {"axis": "clock"}), ("suggest_swap", {"axis": "clock"})]
+    assert [t.name for t in reply.tool_trace] == ["get_measured_swaps", "suggest_swap"]
+    assert reply.tool_trace[0].result_data["available"] is False        # the UI's button trigger
+    assert "shallow" in reply.tool_trace[1].result_data["search_depth"]
+
+
+def test_no_measured_lookup_when_the_swap_has_no_axis_and_no_auto_search(monkeypatch):
+    seen, ran = _drive(
+        monkeypatch,
+        [_call("suggest_swap", "{}"),
+         {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}],
+        lambda name: {"found": True})
+    chat.ask(SimpleNamespace(all_card_names=frozenset()), "What should I cut?")
+    assert ran == [("suggest_swap", {})]
+
+
 # ── /mentor/chat route ───────────────────────────────────────────────────────────────
 
 DECK = "Commander:\n1 Test Commander\n\nDeck:\n30 Forest\n20 Grizzly Bears\n"

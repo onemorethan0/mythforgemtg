@@ -310,6 +310,26 @@ _SWAP_NUDGE = (
 )
 
 
+_SHALLOW_NOTE = (
+    "This is the quick in-chat search (a handful of candidates), so it is shallow. Tell the "
+    "player so, and that Advise on the deck page runs a much deeper search (a few minutes)."
+)
+
+
+def _measured_first(ctx, args: dict, tool_trace: list):
+    """`get_measured_swaps` for the axis a `suggest_swap` call targets, or None when there is
+    nothing to look up (no axis to key on) or it was already looked up this turn."""
+    axis = args.get("axis")
+    if not axis:
+        advice = getattr(ctx, "advice", None) or {}
+        auto = (advice.get("auto") or {}).get("result") or {}
+        axis = auto.get("axis")
+    if not axis or any(t.name == "get_measured_swaps" and t.args.get("axis") == axis
+                       for t in tool_trace):
+        return None
+    return call_tool(ctx, "get_measured_swaps", {"axis": axis})
+
+
 def _has_swap_answer(tool_trace: list) -> bool:
     """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
     full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
@@ -426,7 +446,32 @@ def ask(
                 args = {}
             if fn_name in ("suggest_swap", "get_measured_swaps"):
                 args = _route_swap_axis(question, args)
+            if fn_name == "suggest_swap":
+                # D2: a cached FULL search beats the quick in-chat one, and qwen3:14b keeps
+                # reaching for suggest_swap regardless of the prompt -- so look first,
+                # deterministically. Available: that result IS the answer (no 4-simulation
+                # search). Unavailable: the trace still records it (the UI offers "Run full
+                # swap search" from it) and the quick search runs, flagged as shallow.
+                measured = _measured_first(ctx, args, tool_trace)
+                if measured is not None and measured.data.get("available"):
+                    all_results.append(measured)
+                    tool_trace.append(ToolCallRecord(
+                        name="get_measured_swaps", args={"axis": measured.data.get("axis")},
+                        result_data=measured.data))
+                    messages.append({
+                        "role": "tool", "tool_call_id": tc.get("id", fn_name),
+                        "content": json.dumps(measured.data, ensure_ascii=False, default=str),
+                    })
+                    continue
+                if measured is not None:
+                    tool_trace.append(ToolCallRecord(
+                        name="get_measured_swaps", args={"axis": measured.data.get("axis")},
+                        result_data=measured.data))
             result = call_tool(ctx, fn_name, args)
+            if fn_name == "suggest_swap" and result.data.get("found"):
+                result = ToolResult(
+                    data={**result.data, "search_depth": _SHALLOW_NOTE},
+                    card_names=result.card_names, rule_numbers=result.rule_numbers)
             all_results.append(result)
             tool_trace.append(ToolCallRecord(name=fn_name, args=args, result_data=result.data))
             messages.append({
