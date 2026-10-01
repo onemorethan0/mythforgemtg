@@ -532,6 +532,17 @@ reading the reply against the data, both gate-invisible:
   restricting swap narration to the measured axis.
 - The combined question ("faster OR more resilient") was answered for speed only.
 
+**Side-claims residuals (2026-10-01, branch `mentor-sideclaims`).** (1) Unmeasured side claims: prompt
+restricts swap narration to the measured axis; gate check 7 (`verdicts.unmeasured_side_claims`, shared with the
+`faster`/`weakest`/`dual` rubrics) flags a "doesn't hurt / maintaining / unaffected" sentence whose object is a topic
+word of an axis the turn's swap results did not measure (needs phrase AND topic, honest "only measured X" sentences and
+the measured axis are ignored; 0 live firings in 90 replies). The generic closer is prompt-only (no gate). (2) Dual goals:
+`_goal_axes`/`_missing_goal_axes` + one nudge, and stray axes are routed to a named goal (`_route_swap_axis`). A 9th bench
+question `dual` was added (`--regrade` of older saved runs is unaffected: it walks saved rows by qid). **Found on the way:
+main already failed `resilience` (0/3)** -- after an unavailable `get_measured_swaps` qwen3:14b stops at "run Advise"; `chat.ask`
+now runs the owed `suggest_swap` itself (synthetic tool_calls need `type: function`). Still open: `dual` is 5/9 live
+(model skips the speed half or omits the no-improvement statement); the Simulacrum "repeatable draw" tagger defect is untouched.
+
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
 :8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the

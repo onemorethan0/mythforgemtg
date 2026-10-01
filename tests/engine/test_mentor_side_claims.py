@@ -337,3 +337,13 @@ def test_the_dual_question_is_registered_and_old_saved_runs_still_regrade():
     # --regrade walks the SAVED rows by qid, so a run saved before `dual` existed has no such row
     # and is simply graded without it; it needs no migration.
     assert "for row in rows:" in src and 'row["qid"] == "colour"' in src
+
+
+def test_dual_goal_question_routes_a_stray_axis_to_a_named_goal():
+    q = "How could I make it faster or more resilient?"
+    assert chat._route_swap_axis(q, {"axis": "interaction"})["axis"] == "resilience"
+    assert chat._route_swap_axis(q, {"axis": "ceiling"})["axis"] == "clock"
+    assert chat._route_swap_axis(q, {"axis": "resilience"})["axis"] == "resilience"
+    # single-goal behaviour is unchanged
+    assert chat._route_swap_axis("How could I make this deck faster?", {"axis": "ceiling"})["axis"] == "clock"
+    assert chat._route_swap_axis("What should I cut?", {"axis": "interaction"})["axis"] == "interaction"

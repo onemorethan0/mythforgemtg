@@ -420,7 +420,18 @@ _SPEED_QUESTION_RE = re.compile(r"\b(?:faster|quicker|speed(?:ing)?\s+up)\b", re
 
 
 def _route_swap_axis(question: str, args: dict) -> dict:
-    if (_SPEED_QUESTION_RE.search(question or "") and args.get("axis") in ("speed", "ceiling")):
+    goals = _goal_axes(question)
+    axis = args.get("axis")
+    if len(goals) >= 2 and axis and axis not in goals:
+        # Dual-goal question: the model drifts to an axis nobody asked about (live: interaction,
+        # ceiling for the "more resilient" half). Speed-ish axes mean the clock goal; anything
+        # else means the first non-clock goal.
+        if axis in ("speed", "ceiling") and "clock" in goals:
+            return {**args, "axis": "clock"}
+        other = [g for g in goals if g != "clock"]
+        if other:
+            return {**args, "axis": other[0]}
+    if (_SPEED_QUESTION_RE.search(question or "") and axis in ("speed", "ceiling")):
         return {**args, "axis": "clock"}
     return args
 
