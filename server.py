@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import asyncio
 import io
+import hashlib
 import json
 import logging
 import os
@@ -4286,7 +4287,7 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None, partners=None
 
 
 def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None,
-                           partners=None, offmeta=None):
+                           partners=None, offmeta=None, advice=None):
     """Deck Mentor chat turn from MythGauntlet's tool-calling loop + claim-budget gate
     (docs/SPEC_deck_mentor.md Phase 2). Same shape as `_gauntlet_advise`/
     `_gauntlet_card_impact`: JSON on success, {"error": detail} for a meaningful 400/503
@@ -4301,6 +4302,9 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
     `offmeta` is this deck's own persisted `lift_stats.stats_block` reading (see
     `mentor_chat_deck`) -- the engine has no EDHREC cache of its own, so this is a
     pass-through of what Forge already computed, exactly like `themes` already is.
+
+    `advice` is `_valid_advice(job)`: the deck's still-current cached full swap searches
+    (D2), `{axis key: {"result", "computed_at"}}`, for the engine's `get_measured_swaps`.
     """
     try:
         payload = {
@@ -4315,6 +4319,8 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
             payload["themes"] = list(themes)
         if offmeta:
             payload["offmeta"] = offmeta
+        if advice:
+            payload["advice"] = advice
         resp = requests.post(f"{MYTHGAUNTLET_URL}/mentor/chat", json=payload, timeout=120)
         if resp.status_code in (400, 503):
             try:
@@ -4364,6 +4370,7 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
         commander, deck, req.question.strip(), history=req.history, model=req.model,
         themes=_deck_archetypes(job), partners=_job_partners(job),
         offmeta=(job.get("stats") or {}).get("offmeta") or None,
+        advice=_valid_advice(job) or None,
     )
     if result is None:
         raise HTTPException(
@@ -4513,14 +4520,82 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
     return result
 
 
-def _run_advise_job(advise_job_id: str, commander, deck, axis, themes, partners, narrate, deck_job):
+def _suite_collection_mtime() -> float | None:
+    """mtime of the Myth Suite collection.csv the advisor suggests from, None when absent.
+    A cached swap search is only valid while the collection it searched is unchanged."""
+    try:
+        return suite_collection_path().stat().st_mtime
+    except OSError:
+        return None
+
+
+def _advice_deck_hash(commander, deck, partners=None) -> str:
+    """Identity of the deck a swap search ran on: sha1 of the exact decklist text the engine
+    is sent. A swap, rebuild or edit changes it, so stale advice is never shown."""
+    return hashlib.sha1(_deck_to_lines(commander, deck, partners).encode("utf-8")).hexdigest()
+
+
+def _job_deck_inputs(job: dict) -> tuple[dict, list[dict]]:
+    """(commander, deck) in the `{"name": ...}` shape every `_gauntlet_*` helper takes."""
+    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
+    deck = [
+        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
+        for c in (job.get("deck") or [])
+    ]
+    return commander, deck
+
+
+def _valid_advice(job: dict) -> dict:
+    """The deck's `advice_cache` entries that still describe THIS deck and THIS collection
+    (deck hash and collection mtime both match), as `{axis key: {"result", "computed_at"}}`.
+    Anything else is dropped -- the mentor then says no full search has been run."""
+    cache = job.get("advice_cache") or {}
+    if not cache:
+        return {}
+    commander, deck = _job_deck_inputs(job)
+    deck_hash = _advice_deck_hash(commander, deck, _job_partners(job))
+    mtime = _suite_collection_mtime()
+    return {
+        key: {"result": e["result"], "computed_at": e.get("computed_at")}
+        for key, e in cache.items()
+        if isinstance(e, dict) and isinstance(e.get("result"), dict)
+        and e.get("deck_hash") == deck_hash and mtime is not None
+        and e.get("collection_mtime") == mtime
+    }
+
+
+def _persist_advice(deck_job_id: str, axis_key: str, entry: dict) -> None:
+    """Write `advice_cache[axis_key] = entry` into the deck's deck.json (and the in-memory job),
+    the same read-modify-write `/measure` uses for `last_measure`. Deliberately NOT in
+    `_PROVENANCE_KEYS`: a rebuilt/rethemed deck is a different deck and must not inherit it."""
+    try:
+        p = RENDER_DIR / deck_job_id / "deck.json"
+        if p.exists():
+            disk = json.loads(p.read_text(encoding="utf-8"))
+            disk.setdefault("advice_cache", {})[axis_key] = entry
+            p.write_text(json.dumps(disk), encoding="utf-8")
+        mem = _jobs.get(deck_job_id)
+        if mem is not None:
+            mem.setdefault("advice_cache", {})[axis_key] = entry
+    except Exception as e:
+        print(f"  [advise] could not persist advice_cache: {e}")
+
+
+def _run_advise_job(advise_job_id: str, commander, deck, axis, themes, partners, narrate, deck_job,
+                    deck_job_id: str | None = None):
     """Background body of `advise_deck` — see that route for why this is async.
 
     Mirrors `_run_style_sample`: write status/result/error into `_jobs[advise_job_id]`
     rather than returning, since this runs via `BackgroundTasks` after the POST has
     already responded.
+
+    On success the result is also cached in the DECK's deck.json (`advice_cache`, keyed by the
+    requested axis or "auto") so the Deck Mentor's `get_measured_swaps` can cite it (D2). The
+    collection mtime is read BEFORE the search: a collection edited mid-run invalidates the
+    entry rather than blessing a search that ran on the old file.
     """
     job = _jobs[advise_job_id]
+    mtime = _suite_collection_mtime()
     try:
         result = _gauntlet_advise(commander, deck, axis=axis, themes=themes, partners=partners)
         if result is not None and "error" not in result and narrate:
@@ -4534,6 +4609,13 @@ def _run_advise_job(advise_job_id: str, commander, deck, axis, themes, partners,
             job.update(status="error", error=result["error"])
         else:
             job.update(status="done", result=result)
+            if deck_job_id:
+                _persist_advice(deck_job_id, axis or "auto", {
+                    "result": result,
+                    "deck_hash": _advice_deck_hash(commander, deck, partners),
+                    "collection_mtime": mtime,
+                    "computed_at": _dt.now().isoformat(timespec="seconds"),
+                })
     except Exception as e:
         traceback.print_exc()
         job.update(status="error", error=str(e))
@@ -4582,7 +4664,7 @@ async def advise_deck(job_id: str, req: AdviseDeckRequest, background_tasks: Bac
                             "error": None, "created_at": time.time()}
     background_tasks.add_task(
         _run_advise_job, advise_job_id, commander, deck, req.axis,
-        _deck_archetypes(job), _job_partners(job), req.narrate, job,
+        _deck_archetypes(job), _job_partners(job), req.narrate, job, job_id,
     )
     return {"job_id": advise_job_id}
 

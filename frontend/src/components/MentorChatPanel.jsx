@@ -28,6 +28,7 @@ const TOOL_LABELS = {
   check_legality: (a) => `Checked legality: ${a?.name ?? '?'}`,
   get_bracket_estimate: () => 'Ran a bracket estimate',
   suggest_swap: (a) => `Looked for a swap${a?.axis ? ` (${a.axis})` : ''}`,
+  get_measured_swaps: (a) => `Read the full swap search${a?.axis ? ` (${a.axis})` : ''}`,
 }
 const toolLabel = (t) => (TOOL_LABELS[t.tool]?.(t.args) ?? `${t.tool}(${JSON.stringify(t.args)})`)
 
@@ -59,6 +60,13 @@ export default function MentorChatPanel({ jobId }) {
   // before any `await`, so the second call sees the in-flight flag immediately regardless
   // of render timing.
   const busyRef = useRef(false)
+  // D2: full swap searches the user started from a reply's "Run full swap search" button,
+  // keyed by axis: {phase: 'running'|'done'|'error', elapsedS, detail}. The mentor's
+  // get_measured_swaps tool only ever READS a cached search (the Advise job writes it), so
+  // when it reports `available: false` the reply offers to run one.
+  const [swapRuns, setSwapRuns] = useState({})
+  const unmountedRef = useRef(false)
+  useEffect(() => () => { unmountedRef.current = true }, [])
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
@@ -96,6 +104,41 @@ export default function MentorChatPanel({ jobId }) {
     } finally {
       busyRef.current = false
       setBusy(false)
+    }
+  }
+
+  // Same background job the Advise panel starts: POST /advise returns a job id at once, then
+  // poll GET /advise/{id} (the real search takes minutes). Caching into deck.json happens
+  // server-side when the job finishes; the user then just asks again.
+  async function runFullSwapSearch(axis) {
+    if (swapRuns[axis]?.phase === 'running') return
+    const set = (v) => { if (!unmountedRef.current) setSwapRuns(r => ({ ...r, [axis]: v })) }
+    set({ phase: 'running', elapsedS: 0 })
+    const startedAt = Date.now()
+    try {
+      const r = await fetch(`/api/deck/${jobId}/advise`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ axis, narrate: false }),
+      })
+      if (!r.ok) {
+        let d = `HTTP ${r.status}`
+        try { d = (await r.json()).detail || d } catch { /* keep the status */ }
+        set({ phase: 'error', detail: d })
+        return
+      }
+      const { job_id: adviseJobId } = await r.json()
+      while (!unmountedRef.current) {
+        await new Promise(res => setTimeout(res, 3000))
+        const poll = await fetch(`/api/deck/advise/${adviseJobId}`)
+        if (!poll.ok) { set({ phase: 'error', detail: `HTTP ${poll.status}` }); return }
+        const data = await poll.json()
+        if (data.status === 'done') { set({ phase: 'done' }); return }
+        if (data.status === 'error') { set({ phase: 'error', detail: data.detail || 'Search failed' }); return }
+        set({ phase: 'running', elapsedS: Math.round((Date.now() - startedAt) / 1000) })
+      }
+    } catch {
+      set({ phase: 'error', detail: 'Strength API unreachable' })
     }
   }
 
@@ -204,6 +247,45 @@ export default function MentorChatPanel({ jobId }) {
                       </ul>
                     </details>
                   )}
+                  {m.role === 'assistant' && (m.toolTrace || [])
+                    .filter(t => t.tool === 'get_measured_swaps' && t.available === false && t.args?.axis)
+                    .map(t => t.args.axis)
+                    .filter((ax, ai, all) => all.indexOf(ax) === ai)
+                    .map(ax => {
+                      const run = swapRuns[ax]
+                      return (
+                        <div key={ax} style={{ marginTop: 8, fontSize: 11.5 }}>
+                          {(!run || run.phase === 'error') && (
+                            <button
+                              type="button"
+                              onClick={() => runFullSwapSearch(ax)}
+                              title="Test cards you own against this deck by re-simulation; takes a few minutes"
+                              style={{
+                                padding: '5px 12px', borderRadius: 8, border: '1px solid #a16207',
+                                background: '#1c1408', color: '#eab308', fontWeight: 600,
+                                fontSize: 11.5, cursor: 'pointer', fontFamily: 'inherit',
+                              }}
+                            >
+                              Run full swap search ({ax})
+                            </button>
+                          )}
+                          {run?.phase === 'running' && (
+                            <span style={{ color: '#a8a29e' }}>
+                              ⏳ Running the full swap search ({ax}) — takes a few minutes
+                              {run.elapsedS > 0 ? ` (${run.elapsedS}s elapsed)` : ''}…
+                            </span>
+                          )}
+                          {run?.phase === 'done' && (
+                            <span style={{ color: '#86efac' }}>
+                              ✓ Full swap search ({ax}) finished — ask your question again to see the measured swaps.
+                            </span>
+                          )}
+                          {run?.phase === 'error' && (
+                            <div style={{ color: '#fca5a5', marginTop: 4 }}>{run.detail}</div>
+                          )}
+                        </div>
+                      )
+                    })}
                   {m.role === 'assistant' && m.turnId && (
                     <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
                       <button
