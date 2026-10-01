@@ -1301,3 +1301,18 @@ def test_cross_check_mass_minus_shapes():
     # a single-target destroy is not a sweep (a Culling Sun compiled without count:"all")
     assert wipe_err("Destroy each creature with mana value 3 or less.", [
         {"op": "destroy", "target": {"type": "creature", "mana_value": "3 or less"}}])
+
+
+def test_cross_check_rejects_a_destroy_the_text_never_says():
+    """Measured 2026-10-01: all 10 accepted CCMs carrying `destroy` with no "destroy" in
+    their oracle text were wrong -- Mutilate and Malicious Malfunction are -N/-N,
+    Phyrexian Obliterator's opponent SACRIFICES -- and tier2 executes a destroy as a kill.
+    A recompile of Drag to the Bottom ("each creature gets -X/-X") was accepted with
+    destroy+exile+sacrifice of every creature, because no gate asked."""
+    text = "All creatures get -1/-1 until end of turn for each Swamp you control."
+    errs = _gate_errors(text, [
+        {"op": "pump", "power": -1, "toughness": -1, "target": {"type": "creature", "count": "all"}},
+        {"op": "destroy", "target": {"type": "creature", "count": "all"}}], "Sorcery")
+    assert any("never says destroy" in e for e in errs)
+    assert not any("never says destroy" in e for e in _gate_errors(
+        "Destroy target creature.", [{"op": "destroy", "target": {"type": "creature", "count": 1}}]))

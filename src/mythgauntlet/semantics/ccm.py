@@ -1044,6 +1044,13 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         and not modes.spot <= {"tuck"}
     ):
         errors.append("oracle text is targeted removal but CCM has no removal effect")
+    # Hallucination twin of the removal check (2026-10-01): every one of the 10 accepted
+    # CCMs carrying `destroy` with no "destroy" in the text was wrong (-N/-N cards, edicts,
+    # prevention), and tier2 executes a destroy as a kill. exile/sacrifice/deal_damage are
+    # NOT checked this way: keywords whose reminder text is stripped (Airbending, cumulative
+    # upkeep, lifelink) license most of their text-less uses, which needs per-keyword work.
+    if "destroy" in ops_present and "destroy" not in text and "destroy" not in licensed:
+        errors.append("CCM declares destroy but text never says destroy")
     if fx.board_wipe and not modes.wipe <= {"static_minus"}:
         # (a STATIC -N/-N -- Elesh Norn -- has no op in the vocabulary: statics are notes)
         # tags.interaction_modes' wipe is text-side and deliberately broad: "True only when the
