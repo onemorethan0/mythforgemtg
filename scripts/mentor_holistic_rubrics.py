@@ -109,30 +109,7 @@ def _foreign_card_names(reply, truth) -> list[str]:
 
 # ── the swap rubric shared by `faster` and `weakest` ────────────────────────────────
 
-_NO_IMPROVEMENT_RE = re.compile(
-    r"(?:no\s+(?:measured|improving|clear|real)\s+(?:improvement|swap|upgrade|gain)|"
-    r"(?:did\s*n[o']t|didn'?t|could\s*n[o']t|couldn'?t|did\s+not|could\s+not)\s+(?:find|see|identify|turn\s+up)\b[^.]{0,60}"
-    r"(?:improv\w*|swap\w*|upgrade\w*|gain\w*)|"
-    r"none\s+(?:of\s+[^.]{0,40})?(?:beat|improv\w*|cleared|passed)|"
-    r"no\s+(?:owned\s+)?(?:card|swap|add)s?\s+(?:that\s+)?(?:beat|improv\w*|clear\w*)|"
-    r"nothing\s+(?:in\s+your\s+collection\s+)?(?:measurably\s+)?(?:improv\w*|beat|cleared)|"
-    r"no\s+measured\s+swap|noise\s+floor|"
-    r"no\s+(?:collection\s+file|owned\s+cards)|"
-    r"(?:did\s*n[o']t|didn'?t|did\s+not)\s+find\s+any|"
-    # phrasings seen live: "no immediate way to ... improve", "there aren't any obvious
-    # swaps", "no clear improvement to be made ... based on the cards you own"
-    r"no\s+(?:immediate|obvious|clear|significant|easy)\s+(?:way|swaps?|improvements?|upgrades?)|"
-    r"(?:aren'?t|are\s+not|isn'?t|is\s+not)\s+any\s+(?:[\w,]+\s+){0,3}(?:swaps?|improvements?|upgrades?)|"
-    r"no\s+(?:\w+\s+){0,2}swaps?\s+(?:to|that|i\s+can)\b|"
-    # the honest-decline space is wide ("no measurable way to make it faster", "no
-    # significant measured gain", "none of the cards I evaluated provided a significant
-    # enough boost", "wasn't a clear improvement"): a negator and an improvement word in
-    # one clause. Lenient by design -- it is only consulted when the tool found NO swap,
-    # and the separate no-cut-recommendation check still applies.
-    r"(?:\bno\b|\bnot\b|n't|\bnone\b|\bnothing\b)[^.]{0,60}"
-    r"\b(?:measur\w*|improv\w*|gains?|boosts?|swaps?|upgrades?)\b)",
-    re.IGNORECASE,
-)
+_NO_IMPROVEMENT_RE = verdicts.NO_IMPROVEMENT_RE   # shared with the runtime dual-goal check
 _CUT_VERB_RE = re.compile(
     r"\b(?:cut|cutting|remove|removing|swap\s+out|swapping\s+out|drop|dropping|replace|replacing|"
     r"trim|trimming|take\s+out|taking\s+out|get\s+rid\s+of|ditch|ditching)\b",
@@ -151,6 +128,10 @@ def _swap_calls(reply) -> list[dict]:
 def _measured_axes(calls: list[dict]) -> set[str]:
     """Axes the swap results in `calls` were measured on (`_swap_result` always carries `axis`)."""
     return {d["axis"] for d in calls if isinstance(d.get("axis"), str)}
+
+
+def _clock_calls(calls: list[dict]) -> list[dict]:
+    return [d for d in calls if d.get("axis") == "clock"]
 
 
 def _measured_suggestions(data: dict) -> list[dict]:
@@ -207,6 +188,9 @@ def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: s
     side = verdicts.side_claim_reasons(text, axes)
     if side:
         return False, "unmeasured side claim: " + side[0] + note
+    turns = verdicts.turn_confusion_reasons(text, _clock_calls(calls), gate_mod._NUMBER_TOLERANCE)
+    if turns:
+        return False, "clock score reported as turns: " + turns[0] + note
     if measured and require_earlier_kill:
         slower = _slower_swaps(text, measured)
         if slower:
@@ -273,8 +257,6 @@ def _g_faster(reply, truth):
 # "faster OR more resilient" (Round 8 residual): the reply must have looked up a swap for EACH
 # axis, answered both, and not claimed either swap leaves an unmeasured axis unharmed.
 _DUAL_AXES = ("clock", "resilience")
-_SPEED_ANSWER_RE = re.compile(
-    r"\b(?:faster|quicker|speed\w*|clock|earlier|sooner|kill(?:s|ing)?\s+turn)\b", re.IGNORECASE)
 
 
 def _g_dual(reply, truth):
@@ -285,11 +267,13 @@ def _g_dual(reply, truth):
         return False, f"no swap lookup for axis {missing} (looked up {sorted(a for a in looked if a)})"
     text = reply.text
     problems = []
-    if not _SPEED_ANSWER_RE.search(text):
-        problems.append("never addresses speed")
-    if not verdicts.RESILIENCE_TOPIC_RE.search(text):
-        problems.append("never addresses wipe resilience")
     calls = _swap_calls(reply)
+    # Same detection the runtime uses to complete a one-sided reply (`verdicts.axis_addressed`):
+    # about the axis AND states its result (names the measured add / says no measured improvement).
+    for axis, label in (("clock", "speed"), ("resilience", "wipe resilience")):
+        adds = [s["add"] for d in calls if d.get("axis") == axis for s in _measured_suggestions(d)]
+        if not verdicts.axis_addressed(text, axis, adds):
+            problems.append(f"never addresses {label} (no result stated for it)")
     side = verdicts.side_claim_reasons(text, _measured_axes(calls))
     if side:
         problems.append("unmeasured side claim: " + side[0])
@@ -298,6 +282,9 @@ def _g_dual(reply, truth):
     slower = _slower_swaps(text, clock)
     if slower:
         problems.append("reports a clock swap that does not kill earlier: " + "; ".join(slower))
+    turns = verdicts.turn_confusion_reasons(text, _clock_calls(calls), gate_mod._NUMBER_TOLERANCE)
+    if turns:
+        problems.append("clock score reported as turns: " + turns[0])
     if measured:
         if not any(names_in(text, [s["add"]]) for s in measured):
             problems.append("a measured swap exists but the reply names no measured add")

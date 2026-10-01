@@ -765,6 +765,74 @@ def side_claim_reasons(text: str, measured_axes) -> list[str]:
     return reasons
 
 
+# ── dual-goal answers: does the reply address an axis the player asked about? ─────────
+# Shared by the runtime (chat.py appends a templated sentence for an unaddressed axis) and the
+# holistic bench (`dual` rubric), so the two cannot drift. An axis is ADDRESSED when the reply is
+# about it AND states what the swap search found for it: names the measured add, or says no
+# measured improvement in a sentence (or the one after one) that names the axis.
+
+SPEED_ANSWER_RE = re.compile(
+    r"\b(?:faster|quicker|speed\w*|clock|earlier|sooner|kill(?:s|ing)?\s+turn)\b", re.IGNORECASE)
+
+AXIS_ANSWER_TOPICS: dict[str, re.Pattern] = {
+    "clock": SPEED_ANSWER_RE,
+    "resilience": RESILIENCE_TOPIC_RE,
+    "interaction": SIDE_CLAIM_TOPICS["interaction"],
+    "consistency": SIDE_CLAIM_TOPICS["consistency"],
+}
+
+NO_IMPROVEMENT_RE = re.compile(
+    r"(?:no\s+(?:measured|improving|clear|real)\s+(?:improvement|swap|upgrade|gain)|"
+    r"(?:did\s*n[o']t|didn'?t|could\s*n[o']t|couldn'?t|did\s+not|could\s+not)\s+(?:find|see|identify|turn\s+up)\b[^.]{0,60}"
+    r"(?:improv\w*|swap\w*|upgrade\w*|gain\w*)|"
+    r"none\s+(?:of\s+[^.]{0,40})?(?:beat|improv\w*|cleared|passed)|"
+    r"no\s+(?:owned\s+)?(?:card|swap|add)s?\s+(?:that\s+)?(?:beat|improv\w*|clear\w*)|"
+    r"nothing\s+(?:in\s+your\s+collection\s+)?(?:measurably\s+)?(?:improv\w*|beat|cleared)|"
+    r"no\s+measured\s+swap|noise\s+floor|"
+    r"no\s+(?:collection\s+file|owned\s+cards)|"
+    r"(?:did\s*n[o']t|didn'?t|did\s+not)\s+find\s+any|"
+    # phrasings seen live: "no immediate way to ... improve", "there aren't any obvious
+    # swaps", "no clear improvement to be made ... based on the cards you own"
+    r"no\s+(?:immediate|obvious|clear|significant|easy)\s+(?:way|swaps?|improvements?|upgrades?)|"
+    r"(?:aren'?t|are\s+not|isn'?t|is\s+not)\s+any\s+(?:[\w,]+\s+){0,3}(?:swaps?|improvements?|upgrades?)|"
+    r"no\s+(?:\w+\s+){0,2}swaps?\s+(?:to|that|i\s+can)\b|"
+    # the honest-decline space is wide ("no measurable way to make it faster", "no
+    # significant measured gain", "none of the cards I evaluated provided a significant
+    # enough boost", "wasn't a clear improvement"): a negator and an improvement word in
+    # one clause. Lenient by design -- it is only consulted when the tool found NO swap.
+    r"(?:\bno\b|\bnot\b|n't|\bnone\b|\bnothing\b)[^.]{0,60}"
+    r"\b(?:measur\w*|improv\w*|gains?|boosts?|swaps?|upgrades?)\b)",
+    re.IGNORECASE,
+)
+
+
+def axis_addressed(text: str, axis: str, adds=()) -> bool:
+    """True when `text` answers the player's `axis` goal. With measured `adds` for that axis the
+    reply must be about the axis and name one of them; with none it must say no measured
+    improvement in a sentence naming the axis (or the sentence right after one that does)."""
+    topic = AXIS_ANSWER_TOPICS.get(axis)
+    if topic is None:
+        return True
+    adds = [a for a in adds if a]
+    text = text.replace("’", "'").replace("‘", "'")   # curly apostrophes defeat n't
+    if adds:
+        low = text.lower()
+        return bool(topic.search(text)) and any(a.lower() in low for a in adds)
+    sentences = split_sentences(text)
+    for i, sent in enumerate(sentences):
+        if not NO_IMPROVEMENT_RE.search(sent):
+            continue
+        if topic.search(sent):
+            return True
+        # the statement may follow the sentence naming the axis ("On resilience the deck is fine.
+        # No measured swap beat the noise floor."), unless it is itself about another axis
+        if i > 0 and topic.search(sentences[i - 1]) and not any(
+                p.search(sent) for ax, p in {**AXIS_ANSWER_TOPICS, "ceiling": SIDE_CLAIM_TOPICS["ceiling"]}.items()
+                if ax != axis):
+            return True
+    return False
+
+
 # ── clock changes are score points, not turns ─────────────────────────────────────────
 # The clock axis is a 0-100 score (100*(horizon-avg_kill_turn)/horizon): +1.7 points is ~0.2
 # turns. Live (2026-10-01): "improve the deck's clock by about 1.7 turns" -- 1.7 is a licensed

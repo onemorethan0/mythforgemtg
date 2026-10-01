@@ -27,6 +27,7 @@ from dataclasses import dataclass, field
 import requests
 
 from mythgauntlet.mentor import gate as gate_mod
+from mythgauntlet.mentor import verdicts
 from mythgauntlet.mentor.tools import MentorContext, ToolResult, TOOL_SCHEMAS, call_tool
 
 LLM_BASE = os.getenv("MYTHGAUNTLET_LLM_BASE", "http://127.0.0.1:8010").rstrip("/")
@@ -408,6 +409,99 @@ def _owed_fallback_axes(question: str, tool_trace: list) -> list[str]:
     return out
 
 
+# A dual-goal question was still answered for ONE goal after both lookups ran deterministically
+# (live bench, 2026-10-01: 5/9 -- three replies never mention speed, one calls it "ceiling", one
+# omits the "no measured improvement" statement for resilience), and two prompt rules and a nudge
+# did not change that. So the reply is COMPLETED deterministically: for every named axis the draft
+# does not address (`verdicts.axis_addressed`, shared with the bench rubric) a templated sentence is
+# appended, built only from this turn's swap result for that axis, so every number and card name in
+# it is licensed and the gate sees it like any other text. Applied to every draft before gating
+# (retries included), so the text that is checked is the text that ships.
+
+def _swap_data_by_axis(tool_trace: list) -> dict[str, dict]:
+    """The latest swap answer per axis this turn (suggest_swap, or an available cached search)."""
+    out: dict[str, dict] = {}
+    for t in tool_trace:
+        d = t.result_data or {}
+        if not (t.name == "suggest_swap"
+                or (t.name == "get_measured_swaps" and d.get("available"))):
+            continue
+        axis = d.get("axis")
+        if isinstance(axis, str) and "improving_swap_found" in d:
+            out[axis] = d
+    return out
+
+
+def _fmt(v) -> str:
+    return f"{round(float(v), 1):g}"
+
+
+def _axis_sentences(axis: str, d: dict) -> str:
+    """Plain prose answering one axis from its own swap result: verdict and score first, then the
+    measured swap (with its kill-turn change for clock) or the plain "no measured swap" finding."""
+    cur = d.get("current") or {}
+    score = cur.get("score", d.get("baseline"))
+    full = d.get("source") == "full_search"
+    search = "full search" if full else "quick search"
+    if axis == "clock":
+        label = "speed"
+        head = (f"On speed, the clock score (how early the deck kills) is {_fmt(score)}"
+                if score is not None else "On speed")
+    else:
+        label = "resilience to wipes" if axis == "resilience" else axis
+        verdict = cur.get("verdict")
+        head = f"On {label}, the deck is "
+        if verdict and score is not None:
+            head += f"{verdict} (a score of {_fmt(score)})"
+        elif score is not None:
+            head += f"at a score of {_fmt(score)}"
+        else:
+            head = f"On {label}"
+    sugs = [s for s in (d.get("suggestions") or []) if isinstance(s, dict) and s.get("add")]
+    if not sugs:
+        tail = f"the {search} found no measured swap for it that beats the noise floor"
+        if not full:
+            tail += ", and a full search can be run from the deck page"
+        return f"{head}; {tail}."
+    s = sugs[0]
+    brief = s.get("brief") or {}
+    before, after = s.get("before", brief.get("before")), s.get("after", brief.get("after"))
+    out = f"{head}; the {search} measured adding {s['add']} for {s.get('cut')}"
+    if before is not None and after is not None:
+        out += f", which moves the {label.split(' ')[0]} score from {_fmt(before)} to {_fmt(after)}"
+    if axis == "clock":
+        kb = s.get("kill_turn_before", brief.get("kill_turn_before"))
+        ka = s.get("kill_turn_after", brief.get("kill_turn_after"))
+        if kb is not None and ka is not None:
+            change = round(float(kb) - float(ka), 1)
+            how = "sooner" if change > 0 else "later" if change < 0 else "unchanged"
+            out += (f" (the average kill turn goes from {_fmt(kb)} to {_fmt(ka)}"
+                    + (f", {_fmt(abs(change))} turns {how}" if change else ", about the same")
+                    + ")")
+    out += "."
+    if s.get("cut_is_redundant") is False:
+        out += (f" {s.get('cut')} was offered only because a cut had to be picked, so that is not "
+                "evidence it is weak.")
+    return out
+
+
+def _complete_dual(question: str, tool_trace: list, draft: str) -> str:
+    """`draft` plus a templated sentence for each named goal axis it does not address."""
+    axes = _goal_axes(question)
+    if len(axes) < 2:
+        return draft
+    by_axis = _swap_data_by_axis(tool_trace)
+    tail = []
+    for axis in axes:
+        d = by_axis.get(axis)
+        if d is None:
+            continue
+        adds = [s.get("add") for s in (d.get("suggestions") or []) if isinstance(s, dict)]
+        if not verdicts.axis_addressed(draft, axis, adds):
+            tail.append(_axis_sentences(axis, d))
+    return draft.rstrip() + "\n\n" + " ".join(tail) if tail else draft
+
+
 def _wants_a_swap(question: str) -> bool:
     return bool(_SWAP_QUESTION_RE.search(question or ""))
 
@@ -597,6 +691,7 @@ def ask(
     gate_rejections: list[tuple[str, list[str]]] = []
 
     for attempt in range(MAX_GATE_ATTEMPTS):
+        draft = _complete_dual(question, tool_trace, draft)
         reasons = gate_mod.check(draft, budget, question=question, max_chars=chars)
         if not reasons:
             return MentorReply(text=draft, gated=True, tool_trace=tool_trace,
