@@ -440,7 +440,7 @@ def test_get_power_profile_returns_every_top_level_key(make_card, empty_store):
     assert data["weakest_axis"] in data["axes"]
     assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction", "archetype"}
     assert set(data["bracket"]) == {"bracket", "label", "plays_up"}
-    assert set(data["interaction_counts"]) == {"spot_removal", "counterspells", "board_wipes", "breadth"}
+    assert set(data["interaction_counts"]) == {"spot_removal", "counterspells", "counterspells_applicable", "board_wipes", "breadth", "breadth_max"}
     assert data["resilience"]["score"] == data["axes"]["resilience"]["score"]
 
 
@@ -888,3 +888,35 @@ def test_suggest_swap_schema_offers_the_clock_axis():
     assert "clock" in enum
     from mythgauntlet.ratings import advisor
     assert set(enum) == set(advisor.AXES)   # the enum cannot drift from the advisor again
+
+
+# ── C-residual: counterspells are not a gap without blue; suggest_swap states where it stands ──
+
+def test_power_profile_does_not_list_counterspells_for_a_deck_without_blue(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)             # mono-green
+    data = call_tool(ctx, "get_power_profile", {}).data
+    counts = data["interaction_counts"]
+    assert counts["counterspells_applicable"] is False
+    assert str(counts["counterspells"]).startswith("n/a") and counts["breadth_max"] == 2
+    blob = " ".join([data["axes"]["interaction"]["why"], *data["strengths"], *data["weaknesses"]])
+    assert "counters" not in blob and "/3" not in blob
+
+
+def test_power_profile_keeps_counterspells_for_a_blue_deck(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    ctx.resolved.commanders[0].color_identity = ("G", "U")
+    counts = call_tool(ctx, "get_power_profile", {}).data["interaction_counts"]
+    assert counts["counterspells_applicable"] is True
+    assert isinstance(counts["counterspells"], int) and counts["breadth_max"] == 3
+
+
+def test_without_counterspells_rewrites_the_insight_sentences():
+    from mythgauntlet.mentor.tools import _without_counterspells
+    assert _without_counterspells(
+        "4.5 castable answers -- 4 removal, 0 counters, 1 wipes (breadth 2/3)"
+    ) == "4.5 castable answers -- 4 removal, 1 wipes (breadth 2 of 2 playable types)"
+    assert _without_counterspells(
+        "Thin interaction (only 2 answers) -- light on removal/counters"
+    ) == "Thin interaction (only 2 answers) -- light on removal"
+    assert _without_counterspells("Deep interaction (7 answers, 3/3 types)").endswith(
+        "(7 answers, 3 of 2 playable types)")   # unreachable shape for a no-blue deck; harmless

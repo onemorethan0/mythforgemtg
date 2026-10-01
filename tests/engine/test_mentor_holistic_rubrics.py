@@ -309,3 +309,22 @@ def test_removal_praise_with_no_gaps_is_not_a_claim():
     truth = _rm_truth(no_unrestricted=())
     ok, _ = rub.grade("removal", _rm_reply("There are no gaps in creature coverage."), truth)
     assert ok is True
+
+
+# ── colour rubric: a factual mention is not advice (C-residual) ─────────────────────
+
+def test_colour_factual_counterspell_mention_passes():
+    for text in ("It runs 4 removal spells, no counterspells and 1 wipe.",
+                 "Interaction: 4 removal, 0 counterspells, 1 wipes.",
+                 "I wouldn't add counterspells to this deck."):
+        ok, why = rub.grade_colour([_reply(text)], _truth())
+        assert ok is True, (text, why)
+
+
+def test_colour_recommending_counterspells_without_blue_fails():
+    for text in ("You should consider adding more removal or counterspells.",
+                 "Run a few counterspells to protect your plan.",
+                 "The deck lacks counterspells, which is a weakness."):
+        ok, why = rub.grade_colour([_reply(text)], _truth())
+        assert ok is False, (text, why)
+        assert "counterspells" in why

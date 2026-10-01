@@ -464,9 +464,19 @@ def grade(qid: str, reply, truth: dict) -> tuple[bool | None, str]:
 
 _COLOUR_WORD = {"W": "white", "U": "blue", "B": "black", "R": "red", "G": "green"}
 _COUNTER_RE = re.compile(r"\bcounter[\s-]?spells?\b|\bcounter\s+magic\b|\bcountering\s+spells\b", re.IGNORECASE)
-_DEFICIT_RE = re.compile(
-    r"\b(?:lack\w*|gap|missing|need\w*|more|add|include|consider|few|fewer|without|short|none|"
-    r"under\w*|thin|run|play|no|zero|absence)\b",
+# A factual MENTION of counterspells is not advice ("4 removal, no counterspells"; the
+# profile's own counts). What the rubric catches is (a) RECOMMENDING them (add / consider /
+# run / include ... counterspells) and (b) calling their absence a weakness or gap, for a deck
+# with no blue in its identity. Arahbo's "consider adding more removal or counterspells" is
+# the genuine failure this exists for.
+_COUNTER_RECOMMEND_RE = re.compile(
+    r"\b(?:add|adding|include|including|consider|considering|run|running|play|playing|get|getting|"
+    r"try|trying|pick\s+up|picking\s+up|want|worth)\b[^.]{0,60}\b(?:counter[\s-]?spells?|counter\s+magic)\b",
+    re.IGNORECASE,
+)
+_COUNTER_GAP_RE = re.compile(
+    r"\b(?:lack\w*|gap|missing|weakness(?:es)?|weak|short\s+on|shortage|shortcoming|absence|thin|"
+    r"significant|deficien\w*|light\s+on|under[\s-]?supplied)\b",
     re.IGNORECASE,
 )
 _IDENTITY_ACK_RE = re.compile(
@@ -485,8 +495,12 @@ def grade_colour(replies: list, truth: dict) -> tuple[bool | None, str]:
     for i, reply in enumerate(replies):
         for sentence in verdicts.split_sentences(reply.text):
             if "U" not in identity and _COUNTER_RE.search(sentence):
-                if _DEFICIT_RE.search(sentence) and not _IDENTITY_ACK_RE.search(sentence):
-                    problems.append(f"reply {i}: counterspell advice without blue identity: {sentence.strip()[:90]!r}")
+                rec = _COUNTER_RECOMMEND_RE.search(sentence)
+                recommends = bool(rec) and not _NEG_BEFORE_RE.search(sentence[:rec.start()])
+                gap = bool(_COUNTER_GAP_RE.search(sentence))
+                if (recommends or gap) and not _IDENTITY_ACK_RE.search(sentence):
+                    kind = "recommends counterspells" if recommends else "calls missing counterspells a gap"
+                    problems.append(f"reply {i}: {kind} without blue identity: {sentence.strip()[:90]!r}")
             for c in outside:
                 word = _COLOUR_WORD[c]
                 pat = re.compile(

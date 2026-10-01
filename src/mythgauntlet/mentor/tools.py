@@ -522,6 +522,25 @@ def _r1(x):
     return None if x is None else round(float(x), 1)
 
 
+# C-residual: `insight` writes "N removal, 0 counters, M wipes (breadth b/3)" and "light on
+# removal/counters" for EVERY deck, so a green or black deck's profile listed "0 counters" as a
+# weakness (Shelob, Tymna, Ghired) although `role_applicable("counterspell", identity)` says
+# no colour in its identity supplies counterspells. `insight.py` is shared with other surfaces
+# and left alone; the mentor layer rewrites the sentences it hands the model.
+_COUNT_COUNTERS_RE = re.compile(r",?\s*\d+ counters?\b")
+_BREADTH_RE = re.compile(r"\b(\d+)/3(\s+types)?")
+_LIGHT_ON_COUNTERS_RE = re.compile(r"removal/counters")
+
+
+def _without_counterspells(text: str) -> str:
+    """`text` with counterspells removed from an interaction sentence: the counter count is
+    dropped and breadth (of three possible types) becomes breadth of the two the deck's
+    colours can play."""
+    text = _COUNT_COUNTERS_RE.sub("", text)
+    text = _LIGHT_ON_COUNTERS_RE.sub("removal", text)
+    return _BREADTH_RE.sub(lambda m: f"{m.group(1)} of 2 playable types", text)
+
+
 def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
     """The deck's MEASURED Power Profile -- the structured answer the engine already holds
     for "what does this deck do well and poorly / how does it win / how fast / how resilient
@@ -550,6 +569,15 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
         for ax in advisor.PROFILE_AXES
     }
     axes["pod"] = {"score": _r1(pod.score), "why": why.get("Pod (multiplayer)", "")}
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+    counters_apply = redundancy.role_applicable("counterspell", identity)
+    strengths, weaknesses = list(ins.strengths), list(ins.weaknesses)
+    if not counters_apply:
+        axes["interaction"]["why"] = _without_counterspells(axes["interaction"]["why"])
+        strengths = [_without_counterspells(t) if t.startswith("Deep interaction") else t
+                     for t in strengths]
+        weaknesses = [_without_counterspells(t) if t.startswith("Thin interaction") else t
+                      for t in weaknesses]
     wincon = _to_jsonable(a.wincon_redundancy)
     names: set[str] = {c.name for c in ctx.resolved.commanders}
     key_cards = []
@@ -563,8 +591,8 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
         "archetype": ins.archetype,
         "gameplan": ins.gameplan,
         "pod_read": ins.pod_read,
-        "strengths": list(ins.strengths),
-        "weaknesses": list(ins.weaknesses),
+        "strengths": strengths,
+        "weaknesses": weaknesses,
         "axes": axes,
         "weakest_axis": advisor.weakest_axis(a),
         "clock": {
@@ -590,8 +618,13 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
         },
         # CARD COUNTS (copies), unlike get_deck_stats' role `supply`, which is a strength score.
         "interaction_counts": {
-            "spot_removal": inter.spot_removal, "counterspells": inter.counterspells,
+            "spot_removal": inter.spot_removal,
+            # not a gap when no colour in the identity supplies counterspells (C1)
+            "counterspells": (inter.counterspells if counters_apply
+                              else "n/a (no blue in this deck's colour identity)"),
+            "counterspells_applicable": counters_apply,
             "board_wipes": inter.board_wipes, "breadth": inter.breadth,
+            "breadth_max": 3 if counters_apply else 2,   # types (removal / counters / wipes) in play
         },
         "key_cards": key_cards,
         "wincon_redundancy": wincon,

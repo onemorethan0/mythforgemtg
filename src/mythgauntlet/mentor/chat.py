@@ -101,7 +101,10 @@ read it as how many cards the deck has: talk about how many cards fill a role us
 that role's "cards" field, and compare "supply" with "target" only as over or under \
 target. A role with "applicable": false (get_deck_stats) is NOT a gap -- the deck's \
 colours or measured plan do not call for it (see its "note") -- so never say the deck \
-lacks it or suggest adding cards for it. For "how do I improve / speed up / make it \
+lacks it or suggest adding cards for it. The same goes for counterspells in \
+get_power_profile: when interaction_counts.counterspells_applicable is false the deck's \
+colours cannot play them, so never list their absence as a weakness or recommend them. \
+For "how do I improve / speed up / make it \
 more resilient" questions, name the weakest axis and its "why" from the profile, then \
 you MUST call suggest_swap in the same turn, BEFORE you write your answer -- never \
 write "I'll look into your collection" and stop; make the call. Pass suggest_swap the \
