@@ -52,6 +52,27 @@ _SACRIFICE_FOR_MANA_RE = re.compile(r"sacrifice (?:this|it)[^:.]*:[^.]*\badd\b")
 _SEARCH_CARD_RE = re.compile(r"search (?:your|their) library for ([^.]*)")
 _DRAW_RE = re.compile(r"draws? (\w+) (?:additional )?cards?")
 _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)")
+# A "when" trigger whose EVENT happens once in the object's life: Solemn Simulacrum's death
+# draw, Mulldrifter's ETB draw. Applied to the trigger condition only (text before the
+# first comma). A positive list on purpose — "when" alone is not proof of one-shot (The
+# Belligerent and Useless Island's "when ... deal combat damage" recurs every combat), and an
+# event that does not match keeps the old engine reading rather than guessing. A condition
+# that also says "whenever" (Up the Beanstalk: "when this enters and whenever you cast")
+# recurs and is excluded. "When you cast THAT/a spell" (Yume) recurs too; only the card's
+# own cast trigger ("when you cast this spell", "when you cast Taught by Serra") is one-shot.
+#
+# Counter thresholds ("when the tenth +1/+1 counter is put on Shang-Chi", Midnight Clock's
+# twelfth hour) fire once. Room doors unlock once.
+_ONE_SHOT_TRIGGER_RE = re.compile(
+    r"^when (?!.*\bwhenever\b).*\b(?:enters|dies|is put into a graveyard from the battlefield"
+    r"|leaves the battlefield|is exiled|is turned face up|becomes level|exploits|specializes"
+    r"|unlock this door|counter is put on|loses the game|wins the fight|as evidence)\b"
+    r"|^when you cast (?!that\b|a\b|an\b|another\b|your\b)"
+    r"|^when you sacrifice this\b"
+)
+# A reflexive trigger ("When you do, draw a card") recurs exactly as often as the sentence
+# it hangs off: once under Selfcraft Mechan's ETB, every attack under Watchful Naga's exert.
+_REFLEXIVE_TRIGGER_RE = re.compile(r"^when (?:you|they|that player) do(?:es)?\b")
 # "If you would draw ..." REPLACES the draw; the sentence names a draw that never happens.
 _DRAW_REPLACEMENT_RE = re.compile(r"\bif [^.]{0,30}?would draw\b")
 # "if you drew two or more cards this turn" is a CONDITION on past draws, not a draw.
@@ -274,34 +295,61 @@ def _draw_counts(text: str) -> tuple[int, int]:
     text is always the verbatim text of an ability being NAMED or GRANTED, never part of
     the enclosing sentence's own direct action — stripped before scanning, same
     reasoning as the parenthetical reminder text `_clean_text` already strips upstream.
+
+    A trigger is not an engine just because it is a trigger. "When this creature dies, you
+    may draw a card" fires once; counting it as a per-turn engine made Solemn Simulacrum read
+    as "repeatable draw" in the swap brief, and the Deck Mentor repeated it (found live
+    2026-10-01). 411 cards were engines only through a one-shot dies / enters / leaves /
+    cast trigger. Those draws are card advantage the card really has, so they move to the
+    immediate count rather than vanishing. Several one-shot triggers on one card take the
+    MAX, not the sum: Market Gnome's dies and craft-exile triggers are alternatives, and
+    Mephitic Draught's ETB + graveyard pair under-counting by one is the honest direction.
     """
     text = re.sub(r'"[^"]*"', "", text)
     immediate = 0
+    one_shot = 0
     engine = 0
+    prev_one_shot = False  # the sentence a reflexive "when you do" hangs off
     for sentence in re.split(r"[.\n]", text):
         s = sentence.strip()
         if not s:
             continue
+        head, sep, tail = s.partition(",")
+        # A legendary name carries its own comma ("When Lutri, Pauper Otter enters the
+        # battlefield, ..."), so the event can sit one comma further on.
+        is_one_shot = bool(
+            _ONE_SHOT_TRIGGER_RE.match(head)
+            or _ONE_SHOT_TRIGGER_RE.match(",".join(s.split(",")[:2]))
+            or (prev_one_shot and _REFLEXIVE_TRIGGER_RE.match(head)))
+        prev_one_shot = is_one_shot
         if _DRAW_REPLACEMENT_RE.search(s) or _DREW_CONDITION_RE.search(s):
+            continue
+        if "would lose the game" in s:
+            # Nira, Hellkite Duelist: "the next time you would lose the game this turn,
+            # instead draw three cards" — an emergency replacement, not card advantage.
             continue
         triggered = bool(_TRIGGER_RE.match(s))
         scan = s
         if triggered:
             # Count only the EFFECT clause. The trigger condition runs to the first comma;
             # "whenever you draw a card, put a counter" must contribute nothing.
-            head, sep, tail = s.partition(",")
             if sep and _DRAW_RE.search(head):
                 scan = tail
+        drawn = 0
         for m in _DRAW_RE.finditer(scan):
             window = scan[max(0, m.start() - 30) : m.start()]
             if "opponent" in window:
                 continue
             n = _WORD_NUMBERS.get(m.group(1), 0)
-            if triggered:
+            if triggered and not is_one_shot:
                 engine += min(n, 2)  # cap: triggers rarely fire more than ~2x/turn in goldfish
             else:
-                immediate += n
-    return immediate, engine
+                drawn += n
+        if triggered and is_one_shot:
+            one_shot = max(one_shot, drawn)
+        else:
+            immediate += drawn
+    return immediate + one_shot, engine
 
 
 def _cast_payoffs(text: str) -> tuple[int, int]:
