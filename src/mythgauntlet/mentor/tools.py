@@ -721,6 +721,20 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
     data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
     data["found"] = True
     data["improving_swap_found"] = True
+    # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
+    # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
+    # the card is weak -- Shelob's own theme card, Gloomwidow's Feast, kept surfacing this way
+    # and was narrated as "the weak card". Say so in the data, next to the cut itself.
+    for raw, sug in zip(report.suggestions, data.get("suggestions", [])):
+        backed = bool(raw.brief.cut.redundancy_backed) if raw.brief is not None else False
+        sug["cut_is_redundant"] = backed
+        if not backed:
+            sug["cut_note"] = (
+                f"{raw.cut} was offered only because a cut had to be picked: the deck "
+                "over-supplies no role, so this is not evidence that the card is weak "
+                "(it may be a theme card). Say so rather than calling it a weak or "
+                "redundant card."
+            )
     names: set[str] = set()
     for s in report.suggestions:
         names.add(s.add)

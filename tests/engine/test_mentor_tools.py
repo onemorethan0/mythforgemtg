@@ -824,6 +824,63 @@ def test_get_deck_stats_shares_the_analysis_cache(make_card, empty_store, monkey
     assert len(calls) == 1
 
 
+def test_suggest_swap_discloses_a_cut_that_is_not_redundancy_backed(
+        make_card, empty_store, monkeypatch, tmp_path):
+    """PLAN_MENTOR_ADHOC D0b: when `brief.cut.redundancy_backed` is False the cut was the
+    pool's default (nothing in the deck is over-supplied) -- Shelob's own theme card kept
+    surfacing this way. The tool data must say so, per suggestion, with a note; a backed
+    cut carries `cut_is_redundant: True` and no note."""
+    import dataclasses
+    from mythgauntlet.mentor import tools as tools_mod
+    from mythgauntlet.ratings import advisor as advisor_mod
+
+    cmdr = make_card("Test Commander", mana_cost="{2}{G}",
+                      type_line="Legendary Creature — Elf", color_identity=("G",))
+    forest = make_card("Forest", type_line="Basic Land — Forest",
+                        produced_mana=("G",), color_identity=("G",))
+
+    def _bear(name, rank):
+        c = make_card(name, mana_cost="{1}{G}", type_line="Creature — Bear",
+                      color_identity=("G",), edhrec_rank=rank)
+        c.power, c.toughness = "2", "2"
+        return c
+
+    strong, weak = _bear("Popular Bear", 500), _bear("Obscure Bear", 90000)
+    removal = make_card("Owned Removal", mana_cost="{1}{G}", type_line="Instant",
+                         color_identity=("G",), edhrec_rank=4000,
+                         oracle_text="Destroy target creature.")
+    resolved = ResolvedDeck(deck=Deck(name="t"), commanders=[cmdr],
+                            cards=[(forest, 36), (strong, 40), (weak, 23)], missing=[])
+    ctx = MentorContext(card_db=CardDb([cmdr, forest, strong, weak, removal]), cr=_fake_cr(),
+                        rulings_db={}, resolved=resolved,
+                        cfg=SimConfig(turns=5, runs=80, seed=3), store=empty_store)
+    csv_path = tmp_path / "collection.csv"
+    csv_path.write_text("Count,Name\n1,Owned Removal\n", encoding="utf-8")
+    monkeypatch.setattr(tools_mod, "suite_collection_path", lambda: csv_path)
+
+    real_advise = advisor_mod.advise
+
+    def _advise_with(backed):
+        def _wrapped(*a, **kw):
+            rep = real_advise(*a, **kw)
+            assert rep.suggestions, "fixture is proven to produce a positive swap"
+            for s in rep.suggestions:
+                s.brief = dataclasses.replace(
+                    s.brief, cut=dataclasses.replace(s.brief.cut, redundancy_backed=backed))
+            return rep
+        return _wrapped
+
+    monkeypatch.setattr(advisor_mod, "advise", _advise_with(False))
+    sug = call_tool(ctx, "suggest_swap", {"axis": "interaction"}).data["suggestions"][0]
+    assert sug["cut_is_redundant"] is False
+    assert sug["cut"] in sug["cut_note"] and "not evidence" in sug["cut_note"]
+
+    monkeypatch.setattr(advisor_mod, "advise", _advise_with(True))
+    sug = call_tool(ctx, "suggest_swap", {"axis": "interaction"}).data["suggestions"][0]
+    assert sug["cut_is_redundant"] is True
+    assert "cut_note" not in sug
+
+
 def test_suggest_swap_schema_offers_the_clock_axis():
     from mythgauntlet.mentor.tools import TOOL_SCHEMAS
     schema = next(t for t in TOOL_SCHEMAS if t["function"]["name"] == "suggest_swap")
