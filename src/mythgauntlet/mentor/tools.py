@@ -824,6 +824,16 @@ def _swap_result(data: dict) -> ToolResult:
                 "(it may be a theme card). Say so rather than calling it a weak or "
                 "redundant card."
             )
+        if axis == "clock":
+            # The clock axis is a 0-100 SCORE, not turns (+1.7 points is ~0.2 turns), and the
+            # model reported the score delta as "1.7 turns" (live, 2026-10-01). Give the turn
+            # change explicitly, from the brief's own kill-turn readings.
+            kb = (brief or {}).get("kill_turn_before")
+            ka = (brief or {}).get("kill_turn_after")
+            if kb is not None and ka is not None:
+                sug["kill_turn_before"] = round(float(kb), 2)
+                sug["kill_turn_after"] = round(float(ka), 2)
+                sug["kill_turn_change"] = round(float(kb) - float(ka), 2)   # + = kills sooner
         out.append(sug)
         names.add(sug["add"])
         names.add(sug["cut"])
@@ -835,6 +845,11 @@ def _swap_result(data: dict) -> ToolResult:
         if brief:
             names.update(brief.get("allowed_card_names") or [])
     data["suggestions"] = out
+    if axis == "clock":
+        data["clock_note"] = (
+            "clock is a 0-100 score, not turns; the kill-turn fields give the change in turns "
+            "(kill_turn_change = turns sooner, negative = later). Report score changes as "
+            "points and turn changes only from kill_turn_change.")
     return ToolResult(data=data, card_names=frozenset(names))
 
 

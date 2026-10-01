@@ -763,3 +763,69 @@ def side_claim_reasons(text: str, measured_axes) -> list[str]:
             f"only measured {'/'.join(measured)}: describe the swap's effect only on the axis "
             f"it was measured on and offer to measure {family} instead")
     return reasons
+
+
+# ── clock changes are score points, not turns ─────────────────────────────────────────
+# The clock axis is a 0-100 score (100*(horizon-avg_kill_turn)/horizon): +1.7 points is ~0.2
+# turns. Live (2026-10-01): "improve the deck's clock by about 1.7 turns" -- 1.7 is a licensed
+# number, so checks 1-7 passed it. A "<n> turn(s)" figure that matches a clock SCORE figure and
+# no kill-turn figure from this turn's clock swap results is that confusion.
+
+_TURNS_RE = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)\s*(?:-\s*)?turns?\b", re.IGNORECASE)
+
+
+def _num(v):
+    return round(float(v), 1) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+def clock_figures(clock_datas) -> tuple[set[float], set[float]]:
+    """(score figures, kill-turn figures), 1 dp, from clock-axis swap result dicts. Kill-turn
+    figures fall back to each suggestion's brief, which older cached results carry."""
+    scores: set[float] = set()
+    kills: set[float] = set()
+    for d in clock_datas:
+        cur = d.get("current") or {}
+        for v in (_num(d.get("baseline")), _num(cur.get("score"))):
+            if v is not None:
+                scores.add(v)
+        for s in d.get("suggestions") or []:
+            if not isinstance(s, dict):
+                continue
+            brief = s.get("brief") or {}
+            sb, sa = s.get("before", brief.get("before")), s.get("after", brief.get("after"))
+            for v in (_num(sb), _num(sa), _num(brief.get("delta"))):
+                if v is not None:
+                    scores.add(v)
+            if _num(sb) is not None and _num(sa) is not None:
+                scores.add(round(abs(float(sa) - float(sb)), 1))
+            kb = s.get("kill_turn_before", brief.get("kill_turn_before"))
+            ka = s.get("kill_turn_after", brief.get("kill_turn_after"))
+            for v in (_num(kb), _num(ka), _num(s.get("kill_turn_change"))):
+                if v is not None:
+                    kills.add(abs(v))
+            if _num(kb) is not None and _num(ka) is not None:
+                kills.add(round(abs(float(kb) - float(ka)), 1))
+    return scores, kills
+
+
+def turn_confusion_reasons(text: str, clock_datas, tolerance: float = 0.6) -> list[str]:
+    """Gate/bench reasons: one per "<n> turns" that is really a clock score figure."""
+    clock_datas = [d for d in (clock_datas or []) if isinstance(d, dict)]
+    if not clock_datas:
+        return []
+    scores, kills = clock_figures(clock_datas)
+    reasons: list[str] = []
+    seen: set[float] = set()
+    for m in _TURNS_RE.finditer(text):
+        value = round(float(m.group(1)), 1)
+        if value <= 1.0 or value in seen:
+            continue
+        if (any(abs(value - x) <= tolerance for x in scores)
+                and not any(abs(value - x) <= tolerance for x in kills)):
+            seen.add(value)
+            reasons.append(
+                f"reports {value:g} turns, but {value:g} matches a clock SCORE figure (a 0-100 "
+                "score, reported in points), not any kill-turn figure: give a turn change only "
+                "from kill_turn_change / the kill_turn_before and kill_turn_after fields, or say "
+                "points")
+    return reasons

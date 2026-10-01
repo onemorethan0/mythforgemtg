@@ -241,6 +241,9 @@ class ClaimBudget:
     # both `axis` and `improving_swap_found`; an unavailable lookup carries neither and counts
     # for nothing. Empty when no swap search ran this turn.
     swap_axes: frozenset[str] = frozenset()
+    # The clock-axis swap results (`_swap_result` dicts with axis == "clock") of this turn: check 8
+    # flags "1.7 turns" when 1.7 is a clock SCORE figure and no kill-turn figure.
+    clock_swaps: tuple = ()
 
     @classmethod
     def from_tool_results(
@@ -253,6 +256,7 @@ class ClaimBudget:
         verdicts: set[tuple[str, bool]] = set()
         profile: dict[str, str] = {}
         swap_axes: set[str] = set()
+        clock_swaps: list[dict] = []
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -275,8 +279,11 @@ class ClaimBudget:
                 and "improving_swap_found" in data
             ):
                 swap_axes.add(data["axis"])
+                if data["axis"] == "clock":
+                    clock_swaps.append(data)
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
-                    frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes))
+                    frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
+                    tuple(clock_swaps))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -443,6 +450,14 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #    bias as checks 5 and 6.
     if budget.swap_axes:
         reasons.extend(verdicts_mod.side_claim_reasons(body, budget.swap_axes))
+
+    # 8. CLOCK CHANGE REPORTED IN TURNS (HEURISTIC -- see `verdicts.turn_confusion_reasons`). The
+    #    clock axis is a 0-100 score; "improve the clock by about 1.7 turns" cites a licensed
+    #    number (the SCORE delta), so check 3 passes it. Flags "<n> turns" only when n matches a
+    #    clock score figure from this turn's clock swap results and no kill-turn figure from them.
+    if budget.clock_swaps:
+        reasons.extend(verdicts_mod.turn_confusion_reasons(
+            body, budget.clock_swaps, tolerance=_NUMBER_TOLERANCE))
 
     return reasons
 
