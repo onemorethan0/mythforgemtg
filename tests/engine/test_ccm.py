@@ -1316,3 +1316,15 @@ def test_cross_check_rejects_a_destroy_the_text_never_says():
     assert any("never says destroy" in e for e in errs)
     assert not any("never says destroy" in e for e in _gate_errors(
         "Destroy target creature.", [{"op": "destroy", "target": {"type": "creature", "count": 1}}]))
+
+
+def test_cross_check_fight_and_edict_ops():
+    def removal_err(text, effects):
+        return any("removal" in e for e in _gate_errors(text, effects))
+
+    prey = "Target creature you control fights target creature you don't control."
+    assert not removal_err(prey, [{"op": "fight", "target": {"type": "creature", "count": 1}}])
+    assert removal_err(prey, [{"op": "draw", "count": 1}])
+    edict = "Target player sacrifices a creature of their choice."
+    assert not removal_err(edict, [{"op": "sacrifice", "target": {
+        "type": "creature", "controller": "opponent", "count": 1}}])

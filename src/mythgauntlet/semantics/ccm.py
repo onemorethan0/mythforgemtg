@@ -1034,6 +1034,13 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     removal_ops = {"destroy", "exile", "deal_damage"}
     if "bounce" in modes.spot:
         removal_ops.add("return_to_hand")
+    if "edict" in modes.spot:
+        removal_ops.add("sacrifice")  # Diabolic Edict: the OPPONENT's sacrifice
+    if "fight" in modes.spot:
+        # 74 accepted CCMs spell a fight as `fight`, outside the vocabulary but tolerated
+        # by the schema (`unsupported_ops`); demanding deal_damage instead would push the
+        # compiler to fabricate a one-sided bite.
+        removal_ops.update({"fight", "deal_damage"})
     has_neg_pump = any(
         e.get("op") == "pump" and _is_negative_pump(e) for _a, e in _iter_effects(doc)
     )
@@ -1071,6 +1078,7 @@ def cross_check(doc: dict, card: Card) -> list[str]:
                 or (e.get("op") == "pump" and _is_negative_pump(e))
                 # mass bounce (Evacuation, Aetherize) became a wipe on 2026-09-30
                 or (e.get("op") == "return_to_hand" and "bounce" in modes.wipe)
+                or (e.get("op") == "sacrifice" and "edict" in modes.wipe)
             )
             and (
                 (e.get("target") or {}).get("count") == "all"

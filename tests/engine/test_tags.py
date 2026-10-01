@@ -560,3 +560,43 @@ def test_ramp_is_net_of_the_activation_cost(make_card):
     assert ramp("{2}, {T}: Add {W}{U}.") == 0                  # filter, nets nothing
     # {T} is not mana and must never be charged as part of the cost.
     assert ramp("{T}: Add {G}.", "Creature — Elf Druid") == 1  # Llanowar Elves
+
+
+def test_fight_and_edict_are_removal(make_card):
+    """Two verbs tags never read (2026-10-01). Oracle text verified against the card DB."""
+    assert _fx(make_card, "Target creature you control fights target creature you don't "
+               "control.", "Sorcery").removal                         # Prey Upon
+    assert _fx(make_card, "Target creature you control gets +X/+X until end of turn. Then it "
+               "fights up to one target creature you don't control.", "Sorcery").removal
+    assert _fx(make_card, "Target player sacrifices a creature of their choice.").removal
+    assert _fx(make_card, "When this creature enters, each player sacrifices a creature of "
+               "their choice.", "Creature — Zombie Warrior").removal  # Fleshbag Marauder
+    assert _fx(make_card, "Whenever a creature you control dies, each other player "
+               "sacrifices a creature of their choice.", "Enchantment").removal  # Grave Pact
+    assert _fx(make_card, "Each opponent sacrifices a creature or planeswalker with the "
+               "greatest mana value among creatures and planeswalkers they control.").removal
+    # a sacrifice YOU make is a cost, not an answer
+    assert not _fx(make_card, "As an additional cost to cast this spell, sacrifice a "
+                   "creature.\nDraw two cards.").removal              # Village Rites
+    assert not _fx(make_card, "{1}, Sacrifice another creature: Dina gets +X/+0 until end of "
+                   "turn.", "Legendary Creature — Dryad Druid").removal
+    # an edict that cannot take a creature is not a creature answer
+    assert not _fx(make_card, "Target player sacrifices a land.", "Sorcery").removal
+    # "sacrifices ALL other nonland permanents" is a sweep (Tragic Arrogance)
+    assert _fx(make_card, "For each player, you choose from among the permanents that player "
+               "controls an artifact, a creature, an enchantment, and a planeswalker. Then "
+               "each player sacrifices all other nonland permanents they control.",
+               "Sorcery").board_wipe
+
+
+def test_punisher_and_pile_edicts(make_card):
+    # a punisher is the OPPONENT's choice (Indulgent Tormentor)
+    assert not _fx(make_card, "Flying\nAt the beginning of your upkeep, draw a card unless "
+                   "target opponent sacrifices a creature of their choice or pays 3 life.",
+                   "Creature — Demon").removal
+    # Liliana of the Veil: -2 is an edict, -6 sacrifices a PILE, not the board
+    fx = _fx(make_card, "+1: Each player discards a card.\n−2: Target player sacrifices a "
+             "creature.\n−6: Separate all permanents target player controls into two piles. "
+             "That player sacrifices all permanents in the pile of their choice.",
+             "Legendary Planeswalker — Liliana")
+    assert fx.removal and not fx.board_wipe

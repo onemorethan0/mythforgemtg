@@ -152,6 +152,16 @@ _TUCK_RE = re.compile(
 _SHUFFLE_RE = re.compile(
     rf"\bthe owner of ({_LEAD}target\b[^.]{{0,40}}?) shuffles (?:it|them) into their library"
 )
+# Two verbs that remove a creature without saying destroy/exile/damage (2026-10-01).
+# A fight is mutual damage into "target creature you don't control" (Prey Upon); an edict
+# makes ANOTHER player sacrifice (Diabolic Edict, Fleshbag Marauder, Grave Pact). A
+# sacrifice YOU make ("sacrifice a creature:") is a cost and never matches: the subject
+# has to be a player. "sacrifices ALL ..." is a sweep (Tragic Arrogance).
+_FIGHT_RE = re.compile(rf"\bfights? ({_LEAD}target\b[^.(]{{0,60}})")
+_EDICT_RE = re.compile(
+    r"\b(?:target player|target opponent|each opponent|each other player|each player"
+    r"|that player|defending player) sacrifices ([^.]{0,70})"
+)
 # A return that UNDOES the exile: Ephemerate's "then return it", Flickerwisp's "return
 # that card ... at the beginning of the next end step". Two returns are NOT this and keep
 # the card as removal: the O-Ring/Fiend Hunter return that waits for the SOURCE to leave
@@ -219,8 +229,8 @@ class InteractionModes:
     that actually expresses each one (a bounce is `return_to_hand`, a -N/-N is a negative
     `pump`) instead of demanding destroy/exile/deal_damage of every answer."""
 
-    spot: frozenset[str] = frozenset()     # destroy | exile | damage | minus | bounce | tuck
-    wipe: frozenset[str] = frozenset()     # destroy | exile | damage | minus | static_minus | bounce
+    spot: frozenset[str] = frozenset()     # destroy|exile|damage|minus|bounce|tuck|fight|edict
+    wipe: frozenset[str] = frozenset()     # destroy|exile|damage|minus|static_minus|bounce|edict
     counter: frozenset[str] = frozenset()  # counter | exile
 
 
@@ -271,6 +281,20 @@ def interaction_modes(text: str) -> InteractionModes:
         for m in rx.finditer(text):
             if _hits_creature(m.group(1)):
                 spot.add("tuck")
+    for m in _FIGHT_RE.finditer(text):
+        if _hits_creature(m.group(1)):
+            spot.add("fight")
+    for m in _EDICT_RE.finditer(text):
+        obj = m.group(1)
+        # A PUNISHER is not an answer: "unless that player sacrifices a creature"
+        # (Acererak, Indulgent Tormentor, Ogre Marauder) lets the opponent choose the
+        # other outcome.
+        if text[max(0, m.start() - 7):m.start()] == "unless ":
+            continue
+        if _hits_creature(obj):
+            # Liliana of the Veil's -6 sacrifices one PILE, not the board.
+            mass = obj.startswith("all ") and "pile" not in obj
+            (wipe if mass else spot).add("edict")
 
     if _COUNTER_RE.search(text):
         counter.add("counter")
