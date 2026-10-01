@@ -482,7 +482,7 @@ _COUNTER_GAP_RE = re.compile(
 _IDENTITY_ACK_RE = re.compile(
     r"(?:not\s+in\s+(?:your|the)\s+(?:deck'?s?\s+)?(?:colou?r|commander)|outside\s+(?:your|the)|"
     r"isn'?t\s+in\s+(?:your|the)|aren'?t\s+in\s+(?:your|the)|(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+play\s+blue|"
-    r"(?:no|without)\s+blue|blue\s+(?:isn'?t|is\s+not)|can'?t\s+(?:run|play|cast|add)|cannot\s+(?:run|play|cast|add)|"
+    r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|can'?t\s+(?:run|play|cast|add)|cannot\s+(?:run|play|cast|add)|"
     r"doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|not\s+a\s+(?:concern|gap|problem))",
     re.IGNORECASE,
 )

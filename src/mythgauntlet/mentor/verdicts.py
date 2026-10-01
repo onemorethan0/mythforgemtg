@@ -193,12 +193,18 @@ PHRASES: dict[str, dict[str, re.Pattern]] = {
     "speed": {
         # Narrow on purpose: "fast mana" and "quickly" are everywhere in deck chat.
         "fast": re.compile(
-            r"\b(?:a\s+fast|a\s+quick|very\s+fast|fast\s+(?:deck|clock|kill|start|win)|"
+            # "a fast/quick" only as a frame for the DECK ("a quick source of mana" -- live, an
+            # Isshin key-cards list of mana rocks -- is not a clock claim), and "fast win
+            # conditions" is what opposing decks have.
+            r"\b(?:a\s+(?:very\s+)?(?:fast|quick)(?=\s+(?:deck|clock|kill|win|start|game|finish|pace|"
+            r"build|strategy|list|aggro|plan|but)\b)|very\s+fast(?!\s+(?:mana|lands?|rocks?|ramp))|"
+            r"fast\s+(?:deck|clock|kill|start)|fast\s+win(?!\s+conditions?)|"
             r"quick\s+(?:clock|kill|win)|kills?\s+(?:very\s+)?(?:early|quickly|fast))\b",
             re.IGNORECASE,
         ),
         "slow": re.compile(
-            r"\b(?:a\s+slow|slow\s+(?:deck|clock|kill|start|win)|sluggish|grindy|grinds?|"
+            r"\b(?:a\s+slow(?=\s+(?:deck|clock|kill|win|start|game|finish|pace|build|strategy|list|plan|but)\b)|"
+            r"slow\s+(?:deck|clock|kill|start|win)|sluggish|grindy|grinds?|"
             r"takes?\s+a\s+long\s+time|wins?\s+slowly)\b",
             re.IGNORECASE,
         ),
@@ -419,12 +425,25 @@ SPEED_TOPIC_RE = re.compile(
 )
 
 
+# "... may struggle against decks with strong interaction or fast win conditions": a speed word
+# about the OPPONENT is not a claim about this deck's clock.
+_OPPONENT_BEFORE_RE = re.compile(
+    r"\b(?:against|versus|vs\.?|opponents?|opposing|decks?\s+(?:with|that|like)|faster\s+than)\b"
+    r"(?:\W+\w+){0,6}\W*$",
+    re.IGNORECASE,
+)
+
+
 def speed_claims(text: str) -> list[tuple[str, str]]:
     """(band, kind) for every speed claim: band "fast" / "slow", kind "plain" / "hedged"."""
     claims: list[tuple[str, str]] = []
     for sentence in split_sentences(text):
         for band, pat in PHRASES["speed"].items():
-            claims.extend((band, kind) for kind in _phrase_hits(sentence, pat))
+            for m in pat.finditer(sentence):
+                before = sentence[:m.start()]
+                if _NEGATOR_RE.search(before) or _OPPONENT_BEFORE_RE.search(before):
+                    continue
+                claims.append((band, "hedged" if _HEDGE_RE.search(before) else "plain"))
         if not SPEED_TOPIC_RE.search(sentence):
             continue
         for m in _GENERIC_SPEED_RE.finditer(sentence):
@@ -500,6 +519,25 @@ _AXIS_WORDS = {
 }
 
 
+# A sentence that places the deck AMONG a bracket's decks ("already quite fast for its bracket",
+# "consistency is below average for bracket 3 decks") is a RELATIVE claim, licensed by
+# get_power_profile's `vs_bracket` standings -- it can be true while the absolute verdict is
+# "slow" (an avg kill turn of ~9 is the top quarter of bracket 1-4 decks, whose median is ~10).
+# The gate exempts such sentences; the absolute verdict is still enforced everywhere else.
+RELATIVE_FRAME_RE = re.compile(
+    r"\bfor\s+(?:its|an?|the|your|their)\s+(?:\w+\s+){0,2}bracket\b|\bbracket\s*[1-5]\b|\bB[1-5]\b|"
+    r"\bamong\b|\bcompared\s+(?:to|with)\b|\bthan\s+(?:most|many|other|typical|average)\b|"
+    r"\b(?:top|bottom)\s+(?:quarter|half)\b|\b(?:above|below)\s+(?:average|median|typical)\b|"
+    r"\btypical\b|\bmedian\b",
+    re.IGNORECASE,
+)
+
+
+def absolute_claims_text(text: str) -> str:
+    """`text` without its relative-to-bracket sentences (see RELATIVE_FRAME_RE)."""
+    return " ".join(s for s in split_sentences(text) if not RELATIVE_FRAME_RE.search(s))
+
+
 def profile_contradictions(text: str, measured: dict[str, str]) -> list[str]:
     """Reasons a reply contradicts the verdicts `get_power_profile` measured, one per axis
     (resilience, speed, consistency, interaction) plus the archetype family. Each phrase is
@@ -509,6 +547,7 @@ def profile_contradictions(text: str, measured: dict[str, str]) -> list[str]:
     inversion). `measured` holds the profile's `verdicts` object; absent or "unknown"
     entries are skipped."""
     reasons: list[str] = []
+    text = absolute_claims_text(text)
     claim_fns = {
         "resilience": resilience_claims, "speed": speed_claims,
         "consistency": consistency_claims, "interaction": interaction_claims,

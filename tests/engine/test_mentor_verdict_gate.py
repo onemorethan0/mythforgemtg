@@ -206,3 +206,53 @@ def test_the_later_profile_result_wins():
 def test_unrelated_prose_passes(text):
     budget = gate.ClaimBudget.from_tool_results([ToolResult(data=_PROFILE)])
     assert not [r for r in gate.check(text, budget) if "contradicting" in r]
+
+
+# -- false positives found in the exit run (a "quick source of mana", relative-to-bracket speech) --
+
+SLOW = {**RESILIENT, "speed": "slow"}
+
+
+def _slow(text):
+    return verdicts.profile_contradictions(text, SLOW)
+
+
+def test_a_quick_source_of_mana_is_not_a_clock_claim():
+    """Live: an Isshin key-cards list of mana rocks ('Provides a quick source of mana') made the
+    bare 'a quick' phrase read as 'the deck is fast' and the answer fell back to uncertainty."""
+    assert verdicts.claimed_speed("- Sol Ring: Provides a quick source of mana.") == set()
+    assert verdicts.claimed_speed("This rock is a slow trickle of mana.") == set()
+    assert not _slow("- Arcane Signet: Provides a quick source of mana and can be used to generate value.")
+    # the deck frames still count
+    assert verdicts.claimed_speed("This is a fast deck.") == {"fast"}
+    assert verdicts.claimed_speed("It is a quick clock.") == {"fast"}
+    assert verdicts.claimed_speed("This is a slow deck.") == {"slow"}
+
+
+def test_fast_win_conditions_of_the_opponent_are_not_a_claim_about_this_deck():
+    assert verdicts.claimed_speed(
+        "It may struggle against decks with strong interaction or fast win conditions.") == set()
+    assert verdicts.claimed_speed("A slow but consistent engine that can be powerful.") == {"slow"}
+
+
+def test_a_relative_to_bracket_sentence_is_not_a_contradiction_of_the_absolute_verdict():
+    """An avg kill turn of ~9 is the top quarter of bracket 1-4 decks (median ~10) while the
+    absolute band says slow: 'quite fast for its bracket' is licensed by vs_bracket."""
+    assert not _slow("It seems your deck is already quite fast for its bracket.")
+    assert not _slow("The deck is already quite fast for a Bracket 1 deck, averaging turn nine.")
+    assert not _reasons("Its consistency is below average for bracket 3 decks, so it can start badly.",
+                        consistency="consistent")
+    # ... but the same words with no relative frame are still flagged
+    assert _slow("Your deck is already quite fast.")
+    assert _slow("It is a fast deck. It is also resilient.")
+
+
+def test_the_relative_exemption_is_per_sentence():
+    text = "The deck is a fast deck. It is strong for its bracket."
+    assert _slow(text)       # the first sentence is absolute and still contradicts
+
+
+def test_system_prompt_keeps_standings_relative():
+    from mythgauntlet.mentor import chat
+    assert 'only as "for its bracket"' in chat.SYSTEM_PROMPT
+    assert "not_applicable_types" in chat.SYSTEM_PROMPT

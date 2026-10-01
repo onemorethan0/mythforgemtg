@@ -328,3 +328,9 @@ def test_colour_recommending_counterspells_without_blue_fails():
         ok, why = rub.grade_colour([_reply(text)], _truth())
         assert ok is False, (text, why)
         assert "counterspells" in why
+
+
+def test_colour_lacks_blue_is_an_identity_acknowledgement():
+    text = "Your deck does not have any counterspells, as it lacks blue in its colour identity."
+    ok, why = rub.grade_colour([_reply(text)], _truth())
+    assert ok is True, why
