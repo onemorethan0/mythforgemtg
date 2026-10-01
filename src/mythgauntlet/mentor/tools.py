@@ -225,6 +225,11 @@ class MentorContext:
     # deck was never analysed) -- `get_deck_stats` reports that honestly rather than
     # fabricating a reading.
     offmeta: dict | None = None
+    # D2: {axis key ("auto" or an axis name): {"result": <Forge /advise JSON>, "computed_at": ...}}
+    # -- the full background swap searches Forge has already run for THIS deck (deck_hash and
+    # collection mtime verified by Forge before it sends them, so every entry here is current).
+    # Pass-through like `offmeta`; `get_measured_swaps` reads it. None/empty = no search run.
+    advice: dict | None = None
 
     @property
     def deck_card_names(self) -> frozenset[str]:
@@ -758,14 +763,79 @@ def _axis_current(report) -> dict:
     even when the model skipped `get_power_profile` (C-residual: Shelob and Tymna answered "how
     resilient is it to a wipe" with only a swap, no verdict). `verdict` is the same band the
     profile's `verdicts` object uses, where one exists for the axis."""
-    current: dict = {"axis": report.axis, "score": _r1(report.baseline)}
-    band = _AXIS_BAND.get(report.axis)
+    return _axis_current_of(report.axis, report.baseline)
+
+
+def _axis_current_of(axis: str, baseline: float) -> dict:
+    current: dict = {"axis": axis, "score": _r1(baseline)}
+    band = _AXIS_BAND.get(axis)
     if band is not None:
-        current["verdict"] = band(report.baseline)
+        current["verdict"] = band(baseline)
         current["instruction"] = (
-            f"State the deck's {report.axis} verdict ({current['verdict']}) and score "
+            f"State the deck's {axis} verdict ({current['verdict']}) and score "
             f"({current['score']}) first, then the swap result.")
     return current
+
+
+def _swap_result(data: dict) -> ToolResult:
+    """Shared post-processing for a swap search, from EITHER source: the quick in-chat
+    `advisor.advise` (`tool_suggest_swap`, `data = _to_jsonable(report)`) or a cached full
+    search (`tool_get_measured_swaps`, Forge's `/advise` JSON). Both carry `axis`,
+    `axis_label`, `baseline`, `evaluated`, `min_delta` and `suggestions` (each with `add`,
+    `cut`, `brief` as dicts), so licensing and the D0b disclosure are identical."""
+    suggestions = data.get("suggestions") or []
+    axis, baseline = data.get("axis"), data.get("baseline")
+    if not suggestions:
+        # `AdviceReport.cut` is the head of the cut POOL, not a verdict -- with no swap
+        # clearing the noise floor it reads exactly like advice ("cut X to be faster") and
+        # was narrated as such: the plan's Shelob probe had the mentor recommend cutting the
+        # deck's own theme card from an empty result. So an empty search returns no card
+        # name at all and licenses none; the message is the whole finding.
+        return ToolResult(data={
+            "found": True, "improving_swap_found": False,
+            "axis": axis, "baseline": baseline, "evaluated": data.get("evaluated"),
+            "current": _axis_current_of(axis, baseline),
+            "message": (
+                f"Tested {data.get('evaluated')} owned cards as adds on {data.get('axis_label')}; "
+                f"none beat the noise floor (min gain {data.get('min_delta', 0):g}). No measured "
+                "swap to recommend."
+            ),
+        })
+    data = dict(data)
+    data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
+    data["found"] = True
+    data["improving_swap_found"] = True
+    data["current"] = _axis_current_of(axis, baseline)
+    # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
+    # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
+    # the card is weak -- Shelob's own theme card, Gloomwidow's Feast, kept surfacing this way
+    # and was narrated as "the weak card". Say so in the data, next to the cut itself.
+    names: set[str] = set()
+    out = []
+    for sug in suggestions:
+        sug = dict(sug)
+        brief = sug.get("brief")
+        backed = bool(((brief or {}).get("cut") or {}).get("redundancy_backed"))
+        sug["cut_is_redundant"] = backed
+        if not backed:
+            sug["cut_note"] = (
+                f"{sug.get('cut')} was offered only because a cut had to be picked: the deck "
+                "over-supplies no role, so this is not evidence that the card is weak "
+                "(it may be a theme card). Say so rather than calling it a weak or "
+                "redundant card."
+            )
+        out.append(sug)
+        names.add(sug["add"])
+        names.add(sug["cut"])
+        # SwapBrief.allowed_card_names is the FULL claim budget for this one swap's own
+        # reasoning (see swap_brief.py) -- e.g. a synergy card the brief cites without
+        # that card being the add or the cut itself. Licensing only add/cut would gate-
+        # reject an honest narration of a well-measured reason the brief already vouches
+        # for, the same class of gap `source_texts` exists to close for verbatim quotes.
+        if brief:
+            names.update(brief.get("allowed_card_names") or [])
+    data["suggestions"] = out
+    return ToolResult(data=data, card_names=frozenset(names))
 
 
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
@@ -815,53 +885,40 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
         ctx.resolved, ctx.cfg, ctx.store, candidates,
         axis=axis, top=3, max_eval=4, cut_pool=1, themes=ctx.themes,
     )
-    if not report.suggestions:
-        # `AdviceReport.cut` is the head of the cut POOL, not a verdict -- with no swap
-        # clearing the noise floor it reads exactly like advice ("cut X to be faster") and
-        # was narrated as such: the plan's Shelob probe had the mentor recommend cutting the
-        # deck's own theme card from an empty result. So an empty search returns no card
-        # name at all and licenses none; the message is the whole finding.
+    return _swap_result(_to_jsonable(report))
+
+
+def tool_get_measured_swaps(ctx: MentorContext, axis: str) -> ToolResult:
+    """D2: the swaps from a FULL background swap search (Forge's Advise panel -- max_eval=16,
+    cut_pool=6, runs=300, minutes of work) that Forge already ran and cached for this exact
+    deck + collection. Same licensing and fields as `suggest_swap` (the shared `_swap_result`),
+    plus `source`/`computed_at`; `{"available": False}` when no such search is cached, with the
+    message telling the player how to run one. Never runs a simulation itself."""
+    if axis not in advisor.AXES:
+        raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(advisor.AXES)}")
+    advice = ctx.advice or {}
+    entry = advice.get(axis)
+    if not isinstance(entry, dict) or not isinstance(entry.get("result"), dict):
+        # An "auto" search (the deck's weakest axis) answers for whichever axis it resolved to.
+        entry = next(
+            (e for e in advice.values()
+             if isinstance(e, dict) and isinstance(e.get("result"), dict)
+             and e["result"].get("axis") == axis),
+            None,
+        )
+    if entry is None:
         return ToolResult(data={
-            "found": True, "improving_swap_found": False,
-            "axis": report.axis, "baseline": report.baseline, "evaluated": report.evaluated,
-            "current": _axis_current(report),
-            "message": (
-                f"Tested {report.evaluated} owned cards as adds on {report.axis_label}; none "
-                f"beat the noise floor (min gain {report.min_delta:g}). No measured swap to "
-                "recommend."
-            ),
+            "available": False, "axis": axis,
+            "message": f"No full swap search has been run for {axis} yet -- run Advise ({axis}) "
+                       "on the deck page; it takes a few minutes.",
         })
-    data = _to_jsonable(report)
-    data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
-    data["found"] = True
-    data["improving_swap_found"] = True
-    data["current"] = _axis_current(report)
-    # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
-    # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
-    # the card is weak -- Shelob's own theme card, Gloomwidow's Feast, kept surfacing this way
-    # and was narrated as "the weak card". Say so in the data, next to the cut itself.
-    for raw, sug in zip(report.suggestions, data.get("suggestions", [])):
-        backed = bool(raw.brief.cut.redundancy_backed) if raw.brief is not None else False
-        sug["cut_is_redundant"] = backed
-        if not backed:
-            sug["cut_note"] = (
-                f"{raw.cut} was offered only because a cut had to be picked: the deck "
-                "over-supplies no role, so this is not evidence that the card is weak "
-                "(it may be a theme card). Say so rather than calling it a weak or "
-                "redundant card."
-            )
-    names: set[str] = set()
-    for s in report.suggestions:
-        names.add(s.add)
-        names.add(s.cut)
-        # SwapBrief.allowed_card_names is the FULL claim budget for this one swap's own
-        # reasoning (see swap_brief.py) -- e.g. a synergy card the brief cites without
-        # that card being the add or the cut itself. Licensing only add/cut would gate-
-        # reject an honest narration of a well-measured reason the brief already vouches
-        # for, the same class of gap `source_texts` exists to close for verbatim quotes.
-        if s.brief is not None:
-            names.update(s.brief.allowed_card_names)
-    return ToolResult(data=data, card_names=frozenset(names))
+    result = _swap_result(entry["result"])
+    data = dict(result.data)
+    data["available"] = True
+    data["source"] = "full_search"
+    if entry.get("computed_at"):
+        data["computed_at"] = entry["computed_at"]
+    return ToolResult(data=data, card_names=result.card_names)
 
 
 # D1: facts the `diagnose` table reads, all from the cached analysis plus closed-form counts
@@ -1249,6 +1306,33 @@ TOOL_SCHEMAS: list[dict] = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_measured_swaps",
+            "description": "The add/cut swaps from a FULL swap search the player has already "
+                            "run on the deck page (much deeper than suggest_swap), measured "
+                            "from their OWN collection. Instant. Call it FIRST for 'what "
+                            "should I cut/add', 'weakest cards', 'make it faster' or 'how can "
+                            "I improve X' questions, with the axis the question is about "
+                            "(clock for 'faster' / 'speed up' / 'quicker'). If it returns "
+                            "available false, fall back to suggest_swap.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "axis": {
+                        "type": "string",
+                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling",
+                                 "clock"],
+                        "description": "the Power Profile axis the swaps were searched for; "
+                                       "clock = how EARLY the deck kills ('faster'); speed = "
+                                       "how often it kills at all",
+                    },
+                },
+                "required": ["axis"],
+            },
+        },
+    },
 ]
 
 _TOOL_FUNCS = {
@@ -1264,6 +1348,7 @@ _TOOL_FUNCS = {
     "removal_coverage": tool_removal_coverage,
     "diagnose_axis": tool_diagnose_axis,
     "suggest_swap": tool_suggest_swap,
+    "get_measured_swaps": tool_get_measured_swaps,
     "check_legality": tool_check_legality,
 }
 

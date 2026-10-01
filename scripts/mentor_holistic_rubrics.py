@@ -141,7 +141,11 @@ _CUT_VERB_RE = re.compile(
 
 
 def _swap_calls(reply) -> list[dict]:
-    return [t.result_data for t in reply.tool_trace if t.name == "suggest_swap"]
+    # get_measured_swaps counts only when it HAD a cached search (D2); an unavailable one is the
+    # model being told to fall back, not a swap answer.
+    return [t.result_data for t in reply.tool_trace
+            if t.name == "suggest_swap"
+            or (t.name == "get_measured_swaps" and t.result_data.get("available"))]
 
 
 def _measured_suggestions(data: dict) -> list[dict]:

@@ -126,6 +126,8 @@ diagnose_axis NEVER replaces suggest_swap: for any "faster", "improve" or "weake
 question you must ALSO call suggest_swap -- with axis clock for "faster" (never ceiling or \
 speed) -- and answer with its measured swap or its "no measured improvement" result.
 
+For any "what should I cut/add", "weakest cards", "make it faster" or "improve X" question, call get_measured_swaps FIRST, with the axis the question is about (clock for "faster" / "speed up" / "quicker"; the same routing rules as suggest_swap): it returns the swaps from the full, deep swap search the player already ran on the deck page. Treat its result exactly as you would suggest_swap's (same fields, same "cut_is_redundant" rule, same "I didn't find a measured improvement" wording when improving_swap_found is false). Only when it reports available false, call suggest_swap instead, tell the player that quick in-chat search is shallow, and add that running Advise on the deck page for that axis (it takes a few minutes) gives a much deeper search.
+
 Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
 players labelled with a bracket (its "standing": top_quarter / above_median / \
 below_median / bottom_quarter, already oriented so a top standing is always the better \
@@ -301,11 +303,21 @@ _SWAP_QUESTION_RE = re.compile(
     re.IGNORECASE,
 )
 _SWAP_NUDGE = (
-    "This is an improvement question: you must call suggest_swap before you answer -- "
-    "diagnose_axis explains the cause but cannot name a card. Use axis clock for faster / speed "
-    "up / quicker, resilience for wipes, otherwise the axis the player asked about. Call it now "
-    "and answer from its result."
+    "This is an improvement question: you must call get_measured_swaps (or, when it reports "
+    "available false, suggest_swap) before you answer -- diagnose_axis explains the cause but "
+    "cannot name a card. Use axis clock for faster / speed up / quicker, resilience for wipes, "
+    "otherwise the axis the player asked about. Call it now and answer from its result."
 )
+
+
+def _has_swap_answer(tool_trace: list) -> bool:
+    """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
+    full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
+    return any(
+        t.name == "suggest_swap"
+        or (t.name == "get_measured_swaps" and (t.result_data or {}).get("available"))
+        for t in tool_trace
+    )
 
 
 def _wants_a_swap(question: str) -> bool:
@@ -399,7 +411,7 @@ def ask(
                 messages.append({"role": "user", "content": _LOOKUP_NUDGE})
                 continue
             if (not swap_nudged and _wants_a_swap(question)
-                    and not any(t.name == "suggest_swap" for t in tool_trace)):
+                    and not _has_swap_answer(tool_trace)):
                 swap_nudged = True
                 messages.append({"role": "assistant", "content": draft})
                 messages.append({"role": "user", "content": _SWAP_NUDGE})
@@ -412,7 +424,7 @@ def ask(
                 args = json.loads(tc["function"].get("arguments") or "{}")
             except json.JSONDecodeError:
                 args = {}
-            if fn_name == "suggest_swap":
+            if fn_name in ("suggest_swap", "get_measured_swaps"):
                 args = _route_swap_axis(question, args)
             result = call_tool(ctx, fn_name, args)
             all_results.append(result)
