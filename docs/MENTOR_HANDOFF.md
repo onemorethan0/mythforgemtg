@@ -514,6 +514,24 @@ pointed at Advise on the deck page.
 - The nudge/route logic in `chat.py` (`_wants_a_swap`, `_route_swap_axis`, `_measured_first`) is regex
   and call-shaped: re-run the holistic bench after touching any of it.
 
+**Browser-verified end to end (2026-10-01, Opus, real UI on alt ports :8030/:8040 against a copied
+Smaug deck, qwen3:14b).** Both new starter prompts render; "How could I make it faster or more
+resilient?" answered honestly ("the quick in-chat search didn't find any measured improvements")
+and offered **Run full swap search (clock)**; the button ran the real `/advise` (16 owned cards,
+96 re-simulations, ~8.3 min), the panel reported completion, and re-asking answered from the cached
+search: add Solemn Simulacrum, cut Ultimate Magic: Meteor, clock 20.1 -> 21.4, average kill turn
+9.59 -> 9.43 (genuinely faster), cut redundancy-backed (wipe supply 18 vs target 3). Residuals found
+reading the reply against the data, both gate-invisible:
+- **The engine's swap brief labels Solemn Simulacrum's one-time death draw as "repeatable draw"**
+  (`brief.add.functions`), and the mentor repeated it -- a licensed but WRONG tool fact, i.e. a
+  `tags.analyze` draw-classification defect (`engine_draw`), not a mentor fabrication. Fix it in
+  the tagger, not the gate.
+- An unmeasured side claim ("cutting it doesn't hurt your interaction or resilience") rode along with
+  a measured clock swap; only the clock was simulated. Same class as the generic closing advice in the
+  first reply ("consider a scalable win condition"). A candidate for F1's phrase map or a prompt line
+  restricting swap narration to the measured axis.
+- The combined question ("faster OR more resilient") was answered for speed only.
+
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
 :8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the
