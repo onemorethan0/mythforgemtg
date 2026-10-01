@@ -256,3 +256,13 @@ def test_system_prompt_keeps_standings_relative():
     from mythgauntlet.mentor import chat
     assert 'only as "for its bracket"' in chat.SYSTEM_PROMPT
     assert "not_applicable_types" in chat.SYSTEM_PROMPT
+
+
+def test_an_opponents_interaction_or_consistency_is_not_a_claim_about_this_deck():
+    """Live (Tymna overview, final exit run): 'it needs more answers to be effective against
+    decks with strong interaction' was read as 'this deck has deep interaction'."""
+    text = ("Overall, it's a fast and consistent aggro deck, but it needs more answers to be "
+            "effective against decks with strong interaction or board control.")
+    assert verdicts.interaction_claims(text) == []
+    assert not _reasons(text, interaction="thin")
+    assert _reasons("The deck has strong interaction.", interaction="thin")

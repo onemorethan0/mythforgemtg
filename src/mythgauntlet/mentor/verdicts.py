@@ -490,7 +490,12 @@ def _claims(text: str, phrases: dict[str, re.Pattern]) -> list[tuple[str, str]]:
     claims: list[tuple[str, str]] = []
     for sentence in split_sentences(text):
         for band, pat in phrases.items():
-            claims.extend((band, kind) for kind in _phrase_hits(sentence, pat))
+            for m in pat.finditer(sentence):
+                before = sentence[:m.start()]
+                # "needs more answers against decks with strong interaction": the opponent's
+                if _NEGATOR_RE.search(before) or _OPPONENT_BEFORE_RE.search(before):
+                    continue
+                claims.append((band, "hedged" if _HEDGE_RE.search(before) else "plain"))
     return claims
 
 
