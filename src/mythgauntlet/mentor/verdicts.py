@@ -163,7 +163,7 @@ RESILIENCE_TOPIC_RE = re.compile(
 
 _RESILIENCE_WORD_RE = re.compile(r"\bresilien\w*", re.IGNORECASE)
 _OTHER_AXIS_RE = re.compile(
-    r"\b(?:interaction|answers?|removal|counterspells?|counters|consisten\w*|ceiling|speed)\b",
+    r"\b(?:interact\w*|answers?|removal|counterspells?|counters|consisten\w*|ceiling|speed)\b",
     re.IGNORECASE,
 )
 
@@ -193,12 +193,18 @@ PHRASES: dict[str, dict[str, re.Pattern]] = {
     "speed": {
         # Narrow on purpose: "fast mana" and "quickly" are everywhere in deck chat.
         "fast": re.compile(
-            r"\b(?:a\s+fast|a\s+quick|very\s+fast|fast\s+(?:deck|clock|kill|start|win)|"
+            # "a fast/quick" only as a frame for the DECK ("a quick source of mana" -- live, an
+            # Isshin key-cards list of mana rocks -- is not a clock claim), and "fast win
+            # conditions" is what opposing decks have.
+            r"\b(?:a\s+(?:very\s+)?(?:fast|quick)(?=\s+(?:deck|clock|kill|win|start|game|finish|pace|"
+            r"build|strategy|list|aggro|plan|but)\b)|very\s+fast(?!\s+(?:mana|lands?|rocks?|ramp))|"
+            r"fast\s+(?:deck|clock|kill|start)|fast\s+win(?!\s+conditions?)|"
             r"quick\s+(?:clock|kill|win)|kills?\s+(?:very\s+)?(?:early|quickly|fast))\b",
             re.IGNORECASE,
         ),
         "slow": re.compile(
-            r"\b(?:a\s+slow|slow\s+(?:deck|clock|kill|start|win)|sluggish|grindy|grinds?|"
+            r"\b(?:a\s+slow(?=\s+(?:deck|clock|kill|win|start|game|finish|pace|build|strategy|list|plan|but)\b)|"
+            r"slow\s+(?:deck|clock|kill|start|win)|sluggish|grindy|grinds?|"
             r"takes?\s+a\s+long\s+time|wins?\s+slowly)\b",
             re.IGNORECASE,
         ),
@@ -320,37 +326,256 @@ def _phrase_hits(sentence: str, pattern: re.Pattern, topic: re.Pattern | None = 
     return out
 
 
-def claimed_resilience(text: str) -> set[str]:
-    """Resilience bands the reply CLAIMS: "resilient" / "vulnerable" for plain statements,
-    "moderate" for hedged ones. Only sentences about wipes/resilience count."""
-    claimed: set[str] = set()
+# Every axis's own topic words. A verdict phrase belongs to the axis whose topic word is NEAREST
+# to it in the sentence ("resilient to wipes and moderately interactive": "moderately" binds to
+# "interactive", not to the "wipes" two words back) -- the false positive the orchestrator found
+# on the Shelob overview. Equidistant topics of different axes bind to nothing (under-flag).
+AXIS_TOPICS: dict[str, re.Pattern] = {
+    "resilience": RESILIENCE_TOPIC_RE,
+    "interaction": re.compile(
+        r"\b(?:interact\w*|removal|answers?|counterspells?|counters|spot\s+removal)\b", re.IGNORECASE),
+    "consistency": re.compile(
+        r"\b(?:consisten\w*|reliab\w*|mana\s*base|manabase|mulligans?|smooth\w*)\b", re.IGNORECASE),
+    "ceiling": re.compile(r"\b(?:ceiling|combos?|finish\w*|explosive)\b", re.IGNORECASE),
+    "speed": re.compile(r"\b(?:speed|fast|quick\w*|clock|slow\w*|pace)\b", re.IGNORECASE),
+}
+_WORD_RE = re.compile(r"[\w'-]+")
+
+
+def bound_axis(sentence: str, m: re.Match) -> str | None:
+    """The axis a phrase match `m` in `sentence` is ABOUT: the one whose topic word is nearest
+    (fewest words between; a topic word inside the phrase itself is nearest of all). None when
+    no topic word is in the sentence or two different axes tie."""
+    words = [(w.start(), w.end()) for w in _WORD_RE.finditer(sentence)]
+    if not words:
+        return None
+    first = next((i for i, (a, _b) in enumerate(words) if a >= m.start()), len(words))
+    last = max((i for i, (_a, b) in enumerate(words) if b <= m.end()), default=first)
+    best: dict[str, int] = {}
+    for axis, pat in AXIS_TOPICS.items():
+        for t in pat.finditer(sentence):
+            ti = next((i for i, (a, b) in enumerate(words) if a <= t.start() < b), None)
+            if ti is None:
+                continue
+            if first <= ti <= last:
+                gap = -1
+            elif ti > last:
+                gap = ti - last - 1
+            else:
+                gap = first - ti - 1
+            if axis not in best or gap < best[axis]:
+                best[axis] = gap
+    if not best:
+        return None
+    low = min(best.values())
+    winners = [a for a, g in best.items() if g == low]
+    return winners[0] if len(winners) == 1 else None
+
+
+def resilience_claims(text: str) -> list[tuple[str, str]]:
+    """(band, kind) for every resilience claim in the reply: band is "resilient" / "vulnerable"
+    / "moderate", kind is "plain" or "hedged" ("somewhat vulnerable"). Only sentences about
+    wipes/resilience count, and each phrase must be BOUND to the resilience axis (see
+    `bound_axis`)."""
+    claims: list[tuple[str, str]] = []
     for sentence in split_sentences(text):
         if not RESILIENCE_TOPIC_RE.search(sentence):
             continue
         about_resilience = bool(_RESILIENCE_WORD_RE.search(sentence))
         for band, pat in PHRASES["resilience"].items():
+            matches = list(pat.finditer(sentence))
             if band == "moderate":
                 # A bare "moderate/decent/average" is the loosest word in this map: it only
                 # counts right next to the topic, and not in a sentence about another axis
                 # ("a moderate interaction score ... 1 wipe"), unless it says "resilience".
                 if _OTHER_AXIS_RE.search(sentence) and not about_resilience:
                     continue
-                hits = _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE, window=3)
-            else:
-                hits = _phrase_hits(sentence, pat, RESILIENCE_TOPIC_RE)
-            for kind in hits:
-                claimed.add(band if kind == "plain" else "moderate")
-    return claimed
+            for m in matches:
+                if bound_axis(sentence, m) != "resilience":
+                    continue
+                window = 3 if band == "moderate" else _TOPIC_WINDOW_WORDS
+                if not _topic_near(sentence, m, RESILIENCE_TOPIC_RE, window):
+                    continue
+                before = sentence[:m.start()]
+                if _NEGATOR_RE.search(before):
+                    continue
+                claims.append((band, "hedged" if _HEDGE_RE.search(before) else "plain"))
+    return claims
+
+
+def claimed_resilience(text: str) -> set[str]:
+    """Resilience bands the reply CLAIMS: "resilient" / "vulnerable" for plain statements,
+    "moderate" for hedged ones. Only sentences about wipes/resilience count."""
+    return {band if kind == "plain" else "moderate" for band, kind in resilience_claims(text)}
+
+
+# "your deck is already quite fast" / "it's very slow": an intensified bare adjective with no
+# "a fast deck" frame (the Phase A agent's note: the model said this about decks measured
+# `slow`, and no phrase caught it). Counts only in a sentence about the deck's clock, never
+# before "mana"/"lands"/"ramp" ("fast mana" is everywhere in deck chat).
+_GENERIC_SPEED_RE = re.compile(
+    r"\b(?P<lead>already|quite|really|very|extremely|incredibly|pretty|fairly|rather)\s+"
+    r"(?:\w+\s+)?(?P<word>fast|quick|slow|sluggish)\b(?!\s+(?:mana|lands?|rocks?|ramp|draws?|starts?))",
+    re.IGNORECASE,
+)
+_GENERIC_HEDGES = frozenset({"pretty", "fairly", "rather"})
+SPEED_TOPIC_RE = re.compile(
+    r"\b(?:deck|clock|kills?|win(?:s|ning)?|goldfish|pace|speed|game|build|strategy|list)\b",
+    re.IGNORECASE,
+)
+
+
+# "... may struggle against decks with strong interaction or fast win conditions": a speed word
+# about the OPPONENT is not a claim about this deck's clock.
+_OPPONENT_BEFORE_RE = re.compile(
+    r"\b(?:against|versus|vs\.?|opponents?|opposing|decks?\s+(?:with|that|like)|faster\s+than)\b"
+    r"(?:\W+\w+){0,6}\W*$",
+    re.IGNORECASE,
+)
+
+
+def speed_claims(text: str) -> list[tuple[str, str]]:
+    """(band, kind) for every speed claim: band "fast" / "slow", kind "plain" / "hedged"."""
+    claims: list[tuple[str, str]] = []
+    for sentence in split_sentences(text):
+        for band, pat in PHRASES["speed"].items():
+            for m in pat.finditer(sentence):
+                before = sentence[:m.start()]
+                if _NEGATOR_RE.search(before) or _OPPONENT_BEFORE_RE.search(before):
+                    continue
+                claims.append((band, "hedged" if _HEDGE_RE.search(before) else "plain"))
+        if not SPEED_TOPIC_RE.search(sentence):
+            continue
+        for m in _GENERIC_SPEED_RE.finditer(sentence):
+            if _NEGATOR_RE.search(sentence[:m.start()]):
+                continue
+            band = "fast" if m.group("word").lower() in ("fast", "quick") else "slow"
+            hedged = (m.group("lead").lower() in _GENERIC_HEDGES
+                      or bool(_HEDGE_RE.search(sentence[:m.start()])))
+            claims.append((band, "hedged" if hedged else "plain"))
+    return claims
 
 
 def claimed_speed(text: str) -> set[str]:
     """Speed bands the reply claims: "fast" / "slow" (hedged -> "moderate")."""
-    claimed: set[str] = set()
+    return {band if kind == "plain" else "moderate" for band, kind in speed_claims(text)}
+
+
+# ── consistency / interaction: narrow, in-phrase-topic claims ───────────────────────────
+
+_CONSISTENCY_PHRASES: dict[str, re.Pattern] = {
+    "consistent": re.compile(
+        r"\b(?:(?:highly|very|quite|really|extremely|incredibly)\s+consistent|"
+        r"consistent\s+(?:deck|engine|draws?|mana|manabase|mana\s+base)|"
+        r"consistency\s+(?:is|looks?|seems?)\s+(?:high|great|strong|excellent|solid|good))\b",
+        re.IGNORECASE),
+    "shaky": re.compile(
+        r"\b(?:inconsistent(?!\s+with)|(?:unreliable|clunky)\s+(?:deck|engine|draws?|hands?|mana(?:\s*base)?)|"
+        r"consistency\s+(?:is|looks?|seems?)\s+(?:low|poor|weak|shaky|bad))\b", re.IGNORECASE),
+}
+# "deep/strong interaction" vs "thin/little interaction". The thin forms must not be followed
+# by an object ("lacks interaction for planeswalkers" is a specific gap, not a verdict).
+_INTERACTION_PHRASES: dict[str, re.Pattern] = {
+    "deep": re.compile(
+        r"\b(?:(?:deep|strong|robust|excellent|great|plenty\s+of|lots\s+of)\s+interaction)\b",
+        re.IGNORECASE),
+    "thin": re.compile(
+        r"\b(?:(?:thin|weak|light|little|limited|poor|minimal)\s+interaction|"
+        r"(?:lacks?|short\s+on|low\s+on|light\s+on)\s+interaction)\b"
+        r"(?!\s+(?:for|against|to|vs|when|with|in))", re.IGNORECASE),
+}
+
+
+def _claims(text: str, phrases: dict[str, re.Pattern]) -> list[tuple[str, str]]:
+    claims: list[tuple[str, str]] = []
     for sentence in split_sentences(text):
-        for band, pat in PHRASES["speed"].items():
-            for kind in _phrase_hits(sentence, pat):
-                claimed.add(band if kind == "plain" else "moderate")
-    return claimed
+        for band, pat in phrases.items():
+            for m in pat.finditer(sentence):
+                before = sentence[:m.start()]
+                # "needs more answers against decks with strong interaction": the opponent's
+                if _NEGATOR_RE.search(before) or _OPPONENT_BEFORE_RE.search(before):
+                    continue
+                claims.append((band, "hedged" if _HEDGE_RE.search(before) else "plain"))
+    return claims
+
+
+def consistency_claims(text: str) -> list[tuple[str, str]]:
+    return _claims(text, _CONSISTENCY_PHRASES)
+
+
+def interaction_claims(text: str) -> list[tuple[str, str]]:
+    return _claims(text, _INTERACTION_PHRASES)
+
+
+# ── the gate's verdict check (PLAN_MENTOR_ADHOC F1) ─────────────────────────────────────
+
+# measured band -> the claimed bands that CONTRADICT it. UNDER-flag by design: only the
+# opposite end contradicts; a neutral/"moderate" claim never does, and a measured "moderate"
+# band is contradicted by nothing (the bench's resilience rubric is stricter; the gate is not).
+_OPPOSITE: dict[str, dict[str, frozenset[str]]] = {
+    "resilience": {"resilient": frozenset({"vulnerable"}), "vulnerable": frozenset({"resilient"})},
+    "speed": {"slow": frozenset({"fast"}), "none": frozenset({"fast"}), "fast": frozenset({"slow"})},
+    "consistency": {"consistent": frozenset({"shaky"}), "shaky": frozenset({"consistent"})},
+    "interaction": {"deep": frozenset({"thin"}), "thin": frozenset({"deep"})},
+}
+_AXIS_WORDS = {
+    "resilience": "resilience to board wipes", "speed": "speed", "consistency": "consistency",
+    "interaction": "interaction",
+}
+
+
+# A sentence that places the deck AMONG a bracket's decks ("already quite fast for its bracket",
+# "consistency is below average for bracket 3 decks") is a RELATIVE claim, licensed by
+# get_power_profile's `vs_bracket` standings -- it can be true while the absolute verdict is
+# "slow" (an avg kill turn of ~9 is the top quarter of bracket 1-4 decks, whose median is ~10).
+# The gate exempts such sentences; the absolute verdict is still enforced everywhere else.
+RELATIVE_FRAME_RE = re.compile(
+    r"\bfor\s+(?:its|an?|the|your|their)\s+(?:\w+\s+){0,2}bracket\b|\bbracket\s*[1-5]\b|\bB[1-5]\b|"
+    r"\bamong\b|\bcompared\s+(?:to|with)\b|\bthan\s+(?:most|many|other|typical|average)\b|"
+    r"\b(?:top|bottom)\s+(?:quarter|half)\b|\b(?:above|below)\s+(?:average|median|typical)\b|"
+    r"\btypical\b|\bmedian\b",
+    re.IGNORECASE,
+)
+
+
+def absolute_claims_text(text: str) -> str:
+    """`text` without its relative-to-bracket sentences (see RELATIVE_FRAME_RE)."""
+    return " ".join(s for s in split_sentences(text) if not RELATIVE_FRAME_RE.search(s))
+
+
+def profile_contradictions(text: str, measured: dict[str, str]) -> list[str]:
+    """Reasons a reply contradicts the verdicts `get_power_profile` measured, one per axis
+    (resilience, speed, consistency, interaction) plus the archetype family. Each phrase is
+    bound to its own axis topic in its own sentence; hedged claims of the SAME direction as
+    the measurement never contradict ("fairly resilient" for a resilient deck), hedged
+    opposite claims do ("somewhat vulnerable" for a resilient deck -- the original
+    inversion). `measured` holds the profile's `verdicts` object; absent or "unknown"
+    entries are skipped."""
+    reasons: list[str] = []
+    text = absolute_claims_text(text)
+    claim_fns = {
+        "resilience": resilience_claims, "speed": speed_claims,
+        "consistency": consistency_claims, "interaction": interaction_claims,
+    }
+    for axis, fn in claim_fns.items():
+        verdict = measured.get(axis)
+        opposite = _OPPOSITE[axis].get(verdict or "")
+        if not opposite:
+            continue
+        hit = next((band for band, _kind in fn(text) if band in opposite), None)
+        if hit:
+            reasons.append(
+                f"says the deck's {_AXIS_WORDS[axis]} is {hit}, contradicting the measured "
+                f"verdict ({verdict}) from get_power_profile")
+    family = measured.get("archetype")
+    if family and family != "unknown":
+        ok = compatible_families(family)
+        wrong = sorted(claimed_archetype_families(text) - ok)
+        if wrong:
+            reasons.append(
+                f"labels the deck {'/'.join(wrong)}, contradicting the measured archetype "
+                f"family ({family}) from get_power_profile")
+    return reasons
 
 
 def speed_agrees(band: str, claimed: set[str]) -> bool:

@@ -36,8 +36,9 @@ On failure the caller regenerates with the reasons named, same pattern as
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
+from mythgauntlet.mentor import verdicts as verdicts_mod
 from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, extract_numbers
 
 # A mentor answer can legitimately be longer than one swap's 2-3 sentences (explaining a
@@ -225,6 +226,14 @@ class ClaimBudget:
     # carries no tool identifier, and this key combination is unambiguous: no other tool
     # returns `found`+`legal`(bool)+`card`(str)+`colors_not_in_deck_identity` together.
     legality_verdicts: frozenset[tuple[str, bool]] = frozenset()
+    # The `verdicts` object of this turn's `get_power_profile` result ({"resilience":
+    # "resilient", "speed": "slow", ..., "archetype": "midrange"}) -- lets `check()` catch a
+    # reply that argues against the measured verdict ("somewhat vulnerable to wipes" for a
+    # deck the engine measured resilient) without naming a card, number or rule, which is
+    # everything checks 1-3 can see. Detected structurally, like `legality_verdicts`: the
+    # `verdicts` + `axes` key pair is unique to that tool. When the profile was called twice
+    # the later result wins. Empty when the tool did not run this turn.
+    profile_verdicts: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def from_tool_results(
@@ -235,6 +244,7 @@ class ClaimBudget:
         rules: set[str] = set()
         texts: set[str] = set()
         verdicts: set[tuple[str, bool]] = set()
+        profile: dict[str, str] = {}
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -247,8 +257,13 @@ class ClaimBudget:
                 and "colors_not_in_deck_identity" in data
             ):
                 verdicts.add((data["card"], data["legal"]))
+            if (
+                isinstance(data, dict) and data.get("found") is True
+                and isinstance(data.get("verdicts"), dict) and isinstance(data.get("axes"), dict)
+            ):
+                profile = {k: v for k, v in data["verdicts"].items() if isinstance(v, str)}
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
-                    frozenset(texts), frozenset(verdicts))
+                    frozenset(texts), frozenset(verdicts), profile)
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -397,6 +412,15 @@ def check(text: str, budget: ClaimBudget, question: str = "",
                     f"says {card_name!r} can be added, contradicting this turn's "
                     "check_legality result (legal=False)"
                 )
+
+    # 6. VERDICT CONTRADICTION (HEURISTIC -- see `verdicts.profile_contradictions`). Checks
+    #    1-5 verify that what the reply NAMES was retrieved; none can see a reply that argues
+    #    against a verdict the engine already measured ("somewhat vulnerable to wipes" for a
+    #    deck measured 93/100 resilient names no card, number or rule). Only runs when
+    #    `get_power_profile` ran this turn, and only flags the OPPOSITE end of a measured
+    #    verdict -- same under-flag bias as check 5.
+    if budget.profile_verdicts:
+        reasons.extend(verdicts_mod.profile_contradictions(body, budget.profile_verdicts))
 
     return reasons
 

@@ -32,14 +32,15 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field, fields, is_dataclass
 
 from mythgauntlet.config import suite_collection_path
-from mythgauntlet.mentor import deckview, removal, verdicts
+from mythgauntlet.mentor import deckview, diagnose as diagnose_mod, removal, verdicts
 from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
-from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy
+from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy, reference
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
+from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
 
 ## `(?<![\d.])` guards the leading `-?`: without it, a mana-curve range like "2-4" scans
@@ -522,7 +523,48 @@ def _r1(x):
     return None if x is None else round(float(x), 1)
 
 
-def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
+# E2: how a raw percentile band reads in words. `percentile_band` describes the RAW value, so
+# for a LOWER_IS_BETTER metric (kill turn, commander turn) "below_p25" is the FAST end -- the
+# model is handed the already-oriented word rather than asked to flip it.
+_STANDING = {"below_p25": "bottom_quarter", "p25_p50": "below_median",
+             "p50_p75": "above_median", "above_p75": "top_quarter"}
+_STANDING_LOWER_IS_BETTER = {"below_p25": "top_quarter", "p25_p50": "above_median",
+                             "p50_p75": "below_median", "above_p75": "bottom_quarter"}
+
+
+def _vs_bracket(bracket: int, metric: str, value) -> dict | None:
+    """`reference.percentile_band` plus an oriented `standing` and the metric's direction;
+    None when there is no usable reference cell (missing value, thin cell) -- omitted, not
+    guessed."""
+    band = reference.percentile_band(bracket, metric, value)
+    if band is None:
+        return None
+    lower = metric in reference.LOWER_IS_BETTER
+    band["direction"] = "lower_is_better" if lower else "higher_is_better"
+    band["standing"] = (_STANDING_LOWER_IS_BETTER if lower else _STANDING)[band["percentile_band"]]
+    return band
+
+
+# C-residual: `insight` writes "N removal, 0 counters, M wipes (breadth b/3)" and "light on
+# removal/counters" for EVERY deck, so a green or black deck's profile listed "0 counters" as a
+# weakness (Shelob, Tymna, Ghired) although `role_applicable("counterspell", identity)` says
+# no colour in its identity supplies counterspells. `insight.py` is shared with other surfaces
+# and left alone; the mentor layer rewrites the sentences it hands the model.
+_COUNT_COUNTERS_RE = re.compile(r",?\s*\d+ counters?\b")
+_BREADTH_RE = re.compile(r"\b(\d+)/3(\s+types)?")
+_LIGHT_ON_COUNTERS_RE = re.compile(r"removal/counters")
+
+
+def _without_counterspells(text: str) -> str:
+    """`text` with counterspells removed from an interaction sentence: the counter count is
+    dropped and breadth (of three possible types) becomes breadth of the two the deck's
+    colours can play."""
+    text = _COUNT_COUNTERS_RE.sub("", text)
+    text = _LIGHT_ON_COUNTERS_RE.sub("removal", text)
+    return _BREADTH_RE.sub(lambda m: f"{m.group(1)} of 2 playable types", text)
+
+
+def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = None) -> ToolResult:
     """The deck's MEASURED Power Profile -- the structured answer the engine already holds
     for "what does this deck do well and poorly / how does it win / how fast / how resilient
     to a wipe". `get_bracket_estimate` ran the same `analyze_deck` and kept only the bracket;
@@ -536,6 +578,9 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
     nothing is computed here, and `verdicts` is `mentor.verdicts.classify_profile` -- the
     same bands the holistic bench grades against -- so the model is handed the verdict word
     rather than asked to derive it from a score."""
+    if compare_bracket is not None and compare_bracket not in range(1, 6):
+        return ToolResult(data={"found": False, "message":
+                                f"compare_bracket must be 1-5, got {compare_bracket!r}."})
     a = _analysis_for(ctx)
     ins = a.insight
     if ins is None or a.resilience is None:
@@ -543,11 +588,31 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
                                 "message": "The deck's power profile could not be computed."})
     r, res, ceil, pod, inter, b = a.report, a.resilience, a.ceiling, a.pod, a.interaction, a.bracket
     why = ins.axis_why
+    # `clock` is a lens for "faster" (see advisor.PROFILE_AXES), not a profile axis: its numbers
+    # are the `clock` block below, so it stays out of `axes` (and out of vs_bracket's axes).
     axes = {
-        ax: {"score": _r1(advisor.axis_score(a, ax)), "why": why.get(label, "")}
-        for ax, (_fn, label) in advisor.AXES.items()
+        ax: {"score": _r1(advisor.axis_score(a, ax)), "why": why.get(advisor.AXES[ax][1], "")}
+        for ax in advisor.PROFILE_AXES
     }
     axes["pod"] = {"score": _r1(pod.score), "why": why.get("Pod (multiplayer)", "")}
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+    counters_apply = redundancy.role_applicable("counterspell", identity)
+    strengths, weaknesses = list(ins.strengths), list(ins.weaknesses)
+    if not counters_apply:
+        axes["interaction"]["why"] = _without_counterspells(axes["interaction"]["why"])
+        strengths = [_without_counterspells(t) if t.startswith("Deep interaction") else t
+                     for t in strengths]
+        weaknesses = [_without_counterspells(t) if t.startswith("Thin interaction") else t
+                      for t in weaknesses]
+    # E2: where the deck sits among corpus decks LABELLED with a bracket (the deck builder's
+    # own `# bracket: N`) -- the deck's estimated bracket, or the one the player asked about.
+    ref_bracket = compare_bracket if compare_bracket is not None else b.bracket
+    for ax, entry in axes.items():
+        vs = _vs_bracket(ref_bracket, ax, entry["score"])
+        if vs is not None:
+            entry["vs_bracket"] = vs
+    kill_vs = _vs_bracket(ref_bracket, "avg_kill_turn", r.avg_kill_turn)
+    cmdr_vs = _vs_bracket(ref_bracket, "avg_commander_turn", r.avg_commander_turn)
     wincon = _to_jsonable(a.wincon_redundancy)
     names: set[str] = {c.name for c in ctx.resolved.commanders}
     key_cards = []
@@ -561,8 +626,8 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
         "archetype": ins.archetype,
         "gameplan": ins.gameplan,
         "pod_read": ins.pod_read,
-        "strengths": list(ins.strengths),
-        "weaknesses": list(ins.weaknesses),
+        "strengths": strengths,
+        "weaknesses": weaknesses,
         "axes": axes,
         "weakest_axis": advisor.weakest_axis(a),
         "clock": {
@@ -580,6 +645,17 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
             "keep_rate_pct": _pct(r.keep_rate),
             "curve_efficiency_pct": _pct(r.curve_efficiency),
             "pod_close_rate_pct": _pct(pod.pod_close_rate),
+            **({"avg_kill_turn_vs_bracket": kill_vs} if kill_vs else {}),
+            **({"avg_commander_turn_vs_bracket": cmdr_vs} if cmdr_vs else {}),
+        },
+        "bracket_reference": {
+            "bracket": ref_bracket,
+            "basis": ("the bracket the player asked about" if compare_bracket is not None
+                      else "this deck's own estimated bracket"),
+            "note": ("vs_bracket places a score among decks that players LABELLED this "
+                     "bracket: above / below typical for them. It is NOT evidence about which "
+                     "bracket the deck belongs in -- most axes barely differ between "
+                     "brackets."),
         },
         "resilience": {
             "score": _r1(res.resilience_score),
@@ -588,8 +664,13 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
         },
         # CARD COUNTS (copies), unlike get_deck_stats' role `supply`, which is a strength score.
         "interaction_counts": {
-            "spot_removal": inter.spot_removal, "counterspells": inter.counterspells,
+            "spot_removal": inter.spot_removal,
+            # not a gap when no colour in the identity supplies counterspells (C1)
+            "counterspells": (inter.counterspells if counters_apply
+                              else "n/a (no blue in this deck's colour identity)"),
+            "counterspells_applicable": counters_apply,
             "board_wipes": inter.board_wipes, "breadth": inter.breadth,
+            "breadth_max": 3 if counters_apply else 2,   # types (removal / counters / wipes) in play
         },
         "key_cards": key_cards,
         "wincon_redundancy": wincon,
@@ -633,6 +714,20 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     answers are mostly "with flying" does not read as well covered. `counts_by_type` carries
     the counts so the model never counts list items itself. Licenses every card name."""
     cov = removal.coverage(ctx.resolved)
+    not_applicable: dict[str, str] = {}
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+    if not redundancy.role_applicable("counterspell", identity):
+        # Only counterspells answer a SPELL, and no colour in this identity plays them: the
+        # empty "spell" entry read as a coverage gap and three of the bench's non-blue decks
+        # were told to "consider adding counterspells" (C-residual colour 6/9).
+        cov = {**cov, "answers_by_type": {k: v for k, v in cov["answers_by_type"].items() if k != "spell"},
+               "unrestricted_answers_by_type": {k: v for k, v in
+                                                cov["unrestricted_answers_by_type"].items() if k != "spell"},
+               "no_answer_for": [t for t in cov["no_answer_for"] if t != "spell"],
+               "no_unrestricted_answer_for": [t for t in cov["no_unrestricted_answer_for"]
+                                              if t != "spell"]}
+        not_applicable["spell"] = ("only counterspells answer spells, and no blue in this deck's "
+                                   "colour identity plays them -- not a gap, never recommend them")
     counts = {
         typ: {"answers": len(cov["answers_by_type"][typ]),
               "unrestricted": len(cov["unrestricted_answers_by_type"][typ])}
@@ -641,6 +736,7 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     data = {
         "found": True,
         **cov,
+        "not_applicable_types": not_applicable,
         "counts_by_type": counts,
         "reading_guide": (
             "answers_by_type lists every card that can hit that type, including ones limited "
@@ -651,6 +747,25 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
         ),
     }
     return ToolResult(data=data, card_names=frozenset(r["name"] for r in cov["cards"]))
+
+
+_AXIS_BAND = {"resilience": verdicts.resilience_band, "consistency": verdicts.consistency_band,
+              "interaction": verdicts.interaction_band}
+
+
+def _axis_current(report) -> dict:
+    """Where the deck stands on the axis a swap search targeted, so the answer can open with it
+    even when the model skipped `get_power_profile` (C-residual: Shelob and Tymna answered "how
+    resilient is it to a wipe" with only a swap, no verdict). `verdict` is the same band the
+    profile's `verdicts` object uses, where one exists for the axis."""
+    current: dict = {"axis": report.axis, "score": _r1(report.baseline)}
+    band = _AXIS_BAND.get(report.axis)
+    if band is not None:
+        current["verdict"] = band(report.baseline)
+        current["instruction"] = (
+            f"State the deck's {report.axis} verdict ({current['verdict']}) and score "
+            f"({current['score']}) first, then the swap result.")
+    return current
 
 
 def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult:
@@ -709,6 +824,7 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
         return ToolResult(data={
             "found": True, "improving_swap_found": False,
             "axis": report.axis, "baseline": report.baseline, "evaluated": report.evaluated,
+            "current": _axis_current(report),
             "message": (
                 f"Tested {report.evaluated} owned cards as adds on {report.axis_label}; none "
                 f"beat the noise floor (min gain {report.min_delta:g}). No measured swap to "
@@ -719,6 +835,21 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
     data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
     data["found"] = True
     data["improving_swap_found"] = True
+    data["current"] = _axis_current(report)
+    # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
+    # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
+    # the card is weak -- Shelob's own theme card, Gloomwidow's Feast, kept surfacing this way
+    # and was narrated as "the weak card". Say so in the data, next to the cut itself.
+    for raw, sug in zip(report.suggestions, data.get("suggestions", [])):
+        backed = bool(raw.brief.cut.redundancy_backed) if raw.brief is not None else False
+        sug["cut_is_redundant"] = backed
+        if not backed:
+            sug["cut_note"] = (
+                f"{raw.cut} was offered only because a cut had to be picked: the deck "
+                "over-supplies no role, so this is not evidence that the card is weak "
+                "(it may be a theme card). Say so rather than calling it a weak or "
+                "redundant card."
+            )
     names: set[str] = set()
     for s in report.suggestions:
         names.add(s.add)
@@ -731,6 +862,110 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
         if s.brief is not None:
             names.update(s.brief.allowed_card_names)
     return ToolResult(data=data, card_names=frozenset(names))
+
+
+# D1: facts the `diagnose` table reads, all from the cached analysis plus closed-form counts
+# (no new simulation). Rates are carried as fractions AND whole percents (the gate rejects a
+# "77%" that no tool result contains -- same reason `get_power_profile` carries `*_pct`).
+_RATE_FACTS = frozenset({"goldfish_kill_rate", "keep_rate", "curve_efficiency",
+                         "commander_cast_rate", "manabase_consistency", "creature_share",
+                         "nut_kill_rate"})
+DIAGNOSE_AXES = tuple(diagnose_mod.DRIVER_TABLE)
+
+
+def _diagnose_facts(ctx: MentorContext, a: DeckAnalysis) -> dict:
+    r, res, ceil, inter = a.report, a.resilience, a.ceiling, a.interaction
+    resolved = ctx.resolved
+    identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+    nonland = [(c, q) for c, q in resolved.cards if not c.is_land]
+    nonland_n = sum(q for _c, q in nonland)
+    creatures = sum(q for c, q in nonland if "Creature" in c.type_line)
+    engines = 0
+    for c, q in nonland:
+        if "Creature" in c.type_line:
+            continue
+        roles = redundancy.card_roles(tags.analyze(c))
+        if "ramp" in roles or "draw" in roles:
+            engines += q
+    role_cards = redundancy.role_card_counts(resolved)
+    try:
+        no_answer = list(removal.coverage(resolved).get("no_answer_for", []))
+    except Exception:  # advisory: an unreadable card must not sink the whole diagnosis
+        no_answer = None
+    return {
+        "avg_kill_turn": r.avg_kill_turn, "goldfish_kill_rate": r.goldfish_kill_rate,
+        "avg_commander_turn": r.avg_commander_turn, "curve_efficiency": r.curve_efficiency,
+        "keep_rate": r.keep_rate, "avg_mulligans": r.avg_mulligans,
+        "commander_cast_rate": r.commander_cast_rate,
+        "average_mana_value": (sum(c.mana_value * q for c, q in nonland) / nonland_n
+                               if nonland_n else None),
+        "land_count": sum(q for c, q in resolved.cards if c.is_land),
+        "ramp_cards": role_cards.get("ramp", 0), "creature_count": creatures,
+        "creature_share": creatures / nonland_n if nonland_n else None,
+        "noncreature_engine_count": engines,
+        "manabase_consistency": manabase.analyze(list(resolved.cards),
+                                                 resolved.commanders).consistency,
+        "resilience_score": res.resilience_score if res is not None else None,
+        "kill_delay_turns": res.kill_delay_turns if res is not None else None,
+        "spot_removal": inter.spot_removal, "counterspells": inter.counterspells,
+        "board_wipes": inter.board_wipes, "breadth": inter.breadth,
+        "no_answer_for": no_answer,
+        "counterspell_applicable": redundancy.role_applicable("counterspell", identity),
+        "wipe_applicable": redundancy.role_applicable("wipe", identity),
+        "fast_kill_turn": ceil.fast_kill_turn, "nut_kill_rate": ceil.nut_kill_rate,
+        "has_game_ending_combo": bool(ceil.has_game_ending_combo),
+        # a deck that never goes off is a known "no", not an unmeasured fact
+        "go_off_turn": ceil.go_off_turn or False, "overrun_alpha": bool(ceil.overrun_alpha),
+    }
+
+
+def tool_diagnose_axis(ctx: MentorContext, axis: str) -> ToolResult:
+    """WHY an axis scores what it does, and what moves it: the axis's measured drivers (value,
+    direction, and a strong/typical/weak reading against the deck's bracket where the reference
+    table has the metric, fixed documented thresholds otherwise) plus fixed lever sentences keyed
+    off the weak drivers. Deterministic and cache-backed (`_analysis_for`): no new simulation,
+    so it is cheap to call before `suggest_swap`, which names the actual cards."""
+    if axis not in diagnose_mod.DRIVER_TABLE:
+        return ToolResult(data={"found": False, "message":
+                                f"unknown axis {axis!r}; choose one of: {', '.join(DIAGNOSE_AXES)}."})
+    a = _analysis_for(ctx)
+    if a.insight is None:
+        return ToolResult(data={"found": False,
+                                "message": "The deck's power profile could not be computed."})
+    facts = _diagnose_facts(ctx, a)
+    label = "Speed" if axis == "clock" else advisor.AXES[axis][1]
+    why = a.insight.axis_why.get(label, "")
+    if axis == "interaction" and not facts["counterspell_applicable"]:
+        why = _without_counterspells(why)
+    out = diagnose_mod.diagnose(axis, _r1(advisor.axis_score(a, axis)), why, facts,
+                                a.bracket.bracket)
+    for row in out["drivers"]:
+        value = row["value"]
+        if row["name"] == "counterspells" and not facts["counterspell_applicable"]:
+            row["value"] = "n/a (no blue in this deck's colour identity)"
+            row["reading"] = "not_applicable"
+        elif row["name"] == "board_wipes" and not facts["wipe_applicable"]:
+            row["value"] = "n/a (no colour in this deck's identity plays wipes)"
+            row["reading"] = "not_applicable"
+        elif row["name"] in _RATE_FACTS and isinstance(value, (int, float)) \
+                and not isinstance(value, bool):
+            row["value_pct"] = _pct(value)
+            row["value"] = round(float(value), 2)
+        elif isinstance(value, float):
+            row["value"] = round(value, 2)
+    data = {
+        "found": True, **out,
+        "bracket_basis": a.bracket.bracket,
+        "reading_guide": (
+            "Each driver is a measured fact about the deck; reading says how it compares with "
+            "typical decks (basis bracket_percentile = decks labelled with the deck's own "
+            "bracket, fixed_threshold = documented cut-offs). A 'not_applicable' driver is "
+            "never a gap. levers are the fixed fixes for the weak drivers; they name no "
+            "cards -- call suggest_swap for those."
+            + (" The clock score is how EARLY the average kill comes (higher = earlier)."
+               if axis == "clock" else "")),
+    }
+    return ToolResult(data=data)
 
 
 def tool_check_legality(ctx: MentorContext, name: str) -> ToolResult:
@@ -905,9 +1140,23 @@ TOOL_SCHEMAS: list[dict] = [
             "name": "get_power_profile",
             "description": "The deck's measured Power Profile -- what it does well and poorly, "
                             "how it wins, speed, resilience to wipes, interaction, key cards "
-                            "per role. Call FIRST for any strengths/weaknesses/observations/"
-                            "'how does it win'/'how fast'/'how resilient' question.",
-            "parameters": {"type": "object", "properties": {}, "required": []},
+                            "per role, and where each axis sits among typical decks of a "
+                            "bracket (vs_bracket). Call FIRST for any strengths/weaknesses/"
+                            "observations/'how does it win'/'how fast'/'how resilient' "
+                            "question. Pass compare_bracket when the player names a bracket "
+                            "('against a bracket 3 pod') to compare against that bracket "
+                            "instead of the deck's own.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "compare_bracket": {
+                        "type": "integer", "enum": [1, 2, 3, 4, 5],
+                        "description": "optional: the bracket (1-5) to compare the deck's "
+                                       "axes against; omit for the deck's own estimated one",
+                    },
+                },
+                "required": [],
+            },
         },
     },
     {
@@ -950,6 +1199,30 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "diagnose_axis",
+            "description": "Why one Power Profile axis scores what it does: its measured "
+                            "drivers (each with its value and a strong/typical/weak reading "
+                            "against decks of the deck's bracket) and the fixed levers that "
+                            "move it. Cheap (no new simulation). Call it for 'why is my X "
+                            "low', 'what is holding my speed back' or 'how do I improve X' "
+                            "BEFORE suggest_swap, which then names the actual cards. Use "
+                            "clock for how EARLY the deck kills.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "axis": {
+                        "type": "string",
+                        "enum": list(DIAGNOSE_AXES),
+                        "description": "the axis to explain",
+                    },
+                },
+                "required": ["axis"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "suggest_swap",
             "description": "Suggest a measured add/cut swap from the player's OWN Myth "
                             "Suite collection (never from outside it), verified by "
@@ -957,16 +1230,19 @@ TOOL_SCHEMAS: list[dict] = [
                             "'what should I cut', 'what should I add', 'what are my weakest "
                             "cards' or 'how can I improve / make it faster' questions -- call "
                             "it even after get_power_profile, with the axis the question is "
-                            "about (speed for 'faster'); only its result can name a card to "
+                            "about (clock for 'faster' / 'speed up' / 'quicker'); only its result can name a card to "
                             "change. Slower than the other tools -- several re-simulations.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "axis": {
                         "type": "string",
-                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling"],
+                        "enum": ["consistency", "speed", "resilience", "interaction", "ceiling",
+                                 "clock"],
                         "description": "which Power Profile axis to improve; omit to target "
-                                       "the deck's own weakest axis",
+                                       "the deck's own weakest axis. clock = how EARLY the "
+                                       "deck kills (use it for 'faster' / 'speed up' / "
+                                       "'quicker'); speed = how often it kills at all",
                     },
                 },
                 "required": [],
@@ -986,6 +1262,7 @@ _TOOL_FUNCS = {
     "get_power_profile": tool_get_power_profile,
     "list_deck_cards": tool_list_deck_cards,
     "removal_coverage": tool_removal_coverage,
+    "diagnose_axis": tool_diagnose_axis,
     "suggest_swap": tool_suggest_swap,
     "check_legality": tool_check_legality,
 }

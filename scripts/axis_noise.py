@@ -47,11 +47,11 @@ from mythgauntlet.semantics.store import SemanticsStore      # noqa: E402
 from mythgauntlet.sim.tier0 import SimConfig                 # noqa: E402
 from advisor_bench import load_decks                         # noqa: E402
 
-AXES = ("speed", "ceiling", "consistency", "resilience", "interaction")
+AXES = ("speed", "ceiling", "consistency", "resilience", "interaction", "clock")
 SEEDS = [7, 21, 99, 123, 5, 42, 77, 2024]
 
 
-def measure(decks_n: int, runs: int) -> dict[str, float]:
+def measure(decks_n: int, runs: int, turns: int = 8) -> dict[str, float]:
     db = load_card_db()
     store = SemanticsStore()
     decks = load_decks(db, decks_n)
@@ -61,7 +61,7 @@ def measure(decks_n: int, runs: int) -> dict[str, float]:
         for seed in SEEDS:
             # run_resilience=True is the whole point: the original sweep left it off, so
             # resilience was never simulated and its spread read as a clean 0.00.
-            a = analyze_deck(resolved, SimConfig(turns=8, runs=runs, seed=seed), store,
+            a = analyze_deck(resolved, SimConfig(turns=turns, runs=runs, seed=seed), store,
                              run_resilience=True)
             for ax in AXES:
                 scores[ax].append(axis_score(a, ax))
@@ -76,10 +76,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--decks", type=int, default=8)
     ap.add_argument("--runs", type=int, default=advisor.NOISE_REFERENCE_RUNS)
+    ap.add_argument("--turns", type=int, default=8,
+                    help="goldfish horizon; the floors were measured at 8, but `clock` is "
+                         "horizon-relative -- measure it at 12, the mentor/analyze default")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
 
-    measured = measure(args.decks, args.runs)
+    measured = measure(args.decks, args.runs, args.turns)
     if args.check:
         drift = {a: (advisor._AXIS_NOISE_FLOOR.get(a), v) for a, v in sorted(measured.items())
                  if abs(advisor._AXIS_NOISE_FLOOR.get(a, 0.0) - v) > 0.25}
@@ -89,7 +92,7 @@ def main() -> int:
               else "_AXIS_NOISE_FLOOR needs regenerating.")
         return 0 if not drift else 1
 
-    print(f"# measured at runs={args.runs}, {args.decks} decks, {len(SEEDS)} seeds")
+    print(f"# measured at runs={args.runs}, turns={args.turns}, {args.decks} decks, {len(SEEDS)} seeds")
     print("_AXIS_NOISE_FLOOR = {")
     for axis, value in measured.items():
         print(f'    "{axis}": {value},')

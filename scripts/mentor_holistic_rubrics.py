@@ -164,7 +164,23 @@ def _cut_recommendations(text: str, deck_names) -> list[str]:
     return found
 
 
-def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: str):
+def _slower_swaps(text: str, suggestions: list[dict]) -> list[str]:
+    """Suggestions the reply NAMES (by add) whose own brief shows the kill getting no earlier
+    (`kill_turn_after >= kill_turn_before`) -- the Phase D0 failure: a ceiling swap was
+    reported for "make it faster" although its brief read 9.32 -> 9.45 turns."""
+    out = []
+    for sug in suggestions:
+        brief = sug.get("brief") or {}
+        before, after = brief.get("kill_turn_before"), brief.get("kill_turn_after")
+        if before is None or after is None or after < before:
+            continue
+        if names_in(text, [sug["add"]]):
+            out.append(f"{sug['add']!r} (kill turn {before:.2f} -> {after:.2f})")
+    return out
+
+
+def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: str,
+                       require_earlier_kill: bool = False):
     calls = _swap_calls(reply)
     note = ""
     if calls:
@@ -178,6 +194,11 @@ def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: s
         measured = _measured_suggestions(cache[cache_key])
         note = " (suggest_swap not called; graded against the tool's own result)"
     text = reply.text
+    if measured and require_earlier_kill:
+        slower = _slower_swaps(text, measured)
+        if slower:
+            return False, ("reports a swap that does not make the deck kill earlier: "
+                           + "; ".join(slower) + note)
     if measured:
         top = measured[0]
         add_ok = bool(names_in(text, [top["add"]]))
@@ -233,7 +254,7 @@ def _g_cards(reply, truth):
 
 
 def _g_faster(reply, truth):
-    return _grade_swap_answer(reply, truth, "speed", "speed")
+    return _grade_swap_answer(reply, truth, "clock", "clock", require_earlier_kill=True)
 
 
 def _g_weakest(reply, truth):
@@ -443,15 +464,26 @@ def grade(qid: str, reply, truth: dict) -> tuple[bool | None, str]:
 
 _COLOUR_WORD = {"W": "white", "U": "blue", "B": "black", "R": "red", "G": "green"}
 _COUNTER_RE = re.compile(r"\bcounter[\s-]?spells?\b|\bcounter\s+magic\b|\bcountering\s+spells\b", re.IGNORECASE)
-_DEFICIT_RE = re.compile(
-    r"\b(?:lack\w*|gap|missing|need\w*|more|add|include|consider|few|fewer|without|short|none|"
-    r"under\w*|thin|run|play|no|zero|absence)\b",
+# A factual MENTION of counterspells is not advice ("4 removal, no counterspells"; the
+# profile's own counts). What the rubric catches is (a) RECOMMENDING them (add / consider /
+# run / include ... counterspells) and (b) calling their absence a weakness or gap, for a deck
+# with no blue in its identity. Arahbo's "consider adding more removal or counterspells" is
+# the genuine failure this exists for.
+_COUNTER_RECOMMEND_RE = re.compile(
+    r"\b(?:add|adding|include|including|consider|considering|run|running|play|playing|get|getting|"
+    r"try|trying|pick\s+up|picking\s+up|want|worth)\b[^.]{0,60}\b(?:counter[\s-]?spells?|counter\s+magic)\b",
+    re.IGNORECASE,
+)
+_COUNTER_GAP_RE = re.compile(
+    r"\b(?:lack\w*|gap|missing|weakness(?:es)?|weak|short\s+on|shortage|shortcoming|absence|thin|"
+    r"significant|deficien\w*|light\s+on|under[\s-]?supplied)\b",
     re.IGNORECASE,
 )
 _IDENTITY_ACK_RE = re.compile(
     r"(?:not\s+in\s+(?:your|the)\s+(?:deck'?s?\s+)?(?:colou?r|commander)|outside\s+(?:your|the)|"
     r"isn'?t\s+in\s+(?:your|the)|aren'?t\s+in\s+(?:your|the)|(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+play\s+blue|"
-    r"(?:no|without)\s+blue|blue\s+(?:isn'?t|is\s+not)|can'?t\s+(?:run|play|cast|add)|cannot\s+(?:run|play|cast|add)|"
+    r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|"
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+include\s+blue|colou?r\s+identity,?\s+which\s+(?:doesn'?t|does\s+not)|can'?t\s+(?:run|play|cast|add)|cannot\s+(?:run|play|cast|add)|"
     r"doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|not\s+a\s+(?:concern|gap|problem))",
     re.IGNORECASE,
 )
@@ -464,8 +496,12 @@ def grade_colour(replies: list, truth: dict) -> tuple[bool | None, str]:
     for i, reply in enumerate(replies):
         for sentence in verdicts.split_sentences(reply.text):
             if "U" not in identity and _COUNTER_RE.search(sentence):
-                if _DEFICIT_RE.search(sentence) and not _IDENTITY_ACK_RE.search(sentence):
-                    problems.append(f"reply {i}: counterspell advice without blue identity: {sentence.strip()[:90]!r}")
+                rec = _COUNTER_RECOMMEND_RE.search(sentence)
+                recommends = bool(rec) and not _NEG_BEFORE_RE.search(sentence[:rec.start()])
+                gap = bool(_COUNTER_GAP_RE.search(sentence))
+                if (recommends or gap) and not _IDENTITY_ACK_RE.search(sentence):
+                    kind = "recommends counterspells" if recommends else "calls missing counterspells a gap"
+                    problems.append(f"reply {i}: {kind} without blue identity: {sentence.strip()[:90]!r}")
             for c in outside:
                 word = _COLOUR_WORD[c]
                 pat = re.compile(

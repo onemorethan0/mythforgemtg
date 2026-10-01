@@ -101,14 +101,43 @@ read it as how many cards the deck has: talk about how many cards fill a role us
 that role's "cards" field, and compare "supply" with "target" only as over or under \
 target. A role with "applicable": false (get_deck_stats) is NOT a gap -- the deck's \
 colours or measured plan do not call for it (see its "note") -- so never say the deck \
-lacks it or suggest adding cards for it. For "how do I improve / speed up / make it \
+lacks it or suggest adding cards for it. The same goes for counterspells in \
+get_power_profile: when interaction_counts.counterspells_applicable is false the deck's \
+colours cannot play them, so never list their absence as a weakness or recommend them. \
+For "how do I improve / speed up / make it \
 more resilient" questions, name the weakest axis and its "why" from the profile, then \
 you MUST call suggest_swap in the same turn, BEFORE you write your answer -- never \
 write "I'll look into your collection" and stop; make the call. Pass suggest_swap the \
-axis the player asked about (speed for "faster", resilience for wipes) and answer the \
+axis the player asked about (clock for "faster" / "speed up" / "quicker" -- it measures \
+how EARLY the deck kills, which the speed axis does not; resilience for wipes) and answer the \
 question they actually asked FIRST -- for a resilience question, open with \
-verdicts.resilience and its score -- before any swap. Weakest-card questions work the \
-same way: only a suggest_swap result can name a weak card.
+verdicts.resilience and its score (or, if you only have suggest_swap's result, its \
+"current" verdict and score) -- before any swap. Weakest-card questions work the \
+same way: only a suggest_swap result can name a weak card. When a suggestion carries \
+"cut_is_redundant": false, its cut was only the default pick (the deck over-supplies no \
+role) and is NOT evidence the card is weak -- say so plainly (it may be a theme card) and \
+never call it a weak or redundant card.
+
+For "why is my X low", "what is holding my speed back" or "how do I improve X" \
+questions, also call diagnose_axis for that axis (clock for how EARLY the deck kills) and \
+explain from its drivers: name the weak ones with their values and offer its levers as the \
+fixes. A driver marked not_applicable is never a gap. Levers name no cards, and \
+diagnose_axis NEVER replaces suggest_swap: for any "faster", "improve" or "weakest" \
+question you must ALSO call suggest_swap -- with axis clock for "faster" (never ceiling or \
+speed) -- and answer with its measured swap or its "no measured improvement" result.
+
+Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
+players labelled with a bracket (its "standing": top_quarter / above_median / \
+below_median / bottom_quarter, already oriented so a top standing is always the better \
+end). Say "does X poorly" or "does X well" relative to other decks ONLY from a standing: \
+"in the bottom quarter of bracket 3 decks for interaction" is a measured statement, a \
+bare score is not. When the player names a bracket ("against a bracket 3 pod"), call \
+get_power_profile with compare_bracket set to it and answer from those standings. These \
+standings only say above or below typical for decks of THAT bracket -- never use them to \
+argue the deck belongs in a different bracket (most axes barely differ between brackets; \
+get_bracket_estimate answers that question). A standing is also not a speed verdict: \
+call the deck fast or slow only as verdicts.speed says, and report a standing only as \
+"for its bracket".
 
 For "which cards are my ramp / removal / draw", "what's in my deck" or any question \
 about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
@@ -121,7 +150,9 @@ quoted on each card -- never guess what kinds of permanents the removal can or c
 hit. A type in no_unrestricted_answer_for but not in no_answer_for is answered only by \
 restriction-limited cards (say so, naming the restriction, e.g. "only flyers"); when \
 no_unrestricted_answer_for is non-empty, mention that some coverage is \
-restriction-limited. Use its counts_by_type for any count, never count list items.
+restriction-limited. A type under not_applicable_types (spells, when the deck has no blue) \
+is never a gap and never a reason to suggest counterspells. Use its counts_by_type for any \
+count, never count list items.
 
 Tool results are NOT carried from one question to the next: a follow-up ("which cards \
 do the most work?", "why?") needs its own tool call this turn even when an earlier \
@@ -259,6 +290,41 @@ def _announces_a_lookup(draft: str) -> bool:
     return bool(_ANNOUNCE_RE.search(draft or ""))
 
 
+# An IMPROVEMENT question ("make it faster", "how could I improve that", "weakest cards", "what
+# should I cut") is only answered by a measured swap. Once diagnose_axis existed the model
+# started stopping after it (it explains the cause, so the answer "feels" complete) -- live,
+# 3 of 9 `faster` replies named no measured swap -- so, like the announce-then-stop case, one
+# deterministic nudge per turn.
+_SWAP_QUESTION_RE = re.compile(
+    r"\b(?:faster|quicker|speed(?:ing)?\s+up|improv\w*|weakest|what\s+should\s+i\s+"
+    r"(?:cut|add|swap|replace)|which\s+cards?\s+should\s+i\s+(?:cut|replace|swap))\b",
+    re.IGNORECASE,
+)
+_SWAP_NUDGE = (
+    "This is an improvement question: you must call suggest_swap before you answer -- "
+    "diagnose_axis explains the cause but cannot name a card. Use axis clock for faster / speed "
+    "up / quicker, resilience for wipes, otherwise the axis the player asked about. Call it now "
+    "and answer from its result."
+)
+
+
+def _wants_a_swap(question: str) -> bool:
+    return bool(_SWAP_QUESTION_RE.search(question or ""))
+
+
+# "Faster" is the CLOCK axis (how early the deck kills). The model keeps passing `ceiling` (live:
+# Najeela's "faster" answer was a ceiling swap whose own brief showed the kill 9.56 -> 9.79,
+# i.e. slower) or `speed` (a kill RATE that no swap moves on a deck already at ~97). The prompt
+# says clock; this routes it deterministically. The trace records the axis actually run.
+_SPEED_QUESTION_RE = re.compile(r"\b(?:faster|quicker|speed(?:ing)?\s+up)\b", re.IGNORECASE)
+
+
+def _route_swap_axis(question: str, args: dict) -> dict:
+    if (_SPEED_QUESTION_RE.search(question or "") and args.get("axis") in ("speed", "ceiling")):
+        return {**args, "axis": "clock"}
+    return args
+
+
 def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
     """(max_tokens, max_chars) for this turn: widened once get_power_profile has run."""
     if any(t.name == "get_power_profile" for t in tool_trace):
@@ -315,6 +381,7 @@ def ask(
     known_names = ctx.all_card_names
 
     nudged = False
+    swap_nudged = False
     for _ in range(MAX_TOOL_TURNS):
         msg = _post_chat(messages, model=model, temperature=temperature,
                          max_tokens=_limits(tool_trace, max_tokens)[0])
@@ -331,6 +398,12 @@ def ask(
                 messages.append({"role": "assistant", "content": draft})
                 messages.append({"role": "user", "content": _LOOKUP_NUDGE})
                 continue
+            if (not swap_nudged and _wants_a_swap(question)
+                    and not any(t.name == "suggest_swap" for t in tool_trace)):
+                swap_nudged = True
+                messages.append({"role": "assistant", "content": draft})
+                messages.append({"role": "user", "content": _SWAP_NUDGE})
+                continue
             break
         messages.append(msg)
         for tc in tool_calls:
@@ -339,6 +412,8 @@ def ask(
                 args = json.loads(tc["function"].get("arguments") or "{}")
             except json.JSONDecodeError:
                 args = {}
+            if fn_name == "suggest_swap":
+                args = _route_swap_axis(question, args)
             result = call_tool(ctx, fn_name, args)
             all_results.append(result)
             tool_trace.append(ToolCallRecord(name=fn_name, args=args, result_data=result.data))

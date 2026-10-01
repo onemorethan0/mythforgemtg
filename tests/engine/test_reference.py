@@ -11,7 +11,7 @@ import pytest
 from mythgauntlet.ratings import advisor, reference
 from mythgauntlet.ratings.reference import LOWER_IS_BETTER, percentile_band
 
-EXPECTED_METRICS = {*advisor.AXES, "pod", "avg_kill_turn", "avg_commander_turn"}
+EXPECTED_METRICS = {*advisor.PROFILE_AXES, "pod", "avg_kill_turn", "avg_commander_turn"}
 
 
 def _cell(p25, p50, p75, n=30, thin=False):
