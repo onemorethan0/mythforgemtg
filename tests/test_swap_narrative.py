@@ -275,17 +275,41 @@ def test_a_family_sibling_is_not_a_false_claim():
     """"repeatable draw and a bit of ramp" was rejected for calling the card "card draw".
 
     The card's vector literally says repeatable draw; the bare word "draw" triggers the
-    card-draw phrasing. Within a family the distinction is a shade no reader draws, and the
-    rung-1 vector cannot support policing it.
+    card-draw phrasing. An engine draws cards, so "repeatable draw" licenses "card draw".
+    (This fixture was Solemn Simulacrum until 2026-10-01 — whose draw is a one-time death
+    trigger, so it never had "repeatable draw" at all; see the next test.)
     """
-    solemn = brief(add={"name": "Solemn Simulacrum", "mana_value": 4,
-                        "functions": {"ramp": 1.0, "land ramp": 1.0,
-                                      "repeatable draw": 1.0}},
-                   allowed_card_names=["Solemn Simulacrum", "An Offer You Can't Refuse",
+    engine = brief(add={"name": "Phyrexian Arena", "mana_value": 3,
+                        "functions": {"repeatable draw": 1.0}},
+                   allowed_card_names=["Phyrexian Arena", "An Offer You Can't Refuse",
                                        "Omo, Queen of Vesuva"])
+    text = ("Adding Phyrexian Arena brings repeatable draw, which raises "
+            "Ceiling. An Offer You Can't Refuse is the over-supplied counterspell at 6.0.")
+    assert sn.check(text, engine, deck_card_names=DECK) == []
+
+
+def test_a_one_shot_draw_is_not_a_repeatable_draw():
+    """The converse does not hold: the Deck Mentor called Solemn Simulacrum's one-time death
+    draw "repeatable draw" (found live 2026-10-01). The tagger fact is fixed in
+    `semantics/tags.py`; the gate must not re-license the claim through a symmetric family
+    or through the cut's `draw` role."""
+    names = ["Solemn Simulacrum", "Jubilation", "Omo, Queen of Vesuva"]
+    solemn = {"name": "Solemn Simulacrum", "mana_value": 4,
+              "functions": {"ramp": 1.0, "land ramp": 1.0, "card draw": 1.0}}
     text = ("Adding Solemn Simulacrum brings repeatable draw and a bit of ramp, which raises "
             "Ceiling. An Offer You Can't Refuse is the over-supplied counterspell at 6.0.")
-    assert sn.check(text, solemn, deck_card_names=DECK) == []
+    reasons = sn.check(text, brief(add=solemn, allowed_card_names=names + [
+        "An Offer You Can't Refuse"]), deck_card_names=DECK)
+    assert any("repeatable draw" in r for r in reasons)
+
+    as_cut = brief(cut={**solemn, "role": "draw", "oversupply": 4.0,
+                        "role_supply": 20.0, "role_target": 16}, allowed_card_names=names)
+    text = ("Jubilation is a team pump that raises Ceiling. Solemn Simulacrum is repeatable "
+            "draw the deck has too much of, at 20.0 against a target of 16.")
+    assert any("repeatable draw" in r for r in sn.check(text, as_cut, deck_card_names=DECK))
+    fair = ("Jubilation is a team pump that raises Ceiling. Solemn Simulacrum goes because "
+            "card draw is over-supplied at 20.0 against a target of 16.")
+    assert sn.check(fair, as_cut, deck_card_names=DECK) == []
 
 
 def test_families_stay_narrow():
