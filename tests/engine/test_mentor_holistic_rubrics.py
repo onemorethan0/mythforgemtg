@@ -340,3 +340,26 @@ def test_colour_does_not_include_blue_is_an_identity_acknowledgement():
     text = "It lacks counterspells due to its colour identity, which does not include blue."
     ok, why = rub.grade_colour([_reply(text)], _truth())
     assert ok is True, why
+
+
+def test_colour_not_considered_a_gap_is_an_acknowledgement():
+    # Kaalia, 2026-09-30 verification run: the reply SAID it is not a gap and was failed.
+    for text in ("No counterspells. This is not considered a gap, as your deck's strategy and "
+                 "colour identity do not require counterspells.",
+                 "Your deck has no counterspells, but the deck does not require them."):
+        ok, why = rub.grade_colour([_reply(text)], _truth())
+        assert ok is True, (text, why)
+
+
+def test_removal_explanatory_tail_is_not_a_qualifier():
+    # Ghired, 2026-09-30 verification run: "blue" in the REASON was read as a colour
+    # qualifier on the claim, so a true statement failed as an unbacked gap claim.
+    text = ("Your deck does not have any cards that can answer spells, as it lacks blue in its "
+            "colour identity. The creature answers are restriction-limited.")
+    ok, why = rub.grade("removal", _rm_reply(text), _rm_truth())
+    assert ok is True, why
+    # the claim half is still checked: an unbacked colour qualifier BEFORE the reason fails
+    ok, _ = rub.grade("removal", _rm_reply(
+        "It struggles against black creatures, as its removal says nonblack. "
+        "The creature answers are restriction-limited."), _rm_truth(restrictions=("with flying",)))
+    assert ok is False

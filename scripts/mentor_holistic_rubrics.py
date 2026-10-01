@@ -394,6 +394,9 @@ def _removal_truth(truth) -> dict:
     return cov
 
 
+_EXPLANATION_RE = re.compile(r",?\s+\b(?:as|because|since|given\s+that)\b\s+", re.IGNORECASE)
+
+
 def _g_removal(reply, truth):
     cov = _removal_truth(truth)
     called = [t for t in reply.tool_trace if t.name == "removal_coverage"
@@ -415,6 +418,10 @@ def _g_removal(reply, truth):
     claims = 0
     for sentence in verdicts.split_sentences(reply.text):
         for clause in _CLAUSE_SPLIT_RE.split(sentence):
+            # An explanatory tail ("... can't answer spells, as it lacks blue in its colour
+            # identity") states the REASON, not a second gap claim -- grading it read "blue"
+            # as a colour qualifier on the claim (Ghired, 2026-09-30 verification run).
+            clause = _EXPLANATION_RE.split(clause, maxsplit=1)[0]
             cue = _CUE_RE.search(clause)
             if not cue:
                 continue
@@ -488,7 +495,9 @@ _IDENTITY_ACK_RE = re.compile(
     r"isn'?t\s+in\s+(?:your|the)|aren'?t\s+in\s+(?:your|the)|(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+play\s+blue|"
     r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|"
     r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+include\s+blue|colou?r\s+identity,?\s+which\s+(?:doesn'?t|does\s+not)|can'?t\s+(?:run|play|cast|add)|cannot\s+(?:run|play|cast|add)|"
-    r"doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|not\s+a\s+(?:concern|gap|problem))",
+    r"doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|"
+    r"not\s+(?:considered\s+|really\s+)?(?:a\s+)?(?:concern|gap|problem|weakness)|"
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+require)",
     re.IGNORECASE,
 )
 
