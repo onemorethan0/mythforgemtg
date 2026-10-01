@@ -848,6 +848,20 @@ def _check_trigger_events(doc: dict, card: Card, text: str) -> list[str]:
     return errors
 
 
+def _is_negative_pump(effect: dict) -> bool:
+    """A `pump` that LOWERS power or toughness: the only op the vocabulary has for -N/-N.
+    The amount may be a literal int or an X expression ("-X")."""
+    for key in ("power", "toughness"):
+        v = effect.get(key)
+        if isinstance(v, bool):
+            continue
+        if isinstance(v, int) and v < 0:
+            return True
+        if isinstance(v, str) and v.strip().startswith(("-", "−")):
+            return True
+    return False
+
+
 def cross_check(doc: dict, card: Card) -> list[str]:
     """Gate 3: bidirectional cross-check against the independent rung-1 heuristics.
 
@@ -861,6 +875,7 @@ def cross_check(doc: dict, card: Card) -> list[str]:
     # CCM that does model a quoted effect is never failed for it.
     own_card = dataclasses.replace(card, oracle_text=_without_quoted_abilities(card.oracle_text))
     fx = tags.analyze(own_card)
+    modes = tags.interaction_modes(tags._clean_text(own_card))
     text = re.sub(r"\([^)]*\)", "", card.oracle_text or "").casefold()
     own_text = re.sub(r"\([^)]*\)", "", own_card.oracle_text or "").casefold()
     licensed = _keyword_licensed_ops(card.oracle_text)
@@ -904,7 +919,8 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         errors.append("oracle text draws cards but CCM has no draw effect")
     if "draw" in ops_present and "draw" not in text and "draw" not in licensed:
         errors.append("CCM declares draw but oracle text never says draw")
-    if fx.counterspell and "counter_spell" not in ops_present:
+    if (fx.counterspell and "counter_spell" not in ops_present
+            and not (modes.counter == {"exile"} and "exile" in ops_present)):
         errors.append("oracle text counters a spell but CCM has no counter_spell")
     if ("counter_spell" in ops_present and "counter" not in text
             and "counter_spell" not in licensed):
@@ -1009,10 +1025,28 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         and not intrinsic_mana
     ):
         errors.append("CCM adds mana but text never says add")
-    if fx.removal > 0 and not ops_present & {"destroy", "exile", "deal_damage"}:
+    # The removal/counter omission checks ask for the op that expresses each MODE tags saw
+    # (2026-09-30, when tags.py started recognising bounce, tuck, -N/-N and exiled spells):
+    # a bounce is `return_to_hand`, a -N/-N a negative `pump`, an exiled spell an `exile`.
+    # Demanding destroy/exile/deal_damage of those would fail every CORRECT compile of
+    # Snapback or Collective Brutality. Tuck has no op in the vocabulary at all, so a
+    # tuck-only card is not checked -- requiring something would force a fabrication.
+    removal_ops = {"destroy", "exile", "deal_damage"}
+    if "bounce" in modes.spot:
+        removal_ops.add("return_to_hand")
+    has_neg_pump = any(
+        e.get("op") == "pump" and _is_negative_pump(e) for _a, e in _iter_effects(doc)
+    )
+    if (
+        fx.removal > 0
+        and not ops_present & removal_ops
+        and not ("minus" in modes.spot and has_neg_pump)
+        and not modes.spot <= {"tuck"}
+    ):
         errors.append("oracle text is targeted removal but CCM has no removal effect")
-    if fx.board_wipe:
-        # tags._is_board_wipe is text-side and deliberately broad: "True only when the
+    if fx.board_wipe and not modes.wipe <= {"static_minus"}:
+        # (a STATIC -N/-N -- Elesh Norn -- has no op in the vocabulary: statics are notes)
+        # tags.interaction_modes' wipe is text-side and deliberately broad: "True only when the
         # sweep can remove CREATURES from the battlefield" -- which a mass -X/-X pump
         # (Biting Rain: "All creatures get -2/-2 until end of turn", same shape as
         # Infest/Pestilence/Toxic Deluge) genuinely does via state-based actions once
@@ -1027,18 +1061,27 @@ def cross_check(doc: dict, card: Card) -> list[str]:
             e for _a, e in _iter_effects(doc)
             if (
                 e.get("op") in {"destroy", "exile", "deal_damage"}
-                or (
-                    e.get("op") == "pump"
-                    and (
-                        (isinstance(e.get("power"), int) and e["power"] < 0)
-                        or (isinstance(e.get("toughness"), int) and e["toughness"] < 0)
-                    )
-                )
+                or (e.get("op") == "pump" and _is_negative_pump(e))
+                # mass bounce (Evacuation, Aetherize) became a wipe on 2026-09-30
+                or (e.get("op") == "return_to_hand" and "bounce" in modes.wipe)
             )
             and (
                 (e.get("target") or {}).get("count") == "all"
                 or (e.get("target") or {}).get("controller") == "each"
             )
+        ]
+        # A mass -N/-N pump is stored WITHOUT a count as often as with one ("creatures
+        # your opponents control get -1/-1" -> controller "opponent", no count): an absent
+        # count is the documented mass-pump shape (see sim/tier2's pump dispatch). Accept
+        # it here so Cower in Fear / Elesh Norn are not failed for a correct compile. A
+        # sign-lost pump ("power": "X" for -X/-X) is still failed -- it executes as a buff.
+        wipes += [
+            e for _a, e in _iter_effects(doc)
+            if e.get("op") == "pump" and _is_negative_pump(e)
+            and isinstance(e.get("target"), dict)
+            and e["target"].get("count") in (None, "all", "each")
+            and e["target"].get("controller") != "you"
+            and not e["target"].get("self")
         ]
         if not wipes:
             errors.append("oracle text is a board wipe but CCM has no all/each removal")

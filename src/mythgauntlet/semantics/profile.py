@@ -42,8 +42,19 @@ from mythgauntlet.semantics.model import EffectVector
 
 _PERIODIC_TRIGGERS = {"upkeep", "draw_step", "end_step", "landfall", "cast_creature",
                       "cast_spell", "attack", "combat_damage_to_player"}
-_REMOVAL_TARGET_TYPES = {"creature", "permanent", "artifact", "enchantment", "any",
-                         "planeswalker"}
+# Types a destroy/exile can be aimed at that may be a CREATURE. `removal` is spent in tier2
+# as "kill the opponent's biggest creature" (`_apply_instant_removal`, the valuation prior)
+# and `wipe` as a creature sweep, so an artifact-, enchantment- or planeswalker-only answer
+# must not count -- the CCM-side twin of the Naturalize/Vandalblast defect tags.py fixed on
+# 2026-08-08. It survived here until 2026-09-30: a Daru Sanctifier or a Leonin Relic-Warder
+# with a compiled CCM was killing a creature in the instant window. tags.py and this file are
+# SEPARATE derivations (oracle text vs the CCM); fixing one never fixes the other.
+_REMOVAL_TARGET_TYPES = {"creature", "permanent", "any"}
+_CREATURE_TYPE_WORD_RE = re.compile(r"\b(?:creature|permanent)\b")
+# A return that only happens on a condition ("if the gift wasn't promised" -- Parting
+# Gust) leaves a real answer on the other branch; a timing ("at the beginning of the next
+# end step") does not.
+_CONDITIONAL_RETURN_RE = re.compile(r"\b(?:if|unless)\b")
 
 # `lose_life` only counts as reach/drain when the CCM SAYS an opponent loses it.
 #
@@ -458,20 +469,64 @@ def _targets_all(target: dict) -> bool:
     return target.get("count") == "all" or target.get("controller") == "each"
 
 
+_RETURN_OPS = {"return_to_hand", "reanimate", "return_to_battlefield", "put_onto_battlefield"}
+_OFF_BATTLEFIELD_ZONES = {"graveyard", "hand", "library", "exile", "stack", "command"}
+
+
+def _is_answer_object(target: dict) -> bool:
+    """A destroy/exile `target` that can be an OPPOSING CREATURE on the battlefield.
+
+    Three CCM shapes read as removal without being one (measured 2026-09-30, the CCM-side
+    twins of tags.py's object gate): `{"self": true}` -- "Exile Death Wish" has no `type`,
+    so it defaulted to "creature" and every Wish/Ultimatum/one-shot spell was removal; a
+    `zone` that is not the battlefield (a graveyard card); and the caster's own."""
+    if target.get("self") or target.get("controller") == "you":
+        return False
+    # Only a KNOWN off-battlefield zone disqualifies: the compiler also writes non-zone
+    # values here (Banishing Light: "nonland"), which must not drop a real answer.
+    if target.get("zone") in _OFF_BATTLEFIELD_ZONES:
+        return False
+    kind = str(target.get("type") or "creature").lower()
+    # The compiler writes disjunctions ("creature or planeswalker": 76 effects, "artifact
+    # or creature", "creature or enchantment") that an exact set lookup never matched.
+    return kind in _REMOVAL_TARGET_TYPES or bool(_CREATURE_TYPE_WORD_RE.search(kind))
+
+
+def _is_flicker(ability: dict) -> bool:
+    """An exile that comes straight back. The compiler has no blink op and spells the
+    return several ways (`return_to_hand` with no zone, `reanimate`, invented names), so
+    an ability that exiles AND returns a battlefield-zone object is a blink (Vizier of
+    Deferment, Glimmerpoint Stag, Blizzard Strix), not removal."""
+    effects = [e for e in ability.get("effects") or [] if isinstance(e, dict)]
+    if not any(e.get("op") == "exile" for e in effects):
+        return False
+    for e in effects:
+        target = _as_dict(e.get("target"))
+        if (e.get("op") in _RETURN_OPS and not target.get("self")
+                # zone "exile" is NOT a blink: Oblivion Ring's compile folds its
+                # leaves-the-battlefield return into the ETB ability with that zone
+                and target.get("zone") in (None, "battlefield")
+                and not _CONDITIONAL_RETURN_RE.search(
+                    str(target.get("condition") or e.get("condition") or ""))):
+            return True
+    return False
+
+
 def _resolution_is_wipe(doc: dict) -> bool:
     """Whether an on-resolution effect sweeps the board — read from the RAW effects so a
     variable/X sweeper ("deal X to each creature", Quake) is still recognized after the
     interpreter would have collapsed X to 1. Matches the retired flattening's wipe rule."""
     for ability in _resolution_abilities(doc):
+        flicker = _is_flicker(ability)
         for e in ability.get("effects") or []:
             if not isinstance(e, dict):
                 continue
             op, target = e.get("op"), _as_dict(e.get("target"))
             if not _targets_all(target) or target.get("controller") == "you":
                 continue
-            kind = target.get("type") or "creature"
-            if op in ("destroy", "exile") and kind in _REMOVAL_TARGET_TYPES:
-                return True
+            if op in ("destroy", "exile") and _is_answer_object(target):
+                if not (op == "exile" and flicker):
+                    return True
             if op == "deal_damage":
                 raw = e.get("amount")
                 is_int = isinstance(raw, int) and not isinstance(raw, bool)
@@ -493,6 +548,7 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
     tokens: tuple[int, int, int] | None = None
     wipe = _resolution_is_wipe(doc)
     for ability in _resolution_abilities(doc):
+        flicker = _is_flicker(ability)
         for eff in interpret_ability(ability):  # DefaultResolver (X -> 1)
             op, pr = eff.op, eff.params
             if op == "draw":
@@ -500,10 +556,10 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
                     draw += max(0, pr.get("count", 1))
             elif op in ("destroy", "exile"):
                 target = _as_dict(pr.get("target"))
-                if target.get("controller") == "you":
-                    continue  # destroying your own permanents isn't interaction/removal
-                if (target.get("type") or "creature") not in _REMOVAL_TARGET_TYPES:
-                    continue
+                if not _is_answer_object(target):
+                    continue  # own / self / graveyard / noncreature: not interaction
+                if op == "exile" and flicker:
+                    continue  # a blink, not an answer
                 if not _targets_all(target):
                     removal += 1  # `_apply_resolved` kills exactly one per destroy effect
             elif op == "deal_damage":

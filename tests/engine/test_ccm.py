@@ -1242,3 +1242,62 @@ def test_connive_licenses_draw():
     doc = _doc(["creature"], [{"kind": "triggered", "trigger": {"event": "cast_spell"},
                                "effects": [{"op": "draw", "count": 1}]}], "{1}{U}")
     assert not any("never says draw" in e for e in cross_check(doc, card))
+
+
+def _spell(effects):
+    return _doc(["instant"], [{"kind": "spell_effect", "effects": effects}], "{2}")
+
+
+def _gate_errors(text, effects, type_line="Instant"):
+    return cross_check(_spell(effects), _card("T", "{2}", type_line, text))
+
+
+def test_cross_check_asks_for_the_op_each_removal_mode_needs():
+    """2026-09-30: tags.py started recognising bounce, tuck, -N/-N and exiled spells as
+    interaction. The omission gate reads tags' MODES so a correct compile is not failed
+    for using the op the vocabulary actually has for that mode."""
+    def removal_err(text, effects):
+        return any("removal" in e for e in _gate_errors(text, effects))
+
+    # bounce -> return_to_hand (Snapback)
+    assert not removal_err("Return target creature to its owner's hand.", [
+        {"op": "return_to_hand", "target": {"type": "creature", "count": 1}}])
+    # -N/-N -> a NEGATIVE pump (Collective Brutality's mode)
+    assert not removal_err("Target creature gets -2/-2 until end of turn.", [
+        {"op": "pump", "power": -2, "toughness": -2, "target": {"type": "creature", "count": 1}}])
+    assert not removal_err("Target creature gets -X/-X until end of turn.", [
+        {"op": "pump", "power": "-X", "toughness": "-X", "target": {"type": "creature", "count": 1}}])
+    # ...but a sign-lost -X/-X (stored as +X/+X, executes as a BUFF) is a real defect
+    assert removal_err("Target creature gets -X/-X until end of turn.", [
+        {"op": "pump", "power": "X", "toughness": "X", "target": {"type": "creature", "count": 1}}])
+    # tuck has no op in the vocabulary: never demanded (Condemn)
+    assert not removal_err("Put target attacking creature on the bottom of its owner's "
+                           "library. Its controller gains life equal to its toughness.", [
+        {"op": "gain_life", "amount": 1}])
+    # and an ordinary kill spell with nothing is still caught
+    assert removal_err("Destroy target creature.", [{"op": "draw", "count": 1}])
+
+
+def test_cross_check_exiled_spell_satisfies_the_counter_gate():
+    errs = _gate_errors("Exile any number of target spells.", [
+        {"op": "exile", "target": {"type": "spell", "count": "any"}}])
+    assert not any("counter" in e for e in errs)                     # Mindbreak Trap
+
+
+def test_cross_check_mass_minus_shapes():
+    def wipe_err(text, effects, type_line="Sorcery"):
+        return any("board wipe" in e for e in _gate_errors(text, effects, type_line))
+
+    # absent count is the documented mass-pump shape (Cower in Fear)
+    assert not wipe_err("Creatures your opponents control get -1/-1 until end of turn.", [
+        {"op": "pump", "power": -1, "toughness": -1,
+         "target": {"type": "creature", "controller": "opponent"}}], "Instant")
+    # a STATIC -N/-N has no op (statics are notes): not demanded (Elesh Norn)
+    assert not wipe_err("Vigilance\nOther creatures you control get +2/+2.\nCreatures your "
+                        "opponents control get -2/-2.", [], "Legendary Creature — Phyrexian Praetor")
+    # mass bounce -> return_to_hand all (Evacuation)
+    assert not wipe_err("Return all creatures to their owners' hands.", [
+        {"op": "return_to_hand", "target": {"type": "creature", "count": "all"}}], "Instant")
+    # a single-target destroy is not a sweep (a Culling Sun compiled without count:"all")
+    assert wipe_err("Destroy each creature with mana value 3 or less.", [
+        {"op": "destroy", "target": {"type": "creature", "mana_value": "3 or less"}}])
