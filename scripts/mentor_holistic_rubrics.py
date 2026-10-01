@@ -26,7 +26,7 @@ from mythgauntlet.mentor import gate as gate_mod
 from mythgauntlet.mentor import verdicts
 from mythgauntlet.mentor.tools import tool_suggest_swap
 
-QUESTION_IDS = ("overview", "cards", "faster", "resilience", "wincon", "weakest", "vs_b3", "removal")
+QUESTION_IDS = ("overview", "cards", "faster", "resilience", "wincon", "weakest", "vs_b3", "removal", "dual")
 
 # ── shared helpers ──────────────────────────────────────────────────────────────────
 
@@ -148,6 +148,11 @@ def _swap_calls(reply) -> list[dict]:
             or (t.name == "get_measured_swaps" and t.result_data.get("available"))]
 
 
+def _measured_axes(calls: list[dict]) -> set[str]:
+    """Axes the swap results in `calls` were measured on (`_swap_result` always carries `axis`)."""
+    return {d["axis"] for d in calls if isinstance(d.get("axis"), str)}
+
+
 def _measured_suggestions(data: dict) -> list[dict]:
     sugg = data.get("suggestions") or []
     return [s for s in sugg if isinstance(s, dict) and s.get("add") and s.get("cut")]
@@ -198,6 +203,10 @@ def _grade_swap_answer(reply, truth, axis_for_fallback: str | None, cache_key: s
         measured = _measured_suggestions(cache[cache_key])
         note = " (suggest_swap not called; graded against the tool's own result)"
     text = reply.text
+    axes = _measured_axes(calls) if calls else ({axis_for_fallback} if axis_for_fallback else set())
+    side = verdicts.side_claim_reasons(text, axes)
+    if side:
+        return False, "unmeasured side claim: " + side[0] + note
     if measured and require_earlier_kill:
         slower = _slower_swaps(text, measured)
         if slower:
@@ -259,6 +268,48 @@ def _g_cards(reply, truth):
 
 def _g_faster(reply, truth):
     return _grade_swap_answer(reply, truth, "clock", "clock", require_earlier_kill=True)
+
+
+# "faster OR more resilient" (Round 8 residual): the reply must have looked up a swap for EACH
+# axis, answered both, and not claimed either swap leaves an unmeasured axis unharmed.
+_DUAL_AXES = ("clock", "resilience")
+_SPEED_ANSWER_RE = re.compile(
+    r"\b(?:faster|quicker|speed\w*|clock|earlier|sooner|kill(?:s|ing)?\s+turn)\b", re.IGNORECASE)
+
+
+def _g_dual(reply, truth):
+    looked = {t.args.get("axis") for t in reply.tool_trace
+              if t.name in ("suggest_swap", "get_measured_swaps")}
+    missing = [ax for ax in _DUAL_AXES if ax not in looked]
+    if missing:
+        return False, f"no swap lookup for axis {missing} (looked up {sorted(a for a in looked if a)})"
+    text = reply.text
+    problems = []
+    if not _SPEED_ANSWER_RE.search(text):
+        problems.append("never addresses speed")
+    if not verdicts.RESILIENCE_TOPIC_RE.search(text):
+        problems.append("never addresses wipe resilience")
+    calls = _swap_calls(reply)
+    side = verdicts.side_claim_reasons(text, _measured_axes(calls))
+    if side:
+        problems.append("unmeasured side claim: " + side[0])
+    measured = [s for d in calls for s in _measured_suggestions(d)]
+    clock = [s for d in calls if d.get("axis") == "clock" for s in _measured_suggestions(d)]
+    slower = _slower_swaps(text, clock)
+    if slower:
+        problems.append("reports a clock swap that does not kill earlier: " + "; ".join(slower))
+    if measured:
+        if not any(names_in(text, [s["add"]]) for s in measured):
+            problems.append("a measured swap exists but the reply names no measured add")
+    else:
+        if calls and not _NO_IMPROVEMENT_RE.search(text):
+            problems.append("no 'no measured improvement' statement")
+        cuts = _cut_recommendations(text, truth["deck_names"])
+        if cuts:
+            problems.append("recommends cutting a card although no swap was measured: " + "; ".join(cuts[:2]))
+    if problems:
+        return False, "; ".join(problems)
+    return True, "looked up both axes, answered both, no unmeasured side claim"
 
 
 def _g_weakest(reply, truth):
@@ -460,7 +511,7 @@ def _g_removal(reply, truth):
 GRADERS = {
     "overview": _g_overview, "cards": _g_cards, "faster": _g_faster,
     "resilience": _g_resilience, "wincon": _g_wincon, "weakest": _g_weakest,
-    "vs_b3": _g_vs_b3, "removal": _g_removal,
+    "vs_b3": _g_vs_b3, "removal": _g_removal, "dual": _g_dual,
 }
 
 

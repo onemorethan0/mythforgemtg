@@ -63,6 +63,8 @@ QUESTIONS: list[tuple[str, str, str | None]] = [
     ("weakest",    "What are the weakest cards in this deck?", None),
     ("vs_b3",      "What is this deck's biggest weakness against a bracket 3 pod?", None),
     ("removal",    "Is my removal good enough, and what can it not answer?", None),
+    # 9th question (Round 8 side-claims residual): two goals in one question.
+    ("dual",       "How could I make this deck faster or more resilient?", None),
 ]
 
 def load_world() -> tuple:
@@ -283,7 +285,7 @@ def main() -> int:
     parser.add_argument("--regrade", type=Path,
                         help="re-grade a saved --json run with the current rubrics (no model calls)")
     parser.add_argument("--decks", type=str, default="shelob,tymna,kess,ghired,isshin,najeela,arahbo,kaalia,meren")
-    parser.add_argument("--questions", type=str, default="overview,cards,faster,resilience,wincon,weakest,vs_b3,removal")
+    parser.add_argument("--questions", type=str, default="overview,cards,faster,resilience,wincon,weakest,vs_b3,removal,dual")
     parser.add_argument("--json", type=Path, help="Output JSON file")
     parser.add_argument("--model", type=str, default="qwen3:14b")
     parser.add_argument("--runs", type=int, default=150)
