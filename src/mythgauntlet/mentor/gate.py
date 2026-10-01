@@ -234,6 +234,13 @@ class ClaimBudget:
     # `verdicts` + `axes` key pair is unique to that tool. When the profile was called twice
     # the later result wins. Empty when the tool did not run this turn.
     profile_verdicts: dict[str, str] = field(default_factory=dict)
+    # The axes this turn's swap searches MEASURED (`suggest_swap` / an available
+    # `get_measured_swaps`, `clock` / `resilience` / ...): lets check 7 flag a reply that
+    # narrates the swap as leaving some OTHER axis unharmed, which nothing simulated. Detected
+    # structurally, like the two fields above: `_swap_result`'s output is the only dict carrying
+    # both `axis` and `improving_swap_found`; an unavailable lookup carries neither and counts
+    # for nothing. Empty when no swap search ran this turn.
+    swap_axes: frozenset[str] = frozenset()
 
     @classmethod
     def from_tool_results(
@@ -245,6 +252,7 @@ class ClaimBudget:
         texts: set[str] = set()
         verdicts: set[tuple[str, bool]] = set()
         profile: dict[str, str] = {}
+        swap_axes: set[str] = set()
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -262,8 +270,13 @@ class ClaimBudget:
                 and isinstance(data.get("verdicts"), dict) and isinstance(data.get("axes"), dict)
             ):
                 profile = {k: v for k, v in data["verdicts"].items() if isinstance(v, str)}
+            if (
+                isinstance(data, dict) and isinstance(data.get("axis"), str)
+                and "improving_swap_found" in data
+            ):
+                swap_axes.add(data["axis"])
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
-                    frozenset(texts), frozenset(verdicts), profile)
+                    frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -421,6 +434,15 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #    verdict -- same under-flag bias as check 5.
     if budget.profile_verdicts:
         reasons.extend(verdicts_mod.profile_contradictions(body, budget.profile_verdicts))
+
+    # 7. UNMEASURED SIDE CLAIM ON A MEASURED SWAP (HEURISTIC -- see
+    #    `verdicts.unmeasured_side_claims`). A swap search measures one axis; "cutting it doesn't
+    #    hurt your interaction" after a clock swap is a claim nothing simulated, and it names no
+    #    card or number, so checks 1-6 cannot see it. Needs both a "leaves X unharmed /
+    #    maintained" phrase and a topic word of an axis that was NOT measured, same under-flag
+    #    bias as checks 5 and 6.
+    if budget.swap_axes:
+        reasons.extend(verdicts_mod.side_claim_reasons(body, budget.swap_axes))
 
     return reasons
 

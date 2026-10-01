@@ -621,3 +621,145 @@ def states_archetype_or_route(text: str, archetype: str | None) -> bool:
     if any(ROUTE_PHRASES[f].search(body) for f in ok if f in ROUTE_PHRASES):
         return True
     return fam in _COMPAT_GROUPS[0] and bool(COMBAT_ROUTE_RE.search(body))
+
+
+# ── unmeasured side claims on a measured swap (Round 8 residual, 2026-10-01) ─────────────
+#
+# A swap search measures ONE axis (a clock swap re-simulates the clock; a resilience swap, the
+# wipe score). Narrating it is licensed for that axis only, yet a live reply for a measured
+# clock swap (add Solemn Simulacrum, cut Ultimate Magic: Meteor, clock 20.1 -> 21.4) added
+# "cutting it doesn't hurt your deck's interaction or resilience" and "maintaining its
+# consistency and interaction". Neither was simulated, and the sentence names no card or number,
+# so gate checks 1-6 cannot see it. The gate (check 7) and the bench (`faster`/`weakest`/`dual`
+# rubrics) both read THIS vocabulary.
+#
+# Narrow on purpose (under-flag, same bias as the rest of this module): a sentence must hold
+# BOTH a "this leaves X unharmed" phrase AND a topic word of an axis that was NOT measured this
+# turn, in the phrase's object position. "This keeps your mana base intact" names no axis topic
+# word and never fires; a sentence about the measured axis itself never fires.
+
+# Swap-tool axis names -> the claim family a topic word belongs to. `clock` is the speed lens.
+_SWAP_AXIS_FAMILY = {"clock": "speed", "speed": "speed", "resilience": "resilience",
+                     "interaction": "interaction", "consistency": "consistency",
+                     "ceiling": "ceiling"}
+
+
+def swap_axis_family(axis: str | None) -> str | None:
+    return _SWAP_AXIS_FAMILY.get(axis or "")
+
+
+# Topic words per family, deliberately tighter than AXIS_TOPICS: no bare "fast"/"slow"/"quick",
+# no "mana base" (a manabase is not an axis a swap search measures).
+SIDE_CLAIM_TOPICS: dict[str, re.Pattern] = {
+    "speed": re.compile(r"\b(?:speed|clock|kill\s+turn|pace)\b", re.IGNORECASE),
+    "resilience": re.compile(
+        r"\b(?:resilien\w*|wipes?|sweepers?|wraths?|mass\s+removal|board\s+wipes?)\b", re.IGNORECASE),
+    "interaction": re.compile(
+        r"\b(?:interact\w*|removal|counterspells?|spot\s+removal)\b", re.IGNORECASE),
+    "consistency": re.compile(r"\bconsisten\w*\b", re.IGNORECASE),
+    "ceiling": re.compile(r"\bceiling\b", re.IGNORECASE),
+}
+
+# "this leaves X unharmed" with X AFTER the phrase. Two strengths: a NEGATED harm verb ("doesn't
+# hurt your interaction") is a claim anywhere in its clause; the bare "maintain/keep/preserve"
+# family is ordinary English ("maintaining a good curve matters") so its object must be right
+# next to it.
+_SIDE_VERB_RE = re.compile(
+    r"\b(?:(?:doesn'?t|does\s+not|won'?t|will\s+not|wouldn'?t|would\s+not|shouldn'?t|"
+    r"should\s+not|isn'?t\s+going\s+to|not\s+going\s+to)\s+(?:\w+\s+){0,1}?"
+    r"(?:hurt|harm|affect|weaken|reduce|compromise|damage|impact|undermine|diminish|lower|"
+    r"sacrifice|slow|cost\s+you|lose|touch)"
+    r"|without\s+(?:\w+\s+){0,1}?(?:sacrificing|hurting|harming|losing|compromising|weakening|"
+    r"giving\s+up|affecting|reducing|undermining|lowering|slowing)"
+    r"|no\s+(?:negative\s+|real\s+|significant\s+|noticeable\s+)?(?:impact|effect|downside)\s+"
+    r"(?:on|to))\b",
+    re.IGNORECASE,
+)
+_SIDE_KEEP_RE = re.compile(
+    r"\b(?:(?:maintain|maintains|maintaining|maintained|preserve|preserves|preserving|retain|"
+    r"retains|retaining)|(?:keeps?|keeping)\s+(?:its|your|the|their))\b",
+    re.IGNORECASE,
+)
+# "X stays unharmed" with X BEFORE the phrase ("your interaction is unaffected").
+_SIDE_STATE_RE = re.compile(
+    r"\b(?:unaffected|unharmed|untouched|unchanged|intact|(?:isn'?t|is\s+not|aren'?t|are\s+not|"
+    r"remains?|stays?)\s+(?:\w+\s+){0,1}?(?:affected|hurt|harmed|weakened|compromised)|"
+    r"(?:is|are|remains?|stays?)\s+(?:\w+\s+){0,1}?(?:maintained|preserved|retained))\b",
+    re.IGNORECASE,
+)
+# A sentence that says the other axis was NOT measured is the honest disclosure the prompt asks for.
+# The verb must follow the negator directly ("haven't measured", "didn't actually test"): "didn't
+# find a measured improvement" is a swap result, not a disclosure.
+_DISCLOSURE_RE = re.compile(
+    r"\b(?:not\s+(?:been\s+)?(?:measured|tested|simulated)|unmeasured|"
+    r"(?:did\s*n[o']t|haven'?t|hasn'?t|wasn'?t|weren'?t|can'?t|cannot|couldn'?t|don'?t)\s+"
+    r"(?:(?:actually|really|yet|also)\s+)?(?:measure|test|simulat|check|verif|say|promise|"
+    r"guarantee|know|tell)\w*|"
+    r"only\s+(?:measured|tested|simulated))",
+    re.IGNORECASE,
+)
+_SIDE_WINDOW_WORDS = 8
+_SIDE_KEEP_WINDOW_WORDS = 4
+# The phrase's object ends where the clause turns ("..., but removal is the real gap").
+_CLAUSE_END_RE = re.compile(r"[;:]|\b(?:but|however|although|though)\b", re.IGNORECASE)
+
+
+def _topic_after(sentence: str, m: re.Match, topic: re.Pattern,
+                 window: int = _SIDE_WINDOW_WORDS) -> bool:
+    tail = _CLAUSE_END_RE.split(sentence[m.end():], maxsplit=1)[0]
+    return bool(topic.search(" ".join(tail.split()[:window])))
+
+
+def _topic_before(sentence: str, m: re.Match, topic: re.Pattern,
+                  window: int = _SIDE_WINDOW_WORDS) -> bool:
+    return bool(topic.search(" ".join(sentence[:m.start()].split()[-window:])))
+
+
+def unmeasured_side_claims(text: str, measured_axes) -> list[tuple[str, str]]:
+    """(family, sentence) for each sentence that claims a swap leaves an axis unharmed or
+    "maintained" although that axis was not measured. `measured_axes` are the swap tools'
+    axis names this turn (`clock`/`speed`, `resilience`, ...); empty means nothing was measured
+    and nothing is checked (the gate only runs this when a swap result named an axis)."""
+    measured = {f for f in (swap_axis_family(a) for a in measured_axes) if f}
+    if not measured:
+        return []
+    unmeasured = {f: p for f, p in SIDE_CLAIM_TOPICS.items() if f not in measured}
+    out: list[tuple[str, str]] = []
+    for sentence in split_sentences(text):
+        if _DISCLOSURE_RE.search(sentence):
+            continue
+        hit: str | None = None
+        for m in _SIDE_VERB_RE.finditer(sentence):
+            hit = next((f for f, p in unmeasured.items() if _topic_after(sentence, m, p)), None)
+            if hit:
+                break
+        if hit is None:
+            for m in _SIDE_KEEP_RE.finditer(sentence):
+                hit = next((f for f, p in unmeasured.items()
+                            if _topic_after(sentence, m, p, _SIDE_KEEP_WINDOW_WORDS)), None)
+                if hit:
+                    break
+        if hit is None:
+            for m in _SIDE_STATE_RE.finditer(sentence):
+                hit = next((f for f, p in unmeasured.items() if _topic_before(sentence, m, p)), None)
+                if hit:
+                    break
+        if hit:
+            out.append((hit, sentence.strip()))
+    return out
+
+
+def side_claim_reasons(text: str, measured_axes) -> list[str]:
+    """Gate/bench reasons: one per family claimed unharmed without being measured."""
+    measured = sorted({f for f in (swap_axis_family(a) for a in measured_axes) if f})
+    seen: set[str] = set()
+    reasons: list[str] = []
+    for family, _sentence in unmeasured_side_claims(text, measured_axes):
+        if family in seen:
+            continue
+        seen.add(family)
+        reasons.append(
+            f"claims the swap leaves the deck's {family} unharmed or maintained, but this turn "
+            f"only measured {'/'.join(measured)}: describe the swap's effect only on the axis "
+            f"it was measured on and offer to measure {family} instead")
+    return reasons
