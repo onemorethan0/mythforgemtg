@@ -425,7 +425,7 @@ def test_analysis_cache_is_bounded(make_card, empty_store, monkeypatch):
 _PROFILE_KEYS = {
     "found", "archetype", "gameplan", "pod_read", "strengths", "weaknesses", "axes",
     "weakest_axis", "clock", "resilience", "interaction_counts", "key_cards",
-    "wincon_redundancy", "bracket", "verdicts",
+    "wincon_redundancy", "bracket", "verdicts", "bracket_reference",
 }
 
 
@@ -436,7 +436,7 @@ def test_get_power_profile_returns_every_top_level_key(make_card, empty_store):
     assert _PROFILE_KEYS <= set(data)
     assert set(data["axes"]) == {"consistency", "speed", "resilience", "interaction", "ceiling", "pod"}
     for ax in data["axes"].values():
-        assert set(ax) == {"score", "why"}
+        assert {"score", "why"} <= set(ax) <= {"score", "why", "vs_bracket"}
     assert data["weakest_axis"] in data["axes"]
     assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction", "archetype"}
     assert set(data["bracket"]) == {"bracket", "label", "plays_up"}
@@ -888,6 +888,70 @@ def test_suggest_swap_schema_offers_the_clock_axis():
     assert "clock" in enum
     from mythgauntlet.ratings import advisor
     assert set(enum) == set(advisor.AXES)   # the enum cannot drift from the advisor again
+
+
+# ── get_power_profile vs_bracket (PLAN_MENTOR_ADHOC E2) ─────────────────────────────
+
+def test_power_profile_axes_carry_vs_bracket_for_the_estimated_bracket(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    data = call_tool(ctx, "get_power_profile", {}).data
+    ref = data["bracket_reference"]
+    assert ref["bracket"] == data["bracket"]["bracket"]
+    assert "estimated" in ref["basis"] and "NOT evidence" in ref["note"]
+    for ax, entry in data["axes"].items():
+        vs = entry["vs_bracket"]
+        assert vs["bracket"] == ref["bracket"] and vs["n"] >= 20
+        assert vs["percentile_band"] in {"below_p25", "p25_p50", "p50_p75", "above_p75"}
+        assert vs["p25"] <= vs["p50"] <= vs["p75"]
+        assert vs["direction"] == "higher_is_better"
+    assert "clock" not in data["axes"]     # the lens stays out of the profile axes
+
+
+def test_power_profile_compare_bracket_overrides_the_estimate(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    base = call_tool(ctx, "get_power_profile", {}).data
+    other = 3 if base["bracket"]["bracket"] != 3 else 2
+    data = call_tool(ctx, "get_power_profile", {"compare_bracket": other}).data
+    assert data["bracket_reference"]["bracket"] == other
+    assert "asked about" in data["bracket_reference"]["basis"]
+    assert all(e["vs_bracket"]["bracket"] == other for e in data["axes"].values())
+    # the deck's own bracket estimate is untouched by what it is compared against
+    assert data["bracket"] == base["bracket"]
+    assert [a["score"] for a in data["axes"].values()] == [a["score"] for a in base["axes"].values()]
+
+
+def test_power_profile_rejects_a_bad_compare_bracket(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store)
+    for bad in (0, 6, -1):
+        assert call_tool(ctx, "get_power_profile", {"compare_bracket": bad}).data["found"] is False
+
+
+def test_vs_bracket_orients_lower_is_better_metrics():
+    """`percentile_band` describes the RAW value; for kill turn "below_p25" is the FAST end.
+    The tool hands the model the oriented `standing` so it never has to flip it."""
+    from mythgauntlet.mentor.tools import _vs_bracket
+    from mythgauntlet.ratings import reference
+    cell = reference.BRACKET_AXIS_REFERENCE[3]["avg_kill_turn"]
+    early = _vs_bracket(3, "avg_kill_turn", cell["p25"] - 1)
+    assert early["percentile_band"] == "below_p25" and early["standing"] == "top_quarter"
+    assert early["direction"] == "lower_is_better"
+    late = _vs_bracket(3, "avg_kill_turn", cell["p75"] + 1)
+    assert late["percentile_band"] == "above_p75" and late["standing"] == "bottom_quarter"
+    cons = reference.BRACKET_AXIS_REFERENCE[3]["consistency"]
+    high = _vs_bracket(3, "consistency", cons["p75"] + 1)
+    assert high["standing"] == "top_quarter" and high["direction"] == "higher_is_better"
+    low = _vs_bracket(3, "consistency", cons["p25"] - 1)
+    assert low["standing"] == "bottom_quarter"
+
+
+def test_vs_bracket_is_omitted_when_unmeasured_or_thin(monkeypatch):
+    from mythgauntlet.mentor.tools import _vs_bracket
+    from mythgauntlet.ratings import reference
+    assert _vs_bracket(3, "avg_kill_turn", None) is None          # deck never kills
+    assert _vs_bracket(3, "no_such_metric", 5.0) is None
+    thin = {3: {"consistency": {"p25": 1.0, "p50": 2.0, "p75": 3.0, "n": 5, "thin": True}}}
+    monkeypatch.setattr(reference, "BRACKET_AXIS_REFERENCE", thin)
+    assert _vs_bracket(3, "consistency", 2.0) is None
 
 
 # ── diagnose_axis (PLAN_MENTOR_ADHOC D1) ────────────────────────────────────────────

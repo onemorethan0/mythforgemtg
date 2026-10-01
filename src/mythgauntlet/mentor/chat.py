@@ -124,6 +124,17 @@ explain from its drivers: name the weak ones with their values and offer its lev
 fixes. A driver marked not_applicable is never a gap. Levers name no cards, so for \
 card-level changes still call suggest_swap.
 
+Each axis in get_power_profile may carry "vs_bracket": where that score sits among decks \
+players labelled with a bracket (its "standing": top_quarter / above_median / \
+below_median / bottom_quarter, already oriented so a top standing is always the better \
+end). Say "does X poorly" or "does X well" relative to other decks ONLY from a standing: \
+"in the bottom quarter of bracket 3 decks for interaction" is a measured statement, a \
+bare score is not. When the player names a bracket ("against a bracket 3 pod"), call \
+get_power_profile with compare_bracket set to it and answer from those standings. These \
+standings only say above or below typical for decks of THAT bracket -- never use them to \
+argue the deck belongs in a different bracket (most axes barely differ between brackets; \
+get_bracket_estimate answers that question).
+
 For "which cards are my ramp / removal / draw", "what's in my deck" or any question \
 about WHICH specific cards fill a role, call list_deck_cards (pass role to filter) and \
 name cards only from its rows; its "roles" use the same role names as get_deck_stats.

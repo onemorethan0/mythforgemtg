@@ -37,7 +37,7 @@ from mythgauntlet.data import rulings as rulings_data
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
-from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy
+from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy, reference
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.semantics import tags
@@ -523,6 +523,28 @@ def _r1(x):
     return None if x is None else round(float(x), 1)
 
 
+# E2: how a raw percentile band reads in words. `percentile_band` describes the RAW value, so
+# for a LOWER_IS_BETTER metric (kill turn, commander turn) "below_p25" is the FAST end -- the
+# model is handed the already-oriented word rather than asked to flip it.
+_STANDING = {"below_p25": "bottom_quarter", "p25_p50": "below_median",
+             "p50_p75": "above_median", "above_p75": "top_quarter"}
+_STANDING_LOWER_IS_BETTER = {"below_p25": "top_quarter", "p25_p50": "above_median",
+                             "p50_p75": "below_median", "above_p75": "bottom_quarter"}
+
+
+def _vs_bracket(bracket: int, metric: str, value) -> dict | None:
+    """`reference.percentile_band` plus an oriented `standing` and the metric's direction;
+    None when there is no usable reference cell (missing value, thin cell) -- omitted, not
+    guessed."""
+    band = reference.percentile_band(bracket, metric, value)
+    if band is None:
+        return None
+    lower = metric in reference.LOWER_IS_BETTER
+    band["direction"] = "lower_is_better" if lower else "higher_is_better"
+    band["standing"] = (_STANDING_LOWER_IS_BETTER if lower else _STANDING)[band["percentile_band"]]
+    return band
+
+
 # C-residual: `insight` writes "N removal, 0 counters, M wipes (breadth b/3)" and "light on
 # removal/counters" for EVERY deck, so a green or black deck's profile listed "0 counters" as a
 # weakness (Shelob, Tymna, Ghired) although `role_applicable("counterspell", identity)` says
@@ -542,7 +564,7 @@ def _without_counterspells(text: str) -> str:
     return _BREADTH_RE.sub(lambda m: f"{m.group(1)} of 2 playable types", text)
 
 
-def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
+def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = None) -> ToolResult:
     """The deck's MEASURED Power Profile -- the structured answer the engine already holds
     for "what does this deck do well and poorly / how does it win / how fast / how resilient
     to a wipe". `get_bracket_estimate` ran the same `analyze_deck` and kept only the bracket;
@@ -556,6 +578,9 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
     nothing is computed here, and `verdicts` is `mentor.verdicts.classify_profile` -- the
     same bands the holistic bench grades against -- so the model is handed the verdict word
     rather than asked to derive it from a score."""
+    if compare_bracket is not None and compare_bracket not in range(1, 6):
+        return ToolResult(data={"found": False, "message":
+                                f"compare_bracket must be 1-5, got {compare_bracket!r}."})
     a = _analysis_for(ctx)
     ins = a.insight
     if ins is None or a.resilience is None:
@@ -579,6 +604,15 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
                      for t in strengths]
         weaknesses = [_without_counterspells(t) if t.startswith("Thin interaction") else t
                       for t in weaknesses]
+    # E2: where the deck sits among corpus decks LABELLED with a bracket (the deck builder's
+    # own `# bracket: N`) -- the deck's estimated bracket, or the one the player asked about.
+    ref_bracket = compare_bracket if compare_bracket is not None else b.bracket
+    for ax, entry in axes.items():
+        vs = _vs_bracket(ref_bracket, ax, entry["score"])
+        if vs is not None:
+            entry["vs_bracket"] = vs
+    kill_vs = _vs_bracket(ref_bracket, "avg_kill_turn", r.avg_kill_turn)
+    cmdr_vs = _vs_bracket(ref_bracket, "avg_commander_turn", r.avg_commander_turn)
     wincon = _to_jsonable(a.wincon_redundancy)
     names: set[str] = {c.name for c in ctx.resolved.commanders}
     key_cards = []
@@ -611,6 +645,17 @@ def tool_get_power_profile(ctx: MentorContext) -> ToolResult:
             "keep_rate_pct": _pct(r.keep_rate),
             "curve_efficiency_pct": _pct(r.curve_efficiency),
             "pod_close_rate_pct": _pct(pod.pod_close_rate),
+            **({"avg_kill_turn_vs_bracket": kill_vs} if kill_vs else {}),
+            **({"avg_commander_turn_vs_bracket": cmdr_vs} if cmdr_vs else {}),
+        },
+        "bracket_reference": {
+            "bracket": ref_bracket,
+            "basis": ("the bracket the player asked about" if compare_bracket is not None
+                      else "this deck's own estimated bracket"),
+            "note": ("vs_bracket places a score among decks that players LABELLED this "
+                     "bracket: above / below typical for them. It is NOT evidence about which "
+                     "bracket the deck belongs in -- most axes barely differ between "
+                     "brackets."),
         },
         "resilience": {
             "score": _r1(res.resilience_score),
@@ -1080,9 +1125,23 @@ TOOL_SCHEMAS: list[dict] = [
             "name": "get_power_profile",
             "description": "The deck's measured Power Profile -- what it does well and poorly, "
                             "how it wins, speed, resilience to wipes, interaction, key cards "
-                            "per role. Call FIRST for any strengths/weaknesses/observations/"
-                            "'how does it win'/'how fast'/'how resilient' question.",
-            "parameters": {"type": "object", "properties": {}, "required": []},
+                            "per role, and where each axis sits among typical decks of a "
+                            "bracket (vs_bracket). Call FIRST for any strengths/weaknesses/"
+                            "observations/'how does it win'/'how fast'/'how resilient' "
+                            "question. Pass compare_bracket when the player names a bracket "
+                            "('against a bracket 3 pod') to compare against that bracket "
+                            "instead of the deck's own.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "compare_bracket": {
+                        "type": "integer", "enum": [1, 2, 3, 4, 5],
+                        "description": "optional: the bracket (1-5) to compare the deck's "
+                                       "axes against; omit for the deck's own estimated one",
+                    },
+                },
+                "required": [],
+            },
         },
     },
     {
