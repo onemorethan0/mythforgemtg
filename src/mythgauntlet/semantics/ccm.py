@@ -9,7 +9,9 @@ these gates dispose.
 from __future__ import annotations
 
 import dataclasses
+import json
 import re
+from collections import Counter
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.semantics import tags
@@ -537,6 +539,8 @@ def normalize_colors(colors: str) -> set[str]:
     return {ch for ch in cleaned.upper() if ch in "WUBRGC"}
 
 
+# CJK / kana / hangul: never part of an English oracle text or a CCM field for one.
+_CJK_RE = re.compile(r"[⺀-鿿぀-ヿ가-힯]")
 _ADD_TEXT_RE = re.compile(r"\badd [^.]*\{")
 
 # Text inside double quotes is an ability the card GIVES to a token or another object
@@ -1051,6 +1055,24 @@ def cross_check(doc: dict, card: Card) -> list[str]:
         and not modes.spot <= {"tuck"}
     ):
         errors.append("oracle text is targeted removal but CCM has no removal effect")
+    # Generation failures, not card models (2026-10-01). 378 accepted CCMs repeat one
+    # identical effect 3+ times inside an ability -- Phyrexian Obliterator stored its
+    # edict 38 times and tier2 executes every copy -- and some carry CJK bytes inside
+    # English strings ("until end转 of turn"). Two identical effects can be the card
+    # ("create a token, then create a token"), so the floor is three.
+    for ability in doc.get("abilities") or []:
+        if not isinstance(ability, dict):
+            continue
+        seen = Counter(json.dumps(e, sort_keys=True) for e in ability.get("effects") or []
+                       if isinstance(e, dict))
+        worst = max(seen.values(), default=0)
+        if worst >= 3:
+            errors.append(f"CCM repeats an identical effect {worst} times in one ability "
+                          f"(a generation loop)")
+            break
+    if (_CJK_RE.search(json.dumps(doc, ensure_ascii=False))
+            and not _CJK_RE.search(f"{card.name} {card.oracle_text or ''}")):
+        errors.append("CCM text is corrupted: CJK characters in an English card's fields")
     # Hallucination twin of the removal check (2026-10-01): every one of the 10 accepted
     # CCMs carrying `destroy` with no "destroy" in the text was wrong (-N/-N cards, edicts,
     # prevention), and tier2 executes a destroy as a kill. exile/sacrifice/deal_damage are

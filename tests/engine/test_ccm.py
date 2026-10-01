@@ -1328,3 +1328,23 @@ def test_cross_check_fight_and_edict_ops():
     edict = "Target player sacrifices a creature of their choice."
     assert not removal_err(edict, [{"op": "sacrifice", "target": {
         "type": "creature", "controller": "opponent", "count": 1}}])
+
+
+def test_cross_check_rejects_generation_loops_and_corruption():
+    """Measured 2026-10-01: 378 accepted CCMs repeat one identical effect within an
+    ability (Phyrexian Obliterator: 38 copies of its edict, each executed), and some
+    carry CJK bytes inside English strings ("until end转 of turn") -- both are the
+    model degenerating, not the card. No gate looked at either."""
+    edict = {"op": "sacrifice", "target": {"type": "permanent", "controller": "opponent",
+                                           "count": 1}}
+    text = "Target opponent sacrifices a permanent of their choice."
+    errs = _gate_errors(text, [dict(edict), dict(edict), dict(edict)], "Sorcery")
+    assert any("repeats an identical effect" in e for e in errs)
+    assert not any("repeats" in e for e in _gate_errors(text, [dict(edict)], "Sorcery"))
+    # two identical effects can be the card ("create a token, then create a token"); 3+ is a loop
+    assert not any("repeats" in e for e in _gate_errors(text, [dict(edict), dict(edict)],
+                                                         "Sorcery"))
+    bad = {"op": "pump", "power": -1, "toughness": -1, "duration": "until end转 of turn",
+           "target": {"type": "creature", "count": 1}}
+    errs = _gate_errors("Target creature gets -1/-1 until end of turn.", [bad])
+    assert any("corrupted" in e for e in errs)

@@ -198,3 +198,16 @@ def test_pump_with_no_permanent_to_apply_to_is_a_no_op():
     me = _player()
     _apply_resolved(_pump(power=3, toughness=3, duration="until end of turn"),
                     me, _player(), None)  # must not raise
+
+
+def test_a_corrupted_until_end_duration_still_expires():
+    """28 stored pumps read "until end转" -- the model truncated "of turn" and spliced
+    in a CJK byte. Without "turn" in the string the old substring check called them
+    PERMANENT, so a combat trick never wore off. Erring temporary is the safe direction."""
+    from mythgauntlet.sim.tier2 import _is_until_end_of_turn
+
+    assert _is_until_end_of_turn("until end转")
+    assert _is_until_end_of_turn("until end转 of turn")
+    assert _is_until_end_of_turn("until end of turn")
+    assert not _is_until_end_of_turn("permanently")
+    assert not _is_until_end_of_turn(None)
