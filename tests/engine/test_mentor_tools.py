@@ -1068,3 +1068,16 @@ def test_suggest_swap_result_states_the_current_axis_verdict(make_card, empty_st
     d = call_tool(ctx2, "suggest_swap", {"axis": "resilience"}).data
     assert d["current"]["axis"] == "resilience" and d["current"]["score"] == 93.0
     assert d["current"]["verdict"] == "resilient" and "resilient" in d["current"]["instruction"]
+
+
+def test_removal_coverage_does_not_list_spells_as_a_gap_without_blue(make_card, empty_store):
+    """The empty "spell" entry (only counterspells answer spells) read as a coverage gap and
+    non-blue decks were told to consider counterspells (C-residual, colour 6/9)."""
+    ctx = _ctx(make_card, empty_store)                  # mono-green
+    d = call_tool(ctx, "removal_coverage", {}).data
+    assert "spell" not in d["answers_by_type"] and "spell" not in d["counts_by_type"]
+    assert "spell" not in d["no_answer_for"] and "spell" not in d["no_unrestricted_answer_for"]
+    assert "never recommend" in d["not_applicable_types"]["spell"]
+    ctx.resolved.commanders[0].color_identity = ("G", "U")
+    d = call_tool(ctx, "removal_coverage", {}).data
+    assert "spell" in d["answers_by_type"] and d["not_applicable_types"] == {}

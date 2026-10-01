@@ -714,6 +714,20 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     answers are mostly "with flying" does not read as well covered. `counts_by_type` carries
     the counts so the model never counts list items itself. Licenses every card name."""
     cov = removal.coverage(ctx.resolved)
+    not_applicable: dict[str, str] = {}
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+    if not redundancy.role_applicable("counterspell", identity):
+        # Only counterspells answer a SPELL, and no colour in this identity plays them: the
+        # empty "spell" entry read as a coverage gap and three of the bench's non-blue decks
+        # were told to "consider adding counterspells" (C-residual colour 6/9).
+        cov = {**cov, "answers_by_type": {k: v for k, v in cov["answers_by_type"].items() if k != "spell"},
+               "unrestricted_answers_by_type": {k: v for k, v in
+                                                cov["unrestricted_answers_by_type"].items() if k != "spell"},
+               "no_answer_for": [t for t in cov["no_answer_for"] if t != "spell"],
+               "no_unrestricted_answer_for": [t for t in cov["no_unrestricted_answer_for"]
+                                              if t != "spell"]}
+        not_applicable["spell"] = ("only counterspells answer spells, and no blue in this deck's "
+                                   "colour identity plays them -- not a gap, never recommend them")
     counts = {
         typ: {"answers": len(cov["answers_by_type"][typ]),
               "unrestricted": len(cov["unrestricted_answers_by_type"][typ])}
@@ -722,6 +736,7 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     data = {
         "found": True,
         **cov,
+        "not_applicable_types": not_applicable,
         "counts_by_type": counts,
         "reading_guide": (
             "answers_by_type lists every card that can hit that type, including ones limited "

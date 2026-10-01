@@ -144,3 +144,112 @@ def test_ask_nudges_at_most_once(monkeypatch):
 def test_system_prompt_routes_which_cards_questions_to_list_deck_cards():
     assert "list_deck_cards" in chat.SYSTEM_PROMPT
     assert any(t["function"]["name"] == "list_deck_cards" for t in chat.TOOL_SCHEMAS)
+
+
+# ── improvement questions must reach suggest_swap (diagnose_axis must not end the turn) ──
+
+@pytest.mark.parametrize("question,expect", [
+    ("How could I make this deck faster?", True),
+    ("how can I speed up my deck", True),
+    ("How resilient is this deck to a board wipe, and how could I improve that?", True),
+    ("What are the weakest cards in this deck?", True),
+    ("What should I cut for a wrath effect?", True),
+    ("How does this deck win?", False),
+    ("What does this deck do well and poorly?", False),
+    ("How resilient is this deck to a board wipe?", False),
+    ("", False),
+])
+def test_wants_a_swap(question, expect):
+    assert chat._wants_a_swap(question) is expect
+
+
+def _scripted_turns(monkeypatch, script):
+    seen = []
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        seen.append([m.get("content") for m in messages[-1:]])
+        return script[min(len(seen) - 1, len(script) - 1)]
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    monkeypatch.setattr(chat, "call_tool", lambda ctx, name, args: ToolResult(data={"found": True}))
+    return seen
+
+
+def _call(name, args="{}"):
+    return {"role": "assistant", "content": "",
+            "tool_calls": [{"id": "1", "function": {"name": name, "arguments": args}}]}
+
+
+def test_ask_nudges_to_suggest_swap_when_diagnose_axis_ends_an_improvement_turn(monkeypatch):
+    seen = _scripted_turns(monkeypatch, [
+        _call("diagnose_axis", '{"axis": "clock"}'),
+        {"role": "assistant", "content": "The main issue is a lack of mana ramp in the deck."},
+        _call("suggest_swap", '{"axis": "clock"}'),
+        {"role": "assistant", "content": "I didn't find a measured improvement from your collection."},
+    ])
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    assert [t.name for t in reply.tool_trace] == ["diagnose_axis", "suggest_swap"]
+    assert chat._SWAP_NUDGE in seen[2][-1]
+    assert "measured improvement" in reply.text
+
+
+def test_no_swap_nudge_when_suggest_swap_already_ran_or_the_question_is_not_an_improvement(monkeypatch):
+    seen = _scripted_turns(monkeypatch, [
+        _call("suggest_swap", '{"axis": "clock"}'),
+        {"role": "assistant", "content": "I didn't find a measured improvement from your collection."},
+    ])
+    chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    assert all(chat._SWAP_NUDGE not in " ".join(map(str, s)) for s in seen)
+    seen = _scripted_turns(monkeypatch, [
+        {"role": "assistant", "content": "The deck wins through combat with its creatures."},
+    ])
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How does this deck win?")
+    assert reply.tool_trace == [] and len(seen) == 1
+
+
+def test_swap_nudge_fires_at_most_once(monkeypatch):
+    seen = _scripted_turns(monkeypatch, [
+        {"role": "assistant", "content": "Adding more ramp would make it faster in general terms."},
+    ])
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I improve this deck?")
+    assert sum(chat._SWAP_NUDGE in " ".join(map(str, s)) for s in seen) == 1
+    assert reply.tool_trace == []
+
+
+def test_system_prompt_says_diagnose_axis_never_replaces_suggest_swap():
+    p = chat.SYSTEM_PROMPT
+    assert "diagnose_axis NEVER replaces suggest_swap" in p
+    assert 'axis clock for "faster" (never ceiling' in p
+
+
+def test_a_faster_question_is_routed_to_the_clock_axis():
+    f = chat._route_swap_axis
+    assert f("How could I make this deck faster?", {"axis": "ceiling"}) == {"axis": "clock"}
+    assert f("how do i speed up my deck", {"axis": "speed"}) == {"axis": "clock"}
+    # not for other questions, other axes, or an already-correct / absent axis
+    assert f("how do I improve my interaction", {"axis": "ceiling"}) == {"axis": "ceiling"}
+    assert f("make it faster", {"axis": "consistency"}) == {"axis": "consistency"}
+    assert f("make it faster", {"axis": "clock"}) == {"axis": "clock"}
+    assert f("make it faster", {}) == {}
+
+
+def test_ask_runs_suggest_swap_on_clock_for_a_faster_question(monkeypatch):
+    ran = []
+
+    def fake_call(ctx, name, args):
+        ran.append((name, args))
+        return ToolResult(data={"found": True})
+
+    script = [_call("suggest_swap", '{"axis": "ceiling"}'),
+              {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}]
+    seen = []
+
+    def fake_post(messages, *, model, temperature, max_tokens, timeout=120):
+        seen.append(1)
+        return script[min(len(seen) - 1, 1)]
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    monkeypatch.setattr(chat, "call_tool", fake_call)
+    reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
+    assert ran == [("suggest_swap", {"axis": "clock"})]
+    assert reply.tool_trace[0].args == {"axis": "clock"}
