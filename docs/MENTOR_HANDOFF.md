@@ -514,6 +514,23 @@ pointed at Advise on the deck page.
 - The nudge/route logic in `chat.py` (`_wants_a_swap`, `_route_swap_axis`, `_measured_first`) is regex
   and call-shaped: re-run the holistic bench after touching any of it.
 
+**Dual-goal completion and clock-in-turns (2026-10-01, branch `mentor-dual`).** Two replies the
+side-claims round left wrong. (1) "Faster or more resilient" still narrated one goal in 5/9 decks after both
+lookups ran deterministically, and two prompt rules and a nudge had not changed it, so `chat._complete_dual`
+now completes the reply: for each named goal axis the draft does not address (`verdicts.axis_addressed`: about
+the axis AND names the measured add, or says no measured improvement in a sentence naming the axis; the bench
+`dual` rubric uses the same function) it appends plain prose built only from that axis's swap result (verdict
+and score, the measured swap with its kill-turn change, or "no measured swap ... a full search can be run from
+the deck page"), applied before every gate attempt so the shipped text is the checked text. Template numbers
+must be licensed: an early draft said "out of 100" and the gate rejected it. (2) The clock axis is a 0-100
+score, so "+1.7 points" is ~0.2 turns, yet replies said "1.7 turns" and the gate passed the licensed number.
+Clock swap results now carry `kill_turn_before/after/change` and a `clock_note`; gate check 8
+(`verdicts.turn_confusion_reasons`, `ClaimBudget.clock_swaps`) flags "<n> turns" only when n matches a clock
+score figure and no kill-turn figure; the prompt says clock changes are points. Live: dual 9/9, faster 9/9; the
+replies now say "1.7 points ... 0.2 turns". Residuals: a reply that calls the speed half "ceiling" still gets
+the speed sentence appended after it (accurate, slightly redundant); the saved JSON from `--json` can carry
+mojibake apostrophes (PowerShell), which is a bench artifact, not a runtime one.
+
 **Browser-verified end to end (2026-10-01, Opus, real UI on alt ports :8030/:8040 against a copied
 Smaug deck, qwen3:14b).** Both new starter prompts render; "How could I make it faster or more
 resilient?" answered honestly ("the quick in-chat search didn't find any measured improvements")
