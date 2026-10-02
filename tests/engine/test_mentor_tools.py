@@ -1078,6 +1078,21 @@ def test_removal_coverage_does_not_list_spells_as_a_gap_without_blue(make_card, 
     assert "spell" not in d["answers_by_type"] and "spell" not in d["counts_by_type"]
     assert "spell" not in d["no_answer_for"] and "spell" not in d["no_unrestricted_answer_for"]
     assert "never recommend" in d["not_applicable_types"]["spell"]
+    assert "only counterspells" not in d["not_applicable_types"]["spell"]   # rare, not impossible
     ctx.resolved.commanders[0].color_identity = ("G", "U")
     d = call_tool(ctx, "removal_coverage", {}).data
     assert "spell" in d["answers_by_type"] and d["not_applicable_types"] == {}
+
+
+def test_removal_coverage_keeps_a_real_spell_answer_without_blue(make_card, empty_store):
+    """'Not applicable' must never HIDE a counter a non-blue deck really runs (Pyroblast-class):
+    the old note said only blue counters spells, and the model repeated it as Magic fact."""
+    ctx = _ctx(make_card, empty_store)                  # mono-green commander
+    blast = make_card("Red Countering Test Card", type_line="Instant", mana_cost="{R}",
+                      oracle_text="Counter target spell if it's blue.", color_identity=("R",))
+    ctx.resolved.commanders[0].color_identity = ("G", "R")
+    ctx.resolved.cards.append((blast, 1))
+    d = call_tool(ctx, "removal_coverage", {}).data
+    assert d["answers_by_type"].get("spell"), d["answers_by_type"]
+    assert "spell" not in d["no_answer_for"]
+    assert "rarely" in d["not_applicable_types"]["spell"]

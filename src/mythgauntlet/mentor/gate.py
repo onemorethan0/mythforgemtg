@@ -202,7 +202,8 @@ def _says_counterspells_na(data: dict) -> bool:
     if data.get("counterspell_applicable") is False:
         return True
     counts = data.get("interaction_counts")
-    if isinstance(counts, dict) and str(counts.get("counterspells", "")).startswith("n/a"):
+    if isinstance(counts, dict) and (str(counts.get("counterspells", "")).startswith("n/a")
+                                     or counts.get("counterspells_applicable") is False):
         return True
     identity = data.get("deck_color_identity")
     if isinstance(identity, list) and identity and "U" not in identity:
@@ -554,11 +555,15 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     is not among the ones the reply cites.
     reasons.extend(_affirmed_wrong_rule_reasons(body, question))
 
+    # 13. A GUESS AFTER ADMITTING THE RULES DON'T SETTLE IT (`verdicts.
+    #     guess_after_admission_reasons`). The prompt-only rule never held for qwen3:14b.
+    reasons.extend(verdicts_mod.guess_after_admission_reasons(body))
+
     return reasons
 
 
 _AGREEMENT_OPENER_RE = re.compile(
-    r"^\W*(?:yes\b|yep\b|correct\b|exactly\b|you(?:'re| are)\s+(?:absolutely\s+|exactly\s+|quite\s+)?"
+    r"^\W*(?:yes\b|yep\b|right\b|correct\b|exactly\b|you(?:'re| are)\s+(?:absolutely\s+|exactly\s+|quite\s+)?"
     r"(?:right|correct)\b|that(?:'s| is)\s+(?:absolutely\s+|exactly\s+)?(?:right|correct)\b)",
     re.IGNORECASE)
 

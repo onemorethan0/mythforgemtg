@@ -808,7 +808,14 @@ NO_IMPROVEMENT_RE = re.compile(
     # enough boost", "wasn't a clear improvement"): a negator and an improvement word in
     # one clause. Lenient by design -- it is only consulted when the tool found NO swap.
     r"(?:\bno\b|\bnot\b|n't|\bnone\b|\bnothing\b)[^.]{0,60}"
-    r"\b(?:measur\w*|improv\w*|gains?|boosts?|swaps?|upgrades?)\b)",
+    r"\b(?:measur\w*|improv\w*|gains?|boosts?|swaps?|upgrades?)\b|"
+    # qwen3:14b's own no-result space, measured from 36 generated phrasings (2026-10-02; only
+    # 14/36 matched before): "I don't see any cards that would help make the deck faster",
+    # "there's not much that could really speed things up", "a quick scan didn't turn up any
+    # cards", "not a lot of potential there". A negator and a GOAL word in one clause.
+    r"(?:\bno\b|\bnot\b|n't|\bnone\b|\bnothing\b|\blittle\b)[^.]{0,80}"
+    r"\b(?:help\w*|speed\w*|faster|quicker|resilien\w*|durab\w*|surviv\w*|stands?\s+out|"
+    r"potential|ways?\s+to|path\s+to)\b)",
     re.IGNORECASE,
 )
 
@@ -979,8 +986,16 @@ _CS_RE = re.compile(r"\bcounter[\s-]?spells?\b|\bcounter\s+magic\b|\bcountering\
                     re.IGNORECASE)
 _CS_RECOMMEND_RE = re.compile(
     r"\b(?:add|adding|include|including|consider|considering|run|running|play|playing|get|"
-    r"getting|try|trying|pick\s+up|picking\s+up|want|worth(?!\s+(?:noting|mentioning|knowing)))\b[^.]{0,60}\b"
-    r"(?:counter[\s-]?spells?|counter\s+magic)\b",
+    r"getting|try|trying|pick\s+up|picking\s+up|want|benefit\s+from|"
+    r"worth(?!\s+(?:noting|mentioning|knowing)))\b[^.]{0,60}\b"
+    r"(?:counter[\s-]?spells?|counter\s+magic)\b"
+    # counterspells as the SUBJECT of a pitch -- "Counterspells would be a solid addition",
+    # "Counterspells can protect your key plays" (12 of 24 generated pitches, 2026-10-02)
+    # (anchored at the sentence start: "a big target for counterspells, so protect it" is
+    # about the opponents' and must not read as a pitch)
+    r"|^\W*(?:[\w']+\s+){0,2}?counter[\s-]?spells?\b(?![^.]{0,50}\b(?:not|n't|never)\b)[^.]{0,50}\b"
+    r"(?:would|could|can\s+(?:protect|help|give|turn|stop)|provide|give|protect|helps?|addition|"
+    r"must[\s-]have|edge|tide)\b",
     re.IGNORECASE,
 )
 _CS_GAP_RE = re.compile(
@@ -988,11 +1003,29 @@ _CS_GAP_RE = re.compile(
     r"thin|significant|deficien\w*|light\s+on|under[\s-]?supplied)\b",
     re.IGNORECASE,
 )
+# "Without counterspells, your deck might struggle", "leaving yourself open without
+# counterspells" (generated, 2026-10-02). These consequence words count only when the sentence
+# says THIS deck has none: "vulnerable to decks with strong counterspells" is about the
+# opponent's (Arahbo, a real reply that the first draft of this rule wrongly failed).
+_CS_CONSEQUENCE_RE = re.compile(
+    r"\b(?:struggl\w*|vulnerable|exposed|leav\w+\s+(?:yourself|you|it)\s+open|too\s+reactive)\b",
+    re.IGNORECASE,
+)
+# Counterspells that belong to the OPPONENTS: "playing around counterspells", "get past the
+# counterspell roadblock", "even if opponents play counterspells" (6 of 36 generated
+# opponent-context sentences fired as recommendations, 2026-10-02 -- "play"/"get" were always in
+# the verb list, so this was latent before the corpus found it).
+_CS_OPPONENTS_RE = re.compile(
+    r"\b(?:around|past|through|against|despite|opponents?'?s?|their)\b", re.IGNORECASE)
+_CS_ABSENT_RE = re.compile(
+    r"\b(?:without|not\s+having|no|lack\w*|missing)\s+(?:any\s+)?counter[\s-]?spells?\b",
+    re.IGNORECASE,
+)
 _CS_IDENTITY_ACK_RE = re.compile(
     r"(?:not\s+in\s+(?:your|the)\s+(?:deck'?s?\s+)?(?:colou?r|commander)|outside\s+(?:your|the)|"
     r"isn'?t\s+in\s+(?:your|the)|aren'?t\s+in\s+(?:your|the)|"
     r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+play\s+blue|"
-    r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|"
+    r"(?:no|without)\s+blue|lacks?\s+blue|lack\s+of\s+blue|blue\s+(?:isn'?t|is\s+not)|"
     r"absence\s+of\s+blue|blue\s+is\s+(?:absent|missing)|"
     r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+include\s+blue|"
     # "as it does not have blue in its color identity" (Kaalia, 2026-10-01)
@@ -1019,12 +1052,74 @@ def counterspell_advice_reasons(text: str) -> list[str]:
         if not _CS_RE.search(sentence):
             continue
         rec = _CS_RECOMMEND_RE.search(sentence)
-        recommends = bool(rec) and not _CS_NEG_BEFORE_RE.search(sentence[:rec.start()])
-        gap = bool(_CS_GAP_RE.search(sentence))
+        recommends = (bool(rec) and not _CS_NEG_BEFORE_RE.search(sentence[:rec.start()])
+                      and not _CS_OPPONENTS_RE.search(rec.group(0))
+                      and not _CS_OPPONENTS_RE.search(sentence[max(0, rec.start() - 25):rec.start()]))
+        gap = bool(_CS_GAP_RE.search(sentence)) or bool(
+            _CS_CONSEQUENCE_RE.search(sentence) and _CS_ABSENT_RE.search(sentence))
         if (recommends or gap) and not _CS_IDENTITY_ACK_RE.search(sentence):
             kind = "recommends counterspells" if recommends else "calls missing counterspells a gap"
             reasons.append(f"{kind} without blue identity: {sentence.strip()[:90]!r}")
     return reasons
+
+
+# ── Admission followed by a guess (gate check 13) ──────────────────────────────────────
+# The prompt already says: if the retrieved rules do not address the question, say so and STOP.
+# qwen3:14b ignores it (mentor_bench `trap_unaddressed_nuance`, every run on 2026-10-01): "None of
+# the rules provided directly address whether ... However, based on general Magic rules, a token
+# generally does not count itself." The admission is honest; the sentence after it is an
+# unverified ruling dressed as a conclusion. Fires on an admission sentence followed (anywhere
+# later) by a sentence resting on GENERAL knowledge -- not on one that cites a rule number, which
+# the citation checks already verify.
+_ADMISSION_RE = re.compile(
+    r"\b(?:(?:do(?:es)?\s*n['o]?t|do(?:es)?\s+not|did\s*n'?t|did\s+not)\s+(?:\w+\s+){0,2}?"
+    r"(?:address|cover|answer|resolve|mention|say|state|explain|specify|clarify|settle|discuss|"
+    r"apply|go\s+into)"
+    r"|(?:no|none\s+of\s+the)\s+(?:\w+\s+){0,2}?(?:rules?|rulings?|results?|text)\b[^.]{0,40}?"
+    r"\b(?:address|cover|answer|resolve|mention|say|state|explain|specify)"
+    r"|could\s*n'?t\s+find\s+(?:a|any)\s+(?:specific\s+|direct\s+)?(?:rule|ruling)"
+    r"|could\s+not\s+find\s+(?:a|any)\s+(?:specific\s+|direct\s+)?(?:rule|ruling)"
+    r"|(?:is|are)\s*n'?t\s+(?:directly\s+|specifically\s+|explicitly\s+)?(?:addressed|covered)"
+    r"|(?:is|are)\s+not\s+(?:directly\s+|specifically\s+|explicitly\s+)?(?:addressed|covered))",
+    re.IGNORECASE)
+_GENERAL_BASIS_RE = re.compile(
+    r"\b(?:based\s+on\s+(?:general|common|standard|typical|my|the\s+general)"
+    r"|general\s+(?:magic|mtg|game|rules?)\b|in\s+general\b|generally\b|typically\b|usually\b"
+    r"|as\s+a\s+(?:general\s+)?rule\b|in\s+most\s+cases|it\s+(?:seems|appears)\b|likely\b"
+    r"|in\s+practice\b|commonly\b|(?:generally\s+)?(?:accepted|understood)\b"
+    r"|probably\b|presumably\b|i\s+(?:would|'d)\s+(?:assume|expect|say)|would\s+(?:likely|probably))",
+    re.IGNORECASE)
+
+
+RULE_CITATION_RE = re.compile(r"\b\d{3}\.\d+[a-z]?\b")   # same shape as tools.RULE_NUM_RE
+_RULES_EVIDENCE_RE = re.compile(
+    r"\b(?:rules?|rulebook|rulings?|comprehensive|retrieved|search\w*|results?|sources?|"
+    r"documentation)\b"
+    r"|\b\d{3}\.\d+", re.IGNORECASE)
+
+
+def guess_after_admission_reasons(text: str) -> list[str]:
+    """Gate/bench reasons: a reply that admits the retrieved rules do not settle the question and
+    then answers it anyway from general knowledge."""
+    sentences = split_sentences(normalize_apostrophes(text))
+    for i, s in enumerate(sentences):
+        # the admission has to be about the RULES evidence ("your deck doesn't mention graveyard
+        # hate. Generally, ..." is deck advice, not a ruling)
+        adm = _ADMISSION_RE.search(s)
+        if not (adm and _RULES_EVIDENCE_RE.search(s)):
+            continue
+        # The common shape is ONE sentence: "The rules don't cover this, but generally ..."
+        # (36 of 36 generated guesses, 2026-10-02) -- read the clause after the contrast too.
+        # ("Although the rules don't cover this, generally ..." puts the guess after a comma.)
+        tail = re.split(r",|\b(?:but|however|though|yet)\b", s[adm.end():], maxsplit=1)
+        rest = tail[1:] if len(tail) > 1 else []
+        for later in rest + sentences[i + 1:]:
+            if _GENERAL_BASIS_RE.search(later) and not RULE_CITATION_RE.search(later):
+                return [
+                    "says the retrieved rules do not address the question, then answers it anyway "
+                    f"from general knowledge ({later.strip()[:90]!r}) -- if the rules you retrieved "
+                    "don't settle it, say so and stop: suggest checking with a judge, give no guess"]
+    return []
 
 
 # "One copy of any non-basic land card" is how qwen3:14b paraphrases CR 903.5b even with the rule

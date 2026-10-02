@@ -683,8 +683,10 @@ def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = Non
         "interaction_counts": {
             "spot_removal": inter.spot_removal,
             # not a gap when no colour in the identity supplies counterspells (C1)
-            "counterspells": (inter.counterspells if counters_apply
-                              else "n/a (no blue in this deck's colour identity)"),
+            # a real count is never hidden (a deck without blue may still run a Pyroblast);
+            # only an EMPTY slot reads "n/a", since there it would read as a gap
+            "counterspells": (inter.counterspells if counters_apply or inter.counterspells
+                              else "n/a (rare outside blue; not a gap for this deck)"),
             "counterspells_applicable": counters_apply,
             "board_wipes": inter.board_wipes, "breadth": inter.breadth,
             "breadth_max": 3 if counters_apply else 2,   # types (removal / counters / wipes) in play
@@ -740,17 +742,27 @@ def tool_removal_coverage(ctx: MentorContext) -> ToolResult:
     not_applicable: dict[str, str] = {}
     identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
     if not redundancy.role_applicable("counterspell", identity):
-        # Only counterspells answer a SPELL, and no colour in this identity plays them: the
-        # empty "spell" entry read as a coverage gap and three of the bench's non-blue decks
-        # were told to "consider adding counterspells" (C-residual colour 6/9).
-        cov = {**cov, "answers_by_type": {k: v for k, v in cov["answers_by_type"].items() if k != "spell"},
-               "unrestricted_answers_by_type": {k: v for k, v in
-                                                cov["unrestricted_answers_by_type"].items() if k != "spell"},
+        # An empty "spell" entry read as a coverage GAP and three of the bench's non-blue decks
+        # were told to "consider adding counterspells" (C-residual colour 6/9), so it leaves the
+        # gap lists. The spell ANSWERS stay: counters exist outside blue (Mana Tithe, Pyroblast),
+        # and hiding a deck's real one would be the opposite error. The note used to say "only
+        # counterspells answer spells, and no blue ... plays them" -- the model repeated it as
+        # Magic fact (Isshin/Kaalia, 2026-10-01); the measured claim is "rare", not "none".
+        has_spell_answers = bool(cov["answers_by_type"].get("spell"))
+        if not has_spell_answers:   # an empty row reads as a gap just as loudly as the gap list
+            cov = {**cov,
+                   "answers_by_type": {k: v for k, v in cov["answers_by_type"].items() if k != "spell"},
+                   "unrestricted_answers_by_type": {k: v for k, v in
+                                                    cov["unrestricted_answers_by_type"].items()
+                                                    if k != "spell"}}
+        cov = {**cov,
                "no_answer_for": [t for t in cov["no_answer_for"] if t != "spell"],
                "no_unrestricted_answer_for": [t for t in cov["no_unrestricted_answer_for"]
                                               if t != "spell"]}
-        not_applicable["spell"] = ("only counterspells answer spells, and no blue in this deck's "
-                                   "colour identity plays them -- not a gap, never recommend them")
+        not_applicable["spell"] = (
+            "answering spells on the stack is mostly blue's job; decks without blue rarely run "
+            "any (a typical one runs none), so having none is not a gap -- never recommend adding "
+            "counterspells")
     counts = {
         typ: {"answers": len(cov["answers_by_type"][typ]),
               "unrestricted": len(cov["unrestricted_answers_by_type"][typ])}
@@ -1032,7 +1044,7 @@ def tool_diagnose_axis(ctx: MentorContext, axis: str) -> ToolResult:
     for row in out["drivers"]:
         value = row["value"]
         if row["name"] == "counterspells" and not facts["counterspell_applicable"]:
-            row["value"] = "n/a (no blue in this deck's colour identity)"
+            row["value"] = (value if value else "n/a (rare outside blue; not a gap for this deck)")
             row["reading"] = "not_applicable"
         elif row["name"] == "board_wipes" and not facts["wipe_applicable"]:
             row["value"] = "n/a (no colour in this deck's identity plays wipes)"
