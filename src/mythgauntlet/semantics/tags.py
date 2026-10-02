@@ -70,6 +70,7 @@ _ONE_SHOT_TRIGGER_RE = re.compile(
     r"|unlock this door|counter is put on|loses the game|wins the fight|as evidence)\b"
     r"|^when you cast (?!that\b|a\b|an\b|another\b|your\b)"
     r"|^when you sacrifice this\b"
+    r"|^when this spell resolves\b"
 )
 # A reflexive trigger ("When you do, draw a card") recurs exactly as often as the sentence
 # it hangs off: once under Selfcraft Mechan's ETB, every attack under Watchful Naga's exert.
@@ -99,6 +100,13 @@ _SELF_COST_TEMPLATE = (
 # Sorcerer's Strongbox sacrifices itself to draw. Only "this"/the card's name here: an
 # effect's "put it onto the battlefield" (Thrasios) is some other card.
 _SELF_EFFECT_TEMPLATE = r"\b(?:sacrifice|exile|return|shuffle|put) (?:this\b|{name})"
+# A TRIGGER that sacrifices the card on its way to the draw fires once: Impaler Shrike's
+# "Whenever this creature deals combat damage to a player, you may sacrifice it. If you do,
+# draw three cards", Charitable Levy's "... sacrifice it. If you do, draw a card". In a
+# trigger, "it" before the draw is the trigger's own object; only a self-sacrifice AT OR
+# BEFORE the draw counts — Tellah's and Rent Is Due's sacrifice afterwards end an engine
+# that has already been drawing.
+_SACRIFICE_IT_RE = re.compile(r"\bsacrifice it\b")
 # Exhaust and "activate only once" (but not "only once each turn") cap the ability at one
 # use per game; an ability activated from the hand (Forecast) never sits on the battlefield.
 _ONCE_ONLY_COST_RE = re.compile(r"^exhaust — |\bfrom your hand\b")
@@ -119,6 +127,15 @@ _SHARED_WITH_OPPONENT_RE = re.compile(r"\byou and [^,]*opponents? each $")
 # it points back to, so it is resolved only in two positive shapes, see `_draw_counts`.
 _ANAPHOR_SUBJECT_RE = re.compile(r"\b(?:that player|they) (?:may )?$")
 _OPPONENT_SCOPE_RE = re.compile(r"\bopponent|\beach other player|\banother player")
+# Combat damage to "a player" lands on an opponent (Miss Highwater's "deals combat damage to a
+# player who doesn't have a contract counter, they may discard their hand. If they do, they
+# draw seven cards" — the damaged opponent draws seven). Used only to scope a follow-on
+# sentence's anaphor, see `_draw_counts`.
+_COMBAT_DAMAGE_TO_PLAYER_RE = re.compile(r"\bcombat damage to a player\b")
+# The trigger's effect opens on the anaphor itself: ", that player discards", ", they may".
+_ANAPHOR_EFFECT_RE = re.compile(r", (?:that player|the player|they)\b")
+# "If you don't draw a card this way" (Trade Route Envoy) names a draw that did not happen.
+_NEGATED_DRAW_RE = re.compile(r"\b(?:don't|didn't|doesn't|do not|did not|does not) $")
 _CHOSEN_OPPONENT_RE = re.compile(r"\b(?:choose|target) (?:target )?opponent\b")
 # "If you would draw ..." REPLACES the draw; the sentence names a draw that never happens.
 _DRAW_REPLACEMENT_RE = re.compile(r"\bif [^.]{0,30}?would draw\b")
@@ -361,6 +378,21 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
     Whose draw it is matters as much as how often: "that player draws" after an
     opponent-scoped trigger is the OPPONENT drawing (Coveted Jewel, Well of Ideas), and
     "each other player draws" never was ours.
+
+    A trigger's effect often runs past its first sentence: "Whenever this creature deals
+    combat damage to a player, you may discard a card. If you do, draw a card." Each sentence
+    used to be read on its own, so that draw was IMMEDIATE and ~170 recurring triggers (Gix,
+    Yawgmoth Praetor, Academy Raider, Archon of Cruelty) read as one card instead of an
+    engine. A FOLLOW-ON sentence — a non-trigger sentence after a trigger on the same line —
+    now belongs to that trigger's ability and inherits its kind, so a one-shot ETB's
+    follow-on stays one-shot. Within one ability an "instead" sentence is the MAX of the two
+    readings, not the sum (Fblthp, The Destined Thief); an ability that sacrifices or exiles
+    the card itself at or before its draw is one-shot (Impaler Shrike), one that does so only
+    afterwards is still an engine (Tellah). A follow-on anaphor ("If the player does, they
+    draw") is the opponent's when the condition is opponent-scoped and the effect opened on
+    "that player"/"they" (Skullknocker Ogre, Miss Highwater). A NESTED trigger keeps its own
+    kind: Xira's "When that creature dies" under an attack trigger stays one-shot, an honest
+    under-count.
     """
     text = re.sub(r'"[^"]*"', "", text)
     name_alt = "|".join(re.escape(n) for n in names) or r"(?!x)x"
@@ -377,17 +409,54 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
         if activation:
             line = line.partition(":")[2]  # the cost never draws ("discard the last card you drew")
         opponent_chosen = False  # Soldevi Sentry: "Choose target opponent. ... that player"
+        # The triggered ability the current sentence belongs to: None before any trigger on
+        # this line, else whether it is one-shot, and its draws so far.
+        ability_one_shot: bool | None = None
+        ability_drawn = 0
+        ability_anaphor_is_opponent = False
+        ability_consumed = False  # its effect has sacrificed/exiled the card itself so far
         for sentence in line.split("."):
             s = sentence.strip()
             if not s:
                 continue
             head, sep, tail = s.partition(",")
-            # A legendary name carries its own comma ("When Lutri, Pauper Otter enters the
-            # battlefield, ..."), so the event can sit one comma further on.
-            is_one_shot = bool(
-                _ONE_SHOT_TRIGGER_RE.match(head)
-                or _ONE_SHOT_TRIGGER_RE.match(",".join(s.split(",")[:2]))
-                or (prev_one_shot and _REFLEXIVE_TRIGGER_RE.match(head)))
+            triggered = bool(_TRIGGER_RE.match(s))
+            reflexive = bool(_REFLEXIVE_TRIGGER_RE.match(head))
+            if activation:
+                is_one_shot = False
+            elif triggered:
+                # A legendary name carries its own comma ("When Lutri, Pauper Otter enters the
+                # battlefield, ..."), so the event can sit one comma further on.
+                is_one_shot = bool(
+                    _ONE_SHOT_TRIGGER_RE.match(head)
+                    or _ONE_SHOT_TRIGGER_RE.match(",".join(s.split(",")[:2]))
+                    or (prev_one_shot and reflexive))
+                if not reflexive:
+                    # A new trigger starts a new ability; a reflexive one continues the last.
+                    one_shot, engine = _close_ability(
+                        ability_one_shot, ability_drawn, one_shot, engine)
+                    ability_drawn = 0
+                    # Its anaphors in later sentences point at the opponent only when the
+                    # condition is opponent-scoped AND the effect hands the turn to "that
+                    # player" (Skullknocker Ogre: "..., that player discards a card at random.
+                    # If the player does, they draw a card"). Gix's "its controller may pay 1
+                    # life. If they do, they draw a card" stays ours.
+                    ability_anaphor_is_opponent = bool(
+                        sep and (_OPPONENT_SCOPE_RE.search(head)
+                                 or _COMBAT_DAMAGE_TO_PLAYER_RE.search(head))
+                        and _ANAPHOR_EFFECT_RE.search(s))
+                ability_one_shot = is_one_shot
+            else:
+                # A FOLLOW-ON sentence of a trigger ("Whenever ..., you may pay 1 life. If you
+                # do, draw a card") is that trigger's effect: it fires exactly as often.
+                is_one_shot = bool(ability_one_shot)
+            follow_on = not activation and not triggered and ability_one_shot is not None
+            if triggered and not activation and not reflexive:
+                ability_consumed = False
+            if (triggered or follow_on) and not activation:
+                effect = tail if triggered and sep else s
+                ability_consumed = ability_consumed or bool(
+                    self_res[1].search(effect) or _SACRIFICE_IT_RE.search(effect))
             prev_one_shot = is_one_shot
             chose_opponent_before = opponent_chosen
             opponent_chosen = opponent_chosen or bool(_CHOSEN_OPPONENT_RE.search(s))
@@ -399,7 +468,6 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
                 # Heaven Sent's "if an opponent has 0 or less life, draw seven cards" waits on
                 # a state that ends the game first.
                 continue
-            triggered = bool(_TRIGGER_RE.match(s))
             scan = s
             if triggered:
                 # Count only the EFFECT clause. The trigger condition runs to the first comma;
@@ -409,10 +477,10 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
             # Whose draw an anaphor names: the opponent when this trigger's own condition is
             # opponent-scoped (Coveted Jewel, Well of Ideas' "each other player's draw step,
             # that player draws", Forced Fruition), or when an earlier sentence of the same
-            # ability chose a target opponent (Soldevi Sentry). Nothing wider: Gix's
-            # "If they do, they draw a card" points at Gix's own controller.
+            # ability chose a target opponent (Soldevi Sentry).
             anaphor_is_opponent = chose_opponent_before or (
-                triggered and bool(sep) and bool(_OPPONENT_SCOPE_RE.search(head)))
+                triggered and bool(sep) and bool(_OPPONENT_SCOPE_RE.search(head))) or (
+                follow_on and ability_anaphor_is_opponent)
             drawn = 0
             for m in _DRAW_RE.finditer(scan):
                 before = scan[: m.start()]
@@ -423,23 +491,47 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
                     continue
                 if activation == "opponents" and "controller" not in before:
                     continue
+                if _NEGATED_DRAW_RE.search(before):
+                    continue
                 n = _WORD_NUMBERS.get(m.group(1), 0)
                 if activation == "repeatable":
                     activated += n
-                elif not activation and triggered and not is_one_shot:
-                    engine += min(n, 2)  # cap: triggers rarely fire more than ~2x/turn in goldfish
+                elif (not activation and (triggered or follow_on)
+                        and not (is_one_shot or ability_consumed)):
+                    drawn += min(n, 2)  # cap: triggers rarely fire more than ~2x/turn in goldfish
                 else:
                     drawn += n
-            if not activation and triggered and is_one_shot:
-                one_shot = max(one_shot, drawn)
+            if not activation and (triggered or follow_on):
+                if drawn and ability_consumed:
+                    ability_one_shot = True  # the card was used up to pay for this draw
+                # "... draw a card. If <condition>, draw two cards instead" (The Destined
+                # Thief, Fblthp) is one or the other, never both.
+                if follow_on and "instead" in s:
+                    ability_drawn = max(ability_drawn, drawn)
+                else:
+                    ability_drawn += drawn
             else:
                 immediate += drawn
+        one_shot, engine = _close_ability(ability_one_shot, ability_drawn, one_shot, engine)
         # One activated ability's draws per turn, at the same cap of 2. Several activated draws
         # on one card are usually ALTERNATIVE uses of the same {T} (Krovikan Sorcerer's two
         # discard-to-draw abilities), and "draw a card. If you control eight or more lands,
         # draw two cards instead" (Zimone) is one or the other — so the MAX, not the sum.
         activated_engine = max(activated_engine, min(activated, 2))
     return immediate + one_shot, engine + activated_engine
+
+
+def _close_ability(ability_one_shot: bool | None, drawn: int,
+                   one_shot: int, engine: int) -> tuple[int, int]:
+    """Fold one finished triggered ability's draws into (one_shot, engine).
+
+    Several one-shot triggers on one card take the MAX (Market Gnome's alternatives); a
+    recurring trigger's draws add to the per-turn engine."""
+    if ability_one_shot is None:
+        return one_shot, engine
+    if ability_one_shot:
+        return max(one_shot, drawn), engine
+    return one_shot, engine + drawn
 
 
 def _activation_kind(line: str, self_cost_re: re.Pattern[str],
