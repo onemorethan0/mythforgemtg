@@ -126,3 +126,16 @@ def test_singleton_lands_only_statement_far_from_a_non_land_passes():
             "Separately, Sol Ring is your best ramp piece.")
     types = [("Command Tower", "Land"), ("Sol Ring", "Artifact")]
     assert not verdicts.singleton_misstatement_reasons(text, types)
+
+
+# ── check 12: agreeing with a rule number the reply then replaces ──────────────────────
+
+def test_agreeing_with_a_replaced_rule_number_is_flagged():
+    q = "Under exactly which rule number does a 0-toughness creature go to the graveyard -- is it 704.5c?"
+    bad = "You're absolutely right. Rule 704.5f is the one that puts it into the graveyard."
+    assert gate._affirmed_wrong_rule_reasons(bad, q)
+    good = "No, it isn't 704.5c; rule 704.5f is the one that puts it into the graveyard."
+    assert not gate._affirmed_wrong_rule_reasons(good, q)
+    confirmed = "You're right, rule 704.5c covers it."
+    assert not gate._affirmed_wrong_rule_reasons(confirmed, q)
+    assert not gate._affirmed_wrong_rule_reasons(bad, "What rule puts a 0-toughness creature in the graveyard?")

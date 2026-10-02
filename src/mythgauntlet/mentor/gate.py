@@ -542,7 +542,34 @@ def check(text: str, budget: ClaimBudget, question: str = "",
             "identity), so do not call their absence a weakness or suggest adding them"
             for r in verdicts_mod.counterspell_advice_reasons(body))
 
+    # 12. AGREEING WITH A RULE NUMBER THE REPLY THEN REPLACES. Live 2026-10-01: "Is it 704.5c?"
+    #     -> "You're absolutely right ... rule 704.5f", and "603.3d?" -> "You're correct ...
+    #     603.3". The cited rule is the honest part; the opener affirms the player's wrong number.
+    #     Fires only when the question names a rule, the reply OPENS by agreeing, and that rule
+    #     is not among the ones the reply cites.
+    reasons.extend(_affirmed_wrong_rule_reasons(body, question))
+
     return reasons
+
+
+_AGREEMENT_OPENER_RE = re.compile(
+    r"^\W*(?:yes\b|yep\b|correct\b|exactly\b|you(?:'re| are)\s+(?:absolutely\s+|exactly\s+|quite\s+)?"
+    r"(?:right|correct)\b|that(?:'s| is)\s+(?:absolutely\s+|exactly\s+)?(?:right|correct)\b)",
+    re.IGNORECASE)
+
+
+def _affirmed_wrong_rule_reasons(body: str, question: str) -> list[str]:
+    asked = set(RULE_NUM_RE.findall(question or ""))
+    if not asked or not _AGREEMENT_OPENER_RE.search(body):
+        return []
+    cited = set(RULE_NUM_RE.findall(body))
+    if not cited or asked & cited:
+        return []
+    return [
+        f"opens by agreeing with the player's rule {', '.join(sorted(asked))}, but cites "
+        f"{', '.join(sorted(cited))} instead -- if the player's rule number is not the one that "
+        "says this, say so plainly first (\"No, it isn't {asked}; it's ...\") instead of agreeing"
+        .replace("{asked}", sorted(asked)[0])]
 
 
 class GateFailure(Exception):
