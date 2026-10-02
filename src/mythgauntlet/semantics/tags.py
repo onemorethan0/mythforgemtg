@@ -53,6 +53,16 @@ _SACRIFICE_FOR_MANA_RE = re.compile(r"sacrifice (?:this|it)[^:.]*:[^.]*\badd\b")
 _SEARCH_CARD_RE = re.compile(r"search (?:your|their) library for ([^.]*)")
 _DRAW_RE = re.compile(r"draws? (\w+) (?:additional )?cards?")
 _TRIGGER_RE = re.compile(r"^(?:whenever|when |at the beginning of|at the end of)")
+# An ability word or flavor word in front of a trigger ("Landfall — Whenever ...",
+# "Martyrdom — When this creature dies, ...", "Descend 8 — Whenever ..."), a Siege's mode
+# bullet ("• Khans — At the beginning of ..."), an Unfinity sticker cost, chained before an
+# ability word ("{TK}{TK}{TK} — Magecraft — Whenever ..."). Stripped only when a trigger
+# follows. A Saga's chapter numeral ("III — Whenever you cast a spell ... this turn") is NOT
+# stripped: the chapter fires once, and the trigger inside it lasts only that turn.
+_ABILITY_WORD_PREFIX_RE = re.compile(
+    r"^(?:• )?(?![ivx]+(?:, [ivx]+)* — )(?:[^—:.•]{1,40} — ){1,2}"
+    r"(?=whenever|when |at the beginning of|at the end of)"
+)
 # A "when" trigger whose EVENT happens once in the object's life: Solemn Simulacrum's death
 # draw, Mulldrifter's ETB draw. Applied to the trigger condition only (text before the
 # first comma). A positive list on purpose — "when" alone is not proof of one-shot (The
@@ -71,6 +81,10 @@ _ONE_SHOT_TRIGGER_RE = re.compile(
     r"|^when you cast (?!that\b|a\b|an\b|another\b|your\b)"
     r"|^when you sacrifice this\b"
     r"|^when this spell resolves\b"
+    # Khârn the Betrayer's "when you lose control of", Plundered Statue's "is put into a
+    # graveyard from anywhere": both stood behind a flavor word until the prefix was read.
+    r"|^when you lose control of\b"
+    r"|^when (?!.*\bwhenever\b).*\bis put into a graveyard from anywhere\b"
 )
 # A reflexive trigger ("When you do, draw a card") recurs exactly as often as the sentence
 # it hangs off: once under Selfcraft Mechan's ETB, every attack under Watchful Naga's exert.
@@ -393,6 +407,13 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
     "that player"/"they" (Skullknocker Ogre, Miss Highwater). A NESTED trigger keeps its own
     kind: Xira's "When that creature dies" under an attack trigger stays one-shot, an honest
     under-count.
+
+    A trigger is recognised at the START of its sentence, so an ability word in front of it
+    ("Landfall — Whenever a land you control enters, you gain 1 life and draw a card.") hid
+    it: Tatyova's engine read as one immediate card, Sister Repentia's martyrdom and Lord of
+    Change's ETB were summed rather than max'd with other one-shots, and Starving Revenant's
+    "Descend 8 — Whenever you draw a card, ..." counted the CONDITION as a draw. The prefix
+    is stripped before the line is read (`_ABILITY_WORD_PREFIX_RE`).
     """
     text = re.sub(r'"[^"]*"', "", text)
     name_alt = "|".join(re.escape(n) for n in names) or r"(?!x)x"
@@ -405,6 +426,7 @@ def _draw_counts(text: str, names: tuple[str, ...] = ()) -> tuple[int, int]:
     prev_one_shot = False  # the sentence a reflexive "when you do" hangs off
     for line in text.split("\n"):
         activated = 0
+        line = _ABILITY_WORD_PREFIX_RE.sub("", line)
         activation = _activation_kind(line, *self_res)
         if activation:
             line = line.partition(":")[2]  # the cost never draws ("discard the last card you drew")
