@@ -131,7 +131,9 @@ _FUNCTION_CLAIMS: dict[str, tuple[str, ...]] = {
 # never lets a card be called something outside that role.
 _ROLE_VOCABULARY: dict[str, set[str]] = {
     "ramp": {"ramp", "land ramp"},
-    "draw": {"card draw", "repeatable draw"},
+    # NOT "repeatable draw": every draw is card draw, but a role of `draw` says nothing about
+    # whether it recurs. An engine cut still holds that function itself.
+    "draw": {"card draw"},
     "removal": {"removal"},
     "wipe": {"board wipe"},
     "counterspell": {"counterspell"},
@@ -150,19 +152,28 @@ _ROLE_VOCABULARY: dict[str, set[str]] = {
 # sweeper are different cards and calling one the other is a real error. Nor are `ramp` and
 # `ritual mana` - permanent mana and a one-shot ritual are different promises.
 _FUNCTION_FAMILIES: tuple[frozenset[str], ...] = (
-    frozenset({"card draw", "repeatable draw"}),
     frozenset({"ramp", "land ramp"}),
     frozenset({"team pump", "scaling team pump"}),
     frozenset({"magecraft burn", "burn per cast", "scaling burn"}),
 )
 
+# One-directional, unlike a family. An engine DRAWS CARDS, so "repeatable draw" licenses
+# "card draw"; a one-shot draw is not an engine, so the converse is a false claim. Draw used
+# to be a symmetric family, which let any cantrip be called "repeatable draw" — the claim the
+# Deck Mentor made about Solemn Simulacrum's one-time death draw (found live 2026-10-01).
+_FUNCTION_IMPLIES: dict[str, frozenset[str]] = {
+    "repeatable draw": frozenset({"card draw"}),
+}
+
 
 def _widen_by_family(held: set[str]) -> set[str]:
-    """Every function `held` licenses, including its family siblings."""
+    """Every function `held` licenses: its family siblings and what it implies."""
     widened = set(held)
     for family in _FUNCTION_FAMILIES:
         if held & family:
             widened |= family
+    for function in held:
+        widened |= _FUNCTION_IMPLIES.get(function, frozenset())
     return widened
 
 

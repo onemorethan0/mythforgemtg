@@ -542,7 +542,11 @@ reading the reply against the data, both gate-invisible:
 - **The engine's swap brief labels Solemn Simulacrum's one-time death draw as "repeatable draw"**
   (`brief.add.functions`), and the mentor repeated it -- a licensed but WRONG tool fact, i.e. a
   `tags.analyze` draw-classification defect (`engine_draw`), not a mentor fabrication. Fix it in
-  the tagger, not the gate.
+  the tagger, not the gate. **Fixed 2026-10-01** (branch `fix/engine-draw-one-shot-triggers`):
+  `tags._draw_counts` now sends one-shot "when ... dies / enters / leaves / cast" triggers to
+  `draw_cards` (406 cards were engines only that way), and `swap_narrative`'s symmetric
+  {card draw, repeatable draw} family -- which would have re-licensed the claim for any cantrip
+  even with the tagger right -- is now one-directional (an engine is card draw, not vice versa).
 - An unmeasured side claim ("cutting it doesn't hurt your interaction or resilience") rode along with
   a measured clock swap; only the clock was simulated. Same class as the generic closing advice in the
   first reply ("consider a scalable win condition"). A candidate for F1's phrase map or a prompt line
