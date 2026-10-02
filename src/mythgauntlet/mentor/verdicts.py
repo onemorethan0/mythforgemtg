@@ -1070,4 +1070,51 @@ def type_claim_reasons(text: str, card_types) -> list[str]:
                 f"calls {name!r} a {claimed}, but its type line this turn is {type_line!r}: "
                 "state a card's type only as lookup_card returned it")
             break
+    reasons.extend(_pronoun_type_claim_reasons(text, card_types))
     return reasons
+
+
+# "Rhystic Study is an Enchantment ... Since it's a Sorcery, you can cast it ..." -- the model
+# corrects the type and then echoes the player's false premise through a pronoun (mentor_bench
+# false-premise trap, twice on 2026-10-01). "it" resolves to the LAST licensed card named in the
+# same sentence before it, or else in the sentence before; with no single antecedent nothing fires.
+_PRONOUN_TYPE_RE = re.compile(
+    r"\b(?:it'?s|it\s+is)\s+(?:an?)\s+((?:[\w'-]+\s+){0,2}?)"
+    r"(land|creature|artifact|enchantment|instant|sorcery|planeswalker|battle)s?"
+    # the type word must END the noun phrase, as in _TYPE_PHRASE: "it's a creature removal
+    # spell" is not a claim that the card is a creature
+    r"(?=\s*(?:[.,;:!?)]|$)|\s+(?:card|that|which|with|and|but|so|for|in|you|it)\b)",
+    re.IGNORECASE)
+
+
+def _pronoun_type_claim_reasons(text: str, card_types) -> list[str]:
+    types = [(n, tl) for n, tl in card_types or () if n and isinstance(tl, str)]
+    if not types:
+        return []
+    sentences = split_sentences(text)
+    for i, sentence in enumerate(sentences):
+        for m in _PRONOUN_TYPE_RE.finditer(sentence):
+            if re.search(r"\b(?:not|n't|never)\b", m.group(1) or "", re.IGNORECASE):
+                continue
+            scope = sentence[:m.start()] or ""
+            named = _last_named(scope, types)
+            if named is None and i > 0:
+                named = _last_named(sentences[i - 1], types)
+            if named is None:
+                continue
+            name, type_line = named
+            claimed = m.group(2).lower()
+            if claimed not in type_line.lower():
+                return [f"calls {name!r} (as \"it\") a {claimed}, but its type line this turn is "
+                        f"{type_line!r}: if the player's question says otherwise, correct it "
+                        "instead of repeating it"]
+    return []
+
+
+def _last_named(scope: str, types):
+    best = None
+    for name, type_line in types:
+        for m in re.finditer(rf"\b{re.escape(name)}\b", scope, re.IGNORECASE):
+            if best is None or m.start() > best[0]:
+                best = (m.start(), name, type_line)
+    return None if best is None else (best[1], best[2])

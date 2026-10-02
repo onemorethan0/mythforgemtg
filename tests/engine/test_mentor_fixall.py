@@ -155,3 +155,36 @@ def test_curly_apostrophes_do_not_hide_a_no_improvement_statement():
     text = "After testing a few cards, I didn\u2019t find a clear, measurable improvement to speed it up."
     assert not verdicts.NO_IMPROVEMENT_RE.search(text)          # the raw regex is ASCII-only...
     assert verdicts.NO_IMPROVEMENT_RE.search(verdicts.normalize_apostrophes(text))  # ...so normalize first
+
+
+# ── check 1: an English word that is also a card name, at a clause start ──────────────
+
+def test_card_named_like_a_word_at_a_markdown_clause_start_is_not_a_name():
+    import re as _re
+    for text in ("### Summary\n- **To make the deck faster:** Consider the suggested swap.",
+                 "Two options:\n\n1. Consider the swap above.",
+                 "**Consider** the swap above."):
+        m = _re.search(r"\bConsider\b", text)
+        assert not gate._looks_like_a_name(text, m), text
+    mid = "You could add Consider to the deck."
+    assert gate._looks_like_a_name(mid, _re.search(r"\bConsider\b", mid))
+
+
+# ── check 9: a false type echoed through a pronoun ────────────────────────────────────
+
+def test_pronoun_echo_of_a_false_type_is_flagged():
+    types = [("Rhystic Study", "Enchantment")]
+    live = ("Rhystic Study is an Enchantment with the ability to let you draw a card whenever an "
+            "opponent casts a spell. Since it's a Sorcery, you can cast it during your main phase.")
+    assert verdicts.type_claim_reasons(live, types)
+    ok = ("Rhystic Study is an Enchantment, not a Sorcery. Since it's an enchantment, cast it "
+          "early so it starts drawing.")
+    assert not verdicts.type_claim_reasons(ok, types)
+    no_antecedent = "Since it's a sorcery, cast it in your main phase."
+    assert not verdicts.type_claim_reasons(no_antecedent, types)
+
+
+def test_pronoun_attributive_type_word_is_not_a_claim():
+    types = [("Swords to Plowshares", "Instant")]
+    text = "Swords to Plowshares is excellent; it's a creature removal spell for one mana."
+    assert not verdicts.type_claim_reasons(text, types)

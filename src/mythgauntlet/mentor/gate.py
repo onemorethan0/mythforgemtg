@@ -344,8 +344,13 @@ def _looks_like_a_name(text: str, match: re.Match) -> bool:
     word = text[match.start():match.end()]
     if not word[:1].isupper():
         return False
-    before = text[:match.start()].rstrip()
-    return bool(before) and before[-1] not in ".!?"
+    # Markdown and list syntax are not words: "- **To make it faster:** Consider the swap"
+    # starts a clause, and reading "Consider" as the card refused all three drafts of a
+    # correct reply (Ghired dual, 2026-10-01). A line start or a colon begins a clause too.
+    line = text[:match.start()].rsplit("\n", 1)[-1]
+    before = re.sub(r"[\s*_#`>|]+$", "", line)
+    before = re.sub(r"^\s*(?:[-+•]|\d+[.)])\s*$", "", before)
+    return bool(before) and before[-1] not in ".!?:—"
 
 
 def check(text: str, budget: ClaimBudget, question: str = "",
