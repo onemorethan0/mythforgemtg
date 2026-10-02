@@ -118,3 +118,11 @@ def test_singleton_prohibition_after_the_copy_phrase_passes():
                  "Playing multiple copies would violate the singleton rule."):
         assert not verdicts.singleton_reasons(text), text
     assert verdicts.singleton_reasons("You can run two copies of Sol Ring since it is an artifact.")
+
+
+def test_singleton_lands_only_statement_far_from_a_non_land_passes():
+    text = ("You can only run one copy of each non-basic land, so one Command Tower. "
+            "Your mana base is fine. Your curve is fine. "
+            "Separately, Sol Ring is your best ramp piece.")
+    types = [("Command Tower", "Land"), ("Sol Ring", "Artifact")]
+    assert not verdicts.singleton_misstatement_reasons(text, types)

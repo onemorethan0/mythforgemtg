@@ -1028,11 +1028,17 @@ _LAND_ONLY_SINGLETON_RE = re.compile(
 
 
 def singleton_misstatement_reasons(text: str, card_types) -> list[str]:
-    if not _LAND_ONLY_SINGLETON_RE.search(text):
+    # Scoped to the misstating sentence and its neighbours: a reply about Command Tower's
+    # singleton status that mentions Sol Ring three paragraphs later is not this defect.
+    sentences = split_sentences(text)
+    hits = [i for i, s in enumerate(sentences) if _LAND_ONLY_SINGLETON_RE.search(s)]
+    if not hits:
         return []
+    window = " ".join(sentences[j] for i in hits
+                      for j in range(max(0, i - 1), min(len(sentences), i + 2)))
     for name, type_line in card_types or ():
-        if (isinstance(type_line, str) and "land" not in type_line.lower()
-                and re.search(rf"\b{re.escape(name)}\b", text, re.IGNORECASE)):
+        if (name and isinstance(type_line, str) and "land" not in type_line.lower()
+                and re.search(rf"\b{re.escape(name)}\b", window, re.IGNORECASE)):
             return [
                 f"states the singleton rule as covering only non-basic LANDS while the answer is "
                 f"about {name!r} ({type_line}); CR 903.5b says every card other than basic lands "
