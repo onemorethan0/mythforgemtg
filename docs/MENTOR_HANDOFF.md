@@ -500,10 +500,10 @@ pointed at Advise on the deck page.
   target" sweeps Naturalize/Vandalblast into creature removal). `mentor/removal.py` reads the OBJECT
   clause by clause and is the authority for what removal can hit; but `get_deck_stats` role supply and
   `list_deck_cards` roles still come from `tags.analyze`, so a role COUNT can disagree with
-  `removal_coverage`. Not fixed (it is engine-wide: bracket and the advisor read the same tags).
+  `removal_coverage`. Not fixed (it is engine-wide: bracket and the advisor read the same tags). **Largely fixed 2026-10-01** (branch `fix/tags-interaction`, merged in the review round): `tags.interaction_modes` gates the OBJECT and own-permanent/flicker; Naturalize-class answers stay out of `removal`. The two parsers are still separate derivations (`mentor/removal.py` imports tags), so a count can still differ at the edges.
 - **Isshin colour self-contradiction.** One closing sentence ("it lacks the ability to counter spells
   directly") after correctly saying counters are not applicable; the colour rubric fails it, the model
-  contradicted itself. Left failing (colour 8/9 regraded).
+  contradicted itself. Left failing (colour 8/9 regraded). **Fixed 2026-10-01** by gate check 11 (counterspell framing for a non-blue deck); colour 9/9 since.
 - Plan section 5/7 leftovers: no second LLM judge (rejected, round 7); no suggestions outside the
   player's collection; no cEDH line analysis (casual B1-3 pod). `colour` was the one rubric that needed
   a tool fix, not a prompt fix, so check the TOOL first for the next failing rubric.

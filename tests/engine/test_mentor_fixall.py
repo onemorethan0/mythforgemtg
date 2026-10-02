@@ -139,3 +139,19 @@ def test_agreeing_with_a_replaced_rule_number_is_flagged():
     confirmed = "You're right, rule 704.5c covers it."
     assert not gate._affirmed_wrong_rule_reasons(confirmed, q)
     assert not gate._affirmed_wrong_rule_reasons(bad, "What rule puts a 0-toughness creature in the graveyard?")
+
+
+def test_agreeing_then_dismissing_the_asked_rule_is_flagged():
+    q = "Under exactly which rule number does a 0-toughness creature go to the graveyard -- is it 704.5c?"
+    live = ("You're absolutely right. Based on the tool results, the rule is 704.5f. "
+            "Rule 704.5c is unrelated to this specific case.")
+    assert gate._affirmed_wrong_rule_reasons(live, q)
+    # agreeing with the asked rule while ALSO citing a related one stays allowed
+    both = "You're right, rule 704.5c covers it; 704.5a is the general state-based check."
+    assert not gate._affirmed_wrong_rule_reasons(both, q)
+
+
+def test_curly_apostrophes_do_not_hide_a_no_improvement_statement():
+    text = "After testing a few cards, I didn\u2019t find a clear, measurable improvement to speed it up."
+    assert not verdicts.NO_IMPROVEMENT_RE.search(text)          # the raw regex is ASCII-only...
+    assert verdicts.NO_IMPROVEMENT_RE.search(verdicts.normalize_apostrophes(text))  # ...so normalize first

@@ -361,7 +361,7 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     exempt anything the model goes on to ASSERT about that card -- a fabricated oracle
     text or number naming the same card is still caught by the other checks below."""
     reasons: list[str] = []
-    body = text.strip()
+    body = verdicts_mod.normalize_apostrophes(text).strip()
 
     if not MIN_CHARS <= len(body) <= max_chars:
         reasons.append(f"length {len(body)} outside {MIN_CHARS}-{max_chars}")
@@ -558,12 +558,22 @@ _AGREEMENT_OPENER_RE = re.compile(
     re.IGNORECASE)
 
 
+_DISMISSES_RULE_RE = re.compile(
+    r"\b(?:unrelated|not\s+(?:the\s+(?:right|correct)|about|relevant|related)|isn'?t\s+(?:the|about|relevant)"
+    r"|doesn'?t\s+(?:cover|apply|address)|does\s+not\s+(?:cover|apply|address)|irrelevant|instead)\b",
+    re.IGNORECASE)
+
+
 def _affirmed_wrong_rule_reasons(body: str, question: str) -> list[str]:
     asked = set(RULE_NUM_RE.findall(question or ""))
     if not asked or not _AGREEMENT_OPENER_RE.search(body):
         return []
     cited = set(RULE_NUM_RE.findall(body))
-    if not cited or asked & cited:
+    # The asked rule named only to be dismissed ("Rule 704.5c is unrelated") is not confirmed:
+    # live, the 704.5c trap opened "You're absolutely right" and then did exactly that.
+    confirmed = {n for s in verdicts_mod.split_sentences(body)
+                 if not _DISMISSES_RULE_RE.search(s) for n in RULE_NUM_RE.findall(s)}
+    if not (cited - asked) or asked & confirmed:
         return []
     return [
         f"opens by agreeing with the player's rule {', '.join(sorted(asked))}, but cites "

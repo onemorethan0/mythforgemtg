@@ -363,3 +363,12 @@ def test_removal_explanatory_tail_is_not_a_qualifier():
         "It struggles against black creatures, as its removal says nonblack. "
         "The creature answers are restriction-limited."), _rm_truth(restrictions=("with flying",)))
     assert ok is False
+
+
+def test_removal_colour_identity_sentence_is_not_a_gap_claim():
+    # the gate's check 11 accepts this sentence; the removal rubric must not grade it as a gap
+    truth = _rm_truth(no_unrestricted=())
+    reply = _rm_reply("Eaten by Spiders answers creatures well. Your deck does not have any blue "
+                      "cards, so it cannot play counterspells.")
+    ok, why = rub.grade("removal", reply, truth)
+    assert "colour" not in (why or ""), why

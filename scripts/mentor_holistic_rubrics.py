@@ -20,6 +20,7 @@ movement caused by real fixes.
 
 from __future__ import annotations
 
+import copy
 import re
 
 from mythgauntlet.mentor import gate as gate_mod
@@ -455,6 +456,13 @@ def _g_removal(reply, truth):
     problems: list[str] = []
     claims = 0
     for sentence in verdicts.split_sentences(reply.text):
+        # "Your deck has no blue cards, so it cannot play counterspells" is the honest colour-
+        # identity statement the gate's check 11 accepts, not a removal gap. Deferring to the
+        # shared definition keeps bench and gate in step (Isshin/Kaalia, 2026-10-01 run).
+        if (verdicts._CS_RE.search(sentence)
+                and not _TYPE_WORD_RE.search(verdicts._CS_RE.sub(" ", sentence))
+                and not verdicts.counterspell_advice_reasons(sentence)):
+            continue
         for clause in _CLAUSE_SPLIT_RE.split(sentence):
             # An explanatory tail ("... can't answer spells, as it lacks blue in its colour
             # identity") states the REASON, not a second gap claim -- grading it read "blue"
@@ -506,6 +514,9 @@ def grade(qid: str, reply, truth: dict) -> tuple[bool | None, str]:
     fn = GRADERS.get(qid)
     if fn is None:
         return None, f"no rubric for {qid!r}"
+    if isinstance(getattr(reply, "text", None), str):
+        reply = copy.copy(reply)
+        reply.text = verdicts.normalize_apostrophes(reply.text)   # same input the gate sees
     return fn(reply, truth)
 
 

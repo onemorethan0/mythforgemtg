@@ -781,6 +781,13 @@ AXIS_ANSWER_TOPICS: dict[str, re.Pattern] = {
     "consistency": SIDE_CLAIM_TOPICS["consistency"],
 }
 
+def normalize_apostrophes(text: str) -> str:
+    """Curly quotes -> straight. Every phrase regex here is written with ', so a model's
+    "didn’t find a measurable improvement" read as no statement at all (Isshin dual, 2026-10-01).
+    The gate and the bench call this once on the reply, before any check."""
+    return (text or "").replace("’", "'").replace("‘", "'")
+
+
 NO_IMPROVEMENT_RE = re.compile(
     r"(?:no\s+(?:measured|improving|clear|real)\s+(?:improvement|swap|upgrade|gain)|"
     r"(?:did\s*n[o']t|didn'?t|could\s*n[o']t|couldn'?t|did\s+not|could\s+not)\s+(?:find|see|identify|turn\s+up)\b[^.]{0,60}"
@@ -814,7 +821,7 @@ def axis_addressed(text: str, axis: str, adds=()) -> bool:
     if topic is None:
         return True
     adds = [a for a in adds if a]
-    text = text.replace("’", "'").replace("‘", "'")   # curly apostrophes defeat n't
+    text = normalize_apostrophes(text)
     if adds:
         low = text.lower()
         return bool(topic.search(text)) and any(a.lower() in low for a in adds)
