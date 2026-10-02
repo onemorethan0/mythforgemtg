@@ -1242,3 +1242,109 @@ def test_connive_licenses_draw():
     doc = _doc(["creature"], [{"kind": "triggered", "trigger": {"event": "cast_spell"},
                                "effects": [{"op": "draw", "count": 1}]}], "{1}{U}")
     assert not any("never says draw" in e for e in cross_check(doc, card))
+
+
+def _spell(effects):
+    return _doc(["instant"], [{"kind": "spell_effect", "effects": effects}], "{2}")
+
+
+def _gate_errors(text, effects, type_line="Instant"):
+    return cross_check(_spell(effects), _card("T", "{2}", type_line, text))
+
+
+def test_cross_check_asks_for_the_op_each_removal_mode_needs():
+    """2026-09-30: tags.py started recognising bounce, tuck, -N/-N and exiled spells as
+    interaction. The omission gate reads tags' MODES so a correct compile is not failed
+    for using the op the vocabulary actually has for that mode."""
+    def removal_err(text, effects):
+        return any("removal" in e for e in _gate_errors(text, effects))
+
+    # bounce -> return_to_hand (Snapback)
+    assert not removal_err("Return target creature to its owner's hand.", [
+        {"op": "return_to_hand", "target": {"type": "creature", "count": 1}}])
+    # -N/-N -> a NEGATIVE pump (Collective Brutality's mode)
+    assert not removal_err("Target creature gets -2/-2 until end of turn.", [
+        {"op": "pump", "power": -2, "toughness": -2, "target": {"type": "creature", "count": 1}}])
+    assert not removal_err("Target creature gets -X/-X until end of turn.", [
+        {"op": "pump", "power": "-X", "toughness": "-X", "target": {"type": "creature", "count": 1}}])
+    # ...but a sign-lost -X/-X (stored as +X/+X, executes as a BUFF) is a real defect
+    assert removal_err("Target creature gets -X/-X until end of turn.", [
+        {"op": "pump", "power": "X", "toughness": "X", "target": {"type": "creature", "count": 1}}])
+    # tuck has no op in the vocabulary: never demanded (Condemn)
+    assert not removal_err("Put target attacking creature on the bottom of its owner's "
+                           "library. Its controller gains life equal to its toughness.", [
+        {"op": "gain_life", "amount": 1}])
+    # and an ordinary kill spell with nothing is still caught
+    assert removal_err("Destroy target creature.", [{"op": "draw", "count": 1}])
+
+
+def test_cross_check_exiled_spell_satisfies_the_counter_gate():
+    errs = _gate_errors("Exile any number of target spells.", [
+        {"op": "exile", "target": {"type": "spell", "count": "any"}}])
+    assert not any("counter" in e for e in errs)                     # Mindbreak Trap
+
+
+def test_cross_check_mass_minus_shapes():
+    def wipe_err(text, effects, type_line="Sorcery"):
+        return any("board wipe" in e for e in _gate_errors(text, effects, type_line))
+
+    # absent count is the documented mass-pump shape (Cower in Fear)
+    assert not wipe_err("Creatures your opponents control get -1/-1 until end of turn.", [
+        {"op": "pump", "power": -1, "toughness": -1,
+         "target": {"type": "creature", "controller": "opponent"}}], "Instant")
+    # a STATIC -N/-N has no op (statics are notes): not demanded (Elesh Norn)
+    assert not wipe_err("Vigilance\nOther creatures you control get +2/+2.\nCreatures your "
+                        "opponents control get -2/-2.", [], "Legendary Creature — Phyrexian Praetor")
+    # mass bounce -> return_to_hand all (Evacuation)
+    assert not wipe_err("Return all creatures to their owners' hands.", [
+        {"op": "return_to_hand", "target": {"type": "creature", "count": "all"}}], "Instant")
+    # a single-target destroy is not a sweep (a Culling Sun compiled without count:"all")
+    assert wipe_err("Destroy each creature with mana value 3 or less.", [
+        {"op": "destroy", "target": {"type": "creature", "mana_value": "3 or less"}}])
+
+
+def test_cross_check_rejects_a_destroy_the_text_never_says():
+    """Measured 2026-10-01: all 10 accepted CCMs carrying `destroy` with no "destroy" in
+    their oracle text were wrong -- Mutilate and Malicious Malfunction are -N/-N,
+    Phyrexian Obliterator's opponent SACRIFICES -- and tier2 executes a destroy as a kill.
+    A recompile of Drag to the Bottom ("each creature gets -X/-X") was accepted with
+    destroy+exile+sacrifice of every creature, because no gate asked."""
+    text = "All creatures get -1/-1 until end of turn for each Swamp you control."
+    errs = _gate_errors(text, [
+        {"op": "pump", "power": -1, "toughness": -1, "target": {"type": "creature", "count": "all"}},
+        {"op": "destroy", "target": {"type": "creature", "count": "all"}}], "Sorcery")
+    assert any("never says destroy" in e for e in errs)
+    assert not any("never says destroy" in e for e in _gate_errors(
+        "Destroy target creature.", [{"op": "destroy", "target": {"type": "creature", "count": 1}}]))
+
+
+def test_cross_check_fight_and_edict_ops():
+    def removal_err(text, effects):
+        return any("removal" in e for e in _gate_errors(text, effects))
+
+    prey = "Target creature you control fights target creature you don't control."
+    assert not removal_err(prey, [{"op": "fight", "target": {"type": "creature", "count": 1}}])
+    assert removal_err(prey, [{"op": "draw", "count": 1}])
+    edict = "Target player sacrifices a creature of their choice."
+    assert not removal_err(edict, [{"op": "sacrifice", "target": {
+        "type": "creature", "controller": "opponent", "count": 1}}])
+
+
+def test_cross_check_rejects_generation_loops_and_corruption():
+    """Measured 2026-10-01: 378 accepted CCMs repeat one identical effect within an
+    ability (Phyrexian Obliterator: 38 copies of its edict, each executed), and some
+    carry CJK bytes inside English strings ("until end转 of turn") -- both are the
+    model degenerating, not the card. No gate looked at either."""
+    edict = {"op": "sacrifice", "target": {"type": "permanent", "controller": "opponent",
+                                           "count": 1}}
+    text = "Target opponent sacrifices a permanent of their choice."
+    errs = _gate_errors(text, [dict(edict), dict(edict), dict(edict)], "Sorcery")
+    assert any("repeats an identical effect" in e for e in errs)
+    assert not any("repeats" in e for e in _gate_errors(text, [dict(edict)], "Sorcery"))
+    # two identical effects can be the card ("create a token, then create a token"); 3+ is a loop
+    assert not any("repeats" in e for e in _gate_errors(text, [dict(edict), dict(edict)],
+                                                         "Sorcery"))
+    bad = {"op": "pump", "power": -1, "toughness": -1, "duration": "until end转 of turn",
+           "target": {"type": "creature", "count": 1}}
+    errs = _gate_errors("Target creature gets -1/-1 until end of turn.", [bad])
+    assert any("corrupted" in e for e in errs)

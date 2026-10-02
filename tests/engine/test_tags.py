@@ -365,6 +365,183 @@ def test_removal_requires_hitting_a_CREATURE(make_card):
     assert not r("This spell deals 3 damage to target player.")   # Lava Spike
 
 
+def _fx(make_card, text, type_line="Instant"):
+    return tags.analyze(make_card("X", mana_cost="{2}", type_line=type_line, oracle_text=text))
+
+
+def test_own_permanent_and_flicker_is_not_removal(make_card):
+    """The verb is exile; the OBJECT is your own creature, or it comes straight back.
+
+    Ephemerate and ~50 flicker cards were each killing the opponent's biggest creature in
+    tier2 and counting as an answer on the Interaction axis. Oracle text verified 2026-09-30.
+    """
+    # Ephemerate
+    assert not _fx(make_card, "Exile target creature you control, then return it to the "
+                   "battlefield under its owner's control.").removal
+    # Flicker of Fate: no "you control", but it returns -- a blink, not an answer
+    assert not _fx(make_card, "Exile target creature or enchantment, then return it to the "
+                   "battlefield under its owner's control.").removal
+    # Flickerwisp's shape: returns at the next end step, unconditionally
+    assert not _fx(make_card, "When this creature enters, exile another target permanent. "
+                   "Return that card to the battlefield under its owner's control at the "
+                   "beginning of the next end step.", "Creature — Elemental").removal
+    # ...but an O-Ring that returns only when it LEAVES is still removal
+    assert _fx(make_card, "When this enchantment enters, exile target nonland permanent an "
+               "opponent controls until this enchantment leaves the battlefield.",
+               "Enchantment").removal
+    assert _fx(make_card, "When this creature enters, exile another target creature.\n"
+               "When this creature leaves the battlefield, return the exiled card to the "
+               "battlefield under its owner's control.", "Creature — Human Cleric").removal
+    # the plain own-object case
+    assert not _fx(make_card, "Destroy target creature you control.").removal
+
+
+def test_variable_damage_is_removal(make_card):
+    """`deals \\d+ damage` missed every X / "equal to" / divided burn spell."""
+    assert _fx(make_card, "Electrodominance deals X damage to any target. You may cast a "
+               "spell with mana value X or less from your hand without paying its mana "
+               "cost.").removal
+    assert _fx(make_card, "Shatterskull Smashing deals X damage divided as you choose among "
+               "up to two target creatures and/or planeswalkers. If X is 6 or more, "
+               "Shatterskull Smashing deals twice X damage divided as you choose among them "
+               "instead.", "Sorcery").removal
+    assert _fx(make_card, "Reach\nWhen this creature enters, it deals damage equal to its "
+               "power to target creature with flying an opponent controls.",
+               "Creature — Spider").removal                          # Chainweb Aracnir
+    assert _fx(make_card, "When this creature enters, if an opponent lost life this turn, "
+               "it deals X damage to up to one target creature or planeswalker, where X is "
+               "the number of Vampires you control.", "Creature — Vampire Archer").removal
+    assert _fx(make_card, "Choose one or both —\n• Creatures you control get +1/+0 until end "
+               "of turn.\n• Target Vampire you control deals damage equal to its power to "
+               "another target creature.", "Sorcery").removal        # Markov Retribution
+    # still not removal: a player is not a creature
+    assert not _fx(make_card, "This spell deals X damage to target player.").removal
+    assert not _fx(make_card, "Each creature deals 1 damage to its controller.").removal
+
+
+def test_variable_damage_sweep_is_a_wipe(make_card):
+    assert _fx(make_card, "Reach\n{X}{G}{G}: This creature deals X damage to each creature "
+               "with flying.", "Creature — Spider").board_wipe       # Silklash Spider
+    assert _fx(make_card, "Earthquake deals X damage to each creature without flying and "
+               "each player.", "Sorcery").board_wipe
+
+
+def test_toughness_reduction_is_removal(make_card):
+    """-N/-N kills through state-based actions; the old rule only knew the mass form."""
+    assert _fx(make_card, "{T}, Sacrifice this creature: Target creature gets -X/-X until "
+               "end of turn, where X is twice the number of Blood tokens you control. "
+               "Activate only as a sorcery.", "Creature — Vampire").removal  # Bloodtithe
+    assert _fx(make_card, "Choose one or more —\n• Target opponent reveals their hand. You "
+               "choose an instant or sorcery card from it. That player discards that card.\n"
+               "• Target creature gets -2/-2 until end of turn.\n• Target opponent loses 2 "
+               "life and you gain 2 life.", "Sorcery").removal        # Collective Brutality
+    assert _fx(make_card, "Choose one or both —\n• Target creature gets -1/-1 until end of "
+               "turn.\n• Put a +1/+1 counter on target creature.").removal  # Subtle Strike
+    assert not _fx(make_card, "Target creature gets -2/-0 until end of turn.").removal
+    assert not _fx(make_card, "Target creature gets +2/+2 until end of turn.").removal
+    assert not _fx(make_card, "Target creature you control gets -1/-1 until end of turn.").removal
+    # mass, with X: Toxic Deluge
+    assert _fx(make_card, "As an additional cost to cast this spell, pay X life.\nAll "
+               "creatures get -X/-X until end of turn.", "Sorcery").board_wipe
+
+
+def test_bounce_and_tuck_are_removal(make_card):
+    assert _fx(make_card, "Put target attacking creature on the bottom of its owner's "
+               "library. Its controller gains life equal to its toughness.").removal  # Condemn
+    assert _fx(make_card, "The owner of target permanent shuffles it into their library, "
+               "then reveals the top card of their library. If it's a permanent card, they "
+               "put it onto the battlefield.").removal                # Chaos Warp
+    assert _fx(make_card, "Return target nonland permanent to its owner's hand. Then that "
+               "permanent's controller may sacrifice a land of their choice. If the player "
+               "does, they may copy this spell and may choose a new target for that "
+               "copy.").removal                                       # Chain of Vapor
+    assert _fx(make_card, "You may exile a blue card from your hand rather than pay this "
+               "spell's mana cost.\nReturn target creature to its owner's hand.").removal
+    assert _fx(make_card, "Return target creature an opponent controls to its owner's hand. "
+               "If the gift was promised, instead return target nonland permanent an "
+               "opponent controls to its owner's hand.").removal      # Into the Flood Maw
+    assert _fx(make_card, "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target "
+               "artifact, creature, enchantment, or planeswalker to its owner's hand. This "
+               "ability costs {1} less to activate for each legendary creature you control.",
+               "Legendary Land").removal                              # Otawara
+    # object gate: a land or an artifact bounce does not answer a creature
+    assert not _fx(make_card, "Return target land to its owner's hand.").removal
+    assert not _fx(make_card, "Return target creature you control to its owner's hand.").removal
+    assert not _fx(make_card, "Return target creature card from your graveyard to your "
+                   "hand.").removal
+    # mass bounce is a sweep
+    assert _fx(make_card, "Return all creatures to their owners' hands.").board_wipe
+
+
+def test_lead_quantifiers_reach_the_object(make_card):
+    """"up to one target", "each" -- the old verb-adjacent `target` / `all` missed these."""
+    assert _fx(make_card, "Destroy up to one target artifact, enchantment, or creature with "
+               "flying. Create a Food token.", "Sorcery").removal     # Spider Food
+    assert _fx(make_card, "Destroy each creature with mana value 3 or less.",
+               "Sorcery").board_wipe                                  # Culling Sun
+    assert not _fx(make_card, "Destroy each artifact with mana value 3 or less.",
+                   "Sorcery").board_wipe
+
+
+def test_object_boundary_regressions_from_the_store_audit(make_card):
+    """Each found by random-sampling the population diff, oracle text verified."""
+    # Ragnarok: a later "card" in the sentence is not the destroyed object's zone
+    assert _fx(make_card, "When Ragnarok dies, destroy target permanent and return target "
+               "nonlegendary permanent card from your graveyard to the battlefield.",
+               "Legendary Creature — Beast Avatar").removal
+    # Niko Aris: "for each card" is a count, not a zone
+    assert _fx(make_card, "−1: Niko Aris deals 2 damage to target tapped creature for each "
+               "card you've drawn this turn.", "Legendary Planeswalker — Niko").removal
+    # Flame Sweep / Ajani Unrelenting: "except for ... you control" still sweeps theirs
+    assert _fx(make_card, "Flame Sweep deals 2 damage to each creature except for creatures "
+               "you control with flying.", "Instant").board_wipe
+    # Filter Out: a noncreature permanent is never a creature
+    assert not _fx(make_card, "Return all noncreature, nonland permanents to their owners' "
+                   "hands.").board_wipe
+    # Council's Judgment exiles ONE (most-voted) permanent: spot, not a sweep
+    fx = _fx(make_card, "Will of the council — Starting with you, each player votes for a "
+             "nonland permanent you don't control. Exile each permanent with the most votes "
+             "or tied for most votes.", "Sorcery")
+    assert fx.removal and not fx.board_wipe
+    # Sewer Plague: "each upkeep" does not quantify the creature
+    fx = _fx(make_card, "Target creature an opponent controls perpetually gets -2/-2 and gains "
+             "\"At the beginning of each upkeep, this creature perpetually gets -1/-1.\"")
+    assert fx.removal and not fx.board_wipe
+    assert _fx(make_card, "Choose a creature type. All creatures of that type get -1/-1 until "
+               "end of turn.", "Sorcery").board_wipe                  # Outbreak
+    # prevention shields name damage they PREVENT (Circle of Despair)
+    assert not _fx(make_card, "{1}, Sacrifice a creature: The next time a source of your "
+                   "choice would deal damage to any target this turn, prevent that damage.",
+                   "Enchantment").removal
+    # a mass flicker is not a sweep (Golden Argosy)
+    assert not _fx(make_card, "Whenever Golden Argosy attacks, exile each creature that crewed "
+                   "it this turn. Return them to the battlefield tapped under their owner's "
+                   "control at the beginning of the next end step.",
+                   "Artifact — Vehicle").board_wipe
+    # a granted ability is still the controller's interaction (Hermetic Study)
+    assert _fx(make_card, "Enchant creature\nEnchanted creature has \"{T}: This creature "
+               "deals 1 damage to any target.\"", "Enchantment — Aura").removal
+
+
+def test_noncreature_answers_stay_out_of_removal(make_card):
+    """Deliberate: `removal` is spent as a CREATURE kill (tier2 + profile_from_fx), so the
+    artifact/enchantment/planeswalker-only answers stay out of it. Verified oracle text."""
+    assert not _fx(make_card, "Destroy target artifact, enchantment, or planeswalker.").removal
+    assert not _fx(make_card, "Choose one —\n• Destroy target artifact.\n• Destroy target "
+                   "enchantment.\n• Exile target card from a graveyard.").removal
+    assert not _fx(make_card, "Choose one —\n• Exile target player's graveyard.\n• Destroy "
+                   "target artifact.\n• Each creature deals 1 damage to its controller."
+                   ).removal                                          # Rakdos Charm
+
+
+def test_exiling_a_spell_is_a_counterspell(make_card):
+    assert _fx(make_card, "If an opponent cast three or more spells this turn, you may pay "
+               "{0} rather than pay this spell's mana cost.\nExile any number of target "
+               "spells.", "Instant — Trap").counterspell              # Mindbreak Trap
+    assert _fx(make_card, "Counter up to one target spell.").counterspell
+    assert not _fx(make_card, "Exile target card from a graveyard.").counterspell
+
+
 def test_ramp_is_net_of_the_activation_cost(make_card):
     """`ramp_sources` is spent by tier0 as that many extra mana EVERY turn, so it has to
     be NET. Counting only the produced symbols made an Azorius Signet worth +2 when it
@@ -383,3 +560,43 @@ def test_ramp_is_net_of_the_activation_cost(make_card):
     assert ramp("{2}, {T}: Add {W}{U}.") == 0                  # filter, nets nothing
     # {T} is not mana and must never be charged as part of the cost.
     assert ramp("{T}: Add {G}.", "Creature — Elf Druid") == 1  # Llanowar Elves
+
+
+def test_fight_and_edict_are_removal(make_card):
+    """Two verbs tags never read (2026-10-01). Oracle text verified against the card DB."""
+    assert _fx(make_card, "Target creature you control fights target creature you don't "
+               "control.", "Sorcery").removal                         # Prey Upon
+    assert _fx(make_card, "Target creature you control gets +X/+X until end of turn. Then it "
+               "fights up to one target creature you don't control.", "Sorcery").removal
+    assert _fx(make_card, "Target player sacrifices a creature of their choice.").removal
+    assert _fx(make_card, "When this creature enters, each player sacrifices a creature of "
+               "their choice.", "Creature — Zombie Warrior").removal  # Fleshbag Marauder
+    assert _fx(make_card, "Whenever a creature you control dies, each other player "
+               "sacrifices a creature of their choice.", "Enchantment").removal  # Grave Pact
+    assert _fx(make_card, "Each opponent sacrifices a creature or planeswalker with the "
+               "greatest mana value among creatures and planeswalkers they control.").removal
+    # a sacrifice YOU make is a cost, not an answer
+    assert not _fx(make_card, "As an additional cost to cast this spell, sacrifice a "
+                   "creature.\nDraw two cards.").removal              # Village Rites
+    assert not _fx(make_card, "{1}, Sacrifice another creature: Dina gets +X/+0 until end of "
+                   "turn.", "Legendary Creature — Dryad Druid").removal
+    # an edict that cannot take a creature is not a creature answer
+    assert not _fx(make_card, "Target player sacrifices a land.", "Sorcery").removal
+    # "sacrifices ALL other nonland permanents" is a sweep (Tragic Arrogance)
+    assert _fx(make_card, "For each player, you choose from among the permanents that player "
+               "controls an artifact, a creature, an enchantment, and a planeswalker. Then "
+               "each player sacrifices all other nonland permanents they control.",
+               "Sorcery").board_wipe
+
+
+def test_punisher_and_pile_edicts(make_card):
+    # a punisher is the OPPONENT's choice (Indulgent Tormentor)
+    assert not _fx(make_card, "Flying\nAt the beginning of your upkeep, draw a card unless "
+                   "target opponent sacrifices a creature of their choice or pays 3 life.",
+                   "Creature — Demon").removal
+    # Liliana of the Veil: -2 is an edict, -6 sacrifices a PILE, not the board
+    fx = _fx(make_card, "+1: Each player discards a card.\n−2: Target player sacrifices a "
+             "creature.\n−6: Separate all permanents target player controls into two piles. "
+             "That player sacrifices all permanents in the pile of their choice.",
+             "Legendary Planeswalker — Liliana")
+    assert fx.removal and not fx.board_wipe

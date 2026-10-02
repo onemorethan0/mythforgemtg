@@ -1006,7 +1006,11 @@ def _is_until_end_of_turn(duration: object) -> bool:
     engine has no round-scoped timer, so ending it early under-counts honestly.
     """
     d = str(duration or "").strip().lower()
-    return any(tok in d for tok in _TEMPORARY_DURATIONS)
+    # "until end" alone also counts: 28 stored pumps (and 50 grant_ability) read "until
+    # end转" -- a generation fault that dropped "of turn" and spliced in a CJK byte
+    # (2026-10-01). Without "turn" they executed as PERMANENT. "until end of combat" ends
+    # even sooner, so reading it as end-of-turn is the same safe, early-expiry direction.
+    return d.startswith("until end") or any(tok in d for tok in _TEMPORARY_DURATIONS)
 
 
 def expire_until_end_of_turn(players) -> None:

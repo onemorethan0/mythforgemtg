@@ -328,3 +328,64 @@ def test_activated_ability_with_unpayable_cost_is_not_an_outlet(make_card):
     assert not profile_from_ccm(creature_doc, creature, analyze(creature)).activated
     assert not profile_from_ccm(
         _activated_doc({"mana": "{3}", "other": "sacrifice this enchantment"}), card, analyze(card)).activated
+
+
+def _removal_profile(make_card, effects, type_line="Instant", extra_abilities=()):
+    card = make_card("R", mana_cost="{2}", type_line=type_line)
+    doc = {"name": "R", "ccm_version": 1, "cost": {"mana": "{2}"},
+           "types": [type_line.split()[0].lower()],
+           "abilities": [{"kind": "spell_effect", "effects": effects}, *extra_abilities]}
+    return profile_from_ccm(doc, card, analyze(card))
+
+
+def test_ccm_removal_gates_the_object_like_tags_does(make_card):
+    """`removal` is spent as a creature kill in tier2's instant window, so the CCM side
+    needs the same object gate tags.py has (2026-09-30). Shapes taken from real stored CCMs."""
+    def removal(effects):
+        return _removal_profile(make_card, effects).removal
+
+    # Naturalize / Daru Sanctifier / Leonin Relic-Warder: not a creature answer
+    assert removal([{"op": "destroy", "target": {"type": "artifact", "count": 1}}]) == 0
+    assert removal([{"op": "exile", "target": {"type": "artifact or enchantment",
+                                                "count": 1}}]) == 0
+    # "Exile Death Wish": a self-exile has no type and used to default to "creature"
+    assert removal([{"op": "exile", "target": {"self": True}}]) == 0
+    # a graveyard card is not on the battlefield
+    assert removal([{"op": "exile", "target": {"type": "creature", "zone": "graveyard",
+                                               "count": 1}}]) == 0
+    # ...but a malformed zone value must not drop a real answer (Banishing Light: "nonland")
+    assert removal([{"op": "exile", "target": {"type": "permanent", "zone": "nonland",
+                                               "count": 1, "controller": "opponent"}}]) == 1
+    # a disjunction that includes creature is a creature answer (76 stored effects)
+    assert removal([{"op": "destroy", "target": {"type": "creature or planeswalker",
+                                                 "count": 1}}]) == 1
+
+
+def test_ccm_flicker_is_not_removal_but_conditional_return_is(make_card):
+    def removal(effects):
+        return _removal_profile(make_card, effects).removal
+
+    # Glimmerpoint Stag / Vizier of Deferment: exile then return
+    assert removal([
+        {"op": "exile", "target": {"type": "permanent", "count": 1, "controller": "any"}},
+        {"op": "return_to_hand", "target": {"type": "permanent", "count": 1,
+                                            "condition": "at the beginning of the next end step"}},
+    ]) == 0
+    # Parting Gust: the return is conditional, so it is still an answer
+    assert removal([
+        {"op": "exile", "target": {"type": "creature", "count": 1, "controller": "any"}},
+        {"op": "return_to_hand", "target": {"type": "creature", "count": 1,
+                                            "condition": "if the gift wasn't promised"}},
+    ]) == 1
+    # Oblivion Ring folds its leaves-the-battlefield return in with zone "exile"
+    assert removal([
+        {"op": "exile", "target": {"type": "permanent", "count": 1, "zone": "battlefield"}},
+        {"op": "return_to_hand", "target": {"type": "permanent", "count": 1, "zone": "exile"}},
+    ]) == 1
+
+
+def test_ccm_noncreature_sweep_is_not_a_wipe(make_card):
+    # Shatterstorm / Tranquility
+    p = _removal_profile(make_card, [{"op": "destroy", "target": {"type": "artifact",
+                                                                  "count": "all"}}], "Sorcery")
+    assert not p.wipe

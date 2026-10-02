@@ -15,6 +15,7 @@ These blind spots define the priority queue for the CCM compiler (docs/CARD_SEMA
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.semantics.model import EffectVector
@@ -72,22 +73,109 @@ _DREW_CONDITION_RE = re.compile(r"\bdrew\b")
 #
 # `finditer`, not `search`: a modal card only needs ONE mode that hits creatures (Austere
 # Command, Farewell), and the earlier modes name artifacts and enchantments.
+#
+# THE SECOND PASS (2026-09-30) gated the other half of the same sentence. The first pass
+# gated the NOUN; it still read the verb's own quantifier literally ("destroy target",
+# "destroy all", "deals \d+ damage") and never asked WHOSE creature it was. Measured over
+# the 34,563-card store: removal 2,114 -> 3,460 (+1,405 / -59), board_wipe 466 -> 687
+# (+229 / -8), counterspell 433 -> 444; 1,708 cards changed. Two opposite errors:
+#   * FALSE POSITIVE — own permanents and flicker. Ephemerate ("exile target creature you
+#     control, then return it") and Flicker of Fate were each killing the opponent's
+#     biggest creature in tier2 and counting as an answer on the Interaction axis.
+#   * MISSED — every removal shape the regexes were not literally spelled for: X / "equal
+#     to" / divided damage (Electrodominance, Shatterskull Smashing, Chainweb Aracnir),
+#     -N/-N and -X/-X (Toxic Deluge, Collective Brutality, Bloodtithe Harvester), bounce and
+#     library tuck (Condemn, Chaos Warp, Chain of Vapor, Otawara), "up to one target"
+#     (Spider Food) and "destroy each" (Culling Sun), and exiling a spell (Mindbreak Trap).
+#   The old rule also had its own object false positives this pass removes: "destroy target
+#   NONcreature permanent" (Bramblecrush, Terastodon) and "creature" appearing only in a
+#   count ("damage to target opponent for each creature card" -- Lotleth Giant).
+# The Interaction axis moved on 735 of 975 corpus decks (corpus median 64.3 -> 80.4); the
+# biggest drops are blink decks whose Ephemerate / Restoration Angel read as removal.
+#
+# Bounce and tuck count, as removing a creature FROM THE BATTLEFIELD, which is what this
+# contract has always said. On the rung-1 path tier2 then spends a bounce as a kill -- an
+# over-credit, stated rather than hidden, but small: 2,266 cards have no CCM and only 13
+# of the changed cards are bounce/tuck-only among them. With a CCM the interpreter
+# executes the real `return_to_hand`. Artifact/enchantment/planeswalker-only
+# answers (Fracture, Return to Nature, Masked Vandal) stay OUT, deliberately: `removal`
+# is spent as a creature kill, which is exactly the Naturalize defect fixed above.
+#
+# `mentor/removal.py` (branch mentor-adhoc-b2) is a fuller clause-by-clause parser of the
+# same text. It imports THIS module, so it cannot be reused from here without first
+# moving its parser below `semantics/`; until then these are two derivations of one rule
+# and `tests/engine/test_tags.py` pins this side to the same verified oracle texts.
 _CREATURE_OBJECT_RE = re.compile(r"\bcreature|\bpermanent")
 # A "creature CARD" is a card in a graveyard/library/hand; a "creature" is a permanent on
 # the battlefield. Ghastly Conscription and Shadow of the Enemy exile all creature CARDS
 # from a graveyard — no board impact at all, but they read like a wrath without this.
 _ZONE_OBJECT_RE = re.compile(r"\bcards?\b")
-_WIPE_ALL_RE = re.compile(r"(?:destroy|exile) all ([^.]{0,70})")
-_REMOVAL_TARGET_RE = re.compile(r"(?:destroy|exile) target ([^.]{0,50})")
-# "any target" reaches a creature; "target player" does not.
-_DAMAGE_TARGET_RE = re.compile(r"deals? \d+ damage to (any target|target [^.,]{0,30})")
-# Already creature-specific, so they need no object gate. The -N/-N form must reduce
-# TOUGHNESS to remove anything: "all creatures get -2/-0" (Marsh Gas, Fyndhorn Pollen) is a
-# power debuff that has never killed a creature.
-_WIPE_RES = (
-    re.compile(r"deals? \d+ damage to each creature"),
-    re.compile(r"all creatures get [-−]\d+/[-−][1-9]"),
+# What may sit between a verb and "target": "up to one target", "any number of target",
+# "another target", "two target". Missing these is how Spider Food read as nothing.
+_LEAD = (r"(?:(?:up to (?:one|two|three|four|five|x|\d+)|any number of|one or two"
+         r"|one, two, or three|one|two|three|four|x|\d+) )?(?:another |other )?")
+_WIPE_ALL_RE = re.compile(r"(?:destroy|exile) (?:all|each) ([^.]{0,70})")
+_REMOVAL_TARGET_RE = re.compile(rf"(?:destroy|exile) {_LEAD}target ([^.]{{0,60}})")
+# Damage of ANY amount — a digit, X, "twice X", "that much", "damage equal to its power"
+# (the bite) — into a targeted object. "any target" / "one or two targets" reach a
+# creature; "target player" does not.
+# "would deal damage to any target ... prevent that damage" (Circle of Despair, Martyr's
+# Cause) is a prevention shield, so a damage clause preceded by "would" is never removal.
+_DAMAGE_TARGET_RE = re.compile(
+    r"(?<!would )\bdeals? (?:[^.]{0,30}? )?damage(?: equal to [^.]{0,80}?)?"
+    r"(?: divided (?:as you choose|evenly)[^.]{0,20}?)? (?:to|among) "
+    rf"(?:each of )?{_LEAD}(any target|targets\b|target [^.]{{0,60}})"
 )
+_DAMAGE_EACH_RE = re.compile(
+    r"(?<!would )\bdeals? (?:[^.]{0,30}? )?damage(?: equal to [^.]{0,80}?)? to each (?:other )?"
+    r"(creatures?\b[^.]{0,40})"
+)
+# -N/-N: the TOUGHNESS has to fall to remove anything. "all creatures get -2/-0" (Marsh Gas,
+# Fyndhorn Pollen) is a power debuff that has never killed a creature.
+_MINUS = r"gets? [+\-−]?[\dx]+/[\-−](?:[1-9]|x)"
+_MINUS_TARGET_RE = re.compile(rf"\b{_LEAD}target ([^.]{{0,60}}?) {_MINUS}")
+_MINUS_ALL_RE = re.compile(
+    # "all/each" must govern the creature noun directly (<=3 modifier words, no comma):
+    # "at the beginning of EACH upkeep, this creature ... gets -1/-1" is not a sweep.
+    rf"(?:\b(?:all|each) ((?:[\w'-]+ ){{0,3}}?creatures?\b[^.]{{0,40}}?)"
+    rf"|^(creatures [^.]{{0,40}}?)|[.:]\s*(creatures [^.]{{0,40}}?)) {_MINUS}",
+    re.MULTILINE,
+)
+_OWNERS = r"(?:its|their) owners?['’]?s?['’]?"
+_BOUNCE_RE = re.compile(
+    rf"\breturn ({_LEAD}(?:target|all|each)\b[^.]{{0,80}}?) to {_OWNERS} hands?\b"
+)
+_TUCK_RE = re.compile(
+    rf"\bput ({_LEAD}target\b[^.]{{0,60}}?) (?:on (?:the )?(?:top|bottom) of|into) "
+    rf"{_OWNERS} librar(?:y|ies)"
+)
+_SHUFFLE_RE = re.compile(
+    rf"\bthe owner of ({_LEAD}target\b[^.]{{0,40}}?) shuffles (?:it|them) into their library"
+)
+# Two verbs that remove a creature without saying destroy/exile/damage (2026-10-01).
+# A fight is mutual damage into "target creature you don't control" (Prey Upon); an edict
+# makes ANOTHER player sacrifice (Diabolic Edict, Fleshbag Marauder, Grave Pact). A
+# sacrifice YOU make ("sacrifice a creature:") is a cost and never matches: the subject
+# has to be a player. "sacrifices ALL ..." is a sweep (Tragic Arrogance).
+_FIGHT_RE = re.compile(rf"\bfights? ({_LEAD}target\b[^.(]{{0,60}})")
+_EDICT_RE = re.compile(
+    r"\b(?:target player|target opponent|each opponent|each other player|each player"
+    r"|that player|defending player) sacrifices ([^.]{0,70})"
+)
+# A return that UNDOES the exile: Ephemerate's "then return it", Flickerwisp's "return
+# that card ... at the beginning of the next end step". Two returns are NOT this and keep
+# the card as removal: the O-Ring/Fiend Hunter return that waits for the SOURCE to leave
+# the battlefield, and a conditional one (Parting Gust's "if the gift wasn't promised").
+_FLICKER_RETURN_RE = re.compile(
+    r"\breturn (?:it|that card|that creature|that permanent|them|those cards"
+    r"|the exiled cards?)\b[^.]*\bto the battlefield"
+)
+# The object phrase stops where a relative clause begins, so "you control" inside "that's
+# attacking you or a planeswalker you control" (Soul Snare) is not read as an own-gate.
+_CLAUSE_START_RE = re.compile(
+    r"\b(?:with|without|that|that's|which|whose|where|if|unless|until|and|then|except)\b"
+)
+_OWN_OBJECT_RE = re.compile(r"\byou (?:control|own)\b")
 
 
 def _wipe_object(phrase: str) -> str:
@@ -100,28 +188,126 @@ def _wipe_object(phrase: str) -> str:
     return re.split(r"\battached to\b", phrase, maxsplit=1)[0]
 
 
-def _is_board_wipe(text: str) -> bool:
-    """True only when the sweep can remove CREATURES from the battlefield."""
-    if any(r.search(text) for r in _WIPE_RES):
+def _hits_creature(obj: str) -> bool:
+    """The object can be an opposing creature on the battlefield: it names a creature or
+    permanent, not a CARD in some zone, and is not restricted to the caster's own."""
+    # A count expression is not part of the object: "target tapped creature for each CARD
+    # you've drawn" (Niko Aris) must not trip the zone gate.
+    obj = re.split(r"\bfor each\b|,? where\b|\bequal to\b", _wipe_object(obj), maxsplit=1)[0]
+    if not _CREATURE_OBJECT_RE.search(obj):
+        return False
+    # Zone and own gates read only the HEAD noun phrase: "destroy target permanent and
+    # return target ... permanent CARD" (Ragnarok) is not a zone object, and "except for
+    # creatures you control" (Flame Sweep) is not an own-only object.
+    head = _CLAUSE_START_RE.split(obj, maxsplit=1)[0]
+    if _ZONE_OBJECT_RE.search(head) or _OWN_OBJECT_RE.search(head):
+        return False
+    # "noncreature, nonland permanents" (Filter Out) is the one "permanent" that cannot be
+    # a creature.
+    return not (re.search(r"\bnoncreature\b", head) and not re.search(r"\bcreatures?\b", head))
+
+
+def _flickers(text: str, at: int) -> bool:
+    """The exile at `at` comes straight back: an unconditional return later in the SAME
+    paragraph that is not waiting for the source to leave the battlefield."""
+    start = text.rfind("\n", 0, at) + 1
+    end = text.find("\n", at)
+    para = text[start:] if end == -1 else text[start:end]
+    for sentence in re.split(r"(?<=\.)\s+", para[at - start:]):
+        if not _FLICKER_RETURN_RE.search(sentence):
+            continue
+        if "leaves the battlefield" in sentence or re.search(r"\b(?:if|unless)\b", sentence):
+            continue
         return True
-    for match in _WIPE_ALL_RE.finditer(text):
-        obj = _wipe_object(match.group(1))
-        if _CREATURE_OBJECT_RE.search(obj) and not _ZONE_OBJECT_RE.search(obj):
-            return True
     return False
 
 
-def _is_removal(text: str) -> bool:
-    """True only when the targeted removal can hit a CREATURE."""
-    for match in _REMOVAL_TARGET_RE.finditer(text):
-        obj = _wipe_object(match.group(1))
-        if _CREATURE_OBJECT_RE.search(obj) and not _ZONE_OBJECT_RE.search(obj):
-            return True
-    return any(
-        m.group(1) == "any target" or _CREATURE_OBJECT_RE.search(m.group(1))
-        for m in _DAMAGE_TARGET_RE.finditer(text)
-    )
-_COUNTER_RE = re.compile(r"counter target .{0,40}spell")
+@dataclass(frozen=True)
+class InteractionModes:
+    """HOW a card interacts, by mode. `analyze` collapses this to removal/board_wipe/
+    counterspell; `ccm.cross_check` reads the modes so its omission gate can ask for the op
+    that actually expresses each one (a bounce is `return_to_hand`, a -N/-N is a negative
+    `pump`) instead of demanding destroy/exile/deal_damage of every answer."""
+
+    spot: frozenset[str] = frozenset()     # destroy|exile|damage|minus|bounce|tuck|fight|edict
+    wipe: frozenset[str] = frozenset()     # destroy|exile|damage|minus|static_minus|bounce|edict
+    counter: frozenset[str] = frozenset()  # counter | exile
+
+
+def interaction_modes(text: str) -> InteractionModes:
+    """Clause modes over CLEANED text (`_clean_text`: casefolded, reminder text stripped)."""
+    # Quoted text is KEPT, unlike `_draw_counts`: a granted "{T}: deals 1 damage to any
+    # target" (Hermetic Study, Shuriken, Bombardment's Missiles) is interaction the
+    # controller really has; stripping it lost 30+ such cards in the first draft.
+    spot: set[str] = set()
+    wipe: set[str] = set()
+    counter: set[str] = set()
+
+    for m in _REMOVAL_TARGET_RE.finditer(text):
+        verb = "exile" if text.startswith("exile", m.start()) else "destroy"
+        if _hits_creature(m.group(1)) and not (verb == "exile" and _flickers(text, m.start())):
+            spot.add(verb)
+    for m in _WIPE_ALL_RE.finditer(text):
+        verb = "exile" if text.startswith("exile", m.start()) else "destroy"
+        if _hits_creature(m.group(1)) and not (verb == "exile" and _flickers(text, m.start())):
+            # (a mass flicker -- Golden Argosy's "exile each creature that crewed it ...
+            # return them" -- is no more a sweep than Ephemerate is removal)
+            # Council's Judgment exiles "each permanent with the most votes": one answer.
+            (spot if "most votes" in m.group(1) else wipe).add(verb)
+    for m in _DAMAGE_TARGET_RE.finditer(text):
+        obj = m.group(1)
+        if obj in ("any target", "targets") or _hits_creature(obj):
+            spot.add("damage")
+    for m in _DAMAGE_EACH_RE.finditer(text):
+        if _hits_creature(m.group(1)):
+            wipe.add("damage")
+    for m in _MINUS_TARGET_RE.finditer(text):
+        if re.search(r"\bcreatures?\b", m.group(1)) and _hits_creature(m.group(1)):
+            spot.add("minus")
+    for m in _MINUS_ALL_RE.finditer(text):
+        if _hits_creature(next(g for g in m.groups() if g)):
+            # A static -N/-N (Elesh Norn, Curse of Death's Hold) has no "until end of
+            # turn"; the CCM schema stores statics as notes only, so ccm.cross_check must
+            # not demand an op for it.
+            line_end = text.find("\n", m.end())
+            rest = text[m.end(): None if line_end == -1 else line_end].split(".")[0]
+            wipe.add("minus" if "until end of turn" in rest else "static_minus")
+    for m in _BOUNCE_RE.finditer(text):
+        obj = m.group(1)
+        mass = re.match(rf"{_LEAD}(?:all|each)\b", obj)
+        if _hits_creature(obj):
+            (wipe if mass else spot).add("bounce")
+    for rx in (_TUCK_RE, _SHUFFLE_RE):
+        for m in rx.finditer(text):
+            if _hits_creature(m.group(1)):
+                spot.add("tuck")
+    for m in _FIGHT_RE.finditer(text):
+        if _hits_creature(m.group(1)):
+            spot.add("fight")
+    for m in _EDICT_RE.finditer(text):
+        obj = m.group(1)
+        # A PUNISHER is not an answer: "unless that player sacrifices a creature"
+        # (Acererak, Indulgent Tormentor, Ogre Marauder) lets the opponent choose the
+        # other outcome.
+        if text[max(0, m.start() - 7):m.start()] == "unless ":
+            continue
+        if _hits_creature(obj):
+            # Liliana of the Veil's -6 sacrifices one PILE, not the board.
+            mass = obj.startswith("all ") and "pile" not in obj
+            (wipe if mass else spot).add("edict")
+
+    if _COUNTER_RE.search(text):
+        counter.add("counter")
+    if _EXILE_SPELL_RE.search(text):
+        counter.add("exile")
+    return InteractionModes(frozenset(spot), frozenset(wipe), frozenset(counter))
+
+
+# "counter up to one target spell" missed the old verb-adjacent `counter target`.
+_COUNTER_RE = re.compile(rf"counter {_LEAD}target .{{0,40}}spell")
+# Exiling a spell on the stack IS countering it (Mindbreak Trap: "Exile any number of
+# target spells"). Word-limited so it never reaches past the object into another noun.
+_EXILE_SPELL_RE = re.compile(rf"\bexile {_LEAD}target (?:[a-z]+ ){{0,3}}?spells?\b")
 # A cheat-into-play enabler (Kaalia, Sneak Attack, Elvish Piper, Quicksilver Amulet).
 # `sim/tier0.py` acts on this by pulling the BIGGEST STRANDED CREATURE out of hand and
 # swinging with it the same turn, so the tag has to mean "can put an arbitrary creature
@@ -369,9 +555,10 @@ def analyze(card: Card) -> EffectVector:
     if m and "land" not in m.group(1):
         tutor = True
 
-    removal = 1 if _is_removal(text) else 0
-    board_wipe = _is_board_wipe(text)
-    counterspell = bool(_COUNTER_RE.search(text))
+    modes = interaction_modes(text)
+    removal = 1 if modes.spot else 0
+    board_wipe = bool(modes.wipe)
+    counterspell = bool(modes.counter)
     cheats_creatures = _cheats_creatures(text)
     draw_cards, engine_draw = _draw_counts(text)
 
