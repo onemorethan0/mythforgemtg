@@ -931,6 +931,12 @@ _MULTI_COPY_RE = re.compile(
 _COPY_NEGATION_RE = re.compile(
     r"\b(?:not|cannot|can't|can’t|couldn't|only|never|no|isn't|aren't|don't|doesn't|"
     r"shouldn't|won't|illegal|singleton)\b", re.IGNORECASE)
+# The prohibition often FOLLOWS the copy phrase ("Running two copies of Sol Ring is not allowed",
+# "adding a second copy would be illegal") -- a live false refusal of a correct answer, 2026-10-01.
+_COPY_PROHIBITED_AFTER_RE = re.compile(
+    r"\b(?:illegal|violat\w*|prohibited|forbidden|against\s+the|break(?:s|ing)?\s+the|"
+    r"(?:not|n't|never)\s+(?:be\s+)?(?:allowed|permitted|legal)|is\s+not\s+possible)\b",
+    re.IGNORECASE)
 _BASIC_LAND_RE = re.compile(r"(?<![\w-])basic\s+lands?\b|\b(?:Plains|Island|Swamp|Mountain|Forest|Wastes)\b")
 
 
@@ -943,6 +949,8 @@ def singleton_reasons(text: str, exception_names=()) -> list[str]:
             continue
         if _COPY_NEGATION_RE.search(sentence[:m.start()]):
             continue
+        if _COPY_PROHIBITED_AFTER_RE.search(sentence[m.end():]):
+            continue
         if _BASIC_LAND_RE.search(sentence):
             continue
         if any(re.search(rf"\b{re.escape(n)}\b", sentence, re.IGNORECASE) for n in exceptions):
@@ -952,6 +960,83 @@ def singleton_reasons(text: str, exception_names=()) -> list[str]:
             "other than basic lands each card must have a different English name (rule 903.5b, "
             "returned by check_legality as singleton_rule); only a card whose own oracle text "
             "says 'a deck can have any number of cards named' is an exception"]
+    return []
+
+
+# ── Counterspell framing for a deck without blue (gate check 11, bench `colour`) ──────
+# Moved here from scripts/mentor_holistic_rubrics.py (2026-10-01) so the bench and the live
+# gate share ONE definition. A factual MENTION ("4 removal, no counterspells") is fine; what
+# fails is RECOMMENDING counterspells or calling their absence a weakness/gap for a deck that
+# cannot play blue -- unless the same sentence acknowledges the colour identity.
+_CS_RE = re.compile(r"\bcounter[\s-]?spells?\b|\bcounter\s+magic\b|\bcountering\s+spells\b",
+                    re.IGNORECASE)
+_CS_RECOMMEND_RE = re.compile(
+    r"\b(?:add|adding|include|including|consider|considering|run|running|play|playing|get|"
+    r"getting|try|trying|pick\s+up|picking\s+up|want|worth)\b[^.]{0,60}\b"
+    r"(?:counter[\s-]?spells?|counter\s+magic)\b",
+    re.IGNORECASE,
+)
+_CS_GAP_RE = re.compile(
+    r"\b(?:lack\w*|gap|missing|weakness(?:es)?|weak|short\s+on|shortage|shortcoming|absence|"
+    r"thin|significant|deficien\w*|light\s+on|under[\s-]?supplied)\b",
+    re.IGNORECASE,
+)
+_CS_IDENTITY_ACK_RE = re.compile(
+    r"(?:not\s+in\s+(?:your|the)\s+(?:deck'?s?\s+)?(?:colou?r|commander)|outside\s+(?:your|the)|"
+    r"isn'?t\s+in\s+(?:your|the)|aren'?t\s+in\s+(?:your|the)|"
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+play\s+blue|"
+    r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|"
+    r"absence\s+of\s+blue|blue\s+is\s+(?:absent|missing)|"
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+include\s+blue|"
+    r"colou?r\s+identity,?\s+which\s+(?:doesn'?t|does\s+not)|can'?t\s+(?:run|play|cast|add)|"
+    r"cannot\s+(?:run|play|cast|add)|doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|"
+    r"not\s+(?:considered\s+|really\s+)?(?:a\s+)?(?:concern|gap|problem|weakness)|"
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+require)",
+    re.IGNORECASE,
+)
+_CS_NEG_BEFORE_RE = re.compile(
+    r"\b(?:not|no|never|isn'?t|aren'?t|doesn'?t|don'?t|didn'?t|wouldn'?t|shouldn'?t|won'?t|"
+    r"without|cannot|can'?t|nothing|lack\w*|missing|absent|short\s+on|shy\s+of)\b"
+    r"(?:\W+\w+){0,4}\W*$",
+    re.IGNORECASE,
+)
+
+
+def counterspell_advice_reasons(text: str) -> list[str]:
+    """For a deck WITHOUT blue: one reason per sentence that recommends counterspells or
+    calls their absence a weakness/gap without acknowledging the colour identity."""
+    reasons: list[str] = []
+    for sentence in split_sentences(text):
+        if not _CS_RE.search(sentence):
+            continue
+        rec = _CS_RECOMMEND_RE.search(sentence)
+        recommends = bool(rec) and not _CS_NEG_BEFORE_RE.search(sentence[:rec.start()])
+        gap = bool(_CS_GAP_RE.search(sentence))
+        if (recommends or gap) and not _CS_IDENTITY_ACK_RE.search(sentence):
+            kind = "recommends counterspells" if recommends else "calls missing counterspells a gap"
+            reasons.append(f"{kind} without blue identity: {sentence.strip()[:90]!r}")
+    return reasons
+
+
+# "One copy of any non-basic land card" is how qwen3:14b paraphrases CR 903.5b even with the rule
+# text in hand (live 2026-10-01). Said about a LAND it is merely incomplete; said while the reply
+# is about a NON-land card (Sol Ring) it misstates the rule the answer rests on -- the singleton
+# rule covers every card other than basic lands. Fires only in that second case.
+_LAND_ONLY_SINGLETON_RE = re.compile(
+    r"\b(?:one|1|a\s+single)\s+copy\s+of\s+(?:any|each|every|a|all)\s+non-?\s?basic\s+lands?\b",
+    re.IGNORECASE)
+
+
+def singleton_misstatement_reasons(text: str, card_types) -> list[str]:
+    if not _LAND_ONLY_SINGLETON_RE.search(text):
+        return []
+    for name, type_line in card_types or ():
+        if (isinstance(type_line, str) and "land" not in type_line.lower()
+                and re.search(rf"\b{re.escape(name)}\b", text, re.IGNORECASE)):
+            return [
+                f"states the singleton rule as covering only non-basic LANDS while the answer is "
+                f"about {name!r} ({type_line}); CR 903.5b says every card other than basic lands "
+                "must have a different English name -- state it that way (singleton_rule)"]
     return []
 
 

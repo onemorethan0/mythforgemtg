@@ -577,8 +577,24 @@ premise ("only costs 2 mana") can be corrected from the real cost. It first brok
 Behemoth" contains the real card "Flux") -- a name embedded in a longer capitalised run is now skipped, and
 possessives ("Craterhoof Behemoth's") still match. (4) A fraction in a tool result also licenses its percent form
 (0.78 -> "78%"). Result on the trap: "Sol Ring only costs 1 mana, not 2 ... you can only have one copy", gated 3/3.
-Residual: qwen3:14b still paraphrases 903.5b as "one copy of any non-basic land card" even with the rule text in hand
+Residual (fixed the same day, below): qwen3:14b still paraphrases 903.5b as "one copy of any non-basic land card" even with the rule text in hand
 (the conclusion is right; the wording is not) -- a prompt-level nit, not gate-checkable without false positives.
+
+**Fix-all round (2026-10-01, Opus, branch `mentor-fixall`).** Three residuals closed. (1) **Gate check 11**:
+counterspell framing for a deck without blue. The logic moved from the bench rubric into
+`verdicts.counterspell_advice_reasons` (one definition for gate and bench); the gate arms it only when a tool result
+says counterspells do not apply (`gate._says_counterspells_na`: `roles.counterspell.applicable` False,
+`counterspell_applicable` False, `interaction_counts.counterspells` "n/a ...", or a known `deck_color_identity`
+without U). "due to the absence of blue" now counts as an acknowledgement (Shelob's honest sentence used to fail the
+rubric). (2) **Uncited rule auto-lookup** (`chat._lookup_uncited_rules`): when the gate refuses a citation that was
+never looked up, the loop fetches that rule plus its parent and lettered siblings (cap 10) and tells the model to cite
+only the sibling whose text matches. Live: the stack question's 601.2a draft was followed by a clean retry. (3) **Check
+9b** (`verdicts.singleton_misstatement_reasons`): "one copy of any non-basic land" while the reply is about a licensed
+non-land card is a misstated 903.5b; live the retry states the rule correctly 3/3. Check 10 also learned that a
+prohibition can FOLLOW the copy phrase ("running two copies would be illegal / is not allowed") -- a live false
+refusal of a correct answer. Result: holistic **90/90**, Shelob 48/52 (the four misses are scorer phrase markers on
+correct replies: 704.5c, token nuance, Sol Ring stating `{1}` without "not 2", and a 603.3d reply that opens "You're
+correct" before citing the right 603.3 -- the last is a real sycophantic opener worth a prompt line).
 
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap

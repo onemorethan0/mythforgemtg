@@ -599,6 +599,52 @@ def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_result
                          "content": json.dumps(result.data, ensure_ascii=False, default=str)})
 
 
+_UNCITED_RULE_RE = re.compile(r"cites rule '([^']+)', which was never looked up this turn")
+_RULE_PARENT_RE = re.compile(r"^(\d{3}\.\d+)[a-z]?$")
+_SIBLING_CAP = 10
+
+
+def _lookup_uncited_rules(ctx, reasons, tool_trace, all_results, messages) -> list[str]:
+    """For each rule the draft cited without retrieving it, run get_rule on it AND its sibling
+    sub-rules (same parent number), then let the model re-check. Live 2026-10-01 a stack answer
+    cited 601.2a (real, unretrieved) and fell back three times. Siblings ride along because the
+    known failure here is a real-but-WRONG sibling (MENTOR_HANDOFF round 5: 506.3a cited where
+    506.3b applied) -- the model must see the alternatives side by side, never just the number
+    it already reached for. A number the corpus does not hold is fetched as not-found and the
+    citation stays unlicensed."""
+    rules = getattr(getattr(ctx, "cr", None), "rules", None) or {}
+    already = {str(t.args.get("number", "")) for t in tool_trace if t.name == "get_rule"}
+    wanted: list[str] = []
+    for reason in reasons:
+        m = _UNCITED_RULE_RE.search(reason)
+        if not m:
+            continue
+        cited = m.group(1)
+        parent = _RULE_PARENT_RE.match(cited)
+        family = [cited]
+        if parent:
+            base = parent.group(1)
+            sibs = sorted(k for k in rules if k == base or re.fullmatch(re.escape(base) + r"[a-z]", k))
+            family = [base] + [k for k in sibs if k != base] if base in rules else sibs or [cited]
+        for number in family[:_SIBLING_CAP]:
+            if number not in already and number not in wanted:
+                wanted.append(number)
+    if not wanted:
+        return []
+    calls = [{"id": f"auto-rule-{i}", "type": "function",
+              "function": {"name": "get_rule", "arguments": json.dumps({"number": n})}}
+             for i, n in enumerate(wanted)]
+    messages.append({"role": "assistant", "content": "", "tool_calls": calls})
+    for call, number in zip(calls, wanted):
+        result = call_tool(ctx, "get_rule", {"number": number})
+        all_results.append(result)
+        tool_trace.append(ToolCallRecord(name="get_rule", args={"number": number},
+                                         result_data=result.data))
+        messages.append({"role": "tool", "tool_call_id": call["id"],
+                         "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    return wanted
+
+
 _MISTYPED_RE = re.compile(r"calls '([^']+)' an? \w+, but its type line this turn is")
 
 
@@ -808,7 +854,8 @@ def ask(
         # non-basic land", and ignored the rejection's own correction on every retry. Hand it
         # the real card text by running lookup_card ourselves, exactly as if it had called it.
         looked_up = _lookup_mistyped_cards(ctx, reasons, tool_trace, all_results, messages)
-        if looked_up:
+        rules_fetched = _lookup_uncited_rules(ctx, reasons, tool_trace, all_results, messages)
+        if looked_up or rules_fetched:
             budget = _with_card_types(
                 gate_mod.ClaimBudget.from_tool_results(all_results, known_names), ctx)
         retry_messages = messages + [
@@ -818,6 +865,10 @@ def ask(
                 + (f"The lookup_card result for {', '.join(looked_up)} is above: use its type "
                    "line and mana cost exactly, and if the question assumed something those "
                    "contradict, correct that assumption first. " if looked_up else "")
+                + (f"The text of rules {', '.join(rules_fetched)} is above. Cite a rule ONLY if "
+                   "its own text states the specific thing you use it for; when several sibling "
+                   "rules share a number, pick the one whose text matches the exact case, and "
+                   "if none does, drop the citation. " if rules_fetched else "")
                 + "Rewrite it using ONLY facts from the tool results above. If you cannot "
                 "answer precisely with what you have, say so honestly instead of guessing."
             )},

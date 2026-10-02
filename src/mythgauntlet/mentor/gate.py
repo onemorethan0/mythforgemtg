@@ -190,6 +190,26 @@ def typed_bracket_numbers(question: str) -> frozenset[float]:
     )
 
 
+def _says_counterspells_na(data: dict) -> bool:
+    """A tool result stating counterspells do not apply to this deck, in any of the shapes the
+    mentor's tools write it (get_deck_stats roles, get_power_profile's interaction_counts,
+    diagnose_axis facts, check_legality's deck identity)."""
+    roles = data.get("roles")
+    if isinstance(roles, dict):
+        cs = roles.get("counterspell")
+        if isinstance(cs, dict) and cs.get("applicable") is False:
+            return True
+    if data.get("counterspell_applicable") is False:
+        return True
+    counts = data.get("interaction_counts")
+    if isinstance(counts, dict) and str(counts.get("counterspells", "")).startswith("n/a"):
+        return True
+    identity = data.get("deck_color_identity")
+    if isinstance(identity, list) and identity and "U" not in identity:
+        return True
+    return False
+
+
 _COPY_COUNT_RE = re.compile(
     r"\b(?:cop(?:y|ies)|second|duplicate|singleton)\b", re.IGNORECASE)
 
@@ -255,6 +275,9 @@ class ClaimBudget:
     # Cards this turn's tool results show OVERRIDE the singleton rule ("a deck can have any
     # number of cards named ..."): check 10 exempts a multiple-copies sentence naming one.
     copy_exception_names: frozenset[str] = frozenset()
+    # True when a tool result this turn says counterspells do not apply to this deck (no blue in
+    # its identity): check 11 then rejects "add counterspells" / "lacks counterspells, a gap".
+    counterspell_na: bool = False
 
     @classmethod
     def from_tool_results(
@@ -270,6 +293,7 @@ class ClaimBudget:
         clock_swaps: list[dict] = []
         card_types: dict[str, str] = {}
         copy_exceptions: set[str] = set()
+        counterspell_na = False
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -305,9 +329,12 @@ class ClaimBudget:
             if (isinstance(data, dict) and data.get("copy_limit_exception") is True
                     and isinstance(data.get("card"), str)):
                 copy_exceptions.add(data["card"])
+            if isinstance(data, dict) and _says_counterspells_na(data):
+                counterspell_na = True
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
-                    tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions))
+                    tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions),
+                    counterspell_na)
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -495,12 +522,25 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #    removal spell") never fire.
     if budget.card_types:
         reasons.extend(verdicts_mod.type_claim_reasons(body, budget.card_types))
+        # 9b. The singleton rule stated as "one copy of any non-basic LAND" while the reply is
+        #     about a non-land card -- a misstated rule the conclusion rests on.
+        reasons.extend(verdicts_mod.singleton_misstatement_reasons(body, budget.card_types))
 
     # 10. SINGLETON CONTRADICTION (HEURISTIC -- see `verdicts.singleton_reasons`). "You can run
     #     multiple copies of Sol Ring" names no unlicensed card, number or rule, so checks 1-9
     #     cannot see it; it contradicts CR 903.5b. Always on (it is a rules claim, not a claim
     #     about a tool result); exempts basic lands and cards whose own text overrides the rule.
     reasons.extend(verdicts_mod.singleton_reasons(body, budget.copy_exception_names))
+
+    # 11. COUNTERSPELL ADVICE FOR A DECK WITHOUT BLUE (HEURISTIC -- `verdicts.
+    #     counterspell_advice_reasons`, shared with the bench's colour rubric). Only when a tool
+    #     result this turn says counterspells do not apply; a factual mention or an identity
+    #     acknowledgement ("no counterspells, since there is no blue") passes.
+    if budget.counterspell_na:
+        reasons.extend(
+            r + " -- counterspells are not applicable to this deck (no blue in its colour "
+            "identity), so do not call their absence a weakness or suggest adding them"
+            for r in verdicts_mod.counterspell_advice_reasons(body))
 
     return reasons
 
