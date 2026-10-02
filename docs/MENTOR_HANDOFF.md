@@ -600,6 +600,25 @@ refusal of a correct answer. Result: holistic **90/90**, Shelob 48/52 (the four 
 correct replies: 704.5c, token nuance, Sol Ring stating `{1}` without "not 2", and a 603.3d reply that opens "You're
 correct" before citing the right 603.3 -- the last is a real sycophantic opener worth a prompt line).
 
+**Review + integration round (2026-10-01, Opus).** Three parked branches were reviewed and merged with the
+mentor work: `fix/tags-interaction` (interaction tags gate the OBJECT; ccm/profile twins), and the engine-draw chain
+(`fix/engine-draw-ability-word` incl. one-shot triggers, activated-draw engines, follow-on sentences, ability-word
+prefixes) plus `fix/engine-draw-one-shot-triggers`' swap_narrative fix. Their commit messages carry the store-wide
+and bracket measurements (bracket sweep identical throughout); the mentor-facing effect was A/B'd per bench deck:
+key cards and verdicts move only where the fixes say they should (edicts and Chaos Warp now removal, Solemn no longer
+a draw engine, Tymna interaction thin -> moderate), and `removal_coverage` is byte-identical. Review fixes that each
+came from reading a failing reply, not from the rubric score: **check 12** (the reply opens "You're absolutely right"
+about the player's rule number, then cites a different one or calls the asked one "unrelated"); **curly apostrophes**
+(`verdicts.normalize_apostrophes`, applied once in `gate.check` and `rubrics.grade` -- every phrase regex is ASCII, so
+"didn’t find a measurable improvement" read as no statement and "doesn’t hurt the deck’s removal power" slipped
+past check 7); **check 1** no longer reads a word at a markdown/list/colon clause start as a card ("- **Faster:**
+Consider the swap" refused three correct drafts); **check 9** resolves "it's a Sorcery" to the card named just before
+it (the Rhystic Study premise echo); **9b** is scoped to the misstating sentence and its neighbours;
+`list_deck_cards` now carries the deck colour identity so check 11 arms on a card-list answer; and the counterspell
+acknowledgement learned "does not have blue" / "worth noting". Bench (three full runs on the merged tree, regraded
+under the final rubrics): holistic 87, 88, 87 /90; Shelob 47, 49, 48 /52 (bar 47). Remaining misses vary run to
+run (a key card not named, a win-route label) and the token-nuance trap's "based on general rules" guess persists.
+
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
 :8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the

@@ -979,7 +979,7 @@ _CS_RE = re.compile(r"\bcounter[\s-]?spells?\b|\bcounter\s+magic\b|\bcountering\
                     re.IGNORECASE)
 _CS_RECOMMEND_RE = re.compile(
     r"\b(?:add|adding|include|including|consider|considering|run|running|play|playing|get|"
-    r"getting|try|trying|pick\s+up|picking\s+up|want|worth)\b[^.]{0,60}\b"
+    r"getting|try|trying|pick\s+up|picking\s+up|want|worth(?!\s+(?:noting|mentioning|knowing)))\b[^.]{0,60}\b"
     r"(?:counter[\s-]?spells?|counter\s+magic)\b",
     re.IGNORECASE,
 )
@@ -995,6 +995,8 @@ _CS_IDENTITY_ACK_RE = re.compile(
     r"(?:no|without)\s+blue|lacks?\s+blue|blue\s+(?:isn'?t|is\s+not)|"
     r"absence\s+of\s+blue|blue\s+is\s+(?:absent|missing)|"
     r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+include\s+blue|"
+    # "as it does not have blue in its color identity" (Kaalia, 2026-10-01)
+    r"(?:doesn'?t|does\s+not|don'?t|do\s+not)\s+have\s+(?:any\s+)?blue|has\s+no\s+blue|"
     r"colou?r\s+identity,?\s+which\s+(?:doesn'?t|does\s+not)|can'?t\s+(?:run|play|cast|add)|"
     r"cannot\s+(?:run|play|cast|add)|doesn'?t\s+need|don'?t\s+need|no\s+need|not\s+needed|"
     r"not\s+(?:considered\s+|really\s+)?(?:a\s+)?(?:concern|gap|problem|weakness)|"

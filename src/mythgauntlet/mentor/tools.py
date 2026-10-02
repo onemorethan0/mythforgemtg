@@ -713,10 +713,16 @@ def tool_list_deck_cards(ctx: MentorContext, role: str | None = None) -> ToolRes
                 "message": f"No role named {role!r}; valid roles are {', '.join(valid)}.",
             })
         rows = [r for r in rows if role in r["roles"]]
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
     data = {
         "found": True, "role": role, "valid_roles": valid,
         "count": len(rows), "copies": sum(r["qty"] for r in rows),
         "cards": rows,
+        # A card-list answer is where "lacks counterspells, an area for improvement" was
+        # written with no profile call in the turn, so gate check 11 had nothing to arm on
+        # (Shelob, 2026-10-01). The identity travels with the list.
+        "deck_color_identity": identity,
+        "counterspell_applicable": redundancy.role_applicable("counterspell", identity),
     }
     return ToolResult(data=data, card_names=frozenset(r["name"] for r in rows))
 

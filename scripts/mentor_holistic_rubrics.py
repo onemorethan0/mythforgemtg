@@ -476,6 +476,11 @@ def _g_removal(reply, truth):
                 continue
             quals = [(name, rx_back) for name, (rx_find, rx_back) in _QUALIFIERS.items()
                      if rx_find.search(clause)]
+            # "no blue cards, so it cannot play counterspells, the only way to answer spells":
+            # the colour there explains the deck's identity, it is not a restriction on a
+            # removal spell. Grade the clause's TYPE claim (spells) against the tool instead.
+            if verdicts._CS_RE.search(sentence):
+                quals = [q for q in quals if q[0] != "colour"]
             if quals:
                 for name, rx_back in quals:
                     claims += 1

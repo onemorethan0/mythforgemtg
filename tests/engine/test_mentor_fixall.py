@@ -22,7 +22,9 @@ def test_counterspell_identity_acknowledgements_pass():
                  "blue in its color identity.",
                  "No counterspells, since your deck has no blue.",
                  "It runs 4 removal spells, no counterspells and 1 wipe.",
-                 "Missing counterspells is not a gap for a deck without blue."):
+                 "Missing counterspells is not a gap for a deck without blue.",
+                 "However, it's worth noting that your deck does not have any counterspells, as "
+                 "it does not have blue in its color identity."):
         assert not verdicts.counterspell_advice_reasons(text), text
 
 
@@ -188,3 +190,13 @@ def test_pronoun_attributive_type_word_is_not_a_claim():
     types = [("Swords to Plowshares", "Instant")]
     text = "Swords to Plowshares is excellent; it's a creature removal spell for one mana."
     assert not verdicts.type_claim_reasons(text, types)
+
+
+def test_list_deck_cards_arms_check_11_for_a_deck_without_blue():
+    # the shape list_deck_cards now returns for a BG deck (Shelob)
+    data = {"found": True, "cards": [], "deck_color_identity": ["B", "G"],
+            "counterspell_applicable": False}
+    budget = gate.ClaimBudget.from_tool_results([ToolResult(data=data)])
+    assert budget.counterspell_na
+    text = "The deck lacks any counterspells and finishers, which could be areas for improvement."
+    assert any("counterspells are not applicable" in r for r in gate.check(text, budget))
