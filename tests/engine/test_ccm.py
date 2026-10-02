@@ -755,8 +755,9 @@ def test_genuine_garbage_still_rejects():
      "at the beginning of each end step, if you drew two or more cards this turn, "
      "you may put a quest counter on this enchantment", (0, 0)),
     # ...and the real ones must survive
-    ("real activated", "{t}: draw a card", (1, 0)),
-    ("real with discard", "{t}: draw two cards, then discard three cards", (2, 0)),
+    # a repeatable activated draw is a per-turn engine (test_engine_draw_activated.py)
+    ("real activated", "{t}: draw a card", (0, 1)),
+    ("real with discard", "{t}: draw two cards, then discard three cards", (0, 2)),
     ("real engine", "whenever a creature you control dies, draw a card", (0, 1)),
     ("real triggered two", "at the beginning of your upkeep, draw two cards", (0, 2)),
     ("opponent draw is not yours", "each opponent draws a card", (0, 0)),
