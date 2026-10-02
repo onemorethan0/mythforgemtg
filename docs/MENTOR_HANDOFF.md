@@ -619,6 +619,21 @@ acknowledgement learned "does not have blue" / "worth noting". Bench (three full
 under the final rubrics): holistic 87, 88, 87 /90; Shelob 47, 49, 48 /52 (bar 47). Remaining misses vary run to
 run (a key card not named, a win-route label) and the token-nuance trap's "based on general rules" guess persists.
 
+**Phrasing corpus round (2026-10-02, Opus + qwen3:14b offload).** The bench's run-to-run variance (2-3 cells
+between identical-code runs) came mostly from the model wording a correct answer in a way a shared vocabulary did
+not recognise, and those vocabularies had only ever been grown one live failure at a time. So qwen3:14b -- the
+mentor's own model -- was given labelled prompts and wrote 376 phrasings across 11 categories (positives and hard
+negatives), reviewed by hand into `tests/engine/data/mentor_phrasings.json` (`test_mentor_phrasing_corpus.py`).
+Measured before the fixes: no-improvement 14/36, admit-then-guess 0/36, counterspell pitch 7/24, plus 6/36
+opponent-context false positives that were LATENT in the old verb list ("playing around counterspells"). Shipped:
+**gate check 13** (`verdicts.guess_after_admission_reasons` -- admits the rules don't settle it, then answers from
+general knowledge; 0 fires on 432 saved real replies), wider `NO_IMPROVEMENT_RE`, counterspell pitch/absence/
+opponent handling, a bare "Right," opener for check 12. Tool precision: `removal_coverage` no longer says "only
+counterspells answer spells ... no blue plays them" (the model repeated it as fact) and no longer hides a non-blue
+deck's real spell answers; the profile keeps a real non-zero counterspell count. **The workflow is the lesson:**
+when a rubric or gate check keeps flaking, generate the model's own phrasing space for that category (positives AND
+hard negatives) before widening the regex; a new live miss goes into the corpus as an item.
+
 **The acceptance gate for any future mentor change** is
 `python scripts/mentor_holistic_bench.py` (9 decks x 8 questions, ~25 min, qwen3:14b on llama-swap
 :8010; `--decks a,b --questions x,y` for a subset, `--regrade saved.json` to re-score offline) plus the

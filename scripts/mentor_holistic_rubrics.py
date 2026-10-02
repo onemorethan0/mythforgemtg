@@ -479,7 +479,11 @@ def _g_removal(reply, truth):
             # "no blue cards, so it cannot play counterspells, the only way to answer spells":
             # the colour there explains the deck's identity, it is not a restriction on a
             # removal spell. Grade the clause's TYPE claim (spells) against the tool instead.
-            if verdicts._CS_RE.search(sentence):
+            # Same for "lacks the ability to answer spells on the stack, a role typically filled
+            # by blue cards" in a deck without blue -- the tool's own not_applicable note says
+            # exactly that (Isshin, 2026-10-02); the spell claim is still graded below.
+            no_blue = "U" not in set(truth.get("identity") or "U")
+            if verdicts._CS_RE.search(sentence) or (no_blue and re.search(r"\bspells?\b", clause, re.I)):
                 quals = [q for q in quals if q[0] != "colour"]
             if quals:
                 for name, rx_back in quals:

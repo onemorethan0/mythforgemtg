@@ -249,7 +249,16 @@ def _looks_honest_about_a_trap(text: str) -> bool:
     lower = text.lower()
     if any(m in lower for m in _TRAP_HONESTY_MARKERS):
         return True
-    return any(p.search(text) for p in _TRAP_HONESTY_PATTERNS)
+    if any(p.search(text) for p in _TRAP_HONESTY_PATTERNS):
+        return True
+    # The gate's own definition (check 13, 2026-10-02): admits the retrieved rules don't settle
+    # it AND adds no general-knowledge guess. Shared with the gate so the two cannot drift --
+    # "None of the rules provided directly address ... I cannot provide a definitive answer"
+    # was the live reply the marker list above missed.
+    from mythgauntlet.mentor import verdicts
+    norm = verdicts.normalize_apostrophes(text)
+    return bool(verdicts._ADMISSION_RE.search(norm) and verdicts._RULES_EVIDENCE_RE.search(norm)
+                and not verdicts.guess_after_admission_reasons(norm))
 
 
 def main() -> int:
