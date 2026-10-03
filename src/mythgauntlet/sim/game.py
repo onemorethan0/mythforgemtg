@@ -123,10 +123,11 @@ class DeclareAttackers:
 
 @dataclass(frozen=True)
 class DeclareBlocks:
-    # attacker-index (into state.combat_attackers) -> blocking permanent
-    assignment: tuple[tuple[int, _Permanent], ...] = ()
+    # attacker-index (into state.combat_attackers) -> blocking permanent, or a TUPLE of
+    # blockers for a multi-block (menace needs two or more, CR 702.110b)
+    assignment: tuple[tuple[int, object], ...] = ()
 
-    def as_dict(self) -> dict[int, _Permanent]:
+    def as_dict(self) -> dict[int, object]:
         return dict(self.assignment)
 
 
@@ -330,7 +331,8 @@ def action_key(action: object) -> tuple:
     if isinstance(action, DeclareAttackers):
         return ("attack", tuple(sorted(p.name for p in action.attackers)))
     if isinstance(action, DeclareBlocks):
-        return ("block", tuple(sorted((i, b.name) for i, b in action.assignment)))
+        return ("block", tuple(sorted((i, tuple(sorted(x.name for x in _blockers_of(b))))
+                                      for i, b in action.assignment)))
     if isinstance(action, PassReaction):
         return ("pass_reaction",)
     if isinstance(action, CounterSpell):
@@ -800,7 +802,7 @@ def _block_candidates(
     seen: set[tuple] = set()
     out: list[object] = []
     for p in plans:
-        key = tuple((i, id(b)) for i, b in p)
+        key = tuple((i, tuple(id(x) for x in _blockers_of(b))) for i, b in p)
         if key not in seen:
             seen.add(key)
             out.append(DeclareBlocks(p))
@@ -1030,8 +1032,135 @@ def _apply_declare_attackers(
         state.combat_defender = None
 
 
-def _apply_declare_blocks(state: GameState, assignment: dict[int, _Permanent]) -> None:
-    """Resolve combat damage exactly as the old _combat second half did."""
+def _blockers_of(value) -> tuple[_Permanent, ...]:
+    """A block assignment value is one blocker or, for a multi-block (menace), a tuple."""
+    if value is None:
+        return ()
+    return tuple(value) if isinstance(value, (tuple, list)) else (value,)
+
+
+def _strikes_in(p: _Permanent, step: str) -> bool:
+    """CR 702.7b / 702.4b: first strike deals damage only in the first-strike step, double
+    strike in both, everything else only in the regular step."""
+    fs, ds = p.has_keyword("first strike"), p.has_keyword("double strike")
+    return (fs or ds) if step == "first" else (ds or not fs)
+
+
+def _apply_declare_blocks(state: GameState, assignment: dict) -> None:
+    """Resolve combat damage.
+
+    With no first/double striker and no multi-block anywhere this is EXACTLY the old single
+    simultaneous pass (`_resolve_combat_legacy`). Otherwise combat runs in two damage steps
+    (CR 510.4): a first-strike step, deaths, then the regular step, with damage marked on a
+    creature accumulating across the two (a 2/3 that takes 2 first-strike damage dies to 1
+    more). A blocked attacker may face several blockers (menace, CR 702.110b) and divides its
+    damage among them as its controller chooses (CR 510.1c, 2024 rules: no ordering), so it
+    kills the most valuable blockers it can afford.
+    """
+    attackers = state.combat_attackers
+    special = any(
+        p.has_keyword("first strike") or p.has_keyword("double strike")
+        for i, a in enumerate(attackers) for p in (a, *_blockers_of(assignment.get(i)))
+    ) or any(len(_blockers_of(v)) > 1 for v in assignment.values())
+    if not special:
+        _resolve_combat_legacy(state, {i: _blockers_of(v)[0] for i, v in assignment.items()
+                                       if _blockers_of(v)})
+        return
+    _resolve_combat_steps(state, {i: _blockers_of(v) for i, v in assignment.items()})
+
+
+def _deal_to_defender(state: GameState, atk: _Permanent, amount: int, walker, opp, me,
+                      others, hitters: list) -> None:
+    """`amount` combat damage from `atk` to the attacked planeswalker or player (shared by the
+    unblocked and trample paths, so commander damage and the combat-damage trigger behave the
+    same way on both)."""
+    if amount <= 0:
+        return
+    if walker is not None:
+        if walker in opp.battlefield:
+            walker.loyalty -= amount
+            if walker.loyalty <= 0:
+                _kill(opp, walker, me, others)
+        return
+    opp.life -= amount
+    if atk.is_commander:
+        key = state.active
+        opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + amount
+    if atk.triggers:
+        hitters.append(atk)
+
+
+def _resolve_combat_steps(state: GameState, blocks: dict[int, tuple[_Permanent, ...]]) -> None:
+    me, opp = state.combat_me_opp()
+    others = _others(state)
+    attackers = state.combat_attackers
+    hitters: list[_Permanent] = []
+    for atk in attackers:
+        if not atk.has_keyword("vigilance"):
+            atk.tapped = True
+    damage: dict[int, int] = {}     # id(creature) -> damage marked this combat
+    dt_hit: set[int] = set()        # id(creature) dealt damage by a deathtouch source
+    for step in ("first", "regular"):
+        dying: list[tuple[_Player, _Permanent, _Player]] = []
+        for i, atk in enumerate(attackers):
+            if atk not in me.battlefield:
+                continue  # died in the first-strike step: deals no regular damage
+            walker = state.combat_walkers.get(i)
+            blockers = blocks.get(i, ())
+            live = [b for b in blockers if b in opp.battlefield]
+            if not blockers:
+                if _strikes_in(atk, step):
+                    _deal_to_defender(state, atk, atk.power, walker, opp, me, others, hitters)
+                continue
+            # the blockers strike the attacker (simultaneously with the attacker's own damage)
+            for b in live:
+                if _strikes_in(b, step) and b.power > 0:
+                    damage[id(atk)] = damage.get(id(atk), 0) + b.power
+                    if b.has_keyword("deathtouch"):
+                        dt_hit.add(id(atk))
+            if not _strikes_in(atk, step) or atk.power <= 0:
+                continue
+            remaining = atk.power
+            deathtouch = atk.has_keyword("deathtouch")
+            # kill the most valuable blockers it can afford first (CR 510.1c)
+            for b in sorted(live, key=lambda c: c.power + c.toughness, reverse=True):
+                need = 1 if deathtouch else max(0, b.toughness - damage.get(id(b), 0))
+                if need <= remaining:
+                    damage[id(b)] = damage.get(id(b), 0) + need
+                    if deathtouch:
+                        dt_hit.add(id(b))
+                    remaining -= need
+            if atk.has_keyword("trample") or not live:
+                # CR 702.19b/e: excess past lethal tramples over; a trampler whose blockers
+                # are ALL gone assigns everything to the player. A non-trampler whose blockers
+                # died in the first-strike step deals no damage (CR 506.4: still blocked).
+                if atk.has_keyword("trample"):
+                    _deal_to_defender(state, atk, remaining, walker, opp, me, others, hitters)
+            elif live and remaining:
+                b = live[0]  # leftover damage still lands on a blocker
+                damage[id(b)] = damage.get(id(b), 0) + remaining
+        # state-based actions after the step (CR 510.4 / 704.5g-h)
+        for i, atk in enumerate(attackers):
+            for b in blocks.get(i, ()):
+                if b in opp.battlefield and (id(b) in dt_hit or damage.get(id(b), 0) >= b.toughness):
+                    dying.append((opp, b, me))
+            if atk in me.battlefield and (id(atk) in dt_hit or damage.get(id(atk), 0) >= atk.toughness):
+                dying.append((me, atk, opp))
+        seen: set[int] = set()
+        for owner, perm, other in dying:
+            if id(perm) not in seen and perm in owner.battlefield:
+                seen.add(id(perm))
+                _kill(owner, perm, other, others)
+    for atk in hitters:
+        _fire_perm_triggers(atk, me, opp, "combat_damage_to_player")
+    state.combat_attackers = []
+    state.combat_walkers = {}
+    state.combat_defender = None
+    state.phase = "end_step"
+
+
+def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) -> None:
+    """The single-pass resolution, unchanged: no first/double strike, no multi-block."""
     me, opp = state.combat_me_opp()  # me = attacker, opp = the seat that WAS attacked
     others = _others(state)  # scales a dying creature's "each opponent" death drain across the pod
     attackers = state.combat_attackers

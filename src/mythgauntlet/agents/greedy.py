@@ -48,7 +48,7 @@ from mythgauntlet.sim.tier2 import (
 )
 
 
-def _legal_blockers(atk: _Permanent, blockers: list[_Permanent]) -> list[_Permanent]:
+def _can_block(atk: _Permanent, blockers: list[_Permanent]) -> list[_Permanent]:
     """CR 702.9b: a flying attacker can only be blocked by a creature with flying or reach.
 
     A non-flying attacker is unaffected by this filter -- a flier can still block it.
@@ -58,23 +58,90 @@ def _legal_blockers(atk: _Permanent, blockers: list[_Permanent]) -> list[_Perman
     return [b for b in blockers if b.has_keyword("flying") or b.has_keyword("reach")]
 
 
+def _legal_blockers(atk: _Permanent, blockers: list[_Permanent]) -> list[_Permanent]:
+    """Creatures that may block `atk` ALONE. A menace attacker can't be blocked except by two
+    or more creatures (CR 702.110b), so no single blocker is legal; `_menace_pair` decides a
+    double block."""
+    if atk.has_keyword("menace"):
+        return []
+    return _can_block(atk, blockers)
+
+
+def _duel(atk: _Permanent, blk: _Permanent) -> tuple[bool, bool]:
+    """(attacker dies, blocker dies) for a one-on-one block, honouring first/double strike and
+    deathtouch the way `game._resolve_combat_steps` resolves it -- so the defender's "is this a
+    winning block" read matches what combat will actually do (a 2/2 double striker kills a 3/3)."""
+    def strikes(p, step):
+        fs, ds = p.has_keyword("first strike"), p.has_keyword("double strike")
+        return (fs or ds) if step == "first" else (ds or not fs)
+
+    dmg = {"a": 0, "b": 0}
+    dead = {"a": False, "b": False}
+    for step in ("first", "regular"):
+        if not dead["a"] and strikes(atk, step) and atk.power > 0:
+            dmg["b"] += atk.power
+            if atk.has_keyword("deathtouch"):
+                dead["b"] = True
+        if not dead["b"] and strikes(blk, step) and blk.power > 0:
+            dmg["a"] += blk.power
+            if blk.has_keyword("deathtouch"):
+                dead["a"] = True
+        dead["a"] = dead["a"] or dmg["a"] >= atk.toughness
+        dead["b"] = dead["b"] or dmg["b"] >= blk.toughness
+    return dead["a"], dead["b"]
+
+
+def _pair_kills(atk: _Permanent, pair) -> bool:
+    return (sum(b.power for b in pair) >= atk.toughness
+            or any(b.has_keyword("deathtouch") and b.power > 0 for b in pair))
+
+
+def _menace_pair(atk: _Permanent, blockers: list[_Permanent], *, winning: bool):
+    """Two blockers for a menace attacker, or None. `winning`: the pair kills it and it can
+    kill neither (the cheapest such pair). Otherwise (a chump against lethal): the two
+    cheapest legal bodies. Deliberately conservative -- no three-way blocks, no trades."""
+    legal = sorted(_can_block(atk, blockers), key=lambda b: b.power + b.toughness)
+    if len(legal) < 2:
+        return None
+    if not winning:
+        return (legal[0], legal[1])
+    if atk.has_keyword("first strike") or atk.has_keyword("double strike"):
+        return None  # it kills a blocker before the pair strikes back; never a clean win
+    best = None
+    for x in range(len(legal)):
+        for y in range(x + 1, len(legal)):
+            pair = (legal[x], legal[y])
+            if _pair_kills(atk, pair) and not any(atk.deals_lethal_to(b) for b in pair):
+                cost = sum(b.power + b.toughness for b in pair)
+                if best is None or cost < best[0]:
+                    best = (cost, pair)
+    return best[1] if best else None
+
+
 def greedy_block_assignment(
     attackers: list[_Permanent], defender: _Player,
     on_walker: dict[int, _Permanent] | None = None,
-) -> dict[int, _Permanent]:
+) -> dict[int, object]:
     """The old _combat block logic: winning trades first, then chump-block only lethal damage.
 
     Keyed by attacker index into `attackers` (whose order the engine fixed at declaration).
     """
     blockers = [c for c in defender.creatures() if not c.tapped]
-    assignments: dict[int, _Permanent] = {}
+    assignments: dict[int, object] = {}
     for i, atk in enumerate(attackers):  # winning trades
+        if atk.has_keyword("menace"):
+            pair = _menace_pair(atk, blockers, winning=True)
+            if pair is not None:
+                assignments[i] = pair
+                for b in pair:
+                    blockers.remove(b)
+            continue
         legal = _legal_blockers(atk, blockers)
-        # deals_lethal_to accounts for deathtouch (CR 702.2b): a low-power, high-toughness
-        # deathtouch blocker can profitably trade with a much bigger attacker, which a plain
-        # power/toughness comparison would miss entirely.
+        # _duel accounts for deathtouch (CR 702.2b) and first/double strike: a low-power,
+        # high-toughness deathtouch blocker can profitably trade with a much bigger attacker,
+        # and a first striker can kill its blocker before it is ever hit back.
         pick = next(
-            (b for b in legal if b.deals_lethal_to(atk) and not atk.deals_lethal_to(b)),
+            (b for b in legal if _duel(atk, b) == (True, False)),
             None,
         )
         if pick is not None:
@@ -93,6 +160,15 @@ def greedy_block_assignment(
         for i in idxs:
             if incoming < walker.loyalty:
                 break
+            if attackers[i].has_keyword("menace"):
+                pair = _menace_pair(attackers[i], blockers, winning=False)
+                if pair is None:
+                    continue
+                assignments[i] = pair
+                for b in pair:
+                    blockers.remove(b)
+                incoming -= attackers[i].power
+                continue
             legal = _legal_blockers(attackers[i], blockers)
             if not legal:
                 continue
@@ -106,6 +182,13 @@ def greedy_block_assignment(
     if unblocked >= defender.life:  # chump-block the biggest threats with what's left
         for i, atk in enumerate(attackers):
             if i in assignments or i in on_walker or not blockers:
+                continue
+            if atk.has_keyword("menace"):
+                pair = _menace_pair(atk, blockers, winning=False)
+                if pair is not None:
+                    assignments[i] = pair
+                    for b in pair:
+                        blockers.remove(b)
                 continue
             legal = _legal_blockers(atk, blockers)
             if not legal:

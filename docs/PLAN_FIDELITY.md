@@ -413,6 +413,40 @@ in between), and bolting either onto the B2–B5 pattern under time pressure ris
 kind of near-miss defect this project's own doctrine treats as worse than an honest gap. Left as
 a named, sized, ready-to-pick-up follow-on phase rather than attempted at the end of this slice.
 
+**B6 SHIPPED, 2026-10-03.** Both sub-problems, each as its own small design rather than a bolt-on:
+
+- **First / double strike** -- `game._resolve_combat_steps` runs two damage steps (CR 510.4): the
+  first-strike step, state-based deaths, then the regular step, with damage marked on a creature
+  ACCUMULATING across both (a 2/2 double striker kills a 3/3; a 1/1 first striker that fails to
+  kill a 2/3 dies to the regular-step return blow). Unblocked double strike hits twice, and both
+  hits count as commander damage and fire the combat-damage trigger. A double-striking trampler
+  whose blocker dies in the first step sends its whole regular damage through (CR 702.19e); a
+  non-trampler in the same spot deals nothing (still blocked, CR 506.4). Combat with no
+  first/double striker and no multi-block takes the UNCHANGED single-pass path
+  (`_resolve_combat_legacy`) -- the greedy golden master still passes byte-for-byte.
+- **Menace** -- `DeclareBlocks.assignment` values may now be a TUPLE of blockers. A menace attacker
+  has no legal single blocker (`greedy._legal_blockers`); the defender double-blocks only when the
+  cheapest pair kills it and it can kill neither blocker (`_menace_pair(winning=True)`, never
+  against a first/double striker), or chumps with the two cheapest bodies against lethal / to
+  protect a walker. The attacker divides its damage freely (CR 510.1c post-2024: no ordering),
+  killing the most valuable blockers it can afford. No three-way blocks.
+- **The defender's trade check now resolves strike order** (`greedy._duel`) instead of comparing
+  power to toughness, so it no longer "wins" a block against a 2/2 double striker with a 3/3.
+
+Verified: 18 synthetic tests (`tests/engine/test_combat_b6.py`; the rules table was written by
+hand, the boilerplate drafted by qwen3:14b and reviewed -- its draft put `import pytest` above the
+`__future__` import). A traced 60-game run over the six most keyword-dense corpus decks: 280
+two-step combats, 90 unblocked double-strike hits, 10 menace multi-blocks (5 winning, 5 chumps),
+no errors. Calibration A/B (full corpus, `--opponents 8 --games 20 --seed 11 --no-combos`):
+mean |delta| 9.7 (B2-B5 was 22.2), zero-sum, bracket means unmoved within noise (B1 1444->1442,
+B5 1359->1363), and a clean dose-response by B6-keyword creatures per deck: 0 -> -4.0, 1-3 ->
++2.4, 4-7 -> +9.9, 8+ -> +31.9. Individual 0-1-keyword decks moving +-60-110 are run-path
+divergence (any changed combat re-rolls the rest of the game), not signal.
+
+**Still not modelled:** tier0 goldfish does not double a double striker's damage (it would move
+`avg_kill_turn` and the bracket calibration -- a sweep, not a fix); first strike granted by an
+aura/equipment is read only if `attach`'s grant parser covers it; banding.
+
 ### Acceptance gate for Phase B
 
 Following this project's own standing rule (`PLAN_CLOCK.md` §6 trap 1 / the `axis_separation.py`
