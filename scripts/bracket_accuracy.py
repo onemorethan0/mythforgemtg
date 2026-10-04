@@ -136,6 +136,12 @@ def main() -> int:
                          "threshold is max(4, turns*0.6), i.e. turn 4 at a horizon of 8 and "
                          "turn 7 at 12.")
     ap.add_argument("--json", type=Path)
+    ap.add_argument("--shard", default="",
+                    help="K/N: score only every N-th labelled deck starting at K (0-based), so a "
+                         "full sweep can run as N jobs under a time limit; pair with --json.")
+    ap.add_argument("--merge", type=Path, nargs="+",
+                    help="report on rows saved by earlier --json runs (e.g. the shards) "
+                         "without simulating anything")
     ap.add_argument("--combos", type=int, default=0,
                     help="two-card combos to DECLARE per deck. This is an input from an "
                          "external Spellbook lookup, not a detector - the offline default "
@@ -168,11 +174,18 @@ def main() -> int:
     db = load_card_db()
     store = SemanticsStore()
     decks = labelled_decks(args.limit)
+    if args.shard:
+        k, n = (int(x) for x in args.shard.split("/"))
+        decks = decks[k::n]
     print(f"store {len(store._by_name)} cards; {len(decks)} labelled decks "
           f"({time.time()-started:.0f}s)", flush=True)
 
     cfg = SimConfig(turns=args.turns, runs=args.runs, seed=42)
     rows = []
+    if args.merge:
+        for f in args.merge:
+            rows.extend(json.loads(f.read_text(encoding="utf-8")))
+        decks = []
     combo_failures = 0
     for index, (path, label) in enumerate(decks, 1):
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)

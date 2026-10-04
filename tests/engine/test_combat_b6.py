@@ -222,3 +222,15 @@ def test_no_keywords_still_resolves_on_the_single_pass_path():
     st, me, opp = _setup([A], [B])
     _apply_declare_blocks(st, {0: B})
     assert B not in opp.battlefield and A in me.battlefield and opp.life == 40
+
+
+def test_goldfish_counts_a_double_striker_twice(make_card):
+    """tier0's goldfish clock: an unblocked double striker deals its power twice (CR 702.4b),
+    matching the tier-2 combat above. A printed keyword only (Card.keywords)."""
+    import dataclasses
+    from mythgauntlet.semantics.model import EffectVector
+    from mythgauntlet.sim.tier0 import SimCard
+    plain = dataclasses.replace(make_card("Plain Knight"), power="3", toughness="3")
+    ds = dataclasses.replace(plain, name="Double Knight", keywords=frozenset({"double strike"}))
+    assert SimCard(plain, EffectVector()).attack_power == 3
+    assert SimCard(ds, EffectVector()).attack_power == 6

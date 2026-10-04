@@ -83,7 +83,11 @@ class SimCard:
 
     @property
     def attack_power(self) -> int:
-        return _stat_value(self.card.power)
+        """Damage this creature deals attacking an empty board. A printed double striker
+        deals its power twice (CR 702.4b) -- the tier-2 combat already does (Phase B6), and
+        the goldfish clock under-counted it as single damage."""
+        power = _stat_value(self.card.power)
+        return power * 2 if "double strike" in (self.card.keywords or ()) else power
 
     @property
     def toughness_value(self) -> int:
