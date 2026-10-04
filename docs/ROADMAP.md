@@ -1516,6 +1516,14 @@ whose average kill turn happens to be fast for unrelated reasons. Growing this s
 (`mythgauntlet fetch-decks --bracket 4` biased toward spellslinger/storm commanders) is the
 natural next step if it needs re-validating at scale.
 
+**RE-MEASURED 2026-10-03 (n=591, `--real-combos`, after Phase B6 and the double-strike goldfish
+fix; run as `--shard K/4` jobs and `--merge`d -- a single full sweep now exceeds the 30-minute
+background limit).** Exact 51.9%, within-one 91.9%, signed bias -0.01; rule-consistent subset
+(531) within-one **96.2%**, clearing the 95% accept bar. Recall B1 37.2% / B2 50.0% / B3 73.2% /
+B4 50.0% / B5 34.5%. Builder-labelled B1 is called B2 52/129 times -- the B1/B2 boundary, still
+the documented "not resolvable from the 99 cards without popularity" shape (popularity stays barred
+by invariant 4). Not re-litigated.
+
 **A separate, larger, still-open finding from the same accuracy sweep, NOT addressed here**:
 Bracket 4 recall is 41.2% (9/17 author-labelled B4 decks are called B3 by the engine) and
 Bracket 1 recall is 44.3% — most of that gap is almost certainly NOT storm/go-off decks (only
