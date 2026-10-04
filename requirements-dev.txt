@@ -1,0 +1,7 @@
+# Test-only dependencies, on top of the app's own manifest. CI installs this file.
+-r requirements.txt
+pytest
+# starlette >= 1.7 moved its TestClient onto httpx2 and raises at import without it, which
+# failed collection of every TestClient-based test file -- CI was red from 2026-09-07 until
+# this was added. Unpinned like the rest of the manifest: CI tracks latest on purpose.
+httpx2

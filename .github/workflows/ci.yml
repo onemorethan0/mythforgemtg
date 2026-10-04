@@ -23,8 +23,7 @@ jobs:
         # actually ship, so the manifest is under test too.
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install pytest
+          python -m pip install -r requirements-dev.txt
 
       - name: Syntax-check all tracked Python
         run: python -m py_compile $(git ls-files '*.py')
