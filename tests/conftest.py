@@ -31,6 +31,9 @@ os.environ.setdefault("MYTHFORGE_EDHREC_LIFT", "off")
 # (or write) whatever real card data happens to be cached on the dev machine.
 os.environ.setdefault("MYTHFORGE_SCRYFALL_BULK", "off")
 os.environ.setdefault("MYTHFORGE_SCRYFALL_SEARCH_CACHE", "off")
+# The rules search's embedding half: a model download + minutes of CPU, and rankings that
+# would depend on a cache file on the dev machine. Tests pin the BM25 ranking.
+os.environ.setdefault("MYTHGAUNTLET_RULES_DENSE", "off")
 
 import test_smoke
 

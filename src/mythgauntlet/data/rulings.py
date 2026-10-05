@@ -43,6 +43,7 @@ from rank_bm25 import BM25Okapi
 
 from mythgauntlet import __version__
 from mythgauntlet.config import data_dir
+from mythgauntlet.data import rules_dense
 
 HEADERS = {
     "User-Agent": f"MythGauntlet/{__version__} (github.com/onemorethan0/mythgauntlet)",
@@ -427,10 +428,13 @@ class RuleSearchResult:
 
 
 class RulesSearchIndex:
-    """BM25 over every rule + glossary entry. Built once per `ComprehensiveRules`
-    instance (cheap: ~4,500 short documents) and cached by the loader below."""
+    """BM25 over every rule + glossary entry, fused with an embedding ranking when
+    `rules_dense` has vectors for this corpus (see that module: BM25 alone misses a player's
+    paraphrase -- "can I attack a planeswalker?" never reaches 306.6). Built once per
+    `ComprehensiveRules` instance (cheap: ~4,500 short documents) and cached by the loader below.
+    With the dense half unavailable the ranking is exactly the BM25 one."""
 
-    def __init__(self, cr: ComprehensiveRules) -> None:
+    def __init__(self, cr: ComprehensiveRules, dense: bool = True) -> None:
         self._docs: list[tuple[str, str, str]] = []  # (kind, ref, text)
         for number, text in cr.rules.items():
             self._docs.append(("rule", number, text))
@@ -438,17 +442,46 @@ class RulesSearchIndex:
             self._docs.append(("glossary", term, f"{term}. {text}"))
         corpus = [_tokenize(d[2]) for d in self._docs]
         self._bm25 = BM25Okapi(corpus) if corpus else None
+        self._dense_texts = (rules_dense.doc_texts(self._docs, cr.rules)
+                             if dense and corpus and rules_dense.enabled() else None)
+
+    @property
+    def dense_enabled(self) -> bool:
+        return self._dense_texts is not None
+
+    def warm(self, wait: bool = False, start: bool = True) -> bool:
+        """Make sure the embedding vectors exist: build inline with `wait`, in the background
+        otherwise, or only check with `start=False`. True when the fused ranking is available."""
+        if self._dense_texts is None:
+            return False
+        return rules_dense.vectors(self._dense_texts, wait=wait, start=start) is not None
 
     def search(self, query: str, k: int = 5) -> list[RuleSearchResult]:
         if self._bm25 is None:
             return []
         scores = self._bm25.get_scores(_tokenize(query))
-        ranked = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:k]
+        bm25_order = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+        order = [i for i in bm25_order if scores[i] > 0]
+        fused = self._dense_order(query)
+        if fused is not None:
+            order = rules_dense.fuse(order, fused)
         return [
             RuleSearchResult(kind=self._docs[i][0], ref=self._docs[i][1],
-                              text=self._docs[i][2], score=float(scores[i]))
-            for i in ranked if scores[i] > 0
+                             text=self._docs[i][2], score=float(scores[i]))
+            for i in order[:k]
         ]
+
+    def _dense_order(self, query: str) -> list[int] | None:
+        if self._dense_texts is None:
+            return None
+        vecs = rules_dense.vectors(self._dense_texts)
+        if vecs is None:
+            return None
+        q = rules_dense.query_vector(query)
+        if q is None:
+            return None
+        sims = vecs @ q
+        return [int(i) for i in sims.argsort()[::-1][:rules_dense.DEPTH]]
 
 
 _index_cache: tuple[str, float, RulesSearchIndex] | None = None

@@ -208,6 +208,18 @@ def _cmd_fetch_rules(args: argparse.Namespace) -> int:
     console.print(f"Comprehensive Rules ready: [green]{cpath}[/green] "
                   f"(effective {cr.effective_date}, {len(cr.rules):,} rules, "
                   f"{len(cr.glossary):,} glossary terms)")
+    # The embedding half of rules search (data/rules_dense.py): built here, inline, so the
+    # mentor never answers from BM25 alone while a background build runs. ~2.5 min the first
+    # time per corpus version, instant after.
+    index = rulings.RulesSearchIndex(cr)
+    if not index.dense_enabled:
+        console.print("Rules embedding search: off (BM25 only)")
+    elif index.warm(start=False):
+        console.print("Rules embedding search: ready")
+    else:
+        console.print("[bold]Building the rules embedding index (one-time, a few minutes)...[/bold]")
+        console.print("Rules embedding search: " + ("ready" if index.warm(wait=True) else
+                                                   "unavailable, BM25 only"))
     return 0
 
 

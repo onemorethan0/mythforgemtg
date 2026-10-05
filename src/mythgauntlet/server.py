@@ -315,6 +315,10 @@ def create_app(
                 mentor_rulings_db = rulings.load_rulings_db()
         except FileNotFoundError:
             mentor_cr, mentor_rulings_db = None, None
+    if mentor_cr is not None:
+        # Rules search's embedding vectors: loaded from cache, or built in the background now
+        # rather than on the first rules question (data/rules_dense.py).
+        rulings.RulesSearchIndex(mentor_cr).warm()
 
     @app.get("/health")
     def health() -> dict:

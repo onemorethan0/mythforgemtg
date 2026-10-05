@@ -1,0 +1,1802 @@
+[
+ {
+  "rule": "108.3",
+  "q": "If I play a card that was brought into the game from outside, like a token or a card from a sideboard, who owns it?"
+ },
+ {
+  "rule": "104.3k",
+  "q": "Can a player lose the game because of a penalty given by a judge during a tournament?"
+ },
+ {
+  "rule": "111.1",
+  "q": "What is a token in Magic: The Gathering, and how is it used on the battlefield?"
+ },
+ {
+  "rule": "117.2c",
+  "q": "Do I get a chance to respond when certain steps or phases begin, like when a player draws a card?"
+ },
+ {
+  "rule": "101.4a",
+  "q": "If I have to choose a card from my hand that’s face down, can I leave it face down when I choose it?"
+ },
+ {
+  "rule": "103.2",
+  "q": "Are there any extra steps taken after the starting player is decided in some games?"
+ },
+ {
+  "rule": "120.8",
+  "q": "What happens if a spell or ability would deal 0 damage to a player or creature?"
+ },
+ {
+  "rule": "113.6m",
+  "q": "Can I use an ability that moves a card from the graveyard to the battlefield if the card is already on the battlefield?"
+ },
+ {
+  "rule": "103.4c",
+  "q": "In a Commander game, how much life does each player start with?"
+ },
+ {
+  "rule": "109.5",
+  "q": "When a spell or ability says 'you' or 'your,' who does it refer to?"
+ },
+ {
+  "rule": "115.6",
+  "q": "If I cast a spell that says I can target creatures, but I choose not to target any, does it still count as being targeted?"
+ },
+ {
+  "rule": "102.1",
+  "q": "Who is the active player during my turn?"
+ },
+ {
+  "rule": "123.3b",
+  "q": "Can I put a sticker on a card that doesn’t belong to me if an effect tells me to?"
+ },
+ {
+  "rule": "113.3d",
+  "q": "What happens when a permanent has a static ability that says something is true, like 'this creature has hexproof'?"
+ },
+ {
+  "rule": "106.6a",
+  "q": "If a spell gives me extra mana, and that mana has some effect when spent, does each mana get its own separate effect?"
+ },
+ {
+  "rule": "101.1",
+  "q": "If a card says something that seems to go against the rules, which one do I follow?"
+ },
+ {
+  "rule": "103.3a",
+  "q": "Can players shuffle each other’s supplementary decks in a game that uses them?"
+ },
+ {
+  "rule": "111.10u",
+  "q": "What does a Lander token do when I activate its ability?"
+ },
+ {
+  "rule": "111.10k",
+  "q": "What does a Monster Role token do when it’s attached to a creature?"
+ },
+ {
+  "rule": "103.1b",
+  "q": "Who goes first in an Archenemy game?"
+ },
+ {
+  "rule": "107.17",
+  "q": "What does the {TK} symbol on a card represent?"
+ },
+ {
+  "rule": "103.4a",
+  "q": "How many life points does each team start with in a Two-Headed Giant game?"
+ },
+ {
+  "rule": "114.2",
+  "q": "What happens when an effect says a player gets an emblem with a certain ability?"
+ },
+ {
+  "rule": "111.10p",
+  "q": "What kind of token is a Virtuous Role, and what does it do?"
+ },
+ {
+  "rule": "102.2",
+  "q": "Who is considered your opponent in a two-player game?"
+ },
+ {
+  "rule": "121.2",
+  "q": "Can I draw multiple cards at once if a spell or ability tells me to draw several?"
+ },
+ {
+  "rule": "115.1a",
+  "q": "What makes a spell or ability targeted?"
+ },
+ {
+  "rule": "103.8c",
+  "q": "Can a player skip the draw step on their first turn in a multiplayer game?"
+ },
+ {
+  "rule": "107.11",
+  "q": "What does the {PW} symbol on a card mean?"
+ },
+ {
+  "rule": "116.2k",
+  "q": "Can I exile a card with plot in my hand, and when can I do it?"
+ },
+ {
+  "rule": "116.2j",
+  "q": "Can I turn a face-down conspiracy card in the command zone face up whenever I want during the game?"
+ },
+ {
+  "rule": "102.3",
+  "q": "In a game with teams, who are my teammates and who are my opponents?"
+ },
+ {
+  "rule": "115.3",
+  "q": "Can I target the same creature twice with the same spell if it says 'target creature' twice?"
+ },
+ {
+  "rule": "115.7",
+  "q": "What’s the difference between changing a target and choosing a new target for a spell or ability?"
+ },
+ {
+  "rule": "111.10",
+  "q": "What determines the characteristics of a token that’s created by an effect?"
+ },
+ {
+  "rule": "101.4b",
+  "q": "Can I see what choices other players made before I make mine?"
+ },
+ {
+  "rule": "107.10",
+  "q": "What does the icon in the upper left corner of a Future Sight card mean?"
+ },
+ {
+  "rule": "101.4",
+  "q": "When multiple players have to make choices at the same time, who goes first?"
+ },
+ {
+  "rule": "115.1",
+  "q": "Once I choose targets for a spell or ability, can I change them later?"
+ },
+ {
+  "rule": "122.1a",
+  "q": "What does a +X/+Y counter do to a creature’s power and toughness?"
+ },
+ {
+  "rule": "104.3a",
+  "q": "Can I give up and let the other player win the game?"
+ },
+ {
+  "rule": "107.4c",
+  "q": "What does the {C} symbol mean on a card?"
+ },
+ {
+  "rule": "104.3g",
+  "q": "If all players on my team are out of the game, does my team lose?"
+ },
+ {
+  "rule": "113.6p",
+  "q": "Can abilities on emblems or scheme cards do things from the command zone?"
+ },
+ {
+  "rule": "103.7",
+  "q": "What happens when the starting player flips over the top card of their planar deck?"
+ },
+ {
+  "rule": "115.1d",
+  "q": "What makes a triggered ability targeted?"
+ },
+ {
+  "rule": "107.8",
+  "q": "How do level symbols on a leveler card work?"
+ },
+ {
+  "rule": "115.10",
+  "q": "Can a spell or ability affect something without targeting it?"
+ },
+ {
+  "rule": "120.5",
+  "q": "Does damage automatically destroy a creature or planeswalker?"
+ },
+ {
+  "rule": "118.12a",
+  "q": "What does it mean when a card says something like 'Do this unless I do that'?"
+ },
+ {
+  "rule": "201.6",
+  "q": "I have a card with two different names on it. Which name do I use when building my deck or talking about the card in game?"
+ },
+ {
+  "rule": "201.4b",
+  "q": "I need to choose a name for a split card. Can I pick both names or just one?"
+ },
+ {
+  "rule": "205.4g",
+  "q": "What makes a permanent a snow permanent?"
+ },
+ {
+  "rule": "205.4f",
+  "q": "What happens to a permanent with the supertype 'world' when the game checks for state-based actions?"
+ },
+ {
+  "rule": "206.3c",
+  "q": "There’s a card that refers to permanents with names from the Homelands expansion. What does that mean for the names I can use?"
+ },
+ {
+  "rule": "202.1",
+  "q": "Where on the card can I find the mana cost?"
+ },
+ {
+  "rule": "205.1a",
+  "q": "If an effect changes a card’s type, does it keep any of its old types or subtypes?"
+ },
+ {
+  "rule": "201.4a",
+  "q": "I need to choose a card name with a certain characteristic. Can I choose a card that isn’t legal in the current format?"
+ },
+ {
+  "rule": "205.4c",
+  "q": "What makes a land a basic land, even if it doesn’t say 'basic' on it?"
+ },
+ {
+  "rule": "207.4",
+  "q": "What’s the purpose of the chaos symbol on a plane card?"
+ },
+ {
+  "rule": "201.3a",
+  "q": "If I have two cards that have different names but are considered interchangeable, do they count as the same card for effects that care about names?"
+ },
+ {
+  "rule": "205.4e",
+  "q": "Can I cast a legendary instant or sorcery spell if I don’t control any legendary creatures or planeswalkers?"
+ },
+ {
+  "rule": "201.3",
+  "q": "Are there some cards with different names that are treated as if they have the same name?"
+ },
+ {
+  "rule": "206.3a",
+  "q": "What happens if a card refers to permanents or cards with names from the Arabian Nights expansion?"
+ },
+ {
+  "rule": "202.1b",
+  "q": "Do lands have a mana cost, or are they played without paying any costs?"
+ },
+ {
+  "rule": "205.3m",
+  "q": "What are the different subtypes that creatures can have, and how are they listed on the card?"
+ },
+ {
+  "rule": "207.2b",
+  "q": "What is flavor text, and where is it usually found on a card?"
+ },
+ {
+  "rule": "205.4a",
+  "q": "What are the different supertypes that a card can have, and where are they listed on the card?"
+ },
+ {
+  "rule": "205.3c",
+  "q": "If a card has multiple card types and subtypes, how are those subtypes related to the card types?"
+ },
+ {
+  "rule": "202.3f",
+  "q": "How do I calculate the mana value of a card that has hybrid mana symbols in its mana cost?"
+ },
+ {
+  "rule": "205.3h",
+  "q": "What kind of subtypes can enchantments have besides just the basic ones?"
+ },
+ {
+  "rule": "213.1e",
+  "q": "How are the set and language codes shown on a card if it's a premium card?"
+ },
+ {
+  "rule": "205.3g",
+  "q": "What are some of the different subtypes that artifacts can have?"
+ },
+ {
+  "rule": "205.1",
+  "q": "Where on the card is the type line located, and what does it show?"
+ },
+ {
+  "rule": "202.3d",
+  "q": "How is the mana value of a split card determined when it's on the stack?"
+ },
+ {
+  "rule": "202.2d",
+  "q": "If a card has hybrid or Phyrexian mana symbols, how does that affect its color?"
+ },
+ {
+  "rule": "213.1g",
+  "q": "What kind of information is included in the legal text at the bottom of a card?"
+ },
+ {
+  "rule": "207.3",
+  "q": "What are those icons sometimes found in the background of a card's text box, and do they affect gameplay?"
+ },
+ {
+  "rule": "201.3c",
+  "q": "What indicator appears on cards that have interchangeable names from later printings?"
+ },
+ {
+  "rule": "213.1d",
+  "q": "What kind of information might be included on cards with interchangeable names?"
+ },
+ {
+  "rule": "211.1",
+  "q": "How does the number in the lower left corner of a vanguard card affect my starting and maximum hand size?"
+ },
+ {
+  "rule": "205.3r",
+  "q": "Do vanguard cards have any subtypes?"
+ },
+ {
+  "rule": "208.4a",
+  "q": "If a creature’s power and toughness are set to specific values, can other effects still change them?"
+ },
+ {
+  "rule": "203.1",
+  "q": "Does the picture on a card affect how the card plays, like giving it abilities?"
+ },
+ {
+  "rule": "205.3f",
+  "q": "How do I find out what subtypes a card has, especially if it has old or retroactive ones?"
+ },
+ {
+  "rule": "202.3b",
+  "q": "What is the mana value of the back face of a double-faced card?"
+ },
+ {
+  "rule": "206.2",
+  "q": "What does the color of the expansion symbol on a card tell me about its rarity?"
+ },
+ {
+  "rule": "201.3b",
+  "q": "If two cards have interchangeable names, are they considered to have the same name for building a deck?"
+ },
+ {
+  "rule": "201.4d",
+  "q": "Can I choose the name of the back face of a double-faced card when asked for a card name?"
+ },
+ {
+  "rule": "205.3p",
+  "q": "Does the dungeon card Undercity have a subtype, and what is it called?"
+ },
+ {
+  "rule": "205.3b",
+  "q": "If a card has multiple subtypes listed after a long dash, how are they separated?"
+ },
+ {
+  "rule": "201.5b",
+  "q": "If a creature gains an ability that refers to another creature by name, does it refer to the original creature or the one it got the ability from?"
+ },
+ {
+  "rule": "206.4",
+  "q": "Can I use cards from any printing in my deck as long as they are from a set allowed in the format?"
+ },
+ {
+  "rule": "201.5",
+  "q": "If a spell or ability refers to an object by name, does it refer to that specific object even if its name changes later?"
+ },
+ {
+  "rule": "205.3k",
+  "q": "What are the subtypes called for instants and sorceries?"
+ },
+ {
+  "rule": "205.4h",
+  "q": "What happens to a scheme card with the supertype 'ongoing' when it's affected by a state-based action?"
+ },
+ {
+  "rule": "201.2b",
+  "q": "If a spell or ability refers to multiple objects with different names, how are those names determined?"
+ },
+ {
+  "rule": "206.3",
+  "q": "How do spells or abilities that affect cards from a particular set now refer to those cards?"
+ },
+ {
+  "rule": "208.2b",
+  "q": "Can a creature's power and toughness be set to specific values when it enters the battlefield or is turned face up?"
+ },
+ {
+  "rule": "207.2a",
+  "q": "What is the purpose of italicized text in parentheses on a Magic card?"
+ },
+ {
+  "rule": "309.2c",
+  "q": "If I have a Dungeon card in my command zone, can I move it to another zone other than the game?"
+ },
+ {
+  "rule": "315.5a",
+  "q": "Can a Conspiracy card affect what happens at the very beginning of the game?"
+ },
+ {
+  "rule": "311.5",
+  "q": "If the current planar controller leaves the game, who becomes the new planar controller?"
+ },
+ {
+  "rule": "315.1",
+  "q": "Can I use a Conspiracy card in a regular constructed deck?"
+ },
+ {
+  "rule": "310.9a",
+  "q": "When a battle enters the battlefield, who gets to choose its protector?"
+ },
+ {
+  "rule": "301.7a",
+  "q": "If my Vehicle is on the battlefield but not a creature, does it have power and toughness?"
+ },
+ {
+  "rule": "302.4a",
+  "q": "What determines how much damage a creature deals in combat?"
+ },
+ {
+  "rule": "306.5b",
+  "q": "What happens when a planeswalker enters the battlefield?"
+ },
+ {
+  "rule": "310.9f",
+  "q": "Can a battle have more than one protector at the same time?"
+ },
+ {
+  "rule": "301.7",
+  "q": "What is a Vehicle, and how does it become a creature?"
+ },
+ {
+  "rule": "301.6",
+  "q": "I have a Fortification in my hand. Can I attach it to a creature?"
+ },
+ {
+  "rule": "307.4",
+  "q": "I cast a sorcery, but my opponent says it can’t stay on the battlefield. What happens to it?"
+ },
+ {
+  "rule": "310.7",
+  "q": "If a Siege battle’s defense is 0 and no ability is waiting to resolve, what happens to it?"
+ },
+ {
+  "rule": "306.6",
+  "q": "Can I attack my opponent’s Planeswalker with my creature?"
+ },
+ {
+  "rule": "309.5b",
+  "q": "I’m in a dungeon and my venture marker is on the bottommost room of a dungeon card I own in the command zone. What happens next?"
+ },
+ {
+  "rule": "309.2b",
+  "q": "If a dungeon card is brought into the game, where does it go?"
+ },
+ {
+  "rule": "301.2",
+  "q": "I cast an artifact spell. Where does it go when it resolves?"
+ },
+ {
+  "rule": "310.9c",
+  "q": "If I control a battle’s protector, can I block creatures attacking that battle?"
+ },
+ {
+  "rule": "309.2d",
+  "q": "If an effect other than a venture into the dungeon brings a dungeon card into the game, does it actually come in?"
+ },
+ {
+  "rule": "303.4k",
+  "q": "I turn an Aura face up, and it can now be attached to something. How do I figure out what it can be attached to?"
+ },
+ {
+  "rule": "303.1",
+  "q": "Can I play an enchantment from my hand during my main phase if the stack is empty?"
+ },
+ {
+  "rule": "311.4",
+  "q": "Can a plane card in the command zone have abilities that work while it's there?"
+ },
+ {
+  "rule": "314.4",
+  "q": "Can a scheme card in the command zone have abilities that work while it's there?"
+ },
+ {
+  "rule": "305.2a",
+  "q": "How do I know if I can play another land this turn?"
+ },
+ {
+  "rule": "306.7",
+  "q": "Can I redirect noncombat damage from an opponent to one of their planeswalkers now?"
+ },
+ {
+  "rule": "303.4a",
+  "q": "Do I have to pick a target when I cast an Aura?"
+ },
+ {
+  "rule": "305.9",
+  "q": "If a card is both a land and another type, can I cast it as a spell?"
+ },
+ {
+  "rule": "310.1",
+  "q": "Can I play a battle card from my hand during my main phase if the stack is empty?"
+ },
+ {
+  "rule": "304.3",
+  "q": "How are instant subtypes listed on a card?"
+ },
+ {
+  "rule": "310.9b",
+  "q": "Can a battle’s protector attack it?"
+ },
+ {
+  "rule": "310.4c",
+  "q": "What is the defense of a battle on the battlefield?"
+ },
+ {
+  "rule": "311.6",
+  "q": "If I turn a face-up plane card face down, does it keep its previous identity?"
+ },
+ {
+  "rule": "301.5b",
+  "q": "When I cast an Equipment spell, does it automatically attach to a creature when it enters the battlefield?"
+ },
+ {
+  "rule": "302.3",
+  "q": "How do I know what subtypes a creature has?"
+ },
+ {
+  "rule": "305.3",
+  "q": "Can I play a land if it's not my turn, even if an effect says I can?"
+ },
+ {
+  "rule": "304.4",
+  "q": "Can an instant ever enter the battlefield?"
+ },
+ {
+  "rule": "306.5c",
+  "q": "What determines the loyalty of a planeswalker on the battlefield?"
+ },
+ {
+  "rule": "303.4c",
+  "q": "What happens to an Aura if it's attached to something that no longer exists?"
+ },
+ {
+  "rule": "310.6",
+  "q": "What happens when damage is dealt to a battle?"
+ },
+ {
+  "rule": "315.2",
+  "q": "Can I put conspiracy cards from my sideboard into the command zone before the game starts?"
+ },
+ {
+  "rule": "310.12",
+  "q": "What happens if I attack with a creature that has the Siege subtype?"
+ },
+ {
+  "rule": "312.2",
+  "q": "If a phenomenon card is moved to another zone, where does it end up?"
+ },
+ {
+  "rule": "310.4b",
+  "q": "What happens when a battle enters the battlefield?"
+ },
+ {
+  "rule": "313.2",
+  "q": "If I try to move a vanguard card out of the command zone, where does it go?"
+ },
+ {
+  "rule": "311.3",
+  "q": "How are plane subtypes listed on a card?"
+ },
+ {
+  "rule": "313.1",
+  "q": "What kind of cards are vanguard cards, and when are they used?"
+ },
+ {
+  "rule": "305.1",
+  "q": "Can I cast a land card during my main phase, and can other players respond to it?"
+ },
+ {
+  "rule": "303.5",
+  "q": "What kind of enchantments have the Saga subtype?"
+ },
+ {
+  "rule": "309.2a",
+  "q": "What happens if I enter the dungeon but don’t have a dungeon card in my command zone?"
+ },
+ {
+  "rule": "304.1",
+  "q": "Can I cast an instant card during my main phase, and can other players respond to it?"
+ },
+ {
+  "rule": "401.2",
+  "q": "Can I look at the cards in my library or rearrange them during the game?"
+ },
+ {
+  "rule": "400.7f",
+  "q": "What happens to the Auras if the permanent they’re attached to leaves the battlefield at the same time they’re put into the graveyard?"
+ },
+ {
+  "rule": "400.4b",
+  "q": "If a conspiracy card would leave the command zone, does it stay there or go somewhere else?"
+ },
+ {
+  "rule": "400.7i",
+  "q": "If I play a land card using an effect, can other parts of that effect refer to the land after it enters the battlefield?"
+ },
+ {
+  "rule": "408.2",
+  "q": "Can emblems be created in the command zone?"
+ },
+ {
+  "rule": "408.3",
+  "q": "In some casual variants, do certain nontraditional cards start the game in the command zone?"
+ },
+ {
+  "rule": "407.2",
+  "q": "When playing for ante, do players put a card from their deck into the ante zone before the game starts?"
+ },
+ {
+  "rule": "400.10",
+  "q": "If a card is put into the command zone from the command zone, does it count as moving zones or staying in the same one?"
+ },
+ {
+  "rule": "406.3",
+  "q": "Can players look at exiled cards, and are there exceptions for cards exiled face down?"
+ },
+ {
+  "rule": "400.7j",
+  "q": "If a spell or ability moves an object to a public zone, can that effect refer to the object after it moves?"
+ },
+ {
+  "rule": "401.6",
+  "q": "If I reveal the top card of my library, and then later it's no longer revealed, and then revealed again, is it the same card or a new one?"
+ },
+ {
+  "rule": "402.2",
+  "q": "At the end of my turn, if I have more than seven cards in my hand, what do I have to do?"
+ },
+ {
+  "rule": "400.1",
+  "q": "Where can cards be during a game, and what are the different areas they can be in?"
+ },
+ {
+  "rule": "400.7e",
+  "q": "If an ability triggers when a card moves to a zone, can it refer to the new version of that card if it's in a public zone?"
+ },
+ {
+  "rule": "400.8",
+  "q": "If a card is already in exile and then exiled again, does it stay in the same zone or move to a new one?"
+ },
+ {
+  "rule": "401.7",
+  "q": "If I try to put a card into my library '3rd from the top,' but my library only has two cards, where does the card go?"
+ },
+ {
+  "rule": "406.6",
+  "q": "If a card has an ability that exiles other cards and another that refers to 'exiled cards,' how are these abilities connected?"
+ },
+ {
+  "rule": "403.2",
+  "q": "If a spell or ability doesn't mention a player or a specific zone, where does it affect?"
+ },
+ {
+  "rule": "406.4",
+  "q": "If I have to choose a face-down card from exile, can I pick a specific one if I can't look at it?"
+ },
+ {
+  "rule": "400.7g",
+  "q": "If a nonland card gets an ability that lets it be cast, and it's cast, does that ability still work after it's on the stack?"
+ },
+ {
+  "rule": "400.3",
+  "q": "If I cast a spell that exiles an opponent's card, does it go to their exile zone or mine?"
+ },
+ {
+  "rule": "404.2",
+  "q": "Can I look at the cards in my opponent's graveyard during the game?"
+ },
+ {
+  "rule": "405.6c",
+  "q": "If I activate a mana ability that also has another effect, does the other effect happen right away?"
+ },
+ {
+  "rule": "401.5",
+  "q": "If I look at the top card of my library while casting a spell, and then someone shuffles my library, can I look at the new top card?"
+ },
+ {
+  "rule": "405.6h",
+  "q": "If a player leaves a multiplayer game, do other players immediately do things like exile or discard cards as a result?"
+ },
+ {
+  "rule": "403.4",
+  "q": "If I cast a copy of a creature spell, is it treated as a completely new creature with no connection to the original one?"
+ },
+ {
+  "rule": "404.1",
+  "q": "Where do discarded cards go in a game of Magic?"
+ },
+ {
+  "rule": "405.2",
+  "q": "When a spell or ability is added to the stack, does it go on top of everything else already there?"
+ },
+ {
+  "rule": "400.11a",
+  "q": "Where are the cards in my sideboard during a game?"
+ },
+ {
+  "rule": "407.1",
+  "q": "Is it allowed to play Magic games where players bet real money on the outcome?"
+ },
+ {
+  "rule": "405.5",
+  "q": "If everyone passes when there's a spell on the stack, what happens next?"
+ },
+ {
+  "rule": "402.1",
+  "q": "How many cards do I start the game with in my hand?"
+ },
+ {
+  "rule": "400.7m",
+  "q": "If a card with a sticker moves to another zone, does the sticker stay on it?"
+ },
+ {
+  "rule": "405.6d",
+  "q": "What happens if I do something that's called a special action during the game?"
+ },
+ {
+  "rule": "405.1",
+  "q": "When I cast a spell, where does the card go?"
+ },
+ {
+  "rule": "403.5",
+  "q": "What does it mean when a card says something about being 'in play'?"
+ },
+ {
+  "rule": "400.12",
+  "q": "If an effect tells me to shuffle my hand into my library, what happens to the cards in my hand?"
+ },
+ {
+  "rule": "401.3",
+  "q": "Can I check how many cards are left in another player's library at any time?"
+ },
+ {
+  "rule": "405.6",
+  "q": "Are there things that happen during the game that don't use the stack?"
+ },
+ {
+  "rule": "405.3",
+  "q": "If multiple players put things on the stack at the same time, how are they ordered?"
+ },
+ {
+  "rule": "400.6",
+  "q": "What happens if my creature dies and I have an ability that affects when creatures die?"
+ },
+ {
+  "rule": "400.11b",
+  "q": "If a card comes into the game from outside, like through a spell, how long does it stay in the game?"
+ },
+ {
+  "rule": "400.7",
+  "q": "If my card moves from my hand to the battlefield, does it remember being in my hand before?"
+ },
+ {
+  "rule": "401.1",
+  "q": "When the game starts, what happens to the cards in my deck?"
+ },
+ {
+  "rule": "408.1",
+  "q": "What’s the command zone, and what kind of cards go there?"
+ },
+ {
+  "rule": "400.2",
+  "q": "Can other players see the cards in my hand, even if I show them to everyone?"
+ },
+ {
+  "rule": "405.6b",
+  "q": "If a card has a static ability that makes it red, does that ability work all the time?"
+ },
+ {
+  "rule": "407.3",
+  "q": "What happens to cards that mention the ante zone if I’m not playing for ante?"
+ },
+ {
+  "rule": "406.8",
+  "q": "If a card says it removes something from the game, where does it actually go now?"
+ },
+ {
+  "rule": "402.3",
+  "q": "Can I look at the cards in my hand whenever I want, and can I look at someone else’s hand?"
+ },
+ {
+  "rule": "500.1",
+  "q": "What are the five steps of a turn, in order?"
+ },
+ {
+  "rule": "506.2b",
+  "q": "In a multiplayer game with shared team turns, who is considered the defending team if I'm attacking?"
+ },
+ {
+  "rule": "511.2",
+  "q": "When do abilities that trigger 'at end of combat' go on the stack?"
+ },
+ {
+  "rule": "505.1",
+  "q": "What are the two main phases of a turn, and what separates them?"
+ },
+ {
+  "rule": "508.5",
+  "q": "If a spell refers to a defending player, who is it usually referring to?"
+ },
+ {
+  "rule": "500.4",
+  "q": "What happens to effects that last until the beginning of a step or phase when that step or phase starts?"
+ },
+ {
+  "rule": "502.3",
+  "q": "Who decides which of their permanents untap during the untap step?"
+ },
+ {
+  "rule": "506.5",
+  "q": "What does it mean for a creature to attack alone?"
+ },
+ {
+  "rule": "508.7",
+  "q": "Can a player change which player or planeswalker a creature is attacking after it's been declared?"
+ },
+ {
+  "rule": "514.3",
+  "q": "Can I cast spells or activate abilities during the cleanup step?"
+ },
+ {
+  "rule": "507.2",
+  "q": "After I cast a spell and it resolves, who gets to go first with taking actions?"
+ },
+ {
+  "rule": "508.4",
+  "q": "If I play a creature that comes onto the battlefield attacking, can I choose who it’s attacking?"
+ },
+ {
+  "rule": "513.2",
+  "q": "If I play a card that triggers at the beginning of the end step during this step, when does that ability trigger?"
+ },
+ {
+  "rule": "509.3f",
+  "q": "If I have an ability that triggers when a creature blocks, does it matter if the creature has the right characteristics when it blocks?"
+ },
+ {
+  "rule": "505.5",
+  "q": "If I have Attractions and it’s my precombat main phase, do I get to roll to visit them?"
+ },
+ {
+  "rule": "505.3",
+  "q": "If I’m playing an Archenemy game and it’s my precombat main phase, do I get to set the top card of my scheme deck in motion?"
+ },
+ {
+  "rule": "509.4a",
+  "q": "If I put a creature onto the battlefield blocking, but the creature it’s supposed to block isn’t attacking anymore, does it still count as blocking?"
+ },
+ {
+  "rule": "509.3d",
+  "q": "If a creature becomes blocked by another creature, does an ability that triggers when it becomes blocked activate?"
+ },
+ {
+  "rule": "509.3g",
+  "q": "If my creature attacks and no one blocks it, does an ability that triggers when it attacks and isn’t blocked activate?"
+ },
+ {
+  "rule": "506.7f",
+  "q": "If I have a spell that can only be cast after blockers are declared, but the declare blockers step is skipped, can I cast it?"
+ },
+ {
+  "rule": "506.3",
+  "q": "If I attack with a planeswalker, can my opponent block it?"
+ },
+ {
+  "rule": "500.6",
+  "q": "What happens if a spell says something happens at the beginning of my turn?"
+ },
+ {
+  "rule": "513.1",
+  "q": "Once the end step starts, who gets to take actions first?"
+ },
+ {
+  "rule": "500.9",
+  "q": "If two effects add steps to the same phase, which one happens first?"
+ },
+ {
+  "rule": "508.6",
+  "q": "What does it mean if I say I've attacked a player?"
+ },
+ {
+  "rule": "506.3d",
+  "q": "If a creature comes onto the battlefield during combat, does it get blocked?"
+ },
+ {
+  "rule": "508.5a",
+  "q": "In a game with multiple players, how do I know who is the defending player for a spell?"
+ },
+ {
+  "rule": "505.6a",
+  "q": "Can I cast a creature spell during my opponent's turn?"
+ },
+ {
+  "rule": "510.1",
+  "q": "Who gets to say how combat damage is assigned first?"
+ },
+ {
+  "rule": "509.1c",
+  "q": "What happens if my opponent can't block enough creatures to meet all the requirements?"
+ },
+ {
+  "rule": "510.3a",
+  "q": "If my creature dies and triggers an ability, and another ability triggers because of state-based actions, which one happens first?"
+ },
+ {
+  "rule": "503.1",
+  "q": "During my upkeep, can I cast a spell or activate an ability before anything else happens?"
+ },
+ {
+  "rule": "508.1a",
+  "q": "Can I attack with a creature that doesn’t have haste, and has been under my control since the turn started?"
+ },
+ {
+  "rule": "500.10a",
+  "q": "If I have an effect that adds a step to my opponent’s turn, does it actually happen?"
+ },
+ {
+  "rule": "505.1a",
+  "q": "Is the first main phase of the turn called the precombat main phase, and are all others called postcombat main phases?"
+ },
+ {
+  "rule": "508.1b",
+  "q": "If I have multiple opponents and planeswalkers, do I have to say which one each of my attacking creatures is targeting?"
+ },
+ {
+  "rule": "506.3g",
+  "q": "If a spell makes a battle become an attacking creature, does that part of the spell do anything?"
+ },
+ {
+  "rule": "509.4",
+  "q": "If a creature comes onto the battlefield blocking, does it actually block, and can it trigger abilities that care about blocking?"
+ },
+ {
+  "rule": "509.3",
+  "q": "Can abilities that trigger when blockers are declared have different conditions for when they trigger?"
+ },
+ {
+  "rule": "508.1d",
+  "q": "If I have to attack with certain creatures because of a requirement, but I can’t attack unless I pay a cost, do I have to pay that cost?"
+ },
+ {
+  "rule": "500.11",
+  "q": "If a step or phase is skipped, does it still happen or is it just ignored?"
+ },
+ {
+  "rule": "508.7a",
+  "q": "If an attacking creature is reassigned to attack a different player, does it count as having attacked twice?"
+ },
+ {
+  "rule": "509.1g",
+  "q": "If a creature is chosen to block, does it stay blocking until the end of combat or only until it leaves the battlefield?"
+ },
+ {
+  "rule": "511.1",
+  "q": "What happens during the end of combat step besides players taking actions?"
+ },
+ {
+  "rule": "508.3a",
+  "q": "Does an ability that triggers when a creature attacks activate if the creature is put onto the battlefield attacking?"
+ },
+ {
+  "rule": "500.7",
+  "q": "If a player gets multiple extra turns, how are they ordered and taken?"
+ },
+ {
+  "rule": "508.4a",
+  "q": "If a creature is put onto the battlefield attacking a player who is no longer in the game, does it count as attacking?"
+ },
+ {
+  "rule": "509.3c",
+  "q": "If a creature is blocked by multiple creatures, does its 'becomes blocked' ability trigger more than once?"
+ },
+ {
+  "rule": "509.2",
+  "q": "After blockers are declared, who gets to take actions first?"
+ },
+ {
+  "rule": "509.1f",
+  "q": "Can I pay for a spell’s costs in any order as long as I have enough mana?"
+ },
+ {
+  "rule": "603.7c",
+  "q": "If my creature is no longer a creature when a delayed triggered ability resolves, will it still be exiled?"
+ },
+ {
+  "rule": "610.3",
+  "q": "If a spell says an object goes to a zone until an event happens, what happens after that event?"
+ },
+ {
+  "rule": "606.1",
+  "q": "What kind of abilities are loyalty abilities?"
+ },
+ {
+  "rule": "614.15",
+  "q": "What kind of effect replaces part of a spell or ability’s own effect?"
+ },
+ {
+  "rule": "614.17c",
+  "q": "If an event can't happen, what kind of effect can replace it?"
+ },
+ {
+  "rule": "614.10",
+  "q": "What does it mean when an effect says I skip a step or phase?"
+ },
+ {
+  "rule": "609.1",
+  "q": "What is an effect in the game?"
+ },
+ {
+  "rule": "616.1e",
+  "q": "When multiple replacement or prevention effects are available, who chooses which one to apply?"
+ },
+ {
+  "rule": "604.6",
+  "q": "What kind of static abilities apply while a card is in my hand?"
+ },
+ {
+  "rule": "607.1b",
+  "q": "If a card has an ability on both sides, does it matter which side is up?"
+ },
+ {
+  "rule": "611.3d",
+  "q": "If a continuous effect lets me cast a spell that I couldn’t normally cast, and that spell also gets an ability that only works on the battlefield, how long does that ability last?"
+ },
+ {
+  "rule": "606.3",
+  "q": "Can I activate a loyalty ability of a permanent again during my main phase if I already used it once this turn?"
+ },
+ {
+  "rule": "605.1a",
+  "q": "What makes an activated ability a mana ability?"
+ },
+ {
+  "rule": "614.12b",
+  "q": "If I have multiple replacement effects that modify how several permanents enter the battlefield at the same time, can I make choices that make the costs impossible to pay?"
+ },
+ {
+  "rule": "613.8a",
+  "q": "When does one effect depend on another?"
+ },
+ {
+  "rule": "601.3b",
+  "q": "If an effect lets me cast a spell as though it has flash, can I make choices during casting that might change the spell’s qualities?"
+ },
+ {
+  "rule": "607.5a",
+  "q": "What happens if an object gains an ability that refers to a choice, but no choice is made for it?"
+ },
+ {
+  "rule": "613.7d",
+  "q": "When does an object get a timestamp?"
+ },
+ {
+  "rule": "607.2h",
+  "q": "If a card has both a static ability and triggered abilities in the same paragraph, how are they linked?"
+ },
+ {
+  "rule": "616.1a",
+  "q": "If some replacement or prevention effects are self-replacement effects, what must I do?"
+ },
+ {
+  "rule": "609.7",
+  "q": "If I have an effect that prevents damage from a red source, but the source changes color later, does the damage still get prevented?"
+ },
+ {
+  "rule": "613.2c",
+  "q": "After all other effects are applied, what determines the actual characteristics of a card or permanent?"
+ },
+ {
+  "rule": "609.7b",
+  "q": "If an effect prevents damage from a creature, but that creature leaves the battlefield before dealing damage, does the damage still get prevented?"
+ },
+ {
+  "rule": "610.3d",
+  "q": "If two effects happen at the same time, like returning exiled cards and destroying creatures, do they happen simultaneously?"
+ },
+ {
+  "rule": "602.5a",
+  "q": "Can I tap a creature to activate its ability if it just came onto the battlefield this turn, unless it has haste?"
+ },
+ {
+  "rule": "605.5a",
+  "q": "If an ability targets something and could generate mana, is it still considered a mana ability?"
+ },
+ {
+  "rule": "603.10e",
+  "q": "If a spell is countered, do abilities that trigger when it’s countered look at what happened before it was countered?"
+ },
+ {
+  "rule": "613.7c",
+  "q": "When a counter is added to a permanent, does it get a timestamp, and what happens if there’s already a counter of the same type on it?"
+ },
+ {
+  "rule": "604.7",
+  "q": "Can a static ability use what a permanent looked like earlier if it’s no longer that way?"
+ },
+ {
+  "rule": "609.4a",
+  "q": "If two effects say I can do something as though different conditions are true, and one condition satisfies the other, do both effects apply?"
+ },
+ {
+  "rule": "605.2",
+  "q": "I have a permanent that says 'Tap: Add {G} for each creature I control.' But I don't control any creatures. Is this still a mana ability?"
+ },
+ {
+  "rule": "613.7j",
+  "q": "If I flip a conspiracy card face up, when does it get a new timestamp?"
+ },
+ {
+  "rule": "616.1d",
+  "q": "If multiple effects would make a card enter the battlefield with its back face up, how do I decide which one applies?"
+ },
+ {
+  "rule": "601.1",
+  "q": "Some cards used to say 'playing' a spell, but now they say 'casting.' What changed?"
+ },
+ {
+  "rule": "613.7h",
+  "q": "When does a face-up phenomenon card get a timestamp?"
+ },
+ {
+  "rule": "602.5c",
+  "q": "If a card gains an ability with a restriction from another card, does that restriction apply to other abilities with the same wording?"
+ },
+ {
+  "rule": "603.2a",
+  "q": "Can triggered abilities still trigger even if I can't cast spells or activate abilities?"
+ },
+ {
+  "rule": "611.2d",
+  "q": "If a spell has an X in its effect, is the value of X decided once when it resolves or can it change later?"
+ },
+ {
+  "rule": "613.7g",
+  "q": "When does a double-faced permanent get a new timestamp?"
+ },
+ {
+  "rule": "603.8",
+  "q": "What happens if a triggered ability triggers based on a game state, like a player having no permanents of a certain type?"
+ },
+ {
+  "rule": "613.1d",
+  "q": "If an effect changes my creature’s type, like making it a creature with no subtypes, does that happen before other effects that might change its power or toughness?"
+ },
+ {
+  "rule": "609.3",
+  "q": "If I have to discard two cards but only have one in my hand, how many do I actually discard?"
+ },
+ {
+  "rule": "602.5d",
+  "q": "I have an ability that says 'Activate only as a sorcery.' Do I need to have a sorcery card in my hand to use it?"
+ },
+ {
+  "rule": "611.3a",
+  "q": "If an effect changes my creature’s power based on some condition, and that condition changes later, does the power change too?"
+ },
+ {
+  "rule": "613.7",
+  "q": "If two effects are both changing my creature’s power, which one is applied first?"
+ },
+ {
+  "rule": "603.6e",
+  "q": "If an Aura’s triggered ability activates when the enchanted creature leaves the battlefield, can it still find the creature if it becomes a different card in the graveyard?"
+ },
+ {
+  "rule": "603.7e",
+  "q": "If I cast a spell that creates a delayed triggered ability, who controls that delayed ability?"
+ },
+ {
+  "rule": "603.2e",
+  "q": "If my creature enters the battlefield already tapped, does an ability that triggers when it 'becomes tapped' activate?"
+ },
+ {
+  "rule": "603.6a",
+  "q": "If I play a creature that has an 'enters the battlefield' ability, does that ability trigger even if other creatures are also entering the battlefield at the same time?"
+ },
+ {
+  "rule": "615.4",
+  "q": "If I want to prevent damage my opponent’s spell is about to deal, can I do that after the spell has already resolved?"
+ },
+ {
+  "rule": "709.5j",
+  "q": "If a card refers to a 'door' of a Room permanent, what does that mean?"
+ },
+ {
+  "rule": "702.115b",
+  "q": "If a creature has two 'ingest' abilities, do they both trigger when it eats something?"
+ },
+ {
+  "rule": "732.4",
+  "q": "What happens if a game gets stuck in a loop where everyone has to do something they can't avoid?"
+ },
+ {
+  "rule": "712.1",
+  "q": "What kind of card has two different faces, and what are the different types?"
+ },
+ {
+  "rule": "702.63b",
+  "q": "What happens to a permanent with a vanishing ability that doesn’t have a number on it?"
+ },
+ {
+  "rule": "702.122b",
+  "q": "What does it mean for a creature to 'crew a Vehicle'?"
+ },
+ {
+  "rule": "723.1",
+  "q": "If I control another player during their next turn, how long does that control last?"
+ },
+ {
+  "rule": "722.5",
+  "q": "Can I choose a different name for a preparation card when asked for a card name?"
+ },
+ {
+  "rule": "702.103e",
+  "q": "If a bestowed Aura spell can't target anything, what happens to it?"
+ },
+ {
+  "rule": "701.11c",
+  "q": "What happens if a creature's power or toughness is negative when it's tripled?"
+ },
+ {
+  "rule": "700.8b",
+  "q": "My creature has two creature types that could make it a party member. Can I count it for both types to increase the size of my party?"
+ },
+ {
+  "rule": "701.58c",
+  "q": "I have a card with morph that's cloaked. Can I turn it face up using either of the two methods described for turning face-down or cloaked permanents face up?"
+ },
+ {
+  "rule": "718.2",
+  "q": "What do the numbers and text in the inset frame on a card mean when it's on the battlefield or as a spell?"
+ },
+ {
+  "rule": "702.10b",
+  "q": "Can my creature attack even if I didn’t control it at the start of my turn?"
+ },
+ {
+  "rule": "707.10a",
+  "q": "What happens if a copy of a spell or card ends up in a zone that’s not the stack or battlefield?"
+ },
+ {
+  "rule": "702.145g",
+  "q": "If it's neither day nor night and no one has a permanent with daybound, what happens to a permanent with nightbound?"
+ },
+ {
+  "rule": "702.158e",
+  "q": "How do I know if two permanents are in the same sector?"
+ },
+ {
+  "rule": "701.15a",
+  "q": "If a spell or ability goads my creature, what happens to it until the next turn of the player who cast it?"
+ },
+ {
+  "rule": "702.179d",
+  "q": "What happens if I have speed and my opponents lose life during my turn?"
+ },
+ {
+  "rule": "702.15b",
+  "q": "If I deal damage with a source that has lifelink, do I gain life from that damage?"
+ },
+ {
+  "rule": "702.26k",
+  "q": "If my opponent leaves the game and has some phased-out permanents, what happens to those permanents?"
+ },
+ {
+  "rule": "712.8g",
+  "q": "If I meld two cards together, what characteristics does the resulting permanent have?"
+ },
+ {
+  "rule": "702.173a",
+  "q": "Can I pay a special cost to cast a spell if I was damaged this turn by an Assassin or my commander?"
+ },
+ {
+  "rule": "730.3a",
+  "q": "If a merged permanent goes to my graveyard or library, can I decide the order of the cards?"
+ },
+ {
+  "rule": "702.47e",
+  "q": "What happens to any changes made to a spell using splice once it leaves the stack?"
+ },
+ {
+  "rule": "702.186a",
+  "q": "What does the infinity symbol mean on a card, and how does it work?"
+ },
+ {
+  "rule": "722.2b",
+  "q": "Are alternative characteristics of a card part of what gets copied when something copies the card?"
+ },
+ {
+  "rule": "704.6b",
+  "q": "In a Two-Headed Giant game, what happens if my team has fifteen or more poison counters?"
+ },
+ {
+  "rule": "701.30c",
+  "q": "When clashing, do we reveal our cards at the same time and then move them together?"
+ },
+ {
+  "rule": "702.66a",
+  "q": "Can I exile cards from my graveyard instead of paying generic mana when casting a spell with delve?"
+ },
+ {
+  "rule": "709.4",
+  "q": "If I have a split card in my hand, what happens if I play it? Do I have to choose which half to use?"
+ },
+ {
+  "rule": "730.2e",
+  "q": "If I merge a face-down permanent with a face-up one, does the face-down one become face-up, and does that count as being turned face-up?"
+ },
+ {
+  "rule": "715.4",
+  "q": "If I play an adventurer card as an Adventure, does it still only have its normal characteristics while on the battlefield?"
+ },
+ {
+  "rule": "704.6e",
+  "q": "In an Archenemy game, if a non-ongoing scheme is face up in the command zone and no abilities are on the stack, what happens to it?"
+ },
+ {
+  "rule": "712.9",
+  "q": "If I copy a double-faced card with a Clone, can the Clone transform into its other side?"
+ },
+ {
+  "rule": "702.103d",
+  "q": "If I have a creature card with bestow, can I cast it as a creature spell even if there’s an effect that says creature spells can’t be cast?"
+ },
+ {
+  "rule": "719.3a",
+  "q": "If a Case says ‘To solve — [Condition]’, when does it become solved if the condition is met?"
+ },
+ {
+  "rule": "702.11d",
+  "q": "If a permanent has ‘hexproof from [quality]’, can my opponent target it with a spell or ability of that quality?"
+ },
+ {
+  "rule": "717.3",
+  "q": "Can an Attraction card be put onto the battlefield from the command zone through an effect?"
+ },
+ {
+  "rule": "714.3b",
+  "q": "When I play a Saga with read ahead, do I get to choose how many lore counters it starts with?"
+ },
+ {
+  "rule": "701.10e",
+  "q": "If my creature already has 3 +1/+1 counters, what happens if I get another effect that doubles the number of those counters?"
+ },
+ {
+  "rule": "707.2a",
+  "q": "If I copy a spell that has a specific color and abilities, does the copy keep those same color and abilities?"
+ },
+ {
+  "rule": "702.13c",
+  "q": "If my creature has two intimidate abilities, does having both of them do anything different than just having one?"
+ },
+ {
+  "rule": "700.2",
+  "q": "What makes a spell or ability have multiple options to choose from, like 'Choose one —'?"
+ },
+ {
+  "rule": "702.119b",
+  "q": "If I cast a spell using its emerge cost, can I sacrifice a permanent of a certain quality and pay less mana?"
+ },
+ {
+  "rule": "702.131a",
+  "q": "If I control ten or more permanents and don’t have the city’s blessing, can I get it by casting an instant or sorcery with ascend?"
+ },
+ {
+  "rule": "702.110b",
+  "q": "When a creature with exploit sacrifices another creature, what does that mean for the exploit ability?"
+ },
+ {
+  "rule": "711.6",
+  "q": "If a leveler card is in my hand, what power and toughness does it have?"
+ },
+ {
+  "rule": "701.7c",
+  "q": "If a card says 'put tokens onto the battlefield,' does that mean it actually creates them now?"
+ },
+ {
+  "rule": "724.1c",
+  "q": "When the game checks for state-based actions, can players do anything else like cast spells or respond?"
+ },
+ {
+  "rule": "800.4m",
+  "q": "If a player leaves the game, what happens to effects that were supposed to last until their next turn or a specific point in that turn?"
+ },
+ {
+  "rule": "805.7",
+  "q": "When multiple triggered abilities go off after the last time a team got priority, how do the players decide the order they go on the stack?"
+ },
+ {
+  "rule": "810.2",
+  "q": "What kind of turn structure does the Two-Headed Giant variant use?"
+ },
+ {
+  "rule": "810.6",
+  "q": "What happens to the first team’s draw step in their first turn?"
+ },
+ {
+  "rule": "810.9",
+  "q": "If a spell deals damage to each player, how is that damage applied in a Two-Headed Giant game?"
+ },
+ {
+  "rule": "809.6a",
+  "q": "How should generals and emperors be placed around the table to ensure their range of influence works correctly?"
+ },
+ {
+  "rule": "801.13b",
+  "q": "If a spell prevents damage, who can it affect based on the controller’s range of influence?"
+ },
+ {
+  "rule": "810.9a",
+  "q": "If a spell or effect refers to a player’s life total in a Two-Headed Giant game, which number is used instead?"
+ },
+ {
+  "rule": "800.4k",
+  "q": "What happens if a player who has already left the game would be about to start a new turn?"
+ },
+ {
+  "rule": "805.1",
+  "q": "In what types of multiplayer games is the shared team turns option always used?"
+ },
+ {
+  "rule": "802.1",
+  "q": "Can the active player choose to attack only one player instead of attacking multiple players during combat?"
+ },
+ {
+  "rule": "805.10f",
+  "q": "Who gets to decide how combat damage is assigned when the combat damage step begins?"
+ },
+ {
+  "rule": "800.4g",
+  "q": "What happens if a game action requires a player who has left the game to make a choice, but they can’t?"
+ },
+ {
+  "rule": "801.13",
+  "q": "What happens if a replacement or prevention effect causes an impossible instruction to be carried out?"
+ },
+ {
+  "rule": "810.10c",
+  "q": "If a player can’t get poison counters, can anyone else on their team get poison counters?"
+ },
+ {
+  "rule": "809.2",
+  "q": "How are teams seated in a multiplayer game, and what roles do the emperor and generals have?"
+ },
+ {
+  "rule": "800.4d",
+  "q": "What happens to an object that would be owned by a player who has left the game?"
+ },
+ {
+  "rule": "800.4n",
+  "q": "What happens to cards in the ante zone that belong to a player who has left the game?"
+ },
+ {
+  "rule": "808.5",
+  "q": "Can teammates in a Team vs. Team game share their cards or manipulate each other’s permanents?"
+ },
+ {
+  "rule": "811.4",
+  "q": "Can a player attack opponents who are not seated next to them or planeswalkers controlled by opponents not seated next to them?"
+ },
+ {
+  "rule": "810.9b",
+  "q": "If my teammate and I both have to pay life at the same time, can we pay more life than we have total?"
+ },
+ {
+  "rule": "810.11",
+  "q": "If our team has more than two players, how does that affect our starting life total and how many poison counters we need to lose?"
+ },
+ {
+  "rule": "802.3",
+  "q": "When I declare an attacker, who do I choose for it to attack?"
+ },
+ {
+  "rule": "810.9e",
+  "q": "Can I swap my life total with my teammate’s if something says I should?"
+ },
+ {
+  "rule": "811.1",
+  "q": "Can Alternating Teams games have more than two teams?"
+ },
+ {
+  "rule": "810.10d",
+  "q": "If an effect checks what counters I have, does it include my teammate’s counters too?"
+ },
+ {
+  "rule": "809.6",
+  "q": "Can the Emperor variant have teams with more than three players?"
+ },
+ {
+  "rule": "810.8a",
+  "q": "If one person on my team loses the game, does the whole team lose?"
+ },
+ {
+  "rule": "810.9g",
+  "q": "If my teammate can’t gain life, does that mean I can’t gain life either?"
+ },
+ {
+  "rule": "805.10b",
+  "q": "When declaring attackers, do I have to choose which player or planeswalker each creature is attacking?"
+ },
+ {
+  "rule": "810.7",
+  "q": "How does combat work in Two-Headed Giant? Is it different from regular games?"
+ },
+ {
+  "rule": "809.1",
+  "q": "How many players are on each team in the Emperor variant?"
+ },
+ {
+  "rule": "800.4p",
+  "q": "What happens if the planar controller leaves the game in a Planechase game?"
+ },
+ {
+  "rule": "802.3b",
+  "q": "Can creatures in a band attack different players?"
+ },
+ {
+  "rule": "811.5",
+  "q": "Can teammates in the Alternating Teams variant look at each other’s hands?"
+ },
+ {
+  "rule": "802.2a",
+  "q": "If an ability refers to a defending player, who exactly is it referring to?"
+ },
+ {
+  "rule": "802.4b",
+  "q": "When checking if a block is legal, do I consider creatures attacking other players or blocking creatures from other players?"
+ },
+ {
+  "rule": "801.5a",
+  "q": "If I have to choose a target, can I pick someone who’s not in my range of influence?"
+ },
+ {
+  "rule": "800.4f",
+  "q": "If a cost needs to be paid by a player who has left the game, does it get paid?"
+ },
+ {
+  "rule": "805.9",
+  "q": "If an ability mentions the 'active player,' does it mean all active players or just one?"
+ },
+ {
+  "rule": "801.16",
+  "q": "What happens if the game gets stuck in a loop where the same actions keep repeating without anyone being able to stop it?"
+ },
+ {
+  "rule": "802.4",
+  "q": "If multiple players are defending at the same time, how does the order work for declaring blockers?"
+ },
+ {
+  "rule": "809.5",
+  "q": "Are there any special rules for winning or losing in the Emperor variant of the game?"
+ },
+ {
+  "rule": "811.2",
+  "q": "What happens before the game starts in the Alternating Teams variant?"
+ },
+ {
+  "rule": "809.4",
+  "q": "How is the first player determined in the Emperor variant?"
+ },
+ {
+  "rule": "801.4",
+  "q": "Can I target something that’s outside my range of influence with a spell or ability I control?"
+ },
+ {
+  "rule": "807.4f",
+  "q": "When figuring out if leaving the game would reduce the number of turn markers, should I count turn markers that are already marked for removal?"
+ },
+ {
+  "rule": "809.7",
+  "q": "Can teammates in the Emperor variant look at each other’s hands and talk about strategy, but not touch each other’s cards or permanents?"
+ },
+ {
+  "rule": "807.4e",
+  "q": "If a player leaves the game and that causes the number of turn markers to decrease, which turn marker gets removed?"
+ },
+ {
+  "rule": "800.6",
+  "q": "Does the first mulligan in a multiplayer game count toward the number of mulligans a player can take or the number of cards they put on the bottom of their library?"
+ },
+ {
+  "rule": "905.6",
+  "q": "After we figure out who goes first, what happens next with our life total and starting hand?"
+ },
+ {
+  "rule": "904.10",
+  "q": "If a scheme card is face up in the command zone and no one has triggered any scheme abilities, what happens to that card?"
+ },
+ {
+  "rule": "903.5d",
+  "q": "Can I include a land that produces blue mana in my Commander deck if my commander is red and green?"
+ },
+ {
+  "rule": "903.7",
+  "q": "After we figure out who goes first, what happens next with our life total and starting hand in a Commander game?"
+ },
+ {
+  "rule": "903.10a",
+  "q": "What happens if I take 21 or more combat damage from the same commander during a game?"
+ },
+ {
+  "rule": "901.15a",
+  "q": "If we’re playing a Planechase game with a single communal planar deck, how many cards must be in that deck?"
+ },
+ {
+  "rule": "901.9b",
+  "q": "If I roll the chaos symbol on the die, what happens next and who gets priority?"
+ },
+ {
+  "rule": "905.2a",
+  "q": "During a draft, if multiple players want to take an action at the same time and can’t agree on the order, how is it resolved?"
+ },
+ {
+  "rule": "901.14b",
+  "q": "If a player leaves the game and that would reduce the number of turn markers, what happens to their planar cards?"
+ },
+ {
+  "rule": "903.13c",
+  "q": "In the first and third draft rounds, which direction are booster packs passed?"
+ },
+ {
+  "rule": "901.7a",
+  "q": "If I turn a face-up plane card face down, does it keep its previous identity or become something new?"
+ },
+ {
+  "rule": "904.13a",
+  "q": "Can we play a Commander game using Archenemy rules instead of normal Commander rules?"
+ },
+ {
+  "rule": "901.12c",
+  "q": "If a plane card is controlled by one player, can both players on their team use its abilities that say 'you'?"
+ },
+ {
+  "rule": "903.12b",
+  "q": "What kind of cards are usually used to build a Brawl deck?"
+ },
+ {
+  "rule": "903.13f",
+  "q": "In a Commander Draft, can I have as many copies of the same card as I want in my deck?"
+ },
+ {
+  "rule": "901.15c",
+  "q": "If a rule mentions a player’s planar deck, does it mean the shared planar deck is used instead?"
+ },
+ {
+  "rule": "903.8",
+  "q": "If I cast my commander from the command zone again, does it cost more mana?"
+ },
+ {
+  "rule": "905.1b",
+  "q": "In the first draft round, do I pass the booster packs to my left or right?"
+ },
+ {
+  "rule": "904.7",
+  "q": "Who controls a face-up scheme card in the Archenemy variant?"
+ },
+ {
+  "rule": "904.1",
+  "q": "In the Archenemy variant, is there a single opponent who has extra powerful cards?"
+ },
+ {
+  "rule": "903.12g",
+  "q": "If I take my first mulligan in a Brawl game, does it count toward how many cards I have to put on the bottom of my library or how many mulligans I can take?"
+ },
+ {
+  "rule": "903.3",
+  "q": "If I play a card that copies another card, like with Cytoshape, is my commander still considered my commander?"
+ },
+ {
+  "rule": "903.12c",
+  "q": "What types of cards can be a commander in a Commander game?"
+ },
+ {
+  "rule": "902.7",
+  "q": "Can I use the abilities of my face-up Vanguard card while it’s in the command zone?"
+ },
+ {
+  "rule": "903.12e",
+  "q": "If my commander has no colors in its color identity, can I put any number of basic lands of one type in my deck?"
+ },
+ {
+  "rule": "901.5",
+  "q": "What happens when the starting player turns over the top card of their planar deck, and it’s a phenomenon card?"
+ },
+ {
+  "rule": "903.10",
+  "q": "Are there special rules for winning or losing the game in a Commander game?"
+ },
+ {
+  "rule": "902.5a",
+  "q": "If I take a mulligan in a Vanguard game, how many cards do I draw for my new hand?"
+ },
+ {
+  "rule": "901.12b",
+  "q": "What happens to the planar controller if their team leaves the game?"
+ },
+ {
+  "rule": "905.3",
+  "q": "What kind of multiplayer game is a Conspiracy Draft by default?"
+ },
+ {
+  "rule": "901.1",
+  "q": "What kind of extra things can happen in a Planechase game compared to a normal game?"
+ },
+ {
+  "rule": "904.13c",
+  "q": "If I have ten or more poison counters, do I lose the game even if my teammate doesn’t?"
+ },
+ {
+  "rule": "903.3e",
+  "q": "Can I look at my commander’s characteristics even if it’s in my hand or library?"
+ },
+ {
+  "rule": "903.13b",
+  "q": "How does a draft work when we’re opening booster packs and picking cards?"
+ },
+ {
+  "rule": "903.12h",
+  "q": "In Brawl, do I lose the game if my commander deals me 21 or more combat damage?"
+ },
+ {
+  "rule": "904.3",
+  "q": "What kind of extra cards does the archenemy need for their scheme deck?"
+ },
+ {
+  "rule": "903.12a",
+  "q": "What is Brawl, and how is it different from regular Commander games?"
+ },
+ {
+  "rule": "902.6",
+  "q": "Who controls a face-up vanguard card that I started the game with?"
+ },
+ {
+  "rule": "903.3a",
+  "q": "Can some cards let me use them as my commander even before the game starts?"
+ },
+ {
+  "rule": "903.5a",
+  "q": "How many cards must my deck have in Brawl, including my commander?"
+ },
+ {
+  "rule": "902.3",
+  "q": "Do I need a special card to start the game, and where do I put it?"
+ },
+ {
+  "rule": "904.2",
+  "q": "How does an Archenemy game usually set up when there are multiple players?"
+ },
+ {
+  "rule": "901.11b",
+  "q": "What happens when I flip a plane card face up or face down during a Planechase game?"
+ },
+ {
+  "rule": "901.13",
+  "q": "Can plane or phenomenon cards be limited in how far their effects can reach in a multiplayer game?"
+ },
+ {
+  "rule": "901.8",
+  "q": "What happens when I roll the Planeswalker symbol on the planar die?"
+ },
+ {
+  "rule": "901.12d",
+  "q": "Can every player on a team roll the planar die, and does it cost more if they've rolled before?"
+ },
+ {
+  "rule": "901.12",
+  "q": "What extra rules apply when playing a Two-Headed Giant Planechase game?"
+ },
+ {
+  "rule": "901.9c",
+  "q": "If I roll the Planeswalker symbol, who gets to go first when the planeswalking ability triggers?"
+ },
+ {
+  "rule": "901.9d",
+  "q": "Do abilities that trigger from rolling dice also trigger from rolling the planar die?"
+ },
+ {
+  "rule": "901.10b",
+  "q": "What happens to abilities from a phenomenon if the player who owned it leaves the game?"
+ }
+]

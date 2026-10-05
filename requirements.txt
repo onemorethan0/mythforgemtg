@@ -22,11 +22,14 @@ numpy>=1.26
 # fastapi/uvicorn/requests above are shared with the app.
 rich>=13.0
 json-repair>=0.30
-# Lexical search over the Comprehensive Rules corpus (data/rulings.py, SPEC_deck_mentor.md
-# Phase 0). Deliberately not an embedding index: the corpus is ~3.5k numbered rules, small
-# enough that lexical search over CR's own dense, exact terminology outperforms semantic
-# search here, with no embedding-model dependency or GPU in the loop.
+# Comprehensive Rules search (data/rulings.py + data/rules_dense.py): BM25 fused with a small
+# CPU embedding model (bge-small, ~130 MB, downloaded by `mythgauntlet fetch-rules`). This file
+# used to say lexical search alone beat semantic search on CR's exact terminology; measured
+# 2026-10-05 on 450 player-phrased questions it did not -- players don't use CR's words (BM25
+# alone: right rule family in the top 5 for 83.1%; fused: 90.7%). No GPU; without fastembed the
+# search silently stays BM25-only.
 rank-bm25>=0.2
+fastembed>=0.5
 
 # --- Deliberately NOT required ----------------------------------------------
 # Audited 2026-08-08 by walking every third-party import in the tracked tree against this
