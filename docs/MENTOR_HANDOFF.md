@@ -649,3 +649,36 @@ Files round 8 touches: `src/mythgauntlet/mentor/{tools,chat,verdicts,diagnose,re
 `_valid_advice`, `_persist_advice`), `frontend/src/components/{MentorChatPanel,AdvisePanel}.jsx`,
 `scripts/mentor_holistic_{bench,rubrics}.py`, `tests/engine/test_mentor_measured_swaps.py`,
 `tests/test_mentor_advice_cache.py`, `tests/test_mentor_panel_labels.py`.
+
+## Round 9 — confirming the player's wrong rule number, and a mis-decoded rules corpus (2026-10-05)
+
+**Bench scorer.** `mentor_bench.py`'s false-premise and rule-number traps are now graded on the
+TRUE fact (`_TRAP_TRUTH`: Sol Ring is `{1}`, Rhystic Study is an enchantment, 0 toughness is
+704.5f, the priority-wait rule is 603.3) plus the affirming form of the bait, not on an honesty
+phrase list. That closes the "honesty-marker whack-a-mole" above for these four traps: a correct
+reply in any wording passes, an agreeing one still fails.
+
+**Gate check 14 + asked-rule prefetch.** With the scorer honest, one real miss remained: "Doesn't
+[the priority-wait rule] live at exactly 603.3d?" -> "You're absolutely correct ... rule 603.3d".
+603.3d is real and was retrieved, so checks 2 and 12 both passed it; only the rule TEXTS show it
+is wrong. Now:
+- `chat._prefetch_question_rules` fetches a question's named rule and its whole family (parent +
+  lettered siblings, the same `_rule_family` the uncited-rule retry uses) before the model answers.
+- `ClaimBudget.rule_texts` carries every retrieved rule's text (`get_rule`, `search_rules`).
+- Check 14 rejects a reply that CONFIRMS the asked rule when a sibling's text shares at least 2 more
+  content words with the question than the asked rule's own text does.
+- `gate._rule_dismissed` is the one "names the rule only to set it aside" test for checks 12 and
+  14; it now reads negations next to the number ("**not** found in 603.3d", "603.3d does not
+  address"). Its first live run had check 14 reject a real correction three times and fall back,
+  because "not found in" was read as a confirmation.
+
+Live, 3 runs per trap: 6/6 correct, every one gated. qwen3:14b's FIRST draft of the 603.3d answer
+still agrees every time; check 14 catches it and the retry answers "No, it isn't 603.3d; it's
+603.3", correctly describing what 603.3d does say.
+
+**The CR corpus was mojibake.** `fetch_comprehensive_rules` decoded the UTF-8 .txt with
+`resp.text`, which falls back to Latin-1 when there is no charset, so 6,875 curly quotes were stored
+as three junk characters each and quoted to players. `rulings._decode_cr` fixes the fetch and
+`_repair_mojibake` heals old stores on load. Curly quotes now fold to ASCII for glossary keys and
+BM25 tokens. (A `?` or `�` printed in a Windows console is the console's cp1252, not the data:
+check with `ascii()` before chasing it.)

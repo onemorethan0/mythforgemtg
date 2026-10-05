@@ -279,6 +279,9 @@ class ClaimBudget:
     # True when a tool result this turn says counterspells do not apply to this deck (no blue in
     # its identity): check 11 then rejects "add counterspells" / "lacks counterspells, a gap".
     counterspell_na: bool = False
+    # (rule number, text) for every rule whose TEXT a tool result carried this turn (`get_rule`,
+    # `search_rules`): check 14 compares an asked rule's text against its retrieved siblings.
+    rule_texts: tuple = ()
 
     @classmethod
     def from_tool_results(
@@ -295,6 +298,7 @@ class ClaimBudget:
         card_types: dict[str, str] = {}
         copy_exceptions: set[str] = set()
         counterspell_na = False
+        rule_texts: dict[str, str] = {}
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -332,10 +336,18 @@ class ClaimBudget:
                 copy_exceptions.add(data["card"])
             if isinstance(data, dict) and _says_counterspells_na(data):
                 counterspell_na = True
+            if (isinstance(data, dict) and data.get("found") is True
+                    and isinstance(data.get("number"), str) and isinstance(data.get("text"), str)):
+                rule_texts[data["number"]] = data["text"]
+            if isinstance(data, dict) and isinstance(data.get("results"), list):
+                for hit in data["results"]:
+                    if (isinstance(hit, dict) and hit.get("kind") == "rule"
+                            and isinstance(hit.get("ref"), str) and isinstance(hit.get("text"), str)):
+                        rule_texts.setdefault(hit["ref"], hit["text"])
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
                     tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions),
-                    counterspell_na)
+                    counterspell_na, tuple(rule_texts.items()))
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -559,6 +571,13 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     guess_after_admission_reasons`). The prompt-only rule never held for qwen3:14b.
     reasons.extend(verdicts_mod.guess_after_admission_reasons(body))
 
+    # 14. CONFIRMING THE PLAYER'S RULE NUMBER WHEN A SIBLING'S TEXT IS THE ONE THAT SAYS IT.
+    #     Live 2026-10-05: "Doesn't [the priority-wait rule] live at exactly 603.3d?" -> "You're
+    #     absolutely correct ... rule 603.3d". 603.3d is real and was retrieved, so checks 2 and
+    #     12 both pass it; only the TEXTS show it is wrong (603.3 holds "the next time a player
+    #     would receive priority"). `chat` pre-fetches an asked rule's family so both are in hand.
+    reasons.extend(_unsupported_rule_confirmation_reasons(body, question, budget.rule_texts))
+
     return reasons
 
 
@@ -574,6 +593,18 @@ _DISMISSES_RULE_RE = re.compile(
     re.IGNORECASE)
 
 
+def _rule_dismissed(sentence: str, number: str) -> bool:
+    """The sentence names `number` only to set it aside: a dismissal word anywhere in it, or a
+    negation right before/after the number ("**not** found in 603.3d", "isn't 704.5c", "603.3d
+    does not address this" -- all live 2026-10-05, the first read as a CONFIRMATION before)."""
+    if _DISMISSES_RULE_RE.search(sentence):
+        return True
+    n = re.escape(number) + r"(?![a-z\d])"
+    s = sentence.replace("*", "")
+    return bool(re.search(rf"(?:\bnot|n't|\bnever)\b(?:\W+[a-z]+){{0,3}}?\W+{n}", s, re.I)
+                or re.search(rf"\b{n}\W+(?:\w+\W+)?(?:does|is|did|was)(?:\s+not|n't)\b", s, re.I))
+
+
 def _affirmed_wrong_rule_reasons(body: str, question: str) -> list[str]:
     asked = set(RULE_NUM_RE.findall(question or ""))
     if not asked or not _AGREEMENT_OPENER_RE.search(body):
@@ -582,7 +613,7 @@ def _affirmed_wrong_rule_reasons(body: str, question: str) -> list[str]:
     # The asked rule named only to be dismissed ("Rule 704.5c is unrelated") is not confirmed:
     # live, the 704.5c trap opened "You're absolutely right" and then did exactly that.
     confirmed = {n for s in verdicts_mod.split_sentences(body)
-                 if not _DISMISSES_RULE_RE.search(s) for n in RULE_NUM_RE.findall(s)}
+                 for n in RULE_NUM_RE.findall(s) if not _rule_dismissed(s, n)}
     if not (cited - asked) or asked & confirmed:
         return []
     return [
@@ -590,6 +621,67 @@ def _affirmed_wrong_rule_reasons(body: str, question: str) -> list[str]:
         f"{', '.join(sorted(cited))} instead -- if the player's rule number is not the one that "
         "says this, say so plainly first (\"No, it isn't {asked}; it's ...\") instead of agreeing"
         .replace("{asked}", sorted(asked)[0])]
+
+
+_RULE_FAMILY_RE = re.compile(r"^(\d{3}\.\d+)[a-z]?$")
+_DESC_STOPWORDS = frozenset(
+    "a an the of to in on at for by with from as is it its it's this that these those be been "
+    "are was were do does doesn't don't did not no yes or and if when what which who whose how "
+    "under exactly rule rules number live lives say says said there their they them would could "
+    "should can may might will just only about into than then so".split())
+_CONFIRMS_RULE_TMPL = r"(?<!not )(?<!isn't ){n}\W*\s+is\s+(?:indeed\s+)?the\s+(?:one|rule|correct|right)\b"
+_SUPPORT_MARGIN = 2
+
+
+def _content_stems(text: str) -> set[str]:
+    words = re.findall(r"[a-z0-9]+(?:'[a-z]+)?", verdicts_mod.normalize_apostrophes(text.lower()))
+    stems = set()
+    for w in words:
+        w = re.sub(r"'s$", "", w)
+        if w in _DESC_STOPWORDS or RULE_NUM_RE.fullmatch(w):
+            continue
+        for suffix in ("ing", "ed", "es", "s"):
+            if len(w) > len(suffix) + 3 and w.endswith(suffix):
+                w = w[: -len(suffix)]
+                break
+        stems.add(w)
+    return stems
+
+
+def _unsupported_rule_confirmation_reasons(body: str, question: str, rule_texts) -> list[str]:
+    asked = set(RULE_NUM_RE.findall(question or ""))
+    texts = dict(rule_texts or ())
+    if not asked or not texts:
+        return []
+    desc = _content_stems(RULE_NUM_RE.sub(" ", question))
+    opens_agreeing = bool(_AGREEMENT_OPENER_RE.search(body))
+    sentences = verdicts_mod.split_sentences(body)
+    reasons = []
+    for number in sorted(asked):
+        if number not in texts:
+            continue
+        mentioned = [s for s in sentences if number in RULE_NUM_RE.findall(s)]
+        if not mentioned or any(_rule_dismissed(s, number) for s in mentioned):
+            continue
+        affirms = re.compile(_CONFIRMS_RULE_TMPL.format(n=re.escape(number) + r"\**"), re.I)
+        if not (opens_agreeing or any(affirms.search(s) for s in mentioned)):
+            continue
+        fam = _RULE_FAMILY_RE.match(number)
+        if not fam:
+            continue
+        base = fam.group(1)
+        own = len(desc & _content_stems(texts[number]))
+        rivals = [(len(desc & _content_stems(t)), n) for n, t in texts.items()
+                  if n != number and (_RULE_FAMILY_RE.match(n) or [None, None])[1] == base]
+        if not rivals:
+            continue
+        best, rival = max(rivals)
+        if best - own >= _SUPPORT_MARGIN:
+            reasons.append(
+                f"confirms the player's rule {number}, but rule {number}'s own text does not say "
+                f"what the question describes -- rule {rival}'s text does. Say plainly that it is "
+                f"not {number}, and cite {rival} only for what its text states")
+    return reasons
 
 
 class GateFailure(Exception):

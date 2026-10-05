@@ -612,26 +612,41 @@ def _lookup_uncited_rules(ctx, reasons, tool_trace, all_results, messages) -> li
     506.3b applied) -- the model must see the alternatives side by side, never just the number
     it already reached for. A number the corpus does not hold is fetched as not-found and the
     citation stays unlicensed."""
+    cited = [m.group(1) for m in map(_UNCITED_RULE_RE.search, reasons) if m]
+    return _fetch_rule_families(ctx, cited, tool_trace, all_results, messages, "auto-rule")
+
+
+def _rule_family(rules: dict, number: str) -> list[str]:
+    """`number`, its parent rule and every lettered sibling (parent first), capped."""
+    parent = _RULE_PARENT_RE.match(number)
+    family = [number]
+    if parent:
+        base = parent.group(1)
+        sibs = sorted(k for k in rules if k == base or re.fullmatch(re.escape(base) + r"[a-z]", k))
+        family = [base] + [k for k in sibs if k != base] if base in rules else sibs or [number]
+    return family[:_SIBLING_CAP]
+
+
+def _prefetch_question_rules(ctx, question, tool_trace, all_results, messages) -> list[str]:
+    """A question that NAMES a rule ("is it 704.5c?") gets that rule's family fetched before the
+    model answers, so the right sibling's text is in hand beside the one the player guessed --
+    and gate check 14 can compare them. Live 2026-10-05 the model confirmed 603.3d for what
+    603.3 says, having only ever seen 603.3d."""
+    asked = list(dict.fromkeys(gate_mod.RULE_NUM_RE.findall(question or "")))
+    return _fetch_rule_families(ctx, asked, tool_trace, all_results, messages, "auto-q-rule")
+
+
+def _fetch_rule_families(ctx, numbers, tool_trace, all_results, messages, id_prefix) -> list[str]:
     rules = getattr(getattr(ctx, "cr", None), "rules", None) or {}
     already = {str(t.args.get("number", "")) for t in tool_trace if t.name == "get_rule"}
     wanted: list[str] = []
-    for reason in reasons:
-        m = _UNCITED_RULE_RE.search(reason)
-        if not m:
-            continue
-        cited = m.group(1)
-        parent = _RULE_PARENT_RE.match(cited)
-        family = [cited]
-        if parent:
-            base = parent.group(1)
-            sibs = sorted(k for k in rules if k == base or re.fullmatch(re.escape(base) + r"[a-z]", k))
-            family = [base] + [k for k in sibs if k != base] if base in rules else sibs or [cited]
-        for number in family[:_SIBLING_CAP]:
+    for cited in numbers:
+        for number in _rule_family(rules, cited):
             if number not in already and number not in wanted:
                 wanted.append(number)
     if not wanted:
         return []
-    calls = [{"id": f"auto-rule-{i}", "type": "function",
+    calls = [{"id": f"{id_prefix}-{i}", "type": "function",
               "function": {"name": "get_rule", "arguments": json.dumps({"number": n})}}
              for i, n in enumerate(wanted)]
     messages.append({"role": "assistant", "content": "", "tool_calls": calls})
@@ -733,6 +748,7 @@ def ask(
     # costs 2 mana...") went uncorrected because the model never looked Sol Ring up and so had
     # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
     _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
+    _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False
