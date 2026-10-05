@@ -599,6 +599,63 @@ def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_result
                          "content": json.dumps(result.data, ensure_ascii=False, default=str)})
 
 
+# ── Rules questions get the rules searched BEFORE the model answers ─────────────────────────
+# Measured 2026-10-05 (scripts/mentor_rules_bench.py, 45 held-out player questions): the model
+# called search_rules on only 9/45 and answered the rest from memory -- "Phyrexian mana is paid
+# by sacrificing a creature", "you control the cards in your graveyard" -- and the gate passed
+# them, because a reply that cites nothing gives it nothing to check. Same remedy as the card
+# pre-lookup above. The classifier is biased towards firing (a missed rules question is a
+# fabrication risk, a false fire adds five rule texts of context): on 648 generated rules
+# questions it fires on 629, on 43 deck/card questions it fires on 0 (`test_mentor_presearch`).
+_ADVICE_CUE_RE = re.compile(
+    r"\b(?:should i|worth (?:adding|running|playing|it)|good (?:fit|enough|in (?:this|my))"
+    r"|improve|faster|slower|resilien|weakest|strongest|best cards?|best (?:turn|time|way)"
+    r"|cut|swap|bracket|pod\b|playgroup|casual|over.supplied|under.supplied|too (?:strong|weak)"
+    r"|synergy|archetype|curve|mana base|win(?:con| condition)|how does (?:this|my) deck"
+    r"|(?:this|my) deck (?:do|win|need|lack|have)|doing the most work|power level"
+    r"|add(?:ing)? .{0,40}(?:to|in) (?:this|my) (?:deck|list)|is .{0,40} a good"
+    r"|rulings?\b)", re.I)
+_DECK_STATS_RE = re.compile(r"\b(?:how many .{0,50}(?:do i|in (?:my|this)|between)|my average"
+                            r"|do i (?:run|play)|average mana value)\b", re.I)
+_STRONG_RULES_CUE_RE = re.compile(
+    r"\b(?:can (?:i|you|a|an|my|it|the|they|we|players?|someone|one) (?!tell|explain)|could i"
+    r"|may i|what happens|does .{0,60}\bstill\b|is it (?:legal|allowed|possible)|am i allowed"
+    r"|allowed to|have to|must i|in what order|what order"
+    r"|who (?:controls|chooses|decides|gets|owns|goes)|rules?\b|stack|priority|respond"
+    r"|trigger|target|state.based|layer|combat damage|blocks?|attacks?|mulligan|zone)", re.I)
+# A capitalised multi-word name mid-sentence ("... of Cyclonic Rift"): a question ABOUT a card,
+# which the card pre-lookup already grounds.
+_CARDISH_RE = re.compile(r"(?<=[a-z,'] )[A-Z][a-z']+(?: (?:of |the )?[A-Z][a-z']+)+")
+_CARD_DESC_RE = re.compile(r"^\s*(?:what does|what's|what is|can you (?:tell me about|explain))"
+                           r"\b.{0,60}\b(?:do|say|cost|type line|mana (?:cost|value))\b\??\s*$",
+                           re.I)
+_PRESEARCH_K = 5
+
+
+def _is_rules_question(question: str) -> bool:
+    q = question or ""
+    if not q.strip() or _ADVICE_CUE_RE.search(q) or _DECK_STATS_RE.search(q):
+        return False
+    if _STRONG_RULES_CUE_RE.search(q):
+        return True
+    return not (_CARDISH_RE.search(q) or _CARD_DESC_RE.search(q))
+
+
+def _presearch_question_rules(ctx, question, tool_trace, all_results, messages) -> bool:
+    if not _is_rules_question(question) or getattr(ctx, "cr", None) is None:
+        return False
+    args = {"query": question, "k": _PRESEARCH_K}
+    call = {"id": "auto-q-search", "type": "function",
+            "function": {"name": "search_rules", "arguments": json.dumps(args)}}
+    messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+    result = call_tool(ctx, "search_rules", args)
+    all_results.append(result)
+    tool_trace.append(ToolCallRecord(name="search_rules", args=args, result_data=result.data))
+    messages.append({"role": "tool", "tool_call_id": call["id"],
+                     "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    return True
+
+
 _UNCITED_RULE_RE = re.compile(r"cites rule '([^']+)', which was never looked up this turn")
 _RULE_PARENT_RE = re.compile(r"^(\d{3}\.\d+)[a-z]?$")
 _SIBLING_CAP = 10
@@ -757,6 +814,7 @@ def ask(
     # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
     _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
+    _presearch_question_rules(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False

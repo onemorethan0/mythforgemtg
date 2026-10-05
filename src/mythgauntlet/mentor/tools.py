@@ -348,6 +348,9 @@ def tool_lookup_rulings(ctx: MentorContext, name: str) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset({card.name}))
 
 
+_SEARCH_INDEXES: dict[int, tuple] = {}  # id(cr) -> (cr, index); the cr ref guards id reuse
+
+
 def tool_search_rules(ctx: MentorContext, query: str, k: int = 5) -> ToolResult:
     # Measured 2026-08-24: building a fresh RulesSearchIndex over the ~4,000-document
     # corpus is 66ms, search itself 2ms -- negligible next to an LLM round-trip (seconds)
@@ -355,8 +358,13 @@ def tool_search_rules(ctx: MentorContext, query: str, k: int = 5) -> ToolResult:
     # `ctx.cr` directly (rather than `rulings_data.search_rules`'s file-path-keyed cache)
     # is also what keeps this tool testable against a small in-memory ComprehensiveRules
     # fixture instead of coupling it to whatever's on disk.
-    index = rulings_data.RulesSearchIndex(ctx.cr)
-    results = index.search(query, k=k)
+    # 2026-10-05: the index now also carries the embedding half (data/rules_dense.py), whose
+    # vector lookup hashes every document -- cache one index per corpus object instead.
+    index = _SEARCH_INDEXES.get(id(ctx.cr))
+    if index is None or index[0] is not ctx.cr:
+        index = (ctx.cr, rulings_data.RulesSearchIndex(ctx.cr))
+        _SEARCH_INDEXES[id(ctx.cr)] = index
+    results = index[1].search(query, k=k)
     data = {
         "results": [
             {"kind": r.kind, "ref": r.ref, "text": r.text, "score": round(r.score, 2)}
