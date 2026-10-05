@@ -676,6 +676,28 @@ Live, 3 runs per trap: 6/6 correct, every one gated. qwen3:14b's FIRST draft of 
 still agrees every time; check 14 catches it and the retry answers "No, it isn't 603.3d; it's
 603.3", correctly describing what 603.3d does say.
 
+**Check 14 against qwen3:14b's own wording (same round, phrasing-corpus technique).** The first
+live version only knew "X is the one/rule" plus an agreement opener. qwen3:14b drafted 525 labelled
+replies (wrong confirmations, corrections, confirmations of the RIGHT rule) for both trap pairs.
+What that settled:
+- **Wording alone cannot separate a correction from a confirmation.** "704.5c is the rule that
+  applies when a player has ten poison counters" (a correction describing the wrong rule) and
+  "704.5c is the rule you mean" (a confirmation) share the template. Check 14 therefore reads
+  CONTENT: a clause naming the asked rule that carries the question's words that rule's own text
+  lacks is a confirmation. So is a STRONG form ("the correct rule", "the rule you're thinking of",
+  "applies here", "is indeed the"), and so is a WEAK form ("is the rule/one") when the reply never
+  cites the better rule or cites it only as "background"/"setup"/"supporting" (demoted).
+- **"On the right track" is NOT an agreement opener**: "You're on the right track, but the rule is
+  704.5f, not 704.5c" is a correction (the check-12 corpus pins it). "Spot on", "I agree",
+  "Absolutely", "Indeed" and "you got it" are agreement openers.
+- Tuned on four batches; **two untouched batches: 147/150 confirmations caught, 90/90 corrections and
+  right-rule confirmations clean** (0 false positives in all 255 such items). Committed 491
+  deduplicated items as `rule_*` categories in `tests/engine/data/mentor_phrasings.json`. Known
+  residual misses: "According to 704.5c, a creature with 0 toughness is indeed put into the
+  graveyard" (the comma clause-split separates the number from the claim), "603.3d is the answer
+  here, stating ...", and "603.3d is the one that deals with the actual handling ..., while 603.3
+  is the rule that sets it into motion" (an unlisted demotion).
+
 **The CR corpus was mojibake.** `fetch_comprehensive_rules` decoded the UTF-8 .txt with
 `resp.text`, which falls back to Latin-1 when there is no charset, so 6,875 curly quotes were stored
 as three junk characters each and quoted to players. `rulings._decode_cr` fixes the fetch and

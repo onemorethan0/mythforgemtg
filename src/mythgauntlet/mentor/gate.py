@@ -582,7 +582,8 @@ def check(text: str, budget: ClaimBudget, question: str = "",
 
 
 _AGREEMENT_OPENER_RE = re.compile(
-    r"^\W*(?:yes\b|yep\b|right\b|correct\b|exactly\b|you(?:'re| are)\s+(?:absolutely\s+|exactly\s+|quite\s+)?"
+    r"^\W*(?:yes\b|yep\b|right\b|correct\b|exactly\b|absolutely\b|indeed\b"
+    r"|i\s+(?:fully\s+|completely\s+)?agree\b|(?:you(?:'re| are)|that(?:'s| is))\s+spot\s+on\b|you\s+got\s+it\b|you(?:'re| are)\s+(?:absolutely\s+|exactly\s+|quite\s+)?"
     r"(?:right|correct)\b|that(?:'s| is)\s+(?:absolutely\s+|exactly\s+)?(?:right|correct)\b)",
     re.IGNORECASE)
 
@@ -629,8 +630,29 @@ _DESC_STOPWORDS = frozenset(
     "are was were do does doesn't don't did not no yes or and if when what which who whose how "
     "under exactly rule rules number live lives say says said there their they them would could "
     "should can may might will just only about into than then so".split())
-_CONFIRMS_RULE_TMPL = r"(?<!not )(?<!isn't ){n}\W*\s+is\s+(?:indeed\s+)?the\s+(?:one|rule|correct|right)\b"
+# "603.3d is the (exact) rule/one" or "the rule you're thinking of is (indeed) 603.3d". Only ever
+# tried on a sentence that does NOT dismiss the number (`_rule_dismissed`), so "is not 603.3d" never
+# reaches it. Widened 2026-10-05 from the qwen3:14b phrasing corpus (4/30 confirmations missed).
+# STRONG forms confirm whatever else the reply cites ("704.5c is the correct rule, and 704.5f is
+# related" -- the hard-case corpus); WEAK ones ("704.5c is the rule that applies when a player has
+# ten poison counters") are how a CORRECTION describes the wrong rule, so they count only when the
+# reply never cites the better rule.
+_ADV = r"(?:(?:\w+ly|indeed|exactly|in\s+fact)\s+)?"
+_CONFIRMS_RULE_STRONG_TMPL = (
+    r"{n}\W*\s+is\s+ADV(?:the\s+)?(?:\w+\s+)?(?:correct|right|exact|proper)\b"
+    r"|{n}\W*\s+is\s+ADV(?:the\s+)?(?:\w+\s+)?(?:rule|one|answer)\s+(?:that\s+)?you(?:'re|\s+are|\s+mean)?\b"
+    r"|{n}\W*\s+is\s+ADVthe\s+(?:\w+\s+)?(?:rule|one)\s+(?:that\s+)?(?:applies\s+)?here\b"
+    r"|{n}\W*\s+is\s+(?:indeed|definitely|certainly|exactly)\s+the\b"
+    r"|{n}\W*\s+is\s+ADVthe\s+(?:\w+\s+)?(?:rule|one)\s+that\s+applies\b(?!\s+(?:when|whenever|if|to|only))"
+    r"|{n}\b[^.;]{{0,40}}\b(?:this|your)\s+(?:situation|case|scenario|question)\b"
+    r"|\bis\s+ADV(?:rule\s+)?{n}").replace("ADV", _ADV)
+_CONFIRMS_RULE_TMPL = r"{n}\W*\s+is\s+(?:indeed\s+|actually\s+)?the\s+(?:\w+\s+)?(?:one|rule)\b"
 _SUPPORT_MARGIN = 2
+_DEMOTES_RULE_RE = re.compile(
+    r"\b(?:background|context|set(?:s|ting)?\s+(?:the\s+stage|up)|setup|support(?:s|ing)?|leads?\s+up"
+    r"|foundation(?:al)?|helps?\s+explain|gets\s+the\s+process\s+started|same\s+section"
+    r"|related\s+(?:one|rule|note)|helpful\s+note)\b", re.I)
+_CLAUSE_SPLIT_RE = re.compile(r"[;:,—]|\s--\s|\b(?:but|while|whereas)\b", re.I)
 
 
 def _content_stems(text: str) -> set[str]:
@@ -663,24 +685,42 @@ def _unsupported_rule_confirmation_reasons(body: str, question: str, rule_texts)
         mentioned = [s for s in sentences if number in RULE_NUM_RE.findall(s)]
         if not mentioned or any(_rule_dismissed(s, number) for s in mentioned):
             continue
-        affirms = re.compile(_CONFIRMS_RULE_TMPL.format(n=re.escape(number) + r"\**"), re.I)
-        if not (opens_agreeing or any(affirms.search(s) for s in mentioned)):
-            continue
         fam = _RULE_FAMILY_RE.match(number)
         if not fam:
             continue
         base = fam.group(1)
-        own = len(desc & _content_stems(texts[number]))
+        own_stems = _content_stems(texts[number])
+        own = len(desc & own_stems)
         rivals = [(len(desc & _content_stems(t)), n) for n, t in texts.items()
                   if n != number and (_RULE_FAMILY_RE.match(n) or [None, None])[1] == base]
         if not rivals:
             continue
         best, rival = max(rivals)
-        if best - own >= _SUPPORT_MARGIN:
-            reasons.append(
-                f"confirms the player's rule {number}, but rule {number}'s own text does not say "
-                f"what the question describes -- rule {rival}'s text does. Say plainly that it is "
-                f"not {number}, and cite {rival} only for what its text states")
+        if best - own < _SUPPORT_MARGIN:
+            continue
+        # Confirmed when the reply (a) opens by agreeing, (b) attributes to the asked rule the
+        # question's own content that its text lacks ("603.3d ... the next time a player would
+        # receive priority"), or (c) calls it THE rule without ever citing the better one. A
+        # correction's "704.5c is the rule for poison counters" describes 704.5c by ITS content
+        # beside the right citation, and is none of the three (qwen3:14b corpus, 2026-10-05).
+        foreign = desc - own_stems
+        clauses = [c for s in mentioned for c in _CLAUSE_SPLIT_RE.split(s)
+                   if number in RULE_NUM_RE.findall(c)]
+        attributes = any(len(_content_stems(c) & foreign) >= 2 for c in clauses)
+        n_re = re.escape(number) + r"(?![a-z\d])\**"
+        strong = re.compile(_CONFIRMS_RULE_STRONG_TMPL.format(n=n_re), re.I)
+        weak = re.compile(_CONFIRMS_RULE_TMPL.format(n=n_re), re.I)
+        rival_cited = rival in RULE_NUM_RE.findall(body)
+        # Citing the better rule only as "background"/"setup" keeps the player's rule the answer.
+        rival_demoted = any(_DEMOTES_RULE_RE.search(c) for s in sentences
+                            for c in _CLAUSE_SPLIT_RE.split(s) if rival in RULE_NUM_RE.findall(c))
+        if not (opens_agreeing or attributes or any(strong.search(s) for s in mentioned)
+                or ((not rival_cited or rival_demoted) and any(weak.search(s) for s in mentioned))):
+            continue
+        reasons.append(
+            f"confirms the player's rule {number}, but rule {number}'s own text does not say "
+            f"what the question describes -- rule {rival}'s text does. Say plainly that it is "
+            f"not {number}, and cite {rival} only for what its text states")
     return reasons
 
 

@@ -633,17 +633,25 @@ def _prefetch_question_rules(ctx, question, tool_trace, all_results, messages) -
     and gate check 14 can compare them. Live 2026-10-05 the model confirmed 603.3d for what
     603.3 says, having only ever seen 603.3d."""
     asked = list(dict.fromkeys(gate_mod.RULE_NUM_RE.findall(question or "")))
-    return _fetch_rule_families(ctx, asked, tool_trace, all_results, messages, "auto-q-rule")
+    return _fetch_rule_families(ctx, asked, tool_trace, all_results, messages, "auto-q-rule",
+                                cap=_PREFETCH_RULE_CAP)
 
 
-def _fetch_rule_families(ctx, numbers, tool_trace, all_results, messages, id_prefix) -> list[str]:
+# A family runs to ~4k characters (702.19, trample); three named rules would put ~30 rule texts
+# in front of the model. The named rules themselves always come first.
+_PREFETCH_RULE_CAP = 20
+
+
+def _fetch_rule_families(ctx, numbers, tool_trace, all_results, messages, id_prefix,
+                         cap: int | None = None) -> list[str]:
     rules = getattr(getattr(ctx, "cr", None), "rules", None) or {}
     already = {str(t.args.get("number", "")) for t in tool_trace if t.name == "get_rule"}
     wanted: list[str] = []
-    for cited in numbers:
-        for number in _rule_family(rules, cited):
-            if number not in already and number not in wanted:
-                wanted.append(number)
+    family = [n for cited in numbers for n in _rule_family(rules, cited)]
+    for number in (list(numbers) + family if cap else family):
+        if number not in already and number not in wanted:
+            wanted.append(number)
+    wanted = wanted[:cap] if cap else wanted
     if not wanted:
         return []
     calls = [{"id": f"{id_prefix}-{i}", "type": "function",

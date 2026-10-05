@@ -134,9 +134,24 @@ def test_prefetch_fetches_the_asked_rule_family_before_the_model_answers():
         fetched = chat._prefetch_question_rules(ctx, Q_603, trace, results, messages)
     finally:
         chat.call_tool = orig
-    assert fetched == ["603.3", "603.3a", "603.3d"]
+    assert fetched == ["603.3d", "603.3", "603.3a"]  # the named rule first, then its family
     assert messages[0]["tool_calls"][0]["id"].startswith("auto-q-rule-")
     assert {n for _, n in calls} == {"603.3", "603.3a", "603.3d"}
+
+
+def test_prefetch_is_capped_but_always_keeps_every_named_rule():
+    rules = {f"702.{i}": "x" for i in range(10, 13)}
+    rules.update({f"702.{i}{c}": "x" for i in range(10, 13) for c in "abcdefghi"})
+    ctx = SimpleNamespace(cr=SimpleNamespace(rules=rules))
+    orig = chat.call_tool
+    chat.call_tool = lambda _c, _n, a: ToolResult(data={"found": True, "number": a["number"], "text": "x"})
+    try:
+        fetched = chat._prefetch_question_rules(
+            ctx, "Is it 702.10c, 702.11g or 702.12i?", [], [], [])
+    finally:
+        chat.call_tool = orig
+    assert len(fetched) == chat._PREFETCH_RULE_CAP
+    assert fetched[:3] == ["702.10c", "702.11g", "702.12i"]
 
 
 def test_prefetch_is_a_no_op_without_a_rule_number():

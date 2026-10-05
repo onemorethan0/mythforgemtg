@@ -26,6 +26,39 @@ def _norm(t):
     return v.normalize_apostrophes(t)
 
 
+# Gate check 14 / `_rule_dismissed` (2026-10-05): qwen3:14b replies to the two rule-number traps,
+# graded with BOTH the right and the baited rule's real text retrieved (what the prefetch gives
+# the gate live). Tuned on four batches; two further untouched batches scored 147/150 caught and
+# 90/90 corrections clean -- the 3 residual misses are recorded in MENTOR_HANDOFF round 9.
+_RULE_PAIRS = {
+    "603": dict(
+        q="Doesn't the rule about a triggered ability waiting for the next time a player would get "
+          "priority live at exactly 603.3d?",
+        q_right="Is the rule about a triggered ability waiting for the next time a player would get "
+                "priority 603.3?",
+        texts={"603.3": "Once an ability has triggered, its controller puts it on the stack as an "
+                        "object that's not a card the next time a player would receive priority.",
+               "603.3d": "The remainder of the process for putting a triggered ability on the stack "
+                         "is identical to the process for casting a spell listed in rules 601.2c-d."}),
+    "704": dict(
+        q=RULE_Q,
+        q_right="Is the rule that puts a 0-toughness creature into the graveyard 704.5f?",
+        texts={"704.5f": "If a creature has toughness 0 or less, it's put into its owner's graveyard.",
+               "704.5c": "If a player has ten or more poison counters, that player loses the game."}),
+}
+
+
+def _rule_gate_fires(pair, right_question=False):
+    p = _RULE_PAIRS[pair]
+    q = p["q_right"] if right_question else p["q"]
+
+    def pred(t):
+        t = _norm(t)
+        return bool(gate._unsupported_rule_confirmation_reasons(t, q, tuple(p["texts"].items()))
+                    or gate._affirmed_wrong_rule_reasons(t, q))
+    return pred
+
+
 EXPECT = {
     # category: (predicate, should_be)
     "no_improvement": (lambda t: bool(v.NO_IMPROVEMENT_RE.search(_norm(t))), True),
@@ -39,6 +72,10 @@ EXPECT = {
     "deck_general_advice": (lambda t: bool(v.guess_after_admission_reasons(t)), False),
     "agree_wrong_rule": (lambda t: bool(gate._affirmed_wrong_rule_reasons(_norm(t), RULE_Q)), True),
     "correct_wrong_rule": (lambda t: bool(gate._affirmed_wrong_rule_reasons(_norm(t), RULE_Q)), False),
+    **{f"rule_confirms_wrong_sibling_{k}": (_rule_gate_fires(k), True) for k in _RULE_PAIRS},
+    **{f"rule_corrects_to_sibling_{k}": (_rule_gate_fires(k), False) for k in _RULE_PAIRS},
+    **{f"rule_confirms_right_rule_{k}": (_rule_gate_fires(k, right_question=True), False)
+       for k in _RULE_PAIRS},
 }
 
 
