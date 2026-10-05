@@ -153,6 +153,11 @@ async def lifespan(app: FastAPI):
     sys.stdout.flush()
     _ensure_ollama_models_ready()
     sys.stdout.flush()
+    # Local Scryfall card store (name lookups with no API call). Refreshed in a background
+    # thread when older than a week, so startup and requests never wait on the ~30 MB
+    # download; until it exists, lookups fall back to the live API as before.
+    import scryfall_bulk
+    scryfall_bulk.refresh_async()
 
     print("="*70, flush=True)
     print("FRONTEND READY - If you made code changes, hard refresh your browser:", flush=True)

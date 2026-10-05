@@ -8,6 +8,7 @@ from typing import Optional
 import requests
 
 from app_paths import app_path
+import scryfall_bulk
 
 BASE_URL = "https://api.scryfall.com"
 
@@ -23,6 +24,17 @@ _CARD_CACHE_FILE = _CACHE_DIR / "scryfall_cards.json"
 # printing (a promo, a Secret Lair, a foil alt-art) into that shared cache would leak a
 # one-off cosmetic choice into unrelated decks the next time the same name is looked up.
 _PRINTING_CACHE_FILE = _CACHE_DIR / "scryfall_printings.json"
+# `otag:` searches cannot come from bulk data (Scryfall's bulk files carry no oracle tags), so
+# they stay live -- but a build re-asked the SAME ~25 role/theme queries every time. Results
+# are cached per (query, page) for SEARCH_CACHE_DAYS; EDHREC order and legality drift slowly
+# enough that a week-old window is fine, and the kill switch turns it off (tests do).
+_SEARCH_CACHE_DIR = _CACHE_DIR / "scryfall_search"   # one file per (query, page)
+SEARCH_CACHE_DAYS = 7.0
+
+
+def _search_cache_enabled() -> bool:
+    import os
+    return os.environ.get("MYTHFORGE_SCRYFALL_SEARCH_CACHE", "").lower() != "off"
 
 # Fields that vary BY PRINTING and are safe to overlay onto the generic card resolved by
 # name — never oracle_text/mana_cost/type_line/power/toughness/colors/legalities, which
@@ -85,8 +97,8 @@ def _normalize_card(card: dict) -> dict:
     merged["_front_name"] = front.get("name", card["name"])
     return merged
 # Scryfall asks for at least 50-100ms between requests. 150ms gives us headroom.
-# TODO: replace live search calls with Scryfall bulk-data cache once we add
-#       the local SQLite/JSON card store — that drops API calls from ~25 to ~3 per build.
+# Name lookups come from the local bulk store first (`scryfall_bulk`, refreshed weekly in the
+# background); `otag:` searches stay live but are disk-cached (`_SEARCH_CACHE_DIR`).
 RATE_LIMIT_DELAY = 0.15
 
 
@@ -286,6 +298,11 @@ class ScryfallClient:
         return None
 
     def get_card_by_name(self, name: str, fuzzy: bool = False) -> Optional[dict]:
+        # The local bulk store first: no API call, and -- unlike the name cache below, which
+        # never expires -- refreshed weekly, so a ban or a new EDHREC rank is seen.
+        bulk = scryfall_bulk.lookup(name)
+        if bulk is not None:
+            return _normalize_card(bulk)
         cached = self._cache_get(name)
         if cached is not None:
             return cached
@@ -359,11 +376,15 @@ class ScryfallClient:
         out: dict[str, dict] = {}
         misses: list[str] = []
         seen: set[str] = set()
+        bulk = scryfall_bulk.lookup_many(names)
         for n in names:
             key = self._cache_key(n)
             if not key or key in seen:
                 continue
             seen.add(key)
+            if key in bulk:
+                out[key] = _normalize_card(bulk[key])
+                continue
             c = self._cache_get(n)
             if c is not None:
                 out[key] = c
@@ -507,14 +528,40 @@ class ScryfallClient:
         prints = self.get_printings(name)
         return prints[0] if prints else None
 
+    @staticmethod
+    def _search_cache_path(query: str, page: int) -> Path:
+        import hashlib
+        digest = hashlib.sha1(f"{page}|{query}".encode("utf-8")).hexdigest()
+        return _SEARCH_CACHE_DIR / f"{digest}.json"
+
     def search_cards(self, query: str, page: int = 1) -> dict:
+        use_cache = _search_cache_enabled()
+        path = self._search_cache_path(query, page)
+        if use_cache:
+            try:
+                if time.time() - path.stat().st_mtime < SEARCH_CACHE_DAYS * 86400:
+                    return json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                pass  # missing, unreadable or corrupt: just ask Scryfall
         result = self._get("/cards/search", params={
             "q": query,
             "page": page,
             "order": "edhrec",   # sort by EDHREC popularity — best synergy signal
             "unique": "cards",
         })
-        return result if result else {"data": [], "has_more": False, "total_cards": 0}
+        if result is None:
+            # A failed request is NOT cached: it is indistinguishable from "no results"
+            # downstream, and caching it would replay a transient outage for a week.
+            return {"data": [], "has_more": False, "total_cards": 0}
+        if use_cache:
+            try:
+                _SEARCH_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+                tmp = path.with_suffix(".tmp")
+                tmp.write_text(json.dumps(result), encoding="utf-8")
+                tmp.replace(path)
+            except OSError as e:
+                print(f"  [scryfall] search cache write failed ({e})")
+        return result
 
     def search_cards_paged(self, query: str, max_results: int = 60) -> list[dict]:
         """Collect cards across pages up to max_results."""

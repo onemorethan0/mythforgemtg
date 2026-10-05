@@ -27,6 +27,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 # Off means `lift_map` returns {} and `_lift_sorted` is a no-op, i.e. the pre-lift ordering.
 # tests/test_edhrec_lift.py turns it back on for itself (it stubs the HTTP call).
 os.environ.setdefault("MYTHFORGE_EDHREC_LIFT", "off")
+# Same reasoning for the Scryfall bulk store and the search cache: a test must never read
+# (or write) whatever real card data happens to be cached on the dev machine.
+os.environ.setdefault("MYTHFORGE_SCRYFALL_BULK", "off")
+os.environ.setdefault("MYTHFORGE_SCRYFALL_SEARCH_CACHE", "off")
 
 import test_smoke
 
