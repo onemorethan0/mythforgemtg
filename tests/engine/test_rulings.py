@@ -167,3 +167,29 @@ def test_rules_search_index_finds_glossary_terms_too():
 def test_rules_search_index_no_crash_on_unrelated_query():
     index = rulings.RulesSearchIndex(_make_cr())
     assert index.search("xyzzy nonexistent quokka", k=3) == []
+
+
+# 2026-10-05: the CR .txt is UTF-8 served without a charset; `resp.text` decoded it as
+# Latin-1 and stored every curly quote as mojibake.
+def test_decode_cr_reads_utf8_with_bom():
+    raw = "﻿it’s put into its owner’s graveyard".encode("utf-8")
+    assert rulings._decode_cr(raw) == "it’s put into its owner’s graveyard"
+
+
+def test_repair_mojibake_heals_an_old_store_and_leaves_clean_text_alone():
+    broken = "it’s".encode("utf-8").decode("latin-1")
+    assert rulings._repair_mojibake(broken) == "it’s"
+    for clean in ("it’s", "plain ascii", "Lim-Dûl", "∞"):
+        assert rulings._repair_mojibake(clean) == clean
+
+
+def test_glossary_lookup_matches_curly_and_straight_apostrophes():
+    cr = rulings.ComprehensiveRules(
+        effective_date=None, source_url="", rules={},
+        glossary={rulings._fold_quotes("city’s blessing"): "A designation."})
+    assert cr.get_glossary_term("City's Blessing") == "A designation."
+    assert cr.get_glossary_term("city’s blessing") == "A designation."
+
+
+def test_tokenize_keeps_a_curly_contraction_whole():
+    assert rulings._tokenize("isn’t") == rulings._tokenize("isn't")

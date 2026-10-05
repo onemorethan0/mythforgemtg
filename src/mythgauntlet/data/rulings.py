@@ -302,6 +302,37 @@ def parse_comprehensive_rules(text: str) -> dict:
     return {"effective_date": effective_date, "rules": rules, "glossary": glossary}
 
 
+def _decode_cr(raw: bytes) -> str:
+    """The CR .txt is UTF-8 (with a BOM) but is served with no charset, so `resp.text` fell back
+    to Latin-1 and stored every curly quote as three junk characters -- "it\xe2\x80\x99s", 6,875
+    times over (found 2026-10-05; the mentor quoted it to players as "it\ufffds"). Decode the bytes
+    ourselves; cp1252 only if a future file is not UTF-8."""
+    try:
+        return raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        return raw.decode("cp1252", errors="replace")
+
+
+_QUOTE_FOLD = str.maketrans({"\u2019": "'", "\u2018": "'", "\u201c": '"', "\u201d": '"'})
+
+
+def _fold_quotes(text: str) -> str:
+    """Curly quotes -> ASCII, so a typed "city's blessing" finds the CR's "city\u2019s blessing"
+    and BM25 reads "isn\u2019t" as one token, as it does "isn't"."""
+    return text.translate(_QUOTE_FOLD)
+
+
+def _repair_mojibake(text: str) -> str:
+    """Undo a UTF-8-read-as-Latin-1 decode in a store written before `_decode_cr`. A no-op on
+    clean text: only text that round-trips through Latin-1 AND then decodes as UTF-8 changes."""
+    if not any("\x80" <= ch <= "\xff" for ch in text):
+        return text
+    try:
+        return text.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+
+
 def fetch_comprehensive_rules(
     force: bool = False, max_age_days: float | None = CR_MAX_AGE_DAYS
 ) -> Path:
@@ -314,7 +345,7 @@ def fetch_comprehensive_rules(
     url = _discover_cr_txt_url()
     resp = requests.get(url, headers=HEADERS, timeout=60)
     resp.raise_for_status()
-    parsed = parse_comprehensive_rules(resp.text)
+    parsed = parse_comprehensive_rules(_decode_cr(resp.content))
 
     tmp = out.with_suffix(".part")
     with open(tmp, "w", encoding="utf-8") as fh:
@@ -334,7 +365,7 @@ class ComprehensiveRules:
         return self.rules.get(number)
 
     def get_glossary_term(self, term: str) -> str | None:
-        return self.glossary.get(term.strip().lower())
+        return self.glossary.get(_fold_quotes(term.strip().lower()))
 
 
 _cr_cache: tuple[str, float, ComprehensiveRules] | None = None
@@ -360,8 +391,9 @@ def load_comprehensive_rules(path: Path | None = None) -> ComprehensiveRules:
     cr = ComprehensiveRules(
         effective_date=payload.get("effective_date"),
         source_url=payload.get("source_url", ""),
-        rules={r["number"]: r["text"] for r in payload.get("rules", [])},
-        glossary={g["term"].lower(): g["text"] for g in payload.get("glossary", [])},
+        rules={r["number"]: _repair_mojibake(r["text"]) for r in payload.get("rules", [])},
+        glossary={_fold_quotes(_repair_mojibake(g["term"]).lower()): _repair_mojibake(g["text"])
+                  for g in payload.get("glossary", [])},
     )
     _cr_cache = (str(store), mtime, cr)
     return cr
@@ -383,7 +415,7 @@ _NUMBER_WORDS = {
 
 
 def _tokenize(text: str) -> list[str]:
-    return [_NUMBER_WORDS.get(tok, tok) for tok in _TOKEN_RE.findall(text.lower())]
+    return [_NUMBER_WORDS.get(tok, tok) for tok in _TOKEN_RE.findall(_fold_quotes(text.lower()))]
 
 
 @dataclass(frozen=True)
