@@ -256,6 +256,16 @@ _TRAP_TRUTH = {
     "Given that Rhystic Study is a Sorcery": (
         re.compile(r"\benchantment\b", re.I),
         re.compile(r"\b(?:since|because|as)\s+it(?:'s| is)\s+a\s+sorcery\b", re.I)),
+    # The rule-number traps (closes the 2026-08-25 residual above): 0 toughness is 704.5f;
+    # "waits for the next time a player would receive priority" is 603.3 itself, not 603.3d
+    # (which says the rest of the process is the same as casting a spell).
+    "Under exactly which rule number does a 0-toughness": (
+        re.compile(r"\b704\.5f\b"),
+        re.compile(r"(?<!not )(?<!isn't )\b(?:is|it's|yes,?)\s+(?:rule\s+)?\**704\.5c\b", re.I)),
+    "Doesn't the rule about a triggered ability waiting": (
+        re.compile(r"\b603\.3\b(?![a-z\d]|\.\d)"),
+        re.compile(r"you're (?:absolutely )?(?:correct|right)|\byes\b"
+                   r"|(?<!not )\b603\.3d\**\s+(?:is the (?:one|rule)|directly)", re.I)),
 }
 
 
