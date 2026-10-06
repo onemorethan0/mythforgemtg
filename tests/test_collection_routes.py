@@ -364,3 +364,67 @@ def test_backfill_live_fallback_only_when_store_unavailable(csv_path, monkeypatc
     _write(csv_path, "1,Sol Ring,,,,,,")
     body = client.post("/api/collection/backfill-printings").json()
     assert body["filled"] == 1 and collection.load_collection()[0]["set"] == "C21"
+
+
+# ---- Task 5 fix round 1 (R12, R13) -------------------------------------------------------
+def test_printings_carry_backcompat_aliases(csv_path, store, monkeypatch):
+    _sol_store(store)
+    items = client.get("/api/collection/printings", params={"name": "Sol Ring"}).json()["printings"]
+    assert [(i["collector_number"], i["usd"]) for i in items] == [("263", 1.5), ("7", 0.9), ("270", None)]
+    store["sol ring"] = [_print("id-f", "C21", "263", finishes=("foil",), usd=None, foil=4.0)]
+    assert client.get("/api/collection/printings", params={"name": "Sol Ring"}).json()["printings"][0]["usd"] == 4.0
+    monkeypatch.setattr(scryfall_prints, "prints_of", lambda name: [])
+    monkeypatch.setattr(server._scryfall, "get_printings", lambda name: [
+        {"name": "Sol Ring", "set": "C21", "set_name": "x", "collector_number": "263", "usd": 1.5, "image": ""}])
+    it = client.get("/api/collection/printings", params={"name": "Sol Ring"}).json()["printings"][0]
+    assert (it["collector_number"], it["usd"]) == ("263", 1.5)
+
+
+def test_add_unknown_scryfall_id_does_not_take_cheapest(csv_path, store):
+    _sol_store(store)
+    r = client.post("/api/collection/add", json={"name": "Sol Ring", "validate": False,
+                                                 "scryfall_id": "not-in-store"})
+    assert r.status_code == 200
+    row = collection.load_collection()[0]
+    assert (row["set"], row["cn"], row["scryfall_id"]) == ("", "", "not-in-store")
+
+
+def test_finish_only_patch_keeps_scryfall_id_and_printing_change_clears_it(csv_path, store, monkeypatch):
+    _sol_store(store)
+    monkeypatch.setattr(scryfall_prints, "by_id", lambda sid: None)       # store can't help
+    monkeypatch.setattr(scryfall_prints, "resolve", lambda *a, **k: None)
+    _write(csv_path, "1,Sol Ring,C21,263,,,,id-c21")
+    rid = _cards()[0]["row_id"]
+    assert client.patch("/api/collection/printing", json={
+        "row_id": rid, "set_code": "C21", "cn": "263", "finish": "foil"}).status_code == 200
+    row = collection.load_collection()[0]
+    assert (row["finish"], row["scryfall_id"]) == ("foil", "id-c21")
+    rid = _cards()[0]["row_id"]
+    assert client.patch("/api/collection/printing", json={
+        "row_id": rid, "set_code": "TLE", "cn": "7", "finish": "foil"}).status_code == 200
+    row = collection.load_collection()[0]
+    assert (row["set"], row["scryfall_id"]) == ("TLE", "")
+
+
+def test_scryfall_id_of_another_card_is_400(csv_path, store):
+    _sol_store(store)
+    store["arcane signet"] = [_print("id-as", "C21", "297", name="Arcane Signet")]
+    _write(csv_path, "1,Sol Ring,C21,263,,,,")
+    rid = _cards()[0]["row_id"]
+    r = client.patch("/api/collection/printing", json={"row_id": rid, "set_code": "C21", "cn": "297",
+                                                       "finish": "nonfoil", "scryfall_id": "id-as"})
+    assert r.status_code == 400
+    assert collection.load_collection()[0]["cn"] == "263"
+    r = client.post("/api/collection/add", json={"name": "Sol Ring", "validate": False,
+                                                 "scryfall_id": "id-as"})
+    assert r.status_code == 400 and len(collection.load_collection()) == 1
+
+
+def test_backfill_calls_prints_of_once_per_name(csv_path, store, monkeypatch):
+    _sol_store(store)
+    calls = []
+    real = scryfall_prints.prints_of
+    monkeypatch.setattr(scryfall_prints, "prints_of", lambda n: (calls.append(n), real(n))[1])
+    _write(csv_path, "1,Sol Ring,,,,,,", "1,Sol Ring,,,foil,,,")
+    client.post("/api/collection/backfill-printings")
+    assert len(calls) == 1

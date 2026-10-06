@@ -4956,8 +4956,13 @@ def collection_set_printing(req: CollectionPrintingRequest):
             finish = coll_normalize_finish(req.finish)
         else:
             finish = coll_normalize_finish(src.get("finish", ""))
+        if not sid and (set_code, cn) == ((src.get("set") or "").strip().upper(),
+                                          (src.get("cn") or "").strip()):
+            sid = (src.get("scryfall_id") or "").strip()   # finish-only change keeps the id
         print_ = _print_for(name, set_code, cn, sid)
         if print_:
+            if owned_key(print_.get("name", "")) != owned_key(src["name"]):
+                raise HTTPException(400, "That scryfall_id belongs to a different card.")
             set_code, cn, sid = print_["set"], print_["cn"], print_.get("id") or sid
         if not set_code:
             raise HTTPException(400, "A set code or scryfall_id is required.")
@@ -5004,11 +5009,12 @@ class CollectionAddRequest(BaseModel):
     scryfall_id: Optional[str] = None  # the exact print; set + cn come from the store when it has it
 
 
-def _cheapest_print(name: str, finish: str = "nonfoil") -> tuple[str, str, str] | None:
+def _cheapest_print(name: str, finish: str = "nonfoil", prints: list | None = None) -> tuple[str, str, str] | None:
     """(set, cn, scryfall_id) of the cheapest printing of `name` that offers `finish` and
     prices it (D8: another finish's price is never borrowed). Offline first; the live API
     only when the prints store knows nothing about the card. None when nothing is found."""
-    prints = scryfall_prints.prints_of(name)
+    if prints is None:
+        prints = scryfall_prints.prints_of(name)
     if prints:
         best = None
         for p in prints:
@@ -5059,11 +5065,13 @@ def collection_add(req: CollectionAddRequest):
     # caller gave is stored as provided.
     print_ = _print_for(display, set_code or "", cn or "", sid) if (sid or set_code) else None
     if print_ and sid:
+        if owned_key(print_.get("name", "")) != owned_key(display):
+            raise HTTPException(400, "That scryfall_id belongs to a different card.")
         set_code, cn, sid = print_["set"], print_["cn"], print_.get("id") or sid
     _require_finish(print_, finish)
     # Printing: use what the caller gave us, else default to the CHEAPEST printing (of this
     # finish) so a collection entry always names a concrete, sensibly-priced version.
-    if not set_code:
+    if not set_code and not sid:     # an id the store doesn't know is stored exactly as given
         cheap = _cheapest_print(display, finish)
         if cheap:
             set_code, cn, sid = cheap[0], cheap[1], (cheap[2] or sid)
@@ -5097,6 +5105,12 @@ def _owned_on_print(print_: dict, rows: list[dict], n_in_set: int) -> list[dict]
     return out
 
 
+def _usd_alias(prices: dict):
+    """R12 `usd`: the nonfoil price, else the foil price, else None."""
+    v = prices.get("nonfoil")
+    return v if v is not None else prices.get("foil")
+
+
 @app.get("/api/collection/printings")
 def collection_printings(name: str):
     """Every printing of a card, newest first, for the printing picker. Offline from the
@@ -5115,14 +5129,17 @@ def collection_printings(name: str):
         items = []
         for p in prints:
             imgs = p.get("images") or {}
+            prices_by_finish = {f: coll_print_price(p, f) for f in ("nonfoil", "foil", "etched")}
             items.append({
                 "id": p.get("id"), "set": p["set"], "set_name": p.get("set_name"), "cn": p["cn"],
                 "released_at": p.get("released_at"), "rarity": p.get("rarity"),
                 "finishes": list(p.get("finishes") or []),
-                "prices": {f: coll_print_price(p, f) for f in ("nonfoil", "foil", "etched")},
+                "prices": prices_by_finish,
                 "treatments": coll_treatments_of(p, "nonfoil"),
                 "image": imgs.get("normal") or imgs.get("small") or "",
                 "art_crop": imgs.get("art_crop") or "",
+                "collector_number": p["cn"],      # R12: back-compat aliases for the old modal
+                "usd": _usd_alias(prices_by_finish),
                 "owned": _owned_on_print(p, rows, per_set[p["set"]]),
             })
         return {"printings": items}
@@ -5139,6 +5156,7 @@ def collection_printings(name: str):
             "released_at": None, "rarity": None, "finishes": [],
             "prices": {"nonfoil": p.get("usd"), "foil": None, "etched": None},
             "treatments": [], "image": p.get("image") or "", "art_crop": "",
+            "collector_number": shim["cn"], "usd": p.get("usd"),
             "owned": _owned_on_print(shim, rows, 2),    # 2: a set-only row cannot be matched blind
         })
     return {"printings": items}
@@ -5266,6 +5284,7 @@ def collection_backfill_printings(limit: int = 1000):
     rows = load_collection()
     filled = failed = normalized = 0
     cheapest: dict = {}
+    prints_cache: dict = {}          # prints_of once per distinct name, across finishes
     seen = 0
     for r in rows:
         sid = (r.get("scryfall_id") or "").strip()
@@ -5291,7 +5310,10 @@ def collection_backfill_printings(limit: int = 1000):
         fin = coll_normalize_finish(r.get("finish", ""))
         ck = (owned_key(r["name"]), fin)
         if ck not in cheapest:
-            cheapest[ck] = _cheapest_print(r["name"], fin)
+            nk = ck[0]
+            if nk not in prints_cache:
+                prints_cache[nk] = scryfall_prints.prints_of(r["name"])
+            cheapest[ck] = _cheapest_print(r["name"], fin, prints_cache[nk])
         cheap = cheapest[ck]
         if cheap:
             r["set"], r["cn"] = cheap[0], cheap[1]
