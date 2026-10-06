@@ -159,6 +159,8 @@ async def lifespan(app: FastAPI):
     # download; until it exists, lookups fall back to the live API as before.
     import scryfall_bulk
     scryfall_bulk.refresh_async()
+    import scryfall_prints   # per-printing store (default_cards); same lifecycle
+    scryfall_prints.refresh_async()
 
     print("="*70, flush=True)
     print("FRONTEND READY - If you made code changes, hard refresh your browser:", flush=True)
