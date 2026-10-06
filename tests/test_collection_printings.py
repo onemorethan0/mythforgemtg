@@ -139,3 +139,23 @@ def test_repair_keeps_printing_columns_of_untouched_rows():
     assert (out[0]["finish"], out[0]["lang"], out[0]["condition"], out[0]["scryfall_id"]) == \
            ("foil", "ja", "LP", "id9")
     assert (out[1]["name"], out[1]["set"], out[1]["finish"]) == ("Island", "MSH", "foil")
+
+
+@pytest.mark.parametrize("edition,want", [
+    ("Mirage", ""), ("Alpha", ""), ("Ixalan", ""), ("znr", "ZNR"), ("C21", "C21"), ("40K", "40K"),
+])
+def test_generic_edition_adopted_only_when_code_shaped(edition, want):
+    (r,) = collection._parse_rows(f"Count,Name,Edition\n1,Sol Ring,{edition}\n")
+    assert r["set"] == want
+
+
+def test_dedicated_code_column_is_trusted_even_if_mixed_case():
+    (r,) = collection._parse_rows("Count,Name,Edition Code\n1,Sol Ring,Znr\n")
+    assert r["set"] == "ZNR"
+
+
+@pytest.mark.parametrize("order", [("", "NM"), ("NM", "")])
+def test_load_keeps_blank_and_conditioned_rows_apart_in_either_order(order):
+    body = "".join(f"1,Sol Ring,C21,263,{c}\n" for c in order)
+    rows = collection._parse_rows("Count,Name,Edition,Collector Number,Condition\n" + body)
+    assert sorted(r["condition"] for r in rows) == ["", "NM"]

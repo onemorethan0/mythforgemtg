@@ -151,7 +151,14 @@ def normalize_finish(value: str) -> str:
 
 
 def _looks_like_code(value: str) -> bool:
-    return bool(_CODE_RE.match((value or "").strip()))
+    """A generic Edition/Set value that is a code rather than a set NAME (R8).
+
+    2-6 alphanumerics AND (all-lowercase, all-uppercase, or containing a digit): "znr",
+    "C21" and "40K" are codes; a mixed-case word like "Mirage" or "Alpha" is a name."""
+    v = (value or "").strip()
+    if not _CODE_RE.match(v):
+        return False
+    return v.islower() or v.isupper() or any(ch.isdigit() for ch in v)
 
 
 def row_identity(row: dict) -> tuple:
@@ -178,10 +185,12 @@ def _merge_row(rows: list[dict], exact: dict, loose: dict, incoming: dict) -> No
 
     A row with a BLANK condition merges into the unique existing row that matches on
     everything else (so a plain decklist import doesn't fork every conditioned row);
-    otherwise it becomes a new row. `exact`/`loose` are the caller's indexes."""
+    otherwise it becomes a new row. `exact`/`loose` are the caller's indexes. Pass
+    `loose=None` for an exact-identity-only merge (loading a file must not depend on row
+    order or collapse the file's own rows, R9)."""
     k = row_identity(incoming)
     target = exact.get(k)
-    if target is None and not k[5]:
+    if target is None and loose is not None and not k[5]:
         cands = loose.get(k[:5], [])
         if len(cands) == 1:
             target = cands[0]
@@ -192,7 +201,7 @@ def _merge_row(rows: list[dict], exact: dict, loose: dict, incoming: dict) -> No
         return
     rows.append(incoming)
     exact[k] = incoming
-    if k[5]:
+    if loose is not None and k[5]:
         loose.setdefault(k[:5], []).append(incoming)
 
 
@@ -529,7 +538,6 @@ def _parse_rows(text: str) -> list[dict]:
     first_line = stripped.splitlines()[0] if stripped else ""
     rows: list[dict] = []
     exact: dict[tuple, dict] = {}
-    loose: dict[tuple, list] = {}
 
     def _add(name: str, count: int, set_code: str = "", cn: str = "", finish: str = "",
              lang: str = "", condition: str = "", scryfall_id: str = "",
@@ -544,7 +552,7 @@ def _parse_rows(text: str) -> list[dict]:
         # round-trips them instead of deleting them. See write_collection.
         if extra:
             row["_extra"] = extra
-        _merge_row(rows, exact, loose, row)
+        _merge_row(rows, exact, None, row)
 
     if "," in first_line and _find_column(first_line.split(","), _NAME_COLUMNS):
         reader = csv.DictReader(io.StringIO(text))
