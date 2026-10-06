@@ -2,6 +2,9 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import CardHover from './CardHover'
 import CollectionStats from './CollectionStats'
 import CollectionGrid from './CollectionGrid'
+import CollectionList from './CollectionList'
+import CollectionToolbar from './CollectionToolbar'
+import { loadViewSettings, saveViewSettings, viewQuery } from '../utils/collectionView'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -20,11 +23,6 @@ const PAGE = 500   // rows fetched by default; "Show all" refetches with limit=0
 
 const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
                Multicolor: '#c9a227', Colorless: '#8a8a8a' }
-
-const SORTS = [
-  ['name', 'Name'], ['value', 'Value'], ['price', 'Price'], ['count', 'Copies'],
-  ['cmc', 'Mana value'], ['type', 'Type'], ['set', 'Set'], ['edhrec', 'Popularity'],
-]
 
 const EMPTY_FILTERS = { colors: [], color_presence: [], types: [], rarities: [], sets: [],
                         cmc_min: null, cmc_max: null, min_count: null, game_changers_only: false }
@@ -47,8 +45,8 @@ function filterQuery(f) {
 // Toggle one value inside a multi-select facet.
 const toggle = (list, v) => (list.includes(v) ? list.filter(x => x !== v) : [...list, v])
 
-// Must match CollectionGrid's — a card owned in two sets is two rows.
-const rowKey = r => `${r.name}|${r.set || ''}|${r.cn || ''}`
+// localStorage itself can throw on access (blocked site data); loadViewSettings copes with null.
+const getStorage = () => { try { return window.localStorage } catch { return null } }
 
 export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
@@ -71,15 +69,13 @@ export default function StepCollection({ onBack, onBuild }) {
   const [showBuild, setShowBuild]   = useState(false)
   const [facets, setFacets]         = useState(null)   // available filter values + counts
   const [filters, setFilters]       = useState(EMPTY_FILTERS)
-  const [sort, setSort]             = useState('name')
-  const [direction, setDirection]   = useState('asc')
   const [showFilters, setShowFilters] = useState(false)
   const [stats, setStats]           = useState(null)
   const [showStats, setShowStats]   = useState(false)
   const [health, setHealth]         = useState(null)   // {affected, issues, copies_*}
   const [showHealth, setShowHealth] = useState(false)
-  // View preference sticks — someone who browses their binder visually wants it every time.
-  const [view, setView]             = useState(() => localStorage.getItem('mtg_coll_view') || 'list')
+  // View preferences stick — someone who browses their binder visually wants it every time.
+  const [settings, setSettings]     = useState(() => loadViewSettings(getStorage()))
   const [selectMode, setSelectMode] = useState(false)
   const [selected, setSelected]     = useState(() => new Set())
   const [printingFor, setPrintingFor] = useState(null) // row whose printing is being chosen
@@ -90,7 +86,9 @@ export default function StepCollection({ onBack, onBuild }) {
   const searchRef = useRef(null)
   const addRef = useRef(null)
 
-  useEffect(() => { localStorage.setItem('mtg_coll_view', view) }, [view])
+  useEffect(() => { saveViewSettings(getStorage(), settings) }, [settings])
+  const changeView = patch => setSettings(s => ({ ...s, ...patch }))
+  const { sort, direction, then, thenDirection, groupBy } = settings
 
   // "/" jumps to search from anywhere on the page — the fastest way into a 1000-card list.
   // Ignored while typing in a field, so it never eats a literal slash.
@@ -132,8 +130,7 @@ export default function StepCollection({ onBack, onBuild }) {
     const p = filterQuery(filters)
     p.set('limit', all ? '0' : String(PAGE))
     p.set('q', query)
-    p.set('sort', sort)
-    p.set('direction', direction)
+    for (const [k, v] of viewQuery({ sort, direction, then, thenDirection, groupBy })) p.set(k, v)
     fetch(`/api/collection?${p}`)
       .then(r => r.json())
       .then(d => {
@@ -145,7 +142,7 @@ export default function StepCollection({ onBack, onBuild }) {
       })
       .catch(() => flash('err', 'Could not load collection — is the server running?'))
       .finally(() => setLoading(false))
-  }, [filters, sort, direction])
+  }, [filters, sort, direction, then, thenDirection, groupBy])
 
   const loadStats = useCallback(() => {
     fetch('/api/collection/stats')
@@ -191,14 +188,19 @@ export default function StepCollection({ onBack, onBuild }) {
     promise
       .then(async r => {
         const d = await r.json().catch(() => ({}))
-        if (!r.ok) throw new Error(d.detail || 'Request failed')
+        if (!r.ok) throw Object.assign(new Error(d.detail || 'Request failed'), { status: r.status })
         setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
                      total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
         if (okMsg) flash('ok', okMsg(d))
         // Preserve "Show all": an edit must not silently collapse the list back to one page.
         load(q.trim(), showingAll)
       })
-      .catch(e => flash('err', String(e.message || e)))
+      .catch(e => {
+        flash('err', String(e.message || e))
+        // 409: the row_id no longer exists (the file changed under us). Reload so the
+        // list shows what is really there.
+        if (e.status === 409) load(q.trim(), showingAll)
+      })
       .finally(() => setBusy(false))
   }
 
@@ -217,12 +219,11 @@ export default function StepCollection({ onBack, onBuild }) {
     addRef.current && addRef.current.focus()
   }
 
-  // Rows are PER PRINTING now, so edits must name the set/collector number or they'd
-  // hit the wrong copy of a card owned in several sets.
+  // Rows are PER PRINTING (and finish), so edits address the exact row by its row_id.
   const setCount = (row, count) =>
     apply(fetch('/api/collection/count', {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: row.name, count, set_code: row.set || null, cn: row.cn || null }),
+      body: JSON.stringify({ row_id: row.row_id, count }),
     }), null)
 
   const refreshPrices = () => {
@@ -234,15 +235,14 @@ export default function StepCollection({ onBack, onBuild }) {
   const backfillPrintings = () => {
     setMsg({ kind: 'ok', text: 'Looking up cheapest printings… this can take a minute.' })
     apply(fetch('/api/collection/backfill-printings', { method: 'POST' }),
-      d => `Filled ${d.filled} printing${d.filled === 1 ? '' : 's'}${d.failed ? ` · ${d.failed} not found` : ''}`)
+      d => `Filled ${d.filled} printing${d.filled === 1 ? '' : 's'}` +
+           `${d.normalized ? ` · ${d.normalized} normalized` : ''}` +
+           `${d.failed ? ` · ${d.failed} not found` : ''}`)
   }
 
   const removeCard = (row) => {
-    // name is a query param, not a path segment — DFC/split names contain '//' and an
-    // encoded slash in the path 405s under Starlette routing.
-    const q = new URLSearchParams({ name: row.name })
-    if (row.set) q.set('set_code', row.set)
-    if (row.cn) q.set('cn', row.cn)
+    // row_id is a query param, not a path segment (DFC names contain '//').
+    const q = new URLSearchParams({ row_id: row.row_id })
     return apply(fetch(`/api/collection?${q}`, { method: 'DELETE' }),
       () => `Removed ${row.name}${row.set ? ` (${row.set})` : ''}`)
   }
@@ -283,18 +283,17 @@ export default function StepCollection({ onBack, onBuild }) {
   // ── Bulk selection ──────────────────────────────────────────────────────────
   const toggleSelect = row => setSelected(s => {
     const next = new Set(s)
-    const k = rowKey(row)
-    next.has(k) ? next.delete(k) : next.add(k)
+    next.has(row.row_id) ? next.delete(row.row_id) : next.add(row.row_id)
     return next
   })
-  const selectedRows = () => cards.filter(r => selected.has(rowKey(r)))
+  const selectedRows = () => cards.filter(r => selected.has(r.row_id))
   const clearSelection = () => setSelected(new Set())
   const exitSelect = () => { setSelectMode(false); clearSelection() }
 
   // One request, one CSV write, one .bak — see /api/collection/bulk. Doing this per row
   // would also overwrite the backup with an already-modified file and cost the user Undo.
   const bulkAction = (action, count = 0) => {
-    const targets = selectedRows().map(r => ({ name: r.name, set: r.set || '', cn: r.cn || '' }))
+    const targets = selectedRows().map(r => ({ row_id: r.row_id }))
     if (!targets.length) return
     apply(fetch('/api/collection/bulk', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -331,8 +330,7 @@ export default function StepCollection({ onBack, onBuild }) {
     setPrintingFor(null)
     apply(fetch('/api/collection/printing', {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: row.name, set_code: p.set, cn: p.collector_number,
-                             from_set: row.set || null, from_cn: row.cn || null }),
+      body: JSON.stringify({ row_id: row.row_id, set_code: p.set, cn: p.collector_number }),
     }), () => `${row.name} → ${p.set} ${p.collector_number}`)
   }
 
@@ -625,39 +623,11 @@ export default function StepCollection({ onBack, onBuild }) {
           style={{ flex: '1 1 240px', boxSizing: 'border-box', padding: '9px 12px', borderRadius: 8, background: c.panel,
                    border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 14 }}
         />
-        {/* List vs binder. Two buttons rather than a dropdown — it's a one-click switch. */}
-        <div style={{ display: 'flex', borderRadius: 8, overflow: 'hidden', border: `1px solid ${c.border}` }}>
-          {[['list', '☰', 'List'], ['grid', '▦', 'Binder']].map(([v, icon, label]) => (
-            <button key={v} onClick={() => setView(v)} title={`${label} view`}
-              style={{ padding: '8px 12px', border: 'none', cursor: 'pointer', fontFamily: 'inherit',
-                       fontSize: 14, background: view === v ? '#1c1410' : c.card,
-                       color: view === v ? c.gold : c.dim }}>
-              {icon}
-            </button>
-          ))}
-        </div>
-        <select value={sort} onChange={e => setSort(e.target.value)}
-          style={{ padding: '9px 10px', borderRadius: 8, background: c.panel,
-                   border: `1px solid ${c.border}`, color: '#f5f5f4', fontFamily: 'inherit', fontSize: 13 }}>
-          {SORTS.map(([v, label]) => <option key={v} value={v}>{label}</option>)}
-        </select>
-        <button onClick={() => setDirection(d => (d === 'asc' ? 'desc' : 'asc'))}
-          title={direction === 'asc' ? 'Ascending' : 'Descending'} style={btn({ padding: '8px 12px' })}>
-          {direction === 'asc' ? '↑' : '↓'}
-        </button>
-        <button onClick={() => setShowFilters(v => !v)}
-          style={btn(hasFilters(filters)
-            ? { background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 }
-            : {})}>
-          ⚗ Filters{hasFilters(filters) ? ' •' : ''}
-        </button>
-        <button onClick={() => (selectMode ? exitSelect() : setSelectMode(true))}
-          title="Select several cards and act on them at once"
-          style={btn(selectMode
-            ? { background: '#1c1410', border: `1px solid ${c.gold}`, color: c.gold, fontWeight: 700 }
-            : {})}>
-          ☑ Select
-        </button>
+        <CollectionToolbar
+          settings={settings} onChange={changeView} filtersActive={!!hasFilters(filters)}
+          onToggleFilters={() => setShowFilters(v => !v)}
+          selectMode={selectMode} onToggleSelect={() => (selectMode ? exitSelect() : setSelectMode(true))}
+        />
       </div>
 
       {/* Bulk action bar — only while selecting, and it always says how many. */}
@@ -668,7 +638,7 @@ export default function StepCollection({ onBack, onBuild }) {
           <span style={{ fontSize: 13, color: c.gold, fontWeight: 700 }}>
             {selected.size} selected
           </span>
-          <button onClick={() => setSelected(new Set(cards.map(rowKey)))} style={btn({ padding: '4px 10px', fontSize: 12 })}>
+          <button onClick={() => setSelected(new Set(cards.map(r => r.row_id)))} style={btn({ padding: '4px 10px', fontSize: 12 })}>
             Select all {cards.length} shown
           </button>
           <button onClick={clearSelection} disabled={!selected.size} style={btn({ padding: '4px 10px', fontSize: 12 })}>
@@ -780,77 +750,19 @@ export default function StepCollection({ onBack, onBuild }) {
         <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
           {q ? 'No matching cards.' : 'Your collection is empty — add a card above.'}
         </div>
-      ) : view === 'grid' ? (
+      ) : settings.mode === 'grid' ? (
         <CollectionGrid
           cards={cards} onSetCount={setCount} onRemove={removeCard}
           onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
           onToggleSelect={toggleSelect} busy={busy}
         />
       ) : (
-        <div style={{ border: `1px solid ${c.border}`, borderRadius: 10, overflow: 'hidden' }}>
-          {cards.map((row, i) => (
-            <div key={`${row.name}|${row.set || ''}|${row.cn || ''}`} style={{
-              display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px',
-              background: i % 2 ? '#141210' : c.card, borderBottom: i < cards.length - 1 ? `1px solid ${c.border}` : 'none',
-            }}>
-              {selectMode && (
-                <input type="checkbox" checked={selected.has(rowKey(row))}
-                  onChange={() => toggleSelect(row)} style={{ flexShrink: 0, margin: 0 }} />
-              )}
-              {/* Colour identity dot — the fastest read of "what is this card" in a list
-                  this long. An unrecognized row gets a hollow dot rather than a wrong one. */}
-              <span title={row.resolved ? `${row.type_line || row.type}${row.mana_cost ? ` · ${row.mana_cost}` : ''}`
-                                        : 'Not recognized — check the name'}
-                style={{ width: 10, height: 10, borderRadius: '50%', flexShrink: 0,
-                  background: !row.resolved ? 'transparent'
-                    : (row.colors || []).length > 1 ? MANA.Multicolor
-                    : MANA[(row.colors || [])[0]] || MANA.Colorless,
-                  border: row.resolved ? 'none' : `1px solid ${c.faint}` }} />
-              <CardHover name={row.name} style={{ flex: 1, fontSize: 13.5, color: '#f5f5f4', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
-                {row.name}
-              </CardHover>
-              {/* Same flag CollectionGrid's tile badge reads — enriched onto every row all
-                  along, never shown in the list view either. */}
-              {row.game_changer && (
-                <span title="Official WotC Game Changer" style={{
-                  fontSize: 10, fontWeight: 700, padding: '1px 5px', borderRadius: 5,
-                  flexShrink: 0, color: '#fbbf24', border: '1px solid #d97706',
-                  background: '#78350f22',
-                }}>⚡ GC</span>
-              )}
-              <span title={row.resolved ? `Mana value ${row.cmc}` : ''}
-                style={{ fontSize: 11, color: c.faint, minWidth: 46, textAlign: 'right',
-                         flexShrink: 0, overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                {row.resolved ? `${row.type || ''} ${row.cmc}` : ''}
-              </span>
-              {/* Which printing this row is. Blank = set unknown (use Fill printings). */}
-              {/* The set chip IS the printing control. A row with no printing reads as
-                  "set?" rather than a dash, because it's an invitation, not a value. */}
-              <button onClick={() => openPrintings(row)} disabled={busy}
-                title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''} — click to change printing`
-                               : 'Printing unknown — click to choose one'}
-                style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0,
-                  padding: '1px 6px', borderRadius: 4, minWidth: 44, textAlign: 'center',
-                  fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer',
-                  background: row.set ? '#0c0a09' : 'transparent',
-                  border: `1px solid ${row.set ? c.border : '#3f3a2a'}`,
-                  color: row.set ? c.dim : '#a16207' }}>
-                {row.set || 'set?'}
-              </button>
-              {/* Market price for this printing (x count shown on hover) */}
-              <span title={row.price ? `$${row.price.toFixed(2)} each · $${(row.price * row.count).toFixed(2)} for ${row.count}` : 'No price yet — hit Get prices'}
-                style={{ fontSize: 11.5, color: row.price ? '#4ade80' : c.faint, minWidth: 52,
-                         textAlign: 'right', flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
-                {row.price ? `$${row.price.toFixed(2)}` : '—'}
-              </span>
-              <button onClick={() => setCount(row, row.count - 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>−</button>
-              <span style={{ minWidth: 26, textAlign: 'center', fontSize: 13.5, color: c.gold, fontWeight: 700 }}>{row.count}</span>
-              <button onClick={() => setCount(row, row.count + 1)} disabled={busy} style={btn({ padding: '2px 10px', fontSize: 16 })}>+</button>
-              <button onClick={() => removeCard(row)} disabled={busy}
-                style={btn({ padding: '2px 10px', color: '#f87171', border: '1px solid #3f1d1d' })} title="Remove this printing">✕</button>
-            </div>
-          ))}
-        </div>
+        // compact / tiles / stacks render as the list until their own views land.
+        <CollectionList
+          cards={cards} columns={settings.columns} selectMode={selectMode} selected={selected}
+          onToggleSelect={toggleSelect} onSetCount={setCount} onRemove={removeCard}
+          onPickPrinting={openPrintings} busy={busy}
+        />
       )}
       {!loading && cards.length >= PAGE && (
         <div style={{ fontSize: 11.5, color: c.faint, marginTop: 8 }}>

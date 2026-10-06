@@ -19,9 +19,6 @@ const c = {
 const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
                Multicolor: '#c9a227', Colorless: '#8a8a8a' }
 
-// A card owned in two sets is two rows, so the name alone is not an identity.
-const rowKey = r => `${r.name}|${r.set || ''}|${r.cn || ''}`
-
 const dotColor = row => {
   const colors = row.colors || []
   if (!row.resolved) return null
@@ -57,7 +54,7 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
                   gap: 12 }}>
       {rows.map(row => {
-        const key = rowKey(row)
+        const key = row.row_id   // a card owned in two printings/finishes is two rows
         const isSel = picked.has(key)
         const showBar = !selectMode && hovered === key
         const dot = dotColor(row)
