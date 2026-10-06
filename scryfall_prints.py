@@ -41,6 +41,9 @@ _IMAGE_KEYS = ("small", "normal", "art_crop")
 _LOCK = threading.RLock()   # re-entrant: queries hold it around _conn()
 _CONN: Optional[sqlite3.Connection] = None
 _CONN_KEY: Optional[tuple] = None   # (path, mtime): a different file or a rebuild reopens
+_CONN_CHECKED = 0.0                 # monotonic time of the last stat of the DB file
+STAT_INTERVAL_S = 2.0               # the file is re-stat'd at most this often (a stat per query
+                                    # cost ~0.3 ms, i.e. ~0.3 s for a 1,000-row collection page)
 
 
 def enabled() -> bool:
@@ -197,9 +200,14 @@ def refresh_async() -> None:
 
 
 def _conn() -> Optional[sqlite3.Connection]:
-    global _CONN, _CONN_KEY
+    global _CONN, _CONN_KEY, _CONN_CHECKED
     with _LOCK:
         path = db_path()
+        now = time.monotonic()
+        # Within the throttle window the open connection is trusted, as long as it is for
+        # the same path. A rebuild or a missing file is noticed at the next re-stat.
+        if _CONN and _CONN_KEY and _CONN_KEY[0] == str(path)                 and 0 <= now - _CONN_CHECKED < STAT_INTERVAL_S:
+            return _CONN
         if not path.exists():
             if _CONN:
                 _CONN.close()
@@ -207,6 +215,7 @@ def _conn() -> Optional[sqlite3.Connection]:
                 _CONN_KEY = None
             return None
         key = (str(path), path.stat().st_mtime)
+        _CONN_CHECKED = now
         if _CONN and _CONN_KEY == key:
             return _CONN
         if _CONN:
@@ -217,12 +226,13 @@ def _conn() -> Optional[sqlite3.Connection]:
 
 
 def _close() -> None:
-    global _CONN, _CONN_KEY
+    global _CONN, _CONN_KEY, _CONN_CHECKED
     with _LOCK:
         if _CONN:
             _CONN.close()
             _CONN = None
             _CONN_KEY = None
+        _CONN_CHECKED = 0.0
 
 
 def _query(sql: str, params: tuple) -> list[dict]:

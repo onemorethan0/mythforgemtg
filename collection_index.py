@@ -238,15 +238,27 @@ def enrich_row(row: dict, index: dict, resolve_print=None) -> dict:
         pr = None
     finish = row.get("finish") or "nonfoil"
     out["print_resolved"] = pr is not None
+    out["printing_mismatch"] = False
     oracle_image = out.get("image")
     out.update(image_normal=None, art_crop=None, back_image=None, released_at=None, artist=None,
                finishes=[], treatments=[], image_representative=True)
     if pr:
-        if not out["set"]:
-            out["set"] = pr.get("set") or ""
-        if not out.get("cn"):
-            out["cn"] = pr.get("cn") or ""
-        out["set_name"] = pr.get("set_name") if pr.get("set") == out["set"] else None
+        # D2 / R10: a Scryfall id is authoritative. When the row resolved through its id
+        # and the print's set or cn contradicts the row's non-blank ones, the PRINT wins
+        # (the art, price and rarity below are that print's) and the row is flagged. The
+        # CSV is never modified.
+        by_id = bool(row.get("scryfall_id")) and pr.get("id") == row.get("scryfall_id")
+        pset, pcn = pr.get("set") or "", str(pr.get("cn") or "")
+        if by_id and ((out["set"] and out["set"].upper() != pset.upper())
+                      or (out.get("cn") and str(out["cn"]).strip().lower() != pcn.lower())):
+            out["printing_mismatch"] = True
+            out["set"], out["cn"] = pset, pcn
+        else:
+            if not out["set"]:
+                out["set"] = pset
+            if not out.get("cn"):
+                out["cn"] = pcn
+        out["set_name"] = pr.get("set_name") if pset.upper() == out["set"].upper() else None
         out["rarity"] = pr.get("rarity") or out.get("rarity")
         out["released_at"] = pr.get("released_at")
         out["artist"] = pr.get("artist")

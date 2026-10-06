@@ -304,3 +304,19 @@ def test_collection_summary_without_enriched_still_works_on_raw_rows():
     import server
     s = server._collection_summary([_row()], prices={})
     assert s["distinct"] == 1 and s["total_value"] == 0.0
+
+
+def test_scryfall_id_print_wins_over_a_contradicting_row_set():
+    p = _print(id="idLTC", set="LTC", cn="273", set_name="Tales Commander", rarity="rare",
+               prices={"usd": 9.0, "usd_foil": None, "usd_etched": None})
+    r = ci.enrich_row(_row(set="C21", cn="263", scryfall_id="idLTC"), _INDEX, resolve_print=lambda r: p)
+    assert (r["set"], r["cn"], r["set_name"]) == ("LTC", "273", "Tales Commander")
+    assert r["printing_mismatch"] is True and r["price"] == 9.0 and r["rarity"] == "rare"
+
+
+def test_printing_mismatch_false_for_a_consistent_row():
+    p = _print(id="p1")
+    for row in (_row(), _row(scryfall_id="p1"), _row(set="c21", cn="263", scryfall_id="p1"),
+                _row(set="", cn="", scryfall_id="p1")):
+        assert ci.enrich_row(row, _INDEX, resolve_print=lambda r: p)["printing_mismatch"] is False
+    assert ci.enrich_row(_row(), _INDEX, resolve_print=lambda r: None)["printing_mismatch"] is False

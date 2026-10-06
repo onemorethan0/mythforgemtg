@@ -129,3 +129,40 @@ def test_failed_build_leaves_no_part(tmp_path):
     with pytest.raises(RuntimeError):
         scryfall_prints._build_db(boom(), out)
     assert not out.exists()
+
+
+def test_conn_restats_only_after_the_throttle_and_then_reopens_a_rebuilt_db(tmp_db, monkeypatch):
+    import os
+    clock = [1000.0]
+    monkeypatch.setattr(scryfall_prints.time, "monotonic", lambda: clock[0])
+    assert scryfall_prints.by_id("id-c21")["cn"] == "263"
+    first = scryfall_prints._CONN
+    # rebuild the same path with different data (the connection is released first: Windows
+    # will not replace an open file; refresh() does the same under _LOCK)
+    new = [P("id-new", "Sol Ring", "znr", "1", "2023-01-01")]
+    part = tmp_db.with_suffix(".part")
+    scryfall_prints._build_db(iter(new), part)
+    first.close()
+    os.replace(part, tmp_db)
+    os.utime(tmp_db, (tmp_db.stat().st_atime, tmp_db.stat().st_mtime + 10))
+    # inside the window nothing is re-stat'd: the (now closed) cached connection is returned
+    clock[0] += scryfall_prints.STAT_INTERVAL_S - 0.5
+    assert scryfall_prints._conn() is first
+    # past the window the file is re-stat'd and the rebuilt DB is opened
+    clock[0] += 1.0
+    assert scryfall_prints.by_id("id-new")["set"] == "ZNR"
+    assert scryfall_prints.by_id("id-c21") is None
+    assert scryfall_prints._CONN is not first
+
+
+def test_conn_does_not_stat_the_db_inside_the_window(tmp_db, monkeypatch):
+    clock = [50.0]
+    monkeypatch.setattr(scryfall_prints.time, "monotonic", lambda: clock[0])
+    scryfall_prints.by_id("id-c21")
+    import pathlib
+    real = pathlib.Path.stat
+    calls = []
+    monkeypatch.setattr(pathlib.Path, "stat", lambda self, *a, **k: (calls.append(1), real(self, *a, **k))[1])
+    for _ in range(20):
+        scryfall_prints.by_id("id-c21")
+    assert calls == []
