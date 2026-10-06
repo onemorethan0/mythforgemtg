@@ -20,7 +20,7 @@ rewriting the canonical collection is exactly the failure this module exists to 
 
 from __future__ import annotations
 
-from collection import parse_decorated_line, printing_key
+from collection import parse_decorated_line, row_identity
 
 ISSUE_KINDS = ("quantity_prefix", "embedded_printing", "foil_marker", "category_suffix")
 
@@ -105,11 +105,14 @@ def diagnose(rows: list[dict]) -> dict:
 def _fresh(row: dict, name: str, count: int, set_code: str, cn: str,
            foil: bool) -> dict:
     """A NEW row dict — never sharing the input's `_extra`, which callers still hold."""
-    out = {"name": name, "count": int(count), "set": set_code, "cn": cn}
+    out = {"name": name, "count": int(count), "set": set_code, "cn": cn,
+           "finish": row.get("finish") or "nonfoil", "lang": row.get("lang") or "",
+           "condition": row.get("condition") or "",
+           "scryfall_id": row.get("scryfall_id") or ""}
     extra = dict(row.get("_extra") or {})
     if foil:
-        # Moxfield-style column; write_collection preserves columns it doesn't model.
-        extra["Foil"] = "foil"
+        # The row's finish; write_collection emits it in the canonical Foil column.
+        out["finish"] = "foil"
     if extra:
         out["_extra"] = extra
     return out
@@ -138,7 +141,7 @@ def apply_repairs(rows: list[dict], accept: set[int] | None = None
 
         # Collisions are checked against EVERY row already emitted, not just repaired
         # ones — a repaired row usually collides with an untouched one.
-        key = printing_key(new_row["name"], new_row["set"], new_row["cn"])
+        key = row_identity(new_row)
         if key in seen:
             first = seen[key]
             first["count"] += new_row["count"]

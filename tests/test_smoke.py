@@ -774,8 +774,8 @@ def test_collection_decorated_lines():
     check("dec.dfc",       one("Fire // Ice"),                  ("Fire // Ice", 1, "", ""))
     check("dec.cmdr",      one("Commander: Krenko, Mob Boss"),  ("Krenko, Mob Boss", 1, "", ""))
     check("dec.x_name",    one("X Marks the Spot"),             ("X Marks the Spot", 1, "", ""))
-    # Foil is real per-copy data and rides along in the unmodelled-columns dict.
-    check("dec.foil_extra", rows("1x Plains (sos) 273 *F*")[0].get("_extra"), {"Foil": "foil"})
+    # Foil is real per-copy data: it is the row's finish (and part of its identity).
+    check("dec.foil_finish", rows("1x Plains (sos) 273 *F*")[0]["finish"], "foil")
 
     # A LEADING bracket is Deckstats' set code; a TRAILING one is Archidekt's category.
     # Position separates them, but "[LAND]" is shaped like a set code — so the token is
@@ -1619,7 +1619,7 @@ def test_collection_preserves_scanner_columns():
     after = p.read_text(encoding="utf-8-sig")
     row = [ln for ln in after.splitlines() if ln.startswith("3,Sol Ring")]
     check("cols.edit_count", len(row), 1)
-    check_true("cols.edit_keeps_extra", "NM,en,foil" in row[0])
+    check_true("cols.edit_keeps_extra", "foil,en,NM" in row[0])
     p.unlink(missing_ok=True)
     p.with_suffix(".csv.bak").unlink(missing_ok=True)
 

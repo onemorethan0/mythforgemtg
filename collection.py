@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import os
+import re as _re
 from pathlib import Path
 
 _NAME_COLUMNS = ("name", "card name", "card")
@@ -114,8 +115,85 @@ def owned_count(cards: list[dict], owned: set[str]) -> int:
 _COUNT_COLUMNS = ("count", "quantity", "qty", "amount")
 # Moxfield/ManaBox/Scanner exports name the set column differently; collector number
 # disambiguates printings within a set (alt arts, showcases).
-_SET_COLUMNS = ("edition", "set", "set code", "setcode", "expansion")
+#
+# Set-code precedence (D1). MythScanner writes the real code to `Edition Code` and leaves
+# `Edition` blank, so the dedicated code columns come first. The generic columns (`Edition`,
+# `Set`) hold a SET NAME in Deckbox-style exports, so they are adopted only when the value is
+# shaped like a code (see _looks_like_code); the first non-blank acceptable value wins per row.
+_SET_CODE_COLUMNS = ("edition code", "set code", "setcode")
+_SET_GENERIC_COLUMNS = ("edition", "set", "expansion")
+_SET_COLUMNS = _SET_CODE_COLUMNS + _SET_GENERIC_COLUMNS
 _CN_COLUMNS  = ("collector number", "collector_number", "card number", "number", "cn")
+_FINISH_COLUMNS = ("finish", "foil", "printing")
+_LANG_COLUMNS = ("language", "lang")
+_CONDITION_COLUMNS = ("condition",)
+_SCRYFALL_COLUMNS = ("scryfall id", "scryfall_id", "scryfallid")
+# Derivable from the printing itself; dropped on read rather than written back, where they
+# could only go stale and contradict the Edition/Collector Number we do write.
+_CONSUMED = ("edition name", "set name", "multiverse id")
+
+_CODE_RE = _re.compile(r"^[A-Za-z0-9]{2,6}$")
+
+_FINISH_FOIL = {"foil", "f", "yes", "true"}
+_FINISH_ETCHED = {"etched", "e", "foil etched"}
+
+
+def normalize_finish(value: str) -> str:
+    """'nonfoil' | 'foil' | 'etched' from any exporter's spelling (case-insensitive).
+
+    Unknown/blank values are 'nonfoil': the plain card is the honest default."""
+    v = (value or "").strip().casefold()
+    if v in _FINISH_ETCHED:
+        return "etched"
+    if v in _FINISH_FOIL:
+        return "foil"
+    return "nonfoil"
+
+
+def _looks_like_code(value: str) -> bool:
+    return bool(_CODE_RE.match((value or "").strip()))
+
+
+def row_identity(row: dict) -> tuple:
+    """Identity of one physical-card row (D4): (name, SET, cn, finish, lang or 'en', condition).
+
+    Finish is part of it because foil and nonfoil copies are different cards with different
+    prices; a blank language means English; condition compares case-insensitively."""
+    return (owned_key(row.get("name", "")),
+            (row.get("set") or "").strip().upper(),
+            (row.get("cn") or "").strip(),
+            normalize_finish(row.get("finish", "")),
+            (row.get("lang") or "").strip().casefold() or "en",
+            (row.get("condition") or "").strip().upper())
+
+
+def _blank_row(name: str, count: int, set_code: str = "", cn: str = "") -> dict:
+    return {"name": name.strip(), "count": int(count),
+            "set": (set_code or "").strip().upper(), "cn": (cn or "").strip(),
+            "finish": "nonfoil", "lang": "", "condition": "", "scryfall_id": ""}
+
+
+def _merge_row(rows: list[dict], exact: dict, loose: dict, incoming: dict) -> None:
+    """Fold `incoming` into `rows` using row_identity plus the D4 blank-condition rule.
+
+    A row with a BLANK condition merges into the unique existing row that matches on
+    everything else (so a plain decklist import doesn't fork every conditioned row);
+    otherwise it becomes a new row. `exact`/`loose` are the caller's indexes."""
+    k = row_identity(incoming)
+    target = exact.get(k)
+    if target is None and not k[5]:
+        cands = loose.get(k[:5], [])
+        if len(cands) == 1:
+            target = cands[0]
+    if target is not None:
+        target["count"] += incoming["count"]
+        if not target.get("scryfall_id") and incoming.get("scryfall_id"):
+            target["scryfall_id"] = incoming["scryfall_id"]
+        return
+    rows.append(incoming)
+    exact[k] = incoming
+    if k[5]:
+        loose.setdefault(k[:5], []).append(incoming)
 
 
 def printing_key(name: str, set_code: str = "", cn: str = "") -> tuple:
@@ -142,10 +220,13 @@ def load_collection(path: Path | None = None) -> list[dict]:
 
 
 def write_collection(rows: list[dict], path: Path | None = None) -> int:
-    """Persist as a `Count,Name,Edition,Collector Number` CSV (Moxfield-compatible),
-    backing up the previous file to `<name>.bak` first. Rows with count<=0 are dropped.
-    Set/collector number are written blank when unknown, so the file stays readable by
-    anything that only understands Count,Name. Returns the number of rows written."""
+    """Persist as a Moxfield-compatible CSV with the canonical header (D5):
+    `Count,Name,Edition,Collector Number,Foil,Language,Condition,Scryfall ID`, then any
+    unmodelled extra columns. `Foil` is ""/foil/etched. Alias columns (Edition Code, Finish,
+    Edition Name...) are consumed on read, never written back, so a printing change cannot
+    leave a stale column contradicting the new one. The previous file is backed up to
+    `<name>.bak` first. Rows with count<=0 are dropped; unknown fields are written blank.
+    Returns the number of rows written."""
     p = path or suite_collection_path()
     p.parent.mkdir(parents=True, exist_ok=True)
     if p.exists():
@@ -168,10 +249,13 @@ def write_collection(rows: list[dict], path: Path | None = None) -> int:
     # writes Condition/Language/Foil; before this, a single +/- click in Forge rewrote the
     # file with only our four columns and silently DELETED the scanner's per-copy data.
     # Preserve any extra column seen on read, in first-seen order, appended after ours.
+    canonical = ["Count", "Name", "Edition", "Collector Number", "Foil", "Language",
+                 "Condition", "Scryfall ID"]
+    reserved = {c.casefold() for c in canonical}
     extra_cols: list[str] = []
     for r in clean:
         for key in (r.get("_extra") or {}):
-            if key not in extra_cols:
+            if key not in extra_cols and key.strip().casefold() not in reserved:
                 extra_cols.append(key)
 
     tmp = p.with_name(f".{p.name}.tmp")
@@ -179,11 +263,16 @@ def write_collection(rows: list[dict], path: Path | None = None) -> int:
         # utf-8-sig so Excel and MythScanner (which reads utf-8-sig) both open it cleanly.
         with tmp.open("w", encoding="utf-8-sig", newline="") as fh:
             w = csv.writer(fh)
-            w.writerow(["Count", "Name", "Edition", "Collector Number"] + extra_cols)
+            w.writerow(canonical + extra_cols)
             for r in clean:
                 extra = r.get("_extra") or {}
+                finish = normalize_finish(r.get("finish", ""))
                 w.writerow([int(r["count"]), r["name"].strip(),
-                            (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip()]
+                            (r.get("set") or "").strip().upper(), (r.get("cn") or "").strip(),
+                            "" if finish == "nonfoil" else finish,
+                            (r.get("lang") or "").strip().casefold(),
+                            (r.get("condition") or "").strip(),
+                            (r.get("scryfall_id") or "").strip()]
                            + [extra.get(col, "") for col in extra_cols])
             fh.flush()
             os.fsync(fh.fileno())   # durable before the rename, not just in the page cache
@@ -222,8 +311,7 @@ def add_card(name: str, count: int = 1, path: Path | None = None,
         if display_name:
             existing["name"] = display_name
     else:
-        rows.append({"name": (display_name or name).strip(), "count": max(int(count), 1),
-                     "set": (set_code or "").strip().upper(), "cn": (cn or "").strip()})
+        rows.append(_blank_row(display_name or name, max(int(count), 1), set_code or "", cn or ""))
     write_collection(rows, path)
     return rows
 
@@ -240,8 +328,7 @@ def set_count(name: str, count: int, path: Path | None = None,
         else:
             existing["count"] = int(count)
     elif int(count) > 0:
-        rows.append({"name": name.strip(), "count": int(count),
-                     "set": (set_code or "").strip().upper(), "cn": (cn or "").strip()})
+        rows.append(_blank_row(name, int(count), set_code or "", cn or ""))
     write_collection(rows, path)
     return rows
 
@@ -317,26 +404,26 @@ def bulk_apply(targets: list[dict], action: str, count: int = 0,
 
 def bulk_import(text: str, mode: str = "merge", path: Path | None = None) -> list[dict]:
     """Import a pasted CSV or decklist. mode="merge" adds counts onto the current
-    collection; mode="replace" overwrites it. Merging is per PRINTING, so importing a
-    second set's copy adds a row rather than inflating the first printing's count."""
+    collection; mode="replace" overwrites it. Merging is per row identity (printing + finish,
+    language, condition): a second set's copy or a foil of an owned nonfoil adds a row. An
+    incoming blank condition merges into the unique otherwise-matching conditioned row (D4)."""
     incoming = _parse_rows(text)
     if mode == "replace":
         merged = incoming
     else:
         merged = load_collection(path)
-        index = {printing_key(r["name"], r.get("set", ""), r.get("cn", "")): r for r in merged}
+        exact: dict[tuple, dict] = {}
+        loose: dict[tuple, list] = {}
+        for r in merged:
+            k = row_identity(r)
+            exact.setdefault(k, r)
+            if k[5]:
+                loose.setdefault(k[:5], []).append(r)
         for r in incoming:
-            k = printing_key(r["name"], r.get("set", ""), r.get("cn", ""))
-            if k in index:
-                index[k]["count"] += r["count"]
-            else:
-                merged.append(dict(r))
-                index[k] = merged[-1]
+            _merge_row(merged, exact, loose, dict(r))
     write_collection(merged, path)
     return merged
 
-
-import re as _re
 
 # Everything a pasted decklist line can carry around the card name:
 #     "13x Island (msh) 290 *F* [Land]"
@@ -369,11 +456,11 @@ DECORATED_LINE_RE = _re.compile(
 
 
 _BLANK_PARSE = {"name": "", "qty": None, "qty_x": False, "set": "", "cn": "",
-                "foil": False, "tag": ""}
+                "foil": False, "finish": "nonfoil", "tag": ""}
 
 
 def parse_decorated_line(raw: str) -> dict:
-    """Split a decklist line into {"name", "qty", "qty_x", "set", "cn", "foil", "tag"}.
+    """Split a decklist line into {"name", "qty", "qty_x", "set", "cn", "foil", "finish", "tag"}.
 
     `qty` is None when the line carried no quantity prefix. `qty_x` records whether that
     prefix was the explicit "13x" form rather than a bare "13" — importing trusts either,
@@ -400,67 +487,93 @@ def parse_decorated_line(raw: str) -> dict:
     lead = (m.group("lead") or "").strip()
     if lead and not set_code and (any(ch.isdigit() for ch in lead) or lead.isupper()):
         set_code = lead.upper()
+    marker = (m.group("foil") or "").strip()
     return {
         "name":  name,
         "qty":   int(m.group("qty")) if m.group("qty") else None,
         "qty_x": bool(m.group("qty_x")),
         "set":   set_code,
         "cn":    (m.group("cn") or "").strip(),
-        "foil":  bool(m.group("foil")),
+        "foil":  bool(marker),
+        # "*F*" foil, "*E*" etched; any other marker still means "not the plain card".
+        "finish": "etched" if marker.casefold() == "e" else ("foil" if marker else "nonfoil"),
         "tag":   (m.group("tag") or "").strip(),
     }
 
 
-def _parse_rows(text: str) -> list[dict]:
-    """Parse pasted CSV/decklist text into [{"name","count","set","cn"}] (no file I/O).
+def _first(row: dict, cols: list[str], accept=None) -> str:
+    """First non-blank value among `cols` (already in precedence order) that `accept`s it."""
+    for c in cols:
+        v = (row.get(c) or "").strip()
+        if v and (accept is None or accept(v)):
+            return v
+    return ""
 
-    Printing-aware: a CSV's Edition/Collector-Number columns and a decklist's
-    "(SET) 123" suffix are captured instead of discarded, so the same card owned in
-    several sets stays several rows. Rows are merged on the full printing key."""
+
+def _present(fields: list[str], candidates: tuple[str, ...]) -> list[str]:
+    """The actual header spellings for `candidates`, in the candidates' precedence order."""
+    lowered = {(f or "").strip().casefold(): f for f in fields}
+    return [lowered[c] for c in candidates if c in lowered]
+
+
+def _parse_rows(text: str) -> list[dict]:
+    """Parse pasted CSV/decklist text into row dicts (no file I/O).
+
+    Every row carries name, count, set (UPPER), cn, finish (nonfoil|foil|etched), lang
+    (lowercase, "" when unknown), condition, scryfall_id, plus `_extra` for columns we do
+    not model. Set resolves per D1: the dedicated code columns (Edition Code, Set Code)
+    first, then Edition/Set only when the value looks like a code (Deckbox puts the set NAME
+    there). Rows merge on row_identity, so foil and nonfoil of one printing stay separate."""
     import io
     stripped = text.lstrip()
     first_line = stripped.splitlines()[0] if stripped else ""
-    rows: dict[tuple, dict] = {}
-    order: list[tuple] = []
+    rows: list[dict] = []
+    exact: dict[tuple, dict] = {}
+    loose: dict[tuple, list] = {}
 
-    def _add(name: str, count: int, set_code: str = "", cn: str = "",
+    def _add(name: str, count: int, set_code: str = "", cn: str = "", finish: str = "",
+             lang: str = "", condition: str = "", scryfall_id: str = "",
              extra: dict | None = None) -> None:
         name = (name or "").strip()
         if not name:
             return
-        k = printing_key(name, set_code, cn)
-        if k in rows:
-            rows[k]["count"] += count
-        else:
-            rows[k] = {"name": name, "count": count,
-                       "set": (set_code or "").strip().upper(), "cn": (cn or "").strip()}
-            # Columns we do not model (MythScanner writes Condition/Language/Foil) ride
-            # along so a Forge edit round-trips them instead of deleting them. See
-            # write_collection.
-            if extra:
-                rows[k]["_extra"] = extra
-            order.append(k)
+        row = _blank_row(name, count, set_code, cn)
+        row.update(finish=normalize_finish(finish), lang=(lang or "").strip().casefold(),
+                   condition=(condition or "").strip(), scryfall_id=(scryfall_id or "").strip())
+        # Columns we do not model (Date Added, Tags...) ride along so a Forge edit
+        # round-trips them instead of deleting them. See write_collection.
+        if extra:
+            row["_extra"] = extra
+        _merge_row(rows, exact, loose, row)
 
     if "," in first_line and _find_column(first_line.split(","), _NAME_COLUMNS):
         reader = csv.DictReader(io.StringIO(text))
         fields = reader.fieldnames or []
         name_col  = _find_column(fields, _NAME_COLUMNS)
         count_col = _find_column(fields, _COUNT_COLUMNS)
-        set_col   = _find_column(fields, _SET_COLUMNS)
-        cn_col    = _find_column(fields, _CN_COLUMNS)
+        code_cols    = _present(fields, _SET_CODE_COLUMNS)
+        generic_cols = _present(fields, _SET_GENERIC_COLUMNS)
+        cn_cols      = _present(fields, _CN_COLUMNS)
+        finish_cols  = _present(fields, _FINISH_COLUMNS)
+        lang_cols    = _present(fields, _LANG_COLUMNS)
+        cond_cols    = _present(fields, _CONDITION_COLUMNS)
+        sfid_cols    = _present(fields, _SCRYFALL_COLUMNS)
+        known = {c for c in [name_col, count_col, *code_cols, *generic_cols, *cn_cols,
+                             *finish_cols, *lang_cols, *cond_cols, *sfid_cols,
+                             *_present(fields, _CONSUMED)] if c}
         for row in reader:
             name = (row.get(name_col) or "").strip() if name_col else ""
             try:
                 cnt = int(float((row.get(count_col) or "1").strip())) if count_col else 1
             except (TypeError, ValueError):
                 cnt = 1
-            known = {c for c in (name_col, count_col, set_col, cn_col) if c}
             extra = {k: v for k, v in row.items()
                      if k and k not in known and (v or "").strip()}
-            _add(name, max(cnt, 1),
-                 (row.get(set_col) or "") if set_col else "",
-                 (row.get(cn_col) or "") if cn_col else "",
-                 extra)
+            set_code = (_first(row, code_cols)
+                        or _first(row, generic_cols, _looks_like_code))
+            _add(name, max(cnt, 1), set_code, _first(row, cn_cols),
+                 _first(row, finish_cols), _first(row, lang_cols), _first(row, cond_cols),
+                 _first(row, sfid_cols), extra)
     else:
         for raw in text.splitlines():
             line = raw.strip()
@@ -470,8 +583,7 @@ def _parse_rows(text: str) -> list[dict]:
                 line = line.split(":", 1)[1].strip()
             p = parse_decorated_line(line)
             # The exporter's "[Land]"/"[Ramp]" tag is a deckbuilding CATEGORY, not
-            # collection data, so it is read off the line and discarded. Foil is real
-            # per-copy data, and write_collection round-trips unmodelled columns.
-            _add(p["name"], max(p["qty"] or 1, 1), p["set"], p["cn"],
-                 {"Foil": "foil"} if p["foil"] else None)
-    return [rows[k] for k in order]
+            # collection data, so it is read off the line and discarded. The finish
+            # marker (*F*/*E*) is real per-copy data and becomes the row's finish.
+            _add(p["name"], max(p["qty"] or 1, 1), p["set"], p["cn"], p["finish"])
+    return rows
