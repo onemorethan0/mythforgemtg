@@ -34,3 +34,20 @@
 /* Card hover overlay */
 .deck-card-tile .deck-card-overlay { opacity: 0; transition: opacity 0.2s; }
 .deck-card-tile:hover .deck-card-overlay { opacity: 1; }
+
+/* Foil sheen (CardFace): a diagonal highlight band sweeping across the card. */
+.mf-foil::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.28) 45%,
+              rgba(180,140,255,0.22) 50%, rgba(120,220,255,0.22) 55%, transparent 70%);
+  background-size: 300% 100%; background-position: 100% 0;
+  mix-blend-mode: screen;
+  animation: mf-foil-sheen 3.6s ease-in-out infinite;
+}
+@keyframes mf-foil-sheen {
+  0%   { background-position: 100% 0; }
+  60%, 100% { background-position: 0% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mf-foil::after { animation: none; background-position: 40% 0; opacity: 0.6; }
+}

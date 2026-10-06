@@ -754,7 +754,7 @@ export default function StepCollection({ onBack, onBuild }) {
         <CollectionGrid
           cards={cards} onSetCount={setCount} onRemove={removeCard}
           onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
-          onToggleSelect={toggleSelect} busy={busy}
+          onToggleSelect={toggleSelect} busy={busy} size={settings.size}
         />
       ) : (
         // compact / tiles / stacks render as the list until their own views land.

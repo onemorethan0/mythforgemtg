@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import CardHover from './CardHover'
+import CardFace, { SetChip } from './CardFace'
+import { TILE_SIZES } from '../utils/collectionView'
 
 // Binder view of the collection: one tile per owned printing, showing the real card.
 // Counts, price and the edit controls ride on the tile so the art stays the thing you
@@ -12,18 +14,7 @@ const c = {
   faint:  '#78716c',
   card:   '#1c1917',
   border: '#292524',
-  panel:  '#0c0a09',
   text:   '#f5f5f4',
-}
-
-const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
-               Multicolor: '#c9a227', Colorless: '#8a8a8a' }
-
-const dotColor = row => {
-  const colors = row.colors || []
-  if (!row.resolved) return null
-  if (colors.length > 1) return MANA.Multicolor
-  return MANA[colors[0]] || MANA.Colorless
 }
 
 const badge = extra => ({
@@ -33,8 +24,9 @@ const badge = extra => ({
 })
 
 export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrinting,
-                                         selectMode, selected, onToggleSelect, busy }) {
+                                         selectMode, selected, onToggleSelect, busy, size = 'm' }) {
   const [hovered, setHovered] = useState(null)
+  const [flips, setFlips] = useState({})   // per-tile flip state, keyed by row_id
   const rows = cards || []
   const picked = selected || new Set()
 
@@ -51,13 +43,12 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
   })
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${TILE_SIZES[size] || TILE_SIZES.m}px, 1fr))`,
                   gap: 12 }}>
       {rows.map(row => {
         const key = row.row_id   // a card owned in two printings/finishes is two rows
         const isSel = picked.has(key)
         const showBar = !selectMode && hovered === key
-        const dot = dotColor(row)
         return (
           <div key={key}
             onMouseEnter={() => setHovered(key)}
@@ -70,21 +61,8 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
                           // Selection reads as a ring, never as an overlay — hiding the art
                           // would defeat the point of a binder.
                           border: `${isSel ? 2 : 1}px solid ${isSel ? c.gold : c.border}` }}>
-              {row.image ? (
-                <img src={row.image} alt={row.name} loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              ) : (
-                <div style={{ width: '100%', height: '100%', background: c.panel, padding: 8,
-                              boxSizing: 'border-box', display: 'flex', flexDirection: 'column',
-                              alignItems: 'center', justifyContent: 'center', gap: 6,
-                              textAlign: 'center', overflow: 'hidden' }}>
-                  <span style={{ width: 14, height: 14, borderRadius: '50%',
-                                 background: dot || 'transparent',
-                                 border: dot ? 'none' : `1px solid ${c.faint}` }} />
-                  <span style={{ fontSize: 11.5, color: c.dim }}>{row.name}</span>
-                  {row.type && <span style={{ fontSize: 10, color: c.faint }}>{row.type}</span>}
-                </div>
-              )}
+              <CardFace row={row} variant="full" flipped={!!flips[key]}
+                onFlip={() => setFlips(f => ({ ...f, [key]: !f[key] }))} />
 
               {selectMode && (
                 <span style={badge({ left: 6, padding: '2px 5px', background: 'rgba(0,0,0,0.82)' })}>
@@ -136,7 +114,12 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {row.name}
             </CardHover>
-            {row.set && <div style={{ fontSize: 10, color: c.faint }}>{row.set}</div>}
+            {row.set && (
+              <div style={{ fontSize: 10, color: c.faint }}>
+                <SetChip set={row.set} cn={row.cn} rarity={row.rarity} setName={row.set_name}
+                  mismatch={row.printing_mismatch} />
+              </div>
+            )}
           </div>
         )
       })}
