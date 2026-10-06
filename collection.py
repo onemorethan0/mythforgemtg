@@ -12,6 +12,7 @@ Scryfall card names (front face, case-insensitive).
 from __future__ import annotations
 
 import csv
+import hashlib
 import os
 import re as _re
 from pathlib import Path
@@ -172,6 +173,45 @@ def row_identity(row: dict) -> tuple:
             normalize_finish(row.get("finish", "")),
             (row.get("lang") or "").strip().casefold() or "en",
             (row.get("condition") or "").strip().upper())
+
+
+def row_id(row: dict) -> str:
+    """Stable 12-hex id of a row's identity (D6): sha1 of the identity joined on \\x1f.
+
+    The CSV has a second writer (MythScanner), so a client addresses a row by what it IS,
+    not by its position; an id whose row has since changed no longer resolves."""
+    joined = "\x1f".join(str(part) for part in row_identity(row))
+    return hashlib.sha1(joined.encode("utf-8")).hexdigest()[:12]
+
+
+def find_by_id(rows: list[dict], rid: str) -> dict | None:
+    """The row whose row_id is `rid`, or None."""
+    return next((r for r in rows if row_id(r) == rid), None)
+
+
+def set_count_by_id(rid: str, count: int, path: Path | None = None) -> list[dict]:
+    """Set the exact count of the row `rid` (count<=0 removes it). KeyError(rid) if absent."""
+    rows = load_collection(path)
+    target = find_by_id(rows, rid)
+    if target is None:
+        raise KeyError(rid)
+    if int(count) <= 0:
+        rows = [r for r in rows if r is not target]
+    else:
+        target["count"] = int(count)
+    write_collection(rows, path)
+    return rows
+
+
+def remove_by_id(rid: str, path: Path | None = None) -> list[dict]:
+    """Remove the row `rid`. KeyError(rid) if absent."""
+    rows = load_collection(path)
+    target = find_by_id(rows, rid)
+    if target is None:
+        raise KeyError(rid)
+    rows = [r for r in rows if r is not target]
+    write_collection(rows, path)
+    return rows
 
 
 def _blank_row(name: str, count: int, set_code: str = "", cn: str = "") -> dict:
@@ -387,18 +427,28 @@ def bulk_apply(targets: list[dict], action: str, count: int = 0,
     backup to be overwritten with an already-modified file, which would cost the user
     their Undo. One pass, one write, one .bak.
 
-    `targets` are {"name", "set", "cn"} dicts; `action` is "remove" or "set_count".
+    `targets` are {"row_id"} or {"name", "set", "cn"} dicts (a target with a row_id is
+    addressed by it alone); `action` is "remove" or "set_count". A row_id that matches no
+    row raises KeyError(rid) BEFORE anything is written, so a stale selection changes nothing.
     """
     rows = load_collection(path)
+    wanted_ids = {t["row_id"] for t in targets if (t.get("row_id") or "").strip()}
     wanted = {printing_key(t.get("name", ""), t.get("set", ""), t.get("cn", ""))
-              for t in targets if (t.get("name") or "").strip()}
-    if not wanted:
+              for t in targets
+              if not (t.get("row_id") or "").strip() and (t.get("name") or "").strip()}
+    if not wanted and not wanted_ids:
         return rows, 0
+    if wanted_ids:
+        present = {row_id(r) for r in rows}
+        for rid in sorted(wanted_ids):
+            if rid not in present:
+                raise KeyError(rid)
 
     affected = 0
     kept: list[dict] = []
     for r in rows:
-        if printing_key(r["name"], r.get("set", ""), r.get("cn", "")) not in wanted:
+        if (row_id(r) not in wanted_ids
+                and printing_key(r["name"], r.get("set", ""), r.get("cn", "")) not in wanted):
             kept.append(r)
             continue
         affected += 1

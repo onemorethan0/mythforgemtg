@@ -57,7 +57,8 @@ from collection         import (
     load_collection, add_card as coll_add_card, set_count as coll_set_count,
     remove_card as coll_remove_card, bulk_import as coll_bulk_import, owned_key,
     write_collection as coll_write, set_printing as coll_set_printing,
-    bulk_apply as coll_bulk_apply,
+    bulk_apply as coll_bulk_apply, row_id as coll_row_id,
+    set_count_by_id as coll_set_count_by_id, remove_by_id as coll_remove_by_id,
 )
 import collection_repair as coll_repair
 from collection_index    import enrich_rows, facets as coll_facets, filter_rows, sort_rows
@@ -4781,6 +4782,9 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
     page = ordered[max(offset, 0): max(offset, 0) + lim]
     # Facets come from the WHOLE collection, not the filtered slice, so narrowing a
     # filter can never strand the user with no way back.
+    # row_id is computed from the RAW row's identity (enrichment must not change it).
+    for raw, card in zip(rows, enriched):
+        card["row_id"] = coll_row_id(raw)
     return {"cards": page, "matched": len(matched), "facets": coll_facets(enriched),
             **_collection_summary(rows)}
 
@@ -4848,8 +4852,12 @@ def collection_undo():
     return {"restored": True, **_collection_summary(load_collection())}
 
 
+_STALE_ROW = "Collection changed — reload."
+
+
 class CollectionTarget(BaseModel):
-    name: str
+    row_id: Optional[str] = None      # exact row (D6); wins over name/set/cn when present
+    name: str = ""
     set:  str = ""
     cn:   str = ""
 
@@ -4872,8 +4880,11 @@ def collection_bulk(req: CollectionBulkRequest):
         raise HTTPException(400, "action must be 'remove' or 'set_count'.")
     if not req.targets:
         raise HTTPException(400, "No cards selected.")
-    rows, affected = coll_bulk_apply([t.model_dump() for t in req.targets],
-                                     req.action, int(req.count))
+    try:
+        rows, affected = coll_bulk_apply([t.model_dump() for t in req.targets],
+                                         req.action, int(req.count))
+    except KeyError:
+        raise HTTPException(409, _STALE_ROW)
     return {"affected": affected, "action": req.action, **_collection_summary(rows)}
 
 
@@ -5067,15 +5078,23 @@ def collection_suggest(q: str = ""):
 
 
 class CollectionCountRequest(BaseModel):
-    name:  str
+    name:  str = ""
     count: int
+    row_id:   Optional[str] = None   # exact row (D6); name is then not needed
     set_code: Optional[str] = None   # target one printing; None = first printing
     cn:       Optional[str] = None
 
 
 @app.patch("/api/collection/count")
 def collection_set_count(req: CollectionCountRequest):
-    """Set a card's exact count (0 removes it). With set_code, targets that printing."""
+    """Set a card's exact count (0 removes it). With row_id, targets exactly that row (409
+    when it no longer exists); else with set_code, targets that printing."""
+    if (req.row_id or "").strip():
+        try:
+            rows = coll_set_count_by_id(req.row_id.strip(), int(req.count))
+        except KeyError:
+            raise HTTPException(409, _STALE_ROW)
+        return {"cards": rows[:200], **_collection_summary(rows)}
     if not (req.name or "").strip():
         raise HTTPException(400, "Card name is required.")
     rows = coll_set_count(req.name.strip(), int(req.count),
@@ -5112,11 +5131,20 @@ def collection_backfill_printings(limit: int = 1000):
 
 
 @app.delete("/api/collection")
-def collection_remove(name: str, set_code: str | None = None, cn: str | None = None):
+def collection_remove(name: str = "", set_code: str | None = None, cn: str | None = None,
+                      row_id: str | None = None):
     """Remove a card entirely (matched on front-face name, case-insensitive).
 
     The name is a QUERY param, not a path segment: double-faced/split card names
-    contain '//', and an encoded slash in the path 405s under Starlette routing."""
+    contain '//', and an encoded slash in the path 405s under Starlette routing.
+
+    `row_id` removes exactly that row (409 when it no longer exists) and needs no name."""
+    if (row_id or "").strip():
+        try:
+            rows = coll_remove_by_id(row_id.strip())
+        except KeyError:
+            raise HTTPException(409, _STALE_ROW)
+        return {"cards": rows[:200], **_collection_summary(rows)}
     if not (name or "").strip():
         raise HTTPException(400, "Card name is required.")
     rows = coll_remove_card(name, set_code=(set_code or None), cn=(cn or None))
