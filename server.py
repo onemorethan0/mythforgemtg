@@ -64,7 +64,7 @@ from collection         import (
 )
 import scryfall_prints
 import collection_repair as coll_repair
-from collection_index    import (GROUP_BYS, group_rows, enrich_rows, facets as coll_facets, filter_rows, sort_rows,
+from collection_index    import (owned_printings_index, pick_owned_printing, index_key as coll_index_key, GROUP_BYS, group_rows, enrich_rows, facets as coll_facets, filter_rows, sort_rows,
                                  print_price as coll_print_price, treatments_of as coll_treatments_of)
 from collection_stats    import collection_stats
 from playstyle          import (
@@ -944,6 +944,24 @@ def _owned_names_cached() -> set:
     return _owned_cache["set"]
 
 
+# Owned-printing index (resolved collection rows by card), cached on the same CSV mtime so a
+# deck load does not re-enrich the whole collection each time.
+_owned_print_cache: dict = {"mtime": None, "index": {}}
+
+
+def _owned_printings_cached() -> dict:
+    p = suite_collection_path()
+    mtime = p.stat().st_mtime if p.exists() else 0
+    if _owned_print_cache["mtime"] != mtime:
+        try:
+            _, enriched = _enriched_collection()
+            index = owned_printings_index(enriched)
+        except Exception:
+            index = {}      # advisory: a deck must still load without printing art
+        _owned_print_cache.update({"mtime": mtime, "index": index})
+    return _owned_print_cache["index"]
+
+
 def _card_is_owned(name: str, type_line: str, owned: set) -> bool:
     """Owned = a real copy you have, OR a basic land (freely available — never a proxy
     you'd need to acquire). Everything else is judged against the collection."""
@@ -958,10 +976,20 @@ def _annotate_owned(payload: dict) -> dict:
     a proxy) at SERVE time — so loaded/old decks get it too, and it reflects live
     collection edits rather than whatever was baked into deck.json at build time."""
     owned = _owned_names_cached()
+    printings = None
     for c in ([payload.get("commander")] if isinstance(payload.get("commander"), dict) else []) \
             + (payload.get("deck") or []):
         if isinstance(c, dict) and c.get("original_name"):
             c["owned"] = _card_is_owned(c["original_name"], c.get("type_line", ""), owned)
+            # The printing the user really owns (resolved rows only; basics owned by rule and
+            # unresolved rows give None -- a stand-in is never shown as theirs).
+            if c["owned"]:
+                if printings is None:
+                    printings = _owned_printings_cached()
+                c["owned_printing"] = pick_owned_printing(
+                    c, printings.get(coll_index_key(c["original_name"]), []))
+            else:
+                c.pop("owned_printing", None)
     return payload
 
 

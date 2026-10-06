@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import AdvisePanel from './AdvisePanel'
 import AnimatePanel from './AnimatePanel'
 import CardImpactPanel from './CardImpactPanel'
+import CardFace, { SetChip } from './CardFace'
 import CardTile from './CardTile'
 import { CmcChart, StatBar } from './DeckStatCharts'
 import DuelPanel from './DuelPanel'
@@ -191,6 +192,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   useEffect(() => {
     try { localStorage.setItem('mtg_show_motion', showMotion ? '1' : '0') } catch {}
   }, [showMotion])
+  // Deck art source: 'ai' (the rendered/themed art, today's view) or 'owned' (the exact
+  // printing from the user's collection, where one is resolved). View preference only.
+  const [artSource, setArtSource] = useState(() => {
+    try { return localStorage.getItem('mtg_deck_art_source') === 'owned' ? 'owned' : 'ai' } catch { return 'ai' }
+  })
+  useEffect(() => {
+    try { localStorage.setItem('mtg_deck_art_source', artSource) } catch { /* storage unavailable: preference just won't persist */ }
+  }, [artSource])
+  const hasOwnedPrintings = !!(deck?.commander?.owned_printing || (deck?.deck || []).some(c => c?.owned_printing))
+  const effectiveArtSource = hasOwnedPrintings ? artSource : 'ai'
   const [videoHealth, setVideoHealth] = useState(null)   // null | {ok, method, hint, ...}
   const [motionPresets, setMotionPresets] = useState([])
   const [foilStyles, setFoilStyles]       = useState([])
@@ -557,6 +568,20 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             const stillSrc = (commander.has_render || refreshTs[commander.render_key])
               ? `/api/deck/${jobId}/card-image/${commander.render_key}${refreshTs[commander.render_key] ? `?t=${refreshTs[commander.render_key]}` : ''}`
               : commander.scryfall_img || null
+            if (effectiveArtSource === 'owned' && commander.owned_printing) {
+              const op = commander.owned_printing
+              return (
+                <div>
+                  <div style={{ ...imgStyle, aspectRatio: '480/672', overflow: 'hidden' }}>
+                    <CardFace row={{ name: commander.original_name, ...op }} />
+                  </div>
+                  <div style={{ marginTop: 4, textAlign: 'center' }}>
+                    <SetChip set={op.set} cn={op.cn} rarity={op.rarity} setName={op.set_name} />
+                    {op.finish && op.finish !== 'nonfoil' && <span style={{ marginLeft: 4, fontSize: 9, color: '#a8a29e' }}>{op.finish}</span>}
+                  </div>
+                </div>
+              )
+            }
             // Show the animation when the commander has one (mp4 → <video>, webp/gif → <img>),
             // unless the viewer turned animations off.
             if (showMotion && videoKeys.has(commander.render_key)) {
@@ -1153,6 +1178,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <div>
             <div style={actGroupLabel}>{single ? 'Card' : 'Deck'}</div>
             <div style={actGroupRow}>
+              {hasOwnedPrintings && (
+                <button
+                  onClick={() => setArtSource(s => (s === 'owned' ? 'ai' : 'owned'))}
+                  title={artSource === 'owned' ? 'Showing the printings you own — click to show the AI art instead'
+                                               : 'Showing AI art — click to show the printings you own'}
+                  style={{ ...btnBase, background: artSource === 'owned' ? '#14532d' : 'none',
+                    color: artSource === 'owned' ? '#86efac' : '#78716c',
+                    border: `1px solid ${artSource === 'owned' ? '#16a34a' : '#44403c'}`, fontWeight: 600 }}
+                >{artSource === 'owned' ? '🎴 Art: My printings' : '🎨 Art: AI'}</button>
+              )}
               {videoKeys.size > 0 && (
                 <button
                   onClick={() => setShowMotion(m => !m)}
@@ -1242,6 +1277,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               videoTs={videoTs[card.render_key] || 0}
               videoFmt={videoFmts[card.render_key]}
               showOwnership={ownershipMixed}
+              artSource={effectiveArtSource}
             />
           ))}
         </div>

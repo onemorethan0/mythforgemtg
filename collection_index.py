@@ -620,3 +620,44 @@ def group_rows(rows: list[dict], by: str) -> tuple[list[dict], list[dict]]:
             entry["printings"] = g["rows"]
         out_groups.append(entry)
     return ordered, out_groups
+
+
+# ── Owned printings, for the deck view ────────────────────────────────────────
+_OWNED_PRINTING_KEYS = ("row_id", "set", "cn", "finish", "rarity", "set_name",
+                        "image", "image_normal", "art_crop", "back_image")
+
+
+def owned_printings_index(enriched_rows: list[dict]) -> dict[str, list[dict]]:
+    """`index_key(name) -> [enriched rows]`, holding ONLY rows whose printing is resolved.
+
+    An unresolved row's art is a representative printing, not the one the user owns, so it
+    never enters the index: the deck view must not label a stand-in as theirs."""
+    out: dict[str, list[dict]] = {}
+    for r in enriched_rows:
+        if r.get("print_resolved"):
+            out.setdefault(index_key(r.get("name") or ""), []).append(r)
+    return out
+
+
+def pick_owned_printing(card: dict, candidates: list[dict]) -> dict | None:
+    """The owned printing a deck card should show, or None when there are no candidates.
+
+    Preference: (1) the exact printing the deck card names (set + collector number, set
+    compared case-insensitively); (2) highest count; (3) nonfoil, foil, etched; (4) newest
+    `released_at`; (5) `row_id`, so the choice is deterministic."""
+    if not candidates:
+        return None
+    want_set = str(card.get("set") or "").casefold()
+    want_cn = str(card.get("collector_number") or "").casefold()
+
+    def exact(r):
+        return bool(want_set and want_cn and str(r.get("set") or "").casefold() == want_set
+                    and str(r.get("cn") or "").casefold() == want_cn)
+
+    rows = sorted(candidates, key=lambda r: str(r.get("row_id") or ""))
+    rows.sort(key=lambda r: str(r.get("released_at") or ""), reverse=True)   # newest first (stable)
+    rows.sort(key=lambda r: _index_of(FINISH_ORDER, r.get("finish") or "nonfoil", len(FINISH_ORDER)))
+    rows.sort(key=lambda r: int(r.get("count") or 0), reverse=True)
+    rows.sort(key=lambda r: not exact(r))
+    best = rows[0]
+    return {k: best.get(k) for k in _OWNED_PRINTING_KEYS}

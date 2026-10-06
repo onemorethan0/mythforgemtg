@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import CardFace, { SetChip } from './CardFace'
 import ManaCost from './ManaCost'
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
-export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true }) {
+export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true, artSource = 'ai' }) {
   const [hover, setHover] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
 
@@ -22,6 +23,9 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
   const videoIsImage = fmt === 'webp' || fmt === 'gif'
 
   const selectable = onSelect != null
+  // 'owned' view: a card with a resolved owned printing shows THAT printing. Any other card
+  // (and every card in the default 'ai' view) renders exactly as it always has.
+  const ownedPrint = artSource === 'owned' ? card.owned_printing : null
 
   return (
     <div
@@ -39,7 +43,20 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
         userSelect: 'none',
       }}
     >
-      {showVideo
+      {ownedPrint
+        ? (
+          <>
+            <CardFace row={{ name: card.original_name, ...ownedPrint }} />
+            <div style={{ position: 'absolute', bottom: 5, right: 5, zIndex: 2, padding: '1px 6px',
+                          borderRadius: 6, background: 'rgba(0,0,0,0.82)', border: '1px solid #292524' }}>
+              <SetChip set={ownedPrint.set} cn={ownedPrint.cn} rarity={ownedPrint.rarity} setName={ownedPrint.set_name} />
+              {ownedPrint.finish && ownedPrint.finish !== 'nonfoil' && (
+                <span style={{ marginLeft: 4, fontSize: 9, color: '#a8a29e' }}>{ownedPrint.finish}</span>
+              )}
+            </div>
+          </>
+        )
+        : showVideo
         ? (videoIsImage
           ? <img src={videoSrc} alt={card.themed_name}
                  onError={() => setVideoFailed(true)}
