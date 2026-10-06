@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest'
 import {
   DEFAULT_VIEW, VIEW_MODES, GROUP_BYS, SORT_KEYS, LIST_COLUMNS, TILE_SIZES,
   loadViewSettings, saveViewSettings, viewQuery, decklistLine, dotColor,
+  effectiveGroupBy, splitByGroup, groupValueLabel,
 } from './collectionView'
 
 const KEY = 'mtg_coll_view_v2'
@@ -93,14 +94,31 @@ describe('loadViewSettings', () => {
     expect(loadViewSettings(store({ [KEY]: JSON.stringify({ then: 'zzz' }) })).then).toBeNull()
   })
 
-  it('collapsed keeps only true booleans keyed by string', () => {
-    const s = loadViewSettings(store({ [KEY]: JSON.stringify({ collapsed: { a: true, b: false, c: 'yes' } }) }))
-    expect(s.collapsed).toEqual({ a: true })
+  it('collapsed keeps per-grouping string arrays and drops everything else', () => {
+    const s = loadViewSettings(store({ [KEY]: JSON.stringify({ collapsed: {
+      type: ['Creature', 'Creature', 3, 'Land'], color: 'W', rarity: [], set: { a: 1 },
+      none: ['x'], bogus: ['y'], cmc: ['0'],
+    } }) }))
+    expect(s.collapsed).toEqual({ type: ['Creature', 'Land'], cmc: ['0'] })
+  })
+
+  it('the old flat collapsed shape and non-objects fall back to empty', () => {
+    for (const bad of [{ a: true }, [1], 'x', 5, null]) {
+      const s = loadViewSettings(store({ [KEY]: JSON.stringify({ collapsed: bad }) }))
+      expect(s.collapsed).toEqual({})
+    }
+  })
+
+  it('collapsed round-trips through save', () => {
+    const st = store()
+    const s = { ...DEFAULT_VIEW, groupBy: 'type', collapsed: { type: ['Creature'] } }
+    saveViewSettings(st, s)
+    expect(loadViewSettings(st)).toEqual(s)
   })
 
   it('never aliases the DEFAULT_VIEW arrays/objects', () => {
     const s = loadViewSettings(store())
-    s.columns.push('x'); s.collapsed.z = true
+    s.columns.push('x'); s.collapsed.type = ['z']
     expect(DEFAULT_VIEW.columns).toEqual(['set', 'finish', 'type', 'price'])
     expect(DEFAULT_VIEW.collapsed).toEqual({})
   })
@@ -174,5 +192,64 @@ describe('dotColor', () => {
     expect(dotColor({ resolved: false, colors: ['R'] })).toBeNull()
     expect(dotColor({ resolved: true, colors: ['R', 'G'] })).toBe('#c9a227')
     expect(dotColor({ resolved: true, colors: [] })).toBe('#8a8a8a')
+  })
+})
+
+describe('stacks grouping', () => {
+  it('stacks with group none asks the server for type', () => {
+    expect(effectiveGroupBy({ mode: 'stacks', groupBy: 'none' })).toBe('type')
+    expect(Object.fromEntries(viewQuery({ ...DEFAULT_VIEW, mode: 'stacks' })).group).toBe('type')
+  })
+
+  it('an explicit grouping wins, and other modes are unchanged', () => {
+    expect(effectiveGroupBy({ mode: 'stacks', groupBy: 'rarity' })).toBe('rarity')
+    expect(effectiveGroupBy({ mode: 'list', groupBy: 'none' })).toBe('none')
+    expect('group' in Object.fromEntries(viewQuery({ ...DEFAULT_VIEW, mode: 'grid' }))).toBe(false)
+  })
+})
+
+describe('splitByGroup', () => {
+  const groups = [
+    { key: 'Creature', label: 'Creature', rows: 3, cards: 5, value: 1.5 },
+    { key: 'Land', label: 'Land', rows: 2, cards: 6, value: 0 },
+    { key: 'Other', label: 'Other', rows: 1, cards: 1, value: 2 },
+  ]
+  const row = (name, group) => ({ name, group })
+
+  it('keeps server order and server totals; a group with no page rows is dropped', () => {
+    const cards = [row('a', 'Creature'), row('b', 'Creature'), row('c', 'Creature'), row('d', 'Land')]
+    const out = splitByGroup(cards, groups)
+    expect(out.map(s => s.key)).toEqual(['Creature', 'Land'])
+    expect(out[0].cards).toBe(5)
+    expect(out[0].rows).toBe(3)
+  })
+
+  it('flags the group the page cut through, not complete ones', () => {
+    const out = splitByGroup([row('a', 'Creature'), row('b', 'Creature'), row('c', 'Creature'), row('d', 'Land')], groups)
+    expect(out.map(s => s.continues)).toEqual([false, true])
+  })
+
+  it('no groups returns one headerless section; no rows returns nothing', () => {
+    const out = splitByGroup([row('a', undefined)], [])
+    expect(out).toHaveLength(1)
+    expect(out[0].headerless).toBe(true)
+    expect(splitByGroup([], groups)).toEqual([])
+    expect(splitByGroup(null, null)).toEqual([])
+  })
+
+  it('a row whose group the server did not list still renders', () => {
+    const out = splitByGroup([row('a', 'Mystery')], groups)
+    expect(out[0].key).toBe('Mystery')
+    expect(out[0].pageRows).toHaveLength(1)
+  })
+})
+
+describe('groupValueLabel', () => {
+  it('shows an em dash for a zero-valued group with nothing priced', () => {
+    expect(groupValueLabel({ value: 0, pageRows: [{ price: null }] })).toBe('—')
+  })
+  it('shows $0.00 when a visible row is priced at zero, and the money otherwise', () => {
+    expect(groupValueLabel({ value: 0, pageRows: [{ price: 0 }] })).toBe('$0.00')
+    expect(groupValueLabel({ value: 12.5, pageRows: [{ price: null }] })).toBe('$12.50')
   })
 })

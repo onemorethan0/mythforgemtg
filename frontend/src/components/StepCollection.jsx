@@ -5,8 +5,10 @@ import CollectionGrid from './CollectionGrid'
 import CollectionTiles from './CollectionTiles'
 import CollectionCompact from './CollectionCompact'
 import CollectionList from './CollectionList'
+import CollectionGroups from './CollectionGroups'
+import CollectionStacks from './CollectionStacks'
 import CollectionToolbar from './CollectionToolbar'
-import { loadViewSettings, saveViewSettings, viewQuery } from '../utils/collectionView'
+import { loadViewSettings, saveViewSettings, viewQuery, effectiveGroupBy } from '../utils/collectionView'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -54,6 +56,7 @@ export default function StepCollection({ onBack, onBuild }) {
   const [cards, setCards]       = useState([])
   const [summary, setSummary]   = useState({ distinct: 0, total_cards: 0, path: '', exists: false, total_value: 0, priced: 0, prices_updated: null })
   const [matched, setMatched]   = useState(0)
+  const [groups, setGroups]     = useState([])   // server group totals over the whole filtered set
   const [showingAll, setShowingAll] = useState(false)
   const [q, setQ]               = useState('')
   const [loading, setLoading]   = useState(true)
@@ -90,7 +93,15 @@ export default function StepCollection({ onBack, onBuild }) {
 
   useEffect(() => { saveViewSettings(getStorage(), settings) }, [settings])
   const changeView = patch => setSettings(s => ({ ...s, ...patch }))
-  const { sort, direction, then, thenDirection, groupBy } = settings
+  const { sort, direction, then, thenDirection } = settings
+  // Stacks needs a grouping even when none is picked; every other mode groups as chosen.
+  const groupBy = effectiveGroupBy(settings)
+  const collapsedKeys = settings.collapsed[groupBy] || []
+  const toggleGroup = key => setSettings(s => {
+    const cur = s.collapsed[groupBy] || []
+    const next = cur.includes(key) ? cur.filter(k => k !== key) : [...cur, key]
+    return { ...s, collapsed: { ...s.collapsed, [groupBy]: next } }
+  })
 
   // "/" jumps to search from anywhere on the page — the fastest way into a 1000-card list.
   // Ignored while typing in a field, so it never eats a literal slash.
@@ -138,6 +149,7 @@ export default function StepCollection({ onBack, onBuild }) {
       .then(d => {
         setCards(d.cards || [])
         setMatched(d.matched || 0)
+        setGroups(d.groups || [])
         setFacets(d.facets || null)
         setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
                      total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
@@ -335,6 +347,39 @@ export default function StepCollection({ onBack, onBuild }) {
       body: JSON.stringify({ row_id: row.row_id, set_code: p.set, cn: p.collector_number }),
     }), () => `${row.name} → ${p.set} ${p.collector_number}`)
   }
+
+  // One group's rows (or all rows, ungrouped) drawn by the active view.
+  const renderRows = rows => {
+    if (settings.mode === 'grid') return (
+      <CollectionGrid
+        cards={rows} onSetCount={setCount} onRemove={removeCard}
+        onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
+        onToggleSelect={toggleSelect} busy={busy} size={settings.size}
+      />
+    )
+    if (settings.mode === 'tiles') return (
+      <CollectionTiles
+        cards={rows} onSetCount={setCount} onRemove={removeCard}
+        onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
+        onToggleSelect={toggleSelect} busy={busy} size={settings.size}
+      />
+    )
+    if (settings.mode === 'compact') return (
+      <CollectionCompact
+        cards={rows} selectMode={selectMode} selected={selected}
+        onToggleSelect={toggleSelect}
+      />
+    )
+    return (
+      <CollectionList
+        cards={rows} columns={settings.columns} selectMode={selectMode} selected={selected}
+        onToggleSelect={toggleSelect} onSetCount={setCount} onRemove={removeCard}
+        onPickPrinting={openPrintings} busy={busy}
+      />
+    )
+  }
+  // A group the page cut through offers the same "Show all" as the match line above.
+  const onShowAll = showingAll ? undefined : () => load(q.trim(), true)
 
   const btn = (extra = {}) => ({
     padding: '8px 14px', borderRadius: 8, cursor: busy ? 'wait' : 'pointer',
@@ -752,29 +797,16 @@ export default function StepCollection({ onBack, onBuild }) {
         <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
           {q ? 'No matching cards.' : 'Your collection is empty — add a card above.'}
         </div>
-      ) : settings.mode === 'grid' ? (
-        <CollectionGrid
-          cards={cards} onSetCount={setCount} onRemove={removeCard}
+      ) : settings.mode === 'stacks' ? (
+        <CollectionStacks
+          cards={cards} groups={groups} size={settings.size} onSetCount={setCount} onRemove={removeCard}
           onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
-          onToggleSelect={toggleSelect} busy={busy} size={settings.size}
-        />
-      ) : settings.mode === 'tiles' ? (
-        <CollectionTiles
-          cards={cards} onSetCount={setCount} onRemove={removeCard}
-          onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
-          onToggleSelect={toggleSelect} busy={busy} size={settings.size}
-        />
-      ) : settings.mode === 'compact' ? (
-        <CollectionCompact
-          cards={cards} selectMode={selectMode} selected={selected}
-          onToggleSelect={toggleSelect}
+          onToggleSelect={toggleSelect} busy={busy} onShowAll={onShowAll}
         />
       ) : (
-        // stacks renders as the list until its own view lands.
-        <CollectionList
-          cards={cards} columns={settings.columns} selectMode={selectMode} selected={selected}
-          onToggleSelect={toggleSelect} onSetCount={setCount} onRemove={removeCard}
-          onPickPrinting={openPrintings} busy={busy}
+        <CollectionGroups
+          cards={cards} groups={groups} collapsed={collapsedKeys} onToggleGroup={toggleGroup}
+          onShowAll={onShowAll} render={renderRows}
         />
       )}
       {!loading && cards.length >= PAGE && (

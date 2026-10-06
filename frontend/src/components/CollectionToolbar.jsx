@@ -92,7 +92,7 @@ export default function CollectionToolbar({ settings, onChange, filtersActive, o
 
       <select value={groupBy} onChange={e => onChange({ groupBy: e.target.value })}
         title="Group by" aria-label="Group by" style={selectStyle}>
-        {GROUP_BYS.map(g => <option key={g} value={g}>{g === 'none' ? 'Group: none' : `Group: ${GROUP_LABELS[g]}`}</option>)}
+        {GROUP_BYS.map(g => <option key={g} value={g}>{g === 'none' ? (mode === 'stacks' ? 'Group: none (stacks use type)' : 'Group: none') : `Group: ${GROUP_LABELS[g]}`}</option>)}
       </select>
 
       <select value={sort} onChange={e => onChange({ sort: e.target.value })}
