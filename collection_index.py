@@ -34,6 +34,9 @@ _EMPTY_META = {
     "colors": [], "color_identity": [], "rarity": None, "set_name": None,
     "edhrec_rank": None, "game_changer": False, "is_land": False, "image": None,
 }
+# Print-level fields enrich_row adds on top (see its body): print_resolved, image_normal,
+# art_crop, back_image, released_at, artist, finishes, treatments, image_representative,
+# price, date_added.
 
 
 def _thumb(card: dict) -> str | None:
@@ -173,26 +176,118 @@ def load_card_index() -> dict[str, dict]:
     return index
 
 
-def enrich_row(row: dict, index: dict) -> dict:
-    """A NEW row carrying the card's metadata alongside the collection's own fields."""
+def print_price(print_: dict, finish: str) -> float | None:
+    """The price of `finish` on this printing, or None. D8: a finish with no price is
+    None and NEVER borrows another finish's price — a foil valued at the nonfoil price
+    is a confident wrong number."""
+    key = {"foil": "usd_foil", "etched": "usd_etched"}.get(finish or "nonfoil", "usd")
+    val = ((print_ or {}).get("prices") or {}).get(key)
+    return float(val) if isinstance(val, (int, float)) else None
+
+
+def treatments_of(print_: dict, finish: str) -> list[str]:
+    """The visual treatments a printing carries, derived exactly from Scryfall's fields."""
+    effects = print_.get("frame_effects") or []
+    out = []
+    if print_.get("border_color") == "borderless":
+        out.append("borderless")
+    if "showcase" in effects:
+        out.append("showcase")
+    if "extendedart" in effects:
+        out.append("extended")
+    if print_.get("full_art"):
+        out.append("full_art")
+    if print_.get("frame") in ("1993", "1997"):
+        out.append("retro")
+    if print_.get("promo"):
+        out.append("promo")
+    if finish == "etched":
+        out.append("etched")
+    return out
+
+
+def _default_resolve_print(row: dict) -> dict | None:
+    import scryfall_prints
+    return scryfall_prints.resolve(row.get("name", ""), row.get("set", ""), row.get("cn", ""),
+                                   row.get("scryfall_id", ""))
+
+
+def enrich_row(row: dict, index: dict, resolve_print=None) -> dict:
+    """A NEW row carrying the card's metadata alongside the collection's own fields.
+
+    `resolve_print(row) -> print | None` finds the exact printing the row names; it
+    defaults to the offline prints store and is injected in tests. A store that is missing,
+    disabled or raising degrades to the oracle-level view, with the art marked
+    representative."""
     meta = index.get(index_key(row.get("name", "")))
     src = meta or _EMPTY_META
-    out = {**{k: src[k] for k in _EMPTY_META}, **row, "resolved": meta is not None}
+    out = {**{k: src[k] for k in _EMPTY_META if k in src}, **row, "resolved": meta is not None}
     # The row's `set` is the ONLY authority on which printing the user owns, and it stays
     # empty when the collection doesn't know. Falling back to the card store's set here
     # would stamp every unknown row with whichever printing happened to be cached —
     # inventing a printing the user may not own, and hiding the rows that genuinely need
-    # "Fill printings" behind a confident-looking set code.
+    # "Fill printings" behind a confident-looking set code. Only a RESOLVED print (by
+    # Scryfall id, set + number, or the one printing a set holds) may fill a blank set/cn.
     out["set"] = row.get("set") or ""
     # So a set NAME is a label for the row's own printing or it is nothing.
     out["set_name"] = src.get("set_name") if (meta and src.get("set") == out["set"]) else None
+
+    try:
+        pr = (resolve_print or _default_resolve_print)(row)
+    except Exception:
+        pr = None
+    finish = row.get("finish") or "nonfoil"
+    out["print_resolved"] = pr is not None
+    oracle_image = out.get("image")
+    out.update(image_normal=None, art_crop=None, back_image=None, released_at=None, artist=None,
+               finishes=[], treatments=[], image_representative=True)
+    if pr:
+        if not out["set"]:
+            out["set"] = pr.get("set") or ""
+        if not out.get("cn"):
+            out["cn"] = pr.get("cn") or ""
+        out["set_name"] = pr.get("set_name") if pr.get("set") == out["set"] else None
+        out["rarity"] = pr.get("rarity") or out.get("rarity")
+        out["released_at"] = pr.get("released_at")
+        out["artist"] = pr.get("artist")
+        out["finishes"] = list(pr.get("finishes") or [])
+        out["treatments"] = treatments_of(pr, finish)
+        imgs = pr.get("images")
+        if imgs:
+            out["image"] = imgs.get("small") or imgs.get("normal")
+            out["image_normal"] = imgs.get("normal")
+            out["art_crop"] = imgs.get("art_crop")
+            out["image_representative"] = False
+        back = pr.get("back_images")
+        if back:
+            out["back_image"] = back.get("normal") or back.get("small")
+        out["price"] = print_price(pr, finish)      # D8: no fallback to another finish
+    else:
+        out["image"] = oracle_image
+        # unresolved rows only: the finish-blind prices.json value the caller attached
+        out["price"] = row.get("price")
+    extra = row.get("_extra") or {}
+    out["date_added"] = extra.get("Date Added") or None
     return out
 
 
-def enrich_rows(rows: list[dict], index: dict | None = None) -> list[dict]:
-    """Enrich every row. `index=None` loads (and caches) the merged store."""
+def enrich_rows(rows: list[dict], index: dict | None = None, resolve_print=None) -> list[dict]:
+    """Enrich every row. `index=None` loads (and caches) the merged store.
+
+    A print is resolved once per distinct (scryfall_id, set, cn, name) per call: a
+    collection holds many copies of the same printing in different finishes."""
     idx = load_card_index() if index is None else index
-    return [enrich_row(r, idx) for r in rows]
+    fn = resolve_print or _default_resolve_print
+    memo: dict[tuple, dict | None] = {}
+
+    def cached(row: dict):
+        key = (row.get("scryfall_id") or "", (row.get("set") or "").upper(),
+               str(row.get("cn") or ""), index_key(row.get("name", "")))
+        if key not in memo:
+            memo[key] = fn(row)
+        return memo[key]
+
+    return [enrich_row(r, idx, resolve_print=cached) for r in rows]
 
 
 def color_bucket(colors: list[str]) -> str:

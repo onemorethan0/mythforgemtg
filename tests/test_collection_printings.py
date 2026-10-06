@@ -159,3 +159,148 @@ def test_load_keeps_blank_and_conditioned_rows_apart_in_either_order(order):
     body = "".join(f"1,Sol Ring,C21,263,{c}\n" for c in order)
     rows = collection._parse_rows("Count,Name,Edition,Collector Number,Condition\n" + body)
     assert sorted(r["condition"] for r in rows) == ["", "NM"]
+
+
+# ---- Task 4: printing-faithful enrichment and finish-aware value -------------------------
+import collection_index as ci
+
+
+def _print(**kw):
+    base = {"id": "p1", "oracle_id": "o1", "name": "Sol Ring", "set": "C21", "set_name": "Commander 2021",
+            "cn": "263", "rarity": "uncommon", "released_at": "2021-04-23", "lang": "en",
+            "finishes": ["nonfoil", "foil"], "frame": "2015", "frame_effects": [], "full_art": False,
+            "promo": False, "promo_types": [], "border_color": "black", "artist": "Mike Bierek",
+            "layout": "normal", "prices": {"usd": 1.0, "usd_foil": None, "usd_etched": None},
+            "images": {"small": "s", "normal": "n", "art_crop": "a"}, "back_images": None}
+    base.update(kw)
+    return base
+
+
+def _row(**kw):
+    base = {"name": "Sol Ring", "count": 1, "set": "C21", "cn": "263", "finish": "nonfoil",
+            "lang": "en", "condition": "", "scryfall_id": "", "_extra": {}}
+    base.update(kw)
+    return base
+
+
+_INDEX = {"sol ring": {"name": "Sol Ring", "mana_cost": "{1}", "cmc": 1, "type_line": "Artifact",
+                       "type": "Artifact", "colors": [], "color_identity": [], "rarity": "uncommon",
+                       "set": "SOC", "set_name": "Commander", "edhrec_rank": 1, "game_changer": False,
+                       "is_land": False, "image": "oracle-small"}}
+
+
+def test_enrich_uses_owned_printing_art():
+    prints = {"C21": _print(images={"small": "c21-s", "normal": "c21-n", "art_crop": "c21-a"}),
+              "LTC": _print(set="LTC", cn="273", images={"small": "ltc-s", "normal": "ltc-n", "art_crop": "ltc-a"})}
+    res = lambda r: prints.get(r["set"])
+    a = ci.enrich_row(_row(), _INDEX, resolve_print=res)
+    b = ci.enrich_row(_row(set="LTC", cn="273"), _INDEX, resolve_print=res)
+    assert (a["image"], b["image"]) == ("c21-s", "ltc-s")
+    assert a["image_normal"] == "c21-n" and a["art_crop"] == "c21-a"
+    assert a["print_resolved"] is True and a["image_representative"] is False
+
+
+def test_unresolved_row_keeps_unknown_set_and_flags_representative():
+    r = ci.enrich_row(_row(set="", cn=""), _INDEX, resolve_print=lambda r: None)
+    assert r["set"] == "" and r["print_resolved"] is False
+    assert r["image_representative"] is True and r["image"] == "oracle-small"
+    assert r["treatments"] == [] and r["price"] is None
+
+
+def test_resolver_raising_degrades_to_unresolved():
+    def boom(r):
+        raise RuntimeError("store exploded")
+    r = ci.enrich_row(_row(), _INDEX, resolve_print=boom)
+    assert r["print_resolved"] is False and r["image_representative"] is True
+
+
+def test_default_resolver_with_store_off_degrades_silently():
+    r = ci.enrich_row(_row(), _INDEX)       # conftest sets MYTHFORGE_SCRYFALL_PRINTS=off
+    assert r["print_resolved"] is False and r["image_representative"] is True
+
+
+def test_foil_price_never_falls_back_to_nonfoil():
+    p = _print(prices={"usd": 1.0, "usd_foil": None, "usd_etched": None})
+    r = ci.enrich_row(_row(finish="foil"), _INDEX, resolve_print=lambda r: p)
+    assert r["price"] is None
+    # even when prices.json knows a number: a resolved print's finish price is final
+    r = ci.enrich_row({**_row(finish="foil"), "price": 0.5}, _INDEX, resolve_print=lambda r: p)
+    assert r["price"] is None
+
+
+def test_nonfoil_etched_and_foil_prices():
+    p = _print(prices={"usd": 1.0, "usd_foil": 2.5, "usd_etched": 4.0})
+    price = lambda finish: ci.enrich_row(_row(finish=finish), _INDEX, resolve_print=lambda r: p)["price"]
+    assert (price("nonfoil"), price("foil"), price("etched")) == (1.0, 2.5, 4.0)
+    assert ci.print_price(p, "etched") == 4.0
+    assert ci.print_price(_print(prices={"usd": None, "usd_foil": 2.5, "usd_etched": None}), "nonfoil") is None
+
+
+def test_unresolved_row_uses_prices_json_value():
+    r = ci.enrich_row({**_row(), "price": 0.75}, _INDEX, resolve_print=lambda r: None)
+    assert r["price"] == 0.75
+
+
+def test_etched_price_is_not_the_foil_price():
+    p = _print(prices={"usd": 1.0, "usd_foil": 2.5, "usd_etched": None})
+    assert ci.enrich_row(_row(finish="etched"), _INDEX, resolve_print=lambda r: p)["price"] is None
+
+
+def test_treatments():
+    p = _print(border_color="borderless", frame_effects=["showcase", "extendedart"])
+    r = ci.enrich_row(_row(), _INDEX, resolve_print=lambda r: p)
+    assert set(r["treatments"]) == {"borderless", "showcase", "extended"}
+    p = _print(full_art=True, promo=True, frame="1993")
+    r = ci.enrich_row(_row(finish="etched"), _INDEX, resolve_print=lambda r: p)
+    assert set(r["treatments"]) == {"full_art", "promo", "retro", "etched"}
+    assert ci.enrich_row(_row(), _INDEX, resolve_print=lambda r: _print())["treatments"] == []
+
+
+def test_scryfall_id_fills_blank_set_and_cn():
+    p = _print(set="LTC", cn="273", set_name="Tales of Middle-earth Commander")
+    r = ci.enrich_row(_row(set="", cn="", scryfall_id="p1"), _INDEX, resolve_print=lambda r: p)
+    assert (r["set"], r["cn"], r["set_name"]) == ("LTC", "273", "Tales of Middle-earth Commander")
+
+
+def test_resolved_fields_come_from_the_print():
+    p = _print(rarity="mythic", released_at="2021-04-23", artist="X", finishes=["foil"],
+               back_images={"small": "bs", "normal": "bn", "art_crop": "ba"})
+    r = ci.enrich_row(_row(), _INDEX, resolve_print=lambda r: p)
+    assert (r["rarity"], r["released_at"], r["artist"], r["finishes"], r["back_image"]) == \
+           ("mythic", "2021-04-23", "X", ["foil"], "bn")
+
+
+def test_date_added_comes_from_extra():
+    r = ci.enrich_row(_row(_extra={"Date Added": "2026-07-16"}), _INDEX, resolve_print=lambda r: None)
+    assert r["date_added"] == "2026-07-16"
+    assert ci.enrich_row(_row(), _INDEX, resolve_print=lambda r: None)["date_added"] is None
+
+
+def test_enrich_rows_resolves_once_per_distinct_printing():
+    calls = []
+    def res(r):
+        calls.append(1)
+        return _print()
+    rows = [_row(), _row(finish="foil"), _row(), _row(set="LTC")]
+    out = ci.enrich_rows(rows, _INDEX, resolve_print=res)
+    assert len(out) == 4 and len(calls) == 2    # (C21,263) and (LTC,263); finish is not part of the key
+
+
+def test_row_without_oracle_meta_still_enriches():
+    r = ci.enrich_row(_row(name="Zzz Unknown"), {}, resolve_print=lambda r: _print(name="Zzz Unknown"))
+    assert r["print_resolved"] is True and r["resolved"] is False
+
+
+def test_collection_summary_total_value_uses_the_row_price(monkeypatch):
+    import server
+    p = _print(prices={"usd": 1.0, "usd_foil": None, "usd_etched": None})
+    rows = [_row(count=2), _row(finish="foil", count=3)]
+    enriched = ci.enrich_rows(rows, _INDEX, resolve_print=lambda r: p)
+    s = server._collection_summary(rows, enriched=enriched)
+    assert s["total_value"] == 2.0 and s["priced"] == 1      # the foil row is unpriced, not 3.0
+
+
+def test_collection_summary_without_enriched_still_works_on_raw_rows():
+    import server
+    s = server._collection_summary([_row()], prices={})
+    assert s["distinct"] == 1 and s["total_value"] == 0.0

@@ -4719,10 +4719,21 @@ def _price_of(row: dict, prices: dict):
     return prices.get(_price_key(row.get("name", ""), row.get("set", ""), row.get("cn", "")))
 
 
-def _collection_summary(rows: list[dict], prices: dict | None = None) -> dict:
+def _enrich_with_prices(rows: list[dict], pmap: dict) -> list[dict]:
+    """Enrich raw rows. `pmap` (cache/prices.json) is only the fallback price for a row whose
+    printing did not resolve; a resolved row is priced from its own print and finish."""
+    return enrich_rows([{**r, "price": _price_of(r, pmap)} for r in rows])
+
+
+def _collection_summary(rows: list[dict], prices: dict | None = None,
+                        enriched: list[dict] | None = None) -> dict:
+    """Totals for the whole collection. `enriched` is the per-row view the browser shows;
+    when omitted the raw `rows` are enriched here, so `total_value` always sums the same
+    per-row price the browser displays (a foil is never valued at the nonfoil price)."""
     cache = _load_prices() if prices is None else {"prices": prices, "updated": None}
-    pmap = cache.get("prices") or {}
-    valued = [(int(r.get("count", 0)), _price_of(r, pmap)) for r in rows]
+    if enriched is None:
+        enriched = _enrich_with_prices(rows, cache.get("prices") or {})
+    valued = [(int(r.get("count", 0)), r.get("price")) for r in enriched]
     total_value = sum(cnt * val for cnt, val in valued if val)
     return {
         "distinct":       len(rows),
@@ -4750,7 +4761,11 @@ def _enriched_collection() -> tuple[list[dict], list[dict]]:
     """
     rows = load_collection()
     pmap = (_load_prices().get("prices") or {})
-    return rows, enrich_rows([{**r, "price": _price_of(r, pmap)} for r in rows])
+    enriched = _enrich_with_prices(rows, pmap)
+    # row_id comes from the RAW row's identity (enrichment must not change it).
+    for raw, card in zip(rows, enriched):
+        card["row_id"] = coll_row_id(raw)
+    return rows, enriched
 
 
 @app.get("/api/collection")
@@ -4784,11 +4799,8 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
     page = ordered[max(offset, 0): max(offset, 0) + lim]
     # Facets come from the WHOLE collection, not the filtered slice, so narrowing a
     # filter can never strand the user with no way back.
-    # row_id is computed from the RAW row's identity (enrichment must not change it).
-    for raw, card in zip(rows, enriched):
-        card["row_id"] = coll_row_id(raw)
     return {"cards": page, "matched": len(matched), "facets": coll_facets(enriched),
-            **_collection_summary(rows)}
+            **_collection_summary(rows, enriched=enriched)}
 
 
 @app.get("/api/collection/stats")
