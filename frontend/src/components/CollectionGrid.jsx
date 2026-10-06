@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import CardHover from './CardHover'
 import CardFace, { SetChip } from './CardFace'
+import CollectionEditBar from './CollectionEditBar'
 import { TILE_SIZES } from '../utils/collectionView'
 
 // Binder view of the collection: one tile per owned printing, showing the real card.
@@ -35,12 +36,6 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
       Nothing to show.
     </div>
   }
-
-  const ctl = (extra = {}) => ({
-    padding: '1px 7px', borderRadius: 6, fontSize: 12, background: c.card,
-    border: `1px solid ${c.border}`, color: c.dim, fontFamily: 'inherit',
-    cursor: busy ? 'wait' : 'pointer', ...extra,
-  })
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${TILE_SIZES[size] || TILE_SIZES.m}px, 1fr))`,
@@ -90,22 +85,8 @@ export default function CollectionGrid({ cards, onSetCount, onRemove, onPickPrin
               )}
 
               {showBar && (
-                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0,
-                              background: 'rgba(0,0,0,0.86)', padding: 6, display: 'flex',
-                              gap: 4, alignItems: 'center', justifyContent: 'center' }}>
-                  <button disabled={busy} title="One fewer" style={ctl()}
-                    onClick={() => onSetCount && onSetCount(row, row.count - 1)}>−</button>
-                  <span style={{ color: c.gold, fontWeight: 700, minWidth: 18, textAlign: 'center',
-                                 fontSize: 12 }}>{row.count}</span>
-                  <button disabled={busy} title="One more" style={ctl()}
-                    onClick={() => onSetCount && onSetCount(row, row.count + 1)}>+</button>
-                  {onPickPrinting && (
-                    <button disabled={busy} title="Choose printing" style={ctl()}
-                      onClick={() => onPickPrinting(row)}>🖨</button>
-                  )}
-                  <button disabled={busy} title="Remove" style={ctl({ color: '#f87171' })}
-                    onClick={() => onRemove && onRemove(row)}>✕</button>
-                </div>
+                <CollectionEditBar row={row} busy={busy} onSetCount={onSetCount}
+                  onRemove={onRemove} onPickPrinting={onPickPrinting} />
               )}
             </div>
 

@@ -92,3 +92,31 @@ export function viewQuery(s) {
   if (s.groupBy && s.groupBy !== 'none') q.push(['group', s.groupBy])
   return q
 }
+
+const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
+               Multicolor: '#c9a227', Colorless: '#8a8a8a' }
+
+// Colour-identity dot for a row; null while the row is unresolved (no colour data yet).
+export const dotColor = row => {
+  const colors = row.colors || []
+  if (!row.resolved) return null
+  if (colors.length > 1) return MANA.Multicolor
+  return MANA[colors[0]] || MANA.Colorless
+}
+
+// One owned printing as a decklist line the importer reads back unchanged:
+//   3x Sol Ring (C21) 263 *F*
+// Foil -> " *F*", etched -> " *E*"; " (SET) CN" is omitted when the set is unknown and
+// " CN" when the collector number is blank.
+export function decklistLine(row) {
+  let line = `${row.count}x ${row.name}`
+  const set = String(row.set || '').trim()
+  if (set) {
+    line += ` (${set.toUpperCase()})`
+    const cn = String(row.cn || '').trim()
+    if (cn) line += ` ${cn}`
+  }
+  if (row.finish === 'foil') line += ' *F*'
+  else if (row.finish === 'etched') line += ' *E*'
+  return line
+}

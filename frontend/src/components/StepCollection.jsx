@@ -2,6 +2,8 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import CardHover from './CardHover'
 import CollectionStats from './CollectionStats'
 import CollectionGrid from './CollectionGrid'
+import CollectionTiles from './CollectionTiles'
+import CollectionCompact from './CollectionCompact'
 import CollectionList from './CollectionList'
 import CollectionToolbar from './CollectionToolbar'
 import { loadViewSettings, saveViewSettings, viewQuery } from '../utils/collectionView'
@@ -756,8 +758,19 @@ export default function StepCollection({ onBack, onBuild }) {
           onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
           onToggleSelect={toggleSelect} busy={busy} size={settings.size}
         />
+      ) : settings.mode === 'tiles' ? (
+        <CollectionTiles
+          cards={cards} onSetCount={setCount} onRemove={removeCard}
+          onPickPrinting={openPrintings} selectMode={selectMode} selected={selected}
+          onToggleSelect={toggleSelect} busy={busy} size={settings.size}
+        />
+      ) : settings.mode === 'compact' ? (
+        <CollectionCompact
+          cards={cards} selectMode={selectMode} selected={selected}
+          onToggleSelect={toggleSelect}
+        />
       ) : (
-        // compact / tiles / stacks render as the list until their own views land.
+        // stacks renders as the list until its own view lands.
         <CollectionList
           cards={cards} columns={settings.columns} selectMode={selectMode} selected={selected}
           onToggleSelect={toggleSelect} onSetCount={setCount} onRemove={removeCard}

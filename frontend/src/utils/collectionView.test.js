@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   DEFAULT_VIEW, VIEW_MODES, GROUP_BYS, SORT_KEYS, LIST_COLUMNS, TILE_SIZES,
-  loadViewSettings, saveViewSettings, viewQuery,
+  loadViewSettings, saveViewSettings, viewQuery, decklistLine, dotColor,
 } from './collectionView'
 
 const KEY = 'mtg_coll_view_v2'
@@ -148,5 +148,31 @@ describe('constants', () => {
     ])
     expect(TILE_SIZES).toEqual({ s: 120, m: 160, l: 220 })
     expect(LIST_COLUMNS).toHaveLength(12)
+  })
+})
+
+describe('decklistLine', () => {
+  it('writes qty, name, set, collector number and finish marker', () => {
+    expect(decklistLine({ count: 3, name: 'Sol Ring', set: 'c21', cn: '263', finish: 'foil' }))
+      .toBe('3x Sol Ring (C21) 263 *F*')
+    expect(decklistLine({ count: 1, name: 'Sol Ring', set: 'c21', cn: '263', finish: 'etched' }))
+      .toBe('1x Sol Ring (C21) 263 *E*')
+    expect(decklistLine({ count: 2, name: 'Sol Ring', set: 'c21', cn: '263', finish: 'nonfoil' }))
+      .toBe('2x Sol Ring (C21) 263')
+  })
+  it('omits the set when unknown and the number when blank', () => {
+    expect(decklistLine({ count: 4, name: 'Island', set: '', cn: '9', finish: 'nonfoil' }))
+      .toBe('4x Island')
+    expect(decklistLine({ count: 1, name: 'Island', finish: 'foil' })).toBe('1x Island *F*')
+    expect(decklistLine({ count: 1, name: 'Fire // Ice', set: 'mh2', cn: '', finish: 'nonfoil' }))
+      .toBe('1x Fire // Ice (MH2)')
+  })
+})
+
+describe('dotColor', () => {
+  it('is null for unresolved rows and Multicolor for gold ones', () => {
+    expect(dotColor({ resolved: false, colors: ['R'] })).toBeNull()
+    expect(dotColor({ resolved: true, colors: ['R', 'G'] })).toBe('#c9a227')
+    expect(dotColor({ resolved: true, colors: [] })).toBe('#8a8a8a')
   })
 })

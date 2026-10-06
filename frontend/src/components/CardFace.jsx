@@ -7,6 +7,8 @@
 // The component fills its parent (width/height 100%); the caller owns size and aspect ratio.
 // `flipped` / `onFlip` are controlled so the caller keeps flip state per tile.
 
+import { dotColor } from '../utils/collectionView'
+
 const c = {
   gold:   '#eab308',
   card:   '#1c1917',
@@ -16,19 +18,9 @@ const c = {
   faint:  '#78716c',
 }
 
-const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
-               Multicolor: '#c9a227', Colorless: '#8a8a8a' }
-
 const RARITY_COLOR = {
   common: '#a8a29e', uncommon: '#cbd5e1', rare: '#eab308', mythic: '#f97316',
   special: '#c084fc', bonus: '#c084fc',
-}
-
-const dotColor = row => {
-  const colors = row.colors || []
-  if (!row.resolved) return null
-  if (colors.length > 1) return MANA.Multicolor
-  return MANA[colors[0]] || MANA.Colorless
 }
 
 const marker = extra => ({
