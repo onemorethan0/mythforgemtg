@@ -214,10 +214,37 @@ def remove_by_id(rid: str, path: Path | None = None) -> list[dict]:
     return rows
 
 
-def _blank_row(name: str, count: int, set_code: str = "", cn: str = "") -> dict:
+def _blank_row(name: str, count: int, set_code: str = "", cn: str = "",
+               finish: str = "nonfoil", scryfall_id: str = "") -> dict:
     return {"name": name.strip(), "count": int(count),
             "set": (set_code or "").strip().upper(), "cn": (cn or "").strip(),
-            "finish": "nonfoil", "lang": "", "condition": "", "scryfall_id": ""}
+            "finish": normalize_finish(finish), "lang": "", "condition": "",
+            "scryfall_id": (scryfall_id or "").strip()}
+
+
+def set_printing_by_id(rid: str, set_code: str, cn: str, finish: str, scryfall_id: str,
+                       path: Path | None = None) -> list[dict]:
+    """Point the row `rid` at another printing/finish, keeping its count (D6).
+
+    A row whose new identity equals another existing row's merges into it (counts summed,
+    one row remains). KeyError(rid) when the row no longer exists."""
+    rows = load_collection(path)
+    src = find_by_id(rows, rid)
+    if src is None:
+        raise KeyError(rid)
+    src["set"] = (set_code or "").strip().upper()
+    src["cn"] = (cn or "").strip()
+    src["finish"] = normalize_finish(finish)
+    src["scryfall_id"] = (scryfall_id or "").strip()
+    k = row_identity(src)
+    dest = next((r for r in rows if r is not src and row_identity(r) == k), None)
+    if dest is not None:
+        dest["count"] += src["count"]
+        if not dest.get("scryfall_id") and src.get("scryfall_id"):
+            dest["scryfall_id"] = src["scryfall_id"]
+        rows = [r for r in rows if r is not src]
+    write_collection(rows, path)
+    return rows
 
 
 def _merge_row(rows: list[dict], exact: dict, loose: dict, incoming: dict) -> None:
@@ -349,18 +376,36 @@ def _find_row(rows: list[dict], name: str, set_code: str | None = None,
 
 def add_card(name: str, count: int = 1, path: Path | None = None,
              display_name: str | None = None, set_code: str | None = None,
-             cn: str | None = None) -> list[dict]:
+             cn: str | None = None, finish: str | None = None,
+             scryfall_id: str = "") -> list[dict]:
     """Add `count` copies. With `set_code` this adds/merges that specific PRINTING (a
     different set becomes its own row); without one it merges into the first printing
-    of that card. `display_name` overrides the stored spelling."""
+    of that card. `display_name` overrides the stored spelling.
+
+    `finish` (D3) makes the finish part of the match: foil and nonfoil copies are
+    different rows. None keeps the legacy finish-blind match."""
     rows = load_collection(path)
-    existing = _find_row(rows, name, set_code, cn)
+    if finish is None:
+        existing = _find_row(rows, name, set_code, cn)
+    else:
+        want = normalize_finish(finish)
+        k = owned_key(name)
+        sc = (set_code or "").strip().upper()
+        existing = next((r for r in rows
+                         if owned_key(r["name"]) == k
+                         and normalize_finish(r.get("finish", "")) == want
+                         and (not sc or ((r.get("set") or "").strip().upper() == sc
+                                         and (cn is None or (r.get("cn") or "").strip() == (cn or "").strip())))),
+                        None)
     if existing:
         existing["count"] += max(int(count), 1)
         if display_name:
             existing["name"] = display_name
+        if scryfall_id and not existing.get("scryfall_id"):
+            existing["scryfall_id"] = scryfall_id.strip()
     else:
-        rows.append(_blank_row(display_name or name, max(int(count), 1), set_code or "", cn or ""))
+        rows.append(_blank_row(display_name or name, max(int(count), 1), set_code or "", cn or "",
+                               finish or "nonfoil", scryfall_id))
     write_collection(rows, path)
     return rows
 

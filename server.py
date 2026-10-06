@@ -59,9 +59,13 @@ from collection         import (
     write_collection as coll_write, set_printing as coll_set_printing,
     bulk_apply as coll_bulk_apply, row_id as coll_row_id,
     set_count_by_id as coll_set_count_by_id, remove_by_id as coll_remove_by_id,
+    set_printing_by_id as coll_set_printing_by_id, find_by_id as coll_find_by_id,
+    normalize_finish as coll_normalize_finish, _merge_row as _coll_merge_row,
 )
+import scryfall_prints
 import collection_repair as coll_repair
-from collection_index    import enrich_rows, facets as coll_facets, filter_rows, sort_rows
+from collection_index    import (enrich_rows, facets as coll_facets, filter_rows, sort_rows,
+                                 print_price as coll_print_price, treatments_of as coll_treatments_of)
 from collection_stats    import collection_stats
 from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
@@ -4903,23 +4907,70 @@ def collection_bulk(req: CollectionBulkRequest):
 
 
 class CollectionPrintingRequest(BaseModel):
-    name:     str
-    set_code: str
+    name:     str = ""
+    set_code: str = ""
     cn:       str = ""
     from_set: Optional[str] = None    # which row to move; None = the first printing
     from_cn:  Optional[str] = None
+    row_id:      Optional[str] = None  # exact row (D6); 409 when it no longer exists
+    finish:      Optional[str] = None  # nonfoil | foil | etched; None keeps the row's finish
+    scryfall_id: Optional[str] = None  # the chosen print; resolves set + cn from the store
+
+
+def _print_for(name: str, set_code: str = "", cn: str = "", scryfall_id: str = "") -> dict | None:
+    """The store's print for an id (authoritative, D2) or set + cn; None when the store
+    is disabled/missing or has no such print."""
+    if (scryfall_id or "").strip():
+        hit = scryfall_prints.by_id(scryfall_id.strip())
+        if hit:
+            return hit
+    return scryfall_prints.resolve(name, set_code, cn)
+
+
+def _require_finish(print_: dict | None, finish: str) -> None:
+    """400 when the store knows the print and it does not come in `finish`. A store that
+    cannot answer cannot veto (the live fallback carries no finish data)."""
+    finishes = (print_ or {}).get("finishes") or []
+    if print_ and finishes and finish not in finishes:
+        raise HTTPException(400, f"That printing is not available in {finish}.")
 
 
 @app.patch("/api/collection/printing")
 def collection_set_printing(req: CollectionPrintingRequest):
-    """Point a row at a different printing of the same card, keeping its count.
+    """Point a row at a different printing (and finish) of the same card, keeping its count.
 
-    This is how the 794 rows whose printing is unknown get a real one without the user
+    This is how the rows whose printing is unknown get a real one without the user
     deleting and re-adding the card (which would lose the count). Merges into the target
-    printing when the collection already holds it.
-    """
+    printing when the collection already holds it. With `row_id` the row is addressed
+    exactly (409 when stale) and `finish` must be one the chosen print offers (400)."""
+    rid = (req.row_id or "").strip()
+    if rid:
+        src = coll_find_by_id(load_collection(), rid)
+        if src is None:
+            raise HTTPException(409, _STALE_ROW)
+        sid = (req.scryfall_id or "").strip()
+        set_code = (req.set_code or "").strip().upper()
+        cn = (req.cn or "").strip()
+        name = (req.name or "").strip() or src["name"]
+        if req.finish is not None:
+            finish = coll_normalize_finish(req.finish)
+        else:
+            finish = coll_normalize_finish(src.get("finish", ""))
+        print_ = _print_for(name, set_code, cn, sid)
+        if print_:
+            set_code, cn, sid = print_["set"], print_["cn"], print_.get("id") or sid
+        if not set_code:
+            raise HTTPException(400, "A set code or scryfall_id is required.")
+        _require_finish(print_, finish)
+        try:
+            rows = coll_set_printing_by_id(rid, set_code, cn, finish, sid)
+        except KeyError:
+            raise HTTPException(409, _STALE_ROW)
+        return {"cards": rows[:200], **_collection_summary(rows)}
     if not (req.name or "").strip():
         raise HTTPException(400, "Card name is required.")
+    if not (req.set_code or "").strip():
+        raise HTTPException(400, "A set code is required.")
     rows = coll_set_printing(req.name.strip(), req.set_code, req.cn,
                              from_set=(req.from_set or None), from_cn=(req.from_cn or None))
     return {"cards": rows[:200], **_collection_summary(rows)}
@@ -4949,6 +5000,29 @@ class CollectionAddRequest(BaseModel):
     validate: bool = True   # resolve the canonical Scryfall name before storing
     set_code: Optional[str] = None   # which printing; None -> default to the cheapest
     cn:       Optional[str] = None   # collector number (disambiguates within a set)
+    finish:   str = "nonfoil"        # nonfoil | foil | etched (part of the row identity, D3)
+    scryfall_id: Optional[str] = None  # the exact print; set + cn come from the store when it has it
+
+
+def _cheapest_print(name: str, finish: str = "nonfoil") -> tuple[str, str, str] | None:
+    """(set, cn, scryfall_id) of the cheapest printing of `name` that offers `finish` and
+    prices it (D8: another finish's price is never borrowed). Offline first; the live API
+    only when the prints store knows nothing about the card. None when nothing is found."""
+    prints = scryfall_prints.prints_of(name)
+    if prints:
+        best = None
+        for p in prints:
+            if finish not in (p.get("finishes") or []):
+                continue
+            price = coll_print_price(p, finish)
+            if price is not None and (best is None or price < best[0]):
+                best = (price, p)
+        return (best[1]["set"], best[1]["cn"], best[1].get("id") or "") if best else None
+    try:
+        cheap = _scryfall.cheapest_printing(name)
+    except Exception:
+        cheap = None
+    return (cheap["set"], cheap["collector_number"], "") if cheap else None
 
 
 @app.post("/api/collection/add")
@@ -4978,32 +5052,96 @@ def collection_add(req: CollectionAddRequest):
             raise HTTPException(404, f"No card found matching '{name}'. Add it with validate=false to store as-is.")
         display = card["name"]
 
-    # Printing: use what the caller gave us, else default to the CHEAPEST printing so a
-    # collection entry always names a concrete, sensibly-priced version of the card.
+    finish = coll_normalize_finish(req.finish)
+    sid = (req.scryfall_id or "").strip()
     set_code, cn = (req.set_code or "").strip().upper() or None, (req.cn or "").strip() or None
+    # An id names the print exactly (D2): the store fills set + cn. With no store, what the
+    # caller gave is stored as provided.
+    print_ = _print_for(display, set_code or "", cn or "", sid) if (sid or set_code) else None
+    if print_ and sid:
+        set_code, cn, sid = print_["set"], print_["cn"], print_.get("id") or sid
+    _require_finish(print_, finish)
+    # Printing: use what the caller gave us, else default to the CHEAPEST printing (of this
+    # finish) so a collection entry always names a concrete, sensibly-priced version.
     if not set_code:
-        try:
-            cheap = _scryfall.cheapest_printing(display)
-        except Exception:
-            cheap = None
+        cheap = _cheapest_print(display, finish)
         if cheap:
-            set_code, cn = cheap["set"], cheap["collector_number"]
+            set_code, cn, sid = cheap[0], cheap[1], (cheap[2] or sid)
     rows = coll_add_card(name, max(int(req.count), 1), display_name=display,
-                         set_code=set_code, cn=cn)
-    return {"cards": rows[:200], "resolved_name": display,
-            "set_code": set_code, "cn": cn, **_collection_summary(rows)}
+                         set_code=set_code, cn=cn, finish=finish, scryfall_id=sid)
+    return {"cards": rows[:200], "resolved_name": display, "set_code": set_code, "cn": cn,
+            "finish": finish, "scryfall_id": sid, **_collection_summary(rows)}
+
+
+def _owned_on_print(print_: dict, rows: list[dict], n_in_set: int) -> list[dict]:
+    """The collection rows that ARE this printing: by scryfall id when the row has one (the
+    id wins over a contradicting set, D2), else set + cn; a row with a set but no cn counts
+    only when that set holds exactly one printing of the card."""
+    out = []
+    for r in rows:
+        rsid = (r.get("scryfall_id") or "").strip().lower()
+        if rsid:
+            hit = rsid == str(print_.get("id") or "").lower()
+        else:
+            rset = (r.get("set") or "").strip().upper()
+            rcn = (r.get("cn") or "").strip().casefold()
+            if not rset or rset != print_.get("set"):
+                hit = False
+            elif rcn:
+                hit = rcn == str(print_.get("cn") or "").casefold()
+            else:
+                hit = n_in_set == 1
+        if hit:
+            out.append({"row_id": coll_row_id(r), "finish": coll_normalize_finish(r.get("finish", "")),
+                        "count": int(r.get("count", 0))})
+    return out
 
 
 @app.get("/api/collection/printings")
 def collection_printings(name: str):
-    """Every printing of a card (cheapest first) so the UI can offer a set picker."""
-    if not (name or "").strip():
+    """Every printing of a card, newest first, for the printing picker. Offline from the
+    prints store; the live Scryfall search only when the store has nothing. Each item
+    carries `owned`: the collection rows sitting on that exact printing."""
+    nm = (name or "").strip()
+    if not nm:
         raise HTTPException(400, "name required")
+    key = owned_key(nm)
+    rows = [r for r in load_collection() if owned_key(r["name"]) == key]
+    prints = scryfall_prints.prints_of(nm)
+    if prints:
+        per_set: dict[str, int] = {}
+        for p in prints:
+            per_set[p["set"]] = per_set.get(p["set"], 0) + 1
+        items = []
+        for p in prints:
+            imgs = p.get("images") or {}
+            items.append({
+                "id": p.get("id"), "set": p["set"], "set_name": p.get("set_name"), "cn": p["cn"],
+                "released_at": p.get("released_at"), "rarity": p.get("rarity"),
+                "finishes": list(p.get("finishes") or []),
+                "prices": {f: coll_print_price(p, f) for f in ("nonfoil", "foil", "etched")},
+                "treatments": coll_treatments_of(p, "nonfoil"),
+                "image": imgs.get("normal") or imgs.get("small") or "",
+                "art_crop": imgs.get("art_crop") or "",
+                "owned": _owned_on_print(p, rows, per_set[p["set"]]),
+            })
+        return {"printings": items}
     try:
-        return {"printings": _scryfall.get_printings(name.strip())[:60]}
+        live = _scryfall.get_printings(nm)
     except Exception as e:
-        logger.error("collection printings lookup failed for %r", name, exc_info=e)
+        logger.error("collection printings lookup failed for %r", nm, exc_info=e)
         raise HTTPException(503, "Scryfall lookup failed.")
+    items = []
+    for p in live[:60]:
+        shim = {"id": None, "set": p.get("set", ""), "cn": p.get("collector_number", "")}
+        items.append({
+            "id": None, "set": shim["set"], "set_name": p.get("set_name") or None, "cn": shim["cn"],
+            "released_at": None, "rarity": None, "finishes": [],
+            "prices": {"nonfoil": p.get("usd"), "foil": None, "etched": None},
+            "treatments": [], "image": p.get("image") or "", "art_crop": "",
+            "owned": _owned_on_print(shim, rows, 2),    # 2: a set-only row cannot be matched blind
+        })
+    return {"printings": items}
 
 
 @app.get("/api/card-image")
@@ -5118,29 +5256,60 @@ def collection_set_count(req: CollectionCountRequest):
 
 @app.post("/api/collection/backfill-printings")
 def collection_backfill_printings(limit: int = 1000):
-    """Fill in the cheapest printing for rows that have no set (e.g. a Count,Name-only
-    import). One Scryfall lookup per distinct name, so it's rate-limited and slow on a
-    big collection — an explicit action, never automatic."""
+    """Fill in printings without ever replacing one. Offline from the prints store.
+
+    - A row with a scryfall_id or a set already NAMES its printing: it is only normalized
+      (a blank set / collector number filled from that print), never replaced.
+    - A row with no printing data at all gets the cheapest printing that offers its finish
+      (D8: priced in that finish). The live API is used only for a card the store does not
+      know. One write for the whole pass; rows that become identical merge (counts sum)."""
     rows = load_collection()
-    missing = [r for r in rows if not (r.get("set") or "").strip()]
-    filled, failed = 0, 0
-    seen: dict = {}
-    for r in missing[: max(1, int(limit))]:
-        nm = r["name"]
-        if nm not in seen:
-            try:
-                seen[nm] = _scryfall.cheapest_printing(nm)
-            except Exception:
-                seen[nm] = None
-        cheap = seen[nm]
+    filled = failed = normalized = 0
+    cheapest: dict = {}
+    seen = 0
+    for r in rows:
+        sid = (r.get("scryfall_id") or "").strip()
+        rset = (r.get("set") or "").strip()
+        rcn = (r.get("cn") or "").strip()
+        if sid or rset:
+            if sid and rset and rcn:
+                continue
+            p = _print_for(r["name"], rset, rcn, sid)
+            if not p:
+                continue
+            changed = False
+            if not rset:
+                r["set"], changed = p["set"], True
+            if not rcn and r["set"].strip().upper() == p["set"]:
+                r["cn"], changed = p["cn"], True
+            if changed:
+                normalized += 1
+            continue
+        if seen >= max(1, int(limit)):
+            continue
+        seen += 1
+        fin = coll_normalize_finish(r.get("finish", ""))
+        ck = (owned_key(r["name"]), fin)
+        if ck not in cheapest:
+            cheapest[ck] = _cheapest_print(r["name"], fin)
+        cheap = cheapest[ck]
         if cheap:
-            r["set"], r["cn"] = cheap["set"], cheap["collector_number"]
+            r["set"], r["cn"] = cheap[0], cheap[1]
+            if cheap[2]:
+                r["scryfall_id"] = cheap[2]
             filled += 1
         else:
             failed += 1
-    if filled:
+    if filled or normalized:
+        merged: list[dict] = []
+        exact: dict = {}
+        for r in rows:                      # a changed row may now equal another (D4)
+            _coll_merge_row(merged, exact, None, r)
+        rows = merged
         coll_write(rows)
-    return {"filled": filled, "failed": failed, "remaining": len(missing) - filled,
+    remaining = sum(1 for r in rows
+                    if not (r.get("set") or "").strip() and not (r.get("scryfall_id") or "").strip())
+    return {"filled": filled, "failed": failed, "normalized": normalized, "remaining": remaining,
             **_collection_summary(rows)}
 
 
