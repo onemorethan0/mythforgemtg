@@ -139,6 +139,14 @@ export default function CollectionList({ cards, columns, selectMode, selected, o
             }}>⚡ GC</span>
           )}
           {show.map(col => renderColumn(col, row))}
+          {/* Unticking the Set column removes the chip that opens the picker; keep a
+              small action so the printing stays reachable from the list. */}
+          {!has('set') && onPickPrinting && (
+            <button onClick={() => onPickPrinting(row)} disabled={busy}
+              title={row.set ? `${row.set}${row.cn ? ` #${row.cn}` : ''} — change printing` : 'Printing unknown — choose one'}
+              aria-label={`Change printing of ${row.name}`}
+              style={btn(busy, { padding: '2px 8px', fontSize: 12 })}>🖨</button>
+          )}
           <button onClick={() => onSetCount(row, row.count - 1)} disabled={busy} style={btn(busy, { padding: '2px 10px', fontSize: 16 })}>−</button>
           <span style={{ minWidth: 26, textAlign: 'center', fontSize: 13.5, color: c.gold, fontWeight: 700 }}>{row.count}</span>
           <button onClick={() => onSetCount(row, row.count + 1)} disabled={busy} style={btn(busy, { padding: '2px 10px', fontSize: 16 })}>+</button>

@@ -8,6 +8,7 @@ import CollectionList from './CollectionList'
 import CollectionGroups from './CollectionGroups'
 import CollectionStacks from './CollectionStacks'
 import CollectionToolbar from './CollectionToolbar'
+import PrintingPicker from './PrintingPicker'
 import { loadViewSettings, saveViewSettings, viewQuery, effectiveGroupBy } from '../utils/collectionView'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
@@ -83,9 +84,7 @@ export default function StepCollection({ onBack, onBuild }) {
   const [settings, setSettings]     = useState(() => loadViewSettings(getStorage()))
   const [selectMode, setSelectMode] = useState(false)
   const [selected, setSelected]     = useState(() => new Set())
-  const [printingFor, setPrintingFor] = useState(null) // row whose printing is being chosen
-  const [printings, setPrintings]   = useState([])
-  const [pLoading, setPLoading]     = useState(false)
+  const [picker, setPicker]         = useState(null)   // {name, row|null, mode:'change'|'add'}
   const debounce = useRef(null)
   const sugDebounce = useRef(null)
   const searchRef = useRef(null)
@@ -328,24 +327,24 @@ export default function StepCollection({ onBack, onBuild }) {
   }
 
   // ── Printing picker ─────────────────────────────────────────────────────────
-  // The endpoint already existed and nothing ever called it; 794 rows don't record which
-  // printing is owned, and re-adding the card to fix that would lose the count.
-  const openPrintings = row => {
-    setPrintingFor(row); setPrintings([]); setPLoading(true)
-    fetch(`/api/collection/printings?name=${encodeURIComponent(row.name)}`)
-      .then(r => r.json())
-      .then(d => setPrintings(d.printings || []))
-      .catch(() => flash('err', 'Could not load printings.'))
-      .finally(() => setPLoading(false))
-  }
+  const openPrintings = row => setPicker({ name: row.name, row, mode: 'change' })
+  const openAddPrinting = name => setPicker({ name, row: null, mode: 'add' })
 
-  const choosePrinting = p => {
-    const row = printingFor
-    setPrintingFor(null)
-    apply(fetch('/api/collection/printing', {
-      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ row_id: row.row_id, set_code: p.set, cn: p.collector_number }),
-    }), () => `${row.name} → ${p.set} ${p.collector_number}`)
+  // The picker has already written (or been refused); this only closes it and refreshes.
+  // onDone(null) = the file changed under the picker (409): nothing was written, reload.
+  const onPickerDone = d => {
+    const was = picker
+    setPicker(null)
+    if (d) {
+      setSummary({ distinct: d.distinct, total_cards: d.total_cards, path: d.path, exists: d.exists,
+                   total_value: d.total_value, priced: d.priced, prices_updated: d.prices_updated })
+      flash('ok', was && was.mode === 'add' ? `Added a printing of ${was.name}` : `Updated the printing of ${was ? was.name : 'the card'}`)
+    } else {
+      flash('err', 'Collection changed — reloading')
+    }
+    load(q.trim(), showingAll)
+    if (showStats) loadStats()
+    setTimeout(loadHealth, 400)
   }
 
   // One group's rows (or all rows, ungrouped) drawn by the active view.
@@ -807,6 +806,7 @@ export default function StepCollection({ onBack, onBuild }) {
         <CollectionGroups
           cards={cards} groups={groups} collapsed={collapsedKeys} onToggleGroup={toggleGroup}
           onShowAll={onShowAll} render={renderRows}
+          onAddPrinting={groupBy === 'card' && settings.mode === 'list' ? openAddPrinting : undefined}
         />
       )}
       {!loading && cards.length >= PAGE && (
@@ -815,63 +815,9 @@ export default function StepCollection({ onBack, onBuild }) {
         </div>
       )}
 
-      {/* Printing picker */}
-      {printingFor && (
-        <div onClick={() => setPrintingFor(null)}
-          style={{ position: 'fixed', inset: 0, zIndex: 50, background: 'rgba(0,0,0,0.72)',
-                   display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div onClick={e => e.stopPropagation()}
-            style={{ background: c.panel, border: `1px solid ${c.border}`, borderRadius: 12,
-                     padding: 16, maxWidth: 720, width: '100%', maxHeight: '80vh',
-                     overflowY: 'auto' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
-              <h2 style={{ fontSize: 16, color: c.gold, margin: 0 }}>Choose a printing</h2>
-              <span style={{ fontSize: 13, color: '#f5f5f4' }}>{printingFor.name}</span>
-              <button onClick={() => setPrintingFor(null)}
-                style={btn({ marginLeft: 'auto', padding: '4px 10px', fontSize: 12 })}>Close</button>
-            </div>
-            <p style={{ fontSize: 12, color: c.faint, margin: '0 0 12px' }}>
-              Cheapest first. Picking one keeps your count of {printingFor.count} and prices
-              this row as that exact printing instead of a representative one.
-            </p>
-            {pLoading ? (
-              <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
-                Loading printings…
-              </div>
-            ) : printings.length === 0 ? (
-              <div style={{ color: c.faint, fontSize: 13, padding: 20, textAlign: 'center' }}>
-                No printings found for this card.
-              </div>
-            ) : (
-              <div style={{ display: 'grid', gap: 10,
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))' }}>
-                {printings.map(p => {
-                  const current = (p.set || '') === (printingFor.set || '') &&
-                                  String(p.collector_number || '') === String(printingFor.cn || '')
-                  return (
-                    <button key={`${p.set}|${p.collector_number}`} onClick={() => choosePrinting(p)}
-                      title={`${p.set_name || p.set} #${p.collector_number}`}
-                      style={{ padding: 6, borderRadius: 8, cursor: 'pointer', textAlign: 'center',
-                               background: current ? '#1c1410' : c.card, fontFamily: 'inherit',
-                               border: `1px solid ${current ? c.gold : c.border}` }}>
-                      {p.image
-                        ? <img src={p.image} alt="" loading="lazy"
-                            style={{ width: '100%', borderRadius: 5, display: 'block' }} />
-                        : <div style={{ aspectRatio: '488 / 680', background: c.panel, borderRadius: 5 }} />}
-                      <div style={{ fontSize: 11, fontWeight: 700, color: c.dim, marginTop: 5 }}>
-                        {p.set} {p.collector_number}
-                      </div>
-                      <div style={{ fontSize: 11, color: p.usd == null ? c.faint : c.green }}>
-                        {p.usd == null ? 'no price' : `$${p.usd.toFixed(2)}`}
-                      </div>
-                      {current && <div style={{ fontSize: 10, color: c.gold }}>current</div>}
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        </div>
+      {picker && (
+        <PrintingPicker name={picker.name} row={picker.row} mode={picker.mode}
+          onDone={onPickerDone} onClose={() => setPicker(null)} />
       )}
     </div>
   )
