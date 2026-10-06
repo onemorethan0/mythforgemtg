@@ -64,7 +64,7 @@ from collection         import (
 )
 import scryfall_prints
 import collection_repair as coll_repair
-from collection_index    import (enrich_rows, facets as coll_facets, filter_rows, sort_rows,
+from collection_index    import (GROUP_BYS, group_rows, enrich_rows, facets as coll_facets, filter_rows, sort_rows,
                                  print_price as coll_print_price, treatments_of as coll_treatments_of)
 from collection_stats    import collection_stats
 from playstyle          import (
@@ -4779,7 +4779,7 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                    min_count: Optional[int] = None, color_presence: str = "",
                    game_changers_only: bool = False,
                    sort: str = "name", direction: str = "asc",
-                   then: str = "", then_direction: str = "asc"):
+                   then: str = "", then_direction: str = "asc", group: str = "none"):
     """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
 
     The CSV stores only name/count/set/collector-number, so colour, type, mana value and
@@ -4801,11 +4801,15 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                           game_changers_only=game_changers_only)
     ordered = sort_rows(matched, sort, direction, then=then or None,
                         then_direction=then_direction)
+    # Group the WHOLE filtered set, then paginate: the subtotals must not depend on where
+    # a page (or the 5000 cap) cuts. An unknown `group` is "none".
+    ordered, groups = group_rows(ordered, group if group in GROUP_BYS else "none")
     lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
     page = ordered[max(offset, 0): max(offset, 0) + lim]
     # Facets come from the WHOLE collection, not the filtered slice, so narrowing a
     # filter can never strand the user with no way back.
-    return {"cards": page, "matched": len(matched), "facets": coll_facets(enriched),
+    return {"cards": page, "matched": len(matched), "groups": groups,
+            "facets": coll_facets(enriched),
             **_collection_summary(rows, enriched=enriched)}
 
 

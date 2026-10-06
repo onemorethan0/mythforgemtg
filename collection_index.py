@@ -480,3 +480,99 @@ def sort_rows(rows: list[dict], sort: str = "name", direction: str = "asc",
     if then in _SORTS:
         out = _stable_sort(out, then, then_direction)
     return _stable_sort(out, key, direction)
+
+
+GROUP_BYS = ("none", "type", "color", "cmc", "rarity", "set", "finish", "card")
+TYPE_GROUP_ORDER = ("Creature", "Planeswalker", "Battle", "Instant", "Sorcery",
+                    "Artifact", "Enchantment", "Land", "Other")
+
+
+def group_of(row: dict, by: str) -> tuple:
+    """`(order_key, key, label)` for the group this row belongs to under `by`.
+
+    `order_key` sorts groups among themselves. For "set" it is `(rank, date)` and is
+    resolved by `group_rows` (newest first needs a descending date, unknown last); for
+    "card" it is the card key and groups keep first-appearance order instead."""
+    if by == "type":
+        kind = row.get("type") or "Other"
+        if kind not in TYPE_GROUP_ORDER:
+            kind = "Other"
+        return (TYPE_GROUP_ORDER.index(kind), kind, kind)
+    if by == "color":
+        bucket = color_bucket(row.get("colors", []))
+        return (COLOR_BUCKETS.index(bucket), bucket, bucket)
+    if by == "cmc":
+        if row.get("is_land") or row.get("type") == "Land":
+            return (8, "lands", "Lands")      # never under 0
+        cmc = int(row.get("cmc") or 0)
+        return (7, "7+", "7+") if cmc >= 7 else (cmc, str(cmc), str(cmc))
+    if by == "rarity":
+        rar = row.get("rarity")
+        idx = _index_of(RARITY_ORDER, rar)
+        return (idx, rar, rar) if idx is not None else (len(RARITY_ORDER), "unknown", "Unknown")
+    if by == "set":
+        code = (row.get("set") or "").upper()
+        if not code:
+            return ((1, ""), UNKNOWN_SET, UNKNOWN_SET)
+        name = row.get("set_name")
+        return ((0, row.get("released_at") or ""), code, f"{name} ({code})" if name else code)
+    if by == "finish":
+        fin = row.get("finish") or "nonfoil"
+        return (_index_of(FINISH_ORDER, fin, 0), fin, fin)
+    if by == "card":
+        key = index_key(row.get("name", ""))
+        return (key, key, row.get("name") or "")
+    raise ValueError(by)
+
+
+def group_rows(rows: list[dict], by: str) -> tuple[list[dict], list[dict]]:
+    """`(ordered_rows, groups)` for rows that are ALREADY sorted.
+
+    Rows are ordered by group and stay in their given order inside each group; each
+    returned row is a copy carrying `group` (the group key). `groups` is
+    `[{key, label, rows, cards, value, printings?}]`: `rows` distinct rows, `cards` the
+    summed count, `value` the price x count of PRICED rows only (an unpriced row adds
+    nothing rather than a fabricated zero-priced guess), and `printings` for "card".
+    An unknown or "none" `by` returns the rows untouched and no groups.
+
+    Callers group the WHOLE filtered set before paginating, so these totals never depend
+    on where a page happens to cut.
+    """
+    if by not in GROUP_BYS or by == "none":
+        return list(rows), []
+
+    buckets: dict[str, dict] = {}
+    for r in rows:
+        order, key, label = group_of(r, by)
+        g = buckets.get(key)
+        if g is None:
+            g = buckets[key] = {"order": order, "key": key, "label": label, "members": [],
+                                "rows": 0, "cards": 0, "value": 0.0, "_dates": []}
+        if by == "set" and order[1]:
+            g["_dates"].append(order[1])
+        g["members"].append({**r, "group": key})
+        g["rows"] += 1
+        count = int(r.get("count") or 0)
+        g["cards"] += count
+        if r.get("price") is not None:
+            g["value"] += r["price"] * count
+
+    groups = list(buckets.values())              # insertion order == first appearance
+    if by == "set":
+        # known sets newest first, undated known sets after the dated ones, unknown last
+        groups.sort(key=lambda g: g["key"])
+        groups.sort(key=lambda g: max(g["_dates"], default=""), reverse=True)
+        groups.sort(key=lambda g: g["key"] == UNKNOWN_SET)
+    elif by != "card":
+        groups.sort(key=lambda g: g["order"])
+
+    ordered: list[dict] = []
+    out_groups: list[dict] = []
+    for g in groups:
+        ordered.extend(g["members"])
+        entry = {"key": g["key"], "label": g["label"], "rows": g["rows"],
+                 "cards": g["cards"], "value": round(g["value"], 2)}
+        if by == "card":
+            entry["printings"] = g["rows"]
+        out_groups.append(entry)
+    return ordered, out_groups

@@ -136,3 +136,107 @@ def test_route_secondary_sort_and_unknown_params(csv_path):
         ("Arcane Signet", "nonfoil"), ("Sol Ring", "foil"), ("Sol Ring", "nonfoil")]
     # junk values never error
     assert len(_get(then="bogus")["cards"]) == 3
+
+
+# ---- Task 7: grouping ---------------------------------------------------------------
+
+def test_cmc_groups_put_lands_last():
+    rows = [row("land", type="Land", is_land=True, cmc=0), row("zero", cmc=0),
+            row("big", cmc=9), row("six", cmc=6), row("two", cmc=2)]
+    ordered, groups = ci.group_rows(ci.sort_rows(rows, "name"), "cmc")
+    assert [g["label"] for g in groups] == ["0", "2", "6", "7+", "Lands"]
+    assert [r["group"] for r in ordered][-1] == "lands"
+    assert groups[-1]["rows"] == 1
+
+
+def test_card_group_counts_printings():
+    rows = [row("Sol Ring", set="C21", count=2), row("Sol Ring", set="C21", finish="foil", count=1),
+            row("Sol Ring", set="CMR", count=4), row("Arcane Signet", set="C21", count=1)]
+    ordered, groups = ci.group_rows(rows, "card")
+    sol = next(g for g in groups if g["label"] == "Sol Ring")
+    assert sol["printings"] == 3 and sol["cards"] == 7 and sol["rows"] == 3
+    assert len(groups) == 2
+    assert [g["label"] for g in groups] == ["Sol Ring", "Arcane Signet"]   # first appearance
+    assert [r["name"] for r in ordered][:3] == ["Sol Ring"] * 3
+
+
+def test_card_group_merges_faces_by_front_name():
+    rows = [row("Fire // Ice", set="A"), row("Fire", set="B")]
+    _, groups = ci.group_rows(rows, "card")
+    assert len(groups) == 1 and groups[0]["printings"] == 2
+
+
+def test_value_subtotal_ignores_unpriced():
+    rows = [row("a", price=2.0, count=3), row("b", price=None, count=5), row("c", price=1.5, count=2)]
+    _, groups = ci.group_rows(rows, "type")
+    assert groups[0]["value"] == 9.0 and groups[0]["cards"] == 10
+
+
+def test_type_color_rarity_finish_orders():
+    rows = [row("l", type="Land"), row("o", type="Other"), row("c", type="Creature"),
+            row("i", type="Instant"), row("pw", type="Planeswalker")]
+    _, g = ci.group_rows(rows, "type")
+    assert [x["key"] for x in g] == ["Creature", "Planeswalker", "Instant", "Land", "Other"]
+    rows = [row("m", colors=["W", "U"]), row("c"), row("g", colors=["G"]), row("w", colors=["W"])]
+    _, g = ci.group_rows(rows, "color")
+    assert [x["key"] for x in g] == ["W", "G", "Multicolor", "Colorless"]
+    rows = [row("x", rarity="mythic"), row("y"), row("z", rarity="common")]
+    _, g = ci.group_rows(rows, "rarity")
+    assert [x["label"] for x in g] == ["common", "mythic", "Unknown"]
+    rows = [row("e", finish="etched"), row("n")]
+    _, g = ci.group_rows(rows, "finish")
+    assert [x["key"] for x in g] == ["nonfoil", "etched"]
+
+
+def test_set_groups_newest_first_unknown_last():
+    rows = [row("a", set="OLD", set_name="Old Set", released_at="1999-01-01"),
+            row("b", set=""), row("c", set="NEW", set_name="New Set", released_at="2024-01-01"),
+            row("d", set="NODATE", set_name="No Date")]
+    _, g = ci.group_rows(rows, "set")
+    assert [x["label"] for x in g] == ["New Set (NEW)", "Old Set (OLD)", "No Date (NODATE)", "—"]
+
+
+def test_group_none_and_unknown_by_are_noops():
+    rows = [row("a"), row("b")]
+    for by in ("none", "bogus", ""):
+        ordered, groups = ci.group_rows(rows, by)
+        assert groups == [] and names(ordered) == ["a", "b"]
+        assert "group" not in ordered[0]
+
+
+def test_group_rows_keeps_sort_within_group_and_does_not_mutate():
+    rows = [row("b", type="Creature"), row("a", type="Instant"), row("c", type="Creature")]
+    ordered, _ = ci.group_rows(rows, "type")
+    assert names(ordered) == ["b", "c", "a"]
+    assert "group" not in rows[0]
+
+
+def test_groups_total_over_whole_filter_not_page(csv_path):
+    _write(csv_path, "1,Sol Ring,C21,263,,,,", "1,Arcane Signet,C21,297,,,,",
+           "1,Command Tower,C21,300,,,,", "1,Mind Stone,C21,1,,,,", "1,Island,C21,2,,,,")
+    full = _get(group="type")
+    page = _get(group="type", limit=2)
+    assert len(page["cards"]) == 2
+    assert page["matched"] == 5
+    assert sum(g["rows"] for g in page["groups"]) == page["matched"]
+    assert page["groups"] == full["groups"]
+    # "Show all" at the 5000 cap path reports the same whole-set totals
+    assert sum(g["rows"] for g in _get(group="type", limit=0)["groups"]) == 5
+
+
+def test_route_rows_ordered_by_group_then_sort(csv_path):
+    _write(csv_path, "1,Zebra Land,C21,1,,,,", "1,Alpha Thing,C21,2,,,,", "1,Mid Thing,C21,3,,,,")
+    # offline test: nothing resolves, so every row is type "Other"/unresolved; ordering by
+    # name inside the single group must still hold
+    cards = _get(group="type")["cards"]
+    assert [c["name"] for c in cards] == ["Alpha Thing", "Mid Thing", "Zebra Land"]
+    assert {c["group"] for c in cards} == {"Other"}
+
+
+def test_group_none_is_backward_compatible(csv_path):
+    _write(csv_path, "1,Sol Ring,C21,263,,,,", "2,Arcane Signet,C21,297,,,,")
+    base = _get()
+    assert base["groups"] == []
+    assert all("group" not in c for c in base["cards"])
+    assert _get(group="none") == base
+    assert _get(group="bogus") == base
