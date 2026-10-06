@@ -106,3 +106,7 @@ ccm/LICENSE-CCM-DATA.txt
 # Working state, not source.
 .odysseus/
 .cache/
+
+# Local worktrees + SDD scratch
+.worktrees/
+.superpowers/
