@@ -402,6 +402,34 @@ def _row_value(row: dict):
     return None if price is None else price * int(row.get("count") or 0)
 
 
+FINISH_ORDER = ("nonfoil", "foil", "etched")
+_WUBRG = ("W", "U", "B", "R", "G")
+_CN_RE = re.compile(r"^(\d+)(.*)$")
+
+
+def _index_of(order: tuple, value, default=None):
+    try:
+        return order.index(value)
+    except ValueError:
+        return default
+
+
+def _color_key(row: dict):
+    colors = {c for c in (row.get("colors") or ()) if c}
+    return (COLOR_BUCKETS.index(color_bucket(list(colors))),
+            tuple(sorted(_index_of(_WUBRG, c, 9) for c in colors)))
+
+
+def _collector_key(row: dict):
+    """Natural collector-number order inside a set: 2 < 10 < 10a < ★1 (no leading digits
+    sorts after every numbered card; a blank number after that)."""
+    cn = str(row.get("cn") or "").strip().casefold()
+    m = _CN_RE.match(cn)
+    if m:
+        return ((row.get("set") or "").upper(), 0, int(m.group(1)), m.group(2))
+    return ((row.get("set") or "").upper(), 1 if cn else 2, 0, cn)
+
+
 # (getter, nullable). A nullable key can be genuinely unknown, which is not the same as
 # "worst" — see sort_rows.
 _SORTS = {
@@ -413,25 +441,42 @@ _SORTS = {
     "edhrec": (lambda r: r.get("edhrec_rank"), True),
     "type":   (lambda r: r.get("type") or "Other", False),
     "set":    (lambda r: (r.get("set") or ""), False),
+    "rarity": (lambda r: _index_of(RARITY_ORDER, r.get("rarity")), True),
+    "color":  (_color_key, False),
+    "released": (lambda r: r.get("released_at") or None, True),
+    "collector": (_collector_key, False),
+    "added":  (lambda r: r.get("date_added") or None, True),
+    "finish": (lambda r: _index_of(FINISH_ORDER, r.get("finish") or "nonfoil", 0), False),
 }
 
 
-def sort_rows(rows: list[dict], sort: str = "name", direction: str = "asc") -> list[dict]:
-    """A new sorted list. Unknown `sort` falls back to name; name is always the tiebreak.
-
-    Rows with no price / no EDHREC rank sort LAST in BOTH directions — an unknown value
-    is not a small one, and flipping to descending should not promote every unpriced card
-    to the top of "most valuable".
-    """
-    getter, nullable = _SORTS.get(sort) or _SORTS["name"]
+def _stable_sort(rows: list[dict], key: str, direction: str) -> list[dict]:
+    """One level of sort over rows already in tiebreak order. A nullable key partitions
+    known from unknown, so unknown lands last whichever way the known ones run."""
+    getter, nullable = _SORTS[key]
     desc = direction == "desc"
-    # Pre-sort by name so it acts as the tiebreak: Python's sort is stable, and stable
-    # holds under reverse=True too (equal elements keep their relative order).
-    out = sorted(rows, key=lambda r: (r.get("name") or "").casefold())
     if nullable:
-        known = [r for r in out if getter(r) is not None]
-        unknown = [r for r in out if getter(r) is None]
+        known = [r for r in rows if getter(r) is not None]
+        unknown = [r for r in rows if getter(r) is None]
         known.sort(key=getter, reverse=desc)
         return known + unknown
-    out.sort(key=getter, reverse=desc)
-    return out
+    return sorted(rows, key=getter, reverse=desc)
+
+
+def sort_rows(rows: list[dict], sort: str = "name", direction: str = "asc",
+              then: str | None = None, then_direction: str = "asc") -> list[dict]:
+    """A new sorted list. Unknown `sort` falls back to name; an unknown `then` is ignored;
+    name is always the final tiebreak.
+
+    Rows with no price / no EDHREC rank / no rarity sort LAST in BOTH directions — an
+    unknown value is not a small one, and flipping to descending should not promote every
+    unpriced card to the top of "most valuable". That holds at the secondary level too.
+
+    Implemented as chained stable sorts, least significant first: name, then the
+    secondary, then the primary. Python's sort is stable under reverse=True as well.
+    """
+    key = sort if sort in _SORTS else "name"
+    out = sorted(rows, key=lambda r: (r.get("name") or "").casefold())
+    if then in _SORTS:
+        out = _stable_sort(out, then, then_direction)
+    return _stable_sort(out, key, direction)

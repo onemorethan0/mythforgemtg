@@ -4778,7 +4778,8 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                    cmc_min: Optional[int] = None, cmc_max: Optional[int] = None,
                    min_count: Optional[int] = None, color_presence: str = "",
                    game_changers_only: bool = False,
-                   sort: str = "name", direction: str = "asc"):
+                   sort: str = "name", direction: str = "asc",
+                   then: str = "", then_direction: str = "asc"):
     """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
 
     The CSV stores only name/count/set/collector-number, so colour, type, mana value and
@@ -4798,7 +4799,8 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                           cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count,
                           color_presence=_csv_param(color_presence),
                           game_changers_only=game_changers_only)
-    ordered = sort_rows(matched, sort, direction)
+    ordered = sort_rows(matched, sort, direction, then=then or None,
+                        then_direction=then_direction)
     lim = 5000 if limit is None or limit <= 0 else min(limit, 5000)
     page = ordered[max(offset, 0): max(offset, 0) + lim]
     # Facets come from the WHOLE collection, not the filtered slice, so narrowing a
