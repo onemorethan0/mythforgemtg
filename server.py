@@ -4779,7 +4779,9 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                    min_count: Optional[int] = None, color_presence: str = "",
                    game_changers_only: bool = False,
                    sort: str = "name", direction: str = "asc",
-                   then: str = "", then_direction: str = "asc", group: str = "none"):
+                   then: str = "", then_direction: str = "asc", group: str = "none",
+                   finishes: str = "", treatments: str = "", languages: str = "",
+                   multi_printing: bool = False):
     """Owned cards, enriched with offline card metadata, filtered, sorted and paginated.
 
     The CSV stores only name/count/set/collector-number, so colour, type, mana value and
@@ -4798,7 +4800,9 @@ def get_collection(q: str = "", offset: int = 0, limit: int = 200,
                           rarities=_csv_param(rarities), sets=_csv_param(sets),
                           cmc_min=cmc_min, cmc_max=cmc_max, min_count=min_count,
                           color_presence=_csv_param(color_presence),
-                          game_changers_only=game_changers_only)
+                          game_changers_only=game_changers_only,
+                          finishes=_csv_param(finishes), treatments=_csv_param(treatments),
+                          languages=_csv_param(languages), multi_printing=multi_printing)
     ordered = sort_rows(matched, sort, direction, then=then or None,
                         then_direction=then_direction)
     # Group the WHOLE filtered set, then paginate: the subtotals must not depend on where

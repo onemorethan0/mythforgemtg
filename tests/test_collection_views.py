@@ -240,3 +240,58 @@ def test_group_none_is_backward_compatible(csv_path):
     assert all("group" not in c for c in base["cards"])
     assert _get(group="none") == base
     assert _get(group="bogus") == base
+
+
+# ---- Task 8: printing filters and facets --------------------------------------------
+
+def test_filter_foil_only():
+    rows = [row("a"), row("b", finish="foil"), row("c", finish="etched")]
+    assert names(ci.filter_rows(rows, finishes=["foil"])) == ["b"]
+    assert names(ci.filter_rows(rows, finishes=["foil", "etched"])) == ["b", "c"]
+    assert names(ci.filter_rows(rows, finishes=[])) == ["a", "b", "c"]
+
+
+def test_filter_treatment_any_of():
+    rows = [row("a", treatments=["borderless"]), row("b", treatments=["showcase", "promo"]),
+            row("c"), row("d", treatments=["retro"])]
+    assert names(ci.filter_rows(rows, treatments=["promo", "borderless"])) == ["a", "b"]
+
+
+def test_filter_languages():
+    rows = [row("a"), row("b", lang="ja"), row("c", lang="")]
+    assert names(ci.filter_rows(rows, languages=["JA"])) == ["b"]
+    assert names(ci.filter_rows(rows, languages=["en"])) == ["a", "c"]
+
+
+def test_multi_printing_uses_whole_collection():
+    rows = [row("Sol Ring", set="C21"), row("Sol Ring", set="CMR", finish="foil"),
+            row("Arcane Signet", set="C21"), row("Fire // Ice", set="A"), row("Fire", set="B")]
+    # a set filter hides the second Sol Ring printing; the card is still multi-printing
+    out = ci.filter_rows(rows, sets=["C21"], multi_printing=True)
+    assert names(out) == ["Sol Ring"]
+    both = ci.filter_rows(rows, multi_printing=True)
+    assert names(both) == ["Sol Ring", "Sol Ring", "Fire // Ice", "Fire"]
+
+
+def test_facets_list_only_present_finishes():
+    rows = [row("a"), row("b", finish="foil", treatments=["promo"]),
+            row("c", lang="ja", treatments=["promo", "retro"])]
+    f = ci.facets(rows)
+    assert f["finishes"] == [{"key": "nonfoil", "count": 2}, {"key": "foil", "count": 1}]
+    assert f["treatments"] == [{"key": "retro", "count": 1}, {"key": "promo", "count": 2}]
+    assert f["languages"] == [{"key": "en", "count": 2}, {"key": "ja", "count": 1}]
+    assert "etched" not in {e["key"] for e in f["finishes"]}
+    assert ci.facets([row("x")])["treatments"] == []
+
+
+def test_route_printing_filters(csv_path):
+    _write(csv_path, "1,Sol Ring,C21,263,,,,", "2,Sol Ring,C21,263,foil,,,",
+           "1,Arcane Signet,C21,297,,ja,,", "1,Mind Stone,C21,1,etched,,,")
+    assert [c["name"] for c in _get(finishes="foil,etched")["cards"]] == ["Mind Stone", "Sol Ring"]
+    assert [c["name"] for c in _get(finishes="foil")["cards"]] == ["Sol Ring"]
+    multi = _get(multi_printing="true", sets="C21")
+    assert {c["name"] for c in multi["cards"]} == {"Sol Ring"} and multi["matched"] == 2
+    facets = _get()["facets"]
+    assert {e["key"] for e in facets["finishes"]} == {"nonfoil", "foil", "etched"}
+    assert _get(treatments="promo")["matched"] == 0
+    assert _get(languages="zz")["cards"] == []

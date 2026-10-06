@@ -312,6 +312,14 @@ def color_bucket(colors: list[str]) -> str:
     return next(iter(distinct))
 
 
+TREATMENT_ORDER = ("borderless", "showcase", "extended", "full_art", "retro", "promo", "etched")
+
+
+def _lang_of(row: dict) -> str:
+    """A blank language means English (D4)."""
+    return (row.get("lang") or "").strip().casefold() or "en"
+
+
 def facets(rows: list[dict]) -> dict:
     """The filter values actually present, with row counts — so the UI never offers a
     filter that matches nothing."""
@@ -319,10 +327,19 @@ def facets(rows: list[dict]) -> dict:
     types: dict[str, int] = {}
     rarities: dict[str, int] = {}
     sets: dict[str, int] = {}
+    finishes: dict[str, int] = {}
+    treatments: dict[str, int] = {}
+    languages: dict[str, int] = {}
     cmc_max = 0
     unresolved = 0
 
     for row in rows:
+        fin = row.get("finish") or "nonfoil"
+        finishes[fin] = finishes.get(fin, 0) + 1
+        lang = _lang_of(row)
+        languages[lang] = languages.get(lang, 0) + 1
+        for t in set(row.get("treatments") or ()):
+            treatments[t] = treatments.get(t, 0) + 1
         bucket = color_bucket(row.get("colors", []))
         colors[bucket] = colors.get(bucket, 0) + 1
         kind = row.get("type") or "Other"
@@ -343,6 +360,10 @@ def facets(rows: list[dict]) -> dict:
         "types":    by_count(types),
         "rarities": [{"key": r, "count": rarities[r]} for r in RARITY_ORDER if r in rarities],
         "sets":     by_count(sets),
+        "finishes": [{"key": f, "count": finishes[f]} for f in FINISH_ORDER if f in finishes],
+        "treatments": [{"key": t, "count": treatments[t]}
+                       for t in TREATMENT_ORDER if t in treatments],
+        "languages": by_count(languages),
         "cmc_max":  cmc_max,
         "unresolved": unresolved,
     }
@@ -351,7 +372,9 @@ def facets(rows: list[dict]) -> dict:
 def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
                 rarities=None, sets=None, cmc_min: int | None = None,
                 cmc_max: int | None = None, min_count: int | None = None,
-                color_presence=None, game_changers_only: bool = False) -> list[dict]:
+                color_presence=None, game_changers_only: bool = False,
+                finishes=None, treatments=None, languages=None,
+                multi_printing: bool = False) -> list[dict]:
     """Rows matching every supplied criterion. Values within one criterion are ORed;
     an empty or None criterion constrains nothing.
 
@@ -362,6 +385,11 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
     this card have a white pip at all" — a Boros card matches "W" here, because a player
     asking "how much white do I actually have access to" needs their multicolor cards
     counted too, not hidden behind a bucket that only ever shows ONE colour per card.
+
+    `treatments` is ORed (a row matches if it has ANY of them). `multi_printing` keeps rows
+    whose card appears on at least two rows of `rows` as passed in — callers pass the whole
+    (unfiltered) collection, and the count is taken BEFORE any other criterion applies, so
+    a set filter that hides the second printing does not stop the card being multi-printing.
     """
     ql = (q or "").strip().casefold()
     cset = set(colors or ())
@@ -369,6 +397,14 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
     tset = set(types or ())
     rset = set(rarities or ())
     sset = {str(s).upper() for s in (sets or ())}
+    fset = {str(f).casefold() for f in (finishes or ())}
+    trset = set(treatments or ())
+    lset = {str(l).casefold() for l in (languages or ())}
+    per_card: dict[str, int] = {}
+    if multi_printing:
+        for row in rows:
+            k = index_key(row.get("name", ""))
+            per_card[k] = per_card.get(k, 0) + 1
 
     out = []
     for row in rows:
@@ -392,6 +428,14 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
         if min_count is not None and int(row.get("count") or 0) < min_count:
             continue
         if game_changers_only and not row.get("game_changer"):
+            continue
+        if fset and (row.get("finish") or "nonfoil") not in fset:
+            continue
+        if trset and not (set(row.get("treatments") or ()) & trset):
+            continue
+        if lset and _lang_of(row) not in lset:
+            continue
+        if multi_printing and per_card.get(index_key(row.get("name", "")), 0) < 2:
             continue
         out.append(row)
     return out
