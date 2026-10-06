@@ -79,9 +79,10 @@ per *card*, not per printing. Verified 2026-10-06: Scryfall's `default_cards` bu
 6. **Sorting:** add rarity, color (WUBRG), release date, collector number, date added and finish,
    plus a secondary sort.
 7. **Filters:** finish, treatment, language, and "owned in 2+ printings".
+8. **Deck view art (added 2026-10-06 at the user's request):** in a deck, a card you own can
+   show *your* printing's real art, with its set chip and foil treatment, via a deck-view toggle.
 
-**Out (follow-ups, not this plan):** printings inside *decks* (deck view art, exports with set
-codes), the non-English `all_cards` store (non-EN rows resolve to the English printing by
+**Out (follow-ups, not this plan):** set-coded deck exports, the non-English `all_cards` store (non-EN rows resolve to the English printing by
 set+cn and are labelled with their language), tradelists and per-copy notes.
 
 ## 3. Decisions taken (override before execution if wrong)
@@ -471,7 +472,34 @@ def test_disabled_returns_none(monkeypatch): ...      # MYTHFORGE_SCRYFALL_PRINT
 - [ ] **Step 2: Verify in the browser.** Change a nonfoil row to foil and see the sheen and the foil price. Pick a print that has no etched finish and confirm there is no etched button. Add a second printing from a card group. Edit the CSV by hand while the picker is open, then pick, and confirm the reload message appears and nothing is written to the wrong row. Lint and build pass.
 - [ ] **Step 3: Commit** (`frontend: visual printing picker with per-finish prices and add-a-printing`).
 
-### Task 14: Docs, contract note, release
+### Task 14: Owned-printing art in the deck view
+
+**Files:**
+- Modify: `collection_index.py` (add owned-printing lookup), `server.py` (`_annotate_owned` at ~line 949), `frontend/src/components/CardTile.jsx`, `frontend/src/components/StepDeck.jsx` (toggle + commander hero at ~line 559)
+- Test: `tests/test_deck_owned_printing.py` (new)
+
+**Interfaces:**
+- Consumes: `enrich_rows` (T4; rows carry `row_id`, `print_resolved`, `image`, `image_normal`, `art_crop`, `back_image`, `finish`, `set`, `cn`, `rarity`, `set_name`, `count`), and `CardFace`/`SetChip` (T10).
+- Produces:
+  - `owned_printings_index(enriched_rows) -> dict[str, list[dict]]`, keyed by `index_key(name)`, holding **only** rows with `print_resolved` True.
+  - `pick_owned_printing(card: dict, candidates: list[dict]) -> dict | None`. Order of preference:
+    1. A candidate whose `set` and `cn` equal the deck card's own `set` (case-insensitive) and `collector_number`, i.e. you own the exact printing the deck names.
+    2. Otherwise the highest `count`.
+    3. Then nonfoil before foil before etched.
+    4. Then the newest `released_at`.
+    5. Then `row_id`, so the choice is deterministic.
+    It returns `{row_id, set, cn, finish, rarity, set_name, image, image_normal, art_crop, back_image}`, or None when there are no candidates. **An owned card whose only rows are unresolved returns None**: the deck must never show a representative printing labelled as yours.
+  - `_annotate_owned` adds `owned_printing` (the dict or None) to the commander and every deck card that is `owned`. The index is cached on the collection CSV's mtime (same pattern as `_owned_names_cached`), so a deck load does not re-enrich 1,205 rows each time. A basic land owned only by the "basics count as owned" rule gets None.
+  - Deck view toggle: `localStorage['mtg_deck_art_source']`, either `'ai'` (the default, today's behaviour) or `'owned'`. Wrap every read and write in try/catch. It appears only when at least one card has an `owned_printing`. In `'owned'` mode, a card with an `owned_printing` renders through `CardFace` (the printing's art, foil sheen, `SetChip` beneath), the commander hero included. Every other card keeps its AI render, falling back to `scryfall_img` as today.
+  - With the toggle on `'ai'`, the tile and hero markup must stay exactly as today.
+
+- [ ] **Step 1: Write the failing tests.** `test_pick_prefers_exact_deck_printing`. `test_pick_highest_count_then_nonfoil_then_newest`. `test_unresolved_owned_rows_give_none`. `test_annotate_owned_attaches_owned_printing` (a TestClient deck load with a monkeypatched collection: the owned card gets the dict, an unowned card has `owned_printing` absent or None). `test_owned_printing_cache_invalidates_on_csv_change`.
+- [ ] **Step 2: Run them and confirm they fail.** `python -m pytest tests/test_deck_owned_printing.py -q`.
+- [ ] **Step 3: Implement the backend,** then the frontend toggle and rendering.
+- [ ] **Step 4: Verify.** Run the full pytest suite, then lint and build. In the browser preview, open a real deck containing owned cards (decks on disk carry `owned`) and flip the toggle. Owned cards switch to their real printing art with set chips, foil cards shimmer, unowned cards keep their AI art, and flipping back restores today's view exactly. Reload, and the toggle keeps its setting.
+- [ ] **Step 5: Commit** (`deck view: show the printing you own`).
+
+### Task 15: Docs, contract note, release
 
 **Files:**
 - Modify: `CLAUDE.md` (collection section: identity key, canonical header, prints store and its kill switch), `docs/API.md` (new params and fields, the 409), `docs/engine/SUITE_PLAN.md` (C1: Forge's canonical columns and the consumed aliases), `README.md` (user-facing views), `frontend/package.json` version `1.5.0`
@@ -485,4 +513,5 @@ def test_disabled_returns_none(monkeypatch): ...      # MYTHFORGE_SCRYFALL_PRINT
 
 - Tasks 1–2 are the hard prerequisites (identity and `row_id`), and T3 can run in parallel with them. T4–T8 depend on T1–T3. In the frontend, T9 comes first; T10 → T11 and T10 → T13 are independent of each other, and T12 needs T7 and T9.
 - The first live build of the prints store downloads ~79 MB. Put the cache on C: (the repo); E: is tight.
-- Follow-up candidates once this lands: owned-printing art in the deck view, set-coded deck exports, and the non-English store.
+- T14 (deck view) needs T4 and T10.
+- Follow-up candidates once this lands: set-coded deck exports, and the non-English store.
