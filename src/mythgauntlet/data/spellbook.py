@@ -339,6 +339,30 @@ def _request_body(cards: list[tuple[str, int]], commanders: list[str]) -> dict:
     }
 
 
+_RETRY_STATUS = {429, 502, 503, 504}
+_MAX_ATTEMPTS = 6
+
+
+def _post_with_backoff(body: dict) -> dict:
+    """POST to find-my-combos, retrying rate limits (429) and transient 5xx.
+
+    A failed lookup silently rates the deck with NO combos, mixing combo and no-combo
+    models in one gauntlet (143 decks on 2026-10-07), so a 429 is worth waiting out.
+    Honours Retry-After when Spellbook sends it, else backs off 5s, 10s, 20s... (cap 60s).
+    """
+    for attempt in range(_MAX_ATTEMPTS):
+        resp = requests.post(API_URL, headers=HEADERS, json=body, timeout=60)
+        if resp.status_code not in _RETRY_STATUS or attempt == _MAX_ATTEMPTS - 1:
+            resp.raise_for_status()
+            return resp.json()
+        try:
+            wait = float(resp.headers.get("Retry-After", ""))
+        except ValueError:
+            wait = 5.0 * 2 ** attempt
+        time.sleep(min(max(wait, 1.0), 60.0))
+    raise RuntimeError("unreachable")  # loop always returns or raises on the last attempt
+
+
 def find_combos(
     cards: list[tuple[str, int]],
     commanders: list[str],
@@ -365,9 +389,7 @@ def find_combos(
                 return parse_response(json.load(fh))
         except (json.JSONDecodeError, OSError):
             pass  # truncated/corrupt cache -> refetch below
-    resp = requests.post(API_URL, headers=HEADERS, json=body, timeout=60)
-    resp.raise_for_status()
-    payload = resp.json()
+    payload = _post_with_backoff(body)
     # Unique per call (pid + a random suffix), not a fixed ".json.part" -- two processes
     # racing to cache the SAME decklist (the live server's /analyze route and a corpus
     # sweep script both hash to the identical cache key) would otherwise share one temp

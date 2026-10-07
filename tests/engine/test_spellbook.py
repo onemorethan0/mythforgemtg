@@ -225,3 +225,48 @@ def test_is_cached_false_for_a_fresh_but_corrupt_cache_file(tmp_path, monkeypatc
     monkeypatch.setattr(spellbook.requests, "post", _no_network)
     with pytest.raises(_Reached):
         spellbook.find_combos(cards, commanders)
+
+
+def test_post_with_backoff_retries_429_then_succeeds(monkeypatch):
+    from mythgauntlet.data import spellbook
+
+    class _Resp:
+        def __init__(self, status, headers=None, payload=None):
+            self.status_code = status
+            self.headers = headers or {}
+            self._payload = payload or {}
+
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise RuntimeError(f"HTTP {self.status_code}")
+
+        def json(self):
+            return self._payload
+
+    replies = iter([_Resp(429, {"Retry-After": "2"}), _Resp(429), _Resp(200, payload={"ok": 1})])
+    sleeps: list[float] = []
+    monkeypatch.setattr(spellbook.requests, "post", lambda *a, **k: next(replies))
+    monkeypatch.setattr(spellbook.time, "sleep", sleeps.append)
+
+    assert spellbook._post_with_backoff({}) == {"ok": 1}
+    assert sleeps == [2.0, 10.0]  # Retry-After honoured, then 5s * 2**1
+
+
+def test_post_with_backoff_gives_up_after_max_attempts(monkeypatch):
+    import pytest
+
+    from mythgauntlet.data import spellbook
+
+    class _Resp:
+        status_code = 429
+        headers: dict = {}
+
+        def raise_for_status(self):
+            raise RuntimeError("HTTP 429")
+
+    calls = []
+    monkeypatch.setattr(spellbook.requests, "post", lambda *a, **k: calls.append(1) or _Resp())
+    monkeypatch.setattr(spellbook.time, "sleep", lambda s: None)
+    with pytest.raises(RuntimeError):
+        spellbook._post_with_backoff({})
+    assert len(calls) == spellbook._MAX_ATTEMPTS

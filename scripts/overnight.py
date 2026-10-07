@@ -58,7 +58,8 @@ PYTHON = _python()
 # compiled-store location, which lives outside this repo — see compiler.store_dir().
 _ENV = {**os.environ, "PYTHONPATH": os.pathsep.join(
     filter(None, [str(REPO / "src"), os.environ.get("PYTHONPATH", "")])
-), "PYTHONIOENCODING": "utf-8"}
+), "PYTHONIOENCODING": "utf-8",
+         "PYTHONUNBUFFERED": "1"}
 # PYTHONIOENCODING pairs with the encoding="utf-8" pipe below: without it the child
 # writes its stdout in the Windows locale codepage (cp1252) while this side decodes
 # UTF-8, which both mangled every em-dash in the log into a replacement char and let a
@@ -282,7 +283,12 @@ def _skip_contrast(reason: str) -> None:
 def _reduced_scope(smoke: bool) -> list[str]:
     """Fewer opponents/games than the full greedy run — ISMCTS is slow per decision, so the
     agent-contrast gauntlets are deliberately small (the signal is the AGENT delta, not scale)."""
-    return ["--opponents", "2", "--games", "6"] if smoke else ["--opponents", "4", "--games", "20"]
+    # Measured 2026-10-07: ISMCTS (mcts:120) completes ~1.9 matchups/min on 14 workers, so
+    # the old 4-opponent scope (2,073 matchups) needed ~18h against an 8.4h budget and was
+    # killed every night. 2 opponents (~1,040 matchups) is ~9h cold, and --cache means the
+    # remainder lands the next night; the greedy half runs the SAME scope so the contrast
+    # stays equal-scope.
+    return ["--opponents", "2", "--games", "6"] if smoke else ["--opponents", "2", "--games", "20"]
 
 
 def _agent_gauntlet_args(agent: str, cores: int, smoke: bool) -> list[str]:

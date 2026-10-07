@@ -16,8 +16,10 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
+import time
 from collections.abc import Callable
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -147,6 +149,10 @@ class JobCache:
 # --- runner ------------------------------------------------------------------------------
 
 
+# Seconds with zero completions before run_jobs reports which matchups are in flight.
+STALL_REPORT_S = 900
+
+
 def default_workers() -> int:
     """Leave two cores for the OS + the parent (mirrors the workflow-tool cap)."""
     return max(1, (os.cpu_count() or 2) - 2)
@@ -197,13 +203,25 @@ def run_jobs(
     with ProcessPoolExecutor(max_workers=n, initializer=_init_worker,
                              initargs=(prepared,)) as ex:
         futures = {ex.submit(_run_one, job): i for i, job in todo}
-        for fut in as_completed(futures):
-            i = futures[fut]
-            results[i] = fut.result()
-            if cache:
-                cache.put(jobs[i], results[i], prepared)
-                cache.flush()
-            done += 1
-            if on_done:
-                on_done(done, total)
+        pending = set(futures)
+        while pending:
+            finished, pending = wait(pending, timeout=STALL_REPORT_S, return_when=FIRST_COMPLETED)
+            if not finished:
+                # Nothing completed for STALL_REPORT_S. Name the matchups the workers are
+                # sitting on: 2026-10-07's ISMCTS half went 6h with every worker at 95% CPU
+                # and no completion, and nothing recorded WHICH jobs they were.
+                stuck = sorted(f"{jobs[futures[f]].a} vs {jobs[futures[f]].b}"
+                               for f in pending if f.running())
+                print(f"  [stall] no matchup finished in {STALL_REPORT_S // 60} min; "
+                      f"{len(stuck)} running: {'; '.join(stuck)}", file=sys.stderr, flush=True)
+                continue
+            for fut in finished:
+                i = futures[fut]
+                results[i] = fut.result()
+                if cache:
+                    cache.put(jobs[i], results[i], prepared)
+                    cache.flush()
+                done += 1
+                if on_done:
+                    on_done(done, total)
     return results  # type: ignore[return-value]
