@@ -10,6 +10,7 @@ import CollectionStacks from './CollectionStacks'
 import CollectionToolbar from './CollectionToolbar'
 import PrintingPicker from './PrintingPicker'
 import { loadViewSettings, saveViewSettings, viewQuery, effectiveGroupBy } from '../utils/collectionView'
+import { EMPTY_FILTERS, hasFilters, filterQuery } from '../utils/collectionFilters'
 
 // Collection manager: browse / add / edit-count / remove the cards the user owns.
 // All edits POST to /api/collection/* which writes the canonical MythSuite/collection.csv
@@ -28,24 +29,6 @@ const PAGE = 500   // rows fetched by default; "Show all" refetches with limit=0
 
 const MANA = { W: '#f8f0d8', U: '#4a90d9', B: '#5b5254', R: '#d94a4a', G: '#4aa563',
                Multicolor: '#c9a227', Colorless: '#8a8a8a' }
-
-const EMPTY_FILTERS = { colors: [], color_presence: [], types: [], rarities: [], sets: [],
-                        cmc_min: null, cmc_max: null, min_count: null, game_changers_only: false }
-
-const hasFilters = f =>
-  f.colors.length || f.color_presence.length || f.types.length || f.rarities.length ||
-  f.sets.length || f.cmc_min != null || f.cmc_max != null || f.min_count != null ||
-  f.game_changers_only
-
-// Filters go on the query string as comma-separated lists; nulls are simply omitted.
-function filterQuery(f) {
-  const p = new URLSearchParams()
-  for (const k of ['colors', 'color_presence', 'types', 'rarities', 'sets'])
-    if (f[k].length) p.set(k, f[k].join(','))
-  for (const k of ['cmc_min', 'cmc_max', 'min_count']) if (f[k] != null) p.set(k, String(f[k]))
-  if (f.game_changers_only) p.set('game_changers_only', 'true')
-  return p
-}
 
 // Toggle one value inside a multi-select facet.
 const toggle = (list, v) => (list.includes(v) ? list.filter(x => x !== v) : [...list, v])
@@ -713,7 +696,10 @@ export default function StepCollection({ onBack, onBuild }) {
                       border: `1px solid ${c.border}`, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {[['colors', 'Color', facets.colors, MANA],
             ['types', 'Type', facets.types, null],
-            ['rarities', 'Rarity', facets.rarities, null]].map(([key, label, list, palette]) => (
+            ['rarities', 'Rarity', facets.rarities, null],
+            ['finishes', 'Finish', facets.finishes, null],
+            ['treatments', 'Treatment', facets.treatments, null],
+            ['languages', 'Language', facets.languages, null]].map(([key, label, list, palette]) => (
             (list || []).length > 0 && (
               <div key={key}>
                 <div style={{ fontSize: 11, color: c.faint, marginBottom: 5 }}>{label}</div>
@@ -744,6 +730,11 @@ export default function StepCollection({ onBack, onBuild }) {
               <input type="checkbox" checked={filters.min_count === 2}
                 onChange={e => setFilters(v => ({ ...v, min_count: e.target.checked ? 2 : null }))} />
               Duplicates only (2+ copies)
+            </label>
+            <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <input type="checkbox" checked={!!filters.multi_printing}
+                onChange={e => setFilters(v => ({ ...v, multi_printing: e.target.checked }))} />
+              Owned in 2+ printings
             </label>
             <label style={{ fontSize: 12, color: c.dim, display: 'flex', alignItems: 'center', gap: 6 }}>
               <input type="checkbox" checked={filters.game_changers_only}

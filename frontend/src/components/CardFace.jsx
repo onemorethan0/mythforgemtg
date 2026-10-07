@@ -46,6 +46,8 @@ export default function CardFace({ row, variant = 'full', flipped = false, onFli
   const r = row || {}
   const art = variant === 'art'
   const hasBack = !!r.back_image && !art
+  // The flip control exists only when the caller can actually flip (it owns the state).
+  const canFlip = hasBack && typeof onFlip === 'function'
   const showBack = hasBack && flipped
 
   // Fall back gracefully: full -> image_normal -> image; art -> art_crop -> the full image
@@ -88,10 +90,10 @@ export default function CardFace({ row, variant = 'full', flipped = false, onFli
         </div>
       )}
 
-      {hasBack && (
+      {canFlip && (
         <button type="button"
           title={showBack ? 'Show front face' : 'Show back face'}
-          onClick={e => { e.stopPropagation(); onFlip && onFlip() }}
+          onClick={e => { e.stopPropagation(); onFlip() }}
           style={{ ...marker({ color: c.gold, cursor: 'pointer', fontFamily: 'inherit',
                                fontSize: 13, padding: '0 6px' }),
                    position: 'absolute', right: 6, top: 30, zIndex: 2 }}>↻</button>
