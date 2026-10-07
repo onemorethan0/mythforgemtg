@@ -121,12 +121,14 @@ Suite (`MYTHSUITE_DIR` overrides it). Every write leaves a `.bak` behind, and `u
 | POST | `/api/collection/prices` | Refresh market prices for the whole collection from Scryfall |
 | GET | `/api/collection/suggest` | Card-name typeahead for the add box |
 | GET | `/api/collection/buildable` | **needs :8020** — which commanders you own could you build a bracket 1–3 deck from, ranked by coverage |
+| GET | `/api/card-image` | Resolve a card name to Scryfall image URLs (hover previews) |
+| GET | `/api/card-lookup` | Full card data by name, shaped for the Single Card form |
 
 ### Collection list, printings and views
 
 A collection row is one **printing**: identity is `(name, SET, cn, finish, lang or "en", condition)`
 and `row_id` (`sha1(identity)[:12]`) is its stable handle. Mutating endpoints accept `row_id`;
-**a `row_id` that no longer exists returns `409` "Collection changed — reload"** (MythScanner also
+**a `row_id` that no longer exists returns `409` "Collection changed — reload."** (MythScanner also
 writes the file, so a stale page must not edit a different row). Finish is `nonfoil` | `foil` |
 `etched`.
 
@@ -173,15 +175,13 @@ remaining, ...totals}`. `normalized` counts rows that already named a printing (
 and only had a blank set/collector number filled from it; `filled` counts rows that had nothing and
 received the cheapest printing for their finish.
 
-The **deck status response** (`GET /api/deck/{job_id}/status`, the payload the deck view loads) now carries
+The **deck status response** (`GET /api/deck/{job_id}`, the payload the deck view loads) now carries
 `owned_printing` on each card and on the commander when you own a *resolved* printing of it. It is
 that printing's enriched collection row (`set`, `cn`, `finish`, `count`, `row_id`, `image_normal`,
 `art_crop`, `back_image`, `rarity`, `treatments`, ...). Pick order: the deck card's exact set + number,
 then highest count, nonfoil/foil/etched, newest. Unresolved rows and basics owned by rule give
 `null`. The frontend's art-source toggle (AI art vs owned printing) decides whether to draw it; the
 API always sends it.
-| GET | `/api/card-image` | Resolve a card name to Scryfall image URLs (hover previews) |
-| GET | `/api/card-lookup` | Full card data by name, shaped for the Single Card form |
 
 ## Art styles, models & faces
 
