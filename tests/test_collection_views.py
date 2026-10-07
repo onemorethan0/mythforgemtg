@@ -273,6 +273,14 @@ def test_multi_printing_uses_whole_collection():
     assert names(both) == ["Sol Ring", "Sol Ring", "Fire // Ice", "Fire"]
 
 
+def test_multi_printing_counts_printings_not_rows():
+    rows = [row("Sol Ring", set="C21", cn="1"), row("Sol Ring", set="C21", cn="1", finish="foil"),
+            row("Mind Stone", set="C21", cn="2"), row("Mind Stone", set="CMR", cn="3"),
+            row("Blank", set=""), row("Blank", set="", finish="foil")]
+    # foil + nonfoil of ONE printing, or two blank-set rows, are not "2+ printings"
+    assert names(ci.filter_rows(rows, multi_printing=True)) == ["Mind Stone", "Mind Stone"]
+
+
 def test_facets_list_only_present_finishes():
     rows = [row("a"), row("b", finish="foil", treatments=["promo"]),
             row("c", lang="ja", treatments=["promo", "retro"])]
@@ -286,7 +294,7 @@ def test_facets_list_only_present_finishes():
 
 def test_route_printing_filters(csv_path):
     _write(csv_path, "1,Sol Ring,C21,263,,,,", "2,Sol Ring,C21,263,foil,,,",
-           "1,Arcane Signet,C21,297,,ja,,", "1,Mind Stone,C21,1,etched,,,")
+           "1,Arcane Signet,C21,297,,ja,,", "1,Mind Stone,C21,1,etched,,,", "1,Sol Ring,CMR,5,,,,")
     assert [c["name"] for c in _get(finishes="foil,etched")["cards"]] == ["Mind Stone", "Sol Ring"]
     assert [c["name"] for c in _get(finishes="foil")["cards"]] == ["Sol Ring"]
     multi = _get(multi_printing="true", sets="C21")

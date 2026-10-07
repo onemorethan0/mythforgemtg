@@ -177,9 +177,11 @@ received the cheapest printing for their finish.
 
 The **deck status response** (`GET /api/deck/{job_id}`, the payload the deck view loads) now carries
 `owned_printing` on each card and on the commander when you own a *resolved* printing of it. It is
-that printing's enriched collection row (`set`, `cn`, `finish`, `count`, `row_id`, `image_normal`,
-`art_crop`, `back_image`, `rarity`, `treatments`, ...). Pick order: the deck card's exact set + number,
-then highest count, nonfoil/foil/etched, newest. Unresolved rows and basics owned by rule give
+that printing's enriched collection row, reduced to these keys: `row_id`, `set`, `cn`, `finish`,
+`rarity`, `set_name`, `image`, `image_normal`, `art_crop`, `back_image`. Pick order: the deck card's
+exact set + number, then highest count, nonfoil/foil/etched, newest. The exact-printing preference
+applies only when the deck card itself carries `set` and `collector_number`; current stored decks
+do not, so in practice the pick falls through to highest count. Unresolved rows and basics owned by rule give
 `null`. The frontend's art-source toggle (AI art vs owned printing) decides whether to draw it; the
 API always sends it.
 

@@ -307,7 +307,14 @@ def write_collection(rows: list[dict], path: Path | None = None) -> int:
     p.parent.mkdir(parents=True, exist_ok=True)
     if p.exists():
         try:
-            (p.with_suffix(p.suffix + ".bak")).write_bytes(p.read_bytes())
+            prev = p.read_bytes()
+            first_line = prev.decode("utf-8-sig", errors="replace").splitlines()[:1]
+            canon_header = "Count,Name,Edition,Collector Number,Foil,Language,Condition,Scryfall ID"
+            legacy = p.with_suffix(p.suffix + ".pre-printings.bak")
+            # One-time safety copy of a file still in a pre-D5 shape (M5).
+            if (not first_line or not first_line[0].startswith(canon_header)) and not legacy.exists():
+                legacy.write_bytes(prev)
+            (p.with_suffix(p.suffix + ".bak")).write_bytes(prev)
         except OSError:
             pass
     clean = [r for r in rows if int(r.get("count", 0)) > 0 and (r.get("name") or "").strip()]
@@ -452,15 +459,14 @@ def set_printing(name: str, set_code: str, cn: str, from_set: str | None = None,
     src = _find_row(rows, name, from_set, from_cn)
     if src is None:
         return rows
-    dest = _find_row(rows, name, (set_code or "").strip().upper() or None, cn)
-    if dest is not None and dest is not src:
-        dest["count"] += src["count"]
-        rows = [r for r in rows if r is not src]
-    else:
-        src["set"] = (set_code or "").strip().upper()
-        src["cn"] = (cn or "").strip()
-    write_collection(rows, path)
-    return rows
+    new_set = (set_code or "").strip().upper()
+    new_cn = (cn or "").strip()
+    moved = (new_set != (src.get("set") or "").strip().upper()
+             or new_cn != (src.get("cn") or "").strip())
+    # Route through the by-id path: the destination is matched by FULL identity (finish,
+    # language, condition included) and a moved row drops its now-wrong scryfall_id.
+    return set_printing_by_id(row_id(src), new_set, new_cn, src.get("finish", ""),
+                              "" if moved else (src.get("scryfall_id") or ""), path)
 
 
 def bulk_apply(targets: list[dict], action: str, count: int = 0,

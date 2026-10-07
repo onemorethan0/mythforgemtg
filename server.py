@@ -951,14 +951,22 @@ _owned_print_cache: dict = {"mtime": None, "index": {}}
 
 def _owned_printings_cached() -> dict:
     p = suite_collection_path()
-    mtime = p.stat().st_mtime if p.exists() else 0
-    if _owned_print_cache["mtime"] != mtime:
+    try:
+        dbp = scryfall_prints.db_path()
+        db_mtime = dbp.stat().st_mtime if dbp.exists() else 0
+    except Exception:
+        db_mtime = 0
+    key = (p.stat().st_mtime if p.exists() else 0, db_mtime)   # CSV AND prints store
+    if _owned_print_cache["mtime"] != key:
         try:
             _, enriched = _enriched_collection()
             index = owned_printings_index(enriched)
         except Exception:
-            index = {}      # advisory: a deck must still load without printing art
-        _owned_print_cache.update({"mtime": mtime, "index": index})
+            # advisory: a deck must still load without printing art -- but do NOT cache the
+            # empty result, so the next call retries once the cause is gone.
+            logger.warning("owned-printings index failed", exc_info=True)
+            return {}
+        _owned_print_cache.update({"mtime": key, "index": index})
     return _owned_print_cache["index"]
 
 
@@ -4775,8 +4783,26 @@ def _collection_summary(rows: list[dict], prices: dict | None = None,
         # Value of the WHOLE collection (price x count), not just the returned page.
         "total_value":    round(total_value, 2),
         "priced":         sum(1 for _, val in valued if val),
-        "prices_updated": _load_prices().get("updated"),
+        "prices_updated": _prices_updated(),
     }
+
+
+def _prints_built_at() -> Optional[str]:
+    """ISO-seconds build time of the per-printing store (its db file mtime), or None."""
+    try:
+        p = scryfall_prints.db_path()
+        if p.exists():
+            return _dt.fromtimestamp(p.stat().st_mtime).isoformat(timespec="seconds")
+    except Exception:
+        pass
+    return None
+
+
+def _prices_updated() -> Optional[str]:
+    """Newer of prices.json's `updated` and the prints-store build time (R18): resolved
+    rows are priced from the store, so its build time is when their prices were fresh."""
+    stamps = [t for t in (_load_prices().get("updated"), _prints_built_at()) if t]
+    return max(stamps) if stamps else None
 
 
 def _csv_param(value: str) -> list[str]:
@@ -5034,6 +5060,12 @@ def collection_refresh_prices():
         logger.error("collection price refresh failed", exc_info=e)
         raise HTTPException(503, "Price lookup failed.")
     _save_prices({"updated": _dt.now().isoformat(timespec="seconds"), "prices": prices})
+    # Resolved rows are priced from the per-printing store, so rebuild it too (R18). A failure
+    # here must not undo the prices.json refresh above.
+    try:
+        scryfall_prints.refresh(force=True)
+    except Exception as e:
+        logger.error("prints store refresh failed during price refresh", exc_info=e)
     return _collection_summary(rows)
 
 

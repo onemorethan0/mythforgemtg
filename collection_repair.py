@@ -75,6 +75,7 @@ def diagnose_row(row: dict, index: int) -> dict | None:
                      "set": row.get("set") or "", "cn": row.get("cn") or ""},
         "proposed": proposed,
         "foil":     foil,
+        "finish":   p.get("finish") or ("foil" if foil else ""),
         "tag":      tag,
         "count_conflict": qty is not None and count != qty,
     }
@@ -103,15 +104,18 @@ def diagnose(rows: list[dict]) -> dict:
 
 
 def _fresh(row: dict, name: str, count: int, set_code: str, cn: str,
-           foil: bool) -> dict:
+           foil: bool, finish: str = "") -> dict:
     """A NEW row dict — never sharing the input's `_extra`, which callers still hold."""
     out = {"name": name, "count": int(count), "set": set_code, "cn": cn,
            "finish": row.get("finish") or "nonfoil", "lang": row.get("lang") or "",
            "condition": row.get("condition") or "",
            "scryfall_id": row.get("scryfall_id") or ""}
     extra = dict(row.get("_extra") or {})
-    if foil:
-        # The row's finish; write_collection emits it in the canonical Foil column.
+    if finish in ("foil", "etched"):
+        # A decorated name's own marker wins (`*E*` stays etched); write_collection emits
+        # it in the canonical Foil column.
+        out["finish"] = finish
+    elif foil:
         out["finish"] = "foil"
     if extra:
         out["_extra"] = extra
@@ -133,7 +137,8 @@ def apply_repairs(rows: list[dict], accept: set[int] | None = None
         issue = diagnose_row(row, index)
         if issue and (accept is None or index in accept):
             p = issue["proposed"]
-            new_row = _fresh(row, p["name"], p["count"], p["set"], p["cn"], issue["foil"])
+            new_row = _fresh(row, p["name"], p["count"], p["set"], p["cn"], issue["foil"],
+                              issue.get("finish", ""))
             repaired += 1
         else:
             new_row = _fresh(row, row.get("name", ""), int(row.get("count", 0) or 0),
@@ -145,6 +150,8 @@ def apply_repairs(rows: list[dict], accept: set[int] | None = None
         if key in seen:
             first = seen[key]
             first["count"] += new_row["count"]
+            if not first.get("scryfall_id") and new_row.get("scryfall_id"):
+                first["scryfall_id"] = new_row["scryfall_id"]
             # First row wins on conflicts: it is the one the user has been looking at.
             for k, v in (new_row.get("_extra") or {}).items():
                 first.setdefault("_extra", {}).setdefault(k, v)

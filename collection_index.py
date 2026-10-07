@@ -247,7 +247,8 @@ def enrich_row(row: dict, index: dict, resolve_print=None) -> dict:
         # and the print's set or cn contradicts the row's non-blank ones, the PRINT wins
         # (the art, price and rarity below are that print's) and the row is flagged. The
         # CSV is never modified.
-        by_id = bool(row.get("scryfall_id")) and pr.get("id") == row.get("scryfall_id")
+        rsid = str(row.get("scryfall_id") or "").strip().lower()
+        by_id = bool(rsid) and str(pr.get("id") or "").strip().lower() == rsid
         pset, pcn = pr.get("set") or "", str(pr.get("cn") or "")
         if by_id and ((out["set"] and out["set"].upper() != pset.upper())
                       or (out.get("cn") and str(out["cn"]).strip().lower() != pcn.lower())):
@@ -276,8 +277,9 @@ def enrich_row(row: dict, index: dict, resolve_print=None) -> dict:
         out["price"] = print_price(pr, finish)      # D8: no fallback to another finish
     else:
         out["image"] = oracle_image
-        # unresolved rows only: the finish-blind prices.json value the caller attached
-        out["price"] = row.get("price")
+        # Unresolved rows only: the prices.json value is a NONFOIL price (finish-blind), so
+        # it is shown for nonfoil rows and withheld for foil/etched ones (D8: honest unknown).
+        out["price"] = row.get("price") if finish == "nonfoil" else None
     extra = row.get("_extra") or {}
     out["date_added"] = extra.get("Date Added") or None
     return out
@@ -387,7 +389,7 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
     counted too, not hidden behind a bucket that only ever shows ONE colour per card.
 
     `treatments` is ORed (a row matches if it has ANY of them). `multi_printing` keeps rows
-    whose card appears on at least two rows of `rows` as passed in — callers pass the whole
+    whose card appears in at least two distinct printings (set + collector number) among `rows` as passed in — callers pass the whole
     (unfiltered) collection, and the count is taken BEFORE any other criterion applies, so
     a set filter that hides the second printing does not stop the card being multi-printing.
     """
@@ -400,11 +402,15 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
     fset = {str(f).casefold() for f in (finishes or ())}
     trset = set(treatments or ())
     lset = {str(l).casefold() for l in (languages or ())}
-    per_card: dict[str, int] = {}
+    per_card: dict[str, set] = {}
     if multi_printing:
+        # Distinct PRINTINGS per card, not rows: foil + nonfoil of one (set, cn) is one
+        # printing. A blank set is a single "unknown" printing.
         for row in rows:
             k = index_key(row.get("name", ""))
-            per_card[k] = per_card.get(k, 0) + 1
+            st = (row.get("set") or "").strip().upper()
+            pk = (st, str(row.get("cn") or "").strip()) if st else ("", "")
+            per_card.setdefault(k, set()).add(pk)
 
     out = []
     for row in rows:
@@ -435,7 +441,7 @@ def filter_rows(rows: list[dict], q: str | None = None, colors=None, types=None,
             continue
         if lset and _lang_of(row) not in lset:
             continue
-        if multi_printing and per_card.get(index_key(row.get("name", "")), 0) < 2:
+        if multi_printing and len(per_card.get(index_key(row.get("name", "")), ())) < 2:
             continue
         out.append(row)
     return out
