@@ -105,22 +105,81 @@ Suite (`MYTHSUITE_DIR` overrides it). Every write leaves a `.bak` behind, and `u
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/collection` | Owned cards enriched with offline metadata — search, facet filters (`colors`/`types`/`rarities`/`sets`/`cmc_min`/`cmc_max`/`min_count`), sort, paginate. Facets are computed over the whole collection |
+| GET | `/api/collection` | Owned cards enriched with offline metadata — search, facet filters, sort, group, paginate. See [Collection list](#collection-list-printings-and-views). Facets are computed over the whole collection |
 | GET | `/api/collection/stats` | Value, colour spread, mana curve, type/rarity/set breakdown, most valuable cards |
-| POST | `/api/collection/add` | Add copies; Scryfall-fuzzy-validates the name and stores the canonical spelling |
-| PATCH | `/api/collection/count` | Set an exact count (0 removes). With `set_code`, targets that printing |
-| PATCH | `/api/collection/printing` | Move a row to another printing, **keeping its count**, merging if already owned |
+| POST | `/api/collection/add` | Add copies of a specific printing + finish; Scryfall-fuzzy-validates the name and stores the canonical spelling |
+| PATCH | `/api/collection/count` | Set an exact count (0 removes). Prefer `row_id` (409 when stale); `set_code` targets that printing |
+| PATCH | `/api/collection/printing` | Move a row to another printing and/or finish, **keeping its count**, merging if already owned |
 | DELETE | `/api/collection` | Remove a card entirely (front-face keyed) |
 | POST | `/api/collection/bulk` | One action over many printings in a **single** write |
 | POST | `/api/collection/import` | Bulk-import a pasted Moxfield CSV or plain decklist (`merge` \| `replace`) |
 | GET | `/api/collection/health` | Rows whose "name" is really a whole decklist line, and what repairing them would do |
 | POST | `/api/collection/repair` | Apply those repairs — **`dry_run` defaults to true**, since this rewrites the canonical file |
 | POST | `/api/collection/undo` | Restore the previous collection from the `.bak` (itself undoable) |
-| GET | `/api/collection/printings` | Every printing of a card, cheapest first (set picker) |
-| POST | `/api/collection/backfill-printings` | Fill in the cheapest printing for rows that have no set |
+| GET | `/api/collection/printings` | Every printing of a card, offline from the prints store (picker); items carry per-finish prices |
+| POST | `/api/collection/backfill-printings` | Fill printings, **never replacing** one: rows that already name a printing are only normalized |
 | POST | `/api/collection/prices` | Refresh market prices for the whole collection from Scryfall |
 | GET | `/api/collection/suggest` | Card-name typeahead for the add box |
 | GET | `/api/collection/buildable` | **needs :8020** — which commanders you own could you build a bracket 1–3 deck from, ranked by coverage |
+
+### Collection list, printings and views
+
+A collection row is one **printing**: identity is `(name, SET, cn, finish, lang or "en", condition)`
+and `row_id` (`sha1(identity)[:12]`) is its stable handle. Mutating endpoints accept `row_id`;
+**a `row_id` that no longer exists returns `409` "Collection changed — reload"** (MythScanner also
+writes the file, so a stale page must not edit a different row). Finish is `nonfoil` | `foil` |
+`etched`.
+
+**`GET /api/collection`** — existing params (`q`, `offset`, `limit` (<=5000), `colors`, `types`,
+`rarities`, `sets`, `cmc_min`, `cmc_max`, `min_count`, `color_presence`, `game_changers_only`,
+`sort`, `direction`) plus:
+
+| Param | Meaning |
+|-------|---------|
+| `sort` | now also `rarity`, `color` (WUBRG), `released`, `collector`, `added`, `finish`. A `None` price/rank sorts last in both directions |
+| `then`, `then_direction` | secondary sort key (same keys) and its direction |
+| `group` | `none` (default) \| `type` \| `color` \| `cmc` \| `rarity` \| `set` \| `finish` \| `card` (all printings of a card together). Unknown = `none` |
+| `finishes`, `treatments`, `languages` | comma-separated filters (ORed within, ANDed across) |
+| `multi_printing` | `true` keeps only cards owned in 2+ printings |
+
+Response: `cards`, `matched`, `facets`, the usual totals, and **`groups`**:
+`[{key, label, rows, cards, value, printings?}]` — `rows` distinct rows, `cards` summed count,
+`value` price x count of priced rows only, `printings` for `group=card`. Groups cover the whole
+filtered set, computed before pagination, so subtotals do not depend on the page. Each row carries
+`group`. Per-row fields: `row_id`, `finish`, `lang`, `condition`, `scryfall_id`, and (from the
+prints store) `print_resolved`, `image_normal`, `art_crop`, `back_image` (double-faced cards only),
+`released_at`, `finishes`, `treatments`, `image_representative` (the art is a stand-in, not the
+owned printing), `printing_mismatch` (the row's `scryfall_id` contradicts its set/cn; the id's
+print wins), and the finish-aware `price` (`null` when that finish has no price; another finish's
+price is never borrowed).
+
+**`GET /api/collection/printings?name=`** — `{printings: [{id, set, set_name, cn, released_at,
+rarity, finishes, prices: {nonfoil, foil, etched}, treatments, image, art_crop, owned,
+collector_number, usd}]}`. `collector_number` and `usd` are back-compat aliases for `cn` and the
+nonfoil (else foil) price. `owned` lists the collection rows on that exact printing. Falls back to
+live Scryfall (sparser items, `id: null`) when the prints store is absent.
+
+**`PATCH /api/collection/printing`** body: `{row_id, scryfall_id?, set_code?, cn?, finish?, name?}`.
+`scryfall_id` is authoritative (a different card's id is 400). Omitting `finish` keeps the row's;
+a `finish` the print does not offer is 400; a finish-only change keeps the row's `scryfall_id`.
+Unknown `row_id` is 409. The legacy `{name, set_code, cn, from_set, from_cn}` form still works.
+
+**`POST /api/collection/add`** body: `{name, count=1, validate=true, set_code?, cn?, finish="nonfoil",
+scryfall_id?}`. With no printing given, the cheapest printing that offers `finish` and prices it is
+used. A `scryfall_id` the store does not know is stored as given.
+
+**`POST /api/collection/backfill-printings?limit=1000`** returns `{filled, failed, normalized,
+remaining, ...totals}`. `normalized` counts rows that already named a printing (an id or a set)
+and only had a blank set/collector number filled from it; `filled` counts rows that had nothing and
+received the cheapest printing for their finish.
+
+The **deck status response** (`GET /api/deck/{job_id}/status`, the payload the deck view loads) now carries
+`owned_printing` on each card and on the commander when you own a *resolved* printing of it. It is
+that printing's enriched collection row (`set`, `cn`, `finish`, `count`, `row_id`, `image_normal`,
+`art_crop`, `back_image`, `rarity`, `treatments`, ...). Pick order: the deck card's exact set + number,
+then highest count, nonfoil/foil/etched, newest. Unresolved rows and basics owned by rule give
+`null`. The frontend's art-source toggle (AI art vs owned printing) decides whether to draw it; the
+API always sends it.
 | GET | `/api/card-image` | Resolve a card name to Scryfall image URLs (hover previews) |
 | GET | `/api/card-lookup` | Full card data by name, shaped for the Single Card form |
 

@@ -229,6 +229,20 @@ track printings and market value, and import a Moxfield CSV or plain decklist. A
 rows whose "name" is really a whole decklist line (`13x Island (msh) 290 *F* [Land]`) and offers to
 repair them — every write leaves a backup, and Undo is one click.
 
+**Views and printings.** The page has five views: a list with a column chooser, a dense compact
+list, a card grid (S/M/L), art tiles, and overlapping stacks. Group by type, colour, mana value,
+rarity, set, finish, or "card" (every printing of a card together); each group shows its own total
+and value. Sort by rarity, colour, release date, collector number, date added or finish, with a
+secondary sort. Filter by finish, treatment, language, or "owned in 2+ printings". Each card shows the
+exact printing you own: its art, a rarity-coloured set chip, foil or etched sheen, and a flip for
+double-faced cards. Art marked representative means the printing is not known yet; use the printing
+picker (per-finish prices, add-a-printing) or "Fill printings", which never replaces a printing you
+already recorded. Foil and nonfoil copies are separate rows. Set data comes from a local ~63 MB store
+that Forge builds from Scryfall's bulk file and refreshes weekly; browsing needs no network.
+
+In a deck, a card you own can show your printing's real art instead of the AI art: use the art-source
+toggle in the deck view (your choice is remembered).
+
 That collection then feeds deck building (prefer or restrict to what you own) and the upgrade
 advisor. A **Buildable** panel ranks which commanders you own could make a real bracket 1–3 deck.
 

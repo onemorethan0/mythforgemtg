@@ -87,6 +87,19 @@ it in. Any future writer of this file must do the same.
 - Forge: collection-aware building reads the same path (C4, **done 2026-07-13** — Forge's
   `collection.py` mirrors this contract; `use_collection` build flag).
 
+**Columns and row identity (2026-10-07, Forge v1.5.0).** The file is per-PRINTING. A row's identity is
+`(name, SET, collector number, finish, language or "en", condition)`; two rows differing only in
+finish are two rows. **Forge writes this canonical header**:
+`Count,Name,Edition,Collector Number,Foil,Language,Condition,Scryfall ID`, then any extras
+(`Date Added`, `Tags`) which round-trip. `Foil` is `""`/`foil`/`etched` (the scanner's `_MOX_FOIL`
+vocabulary); `Edition` holds a set CODE. **Forge consumes these alias columns on read and does not
+write them back**: `Edition Code`, `Set Code`, `Finish`, and the derivable `Edition Name`,
+`Set Name`, `Multiverse Id`. Per row it takes the first non-blank of `Edition Code`/`Set Code`/
+`Edition`/`Set`; a generic `Edition` is trusted only when code-shaped (a set NAME reads as unknown).
+`Scryfall ID`, when present, is authoritative for the exact printing. So **the first Forge write
+rewrites the scanner's header** (a `.bak` is kept); the scanner's importer reads `Edition`,
+`Foil` and `Collector Number`. Gauntlet reads names only and is unaffected. Writers stay atomic.
+
 ### C2 — The strength API
 Gauntlet's local HTTP service — **`mythgauntlet serve`** on the registry port above.
 Startup: the semantics store (~9k CCM files) is loaded through a pickle cache
