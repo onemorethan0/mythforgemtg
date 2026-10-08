@@ -136,3 +136,45 @@ def test_deck_hash_is_deterministic_and_sensitive_to_recompiled_semantics(make_c
     deck.cards[idx] = dataclasses.replace(
         deck.cards[idx], resolve_abilities=({"kind": "spell_effect", "effects": []},))
     assert _deck_content_hash(deck) != _deck_content_hash(build())
+
+
+def test_cache_flush_survives_a_locked_destination(tmp_path, monkeypatch):
+    """Windows `replace` raises PermissionError while a scanner/reader holds the file. That
+    used to escape run_jobs' pool loop and stall the whole gauntlet for hours (2026-10-07/08)."""
+    from pathlib import Path
+
+    from mythgauntlet.ratings import orchestrator
+
+    cache = JobCache(tmp_path / "c.json")
+    cache._data["k"] = [1, 2, 3]
+    monkeypatch.setattr(orchestrator.time, "sleep", lambda s: None)
+    real_replace, calls = Path.replace, []
+
+    def flaky(self, target):
+        calls.append(1)
+        if len(calls) < 3:
+            raise PermissionError(5, "Access is denied")
+        return real_replace(self, target)
+
+    monkeypatch.setattr(Path, "replace", flaky)
+    cache.flush()  # two failures then success: must not raise
+    assert JobCache(tmp_path / "c.json")._data == {"k": [1, 2, 3]}
+
+    monkeypatch.setattr(Path, "replace", lambda self, target: (_ for _ in ()).throw(
+        PermissionError(5, "Access is denied")))
+    cache.flush()  # permanently locked: still must not raise
+
+
+def test_a_failing_pool_loop_does_not_wait_out_the_queue(make_card, tmp_path, monkeypatch):
+    """An error in the collection loop must cancel queued matchups, not block on them."""
+    import pytest
+
+    prepared, jobs = _decks(make_card), _jobs()
+    cache = JobCache(tmp_path / "c.json")
+
+    def boom():
+        raise RuntimeError("collector blew up")
+
+    monkeypatch.setattr(cache, "flush", boom)
+    with pytest.raises(RuntimeError, match="collector blew up"):
+        run_jobs(prepared, jobs, workers=2, cache=cache)

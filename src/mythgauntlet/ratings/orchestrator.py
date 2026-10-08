@@ -140,10 +140,27 @@ class JobCache:
         ]
 
     def flush(self) -> None:
+        """Persist the cache atomically. NEVER raises: the cache is an optimisation.
+
+        On Windows `tmp.replace(path)` fails with PermissionError whenever anything (a
+        scanner, an indexer, a concurrent reader) holds the destination open for a moment.
+        Raised from inside `run_jobs`' pool loop, that error did not stop the gauntlet - the
+        `with ProcessPoolExecutor` block waited for every queued matchup to finish first
+        (hours of ISMCTS), then lost them all, so 2026-10-07 and 10-08 each wrote no cache
+        entry for ~6h while every worker sat at 95% CPU. Retry briefly, then give up and let
+        the next flush (which rewrites the whole dict) carry it.
+        """
         self.path.parent.mkdir(parents=True, exist_ok=True)
         tmp = self.path.with_suffix(self.path.suffix + ".tmp")
-        tmp.write_text(json.dumps(self._data), encoding="utf-8")
-        tmp.replace(self.path)  # atomic
+        for attempt in range(5):
+            try:
+                tmp.write_text(json.dumps(self._data), encoding="utf-8")
+                tmp.replace(self.path)  # atomic
+                return
+            except OSError:
+                time.sleep(0.2 * (attempt + 1))
+        print(f"  [cache] could not write {self.path.name}; will retry on the next flush",
+              file=sys.stderr, flush=True)
 
 
 # --- runner ------------------------------------------------------------------------------
@@ -203,25 +220,30 @@ def run_jobs(
     with ProcessPoolExecutor(max_workers=n, initializer=_init_worker,
                              initargs=(prepared,)) as ex:
         futures = {ex.submit(_run_one, job): i for i, job in todo}
-        pending = set(futures)
-        while pending:
-            finished, pending = wait(pending, timeout=STALL_REPORT_S, return_when=FIRST_COMPLETED)
-            if not finished:
-                # Nothing completed for STALL_REPORT_S. Name the matchups the workers are
-                # sitting on: 2026-10-07's ISMCTS half went 6h with every worker at 95% CPU
-                # and no completion, and nothing recorded WHICH jobs they were.
-                stuck = sorted(f"{jobs[futures[f]].a} vs {jobs[futures[f]].b}"
-                               for f in pending if f.running())
-                print(f"  [stall] no matchup finished in {STALL_REPORT_S // 60} min; "
-                      f"{len(stuck)} running: {'; '.join(stuck)}", file=sys.stderr, flush=True)
-                continue
-            for fut in finished:
-                i = futures[fut]
-                results[i] = fut.result()
-                if cache:
-                    cache.put(jobs[i], results[i], prepared)
-                    cache.flush()
-                done += 1
-                if on_done:
-                    on_done(done, total)
+        try:
+            pending = set(futures)
+            while pending:
+                finished, pending = wait(pending, timeout=STALL_REPORT_S, return_when=FIRST_COMPLETED)
+                if not finished:
+                    # Nothing completed for STALL_REPORT_S. Name the matchups the workers are
+                    # sitting on: 2026-10-07's ISMCTS half went 6h with every worker at 95% CPU
+                    # and no completion, and nothing recorded WHICH jobs they were.
+                    stuck = sorted(f"{jobs[futures[f]].a} vs {jobs[futures[f]].b}"
+                                   for f in pending if f.running())
+                    print(f"  [stall] no matchup finished in {STALL_REPORT_S // 60} min; "
+                          f"{len(stuck)} running: {'; '.join(stuck)}", file=sys.stderr, flush=True)
+                    continue
+                for fut in finished:
+                    i = futures[fut]
+                    results[i] = fut.result()
+                    if cache:
+                        cache.put(jobs[i], results[i], prepared)
+                        cache.flush()
+                    done += 1
+                    if on_done:
+                        on_done(done, total)
+        except BaseException:
+            # Whatever went wrong, don't let the `with` block wait out the queue.
+            ex.shutdown(wait=False, cancel_futures=True)
+            raise
     return results  # type: ignore[return-value]
