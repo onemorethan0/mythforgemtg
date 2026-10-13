@@ -217,3 +217,23 @@ def test_a_zero_cost_sacrifice_is_bounded_by_the_sacrifice():
     ab = _ability({"sacrifice_self": True}, *effects)
     assert profile._activated_from(ab, effects, allow_sacrifice_self=True) is not None
     assert profile._activated_from(ab, effects) is None
+
+
+# --- _kill on a permanent that already left ------------------------------------------
+
+def test_kill_of_a_permanent_that_already_left_is_a_noop():
+    """A trigger resolves after its source died (`_fire_perm_triggers` says so), and a
+    'sacrifice this' effect then reaches `_kill`. list.remove raised ValueError inside an
+    ISMCTS rollout and crashed the nightly gauntlet worker (2026-10-13)."""
+    me, opp = _player(), _player()
+    gone = _perm()
+    tier2._kill(me, gone, opp)  # never on the battlefield: must not raise
+    assert me.battlefield == []
+
+
+def test_kill_removes_the_permanent_itself_not_a_field_equal_twin():
+    me, opp = _player(), _player()
+    a, b = _perm(), _perm()  # dataclass-equal tokens
+    me.battlefield = [a, b]
+    tier2._kill(me, b, opp)
+    assert len(me.battlefield) == 1 and me.battlefield[0] is a

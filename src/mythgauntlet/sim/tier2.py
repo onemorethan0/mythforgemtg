@@ -487,8 +487,17 @@ def _kill(
     owner: _Player, permanent: _Permanent, opponent: _Player,
     others: tuple[_Player, ...] = (),
 ) -> None:
+    # By IDENTITY, not equality: `_Permanent` is a dataclass, so `list.remove` would take the
+    # first field-equal permanent (two identical tokens), not this one. And a permanent that
+    # already left is a no-op: `_fire_perm_triggers` deliberately resolves a trigger after its
+    # source died, and a "sacrifice this" effect then lands here. That raised ValueError
+    # inside an ISMCTS rollout, crashed the nightly gauntlet worker, and (hidden behind the
+    # pool's wait) looked like a multi-hour stall on 2026-10-07, 10-08 and 10-13.
+    idx = next((i for i, p in enumerate(owner.battlefield) if p is permanent), None)
+    if idx is None:
+        return
     _detach_on_leave(owner, permanent)
-    owner.battlefield.remove(permanent)
+    del owner.battlefield[idx]
     if permanent.is_commander:
         owner.commander_in_zone = True  # returns to the command zone (tax already counted)
     death = permanent.death
