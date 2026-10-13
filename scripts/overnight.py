@@ -26,6 +26,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import collections
 import json
 import os
 import statistics
@@ -101,6 +102,43 @@ def log(message: str) -> None:
             fh.write(line + "\n")
 
 
+INCIDENT_PATH = DATA / f"INCIDENT_{STAMP}.md"
+_INCIDENTS: list[str] = []
+
+
+def record_incident(stage: str, detail: str, tail: list[str] | None = None) -> None:
+    """Write (immediately, not at the end of the night) a marker a person or an agent can act on.
+
+    2026-10-07/08/13 each lost an ISMCTS stage to the same engine exception and nobody knew
+    until the morning report said "no ratings". This file is the prod: the scheduled
+    `overnight-incident-triage` task looks for INCIDENT_*.md (without a `.handled` sibling)
+    and investigates. Never raises - a broken reporter must not take the night down with it.
+    """
+    try:
+        _INCIDENTS.append(stage)
+        out: list[str] = []
+        if not INCIDENT_PATH.exists():
+            out += [
+                f"# Overnight incident {STAMP}",
+                "",
+                f"- log: {LOG_PATH}",
+                f"- repo: {REPO}",
+                f"- data: {DATA}",
+                "- resume only the agent-contrast stage + report: "
+                "`python scripts/overnight.py --contrast-only`",
+                "",
+            ]
+        out += [f"## {stage} ({datetime.now().strftime('%H:%M:%S')})", "", detail]
+        if tail:
+            out += ["", "```", *tail, "```"]
+        out.append("")
+        with _LOG_LOCK, open(INCIDENT_PATH, "a", encoding="utf-8") as fh:
+            fh.write("\n".join(out) + "\n")
+        log(f"INCIDENT recorded: {stage} -> {INCIDENT_PATH.name}")
+    except OSError:
+        pass
+
+
 # Wall-clock start of the most recent run(); _archive_gauntlet only accepts output written
 # after it. A killed/failed gauntlet writes NO result file, and "the latest un-renamed
 # gauntlet_<date>.json" is then whatever an earlier run (or a manual experiment) left in
@@ -142,10 +180,16 @@ def run(name: str, *cli_args: str, timeout: float | None = None) -> int:
 
     assert proc.stdout is not None
 
+    tail: collections.deque[str] = collections.deque(maxlen=80)
+    stalled: list[str] = []
+
     def _drain() -> None:
         for raw in proc.stdout:
             line = raw.rstrip()
             if line:
+                tail.append(line)
+                if "[stall]" in line:
+                    stalled.append(line)
                 with _LOG_LOCK, open(LOG_PATH, "a", encoding="utf-8") as fh:
                     fh.write(f"    | {line}\n")
 
@@ -170,6 +214,12 @@ def run(name: str, *cli_args: str, timeout: float | None = None) -> int:
         log(f"KILLED {name}: exceeded its {timeout / 3600:.1f}h budget, tree terminated ({minutes:.1f} min)")
         return -2
     log(f"END   {name}: rc={rc} ({minutes:.1f} min)")
+    if rc != 0:
+        record_incident(f"{name} exited rc={rc}",
+                        f"`mythgauntlet {' '.join(cli_args)}` failed after {minutes:.1f} min. "
+                        "Last output:", list(tail))
+    elif stalled:
+        record_incident(f"{name} stalled", "run_jobs reported no completions:", stalled[-3:])
     return rc
 
 
@@ -606,6 +656,9 @@ def write_report(
     )
     tail = (rc.stdout or "").strip().splitlines()[-1:] or ["(no output)"]
     lines.append(f"- pytest: rc={rc.returncode} ({tail[0]})")
+    if rc.returncode != 0:
+        record_incident("pytest failed after the night's run", f"rc={rc.returncode}",
+                        (rc.stdout or "").strip().splitlines()[-40:])
     lines.append("- git tree left UNCOMMITTED for morning review.")
 
     REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -634,6 +687,12 @@ def main() -> int:
         "--mcts-iters", type=int, default=120,
         help="ISMCTS iterations for the agent-contrast gauntlet (Phase 7 re-basing)",
     )
+    parser.add_argument(
+        "--contrast-only", action="store_true",
+        help="skip compile/PRE/benchmark/POST and run only the agent-contrast stage + the "
+             "tail reports (used to resume a night after an incident was fixed; --cache "
+             "makes the stage pick up where it stopped)",
+    )
     args = parser.parse_args()
 
     DATA.mkdir(exist_ok=True)
@@ -656,21 +715,22 @@ def main() -> int:
         gauntlet_args = ["--opponents", "61", "--games", "40", "--seed", "777",
                          "--jobs", str(max(1, (os.cpu_count() or 4) - 2)), "--cache"]
 
-    cpu = threading.Thread(target=cpu_worker, args=(args.smoke, gauntlet_args))
-    cpu.start()
-    gpu_worker(chunks, deadline)
-    cpu.join()
+    if not args.contrast_only:
+        cpu = threading.Thread(target=cpu_worker, args=(args.smoke, gauntlet_args))
+        cpu.start()
+        gpu_worker(chunks, deadline)
+        cpu.join()
 
-    # POST gauntlet (greedy, full): identical params/seed, now with the night's semantics
-    # coverage. Only worth running if the semantics actually MOVED — with an unchanged
-    # ledger this is a bit-identical rerun of PRE (same seed, same params, same store), so
-    # it burned ~12 min a night to print a table of "+0.0" that read like a finding.
-    after_compile = ledger_stats()
-    if after_compile == before:
-        log("semantics unchanged tonight - skipping POST gauntlet (would duplicate PRE)")
-    else:
-        run("gauntlet POST (greedy)", "gauntlet", *gauntlet_args)
-        _archive_gauntlet("post")
+        # POST gauntlet (greedy, full): identical params/seed, now with the night's semantics
+        # coverage. Only worth running if the semantics actually MOVED — with an unchanged
+        # ledger this is a bit-identical rerun of PRE (same seed, same params, same store), so
+        # it burned ~12 min a night to print a table of "+0.0" that read like a finding.
+        after_compile = ledger_stats()
+        if after_compile == before:
+            log("semantics unchanged tonight - skipping POST gauntlet (would duplicate PRE)")
+        else:
+            run("gauntlet POST (greedy)", "gauntlet", *gauntlet_args)
+            _archive_gauntlet("post")
 
     # Phase-7 re-basing: two reduced-scope gauntlets at the SAME scope/seed, differing ONLY in
     # the agent. The morning question was whether a stronger agent moves the bracket picture
@@ -754,4 +814,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception:  # noqa: BLE001 - the incident file is the whole point
+        import traceback
+
+        record_incident("overnight.py itself crashed", "Uncaught exception in the driver:",
+                        traceback.format_exc().splitlines()[-40:])
+        raise
