@@ -4181,7 +4181,10 @@ def _gauntlet_analyze(commander, deck, partners=None):
                 "resilience": True,
                 "combos": True,  # graded combo gate: real wincons vs durdles (Spellbook, cached)
             },
-            timeout=25,
+            # Measured 2026-10-06: a real 89-card deck takes ~38s through /analyze
+            # (runs=300 + resilience + combos), so the old 25s read timeout reported
+            # a healthy engine as "unreachable". 120s leaves margin for a loaded box.
+            timeout=120,
         )
         if resp.status_code != 200:
             return None
