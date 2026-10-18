@@ -18,7 +18,8 @@ from pydantic import BaseModel, Field
 from mythgauntlet import __version__
 from mythgauntlet.config import corpus_dir, suite_collection_path
 from mythgauntlet.data import rulings, scryfall, spellbook
-from mythgauntlet.mentor import chat as mentor_chat, transcript
+from mythgauntlet.mentor import chat as mentor_chat, deckview, transcript
+from mythgauntlet.mentor import tools as mentor_tools
 from mythgauntlet.mentor.tools import MentorContext
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, ResolvedDeck, resolve
@@ -186,6 +187,19 @@ class MentorChatRequest(BaseModel):
         "'computed_at': ...}} -- the full swap searches Forge has already run for THIS deck "
         "(Forge verifies deck hash + collection mtime before sending). Passed through to "
         "MentorContext.advice for the get_measured_swaps tool; None = none run.",
+    )
+
+
+class BreakdownRequest(BaseModel):
+    deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
+    name: str = "deck"
+    runs: int = Field(default=150, ge=1, le=2_000,
+                      description="sim games for the finisher combat check (same as the mentor)")
+    seed: int = 42
+    turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
+    themes: list[str] = Field(
+        default_factory=list,
+        description="the deck's own detected archetypes (same contract as /advise's themes)",
     )
 
 
@@ -685,6 +699,40 @@ def create_app(
             "name": req.name,
             "opponents": len(opponents),
             "rating": dataclasses.asdict(rating),
+        }
+
+    @app.post("/breakdown")
+    def run_breakdown(req: BreakdownRequest) -> dict:
+        """The Deck Mentor's deterministic measurements as one block, for charts and the
+        deck view's group-by-role: role cards vs card target, interaction coverage by
+        permanent type, curve, colour sources, and every card's roles.
+
+        Calls the mentor's OWN tool functions rather than recomputing anything, so a chart
+        can never disagree with what the mentor says about the same deck (the role table
+        shipped in two units once already). No LLM and no rules corpus; the only
+        simulation is the cached finisher combat check inside get_deck_stats."""
+        resolved = _resolve_or_400(req.deck, req.name, db)
+        ctx = MentorContext(
+            card_db=db, cr=None, rulings_db={}, resolved=resolved,
+            cfg=SimConfig(turns=req.turns, runs=req.runs, seed=req.seed), store=store,
+            themes=tuple(req.themes),
+        )
+        stats = mentor_tools.tool_get_deck_stats(ctx).data
+        cov = mentor_tools.tool_removal_coverage(ctx).data
+        return {
+            "engine_version": __version__,
+            "commanders": stats["commanders"],
+            "detected_themes": stats["detected_themes"],
+            "curve": stats["curve"],
+            "manabase": stats["manabase"],
+            "roles": stats["role_summary"],
+            "removal": {k: cov[k] for k in (
+                "counts_by_type", "answers_by_type", "unrestricted_answers_by_type",
+                "no_answer_for", "no_unrestricted_answer_for", "not_applicable_types",
+                "exile_count", "instant_speed_count")},
+            "cards": [{"name": r["name"], "qty": r["qty"], "roles": r["roles"],
+                       "commander": bool(r.get("commander"))}
+                      for r in deckview.deck_card_rows(resolved)],
         }
 
     @app.post("/mentor/chat")

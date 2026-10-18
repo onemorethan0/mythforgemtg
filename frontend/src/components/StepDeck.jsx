@@ -4,6 +4,7 @@ import AnimatePanel from './AnimatePanel'
 import CardImpactPanel from './CardImpactPanel'
 import CardFace, { SetChip } from './CardFace'
 import CardTile from './CardTile'
+import DeckBreakdownPanel from './DeckBreakdownPanel'
 import { CmcChart, StatBar } from './DeckStatCharts'
 import DuelPanel from './DuelPanel'
 import MentorChatPanel from './MentorChatPanel'
@@ -17,6 +18,7 @@ import { useGenerate3D } from '../hooks/useGenerate3D'
 import { useOwnDeck } from '../hooks/useOwnDeck'
 import { notify } from '../utils/toast'
 import { searchCards } from '../utils/searchCards'
+import { GROUP_BYS, GROUP_BY_LABELS, groupCards, nameKey } from '../utils/deckGrouping'
 import { BRACKET_TERMS } from '../glossary'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -128,6 +130,15 @@ function deckHasNoArt(deck) {
 
 export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, onDuplicate, onEdit, editingDeck, onDeckChange }) {
   const [filter, setFilter]   = useState('All')
+  // How the deck view is organised (type / role / colour / mana value / none). Persisted
+  // per viewer like the art-source toggle; roles come from the Deck Mentor's /breakdown.
+  const [groupBy, setGroupBy] = useState(() => {
+    try {
+      const v = localStorage.getItem('mtg_deck_group_by')
+      return GROUP_BYS.includes(v) ? v : 'type'
+    } catch { return 'type' }
+  })
+  const [breakdown, setBreakdown] = useState(() => deck.breakdown?.data || null)
   const [view, setView]       = useState('gallery')
   const [query, setQuery]     = useState('')   // text search across the card list
   // "I own this deck in paper" -> merge its cards into the collection (state +
@@ -526,10 +537,22 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   }
 
   // ── Derived data ──────────────────────────────────────────────────────────
-  const groups      = groupByType(deck.deck)
-  const types       = ['All', ...TYPE_ORDER.filter(t => groups[t]?.length > 0)]
-  if (groups['Other']?.length) types.push('Other')
-  const visibleCards = searchCards(filter === 'All' ? deck.deck : (groups[filter] || []), query)
+  const rolesByName = breakdown?.cards
+    ? Object.fromEntries(breakdown.cards.map(c => [nameKey(c.name), c.roles || []]))
+    : null
+  const roleTargets = Object.fromEntries((breakdown?.roles?.rows || []).map(r => [r.role, r.card_target]))
+  const grouped     = groupCards(deck.deck, groupBy, rolesByName)
+  // A tab whose group vanished (a swap, or switching the grouping) falls back to All.
+  const activeGroup = filter === 'All' ? null : grouped.find(g => g.key === filter) || null
+  const visibleCards = searchCards(activeGroup ? activeGroup.cards : deck.deck, query)
+  const sectioned   = !activeGroup && groupBy !== 'none'
+  const shownGroups = (activeGroup ? [activeGroup] : grouped)
+    .map(g => ({ ...g, shown: searchCards(g.cards, query) }))
+    .filter(g => g.shown.length > 0)
+  const chooseGroupBy = (v) => {
+    setGroupBy(v); setFilter('All')
+    try { localStorage.setItem('mtg_deck_group_by', v) } catch { /* private window */ }
+  }
 
   const allCardsFlat    = [deck.commander, ...deck.deck]
   const selectedCardData = allCardsFlat.filter(c => selectedKeys.has(c.render_key))
@@ -1017,6 +1040,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
         <div style={{ marginBottom: 20 }}>
           {/* keyed on swap_count so an applied swap resets the cached measurement
               (the old profile no longer matches the modified list) */}
+          <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
+            initial={deck.breakdown?.data} onData={setBreakdown} />
           <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure} />
           <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
           {/* Ask about ONE named card. Keyed on swap_count like MeasurePanel:
@@ -1032,20 +1057,51 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
-        {/* Type filter */}
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', flex: 1 }}>
-          {!single && types.map(t => (
-            <button key={t} onClick={() => setFilter(t)} style={{
-              fontSize: 12, padding: '5px 14px', borderRadius: 20, border: 'none', cursor: 'pointer', fontFamily: 'inherit',
-              background: filter === t ? '#ca8a04' : '#1c1917',
-              color: filter === t ? '#0c0a09' : '#a8a29e',
-              fontWeight: filter === t ? 700 : 400,
-            }}>
-              {t} {t !== 'All' && groups[t] ? `(${groups[t].reduce((n, c) => n + qty(c), 0)})`
-                : t === 'All' ? `(${deck.deck.reduce((n, c) => n + qty(c), 0)})` : ''}
-            </button>
-          ))}
-        </div>
+        {/* Organize by + group filter tabs */}
+        {!single && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: 260 }}>
+            <div style={{ display: 'flex', gap: 4, alignItems: 'center', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 11, color: '#78716c', marginRight: 4 }}>Organize by</span>
+              {GROUP_BYS.map(g => (
+                <button key={g} onClick={() => chooseGroupBy(g)} style={{
+                  fontSize: 11, padding: '4px 10px', borderRadius: 6, cursor: 'pointer', fontFamily: 'inherit',
+                  border: `1px solid ${groupBy === g ? '#ca8a04' : '#292524'}`,
+                  background: groupBy === g ? '#1c1408' : 'transparent',
+                  color: groupBy === g ? '#fde047' : '#78716c', fontWeight: groupBy === g ? 700 : 400,
+                }}>{GROUP_BY_LABELS[g]}</button>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {[{ key: 'All', label: 'All', count: deck.deck.reduce((n, c) => n + qty(c), 0) }, ...grouped]
+                .filter(g => groupBy !== 'none' || g.key === 'All')
+                .map(g => {
+                  const on = g.key === 'All' ? !activeGroup : activeGroup?.key === g.key
+                  const target = groupBy === 'role' ? roleTargets[g.key] : undefined
+                  return (
+                    <button key={g.key} onClick={() => setFilter(g.key)}
+                      title={target !== undefined ? `${g.count} cards; a typical deck runs ${target}` : undefined}
+                      style={{
+                        fontSize: 12, padding: '5px 14px', borderRadius: 20, border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                        background: on ? '#ca8a04' : '#1c1917', color: on ? '#0c0a09' : '#a8a29e', fontWeight: on ? 700 : 400,
+                      }}>
+                      {g.label} ({g.count}{target !== undefined ? ` / ${target}` : ''})
+                    </button>
+                  )
+                })}
+            </div>
+            {groupBy === 'role' && !rolesByName && (
+              <div style={{ fontSize: 11, color: '#78716c' }}>
+                Roles come from the Deck Breakdown above — they appear once it has measured the deck
+                (needs the strength engine on :8020).
+              </div>
+            )}
+            {groupBy === 'role' && rolesByName && (
+              <div style={{ fontSize: 11, color: '#57534e' }}>
+                A card that fills two roles is listed under both. (n / m) = cards you run / what a typical deck runs.
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Text search */}
         {!single && (
@@ -1255,9 +1311,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       )}
 
       {/* Card gallery — a deck of one has its only card in the hero banner */}
-      {view === 'gallery' && !single && (
+      {view === 'gallery' && !single && shownGroups.map(g => (
+        <div key={g.key} style={{ marginBottom: sectioned ? 22 : 0 }}>
+          {sectioned && (
+            <div style={{ fontSize: 12, color: '#a8a29e', textTransform: 'uppercase', letterSpacing: '0.08em',
+              padding: '6px 0', borderBottom: '1px solid #1c1917', marginBottom: 10, display: 'flex', gap: 8 }}>
+              <span style={{ fontWeight: 700 }}>{g.label}</span>
+              <span style={{ color: '#57534e' }}>
+                {g.count}{groupBy === 'role' && roleTargets[g.key] !== undefined ? ` / ${roleTargets[g.key]} typical` : ''}
+              </span>
+            </div>
+          )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
-          {visibleCards.map((card) => (
+          {g.shown.map((card) => (
             <CardTile
               // render_key is the deck's own stable, unique-per-card identifier
               // (already used everywhere else in this file to key per-card state:
@@ -1281,18 +1347,18 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             />
           ))}
         </div>
-      )}
+        </div>
+      ))}
 
       {/* List view */}
       {view === 'list' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {(filter === 'All' ? TYPE_ORDER.concat('Other') : [filter]).map(type => {
-            const cards = searchCards(groups[type] || [], query)
-            if (!cards?.length) return null
+          {shownGroups.map(g => {
+            const cards = g.shown
             return (
-              <div key={type} style={{ marginBottom: 16 }}>
+              <div key={g.key} style={{ marginBottom: 16 }}>
                 <div style={{ fontSize: 12, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '6px 0', borderBottom: '1px solid #1c1917', marginBottom: 6 }}>
-                  {type} ({cards.length})
+                  {g.label} ({cards.reduce((n, c) => n + qty(c), 0)}{groupBy === 'role' && roleTargets[g.key] !== undefined ? ` / ${roleTargets[g.key]}` : ''})
                 </div>
                 {cards.map((c, i) => (
                   <div key={i}

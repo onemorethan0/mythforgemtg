@@ -4431,6 +4431,80 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     return result
 
 
+def _gauntlet_breakdown(commander, deck, themes=None, partners=None):
+    """The engine's /breakdown block (the mentor's own role table, interaction coverage,
+    curve, colour sources and per-card roles); {"error": detail} on a 400, None when the
+    service is unreachable."""
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/breakdown",
+            json={"deck": _deck_to_lines(commander, deck, partners),
+                  "name": (commander or {}).get("name") or "deck",
+                  "themes": list(themes or [])},
+            timeout=120,
+        )
+        if resp.status_code == 400:
+            try:
+                return {"error": resp.json().get("detail", "breakdown failed")}
+            except ValueError:
+                return {"error": "breakdown failed"}
+        if resp.status_code != 200:
+            return None
+        return resp.json()
+    except Exception as e:
+        print(f"  [breakdown] MythGauntlet strength API unavailable: {e}")
+        return None
+
+
+@app.post("/api/deck/{job_id}/breakdown")
+def deck_breakdown(job_id: str, refresh: bool = False):
+    """The Deck Mentor's measurements for charts and the deck view's group-by-role.
+
+    Persisted in deck.json under `breakdown` with the hash of the decklist text and the
+    themes it was measured with, so the panel opens instantly on a revisit and a swap,
+    rebuild or edit recomputes it rather than charting the old list. `refresh=true`
+    re-measures anyway (a tagger change in the engine moves roles without moving the hash).
+    """
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        job = disk
+    if not (job.get("deck") or []):
+        raise HTTPException(400, "A single-card build has no deck to break down.")
+    commander, deck = _job_deck_inputs(job)
+    partners = _job_partners(job)
+    themes = _deck_archetypes(job)
+    key = hashlib.sha1(json.dumps(
+        [_deck_to_lines(commander, deck, partners), sorted(themes)]).encode("utf-8")).hexdigest()
+    cached = job.get("breakdown") or {}
+    if not refresh and cached.get("key") == key and cached.get("data"):
+        return {**cached["data"], "computed_at": cached.get("computed_at"), "cached": True}
+    data = _gauntlet_breakdown(commander, deck, themes=themes, partners=partners)
+    if data is None:
+        raise HTTPException(
+            503,
+            "MythGauntlet strength API isn't reachable on :8020 — start Myth Forge "
+            "via manage.bat (it auto-starts it) or run 'mythgauntlet serve'.",
+        )
+    if "error" in data:
+        raise HTTPException(400, data["error"])
+    stamp = {"key": key, "data": data, "computed_at": _dt.now().isoformat(timespec="seconds")}
+    try:
+        p = RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk_data = json.loads(p.read_text(encoding="utf-8"))
+            disk_data["breakdown"] = stamp
+            p.write_text(json.dumps(disk_data), encoding="utf-8")
+        if job_id in _jobs:
+            _jobs[job_id]["breakdown"] = stamp
+    except Exception as e:
+        print(f"  [breakdown] could not persist: {e}")
+    return {**data, "computed_at": stamp["computed_at"], "cached": False}
+
+
 class MentorFeedbackDeckRequest(BaseModel):
     turn_id: str = Field(min_length=1)
     rating: str = Field(description="'up' or 'down'")
