@@ -1,5 +1,7 @@
 """Behavioral tests for the Tier-0 goldfish simulator (offline, synthetic cards)."""
 
+import pytest
+
 from mythgauntlet.ratings import metrics
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig, simulate
@@ -196,3 +198,34 @@ def test_self_cost_reduction_makes_a_wipe_actually_castable(make_card):
     # The discounted wipe gets cast in a meaningful share of runs once a few creatures are
     # out; the control, needing the full 9 mana in only 6 turns, essentially never does.
     assert with_discount.avg_spells_cast > without_discount.avg_spells_cast
+
+
+def test_consistency_is_the_share_of_smooth_games(make_card, forest, bear):
+    """2026-10-18: consistency_score = 100 x the share of runs passing every smooth-game
+    check (mana on track, has plays, commander on time) -- not a weighted mean of averages."""
+    cfg = SimConfig(runs=300, seed=47, turns=8)
+    rep = metrics.compute(simulate(_deck(forest, bear, 38, 61), None, cfg), cfg)
+    assert rep.consistency_score == pytest.approx(100.0 * rep.smooth_game_rate)
+    assert rep.smooth_game_rate <= min(rep.mana_on_track_rate, rep.has_plays_rate)
+    assert rep.commander_on_time_rate is None  # no commander_mv -> check skipped
+
+
+def test_land_light_deck_is_less_consistent(make_card, forest, bear):
+    cfg = SimConfig(runs=300, seed=53, turns=8)
+    healthy = metrics.compute(simulate(_deck(forest, bear, 38, 61), None, cfg), cfg)
+    starved = metrics.compute(simulate(_deck(forest, bear, 24, 75), None, cfg), cfg)
+    assert starved.mana_on_track_rate < healthy.mana_on_track_rate
+    assert starved.consistency_score < healthy.consistency_score
+
+
+def test_an_expensive_commander_lands_on_time_less_often(make_card, forest, bear):
+    cfg = SimConfig(runs=300, seed=59, turns=10)
+    cheap = make_card("Cheap Lord", mana_cost="{2}{G}", type_line="Legendary Creature — Elf",
+                      color_identity=("G",))
+    pricey = make_card("Huge Lord", mana_cost="{6}{G}{G}",
+                       type_line="Legendary Creature — Wurm", color_identity=("G",))
+    deck = _deck(forest, bear, 38, 61)
+    a = metrics.compute(simulate(deck, cheap, cfg), cfg, commander_mv=cheap.mana_value)
+    b = metrics.compute(simulate(deck, pricey, cfg), cfg, commander_mv=pricey.mana_value)
+    assert b.commander_on_time_rate < a.commander_on_time_rate
+    assert b.consistency_score < a.consistency_score

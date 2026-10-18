@@ -275,7 +275,9 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     cfg = SimConfig(turns=args.turns, runs=args.runs, seed=args.seed)
 
     if args.json:  # lightweight: just the T0 report (no axes/resilience)
-        report = metrics.compute(simulate(resolved.cards, commander, cfg), cfg)
+        report = metrics.compute(
+            simulate(resolved.cards, commander, cfg), cfg,
+            commander_mv=commander.mana_value if commander else None)
         print(json.dumps(dataclasses.asdict(report), indent=2))
         return 0
 
@@ -370,7 +372,9 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
         console.print(
             f"\n[bold]Resilience (T1):[/bold] {res.resilience_score:.0f}/100 "
             f"vs a turn-{a.wipe_turn} board wipe "
-            f"(kill rate {res.clean_kill_rate:.0%} -> {res.wiped_kill_rate:.0%}{delay})"
+            + (f"(pressure kept over turns {a.wipe_turn}-{res.window_end_turn}; "
+               if res.basis == "pressure" else "(board+mana kept, no pressure to lose; ")
+            + f"kill rate {res.clean_kill_rate:.0%} -> {res.wiped_kill_rate:.0%}{delay})"
         )
 
     console.print(
@@ -1534,7 +1538,7 @@ def _cmd_benchmark(args: argparse.Namespace) -> int:
             console.print(f"[yellow]skipped[/yellow] {path.name}")
             continue
         runs = simulate(resolved.cards, resolved.commanders[0], cfg)
-        report = metrics.compute(runs, cfg)
+        report = metrics.compute(runs, cfg, commander_mv=resolved.commanders[0].mana_value)
         gc = sum(1 for c, _ in resolved.cards if c.game_changer) + sum(
             1 for c in resolved.commanders if c.game_changer
         )

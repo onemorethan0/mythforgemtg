@@ -129,3 +129,72 @@ def test_wipe_does_not_stop_a_storm_kill(make_card, forest):
     # having delayed it.
     assert res.wiped_avg_kill_turn == res.clean_avg_kill_turn
     assert res.kill_delay_turns == 0.0
+
+
+def test_score_reads_the_pressure_window_not_the_horizon(make_card, forest):
+    """2026-10-18: the score is retained DAMAGE over turns W..W+3, not board+mana at the
+    horizon. At turns=12 the old ratio gave a creature deck ~90 (seven quiet rebuild turns,
+    plus mana a wipe never touches); the window sees the tempo the wipe actually cost."""
+    bear = _creature(make_card, "Beater", 3)
+    cfg = SimConfig(runs=300, seed=31, turns=12)
+    res = compute_resilience([(forest, 38), (bear, 61)], None, cfg, wipe_turn=5)
+    assert res.basis == "pressure"
+    assert res.window_end_turn == 8
+    assert res.resilience_score < 75
+
+
+def test_window_is_clamped_to_the_horizon(make_card, forest):
+    bear = _creature(make_card, "Beater", 3)
+    cfg = SimConfig(runs=60, seed=37, turns=6)
+    res = compute_resilience([(forest, 38), (bear, 61)], None, cfg, wipe_turn=5)
+    assert res.window_end_turn == 6
+
+
+def test_pressureless_deck_falls_back_to_development(make_card, forest):
+    """A deck that never deals damage has nothing a wipe can take from the clock; it falls
+    back to the old board+mana ratio and says so, rather than reading a fabricated zero."""
+    rock = make_card(
+        "Mana Rock", mana_cost="{2}", type_line="Artifact", oracle_text="{T}: Add {C}.",
+        produced_mana=("C",),
+    )
+    cfg = SimConfig(runs=100, seed=41, turns=12)
+    res = compute_resilience([(forest, 40), (rock, 59)], None, cfg, wipe_turn=5)
+    assert res.basis == "development"
+    assert res.resilience_score > 95
+
+
+def test_creature_damage_engine_dies_to_the_wipe(make_card):
+    """A cast-damage payoff that is a CREATURE dies to a wrath; the same payoff on an
+    enchantment does not. Before 2026-10-18 tier0 kept creature engines alive through the
+    wipe, which inflated exactly this axis."""
+    text = "Whenever you cast an instant or sorcery spell, this deals 2 damage to any target."
+    imp = make_card("Burn Imp", mana_cost="{1}{R}", type_line="Creature — Imp",
+                    oracle_text=text, color_identity=("R",))
+    imp.power, imp.toughness = "0", "2"
+    aura = make_card("Burn Shrine", mana_cost="{1}{R}", type_line="Enchantment",
+                     oracle_text=text, color_identity=("R",))
+    bolt = make_card("Zap", mana_cost="{R}", type_line="Instant",
+                     oracle_text="Zap deals 1 damage to any target.", color_identity=("R",))
+    mountain = make_card("Mountain", type_line="Basic Land — Mountain", produced_mana=("R",),
+                         color_identity=("R",))
+    cfg = SimConfig(runs=300, seed=43, turns=10)
+    creature = compute_resilience([(mountain, 37), (imp, 12), (bolt, 50)], None, cfg, wipe_turn=5)
+    shrine = compute_resilience([(mountain, 37), (aura, 12), (bolt, 50)], None, cfg, wipe_turn=5)
+    assert creature.basis == shrine.basis == "pressure"
+    assert creature.resilience_score < shrine.resilience_score
+
+
+def test_wiped_commander_is_recast_with_tax(make_card, forest):
+    """CR 903.9a/903.8: a creature commander killed by the wipe goes back to the command zone
+    and is recast for {2} more. Without it a deck whose only pressure is its commander read
+    as never recovering (resilience 0) from a wipe any pilot answers by recasting a 2-drop."""
+    cmdr = make_card("Lone Hero", mana_cost="{1}{G}", type_line="Legendary Creature — Elf",
+                     color_identity=("G",))
+    cmdr.power, cmdr.toughness = "4", "4"
+    filler = make_card("Growth Ritual", mana_cost="{G}", type_line="Sorcery",
+                       oracle_text="You gain 1 life.", color_identity=("G",))
+    cfg = SimConfig(runs=200, seed=61, turns=12)
+    res = compute_resilience([(forest, 40), (filler, 59)], cmdr, cfg, wipe_turn=5)
+    assert res.basis == "pressure"
+    # recast turn 5 for {3}{G}, summoning sick, swings turns 6-8: 3 of the 4 window turns
+    assert res.resilience_score > 50

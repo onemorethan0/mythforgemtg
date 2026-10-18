@@ -16,7 +16,7 @@ def _analysis(**over):
         overrun=SimpleNamespace(can_alpha_strike=False),
         report=SimpleNamespace(avg_kill_turn=8.0, commander_cast_rate=0.97,
                                curve_efficiency=0.79, keep_rate=0.79, goldfish_kill_rate=0.16,
-                               avg_commander_turn=3.9, consistency_score=77.0),
+                               avg_commander_turn=3.9, consistency_score=85.0),
         interaction=SimpleNamespace(effective_answers=6.7, breadth=2, score=67.0),
         pod=SimpleNamespace(pod_close_turn=13.0, pod_close_rate=0.78, duel_close_rate=0.99,
                             via_finisher=False, score=45.0),
@@ -116,7 +116,7 @@ def test_ceiling_why_explains_a_zero(make_card, forest):
 
 def test_strengths_and_weaknesses_are_grounded(make_card, forest):
     ins = build_insight(_resolved([(forest, 40), (_creature(make_card, "X"), 20)]), _analysis())
-    assert any("Consistent" in s for s in ins.strengths)   # consistency 77 -> strength
+    assert any("Consistent" in s for s in ins.strengths)   # consistency 85 -> strength (band >= 80)
     assert any("ceiling" in w.lower() for w in ins.weaknesses)  # ceiling 0 -> weakness
 
 

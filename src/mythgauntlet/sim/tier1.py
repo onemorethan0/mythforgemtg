@@ -6,8 +6,45 @@ static calculator can answer because it is an emergent property of playing the d
 Method: paired simulation. Run the T0 goldfish sim twice at the SAME seeds, once clean and
 once with a board wipe injected at turn W. Because run i draws from the same stream in both
 passes, the two are a matched pair and per-run differencing cancels shuffle variance. The
-Resilience score is how much of the deck's board+mana development survives and rebuilds
-after the wipe.
+Resilience score is how much of the deck's PRESSURE (goldfish damage, combat and non-combat)
+survives the wipe over the wipe turn and the three turns after it.
+
+WHY PRESSURE OVER A WINDOW, not development at the horizon (re-modelled 2026-10-18). The
+score used to be wiped/clean (board power + mana available) at the LAST turn. Measured over
+the 619 labelled corpus decks that gave p10/p50/p90 = 82/89/94 and 99.5% of decks >= 65
+("resilient"), for two compounding reasons:
+  * mana sat in the ratio: lands and rocks are untouched by a wipe (mana retained 94-100% on
+    every deck) and were ~11 of ~26 output units at the horizon, so roughly half of every
+    deck's score was a constant;
+  * the horizon outgrew the wipe: `DEFAULT_ANALYZE_TURNS` went 8 -> 12 (2026-07-22) while
+    the wipe stayed at turn 5. Measured, the clean board at turn 5 is only ~2.5 power (p50)
+    against ~15 at turn 12, and seven quiet goldfish turns rebuild almost anything -- even
+    board power ALONE retained 63/80/89.
+The question the axis asks is "does the deck fold to a board wipe?", which is about the turns
+right after it, so the score is now per-run retained damage dealt in turns W..W+3 (for the
+default T5 wipe that is turns 5-8, exactly the geometry of the original 8-turn horizon),
+capped at 1 and averaged. Same corpus, with the commander recast below: p10/p50/p90 =
+43/56/71 (spread 29 points vs 13); by label B1 58 / B2 56 / B3 56 / B4 58 / B5 50 (resilience
+is not a power axis, so a flat B1-B4 is the expected shape; B5's cheap creatures and mana
+dorks die). Seed-to-seed noise 2.22 at runs=150 (`advisor._AXIS_NOISE_FLOOR`), so the spread
+is ~13x the noise, up from ~12x. Bands (ratings/insight.py) re-cut to resilient >= 60
+(36.3% of decks) / vulnerable < 42 (9.2%); the old bands put 99.5% of decks at "resilient".
+
+A run whose clean pass deals no damage in the window has nothing a wipe can take and is
+skipped; if EVERY run is skipped (a creatureless combo or durdle deck) the score falls back
+to the old development ratio (board + mana at the horizon), so a rocks-and-spells deck still
+reads as untouched rather than as a fabricated zero. `basis` on the report says which.
+
+Two sim fixes landed with the re-model (sim/tier0._run_one), one in each direction:
+  * creature draw/damage engines now die to the wipe -- they used to survive it, which
+    inflated this axis (a Guttersnipe kept pinging after the wrath that killed it);
+  * a creature commander now returns to the command zone and can be recast with {2} tax
+    (CR 903.8/903.9a). The pressure window exposed its absence: decks whose pressure IS the
+    commander (Hellcat, Undying Vigilante; Ashling the Pilgrim) scored 0 -- "folds to wipes"
+    -- for a 2-drop any pilot simply recasts.
+Still an honest under-count: recursion, indestructible and protection are invisible at rung 1,
+and auras/equipment are not modelled falling off. These make a deck look LESS resilient,
+never more.
 
 MVP scope (documented, honest): one disruption class (board wipe). Targeted removal and
 counter pressure are the next disruption classes (SIMULATION.md). The wipe models
@@ -40,14 +77,31 @@ class ResilienceReport:
     wiped_kill_rate: float
     clean_avg_kill_turn: float | None
     wiped_avg_kill_turn: float | None
-    # per-run retained output = wiped(board+mana at horizon) / clean(board+mana), capped 1
-    resilience_score: float  # 0-100: 100 = shrugs the wipe off, 0 = never recovers
+    # per-run retained pressure = wiped / clean damage dealt in turns W..W+3, capped 1
+    resilience_score: float  # 0-100: 100 = shrugs the wipe off, 0 = no pressure after it
     kill_delay_turns: float | None  # extra turns to kill after a wipe (None if no clean kills)
+    window_end_turn: int = 0  # last turn of the pressure window (W + 3, clamped to horizon)
+    # "pressure" normally; "development" when the deck never deals damage in the window and
+    # the score fell back to board+mana retained at the horizon (see module docstring)
+    basis: str = "pressure"
+
+
+# Turns after the wipe turn that the pressure window covers (window = W..W+3).
+PRESSURE_WINDOW_AFTER = 3
 
 
 def _final_output(run: RunStats) -> float:
     mana = run.mana_available_by_turn[-1] if run.mana_available_by_turn else 0
     return float(run.final_board_power + mana)
+
+
+def _window_damage(run: RunStats, first: int, last: int) -> float:
+    """Goldfish damage dealt in turns first..last inclusive (damage_by_turn is cumulative)."""
+    dmg = run.damage_by_turn
+    if len(dmg) < last:
+        return 0.0
+    before = dmg[first - 2] if first >= 2 else 0
+    return float(dmg[last - 1] - before)
 
 
 def _mean(values: list[float]) -> float:
@@ -77,12 +131,21 @@ def compute_resilience(
     apply_nut_kills(clean, nut_kill_cards, cfg.turns)
     apply_nut_kills(wiped, nut_kill_cards, cfg.turns)
 
+    window_end = min(cfg.turns, wipe_turn + PRESSURE_WINDOW_AFTER)
     retained = []
     for c, w in zip(clean, wiped, strict=True):
-        base = _final_output(c)
-        if base <= 0:  # deck presents nothing even unopposed — resilience is undefined
+        base = _window_damage(c, wipe_turn, window_end)
+        if base <= 0:  # no pressure in the window even unopposed -- nothing to lose
             continue
-        retained.append(min(1.0, _final_output(w) / base))
+        retained.append(min(1.0, _window_damage(w, wipe_turn, window_end) / base))
+    basis = "pressure"
+    if not retained:
+        basis = "development"
+        for c, w in zip(clean, wiped, strict=True):
+            base = _final_output(c)
+            if base <= 0:  # deck presents nothing even unopposed — resilience is undefined
+                continue
+            retained.append(min(1.0, _final_output(w) / base))
     score = 100.0 * _mean(retained) if retained else 0.0
 
     clean_kills = [r.kill_turn for r in clean if r.kill_turn is not None]
@@ -101,4 +164,6 @@ def compute_resilience(
         wiped_avg_kill_turn=wiped_avg,
         resilience_score=score,
         kill_delay_turns=delay,
+        window_end_turn=window_end,
+        basis=basis,
     )

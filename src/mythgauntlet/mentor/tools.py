@@ -729,6 +729,11 @@ def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = Non
             "score": _r1(res.resilience_score),
             "wipe_turn": a.wipe_turn,
             "kill_delay_turns": _r1(res.kill_delay_turns),
+            # what the score measures: % of goldfish pressure kept over these turns
+            "measures": (f"% of its pressure (damage) kept over turns {a.wipe_turn}-"
+                         f"{getattr(res, 'window_end_turn', a.wipe_turn)} after the wipe"
+                         if getattr(res, "basis", "pressure") == "pressure"
+                         else "% of its board and mana kept (the deck deals no damage to lose)"),
         },
         # CARD COUNTS (copies), unlike get_deck_stats' role `supply`, which is a strength score.
         "interaction_counts": {

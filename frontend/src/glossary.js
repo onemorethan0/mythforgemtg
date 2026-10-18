@@ -18,8 +18,8 @@ export const BRACKET_TERMS = {
 
 // The five simulated Power Profile axes, plus the badges/chips that sit around them.
 export const TERMS = {
-  consistency: 'How reliably the deck executes its plan — mulligan quality and land-drop reliability across many simulated games. Not raw power; a deck can be very consistent and still slow.',
-  resilience: "How much of the deck's plan survives a board wipe. Measured by simulating the SAME seed clean and wiped, so only the wipe's effect shows up in the difference.",
+  consistency: 'The share of simulated games that go smoothly: mana on track by turn 4, most of the mana used on turns 2-6, and the commander cast on time. Not raw power; a deck can be very consistent and still slow.',
+  resilience: "How much of the deck's pressure survives a board wipe: damage dealt over the wipe turn and the 3 turns after it, wiped vs. clean. Measured by simulating the SAME seed clean and wiped, so only the wipe's effect shows up in the difference.",
   interaction: "Removal, counterspells, board wipes and artifact/enchantment answers the deck actually holds — weighted by how cheap and castable they are, not just counted. Breadth only counts answer types the deck's colours can play, so a deck without blue isn't marked down for having no counterspells.",
   table_feel: "How salty this deck will feel to the people across the table, from EDHREC's yearly community survey (each card rated 0-4 for how much players dislike facing it). Shown as a percentile among real decks: 80 means saltier than four in five. It is not a power measure — a weak deck can be salty and a strong one friendly.",
   ceiling: "The deck's best-case draw: a top-percentile lucky hand, including any detected storm go-off or alpha-strike finish. Reads low if a real finisher isn't one the engine can detect yet.",

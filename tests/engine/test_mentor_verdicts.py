@@ -11,11 +11,19 @@ from mythgauntlet.mentor import verdicts as v
 # ── bands ───────────────────────────────────────────────────────────────────────────
 
 @pytest.mark.parametrize("score,band", [
-    (93, "resilient"), (65, "resilient"), (64.9, "moderate"), (40, "moderate"),
-    (39.9, "vulnerable"), (0, "vulnerable"), (None, "unknown"),
+    (93, "resilient"), (60, "resilient"), (59.9, "moderate"), (42, "moderate"),
+    (41.9, "vulnerable"), (0, "vulnerable"), (None, "unknown"),
 ])
 def test_resilience_band_thresholds(score, band):
     assert v.resilience_band(score) == band
+
+
+@pytest.mark.parametrize("score,band", [
+    (95, "consistent"), (80, "consistent"), (79.9, "moderate"), (45, "moderate"),
+    (44.9, "shaky"), (None, "unknown"),
+])
+def test_consistency_band_thresholds(score, band):
+    assert v.consistency_band(score) == band
 
 
 @pytest.mark.parametrize("turn,rate,band", [
@@ -228,3 +236,13 @@ def test_bare_moderate_in_an_interaction_sentence_is_not_a_resilience_claim():
             "1 wipe), giving it a moderate but not strong interaction score.")
     assert v.claimed_resilience(text) == set()
     assert v.claimed_resilience("Its resilience to a wipe is moderate.") == {"moderate"}
+
+
+def test_resilience_and_consistency_bands_come_from_insight():
+    """One definition: the mentor's verdict words and insight's strengths/weaknesses."""
+    from mythgauntlet.mentor import verdicts
+    from mythgauntlet.ratings import insight
+    assert verdicts.RESILIENT_MIN == insight.RESILIENT_MIN
+    assert verdicts.VULNERABLE_MAX == insight.VULNERABLE_MAX
+    assert verdicts.CONSISTENT_MIN == insight.CONSISTENT_MIN
+    assert verdicts.SHAKY_MAX == insight.SHAKY_MAX

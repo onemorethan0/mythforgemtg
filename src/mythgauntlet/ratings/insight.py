@@ -18,6 +18,18 @@ from mythgauntlet.semantics.model import EffectVector
 
 _MAX_NAMES = 6  # cards to name per role before "+N more"
 
+# Strength/weakness bands for the two simulated-reliability axes. `mentor/verdicts.py` imports
+# these, so the engine's own prose and the mentor's verdict words share one definition.
+# Re-cut 2026-10-18 with the models (sim/tier1, ratings/metrics docstrings) so each band is
+# informative over the 619 labelled corpus decks: the strength band ~ the top third, the
+# weakness band ~ the bottom tenth (measured: resilient 36.3% / vulnerable 9.2%, consistent
+# 37.2% / shaky 9.5%). Under the old models 99.5% of decks read "resilient" and 91%
+# "consistent".
+RESILIENT_MIN = 60.0   # keeps >= 60% of its pressure over the 4 turns after a wipe
+VULNERABLE_MAX = 42.0  # strictly below
+CONSISTENT_MIN = 80.0  # >= 80% of games go smoothly
+SHAKY_MAX = 45.0       # strictly below
+
 
 @dataclass
 class KeyCards:
@@ -178,11 +190,7 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
     if tf is not None and tf.available:
         why["Table feel"] = _table_feel_why(tf)
     if a.resilience is not None:
-        why["Resilience"] = (
-            f"retains {a.resilience.resilience_score:.0f}/100 through a T{a.wipe_turn} board wipe "
-            + ("(non-creature ramp/engines survive)" if a.resilience.resilience_score >= 65
-               else "(creature-reliant -- a wipe sets it back hard)")
-        )
+        why["Resilience"] = _resilience_why(a.resilience, a.wipe_turn)
 
     # --- strengths / weaknesses ---
     strengths, weaknesses = _verdict(
@@ -280,17 +288,34 @@ def _pod_why(a) -> str:
             f"games (vs {p.duel_close_rate:.0%} for a single opponent){tail}")
 
 
+def _resilience_why(res, wipe_turn) -> str:
+    score = res.resilience_score
+    if getattr(res, "basis", "pressure") == "development":
+        return (f"no goldfish pressure to lose -- keeps {score:.0f}% of its board and mana "
+                f"through a T{wipe_turn} board wipe")
+    end = getattr(res, "window_end_turn", 0) or wipe_turn
+    if score >= RESILIENT_MIN:
+        tail = "(the clock survives -- non-creature threats/engines or a quick rebuild)"
+    elif score < VULNERABLE_MAX:
+        tail = "(creature-reliant -- a wipe sets it back hard)"
+    else:
+        tail = "(a wipe costs real tempo, but it rebuilds)"
+    return (f"keeps {score:.0f}% of its pressure over turns {wipe_turn}-{end} after a "
+            f"T{wipe_turn} board wipe {tail}")
+
+
 def _verdict(a, removal, counters, wipes, ramp, tutors, creatures, has_combo):
     strengths: list[str] = []
     weaknesses: list[str] = []
     r, cons = a.report, a.report.consistency_score
     breadth_max = getattr(a.interaction, "breadth_max", None)  # None: an older report shape
 
-    if cons >= 70:
+    if cons >= CONSISTENT_MIN:
         t = _turn(r.avg_commander_turn)
         strengths.append(f"Consistent engine ({cons:.0f}/100) -- commander lands ~{t}")
-    elif cons < 50:
-        weaknesses.append(f"Shaky consistency ({cons:.0f}/100) -- mulligans/curve stumble")
+    elif cons < SHAKY_MAX:
+        weaknesses.append(f"Shaky consistency ({cons:.0f}/100) -- only {cons:.0f}% of games "
+                          "hit their land drops, use their mana and land the commander on time")
 
     answers = removal + counters + wipes
     if a.interaction.score >= 55:
@@ -306,9 +331,9 @@ def _verdict(a, removal, counters, wipes, ramp, tutors, creatures, has_combo):
     elif a.ceiling.score <= 5:
         weaknesses.append("Low ceiling -- no fast finish; wins slowly by combat")
 
-    if a.resilience is not None and a.resilience.resilience_score >= 65:
+    if a.resilience is not None and a.resilience.resilience_score >= RESILIENT_MIN:
         strengths.append(f"Resilient to wipes ({a.resilience.resilience_score:.0f}/100)")
-    elif a.resilience is not None and a.resilience.resilience_score < 40:
+    elif a.resilience is not None and a.resilience.resilience_score < VULNERABLE_MAX:
         weaknesses.append(f"Folds to board wipes ({a.resilience.resilience_score:.0f}/100)")
 
     if a.pod.pod_close_turn is None:

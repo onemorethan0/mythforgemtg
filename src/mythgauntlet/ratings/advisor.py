@@ -480,13 +480,16 @@ _AXIS_NOISE_FLOOR = {
     # steadier — ceiling 2.98 -> 2.27, speed 2.41 -> 1.88.
     "speed": 1.88,
     "ceiling": 2.27,
-    "consistency": 0.92,
+    # Re-measured 2026-10-18 after both models changed (`scripts/axis_noise.py --turns 12`,
+    # runs=150): consistency is now a smooth-game RATE and resilience a pressure window, both
+    # read at the default 12-turn horizon where they are actually targeted. Was 0.92 / 1.06.
+    "consistency": 2.83,
     # NOT 0.0. The original sweep called `analyze_deck` WITHOUT `run_resilience`, so
     # resilience was never simulated and its spread read as a clean zero. It is only ever
     # simulated when it IS the target axis — exactly when this floor is consulted — and its
     # real spread there is ~1.24 at runs=150 (~1.91 at runs=60). A floor of zero meant every
     # positive resilience delta passed, so resilience advice was unfiltered noise.
-    "resilience": 1.06,
+    "resilience": 2.22,
     "interaction": 0.0,
     # `clock` is horizon-relative (100 * (turns - avg_kill_turn) / turns), so its spread depends
     # on the horizon it is read at: measured 2026-09-30 with `scripts/axis_noise.py --turns N`

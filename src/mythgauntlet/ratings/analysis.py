@@ -106,7 +106,8 @@ def analyze_deck(
     # mana/board curve — must run BEFORE metrics.compute so avg_kill_turn/goldfish_kill_rate
     # see it, and before compute_ceiling so fast_kill_turn/nut_kill_rate do too.
     apply_nut_kills(runs, all_cards, cfg.turns)
-    report = metrics.compute(runs, cfg)
+    report = metrics.compute(
+        runs, cfg, commander_mv=commander.mana_value if commander else None)
     coverage = store.coverage(resolved.cards, resolved.commanders)
     identity = frozenset(ch for c in resolved.commanders for ch in c.color_identity)
     interaction = compute_interaction(sim_cards, commander, identity)

@@ -395,6 +395,8 @@ def create_app(
                 "clean_kill_rate": a.resilience.clean_kill_rate,
                 "wiped_kill_rate": a.resilience.wiped_kill_rate,
                 "kill_delay_turns": a.resilience.kill_delay_turns,
+                "window_end_turn": a.resilience.window_end_turn,
+                "basis": a.resilience.basis,
             }
 
         # PLAN_CLOCK Phase 2 / docs/SPEC_wincon_redundancy.md: how many pieces of targeted

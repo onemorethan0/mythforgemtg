@@ -18,33 +18,37 @@ history (docs/MENTOR_HANDOFF.md, rounds 1-7) is full of. Patterns are therefore 
 negation-aware ("not vulnerable"), and hedge-aware ("somewhat vulnerable" reads as a
 MODERATE claim, not a vulnerable one).
 
-Thresholds mirror `ratings/insight.py`'s own strength/weakness cut-offs (resilience >= 65
-"Resilient to wipes", < 40 "Folds to board wipes"; consistency >= 70 / < 50; interaction
->= 55 / < 30) so the prose the engine itself writes and the verdicts derived here cannot
-disagree.
+Thresholds mirror `ratings/insight.py`'s own strength/weakness cut-offs so the prose the
+engine itself writes and the verdicts derived here cannot disagree. Resilience and
+consistency are IMPORTED from there (re-cut 2026-10-18 with the models: resilience >= 60
+"Resilient to wipes", < 42 "Folds to board wipes"; consistency >= 80 / < 45, each ~ the top
+third / bottom tenth of the corpus); interaction >= 55 / < 30 is still mirrored by value.
 """
 
 from __future__ import annotations
 
 import re
 
-# ── bands ───────────────────────────────────────────────────────────────────────────
+from mythgauntlet.ratings.insight import (  # noqa: F401 -- re-exported band constants
+    CONSISTENT_MIN,
+    RESILIENT_MIN,
+    SHAKY_MAX,
+    VULNERABLE_MAX,
+)
 
-RESILIENT_MIN = 65.0     # insight._verdict: "Resilient to wipes"
-VULNERABLE_MAX = 40.0    # insight._verdict: "Folds to board wipes" (strictly below)
+# ── bands ───────────────────────────────────────────────────────────────────────────
 
 FAST_KILL_TURN = 6.0     # goldfish kill at or before this turn: a fast clock
 SLOW_KILL_TURN = 9.0     # after this turn: a slow clock
 MIN_KILL_RATE = 0.2      # below this share of games killing at all: no reliable clock
 
-CONSISTENT_MIN = 70.0    # insight._verdict
-SHAKY_MAX = 50.0
 DEEP_INTERACTION_MIN = 55.0
 THIN_INTERACTION_MAX = 30.0
 
 
 def resilience_band(score: float | None) -> str:
-    """>= 65 resilient, < 40 vulnerable, else moderate; "unknown" when not measured."""
+    """>= RESILIENT_MIN resilient, < VULNERABLE_MAX vulnerable, else moderate; "unknown" when
+    not measured."""
     if score is None:
         return "unknown"
     if score >= RESILIENT_MIN:

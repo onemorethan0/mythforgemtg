@@ -4,7 +4,8 @@ One player, no opponent. Measures the statistical skeleton of a deck: mulligans,
 drops, color access, mana development, and how efficiently the curve deploys.
 
 Documented simplifications (T0 is built to be fast, deterministic, and honest — not complete):
-  - Commander tax, haste, and activated abilities are ignored.
+  - Haste and activated abilities are ignored. Commander tax only arises after a Tier-1
+    board wipe sends the commander back to the command zone (the clean goldfish casts it once).
   - Rocks/dorks/fetched lands come in "asleep" and produce from the next untap onward.
   - Land-fetch spells pull a land out of the library (thinning) and add a source next turn.
   - One-shot draws resolve immediately; triggered engines draw a flat engine_draw per turn
@@ -271,6 +272,7 @@ def _run_one(
 
     sources: list[_Source] = []
     commander_in_zone = commander is not None
+    commander_tax = 0  # CR 903.8: {2} more per earlier cast from the command zone
     board_power = 0  # creatures able to attack (resolved on a previous turn)
     pending_power = 0  # creatures that came down this turn (summoning-sick)
     board_creatures = 0  # count of able-to-attack creatures (mirrors board_power, for go-wide)
@@ -286,6 +288,10 @@ def _run_one(
     # inventing a new precision standard for burn specifically).
     dmg_engine_active = 0
     dmg_engine_pending = 0
+    # The share of the two engine counters above that a CREATURE supplies (a Guttersnipe, a
+    # creature with an engine-draw trigger): a board wipe destroys those, not the rest.
+    creature_engine = 0
+    creature_dmg_engine = 0
     damage = 0
 
     def draw(n: int) -> None:
@@ -296,6 +302,7 @@ def _run_one(
 
     def apply_effects(sc: SimCard) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
+        nonlocal creature_engine, creature_dmg_engine
         if sc.card.is_creature:
             pending_power += sc.attack_power
             pending_creatures += 1
@@ -303,6 +310,9 @@ def _run_one(
             enabler_pending = True
         engine_pending += sc.fx.engine_draw
         dmg_engine_pending += sc.fx.magecraft_damage + sc.fx.cast_damage
+        if sc.card.is_creature:
+            creature_engine += sc.fx.engine_draw
+            creature_dmg_engine += sc.fx.magecraft_damage + sc.fx.cast_damage
         if sc.fx.ritual_mana > 0:  # Dark Ritual class: a one-shot burst, spendable THIS turn
             sources.extend(
                 _Source(sc.produced_colors(), ready=True, temp=True)
@@ -337,16 +347,30 @@ def _run_one(
         enabler_pending = False
 
         # Tier-1 disruption: a board wipe at the start of this turn destroys creatures.
-        # In T0 that resets the creature clock and kills mana dorks; lands, rocks, and
-        # noncreature engines survive (T0 doesn't tag engine sources, so creature-based
-        # draw engines are conservatively left intact — the hit is never over-counted).
+        # In T0 that resets the creature clock, kills mana dorks, and kills the draw/damage
+        # engines that were creatures; lands, rocks, and noncreature engines survive.
+        # (Creature engines used to be left intact as "never over-counting the hit" — but on
+        # a RESILIENCE axis that is the inflating direction: a Guttersnipe kept pinging after
+        # the wrath that killed it, and the deck read as shrugging the wipe off. Pending
+        # pools are always empty here, having been folded into the active ones above.)
+        # A creature commander on the battlefield goes back to the command zone (CR 903.9a --
+        # a pilot always takes that option) and can be recast for {2} more (CR 903.8). Without
+        # this, a deck whose pressure IS its commander read as never recovering from a wipe.
+        # Only ever reached in a wiped run, so clean runs -- every other axis -- are unchanged.
         if board_wipe_turn is not None and turn == board_wipe_turn:
+            if (commander is not None and not commander_in_zone
+                    and commander.card.is_creature):
+                commander_in_zone = True
+                commander_tax += 2
             board_power = 0
             pending_power = 0
             board_creatures = 0
             pending_creatures = 0
             sources = [s for s in sources if not s.from_creature]
             enabler_active = enabler_pending = False  # the enabler died too
+            engine_active -= creature_engine
+            dmg_engine_active -= creature_dmg_engine
+            creature_engine = creature_dmg_engine = 0
 
         if turn > 1 or cfg.draw_on_first_turn:
             draw(1)
@@ -377,7 +401,11 @@ def _run_one(
                 if payment is not None:
                     castable.append((_cast_priority(sc, turn, cfg), sc, payment, False))
             if commander_in_zone and commander is not None:
-                payment = _can_pay(sources, _effective_cost(commander, board_creatures))
+                cmd_cost = _effective_cost(commander, board_creatures)
+                if commander_tax:
+                    cmd_cost = replace(cmd_cost, generic=cmd_cost.generic + commander_tax,
+                                       mana_value=cmd_cost.mana_value + commander_tax)
+                payment = _can_pay(sources, cmd_cost)
                 if payment is not None:
                     castable.append(((1, commander.mana_value), commander, payment, True))
             if not castable:
@@ -393,7 +421,8 @@ def _run_one(
 
             if is_commander:
                 commander_in_zone = False
-                stats.commander_turn = turn
+                if stats.commander_turn is None:  # first cast only; a recast is not "on time"
+                    stats.commander_turn = turn
             else:
                 hand.remove(sc)
             apply_effects(sc)
