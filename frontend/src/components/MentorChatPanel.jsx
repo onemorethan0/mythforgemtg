@@ -35,6 +35,7 @@ const TOOL_LABELS = {
   diagnose_axis: (a) => `Diagnosed why ${a?.axis ?? 'an axis'} scores what it does`,
   suggest_swap: (a) => `Looked for a swap${a?.axis ? ` (${a.axis})` : ''}`,
   get_measured_swaps: (a) => `Read the full swap search${a?.axis ? ` (${a.axis})` : ''}`,
+  suggest_role_swap: (a) => `Looked for a swap that adds ${a?.role ?? 'the most-needed role'}`,
 }
 const toolLabel = (t) => (TOOL_LABELS[t.tool]?.(t.args) ?? `${t.tool}(${JSON.stringify(t.args)})`)
 

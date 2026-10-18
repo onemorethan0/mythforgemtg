@@ -38,6 +38,7 @@ from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy, reference
+from mythgauntlet.ratings import role_swap as role_swap_mod
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.semantics import tags
@@ -989,6 +990,102 @@ def tool_get_measured_swaps(ctx: MentorContext, axis: str) -> ToolResult:
     return ToolResult(data=data, card_names=result.card_names)
 
 
+def _move_dict(m) -> dict:
+    return {"axis": m.axis, "before": m.before, "after": m.after, "delta": m.delta,
+            "noise_floor": m.noise_floor, "beyond_noise": m.beyond_noise}
+
+
+def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolResult:
+    """A swap for an UNDER-SUPPLIED ROLE (`ratings.role_swap`): add an owned card that fills
+    `role` (default: get_deck_stats' most_under_supplied), cut a card whose every role is over
+    its card target, measured on the role's own axis AND on every other axis as a cost check.
+    `suggest_swap` searches by axis, so a role question's swap used to land on whatever axis the
+    model picked (Vraska, 2026-10-18: a clock swap that added removal only by luck).
+
+    Bounded for a chat turn: one add (ranked exactly on the closed-form interaction axis, by the
+    advisor's priors elsewhere) against two cuts = two re-simulations with resilience."""
+    stats = tool_get_deck_stats(ctx).data
+    roles, summary = stats["roles"], stats["role_summary"]
+    role = role or summary.get("most_under_supplied")
+    if not role:
+        return ToolResult(data={"found": True, "role_swap_found": False, "role": None,
+                                "message": "No applicable role is under its card target, so "
+                                           "there is no under-supplied role to swap toward."})
+    entry = roles.get(role)
+    if entry is None:
+        raise ValueError(f"unknown role '{role}'; choose one of: {', '.join(sorted(roles))}")
+    base = {"found": True, "role": role, "role_cards": entry["cards"],
+            "card_target": entry["card_target"]}
+    if not entry.get("applicable"):
+        return ToolResult(data={**base, "role_swap_found": False,
+                                "message": f"{role} is not applicable to this deck "
+                                           f"({entry.get('note', '')}); it is not a gap."})
+    if entry["cards"] >= entry["card_target"]:
+        return ToolResult(data={**base, "role_swap_found": False,
+                                "message": f"{role}: {entry['cards']} cards vs a target of "
+                                           f"{entry['card_target']} -- not under target, so "
+                                           "there is nothing to add for it."})
+    path = suite_collection_path()
+    if not path.exists():
+        return ToolResult(data={**base, "role_swap_found": False,
+                                "message": "No Myth Suite collection file found, so there's "
+                                           "nothing owned to add."})
+    try:
+        collection = Collection.load(path)
+    except (OSError, UnicodeDecodeError):
+        return ToolResult(data={**base, "role_swap_found": False,
+                                "message": "Could not read the collection file."})
+    identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+    report = role_swap_mod.role_swap(
+        ctx.resolved, ctx.cfg, ctx.store,
+        advisor.owned_candidates(ctx.card_db, ctx.resolved, collection),
+        role=role,
+        card_targets={r: e["card_target"] for r, e in roles.items()},
+        applicable={r for r, e in roles.items() if e.get("applicable")},
+        baseline=_analysis_for(ctx),
+        strength_targets=redundancy.targets_for(ctx.themes, color_identity=identity),
+    )
+    axis = report.axis
+    data = {**base, "axis": axis, "owned_cards_filling_role": report.adds_available,
+            "spare_cards_to_cut": report.cuts_available, "pairs_measured": report.pairs_measured,
+            "measured_axes": list(role_swap_mod.COST_AXES) if report.pairs_measured else []}
+    if axis is None:
+        data["axis_note"] = (f"No axis measures {role}; only the role count and the cost check "
+                             "on every axis were measured.")
+    elif axis == "interaction":
+        data["axis_note"] = ("interaction counts the deck's answers weighted by mana cost and "
+                             "instant speed, so it mainly rewards a cheap answer.")
+    s = report.swap
+    if s is None:
+        data["role_swap_found"] = False
+        data["message"] = (f"No measured role swap for {role}: {report.reason}.")
+        return ToolResult(data=data)
+    data["role_swap_found"] = True
+    data["swap"] = {
+        "add": s.add, "cut": s.cut,
+        "role_cards_before": s.role_cards_before, "role_cards_after": s.role_cards_after,
+        "cut_reason": (f"{s.cut} fills only roles the deck runs more of than its target; it is "
+                       f"offered from {s.cut_role} ({s.cut_role_cards} cards vs a target of "
+                       f"{s.cut_role_target})."),
+        "gain": _move_dict(s.gain) if s.gain else None,
+        "other_axes": [_move_dict(m) for m in s.moves],
+        "costs": s.costs,
+    }
+    data["instruction"] = (
+        f"Report this swap as: add {s.add}, cut {s.cut}; {role} goes from "
+        f"{s.role_cards_before} to {s.role_cards_after} cards (target {entry['card_target']})"
+        + (f"; measured on {axis}: {s.gain.before} to {s.gain.after}" if s.gain else "")
+        + ". Every other axis was measured too: "
+        + ("it costs " + ", ".join(
+            f"{m.axis} {m.before} to {m.after}" for m in s.moves if m.axis in s.costs)
+           + " -- say so plainly" if s.costs else
+           "none dropped beyond its noise floor, so you may say the other axes moved only "
+           "within noise")
+        + ". The cut is chosen by role COUNT, not because the card is weak: never call it a "
+          "weak card.")
+    return ToolResult(data=data, card_names=frozenset({s.add, s.cut}))
+
+
 # D1: facts the `diagnose` table reads, all from the cached analysis plus closed-form counts
 # (no new simulation). Rates are carried as fractions AND whole percents (the gate rejects a
 # "77%" that no tool result contains -- same reason `get_power_profile` carries `*_pct`).
@@ -1400,6 +1497,29 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "suggest_role_swap",
+            "description": "Suggest a measured swap that fills a ROLE the deck runs fewer "
+                            "cards of than its target (removal, draw, ...): adds an OWNED card "
+                            "that fills it, cuts a card from a role the deck is over target in, "
+                            "and measures every axis. Use it for 'which cards should I cut/add' "
+                            "when the question is about the deck's roles or what it needs most. "
+                            "Slower than the other tools -- two re-simulations.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string",
+                        "enum": sorted(role_swap_mod.ROLE_AXIS),
+                        "description": "the role to add; omit for the most under-supplied one",
+                    },
+                },
+                "required": [],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "get_measured_swaps",
             "description": "The add/cut swaps from a FULL swap search the player has already "
                             "run on the deck page (much deeper than suggest_swap), measured "
@@ -1440,6 +1560,7 @@ _TOOL_FUNCS = {
     "diagnose_axis": tool_diagnose_axis,
     "suggest_swap": tool_suggest_swap,
     "get_measured_swaps": tool_get_measured_swaps,
+    "suggest_role_swap": tool_suggest_role_swap,
     "check_legality": tool_check_legality,
 }
 

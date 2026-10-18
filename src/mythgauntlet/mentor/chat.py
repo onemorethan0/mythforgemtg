@@ -104,7 +104,10 @@ compares with a typical deck, use ONLY that role's "cards" and "card_target" (bo
 counts: "removal: 2 cards vs a target of 7") -- never pair "cards" with "supply_target". \
 For "what does my deck need most / how many X do I run vs the target" questions, report \
 every row of get_deck_stats' role_summary as cards vs card_target and name its \
-most_under_supplied role as the one the deck needs most. A role with "applicable": false \
+most_under_supplied role as the one the deck needs most. When such a question also asks what \
+to cut or add, the swap comes from suggest_role_swap (it adds a card for the under-supplied role \
+and cuts one from an over-target role): name the axis it was measured on and every cost it lists, \
+and never call its cut a weak card. A role with "applicable": false \
 (get_deck_stats) is NOT a gap -- the deck's \
 colours or measured plan do not call for it (see its "note") -- so never say the deck \
 lacks it or suggest adding cards for it. The same goes for counterspells in \
@@ -392,7 +395,7 @@ def _dual_goal_nudge(missing: list[str]) -> str:
 def _has_swap_answer(tool_trace: list) -> bool:
     """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
     full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
-    return any(
+    return _role_swap_found(tool_trace) or any(
         t.name == "suggest_swap"
         or (t.name == "get_measured_swaps" and (t.result_data or {}).get("available"))
         for t in tool_trace
@@ -402,7 +405,7 @@ def _has_swap_answer(tool_trace: list) -> bool:
 def _owed_fallback_axes(question: str, tool_trace: list) -> list[str]:
     """Axes whose cached full search was UNAVAILABLE and that have no swap answer since: the
     suggest_swap quick search is still owed for each (swap questions only)."""
-    if not _wants_a_swap(question):
+    if not _wants_a_swap(question) or _role_swap_found(tool_trace):
         return []
     answered = _axes_answered(tool_trace)
     out: list[str] = []
@@ -607,7 +610,54 @@ def _prefetch_role_table(ctx, question, tool_trace, all_results, messages) -> bo
         nudge = (_ROLE_NUDGE_BROAD if verdicts.is_broad_role_question(question)
                  else _ROLE_NUDGE_NARROW)
         messages.append({"role": "user", "content": nudge + gate_mod.role_summary_lines(summary)})
+        _prefetch_role_swap(ctx, question, summary, tool_trace, all_results, messages)
     return True
+
+
+def _swap_role(question: str, summary: dict) -> str | None:
+    """The under-supplied role a role question's swap half should target: the one role it
+    names when that role is under target, else (a broad question) most_under_supplied."""
+    under = set(summary.get("under_target") or [])
+    named = [r for r in verdicts.roles_owed(question, summary.get("rows") or []) if r in under]
+    if not verdicts.is_broad_role_question(question):
+        return named[0] if len(named) == 1 else None
+    return summary.get("most_under_supplied")
+
+
+def _prefetch_role_swap(ctx, question, summary, tool_trace, all_results, messages) -> bool:
+    """A role question that ALSO asks what to cut/add ("removal 2 vs 7 -- which cards should I
+    cut?") gets its swap from suggest_role_swap, for the under-supplied role, before the model
+    picks an axis: live 2026-10-18 the model answered the cut half with a clock swap that added
+    removal only by luck. Two re-simulations; skipped for a pure count question."""
+    if not _wants_a_swap(question):
+        return False
+    role = _swap_role(question, summary)
+    if not role:
+        return False
+    args = {"role": role}
+    call = {"id": "auto-role-swap", "type": "function",
+            "function": {"name": "suggest_role_swap", "arguments": json.dumps(args)}}
+    messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+    result = call_tool(ctx, "suggest_role_swap", args)
+    all_results.append(result)
+    tool_trace.append(ToolCallRecord(name="suggest_role_swap", args=args, result_data=result.data))
+    messages.append({"role": "tool", "tool_call_id": call["id"],
+                     "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    if (result.data or {}).get("role_swap_found"):
+        messages.append({"role": "user", "content": _ROLE_SWAP_NUDGE})
+    return True
+
+
+_ROLE_SWAP_NUDGE = (
+    "For the cut/add part of the question, answer from the suggest_role_swap result above (it "
+    "adds a card for the under-supplied role and cuts one from a role the deck is over target "
+    "in): follow its instruction field, name the axis it was measured on, and state any cost it "
+    "lists. Do not replace it with a different swap.")
+
+
+def _role_swap_found(tool_trace: list) -> bool:
+    return any(t.name == "suggest_role_swap" and (t.result_data or {}).get("role_swap_found")
+               for t in tool_trace)
 
 
 _ROLE_NUDGE_BROAD = (

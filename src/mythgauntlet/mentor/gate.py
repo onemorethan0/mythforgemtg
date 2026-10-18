@@ -329,6 +329,11 @@ class ClaimBudget:
                 swap_axes.add(data["axis"])
                 if data["axis"] == "clock":
                     clock_swaps.append(data)
+            # suggest_role_swap re-simulates the swap on EVERY axis (its cost check), so each one
+            # it lists is measured and "the other axes moved only within noise" is licensed.
+            if (isinstance(data, dict) and data.get("role_swap_found") is True
+                    and isinstance(data.get("measured_axes"), list)):
+                swap_axes.update(a for a in data["measured_axes"] if isinstance(a, str))
             if (
                 isinstance(data, dict) and data.get("found") is True
                 and isinstance(data.get("name"), str) and isinstance(data.get("type_line"), str)

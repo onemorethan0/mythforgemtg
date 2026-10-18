@@ -120,6 +120,7 @@ must trace back to a tool result from *this turn* — this is the literal genera
 | `removal_coverage()` | (round 8) `mentor/removal.py`: what the deck's removal can and cannot answer, clause by clause, with restrictions | A |
 | `diagnose_axis(axis)` | (round 8) `mentor/diagnose.py`: measured drivers (strong/typical/weak vs the deck's bracket) and fixed levers for one axis; no new simulation | A |
 | `get_measured_swaps(axis)` | (round 8, D2) the cached result of the full Advise search Forge ran for this deck + collection (same fields and licensing as `suggest_swap`), or `available: false`; never simulates | A |
+| `suggest_role_swap(role?)` | (2026-10-18) a swap toward an under-supplied ROLE: an owned card filling `role` (default `most_under_supplied`) for a card whose every role is over its card target; measured on the role's axis plus a cost check on every axis (`ratings/role_swap.py`). Prefetched by `chat._prefetch_role_swap` for role questions that ask what to cut/add | A |
 | `check_legality(name)` | deterministic colour-identity subset check (campaign round 6) | A |
 | `lookup_card(name)` | `CardDb` exact/fuzzy | A/B (oracle text) |
 | `lookup_rulings(name)` | Phase 0 rulings corpus | B |
