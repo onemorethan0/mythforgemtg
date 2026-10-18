@@ -75,14 +75,24 @@ from mythgauntlet.semantics.model import EffectVector
 # 13.8% of every cut suggestion before, 10.6% after, with the pool changing on 16% of decks.
 # `--check` could not catch it because it re-measured under the same cap the constant came
 # from — see the note on `DECKS` in `scripts/role_targets.py`.
+#
+# REGENERATED 2026-10-18 over 1,106 corpus decks, after the role-coverage pass in tags.py
+# (treasure / cost-reduction ramp, alt-win / extra-combat / team-anthem finishers, top-of-library
+# draw, basic-type land searches no longer tutors, the new `noncreature_removal` role). Two
+# rows moved for reasons that predate that pass and were already failing `--check` on the
+# untouched code: removal 4 -> 7 and wipe 3 -> 6 (the 2026-09-30 interaction-gating pass grew
+# removal by ~1,400 cards and the corpus grew 499 -> 1,106; nothing regenerated). The rows the
+# pass itself moved: ramp 14 -> 17, draw 16 -> 17, finisher 2 -> 4, tutor 4 -> 2.
+# `noncreature_removal` is new; its raw p60 is 1 card and the MIN_TARGET floor makes it 2.
 ROLE_TARGETS: dict[str, int] = {
-    "ramp": 14,
-    "draw": 16,
-    "removal": 4,
-    "wipe": 3,
+    "ramp": 17,
+    "draw": 17,
+    "removal": 7,
+    "noncreature_removal": 2,
+    "wipe": 6,
     "counterspell": 3,
-    "finisher": 2,
-    "tutor": 4,
+    "finisher": 4,
+    "tutor": 2,
 }
 
 
@@ -128,6 +138,18 @@ ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]] = {
 #     wipe          W, B or R      3.0 / 63%   (n=774)                   0.0 / 10%   (n=88)
 #     finisher      R or G         3.0 / 60%   (n=639)                   0.0 / 17%   (n=223)
 #
+# `finisher` WAS REMOVED 2026-10-18. Its R/G gap was an artefact of a finisher role that only
+# saw overrun / storm / X-burn / cheat-in effects, which are R/G by construction. Once static
+# team anthems (Tempered Steel, Intangible Virtue), alt-wins (Thassa's Oracle, Mechanized
+# Production) and extra combats count, decks LACKING R and G measure p60 2.0 with 51% running one
+# (n=290; with: 5.0 / 75%, n=803) -- the lacking half is no longer zero, so the role fails the bar
+# below and an Esper deck is no longer told its finishers are "not applicable".
+#
+# Re-measured at the same time (1,093 decks): `wipe` lacking W/B/R now measures p60 3.0 / 43%
+# (n=106) -- it fails the bar too. That drift predates the finisher change (wipe tagging was not
+# touched; the 2026-09-30 interaction pass counted blue mass bounce like Cyclonic Rift), and
+# dropping it is a calibration decision left for its own pass.
+#
 # THE BAR: the lacking half's p60 is ZERO (a typical such deck supplies none at all, so a target
 # of MIN_TARGET or more is unreachable by colours alone) while the having half sits at or above
 # the role's own baseline target. Every other role/colour pair failed it -- ramp lacking G is
@@ -141,7 +163,6 @@ ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]] = {
 ROLE_COLOR_REQUIREMENTS: dict[str, frozenset[str]] = {
     "counterspell": frozenset("U"),
     "wipe": frozenset("WBR"),
-    "finisher": frozenset("RG"),
 }
 
 
@@ -206,9 +227,18 @@ def card_roles(ev: EffectVector) -> dict[str, float]:
     guess (see `score_card`).
     """
     roles = {
-        "ramp": float(ev.ramp_sources) + (2.0 if ev.fetches_land else 0.0),
-        "draw": float(ev.draw_cards) + 1.5 * ev.engine_draw,
+        # A Treasure engine and a magecraft Treasure (`mana_on_cast`, Storm-Kiln Artist) are
+        # the same mana read two ways, so the larger of the two, never the sum. A cost reducer
+        # (Geist of Saint Thalia, Semblance Anvil, Inspiring Statuary's improvise) is ramp as a
+        # player counts it; `cost_reduction` already covers `spell_cost_reduction`'s shapes.
+        "ramp": (float(ev.ramp_sources) + (2.0 if ev.fetches_land else 0.0)
+                 + float(max(ev.treasure_ramp, ev.mana_on_cast))
+                 + float(max(ev.cost_reduction, ev.spell_cost_reduction))),
+        "draw": (float(ev.draw_cards) + 1.5 * ev.engine_draw
+                 + (1.5 if ev.top_of_library else 0.0)),
         "removal": float(ev.removal),
+        # Kept apart from `removal` on purpose (tags._NONCREATURE_OBJECT_RE).
+        "noncreature_removal": 1.0 if ev.noncreature_removal else 0.0,
         "wipe": 3.0 if ev.board_wipe else 0.0,
         "counterspell": 3.0 if ev.counterspell else 0.0,
         "tutor": 2.0 if ev.tutor else 0.0,
@@ -218,6 +248,9 @@ def card_roles(ev: EffectVector) -> dict[str, float]:
             + (3.0 if ev.grants_storm else 0.0)
             + (2.0 if ev.scaling_burn else 0.0)
             + (2.0 if ev.cheats_creatures else 0.0)
+            + (3.0 if ev.alt_win else 0.0)
+            + (2.0 if ev.extra_combat else 0.0)
+            + (2.0 if ev.team_anthem else 0.0)
         ),
     }
     return {role: strength for role, strength in roles.items() if strength > 0.0}

@@ -4,6 +4,7 @@ on a dev machine and tests the wrong thing). assess_card still runs a real simul
 
 from mythgauntlet.data.scryfall import CardDb
 from mythgauntlet.model.deck import Deck, ResolvedDeck
+from mythgauntlet.ratings import redundancy
 from mythgauntlet.mentor.tools import (
     MentorContext, ToolResult, call_tool, extract_numbers,
     _numbers_in, _rule_numbers_in, _to_jsonable,
@@ -796,24 +797,22 @@ def test_finisher_not_applicable_when_the_measured_plan_is_combat(
     if not expect_applicable:
         assert fin["target"] == 0 and fin["note"] == "wins through combat (measured)"
     else:
-        assert fin["target"] == 2 and "note" not in fin
+        assert fin["target"] == redundancy.ROLE_TARGETS["finisher"] and "note" not in fin
 
 
-def test_finisher_colour_rule_short_circuits_the_analysis(make_card, empty_store, monkeypatch):
-    """A deck with no R/G has no finisher role by colour; the simulation is not needed."""
+def test_a_deck_without_red_or_green_still_has_a_finisher_role(make_card, empty_store, monkeypatch):
+    """The R/G finisher colour rule was retired (2026-10-18): anthems, alt-wins and extra
+    combats are finishers too, so a mono-blue deck is judged by its measured plan, not told
+    the role is "not applicable"."""
     from mythgauntlet.mentor import tools as tools_mod
     ctx = _ctx(make_card, empty_store)
     blue = make_card("Blue Commander", type_line="Legendary Creature — Merfolk",
                      mana_cost="{U}{U}", color_identity=("U",))
     ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
                                 cards=ctx.resolved.cards, missing=[])
-
-    def boom(_ctx):
-        raise AssertionError("analysis must not run")
-
-    monkeypatch.setattr(tools_mod, "_analysis_for", boom)
+    monkeypatch.setattr(tools_mod, "_analysis_for", lambda ctx: _fake_analysis("Control", 0.9))
     fin = call_tool(ctx, "get_deck_stats", {}).data["roles"]["finisher"]
-    assert fin["applicable"] is False and "not applicable" in fin["note"]
+    assert fin["applicable"] is True and "note" not in fin
 
 
 def test_get_deck_stats_shares_the_analysis_cache(make_card, empty_store, monkeypatch):

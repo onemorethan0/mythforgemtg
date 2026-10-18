@@ -615,8 +615,9 @@ def test_the_requirement_beats_an_archetype_raise():
 def test_any_of_colour_requirements():
     assert redundancy.targets_for([], color_identity="UG")["wipe"] == 0   # no W/B/R
     assert redundancy.targets_for([], color_identity="UR")["wipe"] == redundancy.ROLE_TARGETS["wipe"]
-    assert redundancy.targets_for([], color_identity="WUB")["finisher"] == 0
-    assert redundancy.targets_for([], color_identity="WUBG")["finisher"] == redundancy.ROLE_TARGETS["finisher"]
+    # finisher has no colour requirement since anthems / alt-wins / extra combats count
+    # (redundancy.ROLE_COLOR_REQUIREMENTS): an Esper deck has finishers to run.
+    assert redundancy.targets_for([], color_identity="WUB")["finisher"] == redundancy.ROLE_TARGETS["finisher"]
 
 
 def test_an_empty_identity_is_unknown_not_colourless():

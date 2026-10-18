@@ -35,4 +35,15 @@ class EffectVector:
     # go-wide / overrun finisher (docs/SIMULATION.md, feeds the Ceiling axis): a ONE-SHOT team pump
     overrun_pump: int = 0  # "creatures you control get +N/+N ... until end of turn" (Overrun class)
     overrun_scales: bool = False  # the pump is +X/+X where X scales with your board (Craterhoof)
+    # ROLE-ONLY facts (2026-10-18). Read by `ratings.redundancy.card_roles` and nothing in the
+    # simulator: each is a function a player counts in a role but that tier0/tier2 must NOT
+    # spend the way they spend the fields above (a Naturalize is not a creature kill, a
+    # Treasure is not an untapping mana source, a cost reducer is not a mana ability).
+    noncreature_removal: bool = False  # answers ONLY a noncreature permanent (Crush Contraband)
+    treasure_ramp: int = 0  # Treasure made by a REPEATABLE trigger/activation, net of its cost
+    cost_reduction: int = 0  # your spells cost {N} less / gain improvise-convoke-affinity
+    top_of_library: bool = False  # standing permission to cast/play from the top (Mystic Forge)
+    alt_win: bool = False  # "you win the game" (Mechanized Production, Thassa's Oracle)
+    extra_combat: bool = False  # "an additional combat phase"
+    team_anthem: bool = False  # STATIC team pump (Tempered Steel); not a tribe or colour lord
     impact: float = 0.0  # generic resolution-value prior in [0, 1] (popularity-seeded)

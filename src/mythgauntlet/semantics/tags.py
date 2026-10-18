@@ -32,10 +32,31 @@ _ADD_MANA_RE = re.compile(r"\badd ((?:\{[^}]+\}|,| or |and/or| )+)")
 # "search THEIR library" is usually the OPPONENT ramping (Path to Exile, Assassin's
 # Trophy) — crediting that to us made premium removal read as our own acceleration.
 # A symmetric "each player searches their library" does ramp us, so it still counts.
-_SEARCH_LAND_RE = re.compile(r"search your library for .{0,60}?land")
+#
+# A land search does not always say "land": "search your library for a Forest card" (Three
+# Visits, Skyshroud Claim, Kor Cartographer) and "up to two basic Plains cards" (Archaeomancer's
+# Map) name a basic land TYPE. Both regexes read only the word "land", so 83 store cards
+# fetched no land (Three Visits was no ramp at all) and the to-hand ones read as TUTORS — the
+# Deck Mentor counted Archaeomancer's Map as a tutor. A basic type counts as "land" in both.
+_LAND_WORD = r"(?:land|\b(?:plains|island|swamp|mountain|forest|wastes)\b)"
+_SEARCH_LAND_RE = re.compile(rf"search your library for .{{0,60}}?{_LAND_WORD}")
 _SEARCH_LAND_SYMMETRIC_RE = re.compile(
-    r"each player searches their library for .{0,60}?land"
+    rf"each player searches their library for .{{0,60}}?{_LAND_WORD}"
 )
+_LAND_OBJECT_RE = re.compile(_LAND_WORD)
+# Where a searched land goes is the FIRST destination named after the search. Reading
+# "battlefield" anywhere in the text made Archaeomancer's Map (to hand; a separate ability
+# says "onto the battlefield") land-fetch ramp; reading only the search's own sentence lost
+# Verdant Mastery's two-sentence "search ... and reveal them. Put one of them onto the
+# battlefield". A graveyard is not a destination here: Elemental Teachings' opponent bins two
+# and the rest still enter the battlefield.
+_LAND_DESTINATION_RE = re.compile(
+    r"onto the battlefield|into (?:your|their) hands?|on top\b|\bexile (?:it|them|that card)")
+
+
+def _land_reaches_battlefield(text: str, at: int) -> bool:
+    m = _LAND_DESTINATION_RE.search(text, at)
+    return m is not None and m.group(0) == "onto the battlefield"
 # Worded mana amounts: "Add one mana of any color" (Arcane Signet, Birds of Paradise).
 # The symbol regex below only ever matched "{G}"-style clauses, so every rock and dork
 # that spells the amount out in words produced ZERO ramp — 416 cards, including EDHREC
@@ -275,6 +296,30 @@ _CLAUSE_START_RE = re.compile(
     r"\b(?:with|without|that|that's|which|whose|where|if|unless|until|and|then|except)\b"
 )
 _OWN_OBJECT_RE = re.compile(r"\byou (?:control|own)\b")
+# A kill whose object is an ANAPHOR for an earlier target: Dispatch ("Tap target creature.
+# Metalcraft — If you control three or more artifacts, exile that creature"), Kellan's
+# Lightblades ("... if this spell was bargained, destroy that creature instead"). The
+# verb-adjacent patterns above need "destroy/exile TARGET ..." and never saw these. The anaphor
+# is resolved, not trusted: "destroy that creature" is mostly combat text (Cockatrice, Stinkweed
+# Imp: "whenever this creature blocks ..., destroy that creature") or a drawback on your own
+# creature (Mogg Cannon's "target creature YOU CONTROL ... destroy that creature at the
+# beginning of the next end step"), so the kill counts only when it points back to a TARGET whose
+# object passes `_hits_creature` — on the same line, or on the line before when this line is an
+# ability-word rider ("Metalcraft — If ...") that has no target of its own. 95 store cards say
+# "destroy/exile that creature/permanent"; see tests/engine/test_role_coverage.py.
+_ANAPHOR_KILL_RE = re.compile(r"\b(destroy|exile) (?:that|the) (?:creature|permanent)\b")
+_TARGET_OBJECT_RE = re.compile(r"\btarget ([^.]{0,60})")
+_RIDER_LINE_RE = re.compile(r"^(?:• )?[^—:.\n]{1,40} — (?:if|as long as)\b")
+# Answers to a NONCREATURE permanent (Crush Contraband, Naturalize, Vandalblast, Return to
+# Nature). Deliberately NOT `removal`: tier2 spends each point of `removal` killing the
+# opponent's biggest creature, which is the Naturalize defect the first gating pass fixed. But
+# a player counts these as interaction, and with no role at all they vanished from the Deck
+# Mentor's role table ("removal: 1 card" for a deck running Crush Contraband). They get their
+# own `noncreature_removal` role instead, read by nothing in the simulator. Land destruction
+# (Stone Rain) is NOT included — answering a land is not what a Commander player means by an
+# artifact/enchantment answer, and it would put Armageddon-class cards in the role.
+_NONCREATURE_OBJECT_RE = re.compile(
+    r"\b(?:artifacts?|enchantments?|planeswalkers?|battles?|noncreature permanents?)\b")
 
 
 def _wipe_object(phrase: str) -> str:
@@ -306,6 +351,46 @@ def _hits_creature(obj: str) -> bool:
     return not (re.search(r"\bnoncreature\b", head) and not re.search(r"\bcreatures?\b", head))
 
 
+def _hits_noncreature(obj: str) -> bool:
+    """The object is an opposing artifact / enchantment / planeswalker / battle on the
+    battlefield — same zone, own and count gates as `_hits_creature`."""
+    obj = re.split(r"\bfor each\b|,? where\b|\bequal to\b", _wipe_object(obj), maxsplit=1)[0]
+    head = _CLAUSE_START_RE.split(obj, maxsplit=1)[0]
+    if not _NONCREATURE_OBJECT_RE.search(head):
+        return False
+    return not (_ZONE_OBJECT_RE.search(head) or _OWN_OBJECT_RE.search(head))
+
+
+def _anaphor_antecedent(text: str, at: int) -> str | None:
+    """The object of the last "target ..." an anaphoric kill at `at` can point back to, or
+    None when there is none or the kill is not an ANSWER to it:
+
+    * the target was PUMPED first ("target creature gains trample and gets +X/+0 ... destroy
+      that creature if it attacked" — Berserk, Blood Frenzy, War Barge): the destroy is the
+      drawback on a creature you are helping, not removal;
+    * the kill waits on its death ("When the creature dies this turn, exile the creature" —
+      Whippoorwill exiles a graveyard card);
+    * the head of the target phrase names no creature or permanent ("target opponent may
+      guess if a creature you control ..." — Syx is about YOUR creature).
+    """
+    start = text.rfind("\n", 0, at) + 1
+    region = text[start:at]
+    if not _TARGET_OBJECT_RE.search(region) and _RIDER_LINE_RE.match(region) and start:
+        prev = text.rfind("\n", 0, start - 1) + 1
+        region = text[prev:start - 1]
+    found = list(_TARGET_OBJECT_RE.finditer(region))
+    if not found:
+        return None
+    obj = found[-1].group(1)
+    between = region[found[-1].start():]
+    if (re.search(r"\bgets? \+|\bgains?\b", between)
+            or re.search(r"\bdies\b|\bput into a graveyard\b", between.split(".")[-1])):
+        return None
+    if not _CREATURE_OBJECT_RE.search(_CLAUSE_START_RE.split(obj, maxsplit=1)[0]):
+        return None
+    return obj
+
+
 def _flickers(text: str, at: int) -> bool:
     """The exile at `at` comes straight back: an unconditional return later in the SAME
     paragraph that is not waiting for the source to leave the battlefield."""
@@ -331,6 +416,9 @@ class InteractionModes:
     spot: frozenset[str] = frozenset()     # destroy|exile|damage|minus|bounce|tuck|fight|edict
     wipe: frozenset[str] = frozenset()     # destroy|exile|damage|minus|static_minus|bounce|edict
     counter: frozenset[str] = frozenset()  # counter | exile
+    # answers to an artifact/enchantment/planeswalker/battle: destroy|exile|damage|bounce|tuck.
+    # Never folded into removal/board_wipe (see _NONCREATURE_OBJECT_RE).
+    noncreature: frozenset[str] = frozenset()
 
 
 def interaction_modes(text: str) -> InteractionModes:
@@ -342,21 +430,41 @@ def interaction_modes(text: str) -> InteractionModes:
     wipe: set[str] = set()
     counter: set[str] = set()
 
+    noncreature: set[str] = set()
+
     for m in _REMOVAL_TARGET_RE.finditer(text):
         verb = "exile" if text.startswith("exile", m.start()) else "destroy"
-        if _hits_creature(m.group(1)) and not (verb == "exile" and _flickers(text, m.start())):
+        if verb == "exile" and _flickers(text, m.start()):
+            continue
+        if _hits_creature(m.group(1)):
+            spot.add(verb)
+        elif _hits_noncreature(m.group(1)):
+            noncreature.add(verb)
+    for m in _ANAPHOR_KILL_RE.finditer(text):
+        verb = m.group(1)
+        obj = _anaphor_antecedent(text, m.start())
+        if (obj is not None and _hits_creature(obj)
+                and not (verb == "exile" and _flickers(text, m.start()))):
             spot.add(verb)
     for m in _WIPE_ALL_RE.finditer(text):
         verb = "exile" if text.startswith("exile", m.start()) else "destroy"
-        if _hits_creature(m.group(1)) and not (verb == "exile" and _flickers(text, m.start())):
+        if verb == "exile" and _flickers(text, m.start()):
+            continue
+        if _hits_creature(m.group(1)):
             # (a mass flicker -- Golden Argosy's "exile each creature that crewed it ...
             # return them" -- is no more a sweep than Ephemerate is removal)
             # Council's Judgment exiles "each permanent with the most votes": one answer.
             (spot if "most votes" in m.group(1) else wipe).add(verb)
+        elif _hits_noncreature(m.group(1)):
+            noncreature.add(verb)
     for m in _DAMAGE_TARGET_RE.finditer(text):
         obj = m.group(1)
         if obj in ("any target", "targets") or _hits_creature(obj):
             spot.add("damage")
+        elif _hits_noncreature(obj) and not re.search(r"\b(?:players?|opponents?)\b", obj):
+            # "damage to target player or planeswalker" (Blightning, Vent Sentinel) is burn
+            # to the face that may redirect, not an answer to a planeswalker.
+            noncreature.add("damage")
     for m in _DAMAGE_EACH_RE.finditer(text):
         if _hits_creature(m.group(1)):
             wipe.add("damage")
@@ -376,10 +484,14 @@ def interaction_modes(text: str) -> InteractionModes:
         mass = re.match(rf"{_LEAD}(?:all|each)\b", obj)
         if _hits_creature(obj):
             (wipe if mass else spot).add("bounce")
+        elif _hits_noncreature(obj):
+            noncreature.add("bounce")
     for rx in (_TUCK_RE, _SHUFFLE_RE):
         for m in rx.finditer(text):
             if _hits_creature(m.group(1)):
                 spot.add("tuck")
+            elif _hits_noncreature(m.group(1)):
+                noncreature.add("tuck")
     for m in _FIGHT_RE.finditer(text):
         if _hits_creature(m.group(1)):
             spot.add("fight")
@@ -399,7 +511,8 @@ def interaction_modes(text: str) -> InteractionModes:
         counter.add("counter")
     if _EXILE_SPELL_RE.search(text):
         counter.add("exile")
-    return InteractionModes(frozenset(spot), frozenset(wipe), frozenset(counter))
+    return InteractionModes(frozenset(spot), frozenset(wipe), frozenset(counter),
+                            frozenset(noncreature))
 
 
 # "counter up to one target spell" missed the old verb-adjacent `counter target`.
@@ -822,6 +935,127 @@ def _overrun(text: str) -> tuple[int, bool]:
     return 0, False
 
 
+# --- role-only detectors (2026-10-18; feed `redundancy.card_roles`, never the simulator) ---
+#
+# Measured on a real Jeskai artifact-tokens deck (Vraska, Soul of Stone): 41 of 62 nonland
+# cards had NO role, so the Deck Mentor reported one removal spell and one finisher. Each
+# detector below is a CLASS that deck exposed, sized over the 33,412-card store first.
+
+# Treasure is mana, but its "Add one mana" lives in reminder text, which `_clean_text` strips —
+# so every Treasure maker read as zero ramp. Only REPEATABLE Treasure counts (an ETB/dies
+# Treasure is a one-shot, the same as a ritual, which ramp has never counted), and only OURS
+# ("its controller creates" / "target opponent creates" is someone else's).
+_TREASURE_RE = re.compile(
+    r"\bcreates? (a|an|one|two|three|four|five|x|that many|a number of)\b[^.]{0,30}?"
+    r"treasure tokens?")
+_OTHER_CREATOR_RE = re.compile(
+    r"\b(?:opponents?|that player|its controller|their controller|they|each player)"
+    r" (?:may )?$")
+# A trigger whose EVENT is a price you pay is not free mana: Nuka-Cola Vending Machine's
+# "Whenever you sacrifice a Food, create a tapped Treasure" nets -2 once the Food is paid for.
+_PAID_EVENT_RE = re.compile(r"^whenever you (?:sacrifice|discard)\b")
+# "spells you cast ... cost {N} less" — tribal (Dragonlord's Servant), typed (Geist of Saint
+# Thalia, Starnheim Courser), conditional (Semblance Anvil). A sentence that is temporary
+# ("this turn", "until your next turn" — Urza's +2, Will Kenrith), aimed at one permanent
+# ("spells ... that target this creature" — Elderwood Scion) or somebody else's spells never
+# matches. Cost reduction is the CARD's own spells only — "this spell costs {1} less" is
+# `self_reduction_per_creature`'s business and reads "costs", not "spells you cast".
+_COST_LESS_RE = re.compile(r"\bspells? you cast\b[^.]{0,80}?\bcosts? \{(\d+)\} less\b")
+# Improvise / convoke / affinity granted to your spells: each artifact (or creature) pays for
+# {1} — Inspiring Statuary is a cost reducer that scales with the board.
+_GRANT_ALT_PAY_RE = re.compile(
+    r"\bspells you cast have (?:improvise|convoke|affinity for (?:artifacts|creatures"
+    r"|artifact creatures))\b")
+_TEMPORARY_RE = re.compile(r"\bthis turn\b|\buntil (?:end of turn|your next turn|the end of)")
+# Standing permission to use the top of the library as a hand: Mystic Forge, Future Sight,
+# Vizier of the Menagerie, Courser of Kruphix's lands. A one-turn window ("until end of turn,
+# you may play lands and cast spells from the top" — The Belligerent, Gwenom) is skipped.
+_TOP_CAST_RE = re.compile(r"\byou may (?:play|cast) ([^.]{0,80}?) from the top of your library\b")
+_ALT_WIN_RE = re.compile(r"\byou win the game\b")
+_EXTRA_COMBAT_RE = re.compile(r"\badditional combat phases?\b")
+# A STATIC pump to the whole team: Tempered Steel ("Artifact creatures you control get +2/+2"),
+# Dictate of Heliod, Intangible Virtue, Jor Kadeen's metalcraft. One-shot "until end of turn"
+# pumps are `_overrun`'s. Only these qualifiers may precede the noun — a tribe or colour lord
+# ("Other Elves", "white creatures you control") is the tribal/colour plan, and calling every
+# lord a finisher would make a tribal deck's lords its cut pool.
+_ANTHEM_RE = re.compile(
+    r"((?:[\w'-]+ ){0,3})(?:creatures|creature tokens) you control get \+(\d+|x)/[+\-−]?(?:\d+|x)")
+_ANTHEM_QUALIFIERS = frozenset({"other", "artifact", "nontoken", "token", "attacking"})
+
+
+def _treasure_ramp(text: str, is_spell: bool, names: tuple[str, ...]) -> int:
+    """Treasure made per turn by a repeatable trigger or activated ability, net of the
+    activation's mana cost, capped at 2 (the same goldfish cap the draw engines use)."""
+    if is_spell:
+        return 0
+    text = re.sub(r'"[^"]*"', "", text)  # a GRANTED ability (Furnace Reins) is not this card's
+    name_alt = "|".join(re.escape(n) for n in names) or r"(?!x)x"
+    self_res = (re.compile(_SELF_COST_TEMPLATE.format(name=name_alt)),
+                re.compile(_SELF_EFFECT_TEMPLATE.format(name=name_alt)))
+    total = 0
+    for line in text.split("\n"):
+        line = _ABILITY_WORD_PREFIX_RE.sub("", line.strip())
+        activation = _activation_kind(line, *self_res)
+        if activation == "repeatable":
+            body, cost = line.partition(":")[2], _activation_mana_cost(line)
+        elif activation is None and _TRIGGER_RE.match(line):
+            head = line.split(",")[0]
+            if (_ONE_SHOT_TRIGGER_RE.match(head)
+                    or _ONE_SHOT_TRIGGER_RE.match(",".join(line.split(",")[:2]))
+                    or _PAID_EVENT_RE.match(head)):
+                continue
+            body, cost = line, 0
+        else:
+            continue  # static (Xorn's replacement), one-shot activation, saga chapter
+        made = 0
+        for m in _TREASURE_RE.finditer(body):
+            if _OTHER_CREATOR_RE.search(body[: m.start()]):
+                continue
+            made += _WORD_NUMBERS.get(m.group(1), 1)
+        total += max(0, min(made, 2) - cost)
+    return min(total, 2)
+
+
+def _cost_reduction(text: str) -> int:
+    best = 0
+    for sentence in re.split(r"[.\n]", text):
+        if _TEMPORARY_RE.search(sentence) or "that target" in sentence:
+            continue
+        m = _COST_LESS_RE.search(sentence)
+        if m:
+            best = max(best, min(int(m.group(1)), 2))
+        elif _GRANT_ALT_PAY_RE.search(sentence):
+            best = max(best, 1)
+    return best
+
+
+def _top_of_library(text: str, is_spell: bool) -> bool:
+    if is_spell:
+        return False
+    for sentence in re.split(r"[.\n]", text):
+        if _TEMPORARY_RE.search(sentence):
+            continue
+        m = _TOP_CAST_RE.search(sentence)
+        if m and "this card" not in m.group(1):
+            return True
+    return False
+
+
+def _team_anthem(text: str) -> bool:
+    for sentence in re.split(r"[.\n]", text):
+        # Only the PUMP's own duration disqualifies: Sentinel Sarah Lyons' "as long as an
+        # artifact entered ... this turn, creatures you control get +2/+2" is a static anthem
+        # with a condition, not a one-shot.
+        if "until end of turn" in sentence or re.search(r"\bget [^.]*\bthis turn\b", sentence):
+            continue
+        for m in _ANTHEM_RE.finditer(sentence):
+            if m.group(2) == "0":
+                continue
+            if set(m.group(1).split()) <= _ANTHEM_QUALIFIERS:
+                return True
+    return False
+
+
 def analyze(card: Card) -> EffectVector:
     """Compute the rung-1 EffectVector for a card (front face)."""
     text = _clean_text(card)
@@ -844,14 +1078,18 @@ def analyze(card: Card) -> EffectVector:
         )
         if not one_shot:
             ramp_sources = _ramp_from_add_clause(text)
-        if ((_SEARCH_LAND_RE.search(text) or _SEARCH_LAND_SYMMETRIC_RE.search(text))
-                and "battlefield" in text):
+        # The LAND has to reach the battlefield, so "battlefield" is read in the search's own
+        # sentence. Anywhere in the text let Archaeomancer's Map (search to HAND; a separate
+        # ability says "onto the battlefield") read as land-fetch ramp.
+        if any(_land_reaches_battlefield(text, m.start())
+               for rx in (_SEARCH_LAND_RE, _SEARCH_LAND_SYMMETRIC_RE)
+               for m in rx.finditer(text)):
             fetches_land = True
             ramp_sources = max(ramp_sources, 1)
 
     tutor = False
     m = _SEARCH_CARD_RE.search(text)
-    if m and "land" not in m.group(1):
+    if m and not _LAND_OBJECT_RE.search(m.group(1)):
         tutor = True
 
     modes = interaction_modes(text)
@@ -881,6 +1119,7 @@ def analyze(card: Card) -> EffectVector:
             added = 1 if " or " in m_add.group(1) else m_add.group(1).count("{")
             ritual_mana = max(0, added - card.mana_value)
     overrun_pump, overrun_scales = _overrun(text)
+    is_spell = card.has_type("Instant") or card.has_type("Sorcery")
 
     if card.edhrec_rank is not None:
         impact = max(0.0, min(1.0, 1.0 - card.edhrec_rank / _IMPACT_RANK_SCALE))
@@ -908,5 +1147,12 @@ def analyze(card: Card) -> EffectVector:
         ritual_mana=ritual_mana,
         overrun_pump=overrun_pump,
         overrun_scales=overrun_scales,
+        noncreature_removal=bool(modes.noncreature) and not (modes.spot or modes.wipe),
+        treasure_ramp=_treasure_ramp(text, is_spell, _self_names(card)),
+        cost_reduction=_cost_reduction(text),
+        top_of_library=_top_of_library(text, is_spell),
+        alt_win=bool(_ALT_WIN_RE.search(text)),
+        extra_combat=bool(_EXTRA_COMBAT_RE.search(text)),
+        team_anthem=_team_anthem(text),
         impact=impact,
     )
