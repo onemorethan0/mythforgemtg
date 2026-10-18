@@ -37,7 +37,7 @@ DEFAULT_CACHE = ROOT / ".cache" / "bracket_axis_rows.jsonl"
 BEGIN_MARK = "# === BEGIN GENERATED: BRACKET_AXIS_REFERENCE ==="
 END_MARK = "# === END GENERATED: BRACKET_AXIS_REFERENCE ==="
 THIN_N = 20
-EXTRA_METRICS = ("pod", "avg_kill_turn", "avg_commander_turn")
+EXTRA_METRICS = ("pod", "avg_kill_turn", "avg_commander_turn", "table_feel")
 
 
 def compute_row(resolved, cfg, store):
@@ -48,6 +48,8 @@ def compute_row(resolved, cfg, store):
     for axis in advisor.AXES:
         metrics[axis] = round(float(advisor.axis_score(a, axis)), 4)
     metrics["pod"] = round(float(a.pod.score), 4)
+    tf = a.table_feel
+    metrics["table_feel"] = round(float(tf.score), 4) if tf is not None and tf.available else None
     metrics["avg_kill_turn"] = round(float(a.report.avg_kill_turn), 4) if a.report.avg_kill_turn is not None else None
     metrics["avg_commander_turn"] = round(float(a.report.avg_commander_turn), 4) if a.report.avg_commander_turn is not None else None
     return metrics
@@ -87,7 +89,7 @@ def percentile(sorted_vals: list[float], q: float) -> float:
 
 def aggregate(rows: list[dict]) -> dict[int, dict[str, dict]]:
     from mythgauntlet.ratings import advisor
-    METRICS = [*advisor.AXES.keys(), *EXTRA_METRICS]
+    METRICS = [*advisor.PROFILE_AXES, *EXTRA_METRICS]  # clock is a lens, not a profile axis
     result = {}
     for bracket in range(1, 6):
         result[bracket] = {}

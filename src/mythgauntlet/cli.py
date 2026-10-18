@@ -27,7 +27,7 @@ from mythgauntlet.config import (
     data_dir,
     suite_collection_path,
 )
-from mythgauntlet.data import decksources, edhrec, printings, rulings, scryfall, spellbook
+from mythgauntlet.data import decksources, edhrec, printings, rulings, salt, scryfall, spellbook
 from mythgauntlet.edhplay import artselect, artsource
 from mythgauntlet.edhplay import export as edh_export
 from mythgauntlet.edhplay import userscript as edh_userscript
@@ -172,8 +172,32 @@ def _cmd_fetch_data(args: argparse.Namespace) -> int:
     if age > scryfall.MAX_AGE_DAYS:
         console.print(f"[yellow]Card universe is {age:.0f} days stale — cards printed "
                       "since then don't exist to the engine.[/yellow]")
+    # The salt store (Table feel axis) rides along on its own monthly cadence. Optional
+    # data: a failed refresh never fails fetch-data, the axis just reports unavailable.
+    _refresh_salt(force=False)
     _nudge("Next: mythgauntlet analyze my_deck.txt   (or 'mythgauntlet menu' to explore)")
     return 0
+
+
+def _refresh_salt(force: bool) -> bool:
+    try:
+        path = salt.fetch_salt(force=force)
+    except Exception as exc:  # network, disk, a corrupt .xz (LZMAError), bad JSON
+        have = salt.salt_path().exists()
+        console.print(f"[yellow]Salt refresh failed ({exc}); "
+                      + ("using the cached store.[/yellow]" if have
+                         else "the Table feel axis will read 'unavailable'.[/yellow]"))
+        return have
+    db = salt.load_salt(path)
+    console.print(f"Salt store ready: [green]{path}[/green] ({len(db) if db else 0:,} cards, "
+                  f"EDHREC community salt via MTGJSON {db.mtgjson_date if db else '?'})")
+    return db is not None
+
+
+def _cmd_fetch_salt(args: argparse.Namespace) -> int:
+    """EDHREC community salt scores (via MTGJSON) for the Table feel axis."""
+    console.print("[bold]Fetching EDHREC salt scores (MTGJSON AtomicCards)...[/bold]")
+    return 0 if _refresh_salt(force=args.force) else 1
 
 
 def _cmd_fetch_rules(args: argparse.Namespace) -> int:
@@ -2139,6 +2163,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_fetch_rules.add_argument("--force", action="store_true", help="re-download even if cached")
     p_fetch_rules.set_defaults(func=_cmd_fetch_rules)
+
+    p_fetch_salt = sub.add_parser(
+        "fetch-salt",
+        description="Download EDHREC community salt scores (via MTGJSON) for the Table "
+        "feel axis. fetch-data also refreshes them monthly.",
+    )
+    p_fetch_salt.add_argument("--force", action="store_true", help="re-download even if cached")
+    p_fetch_salt.set_defaults(func=_cmd_fetch_salt)
 
     p_analyze = sub.add_parser(
         "analyze",

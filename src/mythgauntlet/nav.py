@@ -80,6 +80,7 @@ COMMAND_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
         [
             ("fetch-data", "Download Scryfall bulk card data (one-time, ~150MB)"),
             ("fetch-rules", "Download rulings + the Comprehensive Rules (Deck Mentor ground truth)"),
+            ("fetch-salt", "Download EDHREC community salt scores (Table feel axis)"),
             ("compile-card", "Compile one card to a CCM via the local LLM"),
             ("compile-top", "Compile the top-N EDHREC cards not yet in the ledger"),
             ("ccm-status", "CCM ledger coverage stats"),

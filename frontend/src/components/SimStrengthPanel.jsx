@@ -15,6 +15,58 @@ function Term({ children, def }) {
   )
 }
 
+// Table feel — EDHREC community salt, a casual-pod lens that is deliberately NOT part of the
+// power radar above: a deck can be weak and salty, or strong and friendly. The score is a
+// percentile among real decks, so the band words are relative ("saltier than most"), never
+// a verdict on the pilot. Unmeasured (no salt store) says so instead of reading as friendly.
+const SALT_BANDS = {
+  friendly: { color: '#4ade80', label: 'Friendly', blurb: 'less salt than most decks' },
+  spicy: { color: '#eab308', label: 'Spicy', blurb: 'a few cards a table may groan at' },
+  salty: { color: '#ef4444', label: 'Salty', blurb: 'saltier than four in five decks' },
+}
+
+function TableFeel({ pp, detail }) {
+  const band = SALT_BANDS[pp.table_feel_band]
+  if (!band || pp.table_feel == null) {
+    if (pp.table_feel_band !== 'unavailable') return null
+    return (
+      <div style={{ fontSize: 10.5, color: '#78716c', margin: '2px 0 8px' }}>
+        <Term def={TERMS.table_feel}>Table feel</Term>: not measured
+        {pp.table_feel_reason ? ` (${pp.table_feel_reason})` : ''}
+      </div>
+    )
+  }
+  const cards = pp.table_feel_salty_cards || []
+  return (
+    <div style={{ margin: '6px 0 10px', padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
+        <span style={{ fontSize: 11.5, color: '#a8a29e' }}>
+          <Term def={TERMS.table_feel}>Table feel (community salt)</Term>
+        </span>
+        <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 8px', borderRadius: 12, background: `${band.color}22`, color: band.color, border: `1px solid ${band.color}` }}>
+          {band.label} · {Math.round(pp.table_feel)}
+        </span>
+      </div>
+      <div style={{ height: 5, borderRadius: 4, background: '#0c0a09', overflow: 'hidden' }}>
+        <div style={{ height: '100%', width: `${Math.max(0, Math.min(100, pp.table_feel))}%`, background: band.color }} />
+      </div>
+      <div style={{ fontSize: 10, color: '#78716c', marginTop: 3, lineHeight: 1.4 }}>
+        {detail || `saltier than ${Math.round(pp.table_feel)}% of decks — ${band.blurb}`}
+      </div>
+      {cards.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 6 }}>
+          {cards.map((c) => (
+            <span key={c.name} title={`EDHREC community salt ${c.salt.toFixed(2)} / 4`}
+              style={{ fontSize: 10.5, padding: '1px 7px', borderRadius: 10, background: '#7f1d1d22', border: '1px solid #7f1d1d', color: '#fca5a5', cursor: 'help' }}>
+              {c.name} <b style={{ color: '#fecaca' }}>{c.salt.toFixed(1)}</b>
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Simulation-grounded strength panel (MythGauntlet, Myth Suite C3) — shared by
 // the import preview (StepCommander) and the result screen's Measure panel
 // (StepDeck), so the two surfaces can't drift. Pure presentation: pass the
@@ -67,7 +119,9 @@ export default function SimStrengthPanel({ simulation }) {
   // the same code that builds the CLI report) when it's present; the hand-rolled versions
   // below are the fallback for a caller that only has power_profile (e.g. a cached response
   // from before `insight` was wired through the Forge/engine boundary).
-  const why = insight?.axis_why || {}
+  // The engine serialises this as `insight.why` (mythgauntlet server._insight_block); reading
+  // only `axis_why` meant every engine-written line fell back to the hand-rolled text below.
+  const why = insight?.why || insight?.axis_why || {}
   // "2 removal, 6 counters, 0 wipes; breadth 2/3" -- the same breakdown the CLI has always
   // shown, now reaching the panel instead of just a bare 0-100 score.
   const interactionDetail = why.Interaction || (pp.interaction_answers != null && (
@@ -77,7 +131,9 @@ export default function SimStrengthPanel({ simulation }) {
         ? ` (${pp.interaction_effective_answers.toFixed(1)} castable-weighted)` : ''}
       {pp.interaction_spot_removal != null && (
         <> — {pp.interaction_spot_removal} removal, {pp.interaction_counterspells} counters,{' '}
-          {pp.interaction_board_wipes} wipes; breadth {pp.interaction_breadth}/3</>
+          {pp.interaction_board_wipes} wipes
+          {pp.interaction_noncreature_answers ? `, ${pp.interaction_noncreature_answers} artifact/enchantment answers` : ''};
+          breadth {pp.interaction_breadth}/{pp.interaction_breadth_max ?? 3}</>
       )}
     </>
   ))
@@ -304,6 +360,7 @@ export default function SimStrengthPanel({ simulation }) {
       {pp.interaction != null && bar('Interaction', pp.interaction, '/100', interactionDetail, TERMS.interaction)}
       {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100', ceilingDetail, TERMS.ceiling)}
       {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail, TERMS.pod)}
+      <TableFeel pp={pp} detail={why['Table feel']} />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
         <span title={why.Speed ? `${why.Speed}\n\n${TERMS.speed}` : TERMS.speed} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: 'help' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>

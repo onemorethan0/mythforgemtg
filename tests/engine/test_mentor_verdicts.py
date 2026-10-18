@@ -60,7 +60,23 @@ def _analysis(res=93.0, turn=9.0, rate=0.6, cons=82.0, inter=60.0, archetype="Mi
 def test_classify_profile_reads_every_measured_field():
     out = v.classify_profile(_analysis())
     assert out == {"resilience": "resilient", "speed": "moderate", "consistency": "consistent",
-                   "interaction": "deep", "archetype": "midrange"}
+                   "interaction": "deep", "table_feel": "unknown", "archetype": "midrange"}
+
+
+def test_classify_profile_reads_table_feel_and_never_guesses_it():
+    a = _analysis()
+    a.table_feel = SimpleNamespace(available=True, band="salty")
+    assert v.classify_profile(a)["table_feel"] == "salty"
+    a.table_feel = SimpleNamespace(available=False, band="unavailable")
+    assert v.classify_profile(a)["table_feel"] == "unknown"   # unmeasured is not "friendly"
+
+
+def test_table_feel_claims_skip_card_names_and_negation():
+    assert v.table_feel_claims("Salt Marsh taps for mana.") == []
+    assert v.table_feel_claims("It is not salty at all.") == []
+    assert v.table_feel_claims("Armageddon will annoy the table.") == [("salty", "plain")]
+    assert v.profile_contradictions("This is a low-salt deck.", {"table_feel": "salty"})
+    assert not v.profile_contradictions("This is a low-salt deck.", {"table_feel": "spicy"})
 
 
 def test_classify_profile_unmeasured_resilience_is_unknown_not_guessed():

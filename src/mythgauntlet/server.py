@@ -277,6 +277,22 @@ def _combos_block(
     }
 
 
+def _table_feel_fields(tf) -> dict:
+    """Flat `table_feel_*` keys for power_profile (Forge forwards power_profile verbatim)."""
+    if tf is None or not tf.available:
+        return {"table_feel": None, "table_feel_band": "unavailable",
+                "table_feel_reason": tf.reason if tf is not None else "not measured"}
+    return {
+        "table_feel": tf.score,
+        "table_feel_band": tf.band,
+        "table_feel_total_salt": tf.total_salt,
+        "table_feel_salty_count": tf.salty_count,
+        "table_feel_salty_cards": [{"name": n, "salt": v} for n, v in tf.salty_cards],
+        "table_feel_commander_salt": tf.commander_salt,
+        "table_feel_source_date": tf.source_date,
+    }
+
+
 def _insight_block(insight) -> dict | None:
     """Serialise the deck-specific narrative (archetype/gameplan/why/cards/verdict) for the UI."""
     if insight is None:
@@ -415,6 +431,8 @@ def create_app(
             "interaction_counterspells": interaction.counterspells,
             "interaction_board_wipes": interaction.board_wipes,
             "interaction_breadth": interaction.breadth,
+            "interaction_breadth_max": interaction.breadth_max,
+            "interaction_noncreature_answers": interaction.noncreature_answers,
             "ceiling": round(ceiling.score, 1),
             "pod": round(a.pod.score, 1),
             "pod_opponents": a.pod.opponents,
@@ -440,6 +458,9 @@ def create_app(
             # at the top level here never reaches SimStrengthPanel.jsx at all.
             "wincon_redundancy": wincon_redundancy,
             "semantics_coverage": coverage.executable_share,
+            # Table feel (EDHREC community salt) -- a lens, not power; the bracket never reads
+            # it. `table_feel` is a percentile among corpus decks, None when unmeasured.
+            **_table_feel_fields(a.table_feel),
             "game_changers": len(game_changers),
             # The NAMES, not just the count -- "why is this Bracket 3" is answered far better
             # by seeing which cards did it. The top-level `game_changers` key below already

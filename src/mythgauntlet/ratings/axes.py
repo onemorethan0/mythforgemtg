@@ -9,6 +9,12 @@ multiplayer Pod clock (docs/VISION.md).
   (reactive), and an answer whose colored pips the mana base barely supports is down-weighted.
   Raw piece counts stay in the report; the score uses the weighted "effective" answer count.
   (Provisional weights, like the consistency composite.)
+  RE-CALIBRATED 2026-10-18: breadth is now judged over the answer TYPES the deck's colours can
+  play (a counterspell is not a missing type for a Golgari deck -- it cost every non-blue deck
+  ~14 points, median 76 vs 90), artifact/enchantment answers are a fourth type and count as
+  half an answer each, and the density bar is calibrated against the verdict bands. The
+  2026-10-18 role-coverage pass widened what reads as removal, after which the old bar of 10
+  was the corpus p60 and 83% of decks banded "deep" -- the axis had stopped telling decks apart.
 - Ceiling: what does the nut draw look like? The top-percentile of the goldfish
   distribution (how fast the BEST games go) plus game-ending combo potential. A glass
   cannon has a high ceiling; a grindy fair deck a low one.
@@ -27,24 +33,40 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from collections.abc import Iterable
+
 from mythgauntlet.model.card import Card
+from mythgauntlet.ratings.redundancy import role_applicable
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import RunStats, SimConfig
 
 # --- Interaction ------------------------------------------------------------------------
 
-_HEALTHY_ANSWER_COUNT = 10.0  # ~10 pieces of interaction reads as solidly interactive
+# Where the density term tops out (its 70 points), in castability-weighted answers. Calibrated
+# so the shared verdict bands (mentor.verdicts: deep >= 55, thin < 30) discriminate again
+# over the 1,105-deck corpus (2026-10-18): deep ~33% / thin ~10% / median 49. In card terms a
+# deck with every answer type its colours play reads "deep" from ~10 castable answers, one
+# missing a type from ~13. The old bar (10) put 83% of decks at "deep" once the role-coverage
+# pass widened what reads as removal. Swept, not guessed: 16 (the eff p90) still left 73% deep.
+_HEALTHY_ANSWER_COUNT = 28.0
+# An artifact/enchantment-only answer (Naturalize, Abrade's artifact mode) deals with a
+# narrower slice of threats than a creature kill, so it counts as half an answer.
+_NONCREATURE_ANSWER_WEIGHT = 0.5
+# Answer types: spot creature removal, counterspells, board wipes, artifact/enchantment answers.
+_ANSWER_TYPES = ("spot", "counter", "wipe", "noncreature")
 
 
 @dataclass
 class InteractionReport:
     score: float  # 0-100 (provisional weights)
-    answers: int  # total interaction pieces (copies)
+    answers: int  # total interaction pieces (copies), artifact/enchantment-only answers included
     effective_answers: float  # castability-weighted answer count (drives the score)
     spot_removal: int
     counterspells: int
     board_wipes: int
-    breadth: int  # how many of {spot, counter, wipe} are present (0-3)
+    breadth: int  # how many answer types are present (0-breadth_max)
+    noncreature_answers: int = 0  # artifact/enchantment-only answers (copies)
+    breadth_max: int = 4  # answer types this deck's colours can play (counterspells need blue)
 
 
 def _color_sources(entries: list[tuple[Card, int]]) -> dict[str, int]:
@@ -88,11 +110,16 @@ def _castability_weight(card: Card, sources: dict[str, int]) -> float:
 
 
 def compute_interaction(
-    cards: list[tuple[Card, int]], commander: Card | None = None
+    cards: list[tuple[Card, int]], commander: Card | None = None,
+    color_identity: Iterable[str] | None = None,
 ) -> InteractionReport:
+    """`color_identity` is the whole command zone's (partners included); it defaults to the
+    lead commander's. Unknown identity (no commander) keeps every answer type in play."""
     entries = list(cards) + ([(commander, 1)] if commander else [])
+    if color_identity is None and commander is not None:
+        color_identity = commander.color_identity
     sources = _color_sources(entries)
-    spot = counters = wipes = 0
+    spot = counters = wipes = noncreature = 0
     effective = 0.0
     for card, count in entries:
         if card.is_land:
@@ -107,18 +134,27 @@ def compute_interaction(
             counters += count
         if is_answer:
             effective += _castability_weight(card, sources) * count
-    answers = spot + counters + wipes
-    breadth = (1 if spot else 0) + (1 if counters else 0) + (1 if wipes else 0)
+        elif fx.noncreature_removal:
+            noncreature += count
+            effective += _NONCREATURE_ANSWER_WEIGHT * _castability_weight(card, sources) * count
+    present = {"spot": spot, "counter": counters, "wipe": wipes, "noncreature": noncreature}
+    # A type the colours can't play is not a gap -- but a deck that runs one anyway (a
+    # Pyroblast, a colourless counter) gets credit for it.
+    playable = [t for t in _ANSWER_TYPES
+                if t != "counter" or counters or role_applicable("counterspell", color_identity)]
+    breadth = sum(1 for t in playable if present[t])
     density_score = min(70.0, (effective / _HEALTHY_ANSWER_COUNT) * 70.0)
-    breadth_score = (breadth / 3.0) * 30.0
+    breadth_score = (breadth / len(playable)) * 30.0
     return InteractionReport(
         score=min(100.0, density_score + breadth_score),
-        answers=answers,
+        answers=spot + counters + wipes + noncreature,
         effective_answers=round(effective, 1),
         spot_removal=spot,
         counterspells=counters,
         board_wipes=wipes,
         breadth=breadth,
+        noncreature_answers=noncreature,
+        breadth_max=len(playable),
     )
 
 

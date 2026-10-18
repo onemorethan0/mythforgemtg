@@ -426,7 +426,7 @@ def test_analysis_cache_is_bounded(make_card, empty_store, monkeypatch):
 _PROFILE_KEYS = {
     "found", "archetype", "gameplan", "pod_read", "strengths", "weaknesses", "axes",
     "weakest_axis", "clock", "resilience", "interaction_counts", "key_cards",
-    "wincon_redundancy", "bracket", "verdicts", "bracket_reference",
+    "wincon_redundancy", "bracket", "verdicts", "bracket_reference", "table_feel",
 }
 
 
@@ -439,9 +439,12 @@ def test_get_power_profile_returns_every_top_level_key(make_card, empty_store):
     for ax in data["axes"].values():
         assert {"score", "why"} <= set(ax) <= {"score", "why", "vs_bracket"}
     assert data["weakest_axis"] in data["axes"]
-    assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction", "archetype"}
+    assert set(data["verdicts"]) == {"resilience", "speed", "consistency", "interaction",
+                                     "table_feel", "archetype"}
     assert set(data["bracket"]) == {"bracket", "label", "plays_up"}
-    assert set(data["interaction_counts"]) == {"spot_removal", "counterspells", "counterspells_applicable", "board_wipes", "breadth", "breadth_max"}
+    assert set(data["interaction_counts"]) == {
+        "spot_removal", "counterspells", "counterspells_applicable", "board_wipes",
+        "artifact_enchantment_answers", "breadth", "breadth_max"}
     assert data["resilience"]["score"] == data["axes"]["resilience"]["score"]
 
 
@@ -1024,9 +1027,10 @@ def test_power_profile_does_not_list_counterspells_for_a_deck_without_blue(make_
     data = call_tool(ctx, "get_power_profile", {}).data
     counts = data["interaction_counts"]
     assert counts["counterspells_applicable"] is False
-    assert str(counts["counterspells"]).startswith("n/a") and counts["breadth_max"] == 2
+    # spot removal, wipes, artifact/enchantment answers -- counterspells are not a type here
+    assert str(counts["counterspells"]).startswith("n/a") and counts["breadth_max"] == 3
     blob = " ".join([data["axes"]["interaction"]["why"], *data["strengths"], *data["weaknesses"]])
-    assert "counters" not in blob and "/3" not in blob
+    assert "counters" not in blob and "/4" not in blob
 
 
 def test_power_profile_keeps_counterspells_for_a_blue_deck(make_card, empty_store):
@@ -1034,19 +1038,17 @@ def test_power_profile_keeps_counterspells_for_a_blue_deck(make_card, empty_stor
     ctx.resolved.commanders[0].color_identity = ("G", "U")
     counts = call_tool(ctx, "get_power_profile", {}).data["interaction_counts"]
     assert counts["counterspells_applicable"] is True
-    assert isinstance(counts["counterspells"], int) and counts["breadth_max"] == 3
+    assert isinstance(counts["counterspells"], int) and counts["breadth_max"] == 4
 
 
-def test_without_counterspells_rewrites_the_insight_sentences():
+def test_without_counterspells_drops_only_an_empty_counter_slot():
     from mythgauntlet.mentor.tools import _without_counterspells
     assert _without_counterspells(
-        "4.5 castable answers -- 4 removal, 0 counters, 1 wipes (breadth 2/3)"
-    ) == "4.5 castable answers -- 4 removal, 1 wipes (breadth 2 of 2 playable types)"
-    assert _without_counterspells(
-        "Thin interaction (only 2 answers) -- light on removal/counters"
-    ) == "Thin interaction (only 2 answers) -- light on removal"
-    assert _without_counterspells("Deep interaction (7 answers, 3/3 types)").endswith(
-        "(7 answers, 3 of 2 playable types)")   # unreachable shape for a no-blue deck; harmless
+        "4.5 castable answers -- 4 removal, 0 counters, 1 wipes (breadth 2/3 playable types)"
+    ) == "4.5 castable answers -- 4 removal, 1 wipes (breadth 2/3 playable types)"
+    # a real count (a Pyroblast in a red deck) is never hidden
+    assert "1 counters" in _without_counterspells("4 removal, 1 counters, 1 wipes")
+    assert _without_counterspells("10 counters") == "10 counters"
 
 
 def test_suggest_swap_result_states_the_current_axis_verdict(make_card, empty_store, monkeypatch, tmp_path):

@@ -25,6 +25,7 @@ from mythgauntlet.ratings.axes import (
 )
 from mythgauntlet.ratings.bracket import BracketEstimate, estimate_bracket
 from mythgauntlet.ratings.insight import DeckInsight, build_insight
+from mythgauntlet.ratings.table_feel import TableFeelReport, compute_table_feel
 from mythgauntlet.ratings.metrics import ConsistencyReport
 from mythgauntlet.semantics.combo_rules import DeterminismVerdict, classify_determinism
 from mythgauntlet.semantics.store import CoverageReport, SemanticsStore
@@ -57,6 +58,9 @@ class DeckAnalysis:
     wincon_redundancy: WinconRedundancyReport
     combo_profile: ComboAssessment | None = None  # graded combos (None if no report supplied)
     insight: DeckInsight | None = None  # deck-specific narrative (archetype/why/cards/verdict)
+    # How salty the deck reads to a casual pod (EDHREC community salt). A lens, not a power
+    # axis: nothing in the bracket estimate reads it. None only for hand-built analyses.
+    table_feel: TableFeelReport | None = None
 
 
 def analyze_deck(
@@ -104,7 +108,8 @@ def analyze_deck(
     apply_nut_kills(runs, all_cards, cfg.turns)
     report = metrics.compute(runs, cfg)
     coverage = store.coverage(resolved.cards, resolved.commanders)
-    interaction = compute_interaction(sim_cards, commander)
+    identity = frozenset(ch for c in resolved.commanders for ch in c.color_identity)
+    interaction = compute_interaction(sim_cards, commander, identity)
 
     # storm/spellslinger go-off: judge the commander-as-engine against the whole spell base,
     # grounded in the deck's real (nut-draw) mana curve (docs/SIMULATION.md; feeds Ceiling+bracket).
@@ -196,6 +201,7 @@ def analyze_deck(
         resilience=resilience, bracket=bracket, game_changers=game_changers,
         wipe_turn=wipe_turn, go_off=go_off, overrun=overrun, combo_profile=combo_profile,
         wincon_redundancy=wincon_redundancy,
+        table_feel=compute_table_feel(resolved.cards, resolved.commanders),
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
     return analysis

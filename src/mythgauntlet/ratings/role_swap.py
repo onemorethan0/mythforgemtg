@@ -125,7 +125,8 @@ def _order_adds(resolved: ResolvedDeck, adds: list[Card], axis: str | None,
             # Same card list `analyze_deck` scores (partners ride along as library cards).
             cmd = variant.commanders[0] if variant.commanders else None
             cards = list(variant.cards) + [(c, 1) for c in variant.commanders[1:]]
-            return compute_interaction(cards, cmd).score
+            ident = {ch for c in variant.commanders for ch in c.color_identity}
+            return compute_interaction(cards, cmd, ident).score
         scored = [(c, score(c)) for c in adds]
         scored.sort(key=lambda cs: (-cs[1], cs[0].edhrec_rank or 10**9, cs[0].name))
         return [c for c, _ in scored]

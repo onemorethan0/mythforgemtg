@@ -20,7 +20,8 @@ export const BRACKET_TERMS = {
 export const TERMS = {
   consistency: 'How reliably the deck executes its plan — mulligan quality and land-drop reliability across many simulated games. Not raw power; a deck can be very consistent and still slow.',
   resilience: "How much of the deck's plan survives a board wipe. Measured by simulating the SAME seed clean and wiped, so only the wipe's effect shows up in the difference.",
-  interaction: 'Removal, counterspells, and board wipes the deck actually holds — weighted by how cheap and castable they are, not just counted.',
+  interaction: "Removal, counterspells, board wipes and artifact/enchantment answers the deck actually holds — weighted by how cheap and castable they are, not just counted. Breadth only counts answer types the deck's colours can play, so a deck without blue isn't marked down for having no counterspells.",
+  table_feel: "How salty this deck will feel to the people across the table, from EDHREC's yearly community survey (each card rated 0-4 for how much players dislike facing it). Shown as a percentile among real decks: 80 means saltier than four in five. It is not a power measure — a weak deck can be salty and a strong one friendly.",
   ceiling: "The deck's best-case draw: a top-percentile lucky hand, including any detected storm go-off or alpha-strike finish. Reads low if a real finisher isn't one the engine can detect yet.",
   pod: 'Can this deck close a real ~4-player table, not just a 1-on-1 duel? A deck can read fast and consistent above and still barely dent a full pod — this axis is what actually answers that.',
   speed: 'How many turns until an unopposed goldfish kill, and how often the deck actually lands one inside the simulated horizon.',

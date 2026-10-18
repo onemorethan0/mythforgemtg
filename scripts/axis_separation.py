@@ -159,7 +159,8 @@ def collect(runs: int, seed: int) -> list[tuple[int, dict[str, float]]]:
         # acceptance gate below is measured on the same clock analyze_deck actually ships.
         apply_nut_kills(sim_runs, all_cards, cfg.turns)
         report = metrics.compute(sim_runs, cfg)
-        interaction = compute_interaction(resolved.cards, commander)
+        interaction = compute_interaction(
+            resolved.cards, commander, {ch for c in resolved.commanders for ch in c.color_identity})
         ceiling = compute_ceiling(sim_runs, cfg)
         nonland = [c.mana_value for c, _ in resolved.cards if not c.is_land]
         rows.append((bracket, {

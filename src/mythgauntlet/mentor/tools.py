@@ -573,6 +573,10 @@ _STANDING_LOWER_IS_BETTER = {"below_p25": "top_quarter", "p25_p50": "above_media
                              "p50_p75": "below_median", "above_p75": "bottom_quarter"}
 
 
+_SALT_STANDING = {"below_p25": "least_salty_quarter", "p25_p50": "less_salty_than_median",
+                  "p50_p75": "saltier_than_median", "above_p75": "saltiest_quarter"}
+
+
 def _vs_bracket(bracket: int, metric: str, value) -> dict | None:
     """`reference.percentile_band` plus an oriented `standing` and the metric's direction;
     None when there is no usable reference cell (missing value, thin cell) -- omitted, not
@@ -586,23 +590,44 @@ def _vs_bracket(bracket: int, metric: str, value) -> dict | None:
     return band
 
 
-# C-residual: `insight` writes "N removal, 0 counters, M wipes (breadth b/3)" and "light on
-# removal/counters" for EVERY deck, so a green or black deck's profile listed "0 counters" as a
-# weakness (Shelob, Tymna, Ghired) although `role_applicable("counterspell", identity)` says
-# no colour in its identity supplies counterspells. `insight.py` is shared with other surfaces
-# and left alone; the mentor layer rewrites the sentences it hands the model.
-_COUNT_COUNTERS_RE = re.compile(r",?\s*\d+ counters?\b")
-_BREADTH_RE = re.compile(r"\b(\d+)/3(\s+types)?")
-_LIGHT_ON_COUNTERS_RE = re.compile(r"removal/counters")
+# C-residual: `insight` writes "N removal, 0 counters, M wipes" for EVERY deck, so a green or
+# black deck's profile listed "0 counters" as if it were a gap (Shelob, Tymna, Ghired) although
+# `role_applicable("counterspell", identity)` says no colour in its identity supplies them.
+# Breadth itself is colour-aware at the source since 2026-10-18 (`InteractionReport.breadth_max`),
+# so only the empty counter slot is dropped here; a real count (a Pyroblast) is never hidden.
+_ZERO_COUNTERS_RE = re.compile(r",?\s*\b0 counters?\b")
 
 
 def _without_counterspells(text: str) -> str:
-    """`text` with counterspells removed from an interaction sentence: the counter count is
-    dropped and breadth (of three possible types) becomes breadth of the two the deck's
-    colours can play."""
-    text = _COUNT_COUNTERS_RE.sub("", text)
-    text = _LIGHT_ON_COUNTERS_RE.sub("removal", text)
-    return _BREADTH_RE.sub(lambda m: f"{m.group(1)} of 2 playable types", text)
+    """`text` with an EMPTY counterspell slot removed from an interaction sentence."""
+    return _ZERO_COUNTERS_RE.sub("", text)
+
+
+def _table_feel_block(tf, ref_bracket: int) -> dict:
+    """How salty the deck reads to a pod (EDHREC community salt). A lens, not power: the
+    bracket estimate never reads it, and `score` is a PERCENTILE among corpus decks."""
+    if tf is None or not tf.available:
+        return {"available": False,
+                "message": (tf.reason if tf is not None else "not measured")
+                + " -- say salt is unmeasured; never call the deck friendly or salty."}
+    block = {
+        "available": True,
+        "score": tf.score, "band": tf.band,
+        "meaning": f"saltier than {tf.score:.0f}% of corpus decks (higher = saltier)",
+        "total_salt": tf.total_salt,
+        "salty_card_count": tf.salty_count,
+        "salty_cards": [{"name": n, "salt": v} for n, v in tf.salty_cards],
+        "commander_salt": tf.commander_salt,
+        "scale": "EDHREC community survey, 0 (nobody minds) to 4 (the table hates it)",
+        "note": "not a power measure -- a deck can be weak and salty, or strong and friendly",
+    }
+    vs = _vs_bracket(ref_bracket, "table_feel", tf.score)
+    if vs is not None:
+        # salt has no "better" end; say which way the quarter points
+        vs["direction"] = "higher_is_saltier"
+        vs["standing"] = _SALT_STANDING[vs["percentile_band"]]
+        block["vs_bracket"] = vs
+    return block
 
 
 def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = None) -> ToolResult:
@@ -656,6 +681,8 @@ def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = Non
     cmdr_vs = _vs_bracket(ref_bracket, "avg_commander_turn", r.avg_commander_turn)
     wincon = _to_jsonable(a.wincon_redundancy)
     names: set[str] = {c.name for c in ctx.resolved.commanders}
+    if a.table_feel is not None:
+        names.update(n for n, _v in a.table_feel.salty_cards)
     key_cards = []
     for k in ins.key_cards:
         key_cards.append({"role": k.role, "cards": list(k.names), "more": k.more})
@@ -712,11 +739,14 @@ def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = Non
             "counterspells": (inter.counterspells if counters_apply or inter.counterspells
                               else "n/a (rare outside blue; not a gap for this deck)"),
             "counterspells_applicable": counters_apply,
-            "board_wipes": inter.board_wipes, "breadth": inter.breadth,
-            "breadth_max": 3 if counters_apply else 2,   # types (removal / counters / wipes) in play
+            "board_wipes": inter.board_wipes,
+            "artifact_enchantment_answers": inter.noncreature_answers,
+            # answer types (removal / counters / wipes / artifact-enchantment) the colours play
+            "breadth": inter.breadth, "breadth_max": inter.breadth_max,
         },
         "key_cards": key_cards,
         "wincon_redundancy": wincon,
+        "table_feel": _table_feel_block(a.table_feel, ref_bracket),
         "bracket": {"bracket": b.bracket, "label": b.label, "plays_up": b.plays_up},
         "verdicts": verdicts.classify_profile(a),
     }
@@ -1384,7 +1414,8 @@ TOOL_SCHEMAS: list[dict] = [
         "function": {
             "name": "get_power_profile",
             "description": "The deck's measured Power Profile -- what it does well and poorly, "
-                            "how it wins, speed, resilience to wipes, interaction, key cards "
+                            "how it wins, speed, resilience to wipes, interaction, table feel "
+                            "(how salty the community rates its cards), key cards "
                             "per role, and where each axis sits among typical decks of a "
                             "bracket (vs_bracket). Call FIRST for any strengths/weaknesses/"
                             "observations/'how does it win'/'how fast'/'how resilient' "

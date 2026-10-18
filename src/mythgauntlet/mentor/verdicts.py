@@ -86,6 +86,14 @@ def interaction_band(score: float | None) -> str:
     return "moderate"
 
 
+def table_feel_band(tf) -> str:
+    """`ratings.table_feel` band (friendly / spicy / salty); "unknown" when there is no salt
+    store or too few cards are measured -- never "friendly" for an unmeasured deck."""
+    if tf is None or not getattr(tf, "available", False):
+        return "unknown"
+    return tf.band
+
+
 # Archetype strings exactly as `insight.build_insight` spells them -> family.
 ARCHETYPE_FAMILIES: dict[str, str] = {
     "Combo": "combo",
@@ -120,7 +128,7 @@ def compatible_families(family: str) -> frozenset[str]:
 def classify_profile(a) -> dict[str, str]:
     """Verdict words for one `DeckAnalysis` (duck-typed, like `insight.build_insight`).
 
-    Keys: resilience, speed, consistency, interaction, archetype (family). Every value is
+    Keys: resilience, speed, consistency, interaction, table_feel, archetype (family). Every value is
     derived from a measured field; "unknown" means the field was not measured."""
     res = getattr(a, "resilience", None)
     report = a.report
@@ -130,6 +138,7 @@ def classify_profile(a) -> dict[str, str]:
         "speed": speed_band(report.avg_kill_turn, report.goldfish_kill_rate),
         "consistency": consistency_band(report.consistency_score),
         "interaction": interaction_band(a.interaction.score),
+        "table_feel": table_feel_band(getattr(a, "table_feel", None)),
         "archetype": archetype_family(insight.archetype if insight is not None else None),
     }
 
@@ -486,6 +495,21 @@ _INTERACTION_PHRASES: dict[str, re.Pattern] = {
 }
 
 
+# "salty / will annoy the table" vs "low-salt / table-friendly". Narrow on purpose: "salt"
+# alone is a card-name word (Salt Marsh, Salt Road Ambushers), so every pattern needs the
+# adjective or a table/pod object.
+_TABLE_FEEL_PHRASES: dict[str, re.Pattern] = {
+    "salty": re.compile(
+        r"\b(?:salty|high[\s-]salt|(?:lots|plenty)\s+of\s+salt|"
+        r"(?:annoy|frustrate|tilt|upset)\w*\s+(?:the|a|your|casual)\s+(?:table|pod|playgroup))\b",
+        re.IGNORECASE),
+    "friendly": re.compile(
+        r"\b(?:low[\s-]salt|salt[\s-]free|table[\s-]friendly|"
+        r"(?:friendly|fun)\s+(?:for|to)\s+(?:the|a|your|casual)\s+(?:table|pod|playgroup))\b",
+        re.IGNORECASE),
+}
+
+
 def _claims(text: str, phrases: dict[str, re.Pattern]) -> list[tuple[str, str]]:
     claims: list[tuple[str, str]] = []
     for sentence in split_sentences(text):
@@ -507,6 +531,10 @@ def interaction_claims(text: str) -> list[tuple[str, str]]:
     return _claims(text, _INTERACTION_PHRASES)
 
 
+def table_feel_claims(text: str) -> list[tuple[str, str]]:
+    return _claims(text, _TABLE_FEEL_PHRASES)
+
+
 # ── the gate's verdict check (PLAN_MENTOR_ADHOC F1) ─────────────────────────────────────
 
 # measured band -> the claimed bands that CONTRADICT it. UNDER-flag by design: only the
@@ -517,10 +545,12 @@ _OPPOSITE: dict[str, dict[str, frozenset[str]]] = {
     "speed": {"slow": frozenset({"fast"}), "none": frozenset({"fast"}), "fast": frozenset({"slow"})},
     "consistency": {"consistent": frozenset({"shaky"}), "shaky": frozenset({"consistent"})},
     "interaction": {"deep": frozenset({"thin"}), "thin": frozenset({"deep"})},
+    # a measured "spicy" deck is contradicted by neither claim (under-flag)
+    "table_feel": {"salty": frozenset({"friendly"}), "friendly": frozenset({"salty"})},
 }
 _AXIS_WORDS = {
     "resilience": "resilience to board wipes", "speed": "speed", "consistency": "consistency",
-    "interaction": "interaction",
+    "interaction": "interaction", "table_feel": "table feel (community salt)",
 }
 
 
@@ -556,6 +586,7 @@ def profile_contradictions(text: str, measured: dict[str, str]) -> list[str]:
     claim_fns = {
         "resilience": resilience_claims, "speed": speed_claims,
         "consistency": consistency_claims, "interaction": interaction_claims,
+        "table_feel": table_feel_claims,
     }
     for axis, fn in claim_fns.items():
         verdict = measured.get(axis)

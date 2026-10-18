@@ -152,6 +152,9 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
 
     # --- why per axis ---
     r = a.report
+    # newer InteractionReport fields; duck-typed callers may predate them
+    nc_answers = getattr(a.interaction, "noncreature_answers", 0)
+    breadth_max = getattr(a.interaction, "breadth_max", 3)
     cmd_t = _turn(r.avg_commander_turn)
     why: dict[str, str] = {
         "Consistency": (
@@ -164,12 +167,16 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
         ),
         "Interaction": (
             f"{a.interaction.effective_answers:g} castable answers -- "
-            f"{removal} removal, {counters} counters, {wipes} wipes "
-            f"(breadth {a.interaction.breadth}/3)"
+            f"{removal} removal, {counters} counters, {wipes} wipes"
+            + (f", {nc_answers} artifact/enchantment answers" if nc_answers else "")
+            + f" (breadth {a.interaction.breadth}/{breadth_max} playable types)"
         ),
         "Ceiling": _ceiling_why(a, fast, has_combo, storm, gowide),
         "Pod (multiplayer)": _pod_why(a),
     }
+    tf = getattr(a, "table_feel", None)
+    if tf is not None and tf.available:
+        why["Table feel"] = _table_feel_why(tf)
     if a.resilience is not None:
         why["Resilience"] = (
             f"retains {a.resilience.resilience_score:.0f}/100 through a T{a.wipe_turn} board wipe "
@@ -182,7 +189,7 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
         a, removal, counters, wipes, ramp, tutors, creatures, has_combo)
 
     return DeckInsight(
-        archetype=archetype, gameplan=gameplan, pod_read=_pod_read(a),
+        archetype=archetype, gameplan=gameplan, pod_read=_pod_read(a) + _salt_note(tf),
         key_cards=key_cards, axis_why=why, strengths=strengths, weaknesses=weaknesses,
     )
 
@@ -216,6 +223,31 @@ def _pod_read(a) -> str:
         return ("Optimized (Bracket 4) -- high-power. Bring it to a Bracket 4 pod; it will "
                 "overwhelm casual tables.")
     return ("cEDH (Bracket 5) -- built to win fast and disrupt. cEDH tables only.")
+
+
+def _salty_names(tf, k: int = 3) -> str:
+    return ", ".join(f"{n} ({v:.1f})" for n, v in tf.salty_cards[:k])
+
+
+def _table_feel_why(tf) -> str:
+    """Relative wording on purpose: the score is a percentile, not an absolute verdict."""
+    head = f"saltier than {tf.score:.0f}% of corpus decks (EDHREC community salt)"
+    if not tf.salty_cards:
+        return head + "; no card the community rates above 1.0 of 4"
+    lead = f"saltiest: {_salty_names(tf)}"
+    if not tf.salty_count:
+        return f"{head}; {lead} (none past 1.5 of 4 -- the salt is spread across many cards)"
+    return (f"{head}; {lead} ({tf.salty_count} card{'s' if tf.salty_count != 1 else ''} "
+            f"past 1.5 of 4)")
+
+
+def _salt_note(tf) -> str:
+    """The casual addendum to the pod read: name the cards a table will groan at, so the pilot
+    can raise them in the pre-game (Rule 0) talk. Silent unless the deck is actually salty."""
+    if tf is None or not tf.available or tf.band != "salty" or not tf.salty_cards:
+        return ""
+    return (f" Table feel: saltier than {tf.score:.0f}% of decks -- worth flagging "
+            f"{_salty_names(tf)} in your pre-game talk.")
 
 
 def _stat(v) -> int:
@@ -252,6 +284,7 @@ def _verdict(a, removal, counters, wipes, ramp, tutors, creatures, has_combo):
     strengths: list[str] = []
     weaknesses: list[str] = []
     r, cons = a.report, a.report.consistency_score
+    breadth_max = getattr(a.interaction, "breadth_max", None)  # None: an older report shape
 
     if cons >= 70:
         t = _turn(r.avg_commander_turn)
@@ -261,9 +294,11 @@ def _verdict(a, removal, counters, wipes, ramp, tutors, creatures, has_combo):
 
     answers = removal + counters + wipes
     if a.interaction.score >= 55:
-        strengths.append(f"Deep interaction ({answers} answers, {a.interaction.breadth}/3 types)")
+        strengths.append(f"Deep interaction ({answers} answers, "
+                         f"{a.interaction.breadth}/{breadth_max or 3} types)")
     elif a.interaction.score < 30:
-        weaknesses.append(f"Thin interaction (only {answers} answers) -- light on removal/counters")
+        weaknesses.append(f"Thin interaction (only {answers} answers) -- light on removal"
+                          + ("" if breadth_max == 3 else "/counters"))  # 3: no blue
 
     if a.ceiling.score >= 45 or has_combo:
         strengths.append("High ceiling -- a real fast/combo finish" if has_combo
