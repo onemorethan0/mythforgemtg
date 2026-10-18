@@ -1,0 +1,101 @@
+# Archidekt — Exemplary Example of X Spells (because I don't like them)
+# source: archidekt:19757535
+# fetched: 2026-10-15
+
+Commander:
+1 Zaxara, the Exemplary
+
+Deck:
+1 Skyshroud Claim
+1 Yavimaya, Cradle of Growth
+1 Concordant Crossroads
+1 Basalt Monolith
+1 Staff of Domination
+1 The Ozolith
+1 Urborg, Tomb of Yawgmoth
+1 Heroic Intervention
+1 Power Sink
+1 Kalonian Hydra
+1 Nature's Rhythm
+1 Command Tower
+1 Cryptolith Rite
+1 Chord of Calling
+1 Flusterstorm
+1 Swan Song
+1 Mathemagics
+1 Unbound Flourishing
+1 Gargos, Vicious Watcher
+1 Hydroid Krasis
+1 Primordial Hydra
+1 Springleaf Parade
+1 Cyclonic Rift
+1 Sol Ring
+1 Polluted Delta
+1 Doubling Season
+1 Farseek
+1 Nature's Lore
+1 Badgermole Cub
+1 Bloom Tender
+1 Kinnan, Bonder Prodigy
+1 Voracious Hydra
+1 Ouroboroid
+1 Wastewood Verge
+1 Overgrown Tomb
+1 Breeding Pool
+1 Rejuvenating Springs
+1 Verdant Catacombs
+1 Watery Grave
+1 Dreamroot Cascade
+1 Vorinclex, Voice of Hunger
+1 Undergrowth Stadium
+1 Morphic Pool
+1 Finale of Devastation
+1 Innkeeper's Talent
+1 Plasm Capture
+1 Wan Shi Tong, Librarian
+1 Willowrush Verge
+1 Shipwreck Marsh
+1 Otawara, Soaring City
+1 Zagoth Triome
+1 Gloomlake Verge
+1 Exsanguinate
+1 Walking Ballista
+1 Hungering Hydra
+1 Deathcap Glade
+1 Zimone, Infinite Analyst
+2 Swamp
+3 Forest
+1 Three Visits
+1 Turbulent Fen
+1 Turbulent Wilderness
+1 Turbulent Wetlands
+3 Island
+1 Birds of Paradise
+1 Wave Goodbye
+1 Mana Drain
+1 The Notary Hobbits
+1 Kruphix, God of Horizons
+1 Zimone, Paradox Sculptor
+1 Troyan, Gutsy Explorer
+1 Goldvein Hydra
+1 Misty Rainforest
+1 Pemmin's Aura
+1 Fanatic of Rhonas
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Nyxbloom Ancient
+1 Torment of Hailfire
+1 Mutational Advantage
+1 Ripples of Potential
+1 Underground Mortuary
+1 The Great Henge
+1 City of Shadows
+1 Talisman of Dominance
+1 Talisman of Curiosity
+1 Talisman of Resilience
+1 Arcane Signet
+1 Elvish Mystic
+1 Witherbloom, the Balancer
+1 Hedge Maze
+1 Undercity Sewers
+1 Vastwood Hydra

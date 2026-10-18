@@ -22,6 +22,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-10325111.txt",
+      "name": "Tinker Time",
+      "source": "archidekt:10325111",
+      "bracket": 2,
+      "fetched": "2026-10-01"
+    },
+    {
       "file": "archidekt-10329382.txt",
       "name": "Radha - Extra Combats",
       "source": "archidekt:10329382",
@@ -85,11 +92,25 @@
       "fetched": "2026-08-26"
     },
     {
+      "file": "archidekt-11338565.txt",
+      "name": "Kaalia of the Vast - current",
+      "source": "archidekt:11338565",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
       "file": "archidekt-11363581.txt",
       "name": "Where am I going, and how don't I get there?",
       "source": "archidekt:11363581",
       "bracket": 2,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-11365698.txt",
+      "name": "Breeches, Brazen Plunderer",
+      "source": "archidekt:11365698",
+      "bracket": null,
+      "fetched": "2026-10-06"
     },
     {
       "file": "archidekt-11428593.txt",
@@ -125,6 +146,13 @@
       "source": "archidekt:11571248",
       "bracket": 2,
       "fetched": "2026-09-02"
+    },
+    {
+      "file": "archidekt-11712948.txt",
+      "name": "Here's the Tea",
+      "source": "archidekt:11712948",
+      "bracket": null,
+      "fetched": "2026-10-16"
     },
     {
       "file": "archidekt-11777459.txt",
@@ -218,6 +246,13 @@
       "fetched": "2026-07-05"
     },
     {
+      "file": "archidekt-12379041.txt",
+      "name": "Eldrazi",
+      "source": "archidekt:12379041",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
       "file": "archidekt-124492.txt",
       "name": "James Eugene Mizzet II",
       "source": "archidekt:124492",
@@ -293,6 +328,13 @@
       "source": "archidekt:12934997",
       "bracket": 2,
       "fetched": "2026-09-25"
+    },
+    {
+      "file": "archidekt-12975751.txt",
+      "name": "50€ Azami Control",
+      "source": "archidekt:12975751",
+      "bracket": 3,
+      "fetched": "2026-10-06"
     },
     {
       "file": "archidekt-13061742.txt",
@@ -391,6 +433,13 @@
       "source": "archidekt:13546643",
       "bracket": 2,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-13629612.txt",
+      "name": "Kefkaa",
+      "source": "archidekt:13629612",
+      "bracket": null,
+      "fetched": "2026-10-02"
     },
     {
       "file": "archidekt-13633413.txt",
@@ -652,6 +701,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-15590081.txt",
+      "name": "Rakdos Vampires, Winter 2025",
+      "source": "archidekt:15590081",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
       "file": "archidekt-15590943.txt",
       "name": "Hashaton Bracket Mid 3",
       "source": "archidekt:15590943",
@@ -708,11 +764,25 @@
       "fetched": "2026-08-11"
     },
     {
+      "file": "archidekt-15906576.txt",
+      "name": "boney boi",
+      "source": "archidekt:15906576",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
       "file": "archidekt-15929724.txt",
       "name": "☢️ R.Y.N.O. (Rip Ya a New One)",
       "source": "archidekt:15929724",
       "bracket": null,
       "fetched": "2026-08-05"
+    },
+    {
+      "file": "archidekt-15970674.txt",
+      "name": "Sultai Graveyard Slop",
+      "source": "archidekt:15970674",
+      "bracket": 3,
+      "fetched": "2026-10-08"
     },
     {
       "file": "archidekt-16034855.txt",
@@ -727,6 +797,13 @@
       "source": "archidekt:1605459",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-16065739.txt",
+      "name": "The \"No-No\" Man (Mister Negative)",
+      "source": "archidekt:16065739",
+      "bracket": 3,
+      "fetched": "2026-10-06"
     },
     {
       "file": "archidekt-16106653.txt",
@@ -762,6 +839,13 @@
       "source": "archidekt:16895277",
       "bracket": 2,
       "fetched": "2026-08-26"
+    },
+    {
+      "file": "archidekt-16896757.txt",
+      "name": "Astarion",
+      "source": "archidekt:16896757",
+      "bracket": 3,
+      "fetched": "2026-10-01"
     },
     {
       "file": "archidekt-16978327.txt",
@@ -841,6 +925,13 @@
       "fetched": "2026-09-02"
     },
     {
+      "file": "archidekt-17237372.txt",
+      "name": "Terra, Magical Adept (FF Summoner)",
+      "source": "archidekt:17237372",
+      "bracket": null,
+      "fetched": "2026-10-15"
+    },
+    {
       "file": "archidekt-1727139.txt",
       "name": "TnT cEDH 2026 | Tymna Thrasios v4.22 | cEDH Midrange | Thrasios Tymna Primer | Infinite Mana Self-Mill",
       "source": "archidekt:1727139",
@@ -911,6 +1002,20 @@
       "fetched": "2026-07-05"
     },
     {
+      "file": "archidekt-17675155.txt",
+      "name": "Therapy is NOT a Win Condition",
+      "source": "archidekt:17675155",
+      "bracket": 4,
+      "fetched": "2026-10-15"
+    },
+    {
+      "file": "archidekt-17685247.txt",
+      "name": "Bello's Animated Army - upgraded precon",
+      "source": "archidekt:17685247",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
       "file": "archidekt-17703923.txt",
       "name": "Dragon Triggers",
       "source": "archidekt:17703923",
@@ -974,6 +1079,13 @@
       "fetched": "2026-07-31"
     },
     {
+      "file": "archidekt-18100334.txt",
+      "name": "Katara Time",
+      "source": "archidekt:18100334",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
       "file": "archidekt-18208745.txt",
       "name": "Zimone",
       "source": "archidekt:18208745",
@@ -986,6 +1098,13 @@
       "source": "archidekt:18229186",
       "bracket": null,
       "fetched": "2026-09-08"
+    },
+    {
+      "file": "archidekt-18233193.txt",
+      "name": "Felothar, Dawn of the Abzan",
+      "source": "archidekt:18233193",
+      "bracket": null,
+      "fetched": "2026-10-14"
     },
     {
       "file": "archidekt-18256509.txt",
@@ -1016,6 +1135,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-18292598.txt",
+      "name": "Splice into Avatar Aang",
+      "source": "archidekt:18292598",
+      "bracket": 3,
+      "fetched": "2026-10-02"
+    },
+    {
       "file": "archidekt-18302073.txt",
       "name": "Tribal/Marqueurs elfe",
       "source": "archidekt:18302073",
@@ -1030,6 +1156,13 @@
       "fetched": "2026-09-29"
     },
     {
+      "file": "archidekt-18507989.txt",
+      "name": "Frodo, Adventurous Hobbit",
+      "source": "archidekt:18507989",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
       "file": "archidekt-18520785.txt",
       "name": "Praise the Sun, Fire the Gun",
       "source": "archidekt:18520785",
@@ -1042,6 +1175,13 @@
       "source": "archidekt:18558413",
       "bracket": 2,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-18572393.txt",
+      "name": "Ragebait Yshtola",
+      "source": "archidekt:18572393",
+      "bracket": null,
+      "fetched": "2026-10-13"
     },
     {
       "file": "archidekt-18744715.txt",
@@ -1107,6 +1247,13 @@
       "fetched": "2026-08-05"
     },
     {
+      "file": "archidekt-19132175.txt",
+      "name": "Greta's Fastfood",
+      "source": "archidekt:19132175",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
       "file": "archidekt-19146490.txt",
       "name": "recurcion tribal",
       "source": "archidekt:19146490",
@@ -1154,6 +1301,13 @@
       "source": "archidekt:1971524",
       "bracket": 5,
       "fetched": "2026-07-17"
+    },
+    {
+      "file": "archidekt-19757535.txt",
+      "name": "Exemplary Example of X Spells (because I don't like them)",
+      "source": "archidekt:19757535",
+      "bracket": null,
+      "fetched": "2026-10-15"
     },
     {
       "file": "archidekt-19769886.txt",
@@ -1245,6 +1399,13 @@
       "source": "archidekt:20884088",
       "bracket": 3,
       "fetched": "2026-08-06"
+    },
+    {
+      "file": "archidekt-20928966.txt",
+      "name": "Tifa's 7th Heaven Boxing Gym",
+      "source": "archidekt:20928966",
+      "bracket": null,
+      "fetched": "2026-10-14"
     },
     {
       "file": "archidekt-20963089.txt",
@@ -1357,6 +1518,13 @@
       "source": "archidekt:21672309",
       "bracket": 2,
       "fetched": "2026-08-26"
+    },
+    {
+      "file": "archidekt-21688137.txt",
+      "name": "Celes Reanimator",
+      "source": "archidekt:21688137",
+      "bracket": null,
+      "fetched": "2026-10-07"
     },
     {
       "file": "archidekt-21703328.txt",
@@ -1527,6 +1695,13 @@
       "fetched": "2026-07-28"
     },
     {
+      "file": "archidekt-23081852.txt",
+      "name": "It hurts so good",
+      "source": "archidekt:23081852",
+      "bracket": 3,
+      "fetched": "2026-10-14"
+    },
+    {
       "file": "archidekt-23114879.txt",
       "name": "Sliver",
       "source": "archidekt:23114879",
@@ -1667,6 +1842,13 @@
       "fetched": "2026-09-01"
     },
     {
+      "file": "archidekt-23689258.txt",
+      "name": "\"Inspirit\"ed Crew",
+      "source": "archidekt:23689258",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
       "file": "archidekt-23719164.txt",
       "name": "Jeskai, Cpt. America, TL",
       "source": "archidekt:23719164",
@@ -1751,6 +1933,13 @@
       "fetched": "2026-09-23"
     },
     {
+      "file": "archidekt-2389431.txt",
+      "name": "Colorblind",
+      "source": "archidekt:2389431",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
       "file": "archidekt-23908785.txt",
       "name": "With Great Discard Comes Great Responsibility",
       "source": "archidekt:23908785",
@@ -1812,6 +2001,13 @@
       "source": "archidekt:24037132",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-24043950.txt",
+      "name": "Mono Blue Shenanigans",
+      "source": "archidekt:24043950",
+      "bracket": 4,
+      "fetched": "2026-10-01"
     },
     {
       "file": "archidekt-24046304.txt",
@@ -1954,6 +2150,13 @@
       "fetched": "2026-09-24"
     },
     {
+      "file": "archidekt-24287998.txt",
+      "name": "Selesbians",
+      "source": "archidekt:24287998",
+      "bracket": 3,
+      "fetched": "2026-10-01"
+    },
+    {
       "file": "archidekt-24290252.txt",
       "name": "Elie 2be3",
       "source": "archidekt:24290252",
@@ -1980,6 +2183,13 @@
       "source": "archidekt:24302057",
       "bracket": null,
       "fetched": "2026-07-17"
+    },
+    {
+      "file": "archidekt-24340135.txt",
+      "name": "Dragon Treasures",
+      "source": "archidekt:24340135",
+      "bracket": null,
+      "fetched": "2026-10-14"
     },
     {
       "file": "archidekt-24340240.txt",
@@ -2393,6 +2603,13 @@
       "source": "archidekt:24690022",
       "bracket": null,
       "fetched": "2026-07-26"
+    },
+    {
+      "file": "archidekt-24695272.txt",
+      "name": "Froth and Foam",
+      "source": "archidekt:24695272",
+      "bracket": null,
+      "fetched": "2026-10-09"
     },
     {
       "file": "archidekt-24697958.txt",
@@ -3340,6 +3557,13 @@
       "fetched": "2026-08-11"
     },
     {
+      "file": "archidekt-25143194.txt",
+      "name": "Rounding the corner at 600kph",
+      "source": "archidekt:25143194",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
       "file": "archidekt-25154785.txt",
       "name": "Elf ball",
       "source": "archidekt:25154785",
@@ -3417,6 +3641,13 @@
       "fetched": "2026-08-11"
     },
     {
+      "file": "archidekt-25230108.txt",
+      "name": "My Babys",
+      "source": "archidekt:25230108",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
       "file": "archidekt-25234620.txt",
       "name": "Tannuk's Scorched Earth Policy",
       "source": "archidekt:25234620",
@@ -3424,11 +3655,25 @@
       "fetched": "2026-08-26"
     },
     {
+      "file": "archidekt-25244906.txt",
+      "name": "Filthy Little Hobbitses",
+      "source": "archidekt:25244906",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
       "file": "archidekt-25254711.txt",
       "name": "Elvessssss",
       "source": "archidekt:25254711",
       "bracket": 3,
       "fetched": "2026-08-26"
+    },
+    {
+      "file": "archidekt-25260486.txt",
+      "name": "Counter Strike: MTG Edition",
+      "source": "archidekt:25260486",
+      "bracket": null,
+      "fetched": "2026-10-02"
     },
     {
       "file": "archidekt-25261391.txt",
@@ -3548,6 +3793,20 @@
       "source": "archidekt:25595399",
       "bracket": 1,
       "fetched": "2026-08-26"
+    },
+    {
+      "file": "archidekt-25610508.txt",
+      "name": "Kellan's Hammers",
+      "source": "archidekt:25610508",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-25613107.txt",
+      "name": "Miku Miku Ni",
+      "source": "archidekt:25613107",
+      "bracket": null,
+      "fetched": "2026-10-06"
     },
     {
       "file": "archidekt-25624267.txt",
@@ -4817,6 +5076,20 @@
       "fetched": "2026-08-26"
     },
     {
+      "file": "archidekt-25781067.txt",
+      "name": "zombie horde",
+      "source": "archidekt:25781067",
+      "bracket": 3,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-25794386.txt",
+      "name": "Daredevil, Boros",
+      "source": "archidekt:25794386",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
       "file": "archidekt-25841073.txt",
       "name": "Inquisitive tapping",
       "source": "archidekt:25841073",
@@ -4971,6 +5244,13 @@
       "fetched": "2026-09-02"
     },
     {
+      "file": "archidekt-26005058.txt",
+      "name": "Teval v2",
+      "source": "archidekt:26005058",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
       "file": "archidekt-26006499.txt",
       "name": "Be Not",
       "source": "archidekt:26006499",
@@ -5088,6 +5368,13 @@
       "source": "archidekt:26059024",
       "bracket": null,
       "fetched": "2026-09-04"
+    },
+    {
+      "file": "archidekt-26062571.txt",
+      "name": "Edward Kenway",
+      "source": "archidekt:26062571",
+      "bracket": 2,
+      "fetched": "2026-10-15"
     },
     {
       "file": "archidekt-26068249.txt",
@@ -5272,6 +5559,20 @@
       "fetched": "2026-09-11"
     },
     {
+      "file": "archidekt-26254854.txt",
+      "name": "Ingris Stingerquill",
+      "source": "archidekt:26254854",
+      "bracket": null,
+      "fetched": "2026-10-15"
+    },
+    {
+      "file": "archidekt-26257113.txt",
+      "name": "Necrons",
+      "source": "archidekt:26257113",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
       "file": "archidekt-26283132.txt",
       "name": "Lost Chaos",
       "source": "archidekt:26283132",
@@ -5314,6 +5615,27 @@
       "fetched": "2026-09-15"
     },
     {
+      "file": "archidekt-26293412.txt",
+      "name": "PrEDH Ezuri, Renegade Leader",
+      "source": "archidekt:26293412",
+      "bracket": null,
+      "fetched": "2026-10-13"
+    },
+    {
+      "file": "archidekt-26302387.txt",
+      "name": "Storming In",
+      "source": "archidekt:26302387",
+      "bracket": 2,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-26313233.txt",
+      "name": "CEDH Krikk",
+      "source": "archidekt:26313233",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
       "file": "archidekt-26320184.txt",
       "name": "Huatli, Bardasaurus",
       "source": "archidekt:26320184",
@@ -5326,6 +5648,13 @@
       "source": "archidekt:26322645",
       "bracket": null,
       "fetched": "2026-09-16"
+    },
+    {
+      "file": "archidekt-26391604.txt",
+      "name": "Dinos go RAAAWWW",
+      "source": "archidekt:26391604",
+      "bracket": null,
+      "fetched": "2026-10-06"
     },
     {
       "file": "archidekt-26419439.txt",
@@ -5454,6 +5783,13 @@
       "fetched": "2026-09-17"
     },
     {
+      "file": "archidekt-26490499.txt",
+      "name": "Please dont bog me",
+      "source": "archidekt:26490499",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
       "file": "archidekt-26490782.txt",
       "name": "Volo, Guide to Monsters B3 ish",
       "source": "archidekt:26490782",
@@ -5496,11 +5832,32 @@
       "fetched": "2026-09-23"
     },
     {
+      "file": "archidekt-26559217.txt",
+      "name": "Triad (Rework WIP)",
+      "source": "archidekt:26559217",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-26560821.txt",
+      "name": "paper tyam",
+      "source": "archidekt:26560821",
+      "bracket": null,
+      "fetched": "2026-10-15"
+    },
+    {
       "file": "archidekt-26565385.txt",
       "name": "Giada Miku Deck",
       "source": "archidekt:26565385",
       "bracket": null,
       "fetched": "2026-09-25"
+    },
+    {
+      "file": "archidekt-26566301.txt",
+      "name": "Let's finish this!",
+      "source": "archidekt:26566301",
+      "bracket": null,
+      "fetched": "2026-10-02"
     },
     {
       "file": "archidekt-26661966.txt",
@@ -5587,11 +5944,32 @@
       "fetched": "2026-09-23"
     },
     {
+      "file": "archidekt-26689211.txt",
+      "name": "RATS",
+      "source": "archidekt:26689211",
+      "bracket": 2,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-26691634.txt",
+      "name": "Wall-E With Some Upgrades",
+      "source": "archidekt:26691634",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
       "file": "archidekt-26694208.txt",
       "name": "just try and attack me",
       "source": "archidekt:26694208",
       "bracket": null,
       "fetched": "2026-09-25"
+    },
+    {
+      "file": "archidekt-26696727.txt",
+      "name": "SR-71 Blackbird",
+      "source": "archidekt:26696727",
+      "bracket": null,
+      "fetched": "2026-10-13"
     },
     {
       "file": "archidekt-26701753.txt",
@@ -5657,6 +6035,13 @@
       "fetched": "2026-09-24"
     },
     {
+      "file": "archidekt-26740555.txt",
+      "name": "Kykar, Wind's Fury (50-50)",
+      "source": "archidekt:26740555",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
       "file": "archidekt-26745728.txt",
       "name": "Korvold, Fae-Cursed King",
       "source": "archidekt:26745728",
@@ -5692,11 +6077,39 @@
       "fetched": "2026-09-25"
     },
     {
+      "file": "archidekt-26763244.txt",
+      "name": "Bastelwerkstatt: Selesnya",
+      "source": "archidekt:26763244",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
       "file": "archidekt-26774650.txt",
       "name": "Kobalt Kykar",
       "source": "archidekt:26774650",
       "bracket": null,
       "fetched": "2026-09-29"
+    },
+    {
+      "file": "archidekt-26779781.txt",
+      "name": "Navi's legion",
+      "source": "archidekt:26779781",
+      "bracket": 3,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-26781891.txt",
+      "name": "Black Mage's Fire",
+      "source": "archidekt:26781891",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-26796774.txt",
+      "name": "La Z AKA le bussssSSSS!!!!",
+      "source": "archidekt:26796774",
+      "bracket": null,
+      "fetched": "2026-10-01"
     },
     {
       "file": "archidekt-26799189.txt",
@@ -5706,11 +6119,39 @@
       "fetched": "2026-09-29"
     },
     {
+      "file": "archidekt-26813621.txt",
+      "name": "Dakkon Lands Sale",
+      "source": "archidekt:26813621",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26815457.txt",
+      "name": "Royal Power, Deadly Riddles",
+      "source": "archidekt:26815457",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
       "file": "archidekt-26828090.txt",
       "name": "Oswald Fiddlebender",
       "source": "archidekt:26828090",
       "bracket": null,
       "fetched": "2026-09-30"
+    },
+    {
+      "file": "archidekt-26840999.txt",
+      "name": "Food and Fellowship - Upgraded",
+      "source": "archidekt:26840999",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-26863770.txt",
+      "name": "True colorless",
+      "source": "archidekt:26863770",
+      "bracket": null,
+      "fetched": "2026-10-02"
     },
     {
       "file": "archidekt-26895337.txt",
@@ -5741,6 +6182,13 @@
       "fetched": "2026-09-30"
     },
     {
+      "file": "archidekt-26903341.txt",
+      "name": "can't be sacrificed is a really \"fun\" line of text",
+      "source": "archidekt:26903341",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
       "file": "archidekt-26913487.txt",
       "name": "Jin please stop littering",
       "source": "archidekt:26913487",
@@ -5762,11 +6210,452 @@
       "fetched": "2026-09-30"
     },
     {
+      "file": "archidekt-26937442.txt",
+      "name": "Budget",
+      "source": "archidekt:26937442",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26938312.txt",
+      "name": "Peasant Tatyova Deck",
+      "source": "archidekt:26938312",
+      "bracket": 2,
+      "fetched": "2026-10-02"
+    },
+    {
+      "file": "archidekt-26940164.txt",
+      "name": "Loki, God of Lies - Mono Red Aikido",
+      "source": "archidekt:26940164",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26954279.txt",
+      "name": "you wana see me play that again",
+      "source": "archidekt:26954279",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26962589.txt",
+      "name": "Kangree Budget",
+      "source": "archidekt:26962589",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26963449.txt",
+      "name": "More Rats",
+      "source": "archidekt:26963449",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26968810.txt",
+      "name": ">whilhelt v6",
+      "source": "archidekt:26968810",
+      "bracket": null,
+      "fetched": "2026-10-01"
+    },
+    {
+      "file": "archidekt-26972892.txt",
+      "name": "Winota Stax",
+      "source": "archidekt:26972892",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
+      "file": "archidekt-26974058.txt",
+      "name": "mono black baron",
+      "source": "archidekt:26974058",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-26998798.txt",
+      "name": "SALT_TEST",
+      "source": "archidekt:26998798",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
+      "file": "archidekt-26999372.txt",
+      "name": "I Hate Mondays",
+      "source": "archidekt:26999372",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
+      "file": "archidekt-27004116.txt",
+      "name": "Nissa",
+      "source": "archidekt:27004116",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27004417.txt",
+      "name": "Acererak",
+      "source": "archidekt:27004417",
+      "bracket": null,
+      "fetched": "2026-10-02"
+    },
+    {
+      "file": "archidekt-27011950.txt",
+      "name": "Ghaltarrrr",
+      "source": "archidekt:27011950",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27041243.txt",
+      "name": "C-Wilhelt",
+      "source": "archidekt:27041243",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27076970.txt",
+      "name": "sephara",
+      "source": "archidekt:27076970",
+      "bracket": 3,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-27095895.txt",
+      "name": "Ich mag blumen",
+      "source": "archidekt:27095895",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27107292.txt",
+      "name": "lonely lighthouse keeper",
+      "source": "archidekt:27107292",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27113529.txt",
+      "name": "Game of Thrones",
+      "source": "archidekt:27113529",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27113530.txt",
+      "name": "Spells Life Matter (Denzilore B2)",
+      "source": "archidekt:27113530",
+      "bracket": 2,
+      "fetched": "2026-10-13"
+    },
+    {
+      "file": "archidekt-27118238.txt",
+      "name": "Dack's Big Brain",
+      "source": "archidekt:27118238",
+      "bracket": 4,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27131406.txt",
+      "name": "(a)Licia",
+      "source": "archidekt:27131406",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
       "file": "archidekt-2713146.txt",
       "name": "Dromoka, the Eternal: Count on Dragons",
       "source": "archidekt:2713146",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-27140652.txt",
+      "name": "Zuko",
+      "source": "archidekt:27140652",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27144388.txt",
+      "name": "Eshki Burnnnn",
+      "source": "archidekt:27144388",
+      "bracket": 3,
+      "fetched": "2026-10-15"
+    },
+    {
+      "file": "archidekt-27145067.txt",
+      "name": "Konrad tune-up",
+      "source": "archidekt:27145067",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27145763.txt",
+      "name": "Discounts & Dragons",
+      "source": "archidekt:27145763",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27145843.txt",
+      "name": "Debaucherous Piety",
+      "source": "archidekt:27145843",
+      "bracket": 3,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27145845.txt",
+      "name": "Locust God",
+      "source": "archidekt:27145845",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27145890.txt",
+      "name": "Turning Cards Sideways",
+      "source": "archidekt:27145890",
+      "bracket": null,
+      "fetched": "2026-10-06"
+    },
+    {
+      "file": "archidekt-27147660.txt",
+      "name": "Rakdos Artifacts",
+      "source": "archidekt:27147660",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-27155355.txt",
+      "name": "Titanboner",
+      "source": "archidekt:27155355",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27172546.txt",
+      "name": "You only get 1",
+      "source": "archidekt:27172546",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27174509.txt",
+      "name": "Davros, Dragon Creator",
+      "source": "archidekt:27174509",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27177277.txt",
+      "name": "Bye bye deck",
+      "source": "archidekt:27177277",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27178726.txt",
+      "name": "Land of Reeds",
+      "source": "archidekt:27178726",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27178861.txt",
+      "name": "Temur Mana-Burn",
+      "source": "archidekt:27178861",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27178884.txt",
+      "name": "Death by a Thousand Cuts",
+      "source": "archidekt:27178884",
+      "bracket": null,
+      "fetched": "2026-10-07"
+    },
+    {
+      "file": "archidekt-27198305.txt",
+      "name": "Doctor Doom, King of Latveria no villans",
+      "source": "archidekt:27198305",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-27210245.txt",
+      "name": "Multiverse Reforged - Reality Fracture",
+      "source": "archidekt:27210245",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-27210965.txt",
+      "name": "Postgraduate Studies",
+      "source": "archidekt:27210965",
+      "bracket": null,
+      "fetched": "2026-10-08"
+    },
+    {
+      "file": "archidekt-27231866.txt",
+      "name": "Seph by GOOSE",
+      "source": "archidekt:27231866",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27245588.txt",
+      "name": "Ramina, Element of Souls",
+      "source": "archidekt:27245588",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27246281.txt",
+      "name": "Jace Architekt des Multiversums",
+      "source": "archidekt:27246281",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27246364.txt",
+      "name": "Jayce is done with control, he wanna change things in stuffs",
+      "source": "archidekt:27246364",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27246522.txt",
+      "name": "LAAAMMMMPPPPPP",
+      "source": "archidekt:27246522",
+      "bracket": null,
+      "fetched": "2026-10-09"
+    },
+    {
+      "file": "archidekt-27299646.txt",
+      "name": "Lazav's Skin Emporium",
+      "source": "archidekt:27299646",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27301581.txt",
+      "name": "Nuvolo",
+      "source": "archidekt:27301581",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27322401.txt",
+      "name": "Tergrid B3",
+      "source": "archidekt:27322401",
+      "bracket": 3,
+      "fetched": "2026-10-13"
+    },
+    {
+      "file": "archidekt-27327674.txt",
+      "name": "Mila, Crafty Companion [2]",
+      "source": "archidekt:27327674",
+      "bracket": 2,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-27354512.txt",
+      "name": "Black Walt n°3 B4 VDEF",
+      "source": "archidekt:27354512",
+      "bracket": 4,
+      "fetched": "2026-10-15"
+    },
+    {
+      "file": "archidekt-27365212.txt",
+      "name": "Copy of - RIP Froggo",
+      "source": "archidekt:27365212",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27380936.txt",
+      "name": "bumbledih",
+      "source": "archidekt:27380936",
+      "bracket": 3,
+      "fetched": "2026-10-13"
+    },
+    {
+      "file": "archidekt-27381501.txt",
+      "name": "red",
+      "source": "archidekt:27381501",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27383832.txt",
+      "name": "gruuling on the table",
+      "source": "archidekt:27383832",
+      "bracket": 4,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27392815.txt",
+      "name": "Baylen, the Haymaker",
+      "source": "archidekt:27392815",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27403708.txt",
+      "name": "Superfriends",
+      "source": "archidekt:27403708",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27415254.txt",
+      "name": "KING",
+      "source": "archidekt:27415254",
+      "bracket": null,
+      "fetched": "2026-10-15"
+    },
+    {
+      "file": "archidekt-27416563.txt",
+      "name": "Lands for sale",
+      "source": "archidekt:27416563",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27417212.txt",
+      "name": "World on Fire",
+      "source": "archidekt:27417212",
+      "bracket": null,
+      "fetched": "2026-10-14"
+    },
+    {
+      "file": "archidekt-27418249.txt",
+      "name": "Multiverse reforged",
+      "source": "archidekt:27418249",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-27482289.txt",
+      "name": "vampy again",
+      "source": "archidekt:27482289",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-27482983.txt",
+      "name": "The Flow of Combat",
+      "source": "archidekt:27482983",
+      "bracket": null,
+      "fetched": "2026-10-16"
+    },
+    {
+      "file": "archidekt-27483348.txt",
+      "name": "Noctis",
+      "source": "archidekt:27483348",
+      "bracket": null,
+      "fetched": "2026-10-16"
     },
     {
       "file": "archidekt-2834735.txt",
@@ -5851,6 +6740,13 @@
       "source": "archidekt:3135858",
       "bracket": 3,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-3191902.txt",
+      "name": "Have You Heard of Our Savior, Sigardia?",
+      "source": "archidekt:3191902",
+      "bracket": null,
+      "fetched": "2026-10-09"
     },
     {
       "file": "archidekt-3200613.txt",
@@ -6075,6 +6971,13 @@
       "source": "archidekt:4520475",
       "bracket": 1,
       "fetched": "2026-07-28"
+    },
+    {
+      "file": "archidekt-4562926.txt",
+      "name": "Yurlok, Mana burn still exist",
+      "source": "archidekt:4562926",
+      "bracket": 3,
+      "fetched": "2026-10-02"
     },
     {
       "file": "archidekt-4593151.txt",
@@ -6462,6 +7365,13 @@
       "fetched": "2026-07-17"
     },
     {
+      "file": "archidekt-6391426.txt",
+      "name": "Wincon Monstrosity",
+      "source": "archidekt:6391426",
+      "bracket": null,
+      "fetched": "2026-10-15"
+    },
+    {
       "file": "archidekt-65004.txt",
       "name": "'93–'96 Merieke Ri Berit",
       "source": "archidekt:65004",
@@ -6628,6 +7538,13 @@
       "source": "archidekt:7963239",
       "bracket": 4,
       "fetched": "2026-07-17"
+    },
+    {
+      "file": "archidekt-800776.txt",
+      "name": "Kadena Morph*",
+      "source": "archidekt:800776",
+      "bracket": 3,
+      "fetched": "2026-10-07"
     },
     {
       "file": "archidekt-8216504.txt",

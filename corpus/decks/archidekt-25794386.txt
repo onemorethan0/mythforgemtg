@@ -1,0 +1,90 @@
+# Archidekt — Daredevil, Boros
+# source: archidekt:25794386
+# fetched: 2026-10-07
+
+Commander:
+1 Daredevil, Man Without Fear
+
+Deck:
+1 Sundown Pass
+1 Sacred Foundry
+1 Swords to Plowshares
+1 Furycalm Snarl
+1 Boros Signet
+1 Battlefield Forge
+1 Path to Exile
+1 Talisman of Conviction
+1 Boros Charm
+1 Arcane Signet
+1 Clifftop Retreat
+1 Command Tower
+1 Blasphemous Act
+1 Rugged Prairie
+1 Swiftfoot Boots
+1 Radiant Summit
+1 Rogue's Passage
+1 Chaos Warp
+1 Matt Murdock, Justice Seeker
+1 Jessica Jones, Private Eye
+1 Path of Ancestry
+1 Daredevil, Fearless Fighter
+1 Murdock's Crusade
+1 Temple of Triumph
+1 Araña, Heart of the Spider
+1 Avengers Assemble!
+1 Avengers Tower
+1 Captain America, Super-Soldier
+1 Exotic Orchard
+1 Captain America, Wings of Freedom
+1 Luke Cage, Hero for Hire
+1 Fellwar Stone
+1 Deflecting Palm
+1 Boros Garrison
+1 Hawkeye, Master Marksman
+1 She-Hulk, Wallbreaker
+1 Elektra, Femme Fatale
+1 Spectacular Spider-Man
+1 Big Score
+1 Black Widow, Agile Avenger
+1 Stick, Fearless Mentor
+1 Night Nurse, Healer of Heroes
+1 Foggy Nelson, On Retainer
+1 Silver Sable, Mercenary Leader
+1 Human Torch, Johnny Storm
+1 Political Triumph
+1 Iron Fist, Living Weapon
+1 Mind Stone
+1 Luke Cage, Power Man
+1 Origin of the Avengers
+1 Anti-Venom, Horrifying Healer
+1 Invisible Woman, Sue Storm
+1 Windcrag Siege
+1 Hawkeye, Trick Shot
+1 Turbulent Steppe
+1 Evolving Wilds
+1 Fabled Passage
+1 Fogwell's Gym
+5 Mountain
+14 Plains
+1 Sol Ring
+1 Captain Marvel, Apex Avenger
+1 Winter Soldier, Reborn Avenger
+1 Photon, Mighty Marvel
+1 Colleen Wing, Street Samurai
+1 Folk Hero
+1 Door of Destinies
+1 The Sentry, Golden Guardian
+1 White Widow, Free Agent
+1 Spider-Man, Web-Spinner
+1 Herald's Horn
+1 Black Widow, Intel Expert
+1 Terramorphic Expanse
+1 Wondrous Revival
+1 Charred Foyer // Warped Space
+1 Captain America, Unbowed
+1 Alex Wilder, Runaway
+1 Captain Mar-Vell, Space-Born
+1 Patchwork Banner
+1 Vanquisher's Banner
+1 Team Transmitter
+1 Agent Phil Coulson

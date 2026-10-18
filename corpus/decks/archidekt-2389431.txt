@@ -1,0 +1,109 @@
+# Archidekt — Colorblind
+# source: archidekt:2389431
+# fetched: 2026-10-07
+
+Commander:
+1 Ultima, Origin of Oblivion
+
+Deck:
+1 Urza's Factory
+1 Devourer of Destiny
+1 Selective Obliteration
+1 Kozilek, the Broken Reality
+1 Helm of Awakening
+1 Quicksilver Amulet
+1 Darksteel Monolith
+1 Skittering Cicada
+1 Dreamstone Hedron
+1 Thran Dynamo
+1 Throne of the High City
+1 Ulamog, the Ceaseless Hunger
+1 Tyrite Sanctum
+1 Emergence Zone
+1 Flayer of Loyalties
+1 Bonders' Enclave
+1 Tomb of the Spirit Dragon
+1 Mirrorpool
+1 Mishra's Foundry
+1 Homeward Path
+1 Urza's Power Plant
+1 Temple of the False God
+1 Mana Vault
+1 Omnath, Locus of the Void
+1 Anticausal Vestige
+1 Kozilek, the Great Distortion
+1 Thought-Knot Seer
+1 Warden of Geometries
+1 Bane of Bala Ged
+1 Conduit of Ruin
+1 Gruesome Slaughter
+1 Scour from Existence
+1 Titan's Presence
+1 Void Winnower
+1 It That Betrays
+1 Eldrazi Temple
+1 Kozilek, Butcher of Truth
+1 Not of This World
+1 Mishra's Factory
+1 Detection Tower
+1 Haunted Fengraf
+1 Eldrazi Conscription
+1 Sanctum of Eternity
+1 Shrine of the Forsaken Gods
+1 Palladium Myr
+1 All Is Dust
+1 Scavenger Grounds
+1 Urza's Mine
+1 Horizon Stone
+1 Cloud Key
+1 Introduction to Annihilation
+1 Hedron Archive
+1 Mage-Ring Network
+1 Witch's Clinic
+1 Desolation Twin
+1 Nephalia Academy
+1 Underdark Rift
+1 Zhalfirin Void
+1 Geier Reach Sanitarium
+1 Artisan of Kozilek
+1 Rogue's Passage
+1 Karn's Bastion
+1 Lightning Greaves
+1 Rise of the Eldrazi
+1 Warping Wail
+1 Desecrate Reality
+1 Forsaken Monument
+1 Ugin, the Ineffable
+1 Abstruse Archaic
+1 Ugin's Mastery
+1 Zhulodok, Void Gorger
+1 Matter Reshaper
+1 Arcane Lighthouse
+1 Ghost Quarter
+1 The Grey Havens
+1 War Room
+1 Urza's Tower
+1 Rings of Brighthearth
+1 Kozilek's Command
+1 Null Elemental Blast
+1 Glaring Fleshraker
+1 Echoes of Eternity
+1 Breaker of Creation
+1 Eldrazi Confluence
+1 Eldritch Immunity
+1 Spawnbed Protector
+1 Ulamog's Dreadsire
+1 Emrakul, the Promised End
+1 Reliquary Tower
+1 Basalt Monolith
+1 Emrakul, the World Anew
+1 Oblivion Sower
+1 Blast Zone
+1 Ulamog, the Defiler
+1 Sol Ring
+1 Calamity of the Titans
+1 Urza's Workshop
+1 Sea Gate Wreckage
+1 Mystic Forge
+1 Endbringer
+1 Crawling Barrens

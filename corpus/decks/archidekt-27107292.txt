@@ -1,0 +1,84 @@
+# Archidekt — lonely lighthouse keeper
+# source: archidekt:27107292
+# fetched: 2026-10-07
+
+Commander:
+1 Kenessos, Priest of Thassa
+
+Deck:
+1 Whelming Wave
+1 Quest for Ula's Temple
+1 Serpent of Yawning Depths
+1 Scourge of Fleets
+1 Omen Hawker
+1 Koma, Cosmos Serpent
+1 Aesi, Tyrant of Gyre Strait
+1 Koma, World-Eater
+1 Arixmethes, Slumbering Isle
+1 Brainstorm
+1 Training Grounds
+1 Tromokratis
+1 Biomancer's Familiar
+1 Stormsurge Kraken
+1 Lorthos, the Tidemaker
+1 Birds of Paradise
+1 Xolatoyac, the Smiling Flood
+1 Nadir Kraken
+1 Opt
+1 Llanowar Elves
+1 Deliberate
+1 Joint Exploration
+1 High Tide
+1 Growth Spiral
+1 Dissolve
+1 Behold the Multiverse
+1 Engulf the Shore
+1 Shower of Arrows
+1 Rampant Growth
+1 Ponder
+1 Cultivate
+1 Farseek
+1 Garruk's Uprising
+1 Lifecrafter's Bestiary
+1 The Temporal Anchor
+1 Simic Signet
+1 Retreat to Coralhelm
+1 Eyes Everywhere
+1 Nissa, Steward of Elements
+1 Kiora, Behemoth Beckoner
+1 Sol Ring
+1 Rivendell
+1 Crystal Ball
+1 Arcane Signet
+1 Talisman of Curiosity
+1 Arcane Lighthouse
+1 Dreamroot Cascade
+1 Yavimaya Coast
+1 Hinterland Harbor
+1 Temple of Mystery
+1 Crystal Grotto
+1 Tangled Islet
+1 Serum Visions
+1 Zhalfirin Void
+1 Isolated Watchtower
+1 Slinn Voda, the Rising Deep
+1 Exotic Orchard
+1 Brinelin, the Moon Kraken
+21 Island
+4 Forest
+1 Grappling Kraken
+1 Sigiled Starfish
+1 Reservoir Kraken
+1 The Reality Chip
+1 Hullbreaker Horror
+1 Monstrosity of the Lake
+1 Octoprophet
+1 Spawning Kraken
+1 Summon: Leviathan
+1 Stormtide Leviathan
+1 Three Visits
+1 Traverse the Outlands
+1 Rishkar's Expertise
+1 Octavia, Living Thesis
+1 Inkwell Leviathan
+1 Vesuvan Drifter

@@ -1,0 +1,92 @@
+# Archidekt — Tergrid B3
+# source: archidekt:27322401
+# fetched: 2026-10-13
+# bracket: 3
+
+Commander:
+1 Tergrid, God of Fright // Tergrid's Lantern
+
+Deck:
+1 Smallpox
+1 Rankle, Master of Pranks
+1 Liliana of the Veil
+1 Liliana, Waker of the Dead
+1 Thoughtseize
+1 Quest for the Nihil Stone
+1 Inquisition of Kozilek
+1 Hopeless Nightmare
+1 Vicious Rumors
+1 Dread Fugue
+1 Duress
+1 Sol Ring
+1 Unmask
+1 Force of Despair
+1 Grief
+1 Torment of Hailfire
+1 Massacre
+1 Snuff Out
+1 Flare of Malice
+1 Black Market Connections
+1 Burglar Rat
+1 Elderfang Disciple
+1 Hecteyes
+1 Nezumi Informant
+1 Rank Rat
+1 Stony-Voiced Goblins
+1 Virus Beetle
+1 Bandit's Talent
+1 Liliana's Triumph
+1 Sheoldred's Edict
+1 Vona's Hunger
+1 Peat Bog
+1 Ebon Stronghold
+1 Ash Barrens
+1 Polluted Delta
+1 Verdant Catacombs
+1 Bloodstained Mire
+1 Marsh Flats
+1 Nykthos, Shrine to Nyx
+1 Cabal Coffers
+1 Cavern of Souls
+1 Prismatic Vista
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Fell the Profane // Fell Mire
+1 Boggart Trawler // Boggart Bog
+1 Field of Ruin
+1 Jet Medallion
+1 Sign in Blood
+1 Night's Whisper
+1 Myriad Landscape
+1 Geier Reach Sanitarium
+1 Plaguecrafter
+1 Geth's Grimoire
+1 Innocent Blood
+1 Braids, Arisen Nightmare
+1 Tinybones Joins Up
+1 Syphon Mind
+1 Urborg, Tomb of Yawgmoth
+1 Deserted Temple
+1 Rings of Brighthearth
+1 Urza's Cave
+1 Expedition Map
+1 World Map
+1 Gemstone Caverns
+1 War Room
+1 Phyrexian Arena
+14 Swamp
+1 Lightning Greaves
+1 Cabal Ritual
+1 Wishclaw Talisman
+1 Pox
+1 Tinybones, Trinket Thief
+1 Dark Deal
+1 Beseech the Mirror
+1 Oppression
+1 Bottomless Pit
+1 Waste Not
+1 Necrogen Mists
+1 Lotus Petal
+1 Profane Tutor
+1 Dark Ritual
+1 Grim Tutor
+1 Crypt Ghast

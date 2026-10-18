@@ -1,0 +1,70 @@
+# Archidekt — Here's the Tea
+# source: archidekt:11712948
+# fetched: 2026-10-16
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Titania, Protector of Argoth
+1 Savra, Queen of the Golgari
+1 Noble Quarry
+1 Woodborn Behemoth
+1 Courser of Kruphix
+1 Giant Adephage
+1 Obelisk Spider
+1 Lure
+1 Brawn
+1 Typhoid Rats
+1 Seedborn Muse
+1 Titania, Nature's Force
+1 Genesis
+1 Timbermaw Larva
+1 Molimo, Maro-Sorcerer
+1 Thorn Elemental
+1 Champion of Lambholt
+1 Primordial Hydra
+1 Vinelasher Kudzu
+1 Blood Researcher
+1 Pulse of Murasa
+1 Terravore
+1 Overgrown Arch
+1 Nyx Weaver
+1 Sprouting Vines
+1 Rite of Passage
+1 Golgari Charm
+1 Rakshasa Deathdealer
+1 Reaper of the Wilds
+1 Familiar Ground
+1 Primeval Light
+1 Infuse with Vitality
+1 Blanchwood Armor
+1 Spider Umbra
+1 Tend the Pests
+1 Fog
+1 Harrow
+1 Rushed Rebirth
+1 Crop Rotation
+1 Rampant Growth
+1 Naturalize
+1 Unnatural Restoration
+1 Recollect
+1 Commune with the Gods
+1 Defend the Hearth
+1 New Frontiers
+1 Adventurous Impulse
+1 Zuran Orb
+1 Overrun
+25 Forest
+1 Wurm's Tooth
+1 Harmonize
+1 Sol Ring
+1 Reliquary Tower
+1 Vraska the Unseen
+1 Splendid Reclamation
+10 Swamp
+1 Mazirek, Kraul Death Priest
+1 Mightform Harmonizer
+1 Famished Worldsire
+1 Tyvar, Jubilant Brawler
+1 Nissa, Worldwaker

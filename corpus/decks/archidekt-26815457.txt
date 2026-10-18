@@ -1,0 +1,93 @@
+# Archidekt — Royal Power, Deadly Riddles
+# source: archidekt:26815457
+# fetched: 2026-10-08
+
+Commander:
+1 The Ur-Sphinx
+
+Deck:
+1 Psychic Spiral
+1 Space-Time Anomaly
+1 Time Warp
+1 Azor, the Lawbringer
+1 Sphinx's Tutelage
+1 Dream Trawler
+1 Ethersworn Sphinx
+1 Unesh, Criosphinx Sovereign
+1 Magister Sphinx
+1 Void Rend
+1 Belltower Sphinx
+1 Archive Arbiter
+1 Medomai the Ageless
+1 Sphinx of the Steel Wind
+1 Cleansing Nova
+5 Swamp
+1 Dream Eater
+1 Unclaimed Territory
+3 Plains
+9 Island
+1 Irrigated Farmland
+1 Sphinx of the Second Sun
+1 Path of Ancestry
+1 Temple of Deceit
+1 Haunted One
+1 Enigma Thief
+1 Flawless Maneuver
+1 Enigma Sphinx
+1 Sandstone Oracle
+1 Drown in the Loch
+1 Dimir Signet
+1 Dimir Aqueduct
+1 Despark
+1 Shineshadow Snarl
+1 Restart Sequence
+1 Scholar of the Lost Trove
+1 Obscura Charm
+1 Part the Waterveil
+1 Forum of Amity
+1 Fetid Pools
+1 Goliath Sphinx
+1 Sharding Sphinx
+1 Lightning Greaves
+1 Drowned Secrets
+1 Glacial Fortress
+1 Arcane Signet
+1 Siphon Insight
+1 Temple of Silence
+1 Thriving Isle
+1 Seachrome Coast
+1 Prairie Stream
+1 Overkill
+1 Sphinx Sovereign
+1 Isperia, Supreme Judge
+1 Mortify
+1 Sphinx of the Revelation
+1 Jidoor, Aristocratic Capital // Overture
+1 Port Town
+1 Confounding Riddle
+1 Yennett, Cryptic Sovereign
+1 Azorius Signet
+1 Heartless Summoning
+1 Sol Ring
+1 Defiler of Dreams
+1 Ormos, Archive Keeper
+1 Fraying Sanity
+1 Go for the Throat
+1 Sword of the Animist
+1 Temple of Enlightenment
+1 Dazzling Sphinx
+1 Sphinx of the Final Word
+1 Fumigate
+1 Prognostic Sphinx
+1 Rogue's Passage
+1 Sphinx Summoner
+1 Reflections of Littjara
+1 The Water Crystal
+1 Command Tower
+1 Didn't Say Please
+1 Maddening Cacophony
+1 Memory Erosion
+1 Fractured Sanity
+1 Deny the Witch
+1 Court of Cunning
+1 Thought Scour

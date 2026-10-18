@@ -1,0 +1,93 @@
+# Archidekt — SR-71 Blackbird
+# source: archidekt:26696727
+# fetched: 2026-10-13
+
+Commander:
+1 Kykar, Wind's Fury
+
+Deck:
+1 Skullclamp
+1 See Beyond
+1 Pongify
+1 Earthquake
+1 Borne Upon a Wind
+1 Valley Floodcaller
+1 Hexing Squelcher
+1 Confusticate and Bebother
+1 Asgardian Citadel
+1 Abandoned Air Temple
+1 Barbarian Ring
+1 Boros Garrison
+1 Avengers Hangar
+1 Coastal Peak
+1 Clifftop Retreat
+1 Cascade Bluffs
+6 Island
+1 Deserted Beach
+1 Fiery Islet
+1 Glittering Massif
+1 Izzet Boilerworks
+1 Rugged Prairie
+1 Shivan Reef
+1 Molten Tributary
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Wizard's Staff
+1 Belladonna Took
+1 Impact Tremors
+1 Harmonic Prodigy
+1 Jeskai Ascendancy
+1 Storm-Kiln Artist
+1 Electro, Assaulting Battery
+1 Ashnod's Altar
+1 Sorcerer Class
+1 General Kreat, the Boltbringer
+1 Warleader's Call
+1 Artist's Talent
+1 Sol Ring
+1 Arcane Signet
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Renewed Solidarity
+1 Akroma's Will
+1 Unbreakable Formation
+1 Ultimate Magic: Holy
+1 Molten-Core Maestro
+1 Third Path Iconoclast
+1 Monastery Mentor
+1 Coruscation Mage
+1 Longshot, Rebel Bowman
+1 Geist of Saint Thalia
+1 Starfield Vocalist
+1 Gandalf, Goblins' Bane // Flameshape
+1 Uncover the Moon-Letters
+1 Harmonized Trio // Brainstorm
+1 Hawkeye, Young Avenger
+1 Talon of Pain
+1 Comet Storm
+8 Mountain
+3 Plains
+1 Vandalblast
+1 Mizzium Mortars
+1 Eroded Canyon
+1 Abraded Bluffs
+1 Bonfire of the Damned
+1 Boros Charm
+1 Abrade
+1 Izzet Charm
+1 Leyline of Transformation
+1 Bishop of Wings
+1 Solve the Equation
+1 Spellseeker
+1 Wild Research
+1 Sanar, Unfinished Genius // Wild Idea
+1 Sphinx's Approach
+1 Samut, Tyrant of Naktamun
+1 Idyllic Tutor
+1 Vraska, Soul of Stone
+1 Exalted Sunborn
+1 Mindswipe
+1 Jaya's Immolating Inferno
+1 Path to Exile
+1 Swords to Plowshares
+1 Arcane Denial

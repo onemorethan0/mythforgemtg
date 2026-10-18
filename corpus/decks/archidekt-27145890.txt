@@ -1,0 +1,87 @@
+# Archidekt — Turning Cards Sideways
+# source: archidekt:27145890
+# fetched: 2026-10-06
+
+Commander:
+1 Saint Traft and Rem Karolus
+
+Deck:
+1 Fallowsage
+1 Ephemeral Shields
+1 Monastery Mentor
+1 Aura of Dominion
+1 Freed from the Real
+1 Venerated Loxodon
+1 Honor-Worn Shaku
+1 Party Thrasher
+1 Bennie Bracks, Zoologist
+1 Brudiclad, Telchor Engineer
+1 Intruder Alarm
+1 Artistic Refusal
+1 Stonybrook Schoolmaster
+1 Tui and La, Moon and Ocean
+1 Jeskai Ascendancy
+1 Seraph of the Masses
+1 Adept Watershaper
+1 Dazzling Theater // Prop Room
+1 Wildfire Awakener
+1 Kasla, the Broken Halo
+1 The Locust God
+1 Meeting of Minds
+1 Kykar, Wind's Fury
+1 Zephyr Singer
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Joyful Stormsculptor
+1 Hour of Reckoning
+1 Drumbellower
+1 Mondrak, Glory Dominus
+1 The Wandering Rescuer
+1 Third Path Iconoclast
+1 Swords to Plowshares
+1 Omni-Changeling
+1 Disruptor of Currents
+1 Village Bell-Ringer
+1 Relic of Legends
+1 Purphoros, God of the Forge
+1 Dramatic Reversal
+1 Calamity of Cinders
+1 To Arms!
+1 Conclave Phalanx
+1 Clever Concealment
+1 Grand Crescendo
+1 Transcendent Message
+1 Stoke the Flames
+1 Spectator Seating
+1 Secure the Wastes
+1 Whirlwind of Thought
+1 Split Up
+1 Sol Ring
+1 Everything Comes to Dust
+1 Wand of the Worldsoul
+1 Wear // Tear
+1 Temporal Cleansing
+1 Impact Tremors
+1 Steam Vents
+1 Skullclamp
+1 Throne of the God-Pharaoh
+1 City on Fire
+1 Springleaf Drum
+1 Kher Keep
+1 Command Tower
+1 Halo Fountain
+1 Raugrin Triome
+1 Conclave Tribunal
+1 Triplicate Spirits
+1 Elspeth, Sun's Champion
+1 Arcane Signet
+1 Minamo, School at Water's Edge
+13 Plains
+7 Island
+3 Mountain
+1 Sea of Clouds
+1 Clifftop Retreat
+1 Sacred Foundry
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Training Center
+1 Sulfur Falls

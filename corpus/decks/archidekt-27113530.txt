@@ -1,0 +1,90 @@
+# Archidekt — Spells Life Matter (Denzilore B2)
+# source: archidekt:27113530
+# fetched: 2026-10-13
+# bracket: 2
+
+Commander:
+1 Denzilore Fatehold
+
+Deck:
+1 Gossip's Talent
+1 We Ride at Dawn
+1 Staff of the Storyteller
+1 Grand Crescendo
+1 Occult Epiphany
+1 Laser Screwdriver
+1 Fatehold Charm
+1 Sonic Screwdriver
+1 Sram's Expertise
+1 Baral's Expertise
+1 Glen Elendra Guardian
+1 Serum Sovereign
+1 Nardole, Resourceful Cyborg
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Envoy of the Ancestors
+1 Rivendell
+1 Isolated Watchtower
+1 White Sun's Twilight
+1 Twilight Drover
+1 Rewind
+1 Consider
+1 Unwind
+1 Matoya, Archon Elder
+1 Proctor of Potential
+1 Planetarium of Wan Shi Tong
+1 Opt
+1 Preordain
+1 Hermes, Overseer of Elpis
+1 Serum Visions
+1 Champions from Beyond
+1 Monastery Mentor
+1 Rumor Gatherer
+1 Kykar, Zephyr Awakener
+1 The Vision
+1 Temple of Enlightenment
+1 Namor, Atlantean King
+1 Valeria Richards, Precocious
+1 Shark Typhoon
+1 Azorius Signet
+1 Fading Hope
+1 Unauthorized Exit
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Surveillance Room
+1 Hidden Grotto
+1 Gallifrey Council Chamber
+1 Conduit Pylons
+1 Banishing Betrayal
+1 Summon: Good King Mog XII
+11 Island
+1 Condescend
+1 Elminster
+1 Political Triumph
+1 The Grey Havens
+1 Rumble Arena
+1 Crystal Grotto
+1 Zhalfirin Void
+6 Plains
+1 Meticulous Archive
+1 Sol Ring
+1 Path to Exile
+1 Skrelv's Hive
+1 Emrakul's Messenger
+1 Alphinaud Leveilleur
+1 Thopter Fabricator
+1 Alisaie Leveilleur
+1 Mazemind Tome
+1 Treasure Map // Treasure Cove
+1 Spellbook Vendor
+1 H.E.R.B.I.E., Lovable Robot
+1 Bulwark Ox
+1 Damning Verdict
+1 Wave Goodbye
+1 Pensive Professor
+1 Crystalline Crawler
+1 Ornithopter of Paradise
+1 Command Tower
+1 Skycloud Expanse
+1 Adarkar Wastes
+1 Glacial Fortress
+1 Release to Memory
+1 Flitterwing Nuisance

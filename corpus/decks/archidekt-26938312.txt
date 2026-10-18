@@ -1,0 +1,108 @@
+# Archidekt — Peasant Tatyova Deck
+# source: archidekt:26938312
+# fetched: 2026-10-02
+# bracket: 2
+
+Commander:
+1 Tatyova, Benthic Druid
+
+Deck:
+1 Elven Raft-Steerer
+1 Snow-Covered Forest
+1 Escape Tunnel
+1 Mystic Sanctuary
+1 Snow-Covered Island
+1 Evolving Wilds
+1 Hobbit Hole
+1 Marwyn, the Preserver
+1 Muddle the Mixture
+1 Into the North
+1 Khalni Heart Expedition
+1 Entish Restoration
+1 Pemmin's Aura
+1 Emergence Zone
+1 Freed from the Real
+1 Island
+1 Island
+1 Island
+1 Forest
+1 Cycle of Renewal
+1 Skyshroud Ranger
+1 Sakura-Tribe Elder
+1 Tireless Provisioner
+1 Eternal Witness
+1 Roiling Regrowth
+1 Harrow
+1 Three Visits
+1 Farseek
+1 Lessons from Life
+1 Embrace the Paradox
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Island
+1 Island
+1 Foil
+1 Thwart
+1 Forest
+1 Arid Archway
+1 Rimewood Falls
+1 Tangled Islet
+1 Forest
+1 Simic Growth Chamber
+1 Reliquary Tower
+1 Blink of an Eye
+1 Simic Charm
+1 Eureka Moment
+1 Urban Evolution
+1 Walking Atlas
+1 Sakura-Tribe Scout
+1 Stone-Seeder Hierophant
+1 PuPu UFO
+1 Skullwinder
+1 Laboratory Maniac
+1 Rampant Growth
+1 Beast Within
+1 Negate
+1 Into the Roil
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Scryb Ranger
+1 Llanowar Scout
+1 Quirion Ranger
+1 Scaled Herbalist
+1 Timeless Witness
+1 Retreat to Coralhelm
+1 Forest
+1 Island
+1 Guildless Commons
+1 Long River's Pull
+1 Shared Roots
+1 Nature's Lore
+1 Aetherize
+1 Terramorphic Expanse
+1 Aftermath Analyst
+1 Spelunking
+1 Zimone, Quandrix Prodigy
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Planar Genesis
+1 Littjara Mirrorlake
+1 Growth Spiral
+1 Elfsworn Giant
+1 Tam, Observant Sequencer // Deep Sight
+1 Joint Exploration
+1 Oboro Breezecaller
+1 Vibrant Cityscape
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Harmonize
+1 Tolaria West
+1 Sylvan Scrying
+1 Zuran Orb
+1 Drift of Phantasms

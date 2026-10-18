@@ -1,0 +1,89 @@
+# Archidekt — Greta's Fastfood
+# source: archidekt:19132175
+# fetched: 2026-10-08
+
+Commander:
+1 Greta, Sweettooth Scourge
+
+Deck:
+1 Urborg Repossession
+1 Reckoner's Bargain
+1 Strangled Cemetery
+1 Tempting Witch
+1 Command Tower
+1 Generous Ent
+1 Llanowar Elves
+1 Nadier's Nightblade
+1 Anchovy & Banana Pizza
+1 Hot Dog Cart
+1 Nutrient Block
+1 Ice Cream Kitty
+1 Rowan's Grim Search
+1 Hagra Constrictor
+1 Poison Dart Frog
+1 Commander's Sphere
+1 Golgari Signet
+1 Cranial Plating
+1 Mind Stone
+1 Revive the Shire
+1 Hollow Scavenger // Bakery Raid
+1 Gingerbrute
+1 Spider Food
+1 Troublemaker Ouphe
+1 Emergency Weld
+1 They Went This Way
+1 Giant's Skewer
+1 Tithing Blade // Consuming Sepulcher
+1 Orchard Strider
+1 Sweettooth Witch
+1 Scream Puff
+1 Fierce Witchstalker
+1 Skybeast Tracker
+1 Cirith Ungol Patrol
+1 Accursed Marauder
+1 Terramorphic Expanse
+1 Candy Trail
+1 Deadly Dispute
+1 Golgari Rot Farm
+1 Fertilid
+1 Escape Tunnel
+1 Jungle Hollow
+1 Shire Terrace
+1 Evolving Wilds
+1 Mintstrosity
+1 Arcane Signet
+1 Brandywine Farmer
+1 Shelob's Ambush
+1 Bake into a Pie
+1 Fetid Gargantua
+1 Mirkwood Bats
+1 Pactdoll Terror
+1 Gixian Infiltrator
+1 Lembas
+1 Refurbished Familiar
+1 Temperamental Oozewagg
+1 Evolution Witness
+1 Return from the Wilds
+1 Festering Gulch
+1 Thriving Moor
+1 Master Chef
+1 Ichor Shade
+1 Ent's Fury
+1 Guac & Marshmallow Pizza
+10 Forest
+11 Swamp
+1 Decode Transmissions
+1 Heaped Harvest
+1 Heritage Reclamation
+1 Captivating Cave
+1 Gaea's Gift
+1 Hamlet Glutton
+1 The Hunter Maze
+1 Cloakwood Swarmkeeper
+1 Basking Broodscale
+1 Many Partings
+1 Troll of Khazad-dûm
+1 Tragic Slip
+1 Sojourner's Companion
+1 Annihilating Glare
+1 Haunted Mire

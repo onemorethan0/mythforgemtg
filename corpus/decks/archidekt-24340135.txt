@@ -1,0 +1,84 @@
+# Archidekt — Dragon Treasures
+# source: archidekt:24340135
+# fetched: 2026-10-14
+
+Commander:
+1 Smaug the Magnificent
+
+Deck:
+1 Moonveil Dragon
+24 Mountain
+1 Forgotten Cave
+1 Desert of the Fervent
+1 Smoldering Crater
+1 Urza's Saga
+1 Valakut Awakening // Valakut Stoneforge
+1 Maelstrom of the Spirit Dragon
+1 War Room
+1 Dragon Tempest
+1 Crucible of Fire
+1 Berserkers' Onslaught
+1 Fiery Emancipation
+1 Buster Sword
+1 Mjölnir, Hammer of Thor
+1 Sol Ring
+1 Mox Jasper
+1 Arcane Signet
+1 Ruby Medallion
+1 The Fire Crystal
+1 The Immortal Sun
+1 Vanquisher's Banner
+1 Chronicle of Victory
+1 Palantír of Orthanc
+1 Endless Atlas
+1 Vengeful Ancestor
+1 Thundermane Dragon
+1 Metallic Mimic
+1 Twinflame Tyrant
+1 Wrathful Red Dragon
+1 Goldspan Dragon
+1 Scourge of Valkas
+1 Leyline Tyrant
+1 Terror of the Peaks
+1 Moltensteel Dragon
+1 Ran and Shaw
+1 Ancient Copper Dragon
+1 Atsushi, the Blazing Sky
+1 Gadrak, the Crown-Scourge
+1 Fang, Roku's Companion
+1 Ganax, Astral Hunter
+1 Inferno of the Star Mounts
+1 Lathliss, Dragon Queen
+1 Castle Embereth
+1 Dragon-Cursed Halls
+1 Desert Were-Worm
+1 Bonehoard Dracosaur
+1 Swashbuckler Extraordinaire
+1 Cavern-Hoard Dragon
+1 Alchemist's Talent
+1 Desolation of Smaug
+1 Rain of Riches
+1 Dragon's Desire
+1 Hell to Pay
+1 Academy Manufactor
+1 Orcrist, Goblin-cleaver
+1 Hit the Mother Lode
+1 Diamond Pick-Axe
+1 Guild Artisan
+1 Descent into Avernus
+1 The Reaver Cleaver
+1 Coin of Mastery
+1 Brass's Bounty
+1 The Misty Mountains Cold
+1 Drakuseth, Maw of Flames
+1 Haven of the Spirit Dragon
+1 Spinerock Knoll
+1 Dragon's Hoard
+1 Goldlust Triad
+1 Thunderbreak Regent
+1 Scourge of the Throne
+1 Parapet Thrasher
+1 Dragonmaster Outcast
+1 Gogo, Mysterious Mime
+1 Ajani's Anguish
+1 Dragonstorm

@@ -1,0 +1,90 @@
+# Archidekt — Loki, God of Lies - Mono Red Aikido
+# source: archidekt:26940164
+# fetched: 2026-10-01
+
+Commander:
+1 Loki, God of Lies
+
+Deck:
+1 Accelerate
+1 Arcane Lighthouse
+1 Arcane Signet
+1 Arena of Glory
+1 Ashling, Flame Dancer
+1 Bender's Waterskin
+1 Big Score
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blazing Crescendo
+1 Broadside Bombardiers
+1 Brute Force
+1 Castle Embereth
+1 Chaos Warp
+1 Coldsteel Heart
+1 Coming In Hot
+1 Cool but Rude
+1 Crimson Wisps
+1 Crown of Flames
+1 Cursed Mirror
+1 Daring Escape
+1 Detection Tower
+1 Dragon's Rage Channeler
+1 Electro, Assaulting Battery
+1 End-Blaze Epiphany
+1 Expedite
+1 Fire Diamond
+1 Fire Nation Palace
+1 Fireflux Squad
+1 Fists of Flame
+1 Flick a Coin
+1 Ghirapur Orrery
+1 Ghitu Firebreathing
+1 Ghost Quarter
+1 Giggling Skitterspike
+1 Goblin Bombardment
+1 Greater Gargadon
+1 Gut Shot
+1 Hexing Squelcher
+1 High Market
+1 Humble Defector
+1 Imperial Recruiter
+1 Impolite Entrance
+1 Industrial Advancement
+1 Lightning Greaves
+1 Mark of Fury
+1 Fork
+1 Might of the Meek
+19 Mountain
+1 Ornithopter of Paradise
+1 Phyrexian Altar
+1 Pinnacle Monk // Mystic Peak
+1 Pyroblast
+1 Return the Favor
+1 Ruby Medallion
+1 Samut's Sprint
+1 Scavenger Grounds
+1 Scrawling Crawler
+1 Siege Smash
+1 Snowslope Hunter
+1 Sol Ring
+1 Spectacular Showdown
+1 Spikefield Hazard // Spikefield Cave
+1 Storm-Kiln Artist
+1 Stun
+1 Swiftfoot Boots
+1 Tablet of Discovery
+1 Thermopod
+1 Tibalt's Trickery
+1 Titan's Strength
+1 Transmogrify
+1 Tyrite Sanctum
+1 Unexpected Windfall
+1 Untimely Malfunction
+1 Urza's Cave
+1 Valakut Awakening // Valakut Stoneforge
+1 War Room
+1 Wheel of Misfortune
+1 Wyll's Reversal
+1 Zenith Chronicler
+1 Reverberate
+1 Past in Flames
+1 Caldera Pyremaw

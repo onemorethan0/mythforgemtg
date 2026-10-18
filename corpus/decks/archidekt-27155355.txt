@@ -1,0 +1,78 @@
+# Archidekt — Titanboner
+# source: archidekt:27155355
+# fetched: 2026-10-09
+
+Commander:
+1 Titanbones, Towering Heart
+
+Deck:
+1 Cliffhaven Kitesail
+1 Colossal Dreadmaw
+1 Murmuring Volume
+1 Elven Farsight
+1 Ornithopter of Paradise
+1 Radiant Fountain
+1 Seraph Sanctuary
+1 Kazandu Nectarpot
+1 Foundry Inspector
+1 Gift of the Woods
+1 Essence Warden
+1 Environmental Sciences
+1 Fountain of Youth
+1 Favor of the Woods
+1 Lembas
+1 Pristine Talisman
+1 Tanglebloom
+1 Golden Egg
+1 Slippery Karst
+30 Forest
+1 Glimmerpost
+1 Adventurer's Inn
+1 Desert of the Indomitable
+1 Snakeskin Veil
+1 Wild Hypothesis
+1 Kodama's Reach
+1 Duskshell Crawler
+1 Noxious Newt
+1 Glorious Decay
+1 Instant Ramen
+1 Commander's Sphere
+1 Old Thrush
+1 Bumbleflower's Sharepot
+1 Oasis Gardener
+1 Campfire
+1 Aang's Journey
+1 Heaped Harvest
+1 Dawnhart Rejuvenator
+1 Origin of Metalbending
+1 Raucous Audience
+1 Llanowar Elves
+1 Chrome Companion
+1 Tumbleweed Rising
+1 Cycle of Renewal
+1 Guac & Marshmallow Pizza
+1 Biosynthic Burst
+1 Adventurous Impulse
+1 Sami's Curiosity
+1 Sunshower Druid
+1 Sagu Wildling // Roost Seek
+1 Knight of Wundagore
+1 Pillar Launch
+1 Mindful Biomancer
+1 Studious First-Year // Rampant Growth
+1 Oracle's Restoration
+1 Omni-Cheese Pizza
+1 Super Strength
+1 Rapid Rescue
+1 Restorative Technique
+1 Call Damage Control
+1 Skystinger
+1 Frog Butler
+1 Powerful Broker
+1 Zuko's Exile
+1 Galadhrim Bow
+1 Ruthless Predation
+1 Spare Supplies
+1 Ancient Stirrings
+1 Ambitious Dragonborn
+1 Shower of Arrows

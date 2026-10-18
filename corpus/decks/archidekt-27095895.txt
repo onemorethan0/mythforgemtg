@@ -1,0 +1,91 @@
+# Archidekt — Ich mag blumen
+# source: archidekt:27095895
+# fetched: 2026-10-06
+
+Commander:
+1 The Necrobloom
+1 Exploration Broodship
+
+Deck:
+1 The Gitrog Monster
+1 Icetill Explorer
+1 Aftermath Analyst
+1 Field of the Dead
+1 Crop Rotation
+1 Wight of the Reliquary
+1 Eternal Witness
+1 Mole Man, Moloid Master
+1 Six
+1 Sakura-Tribe Elder
+1 Scute Swarm
+1 Avenger of Zendikar
+1 Colossal Grave-Reaver
+1 Planar Engineering
+1 Craterhoof Behemoth
+1 Parallel Lives
+1 Sol Ring
+1 Arcane Signet
+1 Cauldron of Essence
+1 Assassin's Trophy
+1 Hedge Shredder
+1 Dread Return
+1 Springheart Nantuko
+1 Insidious Roots
+1 Culling Ritual
+1 Nature's Lore
+1 Life from the Loam
+1 Ripples of Undeath
+1 Skullclamp
+1 Stitch Together
+1 Courser of Kruphix
+1 Rite of Harmony
+1 Sylvan Safekeeper
+1 The Battle of Bywater
+1 Dryad of the Ilysian Grove
+1 Emeria Angel
+1 Knight of the Reliquary
+1 Swords to Plowshares
+1 Druid Class
+1 Ancient Greenwarden
+1 Belladonna Took
+1 Anguished Unmaking
+1 Felidar Retreat
+1 Path to Exile
+1 Thalia and The Gitrog Monster
+1 Village Rites
+1 Tireless Provisioner
+1 Lotus Cobra
+1 Regrowth
+1 Retreat to Hagra
+1 Tear Asunder
+1 Deadly Dispute
+1 Corpse Knight
+1 Kambal, Profiteering Mayor
+1 Horizon Explorer
+1 Iridescent Vinelasher
+1 Plumb the Forbidden
+1 Will of the Sultai
+1 The Gitrog, Ravenous Ride
+1 Feed the Swarm
+1 Lethal Scheme
+4 Plains
+6 Swamp
+9 Forest
+1 Festering Thicket
+1 Scattered Groves
+1 Tranquil Thicket
+1 Barren Moor
+1 Secluded Steppe
+1 Exotic Orchard
+1 Golgari Rot Farm
+1 Command Beacon
+1 Command Tower
+1 Malakir Rebirth // Malakir Mire
+1 Blooming Marsh
+1 Mosswort Bridge
+1 Echoing Deeps
+1 Woodland Cemetery
+1 Mentor of the Meek
+1 Isolated Chapel
+1 Canopy Vista
+1 Shattered Sanctum

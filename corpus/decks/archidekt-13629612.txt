@@ -1,0 +1,96 @@
+# Archidekt — Kefkaa
+# source: archidekt:13629612
+# fetched: 2026-10-02
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Sol Ring
+1 Arcane Signet
+1 Hullbreaker Horror
+1 Talisman of Dominance
+1 Victimize
+1 Nightscape Familiar
+1 Harmonic Prodigy
+1 Anger
+1 Waste Not
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Mana Geyser
+1 Command Tower
+1 Reliquary Tower
+1 Talisman of Indulgence
+1 Sulfur Falls
+1 Bloodstained Mire
+1 Monument to Endurance
+1 Arena of Glory
+1 Bandit's Talent
+1 Sunken Hollow
+1 Exotic Orchard
+1 Dark Ritual
+1 Animate Dead
+1 Smoldering Marsh
+1 Raucous Theater
+1 Scalding Tarn
+1 Haunted Ridge
+1 Pinnacle Monk // Mystic Peak
+1 Not Dead After All
+1 Malakir Rebirth // Malakir Mire
+1 Siren Stormtamer
+1 Malevolent Hermit // Benevolent Geist
+1 Tinybones, Bauble Burglar
+1 Generator Servant
+1 Brotherhood's End
+1 Bitter Triumph
+1 Languish
+1 Blood Crypt
+1 Blazemire Verge
+1 Dragonskull Summit
+1 Saw in Half
+1 Withering Torment
+1 Fell the Profane // Fell Mire
+1 Stormcarved Coast
+1 Drowned Catacomb
+5 Mountain
+1 Cavern of Souls
+1 Undercity Sewers
+5 Swamp
+1 Feed the Swarm
+1 Flare of Denial
+1 Seething Song
+1 Swiftfoot Boots
+1 The Fire Crystal
+1 Phyrexian Metamorph
+1 Underworld Breach
+1 Mount Doom
+1 Shipwreck Marsh
+1 Orcish Bowmasters
+3 Island
+1 Sink into Stupor // Soporific Springs
+1 Blasphemous Act
+1 Frostcliff Siege
+1 Displacer Kitten
+1 Swan Song
+1 Otawara, Soaring City
+1 Ragavan, Nimble Pilferer
+1 Toxic Deluge
+1 Kroxa, Titan of Death's Hunger
+1 Polluted Delta
+1 Mana Sculpt
+1 Worldgorger Dragon
+1 Reanimate
+1 Wan Shi Tong, Librarian
+1 Starving Revenant
+1 Baleful Strix
+1 Talion, the Kindly Lord
+1 An Offer You Can't Refuse
+1 Essence Flux
+1 Blazing Firesinger // Seething Song
+1 Cyclonic Rift
+1 Hexing Squelcher
+1 Psychosis Crawler
+1 Deadpool, Trading Card
+1 Mystic Remora
+1 Necromancy
+1 Hopeless Nightmare
+1 The Soul Stone

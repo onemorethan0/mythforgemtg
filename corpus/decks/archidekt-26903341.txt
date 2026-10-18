@@ -1,0 +1,95 @@
+# Archidekt — can't be sacrificed is a really "fun" line of text
+# source: archidekt:26903341
+# fetched: 2026-10-01
+
+Commander:
+1 Zur, Eternal Schemer
+
+Deck:
+1 Demon of Fate's Design
+1 Abuelo's Awakening
+1 Starfield of Nyx
+1 Assault Suit
+1 Dance of the Manse
+1 Energy Field
+1 Hesitation
+1 Lunar Force
+1 Sothera, the Supervoid
+1 Steelshaper's Gift
+1 Out of Time
+1 Sphere of Safety
+1 Zur the Enchanter
+1 Sigil of the Empty Throne
+1 Phyrexian Arena
+1 Archetype of Courage
+1 Heliod, God of the Sun
+1 Hall of Heliod's Generosity
+1 Copy Artifact
+1 Athreos, Shroud-Veiled
+1 Athreos, God of Passage
+1 Summon: Primal Odin
+1 Extravagant Replication
+1 Training Grounds
+1 Artificer Class
+1 Wizard Class
+1 Adagia, Windswept Bastion
+1 Court of Vantress
+1 Three Steps Ahead
+1 Builder's Talent
+1 Gleaming Splendor
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Luminarch Ascension
+1 Rule of Law
+1 Eidolon of Rhetoric
+1 Planeswalker's Mischief
+1 Hallowed Haunting
+1 Entity Tracker
+1 Sink into Stupor // Soporific Springs
+1 Inquisitive Glimmer
+1 Mesa Enchantress
+1 Starfield Mystic
+1 Starnheim Courser
+1 Soaring Lightbringer
+1 Reconnaissance
+1 Enduring Curiosity
+1 Enduring Tenacity
+1 Ghostly Prison
+1 Spirited Companion
+1 Otawara, Soaring City
+1 Eiganjo, Seat of the Empire
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Cacophony Unleashed
+1 Fell the Profane // Fell Mire
+1 Unholy Annex // Ritual Chamber
+1 Blind Obedience
+1 Leyline of Anticipation
+1 Valkyrie's Call
+1 Ishgard, the Holy See // Faith & Grief
+1 Leyline of Sanctity
+1 Shark Typhoon
+1 Impostor Syndrome
+1 Raffine's Tower
+1 Arcane Sanctum
+1 Command Tower
+1 Valgavoth's Lair
+1 Restricted Office // Lecture Hall
+1 Grand Entryway // Elegant Rotunda
+4 Island
+1 Godless Shrine
+1 Polluted Delta
+5 Swamp
+1 Marsh Flats
+1 Morphic Pool
+1 Path of Ancestry
+1 Watery Grave
+1 Vault of Champions
+6 Plains
+1 Hallowed Fountain
+1 Flooded Strand
+1 Sea of Clouds
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Isolated Chapel
+1 Mistrise Village
+1 Nightmare Shepherd
+1 Geist of Saint Thalia

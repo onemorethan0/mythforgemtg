@@ -1,0 +1,80 @@
+# Archidekt — mono black baron
+# source: archidekt:26974058
+# fetched: 2026-10-07
+
+Commander:
+1 Baron Helmut Zemo
+
+Deck:
+1 Bojuka Bog
+1 Gollum, Riddle Master
+1 Cabal Coffers
+1 Vilis, Broker of Blood
+1 Bloodletter of Aclazotz
+1 Massacre Wurm
+1 Gray Merchant of Asphodel
+1 Phyrexian Obliterator
+1 Valgavoth, Terror Eater
+1 Grave Pact
+1 Doctor Doom, Unrivaled
+1 Feed the Swarm
+1 Wayfarer's Bauble
+28 Swamp
+1 Sol Ring
+1 Lightning Greaves
+1 Reanimate
+1 Culling the Weak
+1 K'rrik, Son of Yawgmoth
+1 Defile
+1 Matzalantli, the Great Door // The Core
+1 Lord of the Void
+1 Ayara, First of Locthwain
+1 Bolas's Citadel
+1 Crypt Ghast
+1 Buried Alive
+1 Kindred Dominance
+1 Demonic Tutor
+1 Entomb
+1 Jet Medallion
+1 Invoke Despair
+1 Final Parting
+1 Razaketh, the Foulblooded
+1 Doomsday
+1 Shard of the Nightbringer
+1 Skull Storm
+1 Victimize
+1 Temporal Extortion
+1 Sign in Blood
+1 Worn Powerstone
+1 Commander's Sphere
+1 Super Shredder
+1 Soul Shatter
+1 Arcane Signet
+1 Deadly Rollick
+1 Solemn Simulacrum
+1 The Soul Stone
+1 Erebos, Bleak-Hearted
+1 Nykthos, Shrine to Nyx
+1 Rise of the Dark Realms
+1 Doomsday Excruciator
+1 Doom Blade
+1 Hoarding Broodlord
+1 Pox Plague
+1 Cabal Ritual
+1 Breach the Multiverse
+1 Final Act
+1 Archenemy's Charm
+1 My Precious // Allure of Power
+1 Sheoldred, the Apocalypse
+1 Varragoth, Bloodsky Sire
+1 The Master of Lake-town
+1 Swiftfoot Boots
+1 Erebos, God of the Dead
+1 Tinybones, Pocket Nuisance
+1 Unstoppable Slasher
+1 Mithril Coat
+1 Crypt of Agadeem
+1 Black Market Connections
+1 Emeritus of Woe // Demonic Tutor
+1 Marauding Blight-Priest
+1 Dark Ritual

@@ -1,0 +1,105 @@
+# Archidekt — Splice into Avatar Aang
+# source: archidekt:18292598
+# fetched: 2026-10-02
+# bracket: 3
+
+Commander:
+1 Avatar Aang // Aang, Master of Elements
+
+Deck:
+1 Waterlogged Teachings // Inundated Archive
+1 Spellseeker
+1 Moonmist
+1 Solve the Equation
+1 Mystical Tutor
+1 Demonic Tutor
+1 Muddle the Mixture
+1 Vampiric Tutor
+1 Psychic Puppetry
+1 Consuming Vortex
+1 Blessed Breath
+1 Desperate Ritual
+1 Glacial Ray
+1 Kalamax, the Stormsire
+1 Evermind
+1 Hideous Laughter
+1 Arcane Signet
+1 Horobi's Whisper
+1 Grim Tutor
+1 Reweave
+1 Wear Away
+1 Faeburrow Elder
+1 Bloom Tender
+1 Mana Drain
+1 Ethereal Haze
+1 Sickening Shoal
+1 Peer Through Depths
+1 Rend Flesh
+1 Rending Vines
+1 Reach Through Mists
+1 Terashi's Verdict
+1 Archmage of Runes
+1 Sift Through Sands
+1 Arcane Denial
+1 Archmage Emeritus
+1 Benefactor's Draught
+1 Reiterate
+1 Mizzix's Mastery
+1 Mystic Retrieval
+1 Past in Flames
+1 Rewind
+1 Toxic Deluge
+1 Battlefield Thaumaturge
+1 Farewell
+1 Command Tower
+1 Mana Confluence
+1 City of Brass
+1 Grand Coliseum
+1 Cavern of Souls
+1 Gemstone Caverns
+1 Forbidden Orchard
+1 Exotic Orchard
+1 Holdout Settlement
+1 Path of Ancestry
+1 Tarnished Citadel
+1 Starting Town
+1 The World Tree
+1 Boseiju, Who Endures
+1 Underground Sea
+1 Hallowed Fountain
+1 Arid Mesa
+1 Volcanic Island
+1 Tropical Island
+1 Tundra
+1 Steam Vents
+1 Breeding Pool
+1 Flooded Strand
+1 Watery Grave
+1 Misty Rainforest
+1 Marsh Flats
+1 Scalding Tarn
+1 Polluted Delta
+1 Wooded Foothills
+1 Windswept Heath
+1 Raugrin Triome
+1 Ketria Triome
+1 Spara's Headquarters
+1 Bloodstained Mire
+1 Willowrush Verge
+1 Gloomlake Verge
+1 Disrupting Shoal
+1 Kodama's Reach
+1 Eerie Procession
+1 Ideas Unbound
+1 Izzet Guildmage
+1 Birds of Paradise
+1 Lava Spike
+1 Ardent Elementalist
+1 Archaeomancer
+1 Lotus Petal
+1 Mystical Teachings
+1 Delighted Halfling
+1 Ignoble Hierarch
+1 Noble Hierarch
+1 Elvish Mystic
+1 Llanowar Elves

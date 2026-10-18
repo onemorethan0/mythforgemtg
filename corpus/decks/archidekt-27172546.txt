@@ -1,0 +1,88 @@
+# Archidekt — You only get 1
+# source: archidekt:27172546
+# fetched: 2026-10-07
+
+Commander:
+1 Tevesh Szat, Doom of Fools
+1 Rograkh, Son of Rohgahh
+
+Deck:
+1 Rosnakht, Heir of Rohgahh
+1 Red Elemental Blast
+1 Curse of Opulence
+1 Blasphemous Act
+1 Entomb
+1 Faithless Looting
+1 Tragic Slip
+1 Braids, Arisen Nightmare
+1 Eviscerator's Insight
+1 Deadly Dispute
+1 Active Volcano
+1 Winds of Change
+1 Seething Song
+1 Dark Ritual
+1 Culling the Weak
+1 Darkness
+1 Dance of the Dead
+1 Demonic Tutor
+1 Reanimate
+1 Vampiric Link
+1 Mayhem Devil
+1 Malakir Rebirth // Malakir Mire
+1 Blood Artist
+1 Skullclamp
+1 Wishclaw Talisman
+1 Lightning Bolt
+1 Sol Ring
+1 Arcane Signet
+1 Abrade
+1 Return the Favor
+1 Zulaport Cutthroat
+1 Infernal Plunge
+1 Reassembling Skeleton
+1 Pitiless Plunderer
+1 Viscera Seer
+1 Sheoldred, the Apocalypse
+1 Juri, Master of the Revue
+1 Ophiomancer
+1 Bitterbloom Bearer
+1 Skirk Prospector
+1 Dragon's Rage Channeler
+1 Nasty End
+1 Ashnod's Altar
+1 Terminate
+1 Vandalblast
+1 Valgavoth, Terror Eater
+1 Bedevil
+1 Victimize
+1 Twinflame
+1 Black Market Connections
+1 Blasting Station
+1 Rakdos Signet
+1 Chandra, Torch of Defiance
+1 Ajani Unrelenting
+1 Thought Vessel
+1 Thrill of Possibility
+1 Screaming Nemesis
+1 Blackcleave Cliffs
+1 Haunted Ridge
+1 Blightstep Pathway // Searstep Pathway
+1 Shadowblood Ridge
+1 Foreboding Ruins
+1 Bloodstained Mire
+1 Blood Crypt
+1 Command Tower
+1 Sulfurous Springs
+1 Smoldering Marsh
+1 Dragonskull Summit
+9 Mountain
+13 Swamp
+1 Blazemire Verge
+1 Rakdos Carnarium
+1 Infernal Grasp
+1 Wandering Archaic // Explore the Vastlands
+1 Sol Talisman
+1 Diamond Pick-Axe
+1 Howling Mine
+1 Teferi's Puzzle Box
+1 Blasphemous Edict

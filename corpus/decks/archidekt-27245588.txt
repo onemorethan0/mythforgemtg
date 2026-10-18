@@ -1,0 +1,84 @@
+# Archidekt — Ramina, Element of Souls
+# source: archidekt:27245588
+# fetched: 2026-10-09
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Fierce Empath
+1 Herald of Secret Streams
+1 Jin-Gitaxias, Core Augur
+1 Misty Rainforest
+1 Wooded Foothills
+1 Breeding Pool
+1 Boseiju, Who Endures
+1 Command Tower
+5 Island
+16 Forest
+1 Taiga
+1 Sylvan Caryatid
+1 Mountain
+1 Otawara, Soaring City
+1 Scalding Tarn
+1 Steam Vents
+1 Volcanic Island
+1 Tropical Island
+1 Priest of Urabrask
+1 Somberwald Sage
+1 Lightning Greaves
+1 Ornithopter of Paradise
+1 Birds of Paradise
+1 Deflecting Swat
+1 Swiftfoot Boots
+1 Heroic Intervention
+1 Slip Out the Back
+1 Forgotten Ancient
+1 Scythecat Cub
+1 Benevolent Hydra
+1 Temur Ascendancy
+1 Hardened Scales
+1 The Ozolith
+1 Beast Whisperer
+1 Soul of the Harvest
+1 Rhythm of the Wild
+1 Draining Whelk
+1 Brinelin, the Moon Kraken
+1 Hammerhead Tyrant
+1 Delighted Halfling
+1 Cultivate
+1 Cloudstone Curio
+1 Consecrated Sphinx
+1 Farseek
+1 Sol Ring
+1 Great Whale
+1 Sakura-Tribe Elder
+1 Peregrine Drake
+1 Rattleclaw Mystic
+1 Kodama's Reach
+1 Rampant Growth
+1 Garruk's Uprising
+1 The Earth King
+1 Worldly Tutor
+1 Level Up
+1 Steelbane Hydra
+1 Maelstrom Wanderer
+1 Apex Devastator
+1 Hullbreaker Horror
+1 Uncivil Unrest
+1 Kalonian Hydra
+1 Primordial Hydra
+1 Allosaurus Shepherd
+1 The Earth Crystal
+1 Vizier of the Menagerie
+1 Bloom Tender
+1 Kami of Whispered Hopes
+1 Nulldrifter
+1 Beastcaller Savant
+1 Wood Elves
+1 Arcane Signet
+1 Biophagus
+1 Goldvein Hydra
+1 Surrak Dragonclaw
+1 Zoanthrope
+1 Voracious Hydra

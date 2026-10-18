@@ -1,0 +1,100 @@
+# Archidekt — Kaalia of the Vast - current
+# source: archidekt:11338565
+# fetched: 2026-10-14
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Lightning Greaves
+1 Kokusho, the Evening Star
+1 Rakdos Signet
+1 Reliquary Tower
+1 Shattered Angel
+1 Orzhov Basilica
+1 Marsh Flats
+1 Boros Signet
+1 Return to Dust
+1 Mortify
+1 Orim's Thunder
+1 Akroma's Vengeance
+1 Rakdos Carnarium
+1 Swiftfoot Boots
+1 Arid Mesa
+1 Aurelia, the Warleader
+1 Angelic Arbiter
+1 Reaper from the Abyss
+1 Day of Judgment
+1 Boros Charm
+1 Godless Shrine
+1 Blood Crypt
+1 Kaalia, Zenith Seeker
+1 Sephara, Sky's Blade
+1 Resolute Archangel
+1 Reya Dawnbringer
+1 Steel Hellkite
+1 Sol Ring
+1 Master of Cruelties
+1 Sacred Foundry
+1 Orzhov Signet
+1 Bloodstained Mire
+1 Boros Garrison
+1 Magister of Worth
+1 Command Tower
+1 Bojuka Bog
+1 Gisela, Blade of Goldnight
+1 Damn
+1 Elegant Parlor
+1 Burning-Rune Demon
+1 Decadent Dragon // Expensive Taste
+1 Demon of Wailing Agonies
+1 Liesa, Forgotten Archangel
+1 Overseer of the Damned
+1 Vile Mutilator
+1 Arcane Signet
+1 Crackling Doom
+1 Inevitable Defeat
+1 Utter End
+1 Terminate
+1 Ambition's Cost
+1 Demonic Counsel
+1 Patriarch's Bidding
+1 Clifftop Retreat
+1 Flooded Strand
+1 Glittering Massif
+1 Isolated Chapel
+1 Rocky Tar Pit
+1 Shadowy Backstreet
+1 Savai Triome
+1 Raucous Theater
+1 Supernatural Stamina
+1 Restoration Magic
+1 Talisman of Indulgence
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Angel of Finality
+1 Flawless Maneuver
+1 Angel of the Ruins
+1 Avacyn, Angel of Horror
+1 Ob Nixilis, the Ascended
+1 Darksteel Angel
+1 Ancient Brass Dragon
+1 Arena of Glory
+1 Canyon Slough
+4 Swamp
+1 Dragonskull Summit
+1 Fabled Passage
+3 Mountain
+3 Plains
+1 Polluted Delta
+1 Umbral Expanse
+1 Wooded Foothills
+1 Windswept Heath
+1 Aegis Angel
+1 Rune-Scarred Demon
+1 Rakdos, Patron of Chaos
+1 Ob Nixilis, Unshackled
+1 Lord of the Void
+1 Archfiend of Depravity
+1 Bloodgift Demon
+1 Angel of Despair

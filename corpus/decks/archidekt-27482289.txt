@@ -1,0 +1,98 @@
+# Archidekt — vampy again
+# source: archidekt:27482289
+# fetched: 2026-10-16
+
+Commander:
+1 Verrak, Warped Sengir
+
+Deck:
+1 Erebos, God of the Dead
+1 Midgar, City of Mako // Reactor Raid
+1 Vona, Butcher of Magan
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Carmen, Cruel Skymarcher
+1 Bartolomé del Presidio
+1 Cavern of Souls
+1 Susur Secundi, Void Altar
+1 Font of Agonies
+1 Polluted Delta
+1 Takenuma, Abandoned Mire
+1 Flooded Strand
+1 Reliquary Tower
+1 Bringer of the Last Gift
+1 Arid Mesa
+1 Windswept Heath
+1 Prismatic Vista
+1 Marsh Flats
+1 Phyrexian Tower
+1 Vilis, Broker of Blood
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Verdant Catacombs
+1 Shadowy Backstreet
+1 Witch's Cottage
+1 Urborg, Tomb of Yawgmoth
+1 Bloodstained Mire
+1 Glass-Cast Heart
+1 Twilight Prophet
+1 Underworld Connections
+1 Elenda, the Dusk Rose
+1 Bloodletter of Aclazotz
+1 Vito, Fanatic of Aclazotz
+1 Greed
+1 Astarion's Thirst
+1 War Room
+1 Blood Celebrant
+1 Tithe Drinker
+1 Godless Shrine
+1 Bolas's Citadel
+1 Astarion, the Decadent
+1 Amalia Benavides Aguirre
+1 Nighthawk Scavenger
+1 Charismatic Conqueror
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Pact Weapon
+1 Sorin, Vengeful Bloodlord
+1 Eclipsed Steppe
+1 Mask of Griselbrand
+1 March of the Canonized
+1 Scheming Silvertongue // Sign in Blood
+1 Vault of the Archangel
+1 Stensian Sanguinist // Exsanguinate
+1 Turbulent Moor
+1 Plains
+6 Swamp
+1 Emeria, the Sky Ruin
+1 Isolated Chapel
+1 Athreos, God of Passage
+1 Priest of Fell Rites
+1 Bloodtracker
+1 Preacher of the Schism
+1 Niv-Mizzet, Ghost Counsel
+1 Treasure Dredger
+1 Bloodsoaked Altar
+1 Warren Soultrader
+1 Elven Passage
+1 Creeping Bloodsucker
+1 Retreat to Hagra
+1 Phyrexian Reclamation
+1 Court of Ardenvale
+1 Hall of Heliod's Generosity
+1 Felidar Retreat
+1 Crucible of Worlds
+1 Serra Ascendant
+1 Ob Nixilis, the Fallen
+1 Corrupted Conviction
+1 Swords to Plowshares
+1 Blind Obedience
+1 Elas il-Kor, Sadistic Pilgrim
+1 Forsworn Paladin
+1 Emeria Shepherd
+1 Authority of the Consuls
+1 Plumb the Forbidden
+1 Village Rites
+1 Butcher of Malakir
+1 Vampire Cutthroat
+1 Marauding Blight-Priest
+1 Anguished Unmaking
+1 Path to Exile
+1 Legion's Landing // Adanto, the First Fort

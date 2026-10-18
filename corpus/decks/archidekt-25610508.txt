@@ -1,0 +1,85 @@
+# Archidekt — Kellan's Hammers
+# source: archidekt:25610508
+# fetched: 2026-10-16
+
+Commander:
+1 Kellan, the Fae-Blooded // Birthright Boon
+
+Deck:
+12 Plains
+1 Sol Ring
+1 Talisman of Conviction
+1 Path to Exile
+1 Darksteel Mutation
+1 Evolving Wilds
+1 Cloud, Midgar Mercenary
+1 Inventory Management
+1 Akiri, Fearless Voyager
+1 Arcane Signet
+1 Swords to Plowshares
+1 Boros Signet
+1 Battlefield Forge
+1 Sunscorched Divide
+1 Clifftop Retreat
+1 Furycalm Snarl
+1 Legion Leadership // Legion Stronghold
+1 Spectator Seating
+1 Rustvale Bridge
+1 Temple of Triumph
+1 Sundown Pass
+1 Swiftfoot Boots
+1 Generous Gift
+1 Stroke of Midnight
+1 Éowyn, Lady of Rohan
+1 Astor, Bearer of Blades
+1 Forge Anew
+1 Blacksmith's Skill
+1 Chaos Warp
+1 Sunforger
+1 Fellwar Stone
+1 Kazuul's Toll Collector
+1 Fighter Class
+1 Cloud, Planet's Champion
+1 Leonin Shikari
+12 Mountain
+1 Helitrooper
+1 Fervent Champion
+1 Storm-Kiln Artist
+1 Bureau Headmaster
+1 Bladehold War-Whip
+1 Dwarven Mauler
+1 Dual Strike
+1 Electro, Assaulting Battery
+1 Feather, the Redeemed
+1 Guttersnipe
+1 Loki Laufeyson
+1 Howl of the Horde
+1 Repeated Reverberation
+1 Ogre Battlecaster
+1 Abrade
+1 Acrobatic Maneuver
+1 Abeyance
+1 Accelerate
+1 Akroma's Will
+1 Airbending Lesson
+1 Ancestors' Aid
+1 Angel's Grace
+1 Arcbond
+1 Angelic Intervention
+1 Angelsong
+1 Bilbo's Gambit
+1 Calamity's Wake
+1 Audacious Swap
+1 Blossoming Calm
+1 Big Score
+1 Bolt Bend
+1 Boros Charm
+1 Break Ties
+1 Bulk Up
+1 Chance for Glory
+1 Call In a Professional
+1 Clever Concealment
+1 Cease-Fire
+1 Commando Raid
+1 Comeuppance
+1 Cosmic Intervention

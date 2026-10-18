@@ -1,0 +1,77 @@
+# Archidekt — KING
+# source: archidekt:27415254
+# fetched: 2026-10-15
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Saskia the Unyielding
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Queen Marchesa
+1 Tamiyo, Upriser Crowned
+1 Queen Mother Ramonda
+1 Ginger, Queen of Sweets
+1 Okoye, Mighty and Adored
+1 Chief Magistrate of Mercadia
+1 Command Tower
+1 Oath of Eorl
+1 Garrulous Sycophant
+1 Palace Jailer
+1 Crown of Gondor
+1 Champions of Minas Tirith
+1 Bender's Waterskin
+1 Court of Cunning
+1 Court of Bounty
+1 Faramir, Steward of Gondor
+1 Canal Courier
+1 Thorn of the Black Rose
+1 Arcane Signet
+1 Court of Locthwain
+1 Archivist of Gondor
+1 Court of Garenbrig
+1 Knights of the Black Rose
+1 Court of Ardenvale
+1 Court of Ire
+1 Heart-Shaped Herb
+1 Feast of Succession
+1 Court of Ambition
+1 Azure Fleet Admiral
+1 Court of Grace
+1 Court of Embereth
+1 Keeper of Keys
+1 Aragorn, King of Gondor
+1 Court of Vantress
+1 Sol Ring
+1 Denethor, Stone Seer
+1 Jared Carthalion, True Heir
+1 Throne Warden
+1 The Spear of Bashenga
+1 Perception Bobblehead
+1 Tax Collector
+1 Marchesa's Decree
+1 Fealty to the Realm
+1 Fight for the Throne
+1 King Solomon's Frogs
+1 Chromatic Lantern
+1 Alloy Myr
+1 Charisma Bobblehead
+1 The Kenriths' Royal Funeral
+1 Darksteel Ingot
+1 Intelligence Bobblehead
+1 Rowan, Scholar of Sparks // Will, Scholar of Frost
+1 All-Fates Scroll
+1 Blitzball
+1 The Royal Scions
+1 Rowan Kenrith
+1 Will Kenrith
+1 Strength Bobblehead
+1 Agility Bobblehead
+1 Endurance Bobblehead
+1 Luck Bobblehead
+7 Island
+7 Swamp
+7 Mountain
+7 Plains
+7 Forest
+1 Jared Carthalion

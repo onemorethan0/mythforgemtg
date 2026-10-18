@@ -1,0 +1,108 @@
+# Archidekt — Kadena Morph*
+# source: archidekt:800776
+# fetched: 2026-10-07
+# bracket: 3
+
+Commander:
+1 Kadena, Slinking Sorcerer
+
+Deck:
+1 Temur Sabertooth
+1 Hinterland Harbor
+1 Woodland Cemetery
+1 Underground River
+1 Watery Grave
+1 Overgrown Tomb
+1 Breeding Pool
+1 Lotus Field
+1 Scroll of Fate
+1 Yavimaya Coast
+1 Simic Growth Chamber
+1 Reliquary Tower
+1 Llanowar Wastes
+1 Golgari Rot Farm
+1 Dimir Aqueduct
+1 Zagoth Triome
+1 Rhystic Study
+1 Scavenger Grounds
+1 Command Tower
+1 Wooded Foothills
+1 Flooded Strand
+1 Polluted Delta
+1 Windswept Heath
+1 Swamp
+1 Forest
+1 Misty Rainforest
+1 Thespian's Stage
+1 Temple of the False God
+1 Yavimaya, Cradle of Growth
+1 Skittering Cicada
+1 Ugin's Mastery
+1 Ainok Survivalist
+1 Arbor Elf
+1 Bane of the Living
+1 Beast Whisperer
+1 Birds of Paradise
+1 Brine Elemental
+1 Chromeshell Crab
+1 Crystal Shard
+1 Cyclonic Rift
+1 Deathmist Raptor
+1 Den Protector
+1 Diabolic Intent
+1 Echo Tracer
+1 Erratic Portal
+1 Finale of Devastation
+1 Gift of Doom
+1 Icefeather Aven
+1 Kheru Spellsnatcher
+1 Kiora's Follower
+1 Leyline of Anticipation
+1 Nantuko Vigilante
+1 Portent Tracker
+1 Primal Whisperer
+1 Sagu Mauler
+1 Seedborn Muse
+1 Silumgar Assassin
+1 Skinthinner
+1 Sol Ring
+1 Stone-Seeder Hierophant
+1 Stratus Dancer
+1 Swan Song
+1 Thousand Winds
+1 Toxic Deluge
+1 Utopia Sprawl
+1 Vesuvan Shapeshifter
+1 Voyaging Satyr
+1 Wild Growth
+1 Branch of Vitu-Ghazi
+1 Zoetic Cavern
+1 Experiment Twelve
+1 Shadow of the Second Sun
+1 Sphinx of the Second Sun
+1 Oblivion Stone
+1 Tidal Barracuda
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Willbender
+1 Teferi's Ageless Insight
+1 Alhammarret's Archive
+1 Panoptic Projektor
+1 Craterhoof Behemoth
+1 Grim Backwoods
+1 Lim-Dûl's Vault
+1 Urza's Cave
+1 They Came from the Pipes
+1 Bojuka Bog
+1 Island
+1 The Blue Spirit
+1 Sodden Verdure
+1 Bane of Progress
+1 Tolaria West
+1 Mana Sculpt
+1 Reed Richards, Smartest Man
+1 Triumph of the Hordes
+1 Herd Heirloom
+1 Vernal Fen
+1 Disciple of Freyalise // Garden of Freyalise
+1 Fertile Ground

@@ -1,0 +1,80 @@
+# Archidekt — boney boi
+# source: archidekt:15906576
+# fetched: 2026-10-09
+
+Commander:
+1 Tinybones, Bauble Burglar
+
+Deck:
+1 Dark Ritual
+1 Valgavoth, Terror Eater
+1 Gray Merchant of Asphodel
+1 The Darkness Crystal
+1 Arcane Signet
+1 Beacon of Unrest
+1 Braids, Arisen Nightmare
+1 Cerebral Confiscation
+1 Consuming Corruption
+1 Crypt Ghast
+1 Crystal Grotto
+1 Damnable Pact
+1 Echoing Deeps
+1 Evolving Wilds
+1 Fanatic of the Harrowing
+1 Fell Stinger
+1 Final Act
+1 Gonti, Lord of Luxury
+1 Gonti, Night Minister
+1 Jet Medallion
+1 Let's Play a Game
+1 Lord of the Void
+1 Noxious Gearhulk
+1 Ominous Cemetery
+1 Oracle's Vault
+1 Phylactery Lich
+1 Pilfer
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Reliquary Tower
+1 Rise of the Dark Realms
+1 Rottenmouth Viper
+1 Terramorphic Expanse
+1 Village Rites
+1 Virus Beetle
+1 Volatile Fault
+1 Warped Landscape
+1 Sheoldred, the Apocalypse
+1 Solemn Simulacrum
+1 Sol Ring
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Blasphemous Edict
+1 Diabolic Intent
+1 Liliana of the Veil
+1 Tinybones, the Pickpocket
+1 Ardyn, the Usurper
+1 The Eldest Reborn
+1 Grim Servant
+1 Scrawling Crawler
+1 The Raven Man
+1 Sign in Blood
+1 Rise from the Grave
+1 Temple Bell
+1 Toxic Deluge
+1 Gix's Command
+1 Demonic Tutor
+1 Cabal Ritual
+1 Virtue of Persistence // Locthwain Scorn
+1 Deadly Dispute
+1 Hopeless Nightmare
+1 Deadly Rollick
+1 Reassembling Skeleton
+1 Undying Malice
+1 Thieving Varmint
+1 Worn Powerstone
+1 Bandit's Talent
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Tinybones, Trinket Thief
+1 The Meathook Massacre
+1 Howling Mine
+28 Swamp
+1 Waste Not
+1 Commander's Plate

@@ -1,0 +1,108 @@
+# Archidekt — bumbledih
+# source: archidekt:27380936
+# fetched: 2026-10-13
+# bracket: 3
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Plains
+1 Island
+1 Forest
+1 Bountiful Promenade
+1 Savannah
+1 Tropical Island
+1 Tundra
+1 Sea of Clouds
+1 Rejuvenating Springs
+1 Yavimaya Coast
+1 Adarkar Wastes
+1 Command Tower
+1 Spara's Headquarters
+1 Breeding Pool
+1 Hallowed Fountain
+1 Temple Garden
+1 Arid Mesa
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Polluted Delta
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Smothering Tithe
+1 Earthcraft
+1 Idyllic Tutor
+1 Forced Fruition
+1 Psychic Possession
+1 Faeburrow Elder
+1 Windfall
+1 Faerie Mastermind
+1 Bloom Tender
+1 Chord of Calling
+1 Finale of Devastation
+1 Hullbreaker Horror
+1 Brainstorm
+1 Arcane Denial
+1 Frantic Search
+1 Snap
+1 Unwind
+1 Esper Sentinel
+1 Llanowar Elves
+1 Pensive Professor
+1 Selvala, Explorer Returned
+1 Eladamri's Call
+1 Force of Vigor
+1 Noxious Revival
+1 Sink into Stupor // Soporific Springs
+1 Opt
+1 Flawless Maneuver
+1 Dovin's Veto
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Long River's Pull
+1 Heroic Intervention
+1 Rapid Hybridization
+1 Generous Gift
+1 Shrieking Drake
+1 Aluren
+1 Intruder Alarm
+1 Scrawling Crawler
+1 Whitemane Lion
+1 Avacyn's Pilgrim
+1 Force of Negation
+1 Path to Exile
+1 Swords to Plowshares
+1 Stonecloaker
+1 Seedborn Muse
+1 High Fae Trickster
+1 Alchemist's Refuge
+1 Leyline of Anticipation
+1 Emergence Zone
+1 Tidal Barracuda
+1 Wizard Class
+1 Rhystic Study
+1 Mystic Remora
+1 Rites of Flourishing
+1 Howling Mine
+1 Sol Ring
+1 Arcane Signet
+1 Propaganda
+1 Ghostly Prison
+1 On the Trail
+1 Reliquary Tower
+1 Teferi's Ageless Insight
+1 Sterling Grove
+1 Rewind
+1 Boseiju, Who Endures
+1 Enduring Vitality
+1 Hall of Heliod's Generosity
+1 Hedge Maze
+1 Willowrush Verge
+1 Prismatic Vista
+1 Fathom Mage
+1 Burgeoning
+1 Wilderness Reclamation
+1 Fleetfoot Panther

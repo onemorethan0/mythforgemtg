@@ -1,0 +1,75 @@
+# Archidekt — Death by a Thousand Cuts
+# source: archidekt:27178884
+# fetched: 2026-10-07
+
+Commander:
+1 Auntie Ool, Cursewretch
+
+Deck:
+1 Blowfly Infestation
+1 Banewhip Punisher
+1 Decimator Beetle
+1 Dread Tiller
+1 Flourishing Defenses
+1 Crumbling Ashes
+1 Necroskitter
+1 Hapatra, Vizier of Poisons
+1 Lockjaw Snapper
+1 Nest of Scarabs
+1 Liliana, Death Wielder
+1 Obelisk Spider
+1 Massacre Girl, Known Killer
+1 Massacre Girl, Most Wanted
+1 The Reaper, King No More
+1 Massacre Girl
+1 Spitting Dilophosaurus
+1 Wickersmith's Tools
+1 The Scorpion God
+1 Barbed Bloodletter
+1 Thunderblust
+1 Boggart Mischief
+1 Black Sun's Zenith
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Everlasting Torment
+1 Grim Affliction
+1 Liliana's Influence
+1 Midnight Banshee
+1 Harbinger of Night
+1 Kulrath Knight
+1 Persistent Constrictor
+1 Soul Snuffers
+1 Atomize
+1 Yawgmoth, Thran Physician
+1 Contagion Clasp
+1 Agent Frank Horrigan
+25 Swamp
+6 Mountain
+5 Forest
+1 Vraska, Betrayal's Sting
+1 Contagion Engine
+1 Evolution Sage
+1 Scheming Aspirant
+1 Staff of Compleation
+1 Ferrafor, Young Yew
+1 Multiply by Zero
+1 Vorinclex, Monstrous Raider
+1 Vhati il-Dal
+1 Sudden Spoiling
+1 Archfiend of Ifnir
+1 Ignoble Hierarch
+1 Scar
+1 Village Pillagers
+1 Carnifex Demon
+1 Maha, Its Feathers Night
+1 Generous Patron
+1 Massacre Wurm
+1 Golgari Charm
+1 Whisper of the Dross
+1 Toxic Deluge
+1 Lasting Tarfire
+1 Unnatural Restoration
+1 Puca's Covenant
+1 Darkness Descends
+1 Drown in Ichor
+1 Thirsting Roots
+1 All Will Be One

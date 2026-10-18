@@ -1,0 +1,87 @@
+# Archidekt — Mila, Crafty Companion [2]
+# source: archidekt:27327674
+# fetched: 2026-10-16
+# bracket: 2
+
+Commander:
+1 Mila, Crafty Companion // Lukka, Wayward Bonder
+
+Deck:
+1 Liliana the Faultless
+1 Caretaker's Talent
+1 Clever Concealment
+1 Grand Crescendo
+1 Karn's Bastion
+1 Minas Tirith
+1 Ajani, Inspiring Leader
+1 Ajani, Strength of the Pride
+1 Basri Ket
+1 Elspeth, Sun's Champion
+1 Martial Coup
+22 Plains
+1 Resourceful Defense
+1 Wand of the Worldsoul
+1 Oath of Gideon
+1 Ajani, Adversary of Tyrants
+1 Ajani, Wise Counselor
+1 Authority of the Consuls
+1 Ajani Goldmane
+1 Arcane Signet
+1 Ajani, Caller of the Pride
+1 Ajani, Outland Chaperone
+1 Archangel Elspeth
+1 Adeline, Resplendent Cathar
+1 Ajani Steadfast
+1 Belladonna Took
+1 Eiganjo, Seat of the Empire
+1 Elspeth, Knight-Errant
+1 Elspeth, Undaunted Hero
+1 Flare of Fortitude
+1 Gatewatch Beacon
+1 Gideon Blackblade
+1 Elspeth Tirel
+1 Ghostly Prison
+1 Call the Coppercoats
+1 Claim Jumper
+1 Elspeth, Storm Slayer
+1 Exalted Sunborn
+1 Hour of Reckoning
+1 Interplanar Beacon
+1 Metastatic Evangel
+1 Nykthos, Shrine to Nyx
+1 Kor Haven
+1 Path to Exile
+1 Grateful Apparition
+1 Knight of the White Orchid
+1 Nesting Grounds
+1 Patrolling Peacemaker
+1 Maze of Ith
+1 Gideon's Memorial
+1 Idol of Oblivion
+1 Lae'zel, Vlaakith's Champion
+1 Onakke Oathkeeper
+1 Razorgrass Ambush // Razorgrass Field
+1 Secure the Wastes
+1 Soul Warden
+1 Soul's Attendant
+1 Staff of the Storyteller
+1 Teyo, Geometric Tactician
+1 Teyo, the Shieldmage
+1 The Aetherspark
+1 Tocasia's Welcome
+1 Urza Assembles the Titans
+1 Way of the Mentor
+1 Welcoming Vampire
+1 Windbrisk Heights
+1 War Room
+1 Aetheric Amplifier
+1 Pearl Medallion
+1 Sol Ring
+1 Blind Obedience
+1 Swords to Plowshares
+1 Demolition Field
+1 Drifting Meadow
+1 Secluded Steppe
+1 Sejiri Shelter // Sejiri Glacier
+1 Kabira Takedown // Kabira Plateau
+1 Elspeth Resplendent

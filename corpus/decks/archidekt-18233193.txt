@@ -1,0 +1,103 @@
+# Archidekt — Felothar, Dawn of the Abzan
+# source: archidekt:18233193
+# fetched: 2026-10-14
+
+Commander:
+1 Felothar, Dawn of the Abzan
+
+Deck:
+1 Ophiomancer
+1 Angel of Invention
+2 Swamp
+3 Forest
+1 Servo Schematic
+1 Verdurous Gearhulk
+1 Lulu, Loyal Hollyphant
+1 Conduit of Worlds
+1 Reyhan, Last of the Abzan
+1 Meren of Clan Nel Toth
+1 Park Heights Maverick
+1 Heaped Harvest
+1 Orzhov Advokist
+1 Selesnya Signet
+1 Phyrexian Reclamation
+1 Bloodstained Mire
+1 Polluted Delta
+1 Misty Rainforest
+1 Flooded Strand
+1 Shadowy Backstreet
+1 Canopy Vista
+1 Oran-Rief, the Vastwood
+1 Underground Mortuary
+1 Lush Portico
+1 Verdant Catacombs
+1 Haunted Mire
+1 Radiant Grove
+1 Arctic Treeline
+1 Snowfield Sinkhole
+1 Indatha Triome
+1 Temple Garden
+1 Krosan Verge
+1 Deceptive Landscape
+1 Vault of the Archangel
+1 Tainted Field
+1 Bountiful Promenade
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Deathcap Glade
+1 Llanowar Wastes
+1 Godless Shrine
+1 Twilight Mire
+1 Overgrown Tomb
+1 Orzhov Basilica
+1 Sun Titan
+1 Basking Broodscale
+1 Bloodghast
+1 Tendershoot Dryad
+1 Cankerbloom
+1 Drown in Ichor
+1 Path of Ancestry
+1 Unforgiving One
+1 Noble Heritage
+1 Snakeskin Veil
+1 Moldervine Reclamation
+1 Morbid Opportunist
+1 Lurrus of the Dream-Den
+1 Reaping Willow
+2 Plains
+1 God-Eternal Oketra
+1 Nether Traitor
+1 Yathan Tombguard
+1 Toski, Bearer of Secrets
+1 Carmen, Cruel Skymarcher
+1 Essenceknit Scholar
+1 Hidden Stockpile
+1 Cauldron of Essence
+1 Ainok Bond-Kin
+1 Explorer's Cache
+1 Salt Road Skirmish
+1 Take Up the Shield
+1 Pest Infestation
+1 Cathars' Crusade
+1 Deathreap Ritual
+1 Kodama of the West Tree
+1 Fortified Village
+1 Fetid Gargantua
+1 Pollenbright Druid
+1 Thirsting Roots
+1 Awakening Zone
+1 Conclave Mentor
+1 Grateful Apparition
+1 Thopter Shop
+1 Tireless Provisioner
+1 Envoy of the Ancestors
+1 Abzan Battle Priest
+1 Reassembling Skeleton
+1 Golgari Signet
+1 Sram's Expertise
+1 Jugan Defends the Temple // Remnant of the Rising Star
+1 Doomed Traveler
+1 Elspeth, Storm Slayer
+1 Grim Haruspex
+1 Feral Deathgorger // Dusk Sight
+1 Carrot Cake

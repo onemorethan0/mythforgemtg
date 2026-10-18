@@ -1,0 +1,107 @@
+# Archidekt — CEDH Krikk
+# source: archidekt:26313233
+# fetched: 2026-10-06
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Arcane Signet
+1 Blood Celebrant
+1 Blood Pet
+1 Cabal Ritual
+1 Mana Vault
+1 Mox Amber
+1 Priest of Gix
+1 Necromancy
+1 Animate Dead
+1 Orcish Bowmasters
+1 Opposition Agent
+1 Dauthi Voidwalker
+1 Sign in Blood
+1 Peer into the Abyss
+1 Bolas's Citadel
+1 Ancient Tomb
+1 Command Tower
+1 Ifnir Deadlands
+1 Peat Bog
+1 Urza's Saga
+1 Manifold Key
+1 Demonic Tutor
+1 March of Wretched Sorrow
+1 Jet Medallion
+1 Dark Ritual
+1 Kaya's Ghostform
+1 Snow-Covered Swamp
+1 Urborg, Tomb of Yawgmoth
+1 City of Traitors
+1 Swamp
+1 Urborg
+1 Crystal Vein
+1 Chain of Smog
+1 Lotus Petal
+1 Professor Onyx
+1 Vampiric Tutor
+1 Gray Merchant of Asphodel
+1 Sol Ring
+1 Saw in Half
+1 Chrome Mox
+1 Mox Opal
+1 Hoarding Broodlord
+1 Chainer, Dementia Master
+1 Razaketh, the Foulblooded
+1 Necrotic Ooze
+1 Gemstone Caverns
+1 Nykthos, Shrine to Nyx
+1 Takenuma, Abandoned Mire
+1 Boggart Trawler // Boggart Bog
+1 Beseech the Queen
+1 Vault of Whispers
+1 Balthor the Defiled
+1 Culling the Weak
+1 Sacrifice
+1 Voltaic Key
+1 Final Parting
+1 Vilis, Broker of Blood
+1 Grief
+1 Sheoldred, the Apocalypse
+1 Putrid Imp
+1 Reanimate
+1 Buried Alive
+1 Beseech the Mirror
+1 Dark Petition
+1 Exhume
+1 Feed the Swarm
+1 Persist
+1 Praetor's Grasp
+1 Imperial Seal
+1 Demonic Consultation
+1 Tendrils of Agony
+1 Unmarked Grave
+1 Aetherflux Reservoir
+1 Grim Monolith
+1 Yawgmoth's Will
+1 Entomb
+1 Fatal Push
+1 Imp's Mischief
+1 Sensei's Divining Top
+1 Deadly Rollick
+1 Rain of Filth
+1 Withering Boon
+1 Ebon Stronghold
+1 Emergence Zone
+1 Mox Diamond
+1 Wishclaw Talisman
+1 Dance of the Dead
+1 Cavern of Souls
+1 Shizo, Death's Storehouse
+1 Adventurer's Inn
+1 Lightning Greaves
+1 Phyrexian Tower
+1 Sidisi, Undead Vizier
+1 Necropotence
+1 Radiant Fountain
+1 Hive of the Eye Tyrant
+1 Strip Mine
+1 Insatiable Avarice
+1 Skirge Familiar

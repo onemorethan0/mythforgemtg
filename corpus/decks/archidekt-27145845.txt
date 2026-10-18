@@ -1,0 +1,97 @@
+# Archidekt — Locust God
+# source: archidekt:27145845
+# fetched: 2026-10-06
+
+Commander:
+1 The Locust God
+
+Deck:
+1 Ovika, Enigma Goliath
+1 Whirlpool Rider
+1 Biblioplex Tomekeeper
+1 Tetsuko Umezawa, Fugitive
+1 Witty Roastmaster
+1 Teferi's Ageless Insight
+1 Fateful Showdown
+1 Tolarian Winds
+1 Brainstorm
+1 Faithless Looting
+1 Negate
+1 Impact Tremors
+1 Whirlpool Drake
+1 Shattered Perception
+1 Whirlpool Warrior
+1 Bident of Thassa
+1 Sage of the Falls
+1 Magus of the Wheel
+1 Psychosis Crawler
+1 Opt
+1 Thrill of Possibility
+1 Izzet Charm
+1 Windfall
+1 Frantic Search
+1 Hexhaven Dueling Arena
+1 Jace's Archivist
+1 Windreader Sphinx
+1 Arjun, the Shifting Flame
+1 Niv-Mizzet, Dracogenius
+1 Curiosity Crafter
+1 Niv-Mizzet, Parun
+1 Skycoach Waypoint
+1 Molten Gatekeeper
+1 Sanar, Unfinished Genius // Wild Idea
+1 Forgotten Creation
+1 Niv-Mizzet, the Firemind
+1 Balmor, Battlemage Captain
+1 Steam Vents
+1 Fabled Passage
+1 Variable Chaser // Arc of Fortune
+1 Inspired Skypainter // Maestro's Gift
+1 Naktamun Lorespinner // Wheel of Fortune
+1 Vnwxt, Verbose Host
+1 Flooded Strand
+1 Rapid Augmenter
+1 Mystic Sanctuary
+7 Mountain
+1 Panharmonicon
+1 Prismari Charm
+1 Misty Rainforest
+1 Volcanic Island
+1 Thundering Falls
+7 Island
+1 Melek, Izzet Paragon
+1 Mountain
+1 Training Center
+1 Mountain
+1 Reliquary Tower
+1 Scalding Tarn
+1 Dispel
+1 Command Tower
+1 Izzet Boilerworks
+1 Rogue's Passage
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Scorched Geyser
+1 Renegade Tactics
+1 Sulfur Falls
+1 Molten Tributary
+1 Battle Hymn
+1 Temple of Epiphany
+1 Ferrous Lake
+1 Polluted Delta
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Symmetry Matrix
+1 Path of Ancestry
+1 Flux
+1 Pull from Tomorrow
+1 Finale of Revelation
+1 Disdainful Stroke
+1 Rapturous Moment
+1 Ashnod's Altar
+1 Magmaquake
+1 Blasphemous Act
+1 Skullclamp
+1 Vandalblast
+1 Game Plan
+1 Day's Undoing
+1 Moonlit Meditation

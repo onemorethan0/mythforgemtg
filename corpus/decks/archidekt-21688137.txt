@@ -1,0 +1,107 @@
+# Archidekt — Celes Reanimator
+# source: archidekt:21688137
+# fetched: 2026-10-07
+
+Commander:
+1 Celes, Rune Knight
+
+Deck:
+1 Captain Marvel, Shooting Star
+1 Stitch Together
+1 Anger
+1 Reanimate
+1 Animate Dead
+1 Cloudshift
+1 Grave Researcher // Reanimate
+1 Twilight Diviner
+1 Ripples of Undeath
+1 Overlord of the Mistmoors
+1 Go Ninja Go
+1 Daydream
+1 Personify
+1 Buried Alive
+1 Entomb
+1 Shadowy Backstreet
+1 Dragonskull Summit
+1 Isolated Chapel
+1 Sulfurous Springs
+1 Raucous Theater
+1 Godless Shrine
+1 Clifftop Retreat
+1 Tainted Field
+1 Sacred Foundry
+1 Polluted Delta
+1 Command Tower
+1 Caves of Koilos
+1 Blood Crypt
+1 Battlefield Forge
+1 Graven Cairns
+1 Exotic Orchard
+1 Arid Mesa
+1 Marsh Flats
+1 Bloodstained Mire
+1 Tainted Peak
+1 Elegant Parlor
+1 Blazemire Verge
+1 Bleachbone Verge
+1 Flooded Strand
+1 Verdant Catacombs
+1 Windswept Heath
+1 Scalding Tarn
+1 Wooded Foothills
+1 Faithless Looting
+1 Out of the Tombs
+1 Fetid Heath
+1 Cemetery Tampering
+1 Sister Hospitaller
+1 Will of the Abzan
+1 Priest of Fell Rites
+1 Incarnation Technique
+1 Vilis, Broker of Blood
+1 Exhume
+1 Flayer of the Hatebound
+1 Luxury Suite
+1 Mountain
+1 Spectator Seating
+1 Plains
+1 Vault of Champions
+1 Swamp
+1 Shattered Sanctum
+1 Balefire Dragon
+1 The Falcon, Airship Restored
+1 Koh, the Face Stealer
+1 Alesha, Who Laughs at Fate
+1 Avacyn, Angel of Hope
+1 Karmic Guide
+1 Too Evil to Stay Dead
+1 Unburial Rites
+1 Sinister Waltz
+1 Angel of Despair
+1 Sun Titan
+1 Archfiend of Despair
+1 Gisela, Blade of Goldnight
+1 Kroxa and Kunoros
+1 Kroxa, Titan of Death's Hunger
+1 Ephemerate
+1 Sheoldred, Whispering One
+1 Meteor Golem
+1 Grave Titan
+1 Flicker of Fate
+1 Aurelia, the Warleader
+1 Dread Return
+1 Ashen Rider
+1 Metamorphosis Fanatic
+1 Summon: Bahamut
+1 Archon of Cruelty
+1 Olivia, Crimson Bride
+1 Galactus, Devourer of Worlds
+1 Hulk, Always Angry
+1 Armaggon, Future Shark
+1 Rune-Scarred Demon
+1 Razaketh, the Foulblooded
+1 Valgavoth, Terror Eater
+1 Elesh Norn, Mother of Machines
+1 Summon: Knights of Round
+1 Massacre Wurm
+1 Threefold Thunderhulk
+1 Overlord of the Balemurk

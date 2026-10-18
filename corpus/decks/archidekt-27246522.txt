@@ -1,0 +1,97 @@
+# Archidekt — LAAAMMMMPPPPPP
+# source: archidekt:27246522
+# fetched: 2026-10-09
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+5 Island
+1 Watery Grave
+1 Breeding Pool
+1 Swiftfoot Boots
+1 Terrasymbiosis
+1 Hollowmurk Siege
+1 Path of Ancestry
+1 Tainted Isle
+1 Opulent Palace
+1 Temple of Mystery
+1 Bojuka Bog
+1 Temple of Deceit
+1 Tainted Wood
+1 Hinterland Harbor
+1 Woodland Cemetery
+1 Overgrown Tomb
+1 Drowned Catacomb
+1 Command Tower
+1 Talisman of Resilience
+1 Winding Constrictor
+1 Psychic Corrosion
+1 Hedge Shredder
+1 Zagoth Triome
+1 Exotic Orchard
+1 Yavimaya Coast
+1 Mariposa Military Base
+1 Temple of Malady
+1 Llanowar Wastes
+1 Ash Barrens
+1 Roaming Throne
+1 Mindcrank
+1 Nuclear Fallout
+1 Maddening Cacophony
+1 Vault 12: The Necropolis
+5 Swamp
+1 Nuka-Nuke Launcher
+1 Guardian Project
+1 Talisman of Dominance
+1 The Water Crystal
+1 Struggle for Project Purity
+1 Kodama of the West Tree
+1 Mutational Advantage
+1 Sol Ring
+1 Mesmeric Orb
+1 The Master, Transcendent
+1 Thrummingbird
+1 Arcane Signet
+1 Altar of the Brood
+1 Atomize
+1 Assassin's Trophy
+1 Talisman of Curiosity
+1 Contagion Clasp
+1 An Offer You Can't Refuse
+1 Heroic Intervention
+1 Inexorable Tide
+1 Farseek
+1 Screeching Scorchbeast
+1 Branching Evolution
+1 Ripples of Potential
+1 Hardened Scales
+1 Counterspell
+1 Beast Within
+1 Inspiring Call
+1 Radstorm
+5 Forest
+1 Reanimate
+1 Putrefy
+1 Drown in the Loch
+1 Glowing One
+1 Bruvac the Grandiloquent
+1 Muldrotha, the Gravetide
+1 Rise of the Dark Realms
+1 Cultivate
+1 Infesting Radroach
+1 Nature's Lore
+1 Raul, Trouble Shooter
+1 Mirelurk Queen
+1 Nightkin Ambusher
+1 Bloatfly Swarm
+1 Corpsejack Menace
+1 Feral Ghoul
+1 Vexing Radgull
+1 Ruin Crab
+1 Strong, the Brutish Thespian
+1 Evolution Sage
+1 Evolution Witness
+1 Herald of Secret Streams
+1 Birds of Paradise
+1 Zellix, Sanity Flayer

@@ -1,0 +1,103 @@
+# Archidekt — Rounding the corner at 600kph
+# source: archidekt:25143194
+# fetched: 2026-10-06
+
+Commander:
+1 Miles "Tails" Prower
+
+Deck:
+1 Captain America, Living Legend
+1 Arcane Signet
+1 Port Town
+3 Plains
+1 Mystic Gate
+1 Reflecting Pool
+1 Turbulent Shore
+3 Island
+1 Kitsune Ace
+1 Broadcast Rambler
+1 Adventurer's Airship
+1 Air Response Unit
+1 Mobilizer Mech
+1 Cargo Ship
+1 Careening Mine Cart
+1 Dependable Quinjet
+1 Prodigy's Prototype
+1 Fleetwheel Cruiser
+1 Magitek Armor
+1 Interface Ace
+1 Midnight Mangler
+1 Mole Module
+1 Mobile Garrison
+1 Smuggler's Copter
+1 The Prima Vista
+1 Strixhaven Skycoach
+1 Spotcycle Scouter
+1 Voyager Glidecar
+1 Etherium Sculptor
+1 Command Tower
+1 Sram, Senior Edificer
+1 Mech Hangar
+1 Cid, Freeflier Pilot
+1 Dispatch
+1 Foundry Inspector
+1 From Father to Son
+1 Swords to Plowshares
+1 Prairie Stream
+1 Hallowed Fountain
+1 Hulldrifter
+1 Thoughtcast
+1 Guidelight Matrix
+1 Irrigated Farmland
+1 Muraganda Raceway
+1 Fabricate
+1 Castle Doom
+1 Monumental Henge
+1 Fabled Passage
+1 A.I.M. Synthoids
+1 Cryogen Relic
+1 S.H.I.E.L.D. Helicarrier
+1 Starting Column
+1 Hydraulic Helper
+1 Lightwheel Enhancements
+1 Unstoppable Plan
+1 Thriving Heath
+1 Thriving Isle
+1 Thirst for Knowledge
+1 Collision Course
+1 Compassionate Healer
+1 Fire Nation Warship
+1 Futurist Forge
+1 Quick Study
+1 Restoration Magic
+1 Invasion Reinforcements
+1 Great Gilded Boat
+1 Voyage Home
+1 Aerial Surveyor
+1 Cultivator's Caravan
+1 Peacewalker Colossus
+1 Weatherlight
+1 Cloudspire Captain
+1 The Thanos-Copter
+1 The Lunar Whale
+1 Reef Roads
+1 Country Roads
+1 Voyager Quickwelder
+1 The Indomitable
+1 Salvation Engine
+1 Seat of the Synod
+1 Ancient Den
+1 Archway of Innovation
+1 Idyllic Beachfront
+1 Armed and Armored
+1 Deserted Beach
+1 Sea of Clouds
+1 Glacial Fortress
+1 Invasion Submersible
+1 Terramorphic Expanse
+1 Sol Ring
+1 Flood Plain
+1 Ash Barrens
+1 Floodfarm Verge
+1 Meticulous Archive
+1 Tune Up

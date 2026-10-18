@@ -1,0 +1,77 @@
+# Archidekt — RATS
+# source: archidekt:26689211
+# fetched: 2026-10-16
+# bracket: 2
+
+Commander:
+1 Vren, the Relentless
+
+Deck:
+1 Blight Grenade
+1 Invasion of Fiora // Marchesa, Resolute Monarch
+1 Liliana's Triumph
+1 Necromantic Selection
+1 The Eldest Reborn
+1 Zero Point Ballad
+1 Persistent Marshstalker
+1 Plaguecrafter
+1 Piper of the Swarm
+1 Dimir Signet
+1 Shoreline Looter
+1 Lord Skitter's Butcher
+1 Bident of Thassa
+1 Go for the Throat
+1 Reality Shift
+1 Sol Ring
+1 Arcane Signet
+1 Distant Melody
+1 Extract a Confession
+1 Inside Information
+1 Singularity Rupture
+1 Game Over
+1 Villainous Wrath
+1 Endurance Bobblehead
+1 Unstable Molecule Suit
+1 Agent of the Shadow Thieves
+1 Armor of Shadows
+1 Kels, Fight Fixer
+1 Professor's Warning
+1 Zodiark, Umbral God
+1 Costly Plunder
+1 Murder
+1 Thrór's Map
+1 Severed Strands
+1 Hired Poisoner
+1 Ravenous Chupacabra
+1 Contract Killing
+1 Forum Necroscribe
+1 Blood Divination
+1 Pilfering Imp
+1 Sinister Monolith
+1 Confusticate and Bebother
+1 Essence Scatter
+1 Chart a Course
+1 Anticipate
+1 Dimir Guildgate
+1 Submerged Boneyard
+1 Kindred Discovery
+1 Rapid Hybridization
+1 Valley Rotcaller
+1 Sheoldred's Edict
+1 Command Tower
+1 Massacre Girl
+1 Negate
+1 Ogre Slumlord
+1 Masterful Flourish
+1 Village Rites
+1 Sunken Hollow
+1 Infernal Grasp
+1 Kindred Dominance
+29 Swamp
+4 Island
+1 Unexplained Disappearance
+1 Accursed Marauder
+1 Innocent Blood
+1 Break Under Pressure
+1 Gix's Command
+1 Crippling Fear

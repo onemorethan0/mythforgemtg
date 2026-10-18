@@ -1,0 +1,94 @@
+# Archidekt — Temur Mana-Burn
+# source: archidekt:27178861
+# fetched: 2026-10-07
+
+Commander:
+1 Zagorka, Mother of Sanctum
+
+Deck:
+1 Tempt with Mayhem
+1 Heroic Intervention
+1 An Offer You Can't Refuse
+1 Deflecting Swat
+1 Tempt with Discovery
+1 Manabarbs
+1 Flare of Denial
+1 Mystical Tutor
+1 Force of Will
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Y'shtola Rhul
+1 Spore Frog
+1 Rampaging Baloths
+1 Fog
+1 Gamble
+1 Fierce Guardianship
+1 Windfall
+1 Wheel of Fortune
+1 Worldly Tutor
+1 Primal Order
+1 Burgeoning
+1 Amulet of Vigor
+1 Rites of Flourishing
+1 Commercial District
+1 Hedge Maze
+5 Forest
+1 Tangle
+1 Thundering Falls
+1 Spelunking
+1 Gandalf, Shadow's Foe
+1 Return the Favor
+1 Seedborn Muse
+1 Lithoform Engine
+1 Strionic Resonator
+1 Spectrum Sentinel
+1 Delighted Halfling
+1 Boseiju, Who Endures
+1 Kozilek, Butcher of Truth
+5 Island
+1 Constant Mists
+5 Mountain
+1 Bountiful Landscape
+1 Mistrise Village
+1 Windswept Heath
+1 Aftermath Analyst
+1 Crucible of Worlds
+1 Scalding Tarn
+1 Misty Rainforest
+1 Field of the Dead
+1 Ketria Triome
+1 Command Tower
+1 Wooded Foothills
+1 Disrupt Decorum
+1 Roaming Throne
+1 Agitator Ant
+1 Chimil, the Inner Sun
+1 Folio of Fancies
+1 Gifts Ungiven
+1 Ghirapur Orrery
+1 Heartbeat of Spring
+1 Horn of Greed
+1 Crawlspace
+1 The Ten Rings
+1 Planar Bridge
+1 Gate to the Aether
+1 Alchemist's Refuge
+1 Primal Vigor
+1 Forced Fruition
+1 Collective Voyage
+1 Minds Aglow
+1 Yavimaya, Cradle of Growth
+1 Descent into Avernus
+1 Mass Hysteria
+1 Reliquary Tower
+1 Shifting Woodland
+1 War's Toll
+1 Concordant Crossroads
+1 Price of Glory
+1 Lifegift
+1 Leyline of Anticipation
+1 Swan Song
+1 Exotic Orchard
+1 Price of Progress
+1 Xyris, the Writhing Storm
+1 Gogo, Master of Mimicry
+1 The Locust God

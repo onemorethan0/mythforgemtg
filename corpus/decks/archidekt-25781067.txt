@@ -1,0 +1,101 @@
+# Archidekt — zombie horde
+# source: archidekt:25781067
+# fetched: 2026-10-08
+# bracket: 3
+
+Commander:
+1 Teval, the Balanced Scale
+
+Deck:
+1 Aftermath Analyst
+1 Deathrite Shaman
+1 Deranged Assistant
+1 Eternal Witness
+1 Kheru Goldkeeper
+1 Kishla Skimmer
+1 Meren of Clan Nel Toth
+1 Muldrotha, the Gravetide
+1 Nyx Weaver
+1 Satyr Wayfinder
+1 Sidisi, Brood Tyrant
+1 Six
+1 Skull Prophet
+1 Stitcher's Supplier
+1 Tormod, the Desecrator
+1 Scavenging Ooze
+1 Syr Konrad, the Grim
+1 Carrion Feeder
+1 Colossal Grave-Reaver
+1 Gisa and Geralf
+1 Gravecrawler
+1 Reassembling Skeleton
+1 Undead Augur
+1 Woe Strider
+1 Baleful Strix
+1 Glen Elendra Archmage
+1 God-Eternal Bontu
+1 Morbid Opportunist
+1 Vincent Valentine // Galian Beast
+1 Wonder
+1 Altar of Dementia
+1 Arcane Signet
+1 Ashnod's Altar
+1 Conduit of Worlds
+1 Fellwar Stone
+1 Skullclamp
+1 Sol Ring
+1 Crawling Sensation
+1 Deathreap Ritual
+1 Insidious Roots
+1 Phyrexian Reclamation
+1 Tortured Existence
+1 Ripples of Undeath
+1 Buried Alive
+1 Forbidden Alchemy
+1 Grisly Salvage
+1 Life from the Loam
+1 Dread Return
+1 Living Death
+1 Noxious Revival
+1 Reanimate
+1 Victimize
+1 Corrupted Conviction
+1 Plumb the Forbidden
+1 Village Rites
+1 Farseek
+1 Three Visits
+1 Deadly Rollick
+1 Feed the Swarm
+1 Tear Asunder
+1 Toxic Deluge
+1 Teval's Judgment
+1 Breeding Pool
+1 Dreamroot Cascade
+1 Fetid Pools
+1 Hedge Maze
+1 Llanowar Wastes
+1 Morphic Pool
+1 Overgrown Tomb
+1 Rejuvenating Springs
+1 Undercity Sewers
+1 Underground Mortuary
+1 Undergrowth Stadium
+1 Watery Grave
+1 Zagoth Triome
+1 Command Tower
+1 Exotic Orchard
+1 Fabled Passage
+1 Misty Rainforest
+1 Polluted Delta
+1 Verdant Catacombs
+1 Bojuka Bog
+1 Boseiju, Who Endures
+1 Cephalid Coliseum
+1 Field of the Dead
+1 High Market
+1 Otawara, Soaring City
+1 Phyrexian Tower
+4 Forest
+3 Island
+3 Swamp
+1 Grave Pact

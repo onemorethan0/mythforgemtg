@@ -1,0 +1,99 @@
+# Archidekt — Tifa's 7th Heaven Boxing Gym
+# source: archidekt:20928966
+# fetched: 2026-10-14
+
+Commander:
+1 Tifa, Martial Artist
+
+Deck:
+1 Jeska, Thrice Reborn
+1 Tibalt's Trickery
+1 Rebuff the Wicked
+1 Embercleave
+1 Bloom Tender
+1 Garruk's Uprising
+1 Level Up
+1 Kutzil, Malamet Exemplar
+1 Xenagos, God of Revels
+1 Nature's Lore
+1 Swords to Plowshares
+1 Pathbreaker Ibex
+1 Akroma's Will
+1 Deflecting Swat
+1 Gogo, Mysterious Mime
+1 Bastion Protector
+1 Tifa's Limit Break
+1 Chaos Warp
+1 Boros Charm
+1 Legion Leadership // Legion Stronghold
+1 Three Visits
+1 Kessig Wolf Run
+1 Slayers' Stronghold
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Hammer of Nazahn
+1 Avatar's Wrath
+1 Champion's Helm
+1 Windswept Heath
+1 Stomping Ground
+1 Bear Umbra
+1 Duelist's Heritage
+1 Rancor
+1 Boseiju, Who Endures
+1 Command Tower
+1 Rogue's Passage
+1 Sol Ring
+1 Herd Heirloom
+1 Wooded Foothills
+1 Bountiful Promenade
+1 Battlefield Forge
+3 Plains
+4 Forest
+1 Karplusan Forest
+1 Spectator Seating
+1 Arid Mesa
+1 Sacred Foundry
+1 Rockfall Vale
+1 Temple Garden
+1 Brushland
+1 Overgrown Farmland
+3 Mountain
+1 Spire Garden
+1 Dragonfire Blade
+1 Ent's Fury
+1 Giver of Runes
+1 Mother of Runes
+1 Sylvan Library
+1 Hunter's Insight
+1 Torgal, A Fine Hound
+1 Fanatic of Rhonas
+1 Ilysian Caryatid
+1 Quilled Greatwurm
+1 Thunderfoot Baloth
+1 Blade Historian
+1 Annie Joins Up
+1 Bright-Palm, Soul Awakener
+1 Temur Battle Rage
+1 Power Fist
+1 Exotic Orchard
+1 Plateau
+1 Savannah
+1 Marsh Flats
+1 Taiga
+1 Raucous Audience
+1 Whisperer of the Wilds
+1 Flaming Fist
+1 Runes of the Deus
+1 Sidequest: Play Blitzball // World Champion, Celestial Weapon
+1 Onward // Victory
+1 Spectacular Showdown
+1 Two-Handed Axe // Sweeping Cleave
+1 Wrecking Ogre
+1 Hunter's Prowess
+1 Lifestream's Blessing
+1 Spry and Mighty
+1 Invigorated Rampage
+1 Ride Down
+1 Faeburrow Elder
+1 Skrelv, Defector Mite
+1 Swiftfoot Boots
+1 Delighted Halfling

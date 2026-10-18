@@ -1,0 +1,74 @@
+# Archidekt — Noctis
+# source: archidekt:27483348
+# fetched: 2026-10-16
+
+Commander:
+1 Noctis, Heir Apparent
+
+Deck:
+1 Slash of Light
+1 Quietus Spike
+1 Sword of Forge and Frontier
+1 Acquisition Octopus
+1 Open the Armory
+1 Dark Ritual
+1 Rogue's Gloves
+1 Adaptive Omnitool
+1 Aerial Engineer
+1 Aettir and Priwen
+1 Arc Reactor
+1 Arcane Signet
+1 Beatrix, Loyal General
+1 Buster Sword
+1 Caduceus, Staff of Hermes
+1 Chromatic Lantern
+1 Cid, Freeflier Pilot
+1 Cloud, Midgar Mercenary
+1 Colossus Hammer
+1 Command Tower
+1 Counterspell
+1 Countersquall
+1 Coveted Jewel
+1 Dakkon, Shadow Slayer
+1 Danitha Capashen, Paragon
+1 Danitha, Benalia's Hope
+1 Danitha, Sword of Hope
+1 Dowsing Dagger // Lost Vale
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Enlightened Tutor
+1 Esper Charm
+1 Esper Sentinel
+1 Etherium Sculptor
+1 Excalibur, Sword of Eden
+1 Exotic Orchard
+1 Fabled Passage
+1 Gilded Lotus
+1 Goggles of Night
+1 Heavenly Blademaster
+1 Hedron Archive
+1 Inquisitor's Flail
+1 Invasion of Xerex // Vertex Paladin
+12 Island
+1 Mox Amber
+1 Mox Opal
+1 Mox Tantalite
+1 Noctis, Prince of Lucis
+12 Plains
+1 Puresteel Paladin
+1 Robe of the Archmagi
+1 Sol Ring
+1 Solemn Simulacrum
+1 Specter's Shroud
+12 Swamp
+1 Sword of Fire and Ice
+1 Sword of Hearth and Home
+1 The Aetherspark
+1 The Wind Crystal
+1 Ultima Weapon
+1 Urza, Chief Artificer
+1 Urza, Lord High Artificer
+1 Voyager Quickwelder
+1 Path to Exile
+1 Steelshaper's Gift
+1 Swords to Plowshares
+1 Fierce Guardianship

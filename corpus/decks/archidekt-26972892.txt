@@ -1,0 +1,105 @@
+# Archidekt — Winota Stax
+# source: archidekt:26972892
+# fetched: 2026-10-02
+
+Commander:
+1 Winota, Joiner of Forces
+
+Deck:
+1 Skrelv, Defector Mite
+1 Greymond, Avacyn's Stalwart
+1 Aether Vial
+1 Ainok Strike Leader
+1 Alexios, Deimos of Kosmos
+1 Ancient Tomb
+1 Angrath's Marauders
+1 Archivist of Oghma
+1 Archon of Emeria
+1 Arid Mesa
+1 Auratouched Mage
+1 Aven Interrupter
+1 Aven Mindcensor
+1 Battlefield Forge
+1 Blade Historian
+1 Bloodstained Mire
+1 Boromir, Warden of the Tower
+1 Breath of Fury
+1 Cavern of Souls
+1 Caves of Chaos Adventurer
+1 Chrome Mox
+1 City of Brass
+1 City of Traitors
+1 Clarion Conqueror
+1 Command Beacon
+1 Command Tower
+1 Deafening Silence
+1 Deflecting Swat
+1 Drannith Magistrate
+1 Eidolon of Rhetoric
+1 Eiganjo, Seat of the Empire
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Ethersworn Canonist
+1 Flooded Strand
+1 Gemstone Caverns
+1 Gingerbrute
+1 Giver of Runes
+1 Grand Abolisher
+1 Hexing Squelcher
+1 High Noon
+1 Hope of Ghirapur
+1 Lena, Selfless Champion
+1 Lightning, Army of One
+1 Lotus Petal
+1 Loyal Apprentice
+1 Magus of the Moon
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mountain
+1 Mox Diamond
+1 Needleverge Pathway // Pillarverge Pathway
+1 Ocelot Pride
+1 Orim's Chant
+1 Ornithopter
+1 Ornithopter of Paradise
+1 Path to Exile
+1 Phelia, Exuberant Shepherd
+1 Phyrexian Revoker
+1 Phyrexian Walker
+3 Plains
+1 Plateau
+1 Powerbalance
+1 Prismatic Vista
+1 Professional Face-Breaker
+1 Ragavan, Nimble Pilferer
+1 Ranger-Captain of Eos
+1 Redirect Lightning
+1 Rionya, Fire Dancer
+1 Sacred Foundry
+1 Sanctum Prelate
+1 Scalding Tarn
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Silence
+1 Simian Spirit Guide
+1 Skyclave Apparition
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Sokenzan, Crucible of Defiance
+1 Sol Ring
+1 Solitude
+1 Soulless Jailer
+1 Spectator Seating
+1 Spirit of the Labyrinth
+1 Sunbaked Canyon
+1 Swords to Plowshares
+1 Tataru Taru
+1 Thalia, Guardian of Thraben
+1 Touch the Spirit Realm
+1 Voice of Victory
+1 Windswept Heath
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Wooded Foothills
+1 Zurzoth, Chaos Rider
+1 Serra Ascendant
+1 Signal Pest
+1 Combat Celebrant

@@ -1,0 +1,107 @@
+# Archidekt — Land of Reeds
+# source: archidekt:27178726
+# fetched: 2026-10-07
+
+Commander:
+1 O-Kagachi, Vengeful Kami
+
+Deck:
+1 Sire of the Storm
+1 Kodama's Reach
+1 Oyobi, Who Split the Heavens
+1 Haru-Onna
+1 Cloudhoof Kirin
+1 Elder Pine of Jukai
+1 Teller of Tales
+1 Loam Dweller
+1 Kyoki, Sanity's Eclipse
+1 Bounteous Kirin
+1 Briarknit Kami
+1 Infernal Kirin
+1 Hikari, Twilight Guardian
+1 Horizon Seed
+1 Evermind
+1 Eerie Procession
+1 Ethereal Haze
+1 Eye of Nowhere
+1 Lava Spike
+1 Psychic Puppetry
+1 Desperate Ritual
+1 Through the Breach
+1 Choice of Damnations
+1 Ribbons of the Reikai
+1 Veil of Secrecy
+1 Shifting Borders
+1 Blessed Breath
+1 Reweave
+1 Toils of Night and Day
+1 Soulless Revival
+1 Dampen Thought
+1 Sol Ring
+1 Swords to Plowshares
+1 Leyline of the Guildpact
+1 Chromatic Lantern
+1 Fellwar Stone
+1 Genji Glove
+1 Arcane Signet
+1 Izzet Guildmage
+1 Dual Casting
+1 Selvala, Heart of the Wilds
+1 Pili-Pala
+1 Archmage Emeritus
+1 Rootha, Mercurial Artist
+1 Esper Sentinel
+1 Devouring Greed
+1 Farseek
+1 Patchwork Banner
+1 Yavimaya, Cradle of Growth
+1 Mirror Sheen
+1 Three Visits
+1 Nature's Lore
+1 Path to Exile
+1 Timeless Lotus
+1 Vanquisher's Banner
+1 Kindred Discovery
+1 Whirlwind of Thought
+1 Savai Triome
+1 Herald's Horn
+1 Urza's Incubator
+1 Command Tower
+1 Exotic Orchard
+1 Secluded Courtyard
+1 Swamp
+1 Sacred Foundry
+1 Path of Ancestry
+1 Cascading Cataracts
+1 Mystic Remora
+1 Three Tree City
+1 Reflecting Pool
+1 Unclaimed Territory
+1 Overgrown Tomb
+1 Forest
+1 Plains
+1 Raffine's Tower
+1 Spara's Headquarters
+1 Urborg, Tomb of Yawgmoth
+1 Gilded Lotus
+1 Breeding Pool
+1 Mountain
+1 Ziatora's Proving Ground
+1 Ketria Triome
+1 Island
+1 Stomping Ground
+1 Jetmir's Garden
+1 Watery Grave
+1 Temple Garden
+1 Hallowed Fountain
+1 Indatha Triome
+1 Blood Crypt
+1 Zagoth Triome
+1 Raugrin Triome
+1 Xander's Lounge
+1 Steam Vents
+1 Kindred Dominance
+1 Kindred Judgment
+1 Leyline of Anticipation
+1 Mizzix's Mastery
+1 Swiftfoot Boots

@@ -1,0 +1,80 @@
+# Archidekt — Let's finish this!
+# source: archidekt:26566301
+# fetched: 2026-10-02
+
+Commander:
+1 Otharri, Suns' Glory
+
+Deck:
+1 Anim Pakal, Thousandth Moon
+1 Aurelia, the Law Above
+1 Barbed Batterfist
+1 Bladehold War-Whip
+1 Clever Concealment
+1 Combat Celebrant
+1 Cut a Deal
+1 Dragonmaster Outcast
+1 Goldnight Commander
+1 Grateful Apparition
+1 Hexgold Halberd
+1 Horn of Valhalla // Ysgard's Call
+1 Intangible Virtue
+1 Kemba's Banner
+1 Kirol, Attentive First-Year
+1 Lae'zel, Vlaakith's Champion
+1 Legion Warboss
+1 Mace of the Valiant
+1 Mask of Memory
+1 Maul of the Skyclaves
+1 Molten Gatekeeper
+1 Neyali, Suns' Vanguard
+1 Patrolling Peacemaker
+1 Phantom General
+1 Roar of Resistance
+1 Smellerbee, Rebel Fighter
+1 Staff of the Storyteller
+1 Volt Charge
+1 Adriana, Captain of the Guard
+1 Witty Roastmaster
+1 Boros Charm
+1 Collective Effort
+1 Abraded Bluffs
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Command Tower
+1 Exotic Orchard
+1 Furycalm Snarl
+1 Legion Leadership // Legion Stronghold
+1 Sunscorched Divide
+7 Mountain
+1 Howling Mine
+1 Descent into Avernus
+1 Rug of Smothering
+1 Helm of Awakening
+1 Share the Spoils
+1 Alexios, Deimos of Kosmos
+1 Crescendo of War
+1 Furnace of Rath
+1 Glimmer Lens
+1 Idol of Oblivion
+1 Loyal Apprentice
+1 Make a Stand
+1 Mentor of the Meek
+1 Metastatic Evangel
+1 Mirror Entity
+1 Odric, Lunarch Marshal
+1 Prava of the Steel Legion
+1 Response // Resurgence
+1 Rootborn Defenses
+1 Rosie Cotton of South Lane
+1 Rumor Gatherer
+1 Selfless Spirit
+1 Silverwing Squadron
+1 Solemn Simulacrum
+1 Swiftfoot Boots
+1 Thrill of Possibility
+1 Unbreakable Formation
+1 Welcoming Vampire
+22 Plains
+1 Radiant Summit
+1 Rugged Prairie

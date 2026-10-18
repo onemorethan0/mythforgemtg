@@ -1,0 +1,107 @@
+# Archidekt — Nissa
+# source: archidekt:27004116
+# fetched: 2026-10-06
+
+Commander:
+1 Nissa, Leyline Tamer
+
+Deck:
+1 Avacyn, Angel of Horror
+1 Prairie Stream
+1 Volcanic Island
+1 Terrain Generator
+1 Chromatic Lantern
+1 Sacred Foundry
+1 Scrubland
+1 Underground Sea
+1 Gleaming Splendor
+1 Arid Mesa
+1 Plateau
+1 Tundra
+1 Badlands
+1 Blood Crypt
+1 Fabled Passage
+1 Turbulent Shore
+1 Polluted Delta
+1 Turbulent Moor
+1 Verdant Catacombs
+1 Fierce Guardianship
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Flooded Strand
+1 Windswept Heath
+1 Evolving Wilds
+1 Prismatic Vista
+1 Terramorphic Expanse
+1 Hallowed Fountain
+1 Watery Grave
+1 Serra's Emissary
+1 Godless Shrine
+1 Steam Vents
+1 Command Tower
+1 Swamp
+1 Turbulent Crater
+1 Crucible of Worlds
+1 Horizon of Progress
+1 Teferi's Protection
+1 City of Brass
+1 Mana Confluence
+1 Gisela, Blade of Goldnight
+1 Swords to Plowshares
+1 Avacyn, Angel of Hope
+1 Turbulent Wetlands
+1 Emeria Shepherd
+1 Ancient Tomb
+1 Dark Ritual
+1 Ragavan, Nimble Pilferer
+1 Path to Exile
+1 Island
+1 Mountain
+1 Rhystic Study
+1 Propaganda
+1 Ghostly Prison
+1 Plains
+1 Demonic Tutor
+1 Mana Drain
+1 Vampiric Tutor
+1 Smothering Tithe
+1 Aurelia, the Warleader
+1 Trouble in Pairs
+1 Unexpected Windfall
+1 Blightsteel Colossus
+1 Enlightened Tutor
+1 Alchemist's Talent
+1 Big Score
+1 Goldspan Dragon
+1 Black Market Connections
+1 Sphere of Safety
+1 Esper Sentinel
+1 Norn's Annex
+1 Omnath, Locus of the Void
+1 Solemn Simulacrum
+1 Ancient Copper Dragon
+1 Akroma, Angel of Wrath
+1 Ancient Silver Dragon
+1 Thalia, Heretic Cathar
+1 Linvala, Keeper of Silence
+1 Void Rend
+1 Anguished Unmaking
+1 Rev, Tithe Extractor
+1 Erode
+1 Gisa, Glorious Resurrector
+1 Cruel Ultimatum
+1 Ruinous Ultimatum
+1 Kinzu of the Bleak Coven
+1 Brilliant Ultimatum
+1 Red Elemental Blast
+1 Liliana of the Dark Realms
+1 Olivia, Mobilized for War
+1 Vela the Night-Clad
+1 Teysa, Envoy of Ghosts
+1 Drana and Linvala
+1 Liesa, Forgotten Archangel
+1 Aurelia, the Law Above
+1 Lightning, Army of One

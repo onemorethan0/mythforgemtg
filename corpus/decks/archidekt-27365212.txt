@@ -1,0 +1,94 @@
+# Archidekt — Copy of - RIP Froggo
+# source: archidekt:27365212
+# fetched: 2026-10-14
+
+Commander:
+1 The Gitrog Monster
+
+Deck:
+1 Horizon Explorer
+1 Crop Rotation
+1 Cycle of Renewal
+1 Entish Restoration
+1 Excavating Anurid
+1 Braulios of Pheres Band
+1 Hexhaven Invigorator
+1 Putrefy
+1 Case of the Locked Hothouse
+1 Terramorphic Expanse
+1 Vibrant Cityscape
+1 Evolving Wilds
+1 Fabled Passage
+1 Hobbit Hole
+1 Riveteers Overlook
+1 Mole Man, Moloid Master
+1 Conduit of Worlds
+1 Arcane Signet
+1 Sol Ring
+1 Bojuka Bog
+1 Reliquary Tower
+7 Forest
+5 Swamp
+1 Command Tower
+1 Twilight Mire
+1 Golgari Rot Farm
+1 Necroblossom Snarl
+1 Viridescent Bog
+1 Llanowar Wastes
+1 Myriad Landscape
+1 Deathcap Glade
+1 Field of the Dead
+1 Baloth Prime
+1 Constant Mists
+1 Falling Timber
+1 Harrow
+1 Larval Scoutlander
+1 Roiling Regrowth
+1 Scouring Swarm
+1 Springbloom Druid
+1 Spitting Spider
+1 Sylvan Safekeeper
+1 Scute Swarm
+1 Druid Class
+1 Dryad of the Ilysian Grove
+1 Exploration
+1 Exploration Broodship
+1 Ghirapur Orrery
+1 Icetill Explorer
+1 Loot, Exuberant Explorer
+1 Oracle of Mul Daya
+1 Wayward Swordtooth
+1 Sword of Forge and Frontier
+1 Prismatic Undercurrents
+1 Rites of Flourishing
+1 Ancient Greenwarden
+1 Crucible of Worlds
+1 Perennial Behemoth
+1 Ramunap Excavator
+1 Exotic Orchard
+1 Titania, Protector of Argoth
+1 Azusa, Lost but Seeking
+1 Avenger of Zendikar
+1 Rampaging Baloths
+1 Cultivator Colossus
+1 Heroic Intervention
+1 Dark Ritual
+1 Abrupt Decay
+1 Assassin's Trophy
+1 Beast Within
+1 Strength of Will
+1 Overkill
+1 Tempt with Discovery
+1 Boundless Realms
+1 Yavimaya, Cradle of Growth
+1 Famished Worldsire
+1 Summon: Titan
+1 Obscuring Haze
+1 Archetype of Endurance
+1 Archetype of Finality
+1 Ob Nixilis, the Fallen
+1 Path of Discovery
+1 Strip Mine
+1 Thespian's Stage
+1 Maze of Ith
+1 Lotus Field

@@ -1,0 +1,77 @@
+# Archidekt — Konrad tune-up
+# source: archidekt:27145067
+# fetched: 2026-10-06
+
+Commander:
+1 Syr Konrad, the Grim
+
+Deck:
+1 The Meathook Massacre
+1 Fleshbag Marauder
+1 Vampiric Tutor
+1 Blood Artist
+1 Toxic Deluge
+1 Warlock Class
+1 Vicious Rumors
+1 Vampire Nighthawk
+1 Ghouls' Night Out
+1 Wishclaw Talisman
+1 Gravecrawler
+1 Forever Young
+1 Tortured Existence
+1 Culling the Weak
+1 Tainted Adversary
+1 Rescue from the Underworld
+1 Witch's Cottage
+1 Temporal Extortion
+1 Phyrexian Arena
+1 Everflowing Chalice
+1 Ancient Brass Dragon
+1 Dictate of Erebos
+1 Sol Ring
+1 Murder
+1 Arcane Signet
+1 Ophiomancer
+1 Rise of the Dark Realms
+1 Season of Loss
+1 Mind Stone
+1 Archon of Cruelty
+1 Phyrexian Tower
+1 Gray Merchant of Asphodel
+1 Basilisk Collar
+31 Swamp
+1 Cabal Coffers
+1 Mortuary Mire
+1 Entomb
+1 Plaguecrafter
+1 Midnight Reaper
+1 Dark Ritual
+1 Plague Reaver
+1 Viscera Seer
+1 Bone Shards
+1 Fell
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Liliana, Death's Majesty
+1 Fellwar Stone
+1 Sheoldred, Whispering One
+1 Bubbling Muck
+1 Mindcrank
+1 Victimize
+1 Night Incarnate
+1 Goremand
+1 Bonehoard
+1 Black Market
+1 Demonic Tutor
+1 Bloodchief Ascension
+1 Bolas's Citadel
+1 Feed the Swarm
+1 Wound Reflection
+1 Grafted Exoskeleton
+1 Reassembling Skeleton
+1 Massacre Girl
+1 Expedition Map
+1 Buried Alive
+1 Damnation
+1 Reanimate
+1 Grim Tutor
+1 Ashnod's Altar

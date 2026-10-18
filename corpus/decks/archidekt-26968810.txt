@@ -1,0 +1,91 @@
+# Archidekt — >whilhelt v6
+# source: archidekt:26968810
+# fetched: 2026-10-01
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Darkwater Catacombs
+8 Island
+1 Secluded Courtyard
+12 Swamp
+1 Path of Ancestry
+1 Witch's Cottage
+1 Unclaimed Territory
+1 Command Tower
+1 Terramorphic Expanse
+1 Tainted Isle
+1 Dimir Aqueduct
+1 Choked Estuary
+1 Sunken Hollow
+1 Bojuka Bog
+1 Barren Moor
+1 Temple of Deceit
+1 Propaganda
+1 Sky Diamond
+1 Ash Barrens
+1 Three Tree City
+1 Jet Medallion
+1 Lonely Sandbar
+1 Charcoal Diamond
+1 Sol Ring
+1 Bontu's Monument
+1 Arcane Signet
+1 Talisman of Dominance
+1 Skullclamp
+1 Buried Alive
+1 Cabal Ritual
+1 Star Compass
+1 Carrion Feeder
+1 Ashnod's Altar
+1 The Ghoul, Gunslinger
+1 Prized Amalgam
+1 Animate Dead
+1 Bastion of Remembrance
+1 Viscera Seer
+1 Vengeful Dead
+1 Gravecrawler
+1 Rhystic Study
+1 Headless Rider
+1 Dreadhorde Invasion
+1 Dark Ritual
+1 Gray Merchant of Asphodel
+1 Fleshbag Marauder
+1 Diregraf Colossus
+1 Zombie Apocalypse
+1 Geralf, Visionary Stitcher
+1 Diregraf Captain
+1 Urza's Incubator
+1 Gravespawn Sovereign
+1 Ravenform
+1 Midnight Reaper
+1 Hordewing Skaab
+1 Gisa and Geralf
+1 Undead Augur
+1 Distant Melody
+1 Rooftop Storm
+1 Death Baron
+1 Ayara, First of Locthwain
+1 Warren Soultrader
+1 Plague Belcher
+1 Withering Torment
+1 Noosegraf Mob
+1 Fell Stinger
+1 Archghoul of Thraben
+1 Undead Butler
+1 Negate
+1 Ghoulcaller's Chant
+1 Victimize
+1 Undead Warchief
+1 Reanimate
+1 Unearth
+1 Counterspell
+1 Sidisi, Undead Vizier
+1 Dread Return
+1 Insatiable Avarice
+1 Culling the Weak
+1 Exotic Orchard
+1 Mana Leak
+1 Kindred Discovery
+1 Necroduality

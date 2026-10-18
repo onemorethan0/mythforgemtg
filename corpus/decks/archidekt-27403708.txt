@@ -1,0 +1,94 @@
+# Archidekt — Superfriends
+# source: archidekt:27403708
+# fetched: 2026-10-14
+
+Commander:
+1 Tam, the Possibility
+
+Deck:
+1 Command Tower
+1 Swords to Plowshares
+1 Cultivate
+1 Oath of Teferi
+1 Vraska, Betrayal's Sting
+1 Elspeth, Sun's Champion
+1 Sol Ring
+1 Oath of Nissa
+1 Way of the Paradox
+1 Interplanar Beacon
+1 Doubling Season
+1 Blasphemous Act
+1 Liliana, Dreadhorde General
+1 Oath of Ajani
+1 Way of the Necromancer
+1 Counterspell
+1 The World Tree
+1 Verdant Catacombs
+1 Gideon's Memorial
+1 Way of the Mind Sculptor
+1 Formidable Commons
+1 Transformative Commons
+1 Carth the Lion
+1 Flux Channeler
+1 Jace's Machinations
+1 Way of the Mentor
+1 The Eternal Wanderer
+1 Oath of Gideon
+1 Meticulous Commons
+1 Narset, Parter of Veils
+1 Dedicated Commons
+1 Heroic Intervention
+1 Thrummingbird
+1 Way of the Healer
+1 Liliana the Faultless
+1 Oath of Kaya
+1 Stingerquill Annex
+1 Way of the Cryomancer
+1 Garruk, Veiled Butcher
+1 Way of the Deathbringer
+1 Countersculpt
+1 Djeru, With Eyes Open
+1 Mila, Crafty Companion // Lukka, Wayward Bonder
+1 Tomik, Wielder of Law
+3 Forest
+3 Island
+3 Swamp
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Professor Onyx
+1 Evolution Sage
+3 Plains
+1 Vigorbloom Annex
+1 Theorix Annex
+1 Reliquary Tower
+1 Temple of the False God
+1 Way of the Warlord
+3 Mountain
+1 Konstrari Annex
+1 Path to Exile
+1 Innovative Commons
+1 Fatehold Annex
+1 Way of the Wildspeaker
+1 Loyal Tutor
+1 Way of the Pyromancer
+1 Deepglow Skate
+1 Tekuthal, Inquiry Dominus
+1 Lae'zel, Vlaakith's Champion
+1 Leori, Sparktouched Hunter
+1 Sanctum Lurker
+1 Tomik, Orzhov Lawmage
+1 Swiftfoot Boots
+1 Avatar of Burgeoning Echoes
+1 Chromatic Lantern
+1 Kiora of Salt and Sand
+1 Arcane Signet
+1 Overwrite the Multiverse
+1 Jace, Reality Sculptor
+1 Chandra, Torch of Defiance
+1 Jace, Multiverse Architect
+1 Garruk, Curse Breaker
+1 Entrust the Spark
+1 Kasmina, Enigmatic Mentor
+1 Chandra, Chill of Compliance
+1 Rewrite Regrets
+1 Farseek

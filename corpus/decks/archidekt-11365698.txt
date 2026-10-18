@@ -1,0 +1,95 @@
+# Archidekt — Breeches, Brazen Plunderer
+# source: archidekt:11365698
+# fetched: 2026-10-06
+
+Commander:
+1 Malcolm, Keen-Eyed Navigator
+1 Breeches, Brazen Plunderer
+
+Deck:
+1 Ophidian Eye
+1 Glint-Horn Buccaneer
+1 Imperial Recruiter
+1 Pyre of Heroes
+1 Pemmin's Aura
+1 Niv-Mizzet, Parun
+1 Kediss, Emberclaw Familiar
+1 Neheb, the Eternal
+1 Underworld Breach
+1 Lotus Petal
+1 Temporal Manipulation
+1 Simian Spirit Guide
+1 Capture of Jingzhou
+1 Wan Shi Tong, Librarian
+1 Hexing Squelcher
+1 Pyroblast
+1 Redirect Lightning
+1 Force of Will
+1 Mox Diamond
+1 Passionate Archaeologist
+1 Rhystic Study
+1 Chrome Mox
+1 Mana Vault
+1 Tandem Lookout
+1 Cursed Mirror
+1 Ancient Tomb
+1 Goldhound
+1 The One Ring
+1 Spellskite
+1 Astral Dragon
+1 Tezzeret the Seeker
+1 Aggravated Assault
+1 Drift of Phantasms
+1 Arcane Signet
+1 Izzet Signet
+1 Siren Stormtamer
+1 Lightning-Rig Crew
+1 Spectral Sailor
+1 Captain Lannery Storm
+1 Kitesail Larcenist
+1 Curiosity
+1 Reckless Fireweaver
+1 Broadside Bombardiers
+1 Ragavan, Nimble Pilferer
+1 Professional Face-Breaker
+1 Roaming Throne
+1 Deflecting Swat
+1 Lightning Greaves
+1 Maskwood Nexus
+1 Guild Artisan
+1 Freed from the Real
+1 Talisman of Creativity
+1 Sol Ring
+1 Archway of Innovation
+1 Rite of Flame
+1 Flooded Strand
+1 Gamble
+1 Strike It Rich
+1 Jeska's Will
+1 Mistrise Village
+1 Command Tower
+1 Arena of Glory
+1 Cavern of Souls
+1 Scalding Tarn
+1 Training Center
+1 Saprazzan Skerry
+1 Sandstone Needle
+1 Mana Drain
+1 Mystic Sanctuary
+1 Bloodstained Mire
+1 Polluted Delta
+1 Arid Mesa
+1 Misty Rainforest
+1 Steam Vents
+1 Wooded Foothills
+1 Thundering Falls
+1 Volcanic Island
+9 Island
+1 Otawara, Soaring City
+4 Mountain
+1 An Offer You Can't Refuse
+1 Flusterstorm
+1 Cyclonic Rift
+1 Spell Pierce
+1 Fierce Guardianship
+1 Into the Flood Maw

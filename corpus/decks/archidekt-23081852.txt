@@ -1,0 +1,86 @@
+# Archidekt — It hurts so good
+# source: archidekt:23081852
+# fetched: 2026-10-14
+# bracket: 3
+
+Commander:
+1 Darien, King of Kjeldor
+
+Deck:
+1 Deploy to the Front
+1 Enduring Innocence
+1 Fumigate
+1 Rhox Faithmender
+1 Case of the Uneaten Feast
+1 Mentor of the Meek
+1 Guardian of Faith
+1 Myrel, Shield of Argive
+1 Emeria, the Sky Ruin
+1 Caretaker's Talent
+1 Renewed Solidarity
+1 Ocelot Pride
+1 Anointed Procession
+1 Leyline of Hope
+1 Exalted Sunborn
+1 Starlight Spectacular
+1 Skullclamp
+1 Proper Burial
+1 Prismatic Strands
+1 Authority of the Consuls
+1 Aetherflux Reservoir
+1 City of Brass
+1 Grand Coliseum
+1 Nomad Stadium
+1 Defiler of Faith
+1 Ashes of the Abhorrent
+1 Ancient Tomb
+1 Jade Monolith
+1 Esper Sentinel
+1 Curious Farm Animals
+1 Haliya, Guided by Light
+1 Soul's Attendant
+1 Soul Warden
+1 Flawless Maneuver
+1 Mother of Runes
+1 Duty Beyond Death
+1 Brave the Elements
+1 Ephemeral Shields
+1 Rebuff the Wicked
+1 Valorous Stance
+1 And They Shall Know No Fear
+1 Crystal Barricade
+1 Blood of the Martyr
+1 Reverent Mantra
+1 Smothering Tithe
+1 Parting Gust
+1 Requisition Raid
+1 Thraben Charm
+1 Blasting Station
+1 Kabira Takedown // Kabira Plateau
+1 Fell the Mighty
+1 Swords to Plowshares
+1 Blind Obedience
+1 Land Tax
+1 Thalia, Heretic Cathar
+1 Archivist of Oghma
+1 Sejiri Shelter // Sejiri Glacier
+1 Inner Sanctum
+1 Delney, Streetwise Lookout
+1 The Battle of Bywater
+1 Abandoned Air Temple
+1 Blighted Steppe
+1 Martyred Rusalka
+1 Enlightened Tutor
+24 Plains
+1 Tarnished Citadel
+1 Hall of Heliod's Generosity
+1 Nykthos, Shrine to Nyx
+1 Ranger-Captain of Eos
+1 Heraldic Banner
+1 Daxos, Blessed by the Sun
+1 Grand Crescendo
+1 Goldnight Commander
+1 Paladin Class
+1 Inspiring Leader
+1 Secluded Steppe
+1 Orim's Chant

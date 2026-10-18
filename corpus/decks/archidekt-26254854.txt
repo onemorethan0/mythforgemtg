@@ -1,0 +1,95 @@
+# Archidekt — Ingris Stingerquill
+# source: archidekt:26254854
+# fetched: 2026-10-15
+
+Commander:
+1 Ingris Stingerquill
+
+Deck:
+1 Return the Favor
+1 Horn of the Mark
+1 General Kreat, the Boltbringer
+1 Dolmen Gate
+1 Zurzoth, Chaos Rider
+1 Gimli's Reckless Might
+1 Ellie, Brick Master
+1 Garna, Bloodfist of Keld
+1 Karlach, Fury of Avernus
+1 Smellerbee, Rebel Fighter
+1 Fire Nation Palace
+1 Hawkeye, Young Avenger
+1 Whip of Erebos
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Spiked Corridor // Torture Pit
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Neheb, the Eternal
+1 Samut, Hazoret's Champion
+1 Fated Firepower
+1 Untimely Malfunction
+1 Rakdos, Lord of Riots
+1 Arcane Signet
+1 Master of Barbs
+1 Loyal Apprentice
+1 Professional Face-Breaker
+1 Siege-Gang Lieutenant
+1 Enduring Courage
+1 Blasphemous Act
+1 Howlsquad Heavy
+1 Chaos Warp
+1 Feed the Swarm
+1 Deadly Rollick
+1 Bitterbloom Bearer
+1 Withering Torment
+1 Bitterblossom
+1 Redirect Lightning
+1 Ob Nixilis, Captive Kingpin
+1 Skullclamp
+1 Agate Instigator
+1 Command the Stage
+1 Lindblum, Industrial Regency // Mage Siege
+1 Vivi's Persistence
+1 Virtue of Courage // Embereth Blaze
+1 Fear of Burning Alive
+1 Knuckles the Echidna
+1 Purphoros, God of the Forge
+1 Delayed Blast Fireball
+1 Chandra's Incinerator
+1 Wildfire Elemental
+1 Wyll's Reversal
+1 Gix, Yawgmoth Praetor
+1 Tainted Peak
+1 Elegy Acolyte
+1 Valakut Awakening // Valakut Stoneforge
+1 Descent into Avernus
+1 Blackcleave Cliffs
+1 Luxury Suite
+1 Dragonskull Summit
+1 Blood Crypt
+1 Bloodstained Mire
+1 Boggart Trawler // Boggart Bog
+7 Mountain
+1 Blazemire Verge
+2 Swamp
+1 Bojuka Bog
+1 Command Tower
+1 Foreboding Ruins
+1 Blightstep Pathway // Searstep Pathway
+1 Smoldering Marsh
+1 Urborg, Tomb of Yawgmoth
+1 Raucous Theater
+1 Phyrexian Tower
+1 Sokenzan, Crucible of Defiance
+1 Rogue's Passage
+1 Malakir Rebirth // Malakir Mire
+1 Fell the Profane // Fell Mire
+1 Arena of Glory
+1 Access Tunnel
+1 Takenuma, Abandoned Mire
+1 Dark Fortress
+1 Deflecting Swat
+1 Grim Hireling
+1 Rise of the Deathbringer
+1 Great Unclean One
+1 Phyrexian Reclamation
+1 Ragavan, Nimble Pilferer
+1 Court of Embereth

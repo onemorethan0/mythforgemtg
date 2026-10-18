@@ -1,0 +1,74 @@
+# Archidekt — Davros, Dragon Creator
+# source: archidekt:27174509
+# fetched: 2026-10-07
+
+Commander:
+1 Davros, Dalek Creator
+
+Deck:
+1 Wizard's Staff
+1 Locket of Yesterdays
+1 Lightning Greaves
+26 Dragon's Approach
+1 Nightscape Familiar
+1 Sygg, River Cutthroat
+8 Mountain
+2 Island
+1 Feed the Swarm
+1 Urborg, Tomb of Yawgmoth
+1 Bloodstained Mire
+1 Polluted Delta
+1 Watery Grave
+1 Maestros Charm
+1 Archmage of Runes
+1 Chaos Warp
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Toxic Deluge
+1 Thrumming Stone
+1 Swiftfoot Boots
+1 Geth's Grimoire
+1 Otawara, Soaring City
+1 Sol Ring
+1 Scalding Tarn
+1 Xander's Lounge
+1 Steam Vents
+1 Seat of the Synod
+1 Blazemire Verge
+1 Great Furnace
+1 Inventors' Fair
+1 Vault of Whispers
+1 Talisman of Creativity
+1 Rakdos Signet
+1 Command Tower
+1 Talisman of Indulgence
+1 Fellwar Stone
+1 Talisman of Dominance
+1 Izzet Signet
+1 Arcane Signet
+1 Riverpyre Verge
+1 Dimir Signet
+1 Blood Crypt
+1 Morphic Pool
+1 Luxury Suite
+1 Training Center
+1 Gloomlake Verge
+1 Drossforge Bridge
+1 Mistvault Bridge
+1 Silverbluff Bridge
+1 Ancient Silver Dragon
+1 Bonehoard Dracosaur
+1 Galazeth Prismari
+1 Hoarding Broodlord
+1 Twinflame Tyrant
+1 Marang River Regent // Coil and Catch
+1 Summon: Bahamut
+1 Takenuma, Abandoned Mire
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Frantic Search
+1 Roiling Dragonstorm
+1 Winternight Stories
+1 Faithless Looting
+1 Demand Answers
+1 Reanimate
+1 Animate Dead

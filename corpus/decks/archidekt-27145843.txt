@@ -1,0 +1,89 @@
+# Archidekt — Debaucherous Piety
+# source: archidekt:27145843
+# fetched: 2026-10-06
+# bracket: 3
+
+Commander:
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+
+Deck:
+1 Angel of Despair
+1 Angel of Indemnity
+1 Anguished Unmaking
+1 Animate Dead
+1 Arcane Signet
+1 Archfiend of Depravity
+1 Ashnod's Altar
+1 Bartolomé del Presidio
+1 Bastion of Remembrance
+1 Black Market
+1 Blasting Station
+1 Blood Artist
+1 Bojuka Bog
+1 Cartel Aristocrat
+1 Cathars' Crusade
+1 Caves of Koilos
+1 Cleansing Nova
+1 Cruel Celebrant
+1 Deadly Dispute
+1 Demon of Dark Schemes
+1 Despark
+1 Dictate of Erebos
+1 Doomed Traveler
+1 Elas il-Kor, Sadistic Pilgrim
+1 Etchings of the Chosen
+1 Fellwar Stone
+1 Garrison Cat
+1 Godless Shrine
+1 Harvester of Souls
+1 High Market
+1 Isolated Chapel
+1 Karmic Guide
+1 Krav, the Unredeemed
+1 Lingering Souls
+1 Marionette Apprentice
+1 Mind Stone
+1 Mournwhelk
+1 Night Incarnate
+1 Night's Whisper
+1 Orzhov Basilica
+1 Orzhov Signet
+1 Path to Exile
+1 Phyrexian Tower
+1 Pitiless Plunderer
+11 Plains
+1 Read the Bones
+1 Requiem Angel
+1 Reveillark
+1 Rune-Scarred Demon
+1 Seraph of the Scales
+1 Shattered Sanctum
+1 Shineshadow Snarl
+1 Shriekmaw
+1 Skullclamp
+1 Sol Ring
+1 Command Tower
+1 Liesa, Forgotten Archangel
+1 Generous Gift
+1 Solemnity
+1 Soul Warden
+1 Spectral Procession
+10 Swamp
+1 Swords to Plowshares
+1 Taborax, Hope's Demise
+1 Tainted Field
+1 Talisman of Hierarchy
+1 Temple of Silence
+1 Teysa Karlov
+1 Thalisse, Reverent Medium
+1 Thran Vigil
+1 Vault of Champions
+1 Vault of the Archangel
+1 Village Rites
+1 Viscera Seer
+1 Vizier of Remedies
+1 Wayfarer's Bauble
+1 Wispmare
+1 Woe Strider
+1 Zulaport Cutthroat
+1 Firja, Judge of Valor

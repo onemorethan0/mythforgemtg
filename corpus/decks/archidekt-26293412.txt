@@ -1,0 +1,76 @@
+# Archidekt — PrEDH Ezuri, Renegade Leader
+# source: archidekt:26293412
+# fetched: 2026-10-13
+
+Commander:
+1 Ezuri, Renegade Leader
+
+Deck:
+1 Skyshroud Claim
+1 Boreal Druid
+1 Copperhorn Scout
+1 Arbor Elf
+1 Drove of Elves
+1 Wood Elves
+1 Lys Alana Huntmaster
+1 Quirion Ranger
+1 Farhaven Elf
+1 Nature's Lore
+1 Llanowar Elves
+1 Elvish Vanguard
+1 Elvish Visionary
+1 Imperious Perfect
+32 Forest
+1 Sol Ring
+1 Beast Within
+1 Beastmaster Ascension
+1 Back to Nature
+1 Llanowar Empath
+1 Elvish Guidance
+1 Joraga Treespeaker
+1 Elvish Soultiller
+1 Malachite Talisman
+1 Elvish Promenade
+1 Elvish Harbinger
+1 Regal Force
+1 Wirewood Herald
+1 Skullclamp
+1 Reverent Silence
+1 Calming Verse
+1 Triumph of the Hordes
+1 Staff of Domination
+1 Wirewood Lodge
+1 Priest of Titania
+1 Coat of Arms
+1 Wirewood Channeler
+1 Carpet of Flowers
+1 Primordial Sage
+1 Oracle of Mul Daya
+1 Emerald Medallion
+1 Nevinyrral's Disk
+1 Eternal Witness
+1 Asceticism
+1 Wirewood Symbiote
+1 Leaf Gilder
+1 Essence Warden
+1 Thousand-Year Elixir
+1 Timberwatch Elf
+1 Umbral Mantle
+1 Wirewood Pride
+1 Fyndhorn Elves
+1 Wrap in Vigor
+1 Sylvan Messenger
+1 Collective Unconscious
+1 Gaea's Touch
+1 Three Visits
+1 Seeker of Skybreak
+1 Jagged-Scar Archers
+1 Glimpse of Nature
+1 Elvish Archdruid
+1 Cultivate
+1 Lignify
+1 Soul's Majesty
+1 Harmonize
+1 Fyndhorn Elder
+1 Genesis Wave
+1 Fauna Shaman

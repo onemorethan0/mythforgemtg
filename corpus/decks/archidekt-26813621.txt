@@ -1,0 +1,93 @@
+# Archidekt — Dakkon Lands Sale
+# source: archidekt:26813621
+# fetched: 2026-10-01
+
+Commander:
+1 Dakkon Blackblade
+
+Deck:
+1 Weathered Wayfarer
+1 Scaretiller
+1 Iridescent Vinelasher
+1 Baleful Strix
+1 Knight of the White Orchid
+1 Fact or Fiction
+1 Brainstorm
+1 An Offer You Can't Refuse
+1 Bitterthorn, Nissa's Animus
+1 Explorer's Scope
+1 The Regalia
+1 Sol Ring
+1 Fellwar Stone
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Weather Maker
+1 Thought Vessel
+1 PuPu UFO
+1 Grand Abolisher
+1 Guildless Commons
+1 Azorius Chancery
+1 Meloku the Clouded Mirror
+1 Ghost Town
+1 Glacial Fortress
+1 Cabal Coffers
+1 Raffine's Tower
+1 Godless Shrine
+1 Fabled Passage
+1 Watery Grave
+1 Prairie Stream
+1 Sunken Hollow
+1 Exotic Orchard
+1 Isolated Chapel
+1 Drowned Catacomb
+1 Temple of Silence
+1 Night's Whisper
+1 Sphinx's Revelation
+1 Emeria Angel
+1 Herald of Leshrac
+1 Deep Gnome Terramancer
+1 Emeria Shepherd
+1 Arcane Denial
+1 Dovin's Veto
+1 Brainsurge
+1 Profane Tutor
+1 Archaeomancer's Map
+1 Ghirapur Orrery
+1 Retreat to Hagra
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Dimir Aqueduct
+1 Rogue's Passage
+1 Terrain Generator
+1 Bojuka Bog
+1 Reliquary Tower
+1 Urborg, Tomb of Yawgmoth
+1 Command Tower
+1 Hallowed Fountain
+1 Retreat to Coralhelm
+1 Gideon Blackblade
+1 Sword of the Animist
+1 Walking Atlas
+1 Reviving Dose
+1 Dakkon, Shadow Slayer
+1 Wayfarer's Bauble
+1 Felidar Retreat
+1 Solemn Simulacrum
+1 Burnished Hart
+1 Ob Nixilis, the Fallen
+1 Path to Exile
+1 Swiftfoot Boots
+1 Kor Cartographer
+1 Sun Titan
+1 Swords to Plowshares
+1 Expedition Map
+1 Dreamscape Artist
+1 Sword of Hearth and Home
+1 Void Rend
+1 Crucible of Worlds
+1 Blackblade Reforged
+4 Island
+1 Read the Bones
+1 Yuriko, Blade of the Mighty
+1 Swamp
+12 Plains

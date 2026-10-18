@@ -1,0 +1,86 @@
+# Archidekt — "Inspirit"ed Crew
+# source: archidekt:23689258
+# fetched: 2026-10-14
+
+Commander:
+1 Inspirit, Flagship Vessel
+
+Deck:
+1 Scuttling Doom Engine
+1 The Antiquities War
+1 Airship Engine Room
+1 Leonardo da Vinci
+1 Arbaaz Mir
+1 Workshop Assistant
+1 Voltaic Servant
+1 Scrap Trawler
+1 Shimmer Myr
+1 Jhoira's Familiar
+1 Jhoira, Weatherlight Captain
+1 Reckless Fireweaver
+1 Dowsing Device // Geode Grotto
+1 Faerie Mechanist
+1 Recommission
+1 Spectacle Summit
+1 Molten Tributary
+1 Rupture Spire
+1 Mishra's Factory
+1 Alibou, Ancient Witness
+1 Sai, Master Thopterist
+1 Foundry of the Consuls
+1 Riddlesmith
+1 Whirler Rogue
+1 Thopter Engineer
+1 Maverick Thopterist
+1 Victory's Herald
+1 Welding Sparks
+1 Guardians of Meletis
+1 Pilgrim's Eye
+1 Springleaf Drum
+1 Thundersteel Colossus
+1 Basandra, Battle Seraph
+1 Borrowed Knowledge
+1 Iron Man, Master of Machines
+1 Enthusiastic Mechanaut
+1 Lens Flare
+1 Corridor Monitor
+1 Master Transmuter
+1 Etherium Sculptor
+1 Emry, Lurker of the Loch
+1 Mirrodin Besieged
+1 Sokka, Bold Boomeranger
+1 Saheeli, Sublime Artificer
+1 Foundry Inspector
+1 Junk Diver
+1 Shimmer Dragon
+1 Serra's Guardian
+1 Chief of the Foundry
+1 Spire of Industry
+1 Buried Ruin
+1 Blast Zone
+8 Plains
+8 Mountain
+8 Island
+1 Urza, Prince of Kroog
+1 Efficient Construction
+1 Bronze Guardian
+1 Thopter Spy Network
+1 Steel Overseer
+1 Navigator's Compass
+1 Boros Locket
+1 Izzet Locket
+1 Soul of New Phyrexia
+1 Organic Extinction
+1 Castle Doom
+1 Mystic Monastery
+1 Command Tower
+1 River's Rebuke
+1 Scene of the Crime
+1 Titan Forge
+1 Optimus Prime, Hero // Optimus Prime, Autobot Leader
+1 Arcbound Shikari
+1 Liquimetal Torque
+1 Escaped Experiment
+1 Transplant Theorist
+1 Traxos, Scourge Eternal
+1 Traxos, Scourge of Kroog

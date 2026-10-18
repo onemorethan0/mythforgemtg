@@ -1,0 +1,81 @@
+# Archidekt — Katara Time
+# source: archidekt:18100334
+# fetched: 2026-10-09
+
+Commander:
+1 Katara, Waterbending Master
+
+Deck:
+1 The Unagi of Kyoshi Island
+1 Faerie Mastermind
+1 Into the Flood Maw
+1 Fae Flight
+1 Decanter of Endless Water
+1 Jin-Gitaxias // The Great Synthesis
+1 Access Tunnel
+1 Amphibian Downpour
+1 Reliquary Tower
+27 Island
+1 War Room
+1 Mystic Sanctuary
+1 Rogue's Passage
+1 Bender's Waterskin
+1 See Double
+1 An Offer You Can't Refuse
+1 Pongify
+1 Sapphire Medallion
+1 Counterspell
+1 Rapid Hybridization
+1 Hydro-Man, Fluid Felon
+1 Silver Shroud Costume
+1 Eluge, the Shoreless Sea
+1 Arcane Denial
+1 Vedalken Orrery
+1 Hullbreaker Horror
+1 Illusionist's Gambit
+1 Aetherize
+1 Elminster's Simulacrum
+1 Flux Channeler
+1 Plumecreed Escort
+1 PuPu UFO
+1 Wizard Class
+1 Experimental Augury
+1 Final-Word Phantom
+1 Wan Shi Tong, Librarian
+1 Misleading Signpost
+1 Teferi's Ageless Insight
+1 The Legend of Kuruk // Avatar Kuruk
+1 March of Swirling Mist
+1 Wonder
+1 Stunt Double
+1 Leyline of Anticipation
+1 Terrain Generator
+1 Inexorable Tide
+1 Strix Serenade
+1 Myriad Landscape
+1 Transcendent Dragon
+1 K-9, Mark I
+1 Brazen Borrower // Petty Theft
+1 Aetherspouts
+1 Mission Briefing
+1 Winged Boots
+1 Reverse the Polarity
+1 Twenty-Toed Toad
+1 Aqueous Form
+1 Smirking Spelljacker
+1 Dreamtide Whale
+1 Theoretical Duplication
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sword Coast Sailor
+1 Saiba Cryptomancer
+1 Protective Bubble
+1 High Fae Trickster
+1 Wavebreak Hippocamp
+1 Cyber Conversion
+1 Thought Vessel
+1 Rivendell
+1 Sol Ring
+1 Iron Man, Armored Avenger
+1 Enduring Curiosity
+1 Skycoach Conductor // All Aboard
+1 Emeritus of Ideation // Ancestral Recall

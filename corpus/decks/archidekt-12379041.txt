@@ -1,0 +1,96 @@
+# Archidekt — Eldrazi
+# source: archidekt:12379041
+# fetched: 2026-10-06
+
+Commander:
+1 Zhulodok, Void Gorger
+
+Deck:
+1 Darksteel Monolith
+1 Not of This World
+1 Kozilek's Channeler
+1 Rise of the Eldrazi
+1 Hedron Archive
+1 Oblivion Sower
+1 Mind Stone
+1 Titan's Presence
+1 Palladium Myr
+1 Emrakul, the Promised End
+1 Ulamog, the Defiler
+1 Meteor Golem
+1 Crashing Drawbridge
+1 Solemn Simulacrum
+1 It That Heralds the End
+1 Glaring Fleshraker
+1 Wandering Archaic // Explore the Vastlands
+1 Null Elemental Blast
+1 Steel Hellkite
+1 Thought-Knot Seer
+1 Soul of New Phyrexia
+1 Reality Smasher
+1 Warping Wail
+1 Eldrazi Confluence
+1 Ugin, Eye of the Storms
+1 Thought Vessel
+1 Geode Golem
+1 Ulamog's Dreadsire
+1 Kozilek, the Great Distortion
+1 It That Betrays
+1 Flayer of Loyalties
+1 Artisan of Kozilek
+1 Bane of Bala Ged
+1 Conduit of Ruin
+1 Pathrazer of Ulamog
+1 Ulamog, the Ceaseless Hunger
+1 Void Winnower
+1 All Is Dust
+1 Ugin, the Ineffable
+1 Endless One
+1 Ugin's Mastery
+1 Eldrazi Mimic
+1 Liberator, Urza's Battlethopter
+1 Hedron Crawler
+1 Karn Liberated
+1 Calamity of the Titans
+1 Desecrate Reality
+1 Skittering Cicada
+1 Endbringer
+1 Spawnsire of Ulamog
+1 Plague Myr
+1 Arch of Orazca
+1 Blast Zone
+1 Bonders' Enclave
+1 Buried Ruin
+1 Cryptic Caves
+1 Darksteel Citadel
+1 Demolition Field
+1 Labyrinth of Skophos
+1 Scavenger Grounds
+1 Rogue's Passage
+1 Shrine of the Forsaken Gods
+1 Temple of the False God
+1 Spawning Bed
+1 Sea Gate Wreckage
+1 Urza's Tower
+12 Wastes
+1 Urza's Mine
+1 Tyrite Sanctum
+1 War Room
+1 Urza's Power Plant
+1 Mirrex
+1 Dust Bowl
+1 Forge of Heroes
+1 Eldrazi Temple
+1 Geier Reach Sanitarium
+1 Mirrorpool
+1 Sanctum of Ugin
+1 Sire of Seven Deaths
+1 Unstable Obelisk
+1 Fireshrieker
+1 Mystic Forge
+1 Sol Ring
+1 Forsaken Monument
+1 Lightning Greaves
+1 Worn Powerstone
+1 Predator, Flagship
+1 Thran Dynamo

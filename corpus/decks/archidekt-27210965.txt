@@ -1,0 +1,80 @@
+# Archidekt — Postgraduate Studies
+# source: archidekt:27210965
+# fetched: 2026-10-08
+
+Commander:
+1 Lyra, Tolarian Archangel
+
+Deck:
+1 Wizard Class
+1 Pensive Professor
+1 Archmage Emeritus
+1 Brainstorm
+1 Chase Inspiration
+1 Curiosity Crafter
+1 Deekah, Fractal Theorist
+1 Essence Scatter
+1 Emeritus of Ideation // Ancestral Recall
+1 Faerie Mastermind
+1 Harmonized Trio // Brainstorm
+1 Fractal Anomaly
+1 Mana Sculpt
+1 Mathemagics
+1 Lightning Greaves
+1 Mystic Sanctuary
+1 Negate
+1 Patchwork Banner
+1 Quick Study
+1 Reliquary Tower
+1 Sol Ring
+1 Thunderclap Drake
+1 Wisdom of Ages
+1 Malcolm, Alluring Scoundrel
+1 Illusory Angel
+1 Teferi, Temporal Pilgrim
+1 Frantic Search
+1 Counterspell
+1 Sapphire Medallion
+1 Thought Vessel
+1 Arcane Denial
+1 Aetherize
+1 High Tide
+1 Chasm Skulker
+1 Teferi's Ageless Insight
+1 Brainsurge
+1 Proft's Eidetic Memory
+1 Ominous Seas
+1 Geist of Saint Thalia
+1 Archmage's Charm
+1 Wizard's Staff
+1 Psychosis Crawler
+1 Bender's Waterskin
+1 Bident of Thassa
+1 Homunculus Horde
+1 Propaganda
+1 Enduring Curiosity
+1 Emrakul's Messenger
+1 Swan Song
+1 Archmage of Runes
+1 Arcanis the Omnipotent
+1 Opt
+1 Ponder
+1 Flow of Knowledge
+1 Mystic Confluence
+1 Preordain
+1 Three Steps Ahead
+1 Unwind
+1 Snap
+1 Myriad Landscape
+1 Wavebreak Hippocamp
+1 Agna Qel'a
+1 Mana Drain
+1 Winged Words
+1 Robe of the Archmagi
+1 Consider
+1 Body of Knowledge
+1 Gustha Ebbasdotter
+1 Heraldic Banner
+30 Island
+1 Tolarian Terror
+1 Midnight Clock

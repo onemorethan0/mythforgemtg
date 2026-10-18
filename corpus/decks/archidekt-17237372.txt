@@ -1,0 +1,102 @@
+# Archidekt — Terra, Magical Adept (FF Summoner)
+# source: archidekt:17237372
+# fetched: 2026-10-15
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Summoner's Grimoire
+1 Luminous Broodmoth
+1 Summon: Bahamut
+1 Sol Ring
+1 Scholar of New Horizons
+1 Summoning Materia
+1 Arcane Signet
+1 Swiftfoot Boots
+1 O'aka, Traveling Merchant
+1 Sword of the Animist
+1 Bugenhagen, Wise Elder
+1 Elena, Turk Recruit
+1 Tom Bombadil
+1 Summon: Magus Sisters
+1 Summon: Fenrir
+1 Summon: Valefor
+1 Garnet, Princess of Alexandria
+1 Summon: Brynhildr
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Rydia, Summoner of Mist
+1 Rikku, Resourceful Guardian
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Overlord of the Hauntwoods
+1 Summon: Yojimbo
+1 Farewell
+1 Summon: Primal Odin
+1 Summon: Titan
+1 Summon: Ixion
+1 Yuna, Grand Summoner
+1 Traveling Chocobo
+1 Summon: Kujata
+1 Summon: Knights of Round
+1 Summon: G.F. Ifrit
+1 Summon: Leviathan
+1 Summon: Shiva
+1 Tidus, Yuna's Guardian
+1 Yuna, Hope of Spira
+1 Swords to Plowshares
+1 Vandalblast
+1 Mortify
+1 Void Rend
+1 Ishgard, the Holy See // Faith & Grief
+2 Island
+1 An Offer You Can't Refuse
+1 Esper Origins // Summon: Esper Maduin
+1 Nature's Lore
+1 Path to Exile
+1 Restoration Magic
+1 Ultimate Magic: Holy
+1 Clash of the Eikons
+1 Three Visits
+1 Canopy Vista
+1 Dragonskull Summit
+1 Decimate
+1 Rise of the Dark Realms
+1 Vindicate
+1 Night's Whisper
+1 Ultima
+1 Farseek
+1 Arcane Sanctum
+1 Hinterland Harbor
+1 Command Tower
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Cinder Glade
+1 Exotic Orchard
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Clifftop Retreat
+1 Jungle Shrine
+3 Forest
+3 Plains
+1 Isolated Chapel
+1 Prairie Stream
+1 Nesting Grounds
+1 Rogue's Passage
+1 Mountain
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Seaside Citadel
+1 Midgar, City of Mako // Reactor Raid
+1 Sunken Hollow
+1 Swamp
+1 Nomad Outpost
+1 Smoldering Marsh
+1 Starting Town
+1 Rootbound Crag
+1 Sunpetal Grove
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Skullclamp
+1 Professional Face-Breaker
+1 Lord Jyscal Guado
+1 Morbid Opportunist
+1 Pitiless Plunderer
+1 Tireless Tracker

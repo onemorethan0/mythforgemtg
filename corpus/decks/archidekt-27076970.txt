@@ -1,0 +1,80 @@
+# Archidekt — sephara
+# source: archidekt:27076970
+# fetched: 2026-10-08
+# bracket: 3
+
+Commander:
+1 Sephara, Sky's Blade
+
+Deck:
+1 Emeria, the Sky Ruin
+1 Nykthos, Shrine to Nyx
+1 Ornithopter
+29 Plains
+1 Rogue's Passage
+1 Seraph Sanctuary
+1 Authority of the Consuls
+1 Brave the Elements
+1 Erode
+1 Goldenglow Moth
+1 Healer's Hawk
+1 Hope of Ghirapur
+1 Land Tax
+1 Momo, Friendly Flier
+1 Path to Exile
+1 Segovian Angel
+1 Serra Ascendant
+1 Skullclamp
+1 Sol Ring
+1 Swords to Plowshares
+1 Bishop of Wings
+1 Cartographer's Hawk
+1 Darksteel Mutation
+1 Dawn Charm
+1 Dawn's Truce
+1 Disenchant
+1 Flumph
+1 Giada, Font of Hope
+1 Hushbringer
+1 Lightning Greaves
+1 Ornithopter of Paradise
+1 Selfless Spirit
+1 Spirit Bonds
+1 Strict Proctor
+1 The Mind Stone
+1 Tomik, Distinguished Advokist
+1 White Orchid Phantom
+1 Youthful Valkyrie
+1 Angel of Vitality
+1 Aven Mindcensor
+1 Bygone Bishop
+1 Caduceus, Staff of Hermes
+1 Cut a Deal
+1 Dazzling Angel
+1 Generous Gift
+1 Ghostly Prison
+1 Kinjalli's Sunwing
+1 Metropolis Reformer
+1 Resplendent Angel
+1 Rousing of Souls
+1 Teferi's Protection
+1 The Book of Exalted Deeds
+1 Welcoming Vampire
+1 Wojek Investigator
+1 Angel of Jubilation
+1 Archangel of Tithes
+1 Court of Grace
+1 Emeria Angel
+1 Firemane Commando
+1 Linvala, Keeper of Silence
+1 Ravnica at War
+1 Return to Dust
+1 Smothering Tithe
+1 Windborn Muse
+1 Austere Command
+1 True Conviction
+1 Emeria Shepherd
+1 Avacyn, Angel of Hope
+1 Caged Sun
+1 The Wind Crystal
+1 Aetherflux Reservoir

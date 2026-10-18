@@ -1,0 +1,83 @@
+# Archidekt — Filthy Little Hobbitses
+# source: archidekt:25244906
+# fetched: 2026-10-07
+
+Commander:
+1 Bilbo, Thief in the Night
+
+Deck:
+1 Aetherflux Reservoir
+1 The Reality Chip
+1 Sensei's Divining Top
+1 Brain Freeze
+1 Laboratory Maniac
+1 Mm'menon, the Right Hand
+1 Mirror Room // Fractured Realm
+1 Hidden Cataract
+1 Muraganda Raceway
+1 Northampton Farm
+1 Rogue's Passage
+1 Cephalid Coliseum
+1 Mistrise Village
+1 Mirrorpool
+1 Secluded Starforge
+1 Archway of Innovation
+25 Island
+1 Stridehangar Automaton
+1 Repurposing Bay
+1 Bottomless Pool // Locker Room
+1 Liberator, Urza's Battlethopter
+1 Krang, Utrom Warlord
+1 Stock Up
+1 Kappa Cannoneer
+1 The Aetherspark
+1 Sai, Master Thopterist
+1 Cyberman Patrol
+1 Radiant Lotus
+1 Thopter Spy Network
+1 Transit Mage
+1 Forensic Gadgeteer
+1 Guidelight Optimizer
+1 Waxen Shapethief
+1 Cybermen Squadron
+1 Brain in a Jar
+1 Unstoppable Plan
+1 Geyser Drake
+1 Highspire Bell-Ringer
+1 Fblthp, Lost on the Range
+1 Archmage of Runes
+1 Mocking Sprite
+1 Changeling Wayfinder
+1 Quantum Riddler
+1 Commandeer
+1 Homunculus Horde
+1 Illvoi Infiltrator
+1 Aetherize
+1 Desynchronize
+1 Confusticate and Bebother
+1 Riddles in the Dark
+1 Thranduil's Decree
+1 An Offer You Can't Refuse
+1 Consign to Memory
+1 Essence Capture
+1 Mindbreak Trap
+1 Swiftfoot Boots
+1 Season of Weaving
+1 Bilbo Baggins, Burglar // Take a Glance
+1 Wizard's Staff
+1 Bilbo, Luckwearer // Burglar's Plot
+1 Temporal Mastery
+1 Cyberdrive Awakener
+1 Sol Ring
+1 Emry, Lurker of the Loch
+1 Crystal Skull, Isu Spyglass
+1 Cloud Key
+1 Foundry Inspector
+1 Etherium Sculptor
+1 Arcane Signet
+1 Tezzeret, Cruel Captain
+1 Uthros, Titanic Godcore
+1 Seat of the Synod
+1 Uthros Research Craft
+1 Counterspell
+1 Swan Song

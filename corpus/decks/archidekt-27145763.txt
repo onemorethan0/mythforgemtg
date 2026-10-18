@@ -1,0 +1,99 @@
+# Archidekt — Discounts & Dragons
+# source: archidekt:27145763
+# fetched: 2026-10-06
+
+Commander:
+1 Acolyte of Bahamut
+1 Ganax, Astral Hunter
+
+Deck:
+1 Dragonstorm Globe
+1 Encroaching Dragonstorm
+1 Rhythm of the Wild
+1 Breaching Dragonstorm
+1 Garruk's Uprising
+1 Rain of Riches
+1 The Great Henge
+1 Lathliss, Dragon Queen
+1 Warstorm Surge
+1 Up the Beanstalk
+1 Elemental Bond
+1 Tribute to the World Tree
+1 Dracogenesis
+1 Frontier Siege
+1 Dragon's Fire
+1 Dragon Tempest
+1 Impact Tremors
+1 Smaug the Magnificent
+1 Patron of the Arts
+1 Dragonlord's Servant
+1 Draconic Muralists
+1 Scaled Nurturer
+1 Deflecting Swat
+1 Draconic Visitor
+1 Earthquake Dragon
+1 Desolation of Smaug
+1 Broodcaller Scourge
+1 Desert Were-Worm
+1 Bloomvine Regent // Claim Territory
+1 Dragonspeaker Shaman
+1 Minion of the Mighty
+1 Savage Ventmaw
+1 Dragonmaster Outcast
+1 Anger
+1 Thrakkus the Butcher
+1 Scourge of Valkas
+1 Atarka, World Render
+1 Big Score
+1 Utvara Hellkite
+1 Goblin Anarchomancer
+1 Hellkite Tyrant
+1 Wrathful Red Dragon
+1 Scourge of the Throne
+1 Drakuseth, Maw of Flames
+1 Unexpected Windfall
+1 Balefire Dragon
+1 Return of the Wildspeaker
+1 Magda, Brazen Outlaw
+1 Old Gnawbone
+1 Terror of the Peaks
+1 Tyrant's Familiar
+1 Cavern-Hoard Dragon
+1 Earthquake
+1 Beast Within
+1 Heroic Intervention
+1 Magmaquake
+1 Chaos Warp
+1 Descent into Avernus
+1 Sol Ring
+1 Arcane Signet
+1 Spire Garden
+1 Cinder Glade
+1 Rootbound Crag
+1 Stomping Ground
+1 Klauth's Will
+1 Mosswort Bridge
+1 Stump Stomp // Burnwillow Clearing
+1 Untimely Malfunction
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Three Tree City
+1 The Fire Crystal
+1 Kessig Wolf Run
+1 Command Tower
+1 Haven of the Spirit Dragon
+1 Talon Gates of Madara
+1 Reliquary Tower
+1 Cragcrown Pathway // Timbercrown Pathway
+3 Forest
+1 Spinerock Knoll
+1 Boseiju, Who Endures
+1 Cavern of Souls
+1 Yavimaya, Cradle of Growth
+1 Path of Ancestry
+1 Wooded Foothills
+1 Commercial District
+1 Karplusan Forest
+1 Temple of Abandon
+7 Mountain
+1 Thornspire Verge

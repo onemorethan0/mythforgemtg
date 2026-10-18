@@ -1,0 +1,70 @@
+# Archidekt — Acererak
+# source: archidekt:27004417
+# fetched: 2026-10-02
+
+Commander:
+1 Acererak the Archlich
+
+Deck:
+36 Snow-Covered Swamp
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Cave
+1 Dauthi Voidwalker
+1 Grief
+1 Orcish Bowmasters
+1 Agonizing Remorse
+1 Beseech the Mirror
+1 Beseech the Queen
+1 Bubbling Muck
+1 Cabal Ritual
+1 Check for Traps
+1 Cabal Coffers
+1 Demonic Tutor
+1 Cling to Dust
+1 Collective Brutality
+1 Consuming Corruption
+1 Cruelclaw's Heist
+1 Cut Down
+1 Damnation
+1 Dark Petition
+1 Dead of Winter
+1 Defile
+1 Demonic Consultation
+1 Dimir Machinations
+1 Dread Fugue
+1 Duress
+1 Fatal Push
+1 Force of Despair
+1 Grim Tutor
+1 Hymn to Tourach
+1 Innocent Blood
+1 Inquisition of Kozilek
+1 Insatiable Avarice
+1 Locust Spray
+1 Long Goodbye
+1 Massacre
+1 Night's Whisper
+1 Profane Tutor
+1 Requiting Hex
+1 Resentful Revelation
+1 Sheoldred's Edict
+1 Shred Memory
+1 Thoughtseize
+1 Unmask
+1 Bontu's Monument
+1 Candy Trail
+1 Carnival of Souls
+1 Ensnaring Bridge
+1 Expedition Map
+1 Heartless Summoning
+1 Helm of Obedience
+1 Jet Medallion
+1 Jeweled Amulet
+1 Leyline of the Void
+1 Necropotence
+1 Nihil Spellbomb
+1 Prism Ring
+1 Relic of Legends
+1 The Sibsig Ceremony
+1 Urza's Incubator
+1 Winter Moon

@@ -1,0 +1,73 @@
+# Archidekt — World on Fire
+# source: archidekt:27417212
+# fetched: 2026-10-14
+
+Commander:
+1 Ojer Axonil, Deepest Might // Temple of Power
+
+Deck:
+1 Flame Fusillade
+1 Thermo-Alchemist
+1 Koth, the Geomancer
+1 Master of Barbs
+1 Firebrand Archer
+1 Kessig Flamebreather
+1 Coruscation Mage
+1 Rain of Embers
+1 Sunshot Militia
+1 Razorkin Needlehead
+1 Erebor Flamesmith
+1 Spear Spewer
+1 Chandra's Incinerator
+1 Defiler of Instinct
+1 Sabotender
+1 Solphim, Mayhem Dominus
+1 Longshot, Rebel Bowman
+1 Spikefield Hazard // Spikefield Cave
+1 Lava Dart
+1 Gut Shot
+1 Flick a Coin
+1 Roiling Vortex
+1 Burning Earth
+1 Tavern Brawler
+1 Leyline of Lightning
+1 Aether Sting
+1 Tectonic Hazard
+1 Volcanic Spray
+1 Urabrask // The Great Work
+1 Tunneling Geopede
+1 End the Festivities
+1 Unruly Catapult
+1 Zo-Zu the Punisher
+1 Bolt Bend
+1 Champion's Helm
+1 Ruby Medallion
+1 Fiery Confluence
+1 Blisterspit Gremlin
+1 Manabarbs
+1 Grapeshot
+1 Arcane Teachings
+1 Electrostatic Field
+1 Spitfire Lagac
+1 Agate Instigator
+1 Lightning Bolt
+1 Shock
+1 Needle Drop
+1 Red Elemental Blast
+1 Pyroblast
+1 Monstrous Rage
+1 Sol Ring
+1 Arcane Signet
+1 Mind Stone
+1 Fire Diamond
+1 Sulfuric Vortex
+1 Claws of Valakut
+1 Neheb, the Eternal
+1 Harsh Mentor
+1 Firespitter Whelp
+1 Cinder Pyromancer
+1 Granite Grip
+1 Blackblade Reforged
+1 Commander's Plate
+1 Lightning Greaves
+35 Mountain

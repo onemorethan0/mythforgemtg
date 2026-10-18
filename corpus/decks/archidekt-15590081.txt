@@ -1,0 +1,88 @@
+# Archidekt — Rakdos Vampires, Winter 2025
+# source: archidekt:15590081
+# fetched: 2026-10-09
+
+Commander:
+1 Olivia Voldaren
+
+Deck:
+1 Throne of Geth
+1 Anje Falkenrath
+1 Cordial Vampire
+1 Falkenrath Gorger
+1 Immersturm Predator
+1 Drana, the Last Bloodchief
+1 Markov Enforcer
+1 Markov Baron
+1 Mephidross Vampire
+1 Scion of Opulence
+1 Necropolis Regent
+1 Nighthawk Scavenger
+1 Stromkirk Captain
+1 Strefan, Maurer Progenitor
+1 Zagras, Thief of Heartbeats
+1 Deadly Dispute
+1 Mob Rule
+1 Vandalblast
+1 Molten Echoes
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Rakdos Carnarium
+1 Smoldering Marsh
+1 Rogue's Passage
+1 Vampire Socialite
+1 Tainted Peak
+1 Seething Song
+1 Big Score
+1 The Reaver Cleaver
+1 Qarsi Revenant
+1 Indulgent Aristocrat
+1 Withering Torment
+1 Feed the Swarm
+1 Sulfurous Springs
+1 Graven Cairns
+1 Herald's Horn
+1 Exsanguinator Cavalry
+1 Bloodghast
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Florian, Voldaren Scion
+1 Vampire of the Dire Moon
+1 Dark Ritual
+1 Buried Ruin
+1 Command Tower
+1 Beseech the Queen
+1 Sorin, Imperious Bloodlord
+1 Kindred Dominance
+1 Nirkana Revenant
+1 Kher Keep
+1 Stensia Masquerade
+1 Blade of the Bloodchief
+15 Swamp
+6 Mountain
+1 Cemetery Gatekeeper
+1 Arcane Signet
+1 Swiftfoot Boots
+1 Sol Ring
+1 Basilisk Collar
+1 Profane Tutor
+1 Diabolic Tutor
+1 Blasphemous Act
+1 Dragonskull Summit
+1 Dust Bowl
+1 Blood Artist
+1 Shared Animosity
+1 Collective Inferno
+1 Pact of the Serpent
+1 Access Tunnel
+1 Viscera Seer
+1 Talisman of Indulgence
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Glass-Cast Heart
+1 Uncivil Unrest
+1 Archenemy's Charm
+1 Scheming Silvertongue // Sign in Blood
+1 Deadly Tempest
+1 Bloodtithe Harvester
+1 Go for the Throat
+1 Henrika Domnathi // Henrika, Infernal Seer
+1 Bloodline Recollector // Ancestral Craving

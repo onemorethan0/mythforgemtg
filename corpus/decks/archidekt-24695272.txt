@@ -1,0 +1,102 @@
+# Archidekt — Froth and Foam
+# source: archidekt:24695272
+# fetched: 2026-10-09
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Supreme Will
+1 Watery Grave
+1 Wizard's Staff
+1 Boggart Trawler // Boggart Bog
+1 Decanter of Endless Water
+1 Talisman of Progress
+1 Tataru Taru
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Underground River
+1 Godless Shrine
+1 Caves of Koilos
+1 Anguished Unmaking
+1 Papalymo Totolymo
+1 Lyse Hext
+1 Propaganda
+1 Circle of Power
+1 Exsanguinate
+1 Fandaniel, Telophoroi Ascian
+1 Hallowed Fountain
+1 Relic of Legends
+1 Exotic Orchard
+1 Command Tower
+1 Demolition Field
+1 Shattered Sanctum
+1 Bender's Waterskin
+1 Black Mage's Rod
+1 Talisman of Hierarchy
+1 Adarkar Wastes
+1 Void Rend
+1 Trouble in Pairs
+1 Sunken Ruins
+1 Mystic Gate
+1 Cornered by Black Mages
+1 Debt to the Deathless
+1 Sanguine Bond
+1 Transpose
+1 Talisman of Dominance
+1 Sol Ring
+1 Arcane Signet
+2 Swamp
+1 An Offer You Can't Refuse
+1 Observed Stasis
+1 Deserted Beach
+1 Swords to Plowshares
+1 Path to Exile
+1 Archmage Emeritus
+1 Blind Obedience
+1 Generous Gift
+1 Stroke of Midnight
+1 Reverent Howl
+1 Vito, Thorn of the Dusk Rose
+1 Sigil of Sleep
+1 Confusticate and Bebother
+1 Shipwreck Marsh
+1 Reliquary Tower
+1 Ghostly Prison
+1 Sink into Stupor // Soporific Springs
+1 Toxic Deluge
+1 Geist of Saint Thalia
+1 Inkshield
+1 Talrand, Sky Summoner
+1 Hermes, Overseer of Elpis
+1 Aligned Heart
+1 G'raha Tia, Scion Reborn
+1 Quantum Misalignment
+1 Multiversal Recruitment
+1 Stock Up
+1 Dark Ritual
+1 Silundi Vision // Silundi Isle
+1 Unwind
+1 Culling the Weak
+1 Case of the Ransacked Lab
+1 Fabled Passage
+1 Lunar Convocation
+1 Underworld Dreams
+1 Brainsurge
+1 Bojuka Bog
+1 Scavenger Grounds
+1 Kambal, Consul of Allocation
+1 Variable Chaser // Arc of Fortune
+1 Rally the Monastery
+1 Irenicus's Vile Duplication
+1 Cut a Deal
+1 Mirror Room // Fractured Realm
+1 Arcane Sanctum
+1 Field of Ruin
+2 Plains
+1 Mystic Sanctuary
+5 Island
+1 Contaminated Landscape
+1 Temple of the False God
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Kambal, Profiteering Mayor

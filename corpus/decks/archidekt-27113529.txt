@@ -1,0 +1,95 @@
+# Archidekt — Game of Thrones
+# source: archidekt:27113529
+# fetched: 2026-10-06
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+1 Crackling Doom
+1 Crystal Barricade
+1 Duelist's Heritage
+1 Ghostly Prison
+1 Secret Rendezvous
+1 Cut a Deal
+1 Generous Gift
+1 Dawn Charm
+1 Regna's Sanction
+1 Scholarship Sponsor
+1 Stroke of Midnight
+1 Fiend Hunter
+1 Orzhov Advokist
+1 Search the Premises
+1 Bastion Protector
+1 Noble Heritage
+1 Swords to Plowshares
+1 Beckoning Will-o'-Wisp
+1 Bounty Agent
+1 Custodi Lich
+1 Breach the Multiverse
+1 Wretched Confluence
+1 Marchesa's Decree
+1 Agent of the Shadow Thieves
+1 Dark Tutelage
+1 Painful Truths
+1 Call to the Void
+1 Victimize
+1 Deadly Designs
+1 Termination Facilitator
+1 Hostile Negotiations
+1 Feast of Succession
+1 Plaguecrafter
+1 Royal Assassin
+1 Kelsien, the Plague
+1 Netherborn Altar
+1 Blot Out the Sky
+1 Archon of Coronation
+1 Kain, Traitorous Dragoon
+1 Tajic, Legion's Edge
+1 Massacre Girl
+1 Anya, Merciless Angel
+1 Khârn the Betrayer
+1 Yuriko, Blade of the Mighty
+1 Bloodthirsty Blade
+1 Sol Ring
+1 Contested Game Ball
+1 Arcane Signet
+1 Moonsilver Key
+1 Lightning Greaves
+1 Coveted Jewel
+1 Hithlain Rope
+1 Clifftop Retreat
+1 Command Tower
+1 Shineshadow Snarl
+1 Evolving Wilds
+1 Rogue's Passage
+1 Reflecting Pool
+1 Vault of the Archangel
+1 Terramorphic Expanse
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Command Beacon
+1 Throne of the High City
+1 Nomad Outpost
+1 Exotic Orchard
+1 War Room
+1 Battlefield Forge
+1 Fetid Heath
+1 Caves of Koilos
+1 Isolated Chapel
+1 Haunted Ridge
+1 Foreboding Ruins
+1 Sulfurous Springs
+1 Furycalm Snarl
+1 Smoldering Marsh
+1 Dragonskull Summit
+8 Plains
+6 Swamp
+1 Mountain
+1 Skyline Despot
+1 Emberwilde Captain
+1 Court of Ire
+1 Sword of Vengeance
+1 Fracture
+1 Call for Aid
+1 Disrupt Decorum
+1 Neyam Shai Murad

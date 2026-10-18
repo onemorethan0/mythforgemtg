@@ -1,0 +1,97 @@
+# Archidekt — Triad (Rework WIP)
+# source: archidekt:26559217
+# fetched: 2026-10-07
+
+Commander:
+1 The Capitoline Triad
+
+Deck:
+1 Akroma's Memorial
+1 Collector's Vault
+1 Millikin
+1 Codex Shredder
+1 The Warring Triad
+1 Perpetual Timepiece
+1 Palladium Myr
+1 Matzalantli, the Great Door // The Core
+1 Threefold Thunderhulk
+1 Ornithopter of Paradise
+1 Ghoulcaller's Bell
+1 Hedron Crawler
+1 Krang, Utrom Warlord
+1 Manakin
+1 Troop of Ponies
+1 Burnished Hart
+1 Shriekhorn
+1 Wand of Vertebrae
+1 Sol Ring
+1 Mind Stone
+1 Lightning Greaves
+1 Myr Battlesphere
+1 The Mightstone and Weakstone
+1 Hedron Archive
+1 Dreamstone Hedron
+1 Thran Dynamo
+1 Thought Vessel
+1 The Eternity Elevator
+1 Palantír of Orthanc
+1 Swiftfoot Boots
+1 Thopter Assembly
+1 Mycosynth Golem
+1 Forsaken Monument
+1 Triplicate Titan
+1 Ugin, the Ineffable
+1 Metalwork Colossus
+1 Phyrexian Triniform
+1 Wurmcoil Engine
+1 Solemn Simulacrum
+1 Cityscape Leveler
+1 Pentavus
+1 Summon: Bahamut
+1 Sandstone Oracle
+1 The Immortal Sun
+1 Mind's Eye
+1 Excalibur, Sword of Eden
+1 Darksteel Monolith
+1 Echoes of Eternity
+1 Currency Converter
+1 Meteor Golem
+1 H.E.R.B.I.E., Lovable Robot
+1 Ultima, Origin of Oblivion
+1 Wondrous Crucible
+1 Scrap Trawler
+1 Extinguisher Battleship
+1 Arch of Orazca
+1 Bonders' Enclave
+1 Buried Ruin
+1 Temple of the False God
+1 Arcane Lighthouse
+1 Sanctum of Ugin
+1 Crystal Grotto
+1 Foundry of the Consuls
+1 Conduit Pylons
+1 Darksteel Citadel
+1 Field of Ruin
+1 Geier Reach Sanitarium
+1 Gallifrey Council Chamber
+1 Mikokoro, Center of the Sea
+1 Springjack Pasture
+1 The Grey Havens
+1 Mishra's Factory
+1 Homeward Path
+1 Hidden Grotto
+1 Sequestered Stash
+1 Shrine of the Forsaken Gods
+1 Tocasia's Dig Site
+1 Spawning Bed
+1 Phyrexia's Core
+1 War Room
+1 Zhalfirin Void
+1 Fountainport
+1 Blinkmoth Nexus
+10 Wastes
+1 Mystic Forge
+1 Daily Bugle Newspaper
+1 Portal to Phyrexia
+1 Draco
+1 Darksteel Angel

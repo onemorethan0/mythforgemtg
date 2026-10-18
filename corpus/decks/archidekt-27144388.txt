@@ -1,0 +1,100 @@
+# Archidekt — Eshki Burnnnn
+# source: archidekt:27144388
+# fetched: 2026-10-15
+# bracket: 3
+
+Commander:
+1 Eshki, Temur's Roar
+
+Deck:
+1 Dragonhawk, Fate's Tempest
+1 Kairi, the Swirling Sky
+1 Klauth, Unrivaled Ancient
+1 Miirym, Sentinel Wyrm
+1 Scourge of Valkas
+1 Sarkhan, Soul Aflame
+1 Temple of the Dragon Queen
+1 Dragonspeaker Shaman
+1 Scaled Nurturer
+1 Goreclaw, Terror of Qal Sisma
+1 Utvara Hellkite
+1 Ancient Copper Dragon
+1 Dragon Tempest
+1 Temur Ascendancy
+1 Temur Battlecrier
+1 Terror of the Peaks
+1 Cavern-Hoard Dragon
+1 Atarka, World Render
+1 Twinflame Tyrant
+1 Ancient Silver Dragon
+1 Old Gnawbone
+1 Farseek
+1 Rhythm of the Wild
+1 Garruk's Uprising
+1 Breeding Pool
+1 Command Tower
+1 Stomping Ground
+1 Cinder Glade
+1 Mana Drain
+1 Snakeskin Veil
+1 Lightning Greaves
+1 Sol Ring
+1 Dragon's Hoard
+1 Thundermane Dragon
+3 Island
+1 Mox Jasper
+1 Sarkhan's Triumph
+1 Heroic Intervention
+1 Will of the Temur
+1 There and Back Again
+1 Hinterland Harbor
+1 Steam Vents
+1 Sodden Verdure
+1 Scorched Geyser
+1 Wooded Foothills
+1 Misty Rainforest
+1 Scalding Tarn
+1 Spire Garden
+1 Cavern of Souls
+1 Prismatic Vista
+1 Reflecting Pool
+1 Maelstrom of the Spirit Dragon
+3 Forest
+4 Mountain
+1 Thought Vessel
+1 Reliquary Tower
+1 Mistrise Village
+1 Smaug the Magnificent
+1 Urza's Incubator
+1 Chrome Mox
+1 Rampant Growth
+1 Rhystic Study
+1 Dragonstorm Globe
+1 Hraesvelgr of the First Brood
+1 Ureni of the Unwritten
+1 Kindred Discovery
+1 Unstoppable Plan
+1 Taiga
+1 Volcanic Island
+1 Tropical Island
+1 Shinka, the Bloodsoaked Keep
+1 Mines of Moria
+1 Thornspire Verge
+1 Lathliss, Dragon Queen
+1 Kodama's Reach
+1 Entish Restoration
+1 Bonehoard Dracosaur
+1 Goldspan Dragon
+1 Dragonlord's Servant
+1 Stubborn Denial
+1 Deflecting Swat
+1 Atsushi, the Blazing Sky
+1 Earthquake Dragon
+1 Hardened Scales
+1 The Ozolith
+1 Roaming Throne
+1 Archdruid's Charm
+1 Herald's Horn
+1 Ganax, Astral Hunter
+1 Arcane Signet
+1 Three Visits

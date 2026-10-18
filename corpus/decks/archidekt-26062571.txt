@@ -1,0 +1,103 @@
+# Archidekt — Edward Kenway
+# source: archidekt:26062571
+# fetched: 2026-10-15
+# bracket: 2
+
+Commander:
+1 Edward Kenway
+
+Deck:
+1 Izzet Signet
+1 Dimir Signet
+1 Malcolm, Keen-Eyed Navigator
+1 Kitesail Larcenist
+1 Archway of Innovation
+1 Canyon Slough
+1 Arcane Signet
+1 Lightning Greaves
+1 Coastal Peak
+1 Blasphemous Act
+1 Crumbling Necropolis
+1 Glint-Horn Buccaneer
+1 Damocles Base, Sword of Kang
+1 Demonic Junker
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Fetid Pools
+1 Goldspan Dragon
+1 Heartless Conscription
+1 Marionette Master
+1 Malcolm, Alluring Scoundrel
+3 Island
+1 Jackdaw
+1 Lethal Scheme
+1 Maestros Theater
+1 Bojuka Bog
+1 Command Tower
+1 Dragonskull Summit
+1 Mount Doom
+2 Mountain
+1 Oscorp Industries
+1 Ramirez DePietro, Pillager
+1 RMS Titanic
+1 Scorched Geyser
+1 Breeches, Eager Pillager
+1 Magda, Brazen Outlaw
+1 Captain Howler, Sea Scourge
+1 Mary Read and Anne Bonny
+1 Fearless Swashbuckler
+1 Adéwalé, Breaker of Chains
+1 Basim Ibn Ishaq
+1 Phoenix Fleet Airship
+1 Cyberdrive Awakener
+1 Rakdos Signet
+1 Nadier's Nightblade
+1 Memory Lapse
+1 Moonlit Meditation
+1 Seething Landscape
+1 Shivan Reef
+1 Smoldering Marsh
+1 Spectral Sailor
+1 Spire of Industry
+1 Stubborn Denial
+1 Sulfurous Springs
+2 Swamp
+1 Swashbuckler Extraordinaire
+1 Temple of Epiphany
+1 Sol Ring
+1 The Falcon, Airship Restored
+1 Siren Stormtamer
+1 The Indomitable
+1 The Lunar Whale
+1 The Thanos-Copter
+1 Underground River
+1 Uthros Research Craft
+1 The Belligerent
+1 The Fire Nation Drill
+1 Temple of Deceit
+1 Withering Torment
+1 Smuggler's Copter
+1 Weatherlight
+1 Sunken Hollow
+1 Hostage Taker
+1 Mirkwood Bats
+1 Royal Assassin
+1 Captain Lannery Storm
+1 Bident of Thassa
+1 Back in Town
+1 Gemcutter Buccaneer
+1 Talisman of Dominance
+1 The Regalia
+1 Mindlink Mech
+1 Great Gilded Boat
+1 Luxury Suite
+1 Desynchronization
+1 Counterspell
+1 Captain Storm, Cosmium Raider
+1 Cosima, God of the Voyage // The Omenkeel
+1 Path of Ancestry
+1 Breeches, the Blastmaker
+1 Haunted Ridge
+1 Shipwreck Marsh
+1 Temple of Malice
+1 Stormcarved Coast

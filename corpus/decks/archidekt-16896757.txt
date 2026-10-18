@@ -1,0 +1,95 @@
+# Archidekt — Astarion
+# source: archidekt:16896757
+# fetched: 2026-10-01
+# bracket: 3
+
+Commander:
+1 Astarion, the Decadent
+
+Deck:
+1 Approach of the Second Sun
+1 Arcane Signet
+1 Astarion's Thirst
+1 Bandit's Haul
+1 Bleachbone Verge
+1 Blind Obedience
+1 Blitzwing, Cruel Tormentor // Blitzwing, Adaptive Assailant
+1 Bojuka Bog
+1 Bonders' Enclave
+1 Burnished Hart
+1 Case of the Stashed Skeleton
+1 Caves of Koilos
+1 Command Beacon
+1 Command Tower
+1 Commander's Sphere
+1 Crypt Ghast
+1 Dark Ritual
+1 Debt to the Deathless
+1 Defiant Bloodlord
+1 Desolate Mire
+1 Diabolic Tutor
+1 Dire Fleet Ravager
+1 Eldritch Pact
+1 Exsanguinate
+1 Felidar Sovereign
+1 Fracture
+1 Fumigate
+1 Gix's Command
+1 Glasswing Grace // Age-Graced Chapel
+1 Godless Shrine
+1 Greed
+1 Isolated Chapel
+1 Kaya's Wrath
+1 Lightning Greaves
+1 Loyal Warhound
+1 Myriad Landscape
+1 Orzhov Locket
+1 Orzhov Signet
+1 Path of Peril
+1 Phyrexian Arena
+3 Plains
+1 Preacher of the Schism
+1 Quietus Spike
+1 Revival // Revenge
+1 Ritual of Soot
+1 Rogue's Passage
+1 Sanguine Bond
+1 Shattered Sanctum
+1 Sol Ring
+1 Solemn Simulacrum
+1 Sunlit Marsh
+11 Swamp
+1 Temple of Silence
+1 Temple of the False God
+1 The Speed Demon
+1 Twilight Prophet
+1 Unstoppable Slasher
+1 Vanishing Verse
+1 Vault of the Archangel
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Zof Consumption // Zof Bloodbog
+1 Painful Quandary
+1 Rush of Dread
+1 Whispersilk Cloak
+1 Vorpal Sword
+1 Scytheclaw
+1 Peer into the Abyss
+1 Saw in Half
+1 Access Tunnel
+1 Wayfarer's Bauble
+1 Eternal Dragon
+1 Gingerbrute
+1 Kor Cartographer
+1 Archpriest of Shadows
+1 Manifold Key
+1 Claim Jumper
+1 Fetid Heath
+1 Path of Ancestry
+1 Escape Tunnel
+1 Umbral Expanse
+1 Pox Plague
+1 Swiftfoot Boots
+1 Snowfield Sinkhole
+1 Worn Powerstone
+1 Scheming Silvertongue // Sign in Blood
+1 Troop of Ponies

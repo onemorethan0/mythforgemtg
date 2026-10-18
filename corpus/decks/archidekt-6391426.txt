@@ -1,0 +1,107 @@
+# Archidekt — Wincon Monstrosity
+# source: archidekt:6391426
+# fetched: 2026-10-15
+
+Commander:
+1 The Fourteenth Doctor
+1 Rose Noble
+
+Deck:
+1 The Parting of the Ways
+1 The Third Doctor
+1 Arcane Signet
+1 Growth Spiral
+1 Sol Ring
+1 K-9, Mark I
+1 Rogue's Passage
+1 Path of Ancestry
+1 Mystic Monastery
+1 Command Tower
+1 Exotic Orchard
+1 Martha Jones
+1 Rose Tyler
+1 Azor's Elocutors
+1 Heroes' Podium
+1 Nanogene Conversion
+1 The War Doctor
+1 The Eighth Doctor
+1 The Ninth Doctor
+1 The Eleventh Doctor
+1 The Twelfth Doctor
+1 Gallifrey Stands
+1 The Millennium Calendar
+1 Hellkite Tyrant
+1 Mayael's Aria
+1 Psychic Paper
+1 An Unearthly Child
+1 Peri Brown
+1 The Sixth Doctor
+1 Sonic Screwdriver
+1 Triskaidekaphile
+1 The Fourth Doctor
+1 The Fifth Doctor
+1 The Second Doctor
+1 The Tenth Doctor
+1 Simic Ascendancy
+1 Sarah Jane Smith
+1 Mechanized Production
+1 Sinister Concierge
+1 Raff Capashen, Ship's Mage
+1 Rift Elemental
+1 Maze's End
+1 Jhoira of the Ghitu
+1 Biophagus
+1 Spara's Headquarters
+1 Jhoira, Weatherlight Captain
+1 Suspend
+1 Flowering of the White Tree
+1 Saw It Coming
+1 Lightning Greaves
+1 Path to Exile
+1 Basilisk Gate
+1 Baldur's Gate
+1 Citadel Gate
+1 Cliffgate
+1 Gateway Plaza
+1 Gond Gate
+1 Heap Gate
+1 Manor Gate
+1 Sea Gate
+1 The Fugitive Doctor
+1 Thran Portal
+1 Reliquary Tower
+1 Frontier Bivouac
+1 Gallifrey Council Chamber
+1 Flatline
+1 Preordain
+1 Ponder
+1 Regenerations Restored
+1 Inspiring Refrain
+1 Flesh Duplicate
+1 Grasp of Fate
+1 Crack in Time
+1 Trenzalore Clocktower
+1 Four Knocks
+1 The Eleventh Hour
+1 Out of Time
+1 Run for Your Life
+1 Seaside Citadel
+1 Temple of the False God
+1 Trial of a Time Lord
+1 Five Hundred Year Diary
+1 The Five Doctors
+1 Reverse the Polarity
+1 Captain Sisay
+1 The Flux
+1 The Thirteenth Doctor
+1 Ketria Triome
+1 Jetmir's Garden
+1 Hallowed Fountain
+1 Raugrin Triome
+1 Temple Garden
+1 Breeding Pool
+1 Steam Vents
+1 Sacred Foundry
+1 Twenty-Toed Toad
+1 Banish to Another Universe
+1 Everything Comes to Dust

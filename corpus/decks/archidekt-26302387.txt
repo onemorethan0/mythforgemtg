@@ -1,0 +1,92 @@
+# Archidekt — Storming In
+# source: archidekt:26302387
+# fetched: 2026-10-16
+# bracket: 2
+
+Commander:
+1 Prismari, the Inspiration
+
+Deck:
+1 Resonating Lute
+1 Riverpyre Verge
+1 Halimar Depths
+1 Bender's Waterskin
+1 Pirate's Pillage
+1 Reinterpret
+1 Spell Swindle
+1 Flusterstorm
+1 Mana Geyser
+1 Return the Favor
+1 Lightning Greaves
+1 Expressive Iteration
+1 Comet Storm
+1 Khenra Spellspear // Gitaxian Spellstalker
+1 Dispelling Exhale
+1 Arcane Signet
+1 Spectacle Summit
+1 Tablet of Discovery
+1 Backdraft Hellkite
+1 Splatter Technique
+1 Murmuring Mystic
+1 Goblin Electromancer
+1 Karn's Temporal Sundering
+1 Shivan Reef
+1 Ionize
+1 Potioner's Trove
+1 Spell Shrivel
+1 Abrade
+1 Radiant Performer
+1 Wizard's Spellbook
+1 Stress Dream
+1 Temple of Epiphany
+1 Fabricate
+1 Epic Experiment
+1 Magus of the Wheel
+1 Talisman of Creativity
+1 Deekah, Fractal Theorist
+1 Devastation Tide
+10 Mountain
+1 Diary of Dreams
+1 Archmage Emeritus
+1 Sanar, Unfinished Genius // Wild Idea
+1 The Dawning Archaic
+1 An Offer You Can't Refuse
+1 Divergent Equation
+1 Lightning Bolt
+1 Daze
+1 Shock
+1 Prismari Charm
+1 Boltwave
+1 Command Tower
+1 Stock Up
+1 Brass's Bounty
+1 Sleight of Hand
+1 Seize the Spoils
+1 Empty the Warrens
+1 Flow State
+1 Brain Freeze
+1 Mana Sculpt
+1 Rootha, Mercurial Artist
+1 Opt
+1 Frantic Search
+1 Leyline Tyrant
+1 Sol Ring
+1 Unexpected Windfall
+1 Wisdom of Ages
+1 Rapturous Moment
+1 Storm-Kiln Artist
+1 Restless Spire
+1 Mystic Sanctuary
+1 Galazeth Prismari
+10 Island
+1 Thunderclap Drake
+1 Forgotten Cave
+1 Turbulent Springs
+1 Scorched Geyser
+1 Treasure Chest
+1 Stormcatch Mentor
+1 Reality Shift
+1 Lonely Sandbar
+1 Bonders' Enclave
+1 Manaform Hellkite
+1 Glamdring

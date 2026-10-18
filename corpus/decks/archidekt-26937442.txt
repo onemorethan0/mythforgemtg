@@ -1,0 +1,98 @@
+# Archidekt — Budget
+# source: archidekt:26937442
+# fetched: 2026-10-01
+
+Commander:
+1 Nethroi, Apex of Death
+
+Deck:
+1 Insatiable Hemophage
+1 Huntmaster Liger
+1 Chittering Harvester
+1 Mindleecher
+1 Cubwarden
+1 Cavern Whisperer
+1 Gemrazer
+1 Auspicious Starrix
+1 Boneyard Lurker
+1 Migratory Greathorn
+1 Necropanther
+1 Shriekmaw
+1 Greenhouse Propagator
+1 Swords to Plowshares
+1 Kutzil, Malamet Exemplar
+1 Adorned Pouncer
+1 Path to Exile
+1 Fleecemane Lion
+1 Skyhunter Skirmisher
+1 Beast Within
+1 Pridemalkin
+1 Bronzehide Lion
+1 Bast, Panther Goddess
+1 White Sun's Zenith
+1 Stalking Leonin
+1 Pledge of Unity
+1 Kindred Summons
+1 Unbreakable Formation
+1 Etchings of the Chosen
+1 Shamanic Revelation
+1 Haunting Voyage
+1 Behemoth Sledge
+1 Gathering Stone
+1 Colossification
+1 Rancor
+1 Mosswort Bridge
+1 Ajani, the Greathearted
+1 Elixir of Immortality
+1 Ajani, Caller of the Pride
+1 Sandsteppe Citadel
+1 Sunpetal Grove
+1 Path of Ancestry
+1 Command Tower
+1 Canopy Vista
+1 Windbrisk Heights
+1 Indatha Crystal
+1 Temple of Plenty
+1 Overgrown Farmland
+1 Secluded Courtyard
+1 Unclaimed Territory
+1 Commander's Sphere
+6 Plains
+3 Swamp
+1 Blossoming Sands
+1 Blade of the Sixth Pride
+1 Emeritus of Truce // Swords to Plowshares
+4 Forest
+1 Healer of the Pride
+1 Leonin Vanguard
+1 King of the Pride
+1 Qala, Ajani's Pridemate
+1 Skyhunter Patrol
+1 Tabaxi Toucaneers
+1 Mirri the Cursed
+1 Nylea's Emissary
+1 Mirri, Cat Warrior
+1 Tigra, Feline Fury
+1 Conduit of Worlds
+1 Woodland Cemetery
+1 Shattered Sanctum
+1 Deathcap Glade
+1 Temple of Malady
+1 Scoured Barrens
+1 Bender's Waterskin
+1 Fog
+1 Regal Caracal
+1 Leyline Immersion
+1 Lifecrafter's Bestiary
+1 Purraj of Urborg
+1 Icon of Ancestry
+1 Infirmary Healer // Stream of Life
+1 Nacatl War-Pride
+1 Territorial Scythecat
+1 Skyknight Squire
+1 Kutzil's Flanker
+1 Leonin Elder
+1 Archetype of Courage
+1 Archetype of Finality
+1 Archetype of Endurance
+1 Eerie Ultimatum

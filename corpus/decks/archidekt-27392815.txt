@@ -1,0 +1,81 @@
+# Archidekt — Baylen, the Haymaker
+# source: archidekt:27392815
+# fetched: 2026-10-14
+
+Commander:
+1 Baylen, the Haymaker
+
+Deck:
+1 Finneas, Ace Archer
+1 Hop to It
+1 Rith, the Awakener
+1 Arasta of the Endless Web
+1 Hazardroot Herbalist
+1 Warren Warleader
+1 Wildfire Awakener
+1 Loyal Apprentice
+1 Pawpatch Recruit
+1 Gala Greeters
+1 Brigid, Clachan's Heart // Brigid, Doun's Mind
+1 Three Tree Rootweaver
+1 Basking Broodscale
+1 Baird, Argivian Recruiter
+1 Path to Exile
+1 Swords to Plowshares
+1 Rootborn Defenses
+1 Aura Mutation
+1 Cabaretti Charm
+1 Moogles' Valor
+1 Chaos Warp
+1 Legion Leadership // Legion Stronghold
+1 Rith's Charm
+1 Goblin Surprise
+1 For the Common Good
+1 Assemble the Legion
+1 Echoing Assault
+1 Awakening Zone
+1 Outlaws' Merriment
+1 Cadira, Caller of the Small
+1 Samut, Hazoret's Champion
+1 Second Harvest
+1 The Unbeatable Squirrel Girl
+1 Sol Ring
+1 Arcane Signet
+1 Fellwar Stone
+1 Windbrisk Heights
+1 Rabble Rousing
+1 Rosie Cotton of South Lane
+1 Cathars' Crusade
+1 Storm Herd
+1 Secure the Wastes
+1 Farseek
+1 Command Tower
+1 Artifact Mutation
+1 Queen Allenal of Ruadach
+1 Hour of Reckoning
+1 Gilded Goose
+1 Elspeth, Sun's Champion
+1 Intangible Virtue
+1 Path of Ancestry
+1 Rampant Growth
+1 Tendershoot Dryad
+1 Finale of Glory
+9 Mountain
+9 Forest
+1 Exotic Orchard
+1 Jungle Shrine
+1 Tender Wildguide
+1 Mabel, Valley Hero
+1 Krenko, Tin Street Kingpin
+1 Lightning Greaves
+1 Cinder Glade
+1 Arabella, Abandoned Doll
+1 Cultivate
+1 Scurry Oak
+9 Plains
+1 Canopy Vista
+1 Clifftop Retreat
+1 March of the Multitudes
+1 Belladonna Took
+1 Peregrin Took
+1 Grand Crescendo

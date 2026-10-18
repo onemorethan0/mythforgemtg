@@ -1,0 +1,104 @@
+# Archidekt — Doctor Doom, King of Latveria no villans
+# source: archidekt:27198305
+# fetched: 2026-10-08
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Dimir Aqueduct
+1 Rakdos Carnarium
+1 Lim-Dûl's Vault
+1 Bojuka Bog
+1 Command Tower
+1 Dakmor Salvage
+1 Drownyard Temple
+1 Forgotten Cave
+1 Geier Reach Sanitarium
+5 Island
+1 Lonely Sandbar
+1 Oscorp Industries
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Profane Tutor
+1 Scalding Tarn
+1 Shivan Reef
+1 Spymaster's Vault
+1 Steam Vents
+1 Sulfurous Springs
+1 Swamp
+1 Takenuma, Abandoned Mire
+1 Underground River
+1 Villainous Hideout
+1 Watery Grave
+1 Xander's Lounge
+1 Gamble
+1 Currency Converter
+1 Library of Leng
+1 Sol Ring
+1 Bitter Triumph
+1 Cabal Ritual
+1 Cool but Rude
+1 Cyclonic Rift
+1 Likeness Looter
+1 Logic Knot
+1 Loki, God of Mischief
+1 Nightscape Familiar
+1 Norman Osborn // Green Goblin
+1 Psychic Frog
+1 Thrill of Possibility
+1 Circular Logic
+1 Crucible of Worlds
+1 Glasspool Mimic // Glasspool Shore
+1 Glint-Horn Buccaneer
+1 Magmakin Artillerist
+1 Monument to Endurance
+1 Prismari Command
+1 Victimize
+1 Windfall
+1 Anger
+1 Carnage, Crimson Chaos
+1 Chainer, Nightmare Adept
+1 Chameleon, Master of Disguise
+1 Emet-Selch of the Third Seat
+1 Lethal Scheme
+1 Surly Badgersaur
+1 Wonder
+1 Archfiend of Ifnir
+1 Bone Miser
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Living Laser
+1 M.O.D.O.K.
+1 Shadowgrange Archfiend
+1 Afterlife from the Loam
+1 Dig Through Time
+1 Containment Construct
+1 Faithless Looting
+1 Frantic Search
+2 Mountain
+1 Tolarian Winds
+1 Feed the Swarm
+1 Stitch Together
+1 Compulsive Research
+1 Deep Analysis
+1 Blasphemous Act
+1 Teferi, Master of Time
+1 Leader, Super-Genius
+1 Bilbo, Thief in the Night
+1 Gifts Ungiven
+1 Peer into the Abyss
+1 Damnation
+1 Living Death
+1 Reforge the Soul
+1 Entomb
+1 Ill-Gotten Gains
+1 Barren Moor
+1 Blood Crypt
+1 Izzet Boilerworks
+1 Bloodstained Mire
+1 Ledger Shredder
+1 Sheoldred, the Apocalypse
+1 Valgavoth, Harrower of Souls
+1 Obsessive Search
+1 Raucous Theater
+1 Thundering Falls

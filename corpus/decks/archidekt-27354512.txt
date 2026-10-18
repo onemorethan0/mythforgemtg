@@ -1,0 +1,101 @@
+# Archidekt — Black Walt n°3 B4 VDEF
+# source: archidekt:27354512
+# fetched: 2026-10-15
+# bracket: 4
+
+Commander:
+1 Black Waltz No. 3
+
+Deck:
+1 Electro, Assaulting Battery
+1 Pinnacle Monk // Mystic Peak
+1 Fell the Profane // Fell Mire
+1 Rakdos Carnarium
+1 Thrill of Possibility
+1 Boltwave
+1 City of Brass
+1 Fellwar Stone
+1 Grab the Prize
+1 Tomik, Izzet Sparkmage
+1 Dark Fortress
+1 Lightning Greaves
+1 Mana Confluence
+1 Kaya's Ghostform
+1 Foreboding Ruins
+1 Dark Ritual
+1 Light Up the Stage
+1 Arcane Signet
+1 Coruscation Mage
+1 Command Tower
+1 Sol Ring
+1 Luxury Suite
+1 Graven Cairns
+1 Dragonskull Summit
+1 Jeska's Will
+1 Sulfurous Springs
+1 Faithless Looting
+1 Haunted Ridge
+1 Kessig Flamebreather
+1 Untimely Malfunction
+1 Talisman of Indulgence
+1 Smoldering Marsh
+1 Feed the Swarm
+1 Swamp
+1 Ruby Medallion
+1 Storm-Kiln Artist
+1 Dualcaster Mage
+1 Fiery Inscription
+1 Tainted Peak
+1 Demand Answers
+1 Vandalblast
+1 Blood Crypt
+1 Blazemire Verge
+1 Pyretic Ritual
+1 Harmonic Prodigy
+1 Deadly Rollick
+1 Bloodstained Mire
+8 Mountain
+1 Artist's Talent
+1 Past in Flames
+1 Withering Torment
+1 Raucous Theater
+1 Mana Geyser
+1 Seething Song
+1 Thermo-Alchemist
+1 Rite of Flame
+1 Desperate Ritual
+1 Blackcleave Cliffs
+1 Deflecting Swat
+1 Solphim, Mayhem Dominus
+1 Imp's Mischief
+1 Demonic Tutor
+1 Mizzix's Mastery
+1 Hexing Squelcher
+1 Mount Doom
+1 Flashback
+1 Grapeshot
+1 Bolas's Citadel
+1 Vampiric Tutor
+1 Arid Mesa
+1 Gandalf, Goblins' Bane // Flameshape
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Not Dead After All
+1 Gamble
+1 Reiterate
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Urabrask // The Great Work
+1 Runaway Steam-Kin
+1 Snuff Out
+1 Malakir Rebirth // Malakir Mire
+1 Sheoldred's Edict
+1 Reckless Impulse
+1 Insult // Injury
+1 Vault of Whispers
+1 Great Furnace
+1 Reflecting Pool
+1 Mithril Coat
+1 Longshot, Rebel Bowman
+1 Phyrexian Arena
+1 Overmaster
+1 Rakdos Signet

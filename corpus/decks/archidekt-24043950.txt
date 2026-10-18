@@ -1,0 +1,102 @@
+# Archidekt — Mono Blue Shenanigans
+# source: archidekt:24043950
+# fetched: 2026-10-01
+# bracket: 4
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Force of Negation
+1 Mental Misstep
+1 Flusterstorm
+1 Island
+1 Dramatic Reversal
+1 Brainstorm
+1 The Theorist, Jace Beleren
+1 Narset, Parter of Veils
+1 Ponder
+1 Fabricate
+1 Urza's Saga
+1 Seat of the Synod
+1 Reliquary Tower
+1 Strip Mine
+1 Island
+1 Island
+1 Island
+1 Island
+1 Academy Ruins
+1 Fierce Guardianship
+1 Force of Will
+1 Whir of Invention
+1 Pact of Negation
+1 Muddle the Mixture
+1 Mystical Tutor
+1 Rhystic Study
+1 Cyclonic Rift
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Spellskite
+1 Hullbreaker Horror
+1 Forensic Gadgeteer
+1 Sensei's Divining Top
+1 Sapphire Medallion
+1 Welding Jar
+1 Tormod's Crypt
+1 Sol Ring
+1 Mishra's Bauble
+1 Isochron Scepter
+1 Howling Mine
+1 Pongify
+1 Mystic Sanctuary
+1 Lightning Greaves
+1 Inventors' Fair
+1 Emry, Lurker of the Loch
+1 Reshape
+1 Tribute Mage
+1 Jeweled Amulet
+1 Winter Orb
+1 Static Orb
+1 Brain Freeze
+1 Wash Away
+1 Thassa's Oracle
+1 Mirran Spy
+1 Gemstone Caverns
+1 Samut, Tyrant of Naktamun
+1 Ancient Tomb
+1 Merchant Scroll
+1 Mindbreak Trap
+1 Rapid Hybridization
+1 Misdirection
+1 Island
+1 Island
+1 Spellbook
+1 Urza's Bauble
+1 Lotus Petal
+1 Rings of Brighthearth
+1 Gitaxian Probe
+1 Mana Drain
+1 Nexus of Fate
+1 Negate
+1 Swan Song
+1 Faerie Mastermind
+3 Island
+1 Chrome Mox
+1 Drift of Phantasms
+1 Grafdigger's Cage
+3 Island
+3 Island
+1 Mox Opal
+1 Basalt Monolith
+1 Sink into Stupor // Soporific Springs
+1 Commandeer
+1 Mana Vault
+1 Mystic Remora
+1 Displacer Kitten
+1 Polluted Delta
+1 Flooded Strand
+1 Misty Rainforest
+1 Scalding Tarn
+1 Lighthouse Chronologist
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Hydroelectric Specimen // Hydroelectric Laboratory

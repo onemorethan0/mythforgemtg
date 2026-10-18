@@ -1,0 +1,107 @@
+# Archidekt — Bastelwerkstatt: Selesnya
+# source: archidekt:26763244
+# fetched: 2026-10-02
+
+Commander:
+1 Shanna, Purifying Blade
+
+Deck:
+1 Kwia Vigorbloom
+1 Bloombrute
+1 Blossoming Bogbeast
+1 Archangel of Thune
+1 Guide of Souls
+1 Haliya, Guided by Light
+1 Liliana the Faultless
+1 Exemplar of Light
+1 Nykthos Paragon
+1 Solarium Sentry
+1 Lathiel, the Bounteous Dawn
+1 Birds of Paradise
+1 Shalai, Voice of Plenty
+1 Heliod, Sun-Crowned
+1 Esper Sentinel
+1 Kutzil, Malamet Exemplar
+1 Noble Hierarch
+1 Selvala, Explorer Returned
+1 Serra Ascendant
+1 Walking Ballista
+1 Vigorbloom Vanguard // Seed Suture
+1 Conclave Mentor
+1 Bloom Tender
+1 Titan of Industry
+1 Gala Greeters
+1 Undercover Operative
+1 Elspeth Resplendent
+1 Falco Spara, Pactweaver
+1 Metropolis Angel
+1 Sanctuary Warden
+1 Enlightened Tutor
+1 Swords to Plowshares
+1 Path to Exile
+1 Cyclonic Rift
+1 Swan Song
+1 Heroic Intervention
+1 Brokers Charm
+1 Beacon of Immortality
+1 Bant Charm
+1 Inscription of Abundance
+1 Germination Practicum
+1 Nature's Claim
+1 Vigorbloom Charm
+1 The Wind Crystal
+1 Farseek
+1 Cultivate
+1 Nature's Lore
+1 Three Visits
+1 Fumigate
+1 Aetherflux Reservoir
+1 Ascend from Avernus
+1 Eiganjo, Seat of the Empire
+1 Alhammarret's Archive
+1 Sol Ring
+1 Wizard Class
+1 Smothering Tithe
+1 The Great Henge
+1 Rhystic Study
+1 Cleric Class
+1 Test of Endurance
+1 Hardened Scales
+1 Brokers Ascendancy
+1 Authority of the Consuls
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Hinterland Harbor
+1 Bountiful Promenade
+1 Command Tower
+1 Dreamroot Cascade
+1 Rejuvenating Springs
+1 Spara's Headquarters
+1 Sunpetal Grove
+1 Glacial Fortress
+1 Flooded Grove
+1 Misty Rainforest
+1 Windswept Heath
+1 Island
+1 Sunscorch Regent
+1 Plains
+1 Breeding Pool
+1 Mystic Gate
+1 Minamo, School at Water's Edge
+1 Hallowed Fountain
+1 Flooded Strand
+1 Temple Garden
+1 Forest
+1 Overgrown Farmland
+1 Brushland
+1 Sea of Clouds
+1 Deserted Beach
+1 Willowrush Verge
+1 Adarkar Wastes
+1 Yavimaya Coast
+1 Wooded Bastion
+1 Waterlogged Grove
+1 Floodfarm Verge
+1 Hushwood Verge
+1 Horizon Canopy
+1 Arcane Signet

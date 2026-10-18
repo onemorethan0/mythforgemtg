@@ -1,0 +1,105 @@
+# Archidekt — Therapy is NOT a Win Condition
+# source: archidekt:17675155
+# fetched: 2026-10-15
+# bracket: 4
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Narset's Reversal
+1 Sol Ring
+1 Deflecting Swat
+1 Cyclonic Rift
+1 Watery Grave
+1 Seething Song
+1 Reiterate
+1 Hexing Squelcher
+1 Shizo, Death's Storehouse
+1 Cabal Ritual
+1 Blood Crypt
+1 Bloodstained Mire
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Command Tower
+1 Otawara, Soaring City
+1 Arena of Glory
+1 Faerie Mastermind
+1 Training Center
+1 Misdirection
+1 Rogue's Passage
+1 Frantic Search
+1 Borne Upon a Wind
+1 Jeska's Will
+1 Fatal Frenzy
+1 Snap
+1 Fists of Flame
+1 Lightning Bolt
+1 Deadly Rollick
+1 Dark Ritual
+1 Snapcaster Mage
+1 Ragavan, Nimble Pilferer
+1 Island
+1 Redirect Lightning
+1 Swamp
+1 Mistrise Village
+1 Chandra's Ignition
+1 Xander's Lounge
+1 Final Fortune
+1 Lotus Petal
+1 Rite of Flame
+1 Lightning Greaves
+1 Etali, Primal Storm
+1 Embercleave
+1 Hullbreaker Horror
+1 Mjölnir, Hammer of Thor
+1 Bulk Up
+1 Sword of Feast and Famine
+1 Unexpected Windfall
+1 Underworld Breach
+1 Storm-Kiln Artist
+1 Veyran, Voice of Duality
+1 Badlands
+1 Underground Sea
+1 Big Score
+1 Shadow Rift
+1 Sword of Wealth and Power
+1 Undercity Sewers
+1 Mountain
+1 Thundering Falls
+1 Raucous Theater
+1 Swamp
+1 Island
+1 Morphic Pool
+1 Luxury Suite
+1 Ashling, Flame Dancer
+1 Deadly Dispute
+1 Mountain
+1 Arcane Signet
+1 Bolt Bend
+1 Mountain
+1 Hex Magic
+1 Seize the Day
+1 Electrodominance
+1 Steam Vents
+1 Swiftfoot Boots
+1 Lim-Dûl's Vault
+1 Polluted Delta
+1 Scalding Tarn
+1 Prismatic Vista
+1 Infuriate
+1 Tainted Strike
+1 Electro, Assaulting Battery
+1 Chrome Mox
+1 Mox Opal
+1 Mana Vault
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Wan Shi Tong, Librarian
+1 Gifts Ungiven
+1 Urza's Saga
+1 Titan's Strength
+1 Ancient Tomb
+1 Ancestors' Aid
+1 Buster Sword
+1 Vivi Ornitier
+1 Dragon's Rage Channeler

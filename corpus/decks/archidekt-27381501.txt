@@ -1,0 +1,85 @@
+# Archidekt — red
+# source: archidekt:27381501
+# fetched: 2026-10-14
+
+Commander:
+1 Arcanis the Omnipotent
+
+Deck:
+1 Mind Over Matter
+1 Compulsion
+1 Amphibian Downpour
+1 Borne Upon a Wind
+1 High Fae Trickster
+1 Leyline of Anticipation
+1 Gilded Lotus
+1 Mystic Remora
+1 Grim Monolith
+1 Mirrormade
+1 Laboratory Maniac
+1 Psychosis Crawler
+1 Isochron Scepter
+1 Jace, Wielder of Mysteries
+1 Dramatic Reversal
+1 Copy Enchantment
+1 Imprisoned in the Moon
+1 Rhystic Study
+1 Sol Ring
+1 Chain of Vapor
+1 Into the Flood Maw
+1 Volatile Stormdrake
+1 Cyclonic Rift
+1 An Offer You Can't Refuse
+1 Gilded Drake
+1 Dissipation Field
+1 Spellskite
+1 Gitaxian Probe
+1 Mental Misstep
+1 Final-Word Phantom
+1 Arcane Signet
+1 Merchant Scroll
+1 Mystical Tutor
+1 Fabricate
+1 The Theorist, Jace Beleren
+1 Karn Liberated
+1 Muddle the Mixture
+1 Intuition
+1 Transmute Artifact
+1 Gifts Ungiven
+1 Flusterstorm
+1 Force of Will
+1 Fierce Guardianship
+1 Force of Negation
+1 Strix Serenade
+1 Swan Song
+1 Trickbind
+1 Spider-Sense
+1 Thran Dynamo
+1 Reliquary Tower
+1 Basalt Monolith
+1 Otawara, Soaring City
+1 Ancient Tomb
+1 Emergence Zone
+1 Mystic Sanctuary
+1 Cavern of Souls
+1 Crystal Vein
+1 Aetherize
+1 Banishing Knack
+1 Retraction Helix
+1 Minamo, School at Water's Edge
+1 Academy Ruins
+25 Island
+1 Thought Vessel
+1 Solve the Equation
+1 Mockingbird
+1 Wan Shi Tong, Librarian
+1 Phyrexian Metamorph
+1 Urza's Saga
+1 Thassa's Oracle
+1 Library of Leng
+1 Commandeer
+1 Mindbreak Trap
+1 Counterspell
+1 Fellwar Stone
+1 Worn Powerstone
+1 Mana Vault

@@ -1,0 +1,101 @@
+# Archidekt — Selesbians
+# source: archidekt:24287998
+# fetched: 2026-10-01
+# bracket: 3
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Spectral Steel
+1 Rancor
+1 Utopia Sprawl
+1 Fertile Ground
+1 Seal of Primordium
+1 Stony Silence
+1 Strong Back
+1 Heroic Intervention
+1 Tamiyo's Safekeeping
+1 Armadillo Cloak
+1 Kenrith's Transformation
+1 Hushwood Verge
+1 Sunpetal Grove
+1 Gathering Place
+1 Branchloft Pathway // Boulderloft Pathway
+1 Wooded Bastion
+1 Smothering Tithe
+1 Razorverge Thicket
+1 Serra's Sanctum
+1 Trelasarra, Moon Dancer
+1 Vanquish the Horde
+1 Grasp of Fate
+1 Galadriel's Dismissal
+1 Brilliant Wings
+1 Sheltered by Ghosts
+1 All That Glitters
+1 Temple Garden
+1 Marsh Flats
+1 Windswept Heath
+1 Prismatic Vista
+1 Darksteel Mutation
+1 Ethereal Armor
+1 Mesa Enchantress
+1 Light-Paws, Emperor's Voice
+1 Sol Ring
+1 Seal of Cleansing
+1 Canopy Vista
+1 Fortified Village
+1 Bountiful Promenade
+1 Nature's Claim
+1 Ancestral Mask
+1 Kor Spiritdancer
+1 Solitary Confinement
+1 Destiny Spinner
+1 Setessan Champion
+1 Timely Ward
+1 Command Tower
+1 Strength of the Harvest // Haven of the Harvest
+1 Burgeoning
+1 Overgrown Farmland
+1 Pearl-Ear, Imperial Advisor
+1 Spirit Mantle
+1 Exploration
+1 Authority of the Consuls
+1 Test of Endurance
+1 Llanowar Elves
+3 Forest
+1 Mystic Repeal
+1 Shimmerwilds Growth
+1 Ordeal of Nylea
+1 Land Tax
+1 Spider Umbra
+1 Hyena Umbra
+1 Light of Promise
+1 Wild Growth
+1 Sungrass Prairie
+1 Reliquary Tower
+1 Sanctum Weaver
+1 Yavimaya, Cradle of Growth
+1 Carpet of Flowers
+1 Sphere of Safety
+1 Elvish Spirit Guide
+1 Song of the Dryads
+1 Rogue's Passage
+1 Horizon Canopy
+1 Flooded Strand
+1 Mana Confluence
+1 Canopy Cover
+1 Felidar Umbra
+1 Swords to Plowshares
+1 City of Brass
+5 Plains
+1 Enchantress's Presence
+1 Holy Mantle
+1 Nature's Chosen
+1 Skyblade's Boon
+1 Sage's Reverie
+1 Treetop Bracers
+1 Crop Rotation
+1 Hall of Heliod's Generosity
+1 Windborn Muse
+1 Argothian Enchantress

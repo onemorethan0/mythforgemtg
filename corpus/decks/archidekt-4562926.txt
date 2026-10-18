@@ -1,0 +1,93 @@
+# Archidekt — Yurlok, Mana burn still exist
+# source: archidekt:4562926
+# fetched: 2026-10-02
+# bracket: 3
+
+Commander:
+1 Yurlok of Scorch Thrash
+
+Deck:
+1 Horizon Stone
+1 Eladamri's Vineyard
+1 Rites of Flourishing
+1 Exquisite Blood
+1 Greed
+1 War's Toll
+1 Dragonskull Summit
+1 Woodland Cemetery
+1 Spire Garden
+1 Undergrowth Stadium
+1 Umbral Mantle
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Sol Ring
+1 Arcane Signet
+1 Victory Chimes
+1 Spectral Searchlight
+1 Gemstone Array
+1 Chromatic Lantern
+1 Leyline Tyrant
+1 Magus of the Vineyard
+1 Zhur-Taa Ancient
+1 Zhur-Taa Druid
+1 Dosan the Falling Leaf
+1 Stoneshaker Shaman
+1 Harsh Mentor
+1 Nyxbloom Ancient
+1 Birds of Paradise
+1 Llanowar Elves
+1 Eternal Witness
+1 Rootweaver Druid
+1 Omnath, Locus of Mana
+1 Elvish Mystic
+1 Keeper of Progenitus
+1 Immolation Shaman
+1 Erebos, God of the Dead
+1 Veteran Explorer
+1 Reclamation Sage
+1 Heartbeat of Spring
+1 Mana Flare
+1 Dictate of Karametra
+1 Leyline of Abundance
+1 Assassin's Trophy
+1 Heroic Intervention
+1 Terminate
+1 Krosan Grip
+1 Nature's Claim
+1 Bedevil
+1 Putrefy
+1 Rakdos Charm
+1 Pyroblast
+1 Deflecting Swat
+1 Harrow
+1 Veil of Summer
+1 Price of Progress
+1 Malakir Rebirth // Malakir Mire
+1 Return to Nature
+1 Bojuka Bog
+1 Castle Locthwain
+1 Temple of the False God
+1 Command Tower
+1 Stomping Ground
+1 Overgrown Tomb
+1 Blood Crypt
+1 Rootbound Crag
+1 Exotic Orchard
+1 Luxury Suite
+1 Evolving Wilds
+1 Terramorphic Expanse
+3 Snow-Covered Forest
+3 Snow-Covered Mountain
+3 Snow-Covered Swamp
+4 Forest
+3 Swamp
+1 Cultivate
+1 Kodama's Reach
+1 Vandalblast
+1 Grim Tutor
+1 Helix Pinnacle
+1 Citadel of Pain
+1 Talisman of Indulgence
+1 Talisman of Impulse
+1 Talisman of Resilience
+4 Mountain

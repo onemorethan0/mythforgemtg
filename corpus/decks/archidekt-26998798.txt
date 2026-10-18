@@ -1,0 +1,103 @@
+# Archidekt — SALT_TEST
+# source: archidekt:26998798
+# fetched: 2026-10-02
+
+Commander:
+1 Nissa, Leyline Tamer
+
+Deck:
+1 Adarkar Wastes
+1 Anguished Unmaking
+1 Animate Dead
+1 Arcane Sanctum
+1 Archon of Cruelty
+1 Ashnod's Altar
+1 Battlefield Forge
+1 Black Market Connections
+1 Blasphemous Act
+1 Blood Artist
+1 Blood Crypt
+1 Bloodghast
+1 Carrion Feeder
+1 Caves of Koilos
+1 Chaos Warp
+1 Chromatic Lantern
+1 City of Brass
+1 Clifftop Retreat
+1 Command Tower
+1 Contaminated Landscape
+1 Corpse Harvester
+1 Counterspell
+1 Cruel Celebrant
+1 Crumbling Necropolis
+1 Despark
+1 Dragonskull Summit
+1 Drannith Magistrate
+1 Drowned Catacomb
+1 Dualcaster Mage
+1 Emeritus of Woe // Demonic Tutor
+1 Evolving Wilds
+1 Exotic Orchard
+1 Exquisite Blood
+1 Fabled Passage
+1 Fabricate
+1 Fellwar Stone
+1 Flawless Maneuver
+1 Glacial Fortress
+1 Goblin Bombardment
+1 Godless Shrine
+1 Grand Coliseum
+1 Grave Pact
+1 Grave Titan
+1 Gravecrawler
+1 Hallowed Fountain
+1 Idyllic Tutor
+1 Infernal Grasp
+1 Island
+1 Isolated Chapel
+1 Karmic Guide
+1 Lightning Greaves
+1 Marauding Blight-Priest
+1 Mayhem Devil
+1 Merchant Scroll
+1 Midnight Reaper
+1 Morbid Opportunist
+1 Mountain
+1 Muddle the Mixture
+1 Mystic Monastery
+1 Notion Thief
+1 Path of Ancestry
+1 Path to Exile
+1 Perilous Landscape
+1 Phyrexian Arena
+1 Pitiless Plunderer
+1 Plains
+1 Reanimate
+1 Restoration Angel
+1 Rune-Scarred Demon
+1 Sacred Foundry
+1 Sanguine Bond
+1 Sheoldred, the Apocalypse
+1 Shivan Reef
+1 Skullclamp
+1 Sol Ring
+1 Steam Vents
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Sun Titan
+4 Swamp
+1 Swan Song
+1 Swords to Plowshares
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Terminate
+1 Toxic Deluge
+1 Twinflame
+1 Underground River
+1 Vampiric Tutor
+1 Viscera Seer
+1 Walking Ballista
+1 Watery Grave
+1 Zulaport Cutthroat
+1 Pawn of Ulamog

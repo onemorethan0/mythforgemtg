@@ -1,0 +1,73 @@
+# Archidekt — Dack's Big Brain
+# source: archidekt:27118238
+# fetched: 2026-10-07
+# bracket: 4
+
+Commander:
+1 Dack Fayden, Helping Hand
+
+Deck:
+1 Fiend Hunter
+1 Flickerwisp
+1 Preston, the Vanisher
+1 Charming Prince
+1 Cloister Gargoyle
+1 Depopulate
+1 Day of Judgment
+1 Doomskar
+1 No Witnesses
+1 Shatter the Sky
+1 Wrath of God
+1 Glimmerpoint Stag
+1 Felidar Guardian
+1 Dusk // Dawn
+1 Citywide Bust
+1 Retribution of the Meek
+1 Slaughter the Strong
+1 Arcane Signet
+1 Basalt Monolith
+1 Coalition Relic
+1 Everflowing Chalice
+1 Coldsteel Heart
+1 Liquimetal Torque
+1 Noble's Purse
+1 Fellwar Stone
+1 Sol Ring
+1 Marble Diamond
+1 Lotus Blossom
+1 Planar Atlas
+1 Mind Stone
+1 Star Compass
+34 Plains
+1 Mana Geode
+1 Crystal Grotto
+1 Sentinel Totem
+1 Mazemind Tome
+1 Prison Sentence
+1 Guiding Bolt
+1 Prison Realm
+1 Tel-Jilad Stylus
+1 Oblation
+1 Unexpectedly Absent
+1 Oust
+1 Hallowed Burial
+1 Authority of the Consuls
+1 Deafening Silence
+1 Thran Foundry
+1 Calamity's Wake
+1 Silence
+1 Mandate of Peace
+1 Loran's Escape
+1 Defense Grid
+1 Sphere of Resistance
+1 Trinisphere
+1 Grinning Totem
+1 Enlightened Tutor
+1 Inventors' Fair
+1 Mangara's Tome
+1 The Grey Havens
+1 Zhalfirin Void
+1 Rumble Arena
+1 Radiant Solar
+1 Icewind Stalwart
+1 Prismatic Lens

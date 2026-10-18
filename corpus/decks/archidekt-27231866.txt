@@ -1,0 +1,80 @@
+# Archidekt — Seph by GOOSE
+# source: archidekt:27231866
+# fetched: 2026-10-09
+
+Commander:
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+
+Deck:
+1 Sanguine Bond
+1 Exquisite Blood
+1 Archfiend of Despair
+1 Wound Reflection
+1 Avacyn, Angel of Horror
+1 Ashnod's Altar
+1 Imperial Seal
+1 Abhorrent Overlord
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Diabolic Intent
+1 Bloodletter of Aclazotz
+1 Grave Titan
+1 Doctor Doom, Unrivaled
+1 Razaketh, the Foulblooded
+1 Sheoldred, the Apocalypse
+1 Voltaic Key
+1 The Masamune
+1 The One Ring
+1 Reliquary Tower
+1 Gray Merchant of Asphodel
+1 Vilis, Broker of Blood
+1 Ancient Brass Dragon
+1 Massacre Wurm
+1 Bitterbloom Bearer
+1 My Precious // Allure of Power
+1 Dark Ritual
+1 Culling the Weak
+1 Jet Medallion
+1 Brainstealer Dragon
+1 Horizon Stone
+1 Opposition Agent
+1 Bender's Waterskin
+1 Skithiryx, the Blight Dragon
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Topaz Dragon // Entropic Cloud
+1 Bloodthirsty Conqueror
+1 Braids, Arisen Nightmare
+1 Mindcrank
+1 Lightless Evangel
+1 Fallen Angel
+1 Darksteel Angel
+1 Morbid Opportunist
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Merciless Executioner
+1 Zodiark, Umbral God
+1 Marionette Apprentice
+1 Vengeful Bloodwitch
+1 Phyrexian Altar
+1 Arcane Signet
+1 Sol Ring
+1 Vito, Thorn of the Dusk Rose
+28 Swamp
+1 Accursed Centaur
+1 Wurmcoil Engine
+1 Al Bhed Salvagers
+1 Altar's Reap
+1 Consuming Corruption
+1 Eldrazi Confluence
+1 Blanket of Night
+1 Criminal Past
+1 Corroding Dragonstorm
+1 Dreadhorde Invasion
+1 Eldrazi Conscription
+1 Enslave
+1 Grave Betrayal
+1 Summon: Primal Odin
+1 Summon: Bahamut
+1 Tree of Perdition
+1 Triskaidekaphobia
+1 Bastion of Remembrance

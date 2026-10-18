@@ -1,0 +1,98 @@
+# Archidekt — Teval v2
+# source: archidekt:26005058
+# fetched: 2026-10-16
+
+Commander:
+1 Teval, the Balanced Scale
+
+Deck:
+1 Deathrite Shaman
+1 Aftermath Analyst
+1 Golgari Rot Farm
+1 Bloodghast
+1 Victimize
+1 Life from the Loam
+1 Evolving Wilds
+1 Shifting Woodland
+1 Malevolent Rumble
+1 Fang, Fearless l'Cie
+1 Altar of Dementia
+1 Lightning Greaves
+1 Three Visits
+1 Awaken the Honored Dead
+1 Undergrowth Stadium
+1 Colossal Grave-Reaver
+1 Tortured Existence
+1 Mistrise Village
+1 Kheru Goldkeeper
+1 Sylvan Safekeeper
+1 Petrified Field
+1 Aesi, Tyrant of Gyre Strait
+1 Swallowed by Leviathan
+1 Spymaster's Vault
+1 Wight of the Reliquary
+4 Swamp
+1 Turbulent Fen
+1 Bonny Pall, Clearcutter
+1 Origin of Metalbending
+1 Nyx Weaver
+1 Hedge Shredder
+1 Breeding Pool
+1 Jarad, Golgari Lich Lord
+1 Elixir of Immortality
+1 Teval's Judgment
+1 Sol Ring
+1 Dread Return
+1 Undercity Sewers
+1 Fabled Passage
+1 Fountainport
+1 Zagoth Triome
+1 Field of the Dead
+1 Uro, Titan of Nature's Wrath
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Lotus Vale
+1 Conduit of Worlds
+1 Command Tower
+1 Spelunking
+1 Will of the Sultai
+1 Kishla Skimmer
+1 Eternal Witness
+1 Smuggler's Surprise
+1 Wonder
+1 Six
+1 Tear Asunder
+1 Ripples of Undeath
+1 Reanimate
+1 Insidious Roots
+1 Living Death
+1 Wastewood Verge
+1 Zuran Orb
+4 Island
+4 Forest
+1 Hedron Crab
+1 Obscuring Haze
+1 Assassin's Trophy
+1 Azusa, Lost but Seeking
+1 Arcane Signet
+1 Maze of Ith
+1 Boseiju, Who Endures
+1 Mole Man, Moloid Master
+1 Watery Grave
+1 Underground Mortuary
+1 Turbulent Wilderness
+1 Dimir Aqueduct
+1 Sodden Verdure
+1 Cauldron of Essence
+1 Death Begets Life
+1 Kagha, Shadow Archdruid
+1 Golgari Grave-Troll
+1 The Scarab God
+1 Mossborn Hydra
+1 Muldrotha, the Gravetide
+1 Meren of Clan Nel Toth
+1 Syr Konrad, the Grim
+1 Craterhoof Behemoth
+1 The Gitrog Monster
+1 Avenger of Zendikar
+1 Ardyn, the Usurper
+1 Noxious Gearhulk

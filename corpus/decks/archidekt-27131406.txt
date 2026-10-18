@@ -1,0 +1,104 @@
+# Archidekt — (a)Licia
+# source: archidekt:27131406
+# fetched: 2026-10-06
+
+Commander:
+1 Licia, Sanguine Tribune
+
+Deck:
+1 Avacyn, Angel of Hope
+1 Sol Ring
+1 Rakdos Signet
+2 Mountain
+3 Swamp
+2 Plains
+1 Night's Whisper
+1 Bringer of the Last Gift
+1 Serra Ascendant
+1 Amalia Benavides Aguirre
+1 Anowon, the Ruin Sage
+1 Bloodline Keeper // Lord of Lineage
+1 Captivating Vampire
+1 Bloodthirsty Conqueror
+1 Charismatic Conqueror
+1 Cordial Vampire
+1 Creeping Bloodsucker
+1 Elenda's Hierophant
+1 Elenda, Saint of Dusk
+1 Gifted Aetherborn
+1 Florian, Voldaren Scion
+1 Felisa, Fang of Silverquill
+1 Markov Purifier
+1 Markov Baron
+1 Mathas, Fiend Seeker
+1 Nighthawk Scavenger
+1 Nazar, the Velvet Fang
+1 Sangromancer
+1 Glass-Cast Heart
+1 Chronicle of Victory
+1 Herald's Horn
+1 Bubbling Cauldron
+1 Golden Urn
+1 Phyrexian Arena
+1 Twilight Prophet
+1 Vona, Butcher of Magan
+1 Tavern Swindler
+1 Glory-Bound Initiate
+1 Ornithopter of Paradise
+1 Breena, the Demagogue
+1 Verrak, Warped Sengir
+1 Arcane Signet
+1 Font of Agonies
+1 Chromatic Lantern
+1 Swords to Plowshares
+1 Ruinous Ultimatum
+1 Gimli's Reckless Might
+1 Chandra's Ignition
+1 Talisman of Hierarchy
+1 Hatred
+1 Raucous Theater
+1 Evolving Wilds
+1 Talisman of Conviction
+1 Nomad Outpost
+1 Command Tower
+1 Vault of Champions
+1 Exotic Orchard
+1 Spectator Seating
+1 Isolated Chapel
+1 Path of Ancestry
+1 Dragonskull Summit
+1 Caves of Koilos
+1 Haunted Ridge
+1 Shattered Landscape
+1 Luxury Suite
+1 Sundown Pass
+1 Sulfurous Springs
+1 Shattered Sanctum
+1 Shadowy Backstreet
+1 Battlefield Forge
+1 Tainted Field
+1 Fabled Passage
+1 Shizo, Death's Storehouse
+1 Secluded Courtyard
+1 Ash Barrens
+1 Sunlit Marsh
+1 Fell the Profane // Fell Mire
+1 Temple of the False God
+1 Legion Leadership // Legion Stronghold
+1 Goldmire Bridge
+1 Ballroom
+1 Return to Dust
+1 Generous Gift
+1 Turbulent Moor
+1 Take the Bait
+1 Master Warcraft
+1 Angelic Accord
+1 Bre of Clan Stoutarm
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Morlun, Devourer of Spiders
+1 Lightning Greaves
+1 Cradle of Vitality
+1 Drana, Liberator of Malakir
+1 Wheel of Misfortune
+1 Illicit Auction
+1 Flawless Maneuver

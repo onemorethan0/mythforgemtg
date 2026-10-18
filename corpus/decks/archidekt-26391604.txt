@@ -1,0 +1,100 @@
+# Archidekt — Dinos go RAAAWWW
+# source: archidekt:26391604
+# fetched: 2026-10-06
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 Trumpeting Carnosaur
+1 Rishkar's Expertise
+1 Wayward Swordtooth
+1 Thrashing Brontodon
+1 Itzquinth, Firstborn of Gishath
+1 Belligerent Yearling
+1 Apex Altisaur
+1 Arch of Orazca
+1 Atzocan Seer
+1 Blazing Hope
+1 Blessed Respite
+1 Boros Garrison
+1 Burning Sun's Avatar
+1 Canopy Vista
+1 Cinder Glade
+1 Command Tower
+1 Commune with Dinosaurs
+1 Crushing Canopy
+1 Cryptic Caves
+1 Earthshaker Dreadmaw
+1 Etali, Primal Storm
+1 Forerunner of the Empire
+1 From the Rubble
+1 Garruk's Uprising
+1 Ghalta, Primal Hunger
+1 Gruul Turf
+1 Jungle Shrine
+1 Khalni Ambush // Khalni Territory
+1 Kinjalli's Sunwing
+1 Marauding Raptor
+1 Mind Stone
+1 Naya Charm
+1 Otepec Huntmaster
+1 Overwhelming Stampede
+1 Poetic Ingenuity
+1 Primal Command
+1 Primal Might
+1 Ripjaw Raptor
+1 Rogue's Passage
+1 Savage Stomp
+1 Selesnya Sanctuary
+1 Slice in Twain
+1 Stump Stomp // Burnwillow Clearing
+1 Temple of Abandon
+1 Temple of Triumph
+1 Thunderherd Migration
+1 Unclaimed Territory
+1 Verdant Sun's Avatar
+1 Wakening Sun's Avatar
+1 Wind-Scarred Crag
+1 Worn Powerstone
+1 Secluded Courtyard
+1 Cavern of Souls
+1 Spectator Seating
+1 Radiant Summit
+1 Rootbound Crag
+1 Spire Garden
+1 Rhythm of the Wild
+1 Goring Ceratops
+1 New Horizons
+1 Scytheclaw Raptor
+1 Curious Altisaur
+1 Bronzebeak Foragers
+1 Triumphant Chomp
+1 Drover of the Mighty
+1 Path of Discovery
+1 Twists and Turns // Mycoid Maze
+1 Enter the Unknown
+1 Thundering Spineback
+1 Scattered Groves
+1 Sheltered Thicket
+1 Jetmir's Garden
+1 Regal Behemoth
+8 Forest
+1 The Immortal Sun
+1 Zacama, Primal Calamity
+1 Zetalpa, Primal Dawn
+1 Ravenous Sailback
+1 Runic Armasaur
+1 Hulking Raptor
+1 Raging Regisaur
+1 Temple Altisaur
+1 Raging Swordtooth
+1 Wrathful Raptors
+1 Bonehoard Dracosaur
+1 Radiant Destiny
+1 Temple of Plenty
+1 Sunpetal Grove
+1 Bountiful Promenade
+1 Migration Path
+1 Regisaur Alpha
+1 Kinjalli's Caller

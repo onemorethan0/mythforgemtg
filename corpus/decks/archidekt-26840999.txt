@@ -1,0 +1,94 @@
+# Archidekt — Food and Fellowship - Upgraded
+# source: archidekt:26840999
+# fetched: 2026-10-06
+
+Commander:
+1 Sam, Loyal Attendant
+1 Frodo, Adventurous Hobbit
+
+Deck:
+1 Gollum, Obsessed Stalker
+1 Ash Barrens
+1 Brushland
+1 Canopy Vista
+1 Command Tower
+1 Exotic Orchard
+1 Fortified Village
+1 Ghost Quarter
+1 Isolated Chapel
+1 Necroblossom Snarl
+1 Path of Ancestry
+1 Sandsteppe Citadel
+1 Shineshadow Snarl
+1 Sunpetal Grove
+1 Woodland Cemetery
+1 Dusk // Dawn
+1 Banquet Guests
+1 Farmer Cotton
+1 Feasting Hobbit
+4 Swamp
+8 Forest
+1 Essence Warden
+1 Gilded Goose
+1 Tireless Provisioner
+1 The Gaffer
+1 Go for the Throat
+1 Mortify
+1 Anguished Unmaking
+1 Swords to Plowshares
+1 Path to Exile
+1 Well of Lost Dreams
+1 Birds of Paradise
+1 Cultivate
+1 Fell the Mighty
+1 Harmonize
+1 Toxic Deluge
+1 Sol Ring
+1 Arcane Signet
+1 Chromatic Lantern
+1 Prize Pig
+1 Mirkwood Bats
+1 Sanguine Bond
+1 Of Herbs and Stewed Rabbit
+1 Merry, Warden of Isengard
+1 Treebeard, Gracious Host
+1 Gwaihir, Greatest of the Eagles
+1 Idol of Oblivion
+1 Jaheira, Friend of the Forest
+1 Academy Manufactor
+1 Mentor of the Meek
+1 Night's Whisper
+1 Scattered Groves
+1 Scoured Barrens
+1 Graypelt Refuge
+1 Murmuring Bosk
+1 Prosperous Innkeeper
+1 Rogue's Passage
+1 The One Ring
+1 Call of the Ring
+1 Sméagol, Helpful Guide
+1 Peregrin Took
+1 Samwise Gamgee
+1 Revive the Shire
+1 Rapacious Guest
+1 Lobelia, Defender of Bag End
+1 Pippin, Warden of Isengard
+1 Assemble the Entmoot
+1 Rosie Cotton of South Lane
+1 Lotho, Corrupt Shirriff
+1 Many Partings
+1 Frodo, Sauron's Bane
+1 Meriadoc Brandybuck
+1 Hobbit Hole
+4 Plains
+1 The Battle of Bywater
+1 Elanor Gardner
+1 Tippy-Toe, Terrific Partner
+1 Keen Sense
+1 Trail of Crumbs
+1 Gyome, Master Chef
+1 Overwhelming Stampede
+1 Marionette Master
+1 The Shire
+1 Night of the Sweets' Revenge
+1 Belladonna Took

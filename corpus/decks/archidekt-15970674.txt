@@ -1,0 +1,108 @@
+# Archidekt — Sultai Graveyard Slop
+# source: archidekt:15970674
+# fetched: 2026-10-08
+# bracket: 3
+
+Commander:
+1 Tear Asunder
+1 Teval, the Balanced Scale
+
+Deck:
+1 Lier, Disciple of the Drowned
+1 Theorix Charm
+1 Lotus Field
+1 Reanimate
+1 Life from the Loam
+1 Vile Entomber
+1 Undead Butler
+1 Awaken the Honored Dead
+1 Chthonian Nightmare
+1 Colossal Grave-Reaver
+1 Eternal Witness
+1 Hedron Crab
+1 Insidious Roots
+1 Kotis, Sibsig Champion
+1 Lethal Scheme
+1 Morphic Pool
+1 Overlord of the Balemurk
+1 Phyrexian Tower
+1 Polluted Delta
+1 Shifting Woodland
+1 Dread Return
+1 Smuggler's Surprise
+1 Lluwen, Imperfect Naturalist
+1 Ripples of Undeath
+1 Teval's Judgment
+1 Breeding Pool
+1 Boseiju, Who Endures
+1 Drag to the Roots
+1 Hedge Maze
+1 Icetill Explorer
+1 Misty Rainforest
+1 Otawara, Soaring City
+1 Takenuma, Abandoned Mire
+1 Field of the Dead
+1 Sidisi, Brood Tyrant
+1 Kheru Goldkeeper
+1 Urza's Cave
+1 River Kelpie
+1 Lumra, Bellow of the Woods
+1 Doctor Doom, Unrivaled
+1 Verdant Catacombs
+1 Wight of the Reliquary
+1 Urborg, Tomb of Yawgmoth
+1 Victimize
+1 Underground Mortuary
+1 Six
+1 Undergrowth Stadium
+1 Undercity Sewers
+1 Cauldron of Essence
+1 Shigeki, Jukai Visionary
+1 Dakmor Salvage
+1 Exotic Orchard
+1 Golgari Rot Farm
+1 Overgrown Tomb
+1 Syr Konrad, the Grim
+1 Talon Gates of Madara
+1 Swamp
+1 Gravecrawler
+1 Living Death
+1 Stitcher's Supplier
+1 Watery Grave
+1 Bloodghast
+1 Rejuvenating Springs
+1 Command Tower
+1 Forest
+1 Liliana the Repentant
+1 Assassin's Trophy
+1 Kishla Skimmer
+1 Primal Witchstalker
+1 Tyvar, Jubilant Brawler
+1 Turbulent Wetlands
+1 Steward of the Harvest
+1 Carnivorous Cultivator // Enroot
+1 Necron Deathmark
+1 Animate Dead
+1 Cyclonic Rift
+1 Traverse the Ulvenwald
+1 Metamorphosis Fanatic
+1 Skull Prophet
+1 Fierce Guardianship
+1 Island
+1 Spelunking
+1 Psychic Frog
+1 Mortuary Mire
+1 Turbulent Fen
+1 Turbulent Wilderness
+1 Horizon of Progress
+1 Pit of Offerings
+1 Cultivator Colossus
+1 Tortured Existence
+1 Spectral Denial
+1 Susur Secundi, Void Altar
+1 Geier Reach Sanitarium
+1 Sin, Spira's Punishment
+1 Sunken Citadel
+1 Out of the Tombs
+1 Formidable Speaker
+1 Tomb Fortress

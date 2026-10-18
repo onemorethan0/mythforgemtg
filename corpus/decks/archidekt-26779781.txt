@@ -1,0 +1,93 @@
+# Archidekt — Navi's legion
+# source: archidekt:26779781
+# fetched: 2026-10-16
+# bracket: 3
+
+Commander:
+1 Alela, Cunning Conqueror
+
+Deck:
+10 Island
+1 Otawara, Soaring City
+1 Undercity Sewers
+1 Command Tower
+1 Fell the Profane // Fell Mire
+1 Reliquary Tower
+1 Raise the Palisade
+1 Cyclonic Rift
+1 Exotic Orchard
+1 Fabled Passage
+1 Marsh Flats
+1 Bloodstained Mire
+1 Polluted Delta
+1 Dimir Aqueduct
+1 Bojuka Bog
+1 Gloomlake Verge
+1 Drowned Catacomb
+1 Scalding Tarn
+1 Deadly Dispute
+1 Sink into Stupor // Soporific Springs
+1 Rapid Hybridization
+1 Harmonized Crescendo
+1 Faerie Mastermind
+1 High Fae Trickster
+1 Kindred Discovery
+1 Roaming Throne
+1 Talion, the Kindly Lord
+1 Sol Ring
+1 Geist of Saint Thalia
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Flare of Denial
+1 Into the Flood Maw
+1 Narset's Reversal
+1 Swan Song
+1 Katara's Reversal
+1 Mana Drain
+1 Mocking Sprite
+1 Glamermite
+1 Voracious Tome-Skimmer
+1 Hypnotic Sprite // Mesmeric Glare
+1 Nightmare Sower
+1 Chain of Vapor
+1 Archmage Emeritus
+1 Arcane Denial
+1 Bender's Waterskin
+1 Talisman of Dominance
+1 Thought Vessel
+1 Fellwar Stone
+1 Midnight Clock
+1 Glen Elendra's Answer
+1 Nymris, Oona's Trickster
+1 Grim Hireling
+1 Oona's Blackguard
+1 Curiosity Crafter
+1 Deadly Rollick
+1 Resculpt
+1 Withering Torment
+1 The Theorist, Jace Beleren
+1 Three Tree City
+1 Mistbind Clique
+1 Obyra, Dreaming Duelist
+1 Frantic Search
+1 Flitterwing Nuisance
+1 Tegwyll, Duke of Splendor
+1 Counterspell
+1 Brazen Borrower // Petty Theft
+1 Snap
+1 Pongify
+1 Spellstutter Sprite
+1 Bitterbloom Bearer
+1 Black Market Connections
+7 Swamp
+1 Path of Ancestry
+1 Meteor Crater
+1 Watery Grave
+1 Scion of Oona
+1 Brainstorm
+1 Turbulent Wetlands
+1 Faerie Artisans
+1 Likeness Looter
+1 Reality Shift
+1 March of Swirling Mist
+1 Glen Elendra Guardian

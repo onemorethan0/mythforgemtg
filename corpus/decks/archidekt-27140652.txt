@@ -1,0 +1,98 @@
+# Archidekt — Zuko
+# source: archidekt:27140652
+# fetched: 2026-10-06
+
+Commander:
+1 Fire Lord Zuko
+
+Deck:
+1 Plargg and Nassari
+1 Airbender's Reversal
+1 Avatar's Wrath
+1 Airbender Ascension
+1 Ephemerate
+1 Appa, Steadfast Guardian
+1 The Last Agni Kai
+1 Nalfeshnee
+1 Path to Exile
+1 Swords to Plowshares
+1 Comet Storm
+1 Delayed Blast Fireball
+1 Firebender Ascension
+1 The Legend of Yangchen // Avatar Yangchen
+1 Gonti, Night Minister
+3 Swamp
+1 Wild Wasteland
+1 Fire Nation Turret
+1 Teferi's Protection
+1 Tavern Brawler
+1 Sol Ring
+1 Sozin's Comet
+1 Fated Firepower
+1 Zuko, Exiled Prince
+4 Plains
+1 Fire Nation Palace
+1 Leyline Tyrant
+5 Mountain
+1 Iroh, Dragon of the West
+1 Electrodominance
+1 Monk Gyatso
+1 Commune with Lava
+1 Command Tower
+1 Vedalken Orrery
+1 Firebending Student
+1 Wild-Magic Sorcerer
+1 Avatar Roku, Firebender
+1 Ashling, Flame Dancer
+1 Isshin, Two Heavens as One
+1 Fire Lord Ozai
+1 Hellkite Charger
+1 Commander Liara Portyr
+1 Rogue's Passage
+1 Araña, Heart of the Spider
+1 Spinerock Knoll
+1 Hex Magic
+1 Bojuka Bog
+1 Jeska's Will
+1 Great Train Heist
+1 Windbrisk Heights
+1 Sacred Foundry
+1 Cloudshift
+1 Windcrag Siege
+1 Clifftop Retreat
+1 Spectator Seating
+1 Electro, Assaulting Battery
+1 Vault of Champions
+1 Arid Mesa
+1 Opposition Agent
+1 Luxury Suite
+1 Ozai, the Phoenix King
+1 Dragonskull Summit
+1 Blood Crypt
+1 Savai Triome
+1 Panoptic Mirror
+1 Bloodstained Mire
+1 Exotic Orchard
+1 Marsh Flats
+1 Godless Shrine
+1 Rugged Prairie
+1 Graven Cairns
+1 Elegant Parlor
+1 Pia Nalaar, Consul of Revival
+1 Talisman of Conviction
+1 Ruby Medallion
+1 Talisman of Indulgence
+1 The Legend of Roku // Avatar Roku
+1 Norin, Swift Survivalist
+1 Party Thrasher
+1 Passionate Archaeologist
+1 Talisman of Hierarchy
+1 Curse of Opulence
+1 Boros Signet
+1 Arcane Signet
+1 Orzhov Signet
+1 Sundown Pass
+1 Emergence Zone
+1 Shattered Sanctum
+1 Path of Ancestry
+1 Ainok Strike Leader

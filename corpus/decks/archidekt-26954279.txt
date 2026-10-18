@@ -1,0 +1,102 @@
+# Archidekt — you wana see me play that again
+# source: archidekt:26954279
+# fetched: 2026-10-01
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Sylvan Library
+1 Rites of Flourishing
+1 Exotic Orchard
+1 Indatha Triome
+1 Bountiful Promenade
+1 Temple Garden
+1 Undergrowth Stadium
+1 Teferi's Protection
+1 Reanimate
+1 Toxic Deluge
+1 Marsh Flats
+1 Lush Portico
+1 Shadowy Backstreet
+1 Mana Vault
+1 Overgrown Tomb
+1 Chromatic Lantern
+1 Greed
+1 Bilbo's Gambit
+1 Restoration Seminar
+1 Utopia Sprawl
+1 Talisman of Unity
+1 Llanowar Wastes
+1 Bleachbone Verge
+1 Brushland
+1 Caves of Koilos
+4 Forest
+1 Godless Shrine
+1 Hushwood Verge
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+2 Plains
+1 Vault of Champions
+1 Verdant Catacombs
+1 Tectonic Split
+1 Sol Ring
+1 Boseiju, Who Endures
+1 Mirari's Wake
+1 Path to Exile
+1 Essence Warden
+1 Terrasymbiosis
+1 The Great Henge
+1 Black Market Connections
+1 Dark Ritual
+1 Oft-Nabbed Goat
+1 Sandsteppe Citadel
+1 Beledros Witherbloom
+1 Vault of the Archangel
+1 Fanatic of Rhonas
+1 Tireless Provisioner
+1 Kami of False Hope
+1 Ancient Tomb
+1 Doom Whisperer
+1 Blasphemous Edict
+1 Exploration
+1 Endless Foot Assault
+1 Soul Warden
+1 Smile at Death
+1 Lathiel, the Bounteous Dawn
+3 Swamp
+1 Ripples of Undeath
+1 Tarmogoyf Nest
+1 Barrowgoyf
+1 Stitcher's Supplier
+1 Spore Frog
+1 Selfless Spirit
+1 Golgari Grave-Troll
+1 Evolution Witness
+1 Moseo, Vein's New Dean
+1 Icetill Explorer
+1 Dawn's Truce
+1 Aftermath Analyst
+1 Ultimate Magic: Holy
+1 Twilight Diviner
+1 Unshakable Tail
+1 Grave Researcher // Reanimate
+1 Anvil of Bogardan
+1 Frenzied Baloth
+1 The Ten Rings
+1 Eternal Witness
+1 World Shaper
+1 Conduit of Worlds
+1 Mana Reflection
+1 Haywire Mite
+1 Mole Man, Moloid Master
+1 Avacyn, Angel of Horror
+1 Hedge Shredder
+1 Whip of Erebos
+1 Exsanguinate
+1 Rogue's Passage
+1 Command Tower
+1 Solitary Confinement
+1 Blossoming Bogbeast
+1 Lumra, Bellow of the Woods
+1 Brawn

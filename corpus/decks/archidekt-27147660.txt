@@ -1,0 +1,92 @@
+# Archidekt — Rakdos Artifacts
+# source: archidekt:27147660
+# fetched: 2026-10-08
+
+Commander:
+1 Imskir Iron-Eater
+
+Deck:
+1 Saw in Half
+1 Ashnod's Altar
+1 Arcane Signet
+1 Rakdos Signet
+1 Iron Myr
+1 Fellwar Stone
+1 Ornithopter of Paradise
+1 Sol Ring
+1 Talisman of Indulgence
+1 Leaden Myr
+1 Cursed Mirror
+1 Gold Pan
+1 Great Furnace
+1 Command Tower
+10 Swamp
+1 Bumbleflower's Sharepot
+1 Daily Bugle Newspaper
+1 Vault of Whispers
+1 Drossforge Bridge
+1 Noble's Purse
+1 Collector's Vault
+1 Prized Statue
+1 Thieves' Tools
+1 Blood Fountain
+1 Ravenous Robots
+1 Clown Car
+1 Monumental Corruption
+1 Stinging Study
+1 Imposing Grandeur
+1 Reckoner's Bargain
+1 The Brothers' War
+1 Terisiare's Devastation
+1 Executioner's Capsule
+1 Nihil Spellbomb
+1 Blasphemous Act
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Goblin Welder
+1 Refurbished Familiar
+1 Frogmyr Enforcer
+1 Herigast, Erupting Nullkite
+1 Myr Battlesphere
+1 Marionette Apprentice
+1 Myr Enforcer
+1 Wurmcoil Engine
+1 Furnace Hellkite
+1 Wurmcoil Larva
+1 Sojourner's Companion
+1 Metalwork Colossus
+1 Imotekh the Stormlord
+1 Scrap Welder
+1 Mask of Griselbrand
+1 Cityscape Leveler
+1 Morbid Curiosity
+1 Visions of Ruin
+1 Burnt Offering
+1 Breya's Apprentice
+1 Daretti, Rocketeer Engineer
+1 Genesis Chamber
+1 Arena of Glory
+1 Bojuka Bog
+1 Reckless Fireweaver
+1 Tithing Blade // Consuming Sepulcher
+1 Lich's Relic
+1 Nim Deathmantle
+1 Krark-Clan Ironworks
+1 Skyclave Relic
+5 Mountain
+1 Witch's Clinic
+1 Mishra's Factory
+1 Darksteel Citadel
+1 High Market
+1 Haunted Ridge
+1 Bloodstained Mire
+1 Blood Crypt
+1 Buried Ruin
+1 Dragonskull Summit
+1 Graven Cairns
+1 Luxury Suite
+1 Restless Vents
+1 Smoldering Marsh
+1 Turbulent Crater
+1 Foreboding Ruins
+1 Geier Reach Sanitarium
+1 Wheel of Misfortune

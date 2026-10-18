@@ -1,0 +1,86 @@
+# Archidekt — Black Mage's Fire
+# source: archidekt:26781891
+# fetched: 2026-10-08
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Scorched Geyser
+1 Temple of Epiphany
+1 Eroded Canyon
+1 Imprisoned in the Moon
+1 Great Hall of the Biblioplex
+1 Collective Inferno
+1 Frogify
+1 Flow State
+1 Aetherize
+1 Astrologian's Planisphere
+1 Bolt Bend
+1 Combat Tutorial
+1 Chandra, Hope's Beacon
+1 Curate
+1 Counterspell
+1 Deduce
+1 Emeritus of Ideation // Ancestral Recall
+1 Ember Island Production
+1 Fated Firepower
+1 Fire Magic
+1 Chandra, Torch of Defiance
+1 Chandra, Chill of Compliance
+1 Lavaspur Boots
+1 Long River's Pull
+1 Magic Damper
+1 Consider
+1 Mindsplice Apparatus
+1 Negate
+1 Opt
+1 Plan for All Outcomes
+1 Quick Study
+1 Redirect Lightning
+1 Return the Favor
+1 Run Away Together
+1 Shore Up
+1 Secret Identity
+1 Spider-Sense
+1 Sol Ring
+1 Think Twice
+1 Time Stretch
+1 Twinned Vision
+1 Vandalblast
+1 Waterbending Scroll
+1 Wisdom of Ages
+1 Tellah, Great Sage
+1 Coruscation Mage
+1 Queen Brahne
+1 Firebrand Archer
+1 Mysidian Elder
+1 Geist of Saint Thalia
+1 Ruric Thar, Biomagus
+1 Saheeli, Jewel of Avishkar
+1 Tomik, Izzet Sparkmage
+1 Archmage Emeritus
+1 Flusterstorm
+1 Eluge, the Shoreless Sea
+1 Lier, Disciple of the Drowned
+1 Jace's Machinations
+1 Murmuring Mystic
+1 Mocking Sprite
+1 Storm-Kiln Artist
+1 Samut, Tyrant of Naktamun
+1 Zaffai and the Tempests
+1 Geyser Drake
+1 Peculiar Lighthouse
+1 Innovative Commons
+1 Evolving Wilds
+1 Sulfur Falls
+19 Island
+1 Terramorphic Expanse
+1 Riverglide Pathway // Lavaglide Pathway
+1 Shivan Reef
+1 Silverbluff Bridge
+1 Spirebluff Canal
+1 Volatile Fjord
+1 Infinite Coursework
+4 Mountain
+1 Choreographed Sparks

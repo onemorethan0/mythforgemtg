@@ -1,0 +1,97 @@
+# Archidekt — Jayce is done with control, he wanna change things in stuffs
+# source: archidekt:27246364
+# fetched: 2026-10-09
+
+Commander:
+1 Jace, Multiverse Architect
+
+Deck:
+1 Radiant Summit
+1 Sunken Ruins
+1 Sunfall
+1 White Sun's Twilight
+1 Mass Polymorph
+1 Proteus Staff
+1 Battlefield Forge
+1 Isolated Chapel
+1 Shivan Reef
+1 Fatehold Charm
+1 Azorius Signet
+1 Rakdos Signet
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Chromatic Lantern
+1 Teferi's Reproach
+1 Avacyn, Angel of Horror
+1 Darksteel Angel
+1 Turbulent Crater
+1 Turbulent Shore
+1 Turbulent Wetlands
+1 Reflecting Pool
+1 Sol Ring
+1 Command Tower
+1 Talisman of Indulgence
+1 Perilous Landscape
+3 Island
+2 Mountain
+4 Plains
+2 Swamp
+1 Underground River
+1 Fetid Heath
+1 Glacial Fortress
+1 Arcane Signet
+1 Drowned Catacomb
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Synthetic Destiny
+1 Mistveil Plains
+1 Prairie Stream
+1 Exotic Orchard
+1 Caves of Koilos
+1 Mystic Gate
+1 Fabled Passage
+1 Clifftop Retreat
+1 Theorist's Sanctum
+1 Reliquary Tower
+1 Skrelv's Hive
+1 Archfiend of Despair
+1 Grand Crescendo
+1 Archon of Cruelty
+1 Occult Epiphany
+1 Flawless Maneuver
+1 Secure the Wastes
+1 Absolute Virtue
+1 Serra's Emissary
+1 Martial Coup
+1 Velomachus Lorehold
+1 Ichormoon Gauntlet
+1 Nissa, Leyline Tamer
+1 Lord Xander, the Collector
+1 Ashen Rider
+1 Spark Double
+1 Jin-Gitaxias, Progress Tyrant
+1 Jin-Gitaxias, Core Augur
+1 Sheoldred, Whispering One
+1 Way of the Mind Sculptor
+1 Izzet Signet
+1 Contaminated Landscape
+1 Nanogene Conversion
+1 Jace, Mirror Mage
+1 Talisman of Progress
+1 Jace, the Perfected Mind
+1 Elesh Norn, Grand Cenobite
+1 Sanctum Lurker
+1 Path to Exile
+1 An Offer You Can't Refuse
+1 Jace's Machinations
+1 Divergent Transformations
+1 Dimir Signet
+1 Stroke of Midnight
+1 Brainsurge
+1 Swords to Plowshares
+1 Despark
+1 Brainstorm
+1 Polymorph
+1 Transmogrify
+1 Nicol Bolas, God-Pharaoh
+1 Reality Scramble

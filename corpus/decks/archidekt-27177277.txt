@@ -1,0 +1,69 @@
+# Archidekt — Bye bye deck
+# source: archidekt:27177277
+# fetched: 2026-10-07
+
+Commander:
+1 Bruvac the Grandiloquent
+
+Deck:
+1 Traumatize
+1 Vedalken Entrancer
+1 Drownyard Amalgam
+1 Patient Rebuilding
+1 Cut Your Losses
+1 Jace, Memory Adept
+1 Fleet Swallower
+1 Screaming Swarm
+39 Island
+1 Keening Stone
+1 Sphinx Mindbreaker
+1 Terisian Mindbreaker
+1 Drowned Secrets
+1 Reito Sentinel
+1 Watcher of the Wayside
+1 Reliquary Tower
+1 Archive Trap
+1 Weight of Memory
+1 Towering-Wave Mystic
+1 The Mindskinner
+1 Psychic Corrosion
+1 Sword of Body and Mind
+1 Startled Awake // Persistent Nightmare
+1 Teferi's Tutelage
+1 Veteran Ice Climber
+1 Tome Scour
+1 Merfolk Windrobber
+1 Font of Progress
+1 Merfolk Secretkeeper // Venture Deeper
+1 Overwhelmed Apprentice
+1 Exhibition Tidecaller
+1 Ruin Crab
+1 Arcane Signet
+1 Thought Scour
+1 Brain Freeze
+1 Altar of the Brood
+1 Didn't Say Please
+1 Altar of Dementia
+1 Grindstone
+1 Glacial Grasp
+1 Disturbing Conversion
+1 Folio of Fancies
+1 Compelling Argument
+1 Maddening Cacophony
+1 Sweet Oblivion
+1 Millstone
+1 Wall of Lost Thoughts
+1 Sapphire Medallion
+1 Fraying Sanity
+1 Navigator's Ruin
+1 Nightmares and Daydreams
+1 The Water Crystal
+1 Surrounded by Orcs
+1 Jace, Wielder of Mysteries
+1 Sage's Row Denizen
+1 Sphinx's Tutelage
+1 Homarid Explorer
+1 Thought Collapse
+1 Relic Golem
+1 Kitsune's Technique
+1 Mindcrank

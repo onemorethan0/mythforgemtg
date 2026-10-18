@@ -1,0 +1,57 @@
+# Archidekt — More Rats
+# source: archidekt:26963449
+# fetched: 2026-10-01
+
+Commander:
+1 Wick, the Whorled Mind
+
+Deck:
+1 Ashcoat of the Shadow Swarm
+1 Banner of Kinship
+1 Black Market Connections
+1 Bontu's Monument
+1 Cavern of Souls
+1 Chronicle of Victory
+1 Deadly Rollick
+1 Go for the Throat
+1 Herald's Horn
+1 Jet Medallion
+1 Marrow-Gnawer
+1 Night's Whisper
+1 Nykthos, Shrine to Nyx
+1 Phyrexian Arena
+32 Rat Colony
+1 Read the Bones
+1 Reliquary Tower
+1 Shadowspear
+1 Skullclamp
+19 Swamp
+1 Swarmyard
+1 Thought Vessel
+1 Three Tree City
+1 Urborg, Tomb of Yawgmoth
+1 Fervor
+1 Rising of the Day
+1 Arcane Adaptation
+1 Leyline of Transformation
+1 Reflections of Littjara
+1 Underground Sea
+1 Mountain
+1 Island
+1 Command Tower
+1 Lórien Revealed
+1 Path of Ancestry
+1 Crumbling Necropolis
+1 Xander's Lounge
+1 Watery Grave
+1 Drowned Catacomb
+1 Dragonskull Summit
+1 Bloodline Bidding
+1 Echoing Return
+1 Maskwood Nexus
+1 Piper of the Swarm
+1 Kindred Charge
+1 Echocasting Symposium
+1 Song of Totentanz
+1 Orcrist, Goblin-cleaver
+1 The Darkness Crystal

@@ -1,0 +1,99 @@
+# Archidekt — Wall-E With Some Upgrades
+# source: archidekt:26691634
+# fetched: 2026-10-06
+
+Commander:
+1 Urza, Chief Artificer
+
+Deck:
+1 Karn, Scion of Urza
+1 Urza's Saga
+1 Urza, Lord High Artificer
+1 Digsite Engineer
+1 Ancient Den
+1 Seat of the Synod
+1 Vault of Whispers
+1 Etherium Sculptor
+1 Darksteel Citadel
+1 Sai, Master Thopterist
+1 Foundry Inspector
+1 Bronze Guardian
+1 March of Progress
+1 Thopter Spy Network
+1 Ornithopter of Paradise
+1 Sol Ring
+1 Hallowed Fountain
+1 Baleful Strix
+1 Command Tower
+3 Plains
+3 Island
+1 Godless Shrine
+3 Swamp
+1 Emry, Lurker of the Loch
+1 Academy Ruins
+1 Urza, Prince of Kroog
+1 Silver Myr
+1 Spire of Industry
+1 Uthros, Titanic Godcore
+1 Cyberdrive Awakener
+1 Cybermen Squadron
+1 Gold Myr
+1 Illustrious Wanderglyph
+1 Watery Grave
+1 Dispatch
+1 Chief of the Foundry
+1 Exotic Orchard
+1 Flooded Strand
+1 Phyrexian Metamorph
+1 Leaden Myr
+1 Raffine's Tower
+1 Polluted Delta
+1 Counterspell
+1 Path to Exile
+1 Urza, Lord Protector
+1 Worldwalker Helm
+1 The Mightstone and Weakstone
+1 Uthros Research Craft
+1 Bojuka Bog
+1 Karn, Legacy Reforged
+1 Darksteel Forge
+1 Talisman of Progress
+1 Tempered Steel
+1 Prairie Stream
+1 Talisman of Hierarchy
+1 Mechanized Production
+1 Sunken Hollow
+1 Vindicate
+1 Void Rend
+1 Evolving Wilds
+1 Dovin's Veto
+1 Reliquary Tower
+1 Sculpting Steel
+1 Stridehangar Automaton
+1 Efficient Construction
+1 Research Thief
+1 Buried Ruin
+1 Fateful Discovery
+1 Chimil, the Inner Sun
+1 Ornithopter
+1 Wurmcoil Engine
+1 Nettlecyst
+1 Machinist's Arsenal
+1 Master of Etherium
+1 Thoughtcast
+1 Padeem, Consul of Innovation
+1 Thought Monitor
+1 Talisman of Dominance
+1 Solemn Simulacrum
+1 Arcane Signet
+1 Thought Vessel
+1 Organic Extinction
+1 Despark
+1 Myr Battlesphere
+1 Their Name Is Death
+1 Ultron, Artificial Malevolence
+1 Mystic Forge
+1 Krang, Utrom Warlord
+1 Simulacrum Synthesizer
+1 Y'shtola Rhul
+1 Goldmire Bridge

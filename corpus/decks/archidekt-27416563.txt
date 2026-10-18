@@ -1,0 +1,83 @@
+# Archidekt — Lands for sale
+# source: archidekt:27416563
+# fetched: 2026-10-14
+
+Commander:
+1 Szarel, Genesis Shepherd
+
+Deck:
+1 Gingerbread Cabin
+1 Insidious Roots
+1 Journey to Eternity // Atzal, Cave of Eternity
+1 Weapons Manufacturing
+1 Castle Doom
+1 Mount Doom
+1 Lotus Field
+1 Reliquary Tower
+9 Mountain
+9 Swamp
+9 Forest
+1 Bojuka Bog
+1 Stomping Ground
+1 Ziatora's Proving Ground
+1 Command Beacon
+1 Overgrown Tomb
+1 Blood Crypt
+1 Witch's Cottage
+1 Riveteers Overlook
+1 Death's Presence
+1 Bioengineered Future
+1 Retreat to Hagra
+1 Dancing from Dark to Dawn
+1 Earthbender Ascension
+1 Gruul Signet
+1 High Score
+1 Loading Zone
+1 Golgari Signet
+1 Sol Ring
+1 Ninja Pizza
+1 Ninja Teen
+1 Retreat to Kazandu
+1 Rakdos Joins Up
+1 Skeletal Swarming
+1 Tectonic Split
+1 Flare of Cultivation
+1 Flare of Duplication
+1 Flare of Malice
+1 Avoid Fate
+1 Academy Manufactor
+1 Pizza Face, Gastromancer
+1 Scapeshift
+1 Culling the Weak
+1 Crop Rotation
+1 Mine Collapse
+1 Tainted Treats
+1 Scrounge for Eternity
+1 Sami's Curiosity
+1 Lithobraking
+1 Orbital Plunge
+1 Cult Conscript
+1 Moss-Pit Skeleton
+1 Persistent Specimen
+1 Reassembling Skeleton
+1 Teacher's Pest
+1 Underworld Sentinel
+1 Titanbones, Towering Heart
+1 Skeleton Crew
+1 Dai Li Agents
+1 Viashino Skeleton
+1 Hearthhull, the Worldseed
+1 Tinybones, Pocket Nuisance
+1 Toph, Greatest Earthbender
+1 Bumi, Unleashed
+1 Bumi, Eclectic Earthbender
+1 Fatal Fissure
+1 Earthbending Lesson
+1 Rockalanche
+1 Earth Rumble
+1 Bumi's Feast Lecture
+1 Rakdos Signet
+1 Nuka-Cola Vending Machine
+1 Toph, Hardheaded Teacher
+1 Beifong's Bounty Hunters
+1 Obsessive Pursuit

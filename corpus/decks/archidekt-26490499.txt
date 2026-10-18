@@ -1,0 +1,87 @@
+# Archidekt — Please dont bog me
+# source: archidekt:26490499
+# fetched: 2026-10-01
+
+Commander:
+1 The Ancient One
+
+Deck:
+1 Diviner of Mist
+1 Screeching Scorchbeast
+1 Polluted Cistern // Dim Oubliette
+1 Singularity Rupture
+1 Withering Torment
+1 Infernal Grasp
+1 Saw It Coming
+1 Killing Wave
+1 Mirrodin Avenged
+1 Dread Return
+1 Inspiration from Beyond
+1 Welcome the Dead
+1 Command Tower
+1 Underground River
+1 Choked Estuary
+9 Island
+1 Exhibition Tidecaller
+12 Swamp
+1 Bad River
+1 Rogue's Passage
+1 Darkwater Catacombs
+1 Barren Moor
+1 Bonders' Enclave
+1 Cephalid Coliseum
+1 Sunken Palace
+1 Lonely Sandbar
+1 Mortuary Mire
+1 Mystic Sanctuary
+1 Port of Karfell
+1 Memorial to Folly
+1 Ghouls' Night Out
+1 Glamdring, Foe-hammer // Gleam of Death
+1 The Warring Triad
+1 The Eternity Elevator
+1 Dread Summons
+1 Worn Powerstone
+1 Stitcher's Supplier
+1 Stitch Together
+1 Increasing Confusion
+1 Stargaze
+1 Go for the Throat
+1 Kiora, the Rising Tide
+1 Fetid Pools
+1 Restless Reef
+1 Thran Dynamo
+1 Millikin
+1 Wonder
+1 Dark Matter Manipulator
+1 Shipwreck Marsh
+1 Scion of Halaster
+1 Rise of the Dark Realms
+1 Toxic Stench
+1 Lier, Disciple of the Drowned
+1 Spellweaver Volute
+1 Sorcerous Squall
+1 Afterlife from the Loam
+1 Murktide Regent
+1 Cosmic Epiphany
+1 Geist of Saint Thalia
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Dark Ritual
+1 Consuming Aberration
+1 Ethereal Forager
+1 The Master of Lake-town
+1 Deranged Assistant
+1 Starving Revenant
+1 Drown in the Loch
+1 Wail of the Forgotten
+1 Frantic Search
+1 Unsummon
+1 Charnel Serenade
+1 Mind Grind
+1 Fractured Sanity
+1 Mask of Griselbrand
+1 Cut Your Losses
+1 Persist
+1 Laboratory Maniac
+1 Dimir Infiltrator
+1 Nightmares and Daydreams
