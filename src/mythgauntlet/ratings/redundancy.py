@@ -86,7 +86,7 @@ from mythgauntlet.semantics.model import EffectVector
 # `noncreature_removal` is new; its raw p60 is 1 card and the MIN_TARGET floor makes it 2.
 ROLE_TARGETS: dict[str, int] = {
     "ramp": 17,
-    "draw": 17,
+    "draw": 18,
     "removal": 7,
     "noncreature_removal": 2,
     "wipe": 6,
@@ -218,6 +218,9 @@ def targets_for(
     return targets
 
 
+IMPULSE_WEIGHT = 0.5  # one impulse-drawn card, as a fraction of a card actually drawn
+
+
 def card_roles(ev: EffectVector) -> dict[str, float]:
     """The functional roles a card fills, and how strongly it fills each.
 
@@ -234,8 +237,13 @@ def card_roles(ev: EffectVector) -> dict[str, float]:
         "ramp": (float(ev.ramp_sources) + (2.0 if ev.fetches_land else 0.0)
                  + float(max(ev.treasure_ramp, ev.mana_on_cast))
                  + float(max(ev.cost_reduction, ev.spell_cost_reduction))),
+        # Impulse draw (Light Up the Stage, Outpost Siege) counts at HALF a drawn card: the
+        # window closes (this turn, or the end of the next one) and lands still need a land drop,
+        # so Light Up the Stage's two cards weigh one cantrip and Outpost Siege's one card a
+        # turn weighs 0.75 against a draw engine's 1.5.
         "draw": (float(ev.draw_cards) + 1.5 * ev.engine_draw
-                 + (1.5 if ev.top_of_library else 0.0)),
+                 + (1.5 if ev.top_of_library else 0.0)
+                 + IMPULSE_WEIGHT * (ev.impulse_draw + 1.5 * ev.impulse_engine)),
         "removal": float(ev.removal),
         # Kept apart from `removal` on purpose (tags._NONCREATURE_OBJECT_RE).
         "noncreature_removal": 1.0 if ev.noncreature_removal else 0.0,

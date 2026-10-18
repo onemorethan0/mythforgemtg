@@ -1056,6 +1056,173 @@ def _team_anthem(text: str) -> bool:
     return False
 
 
+# Impulse draw: "Exile the top two cards of your library. Until the end of your next turn, you
+# may play those cards" (Light Up the Stage, Outpost Siege, Jeska's Will, Wiccan). Red's card
+# advantage never says "draw", so `_draw_counts` saw none of it and every red deck read as
+# draw-poor. Two sentences of ONE ability: the exile, then a permission whose subject is YOU and
+# whose object is the exiled cards as such. Measured over the store before writing a pattern;
+# the exclusions are the near-misses that sample turned up, each an honest under-count:
+#
+# * the permission belongs to someone else — "that creature's controller may play" (Curse of
+#   Hospitality), "they may play" (Expedited Inheritance), "each player may play" (Rocco);
+# * it is CONDITIONAL or an alternative — "if it's red, you may cast it" (Chandra, Dressed to
+#   Kill), "if you don't, you may play" (Spark of Creativity), "during any turn you attacked"
+#   (Boros Strike-Captain), "you may cast that card if it's an instant" (Nivix);
+# * it is TYPE-RESTRICTED — "an instant or sorcery spell from among" (Chandra, Hope's Beacon),
+#   "creature spells from among" (Eager Flameguide), "spells with mana value x or less" (Epic
+#   Experiment): how many of the exiled cards are castable is not knowable from the text;
+# * it lives on ANOTHER line — "you may play cards exiled with this enchantment" (Theater of
+#   Horrors, Nightveil Specter): the permission is a separate static with its own conditions;
+# * a reveal-until ("exile cards from the top until you exile a nonland card") is cascade, one
+#   free spell, not a look at N cards; a "would draw ... instead" (Eruth) REPLACES a draw;
+# * a quoted ability is GRANTED, not this card's (Capricious Sliver, Tavern Brawler).
+_IMPULSE_NUMBERS = {**_WORD_NUMBERS, "eight": 8, "nine": 9, "ten": 10}
+_IMPULSE_EXILE_RE = re.compile(
+    r"\bexiles? (?:the top (\w+) cards?\b|the top card\b|(that many|x|\w+) cards from the top\b"
+    r"|cards from the top\b)")
+_REVEAL_UNTIL_EXILE_RE = re.compile(r"\buntil (?:you|they) (?:have )?exiled?\b")  # Dream Harvest
+# The permission sentence: after an optional window clause, "you may play/cast <the exiled
+# cards>". The object must name the exiled cards as such; an adjective between "cast" and
+# "spells" (instant, red, creature, artifact) is a type restriction and fails the match.
+# "If you do" after an optional exile ("you may exile the top card ... if you do, you may play
+# it") is the same ability going ahead, not a condition on the card; "otherwise" is the nonland
+# branch of a land check (Bruse Tarl).
+_IMPULSE_WINDOW_RE = re.compile(
+    r"^(?:(?:until [^,]{1,40}|during your next turn|otherwise|then|if you do), )+")
+_IMPULSE_FROM = r"(?:them|those (?:exiled )?cards|the exiled cards|cards exiled this way)"
+_IMPULSE_PERMISSION_RE = re.compile(
+    r"^you may (?:play|cast) (?:"
+    r"(one of (?:those|them|the exiled) cards|one of them|a spell from among \w+(?: \w+){0,3})"
+    r"|up to (\w+) of (?:those|them|the exiled) cards"
+    r"|that card|those cards|the exiled cards?|it|them|cards exiled this way"
+    rf"|(?:lands and cast )?(?:any number of )?spells from among {_IMPULSE_FROM}"
+    r")\b")
+_IMPULSE_PERMISSION_INLINE_RE = re.compile(r", then (you may (?:play|cast) .*)$")
+_CHOOSE_ONE_OF_RE = re.compile(r"\bchoose one(?: of (?:them|those (?:exiled )?cards))?$")
+_DISCARD_A_CARD_RE = re.compile(r"\bdiscard (?:a|one) card\b")
+_DISCARD_MANY_RE = re.compile(r"\bdiscard (?:x|two|three|\d+) cards|\bdiscard your hand\b")
+_SUB_LINE_RE = re.compile(r"^(?:• |\d+(?:—\d+)? \| )")       # a mode bullet / a die result
+_SAGA_CHAPTER_RE = re.compile(r"^[ivx]+(?:, [ivx]+)* — ")
+_SKIP_DRAW_RE = re.compile(r"\bskip your draw step\b")
+_IMPULSE_ONE_SHOT_CAP = 3  # past three cards a one-turn window cannot be spent
+_IMPULSE_ENGINE_CAP = 2    # the per-turn goldfish cap every draw engine here uses
+
+
+def _impulse_in_ability(body: str) -> int:
+    """Cards one ability lets us play off the top, net of a discarded card; 0 if none."""
+    if _DISCARD_MANY_RE.search(body):
+        return 0  # "discard your hand, then exile the top three" is a reset, not advantage
+    sentences = [s.strip() for s in body.split(".") if s.strip()]
+    for i, s in enumerate(sentences):
+        m = _IMPULSE_EXILE_RE.search(s)
+        if not m or _REVEAL_UNTIL_EXILE_RE.search(s) or "would draw" in s:
+            continue
+        word = m.group(1) or m.group(2)
+        n = _IMPULSE_NUMBERS.get(word, 1) if word else 1  # x / "that many": a floor of one
+        inline = _IMPULSE_PERMISSION_INLINE_RE.search(s[m.end():])
+        later = ([inline.group(1)] if inline else []) + sentences[i + 1:]
+        for p in later:
+            p = _IMPULSE_WINDOW_RE.sub("", p, count=1)
+            if " if " in f" {p} ":
+                continue  # conditional or alternative permission
+            pm = _IMPULSE_PERMISSION_RE.match(p)
+            if not pm:
+                continue
+            if pm.group(1):
+                n = 1
+            elif pm.group(2):
+                n = min(n, _IMPULSE_NUMBERS.get(pm.group(2), 1))
+            if any(_CHOOSE_ONE_OF_RE.search(x) for x in sentences[i:i + 3]):
+                n = 1  # "exile the top three ... choose one of them. You may play that card"
+            if _DISCARD_A_CARD_RE.search(" ".join(sentences[:i + 1])):
+                n -= 1  # Party Thrasher: discard, exile two, keep one — a rummage, nets zero
+            return max(0, n)
+        return 0  # the first exile of the top had no permission for us: not impulse
+    return 0
+
+
+def _impulse_draw(text: str, is_spell: bool, names: tuple[str, ...]) -> tuple[int, int]:
+    """(one-shot impulse cards, repeatable impulse cards per turn) — see `_IMPULSE_EXILE_RE`.
+
+    Repeatable is judged exactly as `_treasure_ramp` judges a Treasure engine: a repeatable
+    activation or a recurring trigger (`_activation_kind`, `_ONE_SHOT_TRIGGER_RE`, and a paid
+    event like Inti's "whenever you discard" is not free). An activation that DISCARDS a card
+    nets one fewer (Chase Stein: discard, exile one — zero); a sacrificed creature or artifact
+    is not netted, because the fodder is usually a token. A mode bullet or die result inherits
+    the kind of the trigger/activation/spell it hangs off, and alternatives take the MAX. A Saga
+    chapter, a Room door and a `−` loyalty ability are one-shot."""
+    text = re.sub(r'"[^"]*"', "", text)
+    name_alt = "|".join(re.escape(n) for n in names) or r"(?!x)x"
+    self_res = (re.compile(_SELF_COST_TEMPLATE.format(name=name_alt)),
+                re.compile(_SELF_EFFECT_TEMPLATE.format(name=name_alt)))
+    one_shot = engine = activated = 0
+    parent: str | None = "one_shot" if is_spell else None  # the kind a bullet inherits
+    bullets = 0  # the best alternative under the current parent
+    for raw in text.split("\n"):
+        line = _ABILITY_WORD_PREFIX_RE.sub("", raw.strip())
+        sub = bool(_SUB_LINE_RE.match(line))
+        if sub:
+            line = _SUB_LINE_RE.sub("", line)
+        kind: str | None
+        activation = None if is_spell else _activation_kind(line, *self_res)
+        if is_spell:
+            kind, body = "one_shot", line
+        elif activation in ("repeatable", "one_shot"):
+            kind, head, body = activation, *line.split(":", 1)
+            if _DISCARD_MANY_RE.search(head):
+                kind = None
+            elif _DISCARD_A_CARD_RE.search(head):
+                body = "discard a card. " + body
+        elif activation is None and _TRIGGER_RE.match(line):
+            head = line.split(",")[0]
+            if _PAID_EVENT_RE.match(head):
+                kind = None
+            elif (_ONE_SHOT_TRIGGER_RE.match(head)
+                    or _ONE_SHOT_TRIGGER_RE.match(",".join(line.split(",")[:2]))):
+                kind = "one_shot"
+            else:
+                kind = "repeatable"
+            body = line
+        elif _SAGA_CHAPTER_RE.match(line):
+            kind, body = "one_shot", _SAGA_CHAPTER_RE.sub("", line)
+        elif sub:
+            kind, body = parent, line
+        else:
+            kind, body = None, line  # a static, an opponents-only activation
+        if not sub:
+            # A new ability: bank the best alternative of the previous header's modes.
+            one_shot, engine = _bank_impulse(parent, bullets, one_shot, engine)
+            parent, bullets = kind, 0
+            if is_spell:
+                parent = "one_shot"
+        if kind is None:
+            continue
+        n = _impulse_in_ability(body)
+        if sub:
+            bullets = max(bullets, n)
+        elif activation == "repeatable" and kind == "repeatable":
+            # Several activations are usually alternative uses of one {T} (Oracle's Vault):
+            # the MAX, as `_draw_counts` does for activated draws.
+            activated = max(activated, min(n, _IMPULSE_ENGINE_CAP))
+        else:
+            one_shot, engine = _bank_impulse(kind, n, one_shot, engine)
+    one_shot, engine = _bank_impulse(parent, bullets, one_shot, engine)
+    engine += activated
+    if engine and _SKIP_DRAW_RE.search(text):
+        engine -= 1  # Wild Wasteland: the upkeep impulse REPLACES the draw step's card
+    return min(one_shot, _IMPULSE_ONE_SHOT_CAP), min(engine, _IMPULSE_ENGINE_CAP)
+
+
+def _bank_impulse(kind: str | None, n: int, one_shot: int, engine: int) -> tuple[int, int]:
+    """Several one-shot abilities are alternatives or separate events: the MAX (like
+    `_close_ability`). Recurring abilities add, each at the per-turn cap."""
+    if not n or kind is None:
+        return one_shot, engine
+    if kind == "one_shot":
+        return max(one_shot, n), engine
+    return one_shot, engine + min(n, _IMPULSE_ENGINE_CAP)
+
+
 def analyze(card: Card) -> EffectVector:
     """Compute the rung-1 EffectVector for a card (front face)."""
     text = _clean_text(card)
@@ -1120,6 +1287,7 @@ def analyze(card: Card) -> EffectVector:
             ritual_mana = max(0, added - card.mana_value)
     overrun_pump, overrun_scales = _overrun(text)
     is_spell = card.has_type("Instant") or card.has_type("Sorcery")
+    impulse_draw, impulse_engine = _impulse_draw(text, is_spell, _self_names(card))
 
     if card.edhrec_rank is not None:
         impact = max(0.0, min(1.0, 1.0 - card.edhrec_rank / _IMPACT_RANK_SCALE))
@@ -1151,6 +1319,8 @@ def analyze(card: Card) -> EffectVector:
         treasure_ramp=_treasure_ramp(text, is_spell, _self_names(card)),
         cost_reduction=_cost_reduction(text),
         top_of_library=_top_of_library(text, is_spell),
+        impulse_draw=impulse_draw,
+        impulse_engine=impulse_engine,
         alt_win=bool(_ALT_WIN_RE.search(text)),
         extra_combat=bool(_EXTRA_COMBAT_RE.search(text)),
         team_anthem=_team_anthem(text),

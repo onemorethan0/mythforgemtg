@@ -248,6 +248,103 @@ def test_a_lone_scaling_threat_is_not_a_finisher(make_card):
     assert _roles(card) == {}
 
 
+# --- draw: impulse (exile the top, you may play it) ----------------------------------------
+
+def _impulse(card):
+    fx = tags.analyze(card)
+    return fx.impulse_draw, fx.impulse_engine
+
+
+def test_light_up_the_stage_is_one_shot_impulse_at_half_weight(make_card):
+    card = make_card("Light Up the Stage", mana_cost="{2}{R}", type_line="Sorcery", oracle_text=(
+        "Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost "
+        "if an opponent lost life this turn.)\nExile the top two cards of your library. Until "
+        "the end of your next turn, you may play those cards."))
+    assert _impulse(card) == (2, 0)
+    assert _roles(card) == {"draw": 2 * redundancy.IMPULSE_WEIGHT}
+    fx = tags.analyze(card)
+    assert fx.draw_cards == 0 and fx.engine_draw == 0   # tier0 never spends it as a card in hand
+
+
+@pytest.mark.parametrize("name,type_line,text,expected", [
+    # a mode bullet behind an ability word, under a recurring trigger
+    ("Outpost Siege", "Enchantment", "As this enchantment enters, choose Khans or Dragons.\n"
+     "• Khans — At the beginning of your upkeep, exile the top card of your library. Until end "
+     "of turn, you may play that card.\n• Dragons — Whenever a creature you control leaves the "
+     "battlefield, this enchantment deals 1 damage to any target.", (0, 1)),
+    ("Wiccan, Young Avenger", "Legendary Creature — Mutant Warlock Hero", "Whenever you cast a "
+     "noncreature spell, exile the top card of your library. Until your next end step, you may "
+     "play that card.", (0, 1)),
+    # a modal spell's bullet is the spell's own one-shot
+    ("Jeska's Will", "Sorcery", "Choose one. If you control a commander as you cast this "
+     "spell, you may choose both instead.\n• Add {R} for each card in target opponent's hand.\n"
+     "• Exile the top three cards of your library. You may play them this turn.", (3, 0)),
+    # +1 repeats; the −7 is spent once and capped at three
+    ("Chandra, Fire Artisan", "Legendary Planeswalker — Chandra", "Whenever one or more "
+     "loyalty counters are removed from Chandra, she deals that much damage to target opponent "
+     "or planeswalker.\n+1: Exile the top card of your library. You may play it this turn.\n"
+     "−7: Exile the top seven cards of your library. You may play them this turn.", (3, 1)),
+    # a dies trigger is one-shot, and its bullets inherit that
+    ("Atsushi, the Blazing Sky", "Legendary Creature — Dragon Spirit", "Flying, trample\nWhen "
+     "Atsushi dies, choose one —\n• Exile the top two cards of your library. Until the end of "
+     "your next turn, you may play those cards.\n• Create three Treasure tokens.", (2, 0)),
+    # "you may exile ... If you do, you may play" is the same ability going ahead
+    ("Superior Foes of Spider-Man", "Creature — Human Rogue Villain", "Trample\nWhenever you "
+     "cast a spell with mana value 4 or greater, you may exile the top card of your library. If "
+     "you do, you may play that card until you exile another card with this creature.", (0, 1)),
+    # the upkeep impulse REPLACES the skipped draw: two cards, one of them already ours
+    ("Wild Wasteland", "Enchantment", "Skip your draw step.\nAt the beginning of your upkeep, "
+     "exile the top two cards of your library. You may play those cards this turn.", (0, 1)),
+])
+def test_impulse_positives(make_card, name, type_line, text, expected):
+    assert _impulse(make_card(name, type_line=type_line, oracle_text=text)) == expected
+
+
+def test_one_of_those_cards_is_one_card(make_card):
+    card = make_card("Jaya, Fiery Negotiator", type_line="Legendary Planeswalker — Jaya",
+                     oracle_text=(
+        "+1: Create a 1/1 red Monk creature token with prowess.\n−1: Exile the top two cards of "
+        "your library. Choose one of them. You may play that card this turn."))
+    assert _impulse(card) == (1, 0)
+
+
+@pytest.mark.parametrize("name,type_line,text", [
+    # the permission is somebody else's
+    ("Curse of Hospitality", "Enchantment — Aura Curse", "Enchant player\nCreatures attacking "
+     "enchanted player have trample.\nWhenever a creature deals combat damage to enchanted "
+     "player, that player exiles the top card of their library. Until end of turn, that "
+     "creature's controller may play that card and they may spend mana as though it were mana "
+     "of any color to cast that spell."),
+    ("Expedited Inheritance", "Enchantment", "Whenever a creature is dealt damage, its "
+     "controller may exile that many cards from the top of their library. They may play those "
+     "cards until the end of their next turn."),
+    # a GRANTED ability is the slivers', not this card's
+    ("Capricious Sliver", "Creature — Sliver", "Sliver creatures you control have \"Whenever "
+     "this creature deals combat damage to a player, exile the top card of your library. You "
+     "may play that card this turn.\""),
+    # conditional on what was exiled, or type-restricted: how many are castable is unknowable
+    ("Chandra, Dressed to Kill", "Legendary Planeswalker — Chandra", "+1: Exile the top card of "
+     "your library. If it's red, you may cast it this turn.\n−7: Exile the top five cards of "
+     "your library. You may cast red spells from among them this turn."),
+    ("Chandra, Hope's Beacon", "Legendary Planeswalker — Chandra", "+1: Exile the top five "
+     "cards of your library. Until the end of your next turn, you may cast an instant or "
+     "sorcery spell from among those exiled cards."),
+    # reveal-until is one free spell (cascade), not a look at N cards
+    ("Wanda's Vision", "Enchantment", "Whenever you cast your second spell each turn, exile "
+     "cards from the top of your library until you exile a nonland card. You may cast that "
+     "card without paying its mana cost."),
+    # discard a card to impulse one: a rummage, nets zero
+    ("Chase Stein, Runaway", "Legendary Creature — Human Hero", "{T}, Discard a card: Exile the "
+     "top card of your library. Until the end of your next turn, you may play that card."),
+    # the permission is a separate static with its own condition
+    ("Theater of Horrors", "Enchantment", "At the beginning of your upkeep, exile the top card "
+     "of your library.\nDuring your turn, if an opponent lost life this turn, you may play lands "
+     "and cast spells from among cards exiled with this enchantment."),
+])
+def test_impulse_near_misses(make_card, name, type_line, text):
+    assert _impulse(make_card(name, type_line=type_line, oracle_text=text)) == (0, 0)
+
+
 # --- none of it reaches the simulator ------------------------------------------------------
 
 def test_role_only_fields_leave_the_sim_fields_alone(make_card):

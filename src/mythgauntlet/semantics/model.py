@@ -43,6 +43,10 @@ class EffectVector:
     treasure_ramp: int = 0  # Treasure made by a REPEATABLE trigger/activation, net of its cost
     cost_reduction: int = 0  # your spells cost {N} less / gain improvise-convoke-affinity
     top_of_library: bool = False  # standing permission to cast/play from the top (Mystic Forge)
+    # Impulse draw (Light Up the Stage, Outpost Siege): cards exiled off the top that WE may play.
+    # Deliberately NOT draw_cards/engine_draw — tier0 would spend them as cards in hand.
+    impulse_draw: int = 0  # one-shot cards made playable (spell, ETB, dies, chapter, − loyalty)
+    impulse_engine: int = 0  # cards made playable per turn by a recurring trigger/activation
     alt_win: bool = False  # "you win the game" (Mechanized Production, Thassa's Oracle)
     extra_combat: bool = False  # "an additional combat phase"
     team_anthem: bool = False  # STATIC team pump (Tempered Steel); not a tribe or colour lord
