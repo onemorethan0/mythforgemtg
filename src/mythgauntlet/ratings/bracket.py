@@ -41,6 +41,9 @@ from dataclasses import dataclass, field
 
 from mythgauntlet.data.spellbook import ComboAssessment
 from mythgauntlet.model.card import Card
+from mythgauntlet.ratings.strength_model import LABELS as _STRENGTH_LABELS
+from mythgauntlet.ratings.strength_model import StrengthReading, strength_placement
+from mythgauntlet.ratings.strength_model import is_fitted as strength_is_fitted
 
 # Root-level Forge module (`<repo>/bracket.py`, NOT this package). Reachable in the engine's
 # real deployed configuration because `manage.bat`'s `:ensure_gauntlet` launches
@@ -119,6 +122,10 @@ class BracketEstimate:
     # it just echoes the raw input parameter and stays 0 whenever the caller used
     # `combo_profile` instead. This field is always correct regardless of `gc` or `cap`.
     has_verified_combo: bool = False
+    # The official-gate floor and the measured strength score (bracket scale) behind the
+    # placement; strength_score is None on the legacy gate-banded path.
+    floor: int = 1
+    strength_score: float | None = None
 
 
 def _scan(cards: list[tuple[Card, int]]) -> tuple[int, int]:
@@ -206,6 +213,42 @@ def _fast_two_card_combo(two_card_combos: int, profile: ComboAssessment | None) 
     return bool(two_card_combos)
 
 
+def _driver_text(reading: StrengthReading) -> str:
+    parts = [f"{_STRENGTH_LABELS.get(f, f)} {'+' if c >= 0 else '-'}"
+             for f, c in reading.drivers if abs(c) >= 0.03]
+    return f" (moved most by {', '.join(parts)})" if parts else ""
+
+
+def _place_by_strength(
+    reading: StrengthReading, floor: int, reasons: list[str], *, meta_rating: float | None,
+    cedh_combo: bool, speed_kill_rate: float,
+) -> tuple[int, bool]:
+    """Bracket = max(official floor, measured strength), plus the existing cEDH escalations
+    for a deck already at Bracket 4. Appends the reasons; returns (bracket, plays_up)."""
+    bracket = max(floor, reading.bracket)
+    reasons.append(
+        f"measured speed + strength place it at Bracket {reading.bracket} "
+        f"({BRACKET_LABELS[reading.bracket]}, score {reading.score:.2f}){_driver_text(reading)}"
+    )
+    if floor > reading.bracket:
+        reasons.append(f"the official gates above require at least Bracket {floor}")
+    if bracket == 4:
+        if meta_rating is not None and meta_rating >= 1650:
+            bracket = 5
+            reasons.append(f"high gauntlet rating ({meta_rating:.0f}) -> Bracket 5 (cEDH)")
+        elif cedh_combo and speed_kill_rate <= _CEDH_MAX_COMBAT_RELIANCE:
+            bracket = 5
+            reasons.append("terminal 2-card combo, not primarily a combat-kill deck -> "
+                           "Bracket 5 (cEDH) range")
+    plays_up = reading.plays_up and bracket == reading.bracket and bracket < 5
+    if plays_up:
+        reasons.append(
+            f"strength sits right at the Bracket {bracket}/{bracket + 1} line -- it may play "
+            f"like a {bracket + 1} at some tables; read the axes"
+        )
+    return bracket, plays_up
+
+
 def estimate_bracket(
     cards: list[tuple[Card, int]],
     commanders: list[Card],
@@ -222,7 +265,11 @@ def estimate_bracket(
     combos_checked: bool = False,
     meta_rating: float | None = None,
     coverage_share: float = 1.0,
+    strength_features: dict[str, float | None] | None = None,  # strength_model.features()
 ) -> BracketEstimate:
+    """Official gates set a FLOOR; with `strength_features` (what `analyze_deck` passes), the
+    measured strength placement decides from there (`strength_model`). Without them -- older
+    callers, the offline scripts -- the original gate-banded placement below still runs."""
     all_cards = list(cards) + [(c, 1) for c in commanders]
     gc_names = {c.name for c, _ in all_cards if c.game_changer}
     gc = len(gc_names)
@@ -231,15 +278,21 @@ def estimate_bracket(
     reasons: list[str] = []
 
     # --- official hard gates set the allowed band [floor, cap] ---
+    # On the strength path the Game Changer gate is a FLOOR only (the official allowance),
+    # so its reason must not read as the old band cap.
+    as_floor = strength_features is not None and strength_is_fitted()
     if gc == 0:
         floor, cap = 1, 2
-        reasons.append("0 Game Changers -> Brackets 1-2")
+        reasons.append("0 Game Changers -> no Game Changer minimum" if as_floor
+                       else "0 Game Changers -> Brackets 1-2")
     elif gc <= 3:
         floor, cap = 3, 3
-        reasons.append(f"{gc} Game Changer(s) (<=3) -> Bracket 3")
+        reasons.append(f"{gc} Game Changer(s) -> at least Bracket 3" if as_floor
+                       else f"{gc} Game Changer(s) (<=3) -> Bracket 3")
     else:
         floor, cap = 4, 5
-        reasons.append(f"{gc} Game Changers (>3) -> Brackets 4-5")
+        reasons.append(f"{gc} Game Changers (>3) -> at least Bracket 4" if as_floor
+                       else f"{gc} Game Changers (>3) -> Brackets 4-5")
 
     combos = max(combo_count, two_card_combos)  # any in-deck game-ending combo (2- or 3+-card)
     if combo_profile is not None:
@@ -307,105 +360,119 @@ def estimate_bracket(
         floor, cap = max(floor, 4), 5
         reasons.append(f"chained extra turns ({extra_turns}) -> Brackets 4-5")
 
-    # --- place within the band using measured power ---
-    bracket = floor
-    if floor == 1 and cap == 2:
-        # 1 (exhibition/ultra-casual) vs 2 (precon-level). Decided on MANA-BASE consistency,
-        # measured 2026-07-28 against 155 rules-consistent B1/B2 anchors
-        # (scripts/axis_separation.py; re-run it if you change this):
-        #
-        #   rule                                   acc    B1 recall   B2 recall
-        #   ceiling>=15 or speed>=0.10 (OLD)      58.7%       5.9%      100.0%
-        #   always say B2 (baseline)              56.1%       0.0%      100.0%
-        #   manabase consistency >= 0.78          64.5%      58.8%       69.0%
-        #
-        # The old gate was "always say B2" with noise on top: it produced Bracket 1 for 6%
-        # of decks in a sample that was 44% B1. Ceiling and speed simply do not separate
-        # these two (Cohen's d +0.30 and ~+0.09); mana-base consistency does (d +0.61), and
-        # it is the ONLY measured signal above "weak" at this boundary. Intuition matches:
-        # B1 is "theme over power", where five-colour pet decks live, and their mana is
-        # genuinely worse than a precon's.
-        #
-        # NOTE it must REPLACE the old test, not join it — `OLD or manabase` scores 56.8%,
-        # WORSE than manabase alone, because OR-ing an always-B2 rule re-imposes its bias.
-        # Accuracy is flat across thresholds 0.70-0.78 (all 64.5%); they differ only in
-        # recall balance, so 0.78 is chosen for the most even split rather than a fitted peak.
-        if manabase_consistency >= _EXHIBITION_MANA:
-            bracket = 2
-            reasons.append(
-                f"mana base holds up ({manabase_consistency:.0%} colour consistency) "
-                "-> Bracket 2 (core)"
-            )
-        else:
-            bracket = 1
-            reasons.append(
-                f"thin mana base ({manabase_consistency:.0%} colour consistency) "
-                "-> Bracket 1 (exhibition)"
-            )
-    elif floor >= 4:
-        # 4 (optimized) vs 5 (cEDH): needs meta-strength/intent; conservative without it
-        if meta_rating is not None and meta_rating >= 1650:
-            bracket = 5
-            reasons.append(f"high gauntlet rating ({meta_rating:.0f}) -> Bracket 5 (cEDH)")
-        elif _fast_two_card_combo(two_card_combos, combo_profile) \
-                and speed_kill_rate <= _CEDH_MAX_COMBAT_RELIANCE:
-            bracket = 5
-            reasons.append(
-                "terminal 2-card combo, not primarily a combat-kill deck -> "
-                "Bracket 5 (cEDH) range"
-            )
-        else:
-            bracket = 4
-            reasons.append("optimized power; not clearly cEDH-tuned -> Bracket 4")
+    reading = strength_placement(strength_features) if strength_features is not None else None
+    if reading is not None:
+        bracket, plays_up = _place_by_strength(
+            reading, floor, reasons, meta_rating=meta_rating,
+            cedh_combo=_fast_two_card_combo(two_card_combos, combo_profile),
+            speed_kill_rate=speed_kill_rate,
+        )
+    else:
+        # --- place within the band using measured power ---
+        bracket = floor
+        if floor == 1 and cap == 2:
+            # 1 (exhibition/ultra-casual) vs 2 (precon-level). Decided on MANA-BASE consistency,
+            # measured 2026-07-28 against 155 rules-consistent B1/B2 anchors
+            # (scripts/axis_separation.py; re-run it if you change this):
+            #
+            #   rule                                   acc    B1 recall   B2 recall
+            #   ceiling>=15 or speed>=0.10 (OLD)      58.7%       5.9%      100.0%
+            #   always say B2 (baseline)              56.1%       0.0%      100.0%
+            #   manabase consistency >= 0.78          64.5%      58.8%       69.0%
+            #
+            # The old gate was "always say B2" with noise on top: it produced Bracket 1 for 6%
+            # of decks in a sample that was 44% B1. Ceiling and speed simply do not separate
+            # these two (Cohen's d +0.30 and ~+0.09); mana-base consistency does (d +0.61), and
+            # it is the ONLY measured signal above "weak" at this boundary. Intuition matches:
+            # B1 is "theme over power", where five-colour pet decks live, and their mana is
+            # genuinely worse than a precon's.
+            #
+            # NOTE it must REPLACE the old test, not join it — `OLD or manabase` scores 56.8%,
+            # WORSE than manabase alone, because OR-ing an always-B2 rule re-imposes its bias.
+            # Accuracy is flat across thresholds 0.70-0.78 (all 64.5%); they differ only in
+            # recall balance, so 0.78 is chosen for the most even split rather than a fitted peak.
+            if manabase_consistency >= _EXHIBITION_MANA:
+                bracket = 2
+                reasons.append(
+                    f"mana base holds up ({manabase_consistency:.0%} colour consistency) "
+                    "-> Bracket 2 (core)"
+                )
+            else:
+                bracket = 1
+                reasons.append(
+                    f"thin mana base ({manabase_consistency:.0%} colour consistency) "
+                    "-> Bracket 1 (exhibition)"
+                )
+        elif floor >= 4:
+            # 4 (optimized) vs 5 (cEDH): needs meta-strength/intent; conservative without it
+            if meta_rating is not None and meta_rating >= 1650:
+                bracket = 5
+                reasons.append(f"high gauntlet rating ({meta_rating:.0f}) -> Bracket 5 (cEDH)")
+            elif _fast_two_card_combo(two_card_combos, combo_profile) \
+                    and speed_kill_rate <= _CEDH_MAX_COMBAT_RELIANCE:
+                bracket = 5
+                reasons.append(
+                    "terminal 2-card combo, not primarily a combat-kill deck -> "
+                    "Bracket 5 (cEDH) range"
+                )
+            else:
+                bracket = 4
+                reasons.append("optimized power; not clearly cEDH-tuned -> Bracket 4")
 
-    # --- B2/B3 boundary banner (honest uncertainty, not a B3 classifier) ---
-    # This flag used to gate on _upper_core(ceiling/speed/interaction/consistency). Measured
-    # 2026-07-28 against 120 zero-Game-Changer anchors, that gate was WORSE THAN USELESS: it
-    # fired on 33% of decks their authors labeled Upgraded and 37% labeled Core — more often
-    # on the ones it was supposed to leave alone. So a third of Core decks were told they sit
-    # at the Upgraded boundary for no measured reason.
-    #
-    # Nothing we compute separates that population (best signal nut_kill_rate d=+0.37, weak;
-    # everything else weak or none), which is unsurprising: with 0 Game Changers the official
-    # gate is silent by design, and the real Core/Upgraded line is card-quality and tuning
-    # that goldfish fidelity cannot see.
-    #
-    # So the flag no longer PRETENDS to detect tuning per deck. It now states a calibration
-    # fact that is true of every deck in this position: 40% of author-labeled Upgraded decks
-    # (33/83) carry zero Game Changers, so a zero-GC "Core" verdict genuinely cannot rule
-    # Upgraded out. That is honest uncertainty; the old banner was false precision.
-    #
-    # This band also has a Bracket-1 side (the mana-base sub-placement above lands at 1, not
-    # 2), and it used to carry NO uncertainty flag at all -- `plays_up` required bracket == 2
-    # exactly, on the stated assumption "a deck placed at Bracket 1 isn't at the Core/Upgraded
-    # boundary at all" (see the test this replaced, test_plays_up_not_claimed_for_exhibition).
-    # That assumption was never measured, and checking it (scripts/bracket_accuracy.py --json,
-    # full 297-deck corpus, 2026-08-24) shows it doesn't hold: of decks landing HERE via a thin
-    # manabase, 14.1% (10/71) are called Upgraded by their own builder anyway -- lower than the
-    # 24.2% (30/124) rate on the Bracket-2 side of this same gate, but not the "not at the
-    # boundary at all" the old test claimed. The mechanism is the same reason the Bracket-2
-    # side is silent: manabase CONSISTENCY and deck POWER are different things (a deck can run
-    # a greedy manabase for power reasons and still be genuinely strong), and the Game Changer
-    # gate already can't see power once GC == 0 regardless of which side of the mana-base split
-    # a deck lands on.
-    plays_up = bracket in (1, 2) and (floor, cap) == (1, 2)
-    if plays_up:
-        if bracket == 2:
-            reasons.append(
-                "0 Game Changers caps this at Core, but 40% of decks their authors call "
-                "Upgraded also run none -- this boundary is not resolvable from card gates; "
-                "read the axes"
-            )
-        else:
-            reasons.append(
-                "0 Game Changers and a thin manabase cap this at Exhibition, but the Game "
-                "Changer gate is nearly silent on power once it reads zero -- 14% of decks "
-                "placed here are called Upgraded by their own builders too; read the axes"
-            )
+        # --- B2/B3 boundary banner (honest uncertainty, not a B3 classifier) ---
+        # This flag used to gate on _upper_core(ceiling/speed/interaction/consistency). Measured
+        # 2026-07-28 against 120 zero-Game-Changer anchors, that gate was WORSE THAN USELESS: it
+        # fired on 33% of decks their authors labeled Upgraded and 37% labeled Core — more often
+        # on the ones it was supposed to leave alone. So a third of Core decks were told they sit
+        # at the Upgraded boundary for no measured reason.
+        #
+        # Nothing we compute separates that population (best signal nut_kill_rate d=+0.37, weak;
+        # everything else weak or none), which is unsurprising: with 0 Game Changers the official
+        # gate is silent by design, and the real Core/Upgraded line is card-quality and tuning
+        # that goldfish fidelity cannot see.
+        #
+        # So the flag no longer PRETENDS to detect tuning per deck. It now states a calibration
+        # fact that is true of every deck in this position: 40% of author-labeled Upgraded decks
+        # (33/83) carry zero Game Changers, so a zero-GC "Core" verdict genuinely cannot rule
+        # Upgraded out. That is honest uncertainty; the old banner was false precision.
+        #
+        # This band also has a Bracket-1 side (the mana-base sub-placement above lands at 1, not
+        # 2), and it used to carry NO uncertainty flag at all -- `plays_up` required bracket == 2
+        # exactly, on the stated assumption "a deck placed at Bracket 1 isn't at the Core/Upgraded
+        # boundary at all" (see the test this replaced, test_plays_up_not_claimed_for_exhibition).
+        # That assumption was never measured, and checking it (scripts/bracket_accuracy.py --json,
+        # full 297-deck corpus, 2026-08-24) shows it doesn't hold: of decks landing HERE via a thin
+        # manabase, 14.1% (10/71) are called Upgraded by their own builder anyway -- lower than the
+        # 24.2% (30/124) rate on the Bracket-2 side of this same gate, but not the "not at the
+        # boundary at all" the old test claimed. The mechanism is the same reason the Bracket-2
+        # side is silent: manabase CONSISTENCY and deck POWER are different things (a deck can run
+        # a greedy manabase for power reasons and still be genuinely strong), and the Game Changer
+        # gate already can't see power once GC == 0 regardless of which side of the mana-base split
+        # a deck lands on.
+        plays_up = bracket in (1, 2) and (floor, cap) == (1, 2)
+        if plays_up:
+            if bracket == 2:
+                reasons.append(
+                    "0 Game Changers caps this at Core, but 40% of decks their authors call "
+                    "Upgraded also run none -- this boundary is not resolvable from card gates; "
+                    "read the axes"
+                )
+            else:
+                reasons.append(
+                    "0 Game Changers and a thin manabase cap this at Exhibition, but the Game "
+                    "Changer gate is nearly silent on power once it reads zero -- 14% of decks "
+                    "placed here are called Upgraded by their own builders too; read the axes"
+                )
 
     # --- confidence ---
     confidence = 0.75
-    if floor != cap and bracket in (4, 5) and meta_rating is None:
+    if reading is not None:
+        # how far the strength score sits from the nearest cut: a deck on a boundary is a
+        # coin flip between two brackets, one in the middle of a band is not
+        confidence = 0.55 + min(0.30, 0.6 * reading.margin)
+        if floor > reading.bracket:
+            confidence += 0.10  # an official gate decided it, not a soft measurement
+    elif floor != cap and bracket in (4, 5) and meta_rating is None:
         confidence -= 0.20  # 4-vs-5 is soft without a gauntlet rating
     if combos and not combos_checked:
         confidence -= 0.10
@@ -438,4 +505,6 @@ def estimate_bracket(
         mass_land_denial_cards=mld,
         plays_up=plays_up,
         has_verified_combo=bool(combos) and combos_checked,
+        floor=floor,
+        strength_score=reading.score if reading is not None else None,
     )

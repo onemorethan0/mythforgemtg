@@ -25,6 +25,7 @@ from mythgauntlet.ratings.axes import (
 )
 from mythgauntlet.ratings.bracket import BracketEstimate, estimate_bracket
 from mythgauntlet.ratings.insight import DeckInsight, build_insight
+from mythgauntlet.ratings.strength_model import features as strength_features
 from mythgauntlet.ratings.table_feel import TableFeelReport, compute_table_feel
 from mythgauntlet.ratings.metrics import ConsistencyReport
 from mythgauntlet.semantics.combo_rules import DeterminismVerdict, classify_determinism
@@ -185,17 +186,29 @@ def analyze_deck(
         [c.name for c in resolved.commanders if c.game_changer]
         + [c.name for c, _ in resolved.cards if c.game_changer]
     )
+    manabase_p = manabase.analyze(resolved.cards, resolved.commanders).consistency
+    # Measured speed + strength for the bracket's strength placement (ratings/strength_model):
+    # the same numbers the panel shows, so the bracket and the axes cannot disagree.
+    feats = strength_features(
+        cards=resolved.cards, commanders=resolved.commanders, horizon=cfg.turns,
+        consistency=report.consistency_score, kill_rate=report.goldfish_kill_rate,
+        avg_kill_turn=report.avg_kill_turn, avg_commander_turn=report.avg_commander_turn,
+        resilience=resilience.resilience_score if resilience is not None else None,
+        interaction=interaction.score, ceiling=ceiling.score, pod=pod.score,
+        manabase=manabase_p,
+    )
     bracket = estimate_bracket(
         resolved.cards, resolved.commanders,
         speed_kill_rate=report.goldfish_kill_rate,
         consistency=report.consistency_score, interaction=interaction.score,
         avg_kill_turn=report.avg_kill_turn,
         # Mana-base consistency decides B1 vs B2 (measured; see bracket.estimate_bracket).
-        manabase_consistency=manabase.analyze(resolved.cards, resolved.commanders).consistency,
+        manabase_consistency=manabase_p,
         two_card_combos=two_card_combos, combo_count=game_ending_combos,
         combo_profile=combo_profile,
         can_go_off=go_off.goes_off,
         combos_checked=combos_checked, coverage_share=coverage.executable_share,
+        strength_features=feats,
     )
     analysis = DeckAnalysis(
         report=report, coverage=coverage, interaction=interaction, ceiling=ceiling, pod=pod,

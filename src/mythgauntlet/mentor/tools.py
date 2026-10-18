@@ -526,7 +526,7 @@ def tool_get_bracket_estimate(ctx: MentorContext) -> ToolResult:
     This is the headline "is this deck too strong/weak for my pod" question, and until
     this tool existed the mentor had no path to it at all -- `get_deck_stats` covers
     curve/colours/roles, none of which is what a bracket number actually gates on
-    (Game Changers, in-deck combos, mass land denial, measured speed/consistency).
+    (measured speed + strength, with Game Changers / combos / mass land denial as floors).
 
     Runs a real (bounded) goldfish simulation, so this is priced like `assess_card` (a
     few seconds) on the FIRST call for a deck, not free like `get_deck_stats` -- its own
@@ -1403,10 +1403,12 @@ TOOL_SCHEMAS: list[dict] = [
         "type": "function",
         "function": {
             "name": "get_bracket_estimate",
-            "description": "Get the official-rules Commander Bracket estimate (1-5) for "
-                            "this deck, via a real (bounded) simulation -- WotC's Feb 2026 "
-                            "bracket system (Game Changers, in-deck combos, mass land denial, "
-                            "measured speed/consistency). Use this for ANY question of the "
+            "description": "Get the Commander Bracket estimate (1-5) for this deck, via a "
+                            "real (bounded) simulation. Placed by MEASURED speed and strength "
+                            "(strength_score, calibrated to brackets real players assigned); the "
+                            "official rules (Game Changers, in-deck combos, mass land denial, "
+                            "chained extra turns) only set its minimum ('floor'). Its "
+                            "'reasons' say which signals moved it. Use this for ANY question of the "
                             "form 'what bracket is this', 'is this deck too strong/weak for "
                             "my pod', or 'is this deck fun/on-level for casual play'. Slower "
                             "than get_deck_stats -- a real simulation, priced like "

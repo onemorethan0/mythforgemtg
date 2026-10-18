@@ -203,7 +203,7 @@ export default function SimStrengthPanel({ simulation }) {
         return (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
             <span style={{ fontSize: 12, color: '#a8a29e' }}>
-              <Term def="WotC's official 1-5 power-level system for Commander matchmaking. Estimated here from what the deck actually holds (Game Changers, combos, mass land denial, extra turns) and how it simulates, not from a target you picked.">Simulated bracket</Term>
+              <Term def="WotC's official 1-5 power-level system for Commander matchmaking. Placed here from the deck's measured speed and strength (consistency, kill speed, resilience, interaction, fast mana, tutors, curve, mana base), calibrated against brackets real players assigned their decks. The official rules (Game Changers, combos, mass land denial, extra turns) set the minimum it can be, never a cap.">Simulated bracket</Term>
             </span>
             <span
               title={bt ? `${bt.label}: ${bt.desc}` : undefined}
@@ -234,25 +234,17 @@ export default function SimStrengthPanel({ simulation }) {
           {insight.pod_read}
         </div>
       )}
-      {/* The B2/B3 boundary is NOT resolvable from card gates, and the engine says so.
-          `plays_up` marks a deck the Game Changer gate caps at Core OR Exhibition while it
-          sits on the Core/Upgraded edge — measured, 40% of decks their own authors call
-          Upgraded also run zero Game Changers on the Core side of this gate, 14% on the
-          Exhibition side (scripts/bracket_accuracy.py --json, full 297-deck corpus,
-          2026-08-24; the Exhibition side used to carry no flag at all, on the never-measured
-          assumption that a thin manabase also meant low power — checking it found otherwise).
-          Amber, not red: this describes uncertainty, not a defect — same convention as the
-          manabase panel's `ramp-dependent`. */}
+      {/* Since 2026-10-18 the bracket is placed by measured speed + strength, with the official
+          gates as floors (ratings/strength_model.py). `plays_up` marks a deck whose strength
+          score sits right below the next bracket's cut. Amber, not red: this describes
+          uncertainty, not a defect, the same convention as the manabase panel's
+          `ramp-dependent`. */}
       {pp.bracket_plays_up && (
         <div
-          title={pp.bracket_estimate === 1
-            ? '0 Game Changers and a thin manabase cap this at Exhibition. The Game Changer '
-              + 'gate is nearly silent on power once it reads zero, so 14% of decks placed '
-              + 'here are called Upgraded by their own builders too — read the axes below.'
-            : '0 Game Changers caps this at Core. Measured over the corpus, 40% of decks '
-              + 'their authors call Upgraded also run none, so a zero-Game-Changer Core '
-              + 'verdict cannot rule Upgraded out. Read the axes below, and tell your pod '
-              + 'it sits on the line.'}
+          title={'The bracket is placed from measured speed and strength (with the official '
+            + 'Game Changer, combo, land-denial and extra-turn rules as floors). This deck’s '
+            + 'strength score sits right at the line to the next bracket, so it may play up at '
+            + 'some tables. Read the axes below and mention it in your pre-game talk.'}
           style={{
             display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10,
             padding: '6px 10px', borderRadius: 8,
@@ -261,20 +253,9 @@ export default function SimStrengthPanel({ simulation }) {
         >
           <span style={{ fontSize: 13, color: '#fde047' }}>↗</span>
           <span style={{ fontSize: 11.5, color: '#fde047', lineHeight: 1.45 }}>
-            {pp.bracket_estimate === 1 ? (
-              <>
-                <strong>A thin manabase, not necessarily a weak deck.</strong> No Game
-                Changers and inconsistent colours cap this at Bracket 1, but 14% of decks
-                placed here are called Bracket 3 by their own builders too — this can&rsquo;t
-                be settled from the card list alone.
-              </>
-            ) : (
-              <>
-                <strong>Sits on the Core / Upgraded line.</strong> No Game Changers caps this
-                at Bracket 2, but 40% of decks their own builders call Bracket 3 run none
-                either — this boundary can&rsquo;t be settled from the card list alone.
-              </>
-            )}
+            <strong>Sits on the Bracket {pp.bracket_estimate} / {pp.bracket_estimate + 1} line.</strong>{' '}
+            Its measured strength is right at the boundary, so it may play like a{' '}
+            {pp.bracket_estimate + 1} at some tables.
           </span>
         </div>
       )}

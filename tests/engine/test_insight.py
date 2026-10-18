@@ -142,14 +142,20 @@ def test_pod_read_core_playing_up(make_card, forest):
 
 
 def test_pod_read_exhibition_playing_up(make_card, forest):
-    """A Bracket-1 verdict via a thin manabase carries the same honest uncertainty as the
-    Bracket-2 side of this gate (bracket.plays_up, extended 2026-08-24) -- it must not read
-    as flatly "casual and unoptimized" when the engine itself flagged the ambiguity."""
+    """plays_up = the strength score sits just under the next bracket's cut (since
+    2026-10-18): a Bracket-1 deck that plays up is at the CORE line, and must not read as
+    flatly "casual and unoptimized" when the engine itself flagged the ambiguity."""
     a = _analysis(bracket=SimpleNamespace(bracket=1, label="Exhibition", plays_up=True))
     ins = build_insight(_resolved([(forest, 40)]), a)
     assert "Bracket 1" in ins.pod_read
     assert "casual and unoptimized" not in ins.pod_read
-    assert "Upgraded" in ins.pod_read
+    assert "Core" in ins.pod_read
+
+
+def test_pod_read_upgraded_playing_up_names_the_optimized_line(make_card, forest):
+    a = _analysis(bracket=SimpleNamespace(bracket=3, label="Upgraded", plays_up=True))
+    ins = build_insight(_resolved([(forest, 40)]), a)
+    assert "Bracket 3-4" in ins.pod_read and "Optimized" in ins.pod_read
 
 
 def test_pod_read_scales_with_bracket(make_card, forest):

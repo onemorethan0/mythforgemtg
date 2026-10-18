@@ -211,10 +211,9 @@ def _pod_read(a) -> str:
     b = a.bracket
     if b.bracket == 1:
         if b.plays_up:
-            return ("Exhibition (Bracket 1), but don't assume it's weak -- 0 Game Changers "
-                    "and a thin manabase land it here, and the Game Changer gate can't tell "
-                    "power apart from manabase consistency; some decks placed at Exhibition "
-                    "this way are called Upgraded by their own builders too (see the axes).")
+            return ("Exhibition leaning Core (Bracket 1-2) -- casual, but its measured "
+                    "strength sits right at the precon line; it may hold its own at a Bracket 2 "
+                    "table (see the axes).")
         return ("Exhibition (Bracket 1) -- casual and unoptimized; ideal for relaxed or "
                 "new-player tables.")
     if b.bracket == 2:
@@ -225,6 +224,10 @@ def _pod_read(a) -> str:
         return ("Core (Bracket 2) -- roughly precon-level power; a fair fit for a casual "
                 "Bracket 2 pod.")
     if b.bracket == 3:
+        if b.plays_up:
+            return ("Upgraded leaning Optimized (Bracket 3-4) -- strong for a Bracket 3 pod; "
+                    "its measured strength sits at the Optimized line, so tell the table "
+                    "before you sit down at a Bracket 3 game.")
         return ("Upgraded (Bracket 3) -- beyond precon power. Belongs in a Bracket 3 pod and "
                 "can pubstomp casual Bracket 2 tables.")
     if b.bracket == 4:

@@ -396,7 +396,10 @@ def test_the_plays_up_banner_is_rendered_by_the_strength_panel():
     assert "bracket_plays_up" in source, (
         "SimStrengthPanel.jsx must read pp.bracket_plays_up — the engine has emitted it "
         "since 2026-07-28 and the panel ignored it")
-    assert "Core / Upgraded" in source, "the banner must name the boundary it describes"
+    # since 2026-10-18 the flag means "strength sits right below the next bracket's cut", for
+    # any bracket, so the banner names the boundary from the estimate itself
+    assert "line." in source and "pp.bracket_estimate + 1" in source, (
+        "the banner must name the boundary it describes")
 
 
 def test_the_banner_does_not_promise_a_bracket_it_cannot_measure():
@@ -414,5 +417,5 @@ def test_the_banner_does_not_promise_a_bracket_it_cannot_measure():
     banner = source[source.index("bracket_plays_up"):][:1900]
     for promise in ("is Bracket 3", "is really a 3", "should be Bracket 3", "upgrade to 3"):
         assert promise not in banner, f"the banner must not promise a bracket: {promise!r}"
-    assert "can" in banner and "settled" in banner, (
-        "the banner must say the boundary cannot be settled from the card list")
+    assert "may play" in banner, (
+        "the banner must hedge (the deck MAY play up), not assert a different bracket")
