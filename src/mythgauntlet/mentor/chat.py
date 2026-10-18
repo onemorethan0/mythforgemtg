@@ -99,9 +99,13 @@ horizon, not how early; the clock and verdicts.speed say how fast. When you name
 that "do the work", take them from key_cards, not from your own guess. "strengths" and \
 "weaknesses" are the measured ones: lead with them. interaction_counts are real card \
 counts; get_deck_stats' role "supply" is a strength score, not a card count, so never \
-read it as how many cards the deck has: talk about how many cards fill a role using \
-that role's "cards" field, and compare "supply" with "target" only as over or under \
-target. A role with "applicable": false (get_deck_stats) is NOT a gap -- the deck's \
+read it as how many cards the deck has. For how many cards fill a role and how that \
+compares with a typical deck, use ONLY that role's "cards" and "card_target" (both card \
+counts: "removal: 2 cards vs a target of 7") -- never pair "cards" with "supply_target". \
+For "what does my deck need most / how many X do I run vs the target" questions, report \
+every row of get_deck_stats' role_summary as cards vs card_target and name its \
+most_under_supplied role as the one the deck needs most. A role with "applicable": false \
+(get_deck_stats) is NOT a gap -- the deck's \
 colours or measured plan do not call for it (see its "note") -- so never say the deck \
 lacks it or suggest adding cards for it. The same goes for counterspells in \
 get_power_profile: when interaction_counts.counterspells_applicable is false the deck's \
@@ -582,6 +586,41 @@ def _question_card_names(question: str, known_names) -> list[str]:
     return found
 
 
+def _prefetch_role_table(ctx, question, tool_trace, all_results, messages) -> bool:
+    """A role-count question ("what does my deck need most", "how many removal spells do I run
+    vs the target") is answered from get_deck_stats' role_summary, so fetch it before the model
+    writes a word. Live 2026-10-18 qwen3:14b called get_deck_stats and then answered about the
+    resilience axis without one role count; a prompt rule alone does not hold it (cf.
+    `_route_swap_axis`). Offline and cheap (a counting pass)."""
+    if not verdicts.is_role_question(question):
+        return False
+    call = {"id": "auto-role-stats", "type": "function",
+            "function": {"name": "get_deck_stats", "arguments": "{}"}}
+    messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+    result = call_tool(ctx, "get_deck_stats", {})
+    all_results.append(result)
+    tool_trace.append(ToolCallRecord(name="get_deck_stats", args={}, result_data=result.data))
+    messages.append({"role": "tool", "tool_call_id": call["id"],
+                     "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    summary = result.data.get("role_summary") if isinstance(result.data, dict) else None
+    if summary:
+        nudge = (_ROLE_NUDGE_BROAD if verdicts.is_broad_role_question(question)
+                 else _ROLE_NUDGE_NARROW)
+        messages.append({"role": "user", "content": nudge + gate_mod.role_summary_lines(summary)})
+    return True
+
+
+_ROLE_NUDGE_BROAD = (
+    "This question is about the deck's roles. Answer it FIRST from get_deck_stats' role_summary, "
+    "in card counts: for each role give the number of cards vs its card_target, and name the "
+    "most_under_supplied role as the one the deck needs most. Roles that are not applicable are "
+    "not gaps. Only after that, answer any other part of the question. The role table: ")
+_ROLE_NUDGE_NARROW = (
+    "This question is about how many cards fill the role(s) it names. Answer it from "
+    "get_deck_stats' role_summary, in card counts (cards, and card_target when the player compares "
+    "with a target or a typical deck); a role that is not applicable is not a gap. The role table: ")
+
+
 def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages):
     names = _question_card_names(question, known_names)
     if not names:
@@ -757,6 +796,7 @@ def ask(
     # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
     _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
+    _prefetch_role_table(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False
@@ -872,6 +912,15 @@ def ask(
                                gate_rejections=gate_rejections)
         gate_rejections.append((draft, reasons))
         if attempt == MAX_GATE_ATTEMPTS - 1:
+            # Check 15 is the one rejection the turn already holds a complete, licensed cure for:
+            # the role table itself. Shipping "I couldn't answer" over a table we have would be
+            # worse than prepending it, so the last draft gets the table in front (same idiom
+            # as `_complete_dual`) and is checked again like any other text.
+            if budget.role_summary and all(gate_mod.is_role_report_reason(r) for r in reasons):
+                completed = gate_mod.role_table_paragraph(budget.role_summary) + "\n\n" + draft
+                if not gate_mod.check(completed, budget, question=question, max_chars=chars):
+                    return MentorReply(text=completed, gated=True, tool_trace=tool_trace,
+                                       gate_rejections=gate_rejections)
             break
         # Check 9 (a licensed card given the wrong TYPE): the model usually never looked the card
         # up -- live 2026-10-01 it licensed Sol Ring via check_legality, wrote "Sol Ring is a
@@ -889,6 +938,12 @@ def ask(
                 + (f"The lookup_card result for {', '.join(looked_up)} is above: use its type "
                    "line and mana cost exactly, and if the question assumed something those "
                    "contradict, correct that assumption first. " if looked_up else "")
+                + ("The role table to report, in card counts: "
+                   + gate_mod.role_summary_lines(budget.role_summary) + " Put it FIRST, then keep "
+                   "every other part of your answer the tool results support (for example a "
+                   "measured swap the player asked for) -- do not drop it. "
+                   if budget.role_summary and any(gate_mod.is_role_report_reason(r)
+                                                  for r in reasons) else "")
                 + (f"The text of rules {', '.join(rules_fetched)} is above. Cite a rule ONLY if "
                    "its own text states the specific thing you use it for; when several sibling "
                    "rules share a number, pick the one whose text matches the exact case, and "

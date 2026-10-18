@@ -89,8 +89,9 @@ MIN_TARGET = 2      # a floor: counterspell's median is 0.0, and "any counterspe
 DECKS = None
 
 
-def _corpus_rows():
-    """Yield (colour identity frozenset, role_supply dict) for every >=90-card corpus deck."""
+def _corpus_rows(cards: bool = False):
+    """Yield (colour identity frozenset, role_supply dict) for every >=90-card corpus deck --
+    or, with `cards`, `role_card_counts` (the unit ROLE_CARD_TARGETS is measured in)."""
     db = load_card_db()
     for path in sorted((Path(__file__).resolve().parents[1] / "corpus" / "decks").glob("*.txt")):
         deck = Deck.parse_text(path.read_text(encoding="utf-8"))
@@ -98,7 +99,8 @@ def _corpus_rows():
         if resolved.card_count < 90:
             continue
         identity = frozenset(ch for c in resolved.commanders for ch in c.color_identity)
-        yield identity, redundancy.role_supply(resolved)
+        yield identity, (redundancy.role_card_counts(resolved) if cards
+                         else redundancy.role_supply(resolved))
 
 
 def _pctile(values: list[float], percentile: float) -> float:
@@ -106,10 +108,14 @@ def _pctile(values: list[float], percentile: float) -> float:
     return ordered[min(len(ordered) - 1, int(percentile * len(ordered)))]
 
 
-def measure(percentile: float = PERCENTILE, decks: int | None = DECKS) -> dict[str, int]:
+MIN_CARD_TARGET = 1  # ROLE_CARD_TARGETS' floor: the median deck runs one counterspell / tutor
+
+
+def measure(percentile: float = PERCENTILE, decks: int | None = DECKS,
+            cards: bool = False) -> dict[str, int]:
     supplies: dict[str, list[float]] = {r: [] for r in redundancy.ROLE_TARGETS}
     seen = 0
-    for _identity, supply in _corpus_rows():
+    for _identity, supply in _corpus_rows(cards):
         for role in supplies:
             supplies[role].append(supply.get(role, 0.0))
         seen += 1
@@ -117,7 +123,8 @@ def measure(percentile: float = PERCENTILE, decks: int | None = DECKS) -> dict[s
             break
     out = {}
     for role, values in supplies.items():
-        out[role] = max(MIN_TARGET, round(_pctile(values, percentile)))
+        out[role] = max(MIN_CARD_TARGET if cards else MIN_TARGET,
+                        round(_pctile(values, percentile)))
     return out
 
 
@@ -195,21 +202,24 @@ def main() -> int:
                     help="stop after N corpus decks (default: all of them)")
     ap.add_argument("--by-identity", action="store_true",
                     help="p60 supply per role among decks with vs without each colour")
+    ap.add_argument("--cards", action="store_true",
+                    help="measure ROLE_CARD_TARGETS (card counts) instead of ROLE_TARGETS")
     args = ap.parse_args()
     if args.by_identity:
         print_by_identity(args.percentile)
         return 0
-    targets = measure(args.percentile, args.limit)
+    targets = measure(args.percentile, args.limit, cards=args.cards)
+    name = "ROLE_CARD_TARGETS" if args.cards else "ROLE_TARGETS"
+    baked = getattr(redundancy, name)
 
     if args.check:
-        drift = {r: (redundancy.ROLE_TARGETS.get(r), v) for r, v in sorted(targets.items())
-                 if redundancy.ROLE_TARGETS.get(r) != v}
+        drift = {r: (baked.get(r), v) for r, v in sorted(targets.items()) if baked.get(r) != v}
         for role, (was, now) in drift.items():
             print(f"DRIFT {role}: baked {was} measured {now}")
-        print("ROLE_TARGETS is current." if not drift else "ROLE_TARGETS needs regenerating.")
+        print(f"{name} is current." if not drift else f"{name} needs regenerating.")
         return 0 if not drift else 1
 
-    print("ROLE_TARGETS: dict[str, int] = {")
+    print(f"{name}: dict[str, int] = {{")
     for role, value in targets.items():
         print(f'    "{role}": {value},')
     print("}")

@@ -59,8 +59,28 @@ def _rule_gate_fires(pair, right_question=False):
     return pred
 
 
+# Gate check 15 (2026-10-18): the role table every role_report_* item was written against (the
+# live Vraska deck's core rows). Broad question, so all five counts and "removal" are owed.
+_ROLE_SUMMARY = {"unit": "cards", "rows": [
+    {"role": "counterspell", "cards": 1, "card_target": 1, "short_by": 0},
+    {"role": "draw", "cards": 7, "card_target": 11, "short_by": 4},
+    {"role": "ramp", "cards": 13, "card_target": 12, "short_by": 0},
+    {"role": "removal", "cards": 2, "card_target": 7, "short_by": 5},
+    {"role": "wipe", "cards": 2, "card_target": 2, "short_by": 0}],
+    "under_target": ["removal", "draw"], "most_under_supplied": "removal", "not_applicable": []}
+_ROLE_Q = "What does my deck need most?"
+
+
+def _role_report_rejected(t):
+    return bool(gate.role_report_reasons(_norm(t), _ROLE_Q, _ROLE_SUMMARY))
+
+
 EXPECT = {
     # category: (predicate, should_be)
+    "role_question": (lambda t: v.is_role_question(t), True),
+    "not_role_question": (lambda t: v.is_role_question(t), False),
+    "role_report_complete": (_role_report_rejected, False),
+    "role_report_incomplete": (_role_report_rejected, True),
     "no_improvement": (lambda t: bool(v.NO_IMPROVEMENT_RE.search(_norm(t))), True),
     "cs_identity_ack": (lambda t: bool(v.counterspell_advice_reasons(_norm(t))), False),
     "cs_gap_or_recommend": (lambda t: bool(v.counterspell_advice_reasons(_norm(t))), True),

@@ -108,18 +108,20 @@ def _theme_view(resolved) -> list[dict]:
     ]
 
 
-def survey() -> list[tuple[list[str], dict[str, float]]]:
-    """`(themes, role supply)` for every corpus deck big enough to judge."""
+def survey(cards: bool = False) -> list[tuple[list[str], dict[str, float]]]:
+    """`(themes, role supply)` for every corpus deck big enough to judge -- or, with `cards`,
+    `(themes, role card counts)`."""
     db = load_card_db()
     out = []
     for path in sorted((ROOT / "corpus" / "decks").glob("*.txt")):
         resolved = resolve(Deck.parse_text(path.read_text(encoding="utf-8")), db)
         if resolved.card_count < 90:
             continue
-        supply = redundancy.role_supply(resolved)
+        supply = (redundancy.role_card_counts(resolved) if cards
+                  else redundancy.role_supply(resolved))
         out.append((
             deck_themes.detect_deck_themes(_theme_view(resolved)),
-            {role: supply.get(role, 0.0) for role in redundancy.ROLE_TARGETS},
+            {role: float(supply.get(role, 0.0)) for role in redundancy.ROLE_TARGETS},
         ))
     return out
 
@@ -159,6 +161,20 @@ def measure(rows, *, min_decks: int = MIN_DECKS, min_margin: int = MIN_MARGIN, a
     return table
 
 
+def measure_cards(rows) -> dict[str, dict[str, int]]:
+    """ARCHETYPE_ROLE_CARD_TARGETS: each cell ARCHETYPE_ROLE_TARGETS already baked, re-measured
+    in cards (p60 over the same theme's decks). No gates of its own -- the cell cleared them in
+    strength units; this only changes the unit."""
+    table: dict[str, dict[str, int]] = {}
+    for theme, cells in sorted(redundancy.ARCHETYPE_ROLE_TARGETS.items()):
+        sub = [counts for themes, counts in rows if theme in themes]
+        if not sub:
+            continue
+        for role in sorted(cells):
+            table.setdefault(theme, {})[role] = round(_percentile([c[role] for c in sub]))
+    return table
+
+
 def _gate(n, full, a, b, population, min_decks, min_margin) -> str:
     """Which gate decided this cell — the first one it fails, or KEPT."""
     if n < min_decks:
@@ -176,7 +192,24 @@ def main() -> int:
     ap.add_argument("--audit", action="store_true")
     ap.add_argument("--min-decks", type=int, default=MIN_DECKS)
     ap.add_argument("--min-margin", type=int, default=MIN_MARGIN)
+    ap.add_argument("--cards", action="store_true",
+                    help="re-measure the baked cells in cards (ARCHETYPE_ROLE_CARD_TARGETS)")
     args = ap.parse_args()
+
+    if args.cards:
+        table = measure_cards(survey(cards=True))
+        baked = redundancy.ARCHETYPE_ROLE_CARD_TARGETS
+        if args.check:
+            drift = table != baked
+            print("ARCHETYPE_ROLE_CARD_TARGETS needs regenerating." if drift
+                  else "ARCHETYPE_ROLE_CARD_TARGETS is current.")
+            return 1 if drift else 0
+        print("ARCHETYPE_ROLE_CARD_TARGETS: dict[str, dict[str, int]] = {")
+        for theme, roles in sorted(table.items()):
+            body = ", ".join(f'"{r}": {v}' for r, v in sorted(roles.items()))
+            print(f'    "{theme}": {{{body}}},')
+        print("}")
+        return 0
 
     rows = survey()
     audit: list | None = [] if args.audit else None

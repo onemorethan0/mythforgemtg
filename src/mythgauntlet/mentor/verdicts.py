@@ -1215,3 +1215,139 @@ def _last_named(scope: str, types):
             if best is None or m.start() > best[0]:
                 best = (m.start(), name, type_line)
     return None if best is None else (best[1], best[2])
+
+
+# ── role-count questions (2026-10-18) ───────────────────────────────────────────────
+# "For each role, how many cards do I run vs the target, and which is most under-supplied?"
+# was answered live with a resilience swap and not one role count, although get_deck_stats
+# had returned the whole table. The question shape, the role words and the "most needed"
+# cue live here so the chat routing (prefetch get_deck_stats), gate check 15 and the
+# phrasing corpus read ONE definition.
+
+# Checked in this order and MASKED as they match, so "noncreature removal" is never also read
+# as plain "removal" and "board wipe removal" is a wipe.
+ROLE_WORD_RES: dict[str, re.Pattern] = {
+    "noncreature_removal": re.compile(
+        r"\bnon-?creature[- ]removal\b|\bartifact(?:\s+(?:and|or|/)\s+|/)enchantment\s+removal\b",
+        re.IGNORECASE),
+    "wipe": re.compile(r"\b(?:board[- ]?)?wipes?\b|\bsweepers?\b|\bwraths?\b|\bmass[- ]removal\b",
+                       re.IGNORECASE),
+    "removal": re.compile(r"\bremoval\b", re.IGNORECASE),
+    "ramp": re.compile(r"\bramp(?:s|ing)?\b|\bmana[- ](?:rocks?|dorks?|acceleration)\b",
+                       re.IGNORECASE),
+    "draw": re.compile(r"\b(?:card[- ])?draw(?:s|ing)?\b|\bcard[- ]advantage\b", re.IGNORECASE),
+    "counterspell": re.compile(r"\bcounter-?spells?\b|\bcounter[- ]magic\b", re.IGNORECASE),
+    "finisher": re.compile(r"\bfinishers?\b|\bwin[- ]?con(?:dition)?s?\b", re.IGNORECASE),
+    "tutor": re.compile(r"\btutors?\b", re.IGNORECASE),
+}
+
+# The roles a "what does my deck need" answer must cover (the ones a casual player means by
+# the deck's "roles"); tutor and noncreature_removal are reported when the player names them.
+CORE_ROLES = ("ramp", "draw", "removal", "wipe", "counterspell", "finisher")
+
+_ROLE_ALT = (r"(?:ramp|(?:card\s+)?draw|removal|(?:board\s+)?wipes?|sweepers?|counter-?spells?|"
+             r"finishers?|tutors?|win\s*con\w*)")
+
+# The whole table, always: "for each role", "role targets", "the balance of my roles".
+_TABLE_ROLE_QUESTION_RE = re.compile(
+    r"\b(?:each|every|per)\s+role\b|\brole\s+(?:counts?|breakdown|targets?|balance)\b"
+    r"|\b(?:balance|breakdown|spread|mix)\s+of\s+(?:my\s+|the\s+|this\s+)?(?:deck'?s?\s+)?(?:functional\s+)?roles\b"
+    r"|\bfunctional\s+roles\b"
+    r"|\broles\b[^.?!]{0,60}\btargets?\b|\btargets?\b[^.?!]{0,60}\broles\b",
+    re.IGNORECASE)
+# What the deck NEEDS: the whole table and the most-needed role -- unless it names exactly one
+# role ("what is my deck missing in terms of finishers" owes the finisher row only).
+_NEED_ROLE_QUESTION_RE = re.compile(
+    r"\bwhat\s+(?:does|do|would)\s+(?:my|this|the)\s+deck\s+need\b"
+    r"|\bwhat\s+(?:is|'s)\s+(?:my|this|the)\s+deck\s+(?:missing|lacking|short\s+on|low\s+on)\b"
+    r"|\bwhat\s+(?:am\s+i|is\s+it)\s+(?:missing|lacking|short\s+on|low\s+on)\b"
+    r"|\bwhat\s+(?:do|should)\s+i\s+need\s+more\s+of\b|\bneeds?\s+(?:the\s+)?most\s+of\b"
+    r"|\bwhich\s+role\b"
+    r"|\bin\s+terms\s+of\s+" + _ROLE_ALT,
+    re.IGNORECASE)
+# "Is my ramp over-supplied?" owes the ramp row; with no role named, the table.
+_SUPPLY_ROLE_QUESTION_RE = re.compile(r"\b(?:under|over)[- ]?suppl\w*", re.IGNORECASE)
+# A count question owes the target only when it compares ("how many removal spells and board
+# wipes do I have" is answered by the counts alone).
+_TARGET_ASKED_RE = re.compile(
+    r"\b(?:targets?|typical|average|standard|normal|recommended|should|enough|too\s+(?:few|many|"
+    r"much|little)|compare[sd]?|stack\w*\s+up|measure\w*\s+up|vs\.?|versus|against|supposed|"
+    r"need\w*|missing|lacking|short\s+on|suppl\w*|similar\s+decks)\b",
+    re.IGNORECASE)
+# Narrow: the count of the role(s) named is owed. "Is my removal GOOD enough" is NOT one -- that
+# is a coverage question (removal_coverage); only "running/have/run enough" asks for a count.
+_ROLE_NOUN = r"(?:\s+(?:count|cards?|pieces?|spells?|sources?|package|suite|slots?))?"
+_COMPARE = (r"(?:compare[sd]?|stack(?:s)?\s+up|measure(?:s)?\s+up|vs\.?|versus|against|"
+            r"relative\s+to|next\s+to)")
+_COUNT_ROLE_QUESTION_RE = re.compile(
+    r"\bhow\s+many\s+(?:[\w-]+\s+){0,2}?" + _ROLE_ALT
+    + r"|\b" + _ROLE_ALT + _ROLE_NOUN + r"\s+(?:vs\.?|versus|against|compared\s+(?:to|with))\s+"
+      r"(?:the\s+|a\s+)?(?:target|typical|average|standard|normal|recommended)"
+    + r"|\b(?:am\s+i|are\s+we|is\s+(?:my|this|the)\s+deck)\s+(?:running|playing|on)\s+"
+      r"(?:enough|too\s+(?:few|many|much|little)|(?:a\s+)?(?:lot|little)\s+of)\s+(?:[\w-]+\s+){0,1}?" + _ROLE_ALT
+    + r"|\b(?:do|does)\s+(?:i|my\s+deck|this\s+deck|it)\s+(?:have|run|play)\s+(?:enough|too\s+(?:few|many|much|little))\s+"
+      r"(?:[\w-]+\s+){0,1}?" + _ROLE_ALT
+    + r"|\bhow\s+(?:does|do|is|are)\s+(?:my|the|this)\s+(?:deck'?s\s+)?" + _ROLE_ALT + _ROLE_NOUN
+      + r"\s+(?:count\s+|number\s+)?" + _COMPARE + r"\b"
+    + r"|\bnumber\s+of\s+" + _ROLE_ALT + r"\b[^.?!]{0,40}\b(?:target|typical|average|standard|normal|recommended|enough)\b",
+    re.IGNORECASE)
+
+
+def role_mentions(text: str) -> list[tuple[int, int, str]]:
+    """(start, end, role) for every role word in `text`, in reading order, with the more
+    specific roles masked first (see ROLE_WORD_RES)."""
+    masked = plain(text)
+    hits: list[tuple[int, int, str]] = []
+    for role, pat in ROLE_WORD_RES.items():
+        for m in pat.finditer(masked):
+            hits.append((m.start(), m.end(), role))
+        masked = pat.sub(lambda m: " " * len(m.group()), masked)
+    return sorted(hits)
+
+
+def is_role_question(question: str) -> bool:
+    q = normalize_apostrophes(question or "")
+    return any(p.search(q) for p in (_TABLE_ROLE_QUESTION_RE, _NEED_ROLE_QUESTION_RE,
+                                     _SUPPLY_ROLE_QUESTION_RE, _COUNT_ROLE_QUESTION_RE))
+
+
+def _named_roles(question: str) -> set[str]:
+    return {r for _, _, r in role_mentions(question)}
+
+
+def is_broad_role_question(question: str) -> bool:
+    """A role question whose answer owes the whole table AND the most-needed role."""
+    q = normalize_apostrophes(question or "")
+    named = _named_roles(q)
+    if _TABLE_ROLE_QUESTION_RE.search(q):
+        return True
+    if _NEED_ROLE_QUESTION_RE.search(q) and (len(named) != 1 or re.search(r"\betc\b", q, re.I)):
+        return True
+    return bool(_SUPPLY_ROLE_QUESTION_RE.search(q)) and not named
+
+
+def targets_owed(question: str) -> bool:
+    """Whether the reply owes each role's card TARGET as well as its count."""
+    q = normalize_apostrophes(question or "")
+    return is_broad_role_question(q) or bool(_TARGET_ASKED_RE.search(q))
+
+
+def roles_owed(question: str, rows: list[dict]) -> list[str]:
+    """Roles whose `cards` (and, when `targets_owed`, `card_target`) a reply to `question` must
+    state, among `rows` (role_summary rows: applicable roles only). Empty unless it is a role
+    question."""
+    if not is_role_question(question):
+        return []
+    have = {r["role"] for r in rows}
+    named = [r for r in dict.fromkeys(role for _, _, role in role_mentions(question)) if r in have]
+    if is_broad_role_question(question):
+        return [r for r in dict.fromkeys([*named, *CORE_ROLES]) if r in have]
+    return named
+
+
+# A sentence that singles one role out as the most needed one.
+MOST_NEEDED_CUE_RE = re.compile(
+    r"\b(?:most|biggest|largest|greatest|furthest|farthest|weakest|main|primary|top|"
+    r"most\s+pressing|most\s+urgent|lowest|thinnest|sorest)\b"
+    r"|\bneeds?\s+(?:the\s+)?most\b|\bfurthest\s+(?:below|under)\b",
+    re.IGNORECASE)

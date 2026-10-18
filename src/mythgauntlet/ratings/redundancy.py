@@ -218,6 +218,57 @@ def targets_for(
     return targets
 
 
+# The same p60 bar as ROLE_TARGETS, measured in CARDS (`role_card_counts`) instead of supply
+# strength. A player asking "how many removal spells do I run vs the target" means cards, and
+# ROLE_TARGETS cannot answer that: a wipe weighs 3.0, a counterspell 3.0, a tutor 2.0, a fetch
+# 2.0 + its ramp, so "2 wipes vs target 6" read as a gap for a deck sitting exactly at the
+# typical 2 (found on the Deck Mentor, Vraska, 2026-10-18 -- "ramp 13/17" was likewise 13 cards
+# against a strength target; the card target is 12, so that deck is OVER on ramp). Regenerate
+# with `python scripts/role_targets.py --cards`. Floor 1, not MIN_TARGET's 2: this is a "how
+# many does a typical deck run" figure, and the median deck runs one counterspell / tutor.
+# Measured 2026-10-18 over 1,106 corpus decks.
+ROLE_CARD_TARGETS: dict[str, int] = {
+    "ramp": 12,
+    "draw": 11,
+    "removal": 7,
+    "noncreature_removal": 1,
+    "wipe": 2,
+    "counterspell": 1,
+    "finisher": 2,
+    "tutor": 1,
+}
+
+# ARCHETYPE_ROLE_TARGETS' cells, re-measured in cards over the SAME archetype decks (the cells
+# already cleared that table's gates in strength units; this only changes the unit). Merged by
+# MAX with ROLE_CARD_TARGETS, so landfall's 12 ramp cards -- its raise is fetch strength, not
+# more cards -- leaves the population figure in place. `python scripts/archetype_role_targets.py
+# --cards` re-measures it. 2026-10-18.
+ARCHETYPE_ROLE_CARD_TARGETS: dict[str, dict[str, int]] = {
+    "chaos": {"draw": 14},
+    "draw_matters": {"counterspell": 4},
+    "landfall": {"ramp": 12},
+    "spellslinger": {"counterspell": 4, "draw": 16},
+}
+
+
+def card_targets_for(
+    themes: Iterable[str] | None,
+    color_identity: Iterable[str] | None = None,
+) -> dict[str, int]:
+    """`targets_for`, in CARDS: the same archetype MAX-merge and colour zeroing, applied to
+    ROLE_CARD_TARGETS / ARCHETYPE_ROLE_CARD_TARGETS. Compare against `role_card_counts`."""
+    targets = dict(ROLE_CARD_TARGETS)
+    for theme in themes or ():
+        for role, target in ARCHETYPE_ROLE_CARD_TARGETS.get(theme, {}).items():
+            targets[role] = max(targets.get(role, 0), target)
+    if color_identity is not None:
+        identity = frozenset(color_identity)
+        for role in ROLE_COLOR_REQUIREMENTS:
+            if role in targets and not role_applicable(role, identity):
+                targets[role] = 0
+    return targets
+
+
 IMPULSE_WEIGHT = 0.5  # one impulse-drawn card, as a fraction of a card actually drawn
 
 

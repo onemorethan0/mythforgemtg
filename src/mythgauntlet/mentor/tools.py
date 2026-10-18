@@ -387,6 +387,24 @@ def _wins_through_combat(a: DeckAnalysis) -> bool:
             and (a.report.goldfish_kill_rate or 0.0) >= _COMBAT_KILL_RATE)
 
 
+def role_summary(roles: dict) -> dict:
+    """Cards vs card target per applicable role, and the role furthest under it -- decided
+    HERE, not by the model (live 2026-10-18: asked which role was most under-supplied,
+    qwen3:14b answered about an axis and never named one). Ranked by cards short of target,
+    then by the share of the target filled; a not-applicable role is never a need."""
+    rows = [{"role": role, "cards": e["cards"], "card_target": e["card_target"],
+             "short_by": max(0, e["card_target"] - e["cards"])}
+            for role, e in sorted(roles.items())
+            if e.get("applicable") and e.get("card_target", 0) > 0]
+    under = sorted((r for r in rows if r["short_by"] > 0),
+                   key=lambda r: (-r["short_by"], r["cards"] / r["card_target"], r["role"]))
+    return {"unit": "cards", "rows": rows,
+            "under_target": [r["role"] for r in under],
+            "most_under_supplied": under[0]["role"] if under else None,
+            "not_applicable": [{"role": r, "cards": e["cards"], "note": e.get("note", "")}
+                               for r, e in sorted(roles.items()) if not e.get("applicable")]}
+
+
 def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     """Curve, colour sources, and role supply-vs-target -- every one a closed-form or
     counting measurement (no simulation), matching `manabase.py`'s own "deterministic
@@ -435,14 +453,18 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
     identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
     targets = redundancy.targets_for(ctx.themes, color_identity=identity)
     role_cards = redundancy.role_card_counts(resolved)
-    # `supply` and `target` are STRENGTH scores (redundancy.card_roles: a board wipe counts
-    # 3.0, a counterspell 3.0, a tutor 2.0), NOT card counts -- the unit-less pair read as
-    # "wipes 3/3" and was narrated as three board wipes for a deck with one (found on the
-    # 2026-09-30 Shelob probe). `cards` is the real card count; compare supply with target
-    # only as over/under target.
+    card_targets = redundancy.card_targets_for(ctx.themes, color_identity=identity)
+    # `supply` and `supply_target` are STRENGTH scores (redundancy.card_roles: a board wipe
+    # counts 3.0, a counterspell 3.0, a tutor 2.0), NOT card counts -- the unit-less pair read
+    # as "wipes 3/3" and was narrated as three board wipes for a deck with one (found on the
+    # 2026-09-30 Shelob probe). `cards` vs `card_target` is the pair a player means by "how
+    # many do I run vs the target". The strength target used to sit under the key `target`
+    # right beside `cards`, and the mentor paired them: Vraska's "ramp 13 of 17" was 13 cards
+    # against a STRENGTH target whose card equivalent is 12 (2026-10-18).
     roles = {
-        role: {"supply": round(supply.get(role, 0.0), 1), "target": targets.get(role, 0),
-               "cards": role_cards.get(role, 0), "unit": "strength",
+        role: {"cards": role_cards.get(role, 0), "card_target": card_targets.get(role, 0),
+               "supply": round(supply.get(role, 0.0), 1),
+               "supply_target": targets.get(role, 0), "unit": "strength",
                "applicable": redundancy.role_applicable(role, identity)}
         for role in sorted(set(supply) | set(targets))
     }
@@ -462,7 +484,7 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         a = _analysis_for(ctx)
         if a.insight is not None and _wins_through_combat(a):
             fin["applicable"] = False
-            fin["target"] = 0
+            fin["supply_target"] = fin["card_target"] = 0
             fin["note"] = "wins through combat (measured)"
 
     # No other tool surfaces WHO the commander(s) are -- a mentor with only lookup_card
@@ -476,6 +498,7 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         for c in resolved.commanders
     ]
     data = {"curve": curve, "manabase": manabase_report, "roles": roles,
+            "role_summary": role_summary(roles),
             "detected_themes": list(ctx.themes), "commanders": commanders}
     # "How off-meta is this deck" (lift_stats.stats_block) is computed OUTSIDE this
     # process -- see MentorContext.offmeta's own docstring for why -- so this is a
@@ -1205,10 +1228,11 @@ TOOL_SCHEMAS: list[dict] = [
         "function": {
             "name": "get_deck_stats",
             "description": "Get this deck's commander(s) and full colour identity, measured "
-                            "mana curve, colour-source consistency, and role supply vs. target "
-                            "(ramp/draw/removal/wipe/etc). Use this for any question about who "
-                            "the commander is, colour identity, curve, or what's "
-                            "over/under-supplied.",
+                            "mana curve, colour-source consistency, and how many cards fill "
+                            "each role (ramp/draw/removal/wipe/etc) vs. a typical deck's card "
+                            "count (role_summary: rows, under_target, most_under_supplied). Use "
+                            "this for any question about who the commander is, colour identity, "
+                            "curve, how many of a role the deck runs, or what it needs more of.",
             "parameters": {"type": "object", "properties": {}, "required": []},
         },
     },

@@ -39,7 +39,8 @@ import re
 from dataclasses import dataclass, field
 
 from mythgauntlet.mentor import verdicts as verdicts_mod
-from mythgauntlet.mentor.tools import ToolResult, RULE_NUM_RE, _COPY_EXCEPTION_RE, extract_numbers
+from mythgauntlet.mentor.tools import (ToolResult, RULE_NUM_RE, _COPY_EXCEPTION_RE, extract_numbers,
+                                      NUM_RE, WORD_NUM_RE, _WORD_NUMBERS)
 
 # A mentor answer can legitimately be longer than one swap's 2-3 sentences (explaining a
 # curve, walking through several role gaps), so these are looser than swap_narrative's
@@ -282,6 +283,10 @@ class ClaimBudget:
     # (rule number, text) for every rule whose TEXT a tool result carried this turn (`get_rule`,
     # `search_rules`): check 14 compares an asked rule's text against its retrieved siblings.
     rule_texts: tuple = ()
+    # This turn's get_deck_stats `role_summary` (cards vs card_target per applicable role, and the
+    # role furthest under target): check 15 holds a role-count question's answer to it. Detected
+    # structurally -- `roles` + `role_summary` is that tool's shape. Empty when it did not run.
+    role_summary: dict = field(default_factory=dict)
 
     @classmethod
     def from_tool_results(
@@ -299,6 +304,7 @@ class ClaimBudget:
         copy_exceptions: set[str] = set()
         counterspell_na = False
         rule_texts: dict[str, str] = {}
+        role_summary: dict = {}
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -334,6 +340,9 @@ class ClaimBudget:
             if (isinstance(data, dict) and data.get("copy_limit_exception") is True
                     and isinstance(data.get("card"), str)):
                 copy_exceptions.add(data["card"])
+            if (isinstance(data, dict) and isinstance(data.get("roles"), dict)
+                    and isinstance(data.get("role_summary"), dict)):
+                role_summary = data["role_summary"]
             if isinstance(data, dict) and _says_counterspells_na(data):
                 counterspell_na = True
             if (isinstance(data, dict) and data.get("found") is True
@@ -347,7 +356,7 @@ class ClaimBudget:
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
                     tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions),
-                    counterspell_na, tuple(rule_texts.items()))
+                    counterspell_na, tuple(rule_texts.items()), role_summary)
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -578,6 +587,162 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     would receive priority"). `chat` pre-fetches an asked rule's family so both are in hand.
     reasons.extend(_unsupported_rule_confirmation_reasons(body, question, budget.rule_texts))
 
+    # 15. A ROLE-COUNT QUESTION ANSWERED WITHOUT THE COUNTS. Live 2026-10-18: "For each role, how
+    #     many cards do I run versus the target, and which is most under-supplied?" was answered
+    #     with a resilience swap and not one role count, although get_deck_stats had returned
+    #     them. Every number it might have written was licensed, so checks 1-14 had nothing to
+    #     see; only the question says what was owed. `chat` prefetches get_deck_stats for a role
+    #     question, so the summary is always in hand when this fires.
+    if budget.role_summary:
+        reasons.extend(role_report_reasons(body, question, budget.role_summary))
+
+    return reasons
+
+
+_ROLE_LABEL = {"ramp": "ramp", "draw": "card draw", "removal": "removal",
+               "noncreature_removal": "noncreature removal", "wipe": "board wipes",
+               "counterspell": "counterspells", "finisher": "finishers", "tutor": "tutors"}
+_ZERO_WORD_RE = re.compile(r"\b(?:no|none|zero)\b", re.IGNORECASE)
+
+
+_ROLE_COUNTS_MISSING = ("the player asked how many cards fill each role versus the target, but "
+                        "the answer does not state ")
+_MOST_NEEDED_MISSING = "does not name the most under-supplied role: "
+
+
+def is_role_report_reason(reason: str) -> bool:
+    """A check-15 reason -- the one kind `chat` may cure by prepending the licensed table."""
+    return reason.startswith((_ROLE_COUNTS_MISSING, _MOST_NEEDED_MISSING))
+
+
+def role_table_paragraph(summary: dict) -> str:
+    """The role table as reply text, built only from `summary` (so every number is licensed)."""
+    rows = summary.get("rows") or []
+    lines = ["How many cards fill each role, against a typical deck's count:"]
+    lines += [f"- {_ROLE_LABEL.get(r['role'], r['role']).capitalize()}: {_cards(r['cards'])} vs a "
+              f"target of {r['card_target']}" for r in rows]
+    most = summary.get("most_under_supplied")
+    if most:
+        r = next((x for x in rows if x["role"] == most), {})
+        lines.append(f"The role your deck needs most is {_ROLE_LABEL.get(most, most)}: "
+                     f"{_cards(r.get('cards'))} against a target of {r.get('card_target')}.")
+    for r in summary.get("not_applicable") or []:
+        lines.append(f"{_ROLE_LABEL.get(r['role'], r['role']).capitalize()} are not a gap for this "
+                     f"deck" + (f" ({r['note']})." if r.get("note") else "."))
+    return "\n".join(lines)
+
+
+def _role_segments(body: str) -> dict[str, list[str]]:
+    """role -> the text that talks about it: from each mention of the role to the next mention
+    of a DIFFERENT role (or the end of the line), plus the few words before the mention, so
+    "13 ramp cards (target 12)" and "Ramp: 13 vs a target of 12" both carry their numbers."""
+    text = verdicts_mod.plain(body)
+    hits = verdicts_mod.role_mentions(text)
+    out: dict[str, list[str]] = {}
+    for i, (start, end, role) in enumerate(hits):
+        stop = len(text)
+        for nstart, _nend, nrole in hits[i + 1:]:
+            if nrole != role:
+                stop = nstart
+                break
+        line_end = text.find("\n", end)
+        if line_end != -1:
+            stop = min(stop, line_end)
+        line_start = text.rfind("\n", 0, start) + 1
+        prev_end = max([e for s, e, r in hits[:i] if r != role] + [line_start])
+        # The words before the mention, back to the last clause break: "13 ramp cards", but not
+        # "Removal: 2 vs 7. Board wipes" lending the 2 of removal to the wipes.
+        before = text[max(prev_end, start - 30):start]
+        before = re.split(r"[.;,)\n]", before)[-1]
+        out.setdefault(role, []).append(before + text[start:stop])
+    return out
+
+
+def _occurrences(segment: str, value: int) -> int:
+    n = sum(1 for m in NUM_RE.finditer(segment) if round(float(m.group()), 1) == float(value))
+    n += sum(1 for m in WORD_NUM_RE.finditer(segment) if _WORD_NUMBERS[m.group().lower()] == value)
+    if value == 0:
+        n += len(_ZERO_WORD_RE.findall(segment))
+    return n
+
+
+# "2 board wipes, right at the target" states an equal pair with one number.
+_AT_TARGET_RE = re.compile(
+    r"\b(?:at|on|meets?|matches|matching|hits?|equals?|right\s+at|exactly\s+at)\s+(?:the\s+|its\s+|your\s+)?"
+    r"(?:target|typical|average)\b|\bon\s+(?:par|target)\b", re.IGNORECASE)
+
+
+def _states_pair(segment: str, cards: int, target: int) -> bool:
+    """`segment` states `cards` AND `target`. When they are equal one number cannot carry both
+    ("board wipes: 2 vs 6" must not pass for a 2-of-2 row), so it must appear twice or come with
+    an at-target phrase."""
+    if cards != target:
+        return _occurrences(segment, cards) >= 1 and _occurrences(segment, target) >= 1
+    return _occurrences(segment, cards) >= 2 or (
+        _occurrences(segment, cards) >= 1 and bool(_AT_TARGET_RE.search(segment)))
+
+
+def role_summary_lines(summary: dict) -> str:
+    """The role table as one licensed sentence -- what the retry hands the model."""
+    rows = summary.get("rows") or []
+    parts = [f"{_ROLE_LABEL.get(r['role'], r['role'])} {_cards(r['cards'])} vs a target of "
+             f"{r['card_target']}" for r in rows]
+    most = summary.get("most_under_supplied")
+    tail = (f" Most under-supplied: {_ROLE_LABEL.get(most, most)}." if most
+            else " No role is under its target.")
+    na = summary.get("not_applicable") or []
+    if na:
+        tail += (" Not applicable to this deck, so not a gap: "
+                 + ", ".join(f"{_ROLE_LABEL.get(r['role'], r['role'])} ({_cards(r['cards'])}"
+                             + (f"; {r['note']}" if r.get("note") else "") + ")" for r in na) + ".")
+    return "; ".join(parts) + "." + tail
+
+
+def _cards(n) -> str:
+    return f"{n} card" if n == 1 else f"{n} cards"
+
+
+def role_report_reasons(body: str, question: str, summary: dict) -> list[str]:
+    """Check 15. For a role-count question (`verdicts.is_role_question`): every owed role
+    (`verdicts.roles_owed`) must have its card count AND card target stated where it is
+    mentioned, and a broad question must single out `most_under_supplied`. Bias: under-flag --
+    any mention of the role carrying both numbers satisfies it."""
+    rows = [r for r in summary.get("rows") or [] if isinstance(r, dict) and "role" in r]
+    owed = verdicts_mod.roles_owed(question, rows)
+    if not owed:
+        return []
+    by_role = {r["role"]: r for r in rows}
+    segments = _role_segments(body)
+    with_targets = verdicts_mod.targets_owed(question)
+    missing = []
+    for role in owed:
+        r = by_role[role]
+        if with_targets:
+            ok = any(_states_pair(seg, r["cards"], r["card_target"])
+                     for seg in segments.get(role, []))
+        else:
+            ok = any(_occurrences(seg, r["cards"]) for seg in segments.get(role, []))
+        if not ok:
+            missing.append(f"{_ROLE_LABEL.get(role, role)} ({_cards(r['cards'])}"
+                           + (f" vs a target of {r['card_target']})" if with_targets else ")"))
+    reasons = []
+    if missing:
+        reasons.append(
+            _ROLE_COUNTS_MISSING + ", ".join(missing) + " -- report each as cards vs card_target "
+            "from get_deck_stats' role_summary (card counts, never the strength supply_target)")
+    most = summary.get("most_under_supplied")
+    if most and verdicts_mod.is_broad_role_question(question):
+        named = any(
+            verdicts_mod.MOST_NEEDED_CUE_RE.search(s)
+            and any(role == most for _, _, role in verdicts_mod.role_mentions(s))
+            for s in verdicts_mod.split_sentences(body))
+        if not named:
+            r = by_role.get(most, {})
+            reasons.append(
+                _MOST_NEEDED_MISSING + f"role_summary's "
+                f"most_under_supplied is {_ROLE_LABEL.get(most, most)} ({_cards(r.get('cards'))} "
+                f"vs a target of {r.get('card_target')}) -- say plainly that it is the role the deck "
+                "needs most")
     return reasons
 
 

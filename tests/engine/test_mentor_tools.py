@@ -746,7 +746,7 @@ def test_get_deck_stats_marks_counterspell_not_applicable_for_a_non_blue_deck(ma
     ctx = _ctx(make_card, empty_store)            # green commander
     roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
     cs = roles["counterspell"]
-    assert cs["applicable"] is False and cs["target"] == 0 and "not applicable" in cs["note"]
+    assert cs["applicable"] is False and cs["supply_target"] == 0 and cs["card_target"] == 0 and "not applicable" in cs["note"]
     assert roles["ramp"]["applicable"] is True and "note" not in roles["ramp"]
     assert roles["wipe"]["applicable"] is False      # green-only: no W/B/R
     assert roles["finisher"]["applicable"] is True   # G can fill it
@@ -760,7 +760,7 @@ def test_get_deck_stats_blue_deck_keeps_counterspell_applicable(make_card, empty
     ctx.resolved = ResolvedDeck(deck=ctx.resolved.deck, commanders=[blue],
                                 cards=ctx.resolved.cards, missing=[])
     roles = call_tool(ctx, "get_deck_stats", {}).data["roles"]
-    assert roles["counterspell"]["applicable"] is True and roles["counterspell"]["target"] == 3
+    assert roles["counterspell"]["applicable"] is True and roles["counterspell"]["supply_target"] == 3 and roles["counterspell"]["card_target"] == 1
 
 
 def test_get_deck_stats_unresolved_commander_leaves_every_role_applicable(make_card, empty_store):
@@ -795,9 +795,10 @@ def test_finisher_not_applicable_when_the_measured_plan_is_combat(
     fin = call_tool(_ctx(make_card, empty_store), "get_deck_stats", {}).data["roles"]["finisher"]
     assert fin["applicable"] is expect_applicable
     if not expect_applicable:
-        assert fin["target"] == 0 and fin["note"] == "wins through combat (measured)"
+        assert fin["supply_target"] == 0 and fin["card_target"] == 0 and fin["note"] == "wins through combat (measured)"
     else:
-        assert fin["target"] == redundancy.ROLE_TARGETS["finisher"] and "note" not in fin
+        assert fin["supply_target"] == redundancy.ROLE_TARGETS["finisher"] and "note" not in fin
+        assert fin["card_target"] == redundancy.ROLE_CARD_TARGETS["finisher"]
 
 
 def test_a_deck_without_red_or_green_still_has_a_finisher_role(make_card, empty_store, monkeypatch):
