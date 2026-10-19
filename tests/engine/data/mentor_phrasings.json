@@ -1009,5 +1009,39 @@
   "Your deck is strong in some areas, but I'm missing the exact numbers for removal and counterspells.",
   "You're running a lot of ramp, but I don't remember the exact numbers for removal or board wipes.",
   "Your deck is well-supplied in some areas, but the removal count is unclear to me."
+ ],
+ "commander_synergy_claim": [
+  "Wrath of God has great synergy with your commander.",
+  "Blasphemous Act synergizes with your commander, since Smaug survives it and makes Treasure.",
+  "Blasphemous Act triggers Smaug for thirteen Treasure tokens.",
+  "Wrath of God works well with your commander because he is indestructible.",
+  "Chaos Warp works really well with your commander.",
+  "Sol Ring combos with Smaug the Impenetrable.",
+  "Earthquake is a great card here because it triggers your commander every time.",
+  "Toxic Deluge works with your commander, clearing the board while he stays.",
+  "In this list, Blasphemous Act and Wrath of God both synergise with your commander.",
+  "Your best wipe is Damnation, which synergizes with the commander.",
+  "Pyroclasm triggers your commander and wipes the small creatures.",
+  "With Smaug out, Blasphemous Act will trigger your commander for a pile of Treasure.",
+  "Vandalblast has strong synergy with Smaug.",
+  "Arcane Signet combos well with your commander.",
+  "**Blasphemous Act** has excellent synergy with your commander."
+ ],
+ "commander_synergy_not_claim": [
+  "Command Tower works with your mana base.",
+  "This synergy with your lands keeps the colours steady.",
+  "It has real synergy with your commander.",
+  "The deck has a lot of synergy with your commander's plan.",
+  "Everything here works well with your commander.",
+  "Wrath of God does not synergize with your commander.",
+  "Wrath of God doesn't trigger your commander.",
+  "Lightning Bolt won't trigger Smaug, since it only hits one target you choose.",
+  "Wrath of God has little synergy with your commander.",
+  "Your commander works well with a wide board of Treasure.",
+  "Smaug triggers whenever he is dealt noncombat damage.",
+  "Sol Ring works with your other mana rocks to ramp quickly.",
+  "These cards synergize with each other more than with the commander's ability.",
+  "Board wipes clear the way, and ramp gets you there faster.",
+  "Cultivate works well with your landfall payoffs."
  ]
 }

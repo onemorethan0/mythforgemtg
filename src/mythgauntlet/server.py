@@ -753,9 +753,12 @@ def create_app(
                 "counts_by_type", "answers_by_type", "unrestricted_answers_by_type",
                 "no_answer_for", "no_unrestricted_answer_for", "not_applicable_types",
                 "exile_count", "instant_speed_count")},
+            # The commander lens from the mentor's own cached analysis, so a card's roles and
+            # synergy here are exactly what list_deck_cards tells the mentor.
             "cards": [{"name": r["name"], "qty": r["qty"], "roles": r["roles"],
-                       "commander": bool(r.get("commander"))}
-                      for r in deckview.deck_card_rows(resolved)],
+                       "commander": bool(r.get("commander")),
+                       "commander_synergy": r.get("commander_synergy")}
+                      for r in deckview.deck_card_rows(resolved, mentor_tools._lens_for(ctx))],
         }
 
     @app.post("/mentor/chat")

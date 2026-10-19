@@ -109,7 +109,7 @@ def test_levers_are_fixed_plain_sentences_naming_no_cards_or_numbers():
 
 def test_requires_keys_are_the_applicability_facts():
     assert {lv.requires for lv in dg.LEVERS if lv.requires} == {
-        "counterspell_applicable", "wipe_applicable"}
+        "counterspell_applicable", "wipe_applicable", "commander_folds_to_wipe"}
 
 
 # -- diagnose ----------------------------------------------------------------------------

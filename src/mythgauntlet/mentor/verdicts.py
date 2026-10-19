@@ -1386,3 +1386,94 @@ MOST_NEEDED_CUE_RE = re.compile(
     r"most\s+pressing|most\s+urgent|lowest|thinnest|sorest)\b"
     r"|\bneeds?\s+(?:the\s+)?most\b|\bfurthest\s+(?:below|under)\b",
     re.IGNORECASE)
+
+
+# ── commander synergy claims (gate check 16, 2026-10-19) ─────────────────────────────
+# "Wrath of God has great synergy with your commander" is a claim about how the commander
+# changes a card, and only the commander lens (semantics/commander_lens, surfaced as a
+# list_deck_cards row's `commander_synergy`) measures that. The phrases live here so the gate
+# and the phrasing corpus read ONE definition. ASCII, applied after `normalize_apostrophes`.
+_SYNERGY_VERB = (
+    r"(?:synerg\w*\s+with"
+    r"|trigger(?:s|ed|ing)?"
+    r"|works?\s+(?:(?:really|very|so|especially|extremely|incredibly)\s+)?(?:well\s+)?with"
+    r"|combos?\s+(?:well\s+)?with)")
+_NAME_RUN_RE = re.compile(
+    r"[A-Z][\w'-]*(?:\s+(?:(?:of|the|to|in|from|for|on|at|a|an|de|du|la)\s+)*[A-Z][\w'-]*)*")
+# Capitalised words that open a clause rather than name a card.
+_RUN_STOPWORDS = frozenset({
+    "this", "that", "these", "those", "it", "its", "your", "you", "i", "my", "we", "our",
+    "also", "and", "but", "so", "both", "each", "every", "everything", "in", "with", "since",
+    "because", "yes", "no", "overall", "plus", "however", "additionally", "here", "there",
+    "then", "like", "even", "notably", "meanwhile", "furthermore", "moreover", "of", "for",
+    "as", "if", "when", "while", "the", "a", "an", "all", "many", "most", "some", "several",
+    "they", "their", "he", "she", "his", "her", "which", "what", "cards", "card", "spells",
+    "commander", "deck", "first", "finally", "similarly", "likewise", "now", "board",
+    "still", "only", "just", "especially", "particularly", "anything", "something", "nothing",
+})
+_ARTICLES = frozenset({"the", "a", "an"})
+# `_NEGATOR_RE` plus the future/conditional negations a synergy sentence uses ("won't trigger").
+_SYNERGY_NEGATOR_RE = re.compile(
+    r"\b(?:won'?t|wouldn'?t|will\s+not|would\s+not|lacks?|little|zero)\b(?:\W+\w+){0,3}\W*$",
+    re.IGNORECASE)
+
+
+def commander_aliases(commander_names) -> list[str]:
+    """Ways a reply names a commander: the full name, its front face, the part before a comma
+    ("Thrasios" for "Thrasios, Triton Hero") and the first word of a multi-word name ("Smaug"
+    for "Smaug the Impenetrable") unless that word is an article."""
+    out: list[str] = []
+    for name in commander_names or ():
+        if not isinstance(name, str) or not name.strip():
+            continue
+        front = name.split(" // ")[0].strip()
+        cands = [name.strip(), front, front.split(",")[0].strip()]
+        words = front.split()
+        if len(words) > 1 and words[0].strip(",").casefold() not in _ARTICLES:
+            cands.append(words[0].strip(","))
+        for c in cands:
+            if len(c) >= 3 and c not in out:
+                out.append(c)
+    return sorted(out, key=len, reverse=True)
+
+
+def _synergy_re(commander_names) -> re.Pattern:
+    refs = [r"(?:your|the)\s+commander\b"] + [
+        re.escape(a) + r"(?![\w-])" for a in commander_aliases(commander_names)]
+    return re.compile(rf"\b{_SYNERGY_VERB}\s+(?:{'|'.join(refs)})", re.IGNORECASE)
+
+
+def _claimed_runs(subject: str, aliases: set[str]) -> list[str]:
+    names = []
+    for m in _NAME_RUN_RE.finditer(subject):
+        words = m.group().split()
+        while words and words[0].casefold() in _RUN_STOPWORDS:
+            words.pop(0)
+        if not words or not words[0][:1].isupper():
+            continue
+        run = " ".join(words)
+        if run.casefold() in aliases:
+            continue
+        names.append(run)
+    return names
+
+
+def commander_synergy_claims(body: str, commander_names) -> list[str]:
+    """Card names a sentence of `body` claims synergise with the commander: the capitalised
+    name runs in the clause BEFORE "synergy with / triggers / works (well) with / combos with"
+    + "your commander" or a commander's name. A negated phrase ("does not synergise") claims
+    nothing, and a subject naming no card ("It has synergy with your commander") claims
+    nothing -- under-flag."""
+    pattern = _synergy_re(commander_names)
+    aliases = {a.casefold() for a in commander_aliases(commander_names)}
+    out: list[str] = []
+    for sentence in split_sentences(body):
+        for m in pattern.finditer(sentence):
+            before = sentence[:m.start()]
+            if _NEGATOR_RE.search(before) or _SYNERGY_NEGATOR_RE.search(before):
+                continue
+            subject = re.split(r"[;:]|\s-+\s|\u2014", before)[-1]
+            for name in _claimed_runs(subject, aliases):
+                if name not in out:
+                    out.append(name)
+    return out

@@ -40,6 +40,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy, reference
 from mythgauntlet.ratings import role_swap as role_swap_mod
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
+from mythgauntlet.semantics.commander_lens import CommanderLens
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
@@ -302,6 +303,12 @@ def _analysis_for(ctx: "MentorContext") -> DeckAnalysis:
         return analysis
 
 
+def _lens_for(ctx: "MentorContext") -> CommanderLens | None:
+    """The deck's commander lens, from the cached analysis (`analyze_deck` always builds one;
+    None only for a hand-built analysis)."""
+    return getattr(_analysis_for(ctx), "lens", None)
+
+
 def _analysis_cache_clear() -> None:
     with _ANALYSIS_LOCK:
         _ANALYSIS_CACHE.clear()
@@ -447,13 +454,16 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         ],
     }
 
-    supply = redundancy.role_supply(resolved)
+    # The commander lens (one-shot payoff Treasure is ramp) so this table agrees with
+    # list_deck_cards' per-card roles; an unmatched commander's lens changes nothing.
+    lens = _lens_for(ctx)
+    supply = redundancy.role_supply(resolved, lens)
     # Colour-aware (PLAN_MENTOR_ADHOC C1): the colour-blind population target told every
     # non-blue deck it "lacks counterspells". An empty identity (unresolved commander) is
     # unknown, not colourless -- `role_applicable` leaves every role applicable then.
     identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
     targets = redundancy.targets_for(ctx.themes, color_identity=identity)
-    role_cards = redundancy.role_card_counts(resolved)
+    role_cards = redundancy.role_card_counts(resolved, lens)
     card_targets = redundancy.card_targets_for(ctx.themes, color_identity=identity)
     # `supply` and `supply_target` are STRENGTH scores (redundancy.card_roles: a board wipe
     # counts 3.0, a counterspell 3.0, a tutor 2.0), NOT card counts -- the unit-less pair read
@@ -764,7 +774,8 @@ def tool_list_deck_cards(ctx: MentorContext, role: str | None = None) -> ToolRes
     role names are `redundancy.card_roles`' own plus "land" (one taxonomy, never a new one).
     An unknown role is `found: False` listing the valid ones. Every returned name is
     licensed, so the model may name any card it was shown here."""
-    rows = deckview.deck_card_rows(ctx.resolved)
+    lens = _lens_for(ctx)
+    rows = deckview.deck_card_rows(ctx.resolved, lens)
     valid = sorted(set(redundancy.ROLE_TARGETS) | {"land"})
     if role is not None:
         role = str(role).strip().lower()
@@ -784,6 +795,9 @@ def tool_list_deck_cards(ctx: MentorContext, role: str | None = None) -> ToolRes
         # (Shelob, 2026-10-01). The identity travels with the list.
         "deck_color_identity": identity,
         "counterspell_applicable": redundancy.role_applicable("counterspell", identity),
+        # The interaction kinds the commander lens matched; a row's `commander_synergy` is the
+        # only licence gate check 16 accepts for "X synergises with your commander".
+        "commander_lens_kinds": list(lens.kinds) if lens is not None else [],
     }
     return ToolResult(data=data, card_names=frozenset(r["name"] for r in rows))
 
@@ -1079,6 +1093,7 @@ def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolR
         applicable={r for r, e in roles.items() if e.get("applicable")},
         baseline=_analysis_for(ctx),
         strength_targets=redundancy.targets_for(ctx.themes, color_identity=identity),
+        lens=_lens_for(ctx),
     )
     axis = report.axis
     data = {**base, "axis": axis, "owned_cards_filling_role": report.adds_available,
@@ -1137,14 +1152,17 @@ def _diagnose_facts(ctx: MentorContext, a: DeckAnalysis) -> dict:
     nonland = [(c, q) for c, q in resolved.cards if not c.is_land]
     nonland_n = sum(q for _c, q in nonland)
     creatures = sum(q for c, q in nonland if "Creature" in c.type_line)
+    lens = getattr(a, "lens", None)
     engines = 0
     for c, q in nonland:
         if "Creature" in c.type_line:
             continue
+        # No lens here: a payoff's one-shot Treasure is ramp, but not a value ENGINE that keeps
+        # producing after a wipe, which is what this count measures.
         roles = redundancy.roles_for(c)
         if "ramp" in roles or "draw" in roles:
             engines += q
-    role_cards = redundancy.role_card_counts(resolved)
+    role_cards = redundancy.role_card_counts(resolved, lens)
     try:
         no_answer = list(removal.coverage(resolved).get("no_answer_for", []))
     except Exception:  # advisory: an unreadable card must not sink the whole diagnosis
@@ -1173,6 +1191,9 @@ def _diagnose_facts(ctx: MentorContext, a: DeckAnalysis) -> dict:
         "has_game_ending_combo": bool(ceil.has_game_ending_combo),
         # a deck that never goes off is a known "no", not an unmeasured fact
         "go_off_turn": ceil.go_off_turn or False, "overrun_alpha": bool(ceil.overrun_alpha),
+        # An indestructible commander survives the destroy wipe resilience injects, so "a wipe
+        # sets the deck back" is not this deck's lever. No lens (hand-built analysis) = folds.
+        "commander_folds_to_wipe": not (lens is not None and lens.survives_mode("destroy")),
     }
 
 

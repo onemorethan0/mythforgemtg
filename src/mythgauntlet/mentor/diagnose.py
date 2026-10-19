@@ -399,7 +399,7 @@ LEVERS: tuple[Lever, ...] = (
     Lever(axes=("consistency",), driver="land_count", text="The land count is on the low side; an extra land or mana rock smooths draws."),
     Lever(axes=("consistency",), driver="commander_cast_rate", text="The commander is not cast in some games; ramp or cheaper support helps it arrive."),
     Lever(axes=("consistency",), driver="curve_efficiency", text="Early mana goes unused; lower-cost plays use it."),
-    Lever(axes=("resilience",), driver="resilience_score", text="A board wipe sets the deck back a lot; holding some threats in hand and keeping non-creature value engines blunts it."),
+    Lever(axes=("resilience",), driver="resilience_score", requires="commander_folds_to_wipe", text="A board wipe sets the deck back a lot; holding some threats in hand and keeping non-creature value engines blunts it."),
     Lever(axes=("resilience",), driver="kill_delay_turns", text="After a wipe the deck needs many extra turns to kill; cheap rebuild creatures or haste threats shorten that."),
     Lever(axes=("resilience",), driver="creature_share", text="The deck leans heavily on creatures; non-creature threats and engines survive a wipe."),
     Lever(axes=("resilience",), driver="noncreature_engine_count", text="Few non-creature ramp or draw pieces; artifacts and enchantments that keep producing value survive a wipe."),

@@ -75,8 +75,20 @@ def _role_report_rejected(t):
     return bool(gate.role_report_reasons(_norm(t), _ROLE_Q, _ROLE_SUMMARY))
 
 
+# Gate check 16 (2026-10-19): a card claimed to synergise with the commander. Hand-written (no
+# local model run for this batch): positives in the four phrase shapes, hard negatives that use
+# the same verbs about a non-commander thing, negate them, or name no card.
+_SMAUG = ("Smaug the Impenetrable",)
+
+
+def _synergy_claimed(t):
+    return bool(v.commander_synergy_claims(_norm(t), _SMAUG))
+
+
 EXPECT = {
     # category: (predicate, should_be)
+    "commander_synergy_claim": (_synergy_claimed, True),
+    "commander_synergy_not_claim": (_synergy_claimed, False),
     "role_question": (lambda t: v.is_role_question(t), True),
     "not_role_question": (lambda t: v.is_role_question(t), False),
     "role_report_complete": (_role_report_rejected, False),

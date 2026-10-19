@@ -69,7 +69,10 @@ def test_breakdown_cards_carry_roles_and_quantities(setup):
     client, _, _ = setup
     cards = {c["name"]: c for c in client.post("/breakdown", json={"deck": DECK, "runs": 5}).json()["cards"]}
     assert cards["Test Commander"]["commander"] is True
-    assert cards["Forest"] == {"name": "Forest", "qty": 30, "roles": ["land"], "commander": False}
+    assert cards["Forest"] == {"name": "Forest", "qty": 30, "roles": ["land"], "commander": False,
+                               "commander_synergy": None}
+    # a commander matching no lens kind: no card carries a synergy
+    assert all(c["commander_synergy"] is None for c in cards.values())
     assert "removal" in cards["Snuff Out Test"]["roles"]
     assert "ramp" in cards["Mana Ring"]["roles"]
 
@@ -85,3 +88,34 @@ def test_breakdown_400_on_unresolvable_deck(setup):
     client, _, _ = setup
     resp = client.post("/breakdown", json={"deck": "Commander:\n1 Nothing Resolves Here\n"})
     assert resp.status_code == 400
+
+
+SMAUG_DECK = """
+Commander:
+1 Smaug the Impenetrable
+
+Deck:
+30 Mountain
+1 Blasphemous Act
+1 Wrath of God
+4 Mana Ring
+"""
+
+
+def test_breakdown_cards_carry_commander_synergy(tmp_path, make_card, sol_ring_like, monkeypatch):
+    from tests.engine.test_commander_lens import BLASPHEMOUS, SMAUG, WRATH
+    monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path / "suite"))
+    mentor_tools._analysis_cache_clear()
+    smaug = make_card(**SMAUG, colors=("B", "R"), color_identity=("B", "R"))
+    mountain = make_card("Mountain", type_line="Basic Land — Mountain", produced_mana=("R",),
+                         color_identity=("R",))
+    db = CardDb([smaug, mountain, sol_ring_like, make_card(**BLASPHEMOUS), make_card(**WRATH)])
+    store = SemanticsStore(authored=tmp_path / "a", compiled=tmp_path / "c")
+    app = server_mod.create_app(db=db, store=store, mentor_cr=None, mentor_rulings_db=None)
+    cards = {c["name"]: c for c in TestClient(app).post(
+        "/breakdown", json={"deck": SMAUG_DECK, "runs": 5}).json()["cards"]}
+    mentor_tools._analysis_cache_clear()
+    assert cards["Blasphemous Act"]["commander_synergy"]["kind"] == "damage_to_self_payoff"
+    assert cards["Wrath of God"]["commander_synergy"]["kind"] == "one_sided_wipe"
+    assert cards["Mountain"]["commander_synergy"] is None
+    assert "ramp" in cards["Blasphemous Act"]["roles"]

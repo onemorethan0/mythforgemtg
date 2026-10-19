@@ -287,6 +287,15 @@ class ClaimBudget:
     # role furthest under target): check 15 holds a role-count question's answer to it. Detected
     # structurally -- `roles` + `role_summary` is that tool's shape. Empty when it did not run.
     role_summary: dict = field(default_factory=dict)
+    # Cards a tool result this turn showed a commander-lens fact for (a `list_deck_cards` row with
+    # a non-null `commander_synergy`): the only licence check 16 accepts for "X synergises with
+    # your commander". Detected structurally -- any dict carrying `name` + a truthy
+    # `commander_synergy`, wherever it sits in the result.
+    synergy_cards: frozenset[str] = frozenset()
+    # The deck's commander names as this turn's tool results gave them (a row flagged
+    # `commander`, or get_deck_stats' `commanders`): check 16 reads "triggers Smaug" as a claim
+    # about the commander. Empty still reads "your commander".
+    commander_names: frozenset[str] = frozenset()
 
     @classmethod
     def from_tool_results(
@@ -305,6 +314,8 @@ class ClaimBudget:
         counterspell_na = False
         rule_texts: dict[str, str] = {}
         role_summary: dict = {}
+        synergy_cards: set[str] = set()
+        commander_names: set[str] = set()
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -358,10 +369,64 @@ class ClaimBudget:
                     if (isinstance(hit, dict) and hit.get("kind") == "rule"
                             and isinstance(hit.get("ref"), str) and isinstance(hit.get("text"), str)):
                         rule_texts.setdefault(hit["ref"], hit["text"])
+            _collect_lens_rows(data, synergy_cards, commander_names)
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
                     tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions),
-                    counterspell_na, tuple(rule_texts.items()), role_summary)
+                    counterspell_na, tuple(rule_texts.items()), role_summary,
+                    synergy_cards=frozenset(synergy_cards),
+                    commander_names=frozenset(commander_names))
+
+
+def _collect_lens_rows(data, synergy_cards: set[str], commander_names: set[str]) -> None:
+    """Walk a tool result for card rows: a `name` with a truthy `commander_synergy` is a
+    lens-backed card; a row flagged `commander`, or a `commanders` list entry, names one."""
+    if isinstance(data, dict):
+        name = data.get("name")
+        if isinstance(name, str):
+            if data.get("commander_synergy"):
+                synergy_cards.add(name)
+            if data.get("commander") is True:
+                commander_names.add(name)
+        cmdrs = data.get("commanders")
+        if isinstance(cmdrs, list):
+            for c in cmdrs:
+                if isinstance(c, dict) and isinstance(c.get("name"), str):
+                    commander_names.add(c["name"])
+        for v in data.values():
+            if isinstance(v, (dict, list)):
+                _collect_lens_rows(v, synergy_cards, commander_names)
+    elif isinstance(data, list):
+        for v in data:
+            _collect_lens_rows(v, synergy_cards, commander_names)
+
+
+def _synergy_backed(name: str, synergy_cards: frozenset[str]) -> bool:
+    """A claimed name is backed when a lens-backed card IS it, or one contains the other as
+    whole words ("Ozolith" for "The Ozolith", a front face for a split card). Under-flag."""
+    n = name.casefold()
+    for card in synergy_cards:
+        c = card.casefold()
+        if c == n or re.search(rf"(?<![\w'-]){re.escape(n)}(?![\w'-])", c) \
+                or re.search(rf"(?<![\w'-]){re.escape(c)}(?![\w'-])", n):
+            return True
+    return False
+
+
+def commander_synergy_reasons(body: str, budget: "ClaimBudget") -> list[str]:
+    """Check 16. Every card a sentence claims synergises with the commander
+    (`verdicts.commander_synergy_claims`) must be one a tool result showed a commander-lens fact
+    for. When the budget knows card names, a claimed run that is no known card ("Board" in
+    "Board wipes like ...") is not a card claim and is skipped."""
+    pool = {n.casefold() for n in budget.card_names | budget.known_card_names}
+    reasons = []
+    for name in verdicts_mod.commander_synergy_claims(body, sorted(budget.commander_names)):
+        if _synergy_backed(name, budget.synergy_cards):
+            continue
+        if pool and name.casefold() not in pool:
+            continue
+        reasons.append(f"claims {name!r} synergises with the commander; no lens fact backs it")
+    return reasons
 
 
 def _looks_like_a_name(text: str, match: re.Match) -> bool:
@@ -600,6 +665,12 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     question, so the summary is always in hand when this fires.
     if budget.role_summary:
         reasons.extend(role_report_reasons(body, question, budget.role_summary))
+
+    # 16. A COMMANDER-SYNERGY CLAIM NO LENS FACT BACKS. "Wrath of God has great synergy with your
+    #     commander" names a licensed card and no number, so checks 1-15 pass it; only the
+    #     commander lens (list_deck_cards' `commander_synergy`) measures how the commander changes
+    #     a card. Smaug makes Wrath one-sided; a vanilla legend makes it a plain wipe.
+    reasons.extend(commander_synergy_reasons(body, budget))
 
     return reasons
 
