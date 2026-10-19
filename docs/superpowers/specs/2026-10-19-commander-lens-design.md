@@ -46,19 +46,21 @@ end), and EDHREC synergy scores as an input (says *which*, not *why*; cannot exp
 
 ## Design
 
-### Module: `ratings/commander_lens.py`
+### Module: `semantics/commander_lens.py`
+
+Lives in `semantics/`, not `ratings/`: `sim/tier1` must read it and `sim/` never imports
+`ratings/`.
 
 ```
-CommanderLens(commander: Card, kinds: tuple[LensKind, ...])
-build_lens(commander: Card | None, ccm: dict | None, deck_ctx: LensDeckContext) -> CommanderLens
+build_lens(commanders: Sequence[Card], ctx: LensDeckContext | None = None) -> CommanderLens
 lens.facts_for(card: Card) -> LensFacts            # empty LensFacts when no kind applies
 ```
 
 Each `LensKind` implements:
 
-- `detect(commander, ccm) -> bool`: never true on the compiled trigger alone. The CCM
-  is too coarse: Smaug's compiles to `dealt_damage` with neither the subject nor
-  "noncombat". Oracle text must confirm subject and qualifiers.
+- `detect(commander) -> bool`, from printed `keywords` and oracle text only. The compiled
+  model is NOT read: it is too coarse (Smaug's compiles to `dealt_damage` with neither the
+  subject nor "noncombat"), and since oracle confirmation is mandatory it adds nothing.
 - `apply(card, deck_ctx) -> LensFacts`: returns *additional* facts. It never mutates the
   card's `EffectVector`; base semantics stay commander-agnostic.
 
@@ -83,8 +85,10 @@ A commander with no matching type gets an empty lens: every output stays byte-id
    credit applies only to MASS damage that hits the commander ("deals N damage to each
    creature"). Targeted damage and repeatable pingers that *could* be aimed at the commander
    get the `payoff_kind` label with no credit, because a target choice is a decision this
-   layer does not make. Combat-only qualifiers are honoured: a noncombat-only trigger
-   ignores fight and combat effects.
+   layer does not make. A noncombat-only trigger ignores only combat damage
+   (CR 120.2a: attacking/blocking creatures in the combat damage step). Fight and every spell
+   or ability's damage IS noncombat (CR 120.2b), so it counts. Fight is a target choice, so
+   label only.
 3. **`death_payoff`**: commander has a death trigger whose counted subject is the pilot's
    own creatures ("a creature you control", "another creature"), confirmed by text. Own wipes
    and sacrifice outlets get `payoff_kind="death_payoff"`. No Treasure or number credit in
