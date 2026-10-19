@@ -4459,6 +4459,11 @@ def _gauntlet_breakdown(commander, deck, themes=None, partners=None):
         return None
 
 
+# Bump when the engine's /breakdown payload gains fields, so cached breakdowns re-measure once.
+# 2: per-card `commander_synergy`.
+BREAKDOWN_SCHEMA = 2
+
+
 @app.post("/api/deck/{job_id}/breakdown")
 def deck_breakdown(job_id: str, refresh: bool = False):
     """The Deck Mentor's measurements for charts and the deck view's group-by-role.
@@ -4481,7 +4486,8 @@ def deck_breakdown(job_id: str, refresh: bool = False):
     partners = _job_partners(job)
     themes = _deck_archetypes(job)
     key = hashlib.sha1(json.dumps(
-        [_deck_to_lines(commander, deck, partners), sorted(themes)]).encode("utf-8")).hexdigest()
+        [BREAKDOWN_SCHEMA, _deck_to_lines(commander, deck, partners), sorted(themes)]
+    ).encode("utf-8")).hexdigest()
     cached = job.get("breakdown") or {}
     if not refresh and cached.get("key") == key and cached.get("data"):
         return {**cached["data"], "computed_at": cached.get("computed_at"), "cached": True}

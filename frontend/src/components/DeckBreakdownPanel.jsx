@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { synergyRows } from '../utils/deckBreakdown'
 
 // Charts for the Deck Mentor's own measurements (engine /breakdown via Forge's
 // /api/deck/{id}/breakdown): role cards vs a typical card target, what the deck's
@@ -148,6 +149,25 @@ function ManaChart({ manabase, curve, identity }) {
   )
 }
 
+function SynergyList({ rows }) {
+  const badge = { marginLeft: 6, fontSize: 10, padding: '1px 6px', borderRadius: 4, fontWeight: 700 }
+  return (
+    <div>
+      <div style={sectionTitle}>Commander synergy</div>
+      {rows.map(r => (
+        <div key={r.name} style={{ marginBottom: 8, fontSize: 12 }}>
+          <div>
+            <span style={{ color: '#f5f5f4', fontWeight: 700 }}>{r.name}</span>
+            {r.oneSided && <span style={{ ...badge, background: '#052e16', color: '#86efac' }}>one-sided wipe</span>}
+            {r.treasure > 0 && <span style={{ ...badge, background: '#422006', color: '#fcd34d' }}>+{r.treasure} Treasure</span>}
+          </div>
+          <div style={{ color: '#a8a29e', lineHeight: 1.4 }}>{r.reason}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 async function fetchBreakdown(jobId, refresh) {
   try {
     const res = await fetch(`/api/deck/${jobId}/breakdown${refresh ? '?refresh=true' : ''}`, { method: 'POST' })
@@ -190,6 +210,8 @@ export default function DeckBreakdownPanel({ jobId, initial, onData }) {
   const btn = { background: '#1c1917', border: '1px solid #292524', borderRadius: 6, padding: '4px 10px',
     color: '#a8a29e', fontSize: 11, cursor: 'pointer', fontFamily: 'inherit' }
 
+  const synergy = synergyRows(data?.cards)
+
   return (
     <div style={{ background: '#0c0a09', border: '1px solid #292524', borderRadius: 10, padding: 14, marginBottom: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
@@ -217,6 +239,7 @@ export default function DeckBreakdownPanel({ jobId, initial, onData }) {
               {data.removal && <AnswerChart removal={data.removal} />}
               {data.manabase && <ManaChart manabase={data.manabase} curve={data.curve}
                 identity={[...new Set((data.commanders || []).flatMap(c => c.color_identity || []))]} />}
+              {synergy.length > 0 && <SynergyList rows={synergy} />}
             </div>
           )}
         </div>
