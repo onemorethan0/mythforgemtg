@@ -1,7 +1,13 @@
 # Commander lens: commander-aware card value
 
 **Date:** 2026-10-19
-**Status:** design approved in conversation; awaiting spec review
+**Status:** implemented 2026-10-19 (branch `feat/commander-lens`). Corpus sweep
+(`scripts/commander_lens_sweep.py`): 1,074/1,074 decks with no lens kind byte-identical;
+31 lens-covered decks (18 commanders), 2 with moved role counts (Smaug: Ramp +2, +1);
+75 distinct flagged (card, kind) pairs / 149 deck-card instances after hand review fixed 5
+false-positive classes; EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%) over 5
+cached single-commander pages (Smaug 13/42 = 31%, Meren 3/27 = 11%). Live mentor check on
+"should I cut Blasphemous Act?" did NOT cite the synergy (no lens-carrying tool was called).
 **Scope:** MythForge strength metrics (`src/mythgauntlet/ratings/`), Deck Mentor
 (`src/mythgauntlet/mentor/`), one guarded change in `src/mythgauntlet/sim/tier0.py`.
 
