@@ -368,8 +368,9 @@ def _add_lens_synergy(ctx: MentorContext, card, data: dict) -> None:
         return
     in_deck = any(c.name == card.name for c, _qty in resolved.cards)
     if not in_deck:
+        # An empty identity is a COLOURLESS commander (Ulamog, Memnarch), not an unknown one.
         identity = {ch for c in resolved.commanders for ch in c.color_identity}
-        if not card.commander_legal or (identity and not set(card.color_identity) <= identity):
+        if not card.commander_legal or not set(card.color_identity) <= identity:
             return
     if build_lens(resolved.commanders).facts_for(card).empty:
         return

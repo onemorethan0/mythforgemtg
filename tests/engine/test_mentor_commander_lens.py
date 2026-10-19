@@ -15,6 +15,7 @@ from mythgauntlet.mentor.tools import (
 )
 from mythgauntlet.model.deck import Deck, ResolvedDeck
 from mythgauntlet.ratings import redundancy
+from mythgauntlet.semantics.commander_lens import build_lens
 from mythgauntlet.sim.tier0 import SimConfig
 
 from tests.engine.test_commander_lens import BLASPHEMOUS, SMAUG, WRATH
@@ -221,6 +222,23 @@ def test_lookup_card_has_no_synergy_off_identity_or_without_a_lens(make_card, em
     assert "commander_synergy" not in tools_mod.tool_lookup_card(ctx, "White Bolt").data
     plain = _ctx(make_card, empty_store, _vanilla(make_card))
     assert "commander_synergy" not in tools_mod.tool_lookup_card(plain, "Blasphemous Act").data
+
+
+def test_lookup_card_colourless_commander_rejects_coloured_cards(make_card, empty_store):
+    # An empty colour identity is a COLOURLESS commander, not an unknown one: Ulamog's deck
+    # cannot play Day of Judgment, so its lens fact must not reach an "add" answer.
+    ulamog = make_card(
+        "Ulamog, the Ceaseless Hunger", mana_cost="{10}",
+        type_line="Legendary Creature — Eldrazi", keywords=frozenset({"indestructible"}),
+        power="10", toughness="10",
+        oracle_text="When you cast this spell, exile two target permanents.\nIndestructible\n"
+                    "Whenever Ulamog attacks, defending player exiles the top twenty cards of "
+                    "their library.")
+    day = make_card("Day of Judgment", mana_cost="{2}{W}{W}", type_line="Sorcery",
+                    oracle_text="Destroy all creatures.", colors=("W",), color_identity=("W",))
+    ctx = _with(_ctx(make_card, empty_store, ulamog), day)
+    assert not build_lens([ulamog]).facts_for(day).empty  # the lens itself does flag it
+    assert "commander_synergy" not in tools_mod.tool_lookup_card(ctx, "Day of Judgment").data
 
 
 def test_add_question_prefetches_the_lens_fact(make_card, empty_store):
