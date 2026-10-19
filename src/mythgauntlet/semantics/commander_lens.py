@@ -88,7 +88,7 @@ def _survives_wipe_facts(lens: CommanderLens, card: Card) -> LensFacts:
     lead = lens.commanders[0]
     text = tags._clean_text(card)
     for mode, obj in _wipe_clauses(text):
-        if (mode in _INDESTRUCTIBLE_SURVIVES and tags._hits_creature(obj)
+        if (lens.survives_mode(mode) and tags._hits_creature(obj)
                 and admits(obj, lead) is True):
             return LensFacts(
                 wipe_one_sided=True,

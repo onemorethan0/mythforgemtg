@@ -60,6 +60,13 @@ def test_partner_kinds_union_resilience_reads_lead(make_card, bear, smaug):
     assert build_lens([smaug, bear]).survives_mode("destroy") is True
 
 
+def test_partner_lead_not_indestructible_makes_no_wipe_claim(make_card, bear, smaug):
+    assert build_lens([bear, smaug]).facts_for(make_card(**WRATH)).empty
+    f = build_lens([smaug, bear]).facts_for(make_card(**WRATH))
+    assert f.wipe_one_sided is True
+    assert f.reason.startswith("Smaug the Impenetrable")
+
+
 def test_face_ambiguous_commander_is_honest_undercount(make_card):
     s = make_card(**{**SMAUG, "layout": "transform", "keywords": frozenset()})
     lens = build_lens([s])
