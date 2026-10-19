@@ -218,3 +218,13 @@ def test_meren_damage_and_minus_wipes_are_payoff(make_card):
     lens = build_lens([make_card(**MEREN)])
     assert lens.facts_for(make_card(**BLASPHEMOUS)).payoff_kind == DEATH
     assert lens.facts_for(make_card(**DELUGE)).payoff_kind == DEATH
+
+
+COLFENOR = dict(name="Colfenor, the Last Yew", mana_cost="{3}{W}{B}{G}", type_line="Legendary Creature — Treefolk Shaman", keywords=frozenset({"reach", "vigilance"}), power="3", toughness="7", oracle_text="Reach, vigilance\nWhenever Colfenor or another creature you control dies, return up to one other target creature card with lesser toughness from your graveyard to your hand.")
+
+
+def test_named_self_death_trigger_detected(make_card):
+    colfenor = make_card(**COLFENOR)
+    lens = build_lens([colfenor])
+    assert DEATH in lens.kinds
+    assert lens.facts_for(make_card(**WRATH)).payoff_kind == DEATH

@@ -192,6 +192,7 @@ _DEATH_TRIGGER_RE = re.compile(
     r"(?: or planeswalkers?)? you control (?:dies|die)"
     r"|whenever (?:this creature or )?another creature dies"
 )
+_SELF_DEATH_TMPL = r"whenever (?:{names}) or another creature(?: you control)? dies"
 _SAC_OUTLET_RE = re.compile(r"sacrifice (?:a|another) creature:")
 # Wipe modes that make creatures DIE. Bounce and exile move them without a death.
 _DEATH_MODES = frozenset({"destroy", "damage", "minus", "static_minus", "edict"})
@@ -200,10 +201,12 @@ _DEATH_MODES = frozenset({"destroy", "damage", "minus", "static_minus", "edict"}
 def _death_trigger(card: Card) -> bool:
     """Per line over cleaned text: an own-creature (or any-creature) death trigger.
     A line naming "an opponent controls" is rejected."""
+    names = "|".join(re.escape(n) for n in lens_self_names(card))
+    self_re = re.compile(_SELF_DEATH_TMPL.format(names=names))
     for line in tags._clean_text(card).split("\n"):
         if "an opponent controls" in line:
             continue
-        if _DEATH_TRIGGER_RE.search(line):
+        if _DEATH_TRIGGER_RE.search(line) or self_re.search(line):
             return True
     return False
 
