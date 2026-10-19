@@ -15,6 +15,10 @@ def _make_card(
     color_identity: tuple[str, ...] = (),
     colors: tuple[str, ...] = (),
     edhrec_rank: int | None = None,
+    keywords: frozenset[str] = frozenset(),
+    power: str | None = None,
+    toughness: str | None = None,
+    layout: str = "normal",
 ) -> Card:
     return Card(
         name=name,
@@ -25,6 +29,10 @@ def _make_card(
         color_identity=color_identity,
         colors=colors,
         edhrec_rank=edhrec_rank,
+        keywords=keywords,
+        power=power,
+        toughness=toughness,
+        layout=layout,
     )
 
 
