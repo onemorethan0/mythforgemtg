@@ -1393,11 +1393,22 @@ MOST_NEEDED_CUE_RE = re.compile(
 # changes a card, and only the commander lens (semantics/commander_lens, surfaced as a
 # list_deck_cards row's `commander_synergy`) measures that. The phrases live here so the gate
 # and the phrasing corpus read ONE definition. ASCII, applied after `normalize_apostrophes`.
+# Up to two degree/manner adverbs between the verb and "with": "can synergize WELL with", "should
+# synergise NICELY with", "synergizes REALLY WELL with" (live 2026-10-19 missed "can synergize
+# well with your commander"). A modal before the verb needs nothing: the verb is matched alone.
+_SYNERGY_ADVERBS = (
+    r"(?:(?:really|very|so|quite|especially|extremely|incredibly|well|nicely|great|greatly"
+    r"|strongly|perfectly|beautifully|particularly)\s+){0,2}")
 _SYNERGY_VERB = (
-    r"(?:synerg\w*\s+with"
+    rf"(?:synerg\w*\s+{_SYNERGY_ADVERBS}with"
     r"|trigger(?:s|ed|ing)?"
-    r"|works?\s+(?:(?:really|very|so|especially|extremely|incredibly)\s+)?(?:well\s+)?with"
-    r"|combos?\s+(?:well\s+)?with)")
+    rf"|works?\s+{_SYNERGY_ADVERBS}with"
+    rf"|combos?\s+{_SYNERGY_ADVERBS}with)")
+# An embedded question or hedge owning the subject ("I cannot determine IF X synergizes", "it's
+# unclear WHETHER X triggers Smaug") asks, it does not claim (live 2026-10-19: three such denials
+# were rejected and the turn fell back). Only when no comma follows the "if"/"whether": "If you
+# cast X, Blasphemous Act triggers Smaug" still claims.
+_EMBEDDED_QUESTION_RE = re.compile(r"\b(?:if|whether)\b[^,]*$", re.IGNORECASE)
 _NAME_RUN_RE = re.compile(
     r"[A-Z][\w'-]*(?:\s+(?:(?:of|the|to|in|from|for|on|at|a|an|de|du|la)\s+)*[A-Z][\w'-]*)*")
 # Capitalised words that open a clause rather than name a card.
@@ -1410,6 +1421,11 @@ _RUN_STOPWORDS = frozenset({
     "they", "their", "he", "she", "his", "her", "which", "what", "cards", "card", "spells",
     "commander", "deck", "first", "finally", "similarly", "likewise", "now", "board", "any",
     "still", "only", "just", "especially", "particularly", "anything", "something", "nothing",
+    # sentence-initial connectors (live 2026-10-19: "Therefore" was read as a card name)
+    "therefore", "thus", "hence", "consequently", "accordingly", "instead", "otherwise",
+    "unfortunately", "fortunately", "ultimately", "basically", "honestly", "actually", "again",
+    "besides", "regardless", "nonetheless", "nevertheless", "indeed", "sure", "well", "okay",
+    "ok", "alternatively", "lastly", "second", "secondly", "third", "next", "remember",
 })
 _ARTICLES = frozenset({"the", "a", "an"})
 # `_NEGATOR_RE` plus the future/conditional negations a synergy sentence uses ("won't trigger").
@@ -1496,6 +1512,8 @@ def commander_synergy_claims(body: str, commander_names) -> list[str]:
         for m in pattern.finditer(sentence):
             before = sentence[:m.start()]
             if _NEGATOR_RE.search(before) or _SYNERGY_NEGATOR_RE.search(before):
+                continue
+            if _EMBEDDED_QUESTION_RE.search(_CLAUSE_CUT_RE.split(before)[-1]):
                 continue
             names = _synergy_subject_runs(before, aliases)
             for name in names:

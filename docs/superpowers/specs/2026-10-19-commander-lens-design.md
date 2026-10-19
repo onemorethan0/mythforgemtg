@@ -2,12 +2,17 @@
 
 **Date:** 2026-10-19
 **Status:** implemented 2026-10-19 (branch `feat/commander-lens`). Corpus sweep
-(`scripts/commander_lens_sweep.py`): 1,074/1,074 decks with no lens kind byte-identical;
-31 lens-covered decks (18 commanders), 2 with moved role counts (Smaug: Ramp +2, +1);
-75 distinct flagged (card, kind) pairs / 149 deck-card instances after hand review fixed 5
-false-positive classes; EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%) over 5
-cached single-commander pages (Smaug 13/42 = 31%, Meren 3/27 = 11%). Live mentor check on
-"should I cut Blasphemous Act?" did NOT cite the synergy (no lens-carrying tool was called).
+(`scripts/commander_lens_sweep.py`, 1,106 corpus decks, 1 unresolved): all 1,074 decks with
+no lens kind are identical with and without the lens on the swept surfaces (role card counts,
+role_supply strengths, cut-protected set, rank_redundant top 10, deck_card_rows,
+survives_mode) -- the sim-reading surfaces (Resilience, LensDeckContext X credit) are covered
+by tests, not by the sweep. 31 lens-covered decks (18 commanders); 21 moved: 2 in role counts
+and supply (Smaug: Ramp +2 / +1 cards), 19 in the cut-protected set only. 75 distinct flagged
+(card, kind) pairs / 149 deck-card instances after hand review fixed 6 false-positive classes
+(incl. colour exclusions, Strafe). EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%)
+over 5 cached single-commander pages (Smaug 13/42 = 31%, Meren 3/27 = 11%). Live mentor check
+("should I cut Blasphemous Act?") passes after the deterministic lens prefetch: the reply
+keeps the card and cites Smaug surviving the 13 damage for Treasure.
 **Scope:** MythForge strength metrics (`src/mythgauntlet/ratings/`), Deck Mentor
 (`src/mythgauntlet/mentor/`), one guarded change in `src/mythgauntlet/sim/tier0.py`.
 

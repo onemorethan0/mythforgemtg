@@ -318,3 +318,35 @@ def test_mana_paid_activation_treasure_is_net_of_its_cost(make_card, smaug):
         assert f.payoff_treasure == 0
     # A triggered (unpaid) mass damage keeps its full credit.
     assert lens.facts_for(make_card(**LAVABRINK)).payoff_treasure == 6
+
+
+# --- Task 8 review: colour exclusions (oracle text verbatim from the card store) ---
+
+STRAFE = dict(name="Strafe", mana_cost="{R}", type_line="Sorcery",
+    oracle_text="Strafe deals 3 damage to target nonred creature.")
+KAERVEKS_HEX = dict(name="Kaervek's Hex", mana_cost="{3}{B}", type_line="Sorcery",
+    oracle_text="Kaervek's Hex deals 1 damage to each nonblack creature and an additional 1 damage to each green creature.")
+HELLFIRE = dict(name="Hellfire", mana_cost="{2}{B}{B}{B}", type_line="Sorcery",
+    oracle_text="Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures that died this way.")
+
+
+def _coloured_smaug(make_card):
+    return make_card(**SMAUG, colors=("B", "R"), color_identity=("B", "R"))
+
+
+def test_target_nonred_cannot_hit_red_smaug(make_card):
+    assert build_lens([_coloured_smaug(make_card)]).facts_for(make_card(**STRAFE)).empty
+
+
+def test_target_nonred_still_hits_a_commander_of_another_colour(make_card):
+    klement = make_card(**KLEMENT, colors=("R", "W"), color_identity=("R", "W"))
+    green = replace(klement, colors=("G",), color_identity=("G",))
+    assert build_lens([klement]).facts_for(make_card(**STRAFE)).empty
+    assert build_lens([green]).facts_for(make_card(**STRAFE)).payoff_kind == KIND
+
+
+def test_mass_nonblack_misses_black_smaug(make_card):
+    lens = build_lens([_coloured_smaug(make_card)])
+    assert lens.facts_for(make_card(**KAERVEKS_HEX)).empty
+    assert lens.facts_for(make_card(**HELLFIRE)).empty
+    assert admits("each nonblack creature", _coloured_smaug(make_card)) is False

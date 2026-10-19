@@ -8,7 +8,7 @@ from dataclasses import replace
 import pytest
 
 from mythgauntlet.data.scryfall import CardDb
-from mythgauntlet.mentor import gate, tools as tools_mod, verdicts
+from mythgauntlet.mentor import chat, gate, tools as tools_mod, verdicts
 from mythgauntlet.mentor.gate import ClaimBudget
 from mythgauntlet.mentor.tools import (
     MentorContext, ToolResult, tool_diagnose_axis, tool_get_deck_stats, tool_list_deck_cards,
@@ -175,3 +175,79 @@ def test_gate_does_not_reject_a_card_in_another_clause():
     body = "Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug."
     assert _check16(gate.check(body, replace(budget, commander_names=frozenset(
         {"Smaug the Impenetrable"})))) == []
+
+
+# -- the lens fact reaches a cut question deterministically (Task 8 review, CRITICAL 1) ---------
+# Live 2026-10-19 "should I cut Blasphemous Act?" on a Smaug deck: the model called lookup_card,
+# check_legality and suggest_swap -- none carried the lens fact -- and answered with a swap-search
+# template. qwen3:14b ignores prompt-only rules, so the fact is put in front of it in code.
+
+CUT_Q = "should I cut Blasphemous Act?"
+
+
+def test_lookup_card_carries_synergy_for_a_deck_card(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store, _smaug(make_card))
+    data = tools_mod.tool_lookup_card(ctx, "Blasphemous Act").data
+    assert data["commander_synergy"]["kind"] == "damage_to_self_payoff"
+    assert data["commander_synergy"]["treasure"] >= 0
+    assert "Smaug the Impenetrable" in data["commander_synergy"]["reason"]
+    assert data["commanders"] == [{"name": "Smaug the Impenetrable"}]
+
+
+def test_lookup_card_has_no_synergy_off_deck_or_without_a_lens(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store, _smaug(make_card))
+    bolt = make_card("Lightning Bolt", mana_cost="{R}", type_line="Instant",
+                     oracle_text="Lightning Bolt deals 3 damage to any target.",
+                     colors=("R",), color_identity=("R",))
+    ctx = replace(ctx, card_db=CardDb(list(ctx.card_db._by_name.values()) + [bolt]))
+    assert "commander_synergy" not in tools_mod.tool_lookup_card(ctx, "Lightning Bolt").data
+    plain = _ctx(make_card, empty_store, _vanilla(make_card))
+    assert "commander_synergy" not in tools_mod.tool_lookup_card(plain, "Blasphemous Act").data
+
+
+def _prefetched(ctx, question):
+    tool_trace, all_results, messages = [], [], []
+    chat._prelookup_question_cards(ctx, question, ctx.all_card_names, tool_trace, all_results,
+                                   messages)
+    facts = chat._prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages)
+    return facts, all_results, messages
+
+
+def test_cut_question_prefetches_the_lens_fact_and_licenses_the_claim(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store, _smaug(make_card))
+    facts, results, messages = _prefetched(ctx, CUT_Q)
+    assert [f["card"] for f in facts] == ["Blasphemous Act"]
+    assert facts[0]["kind"] == "damage_to_self_payoff"
+    nudge = messages[-1]
+    assert nudge["role"] == "user"
+    assert "Blasphemous Act" in nudge["content"] and "Smaug the Impenetrable" in nudge["content"]
+    budget = ClaimBudget.from_tool_results(results)
+    assert "Blasphemous Act" in budget.synergy_cards
+    assert "Smaug the Impenetrable" in budget.commander_names
+    body = "No, keep it: Blasphemous Act triggers Smaug for a pile of Treasure."
+    assert verdicts.commander_synergy_claims(body, sorted(budget.commander_names)) == [
+        "Blasphemous Act"]
+    assert gate.commander_synergy_reasons(body, budget) == []
+
+
+def test_no_prefetch_nudge_without_a_lens_fact(make_card, empty_store):
+    ctx = _ctx(make_card, empty_store, _vanilla(make_card))
+    facts, _results, messages = _prefetched(ctx, CUT_Q)
+    assert facts == []
+    assert all("Commander lens" not in (m.get("content") or "") for m in messages)
+
+
+def test_ask_puts_the_lens_fact_before_the_first_draft(make_card, empty_store, monkeypatch):
+    ctx = _ctx(make_card, empty_store, _smaug(make_card))
+    seen = []
+
+    def fake_post(messages, **kw):
+        seen.append([dict(m) for m in messages])
+        return {"role": "assistant",
+                "content": "No. Blasphemous Act triggers Smaug for a pile of Treasure."}
+
+    monkeypatch.setattr(chat, "_post_chat", fake_post)
+    chat.ask(ctx, CUT_Q)
+    first = seen[0]
+    assert any(m["role"] == "user" and "Commander lens" in (m.get("content") or "")
+               and "Blasphemous Act" in m["content"] for m in first)

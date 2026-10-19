@@ -54,6 +54,16 @@ class LensDeckContext:
     counter_reserve: int
 
 
+_COLOUR_WORDS = {"white": "W", "blue": "U", "black": "B", "red": "R", "green": "G"}
+
+
+def _is_own_colour(word: str, commander: Card) -> bool:
+    """"nonred" / "that isn't red" excludes a commander that is red (Strafe cannot target
+    Smaug; Kaervek's Hex's "each nonblack creature" misses him). Card colours, not identity."""
+    letter = _COLOUR_WORDS.get(word)
+    return letter is not None and letter in (commander.colors or ())
+
+
 def admits(obj: str, commander: Card) -> bool | None:
     """Does a wipe's object phrase include this commander? True/False only when certain;
     None means unknown (treated as no claim)."""
@@ -65,7 +75,7 @@ def admits(obj: str, commander: Card) -> bool | None:
         if m.group(1) in commander.keywords:
             return False
     for m in _NON_RE.finditer(head):
-        if m.group(1) in type_words:
+        if m.group(1) in type_words or _is_own_colour(m.group(1), commander):
             return False
     rest = _WITHOUT_RE.sub(" ", head)
     rest = _NON_RE.sub(lambda m: " nonland " if m.group(1) == "land" else " ", rest)
@@ -191,7 +201,8 @@ def _target_excludes(text: str, start: int, commander: Card) -> bool:
     type_words = set(re.findall(r"[a-z]+", (commander.type_line or "").casefold()))
     for m in _EXCLUDED_TYPE_RE.finditer(head):
         word = m.group(1) or m.group(2)
-        if word in type_words or word.rstrip("s") in type_words:
+        if (word in type_words or word.rstrip("s") in type_words
+                or _is_own_colour(word, commander)):
             return True
     return False
 

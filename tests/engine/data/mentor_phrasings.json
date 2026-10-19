@@ -1027,7 +1027,11 @@
   "Arcane Signet combos well with your commander.",
   "**Blasphemous Act** has excellent synergy with your commander.",
   "Blasphemous Act and Wrath of God both trigger Smaug.",
-  "Blasphemous Act and Pyroclasm work well with your commander."
+  "Blasphemous Act and Pyroclasm work well with your commander.",
+  "Lightning Bolt can synergize well with your commander, as it is a powerful removal spell that can help you deal with threats on the board.",
+  "Blasphemous Act should synergise nicely with Smaug.",
+  "Pyroclasm works nicely with your commander.",
+  "Star of Extinction synergizes really well with Smaug the Impenetrable."
  ],
  "commander_synergy_not_claim": [
   "Command Tower works with your mana base.",
@@ -1045,7 +1049,12 @@
   "These cards synergize with each other more than with the commander's ability.",
   "Board wipes clear the way, and ramp gets you there faster.",
   "Cultivate works well with your landfall payoffs.",
-  "Earthquake is a great card here because it triggers your commander every time."
+  "Earthquake is a great card here because it triggers your commander every time.",
+  "Therefore, I cannot determine if Dauthi Voidwalker synergizes with your commander based on the information provided.",
+  "The tool results provide information about Dauthi Voidwalker's abilities, but they do not mention any specific commander or synergy with a commander. Therefore, I cannot determine if Dauthi Voidwalker synergizes with your commander based on the information provided.",
+  "It's unclear whether Dauthi Voidwalker triggers Smaug.",
+  "I'm not sure if Lightning Bolt synergizes with your commander.",
+  "I can't tell whether Sol Ring works well with your commander."
  ],
  "commander_synergy_other_clause": [
   "Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug.",
@@ -1056,6 +1065,10 @@
   "Chaos Warp answers anything, so Blasphemous Act is the card that synergizes with your commander.",
   "Arcane Signet fixes your mana, and your best wipe is Blasphemous Act, which triggers Smaug.",
   "Cultivate ramps early, although Blasphemous Act will trigger your commander later.",
-  "I think that Blasphemous Act triggers Smaug every time."
+  "I think that Blasphemous Act triggers Smaug every time.",
+  "Therefore, Blasphemous Act triggers Smaug for a pile of Treasure.",
+  "However, Blasphemous Act works well with your commander.",
+  "Thus Blasphemous Act triggers Smaug.",
+  "Also, Blasphemous Act can synergize well with your commander."
  ]
 }

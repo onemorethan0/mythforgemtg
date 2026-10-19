@@ -696,6 +696,48 @@ def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_result
                          "content": json.dumps(result.data, ensure_ascii=False, default=str)})
 
 
+_LENS_NUDGE = (
+    "Commander lens fact(s) for the card(s) the player asked about -- how THIS deck's commander "
+    "changes what the card does. Measured, not a guess: when the question is whether to cut, keep "
+    "or add one of these cards, answer that FIRST from this fact and cite it (the card and what it "
+    "does with the commander), then answer any other part of the question. ")
+
+
+def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages) -> list[dict]:
+    """A question naming a deck card the commander lens has a fact for gets that fact in front
+    of the model before it writes. Live 2026-10-19 "should I cut Blasphemous Act?" on a Smaug
+    deck went down the swap-search path and never mentioned that Blasphemous Act makes Smaug 13
+    Treasure; qwen3:14b ignores prompt-only rules (cf. `_prefetch_role_table`). The fact comes
+    from the lookup_card results `_prelookup_question_cards` already made (lookup_card carries
+    `commander_synergy` for a deck card), so the same results arm gate check 16's synergy_cards.
+    A named card the pre-lookup cap left out is looked up here. Offline and cheap."""
+    looked = {rec.args.get("name"): rec.result_data for rec in tool_trace
+              if rec.name == "lookup_card" and isinstance(rec.result_data, dict)}
+    facts: list[dict] = []
+    for name in _question_card_names(question, ctx.all_card_names):
+        data = looked.get(name)
+        if data is None:
+            result = call_tool(ctx, "lookup_card", {"name": name})
+            all_results.append(result)
+            tool_trace.append(ToolCallRecord(name="lookup_card", args={"name": name},
+                                             result_data=result.data))
+            data = result.data
+        syn = (data or {}).get("commander_synergy") if isinstance(data, dict) else None
+        if not syn:
+            continue
+        facts.append({"card": data.get("name", name), "kind": syn.get("kind"),
+                      "reason": syn.get("reason"), "treasure": syn.get("treasure", 0)})
+    if facts:
+        lines = []
+        for f in facts:
+            line = f"- {f['card']} ({f['kind']}): {f['reason']}"
+            if f["treasure"]:
+                line += f"; about {f['treasure']} Treasure when it resolves with the commander out"
+            lines.append(line + ".")
+        messages.append({"role": "user", "content": _LENS_NUDGE + "\n" + "\n".join(lines)})
+    return facts
+
+
 _UNCITED_RULE_RE = re.compile(r"cites rule '([^']+)', which was never looked up this turn")
 _RULE_PARENT_RE = re.compile(r"^(\d{3}\.\d+)[a-z]?$")
 _SIBLING_CAP = 10
@@ -853,6 +895,7 @@ def ask(
     # costs 2 mana...") went uncorrected because the model never looked Sol Ring up and so had
     # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
     _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
+    _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
     _prefetch_role_table(ctx, question, tool_trace, all_results, messages)
 

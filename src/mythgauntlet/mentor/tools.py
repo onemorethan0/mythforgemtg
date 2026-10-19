@@ -40,7 +40,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, card_impact, manabase, redundancy, reference
 from mythgauntlet.ratings import role_swap as role_swap_mod
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
-from mythgauntlet.semantics.commander_lens import CommanderLens
+from mythgauntlet.semantics.commander_lens import CommanderLens, build_lens
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
@@ -344,7 +344,29 @@ def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
     if singleton and "Basic" not in card.type_line:
         data["singleton_rule"] = singleton
         data["copy_limit_exception"] = bool(_COPY_EXCEPTION_RE.search(card.oracle_text or ""))
+    _add_lens_synergy(ctx, card, data)
     return ToolResult(data=data, card_names=frozenset({card.name}))
+
+
+def _add_lens_synergy(ctx: MentorContext, card, data: dict) -> None:
+    """A looked-up card that is IN the deck carries its commander-lens fact, in the same shape as
+    a list_deck_cards row, plus the commanders it is about (gate check 16 reads both). Live
+    2026-10-19 "should I cut Blasphemous Act?" on a Smaug deck called lookup_card and never
+    list_deck_cards, so the one fact that answers the question never reached the model. A cheap
+    no-context lens is checked first, so a deck whose commander matches no kind (or a card with
+    no fact) never pays for the analysis the sim-context lens comes from."""
+    resolved = getattr(ctx, "resolved", None)
+    if resolved is None or card.is_land or not resolved.commanders:
+        return
+    if not any(c.name == card.name for c, _qty in resolved.cards):
+        return
+    if build_lens(resolved.commanders).facts_for(card).empty:
+        return
+    synergy = deckview._synergy(card, _lens_for(ctx) or build_lens(resolved.commanders))
+    if synergy is None:
+        return
+    data["commander_synergy"] = synergy
+    data["commanders"] = [{"name": c.name} for c in resolved.commanders]
 
 
 def tool_lookup_rulings(ctx: MentorContext, name: str) -> ToolResult:
