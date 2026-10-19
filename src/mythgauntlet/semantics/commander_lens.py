@@ -11,6 +11,7 @@ it claims nothing.
 
 from __future__ import annotations
 
+import math
 import re
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
@@ -19,6 +20,7 @@ from mythgauntlet.model.card import Card
 from mythgauntlet.semantics import tags
 
 KIND_SURVIVES_WIPE = "survives_wipe"
+KIND_DAMAGE_TO_SELF = "damage_to_self_payoff"
 
 # Wipe modes an indestructible commander survives.
 _INDESTRUCTIBLE_SURVIVES = frozenset({"destroy", "damage"})
@@ -97,7 +99,97 @@ def _survives_wipe_facts(lens: CommanderLens, card: Card) -> LensFacts:
     return LensFacts()
 
 
-_FACT_FUNCS = {KIND_SURVIVES_WIPE: _survives_wipe_facts}
+_DAMAGE_TO_SELF_RE = re.compile(
+    r"whenever (?P<subj>[^.]+?) is dealt (?P<nc>noncombat )?damage"
+)
+_DEALS_AMOUNT_RE = re.compile(r"\bdeals? (\d+|x) damage")
+_NO_ARTICLE = frozenset({"the", "a", "an"})
+
+
+def lens_self_names(card: Card) -> tuple[str, ...]:
+    """Every way the card's own text names it: `tags._self_names`, a legendary's first word
+    ("smaug" for "Smaug the Impenetrable") and "this creature"."""
+    names = set(tags._self_names(card))
+    if "legendary" in (card.type_line or "").casefold():
+        words = (card.name or "").split(" // ")[0].split()
+        if words:
+            first = words[0].strip(",").casefold()
+            if first and first not in _NO_ARTICLE:
+                names.add(first)
+    names.add("this creature")
+    return tuple(sorted(names, key=len, reverse=True))
+
+
+def _damage_to_self(card: Card) -> tuple[bool, bool] | None:
+    """(noncombat_only, makes_treasure) if the card says 'whenever <itself> is dealt damage',
+    else None. The subject must be the card itself (Kazarov's 'a creature an opponent
+    controls' is not)."""
+    names = lens_self_names(card)
+    for line in tags._clean_text(card).split("\n"):
+        for m in _DAMAGE_TO_SELF_RE.finditer(line):
+            if m.group("subj").strip() not in names:
+                continue
+            rest = line[m.end():].split(".")[0]
+            return bool(m.group("nc")), "treasure" in rest
+    return None
+
+
+def x_budget(card: Card, ctx: LensDeckContext | None) -> int:
+    """X the deck can pay when the commander is expected to be out: floor(mana that turn)
+    minus the card's mana value minus the counter reserve, clamped at 0. No context, or a
+    commander never cast in the sim, gives 0."""
+    if ctx is None or ctx.avg_commander_turn is None or not ctx.mana_by_turn:
+        return 0
+    t = min(math.ceil(ctx.avg_commander_turn) + 1, len(ctx.mana_by_turn))
+    if t < 1:
+        return 0
+    return max(0, math.floor(ctx.mana_by_turn[t - 1]) - card.mana_value - ctx.counter_reserve)
+
+
+def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
+    text = tags._clean_text(card)
+    parts: list[LensFacts] = []
+    for cmd in lens.commanders:
+        info = _damage_to_self(cmd)
+        if info is None:
+            continue
+        _noncombat_only, makes_treasure = info
+        # Nothing on a card's text is combat damage, so noncombat_only never filters here.
+        label = f"{cmd.name} is dealt this damage"
+        hit = False
+        treasure = 0
+        for m in tags._DAMAGE_EACH_RE.finditer(text):
+            if admits(m.group(1), cmd) is not True:
+                continue
+            hit = True
+            if makes_treasure:
+                # The match starts at "deals ... damage"; "equal to ..." has no number -> 0.
+                amt = _DEALS_AMOUNT_RE.match(text, m.start())
+                if amt is not None:
+                    n = amt.group(1)
+                    treasure = max(treasure, x_budget(card, lens.ctx) if n == "x" else int(n))
+        if not hit:
+            for m in tags._DAMAGE_TARGET_RE.finditer(text):
+                obj = m.group(1)
+                if obj in ("any target", "targets") or tags._hits_creature(obj):
+                    hit = True
+            for m in tags._FIGHT_RE.finditer(text):
+                if tags._hits_creature(m.group(1)):
+                    hit = True
+        if hit:
+            parts.append(LensFacts(
+                wipe_one_sided=False,
+                payoff_kind=KIND_DAMAGE_TO_SELF,
+                payoff_treasure=treasure,
+                reason=label,
+            ))
+    return _merge(parts)
+
+
+_FACT_FUNCS = {
+    KIND_SURVIVES_WIPE: _survives_wipe_facts,
+    KIND_DAMAGE_TO_SELF: _damage_payoff_facts,
+}
 
 
 def _merge(parts: Iterable[LensFacts]) -> LensFacts:
@@ -144,4 +236,6 @@ def build_lens(commanders: Sequence[Card], ctx: LensDeckContext | None = None) -
     kinds: list[str] = []
     if any("indestructible" in c.keywords for c in cmds):
         kinds.append(KIND_SURVIVES_WIPE)
+    if any(_damage_to_self(c) is not None for c in cmds):
+        kinds.append(KIND_DAMAGE_TO_SELF)
     return CommanderLens(cmds, tuple(kinds), ctx)

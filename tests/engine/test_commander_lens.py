@@ -2,7 +2,11 @@
 
 import pytest
 
-from mythgauntlet.semantics.commander_lens import build_lens, admits
+from dataclasses import replace
+
+from mythgauntlet.semantics.commander_lens import (
+    LensDeckContext, admits, build_lens, lens_self_names, x_budget,
+)
 
 SMAUG = dict(name="Smaug the Impenetrable", mana_cost="{5}{B}{R}",
     type_line="Legendary Creature — Dragon", power="8", toughness="7",
@@ -18,6 +22,26 @@ RUINOUS = dict(name="Ruinous Ultimatum", mana_cost="{R}{R}{W}{W}{W}{B}{B}", type
     oracle_text="Destroy all nonland permanents your opponents control.")
 DESOLATION = dict(name="Desolation of Smaug", mana_cost="{2}{R}{R}", type_line="Sorcery",
     oracle_text="Desolation of Smaug deals 3 damage to each non-Dragon creature.\nAdd four mana in any combination of colors. Spend this mana only to cast Dragon spells.")
+
+
+BLASPHEMOUS = dict(name="Blasphemous Act", mana_cost="{8}{R}", type_line="Sorcery",
+    oracle_text="This spell costs {1} less to cast for each creature on the battlefield.\nBlasphemous Act deals 13 damage to each creature.")
+EARTHQUAKE = dict(name="Earthquake", mana_cost="{X}{R}", type_line="Sorcery",
+    oracle_text="Earthquake deals X damage to each creature without flying and each player.")
+ROLLING = dict(name="Rolling Earthquake", mana_cost="{X}{R}", type_line="Sorcery",
+    oracle_text="Rolling Earthquake deals X damage to each creature without horsemanship and each player.")
+BOLT = dict(name="Lightning Bolt", mana_cost="{R}", type_line="Instant",
+    oracle_text="Lightning Bolt deals 3 damage to any target.")
+IGNITION = dict(name="Chandra's Ignition", mana_cost="{3}{R}{R}", type_line="Sorcery",
+    oracle_text="Target creature you control deals damage equal to its power to each other creature and each opponent.")
+KAZAROV = dict(name="Kazarov, Sengir Pureblood", mana_cost="{5}{B}{B}",
+    type_line="Legendary Creature — Vampire", keywords=frozenset({"flying"}), power="4", toughness="4",
+    oracle_text="Flying\nWhenever a creature an opponent controls is dealt damage, put a +1/+1 counter on Kazarov.\n{3}{R}: Kazarov deals 2 damage to target creature.")
+KLEMENT = dict(name="Klement, Tempest Acolyte", mana_cost="{1}{R}{W}",
+    type_line="Legendary Creature — Tiefling Cleric", keywords=frozenset({"double strike"}), power="2", toughness="3",
+    oracle_text="Double strike\nWhenever Klement, Tempest Acolyte is dealt damage, it deals that much damage to any target.")
+CTX = LensDeckContext(mana_by_turn=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), avg_commander_turn=6.2, counter_reserve=0)
+KIND = "damage_to_self_payoff"
 
 
 @pytest.fixture
@@ -92,3 +116,63 @@ def test_flagged_returns_names(make_card, smaug):
 ])
 def test_admits(smaug, obj, expected):
     assert admits(obj, smaug) is expected
+
+
+def test_blasphemous_act_under_smaug(make_card, smaug):
+    f = build_lens([smaug]).facts_for(make_card(**BLASPHEMOUS))
+    assert f.payoff_treasure == 13
+    assert f.payoff_kind == KIND
+    assert f.wipe_one_sided is True
+
+
+def test_earthquake_never_hits_flying_smaug(make_card, smaug):
+    f = build_lens([smaug], CTX).facts_for(make_card(**EARTHQUAKE))
+    assert f.payoff_kind is None
+    assert f.payoff_treasure == 0
+
+
+def test_rolling_earthquake_x_from_budget(make_card, smaug):
+    rolling = make_card(**ROLLING)
+    assert build_lens([smaug], CTX).facts_for(rolling).payoff_treasure == 7
+    assert x_budget(rolling, CTX) == 7
+    ctx2 = replace(CTX, counter_reserve=2)
+    assert build_lens([smaug], ctx2).facts_for(rolling).payoff_treasure == 5
+
+
+def test_x_without_context_is_zero(make_card, smaug):
+    rolling = make_card(**ROLLING)
+    assert build_lens([smaug]).facts_for(rolling).payoff_treasure == 0
+    ctx = replace(CTX, avg_commander_turn=None)
+    assert build_lens([smaug], ctx).facts_for(rolling).payoff_treasure == 0
+    assert x_budget(rolling, None) == 0
+
+
+def test_bolt_is_label_only(make_card, smaug):
+    f = build_lens([smaug]).facts_for(make_card(**BOLT))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+    assert f.wipe_one_sided is False
+
+
+def test_equal_to_damage_is_label_only(make_card, smaug):
+    f = build_lens([smaug]).facts_for(make_card(**IGNITION))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+
+
+def test_short_legend_name_detected(smaug):
+    assert "smaug" in lens_self_names(smaug)
+    assert KIND in build_lens([smaug]).kinds
+
+
+def test_full_name_subject_detected(make_card):
+    klement = make_card(**KLEMENT)
+    lens = build_lens([klement])
+    assert KIND in lens.kinds
+    f = lens.facts_for(make_card(**BLASPHEMOUS))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+
+
+def test_other_subject_not_detected(make_card):
+    assert KIND not in build_lens([make_card(**KAZAROV)]).kinds
