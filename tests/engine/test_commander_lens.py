@@ -294,7 +294,8 @@ def test_counter_conditioned_death_trigger_ignores_no_counter_wipe(make_card):
     lens = build_lens([make_card(**REYHAN)])
     assert DEATH in lens.kinds
     assert lens.facts_for(make_card(**DAMNING_VERDICT)).empty
-    assert lens.facts_for(make_card(**WRATH)).payoff_kind == DEATH
+    # Wrath of God leaves no creature to target with Reyhan's counters (final review).
+    assert lens.facts_for(make_card(**WRATH)).empty
     assert lens.facts_for(make_card(**VISCERA)).payoff_kind == DEATH
     # Meren has no counter condition: Damning Verdict still kills her deck's creatures.
     assert build_lens([make_card(**MEREN)]).facts_for(make_card(**DAMNING_VERDICT)).payoff_kind == DEATH
@@ -502,3 +503,89 @@ def test_fixed_count_treasure_trigger_credits_one(make_card):
         oracle_text="Whenever Fictional Hoard Drake is dealt damage, create a number of Treasure tokens equal to the damage dealt.")
     assert build_lens([fixed]).facts_for(make_card(**BLASPHEMOUS)).payoff_treasure == 1
     assert build_lens([scaled]).facts_for(make_card(**BLASPHEMOUS)).payoff_treasure == 13
+
+
+# --- Legendary-creature hand-check (final review): death payoffs that need the commander alive ---
+
+THANOS = dict(name="Thanos, Death's Consort", mana_cost="{2}{B}{B}",
+    type_line="Legendary Creature — Eternal Villain", power="3", toughness="3", colors=("B",),
+    keywords=frozenset({"lifelink"}),
+    oracle_text="Lifelink\nWhenever another creature dies, put a +1/+1 counter on Thanos.")
+KRESH = dict(name="Kresh the Bloodbraided", mana_cost="{2}{B}{R}{G}",
+    type_line="Legendary Creature — Human Warrior", power="3", toughness="3", colors=("B", "G", "R"),
+    oracle_text="Whenever another creature dies, you may put X +1/+1 counters on Kresh, where X is that creature's power.")
+GIMLI = dict(name="Gimli, Mournful Avenger", mana_cost="{1}{R}{G}",
+    type_line="Legendary Creature — Dwarf Warrior", power="3", toughness="2", colors=("G", "R"),
+    keywords=frozenset({"fight"}),
+    oracle_text="Gimli has indestructible as long as two or more creatures died under your control this turn.\nWhenever another creature you control dies, put a +1/+1 counter on Gimli. When this ability resolves for the third time this turn, Gimli fights up to one target creature you don't control.")
+SYR_VONDAM = dict(name="Syr Vondam, Sunstar Exemplar", mana_cost="{W}{B}",
+    type_line="Legendary Creature — Human Knight", power="2", toughness="2", colors=("B", "W"),
+    keywords=frozenset({"menace", "vigilance"}),
+    oracle_text="Vigilance, menace\nWhenever another creature you control dies or is put into exile, put a +1/+1 counter on Syr Vondam and you gain 1 life.\nWhen Syr Vondam dies or is put into exile while its power is 4 or greater, destroy up to one target nonland permanent.")
+LILIANA = dict(name="Liliana, Heretical Healer // Liliana, Defiant Necromancer", mana_cost="{1}{B}{B}",
+    type_line="Legendary Creature — Human Cleric", power="2", toughness="3", colors=("B",),
+    layout="transform",
+    oracle_text="Lifelink\nWhenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, create a 2/2 black Zombie creature token.")
+ZAHUR = dict(name="Zahur, Glory's Past", mana_cost="{W}{B}",
+    type_line="Legendary Creature — Zombie Cat Warrior", power="3", toughness="2", colors=("B", "W"),
+    keywords=frozenset({"max speed", "surveil", "start your engines!"}),
+    oracle_text="Start your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\nSacrifice another creature: Surveil 1. Activate only once each turn.\nMax speed — Whenever a nontoken creature you control dies, create a tapped 2/2 black Zombie creature token.")
+FANTASY_QUEEN = dict(name="The Underworld Fantasy Queen", mana_cost="{2}{B}",
+    type_line="Legendary Creature — God", power="3", toughness="3", colors=("B",),
+    oracle_text="As The Underworld Fantasy Queen enters, it becomes spring.\nAt the beginning of your upkeep, the next season arrives.\nSpring — Whenever Her Majesty enters or attacks, you may sacrifice another creature. If you do, draw a card.\nSummer — Whenever a creature an opponent controls dies, put a +1/+1 counter on Her Majesty.\nFall — Whenever another creature dies, target opponent loses 1 life and you gain 1 life.\nWinter — Her Majesty can't attack or block.")
+PYROCLASM = dict(name="Pyroclasm", mana_cost="{1}{R}", type_line="Sorcery",
+    oracle_text="Pyroclasm deals 2 damage to each creature.")
+
+
+UGLUK = dict(name="Uglúk of the White Hand", mana_cost="{2}{B}{R}",
+    type_line="Legendary Creature — Orc Soldier", power="3", toughness="3", colors=("B", "R"),
+    oracle_text="Whenever another creature you control dies, put a +1/+1 counter on Uglúk. If that creature was a Goblin or Orc, put two +1/+1 counters on Uglúk instead.")
+BHAAL = dict(name="Bhaal, Lord of Murder", mana_cost="{2}{B}{R}{G}",
+    type_line="Legendary Creature — God", power="4", toughness="4", colors=("B", "G", "R"),
+    keywords=frozenset({"goad"}),
+    oracle_text="As long as your life total is less than or equal to half your starting life total, Bhaal has indestructible.\nWhenever another nontoken creature you control dies, put a +1/+1 counter on target creature and goad it.")
+SLURRK = dict(name="Slurrk, All-Ingesting", mana_cost="{5}{G}",
+    type_line="Legendary Creature — Ooze", power="0", toughness="0", colors=("G",),
+    keywords=frozenset({"partner"}),
+    oracle_text="Slurrk enters with five +1/+1 counters on it.\nWhenever Slurrk or another creature you control dies, if it had a +1/+1 counter on it, put a +1/+1 counter on each creature you control that has a +1/+1 counter on it.\nPartner (You can have two commanders if both have partner.)")
+
+
+CASS = dict(name="Cass, Hand of Vengeance", mana_cost="{2}{R}{W}",
+    type_line="Legendary Creature — Human Ranger", power="4", toughness="3", colors=("R", "W"),
+    keywords=frozenset({"vigilance"}),
+    oracle_text="Vigilance\nWhenever Cass or another creature you control dies, if it was enchanted or equipped, return any number of Aura cards that were attached to it from your graveyard to the battlefield attached to target creature, then attach any number of Equipment that were attached to it to that creature.")
+
+
+# Counters on a TARGET creature or on each creature you control need a creature left
+# standing too: after Wrath of God there is none (Bhaal, Slurrk, Reyhan); so does Cass's
+# re-attach "to target creature".
+@pytest.mark.parametrize("spec", [THANOS, KRESH, GIMLI, LILIANA, UGLUK, BHAAL, SLURRK, REYHAN,
+                                  CASS])
+def test_must_survive_death_payoff_is_not_paid_by_a_wipe_that_kills_it(make_card, spec):
+    # Counters on itself (or exiling itself to transform) need the commander on the
+    # battlefield when the trigger resolves; Wrath of God kills it alongside the others.
+    lens = build_lens([make_card(**spec)])
+    assert DEATH in lens.kinds
+    assert lens.facts_for(make_card(**WRATH)).empty
+    # A sacrifice outlet keeps the commander alive: still a payoff.
+    assert lens.facts_for(make_card(**VISCERA)).payoff_kind == DEATH
+
+
+def test_must_survive_death_payoff_keeps_a_wipe_it_survives(make_card):
+    # Pyroclasm's 2 damage leaves 3/3 Thanos standing to take the counters.
+    f = build_lens([make_card(**THANOS)]).facts_for(make_card(**PYROCLASM))
+    assert f.payoff_kind == DEATH
+
+
+def test_death_payoff_with_value_off_the_commander_keeps_the_wipe(make_card):
+    # Syr Vondam's "and you gain 1 life" pays off even when she dies too; Meren's experience
+    # counters are on the player.
+    assert build_lens([make_card(**SYR_VONDAM)]).facts_for(make_card(**WRATH)).payoff_kind == DEATH
+    assert build_lens([make_card(**MEREN)]).facts_for(make_card(**WRATH)).payoff_kind == DEATH
+
+
+@pytest.mark.parametrize("spec", [ZAHUR, FANTASY_QUEEN])
+def test_state_gated_death_trigger_is_not_a_death_payoff(make_card, spec):
+    # "Max speed —" and a season ("Fall —") gate the trigger on a state the deck may not be
+    # in: honest under-count, no kind.
+    assert DEATH not in build_lens([make_card(**spec)]).kinds

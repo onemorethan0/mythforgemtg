@@ -117,15 +117,22 @@ def admits(obj: str, commander: Card) -> bool | None:
     return True
 
 
-def _wipe_clauses(text: str):
-    """Yield (mode, object) for each mass destroy/exile/damage clause over cleaned text."""
+def _wipe_clauses_at(text: str):
+    """Yield (mode, object, start) for each mass destroy/exile/damage clause over cleaned
+    text; `start` is where the clause's verb begins."""
     for m in tags._WIPE_ALL_RE.finditer(text):
         verb = "exile" if text.startswith("exile", m.start()) else "destroy"
         if verb == "exile" and tags._flickers(text, m.start()):
             continue
-        yield verb, m.group(1)
+        yield verb, m.group(1), m.start()
     for m in tags._DAMAGE_EACH_RE.finditer(text):
-        yield "damage", m.group(1)
+        yield "damage", m.group(1), m.start()
+
+
+def _wipe_clauses(text: str):
+    """Yield (mode, object) for each mass destroy/exile/damage clause over cleaned text."""
+    for mode, obj, _start in _wipe_clauses_at(text):
+        yield mode, obj
 
 
 _LOSES_INDESTRUCTIBLE_RE = re.compile(
@@ -198,15 +205,20 @@ _SCALED_RE = re.compile(r"that many|equal to (?:the|that) damage|equal to the am
 
 
 def _needs_survival(effect: str, names: tuple[str, ...]) -> bool:
-    """True when the trigger's whole effect is +1/+1 counters on the commander itself (plus a
-    reflexive "when you do" hanging off them). Anything else -- damage dealt by it (last
-    known information), cards, mana, rad counters on you -- pays off even if it dies."""
-    who = "|".join(["him", "her", "it", "itself", "them"] + [re.escape(n) for n in names])
-    counter_re = re.compile(rf"put (?:that many|[a-z]+|\d+) \+1/\+1 counters? on (?:{who})\b")
+    """True when the trigger's whole effect is +1/+1 counters on the commander itself, on a
+    target creature or on each creature you control (plus a reflexive "when you do", a goad,
+    or a creature-type upgrade hanging off them): something must still be on the battlefield
+    to take them. Anything else -- damage dealt by it (last known information), cards, mana,
+    life, rad counters on you -- pays off even if it dies."""
+    who = "|".join(["him", "her", "it", "itself", "them", "target creature",
+                    r"each creature you control[^.]*"] + [re.escape(n) for n in names])
+    counter_re = re.compile(rf"put (?:that many|[a-z]+|\d+) \+1/\+1 counters? on (?:{who})(?![\w'])")
     if not counter_re.search(effect):
         return False
     rest = counter_re.sub(" ", effect)
     rest = re.sub(r"when you do,[^.]*\.?", " ", rest)
+    rest = re.sub(r"\bif that creature was an? [a-z]+(?: or [a-z]+)?,?|\binstead\b|\bgoad it\b",
+                  " ", rest)
     rest = re.sub(r"\b(?:and|then)\b|[.,;]", " ", rest)
     return not rest.strip()
 
@@ -389,17 +401,68 @@ _SAC_OUTLET_RE = re.compile(r"sacrifice (?:a|another) creature:")
 _DEATH_MODES = frozenset({"destroy", "damage", "minus", "static_minus", "edict"})
 
 
+# A label that gates the trigger on a state the deck may not be in: Zahur's "Max speed —",
+# The Underworld Fantasy Queen's seasons ("Fall —"). An ability word ("Enrage —") is a name only.
+_STATE_GATE_RE = re.compile(r"^(?:max speed|spring|summer|fall|winter) — ")
+
+
 def _death_trigger_line(card: Card) -> str | None:
     """Per line over cleaned text: the line holding an own-creature (or any-creature) death
-    trigger, or None. A line naming "an opponent controls" is rejected."""
+    trigger, or None. A line naming "an opponent controls" is rejected, and so is a trigger
+    gated on a state (`_STATE_GATE_RE`): honest under-count."""
     names = "|".join(re.escape(n) for n in lens_self_names(card))
     self_re = re.compile(_SELF_DEATH_TMPL.format(names=names))
     for line in tags._clean_text(card).split("\n"):
-        if "an opponent controls" in line:
+        if "an opponent controls" in line or _STATE_GATE_RE.match(line.strip()):
             continue
         if _DEATH_TRIGGER_RE.search(line) or self_re.search(line):
             return line
     return None
+
+
+def _death_needs_survival(cmd: Card, line: str) -> bool:
+    """The death trigger's whole effect needs the commander on the battlefield when it
+    resolves: +1/+1 counters on itself (Thanos, Kresh, Gimli -- with Gimli's "when this
+    ability resolves ..." fight hanging off it) or exiling itself to transform (Liliana,
+    Heretical Healer). A wipe that also kills it pays nothing. Value off the commander
+    (Meren's experience counters, Syr Vondam's "and you gain 1 life", a draw) still pays."""
+    m = _DEATH_TRIGGER_RE.search(line)
+    if m is None:
+        names = "|".join(re.escape(n) for n in lens_self_names(cmd))
+        m = re.search(_SELF_DEATH_TMPL.format(names=names), line)
+    if m is None:
+        return False
+    rest = line[m.end():]
+    effect = rest.split(",", 1)[1] if "," in rest else rest
+    effect = re.sub(r"^\s*if [^,]*,", " ", effect)  # an intervening "if it had ..." condition
+    names = lens_self_names(cmd)
+    who = "|".join(re.escape(n) for n in names)
+    if re.search(rf"\bexile (?:{who})\b[^.]*\breturn (?:her|him|it)\b", effect):
+        return True
+    # Cass: the whole effect re-attaches to "target creature" -- none is left after a wipe.
+    if re.fullmatch(r"[^.]*\battached to target creature\b[^.]*\.?\s*", effect):
+        return True
+    effect = re.sub(r"\byou may\b", " ", effect)
+    effect = re.sub(r"when this ability resolves[^.]*\.?", " ", effect)
+    effect = re.sub(r",? where x is [^.]*", " ", effect)
+    return _needs_survival(effect, names)
+
+
+def _commander_survives(text: str, mode: str, obj: str, start: int, cmd: Card) -> bool:
+    """Is the commander certain to be standing after this wipe clause? Excluded by the object
+    ("non-Dragon"), indestructible against destroy/damage (unless this card strips it), or a
+    fixed damage amount below its printed toughness. Anything else: not certain."""
+    if admits(obj, cmd) is False:
+        return True
+    if (mode in _INDESTRUCTIBLE_SURVIVES and has_keyword(cmd, "indestructible")
+            and not _strips_own_indestructible(text)):
+        return True
+    if mode == "damage":
+        amt = _DEALS_AMOUNT_RE.match(text, start)
+        if (amt is not None and amt.group(1) != "x" and (cmd.toughness or "").isdigit()
+                and int(amt.group(1)) < int(cmd.toughness)):
+            return True
+    return False
 
 
 def _death_trigger(card: Card) -> bool:
@@ -428,15 +491,22 @@ def _scope_known(obj: str, needs_counters: bool) -> bool:
     return not (needs_counters and "no counters" in head)
 
 
-def _kills_own_creatures(text: str, modes: frozenset[str], needs_counters: bool = False) -> bool:
+def _kills_own_creatures(text: str, modes: frozenset[str], needs_counters: bool = False,
+                         survivor: Card | None = None) -> bool:
     """Some death-causing wipe clause reaches the pilot's own creatures. `interaction_modes`
     does not carry the object, so each mode's clause is re-found and an opponent-only object
     ("destroy all nonland permanents your opponents control") is rejected. Unknown qualifiers
-    still count: the pilot's creatures die in the clause's own scope."""
-    for mode, obj in _wipe_clauses(text):
+    still count: the pilot's creatures die in the clause's own scope. With `survivor`, the
+    clause must also leave that commander standing (`_commander_survives`); -X/-X and edicts
+    are then never claimed (survival unknown, or it is sacrificed too)."""
+    for mode, obj, start in _wipe_clauses_at(text):
         if (mode in modes and mode in _DEATH_MODES and tags._hits_creature(obj)
-                and not _opponent_only(obj) and _scope_known(obj, needs_counters)):
+                and not _opponent_only(obj) and _scope_known(obj, needs_counters)
+                and (survivor is None
+                     or _commander_survives(text, mode, obj, start, survivor))):
             return True
+    if survivor is not None:
+        return False
     for m in tags._MINUS_ALL_RE.finditer(text):
         obj = next(g for g in m.groups() if g)
         if ({"minus", "static_minus"} & modes and tags._hits_creature(obj)
@@ -460,7 +530,9 @@ def _death_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
     modes = tags.interaction_modes(text).wipe & _DEATH_MODES
     sac_outlet = _SAC_OUTLET_RE.search(text) is not None
     for cmd, line in cmds:
-        if sac_outlet or (modes and _kills_own_creatures(text, modes, _needs_counters(line))):
+        survivor = cmd if _death_needs_survival(cmd, line) else None
+        if sac_outlet or (modes and _kills_own_creatures(
+                text, modes, _needs_counters(line), survivor)):
             return LensFacts(
                 payoff_kind=KIND_DEATH_PAYOFF,
                 reason=f"{cmd.name} pays off your creatures dying",

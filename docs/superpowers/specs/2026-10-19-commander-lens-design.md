@@ -8,8 +8,12 @@ role_supply strengths, cut-protected set, rank_redundant top 10, deck_card_rows,
 survives_mode) -- the sim-reading surfaces (Resilience, LensDeckContext X credit) are covered
 by tests, not by the sweep. 31 lens-covered decks (18 commanders); 21 moved: 2 in role counts
 and supply (Smaug: Ramp +2 / +1 cards), 19 in the cut-protected set only. 75 distinct flagged
-(card, kind) pairs / 149 deck-card instances after hand review fixed 6 false-positive classes
-(incl. colour exclusions, Strafe). EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%)
+(card, kind) pairs / 148 deck-card instances after hand review fixed 6 false-positive classes
+(incl. colour exclusions, Strafe) and the final whole-branch review fixed 8 more (mentioned-only
+Scryfall keywords, indestructible-stripping wipes, must-survive damage and death payoffs,
+conditional/non-ETB damage credit, fixed-count Treasure, state-gated death triggers). Every
+legendary creature in the card store matching a kind (106: 50 survives_wipe, 45 death_payoff,
+13 damage_to_self_payoff) was hand-checked against its oracle text. EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%)
 over 5 cached single-commander pages (Smaug 13/42 = 31%, Meren 3/27 = 11%). Live mentor check
 ("should I cut Blasphemous Act?") passes after the deterministic lens prefetch: the reply
 cites the synergy (Smaug surviving the 13 damage for Treasure) and hedges ("might be beneficial
