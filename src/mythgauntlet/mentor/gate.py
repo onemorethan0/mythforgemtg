@@ -420,7 +420,9 @@ def commander_synergy_reasons(body: str, budget: "ClaimBudget") -> list[str]:
     "Board wipes like ...") is not a card claim and is skipped."""
     pool = {n.casefold() for n in budget.card_names | budget.known_card_names}
     reasons = []
-    for name in verdicts_mod.commander_synergy_claims(body, sorted(budget.commander_names)):
+    for name in verdicts_mod.commander_synergy_claims(
+            body, sorted(budget.commander_names),
+            known_names=budget.card_names | budget.known_card_names):
         if _synergy_backed(name, budget.synergy_cards):
             continue
         if pool and name.casefold() not in pool:

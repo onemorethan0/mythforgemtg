@@ -210,7 +210,9 @@ def assess_card(
 
     baseline = analyze_deck(resolved, cfg, store, run_resilience=True)
     if lens is None:
-        lens = build_lens(resolved.commanders)
+        # The baseline analysis's lens carries the sim context (X credit), so this agrees
+        # with list_deck_cards / Deck Breakdown; the no-context lens is only a fallback.
+        lens = getattr(baseline, "lens", None) or build_lens(resolved.commanders)
     supply = redundancy.role_supply(resolved, lens)
     targets = redundancy.targets_for(themes)
     cuts = redundancy.rank_redundant(resolved, max(1, cut_pool), targets=targets, lift=lift, lens=lens)

@@ -194,15 +194,65 @@ def test_lookup_card_carries_synergy_for_a_deck_card(make_card, empty_store):
     assert data["commanders"] == [{"name": "Smaug the Impenetrable"}]
 
 
-def test_lookup_card_has_no_synergy_off_deck_or_without_a_lens(make_card, empty_store):
-    ctx = _ctx(make_card, empty_store, _smaug(make_card))
-    bolt = make_card("Lightning Bolt", mana_cost="{R}", type_line="Instant",
+def _with(ctx, *cards):
+    return replace(ctx, card_db=CardDb(list(ctx.card_db._by_name.values()) + list(cards)))
+
+
+def _bolt(make_card, identity=("R",)):
+    return make_card("Lightning Bolt", mana_cost="{R}", type_line="Instant",
                      oracle_text="Lightning Bolt deals 3 damage to any target.",
-                     colors=("R",), color_identity=("R",))
-    ctx = replace(ctx, card_db=CardDb(list(ctx.card_db._by_name.values()) + [bolt]))
-    assert "commander_synergy" not in tools_mod.tool_lookup_card(ctx, "Lightning Bolt").data
+                     colors=("R",), color_identity=identity)
+
+
+def test_lookup_card_carries_synergy_for_an_addable_card(make_card, empty_store):
+    # "Should I ADD Lightning Bolt?": the card is not in the deck but the deck can play it.
+    ctx = _with(_ctx(make_card, empty_store, _smaug(make_card)), _bolt(make_card))
+    syn = tools_mod.tool_lookup_card(ctx, "Lightning Bolt").data["commander_synergy"]
+    assert syn["kind"] == "damage_to_self_payoff"
+    assert syn["in_deck"] is False
+    deck = tools_mod.tool_lookup_card(ctx, "Blasphemous Act").data["commander_synergy"]
+    assert deck["in_deck"] is True
+
+
+def test_lookup_card_has_no_synergy_off_identity_or_without_a_lens(make_card, empty_store):
+    # A card outside the commanders' colour identity cannot be added: no synergy claim.
+    white = replace(_bolt(make_card, identity=("W",)), name="White Bolt")
+    ctx = _with(_ctx(make_card, empty_store, _smaug(make_card)), white)
+    assert "commander_synergy" not in tools_mod.tool_lookup_card(ctx, "White Bolt").data
     plain = _ctx(make_card, empty_store, _vanilla(make_card))
     assert "commander_synergy" not in tools_mod.tool_lookup_card(plain, "Blasphemous Act").data
+
+
+def test_add_question_prefetches_the_lens_fact(make_card, empty_store):
+    ctx = _with(_ctx(make_card, empty_store, _smaug(make_card)), _bolt(make_card))
+    facts, results, messages = _prefetched(ctx, "should I add Lightning Bolt?")
+    assert [f["card"] for f in facts] == ["Lightning Bolt"]
+    assert facts[0]["in_deck"] is False
+    assert "not in the deck yet" in messages[-1]["content"]
+    budget = ClaimBudget.from_tool_results(results)
+    assert "Lightning Bolt" in budget.synergy_cards
+    body = "Yes: Lightning Bolt triggers Smaug when you aim it at him."
+    assert gate.commander_synergy_reasons(body, budget) == []
+
+
+def _no_analysis(monkeypatch):
+    def boom(*a, **k):
+        raise AssertionError("analyze_deck called for a deck with no lens kind")
+    monkeypatch.setattr(tools_mod, "analyze_deck", boom)
+
+
+def test_no_kind_deck_never_analyses_for_its_lens(make_card, empty_store, monkeypatch):
+    ctx = _ctx(make_card, empty_store, _vanilla(make_card))
+    _no_analysis(monkeypatch)
+    data = tool_list_deck_cards(ctx).data
+    assert data["commander_lens_kinds"] == []
+    # get_deck_stats' only analysis is the finisher plan read (unchanged); with the finisher
+    # role not applicable it must not analyse at all.
+    real = redundancy.role_applicable
+    monkeypatch.setattr(redundancy, "role_applicable",
+                        lambda role, ident: False if role == "finisher" else real(role, ident))
+    assert tool_get_deck_stats(ctx).data
+    tools_mod.tool_lookup_card(ctx, "Blasphemous Act")
 
 
 def _prefetched(ctx, question):
@@ -251,3 +301,30 @@ def test_ask_puts_the_lens_fact_before_the_first_draft(make_card, empty_store, m
     first = seen[0]
     assert any(m["role"] == "user" and "Commander lens" in (m.get("content") or "")
                and "Blasphemous Act" in m["content"] for m in first)
+
+
+# -- check 16 leaks (final whole-branch review) ------------------------------------------------
+
+_SMAUG_NAMES = frozenset({"Smaug the Impenetrable"})
+
+
+def test_if_clause_without_comma_still_claims_the_card_after_it():
+    budget = ClaimBudget(card_names=frozenset({"Blasphemous Act"}),
+                         commander_names=_SMAUG_NAMES)
+    body = "If you keep it Blasphemous Act triggers Smaug."
+    assert verdicts.commander_synergy_claims(body, sorted(_SMAUG_NAMES)) == ["Blasphemous Act"]
+    reasons = _check16(gate.check(body, budget))
+    assert reasons and "Blasphemous Act" in reasons[0]
+    # The name directly after "if"/"whether" is still an embedded question.
+    assert verdicts.commander_synergy_claims(
+        "I cannot tell if Blasphemous Act triggers Smaug.", sorted(_SMAUG_NAMES)) == []
+
+
+@pytest.mark.parametrize("name", ["Second Sunrise", "Well of Lost Dreams", "All Is Dust"])
+def test_stopword_led_card_name_is_claimed_whole(name):
+    budget = ClaimBudget(known_card_names=frozenset({name, "Blasphemous Act"}),
+                         synergy_cards=frozenset({"Blasphemous Act"}),
+                         commander_names=_SMAUG_NAMES)
+    body = f"{name} synergizes with your commander."
+    reasons = _check16(gate.check(body, budget))
+    assert reasons == [f"claims {name!r} synergises with the commander; no lens fact backs it"]

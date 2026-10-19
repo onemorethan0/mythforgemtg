@@ -1054,7 +1054,8 @@
   "The tool results provide information about Dauthi Voidwalker's abilities, but they do not mention any specific commander or synergy with a commander. Therefore, I cannot determine if Dauthi Voidwalker synergizes with your commander based on the information provided.",
   "It's unclear whether Dauthi Voidwalker triggers Smaug.",
   "I'm not sure if Lightning Bolt synergizes with your commander.",
-  "I can't tell whether Sol Ring works well with your commander."
+  "I can't tell whether Sol Ring works well with your commander.",
+  "I cannot tell whether the Blasphemous Act triggers Smaug here."
  ],
  "commander_synergy_other_clause": [
   "Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug.",
@@ -1069,6 +1070,16 @@
   "Therefore, Blasphemous Act triggers Smaug for a pile of Treasure.",
   "However, Blasphemous Act works well with your commander.",
   "Thus Blasphemous Act triggers Smaug.",
-  "Also, Blasphemous Act can synergize well with your commander."
+  "Also, Blasphemous Act can synergize well with your commander.",
+  "If you keep it Blasphemous Act triggers Smaug.",
+  "If you hold it back Blasphemous Act triggers Smaug for a pile of Treasure.",
+  "Whether you race or control the board Blasphemous Act works well with your commander."
+ ],
+ "commander_synergy_stopword_name": [
+  "Second Sunrise synergizes with your commander.",
+  "Well of Lost Dreams works well with your commander.",
+  "All Is Dust has great synergy with your commander.",
+  "Also Second Sunrise triggers Smaug after a wipe.",
+  "Well of Lost Dreams combos with Smaug the Impenetrable."
  ]
 }

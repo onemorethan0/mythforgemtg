@@ -732,8 +732,11 @@ def create_app(
 
         Calls the mentor's OWN tool functions rather than recomputing anything, so a chart
         can never disagree with what the mentor says about the same deck (the role table
-        shipped in two units once already). No LLM and no rules corpus; the only
-        simulation is the cached finisher combat check inside get_deck_stats."""
+        shipped in two units once already). No LLM and no rules corpus. Simulation runs
+        only through the mentor's cached `analyze_deck`, for two reads: get_deck_stats'
+        finisher combat check, and -- only when the commander matches a lens kind -- the
+        commander lens's sim context (X credit). A commander matching no kind gets the cheap
+        no-context lens and pays for no analysis on its behalf."""
         resolved = _resolve_or_400(req.deck, req.name, db)
         ctx = MentorContext(
             card_db=db, cr=None, rulings_db={}, resolved=resolved,

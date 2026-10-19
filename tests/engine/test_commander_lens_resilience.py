@@ -112,3 +112,32 @@ def test_counter_reserve_is_cheapest_counterspell(make_card, forest):
                        oracle_text="Counter target spell.", color_identity=("U",))
     assert _counter_reserve([(forest, 30), (cancel, 1), (cs, 1)]) == 2
     assert _counter_reserve([(forest, 30)]) == 0
+
+
+def test_counter_reserve_also_reads_interaction_modes_counter(make_card, forest, monkeypatch):
+    # Spec: counter reserve counts `counterspell` OR `InteractionModes.counter`. (Today
+    # `analyze().counterspell` is derived from the modes; this pins the spec's OR in case
+    # the two ever diverge.)
+    from dataclasses import replace
+
+    from mythgauntlet.ratings import analysis
+    from mythgauntlet.semantics import tags
+
+    cs = make_card("Counterspell", mana_cost="{U}{U}", type_line="Instant",
+                   oracle_text="Counter target spell.", color_identity=("U",))
+    real = tags.analyze
+    monkeypatch.setattr(tags, "analyze", lambda c: replace(real(c), counterspell=False))
+    assert analysis._counter_reserve([(forest, 30), (cs, 1)]) == 2
+
+
+def test_lens_mana_curve_is_floored_and_go_off_curve_unchanged():
+    from types import SimpleNamespace
+
+    from mythgauntlet.ratings.analysis import _floored_mana_curve, _mean_mana_curve
+
+    runs = [SimpleNamespace(mana_available_by_turn=[1, 2, 3]),
+            SimpleNamespace(mana_available_by_turn=[2, 3, 4])]
+    # Means are 1.5, 2.5, 3.5: the lens floors (spec), go_off keeps its rounding.
+    assert _floored_mana_curve(runs, 3) == [1, 2, 3]
+    assert _mean_mana_curve(runs, 3) == [round(1.5), round(2.5), round(3.5)]
+    assert _floored_mana_curve([], 3) == []

@@ -704,8 +704,9 @@ _LENS_NUDGE = (
 
 
 def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages) -> list[dict]:
-    """A question naming a deck card the commander lens has a fact for gets that fact in front
-    of the model before it writes. Live 2026-10-19 "should I cut Blasphemous Act?" on a Smaug
+    """A question naming a card the commander lens has a fact for -- in the deck ("should I cut
+    X?") or one the deck could add ("should I add X?") -- gets that fact in front of the model
+    before it writes. Live 2026-10-19 "should I cut Blasphemous Act?" on a Smaug
     deck went down the swap-search path and never mentioned that Blasphemous Act makes Smaug 13
     Treasure; qwen3:14b ignores prompt-only rules (cf. `_prefetch_role_table`). The fact comes
     from the lookup_card results `_prelookup_question_cards` already made (lookup_card carries
@@ -726,11 +727,13 @@ def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages
         if not syn:
             continue
         facts.append({"card": data.get("name", name), "kind": syn.get("kind"),
-                      "reason": syn.get("reason"), "treasure": syn.get("treasure", 0)})
+                      "reason": syn.get("reason"), "treasure": syn.get("treasure", 0),
+                      "in_deck": syn.get("in_deck", True)})
     if facts:
         lines = []
         for f in facts:
-            line = f"- {f['card']} ({f['kind']}): {f['reason']}"
+            where = "" if f["in_deck"] else ", not in the deck yet"
+            line = f"- {f['card']} ({f['kind']}{where}): {f['reason']}"
             if f["treasure"]:
                 line += f"; about {f['treasure']} Treasure when it resolves with the commander out"
             lines.append(line + ".")

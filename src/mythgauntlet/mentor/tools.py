@@ -304,9 +304,14 @@ def _analysis_for(ctx: "MentorContext") -> DeckAnalysis:
 
 
 def _lens_for(ctx: "MentorContext") -> CommanderLens | None:
-    """The deck's commander lens, from the cached analysis (`analyze_deck` always builds one;
-    None only for a hand-built analysis)."""
-    return getattr(_analysis_for(ctx), "lens", None)
+    """The deck's commander lens. The cheap no-context lens is built first: with no kind it is
+    the answer (the analysis lens can differ only in X credit, and only when a kind matched),
+    so a deck whose commander matches nothing never pays for `analyze_deck` here. With a kind,
+    the cached analysis's lens carries the sim context (mana curve, commander turn)."""
+    cheap = build_lens(ctx.resolved.commanders)
+    if not cheap.kinds:
+        return cheap
+    return getattr(_analysis_for(ctx), "lens", None) or cheap
 
 
 def _analysis_cache_clear() -> None:
@@ -349,23 +354,29 @@ def tool_lookup_card(ctx: MentorContext, name: str) -> ToolResult:
 
 
 def _add_lens_synergy(ctx: MentorContext, card, data: dict) -> None:
-    """A looked-up card that is IN the deck carries its commander-lens fact, in the same shape as
-    a list_deck_cards row, plus the commanders it is about (gate check 16 reads both). Live
-    2026-10-19 "should I cut Blasphemous Act?" on a Smaug deck called lookup_card and never
-    list_deck_cards, so the one fact that answers the question never reached the model. A cheap
-    no-context lens is checked first, so a deck whose commander matches no kind (or a card with
-    no fact) never pays for the analysis the sim-context lens comes from."""
+    """A looked-up card the deck could play carries its commander-lens fact, in the same shape as
+    a list_deck_cards row plus `in_deck`, and the commanders it is about (gate check 16 reads
+    both). Live 2026-10-19 "should I cut Blasphemous Act?" on a Smaug deck called lookup_card
+    and never list_deck_cards, so the one fact that answers the question never reached the
+    model; an "should I ADD X?" question needs the same fact for a card not yet in the deck
+    (final review 2026-10-19). Only a commander-legal card inside the commanders' colour
+    identity: a card the deck cannot play has no synergy with it. A cheap no-context lens is
+    checked first, so a deck whose commander matches no kind (or a card with no fact) never
+    pays for the analysis the sim-context lens comes from."""
     resolved = getattr(ctx, "resolved", None)
     if resolved is None or card.is_land or not resolved.commanders:
         return
-    if not any(c.name == card.name for c, _qty in resolved.cards):
-        return
+    in_deck = any(c.name == card.name for c, _qty in resolved.cards)
+    if not in_deck:
+        identity = {ch for c in resolved.commanders for ch in c.color_identity}
+        if not card.commander_legal or (identity and not set(card.color_identity) <= identity):
+            return
     if build_lens(resolved.commanders).facts_for(card).empty:
         return
     synergy = deckview._synergy(card, _lens_for(ctx) or build_lens(resolved.commanders))
     if synergy is None:
         return
-    data["commander_synergy"] = synergy
+    data["commander_synergy"] = {**synergy, "in_deck": in_deck}
     data["commanders"] = [{"name": c.name} for c in resolved.commanders]
 
 

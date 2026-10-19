@@ -15,6 +15,7 @@ import math
 import re
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
+from typing import NamedTuple
 
 from mythgauntlet.model.card import Card, ManaCost
 from mythgauntlet.semantics import tags
@@ -64,6 +65,36 @@ def _is_own_colour(word: str, commander: Card) -> bool:
     return letter is not None and letter in (commander.colors or ())
 
 
+_SELF_GRANT_TMPL = r"(?:{names}) has (?:[a-z ,]+ and )?{kw}\.?"
+
+
+def has_keyword(card: Card, kw: str) -> bool:
+    """Does the card itself HAVE this keyword? Scryfall's `keywords` lists every keyword the
+    text MENTIONS (Odric, Blood-Cursed counts indestructible among creatures you control and
+    lists it), so the keyword must also be confirmed in the card's own oracle text: a bare
+    keyword line ("Flying, indestructible, haste") or an unconditional whole-line
+    "<self> has <kw>". A conditional grant ("... as long as ...") is not confirmed."""
+    kw = kw.casefold()
+    if kw not in card.keywords:
+        return False
+    kws = {k.casefold() for k in card.keywords}
+    names = "|".join(re.escape(n) for n in lens_self_names(card))
+    grant_re = re.compile(_SELF_GRANT_TMPL.format(names=names, kw=re.escape(kw)))
+    own_param = re.compile(re.escape(kw) + r" (?:\{[^}]+\}|\d+|x)+")
+    for line in tags._clean_text(card).split("\n"):
+        line = line.strip()
+        items = [i.strip() for i in re.split(r"[,;]", line.rstrip(".")) if i.strip()]
+        # Every item a keyword (a parameter may follow: "ward {2}", "bushido 5"); an
+        # ability-word line ("enrage — whenever ...") is a sentence, not a keyword line.
+        if items and all(" — " not in i and any(i == k or i.startswith(k + " ") for k in kws)
+                         for i in items):
+            if any(i == kw or own_param.fullmatch(i) for i in items):
+                return True
+        if grant_re.fullmatch(line):
+            return True
+    return False
+
+
 def admits(obj: str, commander: Card) -> bool | None:
     """Does a wipe's object phrase include this commander? True/False only when certain;
     None means unknown (treated as no claim)."""
@@ -72,7 +103,7 @@ def admits(obj: str, commander: Card) -> bool | None:
         return False
     type_words = set(re.findall(r"[a-z]+", (commander.type_line or "").casefold()))
     for m in _WITHOUT_RE.finditer(head):
-        if m.group(1) in commander.keywords:
+        if has_keyword(commander, m.group(1)):
             return False
     for m in _NON_RE.finditer(head):
         if m.group(1) in type_words or _is_own_colour(m.group(1), commander):
@@ -97,9 +128,28 @@ def _wipe_clauses(text: str):
         yield "damage", m.group(1)
 
 
+_LOSES_INDESTRUCTIBLE_RE = re.compile(
+    r"(?:^|[.:\n]\s*)([^.:\n]*?)\bloses? (?:indestructible|all abilities)"
+)
+
+
+def _strips_own_indestructible(text: str) -> bool:
+    """Hour of Devastation's "All creatures lose indestructible" (or a "lose all abilities")
+    reaches the pilot's commander too. Only a loss limited to opponents (Exterminatus's
+    "Nonland permanents your opponents control lose indestructible") leaves it standing."""
+    for m in _LOSES_INDESTRUCTIBLE_RE.finditer(text):
+        subj = m.group(1)
+        if "opponent" in subj or "you don't control" in subj:
+            continue
+        return True
+    return False
+
+
 def _survives_wipe_facts(lens: CommanderLens, card: Card) -> LensFacts:
     lead = lens.commanders[0]
     text = tags._clean_text(card)
+    if _strips_own_indestructible(text):
+        return LensFacts()
     for mode, obj in _wipe_clauses(text):
         if (lens.survives_mode(mode) and tags._hits_creature(obj)
                 and admits(obj, lead) is True):
@@ -131,17 +181,57 @@ def lens_self_names(card: Card) -> tuple[str, ...]:
     return tuple(sorted(names, key=len, reverse=True))
 
 
-def _damage_to_self(card: Card) -> tuple[bool, bool] | None:
-    """(noncombat_only, makes_treasure) if the card says 'whenever <itself> is dealt damage',
-    else None. The subject must be the card itself (Kazarov's 'a creature an opponent
-    controls' is not)."""
+class _SelfDamageTrigger(NamedTuple):
+    noncombat_only: bool
+    # Treasure per damage event: "scaled" ("that many" / "equal to the damage") credits the
+    # damage dealt; a fixed count ("create a Treasure token") credits that count; 0 = none.
+    treasure_scaled: bool
+    treasure_fixed: int
+    # The effect lands on the commander itself (+1/+1 counters on him/her/it): it must
+    # SURVIVE the damage to get anything (Venus, Mockingbird, Hercules, Red Hulk).
+    needs_survival: bool
+
+
+_COUNT_WORDS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+_FIXED_TREASURE_RE = re.compile(r"create (a|an|one|two|three|four|five|\d+) treasure tokens?")
+_SCALED_RE = re.compile(r"that many|equal to (?:the|that) damage|equal to the amount of damage")
+
+
+def _needs_survival(effect: str, names: tuple[str, ...]) -> bool:
+    """True when the trigger's whole effect is +1/+1 counters on the commander itself (plus a
+    reflexive "when you do" hanging off them). Anything else -- damage dealt by it (last
+    known information), cards, mana, rad counters on you -- pays off even if it dies."""
+    who = "|".join(["him", "her", "it", "itself", "them"] + [re.escape(n) for n in names])
+    counter_re = re.compile(rf"put (?:that many|[a-z]+|\d+) \+1/\+1 counters? on (?:{who})\b")
+    if not counter_re.search(effect):
+        return False
+    rest = counter_re.sub(" ", effect)
+    rest = re.sub(r"when you do,[^.]*\.?", " ", rest)
+    rest = re.sub(r"\b(?:and|then)\b|[.,;]", " ", rest)
+    return not rest.strip()
+
+
+def _damage_to_self(card: Card) -> _SelfDamageTrigger | None:
+    """The card's 'whenever <itself> is dealt damage' trigger, else None. The subject must be
+    the card itself (Kazarov's 'a creature an opponent controls' is not)."""
     names = lens_self_names(card)
     for line in tags._clean_text(card).split("\n"):
         for m in _DAMAGE_TO_SELF_RE.finditer(line):
             if m.group("subj").strip() not in names:
                 continue
-            rest = line[m.end():].split(".")[0]
-            return bool(m.group("nc")), "treasure" in rest
+            rest = line[m.end():]
+            # Drop the trigger's own trailing condition ("for the first time each turn,").
+            effect = rest.split(",", 1)[1] if "," in rest.split(".")[0] else rest
+            first = effect.split(".")[0]
+            scaled = fixed = 0
+            if "treasure" in first:
+                if _SCALED_RE.search(first):
+                    scaled = 1
+                elif (fm := _FIXED_TREASURE_RE.search(first)) is not None:
+                    n = fm.group(1)
+                    fixed = int(n) if n.isdigit() else _COUNT_WORDS[n]
+            return _SelfDamageTrigger(bool(m.group("nc")), bool(scaled), fixed,
+                                      _needs_survival(effect, names))
     return None
 
 
@@ -207,6 +297,29 @@ def _target_excludes(text: str, start: int, commander: Card) -> bool:
     return False
 
 
+_TRIGGER_HEAD_RE = re.compile(r"^(?:[a-z' -]+ — )?(?:when|whenever|at the beginning)\b")
+_CONDITIONAL_RE = re.compile(r"\b(?:if|when) you do\b")
+
+
+def _reliable_clause(card: Card, text: str, pos: int) -> bool:
+    """Is the damage clause at `pos` part of the card's own cast/resolution, ETB or an
+    activation (costed by `_net_of_activation`)? A clause after "if you do"/"when you do"
+    (Kozilek's Return's graveyard exile, Lavabrink's doom-counter sacrifice) or inside any
+    other trigger (an upkeep, another spell's cast) depends on something the pilot may never
+    get: it keeps the synergy label but no Treasure credit."""
+    line_start = text.rfind("\n", 0, pos) + 1
+    prefix = text[line_start:pos].strip()
+    if _CONDITIONAL_RE.search(prefix):
+        return False
+    if not _TRIGGER_HEAD_RE.match(prefix):
+        return True
+    names = "|".join(re.escape(n) for n in tags._self_names(card))
+    own = rf"(?:this [a-z]+|{names})" if names else r"this [a-z]+"
+    return re.match(
+        rf"^(?:[a-z' -]+ — )?(?:when {own} enters|when you cast this spell)\b", prefix
+    ) is not None
+
+
 def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
     text = tags._clean_text(card)
     parts: list[LensFacts] = []
@@ -214,22 +327,36 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
         info = _damage_to_self(cmd)
         if info is None:
             continue
-        _noncombat_only, makes_treasure = info
         # Nothing on a card's text is combat damage, so noncombat_only never filters here.
         label = f"{cmd.name} is dealt this damage"
+        # A must-survive payoff (counters on itself) is not paid by mass damage that kills
+        # it, unless it is indestructible and this card does not strip that.
+        survives = (has_keyword(cmd, "indestructible")
+                    and not _strips_own_indestructible(text))
+        toughness = int(cmd.toughness) if (cmd.toughness or "").isdigit() else None
         hit = False
         treasure = 0
         for m in tags._DAMAGE_EACH_RE.finditer(text):
             if admits(m.group(1), cmd) is not True:
                 continue
+            # The match starts at "deals ... damage"; "equal to ..." has no number.
+            amt = _DEALS_AMOUNT_RE.match(text, m.start())
+            if info.needs_survival and not survives:
+                # Only a fixed amount below its printed toughness is survived.
+                if (amt is None or amt.group(1) == "x" or toughness is None
+                        or int(amt.group(1)) >= toughness):
+                    continue
             hit = True
-            if makes_treasure:
-                # The match starts at "deals ... damage"; "equal to ..." has no number -> 0.
-                amt = _DEALS_AMOUNT_RE.match(text, m.start())
-                if amt is not None:
-                    n = amt.group(1)
-                    amount = _mana_x(card, text, lens.ctx) if n == "x" else int(n)
-                    treasure = max(treasure, _net_of_activation(text, m.start(), amount))
+            if not (info.treasure_scaled or info.treasure_fixed):
+                continue
+            if amt is None or not _reliable_clause(card, text, m.start()):
+                continue
+            n = amt.group(1)
+            amount = _mana_x(card, text, lens.ctx) if n == "x" else int(n)
+            if amount <= 0:
+                continue
+            per_event = amount if info.treasure_scaled else info.treasure_fixed
+            treasure = max(treasure, _net_of_activation(text, m.start(), per_event))
         if not hit:
             for m in tags._DAMAGE_TARGET_RE.finditer(text):
                 obj = m.group(1)
@@ -380,7 +507,7 @@ class CommanderLens:
         for a wipe the lead is the one fielded against.)"""
         if not self.commanders:
             return False
-        return ("indestructible" in self.commanders[0].keywords
+        return (has_keyword(self.commanders[0], "indestructible")
                 and mode in _INDESTRUCTIBLE_SURVIVES)
 
     def flagged(self, cards: Iterable[Card]) -> set[str]:
@@ -390,7 +517,7 @@ class CommanderLens:
 def build_lens(commanders: Sequence[Card], ctx: LensDeckContext | None = None) -> CommanderLens:
     cmds = tuple(commanders)
     kinds: list[str] = []
-    if any("indestructible" in c.keywords for c in cmds):
+    if any(has_keyword(c, "indestructible") for c in cmds):
         kinds.append(KIND_SURVIVES_WIPE)
     if any(_damage_to_self(c) is not None for c in cmds):
         kinds.append(KIND_DAMAGE_TO_SELF)

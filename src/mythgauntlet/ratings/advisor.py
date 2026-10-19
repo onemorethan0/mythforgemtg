@@ -666,7 +666,9 @@ def advise(
     base_score = axis_score(baseline, target)
 
     if lens is None:
-        lens = build_lens(resolved.commanders)
+        # The baseline analysis's lens carries the sim context (X credit), so this agrees
+        # with list_deck_cards / Deck Breakdown; the no-context lens is only a fallback.
+        lens = getattr(baseline, "lens", None) or build_lens(resolved.commanders)
     cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift, lens)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0

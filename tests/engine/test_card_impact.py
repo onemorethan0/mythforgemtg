@@ -191,3 +191,20 @@ def test_the_cut_sentence_does_not_claim_redundancy_it_cannot_show(make_card, fo
     none = _cut_sentence(cut, supply, generous)
     assert "over-supplies no role" in none
     assert "weakest" not in none.lower(), "the retired over-claim must not return"
+
+
+def test_assess_and_advise_reuse_the_baseline_analysis_lens(make_card, forest, bear,
+                                                             empty_store, monkeypatch):
+    """The baseline analysis already carries the sim-context lens (X credit); a second
+    no-context lens could disagree with list_deck_cards/Breakdown on a Treasure count."""
+    from mythgauntlet.ratings import advisor, card_impact
+
+    def boom(*a, **k):
+        raise AssertionError("built a no-context lens although baseline.lens exists")
+    monkeypatch.setattr(card_impact, "build_lens", boom)
+    monkeypatch.setattr(advisor, "build_lens", boom)
+    rock = make_card("Owned Rock", mana_cost="{2}", type_line="Artifact",
+                     color_identity=(), oracle_text="{T}: Add {C}{C}.")
+    deck = _deck(make_card, forest, bear)
+    assert assess_card(deck, rock, _cfg(), empty_store).legal is True
+    advisor.advise(deck, _cfg(), empty_store, [rock], axis="speed", max_eval=1)

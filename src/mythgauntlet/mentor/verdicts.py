@@ -1406,9 +1406,10 @@ _SYNERGY_VERB = (
     rf"|combos?\s+{_SYNERGY_ADVERBS}with)")
 # An embedded question or hedge owning the subject ("I cannot determine IF X synergizes", "it's
 # unclear WHETHER X triggers Smaug") asks, it does not claim (live 2026-10-19: three such denials
-# were rejected and the turn fell back). Only when no comma follows the "if"/"whether": "If you
-# cast X, Blasphemous Act triggers Smaug" still claims.
-_EMBEDDED_QUESTION_RE = re.compile(r"\b(?:if|whether)\b[^,]*$", re.IGNORECASE)
+# were rejected and the turn fell back). Only when the name run DIRECTLY follows the
+# "if"/"whether" (optionally "the") and no comma follows: "If you cast X, Blasphemous Act triggers
+# Smaug" and "If you keep it Blasphemous Act triggers Smaug" (final review 2026-10-19) still claim.
+_EMBEDDED_QUESTION_RE = re.compile(r"\b(?i:if|whether)\s+(?:(?i:the)\s+)?[A-Z][^,]*$")
 _NAME_RUN_RE = re.compile(
     r"[A-Z][\w'-]*(?:\s+(?:(?:of|the|to|in|from|for|on|at|a|an|de|du|la)\s+)*[A-Z][\w'-]*)*")
 # Capitalised words that open a clause rather than name a card.
@@ -1417,7 +1418,7 @@ _RUN_STOPWORDS = frozenset({
     "also", "and", "but", "so", "both", "each", "every", "everything", "in", "with", "since",
     "because", "yes", "no", "overall", "plus", "however", "additionally", "here", "there",
     "then", "like", "even", "notably", "meanwhile", "furthermore", "moreover", "of", "for",
-    "as", "if", "when", "while", "the", "a", "an", "all", "many", "most", "some", "several",
+    "as", "if", "whether", "when", "while", "the", "a", "an", "all", "many", "most", "some", "several",
     "they", "their", "he", "she", "his", "her", "which", "what", "cards", "card", "spells",
     "commander", "deck", "first", "finally", "similarly", "likewise", "now", "board", "any",
     "still", "only", "just", "especially", "particularly", "anything", "something", "nothing",
@@ -1459,10 +1460,27 @@ def _synergy_re(commander_names) -> re.Pattern:
     return re.compile(rf"\b{_SYNERGY_VERB}\s+(?:{'|'.join(refs)})", re.IGNORECASE)
 
 
-def _claimed_runs(subject: str, aliases: set[str]) -> list[str]:
+def _known_suffix(words: list[str], known: frozenset[str]) -> list[str] | None:
+    """The longest suffix of a name run that is a known card name ("Second Sunrise", "Well of
+    Lost Dreams", "All Is Dust" open with a stopword; "Also Blasphemous Act" names a card only
+    once "Also" goes). None when no suffix is known."""
+    for i in range(len(words)):
+        if " ".join(words[i:]).casefold() in known:
+            return words[i:]
+    return None
+
+
+def _claimed_runs(subject: str, aliases: set[str],
+                  known: frozenset[str] = frozenset()) -> list[str]:
     names = []
     for m in _NAME_RUN_RE.finditer(subject):
         words = m.group().split()
+        whole = _known_suffix(words, known) if known else None
+        if whole is not None:
+            run = " ".join(whole)
+            if run.casefold() not in aliases:
+                names.append(run)
+            continue
         while words and words[0].casefold() in _RUN_STOPWORDS:
             words.pop(0)
         if not words or not words[0][:1].isupper():
@@ -1489,24 +1507,28 @@ _CLAUSE_CUT_RE = re.compile(
 _RELATIVE_CUT_RE = re.compile(r",?\s+(?:[Ww]hich|[Tt]hat|[Ww]ho)(?:\s+[a-z]+){0,2}\s*$")
 
 
-def _synergy_subject_runs(before: str, aliases: set[str]) -> list[str]:
+def _synergy_subject_runs(before: str, aliases: set[str],
+                          known: frozenset[str] = frozenset()) -> list[str]:
     parts = _CLAUSE_CUT_RE.split(before)
     subject = parts[-1]
     rel = _RELATIVE_CUT_RE.search(subject)
     if rel is not None:
-        runs = _claimed_runs(subject[:rel.start()], aliases)
+        runs = _claimed_runs(subject[:rel.start()], aliases, known)
         return runs[-1:]
-    return _claimed_runs(subject, aliases)
+    return _claimed_runs(subject, aliases, known)
 
 
-def commander_synergy_claims(body: str, commander_names) -> list[str]:
+def commander_synergy_claims(body: str, commander_names, known_names=()) -> list[str]:
     """Card names a sentence of `body` claims synergise with the commander: the capitalised
     name runs in the clause BEFORE "synergy with / triggers / works (well) with / combos with"
     + "your commander" or a commander's name. A negated phrase ("does not synergise") claims
     nothing, and a subject naming no card ("It has synergy with your commander") claims
-    nothing -- under-flag."""
+    nothing -- under-flag. `known_names` (card names): a run whose longest suffix is a known
+    name is claimed as that name BEFORE leading stopwords are stripped, so "Second Sunrise" is
+    not cut to "Sunrise" (which would then miss the known-card pool and pass the gate)."""
     pattern = _synergy_re(commander_names)
     aliases = {a.casefold() for a in commander_aliases(commander_names)}
+    known = frozenset(n.casefold() for n in known_names if isinstance(n, str))
     out: list[str] = []
     for sentence in split_sentences(body):
         for m in pattern.finditer(sentence):
@@ -1515,7 +1537,7 @@ def commander_synergy_claims(body: str, commander_names) -> list[str]:
                 continue
             if _EMBEDDED_QUESTION_RE.search(_CLAUSE_CUT_RE.split(before)[-1]):
                 continue
-            names = _synergy_subject_runs(before, aliases)
+            names = _synergy_subject_runs(before, aliases, known)
             for name in names:
                 if name not in out:
                     out.append(name)

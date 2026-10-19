@@ -119,3 +119,31 @@ def test_breakdown_cards_carry_commander_synergy(tmp_path, make_card, sol_ring_l
     assert cards["Wrath of God"]["commander_synergy"]["kind"] == "one_sided_wipe"
     assert cards["Mountain"]["commander_synergy"] is None
     assert "ramp" in cards["Blasphemous Act"]["roles"]
+
+
+def test_breakdown_no_kind_commander_runs_no_analysis(tmp_path, make_card, sol_ring_like,
+                                                     monkeypatch):
+    # A commander matching no lens kind gets the cheap no-context lens: /breakdown pays for no
+    # analyze_deck on its behalf (the finisher read is switched off to isolate the lens).
+    from mythgauntlet.ratings import redundancy
+    from tests.engine.test_commander_lens import BLASPHEMOUS, WRATH
+    monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path / "suite"))
+    mentor_tools._analysis_cache_clear()
+
+    def boom(*a, **k):
+        raise AssertionError("analyze_deck called for a no-kind commander")
+    monkeypatch.setattr(mentor_tools, "analyze_deck", boom)
+    real = redundancy.role_applicable
+    monkeypatch.setattr(redundancy, "role_applicable",
+                        lambda role, ident: False if role == "finisher" else real(role, ident))
+    legend = make_card("Plain Legend", mana_cost="{2}{R}", type_line="Legendary Creature — Human",
+                       power="3", toughness="3", colors=("R",), color_identity=("R",))
+    mountain = make_card("Mountain", type_line="Basic Land — Mountain", produced_mana=("R",),
+                         color_identity=("R",))
+    db = CardDb([legend, mountain, sol_ring_like, make_card(**BLASPHEMOUS), make_card(**WRATH)])
+    store = SemanticsStore(authored=tmp_path / "a", compiled=tmp_path / "c")
+    app = server_mod.create_app(db=db, store=store, mentor_cr=None, mentor_rulings_db=None)
+    deck = SMAUG_DECK.replace("Smaug the Impenetrable", "Plain Legend")
+    resp = TestClient(app).post("/breakdown", json={"deck": deck, "runs": 5})
+    assert resp.status_code == 200, resp.text
+    assert all(c["commander_synergy"] is None for c in resp.json()["cards"])

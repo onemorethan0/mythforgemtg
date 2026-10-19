@@ -316,8 +316,9 @@ def test_mana_paid_activation_treasure_is_net_of_its_cost(make_card, smaug):
         f = lens.facts_for(make_card(**spec))
         assert f.payoff_kind == KIND
         assert f.payoff_treasure == 0
-    # A triggered (unpaid) mass damage keeps its full credit.
-    assert lens.facts_for(make_card(**LAVABRINK)).payoff_treasure == 6
+    # An ETB-triggered (unpaid) mass damage keeps its full credit. (Lavabrink's upkeep
+    # trigger is label only: test_non_etb_trigger_damage_is_label_only.)
+    assert lens.facts_for(make_card(**SPITEFUL)).payoff_treasure == 6
 
 
 # --- Task 8 review: colour exclusions (oracle text verbatim from the card store) ---
@@ -350,3 +351,154 @@ def test_mass_nonblack_misses_black_smaug(make_card):
     assert lens.facts_for(make_card(**KAERVEKS_HEX)).empty
     assert lens.facts_for(make_card(**HELLFIRE)).empty
     assert admits("each nonblack creature", _coloured_smaug(make_card)) is False
+
+
+# --- Final whole-branch review (oracle text verbatim from the card store) ---
+
+ODRIC = dict(name="Odric, Blood-Cursed", mana_cost="{1}{R}{W}",
+    type_line="Legendary Creature — Vampire Soldier", power="3", toughness="3",
+    colors=("R", "W"),
+    keywords=frozenset({"haste", "reach", "lifelink", "indestructible", "deathtouch",
+                        "double strike", "menace", "hexproof", "first strike", "trample"}),
+    oracle_text="When Odric enters, create X Blood tokens, where X is the number of abilities from among flying, first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance found among creatures you control. (Count each ability only once.)")
+HOUR = dict(name="Hour of Devastation", mana_cost="{3}{R}{R}", type_line="Sorcery",
+    oracle_text="All creatures lose indestructible until end of turn. Hour of Devastation deals 5 damage to each creature and each non-Bolas planeswalker.")
+EXTERMINATUS = dict(name="Exterminatus", mana_cost="{5}{W}{B}", type_line="Sorcery",
+    oracle_text="Nonland permanents your opponents control lose indestructible until end of turn.\nDestroy all nonland permanents.")
+VENUS = dict(name="Venus, Torn Between Worlds", mana_cost="{4}{G}",
+    type_line="Legendary Creature — Mutant Frog Turtle", power="5", toughness="5", colors=("G",),
+    oracle_text="Whenever Venus is dealt damage, put that many +1/+1 counters on her. (She must survive the damage to get the counters.)\nWhenever a creature you control with a counter on it deals combat damage to a player, you may pay {U}. If you do, draw a card.")
+MOCKINGBIRD = dict(name="Mockingbird, Bobbi Morse", mana_cost="{3}{W}",
+    type_line="Legendary Creature — Human Hero", power="3", toughness="3", colors=("W",),
+    oracle_text="Whenever Mockingbird is dealt damage, put a +1/+1 counter on her. (She must survive the damage to get the counter.)")
+HERCULES = dict(name="Hercules, Olympian Hero", mana_cost="{3}{W}{W}",
+    type_line="Legendary Creature — Demigod Warrior Hero", power="3", toughness="3", colors=("W",),
+    oracle_text="Whenever Hercules attacks, put a +1/+1 counter on him. He gains indestructible until end of turn.\nWhenever Hercules is dealt damage for the first time each turn, put that many +1/+1 counters on him. (He must survive the damage to get the counters.)")
+RED_HULK = dict(name="Red Hulk", mana_cost="{4}{R}{R}",
+    type_line="Legendary Creature — Gamma Berserker Villain", power="6", toughness="7", colors=("R",),
+    keywords=frozenset({"enrage", "trample", "reach"}),
+    oracle_text="Reach, trample\nEnrage — Whenever Red Hulk is dealt damage, put a +1/+1 counter on him. When you do, he deals damage equal to the number of +1/+1 counters on him to any other target.")
+STRONG = dict(name="Strong, the Brutish Thespian", mana_cost="{4}{G}{G}",
+    type_line="Legendary Creature — Mutant Berserker", power="7", toughness="7", colors=("G",),
+    keywords=frozenset({"enrage", "ward"}),
+    oracle_text="Ward {2}\nEnrage — Whenever Strong is dealt damage, you get three rad counters and put three +1/+1 counters on Strong.\nYou gain life rather than lose life from radiation.")
+FELDON = dict(name="Feldon, Ronom Excavator", mana_cost="{1}{R}",
+    type_line="Legendary Creature — Human Artificer", power="2", toughness="2", colors=("R",),
+    keywords=frozenset({"haste"}),
+    oracle_text="Haste\nFeldon can't block.\nWhenever Feldon is dealt damage, exile that many cards from the top of your library. Choose one of them. Until the end of your next turn, you may play that card.")
+RAPHAEL = dict(name="Raphael, Ninja Destroyer", mana_cost="{2}{R}{R}",
+    type_line="Legendary Creature — Mutant Ninja Turtle", power="4", toughness="4", colors=("R",),
+    keywords=frozenset({"enrage"}),
+    oracle_text="Raphael must be blocked if able.\nEnrage — Whenever Raphael is dealt damage, add that much {R}. Until end of turn, you don't lose this mana as steps and phases end.")
+ZALTO = dict(name="Zalto, Fire Giant Duke", mana_cost="{3}{R}{R}",
+    type_line="Legendary Creature — Giant Barbarian", power="7", toughness="3", colors=("R",),
+    keywords=frozenset({"trample", "venture into the dungeon"}),
+    oracle_text="Trample\nWhenever Zalto is dealt damage, venture into the dungeon. (Enter the first room or advance to the next room.)")
+KOZILEKS_RETURN = dict(name="Kozilek's Return", mana_cost="{2}{R}", type_line="Instant",
+    keywords=frozenset({"devoid"}),
+    oracle_text="Devoid (This card has no color.)\nKozilek's Return deals 2 damage to each creature.\nWhenever you cast an Eldrazi creature spell with mana value 7 or greater, you may exile this card from your graveyard. If you do, this card deals 5 damage to each creature.")
+
+
+def test_mentioned_keyword_is_not_a_printed_keyword(make_card):
+    # Scryfall's keywords list what Odric's text MENTIONS; Odric himself is a vanilla 3/3
+    # with an ETB. He is not indestructible, so Wrath of God is not one-sided for him.
+    odric = make_card(**ODRIC)
+    lens = build_lens([odric])
+    assert "survives_wipe" not in lens.kinds
+    assert lens.survives_mode("destroy") is False
+    assert build_lens([odric, make_card(**SMAUG)]).facts_for(make_card(**WRATH)).empty
+    # "without trample" does not exclude Odric: he has no trample.
+    assert admits("creatures without trample", odric) is True
+
+
+def test_keyword_confirmed_by_bare_keyword_line(smaug):
+    from mythgauntlet.semantics.commander_lens import has_keyword
+    assert has_keyword(smaug, "indestructible")
+    assert has_keyword(smaug, "flying")
+    assert not has_keyword(smaug, "treasure")  # in Scryfall's list, not a keyword Smaug has
+
+
+def test_keyword_confirmed_by_unconditional_self_grant(make_card):
+    # FICTIONAL test-only cards (no legendary creature in the store grants itself
+    # indestructible in a sentence): unconditional grant counts, a conditional one does not.
+    from mythgauntlet.semantics.commander_lens import has_keyword
+    plain = make_card(name="Fictional Bastion Golem", type_line="Legendary Creature — Golem",
+        keywords=frozenset({"indestructible"}),
+        oracle_text="Fictional Bastion Golem has indestructible.")
+    cond = make_card(name="Fictional Bastion Golem", type_line="Legendary Creature — Golem",
+        keywords=frozenset({"indestructible"}),
+        oracle_text="Fictional Bastion Golem has indestructible as long as you control an artifact.")
+    assert has_keyword(plain, "indestructible")
+    assert not has_keyword(cond, "indestructible")
+
+
+def test_wipe_that_strips_indestructible_is_not_one_sided(make_card, smaug):
+    f = build_lens([smaug]).facts_for(make_card(**HOUR))
+    assert f.wipe_one_sided is False
+    assert "survives" not in f.reason
+    # Smaug still takes the 5 (LKI: the trigger makes Treasure even if he dies).
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 5
+
+
+def test_opponent_only_indestructible_loss_stays_one_sided(make_card, smaug):
+    assert build_lens([smaug]).facts_for(make_card(**EXTERMINATUS)).wipe_one_sided is True
+
+
+@pytest.mark.parametrize("spec", [VENUS, MOCKINGBIRD, HERCULES, RED_HULK])
+def test_must_survive_payoff_is_not_a_mass_damage_payoff(make_card, spec):
+    # Counters on the commander need it to survive: Blasphemous Act kills it first.
+    lens = build_lens([make_card(**spec)])
+    assert KIND in lens.kinds
+    assert lens.facts_for(make_card(**BLASPHEMOUS)).empty
+    # Targeted damage is still a choice the pilot can size: label kept.
+    assert lens.facts_for(make_card(**BOLT)).payoff_kind == KIND
+
+
+def test_must_survive_payoff_keeps_mass_damage_below_toughness(make_card):
+    # Pestilence's 1 damage leaves 5/5 Venus standing with a counter.
+    f = build_lens([make_card(**VENUS)]).facts_for(make_card(**PESTILENCE))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+
+
+@pytest.mark.parametrize("spec", [KLEMENT, FELDON, RAPHAEL, ZALTO, STRONG])
+def test_payoff_not_needing_survival_keeps_mass_damage(make_card, spec):
+    f = build_lens([make_card(**spec)]).facts_for(make_card(**BLASPHEMOUS))
+    assert f.payoff_kind == KIND
+
+
+def test_indestructible_must_survive_commander_keeps_mass_damage(make_card):
+    # FICTIONAL test-only card: an indestructible commander survives the damage.
+    toad = make_card(name="Fictional Ironhide Toad", type_line="Legendary Creature — Frog",
+        power="2", toughness="2", keywords=frozenset({"indestructible"}),
+        oracle_text="Indestructible\nWhenever Fictional Ironhide Toad is dealt damage, put that many +1/+1 counters on it.")
+    assert build_lens([toad]).facts_for(make_card(**BLASPHEMOUS)).payoff_kind == KIND
+
+
+def test_conditional_trigger_damage_is_label_only(make_card, smaug):
+    # Kozilek's Return: the cast deals 2 (credited); the graveyard trigger's 5 needs a 7+ MV
+    # Eldrazi cast ("if you do") and is not credited.
+    f = build_lens([smaug]).facts_for(make_card(**KOZILEKS_RETURN))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 2
+
+
+def test_non_etb_trigger_damage_is_label_only(make_card, smaug):
+    # Lavabrink Floodgates' 6 waits on upkeep doom counters: label only.
+    f = build_lens([smaug], CTX).facts_for(make_card(**LAVABRINK))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+
+
+def test_fixed_count_treasure_trigger_credits_one(make_card):
+    # FICTIONAL test-only commanders: the card store has no legendary creature whose
+    # damage trigger makes a fixed number of Treasures.
+    fixed = make_card(name="Fictional Hoard Drake", type_line="Legendary Creature — Dragon",
+        power="4", toughness="4",
+        oracle_text="Whenever Fictional Hoard Drake is dealt damage, create a Treasure token.")
+    scaled = make_card(name="Fictional Hoard Drake", type_line="Legendary Creature — Dragon",
+        power="4", toughness="4",
+        oracle_text="Whenever Fictional Hoard Drake is dealt damage, create a number of Treasure tokens equal to the damage dealt.")
+    assert build_lens([fixed]).facts_for(make_card(**BLASPHEMOUS)).payoff_treasure == 1
+    assert build_lens([scaled]).facts_for(make_card(**BLASPHEMOUS)).payoff_treasure == 13

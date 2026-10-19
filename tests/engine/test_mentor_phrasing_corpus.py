@@ -85,8 +85,20 @@ def _synergy_claimed(t):
     return bool(v.commander_synergy_claims(_norm(t), _SMAUG))
 
 
+# Real card names that open with a clause stopword ("Second", "Well", "All"): with the known-card
+# pool the full name is claimed, not a truncated "Sunrise" that would miss the pool and pass
+# (final review 2026-10-19).
+_STOPWORD_NAMES = ("Second Sunrise", "Well of Lost Dreams", "All Is Dust", "Blasphemous Act")
+
+
+def _full_stopword_name_claimed(t):
+    names = v.commander_synergy_claims(_norm(t), _SMAUG, known_names=_STOPWORD_NAMES)
+    return len(names) == 1 and names[0] in _STOPWORD_NAMES
+
+
 EXPECT = {
     # category: (predicate, should_be)
+    "commander_synergy_stopword_name": (_full_stopword_name_claimed, True),
     "commander_synergy_claim": (_synergy_claimed, True),
     "commander_synergy_not_claim": (_synergy_claimed, False),
     # a second card in ANOTHER clause is not claimed (review 2026-10-19: "Lightning Bolt handles

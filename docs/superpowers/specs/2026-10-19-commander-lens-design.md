@@ -12,7 +12,8 @@ and supply (Smaug: Ramp +2 / +1 cards), 19 in the cut-protected set only. 75 dis
 (incl. colour exclusions, Strafe). EDHREC high-synergy (lift > 0.3) coverage 16/125 (12.8%)
 over 5 cached single-commander pages (Smaug 13/42 = 31%, Meren 3/27 = 11%). Live mentor check
 ("should I cut Blasphemous Act?") passes after the deterministic lens prefetch: the reply
-keeps the card and cites Smaug surviving the 13 damage for Treasure.
+cites the synergy (Smaug surviving the 13 damage for Treasure) and hedges ("might be beneficial
+to keep it") rather than giving a flat keep.
 **Scope:** MythForge strength metrics (`src/mythgauntlet/ratings/`), Deck Mentor
 (`src/mythgauntlet/mentor/`), one guarded change in `src/mythgauntlet/sim/tier0.py`.
 

@@ -8,6 +8,8 @@ result) stops the two from silently drifting.
 
 from __future__ import annotations
 
+import math
+
 from collections.abc import Callable
 from dataclasses import dataclass, replace
 
@@ -125,8 +127,10 @@ def analyze_deck(
     # for the bracket gate's can_go_off, both of which pre-date and are independent of Phase 1a.
     mana_by_turn = _mean_mana_curve(runs, cfg.turns)
     go_off = estimate_go_off(all_cards, mana_by_turn, cfg.turns)
+    # The lens's X budget floors the per-turn mean (spec); go_off keeps its rounded curve.
     lens = build_lens(resolved.commanders, LensDeckContext(
-        tuple(mana_by_turn), report.avg_commander_turn, _counter_reserve(sim_cards)))
+        tuple(_floored_mana_curve(runs, cfg.turns)), report.avg_commander_turn,
+        _counter_reserve(sim_cards)))
     # go-wide overrun: read the NUT board (a high percentile of the go-wide distribution).
     nut_power, nut_creatures = _nut_board(runs)
     overrun = estimate_overrun(all_cards, nut_power, nut_creatures)
@@ -254,7 +258,9 @@ def make_determinism_fn(
 def _counter_reserve(cards: list[tuple[Card, int]]) -> int:
     """Mana the pilot holds up for a counterspell: the lowest mana value among the deck's
     counterspells (the 99 plus any extra commanders), or 0 if it runs none."""
-    mvs = [c.mana_value for c, _ in cards if tags.analyze(c).counterspell]
+    mvs = [c.mana_value for c, _ in cards
+           if tags.analyze(c).counterspell
+           or tags.interaction_modes(tags._clean_text(c)).counter]
     return min(mvs) if mvs else 0
 
 
@@ -269,13 +275,26 @@ def _nut_board(runs: list) -> tuple[int, int]:
     return powers[i], creatures[i]
 
 
+def _per_turn_means(runs: list, turns: int) -> list[float]:
+    """Per-turn mean of the T0 mana-available curve, unrounded (0 for a turn no run reached)."""
+    curve: list[float] = []
+    for i in range(turns):
+        vals = [r.mana_available_by_turn[i] for r in runs if i < len(r.mana_available_by_turn)]
+        curve.append(sum(vals) / len(vals) if vals else 0)
+    return curve
+
+
 def _mean_mana_curve(runs: list, turns: int) -> list[int]:
     """Per-turn mean of the T0 mana-available curve (rounded) — the deck's honest mana, the
     go-off sim reads it instead of inventing mana (docs/SIMULATION.md)."""
     if not runs:
         return []
-    curve = []
-    for i in range(turns):
-        vals = [r.mana_available_by_turn[i] for r in runs if i < len(r.mana_available_by_turn)]
-        curve.append(round(sum(vals) / len(vals)) if vals else 0)
-    return curve
+    return [round(v) for v in _per_turn_means(runs, turns)]
+
+
+def _floored_mana_curve(runs: list, turns: int) -> list[int]:
+    """Per-turn mean FLOORED: the commander lens's X budget (spec: floor of the mean mana
+    available), so an X payoff never credits mana the average draw does not have."""
+    if not runs:
+        return []
+    return [math.floor(v) for v in _per_turn_means(runs, turns)]
