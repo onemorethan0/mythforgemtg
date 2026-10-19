@@ -1408,7 +1408,7 @@ _RUN_STOPWORDS = frozenset({
     "then", "like", "even", "notably", "meanwhile", "furthermore", "moreover", "of", "for",
     "as", "if", "when", "while", "the", "a", "an", "all", "many", "most", "some", "several",
     "they", "their", "he", "she", "his", "her", "which", "what", "cards", "card", "spells",
-    "commander", "deck", "first", "finally", "similarly", "likewise", "now", "board",
+    "commander", "deck", "first", "finally", "similarly", "likewise", "now", "board", "any",
     "still", "only", "just", "especially", "particularly", "anything", "something", "nothing",
 })
 _ARTICLES = frozenset({"the", "a", "an"})
@@ -1458,6 +1458,31 @@ def _claimed_runs(subject: str, aliases: set[str]) -> list[str]:
     return names
 
 
+# The synergy verb's OWN clause starts after the last of these: "Lightning Bolt handles blockers,
+# and Blasphemous Act triggers Smaug" claims nothing about Lightning Bolt. A bare "A and B both
+# trigger Smaug" (no comma) is one list subject and still claims both.
+_CLAUSE_CUT_RE = re.compile(
+    r"[;:]|\s-+\s|—"
+    r"|,\s*(?:and|but|or|so|yet|while|whereas|although|though|because|since|then|plus)\b"
+    r"|\b(?:while|whereas|although|though|because|since|whilst)\b",
+    re.IGNORECASE)
+# A relative clause ("Damnation, which synergizes with ...") claims only its antecedent, the last
+# name run before the relative pronoun.
+# The words between the pronoun and the verb must be lowercase ("which also", "that will"), so
+# "I think that Blasphemous Act triggers Smaug" is not read as a relative clause.
+_RELATIVE_CUT_RE = re.compile(r",?\s+(?:[Ww]hich|[Tt]hat|[Ww]ho)(?:\s+[a-z]+){0,2}\s*$")
+
+
+def _synergy_subject_runs(before: str, aliases: set[str]) -> list[str]:
+    parts = _CLAUSE_CUT_RE.split(before)
+    subject = parts[-1]
+    rel = _RELATIVE_CUT_RE.search(subject)
+    if rel is not None:
+        runs = _claimed_runs(subject[:rel.start()], aliases)
+        return runs[-1:]
+    return _claimed_runs(subject, aliases)
+
+
 def commander_synergy_claims(body: str, commander_names) -> list[str]:
     """Card names a sentence of `body` claims synergise with the commander: the capitalised
     name runs in the clause BEFORE "synergy with / triggers / works (well) with / combos with"
@@ -1472,8 +1497,8 @@ def commander_synergy_claims(body: str, commander_names) -> list[str]:
             before = sentence[:m.start()]
             if _NEGATOR_RE.search(before) or _SYNERGY_NEGATOR_RE.search(before):
                 continue
-            subject = re.split(r"[;:]|\s-+\s|\u2014", before)[-1]
-            for name in _claimed_runs(subject, aliases):
+            names = _synergy_subject_runs(before, aliases)
+            for name in names:
                 if name not in out:
                     out.append(name)
     return out

@@ -1017,7 +1017,7 @@
   "Wrath of God works well with your commander because he is indestructible.",
   "Chaos Warp works really well with your commander.",
   "Sol Ring combos with Smaug the Impenetrable.",
-  "Earthquake is a great card here because it triggers your commander every time.",
+  "Earthquake triggers your commander every time it resolves.",
   "Toxic Deluge works with your commander, clearing the board while he stays.",
   "In this list, Blasphemous Act and Wrath of God both synergise with your commander.",
   "Your best wipe is Damnation, which synergizes with the commander.",
@@ -1025,7 +1025,9 @@
   "With Smaug out, Blasphemous Act will trigger your commander for a pile of Treasure.",
   "Vandalblast has strong synergy with Smaug.",
   "Arcane Signet combos well with your commander.",
-  "**Blasphemous Act** has excellent synergy with your commander."
+  "**Blasphemous Act** has excellent synergy with your commander.",
+  "Blasphemous Act and Wrath of God both trigger Smaug.",
+  "Blasphemous Act and Pyroclasm work well with your commander."
  ],
  "commander_synergy_not_claim": [
   "Command Tower works with your mana base.",
@@ -1042,6 +1044,18 @@
   "Sol Ring works with your other mana rocks to ramp quickly.",
   "These cards synergize with each other more than with the commander's ability.",
   "Board wipes clear the way, and ramp gets you there faster.",
-  "Cultivate works well with your landfall payoffs."
+  "Cultivate works well with your landfall payoffs.",
+  "Earthquake is a great card here because it triggers your commander every time."
+ ],
+ "commander_synergy_other_clause": [
+  "Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug.",
+  "Swords to Plowshares is your cleanest removal, but Blasphemous Act works well with your commander.",
+  "Sol Ring speeds you up, while Blasphemous Act has huge synergy with your commander.",
+  "Counterspell protects your board; Blasphemous Act triggers your commander for Treasure.",
+  "Keep Lightning Bolt for blockers, since Blasphemous Act combos with Smaug.",
+  "Chaos Warp answers anything, so Blasphemous Act is the card that synergizes with your commander.",
+  "Arcane Signet fixes your mana, and your best wipe is Blasphemous Act, which triggers Smaug.",
+  "Cultivate ramps early, although Blasphemous Act will trigger your commander later.",
+  "I think that Blasphemous Act triggers Smaug every time."
  ]
 }

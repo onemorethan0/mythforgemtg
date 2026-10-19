@@ -160,3 +160,18 @@ def test_synergy_claims_vocabulary():
     assert f("Command Tower works with your mana base.", names) == []
     assert f("It has real synergy with your commander.", names) == []
     assert f("Wrath of God does not synergize with your commander.", names) == []
+    # only the synergy verb's own clause is claimed; a bare list subject claims every card
+    assert f("Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug.",
+             names) == ["Blasphemous Act"]
+    assert f("Your best wipe is Damnation, which synergizes with the commander.",
+             names) == ["Damnation"]
+    assert f("Blasphemous Act and Wrath of God both trigger Smaug.",
+             names) == ["Blasphemous Act", "Wrath of God"]
+
+
+def test_gate_does_not_reject_a_card_in_another_clause():
+    budget = ClaimBudget(card_names=frozenset({"Lightning Bolt", "Blasphemous Act"}),
+                         synergy_cards=frozenset({"Blasphemous Act"}))
+    body = "Lightning Bolt handles blockers, and Blasphemous Act triggers Smaug."
+    assert _check16(gate.check(body, replace(budget, commander_names=frozenset(
+        {"Smaug the Impenetrable"})))) == []

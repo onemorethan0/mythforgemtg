@@ -89,6 +89,10 @@ EXPECT = {
     # category: (predicate, should_be)
     "commander_synergy_claim": (_synergy_claimed, True),
     "commander_synergy_not_claim": (_synergy_claimed, False),
+    # a second card in ANOTHER clause is not claimed (review 2026-10-19: "Lightning Bolt handles
+    # blockers, and Blasphemous Act triggers Smaug" rejected a claim never made about the Bolt)
+    "commander_synergy_other_clause": (
+        lambda t: v.commander_synergy_claims(_norm(t), _SMAUG) == ["Blasphemous Act"], True),
     "role_question": (lambda t: v.is_role_question(t), True),
     "not_role_question": (lambda t: v.is_role_question(t), False),
     "role_report_complete": (_role_report_rejected, False),
