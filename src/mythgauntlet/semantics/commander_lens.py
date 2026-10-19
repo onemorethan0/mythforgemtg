@@ -16,7 +16,7 @@ import re
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 
-from mythgauntlet.model.card import Card
+from mythgauntlet.model.card import Card, ManaCost
 from mythgauntlet.semantics import tags
 
 KIND_SURVIVES_WIPE = "survives_wipe"
@@ -147,6 +147,55 @@ def x_budget(card: Card, ctx: LensDeckContext | None) -> int:
     return max(0, math.floor(ctx.mana_by_turn[t - 1]) - card.mana_value - ctx.counter_reserve)
 
 
+def _mana_x(card: Card, text: str, ctx: LensDeckContext | None) -> int:
+    """X credit for a mass-damage clause: the mana budget only when X is paid as mana on
+    casting ({X} in the cost). "Where X is the number of creatures" (Chain Reaction) is not
+    a mana X and its value is unknown here, so it credits 0."""
+    if "{x}" not in (card.mana_cost_str or "").casefold() or "where x is" in text:
+        return 0
+    return x_budget(card, ctx)
+
+
+_COST_SYMBOL_RE = re.compile(r"\{([^}]+)\}")
+
+
+def _net_of_activation(text: str, pos: int, amount: int) -> int:
+    """Treasure net of the mana an activated ability pays for it. Pestilence's
+    "{B}: ... 1 damage to each creature" turns {B} into one Treasure (no ramp); Mjolnir's
+    "{2}{R}, Discard this card: ... 2 damage" loses mana. An {X} activation is unknown: 0."""
+    line_start = text.rfind("\n", 0, pos) + 1
+    prefix = text[line_start:pos]
+    if ":" not in prefix:
+        return amount
+    cost = prefix.split(":", 1)[0]
+    syms = [s for s in _COST_SYMBOL_RE.findall(cost) if s not in ("t", "q", "e")]
+    if not syms:
+        return amount
+    if "x" in syms:
+        return 0
+    mv = ManaCost.parse("".join("{%s}" % s.upper() for s in syms)).mana_value
+    return max(0, amount - int(mv))
+
+
+_TARGET_HEAD_CUT_RE = re.compile(r" and |,|\.|\n")
+_EXCLUDED_TYPE_RE = re.compile(r"(?:isn't|is not) an? ([a-z]+)|\bnon-?([a-z]+)")
+
+
+def _target_excludes(text: str, start: int, commander: Card) -> bool:
+    """Does the targeted object's own clause rule this commander out? "any target that
+    isn't a Dragon" cannot hit Smaug; "target creature an opponent controls" cannot hit the
+    pilot's own commander."""
+    head = _TARGET_HEAD_CUT_RE.split(text[start:], maxsplit=1)[0]
+    if "opponent" in head or "you don't control" in head:
+        return True
+    type_words = set(re.findall(r"[a-z]+", (commander.type_line or "").casefold()))
+    for m in _EXCLUDED_TYPE_RE.finditer(head):
+        word = m.group(1) or m.group(2)
+        if word in type_words or word.rstrip("s") in type_words:
+            return True
+    return False
+
+
 def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
     text = tags._clean_text(card)
     parts: list[LensFacts] = []
@@ -168,12 +217,16 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
                 amt = _DEALS_AMOUNT_RE.match(text, m.start())
                 if amt is not None:
                     n = amt.group(1)
-                    treasure = max(treasure, x_budget(card, lens.ctx) if n == "x" else int(n))
+                    amount = _mana_x(card, text, lens.ctx) if n == "x" else int(n)
+                    treasure = max(treasure, _net_of_activation(text, m.start(), amount))
         if not hit:
             for m in tags._DAMAGE_TARGET_RE.finditer(text):
                 obj = m.group(1)
-                if obj in ("any target", "targets") or tags._hits_creature(obj):
-                    hit = True
+                if not (obj in ("any target", "targets") or tags._hits_creature(obj)):
+                    continue
+                if _target_excludes(text, m.start(1), cmd):
+                    continue
+                hit = True
             for m in tags._FIGHT_RE.finditer(text):
                 if tags._hits_creature(m.group(1)):
                     hit = True
@@ -198,17 +251,27 @@ _SAC_OUTLET_RE = re.compile(r"sacrifice (?:a|another) creature:")
 _DEATH_MODES = frozenset({"destroy", "damage", "minus", "static_minus", "edict"})
 
 
-def _death_trigger(card: Card) -> bool:
-    """Per line over cleaned text: an own-creature (or any-creature) death trigger.
-    A line naming "an opponent controls" is rejected."""
+def _death_trigger_line(card: Card) -> str | None:
+    """Per line over cleaned text: the line holding an own-creature (or any-creature) death
+    trigger, or None. A line naming "an opponent controls" is rejected."""
     names = "|".join(re.escape(n) for n in lens_self_names(card))
     self_re = re.compile(_SELF_DEATH_TMPL.format(names=names))
     for line in tags._clean_text(card).split("\n"):
         if "an opponent controls" in line:
             continue
         if _DEATH_TRIGGER_RE.search(line) or self_re.search(line):
-            return True
-    return False
+            return line
+    return None
+
+
+def _death_trigger(card: Card) -> bool:
+    return _death_trigger_line(card) is not None
+
+
+def _needs_counters(trigger_line: str) -> bool:
+    """Reyhan's "if it had one or more +1/+1 counters on it": only countered creatures pay
+    off, so a wipe of creatures "with no counters" triggers nothing."""
+    return re.search(r"if it had [^.]*counters?", trigger_line) is not None
 
 
 def _opponent_only(obj: str) -> bool:
@@ -216,39 +279,54 @@ def _opponent_only(obj: str) -> bool:
     return "opponent" in head or "you don't control" in head
 
 
-def _kills_own_creatures(text: str, modes: frozenset[str]) -> bool:
+def _scope_known(obj: str, needs_counters: bool) -> bool:
+    """A "chosen" back-reference (Druid of Purification's "each permanent chosen this way",
+    Season of Gathering's "permanents of the chosen type") sets its scope elsewhere, so the
+    pilot's creatures are not known to die: no claim. A counter-conditioned trigger is not
+    paid off by a wipe of creatures "with no counters"."""
+    head = _HEAD_CUT_RE.split(obj.casefold(), maxsplit=1)[0]
+    if "chosen" in head:
+        return False
+    return not (needs_counters and "no counters" in head)
+
+
+def _kills_own_creatures(text: str, modes: frozenset[str], needs_counters: bool = False) -> bool:
     """Some death-causing wipe clause reaches the pilot's own creatures. `interaction_modes`
     does not carry the object, so each mode's clause is re-found and an opponent-only object
     ("destroy all nonland permanents your opponents control") is rejected. Unknown qualifiers
     still count: the pilot's creatures die in the clause's own scope."""
     for mode, obj in _wipe_clauses(text):
         if (mode in modes and mode in _DEATH_MODES and tags._hits_creature(obj)
-                and not _opponent_only(obj)):
+                and not _opponent_only(obj) and _scope_known(obj, needs_counters)):
             return True
     for m in tags._MINUS_ALL_RE.finditer(text):
         obj = next(g for g in m.groups() if g)
         if ({"minus", "static_minus"} & modes and tags._hits_creature(obj)
-                and not _opponent_only(obj)):
+                and not _opponent_only(obj) and _scope_known(obj, needs_counters)):
             return True
     for m in tags._EDICT_RE.finditer(text):
         # Only a symmetrical "each player sacrifices all ..." makes the pilot sacrifice too.
         if ("edict" in modes and m.group(0).startswith("each player")
-                and m.group(1).startswith("all ") and tags._hits_creature(m.group(1))):
+                and m.group(1).startswith("all ") and tags._hits_creature(m.group(1))
+                and _scope_known(m.group(1), needs_counters)):
             return True
     return False
 
 
 def _death_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
-    cmds = [c for c in lens.commanders if _death_trigger(c)]
+    cmds = [(c, line) for c in lens.commanders
+            if (line := _death_trigger_line(c)) is not None]
     if not cmds:
         return LensFacts()
     text = tags._clean_text(card)
     modes = tags.interaction_modes(text).wipe & _DEATH_MODES
-    if (modes and _kills_own_creatures(text, modes)) or _SAC_OUTLET_RE.search(text):
-        return LensFacts(
-            payoff_kind=KIND_DEATH_PAYOFF,
-            reason=f"{cmds[0].name} pays off your creatures dying",
-        )
+    sac_outlet = _SAC_OUTLET_RE.search(text) is not None
+    for cmd, line in cmds:
+        if sac_outlet or (modes and _kills_own_creatures(text, modes, _needs_counters(line))):
+            return LensFacts(
+                payoff_kind=KIND_DEATH_PAYOFF,
+                reason=f"{cmd.name} pays off your creatures dying",
+            )
     return LensFacts()
 
 

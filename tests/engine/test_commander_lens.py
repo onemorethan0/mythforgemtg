@@ -228,3 +228,93 @@ def test_named_self_death_trigger_detected(make_card):
     lens = build_lens([colfenor])
     assert DEATH in lens.kinds
     assert lens.facts_for(make_card(**WRATH)).payoff_kind == DEATH
+
+
+# --- Task 8 corpus-sweep false positives (oracle text verbatim from the card store) ---
+
+INDORAPTOR = dict(name="Indoraptor, the Perfect Hybrid", mana_cost="{1}{B/G}{R}",
+    type_line="Legendary Creature — Dinosaur Mutant", power="4", toughness="4",
+    keywords=frozenset({"bloodthirst", "enrage", "menace"}),
+    oracle_text="Bloodthirst X (This creature enters with X +1/+1 counters on it, where X is the damage dealt to your opponents this turn.)\nMenace\nEnrage — Whenever Indoraptor is dealt damage, choose an opponent at random. Indoraptor deals damage equal to its power to that player unless they sacrifice a nontoken creature of their choice.")
+WRATHFUL_RAPTORS = dict(name="Wrathful Raptors", mana_cost="{4}{R}", type_line="Creature — Dinosaur",
+    keywords=frozenset({"trample"}), power="5", toughness="5",
+    oracle_text="Trample\nWhenever a Dinosaur you control is dealt damage, it deals that much damage to any target that isn't a Dinosaur.")
+WRATHFUL_DRAGON = dict(name="Wrathful Red Dragon", mana_cost="{3}{R}{R}", type_line="Creature — Dragon",
+    keywords=frozenset({"flying"}), power="5", toughness="5",
+    oracle_text="Flying\nWhenever a Dragon you control is dealt damage, it deals that much damage to any target that isn't a Dragon.")
+CHAIN_REACTION = dict(name="Chain Reaction", mana_cost="{2}{R}{R}", type_line="Sorcery",
+    oracle_text="Chain Reaction deals X damage to each creature, where X is the number of creatures on the battlefield.")
+SPITEFUL = dict(name="Spiteful Banditry", mana_cost="{X}{R}{R}", type_line="Enchantment",
+    keywords=frozenset({"treasure"}),
+    oracle_text="When this enchantment enters, it deals X damage to each creature.\nWhenever one or more creatures your opponents control die, you create a Treasure token. This ability triggers only once each turn.")
+DRUID_PURIFICATION = dict(name="Druid of Purification", mana_cost="{3}{G}", type_line="Creature — Human Druid",
+    power="2", toughness="3",
+    oracle_text="When this creature enters, starting with you, each player may choose an artifact or enchantment you don't control. Destroy each permanent chosen this way.")
+SEASON_GATHERING = dict(name="Season of Gathering", mana_cost="{4}{G}{G}", type_line="Sorcery",
+    oracle_text="Choose up to five {P} worth of modes. You may choose the same mode more than once.\n{P} — Put a +1/+1 counter on a creature you control. It gains vigilance and trample until end of turn.\n{P}{P} — Choose artifact or enchantment. Destroy all permanents of the chosen type.\n{P}{P}{P} — Draw cards equal to the greatest power among creatures you control.")
+REYHAN = dict(name="Reyhan, Last of the Abzan", mana_cost="{1}{B}{G}",
+    type_line="Legendary Creature — Human Warrior", keywords=frozenset({"partner"}), power="0", toughness="0",
+    oracle_text="Reyhan enters with three +1/+1 counters on it.\nWhenever a creature you control dies or is put into the command zone, if it had one or more +1/+1 counters on it, you may put that many +1/+1 counters on target creature.\nPartner (You can have two commanders if both have partner.)")
+DAMNING_VERDICT = dict(name="Damning Verdict", mana_cost="{3}{W}{W}", type_line="Sorcery",
+    oracle_text="Destroy all creatures with no counters on them.")
+
+
+def test_any_target_that_isnt_commander_type_is_not_a_hit(make_card, smaug):
+    # Wrathful Raptors cannot target Indoraptor (a Dinosaur); Wrathful Red Dragon cannot
+    # target Smaug (a Dragon). The restriction trails "any target".
+    assert build_lens([make_card(**INDORAPTOR)]).facts_for(make_card(**WRATHFUL_RAPTORS)).empty
+    assert build_lens([smaug]).facts_for(make_card(**WRATHFUL_DRAGON)).empty
+
+
+def test_any_target_still_hits_a_commander_of_another_type(make_card):
+    # The same restriction does not stop Wrathful Red Dragon hitting a Dinosaur commander.
+    f = build_lens([make_card(**INDORAPTOR)]).facts_for(make_card(**WRATHFUL_DRAGON))
+    assert f.payoff_kind == KIND
+
+
+def test_x_defined_by_where_clause_is_not_mana_x(make_card, smaug):
+    # Chain Reaction's X is the creature count, not mana: no Treasure from the mana budget.
+    f = build_lens([smaug], CTX).facts_for(make_card(**CHAIN_REACTION))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+
+
+def test_cast_x_in_mana_cost_still_uses_budget(make_card, smaug):
+    f = build_lens([smaug], CTX).facts_for(make_card(**SPITEFUL))
+    assert f.payoff_treasure > 0
+
+
+def test_chosen_back_reference_wipe_is_not_death_payoff(make_card):
+    lens = build_lens([make_card(**MEREN)])
+    assert lens.facts_for(make_card(**DRUID_PURIFICATION)).empty
+    assert lens.facts_for(make_card(**SEASON_GATHERING)).empty
+
+
+def test_counter_conditioned_death_trigger_ignores_no_counter_wipe(make_card):
+    lens = build_lens([make_card(**REYHAN)])
+    assert DEATH in lens.kinds
+    assert lens.facts_for(make_card(**DAMNING_VERDICT)).empty
+    assert lens.facts_for(make_card(**WRATH)).payoff_kind == DEATH
+    assert lens.facts_for(make_card(**VISCERA)).payoff_kind == DEATH
+    # Meren has no counter condition: Damning Verdict still kills her deck's creatures.
+    assert build_lens([make_card(**MEREN)]).facts_for(make_card(**DAMNING_VERDICT)).payoff_kind == DEATH
+
+
+PESTILENCE = dict(name="Pestilence", mana_cost="{2}{B}{B}", type_line="Enchantment",
+    oracle_text="At the beginning of the end step, if no creatures are on the battlefield, sacrifice this enchantment.\n{B}: This enchantment deals 1 damage to each creature and each player.")
+MJOLNIR = dict(name="Mj\u00f6lnir, Hammer of Thor", mana_cost="{3}{R}", type_line="Legendary Artifact \u2014 Equipment",
+    oracle_text="When Mj\u00f6lnir enters, it deals 4 damage to up to one target creature.\nDouble all damage equipped creature would deal.\nEquip worthy {1} (A creature is worthy if it's a legendary non-Villain that's red and/or white.)\n{2}{R}, Discard this card: It deals 2 damage to each creature.")
+LAVABRINK = dict(name="Lavabrink Floodgates", mana_cost="{3}{R}", type_line="Artifact",
+    oracle_text="{T}: Add {R}{R}.\nAt the beginning of each player's upkeep, that player may put a doom counter on this artifact or remove a doom counter from it. Then if it has three or more doom counters on it, sacrifice this artifact. When you do, it deals 6 damage to each creature.")
+
+
+def test_mana_paid_activation_treasure_is_net_of_its_cost(make_card, smaug):
+    # Pestilence: pay {B}, Smaug takes 1, makes 1 Treasure -- no net mana, so no Ramp credit.
+    # Mjolnir: pay {2}{R} for 2 damage -- net negative. Both keep the synergy label.
+    lens = build_lens([smaug], CTX)
+    for spec in (PESTILENCE, MJOLNIR):
+        f = lens.facts_for(make_card(**spec))
+        assert f.payoff_kind == KIND
+        assert f.payoff_treasure == 0
+    # A triggered (unpaid) mass damage keeps its full credit.
+    assert lens.facts_for(make_card(**LAVABRINK)).payoff_treasure == 6
