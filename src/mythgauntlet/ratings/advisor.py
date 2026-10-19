@@ -30,6 +30,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import redundancy, swap_brief
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics import tags
+from mythgauntlet.semantics.commander_lens import CommanderLens, build_lens
 from mythgauntlet.semantics.model import EffectVector
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
@@ -395,6 +396,7 @@ def _cut_candidates(
     strategy: str,
     themes: Sequence[str] = (),
     lift: dict[str, float] | None = None,
+    lens: CommanderLens | None = None,
 ) -> list[Card]:
     """The `k` cards to offer as cuts, per `strategy`.
 
@@ -414,7 +416,8 @@ def _cut_candidates(
     if strategy == CUT_POPULARITY:
         return _weakest_cuts(resolved, k)
     return redundancy.rank_redundant(
-        resolved, k, targets=redundancy.targets_for(themes), lift=lift
+        resolved, k, targets=redundancy.targets_for(themes), lift=lift,
+        lens=lens,
     )
 
 
@@ -591,6 +594,7 @@ def advise(
     cut_strategy: str = CUT_REDUNDANT,
     themes: Sequence[str] = (),
     lift: dict[str, float] | None = None,
+    lens: CommanderLens | None = None,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -661,7 +665,9 @@ def advise(
     need_res = target == "resilience"
     base_score = axis_score(baseline, target)
 
-    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift)
+    if lens is None:
+        lens = build_lens(resolved.commanders)
+    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift, lens)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0
     analyses = 0

@@ -1141,7 +1141,7 @@ def _diagnose_facts(ctx: MentorContext, a: DeckAnalysis) -> dict:
     for c, q in nonland:
         if "Creature" in c.type_line:
             continue
-        roles = redundancy.card_roles(tags.analyze(c))
+        roles = redundancy.roles_for(c)
         if "ramp" in roles or "draw" in roles:
             engines += q
     role_cards = redundancy.role_card_counts(resolved)

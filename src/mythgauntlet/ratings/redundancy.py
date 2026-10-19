@@ -36,6 +36,7 @@ from dataclasses import dataclass
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.semantics import tags
+from mythgauntlet.semantics.commander_lens import CommanderLens, LensFacts
 from mythgauntlet.semantics.model import EffectVector
 
 # What "too much of this role" means, CALIBRATED against real decks — the 60th percentile
@@ -269,10 +270,11 @@ def card_targets_for(
     return targets
 
 
+ONE_SHOT_RAMP_CAP = 2.0  # one-shot lens Treasure as ramp; the weight `fetches_land` already uses
 IMPULSE_WEIGHT = 0.5  # one impulse-drawn card, as a fraction of a card actually drawn
 
 
-def card_roles(ev: EffectVector) -> dict[str, float]:
+def card_roles(ev: EffectVector, facts: LensFacts | None = None) -> dict[str, float]:
     """The functional roles a card fills, and how strongly it fills each.
 
     An empty dict means the card has no role this module recognises — a pet card, a
@@ -287,7 +289,9 @@ def card_roles(ev: EffectVector) -> dict[str, float]:
         # player counts it; `cost_reduction` already covers `spell_cost_reduction`'s shapes.
         "ramp": (float(ev.ramp_sources) + (2.0 if ev.fetches_land else 0.0)
                  + float(max(ev.treasure_ramp, ev.mana_on_cast))
-                 + float(max(ev.cost_reduction, ev.spell_cost_reduction))),
+                 + float(max(ev.cost_reduction, ev.spell_cost_reduction))
+                 + (min(float(facts.payoff_treasure), ONE_SHOT_RAMP_CAP)
+                    if facts is not None and facts.payoff_treasure > 0 else 0.0)),
         # Impulse draw (Light Up the Stage, Outpost Siege) counts at HALF a drawn card: the
         # window closes (this turn, or the end of the next one) and lands still need a land drop,
         # so Light Up the Stage's two cards weigh one cantrip and Outpost Siege's one card a
@@ -315,7 +319,14 @@ def card_roles(ev: EffectVector) -> dict[str, float]:
     return {role: strength for role, strength in roles.items() if strength > 0.0}
 
 
-def role_supply(resolved: ResolvedDeck) -> dict[str, float]:
+def roles_for(card: Card, lens: CommanderLens | None = None) -> dict[str, float]:
+    """The ONE call shape for a card's roles: `card_roles` over `tags.analyze`, plus the
+    commander lens facts when a lens is given. No lens is byte-identical to the old call."""
+    facts = lens.facts_for(card) if lens is not None else None
+    return card_roles(tags.analyze(card), facts)
+
+
+def role_supply(resolved: ResolvedDeck, lens: CommanderLens | None = None) -> dict[str, float]:
     """How much of each role the deck's nonland spells supply, counts included.
 
     Commanders are excluded on purpose: the commander is never a cut candidate, and
@@ -326,12 +337,12 @@ def role_supply(resolved: ResolvedDeck) -> dict[str, float]:
     for card, count in resolved.cards:
         if card.is_land:
             continue
-        for role, strength in card_roles(tags.analyze(card)).items():
+        for role, strength in roles_for(card, lens).items():
             supply[role] = supply.get(role, 0.0) + strength * count
     return supply
 
 
-def role_card_counts(resolved: ResolvedDeck) -> dict[str, int]:
+def role_card_counts(resolved: ResolvedDeck, lens: CommanderLens | None = None) -> dict[str, int]:
     """How many nonland CARDS (copies counted) fill each role -- the unit a player means by
     "how many wipes do I run". `role_supply` is a STRENGTH score (a wipe is 3.0, a
     counterspell 3.0, a tutor 2.0) and reads as a card count the moment it is printed next
@@ -341,7 +352,7 @@ def role_card_counts(resolved: ResolvedDeck) -> dict[str, int]:
     for card, count in resolved.cards:
         if card.is_land:
             continue
-        for role in card_roles(tags.analyze(card)):
+        for role in roles_for(card, lens):
             counts[role] = counts.get(role, 0) + count
     return counts
 
@@ -362,6 +373,7 @@ def score_card(
     card: Card,
     supply: dict[str, float],
     targets: dict[str, int] | None = None,
+    lens: CommanderLens | None = None,
 ) -> RedundancyScore:
     """Score one card's redundancy against the deck's role supply.
 
@@ -394,9 +406,11 @@ def score_card(
     """
     if targets is None:            # `or` would silently ignore a deliberate empty dict
         targets = ROLE_TARGETS
-    roles = card_roles(tags.analyze(card))
+    roles = roles_for(card, lens)
     if not roles:
         return RedundancyScore(card, None, 0.0, 0.0, 0.0, protected=True)
+    # A card the commander lens flags is doing commander-specific work: never offered as a cut.
+    lens_protected = lens is not None and not lens.facts_for(card).empty
 
     # Highest oversupply wins; ties break on role name so the choice is deterministic.
     best_role, best_over, best_within = None, -1.0, 0.0
@@ -412,7 +426,7 @@ def score_card(
         oversupply=best_over,
         within_role=best_within,
         score=best_over / (1.0 + best_within),
-        protected=False,
+        protected=lens_protected,
     )
 
 
@@ -523,6 +537,7 @@ def rank_redundant(
     *,
     targets: dict[str, int] | None = None,
     lift: dict[str, float] | None = None,
+    lens: CommanderLens | None = None,
 ) -> list[Card]:
     """The deck's `k` best cut candidates, most redundant first.
 
@@ -542,7 +557,7 @@ def rank_redundant(
     Deterministic: equal scores, equal lift and equal ranks fall through to card name.
     """
     k = max(1, k)
-    supply = role_supply(resolved)
+    supply = role_supply(resolved, lens)
 
     scored: list[RedundancyScore] = []
     seen: set[str] = set()             # Card is a mutable dataclass -> unhashable; key by name
@@ -550,7 +565,7 @@ def rank_redundant(
         if card.is_land or card.name in seen:
             continue
         seen.add(card.name)
-        scored.append(score_card(card, supply, targets))
+        scored.append(score_card(card, supply, targets, lens))
 
     candidates = [s for s in scored if not s.protected]
     protected = [s for s in scored if s.protected]

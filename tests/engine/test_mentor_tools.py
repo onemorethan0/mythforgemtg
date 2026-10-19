@@ -673,7 +673,7 @@ def test_deck_card_rows_shape_order_and_roles(make_card, empty_store):
     assert ramp["roles"] == ["ramp"] and ramp["mana_value"] == 2
     assert wipe["roles"] == ["wipe"] and wipe["type_line"] == "Sorcery"
     assert forest["roles"] == ["land"] and forest["qty"] == 35   # duplicate rows merged
-    assert set(ramp) == {"name", "qty", "mana_value", "type_line", "roles"}
+    assert set(ramp) == {"name", "qty", "mana_value", "type_line", "roles", "commander_synergy"}
 
 
 def test_deck_card_rows_never_merges_a_commander_with_a_same_named_card(make_card):

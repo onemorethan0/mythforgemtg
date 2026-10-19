@@ -32,7 +32,7 @@ from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import advisor, redundancy
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.ratings.axes import compute_interaction
-from mythgauntlet.semantics import tags
+from mythgauntlet.semantics.commander_lens import CommanderLens
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim.tier0 import SimConfig
 
@@ -52,8 +52,8 @@ ROLE_AXIS: dict[str, str | None] = {
 COST_AXES: tuple[str, ...] = tuple(advisor.AXES)
 
 
-def card_role_set(card: Card) -> set[str]:
-    return set(redundancy.card_roles(tags.analyze(card)))
+def card_role_set(card: Card, lens: CommanderLens | None = None) -> set[str]:
+    return set(redundancy.roles_for(card, lens))
 
 
 @dataclass(frozen=True)
@@ -71,6 +71,7 @@ def role_cut_pool(
     card_targets: dict[str, int],
     applicable: set[str],
     strength_targets: dict[str, int] | None = None,
+    lens: CommanderLens | None = None,
 ) -> list[CutCandidate]:
     """Nonland deck cards safe to cut for `role`, best first.
 
@@ -84,14 +85,15 @@ def role_cut_pool(
     if not over:
         return []
     order = {c.name: i for i, c in enumerate(redundancy.rank_redundant(
-        resolved, len(resolved.cards) + 1, targets=strength_targets))}
+        resolved, len(resolved.cards) + 1, targets=strength_targets, lens=lens))}
     out: list[CutCandidate] = []
     seen: set[str] = set()
+    flagged = lens.flagged(c for c, _ in resolved.cards) if lens is not None else set()
     for card, _qty in resolved.cards:
-        if card.is_land or card.name in seen:
+        if card.is_land or card.name in seen or card.name in flagged:
             continue
         seen.add(card.name)
-        roles = card_role_set(card) & applicable
+        roles = card_role_set(card, lens) & applicable
         if not roles or role in roles or not roles <= over:
             continue
         best = max(sorted(roles), key=lambda r: card_counts[r] - card_targets[r])
@@ -101,7 +103,8 @@ def role_cut_pool(
     return out
 
 
-def role_add_pool(resolved: ResolvedDeck, role: str, candidates: Iterable[Card]) -> list[Card]:
+def role_add_pool(resolved: ResolvedDeck, role: str, candidates: Iterable[Card],
+                  lens: CommanderLens | None = None) -> list[Card]:
     """Owned candidates that fill `role`, legal in this deck, not already in it."""
     in_deck = {c.name for c, _ in resolved.cards} | {c.name for c in resolved.commanders}
     identity = advisor._commander_identity(resolved)
@@ -109,7 +112,7 @@ def role_add_pool(resolved: ResolvedDeck, role: str, candidates: Iterable[Card])
     for c in candidates:
         if c.name in in_deck or c.name in seen or not advisor._is_legal_candidate(c, identity):
             continue
-        if role in card_role_set(c):
+        if role in card_role_set(c, lens):
             seen.add(c.name)
             out.append(c)
     return out
@@ -197,6 +200,7 @@ def role_swap(
     max_eval: int = 1,
     cut_pool: int = 2,
     min_delta: float = 1.0,
+    lens: CommanderLens | None = None,
 ) -> RoleSwapReport:
     """Measure up to `max_eval` x `cut_pool` (add, cut) pairs for `role` and pick one.
 
@@ -204,13 +208,13 @@ def role_swap(
     reads) and that costs no other axis beyond its noise floor; among those the largest gain.
     When every measured pair carries a cost the one with the smallest total loss is returned
     WITH its costs, never silently -- the caller must say what it costs."""
-    counts = redundancy.role_card_counts(resolved)
+    counts = redundancy.role_card_counts(resolved, lens)
     axis = ROLE_AXIS.get(role)
     report = RoleSwapReport(role=role, axis=axis, role_cards=counts.get(role, 0),
                             card_target=card_targets.get(role, 0), adds_available=0,
                             cuts_available=0, pairs_measured=0, swap=None)
-    adds = role_add_pool(resolved, role, candidates)
-    cuts = role_cut_pool(resolved, role, counts, card_targets, applicable, strength_targets)
+    adds = role_add_pool(resolved, role, candidates, lens)
+    cuts = role_cut_pool(resolved, role, counts, card_targets, applicable, strength_targets, lens)
     report.adds_available, report.cuts_available = len(adds), len(cuts)
     if not adds:
         report.reason = f"no owned, in-colour card outside the deck fills {role}"
