@@ -21,6 +21,7 @@ from mythgauntlet.semantics import tags
 
 KIND_SURVIVES_WIPE = "survives_wipe"
 KIND_DAMAGE_TO_SELF = "damage_to_self_payoff"
+KIND_DEATH_PAYOFF = "death_payoff"
 
 # Wipe modes an indestructible commander survives.
 _INDESTRUCTIBLE_SURVIVES = frozenset({"destroy", "damage"})
@@ -186,9 +187,72 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
     return _merge(parts)
 
 
+_DEATH_TRIGGER_RE = re.compile(
+    r"whenever (?:a|another|one or more)(?: other)?(?: nontoken)? creatures?"
+    r"(?: or planeswalkers?)? you control (?:dies|die)"
+    r"|whenever (?:this creature or )?another creature dies"
+)
+_SAC_OUTLET_RE = re.compile(r"sacrifice (?:a|another) creature:")
+# Wipe modes that make creatures DIE. Bounce and exile move them without a death.
+_DEATH_MODES = frozenset({"destroy", "damage", "minus", "static_minus", "edict"})
+
+
+def _death_trigger(card: Card) -> bool:
+    """Per line over cleaned text: an own-creature (or any-creature) death trigger.
+    A line naming "an opponent controls" is rejected."""
+    for line in tags._clean_text(card).split("\n"):
+        if "an opponent controls" in line:
+            continue
+        if _DEATH_TRIGGER_RE.search(line):
+            return True
+    return False
+
+
+def _opponent_only(obj: str) -> bool:
+    head = _HEAD_CUT_RE.split(obj.casefold(), maxsplit=1)[0]
+    return "opponent" in head or "you don't control" in head
+
+
+def _kills_own_creatures(text: str, modes: frozenset[str]) -> bool:
+    """Some death-causing wipe clause reaches the pilot's own creatures. `interaction_modes`
+    does not carry the object, so each mode's clause is re-found and an opponent-only object
+    ("destroy all nonland permanents your opponents control") is rejected. Unknown qualifiers
+    still count: the pilot's creatures die in the clause's own scope."""
+    for mode, obj in _wipe_clauses(text):
+        if (mode in modes and mode in _DEATH_MODES and tags._hits_creature(obj)
+                and not _opponent_only(obj)):
+            return True
+    for m in tags._MINUS_ALL_RE.finditer(text):
+        obj = next(g for g in m.groups() if g)
+        if ({"minus", "static_minus"} & modes and tags._hits_creature(obj)
+                and not _opponent_only(obj)):
+            return True
+    for m in tags._EDICT_RE.finditer(text):
+        # Only a symmetrical "each player sacrifices all ..." makes the pilot sacrifice too.
+        if ("edict" in modes and m.group(0).startswith("each player")
+                and m.group(1).startswith("all ") and tags._hits_creature(m.group(1))):
+            return True
+    return False
+
+
+def _death_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
+    cmds = [c for c in lens.commanders if _death_trigger(c)]
+    if not cmds:
+        return LensFacts()
+    text = tags._clean_text(card)
+    modes = tags.interaction_modes(text).wipe & _DEATH_MODES
+    if (modes and _kills_own_creatures(text, modes)) or _SAC_OUTLET_RE.search(text):
+        return LensFacts(
+            payoff_kind=KIND_DEATH_PAYOFF,
+            reason=f"{cmds[0].name} pays off your creatures dying",
+        )
+    return LensFacts()
+
+
 _FACT_FUNCS = {
     KIND_SURVIVES_WIPE: _survives_wipe_facts,
     KIND_DAMAGE_TO_SELF: _damage_payoff_facts,
+    KIND_DEATH_PAYOFF: _death_payoff_facts,
 }
 
 
@@ -238,4 +302,6 @@ def build_lens(commanders: Sequence[Card], ctx: LensDeckContext | None = None) -
         kinds.append(KIND_SURVIVES_WIPE)
     if any(_damage_to_self(c) is not None for c in cmds):
         kinds.append(KIND_DAMAGE_TO_SELF)
+    if any(_death_trigger(c) for c in cmds):
+        kinds.append(KIND_DEATH_PAYOFF)
     return CommanderLens(cmds, tuple(kinds), ctx)

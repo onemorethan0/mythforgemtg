@@ -176,3 +176,45 @@ def test_full_name_subject_detected(make_card):
 
 def test_other_subject_not_detected(make_card):
     assert KIND not in build_lens([make_card(**KAZAROV)]).kinds
+
+
+MEREN = dict(name="Meren of Clan Nel Toth", mana_cost="{2}{B}{G}",
+    type_line="Legendary Creature — Human Shaman", power="3", toughness="4",
+    oracle_text="Whenever another creature you control dies, you get an experience counter.\nAt the beginning of your end step, choose target creature card in your graveyard. If that card's mana value is less than or equal to the number of experience counters you have, return it to the battlefield. Otherwise, put it into your hand.")
+TOSHIRO = dict(name="Toshiro Umezawa", mana_cost="{1}{B}{B}",
+    type_line="Legendary Creature — Human Samurai", keywords=frozenset({"bushido"}), power="2", toughness="2",
+    oracle_text="Bushido 1 (Whenever this creature blocks or becomes blocked, it gets +1/+1 until end of turn.)\nWhenever a creature an opponent controls dies, you may cast target instant card from your graveyard. If that spell would be put into a graveyard, exile it instead.")
+VISCERA = dict(name="Viscera Seer", mana_cost="{B}", type_line="Creature — Vampire Wizard",
+    keywords=frozenset({"scry"}), power="1", toughness="1",
+    oracle_text="Sacrifice a creature: Scry 1. (Look at the top card of your library. You may put that card on the bottom.)")
+DEATH = "death_payoff"
+
+
+def test_meren_wrath_is_death_payoff(make_card):
+    f = build_lens([make_card(**MEREN)]).facts_for(make_card(**WRATH))
+    assert f.payoff_kind == DEATH
+    assert f.payoff_treasure == 0
+    assert f.wipe_one_sided is False
+
+
+def test_meren_sac_outlet_is_death_payoff(make_card):
+    f = build_lens([make_card(**MEREN)]).facts_for(make_card(**VISCERA))
+    assert f.payoff_kind == DEATH
+
+
+def test_meren_farewell_not_payoff(make_card):
+    assert build_lens([make_card(**MEREN)]).facts_for(make_card(**FAREWELL)).empty
+
+
+def test_opponent_death_trigger_not_detected(make_card):
+    assert DEATH not in build_lens([make_card(**TOSHIRO)]).kinds
+
+
+def test_meren_opponent_only_wipe_not_payoff(make_card):
+    assert build_lens([make_card(**MEREN)]).facts_for(make_card(**RUINOUS)).empty
+
+
+def test_meren_damage_and_minus_wipes_are_payoff(make_card):
+    lens = build_lens([make_card(**MEREN)])
+    assert lens.facts_for(make_card(**BLASPHEMOUS)).payoff_kind == DEATH
+    assert lens.facts_for(make_card(**DELUGE)).payoff_kind == DEATH
