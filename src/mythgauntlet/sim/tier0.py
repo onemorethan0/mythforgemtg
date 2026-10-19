@@ -109,6 +109,7 @@ class _Source:
     ready: bool = True
     from_creature: bool = False  # mana dork — dies to a board wipe (Tier-1 disruption)
     temp: bool = False  # ritual mana (T2): expires at the controller's next untap step
+    from_commander: bool = False  # the commander's own mana ability (survives with it)
 
 
 @dataclass
@@ -265,6 +266,7 @@ def _cast_priority(sc: SimCard, turn: int, cfg: SimConfig) -> tuple:
 def _run_one(
     deck: list[SimCard], commander: SimCard | None, cfg: SimConfig, rng: SeededRng,
     board_wipe_turn: int | None = None,
+    commander_survives_wipe: bool = False,
 ) -> RunStats:
     stats = RunStats()
     hand, library, stats.mulligans = _mulligan(deck, rng, cfg)
@@ -300,7 +302,7 @@ def _run_one(
                 hand.append(library.pop())
                 stats.cards_drawn += 1
 
-    def apply_effects(sc: SimCard) -> None:
+    def apply_effects(sc: SimCard, is_commander: bool = False) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         nonlocal creature_engine, creature_dmg_engine
         if sc.card.is_creature:
@@ -327,7 +329,7 @@ def _run_one(
             for _ in range(sc.fx.ramp_sources):
                 sources.append(
                     _Source(sc.produced_colors(), ready=False,
-                            from_creature=sc.card.is_creature)
+                            from_creature=sc.card.is_creature, from_commander=is_commander)
                 )
         draw(sc.fx.draw_cards)
 
@@ -357,20 +359,42 @@ def _run_one(
         # a pilot always takes that option) and can be recast for {2} more (CR 903.8). Without
         # this, a deck whose pressure IS its commander read as never recovering from a wipe.
         # Only ever reached in a wiped run, so clean runs -- every other axis -- are unchanged.
+        #
+        # `commander_survives_wipe` (the commander lens: an indestructible lead commander
+        # survives a "destroy" wipe) keeps an on-board creature commander where it is -- no
+        # return to the zone, no tax -- and re-adds its OWN contributions after the clear.
+        # Ordering: pending pools were folded in just above and casts happen below, so a
+        # commander on the battlefield here was cast on an EARLIER turn and every one of its
+        # contributions already sits in the active pools; a commander cast this turn is cast
+        # after the wipe and is untouched by it either way.
         if board_wipe_turn is not None and turn == board_wipe_turn:
+            commander_stays = False
             if (commander is not None and not commander_in_zone
                     and commander.card.is_creature):
-                commander_in_zone = True
-                commander_tax += 2
+                if commander_survives_wipe:
+                    commander_stays = True
+                else:
+                    commander_in_zone = True
+                    commander_tax += 2
             board_power = 0
             pending_power = 0
             board_creatures = 0
             pending_creatures = 0
-            sources = [s for s in sources if not s.from_creature]
+            sources = [s for s in sources
+                       if not s.from_creature or (commander_stays and s.from_commander)]
             enabler_active = enabler_pending = False  # the enabler died too
             engine_active -= creature_engine
             dmg_engine_active -= creature_dmg_engine
             creature_engine = creature_dmg_engine = 0
+            if commander_stays:
+                # exactly what apply_effects(commander) put on the board (see there)
+                board_power = commander.attack_power
+                board_creatures = 1
+                enabler_active = commander.fx.cheats_creatures
+                creature_engine = commander.fx.engine_draw
+                creature_dmg_engine = commander.fx.magecraft_damage + commander.fx.cast_damage
+                engine_active += creature_engine
+                dmg_engine_active += creature_dmg_engine
 
         if turn > 1 or cfg.draw_on_first_turn:
             draw(1)
@@ -425,7 +449,7 @@ def _run_one(
                     stats.commander_turn = turn
             else:
                 hand.remove(sc)
-            apply_effects(sc)
+            apply_effects(sc, is_commander)
 
         # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
         # how a player actually plays a Fireball — as a mana sink, not for X=0). Cheapest
@@ -479,17 +503,23 @@ def _run_one(
 def simulate(
     cards: list[tuple[Card, int]], commander: Card | None, cfg: SimConfig,
     board_wipe_turn: int | None = None,
+    commander_survives_wipe: bool = False,
 ) -> list[RunStats]:
     """Run cfg.runs seeded goldfish games. Deterministic for a given (deck, cfg).
 
     board_wipe_turn injects a Tier-1 disruption (see _run_one). Because run i always
     draws from the same seeded stream, a clean run and a wiped run at the same seed are
     a matched pair — variance cancels when their outcomes are differenced (resilience).
+
+    commander_survives_wipe: the lead commander survives that wipe (commander lens,
+    `CommanderLens.survives_mode("destroy")`); False -- the default -- is byte-identical
+    to the pre-lens behaviour, and clean runs (no wipe) never read it.
     """
     deck = build_sim_cards(cards)
     sim_commander = SimCard(card=commander, fx=tags.analyze(commander)) if commander else None
     root = SeededRng(cfg.seed)
     return [
-        _run_one(deck, sim_commander, cfg, root.spawn(i), board_wipe_turn)
+        _run_one(deck, sim_commander, cfg, root.spawn(i), board_wipe_turn,
+                 commander_survives_wipe)
         for i in range(cfg.runs)
     ]

@@ -111,6 +111,7 @@ def _mean(values: list[float]) -> float:
 def compute_resilience(
     cards: list[tuple[Card, int]], commander: Card | None, cfg: SimConfig, wipe_turn: int,
     all_cards: list[tuple[Card, int]] | None = None,
+    commander_survives_wipe: bool = False,
 ) -> ResilienceReport:
     """`all_cards` is `cards` plus the LEAD commander (mirrors `ratings.analysis.analyze_deck`'s
     own `all_cards` — the commander is simulated specially and isn't in `cards`), passed
@@ -120,9 +121,14 @@ def compute_resilience(
     still measured against a combat-only kill_turn that doesn't reflect how it actually
     wins). Defaults to `cards` when the caller has no lead commander to add (a strict
     subset of the real fix, still correct, just missing the commander's own contribution).
+
+    `commander_survives_wipe` (the caller reads the commander lens:
+    `survives_mode("destroy")`, the mode this injected wipe models) applies to the WIPED
+    batch only; the clean batch has no wipe for it to change.
     """
     clean = simulate(cards, commander, cfg)
-    wiped = simulate(cards, commander, cfg, board_wipe_turn=wipe_turn)
+    wiped = simulate(cards, commander, cfg, board_wipe_turn=wipe_turn,
+                     commander_survives_wipe=commander_survives_wipe)
     nut_kill_cards = all_cards if all_cards is not None else cards
     # A board wipe clears creatures, not mana or hand -- so a storm kill_turn (mana-curve
     # driven) is UNCHANGED by the wipe, correctly: a counterspell-free wipe doesn't stop a

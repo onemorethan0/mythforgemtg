@@ -28,7 +28,9 @@ from mythgauntlet.ratings.insight import DeckInsight, build_insight
 from mythgauntlet.ratings.strength_model import features as strength_features
 from mythgauntlet.ratings.table_feel import TableFeelReport, compute_table_feel
 from mythgauntlet.ratings.metrics import ConsistencyReport
+from mythgauntlet.semantics import tags
 from mythgauntlet.semantics.combo_rules import DeterminismVerdict, classify_determinism
+from mythgauntlet.semantics.commander_lens import CommanderLens, LensDeckContext, build_lens
 from mythgauntlet.semantics.store import CoverageReport, SemanticsStore
 from mythgauntlet.sim.clock import apply_nut_kills
 from mythgauntlet.sim.overrun import OverrunReport, estimate_overrun
@@ -62,6 +64,9 @@ class DeckAnalysis:
     # How salty the deck reads to a casual pod (EDHREC community salt). A lens, not a power
     # axis: nothing in the bracket estimate reads it. None only for hand-built analyses.
     table_feel: TableFeelReport | None = None
+    # How the commander changes what cards do (semantics/commander_lens). None only for
+    # hand-built analyses; analyze_deck always builds one (kinds == () for a plain legend).
+    lens: CommanderLens | None = None
 
 
 def analyze_deck(
@@ -120,6 +125,8 @@ def analyze_deck(
     # for the bracket gate's can_go_off, both of which pre-date and are independent of Phase 1a.
     mana_by_turn = _mean_mana_curve(runs, cfg.turns)
     go_off = estimate_go_off(all_cards, mana_by_turn, cfg.turns)
+    lens = build_lens(resolved.commanders, LensDeckContext(
+        tuple(mana_by_turn), report.avg_commander_turn, _counter_reserve(sim_cards)))
     # go-wide overrun: read the NUT board (a high percentile of the go-wide distribution).
     nut_power, nut_creatures = _nut_board(runs)
     overrun = estimate_overrun(all_cards, nut_power, nut_creatures)
@@ -180,7 +187,11 @@ def analyze_deck(
     wipe_turn = None
     if run_resilience:
         wipe_turn = default_wipe_turn(cfg.turns)
-        resilience = compute_resilience(sim_cards, commander, cfg, wipe_turn, all_cards=all_cards)
+        # The injected wipe is a "destroy all creatures": an indestructible lead commander
+        # survives it (lens), and the wiped batch must model that rather than bounce it.
+        resilience = compute_resilience(
+            sim_cards, commander, cfg, wipe_turn, all_cards=all_cards,
+            commander_survives_wipe=lens.survives_mode("destroy"))
 
     game_changers = sorted(
         [c.name for c in resolved.commanders if c.game_changer]
@@ -216,6 +227,7 @@ def analyze_deck(
         wipe_turn=wipe_turn, go_off=go_off, overrun=overrun, combo_profile=combo_profile,
         wincon_redundancy=wincon_redundancy,
         table_feel=compute_table_feel(resolved.cards, resolved.commanders),
+        lens=lens,
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
     return analysis
@@ -237,6 +249,13 @@ def make_determinism_fn(
         return classify_determinism(piece_texts, combo.description)
 
     return judge
+
+
+def _counter_reserve(cards: list[tuple[Card, int]]) -> int:
+    """Mana the pilot holds up for a counterspell: the lowest mana value among the deck's
+    counterspells (the 99 plus any extra commanders), or 0 if it runs none."""
+    mvs = [c.mana_value for c, _ in cards if tags.analyze(c).counterspell]
+    return min(mvs) if mvs else 0
 
 
 def _nut_board(runs: list) -> tuple[int, int]:
