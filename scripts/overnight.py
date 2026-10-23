@@ -34,6 +34,7 @@ import subprocess
 import sys
 import threading
 import time
+import urllib.parse
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -231,10 +232,18 @@ def gateway_up() -> bool:
         return False
 
 
+# Set when THIS run launched the gateway, so main() can shut it down at the end. Without
+# it a night that started llama-swap left it running all day (found 2026-10-22: up at
+# midday after a run that compiled nothing) — the GPU box is also the gaming box.
+_GATEWAY_STARTED_HERE = False
+
+
 def ensure_gateway(wait_s: int = 240) -> bool:
+    global _GATEWAY_STARTED_HERE
     if gateway_up():
         return True
     log(f"gateway down - starting {GATEWAY_BAT}")
+    _GATEWAY_STARTED_HERE = True
     try:
         subprocess.Popen(f'cmd /c start "" "{GATEWAY_BAT}"', shell=True)
     except OSError as exc:
@@ -248,6 +257,24 @@ def ensure_gateway(wait_s: int = 240) -> bool:
             return True
     log("gateway did not come up in time")
     return False
+
+
+def stop_gateway_if_started_here() -> None:
+    """Kill the llama-swap tree this run launched; leave one someone else started alone."""
+    if not _GATEWAY_STARTED_HERE:
+        return
+    port = urllib.parse.urlparse(GATEWAY_URL).port or 8010
+    try:
+        out = subprocess.run(["netstat", "-ano", "-p", "TCP"], capture_output=True,
+                             text=True, timeout=30).stdout
+    except (OSError, subprocess.SubprocessError) as exc:
+        log(f"gateway stop: netstat failed ({exc})")
+        return
+    pids = {line.split()[-1] for line in out.splitlines()
+            if "LISTENING" in line and line.split()[1].endswith(f":{port}")}
+    for pid in pids:
+        subprocess.run(["taskkill", "/PID", pid, "/T", "/F"], capture_output=True)
+    log(f"gateway stopped (started by this run; pid {', '.join(sorted(pids)) or 'none found'})")
 
 
 def ledger_stats() -> dict[str, int]:
@@ -675,8 +702,12 @@ def main() -> int:
     )
     parser.add_argument("--chunks", type=int, default=4)
     parser.add_argument(
-        "--agent-contrast", choices=("auto", "always", "never"), default="auto",
-        help="greedy-vs-ISMCTS phase. auto (default) = every night, time-boxed to whatever "
+        "--agent-contrast", choices=("auto", "always", "never"), default="never",
+        # Default "never" since 2026-10-23: the phase answers the cEDH/B5 inversion question,
+        # outside the casual B1-3 goal, and any CCM change re-plays its matchups -- the
+        # morning after 31 cards were recompiled it was still running at 08:40 (6.7h).
+        help="greedy-vs-ISMCTS phase (default never: a cEDH/B5 question). auto = every run, "
+             "time-boxed to whatever "
              "is left of --max-hours (was weekly-only 2026-07-30 to 2026-09-24 while its "
              "own time budget was misaligned with the scheduled task's; --cache makes a "
              "capped attempt resume for free rather than lose progress, so nightly now "
@@ -809,6 +840,7 @@ def main() -> int:
     run("ccm-recheck", "ccm-recheck", "--top", "6", "--samples", "3",
         "--json", str(recheck_path), "--names-out", str(recheck_names_path))
     write_report(before, gauntlet_args, started, health_path, recheck_path)
+    stop_gateway_if_started_here()
     log("overnight pipeline done")
     return 0
 
