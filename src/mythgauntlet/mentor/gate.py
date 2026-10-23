@@ -111,7 +111,10 @@ _SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 # follow -- a marker INLINE mid-paragraph immediately before a bold-markdown heading
 # ("...unchanged. 2. **No Targeting**: ..."), which the line-start pattern alone missed
 # on the first fix attempt.
-_LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|\d+\.\s+(?=\*\*)")
+# The inline marker must not be the tail of a DECIMAL: "from 74.7 to 78.7.\n\n**Why**" read
+# its "7." as a marker, turned 78.7 into 78, and rejected a correct, grounded swap answer three
+# times running (holistic bench, 2026-10-23).
+_LIST_MARKER_RE = re.compile(r"(?m)^\s*\d+[.)]\s+|(?<![\d.])\d+\.\s+(?=\*\*)")
 
 # A mana-curve BUCKET LABEL ("six-mana cards", "2-mana spells") reads as a claimed
 # number to the NUMBERS check below -- found live 2026-09-15 (mentor bench, real deck):

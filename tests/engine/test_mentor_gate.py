@@ -509,3 +509,14 @@ def test_typed_bracket_licence_is_scoped_to_bracket_numbers_only():
     assert any("cites 7" in r for r in reasons)
     assert any("cites 4" in r for r in reasons)
     assert not any("cites 3" in r for r in reasons)
+
+
+def test_a_decimal_before_a_bold_heading_is_not_a_list_marker():
+    # Live holistic bench 2026-10-23: "from 74.7 to 78.7." then a "**Why this swap?**"
+    # paragraph; the inline-marker pattern ate "7." and the gate rejected 78.
+    from mythgauntlet.mentor import gate
+    text = "The swap moves consistency from 74.7 to 78.7.\n\n**Why this swap?**"
+    scrubbed = gate._LIST_MARKER_RE.sub("", text)
+    assert gate.extract_numbers(scrubbed) == {74.7, 78.7}
+    # ...while a real inline marker is still stripped.
+    assert gate.extract_numbers(gate._LIST_MARKER_RE.sub("", "unchanged. 2. **No Targeting**")) == set()
