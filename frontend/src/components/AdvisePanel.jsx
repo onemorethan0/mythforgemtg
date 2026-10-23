@@ -148,12 +148,11 @@ export default function AdvisePanel({ jobId, onApplied }) {
       </button>
       {busy && (
         <span style={{ fontSize: 11, color: '#78716c' }}>
-          {/* Measured 2026-08-26: a real 99-card deck against Myth Forge's own GPU
-              services (warm-but-idle) took ~10 minutes. There is no honest short number
-              here — it depends on deck size and whatever else is warm on :8010/:8188 —
-              so this counts up instead of promising a range. */}
-          re-simulating the deck once per owned candidate — can take several minutes,
-          longer if Myth Forge's other services are busy{elapsedS > 0 ? ` (${elapsedS}s elapsed)` : ''}
+          {/* Measured 2026-10-23 after the tags.analyze memo: 75-90 s for a real 99-card
+              deck (it was ~10 minutes, then past the 900 s timeout). Still a count-up, not
+              a promise - a busy GPU box or a resilience target makes it longer. */}
+          re-simulating the deck once per owned candidate — usually a minute or two
+          {elapsedS > 0 ? ` (${elapsedS}s elapsed)` : ''}
         </span>
       )}
     </div>
