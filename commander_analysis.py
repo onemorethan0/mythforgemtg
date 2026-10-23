@@ -153,6 +153,14 @@ THEME_PATTERNS: dict[str, list[str]] = {
     "face_down":        ["face down", "face-down", "manifest", "morph",
                          "turned face up", "disguise", "cloak"],
     "sagas":            ["saga", "lore counter"],
+    # Toughness matters (added 2026-10-23): walls/defenders that attack for their toughness.
+    # Doran, Besieged by Time detected only voltron_combat, so its ~20 theme slots drafted
+    # 12 high-toughness creatures where the player's own list runs 20.
+    "toughness":        ["toughness rather than its power", "toughness rather than their power",
+                         "toughness greater than its power", "toughness greater than their power",
+                         "difference between its power and toughness",
+                         "as though it didn't have defender", "as though they didn't have defender",
+                         "creature you control with defender", "creatures you control with defender"],
     # Impulse draw: play cards you do not own yet, off the top or from exile. The
     # widest genuine gap — 26 of 381 corpus commanders (6.8%), 10 of them previously
     # themeless. Deliberately NOT "you may play", which is far too broad.
@@ -244,6 +252,7 @@ THEME_LABELS: dict[str, str] = {
     "voltron_combat":   "Combat / Evasion",
     "face_down":        "Face-Down / Morph",
     "sagas":            "Sagas",
+    "toughness":        "Toughness Matters",
     "impulse":          "Impulse Draw",
 }
 
@@ -305,6 +314,10 @@ THEME_SYNERGY_QUERIES: dict[str, str] = {
     "face_down":        '(o:"morph" OR o:"megamorph" OR o:"manifest" OR o:"disguise" '
                         'OR o:"face-down creature" OR o:"turn it face up")',
     "sagas":            '(type:saga OR o:"lore counter")',
+    # Payoffs, then the bodies they reward. tou>pow is live Scryfall syntax; the pow<=2 /
+    # tou>=4 window keeps it to walls rather than every 3/4. Commander lift orders it.
+    "toughness":        '(o:"toughness greater than its power" OR o:"combat damage equal to its toughness" '
+                        "OR o:\"as though it didn't have defender\" OR (t:creature tou>pow tou>=4 pow<=2))",
     "impulse":          '(o:"exile the top" OR o:"play the top card of your library" '
                         'OR o:"you may play that card" OR o:"you may cast that card")',
     # Combat/Evasion is a CREATURE theme (you need attackers). It used to lead

@@ -93,6 +93,7 @@ BASE_RATE: dict[str, float] = {
     "spellslinger": 0.00600,
     "theft": 0.00760,
     "tokens": 0.11783,
+    "toughness": 0.00221,
     "tribal_angels": 0.00141,
     "tribal_beasts": 0.00146,
     "tribal_cats": 0.00138,

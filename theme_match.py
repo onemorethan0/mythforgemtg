@@ -102,6 +102,7 @@ THEMES: tuple[str, ...] = (
     "face_down",
     "sagas",
     "impulse",
+    "toughness",
 )
 
 NO_MATCH: int = 0
@@ -485,6 +486,19 @@ THEME_RULES: dict[str, dict[str, Any]] = {
             [_lit("you may cast that card")],
         ],
     },
+    "toughness": {
+        # Mirrors the query: payoff text is STRONG; the `(t:creature tou>pow tou>=4 pow<=2)`
+        # branch is the WEAK body tier, which no type/subtype key can express.
+        "strong_alternatives": [
+            [_lit("toughness greater than its power")],
+            [_lit("toughness greater than their power")],
+            [_lit("combat damage equal to its toughness")],
+            [_lit("combat damage equal to their toughness")],
+            [_lit("as though it didn't have defender")],
+            [_lit("as though they didn't have defender")],
+        ],
+        "weak_wall_body": True,
+    },
 }
 
 
@@ -522,7 +536,19 @@ def theme_score(card: dict, theme: str) -> int:
         for w in weak_types:
             if w in tl:
                 return WEAK
+    if rule.get("weak_wall_body") and "creature" in tl and _is_wall_body(card):
+        return WEAK
     return NO_MATCH
+
+
+def _is_wall_body(card: dict) -> bool:
+    """toughness > power, toughness >= 4, power <= 2 - the query's `tou>pow tou>=4 pow<=2`.
+    A '*' stat is unknown and never qualifies."""
+    try:
+        p, t = int(card.get("power")), int(card.get("toughness"))
+    except (TypeError, ValueError):
+        return False
+    return t > p and t >= 4 and p <= 2
 
 
 def match_themes(cards: list[dict], themes: list[str]) -> dict[str, list[dict]]:

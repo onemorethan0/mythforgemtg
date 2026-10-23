@@ -22,7 +22,7 @@ import theme_match
 from commander_analysis import THEME_LABELS, THEME_PATTERNS, THEME_SYNERGY_QUERIES
 from deck_builder import ROLE_QUERIES
 
-NEW_THEMES = ("face_down", "sagas", "impulse")
+NEW_THEMES = ("face_down", "sagas", "impulse", "toughness")
 
 
 def test_all_four_structures_agree():
@@ -124,7 +124,14 @@ def test_self_blink_is_not_misread_as_reanimator():
                                 "them this turn."}, True),
     ("impulse", {"name": "Divination", "type_line": "Sorcery",
                  "oracle_text": "Draw two cards."}, False),
+    ("toughness", {"name": "Arcades, the Strategist", "type_line": "Legendary Creature",
+                   "oracle_text": "Each creature you control with defender assigns combat damage "
+                                  "equal to its toughness rather than its power and can attack as "
+                                  "though it didn't have defender."}, True),
+    ("toughness", {"name": "Plain Bear", "type_line": "Creature — Bear", "power": "2",
+                   "toughness": "2", "oracle_text": "Trample"}, False),
 ])
+
 def test_local_rules_score_the_right_cards(theme, card, expected_strong):
     """theme_match must reproduce the Scryfall query, or strict mode fills the slot from
     a different pool than a normal build would."""
@@ -334,3 +341,22 @@ def test_detect_themes_is_deterministic():
     card = {"name": "X", "oracle_text": "Whenever a creature you control enters, create a "
                                         "1/1 token. Put a +1/+1 counter on it."}
     assert commander_analysis._detect_themes(card) == commander_analysis._detect_themes(card)
+
+
+def test_doran_detects_toughness():
+    from commander_analysis import _detect_themes
+    oracle = ("Each creature spell you cast with toughness greater than its power costs {1} less "
+              "to cast. Whenever a creature you control attacks or blocks, it gets +X/+X until "
+              "end of turn, where X is the difference between its power and toughness.")
+    doran = {"name": "Doran, Besieged by Time",
+             "type_line": "Legendary Creature - Treefolk Druid", "oracle_text": oracle}
+    assert _detect_themes(doran)[0] == "toughness"
+
+
+def test_a_wall_is_a_weak_toughness_body_and_a_bear_is_not():
+    wall = {"name": "Wall of Omens", "type_line": "Creature - Wall", "power": "0",
+            "toughness": "4", "oracle_text": "Defender. When this creature enters, draw a card."}
+    star = {"name": "Star Wall", "type_line": "Creature - Wall", "power": "*",
+            "toughness": "6", "oracle_text": "Defender"}
+    assert theme_match.theme_score(wall, "toughness") == theme_match.WEAK
+    assert theme_match.theme_score(star, "toughness") == theme_match.NO_MATCH
