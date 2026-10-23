@@ -370,6 +370,10 @@ class SwapSuggestion:
     # what a generated narrative is written FROM and gated AGAINST. See
     # `mythgauntlet.ratings.swap_brief`.
     brief: "swap_brief.SwapBrief | None" = None
+    # The target-axis delta split against an empty slot (EMPTY_SLOT), same seeds:
+    # add_value - cut_value == delta. None when not measured.
+    add_value: float | None = None
+    cut_value: float | None = None
 
     @property
     def delta(self) -> float:
@@ -440,6 +444,14 @@ def _weakest_cut(resolved: ResolvedDeck) -> Card | None:
     """The single most droppable nonland spell (kept for callers/tests of the MVP behaviour)."""
     cuts = _weakest_cuts(resolved, 1)
     return cuts[0] if cuts else None
+
+
+# A slot that does nothing: cast for free, no effect, no tags, absent from the semantics store.
+# Swapping it in for the cut measures what the CUT was doing; swapping the add against it
+# measures what the ADD does on its own. A swap's delta is exactly (add - empty) - (cut - empty),
+# all at the same seeds. Added 2026-10-23: four different adds into one deck measured
+# identically, because the swap delta was mostly the cut and nothing said so.
+EMPTY_SLOT = Card(name="(empty slot)", type_line="")
 
 
 def _swap_variant(resolved: ResolvedDeck, cut: Card, add: Card) -> ResolvedDeck:
@@ -751,6 +763,21 @@ def advise(
             ))
             if len(suggestions) >= top:
                 break
+        # One empty-slot run per DISTINCT cut that made the list (at most `top`), to split
+        # each swap into what the add does and what the cut was doing on the target axis.
+        empty_scores: dict[str, float] = {}
+        cut_cards = {c.name: c for c in cuts}
+        for s in suggestions:
+            if s.cut not in empty_scores:
+                e = analyze_deck(
+                    _swap_variant(resolved, cut_cards[s.cut], EMPTY_SLOT), cfg, store,
+                    two_card_combos=two_card_combos, combos_checked=combos_checked,
+                    run_resilience=need_res,
+                )
+                analyses += 1
+                empty_scores[s.cut] = axis_score(e, target)
+            s.add_value = s.after - empty_scores[s.cut]
+            s.cut_value = s.before - empty_scores[s.cut]
 
     return AdviceReport(
         axis=target, axis_label=AXES[target][1], baseline=base_score,

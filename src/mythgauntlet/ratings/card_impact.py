@@ -46,6 +46,7 @@ from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.ratings import redundancy
 from mythgauntlet.ratings.advisor import (
+    EMPTY_SLOT,
     AXES,
     PROFILE_AXES,
     _AXIS_NOISE_FLOOR,
@@ -109,10 +110,26 @@ class AxisMove:
     before: float
     after: float
     floor: float
+    # The swap split in two against an empty slot (advisor.EMPTY_SLOT), same seeds:
+    # `own` = what the added card does in that slot, `cut_value` = what the cut card was
+    # doing there. own - cut_value == delta exactly. None when not measured.
+    own: float | None = None
+    cut_value: float | None = None
 
     @property
     def delta(self) -> float:
         return self.after - self.before
+
+    def _big(self, value: float | None) -> bool:
+        return value is not None and abs(value) >= max(self.floor, MIN_SIGNIFICANT)
+
+    @property
+    def own_meaningful(self) -> bool:
+        return self._big(self.own)
+
+    @property
+    def cut_meaningful(self) -> bool:
+        return self._big(self.cut_value)
 
     @property
     def meaningful(self) -> bool:
@@ -277,6 +294,14 @@ def assess_card(
             best = (total, cut, moves)
 
     total, cut, moves = best
+    # One more run, for the chosen cut only: the deck with that slot left empty.
+    empty = analyze_deck(_swap_variant(resolved, cut, EMPTY_SLOT), cfg, store, run_resilience=True)
+    for m in moves:
+        e = axis_score(empty, m.axis)
+        m.own, m.cut_value = m.after - e, m.before - e
+    own_gains = sorted((m for m in moves if m.own_meaningful and m.own > 0), key=lambda m: -m.own)
+    cut_costs = sorted((m for m in moves if m.cut_meaningful and m.cut_value > 0),
+                       key=lambda m: -m.cut_value)
     # Biggest movers first: the headline names the largest change, and the reasons read in
     # order of significance. Sorting by axis order instead named Consistency +1.9 while
     # Speed +8.3 went unmentioned, which is a true sentence that misses the point.
@@ -287,10 +312,14 @@ def assess_card(
 
     if gains and not losses:
         verdict = "positive"
-        headline = f"{name} improves this deck."
+        headline = f"{name} improves this deck (in place of {cut.name})."
     elif losses and not gains:
         verdict = "negative"
-        headline = f"{name} makes this deck worse."
+        # Say WHICH half lost: a good card into the wrong slot reads very differently from
+        # a card that does nothing here.
+        headline = (f"{name} adds {own_gains[0].label.lower()}, but {cut.name} is worth more "
+                    f"in this deck." if own_gains
+                    else f"{name} makes this deck worse in place of {cut.name}.")
     elif gains and losses:
         # A trade-off whose net is a sliver of a typical deck gap is a coin flip, not a
         # verdict: over a 75-case corpus sweep, 12 such cases sat within +/-0.1 and their sign
@@ -298,7 +327,8 @@ def assess_card(
         # -6.6 resilience, +1.7 interaction nets -0.015). Say "mixed" and let the axes speak.
         verdict = ("mixed" if abs(total) < MIXED_BAND
                    else "positive" if total > 0 else "negative")
-        headline = f"{name} is a trade-off — it buys {gains[0].label.lower()} and costs {losses[0].label.lower()}."
+        headline = (f"{name} in place of {cut.name} is a trade-off — it buys "
+                    f"{gains[0].label.lower()} and costs {losses[0].label.lower()}.")
     else:
         verdict = "neutral"
         headline = f"{name} makes no measurable difference to this deck."
@@ -311,6 +341,20 @@ def assess_card(
         reasons.append(f"{m.label} {m.before:.1f} → {m.after:.1f} (+{m.delta:.1f}).")
     for m in losses:
         reasons.append(f"{m.label} {m.before:.1f} → {m.after:.1f} ({m.delta:.1f}).")
+    # The split. Without it the numbers above read as a property of the card when they are
+    # often mostly the cut (Smaug: every removal spell "cost 4.7 consistency" because the cut
+    # ramp creature was worth +6.0 of it).
+    if own_gains:
+        reasons.append("On its own (against an empty slot), " + name + " adds: "
+                       + ", ".join(f"{m.label} +{m.own:.1f}" for m in own_gains) + ".")
+    else:
+        reasons.append(f"On its own (against an empty slot), {name} moves no axis beyond noise: "
+                       "the simulation does not see what it does (protection, politics, "
+                       "most static effects), or the deck already has it covered.")
+    if cut_costs:
+        reasons.append(f"{cut.name} was worth: "
+                       + ", ".join(f"{m.label} +{m.cut_value:.1f}" for m in cut_costs)
+                       + " — that is the price of the slot.")
     if verdict == "neutral":
         flat = ", ".join(f"{m.label} ±{m.floor:.1f}" for m in moves if m.floor > 0)
         reasons.append(

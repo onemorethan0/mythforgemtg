@@ -582,6 +582,11 @@ def create_app(
                     "delta": round(m.delta, 1),
                     "meaningful": m.meaningful,
                     "noise_floor": m.floor,
+                    # the swap split against an empty slot: own - cut_value == delta
+                    "own": None if m.own is None else round(m.own, 1),
+                    "cut_value": None if m.cut_value is None else round(m.cut_value, 1),
+                    "own_meaningful": m.own_meaningful,
+                    "cut_meaningful": m.cut_meaningful,
                 }
                 for m in imp.axes
             ],
@@ -655,6 +660,9 @@ def create_app(
                     "before": round(s.before, 1),
                     "after": round(s.after, 1),
                     "delta": round(s.delta, 1),
+                    # target-axis split against an empty slot: add_value - cut_value == delta
+                    "add_value": None if s.add_value is None else round(s.add_value, 1),
+                    "cut_value": None if s.cut_value is None else round(s.cut_value, 1),
                     "reason": s.reason,
                     # The structured facts behind `reason`. `reason` is the deterministic
                     # template string and stays the fallback; `brief` is what a generated

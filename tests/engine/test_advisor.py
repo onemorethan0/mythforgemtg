@@ -180,7 +180,8 @@ def test_advise_per_swap_cut_multiplies_analyses(deck, store, make_card):
     assert rep.cut is None                 # per-swap mode: no single global cut
     assert rep.cut_pool == 2
     assert rep.evaluated == 4               # candidates considered
-    assert rep.analyses == 8               # 4 candidates x 2 cut options
+    # 4 candidates x 2 cut options, plus one empty-slot run per distinct suggested cut
+    assert rep.analyses == 8 + len({s.cut for s in rep.suggestions})
     # every suggested cut is drawn from the deck's cut pool
     pool_names = {c.name for c in advisor._weakest_cuts(deck, 2)}
     assert all(s.cut in pool_names for s in rep.suggestions)
@@ -508,3 +509,17 @@ def test_advise_targets_clock_and_only_reports_an_earlier_kill(deck, store, make
         # A reported "faster" swap must actually kill sooner by its own brief.
         assert s.after > s.before
         assert s.brief.kill_turn_after < s.brief.kill_turn_before
+
+
+def test_each_suggestion_splits_into_add_value_and_cut_value(deck, store, make_card):
+    """add_value - cut_value == delta: the swap separated into what the added card does and
+    what the cut card was doing, against an empty slot at the same seeds."""
+    removal = make_card("Owned Removal", mana_cost="{1}{G}", type_line="Instant",
+                        color_identity=("G",), edhrec_rank=4000,
+                        oracle_text="Destroy target creature.")
+    rep = advisor.advise(deck, SimConfig(runs=80, turns=5, seed=3), store, [removal],
+                         axis="interaction", cut_pool=2)
+    assert rep.suggestions, "fixture produced no swap; the invariant would go untested"
+    for s in rep.suggestions:
+        assert abs((s.add_value - s.cut_value) - s.delta) < 1e-9
+        assert s.add_value > 0           # the removal itself is what moves interaction

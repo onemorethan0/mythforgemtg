@@ -227,3 +227,23 @@ def test_a_deterministic_axis_is_not_overweighted():
 def test_axis_scales_come_from_the_reference_table():
     assert set(card_impact.AXIS_SCALE) == set(card_impact.PROFILE_AXES)
     assert all(5 < v < 40 for v in card_impact.AXIS_SCALE.values())
+
+
+def test_swap_splits_exactly_into_the_cards_own_value_and_the_cuts(make_card, forest, bear,
+                                                                    empty_store):
+    # Live 2026-10-23: four different adds into one deck measured IDENTICALLY, because the
+    # swap delta was mostly the cut. An empty-slot run separates the two halves.
+    rock = make_card("Owned Rock", mana_cost="{2}", type_line="Artifact",
+                     color_identity=(), oracle_text="{T}: Add {C}{C}.")
+    imp = assess_card(_deck(make_card, forest, bear), rock, _cfg(), empty_store)
+    for m in imp.axes:
+        assert m.own is not None and m.cut_value is not None
+        assert abs((m.own - m.cut_value) - m.delta) < 1e-9
+
+
+def test_a_card_the_sim_cannot_see_says_so(make_card, forest, bear, empty_store):
+    blank = make_card("Mystery Trinket", mana_cost="{1}", type_line="Artifact",
+                      color_identity=(), oracle_text="Players can't vote.")
+    imp = assess_card(_deck(make_card, forest, bear), blank, _cfg(), empty_store)
+    assert not any(m.own_meaningful for m in imp.axes)
+    assert any("On its own" in r and "no axis" in r for r in imp.reasons)

@@ -254,6 +254,14 @@ export default function AdvisePanel({ jobId, onApplied }) {
                     )}
                   </span>
                  </div>
+                 {/* The swap split against an empty slot (add - cut = net), so a gain that is
+                     mostly "the cut was doing little" reads differently from a strong add. */}
+                 {s.add_value != null && s.cut_value != null && (
+                   <div style={{ fontSize: 10.5, color: '#78716c', marginTop: 2, paddingLeft: 2 }}>
+                     {s.add} alone: {s.add_value >= 0 ? '+' : ''}{s.add_value} · {s.cut} was
+                     worth {s.cut_value >= 0 ? '+' : ''}{s.cut_value} ({result.axis_label})
+                   </div>
+                 )}
                  {s.reason && (
                    <div
                      style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}

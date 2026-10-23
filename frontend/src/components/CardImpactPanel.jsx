@@ -161,6 +161,39 @@ export default function CardImpactPanel({ jobId }) {
               })}
             </div>
           )}
+
+          {/* The swap split in two against an empty slot (own - cut = net). Before this, four
+              different cards into one deck showed identical numbers, because the net was mostly
+              the cut - and nothing on screen said so. */}
+          {(() => {
+            const rows = (result.axes || []).filter(a => a.own != null &&
+              (a.own_meaningful || a.cut_meaningful || a.meaningful))
+            if (!rows.length) return null
+            const fmt = x => `${x >= 0 ? '+' : ''}${x}`
+            const cell = { padding: '3px 8px', textAlign: 'right' }
+            return (
+              <table style={{ marginTop: 10, fontSize: 11, color: '#a8a29e', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ color: '#78716c' }}>
+                    <th style={{ ...cell, textAlign: 'left' }}></th>
+                    <th style={cell} title="What this card does on its own, measured against an empty slot">This card</th>
+                    <th style={cell} title={`What ${result.cut} was doing in that slot`}>{result.cut} was</th>
+                    <th style={cell}>Net</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map(a => (
+                    <tr key={a.axis}>
+                      <td style={{ ...cell, textAlign: 'left' }}>{a.label}</td>
+                      <td style={{ ...cell, color: a.own_meaningful ? (a.own > 0 ? '#4ade80' : '#f87171') : '#57534e' }}>{fmt(a.own)}</td>
+                      <td style={{ ...cell, color: a.cut_meaningful ? '#d6d3d1' : '#57534e' }}>{fmt(a.cut_value)}</td>
+                      <td style={{ ...cell, color: a.meaningful ? (a.delta > 0 ? '#4ade80' : '#f87171') : '#57534e' }}>{fmt(a.delta)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )
+          })()}
         </div>
       )}
     </div>
