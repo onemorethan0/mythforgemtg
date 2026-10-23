@@ -359,15 +359,43 @@ def _cleanup_expired_jobs():
         print(f"  [cleanup] Dropped {len(orphaned_locks)} orphaned deck-regen lock(s)")
 
 
+def _run_frontend_build(frontend_dir: Path, verb: str) -> None:
+    """`npm run build` in `frontend_dir`, reporting the outcome on the startup log.
+
+    npm is resolved with `shutil.which`: on Windows it is `npm.cmd`, and CreateProcess
+    does not apply PATHEXT, so a bare `["npm", ...]` raised WinError 2 on every start and
+    the app silently served a stale bundle (found 2026-10-23: a week of UI changes unbuilt).
+    """
+    import shutil
+    import subprocess
+
+    npm = shutil.which("npm")
+    if not npm:
+        print("  [startup] [X] Frontend build skipped: npm not on PATH "
+              "(install Node.js, then run `npm run build` in frontend/)", flush=True)
+        return
+    try:
+        result = subprocess.run([npm, "run", "build"], cwd=frontend_dir,
+                                capture_output=True, text=True, timeout=120)
+    except subprocess.TimeoutExpired:
+        print("  [startup] [X] Frontend build timed out (>120s)", flush=True)
+        return
+    except Exception as e:
+        print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+        return
+    if result.returncode == 0:
+        print(f"  [startup] [OK] Frontend {verb} successfully", flush=True)
+    else:
+        print(f"  [startup] [X] Frontend build failed: {(result.stderr or result.stdout)[-400:]}",
+              flush=True)
+
+
 def _ensure_frontend_built():
     """Check if frontend needs rebuilding and rebuild if necessary.
 
     Compares modification times of frontend source (src/) and built output (dist/).
     If any source file is newer than the build, trigger a rebuild.
     """
-    import subprocess
-    import sys
-
     frontend_dir = Path(__file__).parent / "frontend"
     src_dir = frontend_dir / "src"
     dist_dir = frontend_dir / "dist"
@@ -378,24 +406,7 @@ def _ensure_frontend_built():
 
     if not dist_dir.exists():
         print("  [startup] [!] Frontend dist not found — rebuilding...", flush=True)
-        try:
-            subprocess.run(
-                [sys.executable, "-m", "pip", "install", "-q", "npm"] if sys.platform == "win32" else None,
-                check=False, cwd=frontend_dir
-            )
-            result = subprocess.run(
-                ["npm", "run", "build"],
-                cwd=frontend_dir,
-                capture_output=True,
-                text=True,
-                timeout=120
-            )
-            if result.returncode == 0:
-                print("  [startup] [OK] Frontend built successfully", flush=True)
-            else:
-                print(f"  [startup] [X] Frontend build failed: {result.stderr[:200]}", flush=True)
-        except Exception as e:
-            print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+        _run_frontend_build(frontend_dir, "built")
         return
 
     # Check if rebuild needed: if any src file is newer than dist files
@@ -411,22 +422,7 @@ def _ensure_frontend_built():
 
         if src_time > dist_time:
             print("  [startup] [!] Frontend source changed — rebuilding...", flush=True)
-            try:
-                result = subprocess.run(
-                    ["npm", "run", "build"],
-                    cwd=frontend_dir,
-                    capture_output=True,
-                    text=True,
-                    timeout=120
-                )
-                if result.returncode == 0:
-                    print("  [startup] [OK] Frontend rebuilt successfully", flush=True)
-                else:
-                    print(f"  [startup] [X] Frontend build failed: {result.stderr[:200]}", flush=True)
-            except subprocess.TimeoutExpired:
-                print("  [startup] [X] Frontend build timed out (>120s)", flush=True)
-            except Exception as e:
-                print(f"  [startup] [X] Frontend build error: {e}", flush=True)
+            _run_frontend_build(frontend_dir, "rebuilt")
         else:
             print("  [startup] [OK] Frontend is up to date", flush=True)
     except Exception as e:
