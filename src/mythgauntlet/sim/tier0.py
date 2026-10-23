@@ -35,6 +35,7 @@ from dataclasses import dataclass, field, replace
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.semantics import tags
+from mythgauntlet.sim import combat_rules
 from mythgauntlet.semantics.model import EffectVector
 from mythgauntlet.sim.rng import SeededRng
 
@@ -86,9 +87,13 @@ class SimCard:
     def attack_power(self) -> int:
         """Damage this creature deals attacking an empty board. A printed double striker
         deals its power twice (CR 702.4b) -- the tier-2 combat already does (Phase B6), and
-        the goldfish clock under-counted it as single damage."""
-        power = _stat_value(self.card.power)
-        return power * 2 if "double strike" in (self.card.keywords or ()) else power
+        the goldfish clock under-counted it as single damage. A creature with defender deals
+        none (CR 702.3b): tier0 used to swing with it."""
+        return combat_rules.attack_power(self.card, None)
+
+    def attack_power_under(self, rule: combat_rules.CombatRule | None) -> int:
+        """`attack_power` while the commander's combat rule applies (see combat_rules)."""
+        return combat_rules.attack_power(self.card, rule)
 
     @property
     def toughness_value(self) -> int:
@@ -178,7 +183,7 @@ def _can_pay(sources: list[_Source], cost) -> list[int] | None:
     return used
 
 
-def _effective_cost(sc: SimCard, board_creatures: int):
+def _effective_cost(sc: SimCard, board_creatures: int, extra_discount: int = 0):
     """SC's cost for a `_can_pay` check, discounted for a self-referential board-state
     reduction (Blasphemous Act / Affinity-for-creatures class, `fx.self_reduction_per_creature`)
     tier0 would otherwise ignore entirely -- gating castability on the full PRINTED cost turns
@@ -197,7 +202,7 @@ def _effective_cost(sc: SimCard, board_creatures: int):
     "on the battlefield" wording (Vanquish the Horde class) this undercounts a real pod, where
     every player's creatures would also count -- a conservative direction, never a fabrication.
     """
-    discount = sc.fx.self_reduction_per_creature * board_creatures
+    discount = sc.fx.self_reduction_per_creature * board_creatures + extra_discount
     if discount <= 0:
         return sc.card.cost
     cost = sc.card.cost
@@ -267,6 +272,7 @@ def _run_one(
     deck: list[SimCard], commander: SimCard | None, cfg: SimConfig, rng: SeededRng,
     board_wipe_turn: int | None = None,
     commander_survives_wipe: bool = False,
+    rule: combat_rules.CombatRule | None = None,
 ) -> RunStats:
     stats = RunStats()
     hand, library, stats.mulligans = _mulligan(deck, rng, cfg)
@@ -277,6 +283,11 @@ def _run_one(
     commander_tax = 0  # CR 903.8: {2} more per earlier cast from the command zone
     board_power = 0  # creatures able to attack (resolved on a previous turn)
     pending_power = 0  # creatures that came down this turn (summoning-sick)
+    # The same two pools priced under the commander's combat rule (combat_rules; Doran's
+    # toughness-for-power). Combat reads them only on turns the commander is on the
+    # battlefield, so a game where it never lands is byte-identical to no rule at all.
+    board_power_rule = 0
+    pending_power_rule = 0
     board_creatures = 0  # count of able-to-attack creatures (mirrors board_power, for go-wide)
     pending_creatures = 0
     engine_active = 0  # extra draws per turn from resolved engines
@@ -304,9 +315,10 @@ def _run_one(
 
     def apply_effects(sc: SimCard, is_commander: bool = False) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
-        nonlocal creature_engine, creature_dmg_engine
+        nonlocal creature_engine, creature_dmg_engine, pending_power_rule
         if sc.card.is_creature:
             pending_power += sc.attack_power
+            pending_power_rule += sc.attack_power_under(rule)
             pending_creatures += 1
         if sc.fx.cheats_creatures:  # active next turn (a creature enabler must untap + attack)
             enabler_pending = True
@@ -339,6 +351,8 @@ def _run_one(
             s.ready = True
         board_power += pending_power
         pending_power = 0
+        board_power_rule += pending_power_rule
+        pending_power_rule = 0
         board_creatures += pending_creatures
         pending_creatures = 0
         engine_active += engine_pending
@@ -378,6 +392,8 @@ def _run_one(
                     commander_tax += 2
             board_power = 0
             pending_power = 0
+            board_power_rule = 0
+            pending_power_rule = 0
             board_creatures = 0
             pending_creatures = 0
             sources = [s for s in sources
@@ -389,6 +405,7 @@ def _run_one(
             if commander_stays:
                 # exactly what apply_effects(commander) put on the board (see there)
                 board_power = commander.attack_power
+                board_power_rule = commander.attack_power_under(rule)
                 board_creatures = 1
                 enabler_active = commander.fx.cheats_creatures
                 creature_engine = commander.fx.engine_draw
@@ -421,7 +438,10 @@ def _run_one(
                 # this turn has had first claim on the mana.
                 if sc.is_land or sc.fx.scaling_burn:
                     continue
-                payment = _can_pay(sources, _effective_cost(sc, board_creatures))
+                rule_discount = (rule.creature_discount(sc.card)
+                                 if rule is not None and commander is not None and not commander_in_zone
+                                 else 0)
+                payment = _can_pay(sources, _effective_cost(sc, board_creatures, rule_discount))
                 if payment is not None:
                     castable.append((_cast_priority(sc, turn, cfg), sc, payment, False))
             if commander_in_zone and commander is not None:
@@ -478,23 +498,27 @@ def _run_one(
         stats.mana_spent_by_turn.append(spent)
 
         # combat: everything that was already down swings at the goldfish opponent
-        stats.board_power_by_turn.append(board_power)
+        rule_live = rule is not None and commander is not None and not commander_in_zone
+        swing = board_power_rule if rule_live else board_power
+        stats.board_power_by_turn.append(swing)
         stats.board_creatures_by_turn.append(board_creatures)
-        damage += board_power
+        damage += swing
         damage += dmg_engine_active * instant_sorcery_cast  # magecraft/cast-damage payoffs
         if enabler_active:  # Kaalia class: cheat the biggest STRANDED creature in, attacking now
             stranded = [c for c in hand if c.card.is_creature]
             if stranded:
                 cheated = max(stranded, key=lambda c: c.attack_power)
                 hand.remove(cheated)
-                damage += cheated.attack_power       # enters tapped + attacking -> hits this turn
+                damage += cheated.attack_power_under(rule) if rule_live else cheated.attack_power
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
+                pending_power_rule += cheated.attack_power_under(rule)
                 pending_creatures += 1
         stats.damage_by_turn.append(damage)
         if stats.kill_turn is None and damage >= cfg.goldfish_life:
             stats.kill_turn = turn
 
-    stats.final_board_power = board_power
+    rule_live = rule is not None and commander is not None and not commander_in_zone
+    stats.final_board_power = board_power_rule if rule_live else board_power
     stats.final_board_creatures = board_creatures
     stats.dead_cards = sum(1 for c in hand if not c.is_land)
     return stats
@@ -517,9 +541,10 @@ def simulate(
     """
     deck = build_sim_cards(cards)
     sim_commander = SimCard(card=commander, fx=tags.analyze(commander)) if commander else None
+    rule = combat_rules.from_commanders([commander])
     root = SeededRng(cfg.seed)
     return [
         _run_one(deck, sim_commander, cfg, root.spawn(i), board_wipe_turn,
-                 commander_survives_wipe)
+                 commander_survives_wipe, rule)
         for i in range(cfg.runs)
     ]
