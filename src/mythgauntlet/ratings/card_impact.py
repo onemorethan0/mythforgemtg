@@ -66,6 +66,42 @@ from mythgauntlet.sim.tier0 import SimConfig
 MIN_SIGNIFICANT = 0.5
 
 
+
+def _axis_scales() -> dict[str, float]:
+    """How far apart two SIMILAR real decks sit on each axis: the mean within-bracket
+    interquartile range of the generated corpus reference. Derived, not restated, so a
+    re-baked reference moves it too."""
+    from mythgauntlet.ratings.reference import BRACKET_AXIS_REFERENCE
+
+    scales: dict[str, float] = {}
+    for ax in PROFILE_AXES:
+        iqrs = [cell[ax]["p75"] - cell[ax]["p25"] for cell in BRACKET_AXIS_REFERENCE.values()
+                if ax in cell and not cell[ax].get("thin") and cell[ax].get("p75") is not None]
+        if iqrs:
+            scales[ax] = sum(iqrs) / len(iqrs)
+    return scales
+
+
+AXIS_SCALE = _axis_scales()
+_DEFAULT_SCALE = 20.0
+# |net| below this many typical-deck-gaps is reported as "mixed" (see assess_card).
+MIXED_BAND = 0.1
+
+
+def _score(moves: list["AxisMove"]) -> float:
+    """Net movement across the axes, each delta in units of that axis's spread among real
+    decks (`AXIS_SCALE`), counting only `meaningful` moves.
+
+    It used to divide by the axis's NOISE floor (`max(floor, MIN_SIGNIFICANT)`). Noise says
+    whether a move is real, not how much it matters - and Interaction is closed-form with a
+    floor of 0, so it was divided by 0.5 and one interaction point outweighed 5.7
+    consistency points. A Chaos Warp that gained Interaction +2.6 while costing Consistency
+    -7.5 and Speed -2.5 was labelled "positive" (found 2026-10-23). `meaningful` still
+    gates on noise; this only weighs what passes the gate.
+    """
+    return sum(m.delta / AXIS_SCALE.get(m.axis, _DEFAULT_SCALE) for m in moves if m.meaningful)
+
+
 @dataclass
 class AxisMove:
     axis: str
@@ -95,7 +131,7 @@ class AxisMove:
 @dataclass
 class CardImpact:
     card: str
-    verdict: str                    # positive | negative | neutral | illegal
+    verdict: str                    # positive | negative | mixed | neutral | illegal
     headline: str
     reasons: list[str] = field(default_factory=list)
     cut: str | None = None
@@ -236,19 +272,7 @@ def assess_card(
             )
             for ax in PROFILE_AXES  # not the `clock` lens: card verdicts predate it
         ]
-        # Normalize each axis's delta by its OWN "meaningful" scale before summing, rather
-        # than adding five 0-100 deltas 1:1. The axes do not share a noise floor --
-        # `advisor._AXIS_NOISE_FLOOR` (imported above as `_AXIS_NOISE_FLOOR`) measures Speed
-        # at 1.88, Ceiling at 2.27, Consistency at 0.92, Resilience at 1.06 and Interaction
-        # at 0.0 (seed-to-seed spread at runs=150; see that dict's comments) -- a raw sum
-        # weighted a Ceiling move that barely cleared its own noise the same as an
-        # Interaction move nearly 5x past its own floor. `max(m.floor, MIN_SIGNIFICANT)` is
-        # exactly the denominator `AxisMove.meaningful` already uses as "how big a change has
-        # to be to count for THIS axis", so expressing each delta as a multiple of it reuses
-        # a measured per-axis scale rather than inventing new weights.
-        total = sum(
-            m.delta / max(m.floor, MIN_SIGNIFICANT) for m in moves if m.meaningful
-        )
+        total = _score(moves)
         if best is None or total > best[0]:
             best = (total, cut, moves)
 
@@ -268,7 +292,12 @@ def assess_card(
         verdict = "negative"
         headline = f"{name} makes this deck worse."
     elif gains and losses:
-        verdict = "positive" if total > 0 else "negative"
+        # A trade-off whose net is a sliver of a typical deck gap is a coin flip, not a
+        # verdict: over a 75-case corpus sweep, 12 such cases sat within +/-0.1 and their sign
+        # flipped with the weighting rule alone (Path to Exile: +5.3 consistency, +3.3 speed,
+        # -6.6 resilience, +1.7 interaction nets -0.015). Say "mixed" and let the axes speak.
+        verdict = ("mixed" if abs(total) < MIXED_BAND
+                   else "positive" if total > 0 else "negative")
         headline = f"{name} is a trade-off — it buys {gains[0].label.lower()} and costs {losses[0].label.lower()}."
     else:
         verdict = "neutral"

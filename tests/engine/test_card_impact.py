@@ -1,6 +1,7 @@
 """Would THIS card help THIS deck — the single-card question, and its guard rails."""
 
 from mythgauntlet.model.deck import Deck, ResolvedDeck
+from mythgauntlet.ratings import card_impact
 from mythgauntlet.ratings.card_impact import assess_card
 from mythgauntlet.sim.tier0 import SimConfig
 
@@ -50,7 +51,7 @@ def test_a_legal_card_is_measured_and_explains_its_cut(make_card, forest, bear, 
     rock = make_card("Owned Rock", mana_cost="{2}", type_line="Artifact",
                      color_identity=(), oracle_text="{T}: Add {C}{C}.")
     imp = assess_card(_deck(make_card, forest, bear), rock, _cfg(), empty_store)
-    assert imp.verdict in {"positive", "negative", "neutral"}
+    assert imp.verdict in {"positive", "negative", "mixed", "neutral"}
     assert imp.legal is True
     assert imp.cut, "must say which slot it was measured against"
     assert {m.axis for m in imp.axes} == {"consistency", "speed", "resilience",
@@ -208,3 +209,21 @@ def test_assess_and_advise_reuse_the_baseline_analysis_lens(make_card, forest, b
     deck = _deck(make_card, forest, bear)
     assert assess_card(deck, rock, _cfg(), empty_store).legal is True
     advisor.advise(deck, _cfg(), empty_store, [rock], axis="speed", max_eval=1)
+
+
+def _move(axis, before, after, floor):
+    return card_impact.AxisMove(axis=axis, label=axis.title(), before=before, after=after, floor=floor)
+
+
+def test_a_deterministic_axis_is_not_overweighted():
+    # Live 2026-10-23, Smaug + Chaos Warp: Interaction +2.6 (floor 0, closed-form) against
+    # Consistency -7.5 and Speed -2.5 (both past noise) used to net POSITIVE, because
+    # interaction was divided by MIN_SIGNIFICANT (0.5) and counted 5.7x a consistency point.
+    moves = [_move("interaction", 75.6, 78.2, 0.0), _move("consistency", 66.0, 58.5, 2.83),
+             _move("speed", 94.0, 91.5, 1.88)]
+    assert card_impact._score(moves) < -card_impact.MIXED_BAND
+
+
+def test_axis_scales_come_from_the_reference_table():
+    assert set(card_impact.AXIS_SCALE) == set(card_impact.PROFILE_AXES)
+    assert all(5 < v < 40 for v in card_impact.AXIS_SCALE.values())

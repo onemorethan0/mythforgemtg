@@ -15,6 +15,7 @@ import CardHover from './CardHover'
 const VERDICT = {
   positive: { color: '#4ade80', bg: '#0c1f12', border: '#166534', icon: '▲', label: 'Helps' },
   negative: { color: '#f87171', bg: '#1f0c0c', border: '#7f1d1d', icon: '▼', label: 'Hurts' },
+  mixed:    { color: '#fbbf24', bg: '#1c1408', border: '#a16207', icon: '⇄', label: 'Trade-off' },
   neutral:  { color: '#a8a29e', bg: '#1c1917', border: '#292524', icon: '=', label: 'No change' },
   illegal:  { color: '#fbbf24', bg: '#1c1408', border: '#a16207', icon: '⚠', label: 'Not legal' },
 }
