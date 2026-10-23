@@ -250,10 +250,12 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
 
   return (
     <div style={s.card}>
-      <h2 style={s.title}>{mode === 'import' ? 'Import a Deck' : 'Choose Your Commander'}</h2>
+      {/* Arriving from the hub's "Analyze a Deck" (initialTab 'import'), the page used to
+          talk only about rethemeing; measuring the deck is the point, art is optional. */}
+      <h2 style={s.title}>{mode === 'import' ? (initialTab === 'import' ? 'Analyze a Deck' : 'Import a Deck') : 'Choose Your Commander'}</h2>
       <p style={s.sub}>
         {mode === 'import'
-          ? 'Paste a Moxfield or Archidekt URL, or any decklist text, to retheme a deck you already own.'
+          ? 'Paste a Moxfield or Archidekt URL, or any decklist text. Preview measures its strength, bracket and gaps; you can then save it, ask the Mentor about it, or give it new art.'
           : 'Search for any legendary creature to generate a new deck.'}
       </p>
 
