@@ -653,8 +653,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <div style={{ fontSize: 12, color: '#78716c', fontStyle: 'italic', marginBottom: 16, maxWidth: 440 }}>{commander.flavor_text}</div>
           )}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {!single && <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>}
-            {!single && deck.bracket && (
+            {/* An import has no playstyle and bracket 0: `deck.bracket && …` rendered a bare
+                "0" beside an empty pill. Gate both on a real value. */}
+            {!single && deck.playstyle && <span style={{ fontSize: 12, padding: '4px 12px', background: '#422006', border: '1px solid #ca8a04', borderRadius: 20, color: '#fde047' }}>{deck.playstyle}</span>}
+            {!single && deck.bracket > 0 && (
               <span
                 title={`Built to target: ${(BRACKET_TERMS[deck.bracket] || {}).desc || deck.bracket_label}`}
                 style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, fontWeight: 700, cursor: 'help',

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SimStrengthPanel from './SimStrengthPanel'
 
 // "Measure strength" on the result screen: runs the finished deck through the
@@ -11,12 +11,24 @@ import SimStrengthPanel from './SimStrengthPanel'
 // present the panel opens pre-filled with the stored profile and a measured-on
 // date instead of making the user re-simulate. Mount with key={jobId} so
 // navigating between decks resets the state machine.
+//
+// `cached.stale` (set by GET /api/deck/{id}) means the stored profile came from different
+// engine scoring code. It is never shown as current: the panel re-measures on open and says
+// so. Before this, a Sep 4 "Resilience 88" sat on the deck page beside the import preview's
+// fresh 41 for the same list, with nothing to tell them apart.
 export default function MeasurePanel({ jobId, cached }) {
   const hasCache = !!cached?.simulation?.power_profile
-  const [state, setState] = useState(hasCache ? 'done' : 'idle')
-  const [result, setResult] = useState(hasCache ? cached.simulation : null)
-  const [measuredAt, setMeasuredAt] = useState(hasCache ? cached.date : null)
+  const stale = hasCache && !!cached.stale
+  const [state, setState] = useState(hasCache && !stale ? 'done' : 'idle')
+  const [result, setResult] = useState(hasCache && !stale ? cached.simulation : null)
+  const [measuredAt, setMeasuredAt] = useState(hasCache && !stale ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
+  const [refreshedStale, setRefreshedStale] = useState(false)
+
+  useEffect(() => {
+    if (stale) { setRefreshedStale(true); run() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const run = async () => {
     if (state === 'loading') return
@@ -62,7 +74,7 @@ export default function MeasurePanel({ jobId, cached }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {mainBtn('⏳ Simulating…', true)}
           <span style={{ fontSize: 11, color: '#78716c' }}>
-            playing a few thousand goldfish + resilience games
+            {stale ? 'the engine changed since the last measurement - re-simulating' : 'playing a few thousand goldfish + resilience games'}
           </span>
         </div>
       )}
@@ -83,6 +95,11 @@ export default function MeasurePanel({ jobId, cached }) {
             {measuredAt && (
               <span style={{ fontSize: 11, color: '#57534e' }}>
                 measured {new Date(measuredAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+              </span>
+            )}
+            {refreshedStale && !measuredAt && (
+              <span style={{ fontSize: 11, color: '#57534e' }}>
+                re-measured: the strength engine changed since this deck was last measured
               </span>
             )}
           </div>

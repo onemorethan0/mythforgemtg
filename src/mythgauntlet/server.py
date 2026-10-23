@@ -16,6 +16,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from mythgauntlet import __version__
+from mythgauntlet.fingerprint import model_fingerprint
 from mythgauntlet.config import corpus_dir, suite_collection_path
 from mythgauntlet.data import rulings, scryfall, spellbook
 from mythgauntlet.mentor import chat as mentor_chat, deckview, transcript
@@ -355,6 +356,7 @@ def create_app(
         return {
             "status": "ok",
             "engine_version": __version__,
+            "model_fingerprint": model_fingerprint(),
             "cards_in_store": len(db),
             "semantics_entries": len(store),
             "semantics_load_warnings": len(store.skipped),
@@ -508,6 +510,8 @@ def create_app(
 
         return {
             "engine_version": __version__,
+            # Lets a caller that caches this response tell when it went stale.
+            "model_fingerprint": model_fingerprint(),
             "tier": "T0",
             "deck": {
                 "name": req.name,

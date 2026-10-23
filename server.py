@@ -4165,6 +4165,27 @@ def _deck_to_lines(commander, deck, partners=None) -> str:
     return "\n".join(lines)
 
 
+_ENGINE_FP_CACHE = {"at": 0.0, "fp": None}
+
+
+def _engine_fingerprint() -> str | None:
+    """The running engine's `model_fingerprint` (60 s cache), None when unknown.
+
+    A cached `last_measure` from different scoring code is stale: the deck page used to
+    show a Sep 4 Resilience 88 as current beside a fresh 41 for the same list, because
+    `engine_version` never moved through the axis re-models. Unknown (engine down) is not
+    stale - there is nothing better to show."""
+    now = time.time()
+    if _ENGINE_FP_CACHE["fp"] is not None and now - _ENGINE_FP_CACHE["at"] < 60:
+        return _ENGINE_FP_CACHE["fp"]
+    try:
+        fp = requests.get(f"{MYTHGAUNTLET_URL}/health", timeout=1.5).json().get("model_fingerprint")
+    except Exception:
+        return None
+    _ENGINE_FP_CACHE.update(at=now, fp=fp)
+    return fp
+
+
 def _gauntlet_analyze(commander, deck, partners=None):
     """Simulation-grounded strength from MythGauntlet; None if the service is unavailable."""
     try:
@@ -4187,6 +4208,7 @@ def _gauntlet_analyze(commander, deck, partners=None):
         data = resp.json()
         return {
             "engine_version": data.get("engine_version"),
+            "model_fingerprint": data.get("model_fingerprint"),
             "power_profile": data.get("power_profile"),
             "combos": data.get("combos"),  # graded in-deck combos for the strength panel
             # Deck-specific narrative (archetype/gameplan/pod placement/key cards/strengths
@@ -5983,7 +6005,10 @@ async def list_decks():
                 "commander_prompt": data.get("commander_prompt", ""),
                 "bracket":          data.get("bracket", 0),
                 "bracket_label":    data.get("bracket_label", ""),
-                "card_count":       len(data.get("deck", [])) + 1,
+                # PHYSICAL cards: an import aggregates duplicate basics into one entry
+                # carrying `quantity`, so counting entries showed a 100-card deck as "75".
+                "card_count":       (sum(c.get("quantity", 1) or 1 for c in data.get("deck", []))
+                                     + 1 + len(data.get("partners") or [])),
                 "built_at":         data.get("built_at"),
                 "thumbnail":        thumb,
                 "partial":          status in ("rendering", "cancelled"),
@@ -6916,7 +6941,14 @@ async def get_deck(job_id: str):
     if job["status"] == "error":
         raise HTTPException(409, f"Deck failed: {job.get('error', 'unknown error')}")
     # "done", "rendering", "cancelled" → return whatever we have on disk
-    return _annotate_owned(_serializable_job(job))
+    out = _annotate_owned(_serializable_job(job))
+    lm = out.get("last_measure")
+    if isinstance(lm, dict):
+        current = await asyncio.to_thread(_engine_fingerprint)
+        if current is not None:
+            fp = (lm.get("simulation") or {}).get("model_fingerprint")
+            out["last_measure"] = {**lm, "stale": fp != current}
+    return out
 
 
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
