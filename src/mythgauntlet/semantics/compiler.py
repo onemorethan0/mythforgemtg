@@ -287,11 +287,16 @@ class LlamaSwapClient:
             return False
 
     def complete(self, messages: list[dict]) -> str:
+        return self.complete_sampled(messages, None)
+
+    def complete_sampled(self, messages: list[dict], sampling: dict | None) -> str:
+        """`complete` with sampler overrides — the loop-recovery door (see compile_card)."""
         payload: dict = {
             "model": self.model,
             "messages": messages,
             "temperature": 0,
             "max_tokens": 1600,
+            **(sampling or {}),
         }
         if self.grammar:
             # `grammar` is a llama.cpp extension to the OpenAI schema; llama-server reads
@@ -742,22 +747,74 @@ def _populate_attach_grants(doc: dict) -> None:
                     effect["grant_keywords"] = list(keywords)
 
 
+# Greedy decoding degenerates on some cards: qwen3:14b at temperature 0 emits one effect
+# over and over until max_tokens cuts the JSON off (Ashen Rider: one "exile target
+# permanent" ~40 times, 4.5k chars, unparseable). It is deterministic, so a plain retry
+# repeats it byte for byte -- all 64 cards the 2026-10-07 recompile quarantined as
+# "a generation loop" failed both attempts identically. Measured 2026-10-22 on four of
+# them: a repeat penalty alone broke 2/4, temperature 0.7 alone 3/4, DRY changed
+# nothing (not applied alongside the grammar on this llama.cpp build), and the two
+# together broke 12/12 across three seeds. Used ONLY after a loop is seen, so the
+# deterministic path every accepted CCM came from is unchanged. The gates are NOT
+# enough here: run live over the 64, it broke 62 loops and 56 passed the gates, but 25
+# of those 56 were wrong on review (both branches of an if/otherwise, a blink stored as
+# permanent exile, invented pumps). Hence opt-in and tagged in provenance.
+_LOOP_RECOVERY_SAMPLING: tuple[dict, ...] = tuple(
+    {"temperature": 0.7, "top_p": 0.9, "repeat_penalty": 1.1, "repeat_last_n": 256,
+     "seed": seed}
+    for seed in (1, 2, 3)
+)
+
+
+def _looks_like_generation_loop(raw: str, errors: list[str]) -> bool:
+    """A response that repeats one chunk to the end, or a CCM the loop gate rejected.
+
+    A suffix of a periodic string is periodic wherever max_tokens cut it, so three
+    identical back-to-back copies of the tail catch a truncated loop with no parse.
+    The 30-char floor keeps ordinary JSON punctuation runs from qualifying.
+    """
+    if any("generation loop" in e for e in errors):
+        return True
+    for period in range(30, min(800, len(raw) // 3) + 1):
+        tail = raw[-period:]
+        if raw[-2 * period:-period] == tail and raw[-3 * period:-2 * period] == tail:
+            return True
+    return False
+
+
 def compile_card(
     card: Card,
     complete,
     exemplars: list[tuple[str, str]],
     max_attempts: int = 2,
+    recover=None,
 ) -> CompileResult:
-    """Compile one card. `complete` is messages -> response text (injectable for tests)."""
+    """Compile one card. `complete` is messages -> response text (injectable for tests).
+
+    `recover` is (messages, sampling) -> response text. When given, an attempt that
+    looks like a generation loop earns up to len(_LOOP_RECOVERY_SAMPLING) further
+    attempts under those samplers, beyond max_attempts.
+    """
     feedback: str | None = None
     errors: list[str] = []
-    for attempt in range(1, max_attempts + 1):
+    recoveries = iter(_LOOP_RECOVERY_SAMPLING if recover is not None else ())
+    sampling: dict | None = None
+    attempt = 0
+    budget = max_attempts
+    while attempt < budget:
+        attempt += 1
+        raw = ""
         try:
-            raw = complete(build_messages(card, exemplars, feedback))
+            messages = build_messages(card, exemplars, feedback)
+            raw = complete(messages) if sampling is None else recover(messages, sampling)
             doc = extract_json(raw)
         except (ValueError, KeyError, requests.RequestException) as exc:
             errors = [f"response error: {exc}"]
             feedback = errors[0]
+            if _looks_like_generation_loop(raw, errors):
+                sampling = next(recoveries, None)
+                if sampling is not None:
+                    budget = max(budget, attempt + 1)
             continue
         was_repaired = bool(doc.pop("_json_repaired", False))
         # enters_tapped is a rung-1-derivable FACT (tags._ENTERS_TAPPED_RE, the same
@@ -798,13 +855,20 @@ def compile_card(
             }
             if was_repaired:
                 doc["provenance"]["json_repaired"] = True
+            if sampling is not None:
+                # Sampled, not greedy: passes the gates but needs a human read.
+                doc["provenance"]["loop_recovery"] = {"seed": sampling.get("seed")}
             return CompileResult(
                 name=card.name, status="accepted", attempts=attempt,
                 ops=_ops_used(doc), doc=doc,
             )
         feedback = "\n".join(errors[:12])
+        if _looks_like_generation_loop(raw, errors):
+            sampling = next(recoveries, None)
+            if sampling is not None:
+                budget = max(budget, attempt + 1)
     return CompileResult(
-        name=card.name, status="quarantined", attempts=max_attempts, errors=errors
+        name=card.name, status="quarantined", attempts=attempt, errors=errors
     )
 
 

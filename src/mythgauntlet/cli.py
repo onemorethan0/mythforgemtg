@@ -992,7 +992,8 @@ def _llm_client() -> compiler.LlamaSwapClient:
     return client
 
 
-def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
+def _compile_cards(cards: list, keep_on_failure: bool = False,
+                   loop_recovery: bool = False) -> int:
     """Compile each card, recording status in the ledger and writing accepted CCMs.
 
     keep_on_failure guards the REFRESH path (recompiling cards that are already
@@ -1014,7 +1015,12 @@ def _compile_cards(cards: list, keep_on_failure: bool = False) -> int:
     accepted = quarantined = kept = 0
     for i, card in enumerate(cards, 1):
         prior = ledger.get(card.name) if keep_on_failure else None
-        result = compiler.compile_card(card, client.complete, exemplars)
+        # Loop recovery is opt-in (`compile-names --loop-recovery`), never nightly: its
+        # sampled output broke 62/64 loops on 2026-10-22, but 25 of the 56 it got past
+        # the gates were wrong in ways no gate sees (Breaking Point wiping AND burning,
+        # Turn to Mist as permanent exile). Every one needs a human read before landing.
+        recover = getattr(client, "complete_sampled", None) if loop_recovery else None
+        result = compiler.compile_card(card, client.complete, exemplars, recover=recover)
         ledger.record(result, client.model)
         if result.status == "accepted" and result.doc is not None:
             compiler.save_compiled(card, result.doc)
@@ -1510,7 +1516,7 @@ def _cmd_compile_names(args: argparse.Namespace) -> int:
     if args.limit:
         cards = cards[: args.limit]
     console.print(f"Recompiling {len(cards)} card(s)…")
-    return _compile_cards(cards, keep_on_failure=True)
+    return _compile_cards(cards, keep_on_failure=True, loop_recovery=args.loop_recovery)
 
 
 def _cmd_benchmark(args: argparse.Namespace) -> int:
@@ -2574,6 +2580,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_cn.add_argument("names_file")
     p_cn.add_argument("--limit", type=int, help="only compile the first N names")
+    p_cn.add_argument(
+        "--loop-recovery", action="store_true",
+        help="retry a generation loop under sampled decoding; accepted CCMs carry "
+             "provenance.loop_recovery and MUST be read against oracle text before "
+             "they are trusted (about 45%% were wrong on the first live run)",
+    )
     p_cn.set_defaults(func=_cmd_compile_names)
 
     # Navigation / creature comforts.

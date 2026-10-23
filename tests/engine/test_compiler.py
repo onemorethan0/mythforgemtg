@@ -1052,3 +1052,122 @@ def test_compile_does_not_reclassify_a_card_without_additional_combat_text(make_
     result = compile_card(card, lambda m: json.dumps(doc), exemplars=[])
     assert result.status == "quarantined"
     assert result.doc is None
+
+
+# A truncated greedy loop: one effect repeated until max_tokens cut it mid-object.
+_LOOP_EFFECT = '{"op": "draw", "count": 2}, '
+TRUNCATED_LOOP = (
+    '{"name": "Insight Spell", "ccm_version": 1, "cost": {"mana": "{2}{U}"}, '
+    '"types": ["sorcery"], "abilities": [{"kind": "spell_effect", "effects": ['
+    + _LOOP_EFFECT * 40 + '{"op": "dr'
+)
+# A loop that closed cleanly: parses, but the loop gate rejects it.
+CLOSED_LOOP = json.dumps({
+    "name": "Insight Spell", "ccm_version": 1, "cost": {"mana": "{2}{U}"},
+    "types": ["sorcery"],
+    "abilities": [{"kind": "spell_effect", "effects": [{"op": "draw", "count": 2}] * 5}],
+})
+
+
+def test_loop_detector_sees_a_truncated_repeat_and_ignores_ordinary_json():
+    assert compiler._looks_like_generation_loop(TRUNCATED_LOOP, [])
+    assert not compiler._looks_like_generation_loop(GOOD_JSON, [])
+    assert not compiler._looks_like_generation_loop("", ["response error: timeout"])
+    assert compiler._looks_like_generation_loop("{}", ["[cross_check] CCM repeats an "
+                                                       "identical effect 5 times in one "
+                                                       "ability (a generation loop)"])
+
+
+def test_a_truncated_loop_retries_under_recovery_sampling(make_card):
+    greedy, sampled = [], []
+
+    def complete(messages):
+        greedy.append(messages)
+        return TRUNCATED_LOOP
+
+    def recover(messages, sampling):
+        sampled.append(sampling)
+        return GOOD_JSON
+
+    result = compile_card(_card(make_card), complete, exemplars=[], recover=recover)
+    assert result.status == "accepted"
+    assert len(greedy) == 1 and len(sampled) == 1
+    assert sampled[0]["temperature"] > 0 and sampled[0]["repeat_penalty"] > 1
+    assert result.attempts == 2
+
+
+def test_a_gate_rejected_loop_also_triggers_recovery(make_card):
+    sampled = []
+
+    def recover(messages, sampling):
+        sampled.append(sampling["seed"])
+        return CLOSED_LOOP if len(sampled) < 3 else GOOD_JSON
+
+    result = compile_card(_card(make_card), lambda m: CLOSED_LOOP, exemplars=[],
+                          recover=recover)
+    assert result.status == "accepted"
+    assert sampled == [1, 2, 3]  # rotates seeds, one per loop seen
+    assert result.attempts == 4
+
+
+def test_loop_recovery_is_bounded_and_opt_in(make_card):
+    calls = []
+
+    def recover(messages, sampling):
+        calls.append(sampling)
+        return TRUNCATED_LOOP
+
+    result = compile_card(_card(make_card), lambda m: TRUNCATED_LOOP, exemplars=[],
+                          recover=recover)
+    assert result.status == "quarantined"
+    assert len(calls) == len(compiler._LOOP_RECOVERY_SAMPLING)
+    assert result.attempts == 1 + len(compiler._LOOP_RECOVERY_SAMPLING)
+
+    # No `recover` (every pre-existing caller): exactly the old two attempts.
+    plain = compile_card(_card(make_card), lambda m: TRUNCATED_LOOP, exemplars=[])
+    assert plain.status == "quarantined" and plain.attempts == 2
+
+
+def test_a_non_loop_failure_never_reaches_recovery(make_card):
+    def recover(messages, sampling):  # pragma: no cover - must not run
+        raise AssertionError("recovery used for an ordinary gate failure")
+
+    result = compile_card(_card(make_card), lambda m: BAD_JSON, exemplars=[],
+                          recover=recover)
+    assert result.status == "quarantined" and result.attempts == 2
+
+
+def test_a_recovered_ccm_is_tagged_for_review(make_card):
+    result = compile_card(_card(make_card), lambda m: TRUNCATED_LOOP, exemplars=[],
+                          recover=lambda m, s: GOOD_JSON)
+    assert result.doc["provenance"]["loop_recovery"] == {"seed": 1}
+    plain = compile_card(_card(make_card), lambda m: GOOD_JSON, exemplars=[])
+    assert "loop_recovery" not in plain.doc["provenance"]
+
+
+def test_loop_recovery_is_off_unless_compile_names_asks(monkeypatch):
+    from mythgauntlet import cli
+    seen = []
+
+    class _Client:
+        model = "fake"
+
+        def complete(self, messages):
+            return TRUNCATED_LOOP
+
+        def complete_sampled(self, messages, sampling):  # pragma: no cover
+            seen.append(sampling)
+            return TRUNCATED_LOOP
+
+    monkeypatch.setattr(cli, "_llm_client", lambda: _Client())
+    monkeypatch.setattr(compiler, "load_exemplars", lambda: [])
+    monkeypatch.setattr(compiler.Ledger, "save", lambda self: None)
+    import types
+    card = types.SimpleNamespace(name="Insight Spell")
+    monkeypatch.setattr(compiler, "compile_card",
+                        lambda c, complete, ex, recover=None: seen.append(recover) or
+                        compiler.CompileResult(name=c.name, status="quarantined"))
+    monkeypatch.setattr(compiler.Ledger, "record", lambda self, r, m: None)
+    cli._compile_cards([card])
+    cli._compile_cards([card], loop_recovery=True)
+    assert seen[0] is None and callable(seen[1])
