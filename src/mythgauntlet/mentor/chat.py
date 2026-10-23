@@ -741,6 +741,41 @@ def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages
     return facts
 
 
+_CASTABILITY_RE = re.compile(
+    r"\b(?:cast|play)\w*\b.*\b(?:reliabl\w*|consistent\w*|on\s+curve|on\s+time|turn\s+\d+|"
+    r"colou?r\w*|mana\s+base|enough\s+(?:black|white|blue|red|green|sources))",
+    re.IGNORECASE | re.DOTALL)
+_TURN_RE = re.compile(r"\bturn\s+(\d{1,2})\b", re.IGNORECASE)
+def _prefetch_castability(ctx, question, tool_trace, all_results, messages) -> list[dict]:
+    """A question about CASTING a deck card on time runs `card_castability` for it before the
+    model writes, as a real tool call (a user-role note was ignored: "no castability data was
+    provided in the tool results"). Live 2026-10-23 "Can I reliably cast Sign in Blood on turn
+    2?" on a deck with 17 black sources got "Yes ... if you have access to two black mana" --
+    true of every card and false here (41%). Offline: manabase math only."""
+    if not _CASTABILITY_RE.search(question or ""):
+        return []
+    in_deck = {c.name for c, _q in ctx.resolved.cards} | {
+        c.name for c in (getattr(ctx.resolved, "commanders", None) or [])}
+    asked_turn = _TURN_RE.search(question)
+    names = [n for n in _question_card_names(question, ctx.all_card_names) if n in in_deck]
+    facts: list[dict] = []
+    for i, name in enumerate(names):
+        args = {"name": name}
+        if asked_turn:
+            args["turn"] = int(asked_turn.group(1))
+        call = {"id": f"auto-cast-{i}", "type": "function",
+                "function": {"name": "card_castability", "arguments": json.dumps(args)}}
+        messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+        result = call_tool(ctx, "card_castability", args)
+        all_results.append(result)
+        tool_trace.append(ToolCallRecord(name="card_castability", args=args, result_data=result.data))
+        messages.append({"role": "tool", "tool_call_id": call["id"],
+                         "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+        if result.data.get("found"):
+            facts.append(result.data)
+    return facts
+
+
 _UNCITED_RULE_RE = re.compile(r"cites rule '([^']+)', which was never looked up this turn")
 _RULE_PARENT_RE = re.compile(r"^(\d{3}\.\d+)[a-z]?$")
 _SIBLING_CAP = 10
@@ -901,6 +936,7 @@ def ask(
     _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
     _prefetch_role_table(ctx, question, tool_trace, all_results, messages)
+    _prefetch_castability(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False

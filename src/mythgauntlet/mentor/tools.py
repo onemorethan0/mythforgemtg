@@ -1440,6 +1440,21 @@ TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "card_castability",
+            "description": "How often THIS deck has the coloured mana to cast one of its cards by "
+                            "a given turn (default: the card's mana value), from the deck's real "
+                            "colour sources. Use for 'can I reliably cast X on turn N' and colour "
+                            "questions about a specific card.",
+            "parameters": {
+                "type": "object",
+                "properties": {"name": {"type": "string"}, "turn": {"type": "integer"}},
+                "required": ["name"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "check_legality",
             "description": "Deterministically check whether a card's colour identity is a "
                             "legal SUBSET of this deck's commander(s) colour identity. Call "
@@ -1639,6 +1654,50 @@ TOOL_SCHEMAS: list[dict] = [
     },
 ]
 
+def tool_card_castability(ctx: MentorContext, name: str, turn: int | None = None) -> ToolResult:
+    """How often THIS deck has a card's coloured mana by a turn (default: its mana value).
+
+    Hypergeometric over the deck's real colour sources (`manabase.count_sources`): opening 7
+    plus a draw a turn, no mulligan, so it is the conservative floor manabase.py describes.
+    Several colours are multiplied as independent draws (a dual land serving both makes the
+    true figure a little higher). Added 2026-10-23 after "can I reliably cast Sign in Blood on
+    turn 2?" was answered "yes" for a deck where it is 41%."""
+    deck = list(ctx.resolved.cards)
+    card = next((c for c, _q in deck if c.name.lower() == str(name).lower()), None)
+    if card is None:
+        card = next((c for c in (ctx.resolved.commanders or []) if c.name.lower() == str(name).lower()), None)
+    if card is None:
+        return ToolResult(data={"found": False, "message": f"{name!r} is not in this deck."})
+    demand: dict[str, int] = {}
+    for pip in getattr(card.cost, "pips", ()) or ():
+        colors = {c for c in pip if c in "WUBRG"}
+        if len(colors) == 1:                   # hybrid pips are flexible (as manabase.analyze)
+            color = next(iter(colors))
+            demand[color] = demand.get(color, 0) + 1
+    size = sum(q for _c, q in deck) or 1
+    sources = manabase.count_sources(deck)
+    t0 = int(turn) if turn else max(1, card.mana_value)
+
+    def odds(t: int) -> float:
+        p = 1.0
+        for color, n in demand.items():
+            p *= manabase.hypergeom_at_least(size, sources.get(color, 0), manabase.cards_seen(t), n)
+        return p
+
+    by_turn = {t: round(odds(t), 2) for t in range(t0, min(t0 + 4, 13))}
+    reach = next((t for t in range(t0, 13) if odds(t) >= manabase.TARGET_PROBABILITY), None)
+    return ToolResult(data={
+        "found": True, "card": card.name, "mana_cost": card.mana_cost_str,
+        "coloured_pips": demand, "sources": {c: sources.get(c, 0) for c in demand},
+        "deck_size": size, "turn": t0, "probability": round(odds(t0), 2),
+        # Say THIS word. Unbanded, 41% came back as "reasonably likely" (live 2026-10-23).
+        "verdict": ("reliable" if odds(t0) >= 0.85 else "usually castable" if odds(t0) >= 0.6
+                    else "unreliable on this turn"),
+        "probability_by_turn": by_turn, "ninety_percent_by_turn": reach,
+        "method": "hypergeometric, opening 7 + one draw per turn, no mulligan (a floor)",
+    }, card_names=frozenset({card.name}))
+
+
 _TOOL_FUNCS = {
     "lookup_card": tool_lookup_card,
     "lookup_rulings": tool_lookup_rulings,
@@ -1655,6 +1714,7 @@ _TOOL_FUNCS = {
     "get_measured_swaps": tool_get_measured_swaps,
     "suggest_role_swap": tool_suggest_role_swap,
     "check_legality": tool_check_legality,
+    "card_castability": tool_card_castability,
 }
 
 
