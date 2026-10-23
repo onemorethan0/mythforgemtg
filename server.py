@@ -4287,6 +4287,13 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
         if resp.status_code != 200:
             return None
         return resp.json()
+    except requests.Timeout:
+        # Reachable but slower than the budget — saying "unreachable" here sent the
+        # 2026-10-23 investigation after the wrong process (the cause was sim cost).
+        print("  [advise] MythGauntlet /advise timed out after 900s")
+        return {"error": "The upgrade search took longer than 15 minutes and was stopped. "
+                         "The strength engine is running but overloaded — try again, or pick "
+                         "a single target axis."}
     except Exception as e:
         print(f"  [advise] MythGauntlet strength API unavailable: {e}")
         return None

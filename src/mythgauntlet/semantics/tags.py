@@ -1223,8 +1223,33 @@ def _bank_impulse(kind: str | None, n: int, one_shot: int, engine: int) -> tuple
     return one_shot, engine + min(n, _IMPULSE_ENGINE_CAP)
 
 
+# Memo for `analyze`. The sim's finisher/go-off checks (overrun, storm) call it once per card
+# per simulated GAME, so a 300-run analysis re-derived every card's regex tags ~150k times:
+# 95% of an `analyze_deck`'s wall time, ~25 s each, which pushed the upgrade advisor's 97
+# analyses past its 900 s HTTP timeout and "Suggest upgrades" never finished (2026-10-23).
+# Keyed on exactly the Card fields `analyze` reads (Card is a mutable, unhashable dataclass,
+# and an equal Card is routinely rebuilt); EffectVector is frozen, so sharing one is safe.
+# ADD A FIELD HERE if `analyze` ever starts reading another one, or it serves stale tags.
+_ANALYZE_CACHE: dict[tuple, EffectVector] = {}
+_ANALYZE_CACHE_MAX = 100_000  # the whole card store is ~35k
+
+
+def analyze_cache_clear() -> None:
+    _ANALYZE_CACHE.clear()
+
+
 def analyze(card: Card) -> EffectVector:
-    """Compute the rung-1 EffectVector for a card (front face)."""
+    """Compute the rung-1 EffectVector for a card (front face). Memoized; see above."""
+    key = (card.name, card.oracle_text, card.type_line, card.mana_cost_str, card.edhrec_rank)
+    hit = _ANALYZE_CACHE.get(key)
+    if hit is None:
+        if len(_ANALYZE_CACHE) >= _ANALYZE_CACHE_MAX:
+            _ANALYZE_CACHE.clear()
+        hit = _ANALYZE_CACHE[key] = _analyze_uncached(card)
+    return hit
+
+
+def _analyze_uncached(card: Card) -> EffectVector:
     text = _clean_text(card)
 
     enters_tapped = bool(
