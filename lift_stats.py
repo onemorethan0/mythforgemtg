@@ -134,6 +134,11 @@ class LiftStats:
     # main-page-only figures.
     theme_extra: int = 0
     theme_tag: str | None = None
+    # What the verdict's "high synergy" test actually compares against: a TYPICAL DECK for
+    # this commander (page median + the population-median delta), NOT the page median. The
+    # panel used to print the page median as "typical here", so a deck at +11.6 read
+    # "(typical here +6.4)" directly above "leaning on the commander less than most decks".
+    typical_synergy: float | None = None
 
 
 def _is_basic_land(card: dict) -> bool:
@@ -241,6 +246,7 @@ def lift_stats(
         verdict=verdict,
         theme_extra=theme_extra,
         theme_tag=extra_tag if theme_extra else None,
+        typical_synergy=round(baseline * 100 + TYPICAL_SYNERGY_DELTA, 1),
     )
 
 

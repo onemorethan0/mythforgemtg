@@ -896,7 +896,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                   {om.verdict !== 'insufficient-data' && (
                     <div style={{ fontSize: 11, color: '#a8a29e', marginTop: 4 }}>
                       Synergy {om.synergy > 0 ? '+' : ''}{om.synergy}
-                      <span style={{ color: '#78716c' }}> (typical here {om.baseline > 0 ? '+' : ''}{om.baseline})</span>
+                      {/* Compare against what the verdict compares against. A block stored
+                          before `typical_synergy` existed only has the page median, so it is
+                          labelled as exactly that rather than as "typical". */}
+                      <span style={{ color: '#78716c' }}>
+                        {om.typical_synergy != null
+                          ? ` (a typical deck here: ${om.typical_synergy > 0 ? '+' : ''}${om.typical_synergy})`
+                          : ` (EDHREC page median ${om.baseline > 0 ? '+' : ''}${om.baseline})`}
+                      </span>
                       {' · '}spread {om.synergy_range}
                       {' · '}{om.staples_pct}% on-theme
                     </div>

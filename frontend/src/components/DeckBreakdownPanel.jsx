@@ -134,10 +134,18 @@ function ManaChart({ manabase, curve, identity }) {
           <span style={{ width: 22, textAlign: 'right', color: '#f5f5f4', fontWeight: 700 }}>{n}</span>
         </div>
       ))}
+      {(manabase.worst_colors || []).length > 0 && (
+        <div style={{ ...footnote, marginTop: 8 }}>Hardest colour demands, cast on curve (no mulligan):</div>
+      )}
+      {/* Leads with what THIS deck achieves. It used to print "17 of 40 sources" - `need` is
+          manabase.py's no-mulligan FLOOR, which its own docstring says must not be presented
+          as a requirement: no three-colour deck reaches it, so every such deck read as broken
+          beside a Deck health verdict of "castable". */}
       {(manabase.worst_colors || []).map(w => (
         <div key={`${w.color}-${w.turn}`} style={{ fontSize: 12, marginTop: 4,
-          color: w.have < w.need ? '#f59e0b' : '#a8a29e' }}>
-          {w.color}: {w.have} of {w.need} sources to cast {w.example} on turn {w.turn} ({Math.round(w.probability * 100)}%)
+          color: w.probability < 0.6 ? '#f59e0b' : '#a8a29e' }}>
+          {w.example}{w.pips ? ` (${String(w.color).repeat(w.pips)})` : ''} on turn {w.turn}:
+          {' '}{Math.round(w.probability * 100)}% of games · {w.have} {w.color} sources
         </div>
       ))}
       {curve && (

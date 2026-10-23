@@ -419,3 +419,14 @@ def test_the_banner_does_not_promise_a_bracket_it_cannot_measure():
         assert promise not in banner, f"the banner must not promise a bracket: {promise!r}"
     assert "may play" in banner, (
         "the banner must hedge (the deck MAY play up), not assert a different bracket")
+
+
+def test_typical_synergy_is_what_the_verdict_compares_against():
+    # The panel prints this beside the deck's synergy; it must be the same bar the "high"
+    # test uses, or a deck reads "+11.6 (typical +6.4)" above "leaning on it less than most".
+    import lift_stats as ls
+    page = {f"c{i}": v / 100 for i, v in enumerate(range(-20, 40))}
+    deck = [{"name": f"c{i}"} for i in range(30, 60)]
+    s = ls.lift_stats(deck, page)
+    assert s.typical_synergy == round(s.baseline + ls.TYPICAL_SYNERGY_DELTA, 1)
+    assert (s.synergy > s.typical_synergy) == (s.verdict in (ls.ON_RAILS, ls.FOCUSED_WITH_SPICE))

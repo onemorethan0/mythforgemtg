@@ -482,7 +482,7 @@ def tool_get_deck_stats(ctx: MentorContext) -> ToolResult:
         "sources": mb.sources,
         "consistency": round(mb.consistency, 2),
         "worst_colors": [
-            {"color": r.color, "turn": r.turn, "have": r.have, "need": r.need,
+            {"color": r.color, "pips": r.pips, "turn": r.turn, "have": r.have, "need": r.need,
              "probability": round(r.probability, 2), "example": r.example}
             for r in mb.worst[:3]
         ],
