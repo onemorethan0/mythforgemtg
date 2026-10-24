@@ -5,3 +5,6 @@ pytest
 # failed collection of every TestClient-based test file -- CI was red from 2026-09-07 until
 # this was added. Unpinned like the rest of the manifest: CI tracks latest on purpose.
 httpx2
+# Static check for undefined names (tests/test_no_undefined_names.py): a July rename left a
+# NameError in card-art regen for three months that no test reached.
+ruff

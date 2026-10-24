@@ -3187,7 +3187,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 t0 = time.time()
                 art_path = gen.generate(
                     tc.art_prompt,
-                    str(_ART_DIR / deck_slug / art_safe),
+                    str(ART_DIR / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
                     card_type=tc.card.get("type_line", ""),
@@ -3438,7 +3438,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             regen_crop = cur_art_dir / f"{render_key}.png"
             if regen_crop.exists():
                 return regen_crop
-            build_crop = _ART_DIR / deck_slug / f"{art_safe}.png"
+            build_crop = ART_DIR / deck_slug / f"{art_safe}.png"
             if build_crop.exists():
                 return build_crop
             return _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
