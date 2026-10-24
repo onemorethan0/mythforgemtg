@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 
 import collection
 import server
-from api import state
+from api import routes_collection, state
 
 client = TestClient(server.app)
 
@@ -351,8 +351,8 @@ def test_backfill_single_write(csv_path, store, monkeypatch):
     _sol_store(store)
     _write(csv_path, "1,Sol Ring,,,,,,", "1,Sol Ring,,,foil,,,")
     calls = []
-    real = server.coll_write
-    monkeypatch.setattr(server, "coll_write", lambda rows, *a, **k: (calls.append(1), real(rows, *a, **k))[1])
+    real = routes_collection.coll_write
+    monkeypatch.setattr(routes_collection, "coll_write", lambda rows, *a, **k: (calls.append(1), real(rows, *a, **k))[1])
     client.post("/api/collection/backfill-printings")
     assert len(calls) == 1
 

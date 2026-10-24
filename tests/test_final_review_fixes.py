@@ -119,7 +119,7 @@ def test_canonical_header_file_gets_no_pre_printings_backup(tmp_path):
 
 def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     import server
-    from api import collection_data, state
+    from api import collection_data, routes_collection, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
@@ -131,9 +131,9 @@ def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     monkeypatch.setattr(scryfall_prints, "db_path", lambda: db)
     monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
-    monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
+    monkeypatch.setattr(routes_collection, "_save_prices", lambda d: saved.update(d))
     monkeypatch.setattr(collection_data, "_load_prices", lambda: dict(saved) or {})
-    out = server.collection_refresh_prices()
+    out = routes_collection.collection_refresh_prices()
     assert calls == [{"force": True}]
     assert out["prices_updated"] == datetime.fromtimestamp(future).isoformat(timespec="seconds")
     assert out["prices_updated"] > saved["updated"]
@@ -141,7 +141,7 @@ def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
 
 def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
     import server
-    from api import collection_data, state
+    from api import collection_data, routes_collection, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
 
@@ -152,15 +152,15 @@ def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(scryfall_prints, "db_path", lambda: tmp_path / "missing.sqlite")
     monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
-    monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
+    monkeypatch.setattr(routes_collection, "_save_prices", lambda d: saved.update(d))
     monkeypatch.setattr(collection_data, "_load_prices", lambda: dict(saved))
-    out = server.collection_refresh_prices()
+    out = routes_collection.collection_refresh_prices()
     assert saved["updated"] and out["prices_updated"] == saved["updated"]
 
 
 def test_owned_printings_cache_not_poisoned_by_failure_and_keyed_on_store(tmp_path, monkeypatch):
     import server
-    from api import collection_data, state
+    from api import collection_data, routes_collection, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
