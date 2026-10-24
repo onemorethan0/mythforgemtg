@@ -78,12 +78,12 @@ def _duel(atk: _Permanent, blk: _Permanent) -> tuple[bool, bool]:
     dmg = {"a": 0, "b": 0}
     dead = {"a": False, "b": False}
     for step in ("first", "regular"):
-        if not dead["a"] and strikes(atk, step) and atk.power > 0:
-            dmg["b"] += atk.power
+        if not dead["a"] and strikes(atk, step) and atk.combat_power > 0:
+            dmg["b"] += atk.combat_power
             if atk.has_keyword("deathtouch"):
                 dead["b"] = True
-        if not dead["b"] and strikes(blk, step) and blk.power > 0:
-            dmg["a"] += blk.power
+        if not dead["b"] and strikes(blk, step) and blk.combat_power > 0:
+            dmg["a"] += blk.combat_power
             if blk.has_keyword("deathtouch"):
                 dead["a"] = True
         dead["a"] = dead["a"] or dmg["a"] >= atk.toughness
@@ -92,8 +92,8 @@ def _duel(atk: _Permanent, blk: _Permanent) -> tuple[bool, bool]:
 
 
 def _pair_kills(atk: _Permanent, pair) -> bool:
-    return (sum(b.power for b in pair) >= atk.toughness
-            or any(b.has_keyword("deathtouch") and b.power > 0 for b in pair))
+    return (sum(b.combat_power for b in pair) >= atk.toughness
+            or any(b.has_keyword("deathtouch") and b.combat_power > 0 for b in pair))
 
 
 def _menace_pair(atk: _Permanent, blockers: list[_Permanent], *, winning: bool):
@@ -155,8 +155,8 @@ def greedy_block_assignment(
     # Champion went 24 -> 3 wins of 60 against a bear deck that had three chump tokens).
     for walker in {id(w): w for w in on_walker.values()}.values():
         idxs = sorted((i for i, w in on_walker.items() if w is walker and i not in assignments),
-                      key=lambda i: attackers[i].power, reverse=True)
-        incoming = sum(attackers[i].power for i in idxs)
+                      key=lambda i: attackers[i].combat_power, reverse=True)
+        incoming = sum(attackers[i].combat_power for i in idxs)
         for i in idxs:
             if incoming < walker.loyalty:
                 break
@@ -167,7 +167,7 @@ def greedy_block_assignment(
                 assignments[i] = pair
                 for b in pair:
                     blockers.remove(b)
-                incoming -= attackers[i].power
+                incoming -= attackers[i].combat_power
                 continue
             legal = _legal_blockers(attackers[i], blockers)
             if not legal:
@@ -175,9 +175,9 @@ def greedy_block_assignment(
             pick = min(legal, key=lambda b: b.power + b.toughness)
             assignments[i] = pick
             blockers.remove(pick)
-            incoming -= attackers[i].power
+            incoming -= attackers[i].combat_power
     # attackers declared against a planeswalker threaten its loyalty, not the life total
-    unblocked = sum(a.power for i, a in enumerate(attackers)
+    unblocked = sum(a.combat_power for i, a in enumerate(attackers)
                     if i not in assignments and i not in on_walker)
     if unblocked >= defender.life:  # chump-block the biggest threats with what's left
         for i, atk in enumerate(attackers):

@@ -192,14 +192,48 @@ class _Permanent:
     attached_to: "_Permanent | None" = None
     attach_grant: tuple[int, int, frozenset[str]] | None = None
     granted_keywords: frozenset[str] = frozenset()
+    # Command-zone combat rules (sim/combat_rules.py), set fresh at every combat by
+    # game.refresh_combat_rules from the rule-commanders actually on the battlefield.
+    # `assigns_toughness` is the rules text verbatim ("assigns combat damage equal to its
+    # toughness rather than its power"); `_if_greater` is Ghalta's narrower version, judged at
+    # damage time; `gap_pump` is Doran, Besieged by Time's +X/+X on attack or block;
+    # `may_attack_with_defender` lifts CR 702.3b (Arcades, Felothar, Ghalta).
+    assigns_toughness: bool = False
+    assigns_toughness_if_greater: bool = False
+    gap_pump: bool = False
+    may_attack_with_defender: bool = False
 
     def has_keyword(self, name: str) -> bool:
         return name in self.keywords or name in self.granted_keywords
 
+    @property
+    def combat_power(self) -> int:
+        """The combat damage this creature assigns (CR 510.1a, or its toughness under a rule)."""
+        if self.assigns_toughness or (self.assigns_toughness_if_greater
+                                      and self.toughness > self.power):
+            return self.toughness
+        return self.power
+
+    @property
+    def attack_value(self) -> int:
+        """`combat_power` once it has attacked: includes a pending Doran, Besieged pump."""
+        if not self.gap_pump:
+            return self.combat_power
+        x = abs(self.power - self.toughness)
+        p, t = self.power + x, self.toughness + x
+        if self.assigns_toughness or (self.assigns_toughness_if_greater and t > p):
+            return t
+        return p
+
+    def can_attack(self) -> bool:
+        """CR 702.3b: a creature with defender can't attack unless something says it can."""
+        return not self.has_keyword("defender") or self.may_attack_with_defender
+
     def deals_lethal_to(self, other: "_Permanent") -> bool:
         """CR 702.2b: any nonzero combat damage from a deathtouch source is lethal,
         regardless of the target's toughness."""
-        return self.power >= other.toughness or (self.has_keyword("deathtouch") and self.power > 0)
+        dmg = self.combat_power
+        return dmg >= other.toughness or (self.has_keyword("deathtouch") and dmg > 0)
 
 
 @dataclass

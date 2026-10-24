@@ -22,9 +22,9 @@ noncommander permanents are on the battlefield.
 Defender (CR 702.3b) applies with or without a rule: a creature with defender cannot attack
 unless something says it can. tier0 used to swing with it.
 
-tier2 (duels) seeds a creature's power from `SimCard.attack_power` at materialisation and is NOT
-covered here: there the rule must also follow the commander on and off the battlefield and apply
-to blocks. Analyze, the advisor, card impact and the mentor all read tier0.
+tier2 (duels) applies the same rules through `game.refresh_combat_rules`, which sets per-creature
+flags at each combat from the rule-commanders actually on the battlefield, including the
+opponent's creatures for an "each creature" rule and blocks for Doran, Besieged by Time.
 """
 from __future__ import annotations
 
@@ -57,6 +57,11 @@ class CombatRule:
     defenders_only: bool = False
     defenders_attack: bool = False
     discount_toughness_over_power: int = 0
+    # Scope, which only a two-player sim can see (tier0 has no opponent creatures):
+    # "Each creature assigns..." (Doran, the Siege Tower) reaches the OPPONENT's creatures too;
+    # "During your turn, ..." (Baldin) is off on the opponent's turn.
+    all_creatures: bool = False
+    your_turn_only: bool = False
 
     def attack_power(self, card: Card) -> int:
         return attack_power(card, self)
@@ -96,6 +101,7 @@ def attack_power(card: Card, rule: CombatRule | None) -> int:
 def from_commanders(commanders: list[Card | None]) -> CombatRule | None:
     """The combined rule printed on the command zone, or None when nothing applies."""
     damage, defenders_only, defenders_attack, discount = POWER, False, False, 0
+    all_creatures = your_turn_only = False
     for cmd in commanders:
         if cmd is None:
             continue
@@ -116,8 +122,11 @@ def from_commanders(commanders: list[Card | None]) -> CombatRule | None:
                 if m:
                     damage = TOUGHNESS_IF_GREATER if m.group("greater") else TOUGHNESS
                     defenders_only = bool(m.group("defender"))
+                    all_creatures = not m.group("yours")
+                    your_turn_only = s.lower().startswith("during your turn")
                 if _DEFENDERS_ATTACK_RE.search(s):
                     defenders_attack = True
     if damage == POWER and not defenders_attack and not discount:
         return None
-    return CombatRule(damage, defenders_only, defenders_attack, discount)
+    return CombatRule(damage, defenders_only, defenders_attack, discount,
+                      all_creatures, your_turn_only)

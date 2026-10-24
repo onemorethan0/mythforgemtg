@@ -104,3 +104,10 @@ def test_defender_never_attacks_without_permission():
     # CR 702.3b, independent of any rule: tier0 used to swing with defenders.
     assert cr.attack_power(_c(3, 3, "defender"), None) == 0
     assert cr.attack_power(_c(3, 3, "double strike"), None) == 6
+
+
+def test_scope_flags():
+    assert cr.from_commanders([_cmd("Doran, the Siege Tower")]).all_creatures is True
+    assert cr.from_commanders([_cmd("Felothar the Steadfast")]).all_creatures is False
+    baldin = cr.from_commanders([_cmd("Baldin, Century Herdmaster")])
+    assert baldin.all_creatures is True and baldin.your_turn_only is True

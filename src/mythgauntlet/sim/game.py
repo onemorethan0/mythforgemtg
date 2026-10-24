@@ -622,6 +622,7 @@ def advance(state: GameState) -> None:
                 state.combat_begun = True
                 _fire_triggers(state.players[state.active], state.players[state.other],
                                "begin_combat", _others(state))
+            refresh_combat_rules(state)
             if not _eligible_attackers(state.players[state.active]):
                 state.phase = "end_step"
                 continue
@@ -660,9 +661,9 @@ def walker_attack_plan(
     )
     if not targets or not attackers:
         return ()
-    if sum(a.power for a in attackers) >= opp.life:
+    if sum(a.attack_value for a in attackers) >= opp.life:
         return ()  # lethal on the player: go face
-    pool = sorted(attackers, key=lambda a: a.power, reverse=True)
+    pool = sorted(attackers, key=lambda a: a.attack_value, reverse=True)
     plan: list[tuple[_Permanent, _Permanent]] = []
     for walker in targets:
         picked: list[_Permanent] = []
@@ -671,7 +672,7 @@ def walker_attack_plan(
             if dealt >= walker.loyalty:
                 break
             picked.append(atk)
-            dealt += atk.power
+            dealt += atk.attack_value
         if dealt < walker.loyalty:
             continue  # cannot kill it with what is left: ignore this walker
         for atk in picked:
@@ -681,9 +682,60 @@ def walker_attack_plan(
 
 
 def _eligible_attackers(me: _Player) -> list[_Permanent]:
-    atk = [c for c in me.creatures() if not c.sick and not c.tapped and c.power > 0]
-    atk.sort(key=lambda c: c.power, reverse=True)
+    """Untapped, non-sick creatures that may attack (CR 702.3b defender) and would deal damage.
+    Judged on `attack_value`, not printed power: under Doran, the Siege Tower a 0/4 hits for 4."""
+    atk = [c for c in me.creatures()
+           if not c.sick and not c.tapped and c.can_attack() and c.attack_value > 0]
+    atk.sort(key=lambda c: c.attack_value, reverse=True)
     return atk
+
+
+def refresh_combat_rules(state: "GameState") -> None:
+    """Set every creature's combat-rule flags from the rule-commanders now on the battlefield.
+
+    Called at each combat (the COMBAT_ATTACK step), so a commander that died or was bounced
+    stops applying and Baldin's "during your turn" follows the active player. One parser for
+    tier0 and tier2: `combat_rules.from_commanders` on the commander's own card."""
+    from mythgauntlet.sim import combat_rules as cr
+
+    players = list(state.players.values())
+    for pl in players:
+        for c in pl.creatures():
+            c.assigns_toughness = c.assigns_toughness_if_greater = False
+            c.gap_pump = c.may_attack_with_defender = False
+    for key, pl in state.players.items():
+        for perm in pl.battlefield:
+            card = getattr(getattr(perm, "source", None), "card", None)
+            if not perm.is_commander or card is None:
+                continue
+            rule = cr.from_commanders([card])
+            if rule is None or (rule.your_turn_only and key != state.active):
+                continue
+            mine = pl.creatures()
+            reach = [c for p2 in players for c in p2.creatures()] if rule.all_creatures else mine
+            for c in reach:
+                if rule.defenders_only and not c.has_keyword("defender"):
+                    continue
+                if rule.damage == cr.TOUGHNESS:
+                    c.assigns_toughness = True
+                elif rule.damage == cr.TOUGHNESS_IF_GREATER:
+                    c.assigns_toughness_if_greater = True
+            for c in mine:
+                if rule.damage == cr.GAP_PUMP:
+                    c.gap_pump = True
+                if rule.defenders_attack:
+                    c.may_attack_with_defender = True
+
+
+def _gap_pump(p: _Permanent) -> None:
+    """Doran, Besieged by Time: +X/+X until end of turn, X = |power - toughness| (CR 514.2
+    cleanup undoes it via expire_until_end_of_turn)."""
+    x = abs(p.power - p.toughness)
+    if x:
+        p.power += x
+        p.toughness += x
+        p.temp_power += x
+        p.temp_toughness += x
 
 
 def _payable_casts(state: GameState) -> list[GameCard]:
@@ -1010,7 +1062,10 @@ def _apply_declare_attackers(
     state.combat_defender = state.other
     me, opp = state.combat_me_opp()
     others = _others(state)
-    attackers = [a for a in declared if a in me.battlefield]
+    attackers = [a for a in declared if a in me.battlefield and a.can_attack()]
+    for atk in attackers:
+        if atk.gap_pump:
+            _gap_pump(atk)
     attackers = sorted(attackers, key=lambda c: c.power, reverse=True)
     n = len(attackers)
     for atk in attackers:
@@ -1058,6 +1113,10 @@ def _apply_declare_blocks(state: GameState, assignment: dict) -> None:
     kills the most valuable blockers it can afford.
     """
     attackers = state.combat_attackers
+    for v in assignment.values():
+        for blk in _blockers_of(v):
+            if blk.gap_pump:
+                _gap_pump(blk)
     special = any(
         p.has_keyword("first strike") or p.has_keyword("double strike")
         for i, a in enumerate(attackers) for p in (a, *_blockers_of(assignment.get(i)))
@@ -1110,17 +1169,17 @@ def _resolve_combat_steps(state: GameState, blocks: dict[int, tuple[_Permanent, 
             live = [b for b in blockers if b in opp.battlefield]
             if not blockers:
                 if _strikes_in(atk, step):
-                    _deal_to_defender(state, atk, atk.power, walker, opp, me, others, hitters)
+                    _deal_to_defender(state, atk, atk.combat_power, walker, opp, me, others, hitters)
                 continue
             # the blockers strike the attacker (simultaneously with the attacker's own damage)
             for b in live:
-                if _strikes_in(b, step) and b.power > 0:
-                    damage[id(atk)] = damage.get(id(atk), 0) + b.power
+                if _strikes_in(b, step) and b.combat_power > 0:
+                    damage[id(atk)] = damage.get(id(atk), 0) + b.combat_power
                     if b.has_keyword("deathtouch"):
                         dt_hit.add(id(atk))
-            if not _strikes_in(atk, step) or atk.power <= 0:
+            if not _strikes_in(atk, step) or atk.combat_power <= 0:
                 continue
-            remaining = atk.power
+            remaining = atk.combat_power
             deathtouch = atk.has_keyword("deathtouch")
             # kill the most valuable blockers it can afford first (CR 510.1c)
             for b in sorted(live, key=lambda c: c.power + c.toughness, reverse=True):
@@ -1181,16 +1240,16 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                 # Unblocked attacker declared against a planeswalker: damage removes loyalty
                 # (CR 120.3c), not life, and is NOT combat damage to a player -- so no
                 # commander damage and no "deals combat damage to a player" trigger.
-                walker.loyalty -= atk.power
+                walker.loyalty -= atk.combat_power
                 if walker.loyalty <= 0:
                     _kill(opp, walker, me, others)
                 continue
-            opp.life -= atk.power
+            opp.life -= atk.combat_power
             if atk.is_commander:
                 # CR 704.5a: only UNBLOCKED combat damage to a PLAYER counts -- a blocked
                 # commander deals its damage to the blocking creature, tracked nowhere here.
                 key = state.active
-                opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + atk.power
+                opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + atk.combat_power
             if atk.triggers:
                 unblocked_hitters.append(atk)
         else:
@@ -1204,7 +1263,7 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                     # rest over -- docs/PLAN_FIDELITY.md Phase B4/B5 shipped as one change
                     # for exactly this interaction.
                     assigned = 1 if atk.has_keyword("deathtouch") else blk.toughness
-                    excess = max(0, atk.power - assigned)
+                    excess = max(0, atk.combat_power - assigned)
                     if excess and walker is not None:
                         walker.loyalty -= excess  # trample over a blocker onto the walker
                         if walker.loyalty <= 0 and walker in opp.battlefield:
