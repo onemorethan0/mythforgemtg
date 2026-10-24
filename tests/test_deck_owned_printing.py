@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 
 import collection_index as ci
 import server
-from api import state
+from api import collection_data, state
 
 client = TestClient(server.app)
 _JOB_ID = "abcdef0123456789"
@@ -102,9 +102,9 @@ def test_annotate_owned_attaches_owned_printing(tmp_path, monkeypatch):
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     (tmp_path / "collection.csv").write_text(
         "Name,Count,Set,Collector Number\nSol Ring,1,LEA,270\nGhost Card,1,,\n", encoding="utf-8")
-    monkeypatch.setattr(server, "_owned_cache", {"mtime": None, "set": set()})
-    monkeypatch.setattr(server, "_owned_print_cache", {"mtime": None, "index": {}})
-    monkeypatch.setattr(server, "_enriched_collection", _fake_enriched([
+    monkeypatch.setattr(collection_data, "_owned_cache", {"mtime": None, "set": set()})
+    monkeypatch.setattr(collection_data, "_owned_print_cache", {"mtime": None, "index": {}})
+    monkeypatch.setattr(collection_data, "_enriched_collection", _fake_enriched([
         _row("Sol Ring", set_="LEA", cn="270"),
         _row("Ghost Card", resolved=False),
     ]))
@@ -136,21 +136,21 @@ def test_owned_printing_cache_invalidates_on_csv_change(tmp_path, monkeypatch):
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     csv = tmp_path / "collection.csv"
     csv.write_text("Name,Count\nSol Ring,1\n", encoding="utf-8")
-    monkeypatch.setattr(server, "_owned_print_cache", {"mtime": None, "index": {}})
+    monkeypatch.setattr(collection_data, "_owned_print_cache", {"mtime": None, "index": {}})
     calls = []
 
     def fake():
         calls.append(1)
         return [], [_row("Sol Ring", set_="LEA" if len(calls) == 1 else "C21")]
-    monkeypatch.setattr(server, "_enriched_collection", fake)
+    monkeypatch.setattr(collection_data, "_enriched_collection", fake)
 
-    first = server._owned_printings_cached()
-    again = server._owned_printings_cached()
+    first = collection_data._owned_printings_cached()
+    again = collection_data._owned_printings_cached()
     assert len(calls) == 1 and first is again                 # built once per mtime
     assert first[ci.index_key("Sol Ring")][0]["set"] == "LEA"
     st = csv.stat()
     csv.write_text("Name,Count\nSol Ring,2\n", encoding="utf-8")
     os.utime(csv, (st.st_atime, st.st_mtime + 10))
-    third = server._owned_printings_cached()
+    third = collection_data._owned_printings_cached()
     assert len(calls) == 2
     assert third[ci.index_key("Sol Ring")][0]["set"] == "C21"

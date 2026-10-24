@@ -91,7 +91,8 @@ def test_resolve_card_source_back_compat(card_source, use_collection, expected):
     """use_collection=True has ALWAYS meant PREFER, never "owned only". Redefining it
     would silently narrow the decks of every caller predating the card_source field."""
     import server
-    assert server._resolve_card_source(card_source, use_collection) == expected
+    from api import cards
+    assert cards._resolve_card_source(card_source, use_collection) == expected
 
 
 # ── source_fallback: an empty owned pool must not ship 99 basics ─────────────────

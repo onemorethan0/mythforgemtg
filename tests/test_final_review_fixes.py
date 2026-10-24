@@ -119,7 +119,7 @@ def test_canonical_header_file_gets_no_pre_printings_backup(tmp_path):
 
 def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     import server
-    from api import state
+    from api import collection_data, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
@@ -132,7 +132,7 @@ def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
     monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
-    monkeypatch.setattr(server, "_load_prices", lambda: dict(saved) or {})
+    monkeypatch.setattr(collection_data, "_load_prices", lambda: dict(saved) or {})
     out = server.collection_refresh_prices()
     assert calls == [{"force": True}]
     assert out["prices_updated"] == datetime.fromtimestamp(future).isoformat(timespec="seconds")
@@ -141,7 +141,7 @@ def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
 
 def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
     import server
-    from api import state
+    from api import collection_data, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
 
@@ -153,19 +153,19 @@ def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
     monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
-    monkeypatch.setattr(server, "_load_prices", lambda: dict(saved))
+    monkeypatch.setattr(collection_data, "_load_prices", lambda: dict(saved))
     out = server.collection_refresh_prices()
     assert saved["updated"] and out["prices_updated"] == saved["updated"]
 
 
 def test_owned_printings_cache_not_poisoned_by_failure_and_keyed_on_store(tmp_path, monkeypatch):
     import server
-    from api import state
+    from api import collection_data, state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
     monkeypatch.setattr(scryfall_prints, "db_path", lambda: db)
-    monkeypatch.setattr(server, "_owned_print_cache", {"mtime": None, "index": {}})
+    monkeypatch.setattr(collection_data, "_owned_print_cache", {"mtime": None, "index": {}})
     state = {"fail": True, "calls": 0}
 
     def fake_enriched():
@@ -174,14 +174,14 @@ def test_owned_printings_cache_not_poisoned_by_failure_and_keyed_on_store(tmp_pa
             raise RuntimeError("store busy")
         return [], [{"name": "Sol Ring"}]
 
-    monkeypatch.setattr(server, "_enriched_collection", fake_enriched)
-    monkeypatch.setattr(server, "owned_printings_index", lambda enriched: {"sol ring": ["p"]})
-    assert server._owned_printings_cached() == {}
+    monkeypatch.setattr(collection_data, "_enriched_collection", fake_enriched)
+    monkeypatch.setattr(collection_data, "owned_printings_index", lambda enriched: {"sol ring": ["p"]})
+    assert collection_data._owned_printings_cached() == {}
     state["fail"] = False
-    assert server._owned_printings_cached() == {"sol ring": ["p"]}     # retried, not stuck empty
+    assert collection_data._owned_printings_cached() == {"sol ring": ["p"]}     # retried, not stuck empty
     n = state["calls"]
-    server._owned_printings_cached()
+    collection_data._owned_printings_cached()
     assert state["calls"] == n                                         # cached now
     db.write_bytes(b"new store")                                       # store rebuilt
-    server._owned_printings_cached()
+    collection_data._owned_printings_cached()
     assert state["calls"] == n + 1

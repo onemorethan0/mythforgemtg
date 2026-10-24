@@ -1445,6 +1445,7 @@ def test_deck_identity_is_preserved():
     regenerate into a different deck."""
     try:
         import server
+        from api import cards
         from themer import ThemedCard
     except Exception as e:                      # fastapi/pydantic missing
         check("identity.import", f"skipped: {e}", f"skipped: {e}")
@@ -1453,13 +1454,13 @@ def test_deck_identity_is_preserved():
     # ── _preserve_decklist: a short themer batch never shrinks the deck ──
     raw = [{"name": "Sol Ring"}, {"name": "Lightning Bolt"}, {"name": "Mountain"}]
     short = [ThemedCard("Sol Ring", "Ring of Suns", "art", "", raw[0])]
-    out = server._preserve_decklist(short, raw)
+    out = cards._preserve_decklist(short, raw)
     check("keep.len",   len(out), 3)
     check("keep.order", [tc.original_name for tc in out],
           ["Sol Ring", "Lightning Bolt", "Mountain"])
     check("keep.themed", out[0].themed_name, "Ring of Suns")   # real theming kept
     check("keep.plain",  out[2].themed_name, "Mountain")       # gap filled, not dropped
-    same = server._preserve_decklist(
+    same = cards._preserve_decklist(
         [ThemedCard(c["name"], "X", "", "", c) for c in raw], raw)
     check("keep.noop", [tc.themed_name for tc in same], ["X", "X", "X"])
 
@@ -1468,7 +1469,7 @@ def test_deck_identity_is_preserved():
            "import_name": "My Deck", "import_unresolved": ["Bogus Card"],
            "import_auto_face": True, "is_commander_deck": False,
            "face_assignments": {"Sol Ring": 0}, "theme": "not provenance"}
-    themed = server._carry_provenance({}, src, generated_art=True)
+    themed = cards._carry_provenance({}, src, generated_art=True)
     check_true("prov.imported",     themed["imported"] is True)
     check("prov.source",            themed["import_source"], "archidekt")
     check("prov.unresolved",        themed["import_unresolved"], ["Bogus Card"])
@@ -1477,7 +1478,7 @@ def test_deck_identity_is_preserved():
     check_true("prov.no_theme",     "theme" not in themed)
     # art was generated → it is no longer an "import with no art yet"
     check_true("prov.only_cleared", "imported_only" not in themed)
-    text_only = server._carry_provenance({}, src, generated_art=False)
+    text_only = cards._carry_provenance({}, src, generated_art=False)
     check_true("prov.only_kept",    text_only["imported_only"] is True)
 
     # ── _stored_card_to_raw: re-theming starts from the REAL printed type ──
@@ -1486,11 +1487,11 @@ def test_deck_identity_is_preserved():
               "type_line": "Creature — Holo-Priest",         # last theme's reskin
               "original_type_line": "Creature — Human Knight",
               "scryfall_img": "", "quantity": 1}
-    check("raw.type", server._stored_card_to_raw(stored)["type_line"],
+    check("raw.type", cards._stored_card_to_raw(stored)["type_line"],
           "Creature — Human Knight")
-    check("raw.keywords", server._stored_card_to_raw(stored)["keywords"], [])
+    check("raw.keywords", cards._stored_card_to_raw(stored)["keywords"], [])
     # the rebuild path must still see the themed line (it keeps names as-is)
-    check("raw.rebuild_untouched", server._stored_card_to_dict(stored)["type_line"],
+    check("raw.rebuild_untouched", cards._stored_card_to_dict(stored)["type_line"],
           "Creature — Holo-Priest")
 
 
@@ -1837,6 +1838,7 @@ def test_deck_archetypes_handoff():
     tribal rule."""
     try:
         import server
+        from api import cards
     except Exception as e:                      # fastapi/pydantic missing
         check("arche.import", f"skipped: {e}", f"skipped: {e}")
         return

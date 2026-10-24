@@ -293,16 +293,18 @@ def test_row_without_oracle_meta_still_enriches():
 
 def test_collection_summary_total_value_uses_the_row_price(monkeypatch):
     import server
+    from api import collection_data
     p = _print(prices={"usd": 1.0, "usd_foil": None, "usd_etched": None})
     rows = [_row(count=2), _row(finish="foil", count=3)]
     enriched = ci.enrich_rows(rows, _INDEX, resolve_print=lambda r: p)
-    s = server._collection_summary(rows, enriched=enriched)
+    s = collection_data._collection_summary(rows, enriched=enriched)
     assert s["total_value"] == 2.0 and s["priced"] == 1      # the foil row is unpriced, not 3.0
 
 
 def test_collection_summary_without_enriched_still_works_on_raw_rows():
     import server
-    s = server._collection_summary([_row()], prices={})
+    from api import collection_data
+    s = collection_data._collection_summary([_row()], prices={})
     assert s["distinct"] == 1 and s["total_value"] == 0.0
 
 

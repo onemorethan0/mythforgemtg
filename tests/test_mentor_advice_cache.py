@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import server
-from api import state
+from api import cards, state
 
 _JOB_ID = "0123456789abcdef"
 _COMMANDER = {"name": "Test Commander"}
@@ -101,7 +101,7 @@ def test_a_failed_advise_job_caches_nothing(tmp_path):
 
 
 def test_advice_cache_is_not_carried_across_a_rebuild():
-    assert "advice_cache" not in server._PROVENANCE_KEYS
+    assert "advice_cache" not in cards._PROVENANCE_KEYS
 
 
 def test_advise_route_passes_the_deck_job_id_and_accepts_clock(tmp_path):
