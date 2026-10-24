@@ -19,20 +19,15 @@ import SimStrengthPanel from './SimStrengthPanel'
 export default function MeasurePanel({ jobId, cached }) {
   const hasCache = !!cached?.simulation?.power_profile
   const stale = hasCache && !!cached.stale
-  const [state, setState] = useState(hasCache && !stale ? 'done' : 'idle')
+  // A stale cache opens straight into "loading" and fetches on mount (below); nothing is
+  // set synchronously inside the effect, and `measure` is declared before it is used.
+  const [state, setState] = useState(hasCache && !stale ? 'done' : stale ? 'loading' : 'idle')
   const [result, setResult] = useState(hasCache && !stale ? cached.simulation : null)
   const [measuredAt, setMeasuredAt] = useState(hasCache && !stale ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
-  const [refreshedStale, setRefreshedStale] = useState(false)
+  const refreshedStale = stale
 
-  useEffect(() => {
-    if (stale) { setRefreshedStale(true); run() }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const run = async () => {
-    if (state === 'loading') return
-    setState('loading')
+  const measure = async () => {
     try {
       const response = await fetch(`/api/deck/${jobId}/measure`, { method: 'POST' })
       if (response.ok) {
@@ -50,6 +45,17 @@ export default function MeasurePanel({ jobId, cached }) {
       setState('error')
     }
   }
+
+  const run = () => {
+    if (state === 'loading') return
+    setState('loading')
+    measure()
+  }
+
+  useEffect(() => {
+    if (stale) measure()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const mainBtn = (label, disabled = false) => (
     <button

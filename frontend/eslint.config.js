@@ -17,5 +17,11 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      // `catch {}` is this codebase's deliberate "best effort" idiom (localStorage that can
+      // throw in private windows, an error body that may not be JSON). Empty non-catch
+      // blocks are still errors.
+      'no-empty': ['error', { allowEmptyCatch: true }],
+    },
   },
 ])

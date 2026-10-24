@@ -41,7 +41,7 @@ from fastapi.responses import (
     StreamingResponse,
 )
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field
 
 # ── Local modules ─────────────────────────────────────────────────────────────
 from app_paths          import app_path
@@ -774,13 +774,10 @@ async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGe
 
 # VRAM gating moved to services.py (same concern as the startup helpers).
 from services import (  # noqa: E402
-    _EVICT_MAX_WAIT,
-    _VRAM_LLM_CLEAR_GB,
     _comfyui_vram_free_gb,
     _ollama_loaded_models,
     _wait_for_comfyui_unload,
     _wait_for_ollama_evict,
-    _wait_for_vram,
 )
 
 def _free_all_vram(job_id: str = "") -> None:
@@ -2925,7 +2922,6 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
     on the same deck queue up rather than racing PNG writes / SSE events.
     """
     from PIL import Image as _PIL
-    from pathlib import Path as _Path
 
     # Per-deck serialization gate — see _get_deck_regen_lock docstring.
     _deck_lock = _get_deck_regen_lock(source_job_id)
@@ -6952,7 +6948,7 @@ async def get_deck(job_id: str):
 
 
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
-async def card_image(job_id: str, render_key: str):
+async def deck_card_image(job_id: str, render_key: str):
     _require_job_id(job_id)
     cards_dir = RENDER_DIR / job_id / "cards"
     path = cards_dir / f"{render_key}.png"

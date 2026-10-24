@@ -6,7 +6,6 @@ Downloads recommended checkpoints and optional LoRAs for MTG card generation.
 
 import os
 import sys
-import json
 import subprocess
 from pathlib import Path
 from typing import Optional

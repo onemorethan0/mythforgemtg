@@ -16,7 +16,6 @@ import hashlib
 import math
 from dataclasses import dataclass
 
-from mythgauntlet.sim.rng import SeededRng
 
 ELO_BASE = 1500.0
 ELO_SCALE = 400.0

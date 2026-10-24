@@ -6,7 +6,6 @@ Parses a Scryfall card object for a commander and extracts:
 """
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 
 # ── Theme detection ──────────────────────────────────────────────────────────

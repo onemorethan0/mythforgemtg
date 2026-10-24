@@ -13,11 +13,9 @@ usable from a script or a test with no server at all.
 
 from __future__ import annotations
 
-import glob
 import json
 import os
 import platform
-import shutil
 import subprocess
 import threading
 import time
@@ -90,8 +88,6 @@ def _start_llama_swap() -> None:
     service. llama-swap itself is cheap to start — it loads no GGUF until a
     request arrives — so this costs nothing at boot and holds no VRAM.
     """
-    import subprocess
-    import platform
 
     from themer import LLM_BASE
 
@@ -143,9 +139,6 @@ def _start_ollama() -> None:
     Only reached on the legacy MYTHFORGE_LLM_BACKEND=ollama path — see
     _start_llm_backend().
     """
-    import subprocess
-    import sys
-    import platform
 
     if _check_service("Ollama", "http://127.0.0.1:11434/api/tags"):
         print("  [OK] Ollama already running")
@@ -295,7 +288,7 @@ def _list_comfyui_processes() -> "list[tuple[int, str]]":
 
     Windows-only (this rig); returns [] on other platforms or if inspection
     fails — callers treat [] as "can't tell, don't touch"."""
-    import sys, subprocess
+    import sys
     if sys.platform != "win32":
         return []
     ps = (
@@ -336,7 +329,6 @@ def _comfyui_running_without_offload_fix() -> bool:
 def _kill_comfyui_processes() -> None:
     """Hard-kill every ComfyUI backend process (clears flagless + duplicate
     instances) so a clean one can be relaunched via _resolve_comfyui_cmd()."""
-    import subprocess
     killed = 0
     for pid, _cmd in _list_comfyui_processes():
         try:
@@ -473,7 +465,6 @@ def _comfyui_vram_free_gb() -> Optional[float]:
 
     Falls back to ComfyUI's internal view if nvidia-smi is unavailable.
     """
-    import subprocess
     try:
         result = subprocess.run(
             ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],

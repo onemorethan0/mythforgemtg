@@ -42,7 +42,6 @@ from mythgauntlet.ratings import role_swap as role_swap_mod
 from mythgauntlet.ratings.analysis import DeckAnalysis, analyze_deck
 from mythgauntlet.semantics.commander_lens import CommanderLens, build_lens
 from mythgauntlet.semantics.store import SemanticsStore
-from mythgauntlet.semantics import tags
 from mythgauntlet.sim.tier0 import SimConfig
 
 ## `(?<![\d.])` guards the leading `-?`: without it, a mana-curve range like "2-4" scans

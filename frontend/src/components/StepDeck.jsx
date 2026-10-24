@@ -812,7 +812,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                     <span style={{ fontWeight: 700, color: stats.quality.colors.ok ? '#86efac' : '#f87171' }}>
                       {stats.quality.colors.ok ? 'castable' : 'short on sources'}
                     </span>
-                    {!stats.quality.colors.ok && Object.entries(stats.quality.colors.short || {}).map(([c, n]) => (
+                    {!stats.quality.colors.ok && Object.keys(stats.quality.colors.short || {}).map(c => (
                       <div key={c} style={{ fontSize: 11, color: '#f87171', marginTop: 2 }}>
                         {c}: {stats.quality.colors.sources?.[c] ?? 0} sources, wants {stats.quality.colors.required?.[c]}
                       </div>

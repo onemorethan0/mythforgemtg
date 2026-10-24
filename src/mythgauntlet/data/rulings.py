@@ -34,7 +34,6 @@ import json
 import re
 import time
 from collections import defaultdict
-from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 

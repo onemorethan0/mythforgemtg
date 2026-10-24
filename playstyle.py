@@ -5,7 +5,6 @@ Maps user-facing playstyle labels to the internal theme keys used by
 commander_analysis.py. When a user picks a playstyle it either overrides
 or supplements what was auto-detected from the commander's oracle text.
 """
-from commander_analysis import THEME_LABELS
 
 # ── Available playstyles ──────────────────────────────────────────────────────
 

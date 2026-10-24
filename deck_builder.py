@@ -21,7 +21,7 @@ from __future__ import annotations
 import commander_analysis
 from commander_analysis import CommanderProfile, THEME_SYNERGY_QUERIES
 from scryfall_client import ScryfallClient
-from bracket import BracketFilter, BRACKET_RULES, BRACKET_LABELS
+from bracket import BracketFilter, BRACKET_LABELS
 from collection import owned_key
 import collection_pool
 import edhrec_lift

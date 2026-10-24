@@ -26,7 +26,6 @@ from __future__ import annotations
 import io
 import math
 import re
-import textwrap
 from functools import lru_cache
 from pathlib import Path
 from typing import Optional

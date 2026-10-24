@@ -13,7 +13,6 @@ Usage:
     C:\Python314\python.exe overnight_retheme.py
 """
 
-import json
 import subprocess
 import sys
 import time
@@ -120,7 +119,7 @@ def wait_comfy_idle(label="active build"):
 
 def restart_server():
     """Kill the running server.py process and relaunch it."""
-    import subprocess, os
+    import os
 
     log.info("Restarting MythForge server…")
 
