@@ -1445,7 +1445,7 @@ def test_deck_identity_is_preserved():
     regenerate into a different deck."""
     try:
         import server
-        from api import cards
+        from api import cards, routes_strength
         from themer import ThemedCard
     except Exception as e:                      # fastapi/pydantic missing
         check("identity.import", f"skipped: {e}", f"skipped: {e}")
@@ -1838,7 +1838,7 @@ def test_deck_archetypes_handoff():
     tribal rule."""
     try:
         import server
-        from api import cards
+        from api import cards, routes_strength
     except Exception as e:                      # fastapi/pydantic missing
         check("arche.import", f"skipped: {e}", f"skipped: {e}")
         return
@@ -1848,20 +1848,20 @@ def test_deck_archetypes_handoff():
                                     "commander": ["tribal_dragons"],
                                     "merged": ["spellslinger", "tribal_dragons"]}},
            "deck": []}
-    check("arche.persisted", server._deck_archetypes(job), ["spellslinger"])
+    check("arche.persisted", routes_strength._deck_archetypes(job), ["spellslinger"])
 
     # 2. no block -> re-derive, reading the UN-reskinned type line
     dragons = [{"original_name": f"Dragon {i}",
                 "original_type_line": "Creature - Dragon",
                 "type_line": "Creature - Holo-Priest",     # the reskin, must be ignored
                 "oracle_text": "Dragon creatures you control get +1/+1."} for i in range(6)]
-    check("arche.fallback", "tribal_dragons" in server._deck_archetypes({"deck": dragons}),
+    check("arche.fallback", "tribal_dragons" in routes_strength._deck_archetypes({"deck": dragons}),
           True)
 
     # 3. nothing to read -> no archetype, never an exception
-    check("arche.empty", server._deck_archetypes({}), [])
-    check("arche.junk",  server._deck_archetypes({"deck": [{"nope": 1}]}), [])
-    check("arche.hostile", server._deck_archetypes({"stats": "not a dict"}), [])
+    check("arche.empty", routes_strength._deck_archetypes({}), [])
+    check("arche.junk",  routes_strength._deck_archetypes({"deck": [{"nope": 1}]}), [])
+    check("arche.hostile", routes_strength._deck_archetypes({"stats": "not a dict"}), [])
 
 
 def test_app_paths_absolute():

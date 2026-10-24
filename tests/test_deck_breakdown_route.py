@@ -11,7 +11,7 @@ import json
 from fastapi.testclient import TestClient
 
 import server
-from api import state
+from api import routes_strength, state
 
 client = TestClient(server.app)
 
@@ -36,7 +36,7 @@ def _stub(monkeypatch, calls):
         calls.append([c["name"] for c in deck])
         return {"roles": {"rows": [{"role": "removal", "cards": 1, "card_target": 7, "short_by": 6}]},
                 "cards": [{"name": deck[0]["name"], "qty": 1, "roles": ["removal"], "commander": False}]}
-    monkeypatch.setattr(server, "_gauntlet_breakdown", fake)
+    monkeypatch.setattr(routes_strength, "_gauntlet_breakdown", fake)
 
 
 def test_breakdown_is_measured_once_then_read_from_deck_json(tmp_path, monkeypatch):
@@ -83,10 +83,10 @@ def test_pre_schema_cache_is_re_measured_once(tmp_path, monkeypatch):
     _write_deck(tmp_path, [("Murder", 1)])
     p = tmp_path / _JOB_ID / "deck.json"
     data = json.loads(p.read_text(encoding="utf-8"))
-    commander, deck = server._job_deck_inputs(data)
+    commander, deck = routes_strength._job_deck_inputs(data)
     old_key = hashlib.sha1(json.dumps(
-        [server._deck_to_lines(commander, deck, server._job_partners(data)),
-         sorted(server._deck_archetypes(data))]).encode("utf-8")).hexdigest()
+        [routes_strength._deck_to_lines(commander, deck, routes_strength._job_partners(data)),
+         sorted(routes_strength._deck_archetypes(data))]).encode("utf-8")).hexdigest()
     data["breakdown"] = {"key": old_key, "data": {"cards": [{"name": "Murder"}]}, "computed_at": "x"}
     p.write_text(json.dumps(data), encoding="utf-8")
 
@@ -99,7 +99,7 @@ def test_engine_down_is_a_503(tmp_path, monkeypatch):
     monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
     state._jobs.pop(_JOB_ID, None)
     _write_deck(tmp_path, [("Murder", 1)])
-    monkeypatch.setattr(server, "_gauntlet_breakdown", lambda *a, **k: None)
+    monkeypatch.setattr(routes_strength, "_gauntlet_breakdown", lambda *a, **k: None)
     resp = client.post(f"/api/deck/{_JOB_ID}/breakdown")
     assert resp.status_code == 503
     assert ":8020" in resp.json()["detail"]

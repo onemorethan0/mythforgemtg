@@ -9,7 +9,7 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import server
-from api import state
+from api import routes_strength, state
 
 # A syntactically-valid job id (server._JOB_ID_RE: 16 hex chars) -- the feedback route
 # only validates the SHAPE, it never looks the job up (turn_id alone identifies the
@@ -25,8 +25,8 @@ def _resp(status_code, json_body):
 
 
 def test_success_returns_the_engine_json():
-    with patch("server.requests.post", return_value=_resp(200, {"reply": "hi", "gated": True})) as m:
-        result = server._gauntlet_mentor_chat(
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {"reply": "hi", "gated": True})) as m:
+        result = routes_strength._gauntlet_mentor_chat(
             {"name": "Test Commander"}, [{"name": "Sol Ring", "quantity": 1}], "how's my curve?"
         )
     assert result == {"reply": "hi", "gated": True}
@@ -37,8 +37,8 @@ def test_success_returns_the_engine_json():
 
 
 def test_400_becomes_error_dict():
-    with patch("server.requests.post", return_value=_resp(400, {"detail": "no cards resolved"})):
-        result = server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+    with patch("api.routes_strength.requests.post", return_value=_resp(400, {"detail": "no cards resolved"})):
+        result = routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q")
     assert result == {"error": "no cards resolved"}
 
 
@@ -46,22 +46,22 @@ def test_503_from_engine_becomes_error_dict_not_none():
     """A 503 FROM the engine (rulings corpus not fetched) is a real, actionable detail
     message -- distinct from the engine process being unreachable at all (see the
     helper's own docstring), so it must surface as {"error": ...}, not None."""
-    with patch("server.requests.post",
+    with patch("api.routes_strength.requests.post",
                return_value=_resp(503, {"detail": "Run mythgauntlet fetch-rules"})):
-        result = server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+        result = routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q")
     assert result == {"error": "Run mythgauntlet fetch-rules"}
 
 
 def test_connection_failure_returns_none():
-    with patch("server.requests.post", side_effect=ConnectionError("refused")):
-        result = server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+    with patch("api.routes_strength.requests.post", side_effect=ConnectionError("refused")):
+        result = routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q")
     assert result is None
 
 
 def test_history_and_themes_and_model_are_threaded_through():
     history = [{"role": "user", "content": "hi"}]
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat(
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat(
             {"name": "X"}, [], "q", history=history, model="qwen3:8b", themes=["spellslinger"],
         )
     payload = m.call_args.kwargs["json"]
@@ -73,16 +73,16 @@ def test_history_and_themes_and_model_are_threaded_through():
 def test_omitted_model_and_themes_are_not_sent():
     """The engine defaults model to qwen3:14b itself; sending None would override that
     default with a literal null instead of letting the engine's own default apply."""
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q")
     payload = m.call_args.kwargs["json"]
     assert "model" not in payload
     assert "themes" not in payload
 
 
 def test_offmeta_is_threaded_through_when_present():
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat(
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat(
             {"name": "X"}, [], "q", offmeta={"synergy": 7.2, "verdict": "off-plan"},
         )
     payload = m.call_args.kwargs["json"]
@@ -92,8 +92,8 @@ def test_offmeta_is_threaded_through_when_present():
 def test_omitted_offmeta_is_not_sent():
     """Mirrors `themes`: an empty/falsy offmeta must not send a literal null and
     override the engine's own `None` default."""
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat({"name": "X"}, [], "q")
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q")
     payload = m.call_args.kwargs["json"]
     assert "offmeta" not in payload
 
@@ -109,7 +109,7 @@ def test_mentor_chat_deck_route_passes_the_decks_persisted_offmeta():
         "stats": {"offmeta": {"synergy": 5.0, "verdict": "brew"}},
     }
     with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
-         patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
+         patch("api.routes_strength.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "how off-meta is this?"})
     assert resp.status_code == 200
     payload = m.call_args.kwargs["json"]
@@ -126,7 +126,7 @@ def test_mentor_chat_deck_route_omits_offmeta_when_the_deck_has_none():
         "stats": {},
     }
     with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
-         patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
+         patch("api.routes_strength.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "q"})
     assert resp.status_code == 200
     payload = m.call_args.kwargs["json"]
@@ -137,7 +137,7 @@ def test_mentor_chat_deck_route_omits_offmeta_when_the_deck_has_none():
 
 def test_feedback_route_forwards_to_the_engine():
     client = TestClient(server.app)
-    with patch("server.requests.post", return_value=_resp(200, {"status": "ok"})) as m:
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {"status": "ok"})) as m:
         resp = client.post(
             f"/api/deck/{_JOB_ID}/mentor/feedback",
             json={"turn_id": "abc123", "rating": "up", "note": "nice"},
@@ -159,7 +159,7 @@ def test_feedback_route_rejects_a_malformed_job_id():
 
 def test_feedback_route_400_from_engine_passes_through():
     client = TestClient(server.app)
-    with patch("server.requests.post", return_value=_resp(400, {"detail": "bad rating"})):
+    with patch("api.routes_strength.requests.post", return_value=_resp(400, {"detail": "bad rating"})):
         resp = client.post(
             f"/api/deck/{_JOB_ID}/mentor/feedback",
             json={"turn_id": "abc123", "rating": "sideways"},
@@ -170,7 +170,7 @@ def test_feedback_route_400_from_engine_passes_through():
 
 def test_feedback_route_503_when_engine_unreachable():
     client = TestClient(server.app)
-    with patch("server.requests.post", side_effect=ConnectionError("refused")):
+    with patch("api.routes_strength.requests.post", side_effect=ConnectionError("refused")):
         resp = client.post(
             f"/api/deck/{_JOB_ID}/mentor/feedback",
             json={"turn_id": "abc123", "rating": "up"},

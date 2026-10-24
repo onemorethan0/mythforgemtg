@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import server
-from api import cards, state
+from api import cards, routes_strength, state
 
 _JOB_ID = "0123456789abcdef"
 _COMMANDER = {"name": "Test Commander"}
@@ -37,7 +37,7 @@ def _job(advice_cache=None, card="Sol Ring"):
 def _entry(*, deck=None, mtime=100.0, result=None):
     return {
         "result": result or _RESULT,
-        "deck_hash": server._advice_deck_hash(_COMMANDER, deck or _DECK),
+        "deck_hash": routes_strength._advice_deck_hash(_COMMANDER, deck or _DECK),
         "collection_mtime": mtime, "computed_at": "2026-09-30T12:00:00",
     }
 
@@ -53,8 +53,8 @@ def _collection(tmp_path, mtime=None):
 
 def _ask(job, collection_path):
     with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
-         patch.object(server, "suite_collection_path", lambda: collection_path), \
-         patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
+         patch.object(routes_strength, "suite_collection_path", lambda: collection_path), \
+         patch("api.routes_strength.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = TestClient(server.app).post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "q"})
     assert resp.status_code == 200
     return m.call_args.kwargs["json"]
@@ -71,9 +71,9 @@ def _run(tmp_path, axis, result=_RESULT, mtime=100.0):
     advise_jobs = {"adv": {"status": "running", "kind": "advise"}}
     with patch.object(state, "RENDER_DIR", tmp_path), \
          patch.dict(state._jobs, {**advise_jobs, _JOB_ID: mem_deck}, clear=True), \
-         patch.object(server, "suite_collection_path", lambda: col), \
-         patch.object(server, "_gauntlet_advise", return_value=result):
-        server._run_advise_job("adv", _COMMANDER, _DECK, axis, [], [], False, mem_deck, _JOB_ID)
+         patch.object(routes_strength, "suite_collection_path", lambda: col), \
+         patch.object(routes_strength, "_gauntlet_advise", return_value=result):
+        routes_strength._run_advise_job("adv", _COMMANDER, _DECK, axis, [], [], False, mem_deck, _JOB_ID)
         status = state._jobs["adv"]["status"]
     disk = json.loads((deck_dir / "deck.json").read_text(encoding="utf-8"))
     return disk, mem_deck, status
@@ -84,7 +84,7 @@ def test_advise_job_persists_the_result_under_the_requested_axis(tmp_path):
     assert status == "done"
     e = disk["advice_cache"]["clock"]
     assert e["result"] == _RESULT
-    assert e["deck_hash"] == server._advice_deck_hash(_COMMANDER, _DECK)
+    assert e["deck_hash"] == routes_strength._advice_deck_hash(_COMMANDER, _DECK)
     assert e["collection_mtime"] == 100.0 and e["computed_at"]
     assert mem["advice_cache"]["clock"] == e         # in-memory job kept in step
     assert disk["status"] == "done"                  # the rest of deck.json is untouched
@@ -108,7 +108,7 @@ def test_advise_route_passes_the_deck_job_id_and_accepts_clock(tmp_path):
     calls = []
     job = _job()
     with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
-         patch.object(server, "_run_advise_job", lambda *a, **k: calls.append(a)):
+         patch.object(routes_strength, "_run_advise_job", lambda *a, **k: calls.append(a)):
         resp = TestClient(server.app).post(f"/api/deck/{_JOB_ID}/advise",
                                            json={"axis": "clock", "narrate": False})
     assert resp.status_code == 200 and "job_id" in resp.json()
@@ -154,9 +154,9 @@ def test_a_deck_with_no_cache_sends_no_advice(tmp_path):
 
 
 def test_helper_omits_advice_when_falsy():
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat({"name": "X"}, [], "q", advice={})
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q", advice={})
     assert "advice" not in m.call_args.kwargs["json"]
-    with patch("server.requests.post", return_value=_resp(200, {})) as m:
-        server._gauntlet_mentor_chat({"name": "X"}, [], "q", advice={"clock": {"result": {}}})
+    with patch("api.routes_strength.requests.post", return_value=_resp(200, {})) as m:
+        routes_strength._gauntlet_mentor_chat({"name": "X"}, [], "q", advice={"clock": {"result": {}}})
     assert m.call_args.kwargs["json"]["advice"] == {"clock": {"result": {}}}
