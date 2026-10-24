@@ -324,7 +324,6 @@ def test_a_stale_stored_quality_block_is_recomputed_on_load():
     landed but before `mana` kept its old block forever and the new panel silently never
     rendered for it. Only decks with NO block at all were ever backfilled.
     """
-    import server
     from api import state
 
     deck = [_basic(f"Forest{i}") for i in range(36)] + [_spell(f"S{i}") for i in range(60)]

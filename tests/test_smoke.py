@@ -1444,8 +1444,7 @@ def test_deck_identity_is_preserved():
     or generate a fresh one, so a rethemed import that forgot it would silently
     regenerate into a different deck."""
     try:
-        import server
-        from api import cards, routes_strength
+        from api import cards
         from themer import ThemedCard
     except Exception as e:                      # fastapi/pydantic missing
         check("identity.import", f"skipped: {e}", f"skipped: {e}")
@@ -1837,8 +1836,7 @@ def test_deck_archetypes_handoff():
     tribe reskin rewrites `type_line` ("Creature - Holo-Priest") and would defeat every
     tribal rule."""
     try:
-        import server
-        from api import cards, routes_strength
+        from api import routes_strength
     except Exception as e:                      # fastapi/pydantic missing
         check("arche.import", f"skipped: {e}", f"skipped: {e}")
         return

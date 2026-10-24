@@ -61,7 +61,7 @@ This document provides guidelines for developers to ensure consistent code quali
 
 #### API Endpoint Changes
 - `README.md` → "API Reference": If adding/modifying endpoints
-- Server docstrings: Always include in `server.py` route definitions
+- Server docstrings: Always include in the route definitions (`api/routes_*.py`)
 
 #### Image Generation Changes
 - `README.md` → "Image Generation Pipeline": If changing art generation flow
@@ -75,7 +75,7 @@ This document provides guidelines for developers to ensure consistent code quali
 
 #### Database/Deck Format Changes
 - `README.md` → "Deck Structure": Document new fields
-- Comments in `server.py` model definitions: Explain new deck fields
+- Comments in the `api/models.py` request models: Explain new deck fields
 - Migration notes in `MAINTENANCE.md` if old saves need conversion
 
 ### Documentation Quality Standards

@@ -90,7 +90,6 @@ def _strict_builder(owned):
 def test_resolve_card_source_back_compat(card_source, use_collection, expected):
     """use_collection=True has ALWAYS meant PREFER, never "owned only". Redefining it
     would silently narrow the decks of every caller predating the card_source field."""
-    import server
     from api import cards
     assert cards._resolve_card_source(card_source, use_collection) == expected
 

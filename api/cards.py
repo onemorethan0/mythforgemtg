@@ -23,7 +23,23 @@ from deck_builder import CARD_SOURCES, SOURCE_PREFER, SOURCE_SCRYFALL
 from services import _ollama_loaded_models
 from themer import ThemedCard
 
-# ── LLM backend checks (startup) ───────────────────────────────────────────────
+# ── User-name substitution helper ────────────────────────────────────────────
+
+# Commander naming with the player's chosen "Your Name" lives in
+# themer.compose_commander_name — it drops the original first name AND regenerates
+# a creature-type-fitting title when the themed title leaked the original.
+
+
+# ── Shared build-pipeline helpers ─────────────────────────────────────────────
+# The four _run_* pipelines (build / rebuild / regen / retheme) share a large
+# amount of boilerplate: serializing ThemedCards, reconstructing card dicts from
+# stored deck.json, computing render keys, and the common error/cleanup blocks.
+# These helpers hold that shared logic in one place.  They deliberately do NOT
+# touch VRAM eviction, the _art_lock, or any threading order — that orchestration
+# stays inline in each pipeline because its sequencing is subtle and per-pipeline.
+
+
+# ── LLM backend label ─────────────────────────────────────────────────────────
 
 def _llm_label() -> str:
     """Name of the LLM backend actually in use, for logs and UI progress.

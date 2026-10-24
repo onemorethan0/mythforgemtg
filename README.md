@@ -325,7 +325,9 @@ More by symptom: [docs/MAINTENANCE.md](docs/MAINTENANCE.md) · full menu referen
 
 ```
 mtg_deck_builder/
-├── server.py                 FastAPI backend — every HTTP route, async build jobs, SSE progress
+├── server.py                 FastAPI app (`server:app`): startup checks, log tee, router wiring, SPA
+├── api/                      HTTP routes (routes_*.py), build/regen/retheme job workers (jobs_*.py),
+│                             shared job state + SSE (state.py), request models, card/deck helpers
 ├── deck_builder.py           Builds the 99 (lands/ramp/draw/removal/synergy/goodstuff)
 ├── commander_analysis.py     Parses oracle text → detects mechanical themes
 ├── playstyle.py              15 playstyle presets → theme keys + slot adjustments

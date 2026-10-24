@@ -24,20 +24,7 @@ from scryfall_client import price_key as _price_key
 logger = logging.getLogger("server")
 
 
-# ── User-name substitution helper ────────────────────────────────────────────
-
-# Commander naming with the player's chosen "Your Name" lives in
-# themer.compose_commander_name — it drops the original first name AND regenerates
-# a creature-type-fitting title when the themed title leaked the original.
-
-
-# ── Shared build-pipeline helpers ─────────────────────────────────────────────
-# The four _run_* pipelines (build / rebuild / regen / retheme) share a large
-# amount of boilerplate: serializing ThemedCards, reconstructing card dicts from
-# stored deck.json, computing render keys, and the common error/cleanup blocks.
-# These helpers hold that shared logic in one place.  They deliberately do NOT
-# touch VRAM eviction, the _art_lock, or any threading order — that orchestration
-# stays inline in each pipeline because its sequencing is subtle and per-pipeline.
+# ── Owned-card annotation (served with every deck) ──────────────────────────
 
 # Owned-set cache (mtime-keyed on the collection CSV) so every card->dict call can
 # cheaply tag whether the user owns a real copy vs it being a proxy they don't own.

@@ -440,6 +440,20 @@ def _start_comfyui() -> None:
 # Moved out of server.py with the startup helpers: same concern (who is allowed to
 # hold the GPU), and self-contained — the whole block needed nothing back from
 # server.py once _VRAM_FLUX_REQUIRED_GB came with it.
+#
+# RTX 3090 = 24 GB.  FLUX.1-dev-fp8 ≈ 12 GB, qwen3:14b ≈ 10 GB,
+# qwen3.6:27B ≈ 23 GB.  Running any two simultaneously = OOM → Windows crash.
+#
+# Critical insight: Ollama's /api/ps dropping a model name does NOT mean CUDA
+# has released the memory.  PyTorch/CUDA keeps pages cached for fast re-use.
+# We must wait for *physical VRAM* to drop to a safe level, not just for the
+# model to disappear from the process list.  This is why 20s was too short for
+# 27B models — the OS page reclaim takes 30-60 s for large allocations.
+#
+# FLUX dev-fp8 needs ~12 GB.  LoRAs add ~1-3 GB.  Overhead ~1 GB.
+# → We need at least 16 GB free before loading FLUX.
+# → We warn and wait up to 120 s.  If VRAM doesn't clear in time we abort art
+#   gen rather than letting Windows crash the whole machine.
 _VRAM_FLUX_REQUIRED_GB  = 16.0   # minimum FREE VRAM before loading FLUX+LoRAs (system-wide)
                                   # Peak load: FLUX fp8 UNet ~8.5 GB + T5 ~4.7 GB + LoRAs
                                   # + ReActor + overhead ≈ 18 GB peak during conditioning.

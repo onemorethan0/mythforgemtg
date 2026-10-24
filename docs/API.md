@@ -1,6 +1,6 @@
 # HTTP API reference
 
-Every route the FastAPI backend (`server.py`) serves on **port 8000**. The React SPA is the only
+Every route the FastAPI backend (`server:app`; routes in `api/routes_*.py`) serves on **port 8000**. The React SPA is the only
 client that exercises all of it, but the API is plain JSON and usable directly.
 
 Anything marked **needs :8020** goes through the MythGauntlet strength engine. When that process is
@@ -259,4 +259,4 @@ API always sends it.
 - **`frame_style`** — `"builtin"` | `"m15"` | `"m15_fullart"`. M15 styles need a local Card Conjurer
   (`MYTHFORGE_CC_DIR` or the in-app folder field).
 - **`gen_settings`** is optional; omitting any field falls back to the model default (see
-  `GenSettingsModel` in `server.py` / `GenSettings` in `image_gen.py`).
+  `GenSettingsModel` in `api/models.py` / `GenSettings` in `image_gen.py`).
