@@ -28,7 +28,7 @@ import traceback
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import AsyncGenerator, Optional, List
+from typing import Optional, List
 from urllib.parse import urlparse
 
 import requests
@@ -45,12 +45,11 @@ from pydantic import BaseModel, Field
 
 # ── Local modules ─────────────────────────────────────────────────────────────
 from app_paths          import app_path
-from scryfall_client    import ScryfallClient
 import deck_import
 import commander_analysis
 from commander_analysis import build_commander_profile
 from deck_builder       import (DeckBuilder, compute_stats, aggregate_duplicates,
-                                deck_quality_block, CARD_SOURCES, SOURCE_SCRYFALL,
+                                CARD_SOURCES, SOURCE_SCRYFALL,
                                 SOURCE_PREFER, SOURCE_COLLECTION)
 from collection         import (
     load_owned_names, owned_count, suite_collection_path,
@@ -71,9 +70,8 @@ from playstyle          import (
     PLAYSTYLES, PLAYSTYLE_ORDER, resolve_themes, get_slot_adjustments,
 )
 from themer             import Themer, ThemedCard, ThemingCancelled
-from image_gen          import ImageGen, GenSettings, _is_flux, _is_sd35, _is_sdxl, _is_krea, _is_qwen
+from image_gen          import ImageGen, _is_flux, _is_sd35, _is_sdxl, _is_krea, _is_qwen
 from scryfall_client    import price_key as _price_key
-import card_renderer
 from card_renderer      import render_card, render_deck_thumbnails
 from set_symbol         import generate_set_symbol
 import mana_pips
@@ -83,54 +81,22 @@ from face_ref           import get_face_paths
 from model3d            import Model3DGen, generate_commander_3d
 import edhrec_lift
 
+# Imported ahead of the log tee, as when every route lived in this file: image_gen and
+# model3d swap sys.stdout for a UTF-8 wrapper on import (the tee must wrap it, not be
+# replaced by it), and card_renderer prints its symbol-cache warm-up before the tee.
+import image_gen  # noqa: F401,E402
+import card_renderer  # noqa: F401,E402
+import model3d  # noqa: F401,E402
+
 # ── In-memory log capture ──────────────────────────────────────────────────────
 # Tee stdout/stderr into a bounded ring buffer so the running server's output
 # (startup checks, pipeline prints, tracebacks, uvicorn access logs) can be
 # viewed from inside the app via /api/logs — regardless of how the process was
 # launched (console, redirected file, or detached with no console at all).
 import sys as _sys
-import collections
+
+from api.logbuffer import _LOG_BUFFER, _TeeStream
 from datetime import datetime as _dt
-
-_LOG_BUFFER: "collections.deque[str]" = collections.deque(maxlen=5000)
-
-
-class _TeeStream:
-    """Write-through stream wrapper that mirrors output into _LOG_BUFFER line by line."""
-
-    def __init__(self, original):
-        self._original = original
-        self._partial = ""
-
-    def write(self, text):
-        if self._original is not None:
-            try:
-                self._original.write(text)
-            except Exception:
-                pass
-        self._partial += text
-        while "\n" in self._partial:
-            line, self._partial = self._partial.split("\n", 1)
-            _LOG_BUFFER.append(f"{_dt.now().strftime('%H:%M:%S')} {line}")
-        return len(text)
-
-    def flush(self):
-        if self._original is not None:
-            try:
-                self._original.flush()
-            except Exception:
-                pass
-
-    def isatty(self):
-        # uvicorn's log formatter calls this during config; guard against a
-        # None/detached stdout so logging setup never crashes on launch.
-        try:
-            return bool(self._original) and self._original.isatty()
-        except Exception:
-            return False
-
-    def __getattr__(self, name):
-        return getattr(self._original, name)
 
 
 # Wrap whatever stdout/stderr are at this point (model3d already installed a
@@ -138,6 +104,44 @@ class _TeeStream:
 # log handlers bind to the tee and access logs are captured too.
 _sys.stdout = _TeeStream(_sys.stdout)
 _sys.stderr = _TeeStream(_sys.stderr)
+
+from api import state
+from api.state import (
+    _require_job_id,
+    _jobs,
+    _progress,
+    _RATE_LIMIT_WINDOW,
+    _RATE_LIMIT_BUILD_REQUESTS,
+    _RATE_LIMIT_CHAT_REQUESTS,
+    _CHAT_RATE_LIMIT_KEY,
+    _art_lock,
+    _3d_jobs,
+    _3d_progress,
+    _get_deck_regen_lock,
+    _scryfall,
+    _check_rate_limit,
+    _cleanup_expired_jobs,
+    _push,
+    _sse_stream,
+    _mark_job_error,
+    _finalize_job,
+    _serializable_job,
+    _load_deck_from_disk,
+)
+from api.models import (
+    SearchRequest,
+    GenSettingsModel,
+    _resolve_gen_settings,
+    _gen_settings_to_dict,
+    _resolve_gen_settings_reusing,
+    BuildRequest,
+    RebuildRequest,
+    RegenCardsRequest,
+    AnimateCardsRequest,
+    RethemeRequest,
+    SingleCardModel,
+    CardBuildRequest,
+)
 
 
 # ── App setup ─────────────────────────────────────────────────────────────────
@@ -208,155 +212,6 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PATCH", "DELETE"],
     allow_headers=["Content-Type"],
 )
-
-# Anchor to the script location, not the cwd — the server (and deck history)
-# must work the same regardless of where it's launched from. See app_paths.py.
-STATIC_DIR  = app_path("frontend", "dist")
-RENDER_DIR  = app_path("renders")
-ART_DIR     = app_path("generated_art")
-RENDER_DIR.mkdir(exist_ok=True)
-
-# Every job id this app mints is `uuid.uuid4().hex[:16]` — 16 lowercase hex chars —
-# so validating that shape can never reject a real deck. 26 routes take {job_id}
-# straight off the URL and interpolate it into a path under RENDER_DIR; a segment
-# like `..%2f..%2f..` decodes AFTER routing (Starlette's `[^/]+` param regex only
-# sees the encoded form), so it survives into the Path join. That reaches rmtree in
-# DELETE /api/deck/{job_id} and FileResponse in the card-image/video/export routes.
-# Not remotely exploitable today — the server binds 127.0.0.1 and CORS is an explicit
-# localhost allowlist — but it is one config change away from mattering, and
-# style_sample_image already validated while its 25 siblings did not.
-_JOB_ID_RE = re.compile(r"[0-9a-f]{16}")
-
-
-def _require_job_id(job_id: str) -> str:
-    """Reject any job id that isn't the 16-hex-char shape we mint. Returns it."""
-    if not _JOB_ID_RE.fullmatch(job_id):
-        raise HTTPException(404, "Deck not found")
-    return job_id
-
-# In-memory job store (replace with Redis/SQLite for persistence)
-_jobs: dict[str, dict] = {}
-_progress: dict[str, list[str]] = {}   # job_id → list of SSE event strings
-_JOB_TTL_SECONDS = 86400  # 24 hours — auto-expire old jobs to prevent memory accumulation
-
-# Rate limiting for expensive endpoints (prevent resource exhaustion from floods)
-_request_timestamps: dict[str, list[float]] = {}  # IP → list of request timestamps
-_RATE_LIMIT_WINDOW = 60  # seconds
-_RATE_LIMIT_BUILD_REQUESTS = 5  # max 5 builds per minute per IP
-# Mentor chat/feedback/advise share `_check_rate_limit`'s mechanism but NOT its bucket
-# or threshold: `_check_rate_limit` keys `_request_timestamps` by client_id ALONE, so
-# passing the bare `client_ip` here (as the initial hardening pass did) put these three
-# routes in the SAME bucket as every build/rebuild/regen route -- a real back-and-forth
-# mentor conversation (one chat call + one feedback call per turn) exhausted a 5-per-60s
-# budget sized for expensive GPU builds within a handful of turns. Found live 2026-08-25
-# running an actual mentor campaign, not guessed. A distinct client-id suffix
-# (`_CHAT_RATE_LIMIT_KEY`) gives these routes their own bucket, and a distinct threshold
-# reflects that a chat turn is LLM-bound, not GPU-bound, so it can tolerate a much
-# higher rate without risking the GPU contention the build limiter exists to prevent.
-_RATE_LIMIT_CHAT_REQUESTS = 30  # max 30 mentor/advise calls per minute per IP
-_CHAT_RATE_LIMIT_KEY = ":mentor"
-
-# Global art-generation lock — ComfyUI is a single-GPU resource.
-# Only one build may run art gen at a time; concurrent builds queue up here.
-_art_lock = threading.Lock()
-
-# Serializes ComfyUI auto-start so the startup thread and concurrent builds never
-# spawn duplicate ComfyUI processes (each re-checks "is it up?" inside the lock).
-
-# Per-source-deck lock to serialize regen-cards writes to the same deck dir.
-# Without this, two concurrent regen calls on the same deck race their PNG
-# writes and SSE card_ready events.
-_deck_regen_locks: dict[str, threading.Lock] = {}
-_deck_regen_locks_meta_lock = threading.Lock()
-
-# 3D generation job store (separate from main _jobs to keep payloads small)
-_3d_jobs: dict[str, dict] = {}
-_3d_progress: dict[str, list[str]] = {}   # job_3d_id → list of SSE event strings
-
-def _get_deck_regen_lock(source_job_id: str) -> threading.Lock:
-    """Return (or create) the threading.Lock for a given source deck."""
-    with _deck_regen_locks_meta_lock:
-        lock = _deck_regen_locks.get(source_job_id)
-        if lock is None:
-            lock = threading.Lock()
-            _deck_regen_locks[source_job_id] = lock
-        return lock
-
-# Shared clients (created once)
-_scryfall = ScryfallClient()
-
-
-# ── Job cleanup (prevent memory accumulation) ──────────────────────────────────
-
-def _check_rate_limit(client_id: str, max_requests: int = _RATE_LIMIT_BUILD_REQUESTS) -> bool:
-    """
-    Check if client has exceeded rate limit (token bucket).
-    Returns True if request is allowed, False if rate limited.
-    """
-    now = time.time()
-
-    # Clean old timestamps outside window
-    if client_id in _request_timestamps:
-        _request_timestamps[client_id] = [
-            ts for ts in _request_timestamps[client_id]
-            if (now - ts) < _RATE_LIMIT_WINDOW
-        ]
-
-    # Check limit
-    count = len(_request_timestamps.get(client_id, []))
-    if count >= max_requests:
-        return False  # Rate limited
-
-    # Add new timestamp
-    _request_timestamps.setdefault(client_id, []).append(now)
-    return True
-
-
-def _cleanup_expired_jobs():
-    """Remove jobs older than _JOB_TTL_SECONDS to prevent memory leaks.
-
-    Also sweeps the two other unbounded module-level dicts on the same hourly
-    cadence: `_request_timestamps` (a rate-limit bucket per client IP — an IP
-    that stops sending requests leaves an entry with an empty, but never-removed,
-    timestamp list) and `_deck_regen_locks` (a per-source-deck lock — every deck
-    that ever ran regen-cards left its lock behind forever, even long after the
-    source job itself expired out of `_jobs`).
-    """
-    now = time.time()
-    expired = [
-        job_id for job_id, job in _jobs.items()
-        if (now - job.get("created_at", now)) > _JOB_TTL_SECONDS
-    ]
-    for job_id in expired:
-        _jobs.pop(job_id, None)
-        _progress.pop(job_id, None)
-    if expired:
-        print(f"  [cleanup] Expired {len(expired)} old job(s) (>{_JOB_TTL_SECONDS//3600}h)")
-
-    # Rate-limit buckets: drop timestamps outside the window, then drop any
-    # client entry left with nothing in it.
-    stale_clients = []
-    for client_id, timestamps in _request_timestamps.items():
-        fresh = [ts for ts in timestamps if (now - ts) < _RATE_LIMIT_WINDOW]
-        if fresh:
-            _request_timestamps[client_id] = fresh
-        else:
-            stale_clients.append(client_id)
-    for client_id in stale_clients:
-        _request_timestamps.pop(client_id, None)
-    if stale_clients:
-        print(f"  [cleanup] Dropped {len(stale_clients)} stale rate-limit bucket(s)")
-
-    # Regen locks: a lock only needs to outlive its source deck's entry in _jobs.
-    with _deck_regen_locks_meta_lock:
-        orphaned_locks = [
-            job_id for job_id in _deck_regen_locks
-            if job_id not in _jobs
-        ]
-        for job_id in orphaned_locks:
-            _deck_regen_locks.pop(job_id, None)
-    if orphaned_locks:
-        print(f"  [cleanup] Dropped {len(orphaned_locks)} orphaned deck-regen lock(s)")
 
 
 def _run_frontend_build(frontend_dir: Path, verb: str) -> None:
@@ -463,298 +318,6 @@ def _ensure_ollama_models_ready():
             print(f"  [startup]        Start the gateway: E:\\llama\\start-llama-swap.bat", flush=True)
         else:
             print(f"  [startup]        Start Ollama before running the deck builder", flush=True)
-
-
-# ── Request / Response models ─────────────────────────────────────────────────
-
-class SearchRequest(BaseModel):
-    query: str
-
-
-class GenSettingsModel(BaseModel):
-    """User-configurable generation knobs from the frontend Advanced panels.
-    Mirrors image_gen.GenSettings; all optional so omitting it preserves defaults."""
-    guidance:       Optional[float] = None   # FLUX FluxGuidance (1.5–5)
-    steps:          Optional[int]   = None   # sampler steps
-    sampler:        Optional[str]   = None
-    scheduler:      Optional[str]   = None
-    seed_mode:      Optional[str]   = None   # "random" | "fixed"
-    seed:           Optional[int]   = None
-    lora_overrides: Optional[List[dict]] = None  # [{filename, model_strength, clip_strength?, trigger?}]
-    style_variant:  Optional[str]   = None   # pin a preset rotation flavor deck-wide ("" / "auto" = Variety mix)
-    face_method:    Optional[str]   = None   # None=auto | "reactor" | "pulid_flux" | "none"
-    face_weight:    Optional[float] = None
-    safe_mode:      Optional[bool]  = None
-    enhance:        Optional[bool]  = None   # Perturbed-Attention Guidance (better anatomy; ~2x slower)
-    face_fix:       Optional[bool]  = None   # FaceDetailer pass (SDXL/Illustrious; re-renders faces)
-
-
-def _resolve_gen_settings(gs: "Optional[GenSettingsModel]") -> GenSettings:
-    """Convert the API GenSettingsModel into the image_gen.GenSettings dataclass.
-    None / missing fields fall back to defaults (existing behavior)."""
-    if gs is None:
-        return GenSettings()
-    try:
-        d = gs.model_dump(exclude_none=True)   # pydantic v2
-    except AttributeError:
-        d = {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
-    return GenSettings.from_dict(d)
-
-
-def _gen_settings_to_dict(gs: "Optional[GenSettingsModel]") -> dict:
-    """Serialize a request GenSettingsModel to a plain (None-stripped) dict for
-    persistence in deck.json, so regen paths can recover the user's advanced
-    settings — guidance/steps/lora_overrides and a pinned style_variant."""
-    if gs is None:
-        return {}
-    try:
-        return gs.model_dump(exclude_none=True)   # pydantic v2
-    except AttributeError:
-        return {k: v for k, v in gs.dict().items() if v is not None}  # pydantic v1
-
-
-def _resolve_gen_settings_reusing(gs: "Optional[GenSettingsModel]",
-                                  source_data: "Optional[dict]") -> GenSettings:
-    """For regen paths (rebuild / regen-cards / retheme): honor the request's
-    gen_settings when provided, else fall back to the gen_settings persisted in the
-    source deck.json. This keeps a pinned style_variant (and every other advanced
-    knob) alive across a re-generation instead of silently resetting to defaults."""
-    if gs is not None:
-        return _resolve_gen_settings(gs)
-    stored = (source_data or {}).get("gen_settings") or None
-    return GenSettings.from_dict(stored)
-
-
-class BuildRequest(BaseModel):
-    # Optional when importing an existing decklist (deck_url / deck_list provide
-    # the commander). Required for the generate-a-deck path.
-    commander_name:    str = Field("", max_length=120)
-    # The command zone can hold TWO cards. A LIST, not a second scalar, because Partner,
-    # Friends forever, Choose a Background and Doctor's companion all land in the same slot.
-    partner_names:     list[str] = Field(default_factory=list, max_length=2)
-    # Import an existing deck instead of generating one. deck_url = a Moxfield/
-    # Archidekt URL; deck_list = pasted decklist text. When either is set the
-    # 99-card generator is skipped and the imported list is themed/rendered.
-    deck_url:          str = Field("", max_length=600)
-    deck_list:         str = Field("", max_length=20000)
-    # Edit & Rebuild of a deck whose card list must be preserved (imports). The
-    # list is restored VERBATIM from that job's deck.json — not re-imported (the
-    # upstream deck may have changed since) and not regenerated (DeckBuilder would
-    # invent a different deck entirely). Wins over deck_url/deck_list/prebuilt_deck.
-    source_deck_id:    str = Field("", max_length=64)
-    playstyle:         str = "auto"
-    # Caps prevent long appearance dumps from polluting the LLM batch prompt and
-    # blowing FLUX's first-N-token attention window (causes "standing portrait"
-    # output with no card action).  Cap raised from 400: art_theme is now a
-    # back-compat fallback (the structured theme_spec is the primary input) and is
-    # persisted/restored, so it must hold the composed structured brief without
-    # truncating (a long Setting + all chips can exceed 800; build_creative_brief
-    # caps the actual prompt seed at 900 chars regardless).
-    art_theme:         str = Field("", max_length=2000)
-    commander_prompt:  str = Field("", max_length=500)
-    emblem_prompt:     str = Field("", max_length=300)
-    art_style:         str = "mtg_fantasy"  # LoRA preset key
-    generate_art:      bool = False
-    model_speed:       str  = "quality"  # "quality" (flux-dev) or "fast" (flux-schnell) or "sd35" (SD 3.5 Large)
-    checkpoint:        Optional[str] = None   # explicit checkpoint filename; None = auto-detect from ComfyUI
-    bracket:           int  = 3
-    face_key:          Optional[str] = None   # commander face photos
-    face_gender:       str = "either"         # "male", "female", or "either"
-    crew_key:          Optional[str] = None   # crew face photos for creature cards
-    crew_gender:       str = "either"         # gender hint for crew faces
-    crew_prompt:       str = ""               # shared appearance notes for crew-faced creatures
-    is_commander_deck: bool = True            # False → imported non-Commander list: no auto hero face
-    face_assignments:  Optional[dict] = None  # {card original_name: crew-photo index} — explicit per-card faces (non-commander decks)
-    user_name:         Optional[str] = None   # replaces the commander's generated first name
-    llm_model:         Optional[str] = None   # Ollama model key — None = use themer default
-    border_theme:      str           = ""     # free-text description of card-border decoration
-    frame_style:       str           = "builtin"  # "builtin" (bundled frames) or "m15" (official-style, needs local Card Conjurer)
-    commander_tribe:   str           = ""     # override creature tribe to reskin; "" = auto-detect
-    custom_pips:       bool          = False  # themed 2-colour mana pips (disc + black silhouette)
-    # Two-phase flow: a decklist generated up front (POST /api/deck/generate-list)
-    # is passed back here so the build skips DeckBuilder and themes/renders this
-    # exact list. tribal_overrides = user-chosen {OriginalType: Replacement} from
-    # the theme step's per-tribe fields (multi-tribe reskin; wins over auto-detect).
-    prebuilt_deck:     Optional[list] = None
-    tribal_overrides:  Optional[dict] = None
-    # "Auto-theme creature types" checkbox: auto-generate ONE theme-fitting
-    # replacement for EVERY deck creature type (not just the commander's) and
-    # apply it uniformly. Explicit tribal_overrides still win per-type. Defaults
-    # ON — a build with no directive gets cohesive theme-fitting creature types.
-    auto_theme_tribes: bool          = True
-    # Collection-aware building (Myth Suite C4): when true, the 99-card generator
-    # PREFERS cards from the user's owned-collection export
-    # (Documents/MythSuite/collection.csv), falling back to unowned EDHREC picks
-    # when the collection can't cover a slot. Generate path only (imports ignore it).
-    use_collection:    bool          = False
-    # Which pool the builder may draw from: "scryfall" | "prefer_collection" |
-    # "collection". Empty means "derive from use_collection", so every existing caller
-    # keeps its exact behaviour — use_collection=True is prefer_collection, not strict.
-    card_source:       str           = Field("", max_length=24)
-    # Structured "deck vision" fields (setting/moods/genres/lighting/inspiration).
-    # Now the PRIMARY theming input: themer.build_creative_brief() reads these as
-    # distinct labelled dimensions (not the flattened art_theme blob). Persisted so
-    # Edit can restore them.
-    theme_spec:        Optional[dict] = None
-    # Creativity dial — how much invented detail the creative brief adds on top of
-    # the user's stated motifs: "faithful" | "balanced" | "imaginative".
-    creativity:        str           = "balanced"
-    gen_settings:      Optional[GenSettingsModel] = None   # Advanced-panel overrides
-
-
-class RebuildRequest(BaseModel):
-    """Minimal params needed to re-run art gen for an already-themed deck."""
-    art_style:   str = "mtg_fantasy"
-    model_speed: str = "quality"
-    checkpoint:  Optional[str] = None   # explicit checkpoint; None = auto-detect
-    face_key:    Optional[str] = None
-    face_gender: str = "either"
-    crew_key:    Optional[str] = None
-    crew_gender: str = "either"
-    crew_prompt: Optional[str] = None   # None → use saved crew_prompt
-    gen_settings: Optional[GenSettingsModel] = None
-
-
-class CardRegenEntry(BaseModel):
-    render_key:    str            # safe-name used in the filename / URL
-    original_name: str            # canonical MTG card name for lookup fallback
-    custom_prompt: Optional[str] = None   # user's custom text (stored separately; never clobbers art_prompt)
-    use_custom:    bool = False           # True → feed custom_prompt to generation; False → use LLM art_prompt
-
-
-class RegenCardsRequest(BaseModel):
-    """Per-card regeneration — re-run art gen for a specific subset of cards."""
-    cards:       List[CardRegenEntry]
-    art_style:   str = "mtg_fantasy"
-    model_speed: str = "quality"
-    checkpoint:  Optional[str] = None   # explicit checkpoint; None = auto-detect
-    face_key:    Optional[str] = None   # commander face override
-    face_gender: str = "either"
-    crew_key:    Optional[str] = None   # crew faces override for creature cards
-    crew_gender: str = "either"
-    # Force a single uploaded face onto EVERY selected card, bypassing the
-    # commander/humanoid-creature routing. Lets the user drop a friendly face
-    # onto any card they picked (even non-humanoid ones) and regenerate it.
-    force_face_key:    Optional[str] = None
-    force_face_gender: str = "either"
-    gen_settings: Optional[GenSettingsModel] = None
-
-
-class AnimateCardEntry(BaseModel):
-    render_key:    str
-    original_name: str
-
-
-class AnimateCardsRequest(BaseModel):
-    """Animate a subset of cards — I2V the art and/or overlay a procedural foil
-    sheen, recomposite, and encode a looping clip (mp4 / webp / gif)."""
-    cards:         List[AnimateCardEntry]
-    motion_preset: str = "subtle"
-    motion_prompt: Optional[str] = None   # free-text custom motion (wins over motion_preset)
-    motion_strength: Optional[float] = None  # 0..1 how much the art moves (LTXV); None → default 0.5
-    loop:          bool = True
-    loop_style:    Optional[str] = None   # crossfade | bounce | off (motion); None → crossfade
-    duration:      Optional[float] = None  # desired clip length (seconds); → frame count (snapped for I2V)
-    frames:        Optional[int] = None   # explicit frame-count override (wins over duration)
-    fps:           Optional[int] = None
-    method:        Optional[str] = None   # override the auto-detected I2V model
-    effect:        str = "motion"         # motion | foil | motion_foil
-    foil_style:    str = "holo"           # holo | gold | silver (when effect uses foil)
-    foil_intensity: Optional[float] = None  # foil sheen strength 0..1 (default ~0.55)
-    fmt:           str = "mp4"            # mp4 | webp | gif (output container)
-
-
-class RethemeRequest(BaseModel):
-    """Re-theme an already-built deck: new names/prompts, and new art for them."""
-    art_theme:        Optional[str] = None   # None → use saved theme from deck.json
-    commander_prompt: Optional[str] = None   # None → use saved commander_prompt
-    user_name:        Optional[str] = None   # None → use saved user_name
-    llm_model:        Optional[str] = None   # None → use saved llm_model
-    commander_tribe:  Optional[str] = None   # None → use saved / auto-detect
-    theme_spec:       Optional[dict] = None  # None → use saved structured theme_spec
-    creativity:       Optional[str]  = None  # None → use saved creativity dial
-    # Art controls. A deck saved straight from an import has generate_art=False and
-    # no art_style at all, so retheme used to re-name its cards and then skip art
-    # entirely — the "save the list now, generate art later" lifecycle produced no
-    # art and offered no way to pick a style. These let that first art run be
-    # requested; each falls back to the source deck's value when omitted.
-    generate_art:     Optional[bool] = None  # None → use saved generate_art
-    art_style:        Optional[str]  = None  # None → use saved art_style
-    model_speed:      Optional[str]  = None  # None → use saved model_speed
-    checkpoint:       Optional[str]  = None  # None → use saved checkpoint
-    gen_settings:     Optional[GenSettingsModel] = None   # None → use saved gen_settings
-
-
-class SingleCardModel(BaseModel):
-    """A user-authored custom card definition for single-card mode."""
-    name:        str = Field("", max_length=160)
-    mana_cost:   str = Field("", max_length=80)   # e.g. "{2}{W}{U}"
-    type_line:   str = Field("", max_length=160)  # e.g. "Legendary Creature — Knight"
-    oracle_text: str = Field("", max_length=2000)
-    flavor_text: str = Field("", max_length=600)
-    power:       Optional[str] = None             # strings so "*"/"1+*" are allowed
-    toughness:   Optional[str] = None
-    loyalty:     Optional[str] = None             # planeswalkers
-    rarity:      str = "rare"                     # common|uncommon|rare|mythic|special
-    colors:      Optional[List[str]] = None       # WUBRG; None → derive from mana_cost
-
-
-class CardBuildRequest(BaseModel):
-    """Single custom card → theme + (optional) art + rendered proxy. Reuses the
-    deck theming/art knobs; the result persists as a 'deck of one' so every
-    existing per-card action (regen/animate/3D/export/history) works on it."""
-    card:             SingleCardModel
-    # Theming
-    theme_mode:       str = "author"   # "author" (keep my name/text; AI art only) | "full" (AI themes/renames)
-    art_prompt_mode:  str = "auto"     # "auto" (LLM writes art prompt) | "custom" (user supplies it)
-    art_prompt:       str = Field("", max_length=2000)   # used when art_prompt_mode == "custom"
-    art_theme:        str = Field("", max_length=2000)
-    theme_spec:       Optional[dict] = None
-    creativity:       str = "balanced"
-    commander_prompt: str = Field("", max_length=500)    # subject appearance
-    emblem_prompt:    str = Field("", max_length=300)
-    # Art / render
-    art_style:        str = "mtg_fantasy"
-    generate_art:     bool = False
-    model_speed:      str  = "quality"
-    checkpoint:       Optional[str] = None
-    llm_model:        Optional[str] = None
-    border_theme:     str = ""
-    frame_style:      str = "builtin"
-    custom_pips:      bool = False
-    # Face conditioning (single likeness)
-    face_key:         Optional[str] = None
-    face_gender:      str = "either"
-    gen_settings:     Optional[GenSettingsModel] = None
-
-
-# ── SSE helpers ───────────────────────────────────────────────────────────────
-
-def _push(job_id: str, event: str, data: str):
-    msg = f"event: {event}\ndata: {data}\n\n"
-    _progress.setdefault(job_id, []).append(msg)
-
-async def _sse_stream(job_id: str, request: Optional[Request] = None) -> AsyncGenerator[str, None]:
-    sent = 0
-    while True:
-        # Stop if the client closed its EventSource (browser tab closed, etc.)
-        if request is not None and await request.is_disconnected():
-            break
-        msgs = _progress.get(job_id, [])
-        while sent < len(msgs):
-            yield msgs[sent]
-            sent += 1
-        job = _jobs.get(job_id, {})
-        if job.get("status") in ("done", "error"):
-            # Drain any final messages pushed between the message pump and the
-            # status check — the worker thread may push "done"/"error" after we
-            # already snapshotted msgs above.
-            msgs = _progress.get(job_id, [])
-            while sent < len(msgs):
-                yield msgs[sent]
-                sent += 1
-            break
-        await asyncio.sleep(0.3)
 
 
 # ── VRAM management helpers ──────────────────────────────────────────────────
@@ -1084,13 +647,13 @@ def _write_cancelled_deck(job_id: str, cmd_tc: ThemedCard, deck_tcs: list,
     renders the deck, with has_render backfilled from whatever was rendered so
     far (Scryfall art fills the rest). Mirrors the art-phase cancel handling.
     """
-    cards_dir = RENDER_DIR / job_id / "cards"
+    cards_dir = state.RENDER_DIR / job_id / "cards"
     rendered = {fp.stem for fp in cards_dir.glob("*.png")} if cards_dir.exists() else set()
 
     def _has(tc: ThemedCard, idx: int) -> bool:
         return f"{_safe_name(tc.original_name)}_{idx:03d}" in rendered
 
-    path = RENDER_DIR / job_id / "deck.json"
+    path = state.RENDER_DIR / job_id / "deck.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "status":       "cancelled",
@@ -1318,7 +881,7 @@ def _load_source_deck(source_job_id: str) -> dict:
 
     Raises ValueError if no deck can be found — callers rely on this to abort.
     """
-    source_path = RENDER_DIR / source_job_id / "deck.json"
+    source_path = state.RENDER_DIR / source_job_id / "deck.json"
     if source_path.exists():
         data = json.loads(source_path.read_text(encoding="utf-8"))
     else:
@@ -1356,13 +919,13 @@ def _setup_deck_pips(job_id: str, enabled: bool, art_theme: str, subject: str,
     if not enabled:
         card_renderer.set_custom_pips(None)
         return None
-    pip_dir = RENDER_DIR / job_id / "pips"
+    pip_dir = state.RENDER_DIR / job_id / "pips"
 
     # Reuse the source deck's pips (keeps the silhouette identical on re-renders).
     # The source set_symbol.png already carries the matching emblem, so callers
     # keep their copied symbol — return None here.
     if source_job_id:
-        existing = mana_pips.load_mana_pips(RENDER_DIR / source_job_id / "pips")
+        existing = mana_pips.load_mana_pips(state.RENDER_DIR / source_job_id / "pips")
         if existing:
             pip_dir.mkdir(parents=True, exist_ok=True)
             for code, img in existing.items():
@@ -1384,7 +947,7 @@ def _setup_deck_pips(job_id: str, enabled: bool, art_theme: str, subject: str,
         # Build a set emblem from the same silhouette and overwrite the procedural
         # one so the deck symbol matches the requested subject + the pips.
         emblem = mana_pips.make_set_emblem(silhouette, art_theme)
-        emblem.save(RENDER_DIR / job_id / "set_symbol.png", "PNG")
+        emblem.save(state.RENDER_DIR / job_id / "set_symbol.png", "PNG")
         return emblem
     except Exception as e:
         print(f"  [pips] generation failed, using stock symbols: {e}")
@@ -1414,27 +977,6 @@ def _make_art_progress_cb(job_id: str, start_time: float):
             "last_ok":   success,
         }))
     return _cb
-
-
-def _mark_job_error(job_id: str, e: Exception) -> None:
-    """Common 'except' handling for the _run_* pipelines."""
-    _jobs[job_id]["status"] = "error"
-    _jobs[job_id]["error"]  = str(e)
-    _push(job_id, "error", json.dumps({"msg": str(e)}))
-    traceback.print_exc()   # full stack trace to server stdout/log
-
-
-def _finalize_job(job_id: str) -> None:
-    """Common 'finally' cleanup for the _run_* pipelines.
-
-    Drops the (unserializable) cancel_event, caps the per-job SSE buffer so the
-    ETA-ticker spam can't grow without bound, and trims the in-memory job store.
-    """
-    _jobs.get(job_id, {}).pop("cancel_event", None)
-    msgs = _progress.get(job_id)
-    if msgs and len(msgs) > 80:
-        _progress[job_id] = msgs[-80:]
-    _trim_in_memory_jobs()
 
 
 # ── Background deck build ─────────────────────────────────────────────────────
@@ -1770,7 +1312,7 @@ def _run_build(job_id: str, req: BuildRequest):
         # ── Set symbol ────────────────────────────────────────────────────────
         _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Generating set symbol..."}))
         sym      = generate_set_symbol(art_theme, emblem_prompt=req.emblem_prompt or "")
-        sym_path = RENDER_DIR / job_id / "set_symbol.png"
+        sym_path = state.RENDER_DIR / job_id / "set_symbol.png"
         sym_path.parent.mkdir(parents=True, exist_ok=True)
         sym.save(sym_path)
 
@@ -1792,7 +1334,7 @@ def _run_build(job_id: str, req: BuildRequest):
         # ── Early checkpoint: write deck.json NOW (before art gen + render) ──
         # Art gen is the longest step (30+ min). If the server crashes or
         # reloads during that step, the themed deck data is preserved here.
-        deck_json_path = RENDER_DIR / job_id / "deck.json"
+        deck_json_path = state.RENDER_DIR / job_id / "deck.json"
         deck_json_path.parent.mkdir(parents=True, exist_ok=True)
         # Compute deck_slug here so it's available for retheme later
         _deck_slug_base = ("".join(c if c.isalnum() else "_" for c in card["name"])[:28]
@@ -1864,7 +1406,7 @@ def _run_build(job_id: str, req: BuildRequest):
         deck_json_path.write_text(json.dumps(checkpoint), encoding="utf-8")
 
         # render_out is defined early so the inline-render callback can use it
-        render_out = RENDER_DIR / job_id / "cards"
+        render_out = state.RENDER_DIR / job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
         # cancel_event was fetched before theming (see above) so it's already bound.
 
@@ -2302,7 +1844,7 @@ def _run_card_build(job_id: str, req: "CardBuildRequest"):
         # ── Set symbol + pips + frame ─────────────────────────────────────────
         _push(job_id, "progress", json.dumps({"step": "symbol", "msg": "Generating set symbol…"}))
         sym = generate_set_symbol(art_theme, emblem_prompt=req.emblem_prompt or "")
-        sym_path = RENDER_DIR / job_id / "set_symbol.png"
+        sym_path = state.RENDER_DIR / job_id / "set_symbol.png"
         sym_path.parent.mkdir(parents=True, exist_ok=True)
         sym.save(sym_path)
 
@@ -2313,7 +1855,7 @@ def _run_card_build(job_id: str, req: "CardBuildRequest"):
         if _pip_emblem is not None:
             sym = _pip_emblem
 
-        render_out = RENDER_DIR / job_id / "cards"
+        render_out = state.RENDER_DIR / job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
         render_key = f"{_safe_name(name)}_000"
         deck_slug  = ("".join(c if c.isalnum() else "_" for c in name)[:28] + "_card_" + job_id[:8])
@@ -2361,7 +1903,7 @@ def _run_card_build(job_id: str, req: "CardBuildRequest"):
                 "imported":        False,
                 "built_at":        time.time(),
             }
-            (RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
+            (state.RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
             _jobs[job_id].update(payload)
             # deck.json carries "rendering" as its on-disk checkpoint state, but the
             # LIVE job must keep reporting "building" until the run really ends —
@@ -2465,7 +2007,7 @@ def _run_card_build(job_id: str, req: "CardBuildRequest"):
                         try:
                             art_path = gen.generate(
                                 tc.art_prompt,
-                                str(ART_DIR / deck_slug / _safe_name(name)),
+                                str(state.ART_DIR / deck_slug / _safe_name(name)),
                                 face_comfy_name=face_comfy_name,
                                 face_comfy_names=face_comfy_names or None,
                                 face_gender=req.face_gender,
@@ -2541,11 +2083,11 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
         }))
 
         # ── Set symbol: reuse from source if available ────────────────────────
-        render_out = RENDER_DIR / job_id / "cards"
+        render_out = state.RENDER_DIR / job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
-        sym_path = RENDER_DIR / job_id / "set_symbol.png"
+        sym_path = state.RENDER_DIR / job_id / "set_symbol.png"
 
-        old_sym = RENDER_DIR / source_job_id / "set_symbol.png"
+        old_sym = state.RENDER_DIR / source_job_id / "set_symbol.png"
         if old_sym.exists():
             _shutil.copy2(old_sym, sym_path)
             from PIL import Image as _PIL
@@ -2568,7 +2110,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
                               + "_" + job_id[:8])
 
         # ── Write checkpoint ─────────────────────────────────────────────────
-        deck_json_path = RENDER_DIR / job_id / "deck.json"
+        deck_json_path = state.RENDER_DIR / job_id / "deck.json"
         checkpoint = {
             "status":           "rendering",
             "commander":        _themed_card_to_dict(themed_cmd, deck_index=0),
@@ -2627,7 +2169,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             result: dict[str, Optional[Path]] = {}
             if not slug:
                 return result
-            art_dir = ART_DIR / slug
+            art_dir = state.ART_DIR / slug
             for _tc in [themed_cmd] + list(themed_deck):
                 _safe = "".join(ch if ch.isalnum() else "_" for ch in _tc.original_name)[:48]
                 _p = art_dir / f"{_safe}.png"
@@ -2646,7 +2188,7 @@ def _run_rebuild(job_id: str, source_job_id: str, req: RebuildRequest):
             # Try parent deck
             parent_id = data.get("rebuilt_from") or data.get("rethemed_from")
             if parent_id:
-                parent_path = RENDER_DIR / parent_id / "deck.json"
+                parent_path = state.RENDER_DIR / parent_id / "deck.json"
                 if parent_path.exists():
                     try:
                         parent_data = json.loads(parent_path.read_text(encoding="utf-8"))
@@ -2932,7 +2474,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
 
         # ── Load source deck ──────────────────────────────────────────────────
         # source_json_path is kept for the custom-prompt write-back near the end.
-        source_json_path = RENDER_DIR / source_job_id / "deck.json"
+        source_json_path = state.RENDER_DIR / source_job_id / "deck.json"
         source_data = _load_source_deck(source_job_id)
 
         # Index by render_key and by original_name for robust matching
@@ -3005,7 +2547,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         }))
 
         art_theme  = source_data.get("theme", "")
-        sym_path   = RENDER_DIR / source_job_id / "set_symbol.png"
+        sym_path   = state.RENDER_DIR / source_job_id / "set_symbol.png"
         sym        = _PIL.open(sym_path) if sym_path.exists() else None
 
         # Reuse the source deck's custom pips so regenerated cards match the rest.
@@ -3014,7 +2556,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
         card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
 
         # Renders go directly into the SOURCE job's cards/ dir
-        render_out = RENDER_DIR / source_job_id / "cards"
+        render_out = state.RENDER_DIR / source_job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
 
         # Which card is the commander — face conditioning applies only to it
@@ -3183,7 +2725,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                 t0 = time.time()
                 art_path = gen.generate(
                     tc.art_prompt,
-                    str(ART_DIR / deck_slug / art_safe),
+                    str(state.ART_DIR / deck_slug / art_safe),
                     face_comfy_name=face_for_card,
                     face_gender=gender_for_card,
                     card_type=tc.card.get("type_line", ""),
@@ -3228,7 +2770,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                         try:
                             if art_path and art_path.exists():
                                 import shutil as _shutil
-                                _cur_art_dir = RENDER_DIR / source_job_id / "art"
+                                _cur_art_dir = state.RENDER_DIR / source_job_id / "art"
                                 _cur_art_dir.mkdir(parents=True, exist_ok=True)
                                 _shutil.copyfile(art_path, _cur_art_dir / f"{render_key}.png")
                         except OSError as _ce:
@@ -3238,7 +2780,7 @@ def _run_regen_cards(job_id: str, source_job_id: str, req: RegenCardsRequest):
                         # the fresh still until the user re-animates.
                         _video_was_cleared = False
                         for _ext in ("mp4", "webp", "gif"):
-                            _vp = RENDER_DIR / source_job_id / "videos" / f"{render_key}.{_ext}"
+                            _vp = state.RENDER_DIR / source_job_id / "videos" / f"{render_key}.{_ext}"
                             if _vp.exists():
                                 try:
                                     _vp.unlink()
@@ -3341,7 +2883,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
     _deck_lock.acquire()
     try:
         _jobs[job_id]["status"] = "building"
-        source_json_path = RENDER_DIR / source_job_id / "deck.json"
+        source_json_path = state.RENDER_DIR / source_job_id / "deck.json"
         source_data = _load_source_deck(source_job_id)
 
         all_stored = [source_data["commander"]] + source_data["deck"]
@@ -3411,21 +2953,21 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
 
         # ── Render setup (match the rest of the deck) ─────────────────────────
         art_theme = source_data.get("theme", "")
-        sym_path  = RENDER_DIR / source_job_id / "set_symbol.png"
+        sym_path  = state.RENDER_DIR / source_job_id / "set_symbol.png"
         sym       = _PIL.open(sym_path) if sym_path.exists() else None
         _setup_deck_pips(source_job_id, bool(source_data.get("custom_pips", False)),
                          art_theme, source_data.get("emblem_prompt", ""))
         card_renderer.set_frame_style(source_data.get("frame_style", "builtin"))
         deck_slug = source_data.get("deck_slug") or ""
         border    = source_data.get("border_theme", "")
-        videos_out = RENDER_DIR / source_job_id / "videos"
+        videos_out = state.RENDER_DIR / source_job_id / "videos"
         videos_out.mkdir(parents=True, exist_ok=True)
-        anim_src = RENDER_DIR / source_job_id / "_anim_src"
+        anim_src = state.RENDER_DIR / source_job_id / "_anim_src"
         anim_src.mkdir(parents=True, exist_ok=True)
         # Per-deck store of CURRENT raw art crops, written by regen (keyed by
         # render_key). When a card was rebuilt this holds its newest crop; the
         # original build crop in generated_art/<deck_slug>/ is stale for it.
-        cur_art_dir = RENDER_DIR / source_job_id / "art"
+        cur_art_dir = state.RENDER_DIR / source_job_id / "art"
 
         def _current_art_src(render_key, art_safe, cd):
             """Raw art crop for the card's CURRENTLY displayed version, for the I2V
@@ -3434,7 +2976,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
             regen_crop = cur_art_dir / f"{render_key}.png"
             if regen_crop.exists():
                 return regen_crop
-            build_crop = ART_DIR / deck_slug / f"{art_safe}.png"
+            build_crop = state.ART_DIR / deck_slug / f"{art_safe}.png"
             if build_crop.exists():
                 return build_crop
             return _download_art_to(cd.get("scryfall_img") or "", anim_src / f"{render_key}.png")
@@ -3454,7 +2996,7 @@ def _run_animate_cards(job_id: str, source_job_id: str, req: "AnimateCardsReques
         def _base_card_image(render_key, art_safe, card_dict, themed, cd):
             """The composited still card to foil over: prefer the deck's rendered
             PNG; else render one static frame from the card's art."""
-            png = RENDER_DIR / source_job_id / "cards" / f"{render_key}.png"
+            png = state.RENDER_DIR / source_job_id / "cards" / f"{render_key}.png"
             if png.exists():
                 im = _PIL.open(png); im.load(); return im.convert("RGBA")
             s = _current_art_src(render_key, art_safe, cd)
@@ -3829,11 +3371,11 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
                 model=getattr(themer, "model", None))
 
         # ── Set symbol: reuse from source ─────────────────────────────────────
-        render_out = RENDER_DIR / job_id / "cards"
+        render_out = state.RENDER_DIR / job_id / "cards"
         render_out.mkdir(parents=True, exist_ok=True)
-        sym_path = RENDER_DIR / job_id / "set_symbol.png"
+        sym_path = state.RENDER_DIR / job_id / "set_symbol.png"
 
-        old_sym = RENDER_DIR / source_job_id / "set_symbol.png"
+        old_sym = state.RENDER_DIR / source_job_id / "set_symbol.png"
         if old_sym.exists():
             _shutil.copy2(old_sym, sym_path)
             from PIL import Image as _PIL
@@ -3893,7 +3435,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         def _reuse_source_art() -> dict:
             paths: dict[str, Optional[Path]] = {}
             if source_deck_slug:
-                adir = ART_DIR / source_deck_slug
+                adir = state.ART_DIR / source_deck_slug
                 for tc in [themed_cmd] + themed_deck:
                     safe = "".join(ch if ch.isalnum() else "_" for ch in tc.original_name)[:48]
                     p = adir / f"{safe}.png"
@@ -3997,7 +3539,7 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         }))
 
         # ── Early checkpoint ──────────────────────────────────────────────────
-        deck_json_path = RENDER_DIR / job_id / "deck.json"
+        deck_json_path = state.RENDER_DIR / job_id / "deck.json"
         stats          = source_data.get("stats", {})
         checkpoint = {
             "status":           "rendering",
@@ -4082,29 +3624,6 @@ def _run_retheme(job_id: str, source_job_id: str, req: RethemeRequest):
         _mark_job_error(job_id, e)
     finally:
         _finalize_job(job_id)
-
-
-# ── Memory hygiene ────────────────────────────────────────────────────────────
-_MAX_INMEM_JOBS = 6   # keep last N full job payloads in RAM; older fall to disk
-
-def _trim_in_memory_jobs():
-    """Evict old completed jobs' card payloads from memory. Status stays so
-    /events and /status still work without re-reading disk."""
-    done = [(jid, j) for jid, j in _jobs.items() if j.get("status") in ("done", "error")]
-    if len(done) <= _MAX_INMEM_JOBS:
-        return
-    # Sort by built_at if present, else by insertion order
-    done.sort(key=lambda kv: kv[1].get("built_at") or 0)
-    for jid, _ in done[: len(done) - _MAX_INMEM_JOBS]:
-        # Keep just enough metadata for status/events endpoints
-        j = _jobs[jid]
-        _jobs[jid] = {
-            "status":   j.get("status", "done"),
-            "error":    j.get("error"),
-            "built_at": j.get("built_at"),
-        }
-        # Free progress events for these old jobs too
-        _progress.pop(jid, None)
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
@@ -4523,7 +4042,7 @@ def deck_breakdown(job_id: str, refresh: bool = False):
         raise HTTPException(400, data["error"])
     stamp = {"key": key, "data": data, "computed_at": _dt.now().isoformat(timespec="seconds")}
     try:
-        p = RENDER_DIR / job_id / "deck.json"
+        p = state.RENDER_DIR / job_id / "deck.json"
         if p.exists():
             disk_data = json.loads(p.read_text(encoding="utf-8"))
             disk_data["breakdown"] = stamp
@@ -4721,7 +4240,7 @@ def _persist_advice(deck_job_id: str, axis_key: str, entry: dict) -> None:
     the same read-modify-write `/measure` uses for `last_measure`. Deliberately NOT in
     `_PROVENANCE_KEYS`: a rebuilt/rethemed deck is a different deck and must not inherit it."""
     try:
-        p = RENDER_DIR / deck_job_id / "deck.json"
+        p = state.RENDER_DIR / deck_job_id / "deck.json"
         if p.exists():
             disk = json.loads(p.read_text(encoding="utf-8"))
             disk.setdefault("advice_cache", {})[axis_key] = entry
@@ -5611,7 +5130,7 @@ def measure_deck(job_id: str):
     # bracket and the result screen shows the cached profile without re-simulating.
     stamp = {"simulation": sim, "date": _dt.now().isoformat(timespec="seconds")}
     try:
-        p = RENDER_DIR / job_id / "deck.json"
+        p = state.RENDER_DIR / job_id / "deck.json"
         if p.exists():
             disk_data = json.loads(p.read_text(encoding="utf-8"))
             disk_data["last_measure"] = stamp
@@ -5706,7 +5225,7 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     job.pop("last_measure", None)            # the measurement no longer matches the list
 
     try:
-        p = RENDER_DIR / job_id / "deck.json"
+        p = state.RENDER_DIR / job_id / "deck.json"
         if p.exists():
             disk_data = json.loads(p.read_text(encoding="utf-8"))
             disk_data["deck"] = cards
@@ -5875,7 +5394,7 @@ def import_save(req: ImportSaveRequest):
     face_auto = bool(imp.auto_face) and card is imp.commander
 
     job_id = uuid.uuid4().hex[:16]
-    (RENDER_DIR / job_id).mkdir(parents=True, exist_ok=True)
+    (state.RENDER_DIR / job_id).mkdir(parents=True, exist_ok=True)
     deck_slug = ("".join(ch if ch.isalnum() else "_" for ch in card.get("name", ""))[:28]
                  + "_" + job_id[:8])
     payload = {
@@ -5910,7 +5429,7 @@ def import_save(req: ImportSaveRequest):
         "creativity":        "balanced",
         "built_at":          time.time(),
     }
-    (RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
+    (state.RENDER_DIR / job_id / "deck.json").write_text(json.dumps(payload), encoding="utf-8")
     return {
         "job_id":        job_id,
         "name":          imp.name,
@@ -5974,7 +5493,7 @@ async def get_active_job():
 async def list_decks():
     """Return summary of all decks saved to disk (done or checkpoint), newest first."""
     results = []
-    for p in sorted(RENDER_DIR.glob("*/deck.json"),
+    for p in sorted(state.RENDER_DIR.glob("*/deck.json"),
                     key=lambda x: x.stat().st_mtime, reverse=True):
         try:
             data   = json.loads(p.read_text(encoding="utf-8"))
@@ -6331,7 +5850,7 @@ class StyleSampleRequest(BaseModel):
     gen_settings: Optional[GenSettingsModel] = None
 
 
-_STYLE_SAMPLE_DIR = RENDER_DIR / "style_samples"
+_STYLE_SAMPLE_DIR = state.RENDER_DIR / "style_samples"
 
 
 def _run_style_sample(job_id: str, req: StyleSampleRequest):
@@ -6506,7 +6025,7 @@ async def rebuild_deck(job_id: str, req: RebuildRequest, background_tasks: Backg
     # Verify the source deck actually exists (either in memory or on disk)
     source_ok = (
         (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
-        or (RENDER_DIR / job_id / "deck.json").exists()
+        or (state.RENDER_DIR / job_id / "deck.json").exists()
     )
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
@@ -6538,7 +6057,7 @@ async def regen_cards(job_id: str, req: RegenCardsRequest, background_tasks: Bac
         raise HTTPException(400, "No cards specified")
     source_ok = (
         (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
-        or (RENDER_DIR / job_id / "deck.json").exists()
+        or (state.RENDER_DIR / job_id / "deck.json").exists()
     )
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
@@ -6584,7 +6103,7 @@ async def animate_cards(job_id: str, req: AnimateCardsRequest,
         raise HTTPException(400, "No cards specified")
     source_ok = (
         (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
-        or (RENDER_DIR / job_id / "deck.json").exists()
+        or (state.RENDER_DIR / job_id / "deck.json").exists()
     )
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
@@ -6607,7 +6126,7 @@ async def retheme_deck(job_id: str, req: RethemeRequest, background_tasks: Backg
     _require_job_id(job_id)
     source_ok = (
         (job_id in _jobs and _jobs[job_id].get("status") in ("done", "rendering"))
-        or (RENDER_DIR / job_id / "deck.json").exists()
+        or (state.RENDER_DIR / job_id / "deck.json").exists()
     )
     if not source_ok:
         raise HTTPException(404, f"Source deck not found: {job_id}")
@@ -6634,7 +6153,7 @@ async def duplicate_deck(job_id: str):
     _require_job_id(job_id)
     import shutil as _shutil
 
-    src_dir  = RENDER_DIR / job_id
+    src_dir  = state.RENDER_DIR / job_id
     src_json = src_dir / "deck.json"
 
     # Load source data — prefer disk file, fall back to in-memory job store
@@ -6652,7 +6171,7 @@ async def duplicate_deck(job_id: str):
         raise HTTPException(400, "Source deck is not yet complete")
 
     new_job_id = uuid.uuid4().hex[:16]
-    dst_dir    = RENDER_DIR / new_job_id
+    dst_dir    = state.RENDER_DIR / new_job_id
 
     # Copy the whole render directory (card images, set symbol, deck.json)
     if src_dir.exists():
@@ -6694,7 +6213,7 @@ async def delete_deck(job_id: str):
         raise HTTPException(409, "Cannot delete a deck that is currently building")
 
     # Remove render directory from disk
-    deck_dir = RENDER_DIR / job_id
+    deck_dir = state.RENDER_DIR / job_id
     if deck_dir.exists():
         try:
             _shutil.rmtree(str(deck_dir))
@@ -6703,7 +6222,7 @@ async def delete_deck(job_id: str):
             raise HTTPException(500, "Failed to remove deck directory.")
 
     # Remove generated_art directory for this job if it exists
-    for art_dir in ART_DIR.glob(f"*_{job_id[:8]}"):
+    for art_dir in state.ART_DIR.glob(f"*_{job_id[:8]}"):
         try:
             _shutil.rmtree(str(art_dir))
         except Exception:
@@ -6737,7 +6256,7 @@ async def delete_decks_batch(req: BatchDeleteRequest):
             skipped.append(job_id)
             continue
 
-        deck_dir = RENDER_DIR / job_id
+        deck_dir = state.RENDER_DIR / job_id
         if deck_dir.exists():
             try:
                 _shutil.rmtree(str(deck_dir))
@@ -6745,7 +6264,7 @@ async def delete_decks_batch(req: BatchDeleteRequest):
                 skipped.append(job_id)
                 continue
 
-        for art_dir in ART_DIR.glob(f"*_{job_id[:8]}"):
+        for art_dir in state.ART_DIR.glob(f"*_{job_id[:8]}"):
             try:
                 _shutil.rmtree(str(art_dir))
             except Exception:
@@ -6768,128 +6287,6 @@ async def deck_events(job_id: str, request: Request):
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
-
-
-# Keys on _jobs[job_id] that are internal-only and must NEVER appear in a
-# JSON response — they're not serializable (threading primitives) or they're
-# implementation detail the client has no business seeing.
-_INTERNAL_JOB_KEYS = {"cancel_event"}
-
-def _serializable_job(job: dict) -> dict:
-    """Return a JSON-safe shallow copy of a job dict (strips threading.Event etc.)."""
-    return {k: v for k, v in job.items() if k not in _INTERNAL_JOB_KEYS}
-
-
-# The keys `deck_quality_block` produces. Adding one here is what makes an
-# older stored block count as stale and get recomputed on load.
-_QUALITY_KEYS = frozenset({"curve", "colors", "mana"})
-
-
-def _backfill_quality(data: dict) -> None:
-    """Derive stats.quality in place for a deck that predates it. No-op when present.
-
-    Read-only on disk: the deck.json is NOT rewritten. Recomputing on load costs
-    microseconds and avoids touching 158 stored files (and their mtimes, which History
-    orders by) for a derived value.
-    """
-    stats = data.get("stats")
-    if not isinstance(stats, dict):
-        return
-    quality = stats.get("quality")
-    # A block written by an OLDER build is present but missing whatever keys have been
-    # added since (`mana` landed after `curve`/`colors`), and a plain truthiness check
-    # counts that as done — so a newly added panel silently never appears on the decks
-    # built in between. Recompute unless every key the current block produces is there.
-    if isinstance(quality, dict) and quality and _QUALITY_KEYS <= quality.keys():
-        return
-    try:
-        stats["quality"] = deck_quality_block(data.get("commander") or {},
-                                              data.get("deck") or [])
-    except Exception:      # noqa: BLE001 — advisory; a bad stored deck must still load
-        pass
-
-
-def _load_deck_from_disk(job_id: str) -> Optional[dict]:
-    """Load a completed deck from disk — used after server restarts.
-
-    A deck.json written with status="rendering" means art-gen was in flight
-    when the server was killed.  The deck data is valid; we just lack some
-    rendered card images.  Normalise to "done" so the deck is loadable.
-
-    Also backfills has_render flags by scanning the cards/ directory so that
-    partial/cancelled builds show whatever art was generated rather than
-    falling back to Scryfall images for everything.
-
-    Backfills `stats.quality` the same way. It is computed at build time by
-    compute_stats, so every deck built before that existed carries stats without it
-    and StepDeck's Deck Health panel stays hidden — the feature would only ever appear
-    on decks made after the upgrade. deck_quality is pure and offline, so deriving it
-    on load is cheap and makes the whole existing library light up.
-    """
-    p = RENDER_DIR / job_id / "deck.json"
-    if p.exists():
-        try:
-            data = json.loads(p.read_text(encoding="utf-8"))
-            if data.get("status") == "rendering":
-                # "rendering" means art-gen was in flight when the server was
-                # killed — treat as done so the partial deck is loadable.
-                data["status"] = "done"
-                try:
-                    p.write_text(json.dumps(data), encoding="utf-8")
-                except Exception:
-                    pass
-            # AFTER any write above: backfilling first let the derived value ride along
-            # into that write, which contradicts this function's read-only promise.
-            _backfill_quality(data)
-            # "cancelled" is left as-is so the frontend can show the correct state.
-
-            # Backfill has_render flags: deck.json is written BEFORE art gen
-            # begins so all cards start with has_render=False.  After a cancel
-            # or crash, the PNG files that were rendered inline DO exist on disk
-            # but deck.json was never updated.  Fix this so the gallery shows
-            # the generated art instead of Scryfall fallbacks.
-            cards_dir = RENDER_DIR / job_id / "cards"
-            if cards_dir.exists():
-                rendered = {fp.stem for fp in cards_dir.glob("*.png")}
-                if rendered:
-                    cmd = data.get("commander")
-                    if isinstance(cmd, dict):
-                        rk = cmd.get("render_key", "")
-                        if rk and not cmd.get("has_render"):
-                            cmd["has_render"] = rk in rendered
-                    for card in data.get("deck") or []:
-                        rk = card.get("render_key", "")
-                        if rk and not card.get("has_render"):
-                            card["has_render"] = rk in rendered
-
-            # Backfill has_video the same way (animations persist as mp4/webp/gif).
-            videos_dir = RENDER_DIR / job_id / "videos"
-            if videos_dir.exists():
-                # render_key → format (mp4 wins if multiple somehow coexist)
-                vids: dict[str, str] = {}
-                for ext in ("gif", "webp", "mp4"):
-                    for fp in videos_dir.glob(f"*.{ext}"):
-                        vids[fp.stem] = ext
-                if vids:
-                    def _mark_video(card):
-                        fmt = vids.get(card.get("render_key"))
-                        if fmt:
-                            card["has_video"] = True
-                            meta = card.get("video_meta")
-                            if not isinstance(meta, dict):
-                                card["video_meta"] = {"format": fmt}
-                            elif not meta.get("format"):
-                                meta["format"] = fmt
-                    cmd = data.get("commander")
-                    if isinstance(cmd, dict):
-                        _mark_video(cmd)
-                    for card in data.get("deck") or []:
-                        _mark_video(card)
-
-            return data
-        except Exception:
-            return None
-    return None
 
 
 @app.get("/api/deck/{job_id}/status")
@@ -6953,7 +6350,7 @@ async def get_deck(job_id: str):
 @app.get("/api/deck/{job_id}/card-image/{render_key}")
 async def deck_card_image(job_id: str, render_key: str):
     _require_job_id(job_id)
-    cards_dir = RENDER_DIR / job_id / "cards"
+    cards_dir = state.RENDER_DIR / job_id / "cards"
     path = cards_dir / f"{render_key}.png"
     if path.exists():
         # No-store on partial builds so the browser refetches after regen.
@@ -6978,7 +6375,7 @@ async def deck_card_image(job_id: str, render_key: str):
     # No AI render (e.g. a saved-but-un-themed imported deck): fall back to the card's
     # ORIGINAL Scryfall art so recalled imports still display. Look the card up in
     # deck.json by render_key and redirect to its stored image URL.
-    dj = RENDER_DIR / job_id / "deck.json"
+    dj = state.RENDER_DIR / job_id / "deck.json"
     if dj.exists():
         try:
             data = json.loads(dj.read_text(encoding="utf-8"))
@@ -6999,7 +6396,7 @@ _VIDEO_MEDIA_TYPES = {"mp4": "video/mp4", "webp": "image/webp", "gif": "image/gi
 async def card_video_file(job_id: str, render_key: str):
     """Serve a card's looping animation (MP4 / WebP / GIF), whichever exists."""
     _require_job_id(job_id)
-    videos = RENDER_DIR / job_id / "videos"
+    videos = state.RENDER_DIR / job_id / "videos"
     for ext, media in _VIDEO_MEDIA_TYPES.items():   # mp4 preferred, then webp, gif
         path = videos / f"{render_key}.{ext}"
         if path.exists():
@@ -7011,7 +6408,7 @@ async def card_video_file(job_id: str, render_key: str):
 @app.get("/api/deck/{job_id}/set-symbol")
 async def set_symbol_endpoint(job_id: str):
     _require_job_id(job_id)
-    path = RENDER_DIR / job_id / "set_symbol.png"
+    path = state.RENDER_DIR / job_id / "set_symbol.png"
     if not path.exists():
         raise HTTPException(404, "Set symbol not found")
     return FileResponse(path, media_type="image/png")
@@ -7552,7 +6949,7 @@ def _export_image_resolver(job_id: str):
     regenerated, some not) come out complete. Downloads are cached per job under
     `original/` so a re-export costs nothing.
     """
-    render_dir   = RENDER_DIR / job_id
+    render_dir   = state.RENDER_DIR / job_id
     original_dir = render_dir / "original"
 
     def _resolve(card: dict) -> Optional[Path]:
@@ -7580,7 +6977,7 @@ def _export_image_resolver(job_id: str):
 def export_zip(job_id: str):
     _require_job_id(job_id)
     job = _load_job_for_export(job_id)
-    render_dir = RENDER_DIR / job_id
+    render_dir = state.RENDER_DIR / job_id
     try:
         data = build_zip(job["commander"], job["deck"], render_dir,
                          image_for=_export_image_resolver(job_id))
@@ -7651,7 +7048,7 @@ def export_videos(job_id: str):
     """ZIP of the deck's looping MP4 animations (only animated cards)."""
     _require_job_id(job_id)
     job = _load_job_for_export(job_id)
-    render_dir = RENDER_DIR / job_id
+    render_dir = state.RENDER_DIR / job_id
     try:
         data = build_video_zip(job["commander"], job["deck"], render_dir)
     except Exception as e:
@@ -7671,7 +7068,7 @@ def export_videos(job_id: str):
 def export_pdf(job_id: str):
     _require_job_id(job_id)
     job = _load_job_for_export(job_id)
-    render_dir = RENDER_DIR / job_id
+    render_dir = state.RENDER_DIR / job_id
     try:
         data = build_pdf(job["commander"], job["deck"], render_dir,
                          image_for=_export_image_resolver(job_id))
@@ -7704,7 +7101,7 @@ def _run_3d_generation(job_3d_id: str, deck_job_id: str):
         # ── Locate commander raw art ──────────────────────────────────────────
         deck_data = _jobs.get(deck_job_id)
         if not deck_data:
-            deck_path = RENDER_DIR / deck_job_id / "deck.json"
+            deck_path = state.RENDER_DIR / deck_job_id / "deck.json"
             if deck_path.exists():
                 deck_data = json.loads(deck_path.read_text(encoding="utf-8"))
             else:
@@ -7718,7 +7115,7 @@ def _run_3d_generation(job_3d_id: str, deck_job_id: str):
         art_path: Optional[Path] = None
         if deck_slug and original_name:
             safe = "".join(c if c.isalnum() else "_" for c in original_name)[:48]
-            candidate = ART_DIR / deck_slug / f"{safe}.png"
+            candidate = state.ART_DIR / deck_slug / f"{safe}.png"
             if candidate.exists():
                 art_path = candidate
 
@@ -7730,7 +7127,7 @@ def _run_3d_generation(job_3d_id: str, deck_job_id: str):
                     "step": "rmbg",
                     "msg":  "No generated art found — using Scryfall card art as source",
                 }))
-                tmp_dir = RENDER_DIR / deck_job_id
+                tmp_dir = state.RENDER_DIR / deck_job_id
                 tmp_dir.mkdir(parents=True, exist_ok=True)
                 art_path = tmp_dir / "commander_scryfall_src.jpg"
                 r = requests.get(scryfall_url, timeout=30, stream=True)
@@ -7758,7 +7155,7 @@ def _run_3d_generation(job_3d_id: str, deck_job_id: str):
             _push_3d(job_3d_id, "progress", json.dumps({"step": step, "msg": msg}))
 
         # ── Run pipeline ──────────────────────────────────────────────────────
-        output_dir = RENDER_DIR / deck_job_id
+        output_dir = state.RENDER_DIR / deck_job_id
         stl_path = generate_commander_3d(
             art_path   = art_path,
             output_dir = output_dir,
@@ -7790,7 +7187,7 @@ async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
     # Verify the deck exists
     deck_exists = (
         job_id in _jobs
-        or (RENDER_DIR / job_id / "deck.json").exists()
+        or (state.RENDER_DIR / job_id / "deck.json").exists()
     )
     if not deck_exists:
         raise HTTPException(status_code=404, detail=f"Deck job not found: {job_id}")
@@ -7849,7 +7246,7 @@ async def stream_3d_status(job_id: str, job_3d_id: str, request: Request):
 async def download_commander_stl(job_id: str):
     """Serve the completed commander STL for download."""
     _require_job_id(job_id)
-    stl_path = RENDER_DIR / job_id / "commander_3d.stl"
+    stl_path = state.RENDER_DIR / job_id / "commander_3d.stl"
     if not stl_path.exists():
         raise HTTPException(status_code=404,
                             detail="STL not found — generate it first via /generate-3d")
@@ -7857,7 +7254,7 @@ async def download_commander_stl(job_id: str):
     # Determine a nice download filename from the deck commander name
     deck_data = _jobs.get(job_id, {})
     if not deck_data:
-        deck_path = RENDER_DIR / job_id / "deck.json"
+        deck_path = state.RENDER_DIR / job_id / "deck.json"
         if deck_path.exists():
             deck_data = json.loads(deck_path.read_text(encoding="utf-8"))
 
@@ -7896,12 +7293,12 @@ async def get_logs(lines: int = 300):
 
 
 # ── Serve React frontend ───────────────────────────────────────────────────────
-if STATIC_DIR.exists():
-    app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
+if state.STATIC_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=state.STATIC_DIR / "assets"), name="assets")
 
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):
-        index = STATIC_DIR / "index.html"
+        index = state.STATIC_DIR / "index.html"
         return FileResponse(index)
 
 

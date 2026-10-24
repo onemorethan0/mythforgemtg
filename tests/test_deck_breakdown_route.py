@@ -5,11 +5,13 @@ revisit reads deck.json instead of re-measuring, a changed decklist re-measures,
 """
 from __future__ import annotations
 
+import hashlib
 import json
 
 from fastapi.testclient import TestClient
 
 import server
+from api import state
 
 client = TestClient(server.app)
 
@@ -38,8 +40,8 @@ def _stub(monkeypatch, calls):
 
 
 def test_breakdown_is_measured_once_then_read_from_deck_json(tmp_path, monkeypatch):
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
-    server._jobs.pop(_JOB_ID, None)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
+    state._jobs.pop(_JOB_ID, None)
     job_dir = _write_deck(tmp_path, [("Murder", 1)])
     calls = []
     _stub(monkeypatch, calls)
@@ -54,8 +56,8 @@ def test_breakdown_is_measured_once_then_read_from_deck_json(tmp_path, monkeypat
 
 
 def test_changed_decklist_and_refresh_both_re_measure(tmp_path, monkeypatch):
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
-    server._jobs.pop(_JOB_ID, None)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
+    state._jobs.pop(_JOB_ID, None)
     calls = []
     _stub(monkeypatch, calls)
     _write_deck(tmp_path, [("Murder", 1)])
@@ -74,15 +76,15 @@ def test_changed_decklist_and_refresh_both_re_measure(tmp_path, monkeypatch):
 
 def test_pre_schema_cache_is_re_measured_once(tmp_path, monkeypatch):
     """A breakdown cached before commander_synergy existed carries an old-schema key."""
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
-    server._jobs.pop(_JOB_ID, None)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
+    state._jobs.pop(_JOB_ID, None)
     calls = []
     _stub(monkeypatch, calls)
     _write_deck(tmp_path, [("Murder", 1)])
     p = tmp_path / _JOB_ID / "deck.json"
     data = json.loads(p.read_text(encoding="utf-8"))
     commander, deck = server._job_deck_inputs(data)
-    old_key = server.hashlib.sha1(json.dumps(
+    old_key = hashlib.sha1(json.dumps(
         [server._deck_to_lines(commander, deck, server._job_partners(data)),
          sorted(server._deck_archetypes(data))]).encode("utf-8")).hexdigest()
     data["breakdown"] = {"key": old_key, "data": {"cards": [{"name": "Murder"}]}, "computed_at": "x"}
@@ -94,8 +96,8 @@ def test_pre_schema_cache_is_re_measured_once(tmp_path, monkeypatch):
 
 
 def test_engine_down_is_a_503(tmp_path, monkeypatch):
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
-    server._jobs.pop(_JOB_ID, None)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
+    state._jobs.pop(_JOB_ID, None)
     _write_deck(tmp_path, [("Murder", 1)])
     monkeypatch.setattr(server, "_gauntlet_breakdown", lambda *a, **k: None)
     resp = client.post(f"/api/deck/{_JOB_ID}/breakdown")

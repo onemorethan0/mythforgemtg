@@ -7,6 +7,7 @@ silently stops reaching the build UI while every other test still passes.
 """
 
 import server  # noqa: F401  -- imported for its side effect: it registers the emitter
+from api import state
 import services
 
 
@@ -58,4 +59,4 @@ def test_server_registers_its_push():
     """The wiring this whole file exists to protect."""
     assert services._progress_emitter is not None, "server.py stopped registering its emitter"
     assert services._progress_emitter.__name__ == "_push"
-    assert services._progress_emitter is server._push
+    assert services._progress_emitter is state._push

@@ -17,6 +17,7 @@ import json
 from fastapi.testclient import TestClient
 
 import server
+from api import state
 
 client = TestClient(server.app)
 
@@ -48,7 +49,7 @@ def _write_deck(render_dir, *, plays_up, job_id=_JOB_ID, bracket_estimate=2):
 
 
 def test_measured_plays_up_true_is_surfaced(tmp_path, monkeypatch):
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
     _write_deck(tmp_path, plays_up=True)
     entry = client.get("/api/decks").json()[0]
     assert entry["measured_bracket"] == 2
@@ -58,7 +59,7 @@ def test_measured_plays_up_true_is_surfaced(tmp_path, monkeypatch):
 def test_measured_plays_up_false_is_surfaced_not_omitted(tmp_path, monkeypatch):
     """False must reach the client explicitly — a badge checking `entry.measured_plays_up`
     truthily needs the key to actually be False, not simply absent-and-falsy-by-luck."""
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
     _write_deck(tmp_path, plays_up=False)
     entry = client.get("/api/decks").json()[0]
     assert entry["measured_plays_up"] is False
@@ -66,7 +67,7 @@ def test_measured_plays_up_false_is_surfaced_not_omitted(tmp_path, monkeypatch):
 
 def test_no_measurement_yet_defaults_to_false(tmp_path, monkeypatch):
     """A deck never measured has no `last_measure` at all — must degrade cleanly, not raise."""
-    monkeypatch.setattr(server, "RENDER_DIR", tmp_path)
+    monkeypatch.setattr(state, "RENDER_DIR", tmp_path)
     job_dir = tmp_path / _JOB_ID
     job_dir.mkdir()
     deck = {

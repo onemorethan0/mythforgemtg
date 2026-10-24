@@ -325,15 +325,16 @@ def test_a_stale_stored_quality_block_is_recomputed_on_load():
     rendered for it. Only decks with NO block at all were ever backfilled.
     """
     import server
+    from api import state
 
     deck = [_basic(f"Forest{i}") for i in range(36)] + [_spell(f"S{i}") for i in range(60)]
     data = {"commander": _spell("Cmdr"), "deck": deck,
             "stats": {"quality": {"curve": {}, "colors": {}}}}      # no "mana" — stale
-    server._backfill_quality(data)
+    state._backfill_quality(data)
     assert "mana" in data["stats"]["quality"], "stale block was not recomputed"
 
     # A COMPLETE block is left exactly as stored — the backfill is not a recompute-always.
     sentinel = {"curve": {"x": 1}, "colors": {}, "mana": {}}
     data2 = {"commander": _spell("Cmdr"), "deck": deck, "stats": {"quality": sentinel}}
-    server._backfill_quality(data2)
+    state._backfill_quality(data2)
     assert data2["stats"]["quality"] is sentinel

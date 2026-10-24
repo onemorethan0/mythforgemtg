@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import server
+from api import state
 
 _JOB_ID = "0123456789abcdef"
 _COMMANDER = {"name": "Test Commander"}
@@ -51,7 +52,7 @@ def _collection(tmp_path, mtime=None):
 
 
 def _ask(job, collection_path):
-    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+    with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
          patch.object(server, "suite_collection_path", lambda: collection_path), \
          patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = TestClient(server.app).post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "q"})
@@ -68,12 +69,12 @@ def _run(tmp_path, axis, result=_RESULT, mtime=100.0):
     col = _collection(tmp_path, mtime)
     mem_deck = {"commander": {}}
     advise_jobs = {"adv": {"status": "running", "kind": "advise"}}
-    with patch.object(server, "RENDER_DIR", tmp_path), \
-         patch.object(server, "_jobs", {**advise_jobs, _JOB_ID: mem_deck}), \
+    with patch.object(state, "RENDER_DIR", tmp_path), \
+         patch.dict(state._jobs, {**advise_jobs, _JOB_ID: mem_deck}, clear=True), \
          patch.object(server, "suite_collection_path", lambda: col), \
          patch.object(server, "_gauntlet_advise", return_value=result):
         server._run_advise_job("adv", _COMMANDER, _DECK, axis, [], [], False, mem_deck, _JOB_ID)
-        status = server._jobs["adv"]["status"]
+        status = state._jobs["adv"]["status"]
     disk = json.loads((deck_dir / "deck.json").read_text(encoding="utf-8"))
     return disk, mem_deck, status
 
@@ -106,7 +107,7 @@ def test_advice_cache_is_not_carried_across_a_rebuild():
 def test_advise_route_passes_the_deck_job_id_and_accepts_clock(tmp_path):
     calls = []
     job = _job()
-    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+    with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
          patch.object(server, "_run_advise_job", lambda *a, **k: calls.append(a)):
         resp = TestClient(server.app).post(f"/api/deck/{_JOB_ID}/advise",
                                            json={"axis": "clock", "narrate": False})

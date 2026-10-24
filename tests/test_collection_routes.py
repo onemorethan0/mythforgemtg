@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 
 import collection
 import server
+from api import state
 
 client = TestClient(server.app)
 
@@ -178,8 +179,8 @@ def store(monkeypatch):
 
     def no_network(*a, **k):
         raise AssertionError("network used while the prints store had the card")
-    monkeypatch.setattr(server._scryfall, "get_printings", no_network)
-    monkeypatch.setattr(server._scryfall, "cheapest_printing", no_network)
+    monkeypatch.setattr(state._scryfall, "get_printings", no_network)
+    monkeypatch.setattr(state._scryfall, "cheapest_printing", no_network)
     return data
 
 
@@ -213,7 +214,7 @@ def test_printings_marks_owned_rows(csv_path, store):
 
 def test_printings_live_fallback_when_store_empty(csv_path, monkeypatch):
     monkeypatch.setattr(scryfall_prints, "prints_of", lambda name: [])
-    monkeypatch.setattr(server._scryfall, "get_printings", lambda name: [
+    monkeypatch.setattr(state._scryfall, "get_printings", lambda name: [
         {"name": "Sol Ring", "set": "C21", "set_name": "Commander 2021", "collector_number": "263",
          "usd": 1.5, "image": "http://img"}])
     _write(csv_path, "1,Sol Ring,C21,263,,,,")
@@ -359,7 +360,7 @@ def test_backfill_single_write(csv_path, store, monkeypatch):
 def test_backfill_live_fallback_only_when_store_unavailable(csv_path, monkeypatch):
     monkeypatch.setattr(scryfall_prints, "prints_of", lambda name: [])
     monkeypatch.setattr(scryfall_prints, "by_id", lambda sid: None)
-    monkeypatch.setattr(server._scryfall, "cheapest_printing",
+    monkeypatch.setattr(state._scryfall, "cheapest_printing",
                         lambda name: {"set": "C21", "collector_number": "263"})
     _write(csv_path, "1,Sol Ring,,,,,,")
     body = client.post("/api/collection/backfill-printings").json()
@@ -374,7 +375,7 @@ def test_printings_carry_backcompat_aliases(csv_path, store, monkeypatch):
     store["sol ring"] = [_print("id-f", "C21", "263", finishes=("foil",), usd=None, foil=4.0)]
     assert client.get("/api/collection/printings", params={"name": "Sol Ring"}).json()["printings"][0]["usd"] == 4.0
     monkeypatch.setattr(scryfall_prints, "prints_of", lambda name: [])
-    monkeypatch.setattr(server._scryfall, "get_printings", lambda name: [
+    monkeypatch.setattr(state._scryfall, "get_printings", lambda name: [
         {"name": "Sol Ring", "set": "C21", "set_name": "x", "collector_number": "263", "usd": 1.5, "image": ""}])
     it = client.get("/api/collection/printings", params={"name": "Sol Ring"}).json()["printings"][0]
     assert (it["collector_number"], it["usd"]) == ("263", 1.5)

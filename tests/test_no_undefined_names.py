@@ -27,7 +27,7 @@ def test_no_undefined_names():
     ruff = _ruff()
     if ruff is None:
         pytest.skip("ruff not installed")
-    targets = [str(p) for p in ROOT.glob("*.py")] + [str(ROOT / "src"), str(ROOT / "utilities")]
+    targets = [str(p) for p in ROOT.glob("*.py")] + [str(ROOT / d) for d in ("api", "src", "utilities")]
     result = subprocess.run(
         [*ruff, "check", "--select", "F821", "--output-format", "concise", "--no-cache", *targets],
         capture_output=True, text=True, cwd=ROOT,

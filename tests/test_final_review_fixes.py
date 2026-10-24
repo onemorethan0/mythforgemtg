@@ -4,12 +4,14 @@ from __future__ import annotations
 import os
 import sys
 import time
+from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import collection
 import collection_index as ci
 import collection_repair
+import scryfall_prints
 
 CANON = "Count,Name,Edition,Collector Number,Foil,Language,Condition,Scryfall ID\n"
 
@@ -117,6 +119,7 @@ def test_canonical_header_file_gets_no_pre_printings_backup(tmp_path):
 
 def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     import server
+    from api import state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
@@ -124,29 +127,30 @@ def test_refresh_prices_also_refreshes_prints_store(tmp_path, monkeypatch):
     future = time.time() + 86400
     os.utime(db, (future, future))
     calls = []
-    monkeypatch.setattr(server.scryfall_prints, "refresh", lambda **kw: calls.append(kw))
-    monkeypatch.setattr(server.scryfall_prints, "db_path", lambda: db)
-    monkeypatch.setattr(server._scryfall, "fetch_prices", lambda rows: {})
+    monkeypatch.setattr(scryfall_prints, "refresh", lambda **kw: calls.append(kw))
+    monkeypatch.setattr(scryfall_prints, "db_path", lambda: db)
+    monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
     monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
     monkeypatch.setattr(server, "_load_prices", lambda: dict(saved) or {})
     out = server.collection_refresh_prices()
     assert calls == [{"force": True}]
-    assert out["prices_updated"] == server._dt.fromtimestamp(future).isoformat(timespec="seconds")
+    assert out["prices_updated"] == datetime.fromtimestamp(future).isoformat(timespec="seconds")
     assert out["prices_updated"] > saved["updated"]
 
 
 def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
     import server
+    from api import state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
 
     def boom(**kw):
         raise RuntimeError("offline")
 
-    monkeypatch.setattr(server.scryfall_prints, "refresh", boom)
-    monkeypatch.setattr(server.scryfall_prints, "db_path", lambda: tmp_path / "missing.sqlite")
-    monkeypatch.setattr(server._scryfall, "fetch_prices", lambda rows: {})
+    monkeypatch.setattr(scryfall_prints, "refresh", boom)
+    monkeypatch.setattr(scryfall_prints, "db_path", lambda: tmp_path / "missing.sqlite")
+    monkeypatch.setattr(state._scryfall, "fetch_prices", lambda rows: {})
     saved = {}
     monkeypatch.setattr(server, "_save_prices", lambda d: saved.update(d))
     monkeypatch.setattr(server, "_load_prices", lambda: dict(saved))
@@ -156,10 +160,11 @@ def test_refresh_prices_survives_prints_refresh_failure(tmp_path, monkeypatch):
 
 def test_owned_printings_cache_not_poisoned_by_failure_and_keyed_on_store(tmp_path, monkeypatch):
     import server
+    from api import state
     monkeypatch.setenv("MYTHSUITE_DIR", str(tmp_path))
     _csv(tmp_path, "1,Sol Ring,C21,263,,,,")
     db = tmp_path / "prints.sqlite"
-    monkeypatch.setattr(server.scryfall_prints, "db_path", lambda: db)
+    monkeypatch.setattr(scryfall_prints, "db_path", lambda: db)
     monkeypatch.setattr(server, "_owned_print_cache", {"mtime": None, "index": {}})
     state = {"fail": True, "calls": 0}
 

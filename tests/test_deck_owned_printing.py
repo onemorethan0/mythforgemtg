@@ -13,6 +13,7 @@ from fastapi.testclient import TestClient
 
 import collection_index as ci
 import server
+from api import state
 
 client = TestClient(server.app)
 _JOB_ID = "abcdef0123456789"
@@ -108,8 +109,8 @@ def test_annotate_owned_attaches_owned_printing(tmp_path, monkeypatch):
         _row("Ghost Card", resolved=False),
     ]))
     render_dir = tmp_path / "renders"
-    monkeypatch.setattr(server, "RENDER_DIR", render_dir)
-    server._jobs.pop(_JOB_ID, None)
+    monkeypatch.setattr(state, "RENDER_DIR", render_dir)
+    state._jobs.pop(_JOB_ID, None)
     _write_deck(render_dir, [
         {"original_name": "Sol Ring", "type_line": "Artifact"},
         {"original_name": "Ghost Card", "type_line": "Creature"},
@@ -119,7 +120,7 @@ def test_annotate_owned_attaches_owned_printing(tmp_path, monkeypatch):
     try:
         res = client.get(f"/api/deck/{_JOB_ID}")
     finally:
-        server._jobs.pop(_JOB_ID, None)
+        state._jobs.pop(_JOB_ID, None)
     assert res.status_code == 200, res.text
     body = res.json()
     by = {c["original_name"]: c for c in body["deck"]}

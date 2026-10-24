@@ -9,6 +9,7 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import server
+from api import state
 
 # A syntactically-valid job id (server._JOB_ID_RE: 16 hex chars) -- the feedback route
 # only validates the SHAPE, it never looks the job up (turn_id alone identifies the
@@ -107,7 +108,7 @@ def test_mentor_chat_deck_route_passes_the_decks_persisted_offmeta():
         "deck": [{"original_name": "Sol Ring", "quantity": 1}],
         "stats": {"offmeta": {"synergy": 5.0, "verdict": "brew"}},
     }
-    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+    with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
          patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "how off-meta is this?"})
     assert resp.status_code == 200
@@ -124,7 +125,7 @@ def test_mentor_chat_deck_route_omits_offmeta_when_the_deck_has_none():
         "deck": [{"original_name": "Sol Ring", "quantity": 1}],
         "stats": {},
     }
-    with patch.object(server, "_jobs", {_JOB_ID: job}), \
+    with patch.dict(state._jobs, {_JOB_ID: job}, clear=True), \
          patch("server.requests.post", return_value=_resp(200, {"reply": "x", "gated": True})) as m:
         resp = client.post(f"/api/deck/{_JOB_ID}/mentor", json={"question": "q"})
     assert resp.status_code == 200

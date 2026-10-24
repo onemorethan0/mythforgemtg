@@ -1445,13 +1445,14 @@ def test_deck_identity_is_preserved():
     regenerate into a different deck."""
     try:
         import server
+        from themer import ThemedCard
     except Exception as e:                      # fastapi/pydantic missing
         check("identity.import", f"skipped: {e}", f"skipped: {e}")
         return
 
     # ── _preserve_decklist: a short themer batch never shrinks the deck ──
     raw = [{"name": "Sol Ring"}, {"name": "Lightning Bolt"}, {"name": "Mountain"}]
-    short = [server.ThemedCard("Sol Ring", "Ring of Suns", "art", "", raw[0])]
+    short = [ThemedCard("Sol Ring", "Ring of Suns", "art", "", raw[0])]
     out = server._preserve_decklist(short, raw)
     check("keep.len",   len(out), 3)
     check("keep.order", [tc.original_name for tc in out],
@@ -1459,7 +1460,7 @@ def test_deck_identity_is_preserved():
     check("keep.themed", out[0].themed_name, "Ring of Suns")   # real theming kept
     check("keep.plain",  out[2].themed_name, "Mountain")       # gap filled, not dropped
     same = server._preserve_decklist(
-        [server.ThemedCard(c["name"], "X", "", "", c) for c in raw], raw)
+        [ThemedCard(c["name"], "X", "", "", c) for c in raw], raw)
     check("keep.noop", [tc.themed_name for tc in same], ["X", "X", "X"])
 
     # ── _carry_provenance: identity travels, imported_only tracks art ──
