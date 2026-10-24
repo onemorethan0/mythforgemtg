@@ -5176,7 +5176,10 @@ def collection_refresh_prices():
 class CollectionAddRequest(BaseModel):
     name:     str
     count:    int = 1
-    validate: bool = True   # resolve the canonical Scryfall name before storing
+    # Wire name stays "validate"; the attribute is renamed because it shadowed
+    # BaseModel.validate and printed a warning on every server start.
+    model_config = {"populate_by_name": True}
+    validate_name: bool = Field(True, alias="validate")   # resolve the canonical Scryfall name first
     set_code: Optional[str] = None   # which printing; None -> default to the cheapest
     cn:       Optional[str] = None   # collector number (disambiguates within a set)
     finish:   str = "nonfoil"        # nonfoil | foil | etched (part of the row identity, D3)
@@ -5214,7 +5217,7 @@ def collection_add(req: CollectionAddRequest):
     if not name:
         raise HTTPException(400, "Card name is required.")
     display = name
-    if req.validate:
+    if req.validate_name:
         # Exact match first so a correctly-typed name is never fuzzed into a
         # different card (fuzzy turned "sol rng" into "Oathsworn Giant"); only fall
         # back to fuzzy when the exact spelling isn't found.

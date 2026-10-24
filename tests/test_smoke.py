@@ -678,7 +678,7 @@ def test_foil_and_formats():
     frames = cv.foil_frames([base], count=6, style="holo")
     check("foil.count", len(frames), 6)
     check("foil.size",  frames[0].size, (120, 168))
-    check_true("foil.changes", list(frames[0].getdata()) != list(frames[3].getdata()))
+    check_true("foil.changes", frames[0].tobytes() != frames[3].tobytes())
 
     d = pathlib.Path(tempfile.mkdtemp())
     out = d / "t.webp"

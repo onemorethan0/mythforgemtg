@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Optional
 
 import requests
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageStat
 
 from app_paths import app_path
 
@@ -145,11 +145,9 @@ def _avg_region_rgb(canvas: Image.Image, box: tuple) -> Optional[tuple]:
         return None
     region = canvas.crop((x0, y0, x1, y1)).convert("RGB")
     region.thumbnail((24, 12), Image.BILINEAR)
-    px = list(region.getdata())
-    n = len(px) or 1
-    return (sum(p[0] for p in px) // n,
-            sum(p[1] for p in px) // n,
-            sum(p[2] for p in px) // n)
+    # ImageStat, not getdata(): getdata is removed in Pillow 14. Same floored channel means.
+    r, g, b = (int(m) for m in ImageStat.Stat(region).mean[:3])
+    return (r, g, b)
 
 
 def _legible_text_color(canvas: Image.Image, box: tuple,
