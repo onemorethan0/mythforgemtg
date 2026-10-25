@@ -57,6 +57,17 @@ def _fuzzy_name_key(name: str) -> str:
     return re.sub(r"\s+", " ", n).strip()
 
 
+def _cached_name_matches(key: str, canonical: str) -> bool:
+    """Is `key` (a lowercased lookup name) this card: its name, one of its faces, or a
+    plausible near-miss of either? See ScryfallClient._cache_get."""
+    if not canonical:
+        return True          # nothing to compare against; leave the entry alone
+    faces = [canonical] + [f.strip() for f in canonical.split("//")]
+    if any(key == f.lower() for f in faces):
+        return True
+    return any(_fuzzy_is_plausible(key, f) for f in faces)
+
+
 def _fuzzy_is_plausible(requested: str, canonical: str, threshold: float = 0.72) -> bool:
     """True when a fuzzy match plausibly IS the requested card.
 
@@ -141,8 +152,20 @@ class ScryfallClient:
             print(f"  [scryfall] cache save failed ({e})")
 
     def _cache_get(self, name: str) -> Optional[dict]:
+        """A cached card, but only if it plausibly IS the requested name.
+
+        The fuzzy guard below protects NEW lookups; entries written before it existed were
+        trusted forever - "sol rng" still resolved to Oathsworn Giant from the cache and an
+        imported deck took it as its face (found 2026-10-25; 2 of 3,691 entries were poisoned,
+        the other was "there" -> The Sphere). A failing entry is dropped and treated as a miss.
+        """
+        key = self._cache_key(name)
         with self._cache_lock:
-            return self._card_cache.get(self._cache_key(name))
+            card = self._card_cache.get(key)
+            if card is not None and not _cached_name_matches(key, card.get("name", "")):
+                self._card_cache.pop(key, None)
+                return None
+            return card
 
     def _cache_put(self, names, card: dict, save: bool = True) -> None:
         """Store a card under one or more lookup names (input + canonical)."""
