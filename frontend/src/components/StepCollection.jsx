@@ -169,7 +169,7 @@ export default function StepCollection({ onBack, onBuild }) {
   useEffect(() => {
     if (sugDebounce.current) clearTimeout(sugDebounce.current)
     const term = addName.trim()
-    if (term.length < 2) { setSuggests([]); return }
+    if (term.length < 2) return            // cleared by the input's onChange
     sugDebounce.current = setTimeout(() => {
       fetch(`/api/collection/suggest?q=${encodeURIComponent(term)}`)
         .then(r => r.json())
@@ -565,7 +565,7 @@ export default function StepCollection({ onBack, onBuild }) {
           <input
             ref={addRef}
             value={addName}
-            onChange={e => { setAddName(e.target.value); setShowSug(true) }}
+            onChange={e => { setAddName(e.target.value); setShowSug(true); if (e.target.value.trim().length < 2) setSuggests([]) }}
             onKeyDown={e => { if (e.key === 'Enter') { setShowSug(false); addCard() } if (e.key === 'Escape') setShowSug(false) }}
             onFocus={() => setShowSug(true)}
             onBlur={() => setTimeout(() => setShowSug(false), 150)}

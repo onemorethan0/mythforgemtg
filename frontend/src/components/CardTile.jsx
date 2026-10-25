@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import CardFace, { SetChip } from './CardFace'
 import ManaCost from './ManaCost'
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
 export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true, artSource = 'ai' }) {
   const [hover, setHover] = useState(false)
-  const [videoFailed, setVideoFailed] = useState(false)
+  const [failedVideoSrc, setFailedVideoSrc] = useState(null)
 
   // Use cache-busting timestamp when the card was freshly regenerated
   const imgSrc = (card.has_render || refreshTs)
@@ -15,8 +15,8 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
   const videoSrc = hasVideo
     ? `/api/deck/${jobId}/card-video/${card.render_key}${videoTs ? `?t=${videoTs}` : ''}`
     : null
-  // A fresh/re-animated video clears any prior load failure.
-  useEffect(() => { setVideoFailed(false) }, [videoSrc])
+  // A fresh/re-animated video has a new src, so an earlier failure no longer applies.
+  const videoFailed = failedVideoSrc != null && failedVideoSrc === videoSrc
   const showVideo = showMotion && videoSrc && !videoFailed
   // WebP/GIF are animated images (render in <img>); MP4 needs a <video>.
   const fmt = videoFmt || card.video_meta?.format || 'mp4'
@@ -59,11 +59,11 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
         : showVideo
         ? (videoIsImage
           ? <img src={videoSrc} alt={card.themed_name}
-                 onError={() => setVideoFailed(true)}
+                 onError={() => setFailedVideoSrc(videoSrc)}
                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', background: '#000' }} />
           : <video src={videoSrc} poster={imgSrc || undefined}
                  autoPlay loop muted playsInline preload="auto" controls={hover}
-                 onError={() => setVideoFailed(true)}
+                 onError={() => setFailedVideoSrc(videoSrc)}
                  onLoadedData={e => { const p = e.currentTarget.play?.(); if (p && p.catch) p.catch(() => {}) }}
                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', background: '#000' }} />)
         : imgSrc

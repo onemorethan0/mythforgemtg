@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useEffectEvent, useState } from 'react'
 import ManaCost from './ManaCost'
 import AdvancedPanel from './AdvancedPanel'
 import ThemePreview from './ThemePreview'
@@ -34,6 +34,13 @@ const RO_THEMES = [
   'Einbroch factory mines, steam vents, iron scaffolding',
   'Lutie snowfield, toy factory, soft snowfall, festive lights',
 ]
+
+function classFromPrompt(prompt) {
+  const m = (prompt || '').match(/^\s*([A-Za-z ]+?)\s+class\b/i)
+  if (!m) return ''
+  const name = m[1].trim().toLowerCase()
+  return RO_JOB_CLASSES.flatMap(g => g.classes).find(c => c.toLowerCase() === name) || ''
+}
 
 const RO_JOB_CLASSES = [
   {
@@ -216,7 +223,9 @@ export default function StepTheme({
   onNext, onBack,
 }) {
   const [loading, setLoading]           = useState(false)
-  const [roJobClass, setRoJobClass]     = useState('')   // currently-pinned RO job class
+  // currently-pinned RO job class; seeded from a pinned "<Class> class" prefix when a deck
+  // is loaded for editing (read once, so live typing is never fought)
+  const [roJobClass, setRoJobClass]     = useState(() => classFromPrompt(commanderPrompt))
   const [hasSchnell, setHasSchnell]     = useState(false)
   const [hasDev, setHasDev]             = useState(false)
   const [hasSd35, setHasSd35]           = useState(false)
@@ -370,6 +379,58 @@ export default function StepTheme({
     }
   }
 
+  // Effect events: each effect below fires on its own trigger list, and reads the CURRENT
+  // props through one of these instead of listing them as triggers (which would re-run it on
+  // every keystroke or clobber a choice the user just made).
+  const correctStaleModelSpeed = useEffectEvent((hasDev_, hasSchnell_, hasSd35_) => {
+    // Auto-correct stale model_speed if that checkpoint type disappeared
+    if (modelSpeed === 'quality' && !hasDev_ && hasSchnell_) onModelSpeedChange('fast')
+    else if (modelSpeed === 'fast' && !hasSchnell_ && hasDev_) onModelSpeedChange('quality')
+    else if (modelSpeed === 'turbo' && !hasDev_) onModelSpeedChange(hasSchnell_ ? 'fast' : 'quality')
+    else if (modelSpeed === 'sd35' && !hasSd35_) onModelSpeedChange(hasDev_ ? 'quality' : 'fast')
+  })
+  const applyRoDefaults = useEffectEvent(() => {
+    if (!generateArt) onGenerateArtChange(true)
+    if (checkpoints.length) {
+      const sdxlCkpt = checkpoints.find(c => (c.type || '').toUpperCase().includes('SDXL'))
+      if (sdxlCkpt && checkpoint !== sdxlCkpt.filename) onCheckpointChange(sdxlCkpt.filename)
+    }
+  })
+  const ensureRequiredCheckpoint = useEffectEvent(() => {
+    const preset = stylePresets.find(s => s.key === artStyle)
+    if (!preset?.required_checkpoint_type) return
+    const required = preset.required_checkpoint_type.toUpperCase()
+    // Check if current checkpoint already satisfies the requirement
+    const currentCkpt = checkpoints.find(c => c.filename === checkpoint)
+    const currentType = (currentCkpt?.type || '').toUpperCase()
+    if (currentType.includes(required) || currentType === required) return
+    // Auto-select first matching checkpoint
+    const match = checkpoints.find(c => (c.type || '').toUpperCase().includes(required))
+    if (match && onCheckpointChange) onCheckpointChange(match.filename)
+  })
+  const clearInapplicableVariant = useEffectEvent(() => {
+    if (!genSettings) return
+    const current = genSettings.values?.style_variant || ''
+    if (!current) return
+    const preset = stylePresets.find(s => s.key === artStyle)
+    const labels = (preset?.variants || []).map(v => v.label)
+    if (!labels.includes(current)) genSettings.setField('style_variant', '')
+  })
+  const syncModelSpeedToCheckpoint = useEffectEvent(() => {
+    const ckpt = checkpoints.find(c => c.filename === checkpoint)
+    if (!ckpt) return
+    const t = (ckpt.type || '').toUpperCase()
+    if (t.includes('FLUX')) {
+      const isSchnell = ckpt.filename.toLowerCase().includes('schnell')
+      if (isSchnell && modelSpeed !== 'fast') onModelSpeedChange('fast')
+      // 'turbo' is also a dev mode — don't clobber it back to 'quality'.
+      else if (!isSchnell && modelSpeed !== 'quality' && modelSpeed !== 'turbo') onModelSpeedChange('quality')
+    } else if (t.includes('SD') && !t.includes('SDXL')) {
+      if (modelSpeed !== 'sd35') onModelSpeedChange('sd35')
+    }
+    // SDXL: model_speed irrelevant when checkpoint is explicit — leave as-is
+  })
+
   // Probe checkpoint availability, LoRA presets, and LLM catalog on mount.
   useEffect(() => {
     let cancelled = false
@@ -408,48 +469,20 @@ export default function StepTheme({
       const hasQwen_   = ckpts.some(c => (c.type||'').toUpperCase().includes('QWEN') || c.filename.toLowerCase().includes('qwen'))
       setHasDev(hasDev_); setHasSchnell(hasSchnell_); setHasSDXL(hasSDXL_); setHasSd35(hasSd35_)
       setHasKrea(hasKrea_); setHasQwen(hasQwen_)
-      // Auto-correct stale model_speed if that checkpoint type disappeared
-      if (modelSpeed === 'quality' && !hasDev_ && hasSchnell_) onModelSpeedChange('fast')
-      else if (modelSpeed === 'fast' && !hasSchnell_ && hasDev_) onModelSpeedChange('quality')
-      else if (modelSpeed === 'turbo' && !hasDev_) onModelSpeedChange(hasSchnell_ ? 'fast' : 'quality')
-      else if (modelSpeed === 'sd35' && !hasSd35_) onModelSpeedChange(hasDev_ ? 'quality' : 'fast')
+      correctStaleModelSpeed(hasDev_, hasSchnell_, hasSd35_)
     }).catch(() => {})
     return () => { cancelled = true }
   }, [])
 
-  // ── Reflect a pinned "<Class> class" prefix on the chips when a deck is
-  // loaded for editing (the appearance text persists, so re-highlight the chip).
-  useEffect(() => {
-    const m = (commanderPrompt || '').match(/^\s*([A-Za-z ]+?)\s+class\b/i)
-    if (!m) return
-    const name = m[1].trim().toLowerCase()
-    const found = RO_JOB_CLASSES.flatMap(g => g.classes).find(c => c.toLowerCase() === name)
-    if (found && found !== roJobClass) setRoJobClass(found)
-  }, [])   // mount only — don't fight live typing
-
   // ── RO mode: auto-enable art gen + SDXL when ragnarok_online is selected ──
   useEffect(() => {
-    if (!isRO) return
-    if (!generateArt) onGenerateArtChange(true)
-    if (checkpoints.length) {
-      const sdxlCkpt = checkpoints.find(c => (c.type || '').toUpperCase().includes('SDXL'))
-      if (sdxlCkpt && checkpoint !== sdxlCkpt.filename) onCheckpointChange(sdxlCkpt.filename)
-    }
+    if (isRO) applyRoDefaults()
   }, [isRO, checkpoints])
 
   // ── Auto-select checkpoint when art style requires a specific model type ──
   useEffect(() => {
     if (!generateArt || !stylePresets.length || !checkpoints.length) return
-    const preset = stylePresets.find(s => s.key === artStyle)
-    if (!preset?.required_checkpoint_type) return
-    const required = preset.required_checkpoint_type.toUpperCase()
-    // Check if current checkpoint already satisfies the requirement
-    const currentCkpt = checkpoints.find(c => c.filename === checkpoint)
-    const currentType = (currentCkpt?.type || '').toUpperCase()
-    if (currentType.includes(required) || currentType === required) return
-    // Auto-select first matching checkpoint
-    const match = checkpoints.find(c => (c.type || '').toUpperCase().includes(required))
-    if (match && onCheckpointChange) onCheckpointChange(match.filename)
+    ensureRequiredCheckpoint()
   }, [artStyle, stylePresets, checkpoints, generateArt])
 
   // ── Clear a pinned style variant that doesn't apply to the current style ──
@@ -458,29 +491,12 @@ export default function StepTheme({
   // full rotation on the backend. Reset to "Variety mix" whenever the selected
   // style has no matching variant label.
   useEffect(() => {
-    if (!genSettings || !stylePresets.length) return
-    const current = genSettings.values?.style_variant || ''
-    if (!current) return
-    const preset = stylePresets.find(s => s.key === artStyle)
-    const labels = (preset?.variants || []).map(v => v.label)
-    if (!labels.includes(current)) genSettings.setField('style_variant', '')
+    if (stylePresets.length) clearInapplicableVariant()
   }, [artStyle, stylePresets])
 
   // ── Sync model_speed when an explicit checkpoint is chosen ───────────────
   useEffect(() => {
-    if (!checkpoint || !checkpoints.length) return
-    const ckpt = checkpoints.find(c => c.filename === checkpoint)
-    if (!ckpt) return
-    const t = (ckpt.type || '').toUpperCase()
-    if (t.includes('FLUX')) {
-      const isSchnell = ckpt.filename.toLowerCase().includes('schnell')
-      if (isSchnell && modelSpeed !== 'fast') onModelSpeedChange('fast')
-      // 'turbo' is also a dev mode — don't clobber it back to 'quality'.
-      else if (!isSchnell && modelSpeed !== 'quality' && modelSpeed !== 'turbo') onModelSpeedChange('quality')
-    } else if (t.includes('SD') && !t.includes('SDXL')) {
-      if (modelSpeed !== 'sd35') onModelSpeedChange('sd35')
-    }
-    // SDXL: model_speed irrelevant when checkpoint is explicit — leave as-is
+    if (checkpoint && checkpoints.length) syncModelSpeedToCheckpoint()
   }, [checkpoint, checkpoints])
 
   // ── RO job class picker handler ────────────────────────────────────────────

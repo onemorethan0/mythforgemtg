@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useEffectEvent, useState } from 'react'
 import SimStrengthPanel from './SimStrengthPanel'
 
 // "Measure strength" on the result screen: runs the finished deck through the
@@ -27,24 +27,26 @@ export default function MeasurePanel({ jobId, cached }) {
   const [errMsg, setErrMsg] = useState('')
   const refreshedStale = stale
 
-  const measure = async () => {
-    try {
-      const response = await fetch(`/api/deck/${jobId}/measure`, { method: 'POST' })
-      if (response.ok) {
-        setResult(await response.json())
-        setMeasuredAt(null)  // fresh numbers, not the cached ones
-        setState('done')
-      } else {
-        let detail = `HTTP ${response.status}`
-        try { detail = (await response.json()).detail || detail } catch {}
-        setErrMsg(detail)
+  // A promise chain rather than async/await so every state update visibly sits behind the
+  // fetch: it is called from a mount effect, and nothing here may set state synchronously.
+  const measure = () =>
+    fetch(`/api/deck/${jobId}/measure`, { method: 'POST' })
+      .then(async response => {
+        if (response.ok) {
+          setResult(await response.json())
+          setMeasuredAt(null)  // fresh numbers, not the cached ones
+          setState('done')
+        } else {
+          let detail = `HTTP ${response.status}`
+          try { detail = (await response.json()).detail || detail } catch {}
+          setErrMsg(detail)
+          setState('error')
+        }
+      })
+      .catch(() => {
+        setErrMsg('Strength API unreachable')
         setState('error')
-      }
-    } catch {
-      setErrMsg('Strength API unreachable')
-      setState('error')
-    }
-  }
+      })
 
   const run = () => {
     if (state === 'loading') return
@@ -52,10 +54,9 @@ export default function MeasurePanel({ jobId, cached }) {
     measure()
   }
 
-  useEffect(() => {
-    if (stale) measure()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // Mount-only re-measure of a stale cache; the effect event reads the current jobId.
+  const remeasureStale = useEffectEvent(() => { if (stale) measure() })
+  useEffect(() => { remeasureStale() }, [])
 
   const mainBtn = (label, disabled = false) => (
     <button

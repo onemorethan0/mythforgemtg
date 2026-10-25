@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import ManaCost from './ManaCost'
 import AdvancedPanel from './AdvancedPanel'
 import { toGenSettingsPayload } from '../config/genSettings'
+import { normalizeManaCost, colorsFromCost } from '../utils/manaCost'
 
 // Structured "vision" chip options — mirror StepTheme so a single card themes
 // with the same world-bible pipeline as a deck.
@@ -47,29 +48,6 @@ function composeVision(setting, moods, genres, lighting, inspiration) {
   return p.join('. ')
 }
 
-// A cost typed without braces ("2WU") is unambiguous, so show the user what it
-// will become rather than silently producing a colourless, pip-less card. Mirrors
-// server._normalize_mana_cost — keep the two in step.
-const SHORTHAND_MANA = /\d+|[WUBRGCXYZS]/gi
-export function normalizeManaCost(raw) {
-  const s = (raw || '').trim()
-  if (!s || s.includes('{')) return s
-  const compact = s.replace(/[\s/]/g, '')
-  if (!compact) return s
-  const parts = compact.match(SHORTHAND_MANA) || []
-  if (parts.join('') !== compact) return s
-  return parts.map(p => `{${p.toUpperCase()}}`).join('')
-}
-
-// Colour identity implied by a mana cost, so the preview frame matches what the
-// backend will derive when the user hasn't pinned colours by hand.
-export function colorsFromCost(cost) {
-  const out = []
-  for (const m of (normalizeManaCost(cost).match(/\{([^}]+)\}/g) || [])) {
-    for (const L of WUBRG) if (m.toUpperCase().includes(L) && !out.includes(L)) out.push(L)
-  }
-  return WUBRG.filter(c => out.includes(c))
-}
 
 const s = {
   wrap: { maxWidth: 980, width: '100%', marginTop: 16 },
@@ -309,7 +287,7 @@ export default function StepSingleCard({ genSettings, onGenerate, onBack, initia
   useEffect(() => {
     if (lookupDebounce.current) clearTimeout(lookupDebounce.current)
     const term = lookupQ.trim()
-    if (term.length < 2) { setLookupSug([]); setActiveIdx(-1); return }
+    if (term.length < 2) return            // cleared by the input's onChange
     lookupDebounce.current = setTimeout(() => {
       fetch(`/api/collection/suggest?q=${encodeURIComponent(term)}`)
         .then(r => r.json()).then(d => { setLookupSug(d.suggestions || []); setActiveIdx(-1) })
@@ -551,7 +529,7 @@ export default function StepSingleCard({ genSettings, onGenerate, onBack, initia
                     role="combobox"
                     aria-expanded={showLookupSug && lookupSug.length > 0}
                     aria-autocomplete="list"
-                    onChange={e => { setLookupQ(e.target.value); setShowLookupSug(true) }}
+                    onChange={e => { setLookupQ(e.target.value); setShowLookupSug(true); if (e.target.value.trim().length < 2) { setLookupSug([]); setActiveIdx(-1) } }}
                     onKeyDown={onLookupKey}
                     onFocus={() => setShowLookupSug(true)}
                     placeholder="Search a real card — e.g. Lightning Bolt"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 // ── Animate panel (modal) ───────────────────────────────────────────────────
 export default function AnimatePanel({ selectedCards, presets, foilStyles, formats, loopStyles, caps, health, onStart, onClose }) {
@@ -30,11 +30,9 @@ export default function AnimatePanel({ selectedCards, presets, foilStyles, forma
   const isCustomMotion = preset === '__custom__'
   const [motionStrength, setMotionStrength] = useState(capsR.motion_strength_default ?? 0.5)
 
-  // Keep duration within the active effect's range when the effect switches.
-  useEffect(() => {
-    setDuration(d => Math.min(range.max_s, Math.max(range.min_s, d)))
-  }, [effect])  // eslint-disable-line react-hooks/exhaustive-deps
-
+  // The raw `duration` is kept as chosen; everything reads the value clamped to the active
+  // effect's range (this used to be a clamping effect, which also forgot a 10 s foil length
+  // after a detour through motion's 6 s cap).
   const clampedDur = Math.min(range.max_s, Math.max(range.min_s, duration))
   const estFrames  = Math.max(2, Math.round(clampedDur * fps))
   // Bounce (ping-pong) plays ~2× on screen; crossfade is forward-only (~1×, minus

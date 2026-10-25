@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ManaCost from './ManaCost'
 import AdvancedPanel from './AdvancedPanel'
 
@@ -26,7 +26,7 @@ function PhotoPicker({ photos, setPhotos, maxPhotos, inputRef, accentColor = '#e
   function removePhoto(idx) {
     setPhotos(prev => { URL.revokeObjectURL(prev[idx].url); return prev.filter((_, i) => i !== idx) })
   }
-  const onDrop = useCallback(e => { e.preventDefault(); setDragging(false); addFiles(e.dataTransfer.files) }, [photos.length])
+  const onDrop = e => { e.preventDefault(); setDragging(false); addFiles(e.dataTransfer.files) }
 
   return (
     <div>
@@ -246,8 +246,12 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
   const methodInfo  = FACE_METHOD_INFO[faceMethod] || FACE_METHOD_INFO['not available']
   const noFaceNodes = faceMethod === 'not available' || faceMethod === null
 
-  // Drop assignments that point at a person who was since removed.
-  useEffect(() => {
+  // Drop assignments that point at a person who was since removed. Adjusted during render
+  // when the crew count changes (React's documented replacement for a syncing effect); NOT
+  // derived at read time, which would let an old assignment re-point at a newly added person.
+  const [prunedForLen, setPrunedForLen] = useState(crewPhotos.length)
+  if (prunedForLen !== crewPhotos.length) {
+    setPrunedForLen(crewPhotos.length)
     setAssignments(prev => {
       const next = {}
       for (const [card, idx] of Object.entries(prev)) {
@@ -255,7 +259,7 @@ export default function StepFace({ commander, faceGender, onGenderChange, crewGe
       }
       return next
     })
-  }, [crewPhotos.length])
+  }
 
   useEffect(() => {
     fetch('/api/face-method').then(r => r.ok ? r.json() : null).then(d => {
