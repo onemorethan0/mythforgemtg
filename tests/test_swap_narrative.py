@@ -380,3 +380,21 @@ def test_the_relational_check_stays_quiet_when_supply_equals_target():
             "so An Offer You Can't Refuse in a deck that already has 14 ramp is the slot.")
     assert not any("comparable decks run" in r
                    for r in sn.check(text, level, deck_card_names=DECK))
+
+
+def test_it_rejects_calling_a_low_baseline_high():
+    # Live advise 2026-10-23: "helps reach the deck's high ceiling" for a deck at 12/100.
+    text = ("Jubilation helps this deck reach its high ceiling sooner. An Offer You Can't Refuse "
+            "is over-supplied at 6.0 against a target of 3 and is the natural cut.")
+    reasons = sn.check(text, brief(before=12.0), deck_card_names=DECK)
+    assert any("calls the deck's ceiling high" in r for r in reasons)
+    # The same sentence is honest for a deck that really does sit high.
+    reasons = sn.check(text, brief(before=72.0), deck_card_names=DECK)
+    assert not any("calls the deck's ceiling" in r for r in reasons)
+
+
+def test_comparatives_and_raising_language_are_not_baseline_claims():
+    text = ("Jubilation gives the deck a higher ceiling by pumping the team. An Offer You "
+            "Can't Refuse is over-supplied at 6.0 against a target of 3 and is the natural cut.")
+    reasons = sn.check(text, brief(before=12.0), deck_card_names=DECK)
+    assert not any("calls the deck's ceiling" in r for r in reasons)

@@ -74,6 +74,15 @@ _DECK_HAS = (
     "already running", "already runs", "is running",
 )
 
+# Check 9: a quality word bound to the measured axis must agree with the deck's BASELINE.
+# "help reach the deck's high ceiling" was written for a deck at 12/100 (live advise,
+# 2026-10-23): every number was right and the adjective was false. Only clear contradictions
+# are rejected - "high" below 60, "low" above 40 - so honest hedges pass.
+_HIGH_WORDS = r"(?:high|strong|great|excellent|impressive|huge|powerful|solid|elite)"
+_LOW_WORDS = r"(?:low|weak|poor|limited|lacking|modest)"
+_HIGH_NEEDS = 60.0
+_LOW_NEEDS = 40.0
+
 _AXIS_STEMS = {
     "consistency": "consisten",
     "speed": "speed",
@@ -399,6 +408,20 @@ def check(text: str, brief: dict, *, deck_card_names: set[str] | None = None) ->
                     f"says this deck has {match.group()} {cut_card['role']}, which is what "
                     f"comparable decks run - this one supplies {supply:g}")
                 break
+
+    # 9. BASELINE QUALITY. See _HIGH_WORDS.
+    stem = _AXIS_STEMS.get(measured)
+    before = brief.get("before")
+    if stem and before is not None:
+        before = float(before)
+        high = (rf"\b{_HIGH_WORDS}\s+(?:\w+\s+)?{stem}\w*"
+                rf"|\b{stem}\w*\s+(?:is|was|remains|stays)\s+(?:already\s+)?{_HIGH_WORDS}\b")
+        low = (rf"\b{_LOW_WORDS}\s+(?:\w+\s+)?{stem}\w*"
+               rf"|\b{stem}\w*\s+(?:is|was|remains|stays)\s+(?:already\s+)?{_LOW_WORDS}\b")
+        if before < _HIGH_NEEDS and re.search(high, lower):
+            reasons.append(f"calls the deck's {measured} high, but it measures {before:g}/100")
+        if before > _LOW_NEEDS and re.search(low, lower):
+            reasons.append(f"calls the deck's {measured} low, but it measures {before:g}/100")
 
     # 8. REDUNDANCY. The S12 guard: no calling a cut surplus when nothing was over-supplied.
     cut = brief.get("cut") or {}
