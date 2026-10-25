@@ -656,7 +656,15 @@ def _table_feel_block(tf, ref_bracket: int) -> dict:
     block = {
         "available": True,
         "score": tf.score, "band": tf.band,
-        "meaning": f"saltier than {tf.score:.0f}% of corpus decks (higher = saltier)",
+        # Both directions, and the population named, because a one-sided "saltier than 12% of
+        # corpus decks" came back as "salt lower than 12% of decks in its bracket" -- inverted,
+        # with an invented scope (live mentor, 2026-10-23). `say_it_as` is the sentence to use.
+        "meaning": (f"saltier than {tf.score:.0f}% of real Commander decks and less salty than "
+                    f"{100 - tf.score:.0f}% of them (all decks, not just this bracket; "
+                    f"higher = saltier)"),
+        "say_it_as": (f"less salty than about {100 - tf.score:.0f}% of Commander decks"
+                      if tf.score < 50 else
+                      f"saltier than about {tf.score:.0f}% of Commander decks"),
         "total_salt": tf.total_salt,
         "salty_card_count": tf.salty_count,
         "salty_cards": [{"name": n, "salt": v} for n, v in tf.salty_cards],
