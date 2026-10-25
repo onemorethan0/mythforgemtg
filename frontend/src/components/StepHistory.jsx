@@ -271,9 +271,13 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
               </span>
             ) : (
               <>
-                <span style={{ ...s.bracket, background: `${bColor}22`, color: bColor, border: `1px solid ${bColor}44` }}>
-                  B{entry.bracket} {bLabel}
-                </span>
+                {/* A built deck's TARGET bracket. Imports have none (0), which rendered as
+                    "B0 B0"; their measured bracket (⚡, below) says what they play at. */}
+                {entry.bracket > 0 && (
+                  <span style={{ ...s.bracket, background: `${bColor}22`, color: bColor, border: `1px solid ${bColor}44` }}>
+                    B{entry.bracket} {bLabel}
+                  </span>
+                )}
                 {entry.measured_bracket && (
                   <span
                     title={`Simulation-measured bracket (MythGauntlet): ${entry.measured_bracket}. ${entry.measured_label || ''}`
@@ -398,15 +402,19 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
   const [grouped, setGrouped]     = useState(true)          // fold versions under their origin
   const [expanded, setExpanded]   = useState(new Set())     // rootIds showing their versions
 
-  function loadDecks() {
-    setState('loading')
-    fetch('/api/decks')
+  function fetchDecks() {
+    return fetch('/api/decks')
       .then(r => r.json())
       .then(data => { setDecks(data); setState('ready') })
       .catch(() => setState('error'))
   }
 
-  useEffect(() => { loadDecks() }, [])
+  function loadDecks() {
+    setState('loading')
+    fetchDecks()
+  }
+
+  useEffect(() => { fetchDecks() }, [])   // state already starts as 'loading'
 
   function handleDeleted(job_id) {
     setDecks(prev => prev.filter(d => d.job_id !== job_id))
