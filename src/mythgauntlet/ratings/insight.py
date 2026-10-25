@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
 from mythgauntlet.semantics import tags
+from mythgauntlet.sim import combat_rules
 from mythgauntlet.semantics.model import EffectVector
 
 _MAX_NAMES = 6  # cards to name per role before "+N more"
@@ -140,6 +141,28 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
             key_cards.append(KeyCards(role, [c.name for c in hits[:_MAX_NAMES]],
                                       max(0, len(hits) - _MAX_NAMES)))
 
+    # What THIS commander rewards, first. Role groups alone named Sol Ring / Farseek / Swords
+    # as a Doran deck's key cards (live 2026-10-23). Two measured sources, no guessing: the
+    # command zone's combat rule (cards that hit hardest relative to their printed power) and
+    # the commander lens's per-card facts (Smaug + Blasphemous Act).
+    rule = combat_rules.from_commanders(list(resolved.commanders))
+    lens = getattr(a, "lens", None)
+
+    def rule_gain(c: Card) -> int:
+        if rule is None or not c.is_creature:
+            return 0
+        return combat_rules.attack_power(c, rule) - combat_rules.attack_power(c, None)
+
+    def lens_hit(c: Card) -> bool:
+        try:
+            return lens is not None and not lens.facts_for(c).empty
+        except Exception:      # noqa: BLE001 - a narrative helper must never fail the analysis
+            return False
+
+    synergy = [c for c, _n, _fx in nonland if rule_gain(c) >= 2 or lens_hit(c)]
+    synergy.sort(key=lambda c: (-rule_gain(c), _rank(c)))
+    add("Commander synergy", synergy)
+
     add("Interaction",
         _named(nonland, lambda fx, c: fx.removal or fx.board_wipe or fx.counterspell))
     add("Ramp", _named(nonland, lambda fx, c: fx.ramp_sources > 0 or fx.fetches_land))
@@ -153,6 +176,8 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
     finishers = _named(nonland, lambda fx, c: (
         fx.overrun_pump > 0 or fx.scaling_burn or fx.grants_storm or fx.cheats_creatures
         or (c.is_creature and c.mana_value >= 5 and _stat(c.power) >= 6)
+        # under the commander's combat rule a wall is a win condition (Doran: a 3/7 hits for 7)
+        or (rule is not None and c.is_creature and combat_rules.attack_power(c, rule) >= 6)
     ))
     win_names = list(dict.fromkeys(combo_names))[:_MAX_NAMES]
     if win_names:

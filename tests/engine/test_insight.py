@@ -163,3 +163,35 @@ def test_pod_read_scales_with_bracket(make_card, forest):
         a = _analysis(bracket=SimpleNamespace(bracket=br, label="x", plays_up=False))
         ins = build_insight(_resolved([(forest, 40)]), a)
         assert needle in ins.pod_read
+
+
+def _wall(make_card, name, p, t):
+    c = make_card(name, mana_cost="{3}{G}", type_line="Creature - Wall", color_identity=("G",))
+    c.power, c.toughness = str(p), str(t)
+    return c
+
+
+def test_key_cards_name_what_the_commander_rewards(make_card):
+    # Live 2026-10-23: a Doran, Besieged by Time deck's key cards were Sol Ring / Farseek /
+    # Rampant Growth / Swords - nothing Doran rewards. Its walls lead now, biggest gain first.
+    doran = make_card("Doran, Besieged by Time", mana_cost="{1}{W}{B}{G}",
+                      type_line="Legendary Creature - Treefolk Druid",
+                      oracle_text=("Each creature spell you cast with toughness greater than its "
+                                   "power costs {1} less to cast.\nWhenever a creature you "
+                                   "control attacks or blocks, it gets +X/+X until end of turn, "
+                                   "where X is the difference between its power and toughness."))
+    blackthorn, druid, bear = (_wall(make_card, "Blighted Blackthorn", 3, 7),
+                               _wall(make_card, "Great Forest Druid", 0, 4),
+                               _creature(make_card, "Bear", 2))
+    ins = build_insight(_resolved([(blackthorn, 1), (druid, 1), (bear, 1)], doran), _analysis())
+    first = ins.key_cards[0]
+    assert first.role == "Commander synergy"
+    assert set(first.names[:2]) == {"Blighted Blackthorn", "Great Forest Druid"}   # +4 each
+    assert "Bear" not in first.names
+    wins = next(k for k in ins.key_cards if k.role == "Win conditions")
+    assert "Blighted Blackthorn" in wins.names                  # hits for 7 under Doran
+
+
+def test_no_synergy_group_without_a_commander_rule(make_card):
+    ins = build_insight(_resolved([(_creature(make_card, "Bear", 2), 1)]), _analysis())
+    assert all(k.role != "Commander synergy" for k in ins.key_cards)
