@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import io
 import json
 import logging
 import time
@@ -16,6 +15,7 @@ from urllib.parse import urlparse
 import requests
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 from fastapi.responses import (
+    Response,
     FileResponse,
     JSONResponse,
     RedirectResponse,
@@ -619,6 +619,9 @@ def _export_image_resolver(job_id: str):
     return _resolve
 
 
+# Exports are built fully in memory, so they are sent as one Response. They were
+# StreamingResponse(io.BytesIO(data)), which iterates the buffer LINE BY LINE: a 12 MB
+# ZIP went out as ~46k newline-split chunks and took ~55 s to download (built in 0.4 s).
 @router.get("/api/deck/{job_id}/export/zip")
 def export_zip(job_id: str):
     _require_job_id(job_id)
@@ -639,8 +642,8 @@ def export_zip(job_id: str):
                  "(the card has no rendered proxy on disk).")
     single = _is_single_card(job)
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    return StreamingResponse(
-        io.BytesIO(data),
+    return Response(
+        content=data,
         media_type="application/zip",
         headers={"Content-Disposition":
                  f'attachment; filename="{safe}_{"card" if single else "deck"}.zip"'},
@@ -682,8 +685,8 @@ def export_decklist(job_id: str):
         lines += [f"# {n}" for n in unresolved]
     body = "\n".join(lines) + "\n"
     safe = "".join(c if c.isalnum() else "_" for c in (cmd.get("original_name") or "deck"))[:30]
-    return StreamingResponse(
-        io.BytesIO(body.encode("utf-8")),
+    return Response(
+        content=body.encode("utf-8"),
         media_type="text/plain; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{safe}_decklist.txt"'},
     )
@@ -703,8 +706,8 @@ def export_videos(job_id: str):
     if len(data) < 40:   # empty zip
         raise HTTPException(404, "No animated cards in this deck")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    return StreamingResponse(
-        io.BytesIO(data),
+    return Response(
+        content=data,
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{safe}_videos.zip"'},
     )
@@ -722,8 +725,8 @@ def export_pdf(job_id: str):
         logger.error("PDF export failed for job %r", job_id, exc_info=e)
         raise HTTPException(500, "PDF export failed.")
     safe = "".join(c if c.isalnum() else "_" for c in job["commander"]["original_name"])[:30]
-    return StreamingResponse(
-        io.BytesIO(data),
+    return Response(
+        content=data,
         media_type="application/pdf",
         headers={"Content-Disposition": f'attachment; filename="{safe}_proxies.pdf"'},
     )
