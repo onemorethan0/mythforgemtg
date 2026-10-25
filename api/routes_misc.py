@@ -2,6 +2,7 @@
 """
 from __future__ import annotations
 
+import asyncio
 import io
 import logging
 import os
@@ -516,7 +517,8 @@ async def upload_face(files: List[UploadFile] = File(...)):
 @router.get("/api/3d-health")
 async def get_3d_health():
     """Return Hunyuan3D v2 / rembg availability status."""
-    return JSONResponse(Model3DGen.health_check())
+    # health_check blocks (HTTP probes); off the event loop, or every request waits on it.
+    return JSONResponse(await asyncio.to_thread(Model3DGen.health_check))
 
 
 @router.get("/api/logs")

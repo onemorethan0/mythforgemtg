@@ -76,37 +76,12 @@ def _ensure_utf8_stdout() -> None:
 
 _ensure_utf8_stdout()
 
-_COMFY_PORT_CANDIDATES = [8188, 8000, 8001, 8002]   # ports to probe in order
+from comfy_probe import PORT_CANDIDATES as _COMFY_PORT_CANDIDATES  # noqa: E402,F401
 OUTPUT_TIMEOUT         = 600        # seconds to wait for one image
 POLL_INTERVAL          = 2.0
 
 
-def _detect_comfy_base() -> str:
-    """
-    Find the port ComfyUI is actually running on.
-
-    ComfyUI Desktop starts with --port 8000 but auto-increments when the
-    port is occupied.  Older / manual installs default to 8188.  We try
-    each candidate port in order, verify the response looks like ComfyUI's
-    /system_stats JSON (contains "system" or "devices" keys), then return
-    that base URL.  Falls back to 8188 so callers get a clear error message.
-    """
-    for port in _COMFY_PORT_CANDIDATES:
-        url = f"http://127.0.0.1:{port}"
-        try:
-            r = requests.get(f"{url}/system_stats", timeout=2)
-            if r.status_code == 200:
-                try:
-                    data = r.json()
-                    # ComfyUI system_stats always has "system" or "devices"
-                    if "system" in data or "devices" in data:
-                        return url
-                except Exception:
-                    pass   # port responded but not ComfyUI (e.g. our own server)
-        except requests.RequestException:
-            pass
-    # Nothing found — default to 8188 so health_check produces a useful message
-    return "http://127.0.0.1:8188"
+from comfy_probe import detect_comfy_base as _detect_comfy_base  # noqa: E402
 
 
 # Resolved once at module load; re-probed in ImageGen.__init__ so a fresh

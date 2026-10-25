@@ -44,7 +44,7 @@ if hasattr(sys.stderr, "buffer") and sys.stderr.encoding.lower().replace("-", ""
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-_COMFY_PORT_CANDIDATES = [8188, 8000, 8001, 8002]
+from comfy_probe import PORT_CANDIDATES as _COMFY_PORT_CANDIDATES  # noqa: E402,F401
 _COMFY_OUTPUT_DIR = Path(r"C:\Users\rvn92\Documents\ComfyUI\output")
 
 # Hunyuan3D DiT model — only required model (others auto-download via diffusers)
@@ -77,18 +77,7 @@ _OUTPUT_TIMEOUT = 600  # 10 min max for 3D generation
 
 # ── ComfyUI connection helpers ────────────────────────────────────────────────
 
-def _detect_comfy_base() -> str:
-    for port in _COMFY_PORT_CANDIDATES:
-        url = f"http://127.0.0.1:{port}"
-        try:
-            r = requests.get(f"{url}/system_stats", timeout=2)
-            if r.status_code == 200:
-                data = r.json()
-                if "system" in data or "devices" in data:
-                    return url
-        except requests.RequestException:
-            pass
-    return "http://127.0.0.1:8188"
+from comfy_probe import detect_comfy_base as _detect_comfy_base  # noqa: E402
 
 
 def _comfy_base() -> str:

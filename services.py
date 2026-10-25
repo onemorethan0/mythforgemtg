@@ -357,6 +357,8 @@ def _ensure_comfyui_ready(job_id: str = "", *, wait_timeout: float = 300.0,
 
     Serialized by _comfyui_start_lock so concurrent builds never spawn duplicates.
     """
+    import comfy_probe
+    comfy_probe.reset()   # a (re)launch must not reuse a cached "not running"
     # Fast path: up AND launched with the offload fix → nothing to do.
     if _check_service("ComfyUI", "http://127.0.0.1:8188/system_stats") \
             and not _comfyui_running_without_offload_fix():
@@ -430,6 +432,8 @@ def _start_comfyui() -> None:
     Thin wrapper over _ensure_comfyui_ready(); the heavy lifting (locating the
     install, launching, polling) lives there so builds can reuse it.
     """
+    import comfy_probe
+    comfy_probe.reset()   # a (re)launch must not reuse a cached "not running"
     if _ensure_comfyui_ready():
         print("  [OK] ComfyUI ready", flush=True)
 
