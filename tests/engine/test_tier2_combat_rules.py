@@ -128,3 +128,13 @@ def test_greedy_blocker_sees_toughness_damage():
     st, me, opp = _state([_cmd("Doran, the Siege Tower"), attacker], [blk])
     _apply_declare_attackers(st, (attacker,))
     assert greedy_block_assignment(st.combat_attackers, opp).get(0) is not blk
+
+
+def test_removal_aims_at_the_real_threat():
+    # Under the Siege Tower the 0/8 wall hits for 8; printed power named the 3/3.
+    from mythgauntlet.sim.tier2 import _instant_target
+    wall, bear = _c("Wall", 0, 8), _c("Bear", 3, 3)
+    st, me, opp = _state([_cmd("Doran, the Siege Tower"), wall, bear], [])
+    assert _instant_target(me) is wall
+    st, me, opp = _state([_c("Wall", 0, 8), _c("Bear", 3, 3)], [])    # no rule: the bear
+    assert _instant_target(me).name == "Bear"

@@ -468,6 +468,9 @@ def _do_turn_start(state: GameState) -> None:
         c.sick = False
         c.tapped = False
         c.loyalty_used = False
+    # Combat-rule flags also steer removal targeting outside combat; refresh them at each turn
+    # so a commander that left play since the last combat stops counting.
+    refresh_combat_rules(state)
     # CR 103.8a: "In a two-player game, the player who plays first skips the draw step of
     # their first turn." CR 103.8c: "In all other multiplayer games, no player skips the
     # draw step of their first turn." The skip is a TWO-PLAYER rule; applying it in a pod
@@ -1028,7 +1031,7 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
     if eff.damage_any:
         killable = [c for c in opp.creatures() if c.toughness <= eff.damage_any]
         if killable:
-            _kill(opp, max(killable, key=lambda c: c.power), me)
+            _kill(opp, max(killable, key=lambda c: c.attack_value), me)
         else:
             opp.life -= eff.damage_any
     opp.life -= eff.damage_face

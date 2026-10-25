@@ -1124,7 +1124,7 @@ def _apply_resolved(
         if target.get("count") == "all" or target.get("controller") == "each":
             _wipe_table(me, opp, others, just_cast)
         elif opp.creatures():
-            _kill(opp, max(opp.creatures(), key=lambda c: c.power), me, others)
+            _kill(opp, max(opp.creatures(), key=lambda c: c.attack_value), me, others)
     elif op == "deal_damage":
         target = _tgt("target")
         amt = max(0, pr.get("amount", 1))
@@ -1149,7 +1149,7 @@ def _apply_resolved(
         else:
             killable = [c for c in opp.creatures() if c.toughness <= amt]
             if killable:
-                _kill(opp, max(killable, key=lambda c: c.power), me, others)
+                _kill(opp, max(killable, key=lambda c: c.attack_value), me, others)
             else:
                 opp.life -= amt
     elif op == "create_token":
@@ -1319,7 +1319,7 @@ def _apply_resolved(
                 ]
                 candidates = [(p, c) for p, c in candidates if c is not None]
                 if candidates:
-                    owner, pick = max(candidates, key=lambda pc: pc[1].power)
+                    owner, pick = max(candidates, key=lambda pc: pc[1].attack_value)
                     _bounce(owner, pick)
     elif op == "sacrifice":
         # Sacrifice IS a death, so this routes through `_kill` and correctly fires the
@@ -1654,13 +1654,13 @@ def _resolve(
         targets = opp.creatures()
         if not targets:
             break
-        _kill(opp, max(targets, key=lambda c: c.power), me)
+        _kill(opp, max(targets, key=lambda c: c.attack_value), me)
 
     dmg = p.damage_any
     if dmg:
         killable = [c for c in opp.creatures() if c.toughness <= dmg]
         if killable:
-            _kill(opp, max(killable, key=lambda c: c.power), me)
+            _kill(opp, max(killable, key=lambda c: c.attack_value), me)
         else:
             opp.life -= dmg
     opp.life -= p.damage_face
@@ -1737,13 +1737,15 @@ def _counter_chain(
 
 
 def _instant_target(active: _Player) -> _Permanent | None:
-    """The creature a reactive removal spell would answer: the active player's biggest, if it's
-    worth an answer (power >= 1). Shared by the automated window and the searched decision."""
+    """The creature a reactive removal spell would answer: the active player's biggest threat, if
+    it's worth an answer (attack_value >= 1). Shared by the automated window and the searched decision."""
     targets = active.creatures()
     if not targets:
         return None
-    biggest = max(targets, key=lambda c: c.power)
-    return biggest if biggest.power >= 1 else None
+    # By the damage it would deal, not printed power: a 0/8 wall under Doran, the Siege Tower
+    # is the biggest threat on the board and printed power never named it.
+    biggest = max(targets, key=lambda c: c.attack_value)
+    return biggest if biggest.attack_value >= 1 else None
 
 
 def _find_instant_removal(
@@ -1776,7 +1778,7 @@ def _apply_instant_removal(
         live = active.creatures()
         if not live:
             break
-        _kill(active, max(live, key=lambda c: c.power), reactor)
+        _kill(active, max(live, key=lambda c: c.attack_value), reactor)
 
 
 def _instant_window(reactor: _Player, active: _Player) -> None:
