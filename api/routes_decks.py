@@ -839,7 +839,7 @@ async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
         raise HTTPException(status_code=404, detail=f"Deck job not found: {job_id}")
 
     # Health check — surface missing models with a clear message
-    health = Model3DGen.health_check()
+    health = await asyncio.to_thread(Model3DGen.health_check)   # blocking probes
     if not health["ok"]:
         raise HTTPException(
             status_code=503,
@@ -865,6 +865,11 @@ async def start_3d_generation(job_id: str, background_tasks: BackgroundTasks):
 async def stream_3d_status(job_id: str, job_3d_id: str, request: Request):
     """SSE stream for 3D generation progress."""
     _require_job_id(job_id)
+    # An unknown id (never started, or lost in a server restart) used to stream nothing
+    # forever, polling every 0.5 s. 404 at once, like the build stream does.
+    if job_3d_id not in _3d_jobs:
+        raise HTTPException(status_code=404, detail="3D job not found - start the 3D generation again")
+
     async def _gen():
         sent = 0
         while True:
