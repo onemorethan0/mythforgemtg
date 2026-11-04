@@ -12,7 +12,7 @@ decision or go-ahead (outward-facing, or a product call).
 |---|---|---|---|
 | B1 | Mentor holistic bench vs the 87-90/90 bar | CLOSED: 87/90 after 3 gate fixes | C |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
-| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE in tier2; tier0, cost reducers, CDA open | C |
+| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE in tier2 + tier0; cost reducers, CDA, 'other' open | C |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
@@ -117,10 +117,17 @@ with state-based death at 0 toughness repeated to a fixed point. 13 tests.
 **A/B (gauntlet --opponents 8 --games 20 --seed 777, 1,153 decks):** bracket means identical within
 1 Elo. Dose-response is clean: decks with no anthem -1.2 (noise), one anthem +3.4, two or more
 +6.2; the top gainers hold 2-4 anthems. Small by nature (one card in 99) but pointed the right way.
-**NOT done, deliberately:** (a) **tier0** (the goldfish clock behind `analyze`) does not see
-anthems. The strength model fits the goldfish-speed signals at weight 0, so the bracket would not
-move, but the displayed kill turn for go-wide decks under-counts. Doing it means re-running
-`bracket_accuracy.py` and stopping if within-one drops below 92.1%; (b) cost reducers and CDA P/T;
+**Phase 2b DONE 2026-11-04: tier0 (the goldfish clock behind `analyze`) now sees anthems.** It is
+rung-1/CCM-free, so `tier0._anthems_in_text` reads the card's own oracle lines with the same strict
+parser (flat power bonuses to your own creatures only; `nontoken` skipped as an honest under-count;
+a lord never buffs itself; a creature-sourced anthem dies in a wipe, an enchantment survives;
+instants and sorceries never count). 7 tests, suite 3,094 green. **Guard run (bracket_accuracy,
+624 labelled decks, real combos): within-one UNCHANGED at 92.1% (96.3% excluding impossible
+labels), as the strength model's zero weight on the goldfish clock predicted. Cost, stated plainly:**
+3 decks moved B1 -> B2, all three labelled B1, so exact slips 59.5% -> 59.0% (371 -> 368) and B1
+recall 48.8% -> 46.5%. They are go-wide decks whose anthems now count and self-labels skew low, so it
+ships; revert is removing the three `anthem_*` blocks in `tier0._run_one`.
+**NOT done, deliberately:** (b) cost reducers and CDA P/T;
 (c) the "other" 41% of statics.
 
 **Plan, in order (each phase ships and measures on its own):**

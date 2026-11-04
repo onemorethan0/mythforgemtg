@@ -31,7 +31,9 @@ All randomness flows through SeededRng (invariant #1). No card names appear here
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field, replace
+from functools import lru_cache
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.semantics import tags
@@ -58,6 +60,26 @@ class SimConfig:
     goldfish_life: int = 40  # single-opponent goldfish clock
     mulligan_min_lands: int = 2  # keep a 7/6-card hand only with lands in [min, max]
     mulligan_max_lands: int = 5
+
+
+@lru_cache(maxsize=4096)
+def _anthems_in_text(oracle_text: str) -> tuple[tuple[int, bool], ...]:
+    """Flat POWER anthems an oracle text prints on a line of their own: ((power, others), ...).
+
+    Rung-1 and CCM-free like the rest of tier0, so it reads the card's own lines with the same
+    strict, unconditional parser the tier-2 sim uses (`compiler.parse_anthem`). Only a bonus to
+    YOUR creatures counts: goldfish has no opposing board to shrink, tokens are not tracked apart
+    from other creatures here so a 'nontoken' anthem is skipped (the honest under-count), and a
+    modal bullet or ability-word line never matches because the parser anchors on the subject."""
+    from mythgauntlet.semantics.compiler import parse_anthem
+
+    out: list[tuple[int, bool]] = []
+    for line in (oracle_text or "").splitlines():
+        line = re.sub(r"\([^)]*\)", "", line).strip()
+        a = parse_anthem(line)
+        if a and a["affects"] == "you" and not a["nontoken"] and a["power"] > 0:
+            out.append((a["power"], a["others"]))
+    return tuple(out)
 
 
 @dataclass(frozen=True)
@@ -90,6 +112,13 @@ class SimCard:
         the goldfish clock under-counted it as single damage. A creature with defender deals
         none (CR 702.3b): tier0 used to swing with it."""
         return combat_rules.attack_power(self.card, None)
+
+    @property
+    def anthems(self) -> tuple[tuple[int, bool], ...]:
+        """Static power anthems this PERMANENT provides (never an instant or sorcery)."""
+        if self.card.has_type("Instant") or self.card.has_type("Sorcery"):
+            return ()
+        return _anthems_in_text(self.card.oracle_text or "")
 
     def attack_power_under(self, rule: combat_rules.CombatRule | None) -> int:
         """`attack_power` while the commander's combat rule applies (see combat_rules)."""
@@ -290,6 +319,14 @@ def _run_one(
     pending_power_rule = 0
     board_creatures = 0  # count of able-to-attack creatures (mirrors board_power, for go-wide)
     pending_creatures = 0
+    # Static anthems (docs/BACKLOG.md B3). The per-creature power bonus applies the moment its
+    # source resolves; a CREATURE source dies in a wipe, a noncreature one does not. A lord
+    # ("Other creatures ...") never buffs itself, so once it is able to attack its own bonus is
+    # taken back out (`lord_self_active`, folded in with board_creatures at untap).
+    anthem_noncreature = 0
+    anthem_creature = 0
+    lord_self_pending = 0
+    lord_self_active = 0
     engine_active = 0  # extra draws per turn from resolved engines
     engine_pending = 0
     enabler_active = False  # a cheat-into-play enabler (Kaalia class) is online + can attack
@@ -316,6 +353,14 @@ def _run_one(
     def apply_effects(sc: SimCard, is_commander: bool = False) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         nonlocal creature_engine, creature_dmg_engine, pending_power_rule
+        nonlocal anthem_noncreature, anthem_creature, lord_self_pending
+        for bonus, others in sc.anthems:
+            if sc.card.is_creature:
+                anthem_creature += bonus
+                if others:
+                    lord_self_pending += bonus
+            else:
+                anthem_noncreature += bonus
         if sc.card.is_creature:
             pending_power += sc.attack_power
             pending_power_rule += sc.attack_power_under(rule)
@@ -355,6 +400,8 @@ def _run_one(
         pending_power_rule = 0
         board_creatures += pending_creatures
         pending_creatures = 0
+        lord_self_active += lord_self_pending
+        lord_self_pending = 0
         engine_active += engine_pending
         engine_pending = 0
         dmg_engine_active += dmg_engine_pending
@@ -396,6 +443,8 @@ def _run_one(
             pending_power_rule = 0
             board_creatures = 0
             pending_creatures = 0
+            anthem_creature = 0  # creature-sourced anthems die with their source
+            lord_self_active = lord_self_pending = 0
             sources = [s for s in sources
                        if not s.from_creature or (commander_stays and s.from_commander)]
             enabler_active = enabler_pending = False  # the enabler died too
@@ -407,6 +456,10 @@ def _run_one(
                 board_power = commander.attack_power
                 board_power_rule = commander.attack_power_under(rule)
                 board_creatures = 1
+                for bonus, others in commander.anthems:  # a surviving commander keeps its anthem
+                    anthem_creature += bonus
+                    if others:
+                        lord_self_active += bonus
                 enabler_active = commander.fx.cheats_creatures
                 creature_engine = commander.fx.engine_draw
                 creature_dmg_engine = commander.fx.magecraft_damage + commander.fx.cast_damage
@@ -500,6 +553,7 @@ def _run_one(
         # combat: everything that was already down swings at the goldfish opponent
         rule_live = rule is not None and commander is not None and not commander_in_zone
         swing = board_power_rule if rule_live else board_power
+        swing += max(0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
         stats.board_power_by_turn.append(swing)
         stats.board_creatures_by_turn.append(board_creatures)
         damage += swing
@@ -518,7 +572,8 @@ def _run_one(
             stats.kill_turn = turn
 
     rule_live = rule is not None and commander is not None and not commander_in_zone
-    stats.final_board_power = board_power_rule if rule_live else board_power
+    stats.final_board_power = (board_power_rule if rule_live else board_power) + max(
+        0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
     stats.final_board_creatures = board_creatures
     stats.dead_cards = sum(1 for c in hand if not c.is_land)
     return stats
