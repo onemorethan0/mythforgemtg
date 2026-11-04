@@ -571,6 +571,32 @@ _REVEAL_UNTIL_RE = re.compile(
     re.I,
 )
 
+# A BLINK: "Exile target creature you control, then return it to the battlefield ..." (Blur,
+# Vizier of Deferment, Hallowed Respite). The vocabulary has no blink op, so the accepted
+# encoding is an `exile` PLUS a return op (the same set `interpreter.is_flicker` reads; the
+# interpreter drops such a pair so it never runs as removal -- see that function). Two shapes
+# defeat that and are what the gate below catches, measured 2026-11-04 over the store:
+#   * exile with NO return op (17 of 160 blink cards: Hallowed Respite, Mistmeadow Vanisher,
+#     Vizier of Deferment, Settle Beyond Reality ...): nothing marks it as a blink, so it
+#     EXECUTES as permanent removal of an opponent's creature.
+#   * a blink that also carries `gain_control` (25 cards: Ephemerate, Displacer Kitten, ...):
+#     the catch-all op the compiler reaches for when it has no word for "returns it".
+# Deliberately narrower than the text a human reads as a blink: a return tied to the exiling
+# permanent LEAVING ("... under its owner's control when Portcullis leaves the battlefield",
+# Oblivion Ring) is an exile-until, which really is removal while the permanent stays, and a
+# card pulled from a graveyard is recursion. Both are skipped, not flagged.
+_BLINK_RETURN_OPS = frozenset({"return_to_hand", "reanimate", "return_to_battlefield",
+                               "put_onto_battlefield"})  # lock-step with interpreter._RETURN_OPS
+_BLINK_RE = re.compile(
+    r"\bexile\b[^.]{0,200}?(?:,|;|—)\s*(?:then\s+)?return\s+(?:it|that card|them|those cards|"
+    r"that creature|those creatures|that permanent)\s+to\s+the\s+battlefield"
+    r"|\bexile\b[^.]{0,200}\.\s*return\s+(?:it|that card|them|those cards|that creature|"
+    r"that permanent)\s+to\s+the\s+battlefield",
+    re.I,
+)
+_BLINK_EXILE_UNTIL_LEAVES_RE = re.compile(r"\b(?:leaves|leave|dies)\b", re.I)
+
+
 # "Search your library [and/or graveyard] for a card named [X]" (Angrath's Fury, Jace's
 # Ruse, Oko's Hospitality) -- the classic named-card tutor, and squarely what
 # search_library exists for. A SEPARATE surface template from the reveal-until one
@@ -986,6 +1012,24 @@ def cross_check(doc: dict, card: Card) -> list[str]:
                 "is found -- that terminates on a guaranteed match (or an exhausted "
                 "library), which is functionally a real search, but CCM has no "
                 "search_library"
+            )
+    blink = _BLINK_RE.search(text)
+    if (blink and "graveyard" not in text[max(0, blink.start() - 5):blink.end()]
+            and not _BLINK_EXILE_UNTIL_LEAVES_RE.search(text[blink.end():blink.end() + 140])):
+        # A BLINK (see _BLINK_RE). Both directions matter: exile-without-a-return reads as
+        # permanent removal, and gain_control is never what "returns it" means.
+        if "exile" in ops_present and not (ops_present & _BLINK_RETURN_OPS):
+            errors.append(
+                "oracle text exiles and then RETURNS the object to the battlefield (a "
+                "blink), but the CCM has an exile with no return op -- an exile alone "
+                "executes as permanent removal; add the return (return_to_hand or "
+                "reanimate, no zone, no condition) so the pair reads as a blink"
+            )
+        if "gain_control" in ops_present:
+            errors.append(
+                "CCM declares gain_control but the text is a blink (exile, then return it "
+                "to the battlefield under its owner's control) -- nobody gains control of "
+                "anything; model it as exile plus a return op"
             )
     if ("look_and_select" in ops_present and "look_and_select" not in licensed
             and not _LOOK_AND_SELECT_ZONE_RE.search(text)):
