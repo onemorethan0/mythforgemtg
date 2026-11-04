@@ -260,9 +260,9 @@ no ids** while the single delete does (its own comment says it `rmtree`s a path 
 the 16-hex shape or it is skipped. (9) **`apply-swap` checked duplicates against the TYPED name, then
 resolved the add by a fuzzy lookup**, so "arcane signt" resolved to a card already in the deck and
 added a second copy to a singleton deck (and had already cut the other card); the resolved name is
-now checked before anything is mutated. Collection routes (20 tests) and build routes (17) found no
-bugs. Remaining route-level: `routes_strength` engine-proxy routes (advise/measure/duel/breakdown/
-mentor), `import_preview`/`import_save`, `routes_misc`.
+now checked before anything is mutated. Collection routes (20 tests), build routes (17), import routes (15), engine-proxy routes (30) and
+the themer LLM transport (17) found no bugs; the transport tests pin the documented sampler-forwarding
+regression and were mutation-checked (dropping the forwarding fails 2 of them). Remaining route-level: `routes_strength` breakdown/mentor/card-impact routes, the rest of `routes_misc`.
 Covered so far (2026-11-04, ~480 tests): logbuffer, gen_settings, exporter, deck_import parsing,
 mana_pips, api/cards, buildable, playstyle, api/state, set_symbol, card_renderer, themer, image_gen,
 card_video, collection parsing. Remaining by untested-function count: `api/routes_collection.py`,
