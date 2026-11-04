@@ -12,7 +12,7 @@ decision or go-ahead (outward-facing, or a product call).
 |---|---|---|---|
 | B1 | Mentor holistic bench vs the 87-90/90 bar | CLOSED: 87/90 after 3 gate fixes | C |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
-| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE in tier2 + tier0; cost reducers, CDA, 'other' open | C |
+| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE (tier2 + tier0); 'other' is long-tail (no more parsing worth it); cost reducers need the duel sim | C |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
 | B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
@@ -140,6 +140,18 @@ Reverted per the rule. The effect is real but lands on the bracket estimate; the
 the better home because it does not feed the bracket. Cost there is the ~10 scattered `card.cost`
 sites in `game.py`/`tier2.py` (legal-action generation and payment must agree, or a card is
 offered that cannot be paid). Raw data: `docs/bench/bracket_accuracy_2026-11-04_reducers.json`.
+**The 'other' 41% re-examined (`scripts/static_clusters.py`, 2026-11-04): it is NOT 6,876 cards of
+unmodelled mechanics.** Clustering by template, the largest shapes are already handled elsewhere:
+Equipment/Aura bonuses ("Equipped creature gets +2/+2": ~690 notes) are carried by the `attach` op's
+grant, and the keyword reminder lines (Devoid, Convoke, Shadow, Changeling, Kicker, Bestow, Soulbond,
+Toxic, bare "Protection from X") are `Card.keywords`. The 5-word-shape distribution is flat (2,275
+shapes; the top 45 cover 30.7%, and most of those are the two groups above). What is genuinely left is
+bespoke conditional self-pumps ("this creature gets +2/+2 as long as ...": ~100; "... for each X":
+~80; "as long as you control ...": ~76) with no shared template, plus ~100 combat-conditional ones
+("as long as this creature is attacking, it gets +2/+0", "during your turn, this creature has first
+strike"). **Conclusion: no further parsing pass is worth building**; the only closed, combat-relevant
+shape is the attacking / your-turn self-pump (~100 cards), a candidate if anyone wants it. B3 is
+effectively COMPLETE: anthems in both sims, cost reducers parsed, the rest is long-tail.
 **NOT done, deliberately:** (b) cost reducers and CDA P/T;
 (c) the "other" 41% of statics.
 
