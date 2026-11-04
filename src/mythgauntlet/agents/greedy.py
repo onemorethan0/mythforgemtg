@@ -37,6 +37,7 @@ from mythgauntlet.sim.tier2 import (
     loyalty_ready,
     _card_value,
     _commander_cost,
+    cast_cost,
     _find_counter,
     _find_instant_removal,
     _instant_answer,
@@ -256,7 +257,7 @@ class GreedyAgent:
         for gc in me.hand:
             if gc.sim.is_land:
                 continue
-            payment = _can_pay(me.sources, gc.card.cost)
+            payment = _can_pay(me.sources, cast_cost(me, gc))
             if payment is None:
                 continue
             value = _card_value(gc, me, opp, turn, cfg)
@@ -271,7 +272,7 @@ class GreedyAgent:
             if best is None or value > best[0]:
                 best = (value, CastSpell(gc))
         if me.commander_in_zone and me.commander is not None:
-            payment = _can_pay(me.sources, _commander_cost(me.commander, me.commander_casts))
+            payment = _can_pay(me.sources, _commander_cost(me.commander, me.commander_casts, me))
             if payment is not None:
                 value = _card_value(me.commander, me, opp, turn, cfg) + 1.0
                 if not (ready - len(payment) < reserve and value < _TAP_OUT_VALUE) and (

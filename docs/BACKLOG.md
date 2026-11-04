@@ -12,7 +12,7 @@ decision or go-ahead (outward-facing, or a product call).
 |---|---|---|---|
 | B1 | Mentor holistic bench vs the 87-90/90 bar | CLOSED: 87/90 after 3 gate fixes | C |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
-| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE (tier2 + tier0); 'other' is long-tail (no more parsing worth it); cost reducers need the duel sim | C |
+| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE (tier2 + tier0); COMPLETE: cost reducers in the duel sim, 'other' is long-tail | C |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
 | B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
@@ -119,6 +119,27 @@ with state-based death at 0 toughness repeated to a fixed point. 13 tests.
 **A/B (gauntlet --opponents 8 --games 20 --seed 777, 1,153 decks):** bracket means identical within
 1 Elo. Dose-response is clean: decks with no anthem -1.2 (noise), one anthem +3.4, two or more
 +6.2; the top gainers hold 2-4 anthems. Small by nature (one card in 99) but pointed the right way.
+**Phase 2b DONE 2026-11-04: tier0 (the goldfish clock behind `analyze`) now sees anthems.** It is
+rung-1/CCM-free, so `tier0._anthems_in_text` reads the card's own oracle lines with the same strict
+parser (flat power bonuses to your own creatures only; `nontoken` skipped as an honest under-count;
+a lord never buffs itself; a creature-sourced anthem dies in a wipe, an enchantment survives;
+instants and sorceries never count). 7 tests, suite 3,094 green. **Guard run (bracket_accuracy,
+624 labelled decks, real combos): within-one UNCHANGED at 92.1% (96.3% excluding impossible
+labels), as the strength model's zero weight on the goldfish clock predicted. Cost, stated plainly:**
+3 decks moved B1 -> B2, all three labelled B1, so exact slips 59.5% -> 59.0% (371 -> 368) and B1
+recall 48.8% -> 46.5%. They are go-wide decks whose anthems now count and self-labels skew low, so it
+ships; revert is removing the three `anthem_*` blocks in `tier0._run_one`.
+**Cost reducers: DONE in the duel simulator (2026-11-04); tier0 deliberately left alone.** The tier0
+wiring was reverted by the bracket guard (within-one 575 -> 574; 4 of 5 changed decks moved away from
+their label). The DUEL simulator does not feed the bracket, so reducers live there: `sim/cost_rules.py`
+(strict parser reuse, subject matching, `discounted`, `total_discount`), `_Permanent.cost_reducers`,
+and ONE helper `tier2.cast_cost(player, gc)` that replaced all 13 places the duel sim read a card's
+cost (legal-action enumeration, the commander cast with tax-then-reduction per CR 601.2f, counter and
+instant-removal windows, the apply paths, `_find_counter`, `_find_instant_removal`, and the greedy
+agent), so legality and payment cannot disagree. 10 tests, including "an unaffordable spell becomes
+legal AND payable and spends the discounted amount". Suite 3,460 green (the golden-master tests pin
+decks without reducers). **A/B (gauntlet seed 777, 1,153 decks): bracket means within 2 Elo; 404 decks
+with a reducer +2.8 mean, 749 without -1.5.** Bracket accuracy not re-run: tier0 is unchanged.
 **Phase 2b DONE 2026-11-04: tier0 (the goldfish clock behind `analyze`) now sees anthems.** It is
 rung-1/CCM-free, so `tier0._anthems_in_text` reads the card's own oracle lines with the same strict
 parser (flat power bonuses to your own creatures only; `nontoken` skipped as an honest under-count;

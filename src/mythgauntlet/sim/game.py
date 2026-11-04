@@ -41,6 +41,7 @@ from mythgauntlet.sim.tier2 import (
     GameCard,
     _apply_instant_removal,
     _commander_cost,
+    cast_cost,
     expire_until_end_of_turn,
     _find_counter,
     _find_instant_removal,
@@ -754,7 +755,7 @@ def _payable_casts(state: GameState) -> list[GameCard]:
         if gc.sim.is_land or id(gc) in seen:
             continue
         seen.add(id(gc))
-        if _can_pay(me.sources, gc.card.cost) is not None:
+        if _can_pay(me.sources, cast_cost(me, gc)) is not None:
             out.append(gc)
     return out
 
@@ -775,7 +776,7 @@ def legal_actions(state: GameState) -> list[object]:
             actions.extend(PlayLand(c) for c in lands.values())
         actions.extend(CastSpell(gc) for gc in _payable_casts(state))
         if me.commander_in_zone and me.commander is not None and _can_pay(
-            me.sources, _commander_cost(me.commander, me.commander_casts)
+            me.sources, _commander_cost(me.commander, me.commander_casts, me)
         ) is not None:
             actions.append(CastCommander())
         return actions
@@ -802,7 +803,7 @@ def legal_actions(state: GameState) -> list[object]:
             if not (p.counter and p.is_instant) or id(gc) in seen_ctr:
                 continue
             seen_ctr.add(id(gc))
-            if _can_pay(actor.sources, gc.card.cost) is not None:
+            if _can_pay(actor.sources, cast_cost(actor, gc)) is not None:
                 actions.append(CounterSpell(gc))
         return actions
     if kind == INSTANT_WINDOW:
@@ -819,7 +820,7 @@ def legal_actions(state: GameState) -> list[object]:
                 if not (p.removal > 0 or (p.damage_any > 0 and biggest.toughness <= p.damage_any)):
                     continue
                 seen_rm.add(id(gc))
-                if _can_pay(reactor.sources, gc.card.cost) is not None:
+                if _can_pay(reactor.sources, cast_cost(reactor, gc)) is not None:
                     actions.append(CastRemoval(gc))
         return actions
     if kind == COMBAT_ATTACK:
@@ -895,7 +896,8 @@ def apply(state: GameState, action: object) -> None:
     if isinstance(action, (CastSpell, CastCommander)):
         is_commander = isinstance(action, CastCommander)
         gc = me.commander if is_commander else action.card
-        cost = _commander_cost(me.commander, me.commander_casts) if is_commander else gc.card.cost
+        cost = (_commander_cost(me.commander, me.commander_casts, me) if is_commander
+                else cast_cost(me, gc))
         payment = _can_pay(me.sources, cost)
         assert payment is not None, "apply() got an unpayable cast"
         value = _card_value(gc, me, opp, state.turn, state.cfg) + (1.0 if is_commander else 0.0)
@@ -968,7 +970,7 @@ def _apply_reaction(state: GameState, action: object) -> None:
     if state.phase == COUNTER_WINDOW:
         if isinstance(action, CounterSpell):
             actor = state.players[state.reaction_actor]
-            payment = _can_pay(actor.sources, action.card.card.cost)
+            payment = _can_pay(actor.sources, cast_cost(actor, action.card))
             assert payment is not None, "apply() got an unpayable counter"
             actor.hand.remove(action.card)
             for idx in payment:
@@ -983,7 +985,7 @@ def _apply_reaction(state: GameState, action: object) -> None:
     # INSTANT_WINDOW
     if isinstance(action, CastRemoval):
         reactor, active = state.players[state.reaction_actor], state.players[state.active]
-        payment = _can_pay(reactor.sources, action.card.card.cost)
+        payment = _can_pay(reactor.sources, cast_cost(reactor, action.card))
         assert payment is not None, "apply() got an unpayable removal"
         _apply_instant_removal(reactor, active, action.card, payment)
         # stay in INSTANT_WINDOW: advance offers another removal or moves to combat

@@ -75,6 +75,7 @@ from mythgauntlet.semantics.profile import (
     profile_for,
 )
 from mythgauntlet.semantics.store import SemanticsStore
+from mythgauntlet.sim import cost_rules
 from mythgauntlet.sim.rng import SeededRng
 from mythgauntlet.sim.tier0 import SimCard, _can_pay, _Source
 
@@ -211,6 +212,8 @@ class _Permanent:
     # `granted_keywords`/`temp_*`, so an anthem leaving never deletes an equipment's keyword or an
     # until-end-of-turn pump.
     anthems: tuple = ()
+    # Static cost reducers this permanent provides, (subject, generic amount) pairs (sim/cost_rules).
+    cost_reducers: tuple = ()
     anthem_delta: tuple[int, int] = (0, 0)
     anthem_keywords: frozenset[str] = frozenset()
 
@@ -449,9 +452,20 @@ def build_game_cards(
     return out
 
 
-def _commander_cost(gc: GameCard, casts: int):
+def cast_cost(player: "_Player", gc: GameCard):
+    """What `gc` costs `player` to cast right now: its printed cost less any static reducers the
+    player controls. THE one place the duel sim reads a card's cost for legality or payment."""
     cost = gc.card.cost
-    return replace(cost, generic=cost.generic + 2 * casts) if casts else cost
+    return cost_rules.discounted(cost, cost_rules.total_discount(player.battlefield, gc.card))
+
+
+def _commander_cost(gc: GameCard, casts: int, player: "_Player | None" = None):
+    cost = gc.card.cost
+    if casts:
+        cost = replace(cost, generic=cost.generic + 2 * casts)     # tax first (CR 601.2f), then reductions
+    if player is not None:
+        cost = cost_rules.discounted(cost, cost_rules.total_discount(player.battlefield, gc.card))
+    return cost
 
 
 def _spawn_tokens(player: _Player, tokens: tuple[int, int, int]) -> None:
@@ -1719,7 +1733,7 @@ def _resolve(
             engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers, source=gc,
             keywords=card.keywords, loyalty=_starting_loyalty(card),
-            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems,
+            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems, cost_reducers=cost_rules.reducers_for_card(card),
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1730,7 +1744,7 @@ def _resolve(
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers, source=gc,
                 keywords=card.keywords, loyalty=_starting_loyalty(card),
-            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems,
+            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems, cost_reducers=cost_rules.reducers_for_card(card),
             )
         )
 
@@ -1805,7 +1819,7 @@ def _find_counter(player: _Player) -> tuple[GameCard, list[int]] | None:
     for gc in player.hand:
         if not (gc.profile.counter and gc.profile.is_instant):
             continue
-        payment = _can_pay(player.sources, gc.card.cost)
+        payment = _can_pay(player.sources, cast_cost(player, gc))
         if payment is None:
             continue
         mv = gc.card.mana_value
@@ -1864,7 +1878,7 @@ def _find_instant_removal(
             continue
         if not (p.removal > 0 or (p.damage_any > 0 and biggest.toughness <= p.damage_any)):
             continue
-        payment = _can_pay(reactor.sources, gc.card.cost)
+        payment = _can_pay(reactor.sources, cast_cost(reactor, gc))
         if payment is not None:
             return gc, payment
     return None
