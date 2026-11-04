@@ -217,7 +217,8 @@ _MOTION_COND_FPS_MAX = 30   # strength 0.0 → most subtle
 
 def _ltxv_cond_fps(strength: float) -> int:
     """Map motion strength 0..1 → LTXV conditioning frame_rate (inverted: lower fps
-    = more motion). 0 → 30 (subtle), 0.5 → 22, 1 → 14 (strong)."""
+    = more motion). 0 → 30 (subtle), 0.5 → 19, 1 → 8 (strong), per
+    _MOTION_COND_FPS_MAX / _MOTION_COND_FPS_MIN."""
     s = max(0.0, min(1.0, float(strength)))
     return int(round(_MOTION_COND_FPS_MAX - s * (_MOTION_COND_FPS_MAX - _MOTION_COND_FPS_MIN)))
 
