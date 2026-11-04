@@ -21,7 +21,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B7 | Test gaps | ongoing; 9 bugs found by writing tests (1 path traversal) | C |
 | B13 | JS<->Python drift (parity tests) | DONE: 2 divergences fixed, 4 mirrors locked | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
-| B9 | Role-strength granularity (S13) + wipe colour requirement | specced, not started | C |
+| B9 | Role-strength granularity (S13) | measured; recommends card unit; **your call** | U |
 | B10 | Offload harness follow-ups | specced | C |
 
 ---
@@ -338,12 +338,27 @@ each opponent, create a token" means the caster creates it).
 **Open (B12b, small):** `deal_damage` with `controller: you` and creature/any/planeswalker type is
 ambiguous (bite vs self-damage, 93 effects); needs a compiler-side split, not an executor guess.
 
-## B9. Role-strength granularity (S13) and the wipe colour requirement
-S13: `card_roles` gives counterspell and wipe a flat 3.0, so supply moves in whole-card steps and a
-deck with two counterspells is 3.0 over (the Omo/landfall canary). Wipe's W/B/R colour requirement
-now fails its own bar. **Method:** the documented three-gate measurement, not a guess; a sweep and
-a doctrine argument (the sim's axis delta cannot see this class, so `advisor_bench` cannot settle it;
-use `scripts/archetype_cut_diff.py`-style own-role cut counts). **Owner:** C.
+## B9. Role-strength granularity (S13) - now with data; needs YOUR call
+**The question:** `card_roles` gives each role a fixed strength per card (wipe/counterspell 3.0, tutor
+2.0, removal 1.0, ramp/draw scaling), so `score_card`'s oversupply (`supply - target`) is in STRENGTH
+units and roles are not comparable: one extra counterspell (3.0 over) outranks a role that is, in the
+player's own terms, further over. The unit a player means, and the one the Mentor already reports
+("removal 2 vs a target of 7"), is CARDS; `role_card_counts` and `card_targets_for` already exist.
+**Experiment (`scripts/cut_unit_experiment.py`, 577 corpus decks, top-6 pool, nothing shipped):**
+| | strength (shipped) | cards |
+|---|---|---|
+| cut pool differs | | on **48.5%** of decks |
+| offered cuts from a role NOT over its card target | 18.8% | **14.2%** |
+| offered cuts that fill the deck's own archetype role | 14.7% | **12.4%** |
+Both proxies improve with the card unit, and it would make cut suggestions use the same unit as the
+Mentor's role table. **Why it is not shipped:** (1) the gain is modest, ~4 points; (2) the sim's axis
+delta cannot rank cut policies (see `advisor_bench`), so there is no outcome metric to confirm it;
+(3) the unit is baked into `redundancy_backed`, the cut sentences (`card_impact._cut_sentence`), the
+swap brief, `role_swap` and about 30 tests, so the change is wide; (4) integer card counts tie often,
+which hands more decisions to the popularity tiebreak. **Recommendation:** ship it behind a `unit`
+parameter, default `cards`, as one reviewed change, and keep the strength unit for the golden-master
+tests. **Decision needed:** do you want cut suggestions in cards (matches the Mentor, ~4 pt fewer
+false positives) or left as is? Default if no answer: left as is.
 
 ## B10. Offload harness follow-ups
 `scripts/dispatch.py` works (`--spread`, `--verify`). Keep: 14b drafts with `--verify` only for
