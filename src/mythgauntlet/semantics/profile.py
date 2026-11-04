@@ -37,7 +37,11 @@ from dataclasses import dataclass
 
 from mythgauntlet.model.card import Card, ManaCost
 from mythgauntlet.semantics import tags
-from mythgauntlet.semantics.interpreter import interpret_ability
+from mythgauntlet.semantics.interpreter import (  # the blink predicate lives with the interpreter
+    _RETURN_OPS,
+    interpret_ability,
+)
+from mythgauntlet.semantics.interpreter import is_flicker as _is_flicker
 from mythgauntlet.semantics.model import EffectVector
 
 _PERIODIC_TRIGGERS = {"upkeep", "draw_step", "end_step", "landfall", "cast_creature",
@@ -51,10 +55,9 @@ _PERIODIC_TRIGGERS = {"upkeep", "draw_step", "end_step", "landfall", "cast_creat
 # SEPARATE derivations (oracle text vs the CCM); fixing one never fixes the other.
 _REMOVAL_TARGET_TYPES = {"creature", "permanent", "any"}
 _CREATURE_TYPE_WORD_RE = re.compile(r"\b(?:creature|permanent)\b")
-# A return that only happens on a condition ("if the gift wasn't promised" -- Parting
-# Gust) leaves a real answer on the other branch; a timing ("at the beginning of the next
-# end step") does not.
-_CONDITIONAL_RETURN_RE = re.compile(r"\b(?:if|unless)\b")
+# (The flicker predicate and its conditional-return rule -- "if the gift wasn't promised",
+# Parting Gust, is still an answer; a timing like "next end step" is not -- live in
+# `interpreter.is_flicker` so every execution path shares one definition.)
 
 # `lose_life` only counts as reach/drain when the CCM SAYS an opponent loses it.
 #
@@ -469,7 +472,6 @@ def _targets_all(target: dict) -> bool:
     return target.get("count") == "all" or target.get("controller") == "each"
 
 
-_RETURN_OPS = {"return_to_hand", "reanimate", "return_to_battlefield", "put_onto_battlefield"}
 _OFF_BATTLEFIELD_ZONES = {"graveyard", "hand", "library", "exile", "stack", "command"}
 
 
@@ -490,26 +492,6 @@ def _is_answer_object(target: dict) -> bool:
     # The compiler writes disjunctions ("creature or planeswalker": 76 effects, "artifact
     # or creature", "creature or enchantment") that an exact set lookup never matched.
     return kind in _REMOVAL_TARGET_TYPES or bool(_CREATURE_TYPE_WORD_RE.search(kind))
-
-
-def _is_flicker(ability: dict) -> bool:
-    """An exile that comes straight back. The compiler has no blink op and spells the
-    return several ways (`return_to_hand` with no zone, `reanimate`, invented names), so
-    an ability that exiles AND returns a battlefield-zone object is a blink (Vizier of
-    Deferment, Glimmerpoint Stag, Blizzard Strix), not removal."""
-    effects = [e for e in ability.get("effects") or [] if isinstance(e, dict)]
-    if not any(e.get("op") == "exile" for e in effects):
-        return False
-    for e in effects:
-        target = _as_dict(e.get("target"))
-        if (e.get("op") in _RETURN_OPS and not target.get("self")
-                # zone "exile" is NOT a blink: Oblivion Ring's compile folds its
-                # leaves-the-battlefield return into the ETB ability with that zone
-                and target.get("zone") in (None, "battlefield")
-                and not _CONDITIONAL_RETURN_RE.search(
-                    str(target.get("condition") or e.get("condition") or ""))):
-            return True
-    return False
 
 
 def _resolution_is_wipe(doc: dict) -> bool:

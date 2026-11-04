@@ -53,6 +53,41 @@ class Resolver(Protocol):
         ...
 
 
+# --- blink / flicker -----------------------------------------------------------------------
+# The compiler has no blink op: "exile target creature you control, then return it" is stored as
+# `exile` plus a return op (return_to_hand with no zone, reanimate, invented names). Executed
+# literally, the exile half is REMOVAL: 64 stored flicker abilities (Astral Slide, Eldrazi
+# Displacer, Angel of Condemnation, ...) exiled an opponent's best creature for good, and a
+# `return_to_hand` half bounced one. A blink is neither, so the whole pair is dropped here; the
+# one place every execution path (tier2 spell/ETB/activated, game._apply_activation) passes through.
+_RETURN_OPS = frozenset({"return_to_hand", "reanimate", "return_to_battlefield", "put_onto_battlefield"})
+_CONDITIONAL_RETURN_RE = re.compile(r"\b(?:if|unless)\b")
+
+
+def _dict_or_empty(value: object) -> dict:
+    return value if isinstance(value, dict) else {}
+
+
+def is_flicker(ability: dict) -> bool:
+    """An exile that comes straight back. The compiler has no blink op and spells the
+    return several ways (`return_to_hand` with no zone, `reanimate`, invented names), so
+    an ability that exiles AND returns a battlefield-zone object is a blink (Vizier of
+    Deferment, Glimmerpoint Stag, Blizzard Strix), not removal."""
+    effects = [e for e in ability.get("effects") or [] if isinstance(e, dict)]
+    if not any(e.get("op") == "exile" for e in effects):
+        return False
+    for e in effects:
+        target = _dict_or_empty(e.get("target"))
+        if (e.get("op") in _RETURN_OPS and not target.get("self")
+                # zone "exile" is NOT a blink: Oblivion Ring's compile folds its
+                # leaves-the-battlefield return into the ETB ability with that zone
+                and target.get("zone") in (None, "battlefield")
+                and not _CONDITIONAL_RETURN_RE.search(
+                    str(target.get("condition") or e.get("condition") or ""))):
+            return True
+    return False
+
+
 _UNPAID_COST_CONDITION = re.compile(
     r"\bif you (pay|paid|discard|sacrifice|exile|reveal|tap|remove)\b"
     r"|\bunless you pay\b|\bif you do\b|\bpay \{"
@@ -187,12 +222,15 @@ def interpret_ability(ability: dict, resolver: Resolver | None = None) -> list[R
     """
     resolver = resolver or DefaultResolver()
     out: list[ResolvedEffect] = []
+    blink = is_flicker(ability)
     for effect in ability.get("effects") or []:
         if not isinstance(effect, dict):
             continue
         op = effect.get("op")
         if op not in OP_SPECS:
             continue
+        if blink and (op == "exile" or op in _RETURN_OPS):
+            continue  # the pair is a blink, not removal or a bounce (see is_flicker)
         condition = effect.get("condition")
         if (effect.get("optional") or condition) and not resolver.condition_holds(
             condition or "", effect
