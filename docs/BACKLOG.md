@@ -11,7 +11,7 @@ decision or go-ahead (outward-facing, or a product call).
 | ID | Item | Status | Owner |
 |---|---|---|---|
 | B1 | Mentor holistic bench vs the 87-90/90 bar | 84/90 first run; re-run queued | C reads, N computes |
-| B2 | Builder bench vs `docs/bench/current.json` | verdicts unchanged; A/B on baseline commit running | C |
+| B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | gate landed; 41-card recompile running | C (N recompiles) |
 | B5 | Bracket recall: B4 34%, B1 44%, B5 36% | specced, not started | C |
@@ -49,9 +49,21 @@ discarded and re-run, not counted. Refresh `docs/bench/current.json` only if the
 **Result 2026-11-04:** 20/20 valid, 0 dropped, every commander's verdict unchanged, mean synergy
 15.85 -> 15.62. One summary figure moved: `mean_weakest_theme_cards` 9.12 -> 7.22. The baseline is
 from 2026-08-18, so code AND live Scryfall data both drifted. **Disambiguating run in progress:** the
-baseline commit (45235c0) in a worktree at `../mtg_bench_ab`, run on today's data. If it also reads
-~7.2 it is data drift and `current.json` is simply refreshed; if it reads ~9.1 a code change since
-August moved theme composition and must be bisected. Remove the worktree when done.
+baseline commit (45235c0) in a worktree, run on today's data (worktree since removed).
+**Answer: it is a code change, not data drift, and it is narrow.** The baseline code on today's data
+reproduces the August figure exactly (9.57 on the 7 comparable multi-theme, non-degraded commanders;
+the run also dropped Atraxa and Tom Bombadil for empty Scryfall role queries, correctly discarded).
+HEAD differs on exactly two of the seven: **Talrand** weakest theme 10 -> 6 (voltron_combat) and
+**Muldrotha** 11 -> 6 (reanimator); the other five are identical. Synergy did not fall (Talrand
+16.7 -> 17.0, Muldrotha 11.2 -> 11.3) and no verdict changed, so this may be an improvement (fewer
+cards in a spurious theme) rather than a regression.
+**Closed 2026-11-04 (B2b):** read the theme sets instead of bisecting. Talrand gained a *third
+detected theme* (`voltron_combat`, 6 cards) while its on-theme total stayed 31 (spellslinger 10 -> 19,
+tokens 24 -> 16); Muldrotha has the same two themes and the same on-theme total (16), with the
+reanimator count 11 -> 6 (a counting shift after the 520e2df reanimator-pattern fix). The "weakest
+theme" figure falls mechanically whenever a theme is added, so this is a metric effect, not worse
+builds. `docs/bench/current.json` is refreshed from the 2026-11-04 run. `builder_bench` gained
+`--only` (comma-separated ROSTER names) for future bisects; a partial run is not comparable whole.
 
 ## B3. Static abilities (the largest remaining hole)
 **Measured 2026-11-04 (`scripts/static_scan.py`):** 16,555 note-only statics (no op, free text).

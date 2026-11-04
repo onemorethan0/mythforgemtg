@@ -42,12 +42,12 @@
         "finisher": 4
       },
       "basics": 28,
-      "curve_deviation": 22.0,
+      "curve_deviation": 24.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 30.0,
-      "baseline": 10.9,
-      "coverage": 0.592,
+      "synergy": 30.9,
+      "baseline": 10.8,
+      "coverage": 0.577,
       "verdict": "focused-with-spice",
       "on_theme_cards": 28,
       "theme_cards": {
@@ -83,14 +83,14 @@
       "curve_deviation": 12.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 21.1,
-      "baseline": 7.3,
+      "synergy": 20.5,
+      "baseline": 7.4,
       "coverage": 0.63,
       "verdict": "on-rails",
       "on_theme_cards": 35,
       "theme_cards": {
-        "tokens": 27,
-        "voltron_combat": 14
+        "tokens": 26,
+        "voltron_combat": 15
       },
       "deck_themes": [
         "tokens",
@@ -108,7 +108,7 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 20,
+        "ramp": 19,
         "draw": 21,
         "removal": 7,
         "wipe": 1,
@@ -119,13 +119,13 @@
       "curve_deviation": 20.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 20.4,
-      "baseline": 7.2,
+      "synergy": 20.5,
+      "baseline": 6.9,
       "coverage": 0.827,
       "verdict": "on-rails",
-      "on_theme_cards": 39,
+      "on_theme_cards": 40,
       "theme_cards": {
-        "tokens": 39
+        "tokens": 40
       },
       "deck_themes": [
         "tokens"
@@ -143,19 +143,19 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 16,
+        "ramp": 15,
         "draw": 12,
-        "removal": 4,
-        "wipe": 6,
+        "removal": 2,
+        "wipe": 7,
         "protection": 6,
-        "finisher": 5
+        "finisher": 6
       },
       "basics": 23,
-      "curve_deviation": 12.0,
+      "curve_deviation": 14.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 17.9,
-      "baseline": 5.2,
+      "synergy": 17.5,
+      "baseline": 5.4,
       "coverage": 0.895,
       "verdict": "on-rails",
       "on_theme_cards": 23,
@@ -187,12 +187,12 @@
         "finisher": 2
       },
       "basics": 13,
-      "curve_deviation": 24.0,
+      "curve_deviation": 26.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 5.4,
-      "baseline": 3.2,
-      "coverage": 0.721,
+      "synergy": 5.3,
+      "baseline": 3.4,
+      "coverage": 0.709,
       "verdict": "off-plan",
       "on_theme_cards": 24,
       "theme_cards": {
@@ -213,7 +213,7 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
+        "ramp": 18,
         "draw": 15,
         "removal": 4,
         "wipe": 5,
@@ -224,16 +224,15 @@
       "curve_deviation": 12.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 24.1,
-      "baseline": 9.3,
-      "coverage": 0.701,
+      "synergy": 23.0,
+      "baseline": 9.0,
+      "coverage": 0.675,
       "verdict": "focused-with-spice",
-      "on_theme_cards": 3,
+      "on_theme_cards": 2,
       "theme_cards": {
-        "enchantress": 3
+        "enchantress": 2
       },
       "deck_themes": [
-        "enchantress",
         "landfall"
       ]
     },
@@ -246,8 +245,7 @@
       "themes": [
         "tribal_vampires",
         "tokens",
-        "counters",
-        "voltron_combat"
+        "counters"
       ],
       "deck_size": 99,
       "roles": {
@@ -266,12 +264,11 @@
       "baseline": 6.3,
       "coverage": 0.812,
       "verdict": "focused-with-spice",
-      "on_theme_cards": 31,
+      "on_theme_cards": 27,
       "theme_cards": {
         "tribal_vampires": 17,
-        "tokens": 13,
-        "counters": 7,
-        "voltron_combat": 8
+        "tokens": 12,
+        "counters": 7
       },
       "deck_themes": [
         "tribal_vampires",
@@ -294,15 +291,15 @@
         "removal": 11,
         "wipe": 3,
         "protection": 9,
-        "finisher": 3
+        "finisher": 4
       },
       "basics": 9,
       "curve_deviation": 26.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 18.1,
-      "baseline": 9.7,
-      "coverage": 0.867,
+      "synergy": 18.2,
+      "baseline": 9.5,
+      "coverage": 0.878,
       "verdict": "off-plan",
       "on_theme_cards": 24,
       "theme_cards": {
@@ -319,28 +316,30 @@
       "padded_slots": 0,
       "rate_limited": false,
       "themes": [
-        "face_down"
+        "face_down",
+        "etb"
       ],
       "deck_size": 99,
       "roles": {
         "ramp": 14,
-        "draw": 16,
-        "removal": 13,
-        "wipe": 3,
-        "protection": 5,
+        "draw": 13,
+        "removal": 12,
+        "wipe": 1,
+        "protection": 4,
         "finisher": 1
       },
       "basics": 18,
-      "curve_deviation": 24.0,
+      "curve_deviation": 20.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 40.5,
-      "baseline": 11.7,
-      "coverage": 0.556,
+      "synergy": 36.8,
+      "baseline": 11.6,
+      "coverage": 0.469,
       "verdict": "focused-with-spice",
-      "on_theme_cards": 21,
+      "on_theme_cards": 16,
       "theme_cards": {
-        "face_down": 21
+        "face_down": 15,
+        "etb": 1
       },
       "deck_themes": [
         "face_down"
@@ -358,7 +357,7 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 15,
+        "ramp": 16,
         "draw": 19,
         "removal": 13,
         "wipe": 4,
@@ -366,12 +365,12 @@
         "finisher": 2
       },
       "basics": 8,
-      "curve_deviation": 8.0,
+      "curve_deviation": 10.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 22.0,
-      "baseline": 12.1,
-      "coverage": 0.473,
+      "synergy": 21.4,
+      "baseline": 11.9,
+      "coverage": 0.484,
       "verdict": "brew",
       "on_theme_cards": 20,
       "theme_cards": {
@@ -406,9 +405,9 @@
       "curve_deviation": 14.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 12.3,
-      "baseline": 5.6,
-      "coverage": 0.871,
+      "synergy": 12.5,
+      "baseline": 5.9,
+      "coverage": 0.843,
       "verdict": "off-plan",
       "on_theme_cards": 20,
       "theme_cards": {
@@ -456,19 +455,19 @@
       "deck_size": 99,
       "roles": {
         "ramp": 9,
-        "draw": 16,
-        "removal": 7,
-        "wipe": 5,
-        "protection": 7,
-        "finisher": 6
+        "draw": 13,
+        "removal": 9,
+        "wipe": 6,
+        "protection": 6,
+        "finisher": 7
       },
       "basics": 22,
       "curve_deviation": 18.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 8.8,
-      "baseline": 4.1,
-      "coverage": 0.935,
+      "synergy": 9.3,
+      "baseline": 4.6,
+      "coverage": 0.922,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -486,17 +485,17 @@
         "ramp": 21,
         "draw": 17,
         "removal": 8,
-        "wipe": 4,
+        "wipe": 5,
         "protection": 5,
         "finisher": 2
       },
       "basics": 8,
-      "curve_deviation": 4.0,
+      "curve_deviation": 2.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": -1.3,
+      "synergy": -1.4,
       "baseline": 3.3,
-      "coverage": 0.363,
+      "coverage": 0.374,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -513,13 +512,13 @@
       "roles": {
         "ramp": 18,
         "draw": 14,
-        "removal": 10,
+        "removal": 9,
         "wipe": 4,
         "protection": 6,
         "finisher": 2
       },
       "basics": 9,
-      "curve_deviation": 0.0,
+      "curve_deviation": 2.0,
       "colors_ok": true,
       "colors_short": {},
       "synergy": 4.5,
@@ -539,20 +538,20 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 19,
+        "ramp": 18,
         "draw": 19,
         "removal": 10,
         "wipe": 2,
         "protection": 8,
-        "finisher": 5
+        "finisher": 6
       },
       "basics": 22,
-      "curve_deviation": 10.0,
+      "curve_deviation": 6.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 12.9,
+      "synergy": 13.0,
       "baseline": 5.5,
-      "coverage": 0.87,
+      "coverage": 0.844,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -569,20 +568,20 @@
       "themes": [],
       "deck_size": 99,
       "roles": {
-        "ramp": 25,
-        "draw": 13,
+        "ramp": 23,
+        "draw": 14,
         "removal": 7,
         "wipe": 0,
         "protection": 9,
-        "finisher": 3
+        "finisher": 2
       },
       "basics": 34,
-      "curve_deviation": 32.0,
+      "curve_deviation": 36.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 13.7,
+      "synergy": 13.6,
       "baseline": 4.7,
-      "coverage": 0.831,
+      "coverage": 0.846,
       "verdict": "off-plan",
       "on_theme_cards": 0,
       "theme_cards": {},
@@ -595,33 +594,34 @@
       "padded_slots": 0,
       "rate_limited": false,
       "themes": [
+        "spellslinger",
         "tokens",
-        "spellslinger"
+        "voltron_combat"
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 15,
+        "ramp": 14,
         "draw": 21,
-        "removal": 9,
+        "removal": 8,
         "wipe": 0,
         "protection": 1,
         "finisher": 3
       },
       "basics": 28,
-      "curve_deviation": 22.0,
+      "curve_deviation": 26.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 16.7,
-      "baseline": 5.2,
-      "coverage": 0.704,
+      "synergy": 17.0,
+      "baseline": 5.7,
+      "coverage": 0.648,
       "verdict": "off-plan",
       "on_theme_cards": 31,
       "theme_cards": {
-        "tokens": 24,
-        "spellslinger": 10
+        "spellslinger": 19,
+        "tokens": 16,
+        "voltron_combat": 6
       },
       "deck_themes": [
-        "tokens",
         "spellslinger"
       ]
     },
@@ -637,25 +637,25 @@
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 18,
-        "draw": 9,
+        "ramp": 19,
+        "draw": 10,
         "removal": 7,
         "wipe": 4,
-        "protection": 5,
-        "finisher": 5
+        "protection": 4,
+        "finisher": 4
       },
       "basics": 24,
-      "curve_deviation": 14.0,
+      "curve_deviation": 16.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 13.4,
-      "baseline": 7.5,
-      "coverage": 0.68,
+      "synergy": 13.3,
+      "baseline": 7.1,
+      "coverage": 0.667,
       "verdict": "off-plan",
-      "on_theme_cards": 23,
+      "on_theme_cards": 22,
       "theme_cards": {
         "tokens": 20,
-        "aristocrats": 5
+        "aristocrats": 4
       },
       "deck_themes": [
         "tokens",
@@ -670,35 +670,35 @@
       "padded_slots": 0,
       "rate_limited": false,
       "themes": [
-        "reanimator",
-        "graveyard"
+        "graveyard",
+        "reanimator"
       ],
       "deck_size": 99,
       "roles": {
-        "ramp": 17,
-        "draw": 17,
-        "removal": 5,
+        "ramp": 14,
+        "draw": 16,
+        "removal": 6,
         "wipe": 5,
-        "protection": 3,
+        "protection": 5,
         "finisher": 5
       },
       "basics": 19,
       "curve_deviation": 8.0,
       "colors_ok": true,
       "colors_short": {},
-      "synergy": 11.2,
-      "baseline": 4.4,
-      "coverage": 0.625,
+      "synergy": 11.3,
+      "baseline": 4.5,
+      "coverage": 0.7,
       "verdict": "off-plan",
       "on_theme_cards": 16,
       "theme_cards": {
-        "reanimator": 11,
-        "graveyard": 16
+        "graveyard": 16,
+        "reanimator": 6
       },
       "deck_themes": [
         "graveyard",
-        "reanimator",
-        "aristocrats"
+        "aristocrats",
+        "reanimator"
       ]
     }
   ]

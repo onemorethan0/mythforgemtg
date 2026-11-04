@@ -206,15 +206,19 @@ def synthetic_collection() -> set[str]:
     return {n for n in names if n}
 
 
-def run(pause: float, strict: bool = False) -> dict:
+def run(pause: float, strict: bool = False, only: tuple[str, ...] = ()) -> dict:
+    roster = tuple(n for n in ROSTER if not only or n in only)
+    if only and len(roster) != len(only):
+        missing = sorted(set(only) - set(ROSTER))
+        raise SystemExit(f"--only names not in the fixed ROSTER: {missing}")
     client = ScryfallClient()
     owned = synthetic_collection() if strict else set()
     if strict:
         print(f"strict arm: synthetic collection of {len(owned)} unique cards "
               f"from {COLLECTION_DECKS} corpus decks")
     results = []
-    for i, name in enumerate(ROSTER, 1):
-        print(f"[{i:2}/{len(ROSTER)}] {name}", flush=True)
+    for i, name in enumerate(roster, 1):
+        print(f"[{i:2}/{len(roster)}] {name}", flush=True)
         row: dict = {"commander": name}
         try:
             card = client.get_card_by_name(name)
@@ -467,6 +471,9 @@ def main() -> int:
                     help="measure PARTNER_PAIRS instead of the main ROSTER (S20: is the "
                          "partner actually in the deck, and is the total 100 cards) — "
                          "a separate arm, not part of the fixed baseline-comparable roster")
+    ap.add_argument("--only", default="",
+                    help="comma-separated ROSTER commanders to run (bisecting a change on a few); "
+                         "the roster itself stays fixed, so a partial run is NOT comparable as a whole")
     args = ap.parse_args()
 
     scryfall_client.RATE_LIMIT_DELAY = args.rate_delay
@@ -488,7 +495,8 @@ def main() -> int:
         _print_partner_results(payload)
         return 1 if any(r.get("invalid") for r in payload["results"]) else 0
 
-    payload = run(args.pause, strict=args.strict)
+    payload = run(args.pause, strict=args.strict,
+                  only=tuple(n.strip() for n in args.only.split(",") if n.strip()))
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
