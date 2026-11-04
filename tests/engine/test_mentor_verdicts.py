@@ -246,3 +246,24 @@ def test_resilience_and_consistency_bands_come_from_insight():
     assert verdicts.VULNERABLE_MAX == insight.VULNERABLE_MAX
     assert verdicts.CONSISTENT_MIN == insight.CONSISTENT_MIN
     assert verdicts.SHAKY_MAX == insight.SHAKY_MAX
+
+
+def test_salty_cards_is_not_a_verdict_on_the_deck():
+    """Found by the 2026-11-04 mentor bench: a CORRECT 'friendly' overview listed 'The most
+    salty cards are Sol Ring...' and the gate read that as the deck being salty, rejected it
+    three times and shipped the 'could not confirm' fallback (isshin, ghired overviews)."""
+    assert v.table_feel_claims("The most salty cards are Sol Ring and Armageddon.") == []
+    assert v.table_feel_claims("Only one salty card shows up: Armageddon.") == []
+    assert v.table_feel_claims("High-salt cards include Stasis.") == []
+    assert v.table_feel_claims("It has several salty staples.") == []
+    # the verdict itself still counts, including next to a card list
+    assert v.table_feel_claims("The deck is salty.") == [("salty", "plain")]
+    assert v.table_feel_claims("The deck is salty, with salty cards like Armageddon.") == [("salty", "plain")]
+
+
+def test_less_salty_than_is_not_a_salty_verdict():
+    # the friendly verdict is routinely phrased as a comparison against the population
+    assert v.table_feel_claims("It is less salty than about 85% of Commander decks.") == []
+    assert v.table_feel_claims("The least salty list in its bracket.") == []
+    assert v.table_feel_claims("It has fewer salty picks than most.") == []
+    assert v.table_feel_claims("The deck is salty.") == [("salty", "plain")]

@@ -503,8 +503,13 @@ _INTERACTION_PHRASES: dict[str, re.Pattern] = {
 # alone is a card-name word (Salt Marsh, Salt Road Ambushers), so every pattern needs the
 # adjective or a table/pod object.
 _TABLE_FEEL_PHRASES: dict[str, re.Pattern] = {
+    # "salty cards / a salty card / salty staples" describes INDIVIDUAL cards (the reply lists the
+    # deck's saltiest picks), not a verdict on the deck, so a noun after the adjective excludes it.
     "salty": re.compile(
-        r"\b(?:salty|high[\s-]salt|(?:lots|plenty)\s+of\s+salt|"
+        r"\b(?:(?<!less\s)(?<!least\s)(?<!fewer\s)salty"
+        r"(?!\s+(?:cards?|picks?|spells?|permanents?|staples?|inclusions?|choices?)\b)"
+        r"|high[\s-]salt(?!\s+(?:cards?|picks?|spells?|permanents?|staples?|inclusions?|choices?)\b)"
+        r"|(?:lots|plenty)\s+of\s+salt|"
         r"(?:annoy|frustrate|tilt|upset)\w*\s+(?:the|a|your|casual)\s+(?:table|pod|playgroup))\b",
         re.IGNORECASE),
     "friendly": re.compile(
