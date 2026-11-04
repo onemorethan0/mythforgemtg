@@ -113,7 +113,8 @@ def parse_spec(path):
     return meta, body.strip()
 
 
-def dispatch(prompt, model, endpoint, temperature=0.2, timeout=900):
+def dispatch(prompt, model, endpoint, temperature=0.2, timeout=900, history=None):
+    """One chat turn. `history` = prior [assistant, user] messages for a repair round."""
     payload = json.dumps({
         "model": model,
         "temperature": temperature,
@@ -123,7 +124,7 @@ def dispatch(prompt, model, endpoint, temperature=0.2, timeout=900):
         "messages": [
             {"role": "system", "content": SYSTEM},
             {"role": "user", "content": prompt},
-        ],
+        ] + list(history or []),
     }).encode()
     req = urllib.request.Request(
         endpoint, data=payload, headers={"Content-Type": "application/json"}
@@ -158,11 +159,65 @@ def run(spec_path, model_override, node_name, node):
             if attempt == 2:
                 return spec_path, None, f"dispatch to {node_name} failed: {e}"
             time.sleep(30)
+    verdict = ""
+    if VERIFY and meta["out"].startswith("tests/") and meta["out"].endswith(".py"):
+        content, verdict = verify_and_repair(prompt, content, model, node, meta["out"])
     out = os.path.join(ROOT, meta["out"] + ".draft")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write(content)
-    return spec_path, out, f"{node_name}  {model}  {len(content):>6} chars  {time.time() - started:.0f}s"
+    return spec_path, out, f"{node_name}  {model}  {len(content):>6} chars  {time.time() - started:.0f}s  {verdict}"
+
+
+VERIFY = False
+REPAIR_ROUNDS = 2
+
+
+def _pytest_draft(code, out_rel):
+    """Run a drafted test file in isolation. Returns (ok, tail). Never touches tests/ proper."""
+    import subprocess
+    import tempfile
+    d = tempfile.mkdtemp(prefix="dispatch_verify_", dir=os.path.join(ROOT, "tests"))
+    try:
+        p = os.path.join(d, os.path.basename(out_rel))
+        with open(p, "w", encoding="utf-8", newline="\n") as f:
+            f.write(code)
+        r = subprocess.run([sys.executable, "-m", "pytest", p, "-q", "--no-header", "-x",
+                            "-p", "no:cacheprovider", "--rootdir", ROOT],
+                           cwd=ROOT, capture_output=True, text=True, timeout=300)
+        tail = "\n".join((r.stdout + r.stderr).splitlines()[-40:])
+        return r.returncode == 0, tail
+    except subprocess.TimeoutExpired:
+        return False, "pytest timed out after 300s"
+    finally:
+        import shutil
+        shutil.rmtree(d, ignore_errors=True)
+
+
+def verify_and_repair(prompt, code, model, node, out_rel):
+    """Run the draft; on failure send the pytest tail back for up to REPAIR_ROUNDS fixes.
+
+    A pass here only means "runs and its assertions hold"; it does NOT mean the tests are
+    meaningful. Read every draft for vacuous asserts before landing it.
+    """
+    ok, tail = _pytest_draft(code, out_rel)
+    rounds = 0
+    while not ok and rounds < REPAIR_ROUNDS:
+        rounds += 1
+        history = [
+            {"role": "assistant", "content": code},
+            {"role": "user", "content": (
+                "Running that file under pytest failed:\n\n" + tail +
+                "\n\nFix ONLY what the failure shows. If an assertion's expected value is wrong, "
+                "re-derive it from the SOURCE above or weaken it to a property; delete a test you "
+                "cannot justify from the source. Output the complete corrected file only.")},
+        ]
+        try:
+            code = clean(dispatch(prompt, model, node["url"], history=history))
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            return code, f"[verify: repair call failed: {e}]"
+        ok, tail = _pytest_draft(code, out_rel)
+    return code, f"[verify: {'PASS' if ok else 'FAIL'} after {rounds} repair round(s)]"
 
 
 def spec_model(spec_path, model_override):
@@ -175,12 +230,16 @@ def main():
     ap.add_argument("specs", nargs="+")
     ap.add_argument("--model")
     ap.add_argument("--node", help="send every spec to this node from scripts/nodes.json")
+    ap.add_argument("--verify", action="store_true",
+                    help="for tests/*.py specs: run the draft under pytest and feed failures back (2 rounds)")
     ap.add_argument("--spread", action="store_true",
                     help="fan the batch out: nodes with a `spread` list also take specs for those models")
     # llama-swap holds one model at a time; parallel calls just queue behind a
     # swap. Two keeps the pipe busy without thrashing the loader.
     ap.add_argument("--jobs", type=int, help="override the per-node concurrency from nodes.json")
     args = ap.parse_args()
+    global VERIFY
+    VERIFY = args.verify
 
     nodes = load_nodes()
     if args.node:
