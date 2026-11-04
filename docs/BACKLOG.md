@@ -278,12 +278,13 @@ counted as reach; opponent life gain counted for the caster) existed in all thre
 summaries (resolution, activated, death), so those now agree with the executor (the project's
 standing lesson: tags.py / profile.py / the executor are separate derivations). 6 more tests.
 A/B vs the previous commit: mean |shift| 3.85 Elo (noise), 19 decks >20.
-**Open (B12c, small, needs an op-spec change):** `create_token` with `who: opponent` (7 effects:
-Pongify, Generous Gift, Bloodroot Apothecary: "its controller creates a 3/3") gives the token to the
-CASTER, because `who` is not a declared `create_token` param so the interpreter drops it. Fixing it
-means adding an optional `who` to the op spec, which also feeds the compiler grammar. The other 133
-mirror hits (draw/create_token with a bare `target: opponent player`, `who: target_player`) are
-ambiguous ("for each opponent, create a token" means the caster creates it) and are left alone.
+**B12c DONE:** `create_token` with `who: opponent`/`each_opponent` (7 effects: Pongify, Generous
+Gift, Bloodroot Apothecary: "its controller creates a 3/3") gave the token to the CASTER because `who`
+was not a declared create_token param and the interpreter dropped it. Added an optional `who` to the
+op spec (backward compatible: stored CCMs already carry it, grammar already tolerated extras), the
+executor now spawns it for the opponent(s), and the three flattened summaries skip it. 3 tests.
+The other 133 mirror hits (bare `target: opponent player`, `who: target_player`) stay: ambiguous ("for
+each opponent, create a token" means the caster creates it).
 **Open (B12b, small):** `deal_damage` with `controller: you` and creature/any/planeswalker type is
 ambiguous (bite vs self-damage, 93 effects); needs a compiler-side split, not an executor guess.
 

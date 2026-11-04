@@ -91,3 +91,21 @@ def test_you_and_unspecified_gain_life_still_go_to_the_caster(tmp_path, make_car
 def test_each_opponent_gains_life_reaches_every_opponent(tmp_path, make_card):
     me, opp = _run(tmp_path, make_card, {"op": "gain_life", "amount": 2, "who": "each_opponent"})
     assert me.life == 40 and opp.life == 42
+
+
+# -- create_token who: "its controller creates a 3/3" gives the token to the opponent -------------
+
+def test_a_token_for_the_opponent_goes_to_the_opponent(tmp_path, make_card):
+    """Pongify / Generous Gift: 'Its controller creates a 3/3 Ape'. `who` was not a declared
+    create_token param, so the interpreter dropped it and the CASTER got the token."""
+    me, opp = _run(tmp_path, make_card, {"op": "create_token", "count": 2, "power": 3, "toughness": 3,
+                                         "who": "opponent"})
+    assert len(me.creatures()) == 1 and len(opp.creatures()) == 3
+
+
+def test_tokens_for_you_or_unspecified_still_go_to_the_caster(tmp_path, make_card):
+    me, opp = _run(tmp_path, make_card, {"op": "create_token", "count": 2, "power": 1, "toughness": 1})
+    assert len(me.creatures()) == 3 and len(opp.creatures()) == 1
+    me, opp = _run(tmp_path, make_card, {"op": "create_token", "count": 1, "power": 1, "toughness": 1,
+                                         "who": "you"})
+    assert len(me.creatures()) == 2 and len(opp.creatures()) == 1

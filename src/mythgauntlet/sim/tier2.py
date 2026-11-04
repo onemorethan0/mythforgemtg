@@ -1237,7 +1237,15 @@ def _apply_resolved(
             else:
                 opp.life -= amt
     elif op == "create_token":
-        _spawn_tokens(me, (max(0, pr.get("count", 1)), pr.get("power", 1), pr.get("toughness", 1)))
+        spec = (max(0, pr.get("count", 1)), pr.get("power", 1), pr.get("toughness", 1))
+        who = pr.get("who")
+        if who == "opponent":  # Pongify / Generous Gift: the DESTROYED permanent's controller gets it
+            _spawn_tokens(opp, spec)
+        elif who == "each_opponent":
+            for p in each_opp:
+                _spawn_tokens(p, spec)
+        else:
+            _spawn_tokens(me, spec)
     elif op == "gain_life":
         amount = max(0, pr.get("amount", 1))
         who = pr.get("who")

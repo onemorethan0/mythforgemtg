@@ -185,7 +185,8 @@ OP_SPECS: dict[str, tuple[dict[str, str], dict[str, str]]] = {
     "lose_life": ({"amount": _INT_OR_X}, {"who": _STR}),
     "create_token": (
         {"count": _INT_OR_X},
-        {"power": _INT_OR_X, "toughness": _INT_OR_X, "types": _STR_OR_LIST, "tapped": _BOOL},
+        {"power": _INT_OR_X, "toughness": _INT_OR_X, "types": _STR_OR_LIST, "tapped": _BOOL,
+         "who": _STR},  # who receives it: "its controller creates a 3/3" (Pongify) is the opponent
     ),
     "pump": (
         {"power": _INT_SIGNED, "toughness": _INT_SIGNED},

@@ -421,3 +421,16 @@ def test_flattened_profile_does_not_count_self_damage_or_opponent_life_gain(make
         {"op": "gain_life", "amount": 1},
     ])
     assert d is not None and d.drain == 0 and d.gain_life == 1
+
+
+def test_flattened_profile_does_not_credit_an_opponents_token_to_the_caster(make_card):
+    from mythgauntlet.semantics.profile import _death_from
+
+    pongify = _removal_profile(make_card, [
+        {"op": "create_token", "count": 1, "power": 3, "toughness": 3, "who": "opponent"}], "Instant")
+    assert pongify.tokens is None
+    mine = _removal_profile(make_card, [{"op": "create_token", "count": 2, "power": 1, "toughness": 1}], "Instant")
+    assert mine.tokens == (2, 1, 1)
+    d = _death_from([{"op": "create_token", "count": 1, "power": 3, "toughness": 3, "who": "opponent"},
+                     {"op": "create_token", "count": 1, "power": 1, "toughness": 1}])
+    assert d is not None and d.tokens == (1, 1, 1)

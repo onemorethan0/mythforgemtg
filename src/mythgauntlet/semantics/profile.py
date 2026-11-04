@@ -365,7 +365,7 @@ def _activated_from(
                 face += amount
             else:
                 any_dmg += amount
-        elif op == "create_token":
+        elif op == "create_token" and not _life_is_gained_by_opponent(effect.get("who")):
             tokens = (
                 _amount(effect.get("count"), 1),
                 _amount(effect.get("power"), 1),
@@ -397,7 +397,7 @@ def _death_from(effects: list[dict]) -> DeathEffect | None:
             drain += _amount(effect.get("amount"), 1)
         elif op == "gain_life" and not _life_is_gained_by_opponent(effect.get("who")):
             life += _amount(effect.get("amount"), 1)
-        elif op == "create_token":
+        elif op == "create_token" and not _life_is_gained_by_opponent(effect.get("who")):
             tokens = (
                 _amount(effect.get("count"), 1),
                 _amount(effect.get("power"), 1),
@@ -490,8 +490,9 @@ def _damage_is_to_self(target: dict) -> bool:
 
 
 def _life_is_gained_by_opponent(who: object) -> bool:
-    """gain_life whose beneficiary is an opponent ("its controller gains life", Swords to
-    Plowshares): the caster gains nothing."""
+    """An effect whose beneficiary is an opponent ("its controller gains life" -- Swords to
+    Plowshares; "its controller creates a 3/3" -- Pongify): the caster gains nothing. Used for
+    gain_life and create_token."""
     return who in ("opponent", "each_opponent")
 
 
@@ -578,7 +579,7 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
                     face += amount
                 else:
                     any_dmg += amount
-            elif op == "create_token":
+            elif op == "create_token" and not _life_is_gained_by_opponent(pr.get("who")):
                 tokens = (
                     max(0, pr.get("count", 1)),
                     max(0, pr.get("power", 1)),
