@@ -1396,8 +1396,15 @@ def _theme_darkness_score(text: str) -> float:
         "celestial", "radiant", "golden", "crystal", "prismatic", "candy",
         "magical girl", "kawaii", "sweet", "dreamy", "merry", "serene", "lush",
     }
-    dark_count  = sum(1 for w in DARK_WORDS  if w in t)
-    light_count = sum(1 for w in LIGHT_WORDS if w in t)
+    # Whole words (with a plural / -ness / -y style suffix), NOT substrings: "light" is inside
+    # "lightning" (a storm theme scored 0.2, "strongly whimsical", and had its dark LoRAs crushed
+    # to 20%), "warm" inside "swarm", "rot" inside "protector".
+    def _count(words) -> int:
+        return sum(1 for w in words
+                   if re.search(r"\b" + re.escape(w) + r"(?:s|es|ed|ing|y|ness|ly)?\b", t))
+
+    dark_count  = _count(DARK_WORDS)
+    light_count = _count(LIGHT_WORDS)
 
     if light_count == 0 and dark_count == 0:
         return 1.0   # neutral theme — dark LoRAs run at full strength
