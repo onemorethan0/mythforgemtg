@@ -884,6 +884,14 @@ def _limits(tool_trace: list, max_tokens: int) -> tuple[int, int]:
 _HISTORY_ROLES = {"user", "assistant"}
 
 
+# The honest "I could not answer" reply. A module constant so history sanitising can recognise it.
+FALLBACK_TEXT = (
+    "I looked into that, but I couldn't put together an answer I'm confident is "
+    "fully accurate -- I don't want to guess on this one. Try asking a narrower "
+    "version of the question, or ask me to look up a specific card or rule directly."
+)
+
+
 def _sanitize_history(history: list[dict] | None) -> list[dict]:
     """Only `user`/`assistant` turns with plain string content are trusted into the
     outgoing message list. `history` is client-supplied (it round-trips through the
@@ -901,7 +909,19 @@ def _sanitize_history(history: list[dict] | None) -> list[dict]:
         role, content = turn.get("role"), turn.get("content")
         if role in _HISTORY_ROLES and isinstance(content, str):
             safe.append({"role": role, "content": content})
-    return safe
+    # Our own "could not answer" reply is not evidence of anything. Left in, the model reads
+    # "I couldn't put together an answer" as the established tone of the conversation and
+    # echoes it for the NEXT question in about a second, with no tool call (found 2026-11-04:
+    # 6 of 6 instant 'cards' fallbacks followed a fallback overview). Drop that turn and the
+    # question it answered, so the follow-up is asked fresh.
+    cleaned: list[dict] = []
+    for turn in safe:
+        if turn["role"] == "assistant" and turn["content"].strip() == FALLBACK_TEXT:
+            if cleaned and cleaned[-1]["role"] == "user":
+                cleaned.pop()
+            continue
+        cleaned.append(turn)
+    return cleaned
 
 
 def ask(
@@ -1061,6 +1081,16 @@ def ask(
                 if not gate_mod.check(completed, budget, question=question, max_chars=chars):
                     return MentorReply(text=completed, gated=True, tool_trace=tool_trace,
                                        gate_rejections=gate_rejections)
+            # Length is the other rejection with a complete cure in hand: when it is the ONLY
+            # reason, every faithfulness check already passed, so the draft is true and just too
+            # long. Trimming whole trailing sections keeps a subset of it (never a new claim),
+            # and it is checked again like any other text. Found 2026-11-04: the isshin overview
+            # came back at 2554 chars (cap 2400) three identical times and shipped the fallback.
+            if all(gate_mod.is_length_overflow(r) for r in reasons):
+                trimmed = gate_mod.trim_to_fit(draft, chars)
+                if not gate_mod.check(trimmed, budget, question=question, max_chars=chars):
+                    return MentorReply(text=trimmed, gated=True, tool_trace=tool_trace,
+                                       gate_rejections=gate_rejections)
             break
         # Check 9 (a licensed card given the wrong TYPE): the model usually never looked the card
         # up -- live 2026-10-01 it licensed Sol Ring via check_legality, wrote "Sol Ring is a
@@ -1088,6 +1118,9 @@ def ask(
                    "its own text states the specific thing you use it for; when several sibling "
                    "rules share a number, pick the one whose text matches the exact case, and "
                    "if none does, drop the citation. " if rules_fetched else "")
+                + (f"It must be at most {chars} characters. Keep the verdicts, strengths and "
+                   "weaknesses; cut the long card lists and tables first. "
+                   if any(gate_mod.is_length_overflow(r) for r in reasons) else "")
                 + "Rewrite it using ONLY facts from the tool results above. If you cannot "
                 "answer precisely with what you have, say so honestly instead of guessing."
             )},
@@ -1096,10 +1129,5 @@ def ask(
                           max_tokens=tokens)
         draft = _strip(msg.get("content") or "")
 
-    fallback = (
-        "I looked into that, but I couldn't put together an answer I'm confident is "
-        "fully accurate -- I don't want to guess on this one. Try asking a narrower "
-        "version of the question, or ask me to look up a specific card or rule directly."
-    )
-    return MentorReply(text=fallback, gated=False, tool_trace=tool_trace,
+    return MentorReply(text=FALLBACK_TEXT, gated=False, tool_trace=tool_trace,
                        gate_rejections=gate_rejections)

@@ -696,6 +696,43 @@ def is_role_report_reason(reason: str) -> bool:
     return reason.startswith((_ROLE_COUNTS_MISSING, _MOST_NEEDED_MISSING))
 
 
+_LENGTH_OVER_RE = re.compile(r"^length (\d+) outside \d+-(\d+)$")
+
+
+def is_length_overflow(reason: str) -> bool:
+    """A reason that says only 'too long' (not 'too short')."""
+    m = _LENGTH_OVER_RE.match(reason)
+    return bool(m) and int(m.group(1)) > int(m.group(2))
+
+
+def trim_to_fit(text: str, max_chars: int) -> str:
+    """Drop trailing sections of an over-long draft until it fits, cutting only at a blank line.
+
+    Used only when LENGTH is the sole reason a draft was rejected: every other check already
+    passed, so the draft is faithful and the kept prefix is a subset of it (cutting never adds a
+    claim). Whole trailing blocks go first, so a list or section is never left half-printed, and
+    a heading or a line ending in ':' that would be left dangling goes with its body. Falls back
+    to the last sentence end when a single block is itself too long. Returns the input unchanged
+    if it already fits.
+    """
+    body = text.strip()
+    if len(body) <= max_chars:
+        return body
+    blocks = re.split(r"\n\s*\n", body)
+    while len(blocks) > 1 and len("\n\n".join(blocks)) > max_chars:
+        blocks.pop()
+    while len(blocks) > 1 and (blocks[-1].lstrip().startswith("#")
+                               or blocks[-1].rstrip().endswith(":")):
+        blocks.pop()
+    out = "\n\n".join(blocks)
+    if len(out) > max_chars:
+        cut = out[:max_chars]
+        ends = [cut.rfind(p) for p in (". ", ".\n", "! ", "? ")]
+        k = max(ends)
+        out = cut[:k + 1] if k > 0 else cut
+    return out.rstrip()
+
+
 def role_table_paragraph(summary: dict) -> str:
     """The role table as reply text, built only from `summary` (so every number is licensed)."""
     rows = summary.get("rows") or []

@@ -520,3 +520,44 @@ def test_a_decimal_before_a_bold_heading_is_not_a_list_marker():
     assert gate.extract_numbers(scrubbed) == {74.7, 78.7}
     # ...while a real inline marker is still stripped.
     assert gate.extract_numbers(gate._LIST_MARKER_RE.sub("", "unchanged. 2. **No Targeting**")) == set()
+
+
+# -- length overflow: the draft is faithful and only too long ------------------------------------
+
+def test_is_length_overflow_distinguishes_long_from_short():
+    from mythgauntlet.mentor import gate
+    assert gate.is_length_overflow("length 2554 outside 15-2400")
+    assert not gate.is_length_overflow("length 3 outside 15-2400")
+    assert not gate.is_length_overflow("cites 113, which is not in this turn's tool results")
+
+
+def test_trim_to_fit_drops_whole_trailing_sections():
+    from mythgauntlet.mentor import gate
+    text = "Verdicts here.\n\n### Strengths\n- fast\n- cheap\n\n### Key cards\n" + "- Sol Ring\n" * 80
+    out = gate.trim_to_fit(text, 120)
+    assert len(out) <= 120
+    assert out.startswith("Verdicts here.")
+    assert "Key cards" not in out and "Sol Ring" not in out      # the whole section went
+    assert not out.rstrip().endswith("###")                       # no dangling heading
+
+
+def test_trim_to_fit_leaves_a_fitting_draft_alone_and_never_adds_text():
+    from mythgauntlet.mentor import gate
+    assert gate.trim_to_fit("short answer", 100) == "short answer"
+    text = "One.\n\nTwo two two.\n\n" + "Three. " * 200
+    out = gate.trim_to_fit(text, 60)
+    assert text.startswith(out.split("\n\n")[0])
+    assert all(chunk in text for chunk in out.split("\n\n"))      # a strict subset of the draft
+
+
+def test_trim_to_fit_cuts_a_single_huge_block_at_a_sentence_end():
+    from mythgauntlet.mentor import gate
+    out = gate.trim_to_fit("Alpha beta. Gamma delta. " * 50, 70)
+    assert len(out) <= 70 and out.endswith(".")
+
+
+def test_trim_drops_a_heading_left_dangling_at_the_end():
+    from mythgauntlet.mentor import gate
+    text = "Intro paragraph.\n\nWhat to cut:\n\n" + "x " * 400
+    out = gate.trim_to_fit(text, 60)
+    assert out == "Intro paragraph."

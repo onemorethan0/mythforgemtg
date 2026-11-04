@@ -254,3 +254,27 @@ def test_ask_runs_suggest_swap_on_clock_for_a_faster_question(monkeypatch):
     reply = chat.ask(SimpleNamespace(all_card_names=frozenset()), "How could I make this deck faster?")
     assert ran == [("get_measured_swaps", {"axis": "clock"}), ("suggest_swap", {"axis": "clock"})]
     assert reply.tool_trace[-1].args == {"axis": "clock"}
+
+
+# -- the mentor's own fallback is not conversation history ---------------------------------------
+
+def test_fallback_turns_and_their_question_are_dropped_from_history():
+    from mythgauntlet.mentor import chat
+    hist = [
+        {"role": "user", "content": "earlier fine question"},
+        {"role": "assistant", "content": "a real earlier answer"},
+        {"role": "user", "content": "What does this deck do well and poorly?"},
+        {"role": "assistant", "content": chat.FALLBACK_TEXT},
+    ]
+    assert chat._sanitize_history(hist) == hist[:2]
+
+
+def test_history_without_a_fallback_is_unchanged():
+    from mythgauntlet.mentor import chat
+    hist = [{"role": "user", "content": "q"}, {"role": "assistant", "content": "a"}]
+    assert chat._sanitize_history(hist) == hist
+
+
+def test_a_lone_fallback_turn_is_dropped_without_error():
+    from mythgauntlet.mentor import chat
+    assert chat._sanitize_history([{"role": "assistant", "content": chat.FALLBACK_TEXT}]) == []
