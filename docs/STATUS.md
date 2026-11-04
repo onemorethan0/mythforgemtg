@@ -15,7 +15,7 @@ for my pod" — not cEDH optimisation. A wrong card model is a defect, not an ap
 | Strength engine | Mature. Blink no longer simulated as removal (64 abilities fixed) | commit 7753451 |
 | Compiler gates | New gate rejects a blink compiled as bare exile or with `gain_control` (41 cards flagged) | commit 3744f5c |
 | Calibration | `ARCHETYPE_ROLE_TARGETS` regenerated: 4 -> 11 archetypes; own-role cut suggestions down 18% | commit 2fb68bd |
-| Deck Mentor | 84/90 on the holistic bench (bar 87-90). 5 of 6 misses are the gate's honest "can't confirm" fallback, not wrong claims. Re-run pending | B1 |
+| Deck Mentor | **87/90 (97%)** on the holistic bench, zero fallbacks; three gate bugs found and fixed on the way (84 -> 81 -> 84 -> 87) | B1, closed |
 | Bracket estimate | within-one 92.1% raw, **96.3% excluding 62 labels impossible under the rules** (exact 66.0%): bars met. B5 recall 85%. Only B4 is weak (34%), a labelled-data limit | B5, diagnosed |
 | Static abilities | Anthem parser built and validated (107 cards, 25% of corpus decks). Sim wiring not started | B3 phase 1 |
 | Tests | ~3,100, all green. 230+ added today across 12 modules | `pytest tests -q` |
@@ -39,9 +39,9 @@ for my pod" — not cEDH optimisation. A wrong card model is a defect, not an ap
 
 | ID | Item | Status | Owner |
 |---|---|---|---|
-| B1 | Mentor bench re-run to separate variance from regression | queued after the recompile | C / node 1 |
+| B1 | Mentor bench | **closed: 87/90** | C |
 | B3 | Static abilities: phase 2 (schema home + sim layer) needs a schema decision | parser done | C |
-| B4 | Review the 41 recompiled blink CCMs against oracle text | recompile running | C |
+| B4 | Blink recompile review | **closed** (26 accepted, 15 quarantined, 4 authored) | C |
 | B5 | Bracket recall | **done: diagnosed, no tuning (see BACKLOG)** | C |
 | B7 | Test gaps: `cc_frames`, `themer`, `image_gen` pure helpers | in progress | C |
 | B9 | Role-strength granularity (S13) | specced; needs a doctrine argument | C |

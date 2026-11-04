@@ -10,7 +10,7 @@ decision or go-ahead (outward-facing, or a product call).
 
 | ID | Item | Status | Owner |
 |---|---|---|---|
-| B1 | Mentor holistic bench vs the 87-90/90 bar | 84/90 first run; re-run queued | C reads, N computes |
+| B1 | Mentor holistic bench vs the 87-90/90 bar | CLOSED: 87/90 after 3 gate fixes | C |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
@@ -37,7 +37,18 @@ stored run, **5 are the gate's honest fallback** ("I couldn't put together an an
 fully accurate": shelob cards, ghired overview + cards, isshin overview, arahbo cards) and 1 is a
 missing resilience verdict (ghired). No fabricated claim shipped in the stored run (77/81 passed the
 gate first try). Model variance is documented at 2-3 cells, so this is borderline, not conclusive.
-**Next:** re-run once (node 1 is busy recompiling B4), then compare cell by cell. If the same cells
+**CLOSED 2026-11-04: 87/90 (97%), zero fallbacks.** Four runs: 84, 81, 84, **87**. The reply text in
+the early runs was mostly the gate's fallback, and reading the rejection reasons found three real
+defects, each fixed with tests: (1) the table-feel matcher read "the most salty cards are Sol Ring"
+and "less salty than 85% of decks" as calling a friendly deck salty (commit 5 in the mentor series);
+(2) a faithful draft rejected ONLY for length (2554 > 2400) regenerated identically three times, so
+the retry now says how to shorten and the last attempt trims at section boundaries; (3) a follow-up
+after a fallback echoed it in ~1 s with no tool call, so the mentor's own fallback turn is dropped
+from history. Remaining misses (3): two `resilience` cells with no verdict phrase (tymna 29/100,
+arahbo 58/100) and `arahbo overview` claiming 'fast' for a slow deck; model phrasing, not gate
+bugs, and within the documented 2-3 cell variance. The Shelob bench (`mentor_bench.py`, bar 47/52)
+was not re-run; do it if the mentor changes again.
+**Superseded plan (kept for the record):** re-run once (node 1 is busy recompiling B4), then compare cell by cell. If the same cells
 fail twice the cause is real: look at `rejections` in the JSON for why the gate refuses (suspects: the
 10-25 key-card lead and table-feel wording changes interacting with gate checks 7/16).
 
@@ -230,5 +241,6 @@ mode that scores a classification spec against a hand-labelled set before runnin
 | 2026-11-04 | CLAUDE.md 275 KB -> 8 KB index + `docs/engineering/` (lossless) | `scripts/split_claude_md.py` asserts the rejoin |
 | 2026-11-04 | Repo root cleared; corpus committed; HANDOFF points at STATUS | e6a1b05, 12c310c |
 | 2026-11-04 | 230+ tests across 12 modules; renderer border-theme bug fixed | tests/test_*_pure.py etc. |
+| 2026-11-04 | B1 mentor bench 84/81/84 -> 87/90 via 3 gate fixes (salty matcher, length trim, fallback history) | runs 1-4 in docs/bench/ |
 | 2026-11-04 | B4 blink gate + recompile of 41 + 4 authored | 3744f5c, ccm/authored/90-* |
 | 2026-11-04 | B11 self/off-battlefield exile no longer removal (771 effects) | 7ea6adf; 77 decks moved >20 Elo |
