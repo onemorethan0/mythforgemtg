@@ -150,6 +150,10 @@ class PlayProfile:
     counter: bool = False  # counters target spell on the stack (T2 stack MVP)
     is_instant: bool = False  # castable at instant speed (reactive windows in T2)
     tutor: bool = False  # searches the library for a specific card (cEDH combo assembly)
+    # Static anthems this permanent provides while on the battlefield, one tuple per line:
+    # (affects, others, nontoken, power, toughness, keywords) from `compiler.anthem_for_card`
+    # (a whole printed oracle line in the closed unconditional shape; see docs/BACKLOG.md B3).
+    anthems: tuple[tuple, ...] = ()
 
 
 def _amount(value, default: int = 1) -> int:
@@ -637,6 +641,7 @@ def profile_from_ccm(doc: dict, card: Card, fx: EffectVector) -> PlayProfile:
         counter=_has_counter_spell(doc),
         is_instant=card.has_type("Instant"),
         tutor=_is_tutor(doc),
+        anthems=_anthems_from(doc, card) if is_permanent else (),
     )
 
 
@@ -654,6 +659,29 @@ def profile_from_fx(fx: EffectVector, card: Card) -> PlayProfile:
         counter=fx.counterspell,
         is_instant=card.has_type("Instant"),
     )
+
+
+def _anthems_from(doc: dict, card: Card) -> tuple[tuple, ...]:
+    """The unconditional static anthems this card prints, as hashable specs.
+
+    Read from the CCM's note-only `static` abilities, but each must also be a WHOLE printed
+    line of the card's oracle text (`anthem_for_card`), which is what rejects an anthem that
+    sits inside a modal bullet or behind a chosen option (Frostcliff Siege). Local import:
+    the compiler pulls in the LLM client stack, which this module otherwise never needs."""
+    from mythgauntlet.semantics.compiler import anthem_for_card
+
+    out: list[tuple] = []
+    for ability in doc.get("abilities") or []:
+        if not isinstance(ability, dict) or ability.get("kind") != "static" or ability.get("effects"):
+            continue
+        note = ability.get("note")
+        if not isinstance(note, str):
+            continue
+        a = anthem_for_card(note, card.oracle_text or "")
+        if a is not None:
+            out.append((a["affects"], a["others"], a["nontoken"], a["power"], a["toughness"],
+                        tuple(a["keywords"])))
+    return tuple(out)
 
 
 def profile_for(

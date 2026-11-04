@@ -50,6 +50,7 @@ from mythgauntlet.sim.tier2 import (
     _instant_target,
     _kill,
     loyalty_ready,
+    refresh_anthems,
     _Permanent,
     _Player,
     _resolve,
@@ -471,6 +472,7 @@ def _do_turn_start(state: GameState) -> None:
     # Combat-rule flags also steer removal targeting outside combat; refresh them at each turn
     # so a commander that left play since the last combat stops counting.
     refresh_combat_rules(state)
+    refresh_anthems(state.players)
     # CR 103.8a: "In a two-player game, the player who plays first skips the draw step of
     # their first turn." CR 103.8c: "In all other multiplayer games, no player skips the
     # draw step of their first turn." The skip is a TWO-PLAYER rule; applying it in a pod
@@ -626,6 +628,7 @@ def advance(state: GameState) -> None:
                 _fire_triggers(state.players[state.active], state.players[state.other],
                                "begin_combat", _others(state))
             refresh_combat_rules(state)
+            refresh_anthems(state.players)
             if not _eligible_attackers(state.players[state.active]):
                 state.phase = "end_step"
                 continue

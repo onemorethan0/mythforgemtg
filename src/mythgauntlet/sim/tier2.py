@@ -203,9 +203,20 @@ class _Permanent:
     assigns_toughness_if_greater: bool = False
     gap_pump: bool = False
     may_attack_with_defender: bool = False
+    # Static ANTHEMS (docs/BACKLOG.md B3). `anthems` live on the SOURCE permanent: the specs
+    # (affects, others, nontoken, power, toughness, keywords) it provides while on the battlefield.
+    # `anthem_delta`/`anthem_keywords` live on the AFFECTED creature: the P/T delta and keywords
+    # currently applied to it, already ADDED into power/toughness, recomputed from scratch and
+    # swapped (subtract old, add new) by `refresh_anthems`. Kept in their own fields, not
+    # `granted_keywords`/`temp_*`, so an anthem leaving never deletes an equipment's keyword or an
+    # until-end-of-turn pump.
+    anthems: tuple = ()
+    anthem_delta: tuple[int, int] = (0, 0)
+    anthem_keywords: frozenset[str] = frozenset()
 
     def has_keyword(self, name: str) -> bool:
-        return name in self.keywords or name in self.granted_keywords
+        return (name in self.keywords or name in self.granted_keywords
+                or name in self.anthem_keywords)
 
     @property
     def combat_power(self) -> int:
@@ -566,6 +577,11 @@ def _kill(
         permanent.toughness -= permanent.temp_toughness
         permanent.temp_power = 0
         permanent.temp_toughness = 0
+        # ...nor an anthem's delta (refresh_anthems re-applies whatever still covers it)
+        permanent.power -= permanent.anthem_delta[0]
+        permanent.toughness -= permanent.anthem_delta[1]
+        permanent.anthem_delta = (0, 0)
+        permanent.anthem_keywords = frozenset()
         permanent.counters = 1
         permanent.power += 1
         permanent.toughness += 1
@@ -574,6 +590,57 @@ def _kill(
         if permanent.is_commander:
             owner.commander_in_zone = False  # returns directly, not via the command zone
         owner.battlefield.append(permanent)
+
+
+def refresh_anthems(players: dict[str, "_Player"]) -> None:
+    """Recompute every creature's static-anthem bonus from the permanents now on the battlefield.
+
+    Called wherever the combat rules are refreshed (turn start and each combat), so an anthem
+    that died, was bounced or was exiled stops applying and one that just entered starts. It is a
+    FULL recompute: each creature's previously applied delta is subtracted and the new one added,
+    so repeated calls are idempotent and no per-event bookkeeping can drift. A creature that an
+    anthem shrinks to 0 toughness or less dies (CR 704.5f), which can remove another anthem, so
+    the pass repeats until nothing more dies (bounded).
+    """
+    for _ in range(4):
+        keys = list(players)
+        totals: dict[int, list] = {}
+        for pl in players.values():
+            for c in pl.creatures():
+                totals[id(c)] = [0, 0, set()]
+        for key, pl in players.items():
+            for src in pl.battlefield:
+                for affects, others, nontoken, dp, dt, kws in src.anthems:
+                    if affects == "you":
+                        targets = pl.creatures()
+                    else:
+                        targets = [c for k2 in keys if k2 != key for c in players[k2].creatures()]
+                    for c in targets:
+                        if others and c is src:
+                            continue
+                        if nontoken and c.source is None:  # tokens have no source card
+                            continue
+                        tot = totals[id(c)]
+                        tot[0] += dp
+                        tot[1] += dt
+                        tot[2].update(kws)
+        doomed: list[tuple] = []
+        for key, pl in players.items():
+            for c in pl.creatures():
+                dp, dt, kw = totals[id(c)]
+                old_p, old_t = c.anthem_delta
+                c.power += dp - old_p
+                c.toughness += dt - old_t
+                c.anthem_delta = (dp, dt)
+                c.anthem_keywords = frozenset(kw)
+                if c.toughness <= 0:
+                    doomed.append((key, pl, c))
+        if not doomed:
+            return
+        for key, pl, c in doomed:
+            rest = [p2 for k2, p2 in players.items() if k2 != key]
+            if rest:
+                _kill(pl, c, rest[0], tuple(rest[1:]))
 
 
 def _card_value(gc: GameCard, me: _Player, opp: _Player, turn: int, cfg: DuelConfig) -> float:
@@ -1622,7 +1689,7 @@ def _resolve(
             engine_draw=engine_draw, is_commander=is_commander,
             activated=p.activated, death=p.death, triggers=triggers, source=gc,
             keywords=card.keywords, loyalty=_starting_loyalty(card),
-            is_planeswalker=card.has_type("Planeswalker"),
+            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems,
         )
         me.battlefield.append(just_cast)
     elif is_permanent_type:
@@ -1633,7 +1700,7 @@ def _resolve(
                 sick=False, engine_draw=engine_draw, is_commander=is_commander,
                 activated=p.activated, death=p.death, triggers=triggers, source=gc,
                 keywords=card.keywords, loyalty=_starting_loyalty(card),
-            is_planeswalker=card.has_type("Planeswalker"),
+            is_planeswalker=card.has_type("Planeswalker"), anthems=p.anthems,
             )
         )
 

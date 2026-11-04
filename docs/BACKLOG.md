@@ -12,7 +12,7 @@ decision or go-ahead (outward-facing, or a product call).
 |---|---|---|---|
 | B1 | Mentor holistic bench vs the 87-90/90 bar | CLOSED: 87/90 after 3 gate fixes | C |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
-| B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
+| B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE in tier2; tier0, cost reducers, CDA open | C |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
@@ -104,6 +104,24 @@ the note to be a whole printed oracle line (ability-word prefixes decline: hones
 **Still to decide for phase 2 (needs a schema call):** statics have no `effects`, so the parsed
 anthem needs a home. Recommended: a new optional `anthem` object on the static ability, validated by
 the schema, filled by the compiler and by a no-GPU backfill (like `backfill_attach_grants.py`).
+
+**Phase 2 DONE 2026-11-04 (tier2 duels), and it needed NO schema change.** The recommendation above
+(an `anthem` object on the static ability) was dropped in favour of deriving the anthem at profile
+time: `profile._anthems_from` reads the note-only static and `anthem_for_card` (so a modal bullet
+still declines) into `PlayProfile.anthems`; nothing in the CCM store was rewritten, no backfill,
+nothing in the sibling repo touched. Sim: `_Permanent.anthems` on the source, `anthem_delta` /
+`anthem_keywords` on the affected creature (their own fields, so an anthem leaving never deletes an
+equipment's keyword or a temp pump), and `tier2.refresh_anthems`, a FULL recompute (subtract old
+delta, add new) called wherever combat rules are refreshed (turn start, each combat), idempotent,
+with state-based death at 0 toughness repeated to a fixed point. 13 tests.
+**A/B (gauntlet --opponents 8 --games 20 --seed 777, 1,153 decks):** bracket means identical within
+1 Elo. Dose-response is clean: decks with no anthem -1.2 (noise), one anthem +3.4, two or more
++6.2; the top gainers hold 2-4 anthems. Small by nature (one card in 99) but pointed the right way.
+**NOT done, deliberately:** (a) **tier0** (the goldfish clock behind `analyze`) does not see
+anthems. The strength model fits the goldfish-speed signals at weight 0, so the bracket would not
+move, but the displayed kill turn for go-wide decks under-counts. Doing it means re-running
+`bracket_accuracy.py` and stopping if within-one drops below 92.1%; (b) cost reducers and CDA P/T;
+(c) the "other" 41% of statics.
 
 **Plan, in order (each phase ships and measures on its own):**
 1. *Parser, no sim change.* A deterministic parser beside `parse_attach_grant` (no LLM; reject the
