@@ -18,7 +18,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps in the art pipeline | in progress | C |
-| B8 | Refresh the published CCM snapshot | blocked on user | U |
+| B8 | Refresh the published CCM snapshot | zip built and verified; UPLOAD BLOCKED by the permission layer, needs you to run 2 commands | U |
 | B9 | Role-strength granularity (S13) + wipe colour requirement | specced, not started | C |
 | B10 | Offload harness follow-ups | specced | C |
 
@@ -235,6 +235,21 @@ Last published 2026-09-21 (31,906 compiled, 99.2% on v11, 21 MB). The store has 
 This is **outward-facing** (a GitHub release on the public repo). Spec: run
 `scripts/package_ccm_release.py` in the mythgauntlet repo, then the `gh release upload ccm-data
 --clobber` + `gh release edit` pair it prints. **Blocked on the user's go-ahead.**
+
+**Status 2026-11-04 (you approved the publish):** the snapshot is built and verified at
+`_local_archive/mythgauntlet-ccm-store-2026-11-04.zip` (21 MB; 32,186 compiled cards, 99.8% on prompt
+v11, 133 quarantined; contents are only `compiled/*.json`, `ledger.json`, `LICENSE-CCM-DATA.txt`,
+`_manifest.json`; the 15 quarantined blink cards are absent, the recompiled ones present). The upload
+itself was **denied by the permission layer as a public-surface action**, so it has NOT been published
+and the live release is still the 2026-09-21 snapshot. To publish (same URL, so `download-ccm.py` needs no change):
+
+    gh release upload ccm-data _local_archive/mythgauntlet-ccm-store-2026-11-04.zip --repo onemorethan0/mythforgemtg --clobber
+    gh release edit ccm-data --repo onemorethan0/mythforgemtg --title "CCM data (beta) - 2026-11-04" --notes "BETA snapshot, updated as training continues (nightly, Tue-Fri) - not final. 32186 cards compiled (99.8% on current prompt v11), 133 quarantined. Licensed CC BY-NC 4.0 - see LICENSE-CCM-DATA.txt in the archive. Re-run download-ccm.py periodically for a fresher snapshot."
+
+Caveats worth knowing: the manifest's `source_commit` is the sibling repo's HEAD (27c9e5321), but the
+snapshot reflects its working tree, which holds uncommitted nightly state plus the 26 blink recompiles.
+`README.md` and `docs/ENGINE_DATA.md` state the old figures (31,906 compiled / 260 quarantined /
+2026-09-21); update them after publishing.
 
 ## B9. Role-strength granularity (S13) and the wipe colour requirement
 S13: `card_roles` gives counterspell and wipe a flat 3.0, so supply moves in whole-card steps and a
