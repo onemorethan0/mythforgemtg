@@ -18,7 +18,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
-| B7 | Test gaps in the art pipeline | in progress | C |
+| B7 | Test gaps | ongoing; 6 bugs found by writing tests | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) + wipe colour requirement | specced, not started | C |
 | B10 | Offload harness follow-ups | specced | C |
@@ -241,13 +241,26 @@ detected. Only then decide whether any fix is an engine gap or a labelling-data 
 doctrine argument, not a number. **Needs the user's call** on whether casual play wants a stricter
 band; default is leave it. **Owner:** U.
 
-## B7. Test gaps in the art pipeline
-Done: logbuffer, gen_settings, exporter, deck_import (offline), mana_pips, api/cards, buildable,
-playstyle, api/state, set_symbol (153 tests added 2026-11-04). Remaining: `card_renderer` (1.5k
-lines, 1 test file references it), `cc_frames`, `themer` (3.5k), `image_gen` (3.8k).
-**Method:** write directly against pure helpers; skip anything that needs ComfyUI/Scryfall/GPU.
-**Accept per module:** the pure helpers have tests that fail when the helper is broken (mutate and
-check once), not just tests that run.
+## B7. Test gaps (now: "write tests for untested helpers" as a bug-finding method)
+Method that paid off: pick the untested pure helpers, read them, write tests, and let a failing
+assertion expose the defect. **Seven real bugs found this way on 2026-11-04, every one fixed with a
+regression test:** (1) `card_renderer._classify_border_theme` matched substrings ("inferno" got a
+vine border via "fern"); (2) `themer._extract_theme_palette` matched substrings ("a hundred years
+war" -> red) and its de-dup could never fire ("gold"+"golden" repeated); (3) `themer._parse_batch`
+took the first parseable list, so a thinking model's own "[1, 2]" before the answer discarded the whole
+batch to plain names; (4) `image_gen._theme_darkness_score` matched substrings ("lightning storm" was
+"whimsical" and had its dark LoRAs crushed to 20%); (5) `collection._from_decklist` (behind
+`load_owned_names`, the ownership set every build reads) turned "1x Sol Ring" into the key
+"1x sol ring"; (6) the same parser cut "Erase (Not the Urza's Legacy One)" to "Erase"; (7) the
+audit-driven sim fixes in B11/B12. **Recurring class: bare substring matching on natural-language
+text** (4 of the 6 non-sim bugs): worth a repo-wide grep for `word in text_lower` over short words.
+Covered so far (2026-11-04, ~480 tests): logbuffer, gen_settings, exporter, deck_import parsing,
+mana_pips, api/cards, buildable, playstyle, api/state, set_symbol, card_renderer, themer, image_gen,
+card_video, collection parsing. Remaining by untested-function count: `api/routes_collection.py`,
+`model3d.py` (all 14), `api/routes_decks.py` and `routes_strength.py` (route level, needs a
+TestClient fixture), `collection_index.py`.
+**Accept per module:** the pure helpers have tests that fail when the helper is broken, not just tests
+that run (check at least one by mutation).
 
 ## B8. Refresh the published CCM snapshot
 Last published 2026-09-21 (31,906 compiled, 99.2% on v11, 21 MB). The store has moved since.
