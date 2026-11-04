@@ -433,7 +433,10 @@ def _normalize_mana_cost(mana_cost: str) -> str:
     raw = (mana_cost or "").strip()
     if not raw or "{" in raw:
         return raw
-    compact = raw.replace(" ", "").replace("/", "")
+    # ALL whitespace (a tab or newline pasted into the field), not only spaces: the browser's
+    # normalizeManaCost strips /[\s/]/g, so a space-only strip here made the preview show
+    # {2}{W} while the server stored the raw "2<tab>W" -- the colourless card this exists to prevent.
+    compact = re.sub(r"[\s/]", "", raw)
     if not compact:
         return raw
     parts = _SHORTHAND_MANA_RE.findall(compact)
