@@ -18,7 +18,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
-| B7 | Test gaps | ongoing (strength mentor/breakdown/card-impact/feedback routes now covered); 9 bugs found by writing tests (1 path traversal) | C |
+| B7 | Test gaps | ongoing (model3d + routes_misc now covered; strength mentor/breakdown/card-impact/feedback routes now covered); 9 bugs found by writing tests (1 path traversal) | C |
 | B13 | JS<->Python drift (parity tests) | DONE: 2 divergences fixed, 4 mirrors locked | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) | DECIDED 2026-11-04: keep strength unit (owner call); closed | U |
