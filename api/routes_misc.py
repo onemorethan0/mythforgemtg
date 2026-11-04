@@ -398,7 +398,10 @@ async def upsert_custom_art_style(payload: dict):
     """
     from image_gen import upsert_custom_preset
 
-    key = payload.get("key", "").strip().replace(" ", "_")
+    raw_key = payload.get("key", "")
+    if not isinstance(raw_key, str):          # `payload: dict` is untyped: 5 / [] / {} used to 500
+        raise HTTPException(400, "key must be a string")
+    key = raw_key.strip().replace(" ", "_")
     if not key:
         raise HTTPException(400, "key is required")
 

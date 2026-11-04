@@ -1308,7 +1308,14 @@ def _load_custom_presets() -> dict:
         return {}
     try:
         with open(_CUSTOM_PRESETS_PATH, "r", encoding="utf-8") as _f:
-            return _json.load(_f)
+            data = _json.load(_f)
+        # Valid JSON that is not an object ("[]", "null", a hand-edit gone wrong) used to be
+        # returned as-is, then crashed every caller that merges or indexes it -- including the
+        # art-style list the whole UI loads. Treat it like a corrupt file.
+        if not isinstance(data, dict):
+            print("  [image_gen] Warning: custom_presets.json is not an object; ignoring it")
+            return {}
+        return data
     except Exception as _e:
         print(f"  [image_gen] Warning: could not load custom_presets.json: {_e}")
         return {}
