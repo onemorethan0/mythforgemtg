@@ -22,7 +22,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B13 | JS<->Python drift (parity tests) | DONE: 2 divergences fixed, 4 mirrors locked | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) | DECIDED 2026-11-04: keep strength unit (owner call); closed | U |
-| B10 | Offload harness follow-ups | specced | C |
+| B10 | Offload harness follow-ups | deferred: no consumer (see section) | C |
 
 ---
 
@@ -397,7 +397,9 @@ false positives) or left as is? Default if no answer: left as is.
 `scripts/dispatch.py` works (`--spread`, `--verify`). Keep: 14b drafts with `--verify` only for
 modules a deterministic checker covers; 8b for extraction/classification/sweeps. Open: a `--gold`
 mode that scores a classification spec against a hand-labelled set before running it on the corpus
-(the rule from offload-tiered-labelling), needed before B3's "other" labelling pass.
+(the rule from offload-tiered-labelling). **DEFERRED 2026-11-04, no consumer:** it was needed for a B3
+'other' labelling pass, and B3 closed without one ('other' is long-tail). Build it when a real
+classification sweep needs it, not before.
 
 ---
 
