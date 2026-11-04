@@ -10,10 +10,10 @@ decision or go-ahead (outward-facing, or a product call).
 
 | ID | Item | Status | Owner |
 |---|---|---|---|
-| B1 | Mentor holistic bench vs the 87-90/90 bar | running on node 1 | C reads, N computes |
-| B2 | Builder bench vs `docs/bench/current.json` | running (network) | C |
+| B1 | Mentor holistic bench vs the 87-90/90 bar | 84/90 first run; re-run queued | C reads, N computes |
+| B2 | Builder bench vs `docs/bench/current.json` | verdicts unchanged; A/B on baseline commit running | C |
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
-| B4 | Compile-quality gate for blink / `gain_control` mislabels | specced, not started | C (N recompiles) |
+| B4 | Compile-quality gate for blink / `gain_control` mislabels | gate landed; 41-card recompile running | C (N recompiles) |
 | B5 | Bracket recall: B4 34%, B1 44%, B5 36% | specced, not started | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps in the art pipeline | in progress | C |
@@ -31,6 +31,14 @@ mentor changes (castability prefetch, table-feel salt wording, key-card lead, sw
 **Accept:** holistic >= 87/90 and Shelob >= 47/52 (the bars from 2026-10-02). Below that: list the
 failing cells, read the replies (a rubric failure OR a pass can be wrong), fix, re-run only those.
 **Record:** the result goes in `STATUS.md` section 4.
+**Result 2026-11-04 (first run):** 84/90 (93%), just under the 87 floor. Of the 6 failing cells in the
+stored run, **5 are the gate's honest fallback** ("I couldn't put together an answer I'm confident is
+fully accurate": shelob cards, ghired overview + cards, isshin overview, arahbo cards) and 1 is a
+missing resilience verdict (ghired). No fabricated claim shipped in the stored run (77/81 passed the
+gate first try). Model variance is documented at 2-3 cells, so this is borderline, not conclusive.
+**Next:** re-run once (node 1 is busy recompiling B4), then compare cell by cell. If the same cells
+fail twice the cause is real: look at `rejections` in the JSON for why the gate refuses (suspects: the
+10-25 key-card lead and table-feel wording changes interacting with gate checks 7/16).
 
 ## B2. Builder bench
 **Why:** the 10-23 `toughness` theme changed builds for the 11 toughness commanders; the bench was
@@ -38,6 +46,12 @@ not re-run. **Run:** `python scripts/builder_bench.py --out docs/bench/current-2
 then `--compare docs/bench/current.json docs/bench/current-2026-11-04.json`.
 **Accept:** no commander regresses outside noise; a degraded run (Scryfall rate-limited) is
 discarded and re-run, not counted. Refresh `docs/bench/current.json` only if the comparison is clean.
+**Result 2026-11-04:** 20/20 valid, 0 dropped, every commander's verdict unchanged, mean synergy
+15.85 -> 15.62. One summary figure moved: `mean_weakest_theme_cards` 9.12 -> 7.22. The baseline is
+from 2026-08-18, so code AND live Scryfall data both drifted. **Disambiguating run in progress:** the
+baseline commit (45235c0) in a worktree at `../mtg_bench_ab`, run on today's data. If it also reads
+~7.2 it is data drift and `current.json` is simply refreshed; if it reads ~9.1 a code change since
+August moved theme composition and must be bisected. Remove the worktree when done.
 
 ## B3. Static abilities (the largest remaining hole)
 **Measured 2026-11-04 (`scripts/static_scan.py`):** 16,555 note-only statics (no op, free text).
@@ -54,6 +68,18 @@ discarded and re-run, not counted. Refresh `docs/bench/current.json` only if the
 
 This corrects the earlier "7,268 open" framing: the clean, deterministic core is roughly **1,300
 cards** (anthem_pt + anthem_kw + cost_reduction + cda_pt), not 7,000. The rest is heterogeneous.
+
+**Phase 1 DONE 2026-11-04 (parser only, nothing wired to the sim yet):** `compiler.parse_anthem` +
+`anthem_for_card` (28 tests). Strict closed template (creatures / other / nontoken, "you control" or
+"your opponents control", literal +N/+M, closed keyword vocabulary, whole-note reject). **Corrected
+sizing: 107 cards parse cleanly, not ~600.** But they sit in **293 of 1,154 corpus decks (25.4%)**
+(94 decks carry two or more), so phase 2 reaches one deck in four. A 30-card random hand-check read
+against oracle text found 0 wrong parses and exposed one trap, now closed: an anthem inside a
+modal bullet (Frostcliff Siege) only applies if that mode was chosen, so `anthem_for_card` requires
+the note to be a whole printed oracle line (ability-word prefixes decline: honest under-count).
+**Still to decide for phase 2 (needs a schema call):** statics have no `effects`, so the parsed
+anthem needs a home. Recommended: a new optional `anthem` object on the static ability, validated by
+the schema, filled by the compiler and by a no-GPU backfill (like `backfill_attach_grants.py`).
 
 **Plan, in order (each phase ships and measures on its own):**
 1. *Parser, no sim change.* A deterministic parser beside `parse_attach_grant` (no LLM; reject the
@@ -83,12 +109,18 @@ cards** (anthem_pt + anthem_kw + cost_reduction + cda_pt), not 7,000. The rest i
 - `gain_control` is a catch-all for at least 7 effects (blink, bounce, "becomes a creature"/Crew,
   restrictions, Monarch, impulse draw, reversed polarity); the sim declines the op, so this is a
   data-quality and mentor-description issue, not a simulation one.
-**Plan:** (1) add a `cross_check` gate in the compiler: oracle text with the blink signature must not
-compile to `exile` + a bare return, and must not contain `gain_control`; (2) add the mirror
-direction (the standing lesson from Hermit Druid: one-direction gates let a wrong CCM through);
-(3) `ccm-recheck --names-out` produces the worklist, `compile-names` recompiles it on node 1;
-(4) review every recompiled card against oracle text (the standing bar), authored overrides for any
-the model cannot get right. Do not bump `PROMPT_VERSION`.
+**Correction after measuring (2026-11-04):** `exile` + a return op is the *accepted* blink encoding
+(`interpreter.is_flicker` reads it), so the 134 figure overstated the problem. The genuinely wrong
+shapes are exactly two: **exile with no return op** (17 cards; executes as permanent removal of an
+opponent's creature, e.g. Hallowed Respite) and **a blink carrying `gain_control`** (25 cards).
+**Done:** (1) gate 3 now rejects both (commit 3744f5c, 9 tests); the return-op set is pinned in
+lock-step with the interpreter; `ccm-recheck` lists 41 cards. (2) The mirror direction is the existing
+"CCM declares exile, text never says exile" check plus this gate's no-return arm.
+**In progress:** (3) `compile-names` on node 1 for the 41 (backups in the session scratchpad).
+**Remaining:** (4) review every recompiled card against its oracle text (the standing bar; a green
+gate is not proof), hand-author any the model cannot get right in `ccm/authored/`. Do not bump
+`PROMPT_VERSION`. Do not commit in the sibling `mythgauntlet` repo; its working tree already has
+uncommitted nightly state.
 **Accept:** recheck lists the blink population as failing before the fix and 0 after; the 134 are
 either recompiled correctly or marked unsupported; no card gains an executable op it lacked.
 **Owner:** C (gate, review); N (recompile compute).

@@ -712,6 +712,87 @@ def parse_attach_grant(note: str) -> tuple[int, int, tuple[str, ...]] | None:
     return None
 
 
+# --- static ANTHEMS (B3, docs/BACKLOG.md) --------------------------------------------------
+# "Creatures you control get +1/+1 [and have vigilance]" is stored as a note-only static with
+# no op, so the simulator never sees it. Measured 2026-11-04 (scripts/static_scan.py): ~600 of
+# 16,555 note-only statics sit in this closed template. Same doctrine as `parse_attach_grant`:
+# pure, deterministic, no LLM, and the WHOLE note is rejected on any token outside the closed
+# vocabulary, so an out-of-scope clause ("as long as", "for each", "during your turn", a
+# subtype or colour filter, a granted ability as prose) declines instead of half-parsing.
+#
+# DELIBERATELY NOT HANDLED (each is a different mechanic, not a smaller version of this one):
+# subtype/colour/attacking filters, conditional or scaling bonuses, "enchanted/equipped"
+# (that is `parse_attach_grant`), and anything on a permanent that is not a creature.
+_ANTHEM_SUBJECTS = {
+    "creatures": (False, False),
+    "other creatures": (True, False),
+    "nontoken creatures": (False, True),
+    "other nontoken creatures": (True, True),
+}
+_ANTHEM_RE = re.compile(
+    r"^(?P<subject>(?:other )?(?:nontoken )?creatures) "
+    r"(?P<who>you control|your opponents control) "
+    r"(?:get (?P<pt>[+-]\d+/[+-]\d+)(?:,?\s*and\s+have\s+(?P<kw1>.+?))?"
+    r"|have (?P<kw2>.+?))\.?$",
+    re.I,
+)
+
+
+def parse_anthem(note: str) -> dict | None:
+    """A static anthem note -> {"affects", "others", "nontoken", "power", "toughness",
+    "keywords"}, or None when it is not exactly the closed unconditional shape.
+
+    ``affects`` is ``"you"`` or ``"opponents"``; ``others`` means the source itself is excluded
+    ("Other creatures ..."); ``nontoken`` excludes tokens. Pure and deterministic.
+    """
+    m = _ANTHEM_RE.match((note or "").strip())
+    if not m:
+        return None
+    others, nontoken = _ANTHEM_SUBJECTS[m.group("subject").lower()]
+    power = toughness = 0
+    if m.group("pt"):
+        p, t = m.group("pt").split("/")
+        power, toughness = int(p), int(t)
+    blob = m.group("kw1") or m.group("kw2")
+    keywords: list[str] = []
+    if blob:
+        kws = _split_attach_grant_keywords(blob)  # same closed vocabulary, same whole-note reject
+        if kws is None:
+            return None
+        keywords = kws
+    if not m.group("pt") and not keywords:
+        return None
+    return {
+        "affects": "you" if m.group("who").lower() == "you control" else "opponents",
+        "others": others,
+        "nontoken": nontoken,
+        "power": power,
+        "toughness": toughness,
+        "keywords": sorted(keywords),
+    }
+
+
+def anthem_for_card(note: str, oracle_text: str) -> dict | None:
+    """`parse_anthem(note)`, but only when the note is a WHOLE LINE of the card's oracle text.
+
+    The note alone cannot tell an always-on anthem from one that sits inside a modal bullet
+    ("* Temur -- Creatures you control get +1/+0 and have trample and haste", Frostcliff
+    Siege: only active if that mode was chosen) or behind a chosen option. Requiring the
+    note to BE a printed line (reminder text stripped, trailing period ignored) rejects those
+    by construction; an ability-word prefix ("Devastating Charge -- ...") is rejected too,
+    which is the honest under-count rather than a guess.
+    """
+    parsed = parse_anthem(note)
+    if parsed is None or not oracle_text:
+        return None
+    want = note.strip().rstrip(".").casefold()
+    for line in oracle_text.split("\n"):
+        line = re.sub(r"\([^)]*\)", "", line).strip().rstrip(".").casefold()
+        if line == want:
+            return parsed
+    return None
+
+
 def _populate_attach_grants(doc: dict) -> None:
     """Deterministically copy each attach effect's paired static bonus onto the effect
     itself (`grant_power`/`grant_toughness`/`grant_keywords`), when `parse_attach_grant`
