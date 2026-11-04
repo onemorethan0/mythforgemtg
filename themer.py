@@ -498,13 +498,17 @@ def _extract_theme_palette(theme: str) -> str:
     if not theme:
         return ""
     low = theme.lower()
-    seen: list[str] = []
+    found: list[tuple[int, str]] = []
     for word, pal in _THEME_COLOR_WORDS.items():
-        idx = low.find(word)
-        if idx >= 0 and pal not in seen:
-            seen.append((idx, pal))  # type: ignore
-    seen.sort(key=lambda t: t[0])  # type: ignore
-    return " / ".join(p for _, p in seen)  # type: ignore
+        # A WHOLE word, not a substring: "a hundred years war" contains "red" and "scared" does too,
+        # and neither is the colour. A prefix still counts ("golden", "reddish").
+        m = re.search(r"\b" + re.escape(word), low)
+        # De-dup on the palette string: "gold" and "golden" map to the same one, which the old
+        # check (comparing a string against (idx, pal) tuples) could never catch.
+        if m and all(pal != p for _, p in found):
+            found.append((m.start(), pal))
+    found.sort(key=lambda t: t[0])
+    return " / ".join(p for _, p in found)
 
 
 def _color_palette_hint(color_identity: list[str], theme_palette: str = "",
@@ -2529,15 +2533,25 @@ def _parse_batch(raw: str, cards: list[dict]) -> list[dict]:
     # Robust JSON array extraction: try each '[' position with raw_decode so a
     # stray bracket inside thinking text or a string literal doesn't break us.
     parsed = None
+    first_list = None
     decoder = json.JSONDecoder()
     for match in re.finditer(r'\[', text):
         try:
             candidate, _ = decoder.raw_decode(text[match.start():])
-            if isinstance(candidate, list):
-                parsed = candidate
-                break
         except json.JSONDecodeError:
             continue
+        if not isinstance(candidate, list):
+            continue
+        if first_list is None:
+            first_list = candidate
+        # Prefer the list that actually holds entries. A thinking model often writes a parseable
+        # list of its own ("[1, 2]", "[Elf, Knight]") before the answer; taking the first list
+        # blindly lost the whole batch to the plain-name fallback.
+        if any(isinstance(item, dict) and "idx" in item for item in candidate):
+            parsed = candidate
+            break
+    if parsed is None:
+        parsed = first_list
 
     if parsed is None:
         # Last-ditch: whole-string parse (handles bare-object responses).
