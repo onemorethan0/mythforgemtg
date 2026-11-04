@@ -1,0 +1,86 @@
+# Archidekt — Session 1.2 Week 2
+# source: archidekt:27708838
+# fetched: 2026-10-23
+
+Commander:
+1 Arjun, the Shifting Flame
+
+Deck:
+1 Guildless Commons
+1 Baral and Kari Zev
+1 Arcane Signet
+1 Opal Palace
+1 Brudiclad, Telchor Engineer
+1 Training Center
+1 Terramorphic Expanse
+1 Command Beacon
+1 Path of Ancestry
+1 Liberator, Urza's Battlethopter
+1 Chromatic Lantern
+1 Evolving Wilds
+1 Command Tower
+1 Coastline Marauders
+1 Over the Top
+1 Rampaging Raptor
+1 Boarding Party
+1 Scatter Ray
+1 Act of Aggression
+1 Siren Stormtamer
+1 Faerie Mastermind
+1 Psychic Barrier
+1 Assimilate Essence
+1 Aurora Phoenix
+1 Spellskite
+1 Urza's Rebuff
+1 Hurkyl, Master Wizard
+1 Stern Lesson
+1 Stasis Field
+1 Thopter Mechanic
+1 Invasion of Vryn // Overloaded Mage-Ring
+1 Flow of Knowledge
+1 Take Flight
+1 Xerex Strobe-Knight
+1 Urza, Powerstone Prodigy
+1 Teferi, Mage of Zhalfir
+1 Tolarian Contempt
+1 Mazemind Tome
+1 Urza's Command
+1 Mask of Memory
+1 Isolation Cell
+1 Vow of Flight
+1 Scrapdiver Serpent
+1 Mindculling
+1 Jin-Gitaxias, Core Augur
+1 Sol Ring
+1 Shrine of Loyal Legions
+1 Prying Eyes
+1 Burnished Hart
+1 Sunset Pyramid
+1 Tyrant of Kher Ridges
+1 Karn Liberated
+1 Volcanic Dragon
+1 Foundry Inspector
+1 Nevinyrral's Disk
+1 Malcolm, Keen-Eyed Navigator
+1 Ogre Menial
+1 Invasion of Mercadia // Kyren Flamewright
+1 Saiba Cryptomancer
+1 Fire Diamond
+1 Skystrike Officer
+1 Meeting of Minds
+1 Pennon Blade
+1 Spectral Searchlight
+1 Alloy Myr
+1 Skaab Goliath
+1 Pristine Talisman
+1 Hero's Blade
+1 Onakke Javelineer
+1 Sigil of Valor
+1 Seer's Lantern
+1 Filigree Familiar
+1 Invasion of Kamigawa // Rooftop Saboteurs
+1 Sisay's Ring
+1 Combat Courier
+1 Dragon Mantle
+13 Island
+9 Mountain

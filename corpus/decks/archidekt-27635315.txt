@@ -1,0 +1,95 @@
+# Archidekt — Aliens learn of Earth
+# source: archidekt:27635315
+# fetched: 2026-10-21
+
+Commander:
+1 Hearthhull, the Worldseed
+
+Deck:
+1 Ba Sing Se
+1 Earthbender Ascension
+1 Avatar Kyoshi, Earthbender
+1 The Boulder, Ready to Rumble
+1 Birds of Paradise
+1 Mole Man, Moloid Master
+1 Toph, Hardheaded Teacher
+1 Bitter Work
+1 Toph, Earthbending Master
+1 Crucible of Worlds
+1 Ramunap Excavator
+1 Icetill Explorer
+1 Conduit of Worlds
+1 Beifong's Bounty Hunters
+1 Szarel, Genesis Shepherd
+1 Walk-In Closet // Forgotten Cellar
+1 Ancient Greenwarden
+1 Perennial Behemoth
+1 Sylvan Safekeeper
+1 Splendid Reclamation
+1 Entish Restoration
+1 The Gitrog Monster
+1 Korvold, Fae-Cursed King
+1 Harrow
+1 Zuran Orb
+1 Evendo Brushrazer
+1 Iridescent Vinelasher
+1 Lotus Cobra
+1 Bristly Bill, Spine Sower
+1 Koth, the Geomancer
+1 Courser of Kruphix
+1 Mossborn Hydra
+1 Scute Swarm
+1 Sabotender
+1 Ob Nixilis, the Fallen
+1 Rampaging Baloths
+1 Tireless Provisioner
+1 Sazh's Chocobo
+1 Rampant Growth
+1 Polluted Delta
+1 Tannuk, Memorial Ensign
+1 Scapeshift
+1 Command Tower
+1 Misty Rainforest
+1 Ignoble Hierarch
+1 Sol Ring
+1 Arid Mesa
+1 Bloodstained Mire
+1 Sowing Mycospawn
+1 Stomping Ground
+1 Blood Crypt
+1 Arcane Signet
+1 Marsh Flats
+1 Scalding Tarn
+1 Windswept Heath
+1 Nurturing Peatland
+1 Wooded Foothills
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Wasteland
+1 Twisted Landscape
+1 Fabled Passage
+1 Strip Mine
+1 Glacial Chasm
+1 Escape Tunnel
+1 Urza's Cave
+1 Myriad Landscape
+1 Underground Mortuary
+1 Snow-Covered Mountain
+1 Commercial District
+12 Snow-Covered Forest
+1 Turbulent Crater
+1 Turbulent Fen
+1 Riveteers Overlook
+1 Karazikar, the Eye Tyrant
+1 Guardian Project
+1 Rydia, Summoner of Mist
+1 Terrasymbiosis
+1 Zendikar Resurgent
+1 Augur of Autumn
+1 Demonic Tutor
+1 Snow-Covered Swamp
+1 Crop Rotation
+1 Raucous Theater
+1 Omnath, Locus of Rage
+1 Phyrexian Arena
+1 Mayhem Devil

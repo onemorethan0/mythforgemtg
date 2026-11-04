@@ -1,0 +1,101 @@
+# Archidekt — Sin
+# source: archidekt:25912010
+# fetched: 2026-10-21
+
+Commander:
+1 Sin, Spira's Punishment
+
+Deck:
+1 Nuclear Fallout
+1 Portal to Phyrexia
+1 Thirst for Identity
+1 Thirst for Discovery
+1 Barren Moor
+1 Command Tower
+1 Exotic Orchard
+1 Field of the Dead
+3 Island
+1 Lonely Sandbar
+1 Misty Rainforest
+1 Polluted Delta
+2 Swamp
+1 Tranquil Thicket
+1 Wasteland
+1 Verdant Catacombs
+1 Watery Grave
+1 Wooded Foothills
+1 Zagoth Triome
+1 Scalding Tarn
+1 Gaze of Granite
+1 Vicious Rivalry
+1 Entomb
+1 Into the North
+1 Glimpse the Core
+1 Shared Roots
+1 Cycle of Renewal
+1 Cultivate
+1 Entish Restoration
+1 Roiling Regrowth
+1 Ranger's Path
+1 Skyshroud Claim
+1 Hunting Wilds
+1 Planar Engineering
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Snow-Covered Forest
+1 Explore
+1 Farseek
+1 Malevolent Rumble
+1 Nature's Lore
+1 Planar Genesis
+1 Rampant Growth
+1 Three Visits
+1 Harrow
+1 Valgavoth, Terror Eater
+1 Zero Point Ballad
+1 Toxic Deluge
+1 Hedge Maze
+1 Underground Mortuary
+1 Undercity Sewers
+4 Forest
+1 Singularity Rupture
+1 Breeding Pool
+1 Marsh Flats
+1 Overgrown Tomb
+1 Windswept Heath
+1 Toxrill, the Corrosive
+1 Killing Wave
+1 Season of Weaving
+1 Gifts Ungiven
+1 Circuitous Route
+1 Yavimaya Coast
+1 Underground River
+1 Llanowar Wastes
+1 Starting Town
+1 Gloomlake Verge
+1 Bloodstained Mire
+1 Flooded Strand
+1 Ugin, the Spirit Dragon
+1 Blasphemous Edict
+1 Vorinclex, Voice of Hunger
+1 Jin-Gitaxias, Core Augur
+1 Omniscience
+1 Void Winnower
+1 Culling Ritual
+1 Possessed Portal
+1 Damnation
+1 Summon: Leviathan
+1 Winternight Stories
+1 Windfall
+1 Season of Gathering
+1 Day of Black Sun
+1 Thirst for Knowledge
+1 Syphon Mind
+1 Frantic Search
+1 Compulsive Research
+1 Dark Deal
+1 Beast Within
+1 Capsize
+1 Grisly Salvage
+1 Wipe Away
+1 Assassin's Trophy

@@ -1,0 +1,98 @@
+# Archidekt — Live on Stage! 🎸🎶
+# source: archidekt:27588954
+# fetched: 2026-10-20
+# bracket: 3
+
+Commander:
+1 Gwen Stacy // Ghost-Spider
+
+Deck:
+1 MJ, Rising Star
+1 The Mary Janes
+1 Ghost-Spider, Gwen Stacy
+1 Spider-Gwen, Free Spirit
+1 Spider-Punk
+5 Island
+4 Mountain
+3 Plains
+1 Guttersnipe
+1 Coruscation Mage
+1 Keeper of Secrets
+1 Electrostatic Field
+1 Wild-Magic Sorcerer
+1 Firebrand Archer
+1 Kessig Flamebreather
+1 Fiery Inscription
+1 Passionate Archaeologist
+1 Expressive Iteration
+1 Ignite the Future
+1 Light Up the Stage
+1 Reckless Impulse
+1 Wrenn's Resolve
+1 Inspired Tinkering
+1 Outpost Siege
+1 Valakut Exploration
+1 Laelia, the Blade Reforged
+1 Stolen Strategy
+1 Share the Spoils
+1 Big Score
+1 Sol Ring
+1 Arcane Signet
+1 Fellwar Stone
+1 Talisman of Progress
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Storm-Kiln Artist
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Runaway Steam-Kin
+1 Stormcatch Mentor
+1 Goblin Electromancer
+1 Case of the Ransacked Lab
+1 Artist's Talent
+1 Strike It Rich
+1 Unexpected Windfall
+1 Spell Pierce
+1 Generous Gift
+1 Slip Out the Back
+1 Boros Charm
+1 Fabled Passage
+1 Reflecting Pool
+1 Battlefield Forge
+1 Command Tower
+1 Clifftop Retreat
+1 Exotic Orchard
+1 Mystic Monastery
+1 Path of Ancestry
+1 Shivan Reef
+1 Sulfur Falls
+1 Glacial Fortress
+1 Stormcarved Coast
+1 Sundown Pass
+1 Steam Vents
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Prairie Stream
+1 Irrigated Farmland
+1 Spirebluff Canal
+1 Seachrome Coast
+1 Inspiring Vantage
+1 Riverglide Pathway // Lavaglide Pathway
+1 Hengegate Pathway // Mistgate Pathway
+1 Abrade
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Chandra, Dressed to Kill
+1 Chandra, Torch of Defiance
+1 Chaos Warp
+1 Counterspell
+1 Delayed Blast Fireball
+1 Nalfeshnee
+1 Narset's Reversal
+1 Path to Exile
+1 Ral, Storm Conduit
+1 Swan Song
+1 Swords to Plowshares
+1 Thermo-Alchemist
+1 Wear // Tear
+1 Adarkar Wastes
+1 Deserted Beach

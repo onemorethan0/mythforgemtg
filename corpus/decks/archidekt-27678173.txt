@@ -1,0 +1,74 @@
+# Archidekt — Emo Loot
+# source: archidekt:27678173
+# fetched: 2026-10-22
+
+Commander:
+1 Loot, the Anomaly
+
+Deck:
+1 Greel's Caress
+1 Belbe's Armor
+1 Despondency
+1 Thieves' Tools
+1 Clinging Darkness
+1 Wring Flesh
+1 Liliana the Repentant
+1 Marsh Gas
+1 Torment
+1 Mourning
+1 Reassembling Skeleton
+1 Sinister Gnarlbark
+1 Infernal Grasp
+1 Solemn Simulacrum
+1 Grave Researcher // Reanimate
+1 Stitcher's Supplier
+1 Midnight Reaper
+1 Swiftfoot Boots
+1 Village Rites
+1 Golgari Thug
+1 Deadly Dispute
+1 Unearth
+1 Corrupted Conviction
+1 Sam's Desperate Rescue
+1 Phyresis
+1 Withering Torment
+1 Sign in Blood
+1 Dead Weight
+1 Whispersilk Cloak
+1 Victimize
+1 Read the Bones
+1 Dread Return
+1 Night's Whisper
+1 Diresight
+1 Dauthi Embrace
+1 My Precious // Allure of Power
+1 Blight Mound
+1 Feebleness
+1 Cast into Darkness
+1 Decree of Pain
+1 Swampsnare Trap
+1 Call of the Death-Dweller
+1 Weight of the Underworld
+1 Arcane Signet
+34 Swamp
+1 Access Tunnel
+1 Rogue's Passage
+1 Sol Ring
+1 Fellwar Stone
+1 Commander's Sphere
+1 Ral Zarek, Guest Lecturer
+1 Nowhere to Run
+1 Charcoal Diamond
+1 Phyrexian Totem
+1 Mind Stone
+1 Wriggling Grub
+1 Shambling Ghast
+1 Professor's Warning
+1 Guardian Idol
+1 Ulcerate
+1 Trailblazer's Boots
+1 Crow of Dark Tidings
+1 Grim Haruspex
+1 Doomed Dissenter
+1 Command the Dreadhorde
+1 Pitiless Plunderer

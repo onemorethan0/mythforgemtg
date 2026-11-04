@@ -1,0 +1,80 @@
+# Archidekt — Bam
+# source: archidekt:27640591
+# fetched: 2026-10-22
+
+Commander:
+1 Arcum Dagsson
+
+Deck:
+1 Portal to Phyrexia
+1 Ornithopter
+1 Ornithopter of Paradise
+1 Silver Myr
+1 Corridor Monitor
+1 Darksteel Forge
+1 God-Pharaoh's Statue
+1 Crashing Drawbridge
+1 Rings of Brighthearth
+1 Basalt Monolith
+1 Minamo, School at Water's Edge
+1 Staff of Domination
+1 Memnite
+1 Seat of the Synod
+1 Blinkmoth Nexus
+1 Combat Courier
+1 Marvin, Murderous Mimic
+29 Island
+1 Voltaic Key
+1 Chromatic Orrery
+1 Myr Convert
+1 Tomb Trawler
+1 Mycosynth Lattice
+1 Dramatic Reversal
+1 Mox Opal
+1 Tezzeret the Seeker
+1 Shield Sphere
+1 Myr Turbine
+1 Unwinding Clock
+1 Manakin
+1 Mystic Forge
+1 Nexus of Becoming
+1 Foundry Inspector
+1 Phyrexian Walker
+1 Myr Sire
+1 Liberator, Urza's Battlethopter
+1 Citanul Flute
+1 Darksteel Citadel
+1 Forsaken Monument
+1 Sensei's Divining Top
+1 Genesis Chamber
+1 Manifold Key
+1 Clock of Omens
+1 Hedron Crawler
+1 Etherium Sculptor
+1 Palladium Myr
+1 The Ten Rings
+1 Spine of Ish Sah
+1 K-9, Mark I
+1 Page, Loose Leaf
+1 Hangarback Walker
+1 Lightning Greaves
+1 Access Denied
+1 Solemn Simulacrum
+1 Chimil, the Inner Sun
+1 Walking Ballista
+1 Myr Retriever
+1 Academy Ruins
+1 Canoptek Spyder
+1 Cryptothrall
+1 Everflowing Chalice
+1 Karn, Legacy Reforged
+1 Iron Man, Bleeding Edge
+1 Mycosynth Golem
+1 Krang, Utrom Warlord
+1 Inventors' Fair
+1 Jin-Gitaxias, Progress Tyrant
+1 Memnarch, the Warden
+1 Myr Battlesphere
+1 Ultron, Artificial Malevolence
+1 Accomplished Automaton
+1 Traxos, Scourge of Kroog

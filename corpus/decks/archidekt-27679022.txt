@@ -1,0 +1,100 @@
+# Archidekt — Ingris Test
+# source: archidekt:27679022
+# fetched: 2026-10-22
+
+Commander:
+1 Ingris Stingerquill
+
+Deck:
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Rakdos Signet
+1 Enduring Courage
+1 Black Market Connections
+1 Sulfurous Springs
+1 Haunted Ridge
+1 Whip of Erebos
+1 Luxury Suite
+1 Command Tower
+4 Mountain
+1 Dragonskull Summit
+1 Smoldering Marsh
+1 Tainted Peak
+1 Blood Crypt
+1 Bojuka Bog
+5 Swamp
+1 Rakdos Carnarium
+1 Phyrexian Tower
+1 Fabled Passage
+1 Shadowblood Ridge
+1 Arcane Signet
+1 Feed the Swarm
+1 Tomik, Izzet Sparkmage
+1 Stigma Lasher
+1 Blazemire Verge
+1 Rogue's Passage
+1 Graven Cairns
+1 Blightstep Pathway // Searstep Pathway
+1 Reliquary Tower
+1 Takenuma, Abandoned Mire
+1 Talisman of Indulgence
+1 Chaos Warp
+1 Lightning Greaves
+1 Bitterbloom Bearer
+1 Alesha, Who Laughs at Fate
+1 Morbid Opportunist
+1 Samut, Hazoret's Champion
+1 Foreboding Ruins
+1 Raucous Theater
+1 Malakir Rebirth // Malakir Mire
+1 Solphim, Mayhem Dominus
+1 Garna, Bloodfist of Keld
+1 Grim Hireling
+1 Krenko, Tin Street Kingpin
+1 Exotic Orchard
+1 Valakut Awakening // Valakut Stoneforge
+1 Ragavan, Nimble Pilferer
+1 Kardur, Doomscourge
+1 Fell the Profane // Fell Mire
+1 Bloodsoaked Insight // Sanguine Morass
+1 Withering Torment
+1 Arena of Glory
+1 Chandra's Incinerator
+1 Hexing Squelcher
+1 Bedevil
+1 Blasphemous Act
+1 Legion Warboss
+1 Rakdos Charm
+1 Deflecting Swat
+1 Phyrexian Arena
+1 Professional Face-Breaker
+1 Hellrider
+1 Chandra, Acolyte of Flame
+1 Toxic Deluge
+1 Reanimate
+1 Varragoth, Bloodsky Sire
+1 Abyssal Specter
+1 Lagomos, Hand of Hatred
+1 Rakdos, Lord of Riots
+1 Elegy Acolyte
+1 Henrika Domnathi // Henrika, Infernal Seer
+1 Vandalblast
+1 Hypnotic Specter
+1 Disrupt Decorum
+1 Vito, Thorn of the Dusk Rose
+1 Scheming Silvertongue // Sign in Blood
+1 Exquisite Blood
+1 Gix, Yawgmoth Praetor
+1 Neheb, the Eternal
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Sheoldred, the Apocalypse
+1 Nighthawk Scavenger
+1 Qarsi Revenant
+1 Mishra, Claimed by Gix
+1 Preacher of the Schism
+1 Eradicator Valkyrie
+1 Anger
+1 Kalitas, Traitor of Ghet
+1 Goldspan Dragon
+1 Murderous Rider // Swift End
+1 Master of Barbs
+1 Soul Shatter

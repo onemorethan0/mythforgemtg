@@ -1,0 +1,86 @@
+# Archidekt — robin jareth deck?
+# source: archidekt:27646683
+# fetched: 2026-10-21
+
+Commander:
+1 Muxus, Goblin Grandee
+
+Deck:
+1 Patchwork Banner
+1 Myriad Landscape
+1 Impact Tremors
+1 Goblin Bombardment
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Rogue's Passage
+1 Sol Ring
+1 Arcane Signet
+1 Heraldic Banner
+1 Kiki-Jiki, Mirror Breaker
+1 Battle Cry Goblin
+1 Warren Instigator
+1 Goblin Piledriver
+1 Treasure Nabber
+1 Legion Loyalist
+1 Hexing Squelcher
+1 Mana Geyser
+21 Mountain
+1 Goblin Rabblemaster
+1 Boggart Shenanigans
+1 General Kreat, the Boltbringer
+1 Ajani's Anguish
+1 Krenko, Mob Boss
+1 Goblin Warchief
+1 Goblin Matron
+1 Goblin Chieftain
+1 Conspicuous Snoop
+1 Goblin Trashmaster
+1 Pashalik Mons
+1 Goblin King
+1 Siege-Gang Commander
+1 Lightning Crafter
+1 Mogg Raider
+1 Den of the Bugbear
+1 Three Tree City
+1 Castle Embereth
+1 Command Beacon
+1 Shared Animosity
+1 Herald's Horn
+1 The Fire Crystal
+1 Hazoret's Monument
+1 Vanquisher's Banner
+1 Vandalblast
+1 Goblin War Strike
+1 Blasphemous Act
+1 Dragon Fodder
+1 Goblin Grenade
+1 Krenko's Command
+1 Battle Hymn
+1 Brightstone Ritual
+1 Lightning Bolt
+1 Thrill of Possibility
+1 Goblin Recruiter
+1 Krenko, Tin Street Kingpin
+1 Hobgoblin Bandit Lord
+1 Goblin Ringleader
+1 Goblin Chirurgeon
+1 Rundvelt Hordemaster
+1 Goblin Lackey
+1 Goblin Assault
+1 Berserkers' Onslaught
+1 Goblin Lookout
+1 Goblin Sledder
+1 Bloodmark Mentor
+1 Brass's Bounty
+1 Descendants' Fury
+1 Fabled Passage
+1 Lotus Field
+1 Goblin Chainwhirler
+1 Dormant Volcano
+1 Spellbook
+1 Trinisphere
+1 Blood Moon
+1 Tunnel Ignus
+1 Conjurer's Closet
+1 Voyager Staff
+1 Fervor
+1 Winds of Change

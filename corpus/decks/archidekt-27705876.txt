@@ -1,0 +1,100 @@
+# Archidekt — Life gain Life pain
+# source: archidekt:27705876
+# fetched: 2026-10-23
+
+Commander:
+1 Licia, Sanguine Tribune
+
+Deck:
+1 Arcane Signet
+1 Unburial Rites
+1 Liliana Vess
+1 Oblivion Ring
+1 Tariel, Reckoner of Souls
+1 Animate Dead
+1 Torrent of Souls
+1 Ancient Craving
+1 Terminate
+1 Commander's Sphere
+1 Akroma, Angel of Wrath
+1 Sword of the Animist
+1 Go for the Throat
+1 Slayers' Stronghold
+1 Wurmcoil Engine
+1 Sun Titan
+1 Solemn Simulacrum
+1 Baneslayer Angel
+1 Akroma, Angel of Fury
+4 Swamp
+3 Mountain
+1 Rakdos Carnarium
+1 Arid Mesa
+4 Plains
+1 Boros Garrison
+1 Terramorphic Expanse
+1 Blood Crypt
+1 Orzhov Basilica
+1 Myriad Landscape
+1 Bloodstained Mire
+1 Graven Cairns
+1 Fetid Heath
+1 Marsh Flats
+1 Rugged Prairie
+1 Isolated Chapel
+1 Sacred Foundry
+1 Vault of the Archangel
+1 Lavaclaw Reaches
+1 Dragonskull Summit
+1 Nomad Outpost
+1 Godless Shrine
+1 Rupture Spire
+1 Command Tower
+1 Clifftop Retreat
+1 Legion Leadership // Legion Stronghold
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Bloodsoaked Insight // Sanguine Morass
+1 Ondu Inversion // Ondu Skyruins
+1 Rogue's Passage
+1 Ob Nixilis, the Ascended
+1 Avacyn, Angel of Hope
+1 Avacyn, Angel of Horror
+1 Hagra Mauling // Hagra Broodpit
+1 Lunar Convocation
+1 Crackling Doom
+1 Inevitable Defeat
+1 Ruinous Ultimatum
+1 Fumigate
+1 Essence Channeler
+1 Rowan, Scion of War
+1 Phyrexian Reclamation
+1 Mythos of Snapdax
+1 Lightning Helix
+1 Kaya's Wrath
+1 Greed
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Qarsi Revenant
+1 Abigale, Eloquent First-Year
+1 Twilight Prophet
+1 Pristine Talisman
+1 Doom Whisperer
+1 Font of Agonies
+1 Bloodthirster
+1 Crypt Incursion
+1 Debt to the Deathless
+1 Toxic Deluge
+1 Witch of the Moors
+1 Withering Torment
+1 Insatiable Avarice
+1 Pacifism
+1 Rodolf Duskbringer
+1 Swiftfoot Boots
+1 Ajani's Anguish
+1 Orzhov Signet
+1 Rakdos Signet
+1 Boros Signet
+1 Wayfarer's Bauble
+1 Embercleave
+1 Skyclave Relic
+1 Vindicate
+1 Blot Out the Sky
+1 Vilis, Broker of Blood

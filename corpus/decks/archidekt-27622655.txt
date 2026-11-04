@@ -1,0 +1,81 @@
+# Archidekt — Budget
+# source: archidekt:27622655
+# fetched: 2026-10-21
+
+Commander:
+1 Kediss, Emberclaw Familiar
+1 Malcolm, Keen-Eyed Navigator
+
+Deck:
+1 Abrade
+1 Amoeboid Changeling
+1 Arcane Signet
+1 Artificial Evolution
+1 Blades of Velis Vel
+1 Command Tower
+1 Counterspell
+1 Curiosity
+1 Delay
+1 Demand Answers
+1 Dispel
+1 Dizzy Spell
+1 Drift of Phantasms
+1 Fact or Fiction
+1 Fellwar Stone
+1 Frostboil Snarl
+1 Glamer Gifter
+1 Guild Artisan
+1 HYDRA Assault Robot
+1 Imagecrafter
+1 Impulse
+1 Ingenious Artillerist
+1 Intervene
+18 Island
+1 Izzet Signet
+1 Kitesail Larcenist
+1 Leyline of Transformation
+1 Lightning Bolt
+1 Lose Focus
+1 Mana Leak
+1 Maskwood Nexus
+1 Miscast
+1 Mistform Mask
+10 Mountain
+1 Muddle the Mixture
+1 Negate
+1 Opt
+1 Path of Ancestry
+1 Penregon Strongbull
+1 Prismari Campus
+1 Reality Shift
+1 Reckless Fireweaver
+1 Resculpt
+1 Shivan Reef
+1 Silverbluff Bridge
+1 Simian Spirit Guide
+1 Siren Stormtamer
+1 Sol Ring
+1 Solve the Equation
+1 Spectral Sailor
+1 Spell Pierce
+1 Springleaf Drum
+1 Standardize
+1 Strike It Rich
+1 Sulfur Falls
+1 Sunshot Militia
+1 Suspend
+1 Swiftwater Cliffs
+1 Talisman of Creativity
+1 Tandem Lookout
+1 Temple of Epiphany
+1 Thriving Bluff
+1 Trickery Charm
+1 Volatile Claws
+1 Wash Away
+1 Weftstalker Ardent
+1 Wings of Velis Vel
+1 Brainstorm
+1 Dragon's Rage Channeler
+1 Shao Jun
+1 Arcane Adaptation
+1 Glint-Horn Buccaneer

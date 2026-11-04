@@ -1,0 +1,97 @@
+# Archidekt — abzan lifegain +1/+1 counters
+# source: archidekt:27316063
+# fetched: 2026-10-20
+# bracket: 2
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Niv-Mizzet, Ghost Counsel
+1 Damning Verdict
+1 Guiding Hydra
+1 Command Tower
+1 Path of Ancestry
+1 Godless Shrine
+1 Overgrown Tomb
+1 Temple Garden
+1 Abandoned Air Temple
+7 Plains
+1 Indatha Triome
+3 Forest
+1 Sandsteppe Citadel
+4 Swamp
+1 Thriving Grove
+1 Thriving Heath
+1 Thriving Moor
+1 Brokers Hideout
+1 Blossoming Sands
+1 Jungle Hollow
+1 Cabaretti Courtyard
+1 Underground Mortuary
+1 Riveteers Overlook
+1 Obscura Storefront
+1 Scoured Barrens
+1 Shadowy Backstreet
+1 Lush Portico
+1 Marsh Flats
+1 Windswept Heath
+1 Verdant Catacombs
+1 Soul Warden
+1 Cleric Class
+1 Essence Warden
+1 Ajani Resolute
+1 Lathiel, the Bounteous Dawn
+1 Karlov of the Ghost Council
+1 Trelasarra, Moon Dancer
+1 Elenda's Hierophant
+1 Essence Harvest
+1 Archangel of Thune
+1 Welcoming Vampire
+1 Tymna the Weaver
+1 Enduring Tenacity
+1 Sanguine Bond
+1 Vito, Thorn of the Dusk Rose
+1 Enduring Innocence
+1 Snuff Out
+1 Dismember
+1 Lunar Convocation
+1 Envoy of the Ancestors
+1 Exemplar of Light
+1 Swords to Plowshares
+1 Feed the Swarm
+1 Toxic Deluge
+1 Walking Ballista
+1 Flawless Maneuver
+1 Heliod, Sun-Crowned
+1 Inspiring Call
+1 Mikaeus, the Lunarch
+1 Liliana the Faultless
+1 Mortality Spear
+1 Heroic Intervention
+1 Assassin's Trophy
+1 Path to Exile
+1 Ripples of Undeath
+1 Fell Beast of Mordor
+1 Serra Ascendant
+1 Akroma's Will
+1 Whip of Erebos
+1 Qala, Ajani's Pridemate
+1 Dark Confidant
+1 Innkeeper's Talent
+1 Hangarback Walker
+1 Sunscorch Regent
+1 Aerith Gainsborough
+1 Aragorn and Arwen, Wed
+1 Bitter Triumph
+1 Shadowspear
+1 Soul's Attendant
+1 Hinterland Sanctifier
+1 Barrowgoyf
+1 Suture Priest
+1 Lunarch Veteran // Luminous Phantom
+1 Essence Channeler
+1 Elas il-Kor, Sadistic Pilgrim
+1 Dr. Beverly Crusher
+1 Scheming Silvertongue // Sign in Blood
+1 Voice of the Blessed

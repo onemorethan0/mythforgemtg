@@ -1,0 +1,98 @@
+# Archidekt — Winota Stax
+# source: archidekt:3352374
+# fetched: 2026-10-23
+
+Commander:
+1 Winota, Joiner of Forces
+
+Deck:
+1 Professional Face-Breaker
+1 Boros Garrison
+1 Ornithopter of Paradise
+1 City of Brass
+1 Inkmoth Nexus
+1 Lotus Petal
+1 Simian Spirit Guide
+1 Esper Sentinel
+1 Mountain
+1 Serra Ascendant
+1 Loyal Apprentice
+1 Windcrag Siege
+1 Needleverge Pathway // Pillarverge Pathway
+1 Sol Ring
+1 Red Elemental Blast
+1 Phelia, Exuberant Shepherd
+1 Breath of Fury
+1 Cavern of Souls
+1 Mana Confluence
+1 Sunbaked Canyon
+1 Path to Exile
+1 Drannith Magistrate
+1 Clarion Conqueror
+1 Blinkmoth Nexus
+1 Soulless Jailer
+1 Goblin Rabblemaster
+1 Auratouched Mage
+1 Greymond, Avacyn's Stalwart
+1 Deafening Silence
+1 Archon of Emeria
+1 Combat Celebrant
+1 Ragavan, Nimble Pilferer
+1 Rionya, Fire Dancer
+1 Eidolon of Rhetoric
+1 Sanctum Prelate
+1 Signal Pest
+1 Blade Historian
+1 Imperial Recruiter
+1 Angrath's Marauders
+1 Aven Mindcensor
+1 Ornithopter
+1 Boromir, Warden of the Tower
+1 Magus of the Moon
+1 Voice of Victory
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Lena, Selfless Champion
+1 Giver of Runes
+1 Ethersworn Canonist
+1 Spirit of the Labyrinth
+1 Grand Abolisher
+1 Ocelot Pride
+1 Hope of Ghirapur
+1 Legion Warboss
+1 Solitude
+1 Recruiter of the Guard
+1 Phyrexian Revoker
+1 Charismatic Conqueror
+1 Skrelv, Defector Mite
+1 Hexing Squelcher
+1 Myrel, Shield of Argive
+1 Mother of Runes
+1 City of Traitors
+1 Mana Vault
+1 Enlightened Tutor
+1 Deflecting Swat
+1 Eiganjo, Seat of the Empire
+1 Flare of Fortitude
+1 Redirect Lightning
+1 Swords to Plowshares
+1 Silence
+1 Vexing Bauble
+1 Pyroblast
+1 Orim's Chant
+1 Chrome Mox
+1 Touch the Spirit Realm
+1 Command Beacon
+1 Mox Diamond
+1 Sundering Eruption // Volcanic Fissure
+1 High Noon
+1 Command Tower
+1 Arid Mesa
+1 Spectator Seating
+1 Arcane Signet
+1 Sokenzan, Crucible of Defiance
+1 Urza's Saga
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Sacred Foundry
+1 Battlefield Forge
+6 Plains

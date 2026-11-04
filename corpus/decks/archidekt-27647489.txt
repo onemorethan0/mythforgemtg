@@ -1,0 +1,23 @@
+# Archidekt — cadira pauper
+# source: archidekt:27647489
+# fetched: 2026-10-21
+
+Commander:
+1 Cadira, Caller of the Small
+
+Deck:
+50 Hare Apparent
+17 Forest
+1 Arcane Signet
+20 Plains
+1 Command Tower
+1 Sol Ring
+1 Commander's Sphere
+1 Blinding Fog
+1 Snake Umbra
+1 Your Temple Is Under Attack
+1 Blitzball
+1 Airbending Lesson
+1 Acrobatic Maneuver
+1 Pentarch Ward
+1 Shelter

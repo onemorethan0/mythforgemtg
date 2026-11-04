@@ -1,0 +1,108 @@
+# Archidekt — Najeela, the Blade-Blossom
+# source: archidekt:20122846
+# fetched: 2026-10-22
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Prideful Feastling
+1 Torgal, A Fine Hound
+1 Sunderflock
+1 Descendants' Path
+1 Raise the Palisade
+1 TARDIS
+1 Choco, Seeker of Paradise
+1 Thrumming Hivepool
+1 Throne of the Grim Captain // The Grim Captain
+1 Omni-Changeling
+1 Unholy Annex // Ritual Chamber
+1 Mutavault
+1 Shifting Woodland
+1 Swarmyard
+1 Taurean Mauler
+1 Graveshifter
+1 Flock Impostor
+1 Unsettled Mariner
+1 Changeling Outcast
+1 Risen Reef
+1 Masked Vandal
+1 Universal Automaton
+1 Magda, Brazen Outlaw
+1 Irregular Cohort
+1 Skeletal Changeling
+1 Chameleon Colossus
+1 Miirym, Sentinel Wyrm
+1 Guardian Gladewalker
+1 Rin and Seri, Inseparable
+1 Atla Palani, Nest Tender
+1 Priest of Titania
+1 Absorb Identity
+1 Gangly Stompling
+1 Exterminate!
+1 Guardian Project
+1 Double Down
+1 Yavimaya Hollow
+1 Cavern of Souls
+1 Path of Ancestry
+1 Mox Jasper
+1 Patchwork Banner
+1 Possibility Technician
+1 Mischievous Sneakling
+1 Bloodline Pretender
+1 Chomping Changeling
+1 Mutable Explorer
+1 Woodland Changeling
+1 Realmwalker
+1 Valiant Changeling
+1 Impostor of the Sixth Pride
+1 Venomous Changeling
+1 Avian Changeling
+1 Feisty Spikeling
+1 Three Tree Mascot
+1 Mirror Entity
+1 Shapesharer
+1 Lozhan, Dragons' Legacy
+1 Multiclass Baldric
+1 Giada, Font of Hope
+1 Leaf-Crowned Elder
+1 Whelming Wave
+1 Spara's Headquarters
+1 Ketria Triome
+1 Ziatora's Proving Ground
+1 Jetmir's Garden
+1 Zagoth Triome
+1 Raugrin Triome
+1 Savai Triome
+1 Raffine's Tower
+1 Xander's Lounge
+1 Indatha Triome
+1 Windswept Heath
+1 Arid Mesa
+1 Misty Rainforest
+1 Polluted Delta
+1 Flooded Strand
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Marsh Flats
+1 Scalding Tarn
+1 Bayou
+1 Savannah
+1 Plateau
+1 Scrubland
+1 Taiga
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Volcanic Island
+1 Badlands
+1 Elephant Graveyard
+1 Firdoch Core
+1 Manaweft Sliver
+1 Hakbal of the Surging Soul
+1 Command Tower
+1 Wirewood Savage
+1 Swooping Pteranodon
+1 Coercive Recruiter
+1 Homing Sliver

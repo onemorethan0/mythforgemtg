@@ -1,0 +1,85 @@
+# Archidekt — 006
+# source: archidekt:27480521
+# fetched: 2026-10-20
+
+Commander:
+1 Cormela, Glamour Thief
+
+Deck:
+1 Naktamun Lorespinner // Wheel of Fortune
+1 Zell Dincht
+1 Archaeomancer
+1 Garland, Knight of Cornelia // Chaos, the Endless
+1 Stormcatch Mentor
+1 Grave Researcher // Reanimate
+1 Magus of the Wheel
+1 Accursed Marauder
+1 Feign Death
+1 Kami of the Crescent Moon
+1 Unearth
+1 Faerie Mastermind
+1 Chameleon, Master of Disguise
+1 Supernatural Stamina
+1 Wheel of Misfortune
+1 Brush Off
+1 Mirror Image
+1 Master of the Feast
+1 Sam's Desperate Rescue
+1 Scheming Silvertongue // Sign in Blood
+1 Persist
+1 Zenith Chronicler
+1 Crawl from the Cellar
+1 Raise Dead
+1 Deadly Dispute
+1 Demonic Counsel
+1 Dimir Aqueduct
+1 Fake Your Own Death
+1 Curse of Disturbance
+6 Island
+1 Wishclaw Talisman
+1 Howling Mine
+1 Maddening Hex
+15 Swamp
+1 Bender's Waterskin
+1 Command Tower
+3 Mountain
+1 Talisman of Dominance
+1 Tonberry
+1 Talisman of Creativity
+1 Rite of Replication
+1 Chaos Warp
+1 Crumbling Necropolis
+1 Quistis Trepe
+1 Evolving Wilds
+1 Sol Ring
+1 Oscorp Industries
+1 An Offer You Can't Refuse
+1 Into the Flood Maw
+1 Darkwater Catacombs
+1 Toxic Deluge
+1 Shadowblood Ridge
+1 Blasphemous Act
+1 Dark Ritual
+1 Run Away Together
+1 Lantern of the Lost
+1 Fellwar Stone
+1 Arcane Signet
+1 Saw in Half
+1 Torment of Hailfire
+1 Emeritus of Woe // Demonic Tutor
+1 Dark Petition
+1 Profane Tutor
+1 Seething Song
+1 Dimir Signet
+1 Terramorphic Expanse
+1 Cabal Ritual
+1 Brain Freeze
+1 Swiftfoot Boots
+1 Fabled Passage
+1 Snap
+1 Exotic Orchard
+1 Whirlpool Warrior
+1 Blood Artist
+1 Negate
+1 Annul
+1 Oft-Nabbed Goat

@@ -1,0 +1,90 @@
+# Archidekt — Mina and denn full zendikar
+# source: archidekt:23979060
+# fetched: 2026-10-22
+# bracket: 2
+
+Commander:
+1 Mina and Denn, Wildborn
+
+Deck:
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Phylath, World Sculptor
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Nahiri's Lithoforming
+1 Spikefield Hazard // Spikefield Cave
+1 Wayward Guide-Beast
+1 Scute Swarm
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Thundering Rebuke
+1 Valakut Awakening // Valakut Stoneforge
+1 Kazandu Mammoth // Kazandu Valley
+1 Lotus Cobra
+1 Tangled Florahedron // Tangled Vale
+1 Adventuring Gear
+1 Khalni Ambush // Khalni Territory
+1 Vastwood Fortification // Vastwood Thicket
+1 Reclaim the Wastes
+1 Vastwood Surge
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Retreat to Valakut
+1 Crawling Barrens
+1 Grove Rumbler
+1 Akoum Firebird
+1 Retreat to Kazandu
+1 Makindi Sliderunner
+1 Tunneling Geopede
+1 Undergrowth Champion
+1 Chandra, Flamecaller
+1 Geode Rager
+1 Cinder Glade
+1 Blighted Woodland
+1 Fertile Thicket
+1 Evolving Wilds
+1 Devour in Flames
+1 Plated Geopede
+1 Frontier Guide
+1 Turntimber Basilisk
+1 Khalni Heart Expedition
+1 Oracle of Mul Daya
+1 Arid Mesa
+1 Avenger of Zendikar
+1 Explore
+1 Seer's Sundial
+1 Walking Atlas
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Eternity Vessel
+1 Pilgrim's Eye
+1 Territorial Scythecat
+1 Ashaya, Soul of the Wild
+1 Oran-Rief Hydra
+1 Rampaging Baloths
+1 Skyclave Pick-Axe
+1 Skyclave Geopede
+10 Mountain
+1 Holdout Settlement
+1 Spitfire Lagac
+1 Ancient Greenwarden
+1 Scute Mob
+1 Omnath, Locus of Rage
+1 Moraug, Fury of Akoum
+1 Ondu Giant
+1 Dragonmaster Outcast
+1 Brushfire Elemental
+10 Forest
+1 Baloth Woodcrasher
+1 Harrow
+1 Valakut Exploration
+1 Roiling Regrowth
+1 Natural Connection
+1 Nissa's Renewal
+1 Irresistible Prey
+1 Raging Ravine
+1 Rabid Bite
+1 Scalding Tarn
+1 Flame Slash
+1 Verdant Catacombs
+1 Timber Gorge
+1 Misty Rainforest
+1 Kazandu Refuge
+1 Marsh Flats

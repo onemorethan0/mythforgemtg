@@ -1,0 +1,99 @@
+# Archidekt — Fateshifting
+# source: archidekt:22892222
+# fetched: 2026-10-23
+
+Commander:
+1 Aminatou, the Fateshifter
+
+Deck:
+1 Entreat the Angels
+1 Temporal Mastery
+1 Yorion, Sky Nomad
+1 Wishclaw Talisman
+1 Disinformation Campaign
+1 Phelia, Exuberant Shepherd
+1 Banishing Stroke
+1 Primordial Mist
+1 Coveted Jewel
+1 Mischievous Mystic
+1 Starfield Vocalist
+1 Overlord of the Mistmoors
+1 Parting Gust
+1 Satoru, the Infiltrator
+1 Dour Port-Mage
+1 Gray Merchant of Asphodel
+1 Yuriko, the Tiger's Shadow
+1 Fabled Passage
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Talisman of Dominance
+1 Massacre Wurm
+1 Arcane Signet
+1 Talisman of Hierarchy
+1 Reliquary Tower
+1 Cryogen Relic
+1 Tainted Isle
+1 Sunken Hollow
+1 Fetid Heath
+1 Adarkar Wastes
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Shineshadow Snarl
+1 Prairie Stream
+1 Drowned Catacomb
+1 Watery Grave
+1 Exotic Orchard
+1 Semester's End
+1 Underground River
+1 Caves of Koilos
+1 Concealed Courtyard
+1 Shattered Sanctum
+1 Choked Estuary
+1 Port Town
+1 Seachrome Coast
+3 Plains
+1 Swamp
+1 Sensei's Divining Top
+1 Reality Acid
+1 Act of Authority
+1 Staff of the Storyteller
+1 Scroll of Fate
+1 Anticausal Vestige
+1 Eerie Interlude
+1 Mystic Sanctuary
+1 Tainted Field
+1 Command Tower
+1 Godless Shrine
+1 Fellwar Stone
+1 Counterspell
+1 Displacer Kitten
+1 Arcane Lighthouse
+1 Isolated Chapel
+1 Baleful Strix
+1 Teferi's Time Twist
+1 Mulldrifter
+1 Archaeomancer
+1 Talisman of Progress
+4 Island
+1 Dovin's Veto
+1 Hymn of the Faller
+1 Riptide Gearhulk
+1 Abhorrent Overlord
+1 Perplexing Chimera
+1 Karmic Guide
+1 Fear of Sleep Paralysis
+1 Touch the Spirit Realm
+1 Pendant of Prosperity
+1 Misleading Signpost
+1 Vessel of Endless Rest
+1 Glistening Sphere
+1 Sanctum of Eternity
+1 Cursed Windbreaker
+1 Academy Ruins
+1 Keen Duelist
+1 Angel of the Ruins
+1 Watcher for Tomorrow
+1 Metamorphosis Fanatic
+1 Deification
+1 Sanctum Lurker
+1 Brago, King Eternal
+1 They Came from the Pipes

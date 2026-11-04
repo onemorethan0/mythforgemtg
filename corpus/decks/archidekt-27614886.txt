@@ -1,0 +1,73 @@
+# Archidekt — Cloak and Dagger
+# source: archidekt:27614886
+# fetched: 2026-10-20
+
+Commander:
+1 Etrata, Deadly Fugitive
+
+Deck:
+1 Assassin Initiate
+1 Changeling Outcast
+1 Ezio, Blade of Vengeance
+1 Roshan, Hidden Magister
+1 Jacob Frye
+1 Hookblade Veteran
+1 Basim Ibn Ishaq
+1 Lydia Frye
+1 Evie Frye
+1 Poison-Blade Mentor
+18 Swamp
+1 Training Grounds
+18 Island
+1 Ramses, Assassin Lord
+1 Brotherhood Spy
+1 Desmond Miles
+1 Become Anonymous
+1 Memory Lapse
+1 Chain Assassination
+1 Eagle Vision
+1 Expel from Orazca
+1 Escape Detection
+1 Back in Town
+1 Restart Sequence
+1 Portent
+1 Maskwood Nexus
+1 Brotherhood Regalia
+1 Cryptic Coat
+1 Rooftop Bypass
+1 Coerced to Kill
+1 Rogue Class
+1 Gift of Doom
+1 Access Tunnel
+1 Stratus Dancer
+1 Rogue's Passage
+1 Urborg, Tomb of Yawgmoth
+1 The Black Gate
+1 Secret Tunnel
+1 Mari, the Killing Quill
+1 They Came from the Pipes
+1 Ruthless Ripper
+1 Midnight Assassin
+1 Silumgar Assassin
+1 Hullcarver
+1 Thieving Amalgam
+1 Hired Poisoner
+1 Royal Assassin
+1 Unstoppable Slasher
+1 Guildsworn Prowler
+1 Feed the Swarm
+1 Fell the Profane // Fell Mire
+1 Deadly Rollick
+1 Murder
+1 Night's Whisper
+1 Arcane Signet
+1 Keep Watch
+1 Dimir Signet
+1 Scroll of Fate
+1 Aphetto Runecaster
+1 Big Game Hunter
+1 Talisman of Dominance
+1 Mask of Riddles
+1 Sol Ring
+1 Aven Heartstabber
+1 Achilles Davenport

@@ -1,0 +1,109 @@
+# Archidekt — Editing - Spongebob impregnates the Universe Beyond
+# source: archidekt:27313510
+# fetched: 2026-10-21
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Galadriel, Light of Valinor
+1 Delighted Halfling
+1 Deadpool, Trading Card
+1 Scalding Tarn
+1 Bayou
+1 Badlands
+1 Sonic the Hedgehog
+1 Atraxa, Grand Unifier
+1 Cavern of Souls
+1 Command Tower
+1 Defense of the Heart
+1 Kinnan, Bonder Prodigy
+1 Rhystic Study
+1 Sylvan Library
+1 Varragoth, Bloodsky Sire
+1 Elven Chorus
+1 Taiga
+1 Sonic Screwdriver
+1 Bloodstained Mire
+1 Plateau
+1 Tundra
+1 Savannah
+1 Wooded Foothills
+1 Inquisitor Greyfax
+1 The Master, Multiplied
+1 Tifa, Martial Artist
+1 Misty Rainforest
+1 Triumph of the Hordes
+1 Yuna, Grand Summoner
+1 Flooded Strand
+1 Verdant Catacombs
+1 Tropical Island
+1 Scrubland
+1 Volcanic Island
+1 Windswept Heath
+1 Arid Mesa
+1 Underground Sea
+1 Intruder Alarm
+1 Knuckles the Echidna
+1 Arwen, Weaver of Hope
+1 Lightning, Army of One
+1 Wolverine, Best There Is
+1 Kenrith, the Returned King
+1 Captain Sisay
+1 Relic of Legends
+1 Samut, Voice of Dissent
+1 Sakashima of a Thousand Faces
+1 The One Ring
+1 Eladamri's Call
+1 City of Brass
+1 Marsh Flats
+1 Polluted Delta
+1 Reflecting Pool
+1 Fellwar Stone
+1 Jennifer Walters // The Sensational She-Hulk
+1 Super-Adaptoid
+1 Teferi's Protection
+1 Permission Denied
+1 The Cabbage Merchant
+1 The Queen of Dale
+1 Wizard's Staff
+1 Overgrown Tomb
+1 Sacred Foundry
+1 Stomping Ground
+1 Watery Grave
+1 Blood Crypt
+1 Breeding Pool
+1 Godless Shrine
+1 Hallowed Fountain
+1 Steam Vents
+1 Temple Garden
+1 Sisay, Weatherlight Captain
+1 Najeela, the Blade-Blossom
+1 Annie Joins Up
+1 Boros Charm
+1 Arcane Signet
+1 The Soul Stone
+1 Mox Amber
+1 The Great Henge
+1 Taskmaster, Mercenary Mimic
+1 Old Gnawbone
+1 Boromir, Warden of the Tower
+1 Gandalf the White
+1 Three Visits
+1 The Arkenstone // Seek the Heart
+1 Birds of Paradise
+1 Sol Ring
+1 Overkill
+1 Krosan Grip
+1 Dovin's Veto
+1 Stroke of Midnight
+1 Cyclonic Rift
+1 Counterspell
+1 Chaos Warp
+1 Toxrill, the Corrosive
+1 Toxic Deluge
+1 Gleaming Splendor
+1 Indoraptor, the Perfect Hybrid
+1 Kutzil, Malamet Exemplar
+1 Yoshimaru, Ever Faithful
+1 Hajar, Loyal Bodyguard

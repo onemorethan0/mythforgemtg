@@ -1,0 +1,78 @@
+# Archidekt — Blue Angels
+# source: archidekt:27702983
+# fetched: 2026-10-23
+
+Commander:
+1 Lyra, Tolarian Archangel
+
+Deck:
+1 Thirst for Discovery
+1 Ledger Shredder
+1 Brainstorm
+1 Faerie Mastermind
+1 Harmonized Trio // Brainstorm
+1 Emeritus of Ideation // Ancestral Recall
+1 The Lord of the Eagles
+1 Cephalid Coliseum
+1 Eagle Vision
+1 Mystic Confluence
+1 Talrand, Sky Summoner
+1 Marang River Regent // Coil and Catch
+1 Rowdy Research
+1 Treasure Cruise
+1 Archmage Emeritus
+1 Alandra, Sky Dreamer
+1 Dirgur Focusmage // Braingeyser
+1 Emrakul's Messenger
+1 Enduring Curiosity
+1 Malcolm, Alluring Scoundrel
+1 Kitsa, Otterball Elite
+1 Mask of Memory
+1 Mischievous Mystic
+1 Muse Seeker
+1 Overlord of the Floodpits
+1 Pull from Tomorrow
+1 Sapphire Medallion
+1 Sublime Epiphany
+1 Thopter Fabricator
+1 Three Steps Ahead
+1 High Fae Trickster
+1 Thunderclap Drake
+1 Mystic Sanctuary
+1 Geist of Saint Thalia
+1 Brazen Borrower // Petty Theft
+1 Haughty Djinn
+1 Subtlety
+1 Lightning Greaves
+1 Preordain
+1 Wizard's Staff
+1 Arcane Signet
+1 Sol Ring
+1 Fellwar Stone
+1 Archmage's Charm
+1 Thought Vessel
+1 Robe of the Archmagi
+1 Seraph Sanctuary
+1 Swan Song
+1 Ponder
+1 Riptide Laboratory
+1 An Offer You Can't Refuse
+1 Mana Sculpt
+1 Pongify
+1 Reality Shift
+1 Unexpected Assistance
+1 Counterspell
+1 Chart a Course
+1 Consider
+1 Perplexing Test
+1 Serum Visions
+1 Compulsive Research
+1 Blue Sun's Zenith
+1 Into the Flood Maw
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Ghost Quarter
+1 Lonely Sandbar
+30 Island
+1 Strix Serenade
+1 Sink into Stupor // Soporific Springs
+1 Defiler of Dreams

@@ -1,0 +1,85 @@
+# Archidekt — Athreos
+# source: archidekt:27647363
+# fetched: 2026-10-21
+
+Commander:
+1 Athreos, God of Passage
+
+Deck:
+1 Path to Exile
+1 Dark Ritual
+1 Sol Ring
+1 Phyrexian Tower
+1 Phyrexian Arena
+1 Smothering Tithe
+1 Isolated Chapel
+1 Despark
+1 Anguished Unmaking
+1 Viscera Seer
+1 Orzhov Signet
+1 Pitiless Plunderer
+1 Reanimate
+1 Arcane Signet
+1 Tainted Field
+1 Swords to Plowshares
+1 Command Tower
+1 Damn
+1 Bojuka Bog
+1 Elas il-Kor, Sadistic Pilgrim
+1 Cabal Coffers
+1 Luminous Broodmoth
+1 Shattered Sanctum
+1 Bleachbone Verge
+1 Skullclamp
+1 Talisman of Hierarchy
+1 Blood Artist
+1 Cruel Celebrant
+1 Black Market Connections
+1 Teysa Karlov
+1 Sign in Blood
+1 Victimize
+1 Grave Pact
+1 Mind Stone
+1 The Meathook Massacre
+1 Village Rites
+1 Urborg, Tomb of Yawgmoth
+1 Toxic Deluge
+1 Lightning Greaves
+1 Mortify
+1 Bastion of Remembrance
+1 Thought Vessel
+1 Inkshield
+1 Fellwar Stone
+1 Nuclear Fallout
+1 Fracture
+1 Dictate of Erebos
+1 Elenda, the Dusk Rose
+1 Esper Sentinel
+1 Godless Shrine
+12 Snow-Covered Plains
+1 Teferi's Protection
+1 Elspeth, Sun's Champion
+1 Galadriel's Dismissal
+1 Teysa, Orzhov Scion
+12 Snow-Covered Swamp
+1 Farewell
+1 Niv-Mizzet, Ghost Counsel
+1 Avacyn, Angel of Horror
+1 Disenchant
+1 Scrubland
+1 Orcish Bowmasters
+1 Ghostly Prison
+1 Cathar Commando
+1 Dauthi Voidwalker
+1 Blind Obedience
+1 Athreos, Shroud-Veiled
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Fleshbag Marauder
+1 Heliod, Sun-Crowned
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Stroke of Midnight
+1 Liliana, Dreadhorde General
+1 Exalted Sunborn
+1 Ocelot Pride
+1 Tocasia's Welcome
+1 The Soul Stone

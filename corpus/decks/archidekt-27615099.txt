@@ -1,0 +1,91 @@
+# Archidekt — Nelly V1.4 (Lethality/No Stealing)
+# source: archidekt:27615099
+# fetched: 2026-10-20
+
+Commander:
+1 Nelly Borca, Impulsive Accuser
+
+Deck:
+1 Akroma's Will
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Austere Command
+1 Battlefield Forge
+1 Bolt Bend
+1 Boros Charm
+1 Boros Fury-Shield
+1 Boros Signet
+1 Buried Ruin
+1 Chaos Warp
+1 Clifftop Retreat
+1 Comeuppance
+1 Command Tower
+1 Court of Ire
+1 Deflecting Palm
+1 Deflecting Swat
+1 Disrupt Decorum
+1 Duelist's Heritage
+1 Everybody Lives!
+1 Crawlspace
+1 Evolving Wilds
+1 Fiery Confluence
+1 Generous Gift
+1 Ghostly Prison
+1 Holy Day
+1 Idyllic Tutor
+1 Inspiring Vantage
+1 Lightning Greaves
+1 Megaton's Fate
+1 Mirror Strike
+1 Mithril Coat
+1 Mizzix's Mastery
+5 Mountain
+1 Path of Ancestry
+13 Plains
+1 Radiant Summit
+1 Reconstruct History
+1 Redemption Arc
+1 Reflecting Pool
+1 Reliquary Tower
+1 Riot Control
+1 Rip Apart
+1 Rogue's Passage
+1 Sacred Foundry
+1 Scavenger Grounds
+1 Settle the Wreckage
+1 Sheltered by Ghosts
+1 Smuggler's Share
+1 Sol Ring
+1 Spectator Seating
+1 Spinerock Knoll
+1 Stroke of Midnight
+1 Sundown Pass
+1 Sunscorched Divide
+1 Swiftfoot Boots
+1 Take the Bait
+1 Taunt from the Rampart
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 Thought Vessel
+1 Trouble in Pairs
+1 Valorous Stance
+1 Vexilus Praetor
+1 Vicious Shadows
+1 Wear // Tear
+1 Windborn Muse
+1 Winds of Rath
+1 Sunforger
+1 Aurelia, the Law Above
+1 Agrus Kos, Spirit of Justice
+1 Charmbreaker Devils
+1 Bastion Protector
+1 Baird, Steward of Argive
+1 Delney, Streetwise Lookout
+1 Deep Gnome Terramancer
+1 Kazuul, Tyrant of the Cliffs
+1 Loyal Warhound
+1 Loran of the Third Path
+1 Gisela, Blade of Goldnight
+1 Vengeful Ancestor
+1 Michiko Konda, Truth Seeker
+1 Thalia's Lancers

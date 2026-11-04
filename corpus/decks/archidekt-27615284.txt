@@ -1,0 +1,79 @@
+# Archidekt — White Hunger
+# source: archidekt:27615284
+# fetched: 2026-10-20
+
+Commander:
+1 Apothecary White
+
+Deck:
+1 Castle Ardenvale
+1 Demolition Field
+1 Emeria, the Sky Ruin
+1 Fountainport
+1 Idyllic Grange
+1 Myriad Landscape
+29 Plains
+1 War Room
+1 Academy Manufactor
+1 Arcane Signet
+1 Ashnod's Altar
+1 Astrid Peth
+1 Bag End Banquet
+1 Bagel and Schmear
+1 Belladonna Took
+1 Bennie Bracks, Zoologist
+1 Burnished Hart
+1 Caretaker's Talent
+1 Carrot Cake
+1 Cathars' Crusade
+1 Champions from Beyond
+1 Clever Concealment
+1 Dawn's Truce
+1 Destroy Evil
+1 Devout Chaplain
+1 Dispatch
+1 Elspeth, Sun's Champion
+1 Enduring Innocence
+1 Erode
+1 Everything Comes to Dust
+1 Exalted Sunborn
+1 Flawless Maneuver
+1 Fumigate
+1 Ginger, Queen of Sweets
+1 Gingerbrute
+1 Horn of Gondor
+1 Hour of Reckoning
+1 Idol of Oblivion
+1 Inspiring Statuary
+1 Late to Dinner
+1 Lembas
+1 Lightning Greaves
+1 Lita, Little Orphan Amphibian
+1 Marble Diamond
+1 Mentor of the Meek
+1 Mirror Entity
+1 Momo, Playful Pet
+1 Moonshaker Cavalry
+1 Nesting Dovehawk
+1 Nuka-Cola Vending Machine
+1 Of Herbs and Stewed Rabbit
+1 Patchwork Banner
+1 Path to Exile
+1 Pearl Medallion
+1 Renewed Solidarity
+1 Rosie Cotton of South Lane
+1 Sierra, Nuka's Biggest Fan
+1 Skullclamp
+1 Sol Ring
+1 Swords to Plowshares
+1 The Arkenstone // Seek the Heart
+1 The Battle of Bywater
+1 The Gaffer
+1 Transmutation Font
+1 Unbreakable Formation
+1 Unwanted Remake
+1 Wayfarer's Bauble
+1 Winnowing
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Witch's Oven
+1 Wojek Investigator

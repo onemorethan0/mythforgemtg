@@ -1,0 +1,96 @@
+# Archidekt — Puddle of Muddle
+# source: archidekt:25056110
+# fetched: 2026-10-20
+# bracket: 3
+
+Commander:
+1 Muddle, the Ever-Changing
+
+Deck:
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Desperate Ritual
+1 Flamebraider
+1 Flashback
+1 Generator Servant
+1 Gitaxian Probe
+1 March of Swirling Mist
+1 Mystic Sanctuary
+1 Orvar, the All-Form
+1 Pyretic Ritual
+1 Rockface Village
+1 Smokebraider
+1 Snap
+1 Spirebluff Canal
+1 Stormcarved Coast
+1 Turbulent Springs
+1 Muddle the Mixture
+1 Arena of Glory
+1 Crackling Drake
+1 Goldlust Triad
+1 Haughty Djinn
+1 Mishra's Command
+1 Professional Face-Breaker
+1 Seize the Day
+1 Sundial of the Infinite
+4 Mountain
+1 Crimson Wisps
+1 Leap
+1 Artful Dodge
+1 Shadow Rift
+1 Slip Through Space
+1 Dour Port-Mage
+1 Enduring Curiosity
+1 Rionya, Fire Dancer
+1 Quasiduplicate
+1 Silent Hallcreeper
+1 Anticausal Vestige
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Redoubled Stormsinger
+1 Jwari Disruption // Jwari Ruins
+1 Sundering Eruption // Volcanic Fissure
+1 Untimely Malfunction
+1 Silundi Vision // Silundi Isle
+1 Flamekin Harbinger
+1 Command Tower
+1 Enter the Enigma
+1 Trumpeting Carnosaur
+1 Scorched Geyser
+1 Flamekin Village
+1 Arcane Denial
+1 Subterfuge
+1 Echocasting Symposium
+1 Kindle the Inner Flame
+1 Pyrogoyf
+1 Parapet Thrasher
+1 Village Pillagers
+1 Shivan Reef
+1 Sulfur Falls
+1 Mistrise Village
+1 Expedite
+1 Sink into Stupor // Soporific Springs
+1 Cloak of Feathers
+1 Impolite Entrance
+1 Magic Damper
+1 Mizzium Skin
+1 Riverglide Pathway // Lavaglide Pathway
+1 Starwinder
+1 Gemcutter Buccaneer
+1 Cackling Counterpart
+1 Sea-Dasher Octopus
+1 Fear of Sleep Paralysis
+1 Lórien Revealed
+1 Volatile Stormdrake
+1 Distortion Strike
+1 Steam Vents
+1 Spinerock Knoll
+1 Access Tunnel
+1 Three Steps Ahead
+1 Seething Song
+10 Island
+1 Corporeal Projection
+1 Thalakos Deceiver
+1 Fury
+1 Spikefield Hazard // Spikefield Cave
+1 Pinnacle Monk // Mystic Peak
+1 Glasspool Mimic // Glasspool Shore
+1 Discontinuity

@@ -1,0 +1,89 @@
+# Archidekt — Toph, Metalbender
+# source: archidekt:26451999
+# fetched: 2026-10-21
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Haru, Hidden Talent
+1 Bumi, King of Three Trials
+1 Toph, the Blind Bandit
+1 Suki, Kyoshi Warrior
+1 The Boulder, Ready to Rumble
+1 Earth Rumble Wrestlers
+1 Badgermole
+1 Rishkar, Peema Renegade
+1 Flopsie, Bumi's Buddy
+1 Solemn Simulacrum
+1 Serra Redeemer
+1 Origin of Metalbending
+1 Earthbending Lesson
+1 Rocky Rebuke
+1 Pillar Launch
+1 Earth Rumble
+1 Cycle of Renewal
+1 Rockalanche
+1 Talisman of Impulse
+1 Sylvan Reclamation
+1 Rampant Growth
+1 Bitter Work
+1 The Cave of Two Lovers
+1 Commander's Sphere
+1 Kyoshi Battle Fan
+1 Path of Ancestry
+1 Thriving Grove
+1 Thriving Bluff
+1 Burnished Hart
+1 Exotic Orchard
+1 Wooded Ridgeline
+1 Cinder Glade
+1 Furycalm Snarl
+1 Evolving Wilds
+1 Rumble Arena
+1 Thriving Heath
+3 Mountain
+11 Forest
+5 Plains
+1 Kyoshi Village
+1 Treetop Village
+1 Bender's Waterskin
+1 Team Avatar
+1 Meteor Sword
+1 Bumi, Unleashed
+1 Wayfarer's Bauble
+1 Sol Ring
+1 Arcane Signet
+1 Bootleggers' Stash
+1 Ozolith, the Shattered Spire
+1 Darksteel Citadel
+1 Restless Prairie
+1 Tale of Katara and Toph
+1 Chromatic Lantern
+1 Terramorphic Expanse
+1 Earthbender Ascension
+1 Toph, Hardheaded Teacher
+1 Restless Bivouac
+1 Restless Ridgeline
+1 Ichor Wellspring
+1 Solid Ground
+1 Jack-o'-Lantern
+1 Liquimetal Coating
+1 Fire Nation Warship
+1 Chromatic Star
+1 Fountainport Bell
+1 Sorcerous Spyglass
+1 Toph, Earthbending Master
+1 Toph, Greatest Earthbender
+1 Evolution Sage
+1 Zuran Orb
+1 Crop Rotation
+1 Farewell
+1 Great Divide Guide
+1 Rebellious Captives
+1 Ba Sing Se
+1 Bumi Bash
+1 Briar Hydra
+1 Felidar Retreat
+1 Earth Kingdom General
+1 Energybending

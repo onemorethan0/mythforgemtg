@@ -1,0 +1,69 @@
+# Archidekt — Rooftop Storm
+# source: archidekt:27647391
+# fetched: 2026-10-21
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Buried Alive
+1 Counterspell
+1 Diabolic Intent
+1 Diabolic Tutor
+1 Entomb
+1 Fabricate
+1 Mana Drain
+1 Negate
+38 Swamp
+1 Swan Song
+1 Wishclaw Talisman
+1 Arcane Signet
+1 Army of the Damned
+1 Ayara, First of Locthwain
+1 Bontu's Monument
+1 Carrion Feeder
+1 Consuming Corruption
+1 Cryptbreaker
+1 Death Baron
+1 Diregraf Colossus
+1 Fleshbag Marauder
+1 Ghoulcaller Gisa
+1 Go for the Throat
+1 God-Eternal Bontu
+1 Grave Titan
+1 Graveborn Muse
+1 Gray Merchant of Asphodel
+1 Kalitas, Traitor of Ghet
+1 Liliana's Mastery
+1 Lord of the Accursed
+1 Lord of the Undead
+1 Midnight Reaper
+1 Mind Stone
+1 Night's Whisper
+1 Noxious Ghoul
+1 Oversold Cemetery
+1 Patchwork Banner
+1 Phyrexian Arena
+1 Sign in Blood
+1 Sol Ring
+1 Soulless One
+1 Vengeful Dead
+1 Withering Torment
+1 Zul Ashur, Lich Lord
+1 Diregraf Captain
+1 Gravecrawler
+1 Rooftop Storm
+1 Undead Augur
+1 Cemetery Reaper
+1 Necroduality
+1 Endless Ranks of the Dead
+1 Undead Warchief
+1 Headless Rider
+1 Champion of the Perished
+1 Gleaming Overseer
+1 Feed the Swarm
+1 Zombie Apocalypse
+1 Hordewing Skaab
+1 The Scarab God

@@ -1,0 +1,81 @@
+# Archidekt — dragon rage
+# source: archidekt:27676837
+# fetched: 2026-10-23
+
+Commander:
+1 Atarka, World Render
+
+Deck:
+1 Dragonspeaker Shaman
+1 Dragonlord's Servant
+1 Scaled Herbalist
+1 Scaled Nurturer
+1 Zhur-Taa Druid
+1 Farseek
+1 Noxious Newt
+1 Cultivate
+1 Studious First-Year // Rampant Growth
+1 Roamer's Routine
+1 Llanowar Elves
+1 Harrow
+1 Sylvan Scrying
+1 Many Partings
+1 Adventurous Impulse
+1 Warstorm Surge
+1 Sol Ring
+1 Tend the Sprigs
+1 Prishe's Wanderings
+1 Patchwork Banner
+1 Herald's Horn
+1 Pyroblast
+1 Nature's Will
+1 Crucible of Fire
+1 How to Start a Riot
+1 Dread Linnorm // Scale Deflection
+1 Hardened Scales
+1 Season of Growth
+1 Seedship Impact
+1 Garruk's Uprising
+1 Frontier Siege
+1 Dragon Tempest
+1 Gathering Stone
+1 Spit Flame
+1 Price of Freedom
+1 Wrath of the Bloodmane
+1 Metallic Mimic
+1 Warg Tactics
+1 Naturalize
+1 Sear
+1 Systems Override
+1 Breath Weapon
+1 Magus of the Order
+1 Iroh's Demonstration
+1 Unforgiving Aim
+1 Thunderbreak Regent
+14 Forest
+1 Temple of the False God
+1 Command Tower
+1 Stomping Ground
+1 Cinder Glade
+14 Mountain
+1 Rogue's Passage
+1 Command Beacon
+1 Temple of Abandon
+1 Gruul Turf
+1 Backdraft Hellkite
+1 Ruby Medallion
+1 Unnatural Growth
+1 Thrakkus the Butcher
+1 Emerald Medallion
+1 Redirect Lightning
+1 Nature's Lore
+1 Dragon Mage
+1 Caldera Pyremaw
+1 Ganax, Astral Hunter
+1 Inferno of the Star Mounts
+1 Earthquake
+1 Stormscale Scion
+1 Klauth, Unrivaled Ancient
+1 Thundermane Dragon
+1 Scourge of the Throne
+1 Bender's Waterskin

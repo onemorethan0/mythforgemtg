@@ -1,0 +1,71 @@
+# Archidekt — Liliana's Flicker Field
+# source: archidekt:27586659
+# fetched: 2026-10-23
+
+Commander:
+1 Liliana the Faultless
+
+Deck:
+37 Plains
+1 Kinbinding
+1 The Echoverse Fulcrum
+1 Enlightened Confidant
+1 Restoration Seminar
+1 Crib Swap
+1 Duty Beyond Death
+1 Loran of the Third Path
+1 Joined Researchers // Secret Rendezvous
+1 Take Up the Shield
+1 Recommission
+1 Yotian Frontliner
+1 Helping Hand
+1 Siege Veteran
+1 Defiler of Faith
+1 Depopulate
+1 Personify
+1 Daydream
+1 Flock Impostor
+1 Loran's Escape
+1 Buy Your Silence
+1 Generous Revival
+1 Prayer of Binding
+1 Fateshaper Aspirant
+1 Elite Interceptor // Rejoinder
+1 Nova Cleric
+1 Requisition Raid
+1 Ennis, Debate Moderator
+1 Spiral into Solitude
+1 Angel's Grace
+1 Morningtide's Light
+1 Harsh Annotation
+1 Phyrexian Vindicator
+1 Flickering Hound
+1 Ephemerate
+1 Teleportation Circle
+1 Conjurer's Closet
+1 Touch the Spirit Realm
+1 Another Round
+1 Scampering Surveyor
+1 Skyscanner
+1 Novice Inspector
+1 Thraben Inspector
+1 Ambitious Farmhand // Seasoned Cathar
+1 Dawnbringer Cleric
+1 Helpful Hunter
+1 Lone Missionary
+1 Whitemane Lion
+1 Spirited Companion
+1 Blade Splicer
+1 Cat Collector
+1 Inspiring Overseer
+1 Priest of Ancient Lore
+1 Recruiter of the Guard
+1 Filigree Vector
+1 Space Marine Devastator
+1 Supply Runners
+1 Cathars' Crusade
+1 Cosmogrand Zenith
+1 Felidar Retreat
+1 Cathedral Sanctifier
+1 Charming Prince
+1 Inquisitor Exarch

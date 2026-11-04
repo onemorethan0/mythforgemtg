@@ -1,0 +1,102 @@
+# Archidekt — Big Kenny's Raveyard
+# source: archidekt:25626069
+# fetched: 2026-10-22
+# bracket: 3
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Fellwar Stone
+1 Ignoble Hierarch
+1 Teval, the Balanced Scale
+1 Raffine's Tower
+1 Blood Crypt
+1 Woodland Cemetery
+1 Tainted Wood
+1 Yavimaya, Cradle of Growth
+1 Takenuma, Abandoned Mire
+1 Overgrown Tomb
+1 Wooded Foothills
+1 Zagoth Triome
+1 Bloodstained Mire
+1 Hallowed Fountain
+1 Steam Vents
+1 Ziatora's Proving Ground
+1 Ketria Triome
+1 Misty Rainforest
+1 Indatha Triome
+1 Mana Confluence
+1 Phyrexian Tower
+1 Spara's Headquarters
+1 Reanimate
+1 Beseech the Queen
+1 Faithless Looting
+1 Rise of the Dark Realms
+1 Viscera Seer
+1 Farseek
+1 Dina's Guidance
+1 Victimize
+1 Buried Alive
+1 Manamorphose
+1 Altar of Dementia
+1 Lumra, Bellow of the Woods
+1 Icetill Explorer
+1 Colossal Grave-Reaver
+1 Entomb
+1 Vorinclex, Voice of Hunger
+1 Umbral Collar Zealot
+1 Warren Soultrader
+1 Birds of Paradise
+1 Anticausal Vestige
+1 Millikin
+1 Lord of Extinction
+1 Seedborn Muse
+1 Command Tower
+1 Watery Grave
+1 City of Brass
+1 Bountiful Promenade
+1 Training Grounds
+1 Sol Ring
+1 Starting Town
+1 Polluted Delta
+1 Temple Garden
+1 Hermit Druid
+1 Noble Hierarch
+1 Agatha of the Vile Cauldron
+1 Dryad of the Ilysian Grove
+1 Bloom Tender
+1 Zirda, the Dawnwaker
+1 Gyruda, Doom of Depths
+1 Frantic Search
+1 Arcane Signet
+1 Mesmeric Orb
+1 Forest
+1 Stitch Together
+1 Terror of the Peaks
+1 Noxious Gearhulk
+1 Biomancer's Familiar
+1 Sevinne's Reclamation
+1 Atraxa, Grand Unifier
+1 Celes, Rune Knight
+1 Stitcher's Supplier
+1 Talisman of Resilience
+1 Songs of the Damned
+1 Will of the Abzan
+1 Dread Return
+1 Disciple of Freyalise // Garden of Freyalise
+1 Vile Entomber
+1 Eerie Ultimatum
+1 Unburial Rites
+1 Talisman of Creativity
+1 Super-Skrull
+1 Elegant Parlor
+1 Flooded Strand
+2 Swamp
+1 Sacred Foundry
+1 Marsh Flats
+1 Talisman of Conviction
+1 Talisman of Dominance
+1 Nature's Lore
+1 Talisman of Unity
+1 Three Visits

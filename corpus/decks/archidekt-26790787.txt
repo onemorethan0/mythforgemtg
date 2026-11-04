@@ -1,0 +1,101 @@
+# Archidekt — Omnath, Lost his Pigment
+# source: archidekt:26790787
+# fetched: 2026-10-23
+
+Commander:
+1 Omnath, Locus of the Void
+
+Deck:
+1 Sire of Seven Deaths
+1 Emrakul, the Promised End
+1 Kozilek, Butcher of Truth
+1 Kozilek, the Great Distortion
+1 Ancient Tomb
+1 All Is Dust
+1 Urza's Saga
+1 Wasteland
+1 Field of the Dead
+1 Ugin, the Ineffable
+1 Sanctum of Ugin
+1 The Regalia
+1 Ultima, Origin of Oblivion
+1 Sanctum of Eternity
+1 Emrakul, the Exigent Doom
+1 Eye of Ugin
+1 Urza's Incubator
+1 Sword of the Animist
+1 Ghost Town
+1 Roaming Throne
+1 High Market
+1 Troop of Ponies
+1 Myriad Landscape
+1 Urza's Power Plant
+1 It That Betrays
+1 Secret Tunnel
+7 Wastes
+1 Zhulodok, Void Gorger
+1 Selective Obliteration
+1 Oblivion Sower
+1 The Mycosynth Gardens
+1 Mana Vault
+1 Command Beacon
+1 Inventors' Fair
+1 War Room
+1 Sensei's Divining Top
+1 Conduit of Ruin
+1 Burnished Hart
+1 Glaring Fleshraker
+1 Herald's Horn
+1 Shrine of the Forsaken Gods
+1 Forsaken Monument
+1 Ugin's Labyrinth
+1 Eldritch Immunity
+1 Flayer of Loyalties
+1 Scavenger Grounds
+1 The One Ring
+1 Liberator, Urza's Battlethopter
+1 The Grey Havens
+1 Skittering Cicada
+1 Emrakul, the World Anew
+1 Ulamog, the Ceaseless Hunger
+1 Seer's Sundial
+1 Solemn Simulacrum
+1 Artisan of Kozilek
+1 It That Heralds the End
+1 Ulamog, the Infinite Gyre
+1 Sol Ring
+1 Scour from Existence
+1 Bane of Bala Ged
+1 Spawnbed Protector
+1 Eldrazi Temple
+1 Demolition Field
+1 Homeward Path
+1 Urza's Cave
+1 Eldrazi Confluence
+1 Commander's Plate
+1 Expedition Map
+1 Mystic Forge
+1 Urza's Tower
+1 Vedalken Orrery
+1 Wayfarer's Bauble
+1 Lightning Greaves
+1 Palladium Myr
+1 Pathrazer of Ulamog
+1 Thran Dynamo
+1 The Immortal Sun
+1 Planar Bridge
+1 Devourer of Destiny
+1 Kozilek's Command
+1 Mirage Mirror
+1 Echoes of Eternity
+1 Ominous Cemetery
+1 Rogue's Passage
+1 Ulamog, the Defiler
+1 Strip Mine
+1 Rise of the Eldrazi
+1 Palantír of Orthanc
+1 Kozilek, the Broken Reality
+1 Cavern of Souls
+1 Urza's Mine
+1 Armillary Sphere
+1 Progenitor's Icon

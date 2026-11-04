@@ -113,3 +113,6 @@ ccm/LICENSE-CCM-DATA.txt
 
 # local-model drafts (review before landing)
 *.draft
+
+# local-only leftovers moved out of the repo root (2026-11-04)
+_local_archive/

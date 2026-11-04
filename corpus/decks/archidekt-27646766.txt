@@ -1,0 +1,93 @@
+# Archidekt — Charge Counter Gaming
+# source: archidekt:27646766
+# fetched: 2026-10-21
+
+Commander:
+1 Lt. Cmdr. Geordi La Forge
+
+Deck:
+1 Titan Forge
+1 Tekuthal, Inquiry Dominus
+1 Tezzeret's Gambit
+1 Dreamtide Whale
+1 Lux Cannon
+1 Coretapper
+1 Surge Conductor
+1 Inexorable Tide
+1 Emry, Lurker of the Loch
+1 Thrummingbird
+1 Experimental Augury
+1 Fuel for the Cause
+1 Flux Channeler
+1 Deepglow Skate
+1 Expansion Algorithm
+1 Ripples of Potential
+1 Radstorm
+1 Lux Artillery
+1 Contentious Plan
+1 Sword of Truth and Justice
+1 Golem Foundry
+1 Darksteel Reactor
+1 Magistrate's Scepter
+1 Insight Engine
+1 Reject Imperfection
+1 Energy Chamber
+1 Mage-Ring Network
+1 Serum Snare
+1 Guildpact Informant
+1 Transmogrifying Wand
+1 Vexing Puzzlebox
+1 Sphinx-Bone Wand
+1 The Eternity Elevator
+1 Surrakar Spellblade
+1 Shrine of Piercing Vision
+1 Blue Mana Battery
+1 Sigil of Distinction
+1 Aether Vial
+1 Vedalken Infuser
+1 Weather Maker
+1 Coalition Relic
+1 Astral Cornucopia
+1 Brain in a Jar
+1 Adaptive Training Post
+1 Blast Zone
+1 Everflowing Chalice
+1 Banshee's Blade
+1 Chimeric Egg
+1 Empowered Autogenerator
+1 U.S.S. Enterprise-D, Galaxy-Class
+1 Geometric Nexus
+1 Gavel of the Righteous
+1 Staff of Compleation
+1 Surge Node
+1 As Foretold
+1 Contagion Clasp
+1 The Millennium Calendar
+1 Archmage Ascension
+1 Contagion Engine
+1 Mesmerizing Dose
+1 Fabricate
+1 Sink into Stupor // Soporific Springs
+1 Diamond City
+1 Hall of Oracles
+1 Opal Palace
+1 Tyrite Sanctum
+1 Forge of Heroes
+1 Reliquary Tower
+1 Nykthos, Shrine to Nyx
+1 Saprazzan Skerry
+1 The Mycosynth Gardens
+1 Nesting Grounds
+1 Myriad Landscape
+1 Halimar Depths
+1 Minamo, School at Water's Edge
+1 Karn's Bastion
+1 Otawara, Soaring City
+1 Talon Gates of Madara
+17 Island
+1 Simic Manipulator
+1 Geist of Saint Thalia
+1 Trophy Mage
+1 Pollywog Prodigy
+1 Uthros Research Craft
+1 Serum Tank

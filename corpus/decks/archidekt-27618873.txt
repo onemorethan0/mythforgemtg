@@ -1,0 +1,85 @@
+# Archidekt — Nazzy on my Gul
+# source: archidekt:27618873
+# fetched: 2026-10-22
+
+Commander:
+1 Lord of the Nazgûl
+
+Deck:
+1 Geist of Saint Thalia
+9 Nazgûl
+1 Call of the Ring
+1 Sam's Desperate Rescue
+1 Witch-king of Angmar
+1 Soothing of Sméagol
+1 Brainstorm
+1 Ringwraiths
+1 Ringsight
+1 Witch-king, Bringer of Ruin
+1 Multiply by Zero
+1 An Offer You Can't Refuse
+1 Command Tower
+1 Preordain
+1 Talrand, Sky Summoner
+1 Birthday Escape
+1 Glasspool Mimic // Glasspool Shore
+1 Dark Ritual
+1 Claim the Precious
+1 Archmage Emeritus
+1 Baral, Chief of Compliance
+1 Spark Double
+1 Sauron, the Necromancer
+1 Opt
+1 Frantic Search
+1 Arcane Denial
+1 Archmage of Runes
+1 Pongify
+1 Canoptek Wraith
+1 Mystical Tutor
+1 Sakashima of a Thousand Faces
+1 Gale, Waterdeep Prodigy
+1 Swan Song
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Cremate
+1 Sakashima the Impostor
+1 Isochron Scepter
+1 Negate
+1 Infernal Grasp
+1 Sauron's Ransom
+1 Wizard's Staff
+1 Unwind
+1 Sink into Stupor // Soporific Springs
+1 Urborg, Tomb of Yawgmoth
+9 Island
+1 Village Rites
+1 Glorious Gale
+1 Fact or Fiction
+1 Mana Drain
+1 Cyclonic Rift
+1 Press the Enemy
+1 Aetherize
+1 Minas Morgul, Dark Fortress
+1 Boseiju, Who Shelters All
+1 Dimir Signet
+1 Jet Medallion
+1 Impulse
+1 Sapphire Medallion
+1 Three Tree City
+1 Nasty End
+1 The One Ring
+1 Sunken Hollow
+1 Nazgûl Battle-Mace
+1 Arcane Signet
+1 Rivendell
+1 Gloomlake Verge
+1 Levitation
+1 Watery Grave
+1 Reliquary Tower
+1 Underground River
+7 Swamp
+1 Sol Ring
+1 Talisman of Dominance
+1 Midnight Clock
+1 Choked Estuary
+1 Polluted Delta
+1 Tainted Isle

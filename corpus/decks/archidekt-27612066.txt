@@ -1,0 +1,93 @@
+# Archidekt — Running from the Lord's Light (TWEEK'D)
+# source: archidekt:27612066
+# fetched: 2026-10-20
+
+Commander:
+1 Sonic the Hedgehog
+
+Deck:
+1 Call a Surprise Witness
+1 Zealous Conscripts
+1 Coercive Recruiter
+1 Malcolm, Alluring Scoundrel
+1 Malcolm, Keen-Eyed Navigator
+1 Brineborn Cutthroat
+1 Spectral Sailor
+1 Cathar Commando
+1 Gingerbrute
+1 Knuckles the Echidna
+1 Captivating Crew
+1 Captain Lannery Storm
+1 Broadside Bombardiers
+1 Malcolm, the Eyes
+1 Fanatical Firebrand
+1 Reckless Lackey
+1 Storm Fleet Sprinter
+1 Gatta and Luzzu
+1 Githzerai Monk
+1 Arcane Signet
+1 Big Score
+1 Cursed Mirror
+1 The Reaver Cleaver
+1 Mary Read and Anne Bonny
+1 Spectator Seating
+1 Temple of Epiphany
+1 Temple of Triumph
+1 Guardian of Faith
+1 Selfless Squire
+1 Village Bell-Ringer
+1 Curse of Opulence
+1 Great Train Heist
+1 Pirate's Pillage
+1 Gemcutter Buccaneer
+1 Captain Storm, Cosmium Raider
+1 Pirated Copy
+1 Merchant Raiders
+1 Enduring Curiosity
+1 Reconnaissance Mission
+1 Coastal Piracy
+1 Curse of Verbosity
+1 Wan Shi Tong, Librarian
+1 Plumecreed Escort
+1 Fear of Impostors
+1 Faerie Mastermind
+1 Command Tower
+1 Mocking Doppelganger
+1 Floodpits Drowner
+1 Draining Whelk
+1 Dreamcaller Siren
+1 Tin Street Dodger
+1 Resilient Roadrunner
+1 Marchesa's Smuggler
+1 Glen Elendra Guardian
+1 Raugrin Triome
+1 Hallowed Fountain
+1 Mystic Monastery
+1 Steam Vents
+1 Sacred Foundry
+1 Shivan Reef
+1 Battlefield Forge
+1 Training Center
+1 Adarkar Wastes
+1 Sea of Clouds
+5 Mountain
+1 Evolving Wilds
+1 Untimely Malfunction
+1 Silence
+1 Temple of Enlightenment
+1 Arid Mesa
+1 Scalding Tarn
+1 Flooded Strand
+1 Prismatic Vista
+1 Fabled Passage
+7 Island
+1 Tibalt's Trickery
+1 Lorehold Charm
+1 Syncopate
+1 Crash Through
+2 Plains
+1 Stormcarved Coast
+1 Cascade Bluffs
+1 Unexpected Windfall
+1 Deserted Beach
+1 Sword of the Animist

@@ -1,0 +1,90 @@
+# Archidekt — The Price of Power
+# source: archidekt:13859524
+# fetched: 2026-10-20
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Vampire Nighthawk
+2 Swamp
+2 Swamp
+1 Jet Medallion
+1 Ashnod's Altar
+2 Swamp
+1 Thieving Amalgam
+10 Swamp
+1 Voracious Fell Beast
+1 Arcane Signet
+2 Swamp
+1 Sol Ring
+1 Vault of Whispers
+1 Blood Artist
+1 Phyrexian Arena
+1 Nykthos, Shrine to Nyx
+1 Vraan, Executioner Thane
+1 Bolas's Citadel
+1 Grim Servant
+1 Swamp
+1 Gonti, Lord of Luxury
+1 Dusk Mangler
+1 Takenuma, Abandoned Mire
+4 Swamp
+1 Swamp
+2 Swamp
+1 Swamp
+1 Skirge Familiar
+1 Gray Merchant of Asphodel
+1 Noxious Gearhulk
+1 Ravenous Chupacabra
+1 Cabal Coffers
+1 Lokhust Heavy Destroyer
+1 Necromancy
+1 Swamp
+1 Swamp
+1 Agent of the Shadow Thieves
+1 Eviscerator's Insight
+1 Bitter Triumph
+1 Army of the Damned
+1 Dimir House Guard
+1 Dismember
+1 Basilica Screecher
+1 Crypt of Agadeem
+1 Decree of Pain
+1 Cut Down
+1 Bloodhunter Bat
+1 Cabal Stronghold
+1 Consuming Corruption
+1 Dauthi Voidwalker
+1 Grave Titan
+1 Hoarding Broodlord
+1 Sanctum of Stone Fangs
+1 Scavenger Grounds
+1 Corrupt
+1 Pointed Discussion
+1 Defiler of Flesh
+1 Dalek Drone
+1 Saw in Half
+1 Diamond Mare
+1 Genesis of the Daleks
+1 Read the Bones
+1 Shard of the Void Dragon
+1 Skymarch Bloodletter
+1 Rakshasa Debaser
+1 Gix, Yawgmoth Praetor
+1 Tendrils of Corruption
+1 Grave Venerations
+1 Phyrexian Tower
+1 Insatiable Avarice
+1 Massacre Wurm
+1 Mortarion, Daemon Primarch
+1 Josu Vess, Lich Knight
+1 Mind Stone
+1 Pontiff of Blight
+1 Nighthawk Scavenger
+1 Professor Onyx
+1 Sangromancer
+1 Spectrum Sentinel
+1 Syphon Mind
+1 The War in Heaven
+1 Their Number Is Legion

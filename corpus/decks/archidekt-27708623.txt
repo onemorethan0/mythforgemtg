@@ -1,0 +1,84 @@
+# Archidekt — RENEW
+# source: archidekt:27708623
+# fetched: 2026-10-23
+
+Commander:
+1 Sevinne, the Chronoclasm
+
+Deck:
+1 Command Tower
+13 Island
+7 Mountain
+6 Plains
+1 Sulfur Falls
+1 Raugrin Triome
+1 Glacial Fortress
+1 Clifftop Retreat
+1 Prairie Stream
+1 Scorched Geyser
+1 Radiant Summit
+1 Thrill of Possibility
+1 Counterspell
+1 Demand Answers
+1 Quick Study
+1 Unwind
+1 Frantic Search
+1 Increasing Vengeance
+1 Chemister's Insight
+1 Faithful Mending
+1 Cancel
+1 Negate
+1 Faithless Looting
+1 Portent
+1 Underworld Breach
+1 Deep Analysis
+1 Reverberate
+1 Twinferno
+1 Secrets of the Dead
+1 Ray of Distortion
+1 Mystic Retrieval
+1 Vega, the Watcher
+1 Baral, Chief of Compliance
+1 Goblin Electromancer
+1 Lier, Disciple of the Drowned
+1 Approach of the Second Sun
+1 Divination
+1 Thunderclap Drake
+1 Mass Diminish
+1 Divine Reckoning
+1 Ponder
+1 Wayfarer's Bauble
+1 Swords to Plowshares
+1 Path to Exile
+1 Swiftfoot Boots
+1 Primal Amulet // Primal Wellspring
+1 Pursue the Past
+1 Jace's Sanctum
+1 Solve the Equation
+1 Thought Vessel
+1 Past in Flames
+1 Unexpected Windfall
+1 Ghostly Prison
+1 Reliquary Tower
+1 Big Score
+1 Sol Ring
+1 Catalyst Stone
+1 Blind Obedience
+1 Grand Abolisher
+1 Storm-Kiln Artist
+1 Lightmine Field
+1 Propaganda
+1 Sphere of Safety
+1 Teferi, Hero of Dominaria
+1 Monologue Tax
+1 Hullbreaker Horror
+1 Aetherize
+1 Blasphemous Act
+1 Whirlwind of Thought
+1 Settle the Wreckage
+1 Evacuation
+1 Tidespout Tyrant
+1 Archmage's Charm
+1 Insurrection
+1 Silent Departure
+1 Nezahal, Primal Tide

@@ -1,0 +1,99 @@
+# Archidekt — nicol bolas
+# source: archidekt:9170110
+# fetched: 2026-10-22
+
+Commander:
+1 Nicol Bolas, the Ravager // Nicol Bolas, the Arisen
+
+Deck:
+1 Crumbling Necropolis
+1 Watery Grave
+1 Thought Vessel
+1 Thundering Falls
+1 Ashiok, Dream Render
+1 Disallow
+2 Mountain
+5 Island
+4 Swamp
+1 Fabled Passage
+1 Chandra, Hope's Beacon
+1 The Theorist, Jace Beleren
+1 Ajani Unrelenting
+1 Dark Intimations
+1 Deliver Unto Evil
+1 Toxic Deluge
+1 Final Act
+1 Insurrection
+1 Black Sun's Zenith
+1 Vandalblast
+1 Nicol Bolas, Dragon-God
+1 Nicol Bolas, God-Pharaoh
+1 Narset, Parter of Veils
+1 Vronos, Masked Inquisitor
+1 Liliana, Dreadhorde General
+1 Chandra, Legacy of Fire
+1 Professor Onyx
+1 Sol Ring
+1 Consult the Star Charts
+1 Cyclonic Rift
+1 Nicol Bolas, Planeswalker
+1 Subjugate the Hobbits
+1 Sanctum Lurker
+1 Crawlspace
+1 Arcane Signet
+1 Dimir Signet
+1 Rakdos Signet
+1 Izzet Signet
+1 Relic of Sauron
+1 Prisoner's Dilemma
+1 Jeska's Will
+1 Abrade
+1 Tainted Aether
+1 Spell Pierce
+1 Blasphemous Edict
+1 Spark Double
+1 Boggart Trawler // Boggart Bog
+1 Opposition Agent
+1 Consecrated Sphinx
+1 Llawan, Cephalid Empress
+1 Orcish Bowmasters
+1 Reality Shift
+1 Withering Torment
+1 Fierce Guardianship
+1 Hidden Hideout
+1 Fell the Profane // Fell Mire
+1 Deadly Rollick
+1 Strix Serenade
+1 Force of Despair
+1 Waterlogged Teachings // Inundated Archive
+1 Deflecting Swat
+1 Counterflux
+1 Evacuation
+1 Suspended Sentence
+1 An Offer You Can't Refuse
+1 Time Stop
+1 Notion Thief
+1 Valgavoth, Terror Eater
+1 Wan Shi Tong, Librarian
+1 Oscorp Industries
+1 Command Tower
+1 Xander's Lounge
+1 Blood Crypt
+1 Steam Vents
+1 Drowned Catacomb
+1 Luxury Suite
+1 Morphic Pool
+1 Reliquary Tower
+1 Scalding Tarn
+1 Bloodstained Mire
+1 Temple of Deceit
+1 Temple of Epiphany
+1 Fetid Pools
+1 Underground River
+1 Creeping Tar Pit
+1 Maestros Theater
+1 Canyon Slough
+1 Temple of Malice
+1 Blazemire Verge
+1 Gloomlake Verge
+1 Mistrise Village

@@ -1,0 +1,69 @@
+# Archidekt — New Zombies EDH 20/10/26
+# source: archidekt:27615055
+# fetched: 2026-10-20
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Liliana Vess
+1 Ghoulcaller's Chant
+1 Vengeful Pharaoh
+1 Marauding Knight
+1 Eaten Alive
+34 Swamp
+1 Call to the Grave
+1 Vengeful Dead
+1 Helldozer
+1 Victim of Night
+1 Noxious Ghoul
+1 Cemetery Recruitment
+1 Undead Warchief
+1 Soulless One
+1 Cruel Revival
+1 Lord of the Undead
+1 Liliana's Mastery
+1 Zombie Apocalypse
+1 Go for the Throat
+1 Diregraf Colossus
+1 Gray Merchant of Asphodel
+1 Death Baron
+1 Unbreathing Horde
+1 Grave Defiler
+1 Zombie Trailblazer
+1 Lord of the Accursed
+1 Wight of Precinct Six
+1 Withered Wretch
+1 Deadly Plot
+1 Undying Evil
+1 Archetype of Finality
+1 Cabal Interrogator
+1 Nefashu
+1 Murder
+1 Forlorn Pseudamma
+1 Liliana's Reaver
+1 Gavony Unhallowed
+1 Festering Mummy
+1 Order of Yawgmoth
+1 Resourceful Return
+1 Corpse Churn
+1 Skinrender
+1 Gempalm Polluter
+1 Woebearer
+1 Ghoulraiser
+1 Zombie Brute
+1 Sanguimancy
+1 Butcher Ghoul
+1 Phylactery Lich
+1 Fated Return
+1 Propaganda
+1 Herald's Horn
+1 Diregraf Captain
+1 Kindred Discovery
+1 Necroduality
+1 Risen Executioner
+1 Rooftop Storm
+1 Cemetery Reaper
+1 Empty the Laboratory
+1 Reflections of Littjara
+1 Hordewing Skaab

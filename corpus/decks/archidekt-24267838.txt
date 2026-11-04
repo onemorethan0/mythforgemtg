@@ -1,0 +1,84 @@
+# Archidekt — Champagne for everybody
+# source: archidekt:24267838
+# fetched: 2026-10-21
+
+Commander:
+1 Braids, Conjurer Adept
+
+Deck:
+1 Otawara, Soaring City
+1 Negate
+1 Arcane Denial
+1 Teferi's Ageless Insight
+1 High Tide
+1 Preordain
+1 Misty Rainforest
+1 Consider
+1 Consecrated Sphinx
+1 Displacer Kitten
+1 Fabricate
+1 Flooded Strand
+1 Polluted Delta
+1 Samut, Tyrant of Naktamun
+1 Sphinx of the Final Word
+1 Geist of Saint Thalia
+1 Dramatic Reversal
+1 Careful Study
+1 Merchant Scroll
+1 Memory Lapse
+1 Sleight of Hand
+1 Misdirection
+1 Bilbo, Thief in the Night
+1 Chameleon, Master of Disguise
+1 Scalding Tarn
+1 Archmage Emeritus
+24 Snow-Covered Island
+1 Spark Double
+1 Swan Song
+1 Forced Fruition
+1 Astral Dragon
+1 Counterspell
+1 An Offer You Can't Refuse
+1 Brainstorm
+1 Caged Sun
+1 Pongify
+1 Loki, Lord of Misrule
+1 Propaganda
+1 Show and Tell
+1 Agent of Treachery
+1 Omniscience
+1 Teferi, Mage of Zhalfir
+1 Phyrexian Metamorph
+1 Sol Ring
+1 Roil Elemental
+1 Tidespout Tyrant
+1 Sphinx of the Second Sun
+1 Frantic Search
+1 Opt
+1 Arcane Signet
+1 Hullbreaker Horror
+1 Tidal Barracuda
+1 Myriad Landscape
+1 Academy Ruins
+1 Reliquary Tower
+1 Ponder
+1 Stock Up
+1 Lightning Greaves
+1 Gitaxian Probe
+1 Sapphire Medallion
+1 Portal to Phyrexia
+1 Swiftfoot Boots
+1 The Immortal Sun
+1 Leyline of Anticipation
+1 Paradox Haze
+1 Jin-Gitaxias, Core Augur
+1 Jin-Gitaxias, Progress Tyrant
+1 Fierce Guardianship
+1 Pact of Negation
+1 Cyclonic Rift
+1 Force of Will
+1 Force of Negation
+1 Rhystic Study
+1 Mystical Tutor
+1 Lotus Petal
+1 Rapid Hybridization

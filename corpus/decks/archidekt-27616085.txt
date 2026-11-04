@@ -1,0 +1,106 @@
+# Archidekt — exodia
+# source: archidekt:27616085
+# fetched: 2026-10-21
+
+Commander:
+1 Ramos, Dragon Engine
+
+Deck:
+1 Scroll Rack
+1 Apex Devastator
+1 Arcane Adaptation
+1 Conflux
+1 Liliana's Contract
+1 Bloodstained Mire
+1 Arid Mesa
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Alchemist's Refuge
+1 Emergence Zone
+1 Scalding Tarn
+1 Polluted Delta
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Imperial Seal
+1 Brainstorm
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Enlightened Tutor
+1 Fabricate
+1 Rhystic Study
+1 Hardened Scales
+1 Terrasymbiosis
+1 Cascading Cataracts
+1 Gamble
+1 Ephemerate
+1 Mystic Remora
+1 Mystical Tutor
+1 Sensei's Divining Top
+1 Sol Ring
+1 Birds of Paradise
+1 Delighted Halfling
+1 Three Visits
+1 Fierce Guardianship
+1 Nature's Lore
+1 Silence
+1 Deflecting Swat
+1 Swan Song
+1 Growth Spiral
+1 Manamorphose
+1 Cultivate
+1 Force of Will
+1 Kodama's Reach
+1 Esper Sentinel
+1 Ignoble Hierarch
+1 Noble Hierarch
+1 Pact of Negation
+1 Gitaxian Probe
+1 Ancient Tomb
+1 Avacyn, Angel of Hope
+1 Grand Abolisher
+1 Jund Charm
+1 Abzan Charm
+1 An Offer You Can't Refuse
+1 Growth Curve
+1 The Ozolith
+1 Ponder
+1 Gifts Ungiven
+1 Naya Charm
+1 Frantic Search
+1 Solve the Equation
+1 Personal Tutor
+1 Whirlwind of Thought
+1 Sylvan Library
+1 Trace of Abundance
+1 Transguild Courier
+1 Regrowth
+1 Noxious Revival
+1 Reflecting Pool
+1 Exotic Orchard
+1 Mana Confluence
+1 Mountain
+1 City of Brass
+1 Command Tower
+2 Forest
+2 Island
+1 Plains
+1 Swamp
+1 Teferi's Protection
+1 Rampant Growth
+1 Two-Headed Hellkite
+1 Taiga
+1 Badlands
+1 Bayou
+1 Tundra
+1 Savannah
+1 Scrubland
+1 Plateau
+1 Tropical Island
+1 Volcanic Island
+1 Underground Sea
+1 Urban Evolution
+1 Indatha Triome
+1 Raugrin Triome
+1 Zagoth Triome

@@ -1,0 +1,99 @@
+# Archidekt — Miirym, Sentinel Wyrm
+# source: archidekt:2167008
+# fetched: 2026-10-23
+
+Commander:
+1 Miirym, Sentinel Wyrm
+
+Deck:
+1 Scourge of Valkas
+1 Draconic Visitor
+1 The Great Henge
+1 Terror of the Peaks
+1 Birds of Paradise
+1 Heroic Intervention
+1 Sol Ring
+1 Arcane Signet
+1 Klauth's Will
+1 Atarka, World Render
+1 Farseek
+1 Rhythm of the Wild
+1 Nature's Lore
+1 Cavern of Souls
+1 Rhystic Study
+1 Ketria Triome
+1 Training Center
+1 Rejuvenating Springs
+1 Boseiju, Who Endures
+1 Steam Vents
+1 Breeding Pool
+1 Thrakkus the Butcher
+1 Obsidian Charmaw
+1 Astral Dragon
+1 Tropical Island
+1 Rootbound Crag
+1 Stomping Ground
+1 Lathliss, Dragon Queen
+1 Prismatic Vista
+1 Cavern-Hoard Dragon
+1 Kindred Summons
+1 Reflecting Pool
+1 Sylvan Library
+1 Wooded Foothills
+1 Garruk's Uprising
+1 Shivan Reef
+3 Forest
+1 Dragonlord's Servant
+1 Dragonborn Champion
+1 Scaled Nurturer
+1 Spire Garden
+1 Karplusan Forest
+1 Twinflame Tyrant
+1 Worldly Tutor
+1 Dragonhawk, Fate's Tempest
+1 Fire-Lit Thicket
+1 Smuggler's Surprise
+1 Old Gnawbone
+1 Ganax, Astral Hunter
+1 Thornspire Verge
+1 Maelstrom of the Spirit Dragon
+7 Mountain
+1 Collective Resistance
+1 Stubborn Denial
+1 Deceptive Frostkite
+1 Ureni of the Unwritten
+1 Frostcliff Siege
+1 Scalding Tarn
+1 Misty Rainforest
+1 Command Tower
+1 Hellkite Tyrant
+1 Herd Heirloom
+1 Wrathful Red Dragon
+1 Parapet Thrasher
+1 Goblin Anarchomancer
+1 Delighted Halfling
+1 Fierce Guardianship
+1 Deflecting Swat
+1 Fanatic of Rhonas
+1 Sarkhan, Soul Aflame
+1 Temur Ascendancy
+1 Haven of the Spirit Dragon
+1 Roaming Throne
+1 Three Visits
+1 Dragon Tempest
+1 Otawara, Soaring City
+1 Untimely Malfunction
+1 Arena of Glory
+1 Blasphemous Act
+1 Firkraag, Cunning Instigator
+1 Iymrith, Desert Doom
+1 Volcanic Island
+1 Sensei's Divining Top
+1 Spider-Sense
+1 Temur Battlecrier
+1 Smaug the Magnificent
+1 Ancient Silver Dragon
+1 Goldspan Dragon
+1 Tooth and Nail
+1 Cyclonic Rift
+1 Ancient Tomb

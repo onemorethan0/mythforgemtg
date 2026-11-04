@@ -1,0 +1,88 @@
+# Archidekt — Copy of - Cut-Rate Commander | Kefka, Court Mage
+# source: archidekt:24402149
+# fetched: 2026-10-22
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Dour Port-Mage
+1 Riptide Laboratory
+1 Strike It Rich
+1 Tinybones, Bauble Burglar
+1 Rankle, Master of Pranks
+1 Surly Badgersaur
+1 Essence Flux
+1 Planar Incision
+1 Siren's Ruse
+1 Teferi's Time Twist
+1 Blur
+1 Shrieking Affliction
+1 Bandit's Talent
+1 Geth's Grimoire
+1 Foreboding Ruins
+1 Chainer, Nightmare Adept
+1 Big Game Hunter
+1 Feldon of the Third Path
+1 Faithless Looting
+1 Quistis Trepe
+1 Coalstoke Gearhulk
+1 Laughing Mad
+1 Conjurer's Closet
+1 Ertai Resurrected
+1 Demon of Dark Schemes
+1 Panharmonicon
+1 Archaeomancer
+1 Y'shtola Rhul
+1 Victimize
+1 Phyrexian Delver
+1 Plundering Barbarian
+1 Rix Maadi, Dungeon Palace
+1 Halo Forager
+1 Tidecaller Mentor
+1 Oversold Cemetery
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Kroxa, Titan of Death's Hunger
+1 Archfiend of Ifnir
+1 Displace
+1 Ghostly Flicker
+1 Syphon Mind
+1 Blasphemous Act
+1 Quest for the Nihil Stone
+1 Waste Not
+1 Sol Ring
+1 Arcane Signet
+1 Dimir Signet
+1 Fellwar Stone
+1 Izzet Signet
+1 Rakdos Signet
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Monument to Endurance
+1 Choked Estuary
+1 Command Tower
+8 Swamp
+1 Crumbling Necropolis
+1 Demolition Field
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Frostboil Snarl
+1 Smoldering Marsh
+1 Sulfur Falls
+1 Sunken Hollow
+1 Anger
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Containment Construct
+1 Conspiracy Theorist
+1 Abyssal Harvester
+1 Electric Revelation
+1 Puppeteer Clique
+1 Deadeye Navigator
+1 Solemn Simulacrum
+1 Aether Channeler
+1 Venser, Shaper Savant
+1 Naban, Dean of Iteration
+7 Mountain
+7 Island

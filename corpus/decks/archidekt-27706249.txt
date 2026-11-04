@@ -1,0 +1,62 @@
+# Archidekt — Sovereign Slime
+# source: archidekt:27706249
+# fetched: 2026-10-23
+
+Commander:
+1 Sovereign Okinec Ahau
+
+Deck:
+25 Slime Against Humanity
+1 Sunpetal Grove
+1 Gavony Township
+17 Forest
+1 Brushland
+1 Fortified Village
+1 Reliquary Tower
+1 Command Tower
+1 Canopy Vista
+1 Overgrown Farmland
+1 Rogue's Passage
+1 Horizon Canopy
+1 Gathering Place
+7 Plains
+1 Rampant Growth
+1 Kutzil, Malamet Exemplar
+1 Abzan Falconer
+1 Toski, Bearer of Secrets
+1 Ohran Frostfang
+1 Kodama of the West Tree
+1 Khalni Ambush // Khalni Territory
+1 Inspiring Call
+1 Avacyn's Pilgrim
+1 Nature's Lore
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Rishkar, Peema Renegade
+1 Disciple of Freyalise // Garden of Freyalise
+1 Glimpse the Core
+1 Three Visits
+1 Farseek
+1 Brotherhood Regalia
+1 Tocasia's Welcome
+1 Terrasymbiosis
+1 Thrumming Stone
+1 Shared Roots
+1 Path to Exile
+1 Beast Within
+1 Damning Verdict
+1 Swords to Plowshares
+1 Locket of Yesterdays
+1 Whispersilk Cloak
+1 Spellweaver Helix
+1 Emerald Medallion
+1 Tribute to the World Tree
+1 Talisman of Unity
+1 The Earth Crystal
+1 Court of Garenbrig
+1 Sphere Grid
+1 Warrior's Resolve
+1 Doubling Season
+1 Unbreakable Formation
+1 Caretaker's Talent
+1 Mikey & Leo, Chaos & Order
+1 Nature's Claim

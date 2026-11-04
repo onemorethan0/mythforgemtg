@@ -1,0 +1,90 @@
+# Archidekt — Trashless Treasure
+# source: archidekt:27294628
+# fetched: 2026-10-23
+
+Commander:
+1 Norman Osborn // Green Goblin
+
+Deck:
+1 Talisman of Indulgence
+1 Swiftfoot Boots
+1 Sol Ring
+1 Grave Researcher // Reanimate
+1 Jiang Yanggu, Alone
+1 Wharf Infiltrator
+1 Skeleton Crew
+1 Archfiend of Ifnir
+1 Kess, Dissident Mage
+1 Magus of the Wheel
+1 Keeper of Secrets
+1 Garrison Excavator
+1 Glint-Horn Buccaneer
+1 Forgotten Creation
+1 Along the Crooked Way
+1 Frantic Search
+1 You Find the Villains' Lair
+1 Thrill of Possibility
+1 Laughing Mad
+1 Electric Revelation
+1 Twinned Vision
+1 Curtains' Call
+1 Lórien Revealed
+1 Windfall
+1 Bone Shards
+1 Shadowblood Ridge
+1 Foreboding Ruins
+1 Temple of Epiphany
+1 Izzet Boilerworks
+1 Sulfur Falls
+1 Haunted Ridge
+1 Dimir Aqueduct
+1 Temple of Deceit
+1 Darkslick Shores
+1 Hidden Lair
+1 Command Tower
+1 Crumbling Necropolis
+1 Exotic Orchard
+1 Desolate Lighthouse
+1 Cephalid Coliseum
+1 Port of Karfell
+4 Swamp
+7 Island
+9 Mountain
+1 Bringer of the Last Gift
+1 Spider-Verse
+1 Hagra Mauling // Hagra Broodpit
+1 Plunder the Trollshaws
+1 The Lost and the Damned
+1 Matzalantli, the Great Door // The Core
+1 Tolarian Winds
+1 Wheel of Misfortune
+1 Steal the Show
+1 Mnemonic Sphere
+1 Fateful Showdown
+1 Recursive Recruitment
+1 Secrets of the Dead
+1 Increasing Ambition
+1 Containment Construct
+1 Into the Night
+1 Prismari Command
+1 Shattered Perception
+1 Flux
+1 Bilbo, Luckwearer // Burglar's Plot
+1 Talisman of Dominance
+1 Oskar, Rubbish Reclaimer
+1 Faithless Looting
+1 Desperate Ravings
+1 Ultimate Green Goblin
+1 Talisman of Creativity
+1 Collective Defiance
+1 Unstable Experiment
+1 Ghostly Pilferer
+1 Proft, Sinister Mastermind
+1 Currency Converter
+1 Vizier of Tumbling Sands
+1 Mystic Retrieval
+1 Mission Briefing
+1 Burning Vengeance
+1 Ignite the Future
+1 Cryptcaller Chariot
+1 Marauding Mako
