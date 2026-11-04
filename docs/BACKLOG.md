@@ -128,6 +128,17 @@ labels), as the strength model's zero weight on the goldfish clock predicted. Co
 3 decks moved B1 -> B2, all three labelled B1, so exact slips 59.5% -> 59.0% (371 -> 368) and B1
 recall 48.8% -> 46.5%. They are go-wide decks whose anthems now count and self-labels skew low, so it
 ships; revert is removing the three `anthem_*` blocks in `tier0._run_one`.
+**Cost reducers: parser shipped, tier0 wiring TRIED AND REVERTED (2026-11-04).** 61 permanents print a
+closed unconditional generic reducer ("Instant and sorcery spells you cast cost {1} less to cast"), in
+35% of corpus decks. `compiler.parse_cost_reducer` is strict (generic mana only, closed subject list,
+whole line; 12 tests) and stays. I wired it into the tier0 goldfish clock (reducers apply when their
+source resolves, creature sources die in a wipe) and ran the standing guard (bracket_accuracy,
+624 labelled decks): **within-one 575 -> 574 (92.1% -> 92.0%, below my own "no drop" rule), exact
+59.0% -> 58.7%, and of the 5 decks whose bracket changed, 4 moved AWAY from their label, 1 closer.**
+Reverted per the rule. The effect is real but lands on the bracket estimate; the DUEL simulator is
+the better home because it does not feed the bracket. Cost there is the ~10 scattered `card.cost`
+sites in `game.py`/`tier2.py` (legal-action generation and payment must agree, or a card is
+offered that cannot be paid). Raw data: `docs/bench/bracket_accuracy_2026-11-04_reducers.json`.
 **NOT done, deliberately:** (b) cost reducers and CDA P/T;
 (c) the "other" 41% of statics.
 

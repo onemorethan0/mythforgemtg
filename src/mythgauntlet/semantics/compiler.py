@@ -772,6 +772,40 @@ def parse_anthem(note: str) -> dict | None:
     }
 
 
+# --- static COST REDUCERS (B3) ---------------------------------------------------------------
+# "Instant and sorcery spells you cast cost {1} less to cast." Same doctrine as `parse_anthem`:
+# pure, deterministic, whole-line, closed vocabulary, anything else declines. Only GENERIC
+# reductions ({1}, {2}) count, because a cost reduction never lowers the colour you need and a
+# coloured symbol here ("{W}") would need a pip model the sims do not have. Measured 2026-11-04:
+# 61 permanents, in 35% of corpus decks (Medallions, Goblin Electromancer, Etherium Sculptor).
+# NOT handled (each a different mechanic): "this spell costs ... less" (self reduction, already
+# `fx.self_reduction_per_creature`), "spells cost {1} less" for ALL players (Helm of Awakening),
+# conditional ("as long as"), "for each", activated-ability reductions, increases ("more").
+_REDUCER_SUBJECTS = frozenset({
+    "spells", "creature spells", "artifact spells", "enchantment spells", "planeswalker spells",
+    "instant and sorcery spells", "noncreature spells", "colorless spells",
+    "white spells", "blue spells", "black spells", "red spells", "green spells",
+})
+_COST_REDUCER_RE = re.compile(
+    r"^(?P<subject>[a-z ]+?) you cast cost (?P<cost>(?:\{[^}]+\})+) less to cast\.?$", re.I)
+
+
+def parse_cost_reducer(line: str) -> dict | None:
+    """A static cost-reducer line -> {"subject", "amount"}, or None unless it is exactly the
+    closed unconditional generic-mana shape. `amount` is the total generic reduction."""
+    m = _COST_REDUCER_RE.match((line or "").strip())
+    if not m:
+        return None
+    subject = m.group("subject").lower()
+    if subject not in _REDUCER_SUBJECTS:
+        return None
+    symbols = re.findall(r"\{([^}]+)\}", m.group("cost"))
+    if not symbols or not all(s.isdigit() for s in symbols):
+        return None  # a coloured / hybrid / X symbol: needs a pip model the sims lack
+    amount = sum(int(s) for s in symbols)
+    return {"subject": subject, "amount": amount} if amount > 0 else None
+
+
 def anthem_for_card(note: str, oracle_text: str) -> dict | None:
     """`parse_anthem(note)`, but only when the note is a WHOLE LINE of the card's oracle text.
 
