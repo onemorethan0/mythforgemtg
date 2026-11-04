@@ -772,7 +772,10 @@ _BORDER_THEME_DEFAULT = ('ornate', (198, 162, 48))
 def _classify_border_theme(desc: str) -> tuple[str, tuple]:
     t = desc.lower()
     for keywords, style, rgb in _BORDER_THEME_MAP:
-        if any(k in t for k in keywords):
+        # Match at a WORD START, not anywhere: a bare substring test sent "inferno" to the
+        # vine border (it contains "fern") and "flash" to flame (it contains "ash"). A prefix
+        # still catches "frozen", "flames", "ashen", "forests".
+        if any(re.search(r"\b" + re.escape(k), t) for k in keywords):
             return style, rgb
     return _BORDER_THEME_DEFAULT
 
