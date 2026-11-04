@@ -18,30 +18,12 @@ import { useGenerate3D } from '../hooks/useGenerate3D'
 import { useOwnDeck } from '../hooks/useOwnDeck'
 import { notify } from '../utils/toast'
 import { searchCards } from '../utils/searchCards'
-import { GROUP_BYS, GROUP_BY_LABELS, groupCards, nameKey } from '../utils/deckGrouping'
+import { GROUP_BYS, GROUP_BY_LABELS, TYPE_ORDER, groupCards, nameKey, primaryType } from '../utils/deckGrouping'
 import { BRACKET_TERMS } from '../glossary'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────────────────────────────────────
-
-// Display/grouping ORDER — creatures and spells first, lands last. This is purely
-// cosmetic (which section/tab appears first) and is independent of the
-// CLASSIFICATION precedence below.
-const TYPE_ORDER = ['Creature', 'Instant', 'Sorcery', 'Enchantment', 'Artifact', 'Planeswalker', 'Land']
-
-// Classification PRECEDENCE — a card can print more than one of these types on one
-// line (an Artifact Creature, a Land Creature like Dryad Arbor, an Artifact Land),
-// so only the first matching bucket should win. This mirrors the server's
-// authoritative `collection_index.primary_type()` (Land > Creature > Planeswalker >
-// Battle > Instant > Sorcery > Enchantment > Artifact) so the two independently
-// computed classifications agree. It IS a duplicated reimplementation, though: deck
-// cards returned by the build/theme pipeline carry no server-computed primary_type
-// field today — that field exists only in collection_index.py, for the separate
-// Collection-manager browsing view (`/api/collection`), not for a deck's own cards.
-// Ideally this reads a server-provided field once one is threaded through to deck
-// cards, instead of re-deriving it here from a substring match on type_line.
-const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Instant', 'Sorcery', 'Enchantment', 'Artifact']
 
 // Physical count, not unique-entry count — an imported deck's aggregated basics
 // (one dict entry, quantity: 34) must read as 34 cards, not 1. Every OTHER count on
@@ -51,18 +33,14 @@ const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Instant', 'Sorcery
 // pixels apart (34 in the sidebar, 15 — the unique card count — in the tab).
 const qty = c => Math.max(1, parseInt(c.quantity, 10) || 1)
 
+// The classification itself lives in utils/deckGrouping (primaryType), which mirrors the server's
+// collection_index.primary_type and is covered by a JS<->Python parity test; this used to be a
+// second, drifting copy (whole type line instead of the front face, no Battle bucket).
 function groupByType(cards) {
   const groups = {}
   for (const type of TYPE_ORDER) groups[type] = []
   groups['Other'] = []
-  for (const c of cards) {
-    const tl = c.type_line || ''
-    let placed = false
-    for (const type of TYPE_PRECEDENCE) {
-      if (tl.includes(type)) { groups[type].push(c); placed = true; break }
-    }
-    if (!placed) groups['Other'].push(c)
-  }
+  for (const c of cards) groups[primaryType(c)].push(c)
   return groups
 }
 

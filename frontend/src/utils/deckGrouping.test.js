@@ -28,6 +28,31 @@ describe('card helpers', () => {
     expect(qty({ quantity: '34' })).toBe(34)
     expect(qty({})).toBe(1)
   })
+
+  it('a double-faced card is classified by its FRONT face, like the server', () => {
+    expect(primaryType({ original_type_line: 'Sorcery // Land' })).toBe('Sorcery')
+    expect(primaryType({ original_type_line: 'Creature — Elf Druid // Land' })).toBe('Creature')
+    expect(primaryType({ original_type_line: 'Land // Land' })).toBe('Land')
+    expect(primaryType({ original_type_line: 'Artifact // Creature — Golem' })).toBe('Artifact')
+  })
+
+  it('knows Battles, is case-insensitive, and files the unknown under Other', () => {
+    expect(primaryType({ type_line: 'Battle — Siege' })).toBe('Battle')
+    expect(primaryType({ type_line: 'legendary creature — angel' })).toBe('Creature')
+    expect(primaryType({ type_line: '' })).toBe('Other')
+    expect(primaryType({})).toBe('Other')
+    expect(primaryType({ type_line: 'Something Else' })).toBe('Other')
+  })
+
+  it('prefers the original type line over a reskinned one', () => {
+    expect(primaryType({ original_type_line: 'Instant', type_line: 'Creature — Wisp' })).toBe('Instant')
+  })
+
+  it('a Battle gets its own type tab, ahead of Land', () => {
+    const groups = groupCards([{ type_line: 'Battle — Siege' }, { type_line: 'Basic Land — Forest' }], 'type')
+    expect(groups.map(g => g.key)).toEqual(['Battle', 'Land'])
+    expect(groups[0].label).toBe('Battles')
+  })
 })
 
 describe('groupCards', () => {

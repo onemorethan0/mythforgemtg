@@ -13,8 +13,10 @@
 export const GROUP_BYS = ['type', 'role', 'color', 'cmc', 'none']
 export const GROUP_BY_LABELS = { type: 'Card type', role: 'Role', color: 'Color', cmc: 'Mana value', none: 'No grouping' }
 
-export const TYPE_ORDER = ['Creature', 'Instant', 'Sorcery', 'Enchantment', 'Artifact', 'Planeswalker', 'Land']
-export const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Instant', 'Sorcery', 'Enchantment', 'Artifact']
+export const TYPE_ORDER = ['Creature', 'Instant', 'Sorcery', 'Enchantment', 'Artifact', 'Planeswalker', 'Battle', 'Land']
+// Mirrors the server's collection_index.primary_type (Land > Creature > Planeswalker > Battle >
+// Instant > Sorcery > Enchantment > Artifact); tests/test_primary_type_js_python_parity.py runs both.
+export const TYPE_PRECEDENCE = ['Land', 'Creature', 'Planeswalker', 'Battle', 'Instant', 'Sorcery', 'Enchantment', 'Artifact']
 
 export const ROLE_ORDER = ['ramp', 'draw', 'removal', 'noncreature_removal', 'wipe', 'counterspell', 'tutor', 'finisher', 'land', 'none']
 export const ROLE_LABELS = {
@@ -39,9 +41,12 @@ export function cardTypeLine(card) {
 }
 
 export function primaryType(card) {
-  const typeLine = cardTypeLine(card)
+  // FRONT face only, case-insensitive, like the server: a modal double-faced "Sorcery // Land"
+  // is a Sorcery. Testing the whole line filed it under Land (the back face), so the deck tabs
+  // disagreed with the collection browser about the same card.
+  const front = cardTypeLine(card).split('//')[0].toLowerCase()
   for (const type of TYPE_PRECEDENCE) {
-    if (typeLine.includes(type)) {
+    if (front.includes(type.toLowerCase())) {
       return type
     }
   }
@@ -111,7 +116,7 @@ export function groupCards(cards, by, rolesByName) {
         const count = typeGroups[type].reduce((sum, card) => sum + qty(card), 0)
         const label = type === 'Creature' ? 'Creatures' : type === 'Instant' ? 'Instants' : type === 'Sorcery' ? 'Sorceries' :
                       type === 'Enchantment' ? 'Enchantments' : type === 'Artifact' ? 'Artifacts' : type === 'Planeswalker' ? 'Planeswalkers' :
-                      type === 'Land' ? 'Lands' : type
+                      type === 'Battle' ? 'Battles' : type === 'Land' ? 'Lands' : type
         result.push({ key: type, label, cards: typeGroups[type], count })
       }
     }
