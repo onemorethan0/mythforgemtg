@@ -21,7 +21,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B7 | Test gaps | ongoing; 9 bugs found by writing tests (1 path traversal) | C |
 | B13 | JS<->Python drift (parity tests) | DONE: 2 divergences fixed, 4 mirrors locked | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
-| B9 | Role-strength granularity (S13) | measured; recommends card unit; **your call** | U |
+| B9 | Role-strength granularity (S13) | DECIDED 2026-11-04: keep strength unit (owner call); closed | U |
 | B10 | Offload harness follow-ups | specced | C |
 
 ---
@@ -371,7 +371,7 @@ each opponent, create a token" means the caster creates it).
 **Open (B12b, small):** `deal_damage` with `controller: you` and creature/any/planeswalker type is
 ambiguous (bite vs self-damage, 93 effects); needs a compiler-side split, not an executor guess.
 
-## B9. Role-strength granularity (S13) - now with data; needs YOUR call
+## B9. Role-strength granularity (S13) - DECIDED 2026-11-04: keep the strength unit
 **The question:** `card_roles` gives each role a fixed strength per card (wipe/counterspell 3.0, tutor
 2.0, removal 1.0, ramp/draw scaling), so `score_card`'s oversupply (`supply - target`) is in STRENGTH
 units and roles are not comparable: one extra counterspell (3.0 over) outranks a role that is, in the
