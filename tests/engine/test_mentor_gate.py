@@ -561,3 +561,35 @@ def test_trim_drops_a_heading_left_dangling_at_the_end():
     text = "Intro paragraph.\n\nWhat to cut:\n\n" + "x " * 400
     out = gate.trim_to_fit(text, 60)
     assert out == "Intro paragraph."
+
+
+# -- helpers that had no direct test --------------------------------------------------------------
+
+def test_typed_bracket_numbers_reads_both_spellings_and_ignores_the_rest():
+    from mythgauntlet.mentor import gate
+    assert gate.typed_bracket_numbers("Is this a bracket 3 deck?") == frozenset({3.0})
+    assert gate.typed_bracket_numbers("B2 or B3?") == frozenset({2.0, 3.0})
+    assert gate.typed_bracket_numbers("make it BRACKET 4") == frozenset({4.0})
+    assert gate.typed_bracket_numbers("bracket 9") == frozenset()          # not a real bracket
+    assert gate.typed_bracket_numbers("no number here") == frozenset()
+    assert gate.typed_bracket_numbers("") == frozenset() and gate.typed_bracket_numbers(None) == frozenset()
+
+
+def test_role_summary_lines_states_counts_targets_and_the_most_under_supplied_role():
+    from mythgauntlet.mentor import gate
+    text = gate.role_summary_lines({
+        "rows": [{"role": "ramp", "cards": 9, "card_target": 12},
+                 {"role": "removal", "cards": 1, "card_target": 1}],
+        "most_under_supplied": "ramp",
+        "not_applicable": [{"role": "counterspell", "cards": 0, "note": "no blue"}]})
+    assert "9 cards vs a target of 12" in text
+    assert "1 card vs a target of 1" in text                 # singular
+    assert "Most under-supplied: ramp." in text
+    assert "Not applicable to this deck, so not a gap" in text and "no blue" in text
+
+
+def test_role_summary_lines_when_nothing_is_short():
+    from mythgauntlet.mentor import gate
+    text = gate.role_summary_lines({"rows": [{"role": "ramp", "cards": 12, "card_target": 12}]})
+    assert text.endswith("No role is under its target.")
+    assert "Not applicable" not in text
