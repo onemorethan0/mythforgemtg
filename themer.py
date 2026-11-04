@@ -1090,6 +1090,13 @@ def _is_stub_prompt(raw: str) -> bool:
     return len(words) < 4
 
 
+def _ro_hit(keys, text: str) -> bool:
+    """Does any keyword start a word in `text`? A bare `k in text` matched inside longer words
+    ("ape" in "shapeshifter" made every Shapeshifter a Brute); a word-START match keeps real
+    prefixes ("catfolk", "dragons")."""
+    return any(re.search(r"\b" + re.escape(k), text) for k in keys)
+
+
 def _ro_race_class(type_line: str) -> tuple[str, str]:
     """Return (race_token, class_token) for a card's type line. Non-creatures and
     creatures with no recognised subtype return ("", "") / class "" respectively.
@@ -1100,8 +1107,8 @@ def _ro_race_class(type_line: str) -> tuple[str, str]:
     subs = tl.split("—")[-1] if "—" in tl else (tl.split("-")[-1] if "-" in tl else "")
     if not subs.strip():
         return "demihuman race", ""
-    race = next((tok for keys, tok in _RO_RACE if any(k in subs for k in keys)), "demihuman race")
-    cls  = next((tok for keys, tok in _RO_CLASS if any(k in subs for k in keys)), "")
+    race = next((tok for keys, tok in _RO_RACE if _ro_hit(keys, subs)), "demihuman race")
+    cls  = next((tok for keys, tok in _RO_CLASS if _ro_hit(keys, subs)), "")
     return race, cls
 
 
@@ -1121,10 +1128,10 @@ def _ro_type_for_tribe(tribe: str) -> str:
     RO race/class anchors. No LLM call (instant + can't fail)."""
     t = (tribe or "").lower()
     for keys, tag in _RO_CLASS:
-        if any(k in t for k in keys):
+        if _ro_hit(keys, t):
             return _ro_tag_to_display(tag)
     for keys, tok in _RO_RACE:
-        if any(k in t for k in keys):
+        if _ro_hit(keys, t):
             return tok.replace(" race", "").strip().title()
     return "Demihuman"
 

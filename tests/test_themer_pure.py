@@ -206,3 +206,24 @@ def test_parse_batch_survives_garbage_and_empty_input():
     out = themer._parse_batch("not json at all", CARDS)
     assert [e["themed_name"] for e in out] == ["Sol Ring", "Island", "Forest"]
     assert all(e["art_prompt"] == "" and e["flavor_text"] == "" for e in out)
+
+
+# -- RO race/class: keywords match at a word START, not anywhere ---------------------------------------
+
+def test_ro_race_class_known_subtypes():
+    assert themer._ro_race_class("Creature — Dragon") == ("dragon race", "")
+    assert themer._ro_race_class("Creature — Human Knight")[1] == "lord_knight_(ragnarok_online)"
+    assert themer._ro_race_class("Creature — Cat")[0] == "brute race"
+    assert themer._ro_race_class("Instant") == ("", "")
+
+
+def test_ro_race_does_not_match_inside_a_longer_word():
+    # 'ape' is inside 'shapeshifter'; it made every Shapeshifter a Brute
+    race, _ = themer._ro_race_class("Creature — Shapeshifter")
+    assert race == "demihuman race"                       # the unmatched-creature default
+    assert themer._ro_type_for_tribe("Shapeshifter") == "Demihuman"
+
+
+def test_ro_race_still_matches_a_keyword_prefix():
+    assert themer._ro_race_class("Creature — Catfolk")[0] == "brute race"
+    assert themer._ro_type_for_tribe("Dragons") == themer._ro_type_for_tribe("Dragon")
