@@ -1,5 +1,9 @@
 # Handoff — recommendation & measurement work (2026-08-14)
 
+> **Current status lives in [`STATUS.md`](STATUS.md)** (updated 2026-11-04): what is done, what is
+> open and ranked, and the next moves. This file is the August record of the recommendation and
+> measurement work and is not kept up to date; read STATUS.md first.
+
 Written to be the **first thing a new session reads** before touching the builder, the
 advisor, or the theme taxonomy. `CLAUDE.md` remains the engineering map (and is gitignored,
 so it is local-only); this file is the committed record of what changed, what was measured,

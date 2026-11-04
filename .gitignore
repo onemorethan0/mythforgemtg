@@ -116,3 +116,6 @@ ccm/LICENSE-CCM-DATA.txt
 
 # local-only leftovers moved out of the repo root (2026-11-04)
 _local_archive/
+
+# local-only engineering notes split out of CLAUDE.md (CLAUDE.md itself is ignored)
+docs/engineering/
