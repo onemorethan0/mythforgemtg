@@ -389,3 +389,35 @@ def test_ccm_noncreature_sweep_is_not_a_wipe(make_card):
     p = _removal_profile(make_card, [{"op": "destroy", "target": {"type": "artifact",
                                                                   "count": "all"}}], "Sorcery")
     assert not p.wipe
+
+
+def test_flattened_profile_does_not_count_self_damage_or_opponent_life_gain(make_card):
+    """The tier-2 executor stopped treating 'damage to you' as reach and 'its controller gains
+    life' as the caster's; the three flattened summaries (resolution, activated, death) must agree
+    or tier0/bracket and tier2 disagree about the same card (tags.py / profile.py are separate)."""
+    from mythgauntlet.semantics.profile import _death_from
+
+    pain = _removal_profile(make_card, [
+        {"op": "deal_damage", "amount": 3, "target": {"type": "player", "controller": "you"}},
+        {"op": "deal_damage", "amount": 2, "target": {"self": True}},
+    ], "Sorcery")
+    assert pain.damage_face == 0 and pain.damage_any == 0
+
+    burn = _removal_profile(make_card, [
+        {"op": "deal_damage", "amount": 3, "target": {"type": "player", "controller": "opponent"}},
+    ], "Sorcery")
+    assert burn.damage_face == 3
+
+    swords = _removal_profile(make_card, [
+        {"op": "gain_life", "amount": 4, "who": "opponent"},
+    ], "Instant")
+    assert swords.gain_life == 0
+    mine = _removal_profile(make_card, [{"op": "gain_life", "amount": 4}], "Instant")
+    assert mine.gain_life == 4
+
+    d = _death_from([
+        {"op": "deal_damage", "amount": 2, "target": {"type": "player", "controller": "you"}},
+        {"op": "gain_life", "amount": 5, "who": "opponent"},
+        {"op": "gain_life", "amount": 1},
+    ])
+    assert d is not None and d.drain == 0 and d.gain_life == 1

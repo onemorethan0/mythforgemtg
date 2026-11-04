@@ -70,3 +70,24 @@ def test_mass_bounce_from_the_battlefield_still_works(tmp_path, make_card):
     me, opp = _run(tmp_path, make_card, {"op": "return_to_hand",
                                          "target": {"type": "creature", "count": "all"}})
     assert opp.creatures() == [] and me.creatures() == []
+
+
+# -- gain_life who: the opponent gaining life must not be credited to the caster ------------------
+
+def test_opponent_gains_life_goes_to_the_opponent(tmp_path, make_card):
+    """Swords to Plowshares: 'Its controller gains life equal to its power'. The sim credited the
+    CASTER with the life (63 stored gain_life effects say who: opponent)."""
+    me, opp = _run(tmp_path, make_card, {"op": "gain_life", "amount": 3, "who": "opponent"})
+    assert me.life == 40 and opp.life == 43
+
+
+def test_you_and_unspecified_gain_life_still_go_to_the_caster(tmp_path, make_card):
+    me, _ = _run(tmp_path, make_card, {"op": "gain_life", "amount": 3})
+    assert me.life == 43
+    me, opp = _run(tmp_path, make_card, {"op": "gain_life", "amount": 3, "who": "you"})
+    assert me.life == 43 and opp.life == 40
+
+
+def test_each_opponent_gains_life_reaches_every_opponent(tmp_path, make_card):
+    me, opp = _run(tmp_path, make_card, {"op": "gain_life", "amount": 2, "who": "each_opponent"})
+    assert me.life == 40 and opp.life == 42

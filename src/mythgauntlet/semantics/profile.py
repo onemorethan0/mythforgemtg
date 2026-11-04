@@ -359,6 +359,8 @@ def _activated_from(
         elif op == "deal_damage":
             target = _as_dict(effect.get("target"))
             amount = _amount(effect.get("amount"), 1)
+            if _damage_is_to_self(target):
+                continue
             if target.get("type") in ("player", "opponent"):
                 face += amount
             else:
@@ -369,7 +371,7 @@ def _activated_from(
                 _amount(effect.get("power"), 1),
                 _amount(effect.get("toughness"), 1),
             )
-        elif op == "gain_life":
+        elif op == "gain_life" and not _life_is_gained_by_opponent(effect.get("who")):
             life += _amount(effect.get("amount"), 1)
     if not (draw or face or any_dmg or life or tokens):
         return None  # nothing either path can execute
@@ -390,9 +392,10 @@ def _death_from(effects: list[dict]) -> DeathEffect | None:
             draw += _amount(effect.get("count"), 1)
         elif op == "lose_life" and effect.get("who") in _DRAIN_WHO:
             drain += _amount(effect.get("amount"), 1)
-        elif op == "deal_damage" and target.get("type") in ("player", "opponent"):
+        elif (op == "deal_damage" and target.get("type") in ("player", "opponent")
+              and not _damage_is_to_self(target)):
             drain += _amount(effect.get("amount"), 1)
-        elif op == "gain_life":
+        elif op == "gain_life" and not _life_is_gained_by_opponent(effect.get("who")):
             life += _amount(effect.get("amount"), 1)
         elif op == "create_token":
             tokens = (
@@ -476,6 +479,22 @@ def _targets_all(target: dict) -> bool:
     return target.get("count") == "all" or target.get("controller") == "each"
 
 
+def _damage_is_to_self(target: dict) -> bool:
+    """A deal_damage whose target is the caster's own side or the source: "Ancient Tomb deals 2
+    damage to you", "this creature deals damage to itself". Not damage to an opponent, so no
+    flattening may count it as reach (the tier-2 executor declines it for the same reason).
+    Creature-type 'controller: you' is NOT matched: that is the compiler's spelling of the SOURCE
+    in a bite effect (see sim.tier2's deal_damage branch)."""
+    return bool(target.get("self")) or (
+        target.get("controller") == "you" and target.get("type") in ("player", "opponent"))
+
+
+def _life_is_gained_by_opponent(who: object) -> bool:
+    """gain_life whose beneficiary is an opponent ("its controller gains life", Swords to
+    Plowshares): the caster gains nothing."""
+    return who in ("opponent", "each_opponent")
+
+
 _OFF_BATTLEFIELD_ZONES = {"graveyard", "hand", "library", "exile", "stack", "command"}
 
 
@@ -553,6 +572,8 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
                 amount = max(0, pr.get("amount", 1))
                 if not amount or _targets_all(target):
                     continue  # board-sweep damage is captured by `wipe`, not face/any
+                if _damage_is_to_self(target):
+                    continue  # damage to yourself / the source is not reach
                 if target.get("type") in ("player", "opponent"):
                     face += amount
                 else:
@@ -564,7 +585,8 @@ def _summarize_resolution(doc: dict) -> _ResolutionSummary:
                     max(0, pr.get("toughness", 1)),
                 )
             elif op == "gain_life":
-                life += max(0, pr.get("amount", 1))
+                if not _life_is_gained_by_opponent(pr.get("who")):
+                    life += max(0, pr.get("amount", 1))
             elif op == "lose_life":
                 if pr.get("who") in _DRAIN_WHO:
                     face += max(0, pr.get("amount", 1))

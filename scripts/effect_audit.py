@@ -66,10 +66,67 @@ def _says_not_opponent(effect: dict) -> str | None:
     return None
 
 
+def _says_opponent(effect: dict) -> str | None:
+    t = effect.get("target") if isinstance(effect.get("target"), dict) else {}
+    if effect.get("who") in ("opponent", "each_opponent", "target_player"):
+        return f"who={effect.get('who')}"
+    if t.get("type") in ("player", "opponent") and t.get("controller") in ("opponent", "each_opponent"):
+        return "target=opponent player"
+    return None
+
+
+def _mine_better(before: tuple, after: tuple) -> bool:
+    """My life, board size, hand or library moved in my favour (life up, more permanents/cards)."""
+    return after[0] > before[0] or after[1] > before[1] or after[3] > before[3]
+
+
+def mirror(args) -> int:
+    """Effects that say OPPONENT but improve the CASTER's life, board or hand."""
+    store = SemanticsStore()
+    found: collections.Counter = collections.Counter()
+    ex: dict = collections.defaultdict(list)
+    total = 0
+    for name, sem in store._by_name.items():
+        ccm = sem.ccm
+        if not ccm:
+            continue
+        for ab in ccm.get("abilities") or []:
+            for effect in ab.get("effects") or []:
+                if not isinstance(effect, dict) or effect.get("op") in ("deal_damage", "lose_life"):
+                    continue
+                why = _says_opponent(effect)
+                if why is None:
+                    continue
+                total += 1
+                try:
+                    resolved = interpret_ability({"kind": ab.get("kind"), "effects": [copy.deepcopy(effect)]})
+                    me, opp = _fresh()
+                    before = _snap(me)
+                    for r in resolved:
+                        _apply_resolved(r, me, opp, None, ())
+                    better = _mine_better(before, _snap(me))
+                except Exception:  # noqa: BLE001
+                    continue
+                if better:
+                    key = (effect.get("op"), why)
+                    found[key] += 1
+                    if len(ex[key]) < args.examples:
+                        ex[key].append(ccm.get("name", name))
+    print(f"effects whose who/target says OPPONENT (non-damage): {total}")
+    print(f"that nevertheless improve the CASTER's life / board / hand: {sum(found.values())}")
+    for key, n in found.most_common():
+        print(f"  {n:5d}  {key[0]:<16} {key[1]:<24} e.g. {ex[key]}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--examples", type=int, default=4)
+    ap.add_argument("--mirror", action="store_true",
+                    help="the other direction: opponent-aimed effects that improve the CASTER")
     args = ap.parse_args()
+    if args.mirror:
+        return mirror(args)
     store = SemanticsStore()
     found: collections.Counter = collections.Counter()
     ex: dict = collections.defaultdict(list)

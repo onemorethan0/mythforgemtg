@@ -1239,7 +1239,15 @@ def _apply_resolved(
     elif op == "create_token":
         _spawn_tokens(me, (max(0, pr.get("count", 1)), pr.get("power", 1), pr.get("toughness", 1)))
     elif op == "gain_life":
-        me.life += max(0, pr.get("amount", 1))
+        amount = max(0, pr.get("amount", 1))
+        who = pr.get("who")
+        if who == "opponent":  # Swords to Plowshares: "its controller gains life" -- not the caster
+            opp.life += amount
+        elif who == "each_opponent":
+            for p in each_opp:
+                p.life += amount
+        else:
+            me.life += amount
     elif op == "lose_life":
         who = pr.get("who", "opponent")
         amt = max(0, pr.get("amount", 1))

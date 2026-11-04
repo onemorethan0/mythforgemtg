@@ -270,6 +270,20 @@ plus Thoughtseize-style hand discards and three lose_life effects where `target.
 **A/B (gauntlet seed 777, 1,153 decks):** signed shift 0.0, mean |shift| 12.0 Elo (noise 2-5), 194 decks
 moved >20, bracket means B1-B4 within 4, **B5 -13** (cEDH lists were running the most pain mana). Top
 losers hold City of Brass / Ancient Tomb / Mana Vault; the one big gainer held Custodi Squire.
+**Mirror audit (`effect_audit.py --mirror`): opponent-aimed effects that improve the CASTER.**
+906 effects say opponent; 168 improved the caster. Fixed the unambiguous ones: **`gain_life` with
+`who: opponent`/`each_opponent` (63 effects, including Swords to Plowshares: "its controller gains
+life") credited the CASTER**; now the opponent(s) gain it. The same two blind spots (self-damage
+counted as reach; opponent life gain counted for the caster) existed in all three FLATTENED profile
+summaries (resolution, activated, death), so those now agree with the executor (the project's
+standing lesson: tags.py / profile.py / the executor are separate derivations). 6 more tests.
+A/B vs the previous commit: mean |shift| 3.85 Elo (noise), 19 decks >20.
+**Open (B12c, small, needs an op-spec change):** `create_token` with `who: opponent` (7 effects:
+Pongify, Generous Gift, Bloodroot Apothecary: "its controller creates a 3/3") gives the token to the
+CASTER, because `who` is not a declared `create_token` param so the interpreter drops it. Fixing it
+means adding an optional `who` to the op spec, which also feeds the compiler grammar. The other 133
+mirror hits (draw/create_token with a bare `target: opponent player`, `who: target_player`) are
+ambiguous ("for each opponent, create a token" means the caster creates it) and are left alone.
 **Open (B12b, small):** `deal_damage` with `controller: you` and creature/any/planeswalker type is
 ambiguous (bite vs self-damage, 93 effects); needs a compiler-side split, not an executor guess.
 
