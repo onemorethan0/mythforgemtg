@@ -15,7 +15,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
-| B5 | Bracket recall: B4 34%, B1 44%, B5 36% | specced, not started | C |
+| B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps in the art pipeline | in progress | C |
 | B8 | Refresh the published CCM snapshot | blocked on user | U |
@@ -163,7 +163,25 @@ either recompiled correctly or marked unsupported; no card gains an executable o
 **Evidence:** within-one 91.6% (bar 95%), exact 51%; recall B4 34%, B1 44%, B5 36%. The misses are
 mostly rule-contradicting self-labels (a deck holding real Game Changers labelled B1/B2) and
 ordinary decks the gate under/over-calls. HANDOFF/PLAN_CLOCK already closed B2/B3-by-clock.
-**First step (diagnosis, no change):** `python scripts/bracket_accuracy.py` (about 25 min, full CCM
+**DIAGNOSIS DONE 2026-11-04** (`docs/bench/bracket_accuracy_2026-11-04.json`, 624 labelled decks,
+real Spellbook combos, current strength model). **The headline figures in the line above are stale.**
+Current: exact **59.5%** (bar 60), within-one **92.1%** (bar 95), bias +0.05; recall B1 48.8%,
+B2 53.9%, B3 75.6%, **B4 34.2%, B5 85.5%** (not 36%). **Excluding the 62 labels impossible under the
+rules** (a B1/B2 self-label holding a real Game Changer or combo): exact **66.0%**, within-one
+**96.3%**, which clears both bars. The remaining weakness is B4 alone.
+*B4 misses (48 of 73), bucketed by cause:*
+- **28 predicted B3**, all with <=3 Game Changers (20 hold a combo). B4 by the official rule means
+  "unlimited Game Changers", so a B4 deck that simply does not run them looks like a strong B3.
+  Among the 73 B4-labelled decks, **25 hold 0 or 1 Game Changer** (34%).
+- **15 predicted B5** (12 via the combo gate): optimised B4 decks that read as cEDH.
+- **5 predicted B1/B2** (gc=0).
+Strength score medians: B3 2.47, B4 2.87, B5 4.60. The B3/B4 gap (0.40) is small against the spread.
+**Conclusion:** mostly a labelled-data limit, not an engine gap. The one signal that separates B4
+from B3 is the Game Changer count, and a large share of self-labelled B4 decks do not use it.
+**Decision: no tuning.** Any threshold move trades B4 recall against B3 (the largest, best-served
+bracket) and the earlier sweeps already showed that trade is a wash. Re-open only with new evidence
+(for example a larger B4-labelled sample or a feature that is not Game Changers).
+**Original first step (kept for the command):** `python scripts/bracket_accuracy.py` (about 25 min, full CCM
 store) and bucket the B4 misses by cause: label contradicts rules / low strength score / combo not
 detected. Only then decide whether any fix is an engine gap or a labelling-data limit.
 **Accept:** a written split of the B4 misses by cause with counts; any change must keep within-one
