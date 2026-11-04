@@ -19,6 +19,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps | ongoing; 9 bugs found by writing tests (1 path traversal) | C |
+| B13 | JS<->Python drift (parity tests) | DONE: 2 divergences fixed, 4 mirrors locked | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) + wipe colour requirement | specced, not started | C |
 | B10 | Offload harness follow-ups | specced | C |
@@ -270,6 +271,22 @@ card_video, collection parsing. Remaining by untested-function count: `api/route
 TestClient fixture), `collection_index.py`.
 **Accept per module:** the pure helpers have tests that fail when the helper is broken, not just tests
 that run (check at least one by mutation).
+
+## B13. Cross-language drift (JS <-> Python) - found by running the real JS under Node
+**Method:** the code base documents several places where the browser re-implements a server rule
+("keep in step", "mirrors", "MUST match"). Nothing enforced it. `tests/test_*_js_python_parity.py` now
+import the real JS module under Node and compare it with the Python side on the same inputs (skipped
+when Node is absent). **Two real divergences found and fixed (2026-11-04):** (1) the server's mana-cost
+normaliser stripped only spaces while the browser stripped all whitespace, so a pasted
+`2<tab>W` previewed as `{2}{W}` but was stored raw (the colourless, pip-less card the normaliser
+exists to prevent); (2) the deck view's card-type classifier tested the WHOLE type line (a modal DFC
+"Sorcery // Land" was filed under Land, the back face) and had no Battle bucket, while the server uses
+the front face and knows Battle; `StepDeck` also carried a second private copy, now removed in favour of
+`deckGrouping.primaryType`. **Locked clean:** gen-settings keys and defaults (UI schema vs
+`GenSettingsModel`/`GenSettings`), collection sort keys and group-bys, the single-card "needs the LLM"
+rule (checked by reading, identical). Covered by parity tests: manaCost, genSettings, collectionView
+sorts/groups, primaryType (4 files, 17 tests). **Open:** `StepDeck`'s remaining local logic and any
+future "mirrors the server" comment should get a parity test when added.
 
 ## B8. Refresh the published CCM snapshot
 Last published 2026-09-21 (31,906 compiled, 99.2% on v11, 21 MB). The store has moved since.
