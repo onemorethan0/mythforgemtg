@@ -68,6 +68,7 @@ from mythgauntlet.semantics.interpreter import (
     interpret_ability,
 )
 from mythgauntlet.semantics.profile import (
+    _OFF_BATTLEFIELD_ZONES,
     ActivatedEffect,
     DeathEffect,
     PlayProfile,
@@ -1118,6 +1119,12 @@ def _apply_resolved(
     elif op in ("destroy", "exile"):
         target = _tgt("target")
         if target.get("controller") == "you":
+            return
+        # Not an answer to an opposing permanent: the effect is aimed at its own SOURCE
+        # ("exile this creature", "destroy this at end of combat": 271 + 25 stored effects) or
+        # at a non-battlefield zone ("exile target card from a graveyard": 83). Without this
+        # they killed the opponent's best creature.
+        if target.get("self") or target.get("zone") in _OFF_BATTLEFIELD_ZONES:
             return
         if (target.get("type") or "creature") not in _REMOVAL_TYPES:
             return
