@@ -1,0 +1,28 @@
+{
+  "card": {"name": "Eldrazi Confluence"},
+  "ccm": {
+    "name": "Eldrazi Confluence",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{2}{C}{C}"},
+    "types": ["instant"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "effects": [{"op": "pump", "power": 3, "toughness": -3, "duration": "until end of turn"}]
+      },
+      {
+        "kind": "spell_effect",
+        "note": "Blink mode. Authored 2026-11-04: the compiled return carried zone 'exile', which the blink check reads as an Oblivion-Ring style exile-until, so the exile ran as removal.",
+        "effects": [
+          {"op": "exile", "target": {"type": "permanent", "controller": "any", "count": 1}},
+          {"op": "reanimate", "target": {"type": "permanent", "controller": "any", "count": 1}}
+        ]
+      },
+      {
+        "kind": "spell_effect",
+        "effects": [{"op": "create_token", "count": 1, "power": 1, "toughness": 1, "types": ["creature", "eldrazi scion"], "note": "sacrifice token for {C} not modelled"}]
+      }
+    ]
+  }
+}

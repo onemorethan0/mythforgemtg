@@ -1,0 +1,21 @@
+{
+  "card": {"name": "Blizzard Strix"},
+  "ccm": {
+    "name": "Blizzard Strix",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{4}{U}"},
+    "types": ["creature"],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {"event": "etb"},
+        "note": "Blink: exile another permanent, return it at the next end step. Authored 2026-11-04: the compiled CCM split exile and return across two abilities, so the exile half ran as removal.",
+        "effects": [
+          {"op": "exile", "target": {"type": "permanent", "controller": "any", "count": 1}},
+          {"op": "reanimate", "target": {"type": "permanent", "controller": "any", "count": 1}}
+        ]
+      }
+    ]
+  }
+}

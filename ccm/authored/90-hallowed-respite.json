@@ -1,0 +1,20 @@
+{
+  "card": {"name": "Hallowed Respite"},
+  "ccm": {
+    "name": "Hallowed Respite",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{W}{U}"},
+    "types": ["sorcery"],
+    "abilities": [
+      {
+        "kind": "spell_effect",
+        "note": "Blink a nonlegendary creature; the counter-or-tap rider is not modelled. Authored 2026-11-04: the compiled return targeted 'self', which hid the pair from the blink check, so the exile ran as removal.",
+        "effects": [
+          {"op": "exile", "target": {"type": "creature", "controller": "any", "count": 1}},
+          {"op": "reanimate", "target": {"type": "creature", "controller": "any", "count": 1}}
+        ]
+      }
+    ]
+  }
+}

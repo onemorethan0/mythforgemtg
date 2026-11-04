@@ -13,7 +13,8 @@ decision or go-ahead (outward-facing, or a product call).
 | B1 | Mentor holistic bench vs the 87-90/90 bar | 84/90 first run; re-run queued | C reads, N computes |
 | B2 | Builder bench vs `docs/bench/current.json` | CLOSED: metric effect, baseline refreshed | C |
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | specced, not started | C (N for labelling) |
-| B4 | Compile-quality gate for blink / `gain_control` mislabels | gate landed; 41-card recompile running | C (N recompiles) |
+| B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
+| B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
 | B5 | Bracket recall: B4 34%, B1 44%, B5 36% | specced, not started | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps in the art pipeline | in progress | C |
@@ -128,11 +129,32 @@ opponent's creature, e.g. Hallowed Respite) and **a blink carrying `gain_control
 **Done:** (1) gate 3 now rejects both (commit 3744f5c, 9 tests); the return-op set is pinned in
 lock-step with the interpreter; `ccm-recheck` lists 41 cards. (2) The mirror direction is the existing
 "CCM declares exile, text never says exile" check plus this gate's no-return arm.
-**In progress:** (3) `compile-names` on node 1 for the 41 (backups in the session scratchpad).
-**Remaining:** (4) review every recompiled card against its oracle text (the standing bar; a green
-gate is not proof), hand-author any the model cannot get right in `ccm/authored/`. Do not bump
-`PROMPT_VERSION`. Do not commit in the sibling `mythgauntlet` repo; its working tree already has
-uncommitted nightly state.
+**Done (3)+(4), 2026-11-04:** `compile-names` on node 1: **26 accepted, 15 quarantined**
+(Aminatou, Conciliator's Duelist, Cosmic Intervention, Emiel the Blessed, Flickerwisp, Glimmerpoint
+Stag, Icewind Stalwart, Lae'zel's Acrobatics, Liberate, Mistmeadow Vanisher, Quantum Entanglement,
+Settle Beyond Reality, The Dragon-Kami Reborn, The Fall of Lord Konda, Wiccan Rising Magician). A
+quarantined card has no CCM, so it falls back to rung-1 heuristics: the honest under-count, and the
+model could not satisfy the gate in 2 attempts (Wiccan looped 10x). Reading all 26 against oracle
+text found **four the gate cannot catch** because the blink is structurally indistinguishable from
+Oblivion Ring (return tagged `zone: exile`, return aimed at `self`, or exile/return split across two
+abilities): Blizzard Strix, Hallowed Respite, Eldrazi Confluence, The Shattered States Era. Those four
+are hand-authored (`ccm/authored/90-*.json`, rung 3, committed) in the plain exile+return shape, with
+a test that no executable exile targets another permanent. Modal cards (Charming Prince, Djinn of the
+Fountain, Ojutai Exemplars) keep only their non-blink modes: honest omission.
+**The sibling `mythgauntlet` store has the 26 rewrites uncommitted** (ledger and compiled files; a
+backup of the 41 originals + ledger is in the session scratchpad). I did not commit in that repo.
+**Standing limitation:** a blink-vs-exile-until ambiguity cannot be fixed structurally; it needs an
+explicit blink encoding in the schema. Not worth it for ~4 residual cards; recorded so it is known.
+
+## B11. (found while reviewing B4) Self-target and off-battlefield exile ran as removal
+**Done 2026-11-04 (commit 7ea6adf):** tier2's exile/destroy branch skipped only `controller: you`,
+so 271 `exile(self)`, 25 `destroy(self)` and 83 off-battlefield exile effects (including impulse
+draw: Mind's Desire, Jeska's Will, Improvisation Capstone) killed the opponent's best creature. Fixed
+with 6 tests. **A/B over 1,153 decks (gauntlet seed 777):** mean shift 0.0 signed, 7.7 Elo absolute
+(noise 2-5), bracket means B1-B4 within 2, B5 -13; 77 decks moved >20, the largest losers are Ral
+spellslinger decks (-270), a correct deflation. **Follow-up:** the engine's rated gauntlet numbers
+(`data/gauntlet_*.json`, any cached `--cache` results) predate this fix; the nightly will refresh
+them, but nothing should quote pre-fix ratings for impulse-draw-heavy decks.
 **Accept:** recheck lists the blink population as failing before the fix and 0 after; the 134 are
 either recompiled correctly or marked unsupported; no card gains an executable op it lacked.
 **Owner:** C (gate, review); N (recompile compute).
@@ -189,4 +211,6 @@ mode that scores a classification spec against a hand-labelled set before runnin
 | 2026-11-04 | A blink is not removal in the sim | 7753451; 64 abilities fixed, 6 tests |
 | 2026-11-04 | CLAUDE.md 275 KB -> 8 KB index + `docs/engineering/` (lossless) | `scripts/split_claude_md.py` asserts the rejoin |
 | 2026-11-04 | Repo root cleared; corpus committed; HANDOFF points at STATUS | e6a1b05, 12c310c |
-| 2026-11-04 | 153 tests across 10 modules | tests/test_*_pure.py etc. |
+| 2026-11-04 | 230+ tests across 12 modules; renderer border-theme bug fixed | tests/test_*_pure.py etc. |
+| 2026-11-04 | B4 blink gate + recompile of 41 + 4 authored | 3744f5c, ccm/authored/90-* |
+| 2026-11-04 | B11 self/off-battlefield exile no longer removal (771 effects) | 7ea6adf; 77 decks moved >20 Elo |

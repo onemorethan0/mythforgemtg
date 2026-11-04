@@ -1,0 +1,27 @@
+{
+  "card": {"name": "The Shattered States Era // Nameless Conqueror"},
+  "ccm": {
+    "name": "The Shattered States Era // Nameless Conqueror",
+    "ccm_version": 1,
+    "rung": 3,
+    "cost": {"mana": "{4}{R}"},
+    "types": ["enchantment"],
+    "abilities": [
+      {
+        "kind": "triggered",
+        "trigger": {"event": "saga_chapter"},
+        "note": "Chapter II. Chapter I (gain control of a creature until end of turn) is not modelled. Authored 2026-11-04: the compiled chapter I exiled and returned ANY creature, which ran as removal of an opposing creature.",
+        "effects": [{"op": "pump", "power": 1, "toughness": 0, "duration": "until end of turn"}]
+      },
+      {
+        "kind": "triggered",
+        "trigger": {"event": "saga_chapter"},
+        "note": "Chapter III: exile this Saga, return it transformed.",
+        "effects": [
+          {"op": "exile", "target": {"self": true}},
+          {"op": "reanimate", "target": {"self": true, "zone": "exile", "controller": "you"}}
+        ]
+      }
+    ]
+  }
+}
