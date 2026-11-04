@@ -1,0 +1,15 @@
+{
+  "nodes": {
+    "main": {
+      "url": "http://127.0.0.1:8010/v1/chat/completions",
+      "models": ["qwen3:14b", "qwen3:8b", "qwen3:32b", "muse-glimmer-cc"],
+      "jobs": 2
+    },
+    "node2": {
+      "url": "http://192.168.1.31:11435/v1/chat/completions",
+      "models": ["qwen3:14b", "qwen3:8b"],
+      "spread": ["qwen3:8b"],
+      "jobs": 1
+    }
+  }
+}

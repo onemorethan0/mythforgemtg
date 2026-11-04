@@ -110,3 +110,6 @@ ccm/LICENSE-CCM-DATA.txt
 # Local worktrees + SDD scratch
 .worktrees/
 .superpowers/
+
+# local-model drafts (review before landing)
+*.draft
