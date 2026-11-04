@@ -18,7 +18,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
-| B7 | Test gaps | ongoing; 6 bugs found by writing tests | C |
+| B7 | Test gaps | ongoing; 9 bugs found by writing tests (1 path traversal) | C |
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) + wipe colour requirement | specced, not started | C |
 | B10 | Offload harness follow-ups | specced | C |
@@ -254,6 +254,15 @@ batch to plain names; (4) `image_gen._theme_darkness_score` matched substrings (
 "1x sol ring"; (6) the same parser cut "Erase (Not the Urza's Legacy One)" to "Erase"; (7) the
 audit-driven sim fixes in B11/B12. **Recurring class: bare substring matching on natural-language
 text** (4 of the 6 non-sim bugs): worth a repo-wide grep for `word in text_lower` over short words.
+**Route-level pass (same day), 2 more real bugs:** (8) **`POST /api/decks/delete-batch` validated
+no ids** while the single delete does (its own comment says it `rmtree`s a path built from the id), so
+`{"job_ids": ["../victim"]}` deleted a directory outside the renders folder; now every id must match
+the 16-hex shape or it is skipped. (9) **`apply-swap` checked duplicates against the TYPED name, then
+resolved the add by a fuzzy lookup**, so "arcane signt" resolved to a card already in the deck and
+added a second copy to a singleton deck (and had already cut the other card); the resolved name is
+now checked before anything is mutated. Collection routes (20 tests) and build routes (17) found no
+bugs. Remaining route-level: `routes_strength` engine-proxy routes (advise/measure/duel/breakdown/
+mentor), `import_preview`/`import_save`, `routes_misc`.
 Covered so far (2026-11-04, ~480 tests): logbuffer, gen_settings, exporter, deck_import parsing,
 mana_pips, api/cards, buildable, playstyle, api/state, set_symbol, card_renderer, themer, image_gen,
 card_video, collection parsing. Remaining by untested-function count: `api/routes_collection.py`,
