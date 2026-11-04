@@ -1204,6 +1204,16 @@ def _apply_resolved(
         amt = max(0, pr.get("amount", 1))
         if not amt:
             return
+        # Damage aimed at the caster's own side is not damage to the opponent: "Ancient Tomb
+        # deals 2 damage to you" (type player, controller you: 110 stored effects, Aftershock's
+        # drawback) and damage to the SOURCE itself (33) both used to land on the opponent.
+        # Declined rather than applied to `me`: the same field also spells Curse of Shaken Faith
+        # (damage to the ENCHANTED player), so charging the caster would be a guess; the cost
+        # is simply unmodelled (an honest omission). Creature-type 'controller: you' is NOT
+        # touched: it is the compiler's spelling of the SOURCE in a bite effect.
+        if target.get("self") or (target.get("controller") == "you"
+                                  and target.get("type") in ("player", "opponent")):
+            return
         each = target.get("count") == "all" or target.get("controller") == "each"
         to_player = target.get("type") in ("player", "opponent")
         if each and to_player:  # "deals N to each opponent"
@@ -1373,6 +1383,10 @@ def _apply_resolved(
         if just_cast is not None and (not target or target.get("self") is True):
             _bounce(me, just_cast)
         elif _is_mass(target):
+            # A mass 'return all creature cards from graveyards' names a non-battlefield zone: it
+            # recurs cards, it does not bounce the boards (39 graveyard + 17 exile-zone effects).
+            if str(target.get("zone") or "").strip().lower() in _OFF_BATTLEFIELD_ZONES:
+                return
             for player in _affected_boards(target, me, opp, others):
                 for perm in list(player.creatures()):
                     _bounce(player, perm)

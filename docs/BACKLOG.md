@@ -15,6 +15,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B3 | Static abilities: anthems, cost reducers, CDA P/T | anthems DONE in tier2 + tier0; cost reducers, CDA, 'other' open | C |
 | B4 | Compile-quality gate for blink / `gain_control` mislabels | DONE: gate + recompile + 4 authored | C |
 | B11 | Self-target / off-battlefield exile ran as removal | DONE (found during B4 review) | C |
+| B12 | Own-side effects hitting the opponent (pain mana, mass recursion) | DONE via effect_audit.py; 93 ambiguous left | C |
 | B5 | Bracket recall: B4 34%, B1 49% (B5 is 85%, the old 36% was stale) | DIAGNOSED: labelled-data limit, no tuning | C |
 | B6 | Mentor gate under-flags a moderate band | design question | U |
 | B7 | Test gaps in the art pipeline | in progress | C |
@@ -253,6 +254,24 @@ asset, titled "CCM data (beta) - 2026-11-04": 32,186 compiled, 99.8% on prompt v
 snapshot reflects its working tree, which holds uncommitted nightly state plus the 26 blink recompiles.
 `README.md` and `docs/ENGINE_DATA.md` state the old figures (31,906 compiled / 260 quarantined /
 2026-09-21); update them after publishing.
+
+## B12. (found by `scripts/effect_audit.py`) Effects aimed at the caster's own side hit the opponent
+**Done 2026-11-04.** The audit runs every stored effect through the real tier2 executor on a fixed
+synthetic board and lists those that change the OPPONENT although their target says self / `you` /
+a non-battlefield zone. Of 18,219 such effects, **298 changed the opponent**. Fixed (6 tests,
+`test_effect_executor_targets.py`): (1) `deal_damage` to a player with `controller: you` (110: Ancient
+Tomb, City of Brass, Mana Vault, the Talismans, Aftershock) and to the source itself (33) landed on
+the opponent, i.e. **every pain mana source dealt its self-damage to the opponent each time it was
+tapped**; now declined (the self-cost is unmodelled, an honest omission, because the same field also
+spells Curse of Shaken Faith); (2) a MASS `return_to_hand` from a graveyard/exile bounced every board.
+Audit now reads 99, all understood: 93 creature-type `controller: you` damage (the compiler's spelling
+of the SOURCE in a bite/fight effect: deliberately left alone, it is right more often than wrong),
+plus Thoughtseize-style hand discards and three lose_life effects where `target.self` is the X source.
+**A/B (gauntlet seed 777, 1,153 decks):** signed shift 0.0, mean |shift| 12.0 Elo (noise 2-5), 194 decks
+moved >20, bracket means B1-B4 within 4, **B5 -13** (cEDH lists were running the most pain mana). Top
+losers hold City of Brass / Ancient Tomb / Mana Vault; the one big gainer held Custodi Squire.
+**Open (B12b, small):** `deal_damage` with `controller: you` and creature/any/planeswalker type is
+ambiguous (bite vs self-damage, 93 effects); needs a compiler-side split, not an executor guess.
 
 ## B9. Role-strength granularity (S13) and the wipe colour requirement
 S13: `card_roles` gives counterspell and wipe a flat 3.0, so supply moves in whole-card steps and a
