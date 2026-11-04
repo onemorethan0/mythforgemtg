@@ -82,12 +82,13 @@ def _from_decklist(text: str) -> set[str]:
             continue
         if ":" in line.split(" ", 1)[0]:  # 'Commander:' style header prefix
             line = line.split(":", 1)[1].strip()
-        parts = line.split(" ", 1)
-        if parts[0].isdigit() and len(parts) > 1:  # leading quantity
-            line = parts[1].strip()
-        line = line.split("(", 1)[0].strip()  # strip a trailing '(SET) 123' tag
-        if line:
-            owned.add(owned_key(line))
+        # ONE grammar for decklist lines: `parse_decorated_line` already reads "4x ", "(SET) 123",
+        # "*F*" and "[tag]". This used to hand-roll a weaker one: "1x Sol Ring" became the owned
+        # key "1x sol ring" (never matches the card), and splitting on the first "(" cut a real
+        # name like "Erase (Not the Urza's Legacy One)" down to "Erase".
+        name = parse_decorated_line(line)["name"]
+        if name:
+            owned.add(owned_key(name))
     return owned
 
 
