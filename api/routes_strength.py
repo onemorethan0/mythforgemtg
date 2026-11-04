@@ -843,6 +843,13 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     card = _scryfall.get_card_by_name(req.add, fuzzy=True)
     if not card:
         raise HTTPException(400, f"Card not found on Scryfall: {req.add}")
+    # The duplicate check above used what was TYPED; the lookup is fuzzy, so "arcane signt"
+    # resolves to "Arcane Signet", which may already be here (a second copy in a singleton deck).
+    # Check the RESOLVED name too, before anything is cut or written.
+    resolved_norm = (card.get("_front_name") or card.get("name") or req.add).strip().casefold()
+    if any((c.get("original_name") or "").casefold() == resolved_norm for c in cards):
+        raise HTTPException(
+            400, f"'{card.get('_front_name') or card.get('name') or req.add}' is already in this deck.")
 
     # cut: decrement a stack (imported duplicate basics), else remove the entry
     if (cards[idx].get("quantity") or 1) > 1:
