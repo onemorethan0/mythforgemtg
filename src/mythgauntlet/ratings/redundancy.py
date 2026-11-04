@@ -121,10 +121,17 @@ ROLE_TARGETS: dict[str, int] = {
 # target; and the archetype wants at least 3 more supply units than the population. Five
 # cells survive out of every candidate, and each is Magic-plausible on its face.
 ARCHETYPE_ROLE_TARGETS: dict[str, dict[str, int]] = {
-    "chaos": {"draw": 28},
-    "draw_matters": {"counterspell": 9},
-    "landfall": {"ramp": 23},
-    "spellslinger": {"counterspell": 12, "draw": 26},
+    "chaos": {"draw": 24},
+    "draw_matters": {"counterspell": 12, "draw": 26},
+    "landfall": {"ramp": 26},
+    "lifegain": {"wipe": 9},
+    "spellslinger": {"counterspell": 12, "draw": 27},
+    "theft": {"counterspell": 6, "ramp": 23},
+    "tokens": {"finisher": 7},
+    "tribal_dragons": {"finisher": 12, "ramp": 27},
+    "tribal_elves": {"finisher": 11, "ramp": 24, "tutor": 8},
+    "tribal_humans": {"finisher": 8},
+    "tribal_warriors": {"finisher": 11, "ramp": 22, "tutor": 6},
 }
 
 
@@ -246,9 +253,16 @@ ROLE_CARD_TARGETS: dict[str, int] = {
 # --cards` re-measures it. 2026-10-18.
 ARCHETYPE_ROLE_CARD_TARGETS: dict[str, dict[str, int]] = {
     "chaos": {"draw": 14},
-    "draw_matters": {"counterspell": 4},
+    "draw_matters": {"counterspell": 4, "draw": 14},
     "landfall": {"ramp": 12},
+    "lifegain": {"wipe": 3},
     "spellslinger": {"counterspell": 4, "draw": 16},
+    "theft": {"counterspell": 2, "ramp": 13},
+    "tokens": {"finisher": 3},
+    "tribal_dragons": {"finisher": 5, "ramp": 19},
+    "tribal_elves": {"finisher": 3, "ramp": 15, "tutor": 4},
+    "tribal_humans": {"finisher": 4},
+    "tribal_warriors": {"finisher": 3, "ramp": 14, "tutor": 3},
 }
 
 
