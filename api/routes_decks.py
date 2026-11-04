@@ -415,6 +415,12 @@ async def delete_decks_batch(req: BatchDeleteRequest):
     skipped = []
 
     for job_id in req.job_ids:
+        # Same guard as the single delete: the path below is built from the id and rmtree'd, so
+        # an unchecked "../x" removed a directory OUTSIDE the renders folder. A malformed id is
+        # skipped, never touched.
+        if not isinstance(job_id, str) or not state._JOB_ID_RE.fullmatch(job_id):
+            skipped.append(job_id)
+            continue
         job = _jobs.get(job_id, {})
         if job.get("status") == "building":
             skipped.append(job_id)
