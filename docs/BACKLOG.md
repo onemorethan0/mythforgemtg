@@ -24,7 +24,7 @@ decision or go-ahead (outward-facing, or a product call).
 | B9 | Role-strength granularity (S13) | DECIDED 2026-11-04: keep strength unit (owner call); closed | U |
 | B10 | Offload harness follow-ups | deferred: no consumer (see section) | C |
 | B14 | Deck building: measure bracket as a target (P0) | **DONE 2026-11-06**: B1 over-shoots via leaked combos, B3 6/6, B4/B5 never reach label (section 4 of the review) | C |
-| B15 | Keep combos out of B1-B3 builds, then close the loop (P1a, P2); B4/B5 power pull deferred | next | C |
+| B15 | Keep combos out of B1-B2 builds (P1a) | **DONE 2026-11-06**: B2 3/6 -> 6/6 exact, B1 within-one 2/6 -> 6/6. Open: P2 general loop, optional P1c (B1 fast mana/tutors), B4/B5 deferred | C |
 | B16 | One role vocabulary, data-driven slot plan (P3, P4) | specced | C |
 | B17 | Strength-aware builder bench (P5) | specced | C |
 | B18 | Build-path structure and component tests (P6), UX pass (P7) | specced | C |

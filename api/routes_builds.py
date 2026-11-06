@@ -43,6 +43,7 @@ from api.state import (
 )
 from collection import load_owned_names, owned_count
 from commander_analysis import build_commander_profile
+import bracket_repair
 from deck_builder import (
     SOURCE_SCRYFALL,
     DeckBuilder,
@@ -106,6 +107,10 @@ def generate_list(req: GenerateListRequest):
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
         playstyle_label=ps_label, bracket=req.bracket, owned=owned,
         card_source=source, partner_count=len(partners))
+    # Bracket 1-2: keep game-ending combos out (engine-driven, degrades to a no-op if the
+    # strength engine is down). See bracket_repair for the measurement behind this.
+    repair = bracket_repair.repair_combos(builder, profile, card, partners, req.bracket)
+    deck = list(builder._deck) if repair["passes"] else deck
     # Partner/companion commanders aren't the face — render them as cards, same as the
     # import branch. This deck round-trips to phase 2 as `prebuilt_deck`, so appending
     # here (once) is what carries the partner through to the actual themed/rendered
@@ -149,7 +154,8 @@ def generate_list(req: GenerateListRequest):
     tribes = [{"type": t, "count": n} for t, n in counts.most_common()]
 
     return {"commander": card, "deck": deck, "stats": stats, "tribes": tribes,
-            "playstyle": ps_label, "bracket": req.bracket, "collection": collection_stats}
+            "playstyle": ps_label, "bracket": req.bracket, "collection": collection_stats,
+            "bracket_repair": repair}
 
 
 class ThemePreviewRequest(BaseModel):

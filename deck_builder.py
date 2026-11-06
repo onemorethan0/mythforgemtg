@@ -964,6 +964,34 @@ class DeckBuilder:
             self._deck.append(basics[i % len(basics)])
         return want
 
+    def swap_out(self, names: set[str], profile: CommanderProfile) -> list[str]:
+        """Remove the named spells from a FINISHED build and refill the same number of slots.
+
+        Used by bracket_repair to cut the pieces of an unwanted combo. The removed names stay in
+        `_names`, which `_add` treats as "already in the deck", so the refill can never draft the
+        same card straight back. Refill is goodstuff (curve-aware, bracket-filtered), then basics if
+        the pool is dry, so the library stays exactly `_library_size` cards. Basics are re-split
+        afterwards because the new spells change the pip demand. Returns the names added.
+        """
+        victims = {n for n in names if n and n != self._commander_name}
+        before = len(self._deck)
+        self._deck = [c for c in self._deck if c.get("name") not in victims]
+        removed = before - len(self._deck)
+        if removed <= 0:
+            return []
+        known = {c.get("name") for c in self._deck}
+        added = self._fetch_goodstuff(profile, removed)
+        short = removed - added
+        if short > 0:
+            self._pad_with_basics(profile, short)
+        try:
+            self._rebalance_basics(profile)
+        except Exception as exc:                  # noqa: BLE001 - cosmetic, never costs the deck
+            print(f"  [basics] rebalance skipped: {exc}")
+        self._deck = self._deck[:getattr(self, "_library_size", 99)]
+        return [c["name"] for c in self._deck
+                if c.get("name") not in known and "basic" not in (c.get("type_line") or "").lower()]
+
     # ── Public API ────────────────────────────────────────────────────────────
 
     def build(
@@ -1012,6 +1040,7 @@ class DeckBuilder:
         # See partner_count's docstring above: a legal command zone always totals 100
         # cards with the library, so each extra commander shrinks what THIS method drafts.
         library_size = 99 - max(0, partner_count)
+        self._library_size = library_size
         # This commander's EDHREC lift, fetched once per build and cached on disk. Fails
         # soft to {} (no page, no network, unofficial API changed shape), which makes
         # `_lift_sorted` a no-op — a build must never depend on EDHREC being reachable.

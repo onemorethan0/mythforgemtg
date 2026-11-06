@@ -235,3 +235,27 @@ What it settles:
   result is above the requested bracket and *why* (it already returns reasons), swap out the cards in
   the named combos, re-check once.
 - P3-P5 unchanged; P0's table is the new baseline for P5's bracket-hit-rate gate.
+
+### P1a result (2026-11-06): combos out of bracket 1-2 builds
+
+Shipped: `bracket_repair.py` + `DeckBuilder.swap_out`, wired into both generation paths
+(`/api/deck/generate-list` and the direct build job). For requested brackets 1 and 2 it asks the
+engine for the graded combo report, cuts the cards that break the most combos (greedy hitting set;
+never the commander or partners), refills from goodstuff with the cut cards blocked from coming
+back, and re-checks; at most 3 passes / 12 cuts. Engine down means the build ships unchanged and the
+report (`bracket_repair` in the generate-list response, a progress line in the job) says why.
+Bracket 3 is deliberately untouched (P0: 6/6 already).
+
+Same 6 commanders, `docs/bench/brackets-2026-11-06-repair.json`:
+
+| Requested | Mean estimate before -> after | Exactly right | Within one |
+|---|---|---|---|
+| 1 | 2.50 -> 1.67 | 1/6 -> 2/6 | 2/6 -> **6/6** |
+| 2 | 2.50 -> 2.00 | 3/6 -> **6/6** | 6/6 -> 6/6 |
+
+Every combo was cleared in a single pass (Krenko 14 -> 0, Tymna 10 -> 0 and 8 -> 0, Meren and Atraxa
+1 -> 0) and every library stayed 99. Residual: Bracket 1 builds still read as Bracket 2 on measured
+strength (fast mana 1.7 and tutors 1.5 on average; the engine names "consistency" and "multiplayer
+closing power"). That is a power ceiling, not a rules leak, and is the next lever (P1c, optional:
+trim fast mana/tutors at B1 only), not part of this change. Caveat: 6 commanders, one run, partner
+decks not in the bench; the bench builds Tymna alone.

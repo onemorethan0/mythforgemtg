@@ -32,6 +32,7 @@ sys.path.insert(0, str(ROOT / "src"))
 import requests  # noqa: E402
 
 from commander_analysis import build_commander_profile  # noqa: E402
+import bracket_repair  # noqa: E402
 from deck_builder import DeckBuilder  # noqa: E402
 from scryfall_client import ScryfallClient  # noqa: E402
 
@@ -91,10 +92,16 @@ def analyze(text: str, name: str, runs: int, timeout: int = 240) -> dict | None:
         return {"error": f"{type(exc).__name__}: {exc}"}
 
 
-def build(client: ScryfallClient, card: dict, bracket: int) -> tuple[list[dict], int]:
+def build(client: ScryfallClient, card: dict, bracket: int, repair: bool = False) -> tuple[list[dict], int]:
     buf = io.StringIO()
+    profile = build_commander_profile(card)
     with contextlib.redirect_stdout(buf):
-        deck = DeckBuilder(client).build(build_commander_profile(card), bracket=bracket)
+        builder = DeckBuilder(client)
+        deck = builder.build(profile, bracket=bracket)
+        if repair:
+            rep = bracket_repair.repair_combos(builder, profile, card, [], bracket)
+            build.last_repair = rep
+            deck = list(builder._deck)
     padded = 0
     for line in buf.getvalue().splitlines():
         if "Padding" in line and "missing slots" in line:
@@ -102,7 +109,7 @@ def build(client: ScryfallClient, card: dict, bracket: int) -> tuple[list[dict],
     return deck, padded
 
 
-def run(commanders, brackets, use_engine: bool, runs: int, determinism: bool) -> dict:
+def run(commanders, brackets, use_engine: bool, runs: int, determinism: bool, repair: bool = False) -> dict:
     client = ScryfallClient()
     rows = []
     for ci, name in enumerate(commanders, 1):
@@ -115,7 +122,9 @@ def run(commanders, brackets, use_engine: bool, runs: int, determinism: bool) ->
             t0 = time.time()
             row: dict = {"commander": name, "bracket": b}
             try:
-                deck, padded = build(client, card, b)
+                build.last_repair = None
+                deck, padded = build(client, card, b, repair)
+                row['repair'] = build.last_repair
                 row["padded_slots"] = padded
                 row["deck_size"] = len(deck)
                 row.update(structure(deck))
@@ -190,13 +199,14 @@ def main() -> int:
     ap.add_argument("--no-engine", action="store_true")
     ap.add_argument("--runs", type=int, default=300)
     ap.add_argument("--determinism", action="store_true")
+    ap.add_argument("--repair", action="store_true", help="apply bracket_repair (P1a) before analysing")
     ap.add_argument("--out")
     ap.add_argument("--summarize", help="re-summarize a saved result file and exit")
     args = ap.parse_args()
     if args.summarize:
         summarize(json.loads(Path(args.summarize).read_text(encoding="utf-8")))
         return 0
-    result = run(args.commanders, args.brackets, not args.no_engine, args.runs, args.determinism)
+    result = run(args.commanders, args.brackets, not args.no_engine, args.runs, args.determinism, args.repair)
     if args.out:
         Path(args.out).write_text(json.dumps(result, indent=1), encoding="utf-8")
     summarize(result)

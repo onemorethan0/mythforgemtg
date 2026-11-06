@@ -39,6 +39,7 @@ from bracket import BRACKET_LABELS
 from card_renderer import render_card, render_deck_thumbnails
 from collection import load_owned_names, owned_count
 from commander_analysis import build_commander_profile
+import bracket_repair
 from deck_builder import (
     SOURCE_COLLECTION,
     SOURCE_SCRYFALL,
@@ -199,6 +200,15 @@ def _run_build(job_id: str, req: BuildRequest):
                 card_source     = source,
                 partner_count   = len(partners),
             )
+            # Bracket 1-2: keep game-ending combos out (see bracket_repair). A no-op when the
+            # strength engine is down or the bracket allows combos.
+            _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Checking the deck for combos…"}))                 if req.bracket in bracket_repair.REPAIRED_BRACKETS else None
+            repair = bracket_repair.repair_combos(builder, profile, card, partners, req.bracket)
+            if repair["passes"]:
+                deck = list(builder._deck)
+                _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
+                    f"Swapped out {len(repair['removed'])} combo piece(s): "
+                    + ", ".join(repair["removed"]))}))
             if builder.source_fallback:
                 _push(job_id, "progress", json.dumps({"step": "deck",
                                                       "msg": builder.source_fallback}))
