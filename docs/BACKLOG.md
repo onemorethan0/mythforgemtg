@@ -23,6 +23,11 @@ decision or go-ahead (outward-facing, or a product call).
 | B8 | Refresh the published CCM snapshot | DONE: published 2026-11-04, download hash verified | C |
 | B9 | Role-strength granularity (S13) | DECIDED 2026-11-04: keep strength unit (owner call); closed | U |
 | B10 | Offload harness follow-ups | deferred: no consumer (see section) | C |
+| B14 | Deck building: measure bracket as a target (P0) | specced in `DECKBUILD_REVIEW.md` | C |
+| B15 | Bracket as target + close the loop (P1, P2) | specced; depends on B14 | C |
+| B16 | One role vocabulary, data-driven slot plan (P3, P4) | specced | C |
+| B17 | Strength-aware builder bench (P5) | specced | C |
+| B18 | Build-path structure and component tests (P6), UX pass (P7) | specced | C |
 
 ---
 
@@ -400,6 +405,11 @@ mode that scores a classification spec against a hand-labelled set before runnin
 (the rule from offload-tiered-labelling). **DEFERRED 2026-11-04, no consumer:** it was needed for a B3
 'other' labelling pass, and B3 closed without one ('other' is long-tail). Build it when a real
 classification sweep needs it, not before.
+
+---
+
+## B14-B18. Deck building development plan
+Full review, evidence and acceptance tests: [`DECKBUILD_REVIEW.md`](DECKBUILD_REVIEW.md). Start with B14 (measure only, no behaviour change); its table decides how much of B15-B17 is needed.
 
 ---
 
