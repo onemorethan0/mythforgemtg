@@ -1,4 +1,4 @@
-# Myth Forge — status and gameplan (updated 2026-11-04, end of day)
+# Myth Forge — status and gameplan (updated 2026-11-06)
 
 One page. **Detail for every open item is in [`BACKLOG.md`](BACKLOG.md)** (evidence, acceptance test,
 first command, owner). `HANDOFF.md` is the August record; `CLAUDE.md` is now an 8 KB index into
@@ -17,8 +17,8 @@ for my pod" — not cEDH optimisation. A wrong card model is a defect, not an ap
 | Calibration | `ARCHETYPE_ROLE_TARGETS` regenerated: 4 -> 11 archetypes; own-role cut suggestions down 18% | commit 2fb68bd |
 | Deck Mentor | **87/90 (97%)** on the holistic bench, zero fallbacks; three gate bugs found and fixed on the way (84 -> 81 -> 84 -> 87) | B1, closed |
 | Bracket estimate | within-one 92.1% raw, **96.3% excluding 62 labels impossible under the rules** (exact 66.0%): bars met. B5 recall 85%. Only B4 is weak (34%), a labelled-data limit | B5, diagnosed |
-| Static abilities | **Anthems live in both sims** (tier2 duels + tier0 goldfish), derived from card text, no schema change. 107 cards, 25% of corpus decks. Cost reducers, CDA power/toughness and the heterogeneous 'other' 41% are open | B3 |
-| Tests | ~3,100, all green. 250+ added today across 14 modules | `pytest tests -q` |
+| Static abilities | **Anthems live in both sims** (tier2 duels + tier0 goldfish), derived from card text, no schema change. 107 cards, 25% of corpus decks. Static cost reducers live in the duel sim only (tier0 reverted: it dropped bracket accuracy). The heterogeneous 'other' bucket is long-tail, closed | B3, done |
+| Tests | 3,500, all green, CI green. 280+ added across ~17 modules | `pytest tests -q` |
 | Docs / repo | CLAUDE.md 275 KB -> 8 KB; root cleared; corpus committed; this file + BACKLOG.md | |
 
 ## 2. What changed today, in one list
@@ -37,16 +37,21 @@ for my pod" — not cEDH optimisation. A wrong card model is a defect, not an ap
 
 ## 3. Open work, ranked (see BACKLOG.md for each)
 
+Every backlog item is closed, decided or deferred. Nothing waits on you except the sibling-repo item below.
+
 | ID | Item | Status | Owner |
 |---|---|---|---|
 | B1 | Mentor bench | **closed: 87/90** | C |
-| B3 | Static abilities: cost reducers, CDA P/T, the 'other' 41% | anthems done (tier2 + tier0) | C |
+| B3 | Static abilities | **done**: anthems in both sims, cost reducers in the duel sim | C |
 | B4 | Blink recompile review | **closed** (26 accepted, 15 quarantined, 4 authored) | C |
-| B5 | Bracket recall | **done: diagnosed, no tuning (see BACKLOG)** | C |
-| B7 | Test gaps: `cc_frames`, `themer`, `image_gen` pure helpers | in progress | C |
-| B9 | Role-strength granularity (S13) | specced; needs a doctrine argument | C |
-| B6 | Mentor gate moderate band | left as is (your approval of my recommendation) | - |
-| B8 | Public CCM snapshot | **done: published 2026-11-04**, download hash verified | C |
+| B5 | Bracket recall | **done: diagnosed, no tuning** | C |
+| B6 | Mentor gate moderate band | left as is (your call) | - |
+| B7 | Test gaps | **covered**: strength mentor/breakdown/card-impact/feedback routes, `routes_misc`, `model3d`, pure helpers. Untested remainder is ComfyUI-bound runtime code | C |
+| B8 | Public CCM snapshot | **done: published 2026-11-04** | C |
+| B9 | Role-strength granularity | **decided: keep strength unit** | - |
+| B10 | `--gold` mode in dispatch.py | deferred: no consumer | C |
+
+Optional, not started: an attacking / your-turn self-pump parser (~100 cards; low goldfish impact).
 
 ## 4. What the offload experiment taught us
 
@@ -61,11 +66,9 @@ two 8b drafts that went through the new `--verify` repair loop still failed it.
 
 ## 5. Decisions
 
-All three open decisions are settled: B3 phase 2 went ahead without a schema change, B6 stays as is,
-and the CCM snapshot is published. Nothing currently waits on you. The next real quality gains are
-in BACKLOG.md: B3's remaining statics (cost reducers touch castability, so they need a measured
-change), B9 (role-strength granularity, which needs a doctrine argument first), and the sibling
-`mythgauntlet` repo's uncommitted store (26 blink rewrites plus nightly state) which only you can commit.
+All settled: B3 phase 2 went ahead without a schema change, B6 stays as is, B9 keeps the strength
+unit, the CCM snapshot is published. The one thing only you can do: the sibling `mythgauntlet` repo
+has an uncommitted store (26 blink rewrites plus nightly state); commit it when you are ready.
 
 ## 6. Keeping this digestible
 
