@@ -109,7 +109,7 @@ def generate_list(req: GenerateListRequest):
         card_source=source, partner_count=len(partners))
     # Bracket 1-2: keep game-ending combos out (engine-driven, degrades to a no-op if the
     # strength engine is down). See bracket_repair for the measurement behind this.
-    repair = bracket_repair.repair_combos(builder, profile, card, partners, req.bracket)
+    repair = bracket_repair.repair_build(builder, profile, card, partners, req.bracket)
     deck = list(builder._deck) if repair["passes"] else deck
     # Partner/companion commanders aren't the face — render them as cards, same as the
     # import branch. This deck round-trips to phase 2 as `prebuilt_deck`, so appending

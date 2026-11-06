@@ -259,3 +259,21 @@ strength (fast mana 1.7 and tutors 1.5 on average; the engine names "consistency
 closing power"). That is a power ceiling, not a rules leak, and is the next lever (P1c, optional:
 trim fast mana/tutors at B1 only), not part of this change. Caveat: 6 commanders, one run, partner
 decks not in the bench; the bench builds Tymna alone.
+
+
+## P2 result (2026-11-06): the estimate-driven power trim does not work, so it ships OFF
+
+`bracket_repair.repair_power` swaps fast mana and tutors out of Bracket 1 builds while the engine reads
+them above the request, and reverts any pass that raises the estimate. Measured on the 6-commander
+roster (`docs/bench/brackets-2026-11-06-p2.json`, B1 only, repair on): mean estimate **1.67, exactly
+as before**, and it cost 1-5 s per build. Krenko lost Sol Ring, Dynamo and two goblin tutors; Meren lost
+five tutors; both stayed at 2. The refill is goodstuff, so the cut slots come back as Panharmonicon,
+The Great Henge, Gilded Lotus: other strong cards. The engine's own reason line for these builds names
+consistency and multiplayer closing power, not fast mana or tutors.
+
+Conclusion: the B1 gap is a consistency/closing-power ceiling of the whole card pool, not a few
+identifiable cards, so cutting them cannot close it. The code stays (tested, gated by
+`MYTHFORGE_POWER_TRIM=1`) so the bench can retry it, but the default build does not run it. Reaching an
+honest B1 would need a *weaker* refill (a B1-specific goodstuff query) or a lower-consistency slot plan,
+which is P4 territory, not a repair loop. The estimate also moves with analysis runs (40 vs 300 flipped
+Tymna 1<->2): a single-sample estimate is too noisy to steer a loop that fine.

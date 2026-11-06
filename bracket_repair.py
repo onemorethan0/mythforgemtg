@@ -56,6 +56,83 @@ def engine_combos(text: str, name: str, timeout: int = 180) -> Optional[dict]:
         return None
 
 
+FAST_MANA = frozenset({
+    "Sol Ring", "Mana Crypt", "Mana Vault", "Grim Monolith", "Chrome Mox", "Mox Diamond", "Mox Amber",
+    "Mox Opal", "Mox Tantalite", "Lotus Petal", "Jeweled Lotus", "Lion's Eye Diamond", "Ancient Tomb",
+    "Simian Spirit Guide", "Elvish Spirit Guide", "Dark Ritual", "Cabal Ritual", "Culling the Weak",
+    "Mana Drain", "Basalt Monolith", "Everflowing Chalice", "Worn Powerstone", "Thran Dynamo",
+})
+_BASIC_TYPES = ("plains", "island", "swamp", "mountain", "forest")
+POWER_TRIM = os.getenv("MYTHFORGE_POWER_TRIM", "") == "1"   # OFF: measured no effect (DECKBUILD_REVIEW P2)
+POWER_BRACKET = 1            # only Bracket 1 is trimmed for power: its estimate stays a bracket high
+MAX_POWER_PASSES = 2
+
+
+def is_tutor(card: dict) -> bool:
+    """Library search for a NON-land card (a heuristic: land fetch text names a land/basic type)."""
+    if "land" in (card.get("type_line") or "").lower():
+        return False
+    t = (card.get("oracle_text") or "").lower()
+    i = t.find("search your library for")
+    if i < 0:
+        return False
+    clause = t[i:i + 90]
+    return not ("land card" in clause or "basic land" in clause or any(b in clause for b in _BASIC_TYPES))
+
+
+def engine_estimate(text: str, name: str, timeout: int = 180) -> Optional[int]:
+    """The engine's integer bracket estimate for a decklist, or None when unreachable."""
+    try:
+        r = requests.post(f"{ENGINE_URL}/analyze", timeout=timeout,
+                          json={"deck": text, "name": name, "runs": 40, "resilience": False, "combos": False})
+        if r.status_code != 200:
+            return None
+        est = (r.json().get("power_profile") or {}).get("bracket_estimate")
+        return int(est) if isinstance(est, (int, float)) else None
+    except Exception:                                   # noqa: BLE001
+        return None
+
+
+def repair_power(builder, profile, commander: dict, partners: list[dict], bracket: int,
+                 estimate: Callable[[str, str], Optional[int]] = engine_estimate) -> dict:
+    """Bracket 1 only: while the engine reads the build above the request, swap out fast mana and
+    tutors (what it blames), keeping the previous library if a pass does not lower the estimate.
+    Bounded; a missing engine leaves the build alone."""
+    rep: dict = {"applicable": bracket == POWER_BRACKET, "passes": 0, "removed": [], "added": [],
+                 "estimate_before": None, "estimate_after": None, "skipped": None}
+    if not rep["applicable"]:
+        return rep
+    protected = {commander["name"]} | {p["name"] for p in partners or [] if p.get("name")}
+    name = commander["name"]
+    cur = estimate(decklist_text(name, partners, builder._deck), name)
+    if cur is None:
+        rep["skipped"] = "strength engine unreachable"
+        return rep
+    rep["estimate_before"] = rep["estimate_after"] = cur
+    for _ in range(MAX_POWER_PASSES):
+        if cur <= bracket:
+            break
+        cands = [c["name"] for c in builder._deck
+                 if c.get("name") not in protected and "basic" not in (c.get("type_line") or "").lower()
+                 and (c.get("name") in FAST_MANA or is_tutor(c))]
+        cands = list(dict.fromkeys(cands))[:MAX_CUTS_PER_PASS]
+        if not cands:
+            rep["skipped"] = "no fast mana or tutors left to cut"
+            break
+        snapshot = list(builder._deck)
+        added = builder.swap_out(set(cands), profile)
+        new = estimate(decklist_text(name, partners, builder._deck), name)
+        if new is None or new > cur:                    # never ship a worse build than we had
+            builder._deck[:] = snapshot
+            rep["skipped"] = "engine stopped answering" if new is None else "trim made the estimate worse"
+            break
+        rep["passes"] += 1
+        rep["removed"] += cands
+        rep["added"] += added
+        cur = rep["estimate_after"] = new
+    return rep
+
+
 def pick_cuts(items: list[dict], protected: set[str], deck_order: list[str], limit: int) -> list[str]:
     """Cards whose removal breaks the most combos: a greedy hitting set.
 
@@ -112,3 +189,21 @@ def repair_combos(builder, profile, commander: dict, partners: list[dict], brack
         report["removed"] += cuts
         report["added"] += added
     return report
+
+
+def repair_build(builder, profile, commander: dict, partners: list[dict], bracket: int,
+                 analyze: Callable[[str, str], Optional[dict]] = engine_combos,
+                 estimate: Callable[[str, str], Optional[int]] = engine_estimate) -> dict:
+    """The one entry point the build paths call: combo repair (B1-2), then power trim (B1).
+
+    The combo report's keys are unchanged; `power` holds the trim report and `passes`/`removed`/`added`
+    cover both so callers need only test `passes`."""
+    rep = repair_combos(builder, profile, commander, partners, bracket, analyze=analyze)
+    power = repair_power(builder, profile, commander, partners, bracket, estimate=estimate) \
+        if POWER_TRIM and rep["applicable"] and rep["skipped"] != "strength engine unreachable" else \
+        {"applicable": False, "passes": 0, "removed": [], "added": [], "skipped": "power trim off or n/a"}
+    rep["power"] = power
+    rep["passes"] += power["passes"]
+    rep["removed"] = rep["removed"] + power["removed"]
+    rep["added"] = rep["added"] + power["added"]
+    return rep

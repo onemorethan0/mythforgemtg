@@ -218,3 +218,82 @@ def test_engine_combos_handles_http_errors_and_unchecked_reports(monkeypatch):
 
     monkeypatch.setattr(br.requests, "post", boom)
     assert br.engine_combos("x", "n") is None
+
+
+# -- power trim (P2) ---------------------------------------------------------------------------------------------
+
+def _tutor(name):
+    c = _spell(name)
+    c["oracle_text"] = "Search your library for a card, put it into your hand."
+    return c
+
+
+def _est(table):
+    calls = []
+
+    def f(text, name):
+        calls.append(text)
+        return table(text)
+    f.calls = calls
+    return f
+
+
+def test_is_tutor_ignores_land_fetch_and_lands():
+    assert br.is_tutor(_tutor("T"))
+    land_fetch = _spell("Rampant Growth")
+    land_fetch["oracle_text"] = "Search your library for a basic land card."
+    assert not br.is_tutor(land_fetch)
+
+
+def test_power_trim_only_applies_at_bracket_1():
+    b = _builder(["Sol Ring", "B"], ["X"], bracket=2)
+    e = _est(lambda t: 3)
+    r = br.repair_power(b, _Profile(), COMMANDER, [], 2, estimate=e)
+    assert r["applicable"] is False and e.calls == []
+
+
+def test_power_trim_swaps_fast_mana_and_tutors_until_estimate_drops():
+    b = _builder(["Sol Ring", "B", "C"], ["X", "Y"], bracket=1)
+    b._deck.append(_tutor("Mystical"))
+    b._library_size = 4
+    r = br.repair_power(b, _Profile(), COMMANDER, [], 1,
+                        estimate=_est(lambda t: 2 if "Sol Ring" in t or "Mystical" in t else 1))
+    names = [c["name"] for c in b._deck]
+    assert r["estimate_before"] == 2 and r["estimate_after"] == 1 and r["passes"] == 1
+    assert set(r["removed"]) == {"Sol Ring", "Mystical"} and len(names) == 4 and "Sol Ring" not in names
+
+
+def test_power_trim_reverts_when_the_estimate_gets_worse():
+    b = _builder(["Sol Ring", "B"], ["X"], bracket=1)
+    answers = iter([2, 3])
+    r = br.repair_power(b, _Profile(), COMMANDER, [], 1, estimate=lambda t, n: next(answers))
+    assert [c["name"] for c in b._deck] == ["Sol Ring", "B"] and r["passes"] == 0
+    assert "worse" in r["skipped"]
+
+
+def test_power_trim_without_engine_or_candidates_leaves_build_alone():
+    b = _builder(["A", "B"], ["X"], bracket=1)
+    assert br.repair_power(b, _Profile(), COMMANDER, [], 1, estimate=lambda t, n: None)["skipped"] \
+        == "strength engine unreachable"
+    r = br.repair_power(b, _Profile(), COMMANDER, [], 1, estimate=lambda t, n: 2)
+    assert r["skipped"] == "no fast mana or tutors left to cut" and len(b._deck) == 2
+
+
+def test_repair_build_merges_both_reports(monkeypatch):
+    monkeypatch.setattr(br, "POWER_TRIM", True)
+    b = _builder(["Sol Ring", "A", "B"], ["X", "Y"], bracket=1)
+    combos = lambda t, n: _report() if "Sol Ring" not in t else _report(["A", "B"])
+    r = br.repair_build(b, _Profile(), COMMANDER, [], 1, analyze=combos,
+                        estimate=lambda t, n: 2 if "Sol Ring" in t else 1)
+    assert "Sol Ring" in r["removed"] and "Sol Ring" not in [c["name"] for c in b._deck]
+    assert r["power"]["estimate_after"] == 1
+    r2 = br.repair_build(_builder(["A"], ["X"], bracket=3), _Profile(), COMMANDER, [], 3)
+    assert r2["passes"] == 0 and r2["power"]["applicable"] is False
+
+
+def test_power_trim_is_off_by_default(monkeypatch):
+    monkeypatch.setattr(br, "POWER_TRIM", False)
+    e = _est(lambda t: 2)
+    r = br.repair_build(_builder(["Sol Ring", "A"], ["X"], bracket=1), _Profile(), COMMANDER, [], 1,
+                        analyze=lambda t, n: _report(), estimate=e)
+    assert e.calls == [] and r["power"]["applicable"] is False

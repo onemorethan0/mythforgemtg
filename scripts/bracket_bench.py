@@ -99,7 +99,7 @@ def build(client: ScryfallClient, card: dict, bracket: int, repair: bool = False
         builder = DeckBuilder(client)
         deck = builder.build(profile, bracket=bracket)
         if repair:
-            rep = bracket_repair.repair_combos(builder, profile, card, [], bracket)
+            rep = bracket_repair.repair_build(builder, profile, card, [], bracket)
             build.last_repair = rep
             deck = list(builder._deck)
     padded = 0

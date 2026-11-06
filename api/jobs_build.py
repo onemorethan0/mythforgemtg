@@ -203,11 +203,11 @@ def _run_build(job_id: str, req: BuildRequest):
             # Bracket 1-2: keep game-ending combos out (see bracket_repair). A no-op when the
             # strength engine is down or the bracket allows combos.
             _push(job_id, "progress", json.dumps({"step": "deck", "msg": "Checking the deck for combos…"}))                 if req.bracket in bracket_repair.REPAIRED_BRACKETS else None
-            repair = bracket_repair.repair_combos(builder, profile, card, partners, req.bracket)
+            repair = bracket_repair.repair_build(builder, profile, card, partners, req.bracket)
             if repair["passes"]:
                 deck = list(builder._deck)
                 _push(job_id, "progress", json.dumps({"step": "deck", "msg": (
-                    f"Swapped out {len(repair['removed'])} combo piece(s): "
+                    f"Swapped out {len(repair['removed'])} card(s) to fit the bracket: "
                     + ", ".join(repair["removed"]))}))
             if builder.source_fallback:
                 _push(job_id, "progress", json.dumps({"step": "deck",
