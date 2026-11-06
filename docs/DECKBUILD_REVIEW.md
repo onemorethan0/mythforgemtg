@@ -185,3 +185,53 @@ smaller than F1 suggests: those two deliver the casual-bracket goal; the rest is
 - Hard exclusions at B1/B2 can empty a colour pair's candidate pool; the existing `search_buffer`
   and goodstuff fallback must be re-measured, not assumed.
 - The engine is a separate process: the builder must degrade to today's behaviour when :8020 is down.
+
+---
+
+## 4. P0 result (2026-11-06, `scripts/bracket_bench.py`, `docs/bench/brackets-2026-11-06.json`)
+
+6 commanders x 5 brackets = 30 builds, each analysed by the engine (300 runs, combos on). Engine
+bracket estimate for the bracket the user asked for:
+
+| Requested | Builds | Mean estimate | Exactly right | Within one |
+|---|---|---|---|---|
+| 1 | 6 | 2.50 | 1 / 6 | 2 / 6 |
+| 2 | 6 | 2.50 | 3 / 6 | 6 / 6 |
+| 3 | 6 | 3.00 | **6 / 6** | 6 / 6 |
+| 4 | 6 | 3.33 | 0 / 6 | 6 / 6 |
+| 5 | 6 | 3.33 | 1 / 6 | 1 / 6 |
+
+Per commander, estimates for requested B1..B5: Krenko 3,3,3,3,3; Meren 3,2,3,3,3; Atraxa 3,3,3,3,3;
+Talrand 2,2,3,3,3; Edgar 1,2,3,3,3; Tymna 3,3,3,5,5.
+
+What it settles:
+
+- **F2 is real, and it is the low end's problem.** The engine's reasons show *why* B1/B2 builds read as
+  Bracket 3: four of six hold an in-deck game-ending combo that trips the official gate ("N in-deck
+  game-ending combo(s) -> min Bracket 3"): Krenko 14 combos, Tymna 8-10 fast two-card terminals,
+  Atraxa and Meren 1 each. The builder never looks for combos. Game Changers were 0 at B1/B2 in every
+  build, so that gate works; combos are what leak.
+- **For your B1-3 goal, bracket 3 is already right (6/6) and brackets 1-2 over-shoot.** Those are the
+  ones to fix. Within-one at B2 is 6/6; B1 is the weak cell.
+- **F1 is smaller than the first sample suggested at the top and confirmed at the bottom.** Adjacent
+  brackets share 86-91% of non-basic cards. B4 and B5 never reach their label: a B5 Krenko measures
+  *Bracket 2 on strength* (score 2.6, kill turn ~9.9, ceiling 33). Only Tymna reaches 5, via 10-11
+  Game Changers. Getting B4/B5 right means choosing power on purpose, which is not the casual goal.
+- **F8 (partly):** one commander built twice at B3 gave an identical list. That ran on warm Scryfall and
+  EDHREC caches, so it shows determinism *given the caches*, not across days.
+- Structural heuristics (named fast-mana list, library-search text) average 1.3 fast mana and 1.5
+  tutors at B1, so those leak a little too, but nothing in the engine's reasons names them as the
+  deciding factor yet. Combos are.
+- The estimator itself is 92% within-one on labelled decks, so a single miss is not proof; the pattern
+  across commanders is.
+
+### Plan changes this causes
+
+- **P1 is split.** **P1a (do now):** at brackets 1-2 (and 3, which also bans early two-card combos
+  in the official text) keep combos out of the build by asking the engine's combo table, and treat
+  fast mana/tutors as a smaller second-order tuning. **P1b (defer):** pulling power in at B4/B5 does
+  not serve the casual goal; do it only if you want those brackets honest.
+- **P2 (close the loop)** becomes the natural mechanism for P1a: build, ask the engine whether the
+  result is above the requested bracket and *why* (it already returns reasons), swap out the cards in
+  the named combos, re-check once.
+- P3-P5 unchanged; P0's table is the new baseline for P5's bracket-hit-rate gate.
