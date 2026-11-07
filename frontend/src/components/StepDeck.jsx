@@ -20,6 +20,9 @@ import { notify } from '../utils/toast'
 import { searchCards } from '../utils/searchCards'
 import { GROUP_BYS, GROUP_BY_LABELS, TYPE_ORDER, groupCards, nameKey, primaryType } from '../utils/deckGrouping'
 import { BRACKET_TERMS } from '../glossary'
+import LegalityBlock from './LegalityBlock'
+import SampleHandPanel from './SampleHandPanel'
+import EditDeckPanel from './EditDeckPanel'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -64,7 +67,14 @@ function exportThemed(deck) {
   const lines = []
   let cards = deck.deck
   if (isCmd) {
-    lines.push(`Commander: ${deck.commander.themed_name} (${deck.commander.original_name})`, '')
+    lines.push(`Commander: ${deck.commander.themed_name} (${deck.commander.original_name})`)
+    // Partners live inside deck.deck (they render as cards) but belong to the command
+    // zone; listed in the 99 they read as an ordinary maindeck card.
+    const zone = new Set((deck.partners || []).map(n => (n || '').toLowerCase()))
+    const heads = cards.filter(c => zone.has((c.original_name || '').toLowerCase()))
+    heads.forEach(c => lines.push(`Commander: ${c.themed_name} (${c.original_name})`))
+    cards = cards.filter(c => !zone.has((c.original_name || '').toLowerCase()))
+    lines.push('')
   } else {
     cards = [deck.commander, ...deck.deck]
   }
@@ -729,6 +739,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               </>
             )}
 
+            {/* Commander legality (deck_legality.py): 100 cards, singleton, colour identity,
+                ban list, commander/pairing. Only for a real Commander deck: an imported
+                60-card list with an auto-elected face has no command zone to judge. */}
+            {stats.legality?.issues && deck.is_commander_deck !== false && !deck.import_auto_face && (
+              <LegalityBlock legality={stats.legality} />
+            )}
+
             {stats.quality && (
               <>
                 <div style={{ height: 1, background: '#292524', margin: '12px 0' }} />
@@ -1031,6 +1048,9 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             initial={deck.breakdown?.data} onData={setBreakdown} />
           <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure} />
           <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
+          {/* Playtest + manual edit: the two everyday tools of every deck site. */}
+          <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
+          <EditDeckPanel key={`edit-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />
           {/* Ask about ONE named card. Keyed on swap_count like MeasurePanel:
               an applied swap changes the list, so a cached verdict is stale. */}
           <CardImpactPanel key={`imp-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />

@@ -7,6 +7,17 @@ first command, owner). `HANDOFF.md` is the August record; `CLAUDE.md` is now an 
 **Goal the work is judged against:** casual Bracket 1-3 gauging — "is this deck fun and on-level
 for my pod" — not cEDH optimisation. A wrong card model is a defect, not an approximation.
 
+## 0. 2026-11-07 full review (local report: `docs/REVIEW_2026-11-07_full.md`, gitignored)
+
+Fixed: partner handling end to end (builder could draft the partner into the 99; engine got it
+twice; History said 101; import-save and export dropped it), apply-swap now enforces identity /
+ban list / singleton and recomputes stats, imports skip tokens. Rules: `Partner—<group>` cards
+pair only within their group; commander eligibility reads the front face only (29 back-face
+legends were offered as commanders); the protection query no longer drafts Thassa's Oracle /
+Gray Merchant via "toward". New: Commander **legality check** (`deck_legality.py`, every path +
+backfilled on load), **sample hand + land odds**, **manual edit** panel. Open, ranked: role-query
+clause audit, per-deck price, Arena/MTGO export, maybeboard; builder bench not re-run.
+
 ## 1. Where we are
 
 | Area | State | Evidence |

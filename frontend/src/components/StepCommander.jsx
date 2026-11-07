@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ManaCost from './ManaCost'
 import SimStrengthPanel from './SimStrengthPanel'
+import LegalityBlock from './LegalityBlock'
 
 const s = {
   card:     { maxWidth: 600, width: '100%', background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 32, marginTop: 16 },
@@ -40,6 +41,7 @@ const PARTNER_BLURB = {
   'friends_forever': 'This commander has <strong>Friends forever</strong> — pair it with another Friends forever commander.',
   'choose_background': 'This commander can <strong>Choose a Background</strong> — name a Background enchantment.',
   'doctors_companion': "This commander has <strong>Doctor's companion</strong> — pair it with a Doctor.",
+  'partner_group': 'This commander has a named <strong>Partner—</strong> ability — it pairs only with a card that has the same one.',
   'background': 'This is a <strong>Background</strong> — pair it with a commander that says “Choose a Background”.',
 }
 
@@ -363,6 +365,14 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
                     : 'No single hero. On the next step you can assign your uploaded people to specific cards — pick exactly who appears where.'}
                 </div>
               </div>
+
+              {/* ── Commander legality (deck_legality.py) — only meaningful when the user says
+                  this IS a Commander deck; an auto-elected face has no command zone. ── */}
+              {isCmdDeck && !preview.auto_face && preview.legality?.issues && (
+                <div style={{ background: '#0c0a09', border: '1px solid #292524', borderRadius: 10, padding: 14 }}>
+                  <LegalityBlock legality={preview.legality} compact />
+                </div>
+              )}
 
               {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
               <SimStrengthPanel simulation={preview.simulation} />
