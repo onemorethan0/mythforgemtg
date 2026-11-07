@@ -277,3 +277,34 @@ identifiable cards, so cutting them cannot close it. The code stays (tested, gat
 honest B1 would need a *weaker* refill (a B1-specific goodstuff query) or a lower-consistency slot plan,
 which is P4 territory, not a repair loop. The estimate also moves with analysis runs (40 vs 300 flipped
 Tymna 1<->2): a single-sample estimate is too noisy to steer a loop that fine.
+
+
+## P4-lite result (2026-11-07): a "no staples" refill at Bracket 1 does not move the estimate, so it was not shipped
+
+Hypothesis from P2: B1 builds read Bracket 2 because the refill is EDHREC goodstuff; a weaker refill
+should read lower. Tried: reject non-land cards whose global `edhrec_rank` is at or below a floor, at
+Bracket 1 only (a `staple_rank_floor` on `BracketRules`, plus `search_buffer` overrides), 6-commander
+roster, 300 engine runs, combo repair on. Baseline (floor 0): mean estimate 1.67, 2/6 exact, 6/6 within one.
+
+| floor / search buffer | mean est | exact | fast mana | tutors | basics padded in (per deck) |
+|---|---|---|---|---|---|
+| 0 / 12 (baseline) | 1.67 | 2/6 | 1.8 | 1.5 | 0 |
+| 300 / 12 | 1.50 | 3/6 | 0.7 | 1.3 | 0 |
+| 1000 / 12 | 1.67 | 2/6 | 0.0 | 1.5 | 0-30 |
+| 2500 / 12 | 1.17 | 5/6 | 0.0 | 1.2 | 13-60 |
+| 4000 / 12 | 1.00 | 6/6 | 0.0 | 0.3 | 30-62 |
+| 1500 / 40 or 60 | 1.67 | 2/6 | 0.0 | 1.3 | 0-5 |
+| 2500 / 40 or 80 | 1.50 | 3/6 | 0.0 | 1.3-1.5 | 0-10 |
+
+Two findings. (1) The apparent wins (2500 and 4000 at the default window) are fake: the candidate window
+is exhausted, the builder pads with basics (Tymna: consistency 3, interaction 0), and an empty deck reads
+Bracket 1. Judged by `padded_slots`, they are broken builds. (2) With a window deep enough that nothing
+is padded, fast mana does go to 0 but the estimate stays 1.5-1.67: Krenko and Talrand remain 2 at
+consistency 84-92 because they are simple, low-curve decks, and the engine reads consistency and closing
+power, not staples. Same-config reruns were identical, so this is not noise.
+
+Not shipped: the knob changes spec fidelity (no fast mana) but not bracket accuracy, and it risks a few
+padded basics. The lever is wrong, not the strength: a Bracket 1 label cannot be reached by removing
+cards when the engine scores the *deck's own consistency*. What is left is a calibration question for the
+engine (is a 90%-consistent mono-colour tribal deck really Bracket 2?) or accepting "within one" as the
+B1 contract and saying so in the UI. Both are owner decisions.
