@@ -73,10 +73,34 @@ def _synthetic_basic(land_name: str) -> dict:
 # otag: (Oracle Tag) is a Scryfall community tagging system — great signal for
 # role identification. We fall back to oracle text patterns when tags miss.
 
+#
+# Every o: clause below is a SUBSTRING match, so each was measured clause by clause over the
+# oracle bulk (34,922 cards, 2026-11-07 audit; docs/REVIEW_2026-11-07_full.md section 8).
+# A clause is changed only when its false hits are real and its replacement keeps every
+# true hit; the numbers are in each comment.
+
+# Mana production phrasings that actually occur in card text. The old (o:"add" o:"mana")
+# needed only the letters "add" anywhere, so "additional cost", "in addition to" and
+# "add a lore counter" + any "mana value" admitted 162 non-ramp cards (Eldritch Evolution,
+# Mockingbird, Neoform, Thieving Skydiver, every Saga). This list drops all 162 and keeps
+# every one of the old clause's real ramp cards; number words are only the ones printed.
+_RAMP_PHRASES = (
+    "add {", "adds {", "add x {", "adds x {", "add x mana", "add an additional",
+    "adds an additional", "add that much", "add twice", "adds twice", "add an amount of",
+    "add mana", "play an additional land", "add one mana", "add two mana", "add three mana",
+    "add four mana", "add five mana", "add ten mana", "adds one mana", "adds two mana",
+    "adds three mana", "add six {", "add seven {", "add eight {",
+)
+
+
+def _any_o(phrases) -> str:
+    return "(" + " OR ".join(f'o:"{p}"' for p in phrases) + ")"
+
+
 ROLE_QUERIES: dict[str, str] = {
     "ramp": (
         "(otag:ramp OR otag:land-ramp OR otag:mana-rock OR otag:mana-dork "
-        "OR (o:\"add\" o:\"mana\" -type:land))"
+        f"OR ({_any_o(_RAMP_PHRASES)} -type:land))"
     ),
     "card_draw": (
         "(otag:card-draw OR otag:draw OR o:\"draw a card\" "
@@ -101,8 +125,19 @@ ROLE_QUERIES: dict[str, str] = {
     # the oracle bulk, 2026-11-07); collection_pool's local regex already used \bward\b.
     # "This spell can't be countered" protects only itself (Supreme Verdict, Abrupt Decay),
     # which made a wipe and a removal spell count as protection.
+    # A creature that merely HAS hexproof/indestructible/ward protects only itself (Sylvan
+    # Caryatid, Blightsteel Colossus, the Theros gods, Hulking Raptor): 198 such cards were
+    # drafted as "protection". Same gate collection_pool.classify uses: keep a protection
+    # keyword on a NON-creature, or on a creature whose text reaches past itself ("target",
+    # "you control", "another"). Measured: Akroma's Will, Kaldra Compleat, Selfless Spirit,
+    # Avacyn all kept; Lightning Greaves and Whispersilk Cloak (shroud) now reachable.
+    # The WHOLE query stays inside one outer pair of parentheses: _fetch_role appends the
+    # colour-identity and legality filters, which otherwise bind to the last OR branch only
+    # (a draft of this change returned Counterspell for a mono-white deck).
     "protection": (
-        "(o:\"hexproof\" OR o:\"indestructible\" OR o:\"ward {\" OR o:\"ward—\" "
+        "(((o:\"hexproof\" OR o:\"indestructible\" OR o:\"ward {\" OR o:\"ward—\" "
+        "OR o:\"shroud\") "
+        "(-type:creature OR o:\"you control\" OR o:\"target\" OR o:\"another\")) "
         "OR otag:counterspell "
         "OR (o:\"can't be countered\" -o:\"this spell can't be countered\"))"
     ),
@@ -110,7 +145,10 @@ ROLE_QUERIES: dict[str, str] = {
     # relying on goodstuff to happen to include one: mass pump/overrun, extra
     # combats, alt-win-cons, and group-drain payoffs.
     "finisher": (
-        "(o:\"win the game\" OR o:\"wins the game\" OR o:\"loses the game\" "
+        # "can't win the game" is a STAX clause, not a win condition: Platinum Angel,
+        # Angel's Grace, Abyssal Persecutor (9 cards). Excluded, nothing real lost.
+        "((o:\"win the game\" -o:\"can't win the game\") OR o:\"wins the game\" "
+        "OR o:\"loses the game\" "
         "OR o:\"additional combat phase\" OR o:\"an additional combat\" "
         "OR (o:\"creatures you control get +\" o:\"trample\") "
         "OR o:\"creatures you control gain trample\" "

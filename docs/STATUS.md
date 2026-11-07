@@ -15,8 +15,11 @@ ban list / singleton and recomputes stats, imports skip tokens. Rules: `Partnerâ
 pair only within their group; commander eligibility reads the front face only (29 back-face
 legends were offered as commanders); the protection query no longer drafts Thassa's Oracle /
 Gray Merchant via "toward". New: Commander **legality check** (`deck_legality.py`, every path +
-backfilled on load), **sample hand + land odds**, **manual edit** panel. Open, ranked: role-query
-clause audit, per-deck price, Arena/MTGO export, maybeboard; builder bench not re-run.
+backfilled on load), **sample hand + land odds**, **manual edit** panel. Role-query audit done
+the same day: ramp clause dropped 162 "additional"-substring hits, protection gates 198 self-only
+creatures, finisher skips "can't win"; classifier now reads Go for the Throat / Doom Blade (+211
+removal), Craterhoof (+9 finishers), land-aura ramp (+20). Open, ranked: per-deck price,
+Arena/MTGO export, maybeboard; builder bench not re-run.
 
 ## 1. Where we are
 

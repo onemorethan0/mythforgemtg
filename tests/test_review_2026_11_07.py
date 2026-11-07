@@ -354,3 +354,79 @@ def test_backfill_counts_a_missing_partner_without_guessing_identity():
     state._backfill_legality(data)
     kinds = {i["kind"] for i in data["stats"]["legality"]["issues"]}
     assert kinds == {"size"} and data["stats"]["legality"]["total"] == 101
+
+
+# ── Role-query audit (2026-11-07, docs/REVIEW_2026-11-07_full.md section 8) ──────────────
+
+def _top_level_or(q: str) -> bool:
+    depth, quoted = 0, False
+    for i, ch in enumerate(q):
+        if ch == '"':
+            quoted = not quoted
+        if quoted:
+            continue
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif depth == 0 and q[i:i + 4] == " OR ":
+            return True
+    return False
+
+
+def test_every_appended_to_query_is_one_group():
+    """_fetch_role / the theme step APPEND id<=... legal:commander -type:land. With an OR at
+    the top level those filters bind to the last branch only: a draft of the protection
+    rewrite returned Counterspell for a mono-white deck."""
+    from commander_analysis import THEME_SYNERGY_QUERIES
+    queries = dict(deck_builder.ROLE_QUERIES, **{k: v for k, v in THEME_SYNERGY_QUERIES.items() if v})
+    assert [k for k, q in queries.items() if _top_level_or(q)] == []
+
+
+def _o_terms(query):
+    import re
+    return re.findall(r'o:"([^"]+)"', query)
+
+
+def test_ramp_query_has_no_bare_add_substring():
+    """o:"add" matched "additional cost" / "in addition to" (Eldritch Evolution, Neoform)."""
+    terms = _o_terms(deck_builder.ROLE_QUERIES["ramp"])
+    assert "add" not in terms and "mana" not in terms
+    for real in ("add {g}", "adds an additional {g}", "add three mana", "add x {r}",
+                 "add six {r}", "play an additional land", "add twice that much {g}"):
+        assert any(t in real for t in terms), real
+    for fake in ("as an additional cost to cast this spell", "in addition to its other types",
+                 "add a lore counter"):
+        assert not any(t in fake for t in terms), fake
+
+
+def test_protection_query_gates_self_only_creatures_and_finisher_skips_stax():
+    q = deck_builder.ROLE_QUERIES["protection"]
+    assert '-type:creature OR o:"you control" OR o:"target" OR o:"another"' in q
+    assert 'o:"ward"' not in q
+    assert '-o:"can\'t win the game"' in deck_builder.ROLE_QUERIES["finisher"]
+
+
+@pytest.mark.parametrize("text,type_line,role", [
+    ("Destroy target nonartifact creature.", "Instant", "removal"),              # Go for the Throat
+    ("Destroy target nonblack creature. It can't be regenerated.", "Instant", "removal"),
+    ("When this creature enters, destroy target nonartifact, nonblack creature.",
+     "Creature — Elemental", "removal"),                                          # Shriekmaw
+    ("{T}: Destroy target tapped creature.", "Creature — Human Assassin", "removal"),
+    ("When this creature enters, creatures you control gain trample and get +X/+X until end "
+     "of turn, where X is the number of creatures you control.", "Creature — Beast", "finisher"),
+    ("Whenever enchanted land is tapped for mana, its controller adds an additional {G}.",
+     "Enchantment — Aura", "ramp"),                                               # Wild Growth
+])
+def test_classifier_reads_qualified_removal_x_overruns_and_land_auras(text, type_line, role):
+    import collection_pool
+    assert role in collection_pool.classify({"oracle_text": text, "type_line": type_line})
+
+
+def test_classifier_still_rejects_self_protection_and_non_removal():
+    import collection_pool
+    assert "protection" not in collection_pool.classify(
+        {"oracle_text": "Hexproof\n{T}: Add one mana of any color.",
+         "type_line": "Creature — Dryad"})                                         # Sylvan Caryatid
+    assert "removal" not in collection_pool.classify(
+        {"oracle_text": "Destroy all creatures. They can't be regenerated.", "type_line": "Sorcery"})

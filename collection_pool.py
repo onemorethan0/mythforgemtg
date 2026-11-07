@@ -278,7 +278,12 @@ def _grants_protection_to_other(card: dict, text: str) -> bool:
 
 
 _REMOVAL_PATTERNS = [
-    r"destroy target (?:creature|permanent|artifact|enchantment|planeswalker|land|nonland)",
+    # Up to three qualifier words between "target" and the object: the old form needed the
+    # object word straight after "target", so Go for the Throat ("nonartifact creature"),
+    # Doom Blade ("nonblack"), Snuff Out, Shriekmaw ("nonartifact, nonblack") and Royal
+    # Assassin ("tapped") were not removal (2026-11-07 role audit).
+    r"destroy target (?:[\w-]+,? ){0,3}?(?:creature|permanent|artifact|enchantment"
+    r"|planeswalker|land|nonland|battle)",
     r"exile target",
     r"return target .{0,40} to its owner['’]s hand",
     rf"deals? {_NUM} damage to (?:target|any target)",
@@ -327,6 +332,10 @@ def classify(card: dict) -> set[str]:
             or re.search(r"search your library for .{0,60}land.{0,60}(?:onto|into) the battlefield",
                          low, re.S)
             or re.search(r"play an additional land", low)
+            # Mana doublers and land auras: "adds an additional {G}" (Wild Growth, Utopia
+            # Sprawl, Fertile Ground, Crypt Ghast, Nissa) produce no mana on their own line,
+            # so _net_mana_positive never saw them.
+            or re.search(r"adds? an additional (?:\{|one mana)", low)
             # Counts are spelled as words, as X, or as "that many" (Smaug the
             # Impenetrable). A literal a|two|three list drops all three of those.
             or re.search(rf"creates? (?:{_NUM}|a|that many|[^.]{{0,30}}?) treasure token",
@@ -350,7 +359,11 @@ def classify(card: dict) -> set[str]:
 
     if any(re.search(p, low) for p in _FINISHER_PATTERNS):
         roles.add("finisher")
-    if re.search(r"creatures you control get \+\d+/\+\d+", low) and "trample" in low:
+    # +X/+X counts, and so does "gain trample and get": Craterhoof Behemoth and Overwhelming
+    # Stampede, the format's two best-known overruns, both read "creatures you control gain
+    # trample and get +X/+X" and matched neither half of the old digit-only pattern.
+    if re.search(r"creatures you control (?:gain trample and )?get \+(?:\d+|x)/\+(?:\d+|x)", low) \
+            and "trample" in low:
         roles.add("finisher")
     # Granted double strike is a finisher; a lone creature that HAS it is not.
     if re.search(r"creatures you control (?:have|gain) double strike", low):
