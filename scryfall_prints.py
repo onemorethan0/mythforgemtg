@@ -276,6 +276,34 @@ def prints_of(name: str) -> list[dict]:
                   "ORDER BY released_at DESC, set_code, cn", params)
 
 
+def prints_of_many(names: Iterable[str]) -> dict[str, list[dict]]:
+    """`prints_of` for many names at once: {lowercased name: printings}.
+
+    `prints_of`'s `OR name_key LIKE` clause cannot use the name index, so pricing a 100-card
+    deck one name at a time was ~100 full scans (measured 4-5 s per deck). Exact names go in
+    one indexed IN query; only names that miss (a '//' card stored by its front face) fall
+    back to the per-name LIKE.
+    """
+    keys = list(dict.fromkeys(k for k in ((n or "").lower().strip() for n in names) if k))
+    out: dict[str, list[dict]] = {k: [] for k in keys}
+    if not keys or not enabled():
+        return out
+    with _LOCK:
+        conn = _conn()
+        if conn is None:
+            return out
+        for i in range(0, len(keys), 500):
+            chunk = keys[i:i + 500]
+            rows = conn.execute(
+                "SELECT name_key, card FROM prints WHERE name_key IN ("
+                + ",".join("?" * len(chunk)) + ")", chunk).fetchall()
+            for key, blob in rows:
+                out[key].append(_decode(blob))
+    for key in [k for k, v in out.items() if not v]:
+        out[key] = prints_of(key)
+    return out
+
+
 def resolve(name: str, set_code: str = "", cn: str = "", scryfall_id: str = "") -> Optional[dict]:
     """The printing a collection row names. Id first, then set + collector number, then the
     set alone only when that set holds exactly ONE printing of the name (several Forests in

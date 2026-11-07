@@ -21,6 +21,7 @@ import { searchCards } from '../utils/searchCards'
 import { GROUP_BYS, GROUP_BY_LABELS, TYPE_ORDER, groupCards, nameKey, primaryType } from '../utils/deckGrouping'
 import { BRACKET_TERMS } from '../glossary'
 import LegalityBlock from './LegalityBlock'
+import DeckPrice from './DeckPrice'
 import SampleHandPanel from './SampleHandPanel'
 import EditDeckPanel from './EditDeckPanel'
 
@@ -745,6 +746,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {stats.legality?.issues && deck.is_commander_deck !== false && !deck.import_auto_face && (
               <LegalityBlock legality={stats.legality} />
             )}
+            {/* Deck value + cost to finish (B20). Keyed on swap_count: an edit changes the list. */}
+            {!single && <DeckPrice key={`price-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />}
 
             {stats.quality && (
               <>

@@ -725,6 +725,31 @@ def export_decklist(job_id: str):
     )
 
 
+@router.get("/api/deck/{job_id}/price")
+def deck_price_route(job_id: str):
+    """Deck value and the cost to finish it (deck_price.py, B20). Offline: priced from the
+    local Scryfall bulk store; `prices_as_of` says how fresh that is. Ownership is the same
+    test as the deck page's badges (a basic land is always owned)."""
+    _require_job_id(job_id)
+    job = _load_job_for_export(job_id)
+    if not job.get("deck"):
+        raise HTTPException(400, "A single-card build has no deck to price.")
+    import deck_price
+    import scryfall_bulk
+    import scryfall_prints
+    from api.collection_data import _card_is_owned, _owned_names_cached
+    owned = _owned_names_cached()
+    cards = [job.get("commander") or {}] + list(job.get("deck") or [])
+    result = deck_price.price_deck(
+        cards, deck_price.cheapest_lookup(scryfall_prints.prints_of_many, scryfall_bulk.lookup_many),
+        lambda c: _card_is_owned(c["original_name"],
+                                 c.get("original_type_line") or c.get("type_line", ""), owned))
+    age = scryfall_prints.age_days()
+    result["prices_as_of_days"] = None if age is None else round(age, 1)
+    result["basis"] = "cheapest nonfoil printing (Scryfall market USD)"
+    return result
+
+
 @router.get("/api/deck/{job_id}/export/videos")
 def export_videos(job_id: str):
     """ZIP of the deck's looping MP4 animations (only animated cards)."""

@@ -409,6 +409,7 @@ classification sweep needs it, not before.
 ---
 
 ## B14-B18. Deck building development plan
+**Superseded as the ordering document by [`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md) (2026-11-07), which carries B14-B18 forward and adds B19-B29.**
 Full review, evidence and acceptance tests: [`DECKBUILD_REVIEW.md`](DECKBUILD_REVIEW.md). Start with B14 (measure only, no behaviour change); its table decides how much of B15-B17 is needed.
 
 ---

@@ -7,6 +7,8 @@ first command, owner). `HANDOFF.md` is the August record; `CLAUDE.md` is now an 
 **Goal the work is judged against:** casual Bracket 1-3 gauging — "is this deck fun and on-level
 for my pod" — not cEDH optimisation. A wrong card model is a defect, not an approximation.
 
+**Direction and ordered next work: [`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md)** (B19-B29, from the 2026-11-07 review).
+
 ## 0. 2026-11-07 full review (local report: `docs/REVIEW_2026-11-07_full.md`, gitignored)
 
 Fixed: partner handling end to end (builder could draft the partner into the 99; engine got it
