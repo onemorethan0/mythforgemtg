@@ -2,7 +2,11 @@
 // the import preview). Shared by the deck view and the import preview so the two can't drift.
 // `unverified` counts cards whose ban status the stored deck doesn't carry; it is shown as
 // exactly that, never folded into "legal".
-export default function LegalityBlock({ legality, compact = false }) {
+import LegalityFix from './LegalityFix'
+
+// jobId + onFixed (deck page only) add the one-click repair (B21); the import preview has
+// no saved deck to fix, so it passes neither.
+export default function LegalityBlock({ legality, compact = false, jobId, onFixed }) {
   if (!legality || !Array.isArray(legality.issues)) return null
   const ok = legality.legal
   return (
@@ -20,9 +24,10 @@ export default function LegalityBlock({ legality, compact = false }) {
           {issue.message}
         </div>
       ))}
+      {!ok && jobId && <LegalityFix key={jobId} jobId={jobId} onFixed={onFixed} />}
       {legality.unverified > 0 && (
         <div style={{ fontSize: 11, color: '#78716c', marginTop: 3 }}>
-          Ban status not stored for {legality.unverified} card{legality.unverified === 1 ? '' : 's'} (saved before this check existed), so the ban list is unchecked for those.
+          Ban status unknown for {legality.unverified} card{legality.unverified === 1 ? '' : 's'} (not in the local card data), so the ban list is unchecked for those.
         </div>
       )}
     </div>

@@ -185,9 +185,7 @@ class BracketFilter:
         # when a card dict genuinely lacks the key (synthetic/offline data). `.get()`
         # returning None means "absent", not "false" — a card actually flagged False
         # must not fall through to a stale name-list lookup.
-        gc_field = card.get("game_changer")
-        is_game_changer = gc_field if gc_field is not None else (name in GAME_CHANGERS)
-        if is_game_changer:
+        if self._is_game_changer(card):
             if self.rules.max_game_changers == -1:
                 self._gc_used += 1
                 return True
@@ -211,6 +209,20 @@ class BracketFilter:
                 return False
 
         return True
+
+    @staticmethod
+    def _is_game_changer(card: dict) -> bool:
+        gc_field = card.get("game_changer")
+        return gc_field if gc_field is not None else (card.get("name", "") in GAME_CHANGERS)
+
+    def count_existing(self, cards) -> int:
+        """Charge the quota for Game Changers ALREADY in a list, so a refill into an existing
+        deck (the legality fix-it) cannot push it past the bracket's cap: a fresh filter
+        starts at zero and would allow the full quota on top of what the deck holds."""
+        for card in cards:
+            if self._is_game_changer(card):
+                self._gc_used += 1
+        return self._gc_used
 
     def candidate_buffer(self, want: int) -> int:
         return want * self.rules.search_buffer

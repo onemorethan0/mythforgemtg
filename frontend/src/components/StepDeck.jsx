@@ -744,7 +744,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 ban list, commander/pairing. Only for a real Commander deck: an imported
                 60-card list with an auto-elected face has no command zone to judge. */}
             {stats.legality?.issues && deck.is_commander_deck !== false && !deck.import_auto_face && (
-              <LegalityBlock legality={stats.legality} />
+              <LegalityBlock legality={stats.legality} jobId={jobId} onFixed={onDuplicate} />
             )}
             {/* Deck value + cost to finish (B20). Keyed on swap_count: an edit changes the list. */}
             {!single && <DeckPrice key={`price-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />}

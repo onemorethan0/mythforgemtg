@@ -176,8 +176,11 @@ def check(commander: dict | None, deck: list[dict],
                                   "legendary creature and doesn't say it can be.",
                        "cards": [_name(lead)]})
     for other in zone_cards[1:]:
-        if not (other.get("oracle_text") or other.get("type_line")):
-            continue                        # name only: nothing to judge the pairing on
+        # Either side with no rules text: nothing to judge the pairing on. "No partner
+        # ability" read off a stored commander that simply carries no text would refuse a
+        # legal Tymna + Thrasios zone.
+        if not other.get("oracle_text") or not _text(lead):
+            continue
         ok, why = commander_analysis.can_pair(lead, other)
         if not ok:
             issues.append({"kind": "pairing", "message": why, "cards": [_name(other)]})
@@ -188,4 +191,83 @@ def check(commander: dict | None, deck: list[dict],
         "issues": issues,
         # Cards whose ban status could not be read. Not a verdict either way.
         "unverified": unverified,
+    }
+
+
+# ── Repair plan (B21, docs/DEVELOPMENT_PLAN.md) ─────────────────────────────────────────
+# Most refill a deck can honestly take: a list that short is a different deck, and the
+# answer is a rebuild, not 40 goodstuff cards.
+MAX_REFILL = 15
+
+
+def _is_basic(card: dict) -> bool:
+    tl = (card.get("original_type_line") or card.get("type_line") or "").lower()
+    return "basic" in tl.split(" // ")[0].replace("—", " ").split()
+
+
+def plan_fix(commander: dict, deck: list[dict], partners: list[dict] | None = None) -> dict:
+    """What it takes to make this deck legal, without deciding what to ADD (that needs the
+    builder and the network). Pure.
+
+    - remove: cards outside the zone's identity, banned / not legal (all copies)
+    - reduce: {name: allowed copies} for singleton breaches
+    - trim:   {basic name: copies to cut} when still over 100 (largest basic stacks first;
+              a basic is the one card whose loss changes nothing but the land count)
+    - refill: how many cards to add to reach 100
+    - unfixable: issues this cannot repair (commander/pairing, too short, over with no basics)
+    """
+    report = check(commander, deck, partners)
+    if not report:
+        return {}
+    kinds = {i["kind"]: i for i in report["issues"]}
+    remove = set(kinds.get("identity", {}).get("cards", []))
+    remove |= set(kinds.get("legality", {}).get("cards", []))
+    zone = {_name(commander).casefold()} | {_name(p).casefold() for p in (partners or [])}
+
+    reduce: dict[str, int] = {}
+    for name in kinds.get("singleton", {}).get("cards", []):
+        card = next(c for c in deck if _name(c) == name)
+        reduce[name] = copy_limit(card) or 1
+
+    remaining = 0
+    stacks: dict[str, int] = {}
+    allowance = dict(reduce)          # consumed across entries: a duplicate may be two rows
+    for card in deck:
+        name = _name(card)
+        if not name or name.casefold() in zone or name in remove:
+            continue
+        n = _qty(card)
+        if name in allowance:
+            n = min(n, allowance[name])
+            allowance[name] -= n
+        remaining += n
+        if _is_basic(card):
+            stacks[name] = stacks.get(name, 0) + n
+    size = 1 + len(partners or []) + remaining
+
+    trim: dict[str, int] = {}
+    unfixable = [i["message"] for i in report["issues"] if i["kind"] in ("commander", "pairing")]
+    over = size - DECK_SIZE
+    while over > 0 and stacks:
+        biggest = max(stacks, key=lambda n: (stacks[n], n))
+        if stacks[biggest] <= 1:
+            break
+        stacks[biggest] -= 1
+        trim[biggest] = trim.get(biggest, 0) + 1
+        over -= 1
+    if over > 0:
+        unfixable.append(f"Still {over} card(s) over 100 with no spare basic land to cut; "
+                         "remove them by hand.")
+    refill = max(0, DECK_SIZE - (size - sum(trim.values())))
+    if refill > MAX_REFILL:
+        unfixable.append(f"{refill} cards short: too far from a deck to repair. Rebuild it instead.")
+        refill = 0
+    return {
+        "before": report,
+        "remove": sorted(remove),
+        "reduce": reduce,
+        "trim": trim,
+        "refill": refill,
+        "unfixable": unfixable,
+        "fixable": not unfixable and bool(remove or reduce or trim or refill),
     }

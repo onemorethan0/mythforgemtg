@@ -288,9 +288,11 @@ async def list_decks():
                 # ever exposed, so History showed a chain of derived decks as a pile of
                 # near-identical entries with no relationship between them.
                 "derived_from":     (data.get("rethemed_from") or data.get("rebuilt_from")
+                                     or data.get("fixed_from")
                                      or data.get("copied_from", "")),
                 "derived_kind":     ("retheme" if data.get("rethemed_from")
                                      else "rebuild" if data.get("rebuilt_from")
+                                     else "fix" if data.get("fixed_from")
                                      else "copy" if data.get("copied_from") else ""),
                 "imported":         bool(data.get("imported")),
                 # A single custom card is not a deck; History showed it as
@@ -378,6 +380,162 @@ async def duplicate_deck(job_id: str):
 
     themed_name = (data.get("commander") or {}).get("themed_name", "")
     return {"new_job_id": new_job_id, "themed_name": themed_name}
+
+
+class FixLegalityRequest(BaseModel):
+    apply:   bool = False                              # False = dry run: report the plan only
+    partner: str  = Field("", max_length=120)          # a lost partner to restore first
+
+
+@router.post("/api/deck/{job_id}/fix-legality")
+def fix_legality(job_id: str, req: FixLegalityRequest):
+    """Make a flagged deck Commander-legal (B21, docs/DEVELOPMENT_PLAN.md).
+
+    Dry run by default: returns what would be removed (off-identity, banned), reduced
+    (extra copies), trimmed (spare basics when over 100) and refilled. With `apply`, writes the
+    result as a NEW deck (`fixed_from` the source), like duplicate/rebuild/retheme: the
+    original is never modified. Refill uses the builder's own goodstuff fill, so it respects
+    the identity, the bracket and this commander's EDHREC lift; removed cards can't return.
+
+    `partner` restores a partner an older build lost: those decks hold the partner's colours
+    with nothing recording the partner, so without it the fix would strip half the deck as
+    "off-colour". The pairing is validated with the same rules as a new build.
+    """
+    import copy
+    import shutil as _shutil
+
+    import deck_legality
+    from api.cards import _stored_card_to_dict
+    from api.routes_strength import _recompute_stats
+    from deck_builder import DeckBuilder, aggregate_duplicates
+
+    _require_job_id(job_id)
+    job = _load_job_for_export(job_id)
+    if not job.get("deck"):
+        raise HTTPException(400, "A single-card build has no deck to fix.")
+    if job.get("is_commander_deck") is False or job.get("import_auto_face"):
+        raise HTTPException(400, "This deck isn't marked as a Commander deck.")
+    data = copy.deepcopy({k: v for k, v in job.items() if k != "cancel_event"})
+    cmd_name = (data.get("commander") or {}).get("original_name") or ""
+    lead = _scryfall.get_card_by_name(cmd_name) if cmd_name else None
+
+    partner_added = None
+    if req.partner.strip():
+        if data.get("partners"):
+            raise HTTPException(400, "This deck already records its partner.")
+        pc = _scryfall.get_card_by_name(req.partner.strip(), fuzzy=True)
+        if not pc:
+            raise HTTPException(404, f"Partner not found: {req.partner}")
+        ok, why = commander_analysis.can_pair(lead or {}, pc)
+        if not ok:
+            raise HTTPException(400, why)
+        data["partners"] = [pc["name"]]
+        if not any((e.get("original_name") or "").casefold() == pc["name"].casefold()
+                   for e in data["deck"]):
+            data["deck"].append(_imported_card_to_stored({**pc, "quantity": 1},
+                                                         len(data["deck"]) + 1))
+        partner_added = pc["name"]
+
+    # A partner recorded by name whose CARD was never appended (builds from before
+    # partner_count) goes back into the list: every other path keeps partners inside `deck`
+    # (render, card count, sample hand, export), and without it the fixed deck read 99.
+    for pname in data.get("partners") or []:
+        if not any((e.get("original_name") or "").casefold() == pname.casefold()
+                   for e in data["deck"]):
+            pc = _scryfall.get_card_by_name(pname)
+            if pc:
+                data["deck"].append(_imported_card_to_stored({**pc, "quantity": 1},
+                                                             len(data["deck"]) + 1))
+
+    plan = deck_legality.plan_fix(*state._legality_inputs(data))
+    if not plan:
+        raise HTTPException(400, "Nothing to check.")
+    identity_issue = any(i["kind"] == "identity" for i in plan["before"]["issues"])
+    response = {
+        **plan,
+        "partner_added": partner_added,
+        # The commander has a partner ability, half the deck reads off-colour and nothing
+        # records a partner: most likely an old build that lost it. Ask before stripping.
+        "suggest_partner": bool(identity_issue and not data.get("partners") and lead
+                                and commander_analysis.partner_mechanic(lead)),
+    }
+    if not req.apply:
+        return response
+    if not plan["fixable"]:
+        raise HTTPException(400, "; ".join(plan["unfixable"]) or "Already legal.")
+
+    removed = set(plan["remove"])
+    allowance, trim = dict(plan["reduce"]), dict(plan["trim"])
+    new_deck: list[dict] = []
+    for entry in data["deck"]:
+        name = entry.get("original_name") or ""
+        if name in removed:
+            continue
+        qty = int(entry.get("quantity") or 1)
+        if name in allowance:
+            keep = min(qty, allowance[name])
+            allowance[name] -= keep
+            qty = keep
+        if trim.get(name):
+            cut = min(trim[name], qty)
+            trim[name] -= cut
+            qty -= cut
+        if qty > 0:
+            new_deck.append({**entry, "quantity": qty})
+
+    added: list[str] = []
+    if plan["refill"]:
+        if not lead:
+            raise HTTPException(503, "Couldn't look up the commander to refill the deck.")
+        pcards = [c for c in (_scryfall.get_card_by_name(n) for n in data.get("partners") or [])
+                  if c]
+        profile = commander_analysis.build_commander_profile(lead, pcards)
+        existing = [_stored_card_to_dict(e) for e in new_deck]
+        try:                                     # live Game Changer flags for the cap
+            import scryfall_bulk
+            flags = scryfall_bulk.lookup_many([c["name"] for c in existing])
+            for c in existing:
+                hit = flags.get(c["name"].lower())
+                if hit and hit.get("game_changer") is not None:
+                    c["game_changer"] = hit["game_changer"]
+        except Exception:                        # noqa: BLE001 - falls back to the name list
+            pass
+        fresh = DeckBuilder(_scryfall).refill(
+            profile, existing, plan["refill"],
+            bracket=int(data.get("bracket") or 3),
+            partner_names=[p["name"] for p in pcards], blocked=removed)
+        by_name = {e["original_name"]: e for e in new_deck}
+        for card in aggregate_duplicates(fresh):
+            if card["name"] in by_name:          # a padded basic joins its stack
+                by_name[card["name"]]["quantity"] += int(card.get("quantity") or 1)
+                continue
+            entry = _imported_card_to_stored(card, len(new_deck) + 1)
+            entry["swapped_in"] = True               # UI badge: not in the original list
+            new_deck.append(entry)
+            by_name[entry["original_name"]] = entry
+            added.append(entry["original_name"])
+
+    data["deck"] = new_deck
+    data["stats"] = _recompute_stats(data, new_deck)
+    data["stats"]["legality"] = deck_legality.check(*state._legality_inputs(data))
+    for stale in ("last_measure", "advice_cache", "breakdown", "applied_swaps", "swap_count"):
+        data.pop(stale, None)
+    data.update({
+        "status": "done", "built_at": time.time(), "fixed_from": job_id,
+        "legality_fix": {"removed": sorted(removed), "reduced": plan["reduce"],
+                         "trimmed": plan["trim"], "added": added,
+                         "partner_added": partner_added},
+    })
+    new_job_id = uuid.uuid4().hex[:16]
+    src_dir, dst_dir = state.RENDER_DIR / job_id, state.RENDER_DIR / new_job_id
+    if src_dir.exists():
+        _shutil.copytree(str(src_dir), str(dst_dir))
+    else:
+        dst_dir.mkdir(parents=True, exist_ok=True)
+    (dst_dir / "deck.json").write_text(json.dumps(data), encoding="utf-8")
+    _jobs[new_job_id] = data
+    return {**response, "new_job_id": new_job_id, "added": added,
+            "after": data["stats"]["legality"]}
 
 
 @router.delete("/api/deck/{job_id}")

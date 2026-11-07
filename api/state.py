@@ -297,6 +297,27 @@ def _stored_for_legality(d: dict) -> dict:
     }
 
 
+def _with_bulk_legality(cards: list[dict]) -> list[dict]:
+    """Fill a missing ban status from the LOCAL Scryfall bulk store (offline, one indexed
+    query). Decks saved before `commander_legality` was stored otherwise report every card as
+    `unverified`, and a fix-it could not see their banned cards. Never overwrites a stored
+    value; a card the store doesn't know stays unverified."""
+    need = [c for c in cards if not c.get("commander_legality") and c.get("name")]
+    if not need:
+        return cards
+    try:
+        import scryfall_bulk
+        found = scryfall_bulk.lookup_many([c["name"] for c in need])
+    except Exception:      # noqa: BLE001 - verification is best-effort
+        return cards
+    for c in need:
+        hit = found.get(c["name"].lower()) or found.get(c["name"].split(" // ")[0].lower())
+        status = ((hit or {}).get("legalities") or {}).get("commander")
+        if status:
+            c["commander_legality"] = status
+    return cards
+
+
 def _backfill_legality(data: dict) -> None:
     """Derive `stats.legality` for decks saved before the check existed, like
     `_backfill_quality`: in memory only, never written back. Ban status is not stored on
@@ -306,18 +327,43 @@ def _backfill_legality(data: dict) -> None:
         return
     try:
         import deck_legality
-        cards = [_stored_for_legality(c) for c in data["deck"]]
-        names = [n for n in (data.get("partners") or []) if n]
-        by_name = {c["name"].casefold(): c for c in cards}
-        # A partner recorded by name but never appended to the deck (builds from before
-        # partner_count, which shipped 99 + 2 = 101 cards) still occupies the command
-        # zone: count it, with an UNKNOWN identity so the identity check stands down
-        # instead of calling half the deck off-colour.
-        partners = [by_name.get(n.casefold(), {"name": n}) for n in names]
-        stats["legality"] = deck_legality.check(
-            _stored_for_legality(data.get("commander") or {}), cards, partners)
+        stats["legality"] = deck_legality.check(*_legality_inputs(data))
     except Exception:      # noqa: BLE001 — advisory; a bad stored deck must still load
         pass
+
+
+def _legality_inputs(data: dict) -> tuple[dict, list[dict], list[dict]]:
+    """(commander, cards, partners) of a stored deck in deck_legality's shape, ban status
+    filled from the local bulk store. The ONE conversion: the load-time backfill and the
+    fix-it endpoint both use it, so they cannot judge the same deck differently."""
+    cards = _with_bulk_legality([_stored_for_legality(c) for c in data.get("deck") or []])
+    commander = _with_bulk_legality([_stored_for_legality(data.get("commander") or {})])[0]
+    names = [n for n in (data.get("partners") or []) if n]
+    by_name = {c["name"].casefold(): c for c in cards}
+    # A partner recorded by name but never appended to the deck (builds from before
+    # partner_count, which shipped 99 + 2 = 101 cards) still occupies the command zone:
+    # count it, with an UNKNOWN identity so the identity check stands down instead of
+    # calling half the deck off-colour.
+    partners = [by_name.get(n.casefold(), {"name": n}) for n in names]
+    # Resolve a name-only partner from the local bulk store when it can be: its identity
+    # and ban status are then KNOWN (the check judges the real zone) instead of reported
+    # as "not in the local card data" for a card that is merely missing from the list.
+    missing = [p for p in partners if "color_identity" not in p]
+    if missing:
+        try:
+            import scryfall_bulk
+            found = scryfall_bulk.lookup_many([p["name"] for p in missing])
+        except Exception:      # noqa: BLE001 - stays name-only (identity check stands down)
+            found = {}
+        for i, p in enumerate(partners):
+            hit = found.get(p["name"].lower()) if "color_identity" not in p else None
+            if hit:
+                partners[i] = {"name": hit.get("name", p["name"]),
+                               "type_line": hit.get("type_line", ""),
+                               "oracle_text": hit.get("oracle_text", ""),
+                               "color_identity": hit.get("color_identity") or [],
+                               "commander_legality": (hit.get("legalities") or {}).get("commander")}
+    return commander, cards, partners
 
 
 def _load_deck_from_disk(job_id: str) -> Optional[dict]:

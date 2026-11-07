@@ -1044,6 +1044,40 @@ class DeckBuilder:
         return [c["name"] for c in self._deck
                 if c.get("name") not in known and "basic" not in (c.get("type_line") or "").lower()]
 
+    def refill(self, profile: CommanderProfile, existing: list[dict], want: int,
+               bracket: int = 3, partner_names: list[str] | None = None,
+               blocked: set[str] | None = None) -> list[dict]:
+        """Draft `want` cards into an EXISTING library (the legality fix-it, B21).
+
+        Sets the same state build() would, from the list as it stands, then uses the ordinary
+        goodstuff fill: identity-filtered, bracket-filtered, ordered by this commander's lift,
+        curve-aware against what is already there. `blocked` names can never come back (the
+        cards the fix just removed). Basics pad only if the pool runs dry, so the result is
+        always exactly `want` cards. Returns the new cards only.
+        """
+        partner_names = [n for n in (partner_names or []) if n]
+        self._deck = list(existing)
+        self._names = {c.get("name") for c in existing if c.get("name")} | set(blocked or ())
+        self._commander_name = profile.name
+        self._command_zone = {profile.name, *partner_names}
+        self._library_size = 99 - len(partner_names)
+        self._lifts = edhrec_lift.lift_map(profile.name)
+        self._bracket_filter = BracketFilter(bracket if bracket in BRACKET_LABELS else 3)
+        # The deck's own Game Changers count against the cap (callers should supply the live
+        # `game_changer` flag; without it the filter falls back to its name list).
+        self._bracket_filter.count_existing(existing)
+        self._owned, self._owned_cards = set(), []
+        self._card_source, self._pool, self.shortfall = SOURCE_SCRYFALL, None, {}
+        lands = sum(int(c.get("quantity", 1) or 1) for c in existing if deck_quality.is_land(c))
+        self._curve_target = deck_quality.curve_target(
+            max(0, self._library_size - lands), int(profile.mana_value))
+        before = len(self._deck)
+        if want > 0:
+            added = self._fetch_goodstuff(profile, want)
+            if added < want:
+                self._pad_with_basics(profile, want - added)
+        return self._deck[before:]
+
     # ── Public API ────────────────────────────────────────────────────────────
 
     def build(

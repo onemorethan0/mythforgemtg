@@ -361,6 +361,7 @@ const KIND_BADGE = {
   retheme: { icon: '✏️', label: 'retheme', color: '#93c5fd', bg: '#0c1a2e', border: '#1e40af' },
   rebuild: { icon: '🎲', label: 'rebuild', color: '#c4b5fd', bg: '#180f2e', border: '#6d28d9' },
   copy:    { icon: '📋', label: 'copy',    color: '#7dd3fc', bg: '#0f172a', border: '#1e40af' },
+  fix:     { icon: '⚖️', label: 'legal fix', color: '#86efac', bg: '#052e16', border: '#15803d' },
 }
 
 function buildFamilies(decks) {

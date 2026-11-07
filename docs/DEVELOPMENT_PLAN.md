@@ -46,7 +46,7 @@ Status: `todo`, `doing`, `done`, `deferred`. Owner as in BACKLOG.md (C / N / U).
 | ID | Item | Why | Accept | Status |
 |---|---|---|---|---|
 | B20 | **Deck price**: total value, and the cost of what you don't own | the first number Moxfield/Archidekt show; for a casual player "what do I still have to buy" is the real question | deck page shows total and to-acquire USD, card count priced vs unpriced (never a silent partial sum), owned cards from the collection's own printing-faithful prices; works offline from cache | **done** |
-| B21 | **Legality fix-it**: one action on a flagged deck that removes off-identity / banned / extra copies and refills legally | the check now flags 22 of 136 saved decks (Marchesa, old Tymna builds) and offers no way out | a flagged deck becomes legal in one call; a duplicate-deck test; refill respects the bracket and identity | todo |
+| B21 | **Legality fix-it**: one action on a flagged deck that removes off-identity / banned / extra copies and refills legally | the check now flags 22 of 136 saved decks (Marchesa, old Tymna builds) and offers no way out | a flagged deck becomes legal in one call; a duplicate-deck test; refill respects the bracket and identity | **done** |
 | B22 | **Persist printings on deck cards** (set, collector number, finish) at build and import | known open since 2026-10-07: the "exact deck printing" rule is inert; blocks B23 | stored deck cards carry set + collector number; import keeps the source deck's printing | todo |
 | B23 | **Export formats**: Arena / MTGO-style `1 Name (SET) 123`, CSV | friends play on different sites; plain text already round-trips | each format round-trips through our importer; Moxfield and Archidekt accept the text format | todo (after B22) |
 | B24 | **Considering pile (maybeboard)**: park candidate cards on a deck, promote with a swap | how people actually tune a deck between games | add/remove/promote; never counted in legality, strength or stats | todo |
@@ -85,6 +85,17 @@ B18 can be taken in slices whenever a file is being edited anyway.
 
 Newest first. One line per change, with the commit.
 
+- 2026-11-07: **B21 done.** `deck_legality.plan_fix` (pure: remove off-identity/banned, reduce extra
+  copies, trim the biggest basic stack when over 100, refill up to 15, else "rebuild") +
+  `POST /api/deck/{id}/fix-legality` (dry run by default; apply writes a NEW deck `fixed_from` the
+  source; "legal fix" lineage badge in History) + `LegalityFix` UI. Old decks' ban status now comes
+  from the local bulk store (the 17-card Thelon list was hiding a banned Mana Crypt). A lost partner
+  can be named and is validated with the pairing rules; a recorded partner whose card was never in
+  the list is put back. Verified on DUPLICATES of 4 real flagged decks (Marchesa, two old Tymna
+  builds, the Azula import), all legal, copies deleted. Found on the way: the refill's bracket
+  filter started at zero Game Changers and added Force of Will to a deck already at the B3 cap of
+  3 (`BracketFilter.count_existing` now charges the deck's own); and the pairing check called a
+  commander with no stored text "no partner ability" (unknown is not illegal).
 - 2026-11-07: **B20 done.** `deck_price.py` + `GET /api/deck/{id}/price` + `DeckPrice` on the deck page.
   First cut priced from the oracle bulk's default printing and left Forest, Evolving Wilds, Lotus
   Petal and Mox Diamond unpriced on real decks (promo/foil-only defaults); now the cheapest nonfoil
