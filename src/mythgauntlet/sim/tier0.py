@@ -173,6 +173,13 @@ class RunStats:
     # it draws no randomness, so every other figure is byte-identical with or without it.
     seen_turn: dict[str, int] = field(default_factory=dict)
     played_turn: dict[str, int] = field(default_factory=dict)
+    # Nonland cards still in hand at the horizon that the deck's FULL final mana could have
+    # paid by amount but not by colour (B31): "stuck because of its pips", not "too costly".
+    stranded_by_colour: set[str] = field(default_factory=set)
+    # ... and those the final mana could not pay even by AMOUNT ("too costly"). A stranded card
+    # in neither set was castable at the end: the greedy policy always had something it ranked
+    # higher, which in an unopposed game is where removal and wipes end up.
+    stranded_by_cost: set[str] = field(default_factory=set)
 
 
 def build_sim_cards(cards: list[tuple[Card, int]]) -> list[SimCard]:
@@ -594,6 +601,16 @@ def _run_one(
         0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
     stats.final_board_creatures = board_creatures
     stats.dead_cards = sum(1 for c in hand if not c.is_land)
+    # Telemetry only (read nowhere in play): every permanent source untapped, could the stuck
+    # card be paid? Enough sources but no assignment = the colours were the blocker.
+    full = [_Source(s.colors) for s in sources if not s.temp]
+    for c in hand:
+        if c.is_land:
+            continue
+        if len(full) < c.mana_value:
+            stats.stranded_by_cost.add(c.card.name)
+        elif _can_pay(full, c.card.cost) is None:
+            stats.stranded_by_colour.add(c.card.name)
     return stats
 
 

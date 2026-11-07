@@ -592,8 +592,42 @@ _IMPACT_RANK_SCALE = 25_000
 _IMPACT_DEFAULT = 0.25
 
 
+# NOT `_LOYALTY_COST_RE` (line ~119, the repeatable/one-shot test): reusing that name
+# shadowed it module-wide and broke loyalty-ability classification.
+_UNREACHABLE_LOYALTY_RE = re.compile(r"^\s*[−–-](\d+)\s*:")
+
+
+def _reachable_text(card: Card) -> str:
+    """Oracle text without loyalty abilities the planeswalker can never activate on entry.
+
+    A loyalty cost of -N removes N loyalty counters, and a cost can't be paid with counters the
+    permanent doesn't have (CR 606.6 / 118.3), so an ability costing more than the starting
+    loyalty is unreachable the turn it lands. Rung 1 has no notion of loyalty or of later
+    turns: it read Ugin, the Spirit Dragon's -10 ("draw seven cards, then put up to seven
+    permanent cards ... onto the battlefield") as draw_cards=7 + cheats_creatures, and the
+    goldfish executed both on cast, so an 8-mana walker drew seven and switched on a
+    Kaalia-style cheat the turn it resolved. Same class: Jace, Wielder of Mysteries' -8,
+    Liliana of the Dark Realms' -6 emblem read as 3 ramp sources. Abilities at or under the
+    starting loyalty (+N, -1, -X) stay: those are the ones a pilot actually uses.
+    """
+    text = card.oracle_text or ""
+    if not card.has_type("Planeswalker"):
+        return text
+    try:
+        loyalty = int(str(card.loyalty).strip())
+    except (TypeError, ValueError):
+        return text                       # "X" or unknown loyalty: nothing to judge against
+    kept = []
+    for line in text.splitlines():
+        m = _UNREACHABLE_LOYALTY_RE.match(line)
+        if m and int(m.group(1)) > loyalty:
+            continue
+        kept.append(line)
+    return "\n".join(kept)
+
+
 def _clean_text(card: Card) -> str:
-    return _REMINDER_RE.sub("", card.oracle_text or "").casefold()
+    return _REMINDER_RE.sub("", _reachable_text(card)).casefold()
 
 
 def _activation_mana_cost(text: str) -> int:

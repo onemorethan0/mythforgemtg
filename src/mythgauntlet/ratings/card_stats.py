@@ -46,6 +46,10 @@ class CardStat:
     cast_rate: float
     avg_cast_turn: float | None
     stranded_rate: float
+    # Of the games it was stranded, the share where the final mana could pay its AMOUNT but
+    # not its COLOURS (tier0 `stranded_by_colour`). High = a pip problem, low = too costly.
+    stranded_colour_share: float
+    stranded_cost_share: float    # ... not even payable by amount (too costly)
     early_uplift: float | None    # turns faster when seen early (None: sample too small)
     uplift_ci: tuple[float, float] | None
     n_early: int
@@ -67,7 +71,7 @@ def compute(runs, turns: int, land_names: set[str] | frozenset[str] = frozenset(
     names = sorted({n for r in runs for n in r.seen_turn})
     out: list[CardStat] = []
     for name in names:
-        seen = played = 0
+        seen = played = by_colour = by_cost = 0
         cast_turns: list[int] = []
         early: list[float] = []
         late: list[float] = []
@@ -79,6 +83,10 @@ def compute(runs, turns: int, land_names: set[str] | frozenset[str] = frozenset(
                 if p is not None:
                     played += 1
                     cast_turns.append(p)
+                elif name in r.stranded_by_colour:
+                    by_colour += 1
+                elif name in r.stranded_by_cost:
+                    by_cost += 1
             (early if t is not None and t <= early_turn else late).append(k)
         uplift = ci = None
         if len(early) >= min_group and len(late) >= min_group:
@@ -93,6 +101,8 @@ def compute(runs, turns: int, land_names: set[str] | frozenset[str] = frozenset(
             cast_rate=round(played / seen, 3) if seen else 0.0,
             avg_cast_turn=round(sum(cast_turns) / len(cast_turns), 2) if cast_turns else None,
             stranded_rate=round((seen - played) / seen, 3) if seen else 0.0,
+            stranded_colour_share=round(by_colour / (seen - played), 3) if seen > played else 0.0,
+            stranded_cost_share=round(by_cost / (seen - played), 3) if seen > played else 0.0,
             early_uplift=uplift, uplift_ci=ci, n_early=len(early), n_late=len(late)))
     out.sort(key=lambda c: (c.early_uplift is None, -(c.early_uplift or 0.0), c.name))
     return out

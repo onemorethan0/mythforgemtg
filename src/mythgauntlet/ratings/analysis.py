@@ -72,6 +72,7 @@ class DeckAnalysis:
     # Per-card goldfish evidence (B30, ratings/card_stats.py). None unless the caller asked
     # (card_stats_runs > 0): it needs its own larger pass (see CARD_STATS_RUNS).
     card_stats: list | None = None
+    card_verdicts: dict | None = None    # B31: strong/weak cards built on card_stats
 
 
 def analyze_deck(
@@ -239,7 +240,13 @@ def analyze_deck(
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
     if card_stats_runs > 0:
+        from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)
+        identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+        analysis.card_verdicts = card_verdicts.build(
+            resolved, analysis.card_stats, lens=lens, combo_profile=combo_profile,
+            targets=redundancy_targets(identity),
+            card_targets=redundancy_card_targets(identity), turns=cfg.turns)
     return analysis
 
 
@@ -249,6 +256,18 @@ def analyze_deck(
 # seed-to-seed spread (0.21 vs 0.20 at 300; well calibrated), and the strongest and weakest
 # cards are significant in 8 of 8 seeds. ~3 s per deck, so it is opt-in.
 CARD_STATS_RUNS = 2000
+
+
+def redundancy_card_targets(color_identity) -> dict[str, int]:
+    from mythgauntlet.ratings import redundancy
+    return redundancy.card_targets_for(None, color_identity=color_identity)
+
+
+def redundancy_targets(color_identity) -> dict[str, int]:
+    """Population role targets for this identity. /analyze is not told the deck's archetypes
+    (Forge detects those), so the baseline is used; B38's scout call will pass themes."""
+    from mythgauntlet.ratings import redundancy
+    return redundancy.targets_for(None, color_identity=color_identity)
 
 
 def compute_card_stats(resolved: ResolvedDeck, cfg: SimConfig, runs: int = CARD_STATS_RUNS):

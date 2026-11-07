@@ -71,10 +71,10 @@ against decks of the same bracket.
 | ID | Item | Closes | Status |
 |---|---|---|---|
 | B30 | Per-card telemetry from the goldfish games already played (cast rate, stranded rate, kill-turn uplift when seen early, with intervals) | which cards carry / which are dead | **done** |
-| B31 | Strong and weak cards, named only past the measured noise floor | strong/weak cards | todo, **next** |
+| B31 | Strong and weak cards, named only past the measured noise floor | strong/weak cards | **done** |
 | B32 | Kill speed as a distribution (p25/median/p75); table speed from the measured four-seat sim, capacity as secondary | speed vs 1 player and the table | todo |
 | B33 | Combos on the clock: assembly probability by turn (draws + tutors + mana), combined clock | combos, real kill speed | todo |
-| B34 | Kill-method attribution (combat / commander damage / drain-burn / combo / alt-win) + top damage cards, in tier0 and T2 | methods it relies on | todo |
+| B34 | Kill-method attribution (combat / commander damage / drain-burn / combo / alt-win) + top damage cards, in tier0 and T2 | methods it relies on | todo, **next** |
 | B35 | Reference field per bracket (one deck per archetype from the corpus) and matchup win rates | weak against (games) | todo |
 | B36 | Exposure to hate: graveyard, commander, artifacts, flyers, single combo, mana base, speed vs peers | weak against (static) | todo |
 | B37 | Strengths/weaknesses as per-bracket percentiles instead of fixed bars | good at (honestly) | todo |
@@ -112,6 +112,7 @@ B18 can be taken in slices whenever a file is being edited anyway.
 
 Newest first. One line per change, with the commit.
 
+- 2026-11-07: **B31 done.** `ratings/card_verdicts.py`: strong (speeds the kill, combo pieces, commander synergy) and weak (stranded with colour/cost/outranked reason, slows the kill on clock cards the goldfish fully models, redundant in card counts). Hand review on 8 decks rewrote 4 rules before shipping, and found an engine defect: planeswalker ultimates read as on-cast effects (Ugin drew 7). Fixed in the tagger (CR 606.6); bracket guard 58.7/91.8 -> 58.5/91.8, one deck moved. Next: B34 (kill-method attribution).
 - 2026-11-07: **B30 done.** Per-card goldfish telemetry (seen/played turn per card, recorded only: byte-identical play, no measurable cost) + `ratings/card_stats.py` + opt-in `/analyze card_stats`. Noise floor measured: 300 games names 4/72 cards; a dedicated 2,000-game pass (~3 s) gives +-0.14-turn intervals, calibrated, top/bottom significant in 8/8 seeds. Found: goldfish uplift ranks removal and wipes last (no opponent to answer), so B31 must never call interaction weak on it (spec section 6).
 - 2026-11-07: **Phase 2b specced** (`SPEC_deck_scouting_report.md`, B30-B38) from a live `/analyze` + `/breakdown` inventory. Notable while measuring: a Krenko deck holding Krenko + Skirk Prospector + Goblin Warchief (infinite hasty tokens) reads "kill ~T9", because the goldfish clock never executes combos (B33).
 - 2026-11-07: **B21 done.** `deck_legality.plan_fix` (pure: remove off-identity/banned, reduce extra

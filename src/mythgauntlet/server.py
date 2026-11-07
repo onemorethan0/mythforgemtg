@@ -245,6 +245,15 @@ class PodRequest(BaseModel):
     players: int = Field(default=4, ge=2, le=6)
 
 
+def _card_verdicts_block(v) -> dict | None:
+    """Strong/weak cards with their evidence (B31). None unless card_stats was requested."""
+    if v is None:
+        return None
+    return {"strong": [dataclasses.asdict(x) for x in v["strong"]],
+            "weak": [dataclasses.asdict(x) for x in v["weak"]],
+            "instrument": v["instrument"]}
+
+
 def _card_stats_block(stats) -> dict | None:
     """Per-card goldfish evidence (B30). None when not requested. `significant` marks the cards
     whose uplift interval excludes zero -- the only ones a report may name on uplift. The
@@ -560,6 +569,7 @@ def create_app(
             "insight": _insight_block(a.insight),  # deck-specific narrative for the UI
             "combos": _combos_block(combo_report, a.combo_profile, combos_checked),
             "card_stats": _card_stats_block(a.card_stats),
+            "card_verdicts": _card_verdicts_block(a.card_verdicts),
         }
 
     @app.post("/card-impact")

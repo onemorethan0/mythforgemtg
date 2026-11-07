@@ -273,3 +273,43 @@ interaction role (removal, counter, wipe, protection) is never called weak on go
 it is judged by B35/B36.** Stranded rate is the honest "weak" signal from this instrument
 (Tymna: Wrath of God stranded in 66% of games it is drawn, Overwhelming Stampede 65%, mostly
 expensive cards still uncast at turn 12).
+
+### B31 (2026-11-07): strong and weak cards shipped (`ratings/card_verdicts.py`)
+
+`/analyze {"card_stats": true}` now also returns `card_verdicts: {strong[], weak[], instrument}`;
+each item is `{name, kind, text, evidence}`. Kinds: strong = `speeds_kill` (significant, >= 0.30
+turns), `combo_piece`, `commander_synergy`; weak = `stranded` (with reason `colour` / `cost` /
+`outranked`), `slows_kill`, `redundant` (stated in card counts). A card named strong is never
+also named weak; commanders are never named.
+
+Hand review on 8 real decks (Krenko, Tymna, Marchesa, Kaalia, Urza, Syr Gwyn, Lathril, Doran)
+changed four rules before anything shipped, all for the same reason: a sentence the numbers did
+not support.
+
+1. "Stranded" first said Wrath of God "costs 4 and the deck rarely gets there" in a deck that
+   reaches 4 mana easily. tier0 now records, at game end, whether a stuck card was blocked by
+   COLOUR (enough mana, wrong pips) or COST (not enough mana); otherwise it was OUTRANKED
+   (castable, a better play every turn). Outranked is never said of interaction (an unopposed
+   game has nothing to answer) or of a card the goldfish cannot fully read.
+2. Solemn Simulacrum and Great Forest Druid were named "speeds the kill" AND "redundant". Strong
+   now excludes weak, and redundancy is named only when the role is over-supplied in CARDS and
+   is stated in cards ("16 draw cards against a typical 11"), not in role-strength units.
+3. "Slows the kill" fired on Phyrexian Arena, Fruit of the First Tree and protection: draw pays
+   off after a 12-turn unopposed race, and tier0 executes Fruit's death trigger as an immediate
+   draw. It is now limited to clock roles (ramp, finisher, plain bodies) AND `goldfish_legible`
+   cards (every ability is one tier0 executes). What remains: Cultivate / Harvest Season in a
+   one-drop elf deck, Planar Engineering in Doran.
+4. Ugin, the Spirit Dragon read "speeds the kill +0.6" in Urza. **Engine defect, fixed in the
+   tagger:** rung 1 read planeswalker ULTIMATES as on-cast effects (Ugin's -10 as draw 7 + a
+   Kaalia-style cheat, Jace Wielder's -8, Liliana of the Dark Realms' -6 as 3 ramp sources). An
+   ability costing more loyalty than the walker starts with can't be activated on entry
+   (CR 606.6), so `tags._reachable_text` drops it. 114 -> 102 of 311 commander-legal walkers keep
+   tier0 effects, all from abilities they can use. Guard (`scripts/bracket_accuracy.py`, 624
+   labelled decks): exact 58.7% -> 58.5%, within-one 91.8% -> 91.8%, bias -0.08 -> -0.08; exactly
+   one deck moved (a 20-planeswalker superfriends list, label B2, estimate 2 -> 1: its ultimates
+   had been read as a wipe and card draw). A correct model costing one self-label match.
+   Known under-count left as is: a repeatable "+1: draw a card" is tagged as one draw.
+
+While fixing (4) a new module-level regex reused the name `_LOYALTY_COST_RE`, which already
+existed in tags.py, and silently broke loyalty-ability classification for every planeswalker;
+the suite caught it (3 tests). Renamed; the invalid guard run was discarded and redone.
