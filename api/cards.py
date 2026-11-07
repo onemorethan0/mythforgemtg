@@ -217,6 +217,9 @@ def _themed_card_to_dict(tc: ThemedCard, deck_index: int = 0, has_render: bool =
         # printed proxy had no loyalty at all.
         "loyalty":       c.get("loyalty"),
         "rarity":        c.get("rarity", ""),     # drives the set-symbol metal colour
+        # Scryfall's Commander legality, kept so a later edit can re-check the ban list
+        # (deck_legality) from the stored deck without a network round trip.
+        "commander_legality": (c.get("legalities") or {}).get("commander"),
         "quantity":      c.get("quantity", 1),   # >1 for imported duplicate basics
         "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
         "has_render":    has_render,
@@ -250,6 +253,7 @@ def _imported_card_to_stored(c: dict, deck_index: int) -> dict:
         "toughness":     c.get("toughness"),
         "loyalty":       c.get("loyalty"),
         "rarity":        c.get("rarity", ""),
+        "commander_legality": (c.get("legalities") or {}).get("commander"),
         "quantity":      c.get("quantity", 1),
         "scryfall_img":  (c.get("image_uris") or {}).get("normal", ""),
         "has_render":    False,
@@ -312,6 +316,10 @@ def _stored_card_to_dict(d: dict) -> dict:
         "loyalty":        d.get("loyalty"),
         "rarity":         d.get("rarity", ""),
         "quantity":       d.get("quantity", 1),
+        # Only when stored: an absent legality must stay absent (deck_legality counts it
+        # as unverified rather than legal).
+        **({"legalities": {"commander": d["commander_legality"]}}
+           if d.get("commander_legality") else {}),
         "image_uris":     {"normal": d["scryfall_img"]} if d.get("scryfall_img") else {},
     }
 

@@ -199,6 +199,7 @@ def _run_build(job_id: str, req: BuildRequest):
                 owned           = owned,
                 card_source     = source,
                 partner_count   = len(partners),
+                partner_names   = [p.get("name", "") for p in partners],
             )
             # Bracket 1-2: keep game-ending combos out (see bracket_repair). A no-op when the
             # strength engine is down or the bracket allows combos.

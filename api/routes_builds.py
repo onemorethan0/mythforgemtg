@@ -106,7 +106,8 @@ def generate_list(req: GenerateListRequest):
     deck = builder.build(
         profile, theme_override=active_themes, slot_overrides=slot_overrides,
         playstyle_label=ps_label, bracket=req.bracket, owned=owned,
-        card_source=source, partner_count=len(partners))
+        card_source=source, partner_count=len(partners),
+        partner_names=[p.get("name", "") for p in partners])
     # Bracket 1-2: keep game-ending combos out (engine-driven, degrades to a no-op if the
     # strength engine is down). See bracket_repair for the measurement behind this.
     repair = bracket_repair.repair_build(builder, profile, card, partners, req.bracket)

@@ -93,9 +93,18 @@ ROLE_QUERIES: dict[str, str] = {
         "OR o:\"exile all creatures\" OR o:\"all creatures get -\" "
         "OR o:\"deals damage to each creature\")"
     ),
+    # Scryfall's o: is a SUBSTRING match. A bare o:"ward" matched "toward"/"Warden" on 51
+    # commander-legal cards, the two most popular being Gray Merchant of Asphodel and
+    # THASSA'S ORACLE (devotion reminder text: "counts toward your devotion"), so blue
+    # decks at every bracket could draft a cEDH win condition as a "protection" slot.
+    # "ward {" / "ward—" matches all 281 real Ward grants with no false hit (measured over
+    # the oracle bulk, 2026-11-07); collection_pool's local regex already used \bward\b.
+    # "This spell can't be countered" protects only itself (Supreme Verdict, Abrupt Decay),
+    # which made a wipe and a removal spell count as protection.
     "protection": (
-        "(o:\"hexproof\" OR o:\"indestructible\" OR o:\"ward\" "
-        "OR otag:counterspell OR o:\"can't be countered\")"
+        "(o:\"hexproof\" OR o:\"indestructible\" OR o:\"ward {\" OR o:\"ward—\" "
+        "OR otag:counterspell "
+        "OR (o:\"can't be countered\" -o:\"this spell can't be countered\"))"
     ),
     # Game-closers so every deck has a reliable way to actually WIN, rather than
     # relying on goodstuff to happen to include one: mass pump/overrun, extra
@@ -288,6 +297,9 @@ class DeckBuilder:
         self._deck: list[dict] = []
         self._names: set[str] = set()
         self._commander_name: str = ""
+        # Every card in the command zone (lead + partners/background). None of them may be
+        # drafted into the library: the caller appends the partners itself afterwards.
+        self._command_zone: set[str] = set()
         self._bracket_filter: BracketFilter = BracketFilter(3)
         self._owned: set[str] = set()   # normalized owned names; empty = collection off
         self._owned_cards: list[dict] = []  # resolved, CI/legal-eligible owned cards (C4)
@@ -479,7 +491,8 @@ class DeckBuilder:
     def _add(self, card: dict) -> bool:
         """Add a card if not already in deck, not the commander, and passes bracket rules."""
         name = card.get("name", "")
-        if name and name not in self._names and name != self._commander_name:
+        if (name and name not in self._names and name != self._commander_name
+                and name not in self._command_zone):
             if not self._bracket_filter.allows(card):
                 return False
             self._deck.append(card)
@@ -973,7 +986,8 @@ class DeckBuilder:
         the pool is dry, so the library stays exactly `_library_size` cards. Basics are re-split
         afterwards because the new spells change the pip demand. Returns the names added.
         """
-        victims = {n for n in names if n and n != self._commander_name}
+        victims = {n for n in names
+                   if n and n != self._commander_name and n not in self._command_zone}
         before = len(self._deck)
         self._deck = [c for c in self._deck if c.get("name") not in victims]
         removed = before - len(self._deck)
@@ -1004,6 +1018,7 @@ class DeckBuilder:
         owned: set[str] | None = None,
         card_source: str = SOURCE_SCRYFALL,
         partner_count: int = 0,
+        partner_names: list[str] | None = None,
     ) -> list[dict]:
         """
         Build the 99-card deck (98 when `partner_count` is 1, 97 if — hypothetically — 2:
@@ -1033,10 +1048,20 @@ class DeckBuilder:
                               card(s) themselves and still land on a legal 100-card deck
                               — this method never drafts or returns the partner(s)
                               itself, same as it never drafts the lead commander.
+            partner_names:    The OTHER command-zone cards by name. They are never drafted
+                              into the library. Without this a Tymna build could draft
+                              Thrasios as a card-draw pick and the caller then appended
+                              Thrasios again as the partner: two copies in a singleton
+                              deck, folded into "2x Thrasios" by aggregate_duplicates.
+                              When given and partner_count is 0, partner_count follows it.
         """
         self._deck = []
         self._names = set()
         self._commander_name = profile.name
+        partner_names = [n for n in (partner_names or []) if n]
+        self._command_zone = {profile.name, *partner_names}
+        if partner_names and not partner_count:
+            partner_count = len(partner_names)
         # See partner_count's docstring above: a legal command zone always totals 100
         # cards with the library, so each extra commander shrinks what THIS method drafts.
         library_size = 99 - max(0, partner_count)
@@ -1313,6 +1338,7 @@ def compute_stats(commander: dict, deck: list[dict],
     imported Sam + Frodo deck was reported short 15 black sources while holding 32,
     because black sat outside the half-identity. Passing the zone fixes that.
     """
+    raw_commander = commander
     commander = _command_zone_card(commander, partners)
     non_lands = [c for c in deck if "land" not in c.get("type_line", "").lower()]
     avg_cmc = (
@@ -1372,6 +1398,10 @@ def compute_stats(commander: dict, deck: list[dict],
         "land_count": type_counts.get("Land", 0),
         "total_cards": deck_total + 1,  # +1 for commander
         "quality": deck_quality_block(commander, deck),
+        # Can this list be registered as a Commander deck (100 cards, singleton, colour
+        # identity, ban list, commander/pairing)? Same one-place contract as `quality`.
+        # Uses the UNWIDENED commander so a pairing is judged on the real cards.
+        "legality": _legality_block(raw_commander, deck, partners),
         # "How off-meta is this deck" — a different axis from bracket/strength, and the one
         # a casual pod asks first. Same one-place contract as `quality`: every path (build,
         # rebuild, retheme, import/Analyze) gets it here. `{}` whenever EDHREC has nothing
@@ -1384,6 +1414,16 @@ def compute_stats(commander: dict, deck: list[dict],
             detected=detected_themes if themes_detected_ok else None,
             counts=deck_theme_counts if themes_detected_ok else None),
     }
+
+
+def _legality_block(commander: dict, deck: list[dict],
+                    partners: list[dict] | None) -> dict:
+    """deck_legality.check, never allowed to fail a build (advisory, like `quality`)."""
+    try:
+        import deck_legality
+        return deck_legality.check(commander, deck, partners)
+    except Exception:      # noqa: BLE001 - a report must never cost anyone a deck
+        return {}
 
 
 def deck_quality_block(commander: dict, deck: list[dict]) -> dict:

@@ -19,6 +19,7 @@ Lands aren't a gating constraint (basics fill freely), so they don't lower the s
 from __future__ import annotations
 
 import collection_pool
+import commander_analysis
 
 # A Commander deck is 100 cards: ~37 lands (mostly basics, effectively free) + ~63
 # nonland. So the nonland pool is what gates "can I build this".
@@ -63,13 +64,9 @@ def classify_roles(card: dict) -> set[str]:
     return collection_pool.classify(card) & set(_ROLE_FLOORS)
 
 
-def is_commander_eligible(card: dict) -> bool:
-    """Can this owned card head a Commander deck?"""
-    tl = _type_line(card).lower()
-    if "legendary" in tl and "creature" in tl:
-        return True
-    # Some planeswalkers / other cards explicitly say so.
-    return "can be your commander" in (_card_text(card).lower())
+# Can this owned card head a Commander deck? The ONE definition lives in commander_analysis
+# (front face only, CR 712.8a); this module used to read both faces of a DFC.
+is_commander_eligible = commander_analysis.is_commander_eligible
 
 
 def _is_basic_land(card: dict) -> bool:

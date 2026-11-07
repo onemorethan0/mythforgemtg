@@ -68,16 +68,23 @@ def _deck_to_lines(commander, deck, partners=None) -> str:
     Found live 2026-08-25 on Tymna the Weaver + Thrasios, Triton Hero.
     """
     lines = []
+    zone: set[str] = set()
     if commander and commander.get("name"):
         lines += ["Commander:", f"1 {commander['name']}"]
+        zone.add(commander["name"].casefold())
         for p in (partners or []):
             if p.get("name"):
                 lines.append(f"1 {p['name']}")
+                zone.add(p["name"].casefold())
         lines.append("")
     lines.append("Deck:")
     for c in deck:
         name = c.get("name", "")
-        if name:
+        # A stored deck carries its partner(s) INSIDE `deck` (every build/import path
+        # appends them so they theme and render as cards). Listing one under Commander:
+        # AND under Deck: handed the engine a 101-card deck with the partner castable
+        # twice. The command zone is listed once, above.
+        if name and name.casefold() not in zone:
             lines.append(f"{c.get('quantity', 1)} {name}")
     return "\n".join(lines)
 
@@ -354,11 +361,7 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has no deck for the mentor to read.")
-    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
-    deck = [
-        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
-        for c in cards
-    ]
+    commander, deck = _job_deck_inputs(job)
     result = _gauntlet_mentor_chat(
         commander, deck, req.question.strip(), history=req.history, model=req.model,
         themes=_deck_archetypes(job), partners=_job_partners(job),
@@ -575,11 +578,7 @@ def card_impact_deck(job_id: str, req: CardImpactDeckRequest):
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has no deck to measure against.")
-    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
-    deck = [
-        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
-        for c in cards
-    ]
+    commander, deck = _job_deck_inputs(job)
     result = _gauntlet_card_impact(commander, deck, req.card.strip(),
                                    themes=_deck_archetypes(job), partners=_job_partners(job))
     if result is None:
@@ -727,11 +726,7 @@ async def advise_deck(job_id: str, req: AdviseDeckRequest, background_tasks: Bac
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has no deck to advise on.")
-    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
-    deck = [
-        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
-        for c in cards
-    ]
+    commander, deck = _job_deck_inputs(job)
     advise_job_id = uuid.uuid4().hex[:16]
     _jobs[advise_job_id] = {"status": "running", "kind": "advise", "result": None,
                             "error": None, "created_at": time.time()}
@@ -773,11 +768,7 @@ def measure_deck(job_id: str):
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has no deck to measure.")
-    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
-    deck = [
-        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
-        for c in cards
-    ]
+    commander, deck = _job_deck_inputs(job)
     sim = _gauntlet_analyze(commander, deck, partners=_job_partners(job))
     if sim is None:
         raise HTTPException(
@@ -799,6 +790,26 @@ def measure_deck(job_id: str):
     except Exception as e:
         print(f"  [measure] could not persist last_measure: {e}")
     return sim
+
+
+def _recompute_stats(job: dict, cards: list[dict]) -> dict:
+    """Fresh compute_stats for an edited stored deck; the old block if anything fails."""
+    try:
+        from api.cards import _stored_card_to_raw
+        from deck_builder import compute_stats
+        cmd = job.get("commander") or {}
+        raw = [_stored_card_to_raw(c) for c in cards if c.get("original_name")]
+        zone = {n.casefold() for n in (job.get("partners") or []) if n}
+        partners = [c for c in raw if (c.get("name") or "").casefold() in zone]
+        fresh = compute_stats(_stored_card_to_raw(cmd), raw, partners=partners or None)
+        old = job.get("stats") or {}
+        for key in ("collection",):          # build-time facts compute_stats can't rederive
+            if key in old and key not in fresh:
+                fresh[key] = old[key]
+        return fresh
+    except Exception as e:                   # noqa: BLE001 - stale stats beat a failed swap
+        print(f"  [apply-swap] stats not recomputed: {e}")
+        return job.get("stats") or {}
 
 
 class ApplySwapRequest(BaseModel):
@@ -836,20 +847,42 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     )
     if idx is None:
         raise HTTPException(400, f"'{req.cut}' is not in this deck (already swapped out?)")
-    add_norm = req.add.strip().casefold()
-    if any((c.get("original_name") or "").casefold() == add_norm for c in cards):
-        raise HTTPException(400, f"'{req.add}' is already in this deck.")
+    # Partners are stored inside `deck` (they render as cards) but they are the COMMAND
+    # ZONE, not the 99: cutting one turned a Tymna + Thrasios deck into a Tymna deck whose
+    # identity no longer covered half its cards.
+    zone_names = {n.casefold() for n in (job.get("partners") or []) if n}
+    if cut_norm in zone_names:
+        raise HTTPException(400, f"'{req.cut}' is a commander, not a card in the 99.")
 
     card = _scryfall.get_card_by_name(req.add, fuzzy=True)
     if not card:
         raise HTTPException(400, f"Card not found on Scryfall: {req.add}")
-    # The duplicate check above used what was TYPED; the lookup is fuzzy, so "arcane signt"
-    # resolves to "Arcane Signet", which may already be here (a second copy in a singleton deck).
-    # Check the RESOLVED name too, before anything is cut or written.
-    resolved_norm = (card.get("_front_name") or card.get("name") or req.add).strip().casefold()
-    if any((c.get("original_name") or "").casefold() == resolved_norm for c in cards):
-        raise HTTPException(
-            400, f"'{card.get('_front_name') or card.get('name') or req.add}' is already in this deck.")
+    name = card.get("_front_name") or card.get("name") or req.add
+    # Judge the RESOLVED card, never what was typed: the lookup is fuzzy, so "arcane signt"
+    # resolves to "Arcane Signet", which may already be here.
+    import deck_legality
+    resolved_norm = name.strip().casefold()
+    existing = next((c for c in cards
+                     if (c.get("original_name") or "").casefold() == resolved_norm), None)
+    if existing is not None and deck_legality.copy_limit(card) == 1:
+        raise HTTPException(400, f"'{name}' is already in this deck.")
+    # The same rules the advisor already applies to its own suggestions, enforced here
+    # because this endpoint takes ANY name: an off-colour or banned card used to go
+    # straight in.
+    status = (card.get("legalities") or {}).get("commander")
+    if status in ("banned", "not_legal"):
+        raise HTTPException(400, f"'{name}' is not legal in Commander ({status.replace('_', ' ')}).")
+    cmd_stored = job.get("commander") or {}
+    zone_identity = set(cmd_stored.get("colors") or [])
+    for c in cards:
+        if (c.get("original_name") or "").casefold() in zone_names:
+            zone_identity |= set(c.get("colors") or [])
+    # Only when the stored commander SAYS its identity ("colors" holds color_identity in
+    # deck.json); an empty list is a real colourless commander, a missing key is unknown.
+    off = (set(card.get("color_identity") or []) - zone_identity) if "colors" in cmd_stored else set()
+    if off:
+        raise HTTPException(400, f"'{name}' is outside this deck's colour identity "
+                                 f"({'/'.join(sorted(off))} not allowed).")
 
     # cut: decrement a stack (imported duplicate basics), else remove the entry
     if (cards[idx].get("quantity") or 1) > 1:
@@ -859,7 +892,6 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
 
     swap_no = int(job.get("swap_count") or 0) + 1
     job["swap_count"] = swap_no
-    name = card.get("_front_name") or card.get("name") or req.add
     new_entry = {
         "original_name": name,
         "themed_name":   name,               # unthemed — shows the real card
@@ -876,6 +908,7 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
         "power":         card.get("power"),
         "toughness":     card.get("toughness"),
         "rarity":        card.get("rarity", ""),
+        "commander_legality": status,
         "quantity":      1,
         "scryfall_img":  (card.get("image_uris") or {}).get("normal", ""),
         "has_render":    False,              # tile falls back to scryfall_img
@@ -883,7 +916,15 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
         "render_key":    f"{_safe_name(name)}_swap{swap_no:02d}",
         "swapped_in":    True,               # UI badge: an applied upgrade
     }
-    cards.insert(min(idx, len(cards)), new_entry)
+    if existing is not None:
+        # A basic land (or a "any number of cards named" card): add a copy to the stack.
+        existing["quantity"] = int(existing.get("quantity") or 1) + 1
+    else:
+        cards.insert(min(idx, len(cards)), new_entry)
+    # The list changed, so the curve, colour-source, type and legality figures shown
+    # beside it must too. They were left as built, so a swap that fixed a colour shortfall
+    # still read "short on sources".
+    job["stats"] = _recompute_stats(job, cards)
 
     swap_record = {"add": name, "cut": req.cut,
                    "date": _dt.now().isoformat(timespec="seconds")}
@@ -895,6 +936,7 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
         if p.exists():
             disk_data = json.loads(p.read_text(encoding="utf-8"))
             disk_data["deck"] = cards
+            disk_data["stats"] = job["stats"]
             disk_data["swap_count"] = swap_no
             disk_data.setdefault("applied_swaps", []).append(swap_record)
             disk_data.pop("last_measure", None)
@@ -959,11 +1001,7 @@ def duel_deck(job_id: str, req: DuelRequest):
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has nothing to duel with.")
-    commander = {"name": (job.get("commander") or {}).get("original_name") or ""}
-    deck = [
-        {"name": c.get("original_name", ""), "quantity": c.get("quantity", 1)}
-        for c in cards
-    ]
+    commander, deck = _job_deck_inputs(job)
     name_a = (job.get("commander") or {}).get("themed_name") \
         or (job.get("commander") or {}).get("original_name") or "Your deck"
     result = _gauntlet_duel(

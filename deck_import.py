@@ -471,6 +471,15 @@ def _parse_text(text: str) -> RawDeck:
 
 # ── Resolve names → cards ───────────────────────────────────────────────────────
 
+_NON_DECK_LAYOUTS = {"token", "double_faced_token", "emblem", "art_series"}
+
+
+def _is_non_deck_object(card: dict) -> bool:
+    if (card.get("layout") or "") in _NON_DECK_LAYOUTS:
+        return True
+    return (card.get("type_line") or "").lstrip().lower().startswith(("token ", "emblem"))
+
+
 def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
     all_names = list(raw.commander_names) + [n for n, _ in raw.card_entries]
     resolved = scryfall.get_cards_collection(all_names)   # name_lower -> card
@@ -518,6 +527,14 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
         if not c:
             unresolved.append(name)
             continue
+        if _is_non_deck_object(c):
+            # A token, emblem or art card is not a card a deck can contain. Archidekt and
+            # Moxfield lists often carry a "Tokens" pile the owner left included, and it
+            # resolved on Scryfall like any card: a real Azula import held "Dinosaur //
+            # Treasure" as its 94th card, outside the commander's identity. Reported
+            # with the reason so the export comment and the preview say why.
+            unresolved.append(f"{name} (token, not a deck card)")
+            continue
         key = c.get("name", name)
         if key not in agg:
             entry = dict(c)
@@ -535,12 +552,10 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
 
 
 def _is_legendary_creature(card: dict) -> bool:
-    tl = (card.get("type_line") or "").lower()
-    # Read the FRONT face: a legendary creature that transforms into something else
-    # is still a legal commander.
-    front = tl.split("//", 1)[0]
-    return "legendary" in front and ("creature" in front
-                                     or "can be your commander" in (card.get("oracle_text") or "").lower())
+    # Front face only (a legendary creature that transforms is still a legal commander;
+    # a land that transforms INTO one is not). One shared definition, see commander_analysis.
+    import commander_analysis
+    return commander_analysis.is_commander_eligible(card)
 
 
 def _promote_leading_commander(imp: "ImportedDeck", leading_names: list[str]) -> None:

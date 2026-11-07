@@ -92,8 +92,21 @@ def import_preview(req: ImportPreviewRequest):
         "total_cards":  imp.total_cards(),
         "colors":       colors,
         "unresolved":   imp.unresolved,
+        # Can this list be registered (100 cards, singleton, identity, ban list,
+        # commander/pairing)? Meaningless for an auto-elected face (no command zone), so
+        # the UI shows it only when the user says this is a Commander deck.
+        "legality":     _import_legality(imp),
         "simulation":   _gauntlet_analyze(imp.commander, imp.deck, partners=imp.partners),
     }
+
+
+def _import_legality(imp) -> dict:
+    try:
+        import deck_legality
+        return deck_legality.check(imp.commander, imp.deck, imp.partners)
+    except Exception as e:      # noqa: BLE001 - a report must never fail the preview
+        logger.warning("legality check failed: %s", e)
+        return {}
 
 
 class ImportSaveRequest(BaseModel):
@@ -161,6 +174,11 @@ def import_save(req: ImportSaveRequest):
         "import_source_input": req.source.strip(),
         "import_unresolved": imp.unresolved,
         "import_auto_face":  face_auto,
+        # The rest of the command zone, by name — the same field every build path writes.
+        # Without it a saved partner deck was measured, advised and mentored against the
+        # LEAD card's half identity (routes_strength._job_partners read nothing), and the
+        # decklist export demoted the partner to a maindeck card.
+        "partners":          [p.get("name") for p in imp.partners if p.get("name")],
         # A saved import has no theme yet, so nothing to carry into a later art run —
         # but the art knobs must exist, because Retheme reads them from the source
         # deck. generate_art:False here is what used to make "save now, generate art
@@ -255,8 +273,11 @@ async def list_decks():
                 "bracket_label":    data.get("bracket_label", ""),
                 # PHYSICAL cards: an import aggregates duplicate basics into one entry
                 # carrying `quantity`, so counting entries showed a 100-card deck as "75".
+                # Partners are NOT added on top: every build/import path already appends
+                # them into `deck` (they render as cards), so `+ len(partners)` showed a
+                # legal partner deck as 101.
                 "card_count":       (sum(c.get("quantity", 1) or 1 for c in data.get("deck", []))
-                                     + 1 + len(data.get("partners") or [])),
+                                     + 1),
                 "built_at":         data.get("built_at"),
                 "thumbnail":        thumb,
                 "partial":          status in ("rendering", "cancelled"),
@@ -671,16 +692,22 @@ def export_decklist(job_id: str):
     cmd  = job.get("commander") or {}
     deck = job.get("deck") or []
     lines: list[str] = []
+    zone: set[str] = set()
     if cmd.get("original_name"):
         # Only a real Commander deck gets a Commander header — an auto-elected
         # display face is just a maindeck card and must re-import as one.
         if job.get("is_commander_deck", True) and not job.get("import_auto_face"):
-            lines += [f"Commander: {cmd['original_name']}", ""]
+            # The WHOLE command zone. Partners live inside `deck` (they render as cards);
+            # written there they re-imported as an ordinary 99th card, so a Tymna +
+            # Thrasios export came back as a Tymna deck with an off-identity Thrasios.
+            heads = [cmd["original_name"]] + [n for n in (job.get("partners") or []) if n]
+            zone = {n.casefold() for n in heads}
+            lines += [f"Commander: {n}" for n in heads] + [""]
         else:
             deck = [cmd] + list(deck)
     for c in deck:
         name = c.get("original_name") or ""
-        if name:
+        if name and name.casefold() not in zone:
             lines.append(f"{int(c.get('quantity', 1) or 1)} {name}")
     unresolved = job.get("import_unresolved") or []
     if unresolved:

@@ -429,6 +429,56 @@ BACKGROUND_CHOOSER = "choose_background"  # pairs with a Background enchantment
 BACKGROUND = "background"                 # the Background itself
 DOCTOR_COMPANION = "doctors_companion"    # pairs with a Doctor
 DOCTOR = "doctor"
+PARTNER_GROUP = "partner_group"           # "Partner—<group>": pairs with the SAME group only
+
+# "Partner—Survivors". The dash is an em dash on every printing; a plain hyphen is accepted
+# too because pasted / hand-typed text often degrades it.
+_PARTNER_GROUP_RE = re.compile(r"^\s*partner\s*[—–-]\s*([^\n(]+?)\s*(?:\(|$)",
+                               re.I | re.M)
+
+
+def front_face(card: dict) -> tuple[str, str]:
+    """(type_line, oracle_text) of the face a card has in the library and command zone.
+
+    CR 712.8a: a double-faced card that is not on the stack or battlefield has only its
+    FRONT face's characteristics. Scryfall's top-level `type_line` joins both faces with
+    " // " and a DFC carries its text only in `card_faces`, so reading the whole card lets
+    the BACK face answer questions only the front may answer.
+    """
+    faces = card.get("card_faces") or []
+    tl = (card.get("type_line") or "")
+    if " // " in tl or (not tl and faces):
+        tl = (faces[0].get("type_line") if faces else "") or tl.split(" // ")[0]
+    text = card.get("oracle_text") or ""
+    if not text and faces:
+        text = faces[0].get("oracle_text") or ""
+    return tl, text
+
+
+def is_commander_eligible(card: dict) -> bool:
+    """May this card be a commander on its own? (CR 903.3: a legendary creature card, or a
+    card whose text says it "can be your commander".)
+
+    THE one definition. `buildable`, `collection_pool` and `deck_import` each carried a copy;
+    the first two read the whole " // "-joined type line, so 29 cards whose BACK face is a
+    legendary creature (Westvale Abbey // Ormendahl, Elbrus, the Binding Blade, the Kamigawa
+    flip-walkers' fronts, Invasion of Ikoria // Zilortha...) were offered as commanders.
+    A Background is not eligible on its own; it only joins a Choose-a-Background commander.
+    """
+    tl, text = front_face(card)
+    tl = tl.lower()
+    if "legendary" in tl and "creature" in tl:
+        return True
+    return "can be your commander" in text.lower()
+
+
+def partner_group(card: dict) -> str:
+    """The named group of a "Partner—<group>" card, casefolded; "" when it has none."""
+    m = _PARTNER_GROUP_RE.search(card.get("oracle_text") or "")
+    if not m:
+        return ""
+    group = m.group(1).strip().rstrip(".").casefold()
+    return "" if group == "friends forever" else group
 
 
 def partner_mechanic(card: dict) -> str | None:
@@ -452,6 +502,14 @@ def partner_mechanic(card: dict) -> str | None:
     # because its reminder text contains the word "partner" too.
     if "partner with" in text:
         return PARTNER_WITH
+    # "Partner—Survivors" / "Partner—Character select" / "Partner—Father & son": a NAMED
+    # partner group (2025+ printings: Joel + Ellie, the TMNT turtles, Kratos + Atreus). Its
+    # reminder text reads "if both have THIS ability", so it pairs only with the same group —
+    # never with plain Partner. This used to fall through to PARTNER_PLAIN below, which
+    # accepted Kratos + Thrasios: an unregistrable command zone. "Partner—Friends forever"
+    # is caught above, since it is the same ability the older "Friends forever" cards carry.
+    if partner_group(card):
+        return PARTNER_GROUP
     if re.search(r"\bpartner\b", text):
         return PARTNER_PLAIN
     # A Doctor is only a pairing card in the presence of a companion, so it is reported last
@@ -488,6 +546,13 @@ def can_pair(lead: dict, second: dict) -> tuple[bool, str]:
         return True, ""
     if pair == {DOCTOR_COMPANION, DOCTOR}:
         return True, ""
+    if pair == {PARTNER_GROUP}:
+        ga, gb = partner_group(lead), partner_group(second)
+        if ga == gb:
+            return True, ""
+        return False, (f"{lead.get('name', 'This commander')} has Partner—{ga.title()} and "
+                       f"{second.get('name', 'that card')} has Partner—{gb.title()}; each "
+                       f"pairs only with its own group.")
     if PARTNER_WITH in pair:
         # Must name each other. Checking only one direction would admit a one-way pairing,
         # which does not exist.

@@ -284,6 +284,42 @@ def _backfill_quality(data: dict) -> None:
         pass
 
 
+def _stored_for_legality(d: dict) -> dict:
+    """A stored deck.json card in the raw shape deck_legality reads. In deck.json `colors`
+    holds the colour IDENTITY and `type_line` may be the themed reskin, so map both back."""
+    return {
+        "name": d.get("original_name", ""),
+        "quantity": d.get("quantity", 1),
+        "type_line": d.get("original_type_line") or d.get("type_line", ""),
+        "oracle_text": d.get("oracle_text", ""),
+        "color_identity": d.get("colors") if "colors" in d else None,
+        "commander_legality": d.get("commander_legality"),
+    }
+
+
+def _backfill_legality(data: dict) -> None:
+    """Derive `stats.legality` for decks saved before the check existed, like
+    `_backfill_quality`: in memory only, never written back. Ban status is not stored on
+    those decks, so it reports as `unverified` rather than legal."""
+    stats = data.get("stats")
+    if not isinstance(stats, dict) or "legality" in stats or not data.get("deck"):
+        return
+    try:
+        import deck_legality
+        cards = [_stored_for_legality(c) for c in data["deck"]]
+        names = [n for n in (data.get("partners") or []) if n]
+        by_name = {c["name"].casefold(): c for c in cards}
+        # A partner recorded by name but never appended to the deck (builds from before
+        # partner_count, which shipped 99 + 2 = 101 cards) still occupies the command
+        # zone: count it, with an UNKNOWN identity so the identity check stands down
+        # instead of calling half the deck off-colour.
+        partners = [by_name.get(n.casefold(), {"name": n}) for n in names]
+        stats["legality"] = deck_legality.check(
+            _stored_for_legality(data.get("commander") or {}), cards, partners)
+    except Exception:      # noqa: BLE001 — advisory; a bad stored deck must still load
+        pass
+
+
 def _load_deck_from_disk(job_id: str) -> Optional[dict]:
     """Load a completed deck from disk — used after server restarts.
 
@@ -316,6 +352,7 @@ def _load_deck_from_disk(job_id: str) -> Optional[dict]:
             # AFTER any write above: backfilling first let the derived value ride along
             # into that write, which contradicts this function's read-only promise.
             _backfill_quality(data)
+            _backfill_legality(data)
             # "cancelled" is left as-is so the frontend can show the correct state.
 
             # Backfill has_render flags: deck.json is written BEFORE art gen

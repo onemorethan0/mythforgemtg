@@ -336,7 +336,8 @@ def run_partners(pause: float) -> dict:
                 continue
             profile = build_commander_profile(lead, [partner])
             builder = DeckBuilder(client)
-            library = builder.build(profile, bracket=3, partner_count=1)
+            library = builder.build(profile, bracket=3, partner_count=1,
+                                    partner_names=[partner.get("name", "")])
             # Mirrors server.py's own append convention exactly — this is what proves
             # the fix, not a re-derivation of it.
             pc = dict(partner)

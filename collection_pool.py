@@ -39,6 +39,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+import commander_analysis
+
 ROLES: tuple[str, ...] = ("ramp", "draw", "removal", "wipe", "protection", "finisher")
 
 # Oracle text spells CARD COUNTS as words ("Draw two cards") but DAMAGE as digits
@@ -181,11 +183,8 @@ def in_identity(card: dict, ci: set[str]) -> bool:
     return not card_ci if not ci else card_ci <= ci
 
 
-def is_commander_eligible(card: dict) -> bool:
-    tl = type_line(card).lower()
-    if "legendary" in tl and "creature" in tl:
-        return True
-    return "can be your commander" in card_text(card).lower()
+# The ONE definition (front face only, CR 712.8a) lives in commander_analysis.
+is_commander_eligible = commander_analysis.is_commander_eligible
 
 
 def owned_commanders(cards: list[dict]) -> list[dict]:
