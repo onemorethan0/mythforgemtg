@@ -60,6 +60,29 @@ Status: `todo`, `doing`, `done`, `deferred`. Owner as in BACKLOG.md (C / N / U).
 | B27 | **Data-driven slot plan + land count from the deck's curve** (B16 / P4) | one fixed recipe for every commander; land count by commander MV only | one resolver replaces five mutations; goldfish land/screw/flood no worse on the bench | todo |
 | B15 | remaining: general close-the-loop repair (P2) beyond combos | | | deferred (P2 power trim measured no effect) |
 
+### Phase 2b: the deck scouting report (owner request, 2026-11-07)
+
+Full spec, live-verified field inventory, gaps and acceptance tests:
+[`SPEC_deck_scouting_report.md`](SPEC_deck_scouting_report.md). When a deck is rated, say what it is
+good at, what it is weak against, its strong and weak cards and combos, how fast it kills one
+player and the table, and how. Every sentence backed by a number measured on that deck, judged
+against decks of the same bracket.
+
+| ID | Item | Closes | Status |
+|---|---|---|---|
+| B30 | Per-card telemetry from the goldfish games already played (cast rate, stranded rate, kill-turn uplift when seen early, with intervals) | which cards carry / which are dead | todo, **next** |
+| B31 | Strong and weak cards, named only past the measured noise floor | strong/weak cards | todo |
+| B32 | Kill speed as a distribution (p25/median/p75); table speed from the measured four-seat sim, capacity as secondary | speed vs 1 player and the table | todo |
+| B33 | Combos on the clock: assembly probability by turn (draws + tutors + mana), combined clock | combos, real kill speed | todo |
+| B34 | Kill-method attribution (combat / commander damage / drain-burn / combo / alt-win) + top damage cards, in tier0 and T2 | methods it relies on | todo |
+| B35 | Reference field per bracket (one deck per archetype from the corpus) and matchup win rates | weak against (games) | todo |
+| B36 | Exposure to hate: graveyard, commander, artifacts, flyers, single combo, mana base, speed vs peers | weak against (static) | todo |
+| B37 | Strengths/weaknesses as per-bracket percentiles instead of fixed bars | good at (honestly) | todo |
+| B38 | `/scout` report: template-first text, optional LLM paragraph behind the swap_narrative-style gate; Forge panel | the description | todo |
+
+Order: B30 -> B34 -> B32/B33 -> B37 -> B36 -> B35 -> B38. First measurement before B30 ships: the
+per-card noise floor (it decides how many cards the report can honestly name).
+
 ### Phase 3: measurement that can see strength
 
 | ID | Item | Accept | Status |
@@ -76,6 +99,10 @@ Status: `todo`, `doing`, `done`, `deferred`. Owner as in BACKLOG.md (C / N / U).
 
 ## Order and why
 
+**Updated 2026-11-07:** B19-B21 are done. The scouting report (Phase 2b) is now the priority, at
+the owner's request; B25 (role coverage report) can run beside B30, since both add measurements
+to a build without changing it. The rest of the original order below still holds.
+
 B19 first (it is the baseline every Phase 2 item is judged against), then B20 and B21 (cheap,
 visible, and the legality check created the need for B21), then B25 before B26 (you cannot unify
 two judges until the build reports what the judge saw). B22 -> B23 are a pair. Phase 3-4 follow;
@@ -85,6 +112,7 @@ B18 can be taken in slices whenever a file is being edited anyway.
 
 Newest first. One line per change, with the commit.
 
+- 2026-11-07: **Phase 2b specced** (`SPEC_deck_scouting_report.md`, B30-B38) from a live `/analyze` + `/breakdown` inventory. Notable while measuring: a Krenko deck holding Krenko + Skirk Prospector + Goblin Warchief (infinite hasty tokens) reads "kill ~T9", because the goldfish clock never executes combos (B33).
 - 2026-11-07: **B21 done.** `deck_legality.plan_fix` (pure: remove off-identity/banned, reduce extra
   copies, trim the biggest basic stack when over 100, refill up to 15, else "rebuild") +
   `POST /api/deck/{id}/fix-legality` (dry run by default; apply writes a NEW deck `fixed_from` the
