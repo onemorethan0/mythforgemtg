@@ -238,3 +238,38 @@ or name only the extreme few. That number decides how many cards the report can 
 - **Text that outruns the numbers** is the failure this project has hit most often (mentor gate
   history). The template-first, gated-LLM-second rule in B38 is the defence; do not ship prose
   that skips it.
+
+---
+
+## 6. Results
+
+### B30 (2026-11-07): per-card telemetry shipped, noise floor measured
+
+`RunStats.seen_turn` / `played_turn` (tier0, recorded only), `ratings/card_stats.py`, and
+`POST /analyze {"card_stats": true}` -> `card_stats: {runs, early_turn, min_group, note, cards[]}`.
+Opt-in: it runs its own 2,000-game pass (~3 s), so the advisor's many internal analyses are not
+charged for it.
+
+**Cost of the telemetry itself:** none measurable. 1,500 games, best of 3: 2.09 s before, 2.08 s
+after, with an identical kill-turn sum and spell count (byte-identical play, as designed).
+
+**Noise floor** (`scratchpad/noise.py`: same deck, 8 seeds; Krenko and Tymna decks):
+
+| games | cards with an uplift figure | median 90% half-width | calibration (seed sd vs reported se) |
+|---|---|---|---|
+| 300 | 4 / 72 | 0.33 turns | 0.21 vs 0.20 |
+| 2,000 | all (>= 30 early and late) | 0.14-0.16 turns | intervals stable; top/bottom cards significant in 8/8 seeds |
+
+At 300 games (Forge's measure default) a card is "seen by turn 3" in only ~30 games, the sample
+floor, so nothing can be named; hence the dedicated pass. The reported interval is honest: the
+standard error matches the seed-to-seed spread.
+
+**What the figure says, and a rule it forces on B31.** Top of the Krenko list: Skirk Prospector
++0.86 turns (the combo's sac outlet), Sol Ring +0.83, Roaming Throne +0.51. Bottom: Blasphemous
+Act, Chaos Warp, Jeska's Will, The One Ring, Mithril Coat at about -0.45; Tymna's bottom is
+Austere Command, Return of the Wildspeaker, Doubling Season. A goldfish has no opponent, so
+removal, wipes and slow value engines can only cost it tempo there. **B31 rule: a card in an
+interaction role (removal, counter, wipe, protection) is never called weak on goldfish uplift;
+it is judged by B35/B36.** Stranded rate is the honest "weak" signal from this instrument
+(Tymna: Wrath of God stranded in 66% of games it is drawn, Overwhelming Stampede 65%, mostly
+expensive cards still uncast at turn 12).

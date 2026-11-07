@@ -253,3 +253,18 @@ def test_duel(client):
     assert body["result"]["wins_a"] + body["result"]["wins_b"] + body["result"]["draws"] == 20
     assert body["winrate_a"] > 0.8
     assert body["tier"] == "T2-mvp"
+
+
+def test_analyze_card_stats_are_opt_in(client, monkeypatch):
+    """B30: per-card evidence only when asked (it needs its own 2,000-game pass)."""
+    import mythgauntlet.server as server_mod
+    from mythgauntlet.ratings import analysis
+    monkeypatch.setattr(server_mod, "CARD_STATS_RUNS", 120)   # keep the test fast
+    assert client.post("/analyze", json={"deck": DECK, "runs": 40}).json()["card_stats"] is None
+    body = client.post("/analyze", json={"deck": DECK, "runs": 40, "card_stats": True}).json()
+    block = body["card_stats"]
+    assert block["runs"] == 120 and "goldfish" in block["note"]
+    first = block["cards"][0]
+    assert {"name", "drawn", "cast_rate", "stranded_rate", "early_uplift", "uplift_ci",
+            "significant", "is_land"} <= first.keys()
+    assert analysis.CARD_STATS_RUNS == 2000

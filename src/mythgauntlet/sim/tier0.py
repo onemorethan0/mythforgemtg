@@ -167,6 +167,12 @@ class RunStats:
     # entry of these, kept for callers that only want the horizon snapshot).
     board_power_by_turn: list[int] = field(default_factory=list)
     board_creatures_by_turn: list[int] = field(default_factory=list)
+    # Per-card telemetry (B30, docs/SPEC_deck_scouting_report.md): card name -> the turn it was
+    # FIRST seen in hand (0 = the kept opening hand) / first left the hand to be played (a land
+    # drop, a cast, or a creature cheated in). Recorded only; nothing in the game reads it, and
+    # it draws no randomness, so every other figure is byte-identical with or without it.
+    seen_turn: dict[str, int] = field(default_factory=dict)
+    played_turn: dict[str, int] = field(default_factory=dict)
 
 
 def build_sim_cards(cards: list[tuple[Card, int]]) -> list[SimCard]:
@@ -306,6 +312,12 @@ def _run_one(
     stats = RunStats()
     hand, library, stats.mulligans = _mulligan(deck, rng, cfg)
     stats.kept_hand_size = len(hand)
+    cur_turn = 0                       # telemetry clock only (see RunStats.seen_turn)
+    for c in hand:
+        stats.seen_turn.setdefault(c.card.name, 0)
+
+    def played(sc: SimCard) -> None:
+        stats.played_turn.setdefault(sc.card.name, cur_turn)
 
     sources: list[_Source] = []
     commander_in_zone = commander is not None
@@ -349,6 +361,7 @@ def _run_one(
             if library:
                 hand.append(library.pop())
                 stats.cards_drawn += 1
+                stats.seen_turn.setdefault(hand[-1].card.name, cur_turn)
 
     def apply_effects(sc: SimCard, is_commander: bool = False) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
@@ -391,6 +404,7 @@ def _run_one(
         draw(sc.fx.draw_cards)
 
     for turn in range(1, cfg.turns + 1):
+        cur_turn = turn
         sources = [s for s in sources if not s.temp]  # ritual mana expires at untap
         for s in sources:
             s.ready = True
@@ -473,6 +487,7 @@ def _run_one(
         land = _choose_land(hand, _needed_colors(hand, commander if commander_in_zone else None))
         if land is not None:
             hand.remove(land)
+            played(land)
             sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
         stats.land_drops.append(land is not None)
 
@@ -522,6 +537,7 @@ def _run_one(
                     stats.commander_turn = turn
             else:
                 hand.remove(sc)
+                played(sc)
             apply_effects(sc, is_commander)
 
         # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
@@ -545,6 +561,7 @@ def _run_one(
             if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
                 instant_sorcery_cast += 1
             hand.remove(sc)
+            played(sc)
             apply_effects(sc)
             damage += x
 
@@ -563,6 +580,7 @@ def _run_one(
             if stranded:
                 cheated = max(stranded, key=lambda c: c.attack_power)
                 hand.remove(cheated)
+                played(cheated)
                 damage += cheated.attack_power_under(rule) if rule_live else cheated.attack_power
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
                 pending_power_rule += cheated.attack_power_under(rule)

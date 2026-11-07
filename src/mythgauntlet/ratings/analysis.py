@@ -69,6 +69,9 @@ class DeckAnalysis:
     # How the commander changes what cards do (semantics/commander_lens). None only for
     # hand-built analyses; analyze_deck always builds one (kinds == () for a plain legend).
     lens: CommanderLens | None = None
+    # Per-card goldfish evidence (B30, ratings/card_stats.py). None unless the caller asked
+    # (card_stats_runs > 0): it needs its own larger pass (see CARD_STATS_RUNS).
+    card_stats: list | None = None
 
 
 def analyze_deck(
@@ -81,6 +84,7 @@ def analyze_deck(
     combo_report: ComboReport | None = None,  # full Spellbook report -> graded combo gate
     combos_checked: bool = False,
     run_resilience: bool = True,
+    card_stats_runs: int = 0,
 ) -> DeckAnalysis:
     """Run the full single-deck analysis. Deterministic for a given (deck, cfg)."""
     commander: Card | None = resolved.commanders[0] if resolved.commanders else None
@@ -234,7 +238,31 @@ def analyze_deck(
         lens=lens,
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
+    if card_stats_runs > 0:
+        analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)
     return analysis
+
+
+# Measured 2026-11-07 (B30 noise floor; Krenko and Tymna decks, 8 seeds each): at 300 games a
+# card is "seen by turn 3" in ~30 of them, so only 4 of 72 cards cleared the sample floor at
+# all. At 2,000 the 90% interval is ~+-0.14 turns, the reported standard error matches the
+# seed-to-seed spread (0.21 vs 0.20 at 300; well calibrated), and the strongest and weakest
+# cards are significant in 8 of 8 seeds. ~3 s per deck, so it is opt-in.
+CARD_STATS_RUNS = 2000
+
+
+def compute_card_stats(resolved: ResolvedDeck, cfg: SimConfig, runs: int = CARD_STATS_RUNS):
+    """Per-card goldfish evidence from a dedicated pass over the SAME deck model analyze_deck
+    simulates (partners folded in, nut kills applied, so kill turns match the Speed axis)."""
+    from mythgauntlet.ratings import card_stats
+    commander = resolved.commanders[0] if resolved.commanders else None
+    sim_cards = resolved.cards + [(c, 1) for c in resolved.commanders[1:]]
+    big = SimConfig(turns=cfg.turns, runs=runs, seed=cfg.seed)
+    stat_runs = simulate(sim_cards, commander, big)
+    apply_nut_kills(stat_runs, list(sim_cards) + ([(commander, 1)] if commander else []),
+                    big.turns)
+    lands = frozenset(c.name for c, _ in sim_cards if c.has_type("Land"))
+    return card_stats.compute(stat_runs, big.turns, lands)
 
 
 def make_determinism_fn(

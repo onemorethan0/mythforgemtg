@@ -25,7 +25,7 @@ from mythgauntlet.mentor.tools import MentorContext
 from mythgauntlet.model.collection import Collection
 from mythgauntlet.model.deck import Deck, ResolvedDeck, resolve
 from mythgauntlet.ratings import advisor, card_impact, metrics
-from mythgauntlet.ratings.analysis import analyze_deck
+from mythgauntlet.ratings.analysis import CARD_STATS_RUNS, analyze_deck
 from mythgauntlet.semantics.store import SemanticsStore, load_store
 from mythgauntlet.sim.tier0 import DEFAULT_ANALYZE_TURNS, SimConfig
 from mythgauntlet.sim.tier2 import DuelConfig, duel
@@ -55,6 +55,11 @@ class AnalyzeRequest(BaseModel):
         description="also run the Commander Spellbook combo gate (a cached network lookup): "
         "grades in-deck game-ending combos and feeds the bracket. Off by default so the "
         "endpoint stays network-free unless the caller opts in.",
+    )
+    card_stats: bool = Field(
+        default=False,
+        description="also return per-card goldfish evidence (cast/stranded rate, kill-turn "
+        "uplift when seen early, 90% interval) from a dedicated 2,000-game pass (~3 s). B30.",
     )
 
 
@@ -240,6 +245,25 @@ class PodRequest(BaseModel):
     players: int = Field(default=4, ge=2, le=6)
 
 
+def _card_stats_block(stats) -> dict | None:
+    """Per-card goldfish evidence (B30). None when not requested. `significant` marks the cards
+    whose uplift interval excludes zero -- the only ones a report may name on uplift. The
+    instrument note travels with the data: a goldfish has no opponent, so interaction can only
+    cost it tempo and must never be called weak on this figure."""
+    if stats is None:
+        return None
+    from mythgauntlet.ratings import card_stats as cs
+    return {
+        "runs": CARD_STATS_RUNS,
+        "early_turn": cs.EARLY_TURN,
+        "min_group": cs.MIN_GROUP,
+        "note": ("goldfish (no opponent): early_uplift = turns sooner the deck kills when the card "
+                 "is seen by turn 3. Interaction cannot help a goldfish, so its uplift is not a "
+                 "verdict on removal, counters or wipes."),
+        "cards": [{**dataclasses.asdict(c), "significant": cs.significant(c)} for c in stats],
+    }
+
+
 def _combos_block(
     report: spellbook.ComboReport | None,
     profile,  # ComboAssessment | None
@@ -385,6 +409,7 @@ def create_app(
         a = analyze_deck(
             resolved, cfg, store, combo_report=combo_report,
             combos_checked=combos_checked, run_resilience=req.resilience,
+            card_stats_runs=CARD_STATS_RUNS if req.card_stats else 0,
         )
         report, coverage, interaction, ceiling = a.report, a.coverage, a.interaction, a.ceiling
         game_changers = a.game_changers
@@ -534,6 +559,7 @@ def create_app(
             "ownership": ownership,
             "insight": _insight_block(a.insight),  # deck-specific narrative for the UI
             "combos": _combos_block(combo_report, a.combo_profile, combos_checked),
+            "card_stats": _card_stats_block(a.card_stats),
         }
 
     @app.post("/card-impact")
