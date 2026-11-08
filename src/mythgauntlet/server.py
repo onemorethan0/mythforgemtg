@@ -305,6 +305,18 @@ def _card_stats_block(stats) -> dict | None:
     }
 
 
+def _denial_block(resolved) -> dict:
+    from mythgauntlet.ratings import denial
+    d = denial.deck_denial(list(resolved.cards), list(resolved.commanders))
+    return {
+        "locks": [dataclasses.asdict(lk) for lk in d.locks],
+        "counterspells": d.counterspells,
+        "theft": d.theft,
+        "extra_turn_cards": d.extra_turn_cards,
+        "mass_land_denial": d.mass_land_denial,
+    }
+
+
 def _bracket_rules_block(resolved, report: spellbook.ComboReport | None, checked: bool) -> dict:
     """{"1".."5": {"allowed", "reasons"}} from `data.label_audit` (Game Changer limits and
     two-card infinite combos), plus `combos_checked`: without the Spellbook lookup the combo
@@ -643,6 +655,10 @@ def create_app(
             # player's stated bracket beside the measured one without re-simulating (or
             # re-implementing the rules): the same audit that cleans the corpus labels.
             "bracket_rules": _bracket_rules_block(resolved, combo_report, combos_checked),
+            # D2: what the deck does to OTHER players' turns -- lock pieces by name and kind,
+            # counterspells, lasting theft, extra turns, mass land denial. Information beside
+            # the bracket; it does not move it (docs/DESIGN_table_brackets.md).
+            "denial": _denial_block(resolved),
         }
 
     @app.post("/card-impact")

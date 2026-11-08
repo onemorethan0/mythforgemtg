@@ -307,6 +307,12 @@ def test_analyze_reports_which_brackets_the_rules_allow(client):
     assert rules["by_bracket"]["5"]["allowed"]
 
 
+def test_analyze_reports_denial(client):
+    d = client.post("/analyze", json={"deck": DECK, "runs": 20}).json()["denial"]
+    assert set(d) == {"locks", "counterspells", "theft", "extra_turn_cards", "mass_land_denial"}
+    assert isinstance(d["locks"], list) and d["counterspells"] >= 0
+
+
 def test_pod_field_bracket_filters_by_label(client, tmp_path, monkeypatch):
     _labelled_corpus(tmp_path, monkeypatch)
     every = client.post("/pod", json={"deck": DECK, "games": 4}).json()

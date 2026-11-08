@@ -67,6 +67,53 @@ function TableFeel({ pp, detail }) {
   )
 }
 
+// Denial (D2): what the deck does to OTHER players' turns. Lock pieces by name (a continuous
+// effect that stops opponents untapping, casting, drawing, attacking or winning, with no way to
+// pay around it), plus counterspells, lasting theft, extra turns and mass land denial. Like
+// Table feel it sits beside power, not in it: the engine never moves the bracket on it.
+const LOCK_KIND = {
+  untap: 'keeps permanents tapped', spell_limit: 'limits spells', draw_limit: 'limits draws',
+  attack: 'stops attacks', cant_lose: "can't be killed by damage", ability: 'shuts off abilities',
+}
+
+function Denial({ denial }) {
+  if (!denial) return null
+  const { locks = [], counterspells = 0, theft = 0, extra_turn_cards: extra = 0,
+    mass_land_denial: mld = [] } = denial
+  if (!locks.length && !counterspells && !theft && !extra && !mld.length) return null
+  const parts = [
+    counterspells ? `${counterspells} counterspell${counterspells > 1 ? 's' : ''}` : null,
+    theft ? `${theft} theft card${theft > 1 ? 's' : ''}` : null,
+    extra ? `${extra} extra-turn card${extra > 1 ? 's' : ''}` : null,
+  ].filter(Boolean)
+  return (
+    <div style={{ margin: '6px 0 10px', padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524' }}>
+      <div style={{ fontSize: 11.5, color: '#a8a29e', marginBottom: 4 }}>
+        <Term def="Cards that stop other players from playing: lock pieces (a lasting effect that keeps permanents tapped, limits spells or draws, stops attacks, makes a player unkillable by damage, or shuts off abilities, with no way to pay around it), counterspells, lasting theft, extra turns and mass land denial. Shown so the pod knows before the game; it does not change the bracket.">What it denies other players</Term>
+      </div>
+      {(locks.length > 0 || mld.length > 0) && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: parts.length ? 5 : 0 }}>
+          {locks.map((lk) => (
+            <span key={lk.name} title={`Lock piece: ${LOCK_KIND[lk.kind] || lk.kind} -- "${lk.reason}"`}
+              style={{ fontSize: 10.5, padding: '1px 7px', borderRadius: 10, background: '#4c1d9522', border: '1px solid #7c3aed', color: '#c4b5fd', cursor: 'help' }}>
+              {lk.name} <span style={{ color: '#a78bfa' }}>· {LOCK_KIND[lk.kind] || lk.kind}</span>
+            </span>
+          ))}
+          {mld.map((n) => (
+            <span key={`mld-${n}`} title="Mass land denial: not allowed in Brackets 1-3"
+              style={{ fontSize: 10.5, padding: '1px 7px', borderRadius: 10, background: '#7f1d1d22', border: '1px solid #b91c1c', color: '#fca5a5', cursor: 'help' }}>
+              {n} <span style={{ color: '#f87171' }}>· land denial</span>
+            </span>
+          ))}
+        </div>
+      )}
+      {parts.length > 0 && (
+        <div style={{ fontSize: 10.5, color: '#a8a29e' }}>{parts.join(' · ')}</div>
+      )}
+    </div>
+  )
+}
+
 // Kill clock (B32) and combo clock (B33): when the deck kills an opponent who never interacts,
 // as a range rather than one average, and how often each combo is assembled by each turn.
 // `by_turn` keys arrive as strings (JSON object keys). Every number shown is the engine's;
@@ -538,6 +585,7 @@ export default function SimStrengthPanel({ simulation, statedBracket = null, onS
       {pp.ceiling != null && bar('Ceiling (nut draw)', pp.ceiling, '/100', ceilingDetail, TERMS.ceiling)}
       {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail, TERMS.pod)}
       <TableFeel pp={pp} detail={why['Table feel']} />
+      <Denial denial={simulation.denial} />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
         <span title={why.Speed ? `${why.Speed}\n\n${TERMS.speed}` : TERMS.speed} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: 'help' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>

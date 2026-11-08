@@ -1,6 +1,6 @@
 # Table brackets: a bracket that predicts whether the game will be fun
 
-Status: design proposal, 2026-11-08; section 6 is the build order. D1 is done (see the table).
+Status: design proposal, 2026-11-08; section 6 is the build order. D1 and D2 are done (see the table).
 
 ## 1. The problem, in our own data
 
@@ -131,7 +131,7 @@ Each failed check produces a sentence for the pre-game talk.
 | Item | What | Depends on |
 |---|---|---|
 | D1 (**done** 2026-11-08) | Fix the mass-land-denial gate both ways: add tap-down and mana-change effects (Winter Orb, Static Orb, Stasis, Blood Moon, Back to Basics); drop the false positives (Pox, Tectonic Hellion, Magosi, planeswalker ultimates) | none; rerun the bracket accuracy check |
-| D2 | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
+| D2 (**done** 2026-11-08) | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
 | D3 | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
 | D4 | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
 | D5 | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
@@ -152,4 +152,23 @@ Tectonic Hellion stays: it takes lands on every attack. On the 76 labelled decks
 changed, exact agreement with the label went 36 -> 50 and within-one 64 -> 73; five casual decks
 lost a false Bracket 4 floor. The corpus label audit now includes mass land denial (10 more labels
 demoted, 2,112 kept), and so does the stated-bracket check in the UI.
+
+**D2 result (2026-11-08).** `ratings/denial.py`. A lock is a permanent's continuous effect that
+stops opponents (or every player) from doing a core thing with no way to pay around it, in six
+kinds read from the card's own text: untap, spell_limit, draw_limit, attack, cant_lose, ability.
+The subject must open the sentence and be generic, so colour hosers ("Blue creatures"), targeted
+locks ("those creatures"), narrow subsets ("creatures with flying") and taxes ("unless ... pays":
+Ghostly Prison, Propaganda) are not locks; planeswalker ultimates are stripped as in D1. A
+three-card `LOCK_LIST` (Tabernacle, Smokestack, Opposition) and a one-card `NOT_LOCKS` (Intruder
+Alarm, a combo piece) cover what text can't. Every hit in the Commander-legal pool was reviewed:
+58 locks. The deck block also counts counterspells, lasting theft (incl. "You control enchanted
+creature"), extra turns and mass land denial; `/analyze` returns it as `denial` and the strength
+panel shows it beside Table feel. It does not move the bracket.
+
+Corpus readout (labelled, audited): decks with a lock piece B1 8%, B2 5%, B3 8%, B4 23%, B5 36%;
+median counterspells B1-2 0, B3 1, B5 7; decks with 8+ counterspells B1-2 2%, B3 4%, B5 47%. At
+casual brackets the typical deck holds no counterspell at all, so one counter-heavy deck at the
+table faces none back -- consistent with the observation behind this design, not yet a measured
+win rate (D5/D6). Solitary Confinement appears in three Bracket 2 and two Bracket 3 decks; the
+EDHREC survey scores it 1.0 of 4, so Table feel alone read one of them "Friendly".
 

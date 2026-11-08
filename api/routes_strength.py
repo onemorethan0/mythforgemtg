@@ -147,6 +147,7 @@ def _gauntlet_analyze(commander, deck, partners=None):
             "combo_clock": data.get("combo_clock"),
             # which brackets the official rules allow this list at, for the stated-bracket check
             "bracket_rules": data.get("bracket_rules"),
+            "denial": data.get("denial"),   # lock pieces, counters, theft (D2)
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:
