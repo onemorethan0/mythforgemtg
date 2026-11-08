@@ -1049,7 +1049,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               (the old profile no longer matches the modified list) */}
           <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
             initial={deck.breakdown?.data} onData={setBreakdown} />
-          <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure} />
+          <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
+            statedBracket={deck.stated_bracket ?? null} />
           <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
           {/* Playtest + manual edit: the two everyday tools of every deck site. */}
           <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />

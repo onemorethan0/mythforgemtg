@@ -96,6 +96,9 @@ def import_preview(req: ImportPreviewRequest):
         # commander/pairing)? Meaningless for an auto-elected face (no command zone), so
         # the UI shows it only when the user says this is a Commander deck.
         "legality":     _import_legality(imp),
+        # The builder's own bracket when the source carries one (Archidekt `edhBracket`, a
+        # `# bracket: N` header) -- a prefill for the "your bracket" picker, nothing more.
+        "stated_bracket": imp.stated_bracket,
         "simulation":   _gauntlet_analyze(imp.commander, imp.deck, partners=imp.partners),
     }
 
@@ -114,6 +117,8 @@ class ImportSaveRequest(BaseModel):
     force_refresh:     bool = False
     is_commander_deck: bool = True
     commander_name:    str  = Field("", max_length=120)    # optional face override
+    # The player's own bracket for this list (1-5), shown beside the measured one.
+    stated_bracket:    int | None = Field(None, ge=1, le=5)
 
 
 @router.post("/api/deck/import-save")
@@ -174,6 +179,8 @@ def import_save(req: ImportSaveRequest):
         "import_source_input": req.source.strip(),
         "import_unresolved": imp.unresolved,
         "import_auto_face":  face_auto,
+        "stated_bracket":    req.stated_bracket if req.stated_bracket is not None
+                             else imp.stated_bracket,
         # The rest of the command zone, by name — the same field every build path writes.
         # Without it a saved partner deck was measured, advised and mentored against the
         # LEAD card's half identity (routes_strength._job_partners read nothing), and the
@@ -323,6 +330,30 @@ async def get_playstyles():
         {"key": k, "label": PLAYSTYLES[k]["label"], "description": PLAYSTYLES[k]["description"]}
         for k in PLAYSTYLE_ORDER
     ]
+
+
+class StatedBracketRequest(BaseModel):
+    stated_bracket: int | None = Field(None, ge=1, le=5)   # None clears it
+
+
+@router.post("/api/deck/{job_id}/stated-bracket")
+def set_stated_bracket(job_id: str, req: StatedBracketRequest):
+    """Record the bracket the PLAYER calls this deck, shown beside the measured bracket.
+
+    A label, not an input: nothing is re-measured, and the measured bracket never reads it.
+    Written to deck.json and the in-memory job with the same read-modify-write `/measure`
+    uses for `last_measure`."""
+    _require_job_id(job_id)
+    path = state.RENDER_DIR / job_id / "deck.json"
+    if not path.exists() and job_id not in _jobs:
+        raise HTTPException(404, "Job not found")
+    if path.exists():
+        disk = json.loads(path.read_text(encoding="utf-8"))
+        disk["stated_bracket"] = req.stated_bracket
+        path.write_text(json.dumps(disk), encoding="utf-8")
+    if job_id in _jobs:
+        _jobs[job_id]["stated_bracket"] = req.stated_bracket
+    return {"job_id": job_id, "stated_bracket": req.stated_bracket}
 
 
 @router.post("/api/deck/{job_id}/duplicate")

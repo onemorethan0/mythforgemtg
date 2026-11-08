@@ -16,7 +16,7 @@ import SimStrengthPanel from './SimStrengthPanel'
 // engine scoring code. It is never shown as current: the panel re-measures on open and says
 // so. Before this, a Sep 4 "Resilience 88" sat on the deck page beside the import preview's
 // fresh 41 for the same list, with nothing to tell them apart.
-export default function MeasurePanel({ jobId, cached }) {
+export default function MeasurePanel({ jobId, cached, statedBracket: savedStated = null }) {
   const hasCache = !!cached?.simulation?.power_profile
   const stale = hasCache && !!cached.stale
   // A stale cache opens straight into "loading" and fetches on mount (below); nothing is
@@ -26,6 +26,18 @@ export default function MeasurePanel({ jobId, cached }) {
   const [measuredAt, setMeasuredAt] = useState(hasCache && !stale ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
   const refreshedStale = stale
+  // The player's own bracket for this deck, saved on change (POST /api/deck/{id}/stated-bracket).
+  // A label only: changing it never re-measures. The previous value comes back on a failed save.
+  const [statedBracket, setStatedBracket] = useState(savedStated)
+  const saveStated = (b) => {
+    const prev = statedBracket
+    setStatedBracket(b)
+    fetch(`/api/deck/${jobId}/stated-bracket`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stated_bracket: b }),
+    }).then((r) => { if (!r.ok) setStatedBracket(prev) }).catch(() => setStatedBracket(prev))
+  }
 
   // A promise chain rather than async/await so every state update visibly sits behind the
   // fetch: it is called from a mount effect, and nothing here may set state synchronously.
@@ -87,7 +99,8 @@ export default function MeasurePanel({ jobId, cached }) {
       )}
       {state === 'done' && (
         <>
-          <SimStrengthPanel simulation={result} />
+          <SimStrengthPanel simulation={result}
+            statedBracket={statedBracket} onStatedBracketChange={saveStated} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
             <button
               onClick={run}

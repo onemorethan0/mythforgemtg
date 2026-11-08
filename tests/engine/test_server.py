@@ -298,6 +298,15 @@ def test_analyze_reports_kill_speed_and_table_speed_is_opt_in(client, tmp_path, 
     assert ts["kill_wins"] + ts["adjudicated_wins"] == ts["wins"]
 
 
+def test_analyze_reports_which_brackets_the_rules_allow(client):
+    """The stated-bracket check reads this; without the combo lookup it must say so."""
+    rules = client.post("/analyze", json={"deck": DECK, "runs": 20}).json()["bracket_rules"]
+    assert set(rules["by_bracket"]) == {"1", "2", "3", "4", "5"}
+    assert rules["combos_checked"] is False
+    assert rules["by_bracket"]["4"] == {"allowed": True, "reasons": []}
+    assert rules["by_bracket"]["5"]["allowed"]
+
+
 def test_pod_field_bracket_filters_by_label(client, tmp_path, monkeypatch):
     _labelled_corpus(tmp_path, monkeypatch)
     every = client.post("/pod", json={"deck": DECK, "games": 4}).json()

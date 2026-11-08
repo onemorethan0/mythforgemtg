@@ -145,6 +145,8 @@ def _gauntlet_analyze(commander, deck, partners=None):
             # (combo_clock needs `combos: true`, sent above), dropped here until now.
             "kill_speed": data.get("kill_speed"),
             "combo_clock": data.get("combo_clock"),
+            # which brackets the official rules allow this list at, for the stated-bracket check
+            "bracket_rules": data.get("bracket_rules"),
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:

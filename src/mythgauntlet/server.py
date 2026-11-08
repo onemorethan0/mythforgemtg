@@ -305,6 +305,18 @@ def _card_stats_block(stats) -> dict | None:
     }
 
 
+def _bracket_rules_block(resolved, report: spellbook.ComboReport | None, checked: bool) -> dict:
+    """{"1".."5": {"allowed", "reasons"}} from `data.label_audit` (Game Changer limits and
+    two-card infinite combos), plus `combos_checked`: without the Spellbook lookup the combo
+    gate was not run, and the UI must say "not checked" rather than "allowed"."""
+    from mythgauntlet.data import label_audit
+    by_bracket = {}
+    for b in range(1, 6):
+        r = label_audit.audit_resolved(resolved, b, report if checked else None)
+        by_bracket[str(b)] = {"allowed": r.ok, "reasons": r.reasons}
+    return {"by_bracket": by_bracket, "combos_checked": checked}
+
+
 def _combos_block(
     report: spellbook.ComboReport | None,
     profile,  # ComboAssessment | None
@@ -627,6 +639,10 @@ def create_app(
             # Combos on the clock (B33): per graded combo, the share of games it is assembled
             # by each turn, and the combined damage-or-combo clock. Needs `combos: true`.
             "combo_clock": dataclasses.asdict(a.combo_clock) if a.combo_clock else None,
+            # Which brackets the official rules ALLOW for this list, so the UI can set a
+            # player's stated bracket beside the measured one without re-simulating (or
+            # re-implementing the rules): the same audit that cleans the corpus labels.
+            "bracket_rules": _bracket_rules_block(resolved, combo_report, combos_checked),
         }
 
     @app.post("/card-impact")

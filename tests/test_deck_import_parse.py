@@ -85,3 +85,25 @@ def test_cache_id_is_stable_distinct_and_filesystem_safe():
         "archidekt", "https://archidekt.com/decks/222")
     nasty = di._cache_id("moxfield", "https://moxfield.com/decks/a%20b/../c$d")
     assert all(c.isalnum() or c in "_-" for c in nasty)
+
+
+def test_a_bracket_header_in_pasted_text_is_the_stated_bracket():
+    raw = di._parse_text("# Archidekt — deck\n# bracket: 3\n\nCommander\n1 Krenko, Mob Boss\n\nDeck\n1 Sol Ring\n")
+    assert raw.stated_bracket == 3
+    assert di._parse_text("# my bracket: maybe 3?\n1 Sol Ring\n").stated_bracket is None
+    assert di._parse_text("1 Sol Ring\n").stated_bracket is None
+
+
+def test_archidekt_edh_bracket_is_the_stated_bracket():
+    payload = {"name": "d", "edhBracket": 4, "categories": [],
+               "cards": [{"quantity": 1, "categories": ["Commander"],
+                          "card": {"oracleCard": {"name": "Krenko, Mob Boss"}}}]}
+    assert di._parse_archidekt(payload).stated_bracket == 4
+    for junk in (None, 0, 9, "x"):
+        assert di._parse_archidekt(dict(payload, edhBracket=junk)).stated_bracket is None
+
+
+def test_imported_deck_cache_round_trips_the_stated_bracket():
+    d = di.ImportedDeck(name="d", source="text", commander=None, deck=[], stated_bracket=2)
+    assert di.ImportedDeck.from_json(d.to_json()).stated_bracket == 2
+    assert di.ImportedDeck.from_json({"name": "old cache"}).stated_bracket is None

@@ -349,6 +349,8 @@ _PROVENANCE_KEYS = (
     "imported", "import_source", "import_name", "import_source_input",
     "import_unresolved", "import_auto_face", "is_commander_deck",
     "face_assignments", "partners",
+    # the player's own bracket for the list; a retheme/rebuild keeps the same cards
+    "stated_bracket",
     # A single custom card IS a "deck of one", and `mode` is the only thing that
     # says so. Losing it across a rebuild/retheme turned the user's card into a
     # deck with zero cards: the result screen showed deck stats, type filters and

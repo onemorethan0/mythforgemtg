@@ -73,6 +73,10 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
   // with no commander zone is probably NOT Commander) but the user always decides.
   const [isCmdDeck, setIsCmdDeck]     = useState(true)
   const [saveLoading, setSaveLoading] = useState(false)
+  // The player's own bracket for the imported list: prefilled from the source when it has
+  // one (Archidekt's bracket, a `# bracket: N` header), shown beside the measured bracket,
+  // and saved with the deck.
+  const [statedBracket, setStatedBracket] = useState(null)
 
   async function doPreview(forceRefresh = false) {
     const val = importText.trim()
@@ -87,6 +91,7 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
       const data = await res.json()
       if (!res.ok) { setImportErr(data.detail || 'Import failed.'); setImportLoading(false); return }
       setPreview(data)
+      setStatedBracket(data.stated_bracket ?? null)
       setCmdOverride(data.commander?.name || '')
       setIsCmdDeck(!data.auto_face)   // no commander zone → default "not a Commander deck"
     } catch {
@@ -129,6 +134,7 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
           source: importText.trim(),
           is_commander_deck: isCmdDeck,
           commander_name: cmdOverride.trim(),
+          stated_bracket: statedBracket,
         }),
       })
       const data = await res.json()
@@ -375,7 +381,8 @@ export default function StepCommander({ onNext, onSaveImported, bracket, onBrack
               )}
 
               {/* ── Simulation-grounded strength (MythGauntlet, suite C3) ── */}
-              <SimStrengthPanel simulation={preview.simulation} />
+              <SimStrengthPanel simulation={preview.simulation}
+                statedBracket={statedBracket} onStatedBracketChange={setStatedBracket} />
 
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <button

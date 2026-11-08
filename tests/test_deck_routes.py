@@ -211,3 +211,24 @@ def test_delete_batch_never_deletes_outside_the_renders_directory(_isolated):
     assert sub.exists()
     assert r.json()["deleted"] in ([], [JOB])         # a well-formed id that never existed is harmless
     assert set(r.json()["skipped"]) >= {"../victim", "plain-dir", "", ".."}
+
+
+# -- stated bracket -------------------------------------------------------------------------------
+
+def test_stated_bracket_is_saved_read_back_and_cleared(_isolated):
+    _write(_isolated)
+    r = client.post(f"/api/deck/{JOB}/stated-bracket", json={"stated_bracket": 2})
+    assert r.status_code == 200 and r.json()["stated_bracket"] == 2
+    disk = json.loads((_isolated / "renders" / JOB / "deck.json").read_text(encoding="utf-8"))
+    assert disk["stated_bracket"] == 2
+    assert client.get(f"/api/deck/{JOB}").json()["stated_bracket"] == 2
+    client.post(f"/api/deck/{JOB}/stated-bracket", json={"stated_bracket": None})
+    disk = json.loads((_isolated / "renders" / JOB / "deck.json").read_text(encoding="utf-8"))
+    assert disk["stated_bracket"] is None
+
+
+def test_stated_bracket_rejects_out_of_range_and_unknown_decks(_isolated):
+    _write(_isolated)
+    assert client.post(f"/api/deck/{JOB}/stated-bracket", json={"stated_bracket": 6}).status_code == 422
+    assert client.post(f"/api/deck/{JOB2}/stated-bracket", json={"stated_bracket": 3}).status_code == 404
+    assert client.post("/api/deck/nope/stated-bracket", json={"stated_bracket": 3}).status_code in (400, 404)

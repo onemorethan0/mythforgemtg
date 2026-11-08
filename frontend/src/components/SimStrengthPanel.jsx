@@ -182,12 +182,89 @@ function KillClock({ killSpeed, comboClock }) {
   )
 }
 
+// The player's own bracket beside ours. The rules verdict comes from the engine
+// (`bracket_rules`: the official Game Changer limits and two-card infinite combos, per
+// bracket), so picking a different bracket never re-simulates and never re-implements the
+// rules here. A disallowed bracket is said plainly; otherwise the measured one is compared.
+const BRACKET_COLORS = { 1: '#4ade80', 2: '#a3e635', 3: '#eab308', 4: '#f97316', 5: '#ef4444' }
+
+function StatedBracket({ stated, measured, rules, onChange }) {
+  const verdict = (() => {
+    if (!stated) return null
+    const rule = rules?.by_bracket?.[String(stated)]
+    if (rule && !rule.allowed) {
+      const lowest = [1, 2, 3, 4, 5].find((b) => rules.by_bracket[String(b)]?.allowed)
+      return {
+        color: '#ef4444',
+        head: `The official rules don't allow Bracket ${stated} for this list`,
+        body: `${rule.reasons.join('; ')}.${lowest ? ` The lowest bracket its cards allow is ${lowest}.` : ''}`,
+      }
+    }
+    if (!measured) return null
+    if (stated === measured) {
+      return { color: '#4ade80', head: `We agree: Bracket ${stated}`, body: 'Your bracket and the measured one match.' }
+    }
+    if (measured > stated) {
+      return {
+        color: '#f97316',
+        head: `Plays above your Bracket ${stated}: we measure Bracket ${measured}`,
+        body: `Expect it to outpace most Bracket ${stated} tables; say so in the pre-game talk, or see the axes below for what pushes it up.`,
+      }
+    }
+    return {
+      color: '#38bdf8',
+      head: `Plays below your Bracket ${stated}: we measure Bracket ${measured}`,
+      body: `It may struggle at a Bracket ${stated} table; the weaknesses below say where.`,
+    }
+  })()
+  const notChecked = stated && stated <= 2 && rules && !rules.combos_checked
+  return (
+    <div style={{ margin: '-2px 0 10px', padding: '7px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 11.5, color: '#a8a29e', marginRight: 2 }}>
+          <Term def="The bracket YOU (or the deck's builder) call this deck. It never changes the measurement; it is shown beside ours so a mismatch is visible before you sit down at a table.">Your bracket</Term>
+        </span>
+        {[null, 1, 2, 3, 4, 5].map((b) => {
+          const on = stated === b
+          const c = b ? BRACKET_COLORS[b] : '#78716c'
+          return (
+            <button key={b ?? 'none'} type="button" onClick={() => onChange(b)}
+              title={b ? `${BRACKET_TERMS[b]?.label || ''}` : 'Not set'}
+              style={{
+                fontSize: 11, fontWeight: on ? 800 : 500, minWidth: 26, padding: '1px 7px', borderRadius: 12,
+                cursor: 'pointer', fontFamily: 'inherit',
+                background: on ? `${c}33` : 'transparent', color: on ? c : '#78716c',
+                border: `1px solid ${on ? c : '#44403c'}`,
+              }}>
+              {b ?? '—'}
+            </button>
+          )
+        })}
+      </div>
+      {verdict && (
+        <div style={{ marginTop: 6, fontSize: 11, lineHeight: 1.45 }}>
+          <div style={{ color: verdict.color, fontWeight: 700 }}>{verdict.head}</div>
+          <div style={{ color: '#a8a29e' }}>{verdict.body}</div>
+        </div>
+      )}
+      {notChecked && (
+        <div style={{ marginTop: 3, fontSize: 10, color: '#78716c' }}>
+          Two-card infinite combos were not checked (Commander Spellbook unreachable).
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Simulation-grounded strength panel (MythGauntlet, Myth Suite C3) — shared by
 // the import preview (StepCommander) and the result screen's Measure panel
 // (StepDeck), so the two surfaces can't drift. Pure presentation: pass the
 // `simulation` object exactly as the API returns it
 // ({engine_version, power_profile, unresolved}).
-export default function SimStrengthPanel({ simulation }) {
+// `statedBracket` / `onStatedBracketChange`: the player's own bracket for this list. When the
+// handler is passed, a "Your bracket" picker sits under the measured badge; without it (a
+// caller that has nowhere to store the answer) nothing is shown.
+export default function SimStrengthPanel({ simulation, statedBracket = null, onStatedBracketChange = null }) {
   const pp = simulation?.power_profile
   // Deck-specific narrative (archetype/gameplan/pod placement/key cards/strengths &
   // weaknesses) — deterministic, computed for free alongside power_profile by the same
@@ -337,6 +414,10 @@ export default function SimStrengthPanel({ simulation }) {
           </div>
         )
       })()}
+      {onStatedBracketChange && (
+        <StatedBracket stated={statedBracket} measured={pp.bracket_estimate}
+          rules={simulation.bracket_rules} onChange={onStatedBracketChange} />
+      )}
       {/* The casual headline takeaway: which pod does this belong in, in plain English —
           not just the bracket number, but what it MEANS to bring this to a table (e.g.
           "will overwhelm casual tables" / "a fair fit for a casual Bracket 2 pod"). Reads

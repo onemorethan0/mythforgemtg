@@ -78,6 +78,10 @@ class RawDeck:
     # `_resolve` uses it to overlay the exact printing's art/set/rarity/price onto the
     # card `get_cards_collection` resolved by name — see scryfall_client.get_printing_overrides.
     printings: dict[str, dict] = field(default_factory=dict)
+    # The bracket the deck's OWN builder gave it, when the source says so: Archidekt's
+    # `edhBracket`, or a `# bracket: N` header line in pasted text (our corpus format).
+    # Only a prefill for the UI's "your bracket" picker -- never an input to the measurement.
+    stated_bracket: Optional[int] = None
 
 
 @dataclass
@@ -89,6 +93,7 @@ class ImportedDeck:
     partners: list[dict] = field(default_factory=list)
     unresolved: list[str] = field(default_factory=list)
     auto_face: bool = False               # commander was auto-elected (no commander zone)
+    stated_bracket: Optional[int] = None  # the builder's own bracket, if the source has one
 
     def total_cards(self) -> int:
         return (1 if self.commander else 0) + len(self.partners) + \
@@ -100,6 +105,7 @@ class ImportedDeck:
             "commander": self.commander, "partners": self.partners,
             "deck": self.deck, "unresolved": self.unresolved,
             "auto_face": self.auto_face,
+            "stated_bracket": self.stated_bracket,
         }
 
     @classmethod
@@ -107,7 +113,8 @@ class ImportedDeck:
         return cls(name=d.get("name", ""), source=d.get("source", ""),
                    commander=d.get("commander"), deck=d.get("deck", []),
                    partners=d.get("partners", []), unresolved=d.get("unresolved", []),
-                   auto_face=bool(d.get("auto_face", False)))
+                   auto_face=bool(d.get("auto_face", False)),
+                   stated_bracket=_bracket_or_none(d.get("stated_bracket")))
 
 
 # ── Source detection ───────────────────────────────────────────────────────────
@@ -241,7 +248,7 @@ def _parse_archidekt(data: dict) -> RawDeck:
             card_entries.append((name, qty))
     return RawDeck(name=data.get("name", "Imported deck"), source="archidekt",
                    commander_names=commander_names, card_entries=card_entries,
-                   printings=printings)
+                   printings=printings, stated_bracket=_bracket_or_none(data.get("edhBracket")))
 
 
 def _fetch_manabox(url: str) -> RawDeck:
@@ -372,6 +379,20 @@ _COMMENT_CATEGORY = re.compile(r"^\s*//\s*\S")
 _IGNORE_SECTIONS = {"sideboard", "maybeboard", "token", "tokens"}
 
 
+# `# bracket: 3` -- the corpus/decksources header. Anchored and exact, so a card named
+# "...Bracket..." or a comment mentioning brackets never reads as a claim.
+_STATED_BRACKET_RE = re.compile(r"^[ \t]*#[ \t]*bracket:[ \t]*([1-5])[ \t]*$", re.MULTILINE)
+
+
+def _bracket_or_none(value) -> Optional[int]:
+    """A bracket 1-5 from a source field, or None (missing, 0, junk)."""
+    try:
+        b = int(value)
+    except (TypeError, ValueError):
+        return None
+    return b if 1 <= b <= 5 else None
+
+
 def _parse_text(text: str) -> RawDeck:
     commander_names: list[str] = []
     card_entries: list[tuple[str, int]] = []
@@ -464,9 +485,11 @@ def _parse_text(text: str) -> RawDeck:
     # actually encodes one positionally: a short opening paragraph, more cards after.
     hint = ([] if (tagged_commander or not leading or len(leading) > 2
                    or len(card_entries) <= len(leading)) else list(leading))
+    stated = _STATED_BRACKET_RE.search(text or "")
     return RawDeck(name="Imported deck", source="text",
                    commander_names=commander_names, card_entries=card_entries,
-                   leading_names=hint, printings=printings)
+                   leading_names=hint, printings=printings,
+                   stated_bracket=int(stated.group(1)) if stated else None)
 
 
 # ── Resolve names → cards ───────────────────────────────────────────────────────
@@ -545,7 +568,8 @@ def _resolve(raw: RawDeck, scryfall) -> ImportedDeck:
 
     deck = [agg[k] for k in order]
     imported = ImportedDeck(name=raw.name, source=raw.source, commander=commander,
-                            deck=deck, partners=partners, unresolved=unresolved)
+                            deck=deck, partners=partners, unresolved=unresolved,
+                            stated_bracket=raw.stated_bracket)
     if commander is None:
         _promote_leading_commander(imported, raw.leading_names)
     return imported
