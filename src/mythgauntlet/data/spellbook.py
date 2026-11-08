@@ -62,6 +62,19 @@ class Combo:
     description: str = ""  # the step-by-step loop text
     notable_prerequisites: str = ""  # non-trivial game-state the combo needs
     easy_prerequisites: str = ""  # trivial setup (e.g. "a creature on the battlefield")
+    # Per piece, aligned with `cards` (B33's combo clock; empty for hand-built combos, which
+    # the clock then declines to time): where the piece must be when the combo starts
+    # (Spellbook zone codes: B battlefield, H hand, G graveyard, E exile, L library, C command
+    # zone; any one of the listed zones), whether it must be free of summoning sickness,
+    # whether Spellbook names any OTHER required state (counters, attached to ...), and how
+    # many copies it uses.
+    zones: tuple[tuple[str, ...], ...] = ()
+    needs_untapped: tuple[bool, ...] = ()
+    other_state: tuple[bool, ...] = ()
+    quantities: tuple[int, ...] = ()
+    # Generic cards the combo also needs ("Persist Creature", "Haste Enabler"): Spellbook
+    # templates, not named cards, so a deck may or may not fill them.
+    templates: tuple[str, ...] = ()
 
     @property
     def is_two_card(self) -> bool:
@@ -286,11 +299,22 @@ def assess_combos(
 
 def _variant_to_combo(variant: dict) -> Combo | None:
     uses = variant.get("uses") or []
-    cards = tuple(
-        (u.get("card") or {}).get("name", "") for u in uses if (u.get("card") or {}).get("name")
-    )
+    named = [u for u in uses if (u.get("card") or {}).get("name")]
+    cards = tuple(u["card"]["name"] for u in named)
     if not cards:
         return None
+    zones = tuple(tuple(u.get("zoneLocations") or ()) for u in named)
+    states = [(u.get("battlefieldCardState") or "").strip().casefold() for u in named]
+    needs_untapped = tuple(s.startswith("without summoning sickness") for s in states)
+    other_state = tuple(
+        bool(re.sub(r"^without summoning sickness", "", s).strip(" ,.")
+             or any((u.get(k) or "").strip() for k in
+                    ("graveyardCardState", "exileCardState", "libraryCardState")))
+        for s, u in zip(states, named))
+    quantities = tuple(int(u.get("quantity") or 1) for u in named)
+    templates = tuple(
+        ((r.get("template") or {}).get("name") or "a generic card")
+        for r in variant.get("requires") or [])
     produces = tuple(
         (p.get("feature") or {}).get("name", "")
         for p in variant.get("produces") or []
@@ -311,6 +335,8 @@ def _variant_to_combo(variant: dict) -> Combo | None:
         description=variant.get("description") or "",
         notable_prerequisites=variant.get("notablePrerequisites") or "",
         easy_prerequisites=variant.get("easyPrerequisites") or "",
+        zones=zones, needs_untapped=needs_untapped, other_state=other_state,
+        quantities=quantities, templates=templates,
     )
 
 

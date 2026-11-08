@@ -624,6 +624,9 @@ def create_app(
             # (opt-in, `table_speed`), with the goldfish capacity as its "if unopposed" line.
             "kill_speed": dataclasses.asdict(a.kill_speed) if a.kill_speed else None,
             "table_speed": table_speed,
+            # Combos on the clock (B33): per graded combo, the share of games it is assembled
+            # by each turn, and the combined damage-or-combo clock. Needs `combos: true`.
+            "combo_clock": dataclasses.asdict(a.combo_clock) if a.combo_clock else None,
         }
 
     @app.post("/card-impact")

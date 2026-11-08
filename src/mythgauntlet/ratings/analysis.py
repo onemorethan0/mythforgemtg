@@ -75,6 +75,7 @@ class DeckAnalysis:
     card_verdicts: dict | None = None    # B31: strong/weak cards built on card_stats
     kill_methods: object | None = None   # B34: ratings/kill_methods.KillMethods
     kill_speed: object | None = None     # B32: ratings/kill_speed.KillSpeed (one player, unopposed)
+    combo_clock: object | None = None    # B33: ratings/combo_clock.ComboClock (needs graded combos)
 
 
 def analyze_deck(
@@ -245,6 +246,11 @@ def analyze_deck(
     analysis.kill_methods = _km.compute(runs, commander.name if commander else None)
     from mythgauntlet.ratings import kill_speed as _ks
     analysis.kill_speed = _ks.compute(runs, cfg.turns)
+    if combo_profile is not None and combo_profile.grades:
+        from mythgauntlet.ratings import combo_clock as _cc
+        analysis.combo_clock = _cc.compute(
+            runs, combo_profile.grades, [c for c, _n in resolved.cards], resolved.commanders,
+            cfg.turns)
     if card_stats_runs > 0:
         from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)

@@ -388,3 +388,59 @@ three opponents, blockers and a 120 life total.
 Limits: pod reactions are 1v1-only (`ratings/pod.py`), so counterspells and instant-speed
 removal do nothing at the table. The corpus field mixes archetypes in whatever proportion the
 corpus holds, until B35.
+
+### B33 (2026-11-08): combos on the clock
+
+`ratings/combo_clock.py`, `semantics/tutor_reach.py`; `POST /analyze {"combos": true}` ->
+`combo_clock: {combos[], killing_games, p25, median, p75, by_turn, combo_first_games,
+combo_first_median, lead_combo, text}`. About 1 s per deck.
+
+**Method.** Each graded combo is replayed over the goldfish games already played (tier0 records
+the turn each card was first seen and the mana available each turn), by a pilot who
+prioritises the combo: fire it if possible, else tutor a missing piece, else deploy a piece,
+cheapest first, within that turn's mana. It runs per combo and takes no mana from the goldfish's
+own plays. What each piece needs comes from Spellbook's own per-piece data, now kept by the
+parser (`Combo.zones/needs_untapped/other_state/quantities/templates`):
+
+- battlefield pieces are paid for on their own turn;
+- "without summoning sickness" means the creature landed on an earlier turn (CR 302.6);
+- hand pieces only need to be in hand, because their cost is already in `manaValueNeeded`;
+- the commander needs no draw (CR 903.6).
+
+**Prerequisites** (54% of winning combos carry one) are read, not ignored:
+
+- "X does not have summoning sickness" is applied as a timing rule.
+- "You control at least N <type>s" is counted from the deck's cast cards. Tokens are not
+  tracked, so this is an under-count.
+- "Your life total is at least N" passes only at N ≤ 40.
+- Anything else is kept verbatim as an assumption. The combo is still timed, but it is not
+  counted as a kill.
+
+**Not timed, and said why:** graveyard, exile and library-only pieces, other required states,
+multiple copies, and Spellbook template cards. A non-deterministic combo is never a kill. An
+advantage combo needs an outlet. Infinite tokens without haste kill the turn after.
+
+**Tutors** count only for what their own search text can find: the object is gated, the cost
+paid, and the destination taken as the most conservative one named. Of 50 real tutors
+hand-checked, all read correctly. Mystical Tutor finds only the instants, Imperial Recruiter
+honours power 2 or less, Tezzeret's −X is bounded by his loyalty, and Gamble, Intuition, Gifts,
+Birthing Pod, Eldritch Evolution and transmute cards are not counted.
+
+**Accept, pinned by tests.** On a draw-only deck the assembly share is within 2 points of the
+exact hypergeometric value and of a direct Monte-Carlo shuffle at every turn from T3 to T10. The
+commander needs no draw. A non-deterministic or assumption-carrying combo never enters the
+combined clock.
+
+**Real decks.**
+
+- Krenko: "kills by damage around T10; a combo kills first in 16% of games (median T8), most
+  often Krenko + Skirk Prospector + Goblin Warchief". The six-Goblin prerequisite cuts its T6
+  assembly rate from 6% to 1%. Brash Taunter + Aetherflux Reservoir is timed but not counted:
+  it needs lifelink and 51 life.
+- Corpus B4/B5 sample (20 decks with combos, 65 combos): 54 timed, 32 of those with a stated
+  assumption, 11 not timed. Examples: Marneus Calgar, combo first in 39% (median T6, Demonic
+  Consultation + Thassa's Oracle); Heartless Hidetsugu + Fiendish Duo, first in 50% (median T6).
+
+**Limits.** Mana colour is not checked, since tier0 tracks a count of available mana. The pilot
+is unopposed. Summoning sickness is taken from Spellbook's own flags; it flags the creatures
+whose tap the combo uses, not ones like Krenko, whose haste comes from Goblin Warchief.
