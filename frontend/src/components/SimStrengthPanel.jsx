@@ -67,6 +67,39 @@ function TableFeel({ pp, detail }) {
   )
 }
 
+// Table-contract dials (D3): Denial, Pace, Inevitability, each with the reasons the engine
+// gave. They sit under the bracket badge so the line a pod hears reads "Bracket 2 · Denial
+// High · Pace Long" -- what to say before shuffling up. They never change the bracket.
+const DIAL_COLORS = {
+  Low: '#4ade80', Medium: '#eab308', High: '#ef4444',
+  Fast: '#ef4444', Typical: '#a8a29e', Long: '#38bdf8',
+}
+const DIAL_TERMS = {
+  denial: 'How much it stops other players from playing: lock pieces and land denial count most, then counterspells, theft and extra turns. High at Bracket 1-2 means the pod should know before the game.',
+  pace: "When it kills one opponent who never interacts (with combos when one comes first). Fast is turn 6 or earlier, inside the six turns Bracket 3 promises; Long is turn 11 or later, or rarely.",
+  inevitability: 'How predictably it wins the same way: a reliable game-ending combo, and tutors that can find its pieces. High means games look alike; Low means they play out differently.',
+}
+
+function Dials({ dials }) {
+  if (!dials) return null
+  const rows = [['denial', 'Denial'], ['pace', 'Pace'], ['inevitability', 'Inevitability']]
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '-4px 0 10px' }}>
+      {rows.map(([key, label]) => {
+        const d = dials[key]
+        if (!d) return null
+        const c = DIAL_COLORS[d.band] || '#a8a29e'
+        return (
+          <span key={key} title={`${DIAL_TERMS[key]}\n\n${(d.reasons || []).join('\n')}`}
+            style={{ fontSize: 11, padding: '2px 9px', borderRadius: 12, cursor: 'help', background: `${c}1a`, border: `1px solid ${c}`, color: '#d6d3d1' }}>
+            {label} <b style={{ color: c }}>{d.band}</b>
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
 // Denial (D2): what the deck does to OTHER players' turns. Lock pieces by name (a continuous
 // effect that stops opponents untapping, casting, drawing, attacking or winning, with no way to
 // pay around it), plus counterspells, lasting theft, extra turns and mass land denial. Like
@@ -461,6 +494,7 @@ export default function SimStrengthPanel({ simulation, statedBracket = null, onS
           </div>
         )
       })()}
+      <Dials dials={simulation.dials} />
       {onStatedBracketChange && (
         <StatedBracket stated={statedBracket} measured={pp.bracket_estimate}
           rules={simulation.bracket_rules} onChange={onStatedBracketChange} />

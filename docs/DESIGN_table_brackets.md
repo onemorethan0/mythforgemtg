@@ -1,6 +1,6 @@
 # Table brackets: a bracket that predicts whether the game will be fun
 
-Status: design proposal, 2026-11-08; section 6 is the build order. D1 and D2 are done (see the table).
+Status: design proposal, 2026-11-08; section 6 is the build order. D1-D3 are done (see the table).
 
 ## 1. The problem, in our own data
 
@@ -132,7 +132,7 @@ Each failed check produces a sentence for the pre-game talk.
 |---|---|---|
 | D1 (**done** 2026-11-08) | Fix the mass-land-denial gate both ways: add tap-down and mana-change effects (Winter Orb, Static Orb, Stasis, Blood Moon, Back to Basics); drop the false positives (Pox, Tectonic Hellion, Magosi, planeswalker ultimates) | none; rerun the bracket accuracy check |
 | D2 (**done** 2026-11-08) | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
-| D3 | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
+| D3 (**done** 2026-11-08) | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
 | D4 | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
 | D5 | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
 | D6 | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
@@ -171,4 +171,24 @@ casual brackets the typical deck holds no counterspell at all, so one counter-he
 table faces none back -- consistent with the observation behind this design, not yet a measured
 win rate (D5/D6). Solitary Confinement appears in three Bracket 2 and two Bracket 3 decks; the
 EDHREC survey scores it 1.0 of 4, so Table feel alone read one of them "Friendly".
+
+**D3 result (2026-11-08).** `ratings/dials.py`; `/analyze` returns `dials`, shown as three chips
+under the bracket badge ("Denial Medium - Pace Typical - Inevitability Low"), each tooltip
+carrying its reasons. Never moves the bracket.
+
+- **Denial**: lock or land-denial card 3 points, each counterspell / theft / extra-turn card 1;
+  Medium from 4, High from 8 (eight counterspells alone is High). Full labelled corpus: High for
+  5% of B1, 2% of B2, 7% of B3, 25% of B4, 61% of B5.
+- **Pace**: Fast when a quarter of games or more end by T6 (Bracket 3's six-turn promise), Long
+  when under half end by T10, by damage or combo, unopposed. A median was tried first and read
+  almost nothing Fast: even a deck whose combo comes first in 75% of games has a combined median
+  near T8.
+- **Inevitability**: High when a combo wins before damage in half the games, or a quarter with 3+
+  tutors, or a game-ending combo with 6+ tutors; Medium for a combo or 4+ tutors.
+
+Sample, 40 labelled decks per bracket: Inevitability High B1 0%, B2 0%, B3 10%, B4 12%, B5 52%;
+Pace Long B1-4 22-35%. **Known limit:** Pace reads Fast for only 20% of Bracket 5 decks because
+the goldfish under-times cEDH (median B5 deck ends 7% of games by T6; its combo comes first in a
+median 0% -- no mana colour, no fast-mana sequencing, assumption-carrying combos not counted). The
+thresholds stay tied to the game, not fitted to the labels; a faster clock will move the dial.
 

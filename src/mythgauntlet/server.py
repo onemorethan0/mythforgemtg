@@ -305,9 +305,8 @@ def _card_stats_block(stats) -> dict | None:
     }
 
 
-def _denial_block(resolved) -> dict:
-    from mythgauntlet.ratings import denial
-    d = denial.deck_denial(list(resolved.cards), list(resolved.commanders))
+def _denial_block(d) -> dict:
+    """`d` is a `denial.DeckDenial`."""
     return {
         "locks": [dataclasses.asdict(lk) for lk in d.locks],
         "counterspells": d.counterspells,
@@ -476,6 +475,8 @@ def create_app(
             combos_checked=combos_checked, run_resilience=req.resilience,
             card_stats_runs=CARD_STATS_RUNS if req.card_stats else 0,
         )
+        from mythgauntlet.ratings import denial as _denial, dials as _dials
+        deck_denial = _denial.deck_denial(list(resolved.cards), list(resolved.commanders))
         table_speed = None
         if req.table_speed:
             from mythgauntlet.ratings import kill_speed as _ks
@@ -658,7 +659,10 @@ def create_app(
             # D2: what the deck does to OTHER players' turns -- lock pieces by name and kind,
             # counterspells, lasting theft, extra turns, mass land denial. Information beside
             # the bracket; it does not move it (docs/DESIGN_table_brackets.md).
-            "denial": _denial_block(resolved),
+            "denial": _denial_block(deck_denial),
+            # D3: the table-contract dials -- Denial, Pace, Inevitability, each Low/Medium/High
+            # with its reasons. Beside the bracket, never inside it.
+            "dials": dataclasses.asdict(_dials.compute(resolved, a, deck_denial, combos_checked)),
         }
 
     @app.post("/card-impact")

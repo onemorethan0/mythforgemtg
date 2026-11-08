@@ -307,6 +307,15 @@ def test_analyze_reports_which_brackets_the_rules_allow(client):
     assert rules["by_bracket"]["5"]["allowed"]
 
 
+def test_analyze_reports_the_dials(client):
+    body = client.post("/analyze", json={"deck": DECK, "runs": 20}).json()
+    dl = body["dials"]
+    assert set(dl) == {"denial", "pace", "inevitability"}
+    assert dl["denial"]["band"] in ("Low", "Medium", "High")
+    assert dl["pace"]["band"] in ("Fast", "Typical", "Long")
+    assert "combos not checked" in dl["inevitability"]["reasons"]
+
+
 def test_analyze_reports_denial(client):
     d = client.post("/analyze", json={"deck": DECK, "runs": 20}).json()["denial"]
     assert set(d) == {"locks", "counterspells", "theft", "extra_turn_cards", "mass_land_denial"}
